@@ -608,12 +608,8 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 							$locales = generateLanguageList('all');
 							$locales[gettext("HTTP Accept Language")] = '';
 							ksort($locales,SORT_LOCALE_STRING);
-							if (defined('RELEASE')) {
-								$vers = explode('.',ZENPHOTO_VERSION);
-							} else {
-								//TODO: development release level
-								$vers = array(1,4,1);
-							}
+							$vers = explode('-', ZENPHOTO_VERSION);
+							$vers = explode('.', $vers[0]);
 							while (count($vers)<3) {
 								$vers[] = 0;
 							}
