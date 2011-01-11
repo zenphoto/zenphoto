@@ -1,0 +1,32 @@
+/* language selectbox effect.
+------------------------------------- */
+.languageselect {
+	padding-left: 24px;
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
+.languageoption {
+	padding-left: 24px;
+	margin-bottom: 2px;
+	background-position: center left;
+}
+
+.flags img {
+	border: none;
+	vertical-align:-15%;
+}
+.flags li {
+	display: inline;
+	padding: 5px;
+}
+.flags li a {
+	text-decoration:none
+}
+
+.currentLanguage {
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 1px solid #BAC9CF;
+}

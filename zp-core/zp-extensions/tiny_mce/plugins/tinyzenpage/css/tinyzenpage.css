@@ -1,0 +1,72 @@
+html {
+ background-color: white;
+}
+body {
+	background-color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	color: black;
+}
+
+
+#main {
+margin-top: -10px;
+}
+
+h3 {
+padding-left: 7px;
+margin-bottom: 0px;
+}
+
+h4 {
+font-style: italic;
+}
+.wrapicon { 
+	position: relative; 
+	top: 4px
+}
+
+.customtext {
+	margin-left: 18px
+}
+
+.optionsdiv {
+	float: left; 
+	width: 25%; 
+	margin: 0;
+}
+
+
+.albumdiv {
+	width: 73%; 
+	background-color: white; 
+	border: 0px solid gray; 
+	overflow: none;
+	float: left; 
+	padding: 0px 0px 0px 0px;
+	font-size: 12px;
+}
+
+
+.albumdiv p {
+margin-left: 5px;
+}
+
+
+#help {
+padding: 4px;
+width: 3em;
+height: 1.2em;
+color: black;
+background-color: white;
+border: 1px solid gray;
+position: fixed;
+top: 0px;
+z-index: 1000;
+left: 700px;
+text-align: center;
+}
+
+#help a {
+color: black;
+font-weight: bold;
+}

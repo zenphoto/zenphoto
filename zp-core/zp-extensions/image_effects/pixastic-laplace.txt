@@ -1,0 +1,7 @@
+<source><a href="http://www.pixastic.com/lib/docs/actions/laplace/">Pixastic JavaScript Image Processing Library</a></source>
+<head>
+<script type="text/javascript">var pixastic_parseonload = true;</script>
+<script type="text/javascript" src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/image_effects/pixastic.core.js"></script>
+<script type="text/javascript" src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/image_effects/laplace.js"></script>
+</head>
+<class>pixastic pixastic-laplace(invert=true;edgeStrength=0.7)</class>

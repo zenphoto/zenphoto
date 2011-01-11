@@ -1,0 +1,20 @@
+span.tagMatches { 
+	width: 165px;
+	position: absolute;
+	z-index: 100;
+	max-height: 300px;
+	text-align: left;
+	overflow: auto;
+	border: 0;
+} 
+    
+span.tagMatches span { 
+	color: gray;
+	cursor: pointer; 
+	width: 150px; 
+	background-color: #F5F5F3; 
+} 
+
+._tag_suggestion {
+	float: left; 
+}

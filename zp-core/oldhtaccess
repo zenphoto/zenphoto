@@ -1,0 +1,95 @@
+# htaccess file version 1.4.0;
+# When Zenphoto requires changes to the rewrite rules:
+#		First make a copy of this file as 'oldhtaccess' in the zp-core folder so setup can test for unmodified files
+#		Update the above and the define in setup.php
+
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  RewriteBase /zenphoto
+  
+  RewriteRule	^admin/?$                       zp-core/admin.php [R,L]
+  
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^albums/?(.+/?)?$ $1 [R=301,L] 
+
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^.*$ - [L]
+  
+  ##### put no rules before this line #######
+  
+  
+  #######################
+  #Rewrite rules for removed sitemap.php
+  RewriteRule	^sitemap\.php                  		index.php?sitemap [L,R=301]
+  
+  #Rewrite rules for removed RSS files
+	RewriteCond %{QUERY_STRING} albumtitle=(.*)&albumname=(.*)&lang=".$lang
+	RewriteRule	^rss\.php/?$                	index.php?rss&albumtitle=%1&albumname=%2&lang=%3 [L,R=301]
+	
+	RewriteCond %{QUERY_STRING} albumtitle=(.*)&folder=(.*)&lang=(.*)
+	RewriteRule	^rss\.php/?$                	index.php?rss&albumtitle=%1&folder=%2&lang=%3 [L,R=301]
+	
+	RewriteCond %{QUERY_STRING} albumtitle=(.*)&albumname=(.*)&lang=(.*)
+	RewriteRule	^rss\.php/?$                	index.php?rss&albumtitle=%1&albumname=%2&lang=%3 [L,R=301]
+	
+	RewriteCond %{QUERY_STRING} folder=(.*)&lang=(.*)&albumsmode
+	RewriteRule	^rss\.php/?$                	index.php?rss&folder%1&lang=%2&albumsmode [L,R=301]
+	
+  RewriteCond %{QUERY_STRING} withimages&lang=(.*)
+	RewriteRule	^rss-news\.php/?$                	index.php?rss-news&withimages&lang=%1 [L,R=301]
+	
+	RewriteCond %{QUERY_STRING} id=(.*)&title=(.*)&type=(.*)&lang=(.*)
+	RewriteRule	^rss-comments\.php/?$                	index.php?rss-comments&id=%1&title=%2&type=%3&lang=%4 [L,R=301]
+	
+  RewriteCond %{QUERY_STRING} type=(.*)&lang=(.*)
+	RewriteRule	^rss-comments\.php/?$                	index.php?rss-comments&type=%1&lang=%2 [L,R=301]
+  
+  RewriteCond %{QUERY_STRING} lang=(.*)&albumsmode
+	RewriteRule	^rss\.php/?$                	index.php?rss&lang=%1&albumsmode [L,R=301]
+
+  RewriteCond %{QUERY_STRING} lang=(.*)&category=(.*)
+	RewriteRule	^rss-news\.php/?$                	index.php?rss-news&lang=%1&category=%2 [L,R=301]
+  
+  RewriteCond %{QUERY_STRING} lang=(.*)
+	RewriteRule	^rss\.php/?$                	index.php?rss&lang=%1 [L,R=301]
+	RewriteRule	^rss-news\.php/?$                	index.php?rss-news&lang=%1 [L,R=301]
+  #######################
+  
+  RewriteRule index\.php$                     index.php [L,QSA]
+  RewriteRule ^page/([0-9]+)/?$               index.php?page=$1 [L,QSA]
+  RewriteRule ^page/([A-Za-z0-9_\-]+)/?$      index.php?p=$1 [L,QSA]
+ 	RewriteRule ^page/([A-Za-z0-9_\-]+)/([0-9]+)/?$      index.php?p=$1&page=$2 [L,QSA]
+  RewriteRule ^(.*)/page/([0-9]+)/?$          index.php?album=$1&page=$2 [L,QSA]
+  RewriteRule ^(.*)/page/([A-Za-z0-9_\-]+)/?$      index.php?album=$1&p=$2 [L,QSA]
+   
+  #### Rewrite rule addition for search
+  RewriteRule ^page/search/fields([0-9]+)/(.*)/([0-9]+)/?$      index.php?p=search&searchfields=$1&words=$2&page=$3 [L,QSA]
+  RewriteRule ^page/search/fields([0-9]+)/(.*)/?$      index.php?p=search&searchfields=$1&words=$2 [L,QSA]
+  RewriteRule ^page/search/archive/(.*)/([0-9]+)/?$      index.php?p=search&date=$1&page=$2 [L,QSA]
+  RewriteRule ^page/search/archive/(.*)/?$      index.php?p=search&date=$1 [L,QSA]
+  RewriteRule ^page/search/tags/(.*)/([0-9]+)/?$  index.php?p=search&searchfields=tags&words=$1&page=$2 [L,QSA]
+  RewriteRule ^page/search/tags/(.*)/?$ 					 index.php?p=search&searchfields=tags&words=$1 [L,QSA]
+  RewriteRule ^page/search/(.*)/([0-9]+)/?$      index.php?p=search&words=$1&page=$2 [L,QSA]
+  RewriteRule ^page/search/(.*)/?$      index.php?p=search&words=$1 [L,QSA]
+  #### Rewrite additions for zenpage	
+	RewriteRule ^pages/?$      index.php?p=pages [L,QSA]
+  RewriteRule ^pages/(.*)/?$                   index.php?p=pages&title=$1 [L,QSA]
+  RewriteRule ^news/?$      		       index.php?p=news [L,QSA]
+  RewriteRule ^news/([0-9]+)/?$                index.php?p=news&page=$1 [L,QSA]
+  RewriteRule ^news/category/(.*)/([0-9]+)/?$  index.php?p=news&category=$1&page=$2 [L,QSA]
+  RewriteRule ^news/category/(.*)/?$           index.php?p=news&category=$1 [L,QSA] 
+  RewriteRule ^news/archive/(.*)/([0-9]+)/?$   index.php?p=news&date=$1&page=$2 [L,QSA]
+  RewriteRule ^news/archive/(.*)/?$            index.php?p=news&date=$1 [L,QSA]
+  RewriteRule ^news/(.*)/?$                    index.php?p=news&title=$1 [L,QSA] 
+  ####
+  RewriteRule ^(.*)/image/(thumb|[0-9]{1,4})/([^/\\]+)$    zp-core/i.php?a=$1&i=$3&s=$2 [L,QSA]
+  RewriteRule ^(.*)/image/([^/\\]+)$          zp-core/i.php?a=$1&i=$2 [L,QSA]
+  RewriteRule ^(.*)/album/(thumb|[0-9]{1,4})/([^/\\]+)$    zp-core/i.php?a=$1&i=$3&s=$2&album=true [L,QSA]
+  ####
+   
+  # Catch-all - everything else gets handled in PHP for compatibility.
+  RewriteRule ^(.*)/?$                        index.php?album=$1 [L,QSA]
+</IfModule>

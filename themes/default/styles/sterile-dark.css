@@ -1,0 +1,567 @@
+/*
+
+	Sterile Dark 1.0
+	
+*/
+
+/* Main Layout
+------------------------------ */
+body {
+	background: #1a1a1a;
+	margin: 0 !important;
+	margin: 0 0 10px 0; 
+	padding: 0;
+	text-align: center;
+	font: 76% 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+
+}
+#main {
+	text-align: left;
+	margin: 40px auto 5px auto;
+	padding-bottom: 15px;
+	width: 700px;
+	background: #333333;
+	-moz-border-radius: 10px;
+	border: 1px solid #2a2a2a;
+}
+* html #main{width: 720px;}
+#credit {
+	margin: 0 auto 40px auto;
+	width: 680px;
+	font-size: 9px;
+	color: #AAA;
+	text-align: right;
+	clear: both;
+}
+#credit a {
+	text-decoration: none;
+	color: #9C3;
+}
+#credit a:hover {
+	color: #7A2;
+	text-decoration: none;
+}
+#gallerytitle {
+	padding: 20px 10px 10px 20px;
+	-moz-border-radius-topleft: 10px;
+	-moz-border-radius-topright: 10px;
+	background: #c0db5a;
+	height:30px;
+	border-bottom: 1px solid #2a2a2a;	
+}
+#padbox {
+ 	padding: 20px !important;
+}
+
+#exif {
+	color: #9C3;
+	display:none;
+}
+
+#imagemetadata {
+
+}
+
+
+/* Text Styles
+------------------------------ */
+body {
+	font: normal 11px Verdana, Arial, Helvetica, sans-serif;
+	color: #888;
+	line-height: 1.6em;
+}
+h1, h2, h3, h4{ font-family: "Trebuchet MS",Verdana,Sans-Serif;}
+h1 {
+	font: normal 16px;
+	color: #666;
+	margin: 0;
+	padding: 0;
+}
+h1 a:link, h1 a:active, h1 a:visited {
+	color: #1a1a1a;
+	text-decoration: none;
+}
+h1 span {
+	color: #1a1a1a;
+}
+h1 a:hover, h1 a:focus {
+	color: #454545;
+}
+h2 {
+	font-size: 1.5em;
+	letter-spacing: 0.4pt;
+	color: #666;
+	text-transform: uppercase;
+	padding:0;
+	margin:0;
+	width:410px;
+	float:left;
+}
+h2 a:link, h2 a:active, h2 a:visited { text-decoration: none; color: #666;}
+h2 a:hover, h2 a:focus { text-decoration: none; color: #999;}
+h2 a:hover {
+	color: #eeffac;
+}
+h3 {
+	color: #666;
+	margin: 5px 0 5px 0 !important;
+	margin: 0;	
+	padding: 0;
+}
+h4 {
+	color: #666;
+	margin: 0;
+	padding: 0;
+}
+
+/* Link Styles
+------------------------------ */
+a:link, a:active, a:visited { text-decoration: none; color: #9C3; }
+a:hover, a:focus { text-decoration: none; color: #580;}
+
+/* Miscellaneous
+------------------------------ */
+hr {
+	clear: both;
+	height: 0;
+	border: 0;
+	border-top: 1px solid #444;
+	margin: 0 0 12px 0;
+	padding: 0;
+	color: #444;
+}
+img {
+	border: 0;
+}
+blockquote {
+	border-left: 1px dotted #96967E;
+	margin-left: 20px;
+	padding-left: 20px;
+	color: #363630;
+}
+acronym {
+	cursor: help;
+  border-bottom: 1px solid;
+}
+
+/* Page Navigation
+------------------------------ */
+.pagelist {
+	padding: 10px 20px 5px 20px;
+}
+ul.pagelist {
+	clear: both;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+ul.pagelist li {
+	display: inline;
+}
+ul.pagelist li a, ul.pagelist span.disabledlink {
+	padding: 4px;
+}
+ul.pagelist li.current a {
+	font-weight: bold;
+	text-decoration: none;
+	color: #666;
+}
+ul.pagelist li.prev {
+	margin-right: 10px;
+}
+ul.pagelist li.next {
+	margin-left: 10px;
+}
+.disabledlink {
+	color: #AAA;
+	cursor: default;
+}
+.pagenav {
+	clear: both;
+}
+.disabled_nav {
+	visibility: hidden;
+}
+
+
+/* AJAX
+------------------------------ */
+#albumDescEditable, #albumTagsEditable, #imageTags {
+	margin-bottom: 12px;
+}
+#imageDescEditable, #albumTagsEditable {
+	margin-top: 24px;
+}
+#imageDesc, #exif_link {
+	margin-bottom: 12px;
+}
+
+/* Tags
+------------------------------ */
+.taglist ul {
+	display: inline;
+	list-style-type: none;
+}
+
+.taglist li {
+	background: url(../images/tag.png) no-repeat left center;
+	list-style-type: none;
+	line-height: 16px;
+	padding-left: 18px;
+	float:left;
+	padding-right: 5px;
+}
+
+.taglist .tags_title {
+	background: none;
+	padding-right: 5px;
+	padding-left: 0;
+}
+
+/* Image Thumbnails
+------------------------------ */
+.imagethumb a, .thumb a {
+	display: block;
+	padding: 7px;
+	margin: 5px;
+	line-height: 0px;
+	
+}	
+.imagethumb, .thumb {
+	float: left;
+}
+.albumdesc2 {
+	line-height: 18px;
+}
+
+
+/* Album Thumbnails
+------------------------------ */
+#albums {
+	float: left;
+}
+.album {
+	margin: 0 15px 15px 0;
+	float: left;
+	width: 315px;
+}
+.album .imagethumb a, .album .thumb a {
+	margin: 0;
+}
+.album h3 {
+	padding: 0;
+	margin: 0;
+}
+.album h3 a {
+	display: block;
+	width: 100%;
+}
+.album p {
+	margin: 0 0 4px 0;
+	line-height: 17px;
+	font-size: 10px;
+}
+.albumdesc {
+	float: right;
+	width: 195px;
+	padding: 6px 0 0 0;
+}
+
+
+/* Individual Image
+------------------------------ */	
+.imgdesc {
+	padding: 10px 0 10px 0;
+	line-height: 18px;
+}
+#image {
+	text-align: center;
+	line-height: 0;
+	margin:10px 0;
+}
+
+.imgnav {
+	float: right;
+	width: 140px;
+	text-align: center;
+	margin-top: 0px;
+	color: #0c2601;
+	padding: 0;
+	_margin-top: 8px; /* IE Only */
+}
+.imgnav .imgprevious a, .imgnav .imgnext a {
+	font: normal 16px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	display: block;
+	width: 50%;
+	height: 100%;
+	float: left;
+	text-decoration: none;
+	color: #214902;
+}
+.imgnav .imgprevious a:hover, .imgnav .imgnext a:hover {
+	text-decoration: none;
+	color: #0c2601;
+}
+.imgnav .imgprevious a {
+	float: left;
+}
+.imgnav .imgnext a {
+	float: right;
+}
+#imgoriginal {
+	font-size: 8pt; 
+	text-align: right;
+	height:30px;
+}
+#imgorder {
+	float: left;
+}
+#narrow {
+	margin: 0 auto;
+	width: 440px;
+}
+
+/* Forms
+------------------------------ */
+form {padding-bottom:10px;}
+.captchainputbox {
+	width: 6.5em;
+	padding: 2px;
+}
+.inputbox {
+	width: 250px;
+	padding: 4px;
+	margin-bottom: 5px !important;
+	margin-bottom: 0px;
+	color: #888;
+	background: #1a1a1a;
+	border: 1px solid #9C3;
+	font: normal 10px Verdana, Arial, Helvetica, sans-serif;
+}
+textarea {
+	padding: 4px;
+	margin-bottom: 5px !important;
+	margin-bottom: 0px;
+	width: 100%;
+	color: #888;
+	background: #1a1a1a;
+	border: 1px solid #9C3;
+	font: normal 10px Verdana, Arial, Helvetica, sans-serif;
+}
+.checkbox {
+	cursor: pointer;
+}
+.pushbutton {
+	cursor: pointer;
+	padding: 5px 10px;
+	color: #888;
+	background: #EEE;
+	border: 1px solid #DDD;
+	font: normal 10px Verdana, Arial, Helvetica, sans-serif;
+}
+label {
+	cursor: pointer;
+}
+
+.required {
+	color: #9C3;
+  cursor: help;
+}
+
+.gravatar {
+	width: 20px;
+	border: 1px grey solid;
+	padding: 1px;
+	vertical-align: middle;
+}
+
+#map{
+	margin-left:-85px;
+	padding: 10px 0;
+}
+#rating { margin-top: 10px; }
+
+/* Admin Toolbox
+------------------------------ */
+#admin, #admin_data{
+	position:fixed;
+	right:0;
+	top:0;
+	border-left: 1px solid #2a2a2a;
+	border-bottom: 1px solid #2a2a2a;
+	background: #1a1a1a;
+	width:120px;
+}
+#admin_data{
+	top:20px;
+}
+#admin h3 {
+	font: 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	color: #666;
+	border-bottom: 1px dashed #2a2a2a;
+	margin:0;
+	padding:0;
+}
+
+/* Search Box
+------------------------------ */
+#search {
+	float: right;
+	text-align: left;
+	margin:0;
+	padding:0;
+	width: 175px;
+}
+#search_form, #search_form * {
+	padding:0px;
+	margin:0px;
+}
+#search input.pushbutton {
+  padding: 1px;
+  font-size: 80%;
+}
+#search a {
+text-decoration: none;
+}
+#search ul {
+border: 1px solid #ccc; position:absolute; text-align:left; list-style: none; 
+height: 8em; width: 20em; overflow: auto; 
+color: #fff;
+background-image:url(../images/50percent.png);
+}
+#searchfields_icon {
+position: relative;
+top: 4px;
+}
+.clear {
+  clear:both;
+  height:10px;
+}
+
+/* Archive View
+---------------------------- */
+#archive{
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+}
+ul.archive * {
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+ul.archive .year {
+	margin-top:10px;
+	text-align: center;
+	margin-bottom:5px;
+	font-weight:bold;
+	font-size:18px;
+}
+ul.archive .month {
+	font-size: 14px;
+	list-style:none;
+	border-top:2px solid #666;
+	padding-top: 5px;
+}
+
+/* Tag Cloud
+---------------------------- */
+#tag_cloud {
+	text-align: center;
+	background: #111;
+}
+
+#tag_cloud ul li {
+	display: inline;
+	list-style-type: none;
+}
+
+#tag_cloud p {
+	padding:10px 0;
+	margin:20px 0;
+	background: #222;
+	border-top: 3px solid #666;
+	border-bottom: 3px solid #666;
+	font-size: 18px;
+	font-weight:bold;
+	text-align: center;
+}
+/* Error Messages
+------------------------------ */
+.errorbox {
+	padding: 20px;
+	background-color: #FDD;
+	border-top: 1px solid #FAA;
+	border-left: 1px solid #FAA;
+	border-right: 1px solid #FAA;
+	border-bottom: 5px solid #FAA;
+	margin-bottom: 10px;
+	font-size: 100%;
+	color: #DD6666;
+}
+.errorbox h2 {
+	color: #DD6666;
+	font-size: 100%;
+	font-weight: bold;
+	margin: 0px;
+}
+.errorlist {
+	list-style-type: none;
+}	
+
+/* Zenphoto link
+------------------------------ */
+
+#zen-part {
+ font-family: Arial, Helvetice, sans-serif;
+ font-size: 1.8em;
+ font-weight: 100;
+}
+
+#photo-part {
+ font-family: Arial, Helvetice, sans-serif;
+ font-size: 0.9em;
+ font-weight: bold;
+}
+
+/* centering flowplayer 3 on image.php */
+#image .flowplayer {
+	margin: 0 auto;
+}
+
+/* login form */
+table.password td.userlabel{
+	text-align:right;
+}
+table.password td.userinput{
+	text-align:left;
+}
+
+table.password td.userinput input, td.passwordinput input {
+	width: 15em;
+}
+
+/* login form */
+table.password td.passwordlabel{
+	text-align:right;
+}
+
+table.password td.passwordinput{
+	text-align:left;
+}
+
+table.password td.submit{
+	text-align:center;
+}
+
+table.password td.hint{
+	text-align:left;
+}
+.textobject {
+	font-size: 12px;
+	line-height: 16px;
+	text-align: left !important;
+	text-decoration: none !important;
+	overflow:scroll !important;
+}

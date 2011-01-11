@@ -1,0 +1,12 @@
+#hidecomments {
+  display: none;
+}
+#addcomment {
+  display: none;
+}	
+#showcomments {
+  display: inline;
+}
+#addcommentbutton {
+  display: blovk;
+}

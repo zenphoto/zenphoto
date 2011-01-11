@@ -1,0 +1,40 @@
+<source><a href="http://www.dynamicdrive.com/dynamicindex4/popimage.htm">Dynamic Drive DHTML code library</a></source>
+<head>
+<!--[if gte IE 5.5000]>
+<style type="text/css">
+.shadowcss{
+	position: relative;
+	top: -5px;
+	left: -5px;
+	filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=5, OffY=5, Color='gray', Positive='true');
+}
+</style>
+<![endif]-->
+<script type="text/javascript">
+	/***********************************************
+	* Pop-it Image script- � Dynamic Drive DHTML code library (www.dynamicdrive.com)
+	* Visit http://www.dynamicDrive.com for hundreds of DHTML scripts
+	* This notice must stay intact for legal use
+	***********************************************/
+	function updownshadow(){
+		if (event.srcElement.effect=="popshadow"){
+			shadowobj=event.srcElement
+			if (event.type=="mousedown"){
+				shadowobj.filters[0].color=shadowobj.mousedowncolor
+				shadowobj.style.left=shadowobj.style.top=0
+			}
+			else if (event.type=="mouseout" && event.fromElement.effect=="popshadow" || event.type=="mouseup"){
+				shadowobj.filters[0].color=shadowobj.mouseupcolor
+				shadowobj.style.left=shadowobj.style.top=shadowobj.filters[0].OffX*(-1)
+			}
+		}
+	}
+	if (document.attachEvent){
+		document.attachEvent("onmousedown", updownshadow)
+		document.attachEvent("onmouseup", updownshadow)
+		document.attachEvent("onmouseout", updownshadow)
+	}
+</script>
+</head>
+<class>shadowcss</class>
+<extra>effect="popshadow" mousedowncolor="white" mouseupcolor="gray"</extra>

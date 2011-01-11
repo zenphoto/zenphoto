@@ -1,0 +1,82 @@
+.bordered th {
+	font-weight: bold;
+	padding-bottom: 7px !important;
+}
+
+.bordered {
+	margin-bottom: 15px;
+}
+
+.statistic_wrapper tr {
+	width: 950px;
+	padding: 2px;
+	border-bottom: 1px solid gray;
+}
+
+.statistic_wrapper_gray {
+	width: 950px;
+	padding: 2px;
+	background-color: gray;
+}
+
+.statistic_counter {
+	width: 30px;
+	text-align: right;
+}
+
+.statistic_title {
+	width: 350px;
+	height: 15px;
+}
+.statistic_short_title {
+	width: 150px;
+	height: 15px;
+}
+
+
+.statistic_bargraph {
+	height: 15px;
+	background-color: darkred;
+	background-repeat: repeat-x;
+	margin-right: 0px;
+	margin-right: 5px;
+	float: left;
+}
+
+.statistic_graphwrap {
+	width: 450px;
+}
+
+.statistic_value {
+	text-align: left;
+	float: left;
+}
+
+.statistic_link {
+	width: 100px;
+	height: 15px;
+}
+
+.statistic_navlist ul {
+	margin-bottom: 10px;
+}
+
+.statistic_navlist li {
+	display: inline;
+}
+
+.statistics_general {
+	border-top: 1px solid darkgray;
+	border-bottom: 1px solid darkgray;
+	padding: 8px 0px 8px 0px;
+	margin-bottom: 15px;
+}
+
+.statistics_general li {
+	display: inline;
+	margin-right: 25px;
+}
+
+.unpublished_item {
+	color: darkred;
+}

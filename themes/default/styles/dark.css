@@ -1,0 +1,563 @@
+/*
+
+	Zen Photo Default (Dark) 1.0
+	
+*/
+
+/* Basics
+------------------------------ */
+html {
+	/* Moz */
+	height: 100%;
+}
+
+/* Main Layout
+------------------------------ */
+body {
+	background: #111;
+	margin: 0px;
+	padding: 0px 0px 50px;
+	text-align: center;
+
+}
+#main {
+	text-align: left;
+	margin: 20px auto;
+	width: 685px;
+	background: #222;
+	padding: 20px 30px 70px;
+	border-top: 1px solid #444;
+	border-right: 1px solid #444;
+	border-bottom: 5px solid #444;
+	border-left: 1px solid #444;
+}
+#credit, #sort {
+	margin: 0 auto;
+	width: 640px;
+	font-size: 85%;
+	color: #294550;
+	text-align: right;
+	clear: both;
+}
+#credit a, #sort a {
+	text-decoration: none;
+	color: #294550;
+	border-bottom: 1px dotted #294550;
+}
+#credit a:hover, #sort a:hover {
+	color: #748da0;
+	border-bottom: 1px solid #294550;
+	text-decoration: none;
+}
+#gallerytitle {
+	border-bottom: 1px solid #E6E6DF;
+	padding-bottom: 14px;
+	margin-bottom: 20px;
+	/*min-height: 40px;
+  _height: 40px;*/
+}
+#gallerytitle h2 { 
+	font-weight: normal; 
+	font-size: 12pt; 
+	margin-top: 18px;
+	width:510px;
+}
+
+/* Link Styles
+------------------------------ */
+a:link, a:active, a:visited { text-decoration: underline; color: #86a1b6; }
+a:hover, a:focus { text-decoration: underline; color: #94c2e5; }
+
+/* Text Styles
+------------------------------ */
+body {
+	font: normal 82%/200% "Helvetica Neue", "Lucida Grande", Helvetica, Arial, sans-serif;
+	color: #888;
+	line-height: 1.4em;
+}
+h2 {
+	font: 115% "Helvetica Neue", "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	color: #AAA;
+}
+h2 a:link, h2 a:visited {
+	color: #86a1b6;
+	text-decoration: none;
+}
+h2 span {
+	color: #666;
+}
+h2 a:hover {
+	color: #94c2e5;
+	text-decoration: none;
+}
+h3 {
+	font: 110% "Helvetica Neue", "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	color: #748da0;
+	margin-top: 30px;
+}
+h3 a:link, h3 a:visited { text-decoration: none; }
+h3 a:hover { text-decoration: underline; }
+
+
+/* Miscellaneous
+------------------------------ */
+hr {
+	clear: both;
+	height: 0;
+	border: 0;
+	border-top: 1px solid #444;
+	margin: 0 0 12px 0;
+	padding: 0;
+}
+img {
+	border: 0;
+}
+blockquote {
+	border-left: 1px dotted #96967E;
+	margin-left: 20px;
+	padding-left: 20px;
+	color: #363630;
+}
+
+#imagemetadata {
+  text-align: right;
+}
+
+#imagemetadata table {
+  text-align: left;
+  line-height: 1em;
+  border: 1px solid #ccc;
+  top: 2em;
+  right: 0px;
+  background-color: #fafafa;
+}
+
+#imagemetadata table td {
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #f8f8f8;
+  padding: 2px 5px;
+}
+
+
+/* Page Navigation
+------------------------------ */
+ul.pagelist {
+	clear: both;
+	padding: 0;
+	margin: 20px 0 0 0;
+	list-style-type: none;
+}
+ul.pagelist li {
+	display: inline;
+}
+ul.pagelist li a, ul.pagelist span.disabledlink {
+	padding: 4px;
+}
+ul.pagelist li.current a {
+	font-weight: bold;
+	text-decoration: none;
+	cursor: default;
+	color: #748da0;
+}
+ul.pagelist li.prev {
+	margin-right: 10px;
+}
+ul.pagelist li.next {
+	margin-left: 10px;
+}
+.disabledlink {
+	color: #294550;
+	cursor: default;
+}
+.pagenav {
+	clear: both;
+}
+.disabled_nav {
+	visibility: hidden;
+}
+
+
+/* AJAX
+------------------------------ */
+#albumDescEditable, #albumTagsEditable {
+	margin-bottom: 12px;
+}
+#imageDescEditable, #albumTagsEditable {
+	margin-top: 24px;
+}
+#imageDesc, #exif_link {
+	margin-bottom: 4px;
+}
+
+#exif_link {
+  float: right;
+}
+
+/* Tags
+------------------------------ */
+.taglist ul {
+	display: inline;
+	list-style-type: none;
+}
+
+.taglist li {
+	background: url(../images/tag.png) no-repeat left center;
+	list-style-type: none;
+	padding-left: 18px;
+	float:left;
+	padding-right: 5px;
+}
+
+.taglist .tags_title {
+	background: none;
+	padding-right: 5px;
+	padding-left: 0;
+}
+
+/* Image Thumbnails
+------------------------------ */
+.imagethumb a, .imagethumb a:hover {
+	display: block;
+	padding: 9px;
+	margin: 0px 9px 9px 0px;
+	line-height: 0px;
+    border: 1px solid #444;
+	background-color: #333;
+}
+.imagethumb a:visited {
+    background-color: #333;
+    border: 1px solid #444;
+}
+.imagethumb a:hover {
+	background-color:#333;
+	border: 1px solid #ccc;
+}
+.imagethumb {
+	float: left;
+}
+.albumdesc2 {
+	line-height: 18px;
+}
+
+
+/* Album Thumbnails
+------------------------------ */
+#albums {
+	float: left;
+}
+.album {
+	margin: 0 12px 8px 0;
+    padding: 10px 8px 8px 10px;
+	float: left;
+	width: 305px;
+	border: 1px solid #444;
+	background: #333;
+	line-height: 100%;
+}
+.album a img {  }
+.album .thumb {
+    float: left; 
+    margin-right: 6px;
+}
+.album h3 {
+	padding: 0;
+	margin: 0;
+}
+.album p {
+	line-height: 12px;
+	font-size: 11px;
+  	padding: 4px 0px 0px;
+  	margin: 0px;
+}
+.albumdesc small {
+	color: #8DB8CF;
+}
+
+
+/* Individual Image
+------------------------------ */
+.image { 
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+#image {
+	text-align: center;
+	line-height: 0;
+}
+.imgnav {
+	float: right;
+	width: 140px;
+	text-align: center;
+	border: 1px solid #444;
+	background: #282828;
+	margin-top: -10px;
+}
+.imgnav .imgprevious a, .imgnav .imgnext a {
+	display: block;
+	width: 50%;
+	height: 100%;
+	float: left;
+	padding: 4px 0;
+	font-size: 120%;
+	text-decoration: none;
+	line-height: 180%;
+	color: #666;
+}
+.imgnav .imgprevious a:hover, .imgnav .imgnext a:hover {
+	background-color: #333;
+	text-decoration: none;
+	color: #888;
+}
+.imgnav .imgprevious a {
+	float: left;
+}
+.imgnav .imgnext a {
+	float: right;
+}
+#narrow {
+	margin: 0 auto;
+	width: 440px;
+}
+
+
+/* Comments
+------------------------------ */
+#comments {
+	clear: both;
+}
+.comment {
+	padding: 10px;
+	border: 1px solid #444;
+	background: #333;
+	margin-bottom: 12px;
+}
+.commentmeta {
+	margin-bottom: 12px;
+}
+.commentauthor {
+	font-weight: bold;
+}
+.commentdate {
+	margin-top: 12px;
+	color: #555;
+	font-size: 85%;
+}
+
+
+/* Forms
+------------------------------ */
+.captchainputbox {
+	width: 6.5em;
+	padding: 2px;
+}
+.inputbox {
+	width: 250px;
+	padding: 2px;
+}
+textarea {
+	padding: 4px;
+	width: 100%;
+	color: #888;
+	font: 100%/200% "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.checkbox {
+	cursor: pointer;
+}
+.pushbutton {
+	cursor: pointer;
+	padding: 5px 10px;
+}
+label {
+	cursor: pointer;
+}
+label:hover {
+	color: #999;
+}
+#map {margin-left: -77px;}
+#rating { margin-top: 10px; }
+
+/* Admin Toolbox
+------------------------------ */
+#admin, #admin_data{
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	width: 120px;
+	border-bottom: 1px solid #444;
+	border-left: 1px solid #444;
+	background: #222;
+    z-index: 2;
+}
+#admin_data{
+	top: 0px;
+	padding-top: 20px;
+	z-index: 1;
+	line-height: 1.6em;
+}
+#admin h3 {
+	font-weight: normal;
+	color: #aaa;
+	margin:0;
+	padding:0;
+}
+#admin h3:hover { color: #86a1b6; }
+
+/* Search Box
+------------------------------ */
+#search {
+	float: right;
+	text-align: left;
+	margin:0;
+	padding:0;
+	background: #222;
+}
+#search input.pushbutton {
+	padding: 1px;
+	font-size: 80%;
+}
+#search a {
+text-decoration: none;
+}
+#search ul {
+border: 1px solid #444; position:absolute; text-align:left; list-style: none; 
+height: 8em; width: 20em; overflow: auto; 
+background-color: #222;
+}
+#searchfields_icon {
+position: relative;
+top: 4px;
+}
+.clear {
+  clear:both;
+  height:10px;
+}
+
+/* Archive View
+---------------------------- */
+#archive{
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+}
+ul.archive * {
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+ul.archive .year {
+	margin-top:10px;
+	text-align: center;
+	margin-bottom:5px;
+	font-weight:bold;
+	font-size:18px;
+}
+ul.archive .month {
+	font-size: 14px;
+	list-style:none;
+	border-top:2px solid #666;
+	padding-top: 5px;
+}
+
+/* Tag Cloud
+---------------------------- */
+#tag_cloud {
+	text-align: center;
+	background: #111;
+}
+
+#tag_cloud ul li {
+	display: inline;
+	list-style-type: none;
+}
+
+#tag_cloud p {
+	padding:10px 0;
+	margin:20px 0;
+	background: #222;
+	border-top: 3px solid #666;
+	border-bottom: 3px solid #666;
+	font-size: 18px;
+	font-weight:bold;
+	text-align: center;
+}
+/* Error Messages
+------------------------------ */
+.errorbox {
+	padding: 20px;
+	background-color: #FDD;
+	border-top: 1px solid #FAA;
+	border-left: 1px solid #FAA;
+	border-right: 1px solid #FAA;
+	border-bottom: 5px solid #FAA;
+	margin-bottom: 10px;
+	font-size: 100%;
+	color: #DD6666;
+}
+.errorbox h2 {
+	color: #DD6666;
+	font-size: 100%;
+	font-weight: bold;
+	margin: 0px;
+}
+.errorlist {
+	list-style-type: none;
+}	
+
+/* Zenphoto link
+------------------------------ */
+
+#zen-part {
+ font-family: Arial, Helvetice, sans-serif;
+ font-size: 1.8em;
+ font-weight: 100;
+}
+
+#photo-part {
+ font-family: Arial, Helvetice, sans-serif;
+ font-size: 0.9em;
+ font-weight: bold;
+}
+
+/* centering flowplayer 3 on image.php */
+#image .flowplayer {
+	margin: 0 auto;
+}
+
+/* login form */
+table.password td.userlabel{
+	text-align:right;
+}
+table.password td.userinput{
+	text-align:left;
+}
+
+table.password td.userinput input, td.passwordinput input {
+	width: 15em;
+}
+
+/* login form */
+table.password td.passwordlabel{
+	text-align:right;
+}
+
+table.password td.passwordinput{
+	text-align:left;
+}
+
+table.password td.submit{
+	text-align:center;
+}
+
+table.password td.hint{
+	text-align:left;
+}
+.textobject {
+	font-size: 12px;
+	line-height: 16px;
+	text-align: left !important;
+	text-decoration: none !important;
+	overflow:scroll !important;
+}

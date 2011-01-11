@@ -1,0 +1,184 @@
+/* This is a generic ZenPhoto playlist css file based on the example from flowplayer.org */
+
+.flowplayer3_playlist {
+	float: left;
+	}
+
+/*{{{ general playlist settings, light gray */
+
+div.playlist {
+	position:relative;
+	overflow:hidden;	 	
+	height:180px !important;
+	border-right: 1px solid #A9A9A9;
+	border-left: 1px solid #A9A9A9;
+}
+
+div.playlist div.clips,
+div.playlist ol.clips{	
+	position:absolute;
+	height:20000em;
+
+}
+
+div.playlist, div.clips,
+ol.clips {
+	width:300px;	
+	float: left;
+}
+
+ol.clips {
+margin: 0;
+}
+
+div.clips a {
+	display:block;
+	background-color:#fefeff;
+	padding:5px 5px 0px 23px;
+	height:21px;
+	width:300px;
+	font-size:12px;
+	border-bottom:1px solid #ccc;
+	text-decoration:none;
+	letter-spacing:0;
+	color:gray;
+}
+
+ol.clips li {
+	background-color:#fefeff;
+	padding:5px 0px 0px 23px;
+	height:21px;
+	width:300px;
+	font-size:12px;
+	border-bottom:1px solid #ccc;
+	text-decoration:none;
+	letter-spacing:0;
+	color:gray;
+	list-style-position: inside;
+	margin-left: -40px;
+}
+
+div.clips a.first {
+	border-top-width:1px;
+}
+
+div.clips a.playing {
+	background:url(images/control_pause.png) no-repeat 3px center;  
+	border-bottom:1px solid #ccc;	
+	color: black !important;
+}
+
+div.clips a.playing:hover {
+	background:url(images/control_pause_blue.png) no-repeat 3px center;  
+}
+
+div.clips a.paused, div.clips a.progress{
+	background:url(images/control_pause.png) no-repeat 3px center;  
+	border-bottom:1px solid #ccc;	
+	color: gray !important;
+}
+
+div.clips a.paused:hover, div.clips a.progress:hover{
+	background:url(images/control_pause_blue.png) no-repeat 3px center;  
+}
+
+ol.clips li .playing {
+	border-bottom:1px solid #ccc;	
+	color: black !important;
+}
+ol.clips li .paused, ol.clips li .progress {
+	border-bottom:1px solid #ccc;	
+	color: gray !important;
+}
+div.clips a.progress {
+	opacity:0.6;		
+}
+
+div.clips a.paused {
+	background:url(images/control_play.png) no-repeat 3px center; 
+	background-color: #C0C0C0;
+}
+
+div.clips a.paused:hover {
+	background:url(images/control_play_blue.png) no-repeat 3px center; 
+}
+
+div.clips a span {
+	display:block;		
+	font-size:11px;
+	color:#666;
+}
+
+div.clips a em {
+	font-style:normal;
+	color:#f00;
+}	
+
+div.clips a:hover {
+	background:url(images/control_play.png) no-repeat 3px center; 
+ 	color: black;
+
+}
+
+div.clips a.playing:hover, div.clips a.paused:hover, div.clips a.progress:hover {
+	background-color:transparent !important;		
+
+}
+/*}}}*/
+
+/*{{{ go buttons */
+
+.wrapper {
+	float: left;
+}
+
+a.up {
+	display:block;
+	width:300px;
+	height:28px;
+	background:url(images/arrow_top_gray.png) no-repeat;
+	background-position: center;
+	cursor:pointer;
+	position: relative;
+	padding-bottom: 0px;
+	clear: both;
+	left: 0px;
+	border: 1px solid #A9A9A9;
+	background-color: #D3D3D3
+	}
+
+a.up:hover {
+	background:url(images/arrow_top_blue.png) no-repeat;		
+	background-position: center;
+	background-color: #A9A9A9;
+	border: 1px solid #A9A9A9;
+}
+
+a.down {
+	display:block;
+	width:300px;
+	height:28px;
+	background:url(images/arrow_bottom_gray.png) no-repeat;
+	background-position: center;
+	cursor:pointer;
+	position: relative; 
+	left: 0px;
+	clear: both;
+	border: 1px solid #A9A9A9;
+	background-color: #D3D3D3
+}
+
+a.down:hover {
+	background:url(images/arrow_bottom_blue.png) no-repeat;		
+	background-position: center;
+	background-color: #A9A9A9;
+	border: 1px solid #A9A9A9;
+}
+
+a.go.disabled {
+	visibility:hidden;		
+}
+
+/*}}}*/
+
+

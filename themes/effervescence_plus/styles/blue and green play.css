@@ -1,0 +1,1212 @@
+/*
+Theme Name: Effervescence
+Author: Stephane Angoulvant (modified (badly) by ulfben)
+Author URI: http://angoulvant.net/sblog
+Version: 0.9
+*/
+#simpleviewer {   /* the background color for simpleviewer. Leave this line near the front for performance reasons */
+		background: #7C9480; /* Normally the same as main2 */
+}
+/*
+This CSS was uses the Blue and Green Play color scheme. (http://www.colourlovers.com/palette/163062/free_Chocolates)
+
+A comment of "unknown" means I haven't been able to find that effect in use on the site.
+*/
+
+
+
+
+/* Main Stuff
+------------------------------ */
+html {
+height: 100%;
+margin-bottom: 0.1em;
+}
+* {
+margin: 0;
+padding: 0;
+}
+.aligncenter2 {
+margin: 0 auto;
+width: 610px;
+}
+.clearage {
+clear: both;
+padding: 0;
+margin: 0;
+}
+hr {
+clear: both;
+height: 0;
+border: 0;
+border-top: 1px solid #E6E6DF; /*unknown*/
+margin: 0 0 12px 0;
+padding: 0;
+}
+img {
+border: 0;
+}
+blockquote {
+border-left: 1px dotted #ECEBE1;
+margin-left: 20px;
+padding-left: 20px;
+font-style: italic;
+color: #ECEBE1; /*whenever a paragraph is held within blockquote tags.*/
+}
+
+#flash {
+	height: 675px ;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 20px;
+}
+#exif_link, #exif_link a{
+	width:100px;
+	font-weight:bold;
+	color:#FFFFFF;
+}
+#imagemetadata {
+	text-align: center;
+	color: #355E3B;
+}
+#imgmetadata_data a {
+	color: #355E3B;
+}
+#imagemetadata_data a:hover {
+text-decoration: none;
+color: #076a54;
+}
+
+#imagemetadata table {
+	text-align: left;
+	line-height: 1em;
+	top: 2em;
+	right: 0px;
+	background-color: #355E3B;
+}
+
+#imagemetadata table td {
+	background-color: #C0C0C0;
+	padding: 2px 5px;
+}
+
+/* Text Styles
+------------------------------ */
+
+/* Front Page Title --- */
+h1 {
+font: normal 20px Trebuchet MS, Arial, Helvetica, Tahoma, Verdana, serif;
+letter-spacing: -2px;
+}
+#logo h1 a{
+color: #C0C0C0;
+font: bold 30px Monotype Corsiva, Apple Chancery, Zaph Chancery, Comic Sans, cursive, serif;
+}
+h1 a:hover {
+border: none;
+}
+* html h1 a {
+height:35px;
+//he\ight:0px;
+height:0px;
+}
+h1 a{
+height:0px;
+}
+
+/* Image Page Title  --- */
+#logo2 h1 a{
+color: #C0C0C0;
+font: bold 30px Monotype Corsiva, Apple Chancery, Zaph Chancery, Comic Sans, cursive, serif;
+}
+
+h2 {
+color: #ECEBE1; /*unknown*/
+font: bold 23px Trebuchet MS, Arial, Helvetica, Tahoma, Verdana, serif;
+display: inline;
+letter-spacing: -1px;
+}
+h2 a          {
+color:  #ECEBE1; /*unknown*/
+text-decoration: none;
+font-weight: bold;
+border: none;
+}
+h2 a:hover {
+color: #a3ad93; /*unknown*/
+font-weight: bold;
+border: none;
+}
+
+/* Album Nav */
+.albnav {
+float: right;
+width: 140px;
+text-align: center;
+}
+.albnav .albprevious a, .albnav .albnext a {
+display: block;
+width: 50%;
+height: 100%;
+float: left;
+font-size: 120%;
+text-decoration: none;
+font-weight: bold;
+line-height: 200%;
+color: #ECEBE1; /*prev / next in subalbums */
+}
+.albnav .albprevious a:hover, .albnav .albnext a:hover {
+text-decoration: none;
+font-weight: bold;
+color: #FFFFFF; /*prev / next hover in subalbum*/
+}
+.albnav .albprevious a {
+float: left;
+font-weight: bold;
+}
+.albnav .albnext a {
+float: right;
+font-weight: bold;
+}
+.albnav .albdisabledlink {
+display: block;
+width: 50%;
+height: 100%;
+float: left;
+font-size: 120%;
+text-decoration: none;
+font-weight: bold;
+line-height: 200%;
+color:  #355E3B; /*disabled prev/next links i subalbums (upper part of the screen)*/
+cursor: default;
+}
+
+/* Intro Text  --- */
+h3 {
+color: #ECEBE1; /*textcolor in comment header ("X Comments") */
+font: normal 17px Trebuchet MS, Arial, Helvetica, Tahoma, Verdana, sans-serif;
+text-align: left;
+font-weight: bold;
+margin-left: 10px;
+}
+#navbar h3 {
+margin-left: 10px;
+text-align: justify;
+}
+h3 a {
+color: #ECEBE1;
+border: none;
+font-weight: bold;
+}
+h3 a:hover {
+color: #FFFFFF;
+border: none;
+font-weight: bold;
+}
+
+/* Gallery Titles  --- */
+h4 {
+text-align: center;
+font: 14px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+color: #fff; /*unknown*/
+}
+h4 a {
+color: #ECEBE1; /*album titles in thumbview*/
+border: none;
+font-weight: bold;
+}
+h4 a:hover {
+color: #FFFFFF; /*album titles in thumbview on mouse over*/
+border: none;
+font-weight: bold;
+}
+
+/* comments
+------------------------------ */
+#commentbox {
+	background: #7C9480; /*color around the main div in index.*/
+	width: 650px;
+	margin: 0 auto;
+	color: #ECEBE1; /*textbox labels*/
+	font-size: 12px;
+	padding: 10px;
+}
+#commentcontent {
+	padding: 10px;
+}
+#commentcount {
+background: #67678B;/* background for commentheader (where it says "X Comments")*/
+height: 40px;
+padding: 10px;
+margin: 0 auto;
+width: 610px;
+}
+
+#comments {
+clear: both;
+display: block;
+margin: 0 auto;
+width: 610px;
+text-align: left;
+}
+
+#commententry {
+clear: both;
+display: block;
+margin: 0 auto;
+text-align: left;
+width: 610px;
+}
+#commentcontent h3 {
+	padding: 10px;
+	background: #67678B;
+}
+
+.comment {
+margin-bottom: 20px;
+}
+
+.commentinfo {
+color: #ECEBE1; /*datum of a comment*/
+font-style: italic;
+border-bottom: 1px solid #0E1433 ;  /*seperator between comment info and comment text.*/
+padding: 5px 0 3px;
+}
+/* Comment Authors  --- */
+.commentinfo h4 {
+display: inline;
+font-style: italic;
+font-weight: bold;
+font: 14px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+color: #ECEBE1; /*the author name*/
+}
+.commentinfo h4 a {
+color: #ECEBE1; /*author name if they've given a link to their homepage*/
+border: none;
+font-style: normal;
+font-weight: bold;
+}
+.commentinfo h4 a:hover {
+color: #FFFFFF; /*... master of the obvious.*/
+border: none;
+font-weight: bold;
+}
+.commentinfo a {
+color: #ECEBE1; /*links in commentingo (EDIT-link)*/
+border: none;
+font-style: normal;
+font-weight: bold;
+}
+.commenttext {
+margin-top: 5px;
+padding: 0 5px;
+color: #ECEBE1; /*comment text color*/
+}
+/* Comment Form
+------------------------------ */
+#commentform {
+margin-top: 10px;
+}
+#commentbox input {
+font: 12px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+border: none;
+padding: 2px;
+color: #333333; /*Color of text in textbox*/
+}
+#commentbox input:focus {
+background: #FFFFFF;  /*Color of textbox when focused*/
+}
+#commentbox textarea {
+font: 12px/16px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+background: #fafaf9; /*Color of textarea when unfocused*/
+border-top: 1px solid #0E1433 ;
+border-left: 1px solid #0E1433 ;
+border-right: 1px solid #0E1433 ;
+border-bottom: 1px solid #272E46;
+color: #333333; /*textcolor when writing a comment*/
+margin: 5px 0 5px 0;
+padding: 3px;
+width: 600px;
+}
+#commentbox textarea:focus {
+background: #FFFFFF; /*Color of textarea when focused*/
+}
+
+/* Links  --- */
+a {
+color: #ECEBE1; /*the current pagination link */
+text-decoration: none;
+font-weight: bold;
+}
+a:hover {
+color: #FFFFFF;
+text-decoration: none;
+font-weight: bold;
+}
+.disabledlink {
+color: #67678B;  /* #7C9480; to hide disabled links in the backgroundcolor... */
+cursor: default;
+font-weight: bold;
+}
+#navbar a {
+color: #ECEBE1;
+}
+#navbar a:hover {
+color: #FFFFFF;
+}
+#main2 #navbar a { /*Same as navbar a, but in single-image view.*/
+		color: #ECEBE1;
+}
+#main2 #navbar a:hover {
+color: #ffffff;
+}
+#description a:hover {
+		color: #FFFFFF;
+text-decoration: underline;
+}
+#main2 #description a {
+color: #ECEBE1;
+}
+#main2 #description a:hover {
+color: #FFFFFF;
+}
+.commenttext a {
+color: #ECEBE1;
+cursor: pointer;
+}
+.commenttext a:hover {
+color: #FFFFFF;
+text-decoration: underline;
+}
+
+/* Main Layout
+------------------------------ */
+body {
+font: 14px/22px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+color: #fff;
+background: #355E3B; /*body background*/
+text-align: left;
+margin: 0 auto 0 auto;
+}
+#content {
+background: #7C9480; /*color around the main div in index.*/
+}
+#main {
+background: #7C9480; /*div around thumbs in index*/
+text-align: left;
+width: 630px;
+margin: 0 auto 0 auto;
+padding-bottom: 10px;
+}
+#main a {
+text-decoration: none;
+}
+#subcontent {
+background: #7C9480; /*around the main div in sub-albums.*/
+margin-bottom: 5px;
+}
+#submain {
+background: #7C9480; /*div around thumbs in subalbums.*/
+text-align: left;
+width: 630px;
+margin: 0 auto 0 auto;
+padding-bottom: 10px;
+}
+#submain a {
+text-decoration:none;
+}
+#main2 {
+		background: #7C9480; /*div in single-image view.*/
+		text-align: left;
+	padding-bottom: 30px;
+}
+#main3 {
+margin: 0 auto 0 auto;
+padding: 10px 20px 20px 20px;
+background: #355E3B; /*background around comment area */
+}
+#main4 {
+		margin: 0 auto 0 auto;
+	padding-left: 20px;
+	padding-right: 20px;
+	background: #355E3B; /*page background in single-image view.*/
+	color: #FFFCDB;
+}
+#header {
+background: #355E3B; /*the dark blue header area above the nav-bar*/
+text-align: left;
+border: none;
+padding: 0;
+margin: 0;
+}
+#galleryheader {
+background: #355E3B; /*the dark blue header area above the nav-bar, single image view*/
+text-align: left;
+border: none;
+padding: 0;
+margin: 0;
+}
+#gallerytitle {
+width: 640px;
+position: relative;
+padding: 18px 10px 18px 10px;
+margin: 0 auto 0 auto;
+}
+#description {
+color: #ECEBE1; /*text color for descriptions*/
+text-align: justify;
+padding: 7px 7px;
+margin: 0px auto 0px auto;
+width: 620px;
+}
+#main2 #description {
+margin: 0 auto 0 auto;
+text-align: justify;
+color: #ECEBE1; /* unknown */
+}
+#pagenumbers {
+text-align: center;
+margin: 0 auto 20px auto;
+}
+#pagenumbers a {
+text-decoration: none;
+}
+#images {
+padding: 25px 0 0 10px;
+}
+
+/* Page Navigation
+------------------------------ */
+#navbar {
+padding: 4px 7px;
+margin: 0 auto 14px auto;
+width: 620px;
+color: #fbefdb; /*text in bread-crumb navigato. (last node and the pipes)*/
+}
+#randomhead {
+	padding: 0;
+	margin: 0 auto 14px auto;
+	width: 630px;
+	border: none;
+	line-height: 0px;
+	background-color: transparent;
+	text-align: center;
+}
+#randomhead img {
+	border: 6px solid #789048;
+}
+#pic_day {
+	padding: 0;
+	margin: 0 auto 14px auto;
+	border: none;
+	line-height: 0px;
+	background-color: transparent;
+	text-align: center;
+}
+#pic_day img {
+	border: 6px solid #789048;
+}
+
+#wrapnav {
+background: #67678B;  /*nav bar in single-image.*/
+margin-bottom: 30px;
+}
+#wrapnav a {
+text-decoration:none;
+}
+
+#header #wrapnav {
+background: #67678B; /*navbar in subdirs.*/
+margin-bottom: 0px;
+}
+
+#main2 #navbar {
+padding: 4px 7px;
+border: none;
+margin: 0 auto 0 auto;
+width: 620px;
+color: #ECEBE1; /*text in navbar in single-image, only the last node.*/
+}
+
+ul.pagelist {
+clear: both;
+padding: 0;
+margin: 20px 0 0 0;
+list-style-type: none;
+}
+ul.pagelist li {
+display: inline;
+}
+ul.pagelist li a, ul.pagelist span.disabledlink {
+padding: 4px;
+}
+ul.pagelist li.current a {
+color: #000080 ; /*denotes the current page were on (1..5 etc) (I'm hiding it in the background)*/
+}
+ul.pagelist li.prev {
+margin-right: 10px;
+}
+ul.pagelist li.next {
+margin-left: 10px;
+}
+.pagenav {
+clear: both;
+}
+
+
+/* AJAX
+------------------------------ */
+#albumDescEditable:hover {
+ background: #67678B; /*unknown*/
+}
+#imageDescEditable:hover {
+ background: #12a081; /*unknown*/
+}
+
+
+/* Image Thumbnails
+------------------------------ */
+.imagethumb a {
+border-top: 2px solid #fbefdb;
+border-left: 2px solid #fbefdb;
+border-right: 2px solid #355E3B;
+border-bottom: 2px solid #355E3B;
+display: block;
+padding: 7px;
+margin: 6px;
+background: #67678B;
+line-height: 0px;
+}
+.imagethumb a:visited {
+border-top: 2px solid #fbefdb;
+border-left: 2px solid #fbefdb;
+border-right: 2px solid #355E3B  ;
+border-bottom: 2px solid #355E3B  ;
+background: #67678B;
+}
+.imagethumb a:hover {
+border-top: 2px solid #355E3B;
+border-left: 2px solid #355E3B;
+border-right: 2px solid #000080;
+border-bottom: 2px solid #000080;
+background: #67678B;
+}
+#albums li:hover h4 a {
+color: #FFFFFF; //albumnamnen, n�r du hovrar.
+}
+.imagethumb {
+float: left;
+text-align: center;
+}
+#albums .imagethumb {
+float: none;
+}
+#randomhead .imagethumb {
+float: none;
+}
+
+/* Album Thumbnails
+------------------------------ */
+#albums {
+padding: 0px 0 0px 0;
+}
+#albums li {
+margin: 0 0 0px 0;
+padding: 0;
+border: 0;
+float: left;
+list-style: none;
+}
+
+
+/* Individual Image
+------------------------------ */
+.imgwrap {
+	width: 615px;
+	margin:0 auto;
+	padding-left: 2em;
+	padding-right: 2em
+}
+.imgwrap ul {
+	 text-align: center;
+	 margin-left: 0;
+	 margin-rignt: 0;
+	 padding: 0;
+	 list-style-type: none;
+}
+.imgwrap li {
+	 margin: 0;
+	 padding: 0;
+	 float: left;
+	 text-align: center;
+	 width: 50%
+}
+
+.image {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+#image {
+	width: 615px;
+	margin: 0 auto;
+}
+#image_container {
+	color: black;
+	text-align: center;
+	border: 2px solid #ECEBE1;
+	padding: 7px;
+	background: #fff;
+	margin-bottom: 10px;
+}
+#image_container a {
+	color: black;
+}
+.imgnav {
+	float: right;
+	width: 140px;
+	text-align: center;
+}
+.imgnav .imgprevious a, .imgnav .imgnext a {
+	display: block;
+	width: 50%;
+	height: 100%;
+	float: left;
+	font-size: 120%;
+	text-decoration: none;
+	line-height: 200%;
+	color: #fbefdb; /*header next/prev in single-image view.*/
+}
+.imgnav .imgprevious a:hover, .imgnav .imgnext a:hover {
+	text-decoration: none;
+	color: #ffffff; /*header next/prev i single-image view, mouse over.*/
+}
+.imgnav .imgprevious a{
+	float: left;
+}
+.imgnav .imgnext a {
+	float: right;
+}
+.imgnav .imgdisabledlink {
+	display: block;
+	width: 50%;
+	height: 100%;
+	float: left;
+	font-size: 120%;
+	text-decoration: none;
+	line-height: 200%;
+	color: #7C9480; /*disabled next/prev in single image view*/
+}
+
+/* Forms
+------------------------------ */
+.checkbox {
+cursor: pointer;
+}
+.pushbutton {
+cursor: pointer;
+padding: 5px 10px;
+}
+
+
+/* Footer
+------------------------------------ */
+.footlinks {
+color: #fbefdb;
+font-size: 11px;
+text-align: center;
+padding: 4px 0;
+clear: both;
+}
+.footlinks a {
+color: #b1aea7;
+text-decoration:underline;
+}
+.footlinks a:hover {
+color: #fff;
+}
+/* Error Messages
+------------------------------ */
+
+.errorbox {
+	list-style-type: none;
+	padding: 20px;
+	background-color: #FDD;
+	border-top: 1px solid #FAA;
+	border-left: 1px solid #FAA;
+	border-right: 1px solid #FAA;
+	border-bottom: 5px solid #FAA;
+	margin-bottom: 10px;
+	font-size: 130%;
+	color: #DD6666;
+}
+.errorbox h2 {
+	color: #DD6666;
+	font-size: 130%;
+	font-weight: bold;
+	margin: 0px;
+}
+.errorlist {
+	list-style-type: none;
+}	
+
+#map{
+	width: 595px;
+	margin: 0 auto;
+}
+#map_link {
+	text-align: center;
+	color: black;
+}
+#map_link a {
+	text-decroation: none;
+}
+
+/* Admin Toolbox
+------------------------------ */
+#admin, #admin_data{
+	position:fixed;
+	right:0;
+	top:0;
+	border-left: 1px solid #E6E6DF;
+	border-bottom: 1px solid #E6E6DF;
+	width: 10em;
+	padding: 0.5em;
+}
+#admin, #admin_data ul {
+	text-align: left;
+}
+#admin, #admin_data a {
+	text-decoration:none;
+}
+#admin_data{
+	top: 2em;
+	background-image:url(../images/50percent.png);
+}
+#admin h3 {
+	font: 100% "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	color: #ccc;
+	margin:0;
+	padding:0;
+}
+#admin h3 a {
+	text-decoration:none;
+}
+
+/* Search Box
+------------------------------ */
+#search {
+	float: right;
+	width: 175px;
+	text-align: left;
+	margin-top: 26px;
+	_margin-top: 24px; /* IE Only */
+}
+#search input.pushbutton {
+	padding: 1px;
+	font-size: 80%;
+}
+#search ul {
+border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
+height: 8em; width: 20em; overflow: auto;
+color: #fff;
+background-image:url(../images/50percent.png);
+}
+#searchfields_icon {
+position: relative;
+top: 4px;
+}
+#search_submit {
+position: relative;
+top: 6px;
+}
+
+.clear {
+	clear:both;
+	height:10px;
+}
+
+/* Archive View
+---------------------------- */
+#archive{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+#archive p {
+	padding:10px 0;
+	margin:20px 0;
+	background: #67678B;
+	font-size: 18px;
+}
+ul.archive {
+	text-align: center;
+	padding:0;
+	list-style:none;
+	width:300px;
+}
+ul.archive .year {
+	text-align: center;
+	margin-bottom:5px;
+	font-weight:bold;
+	font-size:18px;
+	color: #67678b;
+}
+ul.archive .month {
+	text-align: center;
+	font-size: 14px;
+	list-style:none;
+	border-top:2px solid white;
+	padding-top: 5px;
+}
+#tag_cloud {
+	text-align: center;
+	padding-bottom: 5px;
+}
+#tag_cloud ul li {
+	text-align: center;
+	display: inline;
+	list-style-type: none;
+	line-height: 2em;
+}
+#tag_cloud p {
+	padding:10px 0;
+	margin:20px 0;
+	background: #67678B;
+	font-size: 18px;
+	text-align: center;
+}
+#content-left {
+width: 590px;
+height: 100%;
+float: left;
+margin-top: 2em;
+margin-bottom: 2em;
+margin-left: 0;
+margin-right: 0;
+padding-top: 0.8em;
+padding-left: 45px;
+padding-right: 45px;
+font-size: 1.2em;
+line-height: 1.6em;
+}
+#content-left h2 {
+font-size: 1.2em;
+line-height: 2em;
+}
+#content-left h3 {
+font-size: 1.4em;
+margin-left: 0px;
+margin-bottom: 0.5em;
+}
+#content-left h3 a {
+text-decoration:none;
+}
+#content-left p {
+font-size: 1em;
+line-height: 1.1em;
+margin-bottom: 1em;
+clear: both;
+}
+#sidebar {
+width: 360px;
+height: 100%;
+float: right;
+background-color: transparent;
+margin-right: 4px;
+border-top: 0px dotted red;
+}
+.menu {
+font: 18px Arial, Helvetica, Tahoma, Verdana, sans-serif;
+margin-top: 0em;
+padding-top: 0em;
+padding-bottom: 0em;
+padding-left: 1em;
+padding-right: 1em;
+height: 100%;
+}
+.menu_rule {
+padding-top: 0em;
+padding-bottom: 0em;
+margin-top: 0.5em;
+margin-bottom: 0.5em;
+border-bottom: 1px dotted darkgray;
+background-image: none;
+background-repeat: no-repeat;
+background-position: 1px 0px;
+}
+.menu h3 {
+font-size: 1em;
+font-weight: normal;
+text-transform: uppercase;
+color: black;
+margin-bottom: 0.5em;
+margin-top: 0.7em;
+margin-left: 1.6em;
+border: 0px solid gray;
+}
+.menu ul {
+list-style: none;
+padding-left: 1.8em;
+padding-right: 1em;
+margin-top: 0.2em;
+}
+.menu ul li {
+padding-left: 20px;
+padding-bottom: 3px;
+background-image: url(../images/arrow_right.png);
+background-repeat: no-repeat;
+background-position: 1px 0px;
+}
+.menu ul li.menu_menulabel {
+color: black;
+font-size: 1em;
+font-weight: normal;
+text-transform: uppercase;
+text-decoration:none;
+background-image: none;
+}
+.menu ul li.menu_menulabel ul.submenu li {
+font-style: normal;
+text-decoration:none;
+text-transform: none;
+}
+.menu ul li a {
+text-decoration:none;
+}
+.menu ul li.menu-active {
+color: #002E5B;
+background-image: url(../images/dark-bullet.png);
+}
+
+.menu h3 a {
+color: black;
+font-size: 1em;
+font-weight: normal;
+text-transform: uppercase;
+text-decoration:none
+}
+.menu h3 a:hover {
+color: #002E5B;
+}
+
+.submenu {
+list-style: none;
+margin-left: -25px;
+padding: 2px;
+}
+#archive_news {
+	text-align: center;
+	padding-bottom: 5px;
+}
+#archive_news ul li {
+	display: inline;
+	list-style-type: none;
+}
+#archive_news p {
+	padding:10px 0;
+	margin:20px 0;
+	background: #67678B;
+	font-size: 18px;
+	text-align: center;
+}
+#pagetext {
+font-size: 1em;
+line-height: 1em;
+margin-bottom: 1em;
+}
+#pagetext p {
+	line-height: 1em;
+}
+#pagetext ul {
+	margin-left: 1em;
+	margin-bottom: 0.5em;
+}
+#pagetext ul li {
+	margin-left: 1em;
+	margin-bottom: 0.5em;
+}
+#pagetext a:link, a:active, a:visited {
+text-decoration:underline;
+}
+#pagetext h3 a:link, a:active, a:visited {
+text-decoration:none;
+}
+
+/* News Articles
+------------------------------ */
+
+.newsarticle {
+padding-top: 1em;
+padding-bottom: 1em;
+border-bottom: 1px dotted #666666;
+line-height: 1em;
+}
+
+.newsarticle a:link, a:active, a:visited {
+text-decoration:underline;
+}
+
+.newsarticlecredit {
+margin-top: 0px;
+margin-bottom: 10px;
+
+}
+
+.newsarticlecredit-left {
+float: left;
+margin-right: 0.3em;
+}
+
+.newscategories {
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+.newscategories li {
+display: inline;
+list-style: none;
+}
+
+.singlenews_prev {
+float: left;
+}
+.singlenews_next {
+float: right;
+}
+
+.newstype {
+font-size: 0.8em;
+}
+
+/* Zenphoto link
+------------------------------ */
+
+#zen-part {
+ font-family: Arial, Helvetice, sans-serif;
+ font-size: 1.8em;
+ font-weight: 100;
+}
+
+#photo-part {
+ font-family: Arial, Helvetice, sans-serif;
+ font-size: 0.9em;
+ font-weight: bold;
+}
+
+/* login form */
+#passwordform {
+	text-align: center;
+	width: 400px;
+	margin: 0 auto;
+}
+
+table.password {
+	margin: 0 auto;
+}
+
+table.password td.userlabel{
+	text-align:right;
+}
+table.password td.userinput{
+	text-align:left;
+}
+
+table.password td.userinput input, td.passwordinput input {
+	width: 15em;
+}
+
+/* login form */
+table.password td.passwordlabel{
+	text-align:right;
+}
+
+table.password td.passwordinput{
+	text-align:left;
+}
+
+table.password td.submit{
+	text-align:center;
+}
+
+table.password td.hint{
+	text-align:left;
+}
+.inputbox {
+	width: 250px;
+	padding: 2px;
+}
+#efsearch {
+padding: 0px;
+}
+#efsearchhead_pages {
+padding: 10px;
+background: #67678B;
+}
+#efsearchhead_pages p {
+text-align: right;
+font-size: 80%;
+}
+#efsearchhead_news {
+padding: 10px;
+background: #67678B;
+}
+#efsearchhead_news p {
+text-align: right;
+font-size: 80%;
+}
+#efsearchhead_gallery {
+padding: 10px;
+background: #67678B;
+}
+#efsearchhead_gallery p {
+text-align: right;
+font-size: 80%;
+}
+
+.efsearchtext {
+margin-top: 5px;
+padding: 0 5px;
+color: #ECEBE1; /*comment text color*/
+}
+.efsearchtext a {
+color: #ECEBE1;
+cursor: pointer;
+}
+.efsearchtext a:hover {
+color: #FFFFFF;
+text-decoration: underline;
+}
+.efsearchtext ul {
+list-style-type: none;
+padding-left:20px
+}
+.efsearchtext p {
+text-indent: 1em;
+}
+
+/* tinyZenpage title addition */
+.zenpage_wrapper_left {
+margin-right: 10px;
+padding: 0px 10px 10px 0px;
+}
+
+.zenpage_wrapper_right {
+margin-left: 10px;
+padding: 0px 0px 10px 10px;
+}
+
+div.zenpage_title {
+font-style: italic;
+}
+.textobject {
+	text-align: left !important;
+	text-decoration: none !important;
+	overflow:scroll !important;
+}
+
+#googlemap_data {
+	color:black;
+}

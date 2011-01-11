@@ -1,0 +1,203 @@
+
+
+/* Main Layout
+ ------------------------------ */
+#logo {
+    float: right;
+    text-align: right;
+    margin: 20px 30px 0px 10px;
+}
+
+#links {
+    float: left;
+    font-size: 100%;
+    margin: 40px 0 0 30px;
+    direction:rtl;
+}
+
+#content {
+    clear: right;
+}
+
+#main {
+    text-align: right;
+    direction: rtl;
+}
+
+
+
+/* Edit form (albums, images)
+ ------------------------------ */
+form td {text-align:right !important;}
+
+
+/* Menu
+ ------------------------------ */
+
+#main > .nav {width:80em !important;}
+
+.nav {
+    text-align: right;
+    _padding: 0 30 0 0;
+    margin: 0 30px 0 0;
+    float: right;
+}
+
+.nav li a {
+    float: right;
+    margin: 0px 0px 0px 8px;
+}
+
+.subnav {
+	_padding: 0 30px 0 0;
+	margin: 0 30px 0 0;
+	float:right; 
+}
+
+.subnav li {
+	display: inline;
+}
+
+.subnav li a {
+	margin: 0px 0px 0px 8px;
+	float: right;
+}
+
+
+/* icon legend
+ ------------------*/
+#administration {
+    float: right;
+    text-align: right;
+    font-size: 2em;
+    text-decoration: none;
+}
+
+/* Individual Page Styles
+ ------------------------------ */
+#overview-leftcolumn {
+    width: 45%;
+    float: right;
+}
+
+#overview-rightcolumn {
+    width: 50%;
+    float: right;
+}
+
+#overview-stats {
+    float: right;
+    width: 400px;
+    margin: 0 10px 10px 0;
+}
+
+#overview-maint, #overview-utility {
+    float: right;
+}
+
+#overview-maint_l {
+    float: right;
+    width: 50%;
+    margin: 5px 16px 0px 0px;
+}
+
+#overview-maint_r {
+    float: right;
+    width: 45%;
+    margin: 5px 0px 0px 0px;
+}
+
+#overview-comments, #overview-gallerystats, #overview-info, #overview-news {
+    float: right;
+}
+
+#overview-comments h3, #overview-gallerystats h3, #overview-utility h2, #overview-info h3 {
+    padding-right: 10px;
+}
+
+/* css for the log viewer */
+.log_buttons a, .buttons button {
+    float: right;
+}
+
+
+/* CSS for tag rename lists */
+.tagrenamelist {
+	padding-right: 4px;
+	padding-left:0;
+}
+
+/* CSS for tag new lists 
+-----------------------------*/
+.tagnewlist{
+	padding-right: 4px;
+	padding-left:0;
+}
+
+
+/* Pretty Buttons
+------------------------------------- */
+
+.buttons button[type] {
+	padding: 5px 7px 5px 10px; /* Firefox */
+}
+.buttons button img,.buttons a img {
+	margin: 0 0 -3px 3px !important;
+}
+.buttons a,.buttons button {
+	float: right;
+	margin: 0 0 0 7px;	
+	padding: 5px 7px 6px 10px; /* Links */
+}
+
+.buttons .tooltip {
+	text-align: right;
+}
+
+
+/* Miscellaneous
+------------------------------ */
+.tabbox {clear:both;}
+
+
+/* Forms
+------------------------------ */
+input{direction:rtl;}
+
+
+
+
+/* Override zenpage.css rules
+------------------------------ */
+
+h1 {text-align:right;}
+
+.buttons button.submitbutton {text-align:right;}
+
+
+
+/* Admin toolbox
+------------------------------ */
+
+#admin_data ul {text-align:right !important;}
+
+
+/* Login
+------------------------------ */
+#loginform table  {
+text-align:right;
+direction:rtl;
+
+}
+
+#loginform input.textfield {
+text-align:left;
+direction:ltr;
+}
+
+
+/* Setup: overrides setup.php in-page style rules
+------------------------------ */
+.warn, .pass {background-position: top right !important; padding-right:20px !important;}
+
+

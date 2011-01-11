@@ -1,0 +1,29 @@
+#aspect img {
+	border:none;
+	outline: none
+}
+#aspect a {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#aspect a:visited {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#aspect a:hover {
+	text-decoration: none;
+	background-image:url(../crop_image/swap_up.png);
+	background-repeat:no-repeat;
+	border:none;
+	outline: none
+}
+#aspect a:active {
+	text-decoration: none;
+	background-image:url(../crop_image/swap_down.png);
+	background-repeat:no-repeat;
+	border:none;
+	outline: none
+}
+

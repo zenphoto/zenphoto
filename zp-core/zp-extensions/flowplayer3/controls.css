@@ -1,0 +1,74 @@
+
+/* root element should be positioned relatively so that 
+	child elements can be positioned absolutely */
+div.controls { 
+	position:relative;
+	height:8px;
+	margin:12px 0 0;
+	padding:5px 0 0;
+}
+
+/* when play button toggles between play/pause class 
+	we move it's background image */
+div.controls div.play, div.controls div.pause { 
+	position:relative;
+	width: 18px;
+	height:10px;
+	text-indent:-999em;
+	cursor:pointer;
+	overflow:hidden;
+	background:url(/img/controls/play_pause.gif) center top no-repeat;
+	margin-top: -10px;
+}
+
+div.controls div.pause { 
+	background-position:center -10px;
+}
+
+/* the track or "scrubber"  */
+div.controls div.track { 
+	position:absolute;
+	top:-6px;	
+	height:18px;
+	left:20px;
+	background:url(/img/controls/track.gif) no-repeat;
+	text-align:left;
+	cursor:pointer;
+	width:722px;	
+}
+
+/* the draggable playhead */
+div.controls div.playhead { 
+	position:absolute;	
+	height:12px;
+	background:url(/img/controls/playhead.png) no-repeat;
+	cursor:pointer;
+	top:0px; 
+	width:12px;
+}
+
+/* buffer and controls are automatically resized, their initial width should be 0 */
+div.controls div.progress, div.controls div.buffer {	
+	background-color:#fff;
+	height:6px;
+	margin:3px 4px;
+	width:0px;
+	position:absolute;
+	top:0;
+	font-size:0px;	
+	
+	/* this is the way to fine tune buffer and progress max width */
+	max-width:712px;
+}
+
+div.controls div.buffer {
+	background-color:#999;
+}
+
+/* som proprietary styling for progress bar under mozilla */
+div.controls div.progress {
+	-moz-border-radius-bottomleft:2px;
+	-moz-border-radius-topleft:2px;	
+}
+
+

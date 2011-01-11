@@ -1,0 +1,17 @@
+#comments {
+	display: block;
+}
+
+#addcomment {
+  display: block;
+}	
+
+#showcomments {
+  display: none;
+}
+#hidecomments {
+  display: inline;
+}
+#addcommentbutton {
+  display: none;
+}

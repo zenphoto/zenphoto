@@ -1,0 +1,81 @@
+/*
+-----------------------------------------------
+Photo Gallery Templates: 
+Custom Dimensions
+----------------------------------------------- */
+
+/* This file containes isolated measurement values you should change if you'd like 
+to use different dimensions for the main photo. All measurements are based off main 
+photos' maximum width. Default "MaxWidth" for photos (per template docs) is 480.
+------------------------------------------------------------------------------------- */
+
+
+
+/* Sets width of main (center) column.
+[value] = MaxWidth + 20
+EG: 480 + 20 = 500
+----------------------------------------------- */
+.main {
+  width:500px;
+  }
+
+/* Determines position of prev/next thumbnails.
+Measurement is distance from center of main 
+photo to the nearest edge of slide background 
+image. */
+#prev {
+  /* [value] = (MaxWidth / 2) + 22 */
+  right:262px;
+  }
+#next {
+  /* [value] = (MaxWidth / 2) + 25 */
+  left:265px;
+  }
+
+/* Determines offset of prev/next hoverable
+regions that overlay the main photo. Measurement 
+is distance from nearest edge of slide 
+background image back to center of main photo. */
+#prev a strong {
+  /* [value] = 0 - (MaxWidth / 2) - 22 */
+  right:-262px;
+  }
+#next a strong {
+  /* [value] = 0 - (MaxWidth / 2) - 25 */
+  left:-265px;
+  }
+
+/* Determines position of title and description.
+Measurement is distance from center of main
+photo to left edge of content.
+Note: Second value for background position 
+should always be 0. */
+#desc h1, #desc p {
+  /* [value] = (MaxWidth / 2) + 25 */
+  background-position:265px 0;
+  padding-left:265px;
+  }
+
+/* Determines position of meta info such as 
+Photo x of y, date, & keywords. Measurement is 
+distance from center of main photo to left 
+edge of content. */
+#meta ul {
+  /* [value] = (MaxWidth / 2) + 25 */
+  padding-right:265px;
+  }
+
+/* If customizing the photo dimensions, one 
+more value needs to change in the Individual
+Photo template (t_photo.php). Search for the 
+following tag:
+<$MTSetVar2 name="padvalue" value="480"$>
+and change the value to your new photo MaxWidth.
+
+
+
+/* End of custom values
+------------------------------------------------------------------------------------- */
+
+
+

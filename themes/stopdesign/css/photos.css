@@ -1,0 +1,1307 @@
+/*
+-----------------------------------------------
+Photo Gallery Templates: Main Style Sheet
+Author:   Douglas Bowman
+Version:  1.1 - 10 May 2006
+The design and Movable Type templates that 
+build these pages are available for anyone to 
+download and use:
+http://stopdesign.com/templates/photos/
+----------------------------------------------- */
+
+body {
+  background:#ddd url("../images/bg_page.jpg") repeat-x 0 0;
+  margin:0;
+  padding:0;
+  font:small Verdana,Sans-serif;
+  color:#333;
+  }
+.title, .index {
+  text-align:center;
+  }
+#content {
+  position:relative;
+  margin:1.6em 0 0;
+  padding:26px 15px 15px;
+  font-size:85%;
+  line-height:1.6;
+  }
+.photosolo #content {
+  padding:25px 0 15px;
+  }
+.index #content, .archive #content, .recentcomments #content, .comments-entry #content {
+  width:720px;
+  margin-left:auto;
+  margin-right:auto;
+  }
+.title #content {
+  width:733px;
+  margin-left:auto;
+  margin-right:auto;
+  padding:40px 20px 0;
+  text-align:left;
+  }
+.comments-entry #content {
+  margin-top:1em;
+  padding-top:0;
+  }
+
+
+/* =Links
+----------------------------------------------- */
+a, a:visited {
+  color:#258;
+  text-decoration:none;
+  border-bottom:1px solid #469;
+  outline:none;
+  }
+html>body a, html>body a:visited {
+  border-bottom-style:dotted;
+  }
+a:hover, a:active {
+  color:#933;
+  border-color:#b55;
+  border-bottom-style:solid;
+  }
+a img, a.btn, a.btn:visited, a.i, a.i:visited, a.i:hover {
+  border-width:0;
+  }
+a.btn img, a.i>img {
+  position:relative;
+  top:2px;
+  }
+
+
+/* =Headings
+----------------------------------------------- */
+h2 {
+  margin:.5em 0 .75em;
+  font:145% "Trebuchet MS",Verdana,Sans-serif;
+  color:#974;
+  }
+h2 .btn {
+  margin-left:.25em;
+  font-weight:normal;
+  color:#666;
+  }
+.index h2, .galleries h2, .archive h2, .recentcomments h2 {
+  background:url("../images/slide_minis.gif") no-repeat 50% 0;
+  margin:0 0 8px;
+  padding:24px 0 0;
+  font-size:100%;
+  line-height:1.4em;
+  font-family:"Gill Sans","Trebuchet MS",Verdana,Sans-serif;
+  font-weight:normal;
+  text-transform:uppercase;
+  letter-spacing:.2em;
+  text-align:center;
+  color:#333;
+  }
+.galleries h2 {
+  position:relative;
+  top:-10px;
+  margin-bottom:0;
+  }
+.gallery .galleries h2 {
+  top:-20px;
+  }  
+
+
+
+/* =Lists
+----------------------------------------------- */
+ul {
+  margin:.5em 0 1.5em;
+  padding:0;
+  }
+li {
+  /* background:url("../images/bullet_white.gif") no-repeat 5px .55em;*/
+  margin:0;
+  padding:0 0 0 15px;
+  list-style:none;
+  }
+dl {
+  margin:.5em 0 1em;
+  padding:0;
+  }
+dt {
+  font-weight:bold;
+  }
+dd {
+  margin:0 0 1em;
+  padding:0;
+  }
+
+
+/* =Forms
+----------------------------------------------- */
+form {
+  margin:0 0 .75em;
+  }
+input.text, textarea {
+  border:1px solid;
+  border-color:#999 #fff #fff #999;
+  }
+input.text:focus, textarea:focus {
+  background:#ffc;
+  }
+#btn-preview, #btn-post {
+  background:#888;
+  padding:2px 5px;
+  border:2px solid;
+  border-color:#aaa #666 #666 #aaa;
+  font:100% Verdana,Sans-serif;
+  text-transform:uppercase;
+  color:#fff;
+  }
+#btn-post {
+  background:#354;
+  border-color:#576 #243 #243 #576;
+  }
+
+
+/* =Misc
+----------------------------------------------- */
+p {
+  margin:0 0 .75em;
+  }
+.buttons p {
+  margin:0;
+  }
+.note, .error {
+  color:#c33;
+  }
+.inset, .inset2 {
+  float:left;
+  margin:3px 10px 5px 0;
+  }
+.inset2 {
+  float:right;
+  margin:3px 0 5px 10px;
+  }
+img.inset, img.inset2 {
+  display:block;
+  }
+.reset {
+  clear:both;
+  display:block;
+  height:1px;
+  font-size:1px;
+  line-height:1px;
+  }
+hr.reset {
+  overflow:hidden;
+  visibility:hidden;
+  }
+th, td {
+  text-align:left;
+  vertical-align:top;
+  }
+input, textarea, select, code {
+  margin:1px 0;
+  font:117%/1.2em Monaco,Monospace;
+  }
+.mainbutton {
+  margin:0;
+  padding:5px 0 10px;
+  font-size:100%;
+  text-align:center;
+  }
+.galleries .mainbutton {
+  margin:0;
+  }
+#commentblock .mainbutton {
+  padding-top:0;
+  }
+em.date {
+  font-style:normal;
+  }
+
+
+/* =Path
+Breadcrumb navigation that gets positioned to
+the top of the page.
+----------------------------------------------- */
+#path {
+  background:#000 url("../images/bg_path.gif");
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  margin:0;
+  padding:4px 0 6px;
+  border-bottom:3px solid #555;
+  font-size:85%;
+  line-height:1.6em;
+  color:#777;
+  text-align:center;
+  }
+#path a {
+  font-weight:normal;
+  border-color:#777;
+  color:#888;
+  }
+
+
+/* =Header
+----------------------------------------------- */
+h1 {
+  margin:0 0 3px;
+  padding:0 0 .35em;
+  border-bottom:1px solid #ddd;
+  font:200% "Gill Sans","Trebuchet MS",Verdana,Sans-serif;
+  line-height:1.2em;
+  text-align:center;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  }
+.title h1 {
+  margin:0;
+  padding:0 0 10px;
+  border-width:0;
+  }
+.title h1 a, .title h1 a:visited {
+  border-bottom-width:0;
+  border-style:none;
+  }
+
+h1 a, h1 a:hover, .auto #titleimg a {
+  border-style:none;
+  }
+h1 em {
+  margin-left:.25em;
+  padding-left:.5em;
+  border-left:1px solid #aaa;
+  font:66% Verdana,Sans-serif;
+  color:#666;
+  }
+h1 img {
+  display:block;
+  }
+
+
+/* =Auto-generated title images
+----------------------------------------------- */
+.auto h1 {
+  margin:10px 0 .5em;
+  padding:0;
+  border-width:0;
+  font-size:170%;
+  line-height:1.2em;
+  color:#333;
+  text-align:left;
+  text-transform:none;
+  letter-spacing:0;
+  }
+.auto #titleimg {
+  background:#bbb;
+  position:relative;
+  top:3px;
+  left:3px;
+  float:left;
+  margin:0 0 10px 0;
+  padding:0;
+  border-width:0;
+  }
+html>body .auto #titleimg {
+  background:url("../images/bg_shadow.png");
+  }
+.auto #titleimg img {
+  display:block;
+  position:relative;
+  top:-3px;
+  left:-3px;
+  border:10px solid #fff;
+  }
+
+
+/* =Gallery Description
+Text block appearing on Gallery Title page
+----------------------------------------------- */
+#gallerydesc {
+  position:relative;
+  margin:-110px 29px 0 405px;
+  font-size:100%;
+  }
+.auto #gallerydesc, .v #gallerydesc {
+  float:right;
+  width:218px;
+  position:static;
+  margin:0;
+  }
+.v #gallerydesc {
+  width:338px;
+  }
+#gallerydesc p {
+  margin:0 0 .75em;
+  }
+#gallerydesc .date {
+  display:block;
+  margin-bottom:.5em;
+  }
+
+
+/* =Gallery Listing
+Module showing all galleries in system
+----------------------------------------------- */
+#secondary {
+  float:left;
+  width:705px;
+  padding:10px 0 0 15px;
+  margin:0;
+  }
+.index .module {
+  float:left;
+  width:210px;
+  margin:0 17px 0 0;
+  padding:0 4px;
+  text-align:left;
+  }
+
+.galleries {
+  background:#eee;
+  float:left;
+  width:100%;
+  margin:0 0 15px;
+  position:relative;
+  }
+.gallery .galleries {
+  float:left;
+  position:relative;
+  width: 720px;
+  margin:0 0 15px;
+  padding:0;
+  list-style:none;
+  padding-top:10px;
+  line-height:1.4em;
+  }
+.gallery .galleries .thumb {
+  float:left;
+  margin:0 10px 10px 0;
+  }
+.index .galleries {
+  margin-bottom:5px;
+  }
+.galleries ul {
+  float:left;
+  margin-left:0;
+  margin-bottom:0;
+  list-style:none;
+  text-align:left;
+  }
+.galleries li {
+  background-image:none;
+  float:left;
+  position:relative;
+  width:220px;
+  height:6.4em;
+  overflow:hidden;
+  margin-bottom:0;
+  padding:75px 0 1.6em 15px;
+  }
+.archive .galleries li {
+  height:10.5em;
+  }
+.galleries h3 {
+  margin:0 10px 0 4px;
+  font-size:100%;
+  }
+.galleries h3 a, .galleries a.img, .galleries h3 a:visited {
+  border-width:0;
+  }
+.galleries .img {
+  position:absolute;
+  top:4px;
+  left:15px;
+  }
+.galleries .img img {
+  display:block;
+  }
+.galleries p {
+  margin:0 10px 0 4px;
+  }
+.galleries div {
+  margin:0 4px;
+  }
+.gal {
+  background:url("../images/bg_gal.gif") 11px 0px no-repeat;
+  margin:0;
+  }
+html>body .gal {
+  background-image:url("../images/bg_gal.png");
+  }
+
+
+/* =Auto-generated Gallery Index
+Slide-formatted list of all galleries
+----------------------------------------------- */
+.useslides ul {
+  text-align:center;
+  }
+.useslides li {
+  padding-top:128px;
+  }
+.useslides .thumb {
+  position:absolute;
+  top:0;
+  left:62px;
+  }
+.useslides p {
+  margin-right:4px;
+  }
+
+
+/* Feed links
+Links to feeds appearing at bottom of Gallery Archive
+----------------------------------------------- */
+#feeds {
+  float:left;
+  width:100%;
+  margin:0 0 10px;
+  }
+#feeds ul {
+  margin:15px 0 0;
+  padding:9px 0;
+  list-style:none;
+  text-align:center;
+  }
+#feeds li {
+  background-color:transparent;
+  background-image:none;
+  float:none;
+  width:auto;
+  display:inline;
+  margin:0 2px;
+  padding:0;
+  text-align:center;
+  }
+#feeds li a {
+  background-color:#eee;
+  padding:8px 5px;
+  border:1px solid #fff;
+  }
+#feeds li a:hover {
+  background-color:#ddd;
+  }
+
+
+/* =GalleryData
+Table of stats appearing on Gallery Index
+----------------------------------------------- */
+.gallerydata {
+  width:100%;
+  border-top:1px solid #ccc;
+  font-size:100%;
+  }
+.gallerydata th, .gallerydata td {
+  padding:5px;
+  border-bottom:1px solid #ccc;
+  font-weight:normal;
+  vertical-align:middle;
+  }
+.gallerydata td {
+  text-align:right;
+  white-space:nowrap;
+  }
+
+
+/* =RandomList
+Module on Index page displaying tiny thumbnails 
+of most recent favorite photos
+----------------------------------------------- */
+#randomlist {
+  float:left;
+  width:204px;
+  margin:0 -3px 0 0;
+  padding:0 0 0 6px;
+  list-style:none;
+  }
+#randomlist li {
+  background:url("../images/bg_slide_sm.gif") 0 0 no-repeat;
+  float:left;
+  width:62px;
+  margin:0 6px 6px 0;
+  padding:0;
+  }
+html>body #randomlist li {
+  background-image:url("../images/bg_slide_sm.png");
+  }
+#randomlist table {
+  width:62px;
+  height:62px;
+  margin:0;
+  border-collapse:collapse;
+  font-size:1px;
+  }
+#randomlist td {
+  padding:0 2px 2px 0;
+  text-align:center;
+  vertical-align:middle;
+  }
+#randomlist li a {
+  border-width:0;
+  }
+
+
+/* =Gallery Info
+Title, description, & prefs on Photo Gallery page
+----------------------------------------------- */
+.galleryinfo {
+  clear:left;
+  float:left;
+  width:22%;
+  margin:0;
+  line-height:1.4em;
+  }
+.galleryinfo h1 {
+  margin:0 0 .5em;
+  text-align:left;
+  text-transform:none;
+  letter-spacing:0;
+  }
+.galleryinfo .desc {
+  line-height:1.6em;
+  margin-bottom:1em;
+  }
+.galleryinfo form {
+  margin:0 0 .5em;
+  padding:5px 0;
+  }
+.galleryinfo fieldset {
+  margin:0 0 .75em;
+  padding:.25em 0 .5em;
+  border-width:0;
+  border-bottom:1px dotted #ccc;
+  }
+.galleryinfo form strong {
+  display:block;
+  margin:0;
+  padding:0 0 .25em;
+  color:#222;
+  }
+.galleryinfo fieldset div {
+  margin:0 0 .25em;
+  }
+
+.archiveinfo {
+  clear:left;
+  float:left;
+  width:50%;
+  margin:0;
+  line-height:1.4em;
+  }
+.archiveinfo h1 {
+  margin:0 0 .5em;
+  text-align:left;
+  text-transform:none;
+  letter-spacing:0;
+  }
+.archiveinfo .desc {
+  line-height:1.6em;
+  margin-bottom:1em;
+  }
+.archiveinfo form {
+  margin:0 0 .5em;
+  padding:5px 0;
+  }
+.archiveinfo fieldset {
+  margin:0 0 .75em;
+  padding:.25em 0 .5em;
+  border-width:0;
+  border-bottom:1px dotted #ccc;
+  }
+.archiveinfo form strong {
+  display:block;
+  margin:0;
+  padding:0 0 .25em;
+  color:#222;
+  }
+.archiveinfo fieldset div {
+  margin:0 0 .25em;
+  }
+
+
+/* =Thumbs
+Reusable style for thumbnail photos as slides
+----------------------------------------------- */
+.thumb {
+  background:url("../images/bg_slide.gif") 0 0 no-repeat;
+  display:block;
+  float:left;
+  margin:0;
+  padding:0 3px 3px 0;
+  }
+html>body .thumb {
+  background-image:url("../images/bg_slide.png");
+  }
+.thumb span {
+  background-repeat:no-repeat;
+  background-position:50% 104px;
+  display:block;
+  }
+.thumbv span {
+  background-position:9px 50%;
+  }
+.thumb em {
+  background-repeat:no-repeat;
+  background-position:50% 50%;
+  display:block;
+  }
+.thumb a, .thumb a:link, .thumb a:visited {
+  background:none !important;
+  display:block;
+  width:120px;
+  height:120px;
+  border:none;
+  text-indent:-9999px;
+  font-size:1px;
+  line-height:1px;
+  }
+
+
+/* =Slideset
+Normal group of slide-like thumbnails
+----------------------------------------------- */
+.slideset {
+  float:right;
+  position:relative;
+  margin:0 0 15px;
+  padding:0;
+  list-style:none;
+  line-height:1.4em;
+  }
+.slideset .thumb {
+  float:left;
+  margin:0 10px 10px 0;
+  }
+  
+
+/* =Individual Photo
+----------------------------------------------- */
+/* NOTE:
+   See [custom.css] to customize your own 
+   photo dimensions with override values. */
+.main {
+	clear:both;
+  position:relative;
+  width:500px;
+  margin:0 auto;
+  text-align:center;
+  }
+#photo {
+  margin:0 0 10px;
+  }
+#photo strong {
+  background:#bbb;
+  position:relative;
+  display:block;
+  top:3px;
+  left:3px;
+  margin:0 0 10px 0;
+  border-width:0;
+  }
+html>body #photo strong {
+  background:url("../images/bg_shadow.png");
+  }
+#photo img {
+  display:block;
+  position:relative;
+  top:-3px;
+  left:-3px;
+  border:10px solid #fff;
+  }
+  
+/* centering flowplayer 3 on image.php */
+#photo .flowplayer {
+	margin: 0 auto;
+}
+
+/* =PrevNext Nav (Individual Photo template)
+Thumbnails used for prev/next photo navigation
+----------------------------------------------- */
+#prevnext {
+  position:absolute;
+  top:25px;
+  left:50%;
+  }
+#prev, #next {
+  position:absolute;
+  top:0;
+  width:123px;
+  margin:0;
+  font-weight:bold;
+  }
+#prev {
+  right:262px;
+  }
+#next {
+  left:265px;
+  }
+#prev a, #next a {
+  width:120px;
+  }
+
+
+/* =PrevNextHovers (Individual Photo template)
+The two hoverable regions overlaying the main photo
+----------------------------------------------- */
+/* Note:
+   Width and height for the following
+   strong element is set inline using the style 
+   attribute. Both values are automatically 
+   determined by taking the width/height of the 
+   main photo.
+   Width is ((width of main photo + 20) / 2).
+   Height is (height of main photo + 20). */
+#prevnext a strong {
+  position:absolute;
+  top:0;
+  }
+#prev a strong {
+  background:url("../images/photonav_prev.gif") no-repeat 50% -100px;
+  right:-262px;
+  }
+#next a strong {
+  background:url("../images/photonav_next.gif") no-repeat 50% -100px;
+  left:-265px;
+  }
+html>body #prev a strong {
+  background-image:url("../images/photonav_prev.png");
+  }
+html>body #next a strong {
+  background-image:url("../images/photonav_next.png");
+  }
+#prev a:hover strong, #next a:hover strong, #prev a:active strong, #next a:active strong {
+  background-position:50% 10px;
+  cursor:pointer;
+  }
+
+
+/* =Description (Individual Photo template)
+Title and description of photo
+----------------------------------------------- */
+#desc {
+  position:absolute;
+  top:170px;
+  right:0;
+  width:50%;
+  text-align:left;
+  }
+#desc h1 {
+  background:url("../images/divider_r.gif") no-repeat 265px 0;
+  max-width:30em;
+  margin:0;
+  padding:10px 15px 5px 265px;
+  border-width:0;
+  font:bold 100% Verdana,Sans-serif;
+  line-height:1.6em;
+  letter-spacing:0;
+  text-transform:none;
+  text-align:left;
+  }
+html>body #desc h1 {
+  background-image:url("../images/divider_r.png");
+  }
+#desc p {
+  max-width:30em;
+  margin:0 0 .75em -250px;
+  padding:0 15px 0 0;
+  }
+#descText {
+	margin-left: 265px;
+	width:35%;
+}
+#desc div[style="display: block;"] { 
+	margin-left:255px; 
+	}
+#desc p.posted {
+  margin-top:1.25em;
+  }
+
+
+/* =Meta info (Individual Photo template)
+Photo x of y, date, and keywords
+----------------------------------------------- */
+#meta {
+  position:absolute;
+  top:170px;
+  left:0;
+  width:50%;
+  }
+#meta ul {
+  margin:0;
+  padding:0 265px 0 15px;
+  list-style:none;
+  }
+#meta li {
+  background:none;
+  margin:0;
+  padding:0;
+  text-align:right;
+  }
+#meta li.count {
+  background:url("../images/divider_l.gif") no-repeat 100% 0;
+  padding-top:10px;
+  padding-bottom:5px;
+  }
+html>body #meta li.count {
+  background-image:url("../images/divider_l.png");
+  }
+
+
+/* =Count
+Miscellaneous portions of the UI that display
+a total count of photos for each gallery
+----------------------------------------------- */
+.count {
+  font-style:italic;
+  }
+.galleryinfo .count {
+  background:#ccc;
+  display:block;
+  margin:0 0 .5em;
+  padding:2px 5px;
+  font-style:normal;
+  }
+#info p.count {
+  margin:3em 0 1.5em;
+  padding:5px 0;
+  border:solid #bbb;
+  border-width:1px 0;
+  font-size:100%;
+  line-height:1.6em;
+  }
+input.btn, .header form select {
+  vertical-align:middle;
+  font-size:100%;
+  }
+
+
+/* =Comments
+General div IDs and headings that surround the 
+comment listing for an entry. These are the divs
+the JavaScript uses to hide/show comments
+----------------------------------------------- */
+#commentblock {
+  display:block;
+  width:480px;
+  margin:0 auto;
+  text-align:left;
+  }
+#commentblock h2, #commentblock p.sub {
+  text-align:center;
+  font-weight:normal;
+  }
+#commentblock h2 {
+  margin-top:0;
+  font:100% Verdana,Sans-serif;
+  color:#333;
+  }
+#commentblock h2 a {
+  margin-left:.25em;
+  font-weight:normal;
+  border-width:0;
+  color:#666;
+  }
+#commentblock h2 a img {
+  position:relative;
+  top:2px;
+  }
+#showcomments, #hidecomments, #addcommentbutton {
+  display:none;
+  }
+#addcomment h2 {
+  margin-top:.5em;
+  text-align:left;
+  font:140% "Trebuchet MS",Verdana,Sans-serif;
+  color:#974;
+  }
+#commententry h3{
+  margin:.5em 0 .75em;
+  font:145% "Trebuchet MS",Verdana,Sans-serif;
+  color:#974;
+	text-align:center;
+}
+
+
+/* =Comment photo
+Region on comment preview/error pages that displays
+the thumbnail image, photo name, date, & keywords
+----------------------------------------------- */
+#comment-photo {
+  float:left;
+  width:100%;
+  padding:35px 0 12px;
+  }
+#comment-photo #desc {
+  position:static;
+  width:auto;
+  margin-left:133px;
+  padding:22px 0 2px;
+  }
+#comment-photo #desc h1 {
+  background:none;
+  padding:0;
+  }
+#comment-photo #desc p {
+  margin:0;
+  padding:0;
+  }
+
+
+/* =CommentList
+List of existing comments for an entry
+----------------------------------------------- */
+dl.commentlist, ul.commentlist {
+  margin-bottom:1.5em;
+  }
+#commentblock .commentlist {
+  margin-bottom:1em;
+  }
+.commentlist dt, .commentlist li p.commenter {
+  padding:8px 0 .25em;
+  font-weight:normal;
+  }
+.commentlist dd, .commentlist li {
+  background-image:none;
+  padding:2px 18px 4px;
+  margin:0 0 .5em;
+  border-bottom:1px dotted #bbb;
+  }
+.commentlist .postno {
+  background:url("../images/icon_pushpin.gif") no-repeat 0 50%;
+  border-width:0;
+  padding:0 0 0 18px;
+  margin-right:2px;
+  font:150% "Gill Sans","Trebuchet MS",Georgia,Serif;
+  color:#567;
+  }
+.commentlist a.postno {
+  border-bottom-width:0;
+  border-style:none;
+  }
+
+p.comment-error {
+  margin:0 0 1.5em;
+  color:#c33;
+  }
+#comment-notes {
+  margin-top:2em;
+  }
+#comment-notes p {
+  color:#554;
+  }
+
+.commentlink, .commentlink:visited {
+  background:url("../images/icon_pushpin.gif") no-repeat 0 50%;
+  border-width:0;
+  padding-left:17px;
+  white-space:nowrap;
+  }
+a.commentlink, a.commentlink:visited {
+  color:#359;
+  font-weight:normal;
+  }
+a.commentlink:hover {
+  color:#933;
+  border-color:#ccb;
+  text-decoration:none;
+  }
+
+
+/* =Recent Comments
+Only used on recent comments listing page
+----------------------------------------------- */
+.recentcomments .commentlist {
+  float:left;
+  width:100%;
+  margin:0 0 15px;
+  padding:0;
+  list-style:none;
+  }
+.recentcomments .commentlist li {
+  background-color:#eee;
+  float:left;
+  width:100%;
+  min-height:138px;
+  margin:0 0 15px;
+  padding:0 0 15px;
+  border-bottom-width:0;
+  }
+.recentcomments li p {
+  margin-left:148px;
+  margin-right:15px;
+  }
+.recentcomments li p.commenter {
+  margin-left:0;
+  padding-top:20px;
+  padding-left:148px;
+  font-style:italic;
+  }
+.recentcomments p.thumb {
+  float:left;
+  background-position:15px 0;
+  height:123px;
+  margin:15px 10px 0 0;
+  padding-left:15px;
+  }
+.commenton {
+  margin-bottom:5px;
+  padding-top:.5em;
+  border-top:1px solid #ccc;
+  color:#888;
+  }
+.commenton a {
+  font-weight:bold;
+  }
+
+
+/* =Comment Form
+Comment Submission form
+----------------------------------------------- */
+#comments-form table {
+  width:100%;
+  margin:0;
+  padding:0;
+  border-width:0;
+  font-size:100%;
+  color:#333;
+  }
+#comments-form td {
+  width:100%;
+  }
+#comments-form td, #comments-form th {
+  padding:5px 10px 5px 0;
+  border-bottom:1px dotted #bbb;
+  font-weight:normal;
+  }
+#comments-form th {
+  text-transform:lowercase;
+  white-space:nowrap;
+  }
+#comments-form td.buttons, #comments-form th.buttons {
+  border-width:0;
+  text-align:right;
+  }
+#comments-form label {
+  text-transform:lowercase;
+  cursor:pointer;
+  }
+#comments-form label:hover {
+  color:#963;
+  }
+#comments-form textarea {
+  background:#fff;
+  display:block;
+  width:97%;
+  color:#000;
+  }
+#comments-form textarea:focus {
+  background:#ffc;
+  }
+#comments-form form p {
+  margin:.5em 0;
+  }
+#comments-form .text {
+  width:65%;
+  }
+
+
+/* =Footer
+----------------------------------------------- */
+#footer {
+  clear:both;
+  width:100%;
+  padding:15px 0;
+  font-size:85%;
+  line-height:1.8em;
+  text-align:center;
+  color:#888;
+  }
+#footer p {
+  margin:0 15px;
+  padding:5px 0;
+  border-top:1px solid #eee;
+  }
+#footer hr {
+  display:none;
+  }
+#footer a {
+  font-weight:normal;
+  color:#678;
+  }
+#footer a:hover, #footer a:active {
+  color:#933;
+  border-bottom-width:1px;
+  }
+  
+/* Labels
+----------------------------------------------- */
+.backward {background-image:url("../images/txt_backward.gif");}
+.forward {background-image:url("../images/txt_forward.gif");}
+
+/* Admin Toolbox
+----------------------------------------------- */
+#admin, #admin_data{
+	position:absolute;
+	right:0;
+	top:0;
+	border-left: 1px solid #333;
+	border-bottom: 1px solid #333;
+	background: #000;
+	width:15em;
+  padding: 2px 0px 4px 4px;
+}
+
+#admin, #admin_data ul {
+	text-align:center;
+	margin: 0;
+	padding: 0;
+}
+
+#admin_data{
+	top: 20px;
+}
+#admin_data a {
+    color: #4480C7;
+}
+
+#admin h3 {
+	font-weight: normal;
+	color: #ccc;
+	border-bottom: 1px solid #333;
+	margin:0;
+	padding:0;
+}
+
+/* Search Form
+----------------------------------------------- */
+#search {
+	position:absolute;
+	text-align:left;
+	top:4px;
+	left:5px;
+	width:200px;
+	z-index:9999;
+}
+#search #search_input {
+	width:90px;
+	font-size:85%;
+  background-color: #999;
+  border: 1px solid #bbb;
+}
+#search a {
+text-decoration: none;
+}
+#search #search_input:focus {
+  background-color: #ccc; 
+}
+#search #search_submit {
+	font-size:85%;
+  background-color: #999;
+  border: 1px solid #bbb;
+}
+#search ul {
+border: 1px solid #ccc; position:absolute; text-align:left; list-style: none; 
+height: 8em; width: 20em; overflow: auto; 
+color: #fff;
+background-image:url(../images/50percent.png);
+}
+
+.clear {
+  clear:both;
+  height:10px;
+}
+
+/* Meta Data
+----------------------------------------------- */
+#imagemetadata {
+  text-align: right;
+}
+
+#imagemetadata table {
+  text-align: left;
+  line-height: 1em;
+  border: 1px solid #ccc;
+  top: 2em;
+  right: 0px;
+  background-color: #fafafa;
+}
+
+#imagemetadata table td {
+  border-bottom: 1px solid #f0f0f0;
+  background-color: #f8f8f8;
+  padding: 2px 5px;
+}
+/* Error Messages
+------------------------------ */
+.errorbox {
+	padding: 20px;
+	background-color: #FDD;
+	border-top: 1px solid #FAA;
+	border-left: 1px solid #FAA;
+	border-right: 1px solid #FAA;
+	border-bottom: 5px solid #FAA;
+	margin-bottom: 10px;
+	font-size: 100%;
+	color: #DD6666;
+}
+.errorbox h2 {
+	color: #DD6666;
+	font-size: 100%;
+	font-weight: bold;
+	margin: 0px;
+}
+.errorlist {
+	list-style-type: none;
+}	
+/* Zenphoto link
+------------------------------ */
+
+#zen-part {
+ font-family: Arial, Helvetice, sans-serif;
+ font-size: 1.6em;
+ font-weight: 100;
+}
+
+#photo-part {
+font-family: Arial, Helvetice, sans-serif;
+ font-size: 0.6em;
+ font-weight: bold;
+}
+
+/* login form */
+table.password td.userlabel{
+	text-align:right;
+}
+table.password td.userinput{
+	text-align:left;
+}
+
+table.password td.userinput input, td.passwordinput input {
+	width: 15em;
+}
+
+/* login form */
+table.password td.passwordlabel{
+	text-align:right;
+}
+
+table.password td.passwordinput{
+	text-align:left;
+}
+
+table.password td.submit{
+	text-align:center;
+}
+
+table.password td.hint{
+	text-align:left;
+}
+.textobject {
+	font-size: 12px;
+	line-height: 16px;
+	text-align: left !important;
+	text-decoration: none !important;
+	overflow:scroll !important;
+}

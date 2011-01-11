@@ -1,0 +1,194 @@
+<html>
+  <head>
+    <title>zenphoto</title>
+    <style type="text/css">
+			/* Main Layout
+			------------------------------ */
+			body { 
+				font-family: Arial, Helvetica, Verdana, sans-serif; 
+				font-size: 10pt; 
+					margin: 0px; 
+				padding: 0px; 
+				background-color: #eee; 
+				line-height: 125%; 
+			}
+			a { color: #3322ff; }
+			a:hover, a:active { color: #000099; background-color: #eceeff; }
+			hr { border: 0px; border-top: 1px solid #ccc; margin: 3em 0px; }
+			img { border: none}
+			#main {
+					width: 600px; 
+					margin: 0px auto; 
+					padding: 30px 30px; 
+					background-color: #fff; 
+					position: relative;
+			}
+			#navcontainer ul {
+				padding-left: 0;
+				margin-left: 0;
+				background-color: #f3f3f3;
+				border: 1px solid #ddd;
+				color: #fff;
+				float: left;
+				width: 100%;
+				font-family: arial, helvetica, sans-serif;
+			}
+			#navcontainer ul li { display: inline; }
+			#navcontainer ul li a {
+				padding: 6px 1em;
+				background-color: #f3f3f3;
+				color: #33f;
+				font-weight: bold;
+				text-decoration: none;
+				float: left;
+				border-right: 1px solid #ddd;
+				border-bottom: 5px solid #ddd;
+			}
+			#navcontainer ul li a:hover {
+				background-color: #fff;
+				color: #000;
+				border-bottom: 5px solid #33f;
+			}
+			/* Themes
+			------------------------------ */
+			.theme {
+					margin: 0px 0px 10px 0px;
+					padding: 0;
+			}
+			.green {
+					border: 5px solid #ccf0cc;
+					background-color: #f0fff0;
+			}
+			.green .info {
+				border-left: 1px solid #d2f9d2;
+				border-bottom: 1px solid #d2f9d2;
+					background-color: #f7fff7;
+			}
+			.blue {
+					border: 5px solid #bfddfa;
+					background-color: #e5f2ff;
+			}
+			.blue .info {
+				border-left: 1px solid #bfddfa;
+				border-bottom: 1px solid #bfddfa;
+					background-color: #eff7ff;
+			}
+			.yellow {
+					border: 5px solid #f5f5a7;
+					background-color: #ffffd5;
+			}
+			.yellow .info {
+				border-left: 1px solid #f5f5a7;
+				border-bottom: 1px solid #f5f5a7;
+					background-color: #fdfde4;
+			}
+			.theme .info {
+					margin: 0px 0px 1em;
+					padding: 0px 1em .5em;
+				width: 380px;
+				float: right;
+			}
+			.theme .thumb {
+					margin: 10px 0px 0px;
+					padding-left: 10px;
+				width:155px;
+				float: left;
+				text-align: center;
+			}
+			.theme p {
+					font-size: 12pt;
+					line-height: 140%;
+			}
+			/* News
+			------------------------------ */
+			.news {
+					margin: 0px 0px 1em;
+					padding: 0px 1em 1em;
+					border: 5px solid #ccf0cc;
+					background-color: #f2fff2;
+			}
+			.subnews {
+					margin: 0px 0px 1em;
+					padding: 0px 1em .5em;
+					border: 1px solid #d2f9d2;
+					background-color: #fdfffd;
+			}
+			.news h2.title { color: #009900; font-size: 18pt; }
+			.news h3.title { color: #22cc22; }
+			.news p {
+					font-size: 12pt;
+					line-height: 140%;
+			}
+			#web20award { float: right; margin-left: 1em; }
+			#digg {float: right; margin: 2px;}
+			/* Misc
+			------------------------------ */
+			.download { margin-left: 10px;}
+			.small { font-size: 8pt; }
+			.clear {
+					clear:both;
+					height:1px;
+					overflow:hidden;
+				}
+			#ads {
+					position: absolute;
+					right: -130px;
+					top: 10px;
+					width: 120px;
+			}
+				
+			#donate {
+					font-size: 11pt;
+					text-align: center;
+					width: 108px;
+					position: absolute;
+					right: -130px;
+					top: 620px;
+					padding: 4px;
+					border: 2px solid #9999f0;
+					background-color: #d6d6ff;
+			}
+			a.page-options {
+				text-decoration: none; 
+				display: block; 
+				text-align: left; 
+				padding: 0; 
+				margin: 0;
+			}
+      li { margin-bottom:6px; }
+      li code { font-family: "Courier New", courier, fixed; color: #007700; }
+    </style>
+</head>
+
+<body>
+
+<div id="main">
+
+  <p><img src="../zp-core/images/zen-logo.png" alt="zenphoto" /></p>
+  <h3>a simpler web photo album</h3>
+  <div id="navcontainer">
+	<ul id="navlist">
+
+	  <li id="active"><a href="http://www.zenphoto.org/zenphoto" id="current">Demo Gallery</a></li>
+	  <li><a href="http://www.zenphoto.org/support">Forums</a></li>
+	  <li><a href="http://www.zenphoto.org/trac">Wiki (Trac)</a></li>
+	  <li><a href="http://www.zenphoto.org/trac/newticket">Bug Tracker</a></li>
+	  <li><a href="http://www.zenphoto.org/themes.php">Themes</a></li>
+	</ul>
+
+  </div>
+  <div class="clear"></div>
+
+  <h3>Installation</h3>
+
+  <ol>
+  	<li>Extract the contents of the archive and upload all the files to your web site directory.</li>
+    <li>Navigate to the setup url EXAMPLE: <code>www.zenphoto.org/gallery/zp-core/setup.php</code>, make sure everything checks out, and click go!</li>
+  </ol>
+	For more details please <a href=http://www.zenphoto.org/2008/08/installation-and-upgrading/>visit our WEB site</a>.
+
+</div>
+
+
+</body>
+</html>

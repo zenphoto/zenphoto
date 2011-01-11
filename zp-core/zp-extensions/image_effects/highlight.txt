@@ -1,0 +1,14 @@
+<source><a href="http://www.web-source.net/javascript_highlight_image.htm">WEB Source</a></source>
+<head>
+<script language="JavaScript1.2">
+	function makevisible(cur,which){
+		strength=(which==0)? 1 : 0.2
+		if (cur.style.MozOpacity) {
+			cur.style.MozOpacity=strength
+		} else if (cur.filters) {
+			cur.filters.alpha.opacity=strength*100
+		}
+	}
+</script>
+</head>
+<extra>style="filter:alpha(opacity=20);-moz-opacity:0.2" onMouseover="makevisible(this,0)" onMouseout="makevisible(this,1)"</extra>

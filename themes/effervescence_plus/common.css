@@ -1,0 +1,240 @@
+#commententry h3 {
+	background:none;
+	font:normal;
+	padding:none;
+	margin:0;
+}
+/* Pretty Buttons
+------------------------------------- */
+.buttons a,.buttons button {
+	margin-left: 10px;
+	display: block;
+	float: left;
+	border: 1px solid #dedede;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	font-size: 100%;
+	line-height: 100%;
+	text-decoration: none;
+	font-weight: normal;
+	cursor: pointer;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.buttons button {
+	text-decoration: none;
+	width: auto;
+	overflow: visible;
+}
+
+
+/* standard buttons */
+button:hover,.buttons a:hover {
+	text-decoration: none;
+	background-color: #dff4ff;
+	border: 1px solid #CBCBCB;
+	color: #FF8A00;
+}
+
+.buttons a:active {
+	text-decoration: none;
+	background-color: #6299c5;
+	border: 1px solid #6299c5;
+	color: #fff;
+}
+
+/* positive buttons */
+button.positive,.buttons a.positive {
+	text-decoration: none;
+	color: #529214;
+}
+
+.buttons a.positive:hover,button.positive:hover {
+	text-decoration: none;
+	background-color: #E6EFC2;
+	border: 1px solid #f5f5f4;
+	color: #529214;
+}
+
+.buttons a.positive:active {
+	text-decoration: none;
+	background-color: #529214;
+	border: 1px solid #529214;
+	color: #fff;
+}
+
+/* negative buttons */
+.buttons a.negative,button.negative {
+	text-decoration: none;
+	color: #d12f19;
+}
+
+.buttons a.negative:hover,button.negative:hover {
+	text-decoration: none;
+	background: #fbe3e4;
+	border: 1px solid #fbc2c4;
+	color: #d12f19;
+}
+
+.buttons a.negative:active {
+	text-decoration: none;
+	background-color: #d12f19;
+	border: 1px solid #d12f19;
+	color: #fff;
+}
+
+.buttons .tooltip {
+	text-decoration: none;
+	width: 17em;
+	text-align: left;
+}
+
+.buttons a:visited{
+	text-decoration:none;
+}
+/*------------------------------------- */
+#commentform input.pushbutton  {
+	margin-left: 10px;
+	display: block;
+	float: left;
+	border: 1px solid #dedede;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	font-size: 100%;
+	line-height: 100%;
+	text-decoration: none;
+	font-weight: normal;
+	cursor: pointer;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#commentform input.pushbutton {
+	text-decoration: none;
+	width: auto;
+	overflow: visible;
+}
+
+#commentform input.pushbutton hover {
+	text-decoration: none;
+	background-color: #dff4ff;
+	border: 1px solid #CBCBCB;
+	color: #FF8A00;
+}
+
+#commentform input.pushbutton active {
+	text-decoration: none;
+	background-color: #6299c5;
+	border: 1px solid #6299c5;
+	color: #fff;
+}
+
+/* positive buttons */
+#commentform input.pushbutton positive {
+	text-decoration: none;
+	color: #529214;
+}
+
+#commentform input.pushbutton positive:hover {
+	text-decoration: none;
+	background-color: #E6EFC2;
+	border: 1px solid #f5f5f4;
+	color: #529214;
+}
+
+#commentform input.pushbutton positive:active {
+	text-decoration: none;
+	background-color: #529214;
+	border: 1px solid #529214;
+	color: #fff;
+}
+
+/* negative buttons */
+#commentform input.pushbutton negative {
+	text-decoration: none;
+	color: #d12f19;
+}
+
+#commentform input.pushbutton negative:hover {
+	text-decoration: none;
+	background: #fbe3e4;
+	border: 1px solid #fbc2c4;
+	color: #d12f19;
+}
+
+#commentform input.pushbutton negative:active {
+	text-decoration: none;
+	background-color: #d12f19;
+	border: 1px solid #d12f19;
+	color: #fff;
+}
+
+/* Login
+------------------------------ */
+#loginform {
+	padding: 10px;
+	width: 300px;
+	margin: 25px auto;
+	font-size: 100%;
+	background: #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 5px solid #BAC9CF;
+	color:black;
+	background-color: #F7F8F9;
+	filter: alpha(opacity=75);
+	opacity:0.75;
+}
+.password h2{
+	font-weight:normal;
+	color:#464646;
+}
+
+
+.button {
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+label {
+	cursor: pointer;
+}
+
+label:hover {
+	color: #000;
+}
+
+#loginform {
+	margin-top: 15%;
+	margin-left: 0 auto;
+	color:black;
+}
+
+#loginform input.textfield {
+	margin: 0px;
+	font-size: 100%;
+	padding: 4px;
+}
+
+#loginform table {
+	margin: 0px auto;
+	border: 0px;
+}
+
+#loginform td {
+	padding: 4px;
+}

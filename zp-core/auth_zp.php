@@ -1,0 +1,128 @@
+<?php
+/**
+ * processes the authorization (or login) of admin users
+ * @package admin
+ */
+
+// force UTF-8 Ø
+
+global $_zp_current_admin_obj, $_zp_loggedin, $_zp_null_account, $_zp_reset_admin, $_zp_authority;
+$_zp_current_admin_obj = null;
+if (file_exists(dirname(dirname(__FILE__)).'/'.USER_PLUGIN_FOLDER.'/alt/lib-auth.php')) { // load a custom authroization package if it is present
+	require_once(dirname(dirname(__FILE__)).'/'.USER_PLUGIN_FOLDER.'/alt/lib-auth.php');
+} else {
+	require_once(dirname(__FILE__).'/lib-auth.php');
+	$_zp_authority = new Zenphoto_Authority();
+}
+foreach ($_zp_authority->getRights() as $key=>$right) {
+	define($key,$right['value']);
+}
+
+define('MANAGED_OBJECT_RIGHTS_EDIT', 1);
+define('MANAGED_OBJECT_RIGHTS_UPLOAD', 2);
+define('LIST_RIGHTS', NO_RIGHTS);
+
+if (defined('VIEW_ALL_RIGHTS')) {
+	define('VIEW_ALBUMS_RIGHTS',VIEW_ALL_RIGHTS);
+	define('VIEW_PAGES_RIGHTS',VIEW_ALL_RIGHTS);
+	define('VIEW_NEWS_RIGHTS',VIEW_ALL_RIGHTS);
+	define('VIEW_SEARCH_RIGHTS',NO_RIGHTS);
+	define('VIEW_GALLERY_RIGHTS',NO_RIGHTS);
+	define('VIEW_FULLIMAGE_RIGHTS',NO_RIGHTS);
+} else {
+	define('VIEW_ALL_RIGHTS',VIEW_ALBUMS_RIGHTS|VIEW_PAGES_RIGHTS|VIEW_NEWS_RIGHTS);
+}
+
+
+// If the auth variable gets set somehow before this, get rid of it.
+$_zp_loggedin = $_zp_null_account = false;
+if (isset($_GET['ticket'])) { // password reset query
+	$_zp_ticket = sanitize($_GET['ticket']);
+	$post_user = sanitize($_GET['user']);
+	$admins = $_zp_authority->getAdministrators();
+	foreach ($admins as $tuser) {
+		if ($tuser['user'] == $post_user && !empty($tuser['email'])) {
+			$admin = $tuser;
+			$_zp_request_date = getOption('admin_reset_date');
+			$adm = $admin['user'];
+			$pas = $admin['pass'];
+			$ref = md5($_zp_request_date . $adm . $pas);
+			if ($ref === $_zp_ticket) {
+				if (time() <= ($_zp_request_date + (3 * 24 * 60 * 60))) { // limited time offer
+					setOption('admin_reset_date', NULL);
+					$_zp_reset_admin = new Zenphoto_Administrator($adm, 1);
+					$_zp_null_account = true;
+				}
+			}
+			break;
+		}
+	}
+}
+
+
+
+// we have the ssl marker cookie, normally we are already logged in
+// but we need to redirect to ssl to retrive the auth cookie (set as secure).
+if (zp_getCookie('zenphoto_ssl') && !secureServer()) {
+	$redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	header("Location:$redirect");
+	exit();
+}
+
+if (isset($_POST['login'])) {	//	Handle the login form.
+	if(secureServer()) {
+		zp_setcookie("zenphoto_ssl", "needed");
+	}
+	$_zp_loggedin = $_zp_authority->handleLogon();
+	if ($_zp_loggedin) {
+		// https: set the 'zenphoto_ssl' marker for redirection
+		if (isset($_POST['redirect'])) {
+			$redirect = sanitize_path($_POST['redirect']);
+		} else {
+			$redirect = NULL;
+		}
+		if (!empty($redirect)) {
+			if (substr($redirect,0,1) != '/') $redirect = '/'.$redirect;
+			header("Location: " . FULLWEBPATH . $redirect);
+			exit();
+		}
+	}
+} else {	//	no login form, check the cookie
+	$_zp_loggedin = $_zp_authority->checkCookieCredentials();
+	$_zp_null_account = ($_zp_loggedin == ADMIN_RIGHTS);
+	if (is_object($_zp_current_admin_obj)) {
+		$locale = $_zp_current_admin_obj->getLanguage();
+		if (!empty($locale)) {	//	set his prefered language
+			setupCurrentLocale($locale);
+		}
+		$_zp_loggedin = zp_apply_filter('authorization_cookie',$_zp_loggedin);
+	}
+}
+if (!$_zp_loggedin) {	//	Clear the ssl cookie
+	zp_setcookie("zenphoto_ssl", "", time()-368000);
+}
+// Handle a logout action.
+if (isset($_REQUEST['logout'])) {
+	$_zp_authority->handleLogout();
+	zp_setcookie("zenphoto_ssl", "", time()-368000);
+	$redirect = '';
+	if (isset($_GET['p'])) { $redirect .= "&p=" . sanitize($_GET['p']); }
+	if (isset($_GET['searchfields'])) { $redirect .= "&searchfields=" . sanitize($_GET['searchfields']); }
+	if (isset($_GET['words'])) { $redirect .= "&words=" . sanitize($_GET['words']); }
+	if (isset($_GET['date'])) { $redirect .= "&date=" . sanitize($_GET['date']); }
+	if (isset($_GET['album'])) { $redirect .= "&album=" . sanitize($_GET['album']); }
+	if (isset($_GET['image'])) { $redirect .= "&image=" . sanitize($_GET['image']); }
+	if (isset($_GET['title'])) { $redirect .= "&title=" . sanitize($_GET['title']); }
+	if (isset($_GET['page'])) { $redirect .= "&page=" . sanitize($_GET['page']); }
+	if (!empty($redirect)) $redirect = '?'.substr($redirect, 1);
+	if ($_GET['logout']) {
+		$rd_protocol = 'https';
+	} else {
+		$rd_protocol = 'http';
+	}
+	$location = $rd_protocol."://".$_SERVER['HTTP_HOST'].WEBPATH.'/index.php'.$redirect;
+	header("Location: " . $location);
+	exit();
+}
+
+?>
