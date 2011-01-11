@@ -692,7 +692,7 @@ function languageChange(id,lang) {
 						</li>
 						<?php
 						$c++;
-						if (($c % 7) == 0) echo '<br clear="all" /><br />';
+						if (($c % 7) == 0) echo '<br clear="all" />';
 					}
 					?>
 				</ul>

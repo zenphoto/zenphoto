@@ -201,15 +201,14 @@ function printFooter($admin=true) {
 	<div class="footlinks">
 		<?php
 		$h = getHitcounter();
-		$page = gettext('page');
 		if (!is_null($h)) {
 			?>
 			<p>
-			<?php printf(ngettext('%1$u hit on this %2$s','%1$u hits on this %2$s',$h),$h, $page); ?>
+			<?php printf(ngettext('%1$u hit on this %2$s','%1$u hits on this %2$s',$h),$h, gettext('page')); ?>
 			</p>
 			<?php
 		}
-		if ($page == 'gallery') {
+		if ($_zp_gallery_page == 'gallery') {
 			?>
 			<p>
 				<small>
@@ -229,10 +228,10 @@ function printFooter($admin=true) {
 		?>
 		<?php printThemeInfo(); ?>
 		<?php printZenphotoLink(); ?>
-		<?php if ($page == 'gallery') { printRSSLink('Gallery','<br />', 'Gallery RSS', ''); } ?>
-		<?php	if (function_exists('printUserLogin_out') && $page != 'password') printUserLogin_out('<br />', '', true); ?>
-		<?php	if (function_exists('printContactForm') && ($page != 'password' || getOption('gallery_page_unprotected_contact'))) printCustomPageURL(gettext('Contact us'), 'contact', '', '<br />');	?>
-		<?php if (!zp_loggedin() && function_exists('printRegistrationForm') && ($page != 'password' || getOption('gallery_page_unprotected_register'))) printCustomPageURL(gettext('Register for this site'), 'register', '', '<br />');	?>
+		<?php if ($_zp_gallery_page == 'gallery') { printRSSLink('Gallery','<br />', 'Gallery RSS', ''); } ?>
+		<?php	if (function_exists('printUserLogin_out') && $_zp_gallery_page != 'password') printUserLogin_out('<br />', '', true); ?>
+		<?php	if (function_exists('printContactForm') && ($_zp_gallery_page != 'password' || getOption('gallery_page_unprotected_contact'))) printCustomPageURL(gettext('Contact us'), 'contact', '', '<br />');	?>
+		<?php if (!zp_loggedin() && function_exists('printRegistrationForm') && ($_zp_gallery_page != 'password' || getOption('gallery_page_unprotected_register'))) printCustomPageURL(gettext('Register for this site'), 'register', '', '<br />');	?>
 		<?php if (function_exists('printLanguageSelector')) { printLanguageSelector(); } ?>
 		<br clear="all" />
 	</div>
