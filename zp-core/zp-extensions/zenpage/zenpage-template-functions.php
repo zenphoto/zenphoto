@@ -1918,7 +1918,7 @@ function printTopRatedItems($number=10, $option="all",$showstats=true,$showtype=
  * @param int $limit truncation limit display strings
  * @return string
  */
-function printNestedMenu($option='list',$mode='',$counter=TRUE, $css_id='',$css_class_topactive='',$css_class='',$css_class_active='',$indexname='',$showsubs=0,$startlist=true, $limit=NULL) {
+function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$css_class_topactive=NULL,$css_class=NULL,$css_class_active=NULL,$indexname=NULL,$showsubs=0,$startlist=true, $limit=NULL) {
 	global $_zp_gallery_page, $_zp_current_zenpage_page, $_zp_current_category;
 	if (is_null($limit)) {
 		$limit = getOption('menu_truncate_string');
@@ -2590,7 +2590,7 @@ function printSubPagesExcerpts($excerptlength='', $readmore='', $shortenindicato
  * @parem int $limit truncation of display text
  * @return string
  */
-function printPageMenu($option='list',$css_id='',$css_class_topactive='',$css_class='',$css_class_active='',$indexname='',$showsubs=0,$startlist=true,$limit=0) {
+function printPageMenu($option='list',$css_id=NULL,$css_class_topactive=NULL,$css_class=NULL,$css_class_active=NULL,$indexname='',$showsubs=0,$startlist=true,$limit=NULL) {
 	printNestedMenu($option,'pages',false, $css_id,$css_class_topactive,$css_class,$css_class_active,$indexname,$showsubs,$startlist,$limit);
 }
 
