@@ -1,0 +1,6 @@
+# Zenphoto theme definition file
+name::Garland
+author::AITF311
+version::1.0
+date::9/20/2007
+desc::Modded Wordpress theme from, <a href="http://garlandtheme.blogspot.com/">garland</a>
