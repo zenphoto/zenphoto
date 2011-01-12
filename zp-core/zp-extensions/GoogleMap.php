@@ -228,7 +228,7 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 		$typeid = '';
 	}
 	$MAP_OBJECT = new GoogleMapAPI($type.$typeid);
-	$MAP_OBJECT->_minify_js = true;
+	$MAP_OBJECT->_minify_js = defined('RELEASE');
 	$MAP_OBJECT->setZoomLevel(getOption('gmap_zoom'));
 	$MAP_OBJECT->setWidth(getOption('gmap_width'));
 	$MAP_OBJECT->setHeight(getOption('gmap_height'));
@@ -286,6 +286,7 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 		?>
 		<script type="text/javascript">
 			<!--
+			var center<?php echo $MAP_OBJECT->map_id; ?> = new google.maps.LatLng(<?php echo $MAP_OBJECT->center_lat; ?>,<?php echo $MAP_OBJECT->center_lon; ?>);
 			<?php
 			if($MAP_OBJECT->zoom_encompass && (count($MAP_OBJECT->_markers) > 1 || count($MAP_OBJECT->_polylines) >= 1 || count($MAP_OBJECT->_overlays) >= 1)) {
 				?>
@@ -299,7 +300,7 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			?>
 			//-->
 		</script>
-		<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>',map<?php echo $MAP_OBJECT->map_id; ?>,new google.maps.LatLng(<?php echo $MAP_OBJECT->center_lat; ?>,<?php echo $MAP_OBJECT->center_lon; ?>),bnds<?php echo $MAP_OBJECT->map_id; ?>);" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
+		<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>',map<?php echo $MAP_OBJECT->map_id; ?>,center<?php echo $MAP_OBJECT->map_id; ?>,bnds<?php echo $MAP_OBJECT->map_id; ?>);" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
 			<?php echo $text; ?>
 		</a>
 		<?php

@@ -427,7 +427,7 @@ function printNewsTitleLink($before='') {
  *
  * @return string
  */
-function getNewsContent($shorten=false, $shortenindicator='',$readmore='') {
+function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 	global $_zp_flash_player, $_zp_current_image, $_zp_gallery, $_zp_current_zenpage_news, $_zp_page;
 	$newstype = getNewsType();
 	switch($newstype) {
@@ -567,7 +567,7 @@ function getNewsContent($shorten=false, $shortenindicator='',$readmore='') {
 	* @param string $shortenindicator The placeholder to mark the shortening (e.g."(...)"). If empty the Zenpage option for this is used.
  * @param string $readmore The text for the "read more" link. If empty the term set in Zenpage option is used.
  */
-function printNewsContent($shorten=false,$shortenindicator='',$readmore='') {
+function printNewsContent($shorten=false,$shortenindicator=NULL,$readmore=NULL) {
 	global $_zp_current_zenpage_news, $_zp_page;
 	echo getNewsContent($shorten,$shortenindicator,$readmore);
 }
@@ -585,18 +585,16 @@ function printNewsContent($shorten=false,$shortenindicator='',$readmore='') {
  * @param string $readmore The text for the "read more" link. If empty the term set in Zenpage option is used.
  * @param string $readmoreurl The url the read more link should point to
  */
-function getContentShorten($text,$shorten,$shortenindicator='',$readmore='',$readmoreurl='') {
+function getContentShorten($text,$shorten,$shortenindicator=NULL,$readmore=NULL,$readmoreurl=NULL) {
 	$readmoreurl = sanitize($readmoreurl,0);
 	$readmorelink = '';
-	if(empty($shortenindicator)) {
+	if(is_null($shortenindicator)) {
 		$shortenindicator = getOption('zenpage_textshorten_indicator');
 	}
-	if(empty($readmore)) {
+	if(is_null($readmore)) {
 		$readmore = get_language_string(getOption("zenpage_read_more"));
-	} else {
-		$readmore = sanitize($readmore);
 	}
-	if(!empty($readmoreurl)) {
+	if(!is_null($readmoreurl)) {
 		$readmorelink ='<p class="readmorelink"><a href="'.html_encode($readmoreurl).'"title="'.html_encode($readmore).'">'.html_encode($readmore).'</a></p>';
 	}
 	if(!$shorten && !is_NewsArticle()) {
@@ -1035,7 +1033,7 @@ function printCurrentNewsArchive($before='',$mode='formatted',$format='%B %Y') {
  * @parem int $limit truncation of display text
  * @return string
  */
-function printAllNewsCategories($newsindex='All news', $counter=TRUE, $css_id='',$css_class_topactive='',$startlist=true,$css_class='',$css_class_active='',$option='list',$showsubs=false,$limit=0) {
+function printAllNewsCategories($newsindex='All news', $counter=TRUE, $css_id='',$css_class_topactive='',$startlist=true,$css_class='',$css_class_active='',$option='list',$showsubs=false,$limit=NULL) {
 	printNestedMenu($option,'categories',$counter, $css_id,$css_class_topactive,$css_class,$css_class_active,$newsindex,$showsubs,$startlist,$limit);
 }
 
@@ -1124,7 +1122,7 @@ function getLatestNews($number=2,$option='none', $category='') {
  * @param string $readmore Text for the read more link, if empty the option value for "zenpage_readmore" is used
  * @return string
  */
-function printLatestNews($number=5,$option='with_latest_images', $category='', $showdate=true, $showcontent=true, $contentlength=70, $showcat=true,$readmore=''){
+function printLatestNews($number=5,$option='with_latest_images', $category='', $showdate=true, $showcontent=true, $contentlength=70, $showcat=true,$readmore=NULL){
 	global $_zp_gallery, $_zp_current_zenpage_news;
 	//trigger_error(gettext('printLatestNews is deprecated. Use printLatestCombiNews().'), E_USER_NOTICE);
 	$latest = getLatestNews($number,$option,$category);
@@ -2135,7 +2133,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
  * @param string $before Text to place before the breadcrumb item
  * @param string $after Text to place after the breadcrumb item
  */
-function printZenpageItemsBreadcrumb($before='', $after='') {
+function printZenpageItemsBreadcrumb($before=NULL, $after=NULL) {
 	global $_zp_current_zenpage_page, $_zp_current_category;
 	$parentitems = array();
 	if(is_Pages()) {
@@ -2235,7 +2233,7 @@ function getPageTitle() {
  *
  * @return string
  */
-function printPageTitle($before='') {
+function printPageTitle($before=NULL) {
 	echo $before.html_encode(getPageTitle());
 }
 
@@ -2368,7 +2366,7 @@ function printPageLastChangeDate() {
  *
  * @return mixed
  */
-function getPageContent($titlelink='',$published=true) {
+function getPageContent($titlelink=NULL,$published=true) {
 	global $_zp_current_zenpage_page;
 	if (is_Pages() AND empty($titlelink)) {
 		return $_zp_current_zenpage_page->getContent();
@@ -2391,7 +2389,7 @@ function getPageContent($titlelink='',$published=true) {
  * @param bool $published If titlelink is set, set this to false if you want to call an un-published page's content. True is default
  * @return mixed
  */
-function printPageContent($titlelink='',$published=true) {
+function printPageContent($titlelink=NULL,$published=true) {
 	echo getPageContent($titlelink,$published);
 }
 
@@ -2428,7 +2426,7 @@ function getPageExtraContent($titlelink='',$published=true) {
  * @param bool $published If titlelink is set, set this to false if you want to call an un-published page's extra content. True is default
  * @return mixed
  */
-function printPageExtraContent($titlelink='',$published=true) {
+function printPageExtraContent($titlelink=NULL,$published=true) {
 	echo getPageExtraContent($titlelink,$published);
 }
 
@@ -2541,14 +2539,14 @@ function printPageLinkURL($titlelink) {
  * @param string $shortenindicator The optional placeholder that indicates that the content is shortened, if this is not set the plugin option "news article text shorten indicator" is used.
  * @return string
  */
-function printSubPagesExcerpts($excerptlength='', $readmore='', $shortenindicator='') {
+function printSubPagesExcerpts($excerptlength=NULL, $readmore=NULL, $shortenindicator=NULL) {
 	global $_zp_current_zenpage_page;
-	if(empty($readmore)) {
+	if(is_null($readmore)) {
 		$readmore = get_language_string(getOption("zenpage_read_more"));
 	}
 	$pages = $_zp_current_zenpage_page->getSubPages();
 	$subcount = 0;
-	if(empty($excerptlength)) {
+	if(is_null($excerptlength)) {
 		$excerptlength = getOption("zenpage_text_length");
 	}
 	foreach($pages as $page) {
@@ -2590,7 +2588,7 @@ function printSubPagesExcerpts($excerptlength='', $readmore='', $shortenindicato
  * @parem int $limit truncation of display text
  * @return string
  */
-function printPageMenu($option='list',$css_id=NULL,$css_class_topactive=NULL,$css_class=NULL,$css_class_active=NULL,$indexname='',$showsubs=0,$startlist=true,$limit=NULL) {
+function printPageMenu($option='list',$css_id=NULL,$css_class_topactive=NULL,$css_class=NULL,$css_class_active=NULL,$indexname=NULL,$showsubs=0,$startlist=true,$limit=NULL) {
 	printNestedMenu($option,'pages',false, $css_id,$css_class_topactive,$css_class,$css_class_active,$indexname,$showsubs,$startlist,$limit);
 }
 
@@ -2766,7 +2764,7 @@ function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomm
  * @param string $class css class
  * @param string $lang optional to display a feed link for a specific language (currently works for latest images only). Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  */
-function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linktext='', $next='', $printIcon=true, $class=null, $lang='') {
+function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linktext='', $next='', $printIcon=true, $class=null, $lang=NULL) {
 	global $_zp_current_album;
 	if ($printIcon) {
 		$icon = ' <img src="' . FULLWEBPATH . '/' . ZENFOLDER . '/images/rss.png" alt="RSS Feed" />';
