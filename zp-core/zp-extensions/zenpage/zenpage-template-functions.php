@@ -2781,7 +2781,7 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
 		$categorylink = "&amp;category=".sanitize($_GET['category']);
 	}
 	if ($option == "Category" AND !empty($categorylink)) {
-		$categorylink = "&amp;category=".sanitize($categorylink);
+		$categorylink = "&amp;category=".$categorylink;
 	}
 	if ($option == "Category" AND !empty($categorylink) AND !isset($_GET['category'])) {
 		$categorylink = "";

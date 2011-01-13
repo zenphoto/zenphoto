@@ -9,6 +9,11 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
+	<?php
+	if (getOption('effervescence_daily_album_image_effect')) {
+		setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
+	}
+	?>
 	<title><?php $mainsite = getMainSiteName(); echo (empty($mainsite))?gettext("Zenphoto gallery"):$mainsite; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
@@ -44,10 +49,6 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 	</div> <!-- header -->
 		<!-- The Image -->
 		<?php
-		if (getOption('effervescence_daily_album_image_effect')) {
-			require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_effects.php');
-			setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
-		}
  		makeImageCurrent(getRandomImages(true));
  		$size = floor(getOption('image_size') * $imagereduction);
 		$s = getDefaultWidth($size) + 22;

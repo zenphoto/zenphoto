@@ -79,6 +79,10 @@ class ThemeOptions {
 											gettext('Theme colors') => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the colors of the theme')),
 											gettext('Custom menu') => array('key' => 'effervescence_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu set you wish to use.').$note)
 											);
+
+		if (!function_exists('printCustomMenu') || getThemeOption('custom_index_page', NULL, 'effervescence_plus') != 'gallery')	{
+			$options[gettext('Custom menu')]['desc'] .= '<p class="notebox">'.gettext('This option requires the <em>menu_manager</em> plugin to be enabled and the <em>Gallery index page link</em> to be set to "gallery".').'</p>';
+		}
 		$effects = new image_effects();
 		$effectOptions = $effects->getOptionsSupported();
 		$effect = array_shift($effectOptions);
@@ -87,8 +91,12 @@ class ThemeOptions {
 		}
 		if ($effect && array_key_exists('selections', $effect)) {
 			$options[gettext('Index Image')] = array('key'=>'effervescence_daily_album_image_effect','type'=>OPTION_TYPE_SELECTOR,
-																								'selections'=>$effect['selections'],'null_selection' => gettext('none'),
-																								'desc'=>gettext('Apply this effect to the index page image.'));
+														'selections'=>$effect['selections'],'null_selection' => gettext('none'),
+														'desc'=>gettext('Apply this effect to the index page image.'));
+			if (!getOption('zp_plugin_image_effects')) {
+				$options[gettext('Index Image')]['disabled'] = true;
+				$options[gettext('Index Image')]['desc'] .= '<p class="notebox">'.gettext('This option requires the <em>image_effects</em> plugin to be enabled.').'</p>';
+			}
 		}
 		return $options;
 	}
@@ -105,7 +113,7 @@ class ThemeOptions {
 			case 'effervescence_menu':
 				$menusets = array();
 				echo '<select id="EF_menuset" name="effervescence_menu"';
-				if (function_exists('printCustomMenu') && getThemeOption('custom_index_page',NULL, 'effervescence_plus') === 'gallery') {
+				if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NULL, 'effervescence_plus') === 'gallery') {
 					$result = query_full_array("SELECT DISTINCT menuset FROM ".prefix('menu')." ORDER BY menuset");
 					foreach ($result as $set) {
 						$menusets[$set['menuset']] = $set['menuset'];

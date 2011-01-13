@@ -43,7 +43,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/print_album_menu.php');
 							?>
 							<div class="album">
 								<a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>">
-									<?php printAlbumThumbImage(getAlbumTitle()); ?>
+									<?php printCustomAlbumThumbImage(getAlbumTitle(),85); ?>
 								</a>
 								<div class="albumdesc"><small><?php printAlbumDate("Date Taken: "); ?></small>
 									<h3>

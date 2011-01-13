@@ -2,8 +2,6 @@
 
 // force UTF-8 Ø
 
-setThemeOption('thumb_size',85);	//	assumed in the styling
-
 function gMapOptionsImage($map) {
 	$map->setWidth(560);
 }
@@ -17,11 +15,25 @@ function gMapOptionsAlbum($map) {
 }
 
 function footer() {
-	global $_zp_gallery_page;
+	global $_zp_gallery_page, $_zp_current_category;
 	?>
 	<div id="footer">
 		<?php
-		printRSSLink('Gallery','','RSS', ' | ');
+		switch ($_zp_gallery_page) {
+			default:
+				printRSSLink('Gallery', '','RSS', ' | ');
+				break;
+			case 'album.php':
+				printRSSLink('Album', '','RSS', ' | ');
+				break;
+			case 'news.php':
+				if (is_NewsCategory()) {
+					printZenpageRSSLink('Category', $_zp_current_category->getTitlelink(), '','RSS', ' | ');
+				} else {
+					printZenpageRSSLink('News', '', '','RSS', ' | ');
+				}
+				break;
+		}
 		?>
 		<a href="?p=archive">Archive View</a>
 		<?php	if ($_zp_gallery_page!='contact.php' && function_exists('printContactForm') && ($_zp_gallery_page != 'password' || getOption('gallery_page_unprotected_contact'))) printCustomPageURL(gettext('Contact us'), 'contact', '', ' | ', '');	?>

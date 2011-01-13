@@ -9,6 +9,11 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
+	<?php
+	if (getOption('effervescence_daily_album_image_effect') && getOption('custom_index_page') != 'gallery') {
+		setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
+	}
+	?>
 	<title><?php echo getBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
@@ -54,10 +59,6 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 	</div> <!-- header -->
 	<!-- Random Image -->
 	<?php
-	if (getOption('effervescence_daily_album_image_effect') && getOption('custom_index_page') != 'gallery') {
-		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_effects.php');
-		setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
-	}
 	printHeadingImage(getRandomImages(getThemeOption('effervescence_daily_album_image')));
 	?>
 

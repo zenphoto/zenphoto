@@ -86,11 +86,11 @@ function image_effectsJS() {
 		}
 	} while ($_image_effects_random && $invalid_effect);
 
-if (!$_image_effects_random) echo "<br />random effect empty!";
+	if (!$_image_effects_random) echo "<br />random effect empty!";
 
 	$selected_effects = array_unique(array(	getOption('image_std_images'), getOption('image_custom_images'),
-	getOption('image_std_album_thumbs'), getOption('image_std_image_thumbs'),
-	getOption('image_custom_album_thumbs'), $_image_effects_random));
+																					getOption('image_std_album_thumbs'), getOption('image_std_image_thumbs'),
+																					getOption('image_custom_album_thumbs'), $_image_effects_random));
 	if (false !== $key = array_search('!', $selected_effects)) {
 		unset($selected_effects[$key]);
 	}
