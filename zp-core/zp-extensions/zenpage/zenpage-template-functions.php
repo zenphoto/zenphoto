@@ -611,7 +611,7 @@ function getContentShorten($text,$shorten,$shortenindicator=NULL,$readmore=NULL,
 			if ($shortenindicator && empty($array) || ($array[0] == '</p>' || trim($array[0]) =='')) {	//	page break was at end of article
 				$text = shortenContent($newtext, $shorten, '').$readmorelink;
 			} else {
-				$text = shortenContent($newtext, $shorten, $shortenindicator, true);
+				$text = shortenContent($newtext, $shorten, $shortenindicator, true).$readmorelink;
 			}
 		} else {
 			$text = shortenContent($text,$shorten,$shortenindicator).$readmorelink;
