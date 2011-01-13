@@ -11,6 +11,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
   <?php printRSSHeaderLink('Gallery','Gallery RSS'); ?>
 </head>
 <body class="sidebars">
+<?php zp_apply_filter('theme_body_open'); ?>
 <div id="navigation"></div>
 <div id="wrapper">
   <div id="container">
@@ -53,7 +54,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 			  </div>
 
 			  <div id="images">
-				  <?php while (next_image(false, $firstPageImages)): ?>
+				  <?php while (next_image()): ?>
 				  <div class="image">
 					  <div class="imagethumb"><a href="<?php echo getImageLinkURL();?>" title="<?php echo getImageTitle();?>"><?php printImageThumb(getImageTitle()); ?></a></div>
 				  </div>
@@ -84,6 +85,9 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
     <span class="clear"></span> </div>
   <!-- /container -->
 </div>
-<?php printAdminToolbox(); ?>
+<?php
+printAdminToolbox();
+zp_apply_filter('theme_body_close');
+?>
 </body>
 </html>

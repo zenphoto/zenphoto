@@ -14,7 +14,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<script type="text/javascript" src="<?php echo  $_zp_themeroot ?>/scripts/bluranchors.js"></script>
-	<?php printZenpageRSSHeaderLink("News","", "Zenpage news", ""); ?>
+	<?php printZenpageRSSHeaderLink("Pages","", "Zenpage news", ""); ?>
 </head>
 
 <body onload="blurAnchors()">

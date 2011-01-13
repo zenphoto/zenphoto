@@ -13,6 +13,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/print_album_menu.php');
 <?php printRSSHeaderLink('Gallery','Gallery RSS'); ?>
 </head>
 <body class="sidebars">
+<?php zp_apply_filter('theme_body_open'); ?>
 <div id="navigation"></div>
 <div id="wrapper">
 	<div id="container">
@@ -77,6 +78,9 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/print_album_menu.php');
 		<span class="clear"></span>
 	</div>
 </div>
-<?php printAdminToolbox(); ?>
+<?php
+printAdminToolbox();
+zp_apply_filter('theme_body_close');
+?>
 </body>
 </html>
