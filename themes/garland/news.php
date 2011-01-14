@@ -74,7 +74,11 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		</div>
 		<?php
 		if (function_exists('printRating')) printRating();
-		commonComment();
+
+		if (function_exists('printCommentForm')) {
+			printCommentForm();
+		}
+
 	} else { 	// news article loop
 		commonNewsLoop(true);
 	}
