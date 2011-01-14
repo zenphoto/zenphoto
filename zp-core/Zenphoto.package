@@ -102,6 +102,7 @@ themes/garland/contact.php
 themes/garland/css
 themes/garland/css/zen.css
 themes/garland/functions.php
+themes/garland/gallery.php
 themes/garland/image.php
 themes/garland/img
 themes/garland/img/bg-content-left.png
@@ -1698,4 +1699,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1700
+1701

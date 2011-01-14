@@ -33,17 +33,17 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/print_album_menu.php');
 				<div class="main section" id="main">
 					<h3 id="gallerytitle"><?php echo getGalleryTitle(); ?></h3>
 					<?php
-					if (getOption('zp_plugin_zenpage')) {
+					if ($_zp_gallery_page=='index.php' && getOption('zp_plugin_zenpage')) {
 						commonNewsLoop(false);
 					} else {
 						?>
 						<div id="albums">
 						<?php
-						while (next_album()) {
+						while (next_album($_zp_gallery_page == 'gallery.php')) {
 							?>
 							<div class="album">
 								<a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>">
-									<?php printCustomAlbumThumbImage(getAlbumTitle(),85); ?>
+									<?php printCustomAlbumThumbImage(getAlbumTitle(),85,NULL,NULL,77,77); ?>
 								</a>
 								<div class="albumdesc"><small><?php printAlbumDate("Date Taken: "); ?></small>
 									<h3>

@@ -60,28 +60,46 @@ function sidebarMenu() {
 	global $_zp_gallery_page;
 	?>
     <div class="sidebar">
-      <?php if (getOption('Allow_search')) {  printSearchForm(); } ?>
-      <?php if(function_exists("printAlbumMenu")) { ?>
-	      <h2>Album Menu</h2>
-	      <?php
-	      printAlbumMenu("list","count","menu","menu","menu_sub","menu_sub_active");
+      <?php
+      if (getOption('Allow_search')) {
+      	printSearchForm();
       }
-			//Zenpage meus
-				if(function_exists("printAllNewsCategories")) {
-					?>
-						<h2><?php echo gettext("News articles"); ?></h2>
-						<?php printAllNewsCategories(gettext("All news"),true,"menu","menu",true,"menu_sub","menu_sub_active"); ?>
-					<?php
-				}
+      if(function_exists("printAlbumMenu")) {
+      	if ($_zp_gallery_page != 'index.php') {
+	      	?>
+	      	<ul class="menu">
+	      		<li>
+	      			<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery index'); ?>"><?php echo gettext('Gallery index')?></a>
+	      		</li>
+	      	</ul>
+	      	<?php
+      	}
+      	?>
+	      <h2>Albums</h2>
+	      <?php
+	      if ($_zp_gallery_page != 'index.php' || (getOption('zp_plugin_zenpage') && getOption('custom_index_page')=='gallery')) {
+	      	$gallery = gettext('Album index');
+	      } else {
+	      	$gallery = '';
+	      }
+	      printAlbumMenu("list","count","menu","menu","menu_sub","menu_sub_active", $gallery);
+      }
+		//Zenpage meus
+			if(function_exists("printAllNewsCategories")) {
 				?>
+					<h2><?php echo gettext("News articles"); ?></h2>
+					<?php printAllNewsCategories(gettext("All news"),true,"menu","menu",true,"menu_sub","menu_sub_active"); ?>
+				<?php
+			}
+			?>
 
-				<?php if(function_exists("printPageMenu")) { ?>
-					<h2><?php echo gettext("Pages"); ?></h2>
-					<?php	printPageMenu("list","menu","menu","menu_sub","menu_sub_active"); ?>
-				<?php } ?>
+			<?php if(function_exists("printPageMenu")) { ?>
+				<h2><?php echo gettext("Pages"); ?></h2>
+				<?php	printPageMenu("list","menu","menu","menu_sub","menu_sub_active"); ?>
+			<?php } ?>
 
-			<?php
-			//end zenpage menus
+		<?php
+		//end zenpage menus
       ?>
     </div>
 <?php
