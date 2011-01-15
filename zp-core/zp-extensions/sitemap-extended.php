@@ -363,7 +363,7 @@ function printSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$album
 	$passwordcheck = '';
 	$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
 	foreach($albumscheck as $albumcheck) {
-		if(!checkAlbumPassword($albumcheck['folder'])) {
+		if(!checkAlbumPassword($albumcheck['folder'],$hint)) {
 		$albumpasswordcheck= " AND id != ".$albumcheck['id'];
 		$passwordcheck = $passwordcheck.$albumpasswordcheck;
 		}
@@ -406,13 +406,13 @@ function printSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$album
 				foreach($sitemap_locales as $locale) {
 					$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
 					sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-					printSitemapGoogleImageVideoExtras($loop_index,$albumobj,$images);
+					printSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images);
 					sitemap_echonl("\t</url>");
 				}
 			} else {
 				$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
 				sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-				printSitemapGoogleImageVideoExtras($loop_index,$albumobj,$images);
+				printSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images);
 				sitemap_echonl("\t</url>");
 			}
 			// print album pages if avaiable
@@ -422,13 +422,13 @@ function printSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$album
 						foreach($sitemap_locales as $locale) {
 							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
 							sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-							printSitemapGoogleImageVideoExtras($loop_index,$albumobj,$images);
+							printSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images);
 							sitemap_echonl("\t</url>");
 						}
 					} else {
 						$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
 						sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-						printSitemapGoogleImageVideoExtras($loop_index,$albumobj,$images);
+						printSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images);
 						sitemap_echonl("\t</url>");
 					}
 				}
@@ -483,12 +483,19 @@ function getSitemapGoogleLoopIndex($imageCount,$pageCount) {
 	return NULL;
 }
 
-function printSitemapGoogleImageVideoExtras($loop_index,$albumobj,$images) {
+function printSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images) {
 	if(getOption('sitemap_google') && !empty($loop_index)) {
 		$host = getOption("server_protocol").'://'.html_encode($_SERVER["HTTP_HOST"]);
-		for ($x = 0; $x < $loop_index[0]; $x++) {
+		$start = ($page - 1) * getOption('images_per_page');
+		$end = ($page - 1) * getOption('images_per_page') + $loop_index[($page-1)];
+		for ($x = $start; $x < $end; $x++) {
 			$imageobj = newImage($albumobj,$images[$x]);
 			$ext = strtolower(strrchr($imageobj->filename, "."));
+			$location = '';
+			if ($imageobj->getLocation()) { $location .= $imageobj->getLocation() . ', ' ; } 
+			if ($imageobj->getCity()) { $location .= $imageobj->getCity() . ', ' ; } 
+			if ($imageobj->getState()) { $location .= $imageobj->getState() .', ' ; } 
+			if ($imageobj->getCountry()) { $location .= $imageobj->getCountry(); }
 			$license = getOption('sitemap_license');
 			$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).getOption('mod_rewrite_image_suffix'),'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
 			if($ext != '.mp3' && $ext != '.txt' && $ext != '.html') { // audio is not coverered specifically by Google currently
@@ -501,7 +508,7 @@ function printSitemapGoogleImageVideoExtras($loop_index,$albumobj,$images) {
 					sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>".$host.html_encode($imageobj->getSizedImage(getOption('image_size')))."</image:loc>\n\t\t\t<image:title>".$imageobj->getTitle()."</image:title>");
 					if ($imageobj->getDesc()) { sitemap_echonl("\t\t\t<image:caption>".$imageobj->getDesc()."</image:caption>"); }
 					if (!empty($license)) { sitemap_echonl("\t\t\t<image:license>".$license."</image:license>"); }
-					if ($imageobj->getLocation()) { sitemap_echonl("\t\t\t<image:geo_location>".$imageobj->getLocation()."</image:geo_location>"); }
+					if (!empty($location)) { sitemap_echonl("\t\t\t<image:geo_location>".$location."</image:geo_location>"); }
 					sitemap_echonl("\t\t</image:image>");
 				}
 			}
@@ -642,11 +649,11 @@ function printSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
 			if(!$catobj->isProtected()) {
 				if(sitemap_multilingual()) {
 					foreach($sitemap_locales as $locale) {
-						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink).'&amp;page=1',false);
+						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
 						sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 				} else {
-					$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink).'&amp;page=1',false);
+					$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
 					sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
 				// getting pages for the categories
@@ -655,17 +662,17 @@ function printSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
 				} else {
 					$zenpage_articles_per_page = getOption("zenpage_articles_per_page");
 				}
-				$articlecount = countArticles($catobj->getTitlelink);
+				$articlecount = countArticles($catobj->getTitlelink());
 				$catpages = ceil($articlecount / $zenpage_articles_per_page);
 				if($catpages > 1) {
 					for($x = 2;$x <= $catpages ; $x++) {
 						if(sitemap_multilingual()) {
 							foreach($sitemap_locales as $locale) {
-								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink).'&amp;page='.$x,false);
+								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
 								sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 						} else {
-							$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink).'&amp;page='.$x,false);
+							$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
 							sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						}
 					}
