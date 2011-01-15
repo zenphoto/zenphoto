@@ -14,7 +14,7 @@
  */
 if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 3);
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
-$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users.");
+$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. <p class='notebox'><strong>Legal note: </strong> This plugin stores the IP to avoid double votes. Be aware that in some countries' jurisdictions (e.g. many European countries like Germany) this is considered as a privacy violation (tracking) and therefore more or less illegal.</p>");
 $plugin_author = "Stephen Billard (sbillard) and Malte Müller (acrylian)";
 $plugin_version = '1.4.0';
 $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---rating.php.html";
