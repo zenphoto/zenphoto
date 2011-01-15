@@ -63,11 +63,11 @@ if (!defined('WEBPATH')) die();
  ?>
 
 	<div id="image">
-		<?php if(getOption("Use_thickbox")) {
+		<?php if(getOption("Use_thickbox") && !isImageVideo()) {
 			$boxclass = " class=\"thickbox\"";
 			$tburl = getUnprotectedImageURL();
 		} else {
-			$thickboxclass = "";
+			$boxclass = "";
 			$tburl = getFullImageURL();
 		}
 		if (!empty($tburl)) {
