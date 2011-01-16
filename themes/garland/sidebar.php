@@ -2,42 +2,54 @@
 
 // force UTF-8 Ø
 
-if(function_exists('printCustomMenu') && getOption('zenpage_custommenu')) {
+if ($_zp_gallery_page != 'index.php') {
 	?>
-<div class="menu">
-<?php printCustomMenu('zenpage','list','',"menu-active","submenu","menu-active",2); ?>
-</div>
-<?php
-} else {
-if(function_exists("printAllNewsCategories")) { ?>
-<div class="menu">
-	<h3><?php echo gettext("News articles"); ?></h3>
+	<ul class="menu">
+		<li><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>"
+			title="<?php echo gettext('Gallery index'); ?>"><?php echo gettext('Gallery index')?></a>
+		</li>
+	</ul>
 	<?php
-	printAllNewsCategories(gettext("All news"),TRUE,"","menu-active",true,"submenu","menu-active");
-	?>
-</div>
-<?php } ?>
+}
 
-<?php if(function_exists("printAlbumMenu")) { ?>
-<div class="menu">
-	<h3><?php echo gettext("Gallery"); ?></h3>
+if(function_exists("printAllNewsCategories")) {
+	?>
+	<div class="menu">
+		<h3><?php echo gettext("News articles"); ?></h3>
+		<?php
+		printAllNewsCategories(gettext("All news"),TRUE,"menu","menu",true,"menu_sub","menu_sub_active");
+		?>
+	</div>
 	<?php
-	if(!getOption("zenpage_zp_index_news") OR !getOption("zenpage_homepage")) {
-		$allalbums = gettext("Gallery index");
-	} else {
-		$allalbums = "";
 	}
-	printAlbumMenu("list",NULL,"","menu-active","submenu","menu-active",$allalbums,false,false);
-	?>
-</div>
-<?php } ?>
+?>
 
-<?php if(function_exists("printPageMenu")) { ?>
-<div class="menu">
-	<h3><?php echo gettext("Pages"); ?></h3>
+<?php
+if(function_exists("printAlbumMenu")) {
+	?>
+	<div class="menu">
+		<h3><?php echo gettext("Gallery"); ?></h3>
+		<?php
+		if ($_zp_gallery_page != 'gallery.php' || ($_zp_gallery_page == 'index.php' &&  (getOption('zp_plugin_zenpage') && getOption('custom_index_page')=='gallery'))) {
+			$gallery = gettext('Album index');
+		} else {
+			$gallery = '';
+		}
+		printAlbumMenu("list","count","menu","menu","menu_sub","menu_sub_active", $gallery);
+		?>
+	</div>
 	<?php
-	printPageMenu("list","","menu-active","submenu","menu-active"); ?>
-</div>
-<?php }
-} // custom menu check end
+}
+?>
+
+<?php
+if(function_exists("printPageMenu")) {
+	?>
+	<div class="menu">
+		<h3><?php echo gettext("Pages"); ?></h3>
+		<?php
+		printPageMenu("list","menu","menu-active","submenu","menu-active"); ?>
+	</div>
+	<?php
+}
 ?>

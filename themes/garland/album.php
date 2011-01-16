@@ -14,37 +14,37 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 <?php zp_apply_filter('theme_body_open'); ?>
 <div id="navigation"></div>
 <div id="wrapper">
-  <div id="container">
-    <div id="header">
-      <div id="logo-floater">
-        <div>
-          <h1 class="title"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a></h1>
-        </div>
-      </div>
-    </div>
-    <!-- header -->
-    <div class="sidebar">
-     	<div id="leftsidebar">
-      	<?php include("sidebar.php"); ?>
-      </div>
-     </div>
-    <div id="center">
-      <div id="squeeze">
-        <div class="right-corner">
-          <div class="left-corner">
-            <!-- begin content -->
-            <div class="main section" id="main">
-              	<h3 id="gallerytitle"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><?php printAlbumTitle(true);?></h3>
+	<div id="container">
+		<div id="header">
+			<div id="logo-floater">
+				<div>
+					<h1 class="title"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a></h1>
+				</div>
+			</div>
+		</div>
+		<!-- header -->
+		<div class="sidebar">
+			<div id="leftsidebar">
+				<?php include("sidebar.php"); ?>
+			</div>
+		 </div>
+		<div id="center">
+			<div id="squeeze">
+				<div class="right-corner">
+					<div class="left-corner">
+						<!-- begin content -->
+						<div class="main section" id="main">
+								<h3 id="gallerytitle"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><?php printAlbumTitle(true);?></h3>
 
-			  	<?php printAlbumDesc(true); ?>
+					<?php printAlbumDesc(true); ?>
 
 
 				<!-- Sub-Albums -->
-  				<div id="albums">
+					<div id="albums">
 					<?php while (next_album()) { ?>
 					<div class="album">
-                   <div class="albumthumb">
-                   	<a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAlbumTitle(),null,160,85,77,77); ?></a>
+									 <div class="albumthumb">
+										<a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAlbumTitle(),85,null,null,77,77); ?></a>
 									</div>
 						<div class="albumdesc">
 							<h3><a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>"><?php printAlbumTitle(); ?></a><small><?php printAlbumDate("Date Taken: "); ?></small></h3>
@@ -55,7 +55,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 					<?php } ?>
 				</div>
 
-                <div id="images">
+								<div id="images">
 					<?php
 					$points = array();
 					while (next_image()){
@@ -105,25 +105,25 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 							}
 							footer();
 							?>
-           </div>
-            <div style="clear: both;"></div>
-            </div>
-            <!-- end content -->
-            <span class="clear"></span> </div>
-        </div>
-      </div>
-    </div>
-    <div class="sidebar">
-      <div id="rightsidebar">
-        <h2>Album Navigation</h2>
+					 </div>
+						<div style="clear: both;"></div>
+						</div>
+						<!-- end content -->
+						<span class="clear"></span> </div>
+				</div>
+			</div>
+		</div>
+		<div class="sidebar">
+			<div id="rightsidebar">
+				<h2>Album Navigation</h2>
 		<?php printLink(getNextAlbumURL(), "Next Album &raquo;"); ?><br />
-        <?php printLink(getPrevAlbumURL(), "Prev Album &laquo;"); ?>
-        <?php if (getOption('Allow_cloud')) { echo "<br><br>"; printAllTagsAs('Cloud'); } ?>
-      </div>
-    </div>
-    <span class="clear"></span> 
-   </div>
-  <!-- /container -->
+				<?php printLink(getPrevAlbumURL(), "Prev Album &laquo;"); ?>
+				<?php if (getOption('Allow_cloud')) { echo "<br><br>"; printAllTagsAs('Cloud'); } ?>
+			</div>
+		</div>
+		<span class="clear"></span>
+	 </div>
+	<!-- /container -->
 </div>
 <?php
 printAdminToolbox();

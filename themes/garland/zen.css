@@ -57,7 +57,7 @@ body.sidebars #center {
 
 body.sidebars #squeeze {
 	margin: 0 210px;
-    margin-bottom: 2px;
+		margin-bottom: 2px;
 }
 
 h1, h2, h3, h4, h5, h6, post-title , title {
@@ -68,11 +68,11 @@ h1, h2, h3, h4, h5, h6, post-title , title {
 }
 
 h2 {
-    font-size: 16px;
+		font-size: 16px;
 }
 
 h3 {
-    font-size: 14px;
+		font-size: 14px;
 }
 
 hr {
@@ -110,7 +110,7 @@ p {
 
 #gallerytitle {
 	font-size: 20px;
- 	line-height: 130%;
+	line-height: 130%;
 	border-bottom: 1px solid #E6E6DF;
 	padding-bottom: 14px;
 	margin-bottom: 12px;
@@ -122,7 +122,7 @@ p {
 	height: 1em;
 }
 
-#main { 
+#main {
 	width: 560px;
 
 }
@@ -135,7 +135,7 @@ p {
 
 #wrapper #container {
 	margin: 0 auto;
-	width: 1024px;
+	max-width: 1024px;
 	padding: 0 20px;
 }
 
@@ -278,27 +278,22 @@ ul.pagelist li.next {
 /* Album Thumbnails
 ------------------------------ */
 #albums {
+				float: left;
 }
 .album {
 	margin: 0 15px 15px 0;
 	float: left;
-	width: 550px;
+	width: 263px;
 	border: 1px solid #E7F0F5;
 	background: #FBFCFD;
 }
-.album .albumthumb {
-float: left;
-padding: 5px;
-}
-
 .album .imagethumb a {
 	margin: 0;
-	
+
 }
 .album h3 {
-	float: left;
 	padding: 0;
-	padding-left: 10px;
+	padding-left: 50px;
 	margin: 0;
 	font-weight: bold;
 }
@@ -309,15 +304,15 @@ padding: 5px;
 }
 .album p {
 	margin: 0 0 4px 0;
-	padding-left: 10px;
+	padding-left: 50px;
 	line-height: 17px;
 	font-size: 10px;
 }
 .albumdesc {
-	float: left;
-	width: 370px;
-	margin: 0px 0 0 0;
-	padding: 0px 0 0 0;
+	float: right;
+	width: 205px;
+	margin: -90px 0 0 0;
+	padding: 6px 0 0 0;
 }
 
 .desc {
@@ -326,7 +321,7 @@ clear: both;
 
 /* Individual Image
 ------------------------------ */
-.image { 
+.image {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -370,7 +365,7 @@ clear: both;
 	margin: 0 auto;
 	width: 440px;
 }
-#images { 
+#images {
 	width:640px;
 	margin: 0 auto;
 }
@@ -387,9 +382,9 @@ clear: both;
 	clear: both;
 	dispany: none;
 }
-.error { 
-  color: #C33; 
-  font-weight: bold; 
+.error {
+	color: #C33;
+	font-weight: bold;
 }
 .comment {
 	padding: 10px;
@@ -514,21 +509,21 @@ ul.archive #month {
 	padding-top: 5px;
 }
 #imagemetadata {
-  text-align: right;
+	text-align: right;
 }
 #imagemetadata table {
-  text-align: left;
-  line-height: 1em;
-  border: 1px solid #ccc;
-  top: 2em;
-  right: 0px;
-  background-color: #fafafa;
+	text-align: left;
+	line-height: 1em;
+	border: 1px solid #ccc;
+	top: 2em;
+	right: 0px;
+	background-color: #fafafa;
 }
 
 #imagemetadata table td {
-  border-bottom: 1px solid #f0f0f0;
-  background-color: #f8f8f8;
-  padding: 2px 5px;
+	border-bottom: 1px solid #f0f0f0;
+	background-color: #f8f8f8;
+	padding: 2px 5px;
 }
 
 #map{
@@ -646,7 +641,7 @@ text-decoration:none;
 	margin-top: 10px;
 	padding: 0;
 	border-top: 1px dashed darkgray;
-	
+
 }
 
 #commentcontent h3 {
@@ -663,7 +658,7 @@ text-decoration:none;
 }
 
 #commentcontent input[type=text] {
-	width: 455px;
+	width: 300px;
 }
 
 #commentcontent input[type=submit] {
