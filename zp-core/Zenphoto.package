@@ -99,8 +99,6 @@ themes/garland
 themes/garland/album.php
 themes/garland/archive.php
 themes/garland/contact.php
-themes/garland/css
-themes/garland/css/zen.css
 themes/garland/functions.php
 themes/garland/gallery.php
 themes/garland/image.php
@@ -118,12 +116,14 @@ themes/garland/pages.php
 themes/garland/password.php
 themes/garland/register.php
 themes/garland/search.php
+themes/garland/sidebar.php
 themes/garland/slideshow-controls.png
 themes/garland/slideshow.css
 themes/garland/slideshow.php
 themes/garland/theme.png
 themes/garland/theme.txt
 themes/garland/themeoptions.php
+themes/garland/zen.css
 themes/stopdesign
 themes/stopdesign/404.php
 themes/stopdesign/album.php
@@ -470,8 +470,8 @@ zp-core/js/jqueryui/i18n/jquery.ui.datepicker-zh-CN.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-zh-HK.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-zh-TW.js
 zp-core/js/jqueryui/images
-zp-core/js/jqueryui/images/ui-bg_flat_75_ffffff_40x100.png
 zp-core/js/jqueryui/images/ui-bg_flat_0_aaaaaa_40x100.png
+zp-core/js/jqueryui/images/ui-bg_flat_75_ffffff_40x100.png
 zp-core/js/jqueryui/images/ui-bg_glass_55_fbf9ee_1x400.png
 zp-core/js/jqueryui/images/ui-bg_glass_65_ffffff_1x400.png
 zp-core/js/jqueryui/images/ui-bg_glass_75_dadada_1x400.png

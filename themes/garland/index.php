@@ -8,7 +8,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/print_album_menu.php');
 <head>
 <?php zp_apply_filter('theme_head'); ?>
 <title><?php printGalleryTitle(); ?></title>
-<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/css/zen.css"
+<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css"
 	type="text/css" />
 <?php printRSSHeaderLink('Gallery','Gallery RSS'); ?>
 </head>
@@ -20,12 +20,16 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/print_album_menu.php');
 		<div id="header">
 			<div id="logo-floater">
 				<div>
-				<h1 class="title"><?php echo getGalleryTitle(); ?></h1>
+          <h1 class="title"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a></h1>
 				</div>
 			</div>
 		</div>
 	<!-- header -->
-	<?php sidebarMenu(); ?>
+	<div class="sidebar">
+     <div id="leftsidebar">
+		<?php include("sidebar.php"); ?>
+		</div>
+	</div>
 	<div id="center">
 		<div id="squeeze">
 			<div class="right-corner">

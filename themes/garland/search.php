@@ -7,7 +7,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php printGalleryTitle(); ?> | <?php echo gettext('Search'); ?></title>
-	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/css/zen.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
   <?php printRSSHeaderLink('Gallery','Gallery RSS'); ?>
 </head>
 <body class="sidebars">
@@ -23,7 +23,11 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
       </div>
     </div>
     <!-- header -->
-    <?php sidebarMenu(); ?>
+    <div class="sidebar">
+     	<div id="leftsidebar">
+      	<?php include("sidebar.php"); ?>
+      </div>
+     </div>
     <div id="center">
       <div id="squeeze">
         <div class="right-corner">

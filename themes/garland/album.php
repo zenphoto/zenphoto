@@ -7,7 +7,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php printGalleryTitle(); ?> | <?php echo getAlbumTitle();?></title>
-	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/css/zen.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 	<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
 </head>
 <body class="sidebars">
@@ -23,7 +23,11 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
       </div>
     </div>
     <!-- header -->
-    <?php sidebarMenu(); ?>
+    <div class="sidebar">
+     	<div id="leftsidebar">
+      	<?php include("sidebar.php"); ?>
+      </div>
+     </div>
     <div id="center">
       <div id="squeeze">
         <div class="right-corner">
@@ -39,13 +43,14 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
   				<div id="albums">
 					<?php while (next_album()) { ?>
 					<div class="album">
-                        <a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAlbumTitle(),85,NULL,NULL,77,77); ?></a>
+                   <div class="albumthumb">
+                   	<a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAlbumTitle(),null,160,85,77,77); ?></a>
+									</div>
 						<div class="albumdesc">
-        					<small><?php printAlbumDate("Date Taken: "); ?></small>
-							<h3><a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>"><?php printAlbumTitle(); ?></a></h3>
-							<p><?php printAlbumDesc(); ?></p>
+							<h3><a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>"><?php printAlbumTitle(); ?></a><small><?php printAlbumDate("Date Taken: "); ?></small></h3>
+							<p class="desc"><?php printAlbumDesc(); ?></p>
 						</div>
-						<p style="clear: both; "></p>
+						<br style="clear: both; " />
 					</div>
 					<?php } ?>
 				</div>
@@ -116,7 +121,8 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
         <?php if (getOption('Allow_cloud')) { echo "<br><br>"; printAllTagsAs('Cloud'); } ?>
       </div>
     </div>
-    <span class="clear"></span> </div>
+    <span class="clear"></span> 
+   </div>
   <!-- /container -->
 </div>
 <?php

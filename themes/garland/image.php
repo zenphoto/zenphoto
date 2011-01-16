@@ -7,7 +7,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php printGalleryTitle(); ?> | <?php echo getAlbumTitle();?> | <?php echo getImageTitle();?></title>
-	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/css/zen.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		$(document).ready(function(){
@@ -30,7 +30,12 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 			</div>
 		</div>
 		<!-- header -->
-    <?php sidebarMenu(); ?>
+		<div class="sidebar">
+     	<div id="leftsidebar">
+      	<?php include("sidebar.php"); ?>
+      </div>
+     </div>
+    
 		<div id="center">
 			<div id="squeeze">
 				<div class="right-corner">
