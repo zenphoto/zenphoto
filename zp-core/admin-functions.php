@@ -1476,7 +1476,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 			<td valign="top">
 				<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 				<div class="box-edit">
-					<p>
+					
 						<label class="checkboxlabel">
 							<input type="checkbox" name="<?php	echo $prefix; ?>Published" value="1" <?php if ($album->getShow()) echo ' checked="checked"';	?> />
 							<?php echo gettext("Published");?>
@@ -1514,7 +1514,8 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 							<?php
 						}
 						?>
-					</p>
+					
+				  <br clear="all" />
 				</div>
 				<!-- **************** Move/Copy/Rename ****************** -->
 				<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>

@@ -1571,7 +1571,7 @@ span.tagMatches span {
 
 .box-edit {
 	margin: 0 0 10px 0;
-	padding: 8px 8px 8px 8px;
+	padding: 8px;
 	background-color: white;
 	border: 1px solid #cccccc;
 	border-bottom-width: 5px;

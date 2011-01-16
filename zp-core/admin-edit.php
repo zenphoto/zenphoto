@@ -995,8 +995,7 @@ $alb = removeParentAlbumNames($album);
 						</td>
 						<td style="padding-left: 1em; text-align: left;" rowspan="14" valign="top">
 						<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
-						<div class="box-edit">
-							<p>
+							<div class="box-edit">
 								<label class="checkboxlabel">
 									<input type="checkbox" id="Visible-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-Visible" value="1" <?php if ($image->getShow()) echo ' checked="checked"';	?> />
 									<?php echo gettext("Published");?>
@@ -1034,7 +1033,8 @@ $alb = removeParentAlbumNames($album);
 									<?php
 								}
 								?>
-							</p>
+								
+							<br clear="all" />
 						</div>
 
 						<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>
