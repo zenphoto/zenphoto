@@ -1,17 +1,6 @@
 <?php
 
 // force UTF-8 Ø
-
-if ($_zp_gallery_page != 'index.php') {
-	?>
-	<ul class="menu">
-		<li><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>"
-			title="<?php echo gettext('Gallery index'); ?>"><?php echo gettext('Gallery index')?></a>
-		</li>
-	</ul>
-	<?php
-}
-
 if(function_exists("printAllNewsCategories")) {
 	?>
 	<div class="menu">
@@ -30,10 +19,11 @@ if(function_exists("printAlbumMenu")) {
 	<div class="menu">
 		<h3><?php echo gettext("Gallery"); ?></h3>
 		<?php
-		if ($_zp_gallery_page != 'gallery.php' || ($_zp_gallery_page == 'index.php' &&  (getOption('zp_plugin_zenpage') && getOption('custom_index_page')=='gallery'))) {
-			$gallery = gettext('Album index');
-		} else {
-			$gallery = '';
+		$gallery = '';
+		if (getOption('zp_plugin_zenpage')) {
+			if ($_zp_gallery_page == 'index.php' || $_zp_gallery_page != 'gallery.php') {
+				$gallery = gettext('Album index');
+			}
 		}
 		printAlbumMenu("list","count","menu","menu","menu_sub","menu_sub_active", $gallery);
 		?>
