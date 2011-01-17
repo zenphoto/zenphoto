@@ -125,13 +125,17 @@ if (!defined('WEBPATH')) die();
 					<?php
 					if ($nextalbum) {
 						?>
+						<div id="next" class="slides">
 						<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album &raquo;'); ?><br /><img src="<?php echo html_encode($nextalbum->getAlbumThumb()); ?>" /></a>
+						</div>
 						<br />
 					<?php
 					}
 					if ($prevalbum) {
 						?>
+						<div id="prev" class="slides">
 						<a href="<?php echo html_encode(getPrevAlbumURL());?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('&laquo; Prev Album'); ?><br /><img src="<?php echo html_encode($prevalbum->getAlbumThumb()); ?>" /></a>
+						</div>
 						<?php
 					}
 				}
