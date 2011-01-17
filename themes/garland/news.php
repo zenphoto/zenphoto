@@ -1,12 +1,11 @@
 <?php
 if (!defined('WEBPATH')) die();
-require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php printGalleryTitle(); ?> | <?php echo getAlbumTitle();?> | <?php echo getImageTitle();?></title>
+	<title><?php printGalleryTitle(); ?> | <?php printNewsTitle(); ?></title>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -25,17 +24,17 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		<div id="header">
 			<div id="logo-floater">
 				<div>
-					<h1 class="title"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a></h1>
+					<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
 				</div>
 			</div>
 		</div>
-		<!-- header --> 
+		<!-- header -->
 		<div class="sidebar">
      	<div id="leftsidebar">
       	<?php include("sidebar.php"); ?>
       </div>
      </div>
-    
+
 		<div id="center">
 			<div id="squeeze">
 				<div class="right-corner">
@@ -43,7 +42,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 						<!-- begin content -->
 						<div class="main section" id="main">
 							<h3 id="gallerytitle">
-							<a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a>
+							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
 							<?php printNewsIndexURL(gettext("News"),"  &raquo; ");  printCurrentNewsCategory("  &raquo; ".gettext('Category')." - "); ?><?php printNewsTitle("  &raquo; "); ?>
 							</h3>
 	<?php

@@ -1,6 +1,7 @@
 <?php
 
 // force UTF-8 Ø
+require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 
 function gMapOptionsImage($map) {
 	$map->setWidth(560);

@@ -20,7 +20,7 @@ class ThemeOptions {
 		setThemeOptionDefault('Watermark_head_image', true);
 		setThemeOptionDefault('Theme_personality', 'Image page');
 		setThemeOptionDefault('Theme_colors', 'effervescence');
-		setThemeOptionDefault('effervescence_menu', 'effervescence');
+		setThemeOptionDefault('effervescence_menu', '');
 		setThemeOptionDefault('albums_per_row', 3);
 		setThemeOptionDefault('images_per_row', 4);
 		setThemeOptionDefault('thumb_transition', 1);
@@ -64,7 +64,7 @@ class ThemeOptions {
 		} else {
 			$note = '<p class="notebox">'.gettext('<strong>Note:</strong> This option is valid only if you have the <em>Gallery index page link</em> option set to "gallery". Of course the <em>menu_manager</em> plugin must also be enabled.').'</p>';
 		}
-		if (!getOption('zp_plugin_print_album_menu') && (($m = getOption('effervescence_menu'))=='effervescence' || $m=='zenpage')) {
+		if (!getOption('zp_plugin_print_album_menu') && (($m = getOption('effervescence_menu'))=='effervescence' || $m=='zenpage' || $m == 'garland')) {
 			$note .= '<p class="notebox">'.sprintf(gettext('<strong>Note:</strong> The <em>%s</em> custom menu makes use of the <em>print_album_menu</em> plugin.'),$m).'</p>';
 		}
 		$options = array(	gettext('Theme logo') => array('key' => 'Theme_logo', 'type' => OPTION_TYPE_TEXTBOX, 'multilingual' => 1, 'desc' => gettext('The text for the theme logo')),

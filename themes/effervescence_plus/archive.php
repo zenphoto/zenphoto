@@ -64,7 +64,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 					<?php
 					if(function_exists("printNewsArchive")) {
 						?>
-						<p><?php echo('News archive') ?></p><?php printNewsArchive("archive");	?>
+						<p><?php echo(gettext('News archive')); ?></p><?php printNewsArchive("archive");	?>
 						<?php
 					}
 					?>

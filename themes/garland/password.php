@@ -15,7 +15,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		});
 		// ]]> -->
 	</script>
-	<?php printRSSHeaderLink('Gallery','Gallery RSS'); ?>
+	<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 </head>
 <body class="sidebars">
 <?php zp_apply_filter('theme_body_open'); ?>
@@ -25,7 +25,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		<div id="header">
 			<div id="logo-floater">
 				<div>
-					<h1 class="title"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a></h1>
+					<h1 class="title"><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a></h1>
 				</div>
 			</div>
 		</div>
@@ -42,7 +42,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 						<!-- begin content -->
 						<div class="main section" id="main">
 							<h3 id="gallerytitle">
-								<a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a> &raquo;
+								<a href="<?php echo getGalleryIndexURL(false);?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo;
 								<?php echo "<em>".gettext('Password required')."</em>"; ?>
 							</h3>
 							<h2><?php echo gettext('A password is required to access this page.') ?></h2>

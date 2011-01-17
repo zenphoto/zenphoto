@@ -1,14 +1,13 @@
 <?php
 if (!defined('WEBPATH')) die();
-require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-<title><?php printGalleryTitle(); ?> | Archive View</title>
+<title><?php printGalleryTitle(); ?> | <?php echo gettext('Archive View'); ?></title>
 <link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-<?php printRSSHeaderLink('Gallery','Gallery RSS'); ?>
+<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 </head>
 <body class="sidebars">
 <?php zp_apply_filter('theme_body_open'); ?>
@@ -18,7 +17,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
     <div id="header">
       <div id="logo-floater">
         <div>
-          <h1 class="title"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a></h1>
+          <h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle());?></a></h1>
         </div>
       </div>
     </div>
@@ -28,14 +27,14 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
       	<?php include("sidebar.php"); ?>
       </div>
      </div>
-    
+
     <div id="center">
       <div id="squeeze">
         <div class="right-corner">
           <div class="left-corner">
             <!-- begin content -->
             <div class="main section" id="main">
-              <h3 id="gallerytitle"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a> &raquo; Archive View</h3>
+              <h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle());?></a> &raquo; <?php echo gettext('Archive View'); ?></h3>
               <div id="image_container">
               	<div id="archive">
 									<p><?php echo gettext('Images By Date'); ?></p>
@@ -43,7 +42,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 									<?php
 									if(function_exists("printNewsArchive")) {
 										?>
-										<p><?php echo('News archive') ?></p><?php printNewsArchive("archive");	?>
+										<p><?php echo(gettext('News archive')); ?></p><?php printNewsArchive("archive");	?>
 										<?php
 									}
 									?>

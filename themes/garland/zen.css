@@ -444,14 +444,14 @@ label:hover {
 	margin-left:0px;
 }
 
-#menu li,.menu li{
+#news_menu li,#album_menu li,#page_menu li, .menu li{
 	background: transparent url("img/menu-album.png") no-repeat 0 .35em;
 	list-style-image: none;
 	list-style-type: none;
 	padding: 0 0 .3em 15px;
 }
 
-#menu ul li,.menu ul li{
+#news_menu ul li,#album_menu ul li,#page_menu ul li,.menu ul li{
 	background: transparent url("img/menu-sub.png") no-repeat 0 .35em;
 	margin-left:10px;
 }

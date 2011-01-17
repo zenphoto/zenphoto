@@ -1,6 +1,5 @@
 <?php
 if (!defined('WEBPATH')) die();
-require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -15,7 +14,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		});
 		// ]]> -->
 	</script>
-	<?php printRSSHeaderLink('Gallery','Gallery RSS'); ?>
+	<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 </head>
 <body class="sidebars">
 <?php zp_apply_filter('theme_body_open'); ?>
@@ -25,7 +24,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		<div id="header">
 			<div id="logo-floater">
 				<div>
-					<h1 class="title"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a></h1>
+					<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
 				</div>
 			</div>
 		</div>
@@ -42,7 +41,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 						<!-- begin content -->
 						<div class="main section" id="main">
 							<h3 id="gallerytitle">
-								<a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a> &raquo;
+								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo;
 								<?php echo "<em>".gettext('Register')."</em>"; ?>
 							</h3>
 							<h2><?php echo gettext('User Registration') ?></h2>

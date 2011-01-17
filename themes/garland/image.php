@@ -1,12 +1,11 @@
 <?php
 if (!defined('WEBPATH')) die();
-require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php printGalleryTitle(); ?> | <?php echo getAlbumTitle();?> | <?php echo getImageTitle();?></title>
+	<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle()); ?> | <?php echo html_encode(getImageTitle()); ?></title>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -15,7 +14,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		});
 		// ]]> -->
 	</script>
-	<?php printRSSHeaderLink('Album','Gallery RSS'); ?>
+	<?php printRSSHeaderLink('Album',gettext('Gallery RSS')); ?>
 </head>
 <body class="sidebars">
 <?php zp_apply_filter('theme_body_open'); ?>
@@ -25,7 +24,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		<div id="header">
 			<div id="logo-floater">
 				<div>
-					<h1 class="title"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a></h1>
+					<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
 				</div>
 			</div>
 		</div>
@@ -35,14 +34,16 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
       	<?php include("sidebar.php"); ?>
       </div>
      </div>
-    
+
 		<div id="center">
 			<div id="squeeze">
 				<div class="right-corner">
 					<div class="left-corner">
 						<!-- begin content -->
 						<div class="main section" id="main">
-							<h3 id="gallerytitle"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><a href="<?php echo getAlbumLinkURL();?>" title="Album Thumbnails"><?php echo getAlbumTitle();?></a> &raquo; <?php printImageTitle(true); ?></h3>
+							<h3 id="gallerytitle">
+									<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php gettext('Album Thumbnails'); ?>"><?php echo html_encode(getAlbumTitle()); ?></a> &raquo; <?php printImageTitle(true); ?>
+								</h3>
 							<div id="image_container"><?php printCustomSizedImage(getImageTitle(), null, 540); ?></div>
 									<?php
 									if (getImageMetaData()) {
@@ -83,16 +84,22 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 				<?php
 				if (hasNextImage()) {
 					?>
-					<div id="next" class="slides"><h2>Next &raquo;</h2><a href="<?php echo getNextImageURL();?>" title="Next photo"><img src="<?php echo getNextImageThumb(); ?>" /></a></div>
+					<div id="next" class="slides">
+						<h2><?php echo gettext('Next &raquo;'); ?></h2>
+						<a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext('Next photo'); ?>"><img src="<?php echo html_encode(getNextImageThumb()); ?>" /></a>
+					</div>
 					<?php
 				}
 				if (hasPrevImage()) {
 					?>
-					<div id="prev" class="slides"><h2>&laquo; Previous</h2><a href="<?php echo getPrevImageURL();?>" title="Previous photo"><img src="<?php echo getPrevImageThumb(); ?>" /></a></div>
+					<div id="prev" class="slides">
+						<h2><?php echo gettext('&laquo; Previous'); ?></h2>
+						<a href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext('Previous photo'); ?>"><img src="<?php echo html_encode(getPrevImageThumb()); ?>" /></a>
+					</div>
 					<?php
 				}
 				?>
-				<?php printTags(true, 'Tags: '); ?>
+				<?php printTags(true, gettext('Tags: ')); ?>
 			</div>
 		</div>
 		<span class="clear"></span> </div>

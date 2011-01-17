@@ -14,7 +14,7 @@ require_once('normalizer.php');
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<?php
-	printRSSHeaderLink('Gallery','Gallery RSS');
+	printRSSHeaderLink('Gallery',gettext('Gallery RSS'));
 	setOption('thumb_crop_width', 85, false);
 	setOption('thumb_crop_height', 85, false);
 	$archivepageURL = html_encode(getGalleryIndexURL());

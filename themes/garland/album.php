@@ -1,12 +1,11 @@
 <?php
 if (!defined('WEBPATH')) die();
-require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php printGalleryTitle(); ?> | <?php echo getAlbumTitle();?></title>
+	<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle()); ?></title>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 	<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
 </head>
@@ -18,7 +17,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		<div id="header">
 			<div id="logo-floater">
 				<div>
-					<h1 class="title"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a></h1>
+					<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo sanitize(getGalleryTitle());?></a></h1>
 				</div>
 			</div>
 		</div>
@@ -34,56 +33,60 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 					<div class="left-corner">
 						<!-- begin content -->
 						<div class="main section" id="main">
-								<h3 id="gallerytitle"><a href="<?php echo getGalleryIndexURL();?>" title="Gallery Index"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><?php printAlbumTitle(true);?></h3>
-
-					<?php printAlbumDesc(true); ?>
-
-
-				<!-- Sub-Albums -->
-					<div id="albums">
-					<?php while (next_album()) { ?>
-					<div class="album">
-									 <div class="albumthumb">
-										<a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAlbumTitle(),85,null,null,77,77); ?></a>
+								<h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo sanitize(getGalleryTitle()); ?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><?php printAlbumTitle(true);?></h3>
+								<?php printAlbumDesc(true); ?>
+								<!-- Sub-Albums -->
+								<div id="albums">
+								<?php
+								while (next_album()) {
+									?>
+								<div class="album">
+									<a href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">
+										<?php printCustomAlbumThumbImage(getAlbumTitle(),85,NULL,NULL,77,77); ?>
+									</a>
+									<div class="albumdesc"><small><?php printAlbumDate(gettext("Date Taken: ")); ?></small>
+										<h3>
+											<a href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">
+												<?php printAlbumTitle(); ?>
+											</a>
+										</h3>
+										<p><?php printAlbumDesc(); ?></p>
 									</div>
-						<div class="albumdesc">
-							<h3><a href="<?php echo getAlbumLinkURL();?>" title="View album: <?php echo getAlbumTitle();?>"><?php printAlbumTitle(); ?></a><small><?php printAlbumDate("Date Taken: "); ?></small></h3>
-							<p class="desc"><?php printAlbumDesc(); ?></p>
-						</div>
-						<br style="clear: both; " />
-					</div>
-					<?php } ?>
-				</div>
-
-								<div id="images">
-					<?php
-					$points = array();
-					while (next_image()){
-						$exif = $_zp_current_image->getMetaData();
-						if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
-							$lat = $exif['EXIFGPSLatitude'];
-							$long = $exif['EXIFGPSLongitude'];
-							if($exif['EXIFGPSLatitudeRef'] == 'S') {
-								$lat = '-' . $lat;
+								<p style="clear: both;"></p>
+								</div>
+								<?php
 							}
-							if($exif['EXIFGPSLongitudeRef'] == 'W') {
-								$long = '-' . $long;
-							}
-							$desc = $_zp_current_image->getDesc();
-							$title = $_zp_current_image->getTitle();
-							if (empty($desc)) {
-								$desc = $title;
-							}
-							$points[] = array($lat, $long, $title, '<p align=center >' . $desc."</p>");
-						}
-						?>
-					<div class="image">
-						<div class="imagethumb"><a href="<?php echo getImageLinkURL();?>" title="<?php echo getImageTitle();?>"><?php printImageThumb(getImageTitle()); ?></a></div>
-					</div>
-					<?php
-					}
-					?>
-				</div>
+								?>
+							</div>
+							<div id="images">
+								<?php
+								$points = array();
+								while (next_image()){
+									$exif = $_zp_current_image->getMetaData();
+									if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
+										$lat = $exif['EXIFGPSLatitude'];
+										$long = $exif['EXIFGPSLongitude'];
+										if($exif['EXIFGPSLatitudeRef'] == 'S') {
+											$lat = '-' . $lat;
+										}
+										if($exif['EXIFGPSLongitudeRef'] == 'W') {
+											$long = '-' . $long;
+										}
+										$desc = $_zp_current_image->getDesc();
+										$title = $_zp_current_image->getTitle();
+										if (empty($desc)) {
+											$desc = $title;
+										}
+										$points[] = array($lat, $long, $title, '<p align=center >' . $desc."</p>");
+									}
+									?>
+									<div class="image">
+										<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a></div>
+									</div>
+									<?php
+								}
+								?>
+							</div>
 
 							<?php
 							if (!empty($points) && function_exists('printGoogleMap')) {
@@ -96,7 +99,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 								<?php
 							}
 							?>
-							<?php printPageListWithNav("&laquo; prev", "next &raquo;"); ?>
+							<?php printPageListWithNav(gettext("&laquo; prev"), gettext("next &raquo;")); ?>
 							<?php if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow')); ?>
 							<?php if (function_exists('printRating')) { printRating(); }?>
 							<?php
@@ -106,24 +109,47 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 							footer();
 							?>
 					 </div>
-						<div style="clear: both;"></div>
-						</div>
-						<!-- end content -->
-						<span class="clear"></span> </div>
+					<div style="clear: both;"></div>
+					</div>	<!-- end content -->
+					<span class="clear"></span>
 				</div>
 			</div>
 		</div>
 		<div class="sidebar">
 			<div id="rightsidebar">
-				<h2>Album Navigation</h2>
-		<?php printLink(getNextAlbumURL(), "Next Album &raquo;"); ?><br />
-				<?php printLink(getPrevAlbumURL(), "Prev Album &laquo;"); ?>
+				<?php
+				$nextalbum = getNextAlbum();
+				$prevalbum = getPrevAlbum();
+				if ($nextalbum ||$prevalbum) {
+					?>
+					<h2><?php echo gettext('Album Navigation'); ?></h2>
+					<?php
+					if ($nextalbum) {
+						?>
+						<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album &raquo;'); ?><br /><img src="<?php echo html_encode($nextalbum->getAlbumThumb()); ?>" /></a>
+						<br />
+					<?php
+					}
+					if ($prevalbum) {
+						?>
+						<a href="<?php echo html_encode(getPrevAlbumURL());?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('&laquo; Prev Album'); ?><br /><img src="<?php echo html_encode($prevalbum->getAlbumThumb()); ?>" /></a>
+						<?php
+					}
+				}
+				?>
 				<?php if (getOption('Allow_cloud')) { echo "<br><br>"; printAllTagsAs('Cloud'); } ?>
+				<?php
+				if (function_exists('printLatestImages')) {
+					?>
+					<h2><?php printf(gettext('Latest Images for %s'),$_zp_current_album->name); ?></h2>
+					<?php
+					printLatestImages(5, $_zp_current_album->name);
+				}
+				?>
 			</div>
 		</div>
-		<span class="clear"></span>
-	 </div>
-	<!-- /container -->
+	</div>
+	<span class="clear"></span>
 </div>
 <?php
 printAdminToolbox();
