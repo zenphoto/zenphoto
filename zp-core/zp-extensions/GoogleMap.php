@@ -208,7 +208,7 @@ function getAlbumGeodata($obj,$MAP_OBJECT){
  *
  * @param string $text text for the "toggle" link that shows/hides the map. Set empty to omit
  * @param string $id used to set the IDs for the toggle href element ($id_toggle) and the map element ($id_data)
- * @param bool $hide initially hide the map
+ * @param string $hide initial map state: "hide", "show", or "colrobox"
  * @param object $obj optional image/album object. Pass string for generic map and use callback to set points
  * @param function $callback optional callback function to set map options.
  */
@@ -273,22 +273,32 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 	}
 	if (is_null($hide)) {
 		$hide = getOption('gmap_display');
+	} else {
+		if (!$is_string($hide)) {
+			if ($hide) {
+				$hide = 'hide';
+			} else {
+				$hide = 'show';
+			}
+		}
 	}
 	if (!is_null($callback)) {
 		call_user_func($callback,$MAP_OBJECT);
 	}
 	if (empty($text)) {
-		$hide = false;
+		$hide = 'hide';
 	}
 
 	echo $MAP_OBJECT->getMapJS();
 	switch ($hide) {
 		case 'colorbox':
+			$w = str_replace('px','',$MAP_OBJECT->width)+20;
+			$h = str_replace('px','',$MAP_OBJECT->height)+20;
 			?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				$(document).ready(function(){
-					$(".google_map").colorbox({iframe: true, href:".google_map"});
+					$(".google_map").colorbox({iframe:true, innerWidth:'<?php echo $w; ?>px', innerHeight:'<?php echo $h; ?>px'});
 				});
 				// ]]> -->
 			</script>
