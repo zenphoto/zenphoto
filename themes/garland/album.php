@@ -85,14 +85,14 @@ if (!defined('WEBPATH')) die();
 								?>
 							</div>
 
+							<br clear="all" />
 							<?php
 							if (!empty($points) && function_exists('printGoogleMap')) {
 								?>
-								<p style="clear: both; "></p>
 								<div id="map_link">
-								<?php
-								printGoogleMap(NULL, NULL, NULL, 'album_page', 'gMapOptionsAlbum');
-								?>
+									<?php
+									printGoogleMap(NULL, NULL, NULL, 'album_page', 'gMapOptionsAlbum');
+									?>
 								</div>
 								<?php
 							}

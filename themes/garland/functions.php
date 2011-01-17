@@ -4,7 +4,7 @@
 require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 
 function gMapOptionsImage($map) {
-	$map->setWidth(560);
+	$map->setWidth(535);
 }
 function gMapOptionsAlbum($map) {
 	global $points;
@@ -12,7 +12,7 @@ function gMapOptionsAlbum($map) {
 		list($lat, $long, $title, $desc) = $point;
 		addPoint($map, $lat, $long, $title, $desc);
 	}
-	$map->setWidth(560);
+	$map->setWidth(535);
 }
 
 function footer() {

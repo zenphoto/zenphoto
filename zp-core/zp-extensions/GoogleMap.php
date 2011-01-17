@@ -294,7 +294,6 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			</script>
 			<?php
 			break;
-		case true:
 		case 'hide':
 			?>
 			<div id="<?php echo $id_data; ?>" style="display:none">
@@ -306,7 +305,6 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			<?php
 			break;
 		case 'show':
-		case false:
 			?>
 			<div id="<?php echo $id_data; ?>">
 				<?php

@@ -53,7 +53,8 @@ if (!defined('WEBPATH')) die();
 											</span>
 											<span style="display:none">
 												<?php echo printImageMetadata('', false); ?>
-											</span>&nbsp;&nbsp;
+											</span>
+											<br clear="all" />
 										<?php
 									}
 									if (function_exists('hasMapData') && hasMapData()) {
