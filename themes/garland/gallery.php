@@ -48,7 +48,7 @@ if (!defined('WEBPATH')) die();
 											</a>
 										</h3>
 										<br />
-										<small><?php printAlbumDate(gettext("Date Taken: ")); ?></small>
+										<small><?php printAlbumDate(); ?></small>
 									</div>
 								<p style="clear: both;"></p>
 								</div>

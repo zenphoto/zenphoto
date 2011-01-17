@@ -101,5 +101,8 @@ function commonNewsLoop($paged) {
 		printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
 	}
 }
+function exerpt($content,$length) {
+	return shortenContent(strip_tags($content),$length,getOption("zenpage_textshorten_indicator"));
+}
 
 ?>
