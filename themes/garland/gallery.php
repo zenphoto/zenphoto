@@ -44,16 +44,15 @@ if (!defined('WEBPATH')) die();
 							while (next_album($_zp_gallery_page == 'gallery.php')) {
 								?>
 								<div class="album">
-									<a href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">
+									<a class="albumthumb" href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">
 										<?php printCustomAlbumThumbImage(getAlbumTitle(),85,NULL,NULL,77,77); ?>
 									</a>
-									<div class="albumdesc"><small><?php printAlbumDate(gettext("Date Taken: ")); ?></small>
+									<div class="albumdesc">
 										<h3>
 											<a href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">
 												<?php printAlbumTitle(); ?>
 											</a>
-										</h3>
-										<p><?php printAlbumDesc(); ?></p>
+										</h3><br /><small><?php printAlbumDate(gettext("Date Taken: ")); ?></small>
 									</div>
 								<p style="clear: both;"></p>
 								</div>
@@ -65,8 +64,9 @@ if (!defined('WEBPATH')) die();
 							<?php
 						}
 						?>
-						<?php footer(); ?></div>
+						
 						<div style="clear: both;"></div>
+						<?php footer(); ?>
 					</div>
 				<!-- end content --> <span class="clear"></span>
 				</div>

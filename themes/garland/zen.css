@@ -123,7 +123,7 @@ p {
 }
 
 #main {
-	width: 560px;
+	width: 530px;
 
 }
 
@@ -135,8 +135,8 @@ p {
 
 #wrapper #container {
 	margin: 0 auto;
-	max-width: 1024px;
-	padding: 0 20px;
+	width: 1000px;
+	padding: 0 0px;
 }
 
 /* We must define 100% width to avoid the body being too narrow for near-empty pages */
@@ -202,7 +202,7 @@ body > #wrapper #container .sidebar {
 }
 
 #footer {
-	width: 555px;
+	width: 530px;
 	text-align:center;
 	margin-top:20px;
 	border: 1px solid #E7F0F5;
@@ -252,21 +252,34 @@ ul.pagelist li.next {
 	margin-top: 24px;
 }
 
-/* Image Thumbnails
+/* latest images
 ------------------------------ */
-.imagethumb a {
+
+
+/* Image Thumbnails (imgnav and latest images incl.)
+------------------------------ */
+.imagethumb a,
+#latest a img,
+#next a img,
+#prev a img{
 	display: block;
-	padding: 8px;
+	padding: 5px;
 	margin: 4px;
 	border: 1px solid #92BED3;
 	background: #DDEAF0;
 	line-height: 0px;
 }
-.imagethumb a:visited {
+.imagethumb a:visited,
+#latest a:visited img,
+#next a:visited img,
+#prev a:visited img {
 	border: 1px solid #D3E4ED;
 	background: #F2F7F9;
 }
-.imagethumb a:hover {
+.imagethumb a:hover,
+#latest a:hover img,
+#next a:hover img,
+#prev a:hover img {
 	border: 1px solid #62A0BF;
 	background: #F4F9FB;
 }
@@ -281,39 +294,45 @@ ul.pagelist li.next {
 				float: left;
 }
 .album {
-	margin: 0 15px 15px 0;
+	margin: 0 10px 10px 0;
 	float: left;
-	width: 263px;
+	width: 243px;
 	border: 1px solid #E7F0F5;
 	background: #FBFCFD;
+	padding:5px;
 }
 .album .imagethumb a {
 	margin: 0;
+}
 
+.album a.albumthumb  {
+	margin-right: 10px;
+	float: left;
 }
 .album h3 {
+	float: left;
 	padding: 0;
-	padding-left: 50px;
+	padding-left: 0px;
 	margin: 0;
 	font-weight: bold;
 }
+
 .album h3 a {
-	display: block;
-	width: 100%;
 	margin-top:7px;
 }
 .album p {
 	margin: 0 0 4px 0;
-	padding-left: 50px;
+	padding-left: 0px;
 	line-height: 17px;
 	font-size: 10px;
 }
 .albumdesc {
-	float: right;
-	width: 205px;
-	margin: -90px 0 0 0;
-	padding: 6px 0 0 0;
+	float: left;
+	width: 105px;
+	margin: 0;
+	padding: 0;
 }
+
 
 .desc {
 clear: both;
@@ -339,13 +358,15 @@ clear: both;
 	margin-top: 13px;
 	_margin-top: 8px; /* IE Only */
 }
+
+
 .imgnav .imgprevious a, .imgnav .imgnext a {
 	display: block;
 	width: 50%;
 	height: 100%;
 	float: left;
 	padding: 4px 0;
-	font-size: 120%;
+	font-size: 13px;
 	text-decoration: none;
 	line-height: 200%;
 	color: #237898;
@@ -354,7 +375,7 @@ clear: both;
 	background-color: #fff;
 	text-decoration: none;
 	color: #002E5B;
-}
+} 
 .imgnav .imgprevious a {
 	float: left;
 }
@@ -366,42 +387,12 @@ clear: both;
 	width: 440px;
 }
 #images {
-	width:640px;
 	margin: 0 auto;
 }
 #image_container img {
-	padding: 10px;
+	padding: 5px;
 	border: 1px solid #92BED3;
 	background: #DDEAF0;
-}
-
-
-/* Comments
------------------------------- */
-#comments {
-	clear: both;
-	dispany: none;
-}
-.error {
-	color: #C33;
-	font-weight: bold;
-}
-.comment {
-	padding: 10px;
-	border: 1px solid #E7F0F5;
-	background: #FBFCFD;
-	margin-bottom: 12px;
-}
-.commentmeta {
-	margin-bottom: 12px;
-}
-.commentauthor {
-	font-weight: bold;
-}
-.commentdate {
-	margin-top: 12px;
-	color: #8DB8CF;
-	font-size: 85%;
 }
 
 
@@ -637,7 +628,7 @@ text-decoration:none;
 ------------------------------ */
 #commentcontent {
 	clear: both;
-	width: 560px;
+	width: 535px;
 	margin-top: 10px;
 	padding: 0;
 	border-top: 1px dashed darkgray;
@@ -654,7 +645,7 @@ text-decoration:none;
 }
 
 #commentcontent textarea {
-	width: 550px;
+	width: 530px;
 }
 
 #commentcontent input[type=text] {
@@ -676,4 +667,6 @@ text-decoration:none;
 .commentinfo h4 {
 font-weight: bold;
 }
+
+
 

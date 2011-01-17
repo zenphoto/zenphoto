@@ -44,7 +44,7 @@ if (!defined('WEBPATH')) die();
 							<h3 id="gallerytitle">
 									<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php gettext('Album Thumbnails'); ?>"><?php echo html_encode(getAlbumTitle()); ?></a> &raquo; <?php printImageTitle(true); ?>
 								</h3>
-							<div id="image_container"><?php printCustomSizedImage(getImageTitle(), null, 540); ?></div>
+							<div id="image_container"><?php printCustomSizedImage(getImageTitle(), null, 520); ?></div>
 									<?php
 									if (getImageMetaData()) {
 										?>
