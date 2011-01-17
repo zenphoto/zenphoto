@@ -66,8 +66,8 @@ function commonNewsLoop($paged) {
 			$newstypedisplay .= ' <small><em>'.gettext('sticky').'</em></small>';
 		}
 	?>
- 		<div class="newsarticle<?php if (stickyNews()) echo ' sticky'; ?>">
-    	<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".$newstypedisplay."]</span>"; ?></h3>
+		<div class="newsarticle<?php if (stickyNews()) echo ' sticky'; ?>">
+			<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".$newstypedisplay."]</span>"; ?></h3>
 			<div class="newsarticlecredit">
 				<span class="newsarticlecredit-left">
 					<?php
@@ -76,7 +76,7 @@ function commonNewsLoop($paged) {
 					printNewsDate();
 					if ($count > 0) {
 						echo ' | ';
-				 		printf(gettext("Comments: %d"),  $count);
+						printf(gettext("Comments: %d"),  $count);
 					}
 					?>
 				</span>
@@ -91,14 +91,14 @@ function commonNewsLoop($paged) {
 				}
 				?>
 			</div> <!-- newsarticlecredit -->
-   		<?php printCodeblock(1); ?>
-    	<?php printNewsContent(); ?>
-    	<?php printCodeblock(2); ?>
-    	</div>
+			<?php printCodeblock(1); ?>
+			<?php printNewsContent(); ?>
+			<?php printCodeblock(2); ?>
+			</div>
 	<?php
 	}
 	if ($paged) {
-  	printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
+		printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
 	}
 }
 

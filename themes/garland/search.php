@@ -33,7 +33,9 @@ if (!defined('WEBPATH')) die();
           <div class="left-corner">
             <!-- begin content -->
             <div class="main section" id="main">
-              	<h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; Search</h3>
+              <h3 id="gallerytitle">
+              	<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; Search
+              </h3>
 
 				<?php
 				if ($_REQUEST['words']) {
@@ -41,27 +43,37 @@ if (!defined('WEBPATH')) die();
 	  	    	    echo "<p>".sprintf(gettext('Total matches for <em>%s</em>: %u'),getSearchWords(), $total)."</p>";
 				?>
 				<div id="albums">
-				<?php while (next_album()): ?>
+				<?php
+				while (next_album()) {
+					?>
 				  <div class="album">
-					<div class="imagethumb">
-						<a href="<?php echo getAlbumLinkURL();?>" title="<?php printf(gettext('View album: %s'),sanitize(getAlbumTitle())); ?>"><?php printCustomAlbumThumbImage(getAlbumTitle(),85,NULL,NULL,77,77); ?></a>
+						<div class="imagethumb">
+							<a href="<?php echo getAlbumLinkURL();?>" title="<?php printf(gettext('View album: %s'),sanitize(getAlbumTitle())); ?>"><?php printCustomAlbumThumbImage(getAlbumTitle(),85,NULL,NULL,77,77); ?></a>
+						</div>
+						<div class="albumdesc">
+							<h3><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php printf(gettext('View album: %s'),sanitize(getAlbumTitle()));?>"><?php printAlbumTitle(); ?></a></h3>
+							<p><?php printAlbumDesc(); ?></p>
+							<small><?php printAlbumDate(gettext("Date Taken: ")); ?></small>
+						</div>
+						<p style="clear: both; "></p>
 					</div>
-					<div class="albumdesc">
-						<h3><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php printf(gettext('View album: %s'),sanitize(getAlbumTitle()));?>"><?php printAlbumTitle(); ?></a></h3>
-						<p><?php printAlbumDesc(); ?></p>
-						<small><?php printAlbumDate(gettext("Date Taken: ")); ?></small>
-					</div>
-					<p style="clear: both; "></p>
-				</div>
-			  <?php endwhile; ?>
+				  <?php
+				}
+				?>
 			  </div>
-
+				<p style="clear: both; "></p>
 			  <div id="images">
-				  <?php while (next_image()): ?>
-				  <div class="image">
-					  <div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a></div>
-				  </div>
-				  <?php endwhile; ?>
+				  <?php
+				  while (next_image()) {
+		  		  ?>
+					  <div class="image">
+						  <div class="imagethumb">
+						  	<a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a>
+						  </div>
+					  </div>
+					  <?php
+				  }
+				  ?>
 			 </div>
 			<?php
 	  	      } else {
@@ -80,9 +92,6 @@ if (!defined('WEBPATH')) die();
     </div>
     <div class="sidebar">
       <div id="rightsidebar">
-        <h2><?php echo gettext('Album Navigation'); ?></h2>
-				<?php printLink(getNextAlbumURL(), gettext("Next Album &raquo;")); ?><br />
-       	<?php printLink(getPrevAlbumURL(), gettext("Prev Album &laquo;")); ?>
       </div>
     </div>
     <span class="clear"></span>

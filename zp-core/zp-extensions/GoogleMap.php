@@ -36,12 +36,12 @@ function googlemap_js() {
 			jQuery('#'+id).toggle();
 			if ($('#'+id).is(':visible')) {
 				setTimeout(
-				  function() {
-					  if (bds) {
-            	map.fitBounds(bds);
-            }
+					function() {
+						if (bds) {
+							map.fitBounds(bds);
+						}
 						map.setCenter(center);
-				  }, 100);
+					}, 100);
 			}
 		}
 	</script>
@@ -66,7 +66,11 @@ class googlemapOptions {
 		setOptionDefault('gmap_control', 'horizontal');
 		setOptionDefault('gmap_starting_map', 'hybrid');
 		setOptionDefault('gmap_zoom', 16);
-		setOptionDefault('gmap_hide', 0);
+		if (getOption('gmap_hide')) {
+			setOptionDefault('gmap_display', 'hide');
+		} else {
+			setOptionDefault('gmap_display', 'show');
+		}
 	}
 
 	function getOptionsSupported() {
@@ -105,9 +109,10 @@ class googlemapOptions {
 									gettext('Initial map display selection') => array('key' => 'gmap_starting_map', 'type' => OPTION_TYPE_SELECTOR, 'selections' => $MapTypes,
 																	'order'=>2,
 																	'desc' => gettext('Select the initial type of map to display.')),
-									gettext('Hide map initially') => array('key' => 'gmap_hide', 'type' => OPTION_TYPE_CHECKBOX,
+									gettext('Map display') => array('key' => 'gmap_display', 'type' => OPTION_TYPE_SELECTOR,
+																	'selections' => array(gettext('show')=>'show', gettext('hide')=>'hide',gettext('colorbox')=>'colorbox'),
 																	'order'=>2.5,
-																	'desc' => gettext('Check to start the map out hidden.'))
+																	'desc' => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.'))
 									);
 	}
 
@@ -267,43 +272,83 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 		$text = gettext('Google Map');
 	}
 	if (is_null($hide)) {
-		$hide = getOption('gmap_hide');
+		$hide = getOption('gmap_display');
 	}
 	if (!is_null($callback)) {
 		call_user_func($callback,$MAP_OBJECT);
 	}
+	if (empty($text)) {
+		$hide = false;
+	}
 
 	echo $MAP_OBJECT->getMapJS();
-	?>
-	<div id="<?php echo $id_data; ?>"<?php if ($hide) echo ' style="display:none"'; ?> >
-		<?php
-		echo $MAP_OBJECT->printOnLoad();
-		echo $MAP_OBJECT->printMap();
-		?>
-	</div>
-	<?php
-	if (!empty($text)) {
-		?>
-		<script type="text/javascript">
-			<!--
-			var center<?php echo $MAP_OBJECT->map_id; ?> = new google.maps.LatLng(<?php echo $MAP_OBJECT->center_lat; ?>,<?php echo $MAP_OBJECT->center_lon; ?>);
-			<?php
-			if($MAP_OBJECT->zoom_encompass && (count($MAP_OBJECT->_markers) > 1 || count($MAP_OBJECT->_polylines) >= 1 || count($MAP_OBJECT->_overlays) >= 1)) {
-				?>
-				var bnds<?php echo $MAP_OBJECT->map_id; ?>=new google.maps.LatLngBounds(new google.maps.LatLng(<?php echo $MAP_OBJECT->_min_lat.','.$MAP_OBJECT->_min_lon; ?>), new google.maps.LatLng(<?php echo $MAP_OBJECT->_max_lat.','.$MAP_OBJECT->_max_lon; ?>));
-				<?php
-			} else {
-				?>
-				var bnds<?php echo $MAP_OBJECT->map_id; ?>=null;
-				<?php
-			}
+	switch ($hide) {
+		case 'colorbox':
 			?>
-			//-->
-		</script>
-		<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>',map<?php echo $MAP_OBJECT->map_id; ?>,center<?php echo $MAP_OBJECT->map_id; ?>,bnds<?php echo $MAP_OBJECT->map_id; ?>);" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
-			<?php echo $text; ?>
-		</a>
-		<?php
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				$(document).ready(function(){
+					$(".google_map").colorbox({iframe: true, href:".google_map"});
+				});
+				// ]]> -->
+			</script>
+			<?php
+			break;
+		case true:
+		case 'hide':
+			?>
+			<div id="<?php echo $id_data; ?>" style="display:none">
+				<?php
+				echo $MAP_OBJECT->printOnLoad();
+				echo $MAP_OBJECT->printMap();
+				?>
+			</div>
+			<?php
+			break;
+		case 'show':
+		case false:
+			?>
+			<div id="<?php echo $id_data; ?>">
+				<?php
+				echo $MAP_OBJECT->printOnLoad();
+				echo $MAP_OBJECT->printMap();
+				?>
+			</div>
+			<?php
+			break;
+	}
+	if (!empty($text)) {
+		switch ($hide) {
+			case 'colorbox':
+				?>
+				<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?mapobject='.html_encode(serialize($MAP_OBJECT)) ?>" title="<?php echo $text; ?>" class="google_map">
+					<?php echo $text; ?>
+				</a>
+				<?php
+				break;
+			default:
+				?>
+				<script type="text/javascript">
+					<!--
+					<?php
+					if($MAP_OBJECT->zoom_encompass && (count($MAP_OBJECT->_markers) > 1 || count($MAP_OBJECT->_polylines) >= 1 || count($MAP_OBJECT->_overlays) >= 1)) {
+						?>
+						var bnds<?php echo $MAP_OBJECT->map_id; ?>=new google.maps.LatLngBounds(new google.maps.LatLng(<?php echo $MAP_OBJECT->_min_lat.','.$MAP_OBJECT->_min_lon; ?>), new google.maps.LatLng(<?php echo $MAP_OBJECT->_max_lat.','.$MAP_OBJECT->_max_lon; ?>));
+						<?php
+					} else {
+						?>
+						var bnds<?php echo $MAP_OBJECT->map_id; ?>=null;
+						<?php
+					}
+					?>
+					//-->
+				</script>
+				<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>',map<?php echo $MAP_OBJECT->map_id; ?>,new google.maps.LatLng(<?php echo $MAP_OBJECT->center_lat; ?>,<?php echo $MAP_OBJECT->center_lon; ?>),bnds<?php echo $MAP_OBJECT->map_id; ?>);" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
+					<?php echo $text; ?>
+				</a>
+				<?php
+				break;
+		}
 	}
 }
 

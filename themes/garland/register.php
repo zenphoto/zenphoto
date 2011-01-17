@@ -50,12 +50,13 @@ if (!defined('WEBPATH')) die();
 							<div style="clear: both;"></div>
 						</div>
 						<!-- end content -->
-						<span class="clear"></span> </div>
+						<span class="clear"></span>
+					</div>
 				</div>
 			</div>
 		</div>
-		<span class="clear"></span> </div>
-	<!-- /container -->
+		<span class="clear"></span>
+	</div><!-- /container -->
 </div>
 <?php
 printAdminToolbox();

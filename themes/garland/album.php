@@ -20,26 +20,22 @@ if (!defined('WEBPATH')) die();
 					<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo sanitize(getGalleryTitle());?></a></h1>
 				</div>
 			</div>
+		</div><!-- header -->
+	<div class="sidebar">
+		 <div id="leftsidebar">
+		<?php include("sidebar.php"); ?>
 		</div>
-		<!-- header -->
-		<div class="sidebar">
-			<div id="leftsidebar">
-				<?php include("sidebar.php"); ?>
-			</div>
-		 </div>
-		<div id="center">
-			<div id="squeeze">
-				<div class="right-corner">
-					<div class="left-corner">
-						<!-- begin content -->
-						<div class="main section" id="main">
-								<h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo sanitize(getGalleryTitle()); ?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><?php printAlbumTitle(true);?></h3>
-								<?php printAlbumDesc(true); ?>
-								<!-- Sub-Albums -->
-								<div id="albums">
-								<?php
-								while (next_album()) {
-									?>
+	</div>
+	<div id="center">
+		<div id="squeeze">
+			<div class="right-corner">
+				<div class="left-corner"><!-- begin content -->
+					<div class="main section" id="main">
+						<h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; <?php echo gettext('Album index'); ?></h3>
+						<div id="albums">
+							<?php
+							while (next_album($_zp_gallery_page == 'gallery.php')) {
+								?>
 								<div class="album">
 									<a  class="albumthumb" href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">
 										<?php printCustomAlbumThumbImage(getAlbumTitle(),85,NULL,NULL,77,77); ?>
@@ -49,14 +45,16 @@ if (!defined('WEBPATH')) die();
 											<a href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">
 												<?php printAlbumTitle(); ?>
 											</a>
-										</h3><br /><small><?php printAlbumDate(gettext("Date Taken: ")); ?></small>
+										</h3>
+										<p><?php printAlbumDesc(); ?></p>
 									</div>
 								<p style="clear: both;"></p>
 								</div>
 								<?php
 							}
-								?>
+							?>
 							</div>
+							<p style="clear: both; "></p>
 							<div id="images">
 								<?php
 								$points = array();
@@ -90,6 +88,7 @@ if (!defined('WEBPATH')) die();
 							<?php
 							if (!empty($points) && function_exists('printGoogleMap')) {
 								?>
+								<p style="clear: both; "></p>
 								<div id="map_link">
 								<?php
 								printGoogleMap(NULL, NULL, NULL, 'album_page', 'gMapOptionsAlbum');
@@ -149,11 +148,11 @@ if (!defined('WEBPATH')) die();
 					printLatestImages(5, $_zp_current_album->name);
 				}
 				?>
-			</div>
-		</div>
-	</div>
+			</div><!-- right sidebar -->
+		</div><!-- sidebar -->
+	</div><!-- container -->
 	<span class="clear"></span>
-</div>
+</div><!-- wrapper -->
 <?php
 printAdminToolbox();
 zp_apply_filter('theme_body_close');

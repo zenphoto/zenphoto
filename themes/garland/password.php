@@ -55,8 +55,8 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 				</div>
 			</div>
 		</div>
-		<span class="clear"></span> </div>
-	<!-- /container -->
+		<span class="clear"></span>
+	</div><!-- /container -->
 </div>
 <?php
 printAdminToolbox();

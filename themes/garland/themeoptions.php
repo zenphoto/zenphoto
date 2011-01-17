@@ -13,6 +13,7 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_transition', 1);
 		setThemeOptionDefault('thumb_size',85);
 		setOptionDefault('colorbox_garland_image', 1);
+		setOptionDefault('colorbox_garland_album', 1);
 		setOptionDefault('colorbox_garland_search', 1);
 		setThemeOptionDefault('garland_menu', '');
 		if (function_exists('createMenuIfNotExists')) {

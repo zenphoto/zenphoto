@@ -53,8 +53,8 @@ if (!defined('WEBPATH')) die();
 				</div>
 			</div>
 		</div>
-		<span class="clear"></span> </div>
-	<!-- /container -->
+		<span class="clear"></span>
+	</div><!-- /container -->
 </div>
 <?php
 printAdminToolbox();

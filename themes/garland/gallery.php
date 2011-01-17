@@ -18,13 +18,12 @@ if (!defined('WEBPATH')) die();
 		<div id="header">
 			<div id="logo-floater">
 				<div>
-          <h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
+					<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a></h1>
 				</div>
 			</div>
-		</div>
-	<!-- header -->
+		</div><!-- header -->
 	<div class="sidebar">
-     <div id="leftsidebar">
+		 <div id="leftsidebar">
 		<?php include("sidebar.php"); ?>
 		</div>
 	</div>
@@ -34,12 +33,7 @@ if (!defined('WEBPATH')) die();
 				<div class="left-corner"><!-- begin content -->
 					<div class="main section" id="main">
 						<h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; <?php echo gettext('Album index'); ?></h3>
-						<?php
-						if ($_zp_gallery_page=='index.php' && getOption('zp_plugin_zenpage')) {
-							commonNewsLoop(false);
-						} else {
-							?>
-							<div id="albums">
+						<div id="albums">
 							<?php
 							while (next_album($_zp_gallery_page == 'gallery.php')) {
 								?>
@@ -52,7 +46,9 @@ if (!defined('WEBPATH')) die();
 											<a href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">
 												<?php printAlbumTitle(); ?>
 											</a>
-										</h3><br /><small><?php printAlbumDate(gettext("Date Taken: ")); ?></small>
+										</h3>
+										<br />
+										<small><?php printAlbumDate(gettext("Date Taken: ")); ?></small>
 									</div>
 								<p style="clear: both;"></p>
 								</div>
@@ -60,33 +56,33 @@ if (!defined('WEBPATH')) die();
 							}
 							printPageListWithNav(gettext("&laquo; prev"), gettext("next &raquo;"));
 							?>
-							</div>
+							</div><!-- album -->
 							<?php
-						}
 						?>
-						
+
 						<div style="clear: both;"></div>
 						<?php footer(); ?>
-					</div>
-				<!-- end content --> <span class="clear"></span>
-				</div>
-			</div>
-		</div>
-		<div class="sidebar">
-			<div id="rightsidebar">
-			<?php
-				if (function_exists('printLatestImages')) {
-					?>
-					<h2><?php echo gettext('Latest Images'); ?></h2>
-					<?php
-					printLatestImages(7);
-				}
+					</div><!-- main -->
+				<span class="clear"></span>
+				</div><!-- left corner -->
+			</div><!-- right corner -->
+		</div><!-- squeeze -->
+	</div><!-- center -->
+	<div class="sidebar">
+		<div id="rightsidebar">
+		<?php
+			if (function_exists('printLatestImages')) {
 				?>
-			</div>
-		</div>
-		<span class="clear"></span>
-	</div>
-</div>
+				<h2><?php echo gettext('Latest Images'); ?></h2>
+				<?php
+				printLatestImages(7);
+			}
+			?>
+		</div><!-- right sidebar -->
+	</div><!-- sidebar -->
+	<span class="clear"></span>
+	</div><!-- container -->
+</div><!-- wrapper -->
 <?php
 printAdminToolbox();
 zp_apply_filter('theme_body_close');

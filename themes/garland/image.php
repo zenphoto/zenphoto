@@ -30,10 +30,10 @@ if (!defined('WEBPATH')) die();
 		</div>
 		<!-- header -->
 		<div class="sidebar">
-     	<div id="leftsidebar">
-      	<?php include("sidebar.php"); ?>
-      </div>
-     </div>
+			<div id="leftsidebar">
+				<?php include("sidebar.php"); ?>
+			</div>
+		 </div>
 
 		<div id="center">
 			<div id="squeeze">

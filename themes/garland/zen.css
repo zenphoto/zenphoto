@@ -316,7 +316,6 @@ ul.pagelist li.next {
 	margin: 0;
 	font-weight: bold;
 }
-
 .album h3 a {
 	margin-top:7px;
 }
@@ -332,7 +331,6 @@ ul.pagelist li.next {
 	margin: 0;
 	padding: 0;
 }
-
 
 .desc {
 clear: both;
@@ -358,8 +356,6 @@ clear: both;
 	margin-top: 13px;
 	_margin-top: 8px; /* IE Only */
 }
-
-
 .imgnav .imgprevious a, .imgnav .imgnext a {
 	display: block;
 	width: 50%;
@@ -375,7 +371,7 @@ clear: both;
 	background-color: #fff;
 	text-decoration: none;
 	color: #002E5B;
-} 
+}
 .imgnav .imgprevious a {
 	float: left;
 }
@@ -393,6 +389,35 @@ clear: both;
 	padding: 5px;
 	border: 1px solid #92BED3;
 	background: #DDEAF0;
+}
+
+
+/* Comments
+------------------------------ */
+#comments {
+	clear: both;
+	dispany: none;
+}
+.error {
+	color: #C33;
+	font-weight: bold;
+}
+.comment {
+	padding: 10px;
+	border: 1px solid #E7F0F5;
+	background: #FBFCFD;
+	margin-bottom: 12px;
+}
+.commentmeta {
+	margin-bottom: 12px;
+}
+.commentauthor {
+	font-weight: bold;
+}
+.commentdate {
+	margin-top: 12px;
+	color: #8DB8CF;
+	font-size: 85%;
 }
 
 
@@ -667,6 +692,4 @@ text-decoration:none;
 .commentinfo h4 {
 font-weight: bold;
 }
-
-
 

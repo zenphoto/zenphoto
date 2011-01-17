@@ -62,8 +62,8 @@ if (!defined('WEBPATH')) die();
         <?php printAllTagsAs('cloud', 'tags'); ?>
       </div>
     </div>
-    <span class="clear"></span> </div>
-  <!-- /container -->
+    <span class="clear"></span>
+   </div><!-- /container -->
 </div>
 <?php
 printAdminToolbox();
