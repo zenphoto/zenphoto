@@ -14,11 +14,19 @@ $plugin_description = gettext('Provides a means for showing .pdf, .pps documents
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
 
-addPluginType('pdf', 'WEBdocs');
-addPluginType('pps', 'WEBdocs');
-addPluginType('tif', 'WEBdocs');
-addPluginType('tiff', 'WEBdocs');
 $option_interface = 'WEBdocs_Options';
+
+if (getOption('WEBdocs_pdf_provider')) {
+	addPluginType('pdf', 'WEBdocs');
+}
+if (getOption('WEBdocs_pps_provider')) {
+	addPluginType('pps', 'WEBdocs');
+}
+if (getOption('WEBdocs_tif_provider')) {
+	addPluginType('tif', 'WEBdocs');
+	addPluginType('tiff', 'WEBdocs');
+}
+
 
 /**
  * Option class for textobjects objects
@@ -27,7 +35,9 @@ $option_interface = 'WEBdocs_Options';
 class WEBdocs_Options {
 
 	function WEBdocs_Options() {
-		setOptionDefault('WEBdocs_provider', 'google');
+		setOptionDefault('WEBdocs_pdf_provider', 'local');
+		setOptionDefault('WEBdocs_pps_provider', 'google');
+		setOptionDefault('WEBdocs_tif_provider', 'zoho');
 	}
 
 	/**
@@ -36,19 +46,33 @@ class WEBdocs_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Watermark default images') => array ('key' => 'WEBdocs_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
+		return array(	gettext('Watermark default images') => array ('key' => 'WEBdocs_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
 																	'desc' => gettext('Check to place watermark image on default thumbnail images.')),
-									gettext('Service') => array('key' => 'WEBdocs_provider', 'type' => OPTION_TYPE_RADIO,
-																	'buttons' => array(	gettext('GoogleDocs')=>'google',
+									gettext('PDF') => array('key' => 'WEBdocs_pdf_provider', 'type' => OPTION_TYPE_RADIO,
+																	'buttons' => array(	gettext('Disabled')=>'',
+																											gettext('GoogleDocs')=>'google',
 																											gettext('Zoho')=>'zoho',
 																											gettext('Browser default')=>'local'
 																											),
-																	'desc' => gettext("Choose the WEB service to use for rendering the document.").
+																	'desc' => gettext("Choose the WEB service to use for rendering pdf documents.").
 																												'<p>'.sprintf(gettext('Select <em>google</em> to use the <a href="%s">GoogleDocs viewer</a>'),'http://docs.google.com/viewer').'</p>'.
 																												'<p>'.sprintf(gettext('Select <em>zoho</em> to use the <a href="%s">Zoho document viewer</a>'),'http://viewer.zoho.com/home.do').'</p>'.
 																												'<p>'.gettext('Select <em>Browser default</em> to use the your browser default application').'</p>'
-																							)
-								);
+																							),
+									gettext('PowerPoint') => array('key' => 'WEBdocs_pps_provider', 'type' => OPTION_TYPE_RADIO,
+																	'buttons' => array(	gettext('Disabled')=>'',
+																											gettext('GoogleDocs')=>'google',
+																											gettext('Zoho')=>'zoho',
+																											gettext('Browser default')=>'local'
+																											),
+																	'desc' => gettext("Choose the WEB service to use for rendering powerpoint document.")),
+									gettext('Tiff') => array('key' => 'WEBdocs_tif_provider', 'type' => OPTION_TYPE_RADIO,
+																	'buttons' => array(	gettext('Disabled')=>'',
+																											gettext('Zoho')=>'zoho',
+																											gettext('Browser default')=>'local'
+																											),
+																	'desc' => gettext("Choose the WEB service to use for rendering TIFF images."))
+									);
 	}
 
 }
@@ -116,6 +140,10 @@ class WEBdocs extends TextObject {
 				case 'pps':
 					$img = '/ppsDefault.png';
 					break;
+				case 'tif':
+				case 'tiff':
+					$img = '/tifDefault.png';
+					break;
 			}
 			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($this->album->gallery->getCurrentTheme()) . '/images/'.$img;
 			if (!file_exists($imgfile)) {
@@ -136,16 +164,19 @@ class WEBdocs extends TextObject {
 		$this->updateDimensions();
 		if (is_null($w)) $w = $this->getWidth();
 		if (is_null($h)) $h = $this->getHeight();
-		$providers = array(	'google'=>'<iframe src="http://docs.google.com/viewer?url=%s&amp;embedded=true" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>',
+		$providers = array(	''=>'<img src="'.$this->getThumb().'">',
+												'google'=>'<iframe src="http://docs.google.com/viewer?url=%s&amp;embedded=true" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>',
 												'zoho'=>'<iframe src="http://viewer.zoho.com/api/urlview.do?url=%s&amp;embed=true" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>',
 												'local'=>'<iframe src="%s" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>'
 											);
-		switch(getSuffix($this->filename)) {
-			case 'pps':
-			case 'pdf':
+		switch($suffix = getSuffix($this->filename)) {
 			case 'tif':
 			case 'tiff':
-				return sprintf($providers[getOption('WEBdocs_provider')],html_encode($this->getFullImage(FULLWEBPATH)));
+				$suffix = 'tif';
+			case 'pps':
+			case 'pdf':
+				$provider = 'WEBdocs_'.$suffix.'_provider';
+				return sprintf($providers[getOption($provider)],html_encode($this->getFullImage(FULLWEBPATH)));
 			default: // just in case we extend and are lazy...
 				return '<img src="'.$this->getThumb().'">';
 		}
