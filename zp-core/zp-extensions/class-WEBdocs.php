@@ -39,9 +39,15 @@ class WEBdocs_Options {
 		return array(gettext('Watermark default images') => array ('key' => 'WEBdocs_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
 																	'desc' => gettext('Check to place watermark image on default thumbnail images.')),
 									gettext('Service') => array('key' => 'WEBdocs_provider', 'type' => OPTION_TYPE_RADIO,
-																	'buttons' => array(gettext('GoogleDocs')=>'google',
-																												gettext('Zoho')=>'zoho'),
-																	'desc' => gettext("Choose the WEB service to use for rendering the document."))
+																	'buttons' => array(	gettext('GoogleDocs')=>'google',
+																											gettext('Zoho')=>'zoho',
+																											gettext('Browser default')=>'local'
+																											),
+																	'desc' => gettext("Choose the WEB service to use for rendering the document.").
+																												'<p>'.sprintf(gettext('Select <em>google</em> to use the <a href="%s">GoogleDocs viewer</a>'),'http://docs.google.com/viewer').'</p>'.
+																												'<p>'.sprintf(gettext('Select <em>zoho</em> to use the <a href="%s">Zoho document viewer</a>'),'http://viewer.zoho.com/home.do').'</p>'.
+																												'<p>'.gettext('Select <em>Browser default</em> to use the your browser default application').'</p>'
+																							)
 								);
 	}
 
@@ -127,18 +133,19 @@ class WEBdocs extends TextObject {
 	 * @return string
 	 */
 	function getBody($w=NULL, $h=NULL) {
-		$providers = array(	'google'=>'http://docs.google.com/viewer?url=%s&amp;embedded=true',
-												'zoho'=>'http://viewer.zoho.com/api/urlview.do?url=%s&amp;embed=true'
-											);
 		$this->updateDimensions();
 		if (is_null($w)) $w = $this->getWidth();
 		if (is_null($h)) $h = $this->getHeight();
+		$providers = array(	'google'=>'<iframe src="http://docs.google.com/viewer?url=%s&amp;embedded=true" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>',
+												'zoho'=>'<iframe src="http://viewer.zoho.com/api/urlview.do?url=%s&amp;embed=true" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>',
+												'local'=>'<iframe src="%s" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>'
+											);
 		switch(getSuffix($this->filename)) {
 			case 'pps':
 			case 'pdf':
 			case 'tif':
 			case 'tiff':
-				return '<iframe src="'.sprintf($providers[getOption('WEBdocs_provider')],$this->getFullImage(FULLWEBPATH)).'" style="width:'.$w.'px;height:'.$h.'px;" frameborder="0"></iframe>';
+				return sprintf($providers[getOption('WEBdocs_provider')],html_encode($this->getFullImage(FULLWEBPATH)));
 			default: // just in case we extend and are lazy...
 				return '<img src="'.$this->getThumb().'">';
 		}
