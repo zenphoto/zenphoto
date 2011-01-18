@@ -642,6 +642,7 @@ zp-core/zp-extensions/class-WEBdocs
 zp-core/zp-extensions/class-WEBdocs.php
 zp-core/zp-extensions/class-WEBdocs/pdfDefault.png
 zp-core/zp-extensions/class-WEBdocs/ppsDefault.png
+zp-core/zp-extensions/class-WEBdocs/tifDefault.png
 zp-core/zp-extensions/class-textobject
 zp-core/zp-extensions/class-textobject.php
 zp-core/zp-extensions/class-textobject/class-textobject_core.php
@@ -1709,4 +1710,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1711
+1712
