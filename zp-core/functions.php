@@ -1720,7 +1720,12 @@ function makeSpecialImageName($image) {
 	$filename = basename($image);
 	$i = strpos($image, ZENFOLDER);
 	if ($i === false) {
-		$folder = '_{'.basename(dirname(dirname($image))).'}_{'.basename(dirname($image)).'}_';
+		$i = strpos($image, USER_PLUGIN_FOLDER);
+		if ($i === false) {
+			$folder = '_{'.basename(dirname(dirname($image))).'}_{'.basename(dirname($image)).'}_';
+		} else {
+			$folder = '_{'.USER_PLUGIN_FOLDER.'}_{'.substr($image, $i + strlen(USER_PLUGIN_FOLDER) + 1 , - strlen($filename) - 1).'}_';
+		}
 	} else {
 		$folder = '_{'.ZENFOLDER.'}_{'.substr($image, $i + strlen(ZENFOLDER) + 1 , - strlen($filename) - 1).'}_';
 	}

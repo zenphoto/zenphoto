@@ -160,9 +160,13 @@ if (!file_exists($imgfile)) {
 		} else {
 			$source2 = '';
 		}
-
-		if ($source != ZENFOLDER) {
+		switch($source) {
+			case ZENFOLDER:
+			case USER_PLUGIN_FOLDER:
+				break;
+			default:
 			$source = THEMEFOLDER.'/'.$source;
+			break;
 		}
 		$args[3] = $args[4] = 0;
 		$args[5] = 1;    // full crops for these default images
