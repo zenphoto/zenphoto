@@ -63,6 +63,9 @@
 
 class TextObject extends _Image {
 
+	var $watermark = NULL;
+	var $watermarkDefault = NULL;
+
 	/**
 	 * creates a textobject (image standin)
 	 *
@@ -72,6 +75,10 @@ class TextObject extends _Image {
 	 */
 	function TextObject($album, $filename) {
 		global $_zp_supported_images;
+
+		$this->watermark = getOption('TextObject_watermark');
+		$this->watermarkDefault = getOption('textobject_watermark_default_images');
+
 
 		// $album is an Album object; it should already be created.
 		if (!is_object($album)) return NULL;
@@ -133,11 +140,11 @@ class TextObject extends _Image {
 	 */
 	function getThumb($type='image') {
 		list($custom, $sw, $sh, $cw, $ch, $cx, $cy) = $this->getThumbCropping($type);
-		$wmt = getOption('TextObject_watermark');
+		$wmt = $this->watermark;
 		if ($this->objectsThumb == NULL) {
 			$cx = $cy = NULL;
 			$filename = makeSpecialImageName($this->getThumbImageFile());
-			if (!getOption('textobject_watermark_default_images')) {
+			if (!$this->watermarkDefault) {
 				$wmt = '!';
 			}
 		} else {
@@ -191,7 +198,7 @@ class TextObject extends _Image {
 	 */
 	function getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin=false, $effects=NULL) {
 		if ($thumbStandin) {
-			$wmt = getOption('TextObject_watermark');
+			$wmt = $this->watermark;
 		} else {
 			$wmt = NULL;
 		}
@@ -199,7 +206,7 @@ class TextObject extends _Image {
 		if ($thumbStandin) {
 			if ($this->objectsThumb == NULL) {
 				$filename = makeSpecialImageName($this->getThumbImageFile());
-				if (!getOption('textobject_watermark_default_images')) {
+				if (!$this->watermarkDefault) {
 					$args[11] = '!';
 				}
 				return getImageProcessorURI($args, $this->album->name, $filename);

@@ -638,11 +638,10 @@ zp-core/zp-extensions/captcha/zenphoto.php
 zp-core/zp-extensions/class-AnyFile
 zp-core/zp-extensions/class-AnyFile.php
 zp-core/zp-extensions/class-AnyFile/anyFileDefault.png
-zp-core/zp-extensions/class-GoogleDocs
-zp-core/zp-extensions/class-GoogleDocs.php
-zp-core/zp-extensions/class-GoogleDocs/googleDocsDefault.png
-zp-core/zp-extensions/class-GoogleDocs/pdfDefault.png
-zp-core/zp-extensions/class-GoogleDocs/ppsDefault.png
+zp-core/zp-extensions/class-WEBdocs
+zp-core/zp-extensions/class-WEBdocs.php
+zp-core/zp-extensions/class-WEBdocs/pdfDefault.png
+zp-core/zp-extensions/class-WEBdocs/ppsDefault.png
 zp-core/zp-extensions/class-textobject
 zp-core/zp-extensions/class-textobject.php
 zp-core/zp-extensions/class-textobject/class-textobject_core.php
@@ -1710,4 +1709,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1712
+1711

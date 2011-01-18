@@ -35,6 +35,8 @@ function googlemap_js() {
 		function toggleMap(id,map,center,bds) {
 			jQuery('#'+id).toggle();
 			if ($('#'+id).is(':visible')) {
+				map.fitBounds(bds);
+				map.setCenter(center);
 				setTimeout(
 					function() {
 						if (bds) {
@@ -273,15 +275,15 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 	}
 	if (is_null($hide)) {
 		$hide = getOption('gmap_display');
-	} else {
-		if (!$is_string($hide)) {
-			if ($hide) {
-				$hide = 'hide';
-			} else {
-				$hide = 'show';
-			}
+	}
+	if (!is_string($hide)) {
+		if ($hide) {
+			$hide = 'hide';
+		} else {
+			$hide = 'show';
 		}
 	}
+
 	if (!is_null($callback)) {
 		call_user_func($callback,$MAP_OBJECT);
 	}
@@ -295,6 +297,9 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			$w = str_replace('px','',$MAP_OBJECT->width)+20;
 			$h = str_replace('px','',$MAP_OBJECT->height)+20;
 			?>
+			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?mapobject='.html_encode(serialize($MAP_OBJECT)) ?>" title="<?php echo $text; ?>" class="google_map">
+				<?php echo $text; ?>
+			</a>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				$(document).ready(function(){
@@ -306,38 +311,8 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			break;
 		case 'hide':
 			?>
-			<div id="<?php echo $id_data; ?>" style="display:none">
-				<?php
-				echo $MAP_OBJECT->printOnLoad();
-				echo $MAP_OBJECT->printMap();
-				?>
-			</div>
-			<?php
-			break;
-		case 'show':
-			?>
-			<div id="<?php echo $id_data; ?>">
-				<?php
-				echo $MAP_OBJECT->printOnLoad();
-				echo $MAP_OBJECT->printMap();
-				?>
-			</div>
-			<?php
-			break;
-	}
-	if (!empty($text)) {
-		switch ($hide) {
-			case 'colorbox':
-				?>
-				<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?mapobject='.html_encode(serialize($MAP_OBJECT)) ?>" title="<?php echo $text; ?>" class="google_map">
-					<?php echo $text; ?>
-				</a>
-				<?php
-				break;
-			default:
-				?>
 				<script type="text/javascript">
-					<!--
+					//<!--
 					<?php
 					if($MAP_OBJECT->zoom_encompass && (count($MAP_OBJECT->_markers) > 1 || count($MAP_OBJECT->_polylines) >= 1 || count($MAP_OBJECT->_overlays) >= 1)) {
 						?>
@@ -354,9 +329,42 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 				<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>',map<?php echo $MAP_OBJECT->map_id; ?>,new google.maps.LatLng(<?php echo $MAP_OBJECT->center_lat; ?>,<?php echo $MAP_OBJECT->center_lon; ?>),bnds<?php echo $MAP_OBJECT->map_id; ?>);" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
 					<?php echo $text; ?>
 				</a>
+			<div id="<?php echo $id_data; ?>" style="display:none">
 				<?php
-				break;
-		}
+				echo $MAP_OBJECT->printOnLoad();
+				echo $MAP_OBJECT->printMap();
+				?>
+			</div>
+			<?php
+			break;
+		case 'show':
+			?>
+			<script type="text/javascript">
+				//<!--
+				<?php
+				if($MAP_OBJECT->zoom_encompass && (count($MAP_OBJECT->_markers) > 1 || count($MAP_OBJECT->_polylines) >= 1 || count($MAP_OBJECT->_overlays) >= 1)) {
+					?>
+					var bnds<?php echo $MAP_OBJECT->map_id; ?>=new google.maps.LatLngBounds(new google.maps.LatLng(<?php echo $MAP_OBJECT->_min_lat.','.$MAP_OBJECT->_min_lon; ?>), new google.maps.LatLng(<?php echo $MAP_OBJECT->_max_lat.','.$MAP_OBJECT->_max_lon; ?>));
+					<?php
+				} else {
+					?>
+					var bnds<?php echo $MAP_OBJECT->map_id; ?>=null;
+					<?php
+				}
+				?>
+				//-->
+			</script>
+			<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>',map<?php echo $MAP_OBJECT->map_id; ?>,new google.maps.LatLng(<?php echo $MAP_OBJECT->center_lat; ?>,<?php echo $MAP_OBJECT->center_lon; ?>),bnds<?php echo $MAP_OBJECT->map_id; ?>);" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
+				<?php echo $text; ?>
+			</a>
+			<div id="<?php echo $id_data; ?>">
+				<?php
+				echo $MAP_OBJECT->printOnLoad();
+				echo $MAP_OBJECT->printMap();
+				?>
+			</div>
+			<?php
+			break;
 	}
 }
 

@@ -73,9 +73,8 @@ function get_AnyFile_suffixes() {
 require_once(dirname(__FILE__).'/class-textobject/class-textobject_core.php');
 
 class AnyFile extends TextObject {
-
 	/**
-	 * creates a GoogleDocs (image standin)
+	 * creates a WEBdocs (image standin)
 	 *
 	 * @param object $album the owner album
 	 * @param string $filename the filename of the text file
@@ -83,6 +82,10 @@ class AnyFile extends TextObject {
 	 */
 	function AnyFile($album, $filename) {
 		global $_zp_supported_images;
+
+
+		$this->watermark = getOption('AnyFile_watermark');
+		$this->watermarkDefault = getOption('AnyFile_watermark_default_images');
 
 		// $album is an Album object; it should already be created.
 		if (!is_object($album)) return NULL;
@@ -136,32 +139,6 @@ class AnyFile extends TextObject {
 	}
 
 	/**
-	 * returns a link to the thumbnail for the text file.
-	 *
-	 * @param string $type 'image' or 'album'
-	 * @return string
-	 */
-	function getThumb($type='image') {
-		list($custom, $sw, $sh, $cw, $ch, $cx, $cy) = $this->getThumbCropping($type);
-		$wmt = getOption('AnyFile_watermark');
-		if ($this->objectsThumb == NULL) {
-			$cx = $cy = NULL;
-			$filename = makeSpecialImageName($this->getThumbImageFile());
-			if (!getOption('AnyFile_watermark_default_images')) {
-				$wmt = '!';
-			}
-		} else {
-			$filename = $this->objectsThumb;
-		}
-		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
-		if (file_exists(SERVERCACHE . $cachefilename)	&& filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
-			return WEBPATH . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($cachefilename));
-		} else {
-			return getImageProcessorURI($args, $this->album->name, $filename);
-		}
-	}
-
-	/**
 	 * Returns the content of the text file
 	 *
 	 * @param int $w optional width
@@ -169,61 +146,14 @@ class AnyFile extends TextObject {
 	 * @return string
 	 */
 	function getBody($w=NULL, $h=NULL) {
-		$this->updateDimensions();
-		if (is_null($w)) $w = $this->getWidth();
-		if (is_null($h)) $h = $this->getHeight();
-		switch(getSuffix($this->filename)) {
-			case 'pps':
-			case 'pdf':
-				return '<iframe src="http://docs.google.com/gview?url='.$this->getFullImage(FULLWEBPATH).'&amp;embedded=true" style="width:'.$w.'px;height:'.$h.'px;" frameborder="0"></iframe>';
-			default: // just in case we extend and are lazy...
-				return '<img src="'.$this->getThumb().'">';
-		}
-	}
-
-	/**
-	 *  Get a custom sized version of this image based on the parameters.
-	 *
-	 * @param string $alt Alt text for the url
-	 * @param int $size size
-	 * @param int $width width
-	 * @param int $height height
-	 * @param int $cropw crop width
-	 * @param int $croph crop height
-	 * @param int $cropx crop x axis
-	 * @param int $cropy crop y axis
-	 * @param string $class Optional style class
-	 * @param string $id Optional style id
-	 * @param bool $thumbStandin set to true to treat as thumbnail
-	 * @param bool $effects ignored
-	 * @return string
-	 */
-	function getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin=false, $effects=NULL) {
-		if ($thumbStandin) {
-			$wmt = getOption('GoogleDocs_watermark');
-		} else {
-			$wmt = NULL;
-		}
-		$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
-		if ($thumbStandin) {
-			if ($this->objectsThumb == NULL) {
-				$filename = makeSpecialImageName($this->getThumbImageFile());
-				if (!getOption('AnyFile_watermark_default_images')) {
-					$args[11] = '!';
-				}
-				return getImageProcessorURI($args, $this->album->name, $filename);
-			} else {
-				$filename = $this->objectsThumb;
-				$cachefilename = getImageCacheFilename($alb = $this->album->name, $filename, $args);
-				if (file_exists(SERVERCACHE . $cachefilename) && filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
-					return WEBPATH . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($cachefilename));
-				} else {
-					return getImageProcessorURI($args, $this->album->name, $filename);
-				}
-			}
-		} else {
-			return $this->getBody($width, $height);
-		}
+			$this->updateDimensions();
+			if (is_null($w)) $w = $this->getWidth();
+			if (is_null($h)) $h = $this->getHeight();
+			/*
+			 * just return the thumbnail as we do not know how to
+			 * render the file.
+			 */
+			return '<img src="'.$this->getThumb().'">';
 	}
 
 	/**
