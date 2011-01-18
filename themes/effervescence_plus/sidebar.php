@@ -28,14 +28,14 @@ if(function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'
 		<?php
 		if(function_exists("printAlbumMenu")) {
 			?>
-			<h3><a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Visit the photo gallery'); ?>"><?php echo gettext("Gallery"); ?></a></h3>
+			<h3><a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Visit the image gallery'); ?>"><?php echo gettext("Gallery"); ?></a></h3>
 			<?php
 			printAlbumMenu("list",NULL,"","menu-active","submenu","menu-active","");
 		} else {
 			?>
 			<h3><?php echo gettext("Gallery"); ?></h3>
 			<ul>
-			<li><a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Visit the photo gallery'); ?>"><?php echo getGalleryTitle();?></a></li>
+			<li><a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Visit the image gallery'); ?>"><?php echo getGalleryTitle();?></a></li>
 			</ul>
 			<?php
 		}

@@ -90,7 +90,7 @@ function sanitize_string($input_string, $sanitize_level) {
 
 function printAdminFooter() {
 	echo "<div id=\"footer\">";
-	echo "\n  <a href=\"http://www.zenphoto.org\" title=\"".gettext('A simpler web photo album')."\">zen<strong>photo</strong></a>";
+	echo "\n  <a href=\"http://www.zenphoto.org\" title=\"".gettext('A simpler web album')."\">zen<strong>photo</strong></a>";
 	echo " | <a href=\"http://www.zenphoto.org/support/\" title=\"".gettext('Forum').'">'.gettext('Forum')."</a> | <a href=\"http://www.zenphoto.org/trac/\" title=\"Trac\">Trac</a> | <a href=\"changelog.html\" title=\"".gettext('View Change log')."\">".gettext('Change log')."</a>\n</div>";
 }
 

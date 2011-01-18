@@ -203,7 +203,7 @@ printLogoAndLinks();
 
 <div class="tabbox">
 
-<h1><?php echo gettext("Upload Photos"); ?></h1>
+<h1><?php echo gettext("Upload Images"); ?></h1>
 <p>
 <?php
 natcasesort($_zp_supported_images);

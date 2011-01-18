@@ -49,21 +49,21 @@ require_once('normalizer.php');
 						if ($anumber > 0 || $inumber > 0) {
 							echo '<p><em>(';
 							if ($anumber == 0 && $inumber == 1) {
-								printf(gettext('1 photo'));
+								printf(gettext('1 image'));
 							} else if ($anumber == 0 && $inumber > 1) {
-								printf(gettext('%u photos'), $inumber);
+								printf(gettext('%u images'), $inumber);
 							} else if ($anumber == 1 && $inumber == 1) {
-								printf(gettext('1 album,&nbsp;1 photo'));
+								printf(gettext('1 album,&nbsp;1 image'));
 							} else if ($anumber > 1 && $inumber == 1) {
-								printf(gettext('%u albums,&nbsp;1 photo'), $anumber);
+								printf(gettext('%u albums,&nbsp;1 image'), $anumber);
 							} else if ($anumber > 1 && $inumber > 1) {
-								printf(gettext('%1$u albums,&nbsp;%2$u photos'), $anumber, $inumber);
+								printf(gettext('%1$u albums,&nbsp;%2$u images'), $anumber, $inumber);
 							} else if ($anumber == 1 && $inumber == 0) {
 								printf(gettext('1 album'));
 							} else if ($anumber > 1 && $inumber == 0) {
 								printf(gettext('%u albums'),$anumber);
 							} else if ($anumber == 1 && $inumber > 1) {
-								printf(gettext('1 album,&nbsp;%u photos'), $inumber);
+								printf(gettext('1 album,&nbsp;%u images'), $inumber);
 							}
 							echo ')</em><br />';
 						}

@@ -276,7 +276,7 @@ if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])
 <?php } ?></div>
 <?php } ?>
 
-<p><?php echo gettext("You can edit or delete comments on your photos."); ?></p>
+<p><?php echo gettext("You can edit or delete comments on your images."); ?></p>
 
 <?php if ($totalpages > 1) {?>
 	<div align="center">

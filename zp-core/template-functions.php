@@ -3500,7 +3500,7 @@ function getTags() {
  * Prints a list of tags, editable by admin
  *
  * @param string $option links by default, if anything else the
- *               tags will not link to all other photos with the same tag
+ *               tags will not link to all other images with the same tag
  * @param string $preText text to go before the printed tags
  * @param string $class css class to apply to the div surrounding the UL list
  * @param string $separator what charactor shall separate the tags
@@ -4553,7 +4553,7 @@ function printCaptcha($preText='', $midText='', $postText='', $size=4) {
  *
  */
 function printZenphotoLink() {
-	echo gettext("Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web photo album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>");
+	echo gettext("Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>");
 }
 
 /**

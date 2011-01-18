@@ -73,7 +73,7 @@ require_once('normalizer.php');
 			<div id="meta">
 				<ul>
 					<li class="count"><?php
-					 if (($num = getNumImages()) > 1) { printf(gettext('%1$u of %2$u photos'), imageNumber(), getNumImages()); }
+					 if (($num = getNumImages()) > 1) { printf(gettext('%1$u of %2$u images'), imageNumber(), getNumImages()); }
 					 ?></li>
 					<li class="date"><?php printImageDate(); ?></li>
 					<li class="tags"><?php echo getAlbumLocation(); ?></li>

@@ -23,7 +23,7 @@ define('TEXT_INPUT_SIZE_SHORT', 30);
 function printAdminFooter($addl='') {
 	?>
 	<div id="footer">
-		<?php printf(gettext('<a href="http://www.zenphoto.org" title="A simpler web photo album">Zen<strong>photo</strong></a> version %1$s [%2$s]'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE);
+		<?php printf(gettext('<a href="http://www.zenphoto.org" title="A simpler web album">Zen<strong>photo</strong></a> version %1$s [%2$s]'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE);
 		if (!empty($addl)) {
 			echo ' | '. $addl;
 		}
@@ -1476,7 +1476,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 			<td valign="top">
 				<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 				<div class="box-edit">
-					
+
 						<label class="checkboxlabel">
 							<input type="checkbox" name="<?php	echo $prefix; ?>Published" value="1" <?php if ($album->getShow()) echo ' checked="checked"';	?> />
 							<?php echo gettext("Published");?>
@@ -1514,7 +1514,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 							<?php
 						}
 						?>
-					
+
 				  <br clear="all" />
 				</div>
 				<!-- **************** Move/Copy/Rename ****************** -->

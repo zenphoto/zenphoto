@@ -70,7 +70,7 @@ function get_AnyFile_suffixes() {
 	return $mysetoptions;
 }
 
-require_once(dirname(__FILE__).'/class-TextObject.php');
+require_once(dirname(__FILE__).'/class-textobject/class-textobject_core.php');
 
 class AnyFile extends TextObject {
 

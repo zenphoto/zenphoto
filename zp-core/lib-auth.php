@@ -731,7 +731,7 @@ class Zenphoto_Authority {
 		?>
 		<div id="loginform">
 		<?php
-		if ($logo) echo "<p><img src=\"".WEBPATH.'/'.ZENFOLDER."/images/zen-logo.png\" title=\"Zen Photo\" alt=\"Zen Photo\" /></p>";
+		if ($logo) echo "<p><img src=\"".WEBPATH.'/'.ZENFOLDER."/images/zen-logo.png\" title=\"ZenPhoto\" alt=\"ZenPhoto\" /></p>";
 		switch ($_zp_login_error) {
 			case 1:
 				?>

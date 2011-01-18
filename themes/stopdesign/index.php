@@ -48,19 +48,19 @@ require_once('normalizer.php');
 							echo '<p><em>(';
 							if ($anumber == 0) {
 								if ($inumber != 0) {
-									printf(ngettext('%u photo','%u photos', $inumber), $inumber);
+									printf(ngettext('%u image','%u images', $inumber), $inumber);
 								}
 							} else if ($anumber == 1) {
 								if ($inumber > 0) {
-									printf(ngettext('1 album,&nbsp;%u photo','1 album,&nbsp;%u photos', $inumber), $inumber);
+									printf(ngettext('1 album,&nbsp;%u image','1 album,&nbsp;%u images', $inumber), $inumber);
 								} else {
 									printf(gettext('1 album'));
 								}
 							} else {
 								if ($inumber == 1) {
-									printf(ngettext('%u album,&nbsp;1 photo','%u albums,&nbsp;1 photo', $anumber), $anumber);
+									printf(ngettext('%u album,&nbsp;1 image','%u albums,&nbsp;1 image', $anumber), $anumber);
 								} else if ($inumber > 0) {
-									printf(ngettext('%1$u album,&nbsp;%2$s','%1$u albums,&nbsp;%2$s', $anumber), $anumber, sprintf(ngettext('%u photo','%u photos',$inumber),$inumber));
+									printf(ngettext('%1$u album,&nbsp;%2$s','%1$u albums,&nbsp;%2$s', $anumber), $anumber, sprintf(ngettext('%u image','%u images',$inumber),$inumber));
 								} else {
 									printf(ngettext('%u album','%u albums', $anumber), $anumber);
 								}

@@ -62,12 +62,12 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 		</p>
 			<div id="pic_day">
 				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-					<?php printCustomSizedImage(gettext('Visit the photo gallery'), $size); ?>
+					<?php printCustomSizedImage(gettext('Visit the image gallery'), $size); ?>
 				</a>
 			</div>
 			<?php if (!$zenpage) { ?>
 			<p align="center">
-			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo gettext('Visit the photo gallery');?></a>
+			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo gettext('Visit the image gallery');?></a>
 			</p>
 			<?php } ?>
 		</div> <!-- image -->

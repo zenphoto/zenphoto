@@ -2906,7 +2906,7 @@ function zenpageAlbumImage($albumname, $imagename=NULL, $size=NULL) {
 			rem_context(ZP_IMAGE);
 			echo '<a href="'.html_encode(getAlbumLinkURL($album)).'"   title="'.sprintf(gettext('View the %s album'), $albumname).'">';
 			add_context(ZP_IMAGE);
-			printCustomSizedImage(sprintf(gettext('View the photo album %s'), $albumname), $size);
+			printCustomSizedImage(sprintf(gettext('View the album %s'), $albumname), $size);
 			rem_context(ZP_IMAGE | ZP_ALBUM);
 			echo '</a>';
 		} else {
