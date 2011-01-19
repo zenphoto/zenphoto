@@ -1004,6 +1004,9 @@ function printParentBreadcrumb($before = '', $between=' | ', $after = ' | ', $tr
 		$searchdate = $_zp_current_search->dates;
 		$searchfields = $_zp_current_search->getSearchFields(true);
 		$search_album_list=$_zp_current_search->album_list;
+		if (!is_array($search_album_list)) {
+			$search_album_list = array();
+		}
 		$searchpagepath = html_encode(getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$search_album_list)));
 		$dynamic_album = $_zp_current_search->dynalbumname;
 		if (empty($dynamic_album)) {
