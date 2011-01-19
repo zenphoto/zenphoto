@@ -691,6 +691,7 @@ zp-core/zp-extensions/deprecated-functions.php
 zp-core/zp-extensions/dynamic-locale
 zp-core/zp-extensions/dynamic-locale.php
 zp-core/zp-extensions/dynamic-locale/locale.css
+zp-core/zp-extensions/email-newuser.php
 zp-core/zp-extensions/failed_access_blocker.php
 zp-core/zp-extensions/flag_thumbnail
 zp-core/zp-extensions/flag_thumbnail.php
@@ -1710,4 +1711,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1712
+1713

@@ -65,7 +65,7 @@ class WEBdocs_Options {
 																											gettext('Zoho')=>'zoho',
 																											gettext('Browser default')=>'local'
 																											),
-																	'desc' => gettext("Choose the WEB service to use for rendering powerpoint document.")),
+																	'desc' => gettext("Choose the WEB service to use for rendering PowerPoint document.")),
 									gettext('Tiff') => array('key' => 'WEBdocs_tif_provider', 'type' => OPTION_TYPE_RADIO,
 																	'buttons' => array(	gettext('Disabled')=>'',
 																											gettext('Zoho')=>'zoho',
