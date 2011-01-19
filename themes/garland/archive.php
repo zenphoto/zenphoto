@@ -49,7 +49,7 @@ if (!defined('WEBPATH')) die();
                 </div>
               </div>
   			  		<?php footer(); ?>
-              <div style="clear: both;"></div>
+              <p style="clear: both;"></p>
             </div>
             <!-- end content -->
             <span class="clear"></span> </div>

@@ -48,7 +48,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 							<h2><?php echo gettext('A password is required to access this page.') ?></h2>
 							<?php printPasswordForm($hint, $show); ?>
 							<?php footer(); ?>
-							<div style="clear: both;"></div>
+							<p style="clear: both;"></p>
 						</div>
 						<!-- end content -->
 						<span class="clear"></span> </div>

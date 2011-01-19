@@ -17,7 +17,9 @@ if (!defined('WEBPATH')) die();
 		<div id="header">
 			<div id="logo-floater">
 				<div>
-					<h1 class="title"><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo sanitize(getGalleryTitle());?></a></h1>
+					<h1 class="title">
+						<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo sanitize(getGalleryTitle());?></a>
+					</h1>
 				</div>
 			</div>
 		</div><!-- header -->
@@ -31,7 +33,9 @@ if (!defined('WEBPATH')) die();
 			<div class="right-corner">
 				<div class="left-corner"><!-- begin content -->
 					<div class="main section" id="main">
-						<h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; <?php echo gettext('Album index'); ?></h3>
+						<h3 id="gallerytitle">
+							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><?php echo html_encode(getAlbumTitle()); ?>
+						</h3>
 						<div id="albums">
 							<?php
 							while (next_album($_zp_gallery_page == 'gallery.php')) {
@@ -108,7 +112,7 @@ if (!defined('WEBPATH')) die();
 							footer();
 							?>
 					 </div>
-					<div style="clear: both;"></div>
+					<p style="clear: both;"></p>
 					</div>	<!-- end content -->
 					<span class="clear"></span>
 				</div>

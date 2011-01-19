@@ -46,7 +46,7 @@ if (!defined('WEBPATH')) die();
 							</h3>
 							<em><?php  printContactForm(); ?></em>
 							<?php footer(); ?>
-							<div style="clear: both;"></div>
+							<p style="clear: both;"></p>
 						</div>
 						<!-- end content -->
 						<span class="clear"></span> </div>

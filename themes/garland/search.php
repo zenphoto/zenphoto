@@ -217,6 +217,9 @@ if (!defined('WEBPATH')) die();
 					  <?php
 				  }
 					if (function_exists('printSlideShowLink')) {
+						?>
+						<p style="clear: both;"></p>
+						<?php
 						printSlideShowLink(gettext('View Slideshow'),'text-align:center;');
 					}
 					?>
@@ -225,7 +228,7 @@ if (!defined('WEBPATH')) die();
     	    printPageListWithNav(gettext("&laquo; prev"),gettext("next &raquo;"));
 	        footer();
 	        ?>
-            <div style="clear: both;"></div>
+            <p style="clear: both;"></p>
             </div>
             <!-- end content -->
             <span class="clear"></span>

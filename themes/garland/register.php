@@ -47,7 +47,7 @@ if (!defined('WEBPATH')) die();
 							<h2><?php echo gettext('User Registration') ?></h2>
 							<?php  printRegistrationForm();  ?>
 							<?php footer(); ?>
-							<div style="clear: both;"></div>
+							<p style="clear: both;"></p>
 						</div>
 						<!-- end content -->
 						<span class="clear"></span>

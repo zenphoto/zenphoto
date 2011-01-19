@@ -34,7 +34,7 @@ if (!defined('WEBPATH')) die();
 					<div class="main section" id="main">
 						<h3 id="gallerytitle"><?php echo getGalleryTitle(); ?></h3>
 						<?php commonNewsLoop(false); ?>
-						<div style="clear: both;"></div>
+						<p style="clear: both;"></p>
 						<?php footer(); ?>
 					</div><!-- main -->
 				<span class="clear"></span>

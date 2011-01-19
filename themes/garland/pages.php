@@ -52,7 +52,7 @@ if (!defined('WEBPATH')) die();
 							<?php printCodeblock(2); ?>
 							</div>
 						<?php footer(); ?>
-						<div style="clear: both;"></div>
+						<p style="clear: both;"></p>
 						</div>
 						<!-- end content -->
 						<span class="clear"></span> </div>
