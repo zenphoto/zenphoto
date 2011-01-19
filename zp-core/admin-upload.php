@@ -46,9 +46,15 @@ if (isset($_GET['action'])) {
 			// Make sure the folder exists. If not, create it.
 			if (isset($_POST['processed']) && !empty($_POST['folder']) && ($newAlbum || !$files_empty)) {
 				$folder = zp_apply_filter('admin_upload_process',trim(sanitize_path($_POST['folder'])));
+
+				if ($newAlbum) {
+					$rightsalbum = new Album($gallery, dirname($folder));
+				} else{
+					$rightsalbum = new Album($gallery, $folder);
+				}
 				$album = new Album($gallery, $folder);
 				// see if he has rights to the album.
-				if (!$modified_rights = $album->isMyItem(UPLOAD_RIGHTS)) {
+				if (!$modified_rights = $rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 					if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 						$error = UPLOAD_ERR_CANT_WRITE;
 					}

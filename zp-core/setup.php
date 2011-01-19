@@ -45,7 +45,11 @@ if (!file_exists($en_US)) {
 }
 
 $selected_database = 'MySQL';
-if (!file_exists(CONFIGFILE)) {
+if (file_exists(CONFIGFILE)) {
+	$newconfig = false;
+	$zptime = filemtime(CONFIGFILE);
+} else {
+	$zptime = time();
 	if (!file_exists(dirname(dirname(__FILE__)).'/'.DATA_FOLDER)) {
 		@mkdir(dirname(dirname(__FILE__)).'/'.DATA_FOLDER, $chmod);
 	}
@@ -57,8 +61,6 @@ if (!file_exists(CONFIGFILE)) {
 		$newconfig = true;
 		@copy('zp-config.php.source', CONFIGFILE);
 	}
-} else {
-	$newconfig = false;
 }
 
 if (session_id() == '') {
@@ -1520,6 +1522,7 @@ if (file_exists(CONFIGFILE)) {
 		`custom_data` text,
 		`valid` int(1) DEFAULT 1,
 		`group` varchar(64) DEFAULT NULL,
+		`date` datetime,
 		`quota` int(11) DEFAULT NULL,
 		`language` varchar(5) DEFAULT NULL,
 		`prime_album` varchar(255) DEFAULT NULL,
@@ -2030,6 +2033,8 @@ if (file_exists(CONFIGFILE)) {
 	//v1.4.1
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `prime_album` varchar(255) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `other_credentials` TEXT';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `date` datetime';
+	$sql_statements[] = 'UPDATE '.$tbl_administrators.' SET `date`="'.date('Y-m-d H:i:s',$zptime).'" WHERE `date` IS NULL';
 
 
 	// do this last incase there are any field changes of like names!

@@ -34,8 +34,13 @@ if (!empty($_FILES)) {
 		$targetPath = getAlbumFolder().internalToFilesystem($folder);
 		$new = !is_dir($targetPath);
 		if (!empty($folder)) {
+			if ($new) {
+				$rightsalbum = new Album($gallery, dirname($folder));
+			} else{
+				$rightsalbum = new Album($gallery, $folder);
+			}
 			$album = new Album(new Gallery(), $folder);
-			if (!$album->isMyItem(UPLOAD_RIGHTS)) {
+			if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 				if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
 					exit();

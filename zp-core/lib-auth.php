@@ -840,10 +840,38 @@ class Zenphoto_Administrator extends PersistentObject {
 		parent::PersistentObject('administrators', array('user' => $user, 'valid'=>$valid), NULL, false, empty($user));
 	}
 
+		/**
+	 * Returns the unformatted date
+	 *
+	 * @return date
+	 */
+	function getDateTime() {
+		return $this->get('date');
+	}
+
+	/**
+	 * Stores the date
+	 *
+	 * @param string $datetime formatted date
+	 */
+	function setDateTime($datetime) {
+		if ($datetime) {
+			$newtime = dateTimeConvert($datetime);
+			if ($newtime === false) return;
+			$this->set('date', $newtime);
+		} else {
+			$this->set('date', NULL);
+		}
+	}
+
 	function getID() {
 		return $this->get('id');
 	}
 
+	/**
+	 * Hashes and stores the password
+	 * @param $pwd
+	 */
 	function setPass($pwd) {
 		global $_zp_authority;
 		$msg = $_zp_authority->validatePassword($pwd);
@@ -852,34 +880,63 @@ class Zenphoto_Administrator extends PersistentObject {
 		$this->set('pass', $pwd);
 		return false;
 	}
+	/**
+	 * Returns stored password hash
+	 */
 	function getPass() {
 		return $this->get('pass');
 	}
 
+	/**
+	 * Stores the user name
+	 */
 	function setName($admin_n) {
 		$this->set('name', $admin_n);
 	}
+	/**
+	 * Returns the user name
+	 */
 	function getName() {
 		return $this->get('name');
 	}
 
+	/**
+	 * Stores the user email
+	 */
 	function setEmail($admin_e) {
 		$this->set('email', $admin_e);
 	}
+	/**
+	 * Returns the user email
+	 */
 	function getEmail() {
 		return $this->get('email');
 	}
 
+	/**
+	 * Stores user rights
+	 */
 	function setRights($rights) {
 		$this->set('rights', $rights);
 	}
+	/**
+	 * Returns user rights
+	 */
 	function getRights() {
 		return $this->get('rights');
 	}
 
+	/**
+	 * Returns local copy of managed objects.
+	 */
 	function setObjects($objects) {
 		$this->objects = $objects;
 	}
+	/**
+	 * Saves local copy of managed objects.
+	 * NOTE: The database is NOT updated by this, the user object MUST be saved to
+	 * cause an update
+	 */
 	function getObjects($what=NULL) {
 		if (is_null($this->objects)) {
 			$this->objects = array();
@@ -899,53 +956,95 @@ class Zenphoto_Administrator extends PersistentObject {
 		return $result;
 	}
 
+	/**
+	 * Stores custom data
+	 */
 	function setCustomData($custom_data) {
 		$this->set('custom_data', $custom_data);
 	}
+	/**
+	 * Returns custom data
+	 */
 	function getCustomData() {
 		return $this->get('custom_data');
 	}
 
+	/**
+	 * Sets the "valid" flag. Valid is 1 for users, 0 for groups and templates
+	 */
 	function setValid($valid) {
 		$this->set('valid', $valid);
 	}
+	/**
+	 * Returns the valid flag
+	 */
 	function getValid() {
 		return $this->get('valid');
 	}
 
+	/**
+	 * Sets the user's group.
+	 * NOTE this does NOT set rights, etc. that must be done separately
+	 */
 	function setGroup($group) {
 		$this->set('group', $group);
 	}
+	/**
+	 * Returns user's group
+	 */
 	function getGroup() {
 		return $this->get('group');
 	}
 
+	/**
+	 * Sets the user's user id
+	 */
 	function setUser($user) {
 		$this->set('user', $user);
 	}
+	/**
+	 * Returns user's user id
+	 */
 	function getUser() {
 		return $this->get('user');
 	}
 
+	/**
+	 * Sets the users quota
+	 */
 	function setQuota($v) {
 		$this->set('quota',$v);
 	}
+	/**
+	 * Returns the users quota
+	 */
 	function getQuota() {
 		return $this->get('quota');
 	}
 
+	/**
+	 * Returns the user's prefered language
+	 */
 	function getLanguage() {
 		return $this->get('language');
 	}
-
-	function setLanguage($locale) {
+	/**
+	 * Sets the user's preferec language
+	 */
+		function setLanguage($locale) {
 		$this->set('language',$locale);
 	}
 
+	/**
+	 * Uptates the database with all changes
+	 */
 	function save() {
 		if (DEBUG_LOGIN) { debugLogVar("Zenphoto_Administrator->save()", $this); }
 		$objects = $this->getObjects();
 		$gallery = new Gallery();
+		if (is_null($this->get('date'))) {
+			$this->set('date',date('Y-m-d H:i:s'));
+		}
 		parent::save();
 		$id = $this->getID();
 		if (is_array($objects)) {
@@ -987,6 +1086,9 @@ class Zenphoto_Administrator extends PersistentObject {
 		}
 	}
 
+	/**
+	 * Removes a user from the system
+	 */
 	function remove() {
 		$album = $this->getAlbum();
 		$id = $this->getID();
@@ -1003,7 +1105,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	}
 
 	/**
-	 * handle users defined album
+	 * Returns the user's "prime" album. See setAlbum().
 	 */
 	function getAlbum() {
 		$id = $this->get('prime_album');
@@ -1017,6 +1119,11 @@ class Zenphoto_Administrator extends PersistentObject {
 		}
 		return false;
 	}
+
+	/**
+	 * Records the "prime album" of a user. Prime albums are linked to the user and
+	 * removed if the user is removed.
+	 */
 	function setAlbum($album) {
 		$this->set('prime_album', $album->getID());
 	}
@@ -1031,6 +1138,9 @@ class Zenphoto_Administrator extends PersistentObject {
 		$this->set('other_credentials',$cred);
 	}
 
+	/**
+	 * Creates a "prime" album for the user. Album name is based on the userid
+	 */
 	function createPrimealbum() {
 		//	create his album
 		$t = 0;

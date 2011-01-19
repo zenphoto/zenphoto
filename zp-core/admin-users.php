@@ -627,8 +627,20 @@ function languageChange(id,lang) {
 			?>
 		<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
 			<td width="35%" <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top">
-				<?php $x = $userobj->getPass(); if (!empty($x)) { $x = '          '; } ?>
-				<p>
+				<?php
+				if (!empty($userid)) {
+					?>
+					<p>
+						<?php
+						$d = strtotime($userobj->getDateTime());
+						printf(gettext('User since %s'),date('Y-m-d'),$d);
+						?>
+					</p>
+					<?php $x = $userobj->getPass(); if (!empty($x)) { $x = '          '; } ?>
+					<p>
+					<?php
+				}
+				?>
 				<label for="<?php echo $id ?>-adminpass"><?php echo gettext("Password:"); ?><br />
 				<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass"
 					value="<?php echo $x; ?>" /></label></p>
