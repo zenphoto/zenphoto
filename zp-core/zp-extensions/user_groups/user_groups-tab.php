@@ -3,6 +3,7 @@
  * user_groups plugin--tabs
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage usermanagement
  */
 define ('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-functions.php');

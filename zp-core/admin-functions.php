@@ -230,7 +230,12 @@ function printLogoAndLinks() {
 	echo "\n  ";
 	if (!is_null($_zp_current_admin_obj)) {
 		if (getOption('server_protocol')=='https') $sec=1; else $sec=0;
-		printf(gettext("Logged in as %s"), $_zp_current_admin_obj->getUser());
+		$last = $_zp_current_admin_obj->lastlogon;
+		if (empty($last)) {
+			printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
+		} else {
+			printf(gettext('Logged in as %1$s (last login %2$s)'), $_zp_current_admin_obj->getUser(),$last);
+		}
 		echo " &nbsp; | &nbsp; <a href=\"".WEBPATH."/".ZENFOLDER."/admin.php?logout=".$sec."\">".gettext("Log Out")."</a> &nbsp; | &nbsp; ";
 	}
 	echo '<a href="'.FULLWEBPATH.'">';
@@ -2781,67 +2786,6 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
 		</fieldset>
 	</div>
 	<?php
-}
-
-/**
- * Returns a list of album names managed by $id
- *
- * @param string $type which kind of object
- * @param int $id admin ID
- * @param bool $rights set true for album sub-rights
- * @return array
- */
-function populateManagedObjectsList($type,$id,$rights=false) {
-	if (empty($id)) {
-		return array();
-	}
-	$cv = array();
-	if (empty($type) || $type=='album') {
-		$sql = "SELECT ".prefix('albums').".`folder`,".prefix('admin_to_object').".`edit` FROM ".prefix('albums').", ".
-						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
-						" AND ".prefix('albums').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='album'";
-		$currentvalues = query_full_array($sql);
-		foreach($currentvalues as $albumitem) {
-			$folder = $albumitem['folder'];
-			if (hasDynamicAlbumSuffix($folder)) {
-				$name = substr($folder, 0, -4); // Strip the .'.alb' suffix
-			} else {
-				$name = $folder;
-			}
-			if ($type && !$rights) {
-				$cv[$name] = $folder;
-			} else {
-				$cv[] = array('data'=>$folder,'name'=>$name,'type'=>'album','edit'=>$albumitem['edit']+0);
-			}
-		}
-	}
-	if (empty($type) || $type=='pages')  {
-		$sql = 'SELECT '.prefix('pages').'.`title`,'.prefix('pages').'.`titlelink` FROM '.prefix('pages').', '.
-						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
-						" AND ".prefix('pages').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='pages'";
-		$currentvalues = query_full_array($sql);
-		foreach ($currentvalues as $item) {
-			if ($type) {
-				$cv[get_language_string($item['title'])] = $item['titlelink'];
-			} else {
-				$cv[] = array('data'=>$item['titlelink'],'type'=>'pages');
-			}
-		}
-	}
-	if (empty($type) || $type=='news')  {
-		$sql = 'SELECT '.prefix('news_categories').'.`titlelink`,'.prefix('news_categories').'.`title` FROM '.prefix('news_categories').', '.
-						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
-						" AND ".prefix('news_categories').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='news'";
-		$currentvalues = query_full_array($sql);
-		foreach ($currentvalues as $item) {
-			if ($type) {
-				$cv[get_language_string($item['title'])] = $item['titlelink'];
-			} else {
-				$cv[] = array('data'=>$item['titlelink'],'type'=>'news');
-			}
-		}
-	}
-	return $cv;
 }
 
 /**

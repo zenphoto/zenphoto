@@ -215,6 +215,7 @@ if (file_exists(CONFIGFILE)) {
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'].'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
 			}
 		}
+		query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `loggedin` datetime', false);
 		$environ = true;
 		require_once(dirname(__FILE__).'/admin-functions.php');
 	} else {
@@ -1523,6 +1524,7 @@ if (file_exists(CONFIGFILE)) {
 		`valid` int(1) DEFAULT 1,
 		`group` varchar(64) DEFAULT NULL,
 		`date` datetime,
+		`loggedin` datetime,
 		`quota` int(11) DEFAULT NULL,
 		`language` varchar(5) DEFAULT NULL,
 		`prime_album` varchar(255) DEFAULT NULL,
@@ -2034,6 +2036,7 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `prime_album` varchar(255) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `other_credentials` TEXT';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `date` datetime';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `loggedin` datetime';
 	$sql_statements[] = 'UPDATE '.$tbl_administrators.' SET `date`="'.date('Y-m-d H:i:s',$zptime).'" WHERE `date` IS NULL';
 
 

@@ -3,6 +3,7 @@
  * Form for registering users
  *
  * @package plugins
+ * @subpackage usermanagement
  */
 
 ?>

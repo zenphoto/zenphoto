@@ -21,6 +21,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage usermanagement
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;

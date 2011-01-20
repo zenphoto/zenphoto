@@ -1,14 +1,35 @@
 <?php
 /**
- * Presents users in "chronological" order for
+ * Manages user expirations
+ *
+ * NOTE: does not apply to users with ADMIN_RIGHTS!
+ *
+ * Set the "interval" to the number of days before expiration
+ * Upon expiration, the user will be "disabled". He will not have
+ * login access to the gallery.
+ *
+ * if the user visits the gallery within one week prior to his expiry date
+ * a mail will be sent to the user (if there is an email address)
+ * warning of the impending expiration.
+ *
+ * There is a subtab added to the "admin" tab for managing expirations.
+ * A list of users without ADMIN_RITGHTS will be presented indicating each
+ * user's expiry date. Dates within one week of expiry are shown in orange,
+ * expired dates are shown in red.
+ *
+ * From this tab the user may be removed, disabled (enabled)
+ * or renewed. (Renewal is for a new "interval" from his last renewal (or the
+ * current date if adding the interval would not bring him up-to-date.)
+ *
  *
  * @package plugins
+ * @subpackage usermanagement
  */
 
 // force UTF-8 Ø
 
-$plugin_is_filter = 5|ADMIN_PLUGIN;
-$plugin_description = gettext("Provides rudimentary user groups.");
+$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_description = gettext("Provides management of users based on when they were created.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
 $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---user-expiry.php.html";
@@ -16,6 +37,8 @@ $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."-
 $option_interface = 'user_expiry';
 
 zp_register_filter('admin_tabs', 'user_expiry_admin_tabs', 99);
+zp_register_filter('authorization_cookie','user_expiry_checkcookie');
+zp_register_filter('admin_login_attempt','user_expiry_checklogon');
 
 /**
  * Option handler class
@@ -63,4 +86,43 @@ function user_expiry_admin_tabs($tabs, $current) {
 	return $tabs;
 }
 
+function user_expiry_checkexpires($loggedin, $userobj) {
+	$subscription = 86400*getOption('user_expiry_interval');
+	$expires = strtotime($userobj->getDateTime())+$subscription;
+	if ($expires < time()) {
+		$userobj->setValid(2);
+		$userobj->save();
+		$loggedin = false;
+	} else {
+		if ($expires < (time() + 604800)) {
+			if ($mail = $userobj->getEmail()) {
+				$gallery = new Gallery();
+				$message = sprintf(gettext('Your user id for the Zenphoto site %s will expire on %s.'),$gallery->getTitle(),date('Y-m-d',$expires));
+				$notify = zp_mail(get_language_string(gettext('User id expiration')), $message, array($userobj->getName()=>$mail));
+			}
+		}
+	}
+	return $loggedin;
+}
+
+function user_expiry_checkcookie($loggedin) {
+	global $_zp_current_admin_obj;
+	if (is_object($_zp_current_admin_obj) && !($_zp_current_admin_obj->getRights() & ADMIN_RIGHTS)) {
+		$loggedin = user_expiry_checkexpires($loggedin, $_zp_current_admin_obj);
+	}
+	return $loggedin;
+}
+
+function user_expiry_checklogon($loggedin, $user, $pass) {
+	global $_zp_authority;
+	if ($loggedin) {
+		if (!($loggedin & ADMIN_RIGHTS)) {
+			$md5 = $_zp_authority->passwordHash($user, $pass);
+			$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`pass`=' => $md5, '`valid`=' => 1));
+			$loggedin = user_expiry_checkexpires($loggedin, $userobj);
+		}
+	}
+	return $loggedin;
+
+}
 ?>

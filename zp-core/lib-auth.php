@@ -198,10 +198,16 @@ class Zenphoto_Authority {
 			if ($admins !== false) {
 				foreach($admins as $user) {
 					$this->admin_all[$user['id']] = $user;
-					if ($user['valid']) {
-						$this->admin_users[$user['id']] = $user;
-					} else {
-						$this->admin_groups[$user['id']] = $user;
+					switch ($user['valid']) {
+						case 1:
+							$this->admin_users[$user['id']] = $user;
+							break;
+						case 0:
+							$this->admin_groups[$user['id']] = $user;
+							break;
+						default:
+							//these are found in "all"
+							break;
 					}
 				}
 			}
@@ -258,7 +264,7 @@ class Zenphoto_Authority {
 		}
 
 		if (empty($authCode)) return 0; //  so we don't "match" with an empty password
-		$_zp_current_admin_obj = null;
+		$_zp_current_admin_obj = NULL;
 		$rights = 0;
 		$criteria = array('`pass`=' => $authCode, '`valid`=' => 1);
 		if (!is_null($id)) {
@@ -271,7 +277,7 @@ class Zenphoto_Authority {
 			if (DEBUG_LOGIN) { debugLog(sprintf('checkAuthorization: from $authcode %X',$rights));	}
 			return $rights;
 		}
-		$_zp_current_admin_obj = null;
+		$_zp_current_admin_obj = NULL;
 		if (DEBUG_LOGIN) { debugLog("checkAuthorization: no match");	}
 		return 0; // no rights
 	}
@@ -292,10 +298,7 @@ class Zenphoto_Authority {
 		$success = false;
 		$md5 = $this->passwordHash($user, $pass);
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`pass`=' => $md5, '`valid`=' => 1));
-		if ($userobj) {
-			return $userobj->getRights();
-		}
-		return false;
+		return $userobj;
 	}
 
 	/**
@@ -553,13 +556,21 @@ class Zenphoto_Authority {
 	 * User authentication support
 	 */
 	function handleLogon() {
-		global $_zp_login_error, $_zp_captcha;
+		global $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha;
 		if (isset($_POST['login']) && isset($_POST['user']) && isset($_POST['pass'])) {
 			$post_user = sanitize($_POST['user']);
 			$post_pass = sanitize($_POST['pass'],0);
-			$_zp_loggedin = $this->checkLogon($post_user, $post_pass, true);
+			$user = $this->checkLogon($post_user, $post_pass, true);
+			if ($user) {
+				$_zp_loggedin = $user->getRights();
+			} else {
+				$_zp_loggedin = false;
+			}
 			$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
 			if ($_zp_loggedin) {
+				$user->lastlogon = $user->get('loggedin');
+				$user->set('loggedin',date('Y-m-d H:i:s'));
+				$user->save();
 				zp_setcookie("zenphoto_auth", $this->passwordHash($post_user, $post_pass), NULL, NULL, secureServer());
 			} else {
 				// Clear the cookie, just in case
@@ -829,6 +840,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	 */
 	var $objects = NULL;
 	var $master = false;	//	will be set to true if this is the inherited master user
+	var $lastlogon = NULL;	// date of last use
 
 	/**
 	 * Constructor for an Administrator
@@ -855,7 +867,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * @param string $datetime formatted date
 	 */
 	function setDateTime($datetime) {
-		$this->set('date', $newtime);
+		$this->set('date', $datetime);
 	}
 
 	function getID() {

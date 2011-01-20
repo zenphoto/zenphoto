@@ -7,6 +7,7 @@
  *
  * @author Malte Müller (acrylian)
  * @package plugins
+ * @subpackage usermanagement
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;

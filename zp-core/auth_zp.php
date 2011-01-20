@@ -91,6 +91,7 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 	$_zp_loggedin = $_zp_authority->checkCookieCredentials();
 	$_zp_null_account = ($_zp_loggedin == ADMIN_RIGHTS);
 	if (is_object($_zp_current_admin_obj)) {
+		$_zp_current_admin_obj->lastlogon = $_zp_current_admin_obj->get('loggedin');
 		$locale = $_zp_current_admin_obj->getLanguage();
 		if (!empty($locale)) {	//	set his prefered language
 			setupCurrentLocale($locale);
@@ -98,7 +99,7 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 		$_zp_loggedin = zp_apply_filter('authorization_cookie',$_zp_loggedin);
 	}
 }
-if (!$_zp_loggedin) {	//	Clear the ssl cookie
+	if (!$_zp_loggedin) {	//	Clear the ssl cookie
 	zp_setcookie("zenphoto_ssl", "", time()-368000);
 }
 // Handle a logout action.

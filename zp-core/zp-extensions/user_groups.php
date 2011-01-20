@@ -3,6 +3,7 @@
  * Provides rudimentary user groups
  *
  * @package plugins
+ * @subpackage usermanagement
  */
 
 // force UTF-8 Ø

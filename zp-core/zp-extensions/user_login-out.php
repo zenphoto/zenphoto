@@ -6,6 +6,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage usermanagement
  */
 
 $plugin_description = gettext("Provides a means for placing a user login form or logout link on your theme pages.");

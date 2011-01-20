@@ -998,6 +998,67 @@ function getManagedAlbumList() {
 }
 
 /**
+ * Returns a list of album names managed by $id
+ *
+ * @param string $type which kind of object
+ * @param int $id admin ID
+ * @param bool $rights set true for album sub-rights
+ * @return array
+ */
+function populateManagedObjectsList($type,$id,$rights=false) {
+	if (empty($id)) {
+		return array();
+	}
+	$cv = array();
+	if (empty($type) || $type=='album') {
+		$sql = "SELECT ".prefix('albums').".`folder`,".prefix('admin_to_object').".`edit` FROM ".prefix('albums').", ".
+						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
+						" AND ".prefix('albums').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='album'";
+		$currentvalues = query_full_array($sql);
+		foreach($currentvalues as $albumitem) {
+			$folder = $albumitem['folder'];
+			if (hasDynamicAlbumSuffix($folder)) {
+				$name = substr($folder, 0, -4); // Strip the .'.alb' suffix
+			} else {
+				$name = $folder;
+			}
+			if ($type && !$rights) {
+				$cv[$name] = $folder;
+			} else {
+				$cv[] = array('data'=>$folder,'name'=>$name,'type'=>'album','edit'=>$albumitem['edit']+0);
+			}
+		}
+	}
+	if (empty($type) || $type=='pages')  {
+		$sql = 'SELECT '.prefix('pages').'.`title`,'.prefix('pages').'.`titlelink` FROM '.prefix('pages').', '.
+						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
+						" AND ".prefix('pages').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='pages'";
+		$currentvalues = query_full_array($sql);
+		foreach ($currentvalues as $item) {
+			if ($type) {
+				$cv[get_language_string($item['title'])] = $item['titlelink'];
+			} else {
+				$cv[] = array('data'=>$item['titlelink'],'type'=>'pages');
+			}
+		}
+	}
+	if (empty($type) || $type=='news')  {
+		$sql = 'SELECT '.prefix('news_categories').'.`titlelink`,'.prefix('news_categories').'.`title` FROM '.prefix('news_categories').', '.
+						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
+						" AND ".prefix('news_categories').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='news'";
+		$currentvalues = query_full_array($sql);
+		foreach ($currentvalues as $item) {
+			if ($type) {
+				$cv[get_language_string($item['title'])] = $item['titlelink'];
+			} else {
+				$cv[] = array('data'=>$item['titlelink'],'type'=>'news');
+			}
+		}
+	}
+	return $cv;
+}
+
+/**
  * Returns  an array of album ids whose parent is the folder
  * @param string $albumfolder folder name if you want a album different >>from the current album
  * @return array
@@ -1866,8 +1927,12 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		$post_pass = $_POST['pass'];
 		$auth = $_zp_authority->passwordHash($post_user, $post_pass);
 		if (DEBUG_LOGIN) debugLog("zp_handle_password: \$post_user=$post_user; \$post_pass=$post_pass; \$auth=$auth; ");
-		$_zp_loggedin = $_zp_authority->checkLogon($post_user, $post_pass, false);
-
+		$user = $_zp_authority->checkLogon($post_user, $post_pass, false);
+		if ($user) {
+			$_zp_loggedin = $user->getRights();
+		} else {
+			$_zp_loggedin = false;
+		}
 		$redirect_to = $_POST['redirect'];
 		if (substr($redirect_to,0,1)=='/') {
 			$initial = '/';
@@ -1878,7 +1943,9 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		if (strpos($redirect_to, WEBPATH.'/')===0) {
 			$redirect_to = substr($redirect_to,strlen(WEBPATH)+1);
 		}
-		if ($_zp_loggedin) $_zp_loggedin = zp_apply_filter('guest_login_attempt', $_zp_loggedin, $post_user, $post_pass, 'zp_admin_auth');
+		if ($_zp_loggedin) {
+			$_zp_loggedin = zp_apply_filter('guest_login_attempt', $_zp_loggedin, $post_user, $post_pass, 'zp_admin_auth');
+		}
 		if ($_zp_loggedin) {	// allow Admin user login
 			// https: set the 'zenphoto_ssl' marker for redirection
 			if(secureServer()) {

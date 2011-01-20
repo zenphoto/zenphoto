@@ -17,6 +17,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage usermanagement
  */
 
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");
