@@ -631,16 +631,10 @@ function languageChange(id,lang) {
 				if (empty($userid)) {
 					$x = '';
 				} else {
-					?>
-					<p>
-						<?php
-						$d = strtotime($userobj->getDateTime());
-						printf(gettext('User since %s'),date('Y-m-d'),$d);
-						?>
-					</p>
-					<?php $x = $userobj->getPass(); if (!empty($x)) { $x = '          '; } ?>
-					<p>
-					<?php
+					$x = $userobj->getPass();
+					if (!empty($x)) {
+						$x = '          ';
+					}
 				}
 				?>
 				<label for="<?php echo $id ?>-adminpass"><?php echo gettext("Password:"); ?><br />
