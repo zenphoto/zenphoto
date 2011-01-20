@@ -4,6 +4,9 @@
  *
  * @package plugins
  */
+
+// force UTF-8 Ø
+
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Provides rudimentary user groups.");
 $plugin_author = "Stephen Billard (sbillard)";
@@ -312,10 +315,15 @@ function user_groups_edit_admin($html, $userobj, $i, $background, $current) {
 }
 
 function user_groups_admin_tabs($tabs, $current) {
-	$subtabs = array(	gettext('users')=>'admin-users.php?page=users&amp;tab=users',
-										gettext('assignments')=>PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&amp;tab=assignments',
-										gettext('groups')=>PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&amp;tab=groups');
 	if ((zp_loggedin(ADMIN_RIGHTS))) {
+		if (isset($tabs['users']['subtabs'])) {
+			$subtabs = $tabs['users']['subtabs'];
+		} else {
+			$subtabs = array();
+		}
+		$subtabs[gettext('users')] = 'admin-users.php?page=users&amp;tab=users';
+		$subtabs[gettext('assignments')] = PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&amp;tab=assignments';
+		$subtabs[gettext('groups')] = PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&amp;tab=groups';
 		$tabs['users'] = array(	'text'=>gettext("admin"),
 														'link'=>WEBPATH."/".ZENFOLDER.'/admin-users.php?page=users&amp;tab=users',
 														'subtabs'=>$subtabs,

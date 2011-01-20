@@ -11,7 +11,7 @@ $plugin_version = '1.4.0';
 $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---email-newuser.php.html";
 
 zp_register_filter('save_user', 'email_new_user_save');
-zp_register_filter('edit_admin_custom_data', 'email_new_edit_admin', 99);
+zp_register_filter('edit_admin_custom_data', 'email_new_edit_admin', 0);
 
 function email_new_user_save($savemsg, $userobj, $what) {
 	if ($what=='new' && ($mail = $userobj->getEmail())) {

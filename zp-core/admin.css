@@ -1298,7 +1298,34 @@ button.positive,.buttons a.positive {
 	color: #fff;
 }
 
-* html .customchecklist label {
+/* CSS for wide checklists */
+.widechecklist {
+	border: 1px solid #ccc;
+	list-style: none;
+	height: 30em;
+	overflow: auto;
+	width: 50em;
+	background-color: white;
+}
+
+.widechecklist,.widechecklist li {
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px dotted #C6D880;
+}
+
+.widechecklist label {
+	display: block;
+	padding: 0;
+}
+
+.widechecklist label:hover,.widechecklist label.hover {
+	background: #777;
+	color: #fff;
+}
+
+
+* html .widechecklist label {
 	height: 1%;
 }
 

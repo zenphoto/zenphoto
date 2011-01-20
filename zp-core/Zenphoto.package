@@ -1676,6 +1676,9 @@ zp-core/zp-extensions/tiny_mce/utils/editable_selects.js
 zp-core/zp-extensions/tiny_mce/utils/form_utils.js
 zp-core/zp-extensions/tiny_mce/utils/mctabs.js
 zp-core/zp-extensions/tiny_mce/utils/validate.js
+zp-core/zp-extensions/user-expiry
+zp-core/zp-extensions/user-expiry.php
+zp-core/zp-extensions/user-expiry/user-expiry-tab.php
 zp-core/zp-extensions/user_groups
 zp-core/zp-extensions/user_groups.php
 zp-core/zp-extensions/user_groups/user_groups-tab.php
@@ -1711,4 +1714,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1713
+1716

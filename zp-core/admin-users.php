@@ -628,7 +628,9 @@ function languageChange(id,lang) {
 		<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
 			<td width="35%" <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top">
 				<?php
-				if (!empty($userid)) {
+				if (empty($userid)) {
+					$x = '';
+				} else {
 					?>
 					<p>
 						<?php

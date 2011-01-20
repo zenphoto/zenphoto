@@ -855,13 +855,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * @param string $datetime formatted date
 	 */
 	function setDateTime($datetime) {
-		if ($datetime) {
-			$newtime = dateTimeConvert($datetime);
-			if ($newtime === false) return;
-			$this->set('date', $newtime);
-		} else {
-			$this->set('date', NULL);
-		}
+		$this->set('date', $newtime);
 	}
 
 	function getID() {
