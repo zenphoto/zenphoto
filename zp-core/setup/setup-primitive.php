@@ -8,7 +8,6 @@
 // force UTF-8 Ø
 
 
-include(dirname(dirname(__FILE__)).'/version.php'); // Include the version info.
 require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
 
 $const_webpath = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));

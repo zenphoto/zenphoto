@@ -42,7 +42,7 @@
  *
  *
  */
-
+// force UTF-8 Ø
 require_once(dirname(__FILE__).'/classes.php');
 
 class Zenphoto_Authority {
@@ -62,7 +62,7 @@ class Zenphoto_Authority {
 	 */
 	function Zenphoto_Authority() {
 		$lib_auth_extratext = "";
-		$salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+-={}[]|\:;<>,.?/';
+		$salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^*()_+-={}[]|;<>,.?/';
 		$list = range(0, strlen($salt));
 		shuffle($list);
 		for ($i=0; $i < 30; $i++) {

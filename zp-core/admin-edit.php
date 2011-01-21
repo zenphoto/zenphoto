@@ -778,17 +778,17 @@ $alb = removeParentAlbumNames($album);
 			</p>
 			<span class="buttons">
 				<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
-				<img	src="images/arrow_left_blue_round.png" alt="" />
-				<strong><?php echo gettext("Back"); ?></strong>
+					<img	src="images/arrow_left_blue_round.png" alt="" />
+					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
 				<button class="serialize" type="submit" title="<?php echo gettext("Apply"); ?>" class="buttons">
-				<img src="images/pass.png" alt="" />
-				<strong><?php echo gettext("Apply"); ?></strong>
+					<img src="images/pass.png" alt="" />
+					<strong><?php echo gettext("Apply"); ?></strong>
 				</button>
 				<div class="floatright">
 				<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>',false);">
-				<img src="images/folder.png" alt="" />
-				<strong><?php echo gettext('New subalbum'); ?></strong>
+					<img src="images/folder.png" alt="" />
+					<strong><?php echo gettext('New subalbum'); ?></strong>
 				</button>
 				</div>
 			</span>
@@ -970,7 +970,7 @@ $alb = removeParentAlbumNames($album);
 										title="<?php printf(gettext('crop %s'), $image->filename); ?>"  >
 							<img
 								id="thumb_img-<?php echo $currentimage; ?>"
-								src="<?php echo $image->getThumb(); ?>"
+								src="<?php echo $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1); ?>"
 								alt="<?php printf(gettext('crop %s'), $image->filename); ?>"
 								title="<?php printf(gettext('crop %s'), $image->filename); ?>"
 								/>
@@ -1033,7 +1033,7 @@ $alb = removeParentAlbumNames($album);
 									<?php
 								}
 								?>
-								
+
 							<br clear="all" />
 						</div>
 

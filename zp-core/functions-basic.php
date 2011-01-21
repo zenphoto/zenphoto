@@ -9,7 +9,6 @@
 
 // force UTF-8 Ø
 require_once(dirname(__FILE__).'/global-definitions.php');
-include(dirname(__FILE__).'/version.php'); // Include the version info.
 if(!function_exists("gettext")) {
 	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
 }

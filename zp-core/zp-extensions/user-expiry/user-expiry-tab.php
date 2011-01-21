@@ -50,7 +50,7 @@ echo "<br/>action=$action";
 							$userobj->setValid(1);
 							$userobj->save();
 							break;
-							case 'renew':
+						case 'renew':
 							$newdate = getOption('user_expiry_interval')*86400+strtotime($userobj->getDateTime());
 							if ($newdate+getOption('user_expiry_interval')*86400 < time()) {
 								$newdate = time()+getOption('user_expiry_interval')*86400;
@@ -92,20 +92,24 @@ echo '</head>'."\n";
 						$groups = array();
 						$subscription = 86400*getOption('user_expiry_interval');
 						$now = time();
-						$week_from_now = $now + 604800;
+						$warnInterval = $now + getOption('user_expiry_warn_interval')*86400;
 						?>
 						<p>
-							<?php
-							echo gettext("Manage user expiry.");
-							?>
+						<?php	echo gettext("Manage user expiry."); ?>
 						</p>
 						<form action="?action=expiry" method="post" autocomplete="off" >
 							<?php XSRFToken('expiry'); ?>
-							<p class="buttons">
-							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-							</p>
-							<br clear="all" /><br /><br />
+							<span class="buttons">
+								<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+								<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+								<div class="floatright">
+									<a title="<?php echo gettext('options')?>" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;show-user-expiry#user-expiry">
+										<strong><?php echo gettext('Options')?></strong>
+									</a>
+								</div>
+							</span>
+							<br clear="all" />
+							<br /><br />
 							<ul class="widechecklist">
 								<?php
 								foreach ($adminordered as $user) {
@@ -113,11 +117,17 @@ echo '</head>'."\n";
 										$checked_delete = $checked_disable = $checked_renew = '';
 										$expires = strtotime($user['date'])+$subscription;
 										$expires_display = date('Y-m-d',$expires);
+										$loggedin = $user['loggedin'];
+										if (empty($loggedin)) {
+											$loggedin = gettext('never');
+										} else {
+											$loggedin = date('Y-m-d',strtotime($loggedin));
+										}
 										if ($expires < $now) {
 											$checked_delete = ' checked="chedked"';
 											$expires_display = '<span style="color:red" class="tooltip" title="'.gettext('Expired').'">'.$expires_display.'</span>';
 										} else {
-											if ($expires < $week_from_now) {
+											if ($expires < $warnInterval) {
 												$expires_display = '<span style="color:orange" class="tooltip" title="'.gettext('Expires soon').'">'.$expires_display.'</span>';
 											}
 										}
@@ -134,7 +144,7 @@ echo '</head>'."\n";
 										$r3 = '<input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.' /> <img src="../../images/pass.png" title="'.gettext('renew').'" />';
 										?>
 										<li>
-											<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$s)'),$r1.$r2.$r3,$id,$expires_display); ?>
+											<?php printf(gettext('%1$s <strong>%2$s</strong> (expires:%3$s; last logon:%4$s)'),$r1.$r2.$r3,$id,$expires_display,$loggedin); ?>
 										</li>
 										<?php
 									}

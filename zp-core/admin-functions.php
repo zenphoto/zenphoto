@@ -199,7 +199,7 @@ function printSortableHead() {
  */
 
 function adminPrintImageThumb($image, $class=NULL, $id=NULL) {
-	echo "\n  <img class=\"imagethumb\" id=\"id_". $image->id ."\" src=\"" . $image->getThumb() . "\" alt=\"". html_encode($image->getTitle()) . "\" title=\"". html_encode($image->getTitle()) . " (". html_encode($image->getFileName()) . ")\"" .
+	echo "\n  <img class=\"imagethumb\" id=\"id_". $image->id ."\" src=\"" . $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1) . "\" alt=\"". html_encode($image->getTitle()) . "\" title=\"". html_encode($image->getTitle()) . " (". html_encode($image->getFileName()) . ")\"" .
 	((getOption('thumb_crop')) ? " width=\"".getOption('thumb_crop_width')."\" height=\"".getOption('thumb_crop_height')."\"" : "") .
 	(($class) ? " class=\"$class\"" : "") .
 	(($id) ? " id=\"$id\"" : "") . " />";
@@ -1790,16 +1790,8 @@ function printAlbumEditRow($album) {
 
 	<div class="page-list_albumthumb">
 		<?php
-		$thumb = $album->getAlbumThumb();
-		if (strpos($thumb, '_%7B') !== false) { // it is the default image
-			$thumb = 'images/imageDefault.png';
-		}
-		if (getOption('thumb_crop')) {
-			$w = round(getOption('thumb_crop_width')/2);
-			$h = round(getOption('thumb_crop_height')/2);
-		} else {
-			$w = $h = round(getOption('thumb_size')/2);
-		}
+		$thumbimage = $album->getAlbumThumbImage();
+		$thumb = $thumbimage->getCustomImage(40,NULL,NULL,40,40,NULL,NULL,-1,NULL);
 		?>
 	<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 		<img src="<?php echo html_encode($thumb); ?>" width="40" height="40" alt="album thumb" />

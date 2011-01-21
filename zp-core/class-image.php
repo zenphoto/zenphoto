@@ -823,7 +823,15 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin=false, $effects=NULL) {
-		$wmt = getWatermarkParam($this, ($thumbStandin ? WATERMARK_THUMB : WATERMARK_IMAGE));
+		if ($thumbStandin < 0) {
+			$wmt = '!';
+		} else {
+			if ($thumbStandin) {
+				$wmt = getWatermarkParam($this, WATERMARK_THUMB);
+			} else {
+				$wmt = getWatermarkParam($this,  WATERMARK_IMAGE);
+			}
+		}
 		$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
 		$cachefilename = getImageCacheFilename($this->album->name, $this->filename,	$args);
 		if (file_exists(SERVERCACHE . $cachefilename) && filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
