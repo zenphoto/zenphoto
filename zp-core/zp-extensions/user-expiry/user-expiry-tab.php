@@ -110,7 +110,7 @@ echo '</head>'."\n";
 							</span>
 							<br clear="all" />
 							<br /><br />
-							<ul class="widechecklist">
+							<ul class="fullchecklist">
 								<?php
 								foreach ($adminordered as $user) {
 									if (!($user['rights'] & ADMIN_RIGHTS)) {
@@ -135,13 +135,13 @@ echo '</head>'."\n";
 											$checked_delete = '';
 										}
 										$id = $user['user'];
-										$r1 = '<input type="radio" name="r_'.$id.'" value="delete"'.$checked_delete.' /> <img src="../../images/fail.png" title="'.gettext('delete').'" />';
+										$r1 = '<img src="../../images/fail.png" title="'.gettext('delete').'" /><input type="radio" name="r_'.$id.'" value="delete"'.$checked_delete.' />&nbsp;';
 										if ($user['valid'] == 2) {
-											$r2 = '<input type="radio" name="r_'.$id.'" value="enable"'.$checked_disable.' /> <img src="../../images/lock_open.png" title="'.gettext('enable').'" />';
+											$r2 = '<img src="../../images/lock_open.png" title="'.gettext('enable').'" /><input type="radio" name="r_'.$id.'" value="enable"'.$checked_disable.' />&nbsp;';
 										} else {
-											$r2 = '<input type="radio" name="r_'.$id.'" value="disable"'.$checked_disable.' /> <img src="../../images/lock_2.png" title="'.gettext('disable').'" />';
+											$r2 = '<img src="../../images/lock_2.png" title="'.gettext('disable').'" /><input type="radio" name="r_'.$id.'" value="disable"'.$checked_disable.' />&nbsp;';
 										}
-										$r3 = '<input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.' /> <img src="../../images/pass.png" title="'.gettext('renew').'" />';
+										$r3 = '<img src="../../images/pass.png" title="'.gettext('renew').'" /><input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.' />&nbsp;';
 										?>
 										<li>
 											<?php printf(gettext('%1$s <strong>%2$s</strong> (expires:%3$s; last logon:%4$s)'),$r1.$r2.$r3,$id,$expires_display,$loggedin); ?>
