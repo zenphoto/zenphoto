@@ -416,7 +416,7 @@ if (db_connect()) {
 	<p>
 		<?php printf(gettext("Database software <strong>%s</strong>"),DATABASE_SOFTWARE); ?><br />
 		<?php printf(gettext("Database name <strong>%s</strong>"),db_name()); ?><br />
-		<?php printf(gettext("Tables prefixe <strong>%s</strong>"), prefix()); ?>
+		<?php printf(gettext("Tables prefix <strong>%s</strong>"), prefix()); ?>
 	</p>
 	<br />
 	<br />
