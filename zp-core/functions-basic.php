@@ -1339,7 +1339,7 @@ function installSignature() {
 	if (isset($_SERVER['DOCUMENT_ROOT'])) {
 		$t1 .= $_SERVER['DOCUMENT_ROOT'];
 	}
-	$t1 = md5($t1);
+	$t1 = sha1($t1);
 	$id = "{"	.substr($t1, 0, 8).'-'
 						.substr($t1, 8, 4).'-'
 						.substr($t1,12, 4).'-'

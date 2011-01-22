@@ -20,7 +20,7 @@ function email_new_user_save($savemsg, $userobj, $what) {
 		$pas = $userobj->getPass();
 		setOption('admin_reset_date', time());
 		$req = getOption('admin_reset_date');
-		$ref = md5($req . $adm . $pas);
+		$ref = sha1($req . $adm . $pas);
 		$msg = "\n".sprintf(gettext('You are receiving this e-mail because a user code (%1$s) has been created for you on the Zenphoto gallery %2$s.'),$adm,$gallery->getTitle()).
 								"\n".sprintf(gettext('To set your Zenphoto User password visit: %s'),FULLWEBPATH."/".ZENFOLDER."/admin-users.php?ticket=$ref&user=$adm") .
 								"\n".gettext("This ticket will automatically expire in 3 days.");

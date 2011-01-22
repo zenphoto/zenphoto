@@ -591,7 +591,7 @@ class ThemeObject extends PersistentObject {
 	 * @param string $website Comment author website
 	 * @param string $comment body of the comment
 	 * @param string $code CAPTCHA code entered
-	 * @param string $code_ok CAPTCHA md5 expected
+	 * @param string $code_ok CAPTCHA hash expected
 	 * @param string $ip the IP address of the comment poster
 	 * @param bool $private set to true if the comment is for the admin only
 	 * @param bool $anon set to true if the poster wishes to remain anonymous

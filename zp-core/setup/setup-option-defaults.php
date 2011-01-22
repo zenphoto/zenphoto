@@ -8,7 +8,7 @@
  */
 
 require(CONFIGFILE);
-
+require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 zp_apply_filter('log_setup', true, 'install', '');
 
 setOption('zenphoto_release', ZENPHOTO_RELEASE);

@@ -68,7 +68,7 @@ if (session_id() == '') {
 }
 
 $zp_cfg = @file_get_contents(CONFIGFILE);
-$xsrftoken = md5(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
+$xsrftoken = sha1(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
 
 $updatezp_config = false;
 if (isset($_GET['mod_rewrite'])) {
@@ -187,7 +187,7 @@ if ($updatezp_config) {
 		}
 		fclose($handle);
 	}
-	$xsrftoken = md5(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
+	$xsrftoken = sha1(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
 }
 
 $result = true;

@@ -14,7 +14,7 @@ $link = sanitize($_POST['link']);
 if (isset($_POST['auth'])) {
 	$auth = $_POST['auth'];
 	$admin = $_zp_authority->getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
-	if (md5($link.serialize($admin)) == $auth && $admin->getRights()) {
+	if (sha1($link.serialize($admin)) == $auth && $admin->getRights()) {
 		$_zp_current_admin_obj = $admin;
 		$_zp_loggedin = $admin->getRights();
 	}

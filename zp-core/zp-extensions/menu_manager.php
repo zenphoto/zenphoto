@@ -838,7 +838,7 @@ function createMenuIfNotExists($menuitems, $menuset='default') {
 						$success = -1;
 						debugLog(sprintf(gettext('createMenuIfNotExists item %s has an empty title.'),$key));
 					}
-					$result['link'] = md5($result['title']);
+					$result['link'] = sha1($result['title']);
 					break;
 				case 'menufunction':
 					if(empty($result['title']) || empty($result['link'])) {

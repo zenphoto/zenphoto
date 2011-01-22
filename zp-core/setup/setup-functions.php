@@ -189,7 +189,7 @@ function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL) 
 						$.ajax({
 							type: 'POST',
 							url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup_permissions_changer.php',
-							data: 'folder=<?php echo $path; ?>&key=<?php echo md5(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE)); ?>'
+							data: 'folder=<?php echo $path; ?>&key=<?php echo sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE)); ?>'
 						});
 						// ]]> -->
 					</script>

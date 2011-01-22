@@ -89,7 +89,7 @@ if (isset($_GET['action'])) {
 							$error = zp_apply_filter('check_upload_quota', UPLOAD_ERR_OK, $tmp_name);
 							if (!$error) {
 								if (is_valid_image($name) || is_valid_other_type($name)) {
-									if (strrpos($seoname,'.')===0) $seoname = md5($name).$seoname; // soe stripped out all the name.
+									if (strrpos($seoname,'.')===0) $seoname = sha1($name).$seoname; // soe stripped out all the name.
 									if (!$error) {
 										$uploadfile = $uploaddir . '/' . internalToFilesystem($seoname);
 										if (file_exists($uploadfile)) {

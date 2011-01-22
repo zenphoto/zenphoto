@@ -46,7 +46,7 @@ if (isset($_GET['ticket'])) { // password reset query
 			$_zp_request_date = getOption('admin_reset_date');
 			$adm = $admin['user'];
 			$pas = $admin['pass'];
-			$ref = md5($_zp_request_date . $adm . $pas);
+			$ref = sha1($_zp_request_date . $adm . $pas);
 			if ($ref === $_zp_ticket) {
 				if (time() <= ($_zp_request_date + (3 * 24 * 60 * 60))) { // limited time offer
 					setOption('admin_reset_date', NULL);

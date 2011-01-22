@@ -58,7 +58,7 @@ if (!empty($_FILES)) {
 			if (!$error) {
 				if (is_valid_image($name) || is_valid_other_type($name)) {
 					$seoname = seoFriendly($name);
-					if (strrpos($seoname,'.')===0) $seoname = md5($name).$seoname; // soe stripped out all the name.
+					if (strrpos($seoname,'.')===0) $seoname = sha1($name).$seoname; // soe stripped out all the name.
 					$targetFile =  $targetPath.'/'.internalToFilesystem($seoname);
 					if (file_exists($targetFile)) {
 						$append = '_'.time();

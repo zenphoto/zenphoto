@@ -68,6 +68,7 @@ class Zenphoto_Authority {
 		for ($i=0; $i < 30; $i++) {
 			$lib_auth_extratext = $lib_auth_extratext . substr($salt, $list[$i], 1);
 		}
+		setOptionDefault('strong_hash', 0);
 		setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);
 		setOptionDefault('min_password_lenght', 6);
 		setOptionDefault('password_pattern', 'A-Za-z0-9   |   ~!@#$%&*_+`-(),.\^\'"/[]{}=:;?\|');
@@ -76,6 +77,30 @@ class Zenphoto_Authority {
 		if ($master) {
 			$this->master_user = $master['user'];
 		}
+	}
+
+	/**
+	 * Declares options used by lib-auth
+	 *
+	 * @return array
+	 */
+	function getOptionsSupported() {
+		return array(	gettext('Augment password hash:') => array('key' => 'extra_auth_hash_text', 'type' => OPTION_TYPE_TEXTBOX,
+										'desc' => gettext('Extra text appended when hashing password to strengthen Zenphoto authentication.').'<p class="notebox">'.gettext('<strong>Note:</strong> Changing this will require all users to reset their passwords! You should change your password immediately if you change this text.').'</p>'),
+									gettext('Minimum password length:') => array('key' => 'min_password_lenght', 'type' => OPTION_TYPE_TEXTBOX,
+										'desc' => gettext('Minimum number of characters a password must contain.')),
+									gettext('Password characters:') => array('key' => 'password_pattern', 'type' => OPTION_TYPE_CLEARTEXT,
+										'desc' => gettext('Passwords must contain at least one of the characters from each of the groups. Groups are separated by "|". (Use "\|" to represent the "|" character in the groups.)')),
+									gettext('Strong password hash:') => array('key' => 'strong_hash', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => gettext('If checked paswords are hashed with the <em>sha1</em> algorithm. Otherwise <em>md5</em> is used.)').'<p class="notebox">'.gettext('<strong>Note:</strong> Changing this will require all users to reset their passwords! You should change your password immediately if you change this setting.').'</p>')
+									);
+	}
+
+	/**
+	 * Dummy for object inheritance purposes
+	 */
+	function handleOption($option, $currentValue) {
+		//	Nothing to do here at the root, but need the function so that it can be overridden
 	}
 
 	function getVersion() {
@@ -95,10 +120,14 @@ class Zenphoto_Authority {
 	 * @return string
 	 */
 	function passwordHash($user, $pass) {
-		$hash = getOption('extra_auth_hash_text');
-		$md5 = md5($user . $pass . $hash);
-		if (DEBUG_LOGIN) { debugLog("passwordHash($user, $pass)[$hash]:$md5"); }
-		return $md5;
+		$seed = getOption('extra_auth_hash_text');
+		if (getOption('strong_hash')) {
+			$hash = sha1($user . $pass . $seed);
+		} else {
+			$hash = md5($user . $pass . $seed);
+		}
+		if (DEBUG_LOGIN) { debugLog("passwordHash($user, $pass)[$seed]:$hash"); }
+		return $hash;
 	}
 
 	/**
@@ -245,14 +274,14 @@ class Zenphoto_Authority {
 	 * Retuns the administration rights of a saved authorization code
 	 * Will promote an admin to ADMIN_RIGHTS if he is the most privileged admin
 	 *
-	 * @param string $authCode the md5 code to check
+	 * @param string $authCode the hash code to check
 	 * @param int $id whom we think this is
 	 *
 	 * @return bit
 	 */
 	function checkAuthorization($authCode, $id) {
 		global $_zp_current_admin_obj;
-		if (DEBUG_LOGIN) { debugLogBacktrace("checkAuthorization($authCode)");	}
+		if (DEBUG_LOGIN) { debugLogBacktrace("checkAuthorization($authCode, $id)");	}
 
 		$admins = $this->getAdministrators();
 		if (DEBUG_LOGIN) { debugLogArray("checkAuthorization: admins",$admins);	}
@@ -296,8 +325,8 @@ class Zenphoto_Authority {
 		global $_zp_authority;
 		$admins = $this->getAdministrators();
 		$success = false;
-		$md5 = $this->passwordHash($user, $pass);
-		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`pass`=' => $md5, '`valid`=' => 1));
+		$hash = $this->passwordHash($user, $pass);
+		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`pass`=' => $hash, '`valid`=' => 1));
 		return $userobj;
 	}
 
@@ -531,32 +560,10 @@ class Zenphoto_Authority {
 	}
 
 	/**
-	 * Declares options used by lib-auth
-	 *
-	 * @return array
-	 */
-	function getOptionsSupported() {
-		return array(	gettext('Augment password hash:') => array('key' => 'extra_auth_hash_text', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('Extra text appended when hashing password to strengthen Zenphoto authentication.').'<p class="notebox">'.gettext('<strong>Note:</strong> Changing this will require all users to reset their passwords! You should change your password immediately if you change this text.').'</p>'),
-		gettext('Minimum password length:') => array('key' => 'min_password_lenght', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('Minimum number of characters a password must contain.')),
-		gettext('Password characters:') => array('key' => 'password_pattern', 'type' => OPTION_TYPE_CLEARTEXT,
-										'desc' => gettext('Passwords must contain at least one of the characters from each of the groups. Groups are separated by "|". (Use "\|" to represent the "|" character in the groups.)'))
-		);
-	}
-
-	/**
-	 * Dummy for object inheritance purposes
-	 */
-	function handleOption($option, $currentValue) {
-		//	Nothing to do here at the root, but need the function so that it can be overridden
-	}
-
-	/**
 	 * User authentication support
 	 */
 	function handleLogon() {
-		global $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha;
+		global $_zp_authority, $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha;
 		if (isset($_POST['login']) && isset($_POST['user']) && isset($_POST['pass'])) {
 			$post_user = sanitize($_POST['user']);
 			$post_pass = sanitize($_POST['pass'],0);
@@ -626,7 +633,7 @@ class Zenphoto_Authority {
 						$pas = $user['pass'];
 						setOption('admin_reset_date', time());
 						$req = getOption('admin_reset_date');
-						$ref = md5($req . $adm . $pas);
+						$ref = sha1($req . $adm . $pas);
 						$msg = "\n".$requestor.
 								"\n".sprintf(gettext("To reset your Zenphoto Admin passwords visit: %s"),FULLWEBPATH."/".ZENFOLDER."/admin-users.php?ticket=$ref&user=$adm") .
 								"\n".gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
@@ -681,10 +688,15 @@ class Zenphoto_Authority {
 	 * Checks saved cookies to see if a user is logged in
 	 */
 	function checkCookieCredentials() {
+		if (getOption('strong_hash')) {
+			$hashlen = 40;
+		} else {
+			$hashlen = 32;
+		}
 		$auth = zp_getCookie('zenphoto_auth');
-		if (strlen($auth) > 32) {
-			$id = substr($auth, 32);
-			$auth = substr($auth, 0, 32);
+		if (strlen($auth) > $hashlen) {
+			$id = substr($auth, $hashlen);
+			$auth = substr($auth, 0, $hashlen);
 		} else {
 			$id = NULL;
 		}

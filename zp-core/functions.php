@@ -779,7 +779,7 @@ define ('COMMENT_SEND_EMAIL', 32);
  * @param string $website Comment author website
  * @param string $comment body of the comment
  * @param string $code CAPTCHA code entered
- * @param string $code_ok CAPTCHA md5 expected
+ * @param string $code_ok CAPTCHA hash expected
  * @param string $type 'albums' if it is an album or 'images' if it is an image comment
  * @param object $receiver the object (image or album) to which to post the comment
  * @param string $ip the IP address of the comment poster
@@ -2187,7 +2187,7 @@ function debug404($album, $image, $theme) {
  */
 function getXSRFToken($action) {
 	global $_zp_current_admin_obj;
-	return md5($action.prefix(getUserIP()).serialize($_zp_current_admin_obj).session_id());
+	return sha1($action.prefix(getUserIP()).serialize($_zp_current_admin_obj).session_id());
 }
 
 /**
@@ -2223,7 +2223,7 @@ function cron_starter($script, $params, $inline=false) {
 		}
 		require_once($script);
 	} else {
-		$auth = md5($script.serialize($admin));
+		$auth = sha1($script.serialize($admin));
 		$paramlist = 'link='.$script;
 		foreach ($params as $key=>$value) {
 			$paramlist .= '&'.$key.'='.$value;

@@ -14,7 +14,7 @@
  */
 if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 3);
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
-$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. <p class='notebox'><strong>Legal note: </strong> This plugin stores the IP to avoid double votes. Be aware that in some countries' jurisdictions (e.g. many European countries like Germany) this is considered as a privacy violation (tracking) and therefore more or less illegal.</p>");
+$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. <p class='notebox'><strong>Legal note:</strong> Use the <em>Disguise IP</em> option if your country considers IP tracking a privacy violation.</p>");
 $plugin_author = "Stephen Billard (sbillard) and Malte Müller (acrylian)";
 $plugin_version = '1.4.0';
 $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---rating.php.html";
@@ -119,7 +119,9 @@ class jquery_rating {
 										'desc' => gettext('Enable to allow voting status control on individual images.')),
 									gettext('Recast vote') =>array('key' => 'rating_recast', 'type' => OPTION_TYPE_RADIO,
 										'buttons' => array(gettext('No') => 0, gettext('Show rating') => 1, gettext('Show previous vote') => 2),
-										'desc' => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.'))
+										'desc' => gettext('Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating.')),
+									gettext('Disguise IP') => array('key'=>'rating_hash_ip', 'type'=>OPTION_TYPE_CHECKBOX,
+										'desc'=> gettext('Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues.'))
 								);
 	}
 
@@ -188,7 +190,11 @@ function printRating($vote=3, $object=NULL, $text=true) {
   $votes = $object->get('total_votes');
 	$id = $object->get('id');
 	$unique = '_'.$table.'_'.$id;
-	$ip = getUserIP();
+	if (getOption('rating_hash_ip')) {
+		$ip = sha1(getUserIP());
+	} else {
+		$ip = getUserIP();
+	}
 	$recast = getOption('rating_recast');
   $split_stars = getOption('rating_split_stars')+1;
 	$oldrating = getRatingByIP($ip,$object->get('used_ips'), $object->get('rating'));

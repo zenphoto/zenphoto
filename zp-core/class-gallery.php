@@ -58,7 +58,6 @@ class Gallery {
 	/**
 	 * Returns the hashed password for guest gallery access
 	 *
-	 * @return md5
 	 */
 	function getPassword() {
 		return(getOption('gallery_password'));

@@ -6,7 +6,7 @@
  */
 $plugin_version = '1.4.0';
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.")
-				."<p class='notebox'>". gettext("<strong>Note:</strong> This feature must be integrated into your theme. Of the distributed themes, only <code>Zenpage</code> and <code>effervescence+</code> support Zenpage.")."</p>";
+				."<p class='notebox'>". gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> and <em>stopdesign</em> themes.")."</p>";
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_URL = "http://www.zenphoto.org/documentation/plugins/zenpage/_".PLUGIN_FOLDER."---zenpage---zenpage-template-functions.php.html";
 $option_interface = 'zenpagecms';

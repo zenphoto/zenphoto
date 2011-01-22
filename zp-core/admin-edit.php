@@ -1009,7 +1009,7 @@ $alb = removeParentAlbumNames($album);
 								if (empty($hc)) { $hc = '0'; }
 								?>
 								<label class="checkboxlabel">
-									<input type="checkbox" name="<?php echo $prefix; ?>reset_hitcounter" />
+									<input type="checkbox" name="<?php echo $currentimage; ?>reset_hitcounter" />
 									<?php echo sprintf(gettext("Reset hitcounter (%u hits)"), $hc); ?>
 								</label>
 								<?php

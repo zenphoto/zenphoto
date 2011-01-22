@@ -15,7 +15,7 @@ class captcha {
 	 */
 	function captcha() {
 		setOptionDefault('zenphoto_captcha_length', 5);
-		setOptionDefault('zenphoto_captcha_key', md5($_SERVER['HTTP_HOST'].'a9606420399a77387af2a4b541414ee5'.getUserIP()));
+		setOptionDefault('zenphoto_captcha_key', sha1($_SERVER['HTTP_HOST'].'a9606420399a77387af2a4b541414ee5'.getUserIP()));
 		setOptionDefault('zenphoto_captcha_string', 'abcdefghijkmnpqrstuvwxyz23456789ABCDEFGHJKLMNPQRSTUVWXYZ');
 	}
 
@@ -78,7 +78,7 @@ class captcha {
 			} else {
 				$key = 'No admin set';
 			}
-			$key = md5('zenphoto'.$key.'captcha key');
+			$key = sha1('zenphoto'.$key.'captcha key');
 			setOption('zenphoto_captcha_key', $key);
 		}
 		return $key;
@@ -96,14 +96,14 @@ class captcha {
 	function checkCaptcha($code, $code_ok) {
 		$captcha_len = getOption('zenphoto_captcha_length');
 		$key = $this->getCaptchaKey();
-		$code_cypher = md5(bin2hex(rc4($key, trim($code))));
+		$code_cypher = sha1(bin2hex(rc4($key, trim($code))));
 		$code_ok = trim($code_ok);
 		if ($code_cypher != $code_ok || strlen($code) != $captcha_len) { return false; }
 		query('DELETE FROM '.prefix('captcha').' WHERE `ptime`<'.(time()-3600)); // expired tickets
 		$result = query('DELETE FROM '.prefix('captcha').' WHERE `hash`="'.$code_cypher.'"');
 		if ($result && db_affected_rows() == 1) {
 			$len = rand(0, strlen($key)-1);
-			$key = md5(substr($key, 0, $len).$code.substr($key, $len));
+			$key = sha1(substr($key, 0, $len).$code.substr($key, $len));
 			setOption('zenphoto_captcha_key', $key);
 			return true;
 		}
@@ -131,7 +131,7 @@ class captcha {
 			$string .= $lettre[rand(0,$numlettre)];
 		}
 		$cypher = bin2hex(rc4($key, $string));
-		$code=md5($cypher);
+		$code=sha1($cypher);
 		query('DELETE FROM '.prefix('captcha').' WHERE `ptime`<'.(time()-3600), false);  // expired tickets
 		query("INSERT INTO " . prefix('captcha') . " (ptime, hash) VALUES (" . db_quote(time()) . "," . db_quote($code) . ")", false);
 		$image = WEBPATH . '/' . ZENFOLDER . "/c.php?i=$cypher";

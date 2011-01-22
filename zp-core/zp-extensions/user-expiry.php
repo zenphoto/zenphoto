@@ -136,8 +136,8 @@ function user_expiry_checklogon($loggedin, $user, $pass) {
 	global $_zp_authority;
 	if ($loggedin) {
 		if (!($loggedin & ADMIN_RIGHTS)) {
-			$md5 = $_zp_authority->passwordHash($user, $pass);
-			$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`pass`=' => $md5, '`valid`=' => 1));
+			$hash = $_zp_authority->passwordHash($user, $pass);
+			$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`pass`=' => $hash, '`valid`=' => 1));
 			$loggedin = user_expiry_checkexpires($loggedin, $userobj);
 		}
 	}

@@ -12,7 +12,7 @@ $f = fopen(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup_log.txt
 if (!isset($_POST['folder'])) exit();
 $folder = sanitize($_POST['folder'],3);
 if (substr($folder,-1,1) == '/') $folder = substr($folder,0,-1);
-if ($_POST['key']==md5(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE))) {
+if ($_POST['key']==sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE))) {
 	if (!folderPermissions($folder)) {
 		fwrite($f, sprintf(gettext('Notice: failed setting permissions for %s.'), basename($folder)) . "\n");
 	}
