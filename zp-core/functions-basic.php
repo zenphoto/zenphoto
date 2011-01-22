@@ -303,7 +303,7 @@ function setOptionDefault($key, $default) {
 function purgeOption($key) {
 	global $_zp_options;
 	unset($_zp_options[$key]);
-	$sql = 'DELETE FROM '.prefix('options').' WHERE `name`="'.db_quote($key).'"';
+	$sql = 'DELETE FROM '.prefix('options').' WHERE `name`='.db_quote($key);
 	query($sql, false);
 }
 

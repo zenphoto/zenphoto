@@ -252,7 +252,14 @@ define('album_managers',8);
 define('default_user',16);
 define('newuser',32);
 
-$groupsdefined = @unserialize(getOption('defined_groups'));
+$admins = $_zp_authority->getAdministrators('all');
+if (empty($admins)) {	//	empty administrators table
+	$groupsdefined = NULL;
+	setOption('strong_hash', 1);
+	purgeOption('extra_auth_hash_text');
+} else {
+	$groupsdefined = @unserialize(getOption('defined_groups'));
+}
 if (!is_array($groupsdefined)) $groupsdefined = array();
 if (!in_array('administrators',$groupsdefined)) {
 	$groupobj = $_zp_authority->newAdministrator('administrators',0);

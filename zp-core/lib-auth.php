@@ -62,7 +62,7 @@ class Zenphoto_Authority {
 	 */
 	function Zenphoto_Authority() {
 		$lib_auth_extratext = "";
-		$salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^*()_+-={}[]|;<>,.?/';
+		$salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^*()_+-={}[]|;,.?/';
 		$list = range(0, strlen($salt));
 		shuffle($list);
 		for ($i=0; $i < 30; $i++) {
@@ -85,14 +85,13 @@ class Zenphoto_Authority {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(	gettext('Augment password hash:') => array('key' => 'extra_auth_hash_text', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('Extra text appended when hashing password to strengthen Zenphoto authentication.').'<p class="notebox">'.gettext('<strong>Note:</strong> Changing this will require all users to reset their passwords! You should change your password immediately if you change this text.').'</p>'),
-									gettext('Minimum password length:') => array('key' => 'min_password_lenght', 'type' => OPTION_TYPE_TEXTBOX,
+		return array(	gettext('Minimum password length:') => array('key' => 'min_password_lenght', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext('Minimum number of characters a password must contain.')),
 									gettext('Password characters:') => array('key' => 'password_pattern', 'type' => OPTION_TYPE_CLEARTEXT,
 										'desc' => gettext('Passwords must contain at least one of the characters from each of the groups. Groups are separated by "|". (Use "\|" to represent the "|" character in the groups.)')),
-									gettext('Strong password hash:') => array('key' => 'strong_hash', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('If checked paswords are hashed with the <em>sha1</em> algorithm. Otherwise <em>md5</em> is used.)').'<p class="notebox">'.gettext('<strong>Note:</strong> Changing this will require all users to reset their passwords! You should change your password immediately if you change this setting.').'</p>')
+									gettext('settings')=> array('key'=>'lib_auth_info', 'type'=>OPTION_TYPE_CUSTOM,
+										'order'=>9,
+										'desc'=>'')
 									);
 	}
 
@@ -100,7 +99,14 @@ class Zenphoto_Authority {
 	 * Dummy for object inheritance purposes
 	 */
 	function handleOption($option, $currentValue) {
-		//	Nothing to do here at the root, but need the function so that it can be overridden
+		if ($option=='lib_auth_info') {
+			echo '<p>'.sprintf(gettext('Password hash seed:<span><small style="color:gray">%s</small></span>'),getOption('extra_auth_hash_text')).'</p>';
+			if (getOption('strong_hash')) {
+				echo '<p>'.gettext('sha1 hashing is activated').'</p>';
+			} else {
+				echo '<p>'.gettext('md5 hashing is activated').'</p>';
+			}
+		}
 	}
 
 	function getVersion() {
