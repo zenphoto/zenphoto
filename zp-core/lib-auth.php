@@ -99,13 +99,23 @@ class Zenphoto_Authority {
 	 * Dummy for object inheritance purposes
 	 */
 	function handleOption($option, $currentValue) {
+		global $_zp_current_admin_obj;
 		if ($option=='lib_auth_info') {
-			echo '<p>'.sprintf(gettext('Password hash seed:<span><small style="color:gray">%s</small></span>'),getOption('extra_auth_hash_text')).'</p>';
-			if (getOption('strong_hash')) {
-				echo '<p>'.gettext('sha1 hashing is activated').'</p>';
-			} else {
-				echo '<p>'.gettext('md5 hashing is activated').'</p>';
+			$class = get_class($this);
+			if ($class != 'Zenphoto_Authority') {
+				echo '<p class="notebox">'.sprintf(gettext('Alternative authorization library <em>%s</em> is active.'),$class).'</p>';
 			}
+			$class = get_class($_zp_current_admin_obj);
+			if ($class != 'Zenphoto_Administrator') {
+				echo '<p class="notebox">'.sprintf(gettext('Alternative administrator class <em>%s</em> is active.'),$class).'</p>';
+			}
+			echo '<p>'.sprintf(gettext('Password hash seed: <span><small style="color:gray">%s</small></span>'),getOption('extra_auth_hash_text')).'</p>';
+			if (getOption('strong_hash')) {
+				$hash = 'sha1';
+			} else {
+				$hash = 'md5';
+			}
+			echo '<p>'.sprintf(gettext('<em>%s</em> hashing is activated'),$hash).'</p>';
 		}
 	}
 
