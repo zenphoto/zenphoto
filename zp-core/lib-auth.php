@@ -62,7 +62,7 @@ class Zenphoto_Authority {
 	 */
 	function Zenphoto_Authority() {
 		$lib_auth_extratext = "";
-		$salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^*()_+-={}[]|;,.?/';
+		$salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+-={}[]|;,.<>?/';
 		$list = range(0, strlen($salt));
 		shuffle($list);
 		for ($i=0; $i < 30; $i++) {
@@ -103,13 +103,13 @@ class Zenphoto_Authority {
 		if ($option=='lib_auth_info') {
 			$class = get_class($this);
 			if ($class != 'Zenphoto_Authority') {
-				echo '<p class="notebox">'.sprintf(gettext('Alternative authorization library <em>%s</em> is active.'),$class).'</p>';
+				echo '<p class="notebox">'.sprintf(gettext('Authorization class <em>%s</em> is active.'),$class).'</p>';
 			}
 			$class = get_class($_zp_current_admin_obj);
 			if ($class != 'Zenphoto_Administrator') {
-				echo '<p class="notebox">'.sprintf(gettext('Alternative administrator class <em>%s</em> is active.'),$class).'</p>';
+				echo '<p class="notebox">'.sprintf(gettext('Administrator class <em>%s</em> is active.'),$class).'</p>';
 			}
-			echo '<p>'.sprintf(gettext('Password hash seed: <span><small style="color:gray">%s</small></span>'),getOption('extra_auth_hash_text')).'</p>';
+			echo '<p>'.sprintf(gettext('Password hash seed: <span><small style="color:gray">%s</small></span>'),html_encode(getOption('extra_auth_hash_text'))).'</p>';
 			if (getOption('strong_hash')) {
 				$hash = 'sha1';
 			} else {

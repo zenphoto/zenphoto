@@ -114,8 +114,8 @@ if (!defined('WEBPATH')) die();
 					</div>
 					<?php
 				}
+				printTags('links', gettext('Tags: '));
 				?>
-				<?php printTags(true, gettext('Tags: ')); ?>
 			</div>
 		</div>
 		<span class="clear"></span> </div>

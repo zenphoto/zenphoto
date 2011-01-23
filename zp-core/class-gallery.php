@@ -332,6 +332,61 @@ class Gallery {
 	 */
 	function garbageCollect($cascade=true, $complete=false, $restart='') {
 		if (empty($restart)) {
+			// clean up obj_to_tag
+			$dead = array();
+			$result = query_full_array("SELECT * FROM ".prefix('obj_to_tag'));
+			if (is_array($result)) {
+				foreach ($result as $row) {
+					$dbtag = query_single_row("SELECT * FROM ".prefix('tags')." WHERE `id`='".$row['tagid']."'");
+					if (!$dbtag) {
+						$dead['id'] = $row['id'];
+					}
+					$dbtag = query_single_row("SELECT * FROM ".prefix($row['type'])." WHERE `id`='".$row['objectid']."'");
+					if (!$dbtag) {
+						$dead['id'] = $row['id'];
+					}
+				}
+			}
+			if (!empty($dead)) {
+				query('DELETE FROM '.prefix('obj_to_tag').' WHERE `id`='.implode(' OR `id`=', $dead));
+			}
+			// clean up admin_to_object
+			$dead = array();
+			$result = query_full_array("SELECT * FROM ".prefix('admin_to_object'));
+			if (is_array($result)) {
+				foreach ($result as $row) {
+					$dbtag = query_single_row("SELECT * FROM ".prefix('administrators')." WHERE `id`='".$row['adminid']."'");
+					if (!$dbtag) {
+						$dead['id'] = $row['id'];
+					}
+					$dbtag = query_single_row("SELECT * FROM ".prefix($row['type'])." WHERE `id`='".$row['objectid']."'");
+					if (!$dbtag) {
+						$dead['id'] = $row['id'];
+					}
+				}
+			}
+			if (!empty($dead)) {
+				query('DELETE FROM '.prefix('admin_to_object').' WHERE `id`='.implode(' OR `id`=', $dead));
+			}
+			// clean up news2cat
+			$dead = array();
+			$result = query_full_array("SELECT * FROM ".prefix('news2cat'));
+			if (is_array($result)) {
+				foreach ($result as $row) {
+					$dbtag = query_single_row("SELECT * FROM ".prefix('news')." WHERE `id`='".$row['news_id']."'");
+					if (!$dbtag) {
+						$dead['id'] = $row['id'];
+					}
+					$dbtag = query_single_row("SELECT * FROM ".prefix('news_categories')." WHERE `id`='".$row['cat_id']."'");
+					if (!$dbtag) {
+						$dead['id'] = $row['id'];
+					}
+				}
+			}
+			if (!empty($dead)) {
+				query('DELETE FROM '.prefix('news2cat').' WHERE `id`='.implode(' OR `id`=', $dead));
+			}
+
 			// Check for the existence of top-level albums (subalbums handled recursively).
 			$sql = "SELECT * FROM " . prefix('albums');
 			$result = query($sql);

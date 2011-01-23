@@ -1086,7 +1086,7 @@ function getAllSubAlbumIDs($albumfolder='') {
  */
 function handleSearchParms($what, $album=NULL, $image=NULL) {
 	global $_zp_current_search, $zp_request, $_zp_last_album, $_zp_current_album,
-					$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery;
+					$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_loggedin;
 	$_zp_last_album = zp_getCookie('zenphoto_last_album');
 	if (is_null($album)) {
 		if (is_object($zp_request)) {
@@ -1120,7 +1120,11 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 			$albumname = $album->name;
 			zp_setCookie('zenphoto_last_album', $albumname);
 			if (hasDynamicAlbumSuffix($albumname)) $albumname = substr($albumname, 0, -4); // strip off the .alb as it will not be reflected in the search path
+			//	see if the album is within the search context. NB for these purposes we need to look at all albums!
+			$save_logon = $_zp_loggedin;
+			$_zp_loggedin = $_zp_loggedin | VIEW_ALL_RIGHTS;
 			$search_album_list = $_zp_current_search->getAlbums(0);
+			$_zp_loggedin = $save_logon;
 			foreach ($search_album_list as $searchalbum) {
 				if (strpos($albumname, $searchalbum) !== false) {
 					$context = $context | ZP_SEARCH_LINKED | ZP_ALBUM_LINKED;
@@ -1360,7 +1364,9 @@ function readTags($id, $tbl) {
 	if (is_array($result)) {
 		foreach ($result as $row) {
 			$dbtag = query_single_row("SELECT `name` FROM".prefix('tags')." WHERE `id`='".$row['tagid']."'");
-			$tags[] = $dbtag['name'];
+			if ($dbtag) {
+				$tags[] = $dbtag['name'];
+			}
 		}
 	}
 	natcasesort($tags);

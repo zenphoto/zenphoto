@@ -693,3 +693,11 @@ text-decoration:none;
 font-weight: bold;
 }
 
+.taglist ul {
+	list-style-type: none;
+}
+.taglist li {
+	list-style-type: none;
+	padding-left: 18px;
+}
+

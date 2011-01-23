@@ -3567,6 +3567,8 @@ function printTags($option='links', $preText=NULL, $class='taglist', $separator=
 				if ($option === "links") {
 					$links1 = "<a href=\"".html_encode(getSearchURL($latag, '', 'tags', 0, array('albums'=>$albumlist)))."\" title=\"".html_encode($atag)."\" rel=\"nofollow\">";
 					$links2 = "</a>";
+				} else {
+					$links1 = $links2 = '';
 				}
 				echo "\t<li>".$links1.$atag.$links2.$separator."</li>\n";
 			}

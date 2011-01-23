@@ -359,9 +359,14 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 			$sortorder = 'id'; break;
 	}
 	$imageArray = array();
-	if(!empty($albumfolder) AND $is_dynamicalbum) {
+	if(!empty($albumfolder) && $is_dynamicalbum) {
 		for( $i = 0, $len = $number; $i < $len; $i++) {
-			array_push($imageArray, $alb->getImage($i));
+			$img = $alb->getImage($i);
+			if ($img) {
+				array_push($imageArray, $img);
+			} else {
+				break;
+			}
 		}
 	} else {
 		$images = query_full_array("SELECT images.albumid, images.filename AS filename, images.mtime as mtime, images.title AS title, " .
