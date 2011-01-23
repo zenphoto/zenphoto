@@ -993,11 +993,18 @@ function printCustomMenu($menuset='default', $option='list',$css_id='',$css_clas
 						$albumobj = new Album($_zp_gallery,$item['link']);
 						$numimages = $albumobj->getNumImages();
 						$numsubalbums = $albumobj->getNumAlbums();
-						if($numimages != 0) {
-							$itemcounter = "<small> ".sprintf(ngettext('(%u image)', '(%u images)',$numimages),$numimages)."</small>";
-						} else {
-							$itemcounter = "<small> ".sprintf(ngettext('(%u album)', '(%u albums)',$numsubalbums),$numsubalbums)."</small>";
+						$itemcounter = ' <span style="white-space:nowrap;"><small>(';
+						if ($numsubalbums != 0) {
+							$itemcounter .= sprintf(ngettext('%u album', '%u albums',$numsubalbums),$numsubalbums);
 						}
+						if($numimages != 0) {
+							if ($numsubalbums != 0) {
+								$itemcounter .= ' ';
+							}
+							$itemcounter .= sprintf(ngettext('%u image', '%u images',$numimages),$numimages);
+						}
+						$itemcounter .= ')</small></span>';
+
 						break;
 					case'zenpagecategory':
 						if((zp_loggedin(ZENPAGE_NEWS_RIGHTS | LIST_RIGHTS))) {

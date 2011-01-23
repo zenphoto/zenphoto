@@ -3497,6 +3497,7 @@ function getTags() {
 		global $_zp_current_zenpage_news;
 		return $_zp_current_zenpage_news->getTags();
 	}
+	return array();
 }
 
 /**
@@ -3512,8 +3513,12 @@ function getTags() {
  * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @since 1.1
  */
-function printTags($option='links', $preText=NULL, $class='taglist', $separator=', ', $editable=TRUE, $editclass='', $messageIfEmpty = true ) {
+function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ', $editable=true, $editclass=NULL, $messageIfEmpty = true ) {
 	global $_zp_current_search;
+	if (is_null($class)) {
+		$class = 'taglist';
+	}
+	$editable = $editable && getOption('edit_in_place');
 	$singletag = getTags();
 	$tagstring = implode(', ', $singletag);
 	if ($tagstring === '' or $tagstring === NULL ) {
@@ -3599,7 +3604,9 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 	global $_zp_current_search;
 
 	$option = strtolower($option);
-	if ($class != "") { $class = "class=\"".$class."\""; }
+	if ($class != "") {
+		$class = "class=\"".$class."\"";
+	}
 	$tagcount = getAllTagsCount();
 	if (!is_array($tagcount)) { return false; }
 	if ($sort == "results") {
@@ -3627,9 +3634,7 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 			$size = '';
 		}
 		if ($val >= $mincount) {
-			if(!$links) {
-				echo "\t<li$size>".$key.$counter."</li>\n";
-			} else {
+			if($links) {
 				if (is_object($_zp_current_search)) {
 					$albumlist = $_zp_current_search->album_list;
 				} else {
@@ -3652,6 +3657,8 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 				echo "\t<li><a href=\"".
 					html_encode(getSearchURL($quote.$key.$quote, '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
 					$key.$counter."</a></li>\n";
+			} else {
+				echo "\t<li$size>".$key.$counter."</li>\n";
 			}
 		}
 

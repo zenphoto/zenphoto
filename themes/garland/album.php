@@ -90,18 +90,6 @@ if (!defined('WEBPATH')) die();
 								?>
 							</div>
 
-							<br clear="all" />
-							<?php
-							if (!empty($points) && function_exists('printGoogleMap')) {
-								?>
-								<div id="map_link">
-									<?php
-									printGoogleMap(NULL, NULL, NULL, 'album_page', 'gMapOptionsAlbum');
-									?>
-								</div>
-								<?php
-							}
-							?>
 							<?php printPageListWithNav(gettext("&laquo; prev"), gettext("next &raquo;")); ?>
 							<?php if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow')); ?>
 							<?php if (function_exists('printRating')) { printRating(); }?>
@@ -123,7 +111,7 @@ if (!defined('WEBPATH')) die();
 				<?php
 				$nextalbum = getNextAlbum();
 				$prevalbum = getPrevAlbum();
-				if ($nextalbum ||$prevalbum) {
+				if ($nextalbum || $prevalbum) {
 					?>
 					<h2><?php echo gettext('Album Navigation'); ?></h2>
 					<?php
@@ -144,7 +132,20 @@ if (!defined('WEBPATH')) die();
 					}
 				}
 				?>
-				<?php if (getOption('Allow_cloud')) { echo "<br><br>"; printAllTagsAs('Cloud'); } ?>
+				<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
+				<?php
+				if (!empty($points) && function_exists('printGoogleMap')) {
+					setOption('gmap_display', 'colorbox', false);
+					?>
+					<div id="map_link">
+						<?php
+						printGoogleMap(NULL, NULL, NULL, 'album_page', 'gMapOptionsAlbum');
+						?>
+					</div>
+					<br clear="all" />
+					<?php
+				}
+				?>
 				<?php
 				if (function_exists('printLatestImages')) {
 					?>

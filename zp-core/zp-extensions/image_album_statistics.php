@@ -360,29 +360,22 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 	}
 	$imageArray = array();
 	if(!empty($albumfolder) && $is_dynamicalbum) {
-		for( $i = 0, $len = $number; $i < $len; $i++) {
-			$img = $alb->getImage($i);
-			if ($img) {
-				array_push($imageArray, $img);
-			} else {
-				break;
-			}
-		}
+		$sorttype = str_replace('images.','',$sortorder);
+		$images = array_slice($alb->getImages(0,0,$sorttype,'DESC'), 0, $number);
 	} else {
 		$images = query_full_array("SELECT images.albumid, images.filename AS filename, images.mtime as mtime, images.title AS title, " .
  															"albums.folder AS folder, images.show, albums.show, albums.password FROM " .
-		prefix('images') . " AS images, " . prefix('albums') . " AS albums " .
+															prefix('images') . " AS images, " . prefix('albums') . " AS albums " .
 															" WHERE ".$specificalbum."images.albumid = albums.id " . $imageWhere . $albumWhere .
 															" AND albums.folder != ''".
 															" ORDER BY ".$sortorder." DESC LIMIT ".$number);
-		foreach ($images as $imagerow) {
-			$filename = $imagerow['filename'];
-			$albumfolder2 = $imagerow['folder'];
-			$desc = $imagerow['title'];
-			// Album is set as a reference, so we can't re-assign to the same variable!
-			$image = newImage(new Album($_zp_gallery, $albumfolder2), $filename);
-			$imageArray [] = $image;
-		}
+	}
+	foreach ($images as $imagerow) {
+		$filename = $imagerow['filename'];
+		$albumfolder2 = $imagerow['folder'];
+		// Album is set as a reference, so we can't re-assign to the same variable!
+		$image = newImage(new Album($_zp_gallery, $albumfolder2), $filename);
+		$imageArray [] = $image;
 	}
 
 	return $imageArray;

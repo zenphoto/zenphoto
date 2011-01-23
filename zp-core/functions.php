@@ -244,6 +244,9 @@ function lookupSortKey($sorttype, $default, $filename) {
 			return '`'.$filename.'`';
 		default:
 			if (empty($sorttype)) return $default;
+			if (substr($sorttype, 0) == '(') {
+				return $sorttype;
+			}
 			$list = explode(',', $sorttype);
 			foreach ($list as $key=>$field) {
 				$list[$key] = '`'.trim($field).'`';

@@ -95,6 +95,11 @@ if (!defined('WEBPATH')) die();
 			</div>
 		</div>
 		<span class="clear"></span>
+		<div class="sidebar">
+			<div id="rightsidebar">
+				<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
+			</div><!-- right sidebar -->
+		</div><!-- sidebar -->
 	</div><!-- /container -->
 </div>
 <?php

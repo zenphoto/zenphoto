@@ -60,27 +60,6 @@ if (!defined('WEBPATH')) die();
 							}
 							?>
 							</div>
-									<?php
-									if (getImageMetaData()) {
-										?>
-											<span id="exif_link">
-												<a href="#" title="<?php echo gettext("Image Info"); ?>" class="colorbox"><?php echo gettext("Image Info"); ?></a>
-											</span>
-											<span style="display:none">
-												<?php echo printImageMetadata('', false); ?>
-											</span>
-											<br clear="all" />
-										<?php
-									}
-									if (function_exists('hasMapData') && hasMapData()) {
-										?>
-										<span id="map_link">
-											<?php printGoogleMap(NULL,NULL,NULL,NULL,'gMapOptionsImage'); ?>
-										</span>
-										<?php
-									}
-									?>
-							<p><?php printImageDesc(true); ?></p>
 							<?php if (function_exists('printRating')) printRating(); ?>
 							<?php
 							if (function_exists('printCommentForm')) {
@@ -114,7 +93,30 @@ if (!defined('WEBPATH')) die();
 					</div>
 					<?php
 				}
-				printTags('links', gettext('Tags: '));
+				?>
+				<p><?php printImageDesc(true); ?></p>
+				<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
+				<?php
+				if (getImageMetaData()) {
+					?>
+					<span id="exif_link">
+						<a href="#" title="<?php echo gettext("Image Info"); ?>" class="colorbox"><?php echo gettext("Image Info"); ?></a>
+					</span>
+					<span style="display:none">
+						<?php echo printImageMetadata('', false); ?>
+					</span>
+					<br clear="all" />
+					<?php
+				}
+				if (function_exists('hasMapData') && hasMapData()) {
+					setOption('gmap_display', 'colorbox', false);
+					?>
+					<span id="map_link">
+						<?php printGoogleMap(NULL,NULL,NULL,NULL,'gMapOptionsImage'); ?>
+					</span>
+					<br clear="all" />
+					<?php
+				}
 				?>
 			</div>
 		</div>
