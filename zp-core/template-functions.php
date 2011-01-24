@@ -4668,31 +4668,36 @@ function exposeZenPhotoInformations( $obj = '', $plugins = '', $theme = '' ) {
  * @return string
  */
 function getCodeblock($number=0,$titlelink='') {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page;
 	$getcodeblock = '';
 	if (empty($titlelink)) {
-		if (in_context(ZP_ALBUM)) {
-			$getcodeblock = $_zp_current_album->getCodeblock();
-		}
-		if (in_context(ZP_IMAGE)) {
-			$getcodeblock = $_zp_current_image->getCodeblock();
-		}
-		if(getOption('zp_plugin_zenpage')) {
-			if(is_NewsArticle()) {
-				if ($_zp_current_zenpage_news->checkAccess()) {
-					$getcodeblock = $_zp_current_zenpage_news->getCodeblock();
-				} else {
-					$getcodeblock = '';
+		switch($_zp_gallery_page) {
+			case 'album.php':
+				$getcodeblock = $_zp_current_album->getCodeblock();
+				break;
+			case 'image.php':
+				$getcodeblock = $_zp_current_image->getCodeblock();
+				break;
+			case 'index.php':
+			case 'news.php':
+				if(is_object($_zp_current_zenpage_news)) {	// valid news article
+					if ($_zp_current_zenpage_news->checkAccess()) {
+						$getcodeblock = $_zp_current_zenpage_news->getCodeblock();
+					} else {
+						$getcodeblock = '';
+					}
 				}
-				//}
-			}
-			if(is_Pages()) {
+				break;
+			case 'pages.php':
 				if($_zp_current_zenpage_page->checkAccess()) {
 					$getcodeblock = $_zp_current_zenpage_page->getCodeblock();
 				} else {
-					$getcodeblock = '';
+					$getcodeblock = NULL;
 				}
-			}
+				break;
+			default:
+				$getcodeblock = NULL;
+				break;
 		}
 	}	else { // direct page request
 		if(getOption('zp_plugin_zenpage')) {

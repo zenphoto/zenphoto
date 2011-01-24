@@ -341,8 +341,16 @@ class Gallery {
 					if (!$dbtag) {
 						$dead['id'] = $row['id'];
 					}
-					$dbtag = query_single_row("SELECT * FROM ".prefix($row['type'])." WHERE `id`='".$row['objectid']."'");
-					if (!$dbtag) {
+					switch ($row['type']) {
+						case 'album':
+							$tbl = 'albums';
+							break;
+						default:
+							$tbl = $row['type'];
+							break;
+					}
+					$dbtag = query_single_row("SELECT * FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
+										if (!$dbtag) {
 						$dead['id'] = $row['id'];
 					}
 				}
@@ -359,7 +367,15 @@ class Gallery {
 					if (!$dbtag) {
 						$dead['id'] = $row['id'];
 					}
-					$dbtag = query_single_row("SELECT * FROM ".prefix($row['type'])." WHERE `id`='".$row['objectid']."'");
+					switch ($row['type']) {
+						case 'album':
+							$tbl = 'albums';
+							break;
+						default:
+							$tbl = $row['type'];
+							break;
+					}
+					$dbtag = query_single_row("SELECT * FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
 					if (!$dbtag) {
 						$dead['id'] = $row['id'];
 					}

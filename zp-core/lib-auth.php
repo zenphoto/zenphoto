@@ -353,20 +353,18 @@ class Zenphoto_Authority {
 	 * @return array
 	 */
 	function getAdminEmail($rights=NULL) {
-		if (is_null($rights)) $rights = ADMIN_RIGHTS;
+		if (is_null($rights)) {
+			$rights = ADMIN_RIGHTS;
+		}
 		$emails = array();
 		$admins = $this->getAdministrators();
-		$user = array_shift($admins);
-		if (!empty($user['email'])) {
-			$name = $user['name'];
-			if (empty($name)) {
-				$name = $user['user'];
-			}
-			$emails[$name] = $user['email'].' ('.$user['user'].')';
-		}
 		foreach ($admins as $user) {
-			if (($user['rights'] & $rights)  && !empty($user['email'])) {
-				$emails[] = $user['email'];
+			if (($user['rights'] & $rights)  && is_valid_email_zp($user['email'])) {
+				$name = $user['name'];
+				if (empty($name)) {
+					$name = $user['user'];
+				}
+				$emails[$name] = $user['email'];
 			}
 		}
 		return $emails;

@@ -219,7 +219,7 @@ function printRegistrationForm($thanks=NULL) {
 			$notify = false;
 			if (getOption('register_user_notify')) {
 				$notify = zp_mail(gettext('Zenphoto Gallery registration'),
-				sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'),$userobj->getName(), $adminuser['user'], $admin_e));
+				sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'),$userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 			}
 			if (empty($notify)) {
 				if (getOption('register_user_create_album')) {

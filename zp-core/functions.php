@@ -379,7 +379,7 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 				if (empty($result)) {
 					$result = gettext('Mail send failed.');
 				}
-				$result .= ' '.gettext('Invalid "to" mail address provided.');
+				$result .= ' '.sprintf(gettext('Invalid "to" mail address %s.'),$email);
 			}
 		}
 	}
@@ -399,7 +399,7 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 				if (empty($result)) {
 					$result = gettext('Mail send failed.');
 				}
-				$result = ' '.gettext('Invalid "cc" mail address provided.');
+				$result = ' '.sprintf(gettext('Invalid "cc" mail address %s.'),$email);
 			}
 		}
 	}
@@ -412,7 +412,7 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 				if (empty($result)) {
 					$result = gettext('Mail send failed. ');
 				}
-				$result = ' '.gettext('Invalid "bcc" mail address provided.');
+				$result = ' '.sprintf(gettext('Invalid "bcc" mail address %s.'),$email);
 			}
 		}
 	}
