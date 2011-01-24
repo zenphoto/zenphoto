@@ -35,7 +35,8 @@ if (!defined('WEBPATH')) die();
 						<h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; <?php echo gettext('Album index'); ?></h3>
 						<div id="albums">
 							<?php
-							while (next_album($_zp_gallery_page == 'gallery.php')) {
+							setOption('albums_per_page', 12,false);
+							while (next_album()) {
 								?>
 								<div class="album">
 									<a class="albumthumb" href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">

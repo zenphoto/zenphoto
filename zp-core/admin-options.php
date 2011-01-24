@@ -364,11 +364,17 @@ if (isset($_GET['action'])) {
 					$nch = $ch;
 				}
 				setThemeOption('thumb_crop_height', $nch, $table, $themename);
+				$albums_per_page = sanitize_numeric($_POST['albums_per_page']);
+				$images_per_page = sanitize_numeric($_POST['images_per_page']);
+				$albums_per_row = sanitize_numeric($_POST['albums_per_row']);
+				$images_per_row =  sanitize_numeric($_POST['images_per_row']);
+				$albums_per_page = ceil($albums_per_page/$albums_per_row)*$albums_per_row;
+				$images_per_page = ceil($images_per_page/$images_per_row)*$images_per_row;
 
-				setThemeOption('albums_per_page', sanitize_numeric($_POST['albums_per_page']), $table, $themename);
-				setThemeOption('images_per_page', sanitize_numeric($_POST['images_per_page']), $table, $themename);
-				setThemeOption('albums_per_row', sanitize_numeric($_POST['albums_per_row']), $table, $themename);
-				setThemeOption('images_per_row', sanitize_numeric($_POST['images_per_row']), $table, $themename);
+				setThemeOption('albums_per_page', $albums_per_page, $table, $themename);
+				setThemeOption('images_per_page', $images_per_page, $table, $themename);
+				setThemeOption('albums_per_row', $albums_per_row, $table, $themename);
+				setThemeOption('images_per_row', $images_per_row, $table, $themename);
 				if (isset($_POST['thumb_transition'])) setBoolThemeOption('thumb_transition', sanitize_numeric($_POST['thumb_transition'])-1, $table, $themename);
 				setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
 				$otg = getThemeOption('thumb_gray', $table, $themename);
@@ -384,10 +390,10 @@ if (isset($_GET['action'])) {
 					setBoolOption('thumb_crop', isset($_POST['thumb_crop']), $table, $themename);
 					setOption('thumb_crop_width', $ncw, $table, $themename);
 					setOption('thumb_crop_height', $nch, $table, $themename);
-					setOption('albums_per_page', sanitize_numeric($_POST['albums_per_page']), $table, $themename);
-					setOption('images_per_page', sanitize_numeric($_POST['images_per_page']), $table, $themename);
-					setOption('albums_per_row', sanitize_numeric($_POST['albums_per_row']), $table, $themename);
-					setOption('images_per_row', sanitize_numeric($_POST['images_per_row']), $table, $themename);
+					setOption('albums_per_page', $albums_per_page, $table, $themename);
+					setOption('images_per_page', $images_per_page, $table, $themename);
+					setOption('albums_per_row', $albums_per_row, $table, $themename);
+					setOption('images_per_row', $images_per_row, $table, $themename);
 					if (isset($_POST['thumb_transition'])) setBoolOption('thumb_transition', sanitize_numeric($_POST['thumb_transition'])-1, $table, $themename);
 					setOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
 					setBoolOption('thumb_gray', isset($_POST['thumb_gray']), $table, $themename);
@@ -2181,7 +2187,10 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 					if (getThemeOption('albums_per_row',$album,$themename)>1) {
 						?>
 						<p class="notebox">
-							<?php echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.'); ?>
+							<?php
+							echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.').' ';
+							printf(gettext('For album pages there will be %1$u rows of thumbnails.'),ceil(getThemeOption('albums_per_page',$album,$themename)/getThemeOption('albums_per_row',$album,$themename)));
+							?>
 						</p>
 						<?php
 					}
@@ -2201,7 +2210,10 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 					if (getThemeOption('images_per_row',$album,$themename)>1) {
 					?>
 						<p class="notebox">
-							<?php echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.'); ?>
+							<?php
+							echo gettext('<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it.').' ';
+							printf(gettext('For pages containing images there will be %1$u rows of thumbnails.'),ceil(getThemeOption('images_per_page',$album,$themename)/getThemeOption('images_per_row',$album,$themename)));
+							?>
 						</p>
 						<?php
 					}

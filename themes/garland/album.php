@@ -38,7 +38,7 @@ if (!defined('WEBPATH')) die();
 						</h3>
 						<div id="albums">
 							<?php
-							while (next_album($_zp_gallery_page == 'gallery.php')) {
+							while (next_album()) {
 								?>
 								<div class="album">
 									<a class="albumthumb" href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">

@@ -581,7 +581,11 @@ function getTotalPages($oneImagePage=false) {
 		}
 		$imageCount = getNumImages();
 		if ($oneImagePage) {
-			$imageCount = min(1, $imageCount);
+			if ($oneImagePage===true) {
+				$imageCount = min(1, $imageCount);
+			} else {
+				$imageCount = 0;
+			}
 		}
 		$images_per_page = max(1, getOption('images_per_page'));
 		$pageCount = ($pageCount + ceil(($imageCount - $_firstPageImages) / $images_per_page));
@@ -1710,11 +1714,7 @@ function isImagePage() {
  */
 function isAlbumPage() {
 	global $_zp_page;
-	if (in_context(ZP_SEARCH)) {
-		$pageCount = Ceil(getNumAlbums() / getOption('albums_per_page'));
-	} else {
-		$pageCount = Ceil(getNumAlbums() / getOption('albums_per_page'));
-	}
+	$pageCount = Ceil(getNumAlbums() / getOption('albums_per_page'));
 	return ($_zp_page <= $pageCount);
 }
 
@@ -1781,7 +1781,7 @@ function next_image($all=false, $firstPageCount=NULL, $sorttype=null, $sortdirec
 	if (is_null($firstPageCount)) {
 		$firstPageCount = $_firstPageImages;
 	}
-	$imagePageOffset = getTotalPages(true) - 1; /* gives us the count of pages for album thumbs */
+	$imagePageOffset = getTotalPages(2); /* gives us the count of pages for album thumbs */
 	if ($all) {
 		$imagePage = 1;
 		$firstPageCount = 0;
