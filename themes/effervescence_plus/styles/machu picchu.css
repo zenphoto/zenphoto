@@ -770,7 +770,24 @@ text-decoration:underline;
 	font-size: 80%;
 }
 #search a {
-text-decoration: none;
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#search a:visited {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#search a:hover {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+#search a:active {
+	text-decoration: none;
+	border:none;
+	outline: none
 }
 #search ul {
 border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;

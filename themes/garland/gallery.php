@@ -40,7 +40,7 @@ if (!defined('WEBPATH')) die();
 								?>
 								<div class="album">
 									<a class="albumthumb" href="<?php echo getAlbumLinkURL();?>" title="<?php printf (gettext('View album:  %s'),sanitize(getAlbumTitle())); ?>">
-										<?php printCustomAlbumThumbImage(getAlbumTitle(),85,NULL,NULL,77,77); ?>
+										<?php printCustomAlbumThumbImage(getAlbumTitle(),85,NULL,NULL,85,85); ?>
 									</a>
 									<div class="albumdesc">
 										<h3>

@@ -84,7 +84,7 @@ function commonNewsLoop($paged) {
 				if(is_GalleryNewsType()) {
 					echo ' | '.gettext("Album:")." <a href='".getNewsAlbumURL()."' title='".getBareNewsAlbumTitle()."'>".getNewsAlbumTitle()."</a>";
 				} else {
-					if (!empty($cat)) {
+					if (!empty($cat) && !in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 						echo ' | ';
 						printNewsCategories(", ",gettext("Categories: "),"newscategories");
 					}

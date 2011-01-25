@@ -45,48 +45,37 @@ if (!defined('WEBPATH')) die();
 							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
 							<?php printNewsIndexURL(gettext("News"),"  &raquo; ");  printCurrentNewsCategory("  &raquo; ".gettext('Category')." - "); ?><?php printNewsTitle("  &raquo; "); ?>
 							</h3>
-	<?php
-	if(is_NewsArticle()) { // single news article
-		?>
-		<?php if(getPrevNewsURL()) { ?><div class="singlenews_prev"><?php printPrevNewsLink(); ?></div><?php } ?>
-		<?php if(getPrevNewsURL()) { ?><div class="singlenews_next"><?php printNextNewsLink(); ?></div><?php } ?>
-		<?php if(getPrevNewsURL() OR getPrevNewsURL()) { ?><br clear:both /><?php } ?>
-		<h3><?php printNewsTitle(); ?></h3>
+							<?php
+							if(is_NewsArticle()) { // single news article
+								?>
+								<h3><?php printNewsTitle(); ?></h3>
 
-		<div class="newsarticlecredit">
-			<span class="newsarticlecredit-left"> <?php
-			$count = getCommentCount();
-			$cat = getNewsCategories();
-			printNewsDate();
-			if ($count > 0) {
-				echo ' | ';
-				printf(gettext("Comments: %d"),  $count);
-			}
-			if (!empty($cat)) {
-				echo ' | ';
-			}
-			?>
-			</span>
-			<?php
-			if (!empty($cat)) {
-				printNewsCategories(", ",gettext("Categories: "),"newscategories");
-			}
-			?>
-		<?php printCodeblock(1); ?>
-		<?php printNewsContent(); ?>
-		 <?php printCodeblock(2); ?>
-		</div>
-		<?php
-		if (function_exists('printRating')) printRating();
+								<div class="newsarticlecredit">
+									<span class="newsarticlecredit-left"> <?php
+									$count = getCommentCount();
+									printNewsDate();
+									if ($count > 0) {
+										echo ' | ';
+										printf(gettext("Comments: %d"),  $count);
+									}
+									?>
+									</span>
+									<?php printCodeblock(1); ?>
+									<?php printNewsContent(); ?>
+								 <?php printCodeblock(2); ?>
+								</div>
+								<?php
+								if (function_exists('printRating')) printRating();
 
-		if (function_exists('printCommentForm')) {
-			printCommentForm();
-		}
+								if (function_exists('printCommentForm')) {
+									printCommentForm();
+								}
 
-	} else { 	// news article loop
-		commonNewsLoop(true);
-	}
-	?>							<?php footer(); ?>
+							} else { 	// news article loop
+								commonNewsLoop(true);
+							}
+							?>
+							<?php footer(); ?>
 							<p style="clear: both;"></p>
 						</div>
 						<!-- end content -->
@@ -97,7 +86,33 @@ if (!defined('WEBPATH')) die();
 		<span class="clear"></span>
 		<div class="sidebar">
 			<div id="rightsidebar">
-				<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
+				<?php
+				if(is_NewsArticle()) {
+					if(getPrevNewsURL()) {
+					 ?>
+					 <div class="singlenews_prev"><?php printPrevNewsLink(); ?></div>
+					 <?php
+					}
+					if(getPrevNewsURL()) {
+						?>
+						<div class="singlenews_next"><?php printNextNewsLink(); ?></div>
+						<?php
+					}
+					if(getPrevNewsURL() OR getPrevNewsURL()) {
+					 ?>
+					 <br clear="all" />
+					 <?php
+					}
+					$cat = getNewsCategories();
+					if (!empty($cat)) {
+						printNewsCategories(", ",gettext("Categories: "),"newscategories");
+						?>
+						<br clear="all" />
+						<?php
+					}
+					printTags('links', gettext('Tags: '), NULL, '');
+				}
+				?>
 			</div><!-- right sidebar -->
 		</div><!-- sidebar -->
 	</div><!-- /container -->

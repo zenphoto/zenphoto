@@ -45,7 +45,7 @@ if (getOption('Allow_search')) {
 			$text = gettext('Search gallery');
 			break;
 	}
-	printSearchForm(NULL, 'search', NULL, $text, NULL, NULL, $list);
+	printSearchForm(NULL, 'search', $_zp_themeroot.'/images/search.png', $text, NULL, NULL, $list);
 }
 
 if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
