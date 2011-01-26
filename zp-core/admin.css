@@ -1148,8 +1148,7 @@ button.positive,.buttons a.positive {
 	border-bottom: 1px dotted #BAC9CF;
 }
 
-
-.tagchecklist label:hover,.tagchecklist label.hover {
+.tagchecklist label:hover, .tagchecklist li:hover, .tagchecklist li label.hover {
 	background: #F1F2F3;
 	color: #333;
 }
@@ -1160,11 +1159,14 @@ button.positive,.buttons a.positive {
 
 .new_tag {
 	padding: 0 0.2em 0 25px;
-	border:none;
+	border-top:none;
+	border-left:none;
+	border-right:none;
+	border-bottom: 1px dotted #BAC9CF;
+	text-decoration: none;
 	outline: none
 	margin: 0;
 	padding: 0;
-	border-bottom: 1px dotted #BAC9CF;
 }
 .new_tag img {
 	position: relative;
