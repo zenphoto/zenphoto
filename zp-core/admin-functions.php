@@ -886,7 +886,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
  * @param string $postit prefix to prepend for posting
  * @param bool $showCounts set to true to get tag count displayed
  */
-function tagSelector($that, $postit, $showCounts=false, $mostused=false) {
+function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew=true) {
 	global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist, $_zp_UTF8;
 	if (is_null($_zp_admin_ordered_taglist)) {
 		if ($mostused || $showCounts) {
@@ -922,7 +922,29 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false) {
 			}
 		}
 	}
-	echo '<ul class="tagchecklist">'."\n";
+	?>
+	<ul id="list_<?php echo $postit; ?>" class="tagchecklist">
+	<?php
+	if ($addnew) {
+		if (count($tags) == 0) {
+			$hr = '<li><hr /></li>';
+		} else {
+			$hr = '';
+		}
+		?>
+		<li>
+			<span class="new_tag displayinline" >
+				<a href="javascript:addNewTag('<?php echo $postit; ?>','<?php echo $hr; ?>','<?php echo gettext('Tag already exist!'); ?>');" title="<?php echo gettext('add tag'); ?>">
+					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
+				</a>
+				<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
+			</span>
+		</li>
+		<br clear="all" />
+		<li><hr /></li>
+		<span id="newtagli_<?php echo $postit; ?>"></span>
+		<?php
+	}
 	if ($showCounts) {
 		$displaylist = array();
 		foreach ($them as $tag) {
@@ -933,10 +955,14 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false) {
 	}
 	if (count($tags) > 0) {
 		generateUnorderedListFromArray($tags, $tags, $postit, false, !$mostused, $showCounts);
-		echo '<li><hr /></li>';
+		?>
+		<li><hr /></li>
+		<?php
 	}
 	generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts);
-	echo '</ul>';
+	?>
+	</ul>
+	<?php
 }
 
 /**
@@ -1604,28 +1630,12 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 					?>
 					<span style="line-height: 0em;"><br clear="all" /></span>
 					</div>
-					<h2 class="h2_bordered_edit">
-						<?php
-						if ($collapse_tags) {
-							?>
-							<a href="javascript:toggle('<?php echo $prefix; ?>taglist_hide');" >
-							<?php
-						}
-						echo gettext("Tags");
-						if ($collapse_tags) {
-							?>
-							</a>
-							<?php
-						}
-						?>
-					</h2>
+					<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
 					<div class="box-edit-unpadded">
-						<div id="<?php echo $prefix; ?>taglist_hide" <?php if ($collapse_tags) echo 'style="display:none"'; ?> >
-							<?php
-							$tagsort = getTagOrder();
-							tagSelector($album, 'tags_'.$prefix, false, $tagsort);
-							?>
-						</div>
+						<?php
+						$tagsort = getTagOrder();
+						tagSelector($album, 'tags_'.$prefix, false, $tagsort);
+						?>
 					</div>
 			</td>
 		</tr>

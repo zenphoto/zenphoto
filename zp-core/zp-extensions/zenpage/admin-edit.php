@@ -618,13 +618,13 @@ if(is_AdminEditPage("page")) {
 			<?php } // if article for categories
 				} // if !category end
 				if (!is_AdminEditPage("category")) {
-				?>
-				<h2 class="h2_bordered_edit-zenpage"><?php echo gettext("Tags"); ?></h2>
+					?>
+					<h2 class="h2_bordered_edit-zenpage"><?php echo gettext("Tags"); ?></h2>
 					<div id="zenpagetags">
 					<?php tagSelector($result, 'tags_', false, getTagOrder()); ?>
 					</div>
-			<?php
-			}
+					<?php
+				}
 			?>
 		</td>
 	 </tr>

@@ -11,7 +11,7 @@ img {
 
 .zenpagestats {
 	margin-left: 5px;
-	font-size: 0.8em; 
+	font-size: 0.8em;
 	color: #5A5A4B;
 }
 
@@ -192,14 +192,14 @@ DIV.container IMG {
 
 
 
-/* admin text fields 
+/* admin text fields
 ***************************/
 .inputfield {
 	width: 600px;
 }
 
 .pagecontent {
-	width: 600px; 
+	width: 600px;
 	height: 500px;
 }
 
@@ -308,7 +308,7 @@ div.zenpagechecklist label.hover,
 	height: 1%;
 }
 
-/* CSS for language_string_listbox 
+/* CSS for language_string_listbox
 --------------------------------------*/
 .zenpage_language_string_listbox {
 	border: 1px solid #ccc;
@@ -374,7 +374,7 @@ ul.language_string_list {
 	-webkit-border-radius: 5px 5px 0px 0px;
 	border-radius: 5px 05px 0px 0px;
 }
-	
+
 .box-edit-zenpage {
 	margin: 0 0 10px 0;
 	padding: 0px 8px 8px 8px;

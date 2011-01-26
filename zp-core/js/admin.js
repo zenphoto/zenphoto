@@ -271,3 +271,27 @@ function toggleWMUse(id) {
 		jQuery('#WMUSE_'+id).show();
 	}
 }
+
+function addNewTag(id,hr,dupmsg) {
+	var tag;
+	tag = $('#newtag_'+id).val();
+	if (tag) {
+		var taglc = tag.toLowerCase();
+		$('#newtag_'+id).val('');
+		var exists = $('#'+id+taglc).length;
+		if (exists) {
+			$('#'+id+taglc).attr('checked',true);
+			alert(dupmsg);
+		} else {
+			var html = $('#newtagli_'+id).html()
+			if (!html) {
+				html = html+hr;
+			}
+			html = '<li><label class="displayinline"><input id="'+
+					id+taglc+'" name="'+id+taglc+
+					'" type="checkbox" checked="checked" value="'+
+					tag+'" />'+tag+'</label></li>'+html;
+			$('#newtagli_'+id).html(html);
+		}		
+	}
+}

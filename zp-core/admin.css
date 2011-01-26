@@ -1163,6 +1163,32 @@ button.positive,.buttons a.positive {
 	height: 1%;
 }
 
+.new_tag {
+	padding: 0 0.2em 0 25px;
+}
+.new_tag img {
+	position: relative;
+	top: 4px;
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+.new_tag a:visited {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+.new_tag a:hover {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+.new_tag a:active {
+	text-decoration: none;
+	border:none;
+	outline: none
+}
+
 /* CSS for tag rename lists */
 .tagrenamelist {
 	border: 1px solid #ccc;
@@ -1236,7 +1262,7 @@ button.positive,.buttons a.positive {
 .searchchecklist li {
 	padding-left: 0;
 	text-align: left;
-}	
+}
 
 /* scrollable checklists
 -----------------------------*/
@@ -2096,7 +2122,7 @@ table.bordered2 td {
 			margin: 0;
 			cursor: move;
 		}
-		
+
 .placeholder {
 	background-color: #cfcfcf;
 }
@@ -2162,12 +2188,12 @@ div.bordered .page-list_row .page-list_title {
 }
 div.bordered .page-list_row .page-list_albumthumb {
 	float: left;
- 	width: 50px;
- 	height: 45px;
-  padding: 5px 0px 0px 45px;
+	width: 50px;
+	height: 45px;
+	padding: 5px 0px 0px 45px;
 	background-image: url(images/drag_handle.png) !important;
- 	background-repeat: no-repeat;
- 	background-position: 15px 20px;
+	background-repeat: no-repeat;
+	background-position: 15px 20px;
 }
 
 div.bordered .page-list_row .page-list_albumthumb img {

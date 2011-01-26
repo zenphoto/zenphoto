@@ -1476,11 +1476,10 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 		$ilim = min($total, max($navlen-round($extralinks/2), $current+floor($len)));
 		$k1 = round(($j-2)/2)+1;
 		$k2 = $total-round(($total-$ilim)/2);
-		echo "<ul class=\"$class\">";
+		echo "<ul class=\"$class\">\n";
 		if ($nextprev) {
 			echo "<li class=\"prev\">";
 			printPrevNewsPageLink($prev);
-			echo "</li>";
 			echo "</li>\n";
 		}
 		if ($firstlast) {
@@ -1489,9 +1488,9 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 				echo "1";
 			} else {
 				if(getOption("zenpage_zp_index_news")) {
-					echo "<a href='".getNewsIndexURL()."' title='".gettext("Page")." 1'>1</a>\n";
+					echo "<a href='".getNewsIndexURL()."' title='".gettext("Page")." 1'>1</a>";
 				} else {
-					echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()."1' title='".gettext("Page")." 1'>1</a>\n";
+					echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()."1' title='".gettext("Page")." 1'>1</a>";
 				}
 			}
 			echo "</li>\n";
@@ -1507,14 +1506,14 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			if ($i == $current) {
 				echo $i;
 			} else {
-				echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$i."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>\n";
+				echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$i."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>";
 			}
 			echo "</li>\n";
 		}
 		if ($i < $total) {
 			echo "<li>";
 			$linktext = ($total-$i>1)?'...':$k2;
-			echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$k2."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>\n";
+			echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$k2."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
 			echo "</li>\n";
 		}
 		if ($firstlast && $i <= $total) {
@@ -1524,13 +1523,12 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			} else {
 				echo "<a href=\"".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$total."\" title=\"".sprintf(ngettext('Page {%u}','Page {%u}',$total),$total)."\">".$total."</a>";
 			}
-			echo "</li>";
+			echo "</li>\n";
 		}
 		if ($nextprev) {
-			echo "<li class=\"next\">"; printNextNewsPageLink($next); echo "</li>";
+			echo "<li class=\"next\">"; printNextNewsPageLink($next); echo "</li>\n";
 		}
-		echo "</li>\n";
-		echo "</ul>";
+		echo "</ul>\n";
 	}
 }
 

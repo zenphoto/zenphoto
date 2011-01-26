@@ -252,7 +252,6 @@ if (isset($_GET['action'])) {
 									$tags = array_unique($tags);
 									$image->setTags(sanitize($tags, 3));
 
-
 									$image->setDateTime(sanitize($_POST["$i-date"]));
 									$image->setShow(isset($_POST["$i-Visible"]));
 									$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));

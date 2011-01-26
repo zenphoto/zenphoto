@@ -133,7 +133,7 @@ printLogoAndLinks();
 					<?php XSRFToken('tag_delete');?>
 					<div class="box-tags-unpadded">
 						<?php
-						tagSelector(NULL, 'tags_', true, $tagsort);
+						tagSelector(NULL, 'tags_', true, $tagsort, false);
 						?>
 					</div>
 
