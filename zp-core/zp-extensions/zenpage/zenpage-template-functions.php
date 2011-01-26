@@ -1183,13 +1183,13 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
 		}
 		echo "<h3><a href=\"".$link."\" title=\"".strip_tags(html_encode($title))."\">".html_encode($title)."</a></h3>\n";;
 		if($showdate) {
-			echo "<p class=\"latestnews-date\">". $date."</p>\n";
+			echo "<span class=\"latestnews-date\">". $date."</span>\n";
 		}
 		if($showcontent) {
-			echo "<p class=\"latestnews-desc\">".getContentShorten($content,$contentlength,'',$readmore,$link)."</p>\n";
+			echo "<span class=\"latestnews-desc\">".getContentShorten($content,$contentlength,'',$readmore,$link)."</span>\n";
 		}
 		if($showcat AND $type != "album" && !empty($categories)) {
-			echo "<p class=\"latestnews-cats\">(".$categories.")</p>\n";
+			echo "<span class=\"latestnews-cats\">(".$categories.")</span>\n";
 		}
 		echo "</li>\n";
 		if($count == $number) {
