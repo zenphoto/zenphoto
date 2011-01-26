@@ -84,26 +84,26 @@ var ZenpageDialog = {
 		// getting the link type checkbox values
 		if($('#imagelink:checked').val() == 1) {
 			if(modrewrite == '1') {
-				linkpart1 = '<a href=\''+webpath+'/'+albumname+'/'+imgname+modrewritesuffix+'\' title=\''+imgtitle+'\'>';
+				linkpart1 = '<a href=\''+webpath+'/'+albumname+'/'+imgname+modrewritesuffix+'\' title=\''+imgtitle+'\' class=\'zenpage_imagelink\'>';
 			} else {
-				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'&amp;image='+imgname+'\' title=\''+imgtitle+'\'>';
+				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'&amp;image='+imgname+'\' title=\''+imgtitle+'\' class=\'zenpage_imagelink\'>';
 			}
 			linkpart2 = '</a>';
 		}
 		if($('#fullimagelink:checked').val() == 1) {
-				linkpart1 = '<a href=\''+fullimage+'\' title=\''+imgtitle+'\'>';
+				linkpart1 = '<a href=\''+fullimage+'\' title=\''+imgtitle+'\' class=\'zenpage_fullimagelink\'>';
 				linkpart2 = '</a>';
 		}
 		if($('#albumlink:checked').val() == 1) {
 			if(modrewrite == '1') {
-				linkpart1 = '<a href=\''+webpath+'/'+albumname+'\' title=\''+albumtitle+'\' >';
+				linkpart1 = '<a href=\''+webpath+'/'+albumname+'\' title=\''+albumtitle+'\' class=\'zenpage_albumlink\'>';
 			} else {
-				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'\' title=\''+albumtitle+'\'>';
+				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'\' title=\''+albumtitle+'\' class=\'zenpage_albumlink\'>';
 			}
 			linkpart2 = '</a>';
 		}
 		if($('#customlink:checked').val() == 1) {
-			linkpart1 = '<a href=\''+$('#linkurl').val()+'\' title=\''+linktype+'\' '+textwrap+'>';
+			linkpart1 = '<a href=\''+$('#linkurl').val()+'\' title=\''+linktype+'\' '+textwrap+' class=\'zenpage_customlink\'>';
 			linkpart2 = '</a>';
 		}
 		// getting the include type checkbox values

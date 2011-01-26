@@ -121,7 +121,7 @@ require_once("tinyzenpage-functions.php");
 	 <?php
 	 		if(empty($_GET['zenpage']) AND empty($_GET['album'])) {
 	 			echo "<h2 style='margin-left: 8px'>";
-	 			echo "<em>tiny</em>Zenpage (v1.3.2)</h2>";
+	 			echo "<em>tiny</em>Zenpage (v1.4.1)</h2>";
 	 			echo "<p style='margin-left: 8px'>";
 	 			echo gettext("This provides access to your images and albums (dropdown 'Zenphoto') as well as pages, news articles and news categories (dropdown 'Zenpage') to easily include them in your pages and articles. You need at least 'Manage all albums' or 'Edit' rights to specific albums to be able to included image from them.")."</p>";
 	 			echo "<p style='margin-left: 8px'>";
@@ -168,6 +168,15 @@ require_once("tinyzenpage-functions.php");
 				echo "<li>".gettext("Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/<em>zenpage_sizedimage_right</em>")."</li>";
 				echo "<li>".gettext("Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</em>/<em>zenpage_customimage_right</em>")."</li>";
 				echo "<li>".gettext("If you additionally have checked <em>Show title</em> for an image or album the div with the class <em>zenpage_wrapper</em> is wrapped around the image and link within that after the image and the link a div with the class <em>zenpage_title</em> wrapping the title.")."</li>";
+				echo "</ul>";
+				echo "<p style='margin-left: 8px'>";
+				echo gettext("Additionally a default CSS class is attached to the link itself depending on the link option set:");
+				echo "</p>";
+				echo "<ul style='margin-left: 8px'>";
+				echo "<li>".gettext("Image link: <em>zenpage_imagelink</em>")."</li>";
+				echo "<li>".gettext("Full image link: <em>zenpage_fullimagelink</em>")."</li>";
+				echo "<li>".gettext("Album link: <em>zenpage_albumlink</em>")."</li>";
+				echo "<li>".gettext("Custom link: <em>zenpage_customlink</em>")."</li>";
 				echo "</ul>";
 				echo "<p style='margin-left: 8px'>";
 				echo gettext("If you like to do some direct styling you can also use TinyMCE's image button or source code editor. <br />Also you can customize the CSS output yourself by directly changing the textwrap variables in line 47 and 50 in <em>tinyzenpage/js/dialog.php</em>.");
