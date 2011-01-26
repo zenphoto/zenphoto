@@ -361,8 +361,8 @@ if(is_AdminEditPage("page")) {
 				<?php print_language_string_list($result->get('title'), 'title', false, NULL, 'title', 91, 'zenpage_language_string_list', 10); ?>
 			</td>
 			<td class="rightcolumnmiddle" rowspan="6">
-			<h2 class="h2_bordered_edit-zenpage"><?php echo gettext("Publish"); ?></h2>
-				<div class="box-edit-zenpage">
+			<h2 class="h2_bordered_edit"><?php echo gettext("Publish"); ?></h2>
+				<div class="box-edit">
 				<?php
 				if(!is_AdminEditPage("category")) {
 				?>
@@ -505,8 +505,8 @@ if(is_AdminEditPage("page")) {
 				<?php
 				if(!is_AdminEditPage("category")) {
 					?>
-					<h2 class="h2_bordered_edit-zenpage"><?php echo gettext("Date"); ?></h2>
-					<div class="box-edit-zenpage">
+					<h2 class="h2_bordered_edit"><?php echo gettext("Date"); ?></h2>
+					<div class="box-edit">
 					<p>
 
 					<script type="text/javascript">
@@ -574,8 +574,8 @@ if(is_AdminEditPage("page")) {
 					?>
 					</div>
 
-					<h2 class="h2_bordered_edit-zenpage"><?php echo gettext("General"); ?></h2>
-					<div class="box-edit-zenpage">
+					<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
+					<div class="box-edit">
 
 					<p class="checkbox">
 					<input name="commentson" type="checkbox" id="commentson" value="1" <?php checkIfChecked($result->getCommentsAllowed());?> />
@@ -594,7 +594,7 @@ if(is_AdminEditPage("page")) {
 					<?php echo zp_apply_filter('general_zenpage_utilities', '', $result); ?>
 					</div>
 				<?php if(is_AdminEditPage("newsarticle")) { ?>
-					<h2 class="h2_bordered_edit-zenpage"><?php echo gettext("Categories"); ?></h2>
+					<h2 class="h2_bordered_edit"><?php echo gettext("Categories"); ?></h2>
 					<div class="zenpagechecklist">
 					<?php
 
@@ -619,8 +619,8 @@ if(is_AdminEditPage("page")) {
 				} // if !category end
 				if (!is_AdminEditPage("category")) {
 					?>
-					<h2 class="h2_bordered_edit-zenpage"><?php echo gettext("Tags"); ?></h2>
-					<div id="zenpagetags">
+					<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
+					<div class="box-edit-unpadded">
 					<?php tagSelector($result, 'tags_', false, getTagOrder()); ?>
 					</div>
 					<?php
