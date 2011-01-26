@@ -290,7 +290,7 @@ function printPagesListTable($page, $flag) {
 		<?php if(checkIfLockedPage($page)) {
 			echo "<a href='admin-edit.php?page&amp;titlelink=".urlencode($page->getTitlelink())."'> "; checkForEmptyTitle($page->getTitle(),"page"); echo "</a>".checkHitcounterDisplay($page->getHitcounter());
 		} else {
-			echo $page->getTitle(); checkHitcounterDisplay($page->getShow());
+			checkForEmptyTitle($page->getTitle(),"page"); checkHitcounterDisplay($page->getShow());
 		}	?>
 		</div>
 		<div class="page-list_extra">
@@ -1302,7 +1302,7 @@ function updateItemSortorder($mode='pages', &$reports) {
  * @param string $type 'page', 'news' or 'category'
  * @return string
  */
-function checkForEmptyTitle($titlefield,$type) {
+function checkForEmptyTitle($titlefield,$type,$truncate=true) {
 	switch($type) {
 		case "page":
 			$text = gettext("Untitled page");
@@ -1314,8 +1314,11 @@ function checkForEmptyTitle($titlefield,$type) {
 			$text = gettext("Untitled category");
 			break;
 	}
-	if($titlefield) {
-		$title = strip_tags($titlefield);
+	$title = strip_tags($titlefield);
+	if($title) {
+		if ($truncate) {
+			$title = truncate_string($title, 40);
+		}
 	} else {
 		$title = "<span style='color:red; font-weight: bold'>".$text."</span>";
 	}

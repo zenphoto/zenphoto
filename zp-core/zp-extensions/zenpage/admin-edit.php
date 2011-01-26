@@ -235,7 +235,7 @@ codeblocktabsJS();
 	} else {
 		if(is_AdminEditPage('newsarticle')) {
 			?>
-			<h1><?php echo gettext('Edit Article:'); ?> <em><?php checkForEmptyTitle($result->getTitle(),'news'); ?></em></h1>
+			<h1><?php echo gettext('Edit Article:'); ?> <em><?php checkForEmptyTitle($result->getTitle(),'news',false); ?></em></h1>
 			<?php
 			if($result->getDatetime() >= date('Y-m-d H:i:s')) {
 				echo '<small><strong id="scheduldedpublishing">'.gettext('(Article scheduled for publishing)').'</strong></small>';
@@ -249,12 +249,12 @@ codeblocktabsJS();
 		}
 		if(is_AdminEditPage('category')) {
 			?>
-			<h1><?php echo gettext('Edit Category:'); ?> <em><?php checkForEmptyTitle($result->getTitle(),'category'); ?></em></h1>
+			<h1><?php echo gettext('Edit Category:'); ?> <em><?php checkForEmptyTitle($result->getTitle(),'category',false); ?></em></h1>
 			<?php
 		}
 		if(is_AdminEditPage('page')) {
 			?>
-			<h1><?php	echo gettext('Edit Page:'); ?> <em><?php checkForEmptyTitle($result->getTitle(),'page'); ?></em></h1>
+			<h1><?php	echo gettext('Edit Page:'); ?> <em><?php checkForEmptyTitle($result->getTitle(),'page',false); ?></em></h1>
 			<?php
 			if($result->getDatetime() >= date('Y-m-d H:i:s')) {
 				echo ' <small><strong id="scheduldedpublishing">'.gettext('(Page scheduled for publishing)').'</strong></small>';

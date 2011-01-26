@@ -169,7 +169,7 @@ printLogoAndLinks();
 								 if(checkIfLockedNews($article)) {
 									 echo '<a href="admin-edit.php?newsarticle&amp;titlelink='.urlencode($article->getTitlelink()).'&amp;pagenr='.getCurrentAdminNewsPage().'">'; checkForEmptyTitle($article->getTitle(),"news"); echo '</a>'.checkHitcounterDisplay($article->getHitcounter());
 								 } else {
-									 echo $article->getTitle().'</a>'.checkHitcounterDisplay($article->getHitcounter());
+									 echo checkForEmptyTitle($article->getTitle(),"news").'</a>'.checkHitcounterDisplay($article->getHitcounter());
 								 }
 								 ?>
 
