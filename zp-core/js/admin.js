@@ -272,7 +272,7 @@ function toggleWMUse(id) {
 	}
 }
 
-function addNewTag(id,hr,dupmsg) {
+function addNewTag(id,dupmsg) {
 	var tag;
 	tag = $('#newtag_'+id).val();
 	if (tag) {

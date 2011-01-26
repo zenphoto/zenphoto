@@ -922,16 +922,15 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 			}
 		}
 	}
+	$hr = '';
 	if ($addnew) {
 		if (count($tags) == 0) {
 			$hr = '<li><hr /></li>';
-		} else {
-			$hr = '';
 		}
 		?>
 
-			<span class="new_tag displayinline tagchecklist" >
-				<a href="javascript:addNewTag('<?php echo $postit; ?>','<?php echo $hr; ?>','<?php echo gettext('tag set!'); ?>');" title="<?php echo gettext('add tag'); ?>">
+			<span class="new_tag displayinline" >
+				<a href="javascript:addNewTag('<?php echo $postit; ?>','<?php echo gettext('tag set!'); ?>');" title="<?php echo gettext('add tag'); ?>">
 					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
 				</a>
 				<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />

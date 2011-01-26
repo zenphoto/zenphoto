@@ -1148,11 +1148,6 @@ button.positive,.buttons a.positive {
 	border-bottom: 1px dotted #BAC9CF;
 }
 
-.tagchecklist label {
-	display: block;
-	padding: 0 0.2em 0 25px;
-	text-indent: -25px;
-}
 
 .tagchecklist label:hover,.tagchecklist label.hover {
 	background: #F1F2F3;
@@ -1165,6 +1160,11 @@ button.positive,.buttons a.positive {
 
 .new_tag {
 	padding: 0 0.2em 0 25px;
+	border:none;
+	outline: none
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px dotted #BAC9CF;
 }
 .new_tag img {
 	position: relative;
