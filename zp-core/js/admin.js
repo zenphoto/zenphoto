@@ -281,17 +281,20 @@ function addNewTag(id,hr,dupmsg) {
 		var exists = $('#'+id+taglc).length;
 		if (exists) {
 			$('#'+id+taglc).attr('checked',true);
-			alert(dupmsg);
+			clearTagID = '#newtag_'+id;
+			$(clearTagID).val(dupmsg);
+			$(clearTagID).css('color','gray');
+			setTimeout(
+						function() {
+							$(clearTagID).val('');
+							$(clearTagID).css('color','black');
+						}, 3000);
 		} else {
-			var html = $('#newtagli_'+id).html()
-			if (!html) {
-				html = html+hr;
-			}
 			html = '<li><label class="displayinline"><input id="'+
 					id+taglc+'" name="'+id+taglc+
 					'" type="checkbox" checked="checked" value="'+
-					tag+'" />'+tag+'</label></li>'+html;
-			$('#newtagli_'+id).html(html);
+					tag+'" />'+tag+'</label></li>';
+			$('#list_'+id).prepend(html);
 		}		
 	}
 }

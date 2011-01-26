@@ -887,7 +887,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
  * @param bool $showCounts set to true to get tag count displayed
  */
 function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew=true) {
-	global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist, $_zp_UTF8;
+	global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist, $_zp_UTF8, $jaTagList;
 	if (is_null($_zp_admin_ordered_taglist)) {
 		if ($mostused || $showCounts) {
 			$counts = getAllTagsCount();
@@ -922,9 +922,6 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 			}
 		}
 	}
-	?>
-	<ul id="list_<?php echo $postit; ?>" class="tagchecklist">
-	<?php
 	if ($addnew) {
 		if (count($tags) == 0) {
 			$hr = '<li><hr /></li>';
@@ -932,19 +929,20 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 			$hr = '';
 		}
 		?>
-		<li>
-			<span class="new_tag displayinline" >
-				<a href="javascript:addNewTag('<?php echo $postit; ?>','<?php echo $hr; ?>','<?php echo gettext('Tag already exist!'); ?>');" title="<?php echo gettext('add tag'); ?>">
+
+			<span class="new_tag displayinline tagchecklist" >
+				<a href="javascript:addNewTag('<?php echo $postit; ?>','<?php echo $hr; ?>','<?php echo gettext('tag set!'); ?>');" title="<?php echo gettext('add tag'); ?>">
 					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
 				</a>
 				<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
 			</span>
-		</li>
-		<br clear="all" />
-		<li><hr /></li>
-		<span id="newtagli_<?php echo $postit; ?>"></span>
+
 		<?php
 	}
+	?>
+	<ul id="list_<?php echo $postit; ?>" class="tagchecklist">
+	<?php echo $hr; ?>
+	<?php
 	if ($showCounts) {
 		$displaylist = array();
 		foreach ($them as $tag) {
