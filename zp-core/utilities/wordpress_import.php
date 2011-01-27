@@ -155,10 +155,10 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 	debugLogArray('Wordpress import - All Categories', $cats);
 
 	//Add categories to Zenphoto database
-	if($cats) {
+ 	if($cats) {
 		foreach($cats as $cat) {
-			$cattitlelink = $_zp_UTF8->convert($cat['name']);
-			$cattitle = seoFriendly($_zp_UTF8->convert($cat['slug']));
+			$cattitlelink = $_zp_UTF8->convert($cat['slug']);
+			$cattitle = seoFriendly($_zp_UTF8->convert($cat['name']));
 			if (query("INSERT INTO ".prefix('news_categories')." (titlelink, title, permalink) VALUES (".db_quote($cattitlelink).", ".db_quote($cattitle).",'1')", false)) {
 				echo '<li class="messagebox">'.sprintf(gettext("Category <em>%s</em> added"),$cat['name']).'</li>';
 			} else {
@@ -167,8 +167,8 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 		}
 	} else {
 		echo '<li class="notebox">'.gettext('No categories to import.').'</li>';
-	}
-	?>
+	} 
+	?> 
 	</ol>
 	</li>
 	<li><strong><?php echo gettext('Tags'); ?></strong>
@@ -190,7 +190,7 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 		}
 	} else {
 		echo '<li class="notebox">'.gettext('No tags to import.').'</li>';
-	}
+	} 
 	?>
 	</ol>
 	</li>
@@ -224,7 +224,8 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 			}
 			$post['title']= $_zp_UTF8->convert($post['title']);
 			$titlelink = sanitize(seoFriendly($post['title']));
-		 	$post['content'] = nl2br($_zp_UTF8->convert($post['content']));
+		 	//$post['content'] = nl2br($_zp_UTF8->convert($post['content']));
+		 	$post['content'] = $_zp_UTF8->convert($post['content']);
 			$post['date']  = $post['date'];
 			$post['lastchange'] = $post['lastchange'];
 			$post['type'] = $post['type'];
@@ -258,7 +259,7 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 							switch($term['taxonomy']) {
 								case 'category':
 									//Get new id of category
-									$getcat = query_single_row("SELECT titlelink, title,id from ".prefix('news_categories')." WHERE titlelink = ".db_quote($term['name'])." AND title = ".db_quote($term['slug']));
+									$getcat = query_single_row("SELECT titlelink, title,id from ".prefix('news_categories')." WHERE titlelink = ".db_quote($term['slug'])." AND title = ".db_quote($term['name']));
 									//Prevent double assignments
 									if (query_single_row("SELECT id from ".prefix('news2cat')." WHERE news_id = ".db_quote($newarticleid)." AND cat_id=".db_quote($getcat['id']),false)) {
 										echo '<li class="errorbox">'.sprintf(gettext('%1$s <em>%2$s</em> already assigned'),$term['taxonomy'], $term['name']);
@@ -339,11 +340,11 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 				echo '<ul><li class="notebox">'.gettext('No comments to import').'</li>';
 			}
 			debugLogArray('Wordpress import - Comments for "'.$post['title'].'" ('.$post['type'].')', $comments);
-			echo '</ul></li>';
+			echo '</ul></li>'; 
 		} // posts foreach
 	} else { // if posts are available at all
 		echo "<li class='notebox'>".gettext("No posts or pages to import.")."</li>";
-	}
+	} 
 	?>
 	<p class="buttons"><a href="wordpress_import.php"><?php echo gettext('New import'); ?></a></p>
 	<br style="clear:both" />
