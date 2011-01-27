@@ -2437,15 +2437,14 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 					$pluginStream = file_get_contents($path);
 					$str = isolate('$option_interface', $pluginStream);
 					if (false !== $str) {
-						eval($str);
-						if (!empty($option_interface)) {
-							require_once($path);
-							if (is_string($option_interface)) {
-								$option_interface = new $option_interface;
-								$warn = '';
-							} else {
-								$warn = gettext('<strong>NOTE:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string.');
-							}
+						require_once($path);
+						if (strpos(strtolower($str), 'new') === false) {
+							eval($str);
+							$option_interface = new $option_interface;
+							$warn = '';
+						} else {
+							eval($str);
+							$warn = gettext('<strong>NOTE:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string.');
 						}
 					}
 					if (!empty($option_interface)) {
