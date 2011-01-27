@@ -1747,7 +1747,7 @@ if (file_exists(CONFIGFILE)) {
 	if (isset($create[$_zp_conf_vars['mysql_prefix'].'menu'])) {
 		$db_schema[] = "CREATE TABLE IF NOT EXISTS ".prefix('menu')." (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`parentid` int(11) unsigned NOT NULL,
+		`parentid` int(11) unsigned default NULL,
 		`title` text,
 		`link` varchar(255) NOT NULL,
 		`include_li` int(1) unsigned default 1,

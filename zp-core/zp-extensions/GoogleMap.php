@@ -32,21 +32,24 @@ function googlemap_js() {
 	echo $MAP_OBJECT->getHeaderJS()."\n";
 	?>
 	<script type="text/javascript">
-		function toggleMap(id,map,center,bds) {
-			jQuery('#'+id).toggle();
-			if ($('#'+id).is(':visible')) {
-				map.fitBounds(bds);
-				map.setCenter(center);
-				setTimeout(
-					function() {
-						if (bds) {
-							map.fitBounds(bds);
-						}
-						map.setCenter(center);
-					}, 100);
+		<!--
+		function toggleMap(id) {
+			if ($('#'+id).hasClass('hidden_map')) {
+				$('#'+id).removeClass('hidden_map');
+			} else {
+				$('#'+id).addClass('hidden_map');
 			}
 		}
-	</script>
+		-->
+	</script>"
+	<style>
+		<!--
+		.hidden_map {
+			position: absolute;
+			left: -50000px;
+		}
+		-->
+	</style>
 	<?php
 }
 
@@ -311,25 +314,10 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			break;
 		case 'hide':
 			?>
-				<script type="text/javascript">
-					//<!--
-					<?php
-					if($MAP_OBJECT->zoom_encompass && (count($MAP_OBJECT->_markers) > 1 || count($MAP_OBJECT->_polylines) >= 1 || count($MAP_OBJECT->_overlays) >= 1)) {
-						?>
-						var bnds<?php echo $MAP_OBJECT->map_id; ?>=new google.maps.LatLngBounds(new google.maps.LatLng(<?php echo $MAP_OBJECT->_min_lat.','.$MAP_OBJECT->_min_lon; ?>), new google.maps.LatLng(<?php echo $MAP_OBJECT->_max_lat.','.$MAP_OBJECT->_max_lon; ?>));
-						<?php
-					} else {
-						?>
-						var bnds<?php echo $MAP_OBJECT->map_id; ?>=null;
-						<?php
-					}
-					?>
-					//-->
-				</script>
-				<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>',map<?php echo $MAP_OBJECT->map_id; ?>,new google.maps.LatLng(<?php echo $MAP_OBJECT->center_lat; ?>,<?php echo $MAP_OBJECT->center_lon; ?>),bnds<?php echo $MAP_OBJECT->map_id; ?>);" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
-					<?php echo $text; ?>
-				</a>
-			<div id="<?php echo $id_data; ?>" style="display:none">
+			<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>');" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
+				<?php echo $text; ?>
+			</a>
+			<div id="<?php echo $id_data; ?>" class="hidden_map">
 				<?php
 				echo $MAP_OBJECT->printOnLoad();
 				echo $MAP_OBJECT->printMap();
@@ -339,22 +327,7 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			break;
 		case 'show':
 			?>
-			<script type="text/javascript">
-				//<!--
-				<?php
-				if($MAP_OBJECT->zoom_encompass && (count($MAP_OBJECT->_markers) > 1 || count($MAP_OBJECT->_polylines) >= 1 || count($MAP_OBJECT->_overlays) >= 1)) {
-					?>
-					var bnds<?php echo $MAP_OBJECT->map_id; ?>=new google.maps.LatLngBounds(new google.maps.LatLng(<?php echo $MAP_OBJECT->_min_lat.','.$MAP_OBJECT->_min_lon; ?>), new google.maps.LatLng(<?php echo $MAP_OBJECT->_max_lat.','.$MAP_OBJECT->_max_lon; ?>));
-					<?php
-				} else {
-					?>
-					var bnds<?php echo $MAP_OBJECT->map_id; ?>=null;
-					<?php
-				}
-				?>
-				//-->
-			</script>
-			<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>',map<?php echo $MAP_OBJECT->map_id; ?>,new google.maps.LatLng(<?php echo $MAP_OBJECT->center_lat; ?>,<?php echo $MAP_OBJECT->center_lon; ?>),bnds<?php echo $MAP_OBJECT->map_id; ?>);" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
+			<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>');" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
 				<?php echo $text; ?>
 			</a>
 			<div id="<?php echo $id_data; ?>">

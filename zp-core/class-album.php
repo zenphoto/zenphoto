@@ -457,18 +457,7 @@ class Album extends MediaObject {
 			$results[] = $imageobj->data;
 		}
 		// now put the results into the right order
-		switch ($sortkey) {
-			case 'title':
-			case 'desc':
-				$results = sortByMultilingual($results, $sortkey, $order);
-				break;
-			case 'RAND()':
-				shuffle($results);
-				break;
-			default:
-				$results = sortMultiArray($results, $sortkey, $order);
-				break;
-		}
+		$results = sortByKey($results,$sortkey,$order);
 		// the results are now in the correct order
 		$images_ordered = array();
 		foreach ($results as $key=>$row) { // check for visible

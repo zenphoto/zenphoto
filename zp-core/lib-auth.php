@@ -465,10 +465,6 @@ class Zenphoto_Authority {
 	 */
 	function newAdministrator($name, $valid=1) {
 		$user = new Zenphoto_Administrator($name, $valid);
-		if ($valid && $name == $this->master_user) {
-			$user->setRights($user->getRights() | ADMIN_RIGHTS);
-			$user->master = true;
-		}
 		return $user;
 	}
 
@@ -860,7 +856,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	/**
 	 * This is a simple class so that we have a convienient "handle" for manipulating Administrators.
 	 *
-	 * NOTE: one should use the Zenphoto_Authority newAdministrator() method rather than directly instantiationg
+	 * NOTE: one should use the Zenphoto_Authority newAdministrator() method rather than directly instantiating
 	 * an administrator object
 	 *
 	 */
@@ -871,11 +867,17 @@ class Zenphoto_Administrator extends PersistentObject {
 	/**
 	 * Constructor for an Administrator
 	 *
-	 * @param string $userid.
+	 * @param string $user.
+	 * @param int $valid used to signal kind of admin object
 	 * @return Administrator
 	 */
 	function Zenphoto_Administrator($user, $valid) {
+		global $_zp_authority;
 		parent::PersistentObject('administrators', array('user' => $user, 'valid'=>$valid), NULL, false, empty($user));
+		if ($valid && $user == $_zp_authority->master_user) {
+			$this->setRights($this->getRights() | ADMIN_RIGHTS);
+			$this->master = true;
+		}
 	}
 
 		/**

@@ -1447,10 +1447,44 @@ function printLink($url, $text, $title=NULL, $class=NULL, $id=NULL) {
 }
 
 /**
+ * sorts the found albums (images) by the required key(s)
+ *
+ * NB: this sort is sensitive to the key(s) chosen and makes
+ * the appropriate sorts based on same. Some multi-key sorts
+ * will not make any sense and will give unexpected results.
+ * Most notably any that contain the keys "title" or "desc"
+ * as these require multi-lingual sorts.
+ *
+ * @param array $results
+ * @param string $sortkey
+ * @param string $order
+ */
+function sortByKey($results,$sortkey,$order) {
+	$sortkey = str_replace('`','',$sortkey);
+	switch ($sortkey) {
+		case 'title':
+		case 'desc':
+			$results = sortByMultilingual($results, $sortkey, $order);
+			break;
+		case 'RAND()':
+			shuffle($results);
+			break;
+		default:
+			$indicies = explode(',', $sortkey);
+			foreach ($indicies as $key=>$index) {
+				$indicies[$key] = trim($index);
+			}
+			$results = sortMultiArray($results, $indicies, $order);
+			break;
+	}
+	return $results;
+}
+
+/**
  * multidimensional array column sort
  *
  * @param array $array The multidimensional array to be sorted
- * @param string $index Which key(s) should be sorted by
+ * @param mixed $index Which key(s) should be sorted by
  * @param string $order true for descending sorts
  * @param bool $natsort If natural order should be used
  * @param bool $case_sensitive If the sort should be case sensitive

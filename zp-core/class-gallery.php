@@ -758,19 +758,7 @@ class Gallery {
 			}
 		}
 		//	now put the results in the right order
-		$sortkey = str_replace('`','',$sortkey);
-		switch ($sortkey) {
-			case 'title':
-			case 'desc':
-				$results = sortByMultilingual($results, $sortkey, $order);
-				break;
-			case 'RAND()':
-				shuffle($results);
-				break;
-			default:
-				$results = sortMultiArray($results, $sortkey, $order);
-				break;
-		}
+		$results = sortByKey($results,$sortkey,$order);
 		//	albums are now in the correct order
 		$albums_ordered = array();
 		foreach($results as $row) { // check for visible
