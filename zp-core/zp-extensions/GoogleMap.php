@@ -41,7 +41,7 @@ function googlemap_js() {
 			}
 		}
 		-->
-	</script>"
+	</script>
 	<style>
 		<!--
 		.hidden_map {

@@ -81,35 +81,12 @@ class AnyFile extends TextObject {
 	 * @return TextObject
 	 */
 	function AnyFile($album, $filename) {
-		global $_zp_supported_images;
-
 
 		$this->watermark = getOption('AnyFile_watermark');
 		$this->watermarkDefault = getOption('AnyFile_watermark_default_images');
 
-		// $album is an Album object; it should already be created.
-		if (!is_object($album)) return NULL;
-		if (!$this->classSetup($album, $filename)) { // spoof attempt
-			$this->exists = false;
-			return;
-		}
-		$this->sidecars = $_zp_supported_images;
-		$this->objectsThumb = checkObjectsThumb($album->localpath, $filename);
-		// Check if the file exists.
-		if (!file_exists($this->localpath) || is_dir($this->localpath)) {
-			$this->exists = false;
-			return;
-		}
-		$this->updateDimensions();
-		if (parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->id), 'filename', false, false)) {
-			$title = $this->getDefaultTitle();
-			$this->set('title', $title);
-			$this->set('mtime', $ts = filectime($this->localpath));
-			$newdate = strftime('%Y-%m-%d %H:%M:%S', $ts);
-			$this->updateMetaData();
-			$this->save();
-			zp_apply_filter('new_image', $this);
-		}
+		$this->common_instantiate($album,$filename);
+
 	}
 
 	/**

@@ -74,12 +74,21 @@ class TextObject extends _Image {
 	 * @return TextObject
 	 */
 	function TextObject($album, $filename) {
-		global $_zp_supported_images;
 
 		$this->watermark = getOption('TextObject_watermark');
 		$this->watermarkDefault = getOption('textobject_watermark_default_images');
 
+		$this->common_instantiate($album,$filename);
 
+	}
+
+	/**
+	 * Handles class common instantiation
+	 * @param $album
+	 * @param $filename
+	 */
+	function common_instantiate($album,$filename) {
+		global $_zp_supported_images;
 		// $album is an Album object; it should already be created.
 		if (!is_object($album)) return NULL;
 		if (!$this->classSetup($album, $filename)) { // spoof attempt
