@@ -849,9 +849,9 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 		<span style="display:inline;white-space:nowrap">
 			<label class="displayinline">
 				<input id="<?php echo $listitem; ?>"<?php echo $class;?> name="<?php echo $listitem; ?>" type="checkbox"
-					<?php if (isset($cv[$item])) {echo ' checked="checked"';	} ?> value="<?php echo $item; ?>"
+					<?php if (isset($cv[$item])) {echo ' checked="checked"';	} ?> value="<?php echo html_encode($item); ?>"
 					<?php echo $alterrights; ?> />
-				<?php echo $display; ?>
+				<?php echo html_encode($display); ?>
 			</label>
 			<?php
 			if (array_key_exists($key, $extra)) {
@@ -860,7 +860,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 						?>
 						<label class="displayinline">
 							<input type="checkbox" id="<?php echo $listitem.'_'.$box['name']; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
-									 value="<?php echo $box['value']; ?>" <?php if ($box['checked']) {echo ' checked="checked"';	} ?>
+									 value="<?php echo html_encode($box['value']); ?>" <?php if ($box['checked']) {echo ' checked="checked"';	} ?>
 									 <?php echo $alterrights; ?> \> <?php echo $box['display'];?>
 						</label>
 						<?php
@@ -1180,14 +1180,19 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								}
 								echo "\n<option value =''>$globalsort</option>";
 								$cvt = $type = strtolower($album->get('subalbum_sort_type'));
-								generateListFromArray(array($type), $sort, false, true);
+								if ($type && !in_array($type, $sort)) {
+									$cv = array('custom');
+								} else {
+									$cv = array($type);
+								}
+								generateListFromArray($cv, $sort, false, true);
 								?>
 								</select>
 								<?php
 								if (($type == 'manual') || ($type == 'random') || ($type == '')) {
 									$dsp = 'none';
 								} else {
-									$dsp = 'block';
+									$dsp = 'inline';
 								}
 								?>
 								<label id="album_direction_div<?php echo $suffix; ?>" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
@@ -1226,14 +1231,19 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								<option value =""><?php echo $globalsort; ?></option>
 								<?php
 								$cvt = $type = strtolower($album->get('sort_type'));
-								generateListFromArray(array($type), $sort, false, true);
+								if ($type && !in_array($type, $sort)) {
+									$cv = array('custom');
+								} else {
+									$cv = array($type);
+								}
+								generateListFromArray($cv, $sort, false, true);
 								?>
 								</select>
 							<?php
 							if (($type == 'manual') || ($type == 'random') || ($type == '')) {
 								$dsp = 'none';
 							} else {
-								$dsp = 'block';
+								$dsp = 'inline';
 							}
 							?>
 							<label id="image_direction_div<?php echo $suffix; ?>" style="display:<?php echo $dsp; ?>;white-space:nowrap;">
@@ -1543,7 +1553,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						}
 						?>
 
-				  <br clear="all" />
+					<br clear="all" />
 				</div>
 				<!-- **************** Move/Copy/Rename ****************** -->
 				<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>

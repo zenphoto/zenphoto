@@ -30,9 +30,6 @@ if (isset($_GET['action'])) {
 	$action = $_GET['action'];
 	XSRFdefender($action);
 	$themeswitch = false;
-
-echo "<br/>action=$action";
-
 	if ($action == 'expiry') {
 		foreach ($_POST as $key=>$action) {
 			if (strpos($key,'r_') == 0) {
