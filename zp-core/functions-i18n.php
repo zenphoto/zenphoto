@@ -260,7 +260,7 @@ function gettext_pl($string,$plugin) {
  */
 function i18nSetLocale($locale) {
 	global $_zp_RTL_css, $_zp_RTL_languages;
-	$en1 = getOption('charset');
+	$en1 = LOCAL_CHARSET;
 	$en2 = str_replace('ISO-','ISO',$en1);
 	$simple = explode('-',$locale);
 	$rslt = setlocale(LC_ALL, $locale.'.UTF8', $locale.'.UTF-8', $locale.'@euro', $locale.'.'.$en2, $locale.'.'.$en1, $locale, $simple[0], NULL);

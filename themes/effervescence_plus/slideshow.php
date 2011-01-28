@@ -9,7 +9,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title><?php echo getBareGalleryTitle(); ?></title>
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php zp_apply_filter('theme_head'); ?>
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />

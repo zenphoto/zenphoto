@@ -123,8 +123,6 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 			}
 		}
 		$show = "";
-		$category = sanitize($category);
-		$articles_per_page = sanitize_numeric($articles_per_page);
 		// new code to get nested cats
 		if (!empty($category)) {
 			$catobj = new ZenpageCategory($category);
@@ -166,7 +164,6 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 			$sticky = 'sticky DESC,';
 		}
 		// sortorder and sortdirection (only used for all news articles and categories naturally)
-		$sortorder = sanitize($sortorder);
 		switch($sortorder) {
 			case "date":
 			default:
@@ -176,7 +173,6 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 				$sort1 = "title";
 			break;
 		}
-		$sortdirection = sanitize($sortdirection);
 		switch($sortdirection) {
 			case "desc":
 			default:
@@ -479,8 +475,6 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 		}
 		if(empty($mode)) {
 			$mode = getOption("zenpage_combinews_mode");
-		} else {
-			$mode = sanitize($mode);
 		}
 		if($published == "published") {
 			$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
@@ -503,12 +497,11 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 			}
 			$albumWhere = "AND albums.show=1".$passwordcheck;
 		}
-		$articles_per_page = sanitize_numeric($articles_per_page);
 		$limit = getLimitAndOffset($articles_per_page);
 		if(empty($sortorder)) {
 			$combinews_sortorder = getOption("zenpage_combinews_sortorder");
 		} else {
-			$combinews_sortorder = sanitize($sortorder);
+			$combinews_sortorder = $sortorder;
 		}
 		$stickyorder = '';
 		if($sticky) {
@@ -698,7 +691,6 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 	 * @return string
 	 */
 	function getCategoryLink($catname) {
-		$catlink = sanitize($catname);
 		foreach(getAllCategories() as $cat) {
 			if($cat['titlelink'] == $catname) {
 				return $cat['title'];
@@ -714,7 +706,6 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 	 * @return array
 	 */
 	function getCategory($id) {
-		$id = sanitize($id);
 		foreach(getAllCategories() as $cat) {
 			if($cat['id'] == $id) {
 				return $cat;

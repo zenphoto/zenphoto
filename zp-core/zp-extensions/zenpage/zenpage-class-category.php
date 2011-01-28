@@ -141,7 +141,6 @@ function remove() {
 	 * @return bool
 	 */
 	function isSubNewsCategoryOf($catlink) {
-		$catlink = sanitize($catlink);
 		if(!empty($catlink)) {
 			$parentid = $this->getParentID();
 			$categories = $this->getParents();

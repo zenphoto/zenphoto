@@ -600,7 +600,7 @@ if ($connection) {
 				primeMark(gettext('Character set'));
 				$charset_defined = str_replace('-','&#8209;',FILESYSTEM_CHARSET);
 				$file_t = 'charset.tést';
-				$charset = getOption('charset');
+				$charset = LOCAL_CHARSET;
 				if (empty($charset)) {
 					$charset = 'UTF-8';
 				}

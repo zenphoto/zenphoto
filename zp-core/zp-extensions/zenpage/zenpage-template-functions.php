@@ -586,7 +586,6 @@ function printNewsContent($shorten=false,$shortenindicator=NULL,$readmore=NULL) 
  * @param string $readmoreurl The url the read more link should point to
  */
 function getContentShorten($text,$shorten,$shortenindicator=NULL,$readmore=NULL,$readmoreurl=NULL) {
-	$readmoreurl = sanitize($readmoreurl,0);
 	$readmorelink = '';
 	if(is_null($shortenindicator)) {
 		$shortenindicator = getOption('zenpage_textshorten_indicator');
@@ -1055,7 +1054,6 @@ function printAllNewsCategories($newsindex='All news', $counter=TRUE, $css_id=''
 function getLatestNews($number=2,$option='none', $category='') {
 	global $_zp_current_zenpage_news;
 	$latest = '';
-	$number = sanitize_numeric($number);
 	switch($option) {
 		case 'none':
 			if(!empty($category)) {
@@ -1687,7 +1685,6 @@ function printPrevNewsLink($prev="&laquo; ",$sortorder='date',$sortdirection='de
  */
 function getZenpageStatistic($number=10, $option="all",$mode="popular") {
 	global $_zp_current_zenpage_news, $_zp_current_zenpage_pages;
-	$number = sanitize_numeric($number);
 	$statsarticles = array();
 	$statscats = array();
 	$statspages = array();

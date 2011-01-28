@@ -10,7 +10,7 @@ require_once('normalizer.php');
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php echo getBareImageTitle();?></title>
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<script type="text/javascript">var blogrelurl = "<?php echo $_zp_themeroot ?>";</script>
 	<script type="text/javascript">

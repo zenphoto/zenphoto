@@ -256,7 +256,7 @@ function deletePage($titlelink) {
 	if (is_object($titlelink)) {
 		$obj = $titlelink;
 	} else {
-		$obj = new ZenpagePage(sanitize($titlelink));
+		$obj = new ZenpagePage($titlelink);
 	}
 	$result = $obj->remove();
 	if($result) {
@@ -558,7 +558,7 @@ function deleteArticle($titlelink) {
 	if (is_object($titlelink)) {
 		$obj = $titlelink;
 	} else {
-		$obj = new ZenpageNews(sanitize($titlelink));
+		$obj = new ZenpageNews($titlelink);
 	}
 	$result = $obj->remove();
 	if($result) {
@@ -1777,6 +1777,7 @@ function processZenpageBulkActions($type,&$reports) {
 						break;
 				}
 				foreach ($ids as $id) {
+					$id = sanitize_numeric($id);
 					if($action == 'deleteall') {
 						$result = query_single_row('SELECT * FROM '.$dbtable.' WHERE id = '.$id);
 						if($result) {
@@ -1794,7 +1795,7 @@ function processZenpageBulkActions($type,&$reports) {
 						}
 					} else {
 						$n++;
-						$sql .= " id='".sanitize_numeric($id)."' ";
+						$sql .= " id='".$id."' ";
 						if ($n < $total) $sql .= "OR ";
 					}
 				}

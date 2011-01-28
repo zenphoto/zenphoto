@@ -155,7 +155,6 @@ class ZenpageNews extends ZenpageItems {
 	 * @return bool
 	 */
 	function inNewsCategory($catlink) {
-		$catlink = sanitize($catlink);
 		if(!empty($catlink)) {
 			$categories = $this->getCategories();
 			$count = 0;
@@ -178,7 +177,6 @@ class ZenpageNews extends ZenpageItems {
 	 * @return bool
 	 */
 	function inSubNewsCategoryOf($catlink) {
-		$catlink = sanitize($catlink);
 		if(!empty($catlink)) {
 			$categories = $this->getCategories();
 			$count = 0;

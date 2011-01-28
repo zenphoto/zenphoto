@@ -109,13 +109,13 @@ function printAdminHeader($tab,$subtab=NULL) {
 		}
 	}
 	header('Last-Modified: ' . $_zp_last_modified);
-	header('Content-Type: text/html; charset=' . getOption('charset'));
+	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	zp_apply_filter('admin_headers');
 	?>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/toggleElements.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/jqueryui/jquery_ui_zenphoto.css" type="text/css" />

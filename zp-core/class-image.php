@@ -477,7 +477,7 @@ class _Image extends MediaObject {
 		if (substr($iptcstring, -1) === 0x0) {
 			$iptcstring = substr($iptcstring, 0, -1);
 		}
-		$outputset = getOption('charset');
+		$outputset = LOCAL_CHARSET;
 		if ($characterset == $outputset) return $iptcstring;
 		$iptcstring = $_zp_UTF8->convert($iptcstring, $characterset, $outputset);
 		return trim(sanitize($iptcstring,1));

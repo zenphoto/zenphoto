@@ -4595,7 +4595,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 					$l1 = $l1 + $delta;
 				}
 				$short = substr($articlecontent, 0, $l1);
-				$short2 = sanitize($short.'</p>');
+				$short2 = sanitize($short.'</p>',1);
 				$l2 = strlen($short2);
 			}
 			$shorten = $l1;

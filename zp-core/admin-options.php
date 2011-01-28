@@ -793,7 +793,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						asort($totalsets);
 						foreach ($totalsets as $key=>$char) {
 							?>
-							<option value="<?php echo  $key; ?>" <?php if ($key == getOption('charset')) echo 'selected="selected"'; if (!array_key_exists($key,$sets)) echo 'style="color: gray"'; ?>><?php echo $char; ?></option>
+							<option value="<?php echo  $key; ?>" <?php if ($key == LOCAL_CHARSET) echo 'selected="selected"'; if (!array_key_exists($key,$sets)) echo 'style="color: gray"'; ?>><?php echo $char; ?></option>
 							<?php
 						}
 						?>

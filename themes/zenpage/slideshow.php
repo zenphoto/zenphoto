@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/slideshow.css" type="text/css" />
 <?php zp_apply_filter('theme_head'); ?>
 <title><?php echo getBareGalleryTitle(); ?> <?php echo gettext("Slideshow"); ?></title>
-<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 <?php printSlideShowJS(); ?>
 
 </head>

@@ -80,6 +80,12 @@ if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol']
 $_zp_imagick_present = false;
 require_once(dirname(__FILE__).'/functions-db-'.(isset($_zp_conf_vars['db_software'])?$_zp_conf_vars['db_software']:'MySQL').'.php');
 db_connect();
+$_charset = getOption('charset');
+if (!$_charset) {
+	$_charset = 'UTF-8';
+}
+define('LOCAL_CHARSET',$_charset);
+unset($_charset);
 
 // load graphics libraries in priority order
 // once a library has concented to load, all others will
@@ -169,7 +175,7 @@ function zp_html_decode($string, $quote_style = ENT_QUOTES) {
  */
 function html_encode($this_string) {
 	$this_string = zp_html_decode($this_string, ENT_QUOTES);
-	return htmlspecialchars($this_string, ENT_QUOTES, getOption('charset'));
+	return htmlspecialchars($this_string, ENT_QUOTES, LOCAL_CHARSET);
 }
 
 /**
@@ -693,6 +699,7 @@ function sanitize($input_string, $sanitize_level=3) {
  * @return string the sanitized string.
  */
 function sanitize_string($input_string, $sanitize_level) {
+	global $_user_tags, $_style_tags;
 	// Strip slashes if get_magic_quotes_gpc is enabled.
 	if (get_magic_quotes_gpc()) $input_string = stripslashes($input_string);
 	// Basic sanitation.
@@ -703,16 +710,28 @@ function sanitize_string($input_string, $sanitize_level) {
 	require_once(dirname(__FILE__).'/lib-htmlawed.php');
 
 	if ($sanitize_level === 1) {
-		$user_tags = "(".getOption('allowed_tags').")";
-		$allowed_tags = parseAllowedTags($user_tags);
-		if ($allowed_tags === false) { $allowed_tags = array(); } // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
+		if (is_null($_user_tags)) {
+			$user_tags = "(".getOption('allowed_tags').")";
+			$allowed_tags = parseAllowedTags($user_tags);
+			if ($allowed_tags === false) {  // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
+				$allowed_tags = array();
+			}
+		} else {
+			$allowed_tags = $_user_tags;
+		}
 		$input_string = html_entity_decode(kses($input_string, $allowed_tags));
 
 	// Text formatting sanititation.
 	} else if ($sanitize_level === 2) {
-		$style_tags = "(".getOption('style_tags').")";
-		$allowed_tags = parseAllowedTags($style_tags);
-		if ($allowed_tags === false) { $allowed_tags = array(); } // someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
+		if (is_null($_style_tags)) {
+			$style_tags = "(".getOption('style_tags').")";
+			$allowed_tags = parseAllowedTags($style_tags);
+			if ($allowed_tags === false) {  // someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
+				$allowed_tags = array();
+			}
+		} else {
+			$allowed_tags = $_style_tags;
+		}
 		$input_string = html_entity_decode(kses($input_string, $allowed_tags));
 
 	// Full sanitation.  Strips all code.
@@ -865,8 +884,8 @@ function size_readable($size, $unit = null, $retstring = null)
  * @return sting
  */
 function getAlbumFolder($root=SERVERPATH) {
-	$root = str_replace('\\', '/', $root);
 	global $_zp_album_folder, $_zp_conf_vars;
+	$root = str_replace('\\', '/', $root);
 	if (is_null($_zp_album_folder)) {
 		if (!isset($_zp_conf_vars['external_album_folder']) || empty($_zp_conf_vars['external_album_folder'])) {
 			if (!isset($_zp_conf_vars['album_folder']) || empty($_zp_conf_vars['album_folder'])) {
@@ -880,10 +899,9 @@ function getAlbumFolder($root=SERVERPATH) {
 		}
 		if (substr($_zp_album_folder, -1) != '/') $_zp_album_folder .= '/';
 	}
-	if (!isset($_zp_conf_vars['album_folder_class'])) {
-		$_zp_conf_vars['album_folder_class'] = 'std';
-	}
 	switch ($_zp_conf_vars['album_folder_class']) {
+		case '':
+			$_zp_conf_vars['album_folder_class'] = 'std';
 		case 'std':
 			return $root . $_zp_album_folder;
 		case 'in_webpath':
@@ -1084,11 +1102,7 @@ function parse_size($size) {
  */
 function filesystemToInternal($filename) {
 	global $_zp_UTF8;
-	$to = getOption('charset');
-	if (empty($to)) {
-		$to = 'UTF-8';
-	}
-	return str_replace('\\', '/', $_zp_UTF8->convert($filename, FILESYSTEM_CHARSET, $to));
+	return str_replace('\\', '/', $_zp_UTF8->convert($filename, FILESYSTEM_CHARSET, LOCAL_CHARSET));
 }
 
 /**
@@ -1099,7 +1113,7 @@ function filesystemToInternal($filename) {
  */
 function internalToFilesystem($filename) {
 	global $_zp_UTF8;
-	return $_zp_UTF8->convert($filename, getOption('charset'), FILESYSTEM_CHARSET);
+	return $_zp_UTF8->convert($filename, LOCAL_CHARSET, FILESYSTEM_CHARSET);
 }
 
 /** getAlbumArray - returns an array of folder names corresponding to the

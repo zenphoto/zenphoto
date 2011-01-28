@@ -96,6 +96,7 @@ class xmpMetadata_options {
 	}
 }
 
+define('XMP_EXTENSION',strtolower(getOption('xmpMetadata_suffix')));
 /**
  * Parses xmp metadata for interesting tags
  *
@@ -214,8 +215,7 @@ function xmpMetadata_to_string($meta) {
  */
 function xmpMetadata_album_instantiate($album) {
 	require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
-	$ext = strtolower(getOption('xmpMetadata_suffix'));
-	$album->sidecars[$ext] = $ext;
+	$album->sidecars[XMP_EXTENSION] = XMP_EXTENSION;
 	return $album;
 }
 
@@ -227,12 +227,11 @@ function xmpMetadata_album_instantiate($album) {
  */
 function xmpMetadata_new_album($album) {
 	require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
-	$ext = strtolower(getOption('xmpMetadata_suffix'));
 	$metadata_path = dirname($album->localpath).'/'.basename($album->localpath).'*';
 	$files = safe_glob($metadata_path);
 	if (count($files)>0) {
 		foreach ($files as $file) {
-			if (strtolower(getSuffix($file)) == $ext) {
+			if (strtolower(getSuffix($file)) == XMP_EXTENSION) {
 				$source = file_get_contents($file);
 				$metadata = xmpMetadata_extract($source);
 				if (array_key_exists('EXIFDescription',$metadata)) {
@@ -299,8 +298,7 @@ function rationalNum($element) {
 
 function xmpMetadata_image_instantiate($image) {
 	require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
-	$ext = strtolower(getOption('xmpMetadata_suffix'));
-	$image->sidecars[$ext] = $ext;
+	$image->sidecars[XMP_EXTENSION] = XMP_EXTENSION;
 	return $image;
 }
 
@@ -314,12 +312,11 @@ function xmpMetadata_new_image($image) {
 	require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
 	global $_zp_exifvars;
 	$source = '';
-	$ext = strtolower(getOption('xmpMetadata_suffix'));
 	$metadata_path = '';
 	$files = safe_glob(substr($image->localpath, 0, strrpos($image->localpath, '.')).'.*');
 	if (count($files)>0) {
 		foreach ($files as $file) {
-			if (strtolower(getSuffix($file)) == $ext) {
+			if (strtolower(getSuffix($file)) == XMP_EXTENSION) {
 				$metadata_path = $file;
 				break;
 			}

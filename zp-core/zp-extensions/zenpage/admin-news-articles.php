@@ -108,7 +108,7 @@ printLogoAndLinks();
 			}
 
 			if(isset($_GET['category'])) {
-				$result = getNewsArticles(getOption('zenpage_admin_articles'),$_GET['category'],$published,false);
+				$result = getNewsArticles(getOption('zenpage_admin_articles'),sanitize($_GET['category']),$published,false);
 			} else {
 				$result = getNewsArticles(getOption('zenpage_admin_articles'),'',$published,false);
 			}

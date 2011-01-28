@@ -4,7 +4,7 @@
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
 		<title><?php echo gettext("Password required"); ?></title>
-		<meta http-equiv="content-type" content="text/html; charset=<?php echo getOption('charset'); ?>" />
+		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
 	</head>
 

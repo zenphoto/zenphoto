@@ -266,7 +266,7 @@ function zpFormattedDate($format, $dt) {
 	global $_zp_UTF8;
 	$fdate = strftime($format, $dt);
 	$charset = 'ISO-8859-1';
-	$outputset = getOption('charset');
+	$outputset = LOCAL_CHARSET;
 	if (function_exists('mb_internal_encoding')) {
 		if (($charset = mb_internal_encoding()) == $outputset) {
 			return $fdate;
@@ -448,9 +448,9 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 			$from_name = get_language_string(getOption('gallery_title'), getOption('locale'));
 
 			// Convert to UTF-8
-			if (getOption('charset') != 'UTF-8') {
-				$subject = $_zp_UTF8->convert($subject, getOption('charset'));
-				$message = $_zp_UTF8->convert($message, getOption('charset'));
+			if (LOCAL_CHARSET != 'UTF-8') {
+				$subject = $_zp_UTF8->convert($subject, LOCAL_CHARSET);
+				$message = $_zp_UTF8->convert($message, LOCAL_CHARSET);
 			}
 
 			// Send the mail
@@ -1218,7 +1218,7 @@ function setupTheme() {
 	$themeindex = getPlugin('index.php', $theme);
 	if (empty($theme) || empty($themeindex)) {
 		header('Last-Modified: ' . $_zp_last_modified);
-		header('Content-Type: text/html; charset=' . getOption('charset'));
+		header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		?>
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		<html xmlns="http://www.w3.org/1999/xhtml">

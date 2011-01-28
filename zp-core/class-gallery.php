@@ -22,19 +22,8 @@ class Gallery {
 	 * @return Gallery
 	 */
 	function Gallery() {
-
 		// Set our album directory
 		$this->albumdir = getAlbumFolder();
-
-		if (!is_dir($this->albumdir) || !is_readable($this->albumdir)) {
-			if (!is_dir($this->albumdir)) {
-				$msg = sprintf(gettext('Error: The \'albums\' directory (%s) cannot be found.'),$this->albumdir);
-			} else {
-				$msg = sprintf(gettext('Error: The \'albums\' directory (%s) is not readable.'),$this->albumdir);
-			}
-			die($msg);
-		}
-		getOption('nil'); // force loading of the $options
 	}
 
 	/**
@@ -140,7 +129,9 @@ class Gallery {
 	 */
 	function loadAlbumNames() {
 		$albumdir = $this->getAlbumDir();
-		if (!is_dir($albumdir) || !is_readable($albumdir)) {
+
+		$dir = opendir($albumdir);
+		if (!$dir) {
 			if (!is_dir($albumdir)) {
 				$msg .= sprintf(gettext('Error: The \'albums\' directory (%s) cannot be found.'),$this->albumdir);
 			} else {
@@ -148,8 +139,6 @@ class Gallery {
 			}
 			die($msg);
 		}
-
-		$dir = opendir($albumdir);
 		$albums = array();
 
 		while ($dirname = readdir($dir)) {

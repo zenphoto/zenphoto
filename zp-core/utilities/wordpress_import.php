@@ -167,8 +167,8 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 		}
 	} else {
 		echo '<li class="notebox">'.gettext('No categories to import.').'</li>';
-	} 
-	?> 
+	}
+	?>
 	</ol>
 	</li>
 	<li><strong><?php echo gettext('Tags'); ?></strong>
@@ -190,7 +190,7 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 		}
 	} else {
 		echo '<li class="notebox">'.gettext('No tags to import.').'</li>';
-	} 
+	}
 	?>
 	</ol>
 	</li>
@@ -223,7 +223,7 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 				$show = 0;
 			}
 			$post['title']= $_zp_UTF8->convert($post['title']);
-			$titlelink = sanitize(seoFriendly($post['title']));
+			$titlelink = seoFriendly(sanitize($post['title']));
 		 	//$post['content'] = nl2br($_zp_UTF8->convert($post['content']));
 		 	$post['content'] = $_zp_UTF8->convert($post['content']);
 			$post['date']  = $post['date'];
@@ -340,11 +340,11 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 				echo '<ul><li class="notebox">'.gettext('No comments to import').'</li>';
 			}
 			debugLogArray('Wordpress import - Comments for "'.$post['title'].'" ('.$post['type'].')', $comments);
-			echo '</ul></li>'; 
+			echo '</ul></li>';
 		} // posts foreach
 	} else { // if posts are available at all
 		echo "<li class='notebox'>".gettext("No posts or pages to import.")."</li>";
-	} 
+	}
 	?>
 	<p class="buttons"><a href="wordpress_import.php"><?php echo gettext('New import'); ?></a></p>
 	<br style="clear:both" />
