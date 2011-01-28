@@ -166,16 +166,28 @@
                         break;
                     }
                 }
-                
-                if (tag.match('/&|!|,|(|)|\"|`| |\||\'/')) {
-                	if (tag.indexOf('"')>=0) {
-                		tag = '\''+tag+'\'';
+                var result = false;
+                var pat = false;
+                var testfor = ['&','|','!',',','(',')','"','`',"'",' '];
+                tag = Encoder.htmlDecode(tag);     
+                 for (var i in testfor) {
+                 	if (tag.indexOf(testfor[i])>=0) {
+                 		result = true;
+                 		break;
+                 	}
+                }
+                if (result) {
+                	if (tag.indexOf('"')<0) {
+                 		tag = '`'+tag+'`';
                 	} else {
-                 		tag = '"'+tag+'"';
+                		if (tag.indexOf('"')<0) {
+	                 		tag = '"'+tag+'"';
+	                	} else {
+	                		tag = '\''+tag+'\'';
+	                	}
                 	}
                 }
-                tag = Encoder.htmlDecode(tag);             
-
+                
                 if (index == workingTags.length - 1) tag = tag + settings.separator;
                 
                 workingTags[i] = tag;

@@ -3560,7 +3560,9 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ',
 			}
 			foreach ($singletag as $atag) {
 				if (preg_match($match,$atag)) {
-					if (strpos($atag,'"')===false) {
+					if (strpos($atag, '`')===false) {
+						$latag = '`'.$atag.'`';
+					} else if (strpos($atag,'"')===false) {
 						$latag = '"'.$atag.'"';
 					} else {
 						$latag = "'".$atag."'";
