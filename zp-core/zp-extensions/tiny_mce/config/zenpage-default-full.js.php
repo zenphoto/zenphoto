@@ -36,6 +36,7 @@
 			document_base_url : "<?php echo WEBPATH."/"; ?>",
 			convert_urls : false,
 			entity_encoding: "raw",
+			encoding: 'xml',
 			extended_valid_elements : "iframe[src|width|height|class|id|type|frameborder]"
 		});
 
