@@ -150,7 +150,7 @@ function getCommentDate($format = NULL) {
 	deprecated_function_notify(gettext('Use getCommentDateTime().'));
 	if (is_null($format)) {
 		$format = getOption('date_format');
-		$time_tags = array('%H', '%I', '%R', '%T', '%r');
+		$time_tags = array('%H', '%I', '%R', '%T', '%r', '%H', '%M', '%S');
 		foreach ($time_tags as $tag) { // strip off any time formatting
 			$t = strpos($format, $tag);
 			if ($t !== false) {

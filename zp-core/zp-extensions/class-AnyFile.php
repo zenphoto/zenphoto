@@ -105,7 +105,7 @@ class AnyFile extends TextObject {
 			$title = $this->getDefaultTitle();
 			$this->set('title', $title);
 			$this->set('mtime', $ts = filectime($this->localpath));
-			$newdate = strftime('%Y-%m-%d %T', $ts);
+			$newdate = strftime('%Y-%m-%d %H:%M:%S', $ts);
 			$this->updateMetaData();
 			$this->save();
 			zp_apply_filter('new_image', $this);

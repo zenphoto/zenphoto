@@ -618,7 +618,7 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 					if($timestamp == 0) {
 						$albumdate = $tempalbum->getDateTime();
 					} else {
-						$albumdate = strftime('%Y-%m-%d %T',$timestamp);
+						$albumdate = strftime('%Y-%m-%d %H:%M:%S',$timestamp);
 					}
 					$latestalbums[$counter] = array(
 					"albumname" => $tempalbum->getFolder(),

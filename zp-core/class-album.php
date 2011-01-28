@@ -109,7 +109,7 @@ class Album extends MediaObject {
 				if ($new) {
 					$title = $this->get('title');
 					$this->set('title', substr($title, 0, -4)); // Strip the .'.alb' suffix
-					$this->setDateTime(strftime('%Y-%m-%d %T', $this->get('mtime')));
+					$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
 				}
 				$this->set('dynamic', 1);
 			}
@@ -131,7 +131,7 @@ class Album extends MediaObject {
 		$parentalbum = $this->getParent();
 		$this->setShow(getOption('album_publish'));
 		$this->set('mtime', filemtime($this->localpath));
-		$this->setDateTime(strftime('%Y-%m-%d %T', $this->get('mtime')));
+		$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
 		$title = trim($this->name);
 		if (!is_null($parentalbum)) {
 			$this->set('parentid', $parentalbum->getAlbumId());

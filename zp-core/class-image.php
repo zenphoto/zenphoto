@@ -167,7 +167,7 @@ class _Image extends MediaObject {
 		$this->filemtime = @filemtime($this->localpath);
 		$this->imagetype = strtolower(get_class($this)).'s';
 		$date = $this->get('date');
-		if (empty($date)) $this->set('date', strftime('%Y-%m-%d %T', $this->filemtime));
+		if (empty($date)) $this->set('date', strftime('%Y-%m-%d %H:%M:%S', $this->filemtime));
 		return true;
 	}
 
@@ -419,7 +419,7 @@ class _Image extends MediaObject {
 			$this->set('title',$this->getDefaultTitle());
 		}
 		if (empty($xdate)) {
-			$this->set('date', strftime('%Y-%m-%d %T', $this->get('mtime')));
+			$this->set('date', strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
 		}
 		$alb = $this->album;
 		if (!is_null($alb)) {
