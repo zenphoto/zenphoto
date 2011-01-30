@@ -52,7 +52,6 @@ function wpimport_TryAgainError($message) {
 	return '<p class="import-error">'.$message.'<br /><a href="wordpress_import.php">'.gettext('Please try again').'</a>
 	</p>';
 }
-
 $metaURL = '';
 if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['dbpass']) || isset($_REQUEST['dbhost'])) {
 	// Wordpres DB connection
@@ -106,8 +105,10 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 		//Add categories to Zenphoto database
 		if($cats) {
 			foreach($cats as $cat) {
-				$cattitlelink = $_zp_UTF8->convert($cat['slug']);
-				$cattitle = seoFriendly($_zp_UTF8->convert($cat['name']));
+				//$cattitlelink = $_zp_UTF8->convert($cat['slug']);
+				$cattitlelink = $cat['slug'];
+			//$cattitle = seoFriendly($_zp_UTF8->convert($cat['name']));
+				$cattitle = $_zp_UTF8->convert($cat['name']);
 				if (query("INSERT INTO ".prefix('news_categories')." (titlelink, title, permalink) VALUES (".db_quote($cattitlelink).", ".db_quote($cattitle).",'1')", false)) {
 					$catinfo .= '<li class="import-success">'.sprintf(gettext("Category <em>%s</em> added"),$cat['name']).'</li>';
 				} else {
@@ -129,7 +130,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 		//Add tags to Zenphoto database
 		if($tags) {
 			foreach($tags as $tag) {
-				if (query("INSERT INTO ".prefix('tags')." (name) VALUES (".db_quote(seoFriendly($tag['slug'])).")", false)) {
+				if (query("INSERT INTO ".prefix('tags')." (name) VALUES (".db_quote($tag['slug']).")", false)) {
 					$taginfo .= '<li class="import-success">'.sprintf(gettext("Tag <em>%s</em> added"),$tag['name']).'</li>';
 				} else {
 					$taginfo .= '<li class="import-exists">'.sprintf(gettext("A tag with the title/titlelink <em>%s</em> already exists!"),$tag['name']).'</li>';
@@ -183,7 +184,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 				$show = 0;
 			}
 			$post['title']= $_zp_UTF8->convert($post['title']);
-			$titlelink = seoFriendly(sanitize($post['title']));
+			$titlelink = $post['titlelink'];
 		 	//$post['content'] = nl2br($_zp_UTF8->convert($post['content']));
 		 	$post['content'] = $_zp_UTF8->convert($post['content']);
 			$post['date']  = $post['date'];
@@ -221,7 +222,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 									//Get new id of category
 									$getcat = query_single_row("SELECT titlelink, title,id from ".prefix('news_categories')." WHERE titlelink = ".db_quote($term['slug'])." AND title = ".db_quote($term['name']));
 									//Prevent double assignments
-									if (query_single_row("SELECT id from ".prefix('news2cat')." WHERE news_id = ".db_quote($newarticleid)." AND cat_id=".db_quote($getcat['id']),false)) {
+									if (query_single_row("SELECT id from ".prefix('news2cat')." WHERE news_id = ".$newarticleid." AND cat_id=".$getcat['id'],false)) {
 										$postinfo .= '<li class="import-exists">'.sprintf(gettext('%1$s <em>%2$s</em> already assigned'),$term['taxonomy'], $term['name']);
 									} else {
 										if (query("INSERT INTO ".prefix('news2cat')." (cat_id,news_id) VALUES (".$getcat['id'].",".$newarticleid.")", false)) {
@@ -233,15 +234,16 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 									break;
 								case 'post_tag':
 									//Get new id of tag
-									$gettag = query_single_row("SELECT name,id from ".prefix('tags')." WHERE name = ".db_quote($term['name']));
+									// only use "slug" for tags as ZP different to WP has no name (title) and slug (urlname) separately but just an urlname
+									$gettag = query_single_row("SELECT name,id from ".prefix('tags')." WHERE name = ".db_quote($term['slug'])); 
 									//Prevent double assignments
 									if (query_single_row("SELECT id from ".prefix('obj_to_tag')." WHERE objectid = ".$newarticleid." AND tagid =".$gettag['id'],false)) {
-										$postinfo .= '<li class="import-exists">'.sprintf(gettext('%1$s <em>%2$s</em> already assigned'),$term['taxonomy'], $term['name']);
+										$postinfo .= '<li class="import-exists">'.sprintf(gettext('%1$s <em>%2$s</em> already assigned'),$term['taxonomy'], $term['slug']);
 									} else {
-										if (query("INSERT INTO ".prefix('obj_to_tag')." (tagid,type,objectid) VALUES ('".$gettag['id']."','news','".$newarticleid."')",false)) {
-											$postinfo .= '<li class="import-success">'.sprintf(gettext('%1$s <em>%2$s</em> assigned'),$term['taxonomy'], $term['name']);
+										if (query("INSERT INTO ".prefix('obj_to_tag')." (tagid,type,objectid) VALUES (".$gettag['id'].",'news',".$newarticleid.")",false)) {
+											$postinfo .= '<li class="import-success">'.sprintf(gettext('%1$s <em>%2$s</em> assigned'),$term['taxonomy'], $term['slug']);
 										} else {
-											$postinfo .= '<li class="import-error">'.sprintf(gettext('%1$s <em>%2$s</em> could not be assigned!'),$term['taxonomy'], $term['name']);
+											$postinfo .= '<li class="import-error">'.sprintf(gettext('%1$s <em>%2$s</em> could not be assigned!'),$term['taxonomy'], $term['slug']);
 										}
 									}
 									break;
@@ -276,7 +278,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 			$comments = wp_query_full_array("
 						SELECT comment_post_ID, comment_author, comment_author_email, comment_author_url,comment_date, comment_content, comment_approved
 						FROM ".wp_prefix('comments',$wp_prefix)."
-						WHERE comment_post_ID = '".$post['id']."'");
+						WHERE comment_post_ID = ".$post['id']);
 			$commentcount = "";
 
 			if($comments) {
@@ -288,10 +290,10 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 					$comment['comment_date']  = $comment['comment_date'];
 					$comment['comment_content']  = nl2br($_zp_UTF8->convert($comment['comment_content']));
 					$comment['comment_approved']  = $comment['comment_approved'];
-					if (query_single_row("SELECT * from ".prefix('comments')." WHERE ownerid =".$newarticleid." AND name=".db_quote($comment['comment_author'])." AND email =".db_quote($comment['comment_author_email'])." AND website =".db_quote($comment['comment_author_url'])." AND date =".db_quote($comment['comment_date'])." AND comment =".db_quote($comment['comment_content'])." AND inmoderation =".$comment['comment_approved']." AND type='".$ctype."'",false)) {
+					if (query_single_row("SELECT * from ".prefix('comments')." WHERE ownerid =".$newarticleid." AND name=".db_quote($comment['comment_author'])." AND email =".db_quote($comment['comment_author_email'])." AND website =".db_quote($comment['comment_author_url'])." AND date =".db_quote($comment['comment_date'])." AND comment =".db_quote($comment['comment_content'])." AND inmoderation =".db_quote($comment['comment_approved'])." AND type='".$ctype."'",false)) {
 						$postinfo .= '<li class="import-exists">'.gettext('Comment already exists!').'</li>';
 					} else {
-						if(query("INSERT INTO ".prefix('comments')." (ownerid,name,email,website,date,comment,inmoderation,type) VALUES (".$newarticleid.",".db_quote($comment['comment_author']).",'".db_quote($comment['comment_author_email']).",".db_quote($comment['comment_author_url']).",".db_quote($comment['comment_date']).",".db_quote($comment['comment_content']).",".$comment['comment_approved'].",".$ctype.")",false)) {
+						if(query("INSERT INTO ".prefix('comments')." (ownerid,name,email,website,date,comment,inmoderation,type) VALUES (".$newarticleid.",".db_quote($comment['comment_author']).",".db_quote($comment['comment_author_email']).",".db_quote($comment['comment_author_url']).",".db_quote($comment['comment_date']).",".db_quote($comment['comment_content']).",".db_quote($comment['comment_approved']).",".$ctype.")",false)) {
 							$commentcount++;
 						} else {
 							$postinfo .= '<li class="import-error">'.gettext('Comment could not be assigned!').'</li>';
