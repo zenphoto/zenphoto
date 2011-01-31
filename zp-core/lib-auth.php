@@ -275,7 +275,11 @@ class Zenphoto_Authority {
 	function getAnAdmin($criteria) {
 		$selector = array();
 		foreach ($criteria as $match=>$value) {
-			$selector[] = $match.db_quote($value);
+			if (is_numeric($value)) {
+				$selector[] = $match.$value;
+			} else {
+				$selector[] = $match.db_quote($value);
+			}
 		}
 		$sql = 'SELECT * FROM '.prefix('administrators').' WHERE '.implode(' AND ',$selector).' LIMIT 1';
 		$admin = query_single_row($sql,false);
@@ -570,6 +574,17 @@ class Zenphoto_Authority {
 	}
 
 	/**
+	 * Set log-in cookie for a user
+	 * @param string $user
+	 * @param string $hash password hash
+	 */
+	function logUser($user, $hash) {
+		$user->lastlogon = $user->get('loggedin');
+		$user->set('loggedin',date('Y-m-d H:i:s'));
+		$user->save();
+		zp_setcookie("zenphoto_auth", $hash, NULL, NULL, secureServer());
+	}
+	/**
 	 * User authentication support
 	 */
 	function handleLogon() {
@@ -585,10 +600,7 @@ class Zenphoto_Authority {
 			}
 			$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
 			if ($_zp_loggedin) {
-				$user->lastlogon = $user->get('loggedin');
-				$user->set('loggedin',date('Y-m-d H:i:s'));
-				$user->save();
-				zp_setcookie("zenphoto_auth", $this->passwordHash($post_user, $post_pass), NULL, NULL, secureServer());
+				$this->logUser($user,$this->passwordHash($post_user, $post_pass));
 			} else {
 				// Clear the cookie, just in case
 				zp_setcookie("zenphoto_auth", "", time()-368000);
@@ -744,6 +756,7 @@ class Zenphoto_Authority {
 				$requestor = sanitize($_GET['ref'], 0);
 			}
 		}
+		$alt_handlers = zp_apply_filter('alt_login_handler',array());
 		$star = '';
 		$mails = array();
 		if (!empty($requestor)) {
@@ -794,7 +807,41 @@ class Zenphoto_Authority {
 		<input type="hidden" name="password" value="1" />
 		<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
 		<fieldset id="logon_box">
-			<legend><?php echo gettext('Login'); ?></legend>
+			<?php
+			if (empty($alt_handlers)) {
+				$ledgend = gettext('Login');
+			} else {
+				?>
+				<script type="text/javascript">
+					<!--
+					var handlers = [];
+					<?php
+					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
+										'<option value="0">Zenphoto</option>';
+					$c = 0;
+					foreach ($alt_handlers as $handler=>$details) {
+						$c++;
+						$details['params'][] = 'redirect='.$redirect;
+						if (!empty($requestor)) {
+							$details['params'][] = 'requestor='.$requestor;
+						}
+						echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
+
+						$list .= '<option value="'.$c.'">'.$handler.'</option>';
+					}
+					$list .= '</select>';
+					$ledgend = sprintf(gettext('Logon using:%s'),$list);
+					?>
+					function changeHandler(handler) {
+						var script = handler.shift();
+						launchScript(script,handler);
+					}
+					-->
+				</script>
+				<?php
+			}
+			?>
+			<legend><?php echo $ledgend; ?></legend>
 			<table class="password">
 				<?php
 				if ($showUser || getOption('gallery_security')=='private') {	//	requires a "user" field
@@ -849,6 +896,7 @@ class Zenphoto_Authority {
 		</div>
 	<?php
 	}
+
 }
 
 class Zenphoto_Administrator extends PersistentObject {

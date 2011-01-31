@@ -299,7 +299,7 @@ function user_groups_edit_admin($html, $userobj, $i, $background, $current) {
 		$grouppart .= '<span class="hint'.$i.'" id="hint'.$i.'" style="width:15em;">'.$selected_hint."</span>\n";
 	} else {
 		if ($group) {
-			$grouppart = group;
+			$grouppart = $group;
 		} else {
 			$grouppart = gettext('no group affiliation');
 		}

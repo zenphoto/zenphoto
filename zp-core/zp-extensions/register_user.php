@@ -204,7 +204,7 @@ function printRegistrationForm($thanks=NULL) {
 				$admin = $_zp_authority->getAnAdmin(array('`user`=' => $rights,'`valid`=' => 0));
 				if ($admin) {
 					if ($admin->getName() != 'template') {
-						$group = $rights;;
+						$group = $rights;
 					}
 					$rights = $admin->getRights();
 				}

@@ -32,9 +32,11 @@ if (isset($_GET['action'])) {
 	$themeswitch = false;
 	if ($action == 'expiry') {
 		foreach ($_POST as $key=>$action) {
+			$key = postIndexDecode($key);
 			if (strpos($key,'r_') == 0) {
 				$user = str_replace('r_','', $key);
-				if ($userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0))) {
+				$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+				if ($userobj) {
 					switch ($action) {
 						case 'delete':
 							$userobj->remove();
@@ -131,7 +133,7 @@ echo '</head>'."\n";
 										if ($user['valid'] == 2) {
 											$checked_delete = '';
 										}
-										$id = $user['user'];
+										$id = postIndexEncode($user['user']);
 										$r1 = '<img src="../../images/fail.png" title="'.gettext('delete').'" /><input type="radio" name="r_'.$id.'" value="delete"'.$checked_delete.' />&nbsp;';
 										if ($user['valid'] == 2) {
 											$r2 = '<img src="../../images/lock_open.png" title="'.gettext('enable').'" /><input type="radio" name="r_'.$id.'" value="enable"'.$checked_disable.' />&nbsp;';
@@ -141,7 +143,7 @@ echo '</head>'."\n";
 										$r3 = '<img src="../../images/pass.png" title="'.gettext('renew').'" /><input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.' />&nbsp;';
 										?>
 										<li>
-											<?php printf(gettext('%1$s <strong>%2$s</strong> (expires:%3$s; last logon:%4$s)'),$r1.$r2.$r3,$id,$expires_display,$loggedin); ?>
+											<?php printf(gettext('%1$s <strong>%2$s</strong> (expires:%3$s; last logon:%4$s)'),$r1.$r2.$r3,html_encode($user['user']),$expires_display,$loggedin); ?>
 										</li>
 										<?php
 									}
