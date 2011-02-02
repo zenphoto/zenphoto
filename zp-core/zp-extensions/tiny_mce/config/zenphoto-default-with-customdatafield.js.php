@@ -33,8 +33,7 @@
 			relative_urls : false,
 			document_base_url : "<?php echo WEBPATH."/"; ?>",
 			convert_urls : false,
-			entity_encoding: "raw",
-			encoding: 'xml'
+			entity_encoding: "raw"
 		});
 		// ]]> -->
 	</script>
