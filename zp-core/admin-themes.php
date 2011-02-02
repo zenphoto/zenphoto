@@ -32,7 +32,7 @@ if (isset($_GET['action'])) {
 					$_set_theme_album->setAlbumTheme($newtheme);
 					$_set_theme_album->save();
 				}
-				$opthandler = SERVERPATH.'.'.THEMEFOLDER.'/themeoptions.php';
+				$opthandler = SERVERPATH.'/'.THEMEFOLDER.'/'.$newtheme.'/themeoptions.php';
 				if (file_exists($opthandler)) {
 					require_once($opthandler);
 					$opt = new ThemeOptions();	//	prime the default options!

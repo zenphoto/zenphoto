@@ -362,7 +362,6 @@ if (isset($_POST['themelist'])) {
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		$(document).ready(function() {
 		<?php
 		foreach (array_keys($gallery->getThemes()) as $theme) {
 			$requirePath = getPlugin('themeoptions.php', $theme);
@@ -377,7 +376,6 @@ if (isset($_POST['themelist'])) {
 			}
 		}
 		?>
-		});
 	// ]]> -->
 	</script>
 	<?php

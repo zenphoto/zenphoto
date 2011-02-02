@@ -811,13 +811,14 @@ class Zenphoto_Authority {
 			if (empty($alt_handlers)) {
 				$ledgend = gettext('Login');
 			} else {
+				$gallery = new Gallery();
 				?>
 				<script type="text/javascript">
 					<!--
 					var handlers = [];
 					<?php
 					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
-										'<option value="0">Zenphoto</option>';
+										'<option value="0">'.html_encode($gallery->getTitle()).'</option>';
 					$c = 0;
 					foreach ($alt_handlers as $handler=>$details) {
 						$c++;
