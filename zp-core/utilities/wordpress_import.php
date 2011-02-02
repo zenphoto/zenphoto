@@ -197,7 +197,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 			switch($post['type']) {
 				case 'post':
 				//Add the post to Zenphoto database as Zenpage article
-					if (query("INSERT INTO ".prefix('news')." (title,titlelink,content,date,lastchange,`show`) VALUES (".db_quote($post['title']).",".db_quote($titlelink).",".db_quote($post['content']).",".db_quote($post['date']).",".db_quote($post['lastchange']).",".$show.")", false)) {
+					if (query("INSERT INTO ".prefix('news')." (title,titlelink,content,date,lastchange,`show`,permalink) VALUES (".db_quote($post['title']).",".db_quote($titlelink).",".db_quote($post['content']).",".db_quote($post['date']).",".db_quote($post['lastchange']).",".$show.",1)", false)) {
 						$postinfo .= '<li class="import-success">'.sprintf(gettext('%1$s <em>%2$s</em> added'),$post['type'], $post['title']);
 					} else {
 						$postinfo .= '<li class="import-exists">'.sprintf(gettext('%1$s with the title/titlelink <em>%2$s</em> already exists!'),$post['type'], $post['title']);
@@ -260,7 +260,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 					break;
 				case 'page':
 					//Add the page to Zenphoto database as Zenpage page
-					if (query("INSERT INTO ".prefix('pages')." (title,titlelink,content,date,lastchange,`show`) VALUES (".db_quote($post['title']).",".db_quote($titlelink).",".db_quote($post['content']).",".db_quote($post['date']).",".db_quote($post['lastchange']).",".$show.")", false)) {
+					if (query("INSERT INTO ".prefix('pages')." (title,titlelink,content,date,lastchange,`show`,permalink) VALUES (".db_quote($post['title']).",".db_quote($titlelink).",".db_quote($post['content']).",".db_quote($post['date']).",".db_quote($post['lastchange']).",".$show.",1)", false)) {
 						$postinfo .= '<li class="import-success">'.sprintf(gettext('%1$s <em>%2$s</em> added'),$post['type'], $post['title']);
 					} else {
 						$postinfo .= '<li class="import-exists">'.sprintf(gettext('%1$s with the title/titlelink <em>%2$s</em> already exists!'),$post['type'], $post['title']);
