@@ -44,7 +44,7 @@ if (isset($_GET['action'])) {
 					$initgroupname = trim(sanitize($_POST[$i.'-initgroup'],3));
 					$initgroup = $_zp_authority->newAdministrator($initgroupname, 0);
 					$group->setObjects(processManagedObjects($group->getID(),$rights));
-					$group->setRights($initgroup->getRights() | $rights);
+					$group->setRights($initgroup->getRights() | NO_RIGHTS | $rights);
 				} else {
 					$group->setObjects(processManagedObjects($i,$rights));
 					$group->setRights(processRights($i) | NO_RIGHTS | $rights);

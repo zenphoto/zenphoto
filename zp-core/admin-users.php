@@ -123,7 +123,7 @@ if (isset($_GET['action'])) {
 								}
 								$rights = processRights($i) | $rights;
 								if ($rights != $oldrights) {
-									$userobj->setRights($rights);
+									$userobj->setRights($rights | NO_RIGHTS);
 								}
 							} else {
 								$oldobjects = $userobj->setObjects(NULL);	// indicates no change
