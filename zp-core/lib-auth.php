@@ -744,7 +744,7 @@ class Zenphoto_Authority {
 	function printLoginForm($redirect=null, $logo=true, $showUser=true, $showCaptcha='*', $hint='') {
 		global $_zp_login_error, $_zp_captcha, $_zp_authority;
 		if (is_null($redirect)) {
-			$redirect = "/" . ZENFOLDER . "/admin.php";
+			$redirect = '/' . ZENFOLDER . '/admin.php';
 		}
 		if (isset($_POST['user'])) {
 			$requestor = sanitize($_POST['user'], 3);
