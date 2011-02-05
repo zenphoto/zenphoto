@@ -183,6 +183,9 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 			$userobj->setLanguage(getUserLocale());
 			if (is_valid_email_zp($email)) {
 				$userobj->setEmail($email);
+				if (getOption('register_user_create_album')) {
+					$userobj->createPrimealbum();
+				}
 			} else {
 				$groupobj = $_zp_authority->getAnAdmin(array('`user`='=>'federated_verify','`valid`='=>0));
 				if (empty($verify_group)) {
@@ -277,6 +280,9 @@ function federated_login_verify() {
 				$userobj->setRights($groupobj->getRights());
 				$userobj->setGroup($groupname);
 				$userobj->setObjects($groupobj->getObjects());
+				if (getOption('register_user_create_album')) {
+					$userobj->createPrimealbum();
+				}
 				$userobj->save();
 			}
 			zp_apply_filter('register_user_verified', $userobj);

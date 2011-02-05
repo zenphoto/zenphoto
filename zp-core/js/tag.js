@@ -169,9 +169,9 @@
                 var result = false;
                 var pat = false;
                 var testfor = ['&','|','!',',','(',')','"','`',"'",' '];
-                tag = Encoder.htmlDecode(tag);     
-                 for (var i in testfor) {
-                 	if (tag.indexOf(testfor[i])>=0) {
+                tag = Encoder.htmlDecode(tag);  
+                 for (var j in testfor) {
+                 	if (tag.indexOf(testfor[j])>=0) {
                  		result = true;
                  		break;
                  	}
@@ -188,11 +188,8 @@
                 	}
                 }
                 
-                if (index == workingTags.length - 1) tag = tag + settings.separator;
-                
                 workingTags[i] = tag;
-
-                tagsElm.val(workingTags.join(settings.separator));
+                tagsElm.val(workingTags.join(settings.separator) + settings.separator);
                 tagsElm.blur().focus();
                 setSelection();
             }

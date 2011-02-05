@@ -27,9 +27,7 @@ function run() {
 		displayError(gettext("Authentication error; not a valid OpenID."));
 	}
 
-	$sreg_request = Auth_OpenID_SRegRequest::build(	array('nickname'),// Required
-																								// Optional
-																								array('fullname', 'email'));
+	$sreg_request = Auth_OpenID_SRegRequest::build(array('fullname', 'email'),array('nickname'));
 
 	if ($sreg_request) {
 		$auth_request->addExtension($sreg_request);
