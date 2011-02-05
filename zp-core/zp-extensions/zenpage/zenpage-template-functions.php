@@ -356,7 +356,7 @@ function getNewsTitle() {
  */
 function printNewsTitle($before='') {
 	if (getNewsTitle()) {
-		echo html_encode($before.getNewsTitle());
+		echo $before.html_encode(getNewsTitle());
 	}
 }
 
@@ -760,7 +760,7 @@ function getNewsAlbumTitle() {
  * @return string
  */
 function getBareNewsAlbumTitle() {
-	return html_encode(getNewsAlbumTitle());
+	return strip_tags(getNewsAlbumTitle());
 }
 
 /**
@@ -1007,7 +1007,7 @@ function getCurrentNewsArchive($mode='formatted',$format='%B %Y') {
  */
 function printCurrentNewsArchive($before='',$mode='formatted',$format='%B %Y') {
 	if($date = getCurrentNewsArchive($mode,$format)) {
-		echo html_encode($before.$date);
+		echo $before.html_encode($date);
 	}
 }
 
@@ -2347,7 +2347,7 @@ function getPageLastChangeDate() {
  * @return string
  */
 function printPageLastChangeDate() {
-	echo html_encode($before).getPageLastChangeDate();
+	echo $before.html_encode(getPageLastChangeDate());
 }
 
 
