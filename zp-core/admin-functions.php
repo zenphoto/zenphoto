@@ -767,11 +767,7 @@ function processCustomOptionSave($returntab, $themename=NULL, $themealbum=NULL) 
  * @param string $str
  */
 function postIndexEncode($str) {
-	$str = urlencode($str);
-	$str = str_replace('.','__2E__', $str);
-	$str = str_replace('+', '_-_', $str);
-	$str = str_replace('%', '_--_', $str);
-	return $str;
+	return strtr(urlencode($str),array('.'=>'__2E__','+'=> '_-_','%'=>'_--_'));
 }
 
 /**
@@ -781,10 +777,7 @@ function postIndexEncode($str) {
  * @return string
  */
 function postIndexDecode($str) {
-	$str = str_replace('__2E__', '.', sanitize($str,0));
-	$str = str_replace('_-_', '+', $str);
-	$str = str_replace('_--_', '%', $str);
-	return urldecode($str);
+	return urldecode(strtr($str,array('__2E__'=>'.','_-_'=>'+','_--_'=>'%')));
 }
 
 

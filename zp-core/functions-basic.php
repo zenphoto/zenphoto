@@ -174,7 +174,6 @@ function zp_html_decode($string, $quote_style = ENT_QUOTES) {
  * @return string
  */
 function html_encode($this_string) {
-	$this_string = zp_html_decode($this_string, ENT_QUOTES);
 	return htmlspecialchars($this_string, ENT_QUOTES, LOCAL_CHARSET);
 }
 
@@ -701,7 +700,9 @@ function sanitize($input_string, $sanitize_level=3) {
 function sanitize_string($input_string, $sanitize_level) {
 	global $_user_tags, $_style_tags;
 	// Strip slashes if get_magic_quotes_gpc is enabled.
-	if (get_magic_quotes_gpc()) $input_string = stripslashes($input_string);
+	if (get_magic_quotes_gpc()) {
+		$input_string = stripslashes($input_string);
+	}
 	// Basic sanitation.
 	if ($sanitize_level === 0) {
 		return str_replace(chr(0), " ", $input_string);
@@ -716,6 +717,7 @@ function sanitize_string($input_string, $sanitize_level) {
 			if ($allowed_tags === false) {  // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
 				$allowed_tags = array();
 			}
+			$_user_tags = $allowed_tags;
 		} else {
 			$allowed_tags = $_user_tags;
 		}
@@ -728,6 +730,7 @@ function sanitize_string($input_string, $sanitize_level) {
 			$allowed_tags = parseAllowedTags($style_tags);
 			if ($allowed_tags === false) {  // someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
 				$allowed_tags = array();
+				$_style_tags = $allowed_tags;
 			}
 		} else {
 			$allowed_tags = $_style_tags;

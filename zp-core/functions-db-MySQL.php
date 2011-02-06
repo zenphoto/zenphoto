@@ -63,7 +63,7 @@ function db_connect($errorstop=true) {
  */
 function query($sql, $errorstop=true) {
 	global $_zp_DB_connection, $_zp_conf_vars;
-	if ($_zp_DB_connection == null) {
+	if (is_null($_zp_DB_connection)) {
 		db_connect();
 	}
 	// Changed this to mysql_query - *never* call query functions recursively...
@@ -107,12 +107,15 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
 	$result = query($sql, $errorstop);
 	if ($result) {
 		$allrows = array();
-		while ($row = mysql_fetch_assoc($result))
-			if (is_null($key)) {
+		if (is_null($key)) {
+			while ($row = mysql_fetch_assoc($result)) {
 				$allrows[] = $row;
-			} else {
+			}
+		} else {
+			while ($row = mysql_fetch_assoc($result)) {
 				$allrows[$row[$key]] = $row;
 			}
+		}
 		return $allrows;
 	} else {
 		return false;

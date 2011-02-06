@@ -25,7 +25,7 @@ if (count($_POST) > 0) {
 		foreach ($_POST as $value) {
 			if (!empty($value)) {
 				$value = zp_html_decode(sanitize($value, 3));
-				$result = query_single_row('SELECT `id` FROM '.prefix('tags').' WHERE `name`="'.$value.'"');
+				$result = query_single_row('SELECT `id` FROM '.prefix('tags').' WHERE `name`="'.db_quote($value).'"');
 				if (!is_array($result)) { // it really is a new tag
 					query('INSERT INTO '.prefix('tags').' (`name`) VALUES (' . db_quote($value) . ')');
 				}

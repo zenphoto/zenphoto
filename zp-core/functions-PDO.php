@@ -64,10 +64,12 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
 	$result = query($sql, $errorstop);
 	if ($result) {
 		$allrows = array();
-		foreach ($result as $row) {
-			if (is_null($key)) {
+		if (is_null($key)) {
+			foreach ($result as $row) {
 				$allrows[] = $row;
-			} else {
+			}
+		} else {
+			foreach ($result as $row) {
 				$allrows[$row[$key]] = $row;
 			}
 		}
