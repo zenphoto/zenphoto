@@ -181,7 +181,7 @@ if (!zp_loggedin()) {
 
 if (!empty($msg)) {
 	?>
-	<div class="<?php echo $class; ?>" id="fade-message">
+	<div class="<?php echo $class; ?> fade-message">
 		<h2><?php echo $msg; ?></h2>
 	</div>
 	<?php

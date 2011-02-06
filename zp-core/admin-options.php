@@ -60,7 +60,7 @@ if (isset($_GET['action'])) {
 				if (!empty($newloc) && getOption('disallow_'.$newloc)) {
 					$notify = '?local_failed='.$newloc;
 				} else {
-					zp_setCookie('dynamic_locale', $newloc, time()-368000);  // clear the language cookie
+					zp_setCookie('dynamic_locale', $newloc, -368000);  // clear the language cookie
 					$result = i18nSetLocale($newloc);
 					if (!empty($newloc) && ($result === false)) {
 						$notify = '?local_failed='.$newloc;
@@ -80,7 +80,7 @@ if (isset($_GET['action'])) {
 			setOption('time_offset', $offset);
 			setOption('server_protocol', $protocol = sanitize($_POST['server_protocol'],3));
 			if ($protocol == 'http') {
-				zp_setcookie("zenphoto_ssl", "", time()-368000);
+				zp_setcookie("zenphoto_ssl", "", -368000);
 			}
 			setOption('charset', sanitize($_POST['charset']),3);
 			setOption('site_email', sanitize($_POST['site_email']),3);
@@ -481,7 +481,7 @@ if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 <div id="container">
 <?php
 	if (isset($_GET['saved'])) {
-		echo '<div class="messagebox" id="fade-message">';
+		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".gettext("Applied")."</h2>";
 		echo '</div>';
 	}
@@ -493,7 +493,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 	if (isset($_GET['local_failed'])) {
 		$languages = generateLanguageList('all');
 		$locale = sanitize($_GET['local_failed']);
-		echo '<div class="errorbox" id="fade-message">';
+		echo '<div class="errorbox fade-message">';
 		echo  "<h2>".
 					sprintf(gettext("<em>%s</em> is not available."),$languages[$locale]).
 					' '.sprintf(gettext("The locale %s is not supported on your server."),$locale).
@@ -1495,7 +1495,7 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 }
 if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 	if (isset($_GET['mismatch'])) {
-		echo '<div class="errorbox" id="fade-message">';
+		echo '<div class="errorbox fade-message">';
 		switch ($_GET['mismatch']) {
 			case 'image':
 				echo  "<h2>". sprintf(gettext("Your %s passwords were empty or did not match"), $_GET['mismatch'])."</h2>";

@@ -603,7 +603,7 @@ class Zenphoto_Authority {
 				$this->logUser($user,$this->passwordHash($post_user, $post_pass));
 			} else {
 				// Clear the cookie, just in case
-				zp_setcookie("zenphoto_auth", "", time()-368000);
+				zp_setcookie("zenphoto_auth", "", -368000);
 				// was it a request for a reset?
 				if (isset($_POST['code_h']) && $_zp_captcha->checkCaptcha(trim($post_pass), sanitize($_POST['code_h'],3))) {
 					require_once(dirname(__FILE__).'/class-load.php'); // be sure that the plugins are loaded for the mail handler
@@ -695,7 +695,7 @@ class Zenphoto_Authority {
 				case 'zp_image_auth':
 				case 'zp_album_auth_':
 				case 'zp_page_auth_':
-					zp_setcookie($cookie, "*", time()-368000);
+					zp_setcookie($cookie, "*", -368000);
 					break;
 				default:	//	do nothing
 					break;
@@ -726,7 +726,7 @@ class Zenphoto_Authority {
 		if ($_zp_loggedin) {
 			return $_zp_loggedin;
 		} else {
-			zp_setcookie("zenphoto_auth", "", time()-368000);
+			zp_setcookie("zenphoto_auth", "", -368000);
 			return false;
 		}
 	}
@@ -786,7 +786,7 @@ class Zenphoto_Authority {
 				break;
 			case 2:
 				?>
-				<div class="messagebox" id="fade-message">
+				<div class="messagebox fade-message">
 				<h2><?php echo gettext("A reset request has been sent."); ?></h2>
 				</div>
 				<?php
@@ -794,7 +794,7 @@ class Zenphoto_Authority {
 			default:
 				if (!empty($_zp_login_error)) {
 					?>
-					<div class="errorbox" id="fade-message">
+					<div class="errorbox fade-message">
 					<h2><?php echo $_zp_login_error; ?></h2>
 					</div>
 					<?php

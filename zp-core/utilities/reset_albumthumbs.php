@@ -54,13 +54,13 @@ if (isset($_REQUEST['thumbtype']) && db_connect()) {
 			$reset = $current;
 		}
 		?>
-		<div class="messagebox" id="fade-message">
+		<div class="messagebox fade-message">
 		<h2><?php printf(gettext("Thumbnails all set to <em>%s</em>."), $reset); ?></h2>
 		</div>
 		<?php
 	} else {
 		?>
-		<div class="errorbox" id="fade-message">
+		<div class="errorbox fade-message">
 		<h2><?php echo gettext("Thumbnail reset query failed"); ?></h2>
 		</div>
 		<?php

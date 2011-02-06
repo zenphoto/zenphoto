@@ -165,9 +165,9 @@ function zp_handle_comment() {
 				if (isset($_POST['remember'])) {
 					// Should always re-cookie to update info in case it's changed...
 					$_zp_comment_stored[3] = ''; // clear the comment itself
-					zp_setcookie('zenphoto', implode('|~*~|', $_zp_comment_stored), time()+COOKIE_PESISTENCE, '/');
+					zp_setcookie('zenphoto', implode('|~*~|', $_zp_comment_stored), NULL, '/');
 				} else {
-					zp_setcookie('zenphoto', '', time()-368000, '/');
+					zp_setcookie('zenphoto', '', -368000, '/');
 				}
 				//use $redirectTo to send users back to where they came from instead of booting them back to the gallery index. (default behaviour)
 				if (!isset($_SERVER['SERVER_SOFTWARE']) || strpos(strtolower($_SERVER['SERVER_SOFTWARE']), 'microsoft-iis') === false) {
@@ -295,13 +295,13 @@ function zp_load_gallery() {
  */
 function zp_load_search() {
 	global $_zp_current_search;
-	zp_setcookie("zenphoto_search_params", "", time()-368000);
+	zp_setcookie("zenphoto_search_params", "", -368000);
 	if ($_zp_current_search == NULL) {
 		$_zp_current_search = new SearchEngine();
 	}
 	add_context(ZP_SEARCH);
 	$params = $_zp_current_search->getSearchParams();
-	zp_setcookie("zenphoto_search_params", $params, 0);
+	zp_setcookie("zenphoto_search_params", $params, 60);
 	return $_zp_current_search;
 }
 

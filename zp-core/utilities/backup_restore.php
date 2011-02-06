@@ -188,7 +188,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 	}
 	if ($writeresult) {
 		?>
-		<div class="messagebox" id="fade-message">
+		<div class="messagebox fade-message">
 		<h2>
 		<?php
 		if ($compression_level > 0) {
@@ -202,7 +202,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		<?php
 	} else {
 		?>
-		<div class="errorbox" id="fade-message">
+		<div class="errorbox fade-message">
 		<h2><?php echo gettext("backup failed"); ?></h2>
 		<p><?php echo $msg; ?></p>
 		</div>
@@ -383,7 +383,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		<?php
 	} else {
 		?>
-		<div class="messagebox" id="fade-message">
+		<div class="messagebox fade-message">
 			<h2>
 			<?php
 			if ($compression_handler == 'no') {
@@ -402,7 +402,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 	if ($oldlibauth != $_zp_authority->getVersion()) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {
 			?>
-			<div class="errorbox" id="fade-message">
+			<div class="errorbox fade-message">
 			<h2><?php echo gettext('Zenphoto Rights migration failed!')?></h2>
 			</div>
 			<?php

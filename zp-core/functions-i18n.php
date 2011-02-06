@@ -302,7 +302,7 @@ function setupCurrentLocale($override=NULL, $plugindomain='', $type='') {
 				if (isset($_REQUEST['oldlocale'])) {
 					$locale = sanitize($_REQUEST['oldlocale'], 3);
 					setOption('locale', $locale, false);
-					zp_setCookie('dynamic_locale', '', time()-368000);
+					zp_setCookie('dynamic_locale', '', -368000);
 				}
 			}
 		}

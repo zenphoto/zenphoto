@@ -117,12 +117,12 @@ echo '</head>'."\n";
 		<div id="content">
 			<?php
 			if (isset($_GET['deleted'])) {
-				echo '<div class="messagebox" id="fade-message">';
+				echo '<div class="messagebox fade-message">';
 				echo  "<h2>".gettext('Deleted')."</h2>";
 				echo '</div>';
 			}
 			if (isset($_GET['saved'])) {
-				echo '<div class="messagebox" id="fade-message">';
+				echo '<div class="messagebox fade-message">';
 				echo  "<h2>".gettext('Saved')."</h2>";
 				echo '</div>';
 			}

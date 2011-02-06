@@ -140,7 +140,6 @@ function printAdminHeader($tab,$subtab=NULL) {
 		});
 		jQuery(function( $ ){
 			$("#fade-message").fadeTo(5000, 1).fadeOut(1000);
-			$("#fade-message2").fadeTo(5000, 1).fadeOut(1000);
 			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
 			$('.tooltip').tooltip({
 				left: -80
@@ -423,7 +422,7 @@ function displayDeleted() {
 			$msg = sprintf(gettext("%s deleted successfully."),$msg);
 			$class = 'messagebox';
 		}
-		echo '<div class="' . $class . '" id="fade-message">';
+		echo '<div class="' . $class . ' fade-message">';
 		echo  "<h2>" . $msg . "</h2>";
 		echo '</div>';
 	}

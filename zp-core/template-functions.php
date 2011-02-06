@@ -4495,15 +4495,6 @@ function printPasswordForm($_password_hint, $_password_showProtected=true, $_pas
 	<div id="passwordform">
 	<?php
 
-	if ($_zp_login_error) {
-		?>
-		<div class="errorbox" id="message">
-			<h2><?php echo gettext("There was an error logging in."); ?></h2>
-			<br />
-			<?php echo gettext("Check your user and password and try again."); ?>
-		</div>
-		<?php
-	}
 	if ($_password_showProtected && !$_zp_login_error) {
 		?>
 		<p>

@@ -201,7 +201,7 @@ if ($_zp_null_account) {
 <div id="container">
 <?php
 	if (isset($_GET['saved'])) {
-		echo '<div class="messagebox" id="fade-message">';
+		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".gettext("Saved")."</h2>";
 		echo '</div>';
 	}
@@ -318,22 +318,22 @@ if ($_zp_null_account) {
 	}
 
 	if (isset($_GET['deleted'])) {
-		echo '<div class="messagebox" id="fade-message">';
+		echo '<div class="messagebox fade-message">';
 		echo  "<h2>Deleted</h2>";
 		echo '</div>';
 	}
 	if (isset($_GET['tag_parse_error'])) {
-		echo '<div class="errorbox" id="fade-message">';
+		echo '<div class="errorbox fade-message">';
 		echo  "<h2>".gettext("Your Allowed tags change did not parse successfully.")."</h2>";
 		echo '</div>';
 	}
 	if (isset($_GET['migration_error'])) {
-		echo '<div class="errorbox" id="fade-message">';
+		echo '<div class="errorbox fade-message">';
 		echo  "<h2>".gettext("Rights migration failed.")."</h2>";
 		echo '</div>';
 	}
 	if (isset($_GET['mismatch'])) {
-		echo '<div class="errorbox" id="fade-message">';
+		echo '<div class="errorbox fade-message">';
 		switch ($_GET['mismatch']) {
 			case 'gallery':
 			case 'search':
@@ -361,7 +361,7 @@ if ($_zp_null_account) {
 		echo '</div>';
 	}
 	if (isset($_GET['badurl'])) {
-		echo '<div class="errorbox" id="fade-message">';
+		echo '<div class="errorbox fade-message">';
 		echo  "<h2>".gettext("Your Website URL is not valid")."</h2>";
 		echo '</div>';
 	}

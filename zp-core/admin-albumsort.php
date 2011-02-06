@@ -94,7 +94,7 @@ if (!isset($_GET['album'])) {
 		<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'),  $link, $alb); ?></h1>
 		<?php
 		if (isset($_GET['saved'])) {
-			echo '<div class="messagebox" id="fade-message">';
+			echo '<div class="messagebox fade-message">';
 			echo  "<h2>".gettext("Image order saved");
 			echo '</h2></div>';
 		}

@@ -40,7 +40,7 @@ if (isset($_GET['delete'])) {
 		query($sql);
 		$sql = 'DELETE FROM '.prefix('menu').' WHERE `menuset`="'.$menuset.'" AND `sort_order` LIKE "'.$result['sort_order'].'/%"';
 		query($sql);
-		$reports[] =  "<p class='messagebox' id='fade-message'>".gettext('Menu item deleted')."</p>";
+		$reports[] =  "<p class='messagebox fade-message'>".gettext('Menu item deleted')."</p>";
 	}
 }
 if (isset($_GET['deletemenuset'])) {
@@ -48,7 +48,7 @@ if (isset($_GET['deletemenuset'])) {
 	$sql = 'DELETE FROM '.prefix('menu').' WHERE `menuset`='.db_quote(sanitize($_GET['deletemenuset']));
 	query($sql);
 	$_menu_manager_items = array();
-	$delmsg =  "<p class='messagebox' id='fade-message'>".sprintf(gettext("Menu set '%s' deleted"),html_encode($_GET['deletemenuset']))."</p>";
+	$delmsg =  "<p class='messagebox fade-message'>".sprintf(gettext("Menu set '%s' deleted"),html_encode($_GET['deletemenuset']))."</p>";
 }
 // publish or un-publish page by click
 if(isset($_GET['publish'])) {

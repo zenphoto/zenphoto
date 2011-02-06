@@ -342,7 +342,6 @@ if (isset($_GET['action'])) {
 				}
 				$qs_albumsuffix = "&massedit";
 
-				/** SAVE GALLERY ALBUM ORDER **************************************************/
 			}
 			// Redirect to the same album we saved.
 			if (isset($folder)) {
@@ -352,6 +351,10 @@ if (isset($_GET['action'])) {
 				$pg = '&subpage='.$_POST['subpage'];
 			} else {
 				$pg = '';
+			}
+			$msg = zp_apply_filter('edit_error','');
+			if ($msg) {
+				$notify .= '&edit_error='.$msg;
 			}
 			if ($notify == '&') {
 				$notify = '';
@@ -599,7 +602,7 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 		$parent = "&amp;album=" . pathurlencode($parent);
 	}
 	if (isset($_GET['counters_reset'])) {
-		echo '<div class="messagebox" id="fade-message">';
+		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".gettext("Hitcounters have been reset")."</h2>";
 		echo '</div>';
 	}
@@ -618,7 +621,7 @@ $alb = removeParentAlbumNames($album);
 	<?php
 	if (isset($_GET['mismatch'])) {
 		?>
-		<div class="errorbox" id="fade-message">
+		<div class="errorbox fade-message">
 		<?php if ($_GET['mismatch'] == 'user') {
 			echo '<h2>'.gettext("You must supply a  password.").'</h2>';
 		} else {
@@ -630,7 +633,7 @@ $alb = removeParentAlbumNames($album);
 	<?php
 	} else if (isset($_GET['mcrerr'])) {
 		?>
-		<div class="errorbox" id="fade-message2">
+		<div class="errorbox fade-message">
 			<h2>
 			<?php
 			switch (sanitize_numeric($_GET['mcrerr'])) {
@@ -661,10 +664,18 @@ $alb = removeParentAlbumNames($album);
 		</div>
 		<?php
 	}
-	if (isset($_GET['saved'])) {
-
+	if (isset($_GET['edit_error'])) {
 		?>
-		<div class="messagebox" id="fade-message">
+		<div class="errorbox fade-message">
+			<h2>
+			<?php echo html_encode(sanitize($_GET['edit_error'])); ?>
+			</h2>
+		</div>
+		<?php
+	}
+	if (isset($_GET['saved'])) {
+		?>
+		<div class="messagebox fade-message">
 			<h2>
 			<?php echo gettext("Changes applied") ?>
 			</h2>
@@ -675,19 +686,19 @@ $alb = removeParentAlbumNames($album);
 
 	if (isset($_GET['uploaded'])) {
 		?>
-		<div class="messagebox" id="fade-message">
+		<div class="messagebox fade-message">
 			<h2><?php echo gettext("Upload complete"); ?></h2>
 			<?php echo zp_apply_filter('get_upload_header_text',gettext('Your files have been uploaded.')); ?>
 		</div>
 		<?php
 	}
 	if (isset($_GET['cleared'])) {
-		echo '<div class="messagebox" id="fade-message">';
+		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".gettext("Album cache purged")."</h2>";
 		echo '</div>';
 	}
 	if (isset($_GET['exists'])) {
-		echo '<div class="errorbox" id="fade-message">';
+		echo '<div class="errorbox fade-message">';
 		echo  "<h2>".sprintf(gettext("<em>%s</em> already exists."),sanitize($_GET['exists']))."</h2>";
 		echo '</div>';
 	}
@@ -1392,11 +1403,11 @@ if($subtab != "albuminfo") {	?>
 
 if (isset($_GET['saved'])) {
 		if (isset($_GET['mismatch'])) {
-			echo "\n<div class=\"errorbox\" id=\"fade-message\">";
+			echo "\n<div class=\"errorbox fade-message\">";
 			echo "\n<h2>".gettext("Your passwords did not match")."</h2>";
 			echo "\n</div>";
 		} else {
-			echo "\n<div class=\"messagebox\" id=\"fade-message\">";
+			echo "\n<div class=\"messagebox fade-message\">";
 			echo "\n<h2>".gettext("Changes applied")."</h2>";
 			echo "\n</div>";
 		}
@@ -1459,17 +1470,17 @@ if (isset($_GET['saved'])) {
 <?php
 	displayDeleted(); /* Display a message if needed. Fade out and hide after 2 seconds. */
 	if (isset($_GET['counters_reset'])) {
-		echo '<div class="messagebox" id="fade-message">';
+		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".gettext("Hitcounters have been reset.")."</h2>";
 		echo '</div>';
 	}
 	if (isset($_GET['action']) && $_GET['action'] == 'clear_cache') {
-		echo '<div class="messagebox" id="fade-message">';
+		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".gettext("Cache has been purged.")."</h2>";
 		echo '</div>';
 	}
 	if (isset($_GET['exists'])) {
-		echo '<div class="errorbox" id="fade-message">';
+		echo '<div class="errorbox fade-message">';
 		echo  "<h2>".sprintf(gettext("<em>%s</em> already exists."),sanitize($_GET['exists']))."</h2>";
 		echo '</div>';
 	}

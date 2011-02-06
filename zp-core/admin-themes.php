@@ -166,7 +166,7 @@ echo "\n" . '<div id="content">';
 ?>
 
 <?php if ($message) {
-	echo '<div class="messagebox" id="fade-message">';
+	echo '<div class="messagebox fade-message">';
 	echo  "<h2>$message</h2>";
 	echo '</div>';
 } ?>

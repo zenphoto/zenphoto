@@ -248,7 +248,7 @@ if (count($types)>1) {
 	?>
 </p>
 <?php if (isset($error) && $error) { ?>
-	<div class="errorbox" id="fade-message">
+	<div class="errorbox fade-message">
 		<h2><?php echo gettext("Something went wrong..."); ?></h2>
 		<?php echo (empty($errormsg) ? gettext("There was an error submitting the form. Please try again.") : $errormsg); ?>
 	</div>
@@ -256,14 +256,14 @@ if (count($types)>1) {
 }
 if (isset($_GET['uploaded'])) {
 	?>
-	<div class="messagebox" id="fade-message">
+	<div class="messagebox fade-message">
 		<h2><?php echo gettext("Upload complete"); ?></h2>
 		<?php echo zp_apply_filter('get_upload_header_text',gettext('Your files have been uploaded.')); ?>
 	</div>
 	<?php
 }
 if (ini_get('safe_mode')) { ?>
-<div class="warningbox" id="fade-message">
+<div class="warningbox fade-message">
 <h2><?php echo gettext("PHP Safe Mode Restrictions in effect!"); ?></h2>
 <p><?php echo gettext("Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions are in effect"); ?></p>
 </div>

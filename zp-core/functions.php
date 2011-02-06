@@ -1099,7 +1099,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 		}
 		if ($reset) { // clear the cookie if no album and not a search
 			if (!isset($_REQUEST['preserve_serch_params'])) {
-				zp_setcookie("zenphoto_search_params", "", time()-368000);
+				zp_setcookie("zenphoto_search_params", "", -368000);
 			}
 			return;
 		}
@@ -1135,7 +1135,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 				}
 			}
 		} else {
-			zp_setCookie('zenphoto_last_album', '', time()-368000);
+			zp_setCookie('zenphoto_last_album', '', -368000);
 		}
 		/*
 		while all this should work, currently there is no "memory" of zenpage search strings.
@@ -1170,7 +1170,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 			set_context($context);
 		} else { // not an object in the current search path
 			$_zp_current_search = null;
-			zp_setcookie("zenphoto_search_params", "", time()-368000);
+			zp_setcookie("zenphoto_search_params", "", -368000);
 		}
 	}
 }
@@ -1672,7 +1672,7 @@ function safe_fnmatch($pattern, $string) {
  * @param string $name the name of the cookie
  */
 function zp_getCookie($name) {
-	if (DEBUG_LOGIN) {
+		if (DEBUG_LOGIN) {
 		if (isset($_SESSION[$name])) {
 			$sessionv = $_SESSION[$name];
 		} else {
@@ -1699,17 +1699,23 @@ function zp_getCookie($name) {
  *
  * @param string $name The 'cookie' name
  * @param string $value The value to be stored
- * @param timestamp $time The time the cookie expires
+ * @param timestamp $time The time delta until the cookie expires
  * @param string $path The path on the server in which the cookie will be available on
  */
 function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 	if (DEBUG_LOGIN) debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".getOption('album_session'));
-	if (is_null($time)) $time = time()+COOKIE_PESISTENCE;
-	if (is_null($path)) if (($path = WEBPATH) == '') $path = '/';
-	if ($time < time() || !getOption('album_session')) {
-		setcookie($name, $value, $time, $path, "", $secure);
+	if (is_null($time)) {
+		$time = COOKIE_PESISTENCE;
 	}
-	if ($time < time()) {
+	if (is_null($path)) {
+		if (($path = WEBPATH) == '') {
+			$path = '/';
+		}
+	}
+	if (($time < 0) || !getOption('album_session')) {
+		setcookie($name, $value, time()+$time, $path, "", $secure);
+	}
+	if ($time < 0) {
 		if (isset($_SESSION))	unset($_SESSION[$name]);
 		if (isset($_COOKIE)) unset($_COOKIE[$name]);
 	} else {
@@ -2014,7 +2020,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 			} else {
 				// Clear the cookie, just in case
 				if (DEBUG_LOGIN) debugLog("zp_handle_password: invalid credentials");
-				zp_setcookie($authType, "", time()-368000);
+				zp_setcookie($authType, "", -368000);
 				$_zp_login_error = true;
 			}
 		}
@@ -2030,7 +2036,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		} else {
 			// Clear the cookie
 			if (DEBUG_LOGIN) debugLog("zp_handle_password: invalid cookie");
-			zp_setcookie($authType, "", time()-368000);
+			zp_setcookie($authType, "", -368000);
 		}
 	}
 }

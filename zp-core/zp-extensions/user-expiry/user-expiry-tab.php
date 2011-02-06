@@ -80,7 +80,7 @@ echo '</head>'."\n";
 		<div id="content">
 			<?php
 			if (isset($_GET['applied'])) {
-				echo '<div class="messagebox" id="fade-message">';
+				echo '<div class="messagebox fade-message">';
 				echo  "<h2>".gettext('Processed')."</h2>";
 				echo '</div>';
 			}

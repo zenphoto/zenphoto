@@ -269,7 +269,7 @@ if(isset($_GET['bulk'])) {
 <?php
 }
 if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])) { ?>
-<div class="messagebox" id="fade-message"><?php if (isset($_GET['ndeleted'])) { ?>
+<div class="messagebox fade-message"><?php if (isset($_GET['ndeleted'])) { ?>
 <h2><?php echo $_GET['ndeleted']; ?> <?php echo gettext("Comments deleted successfully."); ?></h2>
 <?php } ?> <?php if (isset($_GET['sedit'])) { ?>
 <h2><?php echo gettext("Changes applied"); ?></h2>

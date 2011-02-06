@@ -310,7 +310,7 @@ function printRegistrationForm($thanks=NULL) {
 		if (isset($_GET['userlog']) && $_GET['userlog'] == 1) {
 			echo '<meta http-equiv="refresh" content="2; url='.WEBPATH.'/">';
 		} else {
-			echo '<div class="errorbox" id="fade-message">';
+			echo '<div class="errorbox fade-message">';
 			echo  '<h2>'.gettext("you are already logged in.").'</h2>';
 			echo '</div>';
 		}
@@ -319,7 +319,7 @@ function printRegistrationForm($thanks=NULL) {
 	if (!empty($notify)) {
 		if ($notify == 'verified' || $notify == 'accepted') {
 			?>
-			<div class="Messagebox" id="fade-message">
+			<div class="Messagebox fade-message">
 				<p>
 				<?php
 				if ($notify == 'verified') {
@@ -341,7 +341,7 @@ function printRegistrationForm($thanks=NULL) {
 			}
 			$notify = 'success';
 		} else {
-			echo '<div class="errorbox" id="fade-message">';
+			echo '<div class="errorbox fade-message">';
 			echo  '<h2>'.gettext("Registration failed.").'</h2>';
 			echo '<p>';
 			switch ($notify) {

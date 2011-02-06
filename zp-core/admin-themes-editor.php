@@ -93,7 +93,7 @@ if ( $file_to_edit ) {
 <h1><?php echo gettext('Theme File Editor'); ?></h1>
 
 <?php if ($message) {
-	echo '<div class="messagebox" id="fade-message">';
+	echo '<div class="messagebox fade-message">';
 	echo  "<h2>$message</h2>";
 	echo '</div>';
 } ?>

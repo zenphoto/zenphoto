@@ -57,7 +57,7 @@ echo "\n" . '<div id="content">';
 /* Page code */
 
 if ($saved) {
-	echo '<div class="messagebox" id="fade-message">';
+	echo '<div class="messagebox fade-message">';
 	echo  "<h2>".gettext("Applied")."</h2>";
 	echo '</div>';
 }

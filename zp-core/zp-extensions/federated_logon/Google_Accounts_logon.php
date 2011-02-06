@@ -18,7 +18,7 @@ if (isset($_GET['redirect'])) {
 } else {
 	$redirect = '';
 }
-zp_setCookie('OpenID_redirect', $redirect, time()+60);
+zp_setCookie('OpenID_redirect', $redirect, 60);
 $_GET['openid_identifier'] = GOOGLE_ACCOUNT;
 $_GET['action'] = 'verify';
 

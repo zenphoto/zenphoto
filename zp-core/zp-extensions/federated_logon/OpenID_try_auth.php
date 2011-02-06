@@ -40,8 +40,7 @@ function run() {
 	// For OpenID 1, send a redirect.  For OpenID 2, use a Javascript
 	// form to send a POST request to the server.
 	if ($auth_request->shouldSendRedirect()) {
-		$redirect_url = $auth_request->redirectURL(getTrustRoot(),
-		getReturnTo());
+		$redirect_url = $auth_request->redirectURL(getTrustRoot(), getReturnTo());
 
 		// If the redirect URL can't be built, display an error
 		// message.
