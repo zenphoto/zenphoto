@@ -536,13 +536,13 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						$dalbum = new Album($gallery, $folder);
 						$filename = $images[$idx]['filename'];
 						$image = newImage($dalbum, $filename);
-						$imagepath = FULLWEBPATH.getAlbumFolder('').pathurlencode($folder)."/".urlencode($filename);
+						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($folder)."/".urlencode($filename);
 					} else {
 						$folder = $album->name;
 						$filename = $images[$idx];
 						//$filename = $animage;
 						$image = newImage($album, $filename);
-						$imagepath = FULLWEBPATH.getAlbumFolder('').pathurlencode($folder)."/".urlencode($filename);
+						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($folder)."/".urlencode($filename);
 
 					}
 					$ext = is_valid($filename, $validtypes);
@@ -632,12 +632,12 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						$filename = $animage['filename'];
 						$salbum = new Album($_zp_gallery, $folder);
 						$image = newImage($salbum, $filename);
-						$imagepath = FULLWEBPATH.getAlbumFolder('').pathurlencode($salbum->name)."/".urlencode($filename);
+						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($salbum->name)."/".urlencode($filename);
 					} else {
 						$folder = $album->name;
 						$filename = $animage;
 						$image = newImage($album, $filename);
-						$imagepath = FULLWEBPATH.getAlbumFolder('').pathurlencode($folder)."/".pathurlencode($filename);
+						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($folder)."/".pathurlencode($filename);
 					}
 				$ext = is_valid($filename, array('jpg','jpeg','gif','png','flv','mp3','mp4'));
 				if ($ext) {
@@ -647,7 +647,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						$duration = ", duration: ".getOption("slideshow_timeout")/1000;
 					}
 					if($count > 0) { echo ",\n"; }
-					echo "{ url: '".FULLWEBPATH.getAlbumFolder('').pathurlencode($folder)."/".urlencode($filename)."'".$duration.", scaling: 'fit', autoBuffering: true }";
+					echo "{ url: '".FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($folder)."/".urlencode($filename)."'".$duration.", scaling: 'fit', autoBuffering: true }";
 					$count++;
 				}
 			}

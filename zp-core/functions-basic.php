@@ -151,6 +151,7 @@ define('SERVERCACHE', SERVERPATH . '/'.CACHEFOLDER);
 define('MOD_REWRITE', getOption('mod_rewrite'));
 define('ALBUM_FOLDER_WEBPATH', getAlbumFolder(WEBPATH));
 define('ALBUM_FOLDER_SERVERPATH', getAlbumFolder(SERVERPATH));
+define('ALBUM_FOLDER_EMPTY',getAlbumFolder(''));
 
 define('THUMB_SIZE',getOption('thumb_size'));
 define('THUMB_CROP',getOption('thumb_crop'));

@@ -1603,7 +1603,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								while (strstr($singlefolder, '/') !== false) {
 									$singlefolder = substr(strstr($singlefolder, '/'), 1);
 									$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
-									$salevel++;
+									$salevel = ($salevel+1) % 8;
 								}
 								echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: '.$bglevels[$salevel].';"' : '')
 								. "$disabled>". $saprefix . $singlefolder ."</option>\n";
