@@ -119,12 +119,9 @@ function remove() {
 	function getSubCategories() {
 		$subcategories = array();
 		$sortorder = $this->getSortOrder();
-		//echo 'category to get :'.$catlink. '/sortorder:'.$sortorder.'<br />-----<br />';
 		foreach(getAllCategories() as $cat) {
 			$catobj = new ZenpageCategory($cat['titlelink']);
-			$hasSortorder = strstr($catobj->getSortOrder(),$sortorder);
-			//echo '/cat:'.$cat['cat_link'].'/catsortorder:'.$cat['sort_order'].'/sortorder searchred:'.$sortorder.'<br />';
-			if($hasSortorder && $catobj->getSortOrder()  != $sortorder) { // exclude the category itself!
+			if($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
 				array_push($subcategories,$catobj->getTitlelink());
 			}
 		}
