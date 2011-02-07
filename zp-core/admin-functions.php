@@ -2090,8 +2090,6 @@ function processAlbumEdit($index, $album, &$redirectto) {
 		}
 	} else if ($movecopyrename_action == 'copy') {
 		$dest = trim(sanitize_path($_POST['a'.$prefix.'-albumselect']));
-		// Append the album name.
-		$dest = ($dest ? $dest . '/' : '') . (strpos($album->name, '/') === FALSE ? $album->name : basename($album->name));
 		if ($dest && $dest != $album->name) {
 			if($e = $album->copy($dest)) {
 				$notify = "&mcrerr=".$e;

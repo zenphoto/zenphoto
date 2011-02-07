@@ -851,6 +851,9 @@ class Album extends MediaObject {
 	 *
 	 */
 	function copy($newfolder) {
+		// album name to destination folder
+		if (substr($newfolder,-1,1) != '/') $newfolder .= '/';
+		$newfolder .= basename($this->localpath);
 		// First, ensure the new base directory exists.
 		$oldfolder = $this->name;
 		$dest = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($newfolder);
@@ -868,7 +871,7 @@ class Album extends MediaObject {
 			$filemask = substr($this->localpath,0,strrpos($this->localpath,'.')).'.*';
 		} else {
 			$success = mkdir_recursive($dest) === TRUE;
-			$filemask = substr($this->localpath,0,strrpos($this->localpath,'.')).'.*';
+			$filemask = substr($this->localpath,0,-1).'.*';
 		}
 		if ($success) {
 			//	replicate the album metadata and sub-files
@@ -906,7 +909,7 @@ class Album extends MediaObject {
 					$subalbums = $this->getAlbums(0);
 					foreach ($subalbums as $subalbumname) {
 						$subalbum = new Album($this->gallery, $subalbumname);
-						if ($subalbum->copy($newfolder.'/'.$subalbumname)) {
+						if ($subalbum->copy($newfolder)) {
 							$success = false;
 						}
 					}
