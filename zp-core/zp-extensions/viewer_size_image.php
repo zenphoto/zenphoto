@@ -33,7 +33,7 @@ $option_interface = 'viewer_size_image_options';
 class viewer_size_image_options {
 
 	function viewer_size_image_options() {
-		$default = getOption('image_size');
+		$default = IMAGE_SIZE;
 		setOptionDefault('viewer_size_image_sizes', '$s='.($default-200).'; $s='.($default-100).'; $s='.($default).'; $s='.($default+100).'; $s='.($default+200).';');
 		setOptionDefault('viewer_size_image_default', '$s='.$default);
 		setOptionDefault('viewer_size_image_radio', 2);

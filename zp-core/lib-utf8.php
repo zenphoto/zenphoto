@@ -197,19 +197,23 @@ class utf8 {
 	/**
 	 * Convert a foreign charset encoding from or to UTF-8
 	 */
-	function convert($string, $encoding = '', $destination = 'UTF-8') {
-		if ($encoding == '') $encoding = utf8::detect($string);
+	function convert($string, $encoding = NULL, $destination = 'UTF-8') {
+		if (!$encoding) $encoding = utf8::detect($string);
 		if ($encoding == $destination) return $string;
 
-		$encode_mb = array_key_exists($encoding, $this->mb_sets);
-		$encode_iconv = array_key_exists($encoding, $this->iconv_sets);
-		$dest_mb = array_key_exists($destination, $this->mb_sets);
-		$dest_iconv = array_key_exists($destination, $this->iconv_sets);
-
-		if ($encode_mb && $dest_mb) {
-			@mb_substitute_character('none');
-			return mb_convert_encoding($string, $destination, $encoding);
+		if (!empty($this->mb_sets)) {
+			$encode_mb = array_key_exists($encoding, $this->mb_sets);
+			$dest_mb = array_key_exists($destination, $this->mb_sets);
+			if ($encode_mb && $dest_mb) {
+				@mb_substitute_character('none');
+				return mb_convert_encoding($string, $destination, $encoding);
+			}
+		} else {
+			$encode_mb = $dest_mb = false;
 		}
+
+		$encode_iconv = array_key_exists($encoding, $this->iconv_sets);
+		$dest_iconv = array_key_exists($destination, $this->iconv_sets);
 		if ($encode_iconv && $dest_iconv) {
 			return @iconv($encoding, $destination . '//IGNORE', $string);
 		}

@@ -43,7 +43,7 @@ $_zp_filters = array();
  * @param int $accepted_args optional. The number of arguments the function accept (default is the number provided).
  */
 function zp_register_filter($hook, $function_name, $priority = NULL, $accepted_args = NULL) {
-	global $_zp_filters;
+	global $_zp_filters, $_EnabledPlugins;
 	$bt = @debug_backtrace();
 	if (is_array($bt)) {
 		$b = array_shift($bt);
@@ -52,7 +52,7 @@ function zp_register_filter($hook, $function_name, $priority = NULL, $accepted_a
 		$base = 'unknown';
 	}
 	if (is_null($priority)) {
-		$priority = getOption('zp_plugin_'.stripSuffix($base));
+		$priority = @$_EnabledPlugins[stripSuffix($base)];
 		if (is_null($priority)) {
 			$priority = 5;
 		} else {

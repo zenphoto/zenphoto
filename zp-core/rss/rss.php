@@ -41,7 +41,7 @@ $items = getOption('feed_items'); // # of Items displayed on the feed
 			$thumburl = '<img border="0" src="'.$serverprotocol.'://'.$host.$item->getCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.get_language_string($item->get("title"),$locale) .'" />';
 			$itemcontent = '<![CDATA[<a title="'.get_language_string($item->get("title"),$locale).' in '.get_language_string($albumobj->get("title"),$locale).'" href="'.$serverprotocol.'://'.$itemlink.'">'.$thumburl.'</a>' . get_language_string($item->get("desc"),$locale) . ']]>';
 			$videocontent = '<![CDATA[<a title="'.get_language_string($item->get("title"),$locale).' in '.$albumobj->getTitle().'" href="'.$serverprotocol.'://'.$itemlink.'"><img src="'.$serverprotocol.'://'.$host.$item->getThumb().'" alt="'.get_language_string($item->get("title"),$locale) .'" /></a>' . get_language_string($item->get("desc"),$locale) . ']]>';
-			$datecontent = '<![CDATA[Date: '.zpFormattedDate(getOption('date_format'),$item->get('mtime')).']]>';
+			$datecontent = '<![CDATA[Date: '.zpFormattedDate(DATE_FORMAT,$item->get('mtime')).']]>';
 		} else {
 			$galleryobj = new Gallery();
 			$albumitem = new Album($galleryobj, $item['folder']);
@@ -52,7 +52,7 @@ $items = getOption('feed_items'); // # of Items displayed on the feed
 			$thumburl = '<img border="0" src="'.$thumb->getCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.get_language_string($albumitem->get("title"),$locale) .'" />';
 			$title =  get_language_string($albumitem->get("title"),$locale);
 			if(true || getOption("feed_sortorder_albums") === "latestupdated") {
-				$filechangedate = filectime(getAlbumFolder().internalToFilesystem($albumitem->name));
+				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumitem->name));
 				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$albumitem->getAlbumID() . " AND `show` = 1 ORDER BY id DESC");
 				$lastuploaded = query("SELECT COUNT(*) FROM ".prefix('images')." WHERE albumid = ".$albumitem->getAlbumID() . " AND mtime = ". $latestimage['mtime']);
 				$row = db_fetch_row($lastuploaded);
@@ -65,7 +65,7 @@ $items = getOption('feed_items'); // # of Items displayed on the feed
 				$itemcontent = '<![CDATA[<a title="'.$title.'" href="'.$serverprotocol.'://'.$itemlink.'">'.$thumburl.'</a>'.
 						'<p>'.$imagenumber.'</p>'.get_language_string($albumitem->get("desc"),$locale).']]>';
 				$videocontent = '';
-				$datecontent = '<![CDATA['.sprintf(gettext("Last update: %s"),zpFormattedDate(getOption('date_format'),$filechangedate)).']]>';
+				$datecontent = '<![CDATA['.sprintf(gettext("Last update: %s"),zpFormattedDate(DATE_FORMAT,$filechangedate)).']]>';
 			} else {
 				if($totalimages == 1) {
 					$imagenumber = sprintf(gettext('(%s: 1 image)'),$title);
@@ -73,7 +73,7 @@ $items = getOption('feed_items'); // # of Items displayed on the feed
 					$imagenumber = sprintf(gettext('(%1$s: %2$s images)'),$title,$totalimages);
 				}
 				$itemcontent = '<![CDATA[<a title="'.$title.'" href="'.$serverprotocol.'://'.$itemlink.'">'.$thumburl.'</a>'.get_language_string($albumitem->get("desc"),$locale).']]>';
-				$datecontent = '<![CDATA['.sprintf(gettext("Date: %s"),zpFormattedDate(getOption('date_format'),$albumitem->get('mtime'))).']]>';
+				$datecontent = '<![CDATA['.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$albumitem->get('mtime'))).']]>';
 			}
 			$ext = strtolower(strrchr($thumb->filename, "."));
 		}

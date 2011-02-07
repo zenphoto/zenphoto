@@ -124,7 +124,7 @@ function printThemeInfo() {
 	$personality = getOption('Theme_personality');
 	if ($personality == 'Image page') {
 		$personality = '';
-	} else if (($personality == 'Simpleviewer') && (!getOption('mod_rewrite') || $_noFlash)) {
+	} else if (($personality == 'Simpleviewer') && (!MOD_REWRITE || $_noFlash)) {
 		$personality = "<strike>$personality</strike>";
 	}
 	if (empty($themeColor) && empty($personality)) {
@@ -148,7 +148,7 @@ function printThemeInfo() {
 
 function printLinkWithQuery($url, $query, $text) {
 	if (substr($url, -1, 1) == '/') {$url = substr($url, 0, (strlen($url)-1));}
-	$url = $url . (getOption("mod_rewrite") ? "?" : "&amp;");
+	$url = $url . (MOD_REWRITE ? "?" : "&amp;");
 	echo "<a href=\"$url$query\">$text</a>";
 }
 

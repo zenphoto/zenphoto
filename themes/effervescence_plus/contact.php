@@ -4,7 +4,7 @@
 
 if (!defined('WEBPATH')) die();
 $_noFlash = true;  /* don't know how to deal with the variable folder depth file names
-if ((getOption('Use_Simpleviewer')==0) || !getOption('mod_rewrite')) { $_noFlash = true; }
+if ((getOption('Use_Simpleviewer')==0) || !MOD_REWRITE) { $_noFlash = true; }
 
 if (isset($_GET['noflash'])) {
 	$_noFlash = true;

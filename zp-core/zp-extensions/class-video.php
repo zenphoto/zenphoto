@@ -130,7 +130,7 @@ class Video extends _Image {
 	function getThumbImageFile($path=NULL) {
 		if (is_null($path)) $path = SERVERPATH;
 		if ($this->objectsThumb != NULL) {
-			$imgfile = getAlbumFolder().$this->album->name.'/'.$this->objectsThumb;
+			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
 		} else {
 			$suffix = getSuffix($this->filename);
 			switch($suffix) {
@@ -181,7 +181,7 @@ class Video extends _Image {
 		} else {
 			$filename = $this->objectsThumb;
 		}
-		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
+		$args = getImageParameters(array(THUMB_SIZE, $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
 		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
 		if (file_exists(SERVERCACHE . $cachefilename)	&& filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
 			return WEBPATH . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($cachefilename));

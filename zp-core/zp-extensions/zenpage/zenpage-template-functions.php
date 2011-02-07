@@ -14,6 +14,10 @@
 
 require_once(dirname(__FILE__)."/zenpage-functions.php");
 
+/************************************************
+ * Global definitions
+ */
+
 /************************************************/
 /* General functions
 /************************************************/
@@ -35,7 +39,7 @@ function is_News() {
  */
 function is_NewsPage() {
 	global $_zp_gallery_page;
-	return $_zp_gallery_page == getOption("zenpage_news_page").'.php';
+	return $_zp_gallery_page == 'pages.php';
 }
 
 /**
@@ -194,10 +198,10 @@ function getNumNews($combi=true) {
 	if (in_context(ZP_SEARCH)) {
 		processExpired('news');
 		$_zp_zenpage_articles = $_zp_current_search->getSearchNews();
-	} else if(getOption('zenpage_combinews') AND !is_NewsCategory() AND !is_NewsArchive()) {
-		$_zp_zenpage_articles = getCombiNews(getOption("zenpage_articles_per_page"));
+	} else if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
+		$_zp_zenpage_articles = getCombiNews(ZP_ARTICLES_PER_PAGE);
 	} else {
-		$_zp_zenpage_articles = getNewsArticles(getOption("zenpage_articles_per_page"));
+		$_zp_zenpage_articles = getNewsArticles(ZP_ARTICLES_PER_PAGE);
 	}
 	return count($_zp_zenpage_articles);
 }
@@ -225,10 +229,10 @@ function next_news($sortorder="date", $sortdirection="desc") {
 		if (in_context(ZP_SEARCH)) {
 			processExpired('news');
 			$_zp_zenpage_articles = $_zp_current_search->getSearchNews($sortorder, $sortdirection);
-		} else if(getOption('zenpage_combinews') AND !is_NewsCategory() AND !is_NewsArchive()) {
-			$_zp_zenpage_articles = getCombiNews(getOption("zenpage_articles_per_page"));
+		} else if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
+			$_zp_zenpage_articles = getCombiNews(ZP_ARTICLES_PER_PAGE);
 		} else {
-			$_zp_zenpage_articles = getNewsArticles(getOption("zenpage_articles_per_page"),'',NULL,false,$sortorder,$sortdirection);
+			$_zp_zenpage_articles = getNewsArticles(ZP_ARTICLES_PER_PAGE,'',NULL,false,$sortorder,$sortdirection);
 		}
 		//print_r($_zp_zenpage_articles); // debugging
 		if (empty($_zp_zenpage_articles)) { return false; }
@@ -236,7 +240,7 @@ function next_news($sortorder="date", $sortdirection="desc") {
 		$news = array_shift($_zp_zenpage_articles);
 		//print_r($news); // debugging
 		if (is_array($news)) {
-			if(getOption('zenpage_combinews') AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
+			if(ZP_COMBINEWS AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
 				if($news['type'] == "images") {
 					$albumobj = new Album($_zp_gallery,$news['albumname']);
 					$_zp_current_zenpage_news = newImage($albumobj,$news['titlelink']);
@@ -269,7 +273,7 @@ function next_news($sortorder="date", $sortdirection="desc") {
 	} else {
 		$news = array_shift($_zp_zenpage_articles);
 		if (is_array($news)) {
-			if(getOption('zenpage_combinews') AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
+			if(ZP_COMBINEWS AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
 				if($news['type'] == "images") {
 					$albumobj = new Album($_zp_gallery,$news['albumname']);
 					$_zp_current_zenpage_news = newImage($albumobj,$news['titlelink']);
@@ -316,17 +320,13 @@ function getNewsID() {
  */
 function getNewsTitle() {
 	global $_zp_current_zenpage_news;
-	$shortenindicator = getOption('zenpage_textshorten_indicator');
-	$singular = get_language_string(getOption('combinews-customtitle-singular'));
-	$plural =	get_language_string(getOption('combinews-customtitle-plural'));
-	$limit = getOption('combinews-customtitle-imagetitles');
 	if (!is_null($_zp_current_zenpage_news)) {
 		if(is_NewsType("album") && (getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail"	|| getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail-customcrop" || getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage")) {
 			$result = query_full_array("SELECT filename FROM ".prefix('images')." AS images WHERE date LIKE '".$_zp_current_zenpage_news->getDateTime()."%' AND albumid = ".$_zp_current_zenpage_news->id." ORDER BY date DESC");
 			$imagetitles = "";
 			$countresult = count($result);
 			$count = "";
-			if($limit != 0) {
+			if(ZP_COMBINEWS_IMAGETITLES != 0) {
 				foreach($result as $image) {
 					$imageobj = newImage($_zp_current_zenpage_news,$image['filename']);
 					$imagetitles .= $imageobj->getTitle();
@@ -335,13 +335,13 @@ function getNewsTitle() {
 					if($count < $countresult) {
 						$imagetitles .= $append;
 					}
-					if($count >= $limit && $count != $countresult) {
-						$imagetitles .= $shortenindicator;
+					if($count >= ZP_COMBINEWS_IMAGETITLES && $count != $countresult) {
+						$imagetitles .= ZP_SHORTENINDICATOR;
 						break;
 					}
 				}
 			}
-			return sprintf(ngettext($singular,$plural,$countresult),$countresult,$_zp_current_zenpage_news->getTitle(),$imagetitles);
+			return sprintf(ngettext(ZP_SINGULAR,ZP_PLURAL,$countresult),$countresult,$_zp_current_zenpage_news->getTitle(),$imagetitles);
 		} else {
 			return $_zp_current_zenpage_news->getTitle();
 		}
@@ -366,7 +366,7 @@ function printNewsTitle($before='') {
  *
  * @return string
  */
-function getBareNewsTitle() { 
+function getBareNewsTitle() {
 	return strip_tags(getNewsTitle());
 }
 
@@ -450,17 +450,17 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 	}
 	$excerptbreak = false;
 	if(!$shorten && !is_NewsArticle()) {
-		$shorten = getOption('zenpage_text_length');
+		$shorten = ZP_SHORTEN_LENGTH;
 	}
 	$articlecontent = "";
-	$size = getOption('zenpage_combinews_imagesize');
-	$width = getOption('combinews-thumbnail-width');
-	$height = getOption('combinews-thumbnail-height');
-	$cropwidth = getOption('combinews-thumbnail-cropwidth');
-	$cropheight= getOption('combinews-thumbnail-cropheight');
-	$cropx = getOption('combinews-thumbnail-cropx');
-	$cropy = getOption('combinews-thumbnail-cropy');
-	$mode = getOption('zenpage_combinews_mode');
+	$size = ZP_CN_IMAGESIZE;
+	$width = ZP_CN_THUMBWIDTH;
+	$height = ZP_CN_THUMBHEIGHT;
+	$cropwidth = ZP_CN_CROPWIDTH;
+	$cropheight= ZP_CN_CROPHEIGHT;
+	$cropx = ZP_CN_CROPX;
+	$cropy = ZP_CN_CROPY;
+	$mode = ZP_CN_MODE;
 	switch($newstype) {
 		case 'news':
 			$articlecontent = $_zp_current_zenpage_news->getContent();
@@ -587,16 +587,16 @@ function printNewsContent($shorten=false,$shortenindicator=NULL,$readmore=NULL) 
 function getContentShorten($text,$shorten,$shortenindicator=NULL,$readmore=NULL,$readmoreurl=NULL) {
 	$readmorelink = '';
 	if(is_null($shortenindicator)) {
-		$shortenindicator = getOption('zenpage_textshorten_indicator');
+		$shortenindicator = ZP_SHORTENINDICATOR;
 	}
 	if(is_null($readmore)) {
-		$readmore = get_language_string(getOption("zenpage_read_more"));
+		$readmore = get_language_string(ZP_READ_MORE);
 	}
 	if(!is_null($readmoreurl)) {
 		$readmorelink ='<p class="readmorelink"><a href="'.html_encode($readmoreurl).'"title="'.html_encode($readmore).'">'.html_encode($readmore).'</a></p>';
 	}
 	if(!$shorten && !is_NewsArticle()) {
-		$shorten  = getOption('zenpage_text_length');
+		$shorten  = ZP_SHORTEN_LENGTH;
 	}
 	$contentlenght = strlen($text);
 	if (!empty($shorten) && ($contentlenght > $shorten)) {
@@ -681,7 +681,7 @@ function getNewsReadMore() {
 	$type = getNewsType();
 	switch($type) {
 		case "news":
-			$readmore = get_language_string(getOption("zenpage_read_more"));
+			$readmore = get_language_string(ZP_READ_MORE);
 			break;
 		case "image":
 		case "video":
@@ -910,13 +910,13 @@ function printNewsCategories($separator='',$before='',$class='') {
 function getNewsDate() {
 	global $_zp_current_zenpage_news;
 	if(!is_null($_zp_current_zenpage_news)) {
-		if(is_GalleryNewsType() && getOption("zenpage_combinews_sortorder") == 'mtime') {
+		if(is_GalleryNewsType() && ZP_COMBINEWS_SORTORDER == 'mtime') {
 			$d = $_zp_current_zenpage_news->get('mtime');
 			$d = date('Y-m-d H:i:s',$d);
 		} else {
 			$d = $_zp_current_zenpage_news->getDateTime();
 		}
-		return zpFormattedDate(getOption("date_format"), strtotime($d));
+		return zpFormattedDate(DATE_FORMAT, strtotime($d));
 	}
 	return false;
 }
@@ -1146,7 +1146,7 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
 				}
 				$thumb = "";
 				$content = $obj->getContent();
-				$date = zpFormattedDate(getOption('date_format'),strtotime($item['date']));
+				$date = zpFormattedDate(DATE_FORMAT,strtotime($item['date']));
 				$type = 'news';
 				break;
 			case 'images':
@@ -1156,9 +1156,9 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
 				$link = html_encode($obj->getImageLink());
 				$content = $obj->getDesc();
 				if($option == "with_latest_image_date") {
-					$date = zpFormattedDate(getOption('date_format'),$item['date']);
+					$date = zpFormattedDate(DATE_FORMAT,$item['date']);
 				} else {
-					$date = zpFormattedDate(getOption('date_format'),strtotime($item['date']));
+					$date = zpFormattedDate(DATE_FORMAT,strtotime($item['date']));
 				}
 				$thumb = "<a href=\"".$link."\" title=\"".html_encode(strip_tags($title))."\"><img src=\"".html_encode($obj->getThumb())."\" alt=\"".html_encode(strip_tags($title))."\" /></a>\n";
 				$type = "image";
@@ -1170,7 +1170,7 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
 				$link = html_encode($obj->getAlbumLink());
 				$thumb = "<a href=\"".$link."\" title=\"".$title."\"><img src=\"".html_encode($obj->getAlbumThumb())."\" alt=\"".strip_tags($title)."\" /></a>\n";
 				$content = $obj->getDesc();
-				$date = zpFormattedDate(getOption('date_format'),strtotime($item['date']));
+				$date = zpFormattedDate(DATE_FORMAT,strtotime($item['date']));
 				$type = "album";
 				break;
 		}
@@ -1410,7 +1410,7 @@ function printPrevNewsPageLink($prev='&laquo; prev',$class='disabledlink') {
  */
 function getNextNewsPageURL() {
 	$page =  getCurrentNewsPage();
-	$total_pages = ceil(getTotalArticles() / getOption("zenpage_articles_per_page"));
+	$total_pages = ceil(getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	if ($page != $total_pages) {
 		return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().($page + 1);
 	} else {
@@ -1461,7 +1461,7 @@ function printNewsPageList($class='pagelist') {
  * @return string
  */
 function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',$firstlast=true, $navlen=9) {
-	$total = ceil(getTotalArticles() / getOption("zenpage_articles_per_page"));
+	$total = ceil(getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	$current = getCurrentNewsPage();
 	if ($total > 1) {
 		if ($navlen == 0)
@@ -1531,7 +1531,7 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 
 
 function getTotalNewsPages() {
-	if(getOption('zenpage_combinews') AND !is_NewsCategory() AND !is_NewsArchive()) {
+	if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
 		$articlecount = countCombiNews();
 	} else {
 		$articlecount = countArticles();
@@ -1558,7 +1558,7 @@ function getTotalNewsPages() {
 function getNextPrevNews($option='',$sortorder='date',$sortdirection='desc') {
 	global $_zp_current_zenpage_news;
 	$article_url = array();
-	if(!getOption("zenpage_combinews")) {
+	if(!ZP_COMBINEWS) {
 		$current = 0;
 		if(!empty($option)) {
 			$all_articles = getNewsArticles('','',NULL,false,$sortorder,$sortdirection);
@@ -1828,7 +1828,7 @@ function printZenpageStatistic($number=10, $option="all",$mode="popular",$showst
 		echo '</small>';
 		echo '</h3></a>';
 		if($showdate && $item['type'] != 'Category') {
-			echo "<p>". zpFormattedDate(getOption('date_format'),strtotime($item['date']))."</p>";
+			echo "<p>". zpFormattedDate(DATE_FORMAT,strtotime($item['date']))."</p>";
 		}
 		if($showcontent && $item['type'] != 'Category') {
 			echo '<p>'.truncate_string($item['content'], $contentlength).'</p>';
@@ -1913,7 +1913,7 @@ function printTopRatedItems($number=10, $option="all",$showstats=true,$showtype=
 function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$css_class_topactive=NULL,$css_class=NULL,$css_class_active=NULL,$indexname=NULL,$showsubs=0,$startlist=true, $limit=NULL) {
 	global $_zp_gallery_page, $_zp_current_zenpage_page, $_zp_current_category;
 	if (is_null($limit)) {
-		$limit = getOption('menu_truncate_string');
+		$limit = MENU_TRUNCATE_STRING;
 	}
 	if ($css_id != "") { $css_id = " id='".$css_id."'"; }
 	if ($css_class_topactive != "") { $css_class_topactive = " class='".$css_class_topactive."'"; }
@@ -1958,7 +1958,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 	// if index link and if if with count
 	if(!empty($indexname)) {
 		if ($limit) {
-			$display = shortenContent($indexname, $limit, getOption('menu_truncate_indicator'));
+			$display = shortenContent($indexname, $limit, MENU_TRUNCATE_INDICATOR);
 		} else {
 			$display = $indexname;
 		}
@@ -1977,7 +1977,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 					echo "<li><a href=\"".html_encode(getNewsIndexURL())."\" title=\"".html_encode($indexname)."\">".html_encode($display)."</a>";
 				}
 				if($counter) {
-					if(getOption("zenpage_combinews")) {
+					if(ZP_COMBINEWS) {
 						$totalcount = countCombiNews($published);
 					} else {
 						$totalcount = countArticles("",$published);
@@ -2095,7 +2095,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 					$current = "";
 				}
 				if ($limit) {
-					$itemtitle = shortenContent($itemtitle, $limit, getOption('menu_truncate_indicator'));
+					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
 				echo "<li><a $current href=\"".html_encode($itemurl)."\" title=\"".html_encode(strip_tags($itemtitle))."\">".html_encode($itemtitle).$count."</a>";
 			}
@@ -2309,7 +2309,7 @@ function getPageDate() {
 	global $_zp_current_zenpage_page;
 	if (!is_null($_zp_current_zenpage_page)) {
 		$d = $_zp_current_zenpage_page->getDatetime();
-		return zpFormattedDate(getOption('date_format'),strtotime($d));
+		return zpFormattedDate(DATE_FORMAT,strtotime($d));
 	}
 	return false;
 }
@@ -2334,7 +2334,7 @@ function getPageLastChangeDate() {
 	global $_zp_current_zenpage_page;
 	if (!is_null($_zp_current_zenpage_page)) {
 		$d = $_zp_current_zenpage_page->getLastchange();
-		return zpFormattedDate(getOption('date_format'),strtotime($d));
+		return zpFormattedDate(DATE_FORMAT,strtotime($d));
 	}
 	return false;
 }
@@ -2536,12 +2536,12 @@ function printPageLinkURL($titlelink) {
 function printSubPagesExcerpts($excerptlength=NULL, $readmore=NULL, $shortenindicator=NULL) {
 	global $_zp_current_zenpage_page;
 	if(is_null($readmore)) {
-		$readmore = get_language_string(getOption("zenpage_read_more"));
+		$readmore = get_language_string(ZP_READ_MORE);
 	}
 	$pages = $_zp_current_zenpage_page->getSubPages();
 	$subcount = 0;
 	if(is_null($excerptlength)) {
-		$excerptlength = getOption("zenpage_text_length");
+		$excerptlength = ZP_SHORTEN_LENGTH;
 	}
 	foreach($pages as $page) {
 		$pageobj = new ZenpagePage($page);
@@ -2893,7 +2893,7 @@ function zenpageAlbumImage($albumname, $imagename=NULL, $size=NULL) {
 	$album = new Album($_zp_gallery, $albumname);
 	if ($album->loaded) {
 		if (is_null($size)) {
-			$size = floor(getOption('image_size') * 0.5);
+			$size = floor(IMAGE_SIZE * 0.5);
 		}
 		if (is_null($imagename)) {
 			makeImageCurrent($album->getAlbumThumbImage());

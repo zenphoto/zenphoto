@@ -4,7 +4,7 @@
  */
 if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 2);
 require_once(dirname(__FILE__).'/functions.php');
-if(isset($_GET['album']) && is_dir(realpath(getAlbumFolder() . internalToFilesystem($_GET['album'])))){
+if(isset($_GET['album']) && is_dir(realpath(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($_GET['album'])))){
 	createAlbumZip(sanitize_path($_GET['album']));
 }
 

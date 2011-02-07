@@ -121,7 +121,7 @@ function getRSSAlbumsmode() {
  */
 function getRSSImageAndAlbumPaths($arrayfield) {
 	$arrayfield = sanitize($arrayfield);
-	if(getOption('mod_rewrite')) {
+	if(MOD_REWRITE) {
 		$albumpath = "/"; $imagepath = "/";
 		$modrewritesuffix = getOption('mod_rewrite_image_suffix');
 	} else  {

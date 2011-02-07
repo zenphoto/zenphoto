@@ -1516,9 +1516,9 @@ if (isset($_GET['bulkmessage'])) {
 	$albums = getNestedAlbumList(NULL, $gallery_nesting);
 	if (count($albums) > 0) {
 		if (zp_loggedin(ADMIN_RIGHTS) && (count($albums)) > 1) {
-			$sorttype = strtolower(getOption('gallery_sorttype'));
+			$sorttype = strtolower(GALLERY_SORT_TYPE);
 			if ($sorttype != 'manual') {
-				if (getOption('gallery_sortdirection')) {
+				if (GALLERY_SORT_DIRECTION) {
 					$dir = gettext(' descending');
 				} else {
 					$dir = '';

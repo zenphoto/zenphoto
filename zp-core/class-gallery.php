@@ -6,6 +6,13 @@
 
 // force UTF-8 Ø
 
+define('GALLERY_SORT_DIRECTION',getOption('gallery_sortdirection'));
+define('GALLERY_SORT_TYPE',getOption('gallery_sorttype'));
+define('GALLERY_TITLE',getOption('gallery_title'));
+define('GALLERY_DESCRIPTION',getOption('Gallery_description'));
+define('GALLERY_PASSWORD',getOption('gallery_password'));
+define('GALLERY_USER',getOption('gallery_user'));
+define('GALLERY_HINT',getOption('gallery_hint'));
 
 class Gallery {
 
@@ -15,6 +22,11 @@ class Gallery {
 	var $theme;
 	var $themes;
 	var $lastalbumsort = NULL;
+	var $title = NULL;
+	var $desc = NULL;
+	var $pass = NULL;
+	var $user = NULL;
+	var $hint = NULL;
 
 	/**
 	 * Creates an instance of a gallery
@@ -23,7 +35,7 @@ class Gallery {
 	 */
 	function Gallery() {
 		// Set our album directory
-		$this->albumdir = getAlbumFolder();
+		$this->albumdir = ALBUM_FOLDER_SERVERPATH;
 	}
 
 	/**
@@ -32,7 +44,7 @@ class Gallery {
 	 * @return string
 	 */
 	function getTitle() {
-		return(get_language_string(getOption('gallery_title')));
+		return(get_language_string(GALLERY_TITLE));
 	}
 
 	/**
@@ -41,7 +53,7 @@ class Gallery {
 	 * @return string
 	 */
 	function getDesc() {
-		return(get_language_string(getOption('Gallery_description')));
+		return(get_language_string(GALLERY_DESCRIPTION));
 	}
 
 	/**
@@ -49,7 +61,7 @@ class Gallery {
 	 *
 	 */
 	function getPassword() {
-		return(getOption('gallery_password'));
+		return(GALLERY_PASSWORD);
 	}
 
 	/**
@@ -58,11 +70,11 @@ class Gallery {
 	 * @return string
 	 */
 	function getPasswordHint() {
-		return(get_language_string(getOption('gallery_hint')));
+		return(get_language_string(GALLERY_HINT));
 	}
 
 	function getUser() {
-		return(getOption('gallery_user'));
+		return(GALLERY_USER);
 	}
 
 	/**
@@ -79,12 +91,12 @@ class Gallery {
 	 * @return string
 	 */
 	function getAlbumSortKey($sorttype=null) {
-		if (empty($sorttype)) { $sorttype = getOption('gallery_sorttype'); }
+		if (empty($sorttype)) { $sorttype = GALLERY_SORT_TYPE; }
 		return lookupSortKey($sorttype, 'sort_order', 'folder');
 	}
 
 	function getSortDirection() {
-		return getOption('gallery_sortdirection');
+		return GALLERY_SORT_DIRECTION;
 	}
 
 	/**
@@ -399,9 +411,8 @@ class Gallery {
 			$live = array(''); // purge the root album if it exists
 			$deadalbumthemes = array();
 			// Load the albums from disk
-			$albumfolder = getAlbumFolder();
 			while($row = db_fetch_assoc($result)) {
-				$valid = file_exists($albumpath = $albumfolder.internalToFilesystem($row['folder'])) && (hasDynamicAlbumSuffix($albumpath) || (is_dir($albumpath) && strpos($albumpath,'/./') === false && strpos($albumpath,'/../') === false));
+				$valid = file_exists($albumpath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($row['folder'])) && (hasDynamicAlbumSuffix($albumpath) || (is_dir($albumpath) && strpos($albumpath,'/./') === false && strpos($albumpath,'/../') === false));
 				if (!$valid || in_array($row['folder'], $live)) {
 					$dead[] = $row['id'];
 					if ($row['album_theme'] !== '') {  // orphaned album theme options table
@@ -443,10 +454,9 @@ class Gallery {
 		if ($complete) {
 			if (empty($restart)) {
 				/* refresh 'metadata' albums */
-				$albumfolder = getAlbumFolder();
 				$albumids = query_full_array("SELECT `id`, `mtime`, `folder`, `dynamic` FROM " . prefix('albums'));
 				foreach ($albumids as $analbum) {
-					if (($mtime=filemtime($albumfolder.internalToFilesystem($analbum['folder']))) > $analbum['mtime']) {  // refresh
+					if (($mtime=filemtime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($analbum['folder']))) > $analbum['mtime']) {  // refresh
 						$album = new Album($this, $analbum['folder']);
 						$album->set('mtime', $mtime);
 						if ($album->isDynamic()) {
@@ -536,7 +546,7 @@ class Gallery {
 				foreach($images as $image) {
 					$sql = 'SELECT `folder` FROM ' . prefix('albums') . ' WHERE `id`="' . $image['albumid'] . '";';
 					$row = query_single_row($sql);
-					$imageName = internalToFilesystem(getAlbumFolder() . $row['folder'] . '/' . $image['filename']);
+					$imageName = internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $row['folder'] . '/' . $image['filename']);
 					if (file_exists($imageName)) {
 						$mtime = filemtime($imageName);
 						if ($image['mtime'] != $mtime) { // file has changed since we last saw it
@@ -651,7 +661,7 @@ class Gallery {
 	 * @return int
 	 */
 	function sizeOfImages() {
-		$imagefolder = substr(getAlbumFolder(), 0, -1);
+		$imagefolder = substr(ALBUM_FOLDER_SERVERPATH, 0, -1);
 		if (is_dir($imagefolder)) {
 			return dirsize($imagefolder);
 		} else {

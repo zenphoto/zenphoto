@@ -719,7 +719,7 @@ if ($connection) {
 							var image = new Image();
 							image.onload = function() {
 									<?php
-									if (!getOption('UTF8_image_URI')) {
+									if (!UTF8_IMAGE_URI) {
 										?>
 										$('#UTF8_uri_warn').html('<?php echo gettext('You should enable the URL option <em>UTF8 image URIs</em>.'); ?>'+' <?php echo gettext('<a href="javascript:uri(true)">Please do</a>'); ?>');
 										$('#UTF8_uri_warn').show();
@@ -730,7 +730,7 @@ if ($connection) {
 							image.onerror = function() {
 								$('#UTF8_uri_text').html('<?php echo $req_iso; ?>');
 								<?php
-								if (getOption('UTF8_image_URI')) {
+								if (UTF8_IMAGE_URI) {
 									?>
 									$('#UTF8_uri').attr('class','warn');
 									$('#UTF8_uri_warn').html('<?php echo gettext('You should disable the URL option <em>UTF8 image URIs</em>.'); ?>'+' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');

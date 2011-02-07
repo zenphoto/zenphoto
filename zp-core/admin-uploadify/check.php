@@ -15,7 +15,7 @@ foreach ($_POST as $key => $value) {
 	if ($key != 'folder') {
 		$name = seoFriendly($value);
 		if (strpos($name,'.')===0) $name = sha1($value).$name; // soe stripped out all the name.
-		$targetPath = getAlbumFolder().internalToFilesystem($folder.'/'.$name);
+		$targetPath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($folder.'/'.$name);
 		if (file_exists($targetPath)) {
 			$fileArray[$key] = $name;
 		}

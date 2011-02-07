@@ -209,7 +209,7 @@ function sitemap_cache_purgebutton($buttons) {
  * Returns true if the site is set to "multilingual" and mod_rewrite and  and the seo_locale plugin are enabled.
  */
 function sitemap_multilingual() {
-	if(getOption('multi_lingual') && getOption('zp_plugin_seo_locale') && getOption('mod_rewrite')) {
+	if(getOption('multi_lingual') && getOption('zp_plugin_seo_locale') && MOD_REWRITE) {
 		return true;
 	} else {
 		return false;
@@ -451,11 +451,11 @@ function printSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$album
 						$date = sitemap_getDateformat($imageobj,$imagelastmod);
 						if(sitemap_multilingual()) {
 							foreach($sitemap_locales as $locale) {
-								$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).im_suffix(),'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+								$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
 								sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
 							}
 						} else {
-							$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).im_suffix(),'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+							$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
 							sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
 						}
 					}
@@ -505,7 +505,7 @@ function printSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images)
 					sitemap_echonl("\t\t\t<video:content_loc>".$host.pathurlencode($imageobj->getFullImage())."</video:content_loc>");
 					sitemap_echonl("\t\t</video:video>");
 				} else { // this might need to be extended!
-					sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>".$host.html_encode($imageobj->getSizedImage(getOption('image_size')))."</image:loc>\n\t\t\t<image:title>".$imageobj->getTitle()."</image:title>");
+					sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>".$host.html_encode($imageobj->getSizedImage(IMAGE_SIZE))."</image:loc>\n\t\t\t<image:title>".$imageobj->getTitle()."</image:title>");
 					if ($imageobj->getDesc()) { sitemap_echonl("\t\t\t<image:caption>".$imageobj->getDesc()."</image:caption>"); }
 					if (!empty($license)) { sitemap_echonl("\t\t\t<image:license>".$license."</image:license>"); }
 					if (!empty($location)) { sitemap_echonl("\t\t\t<image:geo_location>".$location."</image:geo_location>"); }
@@ -575,7 +575,7 @@ function printSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
 	if(!empty($articlesperpage)) {
 		$zenpage_articles_per_page = sanitize_numeric($articlesperpage);
 	} else {
-		$zenpage_articles_per_page = getOption("zenpage_articles_per_page");
+		$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 	}
 	$newspages = ceil(getTotalArticles() / $zenpage_articles_per_page);
 	if($newspages > 1) {
@@ -660,7 +660,7 @@ function printSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
 				if(!empty($articlesperpage)) {
 					$zenpage_articles_per_page = sanitize_numeric($articlesperpage);
 				} else {
-					$zenpage_articles_per_page = getOption("zenpage_articles_per_page");
+					$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 				}
 				$articlecount = countArticles($catobj->getTitlelink());
 				$catpages = ceil($articlecount / $zenpage_articles_per_page);

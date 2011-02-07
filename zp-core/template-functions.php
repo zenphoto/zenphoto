@@ -183,7 +183,7 @@ function printAdminToolbox($id='admin') {
 			}
 			if (zp_loggedin(UPLOAD_RIGHTS)) {
 				// admin has upload rights, provide an upload link for a new album
-				if (getOption('album_session')) { // XSRF defense requires sessions
+				if (ALBUM_SESSION) { // XSRF defense requires sessions
 					?>
 					<li><a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a></li>
 					<?php
@@ -212,7 +212,7 @@ function printAdminToolbox($id='admin') {
 					}
 				}
 				// and a delete link
-				if (getOption('album_session')) { // XSRF defense requires sessions
+				if (ALBUM_SESSION) { // XSRF defense requires sessions
 					?>
 					<li><a
 						href="javascript:confirmDeleteAlbum('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($albumname)) ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>');"
@@ -227,7 +227,7 @@ function printAdminToolbox($id='admin') {
 				<li><?php echo printLink($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
 				</li>
 				<?php
-				if (getOption('album_session')) { // XSRF defense requires sessions
+				if (ALBUM_SESSION) { // XSRF defense requires sessions
 					?>
 					<li><a
 						href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
@@ -249,7 +249,7 @@ function printAdminToolbox($id='admin') {
 				$imagename = $_zp_current_image->filename;
 				if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
 					// if admin has edit rights on this album, provide a delete link for the image.
-					if (getOption('album_session')) { // XSRF defense requires sessions
+					if (ALBUM_SESSION) { // XSRF defense requires sessions
 						?>
 						<li><a href="javascript:confirmDelete('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deleteimage&amp;album=<?php  echo urlencode(pathurlencode($albumname)); ?>&amp;image=<?php  echo urlencode($imagename); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteImage);"
 										title="<?php echo gettext("Delete the image"); ?>"><?php  echo gettext("Delete image"); ?></a></li>
@@ -292,7 +292,7 @@ function printAdminToolbox($id='admin') {
 				if (is_NewsArticle()) {
 					// page is a NewsArticle--provide zenpage edit, delete, and Add links
 					echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=".urlencode($titlelink)."\">".gettext("Edit Article")."</a></li>";
-					if (getOption('album_session')) { // XSRF defense requires sessions
+					if (ALBUM_SESSION) { // XSRF defense requires sessions
 						?>
 						<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
 							title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?></a></li>
@@ -307,7 +307,7 @@ function printAdminToolbox($id='admin') {
 				if (is_Pages()) {
 					// page is zenpage page--provide edit, delete, and add links
 					echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=".urlencode($titlelink)."\">".gettext("Edit Page")."</a></li>";
-					if (getOption('album_session')) { // XSRF defense requires sessions
+					if (ALBUM_SESSION) { // XSRF defense requires sessions
 						?>
 						<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/page-admin.php?del=<?php echo getPageID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deletePage)"
 							title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?></a></li>
@@ -1111,7 +1111,7 @@ function getAlbumDate($format=null) {
  */
 function printAlbumDate($before='', $nonemessage='', $format=null, $editable=false, $editclass='', $messageIfEmpty = true) {
 	if (is_null($format)) {
-		$format = getOption('date_format');
+		$format = DATE_FORMAT;
 	}
 	$date = getAlbumDate($format);
 	if ($date) {
@@ -1443,11 +1443,11 @@ function printAlbumThumbImage($alt, $class=NULL, $id=NULL) {
 	if ($id) {
 		$id = ' id="'.$id.'"';
 	}
-	$s = getOption('thumb_size');
+	$s = THUMB_SIZE;
 	$thumb = getAlbumThumb();
-	if (getOption('thumb_crop')) {
-		$w = getOption('thumb_crop_width');
-		$h = getOption('thumb_crop_height');
+	if (THUMB_CROP) {
+		$w = THUMB_CROP_WIDTH;
+		$h = THUMB_CROP_HEIGHT;
 		if ($w > $h) {
 			$h = round($h * $s/$w);
 			$w = $s;
@@ -1953,7 +1953,7 @@ function getImageDate($format=null) {
  */
 function printImageDate($before='', $nonemessage='', $format=null, $editable=false, $editclass='', $messageIfEmpty = true) {
 	if (is_null($format)) {
-		$format = getOption('date_format');
+		$format = DATE_FORMAT;
 	}
 	$date = getImageDate($format);
 	if ($date) {
@@ -2186,7 +2186,7 @@ function getNextImageURL() {
 	global $_zp_current_album, $_zp_current_image;
 	if (is_null($_zp_current_image)) return false;
 	$nextimg = $_zp_current_image->getNextImage();
-	return rewrite_path("/" . pathurlencode($nextimg->album->name) . "/" . urlencode($nextimg->filename) . im_suffix(),
+	return rewrite_path("/" . pathurlencode($nextimg->album->name) . "/" . urlencode($nextimg->filename) . IM_SUFFIX,
 		"/index.php?album=" . pathurlencode($nextimg->album->name) . "&image=" . urlencode($nextimg->filename));
 }
 
@@ -2200,7 +2200,7 @@ function getPrevImageURL() {
 	global $_zp_current_album, $_zp_current_image;
 	if (is_null($_zp_current_image)) return false;
 	$previmg = $_zp_current_image->getPrevImage();
-	return rewrite_path("/" . pathurlencode($previmg->album->name) . "/" . urlencode($previmg->filename) . im_suffix(),
+	return rewrite_path("/" . pathurlencode($previmg->album->name) . "/" . urlencode($previmg->filename) . IM_SUFFIX,
 		"/index.php?album=" . pathurlencode($previmg->album->name) . "&image=" . urlencode($previmg->filename));
 }
 
@@ -2214,7 +2214,7 @@ function getFirstImageURL() {
 	global $_zp_current_album;
 	if (is_null($_zp_current_album)) return false;
 	$firstimg = $_zp_current_album->getImage(0);
-	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($firstimg->filename) . im_suffix(),
+	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($firstimg->filename) . IM_SUFFIX,
 											"/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($firstimg->filename));
 }
 
@@ -2227,7 +2227,7 @@ function getLastImageURL() {
 	global $_zp_current_album;
 	if (is_null($_zp_current_album)) return false;
 	$lastimg = $_zp_current_album->getImage($_zp_current_album->getNumImages() - 1);
-	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($lastimg->filename) . im_suffix(),
+	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($lastimg->filename) . IM_SUFFIX,
 											"/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($lastimg->filename));
 }
 
@@ -2451,7 +2451,7 @@ function getSizeCustomImage($size, $width=NULL, $height=NULL, $cw=NULL, $ch=NULL
  * @return array
  */
 function getSizeDefaultImage($size=NULL) {
-	if (is_null($size)) $size = getOption('image_size');
+	if (is_null($size)) $size = IMAGE_SIZE;
 	return getSizeCustomImage($size);
 }
 
@@ -2530,7 +2530,7 @@ function isLandscape() {
 function getDefaultSizedImage() {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image)) return false;
-	return $_zp_current_image->getSizedImage(getOption('image_size'));
+	return $_zp_current_image->getSizedImage(IMAGE_SIZE);
 }
 
 /**
@@ -2590,10 +2590,10 @@ function printImageThumb($alt, $class=NULL, $id=NULL) {
 		$class .= " password_protected";
 	}
 	$url = getImageThumb();
-	$s = getOption('thumb_size');
-	if (getOption('thumb_crop')) {
-		$w = getOption('thumb_crop_width');
-		$h = getOption('thumb_crop_height');
+	$s = THUMB_SIZE;
+	if (THUMB_CROP) {
+		$w = THUMB_CROP_WIDTH;
+		$h = THUMB_CROP_HEIGHT;
 		if ($w > $h) {
 			$h = round($h * $s/$w);
 			$w = $s;
@@ -2637,8 +2637,8 @@ function getFullImageURL() {
 		$video = $_zp_current_image->getFileName();
 		$video = substr($video, 0, strrpos($video,'.'));
 		foreach(array(".ogg",".OGG",".avi",".AVI",".wmv",".WMV") as $ext) {
-			if(file_exists(internalToFilesystem(getAlbumFolder().$folder."/".$video.$ext))) {
-				return getAlbumFolder(WEBPATH). $folder."/".$video.$ext;
+			if(file_exists(internalToFilesystem(ALBUM_FOLDER_SERVERPATH.$folder."/".$video.$ext))) {
+				return ALBUM_FOLDER_WEBPATH. $folder."/".$video.$ext;
 			}
 		}
 		return getUnprotectedImageURL();
@@ -3064,7 +3064,7 @@ function printCommentAuthorLink($title=NULL, $class=NULL, $id=NULL) {
  */
 function getCommentDateTime($format = NULL) {
 	if (is_null($format)) {
-		$format = getOption('date_format');
+		$format = DATE_FORMAT;
 	}
 	global $_zp_current_comment;
 	return myts_date($format, $_zp_current_comment['date']);
@@ -3184,7 +3184,7 @@ function getLatestComments($number,$type="all",$itemID="") {
  * @param int $itemID the ID of the element to get the comments for if $type != "all"
  */
 function printLatestComments($number, $shorten='123',$type="all",$itemID="") {
-	if(getOption('mod_rewrite')) {
+	if(MOD_REWRITE) {
 		$albumpath = "/"; $imagepath = "/"; $modrewritesuffix = getOption('mod_rewrite_image_suffix');
 	} else {
 		$albumpath = "/index.php?album="; $imagepath = "&amp;image="; $modrewritesuffix = "";
@@ -3765,7 +3765,7 @@ function printAllDates($class='archive', $yearid='year', $monthid='month', $orde
 function getCustomPageURL($page, $q='', $album='') {
 	global $_zp_current_album;
 	$result = '';
-	if (getOption('mod_rewrite')) {
+	if (MOD_REWRITE) {
 		if (!empty($album)) {
 			$album = '/'.urlencode($album);
 		}
@@ -3805,7 +3805,7 @@ function printCustomPageURL($linktext, $page, $q='', $prev='', $next='', $class=
  * @return string
  */
 function getURL($image) {
-	if (getOption('mod_rewrite')) {
+	if (MOD_REWRITE) {
 		return WEBPATH . "/" . pathurlencode($image->getAlbumName()) . "/" . urlencode($image->filename);
 	} else {
 		return WEBPATH . "/index.php?album=" . pathurlencode($image->getAlbumName()) . "&image=" . urlencode($image->filename);
@@ -3998,7 +3998,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 			$object_list = array('albums' => $object_list);
 		}
 	}
-	if ($mr = getOption('mod_rewrite')) {
+	if ($mr = MOD_REWRITE) {
 		$url = WEBPATH."/page/search/";
 	} else {
 		$url = WEBPATH."/index.php?p=search";
@@ -4115,7 +4115,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 	if (empty($reseticonsource)) {
 		$reseticonsource = WEBPATH.'/'.ZENFOLDER.'/images/reset_icon.png';
 	}
-	if (getOption('mod_rewrite')) { $searchurl = '/page/search/'; } else { $searchurl = "/index.php?p=search"; }
+	if (MOD_REWRITE) { $searchurl = '/page/search/'; } else { $searchurl = "/index.php?p=search"; }
 	$engine = new SearchEngine();
 	$fields = $engine->allowedSearchFields();
 	if (!$_zp_adminJS_loaded) {
@@ -4430,7 +4430,7 @@ function checkAccess(&$hint, &$show) {
 				break;
 		}
 	}
-	if (getOption('gallery_security') == 'private') {	// only registered users allowed
+	if (GALLERY_SECURITY == 'private') {	// only registered users allowed
 		return false;
 	}
 	if (checkForGuest($hint, $show)) {

@@ -24,6 +24,9 @@ if (OFFSET_PATH) {
 	zp_register_filter('admin_tabs', 'menu_tabs');
 }
 
+if (!defined('MENU_TRUNCATE_STRING')) define('MENU_TRUNCATE_STRING',getOption('menu_truncate_string'));
+if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOption('menu_truncate_indicator'));
+
 /**
  *
  * option handler
@@ -183,7 +186,7 @@ function getItemTitleAndURL($item) {
 			break;
 		case "album":
 			$folderFS = internalToFilesystem($item['link']);
-			$localpath = getAlbumFolder() . $folderFS;
+			$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS;
 			$dynamic = hasDynamicAlbumSuffix($folderFS);
 			$valid = file_exists($localpath) && ($dynamic || is_dir($localpath));
 			if(!$valid || strpos($localpath, '..') !== false) {
@@ -253,9 +256,9 @@ function getItemTitleAndURL($item) {
 			$array = array("title"=>$item['title'],"url"=>$item['link'],"name"=>$item['link'],'protected'=>false);
 			break;
 	}
-	$limit = getOption('menu_truncate_string');
+	$limit = MENU_TRUNCATE_STRING;
 	if ($limit) {
-		$array['title'] = shortenContent($array['title'],$limit,getOption('menu_truncate_indicator'));
+		$array['title'] = shortenContent($array['title'],$limit,MENU_TRUNCATE_INDICATOR);
 	}
 	return $array;
 }
@@ -390,7 +393,7 @@ function getCurrentMenuItem($menuset) {
 	if (substr($currentpageURL,-1) == '/') $currentpageURL = substr($currentpageURL, 0, -1);
 
 	if (isset($_GET['page'])) {	// must strip out page numbers, all "pages" are equal
-		if (getOption('mod_rewrite')) {
+		if (MOD_REWRITE) {
 			if (isset($_GET['album'])) {
 				$target = '/page/'.$_GET['page'];
 			} else {

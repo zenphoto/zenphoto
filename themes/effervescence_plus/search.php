@@ -4,7 +4,7 @@
 
 if (!defined('WEBPATH')) die();
 $_noFlash = true;  /* don't know how to deal with the variable folder depth file names
-if ((getOption('Use_Simpleviewer')==0) || !getOption('mod_rewrite')) { $_noFlash = true; }
+if ((getOption('Use_Simpleviewer')==0) || !MOD_REWRITE) { $_noFlash = true; }
 
 if (isset($_GET['noflash'])) {
 	$_noFlash = true;
@@ -344,7 +344,7 @@ $backgroundImagePath="";
  						$url = html_encode(getPageURL(getCurrentPage()));
  					}
  					if (substr($url, -1, 1) == '/') {$url = substr($url, 0, (strlen($url)-1));}
- 					echo $url = $url . (getOption("mod_rewrite") ? "?" : "&amp;") . 'noflash';
+ 					echo $url = $url . (MOD_REWRITE ? "?" : "&amp;") . 'noflash';
  					?>">
  					View gallery without Flash</a>.</p>
  					</div> <!-- flash -->
@@ -401,7 +401,7 @@ $backgroundImagePath="";
 <div class="footlinks">
 
 <?php
-if (getOption('Use_Simpleviewer') && !getOption('mod_rewrite')) {
+if (getOption('Use_Simpleviewer') && !MOD_REWRITE) {
 	/* display missing css file error */
 	echo '<div class="errorbox" id="message">';
 	echo  "<h2>" . gettext('Simpleviewer requires <em>mod_rewrite</em> to be set. Simpleviewer is disabled.') . "</h2>";

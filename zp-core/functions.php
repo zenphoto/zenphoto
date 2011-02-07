@@ -28,7 +28,7 @@ $_zp_captcha = new Captcha();
 //setup session before checking for logon cookie
 require_once(dirname(__FILE__).'/functions-i18n.php');
 
-if (getOption('album_session') && session_id() == '') {
+if (ALBUM_SESSION && session_id() == '') {
 	// force session cookie to be secure when in https
 	if(secureServer()) {
 		$CookieInfo=session_get_cookie_params();
@@ -678,16 +678,20 @@ function getPlugin($plugin, $inTheme=false, $webpath=false) {
  * @return array
  */
 function getEnabledPlugins() {
-	$pluginlist = array();
+	global $_EnabledPlugins;
+	if (is_array($_EnabledPlugins)) {
+		return $_EnabledPlugins;
+	}
+	$_EnabledPlugins = array();
 	$sortlist = getPluginFiles('*.php');
 	foreach ($sortlist as $extension=>$path) {
 		$opt = 'zp_plugin_'.$extension;
 		if ($option = getOption($opt)) {
-			$pluginlist[$extension] = $option;
+			$_EnabledPlugins[$extension] = $option;
 		}
 	}
-	arsort($pluginlist);
-	return $pluginlist;
+	arsort($_EnabledPlugins);
+	return $_EnabledPlugins;
 }
 
 /**
@@ -1683,9 +1687,9 @@ function zp_getCookie($name) {
 		} else {
 			$cookiev = '';
 		}
-		debugLog("zp_getCookie($name)::".'album_session='.getOption('album_session')."; SESSION[".session_id()."]=".$sessionv.", COOKIE=".$cookiev);
+		debugLog("zp_getCookie($name)::".'album_session='.ALBUM_SESSION."; SESSION[".session_id()."]=".$sessionv.", COOKIE=".$cookiev);
 	}
-	if (isset($_COOKIE[$name]) && !empty($_COOKIE[$name]) && !getOption('album_session')) {
+	if (isset($_COOKIE[$name]) && !empty($_COOKIE[$name]) && !ALBUM_SESSION) {
 		return $_COOKIE[$name];
 	}
 	if (isset($_SESSION[$name])) {
@@ -1703,7 +1707,7 @@ function zp_getCookie($name) {
  * @param string $path The path on the server in which the cookie will be available on
  */
 function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
-	if (DEBUG_LOGIN) debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".getOption('album_session'));
+	if (DEBUG_LOGIN) debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".ALBUM_SESSION);
 	if (is_null($time)) {
 		$time = COOKIE_PESISTENCE;
 	}
@@ -1712,7 +1716,7 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 			$path = '/';
 		}
 	}
-	if (($time < 0) || !getOption('album_session')) {
+	if (($time < 0) || !ALBUM_SESSION) {
 		setcookie($name, $value, time()+$time, $path, "", $secure);
 	}
 	if ($time < 0) {
@@ -2158,7 +2162,7 @@ function getThemeOption($option, $album=NULL, $theme=NULL) {
  * @return bool
  */
 function commentsAllowed($type) {
-	return getOption($type) && (!getOption('comment_form_members_only') || zp_loggedin(ADMIN_RIGHTS | POST_COMMENT_RIGHTS));
+	return getOption($type) && (!MEMBERS_ONLY_COMMENTS || zp_loggedin(ADMIN_RIGHTS | POST_COMMENT_RIGHTS));
 }
 
 /**

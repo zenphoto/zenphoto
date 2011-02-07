@@ -199,7 +199,7 @@ function printSortableHead() {
 
 function adminPrintImageThumb($image, $class=NULL, $id=NULL) {
 	echo "\n  <img class=\"imagethumb\" id=\"id_". $image->id ."\" src=\"" . $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1) . "\" alt=\"". html_encode($image->getTitle()) . "\" title=\"". html_encode($image->getTitle()) . " (". html_encode($image->getFileName()) . ")\"" .
-	((getOption('thumb_crop')) ? " width=\"".getOption('thumb_crop_width')."\" height=\"".getOption('thumb_crop_height')."\"" : "") .
+	((THUMB_CROP) ? " width=\"".THUMB_CROP_WIDTH."\" height=\"".THUMB_CROP_HEIGHT."\"" : "") .
 	(($class) ? " class=\"$class\"" : "") .
 	(($id) ? " id=\"$id\"" : "") . " />";
 }
@@ -1040,9 +1040,9 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						</td>
 					</tr>
 					<?php
-					if (getOption('gallery_security') != 'private') {
+					if (GALLERY_SECURITY != 'private') {
 						?>
-						<tr class="password<?php echo $suffix; ?>extrashow" <?php if (getOption('gallery_security') == 'private') echo 'style="display:none"'; ?> >
+						<tr class="password<?php echo $suffix; ?>extrashow" <?php if (GALLERY_SECURITY == 'private') echo 'style="display:none"'; ?> >
 							<td align="left" valign="top">
 								<p>
 									<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',true);">
@@ -1771,7 +1771,7 @@ function printAlbumLedgend() {
 	</ul>
 	<ul class="iconlegend">
 		<?php
-		if (getOption('gallery_security') != 'private') {
+		if (GALLERY_SECURITY != 'private') {
 			?>
 			<li><img src="images/lock.png" alt="Protected" /><?php echo gettext("Has Password"); ?></li>
 			<?php
@@ -1835,7 +1835,7 @@ function printAlbumEditRow($album) {
 	<div class="page-list_icon">
 	<?php
 	$pwd = $album->getPassword();
-	if (!empty($pwd) && (getOption('gallery_security') != 'private')) {
+	if (!empty($pwd) && (GALLERY_SECURITY != 'private')) {
 		echo '<a title="'.gettext('Password protected').'"><img src="images/lock.png" style="border: 0px;" alt="'.gettext('Password protected').'" /></a>';
 	}
  ?>
@@ -2368,7 +2368,7 @@ function unzip($file, $dir) { //check if zziplib is installed
 						fwrite($fp, $buf);
 						fclose($fp);
 						zip_entry_close($zip_entry);
-						$albumname = substr($dir, strlen(getAlbumFolder()));
+						$albumname = substr($dir, strlen(ALBUM_FOLDER_SERVERPATH));
 						$album = new Album(new Gallery(), $albumname);
 						$image = newImage($album, $seoname);
 						if ($fname != $seoname) {
@@ -2588,7 +2588,7 @@ function copyThemeDirectory($source, $target, $newname) {
 	$theme_description['name'] = $newname;
 	$theme_description['author'] = $_zp_current_admin_obj->getUser();
 	$theme_description['version'] = '1.0';
-	$theme_description['date']  = zpFormattedDate(getOption('date_format'), time());
+	$theme_description['date']  = zpFormattedDate(DATE_FORMAT, time());
 
 	$description = sprintf('<'.'?php
 				// Zenphoto theme definition file

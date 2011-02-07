@@ -124,7 +124,7 @@ function RSS_Display($url, $size = 15, $site = 0) {
 			}
 		}
 		$title = $article["title"];
-		$format = getOption('date_format');
+		$format = DATE_FORMAT;
 		$date = zpFormattedDate($format, strtotime($article["pubDate"]));
 		$link = $article["link"];
 		$description = $article["description"];

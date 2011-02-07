@@ -145,7 +145,7 @@ printLogoAndLinks();
 					</p>
 					<ul class="iconlegend">
 					<?php
-					if (getOption('gallery_security') != 'private') {
+					if (GALLERY_SECURITY != 'private') {
 						?>
 						<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
 						<?php

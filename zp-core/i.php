@@ -122,9 +122,9 @@ $allowWatermark = !$thumb && !$adminrequest;
 $newfilename = getImageCacheFilename(filesystemToInternal($album), filesystemToInternal($image), $args);
 $newfile = SERVERCACHE . $newfilename;
 if (trim($album)=='') {
-	$imgfile = getAlbumFolder() . $image;
+	$imgfile = ALBUM_FOLDER_SERVERPATH . $image;
 } else {
-	$imgfile = getAlbumFolder() . $album.'/'.$image;
+	$imgfile = ALBUM_FOLDER_SERVERPATH . $album.'/'.$image;
 }
 
 if ($debug) imageDebug($album, $image, $args, $imgfile);

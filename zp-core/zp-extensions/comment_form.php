@@ -571,7 +571,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 			} else {
 				$form = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/comment_form'.$formname;
 			}
-			if (getOption('comment_form_members_only') && !zp_loggedin(POST_COMMENT_RIGHTS)) {
+			if (MEMBERS_ONLY_COMMENTS && !zp_loggedin(POST_COMMENT_RIGHTS)) {
 				echo gettext('Only registered users may post comments.');
 			} else {
 				if (!empty($addcommenttext)) {

@@ -40,6 +40,8 @@ zp_register_filter('image_instantiate', 'xmpMetadata_image_instantiate');
 zp_register_filter('new_image', 'xmpMetadata_new_image');
 zp_register_filter('image_refresh', 'xmpMetadata_new_image');
 
+require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
+
 /**
  * Plugin option handling class
  *
@@ -214,7 +216,6 @@ function xmpMetadata_to_string($meta) {
  * @return $object
  */
 function xmpMetadata_album_instantiate($album) {
-	require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
 	$album->sidecars[XMP_EXTENSION] = XMP_EXTENSION;
 	return $album;
 }
@@ -226,7 +227,6 @@ function xmpMetadata_album_instantiate($album) {
  * @return object
  */
 function xmpMetadata_new_album($album) {
-	require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
 	$metadata_path = dirname($album->localpath).'/'.basename($album->localpath).'*';
 	$files = safe_glob($metadata_path);
 	if (count($files)>0) {
@@ -297,7 +297,6 @@ function rationalNum($element) {
 }
 
 function xmpMetadata_image_instantiate($image) {
-	require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
 	$image->sidecars[XMP_EXTENSION] = XMP_EXTENSION;
 	return $image;
 }
@@ -309,7 +308,6 @@ function xmpMetadata_image_instantiate($image) {
  * @return object
  */
 function xmpMetadata_new_image($image) {
-	require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
 	global $_zp_exifvars;
 	$source = '';
 	$metadata_path = '';

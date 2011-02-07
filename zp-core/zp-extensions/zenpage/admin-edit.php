@@ -243,7 +243,7 @@ codeblocktabsJS();
 					echo '<p class="scheduledate"><small>'.gettext('<strong>Note:</strong> Scheduled publishing is not active unless the article is also set to <em>published</em>').'</small></p>';
 				}
 			}
-			if($result->inProtectedCategory() && (getOption('gallery_security') != 'private')) {
+			if($result->inProtectedCategory() && (GALLERY_SECURITY != 'private')) {
 			 echo '<p class="notebox">'.gettext('<strong>Note:</strong> This article belongs to a password protected category.').'</p>';
 			}
 		}
@@ -262,7 +262,7 @@ codeblocktabsJS();
 					echo '<p class="scheduledate"><small>'.gettext('Note: Scheduled publishing is not active unless the page is also set to <em>published</em>').'</small></p>';
 				}
 			}
-			if($result->isProtected() && (getOption('gallery_security') != 'private')) {
+			if($result->isProtected() && (GALLERY_SECURITY != 'private')) {
 				echo '<p class="notebox">'.gettext('<strong>Note:</strong> This page is either password protected or has a passport protected parent.').'</p>';
 			}
 		}
@@ -422,10 +422,10 @@ if(is_AdminEditPage("page")) {
 				}
 				if(is_AdminEditPage('page') || is_AdminEditPage('category')) {
 				?>
-					<p class="passwordextrashow" <?php if (getOption('gallery_security') == 'private') echo 'style="display:none"'; ?>>
+					<p class="passwordextrashow" <?php if (GALLERY_SECURITY == 'private') echo 'style="display:none"'; ?>>
 					<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 					<?php
-					if (getOption('gallery_security') != 'private') {
+					if (GALLERY_SECURITY != 'private') {
 						?>
 						<a href="javascript:toggle_passwords('',true);">
 							<?php echo gettext("Password:"); ?>

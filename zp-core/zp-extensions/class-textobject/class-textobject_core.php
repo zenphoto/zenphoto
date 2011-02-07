@@ -126,7 +126,7 @@ class TextObject extends _Image {
 			$path = SERVERPATH;
 		}
 		if ($this->objectsThumb != NULL) {
-			$imgfile = getAlbumFolder().$this->album->name.'/'.$this->objectsThumb;
+			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
 		} else {
 			switch(getSuffix($this->filename)) {
 				default: // just in case we extend and are lazy...
@@ -159,7 +159,7 @@ class TextObject extends _Image {
 		} else {
 			$filename = $this->objectsThumb;
 		}
-		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
+		$args = getImageParameters(array(THUMB_SIZE, $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
 		if (file_exists(SERVERCACHE . $cachefilename)	&& filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
 			return WEBPATH . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($cachefilename));
 		} else {
@@ -257,12 +257,12 @@ class TextObject extends _Image {
 			case 'txt':
 			case 'htm':
 			case 'html':
-				$this->set('width', getOption('image_size'));
-				$this->set('height', floor((getOption('image_size') * 24) / 36));
+				$this->set('width', IMAGE_SIZE);
+				$this->set('height', floor((IMAGE_SIZE * 24) / 36));
 				break;
 			default: // just in case we extend and are lazy...
-				$this->set('width', getOption('thumb_size'));
-				$this->set('height', getOption('thumb_size'));
+				$this->set('width', THUMB_SIZE);
+				$this->set('height', THUMB_SIZE);
 				break;
 		}
 	}

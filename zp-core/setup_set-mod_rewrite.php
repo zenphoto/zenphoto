@@ -8,7 +8,7 @@
  *
  */
 require_once(dirname(__FILE__).'/functions-basic.php');
-$mod_rewrite = getOption('mod_rewrite');
+$mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
 	$msg = gettext('The Zenphoto option "mod_rewrite" will be set to "enabled".');
 	setOption('mod_rewrite', 1);

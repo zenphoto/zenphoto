@@ -152,12 +152,12 @@ class _Image extends MediaObject {
 		}
 		$this->album = &$album;
 		if ($album->name == '') {
-			$this->webpath = getAlbumFolder(WEBPATH) . $filename;
-			$this->encwebpath = getAlbumFolder(WEBPATH) . rawurlencode($filename);
-			$this->localpath = getAlbumFolder() . internalToFilesystem($filename);
+			$this->webpath = ALBUM_FOLDER_WEBPATH . $filename;
+			$this->encwebpath = ALBUM_FOLDER_WEBPATH . rawurlencode($filename);
+			$this->localpath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($filename);
 		} else {
-			$this->webpath = getAlbumFolder(WEBPATH) . $album->name . "/" . $filename;
-			$this->encwebpath = getAlbumFolder(WEBPATH) . pathurlencode($album->name) . "/" . rawurlencode($filename);
+			$this->webpath = ALBUM_FOLDER_WEBPATH . $album->name . "/" . $filename;
+			$this->encwebpath = ALBUM_FOLDER_WEBPATH . pathurlencode($album->name) . "/" . rawurlencode($filename);
 			$this->localpath = $album->localpath . $fileFS;
 		}
 		$this->filename = $filename;
@@ -773,7 +773,7 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getImageLink() {
-		return rewrite_path('/' . pathurlencode($this->album->name) . '/' . urlencode($this->filename) . im_suffix(),
+		return rewrite_path('/' . pathurlencode($this->album->name) . '/' . urlencode($this->filename) . IM_SUFFIX,
 			'/index.php?album=' . pathurlencode($this->album->name) . '&image=' . urlencode($this->filename));
 	}
 
@@ -863,8 +863,8 @@ class _Image extends MediaObject {
 	 * @param string $type the type of thumb (in case it ever matters in the cropping, now it does not.)
 	 */
 	function getThumbCropping($type) {
-		$sw = getOption('thumb_crop_width');
-		$sh = getOption('thumb_crop_height');
+		$sw = THUMB_CROP_WIDTH;
+		$sh = THUMB_CROP_HEIGHT;
 		if (is_null($cy = $this->get('thumbY'))) {
 			$custom = $cx = $cw = $ch = NULL;
 		} else {
@@ -896,8 +896,8 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getThumb($type='image') {
-		$ts = getOption('thumb_size');
-		if (getOption('thumb_crop')) {
+		$ts = THUMB_SIZE;
+		if (THUMB_CROP) {
 			list($custom, $sw, $sh, $cw, $ch, $cx, $cy) = $this->getThumbCropping($type);
 			if ($custom) {
 				return $this->getCustomImage(NULL, $sw, $sh, $cw, $ch, $cx, $cy, true);
@@ -1053,7 +1053,7 @@ class _Image extends MediaObject {
 	if ($album->isMyItem(LIST_RIGHTS)) {
 		return true;
 	}
-	if (getOption('gallery_security') == 'private') {	// only registered users allowed
+	if (GALLERY_SECURITY == 'private') {	// only registered users allowed
 		return false;
 	}
 	return $album->checkforGuest();

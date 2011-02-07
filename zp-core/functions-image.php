@@ -12,6 +12,12 @@
 // Don't let anything get above this, to save the server from burning up...
 
 define('MAX_SIZE', 3000);
+define('THUMB_SIZE',getOption('thumb_size'));
+define('THUMB_CROP',getOption('thumb_crop'));
+define('THUMB_CROP_WIDTH',getOption('thumb_crop_width'));
+define('THUMB_CROP_HEIGHT',getOption('thumb_crop_height'));
+define('TUMB_QUALITY',getOption('thumb_quality'));
+define('IMAGE_SIZE',getOption('image_size'));
 
 /**
  * If in debug mode, prints the given error message and continues; otherwise redirects
@@ -133,10 +139,10 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 	$id = NULL;
 	$watermark_use_image = getAlbumInherited($album, 'watermark', $id);
 	if (empty($watermark_use_image)) {
-		$watermark_use_image = getOption('fullimage_watermark');
+		$watermark_use_image = FULLIMAGE_WATERMARK;
 	}
 	if (!$effects) {
-		if ($thumb && getOption('thumb_gray')) {
+		if ($thumb && THUMB_GRAY) {
 			$effects = 'gray';
 		} else if (getOption('image_gray')) {
 			$effects = 'gray';
@@ -356,7 +362,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
   * fill a flipped value in the tag.
   */
 function getImageRotation($imgfile) {
-	$imgfile = substr($imgfile, strlen(getAlbumFolder()));
+	$imgfile = substr($imgfile, strlen(ALBUM_FOLDER_SERVERPATH));
   $result = query_single_row('SELECT EXIFOrientation FROM '.prefix('images').' AS i JOIN '.prefix('albums').' as a ON i.albumid = a.id WHERE "'.$imgfile.'" = CONCAT(a.folder,"/",i.filename)');
 	if (is_array($result) && array_key_exists('EXIFOrientation', $result)) {
 		$splits = preg_split('/!([(0-9)])/', $result['EXIFOrientation']);

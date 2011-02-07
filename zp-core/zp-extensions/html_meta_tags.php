@@ -127,7 +127,7 @@ function getHTMLMetaData() {
 
 	// generate page title, get date
 		$pagetitle = "";
-		$date = strftime(getOption("date_format")); // if we don't have a item date use current date
+		$date = strftime(DATE_FORMAT); // if we don't have a item date use current date
 		$desc = getBareGalleryDesc();
 	  if(is_object($_zp_current_image) AND is_object($_zp_current_album)) {
 			$pagetitle = getBareImageTitle()." (". getBareAlbumTitle().") - ";
@@ -146,7 +146,7 @@ function getHTMLMetaData() {
 				$desc = strip_tags(getNewsContent());
 			} else 	if(is_NewsCategory()) {
 				$pagetitle = $_zp_current_category->getTitlelink()." - ";
-				$date = strftime(getOption("date_format"));
+				$date = strftime(DATE_FORMAT);
 				$desc = "";
 			} else if(is_Pages()) {
 				$pagetitle = getBarePageTitle()." - ";

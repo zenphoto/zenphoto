@@ -570,7 +570,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p>
 							<label>
 								<?php
-								$mod_rewrite = getOption('mod_rewrite');
+								$mod_rewrite = MOD_REWRITE;
 								if (is_null($mod_rewrite)) {
 									$state = ' disabled="disabled"';
 								} else if ($mod_rewrite) {
@@ -585,7 +585,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</p>
 						<p>
 							<label>
-								<input type="checkbox" name="UTF8_image_URI" value="1"<?php echo checked('1', getOption('UTF8_image_URI')); ?> />
+								<input type="checkbox" name="UTF8_image_URI" value="1"<?php echo checked('1', UTF8_IMAGE_URI); ?> />
 								<?php echo gettext('UTF8 image URIs'); ?>
 							</label>
 						</p>
@@ -764,7 +764,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 								gettext('Feb 25, 2008')=>'%b %d, %Y',
 								gettext('February 25, 2008 15:30')=>'%B %d, %Y %H:%M',
 								gettext('February 25, 2008')=>'%B %d, %Y');
-						$cv = getOption("date_format");
+						$cv = DATE_FORMAT;
 						$flip = array_flip($formatlist);
 						if (isset($flip[$cv])) {
 							$dsp = 'none';
@@ -778,7 +778,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<div id="customTextBox" class="customText" style="display:<?php echo $dsp; ?>">
 						<br />
 						<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="date_format"
-						value="<?php echo html_encode(getOption('date_format'));?>" />
+						value="<?php echo html_encode(DATE_FORMAT);?>" />
 						</div>
 						</td>
 					<td><?php echo gettext('Format for dates. Select from the list or set to <code>custom</code> and provide a <a href="http://us2.php.net/manual/en/function.strftime.php"><span class="nowrap"><code>strftime()</code></span></a> format string in the text box.'); ?></td>
@@ -914,17 +914,17 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td><?php echo gettext('Gallery type')?></td>
 					<td>
-						<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (getOption('gallery_security') != 'private') echo ' checked="checked"' ?> onclick="javascript:$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
-						<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (getOption('gallery_security') == 'private') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
+						<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY != 'private') echo ' checked="checked"' ?> onclick="javascript:$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
+						<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY == 'private') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
 					</td>
 					<td>
 						<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
 					</td>
 				</tr>
 				<?php
-				if (getOption('gallery_security') != 'private') {
+				if (GALLERY_SECURITY != 'private') {
 					?>
-					<tr class="passwordextrashow public_gallery" <?php if (getOption('gallery_security') == 'private') echo 'style="display:none"'; ?> >
+					<tr class="passwordextrashow public_gallery" <?php if (GALLERY_SECURITY == 'private') echo 'style="display:none"'; ?> >
 						<td style="background-color: #ECF1F2;">
 							<p>
 								<a href="javascript:toggle_passwords('',true);">
@@ -1048,7 +1048,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 
 						$sort[gettext('Random')] = 'random';
 */
-						$cvt = $cv = strtolower(getOption('gallery_sorttype'));
+						$cvt = $cv = strtolower(GALLERY_SORT_TYPE);
 						ksort($sort,SORT_LOCALE_STRING);
 						$flip = array_flip($sort);
 						if (isset($flip[$cv])) {
@@ -1108,10 +1108,10 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							</label>
 						</p>
 						<?php
-						if (getOption('gallery_security')=='public') {
+						if (GALLERY_SECURITY=='public') {
 							$disable = getOption('gallery_user') || getOption('search_user') || getOption('protected_image_user');
 							?>
-							<p class="public_gallery"<?php if (getOption('gallery_security') == 'private') echo ' style="display:none"'; ?>>
+							<p class="public_gallery"<?php if (GALLERY_SECURITY == 'private') echo ' style="display:none"'; ?>>
 								<label>
 									<?php
 									if ($disable) {
@@ -1154,7 +1154,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p>
 							<label>
 								<input type="checkbox" name="album_session" id="album_session"
-										value="1" <?php echo checked('1', getOption('album_session')); ?> />
+										value="1" <?php echo checked('1', ALBUM_SESSION); ?> />
 								<?php echo gettext("enable gallery sessions"); ?>
 							</label>
 						</p>
@@ -1219,7 +1219,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 					</td>
 				</tr>
 				<?php
-				if (getOption('gallery_security') != 'private') {
+				if (GALLERY_SECURITY != 'private') {
 					?>
 					<tr class="passwordextrashow">
 						<td width="175" style="background-color: #ECF1F2;">
@@ -1534,7 +1534,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td>
 				<?php
 				$sort = $sortby;
-				$cvt = $cv = getOption('image_sorttype');
+				$cvt = $cv = IMAGE_SORT_TYPE;
 				$sort[gettext('Custom')] = 'custom';
 
 /*
@@ -1582,12 +1582,12 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td width="175"><?php echo gettext("Image quality:"); ?></td>
 			<td width="350">
 				<p class="nowrap">
-					<?php echo gettext('Normal Image'); ?>&nbsp;<input type="text" size="3" id="imagequality" name="image_quality" value="<?php echo getOption('image_quality');?>" />
+					<?php echo gettext('Normal Image'); ?>&nbsp;<input type="text" size="3" id="imagequality" name="image_quality" value="<?php echo IMAGE_QUALITY;?>" />
 					<script type="text/javascript">
 						// <!-- <![CDATA[
 						$(function() {
 							$("#slider-imagequality").slider({
-							<?php $v = getOption('image_quality'); ?>
+							<?php $v = IMAGE_QUALITY; ?>
 								startValue: <?php echo $v; ?>,
 								value: <?php echo $v; ?>,
 								min: 0,
@@ -1624,12 +1624,12 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<div id="slider-fullimagequality"></div>
 				</p>
 				<p class="nowrap">
-					<?php echo gettext('Thumbnail'); ?>&nbsp;<input type="text" size="3" id="thumbquality" name="thumb_quality" value="<?php echo getOption('thumb_quality');?>" />
+					<?php echo gettext('Thumbnail'); ?>&nbsp;<input type="text" size="3" id="thumbquality" name="thumb_quality" value="<?php echo TUMB_QUALITY;?>" />
 					<script type="text/javascript">
 						// <!-- <![CDATA[
 						$(function() {
 							$("#slider-thumbquality").slider({
-								<?php $v = getOption('thumb_quality'); ?>
+								<?php $v = TUMB_QUALITY; ?>
 								startValue: <?php echo $v; ?>,
 								value: <?php echo $v; ?>,
 								min: 0,
@@ -1731,7 +1731,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td>
 				<table>
 				<?php
-				$current = getOption('fullimage_watermark');
+				$current = FULLIMAGE_WATERMARK;
 				?>
 				<tr>
 					<td class="image_option_tablerow"><?php echo gettext('Images'); ?> </td>
@@ -1811,7 +1811,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 
 				<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 				<?php
-				if (getOption('gallery_security') != 'private') {
+				if (GALLERY_SECURITY != 'private') {
 					?>
 					<br clear="all" />
 					<table class="compact">

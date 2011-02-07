@@ -22,7 +22,7 @@ $gallery = new Gallery();
 
 function checkFolder($folder) {
 	global $albums, $gallery, $count, $albumcount;
-	$files = scandir(getAlbumFolder().'/'.$folder);
+	$files = scandir(ALBUM_FOLDER_SERVERPATH.'/'.$folder);
 	$display = true;
 	if (!empty($folder)) {
 		$album = new Album($gallery, filesystemToInternal($folder));
@@ -30,7 +30,7 @@ function checkFolder($folder) {
 	foreach ($files as $file) {
 		$file = str_replace('\\','/',$file);
 		$key = str_replace(SERVERPATH.'/', '', $folder.'/'.$file);
-		if (is_dir(getAlbumFolder().$folder.'/'.$file) && $file!='..' && $file!='.') {
+		if (is_dir(ALBUM_FOLDER_SERVERPATH.$folder.'/'.$file) && $file!='..' && $file!='.') {
 			if (empty($folder)) {
 				$albumname = $file;
 			} else {

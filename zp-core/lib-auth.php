@@ -845,7 +845,7 @@ class Zenphoto_Authority {
 			<legend><?php echo $ledgend; ?></legend>
 			<table class="password">
 				<?php
-				if ($showUser || getOption('gallery_security')=='private') {	//	requires a "user" field
+				if ($showUser || GALLERY_SECURITY=='private') {	//	requires a "user" field
 					?>
 					<tr>
 						<td align="left">
@@ -1229,11 +1229,11 @@ class Zenphoto_Administrator extends PersistentObject {
 		$t = 0;
 		$ext = '';
 		$filename = str_replace(array('<', '>', ':', '"'. '/'. '\\', '|', '?', '*'), '_', seoFriendly($this->getUser()));
-		while (file_exists(getAlbumFolder().'/'.$filename.$ext)) {
+		while (file_exists(ALBUM_FOLDER_SERVERPATH.'/'.$filename.$ext)) {
 			$t++;
 			$ext = '-'.$t;
 		}
-		$path = getAlbumFolder().'/'.$filename.$ext;
+		$path = ALBUM_FOLDER_SERVERPATH.'/'.$filename.$ext;
 		if (@mkdir_recursive($path,CHMOD_VALUE)) {
 			$album = new Album(new Gallery(), $filename.$ext);
 			$album->save();

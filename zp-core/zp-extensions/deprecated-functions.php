@@ -149,7 +149,7 @@ function printCustomSizedImageMaxHeight($maxheight) {
 function getCommentDate($format = NULL) {
 	deprecated_function_notify(gettext('Use getCommentDateTime().'));
 	if (is_null($format)) {
-		$format = getOption('date_format');
+		$format = DATE_FORMAT;
 		$time_tags = array('%H', '%I', '%R', '%T', '%r', '%H', '%M', '%S');
 		foreach ($time_tags as $tag) { // strip off any time formatting
 			$t = strpos($format, $tag);
@@ -270,7 +270,7 @@ function zenpageHitcounter($option='pages', $viewonly=false, $id=NULL) {
 
 function rewrite_path_zenpage($rewrite='',$plain='') {
 	deprecated_function_notify(gettext('Use rewrite_path().'));
-	if (getOption('mod_rewrite')) {
+	if (MOD_REWRITE) {
 		return $rewrite;
 	} else {
 		return $plain;
@@ -696,7 +696,7 @@ function setupAllowedMaps($defaultmap, $allowedmaps) {
 function printPreloadScript() {
 	deprecated_function_notify(gettext('printPreloadScript is deprecated. It is a helper for a specific theme and should be placed within that theme\'s "functions.php" script.'));
 	global $_zp_current_image;
-	$size = getOption('image_size');
+	$size = IMAGE_SIZE;
 	if (hasNextImage() || hasPrevImage()) {
 		echo "<script type=\"text/javascript\">\n// <!-- <![CDATA[\n";
 		if (hasNextImage()) {

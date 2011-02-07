@@ -174,7 +174,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 		if (in_array($ext, $_lib_Imagick_info)) {
 			$image = new Imagick($imgfile);
 
-			if (getOption('fullimage_watermark')) {
+			if (FULLIMAGE_WATERMARK) {
 				try {
 					$image = $image->coalesceImages();
 				} catch (ImagickException $e) {

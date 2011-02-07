@@ -4,7 +4,7 @@
 
 if (!defined('WEBPATH')) die();
 $_noFlash = false;
-if ((($personality = getOption('Theme_personality'))!="Simpleviewer") || !getOption('mod_rewrite')) {
+if ((($personality = getOption('Theme_personality'))!="Simpleviewer") || !MOD_REWRITE) {
 	$_noFlash = true;
 } else {  // Simpleviewer initialization stuff
 	if (isset($_GET['noflash'])) {
@@ -367,7 +367,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 			 echo "</p>";
  						$flash_url = html_encode(getAlbumLinkURL());
  						if (substr($flash_url, -1, 1) == '/') {$flash_url= substr($flash_url, 0, -1);}
- 						$flash_url = $flash_url . (getOption("mod_rewrite") ? "?" : "&amp;") . "format=xml";
+ 						$flash_url = $flash_url . (MOD_REWRITE ? "?" : "&amp;") . "format=xml";
  						?>
  						<script type="text/javascript">
  							// <!-- <![CDATA[

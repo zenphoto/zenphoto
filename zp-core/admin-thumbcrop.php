@@ -42,7 +42,7 @@ if (isImagePhoto($imageobj)) {
 	$width = zp_imageWidth($timg);
 	$height = zp_imageHeight($timg);
 }
-if (getOption('thumb_crop')) {
+if (THUMB_CROP) {
 	$thumbcropwidth = $cropwidth;
 	$thumbcropheight = $cropheight;
 } else {
@@ -59,7 +59,7 @@ if (getOption('thumb_crop')) {
 		$thumbcropwidth = zp_imageWidth($timg);
 		$thumbcropheight = zp_imageHeight($timg);
 	}
-	$tsize = getOption('thumb_size');
+	$tsize = THUMB_SIZE;
 	$max = max($thumbcropwidth, $thumbcropheight);
 	$thumbcropwidth = $thumbcropwidth * ($tsize/$max);
 	$thumbcropheight = $thumbcropheight * ($tsize/$max);
@@ -108,7 +108,7 @@ switch ($use_side) {
 $imageurl = "i.php?a=".pathurlencode($albumname)."&i=".urlencode($imagepart)."&s=".$size.'&admin';
 
 $iY = round($imageobj->get('thumbY')*$sr);
-	$cr = max($cropwidth,$cropheight)/getOption('thumb_size');
+	$cr = max($cropwidth,$cropheight)/THUMB_SIZE;
 	$si = min($sizedwidth,$sizedheight);
 	$oW = round($si*$cr);
 	$oH = round($si*$cr);
@@ -261,7 +261,7 @@ printAdminHeader('edit','thumbcrop');
 							<input type="hidden" id="subpage" name="subpage" value="<?php echo html_encode($subpage); ?>" />
 							<input type="hidden" id="crop" name="crop" value="crop" />
 							<?php
-							if (getOption('thumb_crop')) {
+							if (THUMB_CROP) {
 								?>
 								<input name="clear_crop" id="clear_crop" type="checkbox" value="1"  onclick="resetCheck();" /> <?php echo gettext("Reset to the default cropping");?><br />
 								<br />

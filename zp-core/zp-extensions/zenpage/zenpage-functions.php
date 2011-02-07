@@ -14,6 +14,26 @@
  */
 $_zp_zenpage_all_categories = NULL; // for use by getAllCategories() only!
 
+define('ZP_SHORTENINDICATOR',$shortenindicator = getOption('zenpage_textshorten_indicator'));
+define('ZP_SINGULAR',get_language_string(getOption('combinews-customtitle-singular')));
+define('ZP_PLURAL',get_language_string(getOption('combinews-customtitle-plural')));
+define('ZP_COMBINEWS_IMAGETITLES',getOption('combinews-customtitle-imagetitles'));
+define('ZP_SHORTEN_LENGTH',getOption('zenpage_text_length'));
+define('ZP_COMBINEWS_SORTORDER',getOption("zenpage_combinews_sortorder"));
+define('ZP_READ_MORE',getOption("zenpage_read_more"));
+define('ZP_COMBINEWS',getOption('zenpage_combinews'));
+define('ZP_ARTICLES_PER_PAGE',getOption("zenpage_articles_per_page"));
+define('ZP_CN_IMAGESIZE',getOption('zenpage_combinews_imagesize'));
+define('ZP_CN_THUMBWIDTH',getOption('combinews-thumbnail-width'));
+define('ZP_CN_THUMBHEIGHT',getOption('combinews-thumbnail-height'));
+define('ZP_CN_CROPWIDTH',getOption('combinews-thumbnail-cropwidth'));
+define('ZP_CN_CROPHEIGHT',getOption('combinews-thumbnail-cropheight'));
+define('ZP_CN_CROPX',getOption('combinews-thumbnail-cropx'));
+define('ZP_CN_CROPY',getOption('combinews-thumbnail-cropy'));
+define('ZP_CN_MODE',getOption('zenpage_combinews_mode'));
+if (!defined('MENU_TRUNCATE_STRING')) define('MENU_TRUNCATE_STRING',getOption('menu_truncate_string'));
+if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOption('menu_truncate_indicator'));
+
 
 /**
  * Un-publishes pages/news whose expiration date has been reached
@@ -364,7 +384,7 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 	 */
 	function getTotalArticles() {
 		global $_zp_current_category;
-		if(getOption('zenpage_combinews') AND !isset($_GET['title']) AND !isset($_GET['category']) AND !isset($_GET['date']) AND OFFSET_PATH != 4) {
+		if(ZP_COMBINEWS AND !isset($_GET['title']) AND !isset($_GET['category']) AND !isset($_GET['date']) AND OFFSET_PATH != 4) {
 			return countCombiNews();
 		} else {
 			if(empty($_zp_current_category)) {
@@ -642,7 +662,7 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 		global $_zp_gallery;
 		$countGalleryitems = 0;
 		$countArticles = 0;
-		if(getOption("zenpage_combinews")) {
+		if(ZP_COMBINEWS) {
 			$countArticles = countArticles();
 			if(is_null($published)) {
 				if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {

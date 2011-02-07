@@ -22,7 +22,7 @@ var ZenpageDialog = {
 		var cssclass = '';
 		var albumname = '<?php if(isset($_GET["album"]))  { echo sanitize($_GET["album"]); } else { $_GET["album"] = ""; } ?>';
 		var webpath = '<?php echo WEBPATH; ?>'
-		var modrewrite = '<?php echo getOption("mod_rewrite"); ?>';
+		var modrewrite = '<?php echo MOD_REWRITE; ?>';
 		var modrewritesuffix = '<?php echo getOption("mod_rewrite_image_suffix"); ?>';
 
 		// getting the image size checkbox values

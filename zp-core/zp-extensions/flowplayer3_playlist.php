@@ -227,7 +227,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 				$ext = strtolower(strrchr($item, "."));
 				if (($ext == ".flv") || ($ext == ".mp3") || ($ext == ".mp4")) {
 				$list .= '{
-					url:"'.getAlbumFolder(WEBPATH).$album->name.'/'.$item.'",
+					url:"'.ALBUM_FOLDER_WEBPATH.$album->name.'/'.$item.'",
 					autoPlay: '.$autoplay.',
 					title: "'.$image->getTitle().' <small>('.$ext.')</small>",
 					autoBuffering: '.$autoplay.',

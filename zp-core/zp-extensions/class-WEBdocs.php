@@ -109,7 +109,7 @@ class WEBdocs extends TextObject {
 			$path = SERVERPATH;
 		}
 		if ($this->objectsThumb != NULL) {
-			$imgfile = getAlbumFolder().$this->album->name.'/'.$this->objectsThumb;
+			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
 		} else {
 			switch(getSuffix($this->filename)) {
 				case "pdf":
@@ -165,8 +165,8 @@ class WEBdocs extends TextObject {
 	 * @see zp-core/_Image::updateDimensions()
 	 */
 	function updateDimensions() {
-		$this->set('width', getOption('image_size'));
-		$this->set('height', floor((getOption('image_size') * 24) / 36));
+		$this->set('width', IMAGE_SIZE);
+		$this->set('height', floor((IMAGE_SIZE * 24) / 36));
 	}
 
 }

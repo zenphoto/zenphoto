@@ -78,7 +78,7 @@ if (!$albumobj->checkAccess() && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS)) {
 		$hint = get_language_string(getOption('gallery_hint'));
 		$show = getOption('gallery_user');
 	}
-	if ((empty($hash) && getOption('gallery_security') == 'private') || (!empty($hash) && zp_getCookie($authType) != $hash)) {
+	if ((empty($hash) && GALLERY_SECURITY == 'private') || (!empty($hash) && zp_getCookie($authType) != $hash)) {
 		require_once(dirname(__FILE__) . "/template-functions.php");
 		$parms = '';
 		if (isset($_GET['wmk'])) {
@@ -98,7 +98,7 @@ if (!$albumobj->checkAccess() && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS)) {
 
 }
 
-$image_path = getAlbumFolder().$album.'/'.$image;
+$image_path = ALBUM_FOLDER_SERVERPATH.$album.'/'.$image;
 $suffix = getSuffix($image_path);
 $cache_file = $album . "/" . substr($image, 0, -strlen($suffix)-1) . '_FULL.' . $suffix;
 switch ($suffix) {
@@ -155,7 +155,7 @@ if (isset($_GET['q'])) {
 if (!$cache_path && empty($watermark_use_image) && !$rotate) { // no processing needed
 	if (getOption('album_folder_class') != 'external' && $disposal != 'Download') { // local album system, return the image directly
 		header('Content-Type: image/'.$suffix);
-		if (getOption('UTF8_image_URI')){
+		if (UTF8_IMAGE_URI){
 			header("Location: " . getAlbumFolder(FULLWEBPATH) . pathurlencode($album8) . "/" . rawurlencode($image8));
 		} else {
 			header("Location: " . getAlbumFolder(FULLWEBPATH) . pathurlencode($album) . "/" . rawurlencode($image));

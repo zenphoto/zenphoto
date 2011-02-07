@@ -12,6 +12,11 @@ $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."-
 
 $option_interface = 'print_album_menu';
 
+if (!defined('MENU_TRUNCATE_STRING')) define('MENU_TRUNCATE_STRING',getOption('menu_truncate_string'));
+if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOption('menu_truncate_indicator'));
+define('ALBUM_MENU_COUNT',getOption('print_album_menu_count'));
+define('ALBUM_MENU_SHOWSUBS',getOption('print_album_menu_showsubs'));
+
 /**
  * Plugin option handling class
  *
@@ -189,10 +194,10 @@ function printAlbumMenuList($option,$showcount=NULL,$css_id='',$css_class_topact
 function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active,$firstimagelink,$keeptopactive,$limit=NULL) {
 	global $_zp_gallery,$_zp_current_album;
 	if (is_null($limit)) {
-		$limit = getOption('menu_truncate_string');
+		$limit = MENU_TRUNCATE_STRING;
 	}
-	if (is_null($showcount)) $showcount = getOption('print_album_menu_count');
-	if (is_null($showsubs)) $showsubs = getOption('print_album_menu_showsubs');
+	if (is_null($showcount)) $showcount = ALBUM_MENU_COUNT;
+	if (is_null($showsubs)) $showsubs = ALBUM_MENU_SHOWSUBS;
 	if ($showsubs && !is_numeric($showsubs)) $showsubs = 9999999999;
 	if(empty($keeptopactive)) $keeptopactive = false;
 	$pagelevel = count(explode('/', $folder));
@@ -246,7 +251,7 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 			}
 			$title = $topalbum->getTitle();
 			if ($limit) {
-				$display = shortenContent($title, $limit, getOption('menu_truncate_indicator'));
+				$display = shortenContent($title, $limit, MENU_TRUNCATE_INDICATOR);
 			} else {
 				$display = $title;
 			}

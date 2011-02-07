@@ -31,7 +31,7 @@ if (!empty($_FILES)) {
 			$folder = substr($folder,0,-1);
 		}
 		$folder = zp_apply_filter('admin_upload_process',$folder);
-		$targetPath = getAlbumFolder().internalToFilesystem($folder);
+		$targetPath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($folder);
 		$new = !is_dir($targetPath);
 		if (!empty($folder)) {
 			if ($new) {

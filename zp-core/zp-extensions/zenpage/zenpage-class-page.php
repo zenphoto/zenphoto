@@ -191,7 +191,7 @@ class ZenpagePage extends ZenpageItems {
 	 */
 	function checkAccess(&$hint=NULL, &$show=NULL) {
 		if ($this->isMyItem(LIST_RIGHTS)) return true;
-		if (getOption('gallery_security') == 'private') {	// only registered users allowed
+		if (GALLERY_SECURITY == 'private') {	// only registered users allowed
 			return false;
 		}
 		return $this->checkforGuest($hint, $show);

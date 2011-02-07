@@ -11,6 +11,8 @@
 //*ZENPHOTO SEARCH ENGINE CLASS *******************************
 //*************************************************************
 
+define('EXACT_TAG_MATCH',getOption('exact_tag_match'));
+
 class SearchEngine
 {
 	var $words;
@@ -749,9 +751,9 @@ class SearchEngine
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
-						$key = lookupSortKey(getOption('gallery_sorttype'), 'sort_order', 'folder');
+						$key = lookupSortKey(GALLERY_SORT_TYPE, 'sort_order', 'folder');
 						if ($key != '`sort_order`') {
-							if (getOption('gallery_sortdirection')) {
+							if (GALLERY_SORT_DIRECTION) {
 								$key .= " DESC";
 							}
 						}
@@ -779,9 +781,9 @@ class SearchEngine
 				}
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
-						$key = lookupSortKey(getOption('image_sorttype'), 'filename', 'filename');
+						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'filename');
 						if ($key != '`sort_order`') {
-							if (getOption('image_sortdirection')) {
+							if (IMAGE_SORT_DIRECTION) {
 								$key .= " DESC";
 							}
 						}
@@ -820,7 +822,7 @@ class SearchEngine
 	function searchFieldsAndTags($searchstring, $tbl, $sorttype, $sortdirection) {
 		$allIDs = null;
 		$idlist = array();
-		$exact = getOption('exact_tag_match');
+		$exact = EXACT_TAG_MATCH;
 
 		// create an array of [tag, objectid] pairs for tags
 		$tag_objects = array();
@@ -1045,8 +1047,8 @@ class SearchEngine
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
-						$key = lookupSortKey(getOption('gallery_sorttype'), 'sort_order', 'folder');
-						if (getOption('gallery_sortdirection')) { $key .= " DESC"; }
+						$key = lookupSortKey(GALLERY_SORT_TYPE, 'sort_order', 'folder');
+						if (GALLERY_SORT_DIRECTION) { $key .= " DESC"; }
 					} else {
 						$gallery = new Gallery();
 						$album = new Album($gallery, $this->dynalbumname);
@@ -1065,8 +1067,8 @@ class SearchEngine
 			default:
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
-						$key = lookupSortKey(getOption('image_sorttype'), 'filename', 'filename');
-						if (getOption('image_sortdirection')) { $key .= " DESC"; }
+						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'filename');
+						if (IMAGE_SORT_DIRECTION) { $key .= " DESC"; }
 					} else {
 						$gallery = new Gallery();
 						$album = new Album($gallery, $this->dynalbumname);
@@ -1105,14 +1107,13 @@ class SearchEngine
 		if (getOption('search_no_albums')) return array();
 		$albums = array();
 		$searchstring = $this->getSearchString();
-		$albumfolder = getAlbumFolder();
 		if (empty($searchstring)) { return $albums; } // nothing to find
 		$search_results = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
 		if (isset($search_results) && is_array($search_results)) {
 			foreach ($search_results as $row) {
 				$albumname = $row['folder'];
 				if ($albumname != $this->dynalbumname) {
-					if (file_exists($albumfolder . internalToFilesystem($albumname))) {
+					if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
 						$album = new Album(new gallery(), $albumname);
 						if ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $row['show']) {
 							if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
@@ -1219,7 +1220,6 @@ class SearchEngine
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) { return $images; } // nothing to find
-		$albumfolder = getAlbumFolder();
 		if (empty($searchdate)) {
 			$search_results = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
 		} else {
@@ -1231,7 +1231,7 @@ class SearchEngine
 				$query = "SELECT id, title, folder,`show` FROM ".prefix('albums')." WHERE id = $albumid";
 				$row2 = query_single_row($query); // id is unique
 				$albumname = $row2['folder'];
-				if (file_exists($albumfolder . internalToFilesystem($albumname) . '/' . internalToFilesystem($row['filename']))) {
+				if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname) . '/' . internalToFilesystem($row['filename']))) {
 					$album = new Album(new gallery(), $albumname);
 					if ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $row2['show']) {
 						if (empty($this->album_list) || in_array($albumname, $this->album_list)) {

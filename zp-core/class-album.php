@@ -6,6 +6,9 @@
 
 // force UTF-8 Ø
 
+define('IMAGE_SORT_DIRECTION',getOption('image_sortdirection'));
+define('IMAGE_SORT_TYPE',getOption('image_sorttype'));
+
 class Album extends MediaObject {
 
 	var $name;             // Folder name of the album (full path from the albums folder)
@@ -46,9 +49,9 @@ class Album extends MediaObject {
 		$folderFS = internalToFilesystem($folder8);
 		$this->gallery = &$gallery;
 		if (empty($folder8)) {
-			$localpath = getAlbumFolder();
+			$localpath = ALBUM_FOLDER_SERVERPATH;
 		} else {
-			$localpath = getAlbumFolder() . $folderFS . "/";
+			$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
 		}
 		if (filesystemToInternal($folderFS) != $folder8) { // an attempt to spoof the album name.
 			$this->exists = false;
@@ -214,9 +217,9 @@ class Album extends MediaObject {
 			$parentalbum = $this->getParent();
 			if (is_null($parentalbum)) {
 				if ($what == 'image') {
-					$direction = getOption('image_sortdirection');
+					$direction = IMAGE_SORT_DIRECTION;
 				} else {
-					$direction = getOption('gallery_sortdirection');
+					$direction = GALLERY_SORT_DIRECTION;
 				}
 			} else {
 				$direction = $parentalbum->getSortDirection($what);
@@ -252,7 +255,7 @@ class Album extends MediaObject {
 		if (empty($type)) {
 			$parentalbum = $this->getParent();
 			if (is_null($parentalbum)) {
-				$type = getOption('image_sorttype');
+				$type = IMAGE_SORT_TYPE;
 			} else {
 				$type = $parentalbum->getSortType();
 			}
@@ -279,7 +282,7 @@ class Album extends MediaObject {
 		if (empty($type)) {
 			$parentalbum = $this->getParent();
 			if (is_null($parentalbum)) {
-				$type = getOption('gallery_sorttype');
+				$type = GALLERY_SORT_TYPE;
 			} else {
 				$type = $parentalbum->getAlbumSortType();
 			}
@@ -516,7 +519,7 @@ class Album extends MediaObject {
 		$i = strpos($thumb, '/');
 		if ($root = ($i === 0)) {
 			$thumb = substr($thumb, 1); // strip off the slash
-			$albumdir = getAlbumFolder();
+			$albumdir = ALBUM_FOLDER_SERVERPATH;
 		}
 		$shuffle = empty($thumb);
 		$field = getOption('AlbumThumbSelectField');
@@ -762,7 +765,7 @@ class Album extends MediaObject {
 	function moveAlbum($newfolder) {
 		// First, ensure the new base directory exists.
 		$oldfolder = $this->name;
-		$dest = getAlbumFolder().internalToFilesystem($newfolder);
+		$dest = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($newfolder);
 		// Check to see if the destination already exists
 		if (file_exists($dest)) {
 			// Disallow moving an album over an existing one.
@@ -850,7 +853,7 @@ class Album extends MediaObject {
 	function copy($newfolder) {
 		// First, ensure the new base directory exists.
 		$oldfolder = $this->name;
-		$dest = getAlbumFolder().internalToFilesystem($newfolder);
+		$dest = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($newfolder);
 		// Check to see if the destination directory already exists
 		if (file_exists($dest)) {
 			// Disallow moving an album over an existing one.
@@ -961,7 +964,7 @@ class Album extends MediaObject {
 		$live = array();
 		// Does the dirname from the db row exist on disk?
 		while($row = db_fetch_assoc($result)) {
-			if (!is_dir(getAlbumFolder() . internalToFilesystem($row['folder'])) || in_array($row['folder'], $live)
+			if (!is_dir(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($row['folder'])) || in_array($row['folder'], $live)
 			|| substr($row['folder'], -1) == '/' || substr($row['folder'], 0, 1) == '/') {
 				$dead[] = $row['id'];
 			} else {
@@ -1220,7 +1223,7 @@ class Album extends MediaObject {
 	if ($this->isMyItem(LIST_RIGHTS)) {
 		return true;
 	}
-	if (getOption('gallery_security') == 'private') {	// only registered users allowed
+	if (GALLERY_SECURITY == 'private') {	// only registered users allowed
 		return false;
 	}
 	return $this->checkforGuest();
