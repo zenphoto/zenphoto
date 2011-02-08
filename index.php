@@ -22,8 +22,6 @@ if(isset($_GET['rss']) || isset($_GET['rss-news']) || isset($_GET['rss-comments'
 	rssHitcounter();
 	startRSSCache();
 
-	//XXX This stuff could probably be cleared a little but some are needed as we can't pass queries via include()
-	// Using a http wrapper would work but is disabled on a lot of servers incl. mine
 	//gallery RSS
 	if(isset($_GET['rss'])) {
 		if (!getOption('RSS_album_image')) {

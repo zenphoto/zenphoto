@@ -407,9 +407,9 @@ function getNewsTitleLink() {
 function printNewsTitleLink($before='') {
 	if (getNewsTitle()) {
 		if(is_NewsType("news")) {
-			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".html_encode(getBareNewsTitle())."\">".html_encode($before.getNewsTitle())."</a>";
+			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".html_encode(getBareNewsTitle())."\">".$before.html_encode(getNewsTitle())."</a>";
 		} else if (is_GalleryNewsType()) {
-			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".html_encode(getBareNewsTitle())."\">".html_encode($before.getNewsTitle())."</a>";
+			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".html_encode(getBareNewsTitle())."\">".$before.html_encode(getNewsTitle())."</a>";
 		}
 	}
 }
@@ -832,7 +832,7 @@ function getNewsCategories() {
 function printCurrentNewsCategory($before='') {
 	global $_zp_current_category;
 	if(in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-		echo html_encode($before.$_zp_current_category->getTitle());
+		echo $before.html_encode($_zp_current_category->getTitle());
 	}
 }
 
