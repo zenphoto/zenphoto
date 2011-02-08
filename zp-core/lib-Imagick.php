@@ -15,13 +15,13 @@
  * Requires Imagick 2.1.0+ (Imagick 2.0.0+ requires PHP5)
  * Imagick 2.3.0b1+ and ImageMagick 6.3.8+ suggested to avoid deprecated functions
  */
-$_imagick_loaded = extension_loaded('imagick');
+define('IMAGICK_LOADED', extension_loaded('imagick'));
 
 $_imagick_version = phpversion('imagick'); // Imagick::IMAGICK_EXTVER
 $_imagick_required_version = '2.1.0';
 $_imagick_version_pass = version_compare($_imagick_version, $_imagick_required_version, '>=');
 
-$_zp_imagick_present = $_imagick_loaded && $_imagick_version_pass;
+$_zp_imagick_present = IMAGICK_LOADED && $_imagick_version_pass;
 
 $_zp_graphics_optionhandlers += array('lib_Imagick_Options' => new lib_Imagick_Options());
 
@@ -101,9 +101,9 @@ class lib_Imagick_Options {
 	}
 
 	function canLoadMsg() {
-		global $_imagick_loaded, $_imagick_version_pass, $_imagick_required_version;
+		global $_imagick_version_pass, $_imagick_required_version;
 
-		if ($_imagick_loaded) {
+		if (IMAGICK_LOADED) {
 			if (!$_imagick_version_pass) {
 				return sprintf(gettext('The <strong><em>Imagick</em></strong> library version must be <strong>%s</strong> or later.'), $_imagick_required_version);
 			}
@@ -151,6 +151,9 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 	$_imagick_formats = array_diff($_imagick_temp->queryFormats(), $_imagick_format_blacklist);
 	$_lib_Imagick_info += array_combine(array_map('strtoupper', $_imagick_formats), array_map('strtolower', $_imagick_formats));
+
+	define('IMAGICK_RETAIN_PROFILES',version_compare($_imagemagick_version['versionNumber'], '6.3.6', '>='));
+
 
 	$_imagick_temp->destroy();
 	unset($_magick_mem_lim);
@@ -375,13 +378,9 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	 * @return bool
 	 */
 	function zp_resampleImage($dst_image, $src_image, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h) {
-		global $_imagemagick_version, $_imagick_retain_profiles;
+		global $_imagemagick_version;
 
-		if (!isset($_imagick_retain_profiles)) {
-			$_imagick_retain_profiles = version_compare($_imagemagick_version['versionNumber'], '6.3.6', '>=');
-		}
-
-		if ($_imagick_retain_profiles) {
+		if (IMAGICK_RETAIN_PROFILES) {
 			foreach($src_image->getImageProfiles() as $name => $profile) {
 				$dst_image->profileImage($name, $profile);
 			}
