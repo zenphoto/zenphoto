@@ -39,7 +39,8 @@ if (!function_exists('zp_graphicsLibInfo')) {
 	if (extension_loaded('gd')) { // only define the functions if we have the proper versions
 		$_lib_GD_info = array ();
 		$info = gd_info();
-		$_lib_GD_info['Library'] = sprintf(gettext('PHP GD library <em>%s</em>'),$info['GD Version']);
+		$_lib_GD_info['Library'] = 'GD';
+		$_lib_GD_info['Library_desc'] = sprintf(gettext('PHP GD library <em>%s</em>'),$info['GD Version']);
 		$imgtypes = imagetypes();
 		$_lib_GD_info['GIF'] = $imgtypes & IMG_GIF;
 		$_lib_GD_info['JPG'] = $imgtypes & IMG_JPG;

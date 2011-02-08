@@ -84,7 +84,7 @@ class lib_Imagick_Options {
 					gettext('Magick memory limit') => array(
 						'key' => 'magick_mem_lim',
 						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 1,		
+						'order' => 1,
 						'desc' => '<p>' . gettext('Amount of memory allocated to Gmagick/Imagick in megabytes. Set to <strong>0</strong> for unlimited memory.') . '</p><p class="notebox">' . gettext('<strong>Note:</strong> Image processing will be faster with a higher memory limit. However, if your server experiences problems with image processing, try setting this lower.') . '</p>'
 					),
 					gettext('CAPTCHA font size') => array(
@@ -129,7 +129,8 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	$_imagemagick_version = $_imagick_temp->getVersion();
 
 	$_lib_Imagick_info = array();
-	$_lib_Imagick_info['Library'] = sprintf(gettext('PHP Imagick library <em>%s</em>') . '<br /><em>%s</em>', $_imagick_version, $_imagemagick_version['versionString']);
+	$_lib_Imagick_info['Library'] = 'Imagick';
+	$_lib_Imagick_info['Library_desc'] = sprintf(gettext('PHP Imagick library <em>%s</em>') . '<br /><em>%s</em>', $_imagick_version, $_imagemagick_version['versionString']);
 
 	$_use_imagick_deprecated = version_compare($_imagick_version, '2.3.0b1', '<') && version_compare($_imagemagick_version['versionString'], '6.3.8', '<');
 

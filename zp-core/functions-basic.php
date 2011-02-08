@@ -98,7 +98,9 @@ require_once(dirname(__FILE__).'/lib-GD.php');
 
 if (function_exists('zp_graphicsLibInfo')) {
 	$_zp_supported_images = zp_graphicsLibInfo();
+	define('GRAPHICS_LIBRARY',$_zp_supported_images['Library']);
 	unset($_zp_supported_images['Library']);
+	unset($_zp_supported_images['Library_desc']);
 	foreach ($_zp_supported_images as $key=>$type) {
 		unset($_zp_supported_images[$key]);
 		if ($type) $_zp_supported_images[strtolower($key)] = true;
@@ -472,7 +474,7 @@ function getImageCacheFilename($album8, $image8, $args) {
 	// this function works in FILESYSTEM_CHARSET, so convert the file names
 	$album = internalToFilesystem($album8);
 	$suffix = getSuffix($image8);
-	if (!in_array($suffix, $_zp_supported_images)) {
+	if (!in_array($suffix, $_zp_supported_images) || $suffix=='jpeg') {
 		$suffix = 'jpg';
 	}
 	$image = stripSuffix(internalToFilesystem($image8));

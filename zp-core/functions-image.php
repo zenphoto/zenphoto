@@ -12,12 +12,6 @@
 // Don't let anything get above this, to save the server from burning up...
 
 define('MAX_SIZE', 3000);
-define('THUMB_SIZE',getOption('thumb_size'));
-define('THUMB_CROP',getOption('thumb_crop'));
-define('THUMB_CROP_WIDTH',getOption('thumb_crop_width'));
-define('THUMB_CROP_HEIGHT',getOption('thumb_crop_height'));
-define('TUMB_QUALITY',getOption('thumb_quality'));
-define('IMAGE_SIZE',getOption('image_size'));
 
 /**
  * If in debug mode, prints the given error message and continues; otherwise redirects
@@ -117,6 +111,25 @@ function propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim
 	if (DEBUG_IMAGE) debugLog("propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $wprop, $hprop)::\$neww=$neww; \$newh=$newh");
 	return array($neww, $newh);
 }
+
+/**
+ * iptc_make_tag() function by Thies C. Arntzen
+ * @param $rec
+ * @param $data
+ * @param $value
+ */
+function iptc_make_tag($rec, $data, $value) {
+	$length = strlen($value);
+	$retval = chr(0x1C).chr($rec).chr($data);
+	if($length < 0x8000) {
+		$retval .= chr($length >> 8).chr($length & 0xFF);
+	}
+	else {
+		$retval .= chr(0x80).chr(0x04).chr(($length >> 24) & 0xFF).chr(($length >> 16) & 0xFF).chr(($length >> 8) & 0xFF).chr($length & 0xFF);
+	}
+	return $retval . $value;
+}
+
 
 /**
  * Creates the cache folder version of the image, including watermarking
@@ -340,7 +353,44 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 
 		// Create the cached file (with lots of compatibility)...
 		mkdir_recursive(dirname($newfile));
-		if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) {
+		if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) {	//	successful save of cached image
+			if (getOption('ImbedIPTC') && getSuffix($newfilename)=='jpg') {	// the imbed function works only with JPEG images
+				$iptc_data = zp_imageIPTC($imgfile);
+				if (empty($iptc_data)) {
+					require_once(dirname(__FILE__).'/functions.php');	//	it is ok to increase memory footprint now since the image processing is complete
+					$iptc = array('1#190' => chr(0x1b) . chr(0x25) . chr(0x47),	//	character set is UTF-8
+												'2#115' => getOption('gallery_title')	//	source
+												);
+					$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
+					$imagename = basename($imgfile);
+					$albumname = dirname($imgfile);
+					$image = newImage(new Album(new Gallery(),$albumname), $imagename);
+					$copyright = $image->getCopyright();
+					if (empty($copyright)) {
+						$iptc['2#116'] = getOption('default_copyright');
+					} else {
+						$iptc['2#116'] = $copyright;
+					}
+					$credit = $image->getCredit();
+					if (!empty($credit)) {
+						$iptc['2#110'] = $credit;
+					}
+					foreach($iptc as $tag => $string) {
+						$tag_parts = explode('#',$tag);
+						$iptc_data .= iptc_make_tag($tag_parts[0], $tag_parts[1], $string);
+					}
+				} else {
+					if (GRAPHICS_LIBRARY=='Imagick' && $_imagick_retain_profiles) {	//	Imageick has preserved the metadata
+						$iptc_data = false;
+					}
+				}
+				if ($iptc_data) {
+					$content = iptcembed($iptc_data, $newfile);
+					$fw = fopen($newfile, 'w');
+					fwrite($fw, $content);
+					fclose($fw);
+				}
+			}
 			if (DEBUG_IMAGE) debugLog('Finished:'.basename($imgfile));
 		} else {
 			if (DEBUG_IMAGE) debugLog('cacheImage: failed to create '.$newfile);

@@ -432,8 +432,8 @@ if ($connection) {
 		primeMark(gettext('Graphics library'));
 		if (function_exists('zp_graphicsLibInfo')) {
 			$graphics_lib = zp_graphicsLibInfo();
-			if (array_key_exists('Library',$graphics_lib)) {
-				$library = $graphics_lib['Library'];
+			if (array_key_exists('Library_desc',$graphics_lib)) {
+				$library = $graphics_lib['Library_desc'];
 			} else {
 				$library = '';
 			}

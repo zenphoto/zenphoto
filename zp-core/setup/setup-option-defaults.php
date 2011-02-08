@@ -471,5 +471,6 @@ if ($v = getOption('zp_plugin_filter-zenphoto_seo')) {
 	}
 }
 
+setOptionDefault('default_copyright', sprintf(gettext('Copyright %1$u: %2$s'), date('Y'),$_SERVER["HTTP_HOST"]));
 
 ?>

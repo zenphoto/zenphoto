@@ -237,6 +237,7 @@ if (isset($_GET['action'])) {
 			setBoolOption('thumb_sharpen', isset($_POST['thumb_sharpen']));
 			setBoolOption('image_sharpen', isset($_POST['image_sharpen']));
 			setBoolOption('image_interlace', isset($_POST['image_interlace']));
+			setBoolOption('ImbedIPTC', isset($_POST['ImbedIPTC']));
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
 			$num = str_replace(',', '.', sanitize($_POST['sharpen_radius']));
 			if (is_numeric($num)) setOption('sharpen_radius', $num);
@@ -1937,7 +1938,27 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			</tr>
 			<?php
 		}
+		if (GRAPHICS_LIBRARY=='Imagick' && $_imagick_retain_profiles) {
+			$optionText = gettext('Imbed IPTC copyright');
+			$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded cached copies.');
+		} else {
+			$optionText = gettext('Replicate IPTC metadata');
+			$desc = gettext('If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded.');
+		}
 		?>
+		<tr>
+			<td><?php echo gettext("IPTC Imbedding:"); ?></td>
+			<td>
+				<label><input type="checkbox" name="ImbedIPTC" value="1"	<?php echo checked('1', getOption('ImbedIPTC')); ?> /> <?php echo $optionText; ?></label>
+				<p><input type="textbox" name="default_copyright" value="<?php echo getOption('default_copyright'); ?>" size="50" /></p>
+			</td>
+			<td>
+				<?php echo $desc; ?>
+				<p class="notebox">
+					<?php  echo gettext('<strong>NOTE:</strong> This option is applies only to JPEG format images.'); ?>
+				</p>
+			</td>
+		</tr>
 		<tr>
 			<td colspan="3">
 			<p class="buttons">

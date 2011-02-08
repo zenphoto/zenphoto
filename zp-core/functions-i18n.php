@@ -8,8 +8,6 @@
 
 define ('DEBUG_LOCALE', false); // used for examining language selection problems
 
-$_zp_RTL_languages = array('fa','ar','he', 'hi', 'ur');
-
 function setupLanguageArray() {
 	global $_zp_languages;
 	$_zp_languages = array(
@@ -259,13 +257,13 @@ function gettext_pl($string,$plugin) {
  * @return string
  */
 function i18nSetLocale($locale) {
-	global $_zp_RTL_css, $_zp_RTL_languages;
+	global $_zp_RTL_css;
 	$en1 = LOCAL_CHARSET;
 	$en2 = str_replace('ISO-','ISO',$en1);
 	$simple = explode('-',$locale);
 	$rslt = setlocale(LC_ALL, $locale.'.UTF8', $locale.'.UTF-8', $locale.'@euro', $locale.'.'.$en2, $locale.'.'.$en1, $locale, $simple[0], NULL);
 	setupLanguageArray();
-	$_zp_RTL_css = in_array(substr($rslt,0,2), $_zp_RTL_languages);
+	$_zp_RTL_css = in_array(substr($rslt,0,2), array('fa','ar','he', 'hi', 'ur'));
 	return $rslt;
 }
 

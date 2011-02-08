@@ -276,6 +276,9 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 	if (is_null($text)) {
 		$text = gettext('Google Map');
 	}
+	if (empty($text)) {
+		$hide = 'show';
+	}
 	if (is_null($hide)) {
 		$hide = getOption('gmap_display');
 	}
@@ -289,9 +292,6 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 
 	if (!is_null($callback)) {
 		call_user_func($callback,$MAP_OBJECT);
-	}
-	if (empty($text)) {
-		$hide = 'hide';
 	}
 
 	echo $MAP_OBJECT->getMapJS();

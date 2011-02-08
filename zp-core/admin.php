@@ -295,7 +295,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 			?>
 		</li>
 		<li><?php printf(gettext('PHP version: <strong>%1$s</strong>'),phpversion()); ?></li>
-		<li><?php printf(gettext("Graphics support: <strong>%s</strong>"),$graphics_lib['Library']); ?></li>
+		<li><?php printf(gettext("Graphics support: <strong>%s</strong>"),$graphics_lib['Library_desc']); ?></li>
 		<li><?php printf(gettext('PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate less!)'),INI_GET('memory_limit')); ?></li>
 		<li>
 			<?php
