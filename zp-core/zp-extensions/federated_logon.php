@@ -50,7 +50,9 @@ $plugin_description = gettext('Handles federated logon. See <em>Usage informatio
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---federated_login.php.html";
 $plugin_version = '1.4.1';
-$plugin_disable = (version_compare(PHP_VERSION, '5.0.0') != 1) ? gettext('PHP version 5 or greater is required.') : (function_exists('curl_init')) ? false : gettext('The PHP <em>cURL</em> library is required.');
+$plugin_disable = (version_compare(PHP_VERSION, '5.0.0') != 1) ?
+		gettext('PHP version 5 or greater is required.') : (getOption('federated_logon_detect')) ?
+		false : sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'),FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/federated_logon/Auth/OpenID_detect.php');
 if ($plugin_disable) {
 	setOption('zp_plugin_federated_login',0);
 } else {

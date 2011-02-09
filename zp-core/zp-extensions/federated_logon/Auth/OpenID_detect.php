@@ -497,7 +497,7 @@ $out = $r->start($title) .
 
 $body = '';
 
-$_include = include 'Auth/OpenID.php';
+$_include = include 'OpenID.php';
 
 if (!$_include) {
     $path = ini_get('include_path');
@@ -531,7 +531,12 @@ if (!$_include) {
 	$out .= $r->p('Your system needs a few changes before it will be ready to run the OpenID library.');
     }
 }
-
+if (!defined('OFFSET_PATH')) define('OFFSET_PATH',5);
+$const_webpath = dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])))));
+require_once(dirname(dirname(dirname(dirname(__FILE__)))).'/admin-functions.php');
+setOption('federated_logon_detect', 1);
+$body .= '<a href="'.FULLWEBPATH.'/'.ZENFOLDER.'/admin-plugins.php">'.gettext('back to Zenphoto').'</a>';
 $out .= $body . $r->end();
+
 print $out;
 ?>

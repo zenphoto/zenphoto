@@ -1098,10 +1098,9 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 	if (is_object($zp_request)&& get_class($zp_request) == 'SearchEngine') {	//	we are are on a search
 		return;
 	}
-
-	$context = get_context();
 	$params = zp_getCookie('zenphoto_search_params');
 	if (!empty($params)) {
+		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
 		// check to see if we are still "in the search context"

@@ -4091,7 +4091,6 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		$buttontext = sanitize($buttontext);
 	}
 	$zf = WEBPATH."/".ZENFOLDER;
-	$dataid = $id . '_data';
 	$searchwords = (isset($_POST['words']) ? trim(html_encode(sanitize($_REQUEST['words'],0))) : '');
 	if (substr($searchwords,-1,1)==',') {
 		$searchwords = substr($searchwords,0,-1);
@@ -4125,7 +4124,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		<?php
 	}
 	?>
-	<div id="search"><!-- search form -->
+	<div id="<?php echo $id; ?>"><!-- search form -->
 
 		<form method="post" action="<?php echo WEBPATH.$searchurl; ?>" id="search_form">
 			<script type="text/javascript">

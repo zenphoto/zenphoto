@@ -699,6 +699,7 @@ zp-core/zp-extensions/failed_access_blocker.php
 zp-core/zp-extensions/federated_logon
 zp-core/zp-extensions/federated_logon.php
 zp-core/zp-extensions/federated_logon/Auth
+zp-core/zp-extensions/federated_logon/Auth/Janrain Readme.txt
 zp-core/zp-extensions/federated_logon/Auth/OpenID
 zp-core/zp-extensions/federated_logon/Auth/OpenID.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/AX.php
@@ -730,6 +731,7 @@ zp-core/zp-extensions/federated_logon/Auth/OpenID/Server.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/ServerRequest.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/TrustRoot.php
 zp-core/zp-extensions/federated_logon/Auth/OpenID/URINorm.php
+zp-core/zp-extensions/federated_logon/Auth/OpenID_detect.php
 zp-core/zp-extensions/federated_logon/Auth/Yadis
 zp-core/zp-extensions/federated_logon/Auth/Yadis/HTTPFetcher.php
 zp-core/zp-extensions/federated_logon/Auth/Yadis/Manager.php
@@ -743,9 +745,7 @@ zp-core/zp-extensions/federated_logon/Auth/Yadis/XRI.php
 zp-core/zp-extensions/federated_logon/Auth/Yadis/XRIRes.php
 zp-core/zp-extensions/federated_logon/Auth/Yadis/Yadis.php
 zp-core/zp-extensions/federated_logon/Google_Accounts_logon.php
-zp-core/zp-extensions/federated_logon/Janrain Readme.txt
 zp-core/zp-extensions/federated_logon/OpenID_common.php
-zp-core/zp-extensions/federated_logon/OpenID_detect.php
 zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php
 zp-core/zp-extensions/federated_logon/OpenID_logon.php
 zp-core/zp-extensions/federated_logon/OpenID_try_auth.php
