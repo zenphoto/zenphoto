@@ -205,12 +205,14 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 			if (!empty($group)) {
 				$userobj->setObjects($groupobj->getObjects());
 			}
+			$userobj->save();
 		} else {
 			$more = sprintf(gettext('Group %s does not exist.'),$groupname);
 		}
 	}
 	if (!$more) {
-		$_zp_authority->logUser($userobj,$userobj->getPass());
+		zp_apply_filter('federated_login_attempt', true, $user);
+		$_zp_authority->logUser($userobj);
 		if ($redirect) {
 			header("Location: ".FULLWEBPATH.$redirect);
 		}

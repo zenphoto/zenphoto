@@ -39,6 +39,7 @@ $option_interface = 'user_expiry';
 zp_register_filter('admin_tabs', 'user_expiry_admin_tabs', 99);
 zp_register_filter('authorization_cookie','user_expiry_checkcookie');
 zp_register_filter('admin_login_attempt','user_expiry_checklogon');
+zp_register_filter('federated_login_attempt','user_expiry_checklogon');
 
 /**
  * Option handler class
@@ -132,12 +133,11 @@ function user_expiry_checkcookie($loggedin) {
 	return $loggedin;
 }
 
-function user_expiry_checklogon($loggedin, $user, $pass) {
+function user_expiry_checklogon($loggedin, $user) {
 	global $_zp_authority;
 	if ($loggedin) {
 		if (!($loggedin & ADMIN_RIGHTS)) {
-			$hash = $_zp_authority->passwordHash($user, $pass);
-			$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`pass`=' => $hash, '`valid`=' => 1));
+			$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$loggedin = user_expiry_checkexpires($loggedin, $userobj);
 		}
 	}

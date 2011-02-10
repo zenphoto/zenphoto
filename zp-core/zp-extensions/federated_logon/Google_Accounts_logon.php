@@ -19,7 +19,8 @@ if (isset($_GET['redirect'])) {
 	$redirect = '';
 }
 zp_setCookie('OpenID_redirect', $redirect, 60);
-$_GET['openid_identifier'] = GOOGLE_ACCOUNT;
+zp_setCookie('OpenID_cleaner_pattern', '/^.*?id=(.*)/',  60);
+$_GET['openid_identifier'] = 'https://www.google.com/accounts/o8/id';
 $_GET['action'] = 'verify';
 
 require 'OpenID_try_auth.php';

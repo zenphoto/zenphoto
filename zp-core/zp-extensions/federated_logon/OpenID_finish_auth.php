@@ -11,7 +11,6 @@ function escape($thing) {
 
 function run() {
 
-	$redirect = zp_getCookie('OpenID_redirect');
 	$consumer = getConsumer();
 
 	// Complete the authentication process using the server's
@@ -60,18 +59,17 @@ function run() {
 		if (@$sreg['fullname']) {
 			$name = $sreg['fullname'];
 		}
-		if (false !== strpos($openid, GOOGLE_ACCOUNT)) {
-			$idparts = explode('?id=',$openid);
-			$userid = $idparts[1];
-		} else if (false !== strpos($openid,'me.yahoo.com')) {
-			$idparts = explode('/',$openid);
-			$userid = $idparts[count($idparts)-1];
-		} else {
-			$userid = trim(str_replace('https://', '', $openid), '/');
-			if (strlen($userid) > 64) {
-				$userid = sha1($userid);
+		$userid = trim(str_replace('https://', '', $openid), '/');	//	always remove the protocol
+		$pattern = zp_getCookie('OpenID_cleaner_pattern');
+		if ($pattern) {
+			if(preg_match($pattern, $userid, $matches)) {
+				$userid = $matches[1];
 			}
 		}
+		if (strlen($userid) > 64) {
+			$userid = sha1($userid);
+		}
+		$redirect = zp_getCookie('OpenID_redirect');
 		$success .= logonFederatedCredentials($userid, $email, $name, $redirect);
 
 		}

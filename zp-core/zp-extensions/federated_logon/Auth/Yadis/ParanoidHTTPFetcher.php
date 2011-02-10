@@ -154,8 +154,7 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
 
                 if (defined('Auth_OpenID_VERIFY_HOST') &&
                     $this->isHTTPS($url)) {
-                    Auth_OpenID::log('OpenID: Verified SSL host %s using '.
-                                     'curl/get', $url);
+//                    Auth_OpenID::log('OpenID: Verified SSL host %s using '.'curl/get', $url);
                 }
                 $new_headers = array();
 
@@ -166,9 +165,7 @@ class Auth_Yadis_ParanoidHTTPFetcher extends Auth_Yadis_HTTPFetcher {
                     }
                 }
 
-                Auth_OpenID::log(
-                    "Successfully fetched '%s': GET response code %s",
-                    $url, $code);
+//                Auth_OpenID::log("Successfully fetched '%s': GET response code %s",$url, $code);
 
                 return new Auth_Yadis_HTTPResponse($url, $code,
                                                     $new_headers, $body);

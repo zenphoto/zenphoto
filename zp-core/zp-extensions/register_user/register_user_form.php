@@ -96,6 +96,7 @@
 					$list .= '</select>';
 					?>
 					function changeHandler(handler) {
+						handler.push('user='+$('#adminuser').val());
 						var script = handler.shift();
 						launchScript(script,handler);
 					}

@@ -318,6 +318,7 @@ zp-core/global-definitions.php
 zp-core/htaccess
 zp-core/i.php
 zp-core/images
+zp-core/images/Zp.png
 zp-core/images/accept.png
 zp-core/images/action.png
 zp-core/images/add.png
@@ -1771,4 +1772,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1773
+1774

@@ -19,8 +19,8 @@ if (isset($_GET['redirect'])) {
 	$redirect = '';
 }
 zp_setCookie('OpenID_redirect', $redirect, 60);
+zp_setCookie('OpenID_cleaner_pattern', '/me.yahoo.com\/.*\/(.*)/',  60);
 $_GET['openid_identifier'] = 'https://Yahoo.com';
 $_GET['action'] = 'verify';
-
 require 'OpenID_try_auth.php';
 ?>

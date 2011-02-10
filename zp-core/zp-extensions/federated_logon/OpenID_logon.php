@@ -16,6 +16,14 @@ if (isset($_GET['redirect'])) {
 	$redirect = '';
 }
 zp_setCookie('OpenID_redirect', $redirect, 60);
+zp_setCookie('federated_logon_cleaner_pattern', '',  -380000);
+if (isset($_GET['user'])) {
+	$_GET['openid_identifier'] = $_GET['user'];
+	$_GET['action'] = 'verify';
+	unset($_GET['user']);
+	require 'OpenID_try_auth.php';
+	exit(0);
+}
 
 global $pape_policy_uris;
 ?>

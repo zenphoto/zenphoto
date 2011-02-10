@@ -1,6 +1,4 @@
 <?php
-define('GOOGLE_ACCOUNT','https://www.google.com/accounts/o8/id');
-
 $path_extra = 'OpenID';
 $path = ini_get('include_path');
 $path = $path_extra . PATH_SEPARATOR . $path;

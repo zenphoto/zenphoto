@@ -576,14 +576,14 @@ class Zenphoto_Authority {
 	/**
 	 * Set log-in cookie for a user
 	 * @param string $user
-	 * @param string $hash password hash
 	 */
-	function logUser($user, $hash) {
+	function logUser($user) {
 		$user->lastlogon = $user->get('loggedin');
 		$user->set('loggedin',date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setcookie("zenphoto_auth", $hash, NULL, NULL, secureServer());
+		zp_setcookie("zenphoto_auth", $user->getPass(), NULL, NULL, secureServer());
 	}
+
 	/**
 	 * User authentication support
 	 */
@@ -600,7 +600,7 @@ class Zenphoto_Authority {
 			}
 			$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
 			if ($_zp_loggedin) {
-				$this->logUser($user,$this->passwordHash($post_user, $post_pass));
+				$this->logUser($user);
 			} else {
 				// Clear the cookie, just in case
 				zp_setcookie("zenphoto_auth", "", -368000);
@@ -818,7 +818,7 @@ class Zenphoto_Authority {
 					var handlers = [];
 					<?php
 					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
-										'<option value="0">'.html_encode($gallery->getTitle()).'</option>';
+										'<option value="0">'.html_encode(get_language_string($gallery->getTitle())).'</option>';
 					$c = 0;
 					foreach ($alt_handlers as $handler=>$details) {
 						$c++;
@@ -834,6 +834,7 @@ class Zenphoto_Authority {
 					$ledgend = sprintf(gettext('Logon using:%s'),$list);
 					?>
 					function changeHandler(handler) {
+						handler.push('user='+$('#user').val());
 						var script = handler.shift();
 						launchScript(script,handler);
 					}
@@ -851,7 +852,7 @@ class Zenphoto_Authority {
 						<td align="left">
 						<h2><?php echo gettext("User"); ?>&nbsp;</h2>
 						</td>
-						<td><input class="textfield" name="user" type="text" size="20"
+						<td><input class="textfield" name="user" id="user" type="text" size="20"
 							value="<?php echo html_encode($requestor); ?>" /></td>
 					</tr>
 					<?php
