@@ -749,6 +749,7 @@ zp-core/zp-extensions/federated_logon/OpenID_common.php
 zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php
 zp-core/zp-extensions/federated_logon/OpenID_logon.php
 zp-core/zp-extensions/federated_logon/OpenID_try_auth.php
+zp-core/zp-extensions/federated_logon/Yahoo_ID_logon.php
 zp-core/zp-extensions/flag_thumbnail
 zp-core/zp-extensions/flag_thumbnail.php
 zp-core/zp-extensions/flag_thumbnail/GPS.png
@@ -1770,4 +1771,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1772
+1773

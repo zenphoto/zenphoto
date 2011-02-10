@@ -63,6 +63,9 @@ function run() {
 		if (false !== strpos($openid, GOOGLE_ACCOUNT)) {
 			$idparts = explode('?id=',$openid);
 			$userid = $idparts[1];
+		} else if (false !== strpos($openid,'me.yahoo.com')) {
+			$idparts = explode('/',$openid);
+			$userid = $idparts[count($idparts)-1];
 		} else {
 			$userid = trim(str_replace('https://', '', $openid), '/');
 			if (strlen($userid) > 64) {

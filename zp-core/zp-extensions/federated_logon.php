@@ -46,7 +46,8 @@
  * @subpackage usermanagement
  */
 $plugin_is_filter = 9|CLASS_PLUGIN;
-$plugin_description = gettext('Handles federated logon. See <em>Usage information</em> for details.');
+$plugin_description = gettext('Handles federated logon. See <em>Usage information</em> for details.').' '.
+											sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'),FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/federated_logon/Auth/OpenID_detect.php');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---federated_login.php.html";
 $plugin_version = '1.4.1';
