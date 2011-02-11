@@ -4091,7 +4091,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		$buttontext = sanitize($buttontext);
 	}
 	$zf = WEBPATH."/".ZENFOLDER;
-	$searchwords = (isset($_POST['words']) ? trim(html_encode(sanitize($_REQUEST['words'],0))) : '');
+	$searchwords = getSearchWords();
 	if (substr($searchwords,-1,1)==',') {
 		$searchwords = substr($searchwords,0,-1);
 	}
@@ -4140,7 +4140,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 				$('#search_form').submit(function(){
 					if (lastsearch) {
 						var newsearch = $.trim($('#search_input').val());
-						if ((newsearch.length > 0) && (newsearch[newsearch.length-1]==',')) {
+						if (newsearch.substring(newsearch.length - 1)==',') {
 							newsearch = newsearch.substr(0,newsearch.length-1);
 						}
 						if (newsearch.length > 0) {
