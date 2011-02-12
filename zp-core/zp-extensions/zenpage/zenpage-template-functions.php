@@ -940,13 +940,14 @@ function printNewsDate() {
  * @param string $yearclass optional class for "year"
  * @param string $monthclass optional class for "month"
  * @param string $activeclass optional class for the currently active archive
+ * @param bool $yearsonly If set to true the archive only shows the years with total count (Default false)
  */
-function printNewsArchive($class='archive', $yearclass='year', $monthclass='month', $activeclass="archive-active") {
+function printNewsArchive($class='archive', $yearclass='year', $monthclass='month', $activeclass="archive-active",$yearsonly=false) {
 	if (!empty($class)){ $class = "class=\"$class\""; }
 	if (!empty($yearclass)){ $yearclass = "class=\"$yearclass\""; }
 	if (!empty($monthclass)){ $monthclass = "class=\"$monthclass\""; }
 	if (!empty($activeclass)){ $activeclass = "class=\"$activeclass\""; }
-	$datecount = getAllArticleDates();
+	$datecount = getAllArticleDates($yearsonly);
 	$lastyear = "";
 	$nr = "";
 	echo "\n<ul $class>\n";
@@ -962,19 +963,33 @@ function printNewsArchive($class='archive', $yearclass='year', $monthclass='mont
 		}
 		if ($lastyear != $year) {
 			$lastyear = $year;
-			if($nr != 1) { echo "</ul>\n</li>\n";}
-			echo "<li $yearclass>$year\n<ul $monthclass>\n";
+			if(!$yearsonly) {
+				if($nr != 1) { echo "</ul>\n</li>\n";}
+				echo "<li $yearclass>$year\n<ul $monthclass>\n";
+			}
 		}
-		if(getCurrentNewsArchive('plain') == strftime('%Y-%m', strtotime($key))) {
+		if($yearsonly) {
+			$datetosearch = $key;
+		} else {
+			$datetosearch = strftime('%Y-%B', strtotime($key));
+		} 
+		if(getCurrentNewsArchive('plain') == $datetosearch) {
 			$active = $activeclass;
 		} else {
 			$active = "";
 		}
-		echo "<li $active><a href=\"".html_encode(getNewsBaseURL()).html_encode(getNewsArchivePath()).substr($key,0,7)."\" title=\"".$month." (".$val.")\" rel=\"nofollow\">$month ($val)</a></li>\n";
+		if($yearsonly) {
+			echo "<li $active><a href=\"".html_encode(getNewsBaseURL().getNewsArchivePath()).$key."\" title=\"".$key." (".$val.")\" rel=\"nofollow\">$key ($val)</a></li>\n";
+		} else {
+			echo "<li $active><a href=\"".html_encode(getNewsBaseURL().getNewsArchivePath()).substr($key,0,7)."\" title=\"".$month." (".$val.")\" rel=\"nofollow\">$month ($val)</a></li>\n";
+		}
 	}
-	echo "</ul>\n</li>\n</ul>\n";
+	if($yearsonly) {
+		echo "</ul>\n";
+	} else {
+		echo "</ul>\n</li>\n</ul>\n";
+	}
 }
-
 
 /**
  * Gets the current select news date (year-month) or formatted

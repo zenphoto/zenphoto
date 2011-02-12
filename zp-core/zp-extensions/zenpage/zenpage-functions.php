@@ -402,10 +402,10 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 
 	/**
 	 * Retrieves a list of all unique years & months
-	 *
+	 * @param bool $yearsonly If set to true only the years' count is returned (Default false)
 	 * @return array
 	 */
-	function getAllArticleDates() {
+	function getAllArticleDates($yearsonly=false) {
 		$alldates = array();
 		$cleandates = array();
 		$sql = "SELECT date FROM ". prefix('news');
@@ -416,7 +416,11 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 		}
 		foreach ($alldates as $adate) {
 			if (!empty($adate)) {
-				$cleandates[] = substr($adate, 0, 7) . "-01";;
+				if($yearsonly) {
+					$cleandates[] = substr($adate, 0, 4);
+				} else {
+					$cleandates[] = substr($adate, 0, 7) . "-01";
+				}
 			}
 		}
 		$datecount = array_count_values($cleandates);
