@@ -356,7 +356,7 @@ function getNewsTitle() {
  */
 function printNewsTitle($before='') {
 	if (getNewsTitle()) {
-		echo $before.getNewsTitle();
+		echo $before.html_encode(getNewsTitle());
 	}
 }
 
@@ -367,7 +367,7 @@ function printNewsTitle($before='') {
  * @return string
  */
 function getBareNewsTitle() {
-	return html_encode(strip_tags(getNewsTitle()));
+	return strip_tags(getNewsTitle());
 }
 
 
@@ -407,9 +407,9 @@ function getNewsTitleLink() {
 function printNewsTitleLink($before='') {
 	if (getNewsTitle()) {
 		if(is_NewsType("news")) {
-			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".getBareNewsTitle()."\">".$before.getNewsTitle()."</a>";
+			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".html_encode(getBareNewsTitle())."\">".$before.html_encode(getNewsTitle())."</a>";
 		} else if (is_GalleryNewsType()) {
-			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".getBareNewsTitle()."\">".$before.getNewsTitle()."</a>";
+			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".html_encode(getBareNewsTitle())."\">".$before.html_encode(getNewsTitle())."</a>";
 		}
 	}
 }
@@ -760,7 +760,7 @@ function getNewsAlbumTitle() {
  * @return string
  */
 function getBareNewsAlbumTitle() {
-	return html_encode(strip_tags(getNewsAlbumTitle()));
+	return strip_tags(getNewsAlbumTitle());
 }
 
 /**
@@ -2252,7 +2252,7 @@ function printPageTitle($before=NULL) {
  * @return string
  */
 function getBarePageTitle() {
-	return html_encode(strip_tags(getPageTitle()));
+	return strip_tags(getPageTitle());
 }
 
 /**
@@ -2275,7 +2275,7 @@ function getPageTitleLink() {
  */
 function printPageTitleLink() {
 	global $_zp_current_zenpage_page;
-	echo '<a href="'.html_encode(getPageLinkURL(getPageTitleLink())).'" title="'.getBarePageTitle().'">'.html_encode(getPageTitle()).'</a>';
+	echo '<a href="'.html_encode(getPageLinkURL(getPageTitleLink())).'" title="'.html_encode(getBarePageTitle()).'">'.html_encode(getPageTitle()).'</a>';
 }
 
 
