@@ -336,7 +336,7 @@ function setupLog($message, $anyway=false, $reset=false) {
 		}
 		if ($reset) { $mode = 'w'; } else { $mode = 'a'; }
 		$f = fopen(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup_log.txt', $mode);
-		fwrite($f, $message . "\n");
+		fwrite($f, strip_tags($message) . "\n");
 		fclose($f);
 	}
 }

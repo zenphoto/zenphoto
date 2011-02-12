@@ -348,7 +348,7 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 <div id="content">
 <?php
 $warn = false;
-if (!$setup_checked) {
+if (!$setup_checked && zp_loggedin()) {
 	?>
 	<p>
 		<?php	echo gettext("Welcome to Zenphoto! This page will set up Zenphoto on your web server."); ?>
@@ -2164,7 +2164,7 @@ if (file_exists(CONFIGFILE)) {
 						$rslt = $rslt && setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component),$component);
 					}
 				}
-				$rslt = $rslt && setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup_set-mod_rewrite.php'),'setup_set-mod_rewrite.php');
+//				$rslt = $rslt && setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup_set-mod_rewrite.php'),'setup_set-mod_rewrite.php');
 				$rslt = $rslt && setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup.php'),'setup.php');
 				$rslt = $rslt && setupDeleteComponent(@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/'),'setup/');
 				if (!$rslt) {

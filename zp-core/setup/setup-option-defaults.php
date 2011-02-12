@@ -54,7 +54,7 @@ if (isset($_GET['mod_rewrite'])) {
 			// <!-- <![CDATA[
 			$.ajax({
 				type: 'POST',
-				url: '<?php echo WEBPATH; ?>/page/setup_set-mod_rewrite?z'
+				url: '<?php echo WEBPATH; ?>/page/setup_set-mod_rewrite?z=setup'
 			});
 			// ]]> -->
 		</script>

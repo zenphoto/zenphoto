@@ -597,8 +597,8 @@ zp-core/setup/setup-primitive.php
 zp-core/setup/setup-sqlform.php
 zp-core/setup/setup.css
 zp-core/setup/setup_permissions_changer.php
+zp-core/setup/setup_set-mod_rewrite.php
 zp-core/setup/setup_themeOptions.php
-zp-core/setup_set-mod_rewrite.php
 zp-core/template-functions.php
 zp-core/utilities
 zp-core/utilities/backup_restore.php

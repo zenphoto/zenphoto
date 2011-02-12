@@ -76,7 +76,10 @@ if (isset($_GET['p'])) {
 		$_GET['z'] = true;
 	}
 	if (isset($_GET['z'])) { // system page
-		$_zp_gallery_page = basename($_zp_obj = ZENFOLDER."/".$page.".php");
+		if ($subfolder = $_GET['z']) {
+			$subfolder .= '/';
+		}
+		$_zp_gallery_page = basename($_zp_obj = ZENFOLDER.'/'.$subfolder.$page.'.php');
 	} else {
 		$_zp_obj = THEMEFOLDER."/$theme/$page.php";
 		$_zp_gallery_page = basename($_zp_obj);
