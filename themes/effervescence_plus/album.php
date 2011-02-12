@@ -47,7 +47,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?></title>
+	<title><?php echo html_encode(getBareGalleryTitle()); ?> | <?php echo html_encode(getBareAlbumTitle());?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
@@ -241,7 +241,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 							<div class="imageElement">
 								<h3><?php echo getImageTitle();?></h3>
 								<p><?php echo getImageDesc();?></p>
-								<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>" class="open"></a>
+								<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo html_encode(getBareImageTitle());?>" class="open"></a>
 								<?php printCustomSizedImage(getImageTitle(), null, 540, null, null, null, null, null, 'full'); ?>
 								<?php printImageThumb(getImageTitle(), 'thumbnail'); ?>
 							</div>

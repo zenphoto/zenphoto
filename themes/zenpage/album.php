@@ -9,7 +9,7 @@ if (!defined('WEBPATH')) die();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareAlbumTitle(); ?> | <?php echo getBareGalleryTitle(); ?></title>
+	<title><?php echo html_encode(getBareAlbumTitle()); ?> | <?php echo html_encode(getBareGalleryTitle()); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
@@ -43,7 +43,7 @@ if (!defined('WEBPATH')) die();
 					<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php getBareAlbumTitle();?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
 						</div>
 				<div class="albumdesc">
-					<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle();?>"><?php printAlbumTitle(); ?></a></h3>
+					<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle());?>"><?php printAlbumTitle(); ?></a></h3>
 						<?php printAlbumDate(""); ?>
 					<div><?php echo truncate_string(getAlbumDesc(), 45); ?></div>
 				</div>
@@ -55,7 +55,7 @@ if (!defined('WEBPATH')) die();
 			<div id="images">
 			<?php while (next_image()): ?>
 			<div class="image">
-				<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
+				<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo html_encode(getBareImageTitle());?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
 			</div>
 			<?php endwhile; ?>
 

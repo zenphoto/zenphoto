@@ -33,33 +33,31 @@ function run() {
 		$esc_identity = escape($openid);
 
 		$success = sprintf(gettext('You have successfully verified <a href="%s">%s</a> as your identity.'),
-		$esc_identity, $esc_identity);
+																							$esc_identity, $esc_identity);
 
 		if ($response->endpoint->canonicalID) {
 			$escaped_canonicalID = escape($response->endpoint->canonicalID);
 			$success .= '  (XRI CanonicalID: '.$escaped_canonicalID.') ';
 		}
 
+		$email = $name = NULL;
 		$sreg_resp = Auth_OpenID_SRegResponse::fromSuccessResponse($response);
-
 		$sreg = $sreg_resp->contents();
+		if ($sreg) {
+			if (@$sreg['email']) {
+				$email = trim($sreg['email']);
+			}
 
-		if (@$sreg['email']) {
-			$email = trim($sreg['email']);
-		} else {
-			$email = NULL;
+			if (@$sreg['nickname']) {
+				$name = $sreg['nickname'];
+			}
+
+			if (@$sreg['fullname']) {
+				$name = $sreg['fullname'];
+			}
 		}
 
-		if (@$sreg['nickname']) {
-			$name = $sreg['nickname'];
-		} else {
-			$name = NULL;
-		}
-
-		if (@$sreg['fullname']) {
-			$name = $sreg['fullname'];
-		}
-		$userid = trim(str_replace('https://', '', $openid), '/');	//	always remove the protocol
+		$userid = trim(str_replace(array('http://','https://'), '', $openid), '/');	//	always remove the protocol
 		$pattern = zp_getCookie('OpenID_cleaner_pattern');
 		if ($pattern) {
 			if(preg_match($pattern, $userid, $matches)) {

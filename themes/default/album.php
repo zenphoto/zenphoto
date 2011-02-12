@@ -8,7 +8,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?></title>
+	<title><?php echo html_encode(getBareGalleryTitle()); ?> | <?php echo html_encode(getBareAlbumTitle());?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
@@ -45,7 +45,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 			<div id="images">
 			<?php while (next_image()): ?>
 			<div class="image">
-				<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
+				<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo html_encode(getBareImageTitle());?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
 			</div>
 			<?php endwhile; ?>
 

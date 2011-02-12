@@ -14,7 +14,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 		setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
 	}
 	?>
-	<title><?php echo getBareGalleryTitle(); ?></title>
+	<title><?php echo html_encode(getBareGalleryTitle()); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />

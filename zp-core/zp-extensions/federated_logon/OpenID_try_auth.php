@@ -41,7 +41,6 @@ function run() {
 	// form to send a POST request to the server.
 	if ($auth_request->shouldSendRedirect()) {
 		$redirect_url = $auth_request->redirectURL(getTrustRoot(), getReturnTo());
-
 		// If the redirect URL can't be built, display an error
 		// message.
 		if (Auth_OpenID::isFailure($redirect_url)) {
@@ -54,7 +53,7 @@ function run() {
 		// Generate form markup and render it.
 		$form_id = 'openid_message';
 		$form_html = $auth_request->htmlMarkup(getTrustRoot(), getReturnTo(),
-		false, array('id' => $form_id));
+									false, array('id' => $form_id));
 
 		// Display an error if the form markup couldn't be generated;
 		// otherwise, render the HTML.

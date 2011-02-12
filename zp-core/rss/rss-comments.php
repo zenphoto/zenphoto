@@ -72,7 +72,6 @@ foreach ($comments as $comment) {
 			$title = get_language_string($comment['title']);
 			$imagetag = $imagepath.$comment['filename'].$modrewritesuffix;
 		case 'albums':
-			$title = get_language_string($comment['title']);
 			$album = pathurlencode($comment['folder']);
 			$date = $comment['date'];
 			$category = $comment['albumtitle'];

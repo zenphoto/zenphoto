@@ -354,7 +354,7 @@ function getGalleryTitle() {
  * @return string
  */
 function getBareGalleryTitle() {
-	return html_encode(getGalleryTitle());
+	return strip_tags(getGalleryTitle());
 }
 
 /**
@@ -380,7 +380,7 @@ function getGalleryDesc() {
  * @return string
  */
 function getBareGalleryDesc() {
-	return html_encode(getGalleryDesc());
+	return strip_tags(getGalleryDesc());
 }
 
 /**
@@ -857,7 +857,7 @@ function getAlbumTitle() {
  * @return string
  */
 function getBareAlbumTitle() {
-	return html_encode(getAlbumTitle());
+	return strip_tags(getAlbumTitle());
 }
 
 /**
@@ -1169,7 +1169,7 @@ function getAlbumDesc() {
  * @return string
  */
 function getBareAlbumDesc() {
-	return html_encode(getAlbumDesc());
+	return strip_tags(getAlbumDesc());
 }
 
 /**
@@ -1853,7 +1853,7 @@ function getImageTitle() {
  * @return string
  */
 function getBareImageTitle() {
-	return html_encode(getImageTitle());
+	return strip_tags(getImageTitle());
 }
 
 /**
@@ -2033,7 +2033,7 @@ function getImageDesc() {
  * @return string
  */
 function getBareImageDesc() {
-	return html_encode(getImageDesc());
+	return strip_tags(getImageDesc());
 }
 
 /**

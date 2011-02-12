@@ -9,7 +9,7 @@ require_once('normalizer.php');
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareImageTitle();?></title>
+	<title><?php echo html_encode(getBareImageTitle());?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<script type="text/javascript">var blogrelurl = "<?php echo $_zp_themeroot ?>";</script>
@@ -86,7 +86,7 @@ require_once('normalizer.php');
 					$fullimage = getFullImageURL();
 					if (!empty($fullimage)) {
 						?>
-						<a href="<?php echo html_encode($fullimage);?>" title="<?php echo getBareImageTitle();?>"><?php echo gettext('Full Size'); ?></a>
+						<a href="<?php echo html_encode($fullimage);?>" title="<?php echo html_encode(getBareImageTitle());?>"><?php echo gettext('Full Size'); ?></a>
 						<?php
 					}
 					?>
