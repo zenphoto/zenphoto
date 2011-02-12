@@ -51,8 +51,12 @@ if (!defined('WEBPATH')) die();
 							<?php printPageContent(); ?>
 							<?php printCodeblock(2); ?>
 							</div>
-						<?php footer(); ?>
-						<p style="clear: both;"></p>
+							<?php
+							if (function_exists('printRating')) printRating();
+							if (function_exists('printCommentForm')) printCommentForm();
+							footer();
+							?>
+							<p style="clear: both;"></p>
 						</div>
 						<!-- end content -->
 						<span class="clear"></span> </div>

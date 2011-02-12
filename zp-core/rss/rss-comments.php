@@ -55,43 +55,31 @@ switch($type) {
 			$comments_zenpage = getLatestZenpageComments($items,$type,$id);
 			$comments = array_merge($comments,$comments_zenpage);
 			$comments = sortMultiArray($comments,'id',true);
-			$comments = array_splice($comments,0,$items);
+			$comments = array_slice($comments,0,$items);
 		}
 		break;
 }
 foreach ($comments as $comment) {
-	if($comment['anon'] === "0") {
-		$author = " ".gettext("by")." ".$comment['name'];
-	} else {
+	if($comment['anon']) {
 		$author = "";
+	} else {
+		$author = " ".gettext("by")." ".$comment['name'];
 	}
+	$imagetag = "";
+	$title = '';
 	switch($comment['type']) {
 		case 'images':
+			$title = get_language_string($comment['title']);
 			$imagetag = $imagepath.$comment['filename'].$modrewritesuffix;
-			break;
-		case 'albums':
-		case 'news':
-		case 'pages':
-			$imagetag = "";
-			break;
-	}
-	switch($comment['type']) {
-		case 'images':
 		case 'albums':
 			$album = pathurlencode($comment['folder']);
 			$date = $comment['date'];
 			$category = $comment['albumtitle'];
-			$title = '';
-			if($comment['type'] != 'albums') {
-				if ($comment['title'] == "") {
-					$title = '';
-				} else {
-					$title = get_language_string($comment['title']);
-				}
-			}
 			$website = $comment['website'];
-			if(!empty($category)) {
-				$title = ": ".$title;
+			if(empty($category)) {
+				$title = $category;
+			} else {
+				$title = $category.": ".$title;
 			}
 			$commentpath = $serverprotocol.'://'.$host.WEBPATH.$albumpath.$album.$imagetag."#".$comment['id'];
 
@@ -105,26 +93,27 @@ foreach ($comments as $comment) {
 			$titlelink = $comment['titlelink'];
 			$website = $comment['website'];
 			if(function_exists('getNewsURL')) {
-				switch($comment['type']) {
-					case 'news':
-						$commentpath = $serverprotocol.'://'.$host.getNewsURL($titlelink)."#".$comment['id'];
-						break;
-					case 'pages':
-						$commentpath = $serverprotocol.'://'.$host.getPageLinkURL($titlelink)."#".$comment['id'];
-						break;
+				if ($comment['type']=='news') {
+					$commentpath = $serverprotocol.'://'.$host.getNewsURL($titlelink)."#".$comment['id'];
+				} else {
+					$commentpath = $serverprotocol.'://'.$host.getPageLinkURL($titlelink)."#".$comment['id'];
 				}
+			} else {
+				$commentpath = '';
 			}
 			break;
 	}
 ?>
 <item>
-<title><?php echo strip_tags($category.$title.$author); ?></title>
-<link><?php echo '<![CDATA['.$commentpath.']]>';?></link>
-<description><?php echo $comment['comment']; ?></description>
-<category><?php echo strip_tags($category); ?></category>
-<guid><?php echo '<![CDATA['.$commentpath.']]>';?></guid>
+<title><?php echo html_encode(strip_tags($category.$title.$author)); ?></title>
+<link><?php echo '<![CDATA['.html_encode($commentpath).']]>';?></link>
+<description><?php echo html_encode($comment['comment']); ?></description>
+<category><?php echo html_encode(strip_tags($category)); ?></category>
+<guid><?php echo '<![CDATA['.html_encode($commentpath).']]>';?></guid>
 <pubDate><?php echo date("r",strtotime($date)); ?></pubDate>
 </item>
-<?php } ?>
+<?php
+}
+?>
 </channel>
 </rss>

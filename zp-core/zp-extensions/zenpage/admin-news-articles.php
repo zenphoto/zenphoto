@@ -206,13 +206,13 @@ printLogoAndLinks();
 									if ($article->getCommentsAllowed()) {
 										?>
 										<a href="?commentson=1&amp;id=<?php echo $article->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Disable comments'); ?>">
-											<img src="../../images/comments-on.png" alt="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
+											<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 										</a>
 										<?php
 									} else {
 										?>
 										<a href="?commentson=0&amp;id=<?php echo $article->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Enable comments'); ?>">
-											<img src="../../images/comments-off.png" alt="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
+											<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 										</a>
 										<?php
 									}
@@ -231,7 +231,7 @@ printLogoAndLinks();
 
 								<td class="icons">
 									<a href="../../../index.php?p=news&amp;title=<?php echo $article->getTitlelink();?>" title="<?php echo gettext('View article'); ?>">
-									<img src="images/view.png" alt="<?php echo gettext('View article'); ?>" />
+									<img src="images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
 									</a>
 								</td>
 
@@ -240,11 +240,11 @@ printLogoAndLinks();
 									?>
 									<td class="icons">
 									<a href="?hitcounter=1&amp;id=<?php echo $article->getID();?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext('Reset hitcounter'); ?>">
-									<img src="../../images/reset.png" alt="<?php echo gettext('Reset hitcounter'); ?>" /></a>
+									<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
 								</td>
 								<td class="icons">
 									<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php echo $article->getTitlelink(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete')?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
-									<img src="../../images/fail.png" alt="<?php echo gettext('Delete article'); ?>" /></a>
+									<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 								</td>
 								<td class="icons">
 									<input type="checkbox" name="ids[]" value="<?php echo $article->getID(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
@@ -252,13 +252,13 @@ printLogoAndLinks();
 								</tr>
 								<?php } else { ?>
 								<td class="icons">
-									<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+									<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 								</td>
 								<td class="icons">
-									<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+									<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 								</td>
 								<td class="icons">
-									<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+									<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 								</td>
 									<?php
 								}

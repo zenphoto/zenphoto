@@ -1764,26 +1764,26 @@ function printAlbumButtons($album) {
 function printAlbumLedgend() {
 	?>
 	<ul class="iconlegend-l">
-		<li><img src="images/folder_picture.png" alt="Albums" /><?php echo gettext("Albums"); ?></li>
-		<li><img src="images/pictures.png" alt="Images" /><?php echo gettext("Images"); ?></li>
-		<li><img src="images/folder_picture_dn.png" alt="Albums (dynamic)" /><?php echo gettext("Albums (dynamic)"); ?></li>
-		<li><img src="images/pictures_dn.png" alt="Images (dynamic)" /><?php echo gettext("Images (dynamic)"); ?></li>
+		<li><img src="images/folder_picture.png" alt="" /><?php echo gettext("Albums"); ?></li>
+		<li><img src="images/pictures.png" alt="" /><?php echo gettext("Images"); ?></li>
+		<li><img src="images/folder_picture_dn.png" alt="" /><?php echo gettext("Albums (dynamic)"); ?></li>
+		<li><img src="images/pictures_dn.png" alt="I" /><?php echo gettext("Images (dynamic)"); ?></li>
 	</ul>
 	<ul class="iconlegend">
 		<?php
 		if (GALLERY_SECURITY != 'private') {
 			?>
-			<li><img src="images/lock.png" alt="Protected" /><?php echo gettext("Has Password"); ?></li>
+			<li><img src="images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
 			<?php
 		}
 		?>
-		<li><img src="images/pass.png" alt="Published" /><img src="images/action.png" alt="Unpublished" /><?php echo gettext("Published/Un-published"); ?></li>
+		<li><img src="images/pass.png" alt="Published" /><img src="images/action.png" alt="" /><?php echo gettext("Published/Un-published"); ?></li>
 		<li><img src="images/comments-on.png" alt="" /><img src="images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
-		<li><img src="images/view.png" alt="View the album" /><?php echo gettext("View the album"); ?></li>
-		<li><img src="images/cache.png" alt="Cache the album" /><?php echo gettext("Cache the album"); ?></li>
-		<li><img src="images/refresh1.png" alt="Refresh metadata" /><?php echo gettext("Refresh metadata"); ?></li>
-		<li><img src="images/reset.png" alt="Reset hitcounters" /><?php echo gettext("Reset hitcounters"); ?></li>
-		<li><img src="images/fail.png" alt="Delete" /><?php echo gettext("Delete"); ?></li>
+		<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
+		<li><img src="images/cache.png" alt="" /><?php echo gettext("Cache the album"); ?></li>
+		<li><img src="images/refresh1.png" alt="" /><?php echo gettext("Refresh metadata"); ?></li>
+		<li><img src="images/reset.png" alt="" /><?php echo gettext("Reset hitcounters"); ?></li>
+		<li><img src="images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
 	</ul>
 	<?php
 }
@@ -1803,7 +1803,7 @@ function printAlbumEditRow($album) {
 		$thumb = $thumbimage->getCustomImage(40,NULL,NULL,40,40,NULL,NULL,-1,NULL);
 		?>
 	<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
-		<img src="<?php echo html_encode($thumb); ?>" width="40" height="40" alt="album thumb" />
+		<img src="<?php echo html_encode($thumb); ?>" width="40" height="40" alt="" title="album thumb" />
 	</a>
 	</div>
 	<div class="page-list_albumtitle">
@@ -1811,11 +1811,11 @@ function printAlbumEditRow($album) {
 	</div>
 	<?php
 	if ($album->isDynamic()) {
-		$imgi = '<img src="images/pictures_dn.png" alt="'.gettext('images').'" />';
-		$imga = '<img src="images/folder_picture_dn.png" alt="'.gettext('albums').'" />';
+		$imgi = '<img src="images/pictures_dn.png" alt="" title="'.gettext('images').'" />';
+		$imga = '<img src="images/folder_picture_dn.png" alt="" title="'.gettext('albums').'" />';
 	} else {
-		$imgi = '<img src="images/pictures.png" alt="'.gettext('images').'" />';
-		$imga = '<img src="images/folder_picture.png" alt="'.gettext('albums').'" />';
+		$imgi = '<img src="images/pictures.png" alt="" title="'.gettext('images').'" />';
+		$imga = '<img src="images/folder_picture.png" alt="" title="'.gettext('albums').'" />';
 	}
 	$ci = count($album->getImages());
 	$si = sprintf('%1$s <span>(%2$u)</span>', $imgi,$ci);
@@ -1836,7 +1836,7 @@ function printAlbumEditRow($album) {
 	<?php
 	$pwd = $album->getPassword();
 	if (!empty($pwd) && (GALLERY_SECURITY != 'private')) {
-		echo '<a title="'.gettext('Password protected').'"><img src="images/lock.png" style="border: 0px;" alt="'.gettext('Password protected').'" /></a>';
+		echo '<a title="'.gettext('Password protected').'"><img src="images/lock.png" style="border: 0px;" alt="" title="'.gettext('Password protected').'" /></a>';
 	}
  ?>
 	</div>
@@ -1845,13 +1845,13 @@ function printAlbumEditRow($album) {
 	if ($album->getShow()) {
 		?>
 		<a href="?action=publish&amp;value=0&amp;album=<?php echo pathurlencode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>">
-		<img src="images/pass.png" style="border: 0px;" alt="<?php echo gettext('albumedit'); ?>" /></a>
+		<img src="images/pass.png" style="border: 0px;" alt="" title="<?php echo gettext('albumedit'); ?>" /></a>
 
 	 <?php
 	} else {
 		?>
 		<a href="?action=publish&amp;value=1&amp;album=<?php echo pathurlencode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
-		<img src="images/action.png" style="border: 0px;" alt="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>" /></a>
+		<img src="images/action.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>" /></a>
 	 <?php
 	}
 	?>
@@ -1861,13 +1861,13 @@ function printAlbumEditRow($album) {
 		if ($album->getCommentsAllowed()) {
 			?>
 			<a href="?commentson=1&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Disable comments'); ?>">
-				<img src="images/comments-on.png" alt="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
+				<img src="images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 			</a>
 			<?php
 		} else {
 			?>
 			<a href="?commentson=0&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Enable comments'); ?>">
-				<img src="images/comments-off.png" alt="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
+				<img src="images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 			</a>
 			<?php
 		}
@@ -1875,7 +1875,7 @@ function printAlbumEditRow($album) {
 	</div>
 	<div class="page-list_icon">
 		<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo pathurlencode($album->name); ?>" title="<?php echo gettext("View album"); ?>">
-			<img src="images/view.png" style="border: 0px;" alt="<?php echo sprintf(gettext('View album %s'), $album->name); ?>" />
+			<img src="images/view.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('View album %s'), $album->name); ?>" />
 		</a>
 	</div>
 	<?php
@@ -1885,12 +1885,12 @@ function printAlbumEditRow($album) {
 			<?php
 			if ($album->isDynamic()) {
 				?>
-				<img src="images/icon_inactive.png" style="border: 0px;" alt="<?php echo gettext('unavailable'); ?>" />
+				<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
 				<?php
 			} else {
 				?>
 				<a class="cache" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER; ?>/cache_images.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('cache_images')?>" title="<?php echo sprintf(gettext('Pre-cache images in %s'), $album->name); ?>">
-				<img src="images/cache1.png" style="border: 0px;" alt="<?php echo sprintf(gettext('Cache the album %s'), $album->name); ?>" /></a>
+				<img src="images/cache1.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Cache the album %s'), $album->name); ?>" /></a>
 				<?php
 				}
 			?>
@@ -1902,12 +1902,12 @@ function printAlbumEditRow($album) {
 		<?php
 		if ($album->isDynamic()) {
 			?>
-			<img src="images/icon_inactive.png" style="border: 0px;" alt="<?php echo gettext('unavailable'); ?>" />
+			<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
 			<?php
 		} else {
 			?>
 			<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh')?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
-			<img src="images/refresh1.png" style="border: 0px;" alt="<?php echo sprintf(gettext('Refresh metadata in the album %s'), $album->name); ?>" /></a>
+			<img src="images/refresh1.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Refresh metadata in the album %s'), $album->name); ?>" /></a>
 			<?php
 			}
 		?>
@@ -1916,19 +1916,19 @@ function printAlbumEditRow($album) {
 		<?php
 		if ($album->isDynamic()) {
 			?>
-			<img src="images/icon_inactive.png" style="border: 0px;" alt="<?php echo gettext('unavailable'); ?>" />
+			<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
 			<?php
 		} else {
 			?>
 			<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getAlbumID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hitcounters for album %s'), $album->name); ?>">
-			<img src="images/reset.png" style="border: 0px;" alt="<?php echo sprintf(gettext('Reset hitcounters for the album %s'), $album->name); ?>" /></a>
+			<img src="images/reset.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Reset hitcounters for the album %s'), $album->name); ?>" /></a>
 			<?php
 			}
 		?>
 	</div>
 	<div class="page-list_icon">
 		<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete')?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
-		<img src="images/fail.png" style="border: 0px;" alt="<?php echo sprintf(gettext('Delete the album %s'), js_encode($album->name)); ?>" /></a>
+		<img src="images/fail.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Delete the album %s'), js_encode($album->name)); ?>" /></a>
 	</div>
 	<div class="page-list_icon">
 		<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getFolder(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />

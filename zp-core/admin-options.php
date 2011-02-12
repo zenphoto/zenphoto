@@ -705,7 +705,9 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 									$('#r_'+id).attr('disabled', 'disabled');
 								}
 							}
-							$('ul.languagelist').scrollTo('li:eq(<?php echo ($ci-2); ?>)');
+							$(document).ready(function(){
+								$('ul.languagelist').scrollTo('li:eq(<?php echo ($ci-2); ?>)');
+							});
 						</script>
 						<br clear="all" />
 						<p class="notebox"><?php printf(gettext('Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href="%2$s">translation repository</a> for new and updated language translations.'),$zpversion,'http://www.zenphoto.org/trac/browser/trunk/zp-core/locale');?></p>

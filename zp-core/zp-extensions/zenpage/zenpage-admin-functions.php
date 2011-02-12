@@ -320,13 +320,13 @@ function printPagesListTable($page, $flag) {
 		if ($page->getCommentsAllowed()) {
 			?>
 			<a href="?commentson=1&amp;id=<?php echo $page->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Disable comments'); ?>">
-				<img src="../../images/comments-on.png" alt="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
+				<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 			</a>
 			<?php
 		} else {
 			?>
 			<a href="?commentson=0&amp;id=<?php echo $page->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Enable comments'); ?>">
-				<img src="../../images/comments-off.png" alt="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
+				<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 			</a>
 			<?php
 		}
@@ -334,40 +334,40 @@ function printPagesListTable($page, $flag) {
 	</div>
 	<?php } else { ?>
 	<div class="page-list_icon">
-		<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+		<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 	</div>
 	<div class="page-list_icon">
-		<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+		<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 	</div>
 	<?php } ?>
 
 		<div class="page-list_icon">
 			<a href="../../../index.php?p=pages&amp;title=<?php echo js_encode($page->getTitlelink()) ;?>" title="<?php echo gettext("View page"); ?>">
-			<img src="images/view.png" alt="view" />
+			<img src="images/view.png" alt="" title="view" />
 			</a>
 		</div>
 
 	<?php if(checkIfLockedPage($page)) { ?>
 	<div class="page-list_icon">
 		<a href="?hitcounter=1&amp;id=<?php echo $page->getID(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext("Reset hitcounter"); ?>">
-		<img src="../../images/reset.png" alt="<?php echo gettext("Reset hitcounter"); ?>" /></a>
+		<img src="../../images/reset.png" alt="" title="<?php echo gettext("Reset hitcounter"); ?>" /></a>
 	</div>
 	<div class="page-list_icon">
 		<a href="javascript:confirmDelete('admin-pages.php?delete=<?php echo $page->getTitlelink(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('delete')?>',deletePage)" title="<?php echo gettext("Delete page"); ?>">
-		<img src="../../images/fail.png" alt="delete" /></a>
+		<img src="../../images/fail.png" alt="" title="delete" /></a>
 	</div>
 	<div class="page-list_icon">
 		<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getID(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 	</div>
 	<?php } else { ?>
 	<div class="page-list_icon">
-		<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+		<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 	</div>
 	<div class="page-list_icon">
-		<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+		<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 	</div>
 	<div class="page-list_icon">
-		<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
+		<img src="../../images/icon_inactive.png" alt="" title="<?php gettext('locked'); ?>" />
 	</div>
 	<?php } ?>
 	</div><!--  icon wrapper end -->

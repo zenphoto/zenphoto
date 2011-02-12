@@ -66,7 +66,6 @@ if (!defined('WEBPATH')) die();
 								</div>
 								<?php
 								if (function_exists('printRating')) printRating();
-
 								if (function_exists('printCommentForm')) {
 									printCommentForm();
 								}
