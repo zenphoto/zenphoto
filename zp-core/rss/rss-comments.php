@@ -19,7 +19,7 @@ $items = getOption('feed_items'); // # of Items displayed on the feed
 <channel>
 <title><?php echo strip_tags(get_language_string(getOption('gallery_title'), $locale))." - ".gettext("latest comments").$title; ?></title>
 <link><?php echo $serverprotocol."://".$host.WEBPATH; ?></link>
-<atom:link href="<?php echo $serverprotocol; ?>://<?php echo html_encode($_SERVER["HTTP_HOST"]); ?><?php echo html_encode($_SERVER["REQUEST_URI"]); ?>" rel="self" type="application/rss+xml" />
+<atom:link href="<?php echo $serverprotocol; ?>://<?php echo html_encode($_SERVER["HTTP_HOST"]); ?><?php echo html_encode($_SERVER["REQUEST_URI"]); ?>" rel="self"	type="application/rss+xml" />
 <description><?php echo strip_tags(get_language_string(getOption('Gallery_description'), $locale)); ?></description>
 <language><?php echo $validlocale; ?></language>
 <pubDate><?php echo date("r", time()); ?></pubDate>
@@ -72,17 +72,17 @@ foreach ($comments as $comment) {
 			$title = get_language_string($comment['title']);
 			$imagetag = $imagepath.$comment['filename'].$modrewritesuffix;
 		case 'albums':
+			$title = get_language_string($comment['title']);
 			$album = pathurlencode($comment['folder']);
 			$date = $comment['date'];
 			$category = $comment['albumtitle'];
 			$website = $comment['website'];
-			if(empty($category)) {
+			if($comment['type'] == 'albums') {
 				$title = $category;
 			} else {
 				$title = $category.": ".$title;
 			}
 			$commentpath = $serverprotocol.'://'.$host.WEBPATH.$albumpath.$album.$imagetag."#".$comment['id'];
-
 			break;
 		case 'news':
 		case 'pages':
@@ -105,10 +105,9 @@ foreach ($comments as $comment) {
 	}
 ?>
 <item>
-<title><?php echo html_encode(strip_tags($category.$title.$author)); ?></title>
+<title><?php echo html_encode(strip_tags($title.$author)); ?></title>
 <link><?php echo '<![CDATA['.html_encode($commentpath).']]>';?></link>
 <description><?php echo html_encode($comment['comment']); ?></description>
-<category><?php echo html_encode(strip_tags($category)); ?></category>
 <guid><?php echo '<![CDATA['.html_encode($commentpath).']]>';?></guid>
 <pubDate><?php echo date("r",strtotime($date)); ?></pubDate>
 </item>
