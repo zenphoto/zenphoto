@@ -375,7 +375,7 @@ function federated_login_buttons() {
 		}
 		?>
 		<li>
-			<span class="buttons">
+			<span class="fed_buttons">
 				<a href="javascript:launchScript('<?php echo $script; ?>',['<?php echo $params; ?>']);" title="<?php echo $authority; ?>" >
 					<?php
 					$logo = str_replace(WEBPATH, '', dirname($script)).'/'.$authority.'.png';
