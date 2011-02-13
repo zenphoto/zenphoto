@@ -27,19 +27,27 @@ function run() {
 	if (!$auth_request) {
 		displayError(gettext("Authentication error; not a valid OpenID."));
 	}
-
-	$sreg_request = Auth_OpenID_SRegRequest::build(array('fullname', 'email'),array('nickname'));
-
-	if ($sreg_request) {
-		$auth_request->addExtension($sreg_request);
-	}
+	$sreg_attribute = array();
 	// Create an authentication request to the OpenID provider$auth = $consumer->begin($oid_identifier);
 	// Create attribute request object// See http://code.google.com/apis/accounts/docs/OpenID.html#Parameters for parameters
 	// Usage: make($type_uri, $count=1, $required=false, $alias=null)
 	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/contact/email',2,1, 'email');
-	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson',1,1, 'tname');
+	$sreg_attribute[] = 'email';
+
+	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson',1,1, 'name');
+	$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/first',1,1,'firstname');
+	$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/middle',1,1,'middlename');
+	$ax_attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/last',1,1,'lastname');
+	$sreg_attribute[] = 'fullname';
+
 	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/friendly',1,1, 'nicknamename');
+	$sreg_attribute[] = 'nickname';
+
 	// Create AX fetch request
+	$sreg_request = Auth_OpenID_SRegRequest::build($sreg_attribute);
+	if ($sreg_request) {
+		$auth_request->addExtension($sreg_request);
+	}
 	$ax = new Auth_OpenID_AX_FetchRequest;
 	// Add attributes to AX fetch request
 	foreach($attribute as $attr){

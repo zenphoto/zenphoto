@@ -58,13 +58,25 @@ if ($plugin_disable) {
 	setOption('zp_plugin_federated_login',0);
 } else {
 	$option_interface = 'federated_login_options';
+	zp_register_filter('theme_head', 'federated_logon_buttons');
 	zp_register_filter('alt_login_handler','federated_login_alt_login_handler');
 	zp_register_filter('save_admin_custom_data', 'federated_login_save_custom');
 	zp_register_filter('edit_admin_custom_data', 'federated_login_edit_admin',0);
 	zp_register_filter('theme_head', 'federated_login_verify');
 }
 
-
+function federated_logon_buttons() {
+	global $_zp_gallery;
+	if (OFFSET_PATH) {
+		$inTheme = false;
+	} else {
+		$inTheme = $_zp_gallery->getCurrentTheme();
+	}
+	$css = getPlugin('federated_logon/buttons.css',$inTheme,true);
+	?>
+	<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
+	<?php
+}
 
 /**
  * Option class
@@ -168,8 +180,12 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 	global $_zp_authority;
 	$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 	$more = false;
-	if ($userobj) {	//	update emai & nane if changed
+	if ($userobj) {	//	update if changed
 		$save = false;
+		if ($user != $userobj->getCredentials()) {
+			$save = true;
+			$userobj->setCredentials($user);
+		}
 		if ($email != $userobj->getEmail()) {
 			$save = true;
 			$userobj->setEmail($email);
@@ -342,6 +358,47 @@ function federated_login_verify() {
 			$success = logonFederatedCredentials($params['user'], $params['user'], NULL, $redirect);
 		}
 	}
+}
+
+function federated_login_buttons() {
+	$alt_handlers = federated_login_alt_login_handler('');
+	?>
+	<ul class="logon_buttons">
+	<?php
+	foreach ($alt_handlers as $handler=>$details) {
+		$script = $details['script'];
+		$authority = str_replace('_logon', '', stripSuffix(basename($script)));
+		If (count($details['params'])) {
+			$params = "'".implode("','", $details['params'])."'";
+		} else {
+			$params = '';
+		}
+		?>
+		<li>
+			<span class="buttons">
+				<a href="javascript:launchScript('<?php echo $script; ?>',['<?php echo $params; ?>']);" title="<?php echo $authority; ?>" >
+					<?php
+					$logo = str_replace(WEBPATH, '', dirname($script)).'/'.$authority.'.png';
+					if (substr($logo, 0, 1) == '/') {
+						$logo = substr($logo, 1);
+					}
+					if (file_exists(SERVERPATH.'/'.$logo)) {
+						?>
+						<img src="<?php echo WEBPATH.'/'.$logo; ?>" alt="<?php echo $authority; ?>" title="<?php printf(gettext('Login using %s'),$authority); ?>" />
+						<?php
+					} else {
+						echo $authority;
+					}
+					?>
+				</a>
+			</span>
+		</li>
+		<?php
+	}
+	?>
+	</ul>
+	<?php
+
 }
 
 

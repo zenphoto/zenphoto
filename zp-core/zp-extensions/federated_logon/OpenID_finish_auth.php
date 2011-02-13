@@ -59,13 +59,31 @@ function run() {
 		if ($ax_resp) {
 			$arr_ax_resp = get_object_vars($ax_resp);
 			$arr_ax_data = $arr_ax_resp['data'];
-			if(empty($email) && isset($arr_ax_data["http://axschema.org/contact/email"]) and count($arr_ax_data["http://axschema.org/contact/email"])>0) {
+			if(empty($email) && isset($arr_ax_data["http://axschema.org/contact/email"]) && count($arr_ax_data["http://axschema.org/contact/email"])>0) {
 				$email = $arr_ax_data["http://axschema.org/contact/email"][0];
 			}
-			if(empty($name) && isset($arr_ax_data["http://axschema.org/namePerson"]) and count($arr_ax_data["http://axschema.org/namePerson"])>0) {
+			if(empty($name) && isset($arr_ax_data["http://axschema.org/namePerson"]) && count($arr_ax_data["http://axschema.org/namePerson"])>0) {
 				$name = $arr_ax_data["http://axschema.org/namePerson"][0];
 			}
-			if(empty($name) && isset($arr_ax_data["http://axschema.org/namePerson/friendly"]) and count($arr_ax_data["http://axschema.org/namePerson/friendly"])>0) {
+			if (empty($name)) {
+				$name_first = '';
+				$name_middle = '';
+				$name_last = '';
+				if(isset($arr_ax_data["http://axschema.org/namePerson/first"]) && count($arr_ax_data["http://axschema.org/namePerson/first"])>0) {
+					$name_first = $arr_ax_data["http://axschema.org/namePerson/first"][0];
+				}
+				if(isset($arr_ax_data["http://axschema.org/namePerson/middle"]) && count($arr_ax_data["http://axschema.org/namePerson/middle"])>0) {
+					$name_middle = $arr_ax_data["http://axschema.org/namePerson/middle"][0];
+				}
+				if(isset($arr_ax_data["http://axschema.org/namePerson/last"]) && count($arr_ax_data["http://axschema.org/namePerson/last"])>0) {
+					$name_last = $arr_ax_data["http://axschema.org/namePerson/last"][0];
+				}
+				$fullname = trim(trim(trim($name_first).' '.$name_middle).' '.$name_last);
+				if (!empty($fullname)) {
+					$name = $fullname;
+				}
+			}
+			if(empty($name) && isset($arr_ax_data["http://axschema.org/namePerson/friendly"]) && count($arr_ax_data["http://axschema.org/namePerson/friendly"])>0) {
 				$name = $arr_ax_data["http://axschema.org/namePerson/friendly"][0];
 			}
 		}

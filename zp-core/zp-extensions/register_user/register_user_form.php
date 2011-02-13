@@ -73,46 +73,13 @@
 		</table>
 		<input type="submit" value="<?php echo gettext('Submit') ?>" />
 		<?php
-		if (function_exists('federated_login_alt_login_handler')) {
-			$alt_handlers = federated_login_alt_login_handler('');
-			if (!empty($alt_handlers)) {
-				?>
-				<script type="text/javascript">
-					<!--
-					var handlers = [];
-					<?php
-					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">';
-					$list .= '<option></option>';
-					$c = 0;
-					foreach ($alt_handlers as $handler=>$details) {
-						$c++;
-						if (!empty($requestor)) {
-							$details['params'][] = 'requestor='.$requestor;
-						}
-						echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
-
-						$list .= '<option value="'.$c.'">'.$handler.'</option>';
-					}
-					$list .= '</select>';
-					?>
-					function changeHandler(handler) {
-						handler.push('user='+$('#adminuser').val());
-						var script = handler.shift();
-						launchScript(script,handler);
-					}
-					-->
-				</script>
-				<p>
-				<?php
-				echo gettext('You may also register using federated credentials.');
-				?>
-				<br />
-				<?php
-				printf(gettext('Select a provider %s'),$list);
-				?>
-				</p>
-				<?php
-			}
+		if (function_exists('federated_login_buttons')) {
+			?>
+			<fieldset>
+				<legend><?php echo gettext('You may also register using federated credentials.'); ?></legend>
+				<?php federated_login_buttons(); ?>
+			</fieldset>
+			<?php
 		}
 		?>
 	</form>
