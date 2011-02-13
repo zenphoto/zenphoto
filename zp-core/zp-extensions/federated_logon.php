@@ -65,6 +65,9 @@ if ($plugin_disable) {
 	zp_register_filter('theme_head', 'federated_login_verify');
 }
 
+/**
+ * Load the CSS for the logon buttons
+ */
 function federated_logon_buttons() {
 	global $_zp_gallery;
 	if (OFFSET_PATH) {
@@ -331,6 +334,9 @@ function federated_login_edit_admin($html, $userobj, $i, $background, $current, 
 	return $html;
 }
 
+/**
+ * Processes the verification POST tickets
+ */
 function federated_login_verify() {
 	global $_zp_authority;
 	//process any verifications posted
@@ -360,6 +366,16 @@ function federated_login_verify() {
 	}
 }
 
+/**
+ * Creates a list of logon buttons for federated logon handlers.
+ * Note that it will use an image if one exists. The name of the image
+ * should be cononical to the name of the logon handler, but without the "_logon'.
+ * The image must be a PNG file.
+ *
+ * The styling of the buttons is done by the "buttons.css". If you do not like the
+ * one provided place an alternate version in your theme folder or the plugins/federated_logon
+ * folder.
+ */
 function federated_login_buttons() {
 	$alt_handlers = federated_login_alt_login_handler('');
 	?>
@@ -398,7 +414,6 @@ function federated_login_buttons() {
 	?>
 	</ul>
 	<?php
-
 }
 
 

@@ -75,7 +75,7 @@
 		<?php
 		if (function_exists('federated_login_buttons')) {
 			?>
-			<fieldset>
+			<fieldset id="Federated_buttons_fieldlist">
 				<legend><?php echo gettext('You may also register using federated credentials.'); ?></legend>
 				<?php federated_login_buttons(); ?>
 			</fieldset>
