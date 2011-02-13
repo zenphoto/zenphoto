@@ -1,6 +1,7 @@
 <?php
 
 require_once("OpenID_common.php");
+require_once(dirname(__FILE__).'/Auth/OpenID/AX.php');
 session_start();
 
 function getOpenIDURL() {
@@ -32,6 +33,20 @@ function run() {
 	if ($sreg_request) {
 		$auth_request->addExtension($sreg_request);
 	}
+	// Create an authentication request to the OpenID provider$auth = $consumer->begin($oid_identifier);
+	// Create attribute request object// See http://code.google.com/apis/accounts/docs/OpenID.html#Parameters for parameters
+	// Usage: make($type_uri, $count=1, $required=false, $alias=null)
+	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/contact/email',2,1, 'email');
+	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson',1,1, 'tname');
+	$attribute[] = Auth_OpenID_AX_AttrInfo::make('http://axschema.org/namePerson/friendly',1,1, 'nicknamename');
+	// Create AX fetch request
+	$ax = new Auth_OpenID_AX_FetchRequest;
+	// Add attributes to AX fetch request
+	foreach($attribute as $attr){
+		$ax->add($attr);
+	}
+	// Add AX fetch request to authentication request
+	$auth_request->addExtension($ax);
 
 	// Redirect the user to the OpenID server for authentication.
 	// Store the token for this authentication so we can verify the

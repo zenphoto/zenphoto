@@ -652,12 +652,12 @@ function languageChange(id,lang) {
 				?>
 				<p>
 					<label for="<?php echo $id ?>-admin_name"><?php echo gettext("Full name:"); ?><br />
-					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-admin_name"
+					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
 					value="<?php echo html_encode($userobj->getName()); ?>" /></label>
 				</p>
 				<p>
 					<label for="<?php echo $id ?>-admin_email"><?php echo gettext("Email:"); ?><br />
-					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-admin_email"
+					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
 						value="<?php echo html_encode($userobj->getEmail()); ?>" /></label>
 				</p>
 				<?php

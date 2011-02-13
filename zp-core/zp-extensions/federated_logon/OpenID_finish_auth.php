@@ -1,6 +1,7 @@
 <?php
 
 require_once('OpenID_common.php');
+require_once(dirname(__FILE__).'/Auth/OpenID/AX.php');
 if (!defined('OFFSET_PATH')) define('OFFSET_PATH',4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-functions.php');
 session_start();
@@ -47,13 +48,25 @@ function run() {
 			if (@$sreg['email']) {
 				$email = trim($sreg['email']);
 			}
-
 			if (@$sreg['nickname']) {
 				$name = $sreg['nickname'];
 			}
-
 			if (@$sreg['fullname']) {
 				$name = $sreg['fullname'];
+			}
+		}
+		$ax_resp = Auth_OpenID_AX_FetchResponse::fromSuccessResponse($response);
+		if ($ax_resp) {
+			$arr_ax_resp = get_object_vars($ax_resp);
+			$arr_ax_data = $arr_ax_resp['data'];
+			if(empty($email) && isset($arr_ax_data["http://axschema.org/contact/email"]) and count($arr_ax_data["http://axschema.org/contact/email"])>0) {
+				$email = $arr_ax_data["http://axschema.org/contact/email"][0];
+			}
+			if(empty($name) && isset($arr_ax_data["http://axschema.org/namePerson"]) and count($arr_ax_data["http://axschema.org/namePerson"])>0) {
+				$name = $arr_ax_data["http://axschema.org/namePerson"][0];
+			}
+			if(empty($name) && isset($arr_ax_data["http://axschema.org/namePerson/friendly"]) and count($arr_ax_data["http://axschema.org/namePerson/friendly"])>0) {
+				$name = $arr_ax_data["http://axschema.org/namePerson/friendly"][0];
 			}
 		}
 

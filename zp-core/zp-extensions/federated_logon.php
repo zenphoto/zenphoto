@@ -179,6 +179,7 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 			$userobj = $_zp_authority->newAdministrator('');
 			$userobj->transient = false;
 			$userobj->setUser($user);
+			$userobj->setCredentials($user);
 			$userobj->setName($name);
 			$userobj->setPass($user.gmdate('d M Y H:i:s').getOption('password_pattern'));
 			$userobj->setObjects(NULL);
@@ -237,10 +238,6 @@ function federated_login_save_custom($updated, $userobj, $i, $alter) {
 		$link = FULLWEBPATH.'/index.php?verify_federated_user='.$key;
 		$message = sprintf(gettext('To validate your federated logon credentials visit %s.'), $link);
 		zp_mail(get_language_string(gettext('Federated user confirmation')), $message, array($user=>$admin_e));
-
-
-debugLog($link);
-
 	}
 	return $updated;
 }
@@ -256,18 +253,40 @@ debugLog($link);
  */
 function federated_login_edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {
 	global $_zp_current_admin_obj;
-	if (($userobj->getGroup() == 'federated_verify') && ($userobj->getID() == $_zp_current_admin_obj->getID()))  {
-		$email = $userobj->getEmail();
-		if (empty($email)) {
-			$msg = gettext('<strong>NOTE:</strong> Update your profile with a valid <em>e-mail</em> address and you will be sent a link to validate your access to the site.');
+	$federated = $userobj->getCredentials() == $userobj->getUser();	//	came from federated logon, disable the e-mail field
+	if ($userobj->getID() == $_zp_current_admin_obj->getID()) {	//	The current logged on user
+		if (($userobj->getGroup() == 'federated_verify'))  {	//	pending email address verification
+			$email = $userobj->getEmail();
+			if (empty($email)) {
+				$msg = gettext('<strong>NOTE:</strong> Update your profile with a valid <em>e-mail</em> address and you will be sent a link to validate your access to the site.');
+				$myhtml =
+					'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
+						<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" colspan="3">'."\n".
+							'<p class="notebox">'.$msg.'</p>'."\n".
+						'</td>
+					</tr>'."\n";
+				$html = $myhtml.$html;
+			}
+		} else if ($federated) {
 			$myhtml =
-				'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-					<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" colspan="3">'."\n".
-						'<p class="notebox">'.$msg.'</p>'."\n".
-					'</td>
-				</tr>'."\n";
-			$html = $myhtml.$html;
+				'<script language="javascript" type="text/javascript">
+					// <!-- <![CDATA[
+					$(document).ready(function(){
+						$("#admin_email-0").attr(\'disabled\', \'disabled\');
+					});
+					// ]]> -->
+				</script>';
+			$html = $html.$myhtml;
 		}
+	} else if ($federated) {
+		$msg = gettext("<strong>NOTE:</strong> User's credentials came from a Federated logon.");
+		$myhtml =
+			'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
+				<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" colspan="3">'."\n".
+					'<p class="notebox">'.$msg.'</p>'."\n".
+				'</td>
+			</tr>'."\n";
+		$html = $myhtml.$html;
 	}
 	return $html;
 }
