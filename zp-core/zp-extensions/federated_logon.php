@@ -168,7 +168,20 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 	global $_zp_authority;
 	$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 	$more = false;
-	if (!$userobj) {	//	User does not exist, create him
+	if ($userobj) {	//	update emai & nane if changed
+		$save = false;
+		if ($email != $userobj->getEmail()) {
+			$save = true;
+			$userobj->setEmail($email);
+		}
+		if ($name != $userobj->getName()) {
+			$save = true;
+			$userobj->setName($name);
+		}
+		if ($save) {
+			$userobj->save();
+		}
+	} else {	//	User does not exist, create him
 		$groupname = getOption('federated_login_group');
 		$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
 		if ($groupobj) {
