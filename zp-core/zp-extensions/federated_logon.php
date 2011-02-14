@@ -58,7 +58,7 @@ if ($plugin_disable) {
 	setOption('zp_plugin_federated_login',0);
 } else {
 	$option_interface = 'federated_login_options';
-	zp_register_filter('theme_head', 'federated_logon_buttons');
+	zp_register_filter('theme_head', 'federated_logon_css');
 	zp_register_filter('alt_login_handler','federated_login_alt_login_handler');
 	zp_register_filter('save_admin_custom_data', 'federated_login_save_custom');
 	zp_register_filter('edit_admin_custom_data', 'federated_login_edit_admin',0);
@@ -68,7 +68,7 @@ if ($plugin_disable) {
 /**
  * Load the CSS for the logon buttons
  */
-function federated_logon_buttons() {
+function federated_logon_css() {
 	global $_zp_gallery;
 	if (OFFSET_PATH) {
 		$inTheme = false;
@@ -376,7 +376,7 @@ function federated_login_verify() {
  * one provided place an alternate version in your theme folder or the plugins/federated_logon
  * folder.
  */
-function federated_login_buttons() {
+function federated_login_buttons($redirect = NULL) {
 	$alt_handlers = federated_login_alt_login_handler('');
 	?>
 	<ul class="logon_buttons">
@@ -384,6 +384,13 @@ function federated_login_buttons() {
 	foreach ($alt_handlers as $handler=>$details) {
 		$script = $details['script'];
 		$authority = str_replace('_logon', '', stripSuffix(basename($script)));
+		if (is_null($redirect)) {
+			$details['params'][] = 'redirect=/' . ZENFOLDER . '/admin.php';
+		} else {
+			if (!empty($redirect)) {
+				$details['params'][] = 'redirect=' . $redirect;
+			}
+		}
 		If (count($details['params'])) {
 			$params = "'".implode("','", $details['params'])."'";
 		} else {
@@ -392,7 +399,7 @@ function federated_login_buttons() {
 		?>
 		<li>
 			<span class="fed_buttons">
-				<a href="javascript:launchScript('<?php echo $script; ?>',['<?php echo $params; ?>']);" title="<?php echo $authority; ?>" >
+				<a href="javascript:launchScript('<?php echo $script; ?>',[<?php echo $params; ?>]);" title="<?php echo $authority; ?>" >
 					<?php
 					$logo = str_replace(WEBPATH, '', dirname($script)).'/'.$authority.'.png';
 					if (substr($logo, 0, 1) == '/') {

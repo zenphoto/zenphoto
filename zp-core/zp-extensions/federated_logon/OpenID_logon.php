@@ -13,7 +13,7 @@ require_once(dirname(dirname(dirname(__FILE__))).'/admin-functions.php');
 if (isset($_GET['redirect'])) {
 	$redirect = sanitize($_GET['redirect']);
 } else {
-	$redirect = '';
+	$redirect = '/' . ZENFOLDER . '/admin.php';
 }
 zp_setCookie('OpenID_redirect', $redirect, 60);
 zp_setCookie('federated_logon_cleaner_pattern', '',  -380000);

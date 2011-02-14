@@ -747,6 +747,8 @@ zp-core/zp-extensions/federated_logon/Auth/Yadis/XRIRes.php
 zp-core/zp-extensions/federated_logon/Auth/Yadis/Yadis.php
 zp-core/zp-extensions/federated_logon/Google.png
 zp-core/zp-extensions/federated_logon/Google_logon.php
+zp-core/zp-extensions/federated_logon/MyOpenID.png
+zp-core/zp-extensions/federated_logon/MyOpenID_logon.php
 zp-core/zp-extensions/federated_logon/OpenID.png
 zp-core/zp-extensions/federated_logon/OpenID_common.php
 zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php
@@ -1776,4 +1778,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1778
+1780

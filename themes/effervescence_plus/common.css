@@ -239,7 +239,6 @@ label:hover {
 	padding: 4px;
 }
 
-#Federated_buttons_fieldlist {
-	color:#464646;
-		
+#Federated_buttons_fieldlist #Federated_buttons_fieldlist fieldlist {
+	color:white;
 }
