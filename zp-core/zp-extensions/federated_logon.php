@@ -99,6 +99,10 @@ class federated_login_options {
 		} else {
 			setOptionDefault('register_user_notify', 1);
 		}
+		$files = getPluginFiles('*_logon.php','federated_logon');
+		foreach ($files as $key=>$link) {
+			setOptionDefault('federated_logon_handler'.$key,1);
+		}
 	}
 
 	/**
@@ -118,15 +122,25 @@ class federated_login_options {
 		} else {
 			$disable = false;
 		}
+		$files = getPluginFiles('*_logon.php','federated_logon');
+		foreach ($files as $key=>$link) {
+			$list[str_replace('_logon', '', $key)] = 'federated_logon_handler'.$key;
+		}
 		$options = array(	gettext('Assign user to') => array('key' => 'federated_login_group', 'type' => OPTION_TYPE_SELECTOR,
-												'order' => 1,
+												'order' => 0,
 												'selections' => $ordered,
 												'desc' => gettext('The user group to which to map the federated login.')),
+											gettext('Handlers') => array('key'=>'federated_logon_handler', 'type'=> OPTION_TYPE_CHECKBOX_ARRAY,
+												'checkboxes'=>$list,
+												'order' => 1,
+												'desc'=> gettext('Un-check any handler you do want to support.')),
 											sprintf(gettext('Notify%s'),($disable)?'*':'') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
 												'disabled' => $disable,
-												'order' => 4,
+												'order' => 7,
 												'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.'))
 		);
+		$files = getPluginFiles('*_logon.php','federated_logon');
+
 		if ($disable) {
 			$options['<p class="notebox">'.$disable.'</p>'] = array('key' => 'federated_logon_truncate_note', 'type' => OPTION_TYPE_CUSTOM,
 																															'order' => 8,
@@ -159,10 +173,12 @@ class federated_login_options {
  */
 function federated_login_alt_login_handler($handler_list) {
 	$files = getPluginFiles('*_logon.php','federated_logon');
-	foreach ($files as $link) {
-		$link = str_replace(SERVERPATH, WEBPATH, str_replace('\\', '/', $link));
-		$name = str_replace('_', ' ', substr(basename($link), 0, -10));
-		$handler_list[$name] = array('script'=>$link, 'params'=>array());
+	foreach ($files as $key=>$link) {
+		if (getOption('federated_logon_handler'.$key)) {
+			$link = str_replace(SERVERPATH, WEBPATH, str_replace('\\', '/', $link));
+			$name = str_replace('_', ' ', substr(basename($link), 0, -10));
+			$handler_list[$name] = array('script'=>$link, 'params'=>array());
+		}
 	}
 	return $handler_list;
 }
@@ -211,7 +227,9 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 			$userobj = $_zp_authority->newAdministrator('');
 			$userobj->transient = false;
 			$userobj->setUser($user);
-			$userobj->setCredentials($user);
+			$credentials = array('federated','user','email');
+			if ($name) $credentials[] = 'name';
+			$userobj->setCredentials(serialize($credentials));
 			$userobj->setName($name);
 			$userobj->setPass($user.gmdate('d M Y H:i:s').getOption('password_pattern'));
 			$userobj->setObjects(NULL);
@@ -285,7 +303,13 @@ function federated_login_save_custom($updated, $userobj, $i, $alter) {
  */
 function federated_login_edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {
 	global $_zp_current_admin_obj;
-	$federated = $userobj->getCredentials() == $userobj->getUser();	//	came from federated logon, disable the e-mail field
+	$federated = $userobj->getCredentials();	//	came from federated logon, disable the e-mail field
+	if ($federated) {
+		$federated = unserialize($federated);
+		if (!in_array('federated', $federated)) {
+			$federated = false;
+		}
+	}
 	if ($userobj->getID() == $_zp_current_admin_obj->getID()) {	//	The current logged on user
 		if (($userobj->getGroup() == 'federated_verify'))  {	//	pending email address verification
 			$email = $userobj->getEmail();
@@ -302,7 +326,7 @@ function federated_login_edit_admin($html, $userobj, $i, $background, $current, 
 		} else if ($federated) {
 			$disable = '$("#admin_email-0").attr(\'disabled\', \'disabled\');'."\n";
 			$name = $userobj->getName();
-			if (empty($name)) {
+			if (empty($name) || !in_array('name', $federated)) {
 				$namehidden = '';
 			} else {
 				$disable .= '$("#admin_name-0").attr(\'disabled\', \'disabled\');'."\n";

@@ -1637,7 +1637,7 @@ if (file_exists(CONFIGFILE)) {
 		`custom_data` text,
 		`rating` float,
 		`rating_status` int(1) DEFAULT 3,
-		`hasMedadata` int(1) DEFAULT 0,
+		`hasMetadata` int(1) DEFAULT 0,
 		`watermark` varchar(255) DEFAULT NULL,
 		`watermark_use` int(1) DEFAULT 7,
 		`owner` varchar(56) DEFAULT NULL,

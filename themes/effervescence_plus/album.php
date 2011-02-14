@@ -36,7 +36,7 @@ if ((($personality = getOption('Theme_personality'))!="Simpleviewer") || !MOD_RE
 }
 
 if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
-	$themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
+	$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 	if ($_noFlash) {
 		$backgroundColor = "#0";  // who cares, we won't use it
 	} else {

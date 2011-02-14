@@ -19,7 +19,7 @@ class ThemeOptions {
 		setThemeOptionDefault('Graphic_logo', '*');
 		setThemeOptionDefault('Watermark_head_image', true);
 		setThemeOptionDefault('Theme_personality', 'Image page');
-		setThemeOptionDefault('Theme_colors', 'effervescence');
+		setThemeOptionDefault('Theme_colors', 'kish-my father');
 		setThemeOptionDefault('effervescence_menu', '');
 		setThemeOptionDefault('albums_per_row', 3);
 		setThemeOptionDefault('images_per_row', 4);
