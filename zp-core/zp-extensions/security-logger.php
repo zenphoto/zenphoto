@@ -77,7 +77,9 @@ class security_logger {
 function security_logger_loginLogger($success, $user, $name, $ip, $action, $authority, $addl=NULL) {
 	global $_zp_authority;
 	$admin = $_zp_authority->getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
-	$locale = $admin->getLanguage();
+	if ($admin) {
+		$locale = $admin->getLanguage();
+	}
 	if (empty($locale)) {
 		$locale = 'en_US';
 	}
