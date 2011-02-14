@@ -394,12 +394,10 @@ class SearchEngine
 							if ($j < strlen($searchstring)) {
 								$c3 = substr($searchstring,$j,1);
 								if (array_key_exists($c3,$opChars) && $opChars[$c3] == 1) {
-									$nextop = true;
+									$nextop = $c3 != '!';
 								} else if (substr($searchstring.' ', $j, 4)=='AND ') {
 									$nextop = true;
 								} else if (substr($searchstring.' ', $j, 3)=='OR ') {
-									$nextop = true;
-								} else if (substr($searchstring.' ', $j, 4)=='NOT ') {
 									$nextop = true;
 								} else {
 									$nextop = false;
