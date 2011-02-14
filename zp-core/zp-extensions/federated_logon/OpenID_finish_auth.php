@@ -87,18 +87,21 @@ function run() {
 				$name = $arr_ax_data["http://axschema.org/namePerson/friendly"][0];
 			}
 		}
-
 		$userid = trim(str_replace(array('http://','https://'), '', $openid), '/');	//	always remove the protocol
-		$pattern = zp_getCookie('OpenID_cleaner_pattern');
+		$pattern = @$_SESSION['OpenID_cleaner_pattern'];
 		if ($pattern) {
 			if(preg_match($pattern, $userid, $matches)) {
 				$userid = $matches[1];
 			}
 		}
-		if (strlen($userid) > 64) {
+		$provider = @$_SESSION['provider'];
+		if (strlen($userid)+strlen($provider) > 63) {
 			$userid = sha1($userid);
 		}
-		$redirect = zp_getCookie('OpenID_redirect');
+		if ($provider) {
+			$userid = $provider.':'.$userid;
+		}
+		$redirect = @$_SESSION['OpenID_redirect'];
 		$success .= logonFederatedCredentials($userid, $email, $name, $redirect);
 
 		}

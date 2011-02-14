@@ -2,7 +2,7 @@
 
 require_once("OpenID_common.php");
 require_once(dirname(__FILE__).'/Auth/OpenID/AX.php');
-session_start();
+if (session_id() == '') session_start();
 
 function getOpenIDURL() {
 	// Render a default page if we got a submission without an openid

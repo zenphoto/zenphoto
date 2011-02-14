@@ -10,16 +10,16 @@
  */
 
 require_once("OpenID_common.php");
-if (!defined('OFFSET_PATH')) define('OFFSET_PATH',4);
-require_once(dirname(dirname(dirname(__FILE__))).'/admin-functions.php');
+session_start();
 
 if (isset($_GET['redirect'])) {
 	$redirect = sanitize($_GET['redirect']);
 } else {
 	$redirect = '';
 }
-zp_setCookie('OpenID_redirect', $redirect, 60);
-zp_setCookie('OpenID_cleaner_pattern', '/^.*?id=(.*)/',  60);
+$_SESSION['OpenID_redirect'] = $redirect;
+$_SESSION['OpenID_cleaner_pattern'] = '/^.*?id=(.*)/';
+$_SESSION['provider'] = 'Google';
 $_GET['openid_identifier'] = 'https://www.google.com/accounts/o8/id';
 $_GET['action'] = 'verify';
 

@@ -6,17 +6,18 @@
  * @package plugins
  * @subpackage usermanagement
  */
+
 require_once('OpenID_common.php');
-if (!defined('OFFSET_PATH')) define('OFFSET_PATH',4);
-require_once(dirname(dirname(dirname(__FILE__))).'/admin-functions.php');
+session_start();
 
 if (isset($_GET['redirect'])) {
 	$redirect = sanitize($_GET['redirect']);
 } else {
 	$redirect = '/' . ZENFOLDER . '/admin.php';
 }
-zp_setCookie('OpenID_redirect', $redirect, 60);
-zp_setCookie('federated_logon_cleaner_pattern', '',  -380000);
+$_SESSION['OpenID_redirect'] = $redirect;
+$_SESSION['OpenID_cleaner_pattern'] = '';
+$_SESSION['provider'] = '';
 if (isset($_GET['user']) && $_GET['user']) {
 	$_GET['openid_identifier'] = $_GET['user'];
 	$_GET['action'] = 'verify';
