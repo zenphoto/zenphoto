@@ -279,23 +279,11 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
  									<div class="image">
 	 									<div class="imagethumb">
 		 									<?php
-											$exif = $_zp_current_image->getMetaData();
-											if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
-												$lat = $exif['EXIFGPSLatitude'];
-												$long = $exif['EXIFGPSLongitude'];
-												if($exif['EXIFGPSLatitudeRef'] == 'S') {
-													$lat = '-' . $lat;
-												}
-												if($exif['EXIFGPSLongitudeRef'] == 'W') {
-													$long = '-' . $long;
-												}
-												$desc = $_zp_current_image->getDesc();
-												$title = $_zp_current_image->getTitle();
-												if (empty($desc)) {
-													$desc = $title;
-												}
-												$points[] = array($lat, $long, $title, '<p align=center >' . $desc."</p>");
-											}
+		 									$coord = getGeoCoord($_zp_current_image);
+		 									if ($coord) {
+		 										$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+		 										$points[] = $coord;
+		 									}
 		 									$annotate = annotateImage();
 		 									if ($personality == 'Slimbox') {
 		 										echo "<a href=\"".html_encode(getCustomImageURL(550, null))."\"";
@@ -316,9 +304,8 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 								if (!empty($points) && function_exists('printGoogleMap')) {
 									function map_callback($map) {
 										global $points;
-										foreach ($points as $point) {
-											list($lat, $long, $title, $desc) = $point;
-											addPoint($map, $lat, $long, $title, $desc);
+										foreach ($points as $coord) {
+											addGeoCoord($map, $coord);
 										}
 									}
 									?>

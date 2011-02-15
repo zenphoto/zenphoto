@@ -417,67 +417,42 @@ function setupLanguageSelector() {
 			<?php
 		}
 	}
-	if (getOption('dynamic_locale_visual')) {
-		?>
-		<ul class="sflags">
-			<?php
-			$_languages = generateLanguageList();
-			krsort($_languages,SORT_LOCALE_STRING);
-
-			$currentValue = getOption('locale');
-			foreach ($_languages as $text=>$lang) {
-				?>
-				<li<?php if ($lang==$currentValue) echo ' class="currentLanguage"'; ?>>
-					<?php
-					if ($lang!=$currentValue) {
-						?>
-						<a href="javascript:launchScript('',['locale=<?php echo $lang; ?>']);" >
-						<?php
-					}
-					if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/locale/'.$lang.'/flag.png')) {
-						$flag = WEBPATH.'/'.ZENFOLDER.'/locale/'.$lang.'/flag.png';
-					} else {
-						$flag = WEBPATH.'/'.ZENFOLDER.'/locale/missing_flag.png';
-					}
-					?>
-					<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
-					<?php
-					if ($lang!=$currentValue) {
-						?>
-						</a>
-						<?php
-					}
-					?>
-				</li>
-				<?php
-			}
-			?>
-		</ul>
+	?>
+	<ul class="sflags">
 		<?php
-	} else {
-		?>
-		<div id="sdrop">
-			<form action="#" method="post">
-				<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken?>" />
-				<input type="hidden" name="oldlocale" value="<?php echo getOption('locale'); ?>" />
-				<select id="dynamic-locale" class="languageselect" name="locale" onchange="this.form.submit()">
+		$_languages = generateLanguageList();
+		krsort($_languages,SORT_LOCALE_STRING);
+
+		$currentValue = getOption('locale');
+		foreach ($_languages as $text=>$lang) {
+			?>
+			<li<?php if ($lang==$currentValue) echo ' class="currentLanguage"'; ?>>
 				<?php
-				$locales = generateLanguageList();
-				$currentValue = getOption('locale');
-				foreach($locales as $key=>$item) {
-					echo '<option class="languageoption" value="' . html_encode($item) . '"';
-					if ($item==$currentValue) {
-						echo ' selected="selected"';
-					}
-					echo ' >';
-					echo html_encode($key)."</option>\n";
+				if ($lang!=$currentValue) {
+					?>
+					<a href="javascript:launchScript('',['locale=<?php echo $lang; ?>']);" >
+					<?php
+				}
+				if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/locale/'.$lang.'/flag.png')) {
+					$flag = WEBPATH.'/'.ZENFOLDER.'/locale/'.$lang.'/flag.png';
+				} else {
+					$flag = WEBPATH.'/'.ZENFOLDER.'/locale/missing_flag.png';
 				}
 				?>
-				</select>
-			</form>
-		</div>
+				<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
+				<?php
+				if ($lang!=$currentValue) {
+					?>
+					</a>
+					<?php
+				}
+				?>
+			</li>
+			<?php
+		}
+		?>
+	</ul>
 	<?php
-	}
 }
 
 function setupXSRFDefender() {

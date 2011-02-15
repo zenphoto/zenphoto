@@ -139,7 +139,45 @@ function hasMapData() {
 }
 
 /**
+ * $eturns coordiante information for an image
+ * @param $obj
+ */
+function getGeoCoord($obj) {
+	$result = false;
+	if (is_object($obj) && $obj->table == 'images') {
+		$exif = $obj->getMetaData();
+		if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
+			$lat_c = explode('.',str_replace(',', '.', $exif['EXIFGPSLatitude']));
+			$lat_f = (float) abs($lat_c[0])+$lat_c[1]/pow(10,strlen($lat_c[1]));
+			if ($exif['EXIFGPSLatitudeRef'] == 'S') {
+				$lat_f = (float) -$lat_f;
+			}
+			$long_c = explode('.',str_replace(',', '.', $exif['EXIFGPSLongitude']));
+			$long_f = (float) abs($long_c[0])+$long_c[1]/pow(10,strlen($long_c[1]));
+			if ($exif['EXIFGPSLongitudeRef'] == 'W') {
+				$long_f = (float) -$long_f;
+			}
+			$result = array('lat'=>$lat_f,'long'=>$long_f, 'title'=>$obj->getTitle(), 'desc'=>$obj->getDesc());
+		}
+	}
+	return $result;
+}
+
+/**
+ * Add a point to a map object
+ * @param $MAP_OBJECT
+ * @param $coord	coordinates array
+ */
+function addGeoCoord($MAP_OBJECT, $coord) {
+	if ($coord) {
+		$MAP_OBJECT->addMarkerByCoords($coord['long'], $coord['lat'], $coord['title'], $coord['desc']);
+	}
+}
+
+/**
  * Adds a geoPoint after first insuring it uses periods for the decimal separator
+ *
+ * @deprecated
  *
  * @param object $MAP_OBJECT
  * @param string $lat Latitude of the point
@@ -148,7 +186,18 @@ function hasMapData() {
  * @param string $desc point description
  */
 function addPoint($MAP_OBJECT, $lat, $long, $title, $desc) {
-	$MAP_OBJECT->addMarkerByCoords(str_replace(',', '.', $long), str_replace(',', '.', $lat), $title, $desc);
+	//convert to float cononically
+	$lat_c = explode('.',str_replace(',', '.', $lat));
+	$lat_f = (float) abs($lat_c[0])+$lat_c[1]/pow(10,strlen($lat_c[1]));
+	if ($lat_c<0) {
+		$lat_f = (float) -1*$lat_f;
+	}
+	$long_c = explode('.',str_replace(',', '.', $long));
+	$long_f = (float) abs($long_c[0])+$long_c[1]/pow(10,strlen($long_c[1]));
+	if ($long<0) {
+		$long_f = (float) -1*$long_f;
+	}
+	$MAP_OBJECT->addMarkerByCoords($long_f, $lat_f, $title, $desc);
 }
 
 /**
@@ -157,25 +206,11 @@ function addPoint($MAP_OBJECT, $lat, $long, $title, $desc) {
  * @param object $MAP_OBJECT
  */
 function getImageGeodata($obj,$MAP_OBJECT) {
-	$exif = $obj->getMetaData();
-	if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
-		$lat = $exif['EXIFGPSLatitude'];
-		$long = $exif['EXIFGPSLongitude'];
-		if($exif['EXIFGPSLatitudeRef'] == 'S') {
-			$lat = '-' . $lat;
-		}
-		if($exif['EXIFGPSLongitudeRef'] == 'W') {
-			$long = '-' . $long;
-		}
-		$desc = $obj->getDesc();
-		$title = $obj->getTitle();
-		if (empty($desc)) {
-			$desc = $title;
-		}
-		addPoint($MAP_OBJECT, $lat, $long, $title, '<p align=center >' . $desc."</p>");
-		return true;
+	$coord = getGeoCoord($obj);
+	if ($coord) {
+		addGeoCoord($MAP_OBJECT, $coord);
 	}
-	return false;
+	return $coord;
 }
 
 /**
@@ -188,21 +223,13 @@ function getAlbumGeodata($obj,$MAP_OBJECT){
 	$images = $obj->getImages(0);
 	foreach ($images as $an_image) {
 		$image = newImage($obj, $an_image);
-		$exif = $image->getMetaData();
-		if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
-			$result = true;
-			$lat = $exif['EXIFGPSLatitude'];
-			$long = $exif['EXIFGPSLongitude'];
-			if($exif['EXIFGPSLatitudeRef'] == 'S') {
-				$lat = '-' . $lat;
-			}
-			if($exif['EXIFGPSLongitudeRef'] == 'W') {
-				$long = '-' . $long;
-			}
-			$infoHTML = '<a href="' . html_encode($image->getImageLink()) . '"><img src="' .
+		$coord = getGeoCoord($obj);
+		if ($coord) {
+			$result = true;	//	at least one image has geodata
+			$coord['desc'] = '<a href="' . html_encode($image->getImageLink()) . '"><img src="' .
 				html_encode($image->getThumb()) . '" alt="' . $image->getDesc() . '" ' .
 				'style=" margin-left: 30%; margin-right: 10%; border: 0px; " /></a><p align=center >' . $image->getDesc()."</p>";
-			addPoint($MAP_OBJECT, $lat, $long, $image->getTitle(), $infoHTML);
+			addGeoCoord($MAP_OBJECT, $coord);
 		}
 	}
 	return $result;
@@ -237,6 +264,7 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 		$type = $obj;
 		$typeid = '';
 	}
+
 	$MAP_OBJECT = new GoogleMapAPI($type.$typeid);
 	$MAP_OBJECT->_minify_js = defined('RELEASE');
 	$MAP_OBJECT->setZoomLevel(getOption('gmap_zoom'));
@@ -251,6 +279,12 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 	}
 	$MAP_OBJECT->setControlSize(getOption('gmap_control_size'));
 	$MAP_OBJECT->setMapType(getOption('gmap_starting_map'));
+	$mapsallowed = array();
+	if (getOption('gmap_map')) $mapsallowed[] = 'ROADMAP';
+	if (getOption('gmap_hybrid')) $mapsallowed[] = 'HYBRID';
+	if (getOption('gmap_satellite')) $mapsallowed[] = 'SATELLITE';
+	if (getOption('gmap_terrain')) $mapsallowed[] = 'TERRAIN';
+	$MAP_OBJECT->setTypeControlTypes($mapsallowed);
 	switch ($type) {
 		case 'images':
 			if (getImageGeodata($obj,$MAP_OBJECT)) {

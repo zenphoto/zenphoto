@@ -35,7 +35,7 @@ function colorbox_css() {
 	<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
 	<?php
 	$navigator_user_agent = ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) ? strtolower( $_SERVER['HTTP_USER_AGENT'] ) : '';
-	if (stristr($navigator_user_agent, "msie")) {
+	if (stristr($navigator_user_agent, "msie") && !stristr($navigator_user_agent, '9')) {
 		include(dirname(__FILE__).'/colorbox/colorbox_ie.css.php');
 	}
 }

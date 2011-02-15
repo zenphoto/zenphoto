@@ -2091,12 +2091,7 @@ function setThemeOptionDefault($key, $value) {
  * @param string $theme default theme name
  */
 function setBoolThemeOption($key, $bool, $album=NULL, $theme=NULL) {
-	if ($bool) {
-		$value = 1;
-	} else {
-		$value = 0;
-	}
-	setThemeOption($key, $value, $album, $theme);
+	setThemeOption($key, (int) $bool, $album, $theme);
 }
 
 /**

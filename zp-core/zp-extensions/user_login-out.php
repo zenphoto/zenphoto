@@ -91,7 +91,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 	$cookies = array();
 	$candidate = array();
 	if (isset($_COOKIE)) $candidate = $_COOKIE;
-	if (isset($_SESSION)) $candidate = Array_merge($candidate, $_SESSION);
+	if (isset($_SESSION)) $candidate = array_merge($candidate, $_SESSION);
 	$candidate = array_unique($candidate);
 	foreach ($candidate as $cookie=>$value) {
 		if ($cookie == 'zenphoto_auth' || $cookie == 'zp_gallery_auth' ||

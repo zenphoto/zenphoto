@@ -8,9 +8,8 @@ function gMapOptionsImage($map) {
 }
 function gMapOptionsAlbum($map) {
 	global $points;
-	foreach ($points as $point) {
-		list($lat, $long, $title, $desc) = $point;
-		addPoint($map, $lat, $long, $title, $desc);
+	foreach ($points as $coord) {
+		addGeoCoord($map, $coord);
 	}
 	$map->setWidth(535);
 }

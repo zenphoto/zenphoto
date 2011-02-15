@@ -165,6 +165,20 @@ class GoogleMapAPI {
 	var $type_controls_style = "DEFAULT";
 
 	/**
+	 * sets default option for controls positin (TOP_LEFT, TOP_RIGHT, etc.)
+	 *
+	 * @var string
+	 */
+	var $type_controls_position = "TOP_RIGHT";
+
+	/**
+	 * sets default option control selections (ROADMAP, SATELLITE, HYBRID, TERRAIN)
+	 *
+	 * @var string
+	 */
+	var $type_controls_list = array('ROADMAP', 'SATELLITE', 'HYBRID', 'TERRAIN');
+
+	/**
 	 * default map type google.maps.MapTypeId.(ROADMAP, SATELLITE, HYBRID, TERRAIN)
 	 *
 	 * @var string
@@ -842,6 +856,14 @@ class GoogleMapAPI {
 							}
 						}
 
+						function setTypeControlPosition($pos) {
+							$this->type_controls_position = $pos;
+						}
+
+						function setTypeControlTypes($list) {
+							$this->type_controls_list = $list;
+						}
+
 						/**
 						 * set default map type (map/satellite/hybrid)
 						 *
@@ -1414,7 +1436,7 @@ class GoogleMapAPI {
 						 */
 						function adjustCenterCoords($lon,$lat) {
 							if(strlen((string)$lon) == 0 || strlen((string)$lat) == 0)
-							return false;
+								return false;
 							$this->_max_lon = (float) max($lon, $this->_max_lon);
 							$this->_min_lon = (float) min($lon, $this->_min_lon);
 							$this->_max_lat = (float) max($lat, $this->_max_lat);
@@ -1793,12 +1815,22 @@ class GoogleMapAPI {
 								$_script .= sprintf('var mapObj%s = document.getElementById("%s");', $_key, $this->map_id) . "\n";
 								$_script .= "if (mapObj$_key != 'undefined' && mapObj$_key != null) {\n";
 
+								$selectorlist = array();
+								foreach ($this->type_controls_list as $listOption) {
+									$selectorlist[] = 'google.maps.MapTypeId.'.$listOption;
+								}
+								$_script .= "
+															var allowedtypes = [".implode(', ',$selectorlist)."];";
+
 								$_script .= "
 															var mapOptions$_key = {
 																zoom: ".$this->zoom.",
 																mapTypeId: google.maps.MapTypeId.".$this->map_type.",
 																mapTypeControl: ".($this->type_controls?"true":"false").",
-																mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.".$this->type_controls_style."}
+																mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.".$this->type_controls_style.",
+																												position: google.maps.ControlPosition.".$this->type_controls_position.",
+																												mapTypeIds: allowedtypes
+																												}
 															};
 														";
 								if(isset($this->center_lat) && isset($this->center_lon)) {
@@ -1865,7 +1897,13 @@ class GoogleMapAPI {
 									$this->_min_lat -= $_len_lat * $this->bounds_fudge;
 									$this->_max_lat += $_len_lat * $this->bounds_fudge;
 
-									$_script .= "var bds$_key = new google.maps.LatLngBounds(new google.maps.LatLng($this->_min_lat, $this->_min_lon), new google.maps.LatLng($this->_max_lat, $this->_max_lon));\n";
+									//unscrew this for our European brethern--Javascript thinks commas separate parameters!
+									$minlat = str_replace(',','.',(string) $this->_min_lat);
+									$maxlat = str_replace(',','.',(string) $this->_max_lat);
+									$minlon = str_replace(',','.',(string) $this->_min_lon);
+									$maxlon = str_replace(',','.',(string) $this->_max_lon);
+									$_script .= "var bds$_key = new google.maps.LatLngBounds(new google.maps.LatLng($minlat, $minlon), new google.maps.LatLng($maxlat, $maxlon));\n";
+
 									$_script .= 'map'.$_key.'.fitBounds(bds'.$_key.');' . "\n";
 								}
 
@@ -2013,7 +2051,10 @@ class GoogleMapAPI {
 							$_output = '';
 							foreach($this->_markers as $_marker) {
 								$iw_html = str_replace('"','\"',str_replace(array("\n", "\r"), "", $_marker['html']));
-								$_output .= "var point = new google.maps.LatLng(".$_marker['lat'].",".$_marker['lon'].");\n";
+								// replace commas with periods so we can pass parameters!
+								$lat = str_replace(',', '.', $_marker['lat']);
+								$lon = str_replace(',', '.', $_marker['lon']);
+								$_output .= "var point = new google.maps.LatLng(".$lat.",".$lon.");\n";
 								$_output .= sprintf('%s.push(createMarker(%s%s, point,"%s","%s", %s, %s, "%s", %s ));',
 								(($pano==true)?$_prefix:"")."markers".$map_id,
 								$_prefix,

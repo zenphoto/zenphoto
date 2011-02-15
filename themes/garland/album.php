@@ -64,23 +64,11 @@ if (!defined('WEBPATH')) die();
 								<?php
 								$points = array();
 								while (next_image()){
-									$exif = $_zp_current_image->getMetaData();
-									if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
-										$lat = $exif['EXIFGPSLatitude'];
-										$long = $exif['EXIFGPSLongitude'];
-										if($exif['EXIFGPSLatitudeRef'] == 'S') {
-											$lat = '-' . $lat;
-										}
-										if($exif['EXIFGPSLongitudeRef'] == 'W') {
-											$long = '-' . $long;
-										}
-										$desc = $_zp_current_image->getDesc();
-										$title = $_zp_current_image->getTitle();
-										if (empty($desc)) {
-											$desc = $title;
-										}
-										$points[] = array($lat, $long, $title, '<p align=center >' . $desc."</p>");
-									}
+ 									$coord = getGeoCoord($_zp_current_image);
+ 									if ($coord) {
+ 										$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+ 										$points[] = $coord;
+ 									}
 									?>
 									<div class="image">
 										<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a></div>

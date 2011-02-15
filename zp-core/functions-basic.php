@@ -300,11 +300,7 @@ function setOption($key, $value, $persistent=true) {
  * @param bool $value the value to be set
  */
 function setBoolOption($key, $value) {
-	if ($value) {
-		setOption($key, '1');
-	} else {
-		setOption($key, '0');
-	}
+		setOption($key, (int) $value);
 }
 
 /**
