@@ -189,10 +189,11 @@ function generateLanguageList($all=false) {
  *
  * @param string $plugindomain The name of the plugin
  * @return bool
+ * @deprecated
  *
  */
 function setPluginDomain($plugindomain) {
-	return setupCurrentLocale(NULL,$plugindomain,"plugin");
+	return setupDomain($plugindomain,"plugin");
 }
 
 /**
@@ -215,9 +216,10 @@ function setMainDomain() {
  *
  * @param string $plugindomain The name of the theme
  * @return bool
+ * @deprecated
  */
 function setThemeDomain($themedomain) {
-	return setupCurrentLocale(NULL,$themedomain,"theme");
+	return setupDomain($themedomain,"theme");
 }
 
 /**
@@ -231,9 +233,9 @@ function gettext_th($string,$theme='') {
 	if(empty($theme)) {
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
-	setThemeDomain($theme);
+	setupDomain($theme, 'theme');
 	$translation = gettext($string);
-	setMainDomain();
+	setupDomain();
 	return $translation;
 }
 
@@ -244,9 +246,9 @@ function gettext_th($string,$theme='') {
  * @return string
  */
 function gettext_pl($string,$plugin) {
-	setPluginDomain($plugin);
+	setupDomain($plugin,'plugin');
 	$translation = gettext($string);
-	setMainDomain();
+	setupDomain();
 	return $translation;
 }
 
@@ -268,6 +270,36 @@ function i18nSetLocale($locale) {
 }
 
 /**
+ * Sets the translation domain and
+ * @param $domaine
+ * @param $type
+ */
+function setupDomain($domain=NULL,$type=NULL) {
+	switch ($type) {
+		case "plugin":
+			$domainpath = getPlugin($domain . "/locale/");
+			break;
+		case "theme":
+			$domainpath = SERVERPATH . "/" . THEMEFOLDER . "/" . $domain."/locale/";
+			break;
+		case 'admin':
+			$domainpath = getPlugin($domain . "/locale/");
+			$domain = 'zenphoto';
+			break;
+		default:
+			$domain = 'zenphoto';
+			$domainpath = SERVERPATH . "/" . ZENFOLDER . "/locale/";
+			break;
+	}
+	bindtextdomain($domain, $domainpath);
+	// function only since php 4.2.0
+	if(function_exists('bind_textdomain_codeset')) {
+		bind_textdomain_codeset($domain, 'UTF-8');
+	}
+	textdomain($domain);
+}
+
+/**
  * Setup code for gettext translation
  * Returns the result of the setlocale call
  *
@@ -276,15 +308,15 @@ function i18nSetLocale($locale) {
  * @param string $type case for settign domain
  * @return mixed
  */
-function setupCurrentLocale($override=NULL, $plugindomain='', $type='') {
-	if(empty($plugindomain) && empty($type)) {
+function setupCurrentLocale($override=NULL) {
+	if(empty($domain) && empty($type)) {
 		if (is_null($override)) {
 			$locale = getOption("locale");
 		} else {
 			$locale = $override;
 		}
 		if (getOption('disallow_'.$locale)) {
-			if (DEBUG_LOCALE) debugLogBacktrace("setupCurrentLocale($override, $plugindomain, $type): $locale denied by option.");
+			if (DEBUG_LOCALE) debugLogBacktrace("setupCurrentLocale($override): $locale denied by option.");
 			$locale = getOption('locale');
 			if (empty($locale) || getOption('disallow_'.$locale)) {
 				$languages = generateLanguageList();
@@ -304,33 +336,9 @@ function setupCurrentLocale($override=NULL, $plugindomain='', $type='') {
 				}
 			}
 		}
-		// Set the text domain as 'messages'
-		$domain = 'zenphoto';
-		$domainpath = SERVERPATH . "/" . ZENFOLDER . "/locale/";
-		if (DEBUG_LOCALE) debugLogBacktrace("setupCurrentLocale($override, $plugindomain, $type): locale=$locale, \$result=$result");
-	} else {
-		$domain = $plugindomain;
-		switch ($type) {
-			case "plugin":
-				$domainpath = getPlugin($domain . "/locale/");
-				break;
-			case "theme":
-				$domainpath = SERVERPATH . "/" . THEMEFOLDER . "/" . $domain."/locale/";
-				break;
-			case 'admin':
-				$domainpath = getPlugin($domain . "/locale/");
-				$domain = 'zenphoto';
-				break;
-		}
-		$result = true;
-		if (DEBUG_LOCALE) debugLogBacktrace("setupCurrentLocale($override, $plugindomain, $type): domainpath=$domainpath");
+		if (DEBUG_LOCALE) debugLogBacktrace("setupCurrentLocale($override): locale=$locale, \$result=$result");
 	}
-	bindtextdomain($domain, $domainpath);
-	// function only since php 4.2.0
-	if(function_exists('bind_textdomain_codeset')) {
-		bind_textdomain_codeset($domain, 'UTF-8');
-	}
-	textdomain($domain);
+	setupDomain();
 	return $result;
 }
 

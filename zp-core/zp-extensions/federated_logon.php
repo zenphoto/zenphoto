@@ -201,10 +201,6 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 	$more = false;
 	if ($userobj) {	//	update if changed
 		$save = false;
-		if ($user != $userobj->getCredentials()) {
-			$save = true;
-			$userobj->setCredentials($user);
-		}
 		if ($email != $userobj->getEmail()) {
 			$save = true;
 			$userobj->setEmail($email);

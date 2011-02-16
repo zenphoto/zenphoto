@@ -8,7 +8,7 @@
 
 // force UTF-8 Ø
 
-global $_zp_setupCurrentLocale_result, $_zp_current_context_stack, $_zp_HTML_cache;
+global $_zp_current_context_stack, $_zp_HTML_cache;
 
 if(!function_exists("json_encode")) {
 	// load the drop-in replacement library
@@ -37,7 +37,7 @@ if (ALBUM_SESSION && session_id() == '') {
 	session_start();
 }
 
-$_zp_setupCurrentLocale_result = setMainDomain();
+define('ZENPHOTO_LOCALE',setMainDomain());
 
 require_once(dirname(__FILE__).'/class-load.php');
 require_once(dirname(__FILE__).'/auth_zp.php');

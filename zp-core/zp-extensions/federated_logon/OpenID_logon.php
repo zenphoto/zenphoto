@@ -8,7 +8,7 @@
  */
 
 require_once('OpenID_common.php');
-session_start();
+if (session_id() == '') session_start();
 
 if (isset($_GET['redirect'])) {
 	$redirect = sanitize($_GET['redirect']);

@@ -277,8 +277,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		$graphics_lib = zp_graphicsLibInfo();
 		?>
 		<li><?php printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE,$official); ?></li>
-		<li><?php if ($_zp_setupCurrentLocale_result) {
-								printf(gettext('Current locale setting: <strong>%1$s</strong>'),$_zp_setupCurrentLocale_result);
+		<li><?php if (ZENPHOTO_LOCALE) {
+								printf(gettext('Current locale setting: <strong>%1$s</strong>'),ZENPHOTO_LOCALE);
 							} else {
 								echo gettext('<strong>Locale setting has failed</strong>');
 							}
