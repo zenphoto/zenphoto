@@ -15,7 +15,13 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 </head>
 
 <body>
-<?php zp_apply_filter('theme_body_open'); ?>
+<?php
+zp_apply_filter('theme_body_open');
+$total = getNumImages() + getNumAlbums();
+if (!$total) {
+	$_zp_current_search->clearSearchWords();
+}
+?>
 
 <div id="main">
 

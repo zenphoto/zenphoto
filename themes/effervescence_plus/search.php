@@ -71,7 +71,31 @@ $backgroundImagePath="";
 </head>
 
 <body onload="blurAnchors()">
-<?php zp_apply_filter('theme_body_open'); ?>
+	<?php
+	zp_apply_filter('theme_body_open');
+	$numimages = getNumImages();
+	$numalbums = getNumAlbums();
+	$total = $numimages + $numalbums;
+	$zenpage = getOption('zp_plugin_zenpage');
+	if ($zenpage && !isArchive()) {
+		$numpages = getNumPages();
+		$numnews = getNumNews();
+		$total = $total + $numnews + $numpages;
+	} else {
+		$numpages = $numnews = 0;
+	}
+	$searchwords = getSearchWords();
+	$searchdate = getSearchDate();
+	if (!empty($searchdate)) {
+		if (!empty($seachwords)) {
+			$searchwords .= ": ";
+		}
+		$searchwords .= $searchdate;
+	}
+	if (!$total) {
+		$_zp_current_search->clearSearchWords();
+	}
+?>
 
 <!-- Wrap Header -->
 <div id="header">
@@ -135,32 +159,11 @@ $backgroundImagePath="";
 
 	<div id="description">
 		<h2>
-		<?php
-			$numimages = getNumImages();
-			$numalbums = getNumAlbums();
-			$total = $numimages + $numalbums;
-			$zenpage = getOption('zp_plugin_zenpage');
-			if ($zenpage && !isArchive()) {
-				$numpages = getNumPages();
-				$numnews = getNumNews();
-				$total = $total + $numnews + $numpages;
-			} else {
-				$numpages = $numnews = 0;
-			}
-			$searchwords = getSearchWords();
-			$searchdate = getSearchDate();
-			if (!empty($searchdate)) {
-				if (!empty($seachwords)) {
-					$searchwords .= ": ";
-				}
-				$searchwords .= $searchdate;
-			}
-			if ($total > 0 ) {
-				printf(ngettext('%1$u Hit for <em>%2$s</em>','%1$u Hits for <em>%2$s</em>',$total), $total, $searchwords);
-			}
-		?>
 		</h2>
 		<?php
+		if ($total > 0 ) {
+			printf(ngettext('%1$u Hit for <em>%2$s</em>','%1$u Hits for <em>%2$s</em>',$total), $total, $searchwords);
+		}
 		if ($zenpage && $_zp_page==1) { //test of zenpage searches
 			define ('TRUNCATE_LENGTH',80);
 			define ('SHOW_ITEMS', 5);

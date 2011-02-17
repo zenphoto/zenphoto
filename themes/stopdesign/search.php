@@ -16,7 +16,14 @@ require_once('normalizer.php');
 </head>
 
 <body class="gallery">
-	<?php zp_apply_filter('theme_body_open'); ?>
+	<?php
+	zp_apply_filter('theme_body_open');
+	$anumber = getNumAlbums();
+	$inumber = getNumImages();
+	if ($anumber+$inumber == 0) {
+		$_zp_current_search->clearSearchWords();
+	}
+	?>
 	<?php echo getGalleryTitle(); ?>
 	<?php if (getOption('Allow_search')) {  printSearchForm(); } ?>
 
@@ -44,8 +51,6 @@ require_once('normalizer.php');
 					<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php printf(gettext('View album: %s'), getAnnotatedAlbumTitle());?>"><?php printAlbumTitle(); ?></a></h3>
 					<p>
 						<?php
-						$anumber = getNumAlbums();
-						$inumber = getNumImages();
 						if ($anumber > 0 || $inumber > 0) {
 							echo '<p><em>(';
 							if ($anumber == 0 && $inumber == 1) {

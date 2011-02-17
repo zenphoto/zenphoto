@@ -96,6 +96,7 @@ themes/effervescence_plus/theme.jpg
 themes/effervescence_plus/theme_description.php
 themes/effervescence_plus/themeoptions.php
 themes/garland
+themes/garland/404.php
 themes/garland/album.php
 themes/garland/archive.php
 themes/garland/contact.php
@@ -754,9 +755,12 @@ zp-core/zp-extensions/federated_logon/OpenID_common.php
 zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php
 zp-core/zp-extensions/federated_logon/OpenID_logon.php
 zp-core/zp-extensions/federated_logon/OpenID_try_auth.php
+zp-core/zp-extensions/federated_logon/Verisign.png
+zp-core/zp-extensions/federated_logon/Verisign_logon.php
 zp-core/zp-extensions/federated_logon/Yahoo.png
 zp-core/zp-extensions/federated_logon/Yahoo_logon.php
-zp-core/zp-extensions/federated_logon/buttons.css
+zp-core/zp-extensions/federated_logon/federated_logon.css
+zp-core/zp-extensions/federated_logon/federated_logon_buttons.css
 zp-core/zp-extensions/flag_thumbnail
 zp-core/zp-extensions/flag_thumbnail.php
 zp-core/zp-extensions/flag_thumbnail/GPS.png
@@ -1778,4 +1782,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1780
+1784

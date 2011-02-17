@@ -12,6 +12,7 @@ if (isset($_POST['auth'])) {
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
 
 if (!empty($_FILES)) {
+	$gallery = new Gallery();
 	$name = trim(basename(sanitize($_FILES['Filedata']['name'],3)));
 	if (isset($_FILES['Filedata']['error']) && $_FILES['Filedata']['error']) {
 		debugLogArray('Uploadify error:', $_FILES);
@@ -39,7 +40,7 @@ if (!empty($_FILES)) {
 			} else{
 				$rightsalbum = new Album($gallery, $folder);
 			}
-			$album = new Album(new Gallery(), $folder);
+			$album = new Album($gallery, $folder);
 			if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 				if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
@@ -48,7 +49,7 @@ if (!empty($_FILES)) {
 			}
 			if ($new) {
 				mkdir_recursive($targetPath, CHMOD_VALUE);
-				$album = new Album(new Gallery(), $folder);
+				$album = new Album($gallery, $folder);
 				$album->setShow($albumparmas[0]!='false');
 				$album->setTitle($albumparmas[2]);
 				$album->save();
@@ -67,7 +68,7 @@ if (!empty($_FILES)) {
 					}
 					$rslt = move_uploaded_file($tempFile,$targetFile);
 					@chmod($targetFile, 0666 & CHMOD_VALUE);
-					$album = new Album(New Gallery(), $folder);
+					$album = new Album($gallery, $folder);
 					$image = newImage($album, $seoname);
 					if ($name != $seoname && $image->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {
 						$image->setTitle(substr($name, 0, strrpos($name, '.')));

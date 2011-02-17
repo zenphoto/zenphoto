@@ -25,7 +25,31 @@ if (!defined('WEBPATH')) die();
 	</script>
 </head>
 <body class="sidebars">
-<?php zp_apply_filter('theme_body_open'); ?>
+<?php
+zp_apply_filter('theme_body_open');
+$numimages = getNumImages();
+$numalbums = getNumAlbums();
+$total = $numimages + $numalbums;
+$zenpage = getOption('zp_plugin_zenpage');
+if ($zenpage && !isArchive()) {
+	$numpages = getNumPages();
+	$numnews = getNumNews();
+	$total = $total + $numnews + $numpages;
+} else {
+	$numpages = $numnews = 0;
+}
+$searchwords = getSearchWords();
+$searchdate = getSearchDate();
+if (!empty($searchdate)) {
+	if (!empty($seachwords)) {
+		$searchwords .= ": ";
+	}
+	$searchwords .= $searchdate;
+}
+if (!$total) {
+	$_zp_current_search->clearSearchWords();
+}
+?>
 <div id="navigation"></div>
 <div id="wrapper">
   <div id="container">
@@ -53,25 +77,6 @@ if (!defined('WEBPATH')) die();
               </h3>
 
 				<?php
-				$numimages = getNumImages();
-				$numalbums = getNumAlbums();
-				$total = $numimages + $numalbums;
-				$zenpage = getOption('zp_plugin_zenpage');
-				if ($zenpage && !isArchive()) {
-					$numpages = getNumPages();
-					$numnews = getNumNews();
-					$total = $total + $numnews + $numpages;
-				} else {
-					$numpages = $numnews = 0;
-				}
-				$searchwords = getSearchWords();
-				$searchdate = getSearchDate();
-				if (!empty($searchdate)) {
-					if (!empty($seachwords)) {
-						$searchwords .= ": ";
-					}
-					$searchwords .= $searchdate;
-				}
 				if ($total > 0 ) {
 					?>
 					<p>
@@ -82,6 +87,7 @@ if (!defined('WEBPATH')) die();
 					<?php
 				} else {
 					echo "<p>".gettext('Sorry, no matches for your search.')."</p>";
+					$_zp_current_search->setSearchParams('words=');
 				}
 
 				?>

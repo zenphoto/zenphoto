@@ -1367,6 +1367,10 @@ class SearchEngine
 		return false;
 	}
 
+	function clearSearchWords() {
+		$this->processed_search = '';
+		$this->words = '';
+	}
 } // search class end
 
 ?>

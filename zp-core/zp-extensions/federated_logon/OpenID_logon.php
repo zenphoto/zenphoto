@@ -13,7 +13,7 @@ if (session_id() == '') session_start();
 if (isset($_GET['redirect'])) {
 	$redirect = sanitize($_GET['redirect']);
 } else {
-	$redirect = '/' . ZENFOLDER . '/admin.php';
+	$redirect = '';
 }
 $_SESSION['OpenID_redirect'] = $redirect;
 $_SESSION['OpenID_cleaner_pattern'] = '';
@@ -26,44 +26,12 @@ if (isset($_GET['user']) && $_GET['user']) {
 	exit(0);
 }
 
-global $pape_policy_uris;
 ?>
 <html>
-  <head><title><?php echo gettext('OpenID Authentication'); ?></title></head>
-  <style type="text/css">
-      * {
-        font-family: verdana,sans-serif;
-      }
-      body {
-        width: 50em;
-        margin: 1em;
-      }
-      div {
-        padding: .5em;
-      }
-      table {
-        margin: none;
-        padding: none;
-      }
-      .alert {
-        border: 1px solid #e7dc2b;
-        background: #fff888;
-      }
-      .success {
-        border: 1px solid #669966;
-        background: #88ff88;
-      }
-      .error {
-        border: 1px solid #ff0000;
-        background: #ffaaaa;
-      }
-      #verify-form {
-        border: 1px solid #777777;
-        background: #dddddd;
-        margin-top: 1em;
-        padding-bottom: 0em;
-      }
-  </style>
+  <head>
+	<link rel="stylesheet" href="federated_logon.css" type="text/css" />
+  <title><?php echo gettext('OpenID Authentication'); ?></title>
+  </head>
   <body>
     <h1><?php echo gettext('OpenID Authentication'); ?></h1>
 
@@ -75,11 +43,20 @@ global $pape_policy_uris;
       <form method="get" action="OpenID_try_auth.php">
         <?php echo gettext('Identity URL:'); ?>
         <input type="hidden" name="action" value="verify" />
-        <input type="text" size="50" name="openid_identifier" value="" />
+        <input type="text" size="60" name="openid_identifier" value="" />
 
 
         <input type="submit" value="<?php echo gettext('Verify') ?>" />
       </form>
+      <?php
+      if (!empty($redirect)) {
+      	?>
+      	<p>
+         <a href="<?php echo $redirect; ?>" title="<?php echo gettext('Return to Zenphoto'); ?>" ><?php echo gettext('Return to Zenphoto'); ?></a>
+      	</p>
+				<?php
+			}
+			?>
     </div>
   </body>
 </html>

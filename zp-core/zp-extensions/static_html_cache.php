@@ -149,8 +149,7 @@ class staticCache {
 					break;
 			}
 		}
-		$pages = getOption("static_cache_excludedpages");
-		$excludeList = explode(",",$pages);
+		$excludeList = array_merge(explode(",",getOption('static_cache_excludedpages')),array('404.php/','password.php/'));
 		foreach($excludeList as $item) {
 			$page_to_exclude = explode("/",$item);
 			if ($_zp_gallery_page === trim($page_to_exclude[0])) {

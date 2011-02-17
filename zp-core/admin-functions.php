@@ -2666,7 +2666,7 @@ function deleteThemeDirectory($source) {
 }
 
 /**
- * Return URL of current admin page, encoded for a form, relative to zp-core folder
+ * Return URL of current admin page
  *
  * @return string current URL
  * @author Ozh
@@ -2676,7 +2676,7 @@ function deleteThemeDirectory($source) {
  */
 function currentRelativeURL($source) {
 	$source = str_replace('\\','/',$source);
-	$source = str_replace(SERVERPATH, '', $source);
+	$source = str_replace(SERVERPATH, WEBPATH, $source);
 	$q = '';
 	if (!empty($_GET)) {
 		foreach ($_GET as $parm=>$value) {

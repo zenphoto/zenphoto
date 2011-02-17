@@ -2,7 +2,7 @@
 /**
  * Google accounts logon handler.
  *
- * This just supplies the google URL to OpenID_try.php. The rest is normal OpenID handling
+ * This just supplies the MyOpenID URL to OpenID_try.php. The rest is normal OpenID handling
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

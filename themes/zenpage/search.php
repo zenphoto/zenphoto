@@ -21,6 +21,20 @@ if (!defined('WEBPATH')) die();
 		<div id="header">
 		<h1><?php printGalleryTitle(); ?></h1>
 		<?php
+		$zenpage = getOption('zp_plugin_zenpage');
+		$numimages = getNumImages();
+		$numalbums = getNumAlbums();
+		$total = $numimages + $numalbums;
+		if ($zenpage && !isArchive()) {
+			$numpages = getNumPages();
+			$numnews = getNumNews();
+			$total = $total + $numnews + $numpages;
+		} else {
+			$numpages = $numnews = 0;
+		}
+		if ($total == 0) {
+			$_zp_current_search->clearSearchWords();
+		}
 		if (getOption('Allow_search')) {
 			if (is_array($_zp_current_search->category_list)) {
 				$catlist = array('news'=>$_zp_current_search->category_list,'albums'=>'0','images'=>'0','pages'=>'0');
@@ -45,17 +59,6 @@ if (!defined('WEBPATH')) die();
 		<div id="content">
 		<div id="content-left">
 		<?php
-		$numimages = getNumImages();
-		$numalbums = getNumAlbums();
-		$total = $numimages + $numalbums;
-		$zenpage = getOption('zp_plugin_zenpage');
-		if ($zenpage && !isArchive()) {
-			$numpages = getNumPages();
-			$numnews = getNumNews();
-			$total = $total + $numnews + $numpages;
-		} else {
-			$numpages = $numnews = 0;
-		}
 		$searchwords = getSearchWords();
 		$searchdate = getSearchDate();
 		if (!empty($searchdate)) {

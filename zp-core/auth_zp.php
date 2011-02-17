@@ -83,7 +83,7 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 		}
 		if (!empty($redirect)) {
 			if (substr($redirect,0,1) != '/') $redirect = '/'.$redirect;
-			header("Location: " . FULLWEBPATH . $redirect);
+			header("Location: " . $redirect);
 			exit();
 		}
 	}

@@ -34,11 +34,15 @@
  * named ending in "_logon.php". The plugin will use the name up to that point as the
  * selector on the logon form.
  *
- * You need to preserver the $_GET['redirect'] parameter for use after the authentication
+ * You need to preserve the $_GET['redirect'] parameter for use after the authentication
  * is successful at which time you call the logonFederatedCredentials() function passing a
  * user ID, e-mail and name (if you have them) and the redirection link you saved above.
  * For an example, the former is done at the beginning of the OpenID_logon.php script. The
  * latter is done in the "run()" function of OpenID_finish_auth.php
+ *
+ * There are a couple of examples of handlers here:
+ * http://www.zenphoto.org/trac/wiki/ZenphotoPlugins/federated_logon.zip
+ * These would be placed in the "plugins" folder (not the zp-extensions folder.)
  *
  *
  * @author Stephen Billard (sbillard)
@@ -75,7 +79,7 @@ function federated_logon_css() {
 	} else {
 		$inTheme = $_zp_gallery->getCurrentTheme();
 	}
-	$css = getPlugin('federated_logon/buttons.css',$inTheme,true);
+	$css = getPlugin('federated_logon/federated_logon_buttons.css',$inTheme,true);
 	?>
 	<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
 	<?php
@@ -174,7 +178,8 @@ class federated_login_options {
 function federated_login_alt_login_handler($handler_list) {
 	$files = getPluginFiles('*_logon.php','federated_logon');
 	foreach ($files as $key=>$link) {
-		if (getOption('federated_logon_handler'.$key)) {
+		$option = getOption('federated_logon_handler'.$key);
+		if ($option || is_null($option)) {
 			$link = str_replace(SERVERPATH, WEBPATH, str_replace('\\', '/', $link));
 			$name = str_replace('_', ' ', substr(basename($link), 0, -10));
 			$handler_list[$name] = array('script'=>$link, 'params'=>array());
@@ -299,6 +304,7 @@ function federated_login_save_custom($updated, $userobj, $i, $alter) {
  */
 function federated_login_edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {
 	global $_zp_current_admin_obj;
+	if (empty($_zp_current_admin_obj)) return($html);
 	$federated = $userobj->getCredentials();	//	came from federated logon, disable the e-mail field
 	if ($federated) {
 		$federated = unserialize($federated);
@@ -392,7 +398,7 @@ function federated_login_verify() {
  * should be cononical to the name of the logon handler, but without the "_logon'.
  * The image must be a PNG file.
  *
- * The styling of the buttons is done by the "buttons.css". If you do not like the
+ * The styling of the buttons is done by the "federated_logon_buttons.css". If you do not like the
  * one provided place an alternate version in your theme folder or the plugins/federated_logon
  * folder.
  */
