@@ -73,8 +73,6 @@ if (isset($_GET['action'])) {
 					if (!empty($user)) {
 						$nouser = false;
 						if ($pass == trim($_POST[$i.'-adminpass_2'])) {
-							$admin_n = trim($_POST[$i.'-admin_name']);
-							$admin_e = trim($_POST[$i.'-admin_email']);
 							if (isset($_POST[$i.'-newuser'])) {
 								$newuser = $user;
 								$what = 'new';
@@ -86,13 +84,19 @@ if (isset($_GET['action'])) {
 								$userobj = $_zp_authority->newAdministrator($user);
 							}
 
-							if ($admin_n != $userobj->getName()) {
-								$updated = true;
-								$userobj->setName($admin_n);
+							if (isset($_POST[$i.'-admin_name'])) {
+								$admin_n = trim($_POST[$i.'-admin_name']);
+								if ($admin_n != $userobj->getName()) {
+									$updated = true;
+									$userobj->setName($admin_n);
+								}
 							}
-							if ($admin_e != $userobj->getEmail()) {
-								$updated = true;
-								$userobj->setEmail($admin_e);
+							if (isset($_POST[$i.'-admin_email'])) {
+								$admin_e = trim($_POST[$i.'-admin_email']);
+								if ($admin_e != $userobj->getEmail()) {
+									$updated = true;
+									$userobj->setEmail($admin_e);
+								}
 							}
 							if (empty($pass)) {
 								if ($newuser) {
@@ -612,7 +616,12 @@ function languageChange(id,lang) {
 
 			</tr>
 			<?php
-				if (!zp_loggedin(ADMIN_RIGHTS)) {
+			$no_change = array();
+			if (!zp_loggedin(ADMIN_RIGHTS)) {
+				$credentials = $userobj->getCredentials();
+				if (!empty($credentials)) {
+					$no_change = unserialize($credentials);
+				}
 				?>
 				<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
 					<td colspan="2" <?php if (!empty($background)) echo " style=\"$background\""; ?>>
@@ -653,12 +662,12 @@ function languageChange(id,lang) {
 				<p>
 					<label for="<?php echo $id ?>-admin_name"><?php echo gettext("Full name:"); ?><br />
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
-					value="<?php echo html_encode($userobj->getName()); ?>" /></label>
+									value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> /></label>
 				</p>
 				<p>
 					<label for="<?php echo $id ?>-admin_email"><?php echo gettext("Email:"); ?><br />
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
-						value="<?php echo html_encode($userobj->getEmail()); ?>" /></label>
+								value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> /></label>
 				</p>
 				<?php
 				$primeAlbum = $userobj->getAlbum();

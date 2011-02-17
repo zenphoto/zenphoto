@@ -198,6 +198,7 @@ function printRegistrationForm($thanks=NULL) {
 		$params = unserialize(pack("H*", $_GET['verify']));
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj->getEmail() == $params['email']) {
+			$userobj->setCredentials(array('registered','user','email'));
 			$rights = getOption('register_user_rights');
 			$group = NULL;
 			if (!is_numeric($rights)) {	//  a group or template

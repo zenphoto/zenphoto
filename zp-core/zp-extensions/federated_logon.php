@@ -325,27 +325,6 @@ function federated_login_edit_admin($html, $userobj, $i, $background, $current, 
 					</tr>'."\n";
 				$html = $myhtml.$html;
 			}
-		} else if ($federated) {
-			$disable = '$("#admin_email-0").attr(\'disabled\', \'disabled\');'."\n";
-			$name = $userobj->getName();
-			if (empty($name) || !in_array('name', $federated)) {
-				$namehidden = '';
-			} else {
-				$disable .= '$("#admin_name-0").attr(\'disabled\', \'disabled\');'."\n";
-				$namehidden = '<input type="hidden" name="0-admin_name" value="'.html_encode($userobj->getName()).'" />'."\n";
-			}
-			$myhtml = $namehidden.'
-				<input type="hidden" name="0-admin_email" value="'.html_encode($userobj->getEmail()).'" />
-				<script language="javascript" type="text/javascript">
-					// <!-- <![CDATA[
-					$(document).ready(function(){
-						'.$disable;
-			$myhtml .= '
-							});
-					// ]]> -->
-				</script>';
-
-			$html = $html.$myhtml;
 		}
 	} else if ($federated) {
 		$msg = gettext("<strong>NOTE:</strong> User's credentials came from a Federated logon.");
