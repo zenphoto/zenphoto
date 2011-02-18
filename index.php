@@ -63,7 +63,6 @@ if(isset($_GET['rss']) || isset($_GET['rss-news']) || isset($_GET['rss-comments'
  * Invoke the controller to handle requests
  */
 require_once(dirname(__FILE__). "/".ZENFOLDER.'/controller.php');
-header ('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 $_zp_obj = '';
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page
@@ -162,6 +161,7 @@ if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj)
 		}
 	}
 	// Include the appropriate page for the requested object, and a 200 OK header.
+	header ('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	header("HTTP/1.0 200 OK");
 	header("Status: 200 OK");
 	header('Last-Modified: ' . $_zp_last_modified);
@@ -174,6 +174,7 @@ if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj)
 	debug404($album, $image, $theme);
 	$_zp_gallery_page = '404.php';
 	$errpage = THEMEFOLDER.'/'.internalToFilesystem($theme).'/404.php';
+	header ('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	header("HTTP/1.0 404 Not Found");
 	header("Status: 404 Not Found");
 	zp_apply_filter('theme_headers');

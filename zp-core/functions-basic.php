@@ -962,7 +962,7 @@ function get_caller_method() {
 function debugLog($message, $reset=false) {
 	global $_zp_debug_written;
 	$path = dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . '/debug_log.txt';
-	if ($reset || @filesize($path) == 0) {
+	if ($reset || ($size = @filesize($path)) == 0 || $size > 5000000) {
 		$f = fopen($path, 'w');
 		fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE."]\n");
 	} else {

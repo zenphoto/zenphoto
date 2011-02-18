@@ -618,10 +618,7 @@ function languageChange(id,lang) {
 			<?php
 			$no_change = array();
 			if (!zp_loggedin(ADMIN_RIGHTS)) {
-				$credentials = $userobj->getCredentials();
-				if (!empty($credentials)) {
-					$no_change = unserialize($credentials);
-				}
+				$no_change = $userobj->getCredentials();
 				?>
 				<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
 					<td colspan="2" <?php if (!empty($background)) echo " style=\"$background\""; ?>>
@@ -662,12 +659,12 @@ function languageChange(id,lang) {
 				<p>
 					<label for="<?php echo $id ?>-admin_name"><?php echo gettext("Full name:"); ?><br />
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
-									value="<?php echo html_encode($userobj->getName()); ?>"<?php if (in_array('name', $no_change)) echo ' disabled="disabled"'; ?> /></label>
+									value="<?php echo html_encode($userobj->getName()); ?>"<?php if ($userobj->getName() && in_array('name', $no_change)) echo ' disabled="disabled"'; ?> /></label>
 				</p>
 				<p>
 					<label for="<?php echo $id ?>-admin_email"><?php echo gettext("Email:"); ?><br />
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
-								value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if (in_array('email', $no_change)) echo ' disabled="disabled"'; ?> /></label>
+								value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if ($userobj->getEmail() && in_array('email', $no_change)) echo ' disabled="disabled"'; ?> /></label>
 				</p>
 				<?php
 				$primeAlbum = $userobj->getAlbum();

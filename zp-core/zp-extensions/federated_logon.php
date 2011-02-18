@@ -66,7 +66,7 @@ if ($plugin_disable) {
 	zp_register_filter('alt_login_handler','federated_login_alt_login_handler');
 	zp_register_filter('save_admin_custom_data', 'federated_login_save_custom');
 	zp_register_filter('edit_admin_custom_data', 'federated_login_edit_admin',0);
-	zp_register_filter('theme_head', 'federated_login_verify');
+	zp_register_filter('load_theme_script', 'federated_login_verify',0);
 }
 
 /**
@@ -137,11 +137,11 @@ class federated_login_options {
 											gettext('Handlers') => array('key'=>'federated_logon_handler', 'type'=> OPTION_TYPE_CHECKBOX_ARRAY,
 												'checkboxes'=>$list,
 												'order' => 1,
-												'desc'=> gettext('Un-check any handler you do want to support.')),
+												'desc'=> gettext('Un-check any handler you do not want to support.')),
 											sprintf(gettext('Notify%s'),($disable)?'*':'') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
 												'disabled' => $disable,
 												'order' => 7,
-												'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.'))
+												'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. (Verification is required only if the Federated Logon provider does not supply an e-mail address.)'))
 		);
 		$files = getPluginFiles('*_logon.php','federated_logon');
 
@@ -206,11 +206,11 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 	$more = false;
 	if ($userobj) {	//	update if changed
 		$save = false;
-		if ($email != $userobj->getEmail()) {
+		if (!empty($email) && $email != $userobj->getEmail()) {
 			$save = true;
 			$userobj->setEmail($email);
 		}
-		if ($name != $userobj->getName()) {
+		if (!empty($name) && $name != $userobj->getName()) {
 			$save = true;
 			$userobj->setName($name);
 		}
@@ -230,7 +230,7 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 			$userobj->setUser($user);
 			$credentials = array('federated','user','email');
 			if ($name) $credentials[] = 'name';
-			$userobj->setCredentials(serialize($credentials));
+			$userobj->setCredentials($credentials);
 			$userobj->setName($name);
 			$userobj->setPass($user.gmdate('d M Y H:i:s').getOption('password_pattern'));
 			$userobj->setObjects(NULL);
@@ -250,7 +250,7 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 					$groupobj->save();
 				}
 				$group = 'federated_verify';
-				$redirect = '/' . ZENFOLDER . '/admin.php';
+				$redirect = WEBPATH.'/'.ZENFOLDER.'/admin.php';
 			}
 			$userobj->setRights($groupobj->getRights());
 			$userobj->setGroup($group);
@@ -266,7 +266,7 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 		zp_apply_filter('federated_login_attempt', true, $user);
 		$_zp_authority->logUser($userobj);
 		if ($redirect) {
-			header("Location: ".FULLWEBPATH.$redirect);
+			header("Location: ".$redirect);
 		}
 	}
 	return $more;
@@ -285,9 +285,9 @@ function federated_login_save_custom($updated, $userobj, $i, $alter) {
 		$userobj->save();
 		$admin_e = $userobj->getEmail();
 		$user = $userobj->getUser();
-		$key = bin2hex(serialize(array('user'=>$user,'email'=>$admin_e)));
+		$key = bin2hex(serialize(array('user'=>$user,'email'=>$admin_e,'date'=>time())));
 		$link = FULLWEBPATH.'/index.php?verify_federated_user='.$key;
-		$message = sprintf(gettext('To validate your federated logon credentials visit %s.'), $link);
+		$message = sprintf(gettext('Visit %s to validate your federated logon credentials.'), $link);
 		zp_mail(get_language_string(gettext('Federated user confirmation')), $message, array($user=>$admin_e));
 	}
 	return $updated;
@@ -306,12 +306,10 @@ function federated_login_edit_admin($html, $userobj, $i, $background, $current, 
 	global $_zp_current_admin_obj;
 	if (empty($_zp_current_admin_obj)) return($html);
 	$federated = $userobj->getCredentials();	//	came from federated logon, disable the e-mail field
-	if ($federated) {
-		$federated = unserialize($federated);
-		if (!in_array('federated', $federated)) {
-			$federated = false;
-		}
+	if (!in_array('federated', $federated)) {
+		$federated = false;
 	}
+
 	if ($userobj->getID() == $_zp_current_admin_obj->getID()) {	//	The current logged on user
 		if (($userobj->getGroup() == 'federated_verify'))  {	//	pending email address verification
 			$email = $userobj->getEmail();
@@ -342,33 +340,37 @@ function federated_login_edit_admin($html, $userobj, $i, $background, $current, 
 /**
  * Processes the verification POST tickets
  */
-function federated_login_verify() {
+function federated_login_verify($obj) {
 	global $_zp_authority;
 	//process any verifications posted
 	if (isset($_GET['verify_federated_user'])) {
 		$params = unserialize(pack("H*", $_GET['verify_federated_user']));
-		$userobj = $_zp_authority->getAnAdmin(array('`user`='=>$params['user'], '`email`='=>$params['email'], '`valid`='=>1));
-		if ($userobj) {
-			$groupname = getOption('federated_login_group');
-			$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
-			if ($groupobj) {
-				$userobj->setRights($groupobj->getRights());
-				$userobj->setGroup($groupname);
-				$userobj->setObjects($groupobj->getObjects());
-				if (getOption('register_user_create_album')) {
-					$userobj->createPrimealbum();
+		if ((time() - $params['date']) < 2592000) {
+			$userobj = $_zp_authority->getAnAdmin(array('`user`='=>$params['user'], '`email`='=>$params['email'], '`valid`>'=>0));
+			if ($userobj) {
+				$groupname = getOption('federated_login_group');
+				$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
+				if ($groupobj) {
+					$userobj->setRights($groupobj->getRights());
+					$userobj->setGroup($groupname);
+					$userobj->setObjects($groupobj->getObjects());
+					if (getOption('register_user_create_album')) {
+						$userobj->createPrimealbum();
+					}
+					$userobj->save();
 				}
-				$userobj->save();
+				zp_apply_filter('register_user_verified', $userobj);
+				if (getOption('register_logon_user_notify')) {
+					zp_mail(gettext('Zenphoto Gallery registration'),
+					sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'),$userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+				}
+				$_zp_authority->logUser($userobj);
+				header("Location: ".FULLWEBPATH.'/' . ZENFOLDER . '/admin.php');
+				exit();
 			}
-			zp_apply_filter('register_user_verified', $userobj);
-			if (getOption('register_logon_user_notify')) {
-				zp_mail(gettext('Zenphoto Gallery registration'),
-				sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'),$userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
-			}
-			$redirect = '/' . ZENFOLDER . '/admin.php';
-			$success = logonFederatedCredentials($params['user'], $params['user'], NULL, $redirect);
 		}
 	}
+	return $obj;
 }
 
 /**
@@ -427,6 +429,5 @@ function federated_login_buttons($redirect = NULL) {
 	</ul>
 	<?php
 }
-
 
 ?>

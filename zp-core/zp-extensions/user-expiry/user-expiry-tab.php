@@ -25,7 +25,7 @@ $adminordered = array();
 foreach ($ordered as $key=>$user) {
 	$adminordered[] = $admins[$key];
 }
-
+$msg = NULL;
 if (isset($_GET['action'])) {
 	$action = $_GET['action'];
 	XSRFdefender($action);
@@ -58,11 +58,21 @@ if (isset($_GET['action'])) {
 							$userobj->setValid(1);
 							$userobj->save();
 							break;
+						case 'revalidate':
+							$gallery = new Gallery();
+							$site = $gallery->getTitle();
+							$user_e = $userobj->getEmail();
+							$user = $userobj->getUser();
+							$key = bin2hex(serialize(array('user'=>$user,'email'=>$user_e,'date'=>time())));
+							$link = FULLWEBPATH.'/index.php?user_expiry_reverify='.$key;
+							$message = sprintf(gettext('Your %1$s credentials need to be renewed. Visit %2$s to renew your logon credentials.'), $site, $link);
+							$msg = zp_mail(sprintf(gettext('%s renewal required'),$site), $message, array($user=>$user_e));
+							break;
 					}
 				}
 			}
 		}
-		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user-expiry/user-expiry-tab.php?page=users&tab=groups&applied');
+		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user-expiry/user-expiry-tab.php?page=users&tab=groups&applied='.$msg);
 		exit();
 	}
 }
@@ -80,9 +90,16 @@ echo '</head>'."\n";
 		<div id="content">
 			<?php
 			if (isset($_GET['applied'])) {
-				echo '<div class="messagebox fade-message">';
-				echo  "<h2>".gettext('Processed')."</h2>";
-				echo '</div>';
+				$msg = sanitize($_GET['applied']);
+				if ($msg) {
+					echo "<div class=\"errorbox space\">";
+					echo "<h2>".$msg."</h2>";
+					echo "</div>";
+				} else {
+					echo '<div class="messagebox fade-message">';
+					echo  "<h2>".gettext('Processed')."</h2>";
+					echo '</div>';
+				}
 			}
 			$subtab = printSubtabs();
 			?>
@@ -141,9 +158,15 @@ echo '</head>'."\n";
 											$r2 = '<img src="../../images/lock_2.png" title="'.gettext('disable').'" /><input type="radio" name="r_'.$id.'" value="disable"'.$checked_disable.' />&nbsp;';
 										}
 										$r3 = '<img src="../../images/pass.png" title="'.gettext('renew').'" /><input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.' />&nbsp;';
+										if ($user['email']) {
+											$disable = '';
+										} else {
+											$disable = ' disabled="disabled"';
+										}
+										$r4 = '<img src="../../images/envelope.png" title="'.gettext('Email renewal').'" /><input type="radio" name="r_'.$id.'" value="revalidate"'.$disable.' />&nbsp;';
 										?>
 										<li>
-											<?php printf(gettext('%1$s <strong>%2$s</strong> (expires:%3$s; last logon:%4$s)'),$r1.$r2.$r3,html_encode($user['user']),$expires_display,$loggedin); ?>
+											<?php printf(gettext('%1$s <strong>%2$s</strong> (expires:%3$s; last logon:%4$s)'),$r1.$r2.$r3.$r4,html_encode($user['user']),$expires_display,$loggedin); ?>
 										</li>
 										<?php
 									}
@@ -154,6 +177,7 @@ echo '</head>'."\n";
 							<img src="../../images/lock_2.png" /> <?php echo gettext('Disable'); ?>
 							<img src="../../images/lock_open.png" /> <?php echo gettext('Enable'); ?>
 							<img src="../../images/pass.png" /> <?php echo gettext('Renew'); ?>
+							<img src="../../images/envelope.png" /> <?php echo gettext('Email renewal link'); ?>
 							<p class="buttons">
 							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>

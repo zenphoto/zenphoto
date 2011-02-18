@@ -1216,10 +1216,15 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * Data to support other credential systems integration
 	 */
 	function getCredentials() {
-		return $this->get('other_credentials');
+		$cred = $this->get('other_credentials');
+		if ($cred) {
+			return unserialize($cred);
+		} else {
+			return array();
+		}
 	}
 	function setCredentials($cred) {
-		$this->set('other_credentials',$cred);
+		$this->set('other_credentials',serialize($cred));
 	}
 
 	/**

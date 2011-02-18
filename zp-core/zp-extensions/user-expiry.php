@@ -40,6 +40,8 @@ zp_register_filter('admin_tabs', 'user_expiry_admin_tabs', 99);
 zp_register_filter('authorization_cookie','user_expiry_checkcookie');
 zp_register_filter('admin_login_attempt','user_expiry_checklogon');
 zp_register_filter('federated_login_attempt','user_expiry_checklogon');
+zp_register_filter('edit_admin_custom_data', 'user_expiry_edit_admin',0);
+zp_register_filter('load_theme_script', 'user_expiry_reverify',0);
 
 /**
  * Option handler class
@@ -104,7 +106,7 @@ function user_expiry_checkexpires($loggedin, $userobj) {
 		$userobj->save();
 		$loggedin = false;
 	} else {
-		if ($expires < (time() + getOption('user_expiry_warn_interval')*86400)) {
+		if ($expires < (time() + getOption('user_expiry_warn_interval')*86400)) {	//	expired
 			if (getOption('user_expiry_auto_renew')) {
 				$newdate = getOption('user_expiry_interval')*86400+strtotime($userobj->getDateTime());
 				if ($newdate+getOption('user_expiry_interval')*86400 < time()) {
@@ -112,13 +114,33 @@ function user_expiry_checkexpires($loggedin, $userobj) {
 				}
 				$userobj->setDateTime(date('Y-m-d H:i:s',$newdate));
 				$userobj->setValid(1);
+				$credentials = $userobj->getCredentials();
+				$key = array_search('exiry_notice', $credentials);
+				if ($key !== false) {
+					unset($credentials[$key]);
+					$userobj->setCredentials($credentials);
+				}
 				$userobj->save();
 			} else {
 				if ($mail = $userobj->getEmail()) {
-					$gallery = new Gallery();
-					$message = sprintf(gettext('Your user id for the Zenphoto site %s will expire on %s.'),$gallery->getTitle(),date('Y-m-d',$expires));
-					$notify = zp_mail(get_language_string(gettext('User id expiration')), $message, array($userobj->getName()=>$mail));
+					$credentials = $userobj->getCredentials();
+					if (!in_array('exiry_notice', $credentials)) {
+						$credentials[] = 'exiry_notice';
+						$userobj->setCredentials($credentials);
+						$userobj->save();
+						$gallery = new Gallery();
+						$message = sprintf(gettext('Your user id for the Zenphoto site %s will expire on %s.'),$gallery->getTitle(),date('Y-m-d',$expires));
+						$notify = zp_mail(get_language_string(gettext('User id expiration')), $message, array($userobj->getName()=>$mail));
+					}
 				}
+			}
+		} else {
+			$credentials = $userobj->getCredentials();
+			$key = array_search('exiry_notice', $credentials);
+			if ($key !== false) {
+				unset($credentials[$key]);
+				$userobj->setCredentials($credentials);
+				$userobj->save();
 			}
 		}
 	}
@@ -144,4 +166,58 @@ function user_expiry_checklogon($loggedin, $user) {
 	return $loggedin;
 
 }
+
+/**
+ * Re-validates user's e-mail via ticket.
+ */
+function user_expiry_reverify($obj) {
+	global $_zp_authority;
+	//process any verifications posted
+	if (isset($_GET['user_expiry_reverify'])) {
+		$params = unserialize(pack("H*", $_GET['user_expiry_reverify']));
+		if ((time() - $params['date']) < 2592000) {
+			$userobj = $_zp_authority->getAnAdmin(array('`user`='=>$params['user'], '`email`='=>$params['email'], '`valid`>' => 0));
+			if ($userobj) {
+				$credentials = $userobj->getCredentials();
+				$credentials[] = 'expiry';
+				$credentials[] = 'email';
+				$credentials = array_unique($credentials);
+			}
+			$userobj->setCredentials($credentials);
+			$userobj->setValid(1);
+			$userobj->set('loggedin',date('Y-m-d H:i:s'));
+			$userobj->save();
+
+			$_zp_authority->logUser($userobj);
+			header("Location: ".FULLWEBPATH.'/' . ZENFOLDER . '/admin.php');
+			exit();
+		}
+	}
+	return $obj;
+}
+
+function user_expiry_edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {
+	global $_zp_current_admin_obj;
+	if (!zp_loggedin(ADMIN_RIGHTS) && $userobj->getID() == $_zp_current_admin_obj->getID()) {
+		$subscription = 86400*getOption('user_expiry_interval');
+		$now = time();
+		$warnInterval = $now + getOption('user_expiry_warn_interval')*86400;
+		$expires = strtotime($userobj->getDateTime())+$subscription;
+		$expires_display = date('Y-m-d',$expires);
+		if ($expires < $warnInterval) {
+			$expires_display = '<span style="color:red" class="tooltip" title="'.gettext('Expires soon').'">'.$expires_display.'</span>';
+		}
+		$msg = sprintf(gettext('Your subscription expires on %s'),$expires_display);
+		$myhtml =
+			'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
+				<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" colspan="3">'."\n".
+					'<p class="notebox">'.$msg.'</p>'."\n".
+				'</td>
+			</tr>'."\n";
+		$html = $myhtml.$html;
+
+	}
+	return $html;
+}
+
 ?>
