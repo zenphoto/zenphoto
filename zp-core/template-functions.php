@@ -3719,8 +3719,18 @@ function getAllDates($order='asc') {
  * @param string $order set to 'desc' for the list to be in descending order
  */
 function printAllDates($class='archive', $yearid='year', $monthid='month', $order='asc') {
-	global $_zp_current_search;
-	if (!empty($class)){ $class = "class=\"$class\""; }
+	global $_zp_current_search,$_zp_gallery_page;
+	if (empty($class)){
+		$classactive = 'archive_active';
+	} else {
+		$classactive = $class.'_active';
+		$class = "class=\"$class\"";
+	}
+	if ($_zp_gallery_page  == 'search.php') {
+		$activedate = getSearchDate('%Y-%m');
+	} else {
+		$activedate = '';
+	}
 	if (!empty($yearid)){ $yearid = "class=\"$yearid\""; }
 	if (!empty($monthid)){ $monthid = "class=\"$monthid\""; }
 	$datecount = getAllDates($order);
@@ -3748,7 +3758,13 @@ function printAllDates($class='archive', $yearid='year', $monthid='month', $orde
 		} else {
 			$albumlist = NULL;
 		}
-		echo "<li><a href=\"".html_encode(getSearchURl('', substr($key, 0, 7), '', 0, array('allbums'=>$albumlist)))."\" rel=\"nofollow\">$month ($val)</a></li>\n";
+		$datekey = substr($key, 0, 7);
+		if ($activedate = $datekey) {
+			$cl = ' class="'.$classactive.'"';
+		} else {
+			$cl = '';
+		}
+		echo "<li".$cl."><a href=\"".html_encode(getSearchURl('', $datekey, '', 0, array('allbums'=>$albumlist)))."\" rel=\"nofollow\">$month ($val)</a></li>\n";
 	}
 	echo "</ul>\n</li>\n</ul>\n";
 }

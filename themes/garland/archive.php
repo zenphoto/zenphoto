@@ -35,7 +35,7 @@ if (!defined('WEBPATH')) die();
             <!-- begin content -->
             <div class="main section" id="main">
               <h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle());?></a> &raquo; <?php echo gettext('Archive View'); ?></h3>
-              <div id="image_container">
+
               	<div id="archive">
 									<p><?php echo gettext('Images By Date'); ?></p>
 									<?php printAllDates(); ?>
@@ -47,7 +47,7 @@ if (!defined('WEBPATH')) die();
 									}
 									?>
                 </div>
-              </div>
+
   			  		<?php footer(); ?>
               <p style="clear: both;"></p>
             </div>
