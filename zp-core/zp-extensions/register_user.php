@@ -379,7 +379,8 @@ function printRegistrationForm($thanks=NULL) {
 		}
 	}
 	if ($notify != 'success') {
-		require_once(dirname(__FILE__).'/'.substr(basename(__FILE__), 0, -4).'/'.'register_user_form.php');
+		$form = getPlugin('register_user/register_user_form.php', true);
+		require_once($form);
 	}
 }
 ?>

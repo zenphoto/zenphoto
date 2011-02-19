@@ -62,7 +62,7 @@
 					?>
 					<input type="hidden" name="code_h" value="<?php echo $captchaCode; ?>" size="22" />
 					<?php
-					printf(gettext("Enter %s:"),$html);
+					printf(gettext("Enter %s"),$html);
 					?>
 				</td>
 				<td><input type="text" id="code" name="code" value="" size="22" /></td>

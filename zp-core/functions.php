@@ -646,6 +646,9 @@ function getPluginFiles($pattern, $folder='', $stripsuffix=true) {
 function getPlugin($plugin, $inTheme=false, $webpath=false) {
 	global $_zp_themeroot;
 	$pluginFile = NULL;
+	if ($inTheme === true) {
+		$inTheme = getCurrentTheme();
+	}
 	if ($inTheme) {
 		$_zp_themeroot = WEBPATH.'/'. THEMEFOLDER.'/'.$inTheme;
 		$pluginFile = '/'.THEMEFOLDER.'/'.internalToFilesystem($inTheme.'/'.$plugin);
@@ -655,9 +658,9 @@ function getPlugin($plugin, $inTheme=false, $webpath=false) {
 	}
 	if (!$pluginFile) {
 		$pluginFile = '/'.USER_PLUGIN_FOLDER.'/'.internalToFilesystem($plugin);
-		if (!file_exists(SERVERPATH.$pluginFile)) {
-			$pluginFile = '/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.internalToFilesystem($plugin);
 			if (!file_exists(SERVERPATH.$pluginFile)) {
+			$pluginFile = '/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.internalToFilesystem($plugin);
+				if (!file_exists(SERVERPATH.$pluginFile)) {
 				$pluginFile = false;
 			}
 		}
@@ -669,7 +672,7 @@ function getPlugin($plugin, $inTheme=false, $webpath=false) {
 			return SERVERPATH.$pluginFile;
 		}
 	}
-	return false;
+		return false;
 }
 
 /**

@@ -565,12 +565,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 			$stored = $data['data'];
 
 			$theme = getCurrentTheme();
-			$form = SERVERPATH.'/'.THEMEFOLDER.'/'.internalToFilesystem($theme).$formname;
-			if (file_exists($form)) {
-				$form = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.$formname;
-			} else {
-				$form = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/comment_form'.$formname;
-			}
+			$form = getPlugin('comment_form'.$formname, $theme);
 			if (MEMBERS_ONLY_COMMENTS && !zp_loggedin(POST_COMMENT_RIGHTS)) {
 				echo gettext('Only registered users may post comments.');
 			} else {

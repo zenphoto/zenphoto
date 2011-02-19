@@ -84,13 +84,13 @@ class contactformOptions {
 										'desc' => gettext("If checked, a confirmation form will be presented before sending the contact message.")),
 									gettext('Send copy') => array('key' => 'contactform_sendcopy', 'type' => OPTION_TYPE_CHECKBOX,
 										'order' => 0,
-										'desc' => gettext("If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could missuse the e-mail address entered for spamming with this form and that in some countries' jurisdictions (e.g. most European countries) you may be made responsible for this then!</p>")),	
+										'desc' => gettext("If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could missuse the e-mail address entered for spamming with this form and that in some countries' jurisdictions (e.g. most European countries) you may be made responsible for this then!</p>")),
 									gettext('Send copy note text') => array('key' => 'contactform_sendcopy_text', 'type' => OPTION_TYPE_TEXTAREA,
 										'order' => 0,
-										'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),	
+										'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
 									gettext('Mail address') => array('key' => 'contactform_mailaddress', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 17,
-										'desc' => gettext("The e-mail address the messages should be sent to. Enter more than one address separated by comma without any spaces.")),	
+										'desc' => gettext("The e-mail address the messages should be sent to. Enter more than one address separated by comma without any spaces.")),
 									gettext('Title field') => array('key' => 'contactform_title', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 1,
 										'desc' => sprintf($mailfieldinstruction,gettext("Title field."))),
@@ -247,7 +247,7 @@ function printContactForm() {
 				<div>
 					<?PHP
 					$_processing_post = true;
-					include(SERVERPATH . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER . "/contact_form/form.php");
+					include(getPlugin('contact_form/form.php', true));
 					?>
 					<form id="confirm" action="<?php echo sanitize($_SERVER['REQUEST_URI']); ?>" method="post" accept-charset="UTF-8" style="float: left">
 						<input type="hidden" id="confirm" name="confirm" value="confirm" />
@@ -325,7 +325,7 @@ function printContactForm() {
 		echo get_language_string(getOption("contactform_introtext"));
 		if(getOption('contactform_sendcopy')) echo get_language_string(getOption("contactform_sendcopy_text"));
 		$_processing_post = false;
-		include(SERVERPATH . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER . "/contact_form/form.php");
+		include(getPlugin('contact_form/form.php', true));
 	}
 }
 

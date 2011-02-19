@@ -100,6 +100,8 @@ themes/garland/404.php
 themes/garland/album.php
 themes/garland/archive.php
 themes/garland/contact.php
+themes/garland/contact_form
+themes/garland/contact_form/form.php
 themes/garland/functions.php
 themes/garland/gallery.php
 themes/garland/image.php
@@ -134,6 +136,8 @@ themes/stopdesign/album.php
 themes/stopdesign/comment.php
 themes/stopdesign/comment_form.php
 themes/stopdesign/contact.php
+themes/stopdesign/contact_form
+themes/stopdesign/contact_form/form.php
 themes/stopdesign/css
 themes/stopdesign/css/comments-hide.css
 themes/stopdesign/css/comments-show.css
@@ -1782,4 +1786,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1784
+1788

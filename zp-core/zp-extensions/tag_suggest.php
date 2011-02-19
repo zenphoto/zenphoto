@@ -9,7 +9,7 @@
 
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field. Just activate the plugin and the feature is available on the theme's search field.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard) — ".gettext("an adaption of Remy Sharp's <a href='http://remysharp.com/2007/12/28/jquery-tag-suggestion/ '>jQuery Tag Suggestion</a>");
-$plugin_version = '1.4.0'; 
+$plugin_version = '1.4.0';
 $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---tag_suggest.php.html";
 
 zp_register_filter('theme_head','tagSuggestJS');
@@ -20,12 +20,7 @@ function tagSuggestJS() {
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/encoder.js"></script>
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/tag.js"></script>
 	<?php
-	$css = SERVERPATH . '/' . THEMEFOLDER . '/' . internalToFilesystem(getCurrentTheme()) . '/tag.css';
-	if (file_exists($css)) {
-		$css = WEBPATH . '/' . THEMEFOLDER . '/' . $theme . '/tag.css';
-	} else {
-		$css = WEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER . '/tag_suggest/tag.css';
-	}
+	$css = getPlugin('tag_suggest/tag.css', true, true);
 	?>
 	<link type="text/css" rel="stylesheet" href="<?php echo pathurlencode($css); ?>" />
 	<?php
