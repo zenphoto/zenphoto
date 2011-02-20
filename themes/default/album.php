@@ -54,7 +54,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 		<?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>
 
-
+	<?php if (function_exists('printGoogleMap')) printGoogleMap(); ?>
 	<?php if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow')); ?>
 	<?php if (function_exists('printRating')) { printRating(); }?>
 	<?php

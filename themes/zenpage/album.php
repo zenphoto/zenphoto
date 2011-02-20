@@ -64,6 +64,13 @@ if (!defined('WEBPATH')) die();
 		<?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
 		<br style="clear:both;" /><br />
+		<?php
+		if (function_exists('printGoogleMap')) {
+			echo '<p id="maplink">';
+			printGoogleMap();
+			echo '</p>';
+		}
+		?>
 	<?php if (function_exists('printSlideShowLink')) {
 			echo '<span id="slideshowlink">';
 			printSlideShowLink(gettext('View Slideshow'));

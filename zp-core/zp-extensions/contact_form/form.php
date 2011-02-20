@@ -44,7 +44,7 @@
 		</tr>
 		<?php } ?>
 		<?php if(showOrNotShowField(getOption('contactform_country'))) { ?>
-  	<tr>
+		<tr>
 			<td><?php printf(gettext("Country<strong>%s</strong>:"),(checkRequiredField(getOption('contactform_country')))); ?></td>
 			<td><input type="text" id="country" name="country" size="50" value="<?php echo html_encode($mailcontent['country']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</td>
@@ -71,14 +71,14 @@
 		</tr>
 		<?php } ?>
 		<?php if(getOption("contactform_captcha") && !$_processing_post) { $captchaCode=generateCaptcha($img); ?>
- 		<tr>
- 			<td>
- 				<?php echo gettext("Enter CAPTCHA<strong>*</strong>:"); ?>
- 				<img src=<?php echo "\"$img\"";?> alt="Code" align="middle" />
- 			</td>
- 			<td><input type="text" id="code" name="code" size="50" />
- 					<input type="hidden" name="code_h" value="<?php echo $captchaCode;?>"/></td>
- 		</tr>
+		<tr>
+			<td>
+				<?php echo gettext("Enter CAPTCHA<strong>*</strong>:"); ?>
+				<img src=<?php echo "\"$img\"";?> alt="Code" align="middle" />
+			</td>
+			<td><input type="text" id="code" name="code" size="50" />
+					<input type="hidden" name="code_h" value="<?php echo $captchaCode;?>"/></td>
+		</tr>
 		<?php } ?>
 		<?php if(showOrNotShowField(getOption('contactform_subject'))) { ?>
 		<tr>

@@ -223,7 +223,7 @@ function getAlbumGeodata($obj,$MAP_OBJECT){
 	$images = $obj->getImages(0);
 	foreach ($images as $an_image) {
 		$image = newImage($obj, $an_image);
-		$coord = getGeoCoord($obj);
+		$coord = getGeoCoord($image);
 		if ($coord) {
 			$result = true;	//	at least one image has geodata
 			$coord['desc'] = '<a href="' . html_encode($image->getImageLink()) . '"><img src="' .

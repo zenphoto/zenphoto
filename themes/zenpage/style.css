@@ -1191,6 +1191,19 @@ text-align:center;
 padding:8px;
 }
 
+/* map link */
+#maplink {
+display:block;
+margin-bottom: 15px;
+float: left;
+}
+
+#maplink a {
+background-color:#f1f1f1;
+width:100px; 
+text-align:center;
+padding:8px;
+}
 
 /* tinyZenpage title addition */
 .zenpage_wrapper_left,
