@@ -581,26 +581,29 @@ ul.archive * {
 	margin:0;
 	list-style:none;
 }
-ul.archive #year {
+ul.archive li.year {
 	margin-top:10px;
 	margin-bottom:5px;
-	margin-left:5px;
+	margin-left:-43px;
 	margin-right:0px;
 	text-align: left;
-	font-size:18px;
+	font-size:12px;
+	
 }
-ul.archive #year li {
+
+ul.archive li.year li {
 	margin-left:5px;
 }
-ul.archive #month {
-	font-size: 14px;
+
+ul.archive ul.month {
+	margin-left:-48px;
 	list-style:none;
-	border-top:2px solid #E6E6DF;
-	padding-top: 5px;
+
 }
 ul.archive li {
 	display: inline;
 	padding-left:4px;
+	
 }
 
 #imagemetadata {
@@ -666,10 +669,11 @@ line-height: 1em;
 	font-weight:bold;
 	margin-top:3px;
 	margin-bottom:5px;
+	font-size: 14px;
 }
 
 .newsarticle a:link, a:active, a:visited {
-text-decoration:underline;
+text-decoration:none;
 }
 
 .newsarticlecredit {
