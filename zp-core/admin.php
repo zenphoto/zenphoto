@@ -8,6 +8,9 @@
 
 /* Don't put anything before this line! */
 define('OFFSET_PATH', 1);
+if (isset($_GET['_zp_login_error'])) {
+	$_zp_login_error = $_GET['_zp_login_error'];
+}
 
 // The login will always occur in this file thanks to printLoginForm() function.
 // to implement 'server_protocol' == 'https_admin' we need to redirect to https

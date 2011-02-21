@@ -34,7 +34,7 @@ function run() {
 		$esc_identity = escape($openid);
 
 		$success = sprintf(gettext('You have successfully verified <a href="%s">%s</a> as your identity.'),
-																							$esc_identity, $esc_identity);
+		$esc_identity, $esc_identity);
 
 		if ($response->endpoint->canonicalID) {
 			$escaped_canonicalID = escape($response->endpoint->canonicalID);
@@ -104,12 +104,14 @@ function run() {
 		$redirect = @$_SESSION['OpenID_redirect'];
 		$success .= logonFederatedCredentials($userid, $email, $name, $redirect);
 
-		}
-
-
-	include 'OpenID_logon.php';
+	}
+	return $success;
 }
 
-run();
+$error = run();
+if ($success) {
+	header('Location: '.FULLWEBPATH.'/'.ZENFOLDER.'/admin.php?_zp_login_error='.sprintf(gettext('Federated logon error:<br />%s'), $error));
+	exit();
+}
 
 ?>
