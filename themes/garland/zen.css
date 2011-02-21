@@ -553,6 +553,7 @@ top: 6px;
 	position:fixed;
 	right:0;
 	top:0;
+	z-index: 1000;
 	border-left: 1px solid #E6E6DF;
 	border-bottom: 1px solid #E6E6DF;
 	background: #edf5fa;
@@ -561,13 +562,18 @@ top: 6px;
 #admin_data{
 	top:17px;
 }
-#admin h3 {
+#admin_data h3 {
 	font: 105% "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: bold;
 	color: #494949;
 	border-bottom: 1px dashed #E6E6DF;
 	margin:0;
 	padding:0;
+}
+
+
+#admin_data ul  {
+margin-left: -30px;
 }
 
 /* Archive View
@@ -660,9 +666,9 @@ font-style: italic;
 
 .newsarticle {
 padding-top: 1em;
-padding-bottom: 1em;
+padding-bottom: 10px;
 border-bottom: 1px dotted #666666;
-line-height: 1em;
+line-height: 17px;
 }
 
 .newsarticle h3 {
@@ -709,8 +715,8 @@ font-size: 0.8em;
 }
 
 #pagetext {
-font-size: 1em;
-line-height: 1em;
+font-size: 12px;
+line-height: 17px;
 margin-bottom: 1em;
 min-height: 300px;
 }
