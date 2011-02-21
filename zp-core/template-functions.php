@@ -3604,7 +3604,6 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ',
  */
 function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE,$maxfontsize=2,$maxcount=50,$mincount=10, $limit=NULL,$minfontsize=0.8) {
 	global $_zp_current_search;
-
 	$option = strtolower($option);
 	if ($class != "") {
 		$class = "class=\"".$class."\"";
@@ -3617,6 +3616,7 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 	if (!is_null($limit)) {
 		$tagcount = array_slice($tagcount, 0, $limit);
 	}
+	$list = '';
 	echo "<ul ".$class.">\n";
 	foreach ($tagcount as $key=>$val) {
 		if(!$counter) {
@@ -3656,15 +3656,20 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 				} else {
 					$quote = '';
 				}
-				echo "\t<li><a href=\"".
+				$list .= "\t<li><a href=\"".
 					html_encode(getSearchURL($quote.$key.$quote, '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
 					$key.$counter."</a></li>\n";
 			} else {
-				echo "\t<li$size>".$key.$counter."</li>\n";
+				$list .= "\t<li$size>".$key.$counter."</li>\n";
 			}
 		}
 
 	} // while end
+	if ($list) {
+		echo $list;
+	} else {
+		echo '<li>'.gettext('No popular tags')."</li>\n";
+	}
 	echo "</ul>\n";
 }
 

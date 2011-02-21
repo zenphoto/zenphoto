@@ -812,3 +812,20 @@ font-weight: bold;
 	list-style-type: none;
 }	
 
+/* Tags
+------------------------------ */
+.tags {
+	display: inline;
+	list-style-type: none;
+}
+
+.tags li {
+	list-style-type: none;
+	padding-left: 5px;
+	float: left;
+	padding-right: 0px;
+	display: inline;
+	list-style-type: none;
+}
+
+
