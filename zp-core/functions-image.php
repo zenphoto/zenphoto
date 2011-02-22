@@ -359,7 +359,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 				$iptc_data = zp_imageIPTC($imgfile);
 				if (empty($iptc_data)) {
 					require_once(dirname(__FILE__).'/functions.php');	//	it is ok to increase memory footprint now since the image processing is complete
-					$iptc = array('1#190' => chr(0x1b) . chr(0x25) . chr(0x47),	//	character set is UTF-8
+					$iptc = array('1#090' => chr(0x1b) . chr(0x25) . chr(0x47),	//	character set is UTF-8
 												'2#115' => getOption('gallery_title')	//	source
 												);
 					$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
