@@ -3366,8 +3366,8 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
 			$album = new Album($_zp_gallery, $rootAlbum);
 		}
 	}
-	if ($daily) {
-		$potd = unserialize(getOption('picture_of_the_day:'.$album->name));
+	if ($daily && ($potd = getOption('picture_of_the_day:'.$album->name))) {
+		$potd = unserialize($potd);
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
 			$album = new Album($_zp_gallery, $potd['folder']);
 			$image = newImage($album, $potd['filename']);
@@ -3376,13 +3376,12 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
 	}
 	$image = NULL;
 	if ($album->isDynamic()) {
-		$search = $album->getSearchEngine();
-		$images = $search->getImages(0);
+		$images = $album->getImages(0);
 		shuffle($images);
 		while (count($images) > 0) {
-			$randomImage = array_pop($images);
-			if (is_valid_image($randomImage['filename'])) {
-				$image = newImage(new Album(new Gallery(), $randomImage['folder']), $randomImage['filename']);
+			$result = array_pop($images);
+			if (is_valid_image($result['filename'])) {
+				$image = newImage(new Album(new Gallery(), $result['folder']), $result['filename']);
 			}
 		}
 	} else {
@@ -3429,7 +3428,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
 		}
 	}
 	if ($daily && is_object($image)) {
-		$potd = array('day' => time(), 'folder' => $result['folder'], 'filename' => $imageName);
+		$potd = array('day' => time(), 'folder' => $result['folder'], 'filename' => $result['filename']);
 		setThemeOption('picture_of_the_day:'.$album->name, serialize($potd));
 	}
 	return $image;
