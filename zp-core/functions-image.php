@@ -368,8 +368,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 					$image = newImage(new Album(new Gallery(),$albumname), $imagename);
 					$copyright = $image->getCopyright();
 					if (empty($copyright)) {
-						$iptc['2#116'] = getOption('default_copyright');
-					} else {
+						$copyright = getOption('default_copyright');
+					}
+					if (!empty($copyright)) {
 						$iptc['2#116'] = $copyright;
 					}
 					$credit = $image->getCredit();
