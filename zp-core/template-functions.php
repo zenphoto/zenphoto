@@ -3369,8 +3369,8 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
 	if ($daily && ($potd = getOption('picture_of_the_day:'.$album->name))) {
 		$potd = unserialize($potd);
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
-			$album = new Album($_zp_gallery, $potd['folder']);
-			$image = newImage($album, $potd['filename']);
+			$rndalbum = new Album($_zp_gallery, $potd['folder']);
+			$image = newImage($rndalbum, $potd['filename']);
 			if ($image->exists)	return $image;
 		}
 	}

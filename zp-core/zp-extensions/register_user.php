@@ -195,7 +195,7 @@ function printRegistrationForm($thanks=NULL) {
 	// handle any postings
 	if (isset($_GET['verify'])) {
 		$currentadmins = $_zp_authority->getAdministrators();
-		$params = unserialize(pack("H*", $_GET['verify']));
+		$params = unserialize(pack("H*", trim($_GET['verify'],'.')));
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj->getEmail() == $params['email']) {
 			$userobj->setCredentials(array('registered','user','email'));
@@ -338,7 +338,7 @@ function printRegistrationForm($thanks=NULL) {
 				?>
 				<p><?php echo gettext('You may now log onto the site.'); ?></p>
 				<?php
-				printPasswordForm('', false, true);
+				printPasswordForm('', false, true, WEBPATH.'/'.ZENFOLDER.'/admin.php');
 			}
 			$notify = 'success';
 		} else {

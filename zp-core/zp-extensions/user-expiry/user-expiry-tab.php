@@ -29,13 +29,10 @@ $msg = NULL;
 if (isset($_GET['action'])) {
 	$action = $_GET['action'];
 	XSRFdefender($action);
-	$themeswitch = false;
 	if ($action == 'expiry') {
 		foreach ($_POST as $key=>$action) {
-			$key = postIndexDecode($key);
 			if (strpos($key,'r_') == 0) {
-				$user = str_replace('r_','', $key);
-				$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+				$userobj = $_zp_authority->getAnAdmin(array('`id`=' => str_replace('r_', '', $key)));
 				if ($userobj) {
 					switch ($action) {
 						case 'delete':
@@ -150,7 +147,7 @@ echo '</head>'."\n";
 										if ($user['valid'] == 2) {
 											$checked_delete = '';
 										}
-										$id = postIndexEncode($user['user']);
+										$id = $user['id'];
 										$r1 = '<img src="../../images/fail.png" title="'.gettext('delete').'" /><input type="radio" name="r_'.$id.'" value="delete"'.$checked_delete.' />&nbsp;';
 										if ($user['valid'] == 2) {
 											$r2 = '<img src="../../images/lock_open.png" title="'.gettext('enable').'" /><input type="radio" name="r_'.$id.'" value="enable"'.$checked_disable.' />&nbsp;';

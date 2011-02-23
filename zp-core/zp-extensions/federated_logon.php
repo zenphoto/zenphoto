@@ -344,7 +344,7 @@ function federated_login_verify($obj) {
 	global $_zp_authority;
 	//process any verifications posted
 	if (isset($_GET['verify_federated_user'])) {
-		$params = unserialize(pack("H*", $_GET['verify_federated_user']));
+		$params = unserialize(pack("H*", trim($_GET['verify_federated_user'],'.')));
 		if ((time() - $params['date']) < 2592000) {
 			$userobj = $_zp_authority->getAnAdmin(array('`user`='=>$params['user'], '`email`='=>$params['email'], '`valid`>'=>0));
 			if ($userobj) {
