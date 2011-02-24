@@ -183,9 +183,6 @@ if(isset($_GET['sitemap'])) {
 	exit();
 }
 
-
-$sitemap_locales = generateLanguageList();
-
 /**
  * creates the Utilities button to purge the static sitemap cache
  * @param array $buttons
@@ -282,7 +279,8 @@ function sitemap_getDateformat($obj,$option) {
  * @return string
  */
 function printSitemapIndexLinks($albumsperpage='',$changefreq='') {
-	global $_zp_gallery, $sitemap_locales;
+	global $_zp_gallery;
+	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_index');
 	} else {
@@ -337,7 +335,8 @@ function printSitemapIndexLinks($albumsperpage='',$changefreq='') {
  * @return string
  */
 function printSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$albumchangefreq='',$imagechangefreq='',$albumlastmod='',$imagelastmod='') {
-	global $_zp_gallery, $_zp_current_album,$sitemap_locales;
+	global $_zp_gallery, $_zp_current_album;
+	$sitemap_locales = generateLanguageList();
 	if(empty($albumchangefreq)) {
 		$albumchangefreq = getOption('sitemap_changefreq_albums');
 	} else {
@@ -521,7 +520,7 @@ function printSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images)
  * @return string
  */
 function printSitemapZenpagePages($changefreq='') {
-	global $sitemap_locales;
+	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_pages');
 	} else {
@@ -556,7 +555,7 @@ function printSitemapZenpagePages($changefreq='') {
  * @return string
  */
 function printSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
-	global $sitemap_locales;
+	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_newsindex');
 	} else {
@@ -598,7 +597,7 @@ function printSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
  * @return string
  */
 function printSitemapZenpageNewsArticles($changefreq='') {
-	global $sitemap_locales;
+	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_news');
 	} else {
@@ -635,7 +634,7 @@ function printSitemapZenpageNewsArticles($changefreq='') {
  * @return string
  */
 function printSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
-	global $sitemap_locales;
+	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_newscats');
 	} else {
