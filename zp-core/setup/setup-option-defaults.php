@@ -445,13 +445,13 @@ foreach ($plugins as $extension) {
 			$plugin_is_filter = 1|THEME_PLUGIN;
 		}
 		setOption('zp_plugin_'.$extension, $plugin_is_filter);
-	}
-	$str = isolate('$option_interface', $pluginStream);
-	if (false !== $str) {
-		require_once($path);
-		eval($str);
-		if (is_string($option_interface)) {
-			$option_interface = new $option_interface;
+		$str = isolate('$option_interface', $pluginStream);
+		if (false !== $str) {
+			require_once($path);
+			eval($str);
+			if (is_string($option_interface)) {
+				$option_interface = new $option_interface;
+			}
 		}
 	}
 }

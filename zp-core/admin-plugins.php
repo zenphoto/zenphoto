@@ -181,7 +181,7 @@ foreach ($filelist as $extension) {
 					$optionlink = false;
 					echo ' disabled="disabled"';
 				} else {
-					if (getOption($opt)) {
+					if (getOption($opt) > THEME_PLUGIN) {
 						echo ' checked="checked"';
 					} else {
 						$optionlink = false;
