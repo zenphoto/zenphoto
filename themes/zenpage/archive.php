@@ -34,16 +34,16 @@ if (!defined('WEBPATH')) die();
 <div id="content">
 	<div id="content-left">
 			<div id="archive">
-			<h3>Gallery archive</h3>
+			<h3><?php echo gettext('Gallery archive'); ?></h3>
 			<?php printAllDates(); ?>
 			<hr />
 			<?php if(function_exists("printNewsArchive")) { ?>
-			<h3>News archive</h3>
+			<h3><?php echo gettext('News archive'); ?></h3>
 			<?php printNewsArchive("archive"); ?>
 			<hr />
 			<?php } ?>
 
-					<h3>Popular Tags</h3>
+					<h3><?php echo gettext('Popular Tags'); ?></h3>
 			<div id="tag_cloud">
  			<?php printAllTagsAs('cloud', 'tags'); ?>
 				</div>
