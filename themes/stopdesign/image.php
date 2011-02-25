@@ -16,8 +16,16 @@ require_once('normalizer.php');
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		$(document).ready(function(){
-			$(".colorbox").colorbox({inline:true, href:"#imagemetadata"});
-			$("a.thickbox").colorbox({maxWidth:"98%", maxHeight:"98%"});
+			$(".colorbox").colorbox({
+				inline:true, 
+				href:"#imagemetadata",
+				close: '<?php echo gettext("close"); ?>'
+			});
+			$("a.thickbox").colorbox({
+				maxWidth:"98%", 
+				maxHeight:"98%",
+				close: '<?php echo gettext("close"); ?>'
+			});
 		});
 		// ]]> -->
   </script>

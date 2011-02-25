@@ -14,7 +14,11 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		$(document).ready(function(){
-			$(".colorbox").colorbox({inline:true, href:"#imagemetadata"});
+			$(".colorbox").colorbox({
+				inline:true, 
+				href:"#imagemetadata",
+				close: '<?php echo gettext("close"); ?>'
+			});
 		});
 		// ]]> -->
 	</script>

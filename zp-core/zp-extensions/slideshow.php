@@ -180,6 +180,11 @@ function printSlideShowLink($linktext='', $linkstyle='') {
 							loop: true,
 							transition: '<?php echo getOption('slideshow_colorbox_transition'); ?>',
 							slideshowSpeed: <?php echo getOption('slideshow_speed'); ?>,
+							slideshowStart: '<?php echo gettext("start slideshow"); ?>',
+							slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
+							previous: '<?php echo gettext("previous"); ?>',
+							next: '<?php echo gettext("next"); ?>',
+							close: '<?php echo gettext("close"); ?>',
 							maxWidth:'98%',
 							maxHeight:'98%',
 							photo: true
