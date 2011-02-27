@@ -45,7 +45,7 @@ if (!defined('WEBPATH')) die();
 				<div class="albumdesc">
 					<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle());?>"><?php printAlbumTitle(); ?></a></h3>
 						<?php printAlbumDate(""); ?>
-					<div><?php echo truncate_string(getAlbumDesc(), 45); ?></div>
+					<div><?php echo shortenContent(getAlbumDesc(), 45,'...'); ?></div>
 				</div>
 				<p style="clear: both; "></p>
 			</div>
