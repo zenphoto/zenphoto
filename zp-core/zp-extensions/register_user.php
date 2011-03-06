@@ -204,18 +204,15 @@ function printRegistrationForm($thanks=NULL) {
 			if (!is_numeric($rights)) {	//  a group or template
 				$admin = $_zp_authority->getAnAdmin(array('`user`=' => $rights,'`valid`=' => 0));
 				if ($admin) {
+					$rights = $admin->getRights();
+					$userobj->setObjects($admin->getObjects());
 					if ($admin->getName() != 'template') {
 						$group = $rights;
 					}
-					$rights = $admin->getRights();
 				}
 			}
 			$userobj->setRights($rights | NO_RIGHTS);
 			$userobj->setGroup($group);
-			if (!empty($group)) {
-				$membergroup = $_zp_authority->newAdministrator($group, 0);
-				$userobj->setObjects($membergroup->getObjects());
-			}
 			zp_apply_filter('register_user_verified', $userobj);
 			$notify = false;
 			if (getOption('register_user_notify')) {

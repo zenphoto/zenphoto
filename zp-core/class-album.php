@@ -724,6 +724,7 @@ class Album extends MediaObject {
 					$image = newImage($this, $filename);
 					$image->remove();
 				}
+				$curdir = getcwd();
 				chdir($this->localpath);
 				$filelist = safe_glob('*');
 				foreach($filelist as $file) {
@@ -731,6 +732,7 @@ class Album extends MediaObject {
 						unlink($this->localpath . $file); // clean out any other files in the folder
 					}
 				}
+				chdir($curdir);
 			}
 			query("DELETE FROM " . prefix('options') . "WHERE `ownerid`=" . $this->id);
 			query("DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`=" . $this->id);

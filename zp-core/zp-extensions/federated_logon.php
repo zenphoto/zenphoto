@@ -236,6 +236,7 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 			$userobj->setObjects(NULL);
 			$userobj->setCustomData('');
 			$userobj->setLanguage(getUserLocale());
+			$userobj->setObjects($groupobj->getObjects());
 			if (is_valid_email_zp($email)) {
 				$userobj->setEmail($email);
 				if (getOption('register_user_create_album')) {
@@ -254,9 +255,6 @@ function logonFederatedCredentials($user, $email, $name, $redirect) {
 			}
 			$userobj->setRights($groupobj->getRights());
 			$userobj->setGroup($group);
-			if (!empty($group)) {
-				$userobj->setObjects($groupobj->getObjects());
-			}
 			$userobj->save();
 		} else {
 			$more = sprintf(gettext('Group %s does not exist.'),$groupname);
