@@ -66,7 +66,7 @@
 
 	VERSION HISTORY:
 
-	1.0   September 23, 2002
+	1.0    September 23, 2002
 
 		+ First Public Release
 
@@ -360,7 +360,6 @@ function unRational($data, $type, $intel) {
 			$top = hexdec(substr($data,0,8));        // motorola stores them top-bottom
 			$bottom = hexdec(substr($data,8,8));      // motorola stores them top-bottom
 		}
-
 		if ($type == 'SRATIONAL' && $top > 2147483647) $top = $top - 4294967296;    // this makes the number signed instead of unsigned
 		if ($bottom != 0)
 			$data=$top/$bottom;
@@ -725,7 +724,6 @@ function read_entry(&$result,$in,$seek,$intel,$ifd_name,$globalOffset) {
 	}
 	if ($tag_name == 'MakerNote') { // if its a maker tag, we need to parse this specially
 		$make = $result['IFD0']['Make'];
-
 		if ($result['VerboseOutput'] == 1) {
 			$result[$ifd_name]['MakerNote']['RawData'] = $data;
 		}
@@ -836,13 +834,12 @@ if ($result['ValidJpeg'] == 1) {
 	$header  =  '\0';
 	while(!feof($in) && ++$abortCount < 200) {
 
-			// Next 2 bytes are MARKER tag (0xFF**)
+		// Next 2 bytes are MARKER tag (0xFF**)
 		$data = bin2hex(fread( $in, 2 ));
 		$size = bin2hex(fread( $in, 2 ));
 
 		if ($data == 'ffc0' || $data == 'ffd9') { // Start Of Frame Marker or End of Image Marker
-					$abortCount = 200;                    // break loop and return
-
+			break;
 		} else if ($data == 'ffe0') {             // JFIF Marker
 			$result['ValidJFIFData'] = 1;
 			$result['JFIF']['Size'] = hexdec($size);
@@ -859,16 +856,16 @@ if ($result['ValidJpeg'] == 1) {
 
 		} else if ($data == 'ffe1') {             // APP1 Marker : EXIF Metadata(TIFF IFD format) or JPEG Thumbnail or Adobe XMP
 			$header = fread( $in, 6 );                      // Exif block starts with 'Exif\0\0' header
-					if ($header == "Exif\0\0") {                    // EXIF Marker ?
-						$result['ValidEXIFData'] = 1;
-					$result['ValidAPP1Data'] = 1;
-					$result['APP1']['Size'] = hexdec($size);
-						$abortCount = 200;                           // break loop and continue
-					} else {
-					if (hexdec($size)-2 > 0) {
-						$data = fread( $in, hexdec($size)-2-6); // skip XMP or Thumbnail data, and loop again
-					}
-					$globalOffset+=hexdec($size)+2;
+			if ($header == "Exif\0\0") {                    // EXIF Marker ?
+				$result['ValidEXIFData'] = 1;
+				$result['ValidAPP1Data'] = 1;
+				$result['APP1']['Size'] = hexdec($size);
+				break;
+			} else {
+				if (hexdec($size)-2 > 0) {
+					$data = fread( $in, hexdec($size)-2-6); // skip XMP or Thumbnail data, and loop again
+				}
+				$globalOffset+=hexdec($size)+2;
 			}
 
 		} else if ($data == 'ffe2') {             // APP2 Marker : EXIF extension
@@ -881,7 +878,7 @@ if ($result['ValidJpeg'] == 1) {
 			}
 			$globalOffset+=hexdec($size)+2;
 
-		} else if ($data == 'ffed') {		// IPTC Marker
+		} else if ($data == 'ffed') {             // IPTC Marker
 			$result['ValidIPTCData'] = 1;
 			$result['IPTC']['Size'] = hexdec($size);
 
@@ -901,7 +898,7 @@ if ($result['ValidJpeg'] == 1) {
 			}
 			$globalOffset+=hexdec($size)+2;
 
-		} else {	// unknown Marker
+		} else {                                  // unknown Marker
 			if (hexdec($size)-2 > 0) {
 				$data = fread( $in, hexdec($size)-2);
 			}
