@@ -170,7 +170,7 @@ setOptionDefault('style_tags',
  "strong => ()\n");
 setOptionDefault('comment_name_required', 1);
 setOptionDefault('comment_email_required', 1);
-setOptionDefault('comment_web_required', 0);
+setOptionDefault('comment_web_required', 'show');
 setOptionDefault('Use_Captcha', false);
 setOptionDefault('full_image_quality', 75);
 setOptionDefault('persistent_archive', 0);

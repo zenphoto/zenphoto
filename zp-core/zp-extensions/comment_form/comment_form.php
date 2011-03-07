@@ -6,6 +6,9 @@
 						?>
 						<table border="0">
 							<tr>
+							<?php
+							if (getOption('comment_name_required')) {
+							?>
 								<td>
 									<?php
 									echo gettext("Name:");
@@ -35,6 +38,10 @@
 									?>
 								</td>
 							</tr>
+							<?php
+							}
+							if (getOption('comment_email_required')) {
+							?>
 							<tr>
 								<td>
 									<?php echo gettext("E-Mail:"); ?>
@@ -58,6 +65,10 @@
 									?>
 								</td>
 							</tr>
+							<?php
+							}
+							if (getOption('comment_web_required')) {
+							?>
 							<tr>
 								<td>
 									<?php echo gettext("Site:"); ?>
@@ -82,6 +93,7 @@
 								</td>
 							</tr>
 							<?php
+							}
 							if (getOption('comment_form_addresses')) {
 								?>
 								<tr>

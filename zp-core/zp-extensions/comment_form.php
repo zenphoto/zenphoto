@@ -65,7 +65,7 @@ class comment_form {
 										'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the poster must supply data in each address field.')),
 									gettext('Allow comments on') => array('key' => 'comment_form_allowed', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
 										'checkboxes' => $checkboxes,
-									'desc' => gettext('Comment forms will be presented on the checked pages.')),
+										'desc' => gettext('Comment forms will be presented on the checked pages.')),
 									gettext('Toggled comment block') => array('key' => 'comment_form_toggle', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('If checked, existing comments will be initially hidden. Clicking on the provided button will show them.')),
 									gettext('Show author URL') => array('key' => 'comment_form_showURL', 'type' => OPTION_TYPE_CHECKBOX,
