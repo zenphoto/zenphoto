@@ -581,3 +581,46 @@ table.password td.hint{
 	text-decoration: none !important;
 	overflow:scroll !important;
 }
+/* box for important notes
+------------------------------ */
+.notebox {
+	padding: 5px 10px 5px 10px;
+	background-color: #FFEFB7;
+	border-width: 1px 1px 2px 1px;
+	border-color: #FFDEB5;
+	border-style: solid;
+	margin-bottom: 10px;
+	font-size: 100%;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.notebox li {
+	list-style-type: none;
+}
+
+.notebox h2,.notebox strong {
+	color: #663300;
+	font-size: 100%;
+	font-weight: bold;
+	margin-bottom: 1em;
+}
+/* Messages
+------------------------------ */
+.messagebox {
+	background-color: #C0FFA8;
+	padding: 10px 15px 10px 15px;
+	border-width: 1px 1px 2px 1px;
+	border-color: #8BD37C;
+	border-style: solid;
+	margin-bottom: 10px;
+}
+
+.messagebox h2 {
+	color: #006633;
+	font-size: 100%;
+	font-weight: bold;
+	margin-bottom: 1em;
+}

@@ -92,8 +92,12 @@ $subtabs = array();
 $optiondefault='';
 if (!$_zp_null_account) {
 	if (zp_loggedin(OPTIONS_RIGHTS)) {
-		$optiondefault='&amp;tab=general';
-		$subtabs[gettext("general")] = 'admin-options.php?page=options&amp;tab=general';
+		if (zp_loggedin(ADMIN_RIGHTS)) {
+			$optiondefault='&amp;tab=general';
+			$subtabs[gettext("general")] = 'admin-options.php?page=options&amp;tab=general';
+		} else {
+			$optiondefault='&amp;tab=gallery';
+		}
 		$subtabs[gettext("gallery")] = 'admin-options.php?page=options&amp;tab=gallery';
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			$subtabs[gettext("security")] = 'admin-options.php?page=options&amp;tab=security';

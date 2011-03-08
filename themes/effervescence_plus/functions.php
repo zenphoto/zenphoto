@@ -305,7 +305,6 @@ function commonComment() {
 			}
 			printCommentForm(true, $head, true, $style);
 			?>
-			<?php //printCommentForm(); ?>
 		</div><!-- id="commentbox" -->
 		<?php
 	}

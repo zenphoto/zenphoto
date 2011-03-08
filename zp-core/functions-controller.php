@@ -105,17 +105,17 @@ function zp_handle_comment() {
 			if (isset($_POST['name'])) {
 				$p_name = sanitize($_POST['name'],3);
 			} else {
-				$p_name = '';
+				$p_name = NULL;
 			}
 			if (isset($_POST['email'])) {
 				$p_email = sanitize($_POST['email'], 3);
 			} else {
-				$p_email = "";
+				$p_email = NULL;
 			}
 			if (isset($_POST['website'])) {
 				$p_website = sanitize($_POST['website'], 3);
 			} else {
-				$p_website = "";
+				$p_website = NULL;
 			}
 			if (isset($_POST['comment'])) {
 				$p_comment = sanitize($_POST['comment'], 1);

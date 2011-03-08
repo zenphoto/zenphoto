@@ -61,22 +61,30 @@ class comment_form {
 		}
 
 		return array(	gettext('Address fields') => array('key' => 'comment_form_addresses', 'type' => OPTION_TYPE_RADIO,
+										'order' => 0,
 										'buttons' => array(gettext('Omit')=>0, gettext('Show')=>1, gettext('Require')=>'required'),
 										'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the poster must supply data in each address field.')),
 									gettext('Allow comments on') => array('key' => 'comment_form_allowed', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+										'order' => 5,
 										'checkboxes' => $checkboxes,
 										'desc' => gettext('Comment forms will be presented on the checked pages.')),
 									gettext('Toggled comment block') => array('key' => 'comment_form_toggle', 'type' => OPTION_TYPE_CHECKBOX,
+										'order' => 6,
 										'desc' => gettext('If checked, existing comments will be initially hidden. Clicking on the provided button will show them.')),
 									gettext('Show author URL') => array('key' => 'comment_form_showURL', 'type' => OPTION_TYPE_CHECKBOX,
+										'order' => 1,
 										'desc' => gettext('To discourage SPAM, uncheck this box and the author URL will not be revealed.')),
 									gettext('Only members can comment') => array('key' => 'comment_form_members_only', 'type' => OPTION_TYPE_CHECKBOX,
+										'order' => 2,
 										'desc' => gettext('If checked, only logged in users will be allowed to post comments.')),
 									gettext('Allow private postings') => array('key' => 'comment_form_private', 'type' => OPTION_TYPE_CHECKBOX,
+										'order' => 3,
 										'desc' => gettext('If checked, posters may mark their comments as private (not for publishing).')),
 									gettext('Allow anonymous posting') => array('key' => 'comment_form_anon', 'type' => OPTION_TYPE_CHECKBOX,
+										'order' => 4,
 										'desc' => gettext('If checked, posters may exclude their personal information from the published post.')),
 									gettext('Include RSS link') => array('key' => 'comment_form_rss', 'type' => OPTION_TYPE_CHECKBOX,
+										'order' => 8,
 										'desc' => gettext('If checked, an RSS link will be included at the bottom of the comment section.'))
 									);
 	}
@@ -393,7 +401,15 @@ function getCommentErrors() {
  * Tool to output an error message if a comment posting was not accepted
  */
 function printCommentErrors() {
-	$s = getCommentErrors();
+	global $_zp_comment_error, $_zp_comment_on_hold;
+	if ($_zp_comment_on_hold) {
+		$s = trim(str_replace($_zp_comment_on_hold, '', trim($_zp_comment_error)));
+		?>
+		<p class="notebox"><?php echo $_zp_comment_on_hold; ?></p>
+		<?php
+	} else {
+		$s = trim($_zp_comment_error);
+	}
 	if ($s) {
 		$lines = explode('.', $s);
 		foreach ($lines as $key=>$line) {

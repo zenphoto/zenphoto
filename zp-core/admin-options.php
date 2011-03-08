@@ -10,7 +10,7 @@ define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__).'/admin-functions.php');
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-admin_securityChecks(NULL, currentRelativeURL(__FILE__));
+admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL(__FILE__));
 
 $gallery = new Gallery();
 if (!isset($_GET['page'])) {
@@ -316,9 +316,9 @@ if (isset($_GET['action'])) {
 		if (isset($_POST['savecommentoptions'])) {
 			setOption('spam_filter', sanitize($_POST['spam_filter'],3));
 			setBoolOption('email_new_comments', isset($_POST['email_new_comments'])&&$_POST['email_new_comments']);
-			setBoolOption('comment_name_required', isset($_POST['comment_name_required'])&&$_POST['comment_name_required']);
-			setBoolOption('comment_email_required',isset( $_POST['comment_email_required'])&&$_POST['comment_email_required']);
-			setBoolOption('comment_web_required', isset($_POST['comment_web_required'])&&$_POST['Use_Captcha']);
+			setOption('comment_name_required', sanitize($_POST['comment_name_required']));
+			setOption('comment_email_required',sanitize($_POST['comment_email_required']));
+			setOption('comment_web_required', sanitize($_POST['comment_web_required']));
 			setBoolOption('Use_Captcha', isset($_POST['Use_Captcha'])&&$_POST['Use_Captcha']);
 			$returntab = "&tab=comments";
 
@@ -2020,11 +2020,15 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><?php echo gettext('Name field'); ?></td>
 			<td>
 				<label class="checkboxlabel">
-					<input type="radio" name="comment_name_required" id="comment_name_required" value="0"<?php if (!getOption('comment_name_required')) echo ' checked="checked"'; ?>  />
+					<input type="radio" name="comment_name_required" id="comment_name_required" value="0"<?php if (getOption('comment_name_required')==0) echo ' checked="checked"'; ?>  />
+						<?php echo gettext('Omit'); ?>
+				</label>
+				<label class="checkboxlabel">
+					<input type="radio" name="comment_name_required" id="comment_name_required" value="show"<?php if (getOption('comment_name_required')=='show') echo ' checked="checked"'; ?>  />
 						<?php echo gettext('Show'); ?>
 				</label>
 				<label class="checkboxlabel">
-					<input type="radio" name="comment_name_required" id="comment_name_required" value="required"<?php if (getOption('comment_name_required')) echo ' checked="checked"'; ?> />
+					<input type="radio" name="comment_name_required" id="comment_name_required" value="1"<?php if (getOption('comment_name_required')==1) echo ' checked="checked"'; ?> />
 						<?php echo gettext('Require'); ?>
 				</label>
 			</td>
@@ -2033,11 +2037,15 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><?php echo gettext('Email field'); ?></td>
 			<td>
 				<label class="checkboxlabel">
-					<input type="radio" name="comment_email_required" id="comment_email_required" value="0"<?php if (!getOption('comment_email_required')) echo ' checked="checked"'; ?> />
+					<input type="radio" name="comment_email_required" id="comment_email_required" value="0"<?php if (getOption('comment_email_required')==0) echo ' checked="checked"'; ?>  />
+						<?php echo gettext('Omit'); ?>
+				</label>
+				<label class="checkboxlabel">
+					<input type="radio" name="comment_email_required" id="comment_email_required" value="show"<?php if (getOption('comment_email_required')=='show') echo ' checked="checked"'; ?> />
 						<?php echo gettext('Show'); ?>
 				</label>
 				<label class="checkboxlabel">
-					<input type="radio" name="comment_email_required" id="comment_email_required" value="required"<?php if (getOption('comment_email_required')) echo ' checked="checked"'; ?> />
+					<input type="radio" name="comment_email_required" id="comment_email_required" value="1"<?php if (getOption('comment_email_required')==1) echo ' checked="checked"'; ?> />
 						<?php echo gettext('Require'); ?>
 				</label>
 			</td>
@@ -2046,11 +2054,15 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><?php echo gettext('Website field'); ?></td>
 			<td>
 				<label class="checkboxlabel">
-					<input type="radio" name="comment_web_required" id="comment_web_required" value="0"<?php if (!getOption('comment_web_required')) echo ' checked="checked"'; ?> />
+					<input type="radio" name="comment_web_required" id="comment_web_required" value="0"<?php if (getOption('comment_web_required')==0) echo ' checked="checked"'; ?>  />
+						<?php echo gettext('Omit'); ?>
+				</label>
+				<label class="checkboxlabel">
+					<input type="radio" name="comment_web_required" id="comment_web_required" value="show"<?php if (getOption('comment_web_required')=='show') echo ' checked="checked"'; ?> />
 						<?php echo gettext('Show'); ?>
 				</label>
 				<label class="checkboxlabel">
-					<input type="radio" name="comment_web_required" id="comment_web_required" value="required"<?php if (getOption('comment_web_required')) echo ' checked="checked"'; ?> />
+					<input type="radio" name="comment_web_required" id="comment_web_required" value="1"<?php if (getOption('comment_web_required')==1) echo ' checked="checked"'; ?> />
 						<?php echo gettext('Require'); ?>
 				</label>
 			</td>

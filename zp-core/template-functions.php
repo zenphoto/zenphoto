@@ -4149,7 +4149,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		<form method="post" action="<?php echo WEBPATH.$searchurl; ?>" id="search_form">
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				function reset() {
+				function reset_search() {
 					lastsearch='';
 					$('#reset_search').hide();
 					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
@@ -4178,7 +4178,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 			<?php if(count($fields) > 1) { ?>
 				<a href="javascript:toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('select search fields'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
 			<?php } ?>
-			<span style="white-space:nowrap;display:<?php if ($searchwords) echo 'inline'; else echo 'none';?>" id="reset_search"><a href="javascript:reset();" title="<?php echo gettext('Clear search'); ?>"><img src="<?php echo $reseticonsource; ?>" alt="<?php echo gettext('Reset search'); ?>" /></a></span>
+			<span style="white-space:nowrap;display:<?php if ($searchwords) echo 'inline'; else echo 'none';?>" id="reset_search"><a href="javascript:reset_search();" title="<?php echo gettext('Clear search'); ?>"><img src="<?php echo $reseticonsource; ?>" alt="<?php echo gettext('Reset search'); ?>" /></a></span>
 			<input type="<?php echo $type; ?>" <?php echo $button; ?> class="pushbutton" id="search_submit" <?php echo $buttonSource; ?> />
 			<?php
 			if (is_array($object_list)) {
