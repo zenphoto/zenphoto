@@ -42,7 +42,7 @@ function googlemap_js() {
 		}
 		-->
 	</script>
-	<style>
+	<style type="text/css">
 		<!--
 		.hidden_map {
 			position: absolute;
