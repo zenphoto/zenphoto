@@ -1,15 +1,15 @@
 /*
- * jQuery UI Nested Sortable 1.2.1
- *
- * Copyright 2010, Manuele J Sarfatti
- *
+ * jQuery UI Nested Sortable
+ * v 1.2.2 / 19 feb 2011
  * http://mjsarfatti.com/sandbox/nestedSortable
  *
  * Depends:
- *	 jquery.ui.core.js 1.8+
- *	 jquery.ui.widget.js 1.8+
  *	 jquery.ui.sortable.js 1.8+
+ *
+ * License CC BY-SA 3.0
+ * Copyright 2010-2011, Manuele J Sarfatti
  */
+
 (function($) {
 
 	$.widget("ui.nestedSortable", $.extend({}, $.ui.sortable.prototype, {
@@ -18,11 +18,14 @@
 			tabSize: 20,
 			disableNesting: 'ui-nestedSortable-no-nesting',
 			errorClass: 'ui-nestedSortable-error',
-			listType: 'ol'
+			listType: 'ol',
+			noJumpFix: '0'
 		},
 
 		_create: function(){
-			this.element.data('sortable', this.element.data('sortableTree'));
+			if (this.noJumpFix == false)
+				this.element.height(this.element.height());
+			this.element.data('sortable', this.element.data('nestedSortable'));
 			return $.ui.sortable.prototype._create.apply(this, arguments);
 		},
 
@@ -120,7 +123,7 @@
 			newList = document.createElement(o.listType);
 
 			// Make/delete nested ul's/ol's
-			if (parentItem != null && parentItem.nodeName == 'LI' && this.positionAbs.left < $(parentItem).offset().left) {
+			if (parentItem != null && parentItem.nodeName == 'LI' && $(parentItem).closest('.ui-sortable').length  && this.positionAbs.left < $(parentItem).offset().left) {
 				$(parentItem).after(this.placeholder[0]);
 				this._clearEmpty(parentItem);
 			} else if (itemBefore != null && itemBefore.nodeName == 'LI' && this.positionAbs.left > $(itemBefore).offset().left + this.options.tabSize) {
@@ -178,6 +181,33 @@
 			return str.join('&');
 
 		},
+
+		toHierarchy: function(o) {
+
+			o = o || {};
+			var sDepth = o.startDepthCount || 0;
+			var ret = [];
+
+			$(this.element).children('li').each(function() {
+				var level = _recursiveItems($(this));
+				ret.push(level);
+			});
+
+			return ret;
+
+			function _recursiveItems(li) {
+				var id = $(li).attr("id");
+				var item = {"id" : id};
+				if ($(li).children(o.listType).children('li').length > 0) {
+					item.children = [];
+					$(li).children(o.listType).children('li').each(function() {
+						var level = _recursiveItems($(this));
+						item.children.push(level);
+					});
+				}
+				return item;
+			}
+        },
 
 		toArray: function(o) {
 
@@ -246,8 +276,8 @@
 						if(className && !o.forcePlaceholderSize) return;
 
 						//If the element doesn't have an actual height by itself (without styles coming from a stylesheet), it receives the inline height from the dragged item
-						if(!p.height() || p.css('height') == 'auto') { p.height(self.currentItem.height()); };
-						if(!p.width()) { p.width(self.currentItem.width()); };
+						if(!p.height() || p.css('height') == 'auto') { p.height(self.currentItem.height()); }
+						if(!p.width()) { p.width(self.currentItem.width()); }
 					}
 				};
 			}
