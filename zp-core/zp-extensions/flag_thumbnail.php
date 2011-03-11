@@ -142,7 +142,7 @@ function flag_thumbnail_insert_class($html) {
 				$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;right: 6px;">'.$text."</span>\n";
 			} else {
 				$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_new_icon'),false,true);
-				$html .= '<img src="'.$img.'" style="position: absolute;top: 4px;right: 4px;"/>'."\n";
+				$html .= '<img src="'.$img.'" alt="" style="position: absolute;top: 4px;right: 4px;"/>'."\n";
 			}
 		}
 	}
@@ -158,7 +158,7 @@ function flag_thumbnail_insert_class($html) {
 					$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;right: 6px;">'.$text."</span>\n";
 				} else {
 					$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_geodata_icon'),false,true);
-					$html .= '<img src="'.$img.'" style="position: absolute;bottom: 4px;right: 4px;"/>'."\n";
+					$html .= '<img src="'.$img.'" alt="" style="position: absolute;bottom: 4px;right: 4px;"/>'."\n";
 				}
 			}
 		}

@@ -424,6 +424,7 @@ zp-core/js/jqueryui
 zp-core/js/jqueryui/i18n
 zp-core/js/jqueryui/i18n/jquery-ui-i18n.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-af.js
+zp-core/js/jqueryui/i18n/jquery.ui.datepicker-ar-DZ.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-ar.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-az.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-bg.js
@@ -433,7 +434,9 @@ zp-core/js/jqueryui/i18n/jquery.ui.datepicker-cs.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-da.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-de.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-el.js
+zp-core/js/jqueryui/i18n/jquery.ui.datepicker-en-AU.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-en-GB.js
+zp-core/js/jqueryui/i18n/jquery.ui.datepicker-en-NZ.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-eo.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-es.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-et.js
@@ -456,12 +459,14 @@ zp-core/js/jqueryui/i18n/jquery.ui.datepicker-ko.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-kz.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-lt.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-lv.js
+zp-core/js/jqueryui/i18n/jquery.ui.datepicker-ml.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-ms.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-nl.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-no.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-pl.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-pt-BR.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-pt.js
+zp-core/js/jqueryui/i18n/jquery.ui.datepicker-rm.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-ro.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-ru.js
 zp-core/js/jqueryui/i18n/jquery.ui.datepicker-sk.js
@@ -1786,4 +1791,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1788
+1793
