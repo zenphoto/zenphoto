@@ -706,6 +706,7 @@ zp-core/zp-extensions/dynamic-locale
 zp-core/zp-extensions/dynamic-locale.php
 zp-core/zp-extensions/dynamic-locale/locale.css
 zp-core/zp-extensions/email-newuser.php
+zp-core/zp-extensions/extra_custom_data_zenpage.php
 zp-core/zp-extensions/failed_access_blocker.php
 zp-core/zp-extensions/federated_logon
 zp-core/zp-extensions/federated_logon.php
@@ -780,11 +781,11 @@ zp-core/zp-extensions/flowplayer3
 zp-core/zp-extensions/flowplayer3.php
 zp-core/zp-extensions/flowplayer3/LICENSE.txt
 zp-core/zp-extensions/flowplayer3/controls.css
-zp-core/zp-extensions/flowplayer3/flowplayer-3.2.4.min.js
-zp-core/zp-extensions/flowplayer3/flowplayer-3.2.5.swf
-zp-core/zp-extensions/flowplayer3/flowplayer.audio-3.2.1.swf
+zp-core/zp-extensions/flowplayer3/flowplayer-3.2.6.min.js
+zp-core/zp-extensions/flowplayer3/flowplayer-3.2.7.swf
+zp-core/zp-extensions/flowplayer3/flowplayer.audio-3.2.2.swf
 zp-core/zp-extensions/flowplayer3/flowplayer.content-3.2.0.swf
-zp-core/zp-extensions/flowplayer3/flowplayer.controls-3.2.3.swf
+zp-core/zp-extensions/flowplayer3/flowplayer.controls-3.2.5.swf
 zp-core/zp-extensions/flowplayer3/flowplayer.embed-3.0.3.min.js
 zp-core/zp-extensions/flowplayer3/flowplayer.playlist-3.0.8.min.js
 zp-core/zp-extensions/flowplayer3_playlist
@@ -1125,8 +1126,6 @@ zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/langs/ru.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/langs/sk.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/langs/zh.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/mediaplayer.swf
-zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/session
-zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/session/gc_counter.ajax.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/theme
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/theme/default
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/theme/default/css
@@ -1791,4 +1790,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1793
+1792
