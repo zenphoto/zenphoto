@@ -1070,7 +1070,7 @@ function debugLogVar($message, $var) {
 	$str = ob_get_contents();
 	ob_end_clean();
 	debugLog($message);
-	debugLog($str);
+	debugLog(html_entity_decode(strip_tags($str)));
 }
 
 /**

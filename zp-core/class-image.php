@@ -317,7 +317,6 @@ class _Image extends MediaObject {
 							$this->set($field, $this->prepIPTCString($datum, $characterset));
 						}
 					}
-
 					/* iptc keywords (tags) */
 					$datum = $this->getIPTCTagArray('2#025', $iptc);
 					if (is_array($datum)) {
@@ -330,90 +329,91 @@ class _Image extends MediaObject {
 					}
 				}
 			}
-			/* "import" metadata into Zenphoto fields as makes sense */
-
-			/* iptc date */
-			$date = $this->get('IPTCDateCreated');
-			if (!empty($date)) {
-				if (strlen($date) > 8) {
-					$time = substr($date, 8);
-				} else {
-					/* got date from IPTC, now must get time */
-					$time = $this->get('IPTCTimeCreated');
-				}
-				$date = substr($date, 0, 4).'-'.substr($date, 4, 2).'-'.substr($date, 6, 2);
-				if (!empty($time)) {
-					$date = $date.' '.substr($time, 0, 2).':'.substr($time, 2, 2).':'.substr($time, 4, 2);
-				}
-			}
-			/* EXIF date */
-			if (empty($date)) {
-				$date = $this->get('EXIFDateTime');
-			}
-			if (empty($date)) {
-				$date = $this->get('EXIFDateTimeOriginal');
-			}
-			if (empty($date)) {
-				$date = $this->get('EXIFDateTimeDigitized');
-			}
-			if (!empty($date)) {
-				$xdate = $date;
-				$this->setDateTime($date);
-			}
-
-			/* iptc title */
-			$title = $this->get('IPTCObjectName');
-			if (empty($title)) {
-				$title = $this->get('IPTCImageHeadline');
-			}
-			//EXIF title [sic]
-			if (empty($title)) {
-				$title = $this->get('EXIFDescription');
-			}
-			if (!empty($title)) {
-				$this->setTitle($title);
-			}
-
-			/* iptc description */
-			$desc = $this->get('IPTCImageCaption');
-			if (!empty($desc)) {
-				$this->setDesc($desc);
-			}
-
-			/* iptc location, state, country */
-			$loc = $this->get('IPTCSubLocation');
-			if (!empty($loc)) {
-				$this->setLocation($loc);
-			}
-			$city = $this->get('IPTCCity');
-			if (!empty($city)) {
-				$this->setCity($city);
-			}
-			$state = $this->get('IPTCState');
-			if (!empty($state)) {
-				$this->setState($state);
-			}
-			$country = $this->get('IPTCLocationName');
-			if (!empty($country)) {
-				$this->setCountry($country);
-			}
-
-			/* iptc credit */
-			$credit = $this->get('IPTCByLine');
-			if (empty($credit)) {
-				$credit = $this->get('IPTCImageCredit');
-			}
-			if (empty($credit)) {
-				$credit = $this->get('IPTCSource');
-			}
-			if (!empty($credit)) {
-				$this->setCredit($credit);
-			}
-
-			/* iptc copyright */
-			$this->setCopyright($this->get('IPTCCopyright'));
-
 		}
+		/* "import" metadata into Zenphoto fields as makes sense */
+		zp_apply_filter('image_metadata', $this);
+
+		/* iptc date */
+		$date = $this->get('IPTCDateCreated');
+		if (!empty($date)) {
+			if (strlen($date) > 8) {
+				$time = substr($date, 8);
+			} else {
+				/* got date from IPTC, now must get time */
+				$time = $this->get('IPTCTimeCreated');
+			}
+			$date = substr($date, 0, 4).'-'.substr($date, 4, 2).'-'.substr($date, 6, 2);
+			if (!empty($time)) {
+				$date = $date.' '.substr($time, 0, 2).':'.substr($time, 2, 2).':'.substr($time, 4, 2);
+			}
+		}
+		/* EXIF date */
+		if (empty($date)) {
+			$date = $this->get('EXIFDateTime');
+		}
+		if (empty($date)) {
+			$date = $this->get('EXIFDateTimeOriginal');
+		}
+		if (empty($date)) {
+			$date = $this->get('EXIFDateTimeDigitized');
+		}
+		if (!empty($date)) {
+			$xdate = $date;
+			$this->setDateTime($date);
+		}
+
+		/* iptc title */
+		$title = $this->get('IPTCObjectName');
+		if (empty($title)) {
+			$title = $this->get('IPTCImageHeadline');
+		}
+		//EXIF title [sic]
+		if (empty($title)) {
+			$title = $this->get('EXIFDescription');
+		}
+		if (!empty($title)) {
+			$this->setTitle($title);
+		}
+
+		/* iptc description */
+		$desc = $this->get('IPTCImageCaption');
+		if (!empty($desc)) {
+			$this->setDesc($desc);
+		}
+
+		/* iptc location, state, country */
+		$loc = $this->get('IPTCSubLocation');
+		if (!empty($loc)) {
+			$this->setLocation($loc);
+		}
+		$city = $this->get('IPTCCity');
+		if (!empty($city)) {
+			$this->setCity($city);
+		}
+		$state = $this->get('IPTCState');
+		if (!empty($state)) {
+			$this->setState($state);
+		}
+		$country = $this->get('IPTCLocationName');
+		if (!empty($country)) {
+			$this->setCountry($country);
+		}
+
+		/* iptc credit */
+		$credit = $this->get('IPTCByLine');
+		if (empty($credit)) {
+			$credit = $this->get('IPTCImageCredit');
+		}
+		if (empty($credit)) {
+			$credit = $this->get('IPTCSource');
+		}
+		if (!empty($credit)) {
+			$this->setCredit($credit);
+		}
+
+		/* iptc copyright */
+		$this->setCopyright($this->get('IPTCCopyright'));
+
 		$x = $this->getTitle();
 		if (empty($x)) {
 			$this->set('title',$this->getDefaultTitle());

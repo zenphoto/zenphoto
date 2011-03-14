@@ -169,8 +169,8 @@ function generateLanguageList($all=false) {
 			}
 			closedir($dir);
 		}
-		ksort($_zp_all_languages,SORT_LOCALE_STRING);
-		ksort($_zp_active_languages,SORT_LOCALE_STRING);
+		ksort($_zp_all_languages);
+		ksort($_zp_active_languages);
 	}
 	if ($all) {
 		return $_zp_all_languages;
@@ -355,24 +355,26 @@ function setupCurrentLocale($override=NULL) {
 function parseHttpAcceptLanguage($str=NULL) {
 	if (!isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) return array();
 	// getting http instruction if not provided
-	$str=$str?$str:$_SERVER['HTTP_ACCEPT_LANGUAGE'];
-	$langs=explode(',',$str);
+	if (!$str) {
+		$str = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+	}
+	$langs = explode(',',$str);
 	// creating output list
 	$accepted=array();
 	foreach ($langs as $lang) {
 		// parsing language preference instructions
 		// 2_digit_code[-longer_code][;q=coefficient]
-		preg_match('/([A-Za-z]{1,2})(-([A-Za-z0-9]+))?(;q=([0-9\.]+))?/',$lang,$found);
+		preg_match('/([A-Za-z]{1,2})(-([A-Za-z0-9]+))?(;q=([0-9\.]+))?/', $lang, $found);
 		// 2 digit lang code
-		$code=$found[1];
+		$code = $found[1];
 		// lang code complement
-		$morecode=array_key_exists(3,$found)?$found[3]:false;
+		$morecode = array_key_exists(3,$found)?$found[3]:false;
 		// full lang code
-		$fullcode=$morecode?$code.'_'.$morecode:$code;
+		$fullcode = $morecode?$code.'_'.$morecode:$code;
 		// coefficient
-		$coef=sprintf('%3.1f',array_key_exists(5,$found)?$found[5]:'1');
+		$coef = sprintf('%3.1f',array_key_exists(5,$found)?$found[5]:'1');
 		// for sorting by coefficient
-		$key=$coef.'-'.$code;
+		$key = $coef.'-'.$code;
 		// adding
 		$accepted[$key]=array('code'=>$code,'coef'=>$coef,'morecode'=>$morecode,'fullcode'=>$fullcode);
 	}
@@ -455,9 +457,13 @@ function getUserLocale() {
 		}
 	}
 	if (empty($locale)) {
-		// return "default" language
+		// return "default" language, English if allowed, otherwise whatever is the "first" allowed language
 		$languageSupport = generateLanguageList();
-		$locale = array_shift($languageSupport);
+		if (in_array('en_US', $languageSupport)) {
+			$locale = 'en_US';
+		} else {
+			$locale = array_shift($languageSupport);
+		}
 	} else {
 		setOption('locale', $locale, false);
 	}

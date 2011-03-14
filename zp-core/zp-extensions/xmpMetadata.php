@@ -37,8 +37,7 @@ zp_register_filter('album_instantiate', 'xmpMetadata_album_instantiate');
 zp_register_filter('new_album', 'xmpMetadata_new_album');
 zp_register_filter('album_refresh', 'xmpMetadata_new_album');
 zp_register_filter('image_instantiate', 'xmpMetadata_image_instantiate');
-zp_register_filter('new_image', 'xmpMetadata_new_image');
-zp_register_filter('image_refresh', 'xmpMetadata_new_image');
+zp_register_filter('image_metadata', 'xmpMetadata_new_image');
 
 require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
 
@@ -407,25 +406,6 @@ function xmpMetadata_new_image($image) {
 				$image->set($field, $v);
 			}
 		}
-		/* iptc title */
-		$title = $image->get('IPTCObjectName');
-		if (empty($title)) {
-			$title = $image->get('IPTCImageHeadline');
-		}
-		//EXIF title [sic]
-		if (empty($title)) {
-			$title = $image->get('EXIFImageDescription');
-		}
-		if (!empty($title)) {
-			$image->setTitle($title);
-		}
-		/* iptc credit */
-		$credit = $image->get('IPTCImageCredit');
-		if (empty($credit)) {
-			$credit = $image->get('IPTCSource');
-		}
-		$image->setCredit($credit);
-
 		$image->save();
 	}
 	return $image;
