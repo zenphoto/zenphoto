@@ -52,7 +52,6 @@ if (isset($_GET['action'])) {
 				} else{
 					$rightsalbum = new Album($gallery, $folder);
 				}
-				$album = new Album($gallery, $folder);
 				// see if he has rights to the album.
 				if (!$modified_rights = $rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 					if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {

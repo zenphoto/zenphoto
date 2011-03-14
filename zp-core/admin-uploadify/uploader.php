@@ -40,7 +40,6 @@ if (!empty($_FILES)) {
 			} else{
 				$rightsalbum = new Album($gallery, $folder);
 			}
-			$album = new Album($gallery, $folder);
 			if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 				if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
