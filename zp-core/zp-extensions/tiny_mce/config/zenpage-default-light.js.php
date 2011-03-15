@@ -14,7 +14,7 @@
 			language: "<?php echo $locale; ?>",
 			elements : "ajaxfilemanager",
 			theme : "advanced",
-			plugins : "safari,pagebreak,style,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,tinyzenpage",
+			plugins : "pagebreak,style,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,tinyzenpage",
 			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,|,bullist,numlist,|,outdent,indent,blockquote",
 			theme_advanced_buttons2 : "undo,redo,|,link,unlink,anchor,image,cleanup,help,code,fullscreen,|,pagebreak,tinyzenpage",
 			theme_advanced_buttons3 : "",
