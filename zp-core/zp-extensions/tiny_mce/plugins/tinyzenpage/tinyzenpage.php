@@ -21,6 +21,8 @@ require_once("tinyzenpage-functions.php");
 	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
 	<script type="text/javascript" src="../../../../js/jquery.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
+	<link rel="stylesheet" href="../../../../zp-extensions/colorbox/colorbox.css" type="text/css" />
+	<script src="../../../../zp-extensions/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
 	<script language="javascript" type="text/javascript">
 	$(document).ready(function(){
 		$("a[rel='colorbox']").colorbox({iframe:true, innerWidth:450, innerHeight:450});
