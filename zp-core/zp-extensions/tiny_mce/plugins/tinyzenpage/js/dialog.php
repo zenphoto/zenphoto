@@ -6,7 +6,7 @@ var ZenpageDialog = {
 		tinyMCEPopup.resizeToInnerSize();
 	},
 
-	insert : function(imgurl,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img) {
+	insert : function(imgurl,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video) {
 
 		var ed = tinyMCEPopup.editor, dom = ed.dom;
 		var imglink = '';
@@ -130,7 +130,11 @@ var ZenpageDialog = {
 
 		// building the final item to include
 		if(type == "zenphoto") {
-			imglink = titlewrap1+linkpart1+includetype+linkpart2+titlewrap2;
+			if(video != '' && ($('#sizedimage:checked').val() == 1 || $('#customsize:checked').val() == 1)) {
+				imglink = video;
+			}	else {
+				imglink = titlewrap1+linkpart1+includetype+linkpart2+titlewrap2;
+			}
 		} else {
 			if(type == "pages") {
 				if(modrewrite == '1') {

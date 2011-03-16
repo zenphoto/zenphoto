@@ -12,7 +12,7 @@
 
 $plugin_description = gettext("Enable <strong>flowplayer 3</strong> to handle multimedia files.").'<p class="notebox">'.gettext("<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too.").'</p>'.gettext("Please see <a href='http://flowplayer.org'>flowplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
-$plugin_version = '1.4.0';
+$plugin_version = '1.4.1';
 $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---flowplayer3.php.html";
 $plugin_disable = (getOption('album_folder_class') === 'external')?gettext('Flash players do not support <em>External Albums</em>.'):false;
 
@@ -140,6 +140,8 @@ class flowplayer3 {
 	 * 	 */
 	function getPlayerConfig($moviepath='', $imagetitle, $count='', $width, $height) {
 		global $_zp_current_image;
+		$playerwidth = getOption('flow_player3_width');
+		$playerheight = getOption('flow_player3_height');
 		if(empty($moviepath)) {
 			$moviepath = getUnprotectedImageURL();
 			$ext = strtolower(strrchr(getUnprotectedImageURL(), "."));
@@ -160,8 +162,8 @@ class flowplayer3 {
 			$album = $_zp_current_image->getAlbum();
 			$albumfolder = $album->name;
 			$filename = $_zp_current_image->filename;
-			$splashimagerwidth = getOption('flow_player3_width');
-			$splashimageheight = getOption('flow_player3_height');
+			$splashimagerwidth = $playerwidth;
+			$splashimageheight = $playerheight;
 			getMaxSpaceContainer($splashimagerwidth, $splashimageheight, $_zp_current_image, true);
 			$videoThumb = $_zp_current_image->getCustomImage(null, $splashimagerwidth, $splashimageheight, null, null, null, null, true);
 			if(getOption('flow_player3_splashimage')) {
@@ -175,7 +177,7 @@ class flowplayer3 {
 		}
 		if($ext == ".mp3") {
 			if(getOption('flow_player3_mp3coverimage')) {	
-				if (is_null($height)) $height = getOption('flow_player3_height');
+				if (is_null($height)) $height = $playerheight;
 			} else {
 				if (is_null($height)) $height = FLOW_PLAYER_MP3_HEIGHT;
 				$videoThumbImg = '';
@@ -183,11 +185,11 @@ class flowplayer3 {
 			}
 			$allowfullscreen = 'false';
 		} else {
-			if (is_null($height)) $height = getOption('flow_player3_height');
+			if (is_null($height)) $height = $playerheight;
 			$allowfullscreen = 'true';
 		} 
 		if (is_null($width)) $width = $this->getVideoWidth();
-		if (is_null($width)) $width = getOption('flow_player3_width');
+		if (is_null($width)) $width = $playerwidth;
 			// inline css is kind of ugly but since we need to style dynamically there is no other way
 		$curdir = getcwd();
 		chdir(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flowplayer3');
@@ -254,7 +256,6 @@ class flowplayer3 {
 		return $playerconfig;
 	}
 
-
 	/**
 	 * outputs the player configuration HTML
 	 *
@@ -265,6 +266,35 @@ class flowplayer3 {
 	function printPlayerConfig($moviepath='',$imagetitle='',$count ='') {
 		echo $this->getPlayerConfig($moviepath,$imagetitle,$count,NULL,NULL);
 	}
+
+	/**
+	 * Return object embeed code for Flowplayer to be used with TinyZenpage to embeed video/audio in pages or post bypassing the normal player plugin.
+	 *
+	 * @param string $moviepath the direct path of a movie (within the slideshow), if empty (within albums) the zenphoto function getUnprotectedImageURL() is used
+	 * @param string $imagetitle the title of the movie to be passed to the player for display (within slideshow), if empty (within albums) the function getImageTitle() is used
+	 * @param string $count unique text for when there are multiple player items on a page
+	 */
+	function getPlayerEmbeedCode($moviepath) {
+		chdir(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flowplayer3');
+		$filelist = safe_glob('flowplayer-*.swf');
+		$swf = array_shift($filelist);
+		if(empty($moviepath)) {
+			$moviepath = getUnprotectedImageURL();
+			$ext = strtolower(strrchr(getUnprotectedImageURL(), "."));
+		} else {
+			$moviepath = $moviepath;
+			$ext = strtolower(strrchr($moviepath, "."));
+		}
+		return 
+		html_encode('<object width="480" height="340" id="undefined" name="undefined" data="').
+		pathurlencode(WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf).
+		html_encode('" type="application/x-shockwave-flash"><param name="movie" value="').
+		pathurlencode(WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf).
+		html_encode('" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="flashvars" value=\'config={"clip":{"url":"').
+		pathurlencode($moviepath).
+		html_encode('"}}\' /></object>');
+	}
+
 
 	/**
 	 * Returns the height of the player

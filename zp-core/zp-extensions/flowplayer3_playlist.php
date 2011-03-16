@@ -16,7 +16,7 @@
 
 $plugin_description =  gettext("Use to show the content of an media album with .flv/.mp4/.mp3 movie/audio files only as a playlist or as separate players on one page with Flowplayer 3.");
 $plugin_author = "Malte Müller (acrylian)";
-$plugin_version = '1.4.0';
+$plugin_version = '1.4.1';
 $plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---flowplayer3_playlist.php.html";
 $plugin_disable = ((!getOption('zp_plugin_flowplayer3'))?gettext('This plugin requires the Flowplayer 3 plugin to be activated. '):false) . ((getOption('album_folder_class') === 'external')?gettext('Flash players do not support <em>External Albums</em>.'):false);
 
@@ -117,7 +117,7 @@ class flowplayer3_playlist {
  * ?>
  * Of course you can add further functions to b) like printImageTitle() etc., too.
  *
- * @param string $option The mode to use "playlist" or "players"
+ * @param string $option The mode to use "players", "playlist" or "playlist-mp3". "playlist-mp3" is the same as "playlist" except that only the controlbar is shown (if you are too lazy for custom video thumbs and don't like the empty screen)
  * @param string $albumfolder For "playlist" mode only: To show a playlist of an specific album directly on another page (for example on index.php). Note: Currently it is not possible to have several playlists on one page
  */
 function flowplayerPlaylist($option="playlist",$albumfolder="") {
@@ -131,9 +131,16 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 		$filelist = safe_glob('flowplayer.controls-*.swf');
 		$controls = array_shift($filelist);
 		chdir($curdir);
-
+		$playlistwidth = getOption('flow_player3_playlistwidth');
+		$playlistheight = getOption('flow_player3_playlistheight');
 	switch($option) {
-		case "playlist":
+		case 'playlist':
+		case 'playlist-mp3':
+				$splashimage = getOption('flow_player3_playlistsplashimage');
+				if($option == 'playlist-mp3') {
+					$playlistheight = FLOW_PLAYER_MP3_HEIGHT;
+					$splashimage = 'none';
+				}
 				if(empty($albumfolder)) {
 					$albumname = $_zp_current_album->name;
 				} else {
@@ -141,19 +148,18 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 				}
 				$album = new Album(new Gallery(), $albumname);
 				if(getOption("flow_player3_playlistautoplay") == 1) {
-					$autoplay = "true";
+					$autoplay = 'true';
 				} else {
-					$autoplay = "false";
+					$autoplay = 'false';
 				}
 				$playlist = $album->getImages();
 
 				// slash image fetching
 				$videoobj = new Video($album,$playlist[0]);
 				$albumfolder = $album->name;
-				$splashimagerwidth = getOption('flow_player3_playlistwidth');
-				$splashimageheight = getOption('flow_player3_playlistheight');
+				$splashimagerwidth = $playlistwidth;
+				$splashimageheight = $playlistheight;
 				$videoThumbImg = '';
-				$splashimage = getOption('flow_player3_playlistsplashimage');
 				if ($splashimage != 'none') {
 					switch($splashimage) {
 						case 'albumthumb':
@@ -176,7 +182,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 					$liststyle = 'div';
 				}
 			echo '<div class="flowplayer3_playlistwrapper">
-			<a id="player'.$album->get('id').'" class="flowplayer3_playlist" style="display:block; width: '.getOption('flow_player3_playlistwidth').'px; height: '.getOption('flow_player3_playlistheight').'px;">
+			<a id="player'.$album->get('id').'" class="flowplayer3_playlist" style="display:block; width: '.$playlistwidth.'px; height: '.$playlistheight.'px;">
 			'.$videoThumbImg.'
 			</a>
 			<script type="text/javascript">
@@ -247,6 +253,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 		?>
 		<div class="wrapper">
 					<a class="up" title="Up"></a>
+			
 			<div class="playlist playlist<?php echo $album->get('id'); ?>">
 				<<?php echo $liststyle; ?> class="clips clips<?php echo $album->get('id'); ?>">
 					<!-- single playlist entry as an "template" -->
@@ -260,7 +267,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 </div><!-- flowplayer3_playlist wrapper end -->
 <?php } // check if there are images end
 			break;
-			case "players":
+			case 'players':
 				$_zp_flash_player->printPlayerConfig('','',imageNumber());
 				break;
 		} // switch end
