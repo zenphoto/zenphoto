@@ -24,7 +24,13 @@ var ZenpageDialog = {
 		var webpath = '<?php echo WEBPATH; ?>'
 		var modrewrite = '<?php echo MOD_REWRITE; ?>';
 		var modrewritesuffix = '<?php echo getOption("mod_rewrite_image_suffix"); ?>';
-
+		<?php 
+		chdir(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flowplayer3');
+		$filelist = safe_glob('flowplayer-*.swf');
+		$swf = array_shift($filelist);
+		$flowplayerpath = pathurlencode(WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf);
+		?>
+		var flowplayerpath = '<?php echo $flowplayerpath; ?>';
 		// getting the image size checkbox values
 		if($('#thumbnail:checked').val() == 1) {
 			imagesize = '&amp;s=<?php echo getOption("thumb_size"); ?>&amp;cw=<?php echo getOption("thumb_crop_width"); ?>&amp;ch=<?php echo getOption("thumb_crop_height"); ?>&amp;t=true';
@@ -130,8 +136,8 @@ var ZenpageDialog = {
 
 		// building the final item to include
 		if(type == "zenphoto") {
-			if(video != '' && ($('#sizedimage:checked').val() == 1 || $('#customsize:checked').val() == 1)) {
-				imglink = video;
+			if(video == 'video' && ($('#sizedimage:checked').val() == 1 || $('#customsize:checked').val() == 1)) {
+				imglink = titlewrap1+'<object '+textwrap+' width="480" height="340" id="undefined" name="undefined" data="'+flowplayerpath+'" type="application/x-shockwave-flash"><param name="movie" value="'+flowplayerpath+'" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="flashvars" value=\'config={"clip":{"url":"'+fullimage+'"}}\' /></object>'+titlewrap2;
 			}	else {
 				imglink = titlewrap1+linkpart1+includetype+linkpart2+titlewrap2;
 			}

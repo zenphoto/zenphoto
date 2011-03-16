@@ -129,14 +129,11 @@ function printImageslist($number) {
 					$linkalbumobj = $albumobj;
 					$imageobj = newImage($albumobj,$images[$nr]);
 				}
-				$video = ''; // TODO embeed code for Flowplayer3 - not working because of whatever JS encoding stuff (as always)
-				/*if(isImageVideo($imageobj)) {
+				if(isImageVideo($imageobj) && getOption('zp_plugin_flowplayer3')) {
 					$video = 'video';
-					$player = new flowplayer3();
-					$video = $player->getPlayerEmbeedCode($imageobj->getFullImage());
 				} else {
 					$video = '';
-				} */
+				}
 				$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
 				$imgsizeurl = $imageobj->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 				echo "<div style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>\n";

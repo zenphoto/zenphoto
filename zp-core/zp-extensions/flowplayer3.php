@@ -268,35 +268,6 @@ class flowplayer3 {
 	}
 
 	/**
-	 * Return object embeed code for Flowplayer to be used with TinyZenpage to embeed video/audio in pages or post bypassing the normal player plugin.
-	 *
-	 * @param string $moviepath the direct path of a movie (within the slideshow), if empty (within albums) the zenphoto function getUnprotectedImageURL() is used
-	 * @param string $imagetitle the title of the movie to be passed to the player for display (within slideshow), if empty (within albums) the function getImageTitle() is used
-	 * @param string $count unique text for when there are multiple player items on a page
-	 */
-	function getPlayerEmbeedCode($moviepath) {
-		chdir(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flowplayer3');
-		$filelist = safe_glob('flowplayer-*.swf');
-		$swf = array_shift($filelist);
-		if(empty($moviepath)) {
-			$moviepath = getUnprotectedImageURL();
-			$ext = strtolower(strrchr(getUnprotectedImageURL(), "."));
-		} else {
-			$moviepath = $moviepath;
-			$ext = strtolower(strrchr($moviepath, "."));
-		}
-		return 
-		html_encode('<object width="480" height="340" id="undefined" name="undefined" data="').
-		pathurlencode(WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf).
-		html_encode('" type="application/x-shockwave-flash"><param name="movie" value="').
-		pathurlencode(WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf).
-		html_encode('" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="flashvars" value=\'config={"clip":{"url":"').
-		pathurlencode($moviepath).
-		html_encode('"}}\' /></object>');
-	}
-
-
-	/**
 	 * Returns the height of the player
 	 * @param object $image the image for which the width is requested
 	 *
