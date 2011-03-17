@@ -136,8 +136,15 @@ var ZenpageDialog = {
 
 		// building the final item to include
 		if(type == "zenphoto") {
-			if(video == 'video' && ($('#sizedimage:checked').val() == 1 || $('#customsize:checked').val() == 1)) {
-				imglink = titlewrap1+'<object '+textwrap+' width="480" height="340" id="undefined" name="undefined" data="'+flowplayerpath+'" type="application/x-shockwave-flash"><param name="movie" value="'+flowplayerpath+'" /><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="flashvars" value=\'config={"clip":{"url":"'+fullimage+'"}}\' /></object>'+titlewrap2;
+			if(video == 'video' && $('#sizedimage:checked').val() == 1) {
+				imglink = titlewrap1
+				imglink += '<object '+textwrap+' width="<?php echo getOption('tinymce_tinyzenpage_flowplayer_width'); ?>" height="<?php echo getOption('tinymce_tinyzenpage_flowplayer_height'); ?>" data="'+flowplayerpath+'" type="application/x-shockwave-flash">';
+				imglink += '<param name="movie" value="'+flowplayerpath+'" />';
+				imglink += '<param name="allowfullscreen" value="true" />';
+				imglink += '<param name="allowscriptaccess" value="always" />';
+				imglink += '<param name="flashvars" value=\'config={"clip":{"url":"'+fullimage+'"}}\' />';
+				imglink += '</object>';
+				imglink += titlewrap2;
 			}	else {
 				imglink = titlewrap1+linkpart1+includetype+linkpart2+titlewrap2;
 			}

@@ -82,10 +82,10 @@ require_once("tinyzenpage-functions.php");
 				<legend><?php echo gettext("Image size"); ?></legend>
     		<input type="radio" name="type" id="thumbnail" value="1" checked='checked'><label for="thumbnail" /> <?php echo gettext("Thumbnail"); ?></label><br />
     		<input type="radio" name="type" id="customthumb" value="1" />
-    		s <input type="text" name="cropsize" id="cropsize" value="120" style="width:25px" /> / cw <input type="text" name="cropwidth" id="cropwidth" value="120" style="width:25px" /> x ch <input type="text" name="cropheight" id="cropheight" value="120" style="width:25px" /><label for="customthumb"><br /><span class="customtext"><?php echo gettext("Custom thumbnail"); ?></span></label><br />
+    		s <input type="text" name="cropsize" id="cropsize" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_size'); ?>" style="width:25px" /> / cw <input type="text" name="cropwidth" id="cropwidth" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /> x ch <input type="text" name="cropheight" id="cropheight" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /><label for="customthumb"><br /><span class="customtext"><?php echo gettext("Custom thumbnail"); ?></span></label><br />
     		<input type="radio" name="type" id="sizedimage" "value="1" /><label for="title"> <?php echo gettext("Sized image"); ?></label><br />
     		<input type="radio" name="type" id="customsize" value="1" />
-    		<input type="text" name="size" id="size" value="400" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
+    		<input type="text" name="size" id="size" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_size'); ?>" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
   			<input type="checkbox" name="type" id="showtitle" value="1" /><label for="showtitle"> <?php echo gettext("Show title"); ?></label>
   		</fieldset>
 		</div>
@@ -139,7 +139,7 @@ require_once("tinyzenpage-functions.php");
 
 	 			echo "<h3 style='margin-left: 1px'>Zenphoto</h3>";
 	 			echo "<p style='margin-left: 8px'>";
-	 			echo gettext("Select an album to include images from into your page or article. Click on the image to included it. Un-published albums or images are marked with an '*'. You can also click on the magnify glass icon to see a preview of the item (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.). <br />Note that it is currently not possible to include multimedia files directly as a sized image or custom image. Besides that you have several options what to include and how:")."</p>";
+	 			echo gettext("Select an album to include images from into your page or article. Click on the image to included it. Un-published albums or images are marked with an '*'. You can also click on the magnify glass icon to see a preview of the item (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.). <br />You have several options what to include and how:")."</p>";
 				echo "<h4 style='margin-left: 8px'>".gettext("What to include")."</h4>";
 
 				echo "<p style='margin-left: 8px'>";
@@ -147,9 +147,11 @@ require_once("tinyzenpage-functions.php");
 
 				echo "<h4 style='margin-left: 8px'>".gettext("Image size")."</h4>";
 				echo "<p style='margin-left: 8px'>";
-				echo gettext("Include the thumbnail of the size set in Zenphoto's options, a custom thumbnail (size for the longest side / cropwidth x cropheight), the sized image as set in Zenphoto's options or a custom size (size is for the longest side of the image).")."<br />";
+				echo gettext("Include the thumbnail of the size set in Zenphoto's options, a custom thumbnail (size for the longest side / cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options. The sized image as set in Zenphoto's options or a custom size (size is for the longest side of the image).")."</p>";
+				echo "<p style='margin-left: 8px'>";
+				echo gettext("<strong>Video/audio: </strong>For these only thumbs can be included. If the FLowplayer3 plugin is enabled you can also embeed video/audio files using the <em>sized image</em> option only. Default values for the player width and height can be set on the TinyMCE plugin options. All other settings are inherited from the Flowplayer3 plugin options (not implemented yet). <br />NOTE: After embeeding there is no frame of the embeeded item is visible in the editor until saving the page/article.")."</p>";
+				echo "<p style='margin-left: 8px'>";
 				echo gettext("If you additionally check <em>Show title</em> the title of the image or album (if you checked <em>link to album</em>) will be printed below the image. Only if <em>Image</em> is chosen as type.")."</p>";
-
 				echo "<h4 style='margin-left: 8px'>".gettext("Link type")."</h4>";
 				echo "<p style='margin-left: 8px'>";
 				echo gettext("Select to link to the image page of the image, to the album the image is in, no link at all or a custom URL.")."</p>";
