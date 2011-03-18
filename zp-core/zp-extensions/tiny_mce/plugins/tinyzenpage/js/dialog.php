@@ -31,6 +31,7 @@ var ZenpageDialog = {
 		$flowplayerpath = pathurlencode(WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf);
 		?>
 		var flowplayerpath = '<?php echo $flowplayerpath; ?>';
+		var playerheight = '';
 		// getting the image size checkbox values
 		if($('#thumbnail:checked').val() == 1) {
 			imagesize = '&amp;s=<?php echo getOption("thumb_size"); ?>&amp;cw=<?php echo getOption("thumb_crop_width"); ?>&amp;ch=<?php echo getOption("thumb_crop_height"); ?>&amp;t=true';
@@ -136,13 +137,53 @@ var ZenpageDialog = {
 
 		// building the final item to include
 		if(type == "zenphoto") {
-			if(video == 'video' && $('#sizedimage:checked').val() == 1) {
-				imglink = titlewrap1
-				imglink += '<object '+textwrap+' width="<?php echo getOption('tinymce_tinyzenpage_flowplayer_width'); ?>" height="<?php echo getOption('tinymce_tinyzenpage_flowplayer_height'); ?>" data="'+flowplayerpath+'" type="application/x-shockwave-flash">';
+			if((video == 'video' || video == 'mp3') && $('#sizedimage:checked').val() == 1) {
+				if(video == 'video') {
+					playerheight = "<?php echo getOption('tinymce_tinyzenpage_flowplayer_height'); ?>";
+				} else {
+					playerheight = "<?php echo FLOW_PLAYER_MP3_HEIGHT; ?>";
+				}
+				imglink = titlewrap1;
+				imglink += '<object '+textwrap+' width="<?php echo getOption('tinymce_tinyzenpage_flowplayer_width'); ?>" height="'+playerheight+'" data="'+flowplayerpath+'" type="application/x-shockwave-flash">';
 				imglink += '<param name="movie" value="'+flowplayerpath+'" />';
 				imglink += '<param name="allowfullscreen" value="true" />';
 				imglink += '<param name="allowscriptaccess" value="always" />';
-				imglink += '<param name="flashvars" value=\'config={"clip":{"url":"'+fullimage+'"}}\' />';
+				imglink += '<param name="flashvars" value=\'config={';
+				imglink += '"plugins": {';
+				imglink += '"controls":{';
+				imglink += '"backgroundColor": "<?php echo getOption('flow_player3_controlsbackgroundcolor'); ?>",';
+				imglink += '"backgroundGradient": "<?php echo getOption('flow_player3_controlsbackgroundcolorgradient'); ?>",';
+				imglink += '"autoHide": "<?php echo getOption('flow_player3_controlsautohide'); ?>",';
+				imglink += '"timeColor":"<?php echo getOption('flow_player3_controlstimecolor'); ?>",';
+				imglink += '"durationColor": "<?php echo getOption('flow_player3_controlsdurationcolor'); ?>",';
+				imglink += '"progressColor": "<?php echo getOption('flow_player3_controlsprogresscolor'); ?>",';
+				imglink += '"progressGradient": "<?php echo getOption('flow_player3_controlsprogressgradient'); ?>",';
+				imglink += '"bufferColor": "<?php echo getOption('flow_player3_controlsbuffercolor'); ?>",';
+				imglink += '"bufferGradient":	 "<?php echo getOption('flow_player3_controlsbuffergradient'); ?>",';
+				imglink += '"sliderColor": "<?php echo getOption('flow_player3_controlsslidercolor'); ?>",';
+				imglink += '"sliderGradient": "<?php echo getOption('flow_player3_controlsslidergradient'); ?>",';
+				imglink += '"buttonColor": "<?php echo getOption('flow_player3_controlsbuttoncolor'); ?>",';
+				imglink += '"buttonOverColor": "<?php echo getOption('flow_player3_controlsbuttonovercolor'); ?>"';
+				imglink += '}';
+				imglink += '},';
+				imglink += '"canvas": {';
+				imglink += '"backgroundColor": "<?php echo getOption('flow_player3_backgroundcolor'); ?>",';
+				imglink += '"backgroundGradient": "<?php echo getOption('flow_player3_backgroundcolorgradient'); ?>"';
+				imglink += '},';
+				imglink += '"clip":{';
+				imglink += '"url":"'+fullimage+'",';
+				<?php 
+					if(getOption("flow_player3_autoplay") == 1) {
+						$autoplay = "true";
+					} else {
+						$autoplay = "false";
+					}
+				?>
+				imglink += '"autoPlay":<?php echo $autoplay; ?>,';
+				imglink += '"autoBuffering": <?php echo $autoplay; ?>,';
+				imglink += '"scaling": "<?php echo getOption('flow_player3_scaling'); ?>"';
+				imglink += '}';
+				imglink += '}\' />';
 				imglink += '</object>';
 				imglink += titlewrap2;
 			}	else {

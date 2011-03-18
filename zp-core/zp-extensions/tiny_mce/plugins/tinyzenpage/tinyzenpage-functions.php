@@ -130,7 +130,12 @@ function printImageslist($number) {
 					$imageobj = newImage($albumobj,$images[$nr]);
 				}
 				if(isImageVideo($imageobj) && getOption('zp_plugin_flowplayer3')) {
-					$video = 'video';
+					if(getSuffix($imageobj->filename) == 'mp3') {
+						$video = 'mp3';
+					} else {
+						$video = 'video';
+					}
+					
 				} else {
 					$video = '';
 				}
