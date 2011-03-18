@@ -89,7 +89,7 @@ require_once("tinyzenpage-functions.php");
     		s <input type="text" name="cropsize" id="cropsize" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_size'); ?>" style="width:25px" /> / cw <input type="text" name="cropwidth" id="cropwidth" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /> x ch <input type="text" name="cropheight" id="cropheight" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /><label for="customthumb"><br /><span class="customtext"><?php echo gettext("Custom thumbnail"); ?></span></label><br />
     		<input type="radio" name="type" id="sizedimage" "value="1" /><label for="title"> <?php echo gettext("Sized image"); ?></label><br />
     		<input type="radio" name="type" id="customsize" value="1" />
-    		<input type="text" name="size" id="size" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_size'); ?>" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
+    		<input type="text" name="size" id="size" value="<?php echo getOption('tinymce_tinyzenpage_customimagesize'); ?>" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
   			<input type="checkbox" name="type" id="showtitle" value="1" /><label for="showtitle"> <?php echo gettext("Show title"); ?></label><br />
   			<input type="checkbox" name="type" id="showdesc" value="1" /><label for="showdesc"> <?php echo gettext("Show description"); ?></label>
   		</fieldset>
@@ -133,7 +133,7 @@ require_once("tinyzenpage-functions.php");
 	 			echo "<p style='margin-left: 8px'>";
 	 			echo gettext("This provides access to your images and albums (dropdown 'Zenphoto') as well as pages, news articles and news categories (dropdown 'Zenpage') to easily include them in your pages and articles. You need at least 'Manage all albums' or 'Edit' rights to specific albums to be able to included image from them.")."</p>";
 	 			echo "<p style='margin-left: 8px'>";
-	 			echo gettext("The options below the 'Zenphoto' drop down do only affect including images and albums. These options are be used on the fly and are not sticky if you reload the page (selecting another album or moving between pages in an album).")."</p>";
+	 			echo gettext("Select first the items type using the 'Zenphoto' or 'Zenpage' drop down, then set the options as wished and explained below. NOTE: These options are be used on the fly and are not sticky if you reload the page (selecting another album or moving between pages in an album).")."</p>";
 	 			echo "<p style='margin-left: 8px'>";
 	 			echo gettext("The windows does not close automatically so you can include several images one after another.")."</p>";
 	 			echo "<p style='margin-left: 8px'>";
