@@ -270,7 +270,10 @@ zp-core/admin-uploadify/check.php
 zp-core/admin-uploadify/jquery.uploadify.js
 zp-core/admin-uploadify/swfobject.js
 zp-core/admin-uploadify/uploader.php
+zp-core/admin-uploadify/uploadify.allglyphs.swf
 zp-core/admin-uploadify/uploadify.css
+zp-core/admin-uploadify/uploadify.fla
+zp-core/admin-uploadify/uploadify.php
 zp-core/admin-uploadify/uploadify.swf
 zp-core/admin-users.php
 zp-core/admin.css
@@ -2736,4 +2739,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2738
+2741

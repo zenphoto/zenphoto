@@ -55,7 +55,7 @@ function setupLanguageArray() {
 		'en_ZA' => gettext('English (South Africa)'),
 		'en_ZW' => gettext('English (Zimbabwe)'),
 		'eo' => gettext('Esperanto'),
-		'EE' => gettext('Estonian'),
+		'et_EE' => gettext('Estonian'),
 		'fi_FI' => gettext('Finnish'),
 		'fo_FO' => gettext('Faroese'),
 		'fr_BE' => gettext('French (Belgium)'),
