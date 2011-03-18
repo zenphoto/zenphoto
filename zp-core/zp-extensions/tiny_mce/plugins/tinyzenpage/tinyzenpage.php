@@ -5,8 +5,8 @@ $basepath = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
 require_once($basepath."/admin-functions.php");
 require_once($basepath .'/'. PLUGIN_FOLDER ."/zenpage/zenpage-template-functions.php");
 require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
-require_once("js/dialog.php");
-require_once("tinyzenpage-functions.php");
+//require_once("js/dialog.php");
+//require_once("tinyzenpage-functions.php");
 ?>
 <!-- tinyZenpage - A TinyMCE plugin for Zenphoto with Zenpage
 		 Version: 1.0.6.1
@@ -29,6 +29,10 @@ require_once("tinyzenpage-functions.php");
 		$("a[rel='colorbox']").colorbox({iframe:true, innerWidth:450, innerHeight:450});
 	});
 	</script>
+	<?php
+require_once("js/dialog.php");
+require_once("tinyzenpage-functions.php");
+?>
 	<?php zp_apply_filter('admin_head'); ?>
 </head>
 
@@ -86,7 +90,8 @@ require_once("tinyzenpage-functions.php");
     		<input type="radio" name="type" id="sizedimage" "value="1" /><label for="title"> <?php echo gettext("Sized image"); ?></label><br />
     		<input type="radio" name="type" id="customsize" value="1" />
     		<input type="text" name="size" id="size" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_size'); ?>" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
-  			<input type="checkbox" name="type" id="showtitle" value="1" /><label for="showtitle"> <?php echo gettext("Show title"); ?></label>
+  			<input type="checkbox" name="type" id="showtitle" value="1" /><label for="showtitle"> <?php echo gettext("Show title"); ?></label><br />
+  			<input type="checkbox" name="type" id="showdesc" value="1" /><label for="showdesc"> <?php echo gettext("Show description"); ?></label>
   		</fieldset>
 		</div>
 	</form>
@@ -149,9 +154,9 @@ require_once("tinyzenpage-functions.php");
 				echo "<p style='margin-left: 8px'>";
 				echo gettext("Include the thumbnail of the size set in Zenphoto's options, a custom thumbnail (size for the longest side / cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options. The sized image as set in Zenphoto's options or a custom size (size is for the longest side of the image).")."</p>";
 				echo "<p style='margin-left: 8px'>";
-				echo gettext("<strong>Video/audio: </strong>For these only thumbs can be included. If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3) using the <em>sized image</em> option only. Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (except cover/splash images are not supported). <br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons.")."</p>";
+				echo gettext("<strong>Video/audio: </strong>For these only thumbs can be included. If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3) using the <em>sized image</em> option only. These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (except cover/splash images are not supported). <br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons.")."</p>";
 				echo "<p style='margin-left: 8px'>";
-				echo gettext("If you additionally check <em>Show title</em> the title of the image or album (if you checked <em>link to album</em>) will be printed below the image. Only if <em>Image</em> is chosen as type.")."</p>";
+				echo gettext("If you additionally check <em>Show title</em> or <em>Show description</em> the title/description of the image or album (if you checked <em>link to album</em>) will be printed below the image. Only if <em>Image</em> is chosen as type.")."</p>";
 				echo "<h4 style='margin-left: 8px'>".gettext("Link type")."</h4>";
 				echo "<p style='margin-left: 8px'>";
 				echo gettext("Select to link to the image page of the image, to the album the image is in, no link at all or a custom URL.")."</p>";
@@ -172,7 +177,7 @@ require_once("tinyzenpage-functions.php");
 				echo "<li>".gettext("Custom thumbnail: <em>zenpage_customthumb</em> or <em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>")."</li>";
 				echo "<li>".gettext("Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/<em>zenpage_sizedimage_right</em>")."</li>";
 				echo "<li>".gettext("Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</em>/<em>zenpage_customimage_right</em>")."</li>";
-				echo "<li>".gettext("If you additionally have checked <em>Show title</em> for an image or album the div with the class <em>zenpage_wrapper</em> is wrapped around the image and link within that after the image and the link a div with the class <em>zenpage_title</em> wrapping the title.")."</li>";
+				echo "<li>".gettext("If you additionally have checked <em>Show title</em> or <em>Show description</em> for an image or album the div with the class <em>zenpage_wrapper</em> is wrapped around the image and link. Within that after the image and the link a div with the class <em>zenpage_title</em> wrapping the title respectively <em>zenpage_desc</em> wrapping the description.")."</li>";
 				echo "</ul>";
 				echo "<p style='margin-left: 8px'>";
 				echo gettext("Additionally a default CSS class is attached to the link itself depending on the link option set:");

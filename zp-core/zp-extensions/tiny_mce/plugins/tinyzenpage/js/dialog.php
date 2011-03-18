@@ -6,7 +6,7 @@ var ZenpageDialog = {
 		tinyMCEPopup.resizeToInnerSize();
 	},
 
-	insert : function(imgurl,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video) {
+	insert : function(imgurl,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video,imgdesc,albumdesc) {
 
 		var ed = tinyMCEPopup.editor, dom = ed.dom;
 		var imglink = '';
@@ -17,8 +17,10 @@ var ZenpageDialog = {
 		var linktype = '';
 		var textwrap = '';
 		var textwrap_float = '';
-		var titlewrap1 = '';
-		var titlewrap2 = '';
+		var infowrap1 = '';
+		var infowrap2 = '';
+		var titlewrap = '';
+		var descwrap = '';
 		var cssclass = '';
 		var albumname = '<?php if(isset($_GET["album"]))  { echo sanitize($_GET["album"]); } else { $_GET["album"] = ""; } ?>';
 		var webpath = '<?php echo WEBPATH; ?>'
@@ -81,7 +83,7 @@ var ZenpageDialog = {
 		}
 		if($('#leftwrap:checked').val() == 1) {
 			// we don't need (inline) css attached to the image/link it they are wrapped for the title, the div does the wrapping!
-			if($('#showtitle:checked').val() != 1) {
+			if($('#showtitle:checked').val() != 1 && $('#showdesc:checked').val() != 1) {
 				textwrap_float = ' style=\'float: right;\'';
 			}
 			textwrap = 'class=\''+cssclass+'_right\''+textwrap_float;
@@ -116,14 +118,25 @@ var ZenpageDialog = {
 		// getting the include type checkbox values
 		if($('#image:checked').val() == 1) {
 			includetype = '<img src=\''+imgurl+imagesize+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
+			if($('#showdesc:checked').val() == 1 || $('#showtitle:checked').val() == 1) { 
+				infowrap1 = '<div class=\'zenpage_wrapper'+textwrap_title_add+'\''+textwrap_title+'>';
+				infowrap2 = '</div>';
+			}
 			if($('#showtitle:checked').val() == 1) {
-				titlewrap1 = '<div class=\'zenpage_wrapper'+textwrap_title_add+'\''+textwrap_title+'>';
 				if($('#albumlink:checked').val() == 1) {
-					titlewrap2 = '<div class=\'zenpage_title\'>'+albumtitle+'</div></div>';
+					titlewrap = '<div class=\'zenpage_title\'>'+albumtitle+'</div>';
 				} else {
-					titlewrap2 = '<div class=\'zenpage_title\'>'+imgtitle+'</div></div>';
+					titlewrap = '<div class=\'zenpage_title\'>'+imgtitle+'</div>';
 				}
 			}
+			if($('#showdesc:checked').val() == 1) {
+				if($('#albumlink:checked').val() == 1) {
+					descwrap = '<div class=\'zenpage_desc\'>'+albumdesc+'</div>';
+				} else {
+					descwrap = '<div class=\'zenpage_desc\'>'+imgdesc+'</div>';
+				}
+			}
+			infowrap2 = titlewrap+descwrap+infowrap2;
 		}
 		if($('#imagetitle:checked').val() == 1) {
 			includetype = html_encode(imgtitle);
@@ -143,7 +156,7 @@ var ZenpageDialog = {
 				} else {
 					playerheight = "<?php echo FLOW_PLAYER_MP3_HEIGHT; ?>";
 				}
-				imglink = titlewrap1;
+				imglink = infowrap1;
 				imglink += '<object '+textwrap+' width="<?php echo getOption('tinymce_tinyzenpage_flowplayer_width'); ?>" height="'+playerheight+'" data="'+flowplayerpath+'" type="application/x-shockwave-flash">';
 				imglink += '<param name="movie" value="'+flowplayerpath+'" />';
 				imglink += '<param name="allowfullscreen" value="true" />';
@@ -185,9 +198,9 @@ var ZenpageDialog = {
 				imglink += '}';
 				imglink += '}\' />';
 				imglink += '</object>';
-				imglink += titlewrap2;
+				imglink += infowrap2;
 			}	else {
-				imglink = titlewrap1+linkpart1+includetype+linkpart2+titlewrap2;
+				imglink = infowrap1+linkpart1+includetype+linkpart2+infowrap2;
 			}
 		} else {
 			if(type == "pages") {

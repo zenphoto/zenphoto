@@ -52,7 +52,7 @@ class tinymceOptions {
 										gettext('tinyZenpage - Flowplayer width') => array('key' => 'tinymce_tinyzenpage_flowplayer_width', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Video player width if included using tinyZenpage")),
 										gettext('tinyZenpage - Flowplayer height') => array('key' => 'tinymce_tinyzenpage_flowplayer_height', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Video player height if included using tinyZenpage"))
+										'desc' => gettext("Video player height if included using tinyZenpage (for mp3s only the control bar is used)"))
 									);
 		return $options;
 	}
