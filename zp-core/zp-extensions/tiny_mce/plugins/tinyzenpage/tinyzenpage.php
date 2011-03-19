@@ -27,6 +27,13 @@ require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
 	<script language="javascript" type="text/javascript">
 	$(document).ready(function(){
 		$("a[rel='colorbox']").colorbox({iframe:true, innerWidth:450, innerHeight:450});
+		
+		$('#imagetitle,#albumtitle,#customtext').click(function() {
+			$('#imagesize').hide();
+		});
+		$('#image').click(function() {
+			$('#imagesize').show();
+		});
 	});
 	</script>
 	<?php
@@ -87,12 +94,13 @@ require_once("tinyzenpage-functions.php");
     		<input type="radio" name="type" id="thumbnail" value="1" checked='checked'><label for="thumbnail" /> <?php echo gettext("Thumbnail"); ?></label><br />
     		<input type="radio" name="type" id="customthumb" value="1" />
     		s <input type="text" name="cropsize" id="cropsize" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_size'); ?>" style="width:25px" /> / cw <input type="text" name="cropwidth" id="cropwidth" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /> x ch <input type="text" name="cropheight" id="cropheight" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /><label for="customthumb"><br /><span class="customtext"><?php echo gettext("Custom thumbnail"); ?></span></label><br />
-    		<input type="radio" name="type" id="sizedimage" "value="1" /><label for="title"> <?php echo gettext("Sized image"); ?></label><br />
+    		<input type="radio" name="type" id="sizedimage" "value="1" /><label for="title"> <?php echo gettext("Sized image/multimedia item"); ?></label><br />
     		<input type="radio" name="type" id="customsize" value="1" />
     		<input type="text" name="size" id="size" value="<?php echo getOption('tinymce_tinyzenpage_customimagesize'); ?>" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
   			<input type="checkbox" name="type" id="showtitle" value="1" /><label for="showtitle"> <?php echo gettext("Show title"); ?></label><br />
   			<input type="checkbox" name="type" id="showdesc" value="1" /><label for="showdesc"> <?php echo gettext("Show description"); ?></label>
   		</fieldset>
+  		
 		</div>
 	</form>
 
@@ -132,8 +140,14 @@ require_once("tinyzenpage-functions.php");
 	 			echo "<em>tiny</em>Zenpage (v1.4.1)</h2>";
 	 			echo "<p style='margin-left: 8px'>";
 	 			echo gettext("This provides access to your images and albums (dropdown 'Zenphoto') as well as pages, news articles and news categories (dropdown 'Zenpage') to easily include them in your pages and articles. You need at least 'Manage all albums' or 'Edit' rights to specific albums to be able to included image from them.")."</p>";
+	 			echo "<h3 style='margin-left: 1px'>General usage</h3>";
+	 			echo '<ol style="margin-left: 8px">';
+	 			echo '<li>'.gettext("Select first the items type using the 'Zenphoto' or 'Zenpage' drop down").'</li>';
+	 			echo '<li>'.gettext("Set the options as wished and explained below.").'</li>';
+	 			echo '<li>'.gettext("Click on the image/page/article/category to include.").'</li>';
+	 			echo '</ol>';
 	 			echo "<p style='margin-left: 8px'>";
-	 			echo gettext("Select first the items type using the 'Zenphoto' or 'Zenpage' drop down, then set the options as wished and explained below. NOTE: These options are be used on the fly and are not sticky if you reload the page (selecting another album or moving between pages in an album).")."</p>";
+	 			echo gettext("NOTE: These options are be used on the fly and are not sticky. If you reload the page by selecting another album or moving between pages in an album you have to set them again.");
 	 			echo "<p style='margin-left: 8px'>";
 	 			echo gettext("The windows does not close automatically so you can include several images one after another.")."</p>";
 	 			echo "<p style='margin-left: 8px'>";
@@ -151,10 +165,14 @@ require_once("tinyzenpage-functions.php");
 				echo gettext("Include the image itself, only its title, the title of its album, or a custom text.")."</p>";
 
 				echo "<h4 style='margin-left: 8px'>".gettext("Image size")."</h4>";
-				echo "<p style='margin-left: 8px'>";
-				echo gettext("Include the thumbnail of the size set in Zenphoto's options, a custom thumbnail (size for the longest side / cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options. The sized image as set in Zenphoto's options or a custom size (size is for the longest side of the image).")."</p>";
-				echo "<p style='margin-left: 8px'>";
-				echo gettext("<strong>Video/audio: </strong>For these only thumbs can be included. If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3) using the <em>sized image</em> option only. These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (except cover/splash images are not supported). <br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons.")."</p>";
+				echo '<ul style="margin-left: 8px">';
+				echo '<li>'.gettext("Thumbnail: Size as set in Zenphoto's options").'</li>';
+				echo '<li>'.gettext("Custom thumbnail: size for the longest side / cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options. Not available for video/audio items.").'</li>';
+				echo '<li>'.gettext("Sized image as set in Zenphoto's options.").'<br />';
+				echo gettext("<strong>Video/audio: </strong>If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3). These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (cover/splash images are not supported).<br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons.");
+				echo '</li>';
+				echo '<li>'.gettext("Custom size image: Size is for the longest side of the image. Not available for video/audio items.").'</li>';
+				echo '</ul>';
 				echo "<p style='margin-left: 8px'>";
 				echo gettext("If you additionally check <em>Show title</em> or <em>Show description</em> the title/description of the image or album (if you checked <em>link to album</em>) will be printed below the image. Only if <em>Image</em> is chosen as type.")."</p>";
 				echo "<h4 style='margin-left: 8px'>".gettext("Link type")."</h4>";

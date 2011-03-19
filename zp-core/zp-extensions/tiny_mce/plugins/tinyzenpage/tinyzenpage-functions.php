@@ -148,13 +148,19 @@ function printImageslist($number) {
 				}
 				$imagedesc = '';
 				$imagedesc = $imageobj->getDesc();
+				$fullimage = pathurlencode($imageobj->getFullImage());
 				$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
+				if(get_class($imageobj) == 'TextObject') {
+					$video = 'textobject';
+					$imgurl = $imageobj->getThumb();
+					$fullimage = html_encode($imageobj->getBody());
+				}
 				$imgsizeurl = $imageobj->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 				echo "<div style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>\n";
 				echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".urlencode($imageobj->filename)."','".
 																												html_encode($imageobj->getTitle())."','".
 																												html_encode($linkalbumobj->getTitle())."','".
-																												pathurlencode($imageobj->getFullImage())."','zenphoto','".
+																												$fullimage."','zenphoto','".
 																												html_encode(getWatermarkParam($imageobj, WATERMARK_THUMB))."','".
 																												html_encode(getWatermarkParam($imageobj, WATERMARK_IMAGE))."','".
 																												$video."','".html_encode($imagedesc)."','');\"".

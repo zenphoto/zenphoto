@@ -1,6 +1,6 @@
 <script language="javascript" type="text/javascript">
 /* tinyMCEPopup.requireLangPack(); */
-
+		
 var ZenpageDialog = {
 	init : function(ed) {
 		tinyMCEPopup.resizeToInnerSize();
@@ -34,6 +34,7 @@ var ZenpageDialog = {
 		?>
 		var flowplayerpath = '<?php echo $flowplayerpath; ?>';
 		var playerheight = '';
+		var stopincluding = false;
 		// getting the image size checkbox values
 		if($('#thumbnail:checked').val() == 1) {
 			imagesize = '&amp;s=<?php echo getOption("thumb_size"); ?>&amp;cw=<?php echo getOption("thumb_crop_width"); ?>&amp;ch=<?php echo getOption("thumb_crop_height"); ?>&amp;t=true';
@@ -43,11 +44,16 @@ var ZenpageDialog = {
 			cssclass ='zenpage_thumb';
 		}
 		if($('#customthumb:checked').val() == 1) {
+			if(video) {
+				alert('<?php echo gettext("It is not possible to include custom thumbs or custom size images for multimedia items."); ?>');
+				stopincluding = true;
+			}
 			imagesize = '&amp;s='+$('#cropsize').val()+'&amp;cw='+$('#cropwidth').val()+'&amp;ch='+$('#cropheight').val()+'&amp;t=true';
 			if (wm_thumb) {
 				imagesize += '&ampwmk='+wm_thumb;
 			}
 			cssclass ='zenpage_customthumb';
+	
 		}
 
 		if($('#sizedimage:checked').val() == 1) {
@@ -58,6 +64,10 @@ var ZenpageDialog = {
 			cssclass ='zenpage_sizedimage';
 		}
 		if($('#customsize:checked').val() == 1) {
+			if(video) {
+				alert('<?php echo gettext("It is not possible to include custom thumbs or custom size images for multimedia items."); ?>');
+				stopincluding = true;
+			}
 			imagesize = '&amp;s='+$('#size').val();
 			if (wm_img) {
 				imagesize += '&ampwmk='+wm_img;
@@ -199,7 +209,9 @@ var ZenpageDialog = {
 				imglink += '}\' />';
 				imglink += '</object>';
 				imglink += infowrap2;
-			}	else {
+			}	else if(video == 'textobject' && $('#sizedimage:checked').val() == 1) {
+				imglink = infowrap1+fullimage+infowrap2;
+			} else {
 				imglink = infowrap1+linkpart1+includetype+linkpart2+infowrap2;
 			}
 		} else {
@@ -225,7 +237,9 @@ var ZenpageDialog = {
 				}
 			}
 		}
-		tinyMCEPopup.execCommand('mceInsertContent', false, imglink);
+		if(!stopincluding) {
+			tinyMCEPopup.execCommand('mceInsertContent', false, imglink);
+		}
 	}
 };
 
