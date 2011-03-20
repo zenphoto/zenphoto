@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 21:46+0100\n"
-"PO-Revision-Date: 2011-03-19 19:12+0100\n"
+"POT-Creation-Date: 2011-03-20 10:30+0100\n"
+"PO-Revision-Date: 2011-03-20 11:18+0100\n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -10295,12 +10295,10 @@ msgid "Provides a means for handling arbitrary file types. (No rendering provide
 msgstr "Mogelijkheid voor de verwerking van willekeurige bestandstypes. (Ze worden niet door Zenphoto gerenderd)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/class-AnyFile.php:45
-#: ZpTranslation-Development/zp-core/zp-extensions/class-textobject.php:84
 msgid "Watermark default images"
 msgstr "Watermerk  afbeeldingen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/class-AnyFile.php:46
-#: ZpTranslation-Development/zp-core/zp-extensions/class-textobject.php:85
 msgid "Check to place watermark image on default thumbnail images."
 msgstr "Vink aan om een watermerk te plaatsen op afbeeldingen."
 
@@ -13374,7 +13372,7 @@ msgstr "tinyZenpage - hoogte van de aangepaste thumbnail-uitsnede."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce.php:51
 msgid "Predefined crop height (%) for custom cropped thumb  images included using tinyZenpage."
-msgstr "Hoogte van aangepaste thumbnail-uitsnede (%) zoals die door tinyZenpage gebruikt wordt."
+msgstr "Hoogte (%) van aangepaste thumbnail-uitsnede zoals die door tinyZenpage gebruikt wordt."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce.php:52
 msgid "tinyZenpage - Flowplayer width"
@@ -14605,212 +14603,240 @@ msgstr "Album-map:"
 msgid "(Click on image to include)"
 msgstr "(Klik op afbeelding om in te voegen)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:179
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:185
 msgid "<strong>Note:</strong> This album does not contain any images."
 msgstr "<strong>LET OP!:</strong> Dit album bevat geen afbeeldingen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:195
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:201
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:83
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1426
 msgid "Articles"
 msgstr "Artikelen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:195
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:358
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:201
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:364
 msgid "(Click on article title to include a link)"
 msgstr "(Klik op artikel om in te voegen)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:48
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:55
 msgid "*Select*"
 msgstr "*Selecteer*"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:51
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:58
 msgid "(only direct links!)"
 msgstr "(alleen directe links!)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:61
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:68
 msgid "*Select an album*"
 msgstr "*Selecteer een album*"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:64
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:71
 msgid "(select variant below)"
 msgstr "(selecteer variant hieronder)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:73
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:148
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:80
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:162
 msgid "What to include"
 msgstr "Wat in te voegen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:75
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:82
 msgid "Image title"
 msgstr "Afbeeldingstitel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:76
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:83
 msgid "Album title"
 msgstr "Albumtitel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:78
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:85
 msgid "Custom text"
 msgstr "Eigen tekst"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:86
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:153
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:93
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:167
 msgid "Image size"
 msgstr "Afbeeldingsgrootte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:89
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:96
 msgid "Custom thumbnail"
 msgstr "Aangepaste thumbnail"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:90
-msgid "Sized image"
-msgstr "Afbeelding op ingesteld formaat"
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:97
+msgid "Sized image/multimedia item"
+msgstr "Ingesteld formaat afbeelding/multimedia item"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:92
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:99
 msgid "Custom size (un-cropped)"
-msgstr "Aangepast formaat(geen uitsnede)"
+msgstr "Aangepaste afbeelding (geen uitsnede)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:93
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:100
 msgid "Show title"
 msgstr "Toon titel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:94
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:101
 msgid "Show description"
 msgstr "Toon beschrijving"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:102
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:160
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:110
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:178
 msgid "Link type"
 msgstr "Link type"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:104
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:112
 msgid "Link to image"
 msgstr "Link naar afbeelding"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:105
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:113
 msgid "Link to full image"
 msgstr "Link naar volledige afbeelding"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:106
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:114
 msgid "Link to album"
 msgstr "Link naar album"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:107
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:115
 msgid "No link"
 msgstr "Geen link"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:117
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:164
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:125
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:182
 msgid "Text wrap"
 msgstr "Tekstomloop"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:118
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:126
 msgid "No wrap"
 msgstr "Geen tekstomloop"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:134
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:142
 msgid "This provides access to your images and albums (dropdown 'Zenphoto') as well as pages, news articles and news categories (dropdown 'Zenpage') to easily include them in your pages and articles. You need at least 'Manage all albums' or 'Edit' rights to specific albums to be able to included image from them."
-msgstr "Dit biedt toegang tot je afbeeldingen en albums (dropdown 'Zenphoto') maar ook tot pagina's, nieuwsartikelen en nieuwscategorie&euml;n (dropdown 'zenpage'). Zo kun je ze eenvoudig invoegen in je pagina's en artikelen. Je hebt minimaal  'Beheer alle albums' rechten of 'Bewerk' rechten voor specifieke albums nodig om daaruit afbeeldingen in te voegen."
+msgstr "Dit biedt toegang tot je afbeeldingen en albums (dropdown 'Zenphoto') maar ook tot pagina's, nieuwsartikelen en nieuwscategorie&euml;n (dropdown 'Zenpage'). Zo kun je ze eenvoudig invoegen in je pagina's en artikelen. Je hebt minimaal  'Beheer alle albums' rechten of 'Bewerk' rechten voor specifieke albums nodig om daaruit afbeeldingen in te voegen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:136
-msgid "Select first the items type using the 'Zenphoto' or 'Zenpage' drop down, then set the options as wished and explained below. NOTE: These options are be used on the fly and are not sticky if you reload the page (selecting another album or moving between pages in an album)."
-msgstr "Selecteer eerst een onderdeel uit de 'Zenpage' of 'Zenphoto' dropdown. Daarna kun je meerdere opties instellen zoals hieronder wordt uitgelegd.<br /> <strong>OPMERKING:</strong> Selecteer eerst alle gewenste opties/instellingen voordat je een afbeelding invoegt. Je kunt niet achteraf de instellingen aanpassen."
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:145
+msgid "Select first the items type using the 'Zenphoto' or 'Zenpage' drop down"
+msgstr "Selecteer eerst een onderdeel uit het  'Zenpage' of 'Zenphoto' dropdown menu."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:138
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:146
+msgid "Set the options as wished and explained below."
+msgstr "Stel naar wens de opties in. (hieronder uitgelegd)"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:147
+msgid "Click on the image/page/article/category to include."
+msgstr "Klik op de afbeelding/pagina/artikel/categorie om het onderdeel in te voegen."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:150
+msgid "NOTE: These options are be used on the fly and are not sticky. If you reload the page by selecting another album or moving between pages in an album you have to set them again."
+msgstr "<strong>OPMERKING:</strong> Selecteer eerst alle gewenste opties/instellingen voordat je een afbeelding invoegt. Je kunt niet achteraf de instellingen van een ingevoegd onderdeel aanpassen."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:152
 msgid "The windows does not close automatically so you can include several images one after another."
 msgstr "Het venster sluit niet automatisch. Je kunt dus meerdere afbeeldingen achter elkaar invoegen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:143
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:157
 msgid "Select to show a list of Zenpage pages, articles or categories. Click on a title to include a link. Hover of the link to see an excerpt of the page or article. Un-published pages or articles are marked with an '*'. There are no further options."
 msgstr "Hier kun je kiezen voor een lijst van Zenpage pagina's, artikelen of categorie&euml;n. Klik op een titel om een link in te voegen. Beweeg de muis over de link om een stukje uit de pagina of het artikel te zien. Ongepubliceerde artikelen zijn gemarkeerd met een '*'."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:147
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:161
 msgid "Select an album to include images from into your page or article. Click on the image to included it. Un-published albums or images are marked with an '*'. You can also click on the magnify glass icon to see a preview of the item (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.). <br />You have several options what to include and how:"
-msgstr "Kies een album van waaruit je afbeeldingen wilt invoegen. Klik op de afbeelding om deze in te voegen. Ongepubliceerde albums of afbeeldingen zijn gemarkeerd met een '*'. Je kunt ook op het vergrootglas klikken om een voorvertoning te zien (Multimedia bestanden worden voorvertoond in Flowplayer, ongeacht of deze plugin geladen is of niet).<br /> Je hebt vervolgens keuzes om te bepalen wat je wilt invoegen en hoe:"
+msgstr "Kies een album van waaruit je afbeeldingen wilt invoegen. Klik op de afbeelding om deze in te voegen. Ongepubliceerde albums of afbeeldingen zijn gemarkeerd met een <span style=\"font-size: 18px\">*</span>. Je kunt ook op het vergrootglas klikken om een voorvertoning te zien (Multimedia bestanden worden voorvertoond in Flowplayer, ongeacht of deze plugin geladen is of niet).<br /> Je hebt vervolgens keuzes om te bepalen wat je wilt invoegen en hoe:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:151
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:165
 msgid "Include the image itself, only its title, the title of its album, or a custom text."
 msgstr "Kies of je het beeld zelf, alleen de titel, de titel van zijn album of een aangepaste tekst wilt invoegen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:155
-msgid "Include the thumbnail of the size set in Zenphoto's options, a custom thumbnail (size for the longest side / cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options. The sized image as set in Zenphoto's options or a custom size (size is for the longest side of the image)."
-msgstr "Voeg een thumbnail in op het formaat zoals ingesteld in Zenphoto's opties, een aangepast formaat (formaat langste zijde / uitsnede breedte x uitsnede hoogte). Je kunt hiervoor standaard waarden instellen in de TinyMCE plugin opties.<br /> De grote afbeelding op het formaat zoals ingesteld in Zenphoto's opties of op een aangepast formaat (groote wordt bepaald door de langste zijde van de afbeelding)"
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:169
+msgid "Thumbnail: Size as set in Zenphoto's options"
+msgstr "Thumbnail: Formaat zoals ingesteld in Zenphoto's opties."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:157
-msgid "<strong>Video/audio: </strong>For these only thumbs can be included. If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3) using the <em>sized image</em> option only. These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (except cover/splash images are not supported). <br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons."
-msgstr "<strong>Video/audio: </strong>Als de  FLowplayer3 plugin NIET is geactiveerd kunnen alleen thumbnails worden geplaatst.<br />Als de  FLowplayer3 plugin WEL is geactiveerd kun je alleen video- en audio-bestanden (.flv, .mp4, .mp3) met de <em>Afbeelding op ingesteld formaat</em> optie.<br />Video- en audio-bestanden worden in het tinyZenpage venster weergegeven met een oranje kader, zodat ze makkelijk te herkennen zijn.<br />De standaard instellingen voor voor de speler (breedte en hoogte) kunnen worden ingesteld in de opties van de TinyMCE plugin. Alle andere instellingen voor de speler worden overgenomen van de Flowplayer3 plugin opties. (<strong>OPMERKING:</strong> cover/splash afbeeldingen worden niet ondersteund)<br /><strong>Om onduidelijke redenen wordt het ingevoegde mediabestand  pas zichtbaar in de editor als de pagina of het artikel bewaard is.(<em>Toepassen</em>)</strong>"
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:170
+msgid "Custom thumbnail: size for the longest side / cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options. Not available for video/audio items."
+msgstr "Aangespaste thumbnail:  formaat langste zijde / uitsnede breedte x uitsnede hoogte. Je kunt hiervoor standaard waarden instellen in de TinyMCE plugin opties.<br />Niet beschikbaar voor video/audio-bestanden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:159
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:171
+msgid "Sized image as set in Zenphoto's options."
+msgstr "Formaat afbeelding zoals ingesteld in Zenphoto's opties."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:172
+msgid "<strong>Video/audio: </strong>If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3). These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (cover/splash images are not supported).<br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons."
+msgstr "<strong>Video/audio: </strong>Als de  FLowplayer3 plugin is geactiveerd kun je ook video- en audio-bestanden (.flv, .mp4, .mp3) invoegen.<br />Multimedia-bestanden worden in het tinyZenpage venster weergegeven met een oranje kader, zodat ze makkelijk te herkennen zijn.<br />De standaard instellingen voor voor de speler (breedte en hoogte) kunnen worden ingesteld in de opties van de TinyMCE plugin (Behalve voor mp3-bestanden. Hiervoor wordt alleen de bediening (controlbar) getoond).<br />Alle andere instellingen voor de speler worden overgenomen van de Flowplayer3 plugin opties. (<strong>OPMERKING:</strong> cover/splash afbeeldingen worden niet ondersteund)<br /><strong>Om onduidelijke redenen wordt het ingevoegde mediabestand  pas zichtbaar in de editor als de pagina of het artikel bewaard is.(op <em>Toepassen</em> klikken)</strong>"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:174
+msgid "Custom size image: Size is for the longest side of the image. Not available for video/audio items."
+msgstr "Aangepast formaat van de afbeelding: De langste zijde van de afbeelding wordt gebruikt. Niet beschikbaar voor video/audio-bestanden."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:177
 msgid "If you additionally check <em>Show title</em> or <em>Show description</em> the title/description of the image or album (if you checked <em>link to album</em>) will be printed below the image. Only if <em>Image</em> is chosen as type."
 msgstr "Als je <em>Toon titel</em> of <em>Toon beschrijving</em> hebt aangevinkt, wordt de titel/beschrijving van de afbeelding of album (indien <em>link naar album</em> is geselecteerd) onder de afbeelding geprint. Dit werk alleen als <em>Afbeelding</em> is gekozen als in te voegen item."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:162
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:180
 msgid "Select to link to the image page of the image, to the album the image is in, no link at all or a custom URL."
 msgstr "Selecteer of je een link naar de afbeeldings-pagina, naar het album van de afbeelding, een aangepaste URL of helemaal geen link wilt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:166
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:184
 msgid "Wrap the text right or left of the image or not at all. Note that tinyZenpage adds a bit of CSS to the included image if you use text wrap. So that you see immediate results to the text wrap it attaches some inline CSS:"
 msgstr "Kies hoe je tekst om het beeld wilt hebben: rechtsom, linksom of helemaal niet.<br />Zenpage voegt een stukje inline CSS toe aan het ingevoegde beeld wanneer tekstomloop gebruikt wordt:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:168
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:186
 msgid "left wrap: <em>style=\"float:right\"</em>"
 msgstr "tekstomloop links: <em>style=\"float:right\"</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:169
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:187
 msgid "right wrap: <em>style=\"float: left\"</em>"
 msgstr "tekstomloop rechts: <em>style=\"float: left\"</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:173
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:191
 msgid "Also tinyZenpage attaches a default CSS class to the image (if image is chosen) to be styled with your theme's css. If you choose left or right align '_left' or '_right' is appended:"
 msgstr "tinyZenpage voegt ook een CSS class toe aan de afbeelding (wanneer \"Afbeelding invoegen\" is gekozen). Als je links of rechts uitlijnen kiest, wordt '_left' of '_right' toegevoegd:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:176
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:194
 msgid "Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /<em>zenpage_thumb_right</em>"
 msgstr "Standaard thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /<em>zenpage_thumb_right</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:177
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:195
 msgid "Custom thumbnail: <em>zenpage_customthumb</em> or <em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
 msgstr "Aangepaste thumbnail: <em>zenpage_customthumb</em> or <em>zenpage_customthumb_left</em>/<em>zenpage_customthumb_right</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:178
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:196
 msgid "Sized image: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/<em>zenpage_sizedimage_right</em>"
 msgstr "Groot formaat afbeelding: <em>zenpage_sizedimage</em>/<em>zenpage_sizedimage_left</em>/<em>zenpage_sizedimage_right</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:179
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:197
 msgid "Custom image: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</em>/<em>zenpage_customimage_right</em>"
 msgstr "Aangepast formaat afbeelding: <em>zenpage_customimage</em>/<em>zenpage_customimage_left</em>/<em>zenpage_customimage_right</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:180
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:198
 msgid "If you additionally have checked <em>Show title</em> or <em>Show description</em> for an image or album the div with the class <em>zenpage_wrapper</em> is wrapped around the image and link. Within that after the image and the link a div with the class <em>zenpage_title</em> wrapping the title respectively <em>zenpage_desc</em> wrapping the description."
 msgstr "Als je <em>Toon titel</em> of <em>Toon beschrijving</em> hebt aangevinkt voor een afbeelding of album wordt er een div met de class <em>zenpage_wrapper</em> om de afbeelding en link geplaatst. Daarbinnen wordt een div met de class <em>zenpage_title</em> om de titel en een div met de class <em>zenpage_desc</em> om de beschrijving geplaatst."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:183
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:201
 msgid "Additionally a default CSS class is attached to the link itself depending on the link option set:"
 msgstr "Een CSS class wordt toegewezen aan de link afhankelijk van het type:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:186
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:204
 msgid "Image link: <em>zenpage_imagelink</em>"
 msgstr "Afbeeldings-link: <em>zenpage_imagelink</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:187
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:205
 msgid "Full image link: <em>zenpage_fullimagelink</em>"
 msgstr "Volledige afbeelding-link: <em>zenpage_fullimagelink</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:188
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:206
 msgid "Album link: <em>zenpage_albumlink</em>"
 msgstr "Album link: <em>zenpage_albumlink</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:189
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:207
 msgid "Custom link: <em>zenpage_customlink</em>"
 msgstr "Custom link: <em>zenpage_customlink</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:192
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:210
 msgid "If you like to do some direct styling you can also use TinyMCE's image button or source code editor. <br />Also you can customize the CSS output yourself by directly changing the textwrap variables in line 47 and 50 in <em>tinyzenpage/js/dialog.php</em>."
 msgstr "Je kunt in TinyMCE ook meteen een en ander vormgeven door te klikken op de knop 'afbeelding/image' of de knop 'broncode bewerken'.<br /> Ook kun je zelf de CSS output aanpassen door in het bestand <em>tinyzenpage/js/dialog.php</em> de tekstomloop variabelen in de regels 47 en 50 te wijzigen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:203
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:221
 msgid "Help"
 msgstr "Help"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/js/dialog.php:48
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/js/dialog.php:68
+msgid "It is not possible to include custom thumbs or custom size images for multimedia items."
+msgstr "Het is niet mogelijk om <em>Aangepaste thumbnail</em> of <em>Aangepaste afbeelding</em> te gebruiken voor video/audio-bestanden."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:65
 #, php-format
@@ -15161,7 +15187,6 @@ msgstr "Custom:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:18
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-pages.php:18
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:569
 msgid "Article successfully deleted!"
 msgstr "Artikel met succes verwijderd"
 
@@ -15174,12 +15199,6 @@ msgstr "Bewerk dit artikel"
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:255
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:258
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:261
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:337
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:340
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:364
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:367
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:370
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1039
 msgid "locked"
 msgstr "vergrendeld"
 
@@ -15512,6 +15531,9 @@ msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
 #, php-format
 msgid "Failed to retrieve link <em>%s</em>"
 msgstr "Ophalen link <em>%s</em> mislukt."
+
+#~ msgid "Sized image"
+#~ msgstr "Afbeelding op ingesteld formaat"
 
 #~ msgid "Zenpage editor configuration"
 #~ msgstr "Zenpage editor configuratie"
