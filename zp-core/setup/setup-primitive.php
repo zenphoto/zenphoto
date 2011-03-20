@@ -95,9 +95,13 @@ function printAdminFooter() {
 
 function debugLog($message, $reset=false) {
 	if ($reset) { $mode = 'w'; } else { $mode = 'a'; }
-	$f = fopen(SERVERPATH . '/' . DATA_FOLDER . '/debug_log.txt', $mode);
+	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug_log.txt';
+	$f = fopen($path, $mode);
 	fwrite($f, $message . "\n");
 	fclose($f);
+	clearstatcache();
+	chmod($path, 0600);
+
 }
 
 function debugLogArray($name, $source, $indent=0, $trail='') {

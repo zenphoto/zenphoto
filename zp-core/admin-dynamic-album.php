@@ -60,6 +60,7 @@ if (isset($_POST['savealbum'])) {
 		if ($f !== false) {
 			fwrite($f,"WORDS=$words\nTHUMB=$thumb\nFIELDS=".implode(',',$searchfields)."\n");
 			fclose($f);
+			clearstatcache();
 			// redirct to edit of this album
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit&album=" . pathurlencode($redirect));
 			exit();

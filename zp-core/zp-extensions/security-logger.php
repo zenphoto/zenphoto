@@ -152,6 +152,7 @@ function security_logger_loginLogger($success, $user, $name, $ip, $action, $auth
 	}
 	fwrite($f, $message . "\n");
 	fclose($f);
+	clearstatcache();
 	chmod($file, 0600);
 	setupCurrentLocale($cur_locale);	//	restore to whatever was in effect.
 }

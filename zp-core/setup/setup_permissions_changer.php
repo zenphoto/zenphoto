@@ -20,6 +20,7 @@ if ($_POST['key']==sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE))) {
 	fwrite($f, sprintf(gettext('Notice: illegal call for permissions setting for %s.'), basename($folder)) . "\n");
 }
 fclose($f);
+clearstatcache();
 
 function folderPermissions($folder) {
 	global $chmod, $f;

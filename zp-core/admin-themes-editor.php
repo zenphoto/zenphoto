@@ -51,6 +51,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'edit_file' && $file_to_edit 
 		if ($f !== FALSE) {
 			@fwrite($f, $file_content);
 			fclose($f);
+			clearstatcache();
 			$message = gettext('File updated successfully');
 		} else {
 			$message = gettext('Could not write file. Please check its write permissions');

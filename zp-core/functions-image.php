@@ -391,6 +391,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 					$fw = fopen($newfile, 'w');
 					fwrite($fw, $content);
 					fclose($fw);
+					clearstatcache();
 				}
 			}
 			if (DEBUG_IMAGE) debugLog('Finished:'.basename($imgfile));

@@ -2365,6 +2365,7 @@ function unzip($file, $dir) { //check if zziplib is installed
 						$fp = fopen($path_file, "w");
 						fwrite($fp, $buf);
 						fclose($fp);
+						clearstatcache();
 						zip_entry_close($zip_entry);
 						$albumname = substr($dir, strlen(ALBUM_FOLDER_SERVERPATH));
 						$album = new Album(new Gallery(), $albumname);
@@ -2797,23 +2798,23 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
  * @param int $prefix the admin row
  * @param bit $rights the privileges  of the user
  */
-function printManagedObjects($type,$objlist, $alterrights, $adminid, $prefix, $rights, $kind) {
+function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $rights, $kind) {
 	$ledgend = '';
 	switch ($type) {
 		case 'albums':
-			$full = populateManagedObjectsList('album',$adminid, true);
+			$full = populateManagedObjectsList('album', $adminid, true);
 			$cv = $extra = array();
 			$icon_edit = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/pencil.png" class="icon-position-top3" />';
 			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3" />';
 			$ledgend = $icon_edit.' '.gettext('edit').' '.$icon_upload.' '.gettext('upload');
 			foreach ($full as $item) {
 				$cv[$item['name']] = $item['data'];
-				$extra[$item['data']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
+				$extra[$item['name']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
 				if ($rights & ALBUM_RIGHTS) {
-					$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
+					$extra[$item['name']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
 				}
-				if ($rights & UPLOAD_RIGHTS) {
-					$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+				if (($rights & UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
+					$extra[$item['name']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
 				}
 			}
 			$rest = array_diff($objlist, $cv);

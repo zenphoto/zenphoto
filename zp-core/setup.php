@@ -186,6 +186,7 @@ if ($updatezp_config) {
 			}
 		}
 		fclose($handle);
+		clearstatcache();
 	}
 	$xsrftoken = sha1(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
 }
@@ -1250,6 +1251,7 @@ if ($connection) {
 						$err =  '';
 					}
 					fclose($handle);
+					clearstatcache();
 				}
 			}
 		}

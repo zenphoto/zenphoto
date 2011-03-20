@@ -491,9 +491,9 @@ function printSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images)
 			$imageobj = newImage($albumobj,$images[$x]);
 			$ext = strtolower(strrchr($imageobj->filename, "."));
 			$location = '';
-			if ($imageobj->getLocation()) { $location .= $imageobj->getLocation() . ', ' ; } 
-			if ($imageobj->getCity()) { $location .= $imageobj->getCity() . ', ' ; } 
-			if ($imageobj->getState()) { $location .= $imageobj->getState() .', ' ; } 
+			if ($imageobj->getLocation()) { $location .= $imageobj->getLocation() . ', ' ; }
+			if ($imageobj->getCity()) { $location .= $imageobj->getCity() . ', ' ; }
+			if ($imageobj->getState()) { $location .= $imageobj->getState() .', ' ; }
 			if ($imageobj->getCountry()) { $location .= $imageobj->getCountry(); }
 			$license = getOption('sitemap_license');
 			$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).getOption('mod_rewrite_image_suffix'),'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
@@ -720,6 +720,7 @@ function endSitemapCache() {
 			$fh = fopen($cachefilepath,"w");
 			fputs($fh, $pagecontent);
 			fclose($fh);
+			clearstatcache();
 			echo $pagecontent;
 		}
 	}

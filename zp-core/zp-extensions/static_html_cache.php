@@ -211,6 +211,7 @@ class staticCache {
 			if ($fh = fopen($cachefilepath,"w")) {
 				fputs($fh, $pagecontent);
 				fclose($fh);
+				clearstatcache();
 			}
 			$this->pageCachePath = NULL;
 			echo $pagecontent;

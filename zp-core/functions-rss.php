@@ -335,6 +335,7 @@ function endRSSCache() {
 			if ($fh = @fopen($cachefilepath,"w")) {
 				fputs($fh, $pagecontent);
 				fclose($fh);
+				clearstatcache();
 			}
 			echo $pagecontent;
 		}
