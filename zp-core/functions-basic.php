@@ -30,13 +30,6 @@ define('ZP_ZENPAGE_NEWS_DATE', 1024);
 define('ZP_ZENPAGE_PAGE', 2048);
 define('ZP_ZENPAGE_SINGLE', 4096);
 
-if (function_exists('date_default_timezone_set')) { // insure a correct timezone
-	error_reporting(0);
-	$_zp_server_timezone = date_default_timezone_get();
-	date_default_timezone_set($_zp_server_timezone);
-	@ini_set('date.timezone', $_zp_server_timezone);
-}
-
 // Set error reporting.
 if (defined("RELEASE")) {
 	error_reporting(E_ALL ^E_NOTICE);
@@ -68,11 +61,6 @@ if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', 0777); }
 if (!defined('OFFSET_PATH')) { define('OFFSET_PATH', 0); }
 if (!defined('COOKIE_PESISTENCE')) { define('COOKIE_PESISTENCE', 5184000); }
 
-// Set the memory limit higher just in case -- suppress errors if user doesn't have control.
-// 100663296 bytes = 96M
-if (ini_get('memory_limit') && parse_size(ini_get('memory_limit')) < 100663296) {
-	@ini_set('memory_limit','96M');
-}
 
 // If the server protocol is not set, set it to the default (obscure zp-config.php change).
 if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
@@ -86,6 +74,24 @@ if (!$_charset) {
 }
 define('LOCAL_CHARSET',$_charset);
 unset($_charset);
+// insure a correct timezone
+if (function_exists('date_default_timezone_set')) {
+	error_reporting(0);
+	$_zp_server_timezone = date_default_timezone_get();
+	date_default_timezone_set($_zp_server_timezone);
+	@ini_set('date.timezone', $_zp_server_timezone);
+}
+// Set the memory limit higher just in case -- suppress errors if user doesn't have control.
+// 100663296 bytes = 96M
+if (ini_get('memory_limit') && parse_size(ini_get('memory_limit')) < 100663296) {
+	@ini_set('memory_limit','96M');
+}
+// Set the internal encoding
+if (function_exists('mb_internal_encoding')) {
+	if (mb_internal_encoding() != LOCAL_CHARSET) {
+		mb_internal_encoding(LOCAL_CHARSET);
+	}
+}
 
 // load graphics libraries in priority order
 // once a library has concented to load, all others will

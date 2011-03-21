@@ -481,6 +481,7 @@ if ($connection) {
 	}
 	primeMark(gettext('mb_strings'));
 	if (function_exists('mb_internal_encoding')) {
+		@mb_internal_encoding('UTF-8');
 		if (($charset = mb_internal_encoding()) == 'UTF-8') {
 			$mb = 1;
 		} else {
