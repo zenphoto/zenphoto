@@ -70,10 +70,6 @@ if (isset($_GET['p'])) {
 	handleSearchParms('page', $_zp_current_album, $_zp_current_image);
 	$theme = setupTheme();
 	$page = str_replace(array('/','\\','.'), '', sanitize($_GET['p']));
-	if (strpos($page, '*')===0) {
-		$page = substr($page,1); // handle old zenfolder page urls
-		$_GET['z'] = true;
-	}
 	if (isset($_GET['z'])) { // system page
 		if ($subfolder = $_GET['z']) {
 			$subfolder .= '/';

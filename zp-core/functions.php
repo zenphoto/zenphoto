@@ -1099,7 +1099,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 	global $_zp_current_search, $zp_request, $_zp_last_album, $_zp_current_album,
 					$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_loggedin;
 	$_zp_last_album = zp_getCookie('zenphoto_last_album');
-	if (is_object($zp_request)&& get_class($zp_request) == 'SearchEngine') {	//	we are are on a search
+	if (is_object($zp_request) && get_class($zp_request) == 'SearchEngine') {	//	we are are on a search
 		return;
 	}
 	$params = zp_getCookie('zenphoto_search_params');
@@ -1163,6 +1163,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 			set_context($context);
 		} else { // not an object in the current search path
 			$_zp_current_search = null;
+			rem_context(ZP_SEARCH);
 			if (!isset($_REQUEST['preserve_serch_params'])) {
 				zp_setcookie("zenphoto_search_params", "", -368000);
 			}

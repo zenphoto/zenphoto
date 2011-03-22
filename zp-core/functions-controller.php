@@ -296,7 +296,7 @@ function zp_load_gallery() {
 function zp_load_search() {
 	global $_zp_current_search;
 	zp_setcookie("zenphoto_search_params", "", -368000);
-	if ($_zp_current_search == NULL) {
+	if (!is_object($_zp_current_search)) {
 		$_zp_current_search = new SearchEngine();
 	}
 	add_context(ZP_SEARCH);

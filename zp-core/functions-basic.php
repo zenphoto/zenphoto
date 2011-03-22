@@ -89,7 +89,7 @@ if (ini_get('memory_limit') && parse_size(ini_get('memory_limit')) < 100663296) 
 // Set the internal encoding
 if (function_exists('mb_internal_encoding')) {
 	if (mb_internal_encoding() != LOCAL_CHARSET) {
-		mb_internal_encoding(LOCAL_CHARSET);
+		@mb_internal_encoding(LOCAL_CHARSET);
 	}
 }
 
