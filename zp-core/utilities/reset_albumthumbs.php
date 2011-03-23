@@ -11,8 +11,6 @@ chdir(dirname(dirname(__FILE__)));
 require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 require_once(dirname(dirname(__FILE__)).'/template-functions.php');
-
-$current = getOption('AlbumThumbSelectorText');
 $button_text = gettext('Reset album thumbs');
 $button_hint = sprintf(gettext('Reset album thumbnails to either random or %s'),get_language_string(getOption('AlbumThumbSelecorText')));
 $button_icon = 'images/reset1.png';
@@ -27,11 +25,13 @@ if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 $buffer = '';
 $gallery = new Gallery();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
-$selector = array(array('field'=>'ID', 'direction'=>'DESC', 'desc'=>$_thumb_field_text['ID']),
+$selector = array(array('field'=>'', 'direction'=>'', 'desc'=>'random'),
+									array('field'=>'ID', 'direction'=>'DESC', 'desc'=>$_thumb_field_text['ID']),
 									array('field'=>'mtime', 'direction'=>'', 'desc'=>$_thumb_field_text['mtime']),
 									array('field'=>'title', 'direction'=>'', 'desc'=>$_thumb_field_text['title']),
 									array('field'=>'hitcounter', 'direction'=>'DESC', 'desc'=>$_thumb_field_text['hitcounter'])
 									);
+
 
 printAdminHeader(gettext('utilities'),gettext('thumbs'));
 echo '</head>';
@@ -45,17 +45,12 @@ echo '</head>';
 <h1><?php echo (gettext('Reset your album thumbnails')); ?></h1>
 <?php
 if (isset($_REQUEST['thumbtype']) && db_connect()) {
-	$value = sanitize($_REQUEST['thumbtype'], 3);
-	$sql = 'UPDATE '.prefix('albums').' SET `thumb`="'.$value.'"';
+	$key = sanitize_numeric($_REQUEST['thumbtype'], 3);
+	$sql = 'UPDATE '.prefix('albums').' SET `thumb`="'.$selector[$key]['field'].'"';
 	if (query($sql)) {
-		if ($value == '') {
-			$reset = 'Random';
-		} else {
-			$reset = $current;
-		}
 		?>
 		<div class="messagebox fade-message">
-		<h2><?php printf(gettext("Thumbnails all set to <em>%s</em>."), $reset); ?></h2>
+		<h2><?php printf(gettext("Thumbnails all set to <em>%s</em>."), $selector[$key]['desc']); ?></h2>
 		</div>
 		<?php
 	} else {
@@ -65,21 +60,40 @@ if (isset($_REQUEST['thumbtype']) && db_connect()) {
 		</div>
 		<?php
 	}
-} else if (isset($_REQUEST['thumbselector'])) {
-	$key = sanitize_numeric($_REQUEST['thumbselector']);
-	$current=$selector[$key]['desc'];
-	setOption('AlbumThumbSelectField',$selector[$key]['field']);
-	setOption('AlbumThumbSelectDirection',$selector[$key]['direction']);
 }
+if (isset($_REQUEST['thumbselector'])) {
+	$current = sanitize_numeric($_REQUEST['thumbselector']);
+	setOption('AlbumThumbSelectField',$selector[$current]['field']);
+	setOption('AlbumThumbSelectDirection',$selector[$current]['direction']);
+} else {
+	$currentfield = getOption('AlbumThumbSelectField');
+	foreach ($selector as $key=>$selection) {
+		if ($selection['field'] == $currentfield) {
+			$current = $key;
+			break;
+		}
+	}
+}
+
 if (db_connect()) {
+	$selections = array();
+	$currentkey = '';
+	foreach ($selector as $key=>$selection) {
+		$selections[$selection['desc']] = $key;
+		if ($selection['desc'] == $current) $currentkey=$key;
+	}
 	?>
 	<form name="set_random" action="">
 		<?php XSRFToken('reset_thumbs')?>
-		<input type="hidden" name="thumbtype" value="" />
-		<div class="buttons pad_button" id="set_random">
-		<button class="tooltip" type="submit" title="<?php echo gettext("Sets all album thumbs to random."); ?>">
-			<img src="<?php echo $webpath; ?>images/burst1.png" alt="" /> <?php echo gettext("Set to <em>random</em>"); ?>
-		</button>
+		<div class="buttons pad_button" id="set_all">
+			<button class="tooltip" type="submit" title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
+				<img src="<?php echo $webpath; ?>images/burst1.png" alt="" /> <?php echo gettext("Set all albums to"); ?>
+			</button>
+			<select id="thumbtype" name="thumbtype" >
+				<?php
+				generateListFromArray(array($current),$selections,false,true);
+				?>
+			</select>
 		</div>
 		<br clear="all" />
 		<br clear="all" />
@@ -89,40 +103,25 @@ if (db_connect()) {
 	<table>
 		<tr>
 			<td>
-				<form name="set_first" action="">
+				<form name="set_default" action="">
 					<?php XSRFToken('reset_thumbs')?>
-					<input type="hidden" name="thumbtype" value="1" />
-					<div class="buttons pad_button" id="set_first">
-					<button class="tooltip" type="submit" title="<?php printf(gettext("Set all album thumbs to use the %s image."),$current); ?>">
-						<img src="<?php echo $webpath; ?>images/burst1.png" alt="" /> <?php printf(gettext("Set to <em>%s</em>"),$current); ?>
-					</button>
+					<div class="buttons pad_button" id="set_default">
+						<button class="tooltip" type="submit" title="<?php echo gettext("Set album thumb default to the selected criteria"); ?>">
+							<img src="<?php echo $webpath; ?>images/burst1.png" alt="" />
+							<?php echo gettext('Album thumbnail default'); ?>
+						</button>
+						<select id="thumbselector" name="thumbselector" >
+							<?php
+							generateListFromArray(array($current),$selections,false,true);
+							?>
+						</select>
 					</div>
-				</form>
-			</td>
-			<td>
-				<?php echo gettext('Change button to') ?>
-				<form name="setselector" action="">
-					<?php XSRFToken('reset_thumbs')?>
-					<select id="thumbselector" name="thumbselector" onchange="this.form.submit()">
-					<?php
-					$selections = array();
-					$currentkey = '';
-					foreach ($selector as $key=>$selection) {
-						$selections[$selection['desc']] = $key;
-						if ($selection['desc'] == $current) $currentkey=$key;
-					}
-					generateListFromArray(array($currentkey),$selections,false,true);
-					?>
-					</select>
 				</form>
 			</td>
 		</tr>
 	</table>
 	<br clear="all" />
 	<br clear="all" />
-	<p>
-	<?php printf(gettext('These buttons allow you to set all of your album thumbs to either a <em>random</em> image or to the <em>%s</em> image. This will override any album thumb selections you have made on individual albums.'),$current); ?>
-	</p>
 	<?php
 } else {
 	echo "<h3>".gettext("database not connected")."</h3>";
