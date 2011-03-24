@@ -563,7 +563,7 @@ echo "\n</head>";
 $showthumb = !getOption('album_tab_default_thumbs_'.(is_object($album)?$album->name:''));
 if ($showthumb) {
 	$thumbshow = 'no';
-	$thumbmsg = gettext('Show thumbnail standin');
+	$thumbmsg = gettext('Show thumbnail stand-in');
 } else {
 	$thumbshow = 'yes';
 	$thumbmsg = gettext('Show album thumb');
@@ -836,7 +836,7 @@ $alb = removeParentAlbumNames($album);
 			</span>
 			</div>
 		 <div class="subhead">
-			<label style="float: left">
+			<label class="buttons" style="float: left">
 				<a href="admin-edit.php?page=edit&album=<?php echo pathurlencode($album->name); ?>&tab=subalbuminfo&showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
 					<?php echo $thumbmsg; ?>
 				</a>
@@ -1605,7 +1605,7 @@ if (isset($_GET['bulkmessage'])) {
 			</span>
 		</div>
 		<div class="subhead">
-			<label style="float: left">
+			<label class="buttons" style="float: left">
 				<a href="admin-edit.php?showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
 					<?php echo $thumbmsg; ?>
 				</a>
