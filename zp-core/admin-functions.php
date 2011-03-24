@@ -1791,16 +1791,21 @@ function printAlbumLedgend() {
  * puts out a row in the edit album table
  *
  * @param object $album is the album being emitted
+ * @param bool $show_thumb set to false to show thumb standin image rather than album thumb
  *
  **/
-function printAlbumEditRow($album) {
+function printAlbumEditRow($album, $show_thumb) {
 	?>
 	<div class='page-list_row'>
 
 	<div class="page-list_albumthumb">
 		<?php
-		$thumbimage = $album->getAlbumThumbImage();
-		$thumb = $thumbimage->getCustomImage(40,NULL,NULL,40,40,NULL,NULL,-1,NULL);
+		if ($show_thumb) {
+			$thumbimage = $album->getAlbumThumbImage();
+			$thumb = $thumbimage->getCustomImage(40,NULL,NULL,40,40,NULL,NULL,-1,NULL);
+		} else {
+			$thumb = 'images/thumb_standin.png';
+		}
 		?>
 	<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 		<img src="<?php echo html_encode($thumb); ?>" width="40" height="40" alt="" title="album thumb" />
@@ -3130,10 +3135,11 @@ function getNestedAlbumList($subalbum, $levels, $level=array()) {
  * returns true if nesting levels exceede the database container
  *
  * @param array $pages The array containing all pages
+ * @param bool $show_thumb set false to use thumb standin image.
  *
  * @return bool
  */
-function printNestedAlbumsList($albums) {
+function printNestedAlbumsList($albums, $show_thumb) {
 	global $gallery;
 	$indent = 1;
 	$open = array(1=>0);
@@ -3173,7 +3179,7 @@ function printNestedAlbumsList($albums) {
 			$nonest = '';
 		}
 		echo str_pad("\t",$indent-1,"\t")."<li id=\"id_".$albumobj->get('id')."\"$nonest >";
-		printAlbumEditRow($albumobj);
+		printAlbumEditRow($albumobj, $show_thumb);
 		$open[$indent]++;
 	}
 	while ($indent > 1) {

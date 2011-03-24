@@ -395,6 +395,7 @@ zp-core/images/select_files_button.png
 zp-core/images/shape_handles.png
 zp-core/images/sortorder.png
 zp-core/images/stock_copy.png
+zp-core/images/thumb_standin.png
 zp-core/images/togglerc.png
 zp-core/images/togglerch.png
 zp-core/images/togglero.png
@@ -2739,4 +2740,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2741
+2742

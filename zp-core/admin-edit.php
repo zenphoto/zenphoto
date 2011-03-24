@@ -40,6 +40,8 @@ if (isset($_GET['album'])) {
 			exit();
 		}
 	}
+} else {
+	$album = NULL;
 }
 
 $tagsort = getTagOrder();
@@ -47,6 +49,10 @@ $mcr_errors = array();
 
 
 $gallery->garbageCollect();
+if (isset($_GET['showthumbs'])) {	// switch the display selector
+	$how = sanitize($_GET['showthumbs']);
+	setBoolOption('album_tab_default_thumbs_'.(is_object($album)?$album->name:''), $how == 'no');
+}
 if (isset($_GET['action'])) {
 	$action = $_GET['action'];
 	switch ($action) {
@@ -554,6 +560,14 @@ echo "\n</head>";
 <?php printTabs(); ?>
 <div id="content">
 <?php
+$showthumb = !getOption('album_tab_default_thumbs_'.(is_object($album)?$album->name:''));
+if ($showthumb) {
+	$thumbshow = 'no';
+	$thumbmsg = gettext('Show thumbnail standin');
+} else {
+	$thumbshow = 'yes';
+	$thumbmsg = gettext('Show album thumb');
+}
 
 /** EDIT ****************************************************************************/
 /************************************************************************************/
@@ -729,8 +743,7 @@ $alb = removeParentAlbumNames($album);
 		echo '</div>';
 	}
 	$subtab = printSubtabs();
-	?>
-	<?php
+
 	if ($subtab == 'albuminfo') {
 	?>
 		<!-- Album info box -->
@@ -823,16 +836,21 @@ $alb = removeParentAlbumNames($album);
 			</span>
 			</div>
 		 <div class="subhead">
+			<label style="float: left">
+				<a href="admin-edit.php?page=edit&album=<?php echo pathurlencode($album->name); ?>&tab=subalbuminfo&showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
+					<?php echo $thumbmsg; ?>
+				</a>
+			</label>
 				<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 				</label>
 			</td>
 		</div>
 
-					<ul class="page-list">
-					<?php
-					printNestedAlbumsList($subalbums);
-					?>
-					</ul>
+			<ul class="page-list">
+			<?php
+			printNestedAlbumsList($subalbums, $showthumb);
+			?>
+			</ul>
 
 		</div>
 		 <br clear="all" /><br clear="all" />
@@ -1585,15 +1603,21 @@ if (isset($_GET['bulkmessage'])) {
 			<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
 			</select>
 			</span>
-			</div>
-		 <div class="subhead">
-				<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
-				</label>
-			</div>
+		</div>
+		<div class="subhead">
+			<label style="float: left">
+				<a href="admin-edit.php?showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
+					<?php echo $thumbmsg; ?>
+				</a>
+			</label>
+			<label style="float: right">
+				<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			</label>
+		</div>
 
-				<ul class="page-list">
-				<?php printNestedAlbumsList($albums); ?>
-				</ul>
+		<ul class="page-list">
+		<?php printNestedAlbumsList($albums, $showthumb); ?>
+		</ul>
 
 	</div>
 	<div>
