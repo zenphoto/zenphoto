@@ -1172,13 +1172,38 @@ class Album extends MediaObject {
 	}
 
 	/**
+	 * returns the mitigated album rights.
+	 * returns NULL if not a managed album
+	 */
+	function albumSubRights() {
+		global $_zp_admin_album_list;
+		getManagedAlbumList();
+		if (count($_zp_admin_album_list) == 0) {
+			return false;
+		}
+		$desired_folders = explode('/', $this->name);
+		foreach ($_zp_admin_album_list as $adminalbum=>$rights) { // see if it is one of the managed folders or a subfolder there of
+			$admin_folders = explode('/', $adminalbum);
+			$level = 0;
+			foreach ($admin_folders as $folder) {
+				if ($level >= count($desired_folders) || $folder != $desired_folders[$level]) {
+					return NULL;
+				}
+				$level++;
+			}
+			return $rights;
+		}
+		return NULL;
+	}
+
+	/**
 	 * checks access to the album
 	 * @param bit $action What the requestor wants to do
 	 *
 	 * returns true of access is allowed
 	*/
 	function isMyItem($action) {
-		global $_zp_admin_album_list, $_zp_loggedin;
+		global $_zp_loggedin;
 		if (parent::isMyItem($action)) {
 			return $_zp_loggedin;
 		}
@@ -1186,34 +1211,18 @@ class Album extends MediaObject {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			getManagedAlbumList();
-			if (count($_zp_admin_album_list) == 0) {
-				return false;
-			}
-			$desired_folders = explode('/', $this->name);
-			foreach ($_zp_admin_album_list as $adminalbum=>$rights) { // see if it is one of the managed folders or a subfolder there of
-				$admin_folders = explode('/', $adminalbum);
-				$found = $_zp_loggedin;
-				$level = 0;
-				foreach ($admin_folders as $folder) {
-					if ($level >= count($desired_folders) || $folder != $desired_folders[$level]) {
-						$found = false;
-						break;
-					}
-					$level++;
-				}
-				if ($found) {
-					if ($action == LIST_RIGHTS) {
-						return $_zp_loggedin;
+			$subRights = $this->albumSubRights();
+			if (!is_null($subRights)) {
+				if ($action == LIST_RIGHTS) {
+					return $_zp_loggedin;
+				} else {
+					$albumrights = 0;
+					if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_EDIT_IMAGE)) $albumrights = $albumrights | ALBUM_RIGHTS;
+					if ($subRights & MANAGED_OBJECT_RIGHTS_UPLOAD) $albumrights = $albumrights | UPLOAD_RIGHTS;
+					if ($action & $albumrights) {
+						return ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $albumrights;
 					} else {
-						$albumrights = 0;
-						if ($rights & MANAGED_OBJECT_RIGHTS_EDIT) $albumrights = $albumrights | ALBUM_RIGHTS;
-						if ($rights & MANAGED_OBJECT_RIGHTS_UPLOAD) $albumrights = $albumrights | UPLOAD_RIGHTS;
-						if ($action & $albumrights) {
-							return ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $albumrights;
-						} else {
-							return false;
-						}
+						return false;
 					}
 				}
 			}

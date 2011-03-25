@@ -38,6 +38,7 @@ zp_register_filter('new_album', 'xmpMetadata_new_album');
 zp_register_filter('album_refresh', 'xmpMetadata_new_album');
 zp_register_filter('image_instantiate', 'xmpMetadata_image_instantiate');
 zp_register_filter('image_metadata', 'xmpMetadata_new_image');
+zp_register_filter('upload_filetypes', 'xmpMetadata_sidecars');
 
 require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
 
@@ -411,4 +412,8 @@ function xmpMetadata_new_image($image) {
 	return $image;
 }
 
+function xmpMetadata_sidecars($types) {
+	$types[] = XMP_EXTENSION;
+	return $types;
+}
 ?>

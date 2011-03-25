@@ -360,19 +360,38 @@ function printSubtabs() {
 function setAlbumSubtabs($album) {
 	global $zenphoto_tabs;
 	$albumlink = '?page=edit&amp;album='.urlencode($album->name);
+	$default = NULL;
 	if (!is_array($zenphoto_tabs['edit']['subtabs'])) {
 		$zenphoto_tabs['edit']['subtabs'] = array();
 	}
+	$subrights = $album->albumSubRights();
 	if (!$album->isDynamic() && $album->getNumImages()) {
-		$zenphoto_tabs['edit']['subtabs'] = array_merge(
-																					array(gettext('Images') => 'admin-edit.php'.$albumlink.'&amp;tab=imageinfo'),
-																					array(gettext('Image order') => 'admin-albumsort.php'.$albumlink.'&amp;tab=sort'),
-																					$zenphoto_tabs['edit']['subtabs']);
+		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT_IMAGE) {
+			$zenphoto_tabs['edit']['subtabs'] = array_merge(
+																						array(gettext('Images') => 'admin-edit.php'.$albumlink.'&amp;tab=imageinfo'),
+																						$zenphoto_tabs['edit']['subtabs']);
+			$default = 'imageinfo';
+		}
+		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
+			$zenphoto_tabs['edit']['subtabs'] = array_merge(
+																						array(gettext('Image order') => 'admin-albumsort.php'.$albumlink.'&amp;tab=sort'),
+																						$zenphoto_tabs['edit']['subtabs']);
+		}
 	}
 	if (!$album->isDynamic() && $album->getNumAlbums() > 0) {
-		$zenphoto_tabs['edit']['subtabs'] = array_merge(array(gettext('Subalbums') => 'admin-edit.php'.$albumlink.'&amp;tab=subalbuminfo'), $zenphoto_tabs['edit']['subtabs']);
+		$zenphoto_tabs['edit']['subtabs'] = array_merge(
+																					array(gettext('Subalbums') => 'admin-edit.php'.$albumlink.'&amp;tab=subalbuminfo'),
+																					$zenphoto_tabs['edit']['subtabs']);
+		$default = 'subalbuminfo';
 	}
-	$zenphoto_tabs['edit']['subtabs'] = array_merge(array(gettext('Album') => 'admin-edit.php'.$albumlink.'&amp;tab=albuminfo'),$zenphoto_tabs['edit']['subtabs']);
+	if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
+		$zenphoto_tabs['edit']['subtabs'] = array_merge(
+																					array(gettext('Album') => 'admin-edit.php'.$albumlink.'&amp;tab=albuminfo'),
+																					$zenphoto_tabs['edit']['subtabs']);
+		$default = 'albuminfo';
+	}
+	$zenphoto_tabs['edit']['default'] = $default;
+	return $default;
 }
 
 function checked($checked, $current) {
@@ -1787,6 +1806,7 @@ function printAlbumLedgend() {
 	</ul>
 	<?php
 }
+
 /**
  * puts out a row in the edit album table
  *
@@ -1795,6 +1815,7 @@ function printAlbumLedgend() {
  *
  **/
 function printAlbumEditRow($album, $show_thumb) {
+	$enableEdit = $album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
 	?>
 	<div class='page-list_row'>
 
@@ -1806,13 +1827,35 @@ function printAlbumEditRow($album, $show_thumb) {
 		} else {
 			$thumb = 'images/thumb_standin.png';
 		}
+		if ($enableEdit) {
+			?>
+			<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
+			<?php
+		}
 		?>
-	<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
-		<img src="<?php echo html_encode($thumb); ?>" width="40" height="40" alt="" title="album thumb" />
-	</a>
+			<img src="<?php echo html_encode($thumb); ?>" width="40" height="40" alt="" title="album thumb" />
+		<?php
+		if ($enableEdit) {
+			?>
+			</a>
+			<?php
+		}
+		?>
 	</div>
 	<div class="page-list_albumtitle">
-		<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>"><?php echo $album->getTitle(); ?></a>
+	<?php
+		if ($enableEdit) {
+			?>
+			<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
+			<?php
+		}
+		echo $album->getTitle();
+		if ($enableEdit) {
+			?>
+			</a>
+			<?php
+		}
+		?>
 	</div>
 	<?php
 	if ($album->isDynamic()) {
@@ -1837,108 +1880,160 @@ function printAlbumEditRow($album, $show_thumb) {
 	<div class="page-list_extra"><?php echo $si; ?></div>
 	<?php	$wide='40px'; ?>
 	<div class="page-list_iconwrapperalbum">
-	<div class="page-list_icon">
-	<?php
-	$pwd = $album->getPassword();
-	if (!empty($pwd) && (GALLERY_SECURITY != 'private')) {
-		echo '<a title="'.gettext('Password protected').'"><img src="images/lock.png" style="border: 0px;" alt="" title="'.gettext('Password protected').'" /></a>';
-	}
- ?>
-	</div>
-	<div class="page-list_icon">
-	<?php
-	if ($album->getShow()) {
-		?>
-		<a href="?action=publish&amp;value=0&amp;album=<?php echo pathurlencode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>">
-		<img src="images/pass.png" style="border: 0px;" alt="" title="<?php echo gettext('albumedit'); ?>" /></a>
-
-	 <?php
-	} else {
-		?>
-		<a href="?action=publish&amp;value=1&amp;album=<?php echo pathurlencode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
-		<img src="images/action.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>" /></a>
-	 <?php
-	}
-	?>
-	</div>
-	<div class="page-list_icon">
+		<div class="page-list_icon">
 		<?php
-		if ($album->getCommentsAllowed()) {
+		$pwd = $album->getPassword();
+		if (!empty($pwd) && (GALLERY_SECURITY != 'private')) {			echo '<a title="'.gettext('Password protected').'"><img src="images/lock.png" style="border: 0px;" alt="" title="'.gettext('Password protected').'" /></a>';
+		}
+	 ?>
+		</div>
+		<div class="page-list_icon">
+		<?php
+		if ($album->getShow()) {
+			if ($enableEdit) {
+				?>
+				<a href="?action=publish&amp;value=0&amp;album=<?php echo pathurlencode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo sprintf(gettext('Un-publish the album %s'), $album->name); ?>" >
+				<?php
+				}
 			?>
-			<a href="?commentson=1&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Disable comments'); ?>">
-				<img src="images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
-			</a>
+				<img src="images/pass.png" style="border: 0px;" alt="" title="<?php echo gettext('Published'); ?>" />
 			<?php
+			if ($enableEdit) {
+				?>
+				</a>
+				<?php
+			}
 		} else {
+			if ($enableEdit) {
+				?>
+				<a href="?action=publish&amp;value=1&amp;album=<?php echo pathurlencode($album->name); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo sprintf(gettext('Publish the album %s'), $album->name); ?>">
+				<?php
+			}
 			?>
-			<a href="?commentson=0&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Enable comments'); ?>">
-				<img src="images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
-			</a>
+				<img src="images/action.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Unpublished'), $album->name); ?>" />
 			<?php
+			if ($enableEdit) {
+				?>
+				</a>
+				<?php
+			}
 		}
 		?>
-	</div>
-	<div class="page-list_icon">
-		<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo pathurlencode($album->name); ?>" title="<?php echo gettext("View album"); ?>">
-			<img src="images/view.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('View album %s'), $album->name); ?>" />
-		</a>
-	</div>
-	<?php
-	if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/cache_images.php')) {
-	?>
+		</div>
 		<div class="page-list_icon">
 			<?php
-			if ($album->isDynamic()) {
+			if ($album->getCommentsAllowed()) {
+				if ($enableEdit) {
+					?>
+					<a href="?commentson=1&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Disable comments'); ?>">
+					<?php
+				}
+				?>
+					<img src="images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
+				<?php
+				if ($enableEdit) {
+					?>
+					</a>
+					<?php
+				}
+			} else {
+				if ($enableEdit) {
+					?>
+					<a href="?commentson=0&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Enable comments'); ?>">
+					<?php
+				}
+				?>
+					<img src="images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
+				<?php
+				if ($enableEdit) {
+					?>
+					</a>
+					<?php
+				}
+			}
+			?>
+		</div>
+		<div class="page-list_icon">
+			<a href="<?php echo WEBPATH; ?>/index.php?album=<?php echo pathurlencode($album->name); ?>" title="<?php echo gettext("View album"); ?>">
+			<img src="images/view.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('View album %s'), $album->name); ?>" />
+			</a>
+		</div>
+		<?php
+		if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/cache_images.php')) {
+		?>
+			<div class="page-list_icon">
+				<?php
+				if ($album->isDynamic() || !$enableEdit) {
+					?>
+					<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
+					<?php
+				} else {
+					?>
+					<a class="cache" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER; ?>/cache_images.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('cache_images')?>" title="<?php echo sprintf(gettext('Pre-cache images in %s'), $album->name); ?>">
+					<img src="images/cache1.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Cache the album %s'), $album->name); ?>" />
+					</a>
+					<?php
+				}
+				?>
+			</div>
+		<?php
+		}
+		?>
+		<div class="page-list_icon">
+			<?php
+			if ($album->isDynamic() || !$enableEdit) {
 				?>
 				<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
 				<?php
 			} else {
 				?>
-				<a class="cache" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER; ?>/cache_images.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('cache_images')?>" title="<?php echo sprintf(gettext('Pre-cache images in %s'), $album->name); ?>">
-				<img src="images/cache1.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Cache the album %s'), $album->name); ?>" /></a>
+				<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh')?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
+				<img src="images/refresh1.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Refresh metadata in the album %s'), $album->name); ?>" />
+				</a>
 				<?php
-				}
+			}
 			?>
 		</div>
-	<?php
-	}
-	?>
-	<div class="page-list_icon">
-		<?php
-		if ($album->isDynamic()) {
-			?>
-			<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
+		<div class="page-list_icon">
 			<?php
-		} else {
-			?>
-			<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh')?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
-			<img src="images/refresh1.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Refresh metadata in the album %s'), $album->name); ?>" /></a>
-			<?php
+			if ($album->isDynamic() || !$enableEdit) {
+				?>
+				<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
+				<?php
+			} else {
+				?>
+				<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getAlbumID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hitcounters for album %s'), $album->name); ?>">
+				<img src="images/reset.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Reset hitcounters for the album %s'), $album->name); ?>" />
+				</a>
+				<?php
 			}
-		?>
-	</div>
-	<div class="page-list_icon">
-		<?php
-		if ($album->isDynamic()) {
 			?>
-			<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
+		</div>
+		<div class="page-list_icon">
 			<?php
-		} else {
-			?>
-			<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getAlbumID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hitcounters for album %s'), $album->name); ?>">
-			<img src="images/reset.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Reset hitcounters for the album %s'), $album->name); ?>" /></a>
-			<?php
+			if (!$enableEdit) {
+				?>
+				<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
+				<?php
+			} else {
+				?>
+				<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete')?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
+				<img src="images/fail.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Delete the album %s'), js_encode($album->name)); ?>" />
+				</a>
+				<?php
 			}
-		?>
+			?>
+		</div>
+			<?php
+			if ($enableEdit) {
+				?>
+				<div class="page-list_icon">
+					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getFolder(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
+				</div>
+				<?php
+			}
+			?>
 	</div>
-	<div class="page-list_icon">
-		<a class="delete" href="javascript:confirmDeleteAlbum('?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($album->name)); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete')?>');" title="<?php echo sprintf(gettext("Delete the album %s"), js_encode($album->name)); ?>">
-		<img src="images/fail.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Delete the album %s'), js_encode($album->name)); ?>" /></a>
-	</div>
-	<div class="page-list_icon">
-		<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getFolder(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
-	</div>
-</div>
 </div>
 	<?php
 }
@@ -2809,14 +2904,16 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 		case 'albums':
 			$full = populateManagedObjectsList('album', $adminid, true);
 			$cv = $extra = array();
-			$icon_edit = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/pencil.png" class="icon-position-top3" />';
+			$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" />';
+			$icon_edit_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-image.png" class="icon-position-top3" />';
 			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3" />';
-			$ledgend = $icon_edit.' '.gettext('edit').' '.$icon_upload.' '.gettext('upload');
+			$ledgend = $icon_edit_album.' '.gettext('edit albums').' '.$icon_edit_image.' '.gettext('edit images').' '.$icon_upload.' '.gettext('upload');
 			foreach ($full as $item) {
 				$cv[$item['name']] = $item['data'];
 				$extra[$item['name']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
 				if ($rights & ALBUM_RIGHTS) {
-					$extra[$item['name']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
+					$extra[$item['name']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
+					$extra[$item['name']][] = array('name'=>'editimage','value'=>MANAGED_OBJECT_RIGHTS_EDIT_IMAGE,'display'=>$icon_edit_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT_IMAGE);
 				}
 				if (($rights & UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
 					$extra[$item['name']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
@@ -2917,6 +3014,11 @@ function processManagedObjects($i, &$rights) {
 				$key = substr($key, 0, -8);
 				if (isset($albums[$key])) {	// album still part of the list
 					$albums[$key]['edit'] = $value;
+				}
+			} else if (strpos($key, '_editimage')) {
+				$key = substr($key, 0, -10);
+				if (isset($albums[$key])) {	// album still part of the list
+					$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT_IMAGE;
 				}
 			} else if (strpos($key, '_edit')) {
 				$key = substr($key, 0, -5);

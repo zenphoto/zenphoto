@@ -53,7 +53,8 @@ if (isset($_GET['action'])) {
 					$rightsalbum = new Album($gallery, $folder);
 				}
 				// see if he has rights to the album.
-				if (!$modified_rights = $rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
+				$modified_rights = $rightsalbum->isMyItem(UPLOAD_RIGHTS);
+				if (!$modified_rights) {
 					if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 						$error = UPLOAD_ERR_CANT_WRITE;
 					}
@@ -213,11 +214,11 @@ printLogoAndLinks();
 <?php
 natcasesort($_zp_supported_images);
 $types = array_keys($_zp_extra_filetypes);
-natcasesort($types);
 $types = array_merge($_zp_supported_images, $types);
 $types[] = 'ZIP';
-$upload_extensions = $types;
 $types = zp_apply_filter('upload_filetypes',$types);
+natcasesort($types);
+$upload_extensions = $types;
 $last = strtoupper(array_pop($types));
 $s1 = strtoupper(implode(', ', $types));
 $used = 0;
@@ -368,36 +369,48 @@ if (ini_get('safe_mode')) { ?>
 			?>
 		</select>
 
-		<div id="newalbumbox" style="margin-top: 5px;">
-			<div>
-					<input id="newalbumcheckbox" type="checkbox" name="newalbum"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect,false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>')" />
-					<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
+		<?php
+		if (empty($passedalbum)) {
+			$modified_rights = MANAGED_OBJECT_RIGHTS_EDIT;
+		} else {
+			$rightsalbum = $rightsalbum = new Album($gallery, $passedalbum);
+			$modified_rights = $rightsalbum->albumSubRights();
+		}
+		if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) {	//	he has edit rights, allow new album creation
+			?>
+			<div id="newalbumbox" style="margin-top: 5px;">
+				<div>
+						<input id="newalbumcheckbox" type="checkbox" name="newalbum"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect,false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>')" />
+						<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
+				</div>
+				<div id="publishtext"><?php echo gettext("and"); ?>
+						<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
+						<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
+				</div>
 			</div>
-			<div id="publishtext"><?php echo gettext("and"); ?>
+			<div id="albumtext" style="margin-top: 5px;"><?php echo gettext("titled:"); ?>
+				<input id="albumtitle" size="42" type="text" name="albumtitle"
+											onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen','<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
 
-					<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
-					<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
-			</div>
-		</div>
-		<div id="albumtext" style="margin-top: 5px;"><?php echo gettext("titled:"); ?>
-			<input id="albumtitle" size="42" type="text" name="albumtitle"
-										onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen','<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
+				<div style="position: relative; margin-top: 4px;"><?php echo gettext("with the folder name:"); ?>
+					<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
+					<input id="folderdisplay" size="18" type="text" name="folderdisplay" disabled="disabled"
+												onkeyup="buttonstate(validateFolder(this,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
+					<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
+												onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
+												<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
+					<br />
+					<br />
+				</div>
 
-			<div style="position: relative; margin-top: 4px;"><?php echo gettext("with the folder name:"); ?>
-				<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
-				<input id="folderdisplay" size="18" type="text" name="folderdisplay" disabled="disabled"
-											onkeyup="buttonstate(validateFolder(this,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
-				<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
-											onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
-											<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
-				<br />
-				<br />
+				<input id="folderslot" type="hidden" name="folder" value="<?php echo html_encode($passedalbum); ?>" />
 			</div>
 
-			<input id="folderslot" type="hidden" name="folder" value="<?php echo html_encode($passedalbum); ?>" />
-		</div>
+			<hr />
+			<?php
+		}
+		?>
 
-		<hr />
 
 		<?php
 		if($uploadtype != 'http') {

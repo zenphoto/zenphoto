@@ -351,7 +351,9 @@ zp-core/images/comments-on.png
 zp-core/images/down.png
 zp-core/images/drag_handle.png
 zp-core/images/drag_handle_flag.png
+zp-core/images/edit-album.png
 zp-core/images/edit-delete.png
+zp-core/images/edit-image.png
 zp-core/images/envelope.png
 zp-core/images/err-cachewrite.png
 zp-core/images/err-imagegeneral.png
@@ -2740,4 +2742,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2742
+2744

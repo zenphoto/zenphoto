@@ -462,11 +462,6 @@ if (isset($_GET['action'])) {
 /************************************************************************************/
 
 // Print our header
-if (empty($subtab)) {
-	if (isset($_GET['album'])) {
-		$subtab = 'albuminfo';
-	}
-}
 if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 	$folder = sanitize_path($_GET['album']);
 	if ($folder == '/' || $folder == '.') {
@@ -475,7 +470,12 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 		$parent = '&amp;album='.$folder.'&amp;tab=subalbuminfo';
 	}
 	$album = new Album($gallery, $folder);
-	setAlbumSubtabs($album);
+	$subtab = setAlbumSubtabs($album);
+}
+if (empty($subtab)) {
+	if (isset($_GET['album'])) {
+		$subtab = 'albuminfo';
+	}
 }
 
 printAdminHeader('edit',$subtab);
@@ -743,7 +743,6 @@ $alb = removeParentAlbumNames($album);
 		echo '</div>';
 	}
 	$subtab = printSubtabs();
-
 	if ($subtab == 'albuminfo') {
 	?>
 		<!-- Album info box -->
@@ -766,7 +765,12 @@ $alb = removeParentAlbumNames($album);
 		<!-- Subalbum list goes here -->
 		<?php
 		if (count($subalbums) > 0) {
-		?>
+			if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+				$disableEdit = '';
+			} else {
+				$disableEdit = ' disabled="disaled"';
+			}
+			?>
 		<div id="tab_subalbuminfo" class="tabbox">
 		<?php printEditDropdown('subalbuminfo'); ?>
 		<form action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();">
@@ -794,26 +798,36 @@ $alb = removeParentAlbumNames($album);
 			<p class="notebox">
 				<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
 			</p>
-			<p>
-				<?php
-				printf(gettext('Select an album to edit its description and data, or <a href="?page=edit&amp;album=%s&amp;massedit">mass-edit</a> all first level subalbums.'),pathurlencode($album->name));
-				?>
-			</p>
+			<?php
+			if (!$disableEdit) {
+			?>
+				<p>
+					<?php	printf(gettext('Select an album to edit its description and data, or <a href="?page=edit&amp;album=%s&amp;massedit">mass-edit</a> all first level subalbums.'),pathurlencode($album->name)); ?>
+				</p>
+			<?php
+			}
+			?>
 			<span class="buttons">
 				<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
 					<img	src="images/arrow_left_blue_round.png" alt="" />
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
-				<button class="serialize" type="submit" title="<?php echo gettext("Apply"); ?>" class="buttons">
-					<img src="images/pass.png" alt="" />
-					<strong><?php echo gettext("Apply"); ?></strong>
-				</button>
-				<div class="floatright">
-				<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>',false);">
-					<img src="images/folder.png" alt="" />
-					<strong><?php echo gettext('New subalbum'); ?></strong>
-				</button>
-				</div>
+				<?php
+				if (!$disableEdit) {
+					?>
+					<button class="serialize" type="submit" title="<?php echo gettext("Apply"); ?>" class="buttons">
+						<img src="images/pass.png" alt="" />
+						<strong><?php echo gettext("Apply"); ?></strong>
+					</button>
+					<div class="floatright">
+					<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>',false);">
+						<img src="images/folder.png" alt="" />
+						<strong><?php echo gettext('New subalbum'); ?></strong>
+					</button>
+					</div>
+					<?php
+				}
+				?>
 			</span>
 			<br clear="all" /><br />
 			<div class="bordered">
@@ -828,21 +842,31 @@ $alb = removeParentAlbumNames($album);
 					gettext('Enable comments') => 'commentson',
 					gettext('Reset hitcounter') => 'resethitcounter',
 			);
+			if (!$disableEdit) {
+				?>
+				<span style="float:right">
+				<select name="checkallaction" id="checkallaction" size="1">
+				<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
+				</select>
+				</span>
+				</div>
+				<?php
+			}
 			?>
-			<span style="float:right">
-			<select name="checkallaction" id="checkallaction" size="1">
-			<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
-			</select>
-			</span>
-			</div>
 		 <div class="subhead">
 			<label class="buttons" style="float: left">
 				<a href="admin-edit.php?page=edit&album=<?php echo pathurlencode($album->name); ?>&tab=subalbuminfo&showthumbs=<?php echo $thumbshow ?>" title="<?php echo gettext('Thumbnail generation may be time consuming on slow servers on when there are a lot of images.'); ?>">
 					<?php echo $thumbmsg; ?>
 				</a>
 			</label>
+			<?php
+			if (!$disableEdit) {
+				?>
 				<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 				</label>
+				<?php
+			}
+			?>
 			</td>
 		</div>
 

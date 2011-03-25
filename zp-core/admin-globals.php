@@ -55,8 +55,7 @@ if ((zp_loggedin(UPLOAD_RIGHTS) || zp_loggedin(FILES_RIGHTS))  && !$_zp_null_acc
 if (zp_loggedin(ALBUM_RIGHTS) && !$_zp_null_account) {
 	$zenphoto_tabs['edit'] = array('text'=>gettext("albums"),
 							'link'=>WEBPATH."/".ZENFOLDER.'/admin-edit.php',
-							'subtabs'=>NULL,
-							'default'=>'albuminfo');
+							'subtabs'=>NULL);
 }
 
 if ((getOption('zp_plugin_zenpage') && (zp_loggedin(ZENPAGE_PAGES_RIGHTS))) && !$_zp_null_account) {
