@@ -19,7 +19,8 @@ $sortby = array(gettext('Filename') => 'filename',
 								gettext('Date') => 'date',
 								gettext('Title') => 'title',
 								gettext('ID') => 'id',
-								gettext('Filemtime') => 'mtime'
+								gettext('Filemtime') => 'mtime',
+								gettext('Owner') => 'owner'
 								);
 
 $_thumb_field_text =	array('ID'=>gettext('most recent'),

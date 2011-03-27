@@ -589,20 +589,19 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 		$subalbums = getNestedAlbumList($album, $subalbum_nesting);
 		$allimages = $album->getImages(0, 0, $oldalbumimagesort, $direction);
 		if (!($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
-			$albumowner = $album->getOwner();
+			$allimages = array();
 			$requestor = $_zp_current_admin_obj->getUser();
-			foreach ($allimages as $key=>$imagename) {
-				$owner = '';
-				$sql = 'SELECT `owner` FROM '.prefix('images').' WHERE `filename`="'.$imagename.'" AND `albumid`='.$album->id;
-				$result = query_single_row($sql);
-				if ($result) {
-					$owner = $result['owner'];
-				}
-				if (empty($owner)) {
-					$owner = $albumowner;
-				}
-				if ($owner != $requestor) {
-					unset($allimages[$key]);
+			$albumowner = $album->getOwner();
+			if ($albumowner == $requestor) {
+				$retunNull = '`owner` IS NULL OR ';
+			} else {
+				$retunNull = '';
+			}
+			$sql = 'SELECT * FROM '.prefix('images').' WHERE (`albumid`='.$album->id.') AND ('.$retunNull.' `owner`="'.$requestor.'") ORDER BY `'.$oldalbumimagesort.'` '.$direction;
+			$result = query_full_array($sql);
+			if (is_array($result)) {
+				foreach ($result as $row) {
+					$allimages[] = $row['filename'];
 				}
 			}
 		}
