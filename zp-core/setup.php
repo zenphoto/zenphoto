@@ -1583,6 +1583,7 @@ if (file_exists(CONFIGFILE)) {
 		`rating_status` int(1) DEFAULT 3,
 		`watermark` varchar(255),
 		`watermark_thumb` varchar(255),
+		`owner` varchar(64) DEFAULT NULL,
 		`codeblock` text,
 		PRIMARY KEY (`id`),
 		KEY `folder` (`folder`)
@@ -1643,7 +1644,7 @@ if (file_exists(CONFIGFILE)) {
 		`hasMetadata` int(1) DEFAULT 0,
 		`watermark` varchar(255) DEFAULT NULL,
 		`watermark_use` int(1) DEFAULT 7,
-		`owner` varchar(56) DEFAULT NULL,
+		`owner` varchar(64) DEFAULT NULL,
 		`filesize` int(11),
 		`codeblock` text,
 		`user` varchar(64) DEFAULT NULL,
@@ -2041,6 +2042,8 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `date` datetime';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `loggedin` datetime';
 	$sql_statements[] = 'UPDATE '.$tbl_administrators.' SET `date`="'.date('Y-m-d H:i:s',$zptime).'" WHERE `date` IS NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `owner` varchar(64) DEFAULT NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' CHANGE `owner` `owner` varchar(64) DEFAULT NULL';
 
 
 	// do this last incase there are any field changes of like names!

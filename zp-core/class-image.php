@@ -1034,7 +1034,11 @@ class _Image extends MediaObject {
 	 * Owner functions
 	 */
 	function getOwner() {
-		return $this->get('owner');
+		$owner = $this->get('owner');
+		if (empty($owner)) {
+			$owner = $this->album->getOwner();
+		}
+		return $owner;
 	}
 	function setOwner($owner) {
 		$this->set('owner',$owner);

@@ -276,6 +276,8 @@ if (isset($_GET['action'])) {
 									$codeblock3 = sanitize($_POST['codeblock3-'.$i], 0);
 									$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
 									$image->setCodeblock($codeblock);
+									if (isset($_POST[$i.'-owner'])) $image->setOwner(sanitize($_POST[$i.'-owner']));
+									$image->set('filesize',filesize($image->localpath));
 
 									$custom = process_language_string_save("$i-custom_data", 1);
 									$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $i));
@@ -586,6 +588,24 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 	} else {
 		$subalbums = getNestedAlbumList($album, $subalbum_nesting);
 		$allimages = $album->getImages(0, 0, $oldalbumimagesort, $direction);
+		if (!($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT)) {
+			$albumowner = $album->getOwner();
+			$requestor = $_zp_current_admin_obj->getUser();
+			foreach ($allimages as $key=>$imagename) {
+				$owner = '';
+				$sql = 'SELECT `owner` FROM '.prefix('images').' WHERE `filename`="'.$imagename.'" AND `albumid`='.$album->id;
+				$result = query_single_row($sql);
+				if ($result) {
+					$owner = $result['owner'];
+				}
+				if (empty($owner)) {
+					$owner = $albumowner;
+				}
+				if ($owner != $requestor) {
+					unset($allimages[$key]);
+				}
+			}
+		}
 	}
 	$allimagecount = count($allimages);
 	if (isset($_GET['tab']) && $_GET['tab']=='imageinfo' && isset($_GET['image'])) { // directed to an image
@@ -765,11 +785,7 @@ $alb = removeParentAlbumNames($album);
 		<!-- Subalbum list goes here -->
 		<?php
 		if (count($subalbums) > 0) {
-			if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
-				$disableEdit = '';
-			} else {
-				$disableEdit = ' disabled="disaled"';
-			}
+			$enableEdit = $album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
 			?>
 		<div id="tab_subalbuminfo" class="tabbox">
 		<?php printEditDropdown('subalbuminfo'); ?>
@@ -1035,15 +1051,32 @@ $alb = removeParentAlbumNames($album);
 						<p><?php echo gettext('<strong>Image id:</strong>'); ?> <?php echo $image->get('id'); ?></p>
 						<p><?php echo gettext("<strong>Dimensions:</strong>"); ?><br /><?php echo $image->getWidth(); ?> x  <?php echo $image->getHeight().' '.gettext('px'); ?></p>
 						<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
-						<p>
-							<label>
-								<input type="radio" id="thumb-<?php echo $currentimage; ?>" name="thumb" value="<?php echo $currentimage+1; ?>"<?php if ($thumbnail == $image->filename) echo ' checked="checked"'?> />
-								<?php echo ' '.gettext("Album thumbnail."); ?>
-							</label>
-						</p>
+						<?php
+						if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+							?>
+							<p>
+								<label>
+									<input type="radio" id="thumb-<?php echo $currentimage; ?>" name="thumb" value="<?php echo $currentimage+1; ?>"<?php if ($thumbnail == $image->filename) echo ' checked="checked"'?> />
+									<?php echo ' '.gettext("Album thumbnail."); ?>
+								</label>
+							</p>
+							<?php
+						}
+						?>
 						</td>
-						<td align="left" valign="top" width="100"><?php echo gettext("Title:"); ?></td>
-						<td><?php print_language_string_list($image->get('title'), $currentimage.'-title'); ?>
+						<td align="left" valign="top" width="100"><?php echo gettext("Owner:"); ?></td>
+						<td>
+							<?php
+							if (zp_loggedin(MANAGE_ALL_ALBUMS)) {
+								?>
+								<select name="<?php  echo $currentimage; ?>-owner">
+									<?php  echo admin_album_list($image->getOwner()); ?>
+								</select>
+								<?php
+							} else {
+								echo $image->getOwner();
+							}
+							?>
 						</td>
 						<td style="padding-left: 1em; text-align: left;" rowspan="14" valign="top">
 						<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
@@ -1200,6 +1233,10 @@ $alb = removeParentAlbumNames($album);
 						</div>
 
 						</td>
+					</tr>
+					<tr>
+						<td align="left" valign="top" width="100"><?php echo gettext("Title:"); ?></td>
+						<td><?php print_language_string_list($image->get('title'), $currentimage.'-title'); ?>
 					</tr>
 
 					<tr>
@@ -1486,7 +1523,6 @@ if (isset($_GET['saved'])) {
 	$currentalbum = 1;
 	foreach ($albums as $folder) {
 		$album = new Album($gallery, $folder);
-		$images = $album->getImages();
 		echo "\n<!-- " . $album->name . " -->\n";
 		?>
 		<div class="innerbox" style="padding: 15px;">

@@ -1177,6 +1177,9 @@ class Album extends MediaObject {
 	 */
 	function albumSubRights() {
 		global $_zp_admin_album_list;
+		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+			return MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD;
+		}
 		getManagedAlbumList();
 		if (count($_zp_admin_album_list) == 0) {
 			return false;
@@ -1251,6 +1254,27 @@ class Album extends MediaObject {
 	function checkforGuest(&$hint=NULL, &$show=NULL) {
 		return checkAlbumPassword($this, $hint);
 	}
+
+	/**
+	 * Owner functions
+	 */
+	function getOwner() {
+		global $_zp_authority;
+		$owner = $this->get('owner');
+		if (empty($owner)) {
+			$p = $this->getParent();
+			if (is_object($p)) {
+				$owner = $p->getOwner();
+			} else {
+				$owner = $_zp_authority->master_user;
+			}
+		}
+		return $owner;
+	}
+	function setOwner($owner) {
+		$this->set('owner',$owner);
+	}
+
 
 }
 ?>

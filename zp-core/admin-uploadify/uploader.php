@@ -51,6 +51,7 @@ if (!empty($_FILES)) {
 				$album = new Album($gallery, $folder);
 				$album->setShow($albumparmas[0]!='false');
 				$album->setTitle($albumparmas[2]);
+				$album->setOwner($_zp_current_admin_obj->getUser());
 				$album->save();
 			}
 			@chmod($targetPath, CHMOD_VALUE);
@@ -69,10 +70,11 @@ if (!empty($_FILES)) {
 					@chmod($targetFile, 0666 & CHMOD_VALUE);
 					$album = new Album($gallery, $folder);
 					$image = newImage($album, $seoname);
+					$image->setOwner($_zp_current_admin_obj->getUser());
 					if ($name != $seoname && $image->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {
 						$image->setTitle(substr($name, 0, strrpos($name, '.')));
-						$image->save();
 					}
+					$image->save();
 
 				} else if (is_zip($name)) {
 					unzip($tempFile, $targetPath);

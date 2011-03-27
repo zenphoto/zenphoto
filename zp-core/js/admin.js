@@ -33,7 +33,6 @@ function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 		newalbumbox.disabled = false;
 		newalbumbox.style.display = "";
 	}
-
 	var newalbum = selected.value == "" || newalbumbox.checked;
 	if (newalbum) {
 		albumtext.style.display = "block";

@@ -33,10 +33,6 @@ $option_interface = 'Quota_management';
 
 zp_register_filter('save_admin_custom_data', 'quota_save_admin');
 zp_register_filter('edit_admin_custom_data', 'quota_edit_admin');
-zp_register_filter('save_image_utilities_data', 'quota_save_image');
-zp_register_filter('edit_image_custom_data', 'quota_edit_image');
-zp_register_filter('save_album_utilities_data', 'quota_save_album');
-zp_register_filter('edit_album_custom_data', 'quota_edit_album');
 zp_register_filter('new_image', 'quota_new_image');
 zp_register_filter('image_refresh', 'quota_image_refresh');
 zp_register_filter('check_upload_quota', 'quota_checkQuota');
@@ -128,7 +124,7 @@ function quota_edit_admin($html, $userobj, $i, $background, $current, $local_alt
 }
 
 /**
- * Returns curren image useage
+ * Returns current image useage
  * @param $userobj Admin user object
  * @return int
  */
@@ -142,107 +138,7 @@ function quota_getCurrentUse($userobj) {
 	return array_shift($result)/1024;
 }
 
-/**
- * Returns an option list of administrators who can upload but do not have ADMIN_RIGHTS or MANAGE_ALL_ALBUM_RIGHTS
- * @param string $owner
- * @return string
- */
-function quota_admin_list($owner) {
-	global $_zp_authority;
-	$adminlist = '';
-	$admins = $_zp_authority->getAdministrators();
-	foreach ($admins as $user) {
-		if (($user['rights'] & (UPLOAD_RIGHTS)) && !($user['rights'] & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
-			$adminlist .= '<option value="'.$user['user'].'"';
-			if ($owner == $user['user']) {
-				$adminlist .= ' SELECTED="SELECTED"';
-			}
-			$adminlist .= '>'.$user['user']."</option>\n";
-		}
-	}
-	return $adminlist;
-}
-
-/**
- * Returns table row(s) for the edit of an image custom data field
- *
- * @param string $discard always empty
- * @param int $currentimage prefix for the image being edited
- * @param object $image the image object
- * @return string
- */
-function quota_edit_image($html, $image, $currentimage) {
-	$owner = $image->getOwner();
-	$list = quota_admin_list($owner);
-	if (!empty($list)) {
-		$html =
-			'<tr>
-				<td valign="top">'.gettext("Owner:").'</td>
-				<td>
-					<select name="'.$currentimage.'-owner">
-						<option value="">'.gettext('*no owner')."</option>\n".
-						$list.'
-					</select>
-				</td>
-			</tr>';
-	}
-	return $html;
-}
-
-/**
- * Option save handler for the filter
- *
- * @param object $object object being rated
- * @param string $prefix indicator if admin is processing multiple objects
- * @rerun object
- */
-function quota_save_image($image, $prefix) {
-	if (isset($_POST[$prefix.'-owner'])) {
-		$image->setOwner(sanitize($_POST[$prefix.'-owner']));
-		$image->set('filesize',filesize($image->localpath));
-	}
-	return $image;
-}
-
-/**
- * Returns a table entry for image assignment
- * @param string $discard
- * @param object $album
- * @param string $prefix
- * @return string
- */
-function quota_edit_album($html, $album, $prefix) {
-	$list = quota_admin_list('');
-	if (!empty($list)) {
-		$html =
-			'<tr>
-				<td valign="top">'.gettext("Assign images to:").'</td>
-				<td>
-					<select name="'.$prefix.'assignee">
-						<option value="">'."</option>\n".
-						quota_admin_list('').'
-					</select>
-				</td>
-			</tr>';
-	}
-	return $html;
-}
-
-/**
- * Assigns images within the album to an owner.
- * @param object $album
- * @param string $prefix
- */
-function quota_save_album($album, $prefix) {
-	if (!empty($_POST[$prefix.'assignee'])) {
-		$sql = 'UPDATE '.prefix('images').' SET `owner`='.db_quote(sanitize($_POST[$prefix.'assignee'])).' WHERE `albumid`='.$album->get('id');
-		query($sql);
-	}
-	return $album;
-}
-
-
-/**
+ /**
  * Assigns owner to new image
  * @param string $image
  * @return object
@@ -279,6 +175,7 @@ function quota_getUploadQuota($quota) {
 		$quota = -1;
 	} else {
 		$quota = $_zp_current_admin_obj->getQuota();
+		if ($quota == NULL) $quota = getOption('quota_default');
 	}
 	return $quota;
 }

@@ -366,7 +366,7 @@ function setAlbumSubtabs($album) {
 	}
 	$subrights = $album->albumSubRights();
 	if (!$album->isDynamic() && $album->getNumImages()) {
-		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT_IMAGE) {
+		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT_IMAGE | MANAGED_OBJECT_RIGHTS_UPLOAD) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
 																						array(gettext('Images') => 'admin-edit.php'.$albumlink.'&amp;tab=imageinfo'),
 																						$zenphoto_tabs['edit']['subtabs']);
@@ -1041,6 +1041,22 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 		<tr>
 			<td width="70%" valign="top">
 				<table>
+					<tr>
+						<td valign="top"><?php  echo gettext("Owner"); ?></td>
+						<td>
+							<?php
+							if (zp_loggedin(MANAGE_ALL_ALBUMS)) {
+								?>
+								<select name="<?php  echo $prefix; ?>-owner">
+									<?php echo admin_album_list($album->getOwner()); ?>
+								</select>
+								<?php
+							} else {
+								echo $album->getOwner();
+							}
+							?>
+						</td>
+					</tr>
 					<tr>
 						<td align="left" valign="top" width="150">
 						<?php echo gettext("Album Title"); ?>:
@@ -2148,6 +2164,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 	$codeblock3 = sanitize($_POST[$prefix.'codeblock3'], 0);
 	$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
 	$album->setCodeblock($codeblock);
+	if (isset($_POST[$prefix.'-owner'])) $album->setOwner(sanitize($_POST[$prefix.'-owner']));
 
 	$custom = process_language_string_save($prefix.'album_custom_data', 1);
 	$album->setCustomData(zp_apply_filter('save_album_custom_data', $custom, $prefix));
@@ -2904,10 +2921,10 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 		case 'albums':
 			$full = populateManagedObjectsList('album', $adminid, true);
 			$cv = $extra = array();
-			$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" />';
-			$icon_edit_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-image.png" class="icon-position-top3" />';
-			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3" />';
-			$ledgend = $icon_edit_album.' '.gettext('edit albums').' '.$icon_edit_image.' '.gettext('edit images').' '.$icon_upload.' '.gettext('upload');
+			$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
+			$icon_edit_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-image.png" class="icon-position-top3" alt="" title="'.gettext('edit user owned images').'" />';
+			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('uploade to album').'"/>';
+			$ledgend = $icon_edit_album.' '.gettext('edit album').' '.$icon_edit_image.' '.gettext('edit owned images').' '.$icon_upload.' '.gettext('upload');
 			foreach ($full as $item) {
 				$cv[$item['name']] = $item['data'];
 				$extra[$item['name']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
@@ -3650,6 +3667,27 @@ function unQuote($string) {
 		$string = substr($string, 1, -1);
 	}
 	return $string;
+}
+
+/**
+ * Returns an option list of administrators who can own albums or images
+ * @param string $owner
+ * @return string
+ */
+function admin_album_list($owner) {
+	global $_zp_authority;
+	$adminlist = '';
+	$admins = $_zp_authority->getAdministrators();
+	foreach ($admins as $user) {
+		if (($user['rights'] & (UPLOAD_RIGHTS | ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
+			$adminlist .= '<option value="'.$user['user'].'"';
+			if ($owner == $user['user']) {
+				$adminlist .= ' SELECTED="SELECTED"';
+			}
+			$adminlist .= '>'.$user['user']."</option>\n";
+		}
+	}
+	return $adminlist;
 }
 
 ?>
