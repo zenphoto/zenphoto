@@ -13,7 +13,7 @@
 $plugin_description = gettext("Enable <strong>flowplayer 3</strong> to handle multimedia files.").'<p class="notebox">'.gettext("<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too.").'</p>'.gettext("Please see <a href='http://flowplayer.org'>flowplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
-$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---flowplayer3.php.html";
+$plugin_URL = '*';
 $plugin_disable = (getOption('album_folder_class') === 'external')?gettext('Flash players do not support <em>External Albums</em>.'):false;
 
 if ($plugin_disable) {

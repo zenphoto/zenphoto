@@ -17,7 +17,7 @@
 $plugin_description = gettext("Prints an e-mail contact so that visitors may e-mail the site administrator.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.0';
-$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---contact_form.php.html";
+$plugin_URL = '*';
 $option_interface = 'contactformOptions';
 
 /**

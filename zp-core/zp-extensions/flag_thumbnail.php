@@ -23,7 +23,7 @@ $plugin_description = sprintf(gettext('Apply <img src="%1$s/lock.png" alt=""/> o
 																						 and <img src="%1$s/GPS.png" alt=""/> over thumbnails of <em>geocoded</em> images'),WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flag_thumbnail');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.0';
-$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."--flag_thumbnail.php.html";
+$plugin_URL = '*';
 $option_interface = 'flag_thumbnailOptions';
 
 zp_register_filter('standard_image_thumb_html', 'flag_thumbnail_std_image_thumbs');

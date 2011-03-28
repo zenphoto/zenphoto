@@ -131,6 +131,10 @@ foreach ($filelist as $extension) {
 		if (false === eval($str)) {
 			$parserr = $parserr | 8;
 			$plugin_URL = gettext('<strong>Error parsing <em>plugin_URL</em> string!</strong>.');
+		} else {
+			if ($plugin_URL == '*') {
+				$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---".basename($paths[$extension]).".html";
+			}
 		}
 	}
 	$str = isolate('$plugin_disable', $pluginStream);

@@ -56,7 +56,7 @@
 
 $plugin_description = gettext('Attaches "Image effects" to images and thumbnails.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---image_effects.php.html";
+$plugin_URL = '*';
 $plugin_version = '1.4.0';
 
 $option_interface = 'image_effects';

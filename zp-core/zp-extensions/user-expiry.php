@@ -32,7 +32,7 @@ $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext("Provides management of users based on when they were created.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
-$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---user-expiry.php.html";
+$plugin_URL = '*';
 
 $option_interface = 'user_expiry';
 

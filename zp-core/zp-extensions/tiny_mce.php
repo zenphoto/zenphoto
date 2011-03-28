@@ -11,7 +11,7 @@ $plugin_description = gettext("Tiny MCE<span id='tinymceversion'></span> text ed
 
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
-$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---tiny_mce.php.html";
+$plugin_URL = '*';
 $option_interface = 'tinymceOptions';
 
 zp_register_filter('texteditor_config','tinymceConfigJS');

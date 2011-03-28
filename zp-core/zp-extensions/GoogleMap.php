@@ -8,7 +8,7 @@
 $plugin_description = gettext("Support for providing Google Maps (API version 3) based on EXIF latitude and longitude in the images.");
 $plugin_author = 'Stephen Billard (sbillard)';
 $plugin_version = '1.4.0';
-$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---GoogleMap.php.html";
+$plugin_URL = '*';
 $plugin_disable = (version_compare(PHP_VERSION, '5.0.0') != 1) ? gettext('PHP version 5 or greater is required.') : false;
 
 if ($plugin_disable) {

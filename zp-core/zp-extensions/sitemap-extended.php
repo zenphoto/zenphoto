@@ -36,7 +36,7 @@ if (isset($_GET['action']) && $_GET['action']=='clear_sitemap_cache') { //button
 $plugin_description = gettext('Generates a sitemaps.org compatible XML file, for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories. Renders the sitemap if called via "www.yourdomain.com/zenphoto/sitemap.php" in the URL.').'<p class="notebox">'.gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!').'</p>';
 $plugin_author = 'Malte Müller (acrylian) based on the <a href="http://github.com/Tenzer/zenphoto-sitemap">plugin</a> by Jeppe Toustrup (Tenzer) and modifications by Timo and Blue Dragonfly';
 $plugin_version = '1.4.0';
-$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/_'.PLUGIN_FOLDER.'---sitemap-extended.php.html';
+$plugin_URL = '*';
 $option_interface = 'sitemap';
 
 zp_register_filter('admin_utilities_buttons', 'sitemap_cache_purgebutton');

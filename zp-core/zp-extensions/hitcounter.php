@@ -7,7 +7,7 @@
 $plugin_description = gettext('Automatically increments hitcounters on Zenphoto objects viewed by a "visitor".');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.0';
-$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---hitcounter.php.html";
+$plugin_URL = '*';
 $option_interface = 'hitcounter_options';
 
 zp_register_filter('load_theme_script', 'hitcounter_load_script');
