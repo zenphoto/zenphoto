@@ -163,7 +163,7 @@ require_once("tinyzenpage-functions.php");
 
 	 			echo "<h3 style='margin-left: 1px'>Zenpage</h3>";
 	 			echo "<p style='margin-left: 8px'>";
-	 			echo gettext("Select to show a list of Zenpage pages, articles or categories. Click on a title to include a link. Hover of the link to see an excerpt of the page or article. Un-published pages or articles are marked with an '*'. There are no further options.")."</p>";
+	 			echo gettext("Select to show a list of Zenpage pages, articles or categories. Click on a title to include a link. Hover of the link to see an excerpt of the page or article. Un-published pages or articles are marked with an '*' and protected with an '+'. There are no further options.")."</p>";
 
 	 			echo "<h3 style='margin-left: 1px'>Zenphoto</h3>";
 	 			echo "<p style='margin-left: 8px'>";
@@ -220,7 +220,7 @@ require_once("tinyzenpage-functions.php");
 				echo "</p>";
 	 		}
 	  	printAllNestedList();
-	 		printNewsArticlesList(25);
+	 		printNewsArticlesList(12);
 			printImageslist(19);
 			
 		 ?>

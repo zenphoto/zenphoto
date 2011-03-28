@@ -262,6 +262,7 @@ function printNewsArticlesList($number) {
 		$number = $startnews[$currentpage];
 		if($newscount != 0) {
 			printTinyPageNav($pagestotal,$currentpage,'news');
+			echo '<br />';
 			for ($nr = $number;$nr <= $news_per_page*$currentpage; $nr++)	{
 				if ($nr == $newscount){
 					break;
@@ -275,7 +276,21 @@ function printNewsArticlesList($number) {
 				}
 				echo "<li style='".$firstitemcss."'>";
 				if($_GET['zenpage'] == "articles") {
-					echo "<a href=\"javascript:ZenpageDialog.insert('news/".$newsobj->getTitlelink()."','".$newsobj->getTitlelink()."','".html_encode($newsobj->getTitle())."','','','articles','','','','');\" title='".html_encode(truncate_string(strip_tags($newsobj->getContent()),300))."'>".html_encode($newsobj->getTitle()).unpublishedZenpageItemCheck($newsobj)."</a>";
+					echo "<a href=\"javascript:ZenpageDialog.insert('news/".$newsobj->getTitlelink()."','".$newsobj->getTitlelink()."','".html_encode($newsobj->getTitle())."','','','articles','','','','');\" title='".html_encode(truncate_string(strip_tags($newsobj->getContent()),300))."'>".html_encode($newsobj->getTitle()).unpublishedZenpageItemCheck($newsobj)."</a> <small><em>".$newsobj->getDatetime()."</em></small><br />";
+					echo '<small><em>'.gettext('Categories:');
+					$cats = $newsobj->getCategories();
+					$count = '';
+					foreach($cats as $cat) {
+						$count++;
+						$catobj = new ZenpageCategory($cat['titlelink']);
+						if($count == 1) {
+							echo ' ';
+						} else {
+							echo ', ';
+						}
+						echo $catobj->getTitle();
+					}
+					echo '</em></small>';
 				}
 				echo "</li>";
 				if ($nr === $endnews[$currentpage]){
@@ -422,12 +437,14 @@ function printAllNestedList() {
 					$itemcontent = truncate_string(strip_tags($obj->getContent()),300);
 					$zenpagepage = 'pages/'.$item['titlelink'];
 					$unpublished = unpublishedZenpageItemCheck($obj);
+					$counter = '';
 					break;
 				case 'categories':
 					$obj = new ZenpageCategory($item['titlelink']);
 					$itemcontent = $obj->getTitle();
 					$zenpagepage = "news/category/".$item['titlelink'];
-					$unpublished = '';
+					$unpublished = unpublishedZenpageItemCheck($obj);
+					$counter = ' ('.countArticles($obj->getTitlelink()).') ';
 					break;
 			}
 			$itemsortorder = $obj->getSortOrder();
@@ -462,7 +479,7 @@ function printAllNestedList() {
 				$open[$indent]--;
 			}
 			echo "<li id='".$itemid."' style='list-style: none; padding: 4px 0px 4px 0px;border-top: 1px dotted gray'>";
-			echo "<a href=\"javascript:ZenpageDialog.insert('".$zenpagepage."','".$itemtitlelink."','".html_encode($itemtitle)."','','','".$mode."','','','','');\" title='".html_encode($itemcontent)."'>".html_encode($itemtitle).$unpublished."</a>";
+			echo "<a href=\"javascript:ZenpageDialog.insert('".$zenpagepage."','".$itemtitlelink."','".html_encode($itemtitle)."','','','".$mode."','','','','');\" title='".html_encode($itemcontent)."'>".html_encode($itemtitle).$unpublished.$counter."</a> <small><em>".$obj->getDatetime()."</em></small>";
 			$open[$indent]++;
 		}
 		while ($indent > 1) {
@@ -481,17 +498,40 @@ function printAllNestedList() {
 }
 
  /**
-	* checks if a news article or page is un-published and returns a '*'
+	* checks if a news article or page is un-published and/or protected and returns a '*'
 	*
 	* @return string
 	*/
 function unpublishedZenpageItemCheck($page) {
-	if($page->getShow() === "0") {
-		$unpublishednote = "<span style='color: red; font-weight: bold'>*</span>";
-	} else {
-		$unpublishednote = "";
-	}
-	return $unpublishednote;
+	$class = get_class($page);
+	$unpublishednote = '';
+	$protected = '';
+	switch($class) {
+		case 'ZenpageNews':
+		case 'ZenpagePage':
+			if($page->getShow() === "0") {
+				$unpublishednote = "<span style='color: red; font-weight: bold'>*</span>";
+			}
+			switch($class) {
+				case 'ZenpageNews':
+					if($page->inProtectedCategory()) {
+						$protected = "<span style='color: red; font-weight: bold'>+</span>";
+					}
+					break;
+				case 'ZenpagePage':
+					if($page->isProtected()) {
+						$protected = "<span style='color: red; font-weight: bold'>+</span>";
+					}
+					break;
+			}
+			break;
+		case 'ZenpageCategory':
+			if($page->isProtected()) {
+				$protected = "<span style='color: red; font-weight: bold'>+</span>";
+			}
+			break;
+	} 
+	return $unpublishednote.$protected;
 }
 
  /**
