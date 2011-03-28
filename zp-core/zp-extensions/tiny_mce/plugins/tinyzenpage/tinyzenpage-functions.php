@@ -88,7 +88,7 @@ function shortentitle($title,$length) {
 }
 
 /**
- * Prints the images as thumbnails of the selected album
+ * Prints the images and/or albums as thumbnails of the selected album
  *
  * @param $number int The number of images per page
  *
@@ -96,13 +96,48 @@ function shortentitle($title,$length) {
  */
 function printImageslist($number) {
 	global $galleryobj, $host;
+	
 	if(isset($_GET['album']) AND !empty($_GET['album'])) {
+		
 		$album = urldecode(sanitize($_GET['album']));
 		$albumobj = new Album($galleryobj,$album);
+		echo "<h3 style='margin-bottom:10px'>".gettext("Album:")." <em>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj,false)."</em> / ".gettext("Album folder:")." <em>".html_encode($albumobj->name)."</em><br /><small>".gettext("(Click on image to include)")."</small></h3>";
+
+			// album thumb display;
+		$albumthumb = $albumobj->getAlbumThumbImage();
+		$albumthumbalbum = $albumthumb->getAlbum();
+		$albumdesc = '';
+		$albumdesc = $albumobj->getDesc();
+		$imagedesc = $albumthumb->getDesc();
+		$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=". urlencode(pathurlencode($albumthumbalbum->name))."&amp;i=".urlencode(urlencode($albumthumb->filename));
+		$fullimage = pathurlencode($albumthumb->getFullImage());
+		$videocheck = checkIfImageVideo($albumthumb);
+		if(empty($videocheck)) {
+				$video = '';
+				$backgroundcss = 'border: 1px solid gray; padding: 1px;';
+		} else {
+			$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
+			$video = $videocheck;
+		}
+		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
+		echo "<div class='albumthumb' style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>";
+		echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".urlencode($albumthumb->filename)."','".
+																											html_encode($albumthumb->getTitle())."','".
+																											html_encode($albumobj->getTitle())."','".
+																											$fullimage."','zenphoto','".
+																											html_encode(getWatermarkParam($albumthumbalbum, WATERMARK_THUMB))."','".
+																											html_encode(getWatermarkParam($albumthumbalbum, WATERMARK_IMAGE))."','".
+																											$video."','".html_encode($imagedesc)."','".html_encode($albumdesc)."');\"".
+																											" title='".
+																											html_encode($albumthumb->getTitle())." (".html_encode($albumthumb->filename).")'><img src='".
+																											$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
+		echo "<a href='zoom.php?image=".urlencode($albumthumb->filename)."&amp;album=".pathurlencode($albumthumbalbum->name).
+																											"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
+																											gettext('<em>Albumthumb</em>').unpublishedZenphotoItemCheck($albumthumb,false);
+		echo "</div>";
+		
 		$images = $albumobj->getImages();
 
-		// This should be done with sprintf here but somehow the variables are always empty then...
-		echo "<h3 style='margin-bottom:10px'>".gettext("Album:")." <em>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj,false)."</em> / ".gettext("Album folder:")." <em>".html_encode($albumobj->name)."</em><br /><small>".gettext("(Click on image to include)")."</small></h3>";
 		if($albumobj->getNumImages() != 0) {
 			$images_per_page = $number;
 			if(isset($_GET['page'])) {
@@ -129,25 +164,18 @@ function printImageslist($number) {
 					$linkalbumobj = $albumobj;
 					$imageobj = newImage($albumobj,$images[$nr]);
 				}
-				
-				if(isImageVideo($imageobj) && getOption('zp_plugin_flowplayer3')) {
-					$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
-					$imagesuffix = getSuffix($imageobj->filename);
-					switch($imagesuffix) {
-						case 'flv':
-						case 'mp4':
-							$video = 'video';
-						break;
-						case 'mp3':
-							$video = 'mp3';
-							break;
-					}
-				} else {
+				$videocheck = checkIfImageVideo($imageobj);
+				if(empty($videocheck)) {
 					$video = '';
 					$backgroundcss = 'border: 1px solid gray; padding: 1px;';
+				} else {
+					$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
+					$video = $videocheck;
 				}
 				$imagedesc = '';
 				$imagedesc = $imageobj->getDesc();
+				$albumdesc = '';
+				$albumdesc = $linkalbumobj->getDesc();
 				$fullimage = pathurlencode($imageobj->getFullImage());
 				$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
 				if(get_class($imageobj) == 'TextObject') {
@@ -163,7 +191,7 @@ function printImageslist($number) {
 																												$fullimage."','zenphoto','".
 																												html_encode(getWatermarkParam($imageobj, WATERMARK_THUMB))."','".
 																												html_encode(getWatermarkParam($imageobj, WATERMARK_IMAGE))."','".
-																												$video."','".html_encode($imagedesc)."','');\"".
+																												$video."','".html_encode($imagedesc)."','".html_encode($albumdesc)."');\"".
 																												" title='".
 																												html_encode($imageobj->getTitle())." (".html_encode($imageobj->filename).")'><img src='".
 																												$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
@@ -176,19 +204,36 @@ function printImageslist($number) {
 				}
 			} // for end
 		} else {
-			$albumthumb = $albumobj->getAlbumThumbImage();
-			$albumthumbalbum = $albumthumb->getAlbum();
-			$albumdesc = '';
-			$albumdesc = $albumobj->getDesc();
-			$imgurl =$host.WEBPATH.'/'.ZENFOLDER."/i.php?a=". urlencode(pathurlencode($albumthumbalbum->name))."&amp;i=".urlencode(urlencode($albumthumb->filename));
-			$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 			echo "<p style='margin-left: 8px'>".gettext("<strong>Note:</strong> This album does not contain any images.")."</p>";
-			echo "<div style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>";
-			echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','','','".html_encode($albumobj->getTitle())."','','zenphoto','','','','".html_encode($albumdesc)."');\" title='".html_encode($albumobj->getTitle())." (".html_encode($albumobj->name).")'><img src='".$imgsizeurl."' style='border: 1px solid gray; padding: 1px' /></a>";
-			echo "</div>";
 		}	// if/else  no image end
 	} // if GET album end
 }
+
+/**
+ * Checks if the Zenphoto items is a video object (mp3,mp4,flv)
+ *
+ * @return string
+ */
+
+function checkIfImageVideo($imageobj) {
+	if(isImageVideo($imageobj) && getOption('zp_plugin_flowplayer3')) {
+		$imagesuffix = getSuffix($imageobj->filename);
+		switch($imagesuffix) {
+			case 'flv':
+			case 'mp4':
+				$video = 'video';
+				break;
+			case 'mp3':
+				$video = 'mp3';
+				break;
+		}
+	} else {
+		$video = '';
+		$backgroundcss = 'border: 1px solid gray; padding: 1px;';
+	}
+	return $video;
+}
+
 
 /**
  * Prints all available articles in Zenpage
@@ -251,6 +296,9 @@ function checkAlbumForImages() {
 	global $galleryobj;
 	if(isset($_GET['album']) AND !empty($_GET['album'])) {
 		$album = urldecode(sanitize($_GET['album']));
+		if($album == 'gallery') {
+			return FALSE;
+		}
 		$albumobj = new Album($galleryobj,$album);
 		if($albumobj->getNumImages() != 0) {
 			return TRUE;

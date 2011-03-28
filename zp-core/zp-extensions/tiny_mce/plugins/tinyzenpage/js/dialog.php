@@ -128,7 +128,7 @@ var ZenpageDialog = {
 		// getting the include type checkbox values
 		if($('#image:checked').val() == 1) {
 			includetype = '<img src=\''+imgurl+imagesize+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
-			if($('#showdesc:checked').val() == 1 || $('#showtitle:checked').val() == 1) { 
+			if($('#showtitle:checked').val() == 1 || $('#imagedesc:checked').val() == 1 || $('#albumdesc:checked').val() == 1) { 
 				infowrap1 = '<div class=\'zenpage_wrapper'+textwrap_title_add+'\''+textwrap_title+'>';
 				infowrap2 = '</div>';
 			}
@@ -139,13 +139,12 @@ var ZenpageDialog = {
 					titlewrap = '<div class=\'zenpage_title\'>'+imgtitle+'</div>';
 				}
 			}
-			if($('#showdesc:checked').val() == 1) {
-				if($('#albumlink:checked').val() == 1) {
-					descwrap = '<div class=\'zenpage_desc\'>'+albumdesc+'</div>';
-				} else {
-					descwrap = '<div class=\'zenpage_desc\'>'+imgdesc+'</div>';
-				}
+			if($('#imagedesc:checked').val() == 1) {
+				descwrap = '<div class=\'zenpage_desc\'>'+imgdesc+'</div>';
 			}
+			if($('#albumdesc:checked').val() == 1) {	
+				descwrap = '<div class=\'zenpage_desc\'>'+albumdesc+'</div>';
+	  	}
 			infowrap2 = titlewrap+descwrap+infowrap2;
 		}
 		if($('#imagetitle:checked').val() == 1) {

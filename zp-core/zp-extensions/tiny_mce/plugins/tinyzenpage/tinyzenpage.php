@@ -5,8 +5,6 @@ $basepath = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
 require_once($basepath."/admin-functions.php");
 require_once($basepath .'/'. PLUGIN_FOLDER ."/zenpage/zenpage-template-functions.php");
 require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
-//require_once("js/dialog.php");
-//require_once("tinyzenpage-functions.php");
 ?>
 <!-- tinyZenpage - A TinyMCE plugin for Zenphoto with Zenpage
 		 Version: 1.0.6.1
@@ -30,9 +28,11 @@ require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
 		
 		$('#imagetitle,#albumtitle,#customtext').click(function() {
 			$('#imagesize').hide();
+			$('#titledesc').hide();
 		});
 		$('#image').click(function() {
 			$('#imagesize').show();
+			$('#titledesc').show();
 		});
 	});
 	</script>
@@ -97,11 +97,20 @@ require_once("tinyzenpage-functions.php");
     		<input type="radio" name="type" id="sizedimage" "value="1" /><label for="title"> <?php echo gettext("Sized image/multimedia item"); ?></label><br />
     		<input type="radio" name="type" id="customsize" value="1" />
     		<input type="text" name="size" id="size" value="<?php echo getOption('tinymce_tinyzenpage_customimagesize'); ?>" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
-  			<input type="checkbox" name="type" id="showtitle" value="1" /><label for="showtitle"> <?php echo gettext("Show title"); ?></label><br />
-  			<input type="checkbox" name="type" id="showdesc" value="1" /><label for="showdesc"> <?php echo gettext("Show description"); ?></label>
   		</fieldset>
-  		
 		</div>
+	</form>
+	
+	<form name="titledesc" id="titledesc" action="" method="post" style="margin: 8px 0px 8px 0px">
+	<div class="panel current">
+		<fieldset>
+			<legend><?php echo gettext("Title and description"); ?></legend>
+  		<input type="checkbox" name="type" id="showtitle" value="1" /><label for="showtitle"> <?php echo gettext("Show title"); ?></label><br />
+  		<input type="radio" name="type" id="nodesc" value="1" /><label for="nodesc"> <?php echo gettext("No description"); ?></label><br />
+  		<input type="radio" name="type" id="imagedesc" value="1" /><label for="imagedesc"> <?php echo gettext("Show image description"); ?></label><br />
+  		<input type="radio" name="type" id="albumdesc" value="1" /><label for="albumdesc"> <?php echo gettext("Show album description"); ?></label>
+  	</fieldset>
+  	</div>
 	</form>
 
 	<form name="linktype" action="" method="post" style="margin: 8px 0px 8px 0px">
@@ -158,7 +167,7 @@ require_once("tinyzenpage-functions.php");
 
 	 			echo "<h3 style='margin-left: 1px'>Zenphoto</h3>";
 	 			echo "<p style='margin-left: 8px'>";
-	 			echo gettext("Select an album to include images from into your page or article. Click on the image to included it. Un-published albums or images are marked with an '*'. You can also click on the magnify glass icon to see a preview of the item (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.). <br />You have several options what to include and how:")."</p>";
+	 			echo gettext("Select an album to include images from into your page or article. Click on the image to included it. Un-published albums or images are marked with an '*'. You can also click on the magnify glass icon to see a preview of the item (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.). Note the first thumbnail is always the album thumbnail of the currently selected album itself. It is always titled <em>Albumthumb</em> and appears on every thumbnail page.<br />You have several options what to include and how:")."</p>";
 				echo "<h4 style='margin-left: 8px'>".gettext("What to include")."</h4>";
 
 				echo "<p style='margin-left: 8px'>";
@@ -212,7 +221,8 @@ require_once("tinyzenpage-functions.php");
 	 		}
 	  	printAllNestedList();
 	 		printNewsArticlesList(25);
-			printImageslist(20);
+			printImageslist(19);
+			
 		 ?>
 	</div>
 </div>
