@@ -1178,7 +1178,7 @@ class Album extends MediaObject {
 	function albumSubRights() {
 		global $_zp_admin_album_list;
 		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			return MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD;
+			return MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_EDIT_IMAGE | MANAGED_OBJECT_RIGHTS_UPLOAD;
 		}
 		getManagedAlbumList();
 		if (count($_zp_admin_album_list) == 0) {
@@ -1194,7 +1194,7 @@ class Album extends MediaObject {
 				}
 				$level++;
 			}
-			return $rights;
+			return $rights | MANAGED_OBJECT_RIGHTS_EDIT_IMAGE;
 		}
 		return NULL;
 	}

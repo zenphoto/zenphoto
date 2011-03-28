@@ -2924,13 +2924,15 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
 			$icon_edit_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-image.png" class="icon-position-top3" alt="" title="'.gettext('edit user owned images').'" />';
 			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('uploade to album').'"/>';
-			$ledgend = $icon_edit_album.' '.gettext('edit album').' '.$icon_edit_image.' '.gettext('edit owned images').' '.$icon_upload.' '.gettext('upload');
+			$ledgend = $icon_edit_album.' '.gettext('edit album').' '.
+//										$icon_edit_image.' '.gettext('edit owned images').' '.
+										$icon_upload.' '.gettext('upload');
 			foreach ($full as $item) {
 				$cv[$item['name']] = $item['data'];
 				$extra[$item['name']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
 				if ($rights & ALBUM_RIGHTS) {
 					$extra[$item['name']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
-					$extra[$item['name']][] = array('name'=>'editimage','value'=>MANAGED_OBJECT_RIGHTS_EDIT_IMAGE,'display'=>$icon_edit_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT_IMAGE);
+//					$extra[$item['name']][] = array('name'=>'editimage','value'=>MANAGED_OBJECT_RIGHTS_EDIT_IMAGE,'display'=>$icon_edit_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT_IMAGE);
 				}
 				if (($rights & UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
 					$extra[$item['name']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
