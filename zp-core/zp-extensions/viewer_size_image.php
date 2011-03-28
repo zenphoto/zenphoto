@@ -23,7 +23,6 @@
 $plugin_description = gettext("Provides a means allowing users to select the image size to view.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.0';
-$plugin_URL = '*';
 $option_interface = 'viewer_size_image_options';
 
 /**

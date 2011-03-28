@@ -13,7 +13,6 @@
 $plugin_description = gettext("Enable <strong>flowplayer 3</strong> to handle multimedia files.").'<p class="notebox">'.gettext("<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too.").'</p>'.gettext("Please see <a href='http://flowplayer.org'>flowplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
-$plugin_URL = '*';
 $plugin_disable = (getOption('album_folder_class') === 'external')?gettext('Flash players do not support <em>External Albums</em>.'):false;
 
 if ($plugin_disable) {
@@ -176,7 +175,7 @@ class flowplayer3 {
 			$autoplay = "false";
 		}
 		if($ext == ".mp3") {
-			if(getOption('flow_player3_mp3coverimage')) {	
+			if(getOption('flow_player3_mp3coverimage')) {
 				if (is_null($height)) $height = $playerheight;
 			} else {
 				if (is_null($height)) $height = FLOW_PLAYER_MP3_HEIGHT;
@@ -187,7 +186,7 @@ class flowplayer3 {
 		} else {
 			if (is_null($height)) $height = $playerheight;
 			$allowfullscreen = 'true';
-		} 
+		}
 		if (is_null($width)) $width = $this->getVideoWidth();
 		if (is_null($width)) $width = $playerwidth;
 			// inline css is kind of ugly but since we need to style dynamically there is no other way

@@ -21,7 +21,6 @@
 $plugin_is_filter = 2|CLASS_PLUGIN;
 $plugin_description = gettext("Collects and displays search criteria.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_URL = '*';
 $plugin_version = '1.4.0';
 $option_interface = 'search_statistics';
 

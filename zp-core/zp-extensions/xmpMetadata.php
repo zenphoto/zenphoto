@@ -29,7 +29,6 @@
 $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = gettext('Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_URL = '*';
 $plugin_version = '1.4.0';
 $option_interface = 'xmpMetadata_options';
 

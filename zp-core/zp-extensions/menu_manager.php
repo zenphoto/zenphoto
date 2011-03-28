@@ -16,7 +16,6 @@ $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("A menu creation facility. The <em>Menu</em> tab admin interface lets you create arbitrary menu trees.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.0';
-$plugin_URL = '*';
 $option_interface = 'menu_manager';
 
 if (OFFSET_PATH) {

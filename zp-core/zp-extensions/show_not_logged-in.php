@@ -8,7 +8,6 @@
 $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = sprintf(gettext("Treats ADMIN users as not logged in for gallery pages."),DATA_FOLDER);
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_URL = '*';
 $plugin_version = '1.4.0';
 
 zp_register_filter('guest_login_attempt', 'show_not_loggedin_adminLoginAttempt',2);

@@ -13,8 +13,6 @@ $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("An image crop tool. Places an image crop button in the image utilities box of the images tab.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.0';
-$plugin_URL = '*';
-
 
 if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 3);

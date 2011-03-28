@@ -11,7 +11,6 @@ $plugin_description = gettext("Tiny MCE<span id='tinymceversion'></span> text ed
 
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
-$plugin_URL = '*';
 $option_interface = 'tinymceOptions';
 
 zp_register_filter('texteditor_config','tinymceConfigJS');
@@ -48,7 +47,7 @@ class tinymceOptions {
 										gettext('tinyZenpage - custom thumb crop - width') => array('key' => 'tinymce_tinyzenpage_customthumb_cropwidth', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Predefined crop width (%) for custom cropped thumb  images included using tinyZenpage.")),
 										gettext('tinyZenpage - custom thumb crop - height') => array('key' => 'tinymce_tinyzenpage_customthumb_cropheight', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Predefined crop height (%) for custom cropped thumb  images included using tinyZenpage.")),	
+										'desc' => gettext("Predefined crop height (%) for custom cropped thumb  images included using tinyZenpage.")),
 										gettext('tinyZenpage - Flowplayer width') => array('key' => 'tinymce_tinyzenpage_flowplayer_width', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Video player width if included using tinyZenpage")),
 										gettext('tinyZenpage - Flowplayer height') => array('key' => 'tinymce_tinyzenpage_flowplayer_height', 'type' => OPTION_TYPE_TEXTBOX,

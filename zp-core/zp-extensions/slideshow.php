@@ -25,7 +25,6 @@
 $plugin_description = gettext("Adds a theme function to call a slideshow either based on jQuery (default) or Flash using Flowplayer3 if installed.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Don Peterson (dpeterson)";
 $plugin_version = '1.4.0';
-$plugin_URL = '*';
 $option_interface = 'slideshowOptions';
 
 /**

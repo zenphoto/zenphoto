@@ -17,7 +17,6 @@
 $plugin_description = gettext("Prints an e-mail contact so that visitors may e-mail the site administrator.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.0';
-$plugin_URL = '*';
 $option_interface = 'contactformOptions';
 
 /**

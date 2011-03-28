@@ -13,7 +13,6 @@
 $plugin_is_filter = 8|CLASS_PLUGIN;
 $plugin_description = gettext("Blocks access from an IP address which has had multiple failed attempts to access the adminsitration pages.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_URL = '*';
 $plugin_version = '1.4.0';
 $plugin_disable = (version_compare(PHP_VERSION, '5.0.0') != 1) ? gettext('PHP version 5 or greater is required.') : false;
 

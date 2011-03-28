@@ -14,7 +14,6 @@ $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Provides the means to set an limit of the number of images that can be uploaded to an album from the admin upload tab.");
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_version = '1.4.0';
-$plugin_URL = '*';
 $option_interface = 'uploadlimit';
 zp_register_filter('upload_helper_js', 'uploadLimiterJS');
 zp_register_filter('get_upload_header_text', 'uploadLimiterHeaderMessage');

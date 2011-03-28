@@ -124,18 +124,18 @@ foreach ($filelist as $extension) {
 			$plugin_version = ' '.gettext('<strong>Error parsing <em>plugin_version</em> string!</strong>.');
 		}
 	}
-	$str = isolate('$plugin_URL', $pluginStream);
-	if (false === $str) {
-		$plugin_URL = '';
-	} else {
-		if (false === eval($str)) {
-			$parserr = $parserr | 8;
-			$plugin_URL = gettext('<strong>Error parsing <em>plugin_URL</em> string!</strong>.');
+	if ($third_party_plugin) {
+		$str = isolate('$plugin_URL', $pluginStream);
+		if (false === $str) {
+			$plugin_URL = '';
 		} else {
-			if ($plugin_URL == '*') {
-				$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---".basename($paths[$extension]).".html";
+			if (false === eval($str)) {
+				$parserr = $parserr | 8;
+				$plugin_URL = gettext('<strong>Error parsing <em>plugin_URL</em> string!</strong>.');
 			}
 		}
+	} else {
+		$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---".basename($paths[$extension]).".html";
 	}
 	$str = isolate('$plugin_disable', $pluginStream);
 	if (false === $str) {

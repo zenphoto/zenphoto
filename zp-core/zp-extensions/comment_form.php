@@ -17,7 +17,6 @@ $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Provides a unified comment handling facility.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.0';
-$plugin_URL = '*';
 $option_interface = 'comment_form';
 
 zp_register_filter('comment_post', 'comment_form_comment_post');
