@@ -357,7 +357,12 @@ function printTinyPageNav($pagestotal="",$currentpage="",$mode='images') {
 			break;
 	}
 	if($pagestotal > 1) {
-		echo "<ul style='display: inline; margin-left: -33px;'>";
+		echo "<ul style='display: inline; margin-left: -45px;'>";
+		if($currentpage != 1) {
+			echo "<li class=\"first\" style='display: inline; margin-left: 5px;'><a href='tinyzenpage.php?".$url."&amp;page=1'>&laquo; first</a></li>";
+		} else {
+			echo "<li class=\"first\" style='display: inline; margin-left: 5px; color: gray'>&laquo; first</li>";
+		}
 		if($currentpage != 1) {
 			echo "<li class=\"prev\" style='display: inline; margin-left: 5px;'><a href='tinyzenpage.php?".$url."&amp;page=".($currentpage-1)."'>&laquo; prev</a></li>";
 		} else {
@@ -385,6 +390,11 @@ function printTinyPageNav($pagestotal="",$currentpage="",$mode='images') {
 			echo "<li class=\"next\" style='display: inline; margin-left: 5px;'><a href='tinyzenpage.php?".$url."&amp;page=".($currentpage+1)."'>next &raquo;</a></li>";
 		} else {
 			echo "<li class=\"next\" style='display: inline; margin-left: 5px; color: gray'>next &raquo;</li>";
+		}
+		if($currentpage != $pagestotal) {
+			echo "<li class=\"last\" style='display: inline; margin-left: 5px;'><a href='tinyzenpage.php?".$url."&amp;page=".$pagestotal."'>last &raquo;</a></li>";
+		} else {
+			echo "<li class=\"last\" style='display: inline; margin-left: 5px; color: gray'>last &raquo;</li>";
 		}
 		echo "</ul><br />";
 	}
