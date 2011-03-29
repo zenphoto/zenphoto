@@ -3449,9 +3449,7 @@ function printBulkActions($checkarray, $checkAll=false) {
 			function checkForTags(obj) {
 				var sel = obj.options[obj.selectedIndex].value;
 				if (sel == 'addtags') {
-					$('#mass_tags').show();
-				} else {
-					$('#mass_tags').hide();
+					$.colorbox({href:"#mass_tags_data", inline:true, open:true});
 				}
 			}
 			// ]]> -->
@@ -3478,11 +3476,12 @@ function printBulkActions($checkarray, $checkAll=false) {
 	<?php
 	if ($tags) {
 		?>
-		<div id="mass_tags" style="display:none;float:right;">
-			<a href="#" onclick="$('#mass_tags').hide();" ><?php echo gettext('close'); ?></a>
-			<?php
-			tagSelector(NULL, 'mass_tags_', true, $tagsort, false);
-			?>
+		<div id="mass_tags" style="display:none;">
+			<div id="mass_tags_data">
+				<?php
+				tagSelector(NULL, 'mass_tags_', true, $tagsort, false);
+				?>
+			</div>
 		</div>
 		<?php
 	}
