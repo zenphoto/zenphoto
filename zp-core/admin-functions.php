@@ -3478,7 +3478,8 @@ function printBulkActions($checkarray, $checkAll=false) {
 	<?php
 	if ($tags) {
 		?>
-		<div id="mass_tags" class="colorbox" style="display:none;float:right;">
+		<div id="mass_tags" style="display:none;float:right;">
+			<a href="#" onclick="$('#mass_tags').hide();" ><?php echo gettext('close'); ?></a>
 			<?php
 			tagSelector(NULL, 'mass_tags_', true, $tagsort, false);
 			?>
