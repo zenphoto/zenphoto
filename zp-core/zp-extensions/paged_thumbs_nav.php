@@ -8,7 +8,7 @@
  */
 $plugin_description = gettext("Prints a paged thumbs navigation on image.php, independent of the album.php's thumbs.");
 $plugin_author = "Malte Müller (acrylian)";
-$plugin_version = '1.4.0';
+$plugin_version = '1.4.1';
 $option_interface = 'pagedthumbsOptions';
 
 /**

@@ -109,16 +109,12 @@ printLogoAndLinks();
 					<div class="headline"><?php echo gettext('Edit this Category'); ?>
 					<?php
 					$checkarray = array(
-					gettext('*Bulk actions*') => 'noaction',
-					gettext('Delete') => 'deleteall',
-					gettext('Reset hitcounter') => 'resethitcounter',
-					);
+													gettext('*Bulk actions*') => 'noaction',
+													gettext('Delete') => 'deleteall',
+													gettext('Reset hitcounter') => 'resethitcounter',
+													);
+					printBulkActions($checkarray);
 					?>
-					<span style="float: right">
-						<select name="checkallaction" id="checkallaction" size="1">
-						<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
-						</select>
-					</span>
 					</div>
 					<div class="subhead" >
 						<label style="float: right"><?php echo gettext("Check All"); ?>

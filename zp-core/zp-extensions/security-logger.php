@@ -10,7 +10,7 @@
 $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = sprintf(gettext("Logs all attempts to login to or illegally access the admin pages. Log is kept in <em>security_log.txt</em> in the %s folder."),DATA_FOLDER);
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.0';
+$plugin_version = '1.4.1';
 $option_interface = 'security_logger';
 
 if (getOption('logger_log_admin')) {

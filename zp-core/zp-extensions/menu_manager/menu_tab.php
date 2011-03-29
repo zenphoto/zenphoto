@@ -150,7 +150,7 @@ $count = db_result($result, 0);
 				}
 			?>
 			<select name="checkallaction" id="checkallaction" size="1">
-			<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
+				<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
 			</select>
 		</span>
 	</div>

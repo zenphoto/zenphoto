@@ -12,6 +12,7 @@
 //*************************************************************
 
 define('EXACT_TAG_MATCH',getOption('exact_tag_match'));
+define('SEARCH_DURATION', 3000);
 
 class SearchEngine
 {
@@ -479,10 +480,6 @@ class SearchEngine
 					$target = '';
 					$last = $result[] = $c;
 					$j = $i+1;
-					while ($j < strlen($searchstring) && substr($searchstring,$j,1)==' ') {
-						$j++;
-					}
-					$i=$j-1;
 					break;
 				case 'A':
 					if (substr($searchstring.' ', $i, 4) == 'AND ') {

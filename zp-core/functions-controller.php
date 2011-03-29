@@ -301,7 +301,7 @@ function zp_load_search() {
 	}
 	add_context(ZP_SEARCH);
 	$params = $_zp_current_search->getSearchParams();
-	zp_setcookie("zenphoto_search_params", $params, 60);
+	zp_setcookie("zenphoto_search_params", $params, SEARCH_DURATION);
 	return $_zp_current_search;
 }
 

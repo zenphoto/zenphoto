@@ -9,7 +9,7 @@
 $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = gettext('Video and MP3/4 handling for Zenphoto. This plugin must always be enabled to use multimedia content.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.0';
+$plugin_version = '1.4.1';
 
 addPluginType('flv', 'Video');
 addPluginType('3gp', 'Video');

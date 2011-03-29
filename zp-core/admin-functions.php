@@ -3436,48 +3436,175 @@ function enableComments($type) {
 }
 
 /**
+ * Edit tab bulk actions drop-down
+ * @param array $checkarray the list of actions
+ * @param bool $checkAll set true to include check all box
+ */
+function printBulkActions($checkarray, $checkAll=false) {
+	if (in_array('addtags', $checkarray)) {
+		$tags = true;
+		?>
+		<script type="text/javascript">
+			//<!-- <![CDATA[
+			function checkForTags(obj) {
+				var sel = obj.options[obj.selectedIndex].value;
+				if (sel == 'addtags') {
+					$('#mass_tags').show();
+				} else {
+					$('#mass_tags').hide();
+				}
+			}
+			// ]]> -->
+		</script>
+		<?php
+	}
+	?>
+	<span style="float:right">
+		<select name="checkallaction" id="checkallaction" size="1" onchange="checkForTags(this);" >
+			<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
+		</select>
+		<?php
+		if ($checkAll) {
+			?>
+			<br />
+			<?php
+			echo gettext("Check All");
+			?>
+			<input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			<?php
+		}
+		?>
+	</span>
+	<?php
+	if ($tags) {
+		?>
+		<div id="mass_tags" class="colorbox" style="display:none;float:right;">
+			<?php
+			tagSelector(NULL, 'mass_tags_', true, $tagsort, false);
+			?>
+		</div>
+		<?php
+	}
+}
+
+/**
  * Processes the check box bulk actions for albums
  *
  */
 function processAlbumBulkActions() {
 	global $gallery;
-	if (isset($_POST['ids'])) { // these is actually the folder name here!
-		//echo "action for checked items:". $_POST['checkallaction'];
-		$action = sanitize($_POST['checkallaction']);
-		$ids = $_POST['ids'];
-		$total = count($ids);
-		$message = NULL;
-		if($action != 'noaction') {
-			if ($total > 0) {
-				$n = 0;
-				foreach ($ids as $albumname) {
-					$n++;
-					$albumobj = new Album($gallery,$albumname);
-					switch($action) {
-						case 'deleteall':
-							$albumobj->remove();
-							break;
-						case 'showall':
-							$albumobj->set('show',1);
-							break;
-						case 'hideall':
-							$albumobj->set('show',0);
-							break;
-						case 'commentson':
-							$albumobj->set('commentson',1);
-							break;
-						case 'commentsoff':
-							$albumobj->set('commentson',0);
-							break;
-						case 'resethitcounter':
-							$albumobj->set('hitcounter',0);
-							break;
+	$action = sanitize($_POST['checkallaction']);
+	$ids = $_POST['ids'];
+	$total = count($ids);
+	$message = NULL;
+	if($action != 'noaction') {
+		if ($total > 0) {
+			if ($action == 'addtags') {
+				foreach ($_POST as $key => $value) {
+					$key = postIndexDecode($key);
+					if (substr($key, 0, 10) == 'mass_tags_') {
+						if ($value) {
+							$tags[] = substr($key, 10);
+						}
 					}
-					$albumobj->save();
 				}
+				$tags = sanitize($tags, 3);
 			}
-			return $action;
+			$n = 0;
+			foreach ($ids as $albumname) {
+				$n++;
+				$albumobj = new Album($gallery,$albumname);
+				switch($action) {
+					case 'deleteall':
+						$albumobj->remove();
+						break;
+					case 'showall':
+						$albumobj->set('show',1);
+						break;
+					case 'hideall':
+						$albumobj->set('show',0);
+						break;
+					case 'commentson':
+						$albumobj->set('commentson',1);
+						break;
+					case 'commentsoff':
+						$albumobj->set('commentson',0);
+						break;
+					case 'resethitcounter':
+						$albumobj->set('hitcounter',0);
+						break;
+					case 'addtags':
+						$mytags = array_merge($tags, $albumobj->getTags());
+						$albumobj->setTags($mytags);
+						break;
+					case 'cleartags':
+						$albumobj->setTags(array());
+						break;
+				}
+				$albumobj->save();
+			}
 		}
+		return $action;
+	}
+}
+
+/**
+ * Handles Image bulk actions
+ * @param $album
+ */
+function processBulkImageActions($album) {
+	$action = sanitize($_POST['checkallaction']);
+	$ids = $_POST['ids'];
+	$total = count($ids);
+	$message = NULL;
+	if($action != 'noaction') {
+		if ($total > 0) {
+			if ($action == 'addtags') {
+				foreach ($_POST as $key => $value) {
+					$key = postIndexDecode($key);
+					if (substr($key, 0, 10) == 'mass_tags_') {
+						if ($value) {
+							$tags[] = substr($key, 10);
+						}
+					}
+				}
+				$tags = sanitize($tags, 3);
+			}
+			$n = 0;
+			foreach ($ids as $filename) {
+				$n++;
+				$imageobj = newImage($album, $filename);
+				switch($action) {
+					case 'deleteall':
+						$imageobj->remove();
+						break;
+					case 'showall':
+						$imageobj->set('show',1);
+						break;
+					case 'hideall':
+						$imageobj->set('show',0);
+						break;
+					case 'commentson':
+						$imageobj->set('commentson',1);
+						break;
+					case 'commentsoff':
+						$imageobj->set('commentson',0);
+						break;
+					case 'resethitcounter':
+						$imageobj->set('hitcounter',0);
+						break;
+					case 'addtags':
+						$mytags = array_merge($tags, $imageobj->getTags());
+						$imageobj->setTags($mytags);
+						break;
+					case 'cleartags':
+						$imageobj->setTags(array());
+						break;
+				}
+				$imageobj->save();
+			}
+		}
+		return $action;
 	}
 }
 

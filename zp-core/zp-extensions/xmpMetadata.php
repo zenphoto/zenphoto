@@ -29,7 +29,7 @@
 $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = gettext('Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.0';
+$plugin_version = '1.4.1';
 $option_interface = 'xmpMetadata_options';
 
 zp_register_filter('album_instantiate', 'xmpMetadata_album_instantiate');

@@ -90,7 +90,7 @@ if (isset($_GET['p'])) {
 } else if (in_context(ZP_ALBUM)) {
 	if ($_zp_current_album->isDynamic()) {
 		$search = $_zp_current_album->getSearchEngine();
-		zp_setcookie("zenphoto_search_params", $search->getSearchParams(), 60);
+		zp_setcookie("zenphoto_search_params", $search->getSearchParams(), SEARCH_DURATION);
 	} else {
 		handleSearchParms('album', $_zp_current_album);
 	}

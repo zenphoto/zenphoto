@@ -21,7 +21,7 @@
  */
 $plugin_description = gettext("Enable <strong>dynamic-locale</strong> to allow viewers of your site to select the language translation of their choice.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.0';
+$plugin_version = '1.4.1';
 $option_interface = 'dynamic_locale_options';
 
 zp_register_filter('theme_head', 'dynamic_localeJS');

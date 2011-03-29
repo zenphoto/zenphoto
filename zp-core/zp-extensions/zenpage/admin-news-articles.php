@@ -133,20 +133,16 @@ printLogoAndLinks();
 						<th colspan="11"><?php echo gettext('Edit this article'); ?>
 						<?php
 						$checkarray = array(
-						gettext('*Bulk actions*') => 'noaction',
-						gettext('Delete') => 'deleteall',
-						gettext('Set to published') => 'showall',
-						gettext('Set to unpublished') => 'hideall',
-						gettext('Disable comments') => 'commentsoff',
-						gettext('Enable comments') => 'commentson',
-						gettext('Reset hitcounter') => 'resethitcounter',
-						);
-						?> <span style="float: right">
-								<select name="checkallaction" id="checkallaction" size="1">
-									<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
-								</select>
-						</span>
-
+														gettext('*Bulk actions*') => 'noaction',
+														gettext('Delete') => 'deleteall',
+														gettext('Set to published') => 'showall',
+														gettext('Set to unpublished') => 'hideall',
+														gettext('Disable comments') => 'commentsoff',
+														gettext('Enable comments') => 'commentson',
+														gettext('Reset hitcounter') => 'resethitcounter',
+														);
+						printBulkActions($checkarray);
+						?>
 						</th>
 						</tr>
 						<tr>

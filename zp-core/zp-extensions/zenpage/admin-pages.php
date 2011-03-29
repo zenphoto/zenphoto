@@ -63,7 +63,7 @@ zenpageJSCSS();
 			return true;
 		}
 	}
-	
+
 	// ]]> -->
 </script>
 
@@ -112,21 +112,17 @@ if (GALLERY_SECURITY != 'private') {
 <div class="bordered">
  <div class="headline"><?php echo gettext('Edit this page'); ?>
 	<?php
-	  	$checkarray = array(
-			  	gettext('*Bulk actions*') => 'noaction',
-			  	gettext('Delete') => 'deleteall',
-			  	gettext('Set to published') => 'showall',
-			  	gettext('Set to unpublished') => 'hideall',
-			  	gettext('Disable comments') => 'commentsoff',
-			  	gettext('Enable comments') => 'commentson',
-			  	gettext('Reset hitcounter') => 'resethitcounter',
-	  	);
-	  	?>
-	  	<span style="float:right">
-	  	<select name="checkallaction" id="checkallaction" size="1">
-	  	<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
-			</select>
-			</span>
+  $checkarray = array(
+							  	gettext('*Bulk actions*') => 'noaction',
+							  	gettext('Delete') => 'deleteall',
+							  	gettext('Set to published') => 'showall',
+							  	gettext('Set to unpublished') => 'hideall',
+							  	gettext('Disable comments') => 'commentsoff',
+							  	gettext('Enable comments') => 'commentson',
+							  	gettext('Reset hitcounter') => 'resethitcounter',
+					  			);
+	printBulkActions($checkarray);
+  ?>
 	</div>
   <div class="subhead">
 		<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />

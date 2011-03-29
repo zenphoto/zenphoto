@@ -301,17 +301,13 @@ if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])
 		<th colspan="11"><?php echo gettext("Edit this comment"); ?>
 		<?php
 	  	$checkarray = array(
-			  	gettext('*Bulk actions*') => 'noaction',
-			  	gettext('Delete') => 'deleteall',
-			  	gettext('Mark as spam') => 'spam',
-			  	gettext('Approve') => 'approve',
-	  	);
+									  	gettext('*Bulk actions*') => 'noaction',
+									  	gettext('Delete') => 'deleteall',
+									  	gettext('Mark as spam') => 'spam',
+									  	gettext('Approve') => 'approve',
+							  			);
+	  	printBulkActions($checkarray);
 	  	?>
-	  	<span style="float:right">
-	  	<select name="checkallaction" id="checkallaction" size="1">
-	  	<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
-			</select>
-			</span>
 		</th>
 
 	</tr>
