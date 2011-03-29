@@ -33,7 +33,8 @@
 			relative_urls : false,
 			document_base_url : "<?php echo WEBPATH."/"; ?>",
 			convert_urls : false,
-			entity_encoding: "raw"
+			entity_encoding: "raw",
+			content_css: "<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/tiny_mce/config/content.css"
 		});
 	// ]]> -->
 	</script>

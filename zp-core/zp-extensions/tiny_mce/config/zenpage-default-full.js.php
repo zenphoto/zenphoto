@@ -36,7 +36,8 @@
 			document_base_url : "<?php echo WEBPATH."/"; ?>",
 			convert_urls : false,
 			entity_encoding: "raw",
-			extended_valid_elements : "iframe[src|width|height|class|id|type|frameborder]"
+			extended_valid_elements : "iframe[src|width|height|class|id|type|frameborder]",
+			content_css: "<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/tiny_mce/config/content.css"
 		});
 
 		function ajaxfilemanager(field_name, url, type, win) {
