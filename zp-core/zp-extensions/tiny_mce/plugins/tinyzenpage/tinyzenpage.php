@@ -25,6 +25,7 @@ require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
 	<script language="javascript" type="text/javascript">
 	$(document).ready(function(){
 		$("a[rel='colorbox']").colorbox({iframe:true, innerWidth:450, innerHeight:450});
+		$("a.colorbox").colorbox({iframe:true, innerWidth:450, innerHeight:450});
 		
 		$('#imagetitle,#albumtitle,#customtext').click(function() {
 			$('#imagesize').hide();
