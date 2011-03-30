@@ -152,7 +152,16 @@ function security_logger_loginLogger($success, $user, $name, $ip, $action, $auth
 	fwrite($f, $message . "\n");
 	fclose($f);
 	clearstatcache();
-	chmod($file, 0600);
+	if (!$preexists) {
+		chmod($file, 0600);
+		$permission = fileperms($file)&0777;
+		if ($permission != 0600) {
+			$f = fopen($file, 'a');
+			fwrite($f,"\t\t".gettext('Set log security permissions')."\t\t\t".gettext('Failed')."\t\t".sprintf(gettext('File permissions of security log is %04o'),$permission)."\n");
+			fclose($f);
+			clearstatcache();
+		}
+	}
 	setupCurrentLocale($cur_locale);	//	restore to whatever was in effect.
 }
 
@@ -306,7 +315,7 @@ function security_logger_admin_XSRF_access($discard, $token) {
  */
 function security_logger_log_action($allow, $log, $action) {
 	list($user,$name) = security_logger_populate_user();
-	security_logger_loginLogger(true, $user, $name, getUserIP(), $action, 'zp_admin_auth', basename($log));
+	security_logger_loginLogger($allow, $user, $name, getUserIP(), $action, 'zp_admin_auth', basename($log));
 	return $allow;
 }
 
