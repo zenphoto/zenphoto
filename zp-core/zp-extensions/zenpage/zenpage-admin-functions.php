@@ -1809,9 +1809,6 @@ function processZenpageBulkActions($type,&$reports) {
 								$obj->remove();
 								break;
 							case 'addtags':
-
-debugLogVar('add tags',$obj);
-
 								$mytags = array_merge($tags, $obj->getTags());
 								$obj->setTags($mytags);
 								break;
