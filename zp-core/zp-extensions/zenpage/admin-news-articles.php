@@ -137,6 +137,8 @@ printLogoAndLinks();
 														gettext('Delete') => 'deleteall',
 														gettext('Set to published') => 'showall',
 														gettext('Set to unpublished') => 'hideall',
+														gettext('Add tags') => 'addtags',
+														gettext('Clear tags') => 'cleartags',
 														gettext('Disable comments') => 'commentsoff',
 														gettext('Enable comments') => 'commentson',
 														gettext('Reset hitcounter') => 'resethitcounter',

@@ -1750,57 +1750,92 @@ function processZenpageBulkActions($type,&$reports) {
 		}
 		if($action != 'noaction') {
 			if ($total > 0) {
+				if ($action == 'addtags') {
+					foreach ($_POST as $key => $value) {
+						$key = postIndexDecode($key);
+						if (substr($key, 0, 10) == 'mass_tags_') {
+							if ($value) {
+								$tags[] = substr($key, 10);
+							}
+						}
+					}
+					$tags = sanitize($tags, 3);
+				}
 				$n = 0;
 				switch($action) {
 					case 'deleteall':
 						$message = gettext('Selected items deleted');
 						break;
 					case 'showall':
-						$sql = "UPDATE ".$dbtable." SET `show` = 1 WHERE ";
 						$message = gettext('Selected items published');
 						break;
 					case 'hideall':
-						$sql = "UPDATE ".$dbtable." SET `show` = 0 WHERE ";
 						$message = gettext('Selected items unpublished');
 						break;
 					case 'commentson':
-						$sql = "UPDATE ".$dbtable." SET `commentson` = 1 WHERE ";
 						$message = gettext('Comments enabled for selected items');
 						break;
 					case 'commentsoff':
-						$sql = "UPDATE ".$dbtable." SET `commentson` = 0 WHERE ";
 						$message = gettext('Comments disabled for selected items');
 						break;
 					case 'resethitcounter':
-						$sql = "UPDATE ".$dbtable." SET `hitcounter` = 0 WHERE ";
 						$message = gettext('Hitcounter for selected items');
+						break;
+					case 'addtags':
+						$message = gettext('Selected tags added to selected items');
+						break;
+					case 'cleartags':
+						$message = gettext('Tags cleared from selected items');
 						break;
 				}
 				foreach ($ids as $id) {
 					$id = sanitize_numeric($id);
-					if($action == 'deleteall') {
-						$result = query_single_row('SELECT * FROM '.$dbtable.' WHERE id = '.$id);
-						if($result) {
-							switch($type) {
-								case 'pages':
-									deletePage($result['titlelink']);
-									break;
-								case 'news':
-									deleteArticle($result['titlelink']);
-									break;
-								case 'newscategories':
-									deleteCategory($result['titlelink']);
-									break;
-							}
+					$result = query_single_row('SELECT * FROM '.$dbtable.' WHERE id = '.$id);
+					if($result) {
+						switch($type) {
+							case 'pages':
+								$obj = new ZenpagePage($result['titlelink']);
+								break;
+							case 'news':
+								$obj = new ZenpageNews($result['titlelink']);
+								break;
+							case 'newscategories':
+								$obj = new ZenpageCategory($result['titlelink']);
+								break;
 						}
-					} else {
-						$n++;
-						$sql .= " id='".$id."' ";
-						if ($n < $total) $sql .= "OR ";
+
+						switch ($action) {
+							case 'deleteall':
+								$obj->remove();
+								break;
+							case 'addtags':
+
+debugLogVar('add tags',$obj);
+
+								$mytags = array_merge($tags, $obj->getTags());
+								$obj->setTags($mytags);
+								break;
+							case 'cleartags':
+								$obj->setTags(array());
+								break;
+							case 'showall':
+								$obj->set('show',1);
+								break;
+							case 'hideall':
+								$obj->set('show',0);
+								break;
+							case 'commentson':
+								$obj->set('commentson',1);
+								break;
+							case 'commentsoff':
+								$obj->set('commentson',0);
+								break;
+							case 'resethitcounter':
+								$obj->set('hitcounter',0);
+								break;
+						}
+						$obj->save();
 					}
-				}
-				if(($type != 'news' || $type != 'pages') && $action != 'deleteall') {
-					query($sql);
 				}
 				if(!is_null($message)) $reports[] = "<p class='messagebox fade-message'>".$message."</p>";
 			}
