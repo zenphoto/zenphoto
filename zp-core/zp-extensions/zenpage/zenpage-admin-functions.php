@@ -357,7 +357,7 @@ function printPagesListTable($page, $flag) {
 		<img src="../../images/fail.png" alt="" title="delete" /></a>
 	</div>
 	<div class="page-list_icon">
-		<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getID(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
+		<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 	</div>
 	<?php } else { ?>
 	<div class="page-list_icon">
@@ -1057,8 +1057,7 @@ function printCategoryListSortableTable($cat,$flag) {
 					src="../../images/fail.png" alt="<?php echo gettext("Delete"); ?>"
 					title="<?php echo gettext("Delete Category"); ?>" /></a>
 			</div>
-			<div class="page-list_icon"><input class="checkbox" type="checkbox" name="ids[]"
-					value="<?php echo  $cat->getID(); ?>"
+			<div class="page-list_icon"><input class="checkbox" type="checkbox" name="ids[]" value="<?php echo  $cat->getTitlelink(); ?>"
 					onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 			</div>
 	</div>
@@ -1733,8 +1732,8 @@ function processZenpageBulkActions($type,&$reports) {
 	if (isset($_POST['ids'])) {
 		//echo "action for checked items:". $_POST['checkallaction'];
 		$action = sanitize($_POST['checkallaction']);
-		$ids = $_POST['ids'];
-		$total = count($ids);
+		$links = $_POST['ids'];
+		$total = count($links);
 		$message = NULL;
 		$sql = '';
 		switch($type) {
@@ -1750,7 +1749,7 @@ function processZenpageBulkActions($type,&$reports) {
 		}
 		if($action != 'noaction') {
 			if ($total > 0) {
-				if ($action == 'addtags') {
+				if ($action == 'addtags' || $action == 'alltags') {
 					foreach ($_POST as $key => $value) {
 						$key = postIndexDecode($key);
 						if (substr($key, 0, 10) == 'mass_tags_') {
@@ -1782,57 +1781,64 @@ function processZenpageBulkActions($type,&$reports) {
 						$message = gettext('Hitcounter for selected items');
 						break;
 					case 'addtags':
-						$message = gettext('Selected tags added to selected items');
+						$message = gettext('Tags added to selected items');
 						break;
 					case 'cleartags':
 						$message = gettext('Tags cleared from selected items');
 						break;
+					case 'alltags':
+						$message = gettext('Tags added to articles of selected items');
+						break;
+					case 'clearalltags':
+						$message = gettext('Tags cleared from articles of selected items');
+						break;
 				}
-				foreach ($ids as $id) {
+				foreach ($links as $titlelink) {
 					$id = sanitize_numeric($id);
-					$result = query_single_row('SELECT * FROM '.$dbtable.' WHERE id = '.$id);
-					if($result) {
-						switch($type) {
-							case 'pages':
-								$obj = new ZenpagePage($result['titlelink']);
-								break;
-							case 'news':
-								$obj = new ZenpageNews($result['titlelink']);
-								break;
-							case 'newscategories':
-								$obj = new ZenpageCategory($result['titlelink']);
-								break;
-						}
-
-						switch ($action) {
-							case 'deleteall':
-								$obj->remove();
-								break;
-							case 'addtags':
-								$mytags = array_merge($tags, $obj->getTags());
-								$obj->setTags($mytags);
-								break;
-							case 'cleartags':
-								$obj->setTags(array());
-								break;
-							case 'showall':
-								$obj->set('show',1);
-								break;
-							case 'hideall':
-								$obj->set('show',0);
-								break;
-							case 'commentson':
-								$obj->set('commentson',1);
-								break;
-							case 'commentsoff':
-								$obj->set('commentson',0);
-								break;
-							case 'resethitcounter':
-								$obj->set('hitcounter',0);
-								break;
-						}
-						$obj->save();
+					switch($type) {
+						case 'pages':
+							$obj = new ZenpagePage($titlelink);
+							break;
+						case 'news':
+							$obj = new ZenpageNews($titlelink);
+							break;
+						case 'newscategories':
+							$obj = new ZenpageCategory($titlelink);
+							break;
 					}
+
+					switch ($action) {
+						case 'deleteall':
+							$obj->remove();
+							break;
+						case 'addtags':
+							$mytags = array_unique(array_merge($tags, $obj->getTags()));
+							$obj->setTags($mytags);
+							break;
+						case 'cleartags':
+							$obj->setTags(array());
+							break;
+						case 'alltags':
+							break;
+						case 'clearalltags':
+							break;
+						case 'showall':
+							$obj->set('show',1);
+							break;
+						case 'hideall':
+							$obj->set('show',0);
+							break;
+						case 'commentson':
+							$obj->set('commentson',1);
+							break;
+						case 'commentsoff':
+							$obj->set('commentson',0);
+							break;
+						case 'resethitcounter':
+							$obj->set('hitcounter',0);
+							break;
+					}
+					$obj->save();
 				}
 				if(!is_null($message)) $reports[] = "<p class='messagebox fade-message'>".$message."</p>";
 			}

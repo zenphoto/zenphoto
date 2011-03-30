@@ -3441,14 +3441,14 @@ function enableComments($type) {
  * @param bool $checkAll set true to include check all box
  */
 function printBulkActions($checkarray, $checkAll=false) {
-	if (in_array('addtags', $checkarray)) {
+	if (in_array('addtags', $checkarray) || in_array('alltags', $checkarray)) {
 		$tags = true;
 		?>
 		<script type="text/javascript">
 			//<!-- <![CDATA[
 			function checkForTags(obj) {
 				var sel = obj.options[obj.selectedIndex].value;
-				if (sel == 'addtags') {
+				if (sel == 'addtags' || sel == 'alltags') {
 					$.colorbox({href:"#mass_tags_data", inline:true, open:true});
 				}
 			}
@@ -3499,7 +3499,7 @@ function processAlbumBulkActions() {
 	$message = NULL;
 	if($action != 'noaction') {
 		if ($total > 0) {
-			if ($action == 'addtags') {
+			if ($action == 'addtags' || $action == 'alltags') {
 				foreach ($_POST as $key => $value) {
 					$key = postIndexDecode($key);
 					if (substr($key, 0, 10) == 'mass_tags_') {
@@ -3534,11 +3534,28 @@ function processAlbumBulkActions() {
 						$albumobj->set('hitcounter',0);
 						break;
 					case 'addtags':
-						$mytags = array_merge($tags, $albumobj->getTags());
+						$mytags = array_unique(array_merge($tags, $albumobj->getTags()));
 						$albumobj->setTags($mytags);
 						break;
 					case 'cleartags':
 						$albumobj->setTags(array());
+						break;
+					case 'alltags':
+						$images = $albumobj->getImages();
+						foreach ($images as $imagename) {
+							$imageobj = newImage($albumobj, $imagename);
+							$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
+							$imageobj->setTags($mytags);
+							$imageobj->save();
+						}
+						break;
+					case 'clearalltags':
+						$images = $albumobj->getImages();
+						foreach ($images as $imagename) {
+							$imageobj = newImage($albumobj, $imagename);
+							$imageobj->setTags(array());
+							$imageobj->save();
+						}
 						break;
 				}
 				$albumobj->save();
@@ -3594,7 +3611,7 @@ function processBulkImageActions($album) {
 						$imageobj->set('hitcounter',0);
 						break;
 					case 'addtags':
-						$mytags = array_merge($tags, $imageobj->getTags());
+						$mytags = array_unique(array_merge($tags, $imageobj->getTags()));
 						$imageobj->setTags($mytags);
 						break;
 					case 'cleartags':

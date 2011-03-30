@@ -577,17 +577,21 @@ if ($showthumb) {
 	$thumbshow = 'yes';
 	$thumbmsg = gettext('Show album thumb');
 }
-$checkarray = array(
-								gettext('*Bulk actions*') => 'noaction',
-								gettext('Delete') => 'deleteall',
-								gettext('Set to published') => 'showall',
-								gettext('Set to unpublished') => 'hideall',
-								gettext('Add tags') => 'addtags',
-								gettext('Clear tags') => 'cleartags',
-								gettext('Disable comments') => 'commentsoff',
-								gettext('Enable comments') => 'commentson',
-								gettext('Reset hitcounter') => 'resethitcounter'
-								);
+$checkarray_images = array(
+											gettext('*Bulk actions*') => 'noaction',
+											gettext('Delete') => 'deleteall',
+											gettext('Set to published') => 'showall',
+											gettext('Set to unpublished') => 'hideall',
+											gettext('Add tags') => 'addtags',
+											gettext('Clear tags') => 'cleartags',
+											gettext('Disable comments') => 'commentsoff',
+											gettext('Enable comments') => 'commentson',
+											gettext('Reset hitcounter') => 'resethitcounter'
+											);
+$checkarray_albums = array_merge($checkarray_images,
+																	array(gettext('Add tags to images') => 'alltags',
+																				gettext('Clear tags of images') => 'clearalltags')
+																	);
 
 /** EDIT ****************************************************************************/
 /************************************************************************************/
@@ -867,7 +871,7 @@ $alb = removeParentAlbumNames($album);
 			<div class="headline" style="text-align: left;"><?php echo gettext("Edit this album"); ?>
 			<?php
 			if (!$disableEdit) {
-				printBulkActions($checkarray);
+				printBulkActions($checkarray_albums);
 			}
 			?>
 			</div>
@@ -1002,7 +1006,7 @@ $alb = removeParentAlbumNames($album);
 						</button>
 				 </p>
 
-				<?php printBulkActions($checkarray,true); ?>
+				<?php printBulkActions($checkarray_images,true); ?>
 
 
 				</td>
@@ -1594,6 +1598,18 @@ if (isset($_GET['bulkmessage'])) {
 			case 'resethitcounter':
 				$message = gettext('Hitcounter for selected items');
 				break;
+			case 'addtags':
+				$message = gettext('Tags added selected items');
+				break;
+			case 'cleartags':
+				$message = gettext('Tags cleared for selected items');
+				break;
+			case 'alltags':
+				$message = gettext('Tags added for images of selected items');
+				break;
+			case 'clearalltags':
+				$message = gettext('Tags cleared for images of selected items');
+				break;
 		}
 		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".$message."</h2>";
@@ -1655,7 +1671,7 @@ if (isset($_GET['bulkmessage'])) {
 	<br clear="all" /><br />
 	<div class="bordered">
 		<div class="headline"><?php echo gettext("Edit this album"); ?>
-			<?php printBulkActions($checkarray); ?>
+			<?php printBulkActions($checkarray_albums); ?>
 		</div>
 		<div class="subhead">
 			<label class="buttons" style="float: left">

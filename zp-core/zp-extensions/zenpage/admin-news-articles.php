@@ -245,7 +245,7 @@ printLogoAndLinks();
 									<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 								</td>
 								<td class="icons">
-									<input type="checkbox" name="ids[]" value="<?php echo $article->getID(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
+									<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 								</td>
 								</tr>
 								<?php } else { ?>
