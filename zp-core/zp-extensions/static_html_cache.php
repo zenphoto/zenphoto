@@ -18,20 +18,19 @@
  * @author Malte Müller (acrylian)
  * @package plugins
  */
-/*
+if (!defined('OFFSET_PATH')) {
+	define('OFFSET_PATH', 3);
+	require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
+	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
+}
+
 $plugin_is_filter = 9|ADMIN_PLUGIN|THEME_PLUGIN;
-*/
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
 
 $option_interface = 'staticCache_options';
 
-if (!defined('OFFSET_PATH')) {
-	define('OFFSET_PATH', 3);
-	require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
-	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
-}
 require_once(dirname(dirname(__FILE__)).'/functions.php');
 
 zp_register_filter('admin_utilities_buttons', 'static_cache_html_purgebutton');
