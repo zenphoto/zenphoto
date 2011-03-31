@@ -413,6 +413,15 @@ if ($connection) {
 		$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Use earlier versions at your own risk. Version %2$s or greater is strongly recommended.'),$required, $desired)) && $good;
 	}
 
+	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup_log.txt';
+	$permission = fileperms($path)&0777;
+	if ($permission  == 0600) {
+		$p = true;
+	} else {
+		$p = -1;
+	}
+	checkMark($p, gettext("<code>Log security<code>"), gettext("<code>Log security<code> [is compromised]"), sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0666). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
+
 	if (ini_get('safe_mode')) {
 		$safe = -1;
 	} else {
