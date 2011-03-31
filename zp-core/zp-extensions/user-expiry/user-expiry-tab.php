@@ -127,7 +127,7 @@ echo '</head>'."\n";
 								<?php
 								foreach ($adminordered as $user) {
 									if (!($user['rights'] & ADMIN_RIGHTS)) {
-										$checked_delete = $checked_disable = $checked_renew = '';
+										$checked_delete = $checked_disable = $checked_renew = $dup = '';
 										$expires = strtotime($user['date'])+$subscription;
 										$expires_display = date('Y-m-d',$expires);
 										$loggedin = $user['loggedin'];
@@ -137,15 +137,29 @@ echo '</head>'."\n";
 											$loggedin = date('Y-m-d',strtotime($loggedin));
 										}
 										if ($expires < $now) {
-											$checked_delete = ' checked="chedked"';
-											$expires_display = '<span style="color:red" class="tooltip" title="'.gettext('Expired').'">'.$expires_display.'</span>';
+											if ($user['valid'] == 1) {
+												$checked_delete = ' checked="chedked"';
+											}
+											$expires_display = sprintf(gettext('Expired:%s'),'<span style="color:red" >'.$expires_display.'</span>');
 										} else {
 											if ($expires < $warnInterval) {
-												$expires_display = '<span style="color:orange" class="tooltip" title="'.gettext('Expires soon').'">'.$expires_display.'</span>';
+												$expires_display = sprintf(gettext('Expires:%s'),'<span style="color:orange" class="tooltip" title="'.gettext('Expires soon').'">'.$expires_display.'</span>');
+											} else {
+												$expires_display = sprintf(gettext('Expired:%s'),$expires_display);
 											}
 										}
 										if ($user['valid'] == 2) {
-											$checked_delete = '';
+											$hits = 0;
+											foreach ($adminordered as $tuser) {
+												if ($tuser['user'] == $user['user']) {
+													$hits++;
+												}
+											}
+											if ($hits > 1) {
+												$checked_delete = ' checked="chedked"';
+												$checked_disable = ' disabled="disabled"';
+												$expires_display = ' <span style="color:red">'.gettext('User id has been preempted').'</span>';
+											}
 										}
 										$id = $user['id'];
 										$r1 = '<img src="../../images/fail.png" title="'.gettext('delete').'" /><input type="radio" name="r_'.$id.'" value="delete"'.$checked_delete.' />&nbsp;';
@@ -154,16 +168,14 @@ echo '</head>'."\n";
 										} else {
 											$r2 = '<img src="../../images/lock_2.png" title="'.gettext('disable').'" /><input type="radio" name="r_'.$id.'" value="disable"'.$checked_disable.' />&nbsp;';
 										}
-										$r3 = '<img src="../../images/pass.png" title="'.gettext('renew').'" /><input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.' />&nbsp;';
-										if ($user['email']) {
-											$disable = '';
-										} else {
-											$disable = ' disabled="disabled"';
+										$r3 = '<img src="../../images/pass.png" title="'.gettext('renew').'" /><input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.$checked_disable.' />&nbsp;';
+										if (!$user['email']) {
+											$checked_disable = ' disabled="disabled"';
 										}
-										$r4 = '<img src="../../images/envelope.png" title="'.gettext('Email renewal').'" /><input type="radio" name="r_'.$id.'" value="revalidate"'.$disable.' />&nbsp;';
+										$r4 = '<img src="../../images/envelope.png" title="'.gettext('Email renewal').'" /><input type="radio" name="r_'.$id.'" value="revalidate"'.$checked_disable.' />&nbsp;';
 										?>
 										<li>
-											<?php printf(gettext('%1$s <strong>%2$s</strong> (expires:%3$s; last logon:%4$s)'),$r1.$r2.$r3.$r4,html_encode($user['user']),$expires_display,$loggedin); ?>
+											<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$s; last logon:%4$s)'),$r1.$r2.$r3.$r4,html_encode($user['user']),$expires_display,$loggedin); ?>
 										</li>
 										<?php
 									}
