@@ -3479,7 +3479,7 @@ function printBulkActions($checkarray, $checkAll=false) {
 		<div id="mass_tags" style="display:none;">
 			<div id="mass_tags_data">
 				<?php
-				tagSelector(NULL, 'mass_tags_', true, $tagsort, false);
+				tagSelector(NULL, 'mass_tags_', true, $tagsort, true);
 				?>
 			</div>
 		</div>
