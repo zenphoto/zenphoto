@@ -111,8 +111,8 @@ printLogoAndLinks();
 					$checkarray = array(
 													gettext('*Bulk actions*') => 'noaction',
 													gettext('Delete') => 'deleteall',
-//													gettext('Add tags to articles') => 'alltags',
-//													gettext('Clear tags of articles') => 'clearalltags',
+													gettext('Add tags to articles') => 'alltags',
+													gettext('Clear tags of articles') => 'clearalltags',
 													gettext('Reset hitcounter') => 'resethitcounter'
 													);
 					printBulkActions($checkarray);

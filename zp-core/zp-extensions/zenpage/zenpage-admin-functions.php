@@ -1819,8 +1819,21 @@ function processZenpageBulkActions($type,&$reports) {
 							$obj->setTags(array());
 							break;
 						case 'alltags':
+							$allarticles = getNewsArticles('', $obj->getTitlelink(), 'all',true);
+							foreach($allarticles as $article) {
+								$newsobj = new ZenpageNews($article['titlelink']);
+								$mytags = array_unique(array_merge($tags, $newsobj->getTags()));
+								$newsobj->setTags($mytags);
+								$newsobj->save(); 
+							} 
 							break;
 						case 'clearalltags':
+							$allarticles = getNewsArticles('', $obj->getTitlelink(), 'all',true);
+							foreach($allarticles as $article) {
+								$newsobj = new ZenpageNews($article['titlelink']);
+								$newsobj->setTags(array());
+								$newsobj->save();
+							} 
 							break;
 						case 'showall':
 							$obj->set('show',1);
@@ -1838,7 +1851,9 @@ function processZenpageBulkActions($type,&$reports) {
 							$obj->set('hitcounter',0);
 							break;
 					}
-					$obj->save();
+					if($type != 'newscategories' && ($action != 'alltags' || $action != 'clearalltags')) {
+						$obj->save();
+					}
 				}
 				if(!is_null($message)) $reports[] = "<p class='messagebox fade-message'>".$message."</p>";
 			}
