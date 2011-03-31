@@ -19,7 +19,7 @@
  * @package plugins
  * @subpackage usermanagement
  */
-
+$plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
@@ -27,6 +27,9 @@ $plugin_version = '1.4.1';
 $option_interface = 'register_user_options';
 
 zp_register_filter('custom_option_save','register_user_handleOptionSave');
+if (getOption('register_user_address_info')) {
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/comment_form.php');
+}
 
 /**
  * Plugin option handling class
@@ -59,6 +62,9 @@ class register_user_options {
 		$options = array(	gettext('Notify') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 4,
 												'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
+											gettext('User address') => array('key' => 'register_user_address_info', 'type' => OPTION_TYPE_CHECKBOX,
+												'order' => 4.5,
+												'desc' => gettext("If checked, The registeration form will include fields for the user's address.")),
 											gettext('User album') => array('key' => 'register_user_create_album', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 6,
 												'desc' => gettext('If checked, an album will be created and assigned to the user.')),

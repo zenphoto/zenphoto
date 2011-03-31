@@ -19,13 +19,19 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
 $option_interface = 'comment_form';
 
-zp_register_filter('comment_post', 'comment_form_comment_post');
-zp_register_filter('save_comment_custom_data', 'comment_form_save_comment');
-zp_register_filter('edit_comment_custom_data', 'comment_form_edit_comment');
+if (getOption('zp_plugin_comment_form')) {	// 	We might get loaded by some plugin needing the address fields
+	zp_register_filter('comment_post', 'comment_form_comment_post');
+	zp_register_filter('options_comments', 'comment_form_options');
+	zp_register_filter('save_comment_custom_data', 'comment_form_save_comment');
+	zp_register_filter('edit_comment_custom_data', 'comment_form_edit_comment');
+	zp_register_filter('admin_overview', 'comment_form_print10Most');
+}
 zp_register_filter('save_admin_custom_data', 'comment_form_save_admin');
 zp_register_filter('edit_admin_custom_data', 'comment_form_edit_admin');
-zp_register_filter('admin_overview', 'comment_form_print10Most');
-zp_register_filter('options_comments', 'comment_form_options');
+if (getOption('register_user_address_info')) {
+	zp_register_filter('register_user_form', 'comment_form_register_user');
+	zp_register_filter('register_user_registered', 'comment_form_register_save');
+}
 
 class comment_form {
 	/**
@@ -249,6 +255,15 @@ function comment_form_edit_comment($discard, $raw) {
 						<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="'.$address['postal'].'">
 					</td>
 				</tr>'."\n";
+}
+
+function comment_form_register_user($html) {
+	return comment_form_edit_comment(false, '');
+}
+
+function comment_form_register_save($user) {
+	$userinfo = getUserInfo(0);
+	$user->setCustomData(serialize($userinfo));
 }
 
 /**
