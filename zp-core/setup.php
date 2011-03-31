@@ -420,7 +420,7 @@ if ($connection) {
 	} else {
 		$p = -1;
 	}
-	checkMark($p, gettext("<code>Log security<code>"), gettext("<code>Log security<code> [is compromised]"), sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0666). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
+	checkMark($p, gettext("<code>Log security<code>"), gettext("<code>Log security<code> [is compromised]"), sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
 
 	if (ini_get('safe_mode')) {
 		$safe = -1;
