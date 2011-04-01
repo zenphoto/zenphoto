@@ -78,7 +78,7 @@ function uploadLimiterJS($defaultJS) {
 		$uploadtype = zp_getcookie('uploadtype');
 		$limitalbums = getUploadLimitedAlbums($albumlist);
 		$imagenumber = getUploadImagesInAlbum($albumlist);
-		if($uploadtype == "http") {
+		if($uploadtype == "httpupload") {
 			$js .= "$(document).ready(function() {
 										$('#albumselect').hide();
 							});";
@@ -124,9 +124,11 @@ function uploadLimiterJS($defaultJS) {
 		return queuelimit;
 	}";
 
-	if($uploadtype == "http") {
-			$js .= "$('#albumselect').hide();";
-		}
+	/*
+	if($uploadtype == "httpupload") {
+		$js .= "$('#albumselect').hide();";
+	}
+	*/
 	$js .= "var limitalbums = new Array(".$limitalbums.");";
 	if(isset($_GET['album']) && !empty($_GET['album'])) { // if we upload
 		$selectedalbum = sanitize($_GET['album']);
@@ -175,7 +177,7 @@ function uploadLimiterHeaderMessage($default) {
 	}
 	$warn = "";
 	$uploadtype = zp_getcookie('uploadtype');
-	if($uploadtype != "multifile") {
+	if($uploadtype == "httpupload") {
 		$warn = '<p style="color:red;">'.gettext('HTTP single file uploading is disabled because upload limitations are in effect. Please use the <a href="javascript:switchUploader(\'admin-upload.php?uploadtype=multifile\');" >multi file upload</a>').'</p>';
 	} else {
 		$uploadlimit = getOption('imageuploadlimit');

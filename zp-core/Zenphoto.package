@@ -253,6 +253,8 @@ zp-core/admin-edit.php
 zp-core/admin-filemanager.php
 zp-core/admin-functions.php
 zp-core/admin-globals.php
+zp-core/admin-httpupload
+zp-core/admin-httpupload/upload_form.php
 zp-core/admin-logs.php
 zp-core/admin-options.php
 zp-core/admin-plugins.php
@@ -269,6 +271,7 @@ zp-core/admin-uploadify/cancel.png
 zp-core/admin-uploadify/check.php
 zp-core/admin-uploadify/jquery.uploadify.js
 zp-core/admin-uploadify/swfobject.js
+zp-core/admin-uploadify/upload_form.php
 zp-core/admin-uploadify/uploader.php
 zp-core/admin-uploadify/uploadify.allglyphs.swf
 zp-core/admin-uploadify/uploadify.css
@@ -2743,4 +2746,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2745
+2748
