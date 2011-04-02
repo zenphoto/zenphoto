@@ -88,9 +88,9 @@ $zenphoto_tabs['users'] = array('text'=>gettext("users"),
 						'link'=>WEBPATH."/".ZENFOLDER.'/admin-users.php?page=users',
 						'subtabs'=>NULL);
 
-$subtabs = array();
-$optiondefault='';
 if (!$_zp_null_account) {
+	$subtabs = array();
+	$optiondefault='';
 	if (zp_loggedin(OPTIONS_RIGHTS)) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			$optiondefault='&amp;tab=general';
@@ -119,14 +119,13 @@ if (!$_zp_null_account) {
 	if (zp_loggedin(OPTIONS_RIGHTS)) {
 		$subtabs[gettext("RSS")] = 'admin-options.php?page=options&amp;tab=rss';
 	}
+	if (!empty($subtabs)) {
+		$zenphoto_tabs['options'] = array('text'=>gettext("options"),
+				'link'=>WEBPATH."/".ZENFOLDER.'/admin-options.php?page=options'.$optiondefault,
+				'subtabs'=>$subtabs,
+				'default'=>'gallery');
+	}
 }
-if (!empty($subtabs)) {
-	$zenphoto_tabs['options'] = array('text'=>gettext("options"),
-			'link'=>WEBPATH."/".ZENFOLDER.'/admin-options.php?page=options'.$optiondefault,
-			'subtabs'=>$subtabs,
-			'default'=>'gallery');
-}
-
 if (zp_loggedin(THEMES_RIGHTS) && !$_zp_null_account) {
 	$zenphoto_tabs['themes'] = array('text'=>gettext("themes"),
 						'link'=>WEBPATH."/".ZENFOLDER.'/admin-themes.php',

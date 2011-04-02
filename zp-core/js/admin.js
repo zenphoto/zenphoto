@@ -20,7 +20,7 @@ function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 	var checkbox = document.getElementById("autogen");
 	var newalbumbox = sel.form.newalbum;
 	var folder = sel.form.folder;
-	var exists = sel.form.existingfolder;
+	var exists = sel.form.existingfolder;	
 
 	if (selected.value == "") {
 		newalbumbox.checked = true;
@@ -67,23 +67,23 @@ function contains(arr, key) {
 
 function validateFolder(folderObj, msg1, msg2) {
 	var errorDiv = document.getElementById("foldererror");
-	var exists = document.uploaderform.existingfolder.value != "false";
+	var exists = document.file_upload.existingfolder.value != "false";
 	var uploadBoxesDiv = document.getElementById("uploadboxes");
 	var folder = folderObj.value;
 	if (!exists && albumArray && contains(albumArray, folder)) {
 		errorDiv.style.display = "block";
 		errorDiv.innerHTML = msg1;
-		uploadBoxesDiv.style.display = "none";
+		if (uploadBoxesDiv != null) uploadBoxesDiv.style.display = "none";
 		return false;
 	} else if ((folder == "") || folder.substr(folder.length-1, 1) == '/') {
 		errorDiv.style.display = "block";
 		errorDiv.innerHTML = msg2;
-		uploadBoxesDiv.style.display = "none";
+		if (uploadBoxesDiv != null) uploadBoxesDiv.style.display = "none";
 		return false;
 	} else {
 		errorDiv.style.display = "none";
 		errorDiv.innerHTML = "";
-		uploadBoxesDiv.style.display = "block";
+		if (uploadBoxesDiv != null) uploadBoxesDiv.style.display = "block";
 		return true;
 	}
 }

@@ -1,39 +1,58 @@
 <?php
-$uploadboxes = false;
+function upload_head() {
+	?>
+	<script type="text/javascript">
+		// <!-- <![CDATA[
+		window.totalinputs = 5;
+		// ]]> -->
+	</script>
+	<?php
+}
 
 function upload_form($uploadlimit) {
 	?>
-	<div id="upload_action">
-		<div id="uploadboxes" style="display: none;">
-			<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
-			<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
-			<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
-			<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
-			<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
+	<div id="uploadboxes" style="display: none;">
+		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
+		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
+		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
+		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
+		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
 
-			<div id="place" style="display: none;"></div>
-			<!-- New boxes get inserted before this -->
+		<div id="place" style="display: none;"></div>
+		<!-- New boxes get inserted before this -->
 
-			<div style="display:none">
-			<!-- This is the template that others are copied from -->
-			<div class="fileuploadbox" id="filetemplate" ><input type="file" size="40" name="files[]" value="x" /></div>
-			</div>
-			<p id="addUploadBoxes"><a href="javascript:addUploadBoxes('place','filetemplate',5)" title="<?php echo gettext("Doesn't reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a> <small>
-			<?php echo gettext("(won't reload the page, but remember your upload limits!)"); ?></small></p>
-
-
-			<p id="fileUploadbuttons" class="buttons">
-				<button type="submit" value="<?php echo gettext('Upload'); ?>"
-					onclick="this.form.folder.value = this.form.folderdisplay.value;" class="button">
-					<img src="images/pass.png" alt="" /><?php echo gettext('Upload'); ?>
-				</button>
-			</p>
-			<br /><br clear="all" />
+		<div style="display:none">
+		<!-- This is the template that others are copied from -->
+		<div class="fileuploadbox" id="filetemplate" ><input type="file" size="40" name="files[]" value="x" /></div>
 		</div>
-		<p id="uploadswitch"><?php echo gettext('Try the <a href="javascript:switchUploader(\'admin-upload.php?uploadtype=uploadify\');" >multi file upload</a>'); ?></p>
+		<p id="addUploadBoxes"><a href="javascript:addUploadBoxes('place','filetemplate',5)" title="<?php echo gettext("Doesn't reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a> <small>
+		<?php echo gettext("(won't reload the page, but remember your upload limits!)"); ?></small></p>
+
+
+		<p id="fileUploadbuttons" class="buttons">
+			<button type="submit" value="<?php echo gettext('Upload'); ?>"
+				onclick="this.form.folder.value = this.form.folderdisplay.value;" class="button">
+				<img src="images/pass.png" alt="" /><?php echo gettext('Upload'); ?>
+			</button>
+		</p>
+		<br /><br clear="all" />
 	</div>
 	<?php
 }
+
+function upload_form_trailer() {
+	?>
+	<p id="uploadswitch"><?php echo gettext('Try the <a href="javascript:switchUploader(\'admin-upload.php?uploadtype=uploadify\');" >multi file upload</a>'); ?></p>
+	<script type="text/javascript">
+		//<!-- <![CDATA[
+		$(document).ready(function() {
+			buttonstate($('#folderdisplay').val() != "");
+		});
+		// ]]> -->
+	</script>
+	<?php
+}
+
 
 function handle_upload() {
 	global $_zp_current_admin_obj;

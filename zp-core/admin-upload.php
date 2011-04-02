@@ -19,6 +19,9 @@ if (isset($_GET['uploadtype'])) {
 } else {
 	$uploadtype = zp_getcookie('uploadtype');
 }
+
+//*TODO:test of jquery upload scripts:*/ if ($uploadtype=='httpupload') $uploadtype = 'jqueryupload';
+
 if (!file_exists(SERVERPATH.'/'.ZENFOLDER.'/admin-'.$uploadtype.'/upload_form.php')) {
 		$uploadtype = 'uploadify';
 }
@@ -37,21 +40,12 @@ if (isset($_GET['action'])) {
 }
 
 printAdminHeader('upload','albums');
-/* MULTI FILE UPLOAD: Script additions */ ?>
-<link rel="stylesheet" href="admin-uploadify/uploadify.css" type="text/css" />
-<script type="text/javascript">
-	//<!-- <![CDATA[
-	var uploadifier_replace_message =  "<?php echo gettext('Do you want to replace the file %s?'); ?>";
-	var uploadifier_queue_full_message =  "<?php echo gettext('Upload queue is full. The upload limit is %u.'); ?>";
-	// ]]> -->
-</script>
-
-<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
+?>
 <script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/upload.js"></script>
-<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/flash_detect_min.js"></script>
-<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/admin-uploadify/jquery.uploadify.js"></script>
-<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/admin-uploadify/swfobject.js"></script>
 <?php
+//	load the uploader specific header stuff
+upload_head();
+
 echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();
@@ -70,7 +64,6 @@ printLogoAndLinks();
 			?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				window.totalinputs = 5;
 				// Array of album names for javascript functions.
 				var albumArray = new Array (
 					<?php
@@ -147,8 +140,8 @@ if (ini_get('safe_mode')) { ?>
 }
 ?>
 
-<form name="uploaderform" id="uploaderform" enctype="multipart/form-data" action="?action=upload&amp;uploadtype=<?php echo $uploadtype; ?>" method="post"
-												onsubmit="return validateFolder(document.uploaderform.folder,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');">
+<form name="file_upload" id="file_upload" enctype="multipart/form-data" action="?action=upload&amp;uploadtype=<?php echo $uploadtype; ?>" method="post"
+												onsubmit="return validateFolder(document.file_upload.folder,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');">
 	<?php XSRFToken('upload');?>
 	<input type="hidden" name="processed" value="1" />
 	<input type="hidden" name="existingfolder" value="false" />
@@ -258,51 +251,60 @@ if (ini_get('safe_mode')) { ?>
 		} else {
 			$display = ' display:none;';
 		}
-			?>
-			<div id="newalbumbox" style="margin-top: 5px;<?php echo $display; ?>">
-				<div>
-					<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect,false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>')" />
-					<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
-				</div>
-				<div id="publishtext"><?php echo gettext("and"); ?>
-					<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
-					<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
-				</div>
+		?>
+		<div id="newalbumbox" style="margin-top: 5px;<?php echo $display; ?>">
+			<div>
+				<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect,false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>')" />
+				<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
 			</div>
-			<div id="albumtext" style="margin-top: 5px;<?php echo $display; ?>">
-				<?php echo gettext("titled:"); ?>
-				<input type="text" name="albumtitle" id="albumtitle" size="42"
-											onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen','<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
+			<div id="publishtext"><?php echo gettext("and"); ?>
+				<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
+				<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
+			</div>
+		</div>
+		<div id="albumtext" style="margin-top: 5px;<?php echo $display; ?>">
+			<?php echo gettext("titled:"); ?>
+			<input type="text" name="albumtitle" id="albumtitle" size="42"
+										onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen','<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
 
-				<div style="position: relative; margin-top: 4px;"><?php echo gettext("with the folder name:"); ?>
-					<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
-					<input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
-												onkeyup="buttonstate(validateFolder(this,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
-					<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
-												onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
-												<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
-					<br />
-					<br />
-				</div>
-
-				<input type="hidden" name="folder" id="folderslot" value="<?php echo html_encode($passedalbum); ?>" />
+			<div style="position: relative; margin-top: 4px;"><?php echo gettext("with the folder name:"); ?>
+				<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
+				<input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
+											onkeyup="buttonstate(validateFolder(this,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
+				<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
+											onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
+											<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
+				<br />
+				<br />
 			</div>
 
-			<hr />
+			<input type="hidden" name="folder" id="folderslot" value="<?php echo html_encode($passedalbum); ?>" />
+		</div>
+
+		<hr />
+		<div id="upload_action">
 
 		<?php
+		//	load the uploader specific form stuff
 		upload_form($uploadlimit);
+		?>
+		</div>
+		<?php
 	} else {
 		echo gettext("There are no albums to which you can upload.");
 	}
 	?>
 	</div>
 </form>
+<?php
+//	load the uploaer specific trailer stuff.
+upload_form_trailer();
+?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
 	<?php echo zp_apply_filter('upload_helper_js', '')."\n"; ?>
 
-	albumSwitch(document.uploaderform.albumselect,false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
+	albumSwitch(document.file_upload.albumselect,false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
 	<?php
 		if (isset($_GET['folderdisplay'])) {
 			?>
@@ -321,14 +323,10 @@ if (ini_get('safe_mode')) { ?>
 				$('#folderdisplay').attr('disabled', 'disabled');
 				if ($('#albumtitle').val() != '') {
 					$('#foldererror').hide();
-					<?php
-					if($uploadboxes) {
-						?>
+					if ($('#uploadboxes').length != 0) {
 						$('#uploadboxes').show();
-						buttonstate(true);
-						<?php
 					}
-					?>
+					buttonstate(true);
 				}
 				<?php
 			} else {
@@ -336,14 +334,9 @@ if (ini_get('safe_mode')) { ?>
 				$('#autogen').removeAttr('checked');
 				$('#folderdisplay').removeAttr('disabled');
 				if ($('#folderdisplay').val() != '') {
-					<?php
-					if($uploadtype == 'httpupload') {
-						?>
+					if ($('#uploadboxes').length != 0) {
 						$('#uploadboxes').show();
-						buttonstate(true);
-						<?php
 					}
-					?>
 					$('#foldererror').hide();
 					buttonstate(false);
 				}
