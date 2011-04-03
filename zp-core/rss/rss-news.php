@@ -20,10 +20,10 @@ $items = getOption("zenpage_rss_items"); // # of Items displayed on the feed
 ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-<title><?php echo get_language_string(getOption('gallery_title'), $locale)." - News "; ?><?php if(!empty($cattitle)) { echo $cattitle ; } ?></title>
+<title><?php echo html_encode(get_language_string(getOption('gallery_title'), $locale))." - News "; ?><?php if(!empty($cattitle)) { echo html_encode($cattitle) ; } ?></title>
 <link><?php echo $serverprotocol."://".$host.WEBPATH; ?></link>
 <atom:link href="<?php echo $serverprotocol; ?>://<?php echo html_encode($_SERVER["HTTP_HOST"]); ?><?php echo html_encode($_SERVER["REQUEST_URI"]); ?>" rel="self" type="application/rss+xml" />
-<description><?php echo strip_tags(get_language_string(getOption('Gallery_description'), $locale)); ?></description>
+<description><?php echo html_encode(strip_tags(get_language_string(getOption('Gallery_description'), $locale))); ?></description>
 <language><?php echo $validlocale; ?></language>
 <pubDate><?php echo date("r", time()); ?></pubDate>
 <lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>
@@ -50,7 +50,7 @@ foreach($latest as $item) {
 	switch($item['type']) {
 		case 'news':
 			$obj = new ZenpageNews($item['titlelink']);
-			$title = html_encode(get_language_string($obj->get('title'),$locale));
+			$title = get_language_string($obj->get('title'),$locale);
 			$link = getNewsURL($obj->getTitlelink());
 			$count2 = 0;
 			$category = $obj->getCategories();
@@ -75,7 +75,7 @@ foreach($latest as $item) {
 			$albumobj = new Album($_zp_gallery,$item['albumname']);
 			$obj = newImage($albumobj,$item['titlelink']);
 			$categories = get_language_string($albumobj->get('title'),$locale);
-			$title = strip_tags(html_encode(get_language_string($obj->get('title'),$locale)));
+			$title = strip_tags(get_language_string($obj->get('title'),$locale));
 			$link = $obj->getImageLink();
 			$type = "image";
 			$filename = $obj->getFilename();
@@ -88,9 +88,9 @@ foreach($latest as $item) {
 				$content = shortenContent(get_language_string($obj->get('desc'),$locale),getOption('zenpage_rss_length'), $elipsis='...');
 			}
 			if(isImagePhoto($obj)) {
-				$content = '<![CDATA[<a title="'.$title.' in '.$categories.'" href="'.$serverprotocol.'://'.$host.$link.'"><img border="0" src="'.$serverprotocol.'://'.$host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$filename.'&s='.$s.'" alt="'. $title .'"></a>' . $content . ']]>';
+				$content = '<![CDATA[<a title="'.html_encode($title).' in '.html_encode($categories).'" href="'.$serverprotocol.'://'.$host.$link.'"><img border="0" src="'.$serverprotocol.'://'.$host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$filename.'&s='.$s.'" alt="'. html_encode($title) .'"></a>' . $content . ']]>';
 			} else {
-				$content = '<![CDATA[<a title="'.$title.' in '.$categories.'" href="'.$serverprotocol.'://'.$host.$link.'"><img src="'.$obj->getThumb().'" alt="'.html_encode($title).'" /></a>'.$content.']]>';
+				$content = '<![CDATA[<a title="'.html_encode($title).' in '.html_encode($categories).'" href="'.$serverprotocol.'://'.$host.$link.'"><img src="'.$obj->getThumb().'" alt="'.html_encode($title).'" /></a>'.$content.']]>';
 			}
 			//$thumb = "<a href=\"".$link."\" title=\"".html_encode($title)."\"><img src=\"".$obj->getThumb()."\" alt=\"".html_encode($title)."\" /></a>\n";
 
@@ -101,7 +101,7 @@ foreach($latest as $item) {
 	$categories = html_encode($categories);
 ?>
 <item>
-	<title><?php echo $title." (".$categories.")"; ?></title>
+	<title><?php echo html_encode($title)." (".html_encode($categories).")"; ?></title>
 	<link><?php echo '<![CDATA['.$serverprotocol.'://'.$host.$link.']]>';?></link>
 	<description>
 	<?php echo $content;	?>
