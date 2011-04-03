@@ -254,7 +254,11 @@ zp-core/admin-filemanager.php
 zp-core/admin-functions.php
 zp-core/admin-globals.php
 zp-core/admin-httpupload
+zp-core/admin-httpupload/jquery.fileupload-ui.css
+zp-core/admin-httpupload/jquery.fileupload-ui.js
+zp-core/admin-httpupload/jquery.fileupload.js
 zp-core/admin-httpupload/upload_form.php
+zp-core/admin-httpupload/uploader.php
 zp-core/admin-logs.php
 zp-core/admin-options.php
 zp-core/admin-plugins.php
@@ -276,7 +280,6 @@ zp-core/admin-uploadify/uploader.php
 zp-core/admin-uploadify/uploadify.allglyphs.swf
 zp-core/admin-uploadify/uploadify.css
 zp-core/admin-uploadify/uploadify.fla
-zp-core/admin-uploadify/uploadify.php
 zp-core/admin-uploadify/uploadify.swf
 zp-core/admin-users.php
 zp-core/admin.css
@@ -1375,6 +1378,8 @@ zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/langs/ru.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/langs/sk.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/langs/zh.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/mediaplayer.swf
+zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/session
+zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/session/gc_counter.ajax.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/theme
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/theme/default
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/theme/default/css
@@ -2746,4 +2751,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2748
+2753

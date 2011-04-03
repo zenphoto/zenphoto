@@ -20,10 +20,8 @@ if (isset($_GET['uploadtype'])) {
 	$uploadtype = zp_getcookie('uploadtype');
 }
 
-//*TODO:test of jquery upload scripts:*/ if ($uploadtype=='httpupload') $uploadtype = 'jqueryupload';
-
 if (!file_exists(SERVERPATH.'/'.ZENFOLDER.'/admin-'.$uploadtype.'/upload_form.php')) {
-		$uploadtype = 'uploadify';
+	$uploadtype = 'httpupload';
 }
 require_once(SERVERPATH.'/'.ZENFOLDER.'/admin-'.$uploadtype.'/upload_form.php');
 zp_setcookie('uploadtype', $uploadtype);
@@ -31,13 +29,6 @@ zp_setcookie('uploadtype', $uploadtype);
 $gallery = new Gallery();
 $page = "upload";
 $_GET['page'] = 'upload';
-
-/* handle posts */
-if (isset($_GET['action'])) {
-	if ($_GET['action'] == 'upload') {
-		list($errormsg, $error) = handle_upload();
-	}
-}
 
 printAdminHeader('upload','albums');
 ?>
@@ -133,8 +124,8 @@ if (isset($_GET['uploaded'])) {
 }
 if (ini_get('safe_mode')) { ?>
 <div class="warningbox fade-message">
-<h2><?php echo gettext("PHP Safe Mode Restrictions in effect!"); ?></h2>
-<p><?php echo gettext("Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions are in effect"); ?></p>
+	<h2><?php echo gettext("PHP Safe Mode Restrictions in effect!"); ?></h2>
+	<p><?php echo gettext("Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions are in effect"); ?></p>
 </div>
 <?php
 }
@@ -178,170 +169,171 @@ if ($rootrights || !empty($albumlist)) {
 		// ]]> -->
 	</script>
 
-
-<form name="file_upload_datum" id="file_upload_datum" action="" method="post" >
-	<input type="hidden" name="processed" id="processed" value="1" />
-	<input type="hidden" name="existingfolder" id="existingfolder" value="false" />
-
 	<div id="albumselect">
-		<select id="albumselectmenu" name="albumselect" onchange="albumSelect()">
-			<?php
-			if ($rootrights) {
+
+		<form name="file_upload_datum" id="file_upload_datum" action="" method="post" >
+			<input type="hidden" name="processed" id="processed" value="1" />
+			<input type="hidden" name="existingfolder" id="existingfolder" value="false" />
+
+				<select id="albumselectmenu" name="albumselect" onchange="albumSelect()">
+					<?php
+					if ($rootrights) {
+						?>
+						<option value="" selected="selected" style="font-weight: bold;">/</option>
+						<?php
+					}
+					$bglevels = array('#fff','#f8f8f8','#efefef','#e8e8e8','#dfdfdf','#d8d8d8','#cfcfcf','#c8c8c8');
+					if (isset($_GET['album'])) {
+						$passedalbum = sanitize($_GET['album']);
+					} else {
+						if ($rootrights) {
+							$passedalbum = NULL;
+						} else {
+							$alist = $albumlist;
+							$passedalbum = array_shift($alist);
+						}
+					}
+					foreach ($albumlist as $fullfolder => $albumtitle) {
+						$singlefolder = $fullfolder;
+						$saprefix = "";
+						$salevel = 0;
+						if (!is_null($passedalbum) && ($passedalbum == $fullfolder)) {
+							$selected = " selected=\"selected\" ";
+						} else {
+							$selected = "";
+						}
+						// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
+						while (strstr($singlefolder, '/') !== false) {
+							$singlefolder = substr(strstr($singlefolder, '/'), 1);
+							$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
+							$salevel++;
+						}
+						echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: '.$bglevels[$salevel].'; border-bottom: 1px dotted #ccc;"' : '')
+								. "$selected>" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
+					}
+					if (isset($_GET['publishalbum'])) {
+						if ($_GET['publishalbum']=='true') {
+							$publishchecked = ' checked="checked"';
+						} else {
+							$publishchecked = '';
+						}
+					} else {
+						if ($albpublish = getOption('album_publish')) {
+							$publishchecked = ' checked="checked"';
+						} else {
+							$publishchecked = '';
+						}
+					}
+					?>
+				</select>
+
+				<?php
+				if (empty($passedalbum)) {
+					$modified_rights = MANAGED_OBJECT_RIGHTS_EDIT;
+				} else {
+					$rightsalbum = $rightsalbum = new Album($gallery, $passedalbum);
+					$modified_rights = $rightsalbum->albumSubRights();
+				}
+				if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) {	//	he has edit rights, allow new album creation
+					$display = '';
+				} else {
+					$display = ' display:none;';
+				}
 				?>
-				<option value="" selected="selected" style="font-weight: bold;">/</option>
+				<div id="newalbumbox" style="margin-top: 5px;<?php echo $display; ?>">
+					<div>
+						<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect,false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>')" />
+						<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
+					</div>
+					<div id="publishtext"><?php echo gettext("and"); ?>
+						<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
+						<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
+					</div>
+				</div>
+				<div id="albumtext" style="margin-top: 5px;<?php echo $display; ?>">
+					<?php echo gettext("titled:"); ?>
+					<input type="text" name="albumtitle" id="albumtitle" size="42"
+												onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen','<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
+
+					<div style="position: relative; margin-top: 4px;"><?php echo gettext("with the folder name:"); ?>
+						<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
+						<input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
+													onkeyup="buttonstate(validateFolder(this,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
+						<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
+													onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
+													<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
+						<br />
+						<br />
+					</div>
+					<input type="hidden" name="folder" id="folderslot" value="<?php echo html_encode($passedalbum); ?>" />
+				</div>
+				<hr />
+
+		</form>
+
+		<div id="upload_action">
+		<?php
+		//	load the uploader specific form stuff
+		upload_form($uploadlimit);
+		?>
+		</div><!-- upload aaction -->
+		<script type="text/javascript">
+			//<!-- <![CDATA[
+			<?php
+			echo zp_apply_filter('upload_helper_js', '')."\n";
+			if ($passedalbum) {
+				?>
+				$('#folderdisplay').val('<?php echo $passedalbum; ?>');
+				buttonstate(true);
 				<?php
 			}
-			$bglevels = array('#fff','#f8f8f8','#efefef','#e8e8e8','#dfdfdf','#d8d8d8','#cfcfcf','#c8c8c8');
-			if (isset($_GET['album'])) {
-				$passedalbum = sanitize($_GET['album']);
-			} else {
-				if ($rootrights) {
-					$passedalbum = NULL;
-				} else {
-					$alist = $albumlist;
-					$passedalbum = array_shift($alist);
-				}
-			}
-			foreach ($albumlist as $fullfolder => $albumtitle) {
-				$singlefolder = $fullfolder;
-				$saprefix = "";
-				$salevel = 0;
-				if (!is_null($passedalbum) && ($passedalbum == $fullfolder)) {
-					$selected = " selected=\"selected\" ";
-				} else {
-					$selected = "";
-				}
-				// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
-				while (strstr($singlefolder, '/') !== false) {
-					$singlefolder = substr(strstr($singlefolder, '/'), 1);
-					$saprefix = "&nbsp; &nbsp;&raquo;&nbsp;" . $saprefix;
-					$salevel++;
-				}
-				echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: '.$bglevels[$salevel].'; border-bottom: 1px dotted #ccc;"' : '')
-						. "$selected>" . $saprefix . $singlefolder . " (" . $albumtitle . ')' . "</option>\n";
-			}
-			if (isset($_GET['publishalbum'])) {
-				if ($_GET['publishalbum']=='true') {
-					$publishchecked = ' checked="checked"';
-				} else {
-					$publishchecked = '';
-				}
-			} else {
-				if ($albpublish = getOption('album_publish')) {
-					$publishchecked = ' checked="checked"';
-				} else {
-					$publishchecked = '';
-				}
-			}
 			?>
-		</select>
-
+			albumSwitch(document.getElementById('albumselectmenu'),false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
+			<?php
+				if (isset($_GET['folderdisplay'])) {
+					?>
+					$('#folderdisplay').val('<?php echo sanitize($_GET['folderdisplay']); ?>');
+					<?php
+				}
+				if (isset($_GET['albumtitle'])) {
+					?>
+					$('#albumtitle').val('<?php echo sanitize($_GET['albumtitle']); ?>');
+					<?php
+				}
+				if (isset($_GET['autogen'])) {
+					if ($_GET['autogen'] == 'true') {
+						?>
+						$('#autogen').attr('checked', 'checked');
+						$('#folderdisplay').attr('disabled', 'disabled');
+						if ($('#albumtitle').val() != '') {
+							$('#foldererror').hide();
+							buttonstate(true);
+						}
+						<?php
+					} else {
+						?>
+						$('#autogen').removeAttr('checked');
+						$('#folderdisplay').removeAttr('disabled');
+						if ($('#folderdisplay').val() != '') {
+							$('#foldererror').hide();
+							buttonstate(false);
+						}
+						<?php
+					}
+				}
+			?>
+			// ]]> -->
+		</script>
 		<?php
-		if (empty($passedalbum)) {
-			$modified_rights = MANAGED_OBJECT_RIGHTS_EDIT;
-		} else {
-			$rightsalbum = $rightsalbum = new Album($gallery, $passedalbum);
-			$modified_rights = $rightsalbum->albumSubRights();
-		}
-		if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) {	//	he has edit rights, allow new album creation
-			$display = '';
-		} else {
-			$display = ' display:none;';
-		}
-		?>
-		<div id="newalbumbox" style="margin-top: 5px;<?php echo $display; ?>">
-			<div>
-				<input type="checkbox" name="newalbum" id="newalbumcheckbox"<?php echo $checked; ?> onclick="albumSwitch(this.form.albumselect,false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>')" />
-				<label for="newalbumcheckbox"><?php echo gettext("Make a new Album"); ?></label>
-			</div>
-			<div id="publishtext"><?php echo gettext("and"); ?>
-				<input type="checkbox" name="publishalbum" id="publishalbum" value="1" <?php echo $publishchecked; ?> />
-				<label for="publishalbum"><?php echo gettext("Publish the album so everyone can see it."); ?></label>
-			</div>
-		</div>
-		<div id="albumtext" style="margin-top: 5px;<?php echo $display; ?>">
-			<?php echo gettext("titled:"); ?>
-			<input type="text" name="albumtitle" id="albumtitle" size="42"
-										onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen','<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
-
-			<div style="position: relative; margin-top: 4px;"><?php echo gettext("with the folder name:"); ?>
-				<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
-				<input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
-											onkeyup="buttonstate(validateFolder(this,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
-				<input type="checkbox" name="autogenfolder" id="autogen" checked="checked"
-											onclick="buttonstate(toggleAutogen('folderdisplay', 'albumtitle', this));" />
-											<label for="autogen"><?php echo gettext("Auto-generate"); ?></label>
-				<br />
-				<br />
-			</div>
-			<input type="hidden" name="folder" id="folderslot" value="<?php echo html_encode($passedalbum); ?>" />
-		</div>
-		<hr />
-	</div>
-</form>
-
-	<div id="upload_action">
-	<?php
-	//	load the uploader specific form stuff
-	upload_form($uploadlimit);
-	?>
-	</div>
-
-<script type="text/javascript">
-	//<!-- <![CDATA[
-	<?php
-	echo zp_apply_filter('upload_helper_js', '')."\n";
-	if ($passedalbum) {
-		?>
-		$('#folderdisplay').val('<?php echo $passedalbum; ?>');
-		buttonstate(true);
-		<?php
+	} else {
+		echo gettext("There are no albums to which you can upload.");
 	}
 	?>
-	albumSwitch(document.getElementById('albumselectmenu'),false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
-	<?php
-		if (isset($_GET['folderdisplay'])) {
-			?>
-			$('#folderdisplay').val('<?php echo sanitize($_GET['folderdisplay']); ?>');
-			<?php
-		}
-		if (isset($_GET['albumtitle'])) {
-			?>
-			$('#albumtitle').val('<?php echo sanitize($_GET['albumtitle']); ?>');
-			<?php
-		}
-		if (isset($_GET['autogen'])) {
-			if ($_GET['autogen'] == 'true') {
-				?>
-				$('#autogen').attr('checked', 'checked');
-				$('#folderdisplay').attr('disabled', 'disabled');
-				if ($('#albumtitle').val() != '') {
-					$('#foldererror').hide();
-					buttonstate(true);
-				}
-				<?php
-			} else {
-				?>
-				$('#autogen').removeAttr('checked');
-				$('#folderdisplay').removeAttr('disabled');
-				if ($('#folderdisplay').val() != '') {
-					$('#foldererror').hide();
-					buttonstate(false);
-				}
-				<?php
-			}
-		}
-	?>
-	// ]]> -->
-</script>
-	<?php
-} else {
-	echo gettext("There are no albums to which you can upload.");
-}
-?>
-</div>
-</div>
-</div>
+	</div><!-- albumselect -->
+
+</div><!-- tabbox -->
+</div><!-- content -->
+</div><!-- main -->
 <?php
 printAdminFooter();
 ?>

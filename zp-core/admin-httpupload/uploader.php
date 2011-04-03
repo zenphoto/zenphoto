@@ -10,21 +10,18 @@ if (isset($_POST['auth'])) {
 }
 
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
-
 if (!empty($_FILES)) {
 	$gallery = new Gallery();
-	$name = trim(basename(sanitize($_FILES['Filedata']['name'],3)));
-	if (isset($_FILES['Filedata']['error']) && $_FILES['Filedata']['error']) {
+	$name = trim(basename(sanitize($_FILES['file']['name'],3)));
+	if (isset($_FILES['Filedata']['error']) && $_FILES['file']['error']) {
 		debugLogArray('Uploadify error:', $_FILES);
 		trigger_error(sprintf(gettext('Uploadify error on %1$s. Review your debug log.'),$name));
 	} else {
-		$tempFile = sanitize($_FILES['Filedata']['tmp_name'],3);
-		$folder = trim(sanitize($_POST['folder'],3));
+		$tempFile = sanitize($_FILES['file']['tmp_name'],3);
+		$folder = trim(sanitize($_POST['http_folder'],3));
 		if (substr($folder,0,1) == '/') {
 			$folder = substr($folder,1);
 		}
-		$albumparmas = explode(':', $folder,3);
-		$folder = trim($albumparmas[1]);
 		if (substr($folder,0,1) == '/') {
 			$folder = substr($folder,1);
 		}
@@ -49,8 +46,8 @@ if (!empty($_FILES)) {
 			if ($new) {
 				mkdir_recursive($targetPath, CHMOD_VALUE);
 				$album = new Album($gallery, $folder);
-				$album->setShow($albumparmas[0]!='false');
-				$album->setTitle($albumparmas[2]);
+				$album->setShow($_POST['http_publishalbum']);
+				$album->setTitle($_POST['http_albumtitle']);
 				$album->setOwner($_zp_current_admin_obj->getUser());
 				$album->save();
 			}
@@ -84,6 +81,7 @@ if (!empty($_FILES)) {
 	}
 }
 
-echo '1';
+$file = $_FILES['file'];
+echo '{"name":"'.$file['name'].'","type":"'.$file['type'].'","size":"'.$file['size'].'"}';
 
 ?>

@@ -92,7 +92,7 @@ function upload_form($uploadlimit) {
 		<a href="javascript:$('#fileUpload').uploadifyClearQueue()"><img src="images/fail.png" alt="" /><?php echo gettext("Cancel"); ?></a>
 	<br clear="all" /><br />
 	</p>
-	<p id="uploadswitch"><?php echo gettext('If your upload does not work try the <a href="javascript:switchUploader(\'admin-upload.php?uploadtype=httpupload\');" >http-browser single file upload</a> or use FTP instead.'); ?></p>
+	<p id="uploadswitch"><?php echo gettext('If your upload does not work try the <a href="javascript:switchUploader(\'admin-upload.php?uploadtype=httpupload\');" >jquery file upload</a> or use FTP instead.'); ?></p>
 	<?php
 }
 ?>
