@@ -11,54 +11,61 @@ function upload_head() {
 
 function upload_form($uploadlimit) {
 	?>
-	<div id="uploadboxes" style="display: none;">
-		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
-		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
-		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
-		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
-		<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
-
-		<div id="place" style="display: none;"></div>
-		<!-- New boxes get inserted before this -->
-
-		<div style="display:none">
-		<!-- This is the template that others are copied from -->
-		<div class="fileuploadbox" id="filetemplate" ><input type="file" size="40" name="files[]" value="x" /></div>
-		</div>
-		<p id="addUploadBoxes"><a href="javascript:addUploadBoxes('place','filetemplate',5)" title="<?php echo gettext("Doesn't reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a> <small>
-		<?php echo gettext("(won't reload the page, but remember your upload limits!)"); ?></small></p>
-
-
-		<p id="fileUploadbuttons" class="buttons">
-			<button type="submit" value="<?php echo gettext('Upload'); ?>"
-				onclick="this.form.folder.value = this.form.folderdisplay.value;" class="button">
-				<img src="images/pass.png" alt="" /><?php echo gettext('Upload'); ?>
-			</button>
-		</p>
-		<br /><br clear="all" />
-	</div>
-	<?php
-}
-
-function upload_form_trailer() {
-	?>
-	<p id="uploadswitch"><?php echo gettext('Try the <a href="javascript:switchUploader(\'admin-upload.php?uploadtype=uploadify\');" >multi file upload</a>'); ?></p>
 	<script type="text/javascript">
-		//<!-- <![CDATA[
-		$(document).ready(function() {
-			buttonstate($('#folderdisplay').val() != "");
-		});
+		// <!-- <![CDATA[
+		function http_submit() {
+			$('#http_processed').val($('#processed').val());
+			$('#http_publishalbum').val($('#publishalbum').val());
+			$('#http_albumtitle').val($('#albumtitle').val());
+			$('#http_folder').val($('#folderdisplay').val());
+			$('#http_existingfolder').val($('#existingfolder').val());
+			return true;
+		}
 		// ]]> -->
 	</script>
+	<form name="file_upload" id="file_upload" action="?action=upload&amp;uploadtype=httpupload"
+				enctype="multipart/form-data" method="post" onsubmit="http_submit()">
+		<?php XSRFToken('upload');?>
+		<input type="hidden" name="http_processed" id="http_processed" value="1" />
+		<input type="hidden" name="http_publishalbum" id="http_publishalbum" value="1" />
+		<input type="hidden" name="http_albumtitle" id="http_albumtitle" value="" />
+		<input type="hidden" name="http_folder" id="http_folder" value="/" />
+		<input type="hidden" name="http_existingfolder" id="http_existingfolder" value="false" />
+		<div id="fileUploadbuttons" style="display: none;">
+			<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
+			<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
+			<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
+			<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
+			<div class="fileuploadbox"><input type="file" size="40" name="files[]" /></div>
+
+			<div id="place" style="display: none;"></div>
+			<!-- New boxes get inserted before this -->
+
+			<div style="display:none">
+			<!-- This is the template that others are copied from -->
+			<div class="fileuploadbox" id="filetemplate" ><input type="file" size="40" name="files[]" value="x" /></div>
+			</div>
+			<p id="addUploadBoxes"><a href="javascript:addUploadBoxes('place','filetemplate',5)" title="<?php echo gettext("Doesn't reload!"); ?>">+ <?php echo gettext("Add more upload boxes"); ?></a>
+				<small><?php echo gettext("(won't reload the page, but remember your upload limits!)"); ?></small>
+			</p>
+
+			<p class="buttons">
+				<button type="submit" value="<?php echo gettext('Upload'); ?>" class="button">
+					<img src="images/pass.png" alt="" /><?php echo gettext('Upload'); ?>
+				</button>
+			</p>
+			<br /><br clear="all" />
+		</div>
+	</form>
+	<p id="uploadswitch"><?php echo gettext('Try the <a href="javascript:switchUploader(\'admin-upload.php?uploadtype=uploadify\');" >multi file upload</a>'); ?></p>
 	<?php
 }
-
 
 function handle_upload() {
 	global $_zp_current_admin_obj;
 	$gallery = new Gallery();
 	$error = false;
-	if (isset($_POST['processed'])) {	// sometimes things just go terribly wrong!
+	if (isset($_POST['http_processed'])) {	// sometimes things just go terribly wrong!
 		XSRFdefender('upload');
 		// Check for files.
 		if (isset($_FILES['files'])) {
@@ -73,10 +80,9 @@ function handle_upload() {
 			}
 		}
 		$files_empty = count($_FILES['files']) == 0;
-
-		$newAlbum = ((isset($_POST['existingfolder']) && $_POST['existingfolder'] == 'false') || isset($_POST['newalbum']));
+		$newAlbum = ((isset($_POST['http_existingfolder']) && $_POST['http_existingfolder'] == 'false') || isset($_POST['newalbum']));
 		// Make sure the folder exists. If not, create it.
-		if (isset($_POST['processed']) && !empty($_POST['folder']) && ($newAlbum || !$files_empty)) {
+		if (isset($_POST['http_processed']) && !empty($_POST['http_folder']) && ($newAlbum || !$files_empty)) {
 			$folder = zp_apply_filter('admin_upload_process',trim(sanitize_path($_POST['folder'])));
 
 			if ($newAlbum) {
@@ -100,10 +106,10 @@ function handle_upload() {
 				@chmod($uploaddir, CHMOD_VALUE);
 				$album = new Album($gallery, $folder);
 				if ($album->exists) {
-					if (!isset($_POST['publishalbum'])) {
+					if (!isset($_POST['http_publishalbum'])) {
 						$album->setShow(false);
 					}
-					$title = sanitize($_POST['albumtitle'], 2);
+					$title = sanitize($_POST['http_albumtitle'], 2);
 					if ($newAlbum) {
 						$album->setOwner($_zp_current_admin_obj->getUser());
 						if (!empty($title)) {
@@ -156,11 +162,11 @@ function handle_upload() {
 		}
 	}
 	// Handle the error and return to the upload page.
-	if (!isset($_POST['processed'])) {
+	if (!isset($_POST['http_processed'])) {
 		$errormsg = gettext("You've most likely exceeded the upload limits. Try uploading fewer files at a time, or use a ZIP file.");
-	} else if ($files_empty && !isset($_POST['newalbum'])) {
+	} else if ($files_empty && !isset($_POST['http_newalbum'])) {
 		$errormsg = gettext("You must upload at least one file.");
-	} else if (empty($_POST['folder'])) {
+	} else if (empty($_POST['http_folder'])) {
 		$errormsg = gettext("You must enter a folder name for your new album.");
 	} else {
 		switch ($error) {
@@ -182,6 +188,7 @@ function handle_upload() {
 				break;
 		}
 	}
+
 	if ($error == UPLOAD_ERR_OK) {
 		if ($modified_rights & (ALBUM_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
 			header('Location: '.FULLWEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit&album='.pathurlencode($folder).'&uploaded&subpage=1&tab=imageinfo&albumimagesort=id_desc');

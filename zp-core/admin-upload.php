@@ -138,55 +138,52 @@ if (ini_get('safe_mode')) { ?>
 </div>
 <?php
 }
-?>
-
-<form name="file_upload" id="file_upload" enctype="multipart/form-data" action="?action=upload&amp;uploadtype=<?php echo $uploadtype; ?>" method="post"
-												onsubmit="return validateFolder(document.file_upload.folder,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');">
-	<?php XSRFToken('upload');?>
-	<input type="hidden" name="processed" value="1" />
-	<input type="hidden" name="existingfolder" value="false" />
-
-	<div id="albumselect">
-	<?php
-	$rootrights = zp_apply_filter('upload_root_ui',accessAllAlbums(UPLOAD_RIGHTS));
-	if ($rootrights || !empty($albumlist)) {
-		echo gettext("Upload to:");
-		if (isset($_GET['new'])) {
-			$checked = ' checked="checked"';
-		} else {
-			$checked = '';
-		}
-		$defaultjs = "
-			<script type=\"text/javascript\">
-				// <!-- <![CDATA[
-				function soejs(fname) {
-					fname = fname.replace(/[\!@#$\%\^&*()\~`\'\"]/g, '');
-					fname = fname.replace(/^\s+|\s+$/g, '');
-					fname = fname.replace(/[^a-zA-Z0-9]/g, '-');
-					fname = fname.replace(/--*/g, '-');
-					return fname;
-				}
-				// ]]> -->
-			</script>
-		";
-		echo zp_apply_filter('seoFriendly_js', $defaultjs)."\n";
-		?>
-		<script type="text/javascript">
+$rootrights = zp_apply_filter('upload_root_ui',accessAllAlbums(UPLOAD_RIGHTS));
+if ($rootrights || !empty($albumlist)) {
+	echo gettext("Upload to:");
+	if (isset($_GET['new'])) {
+		$checked = ' checked="checked"';
+	} else {
+		$checked = '';
+	}
+	$defaultjs = "
+		<script type=\"text/javascript\">
 			// <!-- <![CDATA[
-			function buttonstate(good) {
-				if (good) {
-					$('#fileUploadbuttons').show();
-				} else {
-					$('#fileUploadbuttons').hide();
-				}
-			}
-			function albumSelect() {
-				var sel = document.getElementById('albumselectmenu');
-				var state = albumSwitch(sel, true, '<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
-				buttonstate(state);
+			function soejs(fname) {
+				fname = fname.replace(/[\!@#$\%\^&*()\~`\'\"]/g, '');
+				fname = fname.replace(/^\s+|\s+$/g, '');
+				fname = fname.replace(/[^a-zA-Z0-9]/g, '-');
+				fname = fname.replace(/--*/g, '-');
+				return fname;
 			}
 			// ]]> -->
 		</script>
+	";
+	echo zp_apply_filter('seoFriendly_js', $defaultjs)."\n";
+	?>
+	<script type="text/javascript">
+		// <!-- <![CDATA[
+		function buttonstate(good) {
+			if (good) {
+				$('#fileUploadbuttons').show();
+			} else {
+				$('#fileUploadbuttons').hide();
+			}
+		}
+		function albumSelect() {
+			var sel = document.getElementById('albumselectmenu');
+			var state = albumSwitch(sel, true, '<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
+			buttonstate(state);
+		}
+		// ]]> -->
+	</script>
+
+
+<form name="file_upload_datum" id="file_upload_datum" action="" method="post" >
+	<input type="hidden" name="processed" id="processed" value="1" />
+	<input type="hidden" name="existingfolder" id="existingfolder" value="false" />
+
+	<div id="albumselect">
 		<select id="albumselectmenu" name="albumselect" onchange="albumSelect()">
 			<?php
 			if ($rootrights) {
@@ -277,34 +274,31 @@ if (ini_get('safe_mode')) { ?>
 				<br />
 				<br />
 			</div>
-
 			<input type="hidden" name="folder" id="folderslot" value="<?php echo html_encode($passedalbum); ?>" />
 		</div>
-
 		<hr />
-		<div id="upload_action">
-
-		<?php
-		//	load the uploader specific form stuff
-		upload_form($uploadlimit);
-		?>
-		</div>
-		<?php
-	} else {
-		echo gettext("There are no albums to which you can upload.");
-	}
-	?>
 	</div>
 </form>
-<?php
-//	load the uploaer specific trailer stuff.
-upload_form_trailer();
-?>
+
+	<div id="upload_action">
+	<?php
+	//	load the uploader specific form stuff
+	upload_form($uploadlimit);
+	?>
+	</div>
+
 <script type="text/javascript">
 	//<!-- <![CDATA[
-	<?php echo zp_apply_filter('upload_helper_js', '')."\n"; ?>
-
-	albumSwitch(document.file_upload.albumselect,false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
+	<?php
+	echo zp_apply_filter('upload_helper_js', '')."\n";
+	if ($passedalbum) {
+		?>
+		$('#folderdisplay').val('<?php echo $passedalbum; ?>');
+		buttonstate(true);
+		<?php
+	}
+	?>
+	albumSwitch(document.getElementById('albumselectmenu'),false,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
 	<?php
 		if (isset($_GET['folderdisplay'])) {
 			?>
@@ -323,9 +317,6 @@ upload_form_trailer();
 				$('#folderdisplay').attr('disabled', 'disabled');
 				if ($('#albumtitle').val() != '') {
 					$('#foldererror').hide();
-					if ($('#uploadboxes').length != 0) {
-						$('#uploadboxes').show();
-					}
 					buttonstate(true);
 				}
 				<?php
@@ -334,9 +325,6 @@ upload_form_trailer();
 				$('#autogen').removeAttr('checked');
 				$('#folderdisplay').removeAttr('disabled');
 				if ($('#folderdisplay').val() != '') {
-					if ($('#uploadboxes').length != 0) {
-						$('#uploadboxes').show();
-					}
 					$('#foldererror').hide();
 					buttonstate(false);
 				}
@@ -346,6 +334,11 @@ upload_form_trailer();
 	?>
 	// ]]> -->
 </script>
+	<?php
+} else {
+	echo gettext("There are no albums to which you can upload.");
+}
+?>
 </div>
 </div>
 </div>

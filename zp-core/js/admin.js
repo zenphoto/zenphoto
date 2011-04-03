@@ -21,7 +21,7 @@ function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 	var newalbumbox = sel.form.newalbum;
 	var folder = sel.form.folder;
 	var exists = sel.form.existingfolder;	
-
+	
 	if (selected.value == "") {
 		newalbumbox.checked = true;
 		newalbumbox.disabled = true;
@@ -33,6 +33,7 @@ function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 		newalbumbox.disabled = false;
 		newalbumbox.style.display = "";
 	}
+	
 	var newalbum = selected.value == "" || newalbumbox.checked;
 	if (newalbum) {
 		albumtext.style.display = "block";
@@ -40,7 +41,7 @@ function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 		albumbox.value = "";
 		folder.value = "";
 		titlebox.value = "";
-		exists.value = false;
+		exists.value = "false";
 		checkbox.checked = true;
 		document.getElementById("foldererror").style.display = "none";
 		toggleAutogen("folderdisplay", "albumtitle", checkbox);
@@ -50,9 +51,11 @@ function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 		albumbox.value = selected.value;
 		folder.value = selected.value;
 		titlebox.value = selected.text;
-		exists.value = true;
+		exists.value = "true";
 	}
-	return validateFolder(folder, msg1, msg2);
+	
+	var rslt = validateFolder(folder, msg1, msg2);
+	return rslt;
 }
 
 
@@ -67,23 +70,21 @@ function contains(arr, key) {
 
 function validateFolder(folderObj, msg1, msg2) {
 	var errorDiv = document.getElementById("foldererror");
-	var exists = document.file_upload.existingfolder.value != "false";
+	var exists = $('#existingfolder').val() != "false";
 	var uploadBoxesDiv = document.getElementById("uploadboxes");
 	var folder = folderObj.value;
+	
 	if (!exists && albumArray && contains(albumArray, folder)) {
 		errorDiv.style.display = "block";
 		errorDiv.innerHTML = msg1;
-		if (uploadBoxesDiv != null) uploadBoxesDiv.style.display = "none";
 		return false;
 	} else if ((folder == "") || folder.substr(folder.length-1, 1) == '/') {
 		errorDiv.style.display = "block";
 		errorDiv.innerHTML = msg2;
-		if (uploadBoxesDiv != null) uploadBoxesDiv.style.display = "none";
 		return false;
 	} else {
 		errorDiv.style.display = "none";
 		errorDiv.innerHTML = "";
-		if (uploadBoxesDiv != null) uploadBoxesDiv.style.display = "block";
 		return true;
 	}
 }

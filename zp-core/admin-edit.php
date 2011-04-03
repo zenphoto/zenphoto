@@ -187,151 +187,155 @@ if (isset($_GET['action'])) {
 				}
 
 				if (isset($_POST['totalimages'])) {
-					$returntab = '&tagsort='.$tagsort.'&tab=imageinfo';
+					if (isset($_POST['checkForPostTruncation'])) {
+						$returntab = '&tagsort='.$tagsort.'&tab=imageinfo';
 
-					if (isset($_POST['ids'])) {	//	process bulk actions, not individual image actions.
-						$action = processBulkImageActions($album);
-						if(!empty($action)) $notify = '&bulkmessage='.$action;
-					} else {
-
-						if (isset($_POST['thumb'])) {
-							$thumbnail = sanitize_numeric($_POST['thumb'])-1;
+						if (isset($_POST['ids'])) {	//	process bulk actions, not individual image actions.
+							$action = processBulkImageActions($album);
+							if(!empty($action)) $notify = '&bulkmessage='.$action;
 						} else {
-							$thumbnail = -1;
-						}
-						$oldsort = sanitize($_POST['oldalbumimagesort'], 3);
-						if (getOption('albumimagedirection')) $oldsort = $oldsort.'_desc';
-						$newsort = sanitize($_POST['albumimagesort'],3);
-						if ($oldsort == $newsort) {
-							for ($i = 0; $i < $_POST['totalimages']; $i++) {
-								$filename = sanitize($_POST["$i-filename"]);
-								// The file might no longer exist
-								$image = newImage($album, $filename);
-								if ($image->exists) {
-									if (isset($_POST[$i.'-MoveCopyRename'])) {
-										$movecopyrename_action = sanitize($_POST[$i.'-MoveCopyRename'],3);
-									} else {
-										$movecopyrename_action = '';
-									}
-									if ($movecopyrename_action == 'delete') {
-										$image->remove();
-									} else {
-										if ($thumbnail == $i) { //selected as album thumb
-											$album = $image->getAlbum();
-											$album->setAlbumThumb($image->filename);
-											$album->save();
-										}
-										if (isset($_POST[$i.'-reset_rating'])) {
-											$image->set('total_value', 0);
-											$image->set('total_votes', 0);
-											$image->set('used_ips', 0);
-										}
-										$image->setTitle(process_language_string_save("$i-title", 2));
-										$image->setDesc(process_language_string_save("$i-desc", 1));
-										$image->setLocation(process_language_string_save("$i-location", 3));
-										$image->setCity(process_language_string_save("$i-city", 3));
-										$image->setState(process_language_string_save("$i-state", 3));
-										$image->setCountry(process_language_string_save("$i-country", 3));
-										$image->setCredit(process_language_string_save("$i-credit", 1));
-										$image->setCopyright(process_language_string_save("$i-copyright", 1));
-										if (isset($_POST[$i.'-oldrotation'])) {
-											$oldrotation = sanitize_numeric($_POST[$i.'-oldrotation']);
+
+							if (isset($_POST['thumb'])) {
+								$thumbnail = sanitize_numeric($_POST['thumb'])-1;
+							} else {
+								$thumbnail = -1;
+							}
+							$oldsort = sanitize($_POST['oldalbumimagesort'], 3);
+							if (getOption('albumimagedirection')) $oldsort = $oldsort.'_desc';
+							$newsort = sanitize($_POST['albumimagesort'],3);
+							if ($oldsort == $newsort) {
+								for ($i = 0; $i < $_POST['totalimages']; $i++) {
+									$filename = sanitize($_POST["$i-filename"]);
+									// The file might no longer exist
+									$image = newImage($album, $filename);
+									if ($image->exists) {
+										if (isset($_POST[$i.'-MoveCopyRename'])) {
+											$movecopyrename_action = sanitize($_POST[$i.'-MoveCopyRename'],3);
 										} else {
-											$oldrotation = 0;
+											$movecopyrename_action = '';
 										}
-										if (isset($_POST[$i.'-rotation'])) {
-											$rotation = sanitize_numeric($_POST[$i.'-rotation']);
+										if ($movecopyrename_action == 'delete') {
+											$image->remove();
 										} else {
-											$rotation = 0;
-										}
-										if ($rotation != $oldrotation) {
-											$image->set('EXIFOrientation', $rotation);
-											$image->updateDimensions();
-											$album = $image->getAlbum();
-											$gallery->clearCache(SERVERCACHE . '/' . $album->name);
-										}
-										$tagsprefix = 'tags_'.$i.'-';
-										$tags = array();
-										$l = strlen($tagsprefix);
-										foreach ($_POST as $key => $value) {
-											$key = postIndexDecode($key);
-											if (substr($key, 0, $l) == $tagsprefix) {
-												if ($value) {
-													$tags[] = substr($key, $l);
+											if ($thumbnail == $i) { //selected as album thumb
+												$album = $image->getAlbum();
+												$album->setAlbumThumb($image->filename);
+												$album->save();
+											}
+											if (isset($_POST[$i.'-reset_rating'])) {
+												$image->set('total_value', 0);
+												$image->set('total_votes', 0);
+												$image->set('used_ips', 0);
+											}
+											$image->setTitle(process_language_string_save("$i-title", 2));
+											$image->setDesc(process_language_string_save("$i-desc", 1));
+											$image->setLocation(process_language_string_save("$i-location", 3));
+											$image->setCity(process_language_string_save("$i-city", 3));
+											$image->setState(process_language_string_save("$i-state", 3));
+											$image->setCountry(process_language_string_save("$i-country", 3));
+											$image->setCredit(process_language_string_save("$i-credit", 1));
+											$image->setCopyright(process_language_string_save("$i-copyright", 1));
+											if (isset($_POST[$i.'-oldrotation'])) {
+												$oldrotation = sanitize_numeric($_POST[$i.'-oldrotation']);
+											} else {
+												$oldrotation = 0;
+											}
+											if (isset($_POST[$i.'-rotation'])) {
+												$rotation = sanitize_numeric($_POST[$i.'-rotation']);
+											} else {
+												$rotation = 0;
+											}
+											if ($rotation != $oldrotation) {
+												$image->set('EXIFOrientation', $rotation);
+												$image->updateDimensions();
+												$album = $image->getAlbum();
+												$gallery->clearCache(SERVERCACHE . '/' . $album->name);
+											}
+											$tagsprefix = 'tags_'.$i.'-';
+											$tags = array();
+											$l = strlen($tagsprefix);
+											foreach ($_POST as $key => $value) {
+												$key = postIndexDecode($key);
+												if (substr($key, 0, $l) == $tagsprefix) {
+													if ($value) {
+														$tags[] = substr($key, $l);
+													}
 												}
 											}
-										}
-										$tags = array_unique($tags);
-										$image->setTags(sanitize($tags, 3));
+											$tags = array_unique($tags);
+											$image->setTags(sanitize($tags, 3));
 
-										$image->setDateTime(sanitize($_POST["$i-date"]));
-										$image->setShow(isset($_POST["$i-Visible"]));
-										$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
-										if (isset($_POST["$i-reset_hitcounter"])) {
-											$image->set('hitcounter', 0);
-										}
-										$wmt = sanitize($_POST["$i-image_watermark"],3);
-										$image->setWatermark($wmt);
-										$wmuse = 0;
-										if (isset($_POST['wm_image-'.$i])) $wmuse = $wmuse | WATERMARK_IMAGE;
-										if (isset($_POST['wm_thumb-'.$i])) $wmuse = $wmuse | WATERMARK_THUMB;
-										if (isset($_POST['wm_full-'.$i])) $wmuse = $wmuse | WATERMARK_FULL;
-										$image->setWMUse($wmuse);
-										$codeblock1 = sanitize($_POST['codeblock1-'.$i], 0);
-										$codeblock2 = sanitize($_POST['codeblock2-'.$i], 0);
-										$codeblock3 = sanitize($_POST['codeblock3-'.$i], 0);
-										$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
-										$image->setCodeblock($codeblock);
-										if (isset($_POST[$i.'-owner'])) $image->setOwner(sanitize($_POST[$i.'-owner']));
-										$image->set('filesize',filesize($image->localpath));
+											$image->setDateTime(sanitize($_POST["$i-date"]));
+											$image->setShow(isset($_POST["$i-Visible"]));
+											$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
+											if (isset($_POST["$i-reset_hitcounter"])) {
+												$image->set('hitcounter', 0);
+											}
+											$wmt = sanitize($_POST["$i-image_watermark"],3);
+											$image->setWatermark($wmt);
+											$wmuse = 0;
+											if (isset($_POST['wm_image-'.$i])) $wmuse = $wmuse | WATERMARK_IMAGE;
+											if (isset($_POST['wm_thumb-'.$i])) $wmuse = $wmuse | WATERMARK_THUMB;
+											if (isset($_POST['wm_full-'.$i])) $wmuse = $wmuse | WATERMARK_FULL;
+											$image->setWMUse($wmuse);
+											$codeblock1 = sanitize($_POST['codeblock1-'.$i], 0);
+											$codeblock2 = sanitize($_POST['codeblock2-'.$i], 0);
+											$codeblock3 = sanitize($_POST['codeblock3-'.$i], 0);
+											$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
+											$image->setCodeblock($codeblock);
+											if (isset($_POST[$i.'-owner'])) $image->setOwner(sanitize($_POST[$i.'-owner']));
+											$image->set('filesize',filesize($image->localpath));
 
-										$custom = process_language_string_save("$i-custom_data", 1);
-										$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $i));
-										zp_apply_filter('save_image_utilities_data', $image, $i);
-										$image->save();
+											$custom = process_language_string_save("$i-custom_data", 1);
+											$image->setCustomData(zp_apply_filter('save_image_custom_data', $custom, $i));
+											zp_apply_filter('save_image_utilities_data', $image, $i);
+											$image->save();
 
-										// Process move/copy/rename
-										if ($movecopyrename_action == 'move') {
-											$dest = trim(sanitize_path($_POST[$i.'-albumselect'], 3));
-											if ($dest && $dest != $folder) {
-												if ($e = $image->moveImage($dest)) {
+											// Process move/copy/rename
+											if ($movecopyrename_action == 'move') {
+												$dest = trim(sanitize_path($_POST[$i.'-albumselect'], 3));
+												if ($dest && $dest != $folder) {
+													if ($e = $image->moveImage($dest)) {
+														$notify = "&mcrerr=".$e;
+													}
+												} else {
+													// Cannot move image to same album.
+													$notify = "&mcrerr=2";
+												}
+											} else if ($movecopyrename_action == 'copy') {
+												$dest = trim(sanitize_path($_POST[$i.'-albumselect'],2));
+												if ($dest && $dest != $folder) {
+													if($e = $image->copy($dest)) {
+														$notify = "&mcrerr=".$e;
+													}
+												} else {
+													// Cannot copy image to existing album.
+													// Or, copy with rename?
+													$notify = "&mcrerr=2";
+												}
+											} else if ($movecopyrename_action == 'rename') {
+												$renameto = trim(sanitize_path($_POST[$i.'-renameto'],3));
+												if ($e = $image->rename($renameto)) {
 													$notify = "&mcrerr=".$e;
 												}
-											} else {
-												// Cannot move image to same album.
-												$notify = "&mcrerr=2";
-											}
-										} else if ($movecopyrename_action == 'copy') {
-											$dest = trim(sanitize_path($_POST[$i.'-albumselect'],2));
-											if ($dest && $dest != $folder) {
-												if($e = $image->copy($dest)) {
-													$notify = "&mcrerr=".$e;
-												}
-											} else {
-												// Cannot copy image to existing album.
-												// Or, copy with rename?
-												$notify = "&mcrerr=2";
-											}
-										} else if ($movecopyrename_action == 'rename') {
-											$renameto = trim(sanitize_path($_POST[$i.'-renameto'],3));
-											if ($e = $image->rename($renameto)) {
-												$notify = "&mcrerr=".$e;
 											}
 										}
 									}
 								}
-							}
-						} else {
-							if (strpos($newsort, '_desc')) {
-								setOption('albumimagesort', substr($newsort, 0, -5));
-								setOption('albumimagedirection', 'DESC');
 							} else {
-								setOption('albumimagesort', $newsort);
-								setOption('albumimagedirection', '');
+								if (strpos($newsort, '_desc')) {
+									setOption('albumimagesort', substr($newsort, 0, -5));
+									setOption('albumimagedirection', 'DESC');
+								} else {
+									setOption('albumimagesort', $newsort);
+									setOption('albumimagedirection', '');
+								}
+								$notify = '&';
 							}
-							$notify = '&';
 						}
 					}
+				} else {
+					$notify = '&post_error';
 				}
 				if (!empty($returnalbum)) {
 					$folder = $returnalbum;
@@ -724,6 +728,15 @@ $alb = removeParentAlbumNames($album);
 		<div class="errorbox fade-message">
 			<h2>
 			<?php echo html_encode(sanitize($_GET['edit_error'])); ?>
+			</h2>
+		</div>
+		<?php
+	}
+	if (isset($_GET['post_error'])) {
+		?>
+		<div class="errorbox fade-message">
+			<h2>
+			<?php echo gettext('The form post is incomplete.'); ?>
 			</h2>
 		</div>
 		<?php
@@ -1470,7 +1483,7 @@ $alb = removeParentAlbumNames($album);
 			?>
 
 		</table>
-
+		<input type="hidden" name="checkForPostTruncation" value="1" />
 		</form>
 
 		<?php
