@@ -6,7 +6,6 @@
  */
 // sorry about all the inline css but something by TinyMCE's main css seems to override most setting on the css file no matter what I do...Too "lazy" for further investigation...:-)
 
-$galleryobj = new Gallery();
 $host = "http://".html_encode($_SERVER["HTTP_HOST"]);
 /**
  * Prints all albums of the Zenphoto gallery as a partial drop down menu (<option></option> parts).
@@ -14,10 +13,10 @@ $host = "http://".html_encode($_SERVER["HTTP_HOST"]);
  * @return string
  */
 function printFullAlbumsList() {
-	global $galleryobj;
-	$albumlist = $galleryobj->getAlbums();
+	global $_zp_gallery;
+	$albumlist = $_zp_gallery->getAlbums();
 	foreach($albumlist as $album) {
-		$albumobj = new Album($galleryobj, $album);
+		$albumobj = new Album($_zp_gallery, $album);
 		if ($albumobj->isMyItem(LIST_RIGHTS)) {
 			echo "<option value='".pathurlencode($albumobj->name)."'>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj)." (".$albumobj->getNumImages().")</option>";
 			if (!$albumobj->isDynamic()) {
@@ -33,10 +32,10 @@ function printFullAlbumsList() {
  * @return string
  */
 function printSubLevelAlbums(&$albumobj) {
-	global $galleryobj;
+	global $_zp_gallery;
 	$albumlist = $albumobj->getAlbums();
 	foreach($albumlist as $album) {
-		$subalbumobj = new Album($galleryobj,$album);
+		$subalbumobj = new Album($_zp_gallery,$album);
 		$subalbumname = $subalbumobj->name;
 		$level = substr_count($subalbumname,"/");
 		$arrow = "";
@@ -95,12 +94,12 @@ function shortentitle($title,$length) {
  * @return string
  */
 function printImageslist($number) {
-	global $galleryobj, $host;
+	global $_zp_gallery, $host;
 	
 	if(isset($_GET['album']) AND !empty($_GET['album'])) {
 		
 		$album = urldecode(sanitize($_GET['album']));
-		$albumobj = new Album($galleryobj,$album);
+		$albumobj = new Album($_zp_gallery,$album);
 		echo "<h3 style='margin-bottom:10px'>".gettext("Album:")." <em>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj,false)."</em> / ".gettext("Album folder:")." <em>".html_encode($albumobj->name)."</em><br /><small>".gettext("(Click on image to include)")."</small></h3>";
 
 			// album thumb display;
@@ -158,7 +157,7 @@ function printImageslist($number) {
 					break;
 				}
 				if($albumobj->isDynamic()) {
-					$linkalbumobj = new Album($galleryobj,$images[$nr]['folder']);
+					$linkalbumobj = new Album($_zp_gallery,$images[$nr]['folder']);
 					$imageobj = newImage($linkalbumobj,$images[$nr]['filename']);
 				} else {
 					$linkalbumobj = $albumobj;
@@ -241,18 +240,18 @@ function checkIfImageVideo($imageobj) {
  * @return string
  */
 function printNewsArticlesList($number) {
-	global $_zp_current_zenpage_news,$host;
+	global $_zp_zenpage, $_zp_current_zenpage_news,$host;
 	if(isset($_GET['zenpage']) && $_GET['zenpage'] == "articles") {
 		echo "<h3 style='margin-bottom:10px'>Zenpage: <em>".gettext('Articles')."</em> <small>".gettext("(Click on article title to include a link)")."</small></h3>";
 		echo "<ul style='list-style-type: none; width: 85%;'>";
-		$items = getNewsArticles("","","all");
+		$items = $_zp_zenpage ->getNewsArticles("","","all");
 		$news_per_page = $number;
 		if(isset($_GET['page'])) {
 			$currentpage = sanitize_numeric($_GET['page']);
 		} else {
 			$currentpage = 1;
 		}
-		$newscount = countArticles('','all');
+		$newscount = $_zp_zenpage ->countArticles('','all');
 		$pagestotal = ceil($newscount / $news_per_page);
 		for ($nr = 1;$nr <= $pagestotal; $nr++) {
 			$startnews[$nr] = $nr * $news_per_page - $news_per_page; // get start image number
@@ -309,13 +308,13 @@ function printNewsArticlesList($number) {
  * @return bool
  */
 function checkAlbumForImages() {
-	global $galleryobj;
+	global $_zp_gallery;
 	if(isset($_GET['album']) AND !empty($_GET['album'])) {
 		$album = urldecode(sanitize($_GET['album']));
 		if($album == 'gallery') {
 			return FALSE;
 		}
-		$albumobj = new Album($galleryobj,$album);
+		$albumobj = new Album($_zp_gallery,$album);
 		if($albumobj->getNumImages() != 0) {
 			return TRUE;
 		} else {
@@ -407,9 +406,10 @@ function printTinyPageNav($pagestotal="",$currentpage="",$mode='images') {
 	* @return string
 	*/
 function printZenpageItems() {
-	$pages = getPages(false);
+	global $_zp_zenpage;
+	$pages = $_zp_zenpage->getPages(false);
 	$pagenumber = count($pages);
-	$categories = getAllCategories();
+	$categories = $_zp_zenpage->getAllCategories();
 	$catcount = count($categories);
 	echo "<option value='pages'>".gettext("pages")." (".$pagenumber.")</option>";
 	echo "<option value='articles'>".gettext("articles")." (".countArticles("","all").")</option>";
@@ -422,16 +422,16 @@ function printZenpageItems() {
 	* @return string
 	*/
 function printAllNestedList() {
-	global $host;
+	global $_zp_zenpage, $host;
 	if(isset($_GET['zenpage']) && ($_GET['zenpage'] == "pages" || $_GET['zenpage'] == "categories")) {
 		$mode = sanitize($_GET['zenpage']);
 		switch($mode) {
 			case 'pages':
-				$items = getPages(false);
+				$items = $_zp_zenpage->getPages(false);
 				$listtitle = gettext('Pages');
 				break;
 			case 'categories':
-				$items = getAllCategories();
+				$items = $_zp_zenpage->getAllCategories();
 				$listtitle = gettext('Categories');
 				break;
 		}
@@ -455,7 +455,7 @@ function printAllNestedList() {
 					$itemcontent = $obj->getTitle();
 					$zenpagepage = "news/category/".$item['titlelink'];
 					$unpublished = unpublishedZenpageItemCheck($obj);
-					$counter = ' ('.countArticles($obj->getTitlelink()).') ';
+					$counter = ' ('.$_zp_zenpage->countArticles($obj->getTitlelink()).') ';
 					break;
 			}
 			$itemsortorder = $obj->getSortOrder();
