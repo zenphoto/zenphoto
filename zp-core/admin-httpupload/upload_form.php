@@ -61,8 +61,6 @@ function upload_form($uploadlimit) {
 	</p>
 	<br clear="all">
 	<script type="text/javascript">
-		var uploadedsize = 0;
-		var uploadsizelimit = <?php echo $uploadlimit; ?>;
 		var filecount = 0;
 		var beforesendcount = 0;
 		var uploadcount = 0;
@@ -76,12 +74,11 @@ function upload_form($uploadlimit) {
 		});
 
 		$('#cancel_uploads').click(function () {
-			uploadedsize = 0;
+			$('.file_upload_cancel button').click();
 			filecount = 0;
 			beforesendcount = 0;
 			uploadcount = 0;
 			uploaderror = false;
-			$('.file_upload_cancel button').click();
 			$('#files').html('');
 		});
 		$(function () {
@@ -90,9 +87,11 @@ function upload_form($uploadlimit) {
 		        uploadTable: $('#files'),
 		        downloadTable: $('#files'),
 		        buildUploadRow: function (files, index) {
-
+							var rowCount = $('#files').attr('rows').length;
+							if (filecount == 0 && rowCount > 0) {	//	clear out any error indicators
+								$('#files').html('');
+							}
 							if ( typeof( window[ 'uploadfilelimit' ] ) != "undefined" ) {
-								var rowCount = $('#files').attr('rows').length;
 								if ($('#files').attr('rows').length >= uploadfilelimit) {
 									if (rowCount = uploadfilelimit) {
 										alert('<?php echo gettext('You have exceeded the file upload limit'); ?>');
@@ -100,16 +99,6 @@ function upload_form($uploadlimit) {
 									return null;
 								}
 							}
-
-							if (uploadsizelimit > 0) {
-								var newsize = uploadedsize + files[index].size;
-								if (newsize > uploadsizelimit) {
-									alert('<?php echo gettext('You have exceeded your upload quota'); ?>');
-									return null;
-								}
-								uploadedsize = newsize;
-							}
-
 							filecount ++;
 							return $('<tr><td class="file_upload_preview"><\/td>' +
 		                '<td>' + files[index].name + '<\/td>' +
@@ -134,6 +123,10 @@ function upload_form($uploadlimit) {
 								return;
 							}
 
+			        if (files[index].size > <?php echo $uploadlimit; ?>) {
+								handler.uploadRow.find('.file_upload_progress').html('<span style="color:red"><?php echo gettext('FILE TOO BIG!'); ?></span>');
+								return;
+			        }
 							handler.uploadRow.find('.file_upload_start button').click(callBack)
 				    },
 						onComplete: function (event, files, index, xhr, handler) {
@@ -151,6 +144,10 @@ function upload_form($uploadlimit) {
 								}
 								?>
 							}
+							filecount = 0;
+							beforesendcount = 0;
+							uploadcount = 0;
+							uploaderror = false;
 						},
 		        buildDownloadRow: function (file) {
 							if (file.error) {

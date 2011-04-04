@@ -2743,7 +2743,6 @@ zp-core/zp-extensions/zenpage/zenpage-class-category.php
 zp-core/zp-extensions/zenpage/zenpage-class-news.php
 zp-core/zp-extensions/zenpage/zenpage-class-page.php
 zp-core/zp-extensions/zenpage/zenpage-class.php
-zp-core/zp-extensions/zenpage/zenpage-functions.php
 zp-core/zp-extensions/zenpage/zenpage-template-functions.php
 zp-core/zp-extensions/zenpage/zenpage.css
 zp-core/zp-extensions/zenphoto_news
@@ -2751,4 +2750,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2753
+2752
