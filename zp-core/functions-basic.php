@@ -76,10 +76,11 @@ define('LOCAL_CHARSET',$_charset);
 unset($_charset);
 // insure a correct timezone
 if (function_exists('date_default_timezone_set')) {
-	error_reporting(0);
+	$level = error_reporting(0);
 	$_zp_server_timezone = date_default_timezone_get();
 	date_default_timezone_set($_zp_server_timezone);
 	@ini_set('date.timezone', $_zp_server_timezone);
+	error_reporting($level);
 }
 // Set the memory limit higher just in case -- suppress errors if user doesn't have control.
 // 100663296 bytes = 96M

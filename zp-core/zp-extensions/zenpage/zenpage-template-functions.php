@@ -16,7 +16,7 @@
  * Global definitions
  */
 
-if(is_null($_zp_zenpage)) {
+if(!isset($_zp_zenpage)) {
  $_zp_zenpage = new Zenpage();
 }
 
@@ -975,7 +975,7 @@ function printNewsArchive($class='archive', $yearclass='year', $monthclass='mont
 			$datetosearch = $key;
 		} else {
 			$datetosearch = strftime('%Y-%B', strtotime($key));
-		} 
+		}
 		if(getCurrentNewsArchive('plain') == $datetosearch) {
 			$active = $activeclass;
 		} else {
