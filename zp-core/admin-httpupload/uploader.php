@@ -82,6 +82,6 @@ if (!empty($_FILES)) {
 }
 
 $file = $_FILES['file'];
-echo '{"name":"'.$file['name'].'","type":"'.$file['type'].'","size":"'.$file['size'].'"}';
+echo '{"name":"'.$file['name'].'","type":"'.$file['type'].'","size":"'.$file['size'].'","error":'.$error.'}';
 
 ?>

@@ -57,6 +57,7 @@ function upload_form($uploadlimit) {
 	<table id="files"></table>
 	<p class="buttons" id="fileUploadbuttons" style="display: none;">
 		<button id="start_uploads"><img src="images/pass.png" alt="" /><?php echo gettext("Upload"); ?></button>
+		<button id="cancel_uploads" ><img src="images/fail.png" alt="" /><?php echo gettext("Cancel"); ?></button>
 	</p>
 	<br clear="all">
 	<script type="text/javascript">
@@ -73,6 +74,13 @@ function upload_form($uploadlimit) {
 			$('.file_upload_start button').click();
 		});
 
+		$('#cancel_uploads').click(function () {
+			uploadedsize = 0;
+			filecount = 0;
+			beforesendcount = 0;
+			uploadcount = 0;
+			$('.file_upload_cancel button').click();
+		});
 		$(function () {
 		    $('#file_upload').fileUploadUI({
 						url: '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.basename(dirname(__FILE__)); ?>/uploader.php',
@@ -142,7 +150,11 @@ function upload_form($uploadlimit) {
 							}
 						},
 		        buildDownloadRow: function (file) {
-							return $('<tr><td>' + file.name + ' <?php echo gettext('uploaded'); ?><\/td><\/tr>');
+							if (file.error) {
+								return $('<tr><td><img src="images/fail.png" alt="" />' + file.name + '<\/td><\/tr>');
+							} else {
+								return $('<tr><td><img src="images/pass.png" alt="" />' + file.name + '<\/td><\/tr>');
+							}
 		        }
 		    });
 		});
