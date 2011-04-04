@@ -14,6 +14,7 @@ if (!empty($_FILES)) {
 	$gallery = new Gallery();
 	$name = trim(basename(sanitize($_FILES['file']['name'],3)));
 	if (isset($_FILES['Filedata']['error']) && $_FILES['file']['error']) {
+		$error = $_FILES['Filedata']['error'];
 		debugLogArray('Uploadify error:', $_FILES);
 		trigger_error(sprintf(gettext('Uploadify error on %1$s. Review your debug log.'),$name));
 	} else {
@@ -63,16 +64,18 @@ if (!empty($_FILES)) {
 						$seoname = stripSuffix($seoname).$append.'.'.getSuffix($seoname);
 						$targetFile =  $targetPath.'/'.internalToFilesystem($seoname);
 					}
-					$rslt = move_uploaded_file($tempFile,$targetFile);
-					@chmod($targetFile, 0666 & CHMOD_VALUE);
-					$album = new Album($gallery, $folder);
-					$image = newImage($album, $seoname);
-					$image->setOwner($_zp_current_admin_obj->getUser());
-					if ($name != $seoname && $image->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {
-						$image->setTitle(substr($name, 0, strrpos($name, '.')));
+					if (move_uploaded_file($tempFile,$targetFile)) {
+						@chmod($targetFile, 0666 & CHMOD_VALUE);
+						$album = new Album($gallery, $folder);
+						$image = newImage($album, $seoname);
+						$image->setOwner($_zp_current_admin_obj->getUser());
+						if ($name != $seoname && $image->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {
+							$image->setTitle(substr($name, 0, strrpos($name, '.')));
+						}
+						$image->save();
+					} else {
+						$error = UPLOAD_ERR_NO_FILE;
 					}
-					$image->save();
-
 				} else if (is_zip($name)) {
 					unzip($tempFile, $targetPath);
 				}

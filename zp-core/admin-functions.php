@@ -2500,9 +2500,10 @@ function unzip($file, $dir) { //check if zziplib is installed
 		require_once(dirname(__FILE__).'/lib-pclzip.php');
 		$zip = new PclZip($file);
 		if ($zip->extract(PCLZIP_OPT_PATH, $dir, PCLZIP_OPT_REMOVE_ALL_PATH) == 0) {
-			die("Error : ".$zip->errorInfo(true));
+			return false;
 		}
 	}
+	return true;
 }
 
 /**

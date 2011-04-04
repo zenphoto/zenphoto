@@ -66,6 +66,7 @@ function upload_form($uploadlimit) {
 		var filecount = 0;
 		var beforesendcount = 0;
 		var uploadcount = 0;
+		var uploaderror = false;
 
 		$('#start_uploads').click(function () {
 			$('#http_publishalbum').val($('#publishalbum').val());
@@ -79,7 +80,9 @@ function upload_form($uploadlimit) {
 			filecount = 0;
 			beforesendcount = 0;
 			uploadcount = 0;
+			uploaderror = false;
 			$('.file_upload_cancel button').click();
+			$('#files').html('');
 		});
 		$(function () {
 		    $('#file_upload').fileUploadUI({
@@ -135,7 +138,7 @@ function upload_form($uploadlimit) {
 				    },
 						onComplete: function (event, files, index, xhr, handler) {
 							uploadcount++;
-							if (uploadcount >= filecount) {
+							if (uploadcount >= filecount && !uploaderror) {
 								<?php
 								if (zp_loggedin(ALBUM_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
 									?>
@@ -151,6 +154,7 @@ function upload_form($uploadlimit) {
 						},
 		        buildDownloadRow: function (file) {
 							if (file.error) {
+								uploaderror = true;
 								return $('<tr><td><img src="images/fail.png" alt="" />' + file.name + '<\/td><\/tr>');
 							} else {
 								return $('<tr><td><img src="images/pass.png" alt="" />' + file.name + '<\/td><\/tr>');
