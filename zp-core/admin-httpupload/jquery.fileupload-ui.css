@@ -6,23 +6,23 @@
   text-align: center;
   color: #333;
   font-weight: bold;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  width: 200px;
-  height: 30px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  width: 8em;
+  height: 2.4em;
   line-height: 30px;
-  background: palegreen;
-  border: 1px solid limegreen;
+  background: #dcdcdc;
+  border: 1px solid #CBCBCB;
 }
 
 .file_upload_small {
-  width: 200px;
-  height: 30px;
+  width: 8em;
+  height: 2.4em;
   line-height: 30px;
   font-size: auto;
-  background: palegreen;
-  border: 1px solid limegreen;
+  background: #dcdcdc;
+  border: 1px solid #CBCBCB;
 }
 
 .file_upload_large {
@@ -30,8 +30,8 @@
   height: 150px;
   line-height: 150px;
   font-size: 20px;
-  background: palegreen;
-  border: 1px solid limegreen;
+  background: #dcdcdc;
+  border: 1px solid #CBCBCB;
 }
 
 .file_upload_highlight {
