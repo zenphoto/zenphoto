@@ -1045,7 +1045,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						<td valign="top"><?php  echo gettext("Owner"); ?></td>
 						<td>
 							<?php
-							if (zp_loggedin(MANAGE_ALL_ALBUMS)) {
+							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
 								<select name="<?php  echo $prefix; ?>-owner">
 									<?php echo admin_album_list($album->getOwner()); ?>

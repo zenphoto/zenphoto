@@ -1462,7 +1462,7 @@ function printAlbumThumbImage($alt, $class=NULL, $id=NULL) {
 	}
 	$size = ' width="'.$w.'" height="'.$h.'"';
 	if (!getOption('use_lock_image') || checkAlbumPassword($_zp_current_album->name)) {
-		$html = '<img src="' . html_encode($thumb). '"' . $size . 'alt="' . html_encode($alt) . '"' .	$class . $id . ' />';
+		$html = '<img src="' . html_encode($thumb). '"' . $size . ' alt="' . html_encode($alt) . '"' .	$class . $id . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html);
 		echo $html;
 	} else {
@@ -2614,7 +2614,7 @@ function printImageThumb($alt, $class=NULL, $id=NULL) {
 	if ($id) {
 		$id = ' id="'.$id.'"';
 	}
-	$html = '<img src="' . html_encode($url) . '"' . $size . 'alt="' . html_encode($alt) . '"' . $class . $id . " />";
+	$html = '<img src="' . html_encode($url) . '"' . $size . ' alt="' . html_encode($alt) . '"' . $class . $id . " />";
 	$html = zp_apply_filter('standard_image_thumb_html',$html);
 	echo $html;
 }

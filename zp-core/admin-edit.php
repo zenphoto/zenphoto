@@ -1087,7 +1087,7 @@ $alb = removeParentAlbumNames($album);
 						<td align="left" valign="top" width="100"><?php echo gettext("Owner:"); ?></td>
 						<td>
 							<?php
-							if (zp_loggedin(MANAGE_ALL_ALBUMS)) {
+							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
 								<select name="<?php  echo $currentimage; ?>-owner">
 									<?php  echo admin_album_list($image->getOwner()); ?>
