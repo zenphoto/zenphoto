@@ -300,7 +300,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		<li><?php printf(gettext('PHP version: <strong>%1$s</strong>'),phpversion()); ?></li>
 		<li>
 			<?php
-			$erToTxt = array(E_ERROR=>'E_ERROR',
+			$erToTxt = array(	E_ERROR=>'E_ERROR',
 												E_WARNING=>'E_WARNING',
 												E_PARSE=>'E_PARSE',
 												E_NOTICE=>'E_NOTICE',
@@ -326,9 +326,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				$reporting = $reporting ^ E_ALL;
 			}
 			if ((($reporting | E_NOTICE) & E_ALL) == E_ALL) {
-				$text[] = 'E_ALL';
-				$text[] = '^E_NOTICE';
-				$reporting = $reporting ^ E_ALL;
+				$text[] = 'E_ALL ^ E_NOTICE';
+				$reporting = $reporting ^ (E_ALL ^ E_NOTICE);
 			}
 			foreach ($erToTxt as $er=>$name) {
 				if ($reporting & $er) {
