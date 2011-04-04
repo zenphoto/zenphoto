@@ -108,9 +108,9 @@ printLogoAndLinks();
 			}
 
 			if(isset($_GET['category'])) {
-				$result = getNewsArticles(getOption('zenpage_admin_articles'),sanitize($_GET['category']),$published,false);
+				$result = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),sanitize($_GET['category']),$published,false);
 			} else {
-				$result = getNewsArticles(getOption('zenpage_admin_articles'),'',$published,false);
+				$result = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),'',$published,false);
 			}
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic();?></span></h1>
@@ -165,7 +165,7 @@ printLogoAndLinks();
 								<td>
 								 <?php
 								 if(checkIfLockedNews($article)) {
-									 echo '<a href="admin-edit.php?newsarticle&amp;titlelink='.urlencode($article->getTitlelink()).'&amp;pagenr='.getCurrentAdminNewsPage().'">'; checkForEmptyTitle($article->getTitle(),"news"); echo '</a>'.checkHitcounterDisplay($article->getHitcounter());
+									 echo '<a href="admin-edit.php?newsarticle&amp;titlelink='.urlencode($article->getTitlelink()).'&amp;pagenr='.$_zp_zenpage->getCurrentAdminNewsPage().'">'; checkForEmptyTitle($article->getTitle(),"news"); echo '</a>'.checkHitcounterDisplay($article->getHitcounter());
 								 } else {
 									 echo checkForEmptyTitle($article->getTitle(),"news").'</a>'.checkHitcounterDisplay($article->getHitcounter());
 								 }

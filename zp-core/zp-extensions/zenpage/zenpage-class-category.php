@@ -32,7 +32,7 @@ class ZenpageCategory extends Zenpage {
 	 */
 	function setDesc($desc) { $this->set('desc', $desc); }
 
-/**
+	/**
 	 * Returns the sort order
 	 *
 	 * @return string
@@ -86,28 +86,28 @@ class ZenpageCategory extends Zenpage {
 	 */
 	function setPasswordHint($hint) { $this->set('password_hint', $hint); }
 
-/**
- * Deletes a category (and also if existing its subpages) from the database
- *
- */
-function remove() {
-	if ($success = parent::remove()) {
-		$sortorder = $this->getSortOrder();
-		$success = query("DELETE FROM ".prefix('news2cat')." WHERE cat_id = ".$this->getID()); // the cat itself
-		// get Subcategories
-		$mychild = strlen($sortorder)+4;
-		$result = query_full_array('SELECT * FROM '.prefix('news_categories')." WHERE `sort_order` like '".$sortorder."-%'");
-		if (is_array($result)) {
-			foreach ($result as $row) {
-				if (strlen($row['sort_order']) == $mychild) {
-					$subcat = new ZenpageCategory($row['titlelink']);
-					$success = $success && $subcat->remove();
+	/**
+	 * Deletes a category (and also if existing its subpages) from the database
+	 *
+	 */
+	function remove() {
+		if ($success = parent::remove()) {
+			$sortorder = $this->getSortOrder();
+			$success = query("DELETE FROM ".prefix('news2cat')." WHERE cat_id = ".$this->getID()); // the cat itself
+			// get Subcategories
+			$mychild = strlen($sortorder)+4;
+			$result = query_full_array('SELECT * FROM '.prefix('news_categories')." WHERE `sort_order` like '".$sortorder."-%'");
+			if (is_array($result)) {
+				foreach ($result as $row) {
+					if (strlen($row['sort_order']) == $mychild) {
+						$subcat = new ZenpageCategory($row['titlelink']);
+						$success = $success && $subcat->remove();
+					}
 				}
 			}
 		}
+		return $success;
 	}
-	return $success;
-}
 
 
 
@@ -119,7 +119,7 @@ function remove() {
 	function getSubCategories() {
 		$subcategories = array();
 		$sortorder = $this->getSortOrder();
-		foreach(getAllCategories() as $cat) {
+		foreach($this->getAllCategories() as $cat) {
 			$catobj = new ZenpageCategory($cat['titlelink']);
 			if($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
 				array_push($subcategories,$catobj->getTitlelink());
@@ -154,17 +154,16 @@ function remove() {
 		}
 	}
 
-
-/**
- * Gets the parent categories recursivly to the category whose parentid is passed or the current object
- *
- * @param int $parentid The parentid of the category to get the parents of
- * @param bool $initparents
- * @return array
- */
+	/**
+	 * Gets the parent categories recursivly to the category whose parentid is passed or the current object
+	 *
+	 * @param int $parentid The parentid of the category to get the parents of
+	 * @param bool $initparents
+	 * @return array
+	 */
 	function getParents(&$parentid='',$initparents=true) {
 		global $parentcats;
-		$allitems = getAllCategories();
+		$allitems = $this->getAllCategories();
 		if($initparents) {
 			$parentcats = array();
 		}
@@ -221,12 +220,12 @@ function remove() {
 		}
 	}
 
-/**
- * Checks if a category is protected and returns TRUE or FALSE
- * NOTE: This function does only check if a password is set not if it has been entered! Use $this->checkforGuest() for that.
- *
- * @return bool
- */
+	/**
+	 * Checks if a category is protected and returns TRUE or FALSE
+	 * NOTE: This function does only check if a password is set not if it has been entered! Use $this->checkforGuest() for that.
+	 *
+	 * @return bool
+	 */
 	function isProtected() {
 		return $this->checkforGuest() != 'zp_unprotected';
 	}
@@ -235,7 +234,34 @@ function remove() {
 		return parent::isMyItem($action);
 	}
 
+	/**
+	 * Gets news articles titlelinks this category is attached to
+	 *
+	 * NOTE: Since this function only returns titlelinks for use with the object model it does not exclude articles that are password protected via a category
+	 *
+	 *
+	 * @param int $articles_per_page The number of articles to get
+	 * @param string $published "published" for an published articles,
+	 * 													"unpublished" for an unpublished articles,
+	 * 													"sticky" for sticky articles,
+	 * 													"all" for all articles
+	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
+	 * @param string $sortorder "date" for sorting by date (default)
+	 * 													"title" for sorting by title
+	 * 													This parameter is not used for date archives
+	 * @param string $sortdirection "desc" (default) for descending sort order
+	 * 													    "asc" for ascending sort order
+	 * 											        This parameter is not used for date archives
+	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
+	 * @return array
+	 */
+	function getArticles($articles_per_page='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
+		return $this->getNewsArticles($articles_per_page, $this->getTitlelink(), $published,$ignorepagination,$sortorder, $sortdirection,$sticky);
+	}
+
+
 } // zenpage news category class end
+
 
 
 ?>

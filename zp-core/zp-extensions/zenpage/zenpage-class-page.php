@@ -137,7 +137,7 @@ class ZenpagePage extends ZenpageItems {
  */
 	function getParents(&$parentid='',$initparents=true) {
 		global $parentpages;
-		$allitems = getPages();
+		$allitems = $this->getPages();
 		if($initparents) {
 			$parentpages = array();
 		}
@@ -168,7 +168,7 @@ class ZenpagePage extends ZenpageItems {
 	function getSubPages() {
 		$subpages = array();
 		$sortorder = $this->getSortOrder();
-		$pages = getPages();
+		$pages = $this->getPages();
 		//echo "<pre>"; print_r($pages); echo "</pre>";
 		foreach($pages as $page) {
 			$pageobj = new ZenpagePage($page['titlelink']);

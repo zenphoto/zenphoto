@@ -113,7 +113,7 @@ function getAllTagsFromAlbum($albumname,$subalbums=false,$mode='images') {
  *
  */
 function getAllTagsFromZenpage($mode='news') {
-	global $_zp_gallery;
+	global $_zp_gallery,$_zp_zenpage;
 	if(!getOption('zp_plugin_zenpage')) {
 		return FALSE;
 	}
@@ -129,7 +129,7 @@ function getAllTagsFromZenpage($mode='news') {
 				$published = 'published';
 			}
 			$type = 'news';
-			$items = getNewsArticles('','',$published);
+			$items = $_zp_zenpage->getNewsArticles('','',$published);
 			foreach($items as $item) {
 				$obj = new ZenpageNews($item['titlelink']);
 				if($obj->checkAccess($hint, $show)) {
@@ -144,7 +144,7 @@ function getAllTagsFromZenpage($mode='news') {
 				$published = 'published';
 			}
 			$type = 'pages';
-			$items = getPages('','',$published);
+			$items = $_zp_zenpage->getPages('','',$published);
 			foreach($items as $item) {
 				$obj = new ZenpagePage($item['titlelink']);
 				if($obj->checkAccess($hint, $show)) {

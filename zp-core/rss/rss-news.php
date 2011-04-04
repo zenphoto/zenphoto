@@ -5,7 +5,6 @@ $locale = getRSSLocale();
 $validlocale = getRSSLocaleXML();
 $modrewritesuffix = getRSSImageAndAlbumPaths("modrewritesuffix");
 require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . "/image_album_statistics.php");
-require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . "/zenpage/zenpage-functions.php");
 require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . "/zenpage/zenpage-template-functions.php");
 header('Content-Type: application/xml');
 $themepath = THEMEFOLDER;

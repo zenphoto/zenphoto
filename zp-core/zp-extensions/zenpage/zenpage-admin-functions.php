@@ -11,11 +11,12 @@
  * Calls the Zenpage class
  *
  */
+require_once("zenpage-class.php");
 require_once("zenpage-class-page.php");
 require_once("zenpage-class-news.php");
-require_once("zenpage-functions.php");
+require_once("zenpage-class-category.php");
 
-global $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
 
 /**
  * Retrieves posted expiry date and checks it against the current date/time
@@ -643,8 +644,9 @@ function printCategorySelection($id='', $option='') {
  *
  */
 function printArticleDatesDropdown() {
-	$datecount = getAllArticleDates();
-	$currentpage = getCurrentAdminNewsPage();
+	global $_zp_zenpage;
+	$datecount = $_zp_zenpage->getAllArticleDates();
+	$currentpage = $_zp_zenpage->getCurrentAdminNewsPage();
 	$lastyear = "";
 	$nr = "";
  ?>
@@ -702,8 +704,8 @@ function printArticleDatesDropdown() {
  *
  */
 function printArticlesPageNav() {
-	global $_zp_zenpage_total_pages;
-	$current = getCurrentAdminNewsPage();
+	global $_zp_zenpage,$_zp_zenpage_total_pages;
+	$current = $_zp_zenpage->getCurrentAdminNewsPage();
 	$total = $_zp_zenpage_total_pages;
 	$navlen = 9;
 	if($total > 1) {
@@ -794,7 +796,8 @@ function getNewsAdminOptionPath($categorycheck='', $postedcheck='',$publishedche
  *
  */
 function printUnpublishedDropdown() {
-	$currentpage = getCurrentAdminNewsPage();
+	global $_zp_zenpage;
+	$currentpage = $_zp_zenpage->getCurrentAdminNewsPage();
 ?>
 <form name="AutoListBox3" style="float: left; margin-left: 10px;"	action="#">
 	<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
@@ -1008,12 +1011,13 @@ function deleteCategory($titlelink) {
  * @return string
  */
 function printCategoryListSortableTable($cat,$flag) {
+	global $_zp_zenpage;
 	if ($flag) {
 		$img = '../../images/drag_handle_flag.png';
 	} else {
 		$img = '../../images/drag_handle.png';
 	}
-	$count = countArticles($cat->getTitlelink(),false);
+	$count = $_zp_zenpage->countArticles($cat->getTitlelink(),false);
 	if($cat->getTitle()) {
 		$cattitle = $cat->getTitle();
 	} else {
@@ -1097,8 +1101,9 @@ function printCategoryCheckboxListEntry($cat,$articleid,$option) {
  *
  */
 function printCategoryDropdown() {
-	$currentpage = getCurrentAdminNewsPage();
-	$result = getAllCategories();
+	global $_zp_zenpage;
+	$currentpage = $_zp_zenpage->getCurrentAdminNewsPage();
+	$result = $_zp_zenpage->getAllCategories();
 	if(isset($_GET['date'])) {
 		$datelink = "&amp;date=".$_GET['date'];
 		$datelinkall = "?date=".$_GET['date'];
@@ -1165,6 +1170,7 @@ foreach ($result as $cat) {
  * @return string | bool
  */
 function printNestedItemsList($listtype='cats-sortablelist',$articleid='',$option='') {
+	global $_zp_zenpage;
 	switch($listtype) {
 		case 'cats-checkboxlist':
 		default:
@@ -1178,10 +1184,10 @@ function printNestedItemsList($listtype='cats-sortablelist',$articleid='',$optio
 	switch($listtype) {
 		case 'cats-checkboxlist':
 		case 'cats-sortablelist':
-			$items = getAllCategories();
+			$items = $_zp_zenpage->getAllCategories();
 			break;
 		case 'pages-sortablelist':
-			$items = getPages(false);
+			$items = $_zp_zenpage->getPages(false);
 			break;
 		default:
 			$items = array();
@@ -1419,18 +1425,19 @@ function checkHitcounterDisplay($item) {
  * @param string $option What the statistic should be shown of: "news", "pages", "categories"
  */
 function getNewsPagesStatistic($option) {
+	global $_zp_zenpage;
 	switch($option) {
 		case "news":
-			$items = getNewsArticles("","");
+			$items = $_zp_zenpage->getNewsArticles("","");
 			$type = gettext("Articles");
 			break;
 		case "pages":
-			$items = getPages(false);
+			$items = $_zp_zenpage->getPages(false);
 			$type = gettext("Pages");
 			break;
 		case "categories":
 			$type = gettext("Categories");
-			$cats = getAllCategories();
+			$cats = $_zp_zenpage->getAllCategories();
 			$total = count($cats);
 			$unpub = 0;
 			break;
@@ -1729,6 +1736,7 @@ function is_AdminEditPage($page) {
  *
  */
 function processZenpageBulkActions($type,&$reports) {
+	global $_zp_zenpage;
 	if (isset($_POST['ids'])) {
 		//echo "action for checked items:". $_POST['checkallaction'];
 		$action = sanitize($_POST['checkallaction']);
@@ -1819,7 +1827,7 @@ function processZenpageBulkActions($type,&$reports) {
 							$obj->setTags(array());
 							break;
 						case 'alltags':
-							$allarticles = getNewsArticles('', $obj->getTitlelink(), 'all',true);
+							$allarticles = $obj->getArticles('','all',true); //$_zp_zenpage->getNewsArticles('', $obj->getTitlelink(), 'all',true);
 							foreach($allarticles as $article) {
 								$newsobj = new ZenpageNews($article['titlelink']);
 								$mytags = array_unique(array_merge($tags, $newsobj->getTags()));
@@ -1828,7 +1836,7 @@ function processZenpageBulkActions($type,&$reports) {
 							} 
 							break;
 						case 'clearalltags':
-							$allarticles = getNewsArticles('', $obj->getTitlelink(), 'all',true);
+							$allarticles = $obj->getArticles('','all',true); //$_zp_zenpage->getNewsArticles('', $obj->getTitlelink(), 'all',true);
 							foreach($allarticles as $article) {
 								$newsobj = new ZenpageNews($article['titlelink']);
 								$newsobj->setTags(array());

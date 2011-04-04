@@ -520,13 +520,14 @@ function printSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images)
  * @return string
  */
 function printSitemapZenpagePages($changefreq='') {
+	global $_zp_zenpage;
 	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_pages');
 	} else {
 		$changefreq = sitemap_getChangefreq($changefreq);
 	}
-	$pages = getPages(true);
+	$pages = $_zp_zenpage->getPages(true);
 	if($pages) {
 		foreach($pages as $page) {
 			$pageobj = new ZenpagePage($page['titlelink']);
@@ -555,6 +556,7 @@ function printSitemapZenpagePages($changefreq='') {
  * @return string
  */
 function printSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
+	global $_zp_zenpage;
 	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_newsindex');
@@ -576,7 +578,7 @@ function printSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
 	} else {
 		$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 	}
-	$newspages = ceil(getTotalArticles() / $zenpage_articles_per_page);
+	$newspages = ceil($_zp_zenpage->getTotalArticles() / $zenpage_articles_per_page);
 	if($newspages > 1) {
 		for($x = 2;$x <= $newspages; $x++) {
 			if(sitemap_multilingual()) {
@@ -597,13 +599,14 @@ function printSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
  * @return string
  */
 function printSitemapZenpageNewsArticles($changefreq='') {
+	global $_zp_zenpage;
 	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_news');
 	} else {
 		$changefreq = sitemap_getChangefreq($changefreq);
 	}
-	$articles = getNewsArticles('','','published',true,"date","desc"); //query_full_array("SELECT titlelink, `date` FROM ".prefix('news'));// normally getNewsArticles() should be user but has currently a bug in 1.2.9 regarding getting all articles...
+	$articles = $_zp_zenpage->getNewsArticles('','','published',true,"date","desc"); //query_full_array("SELECT titlelink, `date` FROM ".prefix('news'));// normally getNewsArticles() should be user but has currently a bug in 1.2.9 regarding getting all articles...
 	if($articles) {
 		foreach($articles as $article) {
 			$articleobj = new ZenpageNews($article['titlelink']);
@@ -634,13 +637,14 @@ function printSitemapZenpageNewsArticles($changefreq='') {
  * @return string
  */
 function printSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
+	global $_zp_zenpage;
 	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_newscats');
 	} else {
 		$changefreq = sitemap_getChangefreq($changefreq);
 	}
-	$newscats = getAllCategories();
+	$newscats = $_zp_zenpage->getAllCategories();
 	if($newscats) {
 		// Add the correct URLs to the URL list
 		foreach($newscats as $newscat) {
@@ -661,7 +665,7 @@ function printSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
 				} else {
 					$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 				}
-				$articlecount = countArticles($catobj->getTitlelink());
+				$articlecount = $_zp_zenpage->countArticles($catobj->getTitlelink());
 				$catpages = ceil($articlecount / $zenpage_articles_per_page);
 				if($catpages > 1) {
 					for($x = 2;$x <= $catpages ; $x++) {

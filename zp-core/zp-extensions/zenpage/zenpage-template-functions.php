@@ -12,11 +12,13 @@
 /* ZENPAGE TEMPLATE FUNCTIONS
 /************************************************/
 
-require_once(dirname(__FILE__)."/zenpage-functions.php");
-
 /************************************************
  * Global definitions
  */
+
+if(is_null($_zp_zenpage)) {
+ $_zp_zenpage = new Zenpage();
+}
 
 /************************************************/
 /* General functions
@@ -194,14 +196,14 @@ function getAuthor($fullname=false) {
  * @return int
  */
 function getNumNews($combi=true) {
-	global $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
+	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
 	if (in_context(ZP_SEARCH)) {
 		processExpired('news');
 		$_zp_zenpage_articles = $_zp_current_search->getSearchNews();
 	} else if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
-		$_zp_zenpage_articles = getCombiNews(ZP_ARTICLES_PER_PAGE);
+		$_zp_zenpage_articles = $_zp_zenpage->getCombiNews(ZP_ARTICLES_PER_PAGE);
 	} else {
-		$_zp_zenpage_articles = getNewsArticles(ZP_ARTICLES_PER_PAGE);
+		$_zp_zenpage_articles = $_zp_zenpage->getNewsArticles(ZP_ARTICLES_PER_PAGE);
 	}
 	return count($_zp_zenpage_articles);
 }
@@ -224,15 +226,15 @@ function getNumNews($combi=true) {
  * @return bool
  */
 function next_news($sortorder="date", $sortdirection="desc") {
-	global $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
+	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
 	if (is_null($_zp_zenpage_articles)) {
 		if (in_context(ZP_SEARCH)) {
-			processExpired('news');
+			$_zp_zenpage->processExpired('news');
 			$_zp_zenpage_articles = $_zp_current_search->getSearchNews($sortorder, $sortdirection);
 		} else if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
-			$_zp_zenpage_articles = getCombiNews(ZP_ARTICLES_PER_PAGE);
+			$_zp_zenpage_articles = $_zp_zenpage->getCombiNews(ZP_ARTICLES_PER_PAGE);
 		} else {
-			$_zp_zenpage_articles = getNewsArticles(ZP_ARTICLES_PER_PAGE,'',NULL,false,$sortorder,$sortdirection);
+			$_zp_zenpage_articles = $_zp_zenpage->getNewsArticles(ZP_ARTICLES_PER_PAGE,'',NULL,false,$sortorder,$sortdirection);
 		}
 		//print_r($_zp_zenpage_articles); // debugging
 		if (empty($_zp_zenpage_articles)) { return false; }
@@ -943,11 +945,12 @@ function printNewsDate() {
  * @param bool $yearsonly If set to true the archive only shows the years with total count (Default false)
  */
 function printNewsArchive($class='archive', $yearclass='year', $monthclass='month', $activeclass="archive-active",$yearsonly=false) {
+	global $_zp_zenpage;
 	if (!empty($class)){ $class = "class=\"$class\""; }
 	if (!empty($yearclass)){ $yearclass = "class=\"$yearclass\""; }
 	if (!empty($monthclass)){ $monthclass = "class=\"$monthclass\""; }
 	if (!empty($activeclass)){ $activeclass = "class=\"$activeclass\""; }
-	$datecount = getAllArticleDates($yearsonly);
+	$datecount = $_zp_zenpage->getAllArticleDates($yearsonly);
 	$lastyear = "";
 	$nr = "";
 	echo "\n<ul $class>\n";
@@ -1066,14 +1069,14 @@ function printAllNewsCategories($newsindex='All news', $counter=TRUE, $css_id=''
  * @return array
  */
 function getLatestNews($number=2,$option='none', $category='') {
-	global $_zp_current_zenpage_news;
+	global $_zp_zenpage,$_zp_current_zenpage_news;
 	$latest = '';
 	switch($option) {
 		case 'none':
 			if(!empty($category)) {
-				$latest = getNewsArticles($number,$category,NULL,true);
+				$latest = $_zp_zenpage->getNewsArticles($number,$category,NULL,true);
 			} else {
-				$latest = getNewsArticles($number,'',NULL,true);
+				$latest = $_zp_zenpage->getNewsArticles($number,'',NULL,true);
 			}
 			$counter = '';
 			$latestnews = array();
@@ -1383,7 +1386,8 @@ function getNewsArchivePathNav() {
  * @return string
  */
 function getPrevNewsPageURL() {
-	$page = getCurrentNewsPage();
+	global $_zp_zenpage;
+	$page = $_zp_zenpage->getCurrentNewsPage();
 	if($page != 1) {
 		if(($page - 1) == 1) {
 			if(is_NewsCategory()) {
@@ -1409,7 +1413,8 @@ function getPrevNewsPageURL() {
  * @return string
  */
 function printPrevNewsPageLink($prev='&laquo; prev',$class='disabledlink') {
-	$page = getCurrentNewsPage();
+	global $_zp_zenpage;
+	$page = $_zp_zenpage->getCurrentNewsPage();
 	if(getPrevNewsPageURL()) {
 		echo "<a href='".html_encode(getPrevNewsPageURL())."' title='".gettext("Prev page")." ".($page - 1)."' >".$prev."</a>\n";
 	} else {
@@ -1424,8 +1429,9 @@ function printPrevNewsPageLink($prev='&laquo; prev',$class='disabledlink') {
  * @return string
  */
 function getNextNewsPageURL() {
-	$page =  getCurrentNewsPage();
-	$total_pages = ceil(getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+	global $_zp_zenpage;
+	$page = $_zp_zenpage->getCurrentNewsPage();
+	$total_pages = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
 	if ($page != $total_pages) {
 		return getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().($page + 1);
 	} else {
@@ -1443,7 +1449,8 @@ function getNextNewsPageURL() {
  * @return string
  */
 function printNextNewsPageLink($next='next &raquo;', $class='disabledlink') {
-	$page = getCurrentNewsPage();
+	global $_zp_zenpage;
+	$page = $_zp_zenpage->getCurrentNewsPage();
 	if (getNextNewsPageURL())	{
 		echo "<a href='".html_encode(getNextNewsPageURL())."' title='".gettext("Next page")." ".($page + 1)."'>".$next."</a>\n";
 	} else {
@@ -1476,8 +1483,9 @@ function printNewsPageList($class='pagelist') {
  * @return string
  */
 function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',$firstlast=true, $navlen=9) {
-	$total = ceil(getTotalArticles() / ZP_ARTICLES_PER_PAGE);
-	$current = getCurrentNewsPage();
+	global $_zp_zenpage;
+	$total = ceil($_zp_zenpage->getTotalArticles() / ZP_ARTICLES_PER_PAGE);
+	$current = $_zp_zenpage->getCurrentNewsPage();
 	if ($total > 1) {
 		if ($navlen == 0)
 			$navlen = $total;
@@ -1546,10 +1554,11 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 
 
 function getTotalNewsPages() {
+	global $_zp_zenpage;
 	if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
-		$articlecount = countCombiNews();
+		$articlecount = $_zp_zenpage->countCombiNews();
 	} else {
-		$articlecount = countArticles();
+		$articlecount = $_zp_zenpage->countArticles();
 	}
 }
 
@@ -1571,12 +1580,12 @@ function getTotalNewsPages() {
  * @return mixed
  */
 function getNextPrevNews($option='',$sortorder='date',$sortdirection='desc') {
-	global $_zp_current_zenpage_news;
+	global $_zp_zenpage,$_zp_current_zenpage_news;
 	$article_url = array();
 	if(!ZP_COMBINEWS) {
 		$current = 0;
 		if(!empty($option)) {
-			$all_articles = getNewsArticles('','',NULL,false,$sortorder,$sortdirection);
+			$all_articles = $_zp_zenpage->getNewsArticles('','',NULL,false,$sortorder,$sortdirection);
 			$count = 0;
 			foreach($all_articles as $article) {
 				$newsobj = new ZenpageNews($article['titlelink']);
@@ -1926,7 +1935,7 @@ function printTopRatedItems($number=10, $option="all",$showstats=true,$showtype=
  * @return string
  */
 function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$css_class_topactive=NULL,$css_class=NULL,$css_class_active=NULL,$indexname=NULL,$showsubs=0,$startlist=true, $limit=NULL) {
-	global $_zp_gallery_page, $_zp_current_zenpage_page, $_zp_current_category;
+	global $_zp_zenpage, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
 	if (is_null($limit)) {
 		$limit = MENU_TRUNCATE_STRING;
 	}
@@ -1938,7 +1947,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 	switch($mode) {
 		case 'pages':
 			$published = !zp_loggedin(ZENPAGE_PAGES_RIGHTS);
-			$items = getPages($published);
+			$items = $_zp_zenpage->getPages($published);
 			$currentitem_id = getPageID();
 			if (is_object($_zp_current_zenpage_page)) {
 				$currentitem_parentid = $_zp_current_zenpage_page->getParentID();
@@ -1949,7 +1958,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 			break;
 		case 'categories':
 			$published = !zp_loggedin(ZENPAGE_NEWS_RIGHTS);
-			$items = getAllCategories();
+			$items = $_zp_zenpage->getAllCategories();
 			if (is_object($_zp_current_category)) {
 				$currentitem_sortorder = $_zp_current_category->getSortOrder();
 				$currentitem_id  = $_zp_current_category->getID();
@@ -1993,9 +2002,9 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				}
 				if($counter) {
 					if(ZP_COMBINEWS) {
-						$totalcount = countCombiNews($published);
+						$totalcount = $_zp_zenpage->countCombiNews($published);
 					} else {
-						$totalcount = countArticles("",$published);
+						$totalcount = $_zp_zenpage->countArticles("",$published);
 					}
 					echo "<small> (".$totalcount.")</small>";
 				}
@@ -2034,7 +2043,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				$itemparentid = $catobj->getParentID();
 				$itemtitlelink = $catobj->getTitlelink();
 				$itemurl = getNewsCategoryURL($catobj->getTitlelink());
-				$catcount = countArticles($catobj->getTitlelink());
+				$catcount = $_zp_zenpage->countArticles($catobj->getTitlelink());
 				if($counter) {
 					$count = "<small> (".$catcount.")</small>";
 				} else {
@@ -2184,8 +2193,8 @@ $_zp_zenpage_pagelist = NULL;
  * @return int
  */
 function getNumPages() {
-	global $_zp_zenpage_pagelist, $_zp_current_search, $_zp_current_zenpage_page;
-	processExpired('pages');
+	global $_zp_zenpage, $_zp_zenpage_pagelist, $_zp_current_search, $_zp_current_zenpage_page;
+	$_zp_zenpage->processExpired('pages');
 	if (in_context(ZP_SEARCH)) {
 		$_zp_zenpage_pagelist = $_zp_current_search->getSearchPages();
 		$count = count($_zp_zenpage_pagelist);
@@ -2205,13 +2214,13 @@ function getNumPages() {
  * @return object
  */
 function next_page() {
-	global $_zp_zenpage_pagelist,$_zp_current_search,$_zp_current_zenpage_page;
+	global $_zp_zenpage, $_zp_zenpage_pagelist,$_zp_current_search,$_zp_current_zenpage_page;
 	if (!in_context(ZP_SEARCH)) {
 		return false;
 	}
 	add_context(ZP_ZENPAGE_PAGE);
 	if (is_null($_zp_zenpage_pagelist)) {
-		processExpired('pages');
+		$_zp_zenpage->processExpired('pages');
 		$_zp_zenpage_pagelist = $_zp_current_search->getSearchPages();
 	}
 	if (empty($_zp_zenpage_pagelist)) {
