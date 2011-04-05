@@ -1,16 +1,10 @@
 <?php
 /**
- * Generates a sitemap.org compatible XML file, for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories.
- * <?xml version="1.0" encoding="UTF-8"?>
- *<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
- *  <url>
- *    <loc>http://www.example.com/</loc>
- *    <lastmod>2005-01-01</lastmod> // except for index, Zenpage news index and news categories as they don't have a date attached (optional anyway)
- *    <changefreq>monthly</changefreq>
- * </url>
- *</urlset>
+ * Generates individually sitemap.org compatible XML files for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories. 
+ * Sitemaps need to be generated via the button on the admin overview page and then are cached as static files in the /cache_html/sitemap/ folder.
+ * There are individual sitemaps for all of the above item types generated as well as a sitemapindex file.
  *
- * Renders the sitemap if called via "www.yourdomain.com/zenphoto/sitemap.php". The sitemap is cached as a xml file within the root "cache_html/sitemap" folder.
+ * The sitemapindex file can be referenced via "www.yourdomain.com/zenphoto/index.php?sitemap" or with modrewrite "www.yourdomain.com/zenphoto/?sitemap". 
  *
  * NOTE: The index links may not match if using the options for "Zenpage news on index" or a "custom home page" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!
  *
@@ -20,26 +14,14 @@
  * @package plugins
  */
 
-if (isset($_GET['action']) && $_GET['action']=='clear_sitemap_cache') { //button handler
-	if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 3);
-	require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
-	require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
-	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
-
-	admin_securityChecks(NULL, currentRelativeURL(__FILE__));
-
-	clearSitemapCache();
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('sitemap cache cleared.'));
-	exit();
-}
 
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
-$plugin_description = gettext('Generates a sitemaps.org compatible XML file, for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories. Renders the sitemap if called via "www.yourdomain.com/zenphoto/sitemap.php" in the URL.').'<p class="notebox">'.gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!').'</p>';
+$plugin_description = gettext('Generates individually sitemap.org compatible XML files for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories.').'<p class="notebox">'.gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!').'</p>';
 $plugin_author = 'Malte Müller (acrylian) based on the <a href="http://github.com/Tenzer/zenphoto-sitemap">plugin</a> by Jeppe Toustrup (Tenzer) and modifications by Timo and Blue Dragonfly';
 $plugin_version = '1.4.1';
 $option_interface = 'sitemap';
 
-zp_register_filter('admin_utilities_buttons', 'sitemap_cache_purgebutton');
+zp_register_filter('admin_utilities_buttons', 'sitemap_button');
 
 $sitemapfolder = SERVERPATH.'/cache_html/sitemap';
 if (!file_exists($sitemapfolder)) {
@@ -159,28 +141,12 @@ class sitemap {
 }
 
 if(isset($_GET['sitemap'])) {
-	startSitemapCache();
-	// Output content type and charset
-	header('Content-Type: text/xml;charset=utf-8');
-	// Output XML file headers, and plug the plugin :)
-	sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-	if(getOption('sitemap_google')) {
-		sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
-	} else {
-		sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-	}
-	printSitemapIndexLinks();
-	printSitemapAlbumsAndImages();
-	// Optional Zenpage stuff
-	if(getOption('zp_plugin_zenpage')) {
-		printSitemapZenpagePages();
-		printSitemapZenpageNewsIndex();
-		printSitemapZenpageNewsArticles();
-		printSitemapZenpageNewsCategories();
-	}
-	sitemap_echonl('</urlset>');// End off the <urlset> tag
-	endSitemapCache();
-	exit();
+	$sitemappath = SERVERPATH.'/cache_html/sitemap/sitemapindex.xml';
+	if(file_exists($sitemappath)) {
+		$sitemapfile = file_get_contents($sitemappath);
+		echo $sitemapfile;
+	} 
+	exit(); 
 }
 
 /**
@@ -188,16 +154,16 @@ if(isset($_GET['sitemap'])) {
  * @param array $buttons
  * @return array
  */
-function sitemap_cache_purgebutton($buttons) {
+function sitemap_button($buttons) {
 	$buttons[] = array(
 								'enable'=>true,
-								'button_text'=>gettext('Purge sitemap cache'),
-								'formname'=>'clearcache_button',
-								'action'=>PLUGIN_FOLDER.'/sitemap-extended.php?action=clear_sitemap_cache',
+								'button_text'=>gettext('Sitemap tools'),
+								'formname'=>'sitemap_button',
+								'action'=>PLUGIN_FOLDER.'/sitemap-extended/sitemap-extended-admin.php',
 								'icon'=>'images/edit-delete.png',
-								'title'=>gettext('Clear the static sitemap cache. It will be re-cached if requested.'),
+								'title'=>gettext('Sitemap tools.'),
 								'alt'=>'',
-								'hidden'=> '<input type="hidden" name="action" value="clear_sitemap_cache" />',
+								'hidden'=> '',
 								'rights'=> ADMIN_RIGHTS
 	);
 	return $buttons;
@@ -219,7 +185,53 @@ function sitemap_multilingual() {
  * @return string
  */
 function sitemap_echonl($string) {
-	echo($string . "\n");
+	return $string . "\n";
+}
+
+
+/**
+ * Generates a sitemap file.
+ * 
+ * @param string $filename How the file should be named. ".xml" is appended automatically
+ * @param string $data The actual sitemap data as generated by the appropiate functions
+ */
+function generateSitemapCacheFile($filename,$data) {
+	if(!empty($data)) {
+		$filepath = SERVERPATH.'/cache_html/sitemap/'.$filename.'.xml';
+		$handler = fopen($filepath,'w');
+		fwrite($handler,$data);
+		fclose($handler);
+		echo '<li>'.$filename.'</li>';
+	} else {
+		echo '<li>'.gettext('No data for the sitemap: ').$filename.'</li>';
+	}
+}
+
+/**
+ * Generates the sitemap index file that points to the individual sitemaps. It is always named "sitemapindex.xml"
+ */
+function generateSitemapIndexCacheFile() {
+	$data = '';
+	$cachefolder = SERVERPATH.'/cache_html/sitemap/';
+	$dirs = array_diff(scandir($cachefolder),array( '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn'));
+	if($dirs) {
+		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>'); 
+		$data .= sitemap_echonl('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+		foreach($dirs as $dir) {
+			$data .= sitemap_echonl('<sitemap>'); 
+			$data .= sitemap_echonl('<loc>'.FULLWEBPATH.'/cache_html/sitemap/'.$dir.'</loc>'); 
+			$data .= sitemap_echonl('<lastmod>'.sitemap_getISO8601Date().'</lastmod>');
+			$data .= sitemap_echonl('</sitemap>');
+		}
+		$data .= sitemap_echonl('</sitemapindex>');
+		$filepath = SERVERPATH.'/cache_html/sitemap/sitemapindex.xml';
+		$handler = fopen($filepath,'w');
+		fwrite($handler,$data);
+		fclose($handler);
+		echo '<li>sitemapindex.php</li>';
+	} else {
+		echo '<li>'.gettext('No sitemap files for the sitemapindex file available.').'</li>';
+	}
 }
 /**
  * Checks the changefreq value if entered manually and makes sure it is only one of the supported regarding sitemap.org
@@ -278,8 +290,11 @@ function sitemap_getDateformat($obj,$option) {
  * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function printSitemapIndexLinks($albumsperpage='',$changefreq='') {
+function getSitemapIndexLinks($albumsperpage='',$changefreq='') {
 	global $_zp_gallery;
+	$data = '';
+	$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+	$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_index');
@@ -288,10 +303,10 @@ function printSitemapIndexLinks($albumsperpage='',$changefreq='') {
 	}
 	if(sitemap_multilingual()) {
 		foreach($sitemap_locales as $locale) {
-			sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."/".$locale."/</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+			$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."/".$locale."/</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 		}
 	} else {
-	sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+		$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 	}
 	set_context(ZP_INDEX);
 	/*if(galleryAlbumsPerPage() != 0) {
@@ -312,15 +327,17 @@ function printSitemapIndexLinks($albumsperpage='',$changefreq='') {
 			if(sitemap_multilingual()) {
 				foreach($sitemap_locales as $locale) {
 					$url = FULLWEBPATH.'/'.rewrite_path($locale.'/page/'.$x,'index.php?page='.$x,false);
-					sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
 			} else {
 				$url = FULLWEBPATH.'/'.rewrite_path('page/'.$x,'index.php?page='.$x,false);
-				sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 			}
 		}
 	}
+	$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
 	restore_context();
+	return $data;
 }
 
 /**
@@ -334,8 +351,9 @@ function printSitemapIndexLinks($albumsperpage='',$changefreq='') {
  * @param  string $imagelastmod "date or "mtime"
  * @return string
  */
-function printSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$albumchangefreq='',$imagechangefreq='',$albumlastmod='',$imagelastmod='') {
+function getSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$albumchangefreq='',$imagechangefreq='',$albumlastmod='',$imagelastmod='') {
 	global $_zp_gallery, $_zp_current_album;
+	$data = '';
 	$sitemap_locales = generateLanguageList();
 	if(empty($albumchangefreq)) {
 		$albumchangefreq = getOption('sitemap_changefreq_albums');
@@ -371,6 +389,12 @@ function printSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$album
 	// Find public albums
 	$albums = query_full_array('SELECT `folder`,`date` FROM ' . prefix('albums') . $albumWhere);
 	if($albums) {
+		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+		if(getOption('sitemap_google')) {
+			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
+		} else {
+			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+		}
 		foreach($albums as $album) {
 			$albumobj = new Album($_zp_gallery,$album['folder']);
 			set_context(ZP_ALBUM);
@@ -404,15 +428,15 @@ function printSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$album
 			if(sitemap_multilingual()) {
 				foreach($sitemap_locales as $locale) {
 					$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
-					sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
 					printSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images);
-					sitemap_echonl("\t</url>");
+					$data .= sitemap_echonl("\t</url>");
 				}
 			} else {
 				$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
-				sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-				printSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images);
-				sitemap_echonl("\t</url>");
+				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
+				$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images);
+				$data .= sitemap_echonl("\t</url>");
 			}
 			// print album pages if avaiable
 			if($pageCount > 1) {
@@ -420,15 +444,15 @@ function printSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$album
 					if(sitemap_multilingual()) {
 						foreach($sitemap_locales as $locale) {
 							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
-							sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-							printSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images);
-							sitemap_echonl("\t</url>");
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
+							$data .= getSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images);
+							$data .= sitemap_echonl("\t</url>");
 						}
 					} else {
 						$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
-						sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-						printSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images);
-						sitemap_echonl("\t</url>");
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
+						$data .= getSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images);
+						$data .= sitemap_echonl("\t</url>");
 					}
 				}
 			}
@@ -451,18 +475,20 @@ function printSitemapAlbumsAndImages($albumsperpage='',$imagesperpage ='',$album
 						if(sitemap_multilingual()) {
 							foreach($sitemap_locales as $locale) {
 								$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
-								sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
+								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
 							}
 						} else {
 							$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
-							sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
 						}
 					}
 				}
 			}
 		}
+		$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
 	}
 	restore_context();
+	return $data;
 }
 
 
@@ -482,8 +508,9 @@ function getSitemapGoogleLoopIndex($imageCount,$pageCount) {
 	return NULL;
 }
 
-function printSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images) {
+function getSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images) {
 	if(getOption('sitemap_google') && !empty($loop_index)) {
+		$data = '';
 		$host = getOption("server_protocol").'://'.html_encode($_SERVER["HTTP_HOST"]);
 		$start = ($page - 1) * getOption('images_per_page');
 		$end = ($page - 1) * getOption('images_per_page') + $loop_index[($page-1)];
@@ -499,28 +526,40 @@ function printSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images)
 			$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).getOption('mod_rewrite_image_suffix'),'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
 			if($ext != '.mp3' && $ext != '.txt' && $ext != '.html') { // audio is not coverered specifically by Google currently
 				if(isImageVideo($imageobj) && $ext != '.mp3') {
-					sitemap_echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>".$host.html_encode($imageobj->getThumb())."</video:thumbnail_loc>\n\t\t\t<video:title>".$imageobj->getTitle()."</video:title>");
-					if ($imageobj->getDesc()) { sitemap_echonl("\t\t\t<video:description>".$imageobj->getDesc()."</video:description>"); }
-					sitemap_echonl("\t\t\t<video:content_loc>".$host.pathurlencode($imageobj->getFullImage())."</video:content_loc>");
-					sitemap_echonl("\t\t</video:video>");
+					$data .= sitemap_echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>".$host.html_encode($imageobj->getThumb())."</video:thumbnail_loc>\n\t\t\t<video:title>".$imageobj->getTitle()."</video:title>");
+					if ($imageobj->getDesc()) { 
+						$data .= sitemap_echonl("\t\t\t<video:description>".$imageobj->getDesc()."</video:description>");
+					}
+					$data .= sitemap_echonl("\t\t\t<video:content_loc>".$host.pathurlencode($imageobj->getFullImage())."</video:content_loc>");
+					$data .= sitemap_echonl("\t\t</video:video>");
 				} else { // this might need to be extended!
-					sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>".$host.html_encode($imageobj->getSizedImage(IMAGE_SIZE))."</image:loc>\n\t\t\t<image:title>".$imageobj->getTitle()."</image:title>");
-					if ($imageobj->getDesc()) { sitemap_echonl("\t\t\t<image:caption>".$imageobj->getDesc()."</image:caption>"); }
-					if (!empty($license)) { sitemap_echonl("\t\t\t<image:license>".$license."</image:license>"); }
-					if (!empty($location)) { sitemap_echonl("\t\t\t<image:geo_location>".$location."</image:geo_location>"); }
-					sitemap_echonl("\t\t</image:image>");
+					$data .= sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>".$host.html_encode($imageobj->getSizedImage(IMAGE_SIZE))."</image:loc>\n\t\t\t<image:title>".$imageobj->getTitle()."</image:title>");
+					if ($imageobj->getDesc()) { 
+						$data .= sitemap_echonl("\t\t\t<image:caption>".$imageobj->getDesc()."</image:caption>"); 
+					}
+					if (!empty($license)) { 
+						$data .= sitemap_echonl("\t\t\t<image:license>".$license."</image:license>"); 
+					}
+					if (!empty($location)) { 
+						$data .= sitemap_echonl("\t\t\t<image:geo_location>".$location."</image:geo_location>"); 
+					}
+					$data .= sitemap_echonl("\t\t</image:image>");
 				}
 			}
 		}
+		return $data;
 	}
+	
 }
+
 /**
  * Prints links to all Zenpage pages
  * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function printSitemapZenpagePages($changefreq='') {
+function getSitemapZenpagePages($changefreq='') {
 	global $_zp_zenpage;
+	$data = '';
 	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_pages');
@@ -529,6 +568,8 @@ function printSitemapZenpagePages($changefreq='') {
 	}
 	$pages = $_zp_zenpage->getPages(true);
 	if($pages) {
+		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		foreach($pages as $page) {
 			$pageobj = new ZenpagePage($page['titlelink']);
 			$date = substr($pageobj->getDatetime(),0,10);
@@ -539,15 +580,17 @@ function printSitemapZenpagePages($changefreq='') {
 				if(sitemap_multilingual()) {
 					foreach($sitemap_locales as $locale) {
 						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
-						sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 				} else {
 					$url = FULLWEBPATH.'/'.rewrite_path('pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
-					sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
 			}
 		}
+		$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
 	}
+	return $data;
 }
 /**
  * Prints links to the main Zenpage news index incl. pagination
@@ -555,8 +598,11 @@ function printSitemapZenpagePages($changefreq='') {
  * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function printSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
+function getSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
 	global $_zp_zenpage;
+	$data = '';
+	$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+	$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_newsindex');
@@ -566,11 +612,11 @@ function printSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
 	if(sitemap_multilingual()) {
 		foreach($sitemap_locales as $locale) {
 			$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/1','?p=news&amp;page=1',false);
-			sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+			$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 		}
-	}else {
+	} else {
 		$url = FULLWEBPATH.'/'.rewrite_path('news/1','?p=news&amp;page=1',false);
-		sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+		$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 	}
 	// getting pages for the main news loop
 	if(!empty($articlesperpage)) {
@@ -584,22 +630,27 @@ function printSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
 			if(sitemap_multilingual()) {
 				foreach($sitemap_locales as $locale) {
 					$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/'.$x,'?p=news&amp;page='.$x,false);
-					sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
 			} else {
 				$url = FULLWEBPATH.'/'.rewrite_path('news/'.$x,'?p=news&amp;page='.$x,false);
-				sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 			}
 		}
+		
 	}
+	$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
+	return $data;
 }
+
 /**
  * Prints to the Zenpage news articles
  * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function printSitemapZenpageNewsArticles($changefreq='') {
+function getSitemapZenpageNewsArticles($changefreq='') {
 	global $_zp_zenpage;
+	$data = '';
 	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_news');
@@ -608,6 +659,8 @@ function printSitemapZenpageNewsArticles($changefreq='') {
 	}
 	$articles = $_zp_zenpage->getNewsArticles('','','published',true,"date","desc"); //query_full_array("SELECT titlelink, `date` FROM ".prefix('news'));// normally getNewsArticles() should be user but has currently a bug in 1.2.9 regarding getting all articles...
 	if($articles) {
+		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		foreach($articles as $article) {
 			$articleobj = new ZenpageNews($article['titlelink']);
 			$date = substr($articleobj->getDatetime(),0,10);
@@ -618,15 +671,17 @@ function printSitemapZenpageNewsArticles($changefreq='') {
 				if(sitemap_multilingual()) {
 					foreach($sitemap_locales as $locale) {
 						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
-						sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 				}	else {
 					$url = FULLWEBPATH.'/'.rewrite_path('news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
-					sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
 			}
 		}
+		$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
 	}
+	return $data;
 }
 
 /**
@@ -636,8 +691,9 @@ function printSitemapZenpageNewsArticles($changefreq='') {
  * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function printSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
+function getSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
 	global $_zp_zenpage;
+	$data = '';
 	$sitemap_locales = generateLanguageList();
 	if(empty($changefreq)) {
 		$changefreq = getOption('sitemap_changefreq_newscats');
@@ -646,18 +702,19 @@ function printSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
 	}
 	$newscats = $_zp_zenpage->getAllCategories();
 	if($newscats) {
-		// Add the correct URLs to the URL list
+		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		foreach($newscats as $newscat) {
 			$catobj = new ZenpageCategory($newscat['titlelink']);
 			if(!$catobj->isProtected()) {
 				if(sitemap_multilingual()) {
 					foreach($sitemap_locales as $locale) {
 						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
-						sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 				} else {
 					$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
-					sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
 				// getting pages for the categories
 				if(!empty($articlesperpage)) {
@@ -672,17 +729,19 @@ function printSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
 						if(sitemap_multilingual()) {
 							foreach($sitemap_locales as $locale) {
 								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
-								sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
 						} else {
 							$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
-							sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						}
 					}
 				}
 			}
 		}
+		$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
 	}
+	return $data;
 }
 
 /**

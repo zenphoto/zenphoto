@@ -882,7 +882,9 @@ zp-core/zp-extensions/search_statistics/search_analysis.php
 zp-core/zp-extensions/security-logger.php
 zp-core/zp-extensions/seo_locale.php
 zp-core/zp-extensions/show_not_logged-in.php
+zp-core/zp-extensions/sitemap-extended
 zp-core/zp-extensions/sitemap-extended.php
+zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php
 zp-core/zp-extensions/slideshow
 zp-core/zp-extensions/slideshow.php
 zp-core/zp-extensions/slideshow/controls.png
@@ -2750,4 +2752,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2752
+2754
