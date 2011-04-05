@@ -17,7 +17,7 @@
  */
 
 if(!isset($_zp_zenpage)) {
- $_zp_zenpage = new Zenpage();
+ $_zp_zenpage = new ZenpageGallery();
 }
 
 /************************************************/
@@ -2710,7 +2710,7 @@ function getLatestZenpageComments($number,$type="all",$itemID="") {
 			$wherePages = " WHERE pages.show = 1 AND pages.id = ".$itemID." AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0".$pagepasswordcheck;
 			break;
 		case "all":
-				
+
 			$whereNews = " WHERE news.show = 1 AND c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0".$newspasswordcheck;
 			$wherePages = " WHERE pages.show = 1 AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0".$pagepasswordcheck;
 			break;

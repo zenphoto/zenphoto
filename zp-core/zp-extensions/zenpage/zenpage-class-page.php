@@ -136,8 +136,8 @@ class ZenpagePage extends ZenpageItems {
  * @return array
  */
 	function getParents(&$parentid='',$initparents=true) {
-		global $parentpages;
-		$allitems = $this->getPages();
+		global $parentpages, $_zp_zenpage;
+		$allitems = $_zp_zenpage->getPages();
 		if($initparents) {
 			$parentpages = array();
 		}

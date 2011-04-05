@@ -1,6 +1,6 @@
 <?php
 /**
- * Zenpage root class
+ * Zenpage root classes
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)
  * @package plugins
  * @subpackage zenpage
@@ -33,54 +33,15 @@ define('ZP_CN_MODE',getOption('zenpage_combinews_mode'));
 if (!defined('MENU_TRUNCATE_STRING')) define('MENU_TRUNCATE_STRING',getOption('menu_truncate_string'));
 if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOption('menu_truncate_indicator'));
 
-/**
- *
- * Base class from which all Zenpage classes derive
- *
- */
-class Zenpage extends ThemeObject {
+class ZenpageGallery {
 
 	/**
 	 * Class instantiator
 	 */
-	function Zenpage() {
+	function ZenpageGallery() {
 		// no action required
 	}
 
-	/**
-	 * Returns the perma link status (only used on admin)
-	 *
-	 * @return string
-	 */
-	function getPermalink() {
-		return $this->get("permalink");
-	}
-
-	/**'
-	 * sets the permalink
-	 */
-	function setPermalink($v) {
-		$this->set('permalink', $v);
-	}
-
-	/**
-	 * Returns the titlelink
-	 *
-	 * @return string
-	 */
-	function getTitlelink() {
-		return $this->get("titlelink");
-	}
-
-	/**
-	 * sets the title link
-	 * @param $v
-	 */
-	function setTitlelink($v) {
-		$this->set("titlelink",$v);
-	}
-	
-	
 	/**
 	 * Un-publishes pages/news whose expiration date has been reached
 	 *
@@ -721,7 +682,7 @@ class Zenpage extends ThemeObject {
 			} else {
 				$countGalleryitems = 0;
 			}
-			
+
 			$totalcount = $countArticles+$countGalleryitems;
 			return $totalcount;
 		}
@@ -773,6 +734,55 @@ class Zenpage extends ThemeObject {
 			$_zp_zenpage_all_categories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order", false, 'title');
 		}
 		return $_zp_zenpage_all_categories;
+	}
+
+}	// ZenpageCMS
+
+/**
+ *
+ * Base class from which all Zenpage classes derive
+ *
+ */
+class Zenpage extends ThemeObject {
+
+	/**
+	 * Class instantiator
+	 */
+	function Zenpage() {
+		// no action required
+	}
+
+	/**
+	 * Returns the perma link status (only used on admin)
+	 *
+	 * @return string
+	 */
+	function getPermalink() {
+		return $this->get("permalink");
+	}
+
+	/**'
+	 * sets the permalink
+	 */
+	function setPermalink($v) {
+		$this->set('permalink', $v);
+	}
+
+	/**
+	 * Returns the titlelink
+	 *
+	 * @return string
+	 */
+	function getTitlelink() {
+		return $this->get("titlelink");
+	}
+
+	/**
+	 * sets the title link
+	 * @param $v
+	 */
+	function setTitlelink($v) {
+		$this->set("titlelink",$v);
 	}
 
 } // Zenpage main class end

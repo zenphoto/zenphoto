@@ -117,9 +117,10 @@ class ZenpageCategory extends Zenpage {
 	 * @return array
 	 */
 	function getSubCategories() {
+		global $_zp_zenpage;
 		$subcategories = array();
 		$sortorder = $this->getSortOrder();
-		foreach($this->getAllCategories() as $cat) {
+		foreach($_zp_zenpage->getAllCategories() as $cat) {
 			$catobj = new ZenpageCategory($cat['titlelink']);
 			if($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
 				array_push($subcategories,$catobj->getTitlelink());
@@ -162,8 +163,8 @@ class ZenpageCategory extends Zenpage {
 	 * @return array
 	 */
 	function getParents(&$parentid='',$initparents=true) {
-		global $parentcats;
-		$allitems = $this->getAllCategories();
+		global $parentcats,$_zp_zenpage;
+		$allitems = $_zp_zenpage->getAllCategories();
 		if($initparents) {
 			$parentcats = array();
 		}
@@ -256,7 +257,85 @@ class ZenpageCategory extends Zenpage {
 	 * @return array
 	 */
 	function getArticles($articles_per_page='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
-		return $this->getNewsArticles($articles_per_page, $this->getTitlelink(), $published,$ignorepagination,$sortorder, $sortdirection,$sticky);
+//		return $this->getNewsArticles($articles_per_page, $this->getTitlelink(), $published,$ignorepagination,$sortorder, $sortdirection,$sticky);
+		global $_zp_current_category, $_zp_post_date, $_zp_zenpage;
+		$_zp_zenpage->processExpired('news');
+		if (is_null($published)) {
+			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+				$published = "all";
+			} else {
+				$published = "published";
+			}
+		}
+		$show = "";
+		// new code to get nested cats
+		$catid = $this->getID();
+		$subcats = $this->getSubCategories();
+		if($subcats) {
+			$cat = " (cat.cat_id = '".$catid."'";
+			foreach($subcats as $subcat) {
+				$subcatobj = new ZenpageCategory($subcat);
+				$cat .= "OR cat.cat_id = '".$subcatobj->getID()."' ";
+			}
+			$cat .= ") AND cat.news_id = news.id ";
+		} else {
+			$cat = " cat.cat_id = '".$catid."' AND cat.news_id = news.id ";
+		}
+		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
+			$postdate = $_zp_post_date;
+		} else {
+			$postdate = NULL;
+		}
+		$limit = $_zp_zenpage->getLimitAndOffset($articles_per_page,$ignorepagination);
+		if ($sticky) {
+			$sticky = 'sticky DESC,';
+		}
+		// sortorder and sortdirection
+		switch($sortorder) {
+			case "date":
+			default:
+				$sort1 = "date";
+				break;
+			case "title":
+				$sort1 = "title";
+				break;
+		}
+		switch($sortdirection) {
+			case "desc":
+			default:
+				$dir = "DESC";
+				break;
+			case "asc":
+				$dir = "ASC";
+				$sticky = false;	//makes no sense
+				break;
+		}
+		/*** get articles by category ***/
+		switch($published) {
+			case "published":
+				$show = " AND `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+				break;
+			case "unpublished":
+				$show = " AND `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
+				break;
+			case 'sticky':
+				$show = ' AND `sticky` <> 0';
+				break;
+			case "all":
+				$show = "";
+				break;
+		}
+		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
+			$datesearch = " AND news.date LIKE '".$postdate."%' ";
+			$order = " ORDER BY ".$sticky."news.date DESC";
+		} else {
+			$datesearch = "";
+			$order = " ORDER BY ".$sticky."news.$sort1 $dir";
+		}
+		$sql = "SELECT DISTINCT news.titlelink FROM ".prefix('news')." as news, ".prefix('news2cat')." as cat WHERE".$cat.$show.$datesearch.$order.$limit;
+		$result = query_full_array($sql);
+
+		return $result;
 	}
 
 
