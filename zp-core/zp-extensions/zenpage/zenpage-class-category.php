@@ -7,7 +7,7 @@
  * @subpackage zenpage
  */
 
-class ZenpageCategory extends Zenpage {
+class ZenpageCategory extends ZenpageRoot {
 
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $view_rights = VIEW_NEWS_RIGHTS;

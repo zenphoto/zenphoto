@@ -17,7 +17,7 @@
  */
 
 if(!isset($_zp_zenpage)) {
- $_zp_zenpage = new ZenpageGallery();
+ $_zp_zenpage = new Zenpage();
 }
 
 /************************************************/

@@ -33,12 +33,12 @@ define('ZP_CN_MODE',getOption('zenpage_combinews_mode'));
 if (!defined('MENU_TRUNCATE_STRING')) define('MENU_TRUNCATE_STRING',getOption('menu_truncate_string'));
 if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOption('menu_truncate_indicator'));
 
-class ZenpageGallery {
+class Zenpage {
 
 	/**
 	 * Class instantiator
 	 */
-	function ZenpageGallery() {
+	function Zenpage() {
 		// no action required
 	}
 
@@ -743,12 +743,12 @@ class ZenpageGallery {
  * Base class from which all Zenpage classes derive
  *
  */
-class Zenpage extends ThemeObject {
+class ZenpageRoot extends ThemeObject {
 
 	/**
 	 * Class instantiator
 	 */
-	function Zenpage() {
+	function ZenpageRoot() {
 		// no action required
 	}
 
@@ -792,7 +792,7 @@ class Zenpage extends ThemeObject {
  * Base class from which Zenpage news articles and pages derive
  *
  */
-class ZenpageItems extends Zenpage {
+class ZenpageItems extends ZenpageRoot {
 
 	/**
 	 * Class instantiator
