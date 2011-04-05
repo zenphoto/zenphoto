@@ -2676,16 +2676,43 @@ function zenpageOpenedForComments() {
 function getLatestZenpageComments($number,$type="all",$itemID="") {
 	$itemID = sanitize_numeric($itemID);
 	$number = sanitize_numeric($number);
+	if($type == 'all' || $type == 'news') {
+		$newspasswordcheck = "";
+		if (!zp_loggedin(ADMIN_RIGHTS)) {
+			$newscheck = query_full_array("SELECT * FROM " . prefix('news'). " ORDER BY date");
+			foreach ($newscheck as $articlecheck) {
+				$obj = new ZenpageNews($articlecheck['titlelink']);
+				if($obj->inProtectedCategory()) {
+					$excludenews = " AND id != ".$articlecheck['id'];
+					$newspasswordcheck = $newspasswordcheck.$excludenews;
+				}
+			}
+		}
+	}
+	if($type == 'all' || $type == 'page') {
+		$pagepasswordcheck = "";
+		if (!zp_loggedin(ADMIN_RIGHTS)) {
+			$pagescheck = query_full_array("SELECT * FROM " . prefix('pages'). " ORDER BY date");
+			foreach ($pagescheck as $pagecheck) {
+				$obj = new ZenpagePage($page['titlelink']);
+				if($obj->isProtected()) {
+					$excludepages = " AND id != ".$pagecheck['id'];
+					$pagepasswordcheck = $pagepasswordcheck.$excludepages;
+				}
+			}
+		}
+	}
 	switch ($type) {
 		case "news":
-			$whereNews = " WHERE news.show = 1 AND news.id = ".$itemID." AND c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0";
+			$whereNews = " WHERE news.show = 1 AND news.id = ".$itemID." AND c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0".$newspasswordcheck;
 			break;
 		case "page":
-			$wherePages = " WHERE pages.show = 1 AND pages.id = ".$itemID." AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0";
+			$wherePages = " WHERE pages.show = 1 AND pages.id = ".$itemID." AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0".$pagepasswordcheck;
 			break;
 		case "all":
-			$whereNews = " WHERE news.show = 1 AND c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0";
-			$wherePages = " WHERE pages.show = 1 AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0";
+				
+			$whereNews = " WHERE news.show = 1 AND c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0".$newspasswordcheck;
+			$wherePages = " WHERE pages.show = 1 AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0".$pagepasswordcheck;
 			break;
 	}
 	$comments_news = array();
