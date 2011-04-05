@@ -36,7 +36,7 @@ $items = getOption('feed_items'); // # of Items displayed on the feed
 			$ext = strtolower(strrchr($item->filename, "."));
 			$albumobj = $item->getAlbum();
 			$itemlink = $host.WEBPATH.$albumpath.pathurlencode($albumobj->name).$imagepath.pathurlencode($item->filename).$modrewritesuffix;
-			$fullimagelink = $host.WEBPATH."/albums/".parthurlencode($albumobj->name)."/".$item->filename;
+			$fullimagelink = $host.WEBPATH."/albums/".pathurlencode($albumobj->name)."/".$item->filename;
 			$imagefile = "albums/".$albumobj->name."/".$item->filename;
 			$thumburl = '<img border="0" src="'.$serverprotocol.'://'.$host.$item->getCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.get_language_string(get_language_string($item->get("title"),$locale)) .'" />';
 			$itemcontent = '<![CDATA[<a title="'.html_encode(get_language_string($item->get("title"),$locale)).' in '.html_encode(get_language_string($albumobj->get("title"),$locale)).'" href="'.$serverprotocol.'://'.$itemlink.'">'.$thumburl.'</a>' . get_language_string(get_language_string($item->get("desc"),$locale)) . ']]>';
