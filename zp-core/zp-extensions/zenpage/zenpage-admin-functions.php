@@ -851,18 +851,18 @@ function processCategoryPasswordSave($cat) {
 	$notify = $fail = '';
 	if (sanitize($_POST['password_enabled'])) {
 		$olduser = $_POST['olduser'];
-		$newuser = $_POST['category_user'];
-		$pwd = trim($_POST['categorypass']);
+		$newuser = $_POST['page_user'];
+		$pwd = trim($_POST['pagepass']);
 		if (($olduser != $newuser)) {
 			if (!empty($newuser) && empty($pwd) && empty($pwd2)) {
 				$fail = 'user';
 			}
 		}
-		if (!$fail && $_POST['categorypass'] == $_POST['categorypass_2']) {
+		if (!$fail && $_POST['pagepass'] == $_POST['pagepass_2']) {
 			$cat->setUser($newuser);
-			$cat->setPasswordHint(process_language_string_save('category_hint', 3));
+			$cat->setPasswordHint(process_language_string_save('page_hint', 3));
 			if (empty($pwd)) {
-				if (empty($_POST['categorypass'])) {
+				if (empty($_POST['pagepass'])) {
 					$cat->setPassword(NULL);  // clear the password
 				}
 			} else {
@@ -1125,7 +1125,7 @@ echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage.get
 foreach ($result as $cat) {
 	$catobj = new ZenpageCategory($cat['titlelink']);
 	// check if there are articles in this category. If not don't list the category.
-	$count = countArticles($catobj->getTitlelink(),'all',true);
+	$count = count($catobj->getArticles(0,'all'));
 	$count = " (".$count.")";
 	if(isset($_GET['category']) AND $_GET['category'] === $cat['title']) {
 		$selected = "selected='selected'";
@@ -1832,8 +1832,8 @@ function processZenpageBulkActions($type,&$reports) {
 								$newsobj = new ZenpageNews($article['titlelink']);
 								$mytags = array_unique(array_merge($tags, $newsobj->getTags()));
 								$newsobj->setTags($mytags);
-								$newsobj->save(); 
-							} 
+								$newsobj->save();
+							}
 							break;
 						case 'clearalltags':
 							$allarticles = $obj->getArticles('','all',true); //$_zp_zenpage->getNewsArticles('', $obj->getTitlelink(), 'all',true);
@@ -1841,7 +1841,7 @@ function processZenpageBulkActions($type,&$reports) {
 								$newsobj = new ZenpageNews($article['titlelink']);
 								$newsobj->setTags(array());
 								$newsobj->save();
-							} 
+							}
 							break;
 						case 'showall':
 							$obj->set('show',1);
