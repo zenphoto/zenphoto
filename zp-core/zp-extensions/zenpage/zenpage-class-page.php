@@ -166,9 +166,10 @@ class ZenpagePage extends ZenpageItems {
  * @return array
  */
 	function getSubPages() {
+		global $_zp_zenpage;
 		$subpages = array();
 		$sortorder = $this->getSortOrder();
-		$pages = $this->getPages();
+		$pages = $_zp_zenpage->getPages();
 		//echo "<pre>"; print_r($pages); echo "</pre>";
 		foreach($pages as $page) {
 			$pageobj = new ZenpagePage($page['titlelink']);
