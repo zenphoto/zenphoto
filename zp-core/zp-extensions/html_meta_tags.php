@@ -210,7 +210,7 @@ function getHTMLMetaData() {
  * @param array $array the array of the tags or categories to list
  */
 function getMetaKeywords() {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category, $_zp_gallery_page;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category, $_zp_gallery_page,$_zp_zenpage;
 	$words = '';
 	if(is_object($_zp_current_album) OR is_object($_zp_current_image)) {
 		$tags = getTags();
@@ -229,7 +229,7 @@ function getMetaKeywords() {
 			$tags = getTags();
 			$words = getMetaAlbumAndImageTags($tags,"gallery");
 		} else if(is_News()) {
-			$tags = getAllCategories();
+			$tags = $_zp_zenpage->getAllCategories();
 			$words .= getMetaAlbumAndImageTags($tags,"zenpage");
 		} else if (is_NewsCategory()) {
 			$words .= $_zp_current_category->getTitle();

@@ -262,7 +262,7 @@ echo '</head>'."\n";
 											printManagedObjects('albums',$albumlist, '', $groupid, $id, $rights, $kind);
 											if (getOption('zp_plugin_zenpage')) {
 												$pagelist = array();
-												$pages = getPages(false);
+												$pages = $_zp_zenpage->getPages(false);
 												foreach ($pages as $page) {
 													if (!$page['parentid']) {
 														$pagelist[get_language_string($page['title'])] = $page['titlelink'];
@@ -270,7 +270,7 @@ echo '</head>'."\n";
 												}
 												printManagedObjects('pages',$pagelist, '', $groupid, $id, $rights, $kind);
 												$newslist = array();
-												$categories = getAllCategories();
+												$categories = $_zp_zenpage->getAllCategories();
 												foreach ($categories as $category) {
 													$newslist[get_language_string($category['title'])] = $category['titlelink'];
 												}

@@ -412,7 +412,7 @@ function printZenpageItems() {
 	$categories = $_zp_zenpage->getAllCategories();
 	$catcount = count($categories);
 	echo "<option value='pages'>".gettext("pages")." (".$pagenumber.")</option>";
-	echo "<option value='articles'>".gettext("articles")." (".countArticles("","all").")</option>";
+	echo "<option value='articles'>".gettext("articles")." (".$_zp_zenpage->countArticles("","all").")</option>";
 	echo "<option value='categories'>".gettext("categories")." (".$catcount.")</option>";
 }
 

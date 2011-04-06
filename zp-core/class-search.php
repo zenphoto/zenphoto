@@ -630,16 +630,18 @@ class SearchEngine
 	 * Returns an array of News article IDs belonging to the search categories
 	 */
 	function subsetNewsCategories() {
+		global $_zp_zenpage;
 		if (!is_array($this->category_list)) return false;
 		$cat = '';
-		$list = getAllCategories();
+		$list = $_zp_zenpage->getAllCategories();
 		foreach ($list as $category) {
 			if (in_array($category['title'], $this->category_list)) {
 				$cat .= ' `cat_id`='.$category['id'].' OR';
-				$subcats = getSubCategories($category['title']);
+				$subcats = getSubCategories($category['titlelink']);
 				if($subcats) {
 					foreach($subcats as $subcat) {
-						$cat .= ' `cat_id`='.getCategoryID($subcat).' OR';
+						$catobj = new ZenpageCategory($subcat);
+						$cat .= ' `cat_id`='.$catobj->get('id').' OR';
 					}
 				}
 			}

@@ -683,11 +683,11 @@ function printAlbumsSelector() {
   * @return string
  	*/
 function printZenpagePagesSelector() {
-	global $_zp_gallery;
+	global $_zp_gallery,$_zp_zenpage;
 	?>
 	<select id="pageselector" name="pageselect">
 	<?php
-	$pages = getPages(false);
+	$pages = $_zp_zenpage->getPages(false);
 	foreach ($pages as $key=>$page) {
 		$pageobj = new ZenpagePage($page['titlelink']);
 		$level = substr_count($pageobj->getSortOrder(),"-");
@@ -710,11 +710,11 @@ function printZenpagePagesSelector() {
  	* @return string
  	*/
 function printZenpageNewsCategorySelector() {
-	global $_zp_gallery;
+	global $_zp_gallery,$_zp_zenpage;
 	?>
 <select id="categoryselector" name="categoryselect">
 <?php
-	$cats = getAllCategories();
+	$cats = $_zp_zenpage->getAllCategories();
 	foreach($cats  as $cat) {
 		$catobj = new ZenpageCategory($cat['titlelink']);
 		//This is much easier than hacking the nested list function to work with this

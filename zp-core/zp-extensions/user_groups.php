@@ -103,7 +103,7 @@ function user_groups_edit_admin($html, $userobj, $i, $background, $current) {
 		if (getOption('zp_plugin_zenpage')) {
 			$pagelist = array();
 			$allpag = array();
-			$pages = getPages(false);
+			$pages = $_zp_zenpage->getPages(false);
 			foreach ($pages as $page) {
 				if (!$page['parentid']) {
 					$pagelist[get_language_string($page['title'])] = $page['titlelink'];
@@ -112,7 +112,7 @@ function user_groups_edit_admin($html, $userobj, $i, $background, $current) {
 			}
 			$newslist = array();
 			$allnew = array();
-			$categories = getAllCategories();
+			$categories = $_zp_zenpage->getAllCategories();
 			foreach ($categories as $category) {
 				$newslist[get_language_string($category['titlelink'])] = $category['title'];
 				$allnew[] = "'#managed_news_".$i.'_'.postIndexEncode($page['titlelink'])."'";

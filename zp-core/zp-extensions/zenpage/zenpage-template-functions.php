@@ -198,7 +198,7 @@ function getAuthor($fullname=false) {
 function getNumNews($combi=true) {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
 	if (in_context(ZP_SEARCH)) {
-		processExpired('news');
+		$_zp_zenpage->processExpired('news');
 		$_zp_zenpage_articles = $_zp_current_search->getSearchNews();
 	} else if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
 		$_zp_zenpage_articles = $_zp_zenpage->getCombiNews(ZP_ARTICLES_PER_PAGE);
@@ -1095,19 +1095,19 @@ function getLatestNews($number=2,$option='none', $category='') {
 			}
 			break;
 		case 'with_latest_images':
-			$latest = getCombiNews($number,'latestimages-thumbnail',NULL,'id');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'id');
 			break;
 		case 'with_latest_images_date':
-			$latest = getCombiNews($number,'latestimages-thumbnail',NULL,'date');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'date');
 			break;
 		case 'with_latest_images_mtime':
-			$latest = getCombiNews($number,'latestimages-thumbnail',NULL,'mtime');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'mtime');
 			break;
 		case 'with_latest_albums':
-			$latest = getCombiNews($number,'latestalbums-thumbnail',NULL,'id');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id');
 			break;
 		case 'with_latestupdated_albums':
-			$latest = getCombiNews($number,'latestupdatedalbums-thumbnail',NULL,'');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestupdatedalbums-thumbnail',NULL,'');
 			break;
 		/*case "latestimagesbyalbum-thumbnail":
 			$latest = getCombiNews($number,'latestalbums-thumbnail',NULL,'id');

@@ -32,7 +32,7 @@ if(isset($_GET['save'])) {
 	addCategory($reports);
 }
 if(isset($_GET['id'])){
-	$x = 	getCategory($_GET['id']);
+	$x = 	$_zp_zenpage->getCategory($_GET['id']);
 	$result = new ZenpageCategory($x['titlelink']);
 } else if(isset($_GET['update'])) {
 	XSRFdefender('update_categories');

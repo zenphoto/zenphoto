@@ -729,7 +729,7 @@ function languageChange(id,lang) {
 					printManagedObjects('albums',$albumlist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'));
 					if (getOption('zp_plugin_zenpage')) {
 						$pagelist = array();
-						$pages = getPages(false);
+						$pages = $_zp_zenpage->getPages(false);
 						foreach ($pages as $page) {
 							if (!$page['parentid']) {
 								$pagelist[get_language_string($page['title'])] = $page['titlelink'];
@@ -737,7 +737,7 @@ function languageChange(id,lang) {
 						}
 						printManagedObjects('pages',$pagelist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'));
 						$newslist = array();
-						$categories = getAllCategories();
+						$categories = $_zp_zenpage->getAllCategories();
 						foreach ($categories as $category) {
 							$newslist[get_language_string($category['title'])] = $category['titlelink'];
 						}
