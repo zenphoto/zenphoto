@@ -316,3 +316,10 @@ function addNewTag(id,dupmsg) {
 		}		
 	}
 }
+
+function xsrfWarning(id, msg) {
+	if (!confirm(msg)) {
+		$('#'+id+'_yes').removeAttr('checked');
+		$('#'+id+'_no').attr('checked','checked');
+	}
+}

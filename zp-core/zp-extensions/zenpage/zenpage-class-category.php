@@ -324,14 +324,8 @@ class ZenpageCategory extends ZenpageRoot {
 				$show = "";
 				break;
 		}
-		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
-			$datesearch = " AND news.date LIKE '".$postdate."%' ";
-			$order = " ORDER BY ".$sticky."news.date DESC";
-		} else {
-			$datesearch = "";
-			$order = " ORDER BY ".$sticky."news.$sort1 $dir";
-		}
-		$sql = "SELECT DISTINCT news.titlelink FROM ".prefix('news')." as news, ".prefix('news2cat')." as cat WHERE".$cat.$show.$datesearch.$order.$limit;
+		$order = " ORDER BY ".$sticky."news.$sort1 $dir";
+		$sql = "SELECT DISTINCT news.titlelink FROM ".prefix('news')." as news, ".prefix('news2cat')." as cat WHERE".$cat.$show.$order.$limit;
 		$result = query_full_array($sql);
 
 		return $result;

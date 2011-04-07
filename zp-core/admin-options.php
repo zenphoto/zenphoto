@@ -815,10 +815,10 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td width="175"><?php echo gettext('Front-end editing'); ?></td>
 					<td width="350">
 						<label>
-							<input type="radio" name = "edit_in_place" value=0<?php if (!getOption('edit_in_place')) echo ' checked="checked"'; ?>><?php echo gettext('Disabled'); ?></input>
+							<input type="radio" name = "edit_in_place" id="edit_in_place_no" value=0<?php if (!getOption('edit_in_place')) echo ' checked="checked"'; ?>><?php echo gettext('Disabled'); ?></input>
 						</label>
 						<label>
-							<input type="radio" name = "edit_in_place" value=1<?php if (getOption('edit_in_place')) echo ' checked="checked"'; ?>><?php echo gettext('Enabled'); ?></input>
+							<input type="radio" name = "edit_in_place" id="edit_in_place_yes" value=1<?php if (getOption('edit_in_place')) echo ' checked="checked"'; ?> onclick="xsrfWarning('edit_in_place','<?php echo gettext('This is really not a secure setting. Are you sure you want to enable it?'); ?>');"><?php echo gettext('Enabled'); ?></input>
 						</label>
 					</td>
 					<td>

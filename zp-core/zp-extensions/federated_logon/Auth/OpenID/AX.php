@@ -738,7 +738,7 @@ class Auth_OpenID_AX_KeyValueMessage extends Auth_OpenID_AX_Message {
      * Get the list of values for this attribute in the
      * fetch_response.
      *
-     * XXX: what to do if the values are not present? default
+     * what to do if the values are not present? default
      * parameter? this is funny because it's always supposed to return
      * a list, so the default may break that, though it's provided by
      * the user's code, so it might be okay. If no default is

@@ -887,7 +887,7 @@ class Auth_OpenID_GenericConsumer {
         if (Auth_OpenID::isFailure($return_to)) {
             return $return_to;
         }
-        // XXX: this should be checked by _idResCheckForFields
+        // this should be checked by _idResCheckForFields
         if (!$return_to) {
             return new Auth_OpenID_FailureResponse(null,
                            "Response has no return_to");
@@ -945,7 +945,7 @@ class Auth_OpenID_GenericConsumer {
 
         if ($assoc) {
             if ($assoc->getExpiresIn() <= 0) {
-                // XXX: It might be a good idea sometimes to re-start
+                // It might be a good idea sometimes to re-start
                 // the authentication with a new association. Doing it
                 // automatically opens the possibility for
                 // denial-of-service by a server that just returns
