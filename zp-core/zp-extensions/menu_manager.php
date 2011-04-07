@@ -1014,7 +1014,8 @@ function printCustomMenu($menuset='default', $option='list',$css_id='',$css_clas
 						} else {
 							$published = "published";
 						}
-						$catcount = $_zp_zenpage->countArticles($item['link'],$published);
+						$catobj = new ZenpageCategory($item['link']);
+						$catcount = count($catobj->getArticles(0,$published));
 						$itemcounter = "<small> (".$catcount.")</small>";
 						break;
 				}

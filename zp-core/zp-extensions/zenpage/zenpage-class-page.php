@@ -231,7 +231,6 @@ class ZenpagePage extends ZenpageItems {
 				return false;
 			}
 		}
-		//return checkPagePassword($this, $hint, $show) != 'zp_unprotected';
 	}
 
 /**

@@ -257,7 +257,6 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return array
 	 */
 	function getArticles($articles_per_page='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
-//		return $this->getNewsArticles($articles_per_page, $this->getTitlelink(), $published,$ignorepagination,$sortorder, $sortdirection,$sticky);
 		global $_zp_current_category, $_zp_post_date, $_zp_zenpage;
 		$_zp_zenpage->processExpired('news');
 		if (is_null($published)) {

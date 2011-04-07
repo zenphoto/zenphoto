@@ -226,7 +226,7 @@ function getNumNews($combi=true) {
  * @return bool
  */
 function next_news($sortorder="date", $sortdirection="desc") {
-	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
+	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_current_category, $_zp_gallery, $_zp_current_search;
 	if (is_null($_zp_zenpage_articles)) {
 		if (in_context(ZP_SEARCH)) {
 			$_zp_zenpage->processExpired('news');
@@ -234,7 +234,11 @@ function next_news($sortorder="date", $sortdirection="desc") {
 		} else if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
 			$_zp_zenpage_articles = $_zp_zenpage->getCombiNews(ZP_ARTICLES_PER_PAGE);
 		} else {
-			$_zp_zenpage_articles = $_zp_zenpage->getNewsArticles(ZP_ARTICLES_PER_PAGE,'',NULL,false,$sortorder,$sortdirection);
+			if(in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+				$_zp_zenpage_articles = $_zp_current_category->getArticles(ZP_ARTICLES_PER_PAGE,NULL,false,$sortorder,$sortdirection);
+			} else {
+				$_zp_zenpage_articles = $_zp_zenpage->getNewsArticles(ZP_ARTICLES_PER_PAGE,NULL,false,$sortorder,$sortdirection);
+			}
 		}
 		//print_r($_zp_zenpage_articles); // debugging
 		if (empty($_zp_zenpage_articles)) { return false; }
@@ -1074,9 +1078,10 @@ function getLatestNews($number=2,$option='none', $category='') {
 	switch($option) {
 		case 'none':
 			if(!empty($category)) {
-				$latest = $_zp_zenpage->getNewsArticles($number,$category,NULL,true);
+				$catobj = new ZenpageCategory($category);
+				$latest = $catobj->getArticles($number,NULL,true);
 			} else {
-				$latest = $_zp_zenpage->getNewsArticles($number,'',NULL,true);
+				$latest = $_zp_zenpage->getNewsArticles($number,NULL,true);
 			}
 			$counter = '';
 			$latestnews = array();
@@ -1558,7 +1563,7 @@ function getTotalNewsPages() {
 	if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
 		$articlecount = $_zp_zenpage->countCombiNews();
 	} else {
-		$articlecount = $_zp_zenpage->countArticles();
+		$articlecount = count($_zp_zenpage ->getNewsArticles(0,'all'));
 	}
 }
 
@@ -1585,7 +1590,7 @@ function getNextPrevNews($option='',$sortorder='date',$sortdirection='desc') {
 	if(!ZP_COMBINEWS) {
 		$current = 0;
 		if(!empty($option)) {
-			$all_articles = $_zp_zenpage->getNewsArticles('','',NULL,false,$sortorder,$sortdirection);
+			$all_articles = $_zp_zenpage->getNewsArticles('',NULL,false,$sortorder,$sortdirection);
 			$count = 0;
 			foreach($all_articles as $article) {
 				$newsobj = new ZenpageNews($article['titlelink']);
@@ -2004,7 +2009,11 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 					if(ZP_COMBINEWS) {
 						$totalcount = $_zp_zenpage->countCombiNews($published);
 					} else {
-						$totalcount = $_zp_zenpage->countArticles("",$published);
+						if(in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+							$totalcount = count($_zp_current_category->getArticles(0,$published));
+						} else {
+							$totalcount = count($_zp_zenpage->getNewsArticles(0,$published));
+						}
 					}
 					echo "<small> (".$totalcount.")</small>";
 				}
@@ -2043,7 +2052,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				$itemparentid = $catobj->getParentID();
 				$itemtitlelink = $catobj->getTitlelink();
 				$itemurl = getNewsCategoryURL($catobj->getTitlelink());
-				$catcount = $_zp_zenpage->countArticles($catobj->getTitlelink());
+				$catcount = count($catobj->getArticles());
 				if($counter) {
 					$count = "<small> (".$catcount.")</small>";
 				} else {

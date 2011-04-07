@@ -129,7 +129,7 @@ function getAllTagsFromZenpage($mode='news') {
 				$published = 'published';
 			}
 			$type = 'news';
-			$items = $_zp_zenpage->getNewsArticles('','',$published);
+			$items = $_zp_zenpage->getNewsArticles('',$published);
 			foreach($items as $item) {
 				$obj = new ZenpageNews($item['titlelink']);
 				if($obj->checkAccess($hint, $show)) {

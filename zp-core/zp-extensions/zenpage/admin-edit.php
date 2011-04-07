@@ -456,13 +456,13 @@ if(is_AdminEditPage("page")) {
 						<?php echo gettext("Guest user:"); ?>
 						</a>
 						<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
-						<input type="text" size="27" id="user_name" name="page_user" value="<?php echo html_encode($user); ?>" />
+						<input type="text" size="27" id="user_name" name="new_user" value="<?php echo html_encode($user); ?>" />
 						<?php echo gettext("Password:"); ?>
 						<br />
-						<input type="password" size="27" id="pass" name="pagepass" value="<?php echo $x; ?>" />
+						<input type="password" size="27" id="pass" name="newpass" value="<?php echo $x; ?>" />
 						<?php echo gettext("(repeat)"); ?>
 						<br />
-						<input type="password" size="27" id="pass_2" name="pagepass_2" value="<?php echo $x; ?>" />
+						<input type="password" size="27" id="pass_2" name="newpass_2" value="<?php echo $x; ?>" />
 						<br />
 						<?php echo gettext("Password hint:"); ?>
 						<br />

@@ -108,9 +108,10 @@ printLogoAndLinks();
 			}
 
 			if(isset($_GET['category'])) {
-				$result = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),sanitize($_GET['category']),$published,false);
+				$catobj = new ZenpageCategory(sanitize($_GET['category']));
+				$result = $catobj->getArticles(getOption('zenpage_admin_articles'),$published,false);
 			} else {
-				$result = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),'',$published,false);
+				$result = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),$published,false);
 			}
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic();?></span></h1>

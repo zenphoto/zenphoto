@@ -62,26 +62,26 @@ function processTags($object) {
  * @param object $page
  * @return string
  */
-function processPasswordSave($page) {
+function processPasswordSave($obj) {
 	$notify = $fail = '';
 	if (sanitize($_POST['password_enabled'])) {
-		$olduser = $page->getUser();
-		$newuser = $_POST['page_user'];
-		$pwd = trim($_POST['pagepass']);
+		$olduser = $obj->getUser();
+		$newuser = $_POST['new_user'];
+		$pwd = trim($_POST['newpass']);
 		if (($olduser != $newuser)) {
 			if (!empty($newuser) && empty($pwd) && empty($pwd2)) {
 				$fail = 'user';
 			}
 		}
-		if (!$fail && $_POST['pagepass'] == $_POST['pagepass_2']) {
-			$page->setUser($newuser);
-			$page->setPasswordHint(process_language_string_save('page_hint', 3));
+		if (!$fail && $_POST['newpass'] == $_POST['newpass_2']) {
+			$obj->setUser($newuser);
+			$obj->setPasswordHint(process_language_string_save('page_hint', 3));
 			if (empty($pwd)) {
-				if (empty($_POST['pagepass'])) {
-					$page->setPassword(NULL);  // clear the password
+				if (empty($_POST['newpass'])) {
+					$obj->setPassword(NULL);  // clear the password
 				}
 			} else {
-				$page->setPassword($pwd);
+				$obj->setPassword($pwd);
 			}
 		} else {
 			if (empty($fail)) {
@@ -851,18 +851,18 @@ function processCategoryPasswordSave($cat) {
 	$notify = $fail = '';
 	if (sanitize($_POST['password_enabled'])) {
 		$olduser = $_POST['olduser'];
-		$newuser = $_POST['page_user'];
-		$pwd = trim($_POST['pagepass']);
+		$newuser = $_POST['new_user'];
+		$pwd = trim($_POST['newpass']);
 		if (($olduser != $newuser)) {
 			if (!empty($newuser) && empty($pwd) && empty($pwd2)) {
 				$fail = 'user';
 			}
 		}
-		if (!$fail && $_POST['pagepass'] == $_POST['pagepass_2']) {
+		if (!$fail && $_POST['newpass'] == $_POST['newpass_2']) {
 			$cat->setUser($newuser);
 			$cat->setPasswordHint(process_language_string_save('page_hint', 3));
 			if (empty($pwd)) {
-				if (empty($_POST['pagepass'])) {
+				if (empty($_POST['newpass'])) {
 					$cat->setPassword(NULL);  // clear the password
 				}
 			} else {
@@ -898,7 +898,7 @@ function addCategory(&$reports) {
 	}
 	// create new category
 	$cat = new ZenpageCategory($titlelink);
-	$notice = processCategoryPasswordSave($cat);
+	$notice = processPasswordSave($cat);
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title',$title);
 	$cat->setDesc($desc);
@@ -959,7 +959,7 @@ function updateCategory(&$reports) {
 	}
 	//update category
 	$cat = new ZenpageCategory($titlelink);
-	$notice = processCategoryPasswordSave($cat);
+	$notice = processPasswordSave($cat);
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title',$title);
 	$cat->setDesc($desc);
@@ -1017,7 +1017,7 @@ function printCategoryListSortableTable($cat,$flag) {
 	} else {
 		$img = '../../images/drag_handle.png';
 	}
-	$count = $_zp_zenpage->countArticles($cat->getTitlelink(),false);
+	$count = count($cat->getArticles(0,false));
 	if($cat->getTitle()) {
 		$cattitle = $cat->getTitle();
 	} else {
@@ -1428,7 +1428,7 @@ function getNewsPagesStatistic($option) {
 	global $_zp_zenpage;
 	switch($option) {
 		case "news":
-			$items = $_zp_zenpage->getNewsArticles("","");
+			$items = $_zp_zenpage->getNewsArticles();
 			$type = gettext("Articles");
 			break;
 		case "pages":
@@ -1827,7 +1827,7 @@ function processZenpageBulkActions($type,&$reports) {
 							$obj->setTags(array());
 							break;
 						case 'alltags':
-							$allarticles = $obj->getArticles('','all',true); //$_zp_zenpage->getNewsArticles('', $obj->getTitlelink(), 'all',true);
+							$allarticles = $obj->getArticles('','all',true);
 							foreach($allarticles as $article) {
 								$newsobj = new ZenpageNews($article['titlelink']);
 								$mytags = array_unique(array_merge($tags, $newsobj->getTags()));
@@ -1836,7 +1836,7 @@ function processZenpageBulkActions($type,&$reports) {
 							}
 							break;
 						case 'clearalltags':
-							$allarticles = $obj->getArticles('','all',true); //$_zp_zenpage->getNewsArticles('', $obj->getTitlelink(), 'all',true);
+							$allarticles = $obj->getArticles('','all',true);
 							foreach($allarticles as $article) {
 								$newsobj = new ZenpageNews($article['titlelink']);
 								$newsobj->setTags(array());

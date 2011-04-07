@@ -1084,7 +1084,7 @@ function getNewsArticles($articles_per_page='', $category='', $published=NULL,$i
  * @return array
  */
 function countArticles($category='', $published='published',$count_subcat_articles=true) {
-	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));		global $_zp_post_date;
+	deprecated_function_notify(gettext('Count the articles instead.'));		global $_zp_post_date;
 	if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
 		$published = "all";
 	} else {

@@ -94,13 +94,12 @@ class Zenpage {
 	/************************************/
 
 	/**
-	 * Gets news articles titlelink either all or by category or by archive date.
+	 * Gets all news articles titlelink.
 	 *
 	 * NOTE: Since this function only returns titlelinks for use with the object model it does not exclude articles that are password protected via a category
 	 *
 	 *
 	 * @param int $articles_per_page The number of articles to get
-	 * @param string $category The categorylink of the category
 	 * @param string $published "published" for an published articles,
 	 * 													"unpublished" for an unpublised articles,
 	 * 													"sticky" for sticky articles,
@@ -115,7 +114,7 @@ class Zenpage {
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
-	function getNewsArticles($articles_per_page='', $category='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
+	function getNewsArticles($articles_per_page='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
 		global $_zp_current_category, $_zp_post_date;
 		$this->processExpired('news');
 		if (is_null($published)) {
@@ -126,37 +125,6 @@ class Zenpage {
 			}
 		}
 		$show = "";
-		// new code to get nested cats
-		if (!empty($category)) {
-			$catobj = new ZenpageCategory($category);
-			$catid = $catobj->getID();
-			$subcats = $catobj->getSubCategories();
-			if($subcats) {
-				$cat = " (cat.cat_id = '".$catid."'";
-				foreach($subcats as $subcat) {
-					$subcatobj = new ZenpageCategory($subcat);
-					$cat .= "OR cat.cat_id = '".$subcatobj->getID()."' ";
-				}
-				$cat .= ") AND cat.news_id = news.id ";
-			} else {
-				$cat = " cat.cat_id = '".$catid."' AND cat.news_id = news.id ";
-			}
-		} elseif(in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-			$catid = $_zp_current_category->getID();
-			$subcats = $_zp_current_category->getSubCategories();
-			if($subcats) {
-				$cat = " (cat.cat_id = '".$catid."' AND cat.news_id = news.id) ";
-				foreach($subcats as $subcat) {
-					$subcatobj = new ZenpageCategory($subcat);
-					$cat .= "OR (cat.cat_id = '".$subcatobj->getID()."' AND cat.news_id = news.id) ";
-				}
-			} else {
-				$cat = " cat.cat_id = '".$catid."' AND cat.news_id = news.id ";
-			}
-		} else {
-			$catid = '';
-			$cat ='';
-		}
 		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
 			$postdate = $_zp_post_date;
 		} else {
@@ -186,148 +154,44 @@ class Zenpage {
 				$sticky = false;	//makes no sense
 				break;
 		}
-		if (!empty($category) OR in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-			/*** get articles by category ***/
+		/***get all articles ***/
+		switch($published) {
+			case "published":
+				$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+				break;
+			case "unpublished":
+				$show = " WHERE `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
+				break;
+			case 'sticky':
+				$show = ' WHERE `sticky` <> 0';
+				break;
+			case "all":
+				$show = "";
+				break;
+		}
+		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
 			switch($published) {
 				case "published":
-					$show = " AND `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+					$datesearch = " AND date LIKE '$postdate%' ";
 					break;
 				case "unpublished":
-					$show = " AND `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
-					break;
-				case 'sticky':
-					$show = ' AND `sticky` <> 0';
-					break;
-				case "all":
-					$show = "";
-					break;
-			}
-			if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
-				$datesearch = " AND news.date LIKE '".$postdate."%' ";
-				$order = " ORDER BY ".$sticky."news.date DESC";
-			} else {
-				$datesearch = "";
-				$order = " ORDER BY ".$sticky."news.$sort1 $dir";
-			}
-			$sql = "SELECT DISTINCT news.titlelink FROM ".prefix('news')." as news, ".prefix('news2cat')." as cat WHERE".$cat.$show.$datesearch.$order.$limit;
-			$result = query_full_array($sql);
-
-		} else {
-			/***get all articles ***/
-			switch($published) {
-				case "published":
-					$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
-					break;
-				case "unpublished":
-					$show = " WHERE `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
+					$datesearch = " WHERE date LIKE '$postdate%' ";
 					break;
 				case 'sticky':
 					$show = ' WHERE `sticky` <> 0';
 					break;
 				case "all":
-					$show = "";
+					$datesearch = " WHERE date LIKE '$postdate%' ";
 					break;
 			}
-			if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
-				switch($published) {
-					case "published":
-						$datesearch = " AND date LIKE '$postdate%' ";
-						break;
-					case "unpublished":
-						$datesearch = " WHERE date LIKE '$postdate%' ";
-						break;
-					case 'sticky':
-						$show = ' WHERE `sticky` <> 0';
-						break;
-					case "all":
-						$datesearch = " WHERE date LIKE '$postdate%' ";
-						break;
-				}
-				$order = " ORDER BY $sticky date DESC";
-			} else {
-				$datesearch = "";
-				$order = " ORDER BY ".$sticky.$sort1." ".$dir;
-			}
-			$sql = "SELECT titlelink FROM ".prefix('news').$show.$datesearch." ".$order.$limit;
-			$result = query_full_array($sql);
+			$order = " ORDER BY $sticky date DESC";
+		} else {
+			$datesearch = "";
+			$order = " ORDER BY ".$sticky.$sort1." ".$dir;
 		}
+		$sql = "SELECT titlelink FROM ".prefix('news').$show.$datesearch." ".$order.$limit;
+		$result = query_full_array($sql);
 		return $result;
-	}
-
-
-	/**
-	 * Counts news articles, either all or by category or archive date, published or un-published
-	 *
-	 * @param string $category The categorylink of the category to count
-	 * @param string $published "published" for an published articles,
-	 * 													"unpublished" for an unpublised articles,
-	 * 													"all" for all articles
-	 * @return array
-	 */
-	function countArticles($category='', $published='published',$count_subcat_articles=true) {
-		global $_zp_post_date;
-		if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
-			$published = "all";
-		} else {
-			$published = "published";
-		}
-		$show="";
-		if (empty($category)) {
-			switch($published) {
-				case "published":
-					$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
-					break;
-				case "unpublished":
-					$show = " WHERE `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
-					break;
-				case "all":
-					$show = "";
-					break;
-			}
-			// date archive query addition
-			if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
-				$postdate = $_zp_post_date;
-				if(empty($show)) {
-					$and = " WHERE ";
-				} else {
-					$and = " AND ";
-				}
-				$datesearch = $and."date LIKE '$postdate%'";
-			} else {
-				$datesearch = "";
-			}
-			$result = query("SELECT COUNT(*) FROM ".prefix('news').$show.$datesearch);
-			$row = db_fetch_row($result);
-			$count = $row[0];
-			return $count;
-		} else {
-			$catobj = new ZenpageCategory($category);
-			switch($published) {
-				case "published":
-					$show = " AND news.show = 1 AND news.date <= '".date('Y-m-d H:i:s')."'";
-					break;
-				case "unpublished":
-					$show = " AND news.show = 0 AND news.date <= '".date('Y-m-d H:i:s')."'";
-					break;
-				case "all":
-					$show = "";
-					break;
-			}
-			if($count_subcat_articles) $subcats = $catobj->getSubCategories();
-			if($subcats && $count_subcat_articles) {
-				$cat = " (cat.cat_id = '".$catobj->getID()."'";
-				foreach($subcats as $subcat) {
-					$subcatobj = new ZenpageCategory($subcat);
-					$cat .= "OR cat.cat_id = '".$subcatobj->getID()."' ";
-				}
-				$cat .= ") AND cat.news_id = news.id ";
-			} else {
-				$cat = " cat.cat_id = '".$catobj->getID()."' AND cat.news_id = news.id ";
-			}
-			$result = query_full_array("SELECT DISTINCT news.titlelink FROM ".prefix('news2cat')." as cat, ".prefix('news')." as news WHERE ".$cat.$show);
-			$count = count($result);
-			return $count;
-		}
 	}
 
 	/**
@@ -373,13 +237,14 @@ class Zenpage {
 			if(empty($_zp_current_category)) {
 				if (isset($_GET['category'])) {
 					$cat = sanitize($_GET['category']);
+					$catobj = new ZenpageCategory($cat);
 				} else {
-					return $this->countArticles();
+					return count($this->getNewsArticles(0));
 				}
 			} else {
-				$cat = $_zp_current_category->getTitlelink();
+				$catobj = $_zp_current_category;
 			}
-			return $this->countArticles($cat);
+			return count($catobj->getArticles());
 		}
 	}
 
@@ -593,7 +458,7 @@ class Zenpage {
 			case "latestupdatedalbums-thumbnail":
 			case "latestupdatedalbums-thumbnail-customcrop":
 			case "latestupdatedalbums-sizedimage":
-				$latest = $this->getNewsArticles($articles_per_page,'',NULL,true);
+				$latest = $this->getNewsArticles($articles_per_page,NULL,true);
 				$counter = '';
 				foreach($latest as $news) {
 					$article = new ZenpageNews($news['titlelink']);
@@ -650,7 +515,7 @@ class Zenpage {
 		$countGalleryitems = 0;
 		$countArticles = 0;
 		if(ZP_COMBINEWS) {
-			$countArticles = $this->countArticles();
+			$countArticles = count($this->getNewsArticles(0));
 			if(is_null($published)) {
 				if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
 					$published = FALSE;

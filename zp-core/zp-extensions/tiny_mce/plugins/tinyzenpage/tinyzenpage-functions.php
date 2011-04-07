@@ -95,9 +95,9 @@ function shortentitle($title,$length) {
  */
 function printImageslist($number) {
 	global $_zp_gallery, $host;
-	
+
 	if(isset($_GET['album']) AND !empty($_GET['album'])) {
-		
+
 		$album = urldecode(sanitize($_GET['album']));
 		$albumobj = new Album($_zp_gallery,$album);
 		echo "<h3 style='margin-bottom:10px'>".gettext("Album:")." <em>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj,false)."</em> / ".gettext("Album folder:")." <em>".html_encode($albumobj->name)."</em><br /><small>".gettext("(Click on image to include)")."</small></h3>";
@@ -134,7 +134,7 @@ function printImageslist($number) {
 																											"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
 																											gettext('<em>Albumthumb</em>').unpublishedZenphotoItemCheck($albumthumb,false);
 		echo "</div>";
-		
+
 		$images = $albumobj->getImages();
 
 		if($albumobj->getNumImages() != 0) {
@@ -244,14 +244,14 @@ function printNewsArticlesList($number) {
 	if(isset($_GET['zenpage']) && $_GET['zenpage'] == "articles") {
 		echo "<h3 style='margin-bottom:10px'>Zenpage: <em>".gettext('Articles')."</em> <small>".gettext("(Click on article title to include a link)")."</small></h3>";
 		echo "<ul style='list-style-type: none; width: 85%;'>";
-		$items = $_zp_zenpage ->getNewsArticles("","","all");
+		$items = $_zp_zenpage ->getNewsArticles("","all");
 		$news_per_page = $number;
 		if(isset($_GET['page'])) {
 			$currentpage = sanitize_numeric($_GET['page']);
 		} else {
 			$currentpage = 1;
 		}
-		$newscount = $_zp_zenpage ->countArticles('','all');
+		$newscount = count($_zp_zenpage ->getNewsArticles(0,'all'));
 		$pagestotal = ceil($newscount / $news_per_page);
 		for ($nr = 1;$nr <= $pagestotal; $nr++) {
 			$startnews[$nr] = $nr * $news_per_page - $news_per_page; // get start image number
@@ -412,7 +412,7 @@ function printZenpageItems() {
 	$categories = $_zp_zenpage->getAllCategories();
 	$catcount = count($categories);
 	echo "<option value='pages'>".gettext("pages")." (".$pagenumber.")</option>";
-	echo "<option value='articles'>".gettext("articles")." (".$_zp_zenpage->countArticles("","all").")</option>";
+	echo "<option value='articles'>".gettext("articles")." (".count($_zp_zenpage ->getNewsArticles(0,'all')).")</option>";
 	echo "<option value='categories'>".gettext("categories")." (".$catcount.")</option>";
 }
 
@@ -455,7 +455,7 @@ function printAllNestedList() {
 					$itemcontent = $obj->getTitle();
 					$zenpagepage = "news/category/".$item['titlelink'];
 					$unpublished = unpublishedZenpageItemCheck($obj);
-					$counter = ' ('.$_zp_zenpage->countArticles($obj->getTitlelink()).') ';
+					$counter = ' ('.count($obj->getArticles()).') ';
 					break;
 			}
 			$itemsortorder = $obj->getSortOrder();
@@ -544,7 +544,7 @@ function unpublishedZenpageItemCheck($page) {
 				$protected = "<span style='color: red; font-weight: bold'>+</span>";
 			}
 			break;
-	} 
+	}
 	return $unpublishednote.$protected;
 }
 
