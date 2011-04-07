@@ -215,7 +215,7 @@ class Auth_OpenID_Parse {
             return $str;
         }
     }
-    
+
     function match($regexp, $text, &$match)
     {
         if (!is_callable('mb_ereg_search_init')) {
@@ -235,7 +235,7 @@ class Auth_OpenID_Parse {
      * Find all link tags in a string representing a HTML document and
      * return a list of their attributes.
      *
-     * @todo This is quite ineffective and may fail with the default
+     * This is quite ineffective and may fail with the default
      *       pcre.backtrack_limit of 100000 in PHP 5.2, if $html is big.
      *       It should rather use stripos (in PHP5) or strpos()+strtoupper()
      *       in PHP4 to manage this.

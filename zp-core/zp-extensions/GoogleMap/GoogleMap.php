@@ -1620,7 +1620,8 @@ class GoogleMapAPI {
 							if($this->marker_clusterer){
 								$_headerJS .= "<script type='text/javascript' src='".$this->marker_clusterer_location."' ></script>";
 							}
-							if($this->local_search){/*TODO: Load Local Search API V3 when available*/}
+							if($this->local_search){
+							/* Load Local Search API V3 when available*/}
 							return $_headerJS;
 						}
 
@@ -1788,12 +1789,10 @@ class GoogleMapAPI {
 							}
 
 							if(!empty($this->browser_alert)) {
-								//TODO:Update with new browser catch - GBrowserIsCompatible is deprecated
 								//$_output .= 'if (GBrowserIsCompatible()) {' . "\n";
 							}
 
 							/*
-							 *TODO:Update with local search bar once implemented in V3 api
 							 $strMapOptions = "";
 							 if($this->local_search){
 							 $_output .= "
@@ -1883,7 +1882,6 @@ class GoogleMapAPI {
 									$_script .= $this->getAddDirectionsJS();
 								}
 
-								//TODO:add support for Google Earth Overlay once integrated with V3
 								//$_output .= "map.addMapType(G_SATELLITE_3D_MAP);\n";
 
 								// zoom so that all markers are in the viewport
@@ -1908,7 +1906,6 @@ class GoogleMapAPI {
 								}
 
 								/*
-								 * TODO: Update controls to use new API v3 methods.(Not a priority, see below)
 								 * default V3 functionality caters control display according to the
 								 * device that's accessing the page, as well as the specified width
 								 * and height of the map itself.
@@ -1933,13 +1930,11 @@ class GoogleMapAPI {
 								 $_output .= 'map.addControl(new GOverviewMapControl());' . "\n";
 								 }
 
-								 * TODO: Update with ads_manager stuff once integrated into V3
 								 if($this->ads_manager){
 								 $_output .= 'var adsManager = new GAdsManager(map, "'.$this->ads_pub_id.'",{channel:"'.$this->ads_channel.'",maxAdsOnMap:"'.$this->ads_max.'"});
 								 adsManager.enable();'."\n";
 
 								 }
-								 * TODO: Update with local search once integrated into V3
 								 if($this->local_search){
 								 $_output .= "\n
 								 map.enableGoogleBar();
@@ -1984,7 +1979,6 @@ class GoogleMapAPI {
 							}//end if $this->display_map==true
 
 							if(!empty($this->browser_alert)) {
-								//TODO:Update with new browser catch SEE ABOVE
 								// $_output .= '} else {' . "\n";
 								// $_output .= 'alert("' . str_replace('"','\"',$this->browser_alert) . '");' . "\n";
 								// $_output .= '}' . "\n";

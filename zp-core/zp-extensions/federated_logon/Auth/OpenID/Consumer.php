@@ -829,7 +829,6 @@ class Auth_OpenID_GenericConsumer {
         $msg_return_to = $message->getArg(Auth_OpenID_OPENID_NS,
                                           'return_to');
         if (Auth_OpenID::isFailure($return_to)) {
-            // XXX log me
             return false;
         }
 
@@ -966,7 +965,7 @@ class Auth_OpenID_GenericConsumer {
             }
         } else {
             // It's not an association we know about.  Stateless mode
-            // is our only possible path for recovery.  XXX - async
+            // is our only possible path for recovery.
             // framework will not want to block on this call to
             // _checkAuth.
             if (!$this->_checkAuth($message, $server_url)) {

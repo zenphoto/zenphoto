@@ -768,7 +768,6 @@ class Auth_OpenID_Message {
     {
         $namespace = $this->_fixNS($namespace);
         if (Auth_OpenID::isFailure($namespace)) {
-            // XXX log me
             return false;
         } else {
             return $this->args->contains(array($namespace, $ns_key));

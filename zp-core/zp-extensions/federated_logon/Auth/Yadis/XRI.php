@@ -155,7 +155,7 @@ function Auth_Yadis_rootAuthority($xri)
     $authority = $authority[0];
     if ($authority[0] == '(') {
         // Cross-reference.
-        // XXX: This is incorrect if someone nests cross-references so
+        // 	This is incorrect if someone nests cross-references so
         //   there is another close-paren in there.  Hopefully nobody
         //   does that before we have a real xriparse function.
         //   Hopefully nobody does that *ever*.

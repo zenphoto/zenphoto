@@ -666,7 +666,7 @@ class Services_JSON
                                 // element in an associative array,
                                 // for now
                                 $parts = array();
-                                
+
                                 if (preg_match('/^\s*(["\'].*[^\\\]["\'])\s*:\s*(\S.*),?$/Uis', $slice, $parts)) {
                                     // "name":value pair
                                     $key = $this->decode($parts[1]);
@@ -760,9 +760,6 @@ class Services_JSON
         }
     }
 
-    /**
-     * @todo Ultimately, this should just call PEAR::isError()
-     */
     function isError($data, $code = null)
     {
         if (class_exists('pear')) {
@@ -789,9 +786,6 @@ if (class_exists('PEAR_Error')) {
 
 } else {
 
-    /**
-     * @todo Ultimately, this class shall be descended from PEAR_Error
-     */
     class Services_JSON_Error
     {
         function Services_JSON_Error($message = 'unknown error', $code = null,
