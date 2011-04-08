@@ -274,7 +274,7 @@ if ($setup_checked) {
 			$setup_cookie = '';
 		}
 		if ($setup_cookie == ZENPHOTO_RELEASE) {
-			setupLog(gettext('Setup cookie test successful'), true);
+			setupLog(gettext('Setup cookie test successful'));
 			setcookie('setup_test_cookie', '', time()-368000, '/');
 		} else {
 			setupLog(gettext('Setup cookie test unsuccessful'), true);
