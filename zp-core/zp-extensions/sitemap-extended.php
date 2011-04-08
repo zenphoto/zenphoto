@@ -202,9 +202,7 @@ function generateSitemapCacheFile($filename,$data) {
 		fwrite($handler,$data);
 		fclose($handler);
 		echo '<li>'.$filename.'</li>';
-	} else {
-		echo '<li>'.gettext('No data for the sitemap: ').$filename.'</li>';
-	}
+	} 
 }
 
 /**
@@ -219,20 +217,18 @@ function generateSitemapIndexCacheFile() {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		$data .= sitemap_echonl('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		foreach($dirs as $dir) {
-			$data .= sitemap_echonl('<sitemap>');
-			$data .= sitemap_echonl('<loc>'.FULLWEBPATH.'/cache_html/sitemap/'.$dir.'</loc>');
-			$data .= sitemap_echonl('<lastmod>'.sitemap_getISO8601Date().'</lastmod>');
-			$data .= sitemap_echonl('</sitemap>');
+			$data .= sitemap_echonl("\t<sitemap>");
+			$data .= sitemap_echonl("\t\t<loc>".FULLWEBPATH.'/cache_html/sitemap/'.$dir.'</loc>');
+			$data .= sitemap_echonl("\t\t<lastmod>".sitemap_getISO8601Date().'</lastmod>');
+			$data .= sitemap_echonl("\t</sitemap>");
 		}
 		$data .= sitemap_echonl('</sitemapindex>');
 		$filepath = SERVERPATH.'/cache_html/sitemap/sitemapindex.xml';
 		$handler = fopen($filepath,'w');
 		fwrite($handler,$data);
 		fclose($handler);
-		echo '<li>sitemapindex.php</li>';
-	} else {
-		echo '<li>'.gettext('No sitemap files for the sitemapindex file available.').'</li>';
-	}
+		echo '<p>sitemapindex.xml created.</p>';
+	} 
 }
 /**
  * Checks the changefreq value if entered manually and makes sure it is only one of the supported regarding sitemap.org
@@ -285,64 +281,75 @@ function sitemap_getDateformat($obj,$option) {
 	// For more streamlined but PHP5-only equivalent, remove the above line and uncomment the following:
 	// return gmstrftime(DATE_ISO8601, strtotime($date));
 }
-/**
- * Gets the links to the index of a Zenphoto gallery incl. pagination
+
+
+function sitemap_getDBLimit($items_per_sitemap=2) {
+	global $sitemap_number;
+	if($sitemap_number < 1) {
+		$sitemap_number = 1;
+	}
+	$offset = ($sitemap_number - 1) * $items_per_sitemap;
+	$limit = " LIMIT ".$offset.",".$items_per_sitemap;
+	return $limit;
+}
+
+/**TODO index links are not splitted into several sitemaps yet
+ *
+ * Gets the links to the index of a Zenphoto gallery incl. index pagination
  *
  * @param  int $albumsperpage In case your theme performes custom option settings that are different from the admin option, set the number here.
  * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
 function getSitemapIndexLinks($albumsperpage='',$changefreq='') {
-	global $_zp_gallery;
+	global $_zp_gallery,$sitemap_number;
 	$data = '';
-	$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-	$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-	$sitemap_locales = generateLanguageList();
-	if(empty($changefreq)) {
-		$changefreq = getOption('sitemap_changefreq_index');
-	} else {
-		$changefreq = sitemap_getChangefreq($changefreq);
-	}
-	if(sitemap_multilingual()) {
-		foreach($sitemap_locales as $locale) {
-			$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."/".$locale."/</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-		}
-	} else {
-		$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-	}
-	set_context(ZP_INDEX);
-	/*if(galleryAlbumsPerPage() != 0) {
-		$toplevelpages = ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
+	if($sitemap_number < 2) {
+		set_context(ZP_INDEX);
+		$albums_per_page = getOption('albums_per_page');
+		if(!empty($albumsperpage)) {
+			setOption('albums_per_page',sanitize_numeric($albumsperpage),false);
 		} else {
-		$toplevelpages = false;
-		} */
-	$albums_per_page = getOption('albums_per_page');
-	if(!empty($albumsperpage)) {
-		setOption('albums_per_page',sanitize_numeric($albumsperpage),false);
-	} else {
-		setOption('albums_per_page',$albums_per_page);
-	}
-	$toplevelpages = getTotalPages();
-	// print further index pages if avaiable
-	if($toplevelpages) {
-		for($x = 2;$x <= $toplevelpages; $x++) {
-			if(sitemap_multilingual()) {
-				foreach($sitemap_locales as $locale) {
-					$url = FULLWEBPATH.'/'.rewrite_path($locale.'/page/'.$x,'index.php?page='.$x,false);
+			setOption('albums_per_page',$albums_per_page);
+		}
+		$toplevelpages = getTotalPages();
+		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+		$sitemap_locales = generateLanguageList();
+		if(empty($changefreq)) {
+			$changefreq = getOption('sitemap_changefreq_index');
+		} else {
+			$changefreq = sitemap_getChangefreq($changefreq);
+		}
+		if(sitemap_multilingual()) {
+			foreach($sitemap_locales as $locale) {
+				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."/".$locale."/</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+			}
+		} else {
+			$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+		}
+		// print further index pages if avaiable
+		if($toplevelpages) {
+			for($x = 2;$x <= $toplevelpages; $x++) {
+				if(sitemap_multilingual()) {
+					foreach($sitemap_locales as $locale) {
+						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/page/'.$x,'index.php?page='.$x,false);
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					}
+				} else {
+					$url = FULLWEBPATH.'/'.rewrite_path('page/'.$x,'index.php?page='.$x,false);
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
-			} else {
-				$url = FULLWEBPATH.'/'.rewrite_path('page/'.$x,'index.php?page='.$x,false);
-				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 			}
 		}
-	}
-	$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
-	restore_context();
-	return $data;
+		$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
+		restore_context();
+		return $data;
+	} // sitemap number end
 }
 
-/**
+/**TODO Places one album and all of its album pages on one sitemap
+ *
  * Gets links to all albums incl. pagination and if the Google image video extension is enabled for images using this as well.
  * This is independent from the images fetched by getSitemapImages().
  *
@@ -360,6 +367,7 @@ function getSitemapIndexLinks($albumsperpage='',$changefreq='') {
 function getSitemapAlbums($albumsperpage='',$imagesperpage ='',$albumchangefreq='',$imagechangefreq='',$albumlastmod='',$imagelastmod='') {
 	global $_zp_gallery, $_zp_current_album;
 	$data = '';
+	$limit = sitemap_getDBLimit(1);
 	$sitemap_locales = generateLanguageList();
 	if(empty($albumchangefreq)) {
 		$albumchangefreq = getOption('sitemap_changefreq_albums');
@@ -391,9 +399,9 @@ function getSitemapAlbums($albumsperpage='',$imagesperpage ='',$albumchangefreq=
 		$passwordcheck = $passwordcheck.$albumpasswordcheck;
 		}
 	}
-	$albumWhere = "WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
+	$albumWhere = " WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
 	// Find public albums
-	$albums = query_full_array('SELECT `folder`,`date` FROM ' . prefix('albums') . $albumWhere);
+	$albums = query_full_array('SELECT `folder`,`date` FROM ' . prefix('albums') . $albumWhere.$limit);
 	if($albums) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		if(getOption('sitemap_google')) {
@@ -469,7 +477,8 @@ function getSitemapAlbums($albumsperpage='',$imagesperpage ='',$albumchangefreq=
 	return $data;
 }
 
-/**
+/**TODO currently this splitts only sitemaps for one album and its images. Spliting the images itself requires a major rework...
+ *
  * Gets links to all images for all albums (album by album)
  *
  * @param  string $imagechangefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
@@ -480,6 +489,7 @@ function getSitemapAlbums($albumsperpage='',$imagesperpage ='',$albumchangefreq=
 function getSitemapImages($imagechangefreq='',$imagelastmod='') {
 	global $_zp_gallery, $_zp_current_album;
 	$data = '';
+	$limit = sitemap_getDBLimit(1);
 	$sitemap_locales = generateLanguageList();
 	if(empty($imagechangefreq)) {
 		$imagechangefreq = getOption('sitemap_changefreq_images');
@@ -499,9 +509,9 @@ function getSitemapImages($imagechangefreq='',$imagelastmod='') {
 		$passwordcheck = $passwordcheck.$albumpasswordcheck;
 		}
 	}
-	$albumWhere = "WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
+	$albumWhere = " WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
 	// Find public albums
-	$albums = query_full_array('SELECT `folder`,`date` FROM ' . prefix('albums') . $albumWhere);
+	$albums = query_full_array('SELECT `folder`,`date` FROM ' . prefix('albums') . $albumWhere.$limit);
 	if($albums) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		if(getOption('sitemap_google')) {
@@ -606,7 +616,6 @@ function getSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images) {
 		}
 		return $data;
 	}
-
 }
 
 /**
@@ -616,39 +625,42 @@ function getSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images) {
  * @return string
  */
 function getSitemapZenpagePages($changefreq='') {
-	global $_zp_zenpage;
-	$data = '';
-	$sitemap_locales = generateLanguageList();
-	if(empty($changefreq)) {
-		$changefreq = getOption('sitemap_changefreq_pages');
-	} else {
-		$changefreq = sitemap_getChangefreq($changefreq);
-	}
-	$pages = $_zp_zenpage->getPages(true);
-	if($pages) {
-		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-		foreach($pages as $page) {
-			$pageobj = new ZenpagePage($page['titlelink']);
-			$date = substr($pageobj->getDatetime(),0,10);
-			$lastchange = '';
-			if(!is_null($pageobj->getLastchange())) $lastchange = substr($pageobj->getLastchange(),0,10);
-			if($date > $lastchange && !empty($lastchangedate)) $date = $lastchange;
-			if(!$pageobj->isProtected()) {
-				if(sitemap_multilingual()) {
-					foreach($sitemap_locales as $locale) {
-						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
+	global $_zp_zenpage, $sitemap_number;
+	//TODO pages are not splitted into several sitemaps yet
+	if($sitemap_number == 1) {
+		$data = '';
+		$sitemap_locales = generateLanguageList();
+		if(empty($changefreq)) {
+			$changefreq = getOption('sitemap_changefreq_pages');
+		} else {
+			$changefreq = sitemap_getChangefreq($changefreq);
+		}
+		$pages = $_zp_zenpage->getPages(true);
+		if($pages) {
+			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+			foreach($pages as $page) {
+				$pageobj = new ZenpagePage($page['titlelink']);
+				$date = substr($pageobj->getDatetime(),0,10);
+				$lastchange = '';
+				if(!is_null($pageobj->getLastchange())) $lastchange = substr($pageobj->getLastchange(),0,10);
+				if($date > $lastchange && !empty($lastchangedate)) $date = $lastchange;
+				if(!$pageobj->isProtected()) {
+					if(sitemap_multilingual()) {
+						foreach($sitemap_locales as $locale) {
+							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						}
+					} else {
+						$url = FULLWEBPATH.'/'.rewrite_path('pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
-				} else {
-					$url = FULLWEBPATH.'/'.rewrite_path('pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
-					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
 			}
+			$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
 		}
-		$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
+		return $data;
 	}
-	return $data;
 }
 /**
  * Gets links to the main Zenpage news index incl. pagination
@@ -658,48 +670,50 @@ function getSitemapZenpagePages($changefreq='') {
  * @return string
  */
 function getSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
-	global $_zp_zenpage;
-	$data = '';
-	$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-	$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-	$sitemap_locales = generateLanguageList();
-	if(empty($changefreq)) {
-		$changefreq = getOption('sitemap_changefreq_newsindex');
-	} else {
-		$changefreq = sitemap_getChangefreq($changefreq);
-	}
-	if(sitemap_multilingual()) {
-		foreach($sitemap_locales as $locale) {
-			$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/1','?p=news&amp;page=1',false);
-			$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+	global $_zp_zenpage,$sitemap_number;
+	//TODO not splitted into several sitemaps yet
+	if($sitemap_number == 1) {
+		$data = '';
+		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+		$sitemap_locales = generateLanguageList();
+		if(empty($changefreq)) {
+			$changefreq = getOption('sitemap_changefreq_newsindex');
+		} else {
+			$changefreq = sitemap_getChangefreq($changefreq);
 		}
-	} else {
-		$url = FULLWEBPATH.'/'.rewrite_path('news/1','?p=news&amp;page=1',false);
-		$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-	}
-	// getting pages for the main news loop
-	if(!empty($articlesperpage)) {
-		$zenpage_articles_per_page = sanitize_numeric($articlesperpage);
-	} else {
-		$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
-	}
-	$newspages = ceil($_zp_zenpage->getTotalArticles() / $zenpage_articles_per_page);
-	if($newspages > 1) {
-		for($x = 2;$x <= $newspages; $x++) {
-			if(sitemap_multilingual()) {
-				foreach($sitemap_locales as $locale) {
-					$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/'.$x,'?p=news&amp;page='.$x,false);
-					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-				}
-			} else {
-				$url = FULLWEBPATH.'/'.rewrite_path('news/'.$x,'?p=news&amp;page='.$x,false);
+		if(sitemap_multilingual()) {
+			foreach($sitemap_locales as $locale) {
+				$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/1','?p=news&amp;page=1',false);
 				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 			}
+		} else {
+			$url = FULLWEBPATH.'/'.rewrite_path('news/1','?p=news&amp;page=1',false);
+			$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 		}
-
+		// getting pages for the main news loop
+		if(!empty($articlesperpage)) {
+			$zenpage_articles_per_page = sanitize_numeric($articlesperpage);
+		} else {
+			$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
+		}
+		$newspages = ceil($_zp_zenpage->getTotalArticles() / $zenpage_articles_per_page);
+		if($newspages > 1) {
+			for($x = 2;$x <= $newspages; $x++) {
+				if(sitemap_multilingual()) {
+					foreach($sitemap_locales as $locale) {
+						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/'.$x,'?p=news&amp;page='.$x,false);
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					}
+				} else {
+					$url = FULLWEBPATH.'/'.rewrite_path('news/'.$x,'?p=news&amp;page='.$x,false);
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+				}
+			}
+		}
+		$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
+		return $data;
 	}
-	$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
-	return $data;
 }
 
 /**
@@ -709,39 +723,42 @@ function getSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
  * @return string
  */
 function getSitemapZenpageNewsArticles($changefreq='') {
-	global $_zp_zenpage;
-	$data = '';
-	$sitemap_locales = generateLanguageList();
-	if(empty($changefreq)) {
-		$changefreq = getOption('sitemap_changefreq_news');
-	} else {
-		$changefreq = sitemap_getChangefreq($changefreq);
-	}
-	$articles = $_zp_zenpage->getNewsArticles('','published',true,"date","desc");
-	if($articles) {
-		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-		foreach($articles as $article) {
-			$articleobj = new ZenpageNews($article['titlelink']);
-			$date = substr($articleobj->getDatetime(),0,10);
-			$lastchange = '';
-			if(!is_null($articleobj->getLastchange())) $lastchange = substr($articleobj->getLastchange(),0,10);
-			if($date > $lastchange && !empty($lastchangedate)) $date = $lastchange;
-			if(!$articleobj->inProtectedCategory()) {
-				if(sitemap_multilingual()) {
-					foreach($sitemap_locales as $locale) {
-						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
+	global $_zp_zenpage,$sitemap_number;
+	//TODO not splitted into several sitemaps yet
+	if($sitemap_number == 1) {
+		$data = '';
+		$sitemap_locales = generateLanguageList();
+		if(empty($changefreq)) {
+			$changefreq = getOption('sitemap_changefreq_news');
+		} else {
+			$changefreq = sitemap_getChangefreq($changefreq);
+		}
+		$articles = $_zp_zenpage->getNewsArticles('','published',true,"date","desc");
+		if($articles) {
+			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+			foreach($articles as $article) {
+				$articleobj = new ZenpageNews($article['titlelink']);
+				$date = substr($articleobj->getDatetime(),0,10);
+				$lastchange = '';
+				if(!is_null($articleobj->getLastchange())) $lastchange = substr($articleobj->getLastchange(),0,10);
+				if($date > $lastchange && !empty($lastchangedate)) $date = $lastchange;
+				if(!$articleobj->inProtectedCategory()) {
+					if(sitemap_multilingual()) {
+						foreach($sitemap_locales as $locale) {
+							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						}
+					}	else {
+						$url = FULLWEBPATH.'/'.rewrite_path('news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
-				}	else {
-					$url = FULLWEBPATH.'/'.rewrite_path('news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
-					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				}
 			}
+			$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
 		}
-		$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
+		return $data;
 	}
-	return $data;
 }
 
 /**
@@ -753,56 +770,59 @@ function getSitemapZenpageNewsArticles($changefreq='') {
  * @return string
  */
 function getSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
-	global $_zp_zenpage;
-	$data = '';
-	$sitemap_locales = generateLanguageList();
-	if(empty($changefreq)) {
-		$changefreq = getOption('sitemap_changefreq_newscats');
-	} else {
-		$changefreq = sitemap_getChangefreq($changefreq);
-	}
-	$newscats = $_zp_zenpage->getAllCategories();
-	if($newscats) {
-		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-		foreach($newscats as $newscat) {
-			$catobj = new ZenpageCategory($newscat['titlelink']);
-			if(!$catobj->isProtected()) {
-				if(sitemap_multilingual()) {
-					foreach($sitemap_locales as $locale) {
-						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
+	global $_zp_zenpage,$sitemap_number;
+	//TODO not splitted into several sitemaps yet
+	if($sitemap_number == 1) {
+		$data = '';
+		$sitemap_locales = generateLanguageList();
+		if(empty($changefreq)) {
+			$changefreq = getOption('sitemap_changefreq_newscats');
+		} else {
+			$changefreq = sitemap_getChangefreq($changefreq);
+		}
+		$newscats = $_zp_zenpage->getAllCategories();
+		if($newscats) {
+			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
+			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+			foreach($newscats as $newscat) {
+				$catobj = new ZenpageCategory($newscat['titlelink']);
+				if(!$catobj->isProtected()) {
+					if(sitemap_multilingual()) {
+						foreach($sitemap_locales as $locale) {
+							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						}
+					} else {
+						$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
-				} else {
-					$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
-					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-				}
-				// getting pages for the categories
-				if(!empty($articlesperpage)) {
-					$zenpage_articles_per_page = sanitize_numeric($articlesperpage);
-				} else {
-					$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
-				}
-				$articlecount = count($catobj->getArticles());
-				$catpages = ceil($articlecount / $zenpage_articles_per_page);
-				if($catpages > 1) {
-					for($x = 2;$x <= $catpages ; $x++) {
-						if(sitemap_multilingual()) {
-							foreach($sitemap_locales as $locale) {
-								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
+					// getting pages for the categories
+					if(!empty($articlesperpage)) {
+						$zenpage_articles_per_page = sanitize_numeric($articlesperpage);
+					} else {
+						$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
+					}
+					$articlecount = count($catobj->getArticles());
+					$catpages = ceil($articlecount / $zenpage_articles_per_page);
+					if($catpages > 1) {
+						for($x = 2;$x <= $catpages ; $x++) {
+							if(sitemap_multilingual()) {
+								foreach($sitemap_locales as $locale) {
+									$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
+									$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+								}
+							} else {
+								$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 							}
-						} else {
-							$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
-							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						}
 					}
 				}
 			}
+			$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
 		}
-		$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
+		return $data;
 	}
-	return $data;
 }
 
 /** DEPRECATED
