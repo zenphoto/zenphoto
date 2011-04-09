@@ -2,7 +2,7 @@
 /**
  * Generates individually sitemap.org compatible XML files for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories.
  * Sitemaps need to be generated via the button on the admin overview page and then are cached as static files in the /cache_html/sitemap/ folder.
- * There are individual sitemaps for all of the above item types generated as well as a sitemapindex file.
+ * There are individual sitemaps for all of the above item types generated as well as a sitemapindex file. Album sitemaps are splitted into individual sitemaps per album (incl. all albums pages) and image sitemaps into individual sitemaps per album.
  *
  * The sitemapindex file can be referenced via "www.yourdomain.com/zenphoto/index.php?sitemap" or with modrewrite "www.yourdomain.com/zenphoto/?sitemap".
  *
@@ -130,7 +130,7 @@ class sitemap {
 	gettext('Disable cache') => array('key' => 'sitemap_disablecache', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => ''),
 	gettext('Enable Google image and video extension') => array('key' => 'sitemap_google', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext(" If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.").'<p class="notebox">'.gettext("<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin.").'</p>'),
+										'desc' => gettext(" If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.").'<p class="notebox">'.gettext("<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin.").('Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts').'</p>'),
 	gettext('Google - URL to image license') => array('key' => 'sitemap_license', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html'))
 	);
@@ -253,6 +253,7 @@ function sitemap_getChangefreq($changefreq='') {
 	}
 	return $changefreq;
 }
+
 /**
  * Gets the dateformat for images and albums only.
  * @param object $obj image or album object
@@ -282,7 +283,11 @@ function sitemap_getDateformat($obj,$option) {
 	// return gmstrftime(DATE_ISO8601, strtotime($date));
 }
 
-
+/**
+ * Gets the limit and offset for the db queries for sitemap splitting.
+ * @param  int $items_per_sitemap Number of items per sitemap
+ * @return string
+ */
 function sitemap_getDBLimit($items_per_sitemap=2) {
 	global $sitemap_number;
 	if($sitemap_number < 1) {
@@ -297,21 +302,20 @@ function sitemap_getDBLimit($items_per_sitemap=2) {
  *
  * Gets the links to the index of a Zenphoto gallery incl. index pagination
  *
- * @param  int $albumsperpage In case your theme performes custom option settings that are different from the admin option, set the number here.
- * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function getSitemapIndexLinks($albumsperpage='',$changefreq='') {
+function getSitemapIndexLinks() {
 	global $_zp_gallery,$sitemap_number;
 	$data = '';
 	if($sitemap_number < 2) {
 		set_context(ZP_INDEX);
 		$albums_per_page = getOption('albums_per_page');
+		/* Not used right now
 		if(!empty($albumsperpage)) {
 			setOption('albums_per_page',sanitize_numeric($albumsperpage),false);
 		} else {
 			setOption('albums_per_page',$albums_per_page);
-		}
+		} */
 		$toplevelpages = getTotalPages();
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
@@ -355,44 +359,20 @@ function getSitemapIndexLinks($albumsperpage='',$changefreq='') {
  *
  * NOTE: Using the Google extension is currently NOT recommended if you have a huge gallery.
  *
- * @param  array $albumsperpage In case your theme performes custom option settings that are different from the admin option, use an array to set the number here for albums individudially.
- * 																Example: $albumsperpage	= array('<album1name>' => <desired albums per page>, '<album2name>' => <desired albums per page>);
- * @param  array $imagessperpage In case your theme performes custom option settings that are different from the admin option, use an array to set the number here for albums individudially. (see example above)
- * @param  string $albumchangefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
- * @param  string $imagechangefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
- * @param  string $albumlastmod "date or "mtime"
- * @param  string $imagelastmod "date or "mtime"
  * @return string
  */
-function getSitemapAlbums($albumsperpage='',$imagesperpage ='',$albumchangefreq='',$imagechangefreq='',$albumlastmod='',$imagelastmod='') {
+function getSitemapAlbums() {
 	global $_zp_gallery, $_zp_current_album;
 	$data = '';
 	$limit = sitemap_getDBLimit(1);
 	$sitemap_locales = generateLanguageList();
-	if(empty($albumchangefreq)) {
-		$albumchangefreq = getOption('sitemap_changefreq_albums');
-	} else {
-		$albumchangefreq = sitemap_getChangefreq($albumchangefreq);
-	}
-	if(empty($imagechangefreq)) {
-		$imagechangefreq = getOption('sitemap_changefreq_images');
-	} else {
-		$imagechangefreq = sitemap_getChangefreq($imagechangefreq);
-	}
-	if(empty($albumlastmod)) {
-		$albumlastmod = getOption('sitemap_lastmod_albums');
-	} else {
-		$albumlastmod = sanitize($albumlastmod);
-	}
-	if(empty($imagelastmod)) {
-		$imagelastmod = getOption('sitemap_lastmod_images');
-	} else {
-		$imagelastmod = sanitize($imagelastmod);
-	}
-	$imagesperpage = sanitize($imagesperpage);
-	$albumsperpage = sanitize($albumsperpage);
+	$albumchangefreq = getOption('sitemap_changefreq_albums');
+	$imagechangefreq = getOption('sitemap_changefreq_images');
+  $albumlastmod = getOption('sitemap_lastmod_albums');
+	$albumlastmod = sanitize($albumlastmod);
+	$imagelastmod = getOption('sitemap_lastmod_images');
 	$passwordcheck = '';
-	$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
+	$albumscheck = query_full_array("SELECT `folder`,`id` FROM " . prefix('albums'). " ORDER BY title");
 	foreach($albumscheck as $albumcheck) {
 		if(!checkAlbumPassword($albumcheck['folder'],$hint)) {
 		$albumpasswordcheck= " AND id != ".$albumcheck['id'];
@@ -414,6 +394,7 @@ function getSitemapAlbums($albumsperpage='',$imagesperpage ='',$albumchangefreq=
 			set_context(ZP_ALBUM);
 			makeAlbumCurrent($albumobj);
 			//getting the album pages
+			/* Custom images/albums per page taken out as it is not possible to set these now anymore. Maybe later becomes an options
 			$images_per_page = getOption('images_per_page');
 			$albums_per_page = getOption('albums_per_page');
 			if(is_array($imagesperpage)) {
@@ -433,7 +414,7 @@ function getSitemapAlbums($albumsperpage='',$imagesperpage ='',$albumchangefreq=
 						setOption('albums_per_page',$albums_per_page);
 					}
 				}
-			}
+			} */
 			$pageCount = getTotalPages();
 			$imageCount = getNumImages();
 			$images = $albumobj->getImages();
@@ -481,28 +462,17 @@ function getSitemapAlbums($albumsperpage='',$imagesperpage ='',$albumchangefreq=
  *
  * Gets links to all images for all albums (album by album)
  *
- * @param  string $imagechangefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
-
- * @param  string $imagelastmod "date or "mtime"
  * @return string
  */
-function getSitemapImages($imagechangefreq='',$imagelastmod='') {
+function getSitemapImages() {
 	global $_zp_gallery, $_zp_current_album;
 	$data = '';
 	$limit = sitemap_getDBLimit(1);
 	$sitemap_locales = generateLanguageList();
-	if(empty($imagechangefreq)) {
-		$imagechangefreq = getOption('sitemap_changefreq_images');
-	} else {
-		$imagechangefreq = sitemap_getChangefreq($imagechangefreq);
-	}
-	if(empty($imagelastmod)) {
-		$imagelastmod = getOption('sitemap_lastmod_images');
-	} else {
-		$imagelastmod = sanitize($imagelastmod);
-	}
+	$imagechangefreq = getOption('sitemap_changefreq_images');
+	$imagelastmod = getOption('sitemap_lastmod_images');
 	$passwordcheck = '';
-	$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
+	$albumscheck = query_full_array("SELECT `folder`,`id` FROM " . prefix('albums'). " ORDER BY title");
 	foreach($albumscheck as $albumcheck) {
 		if(!checkAlbumPassword($albumcheck['folder'],$hint)) {
 		$albumpasswordcheck= " AND id != ".$albumcheck['id'];
@@ -514,11 +484,7 @@ function getSitemapImages($imagechangefreq='',$imagelastmod='') {
 	$albums = query_full_array('SELECT `folder`,`date` FROM ' . prefix('albums') . $albumWhere.$limit);
 	if($albums) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-		if(getOption('sitemap_google')) {
-			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
-		} else {
-			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-		}
+		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		foreach($albums as $album) {
 			$albumobj = new Album($_zp_gallery,$album['folder']);
 			$images = $albumobj->getImages();
@@ -557,8 +523,9 @@ function getSitemapImages($imagechangefreq='',$imagelastmod='') {
 	return $data;
 }
 
-
-
+/**
+ * Helper function to get the loop index if the Google video extension is enabled
+ */
 function getSitemapGoogleLoopIndex($imageCount,$pageCount) {
 	if(getOption('sitemap_google')) {
 		$loop_index = array();
@@ -574,7 +541,10 @@ function getSitemapGoogleLoopIndex($imageCount,$pageCount) {
 	}
 	return NULL;
 }
-
+/**
+ * Helper function to get the image/video extra entries for albums if the Google video extension is enabled
+ * @return string
+ */
 function getSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images) {
 	if(getOption('sitemap_google') && !empty($loop_index)) {
 		$data = '';
@@ -621,20 +591,16 @@ function getSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images) {
 /**
  * Gets links to all Zenpage pages
  *
- * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function getSitemapZenpagePages($changefreq='') {
+function getSitemapZenpagePages() {
 	global $_zp_zenpage, $sitemap_number;
-	//TODO pages are not splitted into several sitemaps yet
+	//not splitted into several sitemaps yet
 	if($sitemap_number == 1) {
 		$data = '';
+		$limit = sitemap_getDBLimit(2);
 		$sitemap_locales = generateLanguageList();
-		if(empty($changefreq)) {
-			$changefreq = getOption('sitemap_changefreq_pages');
-		} else {
-			$changefreq = sitemap_getChangefreq($changefreq);
-		}
+		$changefreq = getOption('sitemap_changefreq_pages');
 		$pages = $_zp_zenpage->getPages(true);
 		if($pages) {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
@@ -662,26 +628,21 @@ function getSitemapZenpagePages($changefreq='') {
 		return $data;
 	}
 }
+
 /**
  * Gets links to the main Zenpage news index incl. pagination
  *
- * @param  int $articlesperpage In case your theme performes custom option settings that are different from the admin option, set the number here.
- * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function getSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
+function getSitemapZenpageNewsIndex() {
 	global $_zp_zenpage,$sitemap_number;
-	//TODO not splitted into several sitemaps yet
+	//not splitted into several sitemaps yet
 	if($sitemap_number == 1) {
 		$data = '';
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		$sitemap_locales = generateLanguageList();
-		if(empty($changefreq)) {
-			$changefreq = getOption('sitemap_changefreq_newsindex');
-		} else {
-			$changefreq = sitemap_getChangefreq($changefreq);
-		}
+		$changefreq = getOption('sitemap_changefreq_newsindex');
 		if(sitemap_multilingual()) {
 			foreach($sitemap_locales as $locale) {
 				$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/1','?p=news&amp;page=1',false);
@@ -692,11 +653,13 @@ function getSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
 			$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 		}
 		// getting pages for the main news loop
+		/* Not used anyway
 		if(!empty($articlesperpage)) {
 			$zenpage_articles_per_page = sanitize_numeric($articlesperpage);
 		} else {
 			$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
-		}
+		} */
+		$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 		$newspages = ceil($_zp_zenpage->getTotalArticles() / $zenpage_articles_per_page);
 		if($newspages > 1) {
 			for($x = 2;$x <= $newspages; $x++) {
@@ -722,17 +685,13 @@ function getSitemapZenpageNewsIndex($articlesperpage='',$changefreq='') {
  * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function getSitemapZenpageNewsArticles($changefreq='') {
+function getSitemapZenpageNewsArticles() {
 	global $_zp_zenpage,$sitemap_number;
-	//TODO not splitted into several sitemaps yet
+	//not splitted into several sitemaps yet
 	if($sitemap_number == 1) {
 		$data = '';
 		$sitemap_locales = generateLanguageList();
-		if(empty($changefreq)) {
-			$changefreq = getOption('sitemap_changefreq_news');
-		} else {
-			$changefreq = sitemap_getChangefreq($changefreq);
-		}
+		$changefreq = getOption('sitemap_changefreq_news');
 		$articles = $_zp_zenpage->getNewsArticles('','published',true,"date","desc");
 		if($articles) {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
@@ -764,22 +723,15 @@ function getSitemapZenpageNewsArticles($changefreq='') {
 /**
  * Gets links to Zenpage news categories incl. pagination
  *
- * @param  array $albumsperpage In case your theme performes custom option settings that are different from the admin option, use an array to set the number here for categories individudially.
- * 																Example: $albumsperpage	= array('<category1name>' => <desired articles per page>, '<category2name>' => <desired articles per page>);
- * @param  string $changefreq One of the supported changefrequence values regarding sitemap.org. Default is empty or wrong is "daily".
  * @return string
  */
-function getSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
+function getSitemapZenpageNewsCategories() {
 	global $_zp_zenpage,$sitemap_number;
 	//TODO not splitted into several sitemaps yet
 	if($sitemap_number == 1) {
 		$data = '';
 		$sitemap_locales = generateLanguageList();
-		if(empty($changefreq)) {
-			$changefreq = getOption('sitemap_changefreq_newscats');
-		} else {
-			$changefreq = sitemap_getChangefreq($changefreq);
-		}
+   	$changefreq = getOption('sitemap_changefreq_newscats');
 		$newscats = $_zp_zenpage->getAllCategories();
 		if($newscats) {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
@@ -797,11 +749,13 @@ function getSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 					}
 					// getting pages for the categories
+					/*
 					if(!empty($articlesperpage)) {
 						$zenpage_articles_per_page = sanitize_numeric($articlesperpage);
 					} else {
 						$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
-					}
+					} */
+					$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 					$articlecount = count($catobj->getArticles());
 					$catpages = ceil($articlecount / $zenpage_articles_per_page);
 					if($catpages > 1) {
@@ -822,51 +776,6 @@ function getSitemapZenpageNewsCategories($articlesperpage='',$changefreq='') {
 			$data .= sitemap_echonl('</urlset>');// End off the <urlset> tag
 		}
 		return $data;
-	}
-}
-
-/** DEPRECATED
- * Starts static sitemap caching
- *
- */
-function startSitemapCache() {
-	$disablecaching = getOption('sitemap_disablecache');
-	if(zp_loggedin()) {
-		$disablecaching = true;
-	}
-	if(!$disablecaching) {
-		$cachefilepath = SERVERPATH."/cache_html/sitemap/sitemap.xml";
-		if(file_exists($cachefilepath) AND time()-filemtime($cachefilepath) < getOption('sitemap_cache_expire')) {
-			echo file_get_contents($cachefilepath); // PHP >= 4.3
-			exit();
-		} else {
-			if(file_exists($cachefilepath)) {
-				@unlink($cachefilepath);
-			}
-			ob_start();
-		}
-	}
-}
-
-/**DEPRECATED
- * Ends the static RSS caching.
- *
- */
-function endSitemapCache() {
-	$disablecaching = getOption('sitemap_disablecache');
-	if(zp_loggedin()) {
-		$disablecaching = true;
-	}
-	if(!$disablecaching) {
-		$cachefilepath = SERVERPATH."/cache_html/sitemap/sitemap.xml";
-		if(!empty($cachefilepath)) {
-			$pagecontent = ob_get_clean();
-			$fh = fopen($cachefilepath,"w");
-			fputs($fh, $pagecontent);
-			fclose($fh);
-			clearstatcache();
-			echo $pagecontent;
-		}
 	}
 }
 

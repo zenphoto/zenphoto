@@ -78,43 +78,8 @@ if(isset($_GET['generatesitemaps'])) {
 	</script>
 <?php
 echo '</head>';
-?>
 
-<body>
-<?php printLogoAndLinks(); ?>
-<div id="main">
-<a name="top"></a>
-<?php printTabs('home'); 
-?>
-<div id="content">
-	<h1>Sitemap tools</h1>
-	<?php if(!isset($_GET['generatesitemaps']) && !isset($_GET['clearsitemapcache'])) { ?>
-	<p class="notebox"><strong>NOTE:</strong> This is a work in progress version and may still not be fully optimized for huge galleries.</p>
-	<p class="notebox"><strong>NOTE:</strong> If your theme uses different settings as the backend options the sitemaps may not match your site.</p>
-	<p>This creates individual static xml sitemap files of the following items:</p>
-	<ul>
-		<li><strong>Zenphoto items</strong>
-			<ul>
-				<li><em>Index pages</em></li>
-				<li><em>Albums</em>: These are splitted into individual sitemaps per album (incl. all albums pages). If you enable the Google sitemap extension its special image links are added to this sitemap. So handle with care if your gallery is huge!</li>
-				<li><em>Images</em>: These are splitted into individual sitemaps per albums.</li>
-			</ul>
-		</li>
-		<li><strong>Zenpage CMS items (if the plugin is enabled)</strong>
-			<ul>
-				<li><em>News index</em></li>
-				<li><em>News Articles</em></li>
-				<li><em>News categories</em></li>
-				<li><em>Pages</em></li>
-			</ul>
-		</li>
-	</ul>
-	<p>Additionally a sitemapindex file is created that points to the separate ones above. You can reference this sitemapindex file in your robots.txt file or submit its url to services like Google via <code>www.yourdomain.com/zenphoto/index.php?sitemap</code></p>
-	<p>Already existing files are overwritten with updated versions. All files are stored in the <code>/cache_html/sitemap/</code> folder.</p>
-	<p class="buttons"><a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1"><?php echo "Generate sitemaps"; ?></a></p>	
-	<p class="buttons"><a href="sitemap-extended-admin.php?clearsitemapcache"><?php echo "Clear sitemap cache"; ?></a></p>	
-	<br style="clear: both" /><br />
-	<?php
+	function sitemap_printAvailableSitemaps() {
 		$cachefolder = SERVERPATH.'/cache_html/sitemap/';
 		$dirs = array_diff(scandir($cachefolder),array( '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn'));
 		echo '<h2>'.gettext('Available sitemap files:').'</h2>';
@@ -125,12 +90,54 @@ echo '</head>';
 			foreach($dirs as $dir) {
 				$filemtime = filemtime($cachefolder.$dir);
 				$lastchange = zpFormattedDate(DATE_FORMAT,$filemtime);
-				echo '<li>'.$dir.' ('.$lastchange.')'; //<a class="colorbox" href="'.FULLWEBPATH.'/cache_html/sitemap/'.$dir.'">Preview</a></li>';
+				echo '<li>'.$dir.' (<small>'.$lastchange.')</small>'; //<a class="colorbox" href="'.FULLWEBPATH.'/cache_html/sitemap/'.$dir.'">Preview</a></li>';
 			}
 			echo '</ol>';
 		}
 	}
+?>
+
+<body>
+<?php printLogoAndLinks(); ?>
+<div id="main">
+<a name="top"></a>
+<?php printTabs('home'); 
+?>
+<div id="content">
+	<h1>Sitemap tools</h1>
+<?php if(!isset($_GET['generatesitemaps']) && !isset($_GET['clearsitemapcache'])) { ?>
+	<p class="notebox"><strong>NOTE:</strong> This is a work in progress version and may still not be fully optimized for huge galleries.</p>
+	<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> If your theme uses different custom settings instead of the backend options the sitemaps may not match your site.'); ?></p>
+	<p><?php echo gettext('This creates individual static xml sitemap files of the following items:'); ?></p>
+	<ul>
+		<li><strong><?php echo gettext('Zenphoto items'); ?></strong>
+			<ul>
+				<li><em><?php echo gettext('Index pages'); ?></em></li>
+				<li><?php echo gettext('<em>Albums</em>: These are splitted into individual sitemaps per album (incl. all albums pages). If you enable the Google sitemap extension its special image links are added to this sitemap. So handle with care if your gallery is huge!'); ?></li>
+				<li><?php echo gettext('<em>Images</em>: These are splitted into individual sitemaps per album.'); ?></li>
+			</ul>
+		</li>
+		<li><strong><?php echo gettext('Zenpage CMS items (if the plugin is enabled)'); ?></strong>
+			<ul>
+				<li><em><?php echo gettext('News index'); ?></em></li>
+				<li><em><?php echo gettext('News Articles'); ?></em></li>
+				<li><em><?php echo gettext('News categories'); ?></em></li>
+				<li><em><?php echo gettext('Pages'); ?></em></li>
+			</ul>
+		</li>
+	</ul>
+	<p><?php echo gettext('Additionally a sitemapindex file is created that points to the separate ones above. You can reference this sitemapindex file in your robots.txt file or submit its url to services like Google via <code>www.yourdomain.com/zenphoto/index.php?sitemap</code>'); ?></p>
+	<p><?php echo gettext('The sitemap cache is cleared if you create new ones. All files are stored in the <code>/cache_html/sitemap/</code> folder.'); ?></p>
+	<p class="buttons"><a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1"><?php echo "Generate sitemaps"; ?></a></p>	
+	<p class="buttons"><a href="sitemap-extended-admin.php?clearsitemapcache"><?php echo "Clear sitemap cache"; ?></a></p>	
+	<br style="clear: both" /><br />
+	<?php sitemap_printAvailableSitemaps();
+	} // isset generate sitemaps / clearsitemap cache
 	if(isset($_GET['generatesitemaps'])) {
+		// clear cache before creating new ones
+		if($sitemap_number == 1) {
+			clearSitemapCache();
+		}
 		echo '<ul>';
 		generateSitemapCacheFile('sitemap-zenphoto-index',$sitemap_index);
 	  generateSitemapCacheFile('sitemap-zenphoto-albums'.$numberAppend,$sitemap_albums);
@@ -146,6 +153,7 @@ echo '</head>';
 		if(empty($metaURL)) {
 			generateSitemapIndexCacheFile(); 
 		 ?>
+		<p><?php echo gettext('Finished!'); ?></p>
 		<p class="buttons"><a href="sitemap-extended-admin.php"><?php echo 'Back to Sitemap tools'; ?></a></p>	
 		<?php
 		}
