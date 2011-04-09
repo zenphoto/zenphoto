@@ -1157,6 +1157,10 @@ button.positive,.buttons a.positive {
 	height: 1%;
 }
 
+#mass_tags_data {
+	text-align: left;
+	float: left;
+}
 .new_tag {
 	padding: 0 0.2em 0 25px;
 	border-top:none;

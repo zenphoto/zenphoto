@@ -913,6 +913,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	var $objects = NULL;
 	var $master = false;	//	will be set to true if this is the inherited master user
 	var $lastlogon = NULL;	// date of last use
+	var $msg = NULL;	//	a means of storing error messages from filter processing
 
 	/**
 	 * Constructor for an Administrator

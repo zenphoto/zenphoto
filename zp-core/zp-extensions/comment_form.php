@@ -258,12 +258,38 @@ function comment_form_edit_comment($discard, $raw) {
 }
 
 function comment_form_register_user($html) {
-	return comment_form_edit_comment(false, '');
+	global $_comment_form_save_post;
+	return comment_form_edit_comment(false, $_comment_form_save_post);
 }
 
 function comment_form_register_save($user) {
+	global $_comment_form_save_post;
+	$addresses = getOption('register_user_address_info');
 	$userinfo = getUserInfo(0);
-	$user->setCustomData(serialize($userinfo));
+	$_comment_form_save_post = serialize($userinfo);
+	if ($addresses == 'required') {
+		if (!isset($userinfo['street']) || empty($userinfo['street'])) {
+			$user->transient = true;
+			$user->msg .= ' '.gettext('You must supply the street field.');
+		}
+		if (!isset($userinfo['city']) || empty($userinfo['city'])) {
+			$user->transient = true;
+			$user->msg .= ' '.gettext('You must supply the city field.');
+		}
+		if (!isset($userinfo['state']) || empty($userinfo['state'])) {
+			$user->transient = true;
+			$user->msg .= ' '.gettext('You must supply the state field.');
+		}
+		if (!isset($userinfo['country']) || empty($userinfo['country'])) {
+			$user->transient = true;
+			$user->msg .= ' '.gettext('You must supply the country field.');
+		}
+		if (!isset($userinfo['postal']) || empty($userinfo['postal'])) {
+			$user->transient = true;
+			$user->msg .= ' '.gettext('You must supply the postal code field.');
+		}
+	}
+	$user->setCustomData($_comment_form_save_post);
 }
 
 /**

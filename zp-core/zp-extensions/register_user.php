@@ -62,9 +62,10 @@ class register_user_options {
 		$options = array(	gettext('Notify') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 4,
 												'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
-											gettext('User address') => array('key' => 'register_user_address_info', 'type' => OPTION_TYPE_CHECKBOX,
+											gettext('Address fields') => array('key' => 'register_user_address_info', 'type' => OPTION_TYPE_RADIO,
 												'order' => 4.5,
-												'desc' => gettext("If checked, The registeration form will include fields for the user's address.")),
+												'buttons' => array(gettext('Omit')=>0, gettext('Show')=>1, gettext('Require')=>'required'),
+												'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.')),
 											gettext('User album') => array('key' => 'register_user_create_album', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 6,
 												'desc' => gettext('If checked, an album will be created and assigned to the user.')),
@@ -196,7 +197,7 @@ function register_user_handleOptionSave($notify,$themename,$themealbum) {
 function printRegistrationForm($thanks=NULL) {
 	require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
 	global $notify, $admin_e, $admin_n, $user, $_zp_authority, $_zp_captcha, $_zp_gallery_page;
-
+	$userobj = NULL;
 	// handle any postings
 	if (isset($_GET['verify'])) {
 		$currentadmins = $_zp_authority->getAdministrators();
@@ -370,7 +371,11 @@ function printRegistrationForm($thanks=NULL) {
 					echo gettext('Your registration request could not be completed.');
 					break;
 				case 'filter':
-					echo gettext('Your registration attempt failed a <code>register_user_registered</code> filter check.');
+					if (is_object($userobj) && !empty($userobj->msg)) {
+						echo $userobj->msg;
+					} else {
+						echo gettext('Your registration attempt failed a <code>register_user_registered</code> filter check.');
+					}
 					break;
 				default:
 					echo $notify;

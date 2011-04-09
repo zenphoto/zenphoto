@@ -69,7 +69,7 @@ function user_groups_save_admin($updated, $userobj, $i, $alter) {
  * @return string
  */
 function user_groups_edit_admin($html, $userobj, $i, $background, $current) {
-	global $gallery, $_zp_authority;
+	global $gallery, $_zp_authority, $_zp_zenpage;
 	$group = $userobj->getGroup();
 	$admins = $_zp_authority->getAdministrators('all');
 	$ordered = array();

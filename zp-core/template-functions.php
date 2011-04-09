@@ -3891,7 +3891,7 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=
 			break;
 		case "Comments":
 			if (getOption('RSS_comments')) {
-				echo $prev."<a $class href=\"".WEBPATH."index.php?rss-comments&type=gallery&amp;lang=".$lang."\" title=\"".gettext("Latest comments RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
+				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-comments&type=gallery&amp;lang=".$lang."\" title=\"".gettext("Latest comments RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
 			}
 			break;
 		case "Comments-image":
