@@ -160,7 +160,7 @@ function sitemap_button($buttons) {
 								'button_text'=>gettext('Sitemap tools'),
 								'formname'=>'sitemap_button',
 								'action'=>PLUGIN_FOLDER.'/sitemap-extended/sitemap-extended-admin.php',
-								'icon'=>'images/edit-delete.png',
+								'icon'=>'images/cache1.png',
 								'title'=>gettext('Sitemap tools.'),
 								'alt'=>'',
 								'hidden'=> '',
