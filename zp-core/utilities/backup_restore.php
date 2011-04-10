@@ -153,6 +153,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 			$counter = 0;
 			$writeresult = true;
 			foreach ($tables as $row) {
+				set_time_limit(60);
 				$table = array_shift($row);
 				$unprefixed_table = substr($table, strlen($prefix));
 				$sql = 'SELECT * from `'.$table.'`';
@@ -273,6 +274,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 								$success = 2;
 							}
 							$table_cleared[$prefix.$table] = true;
+							set_time_limit(60);
 						}
 						$row = substr($string, $sep+strlen(TABLE_SEPARATOR));
 						$row = unserialize($row);

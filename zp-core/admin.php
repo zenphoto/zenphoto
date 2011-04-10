@@ -316,6 +316,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 			}
 			if (version_compare(PHP_VERSION,'5.2.0') == 1) {
 				$erToTxt[E_RECOVERABLE_ERROR] = 'E_RECOVERABLE_ERROR';
+			}
+			if (version_compare(PHP_VERSION,'5.3.0') == 1) {
 				$erToTxt[E_DEPRECATED] = 'E_DEPRECATED';
 				$erToTxt[E_USER_DEPRECATED] = 'E_USER_DEPRECATED';
 			}

@@ -415,12 +415,12 @@ if ($connection) {
 
 	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup_log.txt';
 	$permission = fileperms($path)&0777;
-	if ($permission  == 0600) {
-		$p = true;
-	} else {
+	if ($permission & 0077) {
 		$p = -1;
+	} else {
+		$p = true;
 	}
-	checkMark($p, gettext("<code>Log security</code>"), gettext("<code>Log security</code> [is compromised]"), sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
+	checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"), sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
 
 	if (ini_get('safe_mode')) {
 		$safe = -1;
@@ -2078,6 +2078,7 @@ if (file_exists(CONFIGFILE)) {
 	$createTables = true;
 	if (isset($_GET['create']) || isset($_GET['update']) || isset($_GET['delete_files']) && db_connect()) {
 		if (!isset($_GET['delete_files'])) {
+			set_time_limit(60);
 			if ($taskDisplay[substr($task,0,8)] == 'create') {
 				echo "<h3>".gettext("About to create tables")."...</h3>";
 			} else {
