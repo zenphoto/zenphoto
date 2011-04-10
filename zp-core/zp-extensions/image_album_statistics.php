@@ -190,7 +190,7 @@ function printAlbumStatisticItem($album, $option, $showtitle=false, $showdate=fa
 		echo "<p>".sprintf(gettext("Views: %u"),$hitcounter)."</p>";
 	}
 	if($showdesc) {
-		echo shortenContent($tempalbum->getDesc(), $desclength);
+		echo shortenContent($tempalbum->getDesc(), $desclength,' (...)');
 	}
 	echo "</li>";
 }
@@ -438,7 +438,7 @@ function printImageStatistic($number, $option, $albumfolder='', $showtitle=false
 			echo "<p>".sprintf(gettext("Views: %u"),$hitcounter)."</p>";
 		}
 		if($showdesc) {
-			echo shortenContent($image->getDesc(), $desclength);
+			echo shortenContent($image->getDesc(), $desclength,' (...)');
 		}
 		echo "</li>";
 	}
