@@ -259,23 +259,25 @@ function printAllTags($tags,$mode,$separator='',$class='',$showcounter=true,$tag
 	$tagcount = count($tags);
 	$tagcount;
 	foreach ($tags as $row) {
-		$loopcount++;
-		$count = $row['count'];
-		$tid   = $row['id'];
-		$tname = $row['name'];
-		$style = "";
-		if($tagcloud OR $mode == 'all') {
-			$size = min(max(round(($size_max*($count-$count_min))/($count_max-$count_min),
-			2), $size_min)
-			,$size_max);
-			$size = str_replace(',','.', $size);
-			$style = " style=\"font-size:".$size."em;\"";
+		if($row['count'] >= $count_min) {
+			$loopcount++;
+			$count = $row['count'];
+			$tid   = $row['id'];
+			$tname = $row['name'];
+			$style = "";
+			if($tagcloud OR $mode == 'all') {
+				$size = min(max(round(($size_max*($count-$count_min))/($count_max-$count_min),
+				2), $size_min)
+				,$size_max);
+				$size = str_replace(',','.', $size);
+				$style = " style=\"font-size:".$size."em;\"";
+			}
+			if($showcounter) {
+				$counter = ' ('.$count.')';
+			}
+			if($loopcount == $tagcount) $separator = '';
+			echo "<li><a class=\"tagLink\" href=\"".html_encode(getSearchURL($tname, '', 'tags', 0))."\"".$style." rel=\"nofollow\">".$tname.$counter."</a>".$separator."</li>\n";
 		}
-		if($showcounter) {
-			$counter = ' ('.$count.')';
-		}
-		if($loopcount == $tagcount) $separator = '';
-		echo "<li><a class=\"tagLink\" href=\"".html_encode(getSearchURL($tname, '', 'tags', 0))."\"".$style." rel=\"nofollow\">".$tname.$counter."</a>".$separator."</li>\n";
 	}
 	echo "</ul>\n";
 }
