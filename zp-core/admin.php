@@ -298,47 +298,53 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 			?>
 		</li>
 		<li><?php printf(gettext('PHP version: <strong>%1$s</strong>'),phpversion()); ?></li>
-		<li>
-			<?php
-			$erToTxt = array(	E_ERROR=>'E_ERROR',
-												E_WARNING=>'E_WARNING',
-												E_PARSE=>'E_PARSE',
-												E_NOTICE=>'E_NOTICE',
-												E_CORE_ERROR=>'E_CORE_ERROR',
-												E_CORE_WARNING=>'E_CORE_WARNING',
-												E_COMPILE_ERROR=>'E_COMPILE_ERROR',
-												E_COMPILE_WARNING=>'E_COMPILE_WARNING',
-												E_USER_ERROR=>'E_USER_ERROR',
-												E_USER_NOTICE=>'E_USER_NOTICE',
-												E_USER_WARNING=>'E_USER_WARNING');
-			if (version_compare(PHP_VERSION,'5.0.0') == 1) {
-				$erToTxt[E_STRICT] = 'E_STRICT';
-			}
-			if (version_compare(PHP_VERSION,'5.2.0') == 1) {
-				$erToTxt[E_RECOVERABLE_ERROR] = 'E_RECOVERABLE_ERROR';
-			}
-			if (version_compare(PHP_VERSION,'5.3.0') == 1) {
-				$erToTxt[E_DEPRECATED] = 'E_DEPRECATED';
-				$erToTxt[E_USER_DEPRECATED] = 'E_USER_DEPRECATED';
-			}
-			$reporting = error_reporting();
-			$text = array();
-			if (($reporting & E_ALL) == E_ALL) {
-				$text[] = 'E_ALL';
-				$reporting = $reporting ^ E_ALL;
-			}
-			if ((($reporting | E_NOTICE) & E_ALL) == E_ALL) {
-				$text[] = 'E_ALL ^ E_NOTICE';
-				$reporting = $reporting ^ (E_ALL ^ E_NOTICE);
-			}
-			foreach ($erToTxt as $er=>$name) {
-				if ($reporting & $er) {
-					$text[] = $name;
+		<?php
+		if (!defined('RELEASE')) {
+		?>
+			<li>
+				<?php
+				$erToTxt = array(	E_ERROR=>'E_ERROR',
+													E_WARNING=>'E_WARNING',
+													E_PARSE=>'E_PARSE',
+													E_NOTICE=>'E_NOTICE',
+													E_CORE_ERROR=>'E_CORE_ERROR',
+													E_CORE_WARNING=>'E_CORE_WARNING',
+													E_COMPILE_ERROR=>'E_COMPILE_ERROR',
+													E_COMPILE_WARNING=>'E_COMPILE_WARNING',
+													E_USER_ERROR=>'E_USER_ERROR',
+													E_USER_NOTICE=>'E_USER_NOTICE',
+													E_USER_WARNING=>'E_USER_WARNING');
+				if (version_compare(PHP_VERSION,'5.0.0') == 1) {
+					$erToTxt[E_STRICT] = 'E_STRICT';
 				}
-			}
-			printf(gettext('PHP Error reporting: <strong>%s</strong>'), implode(' | ',$text));
-			?>
-		</li>
+				if (version_compare(PHP_VERSION,'5.2.0') == 1) {
+					$erToTxt[E_RECOVERABLE_ERROR] = 'E_RECOVERABLE_ERROR';
+				}
+				if (version_compare(PHP_VERSION,'5.3.0') == 1) {
+					$erToTxt[E_DEPRECATED] = 'E_DEPRECATED';
+					$erToTxt[E_USER_DEPRECATED] = 'E_USER_DEPRECATED';
+				}
+				$reporting = error_reporting();
+				$text = array();
+				if (($reporting & E_ALL) == E_ALL) {
+					$text[] = 'E_ALL';
+					$reporting = $reporting ^ E_ALL;
+				}
+				if ((($reporting | E_NOTICE) & E_ALL) == E_ALL) {
+					$text[] = 'E_ALL ^ E_NOTICE';
+					$reporting = $reporting ^ (E_ALL ^ E_NOTICE);
+				}
+				foreach ($erToTxt as $er=>$name) {
+					if ($reporting & $er) {
+						$text[] = $name;
+					}
+				}
+				printf(gettext('PHP Error reporting: <strong>%s</strong>'), implode(' | ',$text));
+				?>
+			</li>
+		<?php
+		}
+		?>
 		<li><?php printf(gettext("Graphics support: <strong>%s</strong>"),$graphics_lib['Library_desc']); ?></li>
 		<li><?php printf(gettext('PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate less!)'),INI_GET('memory_limit')); ?></li>
 		<li>
