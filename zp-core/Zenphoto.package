@@ -587,6 +587,12 @@ zp-core/locale/pl_PL/LC_MESSAGES/zenphoto.mo
 zp-core/locale/pl_PL/LC_MESSAGES/zenphoto.po
 zp-core/locale/pl_PL/flag.png
 zp-core/locale/pl_PL/select_files_button.png
+zp-core/locale/sk_SK
+zp-core/locale/sk_SK/LC_MESSAGES
+zp-core/locale/sk_SK/LC_MESSAGES/zenphoto.mo
+zp-core/locale/sk_SK/LC_MESSAGES/zenphoto.po
+zp-core/locale/sk_SK/flag.png
+zp-core/locale/sk_SK/select_files_button.png
 zp-core/locale/sv_SE
 zp-core/locale/sv_SE/LC_MESSAGES
 zp-core/locale/sv_SE/LC_MESSAGES/zenphoto.mo
@@ -2752,4 +2758,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2754
+2760
