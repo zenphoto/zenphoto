@@ -11,6 +11,7 @@ define('UTILITIES_FOLDER', 'utilities');
 define('DATA_FOLDER','zp-data');
 define('CACHEFOLDER', 'cache');
 define('UPLOAD_FOLDER','uploaded');
+define("STATIC_CACHE_FOLDER","cache_html");
 
 //bit masks for plugin priorities
 define('CLASS_PLUGIN',4096);

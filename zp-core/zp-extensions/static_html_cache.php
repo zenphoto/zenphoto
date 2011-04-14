@@ -35,10 +35,6 @@ require_once(dirname(dirname(__FILE__)).'/functions.php');
 
 zp_register_filter('admin_utilities_buttons', 'static_cache_html_purgebutton');
 
-// insure that we have the folders available for the cache
-if (!defined('STATIC_CACHE_FOLDER')) {
-	define("STATIC_CACHE_FOLDER","cache_html");
-}
 $cache_path = SERVERPATH.'/'.STATIC_CACHE_FOLDER."/";
 if (!file_exists($cache_path)) {
 	if (!mkdir($cache_path, CHMOD_VALUE)) {

@@ -3456,6 +3456,8 @@ function printBulkActions($checkarray, $checkAll=false) {
 			// ]]> -->
 		</script>
 		<?php
+	} else {
+		$tags = false;
 	}
 	?>
 	<span style="float:right">

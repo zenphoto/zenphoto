@@ -142,7 +142,7 @@ if ($page == "editcomment" && isset($_GET['id']) ) { ?>
 	</tr>
 	<tr>
 		<td><?php echo gettext("IP:"); ?></td>
-		<td><input type="text" disabled="disabled" size="18" name="date" value="<?php echo html_encode($IP); ?>" /></td>
+		<td><input type="text" size="18" name="date" value="<?php echo html_encode($IP); ?>" /></td>
 	</tr>
 	<?php
 	echo zp_apply_filter('edit_comment_custom_data', '', $custom_data);

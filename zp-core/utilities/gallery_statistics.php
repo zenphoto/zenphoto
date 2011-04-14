@@ -32,6 +32,51 @@ printAdminHeader(gettext('utilities'),gettext('statistics'));
 ?>
 <link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
 <?php
+
+/**
+ * returns formatted number of bytes. For internal use.
+ * two parameters: the bytes and the precision (optional).
+ * if no precision is set, function will determine clean
+ * result automatically.
+ * http://php.net/manual/de/function.filesize.php
+ *
+ * @author Martin Sweeny
+ * @version 2010.0617
+ *
+ **/
+function gallerystats_formatBytes($b,$p = null) {
+	$units = array("B","kB","MB","GB","TB","PB","EB","ZB","YB");
+	$c=0;
+	$r='';
+	if(!$p && $p !== 0) {
+		foreach($units as $k => $u) {
+			if(($b / pow(1024,$k)) >= 1) {
+				$r["bytes"] = $b / pow(1024,$k);
+				$r["units"] = $u;
+				$c++;
+			}
+		}
+		return number_format($r["bytes"],2) . " " . $r["units"];
+	} else {
+		return number_format($b / pow(1024,$p)) . " " . $units[$p];
+	}
+}
+
+
+/*
+ * http://php.net/manual/de/function.filesize.php
+ *
+ * @author Jonas Sweden
+*/
+function gallerystats_filesize_r($path){
+  if(!file_exists($path)) return 0;
+  if(is_file($path)) return filesize($path);
+  $ret = 0;
+  foreach(glob($path."/*") as $fn)
+    $ret += gallerystats_filesize_r($fn);
+  return $ret;
+}
+
 /**
  * Prints a table with a bar graph of the values.
  *
@@ -433,6 +478,8 @@ echo '</head>';
 <a name="top"></a>
 <?php printTabs();
 
+
+
 // getting the counts
 $albumcount = $gallery->getNumAlbums(true);
 $albumscount_unpub = $albumcount-$gallery->getNumAlbums(true,true);
@@ -506,7 +553,14 @@ if ($commentcount_mod > 0) {
 		printf(gettext('<strong>%1$u</strong> Categories'),$total);
 		?>
 	</li>
-<?php } ?>
+<?php }
+
+?>
+<li><nobr><?php printf(gettext("Albums folder size: <strong>%s</strong>"),gallerystats_formatBytes(gallerystats_filesize_r(getAlbumFolder()))); ?></nobr></li>
+<li><nobr><?php printf(gettext("Image cache size: <strong>%s</strong>"),gallerystats_formatBytes(gallerystats_filesize_r(SERVERPATH.'/'.CACHEFOLDER))); ?></nobr></li>
+<li><nobr><?php printf(gettext("HTML cache size: <strong>%s</strong>"),gallerystats_formatBytes(gallerystats_filesize_r(SERVERPATH.'/'.STATIC_CACHE_FOLDER))); ?></nobr></li>
+<li><nobr><?php printf(gettext("Uploaded folder size: <strong>%s</strong>"),gallerystats_formatBytes(gallerystats_filesize_r(SERVERPATH.'/'.UPLOAD_FOLDER))); ?></nobr></li>
+<li><nobr><?php printf(gettext("Zenphoto scripts size: <strong>%s</strong>"),gallerystats_formatBytes(gallerystats_filesize_r(SERVERPATH.'/'.ZENFOLDER))); ?></nobr></li>
 
 </ul>
 
