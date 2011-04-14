@@ -18,8 +18,3 @@ Disallow: /zenphoto/zp-core/
 Disallow: /zenphoto/zp-data/
 Disallow: /zenphoto/page/search/
 Disallow: /zenphoto/uploaded/
-Disallow: /zenphoto/rss.php
-Disallow: /zenphoto/rss-comments.php
-Disallow: /zenphoto/README.html
-Disallow: /zenphoto/rss-news-comments.php
-Disallow: /zenphoto/rss-news.php
