@@ -82,7 +82,7 @@ class googlemapOptions {
 		if (getOption('gmap_map')) $MapTypes[gettext('Map')] = 'map';
 		if (getOption('gmap_hybrid')) $MapTypes[gettext('Hybrid')] = 'hybrid';
 		if (getOption('gmap_satellite')) $MapTypes[gettext('Satellite')] = 'satellite';
-		if (getOption('gmap_terrain')) $MapTypes[gettext('Terrain')] = 'terain';
+		if (getOption('gmap_terrain')) $MapTypes[gettext('Terrain')] = 'terrain';
 
 		$defaultmap = getOption('gmap_starting_map');
 		if (array_search($defaultmap, $MapTypes) === false) { // the starting map is not allowed, pick a new one

@@ -35,31 +35,19 @@ printAdminHeader(gettext('utilities'),gettext('statistics'));
 
 /**
  * returns formatted number of bytes. For internal use.
- * two parameters: the bytes and the precision (optional).
- * if no precision is set, function will determine clean
- * result automatically.
- * http://php.net/manual/de/function.filesize.php
- *
- * @author Martin Sweeny
- * @version 2010.0617
+ * @param int $b bytes
  *
  **/
-function gallerystats_formatBytes($b,$p = null) {
+function gallerystats_formatBytes($b) {
 	$units = array("B","kB","MB","GB","TB","PB","EB","ZB","YB");
-	$c=0;
-	$r='';
-	if(!$p && $p !== 0) {
-		foreach($units as $k => $u) {
-			if(($b / pow(1024,$k)) >= 1) {
-				$r["bytes"] = $b / pow(1024,$k);
-				$r["units"] = $u;
-				$c++;
-			}
+	foreach($units as $k => $tu) {
+		if(($t = (float) ($b / pow(1024,$k))) < 1) {
+			break;
 		}
-		return number_format($r["bytes"],2) . " " . $r["units"];
-	} else {
-		return number_format($b / pow(1024,$p)) . " " . $units[$p];
+		$x = $t;
+		$u = $tu;
 	}
+	return number_format($x, 2) . " " . $u;
 }
 
 
