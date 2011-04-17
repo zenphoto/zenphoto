@@ -870,7 +870,7 @@ function postComment($name, $email, $website, $comment, $code, $code_ok, $receiv
 	if ($goodMessage && !(false === ($requirePath = getPlugin('spamfilters/'.internalToFilesystem(getOption('spam_filter')).".php")))) {
 		require_once($requirePath);
 		$spamfilter = new SpamFilter();
-		$goodMessage = $spamfilter->filterMessage($name, $email, $website, $comment, isImageClass($receiver)?$receiver->getFullImage():NULL, $ip);
+		$goodMessage = $spamfilter->filterMessage($name, $email, $website, $comment, $receiver, $ip);
 		switch ($goodMessage) {
 			case	 0:
 				$commentobj->setInModeration(2);

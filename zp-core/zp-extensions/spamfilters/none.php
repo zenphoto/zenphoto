@@ -3,15 +3,18 @@
  * This is a shell plugin for SPAM filtering. It does almost nothing, but serves as the template
  * for more robust SPAM filters.
  * @author Stephen Billard (sbillard)
- * @package plugins	 
+ * @package plugins
  */
 
 /**
  * This implements the standard SpamFilter class for the none spam filter.
  *
+ * Note that this filter will always pass comments from users with "manage" rights
+ * on the commented object.
+ *
  */
 class SpamFilter  {
- 
+
 	/**
 	 * The SpamFilter class instantiation function.
 	 *
@@ -34,11 +37,11 @@ class SpamFilter  {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Action') => array('key' => 'Action', 'type' => OPTION_TYPE_SELECTOR, 
+		return array(gettext('Action') => array('key' => 'Action', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext('pass') => 'pass', gettext('moderate') => 'moderate', gettext('reject') => 'reject'),
 										'desc' => gettext('This action will be taken for all messages.')));
 	}
-	
+
  	/**
  	 * Handles custom formatting of options for Admin
  	 *
@@ -59,12 +62,15 @@ class SpamFilter  {
 	 * @param string $email Email field from the posting
 	 * @param string $website Website field from the posting
 	 * @param string $body The text of the comment
-	 * @param string $imageLink A link to the album/image on which the post was made
+	 * @param string $receiver The object on which the post was made
 	 * @param string $ip the IP address of the comment poster
-	 * 
+	 *
 	 * @return int
 	 */
-	function filterMessage($author, $email, $website, $body, $imageLink, $ip) {
+	function filterMessage($author, $email, $website, $body, $receiver, $ip) {
+		if (zp_loggedin($receiver->manage_rights) || $receiver->isMyItem($receiver->manage_some_rights)) {	//	trust "managers"
+			return 2;
+		}
 		$strategy = getOption('Action');
 		switch ($strategy) {
 			case 'reject': return 0;

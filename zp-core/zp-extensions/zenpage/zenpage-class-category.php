@@ -10,6 +10,7 @@
 class ZenpageCategory extends ZenpageRoot {
 
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
+	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
 	var $view_rights = VIEW_NEWS_RIGHTS;
 
 	function ZenpageCategory($catlink) {

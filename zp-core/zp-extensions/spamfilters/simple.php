@@ -64,12 +64,12 @@ class SpamFilter  {
 	 * @param string $email Email field from the posting
 	 * @param string $website Website field from the posting
 	 * @param string $body The text of the comment
-	 * @param string $imageLink A link to the album/image on which the post was made
+	 * @param object $receiver The object on which the post was made
 	 * @param string $ip the IP address of the comment poster
 	 *
 	 * @return int
 	 */
-	function filterMessage($author, $email, $website, $body, $imageLink, $ip) {
+	function filterMessage($author, $email, $website, $body, $receiver, $ip) {
 		if (strpos(getOption('Banned_IP_list'),$ip) !== false) {
 			return 0;
 		}

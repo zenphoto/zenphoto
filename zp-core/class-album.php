@@ -27,6 +27,7 @@ class Album extends MediaObject {
 	var $albumthumbnail = NULL; // remember the album thumb for the duration of the script
 	var $sidecars = array();	// keeps the list of suffixes associated with this album
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
+	var $manage_some_rights = ALBUM_RIGHTS;
 	var $view_rights = VIEW_ALBUMS_RIGHTS;
 
 

@@ -10,6 +10,7 @@
 class ZenpagePage extends ZenpageItems {
 
 	var $manage_rights = MANAGE_ALL_PAGES_RIGHTS;
+	var $manage_some_rights = ZENPAGE_PAGES_RIGHTS;
 	var $view_rights = VIEW_PAGES_RIGHTS;
 
 	function ZenpagePage($titlelink) {
