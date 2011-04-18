@@ -605,7 +605,7 @@ function getPluginFiles($pattern, $folder='', $stripsuffix=true) {
 		foreach ($filelist as $file) {
 			$key = filesystemToInternal($file);
 			if ($stripsuffix) {
-				$key = substr($key,0,strrpos($key,'.'));
+				$key = stripSuffix($key);
 			}
 			$list[$key] = $basepath.$file;
 		}
@@ -617,7 +617,7 @@ function getPluginFiles($pattern, $folder='', $stripsuffix=true) {
 		foreach ($filelist as $file) {
 			$key = filesystemToInternal($file);
 			if ($stripsuffix) {
-				$key = substr($key,0,strrpos($key,'.'));
+				$key = stripSuffix($key);
 			}
 			$list[$key] = $basepath.$file;
 		}

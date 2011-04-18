@@ -69,7 +69,7 @@ function processPlugins() {
 							$line = trim(substr($line, $i+1));
 							switch ($mod) {
 								case 'author':
-									$desc .= 'Author: '.$line.' ';
+									$desc .= 'Author: '.html_encode($line).' ';
 									$empty = false;
 									preg_match_all('|\((.+?)\)|', $line, $matches);
 									$tags = array_merge($tags, $matches[1]);
@@ -80,7 +80,7 @@ function processPlugins() {
 									break;
 							}
 						} else {
-							$desc .= $line.' ';
+							$desc .= html_encode($line).' ';
 							$empty = false;
 						}
 					}
@@ -89,12 +89,13 @@ function processPlugins() {
 
 			$desc .= '</p>';
 			fclose($fp);
-			$plugin_news->setDateTime(date('Y-m-d H:i:s'));
+			$plugin_news->setDateTime(date('Y-m-d H:i:s'),filemtime($file));
 			$plugin_news->setAuthor($author);
 			$plugin_news->setTitle($titlelink);
 			$plugin_news->setContent($desc);
 			$plugin_news->setTags($tags);
 			$plugin_news->setCategories(array('officially-supported','extensions'));
+			$plugin_news->setCustomData("http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---".$titlelink.".html");
 			$plugin_news->save();
 		}
 	}

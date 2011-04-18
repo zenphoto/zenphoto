@@ -1802,7 +1802,6 @@ function processZenpageBulkActions($type,&$reports) {
 						break;
 				}
 				foreach ($links as $titlelink) {
-					$id = sanitize_numeric($id);
 					switch($type) {
 						case 'pages':
 							$obj = new ZenpagePage($titlelink);

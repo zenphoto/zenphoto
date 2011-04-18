@@ -979,6 +979,7 @@ if ($connection) {
 		}
 	}
 
+	set_time_limit(120);
 	$base = str_replace('\\', '/', dirname(dirname(__FILE__))).'/';
 	getResidentZPFiles(SERVERPATH.'/'.ZENFOLDER);
 	$res = array_search($base.ZENFOLDER.'/Zenphoto.package',$_zp_resident_files);

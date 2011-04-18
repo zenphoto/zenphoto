@@ -4590,9 +4590,11 @@ function printZenphotoLink() {
  * @return string
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator=false) {
+	global $_user_tags;
 	if ($forceindicator || (strlen($articlecontent) > $shorten)) {
+		$allowed_tags = getAllowedTags('allowed_tags');
 		$short = substr($articlecontent, 0, $shorten);
-		$short2 = sanitize($short.'</p>',1);
+		$short2 = kses($short.'</p>', $allowed_tags);
 		if (($l2 = strlen($short2)) < $shorten)	{
 			$c = 0;
 			$l1 = $shorten;
@@ -4605,7 +4607,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 					$l1 = $l1 + $delta;
 				}
 				$short = substr($articlecontent, 0, $l1);
-				$short2 = sanitize($short.'</p>',1);
+				$short2 = kses($short.'</p>', $allowed_tags);
 				$l2 = strlen($short2);
 			}
 			$shorten = $l1;
@@ -4624,7 +4626,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		} else {
 			$short .= ' '.$shortenindicator;
 		}
-		$short = trim(sanitize($short.'</p>', 1));
+		$short = trim(kses($short.'</p>', $allowed_tags));
 		return $short;
 	}
 	return $articlecontent;

@@ -1,8 +1,10 @@
 <?php
 /*
- * google_maps -- provides for placing google maps on image and album pages.
- * Automatically detects if it is on an Image or Album page
+ * Provides for placing google maps on image and album pages
+ * based on EXIF latitude and longitude in the images.
+ * Automatically detects if it is on an Image or Album page.
  *
+ * @author Stephen Billard (sbillard)
  * @package plugins
  */
 $plugin_description = gettext("Support for providing Google Maps (API version 3) based on EXIF latitude and longitude in the images.");

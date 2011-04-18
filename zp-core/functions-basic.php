@@ -720,6 +720,36 @@ function sanitize($input_string, $sanitize_level=3) {
 	return $output_string;
 }
 
+/**
+ *
+ * Returns an array of html tags allowed
+ * @param string $which either 'allowed_tags' or 'style_tags' depending on which is wanted.
+ */
+function getAllowedTags($which) {
+	global $_user_tags, $_style_tags;
+	if ($which == 'allowed_tags') {
+		if (is_null($_user_tags)) {
+			$user_tags = "(".getOption('allowed_tags').")";
+			$allowed_tags = parseAllowedTags($user_tags);
+			if ($allowed_tags === false) {  // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
+				$allowed_tags = array();
+			}
+			$_user_tags = $allowed_tags;
+		}
+		return $_user_tags;
+	} else {
+		if (is_null($_style_tags)) {
+			$style_tags = "(".getOption('style_tags').")";
+			$allowed_tags = parseAllowedTags($style_tags);
+			if ($allowed_tags === false) {  // someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
+				$allowed_tags = array();
+				$_style_tags = $allowed_tags;
+			}
+		}
+		return $_style_tags;
+	}
+}
+
 /** returns a sanitized string for the sanitize function
  * @param string $input_string
  * @param string $sanitize_level
@@ -739,30 +769,12 @@ function sanitize_string($input_string, $sanitize_level) {
 	require_once(dirname(__FILE__).'/lib-htmlawed.php');
 
 	if ($sanitize_level === 1) {
-		if (is_null($_user_tags)) {
-			$user_tags = "(".getOption('allowed_tags').")";
-			$allowed_tags = parseAllowedTags($user_tags);
-			if ($allowed_tags === false) {  // someone has screwed with the 'allowed_tags' option row in the database, but better safe than sorry
-				$allowed_tags = array();
-			}
-			$_user_tags = $allowed_tags;
-		} else {
-			$allowed_tags = $_user_tags;
-		}
+		$allowed_tags = getAllowedTags('allowed_tags');
 		$input_string = html_entity_decode(kses($input_string, $allowed_tags));
 
 	// Text formatting sanititation.
 	} else if ($sanitize_level === 2) {
-		if (is_null($_style_tags)) {
-			$style_tags = "(".getOption('style_tags').")";
-			$allowed_tags = parseAllowedTags($style_tags);
-			if ($allowed_tags === false) {  // someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
-				$allowed_tags = array();
-				$_style_tags = $allowed_tags;
-			}
-		} else {
-			$allowed_tags = $_style_tags;
-		}
+		$allowed_tags = getAllowedTags('style_tags');
 		$input_string = html_entity_decode(kses($input_string, $allowed_tags));
 
 	// Full sanitation.  Strips all code.

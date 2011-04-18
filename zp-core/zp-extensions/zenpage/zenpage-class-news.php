@@ -27,6 +27,14 @@ class ZenpageNews extends ZenpageItems {
 		$categories = query_full_array("SELECT * FROM ".prefix('news_categories')." as cat,".prefix('news2cat')." as newscat WHERE newscat.cat_id = cat.id AND newscat.news_id = ".$this->getID()." ORDER BY cat.titlelink",false,'title');
 		return $categories;
 	}
+	function setCategories($categories) {
+		$result = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER BY titlelink");
+		foreach ($result as $cat) {
+			if (in_array($cat['titlelink'],$categories)) {
+				query("INSERT INTO ".prefix('news2cat')." (cat_id, news_id) VALUES ('".$cat['id']."', '".$this->getID()."')");
+			}
+		}
+	}
 /**
 	 * Returns true if the article is sticky
 	 *
