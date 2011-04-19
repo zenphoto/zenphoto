@@ -2028,7 +2028,7 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<?php echo gettext('Show'); ?>
 				</label>
 				<label class="checkboxlabel">
-					<input type="radio" name="comment_name_required" id="comment_name_required" value="1"<?php if (getOption('comment_name_required')==1) echo ' checked="checked"'; ?> />
+					<input type="radio" name="comment_name_required" id="comment_name_required" value="required"<?php if (getOption('comment_name_required')=='required') echo ' checked="checked"'; ?> />
 						<?php echo gettext('Require'); ?>
 				</label>
 			</td>
@@ -2045,7 +2045,7 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<?php echo gettext('Show'); ?>
 				</label>
 				<label class="checkboxlabel">
-					<input type="radio" name="comment_email_required" id="comment_email_required" value="1"<?php if (getOption('comment_email_required')==1) echo ' checked="checked"'; ?> />
+					<input type="radio" name="comment_email_required" id="comment_email_required" value="required"<?php if (getOption('comment_email_required')=='required') echo ' checked="checked"'; ?> />
 						<?php echo gettext('Require'); ?>
 				</label>
 			</td>
@@ -2062,7 +2062,7 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<?php echo gettext('Show'); ?>
 				</label>
 				<label class="checkboxlabel">
-					<input type="radio" name="comment_web_required" id="comment_web_required" value="1"<?php if (getOption('comment_web_required')==1) echo ' checked="checked"'; ?> />
+					<input type="radio" name="comment_web_required" id="comment_web_required" value="required"<?php if (getOption('comment_web_required')=='required') echo ' checked="checked"'; ?> />
 						<?php echo gettext('Require'); ?>
 				</label>
 			</td>

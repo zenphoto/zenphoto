@@ -134,7 +134,8 @@ themes/stopdesign
 themes/stopdesign/404.php
 themes/stopdesign/album.php
 themes/stopdesign/comment.php
-themes/stopdesign/comment_form.php
+themes/stopdesign/comment_form
+themes/stopdesign/comment_form/comment_form.php
 themes/stopdesign/contact.php
 themes/stopdesign/contact_form
 themes/stopdesign/contact_form/form.php
@@ -2758,4 +2759,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2760
+2761
