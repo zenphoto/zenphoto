@@ -3,11 +3,12 @@
 						<input type="hidden" name="remember" value="1" />
 						<?php
 						printCommentErrors();
+						$required = false;
 						?>
 						<table border="0">
 							<tr>
 							<?php
-							if (getOption('comment_name_required')) {
+							if ($req = getOption('comment_name_required')) {
 							?>
 								<td>
 									<?php
@@ -34,13 +35,17 @@
 										?>
 										<input type="text" id="name" name="name" size="22" value="<?php echo html_encode($stored['name']);?>" class="inputbox" />
 										<?php
+										if ($req == 'required') {
+											echo "*";
+											$required = true;
+										}
 									}
 									?>
 								</td>
 							</tr>
 							<?php
 							}
-							if (getOption('comment_email_required')) {
+							if ($req = getOption('comment_email_required')) {
 							?>
 							<tr>
 								<td>
@@ -61,13 +66,17 @@
 										?>
 										<input type="text" id="email" name="email" size="22" value="<?php echo html_encode($stored['email']);?>" class="inputbox" />
 										<?php
+										if ($req == 'required') {
+											echo "*";
+											$required = true;
+										}
 									}
 									?>
 								</td>
 							</tr>
 							<?php
 							}
-							if (getOption('comment_web_required')) {
+							if ($req = getOption('comment_web_required')) {
 							?>
 							<tr>
 								<td>
@@ -88,13 +97,23 @@
 										?>
 										<input type="text" id="website" name="website" size="22" value="<?php echo html_encode($stored['website']);?>" class="inputbox" />
 										<?php
+										if ($req == 'required') {
+											echo "*";
+											$required = true;
+										}
 									}
 									?>
 								</td>
 							</tr>
 							<?php
 							}
-							if (getOption('comment_form_addresses')) {
+							if ($req = getOption('comment_form_addresses')) {
+								if ($req == 'required') {
+									$star = '*';
+									$required = true;
+								} else {
+									$star = '';
+								}
 								?>
 								<tr>
 									<td>
@@ -115,6 +134,7 @@
 												?>
 												<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="22" value="<?php echo html_encode($stored['street']); ?>" />
 												<?php
+												echo $star;
 											}
 										?>
 									</td>
@@ -138,6 +158,7 @@
 											?>
 											<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="22" value="<?php echo html_encode($stored['city']); ?>" />
 											<?php
+											echo $star;
 										}
 										?>
 									</td>
@@ -160,6 +181,7 @@
 											<input type="text" name="0-comment_form_state" id="comment_form_state-0" class="inputbox" size="22" value="<?php echo html_encode($stored['state']); ?>" />
 											<?php
 										}
+										echo $star;
 										?>
 									</td>
 								</tr>
@@ -180,6 +202,7 @@
 											?>
 											<input type="text" name="comment_form_country" id="comment_form_country-0" class="inputbox" size="22" value="<?php echo html_encode($stored['country']); ?>" />
 											<?php
+											echo $star;
 										}
 										?>
 									</td>
@@ -201,6 +224,7 @@
 											?>
 											<input type="text" id="comment_form_postal-0" name="0-comment_form_postal" class="inputbox" size="22" value="<?php echo html_encode($stored['postal']); ?>" />
 											<?php
+											echo $star;
 										}
 										?>
 									</td>
@@ -219,6 +243,11 @@
 	 									<input type="hidden" name="code_h" value="<?php echo $captchaCode;?>" />
 	 								</td>
  								</tr>
+							<?php
+							}
+							if($required) {
+								?>
+								<tr><td colspan="2"><span style="float:right"><?php echo gettext('* Required fields'); ?></span></td></tr>
 								<?php
 							}
 							if (getOption('comment_form_private') && !$disabled['private']) {
