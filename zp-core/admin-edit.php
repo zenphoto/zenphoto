@@ -333,9 +333,10 @@ if (isset($_GET['action'])) {
 								$notify = '&';
 							}
 						}
-					}
-				} else {
-					$notify = '&post_error';
+
+					} else {
+						$notify = '&post_error';
+				}
 				}
 				if (!empty($returnalbum)) {
 					$folder = $returnalbum;
@@ -849,7 +850,7 @@ $alb = removeParentAlbumNames($album);
 				<?php echo gettext('<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album.'); ?>
 			</p>
 			<?php
-			if (!$disableEdit) {
+			if ($enableEdit) {
 			?>
 				<p>
 					<?php	printf(gettext('Select an album to edit its description and data, or <a href="?page=edit&amp;album=%s&amp;massedit">mass-edit</a> all first level subalbums.'),pathurlencode($album->name)); ?>
@@ -863,7 +864,7 @@ $alb = removeParentAlbumNames($album);
 					<strong><?php echo gettext("Back"); ?></strong>
 				</a>
 				<?php
-				if (!$disableEdit) {
+				if ($enableEdit) {
 					?>
 					<button class="serialize" type="submit" title="<?php echo gettext("Apply"); ?>" class="buttons">
 						<img src="images/pass.png" alt="" />
@@ -883,7 +884,7 @@ $alb = removeParentAlbumNames($album);
 			<div class="bordered">
 			<div class="headline" style="text-align: left;"><?php echo gettext("Edit this album"); ?>
 			<?php
-			if (!$disableEdit) {
+			if ($enableEdit) {
 				printBulkActions($checkarray_albums);
 			}
 			?>
@@ -895,7 +896,7 @@ $alb = removeParentAlbumNames($album);
 				</a>
 			</label>
 			<?php
-			if (!$disableEdit) {
+			if ($enableEdit) {
 				?>
 				<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 				</label>

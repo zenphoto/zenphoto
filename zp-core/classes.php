@@ -152,6 +152,9 @@ class PersistentObject {
 		// Check if we have a row
 		$result = query('SELECT * FROM ' . prefix($this->table) .	getWhereClause($new_unique_set) . ' LIMIT 1;');
 		if ($result && db_num_rows($result) == 0) {	//	we should not find an entry for the new unique set!
+			if (!zp_apply_filter('move_object', true, $this, $new_unique_set)) {
+				return false;
+			}
 			$sql = 'UPDATE ' . prefix($this->table)	. getSetClause($new_unique_set) . ' '	. getWhereClause($this->unique_set);
 			$result = query($sql);
 			if ($result && db_affected_rows() == 1) {	//	and the update should have effected just one record
@@ -172,6 +175,9 @@ class PersistentObject {
 		// Check if we have a row
 		$result = query('SELECT * FROM ' . prefix($this->table) .	getWhereClause($new_unique_set) . ' LIMIT 1;');
 		if ($result && db_num_rows($result) == 0) {
+			if (!zp_apply_filter('copy_object', true, $this, $new_unique_set)) {
+				return false;
+			}
 			// Note: It's important for $new_unique_set to come last, as its values should override.
 			$insert_data = array_merge($this->data, $this->updates, $this->tempdata, $new_unique_set);
 			unset($insert_data['id']);
@@ -348,6 +354,7 @@ class PersistentObject {
 				$this->updates = array();
 			}
 		}
+		zp_apply_filter('save_object', true, $this);
 		return true;
 	}
 
