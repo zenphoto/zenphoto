@@ -20,9 +20,15 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 <body>
 <?php
 $map = unserialize($_GET['mapobject']);
-echo $map->getMapJS();
-echo $map->printOnLoad();
-echo $map->printMap();
+if (is_object($map)) {
+	echo $map->getMapJS();
+	echo $map->printOnLoad();
+	echo $map->printMap();
+} else {
+	$msg = sprintf(gettext('GoogleMaps:bad "mapobject" parameter (%s)'),$_GET['mapobject']);
+	debugLog($msg);
+	trigger_error($msg, E_USER_NOTICE);
+}
 ?>
 </body>
 </html>
