@@ -87,6 +87,7 @@ class ZenpageNews extends ZenpageItems {
 			if ($this->id) {
 				$success = query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='news' AND `objectid`=" . $this->getID());
 				$success = $success && query("DELETE FROM ".prefix('news2cat')." WHERE news_id = ".$this->getID()); // delete the category association
+				$success = $success && query("DELETE FROM ".prefix('comments')." WHERE ownerid = ".$this->getID().' AND type="news"'); // delete any comments
 			}
 		}
 		return $success;

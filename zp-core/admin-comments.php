@@ -55,9 +55,9 @@ if (isset($_GET['action'])) {
 		}
  case 'deletecomment':
 		XSRFdefender('deletecomment');
-		$id = $_GET['id'];
- 		$sql = "DELETE FROM ".prefix('comments')." WHERE id =".$id;
- 		query($sql);
+		$id = sanitize_numeric($_GET['id']);
+		$comment = new Comment($id);
+		$comment->remove();
  		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php?ndeleted=1");
 		exit();
 
@@ -68,19 +68,14 @@ if (isset($_GET['action'])) {
 		}
 		XSRFdefender('savecomment');
 		$id = sanitize_numeric($_POST['id']);
-		$name = sanitize($_POST['name'], 3);
-		$email = sanitize($_POST['email'], 3);
-		$website = sanitize($_POST['website'], 3);
-		$date = sanitize($_POST['date'], 3);
-		$comment = sanitize($_POST['comment'], 1);
-		$custom = zp_apply_filter('save_comment_custom_data', '');
-		if (!empty($custom)) {
-			$custom = ", `custom_data`=".db_quote($custom);
-		}
-
-		$sql = "UPDATE ".prefix('comments')." SET `name` = ".db_quote($name).", `email` = ".db_quote($email).", `website` = ".db_quote($website).", `comment` = ".db_quote($comment).$custom." WHERE id = $id";
-		query($sql);
-
+		$comment = new Comment($id);
+		$comment->setName(sanitize($_POST['name'], 3));
+		$comment->setEmail(sanitize($_POST['email'], 3));
+		$comment->setWebsite(sanitize($_POST['website'], 3));
+		$comment->setDateTime(sanitize($_POST['date'], 3));
+		$comment->setComment(sanitize($_POST['comment'], 1));
+		$comment->setCustomData(zp_apply_filter('save_comment_custom_data', ''));
+		$comment->save();
 		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php?sedit");
 		exit();
 
@@ -324,7 +319,7 @@ if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])
 		$id = $comment['id'];
 		$author = $comment['name'];
 		$email = $comment['email'];
-		$link = gettext('<strong>database error</strong> '); // in case of such
+		$link = gettext('<strong>Missing Object</strong> '); // in case of such
 		$image = '';
 		$albumtitle = '';
 

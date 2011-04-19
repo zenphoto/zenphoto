@@ -743,8 +743,8 @@ function getAllowedTags($which) {
 			$allowed_tags = parseAllowedTags($style_tags);
 			if ($allowed_tags === false) {  // someone has screwed with the 'style_tags' option row in the database, but better safe than sorry
 				$allowed_tags = array();
-				$_style_tags = $allowed_tags;
 			}
+			$_style_tags = $allowed_tags;
 		}
 		return $_style_tags;
 	}
