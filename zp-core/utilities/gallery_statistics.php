@@ -212,7 +212,7 @@ function printBarGraph($sortorder="mostimages",$type="albums",$from_number=0, $t
 						array_unshift($albums,$albumentry);
 					}
 					$maxvalue = 1;
-					$itemssorted = $albums; // The items are originally sorted by id;
+					$itemssorted = sortMultiArray($albums, 'id', true, true); // The items are originally sorted by id;
 					$headline = $typename." - ".gettext("latest");
 					break;
 				case "images":
