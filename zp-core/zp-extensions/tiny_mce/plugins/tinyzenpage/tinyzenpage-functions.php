@@ -124,8 +124,8 @@ function printImageslist($number) {
 																											html_encode($albumthumb->getTitle())."','".
 																											html_encode($albumobj->getTitle())."','".
 																											$fullimage."','zenphoto','".
-																											html_encode(getWatermarkParam($albumthumbalbum, WATERMARK_THUMB))."','".
-																											html_encode(getWatermarkParam($albumthumbalbum, WATERMARK_IMAGE))."','".
+																											html_encode(getWatermarkParam($albumthumb, WATERMARK_THUMB))."','".
+																											html_encode(getWatermarkParam($albumthumb, WATERMARK_IMAGE))."','".
 																											$video."','".html_encode($imagedesc)."','".html_encode($albumdesc)."');\"".
 																											" title='".
 																											html_encode($albumthumb->getTitle())." (".html_encode($albumthumb->filename).")'><img src='".
@@ -134,7 +134,7 @@ function printImageslist($number) {
 																											"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
 																											gettext('<em>Albumthumb</em>').unpublishedZenphotoItemCheck($albumthumb,false);
 		echo "</div>";
-
+	
 		$images = $albumobj->getImages();
 
 		if($albumobj->getNumImages() != 0) {
@@ -204,7 +204,7 @@ function printImageslist($number) {
 			} // for end
 		} else {
 			echo "<p style='margin-left: 8px'>".gettext("<strong>Note:</strong> This album does not contain any images.")."</p>";
-		}	// if/else  no image end
+		}	// if/else  no image end 
 	} // if GET album end
 }
 

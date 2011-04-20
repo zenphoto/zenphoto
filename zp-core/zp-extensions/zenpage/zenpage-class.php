@@ -272,7 +272,7 @@ class Zenpage {
 			}
 		}
 		$datecount = array_count_values($cleandates);
-		krsort($datecount);
+		ksort($datecount);
 		return $datecount;
 	}
 
