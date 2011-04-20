@@ -202,7 +202,7 @@ function generateSitemapCacheFile($filename,$data) {
 		fwrite($handler,$data);
 		fclose($handler);
 		echo '<li>'.$filename.'</li>';
-	} 
+	}
 }
 
 /**
@@ -228,7 +228,7 @@ function generateSitemapIndexCacheFile() {
 		fwrite($handler,$data);
 		fclose($handler);
 		echo '<p>sitemapindex.xml created.</p>';
-	} 
+	}
 }
 /**
  * Checks the changefreq value if entered manually and makes sure it is only one of the supported regarding sitemap.org
@@ -352,6 +352,28 @@ function getSitemapIndexLinks() {
 	} // sitemap number end
 }
 
+/**
+ *
+ * Enter description here ...
+ * @param $obj
+ * @param $limit
+ */
+Function getSitemapAlbumList($obj,&$albumlist) {
+	Global $_zp_gallery;
+	$hint = '';
+	$locallist = $obj->getAlbums();
+	Foreach ($locallist as $folder) {
+		$album = new Album($_zp_gallery, $folder);
+		If (!$album->isDynamic() && !$album->getPassword())  {
+			//TODO: this mimics the original code, but maybe it is wrong? Should the sitemap really show published members of an unpublished album? If not, move the getShow() test to the above if statement
+			if ($album->getShow()) {
+				$albumlist[] = array('folder'=>$album->name, 'date'=>$album->getDateTime(), 'title'=>$album->getTitle());
+			}
+			getSitemapAlbumList($album, $albumlist);
+		}
+	}
+}
+
 /**TODO Places one album and all of its album pages on one sitemap
  *
  * Gets links to all albums incl. pagination and if the Google image video extension is enabled for images using this as well.
@@ -362,16 +384,22 @@ function getSitemapIndexLinks() {
  * @return string
  */
 function getSitemapAlbums() {
-	global $_zp_gallery, $_zp_current_album;
+//TODO: $_zp_current_album seems not used within, why is it declared global?
+	global $_zp_gallery, $_zp_current_album, $sitemap_number;
 	$data = '';
-	$limit = sitemap_getDBLimit(1);
 	$sitemap_locales = generateLanguageList();
 	$albumchangefreq = getOption('sitemap_changefreq_albums');
 	$imagechangefreq = getOption('sitemap_changefreq_images');
   $albumlastmod = getOption('sitemap_lastmod_albums');
 	$albumlastmod = sanitize($albumlastmod);
 	$imagelastmod = getOption('sitemap_lastmod_images');
+
+/*
+	$limit = sitemap_getDBLimit(1);
 	$passwordcheck = '';
+
+	// what on earth is the purpose of ordering by title???
+
 	$albumscheck = query_full_array("SELECT `folder`,`id` FROM " . prefix('albums'). " ORDER BY title");
 	foreach($albumscheck as $albumcheck) {
 		if(!checkAlbumPassword($albumcheck['folder'],$hint)) {
@@ -382,7 +410,18 @@ function getSitemapAlbums() {
 	$albumWhere = " WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
 	// Find public albums
 	$albums = query_full_array('SELECT `folder`,`date` FROM ' . prefix('albums') . $albumWhere.$limit);
-	if($albums) {
+*/
+
+	$albums = array();
+	getSitemapAlbumList($_zp_gallery, $albums);
+
+//TODO: the following is really strange. Why are we getting all the albums then using only one? But that is what the original code does!!
+
+	$offset = ($sitemap_number - 1);
+	$albums = array_slice($albums, $offset, 1);
+
+
+	if(!empty($albums)) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		if(getOption('sitemap_google')) {
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
@@ -465,12 +504,15 @@ function getSitemapAlbums() {
  * @return string
  */
 function getSitemapImages() {
-	global $_zp_gallery, $_zp_current_album;
+//TODO: $_zp_current_album seems not used within, why is it declared global?
+	global $_zp_gallery, $_zp_current_album, $sitemap_number;
 	$data = '';
-	$limit = sitemap_getDBLimit(1);
 	$sitemap_locales = generateLanguageList();
 	$imagechangefreq = getOption('sitemap_changefreq_images');
 	$imagelastmod = getOption('sitemap_lastmod_images');
+	$limit = sitemap_getDBLimit(1);
+
+/*
 	$passwordcheck = '';
 	$albumscheck = query_full_array("SELECT `folder`,`id` FROM " . prefix('albums'). " ORDER BY title");
 	foreach($albumscheck as $albumcheck) {
@@ -482,6 +524,17 @@ function getSitemapImages() {
 	$albumWhere = " WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
 	// Find public albums
 	$albums = query_full_array('SELECT `folder`,`date` FROM ' . prefix('albums') . $albumWhere.$limit);
+*/
+
+	$albums = array();
+	getSitemapAlbumList($_zp_gallery, $albums);
+
+//TODO: the following is really strange. Why are we getting all the albums then using only one? But that is what the original code does!!
+
+	$offset = ($sitemap_number - 1);
+	$albums = array_slice($albums, $offset, 1);
+
+
 	if($albums) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
