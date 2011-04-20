@@ -172,11 +172,7 @@ function sitemap_button($buttons) {
  * Returns true if the site is set to "multilingual" and mod_rewrite and  and the seo_locale plugin are enabled.
  */
 function sitemap_multilingual() {
-	if(getOption('multi_lingual') && getOption('zp_plugin_seo_locale') && MOD_REWRITE) {
-		return true;
-	} else {
-		return false;
-	}
+	return getOption('multi_lingual') && getOption('zp_plugin_seo_locale') && MOD_REWRITE;
 }
 
 /**
@@ -360,7 +356,6 @@ function getSitemapIndexLinks() {
  */
 Function getSitemapAlbumList($obj,&$albumlist) {
 	Global $_zp_gallery;
-	$hint = '';
 	$locallist = $obj->getAlbums();
 	Foreach ($locallist as $folder) {
 		$album = new Album($_zp_gallery, $folder);
@@ -390,7 +385,7 @@ function getSitemapAlbums() {
 	$sitemap_locales = generateLanguageList();
 	$albumchangefreq = getOption('sitemap_changefreq_albums');
 	$imagechangefreq = getOption('sitemap_changefreq_images');
-  $albumlastmod = getOption('sitemap_lastmod_albums');
+	$albumlastmod = getOption('sitemap_lastmod_albums');
 	$albumlastmod = sanitize($albumlastmod);
 	$imagelastmod = getOption('sitemap_lastmod_images');
 
@@ -784,7 +779,7 @@ function getSitemapZenpageNewsCategories() {
 	if($sitemap_number == 1) {
 		$data = '';
 		$sitemap_locales = generateLanguageList();
-   	$changefreq = getOption('sitemap_changefreq_newscats');
+		$changefreq = getOption('sitemap_changefreq_newscats');
 		$newscats = $_zp_zenpage->getAllCategories();
 		if($newscats) {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');

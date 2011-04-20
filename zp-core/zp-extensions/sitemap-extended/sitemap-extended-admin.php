@@ -1,9 +1,9 @@
 <?php
 /**
  * Sitemap Tools
- * 
+ *
  * Tool to generate sitemaps
- * 
+ *
  * @package admin
  */
 
@@ -46,8 +46,8 @@ if(isset($_GET['generatesitemaps'])) {
 		$sitemap_pages = getSitemapZenpagePages();
 	}
 	$numberAppend = '';
-	if(isset($_GET['generatesitemaps']) && 
-	(!empty($sitemap_index) 
+	if(isset($_GET['generatesitemaps']) &&
+	(!empty($sitemap_index)
 	|| !empty($sitemap_albums)
 	|| !empty($sitemap_images)
 	|| !empty($sitemap_newsindex)
@@ -61,10 +61,10 @@ if(isset($_GET['generatesitemaps'])) {
 	}
 	if (!empty($metaURL)) {
 		?>
-		<meta http-equiv="refresh" content="10; url=<?php echo $metaURL; ?>" />
+		<meta http-equiv="refresh" content="1; url=<?php echo $metaURL; ?>" />
 		<?php
 	}
-} // if(isset($_GET['generatesitemaps']) end 
+} // if(isset($_GET['generatesitemaps']) end
 ?>
 <link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
 <script type="text/javascript">
@@ -101,7 +101,7 @@ echo '</head>';
 <?php printLogoAndLinks(); ?>
 <div id="main">
 <a name="top"></a>
-<?php printTabs('home'); 
+<?php printTabs('home');
 ?>
 <div id="content">
 	<h1>Sitemap tools</h1>
@@ -128,8 +128,8 @@ echo '</head>';
 	</ul>
 	<p><?php echo gettext('Additionally a sitemapindex file is created that points to the separate ones above. You can reference this sitemapindex file in your robots.txt file or submit its url to services like Google via <code>www.yourdomain.com/zenphoto/index.php?sitemap</code>'); ?></p>
 	<p><?php echo gettext('The sitemap cache is cleared if you create new ones. All files are stored in the <code>/cache_html/sitemap/</code> folder.'); ?></p>
-	<p class="buttons"><a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1"><?php echo "Generate sitemaps"; ?></a></p>	
-	<p class="buttons"><a href="sitemap-extended-admin.php?clearsitemapcache"><?php echo "Clear sitemap cache"; ?></a></p>	
+	<p class="buttons"><a href="sitemap-extended-admin.php?generatesitemaps&amp;number=1"><?php echo "Generate sitemaps"; ?></a></p>
+	<p class="buttons"><a href="sitemap-extended-admin.php?clearsitemapcache"><?php echo "Clear sitemap cache"; ?></a></p>
 	<br style="clear: both" /><br />
 	<?php sitemap_printAvailableSitemaps();
 	} // isset generate sitemaps / clearsitemap cache
@@ -151,10 +151,10 @@ echo '</head>';
 		echo '</ul>';
 		echo '<p>'.gettext('Sitemap files are being generated...Patience please.').'</p>';
 		if(empty($metaURL)) {
-			generateSitemapIndexCacheFile(); 
+			generateSitemapIndexCacheFile();
 		 ?>
 		<p><?php echo gettext('Finished!'); ?></p>
-		<p class="buttons"><a href="sitemap-extended-admin.php"><?php echo 'Back to Sitemap tools'; ?></a></p>	
+		<p class="buttons"><a href="sitemap-extended-admin.php"><?php echo 'Back to Sitemap tools'; ?></a></p>
 		<?php
 		}
 	}
@@ -162,10 +162,10 @@ echo '</head>';
 		clearSitemapCache();
 		echo gettext('Sitemap cache cleared');
 		?>
-		<p class="buttons"><a href="sitemap-extended-admin.php"><?php echo 'Back to Sitemap tools'; ?></a></p>	
+		<p class="buttons"><a href="sitemap-extended-admin.php"><?php echo 'Back to Sitemap tools'; ?></a></p>
 		<?php
 	}
-		
+
 	?>
 
 </div><!-- content -->

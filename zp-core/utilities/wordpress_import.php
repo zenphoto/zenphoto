@@ -101,7 +101,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 		$cats = wp_query_full_array("SELECT * FROM ".wp_prefix('terms',$wp_prefix)." as terms, ".wp_prefix('term_taxonomy',$wp_prefix)." as tax WHERE tax.taxonomy = 'category' AND terms.term_id = tax.term_id",$wpdbconnection);
 		//echo "<li><strong>Categories</strong>: <pre>"; print_r($cats); echo "</pre></li>"; // for debugging
 		debugLogArray('Wordpress import - All Categories', $cats);
-		
+
 		//Add categories to Zenphoto database
 		if($cats) {
 			foreach($cats as $cat) {
@@ -119,8 +119,8 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 			}
 		} else {
 			$catinfo .= '<li class="import-nothing">'.gettext('No categories to import.').'</li>';
-		} 
-		
+		}
+
 		/***********************************
 		* getting all Wordpress tags
 		************************************/
@@ -128,7 +128,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 		$tags = wp_query_full_array("SELECT * FROM ".wp_prefix('terms',$wp_prefix)." as terms, ".wp_prefix('term_taxonomy',$wp_prefix)." as tax WHERE tax.taxonomy = 'post_tag' AND terms.term_id = tax.term_id",$wpdbconnection);
 		//echo "<li><strong>Tags</strong>: <pre>"; print_r($tags); echo "</pre></li>"; // for debugging
 		debugLogArray('Wordpress import - Tags import', $tags);
-		
+
 		//Add tags to Zenphoto database
 		if($tags) {
 			foreach($tags as $tag) {
@@ -140,7 +140,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 			}
 		} else {
 			$taginfo .= '<li class="import-nothing">'.gettext('No tags to import.').'</li>';
-		} 
+		}
 	}
 	$postinfo = '';
 	$postcount = '';
@@ -160,7 +160,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 		WHERE (post_type = 'post' OR post_type = 'page') AND (post_status = 'publish' OR post_status = 'draft')
 	", $wpdbconnection);
 	$row = db_fetch_row($posttotal);
-	$posttotalcount = $row[0];	
+	$posttotalcount = $row[0];
 
 	$posts = wp_query_full_array("
 	SELECT
@@ -239,7 +239,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 								case 'post_tag':
 									//Get new id of tag
 									// only use "slug" for tags as ZP different to WP has no name (title) and slug (urlname) separately but just an urlname
-									$gettag = query_single_row("SELECT name,id from ".prefix('tags')." WHERE name = ".db_quote($term['slug'])); 
+									$gettag = query_single_row("SELECT name,id from ".prefix('tags')." WHERE name = ".db_quote($term['slug']));
 									//Prevent double assignments
 									if (query_single_row("SELECT id from ".prefix('obj_to_tag')." WHERE objectid = ".$newarticleid." AND tagid =".$gettag['id'],false)) {
 										$postinfo .= '<li class="import-exists">'.sprintf(gettext('%1$s <em>%2$s</em> already assigned'),$term['taxonomy'], $term['slug']);
@@ -267,7 +267,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 					}
 					break;
 			} // switch end
-			
+
 			/*************************************************************************
 			* getting comments (for each post/page indiviually so we can assign them)
 			**************************************************************************/
@@ -302,10 +302,10 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 					} else {
 						$comment_approved = 1;
 					}
-					//echo "commentstatus:".$comment['comment_approved']; 
+					//echo "commentstatus:".$comment['comment_approved'];
 					if (query_single_row("SELECT * from ".prefix('comments')." WHERE ownerid =".$newarticleid." AND name=".db_quote($comment['comment_author'])." AND email =".db_quote($comment['comment_author_email'])." AND website =".db_quote($comment['comment_author_url'])." AND date =".db_quote($comment['comment_date'])." AND comment =".db_quote($comment['comment_content'])." AND inmoderation =".$comment_approved." AND type='".$ctype."'",false)) {
 						$commentexists_count++;
-						
+
 					} else {
 						if(query("INSERT INTO ".prefix('comments')." (ownerid,name,email,website,date,comment,inmoderation,type) VALUES (".$newarticleid.",".db_quote($comment['comment_author']).",".db_quote($comment['comment_author_email']).",".db_quote($comment['comment_author_url']).",".db_quote($comment['comment_date']).",".db_quote($comment['comment_content']).",".$comment_approved.",'".$ctype."')",true)) {
 							$commentcount++;
@@ -324,21 +324,21 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 				$postinfo .= '<ul><li class="import-nothing">'.gettext('No comments to import').'</li>';
 			}
 			debugLogArray('Wordpress import - Comments for "'.$post['title'].'" ('.$post['type'].')', $comments);
-			$postinfo .= '</ul></li>'; 
+			$postinfo .= '</ul></li>';
 			$postcount++;
 		} // posts foreach
 		$metaURL = 'wordpress_import.php?refresh='.$postcount.'&amp;dbname='.$wp_dbname.'&amp;dbuser='.$wp_dbbuser.'&amp;dbpass='.$wp_dbpassword.'&amp;dbhost='.$wp_dbhost.'&amp;tableprefix='.$wp_prefix.'&amp;convertlinefeeds='.getcheckboxState('convertlinefeeds').'&amp;XSRFToken='.getXSRFToken('wordpress');
 	} else { // if posts are available at all
 		$metaURL = ''; // to be sure...
 		$postinfo .= "<li class='import-nothing'>".gettext("No posts or pages to import.")."</li>";
-	} 
-	
+	}
 
-} // if db data set	
+
+} // if db data set
 printAdminHeader(gettext('utilities'),gettext('wordpress'));
 if (!empty($metaURL) && $postcount < $posttotalcount) {
 	?>
-	<meta http-equiv="refresh" content="10; url=<?php  echo $metaURL; ?>" />
+	<meta http-equiv="refresh" content="1; url=<?php  echo $metaURL; ?>" />
 	<?php
 }
 ?>
@@ -444,7 +444,7 @@ if(!isset($_GET['refresh'])) {
 
 	?>
 	<li><strong><?php echo gettext('Pages and Articles'); ?></strong>
-		<?php 
+		<?php
 			if(isset($_GET['refresh'])) {
 				$startlist = ' start="'.$refresh.'"';
 			} else {
@@ -460,7 +460,7 @@ if(!isset($_GET['refresh'])) {
 		<p class="buttons"><a href="wordpress_import.php"><?php echo gettext('New import'); ?></a></p>
 		<br style="clear:both" />
 	<?php
-	} 
+	}
 } // if form submit if
 ?>
 </div><!-- content -->

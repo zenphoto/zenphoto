@@ -312,7 +312,7 @@ function printRegistrationForm($thanks=NULL) {
 
 	if (zp_loggedin()) {
 		if (isset($_GET['userlog']) && $_GET['userlog'] == 1) {
-			echo '<meta http-equiv="refresh" content="2; url='.WEBPATH.'/">';
+			echo '<meta http-equiv="refresh" content="1; url='.WEBPATH.'/">';
 		} else {
 			echo '<div class="errorbox fade-message">';
 			echo  '<h2>'.gettext("you are already logged in.").'</h2>';
