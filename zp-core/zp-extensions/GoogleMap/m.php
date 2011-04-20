@@ -19,7 +19,15 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 </head>
 <body>
 <?php
-$map = unserialize($_GET['mapobject']);
+$data = base64_decode(str_replace(' ', '+', sanitize($_GET['mapobject'])));
+switch ($_GET['compress']) {
+	case 'gzip':
+		$map = unserialize(gzuncompress($data));
+		break;
+	case 'bzip2':
+		$map = unserialize(bzdecompress($data));
+		break;
+}
 if (is_object($map)) {
 	echo $map->getMapJS();
 	echo $map->printOnLoad();

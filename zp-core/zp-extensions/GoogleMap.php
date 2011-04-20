@@ -334,8 +334,16 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 		case 'colorbox':
 			$w = str_replace('px','',$MAP_OBJECT->width)+20;
 			$h = str_replace('px','',$MAP_OBJECT->height)+20;
+			if (function_exists('bzcompress')) {
+				$method = 'bzip2';
+				$data = bzcompress(serialize($MAP_OBJECT));
+			} else {
+				$method = 'gzip';
+				$data = gzcompress(serialize($MAP_OBJECT));
+			}
+			$param = base64_encode($data);
 			?>
-			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?mapobject='.html_encode(serialize($MAP_OBJECT)) ?>" title="<?php echo $text; ?>" class="google_map">
+			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?compress='.$method.'&mapobject='.$param ?>" title="<?php echo $text; ?>" class="google_map">
 				<?php echo $text; ?>
 			</a>
 			<script type="text/javascript">
