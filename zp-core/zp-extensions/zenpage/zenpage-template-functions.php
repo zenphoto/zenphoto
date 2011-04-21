@@ -901,7 +901,7 @@ function printNewsCategories($separator='',$before='',$class='') {
 				if($count >= $catcount) {
 					$separator = "";
 				}
-				echo "<li><a href=\"".html_encode(getNewsCategoryURL($catobj->getTitlelink()))."\" title=\"".html_encode($catobj->getTitle())."\">".html_encode($catobj->getTitle()).'</a>'.html_encode($separator)."</li>\n";
+				echo "<li><a href=\"".getNewsCategoryURL($catobj->getTitlelink())."\" title=\"".html_encode($catobj->getTitle())."\">".html_encode($catobj->getTitle()).'</a>'.html_encode($separator)."</li>\n";
 			}
 			echo "</ul>\n";
 		}
@@ -1245,7 +1245,7 @@ function getNewsCategoryURL($catlink='') {
  */
 function printNewsCategoryURL($before='',$catlink='') {
 	if (!empty($catlink)) {
-		echo "<a href=\"".html_encode(getNewsCategoryURL($catlink))."\" title=\"".html_encode(getCategoryTitle($catlink))."\">".$before.html_encode(getCategoryTitle($catlink))."</a>";
+		echo "<a href=\"".getNewsCategoryURL($catlink)."\" title=\"".html_encode(getCategoryTitle($catlink))."\">".$before.html_encode(getCategoryTitle($catlink))."</a>";
 	}
 }
 
@@ -1421,7 +1421,7 @@ function printPrevNewsPageLink($prev='&laquo; prev',$class='disabledlink') {
 	global $_zp_zenpage;
 	$page = $_zp_zenpage->getCurrentNewsPage();
 	if(getPrevNewsPageURL()) {
-		echo "<a href='".html_encode(getPrevNewsPageURL())."' title='".gettext("Prev page")." ".($page - 1)."' >".$prev."</a>\n";
+		echo "<a href='".getPrevNewsPageURL()."' title='".gettext("Prev page")." ".($page - 1)."' >".$prev."</a>\n";
 	} else {
 		echo "<span class=\"$class\">".$prev."</span>\n";
 	}
@@ -1457,7 +1457,7 @@ function printNextNewsPageLink($next='next &raquo;', $class='disabledlink') {
 	global $_zp_zenpage;
 	$page = $_zp_zenpage->getCurrentNewsPage();
 	if (getNextNewsPageURL())	{
-		echo "<a href='".html_encode(getNextNewsPageURL())."' title='".gettext("Next page")." ".($page + 1)."'>".$next."</a>\n";
+		echo "<a href='".getNextNewsPageURL()."' title='".gettext("Next page")." ".($page + 1)."'>".$next."</a>\n";
 	} else {
 		echo "<span class=\"$class\">".$next."</span>\n";
 	}
@@ -1515,14 +1515,14 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 				if(getOption("zenpage_zp_index_news")) {
 					echo "<a href='".html_encode(getNewsIndexURL())."' title='".gettext("Page")." 1'>1</a>";
 				} else {
-					echo "<a href='".html_encode(getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath())."1' title='".gettext("Page")." 1'>1</a>";
+					echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()."1' title='".gettext("Page")." 1'>1</a>";
 				}
 			}
 			echo "</li>\n";
 			if ($j>2) {
 				echo "<li>";
 				$linktext = ($j-1>2)?'...':$k1;
-				echo "<a href=\"".html_encode(getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$k1."\" title=\"".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."\">".$linktext."</a>";
+				echo "<a href=\"".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$k1."\" title=\"".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."\">".$linktext."</a>";
 				echo "</li>\n";
 			}
 		}
@@ -1531,14 +1531,14 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			if ($i == $current) {
 				echo $i;
 			} else {
-				echo "<a href='".html_encode(getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$i."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>";
+				echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$i."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>";
 			}
 			echo "</li>\n";
 		}
 		if ($i < $total) {
 			echo "<li>";
 			$linktext = ($total-$i>1)?'...':$k2;
-			echo "<a href='".html_encode(getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$k2."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
+			echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$k2."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
 			echo "</li>\n";
 		}
 		if ($firstlast && $i <= $total) {
@@ -1546,7 +1546,7 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			if($current == $total) {
 				echo $total;
 			} else {
-				echo "<a href=\"".html_encode(getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$total."\" title=\"".sprintf(ngettext('Page {%u}','Page {%u}',$total),$total)."\">".$total."</a>";
+				echo "<a href=\"".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$total."\" title=\"".sprintf(ngettext('Page {%u}','Page {%u}',$total),$total)."\">".$total."</a>";
 			}
 			echo "</li>\n";
 		}
@@ -2130,7 +2130,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
-				echo "<li><a $current href=\"".html_encode($itemurl)."\" title=\"".html_encode(strip_tags($itemtitle))."\">".html_encode($itemtitle).$count."</a>";
+				echo "<li><a $current href=\"".$itemurl."\" title=\"".html_encode(strip_tags($itemtitle))."\">".html_encode($itemtitle).$count."</a>";
 			}
 		}
 	}
@@ -2546,7 +2546,7 @@ function getPageLinkURL($titlelink) {
  * @return string
  */
 function printPageLinkURL($titlelink) {
-	echo html_encode(getPageLinkURL($titlelink));
+	echo getPageLinkURL($titlelink);
 }
 
 
