@@ -172,11 +172,9 @@ class ZenpagePage extends ZenpageItems {
 		$subpages = array();
 		$sortorder = $this->getSortOrder();
 		$pages = $_zp_zenpage->getPages();
-		//echo "<pre>"; print_r($pages); echo "</pre>";
 		foreach($pages as $page) {
 			$pageobj = new ZenpagePage($page['titlelink']);
-			$hasSortorder = strstr($pageobj->getSortOrder(),$sortorder);
-			if($hasSortorder && $pageobj->getSortOrder()  != $sortorder) { // exclude the category itself!
+			if($pageobj->getParentID() == $this->getID() && $pageobj->getSortOrder()  != $sortorder) { // exclude the page itself!
 				array_push($subpages,$pageobj->getTitlelink());
 			}
 		}
