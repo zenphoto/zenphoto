@@ -237,7 +237,7 @@ function printSlideShowLink($linktext='', $linkstyle='') {
 						}
 						?>
 						<p>
-						<a href="<?php echo html_encode($imagelink); ?>" rel="slideshow"<?php echo $style; ?>><?php echo $linktext; ?></a>
+						<a href="<?php echo html_encode($imagelink); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo html_encode(strip_tags($imgobj->getTitle())); ?>"><?php echo $linktext; ?></a>
 						</p>
 						<?php
 					}
