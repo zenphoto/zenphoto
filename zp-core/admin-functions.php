@@ -29,10 +29,10 @@ function printAdminFooter($addl='') {
 		}
 		?>
 		 | <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" title="<?php echo gettext('GPLv2'); ?>"><?php echo gettext('License:GPLv2'); ?></a>
-		 | <a href="http://www.zenphoto.org/category/user-guide/" title="<?php echo gettext('User guide'); ?>"><?php echo gettext('User guide'); ?></a>
+		 | <a href="http://www.zenphoto.org/news/category/user-guide" title="<?php echo gettext('User guide'); ?>"><?php echo gettext('User guide'); ?></a>
 		 | <a href="http://www.zenphoto.org/support/" title="<?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
 		 | <a href="http://www.zenphoto.org/trac/report/10" title="<?php echo gettext('Bugtracker'); ?>"><?php echo gettext('Bugtracker'); ?></a>
-		 | <a href="http://www.zenphoto.org/category/news/changelog/" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
+		 | <a href="http://www.zenphoto.org/news/categorychangelog" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
 		 <br />
 		<?php	printf(gettext('Server date: %s'),date('Y-m-d H:i:s')); 	?>
 	</div>
