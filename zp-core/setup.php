@@ -422,6 +422,10 @@ if ($connection) {
 	}
 	checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"), sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
 
+	$register_globals = ini_get('register_globals');
+	if ($register_globals !== false) {
+		$good = checkMark(!$register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>.')) && $good;
+	}
 	if (ini_get('safe_mode')) {
 		$safe = -1;
 	} else {
@@ -436,6 +440,30 @@ if ($connection) {
 		$magic_quotes_disabled = true;
 	}
 	checkMark($magic_quotes_disabled, gettext("PHP <code>magic_quotes_gpc</code>"), gettext("PHP <code>magic_quotes_gpc</code> [is enabled]"), gettext("You should consider disabling <code>magic_quotes_gpc</code>. For more information See <em>What is magic_quotes_gpc and why should it be disabled?</em> in the Zenphoto troubleshooting guide."));
+	checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto currently requires native PHP <code>gettext()</code> support"));
+	if ($_zp_setupCurrentLocale_result === false) {
+		checkMark(-1, gettext('PHP <code>setlocale()</code>'), ' '.gettext('PHP <code>setlocale()</code> failed'), gettext("Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work.").'<br />'.gettext('See the troubleshooting guide on zenphoto.org for details.'));
+	}
+	primeMark(gettext('mb_strings'));
+	if (function_exists('mb_internal_encoding')) {
+		@mb_internal_encoding('UTF-8');
+		if (($charset = mb_internal_encoding()) == 'UTF-8') {
+			$mb = 1;
+		} else {
+			$mb = -1;
+		}
+		$m2 = gettext('Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly.');
+		checkMark($mb, gettext("PHP <code>mbstring</code> package"), sprintf(gettext('PHP <code>mbstring</code> package [Your internal character set is <strong>%s</strong>]'), $charset), $m2);
+	} else {
+		$test = $_zp_UTF8->convert('test', 'ISO-8859-1', 'UTF-8');
+		if (empty($test)) {
+			$m2 = gettext("You need to install the <code>mbstring</code> package or correct the issue with <code>iconv(()</code>");
+			checkMark(0, '', gettext("PHP <code>mbstring</code> package [is not present and <code>iconv()</code> is not working]"), $m2);
+		} else {
+			$m2 = gettext("Strings generated internally by PHP may not display correctly. (e.g. dates)");
+			checkMark(-1, '', gettext("PHP <code>mbstring</code> package [is not present]"), $m2);
+		}
+	}
 
 	if ($environ) {
 		/* Check for graphic library and image type support. */
@@ -482,30 +510,6 @@ if ($connection) {
 				$graphicsmsg .= $handler->canLoadMsg($handler);
 			}
 			checkmark(0, '', gettext('Graphics support [configuration error]'), gettext('No Zenphoto image handling library was loaded. Be sure that your PHP has a graphics support.').' '.trim($graphicsmsg));
-		}
-	}
-	checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto currently requires native PHP <code>gettext()</code> support"));
-	if ($_zp_setupCurrentLocale_result === false) {
-		checkMark(-1, gettext('PHP <code>setlocale()</code>'), ' '.gettext('PHP <code>setlocale()</code> failed'), gettext("Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work.").'<br />'.gettext('See the troubleshooting guide on zenphoto.org for details.'));
-	}
-	primeMark(gettext('mb_strings'));
-	if (function_exists('mb_internal_encoding')) {
-		@mb_internal_encoding('UTF-8');
-		if (($charset = mb_internal_encoding()) == 'UTF-8') {
-			$mb = 1;
-		} else {
-			$mb = -1;
-		}
-		$m2 = gettext('Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly.');
-		checkMark($mb, gettext("PHP <code>mbstring</code> package"), sprintf(gettext('PHP <code>mbstring</code> package [Your internal character set is <strong>%s</strong>]'), $charset), $m2);
-	} else {
-		$test = $_zp_UTF8->convert('test', 'ISO-8859-1', 'UTF-8');
-		if (empty($test)) {
-			$m2 = gettext("You need to install the <code>mbstring</code> package or correct the issue with <code>iconv(()</code>");
-			checkMark(0, '', gettext("PHP <code>mbstring</code> package [is not present and <code>iconv()</code> is not working]"), $m2);
-		} else {
-			$m2 = gettext("Strings generated internally by PHP may not display correctly. (e.g. dates)");
-			checkMark(-1, '', gettext("PHP <code>mbstring</code> package [is not present]"), $m2);
 		}
 	}
 

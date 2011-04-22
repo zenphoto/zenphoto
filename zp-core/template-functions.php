@@ -981,7 +981,7 @@ function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
 				$album = new Album($_zp_gallery, $dynamic_album);
 			}
 			echo "<a href=\"" . html_encode(getAlbumLinkURL($album)) . "\">";
-			echo $album->getTitle();
+			echo html_encode($album->getTitle());
 			echo '</a>';
 		}
 	} else {

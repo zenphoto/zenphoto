@@ -1965,11 +1965,11 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 	if (DEBUG_LOGIN) debugLog("zp_handle_password: \$authType=$authType; \$check_auth=$check_auth; \$check_user=$check_user; ");
 	if (isset($_POST['password']) && isset($_POST['pass'])) {	// process login form
 		if (isset($_POST['user'])) {
-			$post_user = $_POST['user'];
+			$post_user = sanitize($_POST['user']);
 		} else {
 			$post_user = '';
 		}
-		$post_pass = $_POST['pass'];
+		$post_pass = sanitize($_POST['pass']);
 		$auth = $_zp_authority->passwordHash($post_user, $post_pass);
 		if (DEBUG_LOGIN) debugLog("zp_handle_password: \$post_user=$post_user; \$post_pass=$post_pass; \$auth=$auth; ");
 		$user = $_zp_authority->checkLogon($post_user, $post_pass, false);
@@ -1978,7 +1978,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		} else {
 			$_zp_loggedin = false;
 		}
-		$redirect_to = $_POST['redirect'];
+		$redirect_to = sanitize($_POST['redirect'],0);
 		if (substr($redirect_to,0,1)=='/') {
 			$initial = '/';
 		} else {

@@ -27,7 +27,7 @@ foreach ($ordered as $key=>$user) {
 }
 $msg = NULL;
 if (isset($_GET['action'])) {
-	$action = $_GET['action'];
+	$action = sanitize($_GET['action']);
 	XSRFdefender($action);
 	if ($action == 'expiry') {
 		foreach ($_POST as $key=>$action) {

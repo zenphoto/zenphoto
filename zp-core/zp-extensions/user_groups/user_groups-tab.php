@@ -23,7 +23,7 @@ $adminordered = array();
 foreach ($ordered as $key=>$user) $adminordered[] = $admins[$key];
 
 if (isset($_GET['action'])) {
-	$action = $_GET['action'];
+	$action = sanitize($_GET['action']);
 	XSRFdefender($action);
 	$themeswitch = false;
 	if ($action == 'deletegroup') {
