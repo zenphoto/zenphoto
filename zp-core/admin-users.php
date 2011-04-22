@@ -19,7 +19,7 @@ $_current_tab = sanitize($_GET['page'],3);
 
 /* handle posts */
 if (isset($_GET['action'])) {
-	if (($action = $_GET['action']) != 'saveoptions') {
+	if (($action = sanitize($_GET['action'])) != 'saveoptions') {
 		admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
 	}
 	$themeswitch = false;
@@ -65,14 +65,14 @@ if (isset($_GET['action'])) {
 					$updated = false;
 					$error = false;
 					$userobj = NULL;
-					$pass = trim($_POST[$i.'-adminpass']);
+					$pass = trim(sanitize($_POST[$i.'-adminpass']));
 					$user = trim(sanitize($_POST[$i.'-adminuser'],0));
 					if (empty($user) && !empty($pass)) {
 						$notify = '?mismatch=nothing';
 					}
 					if (!empty($user)) {
 						$nouser = false;
-						if ($pass == trim($_POST[$i.'-adminpass_2'])) {
+						if ($pass == trim(sanitize($_POST[$i.'-adminpass_2']))) {
 							if (isset($_POST[$i.'-newuser'])) {
 								$newuser = $user;
 								$what = 'new';
@@ -85,14 +85,14 @@ if (isset($_GET['action'])) {
 							}
 
 							if (isset($_POST[$i.'-admin_name'])) {
-								$admin_n = trim($_POST[$i.'-admin_name']);
+								$admin_n = trim(sanitize($_POST[$i.'-admin_name']));
 								if ($admin_n != $userobj->getName()) {
 									$updated = true;
 									$userobj->setName($admin_n);
 								}
 							}
 							if (isset($_POST[$i.'-admin_email'])) {
-								$admin_e = trim($_POST[$i.'-admin_email']);
+								$admin_e = trim(sanitize($_POST[$i.'-admin_email']));
 								if ($admin_e != $userobj->getEmail()) {
 									$updated = true;
 									$userobj->setEmail($admin_e);

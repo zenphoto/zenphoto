@@ -201,7 +201,7 @@ function printRegistrationForm($thanks=NULL) {
 	// handle any postings
 	if (isset($_GET['verify'])) {
 		$currentadmins = $_zp_authority->getAdministrators();
-		$params = unserialize(pack("H*", trim($_GET['verify'],'.')));
+		$params = unserialize(pack("H*", trim(sanitize($_GET['verify']),'.')));
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj->getEmail() == $params['email']) {
 			$userobj->setCredentials(array('registered','user','email'));
@@ -250,23 +250,23 @@ function printRegistrationForm($thanks=NULL) {
 				$notify = 'invalidcaptcha';
 			}
 		}
-		$admin_n = trim($_POST['admin_name']);
+		$admin_n = trim(sanitize($_POST['admin_name']));
 		if (empty($admin_n)) {
 			$notify = 'incomplete';
 		}
 		if (isset($_POST['admin_email'])) {
-			$admin_e = trim($_POST['admin_email']);
+			$admin_e = trim(sanitize($_POST['admin_email']));
 		} else {
-			$admin_e = trim($_POST['adminuser']);
+			$admin_e = trim(sanitize($_POST['adminuser']));
 		}
 		if (!is_valid_email_zp($admin_e)) {
 			$notify = 'invalidemail';
 		}
 
-		$pass = trim($_POST['adminpass']);
-		$user = trim($_POST['adminuser']);
+		$pass = trim(sanitize($_POST['adminpass']));
+		$user = trim(sanitize($_POST['adminuser']));
 		if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
-			if ($pass == trim($_POST['adminpass_2'])) {
+			if ($pass == trim(sanitize($_POST['adminpass_2']))) {
 				$currentadmin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 				if (is_object($currentadmin)) {
 					$notify = 'exists';

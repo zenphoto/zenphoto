@@ -72,9 +72,9 @@ if (isset($_REQUEST['return'])) {
 if (db_connect()) {
 	if (isset($_REQUEST['album'])) {
 		if (isset($_POST['album'])) {
-			$alb = urldecode($_POST['album']);
+			$alb = sanitize(urldecode($_POST['album']));
 		} else {
-			$alb = $_GET['album'];
+			$alb = sanitize($_GET['album']);
 		}
 		$folder = sanitize_path($alb);
 		if (!empty($folder)) {

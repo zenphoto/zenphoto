@@ -443,6 +443,7 @@ if(is_AdminEditPage("page")) {
 									$('#user_name').val('');
 									$('#pass').val('');
 									$('#pass_2').val('');
+									$('.hint').val('');
 									toggle_passwords('',true);
 								}
 							</script>
@@ -466,7 +467,7 @@ if(is_AdminEditPage("page")) {
 						<br />
 						<?php echo gettext("Password hint:"); ?>
 						<br />
-						<?php print_language_string_list($hint, 'page_hint', false, NULL, '', 27); ?>
+						<?php print_language_string_list($hint, 'page_hint', false, NULL, 'hint', 27); ?>
 					</div>
 					<?php
 					}

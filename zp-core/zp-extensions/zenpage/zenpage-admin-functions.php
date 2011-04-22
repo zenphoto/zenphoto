@@ -66,8 +66,8 @@ function processPasswordSave($obj) {
 	$notify = $fail = '';
 	if (sanitize($_POST['password_enabled'])) {
 		$olduser = $obj->getUser();
-		$newuser = $_POST['new_user'];
-		$pwd = trim($_POST['newpass']);
+		$newuser = sanitize($_POST['new_user']);
+		$pwd = trim(sanitize($_POST['newpass']));
 		if (($olduser != $newuser)) {
 			if (!empty($newuser) && empty($pwd) && empty($pwd2)) {
 				$fail = 'user';
@@ -850,9 +850,9 @@ function processCategoryPasswordSave($cat) {
 	global $_zp_authority;
 	$notify = $fail = '';
 	if (sanitize($_POST['password_enabled'])) {
-		$olduser = $_POST['olduser'];
-		$newuser = $_POST['new_user'];
-		$pwd = trim($_POST['newpass']);
+		$olduser = sanitize($_POST['olduser']);
+		$newuser = sanitize($_POST['new_user']);
+		$pwd = trim(sanitize($_POST['newpass']));
 		if (($olduser != $newuser)) {
 			if (!empty($newuser) && empty($pwd) && empty($pwd2)) {
 				$fail = 'user';

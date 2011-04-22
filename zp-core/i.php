@@ -71,36 +71,36 @@ if (isset($_GET['h'])) { //2
 	$args[2] = min(abs($_GET['h']), MAX_SIZE);
 }
 if (isset($_GET['cw'])) { //3
-	$args[3] = $_GET['cw'];
+	$args[3] = sanitize($_GET['cw']);
 }
 if (isset($_GET['ch'])) { //4
-	$args[4] = $_GET['ch'];
+	$args[4] = sanitize($_GET['ch']);
 }
 if (isset($_GET['cx'])) { //5
-	$args[5] = $_GET['cx'];
+	$args[5] = sanitize($_GET['cx']);
 }
 if (isset($_GET['cy'])) { //6
-	$args[6] = $_GET['cy'];
+	$args[6] = sanitize($_GET['cy']);
 }
 if (isset($_GET['q'])) { //7
-	$args[7] = $_GET['q'];
+	$args[7] = sanitize($_GET['q']);
 }
 if (isset($_get['thumb'])) { // 8
 	$args[10] = 1;
 }
 if (isset($_GET['c'])) {// 9
-	$args[9] = $_GET['c'];
+	$args[9] = sanitize($_GET['c']);
 }
 if (isset($_GET['t'])) { //10
-	$args[10] = $_GET['t'];
+	$args[10] = sanitize($_GET['t']);
 }
 if (isset($_GET['wmk']) && !$adminrequest) { //11
-	$args[11] = $_GET['wmk'];
+	$args[11] = sanitize($_GET['wmk']);
 }
 $args [12] = $adminrequest; //12
 
 if (isset($_GET['effects'])) {	//13
-	$args[13] = $_GET['effects'];
+	$args[13] = sanitize($_GET['effects']);
 }
 
 

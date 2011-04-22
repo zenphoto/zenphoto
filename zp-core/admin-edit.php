@@ -54,7 +54,7 @@ if (isset($_GET['showthumbs'])) {	// switch the display selector
 	setBoolOption('album_tab_default_thumbs_'.(is_object($album)?$album->name:''), $how == 'no');
 }
 if (isset($_GET['action'])) {
-	$action = $_GET['action'];
+	$action = sanitize($_GET['action']);
 	switch ($action) {
 		/** reorder the tag list ******************************************************/
 		/******************************************************************************/
@@ -346,13 +346,13 @@ if (isset($_GET['action'])) {
 				/** SAVE MULTIPLE ALBUMS ******************************************************/
 			} else if ($_POST['totalalbums']) {
 				$notify = '';
-				for ($i = 1; $i <= $_POST['totalalbums']; $i++) {
+				for ($i = 1; $i <= sanitize_numeric($_POST['totalalbums']); $i++) {
 					if ($i>0) {
 						$prefix = $i."-";
 					} else {
 						$prefix = '';
 					}
-					$f = sanitize_path(trim($_POST[$prefix.'folder']));
+					$f = sanitize_path(trim(sanitize($_POST[$prefix.'folder'])));
 					$album = new Album($gallery, $f);
 					$returnalbum = '';
 					$rslt = processAlbumEdit($i, $album, $returnalbum);

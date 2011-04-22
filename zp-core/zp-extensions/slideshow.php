@@ -348,7 +348,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 	if ($albumid <= 0) { // search page
 		$dynamic = 2;
 		$search = new SearchEngine();
-		$params = $_POST['preserve_search_params'];
+		$params = sanitize($_POST['preserve_search_params']);
 		$search->setSearchParams($params);
 		$images = $search->getImages(0);
 		$searchwords = $search->words;

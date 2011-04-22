@@ -9,7 +9,7 @@
 /* Don't put anything before this line! */
 define('OFFSET_PATH', 1);
 if (isset($_GET['_zp_login_error'])) {
-	$_zp_login_error = $_GET['_zp_login_error'];
+	$_zp_login_error = sanitize($_GET['_zp_login_error']);
 }
 
 // The login will always occur in this file thanks to printLoginForm() function.
@@ -44,7 +44,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 	$gallery->garbageCollect();
 	if (isset($_GET['action'])) {
 		$rightsneeded = array('external'=>ALL_RIGHTS, 'check_for_update'=>OVERVIEW_RIGHTS);
-		$action = $_GET['action'];
+		$action = sanitize($_GET['action']);
 		$needs = ADMIN_RIGHTS;
 		if (isset($rightsneeded[$action])) {
 			$needs = $rightsneeded[$action] | ADMIN_RIGHTS;

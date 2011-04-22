@@ -87,9 +87,9 @@ function loadAlbum($album) {
 }
 $gallery = new Gallery();
 if (isset($_GET['album'])) {
-	$alb = $_GET['album'];
+	$alb = sanitize($_GET['album']);
 } else if (isset($_POST['album'])) {
-	$alb = urldecode($_POST['album']);
+	$alb = sanitize(urldecode($_POST['album']));
 } else {
 	$alb = '';
 }

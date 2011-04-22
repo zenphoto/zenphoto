@@ -24,7 +24,7 @@ $_current_tab = sanitize($_GET['page'],3);
 
 /* handle posts */
 if (isset($_GET['action'])) {
-	$action = $_GET['action'];
+	$action = sanitize($_GET['action']);
 	$themeswitch = false;
 	if ($action == 'saveoptions') {
 		XSRFdefender('saveoptions');
@@ -129,13 +129,13 @@ if (isset($_GET['action'])) {
 			$sec = sanitize($_POST['gallery_security'],3);
 			setOption('gallery_security',$sec);
 			setOption('login_user_field', isset($_POST['login_user_field']));
-			if (sanitize($_POST['password_enabled'])) {
+			if ($_POST['password_enabled']) {
 			$olduser = getOption('gallery_user');
 			$newuser = trim(sanitize($_POST['gallery_user'],3));
 			if (!empty($newuser)) {
 				setOption('login_user_field', 1);
 			}
-			$pwd = trim($_POST['gallerypass']);
+			$pwd = trim(sanitize($_POST['gallerypass']));
 			$fail = '';
 				if ($olduser != $newuser) {
 					if (!empty($newuser)  && empty($pwd) && empty($pwd2)) $fail = '?mismatch=user_gallery';
@@ -175,11 +175,11 @@ if (isset($_GET['action'])) {
 			setOption('exact_tag_match', sanitize($_POST['tag_match']));
 			$olduser = getOption('search_user');
 			$newuser = trim(sanitize($_POST['search_user'],3));
-			if (sanitize($_POST['password_enabled'], 3)) {
+			if ($_POST['password_enabled']) {
 				if (!empty($newuser)) {
 					setOption('login_user_field', 1);
 				}
-				$pwd = trim($_POST['searchpass']);
+				$pwd = trim(sanitize($_POST['searchpass']));
 				if ($olduser != $newuser) {
 					if (!empty($newuser) && empty($pwd) && empty($pwd2)) $fail = '?mismatch=user_search';
 				}
@@ -187,7 +187,7 @@ if (isset($_GET['action'])) {
 					setOption('search_user',$newuser);
 					if (empty($pwd)) {
 						if (empty($_POST['searchpass'])) {
-							setOption('search_password', NULL);  // clear the gallery password
+							setOption('search_password', NULL);  // clear the search password
 						}
 					} else {
 						setOption('search_password', $_zp_authority->passwordHash($newuser, $pwd));
@@ -274,7 +274,7 @@ if (isset($_GET['action'])) {
 					setOption('login_user_field', 1);
 				}
 				$fail = '';
-				$pwd = trim($_POST['imagepass']);
+				$pwd = trim(sanitize($_POST['imagepass']));
 				if ($olduser != $newuser) {
 					if (!empty($newuser) && empty($pwd) && empty($pwd2)) $fail = '?mismatch=image_user';
 				}
@@ -282,7 +282,7 @@ if (isset($_GET['action'])) {
 					setOption('protected_image_user',$newuser);
 					if (empty($pwd)) {
 						if (empty($_POST['imagepass'])) {
-							setOption('protected_image_password', NULL);  // clear the gallery password
+							setOption('protected_image_password', NULL);  // clear the protected image password
 						}
 					} else {
 						setOption('protected_image_password', $_zp_authority->passwordHash($newuser, $pwd));
@@ -950,6 +950,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 									$('#gallery_user').val('');
 									$('#gallerypass').val('');
 									$('#gallerypass_2').val('');
+									$('.hint').val('');
 									toggle_passwords('',true);
 								}
 							</script>
@@ -984,7 +985,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 								<br />
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="gallerypass_2" name="gallerypass_2" value="<?php echo $x; ?>" />
 							</p>
-							<p><?php print_language_string_list(getOption('gallery_hint'), 'gallery_hint') ?></p>
+							<p><?php print_language_string_list(getOption('gallery_hint'), 'gallery_hint', false, NULL, 'hint') ?></p>
 						</td>
 						<td>
 							<p><?php echo gettext("User ID for the gallery guest user") ?></p>
@@ -1247,6 +1248,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 									$('#user_name').val('');
 									$('#pass').val('');
 									$('#pass_2').val('');
+									$('.hint').val('');
 									toggle_passwords('',true);
 								}
 							</script>
@@ -1279,7 +1281,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 								<br />
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="pass_2" name="searchpass_2" value="<?php echo $x; ?>" />
 							</p>
-							<p><?php print_language_string_list(getOption('search_hint'), 'search_hint') ?></p>
+							<p><?php print_language_string_list(getOption('search_hint'), 'search_hint', false, NULL, 'hint') ?></p>
 						</td>
 						<td>
 							<p><?php echo gettext("User ID for the search guest user") ?></p>
@@ -1839,6 +1841,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 										$('#user_name').val('');
 										$('#pass').val('');
 										$('#pass_2').val('');
+										$('.hint').val('');
 										toggle_passwords('',true);
 									}
 								</script>
@@ -1875,7 +1878,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<tr class="passwordextrahide" style="display:none">
 							<td style="margin:0; padding:0"><?php echo gettext("hint:"); ?></td>
 							<td style="margin:0; padding:0">
-							<?php print_language_string_list(getOption('protected_image_hint'), 'protected_image_hint', false, NULL, '', TEXT_INPUT_SIZE_SHORT) ?>
+							<?php print_language_string_list(getOption('protected_image_hint'), 'protected_image_hint', false, NULL, 'hint', TEXT_INPUT_SIZE_SHORT) ?>
 							</td>
 						</tr>
 					</table>

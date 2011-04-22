@@ -1100,6 +1100,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 									$('#user_name').val('');
 									$('#pass').val('');
 									$('#pass_2').val('');
+									$('.hint').val('');
 									toggle_passwords('',true);
 								}
 							</script>
@@ -1135,7 +1136,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="pass_2" name="<?php echo $prefix; ?>albumpass_2" value="<?php echo $x; ?>" />
 								</p>
 								<p>
-								<?php print_language_string_list($album->get('password_hint'), $prefix."albumpass_hint"); ?>
+								<?php print_language_string_list($album->get('password_hint'), $prefix."albumpass_hint", false, NULL, 'hint'); ?>
 								</p>
 							</td>
 						</tr>
@@ -2125,8 +2126,8 @@ function processAlbumEdit($index, $album, &$redirectto) {
 	$fail = '';
 	if (sanitize($_POST[$prefix.'password_enabled'])) {
 		$olduser = $album->getUser();
-		$newuser = $_POST[$prefix.'albumuser'];
-		$pwd = trim($_POST[$prefix.'albumpass']);
+		$newuser = sanitize($_POST[$prefix.'albumuser']);
+		$pwd = trim(sanitize($_POST[$prefix.'albumpass']));
 		if (($olduser != $newuser)) {
 			if (!empty($newuser) && empty($pwd) && empty($pwd2)) $fail = '&mismatch=user';
 		}
@@ -2134,7 +2135,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 			$album->setUser($newuser);
 			if (empty($pwd)) {
 				if (empty($_POST[$prefix.'albumpass'])) {
-					$album->setPassword(NULL);  // clear the gallery password
+					$album->setPassword(NULL);  // clear the album password
 				}
 			} else {
 				$album->setPassword($pwd);
@@ -2372,7 +2373,7 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 						if ($textbox) {
 							echo "\n".'<textarea name="'.$name.'_'.$key.'"'.$edit.' cols="'.$wide.'"	rows="'.$rows.'">'.html_encode($string).'</textarea>';
 						} else {
-							echo '<br /><input id="'.$name.'_'.$key.'" name="'.$name.'_'.$key.'" type="text" value="'.html_encode($string).'" size="'.$wide.'" />';
+							echo '<br /><input id="'.$name.'_'.$key.'" name="'.$name.'_'.$key.'"'.$edit.' type="text" value="'.html_encode($string).'" size="'.$wide.'" />';
 						}
 						?>
 					</li>
@@ -2391,7 +2392,7 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 			if ($textbox) {
 				echo "\n".'<textarea name="'.$name.'_'.$key.'"'.$edit.' cols="'.$wide.'"	rows="'.$rows.'"></textarea>';
 			} else {
-				echo '<br /><input id="'.$name.'_'.$key.'" name="'.$name.'_'.$key.'" type="text" value="" size="'.$wide .'" />';
+				echo '<br /><input id="'.$name.'_'.$key.'" name="'.$name.'_'.$key.'"'.$edit.' type="text" value="" size="'.$wide .'" />';
 			}
 			echo "</li>\n";
 
@@ -2407,7 +2408,7 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 		if ($textbox) {
 			echo '<textarea'.$groupid.' name="'.$name.'_'.$locale.'"'.$edit.' cols="'.$wide.'"	rows="'.$rows.'">'.html_encode($dbstring).'</textarea>';
 		} else {
-			echo '<input'.$groupid.' name="'.$name.'_'.$locale.'" type="text" value="'.html_encode($dbstring).'" size="'.$wide.'" />';
+			echo '<input'.$groupid.' name="'.$name.'_'.$locale.'"'.$edit.' type="text" value="'.html_encode($dbstring).'" size="'.$wide.'" />';
 		}
 	}
 }

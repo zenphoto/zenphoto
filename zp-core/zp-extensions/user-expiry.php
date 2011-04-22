@@ -173,7 +173,7 @@ function user_expiry_reverify($obj) {
 	global $_zp_authority;
 	//process any verifications posted
 	if (isset($_GET['user_expiry_reverify'])) {
-		$params = unserialize(pack("H*", trim($_GET['user_expiry_reverify'],'.')));
+		$params = unserialize(pack("H*", trim(sanitize($_GET['user_expiry_reverify']),'.')));
 		if ((time() - $params['date']) < 2592000) {
 			$userobj = $_zp_authority->getAnAdmin(array('`user`='=>$params['user'], '`email`='=>$params['email'], '`valid`>' => 0));
 			if ($userobj) {

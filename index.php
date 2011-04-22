@@ -71,7 +71,7 @@ if (isset($_GET['p'])) {
 	$theme = setupTheme();
 	$page = str_replace(array('/','\\','.'), '', sanitize($_GET['p']));
 	if (isset($_GET['z'])) { // system page
-		if ($subfolder = $_GET['z']) {
+		if ($subfolder = sanitize($_GET['z'])) {
 			$subfolder .= '/';
 		}
 		$_zp_gallery_page = basename($_zp_obj = ZENFOLDER.'/'.$subfolder.$page.'.php');
