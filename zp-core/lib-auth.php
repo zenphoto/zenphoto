@@ -332,7 +332,7 @@ class Zenphoto_Authority {
 	}
 
 	/**
-	 * Checks a logon user/password against the list of admins
+	 * Checks a logon user/password against admins
 	 *
 	 * Returns true if there is a match
 	 *
@@ -343,7 +343,6 @@ class Zenphoto_Authority {
 	 */
 	function checkLogon($user, $pass, $admin_login) {
 		global $_zp_authority;
-		$admins = $this->getAdministrators();
 		$success = false;
 		$hash = $this->passwordHash($user, $pass);
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`pass`=' => $hash, '`valid`=' => 1));
@@ -588,8 +587,8 @@ class Zenphoto_Authority {
 	 * User authentication support
 	 */
 	function handleLogon() {
-		global $_zp_authority, $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha;
-		if (isset($_POST['login']) && isset($_POST['user']) && isset($_POST['pass'])) {
+		global $_zp_authority, $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha, $_zp_loggedin;
+		if (isset($_POST['login']) && isset($_POST['user']) && isset($_POST['pass']) && !empty($_POST['user'])) {
 			$post_user = sanitize($_POST['user']);
 			$post_pass = sanitize($_POST['pass'],0);
 			$user = $this->checkLogon($post_user, $post_pass, true);

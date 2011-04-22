@@ -39,11 +39,13 @@ zp_load_gallery();	//	load the gallery and set the context to be on the front-en
 $zp_request = zp_load_request();
 
 // handle any passwords that might have been posted
-zp_handle_password();
+if (!zp_loggedin()) {
+	zp_handle_password();
+}
 
 // Handle any comments that might be posted.
-if (getOption('zp_plugin_comment_form') && 
-		( (commentsAllowed('comment_form_albums') && in_context(ZP_ALBUM) && !in_context(ZP_IMAGE) && $_zp_current_album->getCommentsAllowed()) || 
+if (getOption('zp_plugin_comment_form') &&
+		( (commentsAllowed('comment_form_albums') && in_context(ZP_ALBUM) && !in_context(ZP_IMAGE) && $_zp_current_album->getCommentsAllowed()) ||
 			(commentsAllowed('comment_form_images') && in_context(ZP_IMAGE) && $_zp_current_image->getCommentsAllowed()) ||
 			(commentsAllowed('comment_form_articles') && in_context(ZP_ZENPAGE_NEWS_ARTICLE) && $_zp_current_zenpage_news->getCommentsAllowed()) ||
 			(commentsAllowed('comment_form_pages') && in_context(ZP_ZENPAGE_PAGE) && $_zp_current_zenpage_page->getCommentsAllowed()) )

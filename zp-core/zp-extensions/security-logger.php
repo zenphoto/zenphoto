@@ -120,10 +120,10 @@ function security_logger_loginLogger($success, $user, $name, $ip, $action, $auth
 			$type = gettext('Blocked access');
 			break;
 		case 'Front-end':
-			$type = gettext('Front-end');
+			$type = gettext('Guest login');
 			break;
-		case 'Back':
-			$type = gettext('Back-end');
+		case 'Back-end':
+			$type = gettext('Admin login');
 			break;
 		default:
 			$type = $action;
@@ -157,7 +157,7 @@ function security_logger_loginLogger($success, $user, $name, $ip, $action, $auth
 		$permission = fileperms($file)&0777;
 		if ($permission != 0600) {
 			$f = fopen($file, 'a');
-			fwrite($f,"\t\t".gettext('Set log security permissions')."\t\t\t".gettext('Failed')."\t\t".sprintf(gettext('File permissions of security log is %04o'),$permission)."\n");
+			fwrite($f,"\t\t".gettext('Set Security log permissions')."\t\t\t".gettext('Failed')."\t\t".sprintf(gettext('File permissions of Security log are %04o'),$permission)."\n");
 			fclose($f);
 			clearstatcache();
 		}

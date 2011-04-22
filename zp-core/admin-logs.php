@@ -176,7 +176,7 @@ echo "\n</head>";
 										<?php
 										if ($field) {
 											?>
-											<span class="nowrap"><?php echo $field; ?></span>
+											<span class="nowrap"><?php echo html_encode($field); ?></span>
 											<?php
 										}
 										?>
@@ -198,7 +198,7 @@ echo "\n</head>";
 									<p>
 										<span class="nowrap">
 										<?php
-										echo str_replace(' ','&nbsp;',strip_tags($line));
+										echo str_replace(' ','&nbsp;',html_encode(strip_tags($line)));
 										?>
 										</span>
 									</p>

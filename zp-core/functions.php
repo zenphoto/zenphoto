@@ -1972,12 +1972,6 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		$post_pass = sanitize($_POST['pass']);
 		$auth = $_zp_authority->passwordHash($post_user, $post_pass);
 		if (DEBUG_LOGIN) debugLog("zp_handle_password: \$post_user=$post_user; \$post_pass=$post_pass; \$auth=$auth; ");
-		$user = $_zp_authority->checkLogon($post_user, $post_pass, false);
-		if ($user) {
-			$_zp_loggedin = $user->getRights();
-		} else {
-			$_zp_loggedin = false;
-		}
 		$redirect_to = sanitize($_POST['redirect'],0);
 		if (substr($redirect_to,0,1)=='/') {
 			$initial = '/';
@@ -1988,41 +1982,25 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		if (strpos($redirect_to, WEBPATH.'/')===0) {
 			$redirect_to = substr($redirect_to,strlen(WEBPATH)+1);
 		}
-		if ($_zp_loggedin) {
-			$_zp_loggedin = zp_apply_filter('guest_login_attempt', $_zp_loggedin, $post_user, $post_pass, 'zp_admin_auth');
-		}
-		if ($_zp_loggedin) {	// allow Admin user login
-			// https: set the 'zenphoto_ssl' marker for redirection
-			if(secureServer()) {
-				zp_setcookie("zenphoto_ssl", "needed");
-			}
-			// set cookie as secure when in https
-			zp_setcookie("zenphoto_auth", $auth, NULL, NULL, secureServer());
+		$success = ($auth == $check_auth) && $post_user == $check_user;
+		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);;
+		if ($success) {
+			// Correct auth info. Set the cookie.
+			if (DEBUG_LOGIN) debugLog("zp_handle_password: valid credentials");
+			zp_setcookie($authType, $auth);
 			if (isset($_POST['redirect']) && !empty($_POST['redirect'])) {
 				header("Location: " . FULLWEBPATH . "/" . $redirect_to);
 				exit();
 			}
 		} else {
-			$success = ($auth == $check_auth) && $post_user == $check_user;
-			$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);;
-			if ($success) {
-				// Correct auth info. Set the cookie.
-				if (DEBUG_LOGIN) debugLog("zp_handle_password: valid credentials");
-				zp_setcookie($authType, $auth);
-				if (isset($_POST['redirect']) && !empty($_POST['redirect'])) {
-					header("Location: " . FULLWEBPATH . "/" . $redirect_to);
-					exit();
-				}
-			} else {
-				// Clear the cookie, just in case
-				if (DEBUG_LOGIN) debugLog("zp_handle_password: invalid credentials");
-				zp_setcookie($authType, "", -368000);
-				$_zp_login_error = true;
-			}
+			// Clear the cookie, just in case
+			if (DEBUG_LOGIN) debugLog("zp_handle_password: invalid credentials");
+			zp_setcookie($authType, "", -368000);
+			$_zp_login_error = true;
 		}
 		return;
 	}
-	if (empty($check_auth) || zp_loggedin()) { //no password on record or admin logged in
+	if (empty($check_auth)) { //no password on record or admin logged in
 		return;
 	}
 	if (($saved_auth = zp_getCookie($authType)) != '') {
