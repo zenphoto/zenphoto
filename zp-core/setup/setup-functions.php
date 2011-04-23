@@ -181,7 +181,7 @@ function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL) 
 					} else {
 						$chmod_class = gettext('unknown');
 					}
-					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'),$which, $f), sprintf(gettext('Setup could not change the folder permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="//www.zenphoto.org/2009/03/troubleshooting-zenphoto/#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'),$perms_class,$perms,$chmod_class,$chmod));
+					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'),$which, $f), sprintf(gettext('Setup could not change the folder permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'),$perms_class,$perms,$chmod_class,$chmod));
 				} else {
 					?>
 					<script type="text/javascript">
@@ -414,7 +414,7 @@ function setupLanguageSelector() {
 					<?php printf(gettext('<em>%s</em> is not available.'),$languages[$locale]); ?>
 					<?php printf(gettext('The locale %s is not supported on your server.'), $locale); ?>
 					<br />
-					<?php echo gettext('See the troubleshooting guide on zenphoto.org for details.'); ?>
+					<?php echo gettext('See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#24">troubleshooting guide</a> on zenphoto.org for details.'); ?>
 				</h2>
 			</div>
 			<?php
