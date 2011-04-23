@@ -131,7 +131,7 @@ if ( $file_to_edit ) {
 
 	<?php if ($file_to_edit) { ?>
 		<div id="editor">
-			<h2 class="h2_bordered"><?php echo sprintf(gettext('File <tt>%s</tt> from theme %s'), $_GET['file'], $themes[$theme]['name']); ?></h2>
+			<h2 class="h2_bordered"><?php echo sprintf(gettext('File <tt>%s</tt> from theme %s'), sanitize($_GET['file']), $themes[$theme]['name']); ?></h2>
 			<form method="post" action="">
 			<?php XSRFToken('edit_theme');?>
 			<p><textarea cols="70" rows="25" name="newcontent" id="newcontent"><?php echo $file_content ?></textarea></p>

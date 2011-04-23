@@ -50,7 +50,7 @@ if (isset($_POST['savealbum'])) {
 	$searchfields = array();
 	foreach ($_POST as $key=>$value) {
 		if (strpos($key, 'SEARCH_') !== false) {
-			$searchfields[] = $value;
+			$searchfields[] = sanitize($value);
 		}
 	}
 	$redirect = $album.'/'.$albumname.".alb";

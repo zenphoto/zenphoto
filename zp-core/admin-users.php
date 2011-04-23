@@ -53,7 +53,7 @@ if (isset($_GET['action'])) {
 			$returntab = '';
 
 			if (isset($_POST['saveadminoptions'])) {
-				if ($_zp_null_account || (isset($_POST['alter_enabled'])) || ($_POST['totaladmins'] > 1) ||
+				if ($_zp_null_account || (isset($_POST['alter_enabled'])) || (sanitize_numeric($_POST['totaladmins']) > 1) ||
 				(trim(sanitize($_POST['0-adminuser'],0))) != $_zp_current_admin_obj->getUser() ||
 				isset($_POST['0-newuser'])) {
 					admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
@@ -61,7 +61,7 @@ if (isset($_GET['action'])) {
 				$alter = isset($_POST['alter_enabled']);
 				$nouser = true;
 				$returntab = $newuser = false;
-				for ($i = 0; $i < $_POST['totaladmins']; $i++) {
+				for ($i = 0; $i < sanitize_numeric($_POST['totaladmins']); $i++) {
 					$updated = false;
 					$error = false;
 					$userobj = NULL;
@@ -341,7 +341,7 @@ if ($_zp_null_account) {
 		switch ($_GET['mismatch']) {
 			case 'gallery':
 			case 'search':
-				echo  "<h2>".sprintf(gettext("Your %s passwords were empty or did not match"), $_GET['mismatch'])."</h2>";
+				echo  "<h2>".sprintf(gettext("Your %s passwords were empty or did not match"), sanitize($_GET['mismatch']))."</h2>";
 				break;
 			case 'user_gallery':
 				echo  "<h2>".gettext("You must supply a password for the Gallery guest user")."</h2>";

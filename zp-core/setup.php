@@ -90,22 +90,22 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	setupLog(gettext("db POST handling"));
 	$updatezp_config = true;
 	if (isset($_POST['db_software'])) {
-		updateConfigItem('db_software', $_POST['db_software']);
+		updateConfigItem('db_software', sanitize($_POST['db_software']));
 	}
 	if (isset($_POST['db_user'])) {
-		updateConfigItem('mysql_user', $_POST['db_user']);
+		updateConfigItem('mysql_user', sanitize($_POST['db_user']));
 	}
 	if (isset($_POST['db_pass'])) {
-		updateConfigItem('mysql_pass', $_POST['db_pass']);
+		updateConfigItem('mysql_pass', sanitize($_POST['db_pass']));
 	}
 	if (isset($_POST['db_host'])) {
-		updateConfigItem('mysql_host', $_POST['db_host']);
+		updateConfigItem('mysql_host', sanitize($_POST['db_host']));
 	}
 	if (isset($_POST['db_database'])) {
-		updateConfigItem('mysql_database', $_POST['db_database']);
+		updateConfigItem('mysql_database', sanitize($_POST['db_database']));
 	}
 	if (isset($_POST['db_prefix'])) {
-		updateConfigItem('mysql_prefix', $_POST['db_prefix']);
+		updateConfigItem('mysql_prefix', sanitize($_POST['db_prefix']));
 	}
 }
 
@@ -1389,7 +1389,7 @@ if (file_exists(CONFIGFILE)) {
 	$task = '';
 	if (isset($_GET['create'])) {
 		$task = 'create';
-		$create = array_flip(explode(',', $_GET['create']));
+		$create = array_flip(explode(',', sanitize($_GET['create'])));
 	}
 	if (isset($_GET['update'])) {
 		$task = 'update';

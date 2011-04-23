@@ -439,7 +439,7 @@ function zp_load_request() {
 	if ($success = zp_apply_filter('load_request',true)) {	// filter allowed the load
 		zp_load_page();
 		if (isset($_GET['p'])) {
-			$page = str_replace(array('/','\\','.'), '', $_GET['p']);
+			$page = str_replace(array('/','\\','.'), '', sanitize($_GET['p']));
 			switch ($page) {
 				case 'search':
 					return zp_load_search();

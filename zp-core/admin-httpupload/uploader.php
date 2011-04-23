@@ -48,7 +48,7 @@ if (!empty($_FILES)) {
 				mkdir_recursive($targetPath, CHMOD_VALUE);
 				$album = new Album($gallery, $folder);
 				$album->setShow($_POST['http_publishalbum']);
-				$album->setTitle($_POST['http_albumtitle']);
+				$album->setTitle(sanitize($_POST['http_albumtitle']));
 				$album->setOwner($_zp_current_admin_obj->getUser());
 				$album->save();
 			}

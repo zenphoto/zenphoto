@@ -168,7 +168,7 @@ if (isset($_GET['action'])) {
 			$searchfields = array();
 			foreach ($_POST as $key=>$value) {
 				if (strpos($key, 'SEARCH_') !== false) {
-					$searchfields[] = $value;
+					$searchfields[] = sanitize($value);
 				}
 			}
 			setOption('search_fields', implode(',',$searchfields));
@@ -305,7 +305,7 @@ if (isset($_GET['action'])) {
 			setOption('image_sorttype', $st);
 			setBoolOption('image_sortdirection', isset($_POST['image_sortdirection']));
 			setBoolOption('auto_rotate', isset($_POST['auto_rotate']));
-			setOption('IPTC_encoding', $_POST['IPTC_encoding']);
+			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
 			foreach ($_zp_exifvars as $key=>$item) {
 				setBoolOption($key, array_key_exists($key, $_POST));
 			}
@@ -1503,7 +1503,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 		echo '<div class="errorbox fade-message">';
 		switch ($_GET['mismatch']) {
 			case 'image':
-				echo  "<h2>". sprintf(gettext("Your %s passwords were empty or did not match"), $_GET['mismatch'])."</h2>";
+				echo  "<h2>". sprintf(gettext("Your %s passwords were empty or did not match"), sanitize($_GET['mismatch']))."</h2>";
 				break;
 			case 'image_user':
 				echo  "<h2>". gettext("You must supply a password for the Protected image user")."</h2>";

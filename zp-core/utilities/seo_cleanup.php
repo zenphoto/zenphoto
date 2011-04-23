@@ -98,7 +98,7 @@ if (isset($_GET['todo'])) {
 	$count = sanitize_numeric($_GET['imagecount']);
 	$albumcount = sanitize_numeric($_GET['albumcount']);
 	$albums = array();
-	foreach (explode(',', $_GET['todo']) as $album) {
+	foreach (explode(',', sanitize(sanitize($_GET['todo']))) as $album) {
 		$albums[] = sanitize($album);
 	}
 } else {

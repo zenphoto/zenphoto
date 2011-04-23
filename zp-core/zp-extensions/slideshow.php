@@ -299,7 +299,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
   $imagenumber = 0;
 	//getting the image to start with
 	if(!empty($_POST['imagenumber']) AND !is_object($imageobj)) {
-		$imagenumber = ($_POST['imagenumber']-1); // slideshows starts with 0, but zp with 1.
+		$imagenumber = sanitize_numeric($_POST['imagenumber'])-1; // slideshows starts with 0, but zp with 1.
 	} elseif (is_object($imageobj)) {
 		makeImageCurrent($imageobj);
 		$imagenumber = (imageNumber()-1);
@@ -378,7 +378,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		if (empty($_POST['imagenumber'])) {
 			$returnpath = rewrite_path('/'.pathurlencode($album->name).'/page/'.$pagenumber,'/index.php?album='.urlencode($album->name).'&page='.$pagenumber);
 		} else {
-			$returnpath = rewrite_path('/'.pathurlencode($album->name).'/'.rawurlencode($_POST['imagefile']).getOption('mod_rewrite_image_suffix'),'/index.php?album='.urlencode($album->name).'&image='.urlencode($_POST['imagefile']));
+			$returnpath = rewrite_path('/'.pathurlencode($album->name).'/'.rawurlencode(sanitize($_POST['imagefile'])).getOption('mod_rewrite_image_suffix'),'/index.php?album='.urlencode($album->name).'&image='.urlencode($_POST['imagefile']));
 		}
 	}
 	if($shuffle) shuffle($images);

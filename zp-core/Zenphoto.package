@@ -658,7 +658,6 @@ zp-core/zp-extensions/GoogleMap
 zp-core/zp-extensions/GoogleMap.php
 zp-core/zp-extensions/GoogleMap/GoogleMap.php
 zp-core/zp-extensions/GoogleMap/JSMin.php
-zp-core/zp-extensions/GoogleMap/m.php
 zp-core/zp-extensions/PHPMailer
 zp-core/zp-extensions/PHPMailer.php
 zp-core/zp-extensions/PHPMailer/class.phpmailer.php
@@ -2759,4 +2758,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2761
+2760

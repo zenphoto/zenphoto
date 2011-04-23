@@ -849,7 +849,7 @@ function printUnpublishedDropdown() {
 function processCategoryPasswordSave($cat) {
 	global $_zp_authority;
 	$notify = $fail = '';
-	if (sanitize($_POST['password_enabled'])) {
+	if ($_POST['password_enabled']) {
 		$olduser = sanitize($_POST['olduser']);
 		$newuser = sanitize($_POST['new_user']);
 		$pwd = trim(sanitize($_POST['newpass']));

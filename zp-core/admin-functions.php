@@ -3034,7 +3034,7 @@ function processManagedObjects($i, &$rights) {
 			if (strpos($key, '_default')) {
 				$key = substr($key, 0, -8);
 				if (isset($albums[$key])) {	// album still part of the list
-					$albums[$key]['edit'] = $value;
+					$albums[$key]['edit'] = sanitize_numeric($value);
 				}
 			} else if (strpos($key, '_editimage')) {
 				$key = substr($key, 0, -10);

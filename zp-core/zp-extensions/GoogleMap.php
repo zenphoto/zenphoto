@@ -32,17 +32,6 @@ function googlemap_js() {
 	$MAP_OBJECT->setLocale(substr(getOption('locale'),0,2));
 	echo $MAP_OBJECT->getHeaderJS()."\n";
 	?>
-	<script type="text/javascript">
-		<!--
-		function toggleMap(id) {
-			if ($('#'+id).hasClass('hidden_map')) {
-				$('#'+id).removeClass('hidden_map');
-			} else {
-				$('#'+id).addClass('hidden_map');
-			}
-		}
-		-->
-	</script>
 	<style type="text/css">
 		<!--
 		.hidden_map {
@@ -343,13 +332,24 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			}
 			$param = base64_encode($data);
 			?>
-			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?compress='.$method.'&mapobject='.$param ?>" title="<?php echo $text; ?>" class="google_map">
+			<a href="javascript:<?php echo $id_data; ?>Colorbox();" title="<?php echo $text; ?>" class="google_map">
 				<?php echo $text; ?>
 			</a>
+			<div id="<?php echo $id_data; ?>" class="hidden_map">
+				<div id="<?php echo $id_data; ?>_map">
+					<?php
+					echo $MAP_OBJECT->printOnLoad();
+					echo $MAP_OBJECT->printMap();
+					?>
+				</div>
+			</div>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
+				function <?php echo $id_data; ?>Colorbox() {
+					$.colorbox({href:"#<?php echo $id_data; ?>_map", inline:true, open:true});
+				}
 				$(document).ready(function(){
-					$(".google_map").colorbox({iframe:true, innerWidth:'<?php echo $w; ?>px', innerHeight:'<?php echo $h; ?>px'});
+					$("#<?php echo $id_data; ?>_map").colorbox({iframe:true, innerWidth:'<?php echo $w; ?>px', innerHeight:'<?php echo $h; ?>px'});
 				});
 				// ]]> -->
 			</script>
@@ -357,7 +357,18 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			break;
 		case 'hide':
 			?>
-			<a id="<?php echo $id_toggle; ?>" href="javascript:toggleMap('<?php echo $id_data; ?>');" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				function toggle_<?php echo $id_data; ?>() {
+					if ($('#<?php echo $id_data; ?>').hasClass('hidden_map')) {
+						$('#<?php echo $id_data; ?>').removeClass('hidden_map');
+					} else {
+						$('#<?php echo $id_data; ?>').addClass('hidden_map');
+					}
+				}
+				// ]]> -->
+			</script>
+			<a id="<?php echo $id_toggle; ?>" href="javascript:toggle_<?php echo $id_data; ?>();" title="<?php  echo gettext('Display or hide the Google Map.'); ?>">
 				<?php echo $text; ?>
 			</a>
 			<div id="<?php echo $id_data; ?>" class="hidden_map">
