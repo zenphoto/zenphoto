@@ -57,7 +57,7 @@ if (function_exists('printUserLogin_out')) {
 <?php printRSSLink('Gallery','','RSS', ' | '); ?>
 <?php printCustomPageURL(gettext("Archive View"),"archive"); ?> |
 
-<?php	if (function_exists('printContactForm')) {
+<?php	if (getOption('zp_plugin_contact_form')) {
 	printCustomPageURL(gettext('Contact us'), 'contact', '', '', ' | ');
 }
 ?>

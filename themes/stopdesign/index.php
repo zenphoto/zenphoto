@@ -187,7 +187,7 @@ require_once('normalizer.php');
 	<div id="footer">
 		<p>
 		<?php
-		if (function_exists('printContactForm')) {
+		if (getOption('zp_plugin_contact_form')) {
 			printCustomPageURL(gettext('Contact us'), 'contact', '', '');
 			echo '<br />';
 		}

@@ -37,7 +37,7 @@ function footer() {
 		}
 		?>
 		<a href="?p=archive"><?php echo gettext('Archive View'); ?></a>
-		<?php	if ($_zp_gallery_page!='contact.php' && function_exists('printContactForm') && ($_zp_gallery_page != 'password' || getOption('gallery_page_unprotected_contact'))) printCustomPageURL(gettext('Contact us'), 'contact', '', ' | ', '');	?>
+		<?php	if ($_zp_gallery_page!='contact.php' && getOption('zp_plugin_contactform') && ($_zp_gallery_page != 'password' || getOption('gallery_page_unprotected_contact'))) printCustomPageURL(gettext('Contact us'), 'contact', '', ' | ', '');	?>
 		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && function_exists('printRegistrationForm') && ($_zp_gallery_page != 'password' || getOption('gallery_page_unprotected_register'))) printCustomPageURL(gettext('Register for this site'), 'register', '', ' | ', '');	?>
 		<?php	if (function_exists('printUserLogin_out') && !in_array($_zp_gallery_page, $exclude_login)) printUserLogin_out(' | ', '', true); ?>
 		<?php
