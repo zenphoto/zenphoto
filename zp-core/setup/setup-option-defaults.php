@@ -483,4 +483,5 @@ if (getOption('comment_web_required') == 1) {
 	setOption('comment_web_required', 'required');
 }
 
+setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'))
 ?>

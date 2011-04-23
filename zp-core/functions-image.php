@@ -152,7 +152,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 	$id = NULL;
 	$watermark_use_image = getAlbumInherited($album, 'watermark', $id);
 	if (empty($watermark_use_image)) {
-		$watermark_use_image = FULLIMAGE_WATERMARK;
+		$watermark_use_image = IMAGE_WATERMARK;
 	}
 	if (!$effects) {
 		if ($thumb && THUMB_GRAY) {
@@ -312,7 +312,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		if ($passedWM) {
 			if ($passedWM != NO_WATERMARK) {
 				$watermark_image = getWatermarkPath($passedWM);
-				if (!file_exists($watermark_image)) $watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
+				if (!file_exists($watermark_image)) {
+					$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
+				}
 			}
 		} else {
 			if ($allow_watermark) {
@@ -320,7 +322,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 				if ($watermark_image) {
 					if ($watermark_image != NO_WATERMARK) {
 						$watermark_image = getWatermarkPath($watermark_image);
-						if (!file_exists($watermark_image)) $watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
+						if (!file_exists($watermark_image)) {
+							$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
+						}
 					}
 				}
 			}

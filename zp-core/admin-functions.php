@@ -2538,12 +2538,12 @@ function commentReply($str, $name, $albumtitle, $imagetitle) {
 /**
  * Extracts and returns a 'statement' from a PHP script for so that it may be 'evaled'
  *
- * @param string $target the pattern to match on
+ * @param string $target the assignment variable to match on
  * @param string $str the PHP script
  * @return string
  */
 function isolate($target, $str) {
-	if (preg_match('|\\'.$target.'\s*?=\s*?(.+?)\s*?;[ \f\v\t]*?[\n\r]|', $str, $matches)) {
+	if (preg_match('|\\'.$target.'\s*?=(.+?);[ \f\v\t]*[\n\r]|s', $str, $matches)) {
 		return $matches[0];
 	}
 	return false;

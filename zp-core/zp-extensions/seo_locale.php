@@ -16,7 +16,8 @@
  */
 
 $plugin_is_filter = 5|CLASS_PLUGIN;
-$plugin_description = gettext("Allows setting language locale through the URI.").'<p class="notebox">'.gettext('<strong>Note:</strong> This plugin is not activated for <em>back&#8209;end</em> (administrative) URLs. However, once activated, the language is remembered, even for the <em>back&#8209;end</em>.').'</p>';
+$plugin_description = gettext("Allows setting language locale through the URI.").
+											'<p class="notebox">'.gettext('<strong>Note:</strong> This plugin is not activated for <em>back&#8209;end</em> (administrative) URLs. However, once activated, the language is remembered, even for the <em>back&#8209;end</em>.').'</p>';
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (!MOD_REWRITE)?gettext('<em>mod_rewrite</em> must be enabled for this plugin to function.'):false;
 $plugin_version = '1.4.1';

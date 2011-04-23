@@ -388,8 +388,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				foreach ($plugins as $extension) {
 					$pluginStream = file_get_contents(getPlugin($extension.'.php'));
 					$plugin_version = '';
-					if (preg_match('|\$plugin_version\s*=\s*(.+?)\s*?;|', $pluginStream, $matches)) {
-						@eval($matches[0]);
+					if ($str = isolate('$plugin_version', $pluginStream)) {
+						@eval($str);
 					}
 					if ($plugin_version) {
 						$version = ' v'.$plugin_version;
@@ -397,8 +397,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 						$version = '';
 					}
 					$plugin_is_filter = 1;
-					if (preg_match('|\$plugin_is_filter\s*=\s*(.+?)\s*?;|', $pluginStream, $matches)) {
-						@eval($matches[0]);
+					if ($str = isolate('$plugin_is_filter', $pluginStream)) {
+						@eval($str);
 					}
 					echo "<li>".$extension.$version."</li>";
 					preg_match_all('|zp_register_filter\s*\((.+?)\)\s*?;|', $pluginStream, $matches);

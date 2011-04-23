@@ -170,8 +170,9 @@ define('TUMB_QUALITY',getOption('thumb_quality'));
 define('IMAGE_SIZE',getOption('image_size'));
 define('IMAGE_QUALITY',getOption('image_quality'));
 define('THUMB_GRAY',getOption('thumb_gray'));
-define('FULLIMAGE_WATERMARK',getOption('fullimage_watermark'));
-define('IMAGE_WATERMARK',getOption('Image_watermark'));
+define('IMAGE_WATERMARK',getOption('fullimage_watermark'));
+define('FULLIMAGE_WATERMARK',getOption('fullsizeimage_watermark'));
+define('THUMB_WATERMARK',getOption('THUMB_WATERMARK'));
 
 define('DATE_FORMAT',getOption('date_format'));
 define('ALBUM_SESSION',getOption('album_session'));
@@ -515,16 +516,23 @@ function getWatermarkParam($image, $use) {
 	}
 	$id = NULL;
 	$album = $image->album;
-	if ($use & (WATERMARK_IMAGE|WATERMARK_FULL)) {	//	watermark for the image
+	if ($use & (WATERMARK_FULL)) {	//	watermark for the full sized image
 		$watermark_use_image = getAlbumInherited($album->name, 'watermark', $id);
 		if (empty($watermark_use_image)) {
 			$watermark_use_image = FULLIMAGE_WATERMARK;
 		}
 	} else {
-		if ($use & WATERMARK_THUMB) {	//	watermark for the thumb
-			$watermark_use_image = getAlbumInherited($album->name, 'watermark_thumb', $id);
+		if ($use & (WATERMARK_IMAGE)) {	//	watermark for the image
+			$watermark_use_image = getAlbumInherited($album->name, 'watermark', $id);
 			if (empty($watermark_use_image)) {
 				$watermark_use_image = IMAGE_WATERMARK;
+			}
+		} else {
+			if ($use & WATERMARK_THUMB) {	//	watermark for the thumb
+				$watermark_use_image = getAlbumInherited($album->name, 'watermark_thumb', $id);
+				if (empty($watermark_use_image)) {
+					$watermark_use_image = THUMB_WATERMARK;
+				}
 			}
 		}
 	}
@@ -623,7 +631,7 @@ function getImageParameters($args, $album=NULL) {
 				$WM = getAlbumInherited($album, 'watermark', $id);
 			}
 			if (empty($WM)) {
-				$WM = FULLIMAGE_WATERMARK;
+				$WM = IMAGE_WATERMARK;
 			}
 		}
 	}

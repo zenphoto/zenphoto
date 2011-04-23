@@ -97,50 +97,43 @@ foreach ($filelist as $extension) {
 	$third_party_plugin = strpos($paths[$extension],ZENFOLDER) === false;
 	$pluginStream = file_get_contents($paths[$extension]);
 	$parserr = 0;
-	$str = isolate('$plugin_description', $pluginStream);
-	if (false === $str) {
-		$plugin_description = '';
-	} else {
+	if ($str = isolate('$plugin_description', $pluginStream)) {
 		if (false === eval($str)) {
 			$parserr = $parserr | 1;
 			$plugin_description = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
 		}
-	}
-	$str = isolate('$plugin_author', $pluginStream);
-	if (false === $str) {
-		$plugin_author = '';
 	} else {
+		$plugin_description = '';
+	}
+	if ($str = isolate('$plugin_author', $pluginStream)) {
 		if (false === eval($str)) {
 			$parserr = $parserr | 2;
 			$plugin_author = gettext('<strong>Error parsing <em>plugin_author</em> string!</strong>.');
 		}
-	}
-	$str = isolate('$plugin_version', $pluginStream);
-	if (false === $str) {
-		$plugin_version = '';
 	} else {
+		$plugin_author = '';
+	}
+	if ($str = isolate('$plugin_version', $pluginStream)) {
 		if (false === eval($str)) {
 			$parserr = $parserr | 4;
 			$plugin_version = ' '.gettext('<strong>Error parsing <em>plugin_version</em> string!</strong>.');
 		}
+	} else {
+		$plugin_version = '';
 	}
 	if ($third_party_plugin) {
-		$str = isolate('$plugin_URL', $pluginStream);
-		if (false === $str) {
-			$plugin_URL = '';
-		} else {
+		if ($str = isolate('$plugin_URL', $pluginStream)) {
 			if (false === eval($str)) {
 				$parserr = $parserr | 8;
 				$plugin_URL = gettext('<strong>Error parsing <em>plugin_URL</em> string!</strong>.');
 			}
+		} else {
+			$plugin_URL = '';
 		}
 	} else {
 		$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---".basename($paths[$extension]).".html";
 	}
-	$str = isolate('$plugin_disable', $pluginStream);
-	if (false === $str) {
-		$plugin_disable = false;
-	} else {
+	if ($str = isolate('$plugin_disable', $pluginStream)) {
 		if (false === eval($str)) {
 			$parserr = $parserr | 8;
 			$plugin_URL = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>.');
@@ -149,10 +142,11 @@ foreach ($filelist as $extension) {
 				setOption($opt, 0);
 			}
 		}
+	} else {
+		$plugin_disable = false;
 	}
 	$loadtype = 1;
-	$str = isolate('$plugin_is_filter', $pluginStream);
-	if ($str) {
+	if ($str = isolate('$plugin_is_filter', $pluginStream)) {
 		eval($str);
 		if ($plugin_is_filter < THEME_PLUGIN) {
 			if ($plugin_is_filter < 0) {
@@ -168,12 +162,11 @@ foreach ($filelist as $extension) {
 	} else {
 		$plugin_is_filter = 1|THEME_PLUGIN;
 	}
-	$loadtype = $plugin_is_filter;
 	$optionlink = isolate('$option_interface', $pluginStream);
-	if (empty($optionlink)) {
-		$optionlink = NULL;
-	} else {
+	if ($optionlink = isolate('$option_interface', $pluginStream)) {
 		$optionlink = FULLWEBPATH.'/'.ZENFOLDER.'/admin-options.php?page=options&amp;tab=plugin&amp;show-'.$extension.'#'.$extension;
+	} else {
+		$optionlink = NULL;
 	}
 	?>
 	<tr>

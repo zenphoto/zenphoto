@@ -247,6 +247,10 @@ if (isset($_GET['action'])) {
 				$new = sanitize($_POST['fullimage_watermark'], 3);
 				setOption('fullimage_watermark', $new);
 			}
+			if (isset($_POST['fullsizeimage_watermark'])) {
+				$new = sanitize($_POST['fullsizeimage_watermark'], 3);
+				setOption('fullsizeimage_watermark', $new);
+			}
 
 			setOption('watermark_scale', sanitize($_POST['watermark_scale'],3));
 			setBoolOption('watermark_allow_upscale', isset($_POST['watermark_allow_upscale']));
@@ -1735,13 +1739,24 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><?php echo gettext("Watermarks:"); ?></td>
 			<td>
 				<table>
-				<?php
-				$current = FULLIMAGE_WATERMARK;
-				?>
 				<tr>
 					<td class="image_option_tablerow"><?php echo gettext('Images'); ?> </td>
 					<td class="image_option_tablerow">
 						<select id="fullimage_watermark" name="fullimage_watermark">
+							<?php $current = IMAGE_WATERMARK; ?>
+							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*none'); ?></option>
+							<?php
+							$watermarks = getWatermarks();
+							generateListFromArray(array($current), $watermarks, false, false);
+							?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="image_option_tablerow"><?php echo gettext('Full sized images'); ?> </td>
+					<td class="image_option_tablerow">
+						<select id="fullsizeimage_watermark" name="fullsizeimage_watermark">
+							<?php $current = FULLIMAGE_WATERMARK; ?>
 							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*none'); ?></option>
 							<?php
 							$watermarks = getWatermarks();
