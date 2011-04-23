@@ -145,7 +145,7 @@ foreach ($filelist as $extension) {
 	} else {
 		$plugin_disable = false;
 	}
-	$loadtype = 1;
+	$plugin_is_filter = 1|THEME_PLUGIN;
 	if ($str = isolate('$plugin_is_filter', $pluginStream)) {
 		eval($str);
 		if ($plugin_is_filter < THEME_PLUGIN) {
@@ -159,8 +159,6 @@ foreach ($filelist as $extension) {
 				}
 			}
 		}
-	} else {
-		$plugin_is_filter = 1|THEME_PLUGIN;
 	}
 	$optionlink = isolate('$option_interface', $pluginStream);
 	if ($optionlink = isolate('$option_interface', $pluginStream)) {
@@ -172,7 +170,7 @@ foreach ($filelist as $extension) {
 	<tr>
 		<td width="30%">
 		<label>
-			<input type="checkbox" name="<?php echo $opt; ?>" value="<?php echo $loadtype; ?>"
+			<input type="checkbox" name="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
 				<?php
 				if ($parserr || $plugin_disable) {
 					$optionlink = false;

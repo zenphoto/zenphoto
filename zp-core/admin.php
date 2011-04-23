@@ -376,14 +376,14 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 
 		<?php
 		$plugins = array_keys(getEnabledPlugins());
+		$filters = array();
 		$c = count($plugins);
 		?>
 		<h3><a href="javascript:toggle('plugins_hide');toggle('plugins_show');" ><?php printf(ngettext("%u active plugin:", "%u active plugins:", $c), $c); ?></a></h3>
 		<div id="plugins_hide" style="display:none">
 			<ul class="plugins">
 			<?php
-			if ($c > 0) {
-				$filters = array();
+			if ($c  > 0) {
 				natcasesort($plugins);
 				foreach ($plugins as $extension) {
 					$pluginStream = file_get_contents(getPlugin($extension.'.php'));
@@ -424,7 +424,6 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 			<br />
 		</div><!-- plugins_show -->
 		<?php
-		ksort($filters,SORT_LOCALE_STRING);
 		$c = count($filters);
 		?>
 		<h3><a href="javascript:toggle('filters_hide');toggle('filters_show');" ><?php printf(ngettext("%u active filter:","%u active filters:", $c), $c); ?></a></h3>
@@ -432,6 +431,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 			<ul class="plugins">
 			<?php
 			if ($c > 0) {
+				ksort($filters,SORT_LOCALE_STRING);
 				foreach ($filters as $filter=>$array_of_priority) {
 					ksort($array_of_priority);
 					?>

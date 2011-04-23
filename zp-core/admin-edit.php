@@ -1313,7 +1313,7 @@ $alb = removeParentAlbumNames($album);
 							</span>
 						</td>
 					</tr>
-		<?php
+					<?php
 					$custom = zp_apply_filter('edit_image_custom_data', '', $image, $currentimage);
 					if (empty($custom)) {
 						?>
