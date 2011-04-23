@@ -153,8 +153,9 @@ function getField($field, $level=3) {
  * Prints the mail contact form, handles checks and the mail sending. It uses Zenphoto's check for valid e-mail address and website URL and also supports CAPTCHA.
  * The contact form itself is a separate file and is located within the /contact_form/form.php so that it can be style as needed.
  *
+ * @param string $subject_override set to override the subject.
  */
-function printContactForm() {
+function printContactForm($subject_override='') {
 	global $_zp_UTF8, $_zp_captcha,$_processing_post;
 	$error = array();
 	if(isset($_POST['sendmail'])) {
@@ -164,6 +165,7 @@ function printContactForm() {
 		$mailcontent['company'] = getField('company');
 		$mailcontent['street'] = getField('street');
 		$mailcontent['city'] = getField('city');
+		$mailcontent['state'] = getField('state');
 		$mailcontent['country'] = getField('country');
 		$mailcontent['email'] = getField('email');
 		$mailcontent['website'] = getField('website');
@@ -177,6 +179,7 @@ function printContactForm() {
 		if (getOption('contactform_company') == "required" && empty($mailcontent['company'])) { $error[3] = gettext("a company"); }
 		if (getOption('contactform_street') == "required" && empty($mailcontent['street'])) { $error[4] = gettext("a street"); }
 		if (getOption('contactform_city') == "required" && empty($mailcontent['city'])) { $error[5] = gettext("a city"); }
+		if (getOption('contactform_state') == "required" && empty($mailcontent['state'])) { $error[5] = gettext("a state"); }
 		if (getOption('contactform_country') == "required" && empty($mailcontent['country'])) { $error[6] = gettext("a country"); }
 		if (getOption('contactform_email') == "required" && (empty($mailcontent['email']) || !is_valid_email_zp($mailcontent['email']))) { $error[7] = gettext("a valid email address"); }
 		if (getOption('contactform_website') == "required" && empty($mailcontent['website'])) {
@@ -237,6 +240,7 @@ function printContactForm() {
 			if(!empty($mailcontent['company'])) { $message .= $mailcontent['company']."\n"; }
 			if(!empty($mailcontent['street'])) { $message .= $mailcontent['street']."\n"; }
 			if(!empty($mailcontent['city'])) { $message .= $mailcontent['city']."\n"; }
+			if(!empty($mailcontent['state'])) { $message .= $mailcontent['state']."\n"; }
 			if(!empty($mailcontent['country'])) { $message .= $mailcontent['country']."\n"; }
 			if(!empty($mailcontent['email'])) { $message .= $mailcontent['email']."\n"; }
 			if(!empty($mailcontent['phone'])) { $message .= $mailcontent['phone']."\n"; }
@@ -310,7 +314,7 @@ function printContactForm() {
 			echo get_language_string(getOption("contactform_thankstext"));
 		}
 		echo '<p><a href="?again">'.get_language_string(getOption('contactform_newmessagelink')).'</a></p>';
-} else {
+	} else {
 		if (count($error) <= 0) {
 			$mailcontent = array();
 			$mailcontent['title'] = '';
@@ -318,11 +322,12 @@ function printContactForm() {
 			$mailcontent['company'] = '';
 			$mailcontent['street'] = '';
 			$mailcontent['city'] = '';
+			$mailcontent['state'] = '';
 			$mailcontent['country'] = '';
 			$mailcontent['email'] = '';
 			$mailcontent['website'] = '';
 			$mailcontent['phone'] = '';
-			$mailcontent['subject'] = '';
+			$mailcontent['subject'] = $subject_override;
 			$mailcontent['message'] ='';
 		}
 		echo get_language_string(getOption("contactform_introtext"));
