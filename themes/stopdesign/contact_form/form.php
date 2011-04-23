@@ -43,10 +43,24 @@
 			</td>
 		</tr>
 		<?php } ?>
+		<?php if(showOrNotShowField(getOption('contactform_state'))) { ?>
+		<tr>
+			<td><?php printf(gettext("State<strong>%s</strong>:"),(checkRequiredField(getOption('contactform_state')))); ?></td>
+			<td><input type="text" id="state" name="state" size="50" value="<?php echo html_encode($mailcontent['city']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			</td>
+		</tr>
+		<?php } ?>
 		<?php if(showOrNotShowField(getOption('contactform_country'))) { ?>
 		<tr>
 			<td><?php printf(gettext("Country<strong>%s</strong>:"),(checkRequiredField(getOption('contactform_country')))); ?></td>
 			<td><input type="text" id="country" name="country" size="50" value="<?php echo html_encode($mailcontent['country']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			</td>
+		</tr>
+		<?php } ?>
+		<?php if(true || showOrNotShowField(getOption('contactform_postal'))) { ?>
+		<tr>
+			<td><?php printf(gettext("Postal code<strong>%s</strong>:"),(checkRequiredField(getOption('contactform_postal')))); ?></td>
+			<td><input type="text" id="postal" name="postal" size="50" value="<?php echo html_encode($mailcontent['postal']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
 			</td>
 		</tr>
 		<?php } ?>

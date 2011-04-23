@@ -390,7 +390,7 @@ function comment_form_edit_admin($html, $userobj, $i, $background, $current) {
 	if (!preg_match('/^a:[0-9]+:{/', $raw)) {
 		$address = $needs;
 	} else {
-		$address = unserialize($userobj->getCustomData());
+		$address = unserialize($raw);
 		foreach ($needs as $needed=>$value) {
 			if (!isset($address[$needed])) {
 				$address[$needed] = '';

@@ -41,6 +41,7 @@ class contactformOptions {
 		setOptionDefault('contactform_street',"show");
 		setOptionDefault('contactform_city', "show");
 		setOptionDefault('contactform_state', "show");
+		setOptionDefault('contactform_postal', "show");
 		setOptionDefault('contactform_country', "show");
 		setOptionDefault('contactform_email', "required");
 		setOptionDefault('contactform_website', "show");
@@ -109,6 +110,9 @@ class contactformOptions {
 									gettext('State field') => array('key' => 'contactform_state', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 5.1,
 										'desc' => sprintf($mailfieldinstruction,gettext("State field"))),
+									gettext('Postal code field') => array('key' => 'contactform_postal', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
+										'order' => 5.2,
+										'desc' => sprintf($mailfieldinstruction,gettext("Postal code field"))),
 									gettext('Country field') => array('key' => 'contactform_country', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 6,
 										'desc' => sprintf($mailfieldinstruction,gettext("Country field"))),
@@ -156,7 +160,7 @@ function getField($field, $level=3) {
  * @param string $subject_override set to override the subject.
  */
 function printContactForm($subject_override='') {
-	global $_zp_UTF8, $_zp_captcha,$_processing_post;
+	global $_zp_UTF8, $_zp_captcha,$_processing_post, $_zp_current_admin_obj;
 	$error = array();
 	if(isset($_POST['sendmail'])) {
 		$mailcontent = array();
@@ -166,6 +170,7 @@ function printContactForm($subject_override='') {
 		$mailcontent['street'] = getField('street');
 		$mailcontent['city'] = getField('city');
 		$mailcontent['state'] = getField('state');
+		$mailcontent['postal'] = getField('postal');
 		$mailcontent['country'] = getField('country');
 		$mailcontent['email'] = getField('email');
 		$mailcontent['website'] = getField('website');
@@ -180,6 +185,7 @@ function printContactForm($subject_override='') {
 		if (getOption('contactform_street') == "required" && empty($mailcontent['street'])) { $error[4] = gettext("a street"); }
 		if (getOption('contactform_city') == "required" && empty($mailcontent['city'])) { $error[5] = gettext("a city"); }
 		if (getOption('contactform_state') == "required" && empty($mailcontent['state'])) { $error[5] = gettext("a state"); }
+		if (getOption('contactform_postal') == "required" && empty($mailcontent['postal'])) { $error[5] = gettext("a postal code"); }
 		if (getOption('contactform_country') == "required" && empty($mailcontent['country'])) { $error[6] = gettext("a country"); }
 		if (getOption('contactform_email') == "required" && (empty($mailcontent['email']) || !is_valid_email_zp($mailcontent['email']))) { $error[7] = gettext("a valid email address"); }
 		if (getOption('contactform_website') == "required" && empty($mailcontent['website'])) {
@@ -241,6 +247,7 @@ function printContactForm($subject_override='') {
 			if(!empty($mailcontent['street'])) { $message .= $mailcontent['street']."\n"; }
 			if(!empty($mailcontent['city'])) { $message .= $mailcontent['city']."\n"; }
 			if(!empty($mailcontent['state'])) { $message .= $mailcontent['state']."\n"; }
+			if(!empty($mailcontent['postal'])) { $message .= $mailcontent['postal']."\n"; }
 			if(!empty($mailcontent['country'])) { $message .= $mailcontent['country']."\n"; }
 			if(!empty($mailcontent['email'])) { $message .= $mailcontent['email']."\n"; }
 			if(!empty($mailcontent['phone'])) { $message .= $mailcontent['phone']."\n"; }
@@ -316,19 +323,23 @@ function printContactForm($subject_override='') {
 		echo '<p><a href="?again">'.get_language_string(getOption('contactform_newmessagelink')).'</a></p>';
 	} else {
 		if (count($error) <= 0) {
-			$mailcontent = array();
-			$mailcontent['title'] = '';
-			$mailcontent['name'] = '';
-			$mailcontent['company'] = '';
-			$mailcontent['street'] = '';
-			$mailcontent['city'] = '';
-			$mailcontent['state'] = '';
-			$mailcontent['country'] = '';
-			$mailcontent['email'] = '';
-			$mailcontent['website'] = '';
-			$mailcontent['phone'] = '';
-			$mailcontent['subject'] = $subject_override;
-			$mailcontent['message'] ='';
+			if (zp_loggedin()) {
+				$mailcontent = array(	'title'=>'','name'=>$_zp_current_admin_obj->getName(),'company'=>'','street'=>'','city'=>'','state'=>'',
+															'country'=>'','postal'=>'','email'=>$_zp_current_admin_obj->getEmail(),'website'=>'','phone'=>'',
+															'subject'=>$subject_override,'message'=>'');
+				if (getOption('zp_plugin_comment_form')) {
+					$raw = $_zp_current_admin_obj->getCustomData();
+					if (preg_match('/^a:[0-9]+:{/', $raw)) {
+						$address = unserialize($raw);
+						foreach ($address as $key=>$field) {
+							$mailcontent[$key] = $field;
+						}
+					}
+				}
+			} else {
+				$mailcontent = array(	'title'=>'','name'=>'','company'=>'','street'=>'','city'=>'','state'=>'','country'=>'','email'=>'',
+															'postal'=>'','website'=>'','phone'=>'','subject'=>$subject_override,'message'=>'');
+			}
 		}
 		echo get_language_string(getOption("contactform_introtext"));
 		if(getOption('contactform_sendcopy')) echo get_language_string(getOption("contactform_sendcopy_text"));
