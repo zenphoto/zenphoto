@@ -101,7 +101,7 @@ foreach ($filelist as $extension) {
 	if (false === $str) {
 		$plugin_description = '';
 	} else {
-		if (false === eval(isolate('$plugin_description', $pluginStream))) {
+		if (false === eval($str)) {
 			$parserr = $parserr | 1;
 			$plugin_description = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
 		}

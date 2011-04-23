@@ -387,51 +387,32 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				natcasesort($plugins);
 				foreach ($plugins as $extension) {
 					$pluginStream = file_get_contents(getPlugin($extension.'.php'));
-					$str =  $pluginStream;
-					$i = strpos($str, '$plugin_version');
-					if ($i !== false) {
-						$str = substr($str, $i);
-						//$j = strpos($str, ";\n"); // This is wrong - PHP will not treat all newlines as \n.
-						$j = strpos($str, ";"); // This is also wrong; it disallows semicolons in strings. We need a regexp.
-						$str = substr($str, 0, $j+1);
-						eval($str);
+					$plugin_version = '';
+					if (preg_match('|\$plugin_version\s*=\s*(.+?)\s*?;|', $pluginStream, $matches)) {
+						@eval($matches[0]);
+					}
+					if ($plugin_version) {
 						$version = ' v'.$plugin_version;
 					} else {
 						$version = '';
 					}
-					$str = $pluginStream;
-					$k = 0;
-					do {
-						$i = strpos($str, 'zp_register_filter', $k);
-						if ($i) {
-							$i = strpos($str, '(', $i);
-							if ($i) {
-								$k = strpos($str,';',$i);
-								if ($k) {
-									$strp = substr($str,$i,$k-$i);
-									$j = strrpos($strp, ')');
-									$k++;
-									if ($j) {
-										$paramsstr = substr($strp, 1,$j-1);
-										$params = explode(',', $paramsstr);
-										if (array_key_exists(2, $params)) {
-											$priority = (int)$params[2];
-										} else {
-											$priority = 5;
-										}
-										$filter = unQuote(trim($params[0]));
-										$function = unQuote(trim($params[1]));
-										$filters[$filter][$priority][$function] = array('function'=>$function,'accepted_args'=>NULL,'script'=>$extension.'.php');
-									} else {
-										break;
-									}
-								} else {
-									break;
-								}
-							}
-						}
-					} while ($i !== false);
+					$plugin_is_filter = 1;
+					if (preg_match('|\$plugin_is_filter\s*=\s*(.+?)\s*?;|', $pluginStream, $matches)) {
+						@eval($matches[0]);
+					}
 					echo "<li>".$extension.$version."</li>";
+					preg_match_all('|zp_register_filter\s*\((.+?)\)\s*?;|', $pluginStream, $matches);
+					foreach ($matches[1] as $paramsstr) {
+						$params = explode(',', $paramsstr);
+						if (array_key_exists(2, $params)) {
+							$priority = (int)$params[2];
+						} else {
+							$priority = $plugin_is_filter & PLUGIN_PRIORITY;
+						}
+						$filter = unQuote(trim($params[0]));
+						$function = unQuote(trim($params[1]));
+						$filters[$filter][$priority][$function] = array('function'=>$function,'script'=>$extension.'.php');
+					}
 				}
 			} else {
 				echo '<li>'.gettext('<em>none</em>').'</li>';

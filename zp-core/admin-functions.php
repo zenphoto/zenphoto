@@ -2543,16 +2543,10 @@ function commentReply($str, $name, $albumtitle, $imagetitle) {
  * @return string
  */
 function isolate($target, $str) {
-	$i = strpos($str, $target);
-	if ($i === false) return false;
-	$str = substr($str, $i);
-	$j = strpos($str, ";"); // This is also wrong; it disallows semicolons in strings. We need a regexp.
-	$k = strpos($str, "\n", $j+1);
-	if ($k === false) {
-		$k = $j;	//	best guess.
+	if (preg_match('|\\'.$target.'\s*?=\s*?(.+?)\s*?;[ \f\v\t]*?[\n\r]|', $str, $matches)) {
+		return $matches[0];
 	}
-	$str = substr($str, 0, $k);
-	return $str;
+	return false;
 }
 
 /**
