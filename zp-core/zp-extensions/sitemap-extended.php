@@ -389,23 +389,6 @@ function getSitemapAlbums() {
 	$albumlastmod = sanitize($albumlastmod);
 	$imagelastmod = getOption('sitemap_lastmod_images');
 
-/*
-	$limit = sitemap_getDBLimit(1);
-	$passwordcheck = '';
-
-	// what on earth is the purpose of ordering by title???
-
-	$albumscheck = query_full_array("SELECT `folder`,`id` FROM " . prefix('albums'). " ORDER BY title");
-	foreach($albumscheck as $albumcheck) {
-		if(!checkAlbumPassword($albumcheck['folder'],$hint)) {
-		$albumpasswordcheck= " AND id != ".$albumcheck['id'];
-		$passwordcheck = $passwordcheck.$albumpasswordcheck;
-		}
-	}
-	$albumWhere = " WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
-	// Find public albums
-	$albums = query_full_array('SELECT `folder`,`date` FROM ' . prefix('albums') . $albumWhere.$limit);
-*/
 
 	$albums = array();
 	getSitemapAlbumList($_zp_gallery, $albums);
@@ -507,20 +490,6 @@ function getSitemapImages() {
 	$imagelastmod = getOption('sitemap_lastmod_images');
 	$limit = sitemap_getDBLimit(1);
 
-/*
-	$passwordcheck = '';
-	$albumscheck = query_full_array("SELECT `folder`,`id` FROM " . prefix('albums'). " ORDER BY title");
-	foreach($albumscheck as $albumcheck) {
-		if(!checkAlbumPassword($albumcheck['folder'],$hint)) {
-		$albumpasswordcheck= " AND id != ".$albumcheck['id'];
-		$passwordcheck = $passwordcheck.$albumpasswordcheck;
-		}
-	}
-	$albumWhere = " WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
-	// Find public albums
-	$albums = query_full_array('SELECT `folder`,`date` FROM ' . prefix('albums') . $albumWhere.$limit);
-*/
-
 	$albums = array();
 	getSitemapAlbumList($_zp_gallery, $albums);
 
@@ -534,6 +503,7 @@ function getSitemapImages() {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		foreach($albums as $album) {
+			set_time_limit(120);	//	Extend script timeout to allow for gathering the images.
 			$albumobj = new Album($_zp_gallery,$album['folder']);
 			$images = $albumobj->getImages();
 
