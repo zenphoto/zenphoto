@@ -178,8 +178,6 @@ foreach ($filelist as $extension) {
 				} else {
 					if (getOption($opt) > THEME_PLUGIN) {
 						echo ' checked="checked"';
-					} else {
-						$optionlink = false;
 					}
 				} ?> />
 			<span<?php if (!$third_party_plugin) echo ' style="font-weight:bold"' ?>><?php echo $extension; ?></span>

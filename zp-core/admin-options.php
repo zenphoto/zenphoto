@@ -2449,6 +2449,19 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 	<?php
 }
 if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
+	if (preg_match('/show-(.+)[&\n]*$/', $_SERVER['QUERY_STRING'], $matches)) {
+		$matches = explode('&',$matches[1]);
+		$showExtension = sanitize($matches[0]);
+		if ($showExtension) {
+			$path = getPlugin($showExtension.'.php');
+			if (!$path) {
+				$showExtension = NULL;
+			}
+		}
+	} else {
+		$showExtension = NULL;
+	}
+
 	$_zp_plugin_count = 0;
 	?>
 	<script type="text/javascript">
@@ -2483,6 +2496,9 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 				<?php
 				$showlist = array();
 				$plugins = array_keys(getEnabledPlugins());
+				if ($showExtension && !in_array($showExtension, $plugins)) {
+					$plugins[] = $showExtension;
+				}
 				natcasesort($plugins);
 				foreach ($plugins as $extension) {
 					$option_interface = NULL;

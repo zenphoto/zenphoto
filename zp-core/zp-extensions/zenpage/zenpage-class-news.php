@@ -114,11 +114,22 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 	/**
-	 * Each object should have this method, but for news, if you get past the category it is public
+	 * See if a guest is logged on to the news category.
+	 * Note: If any belonging category is plublic or he is logged on, then success.
 	 * @param $hint
 	 * @param $show
 	 */
-	function checkforGuest($hint,$show) {
+	function checkforGuest(&$hint,&$show) {
+		$categories = $this->getCategories();
+		if (!empty($categories)) {
+			foreach ($categories as $catlink) {
+				$catobj = new ZenpageCategory($catlink);
+				$guestaccess = $catobj->checkforGuest($hint, $show);
+				if (!$guestaccess || $guestaccess == 'zp_public_access') {
+					return $guestaccess;
+				}
+			}
+		}
 		return 'zp_public_access';	//	news articles are not password protected, only their categories
 	}
 
