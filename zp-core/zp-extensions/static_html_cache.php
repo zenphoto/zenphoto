@@ -41,7 +41,7 @@ if (!file_exists($cache_path)) {
 		die(gettext("Static HTML Cache folder could not be created. Please try to create it manually via FTP with chmod 0777."));
 	}
 }
-$cachesubfolders = array("index", "albums","images","pages");
+$cachesubfolders = array("index", "albums", "images", "pages");
 foreach($cachesubfolders as $cachesubfolder) {
 	$cache_folder = $cache_path.$cachesubfolder.'/';
 	if (!file_exists($cache_folder)) {
@@ -103,52 +103,63 @@ class staticCache {
 	 */
 	function checkIfAllowedPage() {
 		global $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page,
-						$_zp_current_zenpage_news, $_zp_current_admin_obj;
+						$_zp_current_zenpage_news, $_zp_current_admin_obj, $_zp_current_category;
+		$hint = $show = '';
 		if ($this->disable || zp_loggedin(ADMIN_RIGHTS)) {
 			return false;	// don't cache pages the admin views!
 		}
-		if(isset($_GET['p'])) {
-			if(isset($_GET['title'])) {
-				$title = sanitize($_GET['title']);
-			} else {
-				$title = "";
-			}
-		} else {
 			switch ($_zp_gallery_page) {
-				case "index.php":
-					$title = "";
-					break;
 				case "image.php": // does it really makes sense to exclude images and albums?
-					if (zp_loggedin() && $_zp_current_album->isMyItem(LIST_RIGHTS)) {
-						return true; // it is his album, no caching!
-					}
+					$obj = $_zp_current_album;
 					$title = $_zp_current_image->filename;
 					break;
 				case "album.php":
-					if (zp_loggedin() && $_zp_current_album->isMyItem(LIST_RIGHTS)) {
-						return true; // it is his album, no caching!
-					}
+					$obj = $_zp_current_album;
 					$title = $_zp_current_album->name;
 					break;
 				case 'pages.php':
-					if (zp_loggedin() && $_zp_current_admin_obj->getUser() == $_zp_current_zenpage_page->getAuthor()) {
-						return false;	// don't cache author's pages
-					}
-
+					$obj = $_zp_current_zenpage_page;
+					$title = $_zp_current_zenpage_page->getTitlelink();
 					break;
 				case 'news.php':
-					if (zp_loggedin() && $_zp_current_admin_obj->getUser() == $_zp_current_zenpage_news->getAuthor()) {
-						return false;	// don't cache author's pages
+					if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+						$obj = $_zp_current_zenpage_news;
+						$title = $obj->getTitlelink();
+					} else {
+						if (in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+							$obj = $_zp_current_category;
+							$title = $obj->getTitlelink();
+						} else {
+							$obj = NULL;
+							$title = NULL;
+						}
+					}
+					break;
+				default:
+					$obj = NULL;
+					if(isset($_GET['title'])) {
+						$title = sanitize($_GET['title']);
+					} else {
+						$title = "";
 					}
 					break;
 			}
-		}
+			if ($obj) {
+				if ($obj->isMyItem($obj->manage_some_rights)) {
+					return false;	// don't cache manager's objects
+				}
+				$guestaccess = $obj->checkforGuest($hint,$show);
+				if ($guestaccess && $guestaccess != 'zp_public_access') {
+					return false;	// a guest is logged onto a protected item, no caching!
+				}
+			}
+
 		$excludeList = array_merge(explode(",",getOption('static_cache_excludedpages')),array('404.php/','password.php/'));
 		foreach($excludeList as $item) {
 			$page_to_exclude = explode("/",$item);
-			if ($_zp_gallery_page === trim($page_to_exclude[0])) {
+			if ($_zp_gallery_page == trim($page_to_exclude[0])) {
 				$exclude = trim($page_to_exclude[1]);
-				if(empty($exclude) || $title === $exclude) {
+				if(empty($exclude) || $title == $exclude) {
 					return false;
 				}
 			}

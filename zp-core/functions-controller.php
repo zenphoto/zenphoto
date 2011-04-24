@@ -385,11 +385,11 @@ function zenpage_load_news() {
 		$_zp_post_date = sanitize($_GET['date']);
 	}
 	if(isset($_GET['category'])) {
-		add_context(ZP_ZENPAGE_NEWS_CATEGORY);
 		$titlelink = sanitize($_GET['category']);
 		$sql = 'SELECT `id` FROM '.prefix('news_categories').' WHERE `titlelink`='.db_quote($titlelink);
 		$result = query_single_row($sql);
 		if (is_array($result)) {
+			add_context(ZP_ZENPAGE_NEWS_CATEGORY);
 			$_zp_current_category = new ZenpageCategory($titlelink);
 		}
 	}

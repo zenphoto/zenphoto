@@ -153,6 +153,7 @@ function zenpageCheckForGuest($auth) {
 
 /**
  * Handles item ownership
+ * returns true for allowed access, false for denyed, returns original parameter if not my gallery page
  * @param bool $fail
  */
 function zenpageIsMyItemToView($fail) {
@@ -160,24 +161,25 @@ function zenpageIsMyItemToView($fail) {
 	switch($_zp_gallery_page) {
 		case 'pages.php':
 			if ($_zp_current_zenpage_page->isMyItem(LIST_RIGHTS)) {
-				return false;
+				return true;
 			}
 			break;
 		case 'news.php':
 			if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 				if ($_zp_current_zenpage_news->isMyItem(LIST_RIGHTS)) {
-					return false;
+					return true;
 				}
 			} else {	//	must be category or main news page?
 				if (zp_loggedin(VIEW_NEWS_RIGHTS) || !is_object($_zp_current_category) || !$_zp_current_category->isProtected()) {
-					return false;
+					return true;
 				}
 				if (is_object($_zp_current_category)) {
 					if ($_zp_current_category->isMyItem(LIST_RIGHTS)) {
-						return false;
+						return true;
 					}
 				}
 			}
+			return false;
 			break;
 	}
 	return $fail;

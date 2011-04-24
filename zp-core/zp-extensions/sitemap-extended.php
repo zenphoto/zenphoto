@@ -25,7 +25,7 @@ zp_register_filter('admin_utilities_buttons', 'sitemap_button');
 
 $sitemapfolder = SERVERPATH.'/cache_html/sitemap';
 if (!file_exists($sitemapfolder)) {
-	if (!mkdir($sitemapfolder, CHMOD_VALUE)) {
+	if (!mkdir_recursive($sitemapfolder, CHMOD_VALUE)) {
 		die(gettext("sitemap cache folder could not be created. Please try to create it manually via FTP with chmod 0777."));
 	}
 }

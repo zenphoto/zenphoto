@@ -114,6 +114,15 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 	/**
+	 * Each object should have this method, but for news, if you get past the category it is public
+	 * @param $hint
+	 * @param $show
+	 */
+	function checkforGuest($hint,$show) {
+		return 'zp_public_access';	//	news articles are not password protected, only their categories
+	}
+
+	/**
 	 * Checks if user is news author
 	 * @param bit $action what the caller wants to do
 	 *
@@ -206,7 +215,6 @@ class ZenpageNews extends ZenpageItems {
 			return false;
 		}
 	}
-
 
 } // zenpage news class end
 

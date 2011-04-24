@@ -233,7 +233,20 @@ class ZenpageCategory extends ZenpageRoot {
 	}
 
 	function isMyItem($action) {
-		return parent::isMyItem($action);
+		global $_zp_current_admin_obj;
+		if (parent::isMyItem($action)) {
+			return true;
+		}
+		if (zp_apply_filter('check_credentials', false, $this, $action)) return true;
+		if (zp_loggedin($action)) {
+			$mycategories = $_zp_current_admin_obj->getObjects('news');
+			if (!empty($mycategories)) {
+				if (in_array($this->getTitlelink(), $mycategories)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
