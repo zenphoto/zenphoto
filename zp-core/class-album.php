@@ -328,10 +328,11 @@ class Album extends MediaObject {
 	 * @param string $sorttype The sort strategy
 	 * @param string $sortdirection The direction of the sort
 	 * @param bool $care set to false if the order does not matter
+	 * @param bool $mine set true/false to override ownership
 	 * @return array
 	 */
 
-	function getAlbums($page=0, $sorttype=null, $sortdirection=null, $care=true) {
+	function getAlbums($page=0, $sorttype=null, $sortdirection=null, $care=true, $mine=NULL) {
 		if (is_null($this->subalbums) || $care && $sorttype.$sortdirection !== $this->lastsubalbumsort ) {
 			if ($this->isDynamic()) {
 				$search = $this->getSearchEngine();
@@ -345,7 +346,7 @@ class Album extends MediaObject {
 				}
 			}
 			$key = $this->getAlbumSortKey($sorttype);
-			$this->subalbums = $this->gallery->sortAlbumArray($this, $subalbums, $key, $sortdirection);
+			$this->subalbums = $this->gallery->sortAlbumArray($this, $subalbums, $key, $sortdirection, $mine);
 			$this->lastsubalbumsort = $sorttype.$sortdirection;
 		}
 
@@ -376,10 +377,11 @@ class Album extends MediaObject {
 	 * @param string $sorttype optional sort type
 	 * @param string $sortdirection optional sort direction
 	 * @parem bool $care set to false if the order of the images does not matter
+	 * @param bool $mine set true/false to override ownership
 	 *
 	 * @return array
 	 */
-	function getImages($page=0, $firstPageCount=0, $sorttype=null, $sortdirection=null, $care=true) {
+	function getImages($page=0, $firstPageCount=0, $sorttype=null, $sortdirection=null, $care=true, $mine=NULL) {
 		if (is_null($this->images) || $care && $sorttype.$sortdirection !== $this->lastimagesort) {
 			if ($this->isDynamic()) {
 				$searchengine = $this->getSearchEngine();
@@ -387,7 +389,7 @@ class Album extends MediaObject {
 			} else {
 				// Load, sort, and store the images in this Album.
 				$images = $this->loadFileNames();
-				$images = $this->sortImageArray($images, $sorttype, $sortdirection);
+				$images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
 			}
 			$this->images = $images;
 			$this->lastimagesort = $sorttype.$sortdirection;
@@ -425,10 +427,13 @@ class Album extends MediaObject {
 	 * @param array $images The array of filenames to be sorted.
 	 * @param  string $sorttype optional sort type
 	 * @param  string $sortdirection optional sort direction
+	 * @parem bool $mine set to true/false to override ownership clause
 	 * @return array
 	 */
-	function sortImageArray($images, $sorttype, $sortdirection) {
-		$mine = $this->isMyItem(LIST_RIGHTS);
+	function sortImageArray($images, $sorttype, $sortdirection, $mine= NULL) {
+		if (is_null($mine)) {
+			$mine = $this->isMyItem(LIST_RIGHTS);
+		}
 		$sortkey = str_replace('`','',$this->getImageSortKey($sorttype));
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
 			$order = false;

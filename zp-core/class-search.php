@@ -1097,10 +1097,11 @@ class SearchEngine
 	 * Returns an array of albums found in the search
 	 * @param string $sorttype what to sort on
 	 * @param string $sortdirection what direction
+	 * @param bool $mine set true/false to override ownership
 	 *
 	 * @return array
 	 */
-	function getSearchAlbums($sorttype, $sortdirection) {
+	function getSearchAlbums($sorttype, $sortdirection, $mine=NULL) {
 		if (getOption('search_no_albums')) return array();
 		$albums = array();
 		$searchstring = $this->getSearchString();
@@ -1112,7 +1113,7 @@ class SearchEngine
 				if ($albumname != $this->dynalbumname) {
 					if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
 						$album = new Album(new gallery(), $albumname);
-						if ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $row['show']) {
+						if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $row['show'])) {
 							if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 								$albums[] = $albumname;
 							}
@@ -1133,12 +1134,13 @@ class SearchEngine
 	 * @param string $sorttype what to sort on
 	 * @param string $sortdirection what direction
 	 * @param bool $care set to false if the order of the albums does not matter
+	 * @param bool $mine set true/false to override ownership
 	 *
 	 * @return array
 	 */
-	function getAlbums($page=0, $sorttype=NULL, $sortdirection=NULL, $care=false) {
+	function getAlbums($page=0, $sorttype=NULL, $sortdirection=NULL, $care=true, $mine=NULL) {
 		if (is_null($this->albums) || $care && $sorttype.$sortdirection !== $this->lastsubalbumsort) {
-			$this->albums = $this->getSearchAlbums($sorttype, $sortdirection);
+			$this->albums = $this->getSearchAlbums($sorttype, $sortdirection, $mine);
 			$this->lastsubalbumsort = $sorttype.$sortdirection;
 		}
 		if ($page == 0) {
@@ -1208,9 +1210,12 @@ class SearchEngine
 	/**
 	 * Returns an array of image names found in the search
 	 *
+	 * @param string $sorttype what to sort on
+	 * @param string $sortdirection what direction
+	 * @param bool $mine set true/false to overried ownership
 	 * @return array
 	 */
-	function getSearchImages($sorttype, $sortdirection) {
+	function getSearchImages($sorttype, $sortdirection, $mine=NULL) {
 		if (getOption('search_no_images')) return array();
 		$hint = '';
 		$images = array();
@@ -1230,7 +1235,7 @@ class SearchEngine
 				$albumname = $row2['folder'];
 				if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname) . '/' . internalToFilesystem($row['filename']))) {
 					$album = new Album(new gallery(), $albumname);
-					if ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $row2['show']) {
+					if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $row2['show'])) {
 						if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 							$images[] = array('filename' => $row['filename'], 'folder' => $albumname);
 						}
@@ -1250,11 +1255,12 @@ class SearchEngine
 	 * @param int $firstPageCount count of images that go on the album/image transition page
 	 * @param string $sorttype what to sort on
 	 * @param string $sortdirection what direction
+	 * @param bool $mine set true/false to overried ownership
 	 * @return array
 	 */
-	function getImages($page=0, $firstPageCount=0, $sorttype=NULL, $sortdirection=NULL) {
+	function getImages($page=0, $firstPageCount=0, $sorttype=NULL, $sortdirection=NULL, $mine=NULL) {
 		if (is_null($this->images) || $sorttype.$sortdirection !== $this->lastimagesort) {
-			$this->images = $this->getSearchImages($sorttype, $sortdirection);
+			$this->images = $this->getSearchImages($sorttype, $sortdirection, $mine);
 			$this->lastimagesort = $sorttype.$sortdirection;
 		}
 		if ($page == 0) {

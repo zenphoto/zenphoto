@@ -109,17 +109,18 @@ class Gallery {
 	 * @param string $sorttype the kind of sort desired
 	 * @param string $direction set to a direction to override the default option
 	 * @param bool $care set to false if the order of the albums does not matter
+	 * @param bool $mine set true/false to override ownership
 	 *
 	 * @return  array
 	 */
-	function getAlbums($page=0, $sorttype=null, $direction=null, $care=true) {
+	function getAlbums($page=0, $sorttype=null, $direction=null, $care=true, $mine=NULL) {
 
 		// Have the albums been loaded yet?
 		if (is_null($this->albums) || $care && $sorttype.$direction !== $this->lastalbumsort) {
 
 			$albumnames = $this->loadAlbumNames();
 			$key = $this->getAlbumSortKey($sorttype);
-			$albums = $this->sortAlbumArray(NULL, $albumnames, $key, $direction);
+			$albums = $this->sortAlbumArray(NULL, $albumnames, $key, $direction, $mine);
 
 			// Store the values
 			$this->albums = $albums;
@@ -707,12 +708,14 @@ class Gallery {
 	 *
 	 * @param  array $albums array of album names
 	 * @param  string $sortkey the sorting scheme
+	 * @param string $sortdirection
+	 * @param bool $mine set true/false to override ownership
 	 * @return array
 	 *
 	 * @author Todd Papaioannou (lucky@luckyspin.org)
 	 * @since  1.0.0
 	 */
-	function sortAlbumArray($parentalbum, $albums, $sortkey='`sort_order`', $sortdirection=NULL) {
+	function sortAlbumArray($parentalbum, $albums, $sortkey='`sort_order`', $sortdirection=NULL, $mine=NULL) {
 		if (is_null($parentalbum)) {
 			$albumid = ' IS NULL';
 			$obj = $this;
@@ -763,7 +766,7 @@ class Gallery {
 		foreach($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = new Album($this, $folder);
-			if ($row['show'] || $album->isMyItem(LIST_RIGHTS)) {
+			if ($row['show'] || $mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS))) {
 				$albums_ordered[] = $folder;
 			}
 		}
