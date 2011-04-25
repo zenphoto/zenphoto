@@ -186,24 +186,14 @@ class ZenpagePage extends ZenpageItems {
 	}
 
 	/**
-	 * Checks if user is allowed access to the page
-	 * @param $hint
-	 * @param $show
-	 */
-	function checkAccess(&$hint=NULL, &$show=NULL) {
-		if ($this->isMyItem(LIST_RIGHTS)) return true;
-		if (GALLERY_SECURITY == 'private') {	// only registered users allowed
-			return false;
-		}
-		return $this->checkforGuest($hint, $show);
-	}
-
-	/**
 	 * Checks if user is allowed to access the page
 	 * @param $hint
 	 * @param $show
 	 */
 	function checkforGuest(&$hint=NULL, &$show=NULL) {
+		if (!parent::checkForGuest()) {
+			return false;
+		}
 		$pageobj = $this;
 		$hash = $pageobj->getPassword();
 		while(empty($hash) && !is_null($pageobj)) {
@@ -254,13 +244,16 @@ class ZenpagePage extends ZenpageItems {
 		if (parent::isMyItem($action)) {
 			return true;
 		}
-		if (zp_apply_filter('check_credentials', false, $this, $action)) return true;
 		if (zp_loggedin($action)) {
+			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
+				return true;
+			}
 			$mypages = $_zp_current_admin_obj->getObjects('pages');
 			if (!empty($mypages)) {
-				if (array_search($this->getTitlelink(),$mypages)!==false) return true;
+				if (array_search($this->getTitlelink(),$mypages)!==false) {
+					return true;
+				}
 			}
-			return $_zp_current_admin_obj->getUser() == $this->getAuthor();
 		}
 		return false;
 	}

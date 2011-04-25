@@ -1055,15 +1055,12 @@ class _Image extends MediaObject {
 	/**
 	 * returns true if user is allowed to see the album
 	 */
-	function checkAccess() {
+	function checkAccess(&$hint=NULL, &$show=NULL) {
 		$album = $this->getAlbum();
-	if ($album->isMyItem(LIST_RIGHTS)) {
-		return true;
-	}
-	if (GALLERY_SECURITY == 'private') {	// only registered users allowed
-		return false;
-	}
-	return $album->checkforGuest();
+		if ($album->isMyItem(LIST_RIGHTS)) {
+			return true;
+		}
+		return $album->checkforGuest($hint=NULL, $show=NULL);
 	}
 
 	/**
@@ -1072,6 +1069,9 @@ class _Image extends MediaObject {
 	 * @param unknown_type $show
 	 */
 	function checkforGuest(&$hint=NULL, &$show=NULL) {
+		if (!parent::checkForGuest()) {
+			return false;
+		}
 		$album = $this->getAlbum();
 		return $album->checkforGuest($hint, $show);
 	}

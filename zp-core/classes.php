@@ -638,7 +638,30 @@ class ThemeObject extends PersistentObject {
 		if (zp_loggedin($this->view_rights) && ($action == LIST_RIGHTS)) {	// sees all
 			return true;
 		}
+		if (zp_apply_filter('check_credentials', false, $this, $action)) {
+			return true;
+		}
 		return NULL;
+	}
+
+	/**
+	 * returns false (deny) if gallery is "private"
+	 * @param $hint
+	 * @param $show
+	 */
+	function checkForGuest(&$hint=NULL, &$show=NULL) {
+		return !(GALLERY_SECURITY == 'private');
+	}
+
+	/**
+	 *
+	 * Checks if viewing of object is allowed
+	 * @param unknown_type $hint
+	 * @param unknown_type $show
+	 */
+	function checkAccess(&$hint=NULL, &$show=NULL) {
+		if ($this->isMyItem(LIST_RIGHTS)) return true;
+		return $this->checkforGuest($hint, $show);
 	}
 
 }

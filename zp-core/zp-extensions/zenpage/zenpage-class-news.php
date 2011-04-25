@@ -119,18 +119,21 @@ class ZenpageNews extends ZenpageItems {
 	 * @param $hint
 	 * @param $show
 	 */
-	function checkforGuest(&$hint,&$show) {
+	function checkforGuest(&$hint=NULL, &$show=NULL) {
+		if (!parent::checkForGuest()) {
+			return false;
+		}
 		$categories = $this->getCategories();
 		if (!empty($categories)) {
-			foreach ($categories as $catlink) {
-				$catobj = new ZenpageCategory($catlink);
+			foreach ($categories as $cat) {
+				$catobj = new ZenpageCategory($cat['titlelink']);
 				$guestaccess = $catobj->checkforGuest($hint, $show);
-				if (!$guestaccess || $guestaccess == 'zp_public_access') {
+				if (!$guestaccess) {
 					return $guestaccess;
 				}
 			}
 		}
-		return 'zp_public_access';	//	news articles are not password protected, only their categories
+		return false;
 	}
 
 	/**
@@ -144,35 +147,15 @@ class ZenpageNews extends ZenpageItems {
 		if (parent::isMyItem($action)) {
 			return true;
 		}
-		if (zp_apply_filter('check_credentials', false, $this, $action)) return true;
 		if (zp_loggedin($action)) {
+			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
+				return true;	//	he is the author
+			}
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {
 				foreach ($this->getCategories() as $category) {
-					if (array_search($category['titlelink'],$mycategories)!==false) return true;
+					if (array_search($category['titlelink'], $mycategories)!==false) return true;
 				}
-			}
-			return $_zp_current_admin_obj->getUser() == $this->getAuthor();
-		}
-		return false;
-	}
-
-	/**
-	 * Checks if user is allowed access to the news article
-	 * @param $hint
-	 * @param $show
-	 */
-	function checkAccess(&$hint=NULL, &$show=NULL) {
-		if ($this->isMyItem(LIST_RIGHTS)) return true;
-		if (GALLERY_SECURITY == 'private') {	// only registered users allowed
-			return false;
-		}
-		$allcategories = $this->getCategories();
-		if (count($allcategories) == 0) return true;
-		foreach ($allcategories as $category) {
-			$catobj = new ZenpageCategory($category['titlelink']);
-			if ($authtype = $catobj->checkforGuest()) {
-				return $authtype;
 			}
 		}
 		return false;

@@ -193,6 +193,9 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param $show
 	 */
 	function checkforGuest(&$hint=NULL, &$show=NULL) {
+		if (!parent::checkForGuest()) {
+			return false;
+		}
 		$obj = $this;
 		$hash = $this->getPassword();
 		while(empty($hash) && !is_null($obj)) {
@@ -237,7 +240,6 @@ class ZenpageCategory extends ZenpageRoot {
 		if (parent::isMyItem($action)) {
 			return true;
 		}
-		if (zp_apply_filter('check_credentials', false, $this, $action)) return true;
 		if (zp_loggedin($action)) {
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {

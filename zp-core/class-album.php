@@ -1216,9 +1216,6 @@ class Album extends MediaObject {
 		if (parent::isMyItem($action)) {
 			return $_zp_loggedin;
 		}
-		if (zp_apply_filter('check_credentials', false, $this, $action)) {
-			return true;
-		}
 		if (zp_loggedin($action)) {
 			$subRights = $this->albumSubRights();
 			if (!is_null($subRights)) {
@@ -1240,24 +1237,14 @@ class Album extends MediaObject {
 	}
 
 	/**
-	 * returns true if user is allowed to see the album
-	 */
-	function checkAccess() {
-	if ($this->isMyItem(LIST_RIGHTS)) {
-		return true;
-	}
-	if (GALLERY_SECURITY == 'private') {	// only registered users allowed
-		return false;
-	}
-	return $this->checkforGuest();
-	}
-
-	/**
 	 * Checks if guest is loggedin for the album
 	 * @param unknown_type $hint
 	 * @param unknown_type $show
 	 */
 	function checkforGuest(&$hint=NULL, &$show=NULL) {
+		if (!parent::checkForGuest()) {
+			return false;
+		}
 		return checkAlbumPassword($this, $hint);
 	}
 
