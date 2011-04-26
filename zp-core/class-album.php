@@ -1072,8 +1072,11 @@ class Album extends MediaObject {
 			$files = array_diff($files, $others_thumbs);
 		}
 
-		if ($dirs) $filter = 'album_filter'; else $filter = 'image_filter';
-		return zp_apply_filter($filter, $files);
+		if ($dirs) {
+			return zp_apply_filter('album_filter', $files);
+		} else {
+			return zp_apply_filter('image_filter', $files);
+		}
 	}
 
 	/**

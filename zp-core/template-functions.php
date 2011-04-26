@@ -1230,7 +1230,7 @@ function printEditable($context, $field, $editable = false, $editclass = 'editab
 		return false;
 	}
 	$text = trim( $override !== false ? $override : get_language_string($object->get($field)) );
-	$text = zp_apply_filter($context.'_'.$field, $text, $object, $context, $field);
+	$text = zp_apply_filter('front-end_edit', $text, $object, $context, $field);
 	if ($convertBR) {
 		$text = str_replace("\r\n", "\n", $text);
 		$text = str_replace("\n", "<br />", $text);

@@ -3702,7 +3702,8 @@ function admin_securityChecks($rights, $return) {
 	checkInstall();
 	if (!is_null(getOption('admin_reset_date'))) {
 		if (!zp_loggedin($rights)) { // prevent nefarious access to this page.
-			if (!zp_apply_filter('admin_allow_access',false, urldecode($return))) {
+			$returnurl = urldecode($return);
+			if (!zp_apply_filter('admin_allow_access',false, $returnurl)) {
 				header("HTTP/1.0 302 Found");
 				header("Status: 302 Found");
 				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);

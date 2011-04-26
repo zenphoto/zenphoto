@@ -1527,6 +1527,7 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 				$sorted[$key]=$array[$key];
 			}
 		}
+
 		return $sorted;
 	}
 	return $array;
