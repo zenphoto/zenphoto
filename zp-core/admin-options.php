@@ -419,6 +419,7 @@ if (isset($_GET['action'])) {
 		/*** Security Options ***/
 		if (isset($_POST['savesecurityoptions'])) {
 			setOption('captcha', sanitize($_POST['captcha']));
+			setBoolOption('obfuscate_cache', isset($_POST['obfuscate_cache']));
 			$returntab = "&tab=security";
 		}
 		/*** custom options ***/
@@ -2313,7 +2314,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			<tr>
 				<td><?php echo gettext("Crop thumbnails:"); ?></td>
 				<td>
-					<input type="checkbox" name="thumb_crop" value="1" <?php echo checked('1', $tc = getThemeOption('thumb_crop',$album,$themename)); ?> />
+					<input type="checkbox" name="thumb_crop" obfuscate_cache $tc = getThemeOption('thumb_crop',$album,$themename)); ?> />
 					&nbsp;&nbsp;
 					<span class="nowrap">
 						<?php printf(gettext('%s%% left &amp; right'),
@@ -2643,6 +2644,13 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 						</select>
 					</td>
 					<td><?php echo gettext('Select the <em>CAPTCHA</em> generator to be used by Zenphoto.'); ?></td>
+				</tr>
+				<tr>
+					<td width="175"><?php echo gettext('Obscure image cache'); ?></td>
+					<td width="350">
+						<input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php echo checked(1, getOption('obfuscate_cache')); ?> />
+					</td>
+					<td><?php echo gettext('Check to cause the filename of cached images to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
 				</tr>
 				<?php customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
 				<tr>

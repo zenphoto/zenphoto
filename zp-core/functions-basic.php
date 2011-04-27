@@ -494,7 +494,11 @@ function getImageCacheFilename($album8, $image8, $args) {
 			$albumsep = '/';
 		}
 	}
-	$result = '/' . $album . $albumsep . $image . $postfix . '.'.$suffix;
+	if (getOption('obfuscate_cache')) {
+		$result = '/' . $album . $albumsep . sha1($image . $postfix) . '.'.$suffix;
+	} else {
+		$result = '/' . $album . $albumsep . $image . $postfix . '.'.$suffix;
+	}
 	return $result;
 }
 
