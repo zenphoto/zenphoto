@@ -929,8 +929,8 @@ function updateCategory(&$reports) {
 	$id = sanitize_numeric($_POST['id']);
 	$permalink = getcheckboxState('permalink');
 	$title = process_language_string_save("title",2);
-	$desc = process_language_string_save("desc",2);
-	$custom = process_language_string_save("custom_data",2);
+	$desc = process_language_string_save("desc",0);
+	$custom = process_language_string_save("custom_data",1);
 	$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old'],3);
 	if (getcheckboxState('edittitlelink')) {
 		$titlelink = sanitize($_POST['titlelink'],3);
