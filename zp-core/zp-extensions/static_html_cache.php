@@ -153,7 +153,6 @@ class staticCache {
 					return false;	// a guest is logged onto a protected item, no caching!
 				}
 			}
-
 		$excludeList = array_merge(explode(",",getOption('static_cache_excludedpages')),array('404.php/','password.php/'));
 		foreach($excludeList as $item) {
 			$page_to_exclude = explode("/",$item);
@@ -242,7 +241,7 @@ class staticCache {
 	 * @return string
 	 */
 	function createCacheFilepath() {
-		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page;
+		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
 		// just make sure these are really empty
 		$cachefilepath = "";
 		$album = "";
@@ -264,13 +263,11 @@ class staticCache {
 		} else {
 			$locale = "_".getOption("locale");
 		}
-
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 				$cachesubfolder = "index";
 				$cachefilepath = "index".$page.$locale.".html";
 				break;
-
 			case 'album.php':
 			case 'image.php':
 				$cachesubfolder = "albums";
@@ -282,20 +279,25 @@ class staticCache {
 				}
 				$cachefilepath = $album.$image.$page.$locale.".html";
 				break;
-			default:
-				// custom pages except error page and search
-				if(isset($_GET['p'])) {
-					$cachesubfolder = "pages";
-					$custompage = $_zp_gallery_page;
-					if(isset($_GET['title'])) {
-						$title = "-".sanitize($_GET['title']);
-					}
-					if(isset($_GET['category'])) {
-						$category = "-".sanitize($_GET['category']);
-					}
-					$cachefilepath = $custompage.$category.$title.$page.$locale.".html";
-
+			case 'pages.php':
+				$cachesubfolder = "pages";
+				$cachefilepath = 'page-'.$_zp_current_zenpage_page->getTitlelink().$locale.".html";
+				break;
+			case 'news.php':
+				$cachesubfolder = "pages";
+				if(isset($_zp_current_zenpage_news)) {
+					$title = "-".$_zp_current_zenpage_news->getTitlelink();
 				}
+				if(isset($_zp_current_category)) {
+					$category = "-".$_zp_current_category->getTitlelink();
+				}
+				$cachefilepath = 'news'.$category.$title.$page.$locale.".html";
+				break;
+			default:
+				// custom pages
+				$cachesubfolder = "pages";
+				$custompage = $_zp_gallery_page;
+				$cachefilepath = $custompage.$locale.".html";
 				break;
 		}
 		// strip characters that cannot be in file names

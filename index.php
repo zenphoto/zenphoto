@@ -79,7 +79,6 @@ if (isset($_GET['p'])) {
 		$_zp_obj = THEMEFOLDER."/$theme/$page.php";
 		$_zp_gallery_page = basename($_zp_obj);
 	}
-
 // Display an Image page.
 } else if (in_context(ZP_IMAGE)) {
 	handleSearchParms('image', $_zp_current_album, $_zp_current_image);
@@ -151,6 +150,7 @@ if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj)
 		if (is_object($_zp_HTML_cache)) {	//	don't cache the logon page or you can never see the real one
 			$_zp_HTML_cache->abortHTMLCache();
 		}
+		$_zp_gallery_page = 'password.php';
 		$_zp_obj = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/password.php';
 		if (!file_exists(internalToFilesystem($_zp_obj))) {
 			$_zp_obj = SERVERPATH.'/'.ZENFOLDER.'/password.php';
@@ -166,6 +166,9 @@ if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj)
 } else {
 	// If the requested object does not exist, issue a 404 and redirect to the theme's
 	// 404.php page, or a 404.php in the zp-core folder.
+		if (is_object($_zp_HTML_cache)) {	//	don't cache the logon page or you can never see the real one
+			$_zp_HTML_cache->abortHTMLCache();
+		}
 	list($album, $image) = rewrite_get_album_image('album','image');
 	debug404($album, $image, $theme);
 	$_zp_gallery_page = '404.php';

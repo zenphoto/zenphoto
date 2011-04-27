@@ -210,7 +210,7 @@ class ZenpageCategory extends ZenpageRoot {
 			}
 		}
 		if (empty($hash)) { // no password required
-			return 'zp_unprotected';
+			return 'zp_public_access';
 		} else {
 			$authType = "zp_category_auth_" . $this->getID();
 			$saved_auth = zp_getCookie($authType);
@@ -232,7 +232,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @return bool
 	 */
 	function isProtected() {
-		return $this->checkforGuest() != 'zp_unprotected';
+		return $this->checkforGuest() != 'zp_public_access';
 	}
 
 	function isMyItem($action) {

@@ -4407,7 +4407,7 @@ function checkForGuest(&$hint=NULL, &$show=NULL) {
 			return 'zp_gallery_auth';
 		}
 	}
-	if (empty($hash)) return 'zp_unprotected';
+	if (empty($hash)) return 'zp_public_access';
 	return false;
 }
 

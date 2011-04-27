@@ -103,8 +103,8 @@ class ZenpageNews extends ZenpageItems {
 		$categories = $this->getCategories();
 		if(count($categories) > 0) {
 			foreach($categories as $cat) {
-				$cat = new ZenpageCategory($cat['titlelink']);
-				$password = $cat->getPassword();
+				$catobj = new ZenpageCategory($cat['titlelink']);
+				$password = $catobj->getPassword();
 				if(!empty($password)) {
 					return true;
 				}

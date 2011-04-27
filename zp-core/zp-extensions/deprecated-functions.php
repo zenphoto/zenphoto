@@ -590,7 +590,7 @@ function isProtectedPage($pageobj=NULL) {
 	deprecated_function_notify(gettext('Use instead the Zenpage page class method isProtected().'), E_USER_NOTICE);
 	global $_zp_current_zenpage_page;
 	if (is_null($pageobj)) $pageobj = $_zp_current_zenpage_page;
-	return $pageobj->checkforGuest() != 'zp_unprotected';
+	return $pageobj->checkforGuest() != 'zp_public_access';
 }
 
 /**
