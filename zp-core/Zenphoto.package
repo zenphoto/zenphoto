@@ -342,6 +342,7 @@ zp-core/images/admin-buttonback.jpg
 zp-core/images/admin-headerback.jpg
 zp-core/images/admin-headlineback.jpg
 zp-core/images/admin-navtabback.jpg
+zp-core/images/ajax-loader.gif
 zp-core/images/arrow_in.png
 zp-core/images/arrow_left_blue_round.png
 zp-core/images/arrow_out.png
@@ -2758,4 +2759,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2760
+2761

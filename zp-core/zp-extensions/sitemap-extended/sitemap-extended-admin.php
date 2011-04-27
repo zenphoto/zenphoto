@@ -149,8 +149,9 @@ echo '</head>';
 			generateSitemapCacheFile('sitemap-zenpage-pages',$sitemap_pages);
 		}
 		echo '</ul>';
-		echo '<p>'.gettext('Sitemap files are being generated...Patience please.').'</p>';
-		if(empty($metaURL)) {
+		if(!empty($metaURL)) {
+			echo '<p><img src="../../images/ajax-loader.gif" alt="" /><br /><br />'.gettext('Sitemap files are being generated...Patience please.').'</p>';
+		} else {
 			generateSitemapIndexCacheFile();
 		 ?>
 		<p><?php echo gettext('Finished!'); ?></p>
