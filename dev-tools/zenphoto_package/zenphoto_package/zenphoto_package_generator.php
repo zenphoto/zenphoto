@@ -10,8 +10,8 @@
 
 define("OFFSET_PATH",3);
 require_once("../../zp-core/admin-functions.php");
-$stdExclude = Array( '.', '..','.DS_Store','.cache','Thumbs.db','.htaccess','.svn','debug.html');
-$_zp_resident_files = getResidentFiles(SERVERPATH,array_merge($stdExclude, array('favicon.ico','robots.txt','albums','backup','cache','cache_html','plugins','themes','uploaded','zp-core','zp-data','.buildpath','.project','.settings','doc_files','dev-tools')));
+$stdExclude = Array( '.', '..','.DS_Store','.cache','Thumbs.db','.htaccess','.svn','debug.html','.buildpath','.project','.settings');
+$_zp_resident_files = getResidentFiles(SERVERPATH,array_merge($stdExclude, array('favicon.ico','robots.txt','albums','backup','cache','cache_html','plugins','themes','uploaded','zp-core','zp-data','doc_files','dev-tools')));
 
 $_zp_resident_files[] = THEMEFOLDER;
 
@@ -21,6 +21,8 @@ $_zp_resident_files = array_merge($_zp_resident_files,getResidentFiles(SERVERPAT
 $_zp_resident_files[] = THEMEFOLDER.'/effervescence_plus';
 $_zp_resident_files = array_merge($_zp_resident_files,getResidentFiles(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus',$stdExclude));
 
+
+//TODO: update the zenphoto base version after 1.4.1 goes Trunk
 $_zp_resident_files[] = THEMEFOLDER.'/garland';
 $_zp_resident_files = array_merge($_zp_resident_files,getResidentFiles(SERVERPATH.'/'.THEMEFOLDER.'/garland',$stdExclude));
 
