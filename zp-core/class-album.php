@@ -827,7 +827,7 @@ class Album extends MediaObject {
 							$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
 							$sql = "UPDATE ".prefix('albums'). " SET folder=".db_quote($newsubfolder)." WHERE id=".$subrow['id'];
 							if (query($sql)) {
-								zp_apply_filter('album_rename-move', $subrow['folder'], $newsubfolder);
+								zp_apply_filter('album_rename_move', $subrow['folder'], $newsubfolder);
 							} else {
 								$success = false;
 							}

@@ -124,11 +124,13 @@ class ZenpageNews extends ZenpageItems {
 			return false;
 		}
 		$categories = $this->getCategories();
-		if (!empty($categories)) {
+		if (empty($categories)) {	//	cannot be protected!
+			return 'zp_public_access';
+		} else {
 			foreach ($categories as $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
 				$guestaccess = $catobj->checkforGuest($hint, $show);
-				if (!$guestaccess) {
+				if ($guestaccess) {
 					return $guestaccess;
 				}
 			}

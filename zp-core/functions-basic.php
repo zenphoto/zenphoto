@@ -182,6 +182,8 @@ define('IM_SUFFIX',getOption('mod_rewrite_image_suffix'));
 define('UTF8_IMAGE_URI',getOption('UTF8_image_URI'));
 define('MEMBERS_ONLY_COMMENTS',getOption('comment_form_members_only'));
 
+define('HASH_SEED', getOption('extra_auth_hash_text'));
+
 // Set the version number.
 $_zp_conf_vars['version'] = ZENPHOTO_VERSION;
 
@@ -495,7 +497,7 @@ function getImageCacheFilename($album8, $image8, $args) {
 		}
 	}
 	if (getOption('obfuscate_cache')) {
-		$result = '/' . $album . $albumsep . sha1($image . $postfix) . '.'.$suffix;
+		$result = '/' . $album . $albumsep . sha1($image. HASH_SEED . $postfix) . '.'.$suffix;
 	} else {
 		$result = '/' . $album . $albumsep . $image . $postfix . '.'.$suffix;
 	}

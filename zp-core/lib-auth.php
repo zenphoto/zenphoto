@@ -136,13 +136,12 @@ class Zenphoto_Authority {
 	 * @return string
 	 */
 	function passwordHash($user, $pass) {
-		$seed = getOption('extra_auth_hash_text');
 		if (getOption('strong_hash')) {
-			$hash = sha1($user . $pass . $seed);
+			$hash = sha1($user . $pass . HASH_SEED);
 		} else {
-			$hash = md5($user . $pass . $seed);
+			$hash = md5($user . $pass . HASH_SEED);
 		}
-		if (DEBUG_LOGIN) { debugLog("passwordHash($user, $pass)[$seed]:$hash"); }
+		if (DEBUG_LOGIN) { debugLog("passwordHash($user, $pass)[{HASH_SEED}]:$hash"); }
 		return $hash;
 	}
 
