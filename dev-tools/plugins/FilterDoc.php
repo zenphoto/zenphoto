@@ -131,7 +131,8 @@ function processFilters() {
 					if (strpos($script, '<em>theme</em>') !== false) {
 						$class = 'Theme';
 						$subclass = 'Script';
-					} else if (strpos($basename, 'user') !== false  || strpos($basename, 'auth') !== false || strpos($basename, 'logon') !== false) {
+					} else if (strpos($basename, 'user') !== false  || strpos($basename, 'auth') !== false ||
+											strpos($basename, 'logon') !== false || strpos($key, 'login') !== false) {
 						$class = 'User_management';
 						$subclass = 'Miscellaneous';
 					} else if (strpos($basename, 'class') !== false) {
@@ -166,15 +167,18 @@ function processFilters() {
 										$subclass = 'Search';
 										break;
 								}
+								if (strpos($key, 'image') !== false || strpos($key, 'album') !== false) {
+									$subclass = 'Media';
+								}
 							}
 						}
 					} else if (strpos($script, 'admin') !== false) {
 						$class = 'Admin';
 						if (strpos($script, 'zenpage') !== false) {
 							$subclass = 'Zenpage';
-						} else if (strpos($basename, 'comment') !== false) {
+						} else if (strpos($basename, 'comment') !== false || strpos($key, 'comment')) {
 							$subclass = 'Comment';
-						} else if (strpos($basename, 'edit') !== false) {
+						} else if (strpos($basename, 'edit') !== false || strpos($key, 'album') !== false || strpos($key, 'image') !== false) {
 							$subclass = 'Media';
 						}
 					} else if (strpos($script, 'template') !== false) {
