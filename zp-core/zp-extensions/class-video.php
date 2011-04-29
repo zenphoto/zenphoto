@@ -129,9 +129,7 @@ class Video extends _Image {
 	 */
 	function getThumbImageFile($path=NULL) {
 		if (is_null($path)) $path = SERVERPATH;
-		if ($this->objectsThumb != NULL) {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
-		} else {
+		if (is_null($this->objectsThumb)) {
 			$suffix = getSuffix($this->filename);
 			switch($suffix) {
 				case "mp3":
@@ -160,6 +158,8 @@ class Video extends _Image {
 					$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER.'/' . substr(basename(__FILE__), 0, -4).$img;
 				}
 			}
+		} else {
+			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
 		}
 		return $imgfile;
 	}

@@ -125,9 +125,7 @@ class TextObject extends _Image {
 		if (is_null($path)) {
 			$path = SERVERPATH;
 		}
-		if ($this->objectsThumb != NULL) {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
-		} else {
+		if (is_null($this->objectsThumb)) {
 			switch(getSuffix($this->filename)) {
 				default: // just in case we extend and are lazy...
 					$img = '/textDefault.png';
@@ -137,8 +135,10 @@ class TextObject extends _Image {
 			if (!file_exists($imgfile)) {
 				$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER .'/class-textobject/'.$img;
 			}
+		} else {
+			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
 		}
-	return $imgfile;
+		return $imgfile;
 	}
 
 	/**
@@ -150,7 +150,7 @@ class TextObject extends _Image {
 	function getThumb($type='image') {
 		list($custom, $sw, $sh, $cw, $ch, $cx, $cy) = $this->getThumbCropping($type);
 		$wmt = $this->watermark;
-		if ($this->objectsThumb == NULL) {
+		if (is_null($this->objectsThumb)) {
 			$cx = $cy = NULL;
 			$filename = makeSpecialImageName($this->getThumbImageFile());
 			if (!$this->watermarkDefault) {

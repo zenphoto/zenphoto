@@ -100,9 +100,7 @@ class AnyFile extends TextObject {
 		if (is_null($path)) {
 			$path = SERVERPATH;
 		}
-		if ($this->objectsThumb != NULL) {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
-		} else {
+		if (is_null($this->objectsThumb)) {
 			$img = '/'.getSuffix($this->filename).'Default.png';
 			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($this->album->gallery->getCurrentTheme()) . '/images/'.$img;
 			if (!file_exists($imgfile)) {
@@ -111,6 +109,8 @@ class AnyFile extends TextObject {
 					$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER .'/'. substr(basename(__FILE__), 0, -4). '/anyFileDefault.png';
 				}
 			}
+		} else {
+			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
 		}
 	return $imgfile;
 	}

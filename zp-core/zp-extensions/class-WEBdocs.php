@@ -108,9 +108,7 @@ class WEBdocs extends TextObject {
 		if (is_null($path)) {
 			$path = SERVERPATH;
 		}
-		if ($this->objectsThumb != NULL) {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
-		} else {
+		if (is_null($this->objectsThumb)) {
 			switch(getSuffix($this->filename)) {
 				case "pdf":
 					$img = '/pdfDefault.png';
@@ -127,6 +125,8 @@ class WEBdocs extends TextObject {
 			if (!file_exists($imgfile)) {
 				$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER .'/'. substr(basename(__FILE__), 0, -4). '/'.$img;
 			}
+		} else {
+			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
 		}
 	return $imgfile;
 	}

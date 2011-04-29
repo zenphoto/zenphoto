@@ -18,15 +18,9 @@ class Gallery {
 
 	var $albumdir = NULL;
 	var $albums = NULL;
-	var $options = NULL;
 	var $theme;
 	var $themes;
 	var $lastalbumsort = NULL;
-	var $title = NULL;
-	var $desc = NULL;
-	var $pass = NULL;
-	var $user = NULL;
-	var $hint = NULL;
 
 	/**
 	 * Creates an instance of a gallery
@@ -788,6 +782,76 @@ class Gallery {
 	function countHit() {
 		$hc = getOption('Page-Hitcounter-index')+1;
 		setOption('Page-Hitcounter-index', $hc);
+	}
+
+	function get($field) {
+		switch ($field) {
+			case 'hitcounter':
+				$result = getOption('Page-Hitcounter-index');
+				break;
+			case 'theme':
+				$result = getOption('current_theme');
+				break;
+			case 'user':
+				$result = GALLERY_USER;
+				break;
+			case 'password':
+				$result = GALLERY_PASSWORD;
+				break;
+			case 'password_hint':
+				$result = GALLERY_HINT;
+				break;
+			case 'title':
+				$result = GALLERY_TITLE;
+				break;
+			case 'desc':
+				$result = GALLERY_DESCRIPTION;
+				break;
+			case 'sort_direction':
+				$result = GALLERY_SORT_DIRECTION;
+				break;
+			case 'sort_type':
+				$result = GALLERY_SORT_DIRECTION;
+				break;
+			default:
+				$result = NULL;
+				break;
+		}
+		return $result;
+	}
+
+	function set($field, $value) {
+		switch ($field) {
+			case 'hitcounter':
+				setOption('Page-Hitcounter-index', $value);
+				break;
+			case 'theme':
+				setOption('current_theme', $value);
+				break;
+			case 'user':
+				setOption('gallery_user', $value);
+				break;
+			case 'password':
+				setOption('gallery_password', $value);
+				break;
+			case 'password_hint':
+				setOption('gallery_hint', $value);
+				break;
+			case 'title':
+				setOption('gallery_title', $value);
+				break;
+			case 'desc':
+				setOption('Gallery_description', $value);
+				break;
+			case 'sort_direction':
+				setOption('gallery_direction', $value);
+				break;
+			case 'sort_type':
+				setOption('gallery_sorttype', $value);
+				break;
+			default:
+				break;
+		}
 	}
 
 }
