@@ -35,7 +35,7 @@ if (!defined('WEBPATH')) die();
 		</div>
 
 	<?php
-	if (!zp_loggedin() && function_exists('printRegistrationForm') && getOption('gallery_page_unprotected_register')) {
+	if (!zp_loggedin() && function_exists('printRegistrationForm') && $_zp_gallery->isUnprotectedPage('register')) {
 		printCustomPageURL(gettext('Register for this site'), 'register', '', '<br />');
 		echo '<br />';
 	}

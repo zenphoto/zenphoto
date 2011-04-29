@@ -15,7 +15,7 @@ $_GET['page'] = 'tags';
 
 if (isset($_REQUEST['tagsort'])) {
 	$tagsort = sanitize($_REQUEST['tagsort'], 0);
-	setBoolOption('tagsort', $tagsort);
+	setOption('tagsort', ($tagsort && true));
 } else {
 	$tagsort = getOption('tagsort');
 }

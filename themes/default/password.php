@@ -34,7 +34,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 
 <div id="credit">
 	<?php
-	if (!zp_loggedin() && function_exists('printRegistrationForm') && getOption('gallery_page_unprotected_register')) {
+	if (!zp_loggedin() && function_exists('printRegistrationForm') && $_zp_gallery->isUnprotectedPage('register')) {
 		echo '<p>';
 		printCustomPageURL(gettext('Register for this site'), 'register', '', '<br />');
 		echo '</p>';

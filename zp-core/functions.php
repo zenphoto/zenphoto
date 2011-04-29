@@ -28,7 +28,7 @@ $_zp_captcha = new Captcha();
 //setup session before checking for logon cookie
 require_once(dirname(__FILE__).'/functions-i18n.php');
 
-if (ALBUM_SESSION && session_id() == '') {
+if (GALLERY_SESSION && session_id() == '') {
 	// force session cookie to be secure when in https
 	if(secureServer()) {
 		$CookieInfo=session_get_cookie_params();
@@ -369,6 +369,7 @@ function is_valid_email_zp($input_email) {
  */
 function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL) {
 	global $_zp_authority;
+	$gallery = new Gallery();
 	$result = '';
 	if (is_null($email_list)) {
 		$email_list = $_zp_authority->getAdminEmail();
@@ -445,7 +446,7 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 			}
 
 			$from_mail = getOption('site_email');
-			$from_name = get_language_string(getOption('gallery_title'), getOption('locale'));
+			$from_name = get_language_string($gallery->get('gallery_title'), getOption('locale'));
 
 			// Convert to UTF-8
 			if (LOCAL_CHARSET != 'UTF-8') {
@@ -545,14 +546,14 @@ function checkAlbumPassword($album, &$hint=NULL) {
 			$album = $album->getParent();
 		}
 		// revert all tlhe way to the gallery
-		$hash = getOption('gallery_password');
+		$hash = $_zp_gallery->getPassword();
 		$authType = 'zp_gallery_auth';
 		$saved_auth = zp_getCookie($authType);
 		if (empty($hash)) {
 			$authType = 'zp_public_access';
 		} else {
 			if ($saved_auth != $hash) {
-				$hint = get_language_string(getOption('gallery_hint'));
+				$hint = $_zp_gallery->getPasswordHint();
 				return false;
 			}
 		}
@@ -1680,9 +1681,9 @@ function zp_getCookie($name) {
 		} else {
 			$cookiev = '';
 		}
-		debugLog("zp_getCookie($name)::".'album_session='.ALBUM_SESSION."; SESSION[".session_id()."]=".$sessionv.", COOKIE=".$cookiev);
+		debugLog("zp_getCookie($name)::".'album_session='.GALLERY_SESSION."; SESSION[".session_id()."]=".$sessionv.", COOKIE=".$cookiev);
 	}
-	if (isset($_COOKIE[$name]) && !empty($_COOKIE[$name]) && !ALBUM_SESSION) {
+	if (isset($_COOKIE[$name]) && !empty($_COOKIE[$name]) && !GALLERY_SESSION) {
 		return $_COOKIE[$name];
 	}
 	if (isset($_SESSION[$name])) {
@@ -1700,7 +1701,7 @@ function zp_getCookie($name) {
  * @param string $path The path on the server in which the cookie will be available on
  */
 function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
-	if (DEBUG_LOGIN) debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".ALBUM_SESSION);
+	if (DEBUG_LOGIN) debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".GALLERY_SESSION);
 	if (is_null($time)) {
 		$time = COOKIE_PESISTENCE;
 	}
@@ -1709,7 +1710,7 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 			$path = '/';
 		}
 	}
-	if (($time < 0) || !ALBUM_SESSION) {
+	if (($time < 0) || !GALLERY_SESSION) {
 		setcookie($name, $value, time()+$time, $path, "", $secure);
 	}
 	if ($time < 0) {
@@ -1913,7 +1914,7 @@ function logTime($tag) {
  * @param string $authType override of athorization type
  */
 function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) {
-	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_authority, $_zp_current_zenpage_page;
+	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_authority, $_zp_current_zenpage_page, $_zp_gallery;
 	if (empty($authType)) { // not supplied by caller
 		$check_auth = '';
 		if (isset($_GET['z']) && $_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
@@ -1958,8 +1959,8 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		}
 		if (empty($check_auth)) { // anything else is controlled by the gallery credentials
 			$authType = 'zp_gallery_auth';
-			$check_auth = getOption('gallery_password');
-			$check_user = getOption('gallery_user');
+			$check_auth = $_zp_gallery->getPassword();
+			$check_user = $_zp_gallery->getUser();
 		}
 	}
 	// Handle the login form.

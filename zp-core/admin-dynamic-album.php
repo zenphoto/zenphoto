@@ -146,7 +146,7 @@ foreach ($albumlist as $fullfolder => $albumtitle) {
 		<td><?php echo gettext("Thumbnail:"); ?></td>
 		<td><select id="thumb" name="thumb">
 		<?php
-		$showThumb = getOption('thumb_select_images');
+		$showThumb = $galery->getThumbSelectImages();
 		echo "\n<option";
 		if ($showThumb) echo " class=\"thumboption\" value=\"\" style=\"background-color:#B1F7B6\"";
 		echo ' value="1">'.getOption('AlbumThumbSelecorText');

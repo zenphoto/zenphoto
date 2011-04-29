@@ -33,8 +33,8 @@ require_once('normalizer.php');
 				<ul>
 					<?php
 					$counter = 0;
-					setOption('gallery_sorttype', 'ID', false);  // set the sort type so we get most recent albums
-					setOption('gallery_sortdirection', '1', false);
+					$_zp_gallery->setSortDirection(true);
+					$_zp_gallery->setSortType('ID');
 					while (next_album() and $counter < 6):
 					?>
 						<li class="gal">

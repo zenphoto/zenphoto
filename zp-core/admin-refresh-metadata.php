@@ -156,7 +156,7 @@ if (isset($_GET['refresh']) && db_connect()) {
 	echo "<h3>".gettext("database connected")."</h3>";
 	if ($type !== 'prune&amp;') {
 		if (!empty($id)) {
-			$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0".(getOption('album_use_new_image_date')?", `date`=NULL":'')." WHERE `id`=$id";
+			$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0".($gallery->getAlbumUseImagedate()?", `date`=NULL":'')." WHERE `id`=$id";
 			query($sql);
 		}
 		$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0 $albumwhere";

@@ -123,7 +123,7 @@ function printZenJavascripts() {
  * @param string $id the html/css theming id
  */
 function printAdminToolbox($id='admin') {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery;
 	if (zp_loggedin()) {
 		$zf = WEBPATH."/".ZENFOLDER;
 		$dataid = $id . '_data';
@@ -167,7 +167,7 @@ function printAdminToolbox($id='admin') {
 		zp_apply_filter('admin_toolbox_global');
 
 		$gal = getOption('custom_index_page');
-		if (empty($gal) || !file_exists(SERVERPATH.'/'.THEMEFOLDER.'/'.getOption('current_theme').'/'.internalToFilesystem($gal).'.php')) {
+		if (empty($gal) || !file_exists(SERVERPATH.'/'.THEMEFOLDER.'/'.$_zp_gallery->getCurrentTheme().'/'.internalToFilesystem($gal).'.php')) {
 			$gal = 'index.php';
 		} else {
 			$gal .= '.php';
@@ -183,7 +183,7 @@ function printAdminToolbox($id='admin') {
 			}
 			if (zp_loggedin(UPLOAD_RIGHTS)) {
 				// admin has upload rights, provide an upload link for a new album
-				if (ALBUM_SESSION) { // XSRF defense requires sessions
+				if (GALLERY_SESSION) { // XSRF defense requires sessions
 					?>
 					<li><a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a></li>
 					<?php
@@ -212,7 +212,7 @@ function printAdminToolbox($id='admin') {
 					}
 				}
 				// and a delete link
-				if (ALBUM_SESSION) { // XSRF defense requires sessions
+				if (GALLERY_SESSION) { // XSRF defense requires sessions
 					?>
 					<li><a
 						href="javascript:confirmDeleteAlbum('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($albumname)) ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>');"
@@ -227,7 +227,7 @@ function printAdminToolbox($id='admin') {
 				<li><?php echo printLink($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
 				</li>
 				<?php
-				if (ALBUM_SESSION) { // XSRF defense requires sessions
+				if (GALLERY_SESSION) { // XSRF defense requires sessions
 					?>
 					<li><a
 						href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
@@ -249,7 +249,7 @@ function printAdminToolbox($id='admin') {
 				$imagename = $_zp_current_image->filename;
 				if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
 					// if admin has edit rights on this album, provide a delete link for the image.
-					if (ALBUM_SESSION) { // XSRF defense requires sessions
+					if (GALLERY_SESSION) { // XSRF defense requires sessions
 						?>
 						<li><a href="javascript:confirmDelete('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deleteimage&amp;album=<?php  echo urlencode(pathurlencode($albumname)); ?>&amp;image=<?php  echo urlencode($imagename); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteImage);"
 										title="<?php echo gettext("Delete the image"); ?>"><?php  echo gettext("Delete image"); ?></a></li>
@@ -292,7 +292,7 @@ function printAdminToolbox($id='admin') {
 				if (is_NewsArticle()) {
 					// page is a NewsArticle--provide zenpage edit, delete, and Add links
 					echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=".urlencode($titlelink)."\">".gettext("Edit Article")."</a></li>";
-					if (ALBUM_SESSION) { // XSRF defense requires sessions
+					if (GALLERY_SESSION) { // XSRF defense requires sessions
 						?>
 						<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
 							title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?></a></li>
@@ -307,7 +307,7 @@ function printAdminToolbox($id='admin') {
 				if (is_Pages()) {
 					// page is zenpage page--provide edit, delete, and add links
 					echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=".urlencode($titlelink)."\">".gettext("Edit Page")."</a></li>";
-					if (ALBUM_SESSION) { // XSRF defense requires sessions
+					if (GALLERY_SESSION) { // XSRF defense requires sessions
 						?>
 						<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/page-admin.php?del=<?php echo getPageID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deletePage)"
 							title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?></a></li>
@@ -397,7 +397,8 @@ function printGalleryDesc() {
  * @return string
  */
 function getMainSiteName() {
-	return get_language_string(getOption('website_title'));
+	global $_zp_gallery;
+	return $_zp_gallery->getWebsite();
 }
 
 /**
@@ -407,7 +408,8 @@ function getMainSiteName() {
  * @return string
  */
 function getMainSiteURL() {
-	return getOption('website_url');
+	global $_zp_gallery;
+	return $_zp_gallery->getWebsiteURL();
 }
 
 /**
@@ -417,7 +419,7 @@ function getMainSiteURL() {
  * @return string
  */
 function getGalleryIndexURL($relative=true) {
-	global $_zp_current_album, $_zp_gallery_page;
+	global $_zp_current_album, $_zp_gallery_page, $_zp_gallery;
 	if ($relative && ($_zp_gallery_page != 'index.php')  && in_context(ZP_ALBUM)) {
 		$album = getUrAlbum($_zp_current_album);
 		$page = $album->getGalleryPage();
@@ -428,7 +430,7 @@ function getGalleryIndexURL($relative=true) {
 	$gallink2 = '';
 	$specialpage = false;
 	if ($relative && $specialpage = getOption('custom_index_page')) {
-		if (file_exists(SERVERPATH.'/'.THEMEFOLDER.'/'.getOption('current_theme').'/'.internalToFilesystem($specialpage).'.php')) {
+		if (file_exists(SERVERPATH.'/'.THEMEFOLDER.'/'.$_zp_gallery->getCurrentTheme().'/'.internalToFilesystem($specialpage).'.php')) {
 			$gallink1 = $specialpage.'/';
 			$gallink2 = 'p='.$specialpage.'&';
 		} else {
@@ -1067,10 +1069,11 @@ function printParentBreadcrumb($before = '', $between=' | ', $after = ' | ', $tr
  * @param string $id optional css id
  *  */
 function printHomeLink($before='', $after='', $title=NULL, $class=NULL, $id=NULL) {
+	global $_zp_gallery;
 	$site = getOption('website_url');
 	if (!empty($site)) {
 		if (substr($site,-1) == "/") { $site = substr($site, 0, -1); }
-		if (empty($name)) { $name = get_language_string(getOption('website_title')); }
+		if (empty($name)) { $name = $_zp_gallery->getWebsiteTitle(); }
 		if (empty($name)) { $name = gettext('Home'); }
 		if ($site != FULLWEBPATH) {
 			echo $before;
@@ -4428,7 +4431,7 @@ function checkForGuest(&$hint=NULL, &$show=NULL) {
 function checkAccess(&$hint, &$show) {
 	global $_zp_current_album, $_zp_current_search, $_zp_gallery, $_zp_gallery_page,
 				$_zp_current_zenpage_page, $_zp_current_zenpage_news;
-	if (getOption('gallery_page_unprotected_'.stripSuffix($_zp_gallery_page))) return true;
+	if ($_zp_gallery->isUnprotectedPage(stripSuffix($_zp_gallery_page))) return true;
 	if (zp_loggedin()) {
 		$fail = zp_apply_filter('isMyItemToView', NULL);
 		if (!is_null($fail)) {	//	filter had something to say about access, honor it
@@ -4504,10 +4507,10 @@ function getPageRedirect() {
  *@since 1.1.3
  */
 function printPasswordForm($_password_hint, $_password_showProtected=true, $_password_showuser=NULL, $_password_redirect=NULL) {
-	global $_zp_login_error, $_zp_password_form_printed, $_zp_current_search, $_zp_gallery_page,
+	global $_zp_login_error, $_zp_password_form_printed, $_zp_current_search, $_zp_gallery, $_zp_gallery_page,
 					$_zp_current_album, $_zp_current_image, $theme, $_zp_current_zenpage_page, $_zp_authority;
 	if ($_zp_password_form_printed) return;
-	if (is_null($_password_showuser)) $_password_showuser = getOption('login_user_field');
+	if (is_null($_password_showuser)) $_password_showuser = $_zp_gallery->getUserLogonField();
 	if (is_null($_password_redirect)) $_password_redirect = getPageRedirect();
 	$_zp_password_form_printed = true;
 	?>

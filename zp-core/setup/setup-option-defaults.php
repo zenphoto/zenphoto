@@ -42,10 +42,6 @@ if ($_zp_authority->preferred_version > ($oldv = getOption('libauth_version'))) 
 
 // old zp-config.php opitons. preserve them
 $conf = $_zp_conf_vars;
-gettext($str = "Gallery");
-setOptionDefault('gallery_title', getAllTranslations($str));
-setOptionDefault('website_title', "");
-setOptionDefault('website_url', "");
 setOptionDefault('time_offset', 0);
 if (isset($_GET['mod_rewrite'])) {
 	if ($_GET['mod_rewrite'] == 'ON') {
@@ -65,7 +61,7 @@ if (isset($_GET['mod_rewrite'])) {
 }
 
 if (isset($_POST['setUTF8URI']) & $_POST['setUTF8URI'] != 'dont') {
-	setBoolOption('UTF8_image_URI', $_POST['setUTF8URI'] == 'true');
+	setOption('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'true'));
 }
 setOptionDefault('mod_rewrite_image_suffix', ".php");
 setOptionDefault('server_protocol', "http");
@@ -88,8 +84,6 @@ setOptionDefault('image_sharpen', 0);
 setOptionDefault('albums_per_page', 5);
 setOptionDefault('images_per_page', 15);
 
-setOptionDefault('gallery_password', '');
-setOptionDefault('gallery_hint', NULL);
 setOptionDefault('search_password', '');
 setOptionDefault('search_hint', NULL);
 setOptionDefault('album_session', 0);
@@ -112,12 +106,9 @@ if (getOption('perform_video_watermark')) {
 
 setOptionDefault('spam_filter', 'none');
 setOptionDefault('email_new_comments', 1);
-setOptionDefault('gallery_sorttype', 'ID');
-setOptionDefault('gallery_sortdirection', '0');
 setOptionDefault('image_sorttype', 'Filename');
 setOptionDefault('image_sortdirection', '0');
 setOptionDefault('hotlink_protection', '1');
-setOptionDefault('current_theme', 'default');
 setOptionDefault('feed_items', 10); // options for standard images rss
 setOptionDefault('feed_imagesize', 240);
 setOptionDefault('feed_sortorder', 'latest');
@@ -173,7 +164,6 @@ setOptionDefault('comment_email_required', 1);
 setOptionDefault('comment_web_required', 'show');
 setOptionDefault('Use_Captcha', false);
 setOptionDefault('full_image_quality', 75);
-setOptionDefault('persistent_archive', 0);
 
 if (getOption('protect_full_image') === '0') {
 	$protection = 'Unprotected';
@@ -200,14 +190,8 @@ setOptionDefault('date_format', '%x');
 setOptionDefault('zp_plugin_class-video', 9|CLASS_PLUGIN);
 
 setOptionDefault('use_lock_image', 1);
-setOptionDefault('gallery_user', '');
 setOptionDefault('search_user', '');
-setOptionDefault('album_use_new_image_date', 0);
-setOptionDefault('thumb_select_images', 0);
-gettext($str = 'You can insert your Gallery description on the Admin Options Gallery tab.');
-setOptionDefault('Gallery_description', getAllTranslations($str));
 setOptionDefault('multi_lingual', 0);
-setOptionDefault('login_user_field', 1);
 setOptionDefault('tagsort', 0);
 setOptionDefault('albumimagesort', 'ID');
 setOptionDefault('albumimagedirection', 'DESC');
@@ -332,8 +316,6 @@ setOptionDefault('comment_body_requiired', 1);
 
 
 setOptionDefault('zp_plugin_zenphoto_sendmail', 5|CLASS_PLUGIN);
-setOptionDefault('gallery_page_unprotected_register', 5);
-setOptionDefault('gallery_page_unprotected_contact', 5);
 
 setOptionDefault('RSS_album_image', 1);
 setOptionDefault('RSS_comments', 1);
@@ -397,8 +379,6 @@ query('DELETE FROM '.prefix('options').' WHERE `name`="search_space_is_OR"',fals
 if (!file_exists(SERVERPATH.'/'.WEBPATH.'/'.ZENFOLDER.'/favicon.ico')) {
 	@copy(SERVERPATH.'/'.ZENFOLDER.'/images/favicon.ico',SERVERPATH.'/favicon.ico');
 }
-
-setOptionDefault('gallery_security', 'public');
 
 $result = db_list_fields('albums');
 if (is_array($result)) {
@@ -483,5 +463,103 @@ if (getOption('comment_web_required') == 1) {
 	setOption('comment_web_required', 'required');
 }
 
-setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'))
+setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
+
+
+	$data = getOption('gallery_data');
+	if ($data) {
+		$data = unserialize($data);
+	} else {
+		$data = array();
+	}
+	if (!isset($data['gallery_sortdirection'])) $data['gallery_sortdirection'] = getOption('gallery_sortdirection');
+	if (!isset($data['gallery_sorttype'])) $data['gallery_sorttype'] = getOption('gallery_sorttype');
+	if (!isset($data['gallery_title'])) {
+		$data['gallery_title'] = getOption('gallery_title');
+		if (is_null($data['gallery_title'])) {
+			gettext($str = "Gallery");
+			$data['gallery_title'] =  getAllTranslations($str);
+		}
+	}
+	if (!isset($data['Gallery_description'])) {
+		$data['Gallery_description'] = getOption('Gallery_description');
+		if (is_null($data['Gallery_description'])) {
+			gettext($str = 'You can insert your Gallery description on the Admin Options Gallery tab.');
+			$data['Gallery_description'] =  getAllTranslations($str);
+		}
+	}
+	if (!isset($data['gallery_password'])) $data['gallery_password'] = getOption('gallery_password');
+	if (!isset($data['gallery_user'])) $data['gallery_user'] = getOption('gallery_user');
+	if (!isset($data['gallery_hint'])) $data['gallery_hint'] = getOption('gallery_hint');
+	if (!isset($data['hitcounter'])) $data['hitcounter'] = $result = getOption('Page-Hitcounter-index');
+	if (!isset($data['current_theme'])) {
+		$data['current_theme'] = getOption('current_theme');
+		if (is_null($data['current_theme'])) {
+		$data['current_theme'] = 'default';
+		}
+	}
+	if (!isset($data['website_title'])) $data['website_title'] = getOption('website_title');
+	if (!isset($data['website_url'])) $data['website_url'] = getOption('website_url');
+	if (!isset($data['gallery_security'])) {
+		$data['gallery_security'] = getOption('gallery_security');
+		if (is_null($data['gallery_security'])) {
+			$data['gallery_security'] = 'public';
+		}
+	}
+	if (!isset($data['login_user_field'])) $data['login_user_field'] = getOption('login_user_field');
+	if (!isset($data['album_use_new_image_date'])) $data['album_use_new_image_date'] = getOption('album_use_new_image_date');
+	if (!isset($data['thumb_select_images'])) $data['thumb_select_images'] = getOption('thumb_select_images');
+	if (!isset($data['persistent_archive'])) $data['persistent_archive'] = getOption('persistent_archive');
+	if (!isset($data['unprotected_pages'])) $data['unprotected_pages'] = getOption('unprotected_pages');
+	if ($data['unprotected_pages']) {
+		$unprotected = unserialize($data['unprotected_pages']);
+	} else {
+		setOptionDefault('gallery_page_unprotected_register', 1);
+		setOptionDefault('gallery_page_unprotected_contact', 1);
+		$optionlist = getOptionList();
+		foreach ($optionlist as $key=>$option) {
+			if ($option && strpos($key, 'gallery_page_unprotected_') === 0) {
+				$unprotected[] = str_replace('gallery_page_unprotected_', '', $key);
+			}
+		}
+	}
+
+	$data['unprotected_pages'] = serialize($unprotected);
+
+	setOptionDefault('gallery_data', serialize($data));
+
+/*TODO:enable on the 1.5 release
+ *
+The following options have been relocated to methods of the gallery object. They will be purged form installations
+on the Zenphoto 1.5 release.
+
+*gallery_page_unprotected_xxx
+*gallery_sortdirection
+*gallery_sorttype
+*gallery_title
+*Gallery_description
+ gallery_password
+ gallery_user
+ gallery_hint
+ current_theme
+*website_title
+*website_url
+ gallery_security
+ login_user_field
+ album_use_new_image_date
+ thumb_select_images
+ persistent_archive
+
+* these may have been used in third party themes. Themes should cease using these options and instead use the
+appropriate gallery methods.
+
+
+		foreach ($data as $key=>$option) {
+			purgeOption($key);
+		}
+		foreach ($unprotected as $page) {
+			purgeOption('gallery_page_unprotected_'.$page);
+		}
+*/
+
 ?>

@@ -51,7 +51,7 @@ $mcr_errors = array();
 $gallery->garbageCollect();
 if (isset($_GET['showthumbs'])) {	// switch the display selector
 	$how = sanitize($_GET['showthumbs']);
-	setBoolOption('album_tab_default_thumbs_'.(is_object($album)?$album->name:''), $how == 'no');
+	setOption('album_tab_default_thumbs_'.(is_object($album)?$album->name:''), (int) ($how == 'no'));
 }
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action']);
@@ -60,8 +60,9 @@ if (isset($_GET['action'])) {
 		/******************************************************************************/
 		case 'savealbumorder':
 			XSRFdefender('savealbumorder');
-			setOption('gallery_sorttype','manual');
-			setOption('gallery_sortdirection',0);
+			$gallery->setSortDirection(0);
+			$gallery->setSortType('manual');
+			$gallery->save();
 			$notify = postAlbumSort(NULL);
 			if (isset($_POST['ids'])) {
 				$action = processAlbumBulkActions();
@@ -1632,9 +1633,9 @@ if (isset($_GET['bulkmessage'])) {
 	$albums = getNestedAlbumList(NULL, $gallery_nesting);
 	if (count($albums) > 0) {
 		if (zp_loggedin(ADMIN_RIGHTS) && (count($albums)) > 1) {
-			$sorttype = strtolower(GALLERY_SORT_TYPE);
+			$sorttype = strtolower($gallery->getSortType());
 			if ($sorttype != 'manual') {
-				if (GALLERY_SORT_DIRECTION) {
+				if ($gallery->getSortDirection()) {
 					$dir = gettext(' descending');
 				} else {
 					$dir = '';

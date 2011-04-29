@@ -35,6 +35,7 @@ class SearchEngine
 	var $lastsubalbumsort = NULL;
 	var $iteration = 0;	//	used by apply_filter('search_statistics') to indicate sequential searches of different objects
 	var $processed_search = NULL;
+	var $gallery;
 
 	/**
 	 * Constuctor
@@ -45,6 +46,7 @@ class SearchEngine
 	function SearchEngine($dynamic_album = false) {
 		global $_zp_exifvars;
 		//image/album fields
+		$this->gallery = new Gallery();
 		$this->search_structure['title']							= gettext('Title');
 		$this->search_structure['desc']								= gettext('Description');
 		$this->search_structure['tags']								= gettext('Tags');
@@ -748,9 +750,9 @@ class SearchEngine
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
-						$key = lookupSortKey(GALLERY_SORT_TYPE, 'sort_order', 'folder');
+						$key = lookupSortKey($this->gallery->getSortType(), 'sort_order', 'folder');
 						if ($key != '`sort_order`') {
-							if (GALLERY_SORT_DIRECTION) {
+							if ($this->gallery->getSortDirection()) {
 								$key .= " DESC";
 							}
 						}
@@ -1044,8 +1046,8 @@ class SearchEngine
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
-						$key = lookupSortKey(GALLERY_SORT_TYPE, 'sort_order', 'folder');
-						if (GALLERY_SORT_DIRECTION) { $key .= " DESC"; }
+						$key = lookupSortKey($this->gallery->getSortType(), 'sort_order', 'folder');
+						if ($this->gallery->getSortDirection()) { $key .= " DESC"; }
 					} else {
 						$gallery = new Gallery();
 						$album = new Album($gallery, $this->dynalbumname);

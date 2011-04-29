@@ -8,7 +8,7 @@
 	</head>
 
 	<body>
-		<?php $_zp_authority->printLoginForm(NULL, true, getOption('login_user_field'), false, gettext("A password is required for the page you requested")); ?>
+		<?php $_zp_authority->printLoginForm(NULL, true, $_zp_gallery->getUserLogonField(), false, gettext("A password is required for the page you requested")); ?>
 		<div id="credit">
 			<?php printZenphotoLink(); ?>
 		</div>

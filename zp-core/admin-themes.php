@@ -92,7 +92,7 @@ echo "\n" . '<div id="content">';
 	$galleryTheme = $gallery->getCurrentTheme();
 	$themelist = array();
 	if (zp_loggedin(ADMIN_RIGHTS)) {
-		$gallery_title = get_language_string(getOption('gallery_title'));
+		$gallery_title = $gallery->getTitle();
 		if ($gallery_title != gettext("Gallery")) {
 			$gallery_title .= ' ('.gettext("Gallery").')';
 		}

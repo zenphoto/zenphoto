@@ -117,6 +117,28 @@ if ($page == "editcomment" && isset($_GET['id']) ) { ?>
 <form action="?action=savecomment" method="post">
 <?php XSRFToken('savecomment');?>
 <input	type="hidden" name="id" value="<?php echo $id; ?>" />
+	<span class="buttons">
+	<p class="buttons">
+		<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment')?>'; }"
+		title="<?php echo gettext('Delete'); ?>" ><img src="images/fail.png" alt="" />
+		<?php echo gettext('Delete'); ?></a>
+	</p>
+	<p class="buttons" style="margin-top: 10px">
+		<button type="submit" title="<?php echo gettext("Apply"); ?>">
+		<img src="images/pass.png" alt="" />
+		<strong><?php echo gettext("Apply"); ?></strong>
+		</button>
+	</p>
+	<p class="buttons" style="margin-top: 10px">
+		<button type="button" title="<?php echo gettext("Cancel"); ?>" onclick="window.location = 'admin-comments.php';">
+		<img src="images/reset.png" alt="" />
+		<strong><?php echo gettext("Cancel"); ?></strong>
+		</button>
+		</p>
+	</span>
+	<br style="clear:both" /><br />
+
+
 <table style="float:left;margin-right:2em;">
 
 	<tr>
@@ -191,26 +213,6 @@ if ($page == "editcomment" && isset($_GET['id']) ) { ?>
 <hr />
 <p><?php echo $status_private; ?></p>
 <p><?php echo $status_anon; ?></p>
-<hr />
-<p class="buttons">
-<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment')?>'; }"
-		title="<?php echo gettext('Delete'); ?>" ><img src="images/fail.png" alt="" />
-		<?php echo gettext('Delete'); ?></a></p>
-		<br style="clear:both" />
-<p class="buttons" style="margin-top: 10px">
-		<button type="submit" title="<?php echo gettext("Apply"); ?>">
-		<img src="images/pass.png" alt="" />
-		<strong><?php echo gettext("Apply"); ?></strong>
-		</button>
-		</p>
-		<br style="clear:both;" />
-<p class="buttons" style="margin-top: 10px">
-		<button type="button" title="<?php echo gettext("Cancel"); ?>" onclick="window.location = 'admin-comments.php';">
-		<img src="images/reset.png" alt="" />
-		<strong><?php echo gettext("Cancel"); ?></strong>
-		</button>
-		</p>
-		<br style="clear:both" />
 </div><!-- div box-edit-unpadded end -->
 </div>
 </form>

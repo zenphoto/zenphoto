@@ -63,7 +63,7 @@ function createAlbumZip($albumname){
 		pageError(404, gettext('Album not found'));
 		exit();
 	}
-	$persist = getOption('persistent_archive');
+	$persist = $_zp_gallery->getPersistentArchive();
 	$dest = $album->localpath.'.zip';
 	if (!$persist  || !file_exists($dest)) {
 		include_once('archive.php');

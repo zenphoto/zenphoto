@@ -220,7 +220,7 @@ class Album extends MediaObject {
 				if ($what == 'image') {
 					$direction = IMAGE_SORT_DIRECTION;
 				} else {
-					$direction = GALLERY_SORT_DIRECTION;
+					$direction = $this->gallery->getSortDirection();
 				}
 			} else {
 				$direction = $parentalbum->getSortDirection($what);
@@ -283,7 +283,7 @@ class Album extends MediaObject {
 		if (empty($type)) {
 			$parentalbum = $this->getParent();
 			if (is_null($parentalbum)) {
-				$type = GALLERY_SORT_TYPE;
+				$type = $this->gallery->getSortType();
 			} else {
 				$type = $parentalbum->getAlbumSortType();
 			}

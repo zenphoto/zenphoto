@@ -61,7 +61,6 @@ if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', 0777); }
 if (!defined('OFFSET_PATH')) { define('OFFSET_PATH', 0); }
 if (!defined('COOKIE_PESISTENCE')) { define('COOKIE_PESISTENCE', 5184000); }
 
-
 // If the server protocol is not set, set it to the default (obscure zp-config.php change).
 if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
 
@@ -72,7 +71,26 @@ $_charset = getOption('charset');
 if (!$_charset) {
 	$_charset = 'UTF-8';
 }
+
+$data = getOption('gallery_data');
+if ($data) {
+	$data = unserialize($data);
+} else {
+	$data = array();
+}
+if (isset($data['album_session'])) {
+	define('GALLERY_SESSION',$data['album_session']);
+} else {
+	define('GALLERY_SESSION',getOption('album_session'));
+}
+if (isset($data['gallery_security']))	{
+	define('GALLERY_SECURITY',$data['gallery_security']);
+} else {
+	define('GALLERY_SECURITY',getOption('gallery_security'));
+}
+
 define('LOCAL_CHARSET',$_charset);
+
 unset($_charset);
 // insure a correct timezone
 if (function_exists('date_default_timezone_set')) {
@@ -175,8 +193,6 @@ define('FULLIMAGE_WATERMARK',getOption('fullsizeimage_watermark'));
 define('THUMB_WATERMARK',getOption('THUMB_WATERMARK'));
 
 define('DATE_FORMAT',getOption('date_format'));
-define('ALBUM_SESSION',getOption('album_session'));
-define('GALLERY_SECURITY',getOption('gallery_security'));
 
 define('IM_SUFFIX',getOption('mod_rewrite_image_suffix'));
 define('UTF8_IMAGE_URI',getOption('UTF8_image_URI'));
@@ -301,16 +317,6 @@ function setOption($key, $value, $persistent=true) {
 	} else {
 		return false;
 	}
-}
-
-/**
- * Converts a boolean value to 1 or 0 and sets the option with it
- *
- * @param string $key the option
- * @param bool $value the value to be set
- */
-function setBoolOption($key, $value) {
-		setOption($key, (int) $value);
 }
 
 /**
@@ -1300,7 +1306,8 @@ function themeSetup($album) {
 	$id = NULL;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
-		return getOption('current_theme');
+		$galleryoptions = serialize(getOption('gallery_data'));
+		return $galleryoptions['current_theme'];
 	} else {
 		loadLocalOptions($id, $theme);
 		return $theme;
@@ -1485,7 +1492,7 @@ function getServerOS() {
 	$j = strpos($phpinfo,'</td>',$i);
 	$osinfo = strtolower(substr($phpinfo, $i+14,$j-$i-14));
 	$ostokens = explode(' ', $osinfo);
-  $os = array_shift($ostokens);
-  return $os;
+	$os = array_shift($ostokens);
+	return $os;
 }
 ?>

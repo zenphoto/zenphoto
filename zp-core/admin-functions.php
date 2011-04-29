@@ -238,7 +238,7 @@ function printLogoAndLinks() {
 		echo " &nbsp; | &nbsp; <a href=\"".WEBPATH."/".ZENFOLDER."/admin.php?logout=".$sec."\">".gettext("Log Out")."</a> &nbsp; | &nbsp; ";
 	}
 	echo '<a href="'.FULLWEBPATH.'">';
-	$t = get_language_string(getOption('gallery_title'));
+	$t = $gallery->getTitle();
 	if (!empty($t))	{
 		printf(gettext("View <em>%s</em>"), $t);
 	} else {
@@ -1370,7 +1370,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						<td align="left" valign="top" width="150"><?php echo gettext("Thumbnail:"); ?> </td>
 						<td>
 						<?php
-						$showThumb = getOption('thumb_select_images');
+						$showThumb =$gallery->getThumbSelectImages();
 						$thumb = $album->get('thumb');
 						if ($showThumb)  {
 							?>
@@ -1460,7 +1460,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 											if (is_valid_image($filename)) {
 												$selected = ($imagepath == $thumb);
 												echo "\n<option";
-												if (getOption('thumb_select_images')) {
+												if ($gallery->getThumbSelectImages()) {
 													echo " class=\"thumboption\"";
 													echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) . "); background-repeat: no-repeat;\"";
 												}
@@ -1480,7 +1480,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 										$selected = ($filename == $album->get('thumb'));
 										if (is_valid_image($filename)) {
 											echo "\n<option";
-											if (getOption('thumb_select_images')) {
+											if ($gallery->getThumbSelectImages()) {
 												echo " class=\"thumboption\"";
 												echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) . "); background-repeat: no-repeat;\"";
 											}
@@ -2456,7 +2456,7 @@ function process_language_string_save($name, $sanitize_level=3) {
 function getTagOrder() {
 	if (isset($_REQUEST['tagsort'])) {
 		$tagsort = sanitize($_REQUEST['tagsort'], 0);
-		setBoolOption('tagsort', $tagsort);
+		setOption('tagsort', (int) ($tagsort && true));
 	} else {
 		$tagsort = getOption('tagsort');
 	}

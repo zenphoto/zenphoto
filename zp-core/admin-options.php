@@ -69,7 +69,7 @@ if (isset($_GET['action'])) {
 				}
 			}
 
-			setBoolOption('mod_rewrite', isset($_POST['mod_rewrite']));
+			setOption('mod_rewrite', (int) isset($_POST['mod_rewrite']));
 			setOption('mod_rewrite_image_suffix', sanitize($_POST['mod_rewrite_image_suffix'],3));
 			if (isset($_POST['time_zone'])) {
 				setOption('time_zone', $tz = sanitize($_POST['time_zone'], 3));
@@ -84,12 +84,12 @@ if (isset($_GET['action'])) {
 			}
 			setOption('charset', sanitize($_POST['charset']),3);
 			setOption('site_email', sanitize($_POST['site_email']),3);
-			setBoolOption('multi_lingual', isset($_POST['multi_lingual']));
+			setOption('multi_lingual', (int) isset($_POST['multi_lingual']));
 			$f = sanitize($_POST['date_format_list'],3);
 			if ($f == 'custom') $f = sanitize($_POST['date_format'],3);
 			setOption('date_format', $f);
-			setBoolOption('UTF8_image_URI', isset($_POST['UTF8_image_URI']));
-			setBoolOption('edit_in_place',sanitize_numeric($_POST['edit_in_place']));
+			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
+			setOption('edit_in_place',(int) (sanitize_numeric($_POST['edit_in_place']) && true));
 			$msg = zp_apply_filter('save_admin_general_data', '');
 
 			$returntab = "&tab=general";
@@ -98,42 +98,36 @@ if (isset($_GET['action'])) {
 		/*** Gallery options ***/
 		if (isset($_POST['savegalleryoptions'])) {
 
-			setBoolOption('persistent_archive', isset($_POST['persistent_archive']));
-			setBoolOption('album_session', isset($_POST['album_session']));
-			setBoolOption('thumb_select_images', isset($_POST['thumb_select_images']));
-			setOption('gallery_title', process_language_string_save('gallery_title', 2));
-			setoption('Gallery_description', process_language_string_save('Gallery_description', 1));
-			setOption('website_title', process_language_string_save('website_title', 2));
+			$gallery->setPersistentArchive((int) isset($_POST['persistent_archive']));
+			$gallery->setGallerySession((int) isset($_POST['album_session']));
+			$gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
+			$gallery->set('gallery_title', process_language_string_save('gallery_title', 2));
+			$gallery->set('Gallery_description', process_language_string_save('Gallery_description', 1));
+			$gallery->set('website_title', process_language_string_save('website_title', 2));
 			$web = sanitize($_POST['website_url'],3);
-			setOption('website_url', $web);
-			setBoolOption('album_use_new_image_date', isset($_POST['album_use_new_image_date']));
+			$gallery->setWebsiteURL($web);
+			$gallery->setAlbumUseImagedate((int) isset($_POST['album_use_new_image_date']));
 			$st = strtolower(sanitize($_POST['gallery_sorttype'],3));
 			if ($st == 'custom') $st = strtolower(sanitize($_POST['customalbumsort'],3));
-			setOption('gallery_sorttype', $st);
+			$gallery->setSortType($st);
 			if (($st == 'manual') || ($st == 'random')) {
-				setBoolOption('gallery_sortdirection', 0);
+				$gallery->setSortDirection(0);
 			} else {
-				setBoolOption('gallery_sortdirection', isset($_POST['gallery_sortdirection']));
+				$gallery->setSortDirection((int) isset($_POST['gallery_sortdirection']));
 			}
 			foreach ($_POST as $item=>$value) {
 				if (strpos($item, 'gallery-page_')===0) {
-					$item = 'gallery_page_unprotected_'.sanitize(substr($item, 13));
-					if (isset($_POST[$item])) {
-						$v = 1;
-					} else {
-						$v = 0;
-					}
-					setOption($item, $v);
+					$item = sanitize(substr($item, 13));
+					$gallery->setUnprotectedPage($item, (int) isset($_POST['gallery_page_unprotected_'.$item]));
 				}
 			}
-			$sec = sanitize($_POST['gallery_security'],3);
-			setOption('gallery_security',$sec);
-			setOption('login_user_field', isset($_POST['login_user_field']));
+			$gallery->setSecurity(sanitize($_POST['gallery_security'],3));
+			$gallery->setUserLogonField(isset($_POST['login_user_field']));
 			if ($_POST['password_enabled']) {
-			$olduser = getOption('gallery_user');
+			$olduser = $galery->getUser();
 			$newuser = trim(sanitize($_POST['gallery_user'],3));
 			if (!empty($newuser)) {
-				setOption('login_user_field', 1);
+				$gallery->setUserLogonField(1);
 			}
 			$pwd = trim(sanitize($_POST['gallerypass']));
 			$fail = '';
@@ -141,13 +135,13 @@ if (isset($_GET['action'])) {
 					if (!empty($newuser)  && empty($pwd) && empty($pwd2)) $fail = '?mismatch=user_gallery';
 				}
 				if (!$fail && $_POST['gallerypass'] == $_POST['gallerypass_2']) {
-					setOption('gallery_user', $newuser);
+					$gallery->setUser($newuser);
 					if (empty($pwd)) {
 						if (empty($_POST['gallerypass'])) {
-							setOption('gallery_password', NULL);  // clear the gallery password
+							$gallery->setPassword(NULL);	// clear the gallery password
 						}
 					} else {
-						setOption('gallery_password', $_zp_authority->passwordHash($newuser, $pwd));
+						$gallery->setPassword( $_zp_authority->passwordHash($newuser, $pwd));
 					}
 				} else {
 					if (empty($fail)) {
@@ -156,8 +150,9 @@ if (isset($_GET['action'])) {
 						$notify = $fail;
 					}
 				}
-				setOption('gallery_hint', process_language_string_save('gallery_hint', 3));
+				$gallery->set('gallery_hint', process_language_string_save('gallery_hint', 3));
 			}
+			$gallery->save();
 			$returntab = "&tab=gallery";
 		}
 
@@ -177,7 +172,8 @@ if (isset($_GET['action'])) {
 			$newuser = trim(sanitize($_POST['search_user'],3));
 			if ($_POST['password_enabled']) {
 				if (!empty($newuser)) {
-					setOption('login_user_field', 1);
+					$gallery->setUserLogonField(1);
+					$gallery->save();
 				}
 				$pwd = trim(sanitize($_POST['searchpass']));
 				if ($olduser != $newuser) {
@@ -202,10 +198,10 @@ if (isset($_GET['action'])) {
 				setOption('search_hint', process_language_string_save('search_hint', 3));
 			}
 			setOption('search_space_is',sanitize($_POST['search_space_is']));
-			setBoolOption('search_no_albums', isset($_POST['search_no_albums']));
-			setBoolOption('search_no_images', isset($_POST['search_no_images']));
-			setBoolOption('search_no_pages', isset($_POST['search_no_pages']));
-			setBoolOption('search_no_news', isset($_POST['search_no_news']));
+			setOption('search_no_albums', (int) isset($_POST['search_no_albums']));
+			setOption('search_no_images', (int) isset($_POST['search_no_images']));
+			setOption('search_no_pages', (int) isset($_POST['search_no_pages']));
+			setOption('search_no_news', (int) isset($_POST['search_no_news']));
 			$returntab = "&tab=search";
 		}
 
@@ -218,14 +214,14 @@ if (isset($_GET['action'])) {
 			setOption('feed_imagesize_albums', sanitize($_POST['feed_imagesize_albums'],3));
 			setOption('feed_sortorder_albums', sanitize($_POST['feed_sortorder_albums'],3));
 			setOption('feed_cache_expire', sanitize($_POST['feed_cache_expire'],3));
-			setBoolOption('feed_enclosure', isset($_POST['feed_enclosure']));
-			setBoolOption('feed_mediarss', isset($_POST['feed_mediarss']));
-			setBoolOption('feed_cache', isset($_POST['feed_cache']));
-			setBoolOption('RSS_album_image', isset($_POST['RSS_album_image']));
-			setBoolOption('RSS_comments', isset($_POST['RSS_comments']));
-			setBoolOption('RSS_articles', isset($_POST['RSS_articles']));
-			setBoolOption('RSS_article_comments', isset($_POST['RSS_article_comments']));
-			setBoolOption('feed_hitcounter', isset($_POST['feed_hitcounter']));
+			setOption('feed_enclosure', (int) isset($_POST['feed_enclosure']));
+			setOption('feed_mediarss', (int) isset($_POST['feed_mediarss']));
+			setOption('feed_cache', (int) isset($_POST['feed_cache']));
+			setOption('RSS_album_image', (int) isset($_POST['RSS_album_image']));
+			setOption('RSS_comments', (int) isset($_POST['RSS_comments']));
+			setOption('RSS_articles', (int) isset($_POST['RSS_articles']));
+			setOption('RSS_article_comments', (int) isset($_POST['RSS_article_comments']));
+			setOption('feed_hitcounter', (int) isset($_POST['feed_hitcounter']));
 			$returntab = "&tab=rss";
 		}
 
@@ -233,11 +229,11 @@ if (isset($_GET['action'])) {
 		if (isset($_POST['saveimageoptions'])) {
 			setOption('image_quality', sanitize($_POST['image_quality'],3));
 			setOption('thumb_quality', sanitize($_POST['thumb_quality'],3));
-			setBoolOption('image_allow_upscale', isset($_POST['image_allow_upscale']));
-			setBoolOption('thumb_sharpen', isset($_POST['thumb_sharpen']));
-			setBoolOption('image_sharpen', isset($_POST['image_sharpen']));
-			setBoolOption('image_interlace', isset($_POST['image_interlace']));
-			setBoolOption('ImbedIPTC', isset($_POST['ImbedIPTC']));
+			setOption('image_allow_upscale', (int) isset($_POST['image_allow_upscale']));
+			setOption('thumb_sharpen', (int) isset($_POST['thumb_sharpen']));
+			setOption('image_sharpen', (int) isset($_POST['image_sharpen']));
+			setOption('image_interlace', (int) isset($_POST['image_interlace']));
+			setOption('ImbedIPTC', (int) isset($_POST['ImbedIPTC']));
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
 			$num = str_replace(',', '.', sanitize($_POST['sharpen_radius']));
 			if (is_numeric($num)) setOption('sharpen_radius', $num);
@@ -253,7 +249,7 @@ if (isset($_GET['action'])) {
 			}
 
 			setOption('watermark_scale', sanitize($_POST['watermark_scale'],3));
-			setBoolOption('watermark_allow_upscale', isset($_POST['watermark_allow_upscale']));
+			setOption('watermark_allow_upscale', (int) isset($_POST['watermark_allow_upscale']));
 			setOption('watermark_h_offset', sanitize($_POST['watermark_h_offset'],3));
 			setOption('watermark_w_offset', sanitize($_POST['watermark_w_offset'],3));
 
@@ -268,14 +264,15 @@ if (isset($_GET['action'])) {
 			}
 
 			setOption('full_image_quality', sanitize($_POST['full_image_quality'],3));
-			setBoolOption('cache_full_image', isset($_POST['cache_full_image']));
+			setOption('cache_full_image', (int) isset($_POST['cache_full_image']));
 			setOption('protect_full_image', sanitize($_POST['protect_full_image'],3));
 
 			if (sanitize($_POST['password_enabled'], 3)) {
 				$olduser = getOption('protected_image_user');
 				$newuser = trim(sanitize($_POST['protected_image_user'],3));
 				if (!empty($newuser)) {
-					setOption('login_user_field', 1);
+					$gallery->setUserLogonField(1);
+					$gallery->save();
 				}
 				$fail = '';
 				$pwd = trim(sanitize($_POST['imagepass']));
@@ -300,18 +297,18 @@ if (isset($_GET['action'])) {
 				}
 				setOption('protected_image_hint', process_language_string_save('protected_image_hint', 3));
 			}
-			setBoolOption('hotlink_protection', isset($_POST['hotlink_protection']));
-			setBoolOption('use_lock_image', isset($_POST['use_lock_image']));
+			setOption('hotlink_protection', (int) isset($_POST['hotlink_protection']));
+			setOption('use_lock_image', (int) isset($_POST['use_lock_image']));
 			$st = sanitize($_POST['image_sorttype'],3);
 			if ($st == 'custom') {
 				$st = unQuote(strtolower(sanitize($_POST['customimagesort'], 3)));
 			}
 			setOption('image_sorttype', $st);
-			setBoolOption('image_sortdirection', isset($_POST['image_sortdirection']));
-			setBoolOption('auto_rotate', isset($_POST['auto_rotate']));
+			setOption('image_sortdirection', (int) isset($_POST['image_sortdirection']));
+			setOption('auto_rotate', (int) isset($_POST['auto_rotate']));
 			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
 			foreach ($_zp_exifvars as $key=>$item) {
-				setBoolOption($key, array_key_exists($key, $_POST));
+				setOption($key, (int) array_key_exists($key, $_POST));
 			}
 			$returntab = "&tab=image";
 		}
@@ -319,11 +316,11 @@ if (isset($_GET['action'])) {
 
 		if (isset($_POST['savecommentoptions'])) {
 			setOption('spam_filter', sanitize($_POST['spam_filter'],3));
-			setBoolOption('email_new_comments', isset($_POST['email_new_comments'])&&$_POST['email_new_comments']);
+			setOption('email_new_comments', (int) isset($_POST['email_new_comments'])&&$_POST['email_new_comments']);
 			setOption('comment_name_required', sanitize($_POST['comment_name_required']));
 			setOption('comment_email_required',sanitize($_POST['comment_email_required']));
 			setOption('comment_web_required', sanitize($_POST['comment_web_required']));
-			setBoolOption('Use_Captcha', isset($_POST['Use_Captcha'])&&$_POST['Use_Captcha']);
+			setOption('Use_Captcha', (int) isset($_POST['Use_Captcha'])&&$_POST['Use_Captcha']);
 			$returntab = "&tab=comments";
 
 		}
@@ -392,17 +389,17 @@ if (isset($_GET['action'])) {
 					setOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
 					setOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
 					setOption('thumb_size', $ts, $table, $themename);
-					setBoolOption('thumb_crop', isset($_POST['thumb_crop']), $table, $themename);
+					setOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
 					setOption('thumb_crop_width', $ncw, $table, $themename);
 					setOption('thumb_crop_height', $nch, $table, $themename);
 					setOption('albums_per_page', $albums_per_page, $table, $themename);
 					setOption('images_per_page', $images_per_page, $table, $themename);
 					setOption('albums_per_row', $albums_per_row, $table, $themename);
 					setOption('images_per_row', $images_per_row, $table, $themename);
-					if (isset($_POST['thumb_transition'])) setBoolOption('thumb_transition', sanitize_numeric($_POST['thumb_transition'])-1, $table, $themename);
+					if (isset($_POST['thumb_transition'])) setOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition'])-1) && true), $table, $themename);
 					setOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
-					setBoolOption('thumb_gray', isset($_POST['thumb_gray']), $table, $themename);
-					setBoolOption('image_gray', isset($_POST['image_gray']), $table, $themename);
+					setOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
+					setOption('image_gray', (int) isset($_POST['image_gray']), $table, $themename);
 				}
 				if ($nch != $ch || $ncw != $cw) { // the crop height/width has been changed
 					$sql = 'UPDATE '.prefix('images').' SET `thumbX`=NULL,`thumbY`=NULL,`thumbW`=NULL,`thumbH`=NULL WHERE `thumbY` IS NOT NULL';
@@ -419,7 +416,7 @@ if (isset($_GET['action'])) {
 		/*** Security Options ***/
 		if (isset($_POST['savesecurityoptions'])) {
 			setOption('captcha', sanitize($_POST['captcha']));
-			setBoolOption('obfuscate_cache', isset($_POST['obfuscate_cache']));
+			setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
 			$returntab = "&tab=security";
 		}
 		/*** custom options ***/
@@ -908,14 +905,14 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td width="175"><?php echo gettext("Gallery title:"); ?></td>
 					<td width="350">
-					<?php print_language_string_list(getOption('gallery_title'), 'gallery_title') ?>
+					<?php print_language_string_list($gallery->get('gallery_title'), 'gallery_title') ?>
 					</td>
 					<td><?php echo gettext("What you want to call your Zenphoto site."); ?></td>
 				</tr>
 				<tr>
 					<td width="175"><?php echo gettext("Gallery description:"); ?></td>
 					<td width="350">
-					<?php print_language_string_list(getOption('Gallery_description'), 'Gallery_description', true, NULL, 'texteditor') ?>
+					<?php print_language_string_list($gallery->get('Gallery_description'), 'Gallery_description', true, NULL, 'texteditor') ?>
 					</td>
 					<td><?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?></td>
 				</tr>
@@ -942,7 +939,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</td>
 						<td style="background-color: #ECF1F2;">
 						<?php
-						$x = getOption('gallery_password');
+						$x = $gallery->getPassword();
 						if (empty($x)) {
 							?>
 							<img src="images/lock_open.png" />
@@ -984,13 +981,13 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<p><?php echo gettext("Gallery password hint:"); ?></p>
 						</td>
 						<td>
-							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"id="gallery_user"  name="gallery_user" value="<?php echo html_encode(getOption('gallery_user')); ?>" /></p>
+							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"id="gallery_user"  name="gallery_user" value="<?php echo html_encode($gallery->getUser()); ?>" /></p>
 							<p>
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="gallerypass" name="gallerypass" value="<?php echo $x; ?>" />
 								<br />
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="gallerypass_2" name="gallerypass_2" value="<?php echo $x; ?>" />
 							</p>
-							<p><?php print_language_string_list(getOption('gallery_hint'), 'gallery_hint', false, NULL, 'hint') ?></p>
+							<p><?php print_language_string_list($gallery->get('gallery_hint'), 'gallery_hint', false, NULL, 'hint') ?></p>
 						</td>
 						<td>
 							<p><?php echo gettext("User ID for the gallery guest user") ?></p>
@@ -1021,7 +1018,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							?>
 							<input type="hidden" name="gallery-page_<?php echo $page; ?>" value="0" />
 							<?php
-							if (getOption('gallery_page_unprotected_'.$page)) {
+							if ($gallery->isUnprotectedPage($page)) {
 								$current[] = $page;
 							}
 						}
@@ -1035,7 +1032,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td><?php echo gettext("Website title:"); ?></td>
 					<td>
-					<?php print_language_string_list(getOption('website_title'), 'website_title') ?>
+					<?php print_language_string_list($gallery->get('website_title'), 'website_title') ?>
 					</td>
 					<td><?php echo gettext("Your web site title."); ?></td>
 				</tr>
@@ -1057,7 +1054,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 
 						$sort[gettext('Random')] = 'random';
 */
-						$cvt = $cv = strtolower(GALLERY_SORT_TYPE);
+						$cvt = $cv = strtolower($gallery->getSortType());
 						ksort($sort,SORT_LOCALE_STRING);
 						$flip = array_flip($sort);
 						if (isset($flip[$cv])) {
@@ -1084,7 +1081,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 								<td>
 									<span id="gallery_sortdirection" style="display:<?php echo $dspd; ?>">
 										<label>
-											<input type="checkbox" name="gallery_sortdirection"	value="1" <?php echo checked('1', getOption('gallery_sortdirection')); ?> />
+											<input type="checkbox" name="gallery_sortdirection"	value="1" <?php echo checked('1', $gallery->getSortDirection()); ?> />
 											<?php echo gettext("Descending"); ?>
 										</label>
 									</span>
@@ -1112,27 +1109,27 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p>
 							<label>
 								<input type="checkbox" name="album_use_new_image_date" id="album_use_new_image_date"
-										value="1" <?php echo checked('1', getOption('album_use_new_image_date')); ?> />
+										value="1" <?php echo checked('1', $gallery->getAlbumUseImagedate()); ?> />
 								<?php echo gettext("use latest image date as album date"); ?>
 							</label>
 						</p>
 						<?php
 						if (GALLERY_SECURITY=='public') {
-							$disable = getOption('gallery_user') || getOption('search_user') || getOption('protected_image_user');
+							$disable = $gallery->getUser() || getOption('search_user') || getOption('protected_image_user');
 							?>
 							<p class="public_gallery"<?php if (GALLERY_SECURITY == 'private') echo ' style="display:none"'; ?>>
 								<label>
 									<?php
 									if ($disable) {
 										?>
-										<input type="hidden" name="login_user_field" value="<?php echo getOption('login_user_field'); ?>" />
+										<input type="hidden" name="login_user_field" value="<?php echo $gallery->getUserLogonField(); ?>" />
 										<input type="checkbox" name="login_user_field_disabled" id="login_user_field"
 															value="1" checked="checked" disabled="disabled" />
 										<?php
 									} else {
 										?>
 										<input type="checkbox" name="login_user_field" id="login_user_field"
-																value="1" <?php echo checked('1', getOption('login_user_field')); ?> />
+																value="1" <?php echo checked('1', $gallery->getUserLogonField()); ?> />
 										<?php
 									}
 									echo gettext("enable user name login field");
@@ -1142,28 +1139,28 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<?php
 						} else {
 							?>
-							<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo getOption('login_user_field'); ?>" />
+							<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $gallery->getUserLogonField(); ?>" />
 							<?php
 						}
 						?>
 						<p>
 							<label>
 								<input type="checkbox" name="thumb_select_images" id="thumb_select_images"
-										value="1" <?php echo checked('1', getOption('thumb_select_images')); ?> />
+										value="1" <?php echo checked('1', $gallery->getThumbSelectImages()); ?> />
 								<?php echo gettext("visual thumb selection"); ?>
 							</label>
 						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="persistent_archive" id="persistent_archive"
-										value="1" <?php echo checked('1', getOption('persistent_archive')); ?> />
+										value="1" <?php echo checked('1', $gallery->getPersistentArchive()); ?> />
 								<?php echo gettext("enable persistent archives"); ?>
 							</label>
 						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="album_session" id="album_session"
-										value="1" <?php echo checked('1', ALBUM_SESSION); ?> />
+										value="1" <?php echo checked('1', GALLERY_SESSION); ?> />
 								<?php echo gettext("enable gallery sessions"); ?>
 							</label>
 						</p>
@@ -2121,7 +2118,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 	<?php
 	$themelist = array();
 	if (zp_loggedin(ADMIN_RIGHTS)) {
-		$gallery_title = get_language_string(getOption('gallery_title'));
+		$gallery_title = $gallery->getTitle();
 		if ($gallery_title != gettext("Gallery")) {
 			$gallery_title .= ' ('.gettext("Gallery").')';
 		}

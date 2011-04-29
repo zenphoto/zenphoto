@@ -73,10 +73,10 @@ if (!$albumobj->checkAccess() && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS)) {
 		}
 	}
 	if (empty($hash)) {	// check for gallery password
-		$hash = getOption('gallery_password');
+		$hash = $_zp_gallery->getPassword();
 		$authType = 'zp_gallery_auth';
-		$hint = get_language_string(getOption('gallery_hint'));
-		$show = getOption('gallery_user');
+		$hint = $_zp_gallery->getPasswordHint();;
+		$show = $_zp_gallery->getUser();
 	}
 	if ((empty($hash) && GALLERY_SECURITY == 'private') || (!empty($hash) && zp_getCookie($authType) != $hash)) {
 		require_once(dirname(__FILE__) . "/template-functions.php");
@@ -91,7 +91,7 @@ if (!$albumobj->checkAccess() && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS)) {
 			$parms .= '&dsp='.sanitize_numeric($_GET['dsp']);
 		}
 		$action = WEBPATH.'/'.ZENFOLDER.'/full-image.php?userlog=1&a='.pathurlencode($album8).'&i='.urlencode($image8).$parms;
-		printPasswordForm($hint, true, getOption('login_user_field') || $show, $action);
+		printPasswordForm($hint, true, $_zp_gallery->getUserLogonField() || $show, $action);
 		exit();
 	}
 	exit();

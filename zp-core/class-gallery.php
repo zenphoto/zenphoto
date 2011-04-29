@@ -6,14 +6,6 @@
 
 // force UTF-8 Ø
 
-define('GALLERY_SORT_DIRECTION',getOption('gallery_sortdirection'));
-define('GALLERY_SORT_TYPE',getOption('gallery_sorttype'));
-define('GALLERY_TITLE',getOption('gallery_title'));
-define('GALLERY_DESCRIPTION',getOption('Gallery_description'));
-define('GALLERY_PASSWORD',getOption('gallery_password'));
-define('GALLERY_USER',getOption('gallery_user'));
-define('GALLERY_HINT',getOption('gallery_hint'));
-
 class Gallery {
 
 	var $albumdir = NULL;
@@ -21,6 +13,8 @@ class Gallery {
 	var $theme;
 	var $themes;
 	var $lastalbumsort = NULL;
+	var $data = array();
+	var $unprotected_pages = array();
 
 	/**
 	 * Creates an instance of a gallery
@@ -30,6 +24,14 @@ class Gallery {
 	function Gallery() {
 		// Set our album directory
 		$this->albumdir = ALBUM_FOLDER_SERVERPATH;
+		$data = getOption('gallery_data');
+		if ($data) {
+			$this->data = unserialize($data);
+		}
+		if (isset($this->data['unprotected_pages'])) {
+			$this->unprotected_pages = unserialize($this->data['unprotected_pages']);
+		}
+
 	}
 
 	/**
@@ -38,7 +40,7 @@ class Gallery {
 	 * @return string
 	 */
 	function getTitle() {
-		return(get_language_string(GALLERY_TITLE));
+		return get_language_string($this->get('gallery_title'));
 	}
 
 	/**
@@ -47,7 +49,7 @@ class Gallery {
 	 * @return string
 	 */
 	function getDesc() {
-		return(get_language_string(GALLERY_DESCRIPTION));
+		return(get_language_string($this->get('Gallery_description')));
 	}
 
 	/**
@@ -55,7 +57,10 @@ class Gallery {
 	 *
 	 */
 	function getPassword() {
-		return(GALLERY_PASSWORD);
+		return $this->get('gallery_password');
+	}
+	function setPassword($value) {
+		$this->set('gallery_password', $value);
 	}
 
 	/**
@@ -64,11 +69,17 @@ class Gallery {
 	 * @return string
 	 */
 	function getPasswordHint() {
-		return(get_language_string(GALLERY_HINT));
+		return get_language_string($this->get('gallery_hint'));
+	}
+	function setPasswordHint($value) {
+		$this->set('gallery_hint', $value);
 	}
 
 	function getUser() {
-		return(GALLERY_USER);
+		return($this->get('gallery_user'));
+	}
+	function setUser($value) {
+		$this->set('gallery_user', $value);
 	}
 
 	/**
@@ -85,12 +96,21 @@ class Gallery {
 	 * @return string
 	 */
 	function getAlbumSortKey($sorttype=null) {
-		if (empty($sorttype)) { $sorttype = GALLERY_SORT_TYPE; }
+		if (empty($sorttype)) { $sorttype = $this->getSortType(); }
 		return lookupSortKey($sorttype, 'sort_order', 'folder');
 	}
 
 	function getSortDirection() {
-		return GALLERY_SORT_DIRECTION;
+		return $this->get('sort_direction');
+	}
+	function setSortDirection($value) {
+		$this->set('sort_direction', $value);
+	}
+	function getSortType() {
+		return $this->get('sort_type');
+	}
+	function setSortType($value) {
+		$this->set('sort_type', $value);
 	}
 
 	/**
@@ -240,7 +260,7 @@ class Gallery {
 	function getCurrentTheme() {
 		$theme = NULL;
 		if (empty($this->theme)) {
-			$theme = getOption('current_theme');
+			$theme = $this->get('current_theme');
 			if (empty($theme) || !file_exists(SERVERPATH."/".THEMEFOLDER."/$theme")) {
 				$themes = array_keys($this->getThemes());
 				if (!empty($themes)) {
@@ -258,7 +278,7 @@ class Gallery {
 	 * @param string the name of the current theme
 	 */
 	function setCurrentTheme($theme) {
-		setOption('current_theme', $theme);
+		$this->set('current_theme', $theme);
 	}
 
 
@@ -773,84 +793,137 @@ class Gallery {
 	 * @return int
 	 */
 	function getHitcounter() {
-		return getOption('Page-Hitcounter-index');
+		return $this->get('hitcounter');
 	}
 
 	/**
 	 * counts visits to the object
 	 */
 	function countHit() {
-		$hc = getOption('Page-Hitcounter-index')+1;
-		setOption('Page-Hitcounter-index', $hc);
+		$hc = $this->get('hitcounter')+1;
+		$this->save();
+	}
+
+	/**
+	 * Title to be used for the home (not Zenphoto gallery) WEBsite
+	 */
+	function getWebsiteTitle() {
+		return get_language_string($this->get('website_title'));
+	}
+	function setWebsiteTitle($value) {
+		$this->set('website_title', $value);
+	}
+
+	/**
+	 * The URL of the home (not Zenphoto gallery) WEBsite
+	 */
+	function getWebsiteURL() {
+		return $this->get('websiteURL');
+	}
+	function setWebsiteURL($value) {
+		$this->set('websiteURL', $value);
+	}
+
+	/**
+	 * Option to allow only registered users view the site
+	 */
+	function getSecurity() {
+		return $this->get('gallery_security');
+	}
+	function setSecurity($value) {
+		$this->set('gallery_security', $value);
+	}
+
+	/**
+	 * Option to expose the user field on logon forms
+	 */
+	function getUserLogonField() {
+		return $this->get('login_user_field');
+	}
+	function setUserLogonField($value) {
+		$this->set('login_user_field', $value);
+	}
+
+	/**
+	 * Option to update album date from date of new images
+	 */
+	function getAlbumUseImagedate() {
+		return $this->get('album_use_new_image_date');
+	}
+	function setAlbumUseImagedate($value) {
+		$this->set('album_use_new_image_date', $value);
+	}
+
+	/**
+	 * Option to show images in the thumbnail selector
+	 */
+	function getThumbSelectImages() {
+		return $this->get('thumb_select_images');
+	}
+	function setThumbSelectImages($value) {
+		$this->set('thumb_select_images', $value);
+	}
+
+	/**
+	 * Option of caching Album ZIP files
+	 */
+	function getPersistentArchive() {
+		return $this->get('persistent_archive');
+	}
+	function setPersistentArchive($value) {
+		$this->set('persistent_archive', $value);
+	}
+
+	/**
+	 * Option of for gallery sessions
+	 */
+	function getGallerySession() {
+		return $this->get('album_session');
+	}
+	function setGallerySession($value) {
+		$this->set('album_session', $value);
+	}
+
+
+	/**
+	 *
+	 * Tests if a page is excluded from password protection
+	 * @param $page
+	 */
+	function isUnprotectedPage($page) {
+		return (in_array($page, $this->unprotected_pages));
+	}
+	function setUnprotectedPage($page, $on) {
+		//TODO: remove the option set/purge on v1.5
+		if ($on) {
+			setOption('gallery_page_unprotected_'.$page, 1);
+			array_unshift($this->unprotected_pages, $page);
+			$this->unprotected_pages = array_unique($this->unprotected_pages);
+		} else {
+			$key = array_search($page, $this->unprotected_pages);
+			if ($key !== false) {
+				unset($this->unprotected_pages[$key]);
+				purgeOption('gallery_page_unprotected_'.$page);
+			}
+		}
+		$this->set('unprotected_pages', serialize($this->unprotected_pages));
 	}
 
 	function get($field) {
-		switch ($field) {
-			case 'hitcounter':
-				$result = getOption('Page-Hitcounter-index');
-				break;
-			case 'theme':
-				$result = getOption('current_theme');
-				break;
-			case 'user':
-				$result = GALLERY_USER;
-				break;
-			case 'password':
-				$result = GALLERY_PASSWORD;
-				break;
-			case 'password_hint':
-				$result = GALLERY_HINT;
-				break;
-			case 'title':
-				$result = GALLERY_TITLE;
-				break;
-			case 'desc':
-				$result = GALLERY_DESCRIPTION;
-				break;
-			case 'sort_direction':
-				$result = GALLERY_SORT_DIRECTION;
-				break;
-			case 'sort_type':
-				$result = GALLERY_SORT_DIRECTION;
-				break;
-			default:
-				$result = NULL;
-				break;
+		if (isset($this->data[$field])) {
+			return $this->data[$field];
 		}
-		return $result;
+		return NULL;
 	}
 
 	function set($field, $value) {
-		switch ($field) {
-			case 'hitcounter':
-				setOption('Page-Hitcounter-index', $value);
-				break;
-			case 'theme':
-				setOption('current_theme', $value);
-				break;
-			case 'user':
-				setOption('gallery_user', $value);
-				break;
-			case 'password':
-				setOption('gallery_password', $value);
-				break;
-			case 'password_hint':
-				setOption('gallery_hint', $value);
-				break;
-			case 'title':
-				setOption('gallery_title', $value);
-				break;
-			case 'desc':
-				setOption('Gallery_description', $value);
-				break;
-			case 'sort_direction':
-				setOption('gallery_direction', $value);
-				break;
-			case 'sort_type':
-				setOption('gallery_sorttype', $value);
-				break;
-			default:
-				break;
+		$this->data[$field] = $value;
+	}
+
+	function save() {
+		setOption('gallery_data', serialize($this->data));
+		foreach ($this->data as $option=>$value) {	//	for compatibility
+			setOption($option, $value);
 		}
 	}
 
