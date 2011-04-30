@@ -13,6 +13,7 @@
 *Object.Search:=
 *Template:=These filters modify behavior of the functions that support Zenphoto themes.
 *Theme:=These filters should be called from all themes. They provide a way for the Zenphoto core and for plugins to add HTML content to the theme.
+*Upload:=
 *User_management:=These filters allow the extension of the Zenphoto user object and authentication.
 admin_XSRF_access:=Invoked when Zenphoto detects an attempt at Cross Site Reference Forgery.
 admin_allow_access:=Allows mitigation of the normal Zenphoto back-end security checks.

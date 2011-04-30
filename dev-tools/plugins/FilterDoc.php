@@ -135,6 +135,12 @@ function processFilters() {
 											strpos($basename, 'logon') !== false || strpos($key, 'login') !== false) {
 						$class = 'User_management';
 						$subclass = 'Miscellaneous';
+					} else if (strpos($key, 'upload') !== false) {
+						$class = 'Upload';
+						$subclass = 'Miscellaneous';
+					} else if (strpos($key, 'texteditor') !== false) {
+						$class = 'Miscellaneous';
+						$subclass = 'Miscellaneous';
 					} else if (strpos($basename, 'class') !== false) {
 						$class = 'Object';
 						if (strpos($basename, 'zenpage') !== false) {
@@ -318,7 +324,7 @@ function processFilters() {
 			}
 		if ($subclass && $filterCategories[$class]['count'] > 1) {	//	Class doc is adequate.
 //				fwrite($f, "\t\t".'<li class="subclass"><!-- subclass '.$subclass.' -->'."\n");
-				fwrite($f, "\t\t\t".'<h6><a name="'.$class.'_'.$subclass.'"></a>'.$subclass."</h6>\n");
+				fwrite($f, "\t\t\t".'<h6 class="filter"><a name="'.$class.'_'.$subclass.'"></a>'.$subclass."</h6>\n");
 				fwrite($f, "\t\t\t".'<!-- subclasshead '.$class.'.'.$subclass.' -->'.$subclasshead."<!--e-->\n");
 			}
 			fwrite($f, "\t\t\t".'<ul class="filterdetail">'."\n");
@@ -362,7 +368,7 @@ function processFilters() {
 	$indexfile = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/FilterDoc/filter list_index.html';
 	$f = fopen($indexfile, 'w');
 	fwrite($f,'<li>'."\t\n");
-	fwrite($f,"\t".'<a href="#filters">Filters</a>'."\n");
+	fwrite($f,"\t".'<a href="#filters">List of Zenphoto filters</a>'."\n");
 	fwrite($f, "\t<ul>\n");
 	$ulopen = false;
 	foreach ($filterCategories as $element) {

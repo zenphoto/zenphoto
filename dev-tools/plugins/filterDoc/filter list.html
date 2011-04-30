@@ -1,7 +1,7 @@
 <!-- Begin filter descriptions -->
 	<h5><a name="Admin"></a>Admin filters</h5>
 	<!-- classhead Admin --><p>These filters allow for the extension of the Zenphoto administrator interface.</p><!--e-->
-			<h6><a name="Admin_Comment"></a>Comment</h6>
+			<h6 class="filter"><a name="Admin_Comment"></a>Comment</h6>
 			<!-- subclasshead Admin.Comment --><p></p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
@@ -48,7 +48,7 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
-			<h6><a name="Admin_Media"></a>Media</h6>
+			<h6 class="filter"><a name="Admin_Media"></a>Media</h6>
 			<!-- subclasshead Admin.Media --><p></p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
@@ -111,16 +111,6 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>get_upload_header_text</strong></tt>(<em>string</em>)</p>
-					<!-- description(Admin.Media)-get_upload_header_text --><p>Allows plugins to modify the header and/or error text for the <em>upload</em> tab.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/image_upload_limiter.php</p>
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">admin-edit.php</li>
-						<li class="call_list">admin-upload.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>save_album_custom_data</strong></tt>(<em>custom, prefix</em>)</p>
 					<!-- description(Admin.Media)-save_album_custom_data --><p>Allows a plugin to manage custom data for albums. This invocation is for when the album object is saved.</p><!--e-->
 					<p class="calls">Invoked from:</p>
@@ -154,20 +144,8 @@
 						<li class="call_list">admin-edit.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
-				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>texteditor_config</strong></tt>(<em>string, string</em>)</p>
-					<!-- description(Admin.Media)-texteditor_config --><p>Provides configuration information to the Text Editor plugin (normally TinyMCE).</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tiny_mce.php</p>
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">admin-edit.php</li>
-						<li class="call_list">admin-options.php</li>
-						<li class="call_list">admin-plugins.php</li>
-						<li class="call_list"><em>plugin</em>/zenpage/admin-categories.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
-			<h6><a name="Admin_Miscellaneous"></a>Miscellaneous</h6>
+			<h6 class="filter"><a name="Admin_Miscellaneous"></a>Miscellaneous</h6>
 			<!-- subclasshead Admin.Miscellaneous --><p></p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
@@ -241,14 +219,6 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>admin_upload_process</strong></tt>(<em>folder</em>)</p>
-					<!-- description(Admin.Miscellaneous)-admin_upload_process --><p>Allows plugins to modify the folder where an upload will place images.</p><!--e-->
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">admin-httpupload/uploader.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>admin_utilities_buttons</strong></tt>(<em>buttonlist</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_utilities_buttons --><p>Allows plugins to add buttons to the admin utilities box on the <em>overview</em> page.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/rating.php</p>
@@ -258,30 +228,12 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>check_upload_quota</strong></tt>(<em>string, tempFile</em>)</p>
-					<!-- description(Admin.Miscellaneous)-check_upload_quota --><p>Invoked when images are being uploaded. The filter ay return an error indication. If so, the upload is aborted.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/quota_manager.php</p>
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">admin-httpupload/uploader.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>custom_option_save</strong></tt>(<em>notify, themename, themealbum</em>)</p>
 					<!-- description(Admin.Miscellaneous)-custom_option_save --><p>Invoked when options are saved to allow processing of the POST of plugin custom options.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/register_user.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-options.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>get_upload_limit</strong></tt>(<em>maxupload</em>)</p>
-					<!-- description(Admin.Miscellaneous)-get_upload_limit --><p>Allows a plugin to override the size limits on image uplaods</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/quota_manager.php</p>
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">admin-upload.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -301,34 +253,8 @@
 						<li class="call_list">admin-upload.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
-				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>upload_filetypes</strong></tt>(<em>types</em>)</p>
-					<!-- description(Admin.Miscellaneous)-upload_filetypes --><p>Allows a plugin to modify the file types allowed for an upload.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/image_upload_limiter.php</p>
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">admin-upload.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>upload_helper_js</strong></tt>(<em>string</em>)</p>
-					<!-- description(Admin.Miscellaneous)-upload_helper_js --><p>Allows a filter to insert JavaScript into the <em>upload</em> tab.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/image_upload_limiter.php</p>
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">admin-upload.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
-				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>upload_root_ui</strong></tt>(<em>string</em>)</p>
-					<!-- description(Admin.Miscellaneous)-upload_root_ui --><p>Allows a plugin to determine if a user may create root level albums.</p><!--e-->
-					<p class="calls">Invoked from:</p>
-					<ul><!-- calls -->
-						<li class="call_list">admin-upload.php</li>
-					</ul><!-- calls -->
-				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
-			<h6><a name="Admin_Zenpage"></a>Zenpage</h6>
+			<h6 class="filter"><a name="Admin_Zenpage"></a>Zenpage</h6>
 			<!-- subclasshead Admin.Zenpage --><p></p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
@@ -533,10 +459,22 @@
 						<li class="call_list">functions.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>texteditor_config</strong></tt>(<em>string, string</em>)</p>
+					<!-- description(Miscellaneous.Miscellaneous)-texteditor_config --><p>Provides configuration information to the Text Editor plugin (normally TinyMCE).</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/tiny_mce.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-edit.php</li>
+						<li class="call_list">admin-options.php</li>
+						<li class="call_list">admin-plugins.php</li>
+						<li class="call_list"><em>plugin</em>/zenpage/admin-categories.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
 	<h5><a name="Object"></a>Object filters</h5>
 	<!-- classhead Object --><p>These filters provide modifications to the behavior of object methods.</p><!--e-->
-			<h6><a name="Object_Media"></a>Media</h6>
+			<h6 class="filter"><a name="Object_Media"></a>Media</h6>
 			<!-- subclasshead Object.Media --><p></p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
@@ -628,7 +566,7 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
-			<h6><a name="Object_Root_class"></a>Root_class</h6>
+			<h6 class="filter"><a name="Object_Root_class"></a>Root_class</h6>
 			<!-- subclasshead Object.Root_class --><p></p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
@@ -674,7 +612,7 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
-			<h6><a name="Object_Search"></a>Search</h6>
+			<h6 class="filter"><a name="Object_Search"></a>Search</h6>
 			<!-- subclasshead Object.Search --><p></p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
@@ -842,6 +780,72 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>theme_head</strong></tt>(<em></em>)</p>
 					<!-- description(Theme.Script)-theme_head --><p>Invoked by all themes just before the &lt;head&gt; HTML tag.</p><!--e-->
+				</li><!-- filterdetail -->
+			</ul><!-- filterdetail -->
+	<h5><a name="Upload"></a>Upload filters</h5>
+	<!-- classhead Upload --><p></p><!--e-->
+			<ul class="filterdetail">
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>admin_upload_process</strong></tt>(<em>folder</em>)</p>
+					<!-- description(Upload.Miscellaneous)-admin_upload_process --><p>Allows plugins to modify the folder where an upload will place images.</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-httpupload/uploader.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>check_upload_quota</strong></tt>(<em>string, tempFile</em>)</p>
+					<!-- description(Upload.Miscellaneous)-check_upload_quota --><p>Invoked when images are being uploaded. The filter ay return an error indication. If so, the upload is aborted.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/quota_manager.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-httpupload/uploader.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>get_upload_header_text</strong></tt>(<em>string</em>)</p>
+					<!-- description(Upload.Miscellaneous)-get_upload_header_text --><p>Allows plugins to modify the header and/or error text for the <em>upload</em> tab.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/image_upload_limiter.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-edit.php</li>
+						<li class="call_list">admin-upload.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>get_upload_limit</strong></tt>(<em>maxupload</em>)</p>
+					<!-- description(Upload.Miscellaneous)-get_upload_limit --><p>Allows a plugin to override the size limits on image uplaods</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/quota_manager.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-upload.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>upload_filetypes</strong></tt>(<em>types</em>)</p>
+					<!-- description(Upload.Miscellaneous)-upload_filetypes --><p>Allows a plugin to modify the file types allowed for an upload.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/image_upload_limiter.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-upload.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>upload_helper_js</strong></tt>(<em>string</em>)</p>
+					<!-- description(Upload.Miscellaneous)-upload_helper_js --><p>Allows a filter to insert JavaScript into the <em>upload</em> tab.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/image_upload_limiter.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-upload.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>upload_root_ui</strong></tt>(<em>string</em>)</p>
+					<!-- description(Upload.Miscellaneous)-upload_root_ui --><p>Allows a plugin to determine if a user may create root level albums.</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-upload.php</li>
+					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
 	<h5><a name="User_management"></a>User_management filters</h5>
