@@ -2038,9 +2038,14 @@ function setThemeOption($key, $value, $album=NULL, $theme=NULL, $default=false) 
 		$theme = $gallery->getCurrentTheme();
 	}
 
+	$creator = THEMEFOLDER.'/'.$theme;
+
 	$exists = query_single_row("SELECT `name`, `value`, `id` FROM ".prefix('options')." WHERE `name`=".db_quote($key)." AND `ownerid`=".$id.' AND `theme`='.db_quote($theme), true);
 	if ($exists) {
-		if ($default) return; // don't update if setting the default
+		if ($default) {
+			$sql = "UPDATE " . prefix('options') . " SET `creator`=".db_quote($creator)." WHERE `id`=" . $exists['id'];
+			return; // don't update if setting the default
+		}
 		if (is_null($value)) {
 			$sql = "UPDATE " . prefix('options') . " SET `value`=NULL WHERE `id`=" . $exists['id'];
 		} else {
@@ -2048,9 +2053,9 @@ function setThemeOption($key, $value, $album=NULL, $theme=NULL, $default=false) 
 		}
 	} else {
 		if (is_null($value)) {
-			$sql = "INSERT INTO " . prefix('options') . " (name, value, ownerid, theme) VALUES (" . db_quote($key) . ",NULL,$id,".db_quote($theme).")";
+			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (" . db_quote($key) . ",NULL,$id,".db_quote($theme).",".db_quote($creator).")";
 		} else {
-			$sql = "INSERT INTO " . prefix('options') . " (name, value, ownerid, theme) VALUES (" . db_quote($key) . "," . db_quote($value) . ",$id,".db_quote($theme).")";
+			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (" . db_quote($key) . "," . db_quote($value) . ",$id,".db_quote($theme).",".db_quote($creator).")";
 		}
 	}
 	$result = query($sql);
@@ -2064,19 +2069,6 @@ function setThemeOption($key, $value, $album=NULL, $theme=NULL, $default=false) 
  */
 function setThemeOptionDefault($key, $value) {
 	setThemeOption($key, $value, NULL, NULL, true);
-}
-
-/**
- * Sets value for a boolena theme option
- * insures that the value is either zero or one
- *
- * @param string $key Option key
- * @param bool $bool value to be set
- * @param object $album album object
- * @param string $theme default theme name
- */
-function setBoolThemeOption($key, $bool, $album=NULL, $theme=NULL) {
-	setThemeOption($key, (int) $bool, $album, $theme);
 }
 
 /**
@@ -2282,7 +2274,8 @@ function zp_loggedin($rights=ALL_RIGHTS) {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if ((getOption('zenphoto_release') != ZENPHOTO_RELEASE) || (defined('RELEASE') && (getOption('zenphoto_install') != installSignature()))) {
+	if ((getOption('zenphoto_release') != ZENPHOTO_RELEASE) ||
+			(defined('RELEASE') && (getOption('zenphoto_install') != installSignature()))) {
 		if (file_exists(dirname(__FILE__).'/setup.php')) {
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/setup.php");
 			exit();

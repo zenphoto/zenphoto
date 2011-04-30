@@ -525,7 +525,6 @@ setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
 	}
 
 	$data['unprotected_pages'] = serialize($unprotected);
-
 	setOptionDefault('gallery_data', serialize($data));
 
 /*TODO:enable on the 1.5 release

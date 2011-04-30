@@ -922,6 +922,7 @@ class Gallery {
 
 	function save() {
 		setOption('gallery_data', serialize($this->data));
+		//TODO: remove on Zenphoto 1.5
 		foreach ($this->data as $option=>$value) {	//	for compatibility
 			setOption($option, $value);
 		}

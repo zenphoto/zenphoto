@@ -302,9 +302,9 @@ function setOption($key, $value, $persistent=true) {
 			$result = query($sql, false);
 		} else {
 			if (is_null($value)) {
-				$sql = "INSERT INTO " . prefix('options') . " (name, value, ownerid) VALUES (" . db_quote($key) . ",NULL, 0)";
+				$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`) VALUES (" . db_quote($key) . ",NULL, 0)";
 			} else {
-				$sql = "INSERT INTO " . prefix('options') . " (name, value, ownerid) VALUES (" . db_quote($key) . "," . db_quote($value) . ", 0)";
+				$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`) VALUES (" . db_quote($key) . "," . db_quote($value) . ", 0)";
 			}
 			$result = query($sql, false);
 		}
@@ -329,13 +329,24 @@ function setOption($key, $value, $persistent=true) {
  */
 function setOptionDefault($key, $default) {
 	global $_zp_conf_vars, $_zp_options;
-	if (NULL == $_zp_options) { getOption('nil'); } // pre-load from the database
-	if (!array_key_exists($key, $_zp_options)) {
+	if (NULL == $_zp_options) {
+		getOption('nil');  // pre-load from the database
+	}
+
+	$bt = debug_backtrace();
+	$b = array_shift($bt);
+	$creator = str_replace(SERVERPATH.'/', '', str_replace('\\', '/', $b['file']));
+
+	if (array_key_exists($key, $_zp_options)) {
+		$sql = 'UPDATE '.prefix('options').' SET `creator`='.db_quote($creator).' WHERE `name`='.db_quote($key).' AND `ownerid`=0';
+		query($sql, false);
+	} else {
 		if (is_null($default)) {
-			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`) VALUES (" . db_quote($key) . ", NULL, 0);";
+			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`, `creator`) VALUES (" . db_quote($key) . ", NULL,
+							0, ".db_quote($creator).");";
 		} else {
-			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`) VALUES (" . db_quote($key) . ", ".
-			db_quote($default) . ", 0);";
+			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`, `creator`) VALUES (" . db_quote($key) . ", ".
+							db_quote($default) . ", 0, ".db_quote($creator).");";
 		}
 		query($sql, false);
 		$_zp_options[$key] = $default;

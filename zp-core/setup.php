@@ -1506,6 +1506,7 @@ if (file_exists(CONFIGFILE)) {
 		`name` varchar(191) DEFAULT NULL,
 		`value` text,
 		`theme` varchar (127) DEFAULT NULL,
+		`creator` varchar (255) DEFAULT NULL,
 		PRIMARY KEY (`id`),
 		UNIQUE (`name`, `ownerid`, `theme`)
 		)	$collation;";
@@ -2058,6 +2059,7 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'UPDATE '.$tbl_administrators.' SET `date`="'.date('Y-m-d H:i:s',$zptime).'" WHERE `date` IS NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `owner` varchar(64) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' CHANGE `owner` `owner` varchar(64) DEFAULT NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_options.' ADD COLUMN `creator` varchar(255) DEFAULT NULL';
 
 
 	// do this last incase there are any field changes of like names!

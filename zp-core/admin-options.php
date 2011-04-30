@@ -351,7 +351,7 @@ if (isset($_GET['action'])) {
 				$ch = getThemeOption('thumb_crop_height', $table, $themename);
 				setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
 				setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
-				setBoolThemeOption('thumb_crop', isset($_POST['thumb_crop']), $table, $themename);
+				setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
 				$ts = sanitize_numeric($_POST['thumb_size']);
 				setThemeOption('thumb_size', $ts, $table, $themename);
 				if (is_numeric($_POST['thumb_crop_width'])) {
@@ -377,13 +377,13 @@ if (isset($_GET['action'])) {
 				setThemeOption('images_per_page', $images_per_page, $table, $themename);
 				setThemeOption('albums_per_row', $albums_per_row, $table, $themename);
 				setThemeOption('images_per_row', $images_per_row, $table, $themename);
-				if (isset($_POST['thumb_transition'])) setBoolThemeOption('thumb_transition', sanitize_numeric($_POST['thumb_transition'])-1, $table, $themename);
+				if (isset($_POST['thumb_transition'])) setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition'])-1) && true), $table, $themename);
 				setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
 				$otg = getThemeOption('thumb_gray', $table, $themename);
-				setBoolThemeOption('thumb_gray', isset($_POST['thumb_gray']), $table, $themename);
+				setThemeOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
 				if ($otg = getThemeOption('thumb_gray', $table, $themename)) $wmo = 99; // force cache clear
 				$oig = getThemeOption('image_gray', $table, $themename);
-				setBoolThemeOption('image_gray', isset($_POST['image_gray']), $table, $themename);
+				setThemeOption('image_gray', (int) isset($_POST['image_gray']), $table, $themename);
 				if ($oig = getThemeOption('image_gray',$table, $themename)) $wmo = 99; // force cache clear
 				if (is_null($table) && ($themename == $gallery->getCurrentTheme())) {	// record as global options as well.
 					setOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
