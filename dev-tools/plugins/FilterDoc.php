@@ -277,7 +277,7 @@ function processFilters() {
 		if ($class !== $filter['class']) {
 			$class = $filter['class'];
 			if (array_key_exists('*'.$class, $filterDescriptions)) {
-				$classhead = $filterDescriptions['*'.$class];
+				$classhead = '<p>'.$filterDescriptions['*'.$class].'</p>';
 			} else {
 				$classhead = '';
 			}
@@ -306,7 +306,7 @@ function processFilters() {
 			}
 			$subclass = $filter['subclass'];
 			if (array_key_exists('*'.$class.'.'.$subclass, $filterDescriptions)) {
-				$subclasshead = $filterDescriptions['*'.$class.'.'.$subclass];
+				$subclasshead = '<p>'.$filterDescriptions['*'.$class.'.'.$subclass].'</p>';
 			} else {
 				$subclasshead = '';
 			}
@@ -318,9 +318,9 @@ function processFilters() {
 			fwrite($f, "\t\t\t".'<ul class="filterdetail">'."\n");
 		}
 		fwrite($f, "\t\t\t\t".'<li class="filterdetail">'."\n");
-		fwrite($f,"\t\t\t\t\t".'<p class="filtedef"><tt>'.$filter['filter'].'</tt>(<em>'.implode(', ', $filter['params'])."</em>)</p>\n");
+		fwrite($f,"\t\t\t\t\t".'<p class="filterdef"><tt>'.$filter['filter'].'</tt>(<em>'.implode(', ', $filter['params'])."</em>)</p>\n");
 		if (array_key_exists($filter['filter'], $filterDescriptions)) {
-			$filter['desc'] = $filterDescriptions[$filter['filter']];
+			$filter['desc'] = '<p>'.$filterDescriptions[$filter['filter']].'</p>';
 		}
 		fwrite($f, "\t\t\t\t\t".'<!-- description('.$class.'.'.$subclass.')-'.$filter['filter'].' -->'.$filter['desc']."<!--e-->\n");
 		if ($subclass != 'Script') {
