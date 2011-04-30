@@ -4680,48 +4680,42 @@ function exposeZenPhotoInformations( $obj = '', $plugins = '', $theme = '' ) {
  * Note: Meant for script code this field is not multilingual.
  *
  * @param int $number The codeblock you want to get
- * @param string $titlelink The titlelink of a specific page you want to get the codeblock of (only for Zenpage pages!)
  *
  * @return string
  */
-function getCodeblock($number=0,$titlelink='') {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery_page;
+function getCodeblock($number=0) {
+	global $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_gallery_page;
 	$getcodeblock = '';
-	if (empty($titlelink)) {
-		switch($_zp_gallery_page) {
-			case 'album.php':
-				$getcodeblock = $_zp_current_album->getCodeblock();
-				break;
-			case 'image.php':
-				$getcodeblock = $_zp_current_image->getCodeblock();
-				break;
-			case 'index.php':
-			case 'news.php':
-				if(is_object($_zp_current_zenpage_news)) {	// valid news article
-					if ($_zp_current_zenpage_news->checkAccess()) {
-						$getcodeblock = $_zp_current_zenpage_news->getCodeblock();
-					} else {
-						$getcodeblock = '';
-					}
-				}
-				break;
-			case 'pages.php':
-				if($_zp_current_zenpage_page->checkAccess()) {
-					$getcodeblock = $_zp_current_zenpage_page->getCodeblock();
+	switch($_zp_gallery_page) {
+		case 'album.php':
+			$getcodeblock = $_zp_current_album->getCodeblock();
+			break;
+		case 'image.php':
+			$getcodeblock = $_zp_current_image->getCodeblock();
+			break;
+		case 'index.php':
+			$getcodeblock = $_zp_gallery->getCodeblock();
+		case 'news.php':
+			if(is_object($_zp_current_zenpage_news)) {	// valid news article
+				if ($_zp_current_zenpage_news->checkAccess()) {
+					$getcodeblock = $_zp_current_zenpage_news->getCodeblock();
 				} else {
-					$getcodeblock = NULL;
+					$getcodeblock = '';
 				}
-				break;
-			default:
+			}
+			break;
+		case 'pages.php':
+			if($_zp_current_zenpage_page->checkAccess()) {
+				$getcodeblock = $_zp_current_zenpage_page->getCodeblock();
+			} else {
 				$getcodeblock = NULL;
-				break;
-		}
-	}	else { // direct page request
-		if(getOption('zp_plugin_zenpage')) {
-			$page = new ZenpagePage($titlelink);
-			$getcodeblock = $page->getCodeblock();
-		}
+			}
+			break;
+		default:
+			$getcodeblock = NULL;
+			break;
 	}
+
 	if (empty($getcodeblock)) return '';
 	$codeblock = unserialize($getcodeblock);
 	return $codeblock[$number];
@@ -4733,12 +4727,21 @@ function getCodeblock($number=0,$titlelink='') {
  * NOTE: This executes PHP and JavaScript code if available
  *
  * @param int $number The codeblock you want to get
- * @param string $titlelink The titlelink of a specific page you want to get the codeblock of (only for Zenpage pages!)
+ * @param mixed $what optonal object for which you want the codeblock
  *
  * @return string
  */
-function printCodeblock($number='',$titlelink='') {
-	$codeblock = getCodeblock($number,$titlelink);
+function printCodeblock($number='',$what=NULL) {
+	if (is_object($what)) {
+		$codeblock = $what->getCodeblock();
+		if ($codeblock) {
+			$codeblocks = unserialize($codeblock);
+		} else {
+			return;
+		}
+	} else {
+		$codeblock = getCodeblock($number);
+	}
 	$context = get_context();
 	@eval("?>".$codeblock);
 	set_context($context);

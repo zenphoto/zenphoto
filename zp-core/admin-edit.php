@@ -1394,14 +1394,14 @@ $alb = removeParentAlbumNames($album);
 						<tr valign="top" class="imageextrainfo" style="display: none">
 							<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 							<td>
-							<br />
+								<br />
 								<div class="tabs">
 									<ul class="tabNavigation">
 										<li><a href="#first-<?php echo $image->get('id'); ?>"><?php echo gettext("Codeblock 1"); ?></a></li>
 										<li><a href="#second-<?php echo $image->get('id'); ?>"><?php echo gettext("Codeblock 2"); ?></a></li>
 										<li><a href="#third-<?php echo $image->get('id'); ?>"><?php echo gettext("Codeblock 3"); ?></a></li>
 									</ul>
-							<?php
+								<?php
 									$getcodeblock = $image->getCodeblock();
 									if(!empty($getcodeblock)) {
 										$codeblock = unserialize($getcodeblock);
@@ -1422,7 +1422,7 @@ $alb = removeParentAlbumNames($album);
 									</div>
 								</div>
 							</td>
-							</tr>
+						</tr>
 						<?php
 					}
 					?>

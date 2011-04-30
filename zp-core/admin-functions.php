@@ -1504,7 +1504,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 		<?php
 	}
 	?>
-					<tr valign="top">
+	<tr valign="top">
 		<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 		<td>
 		<br />
@@ -1535,8 +1535,8 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 				</div>
 			</div>
 		</td>
-		</tr>
-				</table>
+	</tr>
+</table>
 			</td>
 			<?php	$bglevels = array('#fff','#f8f8f8','#efefef','#e8e8e8','#dfdfdf','#d8d8d8','#cfcfcf','#c8c8c8');	?>
 			<td valign="top">

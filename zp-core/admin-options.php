@@ -152,6 +152,11 @@ if (isset($_GET['action'])) {
 				}
 				$gallery->set('gallery_hint', process_language_string_save('gallery_hint', 3));
 			}
+			$codeblock1 = sanitize($_POST['codeblock1'], 0);
+			$codeblock2 = sanitize($_POST['codeblock2'], 0);
+			$codeblock3 = sanitize($_POST['codeblock3'], 0);
+			$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
+			$gallery->setCodeblock($codeblock);
 			$gallery->save();
 			$returntab = "&tab=gallery";
 		}
@@ -887,7 +892,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 	<?php
 }
 if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
-	?>
+	codeblocktabsJS();	?>
 	<div id="tab_gallery" class="tabbox">
 		<form action="?action=saveoptions" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
@@ -1194,6 +1199,41 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</div>
 					</td>
 				</tr>
+
+	<tr valign="top">
+		<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
+		<td>
+		<br />
+			<div class="tabs">
+				<ul class="tabNavigation">
+					<li><a href="#first"><?php echo gettext("Codeblock 1"); ?></a></li>
+					<li><a href="#second"><?php echo gettext("Codeblock 2"); ?></a></li>
+					<li><a href="#third"><?php echo gettext("Codeblock 3"); ?></a></li>
+				</ul>
+				<?php
+				$getcodeblock = $gallery->getCodeblock();
+				if(empty($getcodeblock)) {
+					$codeblock[1] = "";
+					$codeblock[2] = "";
+					$codeblock[3] = "";
+				} else {
+					$codeblock = unserialize($getcodeblock);
+				}
+				?>
+				<div id="first">
+					<textarea name="codeblock1" id="codeblock1-0" rows="40" cols="60"><?php echo html_encode($codeblock[1]); ?></textarea>
+				</div>
+				<div id="second">
+					<textarea name="codeblock2" id="codeblock2-0" rows="40" cols="60"><?php echo html_encode($codeblock[2]); ?></textarea>
+				</div>
+				<div id="third">
+					<textarea name="codeblock3" id="codeblock3-0" rows="40" cols="60"><?php echo html_encode($codeblock[3]); ?></textarea>
+				</div>
+			</div>
+		</td>
+		<td></td>
+	</tr>
+
 				<tr>
 					<td colspan="3">
 					<p class="buttons">

@@ -237,11 +237,10 @@ class Album extends MediaObject {
 	 * @param string $val the direction
 	 */
 	function setSortDirection($what, $val) {
-		if ($val) { $b = 1; } else { $b = 0; }
 		if ($what == 'image') {
-			$this->set('image_sortdirection', $b);
+			$this->set('image_sortdirection', (int) ($val && true));
 		} else {
-			$this->set('album_sortdirection', $b);
+			$this->set('album_sortdirection', (int) ($val && true));
 		}
 	}
 
@@ -269,7 +268,9 @@ class Album extends MediaObject {
 	 *
 	 * @param string $sorttype the album sort type
 	 */
-	function setSortType($sorttype) { $this->set('sort_type', $sorttype); }
+	function setSortType($sorttype) {
+		$this->set('sort_type', $sorttype);
+	}
 
 	/**
 	 * Returns the sort type for subalbums in this album.

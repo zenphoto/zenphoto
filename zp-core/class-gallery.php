@@ -104,10 +104,11 @@ class Gallery {
 		return $this->get('sort_direction');
 	}
 	function setSortDirection($value) {
-		$this->set('sort_direction', $value);
+		$this->set('sort_direction', (int) ($value && true));
 	}
 	function getSortType() {
-		return $this->get('sort_type');
+		$type = $this->get('sort_type');
+		return $type;
 	}
 	function setSortType($value) {
 		$this->set('sort_type', $value);
@@ -908,6 +909,24 @@ class Gallery {
 		}
 		$this->set('unprotected_pages', serialize($this->unprotected_pages));
 	}
+
+	/**
+	 * Returns the codeblocks as an serialized array
+	 *
+	 * @return array
+	 */
+	function getCodeblock() {
+		return $this->get("codeblock");
+	}
+
+	/**
+	 * set the codeblocks as an serialized array
+	 *
+	 */
+	function setCodeblock($cb) {
+		$this->set("codeblock",$cb);
+	}
+
 
 	function get($field) {
 		if (isset($this->data[$field])) {
