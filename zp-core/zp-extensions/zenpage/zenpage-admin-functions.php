@@ -1334,22 +1334,11 @@ function checkForEmptyTitle($titlefield,$type,$truncate=true) {
 /**
  * Publishes a page or news article
  *
- * @param string $option "page" or "news"
- * @param int $id the id of the article or page
+ * @param object $obj
+ * @param int $show the value for publishing
  * @return string
  */
-function publishPageOrArticle($option,$id) {
-	switch ($option) {
-		case "news":
-			$result = query_single_row('SELECT * FROM'.prefix('news').' WHERE `id` = '.$id);
-			$obj = new ZenpageNews($result['titlelink']);
-			break;
-		case "page":
-			$result = query_single_row('SELECT * FROM'.prefix('page').' WHERE `id` = '.$id);
-			$obj = new ZenpagePage($result['titlelink']);
-		}
-
-	$show = sanitize_numeric($_GET['publish']);
+function zenpagePublish($obj, $show) {
 	if ($show > 1) {
 		$obj->setExpireDate(NULL);
 	}
@@ -1360,20 +1349,13 @@ function publishPageOrArticle($option,$id) {
 /**
  * Skips the scheduled publishing by setting the date of a page or article to the current date to publish it immediately
  *
- * @param string $option "page" or "news"
- * @param int $id the id of the article or page
+ * @param object $obj
  * @return string
  */
-function skipScheduledPublishing($option,$id) {
-	switch ($option) {
-		case "news":
-			$dbtable = prefix('news');
-			break;
-		case "page":
-			$dbtable = prefix('pages');
-			break;
-	}
-	query("UPDATE ".$dbtable." SET `date` = '".date('Y-m-d H:i:s')."', `show`= 1 WHERE id = ".$id);
+function skipScheduledPublishing($obj) {
+	$obj->setDate(date('Y-m-d H:i:s'));
+	$obj->setShow(1);
+	$obj->save();
 }
 
 /**
@@ -1746,17 +1728,6 @@ function processZenpageBulkActions($type,&$reports) {
 		$total = count($links);
 		$message = NULL;
 		$sql = '';
-		switch($type) {
-			case 'pages':
-				$dbtable = prefix('pages');
-				break;
-			case 'news':
-				$dbtable = prefix('news');
-				break;
-			case 'newscategories':
-				$dbtable = prefix('news_categories');
-				break;
-		}
 		if($action != 'noaction') {
 			if ($total > 0) {
 				if ($action == 'addtags' || $action == 'alltags') {
@@ -1804,17 +1775,8 @@ function processZenpageBulkActions($type,&$reports) {
 						break;
 				}
 				foreach ($links as $titlelink) {
-					switch($type) {
-						case 'pages':
-							$obj = new ZenpagePage($titlelink);
-							break;
-						case 'news':
-							$obj = new ZenpageNews($titlelink);
-							break;
-						case 'newscategories':
-							$obj = new ZenpageCategory($titlelink);
-							break;
-					}
+					$class = 'Zenpage'.$type;
+					$obj = new $class($titlelink);
 
 					switch ($action) {
 						case 'deleteall':
@@ -1860,9 +1822,7 @@ function processZenpageBulkActions($type,&$reports) {
 							$obj->set('hitcounter',0);
 							break;
 					}
-					if($type != 'newscategories' && ($action != 'alltags' || $action != 'clearalltags')) {
-						$obj->save();
-					}
+					$obj->save();
 				}
 				if(!is_null($message)) $reports[] = "<p class='messagebox fade-message'>".$message."</p>";
 			}

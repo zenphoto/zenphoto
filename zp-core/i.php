@@ -85,7 +85,7 @@ if (isset($_GET['cy'])) { //6
 if (isset($_GET['q'])) { //7
 	$args[7] = sanitize($_GET['q']);
 }
-if (isset($_get['thumb'])) { // 8
+if (isset($_GET['thumb'])) { // 8
 	$args[10] = 1;
 }
 if (isset($_GET['c'])) {// 9

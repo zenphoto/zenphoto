@@ -20,7 +20,7 @@ if (isset($_GET['deleted'])) {
 // update page sort order
 if(isset($_POST['update'])) {
 	XSRFdefender('update');
-	processZenpageBulkActions('pages', $reports);
+	processZenpageBulkActions('Page', $reports);
 	updateItemSortorder('pages',$reports);
 }
 // remove the page from the database
@@ -34,11 +34,15 @@ if(isset($_GET['delete'])) {
 // publish or un-publish page by click
 if(isset($_GET['publish'])) {
 	XSRFdefender('update');
-	publishPageOrArticle('page',$_GET['id']);
+	$result = query_single_row('SELECT * FROM'.prefix('page').' WHERE `id` = '.sanitize_numeric($_GET['id']));
+	$obj = new ZenpagePage($result['titlelink']);
+	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
 }
 if(isset($_GET['skipscheduling'])) {
 	XSRFdefender('update');
-	skipScheduledPublishing('page',$_GET['id']);
+	$result = query_single_row('SELECT * FROM'.prefix('page').' WHERE `id` = '.sanitize_numeric($_GET['id']));
+	$obj = new ZenpagePage($result['titlelink']);
+	skipScheduledPublishing($obj);
 }
 if(isset($_GET['commentson'])) {
 	XSRFdefender('update');

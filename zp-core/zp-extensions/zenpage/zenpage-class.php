@@ -48,10 +48,20 @@ class Zenpage {
 	 */
 	function processExpired($table) {
 		$expire = date('Y-m-d H:i:s');
-		query('update'.prefix($table).'SET `show`=0 WHERE `date`<="'.$expire.'"'.
-		' AND `expiredate`<="'.$expire.'"'.
-		' AND `expiredate`!="0000-00-00 00:00:00"'.
-		' AND `expiredate`!=NULL');
+		$sql = 'SELECT * FROM '.prefix($table).' WHERE `date`<="'.$expire.'"'.
+						' AND `show`="1"'.
+						' AND `expiredate`<="'.$expire.'"'.
+						' AND `expiredate`!="0000-00-00 00:00:00"'.
+						' AND `expiredate` IS NOT NULL';
+		$result = query_full_array($sql);
+		if ($result) {
+			foreach ($result as $item) {
+				$class = 'Zenpage'.$table;
+				$obj = new $class($item['titlelink']);
+				$obj->setShow(0);
+				$obj->save();
+			}
+		}
 	}
 
 /************************************/

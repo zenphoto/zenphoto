@@ -16,7 +16,7 @@ admin_securityChecks(ZENPAGE_NEWS_RIGHTS, currentRelativeURL(__FILE__));
 $reports = array();
 if(isset($_POST['processcheckeditems'])) {
 	XSRFdefender('checkeditems');
-	processZenpageBulkActions('newscategories',$reports);
+	processZenpageBulkActions('Category',$reports);
 	updateItemSortorder('categories',$reports);
 }
 if(isset($_GET['delete'])) {

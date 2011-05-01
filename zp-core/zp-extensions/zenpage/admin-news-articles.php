@@ -19,7 +19,7 @@ if (isset($_GET['deleted'])) {
 }
 if(isset($_POST['processcheckeditems'])) {
 	XSRFdefender('checkeditems');
-	processZenpageBulkActions('news',$reports);
+	processZenpageBulkActions('News',$reports);
 }
 if(isset($_GET['delete'])) {
 	XSRFdefender('delete');
@@ -31,11 +31,15 @@ if(isset($_GET['delete'])) {
 // publish or un-publish page by click
 if(isset($_GET['publish'])) {
 	XSRFdefender('update');
-	publishPageOrArticle('news',$_GET['id']);
+	$result = query_single_row('SELECT * FROM'.prefix('news').' WHERE `id` = '.sanitize_numeric($_GET['id']));
+	$obj = new ZenpageNews($result['titlelink']);
+	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
 }
 if(isset($_GET['skipscheduling'])) {
 	XSRFdefender('update');
-	skipScheduledPublishing('news',$_GET['id']);
+	$result = query_single_row('SELECT * FROM'.prefix('news').' WHERE `id` = '.sanitize_numeric($_GET['id']));
+	$obj = new ZenpageNews($result['titlelink']);
+	skipScheduledPublishing($obj);
 }
 if(isset($_GET['commentson'])) {
 	XSRFdefender('update');
