@@ -457,7 +457,12 @@ class ThemeObject extends PersistentObject {
 	 * @param bool $show True if the album is published
 	 */
 	function setShow($show) {
-		$this->set('show', $show ? 1 : 0);
+		$old_show = $this->get('show');
+		$new_show = (int) ($show && true);
+		if ($old_show != $new_show) {
+			$this->set('show', $new_show);
+			zp_apply_filter('show_change', $this);
+		}
 	}
 
 	/**

@@ -1341,18 +1341,20 @@ function checkForEmptyTitle($titlefield,$type,$truncate=true) {
 function publishPageOrArticle($option,$id) {
 	switch ($option) {
 		case "news":
-			$dbtable = prefix('news');
+			$result = query_single_row('SELECT * FROM'.prefix('news').' WHERE `id` = '.$id);
+			$obj = new ZenpageNews($result['titlelink']);
 			break;
 		case "page":
-			$dbtable = prefix('pages');
-			break;
-	}
+			$result = query_single_row('SELECT * FROM'.prefix('page').' WHERE `id` = '.$id);
+			$obj = new ZenpagePage($result['titlelink']);
+		}
+
 	$show = sanitize_numeric($_GET['publish']);
 	if ($show > 1) {
-		query('UPDATE '.$dbtable.' SET `show` = "1", `expiredate`=NULL WHERE id = '.$id);
-	} else {
-		query("UPDATE ".$dbtable." SET `show` = ".$show." WHERE id = ".$id);
+		$obj->setExpireDate(NULL);
 	}
+	$obj->setShow((int) ($show && 1));
+	$obj->save();
 }
 
 /**
