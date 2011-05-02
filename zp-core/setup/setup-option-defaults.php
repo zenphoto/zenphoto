@@ -472,8 +472,15 @@ setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
 	} else {
 		$data = array();
 	}
-	if (!isset($data['gallery_sortdirection'])) $data['gallery_sortdirection'] = getOption('gallery_sortdirection');
-	if (!isset($data['gallery_sorttype'])) $data['gallery_sorttype'] = getOption('gallery_sorttype');
+	if (!isset($data['gallery_sortdirection'])) {
+		$data['gallery_sortdirection'] = (int) getOption('gallery_sortdirection');
+	}
+	if (!isset($data['gallery_sorttype'])) {
+		$data['gallery_sorttype'] = getOption('gallery_sorttype');
+		if (empty($data['gallery_sorttype'])) {
+			$data['gallery_sorttype'] = 'ID';
+		}
+	}
 	if (!isset($data['gallery_title'])) {
 		$data['gallery_title'] = getOption('gallery_title');
 		if (is_null($data['gallery_title'])) {
