@@ -539,7 +539,7 @@ function languageChange(id,lang) {
 							if (empty($userid)) {
 								?>
 								<input type="hidden" name="<?php echo $id ?>-newuser" value="1" />
-								<em><?php echo gettext("Add New User"); ?></em>
+								<em><?php echo gettext("New User"); ?></em>
 								<?php
 							} else {
 								?>
@@ -554,7 +554,7 @@ function languageChange(id,lang) {
 						<a href="javascript:$('#show-<?php echo $userid; ?>').val(0);toggleExtraInfo('<?php echo $id;?>','user',false);" title="<?php echo $hidetitle; ?>">
 							<?php
 							if (empty($userid)) {
-								echo '<em>'.gettext("Add New User").'</em>';
+								echo '<em>'.gettext("New User").'</em>';
 							} else {
 								echo '<strong>'.$userid.'</strong>';
 							}

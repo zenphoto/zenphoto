@@ -105,6 +105,11 @@ if (isset($_GET['action'])) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&cleared&album='.$_POST['album']);
 			exit();
 			break;
+		case 'comments':
+			XSRFdefender('albumedit');
+			$album = new Album($gallery, $folder);
+			$album->setAllowedComments(sanitize_numeric($_GET['commentson']));
+			break;
 
 		/** Publish album  ************************************************************/
 		/******************************************************************************/
@@ -1589,10 +1594,7 @@ if (isset($_GET['saved'])) {
 		echo  "<h2>".sprintf(gettext("<em>%s</em> already exists."),sanitize($_GET['exists']))."</h2>";
 		echo '</div>';
 	}
-	if(isset($_GET['commentson'])) {
-		enableComments('album');
-	}
-if (isset($_GET['bulkmessage'])) {
+	if (isset($_GET['bulkmessage'])) {
 		$action = sanitize($_GET['bulkmessage']);
 		switch($action) {
 			case 'deleteall':

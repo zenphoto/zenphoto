@@ -1359,30 +1359,6 @@ function skipScheduledPublishing($obj) {
 }
 
 /**
- * Resets the hitcounter for a page, article or category
- *
- * @param string $option "news", "page" or "cat"
- */
-function resetPageOrArticleHitcounter($option='') {
-	switch ($option) {
-		case "news":
-			$dbtable = prefix('news');
-			break;
-		case "page":
-			$dbtable = prefix('pages');
-			break;
-		case "cat":
-			$dbtable = prefix('news_categories');
-			break;
-	}
-	$id = sanitize_numeric($_GET['id']);
-	if($_GET['hitcounter']) {
-		query("UPDATE ".$dbtable." SET `hitcounter` = 0 WHERE id = ".$id);
-	}
-}
-
-
-/**
  * Checks if there are hitcounts and if they are displayed behind the news article, page or category title
  *
  * @param string $item The array of the current news article, page or category in the list.

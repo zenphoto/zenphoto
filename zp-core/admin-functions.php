@@ -1942,7 +1942,7 @@ function printAlbumEditRow($album, $show_thumb) {
 			if ($album->getCommentsAllowed()) {
 				if ($enableEdit) {
 					?>
-					<a href="?commentson=1&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Disable comments'); ?>">
+					<a href="?action=comments&amp;commentson=1&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Disable comments'); ?>">
 					<?php
 				}
 				?>
@@ -1956,7 +1956,7 @@ function printAlbumEditRow($album, $show_thumb) {
 			} else {
 				if ($enableEdit) {
 					?>
-					<a href="?commentson=0&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Enable comments'); ?>">
+					<a href="?action=comments&amp;commentson=0&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Enable comments'); ?>">
 					<?php
 				}
 				?>
@@ -3402,31 +3402,6 @@ function processEditSelection($subtab) {
 				break;
 		}
 	}
-}
-
-/**
- * Enables comments for a news article or page
- *
- * @param string $type "news" or "pages"
- */
-function enableComments($type) {
-	if($_GET['commentson']) {
-		$comments = "0";
-	} else {
-		$comments = "1";
-	}
-	switch($type) {
-		case "news":
-			$dbtable = prefix('news');
-			break;
-		case "page":
-			$dbtable = prefix('pages');
-			break;
-		case "album":
-			$dbtable = prefix('albums');
-			break;
-	}
-	query("UPDATE ".$dbtable." SET `commentson` = ".$comments." WHERE id = ".sanitize_numeric($_GET['id']));
 }
 
 /**

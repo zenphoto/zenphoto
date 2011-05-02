@@ -187,7 +187,7 @@ codeblocktabsJS();
 			echo $report;
 		}
 		$admintype = 'newsarticle';
-		$additem = gettext('Add Article');
+		$additem = gettext('New Article');
 		$deleteitem = gettext('Article');
 		$themepage = 'news';
 	}
@@ -201,7 +201,7 @@ codeblocktabsJS();
 			echo $report;
 		}
 		$admintype = 'category';
-		$additem = gettext('Add Category');
+		$additem = gettext('New Category');
 		$deleteitem = gettext('Category');
 		$themepage = 'news';
 	}
@@ -211,7 +211,7 @@ codeblocktabsJS();
 			echo $report;
 		}
 		$admintype = 'page';
-		$additem = gettext('Add Page');
+		$additem = gettext('New Page');
 		$deleteitem = gettext('Page');
 		$themepage = 'pages';
 	}
@@ -219,17 +219,17 @@ codeblocktabsJS();
 	if($result->transient) {
 		if(is_AdminEditPage('newsarticle')) {
 			?>
-			<h1><?php echo gettext('Add Article'); ?></h1>
+			<h1><?php echo gettext('New Article'); ?></h1>
 			<?php
 		}
 		if(is_AdminEditPage('category')) {
 			?>
-			<h1><?php	echo gettext('Add Category'); ?></h1>
+			<h1><?php	echo gettext('New Category'); ?></h1>
 		<?php
 		}
 		if(is_AdminEditPage('page')) {
 			?>
-			<h1><?php	echo gettext('Add Page'); ?></h1>
+			<h1><?php	echo gettext('New Page'); ?></h1>
 		<?php
 		}
 	} else {

@@ -46,11 +46,16 @@ if(isset($_GET['skipscheduling'])) {
 }
 if(isset($_GET['commentson'])) {
 	XSRFdefender('update');
-	enableComments('page');
+	$result = query_single_row('SELECT * FROM'.prefix('page').' WHERE `id` = '.sanitize_numeric($_GET['id']));
+	$obj = new ZenpagePage($result['titlelink']);
+	$obj->setCommentsAllowed(sanitize_numeric($_GET['id']));
 }
 if(isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	resetPageOrArticleHitcounter('page');
+	$result = query_single_row('SELECT * FROM'.prefix('page').' WHERE `id` = '.sanitize_numeric($_GET['id']));
+	$obj = new ZenpagePage($result['titlelink']);
+	$obj->set('hitcounter',0);
+	$obj->save();
 }
 printAdminHeader('pages');
 printSortableHead();
@@ -103,10 +108,12 @@ if (GALLERY_SECURITY != 'private') {
 	<?php
 	if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
 		?>
-		<strong>
-			<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('Add Page'); ?>">
-			<img src="images/add.png" alt="" /> <?php echo gettext('Add Page'); ?></a>
-		</strong>
+		<span class="floatright">
+			<strong>
+				<a href="admin-edit.php?page&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Page'); ?>">
+				<img src="images/add.png" alt="" /> <?php echo gettext('New Page'); ?></a>
+			</strong>
+		</span>
 		<?php
 	}
 	?>

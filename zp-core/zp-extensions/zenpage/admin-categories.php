@@ -25,14 +25,17 @@ if(isset($_GET['delete'])) {
 }
 if(isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	resetPageOrArticleHitcounter('cat');
-}
+	$x = 	$_zp_zenpage->getCategory(sanitize_numeric($_GET['id']));
+	$obj = new ZenpageCategory($x['titlelink']);
+	$obj->set('hitcounter',0);
+	$obj->save();
+	}
 if(isset($_GET['save'])) {
 	XSRFdefender('save_categories');
 	addCategory($reports);
 }
 if(isset($_GET['id'])){
-	$x = 	$_zp_zenpage->getCategory($_GET['id']);
+	$x = 	$_zp_zenpage->getCategory(sanitize_numeric($_GET['id']));
 	$result = new ZenpageCategory($x['titlelink']);
 } else if(isset($_GET['update'])) {
 	XSRFdefender('update_categories');
@@ -102,7 +105,9 @@ printLogoAndLinks();
 					<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
 						<img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
 					</button>
-					<strong><a href="admin-edit.php?category&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('Add category'); ?>"><img src="images/add.png" alt="" /> <?php echo gettext('Add category'); ?></a></strong>
+					<span class="floatright">
+						<strong><a href="admin-edit.php?category&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New category'); ?>"><img src="images/add.png" alt="" /> <?php echo gettext('New category'); ?></a></strong>
+					</span>
 				</p>
 				<br clear="all" /><br />
 				<div class="bordered">

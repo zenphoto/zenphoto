@@ -565,7 +565,9 @@ class ThemeObject extends PersistentObject {
 	 *
 	 * @param bool $commentson true if they are allowed
 	 */
-	function setCommentsAllowed($commentson) { $this->set('commentson', $commentson ? 1 : 0); }
+	function setCommentsAllowed($commentson) {
+		$this->set('commentson', (int) ($commentson && true));
+	}
 
 	/**
 	 * Returns an array of comments for this album

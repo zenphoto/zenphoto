@@ -9,6 +9,7 @@
 
 
 require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
+require_once(dirname(__FILE__).'/lib-htmlawed.php');
 
 $const_webpath = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));
 $const_webpath = str_replace("\\", '/', $const_webpath);
@@ -67,7 +68,6 @@ function sanitize($input_string, $sanitize_level=3) {
 }
 
 function sanitize_string($input_string, $sanitize_level) {
-	require_once(dirname(__FILE__).'/lib-htmlawed.php');
 	if (get_magic_quotes_gpc()) $input_string = stripslashes($input_string);
 	if ($sanitize_level === 0) {
 		$input_string = str_replace(chr(0), " ", $input_string);

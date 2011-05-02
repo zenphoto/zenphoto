@@ -795,23 +795,28 @@ function sanitize_string($input_string, $sanitize_level) {
 	// Basic sanitation.
 	if ($sanitize_level === 0) {
 		return str_replace(chr(0), " ", $input_string);
-		}
+	}
 	// User specified sanititation.
-	require_once(dirname(__FILE__).'/lib-htmlawed.php');
+	if (function_exists('kses')) {
+		switch($sanitize_level) {
+			case 1:
+				$allowed_tags = getAllowedTags('allowed_tags');
+				$input_string = html_entity_decode(kses($input_string, $allowed_tags));
+				break;
 
-	if ($sanitize_level === 1) {
-		$allowed_tags = getAllowedTags('allowed_tags');
-		$input_string = html_entity_decode(kses($input_string, $allowed_tags));
-
-	// Text formatting sanititation.
-	} else if ($sanitize_level === 2) {
-		$allowed_tags = getAllowedTags('style_tags');
-		$input_string = html_entity_decode(kses($input_string, $allowed_tags));
-
-	// Full sanitation.  Strips all code.
-	} else if ($sanitize_level === 3) {
-		$allowed_tags = array();
-		$input_string = html_entity_decode(kses($input_string, $allowed_tags));
+				// Text formatting sanititation.
+			case 2:
+				$allowed_tags = getAllowedTags('style_tags');
+				$input_string = html_entity_decode(kses($input_string, $allowed_tags));
+				break;
+				// Full sanitation.  Strips all code.
+			case 3:
+				$allowed_tags = array();
+				$input_string = html_entity_decode(kses($input_string, $allowed_tags));
+				break;
+		}
+	} else {	//	in a basic environment--allow NO HTML tags.
+		$input_string = strip_tags($input_string);
 	}
 	return $input_string;
 }

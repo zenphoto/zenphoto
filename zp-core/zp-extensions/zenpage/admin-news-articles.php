@@ -43,11 +43,16 @@ if(isset($_GET['skipscheduling'])) {
 }
 if(isset($_GET['commentson'])) {
 	XSRFdefender('update');
-	enableComments('news');
+	$result = query_single_row('SELECT * FROM'.prefix('news').' WHERE `id` = '.sanitize_numeric($_GET['id']));
+	$obj = new ZenpageNews($result['titlelink']);
+	$obj->setCommentsAllowed(sanitize_numeric($_GET['id']));
 }
 if(isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	resetPageOrArticleHitcounter('news');
+	$result = query_single_row('SELECT * FROM'.prefix('news').' WHERE `id` = '.sanitize_numeric($_GET['id']));
+	$obj = new ZenpageNews($result['titlelink']);
+	$obj->set('hitcounter',0);
+	$obj->save();
 }
 
 printAdminHeader('news','articles');
@@ -119,17 +124,17 @@ printLogoAndLinks();
 			}
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic();?></span></h1>
-			<div style="float:right">
-			<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); ?>
-					<?php //echo "optionpath: ".getNewsAdminOptionPath(true,true,true); // debugging only; ?>
-					<br style="clear: both" /><br />
-					</div>
+				<div style="float:right">
+				<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); ?>
+						<?php //echo "optionpath: ".getNewsAdminOptionPath(true,true,true); // debugging only; ?>
+						<br style="clear: both" /><br />
+				</div>
 				<form action="admin-news-articles.php" method="post" name="checkeditems" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
 				<input name="processcheckeditems" type="hidden" value="apply" />
 				<div class="buttons">
 					<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button>
-					<a href="admin-edit.php?newsarticle&amp;add&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('Add Article'); ?>"><img src="images/add.png" alt="" /> <strong><?php echo gettext("Add Article"); ?></strong></a>
+					<a href="admin-edit.php?newsarticle&amp;add&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"><img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
 				</div>
 				<br style="clear: both" /><br />
 
