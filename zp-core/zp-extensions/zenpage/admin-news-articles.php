@@ -124,17 +124,21 @@ printLogoAndLinks();
 			}
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic();?></span></h1>
-				<div style="float:right">
+				<div class="floatright">
+					
 				<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); ?>
 						<?php //echo "optionpath: ".getNewsAdminOptionPath(true,true,true); // debugging only; ?>
+						<span class="buttons">
+						<a href="admin-edit.php?newsarticle&amp;add&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"><img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
+						</span>
 						<br style="clear: both" /><br />
 				</div>
 				<form action="admin-news-articles.php" method="post" name="checkeditems" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
 				<input name="processcheckeditems" type="hidden" value="apply" />
 				<div class="buttons">
-					<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong></button>
-					<a href="admin-edit.php?newsarticle&amp;add&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"><img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
+					<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
+					</button>
 				</div>
 				<br style="clear: both" /><br />
 

@@ -427,3 +427,8 @@ ul.language_string_list {
 	color: red;
 	font-weight: normal;
 }
+
+div.floatright form {
+	margin-left: 5px;
+	margin-right: 5px;
+}
