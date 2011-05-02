@@ -125,8 +125,7 @@ printLogoAndLinks();
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic();?></span></h1>
 				<div class="floatright">
-					
-				<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); ?>
+					<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); ?>
 						<?php //echo "optionpath: ".getNewsAdminOptionPath(true,true,true); // debugging only; ?>
 						<span class="buttons">
 						<a href="admin-edit.php?newsarticle&amp;add&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"><img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>

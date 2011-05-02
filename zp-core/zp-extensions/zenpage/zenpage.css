@@ -429,6 +429,18 @@ ul.language_string_list {
 }
 
 div.floatright form {
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+form#articledatesdropdown {
+margin-right: 0px;
+}
+
+form#categoriesdropdown {
+margin-right: 0px;
+}
+
+form#unpublisheddropdown {
+margin-right: 30px;
 }

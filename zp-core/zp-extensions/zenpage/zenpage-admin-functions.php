@@ -650,7 +650,7 @@ function printArticleDatesDropdown() {
 	$lastyear = "";
 	$nr = "";
  ?>
-	<form name="AutoListBox1" style="float:left; margin-left: 10px;" action="#" >
+	<form name="AutoListBox1" id="articledatesdropdown" style="float:left; margin-left: 10px;" action="#" >
 	<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
  <?php
 		if(!isset($_GET['date'])) {
@@ -799,7 +799,7 @@ function printUnpublishedDropdown() {
 	global $_zp_zenpage;
 	$currentpage = $_zp_zenpage->getCurrentAdminNewsPage();
 ?>
-<form name="AutoListBox3" style="float: left; margin-left: 10px;"	action="#">
+<form name="AutoListBox3" id="unpublisheddropdown" style="float: left; margin-left: 10px;"	action="#">
 	<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
 	<?php
 	$all="";
@@ -1112,7 +1112,7 @@ function printCategoryDropdown() {
 		$datelinkall ="";
 	}
 ?>
-	<form name ="AutoListBox2" style="float:left" action="#" >
+	<form name ="AutoListBox2" id="categorydropdown" style="float:left" action="#" >
 	<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
 <?php
 if(!isset($_GET['category'])) {
