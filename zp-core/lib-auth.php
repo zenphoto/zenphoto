@@ -587,7 +587,7 @@ class Zenphoto_Authority {
 	 */
 	function handleLogon() {
 		global $_zp_authority, $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha, $_zp_loggedin;
-		if (isset($_POST['login']) && isset($_POST['user']) && isset($_POST['pass']) && !empty($_POST['user'])) {
+		if (isset($_POST['login']) && isset($_POST['user']) && isset($_POST['pass'])) {
 			$post_user = sanitize($_POST['user']);
 			$post_pass = sanitize($_POST['pass'],0);
 			$user = $this->checkLogon($post_user, $post_pass, true);
