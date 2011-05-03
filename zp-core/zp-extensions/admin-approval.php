@@ -47,7 +47,7 @@ function admin_approval_publishZenphoto($object, $i) {
 	}
 	return $object;
 }
-function admin_approvalZenpage($report, $object, $titlelink) {
+function admin_approvalZenpage($report, $object) {
 	$msg = admin_approval_publish_object($object);
 	if ($msg) {
 		$msg = '<p class="errorbox fade-message">'.$msg.'</p>';

@@ -8,9 +8,6 @@
 
 /* Don't put anything before this line! */
 define('OFFSET_PATH', 1);
-if (isset($_GET['_zp_login_error'])) {
-	$_zp_login_error = sanitize($_GET['_zp_login_error']);
-}
 
 // The login will always occur in this file thanks to printLoginForm() function.
 // to implement 'server_protocol' == 'https_admin' we need to redirect to https
@@ -19,6 +16,9 @@ if (isset($_GET['_zp_login_error'])) {
 // When already logged in, auth_zp.php take care of the redirection.
 // To retrive getOption function:
 require_once(dirname(__FILE__).'/functions-basic.php');
+if (isset($_GET['_zp_login_error'])) {
+	$_zp_login_error = sanitize($_GET['_zp_login_error']);
+}
 if (getOption('server_protocol') == 'https_admin') {
 	// force https login
 	if (!isset($_SERVER["HTTPS"])) {
