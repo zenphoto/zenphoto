@@ -3606,7 +3606,7 @@ function processCommentBulkActions() {
 		$action = sanitize($_POST['checkallaction']);
 		$ids = $_POST['ids'];
 		if($action != 'noaction') {
-			if ($total > 0) {
+			if (count($ids) > 0) {
 				foreach ($ids as $id) {
 					$comment = new Comment($id);
 					switch($action) {

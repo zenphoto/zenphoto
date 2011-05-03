@@ -516,7 +516,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 		if ($showcomments) {
 			$num = getCommentCount();
 			if ($num==0) {
-				if ($addheader) echo '<h3>'.gettext('No Comments').'</h3>';
+				if ($addheader) echo '<h3 class="empty">'.gettext('No Comments').'</h3>';
 				$display = '';
 			} else {
 				if ($addheader) echo '<h3>'.sprintf(ngettext('%u Comment','%u Comments',$num), $num).'</h3>';
