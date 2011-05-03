@@ -320,13 +320,13 @@ function printPagesListTable($page, $flag) {
 		<?php
 		if ($page->getCommentsAllowed()) {
 			?>
-			<a href="?commentson=1&amp;id=<?php echo $page->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Disable comments'); ?>">
+			<a href="?commentson=0&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Disable comments'); ?>">
 				<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 			</a>
 			<?php
 		} else {
 			?>
-			<a href="?commentson=0&amp;id=<?php echo $page->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Enable comments'); ?>">
+			<a href="?commentson=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Enable comments'); ?>">
 				<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 			</a>
 			<?php
@@ -350,7 +350,7 @@ function printPagesListTable($page, $flag) {
 
 	<?php if(checkIfLockedPage($page)) { ?>
 	<div class="page-list_icon">
-		<a href="?hitcounter=1&amp;id=<?php echo $page->getID(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext("Reset hitcounter"); ?>">
+		<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext("Reset hitcounter"); ?>">
 		<img src="../../images/reset.png" alt="" title="<?php echo gettext("Reset hitcounter"); ?>" /></a>
 	</div>
 	<div class="page-list_icon">
@@ -1579,13 +1579,13 @@ function printPublishIconLink($object,$type) {
 		if ($object->getShow()) {
 			$title = gettext("Publish immediately (skip scheduling)");
 			?>
-			<a href="?skipscheduling=1&amp;id=<?php echo $object->getID().$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
+			<a href="?skipscheduling=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
 			<img src="images/clock.png" alt="<?php gettext("Scheduled for published"); ?>" title="<?php echo $title; ?>" /></a>
 			<?php
 		} else {
 			$title = gettext("Enable scheduled publishing");
 			?>
-			<a href="?publish=1&amp;id=<?php echo $object->getID().$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
+			<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
 			<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
 			<?php
 		}
@@ -1593,7 +1593,7 @@ function printPublishIconLink($object,$type) {
 		if ($object->getShow()) {
 			$title = gettext("Un-publish");
 			?>
-			<a href="?publish=0&amp;id=<?php echo $object->getID().$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
+			<a href="?publish=0&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
 			<img src="../../images/pass.png" alt="<?php echo gettext("Published"); ?>" title="<?php echo $title; ?>" /></a>
 			<?php
 		} else {
@@ -1601,12 +1601,12 @@ function printPublishIconLink($object,$type) {
 			if(empty($dt)) {
 				$title = gettext("Publish");
 				?>
-				<a href="?publish=1&amp;id=<?php echo $object->getID().$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>">
+				<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>">
 				<?php
 			} else {
 				$title = gettext("Publish (override expiration)");
 				?>
-				<a href="?publish=2&amp;id=<?php echo $object->getID().$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>">
+				<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>">
 				<?php
 			}
 			?>

@@ -108,7 +108,18 @@ if (isset($_GET['action'])) {
 		case 'comments':
 			XSRFdefender('albumedit');
 			$album = new Album($gallery, $folder);
-			$album->setAllowedComments(sanitize_numeric($_GET['commentson']));
+			$album->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
+			$album->save();
+			$return = pathurlencode(dirname($folder));
+			if (!empty($return)) {
+				if ($return == '.' || $return == '/') {
+					$return = '';
+				} else {
+					$return = '&album='.$return.'&tab=subalbuminfo';
+				}
+			}
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit'.$return);
+			exit();
 			break;
 
 		/** Publish album  ************************************************************/

@@ -31,28 +31,26 @@ if(isset($_GET['delete'])) {
 // publish or un-publish page by click
 if(isset($_GET['publish'])) {
 	XSRFdefender('update');
-	$result = query_single_row('SELECT * FROM'.prefix('news').' WHERE `id` = '.sanitize_numeric($_GET['id']));
-	$obj = new ZenpageNews($result['titlelink']);
+	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
 	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
 }
 if(isset($_GET['skipscheduling'])) {
 	XSRFdefender('update');
-	$result = query_single_row('SELECT * FROM'.prefix('news').' WHERE `id` = '.sanitize_numeric($_GET['id']));
-	$obj = new ZenpageNews($result['titlelink']);
+	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
 	skipScheduledPublishing($obj);
 }
 if(isset($_GET['commentson'])) {
 	XSRFdefender('update');
-	$result = query_single_row('SELECT * FROM'.prefix('news').' WHERE `id` = '.sanitize_numeric($_GET['id']));
-	$obj = new ZenpageNews($result['titlelink']);
-	$obj->setCommentsAllowed(sanitize_numeric($_GET['id']));
+	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
+	$obj->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
+	$obj->save();
 }
 if(isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	$result = query_single_row('SELECT * FROM'.prefix('news').' WHERE `id` = '.sanitize_numeric($_GET['id']));
-	$obj = new ZenpageNews($result['titlelink']);
+	$obj = new ZenpageNews(sanitize($_GET['titlelink']));
 	$obj->set('hitcounter',0);
 	$obj->save();
+	$reports[] = '<p class="messagebox fade-message">'.gettext("Hitcounter reset").'</p>';
 }
 
 printAdminHeader('news','articles');
@@ -216,13 +214,13 @@ printLogoAndLinks();
 									<?php
 									if ($article->getCommentsAllowed()) {
 										?>
-										<a href="?commentson=1&amp;id=<?php echo $article->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Disable comments'); ?>">
+										<a href="?commentson=0&amp;titlelink=<?php echo html_encode($article->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Disable comments'); ?>">
 											<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 										</a>
 										<?php
 									} else {
 										?>
-										<a href="?commentson=0&amp;id=<?php echo $article->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Enable comments'); ?>">
+										<a href="?commentson=1&amp;titlelink=<?php echo html_encode($article->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Enable comments'); ?>">
 											<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 										</a>
 										<?php
@@ -250,7 +248,7 @@ printLogoAndLinks();
 								if(checkIfLockedNews($article)) {
 									?>
 									<td class="icons">
-									<a href="?hitcounter=1&amp;id=<?php echo $article->getID();?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext('Reset hitcounter'); ?>">
+									<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($article->getTitlelink());?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext('Reset hitcounter'); ?>">
 									<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
 								</td>
 								<td class="icons">

@@ -34,28 +34,26 @@ if(isset($_GET['delete'])) {
 // publish or un-publish page by click
 if(isset($_GET['publish'])) {
 	XSRFdefender('update');
-	$result = query_single_row('SELECT * FROM'.prefix('page').' WHERE `id` = '.sanitize_numeric($_GET['id']));
-	$obj = new ZenpagePage($result['titlelink']);
+	$obj = new ZenpagePage(sanitize($_GET['titlelink']));
 	zenpagePublish($obj, sanitize_numeric($_GET['publish']));
 }
 if(isset($_GET['skipscheduling'])) {
 	XSRFdefender('update');
-	$result = query_single_row('SELECT * FROM'.prefix('page').' WHERE `id` = '.sanitize_numeric($_GET['id']));
 	$obj = new ZenpagePage($result['titlelink']);
 	skipScheduledPublishing($obj);
 }
 if(isset($_GET['commentson'])) {
 	XSRFdefender('update');
-	$result = query_single_row('SELECT * FROM'.prefix('page').' WHERE `id` = '.sanitize_numeric($_GET['id']));
-	$obj = new ZenpagePage($result['titlelink']);
-	$obj->setCommentsAllowed(sanitize_numeric($_GET['id']));
+	$obj = new ZenpagePage(sanitize($_GET['titlelink']));
+	$obj->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
+	$obj->save();
 }
 if(isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');
-	$result = query_single_row('SELECT * FROM'.prefix('page').' WHERE `id` = '.sanitize_numeric($_GET['id']));
-	$obj = new ZenpagePage($result['titlelink']);
+	$obj = new ZenpagePage(sanitize($_GET['titlelink']));
 	$obj->set('hitcounter',0);
 	$obj->save();
+	$reports[] = '<p class="messagebox fade-message">'.gettext("Hitcounter reset").'</p>';
 }
 printAdminHeader('pages');
 printSortableHead();

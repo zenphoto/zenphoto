@@ -1942,7 +1942,7 @@ function printAlbumEditRow($album, $show_thumb) {
 			if ($album->getCommentsAllowed()) {
 				if ($enableEdit) {
 					?>
-					<a href="?action=comments&amp;commentson=1&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Disable comments'); ?>">
+					<a href="?action=comments&amp;commentson=0&amp;album=<?php echo html_encode($album->getFolder()); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Disable comments'); ?>">
 					<?php
 				}
 				?>
@@ -1956,7 +1956,7 @@ function printAlbumEditRow($album, $show_thumb) {
 			} else {
 				if ($enableEdit) {
 					?>
-					<a href="?action=comments&amp;commentson=0&amp;id=<?php echo $album->getID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Enable comments'); ?>">
+					<a href="?action=comments&amp;commentson=1&amp;album=<?php echo html_encode($album->getFolder()); ?>&amp;XSRFToken=<?php echo getXSRFToken('albumedit')?>" title="<?php echo gettext('Enable comments'); ?>">
 					<?php
 				}
 				?>
@@ -3490,16 +3490,16 @@ function processAlbumBulkActions() {
 						$albumobj->remove();
 						break;
 					case 'showall':
-						$albumobj->set('show',1);
+						$albumobj->seShow(1);
 						break;
 					case 'hideall':
-						$albumobj->set('show',0);
+						$albumobj->setShow(0);
 						break;
 					case 'commentson':
-						$albumobj->set('commentson',1);
+						$albumobj->setCommentson(1);
 						break;
 					case 'commentsoff':
-						$albumobj->set('commentson',0);
+						$albumobj->setCommentson(0);
 						break;
 					case 'resethitcounter':
 						$albumobj->set('hitcounter',0);
