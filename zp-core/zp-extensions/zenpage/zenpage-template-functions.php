@@ -2818,7 +2818,7 @@ function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomm
  * @param string $lang optional to display a feed link for a specific language (currently works for latest images only). Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  */
 function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linktext='', $next='', $printIcon=true, $class=null, $lang=NULL) {
-	global $_zp_current_album;
+	global $_zp_current_category;
 	if ($printIcon) {
 		$icon = ' <img src="' . FULLWEBPATH . '/' . ZENFOLDER . '/images/rss.png" alt="RSS Feed" />';
 	} else {
@@ -2830,15 +2830,16 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
 	if(empty($lang)) {
 		$lang = getOption("locale");
 	}
-	if($option == "Category" AND empty($categorylink) AND isset($_GET['category'])) {
-		$categorylink = "&amp;category=".sanitize($_GET['category']);
-	}
-	if ($option == "Category" AND !empty($categorylink)) {
-		$categorylink = "&amp;category=".$categorylink;
-	}
-	if ($option == "Category" AND !empty($categorylink) AND !isset($_GET['category'])) {
-		$categorylink = "";
-	}
+	if($option == 'Category') {
+		if(!is_null($categorylink)) {
+			$categorylink = '&amp;category='.sanitize($categorylink);
+		} elseif(empty($categorylink) AND !is_null($_zp_current_category)) {
+			$categorylink = '&amp;category='.$_zp_current_category->getTitlelink();
+		} else {
+			$categorylink = '';
+		}
+	} 
+	$linktext = html_encode($linktext);
 	switch($option) {
 		case "News":
 			if (getOption('RSS_articles')) {
@@ -2847,7 +2848,7 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
 			break;
 		case "Category":
 			if (getOption('RSS_articles')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-news&amp;lang=".$lang.html_encode($categorylink)."\" title=\"".gettext("News Category RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
+				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-news&amp;lang=".$lang.$categorylink."\" title=\"".gettext("News Category RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
 			}
 			break;
 		case "NewsWithImages":
@@ -2892,20 +2893,21 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
  * @return string
  */
 function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $lang='') {
+	global $_zp_current_category;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
 	(secureServer()) ? $serverprotocol = "https://" : $serverprotocol = "http://";
 	if(empty($lang)) {
 		$lang = getOption("locale");
 	}
-	if($option == "Category" AND empty($categorylink) AND isset($_GET['category'])) {
-		$categorylink = "&amp;category=".sanitize($_GET['category']);
-	}
-	if ($option == "Category" AND !empty($categorylink)) {
-		$categorylink = "&amp;category=".sanitize($categorylink);
-	}
-	if ($option == "Category" AND !empty($categorylink) AND !isset($_GET['category'])) {
-		$categorylink = "";
-	}
+	if($option == 'Category') {
+		if(!is_null($categorylink)) {
+			$categorylink = '&amp;category='.sanitize($categorylink);
+		} elseif(empty($categorylink) AND !is_null($_zp_current_category)) {
+			$categorylink = '&amp;category='.$_zp_current_category->getTitlelink();
+		} else {
+			$categorylink = '';
+		}
+	} 
 	switch($option) {
 		case "News":
 			if (getOption('RSS_articles')) {
@@ -2913,7 +2915,7 @@ function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $la
 			}
 		case "Category":
 			if (getOption('RSS_articles')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss-news&amp;lang=".$lang.html_encode($categorylink)."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss-news&amp;lang=".$lang.$categorylink."\" />\n";
 			}
 		case "NewsWithImages":
 			if (getOption('RSS_articles')) {
