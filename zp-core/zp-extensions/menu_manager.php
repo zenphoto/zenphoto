@@ -53,10 +53,10 @@ class menu_manager {
 										'desc' => gettext('Limit titles to this many characters. Zero means no limit.'))
 		);
 		if (getOption('zp_plugin_print_album_menu') | getOption('zp_plugin_print_album_menu')) {
-			$options[gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other menu plugins.</p>')] =
-									array('key' => 'menu_manager_truncate_note', 'type' => OPTION_TYPE_CUSTOM,
-												'order' => 3,
-												'desc' => '');
+				$options['note'] = array('key' => 'menu_truncate_note',
+																'type' => OPTION_TYPE_NOTE,
+																'order' => 8,
+																'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other the <em>register_user</em> plugin.</p>'));
 
 		}
 		return $options;

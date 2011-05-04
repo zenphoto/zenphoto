@@ -40,7 +40,7 @@ class tweet_options {
 			$catlist[$category['title']] = $option;
 			setOptionDefault($option, NULL);
 		}
-		return array(	gettext('Scan pending') => array('key'=>'tweet_news_rescan', 'type'=>OPTION_TYPE_CHECKBOX,
+		$options = array(	gettext('Scan pending') => array('key'=>'tweet_news_rescan', 'type'=>OPTION_TYPE_CHECKBOX,
 										'order'=>5,
 										'desc'=>gettext('<code>tweet_news</code> notices when an article is published. '.
 																		'If the article date is in the future, it is put in the <em>to-be-tweeted</em> and tweeted when that date arrives. '.
@@ -60,30 +60,31 @@ class tweet_options {
 									gettext('Tweet categories') => array('key'=>'tweet_news_categories', 'type'=>OPTION_TYPE_CHECKBOX_UL,
 										'order'=>6,
 										'checkboxes' => $catlist,
-										'desc'=>gettext('Only those categories checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned.')),
-									chr(0).'1' => array('key'=>'tweet_news_rescan', 'type'=>OPTION_TYPE_CUSTOM,
-										'order'=>0,
-										'desc'=>NULL)
+										'desc'=>gettext('Only those categories checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned.'))
 									);
+		$note = '';
+		if (getOption('tweet_news_rescan')) {
+			setOption('tweet_news_rescan', 0);
+			$note = tweetRepopulate();
+		}
+		$result = query_full_array('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="error"');
+		if (!empty($result)) {
+			$errors = '';
+			foreach ($result as $error) {
+				$errors .= $error['data'].'<br />';
+				query('DELETE FROM'.prefix('plugin_storage').' WHERE `id`='.$error['id']);
+			}
+			$note .= '<p class="errorbox">'.$errors.'</p>';
+		}
+		if ($note) {
+			$options['note'] = array('key'=>'tweet_news_rescan', 'type'=>OPTION_TYPE_NOTE,
+															'order'=>0,
+															'desc'=>$note);
+		}
+
+		return $options;
 	}
 	function handleOption($option, $currentValue) {
-		switch($option) {
-			case 'tweet_news_rescan':
-				if (getOption('tweet_news_rescan')) {
-					setOption('tweet_news_rescan', 0);
-					tweetRepopulate();
-				}
-				$result = query_full_array('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="error"');
-				if (!empty($result)) {
-					$errors = '';
-					foreach ($result as $error) {
-						$errors .= $error['data'].'<br />';
-						query('DELETE FROM'.prefix('plugin_storage').' WHERE `id`='.$error['id']);
-					}
-					echo '<p class="errorbox">'.$errors.'</p>';
-				}
-				break;
-		}
 	}
 }
 
@@ -125,11 +126,17 @@ function tweetNewsArticle($obj) {
 		} else {	//	tweet it
 			require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 			require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
-			$text = strip_tags($obj->getContent());
+			$text = trim(strip_tags($obj->getContent()));
 			if (strlen($text) > 140) {
+				$title = trim(strip_tags($obj->getTitle()));
 				$link = PROTOCOL.'://'.$_SERVER['HTTP_HOST'].getNewsURL($obj->getTitlelink());
 				$c = 140 - strlen($link) - 4;	//	allow for ellipsis
-				$text = strip_tags(shortenContent($text, $c, '... ')).$link;
+				if (strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
+					$text = trim(strip_tags(shortenContent($title, $c, '... '))).$link;
+				} else {
+					$c = $c - strlen($title) - 1;
+					$text = $title.' '.trim(strip_tags(shortenContent($text, $c, '... '))).$link;
+				}
 			}
 			$error = sendTweet($text);
 			if ($error) {
@@ -159,7 +166,8 @@ function tweetRepopulate() {
 		foreach ($result as $pending) {
 			query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending",'.db_quote($pending['titlelink']).')');
 		}
-		echo gettext('<p class="messagebox">Scheduled news articles have been noted for tweeting.</p>');
+		return '<p class="messagebox">'.gettext('Scheduled news articles have been noted for tweeting.</p>').'</p>';
 	}
+	return '<p class="messagebox">'.gettext('No scheduled news articles found.</p>').'</p>';
 }
 ?>

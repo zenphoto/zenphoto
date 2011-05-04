@@ -51,16 +51,15 @@ class print_album_menu {
 										'desc' => gettext('Append this string to truncated titles.'))
 									);
 		if ($disable) {
-			$options['<p class="notebox">'.$disable.'</p>'] = array('key' => 'menu_manager_truncate_note', 'type' => OPTION_TYPE_CUSTOM,
-																															'order' => 8,
-																															'desc' => '');
+			$options['note'] = array('key' => 'menu_manager_truncate_note', 'type' => OPTION_TYPE_NOTE,
+																'order' => 8,
+																'desc' => '<p class="notebox">'.$disable.'</p>');
 		} else {
 			if (getOption('zp_plugin_zenpage')) {
-				$options[gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other menu plugins.</p>')] =
-																									array('key' => 'menu_manager_truncate_note',
-																												'type' => OPTION_TYPE_CUSTOM,
-																												'order' => 8,
-																												'desc' => '');
+				$options['note'] =array('key' => 'menu_truncate_note',
+																'type' => OPTION_TYPE_NOTE,
+																'order' => 8,
+																'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other the <em>register_user</em> plugin.</p>'));
 			}
 		}
 		return $options;

@@ -145,16 +145,16 @@ class federated_login_options {
 		$files = getPluginFiles('*_logon.php','federated_logon');
 
 		if ($disable) {
-			$options['<p class="notebox">'.$disable.'</p>'] = array('key' => 'federated_logon_truncate_note', 'type' => OPTION_TYPE_CUSTOM,
-																															'order' => 8,
-																															'desc' => '');
+			$options['note'] = array('key' => 'federated_logon_truncate_note',
+															'type' => OPTION_TYPE_NOTE,
+															'order' => 8,
+															'desc' => '<p class="notebox">'.$disable.'</p>');
 		} else {
 			if (getOption('zp_plugin_zenpage')) {
-				$options[gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other the <em>register_user</em> plugin.</p>')] =
-																									array('key' => 'federated_logon_truncate_note',
-																												'type' => OPTION_TYPE_CUSTOM,
-																												'order' => 8,
-																												'desc' => '');
+				$options['note'] = array('key' => 'federated_logon_truncate_note',
+																'type' => OPTION_TYPE_NOTE,
+																'order' => 8,
+																'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other the <em>register_user</em> plugin.</p>'));
 			}
 		}
 		return $options;

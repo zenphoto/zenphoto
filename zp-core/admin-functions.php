@@ -472,6 +472,7 @@ define ('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
  * 		OPTION_TYPE_CHECKBOX_ARRAY:	checkbox array (checkbox list is in the 'checkboxes' index of the supported options array.)
  * 		OPTION_TYPE_CHECKBOX_UL:		checkbox UL (checkbox list is in the 'checkboxes' index of the supported options array.)
  * 		OPTION_TYPE_COLOR_PICKER:		Color picker
+ * 		OPTION_TYPE_NOTE:						places a note in the options area. The note will span all three columns
  *
  * type 0 and 3 support multi-lingual strings.
  */
@@ -485,6 +486,7 @@ define('OPTION_TYPE_CHECKBOX_ARRAY',6);
 define('OPTION_TYPE_CHECKBOX_UL',7);
 define('OPTION_TYPE_COLOR_PICKER',8);
 define('OPTION_TYPE_CLEARTEXT',9);
+define('OPTION_TYPE_NOTE',9);
 
 function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false, $supportedOptions=NULL, $theme=false, $initial='none') {
 	if (is_null($supportedOptions)) $supportedOptions = $optionHandler->getOptionsSupported();
@@ -545,190 +547,201 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 				<tr id="tr_<?php echo $optionID; ?>">
 				<?php
 			}
+			if ($type != OPTION_TYPE_NOTE) {
 				?>
 				<td width="175"><?php if ($option) echo $indent . $option; ?></td>
 				<?php
-				switch ($type) {
-					case OPTION_TYPE_CLEARTEXT:
-						$multilingual = false;
-					case OPTION_TYPE_TEXTBOX:
-					case OPTION_TYPE_TEXTAREA:
-						if ($type == OPTION_TYPE_CLEARTEXT) {
-							$clear = 'clear';
+			}
+			switch ($type) {
+				case OPTION_TYPE_NOTE:
+					?>
+					<td colspan="3"><?php echo $desc; ?></td>
+					<?php
+					break;
+				case OPTION_TYPE_CLEARTEXT:
+					$multilingual = false;
+				case OPTION_TYPE_TEXTBOX:
+				case OPTION_TYPE_TEXTAREA:
+					if ($type == OPTION_TYPE_CLEARTEXT) {
+						$clear = 'clear';
+					} else {
+						$clear = '';
+					}
+					?>
+					<td width="350">
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.$clear.'text-'.$key; ?>" value="0" />
+						<?php
+						if ($multilingual) {
+							print_language_string_list($v, $key, $type, NULL, $editor);
 						} else {
-							$clear = '';
+							if ($type == OPTION_TYPE_TEXTAREA) {
+								?>
+								<textarea id="<?php echo $key; ?>" name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php  echo html_encode($v); ?></textarea>
+								<?php
+							} else {
+								?>
+								<input type="text" size="40" id="<?php echo $key; ?>" name="<?php echo $key; ?>" style="width: 338px" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
+								<?php
+							}
 						}
 						?>
-						<td width="350">
-							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.$clear.'text-'.$key; ?>" value="0" />
+					</td>
+					<?php
+					break;
+				case OPTION_TYPE_CHECKBOX:
+					?>
+					<td width="350">
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$key; ?>" value="0" />
+						<input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="1" <?php echo checked('1', $v); ?><?php echo $disabled; ?> />
+					</td>
+					<?php
+					break;
+				case OPTION_TYPE_CUSTOM:
+					?>
+					<td width="350">
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'custom-'.$key; ?>" value="0" />
+						<?php	$optionHandler->handleOption($key, $v); ?>
+					</td>
+					<?php
+					break;
+				case OPTION_TYPE_RADIO:
+					$behind = (isset($row['behind']) && $row['behind']);
+					?>
+					<td width="350">
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'radio-'.$key; ?>" value="0"<?php echo $disabled; ?> />
+						<?php generateRadiobuttonsFromArray($v,$row['buttons'],$key, $behind); ?>
+					</td>
+					<?php
+					break;
+				case OPTION_TYPE_SELECTOR:
+					?>
+					<td width="350">
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'selector-'.$key?>" value="0" />
+						<select id="<?php echo $key; ?>" name="<?php echo $key; ?>"<?php echo $disabled; ?> >
 							<?php
-							if ($multilingual) {
-								print_language_string_list($v, $key, $type, NULL, $editor);
+							if (array_key_exists('null_selection', $row)) {
+								?>
+								<option value=""<?php if (empty($v)) echo ' selected="selected"'; ?>><?php echo $row['null_selection']; ?></option>
+								<?php
+							}
+							?>
+							<?php generateListFromArray(array($v),$row['selections'], false, true); ?>
+						</select>
+					</td>
+					<?php
+					break;
+				case OPTION_TYPE_CHECKBOX_ARRAY:
+					$behind = (isset($row['behind']) && $row['behind']);
+					?>
+					<td width="350">
+						<?php
+						foreach ($row['checkboxes'] as $display=>$checkbox) {
+							if ($theme) {
+								$v = getThemeOption($checkbox, $album, $theme);
 							} else {
-								if ($type == OPTION_TYPE_TEXTAREA) {
-									?>
-									<textarea id="<?php echo $key; ?>" name="<?php echo $key; ?>" cols="<?php echo TEXTAREA_COLUMNS; ?>"	style="width: 320px" rows="6"<?php echo $disabled; ?>><?php  echo html_encode($v); ?></textarea>
-									<?php
+								$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
+								$db = query_single_row($sql);
+								if ($db) {
+									$v = $db['value'];
 								} else {
-									?>
-									<input type="text" size="40" id="<?php echo $key; ?>" name="<?php echo $key; ?>" style="width: 338px" value="<?php echo html_encode($v); ?>"<?php echo $disabled; ?> />
-									<?php
+									$v = 0;
 								}
 							}
+							$display = str_replace(' ', '&nbsp;', $display);
 							?>
-						</td>
-						<?php
-						break;
-					case OPTION_TYPE_CHECKBOX:
-						?>
-						<td width="350">
-							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$key; ?>" value="0" />
-							<input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="1" <?php echo checked('1', $v); ?><?php echo $disabled; ?> />
-						</td>
-						<?php
-						break;
-					case OPTION_TYPE_CUSTOM:
-						?>
-						<td width="350">
-							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'custom-'.$key; ?>" value="0" />
-							<?php	$optionHandler->handleOption($key, $v); ?>
-						</td>
-						<?php
-						break;
-					case OPTION_TYPE_RADIO:
-						$behind = (isset($row['behind']) && $row['behind']);
-						?>
-						<td width="350">
-							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'radio-'.$key; ?>" value="0"<?php echo $disabled; ?> />
-							<?php generateRadiobuttonsFromArray($v,$row['buttons'],$key, $behind); ?>
-						</td>
-						<?php
-						break;
-					case OPTION_TYPE_SELECTOR:
-						?>
-						<td width="350">
-							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'selector-'.$key?>" value="0" />
-							<select id="<?php echo $key; ?>" name="<?php echo $key; ?>"<?php echo $disabled; ?> >
-								<?php
-								if (array_key_exists('null_selection', $row)) {
-									?>
-									<option value=""<?php if (empty($v)) echo ' selected="selected"'; ?>><?php echo $row['null_selection']; ?></option>
-									<?php
-								}
-								?>
-								<?php generateListFromArray(array($v),$row['selections'], false, true); ?>
-							</select>
-						</td>
-						<?php
-						break;
-					case OPTION_TYPE_CHECKBOX_ARRAY:
-						$behind = (isset($row['behind']) && $row['behind']);
-						?>
-						<td width="350">
-							<?php
-							foreach ($row['checkboxes'] as $display=>$checkbox) {
-								if ($theme) {
-									$v = getThemeOption($checkbox, $album, $theme);
-								} else {
-									$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
-									$db = query_single_row($sql);
-									if ($db) {
-										$v = $db['value'];
-									} else {
-										$v = 0;
-									}
-								}
-								$display = str_replace(' ', '&nbsp;', $display);
-								?>
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$checkbox; ?>" value="0" />
+							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$checkbox; ?>" value="0" />
 
-								<label class="checkboxlabel">
-									<?php if ($behind) echo($display); ?>
-									<input type="checkbox" id="<?php echo $checkbox; ?>" name="<?php echo $checkbox; ?>" value="1"<?php echo checked('1', $v); ?><?php echo $disabled; ?> />
-									<?php if (!$behind) echo($display); ?>
-								</label>
-								<?php
-							}
-							?>
-						</td>
-						<?php
-						break;
-					case OPTION_TYPE_CHECKBOX_UL:
-						?>
-						<td width="350">
-							<?php
-							$all = true;
-							$cvarray = array();
-							foreach ($row['checkboxes'] as $display=>$checkbox) {
-								?>
-								<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$checkbox; ?>" value="0" />
-								<?php
-								if ($theme) {
-									$v = getThemeOption($checkbox, $album, $theme);
-								} else {
-									$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
-									$db = query_single_row($sql);
-									if ($db) {
-										$v = $db['value'];
-									} else {
-										$v = 0;
-									}
-								}
-								if ($v)	{
-									$cvarray[] = $checkbox;
-								} else {
-									$all = false;
-								}
-							}
-							?>
-							<ul class="customchecklist">
-								<?php generateUnorderedListFromArray($cvarray, $row['checkboxes'], '', '', true, true); ?>
-							</ul>
-							<script type="text/javascript">
-								// <!-- <![CDATA[
-								function <?php echo $key; ?>_all() {
-									var check = $('#all_<?php echo $key; ?>').attr('checked');
-									<?php
-									foreach ($row['checkboxes'] as $display=>$checkbox) {
-										?>
-										$('#<?php echo $checkbox; ?>').attr('checked',check);
-										<?php
-									}
-									?>
-								}
-								// ]]> -->
-							</script>
-							<label>
-								<input type="checkbox" name="all_<?php echo $key; ?>" id="all_<?php echo $key; ?>" onclick="<?php echo $key; ?>_all();" <?php if ($all) echo ' checked="checked"'; ?>/>
-								<?php echo gettext('all'); ?>
+							<label class="checkboxlabel">
+								<?php if ($behind) echo($display); ?>
+								<input type="checkbox" id="<?php echo $checkbox; ?>" name="<?php echo $checkbox; ?>" value="1"<?php echo checked('1', $v); ?><?php echo $disabled; ?> />
+								<?php if (!$behind) echo($display); ?>
 							</label>
-						</td>
-						<?php
-						break;
-					case OPTION_TYPE_COLOR_PICKER:
-						if (empty($v)) $v = '#000000';
+							<?php
+						}
 						?>
-						<td width="350" style="margin:0; padding:0">
-							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'text-'.$key; ?>" value="0" />
-							<script type="text/javascript">
-								// <!-- <![CDATA[
-								$(document).ready(function() {
-									$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
-								});
-								// ]]> -->
-							</script>
-							<table style="margin:0; padding:0" >
-								<tr>
-									<td><input type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>"	value="<?php echo $v; ?>" style="height:100px; width:100px; float:right;" /></td>
-									<td><div id="<?php echo $key; ?>_colorpicker"></div></td>
-								</tr>
-							</table>
-						</td>
+					</td>
+					<?php
+					break;
+				case OPTION_TYPE_CHECKBOX_UL:
+					?>
+					<td width="350">
 						<?php
-						break;
+						$all = true;
+						$cvarray = array();
+						foreach ($row['checkboxes'] as $display=>$checkbox) {
+							?>
+							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$checkbox; ?>" value="0" />
+							<?php
+							if ($theme) {
+								$v = getThemeOption($checkbox, $album, $theme);
+							} else {
+								$sql = "SELECT `value` FROM " . prefix('options') . " WHERE `name`=" . db_quote($checkbox);
+								$db = query_single_row($sql);
+								if ($db) {
+									$v = $db['value'];
+								} else {
+									$v = 0;
+								}
+							}
+							if ($v)	{
+								$cvarray[] = $checkbox;
+							} else {
+								$all = false;
+							}
+						}
+						?>
+						<ul class="customchecklist">
+							<?php generateUnorderedListFromArray($cvarray, $row['checkboxes'], '', '', true, true); ?>
+						</ul>
+						<script type="text/javascript">
+							// <!-- <![CDATA[
+							function <?php echo $key; ?>_all() {
+								var check = $('#all_<?php echo $key; ?>').attr('checked');
+								<?php
+								foreach ($row['checkboxes'] as $display=>$checkbox) {
+									?>
+									$('#<?php echo $checkbox; ?>').attr('checked',check);
+									<?php
+								}
+								?>
+							}
+							// ]]> -->
+						</script>
+						<label>
+							<input type="checkbox" name="all_<?php echo $key; ?>" id="all_<?php echo $key; ?>" onclick="<?php echo $key; ?>_all();" <?php if ($all) echo ' checked="checked"'; ?>/>
+							<?php echo gettext('all'); ?>
+						</label>
+					</td>
+					<?php
+					break;
+				case OPTION_TYPE_COLOR_PICKER:
+					if (empty($v)) $v = '#000000';
+					?>
+					<td width="350" style="margin:0; padding:0">
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'text-'.$key; ?>" value="0" />
+						<script type="text/javascript">
+							// <!-- <![CDATA[
+							$(document).ready(function() {
+								$('#<?php echo $key; ?>_colorpicker').farbtastic('#<?php echo $key; ?>');
+							});
+							// ]]> -->
+						</script>
+						<table style="margin:0; padding:0" >
+							<tr>
+								<td><input type="text" id="<?php echo $key; ?>" name="<?php echo $key; ?>"	value="<?php echo $v; ?>" style="height:100px; width:100px; float:right;" /></td>
+								<td><div id="<?php echo $key; ?>_colorpicker"></div></td>
+							</tr>
+						</table>
+					</td>
+					<?php
+					break;
+				}
+				if ($type != OPTION_TYPE_NOTE) {
+					?>
+					<td><?php echo $desc; ?></td>
+					<?php
 				}
 				?>
-				<td><?php echo $desc; ?></td>
 			</tr>
 			<?php
 		}

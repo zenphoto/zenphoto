@@ -2722,6 +2722,10 @@ zp-core/zp-extensions/tiny_mce/utils/editable_selects.js
 zp-core/zp-extensions/tiny_mce/utils/form_utils.js
 zp-core/zp-extensions/tiny_mce/utils/mctabs.js
 zp-core/zp-extensions/tiny_mce/utils/validate.js
+zp-core/zp-extensions/tweet_news
+zp-core/zp-extensions/tweet_news.php
+zp-core/zp-extensions/tweet_news/OAuth.php
+zp-core/zp-extensions/tweet_news/twitteroauth.php
 zp-core/zp-extensions/user-expiry
 zp-core/zp-extensions/user-expiry.php
 zp-core/zp-extensions/user-expiry/user-expiry-tab.php
@@ -2759,4 +2763,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2761
+2765
