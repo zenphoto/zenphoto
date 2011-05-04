@@ -13,6 +13,7 @@ if ($plugin_disable) {
 } else {
 	$option_interface = 'tweet_options';
 	zp_register_filter('show_change', 'tweetNewsArticle');
+	zp_register_filter('new_image', 'tweetNewsArticle');
 	zp_register_filter('admin_head', 'tweetScan');
 	zp_register_filter('theme_head', 'tweetScan');
 	require_once(getPlugin('tweet_news/twitteroauth.php'));
