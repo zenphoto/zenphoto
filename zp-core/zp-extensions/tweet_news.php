@@ -28,6 +28,7 @@ class tweet_options {
 		setOptionDefault('tweet_news_oauth_token_secret', NULL);
 		setOptionDefault('tweet_news_rescan', 1);
 		setOptionDefault('tweet_news_categories_none', NULL);
+		setOptionDefault('tweet_news_images', NULL);
 	}
 
 	function getOptionsSupported() {
@@ -41,27 +42,30 @@ class tweet_options {
 			setOptionDefault($option, NULL);
 		}
 		$options = array(	gettext('Scan pending') => array('key'=>'tweet_news_rescan', 'type'=>OPTION_TYPE_CHECKBOX,
-										'order'=>5,
-										'desc'=>gettext('<code>tweet_news</code> notices when an article is published. '.
-																		'If the article date is in the future, it is put in the <em>to-be-tweeted</em> and tweeted when that date arrives. '.
-																		'This option allows you to re-populate that list to the current state of scheduled articles.')),
-									gettext('Consumer key') => array('key'=>'tweet_news_consumer', 'type'=>OPTION_TYPE_TEXTBOX,
-										'order'=>2,
-										'desc'=>gettext('This <code>tweet_news</code> app for this site needs a <em>consumer key</em>, a <em>consumer key secret</em>, an <em>access token</em>, and an <em>access token secret</em>.').'<p class="notebox">'. gettext('Get these from <a href="http://dev.twitter.com/">Twitter developers</a>').'</p>'),
-									gettext('Secret') => array('key'=>'tweet_news_consumer_secret', 'type'=>OPTION_TYPE_TEXTBOX,
-										'order'=>3,
-										'desc'=>gettext('The <em>secret</em> associated with your <em>consumer key</em>.')),
-									gettext('Access token') => array('key'=>'tweet_news_oauth_token', 'type'=>OPTION_TYPE_TEXTBOX,
-										'order'=>4,
-										'desc'=>gettext('The application <em>oauth_token</em> token.')),
-									gettext('Access token secret') => array('key'=>'tweet_news_oauth_token_secret', 'type'=>OPTION_TYPE_TEXTBOX,
-										'order'=>5,
-										'desc'=>gettext('The application <em>oauth_token</em> secret.')),
-									gettext('Tweet categories') => array('key'=>'tweet_news_categories', 'type'=>OPTION_TYPE_CHECKBOX_UL,
-										'order'=>6,
-										'checkboxes' => $catlist,
-										'desc'=>gettext('Only those categories checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned.'))
-									);
+																												'order'=>7,
+																												'desc'=>gettext('<code>tweet_news</code> notices when an article is published. '.
+																																				'If the article date is in the future, it is put in the <em>to-be-tweeted</em> and tweeted when that date arrives. '.
+																																																							'This option allows you to re-populate that list to the current state of scheduled articles.')),
+											gettext('Tweet images') => array('key'=>'tweet_news_images', 'type'=>OPTION_TYPE_CHECKBOX,
+																												'order'=>5,
+																												'desc'=>gettext('If checked newly published <em>images</em> will be tweeted.')),
+											gettext('Consumer key') => array('key'=>'tweet_news_consumer', 'type'=>OPTION_TYPE_TEXTBOX,
+																												'order'=>2,
+																												'desc'=>gettext('This <code>tweet_news</code> app for this site needs a <em>consumer key</em>, a <em>consumer key secret</em>, an <em>access token</em>, and an <em>access token secret</em>.').'<p class="notebox">'. gettext('Get these from <a href="http://dev.twitter.com/">Twitter developers</a>').'</p>'),
+											gettext('Secret') => array('key'=>'tweet_news_consumer_secret', 'type'=>OPTION_TYPE_TEXTBOX,
+																									'order'=>3,
+																									'desc'=>gettext('The <em>secret</em> associated with your <em>consumer key</em>.')),
+											gettext('Access token') => array('key'=>'tweet_news_oauth_token', 'type'=>OPTION_TYPE_TEXTBOX,
+																												'order'=>4,
+																												'desc'=>gettext('The application <em>oauth_token</em> token.')),
+											gettext('Access token secret') => array('key'=>'tweet_news_oauth_token_secret', 'type'=>OPTION_TYPE_TEXTBOX,
+																															'order'=>5,
+																															'desc'=>gettext('The application <em>oauth_token</em> secret.')),
+											gettext('News categories') => array('key'=>'tweet_news_categories', 'type'=>OPTION_TYPE_CHECKBOX_UL,
+																														'order'=>6,
+																														'checkboxes' => $catlist,
+																														'desc'=>gettext('Only those <em>news categories</em> checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned.'))
+										);
 		$note = '';
 		if (getOption('tweet_news_rescan')) {
 			setOption('tweet_news_rescan', 0);
@@ -105,43 +109,63 @@ function sendTweet($status) {
 }
 
 function tweetNewsArticle($obj) {
-	if ($obj->table == 'news' && $obj->getShow()) {
-		$dt = $obj->getDateTime();
-		$mycategories = $obj->getCategories();
-		$tweet = false;
-		if (empty($mycategories)) {
-			$tweet = getOption('tweet_news_categories_none');
-		} else {
-			foreach($mycategories as $cat) {
-				if ($tweet = getOption('tweet_news_categories_'.$cat['titlelink'])) {
-					break;
-				}
-			}
-		}
-		if($tweet && $dt > date('Y-m-d H:i:s')) {
-			$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending" AND `data`='.db_quote($obj->getTitlelink()));
-			if (!$result) {
-				query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending",'.db_quote($obj->getTitlelink()).')');
-			}
-		} else {	//	tweet it
-			require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
-			require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
-			$text = trim(strip_tags($obj->getContent()));
-			if (strlen($text) > 140) {
-				$title = trim(strip_tags($obj->getTitle()));
-				$link = PROTOCOL.'://'.$_SERVER['HTTP_HOST'].getNewsURL($obj->getTitlelink());
-				$c = 140 - strlen($link) - 4;	//	allow for ellipsis
-				if (strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
-					$text = trim(strip_tags(shortenContent($title, $c, '... '))).$link;
+	if ($obj->getShow()) {
+		switch ($obj->table) {
+			case 'news':
+				$dt = $obj->getDateTime();
+				$mycategories = $obj->getCategories();
+				$tweet = false;
+				if (empty($mycategories)) {
+					$tweet = getOption('tweet_news_categories_none');
 				} else {
-					$c = $c - strlen($title) - 1;
-					$text = $title.' '.trim(strip_tags(shortenContent($text, $c, '... '))).$link;
+					foreach($mycategories as $cat) {
+						if ($tweet = getOption('tweet_news_categories_'.$cat['titlelink'])) {
+							break;
+						}
+					}
 				}
-			}
-			$error = sendTweet($text);
-			if ($error) {
-				query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","error",'.db_quote(sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$obj->getTitlelink(),$error)).')');
-			}
+				if($tweet && $dt > date('Y-m-d H:i:s')) {
+					$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending" AND `data`='.db_quote($obj->getTitlelink()));
+					if (!$result) {
+						query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending",'.db_quote($obj->getTitlelink()).')');
+					}
+				} else {	//	tweet it
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
+					$text = trim(strip_tags($obj->getContent()));
+					if (strlen($text) > 140) {
+						$title = trim(strip_tags($obj->getTitle()));
+						$link = PROTOCOL.'://'.$_SERVER['HTTP_HOST'].getNewsURL($obj->getTitlelink());
+						$c = 140 - strlen($link) - 4;	//	allow for ellipsis
+						if (strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
+							$text = trim(strip_tags(shortenContent($title, $c, '... '))).$link;
+						} else {
+							$c = $c - strlen($title) - 1;
+							$text = $title.' '.trim(strip_tags(shortenContent($text, $c, '... '))).$link;
+						}
+					}
+					$error = sendTweet($text);
+					if ($error) {
+						query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","error",'.db_quote(sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$obj->getTitlelink(),$error)).')');
+					}
+				}
+				break;
+			case 'images':
+				if (getOption('tweet_news_images')) {
+					$text = sprintf(gettext('New image in %s '),trim(strip_tags($obj->getTitle())));
+					$link = PROTOCOL.'://'.$_SERVER['HTTP_HOST'].$obj->getImageLink();
+					if (strlen($text.$link) > 140) {
+						$c = 140 - strlen($link) - 4;	//	allow for ellipsis
+						$text = trim(strip_tags(shortenContent($text, $c, '... '))).$link;
+					} else {
+						$text = $text.$link;
+					}
+					$error = sendTweet($text);
+					if ($error) {
+						query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","error",'.db_quote(sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$obj->getTitlelink(),$error)).')');
+					}
+				}
+				break;
 		}
 	}
 	return $obj;
