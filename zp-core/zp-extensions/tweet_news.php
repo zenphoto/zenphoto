@@ -6,7 +6,7 @@
 $plugin_is_filter = 9|THEME_PLUGIN|ADMIN_PLUGIN;
 $plugin_description = gettext('Tweet news articles when published.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.2';
+$plugin_version = '1.4.1';
 $plugin_disable = (version_compare(PHP_VERSION, '5.2.0') != 1) ? gettext('PHP version 5.2 or greater is required.') : false;
 if ($plugin_disable) {
 	setOption('zp_plugin_tweet_news',0);
