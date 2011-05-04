@@ -110,6 +110,7 @@ function sendTweet($status) {
 }
 
 function tweetNewsArticle($obj) {
+	global $_zp_UTF8;
 	if ($obj->getShow()) {
 		switch ($obj->table) {
 			case 'news':
@@ -138,10 +139,10 @@ function tweetNewsArticle($obj) {
 						$title = trim(strip_tags($obj->getTitle()));
 						$link = PROTOCOL.'://'.$_SERVER['HTTP_HOST'].getNewsURL($obj->getTitlelink());
 						$c = 140 - strlen($link) - 4;	//	allow for ellipsis
-						if (strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
+						if ($_zp_UTF8->strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
 							$text = trim(strip_tags(shortenContent($title, $c, '... '))).$link;
 						} else {
-							$c = $c - strlen($title) - 1;
+							$c = $c - $_zp_UTF8->strlen($title) - 1;
 							$text = $title.' '.trim(strip_tags(shortenContent($text, $c, '... '))).$link;
 						}
 					}
@@ -155,7 +156,7 @@ function tweetNewsArticle($obj) {
 				if (getOption('tweet_news_images')) {
 					$text = sprintf(gettext('New image in %s '),trim(strip_tags($obj->getTitle())));
 					$link = PROTOCOL.'://'.$_SERVER['HTTP_HOST'].$obj->getImageLink();
-					if (strlen($text.$link) > 140) {
+					if ($_zp_UTF8->strlen($text.$link) > 140) {
 						$c = 140 - strlen($link) - 4;	//	allow for ellipsis
 						$text = trim(strip_tags(shortenContent($text, $c, '... '))).$link;
 					} else {

@@ -4593,12 +4593,12 @@ function printZenphotoLink() {
  * @return string
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator=false) {
-	global $_user_tags;
+	global $_user_tags, $_zp_UTF8;
 	if ($forceindicator || (strlen($articlecontent) > $shorten)) {
 		$allowed_tags = getAllowedTags('allowed_tags');
 		$short = substr($articlecontent, 0, $shorten);
 		$short2 = kses($short.'</p>', $allowed_tags);
-		if (($l2 = strlen($short2)) < $shorten)	{
+		if (($l2 = $_zp_UTF8->strlen($short2)) < $shorten)	{
 			$c = 0;
 			$l1 = $shorten;
 			$delta = $shorten-$l2;
@@ -4611,7 +4611,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 				}
 				$short = substr($articlecontent, 0, $l1);
 				$short2 = kses($short.'</p>', $allowed_tags);
-				$l2 = strlen($short2);
+				$l2 = $_zp_UTF8->strlen($short2);
 			}
 			$shorten = $l1;
 		}
@@ -4624,7 +4624,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		// drop unbalanced tags
 		// insert the elipsis
 		$i = strrpos($short, '</p>');
-		if (($i !== false) && ($i == strlen($short) - 4)) {
+		if (($i !== false) && ($i == $_zp_UTF8->strlen($short) - 4)) {
 			$short = substr($short, 0, -4).' '.$shortenindicator.'</p>';
 		} else {
 			$short .= ' '.$shortenindicator;
