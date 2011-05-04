@@ -581,4 +581,8 @@ appropriate gallery methods.
 		}
 	}
 
+	if (getOption('edit_in_place')) {
+		setOption('edit_in_place', 0);
+		echo '<p class="notebox">'.gettext('Front-end editing has been disabled. Front-end editing presents serious security vulnerability and is strongly discouraged.').'</p>';
+	}
 ?>
