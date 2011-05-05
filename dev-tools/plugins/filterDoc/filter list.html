@@ -201,6 +201,42 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>admin_note</strong></tt>(<em>string, string</em>)</p>
+					<!-- description(Admin.Miscellaneous)-admin_note --><p></p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-albumsort.php2 (2)</li>
+						<li class="call_list">admin-comments.php</li>
+						<li class="call_list">admin-dynamic-album.php</li>
+						<li class="call_list">admin-edit.php4 (4)</li>
+						<li class="call_list">admin-filemanager.php</li>
+						<li class="call_list">admin-logs.php</li>
+						<li class="call_list">admin-options.php8 (8)</li>
+						<li class="call_list">admin-upload.php</li>
+						<li class="call_list">admin-users.php</li>
+						<li class="call_list">utilities/backup_restore.php</li>
+						<li class="call_list">utilities/cache_images.php</li>
+						<li class="call_list">utilities/database_reference.php</li>
+						<li class="call_list">utilities/gallery_statistics.php</li>
+						<li class="call_list">utilities/reset_albumthumbs.php</li>
+						<li class="call_list">utilities/scheduled_content.php</li>
+						<li class="call_list">utilities/seo_cleanup.php</li>
+						<li class="call_list">utilities/user_mailing_list.php</li>
+						<li class="call_list">utilities/wordpress_import.php</li>
+						<li class="call_list"><em>plugin</em>/crop_image.php</li>
+						<li class="call_list"><em>plugin</em>/menu_manager/menu_tab.php</li>
+						<li class="call_list"><em>plugin</em>/menu_manager/menu_tab_edit.php</li>
+						<li class="call_list"><em>plugin</em>/search_statistics/search_analysis.php</li>
+						<li class="call_list"><em>plugin</em>/sitemap-extended/sitemap-extended-admin.php</li>
+						<li class="call_list"><em>plugin</em>/user-expiry/user-expiry-tab.php</li>
+						<li class="call_list"><em>plugin</em>/user_groups/user_groups-tab.php</li>
+						<li class="call_list"><em>plugin</em>/zenpage/admin-categories.php</li>
+						<li class="call_list"><em>plugin</em>/zenpage/admin-edit.php</li>
+						<li class="call_list"><em>plugin</em>/zenpage/admin-news-articles.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>admin_overview</strong></tt>(<em>string</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_overview --><p>Allows plugins to add items to the <em>Overview</em> page on the back-end.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/comment_form.php</p>
@@ -606,6 +642,15 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>save_object</strong></tt>(<em>bool, object</em>)</p>
 					<!-- description(Object.Root_class)-save_object --><p>Invoked when an object"s <tt>save</tt> method is invoked.</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">classes.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>show_change</strong></tt>(<em>object</em>)</p>
+					<!-- description(Object.Root_class)-show_change --><p>This filter is invoded whenever the <em>state</em> of the <tt>show</tt> property changes.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">classes.php</li>

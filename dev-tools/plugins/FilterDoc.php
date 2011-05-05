@@ -289,32 +289,14 @@ function processFilters() {
 			}
 			if ($subclass) {
 				fwrite($f, "\t\t\t</ul><!-- filterdetail -->\n");
-				/*
-				if ($ulopen) {
-					fwrite($f, "\t\t".'</li><!-- subclass '.$subclass.' -->'."\n");
-					fwrite($f, "\t".'</ul><!-- subclass '.$subclass.' -->'."\n");
-					$ulopen = false;
-				}
-				*/
 			}
 			fwrite($f, "\t".'<h5><a name="'.$class.'"></a>'.$class." filters</h5>\n");
 			fwrite($f, "\t".'<!-- classhead '.$class.' -->'.$classhead."<!--e-->\n");
-			/*
-			if ($filterCategories[$class]['count'] > 1) {	//	Do not need list if only one subclass in the class
-				fwrite($f, "\t".'<ul class="subclass"><!-- subclass '.$subclass.' -->'."\n");
-				$ulopen = true;
-			}
-			*/
 			$subclass = NULL;
 			}
 		if ($subclass !== $filter['subclass']) {	// new subclass
 			if (!is_null($subclass)) {
 				fwrite($f, "\t\t\t</ul><!-- filterdetail -->\n");
-				/*
-				if ($ulopen) {
-					fwrite($f, "\t\t".'</li><!-- subclass '.$subclass.' -->'."\n");
-				}
-				*/
 			}
 			$subclass = $filter['subclass'];
 			if (array_key_exists('*'.$class.'.'.$subclass, $filterDescriptions)) {
@@ -323,7 +305,6 @@ function processFilters() {
 				$subclasshead = '';
 			}
 		if ($subclass && $filterCategories[$class]['count'] > 1) {	//	Class doc is adequate.
-//				fwrite($f, "\t\t".'<li class="subclass"><!-- subclass '.$subclass.' -->'."\n");
 				fwrite($f, "\t\t\t".'<h6 class="filter"><a name="'.$class.'_'.$subclass.'"></a>'.$subclass."</h6>\n");
 				fwrite($f, "\t\t\t".'<!-- subclasshead '.$class.'.'.$subclass.' -->'.$subclasshead."<!--e-->\n");
 			}
@@ -352,12 +333,6 @@ function processFilters() {
 	}
 
 	fwrite($f, "\t\t\t".'</ul><!-- filterdetail -->'."\n");
-	/*
-	if ($ulopen) {
-		fwrite($f, "\t\t".'</li><!-- subclass.'.$subclass.' -->'."\n");
-		fwrite($f, "\t".'</ul><-- subclasses -->'."\n");
-	}
-	*/
 	fwrite($f, "<!-- End filter descriptions -->\n");
 	if ($epilog) {
 		fwrite($f, $epilog);
@@ -403,7 +378,7 @@ function processFilters() {
 	fclose($f);
 
 	$f = fopen($filterdesc, 'w');
-	ksort($filterDescriptions);
+	asort($filterDescriptions);
 	foreach ($filterDescriptions as $filter=>$desc) {
 		fwrite($f, $filter.':='.$desc."\n");
 	}
