@@ -362,6 +362,7 @@ if (!empty($metaURL) && $postcount < $posttotalcount) {
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
+<?php zp_apply_filter('admin_note','wordpress', ''); ?>
 <h1><?php echo (gettext('Wordpress Importer')); ?></h1>
 <?php if(!isset($_REQUEST['dbname']) && !isset($_REQUEST['dbuser']) && !isset($_REQUEST['dbpass']) && !isset($_REQUEST['dbhost']) && !isset($_GET['refresh'])) { ?>
 <p><?php echo gettext("An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin that imports the following:"); ?></p>

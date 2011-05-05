@@ -42,6 +42,7 @@ echo '</head>';
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
+<?php zp_apply_filter('admin_note','reste_thumbs', ''); ?>
 <h1><?php echo (gettext('Reset your album thumbnails')); ?></h1>
 <?php
 if (isset($_REQUEST['thumbtype']) && db_connect()) {

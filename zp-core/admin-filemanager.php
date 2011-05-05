@@ -20,8 +20,9 @@ echo "\n</head>";
 	<?php printTabs(); ?>
 	<div id="content">
 		<div id="container">
-			<?php printSubtabs(); ?>
+			<?php $subtab = printSubtabs(); ?>
 			<div class="tabbox">
+				<?php zp_apply_filter('admin_note','upload', $subtab); ?>
 				<h1><?php echo gettext('File Manager'); ?></h1>
 				<?php
 				$locale = substr(getOption("locale"),0,2);

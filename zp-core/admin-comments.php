@@ -101,10 +101,12 @@ echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();
 echo "\n" . '<div id="main">';
-printTabs();
+$subtab = printTabs();
 echo "\n" . '<div id="content">';
 
-if ($page == "editcomment" && isset($_GET['id']) ) { ?>
+if ($page == "editcomment" && isset($_GET['id']) ) {
+zp_apply_filter('admin_note','comments', $subtab);
+?>
 <h1><?php echo gettext("edit comment"); ?></h1>
 <div class="box" style="padding: 10px">
 <?php
@@ -243,6 +245,7 @@ if ($page == "editcomment" && isset($_GET['id']) ) { ?>
 	$comments = array_slice($allcomments, ($pagenum-1)*COMMENTS_PER_PAGE, COMMENTS_PER_PAGE);
 	$allcommentscount = count($allcomments);
 	$totalpages = ceil(($allcommentscount / COMMENTS_PER_PAGE));
+	zp_apply_filter('admin_note','comments', $subtab);
 	?>
 <h1><?php echo gettext("Comments"); ?></h1>
 

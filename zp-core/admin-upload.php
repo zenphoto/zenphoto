@@ -68,7 +68,7 @@ printLogoAndLinks();
 			</script>
 
 <div class="tabbox">
-
+<?php zp_apply_filter('admin_note','upload', 'images'); ?>
 <h1><?php echo gettext("Upload Images"); ?></h1>
 <p>
 <?php

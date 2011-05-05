@@ -475,6 +475,7 @@ $imagecount = $gallery->getNumImages();
 $imagecount_unpub = $imagecount-$gallery->getNumImages(true);
 ?>
 <div id="content">
+<?php zp_apply_filter('admin_note','statistics', ''); ?>
 <h1><?php echo gettext("Gallery Statistics"); ?></h1>
 <p><?php echo gettext("This page shows more detailed statistics of your gallery. For album statistics the bar graph always shows the total number of images in that album. For image statistics always the album the image is in is shown.<br />Un-published items are marked in dark red. Images are marked un-published if their (direct) album is, too."); ?></p>
 

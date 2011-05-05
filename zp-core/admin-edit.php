@@ -690,6 +690,7 @@ if($album->getParent()) {
 	$link = '';
 }
 $alb = removeParentAlbumNames($album);
+zp_apply_filter('admin_note','albums', '');
 ?>
 <h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'),  $link, $alb); ?></h1>
 
@@ -819,6 +820,7 @@ $alb = removeParentAlbumNames($album);
 	?>
 		<!-- Album info box -->
 		<div id="tab_albuminfo" class="tabbox">
+			<?php zp_apply_filter('admin_note','albums', $subtab); ?>
 			<form name="albumedit1" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post">
 				<?php XSRFToken('albumedit');?>
 				<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
@@ -840,7 +842,10 @@ $alb = removeParentAlbumNames($album);
 			$enableEdit = $album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
 			?>
 		<div id="tab_subalbuminfo" class="tabbox">
-		<?php printEditDropdown('subalbuminfo'); ?>
+		<?php
+		zp_apply_filter('admin_note','albums', $subtab);
+		printEditDropdown('subalbuminfo');
+		?>
 		<form action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();">
 			<?php XSRFToken('savealbumorder'); ?>
 			<p>
@@ -963,6 +968,7 @@ $alb = removeParentAlbumNames($album);
 		<!-- Images List -->
 		<div id="tab_imageinfo" class="tabbox">
 		<?php
+		zp_apply_filter('admin_note','albums', $subtab);
 		$numsteps = ceil(max($allimagecount,$imagesTab_imageCount)/10);
 		if ($numsteps) {
 			$steps = array();
@@ -1558,6 +1564,7 @@ if (isset($_GET['saved'])) {
 	?>
 <h1><?php echo gettext("Edit All Albums in"); ?> <?php if (!isset($_GET['album'])) { echo gettext("Gallery");} else {echo "<em>" . $album->name . "</em>";}?></h1>
 <div class="tabbox">
+<?php zp_apply_filter('admin_note','albums', $subtab); ?>
 
 <form name="albumedit" autocomplete="off"	action="?page=edit&amp;action=save<?php echo $albumdir ?>" method="POST">
 	<?php XSRFToken('albumedit');?>

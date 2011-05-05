@@ -101,7 +101,7 @@ echo "\n</head>";
 		<?php $subtab = printSubtabs($default); ?>
 			<!-- A log -->
 			<div id="theme-editor" class="tabbox">
-
+				<?php zp_apply_filter('admin_note','logs', $subtab); ?>
 				<form name="delete_log" action="?action=delete_log&amp;page=logs&amp;tab=<?php echo $subtab; ?>" method="post" style="float: left">
 					<?php XSRFToken('delete_log');?>
 					<input type="hidden" name="action" value="delete" />

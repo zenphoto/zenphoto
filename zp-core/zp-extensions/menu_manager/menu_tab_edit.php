@@ -43,6 +43,7 @@ printTabs();
 ?>
 <div id="content">
 <?php
+zp_apply_filter('admin_note','menu', 'edit');
 foreach ($reports as $report) {
 	echo $report;
 }

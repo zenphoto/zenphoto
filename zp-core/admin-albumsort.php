@@ -84,6 +84,7 @@ if (!isset($_GET['album'])) {
 
 	<div id="content">
 		<?php
+		zp_apply_filter('admin_note','albums', 'sort');
 		if($album->getParent()) {
 			$link = getAlbumBreadcrumbAdmin($album);
 		} else {
@@ -110,6 +111,7 @@ if (!isset($_GET['album'])) {
 		?>
 
 		<div class="tabbox">
+			<?php zp_apply_filter('admin_note','albums', $subtab); ?>
 			<form action="?page=edit&amp;album=<?php echo $album->getFolder(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm">
 				<?php XSRFToken('save_sort');?>
 				<script language="javascript" type="text/javascript">

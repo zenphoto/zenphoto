@@ -104,6 +104,7 @@ echo '</head>';
 <?php printTabs('home');
 ?>
 <div id="content">
+<?php zp_apply_filter('admin_note','sitemap', ''); ?>
 	<h1>Sitemap tools</h1>
 <?php if(!isset($_GET['generatesitemaps']) && !isset($_GET['clearsitemapcache'])) { ?>
 	<p class="notebox"><strong>NOTE:</strong> This is a work in progress version and may still not be fully optimized for huge galleries.</p>

@@ -221,6 +221,7 @@ if ($_zp_null_account) {
 ?>
 <div id="tab_admin" class="tabbox">
 <?php
+	zp_apply_filter('admin_note','users', 'users');
 	$newuser = array();
 	$showset = array();
 	if (isset($_GET['subpage'])) {

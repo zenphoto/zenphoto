@@ -511,6 +511,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 	}
 	?>
 	<div id="tab_gallery" class="tabbox">
+		<?php zp_apply_filter('admin_note','options', $subtab); ?>
 		<form action="?action=saveoptions" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
 			<input	type="hidden" name="savegeneraloptions" value="yes" />
@@ -894,6 +895,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 	codeblocktabsJS();	?>
 	<div id="tab_gallery" class="tabbox">
+		<?php zp_apply_filter('admin_note','options', $subtab); ?>
 		<form action="?action=saveoptions" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
 			<input	type="hidden" name="savegalleryoptions" value="yes" />
@@ -1251,6 +1253,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 	?>
 	<div id="tab_search" class="tabbox">
+		<?php zp_apply_filter('admin_note','options', $subtab); ?>
 		<form action="?action=saveoptions" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
 			<input	type="hidden" name="savesearchoptions" value="yes" />
@@ -1419,6 +1422,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 	?>
 	<div id="tab_rss" class="tabbox">
+		<?php zp_apply_filter('admin_note','options', $subtab); ?>
 		<form action="?action=saveoptions" method="post" autocomplete="off">
 		<?php XSRFToken('saveoptions');?>
 		<input	type="hidden" name="saverssoptions" value="yes" />
@@ -1555,6 +1559,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 	}
 		?>
 	<div id="tab_image" class="tabbox">
+	<?php zp_apply_filter('admin_note','options', $subtab); ?>
 	<form action="?action=saveoptions" method="post" autocomplete="off">
 		<?php XSRFToken('saveoptions');?>
 	<input type="hidden" name="saveimageoptions" value="yes" />
@@ -2033,6 +2038,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 	?>
 	<div id="tab_comments" class="tabbox">
+	<?php zp_apply_filter('admin_note','options', $subtab); ?>
 	<form action="?action=saveoptions" method="post" autocomplete="off">
 		<?php XSRFToken('saveoptions');?>
 	<input 	type="hidden" name="savecommentoptions" value="yes" />
@@ -2156,6 +2162,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 	?>
 	<div id="tab_theme" class="tabbox">
 	<?php
+	zp_apply_filter('admin_note','options', $subtab);
 	$themelist = array();
 	if (zp_loggedin(ADMIN_RIGHTS)) {
 		$gallery_title = $gallery->getTitle();
@@ -2510,6 +2517,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 		}
 	</script>
 	<div id="tab_plugin" class="tabbox">
+		<?php zp_apply_filter('admin_note','options', $subtab); ?>
 		<form action="?action=saveoptions" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
 			<input type="hidden" name="savepluginoptions" value="yes" />
@@ -2658,6 +2666,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 	?>
 	<div id="tab_security" class="tabbox">
+		<?php zp_apply_filter('admin_note','options', $subtab); ?>
 		<form action="?action=saveoptions" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
 			<input type="hidden" name="savesecurityoptions" value="yes" />

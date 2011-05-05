@@ -115,6 +115,7 @@ if (db_connect()) {
 	<div id="main">
 	<?php printTabs(); ?>
 	<div id="content">
+	<?php zp_apply_filter('admin_note','schedule', ''); ?>
 	<h1><?php echo (gettext('Manage content publication')); ?></h1>
 
 	<h3><?php gettext("database connected"); ?></h3>

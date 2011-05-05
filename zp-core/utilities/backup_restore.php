@@ -111,6 +111,7 @@ echo '</head>';
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
+<?php zp_apply_filter('admin_note','backkup', '');; ?>
 <h1><?php echo (gettext('Backup and Restore your Database')); ?></h1>
 <?php
 $prefix = prefix();

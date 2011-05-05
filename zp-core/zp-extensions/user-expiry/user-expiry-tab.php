@@ -102,7 +102,8 @@ echo '</head>'."\n";
 			?>
 			<div id="tab_users" class="tabbox">
 				<?php
-						$groups = array();
+				zp_apply_filter('admin_note','users', $subtab);
+				$groups = array();
 						$subscription = 86400*getOption('user_expiry_interval');
 						$now = time();
 						$warnInterval = $now + getOption('user_expiry_warn_interval')*86400;

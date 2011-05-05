@@ -136,6 +136,7 @@ if (isset($_GET['todo'])) {
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
+		<?php zp_apply_filter('admin_note','seo_cleanup', ''); ?>
 		<h1><?php echo gettext('Cleanup album and image names to be SEO friendly'); ?></h1>
 		<div id="to_clean">
 			<?php echo gettext('Albums to clean:'); ?>

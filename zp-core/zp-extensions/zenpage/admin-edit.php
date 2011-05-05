@@ -179,10 +179,11 @@ codeblocktabsJS();
 		if (!empty($page)) {
 			$zenphoto_tabs['news']['subtabs'][gettext('articles')] .= $page;
 		}
-		printSubtabs();
+		$subtab = printSubtabs();
 		?>
 		<div id="tab_articles" class="tabbox">
 		<?php
+		zp_apply_filter('admin_note','news', $subtab);
 		foreach ($reports as $report) {
 			echo $report;
 		}
@@ -193,10 +194,11 @@ codeblocktabsJS();
 	}
 
 	if(is_AdminEditPage('category')) {
-		printSubtabs();
+		$subtab = printSubtabs();
 		?>
 		<div id="tab_articles" class="tabbox">
 		<?php
+		zp_apply_filter('admin_note', 'pages', $subtab);
 		foreach ($reports as $report) {
 			echo $report;
 		}

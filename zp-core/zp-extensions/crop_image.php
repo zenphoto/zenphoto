@@ -290,6 +290,7 @@ printAdminHeader('edit',gettext('crop image'));
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
+		<?php zp_apply_filter('admin_note','crop_image', ''); ?>
 			<h1><?php echo gettext("Image cropping").": <em>".$albumobj->name." (".$albumobj->getTitle().") /".$imageobj->filename." (".$imageobj->getTitle().")</em>"; ?></h1>
 			<div id="notice_div">
 				<p><?php echo gettext('You can crop your image by dragging the crop handles on the image'); ?></p>

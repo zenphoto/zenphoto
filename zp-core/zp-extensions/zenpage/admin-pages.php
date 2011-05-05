@@ -81,6 +81,7 @@ zenpageJSCSS();
 	echo '<div id="main">';
 	printTabs();
 	echo '<div id="content">';
+	zp_apply_filter('admin_note','pages', '');
 	foreach ($reports as $report) {
 		echo $report;
 	}

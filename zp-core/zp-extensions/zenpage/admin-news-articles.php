@@ -80,9 +80,10 @@ printLogoAndLinks();
 	printTabs();
 	?>
 	<div id="content">
-		<?php	printSubtabs();	?>
+		<?php	$subtab = printSubtabs();	?>
 		<div id="tab_articles" class="tabbox">
 			<?php
+			zp_apply_filter('admin_note','news', $subtab);
 			foreach ($reports as $report) {
 				echo $report;
 			}

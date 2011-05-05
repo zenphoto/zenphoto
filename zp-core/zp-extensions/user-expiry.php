@@ -41,6 +41,7 @@ zp_register_filter('admin_login_attempt','user_expiry_checklogon');
 zp_register_filter('federated_login_attempt','user_expiry_checklogon');
 zp_register_filter('edit_admin_custom_data', 'user_expiry_edit_admin',0);
 zp_register_filter('load_theme_script', 'user_expiry_reverify',0);
+zp_register_filter('admin_note', 'user_expiry_notify',0);
 
 /**
  * Option handler class
@@ -217,6 +218,15 @@ function user_expiry_edit_admin($html, $userobj, $i, $background, $current, $loc
 
 	}
 	return $html;
+}
+
+function user_expiry_notify($tab, $subtab) {
+	global $_zp_authority;
+	if ($tab=='users' && $subtab='users') {
+		if ($_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
+			echo '<p class="notebox">'.gettext('You have users whose credentials have expired'),'</p>';
+		}
+	}
 }
 
 ?>

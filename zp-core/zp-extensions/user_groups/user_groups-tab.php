@@ -130,6 +130,7 @@ echo '</head>'."\n";
 			?>
 			<div id="tab_users" class="tabbox">
 				<?php
+				zp_apply_filter('admin_note','users', $subtab);
 				switch ($subtab) {
 					case 'groups':
 						$adminlist = $adminordered;

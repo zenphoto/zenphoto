@@ -62,6 +62,7 @@ h2 {
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
+<?php zp_apply_filter('admin_note','database', ''); ?>
 <h1><a name="top"></a><?php echo $button_text; ?></h1>
 <p>
 	<?php echo $button_hint; ?>

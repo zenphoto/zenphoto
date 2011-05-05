@@ -118,7 +118,7 @@ printLogoAndLinks();
 echo "\n" . '<div id="main">';
 printTabs();
 echo "\n" . '<div id="content">';
-
+zp_apply_filter('admin_note','cache', '');
 $clear = sprintf(gettext('Refreshing cache for %s'), $object);
 $count = 0;
 
