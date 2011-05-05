@@ -440,6 +440,37 @@ function zp_load_request() {
 		zp_load_page();
 		if (isset($_GET['p'])) {
 			$page = str_replace(array('/','\\','.'), '', sanitize($_GET['p']));
+			if (isset($_GET['t'])) {	//	Zenphoto tiny url
+				unset($_GET['t']);
+				$tiny = sanitize_numeric($page);
+				$asoc = getTableAsoc();
+				$tbl = $tiny & 7;
+				if (array_key_exists($tbl, $asoc)) {
+					$tbl = $asoc[$tbl];
+					$id = $tiny>>3;
+					$result = query_single_row('SELECT * FROM '.prefix($tbl).' WHERE `id`='.$id);
+					if ($result) {
+						switch ($tbl) {
+							case 'news':
+							case 'pages':
+								$page = $_GET['p'] = $tbl;
+								$_GET['title'] = $result['titlelink'];
+								break;
+							case 'images':
+								$image = $_GET['image'] = $result['filename'];
+								$result = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$result['albumid']);
+								case 'albums':
+								$album = $_GET['album'] = $result['folder'];
+								unset($_GET['p']);
+								if (isset($image)) {
+									return zp_load_image($album, $image);
+								} else {
+									return zp_load_album($album);
+								}
+						}
+					}
+				}
+			}
 			switch ($page) {
 				case 'search':
 					return zp_load_search();

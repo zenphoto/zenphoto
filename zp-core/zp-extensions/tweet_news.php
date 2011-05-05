@@ -133,11 +133,10 @@ function tweetNewsArticle($obj) {
 					}
 				} else {	//	tweet it
 					require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
-					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
 					$text = trim(strip_tags($obj->getContent()));
 					if (strlen($text) > 140) {
 						$title = trim(strip_tags($obj->getTitle()));
-						$link = PROTOCOL.'://'.$_SERVER['HTTP_HOST'].getNewsURL($obj->getTitlelink());
+						$link = getTinyURL($obj);
 						$c = 140 - strlen($link) - 4;	//	allow for ellipsis
 						if ($_zp_UTF8->strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
 							$text = trim(strip_tags(shortenContent($title, $c, '... '))).$link;
@@ -155,7 +154,7 @@ function tweetNewsArticle($obj) {
 			case 'images':
 				if (getOption('tweet_news_images')) {
 					$text = sprintf(gettext('New image in %s '),trim(strip_tags($obj->getTitle())));
-					$link = PROTOCOL.'://'.$_SERVER['HTTP_HOST'].$obj->getImageLink();
+					$link = getTinyURL($obj);
 					if ($_zp_UTF8->strlen($text.$link) > 140) {
 						$c = 140 - strlen($link) - 4;	//	allow for ellipsis
 						$text = trim(strip_tags(shortenContent($text, $c, '... '))).$link;

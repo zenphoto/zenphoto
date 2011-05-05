@@ -2286,8 +2286,28 @@ function checkInstall() {
 	}
 }
 
+/**
+ *
+ * Produces the # to table association array
+ */
+function getTableAsoc() {
+	return array('1'=>'albums', '2'=>'images', '3'=>'news', '4'=>'pages');
+}
+
+/**
+ *
+ * Returns a Zenphoto tiny URL to the object
+ * @param $obj object
+ */
+function getTinyURL($obj) {
+	$asoc = array_flip(getTableAsoc());
+	return FULLWEBPATH.'/index.php?p='.(($obj->getID()<<3)|$asoc[$obj->table]).'&t';
+}
+
+
 //load PHP specific functions
 require_once(PHPScript('5.0.0', '_functions.php'));
+
 
 setexifvars();
 ?>
