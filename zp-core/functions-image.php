@@ -362,10 +362,12 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			if (getOption('ImbedIPTC') && getSuffix($newfilename)=='jpg') {	// the imbed function works only with JPEG images
 				$iptc_data = zp_imageIPTC($imgfile);
 				if (empty($iptc_data)) {
+					global $_zp_extra_filetypes;	//	because we are doing the require in a function!
+					if (!$_zp_extra_filetypes) $_zp_extra_filetypes = array();
 					require_once(dirname(__FILE__).'/functions.php');	//	it is ok to increase memory footprint now since the image processing is complete
-					$galleryoptions = serialize(getOption('gallery_data'));	//	for primative environment!
+					$gallery = new Gallery();
 					$iptc = array('1#090' => chr(0x1b) . chr(0x25) . chr(0x47),	//	character set is UTF-8
-												'2#115' => $galleryoptions['gallery_title']	//	source
+												'2#115' =>$gallery->getTitle()	//	source
 												);
 					$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
 					$imagename = basename($imgfile);
