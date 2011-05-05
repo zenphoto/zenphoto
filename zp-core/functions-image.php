@@ -363,8 +363,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 				$iptc_data = zp_imageIPTC($imgfile);
 				if (empty($iptc_data)) {
 					require_once(dirname(__FILE__).'/functions.php');	//	it is ok to increase memory footprint now since the image processing is complete
+					$galleryoptions = serialize(getOption('gallery_data'));	//	for primative environment!
 					$iptc = array('1#090' => chr(0x1b) . chr(0x25) . chr(0x47),	//	character set is UTF-8
-												'2#115' => $this->album->gallery->getTitle()	//	source
+												'2#115' => $galleryoptions['gallery_title']	//	source
 												);
 					$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
 					$imagename = basename($imgfile);

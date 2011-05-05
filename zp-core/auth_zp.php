@@ -20,7 +20,7 @@ foreach ($_zp_authority->getRights() as $key=>$right) {
 
 define('MANAGED_OBJECT_RIGHTS_EDIT', 1);
 define('MANAGED_OBJECT_RIGHTS_UPLOAD', 2);
-define('MANAGED_OBJECT_RIGHTS_EDIT_IMAGE', 4);
+define('MANAGED_OBJECT_RIGHTS_VIEW_IMAGE', 4);
 define('LIST_RIGHTS', NO_RIGHTS);
 
 if (defined('VIEW_ALL_RIGHTS')) {

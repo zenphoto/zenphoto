@@ -26,6 +26,8 @@ class Album extends MediaObject {
 	var $lastsubalbumsort = NULL;
 	var $albumthumbnail = NULL; // remember the album thumb for the duration of the script
 	var $sidecars = array();	// keeps the list of suffixes associated with this album
+	var $subrights = array();	//	cache for album subrights
+	var $myitem = array();	//	cache for album rights
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
 	var $view_rights = VIEW_ALBUMS_RIGHTS;
@@ -434,6 +436,9 @@ class Album extends MediaObject {
 	function sortImageArray($images, $sorttype, $sortdirection, $mine= NULL) {
 		if (is_null($mine)) {
 			$mine = $this->isMyItem(LIST_RIGHTS);
+		}
+		if ($mine && !($mine & (VIEW_ALBUMS_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {	//	check for managed album view unpublished image rights
+			$mine = $this->albumSubRights() & MANAGED_OBJECT_RIGHTS_VIEW_IMAGE;
 		}
 		$sortkey = str_replace('`','',$this->getImageSortKey($sorttype));
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
@@ -1186,13 +1191,18 @@ class Album extends MediaObject {
 	 * returns NULL if not a managed album
 	 */
 	function albumSubRights() {
+		if (!empty($this->subrights)) {
+			return $this->subrights[0];
+		}
 		global $_zp_admin_album_list;
 		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			return MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_EDIT_IMAGE | MANAGED_OBJECT_RIGHTS_UPLOAD;
+			$this->subrights[0] = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW_IMAGE;
+			return $this->subrights[0];
 		}
 		getManagedAlbumList();
 		if (count($_zp_admin_album_list) == 0) {
-			return false;
+			$this->subrights[0] =  false;
+			return $this->subrights[0];
 		}
 		$desired_folders = explode('/', $this->name);
 		foreach ($_zp_admin_album_list as $adminalbum=>$rights) { // see if it is one of the managed folders or a subfolder there of
@@ -1200,13 +1210,16 @@ class Album extends MediaObject {
 			$level = 0;
 			foreach ($admin_folders as $folder) {
 				if ($level >= count($desired_folders) || $folder != $desired_folders[$level]) {
-					return NULL;
+					$this->subrights[0] =  NULL;
+					return $this->subrights[0];
 				}
 				$level++;
 			}
-			return $rights | MANAGED_OBJECT_RIGHTS_EDIT_IMAGE;
+			$this->subrights[0] =  $rights;
+			return $this->subrights[0];
 		}
-		return NULL;
+		$this->subrights[0] =  NULL;
+		return $this->subrights[0];
 	}
 
 	/**
@@ -1216,28 +1229,36 @@ class Album extends MediaObject {
 	 * returns true of access is allowed
 	*/
 	function isMyItem($action) {
+		if (!empty($this->myitem)) {
+			return $this->myitem[0];
+		}
 		global $_zp_loggedin;
 		if (parent::isMyItem($action)) {
-			return $_zp_loggedin;
+			$this->myitem[0] = $_zp_loggedin;
+			return $this->myitem[0];
 		}
 		if (zp_loggedin($action)) {
 			$subRights = $this->albumSubRights();
 			if (!is_null($subRights)) {
 				if ($action == LIST_RIGHTS) {
-					return $_zp_loggedin;
+					$this->myitem[0] = $_zp_loggedin;
+					return $this->myitem[0];
 				} else {
 					$albumrights = 0;
-					if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_EDIT_IMAGE)) $albumrights = $albumrights | ALBUM_RIGHTS;
+					if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT)) $albumrights = $albumrights | ALBUM_RIGHTS;
 					if ($subRights & MANAGED_OBJECT_RIGHTS_UPLOAD) $albumrights = $albumrights | UPLOAD_RIGHTS;
 					if ($action & $albumrights) {
-						return ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $albumrights;
+						$this->myitem[0] = ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $albumrights;
+						return $this->myitem[0];
 					} else {
-						return false;
+						$this->myitem[0] = false;
+						return $this->myitem[0];
 					}
 				}
 			}
 		}
-		return false;
+		$this->myitem[0] = false;
+		return $this->myitem[0];
 	}
 
 	/**

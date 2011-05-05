@@ -366,7 +366,7 @@ function setAlbumSubtabs($album) {
 	}
 	$subrights = $album->albumSubRights();
 	if (!$album->isDynamic() && $album->getNumImages()) {
-		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT_IMAGE | MANAGED_OBJECT_RIGHTS_UPLOAD) {
+		if ($subrights & MANAGED_OBJECT_RIGHTS_UPLOAD) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
 																						array(gettext('Images') => 'admin-edit.php'.$albumlink.'&amp;tab=imageinfo'),
 																						$zenphoto_tabs['edit']['subtabs']);
@@ -2931,10 +2931,11 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			$full = populateManagedObjectsList('album', $adminid, true);
 			$cv = $extra = array();
 			$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
-			$icon_edit_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-image.png" class="icon-position-top3" alt="" title="'.gettext('edit user owned images').'" />';
+			$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('edit user owned images').'" />';
 			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('uploade to album').'"/>';
 			$ledgend = $icon_edit_album.' '.gettext('edit album').' '.
-										$icon_upload.' '.gettext('upload');
+									$icon_upload.' '.gettext('upload').' '.
+									$icon_view_image.' '.gettext('view unpublished images');
 			foreach ($full as $item) {
 				$cv[$item['name']] = $item['data'];
 				$extra[$item['name']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
@@ -2943,6 +2944,9 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				}
 				if (($rights & UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
 					$extra[$item['name']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+				}
+				if (!($rights & VIEW_ALBUMS_RIGHTS)) {
+					$extra[$item['name']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW_IMAGE,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW_IMAGE);
 				}
 			}
 			$rest = array_diff($objlist, $cv);
@@ -3041,10 +3045,10 @@ function processManagedObjects($i, &$rights) {
 				if (isset($albums[$key])) {	// album still part of the list
 					$albums[$key]['edit'] = sanitize_numeric($value);
 				}
-			} else if (strpos($key, '_editimage')) {
-				$key = substr($key, 0, -10);
+			} else if (strpos($key, '_view')) {
+				$key = substr($key, 0, -5);
 				if (isset($albums[$key])) {	// album still part of the list
-					$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT_IMAGE;
+					$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW_IMAGE;
 				}
 			} else if (strpos($key, '_edit')) {
 				$key = substr($key, 0, -5);

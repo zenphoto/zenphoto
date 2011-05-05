@@ -2351,7 +2351,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			<tr>
 				<td><?php echo gettext("Crop thumbnails:"); ?></td>
 				<td>
-					<input type="checkbox" name="thumb_crop" obfuscate_cache $tc = getThemeOption('thumb_crop',$album,$themename)); ?> />
+					<input type="checkbox" name="thumb_crop" value="1" <?php echo checked('1', $tc = getThemeOption('thumb_crop',$album,$themename)); ?> />
 					&nbsp;&nbsp;
 					<span class="nowrap">
 						<?php printf(gettext('%s%% left &amp; right'),
