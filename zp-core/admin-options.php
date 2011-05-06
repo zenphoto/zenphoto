@@ -78,10 +78,6 @@ if (isset($_GET['action'])) {
 				$offset = sanitize($_POST['time_offset'],3);
 			}
 			setOption('time_offset', $offset);
-			setOption('server_protocol', $protocol = sanitize($_POST['server_protocol'],3));
-			if ($protocol == 'http') {
-				zp_setcookie("zenphoto_ssl", "", -368000);
-			}
 			setOption('charset', sanitize($_POST['charset']),3);
 			setOption('site_email', sanitize($_POST['site_email']),3);
 			setOption('multi_lingual', (int) isset($_POST['multi_lingual']));
@@ -89,7 +85,6 @@ if (isset($_GET['action'])) {
 			if ($f == 'custom') $f = sanitize($_POST['date_format'],3);
 			setOption('date_format', $f);
 			setOption('UTF8_image_URI', (int) isset($_POST['UTF8_image_URI']));
-			setOption('edit_in_place',(int) (sanitize_numeric($_POST['edit_in_place']) && true));
 			$msg = zp_apply_filter('save_admin_general_data', '');
 
 			$returntab = "&tab=general";
@@ -123,6 +118,7 @@ if (isset($_GET['action'])) {
 			}
 			$gallery->setSecurity(sanitize($_POST['gallery_security'],3));
 			$gallery->setUserLogonField(isset($_POST['login_user_field']));
+			setOption('edit_in_place',(int) (sanitize_numeric($_POST['edit_in_place']) && true));
 			if ($_POST['password_enabled']) {
 			$olduser = $galery->getUser();
 			$newuser = trim(sanitize($_POST['gallery_user'],3));
@@ -420,6 +416,10 @@ if (isset($_GET['action'])) {
 		}
 		/*** Security Options ***/
 		if (isset($_POST['savesecurityoptions'])) {
+			setOption('server_protocol', $protocol = sanitize($_POST['server_protocol'],3));
+			if ($protocol == 'http') {
+				zp_setcookie("zenphoto_ssl", "", -368000);
+			}
 			setOption('captcha', sanitize($_POST['captcha']));
 			setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
 			$returntab = "&tab=security";
@@ -522,21 +522,6 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 					<button type="reset" value="<?php echo gettext('reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 					</p>
-					</td>
-				</tr>
-				<tr>
-					<td width="175"><?php echo gettext("Server protocol:"); ?></td>
-					<td width="350">
-						<select id="server_protocol" name="server_protocol">
-							<?php $protocol = getOption('server_protocol'); ?>
-							<option value="http" <?php if ($protocol == 'http') echo 'selected="selected"'; ?>>http</option>
-							<option value="https" <?php if ($protocol == 'https') echo 'selected="selected"'; ?>>https</option>
-							<option value="https_admin" <?php if ($protocol == 'https_admin') echo 'selected="selected"'; ?>><?php echo gettext('secure admin'); ?></option>
-						</select>
-					</td>
-					<td>
-						<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you're running a secure server, change this to <em>https</em>. Select <em>secure admin</em> to insure secure access to <code>admin</code> pages."); ?></p>
-						<p class="notebox"><?php echo gettext("<strong>Note:</strong> Login from the front-end user login form is secure only if <em>https</em> is selected.");?></p>
 					</td>
 				</tr>
 				<tr>
@@ -820,21 +805,6 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					</td>
 				</tr>
 				<tr>
-					<td width="175"><?php echo gettext('Front-end editing'); ?></td>
-					<td width="350">
-						<label>
-							<input type="radio" name = "edit_in_place" id="edit_in_place_no" value=0<?php if (!getOption('edit_in_place')) echo ' checked="checked"'; ?>><?php echo gettext('Disabled'); ?></input>
-						</label>
-						<label>
-							<input type="radio" name = "edit_in_place" id="edit_in_place_yes" value=1<?php if (getOption('edit_in_place')) echo ' checked="checked"'; ?> onclick="xsrfWarning('edit_in_place','<?php echo gettext('This is really not a secure setting. Are you sure you want to enable it?'); ?>');"><?php echo gettext('Enabled'); ?></input>
-						</label>
-					</td>
-					<td>
-						<p><?php echo gettext('Check to allow editing of Gallery data on the front-end pages. (Sometimes known as <em>Ajax</em> editing.)'); ?></p>
-						<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> enabling this feature is not recommended as it is susceptible to Cross Site Request Forgeries.')?></p>
-					</td>
-				</tr>
-				<tr>
 					<td width="175"><?php echo gettext("Allowed tags:"); ?></td>
 					<td width="350">
 						<p><textarea name="allowed_tags" id="allowed_tags" style="width: 340px" rows="10" cols="35"><?php echo html_encode(getOption('allowed_tags')); ?></textarea></p>
@@ -1108,6 +1078,21 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<?php
 						echo gettext('Sort order for the albums on the index of the gallery. Custom sort values must be database field names. You can have multiple fields separated by commas. This option is also the default sort for albums and subalbums.');
 						?>
+					</td>
+				</tr>
+				<tr>
+					<td width="175"><?php echo gettext('Front-end editing'); ?></td>
+					<td width="350">
+						<label>
+							<input type="radio" name = "edit_in_place" id="edit_in_place_no" value=0<?php if (!getOption('edit_in_place')) echo ' checked="checked"'; ?>><?php echo gettext('Disabled'); ?></input>
+						</label>
+						<label>
+							<input type="radio" name = "edit_in_place" id="edit_in_place_yes" value=1<?php if (getOption('edit_in_place')) echo ' checked="checked"'; ?> onclick="xsrfWarning('edit_in_place','<?php echo gettext('This is really not a secure setting. Are you sure you want to enable it?'); ?>');"><?php echo gettext('Enabled'); ?></input>
+						</label>
+					</td>
+					<td>
+						<p><?php echo gettext('Check to allow editing of Gallery data on the front-end pages. (Sometimes known as <em>Ajax</em> editing.)'); ?></p>
+						<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> enabling this feature is not recommended as it is susceptible to Cross Site Request Forgeries.')?></p>
 					</td>
 				</tr>
 				<tr>
@@ -2676,6 +2661,26 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 						<p class="buttons">
 							<button type="submit" value="<?php echo gettext('save') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 							<button type="reset" value="<?php echo gettext('reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td width="175"><?php echo gettext("Server protocol:"); ?></td>
+					<td width="350">
+						<select id="server_protocol" name="server_protocol">
+							<?php $protocol = SERVER_PROTOCOL; ?>
+							<option value="http" <?php if ($protocol == 'http') echo 'selected="selected"'; ?>>http</option>
+							<option value="https" <?php if ($protocol == 'https') echo 'selected="selected"'; ?>>https</option>
+							<option value="https_admin" <?php if ($protocol == 'https_admin') echo 'selected="selected"'; ?>><?php echo gettext('secure admin'); ?></option>
+						</select>
+					</td>
+					<td>
+						<p><?php echo gettext("Normally this option should be set to <em>http</em>. If you're running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."); ?></p>
+						<p class="notebox"><?php echo gettext("<strong>Note:</strong>".
+																									"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected.".
+																									"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  ".
+																									"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! ".
+																									"Your only possibility then is to change the option in the database."); ?>
 						</p>
 					</td>
 				</tr>

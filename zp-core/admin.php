@@ -19,7 +19,7 @@ require_once(dirname(__FILE__).'/functions-basic.php');
 if (isset($_GET['_zp_login_error'])) {
 	$_zp_login_error = sanitize($_GET['_zp_login_error']);
 }
-if (getOption('server_protocol') == 'https_admin') {
+if (SERVER_PROTOCOL == 'https_admin') {
 	// force https login
 	if (!isset($_SERVER["HTTPS"])) {
 		$redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];

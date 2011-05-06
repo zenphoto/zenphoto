@@ -2838,7 +2838,7 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
 		} else {
 			$categorylink = '';
 		}
-	} 
+	}
 	$linktext = html_encode($linktext);
 	switch($option) {
 		case "News":
@@ -2895,7 +2895,10 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
 function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $lang='') {
 	global $_zp_current_category;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
-	(secureServer()) ? $serverprotocol = "https://" : $serverprotocol = "http://";
+	$protocol = SERVER_PROTOCOL;
+	if ($protocol == 'https_admin') {
+		$protocol = 'http';
+	}
 	if(empty($lang)) {
 		$lang = getOption("locale");
 	}
@@ -2907,19 +2910,19 @@ function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $la
 		} else {
 			$categorylink = '';
 		}
-	} 
+	}
 	switch($option) {
 		case "News":
 			if (getOption('RSS_articles')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss-news&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-news&amp;lang=".$lang."\" />\n";
 			}
 		case "Category":
 			if (getOption('RSS_articles')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss-news&amp;lang=".$lang.$categorylink."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-news&amp;lang=".$lang.$categorylink."\" />\n";
 			}
 		case "NewsWithImages":
 			if (getOption('RSS_articles')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss-news&amp;withimages&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-news&amp;withimages&amp;lang=".$lang."\" />\n";
 			}
 	}
 }

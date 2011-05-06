@@ -563,7 +563,7 @@ function getSitemapGoogleLoopIndex($imageCount,$pageCount) {
 function getSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images) {
 	if(getOption('sitemap_google') && !empty($loop_index)) {
 		$data = '';
-		$host = getOption("server_protocol").'://'.html_encode($_SERVER["HTTP_HOST"]);
+		$host = SERVER_PROTOCOL.'://'.html_encode($_SERVER["HTTP_HOST"]);
 		$start = ($page - 1) * getOption('images_per_page');
 		$end = ($page - 1) * getOption('images_per_page') + $loop_index[($page-1)];
 		for ($x = $start; $x < $end; $x++) {

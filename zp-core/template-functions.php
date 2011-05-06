@@ -34,45 +34,6 @@ function printVersion() {
 }
 
 /**
- * Prints the admin edit link for albums if the current user is logged-in
-
- * Returns true if the user is logged in
- * @param string $text text for the link
- * @param string $before text do display before the link
- * @param string $after  text do display after the link
- * @param string $title Text for the HTML title item
- * @param string $class The HTML class for the link
- * @param string $id The HTML id for the link
- * @return bool
- * @since 1.1
- */
-function printAdminLink($text, $before='', $after='', $title=NULL, $class=NULL, $id=NULL) {
-	if (zp_loggedin()) {
-		echo $before;
-		printLink(WEBPATH.'/' . ZENFOLDER . '/admin.php', $text, $title, $class, $id);
-		echo $after;
-		return true;
-	}
-	return false;
-}
-
-/**
- * Prints the admin edit link for subalbums if the current user is logged-in
- * @param string $text text for the link
- * @param string $before text do display before the link
- * @param string $after  text do display after the link
- * @since 1.1
- */
-function printSubalbumAdmin($text, $before='', $after='') {
-	global $_zp_current_album, $_zp_themeroot;
-	if (zp_loggedin()) {
-		echo $before;
-		printLink(WEBPATH.'/' . ZENFOLDER . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name), $text, NULL, NULL, NULL);
-		echo $after;
-	}
-}
-
-/**
  * Print any Javascript required by zenphoto.
  */
 function printZenJavascripts() {
@@ -125,7 +86,11 @@ function printZenJavascripts() {
 function printAdminToolbox($id='admin') {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery;
 	if (zp_loggedin()) {
-		$zf = WEBPATH."/".ZENFOLDER;
+		$protocol = SERVER_PROTOCOL;
+		if ($protocol == 'https_admin') {
+			$protocol = 'https';
+		}
+		$zf = $protocol.'://'.$_SERVER['HTTP_HOST'].'/'.WEBPATH."/".ZENFOLDER;
 		$dataid = $id . '_data';
 		$page = getCurrentPage();
 		$redirect = '';
@@ -149,8 +114,9 @@ function printAdminToolbox($id='admin') {
 
 		// generic link to Admin.php
 		echo "<li>";
-		printAdminLink(gettext('Admin'), '', "</li>\n");
-		// setup for return links
+		printLink($zf . '/admin.php', gettext("Admin"), NULL, NULL, NULL);
+		echo "</li>\n";
+				// setup for return links
 		if (isset($_GET['p'])) {
 			$redirect = "&amp;p=" . urlencode(sanitize($_GET['p']));
 		}
@@ -177,7 +143,7 @@ function printAdminToolbox($id='admin') {
 			if (zp_loggedin(ALBUM_RIGHTS)) {
 				// admin has edit rights so he can sort the gallery (at least those albums he is assigned)
 				?>
-				<li><?php echo printLink($zf . '/admin-edit.php?page=edit', gettext("Sort Gallery"), NULL, NULL, NULL); ?>
+				<li><?php printLink($zf . '/admin-edit.php?page=edit', gettext("Sort Gallery"), NULL, NULL, NULL); ?>
 				</li>
 				<?php
 			}
@@ -196,17 +162,18 @@ function printAdminToolbox($id='admin') {
 			if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
 				// admin is empowered to edit this album--show an edit link
 				echo "<li>";
-				printSubalbumAdmin(gettext('Edit album'), '', "</li>\n");
+				printLink($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name), gettext('Edit album'), NULL, NULL, NULL);
+				echo "</li>\n";
 				if (!$_zp_current_album->isDynamic()) {
 					if ($_zp_current_album->getNumAlbums()) {
 						?>
-						<li><?php echo printLink($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname).'&tab=subalbuminfo', gettext("Sort subalbums"), NULL, NULL, NULL); ?>
+						<li><?php printLink($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($albumname).'&tab=subalbuminfo', gettext("Sort subalbums"), NULL, NULL, NULL); ?>
 						</li>
 						<?php
 					}
 					if ($_zp_current_album->getNumImages()>0) {
 						?>
-						<li><?php echo printLink($zf . '/admin-albumsort.php?page=edit&album=' . pathurlencode($albumname).'&tab=sort', gettext("Sort album images"), NULL, NULL, NULL); ?>
+						<li><?php printLink($zf . '/admin-albumsort.php?page=edit&album=' . pathurlencode($albumname).'&tab=sort', gettext("Sort album images"), NULL, NULL, NULL); ?>
 						</li>
 						<?php
 					}
@@ -224,7 +191,7 @@ function printAdminToolbox($id='admin') {
 			if ($_zp_current_album->isMyItem(UPLOAD_RIGHTS) && !$_zp_current_album->isDynamic()) {
 				// provide an album upload link if the admin has upload rights for this album and it is not a dynamic album
 				?>
-				<li><?php echo printLink($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
+				<li><?php printLink($zf . '/admin-upload.php?album=' . pathurlencode($albumname), gettext("Upload Here"), NULL, NULL, NULL); ?>
 				</li>
 				<?php
 				if (GALLERY_SESSION) { // XSRF defense requires sessions
@@ -320,11 +287,7 @@ function printAdminToolbox($id='admin') {
 		}
 
 		// logout link
-		if (getOption('server_protocol')=='https') {
-			$sec=1;
-		} else {
-			$sec=0;
-		}
+		$sec = (int) ((SERVER_PROTOCOL=='https') & true);
 		$link = FULLWEBPATH.'?logout='.$sec.$redirect;
 		?>
 		<li><a href="<?php echo $link; ?>"><?php echo gettext("Logout"); ?></a></li>
@@ -3939,38 +3902,42 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=
 function getRSSHeaderLink($option, $linktext='', $lang='') {
 	global $_zp_current_album;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
-	(secureServer()) ? $serverprotocol = "https://" : $serverprotocol = "http://";
+	if (secureServer()) {
+		$serverprotocol = "https://";
+		} else {
+		$serverprotocol = "http://";
+	}
 	if(empty($lang)) {
 		$lang = getOption("locale");
 	}
 	switch($option) {
 		case "Gallery":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss&amp;lang=".$lang."\" />\n";
 			}
 		case "Album":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;albumname=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;albumname=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
 			}
 		case "Collection":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;folder=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;folder=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
 			}
 		case "Comments":
 			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."\" />\n";
 			}
 		case "Comments-image":
 			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss-comments&amp;id=".getImageID()."&amp;title=".urlencode(getImageTitle())."&amp;type=image&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss-comments&amp;id=".getImageID()."&amp;title=".urlencode(getImageTitle())."&amp;type=image&amp;lang=".$lang."\" />\n";
 			}
 		case "Comments-album":
 			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss-comments&amp;id=".getAlbumID()."&amp;title=".urlencode(getAlbumTitle())."&amp;type=album&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss-comments&amp;id=".getAlbumID()."&amp;title=".urlencode(getAlbumTitle())."&amp;type=album&amp;lang=".$lang."\" />\n";
 			}
 		case "AlbumsRSS":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$serverprotocol.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."&amp;albumsmode\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."&amp;albumsmode\" />\n";
 			}
 
 	}

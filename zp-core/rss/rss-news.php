@@ -1,6 +1,9 @@
 <?php
 $host = getRSSHost();
-$serverprotocol = getOption("server_protocol");
+$protocol = SERVER_PROTOCOL;
+if ($protocol == 'https_admin') {
+	$protocol = 'http';
+}
 $locale = getRSSLocale();
 $validlocale = getRSSLocaleXML();
 $modrewritesuffix = getRSSImageAndAlbumPaths("modrewritesuffix");
@@ -21,8 +24,8 @@ $gallery = new Gallery();
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <title><?php echo html_encode(get_language_string($gallery->getTitle(), $locale))." - News "; ?><?php if(!empty($cattitle)) { echo html_encode($cattitle) ; } ?></title>
-<link><?php echo $serverprotocol."://".$host.WEBPATH; ?></link>
-<atom:link href="<?php echo $serverprotocol; ?>://<?php echo html_encode($_SERVER["HTTP_HOST"]); ?><?php echo html_encode($_SERVER["REQUEST_URI"]); ?>" rel="self" type="application/rss+xml" />
+<link><?php echo $protocol."://".$host.WEBPATH; ?></link>
+<atom:link href="<?php echo $protocol; ?>://<?php echo html_encode($_SERVER["HTTP_HOST"]); ?><?php echo html_encode($_SERVER["REQUEST_URI"]); ?>" rel="self" type="application/rss+xml" />
 <description><?php echo html_encode(strip_tags(get_language_string($gallery->get('Gallery_description'), $locale))); ?></description>
 <language><?php echo $validlocale; ?></language>
 <pubDate><?php echo date("r", time()); ?></pubDate>
@@ -88,9 +91,9 @@ foreach($latest as $item) {
 				$content = shortenContent(get_language_string($obj->get('desc'),$locale),getOption('zenpage_rss_length'), $elipsis='...');
 			}
 			if(isImagePhoto($obj)) {
-				$content = '<![CDATA[<a title="'.html_encode($title).' in '.html_encode($categories).'" href="'.$serverprotocol.'://'.$host.$link.'"><img border="0" src="'.$serverprotocol.'://'.$host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$filename.'&s='.$s.'" alt="'. html_encode($title) .'"></a>' . $content . ']]>';
+				$content = '<![CDATA[<a title="'.html_encode($title).' in '.html_encode($categories).'" href="'.$protocol.'://'.$host.$link.'"><img border="0" src="'.$protocol.'://'.$host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$filename.'&s='.$s.'" alt="'. html_encode($title) .'"></a>' . $content . ']]>';
 			} else {
-				$content = '<![CDATA[<a title="'.html_encode($title).' in '.html_encode($categories).'" href="'.$serverprotocol.'://'.$host.$link.'"><img src="'.$obj->getThumb().'" alt="'.html_encode($title).'" /></a>'.$content.']]>';
+				$content = '<![CDATA[<a title="'.html_encode($title).' in '.html_encode($categories).'" href="'.$protocol.'://'.$host.$link.'"><img src="'.$obj->getThumb().'" alt="'.html_encode($title).'" /></a>'.$content.']]>';
 			}
 			//$thumb = "<a href=\"".$link."\" title=\"".html_encode($title)."\"><img src=\"".$obj->getThumb()."\" alt=\"".html_encode($title)."\" /></a>\n";
 
@@ -102,16 +105,16 @@ foreach($latest as $item) {
 ?>
 <item>
 	<title><?php echo html_encode($title)." (".html_encode($categories).")"; ?></title>
-	<link><?php echo '<![CDATA['.$serverprotocol.'://'.$host.$link.']]>';?></link>
+	<link><?php echo '<![CDATA['.$protocol.'://'.$host.$link.']]>';?></link>
 	<description>
 	<?php echo $content;	?>
 </description>
 <?php if(getOption("feed_enclosure") AND !empty($item['thumb'])) { ?>
-	<enclosure url="<?php echo $serverprotocol; ?>://<?php echo $fullimagelink; ?>" type="<?php echo $mimetype; ?>" length="<?php echo filesize($imagefile); ?>" />
+	<enclosure url="<?php echo $protocol; ?>://<?php echo $fullimagelink; ?>" type="<?php echo $mimetype; ?>" length="<?php echo filesize($imagefile); ?>" />
 <?php } ?>
     <category><?php echo $categories; ?>
     </category>
-	<guid><?php echo '<![CDATA['.$serverprotocol.'://'.$host.$link.']]>';?></guid>
+	<guid><?php echo '<![CDATA['.$protocol.'://'.$host.$link.']]>';?></guid>
 	<pubDate><?php echo date("r",strtotime($item['date'])); ?></pubDate>
 </item>
 <?php

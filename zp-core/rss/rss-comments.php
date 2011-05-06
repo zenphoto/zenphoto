@@ -1,6 +1,9 @@
 <?php
 $host = getRSSHost();
-$serverprotocol = getOption("server_protocol");
+$protocol = SERVER_PROTOCOL;
+if ($protocol == 'https_admin') {
+	$protocol = 'http';
+}
 $locale = getRSSLocale();
 $validlocale = getRSSLocaleXML();
 $modrewritesuffix = getRSSImageAndAlbumPaths("modrewritesuffix");
@@ -19,8 +22,8 @@ $gallery = new Gallery();
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <title><?php echo strip_tags(get_language_string($gallery->get('gallery_title'), $locale))." - ".gettext("latest comments").$title; ?></title>
-<link><?php echo $serverprotocol."://".$host.WEBPATH; ?></link>
-<atom:link href="<?php echo $serverprotocol; ?>://<?php echo html_encode($_SERVER["HTTP_HOST"]); ?><?php echo html_encode($_SERVER["REQUEST_URI"]); ?>" rel="self"	type="application/rss+xml" />
+<link><?php echo $protocol."://".$host.WEBPATH; ?></link>
+<atom:link href="<?php echo $protocol; ?>://<?php echo html_encode($_SERVER["HTTP_HOST"]); ?><?php echo html_encode($_SERVER["REQUEST_URI"]); ?>" rel="self"	type="application/rss+xml" />
 <description><?php echo strip_tags(get_language_string($gallery->get('Gallery_description'), $locale)); ?></description>
 <language><?php echo $validlocale; ?></language>
 <pubDate><?php echo date("r", time()); ?></pubDate>
@@ -82,7 +85,7 @@ foreach ($comments as $comment) {
 			} else {
 				$title = $category.": ".$title;
 			}
-			$commentpath = $serverprotocol.'://'.$host.WEBPATH.$albumpath.$album.$imagetag."#".$comment['id'];
+			$commentpath = $protocol.'://'.$host.WEBPATH.$albumpath.$album.$imagetag."#".$comment['id'];
 			break;
 		case 'news':
 		case 'pages':
@@ -94,9 +97,9 @@ foreach ($comments as $comment) {
 			$website = $comment['website'];
 			if(function_exists('getNewsURL')) {
 				if ($comment['type']=='news') {
-					$commentpath = $serverprotocol.'://'.$host.getNewsURL($titlelink)."#".$comment['id'];
+					$commentpath = $protocol.'://'.$host.getNewsURL($titlelink)."#".$comment['id'];
 				} else {
-					$commentpath = $serverprotocol.'://'.$host.getPageLinkURL($titlelink)."#".$comment['id'];
+					$commentpath = $protocol.'://'.$host.getPageLinkURL($titlelink)."#".$comment['id'];
 				}
 			} else {
 				$commentpath = '';

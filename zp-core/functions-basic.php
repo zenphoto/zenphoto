@@ -159,8 +159,8 @@ if ($const_webpath == '/') $const_webpath = '';
 if (!defined('WEBPATH')) { define('WEBPATH', $const_webpath); }
 unset($const_webpath);
 if (!defined('SERVERPATH')) define('SERVERPATH', str_replace("\\", '/', dirname(dirname(__FILE__))));
-$protocol = getOption('server_protocol');
-switch ($protocol) {
+define('SERVER_PROTOCOL', getOption('server_protocol'));
+switch (SERVER_PROTOCOL) {
 	case 'https':
 	define('PROTOCOL', $protocol);
 	break;

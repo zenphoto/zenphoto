@@ -228,7 +228,7 @@ function printLogoAndLinks() {
 	echo "\n<div id=\"links\">";
 	echo "\n  ";
 	if (!is_null($_zp_current_admin_obj)) {
-		if (getOption('server_protocol')=='https') $sec=1; else $sec=0;
+		$sec = (int) ((SERVER_PROTOCOL=='https') & true);
 		$last = $_zp_current_admin_obj->lastlogon;
 		if (empty($last)) {
 			printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
@@ -237,7 +237,7 @@ function printLogoAndLinks() {
 		}
 		echo " &nbsp; | &nbsp; <a href=\"".WEBPATH."/".ZENFOLDER."/admin.php?logout=".$sec."\">".gettext("Log Out")."</a> &nbsp; | &nbsp; ";
 	}
-	echo '<a href="'.FULLWEBPATH.'">';
+	echo '<a href="'.FULLWEBPATH.'/">';
 	$t = $gallery->getTitle();
 	if (!empty($t))	{
 		printf(gettext("View <em>%s</em>"), $t);
@@ -3689,6 +3689,16 @@ function codeblocktabsJS() {
  */
 function admin_securityChecks($rights, $return) {
 	global $_zp_current_admin_obj, $_zp_loggedin;
+
+	if (SERVER_PROTOCOL == 'https_admin') {
+		// force https login
+		if (!isset($_SERVER["HTTPS"])) {
+			$redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+			header("Location:$redirect");
+			exit();
+		}
+	}
+
 	checkInstall();
 	if (!is_null(getOption('admin_reset_date'))) {
 		if (!zp_loggedin($rights)) { // prevent nefarious access to this page.
