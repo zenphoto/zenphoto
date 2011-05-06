@@ -30,27 +30,14 @@ class tweet_options {
 		setOptionDefault('tweet_news_rescan', 1);
 		setOptionDefault('tweet_news_categories_none', NULL);
 		setOptionDefault('tweet_news_images', NULL);
+		setOptionDefault('tweet_news_albums', NULL);
+		setOptionDefault('tweet_news_news', 1);
+		setOptionDefault('tweet_news_protected', NULL);
 	}
 
 	function getOptionsSupported() {
 		global $_zp_zenpage;
-		$catlist = unserialize(getOption('tweet_news_categories'));
-		$news_categories = $_zp_zenpage->getAllCategories();
-		$catlist = array(gettext('*not categorized*')=>'tweet_news_categories_none');
-		foreach ($news_categories as $category) {
-			$option = 'tweet_news_categories_'.$category['titlelink'];
-			$catlist[$category['title']] = $option;
-			setOptionDefault($option, NULL);
-		}
-		$options = array(	gettext('Scan pending') => array('key'=>'tweet_news_rescan', 'type'=>OPTION_TYPE_CHECKBOX,
-																												'order'=>7,
-																												'desc'=>gettext('<code>tweet_news</code> notices when an article is published. '.
-																																				'If the article date is in the future, it is put in the <em>to-be-tweeted</em> and tweeted when that date arrives. '.
-																																																							'This option allows you to re-populate that list to the current state of scheduled articles.')),
-											gettext('Tweet images') => array('key'=>'tweet_news_images', 'type'=>OPTION_TYPE_CHECKBOX,
-																												'order'=>5,
-																												'desc'=>gettext('If checked newly published <em>images</em> will be tweeted.')),
-											gettext('Consumer key') => array('key'=>'tweet_news_consumer', 'type'=>OPTION_TYPE_TEXTBOX,
+		$options = array(	gettext('Consumer key') => array('key'=>'tweet_news_consumer', 'type'=>OPTION_TYPE_TEXTBOX,
 																												'order'=>2,
 																												'desc'=>gettext('This <code>tweet_news</code> app for this site needs a <em>consumer key</em>, a <em>consumer key secret</em>, an <em>access token</em>, and an <em>access token secret</em>.').'<p class="notebox">'. gettext('Get these from <a href="http://dev.twitter.com/">Twitter developers</a>').'</p>'),
 											gettext('Secret') => array('key'=>'tweet_news_consumer_secret', 'type'=>OPTION_TYPE_TEXTBOX,
@@ -62,12 +49,43 @@ class tweet_options {
 											gettext('Access token secret') => array('key'=>'tweet_news_oauth_token_secret', 'type'=>OPTION_TYPE_TEXTBOX,
 																															'order'=>5,
 																															'desc'=>gettext('The application <em>oauth_token</em> secret.')),
-											gettext('News categories') => array('key'=>'tweet_news_categories', 'type'=>OPTION_TYPE_CHECKBOX_UL,
-																														'order'=>6,
-																														'checkboxes' => $catlist,
-																														'desc'=>gettext('Only those <em>news categories</em> checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned.'))
+											gettext('Protected albums') => array('key'=>'tweet_news_protected', 'type'=>OPTION_TYPE_CHECKBOX,
+																														'order'=>7,
+																														'desc'=>gettext('If checked, protected items will be tweeted. <strong>Note:</strong> followers will need the password to visit the tweeted link.'))
 										);
 		$note = '';
+		$list = array('<em>'.gettext('Albums').'</em>'=>'tweet_news_albums', '<em>'.gettext('Images').'</em>'=>'tweet_news_images');
+		if (getOption('zp_plugin_zenpage')) {
+			$list['<em>'.gettext('News').'</em>'] = 'tweet_news_news';
+			$options[gettext('Scan pending')] = array('key'=>'tweet_news_rescan', 'type'=>OPTION_TYPE_CHECKBOX,
+																								'order'=>8,
+																								'desc'=>gettext('<code>tweet_news</code> notices when an article is published. '.
+																																'If the article date is in the future, it is put in the <em>to-be-tweeted</em> and tweeted when that date arrives. '.
+																																'This option allows you to re-populate that list to the current state of scheduled articles.'));
+
+
+		} else {
+			setOption('tweet_news_news', 0);
+		}
+		$options[gettext('Tweet')] = array('key'=>'tweet_news_items', 'type'=>OPTION_TYPE_CHECKBOX_ARRAY,
+																			'order'=>6,
+																			'checkboxes' => $list,
+																			'desc'=>gettext('If an <em>type</em> is checked, a Tweet will be made when an object of that <em>type</em> is published.'));
+
+		if (getOption('tweet_news_news')) {
+			$catlist = unserialize(getOption('tweet_news_categories'));
+			$news_categories = $_zp_zenpage->getAllCategories();
+			$catlist = array(gettext('*not categorized*')=>'tweet_news_categories_none');
+			foreach ($news_categories as $category) {
+				$option = 'tweet_news_categories_'.$category['titlelink'];
+				$catlist[$category['title']] = $option;
+				setOptionDefault($option, NULL);
+			}
+			$options[gettext('News categories')] = array('key'=>'tweet_news_categories', 'type'=>OPTION_TYPE_CHECKBOX_UL,
+																													'order'=>6,
+																													'checkboxes' => $catlist,
+																													'desc'=>gettext('Only those <em>news categories</em> checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned.'));
+		}
 		if (getOption('tweet_news_rescan')) {
 			setOption('tweet_news_rescan', 0);
 			$note = tweetRepopulate();
@@ -112,11 +130,13 @@ function sendTweet($status) {
 function tweetNewsArticle($obj) {
 	global $_zp_UTF8;
 	if ($obj->getShow()) {
-		switch ($obj->table) {
+		switch ($type = $obj->table) {
 			case 'news':
-				$dt = $obj->getDateTime();
-				$mycategories = $obj->getCategories();
+				if (!getOption('tweet_news_protected') && $obj->inProtectedCategory(true)) {
+					break;
+				}
 				$tweet = false;
+				$mycategories = $obj->getCategories();
 				if (empty($mycategories)) {
 					$tweet = getOption('tweet_news_categories_none');
 				} else {
@@ -126,6 +146,8 @@ function tweetNewsArticle($obj) {
 						}
 					}
 				}
+
+				$dt = $obj->getDateTime();
 				if($tweet && $dt > date('Y-m-d H:i:s')) {
 					$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending" AND `data`='.db_quote($obj->getTitlelink()));
 					if (!$result) {
@@ -151,9 +173,20 @@ function tweetNewsArticle($obj) {
 					}
 				}
 				break;
+			case 'albums':
+				if (!getOption('tweet_news_protected') && isProtectedAlbum($obj)) {
+					break;
+				}
 			case 'images':
-				if (getOption('tweet_news_images')) {
-					$text = sprintf(gettext('New image in %s '),trim(strip_tags($obj->getTitle())));
+				if (getOption('tweet_news_'.$type)) {
+					if ($type=='images') {
+						if (!getOption('tweet_news_protected') && isProtectedAlbum($obj->album)) {
+							break;
+						}
+						$text = sprintf(gettext('New image %1$s in %2$s '),trim(strip_tags($obj->getTitle())),trim(strip_tags($obj->album->getTitle())));
+					} else {
+						$text = sprintf(gettext('New album: %s '),trim(strip_tags($obj->getTitle())));
+					}
 					$link = getTinyURL($obj);
 					if ($_zp_UTF8->strlen($text.$link) > 140) {
 						$c = 140 - strlen($link) - 4;	//	allow for ellipsis

@@ -462,11 +462,7 @@ function zp_load_request() {
 								case 'albums':
 								$album = $_GET['album'] = $result['folder'];
 								unset($_GET['p']);
-								if (isset($image)) {
-									return zp_load_image($album, $image);
-								} else {
-									return zp_load_album($album);
-								}
+								break;
 						}
 					}
 				}
