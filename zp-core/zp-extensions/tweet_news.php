@@ -22,7 +22,8 @@ if ($plugin_disable) {
 $option_interface = 'tweet_options';
 
 class tweet_options {
-	function cacheHeader_options() {
+
+	function tweet_options() {
 		setOptionDefault('tweet_news_consumer', NULL);
 		setOptionDefault('tweet_news_consumer_secret', NULL);
 		setOptionDefault('tweet_news_oauth_token', NULL);
