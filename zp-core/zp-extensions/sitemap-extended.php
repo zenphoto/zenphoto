@@ -354,16 +354,13 @@ function getSitemapIndexLinks() {
  * @param $obj
  * @param $limit
  */
-Function getSitemapAlbumList($obj,&$albumlist) {
-	Global $_zp_gallery;
+function getSitemapAlbumList($obj,&$albumlist) {
+	global $_zp_gallery;
 	$locallist = $obj->getAlbums();
-	Foreach ($locallist as $folder) {
+	foreach ($locallist as $folder) {
 		$album = new Album($_zp_gallery, $folder);
-		If (!$album->isDynamic() && !$album->getPassword())  {
-			//TODO: this mimics the original code, but maybe it is wrong? Should the sitemap really show published members of an unpublished album? If not, move the getShow() test to the above if statement
-			if ($album->getShow()) {
-				$albumlist[] = array('folder'=>$album->name, 'date'=>$album->getDateTime(), 'title'=>$album->getTitle());
-			}
+		If (!$album->isDynamic() && !$album->getPassword() && $album->getShow())  {
+			$albumlist[] = array('folder'=>$album->name, 'date'=>$album->getDateTime(), 'title'=>$album->getTitle());
 			getSitemapAlbumList($album, $albumlist);
 		}
 	}
