@@ -22,7 +22,7 @@ header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
 
 define('CONFIGFILE',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
-define('HTACCESS_VERSION', '1.4.0');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
+define('HTACCESS_VERSION', '1.4.1');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
 
 $debug = isset($_REQUEST['debug']);
 

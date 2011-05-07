@@ -2301,7 +2301,12 @@ function getTableAsoc() {
  */
 function getTinyURL($obj) {
 	$asoc = array_flip(getTableAsoc());
-	return FULLWEBPATH.'/index.php?p='.(($obj->getID()<<3)|$asoc[$obj->table]).'&t';
+	$tiny = ($obj->getID()<<3)|$asoc[$obj->table];
+	if (MOD_REWRITE) {
+		return FULLWEBPATH.'/tiny/'.$tiny;
+	} else {
+		return FULLWEBPATH.'/index.php?p='.$tiny.'&t';
+	}
 }
 
 
