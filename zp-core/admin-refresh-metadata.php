@@ -125,7 +125,7 @@ if (db_connect()) {
 printAdminHeader($tab,'refresh');
 if (!empty($metaURL)) {
 	?>
-	<meta http-equiv="refresh" content="1; url=<?php  echo $metaURL; ?>" />
+	<meta http-equiv="refresh" content="1; url=<?php echo $metaURL; ?>" />
 	<?php
 }
 echo "\n</head>";

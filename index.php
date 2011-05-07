@@ -2,16 +2,6 @@
 $_zp_script_timer['start'] = microtime();
 // force UTF-8 Ø
 require_once(dirname(__FILE__).'/zp-core/global-definitions.php');
-if (!file_exists(dirname(__FILE__) . '/' . DATA_FOLDER . "/zp-config.php")) {
-	if (file_exists(dirname(__FILE__).'/'.ZENFOLDER.'/setup.php')) {
-		$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-		if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
-		$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php";
-		header("Location: $location" );
-	} else {
-		die('setup scripts missing');
-	}
-}
 define('OFFSET_PATH', 0);
 require_once(ZENFOLDER . "/template-functions.php");
 checkInstall();

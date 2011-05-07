@@ -90,7 +90,7 @@ function printAdminToolbox($id='admin') {
 		if ($protocol == 'https_admin') {
 			$protocol = 'https';
 		}
-		$zf = $protocol.'://'.$_SERVER['HTTP_HOST'].'/'.WEBPATH."/".ZENFOLDER;
+		$zf = $protocol.'://'.$_SERVER['HTTP_HOST'].WEBPATH."/".ZENFOLDER;
 		$dataid = $id . '_data';
 		$page = getCurrentPage();
 		$redirect = '';

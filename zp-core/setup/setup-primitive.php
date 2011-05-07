@@ -11,7 +11,7 @@
 require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
 require_once(dirname(dirname(__FILE__)).'/lib-htmlawed.php');
 
-$const_webpath = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));
+$const_webpath = dirname(dirname($_SERVER['SCRIPT_NAME']));
 $const_webpath = str_replace("\\", '/', $const_webpath);
 if ($const_webpath == '/') $const_webpath = '';
 if (!defined('WEBPATH')) { define('WEBPATH', $const_webpath); }
@@ -19,6 +19,7 @@ if (!defined('SERVERPATH')) { define('SERVERPATH', dirname(dirname(dirname(__FIL
 define('LOCAL_CHARSET','UTF-8');
 define('FILESYSTEM_CHARSET', 'ISO-8859-1');
 define('ADMIN_RIGHTS',1);
+define('PROTOCOL', 'http');
 
 $_zp_imagick_present = false;
 

@@ -44,8 +44,15 @@ $_zp_error = false;
 
 require_once(dirname(__FILE__).'/lib-utf8.php');
 
-if (!file_exists(dirname(dirname(__FILE__)).'/'.DATA_FOLDER . "/zp-config.php")) {
-	die (sprintf(gettext("<strong>Zenphoto error:</strong> zp-config.php not found. Perhaps you need to run <a href=\"%s/setup.php\">setup</a> (or migrate your old config.php)"),ZENFOLDER));
+if (!file_exists(dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . "/zp-config.php")) {
+	if (file_exists(dirname(dirname(__FILE__)).'/'.ZENFOLDER.'/setup.php')) {
+		$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+		if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
+		$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php";
+		header("Location: $location" );
+	} else {
+		die('Zenphoto needs to run setup but the setup scripts missing. Please reinstall the setup scripts.');
+	}
 }
 // Including zp-config.php more than once is OK, and avoids $conf missing.
 require(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
@@ -333,9 +340,13 @@ function setOptionDefault($key, $default) {
 		getOption('nil');  // pre-load from the database
 	}
 
-	$bt = debug_backtrace();
-	$b = array_shift($bt);
-	$creator = str_replace(SERVERPATH.'/', '', str_replace('\\', '/', $b['file']));
+	if (defined(SERVERPATH)) {
+		$bt = debug_backtrace();
+		$b = array_shift($bt);
+		$creator = str_replace(SERVERPATH.'/', '', str_replace('\\', '/', $b['file']));
+	} else {
+		$creator = '';
+	}
 
 	if (array_key_exists($key, $_zp_options)) {
 		$sql = 'UPDATE '.prefix('options').' SET `creator`='.db_quote($creator).' WHERE `name`='.db_quote($key).' AND `ownerid`=0';

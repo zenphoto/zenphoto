@@ -101,13 +101,13 @@ class Gallery {
 	}
 
 	function getSortDirection() {
-		return $this->get('sort_direction');
+		return $this->get('gallery_sortdirection');
 	}
 	function setSortDirection($value) {
 		$this->set('sort_direction', (int) ($value && true));
 	}
 	function getSortType() {
-		$type = $this->get('sort_type');
+		$type = $this->get('gallery_sorttype');
 		return $type;
 	}
 	function setSortType($value) {

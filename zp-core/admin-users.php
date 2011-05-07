@@ -309,17 +309,24 @@ if ($_zp_null_account) {
 
 	} else {
 		$alterrights = ' disabled="disabled"';
-		$admins = array($_zp_current_admin_obj->getUser() =>
-													array('id' => $_zp_current_admin_obj->getID(),
-																'user' => $_zp_current_admin_obj->getUser(),
-																'pass' => $_zp_current_admin_obj->getPass(),
-																'name' => $_zp_current_admin_obj->getName(),
-																'email' => $_zp_current_admin_obj->getEmail(),
-																'rights' => $_zp_current_admin_obj->getRights(),
-																'custom_data' => $_zp_current_admin_obj->getCustomData(),
-																'valid' => 1,
-																'group' => $_zp_current_admin_obj->getGroup()));
-		$showset = array($_zp_current_admin_obj->getUser());
+		if ($_zp_current_admin_obj) {
+			$admins = array($_zp_current_admin_obj->getUser() =>
+														array('id' => $_zp_current_admin_obj->getID(),
+																	'user' => $_zp_current_admin_obj->getUser(),
+																	'pass' => $_zp_current_admin_obj->getPass(),
+																	'name' => $_zp_current_admin_obj->getName(),
+																	'email' => $_zp_current_admin_obj->getEmail(),
+																	'rights' => $_zp_current_admin_obj->getRights(),
+																	'custom_data' => $_zp_current_admin_obj->getCustomData(),
+																	'valid' => 1,
+																	'group' => $_zp_current_admin_obj->getGroup()));
+			$showset = array($_zp_current_admin_obj->getUser());
+		} else {
+			$admins = $showset = array();
+			?>
+			<meta http-equiv="refresh" content="3; url=admin.php" />
+			<?php
+		}
 	}
 
 	if (isset($_GET['deleted'])) {
