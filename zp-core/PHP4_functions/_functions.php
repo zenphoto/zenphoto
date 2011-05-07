@@ -2,7 +2,7 @@
 /**
  * read_exif_data_protected
  * @package functions
- * 
+ *
  */
 /**
  * Provides an [not] error protected read of image EXIF/IPTC data for PHP 4
@@ -23,6 +23,10 @@ function file_put_contents($file, $contents) {
 	$r = fwrite($f, $contents);
 	fclose($f);
 	return $r;
+}
+
+function stripos($str,$needle,$offset=0) {
+	return @strpos(strtolower($str),strtolower($needle),$offset);
 }
 
 ?>
