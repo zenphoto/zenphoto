@@ -115,7 +115,7 @@ function user_groups_edit_admin($html, $userobj, $i, $background, $current) {
 			$categories = $_zp_zenpage->getAllCategories();
 			foreach ($categories as $category) {
 				$newslist[get_language_string($category['titlelink'])] = $category['title'];
-				$allnew[] = "'#managed_news_".$i.'_'.postIndexEncode($page['titlelink'])."'";
+				$allnew[] = "'#managed_news_".$i.'_'.postIndexEncode($category['titlelink'])."'";
 			}
 		}
 		$rights = array();

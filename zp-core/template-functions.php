@@ -3902,10 +3902,9 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=
 function getRSSHeaderLink($option, $linktext='', $lang='') {
 	global $_zp_current_album;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
-	if (secureServer()) {
-		$serverprotocol = "https://";
-		} else {
-		$serverprotocol = "http://";
+	$protocol = SERVER_PROTOCOL;
+	if ($protocol == 'https_admin') {
+		$protocol = 'http';
 	}
 	if(empty($lang)) {
 		$lang = getOption("locale");
@@ -3913,31 +3912,31 @@ function getRSSHeaderLink($option, $linktext='', $lang='') {
 	switch($option) {
 		case "Gallery":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;lang=".$lang."\" />\n";
 			}
 		case "Album":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;albumname=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;albumname=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
 			}
 		case "Collection":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;folder=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;folder=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
 			}
 		case "Comments":
 			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."\" />\n";
 			}
 		case "Comments-image":
 			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss-comments&amp;id=".getImageID()."&amp;title=".urlencode(getImageTitle())."&amp;type=image&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;id=".getImageID()."&amp;title=".urlencode(getImageTitle())."&amp;type=image&amp;lang=".$lang."\" />\n";
 			}
 		case "Comments-album":
 			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss-comments&amp;id=".getAlbumID()."&amp;title=".urlencode(getAlbumTitle())."&amp;type=album&amp;lang=".$lang."\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;id=".getAlbumID()."&amp;title=".urlencode(getAlbumTitle())."&amp;type=album&amp;lang=".$lang."\" />\n";
 			}
 		case "AlbumsRSS":
 			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".SERVER_PROTOCOL.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."&amp;albumsmode\" />\n";
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."&amp;albumsmode\" />\n";
 			}
 
 	}
