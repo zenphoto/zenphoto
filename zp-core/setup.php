@@ -1175,7 +1175,7 @@ if ($connection) {
 	$msg = gettext("<em>.htaccess</em> file");
 	$Apache = stristr($_SERVER['SERVER_SOFTWARE'], "apache");
 	$htfile = '../.htaccess';
-	$ht = @file_get_contents($htfile);
+	$ht = trim(@file_get_contents($htfile));
 	$htu = strtoupper($ht);
 	$vr = "";
 	$ch = 1;
@@ -1199,8 +1199,13 @@ if ($connection) {
 			$vr = trim(substr($htu, $i+7, $j-$i-7));
 		}
 		$ch = !empty($vr) && ($vr == HTACCESS_VERSION);
+		$d = str_replace('\\','/',dirname(dirname($_SERVER['SCRIPT_NAME'])));
 		if (!$ch) {	// wrong version
-			$oht = @file_get_contents('oldhtaccess');
+			$oht = trim(@file_get_contents('oldhtaccess'));
+			//fix the rewritebase
+			$i = strpos($ht, 'RewriteBase');
+			$j = strpos($ht, "\n", $i+11);
+			$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $j);
 			if ($oht == $ht) {	// an unmodified .htaccess file, we can just replace it
 				@unlink($htfile);
 				$ch = @copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
@@ -1240,7 +1245,6 @@ if ($connection) {
 	$base = true;
 	$f = '';
 	if ($rw == 'ON') {
-		$d = str_replace('\\','/',dirname(dirname($_SERVER['SCRIPT_NAME'])));
 		$i = strpos($htu, 'REWRITEBASE', $j);
 		if ($i === false) {
 			$base = false;
