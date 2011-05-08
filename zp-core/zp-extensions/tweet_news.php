@@ -1,6 +1,6 @@
 <?php
 /**
- * Use to tweet news articles as they are published
+ * Use to tweet new objects as they are published
  *
  */
 $plugin_is_filter = 9|THEME_PLUGIN|ADMIN_PLUGIN;
@@ -155,9 +155,9 @@ function tweetNewsArticle($obj) {
 						query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending",'.db_quote($obj->getTitlelink()).')');
 					}
 				} else {	//	tweet it
-					require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 					$text = trim(strip_tags($obj->getContent()));
 					if (strlen($text) > 140) {
+						require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 						$title = trim(strip_tags($obj->getTitle()));
 						$link = getTinyURL($obj);
 						$c = 140 - strlen($link) - 4;	//	allow for ellipsis
@@ -190,6 +190,7 @@ function tweetNewsArticle($obj) {
 					}
 					$link = getTinyURL($obj);
 					if ($_zp_UTF8->strlen($text.$link) > 140) {
+						require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 						$c = 140 - strlen($link) - 4;	//	allow for ellipsis
 						$text = trim(strip_tags(shortenContent($text, $c, '... '))).$link;
 					} else {
