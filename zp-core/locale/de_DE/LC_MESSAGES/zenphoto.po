@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-27 17:02+0100\n"
-"PO-Revision-Date: 2011-04-27 17:02+0100\n"
+"POT-Creation-Date: 2011-05-07 14:34+0100\n"
+"PO-Revision-Date: 2011-05-08 10:51+0100\n"
 "Last-Translator: Malte Müller (acrylian)\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "MIME-Version: 1.0\n"
@@ -7479,7 +7479,7 @@ msgstr "Sie können entweder Ihren <a href=\"admin-users.php?page=users\">Benutz
 
 #: zTRANSLATE/zp-core/setup.php:2162
 msgid "You need to <a href=\"admin-users.php\">set your admin user and password</a>"
-msgstr "Sie müssen Ihren <a href=\"admin-options.php\">Benutzernamen und Ihr Passwort setzen</a>"
+msgstr "Sie müssen Ihren <a href=\"admin-users.php\">Benutzernamen und Ihr Passwort setzen</a>"
 
 #: zTRANSLATE/zp-core/setup.php:2166
 msgid "You can now  <a href=\"../\">View your gallery</a> or <a href=\"admin.php\">administer.</a>"
@@ -12946,7 +12946,7 @@ msgstr "Ein CMS-Plugin, dass die Möglichkeit gibt, eine komplette Galerie fokus
 
 #: zTRANSLATE/zp-core/zp-extensions/zenpage.php:9
 msgid "<strong>Note:</strong> This feature must be integrated into your theme. Of the distributed themes, only <code>Zenpage</code> and <code>effervescence+</code> support Zenpage."
-msgstr "<strong>Anmerkung:</strong> Ihr Theme muß dafür eingerichtet sein, diese Funktionen zu nutzen. Von den Standardthemes unterstützen <code>Zenpage default</code> und <code>effervescence+</code> Zenpage."
+msgstr "<strong>Anmerkung:</strong> Ihr Theme muß für diese Funktionen eingerichtet sein. Von den Standardthemes unterstützen <code>Zenpage default</code> und <code>effervescence+</code> Zenpage."
 
 #: zTRANSLATE/zp-core/zp-extensions/zenpage.php:24
 #: zTRANSLATE/zp-core/zp-extensions/zenpage.php:58
