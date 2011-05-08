@@ -2212,13 +2212,13 @@ if (file_exists(CONFIGFILE)) {
 			if (!$_zp_loggedin || $_zp_loggedin == ADMIN_RIGHTS) {
 				$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
 				if (count($filelist) > 0) {
-					echo "<p>".sprintf(gettext("You may <a href=\"admin-users.php?page=users\">set your admin user and password</a> or <a href=\"%s/backup_restore.php\">run backup-restore</a>"),UTILITIES_FOLDER)."</p>";
+					echo "<p>".sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'),'admin-users.php?page=users',UTILITIES_FOLDER.'/backup_restore.php')."</p>";
 				} else {
-					echo "<p>".gettext("You need to <a href=\"admin-users.php\">set your admin user and password</a>")."</p>";
+					echo "<p>".sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'),'admin-users.php?page=users')."</p>";
 				}
 			} else {
 				?>
-				<p><?php echo gettext("You can now  <a href=\"../\">View your gallery</a> or <a href=\"admin.php\">administer.</a>"); ?></p>
+				<p><?php echo sprintf(gettext('You can now  <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'),'..','admin.php'); ?></p>
 				<?php
 			}
 		}

@@ -26,6 +26,7 @@ if (isset($_GET['action'])) {
 				$newtheme = sanitize($_GET['theme']);
 				if (empty($alb)) {
 					$gallery->setCurrentTheme($newtheme);
+					$gallery->save();
 				} else {
 					$_set_theme_album = new Album($gallery, $alb);
 					$oldtheme = $_set_theme_album->getAlbumTheme();
