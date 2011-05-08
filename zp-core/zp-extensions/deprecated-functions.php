@@ -1565,4 +1565,16 @@ function getAllCategories() {
 }
 
 
+/**
+ * Checks if the album is password protected
+ * @param object $album
+ */
+function isProtectedAlbum($album=NULL) {
+	deprecated_function_notify(gettext('Use the album class method <code>isProtected()</code> instead.'));
+	global $_zp_current_album;
+	if (is_null($album)) $album = $_zp_current_album;
+	return $album->isProtected();
+}
+
+
 ?>

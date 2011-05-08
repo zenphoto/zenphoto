@@ -175,13 +175,13 @@ function tweetNewsArticle($obj) {
 				}
 				break;
 			case 'albums':
-				if (!getOption('tweet_news_protected') && isProtectedAlbum($obj)) {
+				if (!getOption('tweet_news_protected') && $obj->isProtected()) {
 					break;
 				}
 			case 'images':
 				if (getOption('tweet_news_'.$type)) {
 					if ($type=='images') {
-						if (!getOption('tweet_news_protected') && isProtectedAlbum($obj->album)) {
+						if (!getOption('tweet_news_protected') && $obj->isProtected()) {
 							break;
 						}
 						$text = sprintf(gettext('New image %1$s in %2$s '),trim(strip_tags($obj->getTitle())),trim(strip_tags($obj->album->getTitle())));

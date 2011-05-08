@@ -1077,4 +1077,12 @@ class _Image extends MediaObject {
 	}
 }
 
+	/**
+	 *
+	 * returns true if there is any protection on the image
+	 */
+	function isProtected() {
+		return $this->checkforGuest() != 'zp_public_access';
+	}
+
 ?>

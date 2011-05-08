@@ -1274,6 +1274,14 @@ class Album extends MediaObject {
 	}
 
 	/**
+	 *
+	 * returns true if there is any protection on the album
+	 */
+	function isProtected() {
+		return $this->checkforGuest() != 'zp_public_access';
+	}
+
+	/**
 	 * Owner functions
 	 */
 	function getOwner() {

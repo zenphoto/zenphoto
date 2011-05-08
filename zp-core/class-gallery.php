@@ -928,6 +928,31 @@ class Gallery {
 	}
 
 
+	/**
+	 * Checks if guest is loggedin for the album
+	 * @param unknown_type $hint
+	 * @param unknown_type $show
+	 */
+	function checkforGuest(&$hint=NULL, &$show=NULL) {
+		if (!(GALLERY_SECURITY == 'private')) {
+			return false;
+		}
+		$hint = '';
+		$pwd = $this->getPassword();
+		if (!empty($pwd)) {
+			return 'zp_gallery_auth';
+		}
+		return 'zp_public_access';
+	}
+
+	/**
+	 *
+	 * returns true if there is any protection on the gallery
+	 */
+	function isProtected() {
+		return $this->checkforGuest() != 'zp_public_access';
+	}
+
 	function get($field) {
 		if (isset($this->data[$field])) {
 			return $this->data[$field];
