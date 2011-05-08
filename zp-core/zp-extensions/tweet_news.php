@@ -160,11 +160,11 @@ function tweetNewsArticle($obj) {
 						require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 						$title = trim(strip_tags($obj->getTitle()));
 						$link = getTinyURL($obj);
-						$c = 140 - strlen($link) - 4;	//	allow for ellipsis
+						$c = 140 - strlen($link);
 						if ($_zp_UTF8->strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
-							$text = trim(strip_tags(shortenContent($title, $c, '... '))).$link;
+							$text = trim(strip_tags(shortenContent($title, $c - 4, '... '))).$link;	//	allow for ellipsis
 						} else {
-							$c = $c - $_zp_UTF8->strlen($title) - 1;
+							$c = $c - $_zp_UTF8->strlen($title) - 5;
 							$text = $title.' '.trim(strip_tags(shortenContent($text, $c, '... '))).$link;
 						}
 					}
@@ -191,8 +191,8 @@ function tweetNewsArticle($obj) {
 					$link = getTinyURL($obj);
 					if ($_zp_UTF8->strlen($text.$link) > 140) {
 						require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
-						$c = 140 - strlen($link) - 4;	//	allow for ellipsis
-						$text = trim(strip_tags(shortenContent($text, $c, '... '))).$link;
+						$c = 140 - strlen($link);
+						$text = trim(strip_tags(shortenContent($text, $c-4, '... '))).$link;	//	allow for ellipsis
 					} else {
 						$text = $text.$link;
 					}
