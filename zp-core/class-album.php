@@ -1301,6 +1301,13 @@ class Album extends MediaObject {
 		$this->set('owner',$owner);
 	}
 
+	function getUpdatedDate() {
+		return $this->get('updareddate');
+	}
+
+	function setUpdatedDate($date) {
+		return $this->set('updareddate',$date);
+	}
 
 }
 ?>

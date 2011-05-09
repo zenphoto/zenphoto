@@ -1576,6 +1576,7 @@ if (file_exists(CONFIGFILE)) {
 		`title` text,
 		`desc` text,
 		`date` datetime default NULL,
+		`updateddate` datetime default NULL,
 		`location` text,
 		`show` int(1) unsigned NOT NULL default '1',
 		`closecomments` int(1) unsigned NOT NULL default '0',
@@ -2064,6 +2065,7 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `owner` varchar(64) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' CHANGE `owner` `owner` varchar(64) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_options.' ADD COLUMN `creator` varchar(255) DEFAULT NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `updateddate` datetime DEFAULT NULL';
 
 
 	// do this last incase there are any field changes of like names!

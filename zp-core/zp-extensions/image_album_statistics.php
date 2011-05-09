@@ -15,6 +15,25 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
 
 /**
+ *
+ * used to get a list of albums to be further processed
+ * @param object $obj from whence to get the albums
+ * @param array $albumlist collects the list
+ */
+function getImageAlbumAlbumList($obj, &$albumlist) {
+	global $_zp_gallery;
+	$hint = $show = false;
+	$locallist = $obj->getAlbums();
+	foreach ($locallist as $folder) {
+		$album = new Album($_zp_gallery, $folder);
+		If (!$album->isDynamic() && ($album->isMyItem(VIEW_ALBUMS_RIGHTS) || $album->checkforGuest($hint, $show)))  {
+			$albumlist[] = $album->getID();
+			getImageAlbumAlbumList($album, $albumlist);
+		}
+	}
+}
+
+/**
  * Retuns a list of album statistic accordingly to $option
  *
  * @param int $number the number of albums to get
@@ -26,23 +45,15 @@ $plugin_version = '1.4.1';
  * @return string
  */
 function getAlbumStatistic($number=5, $option, $albumfolder='') {
-	$passwordcheck = '';
-	if (zp_loggedin()) {
-		$albumWhere = "WHERE `dynamic`=0";
+	global $_zp_gallery;
+	$albumlist = array();
+	if ($albumfolder) {
+		$obj = new Album($_zp_gallery, $albumfolder);
 	} else {
-		$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
-		foreach($albumscheck as $albumcheck) {
-			if(!checkAlbumPassword($albumcheck['folder'])) {
-				$albumpasswordcheck= " AND id != ".$albumcheck['id'];
-				$passwordcheck = $passwordcheck.$albumpasswordcheck;
-			}
-		}
-		$albumWhere = "WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
+		$obj = $_zp_gallery;
 	}
-	$albumfolder = sanitize_path($albumfolder);
-	if(!empty($albumfolder)) {
-		$albumWhere .= " AND folder LIKE ".db_quote($albumfolder."%");
-	}
+	getImageAlbumAlbumList($obj, $albumlist);
+	$albumWhere = ' WHERE (`id`='.implode(' OR `id`=', $albumlist).')';
 	switch($option) {
 		case "popular":
 			$sortorder = "hitcounter";
@@ -51,31 +62,14 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 			$sortorder = "id";
 			break;
 		case "mostrated":
-			$sortorder = "total_votes"; break;
+			$sortorder = "total_votes";
+			break;
 		case "toprated":
-			$sortorder = "(total_value/total_votes)"; break;
+			$sortorder = "(total_value/total_votes)";
+			break;
 		case "latestupdated":
-			// get all albums
-			$allalbums = query_full_array("SELECT id, title, folder, thumb, `show` FROM " . prefix('albums'). $albumWhere);
-			$latestimages = array();
-
-			// get latest image of each album
-			foreach($allalbums as $key=>$album) {
-				$image = query_single_row("SELECT id, albumid, mtime FROM " . prefix('images'). " WHERE albumid = ".$album['id'] . " AND `show` = 1 ORDER BY `mtime` DESC LIMIT 1");
-				if (is_array($image)) {
-					$latestimages[$key] = $image['mtime'];
-				}
-			}
-			// sort latest image by mtime
-			arsort($latestimages);
-			$updatedalbums = array();
-			$count = 0;
-			foreach($latestimages as $key=>$time) {
-				array_push($updatedalbums,$allalbums[$key]);
-				$count++;
-				if ($count>=$number) break;
-			}
-			return $updatedalbums;
+			$sortorder = 'updateddate';
+			break;
 	}
 	$albums = query_full_array("SELECT id, title, folder, thumb FROM " . prefix('albums') . $albumWhere . " ORDER BY ".$sortorder." DESC LIMIT ".$number);
 	return $albums;
@@ -307,39 +301,29 @@ function printLatestUpdatedAlbums($number=5,$showtitle=false, $showdate=false, $
  *                       "toprated" for the best voted
  * @param string $albumfolder foldername of an specific album
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
+ * @param string $show what to provide: published, notpublished, all
  * @return string
  */
-function getImageStatistic($number, $option, $albumfolder='',$collection=false) {
+function getImageStatistic($number, $option, $albumfolder='',$collection=false, $show='published') {
 	global $_zp_gallery;
-	if (zp_loggedin()) {
-		$albumWhere = " AND albums.folder != ''";
-		$imageWhere = "";
-		$passwordcheck = "";
+	$albumlist = array();
+	if ($albumfolder) {
+		$obj = new Album($_zp_gallery, $albumfolder);
 	} else {
-		$passwordcheck = '';
-		$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
-		foreach($albumscheck as $albumcheck) {
-			if(!checkAlbumPassword($albumcheck['folder'])) {
-				$albumpasswordcheck= " AND albums.id != ".$albumcheck['id'];
-				$passwordcheck = $passwordcheck.$albumpasswordcheck;
-			}
-		}
-		$albumWhere = " AND albums.folder != '' AND albums.show=1".$passwordcheck;
-		$imageWhere = " AND images.show=1";
+		$obj = $_zp_gallery;
 	}
-	$is_dynamicalbum = false;
-	if(!empty($albumfolder)) {
-		$alb = new Album($_zp_gallery,$albumfolder); // create album object for dynamic check
-		if($alb->isDynamic()) {
-			$is_dynamicalbum = true;
-		}
-		if($collection) {
-			$specificalbum = " albums.folder LIKE ".db_quote($albumfolder.'%')." AND ";
-		} else {
-			$specificalbum = " albums.folder = ".db_quote($albumfolder)." AND ";
-		}
-	} else {
-		$specificalbum = "";
+	getImageAlbumAlbumList($obj, $albumlist);
+	$albumWhere = ' AND (albums.`id`='.implode(' OR albums.`id`=', $albumlist).')';
+	switch ($show) {
+		case 'unpublished':
+			$imageWhere = ' AND (images.show=0)';
+			break;
+		case 'all':
+			$imageWhere = '';
+			break;
+		default:
+			$imageWhere = ' AND (images.show=1)';
+			break;
 	}
 	switch ($option) {
 		case "popular":
@@ -363,12 +347,12 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 		$images = array_slice($alb->getImages(0,0,$sorttype,'DESC'), 0, $number);
 	} else {
 		$images = query_full_array("SELECT images.albumid, images.filename AS filename, images.mtime as mtime, images.title AS title, " .
- 															"albums.folder AS folder, images.show, albums.show, albums.password FROM " .
+															"albums.folder AS folder, images.show, albums.show, albums.password FROM " .
 															prefix('images') . " AS images, " . prefix('albums') . " AS albums " .
-															" WHERE ".$specificalbum."images.albumid = albums.id " . $imageWhere . $albumWhere .
-															" AND albums.folder != ''".
+															"WHERE (images.albumid = albums.id) " . $albumWhere . $imageWhere .
 															" ORDER BY ".$sortorder." DESC LIMIT ".$number);
 	}
+
 	foreach ($images as $imagerow) {
 		$filename = $imagerow['filename'];
 		$albumfolder2 = $imagerow['folder'];
@@ -376,7 +360,6 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 		$image = newImage(new Album($_zp_gallery, $albumfolder2), $filename);
 		$imageArray [] = $image;
 	}
-
 	return $imageArray;
 }
 

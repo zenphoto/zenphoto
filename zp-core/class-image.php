@@ -428,8 +428,16 @@ class _Image extends MediaObject {
 		}
 		$alb = $this->album;
 		if (!is_null($alb)) {
-			if (is_null($albdate = $alb->getDateTime()) || ($this->album->gallery->getAlbumUseImagedate() && strtotime($albdate)<strtotime($this->getDateTime()))) {
+			$save = false;
+			if (strtotime($alb->getUpdatedDate()) < strtotime($this->getDateTime())) {
+				$alb->setUpdatedDate($this->getDateTime());
+				$save = true;
+			}
+			if (is_null($albdate = $alb->getDateTime()) || ($this->album->gallery->getAlbumUseImagedate() && strtotime($albdate) < strtotime($this->getDateTime()))) {
 				$this->album->setDateTime($this->getDateTime());   //  not necessarily the right one, but will do. Can be changed in Admin
+				$save = true;
+			}
+			if ($save) {
 				$this->album->save();
 			}
 		}
@@ -1077,7 +1085,6 @@ class _Image extends MediaObject {
 		$album = $this->getAlbum();
 		return $album->checkforGuest($hint, $show);
 	}
-}
 
 	/**
 	 *
@@ -1087,4 +1094,5 @@ class _Image extends MediaObject {
 		return $this->checkforGuest() != 'zp_public_access';
 	}
 
+}
 ?>
