@@ -40,6 +40,8 @@ function newImage(&$album, $filename, $quiet=false) {
 	} else {
 		if (is_valid_image($filename)) {
 			$image = New _Image($xalbum, $filename);
+		} else {
+			$image = NULL;
 		}
 	}
 	if ($image) {
