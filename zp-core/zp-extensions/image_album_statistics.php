@@ -26,7 +26,7 @@ function getImageAlbumAlbumList($obj, &$albumlist) {
 	$locallist = $obj->getAlbums();
 	foreach ($locallist as $folder) {
 		$album = new Album($_zp_gallery, $folder);
-		If (!$album->isDynamic() && ($album->isMyItem(VIEW_ALBUMS_RIGHTS) || $album->checkforGuest($hint, $show)))  {
+		If (!$album->isDynamic() && $album->checkAccess($hint, $show))  {
 			$albumlist[] = $album->getID();
 			getImageAlbumAlbumList($album, $albumlist);
 		}
