@@ -301,10 +301,9 @@ function printLatestUpdatedAlbums($number=5,$showtitle=false, $showdate=false, $
  *                       "toprated" for the best voted
  * @param string $albumfolder foldername of an specific album
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
- * @param string $show what to provide: published, notpublished, all
  * @return string
  */
-function getImageStatistic($number, $option, $albumfolder='',$collection=false, $show='published') {
+function getImageStatistic($number, $option, $albumfolder='',$collection=false) {
 	global $_zp_gallery;
 	$albumlist = array();
 	if ($albumfolder) {
@@ -314,17 +313,6 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false, 
 	}
 	getImageAlbumAlbumList($obj, $albumlist);
 	$albumWhere = ' AND (albums.`id`='.implode(' OR albums.`id`=', $albumlist).')';
-	switch ($show) {
-		case 'unpublished':
-			$imageWhere = ' AND (images.show=0)';
-			break;
-		case 'all':
-			$imageWhere = '';
-			break;
-		default:
-			$imageWhere = ' AND (images.show=1)';
-			break;
-	}
 	switch ($option) {
 		case "popular":
 			$sortorder = "images.hitcounter"; break;
@@ -342,23 +330,34 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false, 
 			$sortorder = 'id'; break;
 	}
 	$imageArray = array();
+	$hint = $show = NULL;
 	if(!empty($albumfolder) && $is_dynamicalbum) {
 		$sorttype = str_replace('images.','',$sortorder);
-		$images = array_slice($alb->getImages(0,0,$sorttype,'DESC'), 0, $number);
+		$images = $alb->getImages(0,0,$sorttype,'DESC');
+		foreach ($images as $image) {
+			$image = newImage(NULL, $image);
+			if ($image->checkAccess($hint, $show)) {
+				$imageArray[] = $image;
+				if (count($imageArray) >= $number) {	// got enough
+					break;
+				}
+			}
+		}
 	} else {
-		$images = query_full_array("SELECT images.albumid, images.filename AS filename, images.mtime as mtime, images.title AS title, " .
+		$result = query("SELECT images.albumid, images.filename AS filename, images.mtime as mtime, images.title AS title, " .
 															"albums.folder AS folder, images.show, albums.show, albums.password FROM " .
 															prefix('images') . " AS images, " . prefix('albums') . " AS albums " .
-															"WHERE (images.albumid = albums.id) " . $albumWhere . $imageWhere .
-															" ORDER BY ".$sortorder." DESC LIMIT ".$number);
-	}
-
-	foreach ($images as $imagerow) {
-		$filename = $imagerow['filename'];
-		$albumfolder2 = $imagerow['folder'];
-		// Album is set as a reference, so we can't re-assign to the same variable!
-		$image = newImage(new Album($_zp_gallery, $albumfolder2), $filename);
-		$imageArray [] = $image;
+															"WHERE (images.albumid = albums.id) " . $albumWhere .
+															" ORDER BY ".$sortorder." DESC");
+		while ($row = db_fetch_assoc($result)) {
+			$image = newImage(NULL, $row);
+			if ($image->checkAccess($hint, $show)) {
+				$imageArray[] = $image;
+				if (count($imageArray) >= $number) {	// got enough
+					break;
+				}
+			}
+		}
 	}
 	return $imageArray;
 }

@@ -14,11 +14,6 @@ chdir(dirname(dirname(__FILE__)));
 require_once('../../zp-core/admin-functions.php');
 require_once('../../zp-core/admin-globals.php');
 
-$button_text = gettext('Sitemap tools');
-$button_hint = gettext("Tools to generate sitemaps.");
-$button_icon = WEBPATH.'/'.ZENFOLDER.'/images/bar_graph.png';
-$button_rights = ADMIN_RIGHTS;
-
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
 
 if (getOption('zenphoto_release') != ZENPHOTO_RELEASE) {
@@ -113,8 +108,8 @@ echo '</head>';
 		<li><strong><?php echo gettext('Zenphoto items'); ?></strong>
 			<ul>
 				<li><em><?php echo gettext('Index pages'); ?></em></li>
-				<li><?php echo gettext('<em>Albums</em>: These are splitted into individual sitemaps per album (incl. all albums pages). If you enable the Google sitemap extension its special image links are added to this sitemap. So handle with care if your gallery is huge!'); ?></li>
-				<li><?php echo gettext('<em>Images</em>: These are splitted into individual sitemaps per album.'); ?></li>
+				<li><?php echo gettext('<em>Albums</em>: These are split into multiple sitemaps.'); ?></li>
+				<li><?php echo gettext('<em>Images</em>: These are split into multiple sitemaps.'); ?></li>
 			</ul>
 		</li>
 		<li><strong><?php echo gettext('Zenpage CMS items (if the plugin is enabled)'); ?></strong>

@@ -667,7 +667,7 @@ class ThemeObject extends PersistentObject {
 	 * @param unknown_type $show
 	 */
 	function checkAccess(&$hint=NULL, &$show=NULL) {
-		if ($this->isMyItem(LIST_RIGHTS)) {
+		if ($this->isMyItem($this->view_rights)) {
 			return true;
 		}
 		return $this->checkforGuest($hint, $show);

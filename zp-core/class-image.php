@@ -20,7 +20,7 @@ define('WATERMARK_FULL', 4);
  * @param bool $quiet set true to supress error messages (used by loadimage)
  * @return object
  */
-function newImage(&$album, $filename, $quiet=false) {
+function newImage($album, $filename, $quiet=false) {
 	global $_zp_extra_filetypes;
 	if (is_array($filename)) {
 		$xalbum = new Album(new Gallery(),$filename['folder']);
@@ -1067,7 +1067,7 @@ class _Image extends MediaObject {
 	 */
 	function checkAccess(&$hint=NULL, &$show=NULL) {
 		$album = $this->getAlbum();
-		if ($album->isMyItem(LIST_RIGHTS)) {
+		if ($album->isMyItem($this->view_rights)) {
 			return true;
 		}
 		return $album->checkforGuest($hint=NULL, $show=NULL);
