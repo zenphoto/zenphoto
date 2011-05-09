@@ -15,7 +15,7 @@
  */
 
 
-$plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
+$plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext('Generates individually sitemap.org compatible XML files for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories.').'<p class="notebox">'.gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!').'</p>';
 $plugin_author = 'Malte Müller (acrylian) based on the <a href="http://github.com/Tenzer/zenphoto-sitemap">plugin</a> by Jeppe Toustrup (Tenzer) and modifications by Timo and Blue Dragonfly';
 $plugin_version = '1.4.1';
@@ -351,17 +351,18 @@ function getSitemapIndexLinks() {
 /**
  *
  * Enter description here ...
- * @param $obj
- * @param $limit
+ * @param object $obj the starting point
+ * @param array $albumlist the container for the results
+ * @param string $gateway name of validation function
  */
-function getSitemapAlbumList($obj,&$albumlist) {
+function getSitemapAlbumList($obj,&$albumlist, $gateway) {
 	global $_zp_gallery;
 	$locallist = $obj->getAlbums();
 	foreach ($locallist as $folder) {
 		$album = new Album($_zp_gallery, $folder);
-		If (!$album->isDynamic() && !$album->getPassword() && $album->getShow())  {
+		If ($album->getShow() && $gateway($album))  {
 			$albumlist[] = array('folder'=>$album->name, 'date'=>$album->getDateTime(), 'title'=>$album->getTitle());
-			getSitemapAlbumList($album, $albumlist);
+			getSitemapAlbumList($album, $albumlist, $gateway);
 		}
 	}
 }
@@ -387,15 +388,13 @@ function getSitemapAlbums() {
 	$imagelastmod = getOption('sitemap_lastmod_images');
 
 
+	function passAlbums($album) {
+		return true;
+	}
 	$albums = array();
-	getSitemapAlbumList($_zp_gallery, $albums);
-
-//TODO: the following is really strange. Why are we getting all the albums then using only one? But that is what the original code does!!
-
+	getSitemapAlbumList($_zp_gallery, $albums, 'passAlbums');
 	$offset = ($sitemap_number - 1);
-	$albums = array_slice($albums, $offset, 1);
-
-
+	$albums = array_slice($albums, $offset, SITEMAP_CHUNK);
 	if(!empty($albums)) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		if(getOption('sitemap_google')) {
@@ -487,13 +486,13 @@ function getSitemapImages() {
 	$imagelastmod = getOption('sitemap_lastmod_images');
 	$limit = sitemap_getDBLimit(1);
 
+	function passImages($album) {
+		return !$album->isDynamic() && !$album->getPassword();
+	}
 	$albums = array();
-	getSitemapAlbumList($_zp_gallery, $albums);
-
-//TODO: the following is really strange. Why are we getting all the albums then using only one? But that is what the original code does!!
-
+	getSitemapAlbumList($_zp_gallery, $albums, 'passImages');
 	$offset = ($sitemap_number - 1);
-	$albums = array_slice($albums, $offset, 1);
+	$albums = array_slice($albums, $offset, SITEMAP_CHUNK);
 
 
 	if($albums) {

@@ -31,6 +31,7 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 	exit();
 }
 
+define ('SITEMAP_CHUNK', 25);
 $gallery = new Gallery();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 printAdminHeader(gettext('utilities'),gettext('Sitemap tools'));
@@ -55,7 +56,7 @@ if(isset($_GET['generatesitemaps'])) {
 	|| !empty($sitemap_categories)
 	|| !empty($sitemap_pages))) {
 		$numberAppend = '-'.$sitemap_number;
-		$metaURL = 'sitemap-extended-admin.php?generatesitemaps&amp;number='.($sitemap_number+1);
+		$metaURL = 'sitemap-extended-admin.php?generatesitemaps&amp;number='.($sitemap_number+SITEMAP_CHUNK);
 	} else {
 		$metaURL = '';
 	}
