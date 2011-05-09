@@ -1,4 +1,4 @@
 <?php // This file contains version info only and is automatically updated. DO NOT EDIT.
 define('ZENPHOTO_VERSION', '1.4.1-BETA');
-define('ZENPHOTO_RELEASE', 7168);
+define('ZENPHOTO_RELEASE', 7179);
 ?>
