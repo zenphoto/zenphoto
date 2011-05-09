@@ -31,7 +31,6 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 	exit();
 }
 
-define ('SITEMAP_CHUNK', 25);
 $gallery = new Gallery();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 printAdminHeader(gettext('utilities'),gettext('Sitemap tools'));
@@ -108,7 +107,6 @@ echo '</head>';
 <?php zp_apply_filter('admin_note','sitemap', ''); ?>
 	<h1>Sitemap tools</h1>
 <?php if(!isset($_GET['generatesitemaps']) && !isset($_GET['clearsitemapcache'])) { ?>
-	<p class="notebox"><strong>NOTE:</strong> This is a work in progress version and may still not be fully optimized for huge galleries.</p>
 	<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> If your theme uses different custom settings instead of the backend options the sitemaps may not match your site.'); ?></p>
 	<p><?php echo gettext('This creates individual static xml sitemap files of the following items:'); ?></p>
 	<ul>

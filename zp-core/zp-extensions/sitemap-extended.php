@@ -30,6 +30,7 @@ if (!file_exists($sitemapfolder)) {
 	}
 }
 
+define ('SITEMAP_CHUNK', getOption('sitemap_processing_chunk'));
 /**
  * Plugin option handling class
  *
@@ -40,7 +41,6 @@ class sitemap {
 	var $disable = false; // manual disable caching a page
 
 	function sitemap() {
-		setOptionDefault('sitemap_cache_expire', 86400);
 		setOptionDefault('sitemap_changefreq_index', 'daily');
 		setOptionDefault('sitemap_changefreq_albums', 'daily');
 		setOptionDefault('sitemap_changefreq_images', 'daily');
@@ -50,13 +50,23 @@ class sitemap {
 		setOptionDefault('sitemap_changefreq_newscats', 'weekly');
 		setOptionDefault('sitemap_lastmod_albums', 'mtime');
 		setOptionDefault('sitemap_lastmod_images', 'mtime');
-		setOptionDefault('sitemap_disablecache', 0);
+		setOptionDefault('sitemap_processing_chunk', 25);
 	}
 
 	function getOptionsSupported() {
-		return array(	gettext('Sitemap cache expire') => array('key' => 'sitemap_cache_expire', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec).The cache can also be cleared on the admin overview page manually.")),
+		return array(
+		gettext('Album date') => array('key' => 'sitemap_lastmod_albums', 'type' => OPTION_TYPE_SELECTOR,
+										'order' => 0,
+										'selections' => array(gettext("date")=>"date",
+																					gettext("mtime")=>"mtime"),
+										'desc' => gettext('Field to use for the last modification date of albums.')),
+		gettext('Image date') => array('key' => 'sitemap_lastmod_images', 'type' => OPTION_TYPE_SELECTOR,
+										'order' => 1,
+										'selections' => array(gettext("date")=>"date",
+																					gettext("mtime")=>"mtime"),
+										'desc' => gettext('Field to use for the last modification date of images.')),
 		gettext('Change frequency - Zenphoto index') => array('key' => 'sitemap_changefreq_index', 'type' => OPTION_TYPE_SELECTOR,
+										'order' => 2,
 										'selections' => array(gettext("always")=>"always",
 																					gettext("hourly")=>"hourly",
 																					gettext("daily")=>"daily",
@@ -66,6 +76,7 @@ class sitemap {
 																					gettext("never")=>"never"),
 										'desc' => ''),
 		gettext('Change frequency - albums') => array('key' => 'sitemap_changefreq_albums', 'type' => OPTION_TYPE_SELECTOR,
+										'order' => 3,
 										'selections' => array(gettext("always")=>"always",
 																					gettext("hourly")=>"hourly",
 																					gettext("daily")=>"daily",
@@ -75,6 +86,7 @@ class sitemap {
 																					gettext("never")=>"never"),
 										'desc' => ''),
 		gettext('Change frequency - images') => array('key' => 'sitemap_changefreq_images', 'type' => OPTION_TYPE_SELECTOR,
+										'order' => 4,
 										'selections' => array(gettext("always")=>"always",
 																					gettext("hourly")=>"hourly",
 																					gettext("daily")=>"daily",
@@ -84,6 +96,7 @@ class sitemap {
 																					gettext("never")=>"never"),
 										'desc' => ''),
 		gettext('Change frequency - Zenpage pages') => array('key' => 'sitemap_changefreq_pages', 'type' => OPTION_TYPE_SELECTOR,
+										'order' => 5,
 										'selections' => array(gettext("always")=>"always",
 																					gettext("hourly")=>"hourly",
 																					gettext("daily")=>"daily",
@@ -93,6 +106,7 @@ class sitemap {
 																					gettext("never")=>"never"),
 										'desc' => ''),
 		gettext('Change frequency - Zenpage news index') => array('key' => 'sitemap_changefreq_newsindex', 'type' => OPTION_TYPE_SELECTOR,
+										'order' => 6,
 										'selections' => array(gettext("always")=>"always",
 																					gettext("hourly")=>"hourly",
 																					gettext("daily")=>"daily",
@@ -102,6 +116,7 @@ class sitemap {
 																					gettext("never")=>"never"),
 										'desc' => ''),
 		gettext('Change frequency: Zenpage news articles') => array('key' => 'sitemap_changefreq_news', 'type' => OPTION_TYPE_SELECTOR,
+										'order' => 7,
 										'selections' => array(gettext("always")=>"always",
 																					gettext("hourly")=>"hourly",
 																					gettext("daily")=>"daily",
@@ -111,6 +126,7 @@ class sitemap {
 																					gettext("never")=>"never"),
 										'desc' => ''),
 		gettext('Change frequency - Zenpage news categories') => array('key' => 'sitemap_changefreq_newscats', 'type' => OPTION_TYPE_SELECTOR,
+										'order' => 8,
 										'selections' => array(gettext("always")=>"always",
 																					gettext("hourly")=>"hourly",
 																					gettext("daily")=>"daily",
@@ -119,20 +135,15 @@ class sitemap {
 																					gettext("yearly")=>"yearly",
 																					gettext("never")=>"never"),
 										'desc' => ''),
-	gettext('Last modification date - albums') => array('key' => 'sitemap_lastmod_albums', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext("date")=>"date",
-																					gettext("mtime")=>"mtime"),
-										'desc' => ''),
-	gettext('Last modification date - images') => array('key' => 'sitemap_lastmod_images', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext("date")=>"date",
-																					gettext("mtime")=>"mtime"),
-										'desc' => ''),
-	gettext('Disable cache') => array('key' => 'sitemap_disablecache', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => ''),
 	gettext('Enable Google image and video extension') => array('key' => 'sitemap_google', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext(" If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.").'<p class="notebox">'.gettext("<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin.").('Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts').'</p>'),
+										'order' => 9,
+										'desc' => gettext('If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.').'<p class="notebox">'.gettext('<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts').'</p>'),
 	gettext('Google - URL to image license') => array('key' => 'sitemap_license', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html'))
+										'order' => 10,
+										'desc' => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html')),
+	gettext('Sitemap processing chunk') => array('key' => 'sitemap_processing_chunk', 'type' => OPTION_TYPE_TEXTBOX,
+										'order' => 11,
+										'desc' => gettext('Then number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.'))
 	);
 	}
 
