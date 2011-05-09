@@ -340,7 +340,7 @@ function setOptionDefault($key, $default) {
 		getOption('nil');  // pre-load from the database
 	}
 
-	if (defined(SERVERPATH)) {
+	if (defined('SERVERPATH')) {
 		$bt = debug_backtrace();
 		$b = array_shift($bt);
 		$creator = str_replace(SERVERPATH.'/', '', str_replace('\\', '/', $b['file']));
