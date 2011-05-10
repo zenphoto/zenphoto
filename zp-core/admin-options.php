@@ -2697,11 +2697,11 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 					<td><?php echo gettext('Select the <em>CAPTCHA</em> generator to be used by Zenphoto.'); ?></td>
 				</tr>
 				<tr>
-					<td width="175"><?php echo gettext('Obscure image cache'); ?></td>
+					<td width="175"><?php echo gettext('Obscure cache filenames'); ?></td>
 					<td width="350">
 						<input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php echo checked(1, getOption('obfuscate_cache')); ?> />
 					</td>
-					<td><?php echo gettext('Check to cause the filename of cached images to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
+					<td><?php echo gettext('Check to cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
 				</tr>
 				<?php customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
 				<tr>

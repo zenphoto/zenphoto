@@ -197,6 +197,7 @@ class staticCache {
 					}
 				}
 			}
+			unset($_zp_script_timer['static cache start']);	// leave it out of the summary page
 		}
 	}
 
@@ -266,7 +267,7 @@ class staticCache {
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 				$cachesubfolder = "index";
-				$cachefilepath = "index".$page.$locale.".html";
+				$cachefilepath = "index".$page;
 				break;
 			case 'album.php':
 			case 'image.php':
@@ -277,11 +278,11 @@ class staticCache {
 					$image = "-".$_zp_current_image->filename;
 					$page = "";
 				}
-				$cachefilepath = $album.$image.$page.$locale.".html";
+				$cachefilepath = $album.$image.$page;
 				break;
 			case 'pages.php':
 				$cachesubfolder = "pages";
-				$cachefilepath = 'page-'.$_zp_current_zenpage_page->getTitlelink().$locale.".html";
+				$cachefilepath = 'page-'.$_zp_current_zenpage_page->getTitlelink();
 				break;
 			case 'news.php':
 				$cachesubfolder = "pages";
@@ -291,18 +292,21 @@ class staticCache {
 				if(isset($_zp_current_category)) {
 					$category = "-".$_zp_current_category->getTitlelink();
 				}
-				$cachefilepath = 'news'.$category.$title.$page.$locale.".html";
+				$cachefilepath = 'news'.$category.$title.$page;
 				break;
 			default:
 				// custom pages
 				$cachesubfolder = "pages";
 				$custompage = $_zp_gallery_page;
-				$cachefilepath = $custompage.$locale.".html";
+				$cachefilepath = $custompage;
 				break;
 		}
-		// strip characters that cannot be in file names
-		//TODO: this may fail on "similarly" named cachefilepaths
-		$cachefilepath = str_replace(array('<','>', ':','"','/','\\','|','?','*'), '_', $cachefilepath);
+		if (getOption('obfuscate_cache')) {
+			$cachefilepath = sha1($locale.HASH_SEED.$cachefilepath).'.html';
+		} else {
+			// strip characters that cannot be in file names
+			$cachefilepath = str_replace(array('<','>', ':','"','/','\\','|','?','*'), '_', $cachefilepath).$locale.'.html';
+		}
 		return $cachesubfolder."/".$cachefilepath;
 	}
 

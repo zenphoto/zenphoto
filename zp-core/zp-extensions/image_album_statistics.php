@@ -335,7 +335,7 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 		$sorttype = str_replace('images.','',$sortorder);
 		$images = $alb->getImages(0,0,$sorttype,'DESC');
 		foreach ($images as $image) {
-			$image = newImage(NULL, $image);
+			$image = newImage($alb, $image);
 			if ($image->checkAccess($hint, $show)) {
 				$imageArray[] = $image;
 				if (count($imageArray) >= $number) {	// got enough
