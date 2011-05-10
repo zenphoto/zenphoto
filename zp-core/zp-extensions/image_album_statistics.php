@@ -49,6 +49,7 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 	$albumlist = array();
 	if ($albumfolder) {
 		$obj = new Album($_zp_gallery, $albumfolder);
+		$albumlist[] = $obj->getID();
 	} else {
 		$obj = $_zp_gallery;
 	}
@@ -308,6 +309,7 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 	$albumlist = array();
 	if ($albumfolder) {
 		$obj = new Album($_zp_gallery, $albumfolder);
+		$albumlist[] = $obj->getID();
 	} else {
 		$obj = $_zp_gallery;
 	}
@@ -331,11 +333,11 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 	}
 	$imageArray = array();
 	$hint = $show = NULL;
-	if(!empty($albumfolder) && $is_dynamicalbum) {
+	if(!empty($albumfolder) && $obj->isDynamic()) {
 		$sorttype = str_replace('images.','',$sortorder);
-		$images = $alb->getImages(0,0,$sorttype,'DESC');
+		$images = $obj->getImages(0,0,$sorttype,'DESC');
 		foreach ($images as $image) {
-			$image = newImage($alb, $image);
+			$image = newImage($obj, $image);
 			if ($image->checkAccess($hint, $show)) {
 				$imageArray[] = $image;
 				if (count($imageArray) >= $number) {	// got enough

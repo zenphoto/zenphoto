@@ -1489,6 +1489,9 @@ function printCustomAlbumThumbImage($alt, $size, $width=NULL, $height=NULL, $cro
 	$sizing = '';
 	if (is_null($width)) {
 		if (!is_null($cropw) && !is_null($croph)) {
+			if (empty($height)) {
+				$height = $size;
+			}
 			$s = round($height * ($cropw/$croph));
 			if (!empty($s)) $sizing = ' width="'.$s.'"';
 		}
@@ -1497,12 +1500,18 @@ function printCustomAlbumThumbImage($alt, $size, $width=NULL, $height=NULL, $cro
 	}
 	if (is_null($height)) {
 		if (!is_null($cropw) && !is_null($croph)) {
+			if (empty($width)) {
+				$width = $size;
+			}
 			$s = round($width * ($croph/$cropw));
 			if (!empty($s)) $sizing = $sizing.' height="'.$s.'"';
 		}
 	} else {
 		$sizing = $sizing.' height="'.$height.'"';
 	}
+
+debugLog("sizing=$sizing");
+
 	if (!getOption('use_lock_image') || checkAlbumPassword($_zp_current_album->name)){
 		$html = '<img src="' . html_encode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy)). '"' . $sizing . ' alt="' . html_encode($alt) . '"' .
 		(($class) ? ' class="'.$class.'"' : '') .	(($id) ? ' id="'.$id.'"' : '') . " />";

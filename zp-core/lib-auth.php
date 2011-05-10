@@ -687,15 +687,15 @@ class Zenphoto_Authority {
 		$candidate = array_unique($candidate);
 		foreach ($candidate as $cookie=>$value) {
 			switch ($cookie) {
+				default:
+					if (strpos($cookie, 'zp_album_auth_') === false && strpos($cookie, 'zp_page_auth_') === false) {
+						break;	// do nothing
+					}
 				case 'zenphoto_auth':
 				case 'zp_gallery_auth':
 				case 'zp_search_auth':
 				case 'zp_image_auth':
-				case 'zp_album_auth_':
-				case 'zp_page_auth_':
 					zp_setcookie($cookie, "*", -368000);
-					break;
-				default:	//	do nothing
 					break;
 			}
 		}
