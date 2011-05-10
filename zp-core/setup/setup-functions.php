@@ -17,13 +17,15 @@ function getResidentZPFiles($folder) {
 	$dir = opendir($folder);
 	while(($file = readdir($dir)) !== false) {
 		$file = str_replace('\\','/',$file);
-		if (is_dir($folder.'/'.$file)) {
-			if ($file != '.' && $file !='..') {
-				getResidentZPFiles($folder.'/'.$file);
+		if (strpos($file, '.') !== 0) {
+			if (is_dir($folder.'/'.$file)) {
+				if ($file != 'session') {
+					getResidentZPFiles($folder.'/'.$file);
+					$_zp_resident_files[]=$folder.'/'.$file;
+				}
+			} else {
 				$_zp_resident_files[]=$folder.'/'.$file;
 			}
-		} else {
-			$_zp_resident_files[]=$folder.'/'.$file;
 		}
 	}
 	closedir($dir);

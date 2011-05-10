@@ -378,7 +378,8 @@ function getSitemapAlbumList($obj,&$albumlist, $gateway) {
 	}
 }
 
-/**TODO Places one album and all of its album pages on one sitemap
+/**
+ * Places album and all of its album pages on one sitemap
  *
  * Gets links to all albums incl. pagination and if the Google image video extension is enabled for images using this as well.
  * This is independent from the images fetched by getSitemapImages().
@@ -388,8 +389,7 @@ function getSitemapAlbumList($obj,&$albumlist, $gateway) {
  * @return string
  */
 function getSitemapAlbums() {
-//TODO: $_zp_current_album seems not used within, why is it declared global?
-	global $_zp_gallery, $_zp_current_album, $sitemap_number;
+	global $_zp_gallery, $sitemap_number;
 	$data = '';
 	$sitemap_locales = generateLanguageList();
 	$albumchangefreq = getOption('sitemap_changefreq_albums');
@@ -482,15 +482,15 @@ function getSitemapAlbums() {
 	return $data;
 }
 
-/**TODO currently this splitts only sitemaps for one album and its images. Spliting the images itself requires a major rework...
+/**
+ * currently this splitts only sitemaps for albums and its images. Spliting the images itself requires a major rework...
  *
  * Gets links to all images for all albums (album by album)
  *
  * @return string
  */
 function getSitemapImages() {
-//TODO: $_zp_current_album seems not used within, why is it declared global?
-	global $_zp_gallery, $_zp_current_album, $sitemap_number;
+	global $_zp_gallery, $sitemap_number;
 	$data = '';
 	$sitemap_locales = generateLanguageList();
 	$imagechangefreq = getOption('sitemap_changefreq_images');
