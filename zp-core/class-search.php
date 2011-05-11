@@ -377,9 +377,9 @@ class SearchEngine
 				case "'":
 				case '"':
 				case '`':
-					$j = strpos($searchstring, $c, $i+1);
+					$j = endQuote($searchstring, $c, $i+1);
 					if ($j !== false) {
-						$target .= substr($searchstring, $i+1, $j-$i-1);
+						$target .= stripcslashes(substr($searchstring, $i+1, $j-$i-1));
 						$i = $j;
 					} else {
 						$target .= $c;

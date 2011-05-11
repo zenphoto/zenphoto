@@ -22,7 +22,7 @@ if(function_exists("printAllNewsCategories")) { ?>
 <div class="menu">
 	<h3><?php echo gettext("Gallery"); ?></h3>
 	<?php
-	if(!getOption("zenpage_zp_index_news") OR !getOption("zenpage_homepage")) {
+	if(!($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news")) OR !getOption("zenpage_homepage")) {
 		$allalbums = gettext("Gallery index");
 	} else {
 		$allalbums = "";

@@ -2309,6 +2309,27 @@ function getTinyURL($obj) {
 	}
 }
 
+/**
+ *
+ * processes quoted strings including handling slashed quotes
+ * @param string $str
+ * @param char $quote quote character
+ * @param int $i start point
+ *
+ * returns the ending quote of the string or false if none.
+ */
+function endQuote($str, $quote, $i) {
+	$k = $j = strpos($str, $quote, $i+1);
+	while ($j !== false) {
+		$k = $j;
+		if (substr($str, $j-1, 1) == '\\') {
+			$j = strpos($str, $quote, $j+1);
+		} else {
+			$j = false;
+		}
+	}
+	return $k;
+}
 
 //load PHP specific functions
 require_once(PHPScript('5.0.0', '_functions.php'));

@@ -361,7 +361,7 @@ function printGalleryDesc() {
  */
 function getMainSiteName() {
 	global $_zp_gallery;
-	return $_zp_gallery->getWebsite();
+	return $_zp_gallery->getWebsiteTitle();
 }
 
 /**
@@ -3524,13 +3524,8 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ',
 			}
 			$ct = count($singletag);
 			$x = 0;
-			if (getOption('search_space_is')) {
-				$match = "/[ &|!'\"`,()]/";
-			} else {
-				$match = "/[&|!'\"`,()]/";
-			}
 			foreach ($singletag as $atag) {
-				if (preg_match($match,$atag)) {
+				if (preg_match("/[ &|!'\"`,()]/",$atag)) {
 					if (strpos($atag, '`')===false) {
 						$latag = '`'.$atag.'`';
 					} else if (strpos($atag,'"')===false) {
@@ -3613,12 +3608,7 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 				} else {
 					$albumlist = NULL;
 				}
-				if (getOption('search_space_is')) {
-					$match = "/[ &|!'\"`,()]/";
-				} else {
-					$match = "/[&|!'\"`,()]/";
-				}
-				if (preg_match($match,$key)) {
+				if (preg_match("/[ &|!'\"`,()]/",$key)) {
 					if (strpos($key,'"')===false) {
 						$quote = '"';
 					} else {

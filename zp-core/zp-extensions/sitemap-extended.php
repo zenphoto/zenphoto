@@ -379,6 +379,23 @@ function getSitemapAlbumList($obj,&$albumlist, $gateway) {
 }
 
 /**
+ * gateway check for albums (no refinement of the criteria)
+ * @param object $album
+ */
+function passAlbums($album) {
+	return true;
+}
+
+/**
+ * gateway function for images (screens out dynamic albums and password protected albums)
+ * @param object $album
+ */
+function passImages($album) {
+	return !$album->isDynamic() && !$album->getPassword();
+}
+
+
+/**
  * Places album and all of its album pages on one sitemap
  *
  * Gets links to all albums incl. pagination and if the Google image video extension is enabled for images using this as well.
@@ -399,9 +416,6 @@ function getSitemapAlbums() {
 	$imagelastmod = getOption('sitemap_lastmod_images');
 
 
-	function passAlbums($album) {
-		return true;
-	}
 	$albums = array();
 	getSitemapAlbumList($_zp_gallery, $albums, 'passAlbums');
 	$offset = ($sitemap_number - 1);
@@ -497,9 +511,6 @@ function getSitemapImages() {
 	$imagelastmod = getOption('sitemap_lastmod_images');
 	$limit = sitemap_getDBLimit(1);
 
-	function passImages($album) {
-		return !$album->isDynamic() && !$album->getPassword();
-	}
 	$albums = array();
 	getSitemapAlbumList($_zp_gallery, $albums, 'passImages');
 	$offset = ($sitemap_number - 1);

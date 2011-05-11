@@ -32,17 +32,17 @@ if (!defined('WEBPATH')) die();
 	</h2>
 	</div>
 	<div id="content-left">
-	<?php if(!getOption("zenpage_zp_index_news") OR !function_exists("printNewsPageListWithNav")) { ?>
+	<?php if(!($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news")) OR !function_exists("printNewsPageListWithNav")) { ?>
 	<?php printGalleryDesc(); ?>
 			<div id="albums">
 				<?php while (next_album()): ?>
 					<div class="album">
 							<div class="thumb">
 							<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle());?>"><?php printCustomAlbumThumbImage(getBareAlbumTitle(), NULL, 95, 95, 95, 95); ?></a>
- 							 </div>
+							 </div>
 								<div class="albumdesc">
 									<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo html_encode(getBareAlbumTitle());?>"><?php printAlbumTitle(); ?></a></h3>
- 									<?php printAlbumDate(""); ?>
+									<?php printAlbumDate(""); ?>
 									<p><?php echo shortenContent(getAlbumDesc(), 45,'...'); ?></p>
 								</div>
 					</div>
@@ -56,8 +56,8 @@ printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'
 echo "<hr />";
 while (next_news()): ;?>
  <div class="newsarticle">
-    <h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".getNewsType()."]</span>"; ?></h3>
-        <div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate();?> | <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?></span>
+		<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".getNewsType()."]</span>"; ?></h3>
+				<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate();?> | <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?></span>
 <?php
 if(is_GalleryNewsType()) {
 	if(!is_NewsType("album")) {
@@ -71,13 +71,13 @@ if(is_GalleryNewsType()) {
 }
 ?>
 </div>
-    <?php printNewsContent(); ?>
-    <?php printCodeblock(1); ?>
-    <?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
-    </div>
+		<?php printNewsContent(); ?>
+		<?php printCodeblock(1); ?>
+		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
+		</div>
 <?php
-  endwhile;
-  printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
+	endwhile;
+	printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
 } ?>
 
 </div><!-- content left-->

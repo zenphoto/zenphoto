@@ -1256,7 +1256,8 @@ function printNewsCategoryURL($before='',$catlink='') {
  * @return string
  */
 function getNewsIndexURL() {
-	if(getOption("zenpage_zp_index_news")) {
+	global $_zp_zenpage;
+	if($_zp_zenpage->news_on_index) {
 		return getGalleryIndexURL(false);
 	} else {
 		return rewrite_path('news', "/index.php?p=news");
@@ -1512,7 +1513,7 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			if($current == 1) {
 				echo "1";
 			} else {
-				if(getOption("zenpage_zp_index_news")) {
+				if($_zp_zenpage->news_on_index) {
 					echo "<a href='".html_encode(getNewsIndexURL())."' title='".gettext("Page")." 1'>1</a>";
 				} else {
 					echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()."1' title='".gettext("Page")." 1'>1</a>";
@@ -2000,7 +2001,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				}
 				break;
 			case 'categories':
-				if(($_zp_gallery_page == "news.php" || (getOption("zenpage_zp_index_news") && $_zp_gallery_page == "index.php")) && !is_NewsCategory() && !is_NewsArchive() && !is_NewsArticle()) {
+				if(($_zp_gallery_page == "news.php" || ($_zp_zenpage->news_on_index && $_zp_gallery_page == "index.php")) && !is_NewsCategory() && !is_NewsArchive() && !is_NewsArticle()) {
 					echo "<li $css_class_topactive>".html_encode($display);
 				} else {
 					echo "<li><a href=\"".html_encode(getNewsIndexURL())."\" title=\"".html_encode($indexname)."\">".html_encode($display)."</a>";

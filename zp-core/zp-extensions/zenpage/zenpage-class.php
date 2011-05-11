@@ -35,6 +35,8 @@ if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOpt
 
 class Zenpage {
 
+	var $news_on_index = NULL;
+
 	/**
 	 * Class instantiator
 	 */
