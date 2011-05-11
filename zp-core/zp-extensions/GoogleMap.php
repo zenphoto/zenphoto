@@ -254,27 +254,43 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 		$type = $obj;
 		$typeid = '';
 	}
+	if (is_null($text)) {
+		$text = gettext('Google Map');
+	}
+	if (empty($text)) {
+		$hide = 'show';
+	}
+	if (is_null($hide)) {
+		$hide = getOption('gmap_display');
+	}
+	if (!is_string($hide)) {
+		if ($hide) {
+			$hide = 'hide';
+		} else {
+			$hide = 'show';
+		}
+	}
 
 	$MAP_OBJECT = new GoogleMapAPI($type.$typeid);
 	$MAP_OBJECT->_minify_js = defined('RELEASE');
 	$MAP_OBJECT->setZoomLevel(getOption('gmap_zoom'));
 	$MAP_OBJECT->setWidth(getOption('gmap_width'));
 	$MAP_OBJECT->setHeight(getOption('gmap_height'));
+	$MAP_OBJECT->setMapType(getOption('gmap_starting_map'));
 	$mapcontrol = getOption('gmap_control');
 	if ($mapcontrol=='none') {
 		$MAP_OBJECT->disableTypeControls();
 	} else {
 		$MAP_OBJECT->enableMapControls();
 		$MAP_OBJECT->setTypeControlsStyle($mapcontrol);
+		$MAP_OBJECT->setControlSize(getOption('gmap_control_size'));
+		$mapsallowed = array();
+		if (getOption('gmap_map')) $mapsallowed[] = 'ROADMAP';
+		if (getOption('gmap_hybrid')) $mapsallowed[] = 'HYBRID';
+		if (getOption('gmap_satellite')) $mapsallowed[] = 'SATELLITE';
+		if (getOption('gmap_terrain')) $mapsallowed[] = 'TERRAIN';
+		$MAP_OBJECT->setTypeControlTypes($mapsallowed);
 	}
-	$MAP_OBJECT->setControlSize(getOption('gmap_control_size'));
-	$MAP_OBJECT->setMapType(getOption('gmap_starting_map'));
-	$mapsallowed = array();
-	if (getOption('gmap_map')) $mapsallowed[] = 'ROADMAP';
-	if (getOption('gmap_hybrid')) $mapsallowed[] = 'HYBRID';
-	if (getOption('gmap_satellite')) $mapsallowed[] = 'SATELLITE';
-	if (getOption('gmap_terrain')) $mapsallowed[] = 'TERRAIN';
-	$MAP_OBJECT->setTypeControlTypes($mapsallowed);
 	switch ($type) {
 		case 'images':
 			if (getImageGeodata($obj,$MAP_OBJECT)) {
@@ -297,26 +313,11 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 	}
 	$id_toggle = $id.'_toggle';
 	$id_data = $id.'_data';
-	if (is_null($text)) {
-		$text = gettext('Google Map');
-	}
-	if (empty($text)) {
-		$hide = 'show';
-	}
-	if (is_null($hide)) {
-		$hide = getOption('gmap_display');
-	}
-	if (!is_string($hide)) {
-		if ($hide) {
-			$hide = 'hide';
-		} else {
-			$hide = 'show';
-		}
-	}
 
 	if (!is_null($callback)) {
 		call_user_func($callback,$MAP_OBJECT);
 	}
+
 
 	echo $MAP_OBJECT->getMapJS();
 	switch ($hide) {
@@ -346,7 +347,9 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				function <?php echo $id_data; ?>Colorbox() {
+					$('#<?php echo $id_data; ?>').removeClass('hidden_map');
 					$.colorbox({href:"#<?php echo $id_data; ?>_map", inline:true, open:true});
+					$('#<?php echo $id_data; ?>').addClass('hidden_map');
 				}
 				$(document).ready(function(){
 					$("#<?php echo $id_data; ?>_map").colorbox({iframe:true, innerWidth:'<?php echo $w; ?>px', innerHeight:'<?php echo $h; ?>px'});

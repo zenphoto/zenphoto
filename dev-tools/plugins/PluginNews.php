@@ -89,6 +89,7 @@ function processPlugins() {
 
 			$desc .= '</p>';
 			fclose($fp);
+			$plugin_news->setShow(0);
 			$plugin_news->setDateTime(date('Y-m-d H:i:s'),filemtime($file));
 			$plugin_news->setAuthor($author);
 			$plugin_news->setTitle($titlelink);
