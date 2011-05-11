@@ -15,30 +15,30 @@ function gMapOptionsAlbum($map) {
 }
 
 function footer() {
-	global $_zp_gallery_page, $_zp_current_category;
+	global $_zp_gallery_page, $_zp_current_category, $_zp_gallery;
 	$exclude_login = array('password.php','register.php','contact.php');
 	?>
 	<div id="footer">
 		<?php
 		switch ($_zp_gallery_page) {
 			default:
-				printRSSLink('Gallery', '','RSS', ' | ');
+				printRSSLink('Gallery', '','RSS', '');
 				break;
 			case 'album.php':
-				printRSSLink('Album', '','RSS', ' | ');
+				printRSSLink('Album', '','RSS', '');
 				break;
 			case 'news.php':
 				if (is_NewsCategory()) {
-					printZenpageRSSLink('Category', $_zp_current_category->getTitlelink(), '','RSS', ' | ');
+					printZenpageRSSLink('Category', $_zp_current_category->getTitlelink(), '','RSS', '');
 				} else {
-					printZenpageRSSLink('News', '', '','RSS', ' | ');
+					printZenpageRSSLink('News', '', '','RSS', '');
 				}
 				break;
 		}
 		?>
-		<a href="?p=archive"><?php echo gettext('Archive View'); ?></a>
+		<?php if ($_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'archive.php') printCustomPageURL(gettext('Archive View'), 'archive', '', ' | ', ''); ?>
 		<?php	if ($_zp_gallery_page!='contact.php' && getOption('zp_plugin_contactform') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('contact'))) printCustomPageURL(gettext('Contact us'), 'contact', '', ' | ', '');	?>
-		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && function_exists('printRegistrationForm') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('register'))) printCustomPageURL(gettext('Register for this site'), 'register', '', ' | ', '');	?>
+		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && function_exists('printRegistrationForm') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) printCustomPageURL(gettext('Register for this site'), 'register', '', ' | ', '');	?>
 		<?php	if (function_exists('printUserLogin_out') && !in_array($_zp_gallery_page, $exclude_login)) printUserLogin_out(' | ', '', true); ?>
 		<?php
 		if (function_exists('printLanguageSelector')) {

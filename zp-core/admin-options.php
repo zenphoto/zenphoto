@@ -120,7 +120,7 @@ if (isset($_GET['action'])) {
 			$gallery->setUserLogonField(isset($_POST['login_user_field']));
 			setOption('edit_in_place',(int) (sanitize_numeric($_POST['edit_in_place']) && true));
 			if ($_POST['password_enabled']) {
-			$olduser = $galery->getUser();
+			$olduser = $gallery->getUser();
 			$newuser = trim(sanitize($_POST['gallery_user'],3));
 			if (!empty($newuser)) {
 				$gallery->setUserLogonField(1);
