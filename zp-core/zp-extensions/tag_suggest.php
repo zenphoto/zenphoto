@@ -36,7 +36,7 @@ function tagSuggestJS() {
 		// <!-- <![CDATA[
 		var _tagList = [<?php  echo $list; ?>]
 		$(function () {
-			$('#search_input, #edit-editable_4').tagSuggest({ separator:'<?php  echo (getOption('search_space_is_or')?' ':','); ?>', tags: _tagList })
+			$('#search_input, #edit-editable_4').tagSuggest({ separator:'<?php  echo (getOption('search_space_is')=='OR'?' ':','); ?>', tags: _tagList })
 			})
 		// ]]> -->
 	</script>

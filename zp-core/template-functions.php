@@ -3524,7 +3524,7 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ',
 			}
 			$ct = count($singletag);
 			$x = 0;
-			if (getOption('search_space_is_or')) {
+			if (getOption('search_space_is')) {
 				$match = "/[ &|!'\"`,()]/";
 			} else {
 				$match = "/[&|!'\"`,()]/";
@@ -3613,7 +3613,7 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 				} else {
 					$albumlist = NULL;
 				}
-				if (getOption('search_space_is_or')) {
+				if (getOption('search_space_is')) {
 					$match = "/[ &|!'\"`,()]/";
 				} else {
 					$match = "/[&|!'\"`,()]/";
