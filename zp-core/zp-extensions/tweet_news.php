@@ -19,6 +19,7 @@ if ($plugin_disable) {
 	zp_register_filter('new_article', 'tweetNewsNewArticle');
 	zp_register_filter('admin_head', 'tweetScan');
 	zp_register_filter('theme_head', 'tweetScan');
+	zp_register_filter('admin_overview', 'tweetErrors',0);
 	require_once(getPlugin('tweet_news/twitteroauth.php'));
 }
 
@@ -93,15 +94,6 @@ class tweet_options {
 		if (getOption('tweet_news_rescan')) {
 			setOption('tweet_news_rescan', 0);
 			$note = tweetRepopulate();
-		}
-		$result = query_full_array('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="error"');
-		if (!empty($result)) {
-			$errors = '';
-			foreach ($result as $error) {
-				$errors .= $error['data'].'<br />';
-				query('DELETE FROM'.prefix('plugin_storage').' WHERE `id`='.$error['id']);
-			}
-			$note .= '<p class="errorbox">'.$errors.'</p>';
 		}
 		if ($note) {
 			$options['note'] = array('key'=>'tweet_news_rescan', 'type'=>OPTION_TYPE_NOTE,
@@ -182,7 +174,7 @@ function tweetNewsItem($obj) {
 					$text = trim(strip_tags($obj->getContent()));
 					if (strlen($text) > 140) {
 						require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
-						$title = trim(strip_tags($obj->getTitle()));
+						$title = trim(strip_tags($obj->getTitle())).':';
 						$link = getTinyURL($obj);
 						$c = 140 - strlen($link);
 						if ($_zp_UTF8->strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
@@ -225,7 +217,6 @@ function tweetNewsItem($obj) {
 	return $error;
 }
 
-
 function tweetScan() {
 	$result = query_full_array('SELECT * FROM '.prefix('news').' AS news,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending" AND store.data = news.titlelink AND news.date <= '.db_quote(date('Y-m-d H:i:s')));
 	if ($result) {
@@ -247,5 +238,25 @@ function tweetRepopulate() {
 		return '<p class="messagebox">'.gettext('Scheduled news articles have been noted for tweeting.</p>').'</p>';
 	}
 	return '<p class="messagebox">'.gettext('No scheduled news articles found.</p>').'</p>';
+}
+
+function tweetErrors($side){
+	if ($side=='left') {
+		$result = query_full_array('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="error"');
+		if (!empty($result)) {
+			$errors = '';
+			foreach ($result as $error) {
+				$errors .= $error['data'].'<br />';
+				query('DELETE FROM'.prefix('plugin_storage').' WHERE `id`='.$error['id']);
+			}
+			?>
+			<div class="box" id="overview-news">
+				<h2 class="h2_bordered"><?php echo gettext("Tweet News Errors:"); ?></h2>
+				<?php echo '<p class="errorbox">'.$errors.'</p>'; ?>
+			</div>
+			<?php
+		}
+	}
+	return $side;
 }
 ?>

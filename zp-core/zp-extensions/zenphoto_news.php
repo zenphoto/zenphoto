@@ -12,12 +12,12 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
 $plugin_disable = (version_compare(PHP_VERSION, '5.0.0') != 1) ? gettext('PHP version 5 or greater is required.') : false;
 if (OFFSET_PATH && !$plugin_disable) {
-	zp_register_filter('admin_overview', 'printNews');
+	zp_register_filter('admin_overview', 'printNews',0);
 }
 
 function printNews($side) {
-	$pos = zp_filter_slot('admin_overview', 'printNews');
-	if ((($pos & 1) && ($side=='left')) || ((($pos+1) & 1) && ($side=='right'))) {
+	$pos = zp_filter_slot('admin_overview', 'comment_form_print10Most');
+	if (($pos && ($side=='left')) || (!$pos && ($side=='right'))) {
 		if ($connected = is_connected()) {
 			require_once(dirname(__FILE__).'/zenphoto_news/rsslib.php');
 		}

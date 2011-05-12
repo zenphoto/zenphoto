@@ -24,7 +24,7 @@ if (getOption('zp_plugin_comment_form')) {	// 	We might get loaded by some plugi
 	zp_register_filter('options_comments', 'comment_form_options');
 	zp_register_filter('save_comment_custom_data', 'comment_form_save_comment');
 	zp_register_filter('edit_comment_custom_data', 'comment_form_edit_comment');
-	zp_register_filter('admin_overview', 'comment_form_print10Most');
+	zp_register_filter('admin_overview', 'comment_form_print10Most',0);
 }
 zp_register_filter('save_admin_custom_data', 'comment_form_save_admin');
 zp_register_filter('edit_admin_custom_data', 'comment_form_edit_admin');
@@ -114,8 +114,7 @@ function comment_form_save_comment($discard) {
  * Admin overview summary
  */
 function comment_form_print10Most($side) {
-	$pos = zp_filter_slot('admin_overview', 'comment_form_print10Most');
-	if ((($pos & 1) && ($side=='left')) || ((($pos+1) & 1) && ($side=='right'))) {
+	if ($side=='right') {
 			?>
 		<div class="box" id="overview-comments">
 		<h2 class="h2_bordered"><?php echo gettext("10 Most Recent Comments"); ?></h2>
