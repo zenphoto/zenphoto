@@ -156,9 +156,9 @@ if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj)
 } else {
 	// If the requested object does not exist, issue a 404 and redirect to the theme's
 	// 404.php page, or a 404.php in the zp-core folder.
-		if (is_object($_zp_HTML_cache)) {	//	don't cache the logon page or you can never see the real one
-			$_zp_HTML_cache->abortHTMLCache();
-		}
+	if (is_object($_zp_HTML_cache)) {
+		$_zp_HTML_cache->abortHTMLCache();
+	}
 	list($album, $image) = rewrite_get_album_image('album','image');
 	debug404($album, $image, $theme);
 	$_zp_gallery_page = '404.php';
@@ -167,9 +167,6 @@ if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj)
 	header("HTTP/1.0 404 Not Found");
 	header("Status: 404 Not Found");
 	zp_apply_filter('theme_headers');
-	if (is_object($_zp_HTML_cache)) {
-		$_zp_HTML_cache->abortHTMLCache();
-	}
 	if (file_exists(SERVERPATH . "/" . $errpage)) {
 		if ($custom) require_once($custom);
 		include($errpage);

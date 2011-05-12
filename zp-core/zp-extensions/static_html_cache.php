@@ -231,7 +231,7 @@ class staticCache {
 	 */
 	function abortHTMLCache() {
 		if(!empty($this->pageCachePath)) {
-			ob_end_flush();
+			ob_end_clean();
 			$this->pageCachePath = NULL;
 		}
 	}
