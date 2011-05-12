@@ -2291,7 +2291,7 @@ function checkInstall() {
  * Produces the # to table association array
  */
 function getTableAsoc() {
-	return array('1'=>'albums', '2'=>'images', '3'=>'news', '4'=>'pages');
+	return array('1'=>'albums', '2'=>'images', '3'=>'news', '4'=>'pages', '5'=>'comments');
 }
 
 /**

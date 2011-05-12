@@ -231,6 +231,16 @@ class PersistentObject {
 	}
 
 	/**
+	 * Returns the id
+	 *
+	 * @return string
+	 */
+	function getID() {
+		return $this->get('id');
+	}
+
+
+	/**
 	* Get the value of a variable. If $current is false, return the value
 	* as of the last save of this object.
 	*/
@@ -396,16 +406,6 @@ class ThemeObject extends PersistentObject {
 	 * @param string $title the title
 	 */
 	function setTitle($title) { $this->set('title', $title); }
-
-
-	/**
-	 * Returns the id
-	 *
-	 * @return string
-	 */
-	function getID() {
-		return $this->get('id');
-	}
 
 	/**
 	 * Returns the partent id

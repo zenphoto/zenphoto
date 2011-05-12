@@ -459,9 +459,34 @@ function zp_load_request() {
 							case 'images':
 								$image = $_GET['image'] = $result['filename'];
 								$result = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$result['albumid']);
-								case 'albums':
+							case 'albums':
 								$album = $_GET['album'] = $result['folder'];
 								unset($_GET['p']);
+								break;
+							case 'comments':
+								unset ($_GET['p']);
+								$commentid = $id;
+								$type = $result['type'];
+								$result = query_single_row('SELECT * FROM '.prefix($result['type']).' WHERE `id`='.$result['ownerid']);
+								switch ($type) {
+									case 'images':
+										$image = $result['filename'];
+										$result = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$result['albumid']);
+										$redirect = 'index.php?album='.$result['folder'].'&image='.$image;
+										break;
+									case 'albums':
+										$album = $result['folder'];
+										$redirect = 'index.php?album='.$result['folder'];
+										break;
+									case 'pages':
+										$redirect = 'index.php?p=pages&title='.$result['titlelink'];
+										break;
+								}
+								$redirect .= '#'.$commentid;
+								header("HTTP/1.0 301 Moved Permanently");
+								header("Status: 301 Moved Permanently");
+								header('Location: ' . FULLWEBPATH . '/' . $redirect);
+								exit();
 								break;
 						}
 					}

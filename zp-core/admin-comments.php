@@ -339,7 +339,7 @@ if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])
 					$albumdata = $albmdata[0];
 					$album = $albumdata['folder'];
 					$albumtitle = get_language_string($albumdata['title']);
-					$link = "<a href=\"".rewrite_path("/$album","/index.php?album=".pathurlencode($album))."\">".$albumtitle.$title."</a>";
+					$link = '<a href="'.rewrite_path("/$album","/index.php?album=".pathurlencode($album)).'#'.$id.'">'.$albumtitle.$title.'</a>';
 					if (empty($albumtitle)) $albumtitle = $album;
 				}
 				break;
@@ -353,7 +353,7 @@ if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])
 						$newsdata = $newsdata[0];
 						$titlelink = $newsdata['titlelink'];
 						$title = get_language_string($newsdata['title']);
-						$link = "<a href=\"".rewrite_path("/news/".$titlelink,"/index.php?p=news&amp;title=".urlencode($titlelink))."\">".$title."</a><br /> ".gettext("[news]");
+						$link = '<a href="'.rewrite_path("/news/".$titlelink,"/index.php?p=news&amp;title=".urlencode($titlelink)).'#'.$id.'">'.$title."</a><br /> ".gettext("[news]");
 					}
 				}
 				break;
@@ -367,7 +367,7 @@ if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])
 						$pagesdata = $pagesdata[0];
 						$titlelink = $pagesdata['titlelink'];
 						$title = get_language_string($pagesdata['title']);
-						$link = "<a href=\"".rewrite_path("/pages/".$titlelink,"/index.php?p=pages&amp;title=".urlencode($titlelink))."\">".$title."</a><br /> ".gettext("[page]");
+						$link = "<a href=\"".rewrite_path("/pages/".$titlelink,"/index.php?p=pages&amp;title=".urlencode($titlelink)).'#'.$id.'">'.$title."</a><br /> ".gettext("[page]");
 					}
 				}
 				break;
@@ -385,7 +385,7 @@ if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])
 						$albumdata = $albmdata[0];
 						$album = $albumdata['folder'];
 						$albumtitle = get_language_string($albumdata['title']);
-						$link = "<a href=\"".rewrite_path("/$album/$image","/index.php?album=".pathurlencode($album).	"&amp;image=".urlencode($image))."\">".$albumtitle.$title."</a>";
+						$link = "<a href=\"".rewrite_path("/$album/$image","/index.php?album=".pathurlencode($album).	"&amp;image=".urlencode($image)).'#'.$id.'">'.$albumtitle.$title."</a>";
 						if (empty($albumtitle)) $albumtitle = $album;
 					}
 				}
@@ -411,7 +411,6 @@ if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])
 		?>
 		</td>
 		<td><?php echo $link; ?></td>
-
 		<td><?php echo $comment['IP']; ?></td>
 		<td class="icons">
 			<?php
