@@ -121,8 +121,8 @@ class Album extends MediaObject {
 			}
 		}
 		if ($new) {
-			zp_apply_filter('new_album', $this);
 			$this->save();
+			zp_apply_filter('new_album', $this);
 		}
 		zp_apply_filter('album_instantiate', $this);
 	}

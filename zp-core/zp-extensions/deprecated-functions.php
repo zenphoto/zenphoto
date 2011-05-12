@@ -3,7 +3,7 @@
  * These functions have been removed from mainstream Zenphoto as they have been
  * supplanted.
  *
- * They are not maintained and they are not guarentted to function correctly with the
+ * They are not maintained and they are not guaranteed to function correctly with the
  * current version of Zenphoto.
  *
  * @package plugins

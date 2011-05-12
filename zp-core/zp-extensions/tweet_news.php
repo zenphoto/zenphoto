@@ -8,13 +8,15 @@ $plugin_description = gettext('Tweet news articles when published.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.1';
 $plugin_disable = (version_compare(PHP_VERSION, '5.2.0') != 1) ? gettext('PHP version 5.2 or greater is required.') :
-									(function_exists('curl_init')) ? false : gettext('the <em>php_curl</em> extension is required');
+									(function_exists('curl_init')) ? false : gettext('The <em>php_curl</em> extension is required');
 if ($plugin_disable) {
 	setOption('zp_plugin_tweet_news',0);
 } else {
 	$option_interface = 'tweet_options';
-	zp_register_filter('show_change', 'tweetNewsArticle');
-	zp_register_filter('new_image', 'tweetNewsArticle');
+	zp_register_filter('show_change', 'tweetNewsPublished');
+	zp_register_filter('new_album', 'tweetNewsPublished');
+	zp_register_filter('new_image', 'tweetNewsPublished');
+	zp_register_filter('new_article', 'tweetNewsNewArticle');
 	zp_register_filter('admin_head', 'tweetScan');
 	zp_register_filter('theme_head', 'tweetScan');
 	require_once(getPlugin('tweet_news/twitteroauth.php'));
@@ -109,6 +111,7 @@ class tweet_options {
 
 		return $options;
 	}
+
 	function handleOption($option, $currentValue) {
 	}
 }
@@ -129,9 +132,29 @@ function sendTweet($status) {
 	return false;
 }
 
-function tweetNewsArticle($obj) {
+function tweetNewsNewArticle($msg, $article) {
+	$error = tweetNewsItem($article);
+	if ($error) {
+		$msg .= '<p class="errorbox">'.$error.'</p>';
+	}
+	return $msg;
+}
+
+function tweetNewsPublished($obj) {
+	$error = tweetNewsItem($obj);
+	if ($error) {
+		query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","error",'.db_quote($error).')');
+	}
+	return $obj;
+}
+
+function tweetNewsItem($obj) {
 	global $_zp_UTF8;
+	$error = '';
 	if ($obj->getShow()) {
+		if (!getOption('tweet_news_protected') && $obj->isProtected()) {
+			break;
+		}
 		switch ($type = $obj->table) {
 			case 'news':
 				if (!getOption('tweet_news_protected') && $obj->inProtectedCategory(true)) {
@@ -171,23 +194,17 @@ function tweetNewsArticle($obj) {
 					}
 					$error = sendTweet($text);
 					if ($error) {
-						query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","error",'.db_quote(sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$obj->getTitlelink(),$error)).')');
+						$error =  sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$obj->getTitlelink(),$error);
 					}
 				}
 				break;
 			case 'albums':
-				if (!getOption('tweet_news_protected') && $obj->isProtected()) {
-					break;
-				}
 			case 'images':
 				if (getOption('tweet_news_'.$type)) {
 					if ($type=='images') {
-						if (!getOption('tweet_news_protected') && $obj->isProtected()) {
-							break;
-						}
-						$text = sprintf(gettext('New image %1$s in %2$s '),trim(strip_tags($obj->getTitle())),trim(strip_tags($obj->album->getTitle())));
+						$text = sprintf(gettext('New image: %1$s in %2$s '),$item = trim(strip_tags($obj->getTitle())),trim(strip_tags($obj->album->getTitle())));
 					} else {
-						$text = sprintf(gettext('New album: %s '),trim(strip_tags($obj->getTitle())));
+						$text = sprintf(gettext('New album: %s '),$item = trim(strip_tags($obj->getTitle())));
 					}
 					$link = getTinyURL($obj);
 					if ($_zp_UTF8->strlen($text.$link) > 140) {
@@ -199,13 +216,13 @@ function tweetNewsArticle($obj) {
 					}
 					$error = sendTweet($text);
 					if ($error) {
-						query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","error",'.db_quote(sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$obj->getTitlelink(),$error)).')');
+						$error = sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$item,$error);
 					}
 				}
 				break;
 		}
 	}
-	return $obj;
+	return $error;
 }
 
 

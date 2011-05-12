@@ -459,8 +459,8 @@ class ThemeObject extends PersistentObject {
 	function setShow($show) {
 		$old_show = $this->get('show');
 		$new_show = (int) ($show && true);
-		if ($old_show != $new_show) {
-			$this->set('show', $new_show);
+		$this->set('show', $new_show);
+		if ($old_show != $new_show && $this->get('id')) {
 			zp_apply_filter('show_change', $this);
 		}
 	}

@@ -119,6 +119,13 @@ class ZenpageNews extends ZenpageItems {
 	}
 
 	/**
+	 * returns true if the article resides only in protected categories
+	 */
+	function isProtected() {
+		return $this->inProtectedCategory(true);
+	}
+
+	/**
 	 * See if a guest is logged on to the news category.
 	 * Note: If any belonging category is plublic or he is logged on, then success.
 	 * @param $hint
