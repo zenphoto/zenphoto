@@ -78,6 +78,12 @@ function processPlugins() {
 								case 'subpackage':
 									$tags[] = $line;
 									break;
+								case 'tags':
+									$pluginTags = explode(',',$line);
+									foreach ($pluginTags as $tag) {
+										$tags[] = trim($tag);
+									}
+									break;
 							}
 						} else {
 							$desc .= html_encode($line).' ';
