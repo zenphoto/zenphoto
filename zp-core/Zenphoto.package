@@ -721,6 +721,10 @@ zp-core/zp-extensions/crop_image/swap.png
 zp-core/zp-extensions/crop_image/swap_down.png
 zp-core/zp-extensions/crop_image/swap_up.png
 zp-core/zp-extensions/deprecated-functions.php
+zp-core/zp-extensions/downloadList
+zp-core/zp-extensions/downloadList.php
+zp-core/zp-extensions/downloadList/download_statistics.php
+zp-core/zp-extensions/downloadList/downloadlist-functions.php
 zp-core/zp-extensions/dynamic-locale
 zp-core/zp-extensions/dynamic-locale.php
 zp-core/zp-extensions/dynamic-locale/locale.css
@@ -2761,4 +2765,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2763
+2767

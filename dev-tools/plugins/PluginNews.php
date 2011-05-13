@@ -81,7 +81,7 @@ function processPlugins() {
 								case 'tags':
 									$pluginTags = explode(',',$line);
 									foreach ($pluginTags as $tag) {
-										$tags[] = trim($tag);
+										$tags[] = trim(unQuote($tag));
 									}
 									break;
 							}
