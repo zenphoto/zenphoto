@@ -1015,7 +1015,6 @@ function get_caller_method() {
 	return null;
 }
 
-
 /**
  * Write output to the debug log
  * Use this for debugging when echo statements would come before headers are sent
@@ -1030,17 +1029,23 @@ function debugLog($message, $reset=false) {
 	$path = dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . '/debug_log.txt';
 	if ($reset || ($size = @filesize($path)) == 0 || $size > 5000000) {
 		$f = fopen($path, 'w');
-		fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE."]\n");
+		if ($f) {
+			fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE."]\n");
+		}
 	} else {
 		$f = fopen($path, 'a');
-		if ((time()-$_zp_debug_written)>5) {
-			fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT}\n");
+		if ($f) {
+			if ((time()-$_zp_debug_written)>5) {
+				fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT}\n");
+			}
 		}
 	}
-	fwrite($f, "  ".$message . "\n");
-	fclose($f);
-	clearstatcache();
-	chmod($path, 0600);
+	if ($f) {
+		fwrite($f, "  ".$message . "\n");
+		fclose($f);
+		clearstatcache();
+		chmod($path, 0600);
+	}
 	$_zp_debug_written = time();
 }
 

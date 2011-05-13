@@ -339,10 +339,12 @@ function setupLog($message, $anyway=false, $reset=false) {
 		if ($reset) { $mode = 'w'; } else { $mode = 'a'; }
 		$path = dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup_log.txt';
 		$f = fopen($path, $mode);
-		fwrite($f, strip_tags($message) . "\n");
-		fclose($f);
-		clearstatcache();
-		chmod($path, 0600);
+		if ($f) {
+			fwrite($f, strip_tags($message) . "\n");
+			fclose($f);
+			clearstatcache();
+			chmod($path, 0600);
+		}
 	}
 }
 

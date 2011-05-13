@@ -132,41 +132,43 @@ function security_logger_loginLogger($success, $user, $name, $ip, $action, $auth
 	$file = dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/security_log.txt';
 	$preexists = file_exists($file) && filesize($file) > 0;
 	$f = fopen($file, 'a');
-	if (!$preexists) { // add a header
-		fwrite($f, gettext('date'."\t".'requestor\'s IP'."\t".'type'."\t".'user ID'."\t".'user name'."\t".'outcome'."\t".'authority'."\tadditional information\n"));
-	}
-	$message = date('Y-m-d H:i:s')."\t";
-	$message .= $ip."\t";
-	$message .= $type."\t";
-	$message .= $user."\t";
-	$message .= $name."\t";
-	if ($success) {
-		$message .= gettext("Success")."\t";
-		$message .= substr($authority, 0, strrpos($authority,'_auth'));
-	} else {
-		$message .= gettext("Failed")."\t";
-	}
-	if ($addl) {
-		$message .= "\t".$addl;
-	}
-	fwrite($f, $message . "\n");
-	fclose($f);
-	clearstatcache();
-	if (!$preexists) {
-		chmod($file, 0600);
-		$permission = fileperms($file)&0777;
-		if ($permission != 0600) {
-			$f = fopen($file, 'a');
-			fwrite($f,"\t\t".gettext('Set Security log permissions')."\t\t\t".gettext('Failed')."\t\t".sprintf(gettext('File permissions of Security log are %04o'),$permission)."\n");
-			fclose($f);
-			clearstatcache();
+	if($f) {
+		if (!$preexists) { // add a header
+			fwrite($f, gettext('date'."\t".'requestor\'s IP'."\t".'type'."\t".'user ID'."\t".'user name'."\t".'outcome'."\t".'authority'."\tadditional information\n"));
+		}
+		$message = date('Y-m-d H:i:s')."\t";
+		$message .= $ip."\t";
+		$message .= $type."\t";
+		$message .= $user."\t";
+		$message .= $name."\t";
+		if ($success) {
+			$message .= gettext("Success")."\t";
+			$message .= substr($authority, 0, strrpos($authority,'_auth'));
+		} else {
+			$message .= gettext("Failed")."\t";
+		}
+		if ($addl) {
+			$message .= "\t".$addl;
+		}
+		fwrite($f, $message . "\n");
+		fclose($f);
+		clearstatcache();
+		if (!$preexists) {
+			chmod($file, 0600);
+			$permission = fileperms($file)&0777;
+			if ($permission != 0600) {
+				$f = fopen($file, 'a');
+				fwrite($f,"\t\t".gettext('Set Security log permissions')."\t\t\t".gettext('Failed')."\t\t".sprintf(gettext('File permissions of Security log are %04o'),$permission)."\n");
+				fclose($f);
+				clearstatcache();
+			}
 		}
 	}
 	setupCurrentLocale($cur_locale);	//	restore to whatever was in effect.
 }
 
 /**
- * rturns the user id and name of the logged in user
+ * returns the user id and name of the logged in user
  */
 function security_logger_populate_user() {
 	global $_zp_current_admin_obj;
