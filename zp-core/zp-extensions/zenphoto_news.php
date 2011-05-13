@@ -16,7 +16,7 @@ if (OFFSET_PATH && !$plugin_disable) {
 }
 
 function printNews($side) {
-	$pos = zp_filter_slot('admin_overview', 'comment_form_print10Most');
+	$pos = zp_filter_slot('admin_overview', 'comment_form_print10Most') !== false;
 	if (($pos && ($side=='left')) || (!$pos && ($side=='right'))) {
 		if ($connected = is_connected()) {
 			require_once(dirname(__FILE__).'/zenphoto_news/rsslib.php');
