@@ -1,6 +1,6 @@
 <?php
 /**
- * tag suggest plugin draft based on Remy Sharp's jQuery Tag Suggestion plugin
+ * Provide javaScript tag "suggestions" based on Remy Sharp's jQuery Tag Suggestion plugin
  * Just activate the plugin and the feature is available on the theme's search field.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard) - an adaption of Remy Sharp's <a href='http://remysharp.com/2007/12/28/jquery-tag-suggestion/ '>jQuery Tag Suggestion</a>

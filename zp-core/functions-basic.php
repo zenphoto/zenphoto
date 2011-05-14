@@ -340,13 +340,9 @@ function setOptionDefault($key, $default) {
 		getOption('nil');  // pre-load from the database
 	}
 
-	if (defined('SERVERPATH')) {
-		$bt = debug_backtrace();
-		$b = array_shift($bt);
-		$creator = str_replace(SERVERPATH.'/', '', str_replace('\\', '/', $b['file']));
-	} else {
-		$creator = '';
-	}
+	$bt = debug_backtrace();
+	$b = array_shift($bt);
+	$creator = str_replace(str_replace("\\", '/', dirname(dirname(__FILE__))).'/', '', str_replace('\\', '/', $b['file']));
 
 	if (array_key_exists($key, $_zp_options)) {
 		$sql = 'UPDATE '.prefix('options').' SET `creator`='.db_quote($creator).' WHERE `name`='.db_quote($key).' AND `ownerid`=0';

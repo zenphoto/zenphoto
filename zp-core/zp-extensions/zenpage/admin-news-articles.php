@@ -117,12 +117,15 @@ printLogoAndLinks();
 
 			if(isset($_GET['category'])) {
 				$catobj = new ZenpageCategory(sanitize($_GET['category']));
+				$resultU = $catobj->getArticles(getOption('zenpage_admin_articles'),'unpublished',false);
 				$result = $catobj->getArticles(getOption('zenpage_admin_articles'),$published,false);
 			} else {
+				$catobj = NULL;
+				$resultU = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),'unpublished',false);
 				$result = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),$published,false);
 			}
 			?>
-			<span class="zenpagestats"><?php printNewsStatistic();?></span></h1>
+			<span class="zenpagestats"><?php printNewsStatistic(count($result), count($resultU));?></span></h1>
 				<div class="floatright">
 					<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); ?>
 						<?php //echo "optionpath: ".getNewsAdminOptionPath(true,true,true); // debugging only; ?>

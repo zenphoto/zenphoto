@@ -1,5 +1,5 @@
 <?php
-/** downloadList (PHP5 required)
+/**
  *
  * A plugin to generate a file download list.
  * This download folder can be relative to your Zenphoto root ("foldername") or external to it ("../foldername").

@@ -1,6 +1,6 @@
 <?php
 /**
- * Zenpage CMS plugin
+ * Zenphoto CMS plugin
  *
  * @package plugins
  */

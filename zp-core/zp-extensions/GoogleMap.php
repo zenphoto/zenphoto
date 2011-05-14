@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Provides for placing google maps on image and album pages
  * based on EXIF latitude and longitude in the images.
  * Automatically detects if it is on an Image or Album page.

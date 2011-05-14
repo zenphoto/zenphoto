@@ -1,6 +1,6 @@
 <?php
 /**
- * rating -- Supports an rating system for images, albums, pages, and news articles
+ * Supports an rating system for images, albums, pages, and news articles
  *
  * uses Star Rating Plugin by Fyneworks.com
  *

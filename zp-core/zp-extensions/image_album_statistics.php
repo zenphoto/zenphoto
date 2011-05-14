@@ -1,6 +1,6 @@
 <?php
 /**
- * image_album_statistics -- support functions for "statistics" about images and albums.
+ * Support functions for "statistics" about images and albums.
  *
  * Supports such statistics as "most popular", "latest", "top rated", etc.
  *

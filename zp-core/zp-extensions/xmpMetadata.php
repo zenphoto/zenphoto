@@ -1,6 +1,5 @@
 <?php
 /**
- * xmpMetadata
  *
  * Enable this filter to scan images (or xmp sidecar files) for metadata.
  *

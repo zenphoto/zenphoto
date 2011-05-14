@@ -29,13 +29,13 @@ function pluginNews_button($buttons) {
 
 function processPlugins() {
 	global $_zp_current_admin_obj;
-	$author = $_zp_current_admin_obj->getUser();
 	$curdir = getcwd();
 	$basepath = SERVERPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/';
 	chdir($basepath);
 	$filelist = safe_glob('*.php');
 	foreach ($filelist as $file) {
 		$titlelink = stripSuffix(filesystemToInternal($file));
+		$author = stripSuffix(basename(__FILE__));
 		$sql = 'SELECT `id` FROM '.prefix('news').' WHERE `titlelink`='.db_quote($titlelink);
 		$result = query_single_row($sql);
 		if (empty($result)) {
@@ -73,6 +73,7 @@ function processPlugins() {
 									$empty = false;
 									preg_match_all('|\((.+?)\)|', $line, $matches);
 									$tags = array_merge($tags, $matches[1]);
+									$author = array_shift($matches[1]);
 									break;
 								case 'package':
 								case 'subpackage':

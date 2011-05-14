@@ -1,6 +1,6 @@
 <?php
-/** Tiny MCE text editor
- *
+/**
+ * Back-end WYSIWYG editor
  * You can place your own additional custom configuration files within /zp-core/zp-extensions/tiny_mce/config (e.g. <filename>.js.php)
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)

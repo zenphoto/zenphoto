@@ -1,6 +1,7 @@
 <?php
 /**
- * flowplayer -- plugin support for the flowplayer 3.x.x flash video player.
+ *
+ * Support for the flowplayer 3.x.x flash video player.
  * NOTE: Flash players do not support external albums!
  *
  * Note on splash images: Flowplayer will try to use the first frame of a movie as a splash image or a videothumb if existing.

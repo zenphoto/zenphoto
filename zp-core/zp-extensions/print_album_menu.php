@@ -1,5 +1,5 @@
 <?php
-/** printAlbumMenu for Zenphoto
+/**
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins

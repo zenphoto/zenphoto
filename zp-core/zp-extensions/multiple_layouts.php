@@ -1,5 +1,5 @@
 <?php
-/** Multiple layouts
+/**
  *
  * Provides functionality to select individual templates files to items additionally to the standard theme pages
  * album.php, image.php and for Zenpage pages.php and news.php (articles and categories).

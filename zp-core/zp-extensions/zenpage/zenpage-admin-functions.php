@@ -1111,47 +1111,53 @@ function printCategoryDropdown() {
 		$datelink = "";
 		$datelinkall ="";
 	}
-?>
+
+if(isset($_GET['category'])) {
+	$selected = '';
+	$category = sanitize($_GET['category']);
+} else {
+	$selected = "selected='selected'";
+	$category = "";
+}
+	?>
 	<form name ="AutoListBox2" id="categorydropdown" style="float:left" action="#" >
 	<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
-<?php
-if(!isset($_GET['category'])) {
-	$selected = "selected='selected'";
-} else {
-	$selected ="";
-}
-echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(false,true,true)."'>".gettext("All categories")."</option>";
+		<?php
+		echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(false,true,true)."'>".gettext("All categories")."</option>\n";
 
-foreach ($result as $cat) {
-	$catobj = new ZenpageCategory($cat['titlelink']);
-	// check if there are articles in this category. If not don't list the category.
-	$count = count($catobj->getArticles(0,'all'));
-	$count = " (".$count.")";
-	if(isset($_GET['category']) AND $_GET['category'] === $cat['title']) {
-		$selected = "selected='selected'";
-	} else {
-		$selected ="";
-	}
-	//This is much easier than hacking the nested list function to work with this
-	$getparents = $catobj->getParents();
-	$levelmark ='';
-	foreach($getparents as $parent) {
-		$levelmark .= '&raquo; ';
-	}
-	if ($count != " (0)") {
-		echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage."&amp;category=".$catobj->getTitlelink().getNewsAdminOptionPath(false,true,true)."'>".$levelmark.$catobj->getTitle().$count."</option>\n";
-	}
-}
-?>
-		</select>
-		<script language="JavaScript" type="text/javascript" >
-			// <!-- <![CDATA[
-			function gotoLink(form) {
-			var OptionIndex=form.ListBoxURL.selectedIndex;
-			parent.location = form.ListBoxURL.options[OptionIndex].value;}
-			// ]]> -->
-	</script>
-	</form>
+		foreach ($result as $cat) {
+
+
+
+			$catobj = new ZenpageCategory($cat['titlelink']);
+			// check if there are articles in this category. If not don't list the category.
+			$count = count($catobj->getArticles(0,'all'));
+			$count = " (".$count.")";
+			if($category == $cat['titlelink']) {
+				$selected = "selected='selected'";
+			} else {
+				$selected ="";
+			}
+			//This is much easier than hacking the nested list function to work with this
+			$getparents = $catobj->getParents();
+			$levelmark ='';
+			foreach($getparents as $parent) {
+				$levelmark .= '&raquo; ';
+			}
+			if ($count != " (0)") {
+				echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage."&amp;category=".$catobj->getTitlelink().getNewsAdminOptionPath(false,true,true)."'>".$levelmark.$catobj->getTitle().$count."</option>\n";
+			}
+		}
+		?>
+	</select>
+	<script language="JavaScript" type="text/javascript" >
+		// <!-- <![CDATA[
+		function gotoLink(form) {
+		var OptionIndex=form.ListBoxURL.selectedIndex;
+		parent.location = form.ListBoxURL.options[OptionIndex].value;}
+		// ]]> -->
+</script>
+</form>
 <?php
 }
 
@@ -1436,8 +1442,7 @@ function printPagesStatistic() {
 		printf(ngettext('(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)','(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)',$total),$total,$unpub);
 	}
 }
-function printNewsStatistic() {
-	list($total,$type,$unpub) = getNewsPagesStatistic("news");
+function printNewsStatistic($total, $unpub) {
 	if (empty($unpub)) {
 		printf(ngettext('(<strong>%1$u</strong> news)','(<strong>%1$u</strong> news)',$total),$total);
 	} else {
@@ -1499,28 +1504,22 @@ function authorSelector($author=NULL) {
 	if (empty($author)) {
 		$author = $_zp_current_admin_obj->getUser();
 	}
-	?>
-	<select size='1' name="author" id="author">
-	<?php
+	$authors = array($author=>$author);
 	if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
 		$admins = $_zp_authority->getAdministrators();
 		foreach($admins as $admin) {
 			if($admin['rights'] & (ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
-				if($author == $admin['user']) {
-					echo "<option selected='selected' value='".$admin['user']."'>".$admin['user']."</option>";
-				} else {
-					echo "<option value='".$admin['user']."'>".$admin['user']."</option>";
-				}
+				$authors[$admin['user']] = $admin['user'];
 			}
 		}
-	} else {
-		?>
-		<option selected='selected' value='<?php echo $author; ?>'><?php echo $author; ?></option>"
-		<?php
 	}
-?>
-</select>
-<?php
+	?>
+	<select size='1' name="author" id="author">
+		<?php
+		generateListFromArray(array($author), $authors, false, false);
+		?>
+	</select>
+	<?php
 }
 
 /**

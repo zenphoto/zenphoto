@@ -1,7 +1,5 @@
 <?php
 /**
- * Contact form
- *
  * Prints an e-mail contact form that uses Zenphoto's internal validation functions for e-mail and URL.
  * Name, e-mail address, subject and message are required fields by default.
  * You need to enter a custom mail address that should be used for the messages.

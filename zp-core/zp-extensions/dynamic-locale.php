@@ -1,6 +1,6 @@
 <?php
 /**
- * dynamic-locale -- plugin to allow the site viewer to select a localization.
+ * A plugin to allow the site viewer to select a localization.
  * This applies only to the theme pages--not Admin. Admin continues to use the
  * language option for its language.
  *

@@ -1,6 +1,6 @@
 <?php
 /**
- * Provides rudimentary user groups
+ * Sends new users an e-mail when their user code is created
  *
  * @package plugins
  */

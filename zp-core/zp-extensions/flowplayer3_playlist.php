@@ -1,6 +1,6 @@
 <?php
 /**
- * flowplayer3 playlist - Show the content of an media album with .flv/.mp4/.mp3 movie/audio files only as a playlist or as separate players with Flowplayer 3
+ * Show the content of an media album with .flv/.mp4/.mp3 movie/audio files only as a playlist or as separate players with Flowplayer 3
  * IMPORTANT: The Flowplayer 3 plugin needs to be activated to use this plugin.
  *
  * Note that this does not work with pure image albums and is not meant to!

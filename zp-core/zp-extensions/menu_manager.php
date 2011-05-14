@@ -1,6 +1,5 @@
 <?php
 /**
- * Menu Manager
  *
  * Lets you create arbitrary menus and place them on your theme pages.
  *

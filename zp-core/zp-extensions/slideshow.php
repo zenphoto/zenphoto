@@ -1,6 +1,6 @@
 <?php
 /**
- * slideshow -- Supports showing slideshows of images in an album.
+ * Supports showing slideshows of images in an album.
  *
  * 	Plugin Option 'slideshow_size' -- Size of the images
  *	Plugin Option 'slideshow_mode' -- The player to be used

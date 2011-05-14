@@ -1,6 +1,6 @@
 <?php
 /**
- * Video Class
+ * This plugin handles "video" class images
  * @package classes
  */
 

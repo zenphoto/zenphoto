@@ -1,6 +1,5 @@
 <?php
 /**
- * Static HTML Cache
  *
  * Used to cache Theme pages (i.e. those pages launched by the Zenphoto index.php script.)
  *

@@ -575,8 +575,23 @@ appropriate gallery methods.
 		foreach ($result as $row) {
 			$filename = $row['creator'];
 			if (!file_exists(SERVERPATH.'/'.$filename)) {
-				$sql = 'DELETE FROM '.prefix('options').' WHERE `creator` = '.db_quote($filename);
-				purgeOption('zp_plugin_'.stripSuffix(basename($filename)));
+				$sql = 'DELETE FROM '.prefix('options').' WHERE `creator`='.db_quote($filename);
+				query($sql);
+				if (strpos($filename, PLUGIN_FOLDER) !== false || strpos($filename, USER_PLUGIN_FOLDER) !== false) {
+					purgeOption('zp_plugin_'.stripSuffix(basename($filename)));
+				}
+			}
+		}
+	}
+	// missing themes
+	$sql = 'SELECT DISTINCT `theme` FROM '.prefix('options').' WHERE `theme` IS NOT NULL';
+	$result = query_full_array($sql);
+	if (is_array($result)) {
+		foreach ($result as $row) {
+			$filename = THEMEFOLDER.'/'.$row['theme'];
+			if ($filename && !file_exists(SERVERPATH.'/'.$filename)) {
+				$sql = 'DELETE FROM '.prefix('options').' WHERE `theme`='.db_quote($row['theme']);
+				query($sql);
 			}
 		}
 	}
