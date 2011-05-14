@@ -23,14 +23,9 @@ if (isset($_GET['action'])) {
 		foreach ($filelist as $extension=>$path) {
 			$extension = filesystemToInternal($extension);
 			$opt = 'zp_plugin_'.$extension;
-			$oldstate = getOption($opt);
-			if (isset($_POST[$opt]) || !is_null($oldstate)) { // don't create any options until plugin is selected at least once
-				if (isset($_POST[$opt])) {
-					$value = sanitize_numeric($_POST[$opt]);
-				} else {
-					$value = 0;
-				}
-				if ($value && !$oldstate) {
+			if (isset($_POST[$opt])) {
+				$value = sanitize_numeric($_POST[$opt]);
+				if (!getOption($opt)) {
 					$option_interface = NULL;
 					require_once($path);
 					if (is_string($option_interface)) {
@@ -38,6 +33,8 @@ if (isset($_GET['action'])) {
 					}
 				}
 				setOption($opt, $value);
+			} else {
+				purgeOption($opt);
 			}
 		}
 		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved");

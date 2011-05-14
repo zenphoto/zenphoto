@@ -690,7 +690,6 @@ if($album->getParent()) {
 	$link = '';
 }
 $alb = removeParentAlbumNames($album);
-zp_apply_filter('admin_note','albums', '');
 ?>
 <h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'),  $link, $alb); ?></h1>
 
@@ -770,7 +769,7 @@ zp_apply_filter('admin_note','albums', '');
 	<?php
 	}
 
-
+	zp_apply_filter('admin_note','albums', $subtab);
 	if (isset($_GET['uploaded'])) {
 		?>
 		<div class="messagebox fade-message">
@@ -843,7 +842,6 @@ zp_apply_filter('admin_note','albums', '');
 			?>
 		<div id="tab_subalbuminfo" class="tabbox">
 		<?php
-		zp_apply_filter('admin_note','albums', $subtab);
 		printEditDropdown('subalbuminfo');
 		?>
 		<form action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();">
@@ -1593,7 +1591,8 @@ if (isset($_GET['saved'])) {
 
 /*** EDIT ALBUM SELECTION *********************************************************************/
 
-} else { /* Display a list of albums to edit. */ ?>
+} else { /* Display a list of albums to edit. */
+zp_apply_filter('admin_note','albums', '');?>
 <h1><?php echo gettext("Edit Gallery"); ?></h1>
 <?php
 	displayDeleted(); /* Display a message if needed. Fade out and hide after 2 seconds. */

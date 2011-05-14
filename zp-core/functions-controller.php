@@ -482,7 +482,7 @@ function zp_load_request() {
 										$redirect = 'index.php?p=pages&title='.$result['titlelink'];
 										break;
 								}
-								$redirect .= '#'.$commentid;
+								$redirect .= '#c_'.$commentid;
 								header("HTTP/1.0 301 Moved Permanently");
 								header("Status: 301 Moved Permanently");
 								header('Location: ' . FULLWEBPATH . '/' . $redirect);

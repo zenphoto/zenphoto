@@ -183,10 +183,6 @@ codeblocktabsJS();
 		?>
 		<div id="tab_articles" class="tabbox">
 		<?php
-		zp_apply_filter('admin_note','news', $subtab);
-		foreach ($reports as $report) {
-			echo $report;
-		}
 		$admintype = 'newsarticle';
 		$additem = gettext('New Article');
 		$deleteitem = gettext('Article');
@@ -198,10 +194,6 @@ codeblocktabsJS();
 		?>
 		<div id="tab_articles" class="tabbox">
 		<?php
-		zp_apply_filter('admin_note', 'pages', $subtab);
-		foreach ($reports as $report) {
-			echo $report;
-		}
 		$admintype = 'category';
 		$additem = gettext('New Category');
 		$deleteitem = gettext('Category');
@@ -209,9 +201,7 @@ codeblocktabsJS();
 	}
 
 	if(is_AdminEditPage('page')) {
-		foreach ($reports as $report) {
-			echo $report;
-		}
+		$subtab='edit';
 		$admintype = 'page';
 		$additem = gettext('New Page');
 		$deleteitem = gettext('Page');
@@ -303,6 +293,10 @@ if(is_AdminEditPage("category")) {
 if(is_AdminEditPage("page")) {
 	$backurl = 'admin-pages.php';
 }
+foreach ($reports as $report) {
+	echo $report;
+}
+zp_apply_filter('admin_note','news', $subtab);
 ?>
 <span class="buttons">
 	<strong><a href="<?php echo $backurl; ?>" title="<?php echo gettext("Back"); ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
