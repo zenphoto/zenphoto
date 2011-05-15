@@ -369,9 +369,6 @@ function tweetErrorsOnOverview($side){
  * @param string $subtab
  */
 function tweetErrorsOnAdmin($tab, $subtab) {
-
-debugLog("tweetErrorsOnAdmin($tab, $subtab)");
-
 	$errors = tweetFetchErrors();
 	if ($errors) {
 		echo '<p class="errorbox">'.$errors.'</p>';

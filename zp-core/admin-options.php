@@ -427,7 +427,14 @@ if (isset($_GET['action'])) {
 		/*** custom options ***/
 		if (!$themeswitch) { // was really a save.
 			$returntab = processCustomOptionSave($returntab,$themename,$themealbum);
-			$notify = zp_apply_filter('custom_option_save',$notify,$themename,$themealbum);
+			$err = zp_apply_filter('custom_option_save','',$themename,$themealbum);
+			if ($err) {
+				if ($notify) {
+				 $notify .= '&custom='.$err;
+				} else {
+					$notify .= '?custom='.$err;
+				}
+			}
 		}
 
 		if (empty($notify)) $notify = '?saved';
@@ -491,6 +498,11 @@ if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 	if (isset($_GET['saved'])) {
 		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".gettext("Applied")."</h2>";
+		echo '</div>';
+	}
+	if (isset($_GET['custom'])) {
+		echo '<div class="errorbox">';
+		echo  '<h2>'.html_encode(sanitize($_GET['custom'])).'</h2>';
 		echo '</div>';
 	}
 ?>
