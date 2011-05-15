@@ -24,9 +24,8 @@ class Gallery {
 	function Gallery() {
 		// Set our album directory
 		$this->albumdir = ALBUM_FOLDER_SERVERPATH;
-		$data = getOption('gallery_data');
-		if ($data) {
-			$this->data = unserialize($data);
+		if (GALLERY_DATA) {
+			$this->data = unserialize(GALLERY_DATA);
 		}
 		if (isset($this->data['unprotected_pages'])) {
 			$this->unprotected_pages = unserialize($this->data['unprotected_pages']);

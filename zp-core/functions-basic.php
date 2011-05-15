@@ -79,9 +79,9 @@ if (!$_charset) {
 	$_charset = 'UTF-8';
 }
 
-$data = getOption('gallery_data');
-if ($data) {
-	$data = unserialize($data);
+define ('GALLERY_DATA', getOption('gallery_data'));
+if (GALLERY_DATA) {
+	$data = unserialize(GALLERY_DATA);
 } else {
 	$data = array();
 }
@@ -95,6 +95,7 @@ if (isset($data['gallery_security']))	{
 } else {
 	define('GALLERY_SECURITY',getOption('gallery_security'));
 }
+unset($data);
 
 define('LOCAL_CHARSET',$_charset);
 

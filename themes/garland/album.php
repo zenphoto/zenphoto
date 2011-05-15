@@ -1,5 +1,6 @@
 <?php
 if (!defined('WEBPATH')) die();
+$map = function_exists('printGoogleMap');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -64,11 +65,13 @@ if (!defined('WEBPATH')) die();
 								<?php
 								$points = array();
 								while (next_image()){
- 									$coord = getGeoCoord($_zp_current_image);
- 									if ($coord) {
- 										$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
- 										$points[] = $coord;
- 									}
+									if ($map) {
+	 									$coord = getGeoCoord($_zp_current_image);
+	 									if ($coord) {
+	 										$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+	 										$points[] = $coord;
+	 									}
+									}
 									?>
 									<div class="image">
 										<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a></div>
@@ -122,7 +125,7 @@ if (!defined('WEBPATH')) die();
 				?>
 				<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
 				<?php
-				if (!empty($points) && function_exists('printGoogleMap')) {
+				if (!empty($points) && $map) {
 					setOption('gmap_display', 'colorbox', false);
 					?>
 					<div id="map_link">

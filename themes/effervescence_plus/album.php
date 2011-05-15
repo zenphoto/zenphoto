@@ -34,7 +34,7 @@ if ((($personality = getOption('Theme_personality'))!="Simpleviewer") || !MOD_RE
 	$backgroundImagePath="";
 	// End of Simpeviewer config
 }
-
+$map = function_exists('printGoogleMap');
 if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 	$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 	if ($_noFlash) {
@@ -279,10 +279,12 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
  									<div class="image">
 	 									<div class="imagethumb">
 		 									<?php
-		 									$coord = getGeoCoord($_zp_current_image);
-		 									if ($coord) {
-		 										$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
-		 										$points[] = $coord;
+		 									if ($map) {
+			 									$coord = getGeoCoord($_zp_current_image);
+			 									if ($coord) {
+			 										$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+			 										$points[] = $coord;
+			 									}
 		 									}
 		 									$annotate = annotateImage();
 		 									if ($personality == 'Slimbox') {
@@ -301,7 +303,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 									}
  								}
 	 							echo '<div class="clearage"></div>';
-								if (!empty($points) && function_exists('printGoogleMap')) {
+								if (!empty($points) && map) {
 									function map_callback($map) {
 										global $points;
 										foreach ($points as $coord) {

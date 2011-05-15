@@ -44,6 +44,16 @@ if (isset($_GET['action'])) {
 $saved = isset($_GET['saved']);
 printAdminHeader('plugins');
 zp_apply_filter('texteditor_config', '','zenphoto');
+?>
+<script type="text/javascript">
+<!--
+function toggleDetails(plugin) {
+	toggle(plugin+'_show');
+	toggle(plugin+'_hide');
+}
+//-->
+</script>
+<?php
 echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();
@@ -86,6 +96,14 @@ echo "<table class=\"bordered\" width=\"100%\">\n";
 ?>
 <tr>
 <th><?php echo gettext("Available Plugins"); ?></th>
+<th class="icons">
+	<span class="pluginextrahide" style="display:none;">
+		<a href="javascript:toggleExtraInfo('','plugin',false);" title ="<?php echo gettext('hide all description details'); ?>" ><img src="images/info_off.png" alt="" /></a>
+	</span>
+	<span class="pluginextrashow">
+		<a href="javascript:toggleExtraInfo('','plugin',true);" title ="<?php echo gettext('show all description details'); ?>" ><img src="images/info_on.png" alt="" /></a>
+	</span>
+</th>
 <th><?php echo gettext("Description"); ?></th>
 </tr>
 <?php
@@ -188,39 +206,49 @@ foreach ($filelist as $extension) {
 		}
 		?>
 		</td>
+		<td class="icons">
+			<a href="javascript:toggleDetails('<?php echo $extension;?>');" title ="<?php echo gettext('toggle description details'); ?>" ><img src="images/info_toggle.png" alt="" /></a>
+		</td>
 		<td>
-		<?php
-		echo $plugin_description;
-		if (!empty($plugin_URL)) {
-			?>
-			<br />
+		<span id="<?php echo $extension; ?>_show" class="pluginextrashow">
 			<?php
-			if ($parserr & 8) {
-				echo $plugin_URL;
-			} else {
+			echo truncate_string(strip_tags($plugin_description), 70);
+			?>
+		</span>
+		<span id="<?php echo $extension; ?>_hide" style="display: none;" class="pluginextrahide">
+			<?php
+			echo $plugin_description;
+			if (!empty($plugin_URL)) {
 				?>
-				<a href="<?php echo $plugin_URL; ?>"><strong><?php echo gettext("Usage information"); ?></strong></a>
+				<br />
+				<?php
+				if ($parserr & 8) {
+					echo $plugin_URL;
+				} else {
+					?>
+					<a href="<?php echo $plugin_URL; ?>"><strong><?php echo gettext("Usage information"); ?></strong></a>
+					<?php
+				}
+			}
+			if (!empty($plugin_author)) {
+				?>
+				<br />
+				<?php
+				if (!($parserr & 2)) {
+					?>
+					<strong><?php echo gettext("Author"); ?></strong>
+					<?php
+				}
+				echo $plugin_author;
+			}
+			if ($optionlink) {
+				?>
+				<br />
+				<a href="<?php echo $optionlink; ?>" ><?php echo gettext("Change plugin options"); ?></a>
 				<?php
 			}
-		}
-		if (!empty($plugin_author)) {
 			?>
-			<br />
-			<?php
-			if (!($parserr & 2)) {
-				?>
-				<strong><?php echo gettext("Author"); ?></strong>
-				<?php
-			}
-			echo $plugin_author;
-		}
-		if ($optionlink) {
-			?>
-			<br />
-			<a href="<?php echo $optionlink; ?>" ><?php echo gettext("Change plugin options"); ?></a>
-			<?php
-		}
-		?>
+		</span>
 		</td>
 	</tr>
 	<?php
