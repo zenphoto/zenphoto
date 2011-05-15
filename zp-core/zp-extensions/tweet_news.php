@@ -242,16 +242,15 @@ function tweetObject($obj) {
 	switch ($type = $obj->table) {
 		case 'pages':
 		case 'news':
-			$text = trim(strip_tags($obj->getContent()));
+			$text = trim(html_entity_decode(strip_tags($obj->getContent()),ENT_QUOTES));
 			if (strlen($text) > 140) {
-				require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
-				$title = trim(strip_tags($obj->getTitle())).':';
+				$title = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES));
 				$c = 140 - strlen($link);
 				if ($_zp_UTF8->strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
-					$text = trim(strip_tags(shortenContent($title, $c - 4, '... '))).$link;	//	allow for ellipsis
+					$text = truncate_string($title, $c - 4, '... ').$link;	//	allow for ellipsis
 				} else {
 					$c = $c - $_zp_UTF8->strlen($title) - 5;
-					$text = $title.' '.trim(strip_tags(shortenContent($text, $c, '... '))).$link;
+					$text = $title.':'.truncate_string($text, $c, '... ').$link;
 				}
 			}
 			$error = sendTweet($text);
@@ -263,14 +262,14 @@ function tweetObject($obj) {
 		case 'albums':
 		case 'images':
 			if ($type=='images') {
-				$text = sprintf(gettext('New image: %1$s in %2$s '),$item = trim(strip_tags($obj->getTitle())),trim(strip_tags($obj->album->getTitle())));
+				$text = sprintf(gettext('New image:[%2$s]%1$s '),$item = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES)),
+																														trim(html_entity_decode(strip_tags($obj->album->name),ENT_QUOTES)));
 			} else {
-				$text = sprintf(gettext('New album: %s '),$item = trim(strip_tags($obj->getTitle())));
+				$text = sprintf(gettext('New album:%s '),$item = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES)));
 			}
 			if ($_zp_UTF8->strlen($text.$link) > 140) {
-				require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 				$c = 140 - strlen($link);
-				$text = trim(strip_tags(shortenContent($text, $c-4, '... '))).$link;	//	allow for ellipsis
+				$text = truncate_string($text, $c-4, '... ').$link;	//	allow for ellipsis
 			} else {
 				$text = $text.$link;
 			}
@@ -280,11 +279,10 @@ function tweetObject($obj) {
 			}
 			break;
 		case 'comments':
-			$text = trim(strip_tags($obj->getComment()));
+			$text = trim(html_entity_decode(strip_tags($obj->getComment()),ENT_QUOTES));
 			if ($_zp_UTF8->strlen($text.$link) > 140) {
-				require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 				$c = 140 - strlen($link);
-				$text = trim(strip_tags(shortenContent($text, $c-4, '... '))).$link;	//	allow for ellipsis
+				$text = truncate_string($text, $c-4, '... ').$link;	//	allow for ellipsis
 			} else {
 				$text = $text.$link;
 			}
