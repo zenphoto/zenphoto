@@ -1709,8 +1709,8 @@ if (file_exists(CONFIGFILE)) {
 	if (isset($create[$_zp_conf_vars['mysql_prefix'].'news_categories'])) {
 		$db_schema[] = "CREATE TABLE IF NOT EXISTS ".prefix('news_categories')." (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`titlelink` text,
-		`title` varchar(255) NOT NULL default '',
+		`title` text,
+		`titlelink` varchar(255) NOT NULL default '',
 		`permalink` int(1) UNSIGNED NOT NULL default 0,
 		`hitcounter` int(11) unsigned default 0,
 		`user` varchar(64) DEFAULT NULL,
@@ -2066,6 +2066,10 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' CHANGE `owner` `owner` varchar(64) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_options.' ADD COLUMN `creator` varchar(255) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `updateddate` datetime DEFAULT NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' DROP INDEX `title`';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' CHANGE `titlelink` `titlelink` VARCHAR(255) DEFAULT NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' CHANGE `title` `title` TEXT';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' ADD UNIQUE (`titlelink`)';
 
 
 	// do this last incase there are any field changes of like names!

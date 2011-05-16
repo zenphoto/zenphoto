@@ -608,7 +608,7 @@ class Zenpage {
 	function getAllCategories() {
 		global $_zp_zenpage_all_categories;
 		if(is_null($_zp_zenpage_all_categories) OR isset($_GET['delete']) OR isset($_GET['update']) OR isset($_GET['save'])) {
-			$_zp_zenpage_all_categories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order", false, 'title');
+			$_zp_zenpage_all_categories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
 		}
 		return $_zp_zenpage_all_categories;
 	}
