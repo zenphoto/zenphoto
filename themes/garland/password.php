@@ -25,7 +25,6 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		<!-- header -->
 		<div class="sidebar">
      	<div id="leftsidebar">
-      	<?php include("sidebar.php"); ?>
       </div>
      </div>
 		<div id="center">
