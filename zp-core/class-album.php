@@ -379,7 +379,7 @@ class Album extends MediaObject {
 	 * @param int $firstPageCount count of images that go on the album/image transition page
 	 * @param string $sorttype optional sort type
 	 * @param string $sortdirection optional sort direction
-	 * @parem bool $care set to false if the order of the images does not matter
+	 * @param bool $care set to false if the order of the images does not matter
 	 * @param bool $mine set true/false to override ownership
 	 *
 	 * @return array
@@ -430,7 +430,7 @@ class Album extends MediaObject {
 	 * @param array $images The array of filenames to be sorted.
 	 * @param  string $sorttype optional sort type
 	 * @param  string $sortdirection optional sort direction
-	 * @parem bool $mine set to true/false to override ownership clause
+	 * @param bool $mine set to true/false to override ownership clause
 	 * @return array
 	 */
 	function sortImageArray($images, $sorttype, $sortdirection, $mine= NULL) {

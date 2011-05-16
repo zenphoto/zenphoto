@@ -1050,7 +1050,7 @@ function printCurrentNewsArchive($before='',$mode='formatted',$format='%B %Y') {
  * 												"list-top" only top level pages,
  * 												"omit-top" only sub level pages
  * 												"list-sub" lists only the current pages direct offspring
- * @parem int $limit truncation of display text
+ * @param int $limit truncation of display text
  * @return string
  */
 function printAllNewsCategories($newsindex='All news', $counter=TRUE, $css_id='',$css_class_topactive='',$startlist=true,$css_class='',$css_class_active='',$option='list',$showsubs=false,$limit=NULL) {
@@ -2613,7 +2613,7 @@ function printSubPagesExcerpts($excerptlength=NULL, $readmore=NULL, $shortenindi
  * @param string $indexname insert the name (default "Gallery Index") how you want to call the link to the gallery index, insert "" (default) if you don't use it, it is not printed then.
  * @param int $showsubs Set to depth of sublevels that should be shown always. 0 by default. To show all, set to a true! Only valid if option=="list".
  * @param bool $startlist set to true to output the UL tab
- * @parem int $limit truncation of display text
+ * @@param int $limit truncation of display text
  * @return string
  */
 function printPageMenu($option='list',$css_id=NULL,$css_class_topactive=NULL,$css_class=NULL,$css_class_active=NULL,$indexname=NULL,$showsubs=0,$startlist=true,$limit=NULL) {

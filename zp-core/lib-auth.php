@@ -1,8 +1,6 @@
 <?php
 /**
-* functions used in password hashing for zenphoto
- *
- * @package functions
+ * Zenphoto USER credentials handlers
  *
  * An alternate authorization script may be provided to override this script. To do so, make a script that
  * implements the classes declared below. Place the new script inthe <ZENFOLDER>/plugins/alt/ folder. Zenphoto
@@ -40,7 +38,7 @@
  * 		ADMIN_RIGHTS to insure that there is some user capable of adding users or
  * 		modifying user rights.
  *
- *
+ * @package classes
  */
 // force UTF-8 Ø
 require_once(dirname(__FILE__).'/classes.php');

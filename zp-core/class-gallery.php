@@ -285,7 +285,7 @@ class Gallery {
 	/**
 	 * Returns the number of images from a database SELECT count(*)
 	 * Ideally one should call garbageCollect() before to make sure the database is current.
-	 * @parm bool $publishedOnly set to true to count only published images.
+	 * @param bool $publishedOnly set to true to count only published images.
 	 * @return int
 	 */
 	function getNumImages($publishedOnly=false) {

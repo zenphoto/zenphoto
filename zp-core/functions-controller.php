@@ -1,6 +1,5 @@
 <?php
 /**
- * functions-controller.php **************************************************
  * Common functions used in the controller for getting/setting current classes,
  * redirecting URLs, and working with the context.
  * @package core

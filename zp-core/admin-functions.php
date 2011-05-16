@@ -66,8 +66,8 @@ function datepickerJS() {
  * Print the header for all admin pages. Starts at <DOCTYPE> but does not include the </head> tag,
  * in case there is a need to add something further.
  *
- * @params string $tab the album page
- * @params string $subtab the sub-tab if any
+ * @param string $tab the album page
+ * @param string $subtab the sub-tab if any
  */
 function printAdminHeader($tab,$subtab=NULL) {
 	global $_zp_admin_tab, $_zp_admin_subtab, $gallery, $zenphoto_tabs,$_zp_RTL_css,$_zp_last_modified;
@@ -2259,8 +2259,8 @@ function processAlbumEdit($index, $album, &$redirectto) {
  * locates the version number of the download and compares it to the version
  * we are running.
  *
- *@rerturn string If there is a more current version on the WEB, returns its version number otherwise returns FALSE
- *@since 1.1.3
+ * @return string If there is a more current version on the WEB, returns its version number otherwise returns FALSE
+ * @since 1.1.3
  */
 function checkForUpdate() {
 	global $_zp_WEB_Version;

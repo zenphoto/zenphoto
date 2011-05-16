@@ -308,7 +308,7 @@ class Auth_OpenID_AX_FetchRequest extends Auth_OpenID_AX_Message {
     /**
      * Get the serialized form of this attribute fetch request.
      *
-     * @returns Auth_OpenID_AX_FetchRequest The fetch request message parameters
+     * @return Auth_OpenID_AX_FetchRequest The fetch request message parameters
      */
     function getExtensionArgs()
     {

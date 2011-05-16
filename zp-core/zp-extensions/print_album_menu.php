@@ -94,7 +94,7 @@ class print_album_menu {
  * @param int $showsubs Set to depth of sublevels that should be shown always. 0 by default. To show all, set to a true! Only valid if option=="list".
  * @param bool $firstimagelink If set to TRUE and if the album has images the link will point to page of the first image instead the album thumbnail page
  * @param bool $keeptopactive If set to TRUE the toplevel album entry will stay marked as active if within its subalbums ("list" only)
- * @parem int $limit truncation of display text
+ * @param int $limit truncation of display text
  * @since 1.2
  */
 
@@ -128,7 +128,7 @@ function printAlbumMenu($option,$showcount=NULL,$css_id='',$css_class_topactive=
  * @param bool $firstimagelink If set to TRUE and if the album has images the link will point to page of the first image instead the album thumbnail page
  * @param bool $keeptopactive If set to TRUE the toplevel album entry will stay marked as active if within its subalbums ("list" only)
  * @param bool $startlist set to true to output the UL tab (false automatically if you use 'omit-top' or 'list-sub')
- * @parem int $limit truncation of display text
+ * @param int $limit truncation of display text
  * @return html list of the albums
  */
 
@@ -187,7 +187,7 @@ function printAlbumMenuList($option,$showcount=NULL,$css_id='',$css_class_topact
  * @param string $css_class_active see printAlbumMenuList
  * @param bool $firstimagelink If set to TRUE and if the album has images the link will point to page of the first image instead the album thumbnail page
  * @param bool $keeptopactive If set to TRUE the toplevel album entry will stay marked as active if within its subalbums ("list" only)
- * @parem int $limit truncation of display text
+ * @param int $limit truncation of display text
  */
 function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $showsubs, $css_class, $css_class_topactive, $css_class_active,$firstimagelink,$keeptopactive,$limit=NULL) {
 	global $_zp_gallery,$_zp_current_album;

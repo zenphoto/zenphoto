@@ -34,6 +34,7 @@ if (getOption('register_user_address_info')) {
 }
 
 class comment_form {
+
 	/**
 	 * class instantiation function
 	 *
