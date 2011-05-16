@@ -2932,7 +2932,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			$cv = $extra = array();
 			$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
 			$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('edit user owned images').'" />';
-			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('uploade to album').'"/>';
+			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
 			$ledgend = $icon_edit_album.' '.gettext('edit album').' '.
 									$icon_upload.' '.gettext('upload').' '.
 									$icon_view_image.' '.gettext('view unpublished images');

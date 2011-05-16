@@ -335,7 +335,7 @@ if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['
 
 
 } // if db data set
-printAdminHeader(gettext('utilities'),gettext('wordpress'));
+printAdminHeader(gettext('utilities'),gettext('Wordpress'));
 if (!empty($metaURL) && $postcount < $posttotalcount) {
 	?>
 	<meta http-equiv="refresh" content="1; url=<?php  echo $metaURL; ?>" />

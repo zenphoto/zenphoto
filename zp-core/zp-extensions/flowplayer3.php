@@ -117,12 +117,12 @@ class flowplayer3_options {
 		gettext('Controls hover button color') => array('key' => 'flow_player3_controlsbuttonovercolor', 'type' => OPTION_TYPE_COLOR_PICKER,
 										'desc' => gettext("Button color when the mouse is positioned over them.")),
 		gettext('Splash image') => array('key' => 'flow_player3_splashimage', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("Enable if you want to show the videothumb as an splash image before the actual video starts (don't set the the player to autoPlay then). If you want to use this for mp3s as well set also the mp3 cover image option.").gettext("The image is always scaled to fit (unless it is smaller than the width and height) so best make sure it matches at least the aspect ration and size of your player width and height.")),
+										'desc' => gettext("Enable if you want to show the videothumb as an splash image before the actual video starts (don't set the player to autoPlay then). If you want to use this for mp3s as well set also the mp3 cover image option.").gettext("The image is always scaled to fit (unless it is smaller than the width and height) so best make sure it matches at least the aspect ratio and size of your player width and height.")),
 		gettext('Video scale') => array('key' => 'flow_player3_scaling', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext('fit')=>"fit",gettext('half')=>"half", gettext('orig')=>"orig", gettext('scale')=>"scale"),
 										'desc' => gettext("Setting which defines how video is scaled on the video screen. Available options are:<br /><em>fit</em>: Fit to window by preserving the aspect ratio encoded in the file's metadata.<br /><em>half</em>: Half-size (preserves aspect ratio)<br /><em>orig</em>: Use the dimensions encoded in the file. If the video is too big for the available space, the video is scaled using the 'fit' option.<br /><em>scale</em>: Scale the video to fill all available space. This is the default setting.")),
 		gettext('MP3 cover image') => array('key' => 'flow_player3_mp3coverimage', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If unchecked only the controlbar is shown for mp3s but if checked the video thumb is displayed as a cover image on the player screen.").gettext("The image is always scaled to fit (unless it is smaller than the width and height) so best make sure it matches at least the aspect ration and size of your player width and height."))
+										'desc' => gettext("If unchecked only the controlbar is shown for mp3s but if checked the video thumb is displayed as a cover image on the player screen.").gettext("The image is always scaled to fit (unless it is smaller than the width and height) so best make sure it matches at least the aspect ratio and size of your player width and height."))
 
 		);
 	}

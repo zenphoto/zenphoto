@@ -90,7 +90,7 @@ class googlemapOptions {
 																	'desc' => gettext('The default height of the map.')),
 									gettext('Initial Zoom') => array('key' => 'gmap_zoom', 'type' => OPTION_TYPE_TEXTBOX,
 																	'order'=>7,
-																	'desc' => gettext('The inital zoom of the map.')),
+																	'desc' => gettext('The initial zoom of the map.')),
 									gettext('Allowed maps') => array('key' => 'gmap_allowed_maps', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
 																	'order'=>1,
 																	'checkboxes' => array(gettext('Map') => 'gmap_map', gettext('Satellite') => 'gmap_satillite' ,gettext('Hybrid') => 'gmap_hybrid' ,gettext('Terrain') => 'gmap_terrain'),

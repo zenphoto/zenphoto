@@ -2694,7 +2694,7 @@ function getSizedImageURL($size) {
  * will be incorporated into the final image.
 
  * $cropw and $croph "sizes" are typically proportional. That is you can
- * set them to values that reflect the ration of width to height that you
+ * set them to values that reflect the ratio of width to height that you
  * want for the final image. Typically you would set them to the fincal
  * height and width. These values will always be adjusted so that they are
  * not larger than the original image dimensions.
@@ -2753,7 +2753,7 @@ function getCustomImageURL($size, $width=NULL, $height=NULL, $cropw=NULL, $croph
  *
  * The $crop* parameters determine the portion of the original image that will be incorporated
  * into the final image. The w and h "sizes" are typically proportional. That is you can set them to
- * values that reflect the ration of width to height that you want for the final image. Typically
+ * values that reflect the ratio of width to height that you want for the final image. Typically
  * you would set them to the fincal height and width.
  *
  * @param string $alt Alt text for the url

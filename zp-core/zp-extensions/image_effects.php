@@ -25,7 +25,7 @@
  * The following tokens are available to represent paths:
  *	%WEBPATH% to represent the WEB path to the Zenphoto installation.
  *	%SERVERPATH% to represent the server path to the Zenphoto installation.
- *	%PLUGIN_FOLDER% to represent the the Zenphoto "extensions" folder.
+ *	%PLUGIN_FOLDER% to represent the Zenphoto "extensions" folder.
  *	%USER_PLUGIN_FOLDER% to represent the root "plugin" folder.
  *	%ZENFOLDER% to represent the zp-core folder.
  *

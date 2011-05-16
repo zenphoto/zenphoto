@@ -21,7 +21,7 @@ function db_connect($errorstop=true) {
 	$db = $_zp_conf_vars['mysql_database'];
 	if (!function_exists('mysql_connect')) {
 		if ($errorstop) {
-			zp_error(gettext('MySQL Error: The PHP MySQL extensions have not been installed corectly. Please ask your administrator to add MySQL support to your PHP installation.'));
+			zp_error(gettext('MySQL Error: The PHP MySQL extensions have not been installed correctly. Please ask your administrator to add MySQL support to your PHP installation.'));
 		}
 		return false;
 	}

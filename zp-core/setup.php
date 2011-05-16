@@ -843,7 +843,7 @@ if ($connection) {
 					checkMark(-1, '', sprintf(gettext('<code>SQL mode</code> [query failed]'), $oldmode), $msg);
 				} else {
 					if ($oldmode != $mode) {
-						checkMark(-1, sprintf(gettext('<code>SQL mode</code> [<em>%s</em> overridden]'), $oldmode), '', gettext('Consider setting it <em>empty</em> in your Dataabase configuration.'));
+						checkMark(-1, sprintf(gettext('<code>SQL mode</code> [<em>%s</em> overridden]'), $oldmode), '', gettext('Consider setting it <em>empty</em> in your Database configuration.'));
 					} else {
 						if (!empty($mode)) {
 							$err = -1;
