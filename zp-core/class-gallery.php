@@ -818,10 +818,10 @@ class Gallery {
 	 * The URL of the home (not Zenphoto gallery) WEBsite
 	 */
 	function getWebsiteURL() {
-		return $this->get('websiteURL');
+		return $this->get('website_url');
 	}
 	function setWebsiteURL($value) {
-		$this->set('websiteURL', $value);
+		$this->set('website_url', $value);
 	}
 
 	/**

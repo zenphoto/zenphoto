@@ -1028,7 +1028,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td><?php echo gettext("Website url:"); ?></td>
 					<td><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="website_url"
-						value="<?php echo html_encode(getOption('website_url'));?>" /></td>
+						value="<?php echo html_encode($gallery->getWebsiteURL());?>" /></td>
 					<td><?php echo gettext("This is used to link back to your main site, but your theme must support it."); ?></td>
 				</tr>
 				<tr>
