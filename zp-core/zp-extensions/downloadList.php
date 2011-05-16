@@ -53,13 +53,13 @@ class downloadListOptions {
 
 	function getOptionsSupported() {
 		return array(gettext('Download directory') => array('key' => 'downloadList_directory', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("This download folder relative to your Zenphoto installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
+										'desc' => gettext("This download folder can be relative to your Zenphoto installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
 								gettext('Show filesize of download items') => array('key' => 'downloadList_showfilesize', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => ''),
 							  gettext('Show download counter of download items') => array('key' => 'downloadList_showdownloadcounter', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => ''),
 							  gettext('Files to exclude from the download list') => array('key' => 'downloadList_excludesuffixes', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('A list of file suffixes to exclude. Separate with comma and without trailing dot. (e.g "jpg").'))
+										'desc' => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").'))
 		);
 	}
 

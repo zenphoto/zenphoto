@@ -143,7 +143,7 @@ class sitemap {
 										'desc' => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html')),
 	gettext('Sitemap processing chunk') => array('key' => 'sitemap_processing_chunk', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 11,
-										'desc' => gettext('Then number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.'))
+										'desc' => gettext('The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.'))
 	);
 	}
 
