@@ -523,13 +523,14 @@ setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
 	} else {
 		setOptionDefault('gallery_page_unprotected_register', 1);
 		setOptionDefault('gallery_page_unprotected_contact', 1);
-		$optionlist = getOptionList();
-		foreach ($optionlist as $key=>$option) {
-			if ($option && strpos($key, 'gallery_page_unprotected_') === 0) {
-				$unprotected[] = str_replace('gallery_page_unprotected_', '', $key);
-			}
+	}
+	$optionlist = getOptionList();
+	foreach ($optionlist as $key=>$option) {
+		if ($option && strpos($key, 'gallery_page_unprotected_') === 0) {
+			$unprotected[] = str_replace('gallery_page_unprotected_', '', $key);
 		}
 	}
+
 
 	$data['unprotected_pages'] = serialize($unprotected);
 	setOptionDefault('gallery_data', serialize($data));
@@ -558,15 +559,17 @@ on the Zenphoto 1.5 release.
 
 * these may have been used in third party themes. Themes should cease using these options and instead use the
 appropriate gallery methods.
-
-
+*/
+	if (!defined('RELEASE')) {
 		foreach ($data as $key=>$option) {
 			purgeOption($key);
 		}
-		foreach ($unprotected as $page) {
-			purgeOption('gallery_page_unprotected_'.$page);
+		foreach ($optionlist as $key=>$option) {
+			if (strpos($key, 'gallery_page_unprotected_') === 0) {
+				purgeOption($key);
+			}
 		}
-*/
+	}
 
 	//	cleanup options for missing elements
 	$sql = 'SELECT DISTINCT `creator` FROM '.prefix('options').' WHERE `creator` IS NOT NULL';

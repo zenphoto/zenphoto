@@ -894,16 +894,13 @@ class Gallery {
 		return (in_array($page, $this->unprotected_pages));
 	}
 	function setUnprotectedPage($page, $on) {
-		//TODO: remove the option set/purge on v1.5
 		if ($on) {
-			setOption('gallery_page_unprotected_'.$page, 1);
 			array_unshift($this->unprotected_pages, $page);
 			$this->unprotected_pages = array_unique($this->unprotected_pages);
 		} else {
 			$key = array_search($page, $this->unprotected_pages);
 			if ($key !== false) {
 				unset($this->unprotected_pages[$key]);
-				purgeOption('gallery_page_unprotected_'.$page);
 			}
 		}
 		$this->set('unprotected_pages', serialize($this->unprotected_pages));
@@ -966,8 +963,10 @@ class Gallery {
 	function save() {
 		setOption('gallery_data', serialize($this->data));
 		//TODO: remove on Zenphoto 1.5
-		foreach ($this->data as $option=>$value) {	//	for compatibility
-			setOption($option, $value);
+		if (defined('RELEASE')) {
+			foreach ($this->data as $option=>$value) {	//	for compatibility
+				setOption($option, $value);
+			}
 		}
 	}
 
