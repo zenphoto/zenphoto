@@ -210,7 +210,7 @@ function printRating($vote=3, $object=NULL, $text=true) {
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		var recast = <?php printf('%u',$recast && $oldrating); ?>;
+		var recast<?php echo $unique; ?> = <?php printf('%u',$recast && $oldrating); ?>;
 		$(function() {
 			$('#star_rating<?php echo $unique; ?> :radio.star').rating('select','<?php echo $starselector; ?>');
 			<?php
@@ -221,6 +221,34 @@ function printRating($vote=3, $object=NULL, $text=true) {
 			}
 		?>
 		});
+		function cast<?php echo $unique; ?>() {
+			var dataString = $('#star_rating<?php echo $unique; ?>').serialize();
+			if (dataString || recast<?php echo $unique; ?>) {
+				<?php
+				if ($recast) {
+					?>
+					if (!dataString) {
+						dataString = 'star_rating-value<?php echo $unique; ?>=0';
+					}
+					<?php
+				} else {
+					?>
+					$('#star_rating<?php echo $unique; ?> :radio.star').rating('disable');
+					$('#submit_button<?php echo $unique; ?>').hide();
+					<?php
+				}
+				?>
+				$.ajax({
+					type: 'POST',
+					url: '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.substr(basename(__FILE__),0,-4); ?>/update.php',
+					data: dataString+'&id=<?php echo $id; ?>&table=<?php echo $table; ?>'
+				});
+				recast<?php echo $unique; ?> = <?php printf('%u',$recast); ?>;
+				$('#vote<?php echo $unique; ?>').html('<?php echo gettext('Vote Submitted'); ?>');
+			} else {
+				$('#vote<?php echo $unique; ?>').html('<?php echo gettext('nothing to submit'); ?>');
+			}
+		}
 		// ]]> -->
 	</script>
 		<form name="star_rating<?php echo $unique; ?>" id="star_rating<?php echo $unique; ?>" action="submit">
@@ -242,36 +270,7 @@ function printRating($vote=3, $object=NULL, $text=true) {
 			if (!$disable) {
 				?>
 				<span id="submit_button<?php echo $unique; ?>">
-					<input type="button" value="<?php echo gettext('Submit &raquo;'); ?>" onclick="javascript:
-						// <!-- <![CDATA[
-						var dataString = $(this.form).serialize();
-						if (dataString || recast) {
-							<?php
-							if ($recast) {
-								?>
-								if (!dataString) {
-									dataString = 'star_rating-value<?php echo $unique; ?>=0';
-								}
-								<?php
-							} else {
-								?>
-								$('#star_rating<?php echo $unique; ?> :radio.star').rating('disable');
-								$('#submit_button<?php echo $unique; ?>').hide();
-								<?php
-							}
-							?>
-							$.ajax({
-								type: 'POST',
-								url: '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.substr(basename(__FILE__),0,-4); ?>/update.php',
-								data: dataString+'&id=<?php echo $id; ?>&table=<?php echo $table; ?>'
-							});
-							recast = <?php printf('%u',$recast); ?>;
-							$('#vote<?php echo $unique; ?>').html('<?php echo gettext('Vote Submitted'); ?>');
-						} else {
-							$('#vote<?php echo $unique; ?>').html('<?php echo gettext('nothing to submit'); ?>');
-						}
-					// ]]> -->
-					"/>
+					<input type="button" value="<?php echo gettext('Submit &raquo;'); ?>" onclick="javascript:cast<?php echo $unique; ?>();" />
 				</span>
 				<?php
 			}
@@ -347,7 +346,6 @@ function rating_purgebutton($buttons) {
 								'hidden'=> '<input type="hidden" name="action" value="clear_rating" />',
 								'rights'=> ADMIN_RIGHTS,
 								'XSRFTag' => 'clear_rating'
-
 								);
 	return $buttons;
 }
