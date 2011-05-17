@@ -49,7 +49,9 @@ $conf['UTF-8'] = true;
 //    'std'         --	the folder must be a simple name. It resides in the root 
 //                      of the zenphoto installation.
 //    'in_webpath'  --	the folder must be the full path of the album folder from 
-//                      the WEB root of the zenphoto installation.
+//                      the WEB root of the zenphoto installation. The WEB root of
+//											your installation is the folder where your browser looks
+//											if the link is just your domain (no folders).
 //    'external'    --	the folder must be a full server path to the album folder.
 //                      Images within an external folder are not visible to web
 //                      browsers, so certain features such as flash players cannot
