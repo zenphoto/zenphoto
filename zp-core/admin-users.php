@@ -783,7 +783,7 @@ if ($_zp_authority->getVersion() < $_zp_authority->supports_version) {
 	?>
 	<br clear="all" />
 	<p>
-	<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You wish may wish to migrate the user rights to gain the new functionality this version provides.'),$_zp_authority->getVersion(),$_zp_authority->supports_version); ?>
+	<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'),$_zp_authority->getVersion(),$_zp_authority->supports_version); ?>
 	</p>
 	<p class="buttons">
 		<a onclick="launchScript('',['action=migrate_rights','XSRFToken=<?php echo getXSRFToken('migrate_rights')?>']);"><?php echo gettext('Migrate rights');?></a>
