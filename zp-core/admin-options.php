@@ -1822,7 +1822,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 							$watermarks = getWatermarks();
 							generateListFromArray(array($current), $watermarks, false, false);
 							?>
-							</select>
+							</select><?php if ($plugin != 'Image') echo ' ¹'; ?>
 						</td>
 					</tr>
 					<?php
@@ -1851,6 +1851,13 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<p><?php echo gettext("It is offset from there (moved toward the lower right corner) by the <em>offset</em> percentages of the height and width difference between the image and the watermark."); ?></p>
 				<p><?php echo gettext("If <em>allow upscale</em> is not checked the watermark will not be made larger than the original watermark image."); ?></p>
 				<p><?php printf(gettext('Images are in png-24 format and are located in the <code>/%s/watermarks/</code> folder.'), USER_PLUGIN_FOLDER); ?></p>
+				<?php
+				if (!empty($imageplugins)) {
+					?>
+					<p class="notebox"><?php echo '¹ '.gettext('If a watermark image is selected for these <em>images</em> it will be used in place of the image thumbnail watermark.'); ?></p>
+					<?php
+				}
+				?>
 			</td>
 
 		</tr>

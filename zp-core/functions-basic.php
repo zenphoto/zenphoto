@@ -198,7 +198,7 @@ define('IMAGE_QUALITY',getOption('image_quality'));
 define('THUMB_GRAY',getOption('thumb_gray'));
 define('IMAGE_WATERMARK',getOption('fullimage_watermark'));
 define('FULLIMAGE_WATERMARK',getOption('fullsizeimage_watermark'));
-define('THUMB_WATERMARK',getOption('THUMB_WATERMARK'));
+define('THUMB_WATERMARK',getOption('Image_watermark'));
 
 define('DATE_FORMAT',getOption('date_format'));
 

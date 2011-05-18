@@ -150,6 +150,9 @@ class TextObject extends _Image {
 	function getThumb($type='image') {
 		list($custom, $sw, $sh, $cw, $ch, $cx, $cy) = $this->getThumbCropping($type);
 		$wmt = $this->watermark;
+		if (empty($wmt)) {
+			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
+		}
 		if (is_null($this->objectsThumb)) {
 			$cx = $cy = NULL;
 			$filename = makeSpecialImageName($this->getThumbImageFile());
@@ -208,6 +211,9 @@ class TextObject extends _Image {
 	function getCustomImage($size, $width, $height, $cropw, $croph, $cropx, $cropy, $thumbStandin=false, $effects=NULL) {
 		if ($thumbStandin) {
 			$wmt = $this->watermark;
+			if (empty($wmt)) {
+				$wmt = getWatermarkParam($this, WATERMARK_THUMB);
+			}
 		} else {
 			$wmt = NULL;
 		}
