@@ -377,7 +377,7 @@ class SearchEngine
 				case "'":
 				case '"':
 				case '`':
-					$j = endQuote($searchstring, $c, $i+1);
+					$j = strpos(str_replace('\\'.$c, '__', $searchstring), $c, $i+1);
 					if ($j !== false) {
 						$target .= stripcslashes(substr($searchstring, $i+1, $j-$i-1));
 						$i = $j;
@@ -1380,4 +1380,17 @@ class SearchEngine
 	}
 } // search class end
 
+/**
+ *
+ * encloses search word in quotes if needed
+ * @param string $word
+ * @return string
+ */
+function search_quote($word) {
+	if (is_numeric($word) || preg_match("/[ &|!'\"`,()]/",$word)) {
+		$word = '"'.addslashes($word).'"';
+	}
+	return $word;
+
+}
 ?>

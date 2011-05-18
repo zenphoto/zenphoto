@@ -3525,17 +3525,7 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ',
 			$ct = count($singletag);
 			$x = 0;
 			foreach ($singletag as $atag) {
-				if (preg_match("/[ &|!'\"`,()]/",$atag)) {
-					if (strpos($atag, '`')===false) {
-						$latag = '`'.$atag.'`';
-					} else if (strpos($atag,'"')===false) {
-						$latag = '"'.$atag.'"';
-					} else {
-						$latag = "'".$atag."'";
-					}
-				} else {
-					$latag = $atag;
-				}
+				$latag = search_quote($atag);
 				if (++$x == $ct) { $separator = ""; }
 				if ($option === "links") {
 					$links1 = "<a href=\"".html_encode(getSearchURL($latag, '', 'tags', 0, array('albums'=>$albumlist)))."\" title=\"".html_encode($atag)."\" rel=\"nofollow\">";
@@ -3608,18 +3598,10 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 				} else {
 					$albumlist = NULL;
 				}
-				if (preg_match("/[ &|!'\"`,()]/",$key)) {
-					if (strpos($key,'"')===false) {
-						$quote = '"';
-					} else {
-						$quote = "'";
-					}
-				} else {
-					$quote = '';
-				}
+				$key = search_quote($key);
 				$list .= "\t<li><a href=\"".
-					html_encode(getSearchURL($quote.$key.$quote, '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
-					$key.$counter."</a></li>\n";
+									html_encode(getSearchURL($key, '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
+									$key.$counter."</a></li>\n";
 			} else {
 				$list .= "\t<li$size>".$key.$counter."</li>\n";
 			}
@@ -4002,9 +3984,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 	if (!empty($words)) {
 		if (is_array($words)) {
 			foreach ($words as $key=>$word) {
-				if (is_numeric($word) || preg_match("/[ &|!'\"`,()]/",$word)) {
-					$words[$key] = '"'.addslashes($word).'"';
-				}
+				$words[$key] = search_quote($word);
 			}
 			$words = implode(',', $words);
 		}
