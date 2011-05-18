@@ -3967,8 +3967,8 @@ function isArchive() {
 /**
  * Returns a search URL
  *
- * @param string $words the search words target
- * @param string $dates the dates that limit the search
+ * @param mixed $words the search words target
+ * @param mixed $dates the dates that limit the search
  * @param mixed $fields the fields on which to search
  * @param int $page the page number for the URL
  * @param array $object_list the list of objects to search
@@ -4000,21 +4000,32 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 	}
 
 	if (!empty($words)) {
-		if($mr) {
+		if (is_array($words)) {
+			foreach ($words as $key=>$word) {
+				if (is_numeric($word) || preg_match("/[ &|!'\"`,()]/",$word)) {
+					$words[$key] = '"'.addslashes($word).'"';
+				}
+			}
+			$words = implode(',', $words);
+		}
+		if(MOD_REWRITE) {
 			$url .= urlencode($words);
 		} else {
 			$url .= "&words=".urlencode($words);
 		}
 	}
 	if (!empty($dates)) {
-		if($mr) {
+		if (is_array($dates)) {
+			$dates = implode(',', $dates);
+		}
+		if(MOD_REWRITE) {
 			$url .= "archive/$dates";
 		} else {
 			$url .= "&date=$dates";
 		}
 	}
 	if (!empty($urls)) {
-		if ($mr) {
+		if (MOD_REWRITE) {
 			$url .= '?'.$urls;
 		} else {
 			$url .= '&'.$urls;
