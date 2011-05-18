@@ -3969,7 +3969,7 @@ function isArchive() {
  *
  * @param string $words the search words target
  * @param string $dates the dates that limit the search
- * @param int $fields the fields on which to search
+ * @param mixed $fields the fields on which to search
  * @param int $page the page number for the URL
  * @param array $object_list the list of objects to search
  * @return string

@@ -1,5 +1,5 @@
 /*
- ### jQuery Star Rating Plugin v3.12 - 2009-04-16 ###
+ ### jQuery Star Rating Plugin v3.13 - 2009-03-26 ###
  * Home: http://www.fyneworks.com/jquery/star-rating/
  * Code: http://code.google.com/p/jquery-star-rating-plugin/
  *
@@ -128,8 +128,7 @@
 			
 			// Prepare division control
 			if(typeof control.split=='number' && control.split>0){
-				var stw = control.starWidth;
-				if( $.fn.width) stw = star.width() || control.starWidth;
+				var stw = ($.fn.width ? star.width() : 0) || control.starWidth;
 				var spi = (control.count % control.split), spw = Math.floor(stw/control.split);
 				star
 				// restrict star's width and hide overflow (already in CSS)
@@ -256,7 +255,21 @@
 			this.siblings()[control.readOnly?'addClass':'removeClass']('star-rating-readonly');
 		},// $.fn.rating.draw
 		
-		select: function(value){ // select a value
+		
+		
+		
+		
+		select: function(value,wantCallBack){ // select a value
+					
+					// ***** MODIFICATION *****
+					// Thanks to faivre.thomas - http://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=27
+					//
+					// ***** LIST OF MODIFICATION *****
+					// ***** added Parameter wantCallBack : false if you don't want a callback. true or undefined if you want postback to be performed at the end of this method'
+					// ***** recursive calls to this method were like : ... .rating('select') it's now like .rating('select',undefined,wantCallBack); (parameters are set.)
+					// ***** line which is calling callback
+					// ***** /LIST OF MODIFICATION *****
+			
 			var control = this.data('rating'); if(!control) return this;
 			// do not execute when control is in read-only mode
 			if(control.readOnly) return;
@@ -266,19 +279,19 @@
 			if(typeof value!='undefined'){
 			 // select by index (0 based)
 				if(typeof value=='number')
- 			 return $(control.stars[value]).rating('select');
+ 			 return $(control.stars[value]).rating('select',undefined,wantCallBack);
 				// select by literal value (must be passed as a string
 				if(typeof value=='string')
-					//return 
+					//return
 					$.each(control.stars, function(){
-						if($(this).data('rating.input').val()==value) $(this).rating('select');
+						if($(this).data('rating.input').val()==value) $(this).rating('select',undefined,wantCallBack);
 					});
 			}
 			else
-				control.current = this[0].tagName=='INPUT' ? 
-				 this.data('rating.star') : 
+				control.current = this[0].tagName=='INPUT' ?
+				 this.data('rating.star') :
 					(this.is('.rater-'+ control.serial) ? this : null);
-			
+
 			// Update rating control state
 			this.data('rating', control);
 			// Update display
@@ -286,8 +299,23 @@
 			// find data for event
 			var input = $( control.current ? control.current.data('rating.input') : null );
 			// click callback, as requested here: http://plugins.jquery.com/node/1655
-			if(control.callback) control.callback.apply(input[0], [input.val(), $('a', control.current)[0]]);// callback event
-		},// $.fn.rating.select
+					
+					// **** MODIFICATION *****
+					// Thanks to faivre.thomas - http://code.google.com/p/jquery-star-rating-plugin/issues/detail?id=27
+					//
+					//old line doing the callback :
+					//if(control.callback) control.callback.apply(input[0], [input.val(), $('a', control.current)[0]]);// callback event
+					//
+					//new line doing the callback (if i want :)
+					if((wantCallBack ||wantCallBack == undefined) && control.callback) control.callback.apply(input[0], [input.val(), $('a', control.current)[0]]);// callback event
+					//to ensure retro-compatibility, wantCallBack must be considered as true by default
+					// **** /MODIFICATION *****
+					
+  },// $.fn.rating.select
+		
+		
+		
+		
 		
 		readOnly: function(toggle, disable){ // make the control read-only (still submits value)
 			var control = this.data('rating'); if(!control) return this;
