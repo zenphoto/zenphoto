@@ -1021,7 +1021,7 @@ function printCategoryListSortableTable($cat,$flag) {
 	if($cat->getTitle()) {
 		$cattitle = $cat->getTitle();
 	} else {
-		$cattitle = "<span style='color:red; font-weight: bold'>".gettext("Untitled category")."</span>";
+		$cattitle = "<span style='color:red; font-weight: bold'>".' *'.$cat->getTitlelink()."*</span>";
 	}
 	?>
 	 <div class='page-list_row'>
@@ -1144,8 +1144,12 @@ if(isset($_GET['category'])) {
 			foreach($getparents as $parent) {
 				$levelmark .= '&raquo; ';
 			}
+			$title = $catobj->getTitle();
+			if (empty($title)) {
+				$title = '*'.$catobj->getTitlelink().'*';
+			}
 			if ($count != " (0)") {
-				echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage."&amp;category=".$catobj->getTitlelink().getNewsAdminOptionPath(false,true,true)."'>".$levelmark.$catobj->getTitle().$count."</option>\n";
+				echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage."&amp;category=".$catobj->getTitlelink().getNewsAdminOptionPath(false,true,true)."'>".$levelmark.$title.$count."</option>\n";
 			}
 		}
 		?>

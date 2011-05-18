@@ -1711,7 +1711,7 @@ if (file_exists(CONFIGFILE)) {
 		$db_schema[] = "CREATE TABLE IF NOT EXISTS ".prefix('news_categories')." (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`title` text,
-		`titlelink` varchar(255) NOT NULL default '',
+		`titlelink` varchar(255) NOT NULL,
 		`permalink` int(1) UNSIGNED NOT NULL default 0,
 		`hitcounter` int(11) unsigned default 0,
 		`user` varchar(64) DEFAULT NULL,
@@ -1722,7 +1722,7 @@ if (file_exists(CONFIGFILE)) {
 		`desc` text,
 		`custom_data` text,
 		PRIMARY KEY (`id`),
-		UNIQUE (`title`)
+		UNIQUE `titlelink` (`titlelink`)
 		) $collation;";
 	}
 
@@ -2068,9 +2068,9 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_options.' ADD COLUMN `creator` varchar(255) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `updateddate` datetime DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' DROP INDEX `title`';
-	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' CHANGE `titlelink` `titlelink` VARCHAR(255) DEFAULT NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' CHANGE `titlelink` `titlelink` VARCHAR(255) NOT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' CHANGE `title` `title` TEXT';
-	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' ADD UNIQUE (`titlelink`)';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' ADD UNIQUE `titlelink` (`titlelink`)';
 
 
 	// do this last incase there are any field changes of like names!

@@ -136,7 +136,7 @@ class Zenpage {
 				$published = "published";
 			}
 		}
-		$show = "";
+		$show = '';
 		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
 			$postdate = $_zp_post_date;
 		} else {
@@ -182,19 +182,24 @@ class Zenpage {
 				break;
 		}
 		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
+			$datesearch = '';
 			switch($published) {
 				case "published":
-					$datesearch = " AND date LIKE '$postdate%' ";
+					$datesearch = "date LIKE '$postdate%' ";
 					break;
 				case "unpublished":
-					$datesearch = " WHERE date LIKE '$postdate%' ";
-					break;
-				case 'sticky':
-					$show = ' WHERE `sticky` <> 0';
+					$datesearch = "date LIKE '$postdate%' ";
 					break;
 				case "all":
-					$datesearch = " WHERE date LIKE '$postdate%' ";
+					$datesearch = "date LIKE '$postdate%' ";
 					break;
+			}
+			if ($datesearch) {
+				if ($show) {
+					$datesearch = ' AND '.$datesearch;
+				} else {
+					$datesearch = ' WHERE '.$datesearch;
+				}
 			}
 			$order = " ORDER BY $sticky date DESC";
 		} else {

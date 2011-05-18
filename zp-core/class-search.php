@@ -638,8 +638,9 @@ class SearchEngine
 		$list = $_zp_zenpage->getAllCategories();
 		foreach ($list as $category) {
 			if (in_array($category['title'], $this->category_list)) {
-				$cat .= ' `cat_id`='.$category['id'].' OR';
-				$subcats = getSubCategories($category['titlelink']);
+				$catobj = new ZenpageCategory($category['titlelink']);
+				$cat .= ' `cat_id`='.$catobj->get('id').' OR';
+				$subcats = $catobj->getSubCategories();
 				if($subcats) {
 					foreach($subcats as $subcat) {
 						$catobj = new ZenpageCategory($subcat);
