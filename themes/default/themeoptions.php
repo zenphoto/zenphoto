@@ -29,6 +29,10 @@ class ThemeOptions {
 								);
 	}
 
+  function getOptionsUnsupported() {
+  	return array('custom_index_page');
+  }
+
 	function handleOption($option, $currentValue) {
 		if ($option == 'Theme_colors') {
 			$theme = basename(dirname(__FILE__));

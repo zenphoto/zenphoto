@@ -25,6 +25,11 @@ class ThemeOptions {
 		setOptionDefault('colorbox_zenpage_album', 1);
 		setOptionDefault('colorbox_zenpage_image', 1);
 		setOptionDefault('colorbox_effervescence_plus_search', 1);
+		if (getOption('zp_plugin_zenpage')) {
+			setOption('custom_index_page', 'gallery', false);
+		} else {
+			setOption('custom_index_page', '', false);
+		}
 
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
@@ -48,6 +53,10 @@ class ThemeOptions {
 									gettext('Use custom menu') => array('key' => 'zenpage_custommenu', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check this if you want to use the <em>menu_manager</em> plugin if enabled to build a custom menu instead of the separate standard ones. As standard menu set named "zenpage" is created and used automatically.'))
 									);
 	}
+
+  function getOptionsUnsupported() {
+  	return array('custom_index_page');
+  }
 
 	function handleOption($option, $currentValue) {
 		if($option == "zenpage_homepage") {

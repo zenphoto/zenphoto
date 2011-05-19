@@ -40,7 +40,7 @@ require_once('normalizer.php');
 		title="<?php echo gettext('View album:').' '; echo getAnnotatedAlbumTitle();?>"><?php printAlbumTitle(); ?></a></h3>
 	<a href="<?php echo html_encode(getAlbumLinkURL());?>"
 		title="<?php echo gettext('View album:').' '; echo getAnnotatedAlbumTitle();?>"
-		class="img"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 210, 59, getOption('Gallery_image_crop_width'), getOption('Gallery_image_crop_height')); ?></a>
+		class="img"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT,ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT); ?></a>
 		<p>
 		<?php
 			$anumber = getNumAlbums();

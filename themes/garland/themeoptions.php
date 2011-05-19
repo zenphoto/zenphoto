@@ -16,6 +16,11 @@ class ThemeOptions {
 		setOptionDefault('colorbox_garland_album', 1);
 		setOptionDefault('colorbox_garland_search', 1);
 		setThemeOptionDefault('garland_menu', '');
+		if (getOption('zp_plugin_zenpage')) {
+			setOption('custom_index_page', 'gallery', false);
+		} else {
+			setOption('custom_index_page', '', false);
+		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
 										array('type'=>'menulabel','title'=>gettext('News Articles'),'link'=>'','show'=>1,'nesting'=>0),
@@ -39,6 +44,10 @@ class ThemeOptions {
 										);
 			createMenuIfNotExists($menuitems, 'garland');
 		}
+  }
+
+  function getOptionsUnsupported() {
+  	return array('thumb_size','thumb_crop','image_size','custom_index_page');
   }
 
   function getOptionsSupported() {

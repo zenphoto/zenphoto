@@ -101,6 +101,10 @@ class ThemeOptions {
 		return $options;
 	}
 
+	 function getOptionsUnsupported() {
+  	return array('image_size');
+  }
+
 	function handleOption($option, $currentValue) {
 		switch ($option) {
 			case 'Theme_colors':

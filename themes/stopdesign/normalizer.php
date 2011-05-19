@@ -20,4 +20,6 @@ if ($myimagepage > 1 ) {
 setOption('images_per_page', $np - $link_slides, false);
 $_firstPageImages = NULL;
 setOption('custom_index_page', 'gallery', false);
+define('ALBUM_THUMB_WIDTH',210);
+define('ALBUM_THUMB_HEIGHT',59);
 ?>

@@ -350,36 +350,48 @@ if (isset($_GET['action'])) {
 			} else {
 				$cw = getThemeOption('thumb_crop_width', $table, $themename);
 				$ch = getThemeOption('thumb_crop_height', $table, $themename);
-				setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
-				setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
-				setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
-				$ts = sanitize_numeric($_POST['thumb_size']);
-				setThemeOption('thumb_size', $ts, $table, $themename);
-				if (is_numeric($_POST['thumb_crop_width'])) {
-					$ncw = round($ts - $ts*2*$_POST['thumb_crop_width']/100);
+				if (isset($_POST['image_size'])) setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
+				if (isset($_POST['image_use_side']))setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
+				if (isset($_POST['thumb_crop']))setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
+				if (isset($_POST['thumb_size'])) {
+					$ts = sanitize_numeric($_POST['thumb_size']);
+					setThemeOption('thumb_size', $ts, $table, $themename);
 				} else {
-					$ncw = $cw;
+					$ts = getThemeOption('thumb_size',$table, $themename);
 				}
-				setThemeOption('thumb_crop_width', $ncw, $table, $themename);
-				if (is_numeric($_POST['thumb_crop_height'])) {
-					$nch = round($ts - $ts*2*$_POST['thumb_crop_height']/100);
-				} else {
-					$nch = $ch;
+				if (isset($_POST['thumb_crop_width'])) {
+					if (is_numeric($_POST['thumb_crop_width'])) {
+						$ncw = round($ts - $ts*2*$_POST['thumb_crop_width']/100);
+					} else {
+						$ncw = $cw;
+					}
+					setThemeOption('thumb_crop_width', $ncw, $table, $themename);
 				}
-				setThemeOption('thumb_crop_height', $nch, $table, $themename);
-				$albums_per_page = sanitize_numeric($_POST['albums_per_page']);
-				$images_per_page = sanitize_numeric($_POST['images_per_page']);
-				$albums_per_row = sanitize_numeric($_POST['albums_per_row']);
-				$images_per_row =  sanitize_numeric($_POST['images_per_row']);
-				$albums_per_page = ceil($albums_per_page/$albums_per_row)*$albums_per_row;
-				$images_per_page = ceil($images_per_page/$images_per_row)*$images_per_row;
+				if (isset($_POST['thumb_crop_height'])) {
+					if (is_numeric($_POST['thumb_crop_height'])) {
+						$nch = round($ts - $ts*2*$_POST['thumb_crop_height']/100);
+					} else {
+						$nch = $ch;
+					}
+					setThemeOption('thumb_crop_height', $nch, $table, $themename);
+				}
+				if (isset($_POST['albums_per_page']) && isset($_POST['albums_per_row'])) {
+					$albums_per_page = sanitize_numeric($_POST['albums_per_page']);
+					$albums_per_row = sanitize_numeric($_POST['albums_per_row']);
+					$albums_per_page = ceil($albums_per_page/$albums_per_row)*$albums_per_row;
+					setThemeOption('albums_per_page', $albums_per_page, $table, $themename);
+					setThemeOption('albums_per_row', $albums_per_row, $table, $themename);
+				}
+				if (isset($_POST['images_per_page']) && isset($_POST['images_per_row'])) {
+					$images_per_page = sanitize_numeric($_POST['images_per_page']);
+					$images_per_row =  sanitize_numeric($_POST['images_per_row']);
+					$images_per_page = ceil($images_per_page/$images_per_row)*$images_per_row;
+					setThemeOption('images_per_page', $images_per_page, $table, $themename);
+					setThemeOption('images_per_row', $images_per_row, $table, $themename);
+				}
 
-				setThemeOption('albums_per_page', $albums_per_page, $table, $themename);
-				setThemeOption('images_per_page', $images_per_page, $table, $themename);
-				setThemeOption('albums_per_row', $albums_per_row, $table, $themename);
-				setThemeOption('images_per_row', $images_per_row, $table, $themename);
 				if (isset($_POST['thumb_transition'])) setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition'])-1) && true), $table, $themename);
-				setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
+				if (isset($_POST['custom_index_page'])) setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
 				$otg = getThemeOption('thumb_gray', $table, $themename);
 				setThemeOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
 				if ($otg = getThemeOption('thumb_gray', $table, $themename)) $wmo = 99; // force cache clear
@@ -387,18 +399,22 @@ if (isset($_GET['action'])) {
 				setThemeOption('image_gray', (int) isset($_POST['image_gray']), $table, $themename);
 				if ($oig = getThemeOption('image_gray',$table, $themename)) $wmo = 99; // force cache clear
 				if (is_null($table) && ($themename == $gallery->getCurrentTheme())) {	// record as global options as well.
-					setOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
-					setOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
-					setOption('thumb_size', $ts, $table, $themename);
-					setOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
-					setOption('thumb_crop_width', $ncw, $table, $themename);
-					setOption('thumb_crop_height', $nch, $table, $themename);
-					setOption('albums_per_page', $albums_per_page, $table, $themename);
-					setOption('images_per_page', $images_per_page, $table, $themename);
-					setOption('albums_per_row', $albums_per_row, $table, $themename);
-					setOption('images_per_row', $images_per_row, $table, $themename);
+					if (isset($_POST['image_size'])) setOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
+					if (isset($_POST['image_use_side'])) setOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
+					if (isset($_POST['thumb_size'])) setOption('thumb_size', $ts, $table, $themename);
+					if (isset($_POST['thumb_crop'])) setOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
+					if (isset($_POST['thumb_crop_width'])) setOption('thumb_crop_width', $ncw, $table, $themename);
+					if (isset($_POST['thumb_transition'])) setOption('thumb_crop_height', $nch, $table, $themename);
+					if (isset($_POST['thumb_crop_height']) && isset($_POST['albums_per_row'])) {
+						setOption('albums_per_page', $albums_per_page, $table, $themename);
+						setOption('albums_per_row', $albums_per_row, $table, $themename);
+					}
+					if (isset($_POST['images_per_page']) && isset($_POST['images_per_row'])) {
+						setOption('images_per_page', $images_per_page, $table, $themename);
+						setOption('images_per_row', $images_per_row, $table, $themename);
+					}
 					if (isset($_POST['thumb_transition'])) setOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition'])-1) && true), $table, $themename);
-					setOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
+					if (isset($_POST['custom_index_page'])) setOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
 					setOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
 					setOption('image_gray', (int) isset($_POST['image_gray']), $table, $themename);
 				}
@@ -1784,7 +1800,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td class="image_option_tablerow">
 						<select id="fullimage_watermark" name="fullimage_watermark">
 							<?php $current = IMAGE_WATERMARK; ?>
-							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*none'); ?></option>
+							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('none'); ?></option>
 							<?php
 							$watermarks = getWatermarks();
 							generateListFromArray(array($current), $watermarks, false, false);
@@ -1797,7 +1813,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td class="image_option_tablerow">
 						<select id="fullsizeimage_watermark" name="fullsizeimage_watermark">
 							<?php $current = FULLIMAGE_WATERMARK; ?>
-							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*none'); ?></option>
+							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('none'); ?></option>
 							<?php
 							$watermarks = getWatermarks();
 							generateListFromArray(array($current), $watermarks, false, false);
@@ -1817,12 +1833,12 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<td class="image_option_tablerow"><?php	echo $plugin;	?> <?php echo gettext('thumbnails'); ?> </td>
 						<td class="image_option_tablerow">
 							<select id="<?php echo $opt; ?>" name="<?php echo $opt; ?>">
-							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*image default'); ?></option>
+							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('image thumb'); ?></option>
 							<?php
 							$watermarks = getWatermarks();
 							generateListFromArray(array($current), $watermarks, false, false);
 							?>
-							</select><?php if ($plugin != 'Image') echo ' ¹'; ?>
+							</select><?php if ($plugin != 'Image') echo ' *'; ?>
 						</td>
 					</tr>
 					<?php
@@ -1854,7 +1870,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<?php
 				if (!empty($imageplugins)) {
 					?>
-					<p class="notebox"><?php echo '¹ '.gettext('If a watermark image is selected for these <em>images classes</em> it will be used in place of the image thumbnail watermark.'); ?></p>
+					<p class="notebox"><?php echo '* '.gettext('If a watermark image is selected for these <em>images classes</em> it will be used in place of the image thumbnail watermark.'); ?></p>
 					<?php
 				}
 				?>
@@ -2211,6 +2227,19 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			$themename = $album->getAlbumTheme();
 		}
 	}
+	if (!(false === ($requirePath = getPlugin('themeoptions.php', $themename)))) {
+		require_once($requirePath);
+		$optionHandler = new ThemeOptions();
+		$supportedOptions = $optionHandler->getOptionsSupported();
+		if (method_exists($optionHandler, 'getOptionsUnsupported')) {
+			$unsupportedOptions = $optionHandler->getOptionsUnsupported();
+		} else {
+			$unsupportedOptions = array();
+		}
+	} else {
+		$unsupportedOptions = array();
+		$supportedOptions = array();
+	}
 	?>
 	<form action="?action=saveoptions" method="post" autocomplete="off">
 		<?php XSRFToken('saveoptions');?>
@@ -2276,12 +2305,19 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 				</td>
 				<td colspan="2" ><?php echo gettext('<em>These image and album presentation options provided by the Zenphoto core for all themes.</em>').'<p class="notebox">'.gettext('<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons'); ?></p></td>
 			</tr>
+			<?php
+			if (in_array('albums_per_row', $unsupportedOptions))  {
+				$disable = ' disabled="disabled"';
+			} else {
+				$disable = '';
+			}
+			?>
 			<tr>
 				<td style='width: 175px'><?php echo gettext("Albums:"); ?></td>
 				<td>
-					<input type="text" size="3" name="albums_per_row" value="<?php echo getThemeOption('albums_per_row',$album,$themename);?>" /> <?php echo gettext('thumbnails per row'); ?>
+					<input type="text" size="3" name="albums_per_row" value="<?php echo getThemeOption('albums_per_row',$album,$themename);?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per row'); ?>
 					<br />
-					<input type="text" size="3" name="albums_per_page" value="<?php echo getThemeOption('albums_per_page',$album,$themename);?>" /> <?php echo gettext('thumbnails per page'); ?>
+					<input type="text" size="3" name="albums_per_page" value="<?php echo getThemeOption('albums_per_page',$album,$themename);?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?>
 				</td>
 				<td>
 					<?php
@@ -2299,12 +2335,19 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 					?>
 				</td>
 			</tr>
+			<?php
+			if (in_array('images_per_row', $unsupportedOptions))  {
+				$disable = ' disabled="disabled"';
+			} else {
+				$disable = '';
+			}
+			?>
 			<tr>
 				<td><?php echo gettext("Images:"); ?></td>
 				<td>
-					<input type="text" size="3" name="images_per_row" value="<?php echo getThemeOption('images_per_row',$album,$themename);?>" /> <?php echo gettext('thumbnails per row'); ?>
+					<input type="text" size="3" name="images_per_row" value="<?php echo getThemeOption('images_per_row',$album,$themename);?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per row'); ?>
 					<br />
-					<input type="text" size="3" name="images_per_page" value="<?php echo getThemeOption('images_per_page',$album,$themename);?>" /> <?php echo gettext('thumbnails per page'); ?>
+					<input type="text" size="3" name="images_per_page" value="<?php echo getThemeOption('images_per_page',$album,$themename);?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?>
 				</td>
 				<td>
 					<?php
@@ -2322,12 +2365,19 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 					?>
 				</td>
 			</tr>
+			<?php
+			if (in_array('thumb_transition', $unsupportedOptions))  {
+				$disable = ' disabled="disabled"';
+			} else {
+				$disable = '';
+			}
+			?>
 			<tr>
 				<td><?php echo gettext('Transition:'); ?></td>
 				<td>
 					<span class="nowrap">
 						<?php
-						if ((getThemeOption('albums_per_row',$album,$themename)>1) && (getThemeOption('images_per_row',$album,$themename)>1)) {
+						if (!$disable && (getThemeOption('albums_per_row',$album,$themename)>1) && (getThemeOption('images_per_row',$album,$themename)>1)) {
 							if (getThemeOption('thumb_transition',$album,$themename)) {
 								$separate = '';
 								$combined = ' checked="checked"';
@@ -2345,32 +2395,46 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 				</td>
 				<td><?php echo gettext('if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails.'); ?></td>
 			</tr>
-				<?php
-				$ts = getThemeOption('thumb_size',$album,$themename);
-				$iw = getThemeOption('thumb_crop_width',$album,$themename);
-				$ih = getThemeOption('thumb_crop_height',$album,$themename);
-				$cl = ($ts-$iw)/$ts*50;
-				$ct = ($ts-$ih)/$ts*50;
-				?>
+			<?php
+
+			if (in_array('thumb_size', $unsupportedOptions))  {
+				$disable = ' disabled="disabled"';
+			} else {
+				$disable = '';
+			}
+
+			$ts = getThemeOption('thumb_size',$album,$themename);
+			$iw = getThemeOption('thumb_crop_width',$album,$themename);
+			$ih = getThemeOption('thumb_crop_height',$album,$themename);
+			$cl = ($ts-$iw)/$ts*50;
+			$ct = ($ts-$ih)/$ts*50;
+			?>
 			<tr>
 				<td><?php echo gettext("Thumb size:"); ?></td>
 				<td>
-					<input type="text" size="3" name="thumb_size" value="<?php echo $ts; ?>" />
+					<input type="text" size="3" name="thumb_size" value="<?php echo $ts; ?>"<?php echo $disable; ?> />
 				</td>
 				<td><?php printf(gettext("Standard thumbnails will be scaled to %u pixels."),$ts); ?></td>
 			</tr>
+			<?php
+			if (in_array('thumb_crop', $unsupportedOptions))  {
+				$disable = ' disabled="disabled"';
+			} else {
+				$disable = '';
+			}
+			?>
 			<tr>
 				<td><?php echo gettext("Crop thumbnails:"); ?></td>
 				<td>
-					<input type="checkbox" name="thumb_crop" value="1" <?php echo checked('1', $tc = getThemeOption('thumb_crop',$album,$themename)); ?> />
+					<input type="checkbox" name="thumb_crop" value="1" <?php echo checked('1', $tc = getThemeOption('thumb_crop',$album,$themename)); ?><?php echo $disable; ?> />
 					&nbsp;&nbsp;
 					<span class="nowrap">
 						<?php printf(gettext('%s%% left &amp; right'),
-							'<input type="text" size="3" name="thumb_crop_width" id="thumb_crop_width" value="'.$cl.'" />') ?>
+							'<input type="text" size="3" name="thumb_crop_width" id="thumb_crop_width" value="'.$cl.'"'.$disable.' />') ?>
 					</span>&nbsp;
 					<span class="nowrap">
 						<?php printf(gettext('%s%% top &amp; bottom'),
-							'<input type="text" size="3" name="thumb_crop_height" id="thumb_crop_height"	value="'.$ct.'" />'); ?>
+							'<input type="text" size="3" name="thumb_crop_height" id="thumb_crop_height"	value="'.$ct.'"'.$disable.'" />'); ?>
 					</span>
 				</td>
 				<td>
@@ -2384,65 +2448,71 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 				<td>
 					<label class="checkboxlabel">
 						<?php echo gettext('image') ?>
-						<input type="checkbox" name="image_gray" id="image_gray" value="1" <?php echo checked('1', getThemeOption('image_gray',$album,$themename)); ?>/>
+						<input type="checkbox" name="image_gray" id="image_gray" value="1" <?php echo checked('1', getThemeOption('image_gray',$album,$themename)); ?> />
 					</label>
 					<label class="checkboxlabel">
 						<?php echo gettext('thumbnail') ?>
-						<input type="checkbox" name="thumb_gray" id="thumb_gray" value="1" <?php echo checked('1', getThemeOption('thumb_gray',$album,$themename)); ?>/>
+						<input type="checkbox" name="thumb_gray" id="thumb_gray" value="1" <?php echo checked('1', getThemeOption('thumb_gray',$album,$themename)); ?> />
 					</label>
 				</td>
 				<td><?php echo gettext("If checked, images/thumbnails will be created in gray scale."); ?></td>
 			</tr>
-			<tr>
-				<td><?php echo gettext("Image size:"); ?></td>
-				<td>
-					<?php $side = getThemeOption('image_use_side',$album,$themename); ?>
-					<table>
-						<tr>
-							<td rowspan="2" style="margin:0; padding:0">
-								<input type="text" size="3" name="image_size" value="<?php echo getThemeOption('image_size',$album,$themename);?>" />
-							</td>
-							<td style="margin:0; padding:0">
-								<label>
-									<input type="radio" id="image_use_side1" name="image_use_side"
-											value="height" <?php if ($side=='height') echo ' checked="checked"'; ?> />
-										<?php echo gettext('height') ?>
-								</label>
-								<label>
-									<input type="radio" id="image_use_side2" name="image_use_side"
-												value="width" <?php if ($side=='width') echo ' checked="checked"'; ?> />
-									<?php echo gettext('width') ?>
-								</label>
-							</td>
-						</tr>
-						<tr>
-							<td style="margin:0; padding:0">
-								<label>
-									<input type="radio" id="image_use_side3" name="image_use_side"
-											value="shortest" <?php if ($side=='shortest') echo ' checked="checked"'; ?> />
-									<?php echo gettext('shortest side') ?>
-								</label>
-								<label>
-									<input type="radio" id="image_use_side4" name="image_use_side"
-											value="longest" <?php if ($side=='longest') echo ' checked="checked"'; ?> />
-									<?php echo gettext('longest side') ?>
-								</label>
-							</td>
-						</tr>
-					</table>
-				</td>
-				<td>
-					<?php echo gettext("Default image display size."); ?>
-					<br />
-					<?php echo gettext("The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."); ?>
-				</td>
-			</tr>
-			<?php if (is_null($album)) {?>
+			<?php
+			if (in_array('image_size', $unsupportedOptions))  {
+				$disable = ' disabled="disabled"';
+			} else {
+				$disable = '';
+			}
+			?>
+		<tr>
+			<td><?php echo gettext("Image size:"); ?></td>
+			<td><?php $side = getThemeOption('image_use_side',$album,$themename); ?>
+			<table>
+				<tr>
+					<td rowspan="2" style="margin: 0; padding: 0"><input type="text"
+						size="3" name="image_size"
+						value="<?php echo getThemeOption('image_size',$album,$themename);?>"
+						<?php echo $disable; ?> /></td>
+					<td style="margin: 0; padding: 0"><label> <input type="radio"
+						id="image_use_side1" name="image_use_side" value="height"
+						<?php if ($side=='height') echo ' checked="checked"'; ?>
+						<?php echo $disable; ?> /> <?php echo gettext('height') ?> </label>
+					<label> <input type="radio" id="image_use_side2"
+						name="image_use_side" value="width"
+						<?php if ($side=='width') echo ' checked="checked"'; ?>
+						<?php echo $disable; ?> /> <?php echo gettext('width') ?> </label>
+					</td>
+				</tr>
+				<tr>
+					<td style="margin: 0; padding: 0"><label> <input type="radio"
+						id="image_use_side3" name="image_use_side" value="shortest"
+						<?php if ($side=='shortest') echo ' checked="checked"'; ?>
+						<?php echo $disable; ?> /> <?php echo gettext('shortest side') ?>
+					</label> <label> <input type="radio" id="image_use_side4"
+						name="image_use_side" value="longest"
+						<?php if ($side=='longest') echo ' checked="checked"'; ?>
+						<?php echo $disable; ?> /> <?php echo gettext('longest side') ?> </label>
+					</td>
+				</tr>
+			</table>
+			</td>
+			<td><?php echo gettext("Default image display size."); ?> <br />
+			<?php echo gettext("The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."); ?>
+			</td>
+		</tr>
+		<?php
+			if (is_null($album)) {
+				if (in_array('custom_index_page', $unsupportedOptions)) {
+					$disable = ' disabled="disabled"';
+				} else {
+					$disable = '';
+				}
+			?>
 			<tr>
 				<td><?php echo gettext("Gallery index page link:"); ?></td>
 				<td>
-					<select id="custom_index_page" name="custom_index_page">
-						<option value="" style="background-color:LightGray"><?php echo gettext('*none'); ?></option>
+					<select id="custom_index_page" name="custom_index_page"<?php echo $disable; ?>>
+						<option value="" style="background-color:LightGray"><?php echo gettext('none'); ?></option>
 						<?php
 						$curdir = getcwd();
 						$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$themename.'/';
@@ -2462,11 +2532,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			</tr>
 			<?php
 			}
-			if (!(false === ($requirePath = getPlugin('themeoptions.php', $themename)))) {
-				require_once($requirePath);
-				$optionHandler = new ThemeOptions();
-				$supportedOptions = $optionHandler->getOptionsSupported();
-				if (count($supportedOptions) > 0) {
+			if (count($supportedOptions) > 0) {
 				?>
 			<tr class="alt1" >
 				<td align="left">
@@ -2475,9 +2541,9 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 				<td colspan="2"><em><?php printf(gettext('The following are options specifically implemented by %s.'),$theme['name']); ?></em></td>
 			</tr>
 				<?php
-					customOptions($optionHandler, '', $album, false, $supportedOptions, $themename);
-				}
+				customOptions($optionHandler, '', $album, false, $supportedOptions, $themename);
 			}
+
 
 			?>
 			<tr>
