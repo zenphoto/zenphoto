@@ -1817,7 +1817,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<td class="image_option_tablerow"><?php	echo $plugin;	?> <?php echo gettext('thumbnails'); ?> </td>
 						<td class="image_option_tablerow">
 							<select id="<?php echo $opt; ?>" name="<?php echo $opt; ?>">
-							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*none'); ?></option>
+							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*image default'); ?></option>
 							<?php
 							$watermarks = getWatermarks();
 							generateListFromArray(array($current), $watermarks, false, false);
@@ -1854,7 +1854,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<?php
 				if (!empty($imageplugins)) {
 					?>
-					<p class="notebox"><?php echo '¹ '.gettext('If a watermark image is selected for these <em>images</em> it will be used in place of the image thumbnail watermark.'); ?></p>
+					<p class="notebox"><?php echo '¹ '.gettext('If a watermark image is selected for these <em>images classes</em> it will be used in place of the image thumbnail watermark.'); ?></p>
 					<?php
 				}
 				?>
