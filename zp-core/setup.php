@@ -1204,9 +1204,8 @@ if ($connection) {
 		if (!$ch) {	// wrong version
 			$oht = trim(@file_get_contents('oldhtaccess'));
 			//fix the rewritebase
-			$i = strpos($ht, 'RewriteBase');
-			$j = strpos($ht, "\n", $i+11);
-			$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $j);
+			$i = strpos($oht, 'RewriteBase /zenphoto');
+			$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $i+21);
 			if ($oht == $ht) {	// an unmodified .htaccess file, we can just replace it
 				@unlink($htfile);
 				$ch = @copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
