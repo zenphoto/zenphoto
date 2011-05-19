@@ -348,6 +348,11 @@ class Gallery {
 	 */
 	function garbageCollect($cascade=true, $complete=false, $restart='') {
 		if (empty($restart)) {
+			/* clean the comments table */
+			$this->commentClean('images');
+			$this->commentClean('albums');
+			$this->commentClean('news');
+			$this->commentClean('pages');
 			// clean up obj_to_tag
 			$dead = array();
 			$result = query_full_array("SELECT * FROM ".prefix('obj_to_tag'));
@@ -366,7 +371,7 @@ class Gallery {
 							break;
 					}
 					$dbtag = query_single_row("SELECT * FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
-										if (!$dbtag) {
+					if (!$dbtag) {
 						$dead['id'] = $row['id'];
 					}
 				}
@@ -584,77 +589,29 @@ class Gallery {
 				}
 			}
 
-			if (empty($restart)) {
-				/* clean the comments table */
-				/* do the images */
-				$imageids = query_full_array('SELECT `id` FROM ' . prefix('images'));       /* all the image IDs */
-				$idsofimages = array();
-				foreach($imageids as $row) { $idsofimages[] = $row['id']; }
-				$commentImages = query_full_array("SELECT DISTINCT `ownerid` FROM " .
-				prefix('comments') . 'WHERE `type` IN ('.zp_image_types('"').')'); /* imageids of all the comments */
-				$imageidsofcomments = array();
-				foreach($commentImages as $row) { $imageidsofcomments [] = $row['ownerid']; }
-				$orphans = array_diff($imageidsofcomments , $idsofimages );                 /* image ids of comments with no image */
-
-				if (count($orphans) > 0 ) { /* delete dead comments from the DB */
-					$firstrow = array_pop($orphans);
-					$sql = "DELETE FROM " . prefix('comments') . " WHERE `type` IN (".zp_image_types("'").") AND `ownerid`='" . $firstrow . "'";
-					foreach($orphans as $id) {
-						$sql .= " OR `ownerid`='" . $id . "'";
-					}
-					query($sql);
-				}
-
-				/* do the same for album comments */
-				$albumids = query_full_array('SELECT `id` FROM ' . prefix('albums'));      /* all the album IDs */
-				$idsofalbums = array();
-				foreach($albumids as $row) { $idsofalbums[] = $row['id']; }
-				$commentAlbums = query_full_array("SELECT DISTINCT `ownerid` FROM " .
-				prefix('comments') . 'WHERE `type`="albums"');                         /* album ids of all the comments */
-				$albumidsofcomments = array();
-				foreach($commentAlbums as $row) { $albumidsofcomments [] = $row['ownerid']; }
-				$orphans = array_diff($albumidsofcomments , $idsofalbums );                 /* album ids of comments with no album */
-				if (count($orphans) > 0 ) { /* delete dead comments from the DB */
-					$firstrow = array_pop($orphans);
-					$sql = "DELETE FROM " . prefix('comments') . "WHERE `type`='albums' AND `ownerid`='" . $firstrow . "'";
-					foreach($orphans as $id) {
-						$sql .= " OR `ownerid`='" . $id . "'";
-					}
-					query($sql);
-				}
-
-				/* clean the tags table */
-				/* do the images */
-				$tagImages = query_full_array("SELECT DISTINCT `objectid` FROM ".prefix('obj_to_tag').' WHERE `type`="images"');                         /* imageids of all the comments */
-				$imageidsoftags = array();
-				foreach($tagImages as $row) { $imageidsoftags [] = $row['objectid']; }
-				$orphans = array_diff($imageidsoftags , $idsofimages );                 /* image ids of comments with no image */
-				if (count($orphans) > 0 ) { /* delete dead tags from the DB */
-					$firstrow = array_pop($orphans);
-					$sql = "DELETE FROM " . prefix('obj_to_tag') . ' WHERE `type`="images" AND (`objectid`="' . $firstrow . '"';
-					foreach($orphans as $id) {
-						$sql .= " OR `objectid`='" . $id . "'";
-					}
-					$sql .= ')';
-					query($sql);
-				}
-
-				/* do the same for album tags */
-				$tagAlbums = query_full_array("SELECT DISTINCT `objectid` FROM ".prefix('obj_to_tag').'WHERE `type`="albums"');                         /* album ids of all the comments */
-				$albumidsoftags = array();
-				foreach($tagAlbums as $row) { $albumidsoftags [] = $row['objectid']; }
-				$orphans = array_diff($albumidsoftags , $idsofalbums );                 /* album ids of comments with no album */
-				if (count($orphans) > 0 ) { /* delete dead tags from the DB */
-					$firstrow = array_pop($orphans);
-					$sql = "DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`='" . $firstrow . "'";
-					foreach($orphans as $id) {
-						$sql .= " OR `objectid`='" . $id . "'";
-					}
-					query($sql);
-				}
-			}
 		}
 		return false;
+	}
+
+	function commentClean($table) {
+		$ids = query_full_array('SELECT `id` FROM ' . prefix($table));       /* all the IDs */
+		$idsofitems = array();
+		foreach($ids as $row) {
+			$idsofitems[] = $row['id'];
+		}
+		$sql = "SELECT DISTINCT `ownerid` FROM " .	prefix('comments') . ' WHERE `type` ='.db_quote($table);
+		$commentOwners = query_full_array($sql); /* all the comments */
+		$idsofcomments = array();
+		foreach($commentOwners as $row) {
+			$idsofcomments [] = $row['ownerid'];
+		}
+		$orphans = array_diff($idsofcomments , $idsofitems );                 /* owner ids of comments with no owner */
+
+		if (count($orphans) > 0 ) { /* delete dead comments from the DB */
+			$sql = "DELETE FROM " . prefix('comments') . " WHERE `type`=".db_quote($table)." AND (`ownerid`=" .implode(' OR `ownerid`=', $orphans).')';
+			query($sql);
+		}
+
 	}
 
 	/**
