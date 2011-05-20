@@ -14,6 +14,9 @@ $host = "http://".html_encode($_SERVER["HTTP_HOST"]);
  */
 function printFullAlbumsList() {
 	global $_zp_gallery;
+	if(is_null($_zp_gallery)) {
+		$_zp_gallery = new Gallery();
+	}
 	$albumlist = $_zp_gallery->getAlbums();
 	foreach($albumlist as $album) {
 		$albumobj = new Album($_zp_gallery, $album);
