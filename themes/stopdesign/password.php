@@ -9,7 +9,7 @@ if (!defined('WEBPATH')) die();
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo html_encode(getBareGalleryTitle()); ?> &gt; <?php echo gettext("Password required"); ?></title>
+	<title><?php echo getBareGalleryTitle(); ?> &gt; <?php echo gettext("Password required"); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 </head>

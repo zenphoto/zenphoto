@@ -11,7 +11,7 @@ $thisablum = $_zp_current_album;
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo html_encode(getBareGalleryTitle()); ?> &gt; <?php echo html_encode(getBareAlbumTitle()); ?></title>
+	<title><?php echo getBareGalleryTitle(); ?> &gt; <?php echo getBareAlbumTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<?php

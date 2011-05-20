@@ -390,6 +390,10 @@ function zenpage_load_news() {
 		if (is_array($result)) {
 			add_context(ZP_ZENPAGE_NEWS_CATEGORY);
 			$_zp_current_category = new ZenpageCategory($titlelink);
+		} else {
+			$_GET['p'] = 'CATEGORY:'.$titlelink;
+			unset($_GET['category']);
+			return false;
 		}
 	}
 	if (isset($_GET['title'])) {

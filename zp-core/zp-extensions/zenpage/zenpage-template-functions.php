@@ -413,9 +413,9 @@ function getNewsTitleLink() {
 function printNewsTitleLink($before='') {
 	if (getNewsTitle()) {
 		if(is_NewsType("news")) {
-			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".html_encode(getBareNewsTitle())."\">".$before.getNewsTitle()."</a>";
+			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".getBareNewsTitle()."\">".$before.getNewsTitle()."</a>";
 		} else if (is_GalleryNewsType()) {
-			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".html_encode(getBareNewsTitle())."\">".$before.getNewsTitle()."</a>";
+			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".getBareNewsTitle()."\">".$before.getNewsTitle()."</a>";
 		}
 	}
 }
@@ -2294,7 +2294,7 @@ function getPageTitleLink() {
  */
 function printPageTitleLink() {
 	global $_zp_current_zenpage_page;
-	echo '<a href="'.html_encode(getPageLinkURL(getPageTitleLink())).'" title="'.html_encode(getBarePageTitle()).'">'.getPageTitle().'</a>';
+	echo '<a href="'.html_encode(getPageLinkURL(getPageTitleLink())).'" title="'.getBarePageTitle().'">'.getPageTitle().'</a>';
 }
 
 

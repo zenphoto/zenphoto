@@ -8,7 +8,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo html_encode(getBareGalleryTitle()); ?> | <?php echo gettext("Search"); ?></title>
+	<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Search"); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
@@ -67,7 +67,7 @@ if (!$total) {
 			<div id="images">
 				<?php while (next_image()): $c++;?>
 				<div class="image">
-					<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo html_encode(getBareImageTitle());?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
+					<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
 				</div>
 				<?php endwhile; ?>
 			</div>

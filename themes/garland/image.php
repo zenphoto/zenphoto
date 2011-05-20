@@ -53,7 +53,7 @@ if (!defined('WEBPATH')) die();
 							$fullimage = getFullImageURL();
 							if (!empty($fullimage)) {
 								?>
-								<a href="<?php echo html_encode($fullimage);?>" title="<?php echo html_encode(getBareImageTitle());?>">
+								<a href="<?php echo html_encode($fullimage);?>" title="<?php echo getBareImageTitle();?>">
 								<?php
 							}
 							printCustomSizedImage(getImageTitle(), null, 520);
