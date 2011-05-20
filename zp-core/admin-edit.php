@@ -245,7 +245,7 @@ if (isset($_GET['action'])) {
 												$image->set('used_ips', 0);
 											}
 											$image->setTitle(process_language_string_save("$i-title", 2));
-											$image->setDesc(process_language_string_save("$i-desc", 1));
+											$image->setDesc(process_language_string_save("$i-desc", 0));
 											$image->setLocation(process_language_string_save("$i-location", 3));
 											$image->setCity(process_language_string_save("$i-city", 3));
 											$image->setState(process_language_string_save("$i-state", 3));
