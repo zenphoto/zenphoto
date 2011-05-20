@@ -897,12 +897,14 @@ function addCategory(&$reports) {
 		$titlelink .= '_'.seoFriendly($date); // force unique so that data may be saved.
 	}
 	// create new category
+	$show = getcheckboxState('show');
 	$cat = new ZenpageCategory($titlelink);
 	$notice = processPasswordSave($cat);
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title',$title);
 	$cat->setDesc($desc);
 	$cat->setCustomData(zp_apply_filter('save_category_custom_data', $custom,$cat));
+	$show = getcheckboxState('show');
 	$msg = zp_apply_filter('new_category','', $cat);
 	$cat->save();
 	if(empty($title)) {
@@ -958,12 +960,14 @@ function updateCategory(&$reports) {
 		$titlelink = $oldtitlelink;
 	}
 	//update category
+	$show = getcheckboxState('show');
 	$cat = new ZenpageCategory($titlelink);
 	$notice = processPasswordSave($cat);
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title',$title);
 	$cat->setDesc($desc);
 	$cat->setCustomData(zp_apply_filter('save_category_custom_data', $custom,$cat));
+	$show = getcheckboxState('show');
 	if (getcheckboxState('resethitcounter')) {
 		$cat->set('hitcounter',0);
 	}

@@ -378,15 +378,11 @@ zp_apply_filter('admin_note','news', $subtab);
 				<input name="permalink" type="checkbox" id="permalink" value="1" <?php checkIfChecked($result->getPermalink()); ?> />
 				<label for="permalink"><?php echo gettext("Enable permaTitlelink"); ?></label>
 				</p>
+				<p class="checkbox">
+				<input name="show" type="checkbox" id="show" value="1" <?php checkIfChecked($result->getShow());?> />
+				<label for="show"><?php echo gettext("Published"); ?></label>
+				</p>
 				<?php
-				if(!is_AdminEditPage("category")) {
-				?>
-					<p class="checkbox">
-					<input name="show" type="checkbox" id="show" value="1" <?php checkIfChecked($result->getShow());?> />
-					<label for="show"><?php echo gettext("Published"); ?></label>
-					</p>
-					<?php
-				}
 				if(is_AdminEditPage('newsarticle')) {
 					$sticky = $result->get('sticky');
 					?>

@@ -1720,6 +1720,7 @@ if (file_exists(CONFIGFILE)) {
 		`sort_order` varchar(48) DEFAULT NULL,
 		`desc` text,
 		`custom_data` text,
+		`show` int(1) unsigned NOT NULL default '1',
 		PRIMARY KEY (`id`),
 		UNIQUE `titlelink` (`titlelink`)
 		) $collation;";
@@ -2070,6 +2071,7 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' CHANGE `titlelink` `titlelink` VARCHAR(255) NOT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' CHANGE `title` `title` TEXT';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' ADD UNIQUE `titlelink` (`titlelink`)';
+	$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `show` int(1) unsigned NOT NULL default '1'";
 
 
 	// do this last incase there are any field changes of like names!
