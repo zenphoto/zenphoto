@@ -301,7 +301,12 @@ class ZenpageCategory extends ZenpageRoot {
 		} else {
 			$postdate = NULL;
 		}
-		$limit = $_zp_zenpage->getLimitAndOffset($articles_per_page,$ignorepagination);
+		if (!$articles_per_page || $ignorepagination) {
+			$limit = '';
+		} else {
+			$limit = " LIMIT ".$zenpage->getOffset($articles_per_page).",".$articles_per_page;
+		}
+
 		if ($sticky) {
 			$sticky = 'sticky DESC,';
 		}

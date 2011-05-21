@@ -151,7 +151,6 @@ class Zenpage {
 		} else {
 			$postdate = NULL;
 		}
-		$limit = $this->getLimitAndOffset($articles_per_page,$ignorepagination);
 		if ($sticky) {
 			$sticky = 'sticky DESC,';
 		}
@@ -218,11 +217,22 @@ class Zenpage {
 		$sql = "SELECT titlelink FROM ".prefix('news').$show.$datesearch." ".$order;
 		$resource = $result = query($sql);
 		if ($resource) {
+			if ($ignorepagination) {
+				$offset = 0;
+			} else {
+				$offset = $this->getOffset($articles_per_page);
+			}
 			$result = array();
 			while ($item = db_fetch_assoc($resource)) {
 				$article = new ZenpageNews($item['titlelink']);
 				if ($article->categoryIsVisible()) {
-					$result[] = $item;
+					$offset--;
+					if ($offset < 0) {
+						$result[] = $item;
+						if ($articles_per_page && count($result) >= $articles_per_page) {
+							break;
+						}
+					}
 				}
 			}
 		}
@@ -236,7 +246,7 @@ class Zenpage {
 	 * @param bool $ignorepagination If pagination should be ingored so always with the first is started (false is default)
 	 * @return string
 	 */
-	function getLimitAndOffset($articles_per_page,$ignorepagination=false) {
+	function getOffset($articles_per_page,$ignorepagination=false) {
 		global $_zp_zenpage_total_pages;
 		if(strstr(dirname($_SERVER['REQUEST_URI']), '/'.PLUGIN_FOLDER.'/zenpage')) {
 			$page = $this->getCurrentAdminNewsPage();
@@ -257,7 +267,7 @@ class Zenpage {
 		} else {
 			$limit = " LIMIT ".$offset.",".$articles_per_page;
 		}
-		return $limit;
+		return $offset;
 	}
 
 	/**
@@ -404,7 +414,11 @@ class Zenpage {
 			}
 			$albumWhere = "AND albums.show=1".$passwordcheck;
 		}
-		$limit = $this->getLimitAndOffset($articles_per_page);
+		if (!$articles_per_page) {
+			$limit = '';
+		} else {
+			$limit = " LIMIT ".$zenpage->getOffset($articles_per_page).",".$articles_per_page;
+		}
 		if(empty($sortorder)) {
 			$combinews_sortorder = getOption("zenpage_combinews_sortorder");
 		} else {
