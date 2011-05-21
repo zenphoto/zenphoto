@@ -377,8 +377,6 @@ zp-core/images/icon_inactive.png
 zp-core/images/icon_mail.png
 zp-core/images/imageDefault.png
 zp-core/images/info.png
-zp-core/images/info_off.png
-zp-core/images/info_on.png
 zp-core/images/info_toggle.png
 zp-core/images/lock.png
 zp-core/images/lock_2.png
@@ -2769,4 +2767,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2771
+2769

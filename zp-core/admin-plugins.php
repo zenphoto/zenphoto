@@ -96,15 +96,15 @@ echo "<table class=\"bordered\" width=\"100%\">\n";
 ?>
 <tr>
 <th><?php echo gettext("Available Plugins"); ?></th>
-<th class="icons">
+<th colspan="2">
 	<span class="pluginextrahide" style="display:none;">
-		<a href="javascript:toggleExtraInfo('','plugin',false);" title ="<?php echo gettext('hide all description details'); ?>" ><img src="images/info_off.png" alt="" /></a>
+		<p class="buttons"><a href="javascript:toggleExtraInfo('','plugin',false);" title ="<?php echo gettext('hide all description details'); ?>" ><?php echo gettext('hide all'); ?></a></p>
 	</span>
 	<span class="pluginextrashow">
-		<a href="javascript:toggleExtraInfo('','plugin',true);" title ="<?php echo gettext('show all description details'); ?>" ><img src="images/info_on.png" alt="" /></a>
+		<p class="buttons"><a href="javascript:toggleExtraInfo('','plugin',true);" title ="<?php echo gettext('show all description details'); ?>" ><?php echo gettext('show all'); ?></a></p>
 	</span>
+	<?php echo gettext("Description"); ?>
 </th>
-<th><?php echo gettext("Description"); ?></th>
 </tr>
 <?php
 foreach ($filelist as $extension) {

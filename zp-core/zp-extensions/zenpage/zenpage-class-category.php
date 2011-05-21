@@ -301,11 +301,6 @@ class ZenpageCategory extends ZenpageRoot {
 		} else {
 			$postdate = NULL;
 		}
-		if (!$articles_per_page || $ignorepagination) {
-			$limit = '';
-		} else {
-			$limit = " LIMIT ".$_zp_zenpage->getOffset($articles_per_page).",".$articles_per_page;
-		}
 
 		if ($sticky) {
 			$sticky = 'sticky DESC,';
@@ -346,8 +341,33 @@ class ZenpageCategory extends ZenpageRoot {
 				break;
 		}
 		$order = " ORDER BY ".$sticky."news.$sort1 $dir";
-		$sql = "SELECT DISTINCT news.titlelink FROM ".prefix('news')." as news, ".prefix('news2cat')." as cat WHERE".$cat.$show.$order.$limit;
-		$result = query_full_array($sql);
+		$sql = "SELECT DISTINCT news.titlelink FROM ".prefix('news')." as news, ".prefix('news2cat')." as cat WHERE".$cat.$show.$order;
+		$resource = $result = query($sql);
+		if ($resource) {
+			if ($ignorepagination) {
+				$offset = 0;
+			} else {
+				$offset = $_zp_zenpage->getOffset($articles_per_page);
+			}
+			if (is_object($_zp_current_category)) {
+				$currentcategory = $_zp_current_category->getTitlelink();
+			} else {
+				$currentcategory = false;
+			}
+			$result = array();
+			while ($item = db_fetch_assoc($resource)) {
+				$article = new ZenpageNews($item['titlelink']);
+				if ($currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+					$offset--;
+					if ($offset < 0) {
+						$result[] = $item;
+						if ($articles_per_page && count($result) >= $articles_per_page) {
+							break;
+						}
+					}
+				}
+			}
+		}
 
 		return $result;
 	}
