@@ -134,8 +134,7 @@ class ZenpageNews extends ZenpageItems {
 		global $_zp_zenpage;
 		$categories = $this->getCategories(false);
 		if(count($categories) > 0) {
-
-			$structure = $_zp_zenpage->categoryStructure;
+			$structure = $_zp_zenpage->getCategoryStructure();
 			foreach($categories as $cat) {
 				if ($structure[$cat['cat_id']]['show']) {
 					return true;

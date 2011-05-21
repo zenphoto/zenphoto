@@ -1490,7 +1490,7 @@ function sortByKey($results,$sortkey,$order) {
  *
  * @author redoc (http://codingforums.com/showthread.php?t=71904)
  */
-function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_sensitive=false) {
+function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_sensitive=false, $preservekeys=false) {
 	if(is_array($array) && count($array)>0) {
 		if (is_array($index)) {
 			$indicies = $index;
@@ -1523,7 +1523,7 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 			}
 		}
 		foreach(array_keys($temp) as $key) {
-			if(is_numeric($key)) {
+			if(!$preservekeys && is_numeric($key)) {
 				$sorted[]=$array[$key];
 			} else {
 				$sorted[$key]=$array[$key];

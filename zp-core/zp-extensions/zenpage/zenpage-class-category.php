@@ -304,7 +304,7 @@ class ZenpageCategory extends ZenpageRoot {
 		if (!$articles_per_page || $ignorepagination) {
 			$limit = '';
 		} else {
-			$limit = " LIMIT ".$zenpage->getOffset($articles_per_page).",".$articles_per_page;
+			$limit = " LIMIT ".$_zp_zenpage->getOffset($articles_per_page).",".$articles_per_page;
 		}
 
 		if ($sticky) {

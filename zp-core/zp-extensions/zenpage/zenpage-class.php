@@ -42,20 +42,27 @@ class Zenpage {
 	 * Class instantiator
 	 */
 	function Zenpage() {
-		$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
-		$structure = array();
-		foreach ($allcategories as $cat) {
-			$catobj = new ZenpageCategory($cat['titlelink']);
-			if ($catobj->isMyItem(VIEW_NEWS_RIGHTS)) {
-				$cat['show'] = 1;
-			} else {
-				if (isset($cat['show']) && $cat['show'] && $cat['parentid']) {
-					$cat['show'] = $structure[$cat['parentid']]['show'];
+	}
+
+	function getCategoryStructure() {
+		if (is_null($this->categoryStructure)) {
+			$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
+			$structure = array();
+			foreach ($allcategories as $cat) {
+				$catobj = new ZenpageCategory($cat['titlelink']);
+				if ($catobj->isMyItem(VIEW_NEWS_RIGHTS)) {
+					$cat['show'] = 1;
+				} else {
+					if (isset($cat['show']) && $cat['show'] && $cat['parentid']) {
+						$cat['show'] = $structure[$cat['parentid']]['show'];
+					}
 				}
+				$structure[$cat['id']] = $cat;
 			}
-			$structure[$cat['id']] = $cat;
+			$structure = sortMultiArray($structure, 'sort_order', false, false, false, true);
+			$this->categoryStructure = $structure;
 		}
-		$this->categoryStructure = $structure;
+		return $this->categoryStructure;
 	}
 
 	/**
@@ -422,7 +429,7 @@ class Zenpage {
 		if (!$articles_per_page) {
 			$limit = '';
 		} else {
-			$limit = " LIMIT ".$zenpage->getOffset($articles_per_page).",".$articles_per_page;
+			$limit = " LIMIT ".$this->getOffset($articles_per_page).",".$articles_per_page;
 		}
 		if(empty($sortorder)) {
 			$combinews_sortorder = getOption("zenpage_combinews_sortorder");
@@ -648,7 +655,7 @@ class Zenpage {
 	 * @return array
 	 */
 	function getAllCategories($visible=true) {
-		$structure = sortMultiArray($this->categoryStructure, 'sort_order');
+		$structure = $this->getCategoryStructure();
 		if ($visible) {
 			foreach ($structure as $key=>$cat) {
 				if (!$cat['show']) {
