@@ -426,15 +426,16 @@ function addArticle(&$reports) {
 	$article->setExpiredate($expiredate);
 	$article->setSticky(sanitize_numeric($_POST['sticky']));
 	processTags($article);
-	$msg = zp_apply_filter('new_article', '', $article);
-	$article->save();
-	// create news2cat rows
+	$categories = array();
 	$result2 = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER BY titlelink");
 	foreach ($result2 as $cat) {
 		if (isset($_POST["cat".$cat['id']])) {
-			query("INSERT INTO ".prefix('news2cat')." (cat_id, news_id) VALUES ('".$cat['id']."', '".$article->get('id')."')");
+			$categories[] = $cat['titlelink'];
 		}
 	}
+	$article->setCategories($categories);
+	$msg = zp_apply_filter('new_article', '', $article);
+	$article->save();
 	if(empty($title)) {
 		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Article <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
 	} else {
@@ -519,24 +520,17 @@ function updateArticle(&$reports) {
 		$article->set('hitcounter',0);
 	}
 	processTags($article);
-	$msg = zp_apply_filter('update_article', '', $article, $oldtitlelink);
-	$article->save();
-	// create news2cat rows
-	$result2 = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER BY id");
-	foreach($result2 as $cat) {
-
-		// if category is sent
-		if(isset($_POST["cat".$cat['id']])) {
-			// check if category is already set in db, if not add it to news2cat
-			$checkcat = query_single_row("SELECT cat_id, news_id FROM ".prefix('news2cat')." WHERE cat_id = ".$cat['id']. " AND news_id = ".$article->get('id'));
-			if(!$checkcat) {
-				query("INSERT INTO ".prefix('news2cat')." (cat_id, news_id) VALUES ('".$cat['id']."', '".$article->get('id')."')");
-			}
-			// if category is not sent, delete it from news2cat
-		} else {
-			query("DELETE FROM ".prefix('news2cat')." WHERE cat_id = ".$cat['id']." AND news_id = ".$article->get('id'));
+	$categories = array();
+	$result2 = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER BY titlelink");
+	foreach ($result2 as $cat) {
+		if (isset($_POST["cat".$cat['id']])) {
+			$categories[] = $cat['titlelink'];
 		}
 	}
+	$article->setCategories($categories);
+	$msg = zp_apply_filter('update_article', '', $article, $oldtitlelink);
+	$article->save();
+
 	if (!$rslt) {
 		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("An article with the title/titlelink <em>%s</em> already exists!"),$titlelink).'</p>';
 	} else if(empty($title)) {

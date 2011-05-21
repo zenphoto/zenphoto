@@ -53,7 +53,7 @@ class Zenpage {
 				if ($catobj->isMyItem(VIEW_NEWS_RIGHTS)) {
 					$cat['show'] = 1;
 				} else {
-					if (isset($cat['show']) && $cat['show'] && $cat['parentid']) {
+					if ($cat['show'] && $cat['parentid']) {
 						$cat['show'] = $structure[$cat['parentid']]['show'];
 					}
 				}

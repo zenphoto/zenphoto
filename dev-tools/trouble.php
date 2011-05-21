@@ -24,12 +24,18 @@ $cats = $catobj->getSubCategories();
 ?>
 <ol class="index">
 <?php
-foreach ($cats as $cat) {
+foreach ($cats as $key=>$cat) {
 	$catobj = new ZenpageCategory($cat);
-	$h4 = $catobj->getTitle();
-	?>
-	<li><a href="#<?php echo $catobj->getTitlelink(); ?>"><?php echo $h4; ?></a></li>
-	<?php
+	$_zp_current_category = catobj;
+	$articles = $catobj=>getArticles();
+	if (!empty($articles)) {
+		$h4 = $catobj->getTitle();
+		?>
+		<li><a href="#<?php echo $catobj->getTitlelink(); ?>"><?php echo $h4; ?></a></li>
+		<?php
+	} else {
+		unset($cats[$key]);
+	}
 }
 ?>
 </ol>
@@ -44,6 +50,8 @@ foreach ($cats as $cat) {
 }
 
 function listArticles($cat) {
+	global $_zp_current_category;
+	$_zp_current_category = $cat;
 	$articles = $cat->getArticles();
 	if (!empty($articles)) {
 		?>
