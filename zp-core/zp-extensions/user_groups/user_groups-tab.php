@@ -271,7 +271,7 @@ echo '</head>'."\n";
 												}
 												printManagedObjects('pages',$pagelist, '', $groupid, $id, $rights, $kind);
 												$newslist = array();
-												$categories = $_zp_zenpage->getAllCategories();
+												$categories = $_zp_zenpage->getAllCategories(false);
 												foreach ($categories as $category) {
 													$newslist[get_language_string($category['title'])] = $category['titlelink'];
 												}

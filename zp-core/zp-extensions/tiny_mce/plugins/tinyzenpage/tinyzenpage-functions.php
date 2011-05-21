@@ -137,7 +137,7 @@ function printImageslist($number) {
 																											"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
 																											gettext('<em>Albumthumb</em>').unpublishedZenphotoItemCheck($albumthumb,false);
 		echo "</div>";
-	
+
 		$images = $albumobj->getImages();
 
 		if($albumobj->getNumImages() != 0) {
@@ -207,7 +207,7 @@ function printImageslist($number) {
 			} // for end
 		} else {
 			echo "<p style='margin-left: 8px'>".gettext("<strong>Note:</strong> This album does not contain any images.")."</p>";
-		}	// if/else  no image end 
+		}	// if/else  no image end
 	} // if GET album end
 }
 
@@ -412,7 +412,7 @@ function printZenpageItems() {
 	global $_zp_zenpage;
 	$pages = $_zp_zenpage->getPages(false);
 	$pagenumber = count($pages);
-	$categories = $_zp_zenpage->getAllCategories();
+	$categories = $_zp_zenpage->getAllCategories(false);
 	$catcount = count($categories);
 	echo "<option value='pages'>".gettext("pages")." (".$pagenumber.")</option>";
 	echo "<option value='articles'>".gettext("articles")." (".count($_zp_zenpage ->getNewsArticles(0,'all')).")</option>";
@@ -434,7 +434,7 @@ function printAllNestedList() {
 				$listtitle = gettext('Pages');
 				break;
 			case 'categories':
-				$items = $_zp_zenpage->getAllCategories();
+				$items = $_zp_zenpage->getAllCategories(false);
 				$listtitle = gettext('Categories');
 				break;
 		}

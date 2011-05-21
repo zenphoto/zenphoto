@@ -745,7 +745,7 @@ function languageChange(id,lang) {
 						}
 						printManagedObjects('pages',$pagelist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'));
 						$newslist = array();
-						$categories = $_zp_zenpage->getAllCategories();
+						$categories = $_zp_zenpage->getAllCategories(false);
 						foreach ($categories as $category) {
 							$newslist[get_language_string($category['title'])] = $category['titlelink'];
 						}

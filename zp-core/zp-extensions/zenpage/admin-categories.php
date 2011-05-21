@@ -29,7 +29,13 @@ if(isset($_GET['hitcounter'])) {
 	$obj = new ZenpageCategory($x['titlelink']);
 	$obj->set('hitcounter',0);
 	$obj->save();
-	}
+}
+if(isset($_GET['publish'])) {
+	XSRFdefender('update');
+	$obj = new ZenpageCategory(sanitize($_GET['titlelink']));
+	$obj->setShow(sanitize_numeric($_GET['publish']));
+	$obj->save();
+}
 if(isset($_GET['save'])) {
 	XSRFdefender('save_categories');
 	addCategory($reports);

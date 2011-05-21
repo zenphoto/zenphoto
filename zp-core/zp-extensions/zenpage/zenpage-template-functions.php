@@ -227,6 +227,7 @@ function getNumNews($combi=true) {
  */
 function next_news($sortorder="date", $sortdirection="desc") {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_current_category, $_zp_gallery, $_zp_current_search;
+	$_zp_current_zenpage_news_restore = $_zp_current_zenpage_news;
 	if (is_null($_zp_zenpage_articles)) {
 		if (in_context(ZP_SEARCH)) {
 			$_zp_zenpage->processExpired('news');
@@ -240,70 +241,73 @@ function next_news($sortorder="date", $sortdirection="desc") {
 				$_zp_zenpage_articles = $_zp_zenpage->getNewsArticles(ZP_ARTICLES_PER_PAGE,NULL,false,$sortorder,$sortdirection);
 			}
 		}
-		//print_r($_zp_zenpage_articles); // debugging
-		if (empty($_zp_zenpage_articles)) { return false; }
-		$_zp_current_zenpage_news_restore = $_zp_current_zenpage_news;
-		$news = array_shift($_zp_zenpage_articles);
-		//print_r($news); // debugging
-		if (is_array($news)) {
-			if(ZP_COMBINEWS AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
-				if($news['type'] == "images") {
-					$albumobj = new Album($_zp_gallery,$news['albumname']);
-					$_zp_current_zenpage_news = newImage($albumobj,$news['titlelink']);
-				} else if($news['type'] == "albums") {
-					switch(getOption("zenpage_combinews_mode")) {
-						case "latestimagesbyalbum-thumbnail":
-						case "latestimagesbyalbum-thumbnail-customcrop":
-						case "latestimagesbyalbum-sizedimage":
-							$_zp_current_zenpage_news = new Album($_zp_gallery,$news['titlelink']);
-							$_zp_current_zenpage_news->set('date', $news['date']); // in this mode this stores the date of the images to group not the album (inconvenient workaround...)
-							break;
-						default:
-							$_zp_current_zenpage_news = new Album($_zp_gallery,$news['albumname']);
-							break;
+		while (!empty($_zp_zenpage_articles)) {
+			$news = array_shift($_zp_zenpage_articles);
+			if (is_array($news)) {
+				if(ZP_COMBINEWS AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
+					if($news['type'] == "images") {
+						$albumobj = new Album($_zp_gallery,$news['albumname']);
+						$_zp_current_zenpage_news = newImage($albumobj,$news['titlelink']);
+					} else if($news['type'] == "albums") {
+						switch(getOption("zenpage_combinews_mode")) {
+							case "latestimagesbyalbum-thumbnail":
+							case "latestimagesbyalbum-thumbnail-customcrop":
+							case "latestimagesbyalbum-sizedimage":
+								$_zp_current_zenpage_news = new Album($_zp_gallery,$news['titlelink']);
+								$_zp_current_zenpage_news->set('date', $news['date']); // in this mode this stores the date of the images to group not the album (inconvenient workaround...)
+								break;
+							default:
+								$_zp_current_zenpage_news = new Album($_zp_gallery,$news['albumname']);
+								break;
+						}
+					} else {
+						$_zp_current_zenpage_news = new ZenpageNews($news['titlelink']);
 					}
 				} else {
 					$_zp_current_zenpage_news = new ZenpageNews($news['titlelink']);
 				}
+				return true;
 			} else {
-				$_zp_current_zenpage_news = new ZenpageNews($news['titlelink']);
+				break;
 			}
 		}
-		add_context(ZP_ZENPAGE_NEWS_ARTICLE);
-		return true;
-	} else if (empty($_zp_zenpage_articles)) {
-		$_zp_zenpage_articles = NULL;
-		$_zp_current_zenpage_news = $_zp_current_zenpage_news_restore;
-		rem_context(ZP_ZENPAGE_NEWS_ARTICLE);
-		return false;
 	} else {
-		$news = array_shift($_zp_zenpage_articles);
-		if (is_array($news)) {
-			if(ZP_COMBINEWS AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
-				if($news['type'] == "images") {
-					$albumobj = new Album($_zp_gallery,$news['albumname']);
-					$_zp_current_zenpage_news = newImage($albumobj,$news['titlelink']);
-				} else if($news['type'] == "albums") {
-					switch(getOption("zenpage_combinews_mode")) {
-						case "latestimagesbyalbum-thumbnail":
-						case "latestimagesbyalbum-thumbnail-customcrop":
-						case "latestimagesbyalbum-sizedimage":
-							$_zp_current_zenpage_news = new Album($_zp_gallery,$news['titlelink']);
-							$_zp_current_zenpage_news->set('date', $news['date']); // in this mode this stores the date of the images to group not the album (inconvenient workaround...)
-							break;
-						default:
-							$_zp_current_zenpage_news = new Album($_zp_gallery,$news['albumname']);
-							break;
+		$_zp_current_zenpage_news = NULL;
+		while (!empty($_zp_zenpage_articles)) {
+			$news = array_shift($_zp_zenpage_articles);
+			if (is_array($news)) {
+				if(ZP_COMBINEWS AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
+					if($news['type'] == "images") {
+						$albumobj = new Album($_zp_gallery,$news['albumname']);
+						$_zp_current_zenpage_news = newImage($albumobj,$news['titlelink']);
+					} else if($news['type'] == "albums") {
+						switch(getOption("zenpage_combinews_mode")) {
+							case "latestimagesbyalbum-thumbnail":
+							case "latestimagesbyalbum-thumbnail-customcrop":
+							case "latestimagesbyalbum-sizedimage":
+								$_zp_current_zenpage_news = new Album($_zp_gallery,$news['titlelink']);
+								$_zp_current_zenpage_news->set('date', $news['date']); // in this mode this stores the date of the images to group not the album (inconvenient workaround...)
+								break;
+							default:
+								$_zp_current_zenpage_news = new Album($_zp_gallery,$news['albumname']);
+								break;
+						}
+					} else {
+						$_zp_current_zenpage_news = new ZenpageNews($news['titlelink']);
 					}
 				} else {
 					$_zp_current_zenpage_news = new ZenpageNews($news['titlelink']);
 				}
+				return true;
 			} else {
-				$_zp_current_zenpage_news = new ZenpageNews($news['titlelink']);
+				break;
 			}
 		}
-		return true;
 	}
+	$_zp_zenpage_articles = NULL;
+	$_zp_current_zenpage_news = $_zp_current_zenpage_news_restore;
+	rem_context(ZP_ZENPAGE_NEWS_ARTICLE);
+	return false;
 }
 
 /**

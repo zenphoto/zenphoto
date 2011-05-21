@@ -904,7 +904,7 @@ function addCategory(&$reports) {
 	$cat->set('title',$title);
 	$cat->setDesc($desc);
 	$cat->setCustomData(zp_apply_filter('save_category_custom_data', $custom,$cat));
-	$show = getcheckboxState('show');
+	$cat->setShow($show);
 	$msg = zp_apply_filter('new_category','', $cat);
 	$cat->save();
 	if(empty($title)) {
@@ -967,7 +967,7 @@ function updateCategory(&$reports) {
 	$cat->set('title',$title);
 	$cat->setDesc($desc);
 	$cat->setCustomData(zp_apply_filter('save_category_custom_data', $custom,$cat));
-	$show = getcheckboxState('show');
+	$cat->setShow($show);
 	if (getcheckboxState('resethitcounter')) {
 		$cat->set('hitcounter',0);
 	}
@@ -1043,6 +1043,23 @@ function printCategoryListSortableTable($cat,$flag) {
 			?>
 			</div>
 			<div class="page-list_icon">
+			<?php
+			if ($cat->getShow()) {
+				$title = gettext("Un-publish");
+				?>
+				<a href="?publish=0&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
+				<img src="../../images/pass.png" alt="<?php gettext("Scheduled for published"); ?>" title="<?php echo $title; ?>" /></a>
+				<?php
+			} else {
+				$title = gettext("Publish");
+				?>
+				<a href="?publish=1&amp;titlelink=<?php echo html_encode($cat->getTitlelink()); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
+				<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
+				<?php
+			}
+			?>
+			</div>
+			<div class="page-list_icon">
 			<?php if($count == 0) { ?>
 				<img src="../../images/icon_inactive.png" alt="<?php gettext('locked'); ?>" />
 			<?php
@@ -1107,7 +1124,7 @@ function printCategoryCheckboxListEntry($cat,$articleid,$option) {
 function printCategoryDropdown() {
 	global $_zp_zenpage;
 	$currentpage = $_zp_zenpage->getCurrentAdminNewsPage();
-	$result = $_zp_zenpage->getAllCategories();
+	$result = $_zp_zenpage->getAllCategories(false);
 	if(isset($_GET['date'])) {
 		$datelink = "&amp;date=".$_GET['date'];
 		$datelinkall = "?date=".$_GET['date'];
@@ -1198,7 +1215,7 @@ function printNestedItemsList($listtype='cats-sortablelist',$articleid='',$optio
 	switch($listtype) {
 		case 'cats-checkboxlist':
 		case 'cats-sortablelist':
-			$items = $_zp_zenpage->getAllCategories();
+			$items = $_zp_zenpage->getAllCategories(false);
 			break;
 		case 'pages-sortablelist':
 			$items = $_zp_zenpage->getPages(false);
@@ -1411,7 +1428,7 @@ function getNewsPagesStatistic($option) {
 			break;
 		case "categories":
 			$type = gettext("Categories");
-			$cats = $_zp_zenpage->getAllCategories();
+			$cats = $_zp_zenpage->getAllCategories(false);
 			$total = count($cats);
 			$unpub = 0;
 			break;

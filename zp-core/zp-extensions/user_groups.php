@@ -112,7 +112,7 @@ function user_groups_edit_admin($html, $userobj, $i, $background, $current) {
 			}
 			$newslist = array();
 			$allnew = array();
-			$categories = $_zp_zenpage->getAllCategories();
+			$categories = $_zp_zenpage->getAllCategories(false);
 			foreach ($categories as $category) {
 				$newslist[get_language_string($category['titlelink'])] = $category['title'];
 				$allnew[] = "'#managed_news_".$i.'_'.postIndexEncode($category['titlelink'])."'";

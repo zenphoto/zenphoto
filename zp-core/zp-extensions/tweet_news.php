@@ -98,7 +98,7 @@ class tweet_options {
 
 		if (getOption('tweet_news_news')) {
 			$catlist = unserialize(getOption('tweet_news_categories'));
-			$news_categories = $_zp_zenpage->getAllCategories();
+			$news_categories = $_zp_zenpage->getAllCategories(false);
 			$catlist = array(gettext('*not categorized*')=>'tweet_news_categories_none');
 			foreach ($news_categories as $category) {
 				$option = 'tweet_news_categories_'.$category['titlelink'];

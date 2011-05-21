@@ -36,12 +36,21 @@ if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOpt
 class Zenpage {
 
 	var $news_on_index = NULL;
+	var $categoryStructure = NULL;
 
 	/**
 	 * Class instantiator
 	 */
 	function Zenpage() {
-		// no action required
+		$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
+		$structure = array();
+		foreach ($allcategories as $cat) {
+			if ($cat['show'] && $cat['parentid']) {
+				$cat['show'] = $structure[$cat['parentid']]['show'];
+			}
+			$structure[$cat['id']] = $cat;
+		}
+		$this->categoryStructure = $structure;
 	}
 
 	/**
@@ -206,8 +215,17 @@ class Zenpage {
 			$datesearch = "";
 			$order = " ORDER BY ".$sticky.$sort1." ".$dir;
 		}
-		$sql = "SELECT titlelink FROM ".prefix('news').$show.$datesearch." ".$order.$limit;
-		$result = query_full_array($sql);
+		$sql = "SELECT titlelink FROM ".prefix('news').$show.$datesearch." ".$order;
+		$resource = $result = query($sql);
+		if ($resource) {
+			$result = array();
+			while ($item = db_fetch_assoc($resource)) {
+				$article = new ZenpageNews($item['titlelink']);
+				if ($article->categoryIsVisible()) {
+					$result[] = $item;
+				}
+			}
+		}
 		return $result;
 	}
 
@@ -581,7 +599,7 @@ class Zenpage {
 	 * @return string
 	 */
 	function getCategoryLink($catname) {
-		foreach($this->getAllCategories() as $cat) {
+		foreach($this->getAllCategories(false) as $cat) {
 			if($cat['titlelink'] == $catname) {
 				return $cat['title'];
 			}
@@ -596,7 +614,7 @@ class Zenpage {
 	 * @return array
 	 */
 	function getCategory($id) {
-		foreach($this->getAllCategories() as $cat) {
+		foreach($this->getAllCategories(false) as $cat) {
 			if($cat['id'] == $id) {
 				return $cat;
 			}
@@ -610,12 +628,16 @@ class Zenpage {
 	 *
 	 * @return array
 	 */
-	function getAllCategories() {
-		global $_zp_zenpage_all_categories;
-		if(is_null($_zp_zenpage_all_categories) OR isset($_GET['delete']) OR isset($_GET['update']) OR isset($_GET['save'])) {
-			$_zp_zenpage_all_categories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
+	function getAllCategories($visible=true) {
+		$structure = sortMultiArray($this->categoryStructure, 'sort_order');
+		if ($visible) {
+			foreach ($structure as $key=>$cat) {
+				if (!$cat['show']) {
+					unset($structure[$key]);
+				}
+			}
 		}
-		return $_zp_zenpage_all_categories;
+		return $structure;
 	}
 
 }	// ZenpageCMS

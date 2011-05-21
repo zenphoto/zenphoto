@@ -121,7 +121,7 @@ class ZenpageCategory extends ZenpageRoot {
 		global $_zp_zenpage;
 		$subcategories = array();
 		$sortorder = $this->getSortOrder();
-		foreach($_zp_zenpage->getAllCategories() as $cat) {
+		foreach($_zp_zenpage->getAllCategories(false) as $cat) {
 			$catobj = new ZenpageCategory($cat['titlelink']);
 			if($catobj->getParentID() == $this->getID() && $catobj->getSortOrder() != $sortorder) { // exclude the category itself!
 				array_push($subcategories,$catobj->getTitlelink());
@@ -165,7 +165,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 */
 	function getParents(&$parentid='',$initparents=true) {
 		global $parentcats,$_zp_zenpage;
-		$allitems = $_zp_zenpage->getAllCategories();
+		$allitems = $_zp_zenpage->getAllCategories(false);
 		if($initparents) {
 			$parentcats = array();
 		}

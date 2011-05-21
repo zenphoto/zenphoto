@@ -714,7 +714,7 @@ function printZenpageNewsCategorySelector() {
 	?>
 <select id="categoryselector" name="categoryselect">
 <?php
-	$cats = $_zp_zenpage->getAllCategories();
+	$cats = $_zp_zenpage->getAllCategories(false);
 	foreach($cats  as $cat) {
 		$catobj = new ZenpageCategory($cat['titlelink']);
 		//This is much easier than hacking the nested list function to work with this

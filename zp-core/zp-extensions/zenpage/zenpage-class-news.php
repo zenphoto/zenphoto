@@ -28,6 +28,7 @@ class ZenpageNews extends ZenpageItems {
 		return $categories;
 	}
 	function setCategories($categories) {
+		$result = query('DELETE FROM '.prefix('news2cat').' WHERE `news_id`='.$this->getID());
 		$result = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER BY titlelink");
 		foreach ($result as $cat) {
 			if (in_array($cat['titlelink'],$categories)) {
@@ -123,6 +124,26 @@ class ZenpageNews extends ZenpageItems {
 	 */
 	function isProtected() {
 		return $this->inProtectedCategory(true);
+	}
+
+	/**
+	 *
+	 * returns true if the article exists in any published category (or in no categories)
+	 */
+	function categoryIsVisible() {
+		global $_zp_zenpage;
+		$categories = $this->getCategories(false);
+		if(count($categories) > 0) {
+
+			$structure = $_zp_zenpage->categoryStructure;
+			foreach($categories as $cat) {
+				if ($structure[$cat['cat_id']]['show']) {
+					return true;
+				}
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**

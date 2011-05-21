@@ -110,6 +110,7 @@ if(is_AdminEditPage('category')) {
 		$result = updateCategory($reports);
 	} else {
 		$result = new ZenpageCategory('');
+		$result->setShow(1);
 	}
 }
 
