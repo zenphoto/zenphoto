@@ -45,8 +45,13 @@ class Zenpage {
 		$allcategories = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER by sort_order");
 		$structure = array();
 		foreach ($allcategories as $cat) {
-			if ($cat['show'] && $cat['parentid']) {
-				$cat['show'] = $structure[$cat['parentid']]['show'];
+			$catobj = new ZenpageCategory($cat['titlelink']);
+			if ($catobj->isMyItem(VIEW_NEWS_RIGHTS)) {
+				$cat['show'] = 1;
+			} else {
+				if (isset($cat['show']) && $cat['show'] && $cat['parentid']) {
+					$cat['show'] = $structure[$cat['parentid']]['show'];
+				}
 			}
 			$structure[$cat['id']] = $cat;
 		}
