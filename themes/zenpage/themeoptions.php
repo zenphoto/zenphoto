@@ -54,7 +54,7 @@ class ThemeOptions {
 									);
 	}
 
-  function getOptionsUnsupported() {
+  function getOptionsDisabled() {
   	return array('custom_index_page');
   }
 

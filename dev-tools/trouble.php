@@ -52,6 +52,7 @@ foreach ($cats as $cat) {
 }
 
 function listArticles($cat) {
+	global $counter;
 	global $_zp_current_category;
 	$_zp_current_category = $cat;
 	$articles = $cat->getArticles();
@@ -62,10 +63,11 @@ function listArticles($cat) {
 		foreach ($articles as $titlelink) {
 			$titlelink = $titlelink['titlelink'];
 			$article = new ZenpageNews($titlelink);
+			$counter ++;
 			?>
 				<li>
-				<h5><a name="<?php echo $titlelink; ?>"><a href="javascript:toggle('<?php echo $titlelink; ?>_body');"><?php echo $article->getTitle(); ?></a></h5>
-				<div id="<?php echo html_encode($titlelink)?>_body" style="display:none;" class="body">
+				<h5><a name="<?php echo $titlelink; ?>"><a href="javascript:toggle('article_<?php echo $counter; ?>');"><?php echo $article->getTitle(); ?></a></h5>
+				<div id="article_<?php echo $counter; ?>" style="display:none;" class="body">
 					<?php echo $article->getContent(); ?>
 				</div>
 				<?php

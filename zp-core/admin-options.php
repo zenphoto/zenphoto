@@ -2231,8 +2231,8 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 		require_once($requirePath);
 		$optionHandler = new ThemeOptions();
 		$supportedOptions = $optionHandler->getOptionsSupported();
-		if (method_exists($optionHandler, 'getOptionsUnsupported')) {
-			$unsupportedOptions = $optionHandler->getOptionsUnsupported();
+		if (method_exists($optionHandler, 'getOptionsDisabled')) {
+			$unsupportedOptions = $optionHandler->getOptionsDisabled();
 		} else {
 			$unsupportedOptions = array();
 		}

@@ -46,7 +46,7 @@ class ThemeOptions {
 		}
   }
 
-  function getOptionsUnsupported() {
+  function getOptionsDisabled() {
   	return array('thumb_size','thumb_crop','image_size','custom_index_page');
   }
 

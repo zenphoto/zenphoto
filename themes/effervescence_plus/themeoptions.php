@@ -101,7 +101,7 @@ class ThemeOptions {
 		return $options;
 	}
 
-	 function getOptionsUnsupported() {
+	 function getOptionsDisabled() {
   	return array('image_size');
   }
 

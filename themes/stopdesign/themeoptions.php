@@ -26,7 +26,7 @@ class ThemeOptions {
 									);
 	}
 
-	function getOptionsUnsupported() {
+	function getOptionsDisabled() {
 		return array('thumb_size','thumb_crop','albums_per_row','images_per_row','image_size','custom_index_page');
 	}
 
