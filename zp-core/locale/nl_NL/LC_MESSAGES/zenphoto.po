@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.1\n"
+"Project-Id-Version: Zenphoto 1.4.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-18 19:08+0100\n"
-"PO-Revision-Date: 2011-05-18 19:09+0100\n"
+"POT-Creation-Date: 2011-05-22 08:47+0100\n"
+"PO-Revision-Date: 2011-05-22 10:49+0100\n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -710,7 +710,7 @@ msgstr "<strong>Opmerking:</strong>  Deze optie kan alleen bebruikt worden als j
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:68
 #, php-format
 msgid "<strong>Note:</strong> The <em>%s</em> custom menu makes use of the <em>print_album_menu</em> plugin."
-msgstr "<strong>Opmerking:</strong> Het <em>%s</em> custom menu maakt gebruik van de <em>print_album_menu</em> plugin."
+msgstr "<strong>Opmerking:</strong> Het <em>%s</em> eigen menu maakt gebruik van de <em>print_album_menu</em> plugin."
 
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:70
 msgid "Theme logo"
@@ -788,7 +788,7 @@ msgstr "Selecteer het thematype"
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:80
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:84
 msgid "Custom menu"
-msgstr "Custom menu"
+msgstr "Eigen menu"
 
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:80
 msgid "Set this to the <em>menu_manager</em> menu set you wish to use."
@@ -1445,7 +1445,7 @@ msgstr "Vink uit als je geen bebruik wilt maken van de standaard contactpagina m
 
 #: ZpTranslation-Development/themes/zenpage/themeoptions.php:48
 msgid "Use custom menu"
-msgstr "Gebruik custom menu"
+msgstr "Gebruik eigen menu"
 
 #: ZpTranslation-Development/themes/zenpage/themeoptions.php:48
 msgid "Check this if you want to use the <em>menu_manager</em> plugin if enabled to build a custom menu instead of the separate standard ones. As standard menu set named \"zenpage\" is created and used automatically."
@@ -1547,7 +1547,7 @@ msgstr "Sorteer de afbeeldingen door ze te slepen..."
 #: ZpTranslation-Development/zp-core/admin-comments.php:92
 #: ZpTranslation-Development/zp-core/admin-edit.php:572
 msgid "Are you sure you want to delete the checked items?"
-msgstr "Weet je zeker dat je de geselecteerde items wilt verwijderen?"
+msgstr "Weet je zeker dat je de geselecteerde onderdelen wilt verwijderen?"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:110
 msgid "edit comment"
@@ -1648,15 +1648,15 @@ msgstr "Reactie is niet anoniem"
 #: ZpTranslation-Development/zp-core/admin-edit.php:795
 #: ZpTranslation-Development/zp-core/admin-edit.php:1618
 msgid "Selected items deleted"
-msgstr "Geselecteerde items verwijderd"
+msgstr "Geselecteerde onderdelen verwijderd"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:261
 msgid "Selected items marked as spam"
-msgstr "De geselecteerde items zijn zijn gemarkeerd als spam"
+msgstr "De geselecteerde onderdelen zijn gemarkeerd als spam"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:264
 msgid "Selected items approved"
-msgstr "Geselecteerde items goedgekeurd"
+msgstr "Geselecteerde onderdelen goedgekeurd"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:273
 msgid "Comments deleted successfully."
@@ -1944,27 +1944,27 @@ msgstr "<em>%s</em> bestaat al."
 #: ZpTranslation-Development/zp-core/admin-edit.php:798
 #: ZpTranslation-Development/zp-core/admin-edit.php:1621
 msgid "Selected items published"
-msgstr "Geselecteerde items gepubliceerd"
+msgstr "Geselecteerde onderdelen gepubliceerd"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:801
 #: ZpTranslation-Development/zp-core/admin-edit.php:1624
 msgid "Selected items unpublished"
-msgstr "Geselecteerde items niet gepubliceerd"
+msgstr "Geselecteerde onderdelen niet gepubliceerd"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:804
 #: ZpTranslation-Development/zp-core/admin-edit.php:1627
 msgid "Comments enabled for selected items"
-msgstr "Reacties geactiveerd voor de geselecteerde items"
+msgstr "Reacties geactiveerd voor de geselecteerde onderdelen"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:807
 #: ZpTranslation-Development/zp-core/admin-edit.php:1630
 msgid "Comments disabled for selected items"
-msgstr "Reacties niet geactiveerd voor de geselecteerde items"
+msgstr "Reacties niet geactiveerd voor de geselecteerde onderdelen"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:810
 #: ZpTranslation-Development/zp-core/admin-edit.php:1633
 msgid "Hitcounter for selected items"
-msgstr "Hitteller voor geselecteerd item"
+msgstr "Hitteller voor geselecteerd onderdeel"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:854
 #: ZpTranslation-Development/zp-core/admin-edit.php:1658
@@ -2117,7 +2117,7 @@ msgstr "Reset alle waarderingen (%u sterren)"
 #: ZpTranslation-Development/zp-core/admin-edit.php:1158
 #: ZpTranslation-Development/zp-core/admin-functions.php:1591
 msgid "Reset rating (unrated)"
-msgstr "Reset waardering (ongewaardeerd)"
+msgstr "Reset waardering (niet gewaardeerd)"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1167
 #: ZpTranslation-Development/zp-core/admin-functions.php:1600
@@ -2305,19 +2305,19 @@ msgstr "Cache is gewist."
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1636
 msgid "Tags added selected items"
-msgstr "Tags toegevoegd aan de geselecteerde items."
+msgstr "Tags toegevoegd aan de geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1639
 msgid "Tags cleared for selected items"
-msgstr "Tags verwijderd van de geselecteerde items."
+msgstr "Tags verwijderd van de geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1642
 msgid "Tags added for images of selected items"
-msgstr "Tags toegevoegd aan afbeeldingen van de geselecteerde items."
+msgstr "Tags toegevoegd aan afbeeldingen van de geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1645
 msgid "Tags cleared for images of selected items"
-msgstr "Tags verwijderd van afbeeldingen van de geselecteerde items."
+msgstr "Tags verwijderd van afbeeldingen van de geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1669
 #, php-format
@@ -3311,7 +3311,7 @@ msgstr "Februari 25, 2008"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:792
 msgid "Format for dates. Select from the list or set to <code>custom</code> and provide a <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span class=\"nowrap\"><code>strftime()</code></span></a> format string in the text box."
-msgstr "Weegave van de datum. Selecteer uit de lijst of kies voor <code>custom</code> en voer een <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span class=\"nowrap\"><code>strftime()</code></span></a> formaat in,  in het tekstveld."
+msgstr "Weegave van de datum. Selecteer uit de lijst of kies voor <code>eigen</code> en voer een <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span class=\"nowrap\"><code>strftime()</code></span></a> formaat in,  in het tekstveld."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:795
 msgid "Charset:"
@@ -3647,7 +3647,7 @@ msgstr "Het gebruik van <code>Behandel spaties als</code> <em>OF </em> zorgt erv
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1402
 msgid "Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches."
-msgstr "De optie <code>Laat geen <em>{item}</em> zien</code> zorgt ervoor dat <em>{items}</em> worden genegeerd bij het zoeken. "
+msgstr "De optie <code>Laat geen <em>{onderdeel}</em> zien</code> zorgt ervoor dat <em>{onderdelen}</em> worden genegeerd bij het zoeken. "
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1436
 msgid "RSS feeds enabled:"
@@ -3667,7 +3667,7 @@ msgstr "<strong>Opmerking:</strong> Het thema moet het weergeven van RSS links o
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1466
 msgid "Number of RSS feed items:"
-msgstr "Aantal RSS Feed items:"
+msgstr "Aantal RSS Feed onderdelen:"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1468
 #: ZpTranslation-Development/zp-core/admin-options.php:1477
@@ -4979,7 +4979,7 @@ msgstr "Het <em>administrator</em>-account heeft volledige rechten voor alle alb
 
 #: ZpTranslation-Development/zp-core/admin-users.php:786
 #, php-format
-msgid "The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You wish may wish to migrate the user rights to gain the new functionality this version provides."
+msgid "The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides."
 msgstr "Het <em>Zenphoto_Authority</em> object ondersteund een hogere versie van de gebruikersrechten dan op dit moment is geselecteerd. Wellicht wil je de gebruikersrechten overdragen om zo van de nieuwere functionaliteit gebruik te maken."
 
 #: ZpTranslation-Development/zp-core/admin-users.php:789
@@ -8213,6 +8213,10 @@ msgstr "Klik op de knop<em>Selecteer bestanden</em> om de filebrowser te gebruik
 #: ZpTranslation-Development/zp-core/admin-httpupload/upload_form.php:39
 msgid "You may choose files by dragging them onto <em>Select files</em> button. Or you can click on the button and use your file browser."
 msgstr "Je kunt bestanden selecteren door ze op de knop <em>Selecteer bestanden</em> te slepen. Je kunt ook eerst op de knop klikken om vervolgens de filebrowser te gebruiken."
+
+#: ZpTranslation-Development/zp-core/admin-httpupload/upload_form.php:49
+msgid "Select files"
+msgstr "Selecteer bestanden"
 
 #: ZpTranslation-Development/zp-core/admin-httpupload/upload_form.php:97
 msgid "You have exceeded the file upload limit"
@@ -12133,7 +12137,7 @@ msgstr "%1$u nieuw %2$s"
 #: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:417
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
-msgstr "Waardering: %1$u (Stemmen: %2$u )"
+msgstr "waardering: %1$u (Stemmen: %2$u )"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:185
 #: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:422
@@ -12176,7 +12180,7 @@ msgstr "Afbeeldingen (custom)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:203
 msgid "Apply <em>effect</em> to images shown via the custom image functions."
-msgstr "Pas <em>effect</em> toe op afbeeldingen die getoond worden via custom afbeeldingsfuncties."
+msgstr "Pas <em>effect</em> toe op afbeeldingen die getoond worden via aangepaste afbeeldingsfuncties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:204
 msgid "Image thumbnails (standard)"
@@ -12200,7 +12204,7 @@ msgstr "Thumbnails (custom)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:215
 msgid "Apply <em>effect</em> to images shown via the custom image functions when <em>thumbstandin</em> is set."
-msgstr "Pas <em>effect</em> toe op afbeeldingen die getoond worden via custom afbeeldingsfuncties wanneer <em>thumbstandin</em> is ingesteld."
+msgstr "Pas <em>effect</em> toe op afbeeldingen die getoond worden via aangepaste afbeeldingsfuncties wanneer <em>thumbstandin</em> is ingesteld."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/image_effects.php:216
 msgid "Album thumbnails  (custom)"
@@ -12374,7 +12378,7 @@ msgstr "Nieuws index"
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:820
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty link."
-msgstr "createMenuIfNotExists item %s heeft een lege link."
+msgstr "createMenuIfNotExists onderdeel %s heeft een lege link."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:799
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:813
@@ -12382,24 +12386,24 @@ msgstr "createMenuIfNotExists item %s heeft een lege link."
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:840
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty title."
-msgstr "createMenuIfNotExists item %s heeft een lege titel."
+msgstr "createMenuIfNotExists onderdeel %s heeft een lege titel."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:826
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:847
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:853
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty title or link."
-msgstr "createMenuIfNotExists item %s heeft een lege titel of link."
+msgstr "createMenuIfNotExists onderdeel %s heeft een lege titel of link."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:858
 #, php-format
 msgid "createMenuIfNotExists item %s has an invalid type."
-msgstr "createMenuIfNotExists item %s is een ongeldig type."
+msgstr "createMenuIfNotExists onderdeel %s is een ongeldig type."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:875
 #, php-format
 msgid "createMenuIfNotExists item %1$s query (%2$s) failed: %3$s."
-msgstr "createMenuIfNotExists item %1$s query (%2$s) mislukt: %3$s."
+msgstr "createMenuIfNotExists onderdeel %1$s query (%2$s) mislukt: %3$s."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:883
 msgid "createMenuIfNotExists has posted processing errors to your debug log."
@@ -12777,11 +12781,11 @@ msgstr "toon waardering"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/rating.php:114
 msgid "Show previous vote"
-msgstr "toon vorige stem"
+msgstr "toon vorige waardering"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/rating.php:115
 msgid "Allow users to change their vote. If Show previous vote is chosen, the stars will reflect the last vote of the viewer. Otherwise they will reflect the current rating."
-msgstr "Sta gebruikers toe hun stem te wijzigen. Als <em>toon vorige stem</em> is gekozen geven de sterren de laatste waardering van de bezoeker weer. Anders geven ze de huidige waardering weer."
+msgstr "Sta gebruikers toe hun stem te wijzigen. Als <em>toon vorige waardering</em> is gekozen geven de sterren de laatste waardering van de bezoeker weer. Anders geven ze de huidige waardering weer."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/rating.php:116
 msgid "Disguise IP"
@@ -12789,7 +12793,7 @@ msgstr "Verberg IP"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/rating.php:117
 msgid "Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues."
-msgstr "Versleuteld de opgeslagen IP-adressen om schendingvan privacy te voorkomen."
+msgstr "Versleuteld de opgeslagen IP-adressen om schending van privacy te voorkomen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/rating.php:146
 msgid "No object for rating."
@@ -13186,7 +13190,7 @@ msgstr "Genereert een XML bestand volgens de sitemaps.org richtlijnen voor Googl
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:19
 msgid "<strong>Note:</strong> The index links may not match if using the Zenpage option \"news on index\" that some themes provide! Also it does not \"know\" about \"custom pages\" outside Zenpage or any special custom theme setup!!"
-msgstr "<strong>Opmerking:</strong> Het kan zijn dat de links niet correct zijn wanneer gebruik gemaakt wordt van de optie \"Nieuws op index pagina\". Het herkent ook geen \"custom pagina's\" buiten Zenpage of een zelfgemaakt thema!"
+msgstr "<strong>Opmerking:</strong> Het kan zijn dat de links niet correct zijn wanneer gebruik gemaakt wordt van de optie \"Nieuws op index pagina\". Het herkent ook geen \"eigen pagina's\" buiten Zenpage of een zelfgemaakt thema!"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:29
 msgid "sitemap cache folder could not be created. Please try to create it manually via FTP with chmod 0777."
@@ -13543,7 +13547,7 @@ msgstr "Uitgesloten pagina's"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/static_html_cache.php:81
 msgid "The list of pages to excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma."
-msgstr "De lijst van pagina's die uitgesloten worden voor caching. Pagina's die uitgesloten kunnen worden zijn aangepaste thema-pagina's, Zenpage pagina's en de standaard thema-bestanden<em> image.php, album.php</em><em> en index.php</em>.<br /> Als je een pagina in z'n geheel wilt uitsluiten vul dan in: <em>pagina-naam.php</em>.<br /> Je kunt ook specifieke inhoud van pagina's uitsluiten zoals een afbeelding, een album of een nieuws-item.<br /> Vul dan b.v.  in : <em> image.php/afbeeldings-bestands-naam, album.php/album-map-naam</em> of <em>news.php/titel-link</em>.<br /><strong>Er kunnen meerdere uitsluitingen ingevuld worden. Deze moeten dan gescheiden worden door een <em>komma</em></strong>."
+msgstr "De lijst van pagina's die uitgesloten worden voor caching. Pagina's die uitgesloten kunnen worden zijn aangepaste thema-pagina's, Zenpage pagina's en de standaard thema-bestanden<em> image.php, album.php</em><em> en index.php</em>.<br /> Als je een pagina in z'n geheel wilt uitsluiten vul dan in: <em>pagina-naam.php</em>.<br /> Je kunt ook specifieke inhoud van pagina's uitsluiten zoals een afbeelding, een album of een artikel.<br /> Vul dan b.v.  in : <em> image.php/afbeeldings-bestands-naam, album.php/album-map-naam</em> of <em>news.php/titel-link</em>.<br /><strong>Er kunnen meerdere uitsluitingen ingevuld worden. Deze moeten dan gescheiden worden door een <em>komma</em></strong>."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/static_html_cache.php:189
 #, php-format
@@ -13964,12 +13968,12 @@ msgstr "Bekijk galerij index"
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:43
 #, php-format
 msgid "%1$u new item in <em>%2$s</em>: %3$s"
-msgstr "%1$u nieuw item in <em>%2$s</em>: %3$s"
+msgstr "%1$u nieuw onderdeel in <em>%2$s</em>: %3$s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:45
 #, php-format
 msgid "%1$u new items in <em>%2$s</em>: %3$s"
-msgstr "%1$u nieuw item in <em>%2$s</em>: %3$s"
+msgstr "%1$u nieuw onderdeel in <em>%2$s</em>: %3$s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:54
 msgid "* The options may be set via the <a href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a> plugin options."
@@ -14138,7 +14142,7 @@ msgstr "CombiNews: Thumbnail uitsnede breedte"
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:100
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:102
 msgid "For <em>thumbnail custom crop</em> only. Leave empty if you don't want to use it."
-msgstr "Alleen voor <em>thumbnail custom crop</em>. Laat leeg als je dit niet gebruikt."
+msgstr "Alleen voor <em>handmatige thumbnail uitsnede</em>. Laat leeg als je dit niet gebruikt."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:93
 msgid "CombiNews: Thumbnail crop height"
@@ -14166,7 +14170,7 @@ msgstr "CombiNews: Toon afbeeldingsbeschrijving"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:104
 msgid "Set to show the image description with every item if using the CombiNews mode <em>latest images by album</em> only. Printed as a paragraph."
-msgstr "Vink aan om de afbeeldingsbeschrijving te tonen bij elk item bij gebruik van CombiNews. Alleen bij gebruik van de instelling <em>laatste afbeeldingen in album</em>. Wordt geprint als paragraaf (p)."
+msgstr "Vink aan om de afbeeldingsbeschrijving te tonen bij elk onderdeel bij gebruik van CombiNews. Alleen bij gebruik van de instelling <em>laatste afbeeldingen in album</em>. Wordt geprint als paragraaf (p)."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:105
 msgid "CombiNews: Show image title"
@@ -14174,7 +14178,7 @@ msgstr "CombiNews: Toon afbeeldingstitel"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:106
 msgid "Set to show the image title with every item if using the CombiNews mode <em>latest images by album</em> only. Printed as h4-headline."
-msgstr "Vink aan om de afbeeldingstitel te tonen bij elk item bij gebruik van CombiNews. Alleen bij gebruik van de instelling <em>laatste afbeeldingen in album</em>. Wordt geprint als h4 kop."
+msgstr "Vink aan om de afbeeldingstitel te tonen bij elk onderdeel bij gebruik van CombiNews. Alleen bij gebruik van de instelling <em>laatste afbeeldingen in album</em>. Wordt geprint als h4 kop."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:107
 msgid "CombiNews: Custom title (singular)"
@@ -14184,7 +14188,7 @@ msgstr "CombiNews: Eigen titel (enkelvoud)"
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:110
 #, php-format
 msgid "Custom title for the article in sprintf() syntax. %1$u = number of new items, %2$s = title of the album they are in, %3$s = titles of the new items. Never leave any of these three out! (<em>latest images by album</em> option only)."
-msgstr "Eigen titel voor het artilkel volgens de sprintf() syntax. %1$u = aantal nieuwe items, %2$s = titel van het album waarin ze zich bevinden, %3$s = titels van de nieuwe items. Ze moeten alle drie een ingevuld worden! (all&eacute;&eacute;n voor de <em>laatste afbeeldingen in album</em> optie)."
+msgstr "Eigen titel voor het artilkel volgens de sprintf() syntax. %1$u = aantal nieuwe onderdelen, %2$s = titel van het album waarin ze zich bevinden, %3$s = titels van de nieuwe onderdelen. Ze moeten alle drie een ingevuld worden! (all&eacute;&eacute;n voor de <em>laatste afbeeldingen in album</em> optie)."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:109
 msgid "CombiNews: Custom title (plural)"
@@ -14458,19 +14462,19 @@ msgstr "Verwijder"
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:182
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:335
 msgid "The target for this menu element no longer exists"
-msgstr "Het doel voor dit menu-item bestaat niet meer"
+msgstr "Het doel voor dit menu-onderdeel bestaat niet meer"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:229
 msgid "Hidden and visible items"
-msgstr "Verborgen en zichtbare items"
+msgstr "Verborgen en zichtbare onderdelen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:230
 msgid "Visible items"
-msgstr "Zichtbare items"
+msgstr "Zichtbare onderdelen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:231
 msgid "hidden items"
-msgstr "Verborgen items"
+msgstr "Verborgen onderdelen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:453
 msgid "Menu items for all Zenphoto objects added."
@@ -14495,7 +14499,7 @@ msgstr "Je bent vergeten een album te selecteren."
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:473
 #, php-format
 msgid "Album menu item <em>%s</em> added"
-msgstr "Album menu-item <em>%s</em> toegevoegd"
+msgstr "Album menu-onderdeel <em>%s</em> toegevoegd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:479
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:497
@@ -14506,39 +14510,39 @@ msgstr "Album menu-item <em>%s</em> toegevoegd"
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:558
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:629
 msgid "You forgot to give your menu item a <strong>title</strong>!"
-msgstr "Je bent vergeten het menu-item een <strong>titel</strong> te geven !"
+msgstr "Je bent vergeten het menu-onderdeel een <strong>titel</strong> te geven !"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:482
 #, php-format
 msgid "Gallery index menu item <em>%s</em> added"
-msgstr "Galerij index menu-item <em>%s</em> toegevoegd"
+msgstr "Galerij index menu-onderdeel <em>%s</em> toegevoegd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:488
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:506
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:631
 msgid "You forgot to give your menu item a <strong>link</strong>!"
-msgstr "Je bent vergeten het menu-item een <strong>link</strong> te geven !"
+msgstr "Je bent vergeten het menu-onderdeel een <strong>link</strong> te geven !"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:491
 #, php-format
 msgid "Zenpage page menu item <em>%s</em> added"
-msgstr "Zenpage pagina menu-item <em>%s</em> toegevoegd"
+msgstr "Zenpage pagina menu-onderdeel <em>%s</em> toegevoegd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:500
 #, php-format
 msgid "Zenpage news index menu item <em>%s</em> added"
-msgstr "Zenpage nieuws index menu-item <em>%s</em> toegevoegd"
+msgstr "Zenpage nieuws index menu-onderdeel <em>%s</em> toegevoegd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:509
 #, php-format
 msgid "Zenpage news category menu item <em>%s</em> added"
-msgstr "Zenpage nieuws categorie menu-item <em>%s</em> toegevoegd"
+msgstr "Zenpage nieuws categorie menu-onderdeel <em>%s</em> toegevoegd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:518
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:531
 #, php-format
 msgid "Custom page menu item <em>%s</em> added"
-msgstr "Custom pagina menu-item <em>%s</em> toegevoegd"
+msgstr "Eigen pagina menu-onderdeel <em>%s</em> toegevoegd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:528
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:550
@@ -14548,12 +14552,12 @@ msgstr "Je bent vergeten een <strong>functie</strong> op te geven !"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:540
 msgid "Custom label added"
-msgstr "Custom label toegevoegd"
+msgstr "Eigen label toegevoegd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:553
 #, php-format
 msgid "Function  menu item <em>%s</em> added"
-msgstr "Functie menu-item <em>%s</em> toegevoegd"
+msgstr "Functie menu-onderdeel <em>%s</em> toegevoegd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:566
 msgid "Horizontal rule added"
@@ -14562,28 +14566,28 @@ msgstr "Horizontale lijn toegevoegd"
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:589
 #, php-format
 msgid "A <em>%1$s</em> item already exists in <em>%2$s</em>!"
-msgstr "Er bestaat al een <em>%1$s</em> item in <em>%2$s</em> !"
+msgstr "Er bestaat al een <em>%1$s</em> onderdeel in <em>%2$s</em> !"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:591
 #, php-format
 msgid "A <em>%1$s</em> item with the link <em>%2$s</em> already exists in <em>%3$s</em>!"
-msgstr "Er bestaat al een <em>%1$s</em> item met de link <em>%2$s</em>  in <em>%3$s</em> !"
+msgstr "Er bestaat al een <em>%1$s</em> onderdeel met de link <em>%2$s</em>  in <em>%3$s</em> !"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:633
 msgid "Menu item updated!"
-msgstr "Menu-item ge-update!"
+msgstr "Menu-onderdeel ge-update!"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:647
 msgid "Custom menu item successfully deleted!"
-msgstr "Custom menu-item met succes verwijderd!"
+msgstr "Eigen menu-onderdeel met succes verwijderd!"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:38
 msgid "Menu item deleted failed"
-msgstr "Verwijderen menu-item mislukt"
+msgstr "Verwijderen menu-onderdeel mislukt"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:45
 msgid "Menu item deleted"
-msgstr "Menu-item verwijderd"
+msgstr "Menu-onderdeel verwijderd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:53
 #, php-format
@@ -14610,7 +14614,7 @@ msgstr " (Menuset: %s)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:114
 msgid "Drag the items into the order, including sub levels, you wish them displayed. This lets you create arbitrary menus and place them on your theme pages. Use printCustomMenu() to place them on your pages."
-msgstr "Sleep de items (inclusief sublevels) in de volgorde waarin je ze getoond wilt hebben. Zo kun je zelf menu's maken. Gebruik de functie <em><code>printCustomMenu()</code></em> om ze te op je pagina's te plaatsen."
+msgstr "Sleep de onderdelen (inclusief sublevels) in de volgorde waarin je ze getoond wilt hebben. Zo kun je zelf menu's maken. Gebruik de functie <em><code>printCustomMenu()</code></em> om ze te op je pagina's te plaatsen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:117
 msgid "<strong>IMPORTANT:</strong> This menu's order is completely independent from any order of albums or pages set on the other admin pages. It is recommend to uses is with customized themes only that do not use the standard Zenphoto display structure. Standard Zenphoto functions like the breadcrumb functions or the next_album() loop for example will NOT take care of this menu's structure!"
@@ -14618,7 +14622,7 @@ msgstr "<strong>BELANGRIJK:</strong> De volgorde van dit menu is volledig onafha
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:121
 msgid "Add Menu Items"
-msgstr "Voeg menu-items toe"
+msgstr "Voeg menu-onderdelen toe"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:122
 msgid "Add Menu set"
@@ -14635,7 +14639,7 @@ msgstr "Verwijder menuset '%s'"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:185
 msgid "Menu target is password protected"
-msgstr "Doel van menu-item is beveiligd met een wachtwoord."
+msgstr "Doel van menu-onderdeel is beveiligd met een wachtwoord."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:186
 msgid "Show/hide"
@@ -14657,11 +14661,11 @@ msgstr "URL"
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:65
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:233
 msgid "All menu items"
-msgstr "Alle menu-items"
+msgstr "Alle menu-onderdelen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:66
 msgid "This adds menu items for all Zenphoto objects. (It creates a \"default\" menuset.)"
-msgstr "Dit voegt menu-items toe voor alle Zenphoto objecten. (het cre&euml;ert een \"default\" menuset)"
+msgstr "Dit voegt menu-onderdelen toe voor alle Zenphoto objecten. (het cre&euml;ert een \"default\" menuset)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:71
 msgid "This is the normal Zenphoto gallery Index page."
@@ -14669,7 +14673,7 @@ msgstr "Dit is de standaard Zenphoto galerij index pagina."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:79
 msgid "This adds menu items for all Zenphoto albums."
-msgstr "Dit voegt menu-items toe voor alle Zenphoto albums."
+msgstr "Dit voegt menu-onderdelen toe voor alle Zenphoto albums."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:84
 msgid "Creates a link to a Zenphoto Album."
@@ -14682,7 +14686,7 @@ msgstr "Alle Zenpage pagina's"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:95
 msgid "This adds menu items for all Zenpage pages."
-msgstr "Dit voegt menu-items toe voor alle Zenpage pagina's."
+msgstr "Dit voegt menu-onderdelen toe voor alle Zenpage pagina's."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:99
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:241
@@ -14712,7 +14716,7 @@ msgstr "Alle Zenpage categorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:119
 msgid "This adds menu items for all Zenpage categories."
-msgstr "Dit voegt menu-items toe voor alle Zenpage categorie&euml;n."
+msgstr "Dit voegt menu-onderdelen toe voor alle Zenpage categorie&euml;n."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:123
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:244
@@ -14725,11 +14729,11 @@ msgstr "Maakt een link naar een Zenpage nieuwsartikel-categorie."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:135
 msgid "Custom page"
-msgstr "Custom pagina"
+msgstr "Eigen pagina"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:136
 msgid "Creates a link to a custom theme page as described in the theming tutorial."
-msgstr "Maakt een link naar een custom thema-pagina zoals beschreven in de thema-uitleg."
+msgstr "Maakt een link naar een eigen thema-pagina zoals beschreven in de thema-uitleg."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:137
 msgid "Script page"
@@ -14775,19 +14779,19 @@ msgstr "Voegt eigen HTML in."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:206
 msgid "Menu Manager: Edit Menu Item"
-msgstr "Menu manager: Wijzig menu-item"
+msgstr "Menu manager: Wijzig menu-onderdeel"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:208
 msgid "Menu Manager: Edit Menu Item or add new Menu Item"
-msgstr "Menu manager: Wijzig menu-item of voeg nieuw menu-item toe"
+msgstr "Menu manager: Wijzig menu-onderdeel of voeg nieuw menu-onderdeel toe"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:211
 msgid "Menu Manager: Add Menu Item"
-msgstr "Menu manager: Voeg menu-item toe"
+msgstr "Menu manager: Voeg menu-onderdeel toe"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:232
 msgid "*Select the type of the menus item you wish to add*"
-msgstr "*Selecteer het soort menu-item dat je wilt toevoegen*"
+msgstr "*Selecteer het soort menu-onderdeel dat je wilt toevoegen*"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:243
 msgid "All Zenpage news categories"
@@ -14795,7 +14799,7 @@ msgstr "Alle Zenpage nieuws categorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:248
 msgid "Custom theme page"
-msgstr "Custom thema pagina"
+msgstr "Eigen thema pagina"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:275
 #, php-format
@@ -14990,7 +14994,7 @@ msgstr "Dit maakt statische XML sitemap bestanden van de volgende onderdelen:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:108
 msgid "Zenphoto items"
-msgstr "Zenphoto items"
+msgstr "Zenphoto onderdelen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:110
 msgid "Index pages"
@@ -15006,7 +15010,7 @@ msgstr "<em>Afbeeldingen</em>: Deze worden gesplitst in aparte sitemaps."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:115
 msgid "Zenpage CMS items (if the plugin is enabled)"
-msgstr "Zenpage CMS items (als the plugin is geactiveerd)"
+msgstr "Zenpage CMS onderdelen (als the plugin is geactiveerd)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php:124
 msgid "Additionally a sitemapindex file is created that points to the separate ones above. You can reference this sitemapindex file in your robots.txt file or submit its url to services like Google via <code>www.yourdomain.com/zenphoto/index.php?sitemap</code>"
@@ -15157,7 +15161,7 @@ msgstr "Aangepaste thumbnail"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:98
 msgid "Sized image/multimedia item"
-msgstr "Ingesteld formaat afbeelding/multimedia item"
+msgstr "Ingesteld formaat afbeelding/multimedia onderdeel"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:100
 msgid "Custom size (un-cropped)"
@@ -15239,7 +15243,7 @@ msgstr "Het venster sluit niet automatisch. Je kunt dus meerdere afbeeldingen ac
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:167
 msgid "Select to show a list of Zenpage pages, articles or categories. Click on a title to include a link. Hover of the link to see an excerpt of the page or article. Un-published pages or articles are marked with an '*' and protected with an '+'. There are no further options."
-msgstr "Hier kun je kiezen voor een lijst van Zenpage pagina's, artikelen of categorie&euml;n. Klik op een titel om een link in te voegen. Beweeg de muis over de link om een stukje uit de pagina of het artikel te zien. Ongepubliceerde artikelen zijn gemarkeerd met een <span style=\"font-size: 18px\">*</span>, beschermde items met een '+'."
+msgstr "Hier kun je kiezen voor een lijst van Zenpage pagina's, artikelen of categorie&euml;n. Klik op een titel om een link in te voegen. Beweeg de muis over de link om een stukje uit de pagina of het artikel te zien. Ongepubliceerde artikelen zijn gemarkeerd met een <span style=\"font-size: 18px\">*</span>, beschermde onderdelen met een '+'."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:171
 msgid "Select an album to include images from into your page or article. Click on the image to included it. Un-published albums or images are marked with an '*'. You can also click on the magnify glass icon to see a preview of the item (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.). Note the first thumbnail is always the album thumbnail of the currently selected album itself. It is always titled <em>Albumthumb</em> and appears on every thumbnail page.<br />You have several options what to include and how:"
@@ -15271,7 +15275,7 @@ msgstr "Aangepast formaat van de afbeelding: De langste zijde van de afbeelding 
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:187
 msgid "If you additionally check <em>Show title</em> or <em>Show description</em> the title/description of the image or album (if you checked <em>link to album</em>) will be printed below the image. Only if <em>Image</em> is chosen as type."
-msgstr "Als je <em>Toon titel</em> of <em>Toon beschrijving</em> hebt aangevinkt, wordt de titel/beschrijving van de afbeelding of album (indien <em>link naar album</em> is geselecteerd) onder de afbeelding geprint. Dit werk alleen als <em>Afbeelding</em> is gekozen als in te voegen item."
+msgstr "Als je <em>Toon titel</em> of <em>Toon beschrijving</em> hebt aangevinkt, wordt de titel/beschrijving van de afbeelding of album (indien <em>link naar album</em> is geselecteerd) onder de afbeelding geprint. Dit werk alleen als <em>Afbeelding</em> is gekozen als in te voegen onderdeel."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:190
 msgid "Select to link to the image page of the image, to the album the image is in, no link at all or a custom URL."
@@ -15331,7 +15335,7 @@ msgstr "Album link: <em>zenpage_albumlink</em>"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:217
 msgid "Custom link: <em>zenpage_customlink</em>"
-msgstr "Custom link: <em>zenpage_customlink</em>"
+msgstr "Eigen link: <em>zenpage_customlink</em>"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:220
 msgid "If you like to do some direct styling you can also use TinyMCE's image button or source code editor. <br />Also you can customize the CSS output yourself by directly changing the textwrap variables in line 47 and 50 in <em>tinyzenpage/js/dialog.php</em>."
@@ -15483,7 +15487,7 @@ msgstr "Weet je zeker dat je deze categorie wilt verwijderen? DIT KAN NIET ONGED
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:73
 msgid "Are you sure you want to delete all selected items? THIS CANNOT BE UNDONE!"
-msgstr "Weet je zeker dat je de geselecteerde items wilt verwijderen? DIT KAN NIET HERSTELD WORDEN!"
+msgstr "Weet je zeker dat je de geselecteerde onderdelen wilt verwijderen? DIT KAN NIET HERSTELD WORDEN!"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:110
 msgid "New category"
@@ -15503,7 +15507,7 @@ msgstr "Verwijder tags van artikelen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:139
 msgid "The sort position of the indicated items cannot be recorded because the nesting is too deep. Please move them to a higher level and save your order."
-msgstr "De volgorde van de aangegeven items kan niet worden bewaard omdat er te diep is genest. Verplaats ze a.u.b. naar een hoger niveau."
+msgstr "De volgorde van de aangegeven onderdelen kan niet worden bewaard omdat er te diep is genest. Verplaats ze a.u.b. naar een hoger niveau."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:160
 msgid "Delete category"
@@ -15715,7 +15719,7 @@ msgstr "Extra content:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:670
 msgid "Custom:"
-msgstr "Custom:"
+msgstr "Eigen:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:18
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-pages.php:18
@@ -16005,19 +16009,19 @@ msgstr "Publiceer"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1740
 msgid "Tags added to selected items"
-msgstr "Tags toegevoegd aan geselecteerde items."
+msgstr "Tags toegevoegd aan geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1743
 msgid "Tags cleared from selected items"
-msgstr "Tags verwijderd van geselecteerde items."
+msgstr "Tags verwijderd van geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1746
 msgid "Tags added to articles of selected items"
-msgstr "Tags toegevoegd aan artikelen van de geselecteerde items."
+msgstr "Tags toegevoegd aan artikelen van de geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1749
 msgid "Tags cleared from articles of selected items"
-msgstr "Tags verwijderd van artikelen van de geselecteerde items."
+msgstr "Tags verwijderd van artikelen van de geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:441
 msgid "<em>This article belongs to a protected category.</em>"
