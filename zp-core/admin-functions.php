@@ -486,7 +486,7 @@ define('OPTION_TYPE_CHECKBOX_ARRAY',6);
 define('OPTION_TYPE_CHECKBOX_UL',7);
 define('OPTION_TYPE_COLOR_PICKER',8);
 define('OPTION_TYPE_CLEARTEXT',9);
-define('OPTION_TYPE_NOTE',9);
+define('OPTION_TYPE_NOTE',10);
 
 function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false, $supportedOptions=NULL, $theme=false, $initial='none') {
 	if (is_null($supportedOptions)) $supportedOptions = $optionHandler->getOptionsSupported();
