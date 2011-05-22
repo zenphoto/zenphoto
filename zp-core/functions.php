@@ -1628,7 +1628,7 @@ function isValidURL($url) {
  */
 function safe_glob($pattern, $flags=0) {
 	$split=explode('/',$pattern);
-	$match=array_pop($split);
+	$match = '/^' . strtr(addcslashes(array_pop($split), '\\.+^$(){}=!<>|'), array('*' => '.*', '?' => '.?')) . '$/i';
 	$path_return = $path = implode('/',$split);
 	if (empty($path)) {
 		$path = '.';
@@ -1639,7 +1639,7 @@ function safe_glob($pattern, $flags=0) {
 	if (($dir=opendir($path))!==false) {
 		$glob=array();
 		while(($file=readdir($dir))!==false) {
-			if (safe_fnmatch($match,$file)) {
+			if(@preg_match($match, $file)) {
 				if ((is_dir("$path/$file"))||(!($flags&GLOB_ONLYDIR))) {
 					if ($flags&GLOB_MARK) $file.='/';
 					$glob[]=$path_return.$file;

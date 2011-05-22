@@ -12,6 +12,7 @@ class ZenpageNews extends ZenpageItems {
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
 	var $view_rights = VIEW_NEWS_RIGHTS;
+	var $categories = NULL;
 
 	function ZenpageNews($titlelink) {
 		$new = parent::PersistentObject('news', array('titlelink'=>$titlelink), NULL, true, empty($titlelink));
@@ -24,8 +25,10 @@ class ZenpageNews extends ZenpageItems {
 	 * @return array
 	 */
 	function getCategories() {
-		$categories = query_full_array("SELECT * FROM ".prefix('news_categories')." as cat,".prefix('news2cat')." as newscat WHERE newscat.cat_id = cat.id AND newscat.news_id = ".$this->getID()." ORDER BY cat.titlelink",false,'title');
-		return $categories;
+		if (is_null($this->categories)) {
+			$this->categories = query_full_array("SELECT * FROM ".prefix('news_categories')." as cat,".prefix('news2cat')." as newscat WHERE newscat.cat_id = cat.id AND newscat.news_id = ".$this->getID()." ORDER BY cat.titlelink",false,'title');
+		}
+		return $this->categories;
 	}
 	function setCategories($categories) {
 		$result = query('DELETE FROM '.prefix('news2cat').' WHERE `news_id`='.$this->getID());

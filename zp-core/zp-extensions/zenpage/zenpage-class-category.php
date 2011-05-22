@@ -368,7 +368,6 @@ class ZenpageCategory extends ZenpageRoot {
 				}
 			}
 		}
-
 		return $result;
 	}
 

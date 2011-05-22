@@ -19,6 +19,8 @@
 <p class="buttons"><a href="javascript:accordian()"><span id="show_hide">Expand all</span></a></p>
 <br clear="left" />
 <?php
+global $_zp_current_category;
+$currentcat = $_zp_current_category;
 $catobj = new ZenpageCategory('troubleshooting');
 $cats = $catobj->getSubCategories();
 ?>
@@ -26,8 +28,8 @@ $cats = $catobj->getSubCategories();
 <?php
 foreach ($cats as $key=>$cat) {
 	$catobj = new ZenpageCategory($cat);
-	$_zp_current_category = catobj;
-	$articles = $catobj=>getArticles();
+	$_zp_current_category = $catobj;
+	$articles = $catobj->getArticles();
 	if (!empty($articles)) {
 		$h4 = $catobj->getTitle();
 		?>
@@ -76,4 +78,6 @@ function listArticles($cat) {
 		<?php
 	}
 }
+$_zp_current_category = $currentcat;
+
 ?>
