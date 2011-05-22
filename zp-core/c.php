@@ -20,6 +20,11 @@ if (isset($_GET['f'])) {
 	$fontname = sanitize($_GET['f'],3);
 } else {
 	$fontname = getOption('zenphoto_captcha_font');
+	if($fontname == '*') {	//	Random selection
+		$fonts = zp_getFonts();
+		shuffle($fonts);
+		$fontname = array_shift($fonts);
+	}
 }
 $font = zp_imageLoadFont($fontname);
 

@@ -38,7 +38,7 @@ class captcha {
 												'desc' => gettext('The number of characters in the CAPTCHA.')),
 								gettext('CAPTCHA font') => array('key' => 'zenphoto_captcha_font', 'type' => OPTION_TYPE_SELECTOR,
 												'order'=> 3,
-												'selections' => zp_getFonts(),
+												'selections' => array_merge(array('*'.gettext('random').'*'=>'*'),zp_getFonts()),
 												'desc' => gettext('The font to use for CAPTCHA characters.')),
 								'' 			=> array('key' => 'zenphoto_captcha_image', 'type' => OPTION_TYPE_CUSTOM,
 												'order' => 4,

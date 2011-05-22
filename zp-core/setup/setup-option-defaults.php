@@ -60,7 +60,7 @@ if (isset($_GET['mod_rewrite'])) {
 	}
 }
 
-if (isset($_POST['setUTF8URI']) & $_POST['setUTF8URI'] != 'dont') {
+if (isset($_POST['setUTF8URI']) && $_POST['setUTF8URI'] != 'dont') {
 	setOption('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'true'));
 }
 setOptionDefault('mod_rewrite_image_suffix', ".php");
