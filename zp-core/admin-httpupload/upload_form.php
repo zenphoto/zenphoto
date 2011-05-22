@@ -46,7 +46,7 @@ function upload_form($uploadlimit) {
 	<form id="file_upload" action="upload.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="file" multiple />
     <button>Upload</button>
-    <div>Select files</div>
+    <div><?php echo gettext("Select files"); ?></div>
 		<?php XSRFToken('upload');?>
 		<input type="hidden" name="auth" id="auth" value="<?php echo $_zp_current_admin_obj->getPass(); ?>" />
 		<input type="hidden" name="id" id="id" value="<?php echo $_zp_current_admin_obj->getID(); ?>" />
