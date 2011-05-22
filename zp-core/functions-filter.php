@@ -138,17 +138,15 @@ function zp_apply_filter($hook, $value = '') {
 		return $value;
 
 	$args = func_get_args();
-
 	// Sort filters by priority
 	ksort($_zp_filters[$hook]);
-
 	// Loops through each filter
 	reset( $_zp_filters[$hook] );
-	if (DEBUG_FILTERS) debugLog('Apply filters for '.$hook);
+	if (DEBUG_FILTERS) $debug = 'Apply filters for '.$hook;
 	do {
-		foreach( (array) current($_zp_filters[$hook]) as $the_ )
+		foreach( (array) current($_zp_filters[$hook]) as $the_ ) {
 			if ( !is_null($the_['function']) ){
-				if (DEBUG_FILTERS) debugLog('    '.$the_['function']);
+				if (true || DEBUG_FILTERS) $debug .= "\n    ".$the_['function'];
 				$args[1] = $value;
 				$count = $the_['accepted_args'];
 				if (is_null($count)) {
@@ -157,8 +155,9 @@ function zp_apply_filter($hook, $value = '') {
 					$value = call_user_func_array($the_['function'], array_slice($args, 1, (int) $count));
 				}
 			}
-
+		}
 	} while ( next($_zp_filters[$hook]) !== false );
+	if (DEBUG_FILTERS) debugLog($debug);
 
 	return $value;
 }

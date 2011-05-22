@@ -18,7 +18,7 @@ if ($plugin_disable) {
 	if (getOption('tweet_news_images'))	zp_register_filter('new_image', 'tweetNewsPublished');
 	if (getOption('tweet_news_news'))		zp_register_filter('new_article', 'tweetNewsNewArticle');
 	zp_register_filter('admin_head', 'tweetScan');
-	zp_register_filter('theme_head', 'tweetScan');
+	zp_register_filter('load_theme_script', 'tweetScan');
 	zp_register_filter('admin_overview', 'tweetErrorsOnOverview',0);
 	zp_register_filter('admin_note', 'tweetErrorsOnAdmin');
 	zp_register_filter('edit_album_utilities', 'tweetTweeter');
@@ -299,7 +299,7 @@ function tweetObject($obj) {
  *
  * filter which checks if there are any matured tweets to be sent
  */
-function tweetScan() {
+function tweetScan($param) {
 	$result = query_full_array('SELECT * FROM '.prefix('news').' AS news,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending" AND store.data = news.titlelink AND news.date <= '.db_quote(date('Y-m-d H:i:s')));
 	if ($result) {
 		foreach ($result as $article) {
@@ -308,6 +308,7 @@ function tweetScan() {
 			tweetNewsArticle($news);
 		}
 	}
+	return $param;
 }
 
 /**

@@ -124,7 +124,7 @@ switch ($suffix) {
 			fpassthru($fp);
 			fclose($fp);
 		} else {
-			header('Location: ' . FULLWEBPATH.'/'.ALBUMFOLDER.'/'.pathurlencode($album.'/'.$image), true, 301);
+			header('Location: ' . getAlbumFolder(FULLWEBPATH).pathurlencode($album.'/'.$image), true, 301);
 		}
 		exit();
 }
