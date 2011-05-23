@@ -318,9 +318,9 @@ function tweetRepopulate() {
 		foreach ($result as $pending) {
 			query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending",'.db_quote($pending['titlelink']).')');
 		}
-		return '<p class="messagebox">'.gettext('Scheduled news articles have been noted for tweeting.</p>').'</p>';
+		return '<p class="messagebox">'.gettext('Scheduled news articles have been noted for tweeting.').'</p>';
 	}
-	return '<p class="messagebox">'.gettext('No scheduled news articles found.</p>').'</p>';
+	return '<p class="messagebox">'.gettext('No scheduled news articles found.').'</p>';
 }
 
 /**

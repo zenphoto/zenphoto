@@ -30,7 +30,7 @@ function upload_form($uploadlimit) {
 			$usage = gettext('Click on the <em>Select files</em> button to use the file browser to select each file.');
 			break;
 		case 1:	//	drag but no multiple select
-			$usage = gettext('You may choos a file by dragging it onto <em>Select files</em> button. Or you can click on the button and use your file browser.');
+			$usage = gettext('You may choose a file by dragging it onto <em>Select files</em> button. Or you can click on the button and use your file browser.');
 			break;
 		case 2:	//	no drag, but multiple select
 			$useage = gettext('Click on the <em>Select files</em> button to use the file browser to select files.');
