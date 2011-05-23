@@ -26,6 +26,7 @@ $button_rights = OVERVIEW_RIGHTS;
 admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL(__FILE__));
 
 $gallery = new Gallery();
+$gallery->garbageCollect();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 
 printAdminHeader(gettext('utilities'),gettext('statistics'));
@@ -40,8 +41,11 @@ printAdminHeader(gettext('utilities'),gettext('statistics'));
  **/
 function gallerystats_formatBytes($b) {
 	$units = array("B","kB","MB","GB","TB","PB","EB","ZB","YB");
+	$u = 'B';
+	$x = 0;
 	foreach($units as $k => $tu) {
-		if(($t = (float) ($b / pow(1024,$k))) < 1) {
+		$t = (float) ($b / pow(1024,$k));
+		if($t < 1) {
 			break;
 		}
 		$x = $t;
@@ -57,12 +61,12 @@ function gallerystats_formatBytes($b) {
  * @author Jonas Sweden
 */
 function gallerystats_filesize_r($path){
-  if(!file_exists($path)) return 0;
-  if(is_file($path)) return filesize($path);
-  $ret = 0;
-  foreach(glob($path."/*") as $fn)
-    $ret += gallerystats_filesize_r($fn);
-  return $ret;
+	if(!file_exists($path)) return 0;
+	if(is_file($path)) return filesize($path);
+	$ret = 0;
+	foreach(glob($path."/*") as $fn)
+		$ret += gallerystats_filesize_r($fn);
+	return $ret;
 }
 
 /**
@@ -79,19 +83,19 @@ function printBarGraph($sortorder="mostimages",$type="albums",$from_number=0, $t
 	switch ($type) {
 		case "albums":
 			$typename = gettext("Albums");
-			$dbquery = "SELECT id, title, folder, hitcounter, total_votes, total_value, `show` FROM ".prefix('albums');
+			$dbquery = "SELECT * FROM ".prefix('albums');
 			break;
 		case "images":
 			$typename = gettext("Images");
-			$dbquery = "SELECT id, title, filename, albumid, hitcounter, total_votes, total_value, `show` FROM ".prefix('images');
+			$dbquery = "SELECT * FROM ".prefix('images');
 			break;
 		case "pages":
 			$typename = gettext("Pages");
-			$dbquery = "SELECT id, title, titlelink, hitcounter, total_votes, total_value, `show` FROM ".prefix('pages');
+			$dbquery = "SELECT * FROM ".prefix('pages');
 			break;
 		case "news":
 			$typename = gettext("News Articles");
-			$dbquery = "SELECT id, title, titlelink, hitcounter, total_votes, total_value, `show` FROM ".prefix('news');
+			$dbquery = "SELECT * FROM ".prefix('news');
 			break;
 		case "newscategories":
 			$typename = gettext("News Categories");
@@ -413,7 +417,7 @@ function printBarGraph($sortorder="mostimages",$type="albums",$from_number=0, $t
 				$title = html_encode(strrchr($item['aux'],'rss'));
 				break;
 		}
-	 if($type != "newscategories" && $type != "tags" && $type != "rss") {
+		if(isset($item['show'])) {
 			if($item['show'] != "1") {
 				$show = " class='unpublished_item'";
 			} else {
