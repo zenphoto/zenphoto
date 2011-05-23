@@ -149,10 +149,6 @@ function sendTweet($status) {
 	}
 	$response = $tweet->post('statuses/update', array('status' => $status));
 	if (isset($response->error)) {
-		//TODO: debugging code
-		if (!getOption('tweet_news_consumer')) {
-			debugLog("TWEET:$status");
-		}
 		return $response->error;
 	}
 	return false;
