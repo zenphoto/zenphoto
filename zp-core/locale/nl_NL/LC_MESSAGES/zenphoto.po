@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-22 12:02+0100\n"
-"PO-Revision-Date: 2011-05-22 12:07+0100\n"
+"POT-Creation-Date: 2011-05-23 19:43+0100\n"
+"PO-Revision-Date: 2011-05-23 19:44+0100\n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -4078,7 +4078,7 @@ msgstr "<strong>Standaard opties</strong>"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2306
 msgid "<em>These image and album presentation options provided by the Zenphoto core for all themes.</em>"
-msgstr "<em>Deze afbeeldings- en album-presentatieopties zijn standaard voor alle thema's.</em>"
+msgstr "<em>Deze afbeeldings- en albumopties zijn standaard voor alle thema's.</em>"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2306
 msgid "<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons"
@@ -4100,7 +4100,7 @@ msgstr "thumbnails per pagina"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2324
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of album thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of album thumbnails that will fit in a \"row\" and the number of albums thumbnails you wish per page."
-msgstr "Dit specificeert het, <a title=\"Kijk op je album-pagina en tel het het aantal album thumbnails op een rij. Dat is de waarde die je moet instellen voor deze optie.\">door CSS bepaalde aantal</a>l album thumbnails per rij en het aantal album thumbnails dat je wilt zien per pagina."
+msgstr "Dit specificeert het, <a title=\"Kijk op je album-pagina en tel het het aantal album thumbnails op een rij. Dat is de waarde die je moet instellen voor deze optie.\">door CSS bepaalde aantal</a> album thumbnails per rij en het aantal album thumbnails dat je wilt zien per pagina."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2329
 #: ZpTranslation-Development/zp-core/admin-options.php:2359
@@ -4118,7 +4118,7 @@ msgstr "Afbeeldingen:"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2354
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of image thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of image thumbnails that will fit in a \"row\" and the number of image thumbnails you wish per page."
-msgstr "Dit specificeert het, <a title=\"Kijk op je album-pagina en tel het het aantal afbeeldings thumbnails op een rij. Dat is de waarde die je moet instellen voor deze optie.\">door CSS bepaalde aantal</a>l afbeeldings thumbnails per rij en het aantal afbeeldings thumbnails dat je wilt zien per pagina."
+msgstr "Dit specificeert het, <a title=\"Kijk op je album-pagina en tel het het aantal afbeeldings thumbnails op een rij. Dat is de waarde die je moet instellen voor deze optie.\">door CSS bepaalde aantal</a> afbeeldings thumbnails per rij en het aantal afbeeldings thumbnails dat je wilt zien per pagina."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2360
 #, php-format
@@ -8167,7 +8167,7 @@ msgid "Click on the <em>Select files</em> button to use the file browser to sele
 msgstr "Klik op de knop<em>Selecteer bestanden</em> om de filebrowser te gebruiken voor het selecteren van de bestanden."
 
 #: ZpTranslation-Development/zp-core/admin-httpupload/upload_form.php:33
-msgid "You may choos a file by dragging it onto <em>Select files</em> button. Or you can click on the button and use your file browser."
+msgid "You may choose a file by dragging it onto <em>Select files</em> button. Or you can click on the button and use your file browser."
 msgstr "Je kunt bestanden selecteren door ze op de knop <em>Selecteer bestanden</em> te slepen. Je kunt ook eerst op de knop klikken om vervolgens de filebrowser te gebruiken."
 
 #: ZpTranslation-Development/zp-core/admin-httpupload/upload_form.php:36
@@ -13680,36 +13680,36 @@ msgstr "*geen categorie*"
 msgid "Only those <em>news categories</em> checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned."
 msgstr "Alleen de aangevinkte nieuws-categorieën worden geTweet. <strong>Opmerking:</strong> <em>*geen categorie*</em> betekend artikelen die niet aan een categorie zijn toegewezen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:258
-#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:278
-#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:291
+#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:254
+#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:274
+#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:287
 #, php-format
 msgid "Error tweeting <code>%1$s</code>: %2$s"
 msgstr "Fout Tweeting <code>%1$s</code>: %2$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:265
+#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:261
 #, php-format
 msgid "New image:[%2$s]%1$s "
 msgstr "Nieuwe afbeelding:[%2$s]%1$s "
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:268
+#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:264
 #, php-format
 msgid "New album:%s "
 msgstr "Nieuw album:%s "
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:324
-msgid "Scheduled news articles have been noted for tweeting.</p>"
-msgstr "Ingeplande artikelen gevonden om te Tweeten.</p>"
+#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:321
+msgid "Scheduled news articles have been noted for tweeting."
+msgstr "Ingeplande artikelen gevonden om te Tweeten."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:326
-msgid "No scheduled news articles found.</p>"
-msgstr "Er zijn geen ingeplande artikelen gevonden. </p>"
+#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:323
+msgid "No scheduled news articles found."
+msgstr "Er zijn geen ingeplande artikelen gevonden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:354
+#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:351
 msgid "Tweet News Errors:"
 msgstr "Tweet News fouten:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:385
+#: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:382
 msgid "Tweet me"
 msgstr "Tweet me"
 
@@ -14232,6 +14232,10 @@ msgstr "Het aantal karakters in de CAPTCHA."
 #: ZpTranslation-Development/zp-core/zp-extensions/captcha/zenphoto.php:39
 msgid "CAPTCHA font"
 msgstr "CAPTCHA font"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/captcha/zenphoto.php:41
+msgid "random"
+msgstr "willekeurig"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/captcha/zenphoto.php:42
 msgid "The font to use for CAPTCHA characters."
