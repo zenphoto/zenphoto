@@ -179,7 +179,7 @@ class ZenpageCategory extends ZenpageRoot {
 			$itemtitlelink = $obj->getTitlelink();
 			$itemid = $obj->getID();
 			$itemparentid = $obj->getParentID();
-			if($itemparentid && $itemid == $currentparentid) {
+			if($itemid == $currentparentid) {
 				array_unshift($parentcats,$itemtitlelink);
 				$obj->getParents($itemparentid,false);
 			}
