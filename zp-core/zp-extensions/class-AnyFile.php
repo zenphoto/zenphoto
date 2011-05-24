@@ -59,7 +59,7 @@ function get_AnyFile_suffixes() {
 	$mysetoptions = array();
 	$alloptionlist = getOptionList();
 	foreach ($alloptionlist as $key=>$option) {
-		if (($option == 1) && strpos($key, 'AnyFile_file_list_') === 0) {
+		if (strpos($key, 'AnyFile_file_list_') === 0) {
 			if ($option) {
 				$mysetoptions[] = str_replace('AnyFile_file_list_', '', $key);
 			} else {
