@@ -34,7 +34,7 @@ function processFilters() {
 	global $_zp_resident_files;
 
 	$classes = $subclasses = $oldfilterlist = array();
-	$htmlfile = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/FilterDoc/filter list.html';
+	$htmlfile = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/filterDoc/filter list.html';
 	$prolog = $epilog = '';
 	if (file_exists($htmlfile)) {
 		$oldhtml = file_get_contents($htmlfile);
@@ -64,7 +64,7 @@ function processFilters() {
 	}
 
 	$filterDescriptions = array();
-	$filterdesc = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/FilterDoc/filter descriptions.txt';
+	$filterdesc = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/filterDoc/filter descriptions.txt';
 	if (file_exists($filterdesc)) {
 		$t = file_get_contents($filterdesc);
 		$t = explode("\n",$t);
@@ -340,7 +340,7 @@ function processFilters() {
 	fclose($f);
 
 	$filterCategories = sortMultiArray($filterCategories,array('class','subclass','text'), false, false);
-	$indexfile = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/FilterDoc/filter list_index.html';
+	$indexfile = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/filterDoc/filter list_index.html';
 	$f = fopen($indexfile, 'w');
 	fwrite($f,'<li>'."\t\n");
 	fwrite($f,"\t".'<a href="#filters">List of Zenphoto filters</a>'."\n");

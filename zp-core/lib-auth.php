@@ -686,7 +686,7 @@ class Zenphoto_Authority {
 		foreach ($candidate as $cookie=>$value) {
 			switch ($cookie) {
 				default:
-					if (strpos($cookie, 'zp_album_auth_') === false && strpos($cookie, 'zp_page_auth_') === false) {
+					if (strpos($cookie, 'zp_album_auth_') === false && strpos($cookie, 'zp_page_auth_') === false && strpos($cookie, 'zp_category_auth_') === false) {
 						break;	// do nothing
 					}
 				case 'zenphoto_auth':

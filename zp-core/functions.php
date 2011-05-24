@@ -1671,21 +1671,21 @@ function safe_fnmatch($pattern, $string) {
  * @param string $name the name of the cookie
  */
 function zp_getCookie($name) {
-		if (DEBUG_LOGIN) {
+	if (isset($_COOKIE[$name])) {
+		$cookiev = $_COOKIE[$name];
+	} else {
+		$cookiev = '';
+	}
+	if (DEBUG_LOGIN) {
 		if (isset($_SESSION[$name])) {
 			$sessionv = $_SESSION[$name];
 		} else {
 			$sessionv = '';
 		}
-		if (isset($_COOKIE[$name])) {
-			$cookiev = $_COOKIE[$name];
-		} else {
-			$cookiev = '';
-		}
 		debugLog("zp_getCookie($name)::".'album_session='.GALLERY_SESSION."; SESSION[".session_id()."]=".$sessionv.", COOKIE=".$cookiev);
 	}
-	if (isset($_COOKIE[$name]) && !empty($_COOKIE[$name]) && !GALLERY_SESSION) {
-		return $_COOKIE[$name];
+	if (!empty($cookiev) && !GALLERY_SESSION) {
+		return rc4(getUserIP().HASH_SEED,$cookiev);
 	}
 	if (isset($_SESSION[$name])) {
 		return $_SESSION[$name];
@@ -1703,6 +1703,11 @@ function zp_getCookie($name) {
  */
 function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 	if (DEBUG_LOGIN) debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".GALLERY_SESSION);
+	if (empty($value)) {
+		$cookiev = '';
+	} else {
+		$cookiev = rc4(getUserIP().HASH_SEED,$value);
+	}
 	if (is_null($time)) {
 		$time = COOKIE_PESISTENCE;
 	}
@@ -1712,14 +1717,14 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 		}
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
-		setcookie($name, $value, time()+$time, $path, "", $secure);
+		setcookie($name, $cookiev, time()+$time, $path, "", $secure);
 	}
 	if ($time < 0) {
 		if (isset($_SESSION))	unset($_SESSION[$name]);
 		if (isset($_COOKIE)) unset($_COOKIE[$name]);
 	} else {
 		$_SESSION[$name] = $value;
-		$_COOKIE[$name] = $value;
+		$_COOKIE[$name] = $cookiev;
 	}
 }
 
@@ -1809,12 +1814,9 @@ function dircopy($srcdir, $dstdir) {
  * @return string
  */
 function byteConvert( $bytes ) {
-
-	if ($bytes<=0)
-	return '0 Byte';
-
+	if ($bytes<=0) return gettext('0 Bytes');
 	$convention=1024; //[1000->10^x|1024->2^x]
-	$s=array('Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB');
+	$s=array('Bytes', 'kB', 'mB', 'GB', 'TB', 'PB', 'EB', 'ZB');
 	$e=floor(log($bytes,$convention));
 	return round($bytes/pow($convention,$e),2).' '.$s[$e];
 }

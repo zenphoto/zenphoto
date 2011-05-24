@@ -7,5 +7,5 @@
 	</ul>
 	<li><a href="#plugin-options">Plugin options</a></li>
 	<li><a href="#plugin-translation">Separate plugin translations</a></li>
-	<?php include(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/FilterDoc/filter list_index.html');?>
+	<?php include(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/filterDoc/filter list_index.html');?>
 </ol>

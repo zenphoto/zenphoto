@@ -101,7 +101,8 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 		if ($cookie == 'zenphoto_auth' || $cookie == 'zp_gallery_auth' ||
 				$cookie == 'zp_search_auth' || $cookie == 'zp_image_auth' ||
 				strpos($cookie, 'zp_album_auth_') !== false ||
-				strpos($cookie, 'zp_page_auth_') !== false) {
+				strpos($cookie, 'zp_page_auth_') !== false ||
+				strpos($cookie, 'zp_category_auth_') !== false) {
 			$cookies[] = $cookie;
 		}
 	}

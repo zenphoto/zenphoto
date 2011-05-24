@@ -7,7 +7,6 @@
 // force UTF-8 Ø
 
 require_once(dirname(__FILE__).'/functions.php');
-require_once(dirname(__FILE__).'/lib-encryption.php');
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 header ("Content-type: image/png");
 $cypher = preg_replace('/[^0-9a-f]/', '', $_GET['i']);

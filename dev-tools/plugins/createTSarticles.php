@@ -30,17 +30,22 @@ function Troubleshooting_button($buttons) {
 }
 
 function makeArticle($class,$text) {
+	global $unique;
+	$unique ++;
 	$i = strpos($text, '</a>');
 	$j = strpos($text, '</h4>');
 	$h4 = substr($text, $i+4, $j-$i-4);
 	$text = substr($text, $j+5);
-	$ts_news = new ZenpageNews($class.'_'.$h4);
+	$text = str_replace('<hr />', '', $text);
+	$text = str_replace('<hr/>', '', $text);
+	$ts_news = new ZenpageNews(seoFriendly($class.'_'.trim(truncate_string(strip_tags($h4),30,'')).'_'.$unique));
 	$ts_news->setShow(0);
 	$ts_news->setDateTime(date('Y-m-d H:i:s'));
 	$ts_news->setAuthor('TSGenerator');
 	$ts_news->setTitle($h4);
 	$ts_news->setContent($text);
-	$ts_news->setCategories(array('troubleshooting','troubleshooting_'.$class));
+	$ts_news->setCategories(array());
+	$ts_news->setCategories(array('troubleshooting','troubleshooting-'.$class));
 	$ts_news->save();
 }
 
@@ -52,12 +57,12 @@ function processTroubleshooting() {
 	$filelist = array('zenphoto'=>'ts.html','zenpage'=>'zp_TS.html');
 	foreach ($filelist as $class=>$file) {
 		$data = file_get_contents($basepath.$file);
-		$i = strpos($data, '<h4>');
+		$i = strpos($data, '<h4><a name=');
 		if ($i !== false) {
 			$data = substr($data, $i);
 		}
 		while (!empty($data)) {
-			$i = strpos($data,'<h4>', 4);
+			$i = strpos($data,'<h4><a name=', 4);
 			if ($i === false) {
 				if (!empty($data)) {
 					makeArticle($class,$data);

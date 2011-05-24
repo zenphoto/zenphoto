@@ -17,9 +17,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.2\n"
+"Project-Id-Version: Zenphoto 1.4.1\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2011-05-24 07:18+0900\n"
+"POT-Creation-Date: 2011-05-24 07:14+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"

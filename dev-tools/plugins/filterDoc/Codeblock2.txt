@@ -4,4 +4,4 @@
 <p>The registered function will be passed the parameters(with the exception of the filter name string) from the <tt>zp_apply_filter()</tt> call. The function must always return the initial parameter of the list (if it exists) as this is then passed on to subsequent filters in the chain. This provides a means of filters operating on the changes made by other filters.</p>
 <p>You find some example or template filter plugins to build your own here:<br /><a title="http://www.zenphoto.org/category/extensions/example-plugins/" href="http://www.zenphoto.org/category/extensions/example-plugins/">http://www.zenphoto.org/category/extensions/example-plugins/</a></p>
 <p>Zenphoto currently provides filter invocation for the following. Function parameters are indicated within the parens:</p>
-<?php include(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/FilterDoc/filter list.html');?>
+<?php include(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/filterDoc/filter list.html');?>

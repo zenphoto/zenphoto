@@ -34,27 +34,6 @@ printAdminHeader(gettext('utilities'),gettext('statistics'));
 <link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
 <?php
 
-/**
- * returns formatted number of bytes. For internal use.
- * @param int $b bytes
- *
- **/
-function gallerystats_formatBytes($b) {
-	$units = array("B","kB","MB","GB","TB","PB","EB","ZB","YB");
-	$u = 'B';
-	$x = 0;
-	foreach($units as $k => $tu) {
-		$t = (float) ($b / pow(1024,$k));
-		if($t < 1) {
-			break;
-		}
-		$x = $t;
-		$u = $tu;
-	}
-	return number_format($x, 2) . " " . $u;
-}
-
-
 /*
  * http://php.net/manual/de/function.filesize.php
  *
@@ -549,11 +528,11 @@ if ($commentcount_mod > 0) {
 <?php }
 
 ?>
-<li><nobr><?php printf(gettext("Albums folder size: <strong>%s</strong>"),gallerystats_formatBytes(gallerystats_filesize_r(getAlbumFolder()))); ?></nobr></li>
-<li><nobr><?php printf(gettext("Image cache size: <strong>%s</strong>"),gallerystats_formatBytes(gallerystats_filesize_r(SERVERPATH.'/'.CACHEFOLDER))); ?></nobr></li>
-<li><nobr><?php printf(gettext("HTML cache size: <strong>%s</strong>"),gallerystats_formatBytes(gallerystats_filesize_r(SERVERPATH.'/'.STATIC_CACHE_FOLDER))); ?></nobr></li>
-<li><nobr><?php printf(gettext("Uploaded folder size: <strong>%s</strong>"),gallerystats_formatBytes(gallerystats_filesize_r(SERVERPATH.'/'.UPLOAD_FOLDER))); ?></nobr></li>
-<li><nobr><?php printf(gettext("Zenphoto scripts size: <strong>%s</strong>"),gallerystats_formatBytes(gallerystats_filesize_r(SERVERPATH.'/'.ZENFOLDER))); ?></nobr></li>
+<li><nobr><?php printf(gettext("Albums folder size: <strong>%s</strong>"),byteConvert(gallerystats_filesize_r(getAlbumFolder()))); ?></nobr></li>
+<li><nobr><?php printf(gettext("Image cache size: <strong>%s</strong>"),byteConvert(gallerystats_filesize_r(SERVERPATH.'/'.CACHEFOLDER))); ?></nobr></li>
+<li><nobr><?php printf(gettext("HTML cache size: <strong>%s</strong>"),byteConvert(gallerystats_filesize_r(SERVERPATH.'/'.STATIC_CACHE_FOLDER))); ?></nobr></li>
+<li><nobr><?php printf(gettext("Uploaded folder size: <strong>%s</strong>"),byteConvert(gallerystats_filesize_r(SERVERPATH.'/'.UPLOAD_FOLDER))); ?></nobr></li>
+<li><nobr><?php printf(gettext("Zenphoto scripts size: <strong>%s</strong>"),byteConvert(gallerystats_filesize_r(SERVERPATH.'/'.ZENFOLDER))); ?></nobr></li>
 
 </ul>
 

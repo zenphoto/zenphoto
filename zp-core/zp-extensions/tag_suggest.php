@@ -34,10 +34,10 @@ function tagSuggestJS() {
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		var _tagList = [<?php  echo $list; ?>]
+		var _tagList = [<?php  echo $list; ?>];
 		$(function () {
 			$('#search_input, #edit-editable_4').tagSuggest({ separator:'<?php  echo (getOption('search_space_is')=='OR'?' ':','); ?>', tags: _tagList })
-			})
+			});
 		// ]]> -->
 	</script>
 	<?php
