@@ -61,10 +61,7 @@
 						<li class="call_list">admin-dynamic-album.php</li>
 						<li class="call_list">admin-edit.php</li>
 						<li class="call_list">admin-httpupload/uploader.php</li>
-						<li class="call_list">admin-refresh-metadata.php</li>
-						<li class="call_list">admin-thumbcrop.php</li>
-						<li class="call_list">admin-uploadify/uploader.php</li>
-						<li class="call_list">utilities/cache_images.php</li>
+						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -203,37 +200,14 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>admin_note</strong></tt>(<em>string, string</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_note --><p>This filter is invoked at the head of each admin page to allow a filter to place a note there.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
+					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-albumsort.php2 (2)</li>
 						<li class="call_list">admin-comments.php</li>
 						<li class="call_list">admin-dynamic-album.php</li>
 						<li class="call_list">admin-edit.php4 (4)</li>
-						<li class="call_list">admin-filemanager.php</li>
-						<li class="call_list">admin-logs.php</li>
-						<li class="call_list">admin-options.php8 (8)</li>
-						<li class="call_list">admin-upload.php</li>
-						<li class="call_list">admin-users.php</li>
-						<li class="call_list">utilities/backup_restore.php</li>
-						<li class="call_list">utilities/cache_images.php</li>
-						<li class="call_list">utilities/database_reference.php</li>
-						<li class="call_list">utilities/gallery_statistics.php</li>
-						<li class="call_list">utilities/reset_albumthumbs.php</li>
-						<li class="call_list">utilities/scheduled_content.php</li>
-						<li class="call_list">utilities/seo_cleanup.php</li>
-						<li class="call_list">utilities/user_mailing_list.php</li>
-						<li class="call_list">utilities/wordpress_import.php</li>
-						<li class="call_list"><em>plugin</em>/crop_image.php</li>
-						<li class="call_list"><em>plugin</em>/menu_manager/menu_tab.php</li>
-						<li class="call_list"><em>plugin</em>/menu_manager/menu_tab_edit.php</li>
-						<li class="call_list"><em>plugin</em>/search_statistics/search_analysis.php</li>
-						<li class="call_list"><em>plugin</em>/sitemap-extended/sitemap-extended-admin.php</li>
-						<li class="call_list"><em>plugin</em>/user-expiry/user-expiry-tab.php</li>
-						<li class="call_list"><em>plugin</em>/user_groups/user_groups-tab.php</li>
-						<li class="call_list"><em>plugin</em>/zenpage/admin-categories.php</li>
-						<li class="call_list"><em>plugin</em>/zenpage/admin-edit.php</li>
-						<li class="call_list"><em>plugin</em>/zenpage/admin-news-articles.php</li>
+						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -257,14 +231,14 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>admin_utilities_buttons</strong></tt>(<em>buttonlist</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_utilities_buttons --><p>Allows plugins to add buttons to the admin utilities box on the <em>overview</em> page.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/downloadlist.php</p>
+					<p class="handlers">For example see <em>plugin</em>/downloadList.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>custom_option_save</strong></tt>(<em>notify, themename, themealbum</em>)</p>
+					<p class="filterdef"><tt><strong>custom_option_save</strong></tt>(<em>string, themename, themealbum</em>)</p>
 					<!-- description(Admin.Miscellaneous)-custom_option_save --><p>Invoked when options are saved to allow processing of the POST of plugin custom options.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/register_user.php</p>
 					<p class="calls">Invoked from:</p>
@@ -320,6 +294,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>general_zenpage_utilities</strong></tt>(<em>string, result</em>)</p>
 					<!-- description(Admin.Zenpage)-general_zenpage_utilities --><p>Allows plugins to add items to the <em>General</em> area of the Zenpage edit pages.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/admin-edit.php</li>
@@ -382,6 +357,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>save_article_custom_data</strong></tt>(<em>custom, article</em>)</p>
 					<!-- description(Admin.Zenpage)-save_article_custom_data --><p>Allows a plugin to manage custom data for news articles. This invocation is for when the article is saved.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/zenpage-admin-functions.php2 (2)</li>
@@ -398,6 +374,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>save_page_custom_data</strong></tt>(<em>custom, page</em>)</p>
 					<!-- description(Admin.Zenpage)-save_page_custom_data --><p>Allows a plugin to manage image data for Zenpage page. This invocation is for when the page is saved.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list"><em>plugin</em>/zenpage/zenpage-admin-functions.php2 (2)</li>
