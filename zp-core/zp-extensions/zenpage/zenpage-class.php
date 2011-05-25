@@ -367,10 +367,10 @@ class Zenpage {
 
 	/**
 	 *
-	 * filters query results for only news that should be shown.
-	 * @param $sql
-	 * @param $offset
-	 * @param $limit
+	 * filters query results for only news that should be shown. (that is fit to print?)
+	 * @param $sql query to return all candidates of interest
+	 * @param $offset skip this many legitimate items (used for pagination)
+	 * @param $limit return only this many items
 	 */
 	function siftResults($sql, $offset, $limit) {
 		$resource = $result = query($sql);
@@ -379,22 +379,15 @@ class Zenpage {
 			while ($item = db_fetch_assoc($resource)) {
 				if (isset($item['type1']) && $item['type1'] == 'news') {
 					$article = new ZenpageNews($item['titlelink']);
-					if ($article->categoryIsVisible()) {
-						$offset--;
-						if ($offset < 0) {
-							$result[] = $item;
-							if ($limit && count($result) >= $limit) {
-								break;
-							}
-						}
+					if (!$article->categoryIsVisible()) {
+						continue;
 					}
-				} else {
-					$offset--;
-					if ($offset < 0) {
-						$result[] = $item;
-						if ($limit && count($result) >= $limit) {
-							break;
-						}
+				}
+				$offset--;
+				if ($offset < 0) {
+					$result[] = $item;
+					if ($limit && count($result) >= $limit) {
+						break;
 					}
 				}
 			}
@@ -463,10 +456,10 @@ class Zenpage {
 			}
 			$albumWhere = "AND albums.show=1".$passwordcheck;
 		}
-		if (!$articles_per_page) {
-			$offset = 0;
-		} else {
+		if ($articles_per_page) {
 			$offset = $this->getOffset($articles_per_page);
+		} else {
+			$offset = 0;
 		}
 		if(empty($sortorder)) {
 			$combinews_sortorder = getOption("zenpage_combinews_sortorder");
@@ -550,8 +543,6 @@ class Zenpage {
 																		".$imagequery."
 																		ORDER By date DESC
 																		", $offset, $articles_per_page);
-				//echo "<pre>"; print_r($result); echo "</pre>";
-				//$result = "";
 				break;
 			case "latestupdatedalbums-thumbnail":
 			case "latestupdatedalbums-thumbnail-customcrop":
@@ -563,11 +554,11 @@ class Zenpage {
 					if ($article->checkAccess($hint, $show)) {
 						$counter++;
 						$latestnews[$counter] = array(
-						"albumname" => $article->getTitle(),
-						"titlelink" => $article->getTitlelink(),
-						"date" => $article->getDateTime(),
-						"type" => "news",
-						);
+																					"albumname" => $article->getTitle(),
+																					"titlelink" => $article->getTitlelink(),
+																					"date" => $article->getDateTime(),
+																					"type" => "news",
+																					);
 					}
 				}
 				$albums = getAlbumStatistic($articles_per_page, "latestupdated");
@@ -584,17 +575,17 @@ class Zenpage {
 						$albumdate = strftime('%Y-%m-%d %H:%M:%S',$timestamp);
 					}
 					$latestalbums[$counter] = array(
-					"albumname" => $tempalbum->getFolder(),
-					"titlelink" => $tempalbum->getTitle(),
-					"date" => $albumdate,
-					"type" => 'albums',
-					);
+																					"albumname" => $tempalbum->getFolder(),
+																					"titlelink" => $tempalbum->getTitle(),
+																					"date" => $albumdate,
+																					"type" => 'albums',
+																					);
 				}
 				//$latestalbums = array_merge($latestalbums, $item);
 				$latest = array_merge($latestnews, $latestalbums);
 				$result = sortMultiArray($latest,"date",true);
 				if(count($result) > $articles_per_page) {
-					$result = array_slice($result,0,10);
+					$result = array_slice($result,0,$articles_per_page);
 				}
 				break;
 		}
