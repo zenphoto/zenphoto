@@ -88,6 +88,7 @@ function processFilters() {
 	$useagelist = array();
 	foreach ($_zp_resident_files as $file) {
 		if (getSuffix($file) == 'php') {
+			$size = filesize($file);
 			$text = file_get_contents($file);
 			$script = str_replace(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/', '<em>plugin</em>/', $file);
 			$script = str_replace(SERVERPATH.'/'.ZENFOLDER.'/', '<!--sort first-->/', $script);
@@ -110,10 +111,11 @@ function processFilters() {
 			foreach ($matches[1] as $paramsstr) {
 				$filter = explode(',', $paramsstr);
 				$filtername = unQuote(array_shift($filter));
-				$useagelist[] = array('filter'=>$filtername,'script'=>$script);
+				$useagelist[] = array('filter'=>$filtername,'script'=>$script, 'scriptsize'=>$size);
 			}
 		}
 	}
+	$useagelist = sortMultiArray($useagelist, 'scriptsize', false, false, false);
 
 	$filterCategories = array();
 	$newfilterlist = array();
@@ -316,26 +318,26 @@ function processFilters() {
 			$filter['desc'] = '<p>'.$filterDescriptions[$filter['filter']].'</p>';
 		}
 		fwrite($f, "\t\t\t\t\t".'<!-- description('.$class.'.'.$subclass.')-'.$filter['filter'].' -->'.$filter['desc']."<!--e-->\n");
-		if ($subclass != 'Script') {
-			$user = array_shift($filter['users']);
-			if (!empty($user)) {
-				fwrite($f, "\t\t\t\t\t".'<p class="handlers">For example see '.mytrim($user).'</p>'."\n");
-			}
-			fwrite($f, "\t\t\t\t\t".'<p class="calls">Invoked from:'."</p>\n");
-			fwrite($f, "\t\t\t\t\t<ul><!-- calls -->\n");
-			$calls = $filter['calls'];
-			$limit = 5;
-			foreach ($calls as $call) {
-				$limit --;
-				if ($limit > 0) {
-					fwrite($f, "\t\t\t\t\t\t".'<li class="call_list">'.mytrim($call)."</li>\n");
-				} else {
-					fwrite($f, "\t\t\t\t\t\t<li>...</li>\n");
-					break;
-				}
-			}
-			fwrite($f, "\t\t\t\t\t"."</ul><!-- calls -->\n");
+
+		$user = array_shift($filter['users']);
+		if (!empty($user)) {
+			fwrite($f, "\t\t\t\t\t".'<p class="handlers">For example see '.mytrim($user).'</p>'."\n");
 		}
+		fwrite($f, "\t\t\t\t\t".'<p class="calls">Invoked from:'."</p>\n");
+		fwrite($f, "\t\t\t\t\t<ul><!-- calls -->\n");
+		$calls = $filter['calls'];
+		$limit = 4;
+		foreach ($calls as $call) {
+			$limit --;
+			if ($limit > 0) {
+				fwrite($f, "\t\t\t\t\t\t".'<li class="call_list">'.mytrim($call)."</li>\n");
+			} else {
+				fwrite($f, "\t\t\t\t\t\t<li>...</li>\n");
+				break;
+			}
+		}
+		fwrite($f, "\t\t\t\t\t"."</ul><!-- calls -->\n");
+
 		fwrite($f, "\t\t\t\t".'</li><!-- filterdetail -->'."\n");
 	}
 

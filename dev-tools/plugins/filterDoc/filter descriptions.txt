@@ -1,12 +1,12 @@
-*Admin.Miscellaneous:=
+*Miscellaneous:=
 *Admin.Zenpage:=
 *Object.Miscellaneous:=
 *Upload:=
 *Miscellaneous.Miscellaneous:=
-*Miscellaneous:=
+*Object.Root_class:=
 *Object.Search:=
 *Admin.Comment:=
-*Object.Root_class:=
+*Admin.Miscellaneous:=
 *Comment:=
 *Admin.Media:=
 *Object.Media:=

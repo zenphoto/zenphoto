@@ -168,7 +168,7 @@ if (isset($_GET['action'])) {
 				}
 			}
 			setOption('search_fields', implode(',',$searchfields));
-			setOption('exact_tag_match', sanitize($_POST['tag_match']));
+			setOption('exact_tag_match', sanitize($_POST['SEARCH_Tags_tag_match']));
 			$olduser = getOption('search_user');
 			$newuser = trim(sanitize($_POST['search_user'],3));
 			if ($_POST['password_enabled']) {
@@ -1353,26 +1353,18 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td><?php echo gettext("Search behavior settings:"); ?></td>
 					<?php
-					$exact = ' <input type="radio" id="partia_tagsl" name="tag_match" value="1" ';
-					$partial = ' <input type="radio" id="exact_tags" name="tag_match" value="0" ';
-					if (getOption('exact_tag_match')) {
-						$exact .= ' checked="checked" ';
-					} else {
-						$partial .= ' checked="checked" ';
-					}
-					$exact .= '/>'. gettext('exact');
-					$partial .= '/>'. gettext('partial');
 					$engine = new SearchEngine();
 					$fields = $engine->getSearchFieldList();
-					$fields['tags'] .= $exact.$partial;
-					$fields = array_flip($fields);
+					$extra = array('tags'=>array(	array('type'=>'radio', 'display'=>gettext('partial'),'name'=>'tag_match', 'value'=>0, 'checked'=>0),
+																				array('type'=>'radio', 'display'=>gettext('exact'),'name'=>'tag_match', 'value'=>1, 'checked'=>0)));
+					$extra['tags'][(int) (getOption('exact_tag_match') && true)]['checked'] = 1;
 					$set_fields = array_flip($engine->allowedSearchFields());
 					?>
 					<td>
 						<?php echo gettext('Fields list:'); ?>
 						<ul class="searchchecklist">
 							<?php
-							generateUnorderedListFromArray($set_fields, $fields, 'SEARCH_', false, true, true);
+							generateUnorderedListFromArray($set_fields, $fields, 'SEARCH_', false, true, true, NULL, $extra);
 							?>
 						</ul>
 						<br />

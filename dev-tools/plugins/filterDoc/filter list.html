@@ -75,7 +75,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>edit_album_utilities</strong></tt>(<em>string, album, prefix</em>)</p>
 					<!-- description(Admin.Media)-edit_album_utilities --><p>Allows a plugin to place items in the <em>utilities</em> area for albums. This invocation is for when the album is presented for editing.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/multiple_layouts.php</p>
+					<p class="handlers">For example see <em>plugin</em>/rating.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-functions.php</li>
@@ -101,7 +101,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>edit_image_utilities</strong></tt>(<em>string, image, currentimage, pagenum, tagsort</em>)</p>
 					<!-- description(Admin.Media)-edit_image_utilities --><p>Allows a plugin to place items in the <em>utilities</em> area for images. This invocation is for when the image is presented for editing.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/crop_image.php</p>
+					<p class="handlers">For example see <em>plugin</em>/rating.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-edit.php</li>
@@ -174,7 +174,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>admin_head</strong></tt>(<em>string</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_head --><p>Allows plugins to place HTML into the &lt;head&gt; region of admin pages.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/auto_backup.php</p>
+					<p class="handlers">For example see <em>plugin</em>/colorbox.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-functions.php</li>
@@ -200,7 +200,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>admin_note</strong></tt>(<em>string, string</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_note --><p>This filter is invoked at the head of each admin page to allow a filter to place a note there.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
+					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-albumsort.php2 (2)</li>
@@ -213,7 +213,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>admin_overview</strong></tt>(<em>string</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_overview --><p>Allows plugins to add items to the <em>Overview</em> page on the back-end.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/comment_form.php</p>
+					<p class="handlers">For example see <em>plugin</em>/zenphoto_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin.php2 (2)</li>
@@ -222,7 +222,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>admin_tabs</strong></tt>(<em>zenphoto_tabs, _zp_admin_tab</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_tabs --><p>Allows plugins to add <em>Tabs</em> to the administrative pages.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/menu_manager.php</p>
+					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-functions.php</li>
@@ -231,7 +231,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>admin_utilities_buttons</strong></tt>(<em>buttonlist</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_utilities_buttons --><p>Allows plugins to add buttons to the admin utilities box on the <em>overview</em> page.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/downloadList.php</p>
+					<p class="handlers">For example see <em>plugin</em>/search_statistics.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin.php</li>
@@ -449,7 +449,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>sendmail</strong></tt>(<em>string, email_list, subject, message, from_mail, from_name, cc_addresses</em>)</p>
 					<!-- description(Miscellaneous.Miscellaneous)-sendmail --><p>Invoked when Zenphoto attempts to send an e-mail. The plugin is presumed to handle the mailing.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/PHPMailer.php</p>
+					<p class="handlers">For example see <em>plugin</em>/zenphoto_sendmail.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">functions.php2 (2)</li>
@@ -562,7 +562,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>new_album</strong></tt>(<em>object</em>)</p>
 					<!-- description(Object.Media)-new_album --><p>Invoked when a new album is discovered.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
+					<p class="handlers">For example see <em>plugin</em>/xmpMetadata.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">class-album.php</li>
@@ -794,14 +794,39 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>theme_body_close</strong></tt>(<em></em>)</p>
 					<!-- description(Theme.Script)-theme_body_close --><p>Invoked by all themes just before the &lt;/body&gt; HTML tag.</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list"><em>theme</em>/default/404.php</li>
+						<li class="call_list"><em>theme</em>/default/album.php</li>
+						<li class="call_list"><em>theme</em>/default/archive.php</li>
+						<li class="call_list"><em>theme</em>/default/contact.php</li>
+						<li>...</li>
+					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>theme_body_open</strong></tt>(<em></em>)</p>
 					<!-- description(Theme.Script)-theme_body_open --><p>Invoked by all themes just before the &lt;body&gt; HTML tag.</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list"><em>theme</em>/default/404.php</li>
+						<li class="call_list"><em>theme</em>/default/album.php</li>
+						<li class="call_list"><em>theme</em>/default/archive.php</li>
+						<li class="call_list"><em>theme</em>/default/contact.php</li>
+						<li>...</li>
+					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>theme_head</strong></tt>(<em></em>)</p>
 					<!-- description(Theme.Script)-theme_head --><p>Invoked by all themes just before the &lt;head&gt; HTML tag.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/tag_suggest.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list"><em>theme</em>/default/404.php</li>
+						<li class="call_list"><em>theme</em>/default/album.php</li>
+						<li class="call_list"><em>theme</em>/default/archive.php</li>
+						<li class="call_list"><em>theme</em>/default/contact.php</li>
+						<li>...</li>
+					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
 	<h5><a name="Upload"></a>Upload filters</h5>
@@ -912,7 +937,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>edit_admin_custom_data</strong></tt>(<em>string, userobj, id, background, current, local_alterrights</em>)</p>
 					<!-- description(User_management.Miscellaneous)-edit_admin_custom_data --><p>Allows a plugin to manage custom data for users. This invocation is for when the user object is presented for editing.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/comment_form.php</p>
+					<p class="handlers">For example see <em>plugin</em>/email-newuser.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-users.php</li>
@@ -930,7 +955,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>guest_login_attempt</strong></tt>(<em>success, post_user, post_pass, authType</em>)</p>
 					<!-- description(User_management.Miscellaneous)-guest_login_attempt --><p>Invoked when a visitor logs on with a guest password.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/failed_access_blocker.php</p>
+					<p class="handlers">For example see <em>plugin</em>/show_not_logged-in.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">functions.php</li>
@@ -965,7 +990,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>save_admin_custom_data</strong></tt>(<em>updated, userobj, i, alter</em>)</p>
 					<!-- description(User_management.Miscellaneous)-save_admin_custom_data --><p>Allows a plugin to manage custom data for Zenphoto users. This invocation is for when the user object is saved.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/comment_form.php</p>
+					<p class="handlers">For example see <em>plugin</em>/quota_manager.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-users.php</li>

@@ -878,12 +878,20 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 				<?php echo html_encode($display); ?>
 			</label>
 			<?php
+
 			if (array_key_exists($key, $extra)) {
+				$unique = '';
 				foreach ($extra[$key] as $box) {
 					if ($box['display']) {
+						if (isset($box['type'])) {
+							$type = $box['type'];
+							if ($type == 'radio') $unique++;
+						} else {
+							$type = 'checkbox';
+						}
 						?>
 						<label class="displayinline">
-							<input type="checkbox" id="<?php echo $listitem.'_'.$box['name']; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
+							<input type="<?php echo $type; ?>" id="<?php echo $listitem.'_'.$box['name'].$unique; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
 									 value="<?php echo html_encode($box['value']); ?>" <?php if ($box['checked']) {echo ' checked="checked"';	} ?>
 									 <?php echo $alterrights; ?> \> <?php echo $box['display'];?>
 						</label>

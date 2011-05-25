@@ -366,6 +366,43 @@ class Zenpage {
 	}
 
 	/**
+	 *
+	 * filters query results for only news that should be shown.
+	 * @param $sql
+	 * @param $offset
+	 * @param $limit
+	 */
+	function siftResults($sql, $offset, $limit) {
+		$resource = $result = query($sql);
+		if ($resource) {
+			$result = array();
+			while ($item = db_fetch_assoc($resource)) {
+				if (isset($item['type1']) && $item['type1'] == 'news') {
+					$article = new ZenpageNews($item['titlelink']);
+					if ($article->categoryIsVisible()) {
+						$offset--;
+						if ($offset < 0) {
+							$result[] = $item;
+							if ($limit && count($result) >= $limit) {
+								break;
+							}
+						}
+					}
+				} else {
+					$offset--;
+					if ($offset < 0) {
+						$result[] = $item;
+						if ($limit && count($result) >= $limit) {
+							break;
+						}
+					}
+				}
+			}
+		}
+		return $result;
+	}
+
+	/**
 	 * Gets news articles and images of a gallery to show them together on the news section
 	 *
 	 * NOTE: This function does not exclude articles that are password protected via a category
@@ -427,9 +464,9 @@ class Zenpage {
 			$albumWhere = "AND albums.show=1".$passwordcheck;
 		}
 		if (!$articles_per_page) {
-			$limit = '';
+			$offset = 0;
 		} else {
-			$limit = " LIMIT ".$this->getOffset($articles_per_page).",".$articles_per_page;
+			$offset = $this->getOffset($articles_per_page);
 		}
 		if(empty($sortorder)) {
 			$combinews_sortorder = getOption("zenpage_combinews_sortorder");
@@ -459,11 +496,11 @@ class Zenpage {
 							WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
 						break;
 				}
-				$result = query_full_array("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
+				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
 																		UNION
 																		".$imagequery."
-																		ORDER BY $stickyorder date DESC $limit
-																		");
+																		ORDER BY $stickyorder date DESC
+																		", $offset, $articles_per_page);
 				break;
 			case "latestalbums-thumbnail":
 			case "latestalbums-thumbnail-customcrop":
@@ -482,11 +519,11 @@ class Zenpage {
 							".$show.$albumWhere.")";
 						break;
 				}
-				$result = query_full_array("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
+				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
 																		UNION
 																		".$albumquery."
-																		ORDER BY $stickyorder date DESC $limit
-																		");
+																		ORDER BY $stickyorder date DESC
+																		", $offset, $articles_per_page);
 				break;
 			case "latestimagesbyalbum-thumbnail":
 			case "latestimagesbyalbum-thumbnail-customcrop":
@@ -508,11 +545,11 @@ class Zenpage {
 														WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
 						break;
 				}
-				$result = query_full_array("(SELECT title as albumname, titlelink, date, @type1 as type FROM ".prefix('news')." ".$show.")
+				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type FROM ".prefix('news')." ".$show.")
 																		UNION
 																		".$imagequery."
-																		ORDER By date DESC $limit
-																		");
+																		ORDER By date DESC
+																		", $offset, $articles_per_page);
 				//echo "<pre>"; print_r($result); echo "</pre>";
 				//$result = "";
 				break;
