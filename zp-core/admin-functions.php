@@ -765,11 +765,7 @@ function processCustomOptionSave($returntab, $themename=NULL, $themealbum=NULL) 
 					}
 					break;
 				case 'chkbox':
-					if (isset($_POST[$key])) {
-						$value = sanitize($_POST[$key], 1);
-					} else {
-						$value = 0;
-					}
+					$value = (int) isset($_POST[$key]);
 					break;
 				default:
 					if (isset($_POST[$key])) {
@@ -873,8 +869,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 		<span style="display:inline;white-space:nowrap">
 			<label class="displayinline">
 				<input id="<?php echo $listitem; ?>"<?php echo $class;?> name="<?php echo $listitem; ?>" type="checkbox"
-					<?php if (isset($cv[$item])) {echo ' checked="checked"';	} ?> value="<?php echo html_encode($item); ?>"
-					<?php echo $alterrights; ?> />
+							<?php if (isset($cv[$item])) {echo ' checked="checked"';	} ?> value="1" <?php echo $alterrights; ?> />
 				<?php echo html_encode($display); ?>
 			</label>
 			<?php
@@ -2939,7 +2934,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			$full = populateManagedObjectsList('album', $adminid, true);
 			$cv = $extra = array();
 			$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
-			$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('edit user owned images').'" />';
+			$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished images').'" />';
 			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
 			$ledgend = $icon_edit_album.' '.gettext('edit album').' '.
 									$icon_upload.' '.gettext('upload').' '.
