@@ -377,7 +377,7 @@ class Zenpage {
 		if ($resource) {
 			$result = array();
 			while ($item = db_fetch_assoc($resource)) {
-				if (isset($item['type1']) && $item['type1'] == 'news') {
+				if ($item['type'] == 'news') {
 					$article = new ZenpageNews($item['titlelink']);
 					if (!$article->categoryIsVisible()) {
 						continue;

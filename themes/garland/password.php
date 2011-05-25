@@ -26,7 +26,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 		<div class="sidebar">
      	<div id="leftsidebar">
       </div>
-     </div>
+			</div>
 		<div id="center">
 			<div id="squeeze">
 				<div class="right-corner">
