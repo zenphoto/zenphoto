@@ -528,7 +528,7 @@ if ($commentcount_mod > 0) {
 <?php }
 
 ?>
-<li><nobr><?php printf(gettext("Albums folder size: <strong>%s</strong>"),byteConvert(gallerystats_filesize_r(getAlbumFolder()))); ?></nobr></li>
+<li><nobr><?php printf(gettext("Albums folder size: <strong>%s</strong>"),byteConvert(gallerystats_filesize_r(ALBUM_FOLDER_SERVERPATH))); ?></nobr></li>
 <li><nobr><?php printf(gettext("Image cache size: <strong>%s</strong>"),byteConvert(gallerystats_filesize_r(SERVERPATH.'/'.CACHEFOLDER))); ?></nobr></li>
 <li><nobr><?php printf(gettext("HTML cache size: <strong>%s</strong>"),byteConvert(gallerystats_filesize_r(SERVERPATH.'/'.STATIC_CACHE_FOLDER))); ?></nobr></li>
 <li><nobr><?php printf(gettext("Uploaded folder size: <strong>%s</strong>"),byteConvert(gallerystats_filesize_r(SERVERPATH.'/'.UPLOAD_FOLDER))); ?></nobr></li>

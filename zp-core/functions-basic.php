@@ -714,9 +714,8 @@ function getImageProcessorURI($args, $album, $image) {
  */
 function sanitize_path($filename) {
 	if (get_magic_quotes_gpc()) $filename = stripslashes($filename);
-	$filename = str_replace(chr(0), " ", $filename);
-	$filename = strip_tags($filename);
-	$filename = preg_replace(array('/^\/+/','/\/+$/','/\/\/+/','/\/\.\./','/\/\./'), '', $filename);
+	$filename = strip_tags(str_replace('\\', '/', $filename));
+	$filename = preg_replace(array('/x00/','/^\/+/','/\/+$/','/\/\/+/','/\/\.\./','/\/\./'), '', $filename);
 	return $filename;
 }
 

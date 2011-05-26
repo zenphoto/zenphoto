@@ -140,7 +140,7 @@ $map = function_exists('printGoogleMap');
 				<?php
 				if (function_exists('printLatestImages')) {
 					?>
-					<h2><?php printf(gettext('Latest Images for %s'),$_zp_current_album->name); ?></h2>
+					<h2><?php printf(gettext('Latest Images for %s'),$_zp_current_album->getTitle()); ?></h2>
 					<?php
 					printLatestImages(5, $_zp_current_album->name);
 				}
