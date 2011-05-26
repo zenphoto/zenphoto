@@ -616,7 +616,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td>
 						<p>
 							<?php
-							echo gettext("If you have Apache <em>mod rewrite</em>, put a checkmark on the <em>mod rewrite</em> option, and you'll get nice cruft-free URLs.");
+							echo gettext("If you have Apache <em>mod rewrite</em>, put a checkmark on the <em>mod rewrite</em> option and you'll get nice cruft-free URLs.");
 							if (is_null($mod_rewrite)) echo ' '.gettext('If the checkbox is disabled, setup did not detect a working Apache <em>mod rewrite</em> facility and proper <em>.htaccess</em> file.');
 							?>
 						</p>

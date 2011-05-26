@@ -2936,9 +2936,9 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
 			$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished images').'" />';
 			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
-			$ledgend = $icon_edit_album.' '.gettext('edit album').' '.
-									$icon_upload.' '.gettext('upload').' '.
-									$icon_view_image.' '.gettext('view unpublished images');
+			if ($rights & ALBUM_RIGHTS) $ledgend .= $icon_edit_album.' '.gettext('edit album').' ';
+			if ($rights & UPLOAD_RIGHTS) $ledgend .= $icon_upload.' '.gettext('upload').' ';
+			if (!($rights & VIEW_ALBUMS_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublished images');
 			foreach ($full as $item) {
 				$cv[$item['name']] = $item['data'];
 				$extra[$item['name']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
