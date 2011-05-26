@@ -172,10 +172,18 @@ function getRSSAlbumnameAndCollection($arrayfield) {
 	if(!empty($arrayfield)) {
 		if(isset($_GET['albumname'])) {
 			$albumfolder = sanitize_path($_GET['albumname']);
+			if(!file_exists(ALBUM_FOOLDER_SERVERPATH.'/'.$albumfolder) {
+				$albumfolder = NULL;
+			} 
 			$collection = FALSE;
 		} else if(isset($_GET['folder'])) {
 			$albumfolder = sanitize_path($_GET['folder']);
-			$collection = TRUE;
+			if(!file_exists(ALBUM_FOOLDER_SERVERPATH.'/'.$albumfolder) {
+				$albumfolder = NULL;
+				$collection = FALSE;
+			} else {
+				$collection = TRUE;
+			}
 		} else {
 			$albumfolder = NULL;
 			$collection = FALSE;
