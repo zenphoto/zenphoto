@@ -1722,7 +1722,7 @@ if (file_exists(CONFIGFILE)) {
 		`custom_data` text,
 		`show` int(1) unsigned NOT NULL default '1',
 		PRIMARY KEY (`id`),
-		UNIQUE `titlelink` (`titlelink`)
+		UNIQUE (`titlelink`)
 		) $collation;";
 	}
 
