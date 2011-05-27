@@ -114,20 +114,41 @@ printLogoAndLinks();
 			} else {
 				$published = 'all';
 			}
-
+			$sortorder = 'date';
+			$direction = 'desc';
+			if(isset($_GET['sortorder'])) {
+				switch ($_GET['sortorder']) {
+					case 'date-desc':
+						$sortorder = 'date';
+						$direction = 'desc';
+						break;
+					case 'date-asc':
+						$sortorder = 'date';
+						$direction = 'asc';
+						break;
+					case 'title-desc':
+						$sortorder = 'title';
+						$direction = 'desc';
+						break;
+					case 'title-asc':
+						$sortorder = 'title';
+						$direction = 'asc';
+						break;
+				}
+			}
 			if(isset($_GET['category'])) {
 				$catobj = new ZenpageCategory(sanitize($_GET['category']));
-				$resultU = $catobj->getArticles(getOption('zenpage_admin_articles'),'unpublished',false);
-				$result = $catobj->getArticles(getOption('zenpage_admin_articles'),$published,false);
+				$resultU = $catobj->getArticles(getOption('zenpage_admin_articles'),'unpublished',false,$sortorder,$direction);
+				$result = $catobj->getArticles(getOption('zenpage_admin_articles'),$published,false,$sortorder,$direction);
 			} else {
 				$catobj = NULL;
-				$resultU = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),'unpublished',false);
-				$result = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),$published,false);
+				$resultU = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),'unpublished',false,$sortorder,$direction);
+				$result = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),$published,false,$sortorder,$direction);
 			}
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic(count($result), count($resultU));?></span></h1>
 				<div class="floatright">
-					<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); ?>
+					<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); printSortOrderDropdown(); ?>
 						<?php //echo "optionpath: ".getNewsAdminOptionPath(true,true,true); // debugging only; ?>
 						<span class="buttons">
 						<a href="admin-edit.php?newsarticle&amp;add&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"><img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
