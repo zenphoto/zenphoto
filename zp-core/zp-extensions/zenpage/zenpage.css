@@ -433,14 +433,12 @@ div.floatright form {
 	margin-right: 0px;
 }
 
-form#articledatesdropdown {
-margin-right: 0px;
-}
-
+form#articledatesdropdown,
+form#unpublisheddropdown,
 form#categoriesdropdown {
 margin-right: 0px;
 }
 
-form#unpublisheddropdown {
-margin-right: 30px;
+form#sortorderdropdown {
+margin-right: 0px;
 }
