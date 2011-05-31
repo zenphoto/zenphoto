@@ -24,7 +24,6 @@ class zenpagecms {
 		setOptionDefault('zenpage_read_more', getAllTranslations($str));
 		setOptionDefault('zenpage_rss_items', '10');
 		setOptionDefault('zenpage_rss_length', '100');
-		setOptionDefault('zenpage_admin_articles', '15');
 		setOptionDefault('zenpage_indexhitcounter', false);
 		setOptionDefault('zenpage_combinews', false);
 		setOptionDefault('zenpage_combinews_readmore', gettext('Visit gallery page'));
@@ -71,8 +70,6 @@ class zenpagecms {
 										'desc' => gettext("The number of news articles you want to appear in your site's News RSS feed.")),
 		gettext('RSS feed text length') => array('key' => 'zenpage_rss_length', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("The text length of the Zenpage RSS feed items. No value for full length.")),
-		gettext('Articles per page (admin)') => array('key' => 'zenpage_admin_articles', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("How many news articles you want to show per page on the news article admin page.")),
 		gettext('CombiNews') => array('key' => 'zenpage_combinews', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Set to enable the CombiNews feature to show news articles and latest gallery items together on the news section's overview page(s).")."<p class='notebox'>".gettext("<strong>Note:</strong> Images/albums and news articles are still separate, your Zenphoto gallery is not touched in any way! <strong>IMPORTANT: This feature requires MySQL 4.1 or later.</strong>")."</p>"),
 		gettext('CombiNews: Gallery page link') => array('key' => 'zenpage_combinews_readmore', 'type' => OPTION_TYPE_TEXTBOX, 'multilingual' => 1,

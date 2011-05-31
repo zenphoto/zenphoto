@@ -136,19 +136,27 @@ printLogoAndLinks();
 						break;
 				}
 			}
+			$articles_page = 15;
+			if(isset($_GET['articles_page'])) {
+				if($_GET['articles_page'] == 'all') {
+					$articles_page = '';
+				} else {
+					$articles_page = sanitize_numeric($_GET['articles_page']);
+				}
+			}
 			if(isset($_GET['category'])) {
 				$catobj = new ZenpageCategory(sanitize($_GET['category']));
-				$resultU = $catobj->getArticles(getOption('zenpage_admin_articles'),'unpublished',false,$sortorder,$direction);
-				$result = $catobj->getArticles(getOption('zenpage_admin_articles'),$published,false,$sortorder,$direction);
+				$resultU = $catobj->getArticles($articles_page,'unpublished',false,$sortorder,$direction);
+				$result = $catobj->getArticles($articles_page,$published,false,$sortorder,$direction);
 			} else {
 				$catobj = NULL;
-				$resultU = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),'unpublished',false,$sortorder,$direction);
-				$result = $_zp_zenpage->getNewsArticles(getOption('zenpage_admin_articles'),$published,false,$sortorder,$direction);
+				$resultU = $_zp_zenpage->getNewsArticles($articles_page,'unpublished',false,$sortorder,$direction);
+				$result = $_zp_zenpage->getNewsArticles($articles_page,$published,false,$sortorder,$direction);
 			}
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic(count($result), count($resultU));?></span></h1>
 				<div class="floatright">
-					<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); printSortOrderDropdown(); ?>
+					<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); printSortOrderDropdown(); printArticlesPerPageDropdown(); ?>
 						<?php //echo "optionpath: ".getNewsAdminOptionPath(true,true,true); // debugging only; ?>
 						<span class="buttons">
 						<a href="admin-edit.php?newsarticle&amp;add&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"><img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
