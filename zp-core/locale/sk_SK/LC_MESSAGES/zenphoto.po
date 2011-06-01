@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-27 13:08+0100\n"
-"PO-Revision-Date: 2011-05-27 13:12+0100\n"
+"POT-Creation-Date: 2011-06-01 08:40+0100\n"
+"PO-Revision-Date: 2011-06-01 08:42+0100\n"
 "Last-Translator: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "MIME-Version: 1.0\n"
@@ -13935,248 +13935,240 @@ msgid "<strong>Note:</strong> This feature must be integrated into your theme. I
 msgstr "<strong>Poznámka:</strong> Táto funkcia musí byť súčasťou témy.  Nie je podporované témami <em>default</em> a <em>stopdesign</em>."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:23
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:68
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:67
 msgid "Read more"
 msgstr "Čítať viac"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:30
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:29
 msgid "Visit gallery page"
 msgstr "Prezrieť stránku galérie"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:43
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:42
 #, php-format
 msgid "%1$u new item in <em>%2$s</em>: %3$s"
 msgstr "%1$u nová položka v <em>%2$s</em>: %3$s"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:45
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:44
 #, php-format
 msgid "%1$u new items in <em>%2$s</em>: %3$s"
 msgstr "%1$u nových položiek v <em>%2$s</em>: %3$s"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:54
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:53
 msgid "* The options may be set via the <a href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a> plugin options."
 msgstr "* Táto možnosť sa môže nastavovať použitím možnosti zásuvného modulu <a href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a>."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:56
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:55
 msgid "* The options may be set via the <a href=\"javascript:gotoName('print_album_menu');\"><em>print_album_menu</em></a> plugin options."
 msgstr "* Táto možnosť sa môže nastavovať použitím možnosti zásuvného modulu <a href=\"javascript:gotoName('print_album_menu');\"><em>print_album_menu</em></a>."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:61
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:60
 msgid "Articles per page (theme)"
 msgstr "Článkov na stránke (téma)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:63
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:62
 msgid "How many news articles you want to show per page on the news or news category pages."
 msgstr "Koľko článkov chcete aby sa zobrazovalo na stránku v sekciách správ alebo kategórií správ."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:64
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:63
 msgid "News article text length"
 msgstr "Dĺžka textu článku"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:65
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:64
 msgid "The length of news article excerpts in news or news category pages. Leave empty for full text."
 msgstr "DSĺžka úryvku článku pre stránku správ alebo kategórií správ. Pre celý článok nechajte pole prázdne."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:66
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:65
 msgid "News article text shorten indicator"
 msgstr "Indikátor skrátenia článku"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:67
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:66
 msgid "Something that indicates that the article text is shortened, ' (...)' by default."
 msgstr "Upozor§uje, že text článku bol skrátený. Štandardne '(...)'."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:69
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:68
 msgid "The text for the link to the full article."
 msgstr "Text pre odkaz na celý článok."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:70
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:69
 msgid "RSS feed item number"
 msgstr "Počet položiek RSS kanálu"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:71
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:70
 msgid "The number of news articles you want to appear in your site's News RSS feed."
 msgstr "Počet článkov, ktorý chcete aby sa zobrazoval v RSS kanáli vašej stránky"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:72
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:71
 msgid "RSS feed text length"
 msgstr "Dĺžka textu v RSS kanáli"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:73
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:72
 msgid "The text length of the Zenpage RSS feed items. No value for full length."
 msgstr "Dĺžka textu položky v RSS kanáli. Pre celý text nechajte pole prázdne."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:74
-msgid "Articles per page (admin)"
-msgstr "Článkov na stránke (administrácia)"
-
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:75
-msgid "How many news articles you want to show per page on the news article admin page."
-msgstr "Koľko článkov chcete aby sa zobrazovalo na stránku v administrátorskej sekcii."
-
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:76
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:73
 msgid "CombiNews"
 msgstr "CombiNews"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:77
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:74
 msgid "Set to enable the CombiNews feature to show news articles and latest gallery items together on the news section's overview page(s)."
 msgstr "Aktivovaním rozšírenia CombiNews povolíte zobrazenie článkov a najnovších položiek galérie dokopy na stránke prehľadu správ."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:77
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:74
 msgid "<strong>Note:</strong> Images/albums and news articles are still separate, your Zenphoto gallery is not touched in any way! <strong>IMPORTANT: This feature requires MySQL 4.1 or later.</strong>"
 msgstr "<strong>Poznámka:</strong> Obrázky/albumy a články sú stále oddelené, vaša Zenphoto galéria nie je niako zmenená! <strong>DÔLEŽITÉ: Toto rozšírenie potrebuje MySQL 4.1 alebo novší.</strong>"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:78
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:75
 msgid "CombiNews: Gallery page link"
 msgstr "CombiNews: Odkaz na stránku galérie"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:79
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:76
 msgid "The text for the 'read more'/'view more' link to the gallery page for images/movies/audio."
 msgstr "Text pre odkazy 'čítať viac'/'pozrieť viac' na stránku galérie pre obrázky/videá/audio."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:80
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:77
 msgid "CombiNews: Mode"
 msgstr "CombiNews: Mód"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:81
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:78
 msgid "latest images: sized image"
 msgstr "najnovšie obrázky: zmenšený obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:81
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:78
 msgid "latest images: thumbnail"
 msgstr "najnovšie obrázky: miniatúra"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:81
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:78
 msgid "latest albums: sized image"
 msgstr "najnovšie albumy: zmenšený obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:81
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:78
 msgid "latest albums: thumbnail"
 msgstr "najnovšie albumy: miniatúra"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:81
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:78
 msgid "latest albums: thumbnail-customcrop"
 msgstr "najnovšie albumy: miniatúra – vlastný orez"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:81
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:78
 msgid "latest images: thumbnail-customcrop"
 msgstr "najnovšie obrázky: miniatúra – vlastný orez"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:81
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:78
 msgid "latest images by album: thumbnail"
 msgstr "najnovšie obrázky podľa albumu: miniatúra"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:81
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:78
 msgid "latest images by album: thumbnail-customcrop"
 msgstr "najnovšie obrázky podľa albumu: miniatúra – vlastný orez"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:81
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:78
 msgid "latest images by album: sized image"
 msgstr "najnovšie obrázky podľa albumu: zmenšený obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:82
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:79
 msgid "What you want to show within the CombiNews section.<br /><ul><li>Latest images: Entries for all images ever added</li><li>Latest albums: Entries for all albums ever created</li><li>Latest images by album: Entries for all images but grouped by images that have been added within a day to each album (Scheme: 'x new images in album y on date z')</li></ul>"
 msgstr "Čo chcete zobraziť v sekcii CombiNews.<br /><ul><li>Najnovšie obrázky: záznamy o každom obrázku, ktorý bol nahratý na server</li><li>Najnovšie albumy: záznamy o každom albume, ktorý bol vytvorený na server</li><li>Najnovšie obrázky podľa albumu: záznamy o každom obrázku, ktorý bol nahratý na server v jeden den v skupine obrázkov pre jednotlivé albumy (Schéma: 'x nových obrázkov pre album y zo dňa z')</li></ul>"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:83
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:80
 msgid "CombiNews: Sized image size"
 msgstr "CombiNews: veľkosť zmenšeného obrázku"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:84
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:81
 msgid "The size of the sized image shown the CombiNews section <em>(only in latest images-sizedimage or latest albums-sizedimage mode)</em>."
 msgstr "Veľkosť zmenšeného obrázku v sekcii CombiNews <em>(len v móde najnovšie obrázky–zmenšený obrázok alebo najnovšie albumy–zmenšený obrázok)</em>."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:85
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:82
 msgid "CombiNews: Sort order"
 msgstr "CombiNews: Poradie"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:86
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:83
 msgid "id"
 msgstr "ID"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:87
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:84
 msgid "The sort order for your gallery items within the CombiNews display except for <em>latest images by album</em> which is by date or mtime only. 'date' (date order), 'id' (added to db order), 'mtime' (upload order)."
 msgstr "Poradie položiek galérie v CombiNews okrem <em>najnovšie obrázky podľa albumu</em> ktoré sa radia iba podľa dátumu alebo mtime. 'date' (podľa dátumu), 'id' (podľa pridania do databázy), 'mtime' (poradie nahrávania)."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:87
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:84
 msgid "<strong>Note: </strong> If you experience unexpected results, this refers only to the images that are fetched from the database. Even if they are fetched by id they will be sorted by date with the articles afterwards since articles only have a date."
 msgstr "<strong>Poznámka:</strong> Ak ste zaznamenali neočakávané výsledky, týkajú sa iba obrázkov naťahovaných z databázy. Aj keby boli ťahané podľa ID neskôr budú zoraďované s článkami podľa dátumu, pretože články majú iba dátum."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:88
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:85
 msgid "CombiNews: Gallery link"
 msgstr "CombiNews: Link na galériu"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:90
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:87
 msgid "Choose if you want to link from the image entry to its image page directly or to the album page (if CombiNews mode is set for albums the link is automatically only linking to albums). This affects all links of the entry (<em>title</em>, <em>image</em> and the <em>visit gallery link</em>"
 msgstr "Vyberte či chcete, aby odkaz v príspevku o obrázku smeroval na stránku obrázku alebo na stránku albumu (ak je mód CombiNews nastavený na albumy odkaz je automaticky nastavený iba na albumy). Toto postihuje všetky odkazy v zápisoch (<em>titul</em>, <em>obrázok</em> a odkaz <em>prezrieť galériu</em>."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:91
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:88
 msgid "CombiNews: Thumbnail crop width"
 msgstr "CombiNews: šírka orezu miniatúry"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:92
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:94
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:96
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:98
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:100
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:102
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:89
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:91
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:93
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:95
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:97
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:99
 msgid "For <em>thumbnail custom crop</em> only. Leave empty if you don't want to use it."
 msgstr "Iba pre <em>vlastný orez miniatúr</em>. Ak to nechcete použiť nechajte polia prázdne."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:93
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:90
 msgid "CombiNews: Thumbnail crop height"
 msgstr "CombiNews: výška orezu miniatúry"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:95
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:92
 msgid "CombiNews: Thumbnail width"
 msgstr "CombiNews: šírka miniatúry"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:97
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:94
 msgid "CombiNews: Thumbnail height"
 msgstr "CombiNews: výška miniatúry"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:99
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:96
 msgid "CombiNews: Thumbnail crop x axis"
 msgstr "CombiNews: x osa orezu miniatúr"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:101
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:98
 msgid "CombiNews: Thumbnail crop y axis"
 msgstr "CombiNews: y osa orezu miniatúr"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:103
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:100
 msgid "CombiNews: Show image description"
 msgstr "CombiNews: Zobraziť popis obrázku"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:104
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:101
 msgid "Set to show the image description with every item if using the CombiNews mode <em>latest images by album</em> only. Printed as a paragraph."
 msgstr "Zakliknutím sa bude informácia o obrázku zobrazovať s každou položkou ak používate iba mód CombiNews <em>najnovšie obrázky podľa albumu</em>. Zobrazí sa ako odsek."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:105
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:102
 msgid "CombiNews: Show image title"
 msgstr "CombiNews: Zobraziť titul obrázku"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:106
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:103
 msgid "Set to show the image title with every item if using the CombiNews mode <em>latest images by album</em> only. Printed as h4-headline."
 msgstr "Zakliknutím sa bude titul obrázku zobrazovať s každou položkou ak používate iba mód CombiNews <em>najnovšie obrázky podľa albumu</em>. Zobrasuje sa ako h4 titulok."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:107
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:104
 msgid "CombiNews: Custom title (singular)"
 msgstr "CombiNews: Upravený titul (j. č.)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:108
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:110
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:105
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:107
 #, php-format
 msgid "Custom title for the article in sprintf() syntax. %1$u = number of new items, %2$s = title of the album they are in, %3$s = titles of the new items. Never leave any of these three out! (<em>latest images by album</em> option only)."
 msgstr "Upravené meno pre článok v syntaxe sprintf(). %1$u = počet nových príspevkov, %2$s = titul albumu, v ktorom sa nachádzajú, %3$s = tituly nových položiek. Nikdy nevynechajte ani jednu z týcho hodnôt!  (iba pre mód <em>Najnovšie obrázky podľa albumu</em>)."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:109
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:106
 msgid "CombiNews: Custom title (plural)"
 msgstr "CombiNews: Upravený titul (m. č.)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:111
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:108
 msgid "CombiNews: Custom title - Number of image titles"
 msgstr "CombiNews: Upravený titul – počet titulov obrázkov"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:112
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage.php:109
 msgid "How many images titles you want to show with the custom title (<em>latest images by album</em> option only)."
 msgstr "Počet titulov obrázkov, ktoré sa majú zobraziť v upravených tituloch (iba pre mód <em>Najnovšie obrázky podľa albumu</em>)."
 
@@ -15515,7 +15507,7 @@ msgstr "Dátum budúceho uverejnenia:"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:188
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:215
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:133
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:162
 msgid "New Article"
 msgstr "Nový článok"
 
@@ -15716,26 +15708,26 @@ msgstr "Článok vymazaný úspešne!"
 msgid "Hitcounter reset"
 msgstr "Vynulovanie počítadiel návštev"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:148
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:177
 msgid "Edit this article"
 msgstr "Upraviť článok"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:238
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:241
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:268
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:271
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:274
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:267
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:270
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:297
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:300
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:303
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:338
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:341
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:365
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:368
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:371
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1058
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1236
 msgid "locked"
 msgstr "zamknuté"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:246
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:247
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:275
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:276
 msgid "View article"
 msgstr "Zobraziť článok"
 
@@ -15767,8 +15759,8 @@ msgstr "Musíte zadať heslo chránenej stránky"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:150
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:242
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:909
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:976
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1087
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1154
 msgid "Your passwords were empty or did not match"
 msgstr "Heslo prázdne alebo nesprávne"
 
@@ -15834,7 +15826,7 @@ msgid "Article delete failed!"
 msgstr "Vymazanie článku zlyhalo!"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:625
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1106
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1284
 msgid "password protected"
 msgstr "chránené heslom"
 
@@ -15850,161 +15842,193 @@ msgstr "Predchádzajúca stránka"
 msgid "First Page"
 msgstr "Prvá stránka"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:818
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:827
 msgid "All articles"
 msgstr "Všetky články"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:821
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:830
 msgid "Sticky"
 msgstr "Prilepené na vrchu"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:905
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:878
+msgid "Order by date descending"
+msgstr "Usporiadať podľa dátumu zostupne"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:879
+msgid "Order by date ascending"
+msgstr "Usporiadať podľa dátumu vzostupne"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:880
+msgid "Order by title descending"
+msgstr "Usporiadať podľa názvu zostupne"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:881
+msgid "Order by title ascending"
+msgstr "Usporiadať podľa názvu vzostupne"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:923
+msgid "All categories"
+msgstr "Všetky kategórie"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:996
+msgid "15 per page"
+msgstr "15 na stranu"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:997
+msgid "30 per page"
+msgstr "30 na stranu"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:998
+msgid "60 per page"
+msgstr "60 na stranu"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:999
+msgid "All"
+msgstr "Všetko"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1083
 #, php-format
 msgid "Category <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"
 msgstr "Kategória <em>%s</em> pridaná, ale musíte jej dať <strong>názov</strong> pred zverejnením!"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:907
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:974
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1085
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1152
 msgid "You must supply a password for the Protected Category user"
 msgstr "Musíte zadať heslo chránenej kategórie"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:972
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1150
 msgid "You forgot to give your category a <strong>title or titlelink</strong>!"
 msgstr "Zabudli ste pridať kategórii <strong>Názov alebo Titellink</strong>!"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:978
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1156
 msgid "Category updated!"
 msgstr "Kategória aktualizovaná!"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:998
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1176
 msgid "Category successfully deleted!"
 msgstr "Vymazanie kategórie úspešné!"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1000
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1178
 msgid "Category  delete failed!"
 msgstr "Vymazanie kategórie zlyhalo!"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1027
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1205
 msgid "Edit this category"
 msgstr "Upraviť kategóriu"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1042
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1612
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1220
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1723
 msgid "Un-publish"
 msgstr "Zrušiť zverejnenie"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1045
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1601
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1223
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1712
 msgid "Scheduled for published"
 msgstr "Zverejnenie naplánované"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1062
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1240
 msgid "View category"
 msgstr "Zobraziť kategóriu"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1075
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1077
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1253
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1255
 msgid "Delete Category"
 msgstr "Vymazať kategóriu"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1141
-msgid "All categories"
-msgstr "Všetky kategórie"
-
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1338
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1449
 msgid "Untitled page"
 msgstr "Stránka bez titulku"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1341
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1452
 msgid "Untitled article"
 msgstr "Článok bez titulku"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1344
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1455
 msgid "Untitled category"
 msgstr "Kategória nemá názov"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1397
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1508
 msgid "hit"
 msgstr "zásah"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1399
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1510
 msgid "hits"
 msgstr "zásahov"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1459
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1570
 #, php-format
 msgid "(<strong>%1$u</strong> page)"
 msgid_plural "(<strong>%1$u</strong> pages)"
 msgstr[0] "(<strong>%1$u</strong> stránka)"
 msgstr[1] "(<strong>%1$u</strong> stránok)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1461
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1572
 #, php-format
 msgid "(<strong>%1$u</strong> page, <strong>%2$u</strong> un-published)"
 msgid_plural "(<strong>%1$u</strong> pages, <strong>%2$u</strong> un-published)"
 msgstr[0] "(<strong>%1$u</strong> stránka, <strong>%2$u</strong> nezverejnená)"
 msgstr[1] "(<strong>%1$u</strong> stránok, <strong>%2$u</strong> nezverejnených)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1466
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1577
 #, php-format
 msgid "(<strong>%1$u</strong> news)"
 msgid_plural "(<strong>%1$u</strong> news)"
 msgstr[0] "(<strong>%1$u</strong> článok)"
 msgstr[1] "(<strong>%1$u</strong> článkov)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1468
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1579
 #, php-format
 msgid "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
 msgid_plural "(<strong>%1$u</strong> news, <strong>%2$u</strong> un-published)"
 msgstr[0] "(<strong>%1$u</strong> článok, <strong>%2$u</strong> nezverejnený)"
 msgstr[1] "(<strong>%1$u</strong> článkov, <strong>%2$u</strong> nezverejnených)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1473
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1584
 #, php-format
 msgid "(<strong>%1$u</strong> category)"
 msgid_plural "(<strong>%1$u</strong> categories)"
 msgstr[0] "(<strong>%1$u</strong> kategória)"
 msgstr[1] "(<strong>%1$u</strong> kategórií)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1504
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1615
 msgid "Published/Not published/Scheduled for publishing"
 msgstr "Zverejnené/Nezverejnené/Plánované zverejnenie"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1556
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1667
 #, php-format
 msgid "Expired: %s"
 msgstr "Vyprší: %s"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1558
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1669
 #, php-format
 msgid "Expires: %s"
 msgstr "Vyprší: %s"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1598
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1709
 msgid "Publish immediately (skip scheduling)"
 msgstr "Okamžite zverejniť (preskočiť plánovanie)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1604
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1715
 msgid "Enable scheduled publishing"
 msgstr "Aktivovať plánované zverejnenie"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1625
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1736
 msgid "Publish (override expiration)"
 msgstr "Uverejniť (ignorovať koniec uverejnenia)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1759
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1870
 msgid "Tags added to selected items"
 msgstr "K označeným položkám boli pridané tagy"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1762
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1873
 msgid "Tags cleared from selected items"
 msgstr "Z označených položkiek boli odstránené tagy"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1765
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1876
 msgid "Tags added to articles of selected items"
 msgstr "K článkom v označených položkách boli pridané tagy"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1768
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1879
 msgid "Tags cleared from articles of selected items"
 msgstr "Z článkov v označených položkách boli odstránené tagy"
 
@@ -16080,6 +16104,16 @@ msgstr "<code>zenpageAlbumImage()</code> nenašiel album %1$s"
 #, php-format
 msgid "Failed to retrieve link <em>%s</em>"
 msgstr "Nepodarilo sa načítať odkaz <em>%s</em>"
+
+#~ msgid "Articles per page (admin)"
+#~ msgstr "Článkov na stránke (administrácia)"
+
+#~ msgid ""
+#~ "How many news articles you want to show per page on the news article "
+#~ "admin page."
+#~ msgstr ""
+#~ "Koľko článkov chcete aby sa zobrazovalo na stránku v administrátorskej "
+#~ "sekcii."
 
 #~ msgid "edit user owned images"
 #~ msgstr "upraviť obrázky vlastnené používateľom"
