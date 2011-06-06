@@ -9,7 +9,7 @@ if ((($personality = getOption('Theme_personality'))!="Simpleviewer") || !MOD_RE
 } else {  // Simpleviewer initialization stuff
 	if (isset($_GET['noflash'])) {
 		$_noFlash = true;
-		zp_setcookie("noFlash", "noFlash");
+		zp_setCookie("noFlash", "noFlash");
 	} elseif (zp_getCookie("noFlash") != '') {
 		$_noFlash = true;
 	}

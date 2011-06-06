@@ -112,9 +112,15 @@ printLogoAndLinks();
 					<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
 						<img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
 					</button>
-					<span class="floatright">
-						<strong><a href="admin-edit.php?category&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New category'); ?>"><img src="images/add.png" alt="" /> <?php echo gettext('New category'); ?></a></strong>
-					</span>
+					<?php 
+					if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+						?>
+						<span class="floatright">
+							<strong><a href="admin-edit.php?category&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New category'); ?>"><img src="images/add.png" alt="" /> <?php echo gettext('New category'); ?></a></strong>
+						</span>
+						<?php 
+						}
+					?>
 				</p>
 				<br clear="all" /><br />
 				<div class="bordered">

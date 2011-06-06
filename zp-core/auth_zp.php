@@ -72,7 +72,7 @@ if (zp_getCookie('zenphoto_ssl') && !secureServer()) {
 
 if (isset($_POST['login'])) {	//	Handle the login form.
 	if(secureServer()) {
-		zp_setcookie("zenphoto_ssl", "needed");
+		zp_setCookie("zenphoto_ssl", "needed");
 	}
 	$_zp_loggedin = $_zp_authority->handleLogon();
 	if ($_zp_loggedin) {
@@ -101,12 +101,12 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 	}
 }
 	if (!$_zp_loggedin) {	//	Clear the ssl cookie
-	zp_setcookie("zenphoto_ssl", "", -368000);
+	zp_setCookie("zenphoto_ssl", "", -368000);
 }
 // Handle a logout action.
 if (isset($_REQUEST['logout'])) {
 	$_zp_authority->handleLogout();
-	zp_setcookie("zenphoto_ssl", "", -368000);
+	zp_setCookie("zenphoto_ssl", "", -368000);
 	$redirect = '';
 	if (isset($_GET['p'])) { $redirect .= "&p=" . sanitize($_GET['p']); }
 	if (isset($_GET['searchfields'])) { $redirect .= "&searchfields=" . sanitize($_GET['searchfields']); }

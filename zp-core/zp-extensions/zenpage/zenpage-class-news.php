@@ -134,6 +134,7 @@ class ZenpageNews extends ZenpageItems {
 	 * returns true if the article exists in any published category (or in no categories)
 	 */
 	function categoryIsVisible() {
+		if (zp_loggedin(VIEW_NEWS_RIGHTS)) return true;
 		global $_zp_zenpage;
 		$categories = $this->getCategories(false);
 		if(count($categories) > 0) {

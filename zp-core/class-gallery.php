@@ -110,7 +110,7 @@ class Gallery {
 		return $type;
 	}
 	function setSortType($value) {
-		$this->set('sort_type', $value);
+		$this->set('gallery_sorttype', $value);
 	}
 
 	/**

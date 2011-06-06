@@ -196,7 +196,11 @@ codeblocktabsJS();
 		<div id="tab_articles" class="tabbox">
 		<?php
 		$admintype = 'category';
-		$additem = gettext('New Category');
+		IF (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+			$additem = gettext('New Category');
+		} else {
+			$additem = '';
+		}
 		$deleteitem = gettext('Category');
 		$themepage = 'news';
 	}
@@ -308,7 +312,13 @@ zp_apply_filter('admin_note','news', $subtab);
 	</button>
 	</p>
 	<div class="floatright">
-	<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo $additem; ?>"><img src="images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
+	<?php 
+	if ($additem) {
+		?>
+		<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo $additem; ?>"><img src="images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
+		<?php 
+		}	
+	?>
 	<span id="tip"><a href="#"><img src="images/info.png" alt="" /><?php echo gettext("Usage tips"); ?></a></span>
 	<?php
 	if(!$result->transient) {

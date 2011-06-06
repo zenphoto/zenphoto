@@ -153,6 +153,18 @@ printLogoAndLinks();
 				$resultU = $_zp_zenpage->getNewsArticles($articles_page,'unpublished',false,$sortorder,$direction);
 				$result = $_zp_zenpage->getNewsArticles($articles_page,$published,false,$sortorder,$direction);
 			}
+			foreach ($result as $key=>$article) {
+				$article = new ZenpageNews($article['titlelink']);
+				if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
+					unset($result[$key]);
+				}
+			}
+			foreach ($resultU as $key=>$article) {
+				$article = new ZenpageNews($article['titlelink']);
+				if (!$article->isMyItem(ZENPAGE_NEWS_RIGHTS)) {
+					unset($resultU[$key]);
+				}
+			}
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic(count($result), count($resultU));?></span></h1>
 				<div class="floatright">

@@ -577,7 +577,7 @@ class Zenphoto_Authority {
 		$user->lastlogon = $user->get('loggedin');
 		$user->set('loggedin',date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setcookie("zenphoto_auth", $user->getPass(), NULL, NULL, secureServer());
+		zp_setCookie("zenphoto_auth", $user->getPass(), NULL, NULL, secureServer());
 	}
 
 	/**
@@ -599,7 +599,7 @@ class Zenphoto_Authority {
 				$this->logUser($user);
 			} else {
 				// Clear the cookie, just in case
-				zp_setcookie("zenphoto_auth", "", -368000);
+				zp_setCookie("zenphoto_auth", "", -368000);
 				// was it a request for a reset?
 				if (isset($_POST['code_h']) && $_zp_captcha->checkCaptcha(trim($post_pass), sanitize($_POST['code_h'],3))) {
 					require_once(dirname(__FILE__).'/class-load.php'); // be sure that the plugins are loaded for the mail handler
@@ -693,7 +693,7 @@ class Zenphoto_Authority {
 				case 'zp_gallery_auth':
 				case 'zp_search_auth':
 				case 'zp_image_auth':
-					zp_setcookie($cookie, "*", -368000);
+					zp_setCookie($cookie, "*", -368000);
 					break;
 			}
 		}
@@ -722,7 +722,7 @@ class Zenphoto_Authority {
 		if ($_zp_loggedin) {
 			return $_zp_loggedin;
 		} else {
-			zp_setcookie("zenphoto_auth", "", -368000);
+			zp_setCookie("zenphoto_auth", "", -368000);
 			return false;
 		}
 	}

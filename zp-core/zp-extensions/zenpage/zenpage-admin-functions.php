@@ -1337,7 +1337,7 @@ function printNestedItemsList($listtype='cats-sortablelist',$articleid='',$optio
 			case 'cats-checkboxlist':
 			case 'cats-sortablelist':
 				$itemobj = new ZenpageCategory($item['titlelink']);
-				$ismypage = true; // categories are not assigned to backend rights
+				$ismypage = $itemobj->isMyItem(ZENPAGE_NEWS_RIGHTS);
 				break;
 			case 'pages-sortablelist':
 				$itemobj = new ZenpagePage($item['titlelink']);

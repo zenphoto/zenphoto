@@ -1167,7 +1167,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 			$_zp_current_search = null;
 			rem_context(ZP_SEARCH);
 			if (!isset($_REQUEST['preserve_serch_params'])) {
-				zp_setcookie("zenphoto_search_params", "", -368000);
+				zp_setCookie("zenphoto_search_params", "", -368000);
 			}
 		}
 	}
@@ -1992,7 +1992,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		if ($success) {
 			// Correct auth info. Set the cookie.
 			if (DEBUG_LOGIN) debugLog("zp_handle_password: valid credentials");
-			zp_setcookie($authType, $auth);
+			zp_setCookie($authType, $auth);
 			if (isset($_POST['redirect']) && !empty($_POST['redirect'])) {
 				header("Location: " . FULLWEBPATH . "/" . $redirect_to);
 				exit();
@@ -2000,7 +2000,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		} else {
 			// Clear the cookie, just in case
 			if (DEBUG_LOGIN) debugLog("zp_handle_password: invalid credentials");
-			zp_setcookie($authType, "", -368000);
+			zp_setCookie($authType, "", -368000);
 			$_zp_login_error = true;
 		}
 		return;
@@ -2015,7 +2015,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		} else {
 			// Clear the cookie
 			if (DEBUG_LOGIN) debugLog("zp_handle_password: invalid cookie");
-			zp_setcookie($authType, "", -368000);
+			zp_setCookie($authType, "", -368000);
 		}
 	}
 }

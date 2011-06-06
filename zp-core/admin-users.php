@@ -173,15 +173,25 @@ if (isset($_GET['action'])) {
 				}
 			}
 
-			if (empty($notify)) $notify = '?saved';
+			if (empty($notify)) $notify = '?saved&xsrftoken='.getXSRFToken('saved');
 			header("Location: " . $notify . $returntab);
 			exit();
 
 	}
+}$refresh = '';
+if (!$_zp_current_admin_obj && !$_zp_null_account) {
+	if (isset($_GET['saved']) && isset($_GET['xsrftoken']) && $_GET['xsrftoken'] == getXSRFToken('saved')) {
+		$refresh = '<meta http-equiv="refresh" content="3; url=admin.php" />;';
+	} else {
+		header("HTTP/1.0 302 Found");
+		header("Status: 302 Found");
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
+		exit();
+	}
 }
 
-
 printAdminHeader($_current_tab);
+echo $refresh;
 ?>
 <script type="text/javascript" src="js/farbtastic.js"></script>
 <script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
@@ -323,9 +333,6 @@ if ($_zp_null_account) {
 			$showset = array($_zp_current_admin_obj->getUser());
 		} else {
 			$admins = $showset = array();
-			?>
-			<meta http-equiv="refresh" content="3; url=admin.php" />
-			<?php
 		}
 	}
 

@@ -24,7 +24,7 @@ if (!file_exists(SERVERPATH.'/'.ZENFOLDER.'/admin-'.$uploadtype.'/upload_form.ph
 	$uploadtype = 'httpupload';
 }
 require_once(SERVERPATH.'/'.ZENFOLDER.'/admin-'.$uploadtype.'/upload_form.php');
-zp_setcookie('uploadtype', $uploadtype);
+zp_setCookie('uploadtype', $uploadtype);
 
 $gallery = new Gallery();
 $page = "upload";

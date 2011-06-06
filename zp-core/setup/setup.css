@@ -257,7 +257,7 @@ li {
 #setup .submitbutton{
 	font-size: 1.5em;
 	font-weight: bold;
-	width: 4.5em;
+	min-width: 4.5em;
 	height: 2.2em;
 }
 

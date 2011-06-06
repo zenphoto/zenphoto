@@ -70,9 +70,9 @@ if (db_connect()) {
 		$sql = '';
 		unset($_POST['publish_albums']);
 		foreach ($_POST as $key=>$albumid) {
-			$albumid = sanitize_numeric($albumid);
+			$key = sanitize_numeric(str_replace('sched_', '', $key));
 			if (is_numeric($key)) {
-				$sql .= '`id`="'.sanitize_numeric($albumid).'" OR ';
+				$sql .= '`id`="'.sanitize_numeric($key).'" OR ';
 			}
 		}
 		if (!empty($sql)) {
@@ -288,7 +288,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {
 		<br clear="all" />
 		<input type="hidden" name="review" value="true" />
 		<div class="buttons pad_button" id="reviewobjects">
-			<button class="tooltip" type="submit" title="<?php echo gettext("Review un-publshed images."); ?>">
+			<button class="tooltip" type="submit" title="<?php echo gettext("Review un-published images."); ?>">
 				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/quest.png" alt="" /> <?php echo gettext("Review images"); ?>
 			</button>
 		</div>

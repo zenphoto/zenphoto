@@ -8,7 +8,7 @@ if ((getOption('Use_Simpleviewer')==0) || !MOD_REWRITE) { $_noFlash = true; }
 
 if (isset($_GET['noflash'])) {
 	$_noFlash = true;
-	zp_setcookie("noFlash", "noFlash");
+	zp_setCookie("noFlash", "noFlash");
 	} elseif (zp_getCookie("noFlash") != '') {
 	$_noFlash = true;
 	}

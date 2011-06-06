@@ -434,7 +434,7 @@ if (isset($_GET['action'])) {
 		if (isset($_POST['savesecurityoptions'])) {
 			setOption('server_protocol', $protocol = sanitize($_POST['server_protocol'],3));
 			if ($protocol == 'http') {
-				zp_setcookie("zenphoto_ssl", "", -368000);
+				zp_setCookie("zenphoto_ssl", "", -368000);
 			}
 			setOption('captcha', sanitize($_POST['captcha']));
 			setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
