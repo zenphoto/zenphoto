@@ -360,10 +360,8 @@ function zenpage_load_page() {
 	} else {
 		$titlelink = '';
 	}
-	$sql = 'SELECT `id` FROM '.prefix('pages').' WHERE `titlelink`='.db_quote($titlelink);
-	$result = query_single_row($sql);
-	if (!empty($titlelink) && is_array($result)) {
-		$_zp_current_zenpage_page = new ZenpagePage($titlelink);
+	$_zp_current_zenpage_page = new ZenpagePage($titlelink);
+	if ($_zp_current_zenpage_page->loaded) {
 		add_context(ZP_ZENPAGE_PAGE | ZP_ZENPAGE_SINGLE);
 	} else {
 		$_GET['p'] = 'PAGES:'.$titlelink;
@@ -385,11 +383,9 @@ function zenpage_load_news() {
 	}
 	if(isset($_GET['category'])) {
 		$titlelink = sanitize($_GET['category']);
-		$sql = 'SELECT `id` FROM '.prefix('news_categories').' WHERE `titlelink`='.db_quote($titlelink);
-		$result = query_single_row($sql);
-		if (is_array($result)) {
+		$_zp_current_category = new ZenpageCategory($titlelink);
+		if ($_zp_current_category->loaded) {
 			add_context(ZP_ZENPAGE_NEWS_CATEGORY);
-			$_zp_current_category = new ZenpageCategory($titlelink);
 		} else {
 			$_GET['p'] = 'CATEGORY:'.$titlelink;
 			unset($_GET['category']);

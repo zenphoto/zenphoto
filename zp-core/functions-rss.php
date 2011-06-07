@@ -174,7 +174,7 @@ function getRSSAlbumnameAndCollection($arrayfield) {
 			$albumfolder = sanitize_path($_GET['albumname']);
 			if(!file_exists(ALBUM_FOOLDER_SERVERPATH.'/'.$albumfolder)) {
 				$albumfolder = NULL;
-			} 
+			}
 			$collection = FALSE;
 		} else if(isset($_GET['folder'])) {
 			$albumfolder = sanitize_path($_GET['folder']);
@@ -216,10 +216,10 @@ function getRSSNewsCatOptions($arrayfield) {
 			$option = "news";
 		}
 		$array = array(
-"catlink" => $catlink,
-"cattitle" => $cattitle,
-"option" => $option
-		);
+										"catlink" => $catlink,
+										"cattitle" => $cattitle,
+										"option" => $option
+									);
 		return $array[$arrayfield];
 	}
 }

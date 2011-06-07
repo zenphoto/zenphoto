@@ -38,7 +38,7 @@ function makeArticle($class,$text) {
 	$text = substr($text, $j+5);
 	$text = str_replace('<hr />', '', $text);
 	$text = str_replace('<hr/>', '', $text);
-	$ts_news = new ZenpageNews(seoFriendly($class.'_'.trim(truncate_string(strip_tags($h4),30,'')).'_'.$unique));
+	$ts_news = new ZenpageNews(seoFriendly($class.'_'.trim(truncate_string(strip_tags($h4),30,'')).'_'.$unique), true);
 	$ts_news->setShow(0);
 	$ts_news->setDateTime(date('Y-m-d H:i:s'));
 	$ts_news->setAuthor('TSGenerator');
