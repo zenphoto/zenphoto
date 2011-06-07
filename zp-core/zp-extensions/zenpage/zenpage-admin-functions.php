@@ -696,11 +696,11 @@ function printArticleDatesDropdown() {
 /**
  * Prints news articles list page navigation
  *
+ * @param int $total the page count
  */
-function printArticlesPageNav() {
-	global $_zp_zenpage,$_zp_zenpage_total_pages;
+function printArticlesPageNav($total) {
+	global $_zp_zenpage;
 	$current = $_zp_zenpage->getCurrentAdminNewsPage();
-	$total = $_zp_zenpage_total_pages;
 	$navlen = 9;
 	if($total > 1) {
 		$extralinks = 4;
@@ -876,7 +876,7 @@ function printSortOrderDropdown() {
 		$orderdate_desc = "selected='selected'";
 	}
 	echo "<option $orderdate_desc value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=date-desc'>".gettext("Order by date descending")."</option>\n";
-  echo "<option $orderdate_asc value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=date-asc'>".gettext("Order by date ascending")."</option>\n";
+	echo "<option $orderdate_asc value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=date-asc'>".gettext("Order by date ascending")."</option>\n";
 	echo "<option $ordertitle_desc value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=title-desc'>".gettext("Order by title descending")."</option>\n";
 	echo "<option $ordertitle_asc value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=title-asc'>".gettext("Order by title ascending")."</option>\n";
 	?>
@@ -990,7 +990,7 @@ function printArticlesPerPageDropdown() {
 	} else {
 		$articles_page[1] = "selected='selected'";
 	}
-  echo "<option $articles_page[1] value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=15'>".gettext("15 per page")."</option>\n";
+	echo "<option $articles_page[1] value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=15'>".gettext("15 per page")."</option>\n";
 	echo "<option $articles_page[2] value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=30'>".gettext("30 per page")."</option>\n";
 	echo "<option $articles_page[3] value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=60'>".gettext("60 per page")."</option>\n";
 	echo "<option $articles_page[0] value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=all'>".gettext("All")."</option>\n";

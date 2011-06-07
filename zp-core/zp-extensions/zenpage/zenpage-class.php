@@ -259,14 +259,10 @@ class Zenpage {
 	 * @return string
 	 */
 	function getOffset($articles_per_page,$ignorepagination=false) {
-		global $_zp_zenpage_total_pages;
 		if(strstr(dirname($_SERVER['REQUEST_URI']), '/'.PLUGIN_FOLDER.'/zenpage')) {
 			$page = $this->getCurrentAdminNewsPage();
 		} else {
 			$page = $this->getCurrentNewsPage();
-		}
-		if(!empty($articles_per_page)) {
-			$_zp_zenpage_total_pages = ceil($this->getTotalArticles() / $articles_per_page);
 		}
 		if($ignorepagination) {
 			$offset = 0;
