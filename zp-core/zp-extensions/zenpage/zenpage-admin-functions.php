@@ -125,7 +125,7 @@ function addPage(&$reports) {
 	if ($rslt) {
 		$titlelink .= '_'.seoFriendly($date); // force unique so that data may be saved.
 	}
-	$page = new ZenpagePage($titlelink);
+	$page = new ZenpagePage($titlelink, true);
 	$notice = processPasswordSave($page);
 	$page->setTitle($title);
 	$page->setContent($content);
@@ -209,7 +209,7 @@ function updatePage(&$reports) {
 		}
 	}
 	// update page
-	$page = new ZenpagePage($titlelink);
+	$page = new ZenpagePage($titlelink, true);
 	$notice = processPasswordSave($page);
 	$page->setTitle($title);
 	$page->setContent($content);
@@ -411,7 +411,7 @@ function addArticle(&$reports) {
 		$titlelink .= '_'.seoFriendly($date); // force unique so that data may be saved.
 	}
 	// create new article
-	$article = new ZenpageNews($titlelink);
+	$article = new ZenpageNews($titlelink, true);
 	$article->setTitle($title);
 	$article->setContent($content);
 	$article->setExtracontent($extracontent);
@@ -500,7 +500,7 @@ function updateArticle(&$reports) {
 		}
 	}
 	// update article
-	$article = new ZenpageNews($titlelink);
+	$article = new ZenpageNews($titlelink, true);
 	$article->setTitle($title);
 	$article->setContent($content);
 	$article->setExtracontent($extracontent);
@@ -923,9 +923,6 @@ if(isset($_GET['category'])) {
 		echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(false,true,true,true,true)."'>".gettext("All categories")."</option>\n";
 
 		foreach ($result as $cat) {
-
-
-
 			$catobj = new ZenpageCategory($cat['titlelink']);
 			// check if there are articles in this category. If not don't list the category.
 			$count = count($catobj->getArticles(0,'all'));
@@ -1070,7 +1067,7 @@ function addCategory(&$reports) {
 	}
 	// create new category
 	$show = getcheckboxState('show');
-	$cat = new ZenpageCategory($titlelink);
+	$cat = new ZenpageCategory($titlelink, true);
 	$notice = processPasswordSave($cat);
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title',$title);
@@ -1133,7 +1130,7 @@ function updateCategory(&$reports) {
 	}
 	//update category
 	$show = getcheckboxState('show');
-	$cat = new ZenpageCategory($titlelink);
+	$cat = new ZenpageCategory($titlelink, true);
 	$notice = processPasswordSave($cat);
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title',$title);

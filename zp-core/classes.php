@@ -55,7 +55,17 @@ class PersistentObject {
 	var $transient;
 	var $tempdata = NULL;
 
-	function PersistentObject($tablename, $unique_set, $cache_by=NULL, $use_cache=true, $is_transient=false) {
+	/**
+	 *
+	 * Prime instantiator for Zenphoto objects
+	 * @param $tablename	The name of the database table
+	 * @param $unique_set	An array of unique fields
+	 * @param $cache_by
+	 * @param $use_cache
+	 * @param $is_transient	Set true to prevent database insertion
+	 * @param $allowCreate Set true to allow a new object to be made.
+	 */
+	function PersistentObject($tablename, $unique_set, $cache_by=NULL, $use_cache=true, $is_transient=false, $allowCreate=true) {
 		// Initialize the variables.
 		// Load the data into the data array using $this->load()
 		$this->data = array();
@@ -67,7 +77,8 @@ class PersistentObject {
 		$this->cache_by = $cache_by;
 		$this->use_cache = $use_cache;
 		$this->transient = $is_transient;
-		return $this->load();
+		$result = $this->load($allowCreate);
+		return $result;
 	}
 
 
@@ -258,9 +269,11 @@ class PersistentObject {
 
 	/**
 	* Load the data array from the database, using the unique id set to get the unique record.
+	*
+	* @param bool $allowCreate set to true to enable new object creation.
 	* @return false if the record already exists, true if a new record was created.
 	*/
-	function load() {
+	function load($allowCreate) {
 		$new = false;
 		$entry = null;
 		// Set up the SQL query in case we need it...
@@ -282,6 +295,8 @@ class PersistentObject {
 			if ($this->transient) { // no don't save it in the DB!
 				$entry = array_merge($this->unique_set, $this->updates, $this->tempdata);
 				$entry['id'] = '';
+			} else if (!$allowCreate) {
+				return NULL;	// does not exist and we are not allowed to create it
 			} else {
 				$new = true;
 				$this->save();
