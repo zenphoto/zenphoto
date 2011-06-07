@@ -553,7 +553,7 @@ function printLatestImagesByDate($number=5, $albumfolder='', $showtitle=false, $
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
  */
 function printLatestImagesByMtime($number=5, $albumfolder='', $showtitle=false, $showdate=false, $showdesc=false, $desclength=40,$showstatistic='',$width=85,$height=85,$crop=true,$collection=false) {
-	printImageStatistic($number, "latest-date", $albumfolder, $showtitle, $showdate, $showdesc, $desclength,$showstatistic,$width,$height,$crop,$collection);
+	printImageStatistic($number, "latest-mtime", $albumfolder, $showtitle, $showdate, $showdesc, $desclength,$showstatistic,$width,$height,$crop,$collection);
 }
 
 
