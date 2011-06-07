@@ -15,13 +15,10 @@
  */
 function query($sql, $errorstop=true) {
 	global $_zp_DB_connection, $_zp_DB_last_result, $_zp_conf_vars;
-	if ($_zp_DB_last_result) {
-		$_zp_DB_last_result->closeCursor();
-	}
-	$_zp_DB_last_result = false;
 	if ($_zp_DB_connection == null) {
 		db_connect();
 	}
+	$_zp_DB_last_result = false;
 	try {
 		$_zp_DB_last_result = $_zp_DB_connection->query($sql);
 		return $_zp_DB_last_result;
@@ -116,7 +113,8 @@ function db_fetch_assoc($resource) {
 	if (!is_object($resource)) {
 		return false;
 	}
-	return $resource->fetch(PDO::FETCH_ASSOC);
+	$result = $resource->fetch();
+	return $result;
 }
 
 /*
