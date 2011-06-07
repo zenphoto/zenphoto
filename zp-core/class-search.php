@@ -94,6 +94,8 @@ class SearchEngine
 						setOption('search_no_albums',1,false);
 						break;
 					case "1":
+						$this->search_no_albums = false;
+						setOption('search_no_albums',0,false);
 						break;
 					default:
 						$this->album_list = explode(',',$list);
@@ -108,6 +110,10 @@ class SearchEngine
 					case "0":
 						$this->search_no_images = true;
 						setOption('search_no_images',1,false);
+						break;
+					case "1":
+						$this->search_no_images = false;
+						setOption('search_no_images',0,false);
 						break;
 				}
 			}
@@ -306,9 +312,37 @@ class SearchEngine
 				case 'albumname':
 					$this->dynalbumname = $v;
 					break;
-				case 'inalbums':
-					$this->album_list = explode(',', $v);
+				case 'inimages':
+					if (strlen($v) > 0) {
+						switch ($v) {
+							case "0":
+								$this->search_no_images = true;
+								setOption('search_no_images',1,false);
+								break;
+							case "1":
+								$this->search_no_images = false;
+								setOption('search_no_images',0,false);
+								break;
+						}
+					}
 					break;
+				case 'inalbums':
+					if (strlen($v) > 0) {
+						switch ($v) {
+							case "0":
+								$this->search_no_albums = true;
+								setOption('search_no_albums',1,false);
+								break;
+							case "1":
+								$this->search_no_albums = false;
+								setOption('search_no_albums',0,false);
+								break;
+							default:
+								$this->album_list = explode(',',$v);
+								break;
+						}
+					}
+				break;
 			}
 		}
 		if (!empty($this->words)) {
@@ -1105,7 +1139,7 @@ class SearchEngine
 	 * @return array
 	 */
 	function getSearchAlbums($sorttype, $sortdirection, $mine=NULL) {
-		if (getOption('search_no_albums')) return array();
+		if (getOption('search_no_albums') || $this->search_no_albums) return array();
 		$albums = array();
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) { return $albums; } // nothing to find
@@ -1219,7 +1253,7 @@ class SearchEngine
 	 * @return array
 	 */
 	function getSearchImages($sorttype, $sortdirection, $mine=NULL) {
-		if (getOption('search_no_images')) return array();
+		if (getOption('search_no_images') || $this->search_no_images) return array();
 		$hint = '';
 		$images = array();
 		$searchstring = $this->getSearchString();
@@ -1333,7 +1367,7 @@ class SearchEngine
 	 */
 	function getSearchPages() {
 		if (getOption('zp_plugin_zenpage')) {
-			if (getOption('search_no_pages')) return array();
+			if (getOption('search_no_pages') || $this->search_no_pages) return array();
 			$searchstring = $this->getSearchString();
 			$searchdate = $this->dates;
 			if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
@@ -1360,7 +1394,7 @@ class SearchEngine
 	 */
 	function getSearchNews($sortorder="date", $sortdirection="desc") {
 		if (getOption('zp_plugin_zenpage')) {
-			if (getOption('search_no_news')) return array();
+			if (getOption('search_no_news') || $this->search_no_news) return array();
 			$searchstring = $this->getSearchString();
 			$searchdate = $this->dates;
 			if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find

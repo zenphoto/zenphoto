@@ -53,12 +53,13 @@ if (isset($_POST['savealbum'])) {
 			$searchfields[] = sanitize(str_replace('SEARCH_', '', $key));
 		}
 	}
+	$constraints = "\nCONSTRAINTS=".'inalbums='.((int) (isset($_POST['return_albums']))).'&inimages='.((int) (isset($_POST['return_images'])));
 	$redirect = $album.'/'.$albumname.".alb";
 
 	if (!empty($albumname)) {
 		$f = fopen(internalToFilesystem(ALBUM_FOLDER_SERVERPATH.$redirect), 'w');
 		if ($f !== false) {
-			fwrite($f,"WORDS=$words\nTHUMB=$thumb\nFIELDS=".implode(',',$searchfields)."\n");
+			fwrite($f,"WORDS=$words\nTHUMB=$thumb\nFIELDS=".implode(',',$searchfields).$constraints."\n");
 			fclose($f);
 			clearstatcache();
 			// redirct to edit of this album
@@ -180,8 +181,11 @@ foreach ($albumlist as $fullfolder => $albumtitle) {
 	</tr>
 	<tr>
 		<td><?php echo gettext("Search criteria:"); ?></td>
-		<td><input type="text" size="60" name="words"
-			value="<?php echo html_encode($words); ?>" /></td>
+		<td>
+			<input type="text" size="60" name="words" value="<?php echo html_encode($words); ?>" />
+			<label><input type="checkbox" name="return_albums" value="1"<?php if (!getOption('search_no_albums')) echo ' checked="checked"'?> /><?php echo gettext('Return albums found')?></label>
+			<label><input type="checkbox" name="return_images" value="1"<?php if (!getOption('search_no_images')) echo ' checked="checked"'?> /><?php echo gettext('Return images found')?></label>
+		</td>
 	</tr>
 	<tr>
 		<td><?php echo gettext("Search fields:"); ?></td>

@@ -267,7 +267,6 @@ foreach($themes as $theme => $themeinfo) {
 					<?php
 				}
 			} else {
-
 				?>
 				<li class="zp_copy_theme">
 				<p class="buttons">
@@ -278,6 +277,7 @@ foreach($themes as $theme => $themeinfo) {
 				</li>
 				<?php
 			}
+			zp_apply_filter('admin_theme_buttons', $theme, $alb);
 			?>
 			</ul>
 		</td>

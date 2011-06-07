@@ -84,6 +84,7 @@ class Album extends MediaObject {
 		if ($dynamic) {
 			$new = !$this->get('search_params');
 			if ($new || (filemtime($this->localpath) > $this->get('mtime'))) {
+				$constraints = '';
 				$data = file_get_contents($this->localpath);
 				while (!empty($data)) {
 					$data1 = trim(substr($data, 0, $i = strpos($data, "\n")));
@@ -103,12 +104,16 @@ class Album extends MediaObject {
 					if (strpos($data1, 'FIELDS=') !== false) {
 						$fields = "&searchfields=".trim(substr($data1, 7));
 					}
+					if (strpos($data1, 'CONSTRAINTS=') !== false) {
+						$constraints = '&'.trim(substr($data1, 12));
+					}
+
 				}
 				if (!empty($words)) {
 					if (empty($fields)) {
 						$fields = '&searchfields=tags';
 					}
-					$this->set('search_params', $words.$fields);
+					$this->set('search_params', $words.$fields.$constraints);
 				}
 
 				$this->set('mtime', filemtime($this->localpath));
@@ -1097,17 +1102,10 @@ class Album extends MediaObject {
 	/**
 	 * Returns the search parameters for a dynamic album
 	 *
-	 * @param bool $processed set false to process the parms
-	 *
 	 * @return string
 	 */
-	function getSearchParams($processed=false) {
-		if ($processed) {
-			if (is_null($this->getSearchEngine())) return NULL;
-			return $this->searchengine->getSearchParams(false);
-		} else {
-			return $this->get('search_params');
-		}
+	function getSearchParams() {
+		return $this->get('search_params');
 	}
 
 	/**

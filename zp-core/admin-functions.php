@@ -1700,7 +1700,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 				<td>
 					<table class="noinput">
 						<tr>
-							<td><?php echo html_encode(urldecode($album->getSearchParams(true))); ?></td>
+							<td><?php echo html_encode(urldecode($album->getSearchParams())); ?></td>
 						</tr>
 					</table>
 				</td>
