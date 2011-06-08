@@ -195,8 +195,8 @@ function register_user_handleOptionSave($notify,$themename,$themealbum) {
  * @param string $thanks the message shown on successful registration
  */
 function printRegistrationForm($thanks=NULL) {
+	global $notify, $admin_e, $admin_n, $user, $_zp_authority, $_zp_captcha, $_zp_gallery_page, $_zp_gallery;
 	require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
-	global $notify, $admin_e, $admin_n, $user, $_zp_authority, $_zp_captcha, $_zp_gallery_page;
 	$userobj = NULL;
 	// handle any postings
 	if (isset($_GET['verify'])) {
