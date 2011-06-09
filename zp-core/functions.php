@@ -1416,16 +1416,18 @@ function generateListFromArray($currentValue, $list, $descending, $localize) {
  * @param bool $descending set true to get a reverse order sort
  */
 function generateListFromFiles($currentValue, $root, $suffix, $descending=false) {
-	$curdir = getcwd();
-	chdir($root);
-	$filelist = safe_glob('*'.$suffix);
-	$list = array();
-	foreach($filelist as $file) {
-		$file = str_replace($suffix, '', $file);
-		$list[] = filesystemToInternal($file);
+	if (is_dir($root)) {
+		$curdir = getcwd();
+		chdir($root);
+		$filelist = safe_glob('*'.$suffix);
+		$list = array();
+		foreach($filelist as $file) {
+			$file = str_replace($suffix, '', $file);
+			$list[] = filesystemToInternal($file);
+		}
+		generateListFromArray(array($currentValue), $list, $descending, false);
+		chdir($curdir);
 	}
-	generateListFromArray(array($currentValue), $list, $descending, false);
-	chdir($curdir);
 }
 
 /**
@@ -2049,7 +2051,6 @@ function setThemeOption($key, $value, $album=NULL, $theme=NULL, $default=false) 
 		$gallery = new Gallery();
 		$theme = $gallery->getCurrentTheme();
 	}
-
 	$creator = THEMEFOLDER.'/'.$theme;
 
 	$exists = query_single_row("SELECT `name`, `value`, `id` FROM ".prefix('options')." WHERE `name`=".db_quote($key)." AND `ownerid`=".$id.' AND `theme`='.db_quote($theme), true);
@@ -2080,7 +2081,10 @@ function setThemeOption($key, $value, $album=NULL, $theme=NULL, $default=false) 
  * @param mixed $value
  */
 function setThemeOptionDefault($key, $value) {
-	setThemeOption($key, $value, NULL, NULL, true);
+	$bt = debug_backtrace();
+	$b = array_shift($bt);
+	$theme = basename(dirname($b['file']));
+	setThemeOption($key, $value, NULL, $theme, true);
 }
 
 /**

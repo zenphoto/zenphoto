@@ -1336,11 +1336,10 @@ function themeSetup($album) {
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
 		$galleryoptions = serialize(getOption('gallery_data'));
-		return $galleryoptions['current_theme'];
-	} else {
-		loadLocalOptions($id, $theme);
-		return $theme;
+		$theme = $galleryoptions['current_theme'];
 	}
+	loadLocalOptions($id, $theme);
+	return $theme;
 }
 
 /**
@@ -1350,16 +1349,6 @@ function themeSetup($album) {
  * @param string $theme
  */
 function loadLocalOptions($albumid, $theme) {
-	if ($albumid) {
-		//raw album options
-		$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `theme` IS NULL AND `ownerid`='.$albumid;
-		$optionlist = query_full_array($sql, false);
-		if ($optionlist !== false) {
-			foreach($optionlist as $option) {
-				setOption($option['name'], $option['value'], false);
-			}
-		}
-	}
 	//raw theme options
 	$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `theme`='.db_quote($theme).' AND `ownerid`=0';
 	$optionlist = query_full_array($sql, false);
