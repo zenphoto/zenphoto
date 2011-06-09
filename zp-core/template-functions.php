@@ -4422,6 +4422,8 @@ function getPageRedirect() {
 			$title = getNewsTitlelink();
 			if (!empty($title)) $action .= '&title='.urlencode(getNewsTitlelink());
 			break;
+		case 'password.php':
+			return urldecode(sanitize($_SERVER['REQUEST_URI'], 0));
 		default:
 		if (in_context(ZP_SEARCH)) {
 			$action = '/index.php?userlog=1&p=search' . $_zp_current_search->getSearchParams();

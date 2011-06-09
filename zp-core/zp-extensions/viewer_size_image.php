@@ -53,12 +53,12 @@ class viewer_size_image_options {
 }
 
 if (!OFFSET_PATH) {
-	$saved = zp_getCookie('viewer_size_image_saved');
+	$saved = @$_COOKIE['viewer_size_image_saved'];	//	This cookie set by JavaScript, so not bound to the IP. cannot use zp_getCookie()
 	if (empty($saved)) {
 		$postdefault = trim(getOption('viewer_size_image_default'));
 	} else {
 		$_POST['viewer_size_image_selection'] = true; // ignore default size
-		$postdefault = zp_cookieEncode($saved);
+		$postdefault = $saved;
 	}
 }
 
