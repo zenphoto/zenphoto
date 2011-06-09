@@ -58,7 +58,7 @@ if (!OFFSET_PATH) {
 		$postdefault = trim(getOption('viewer_size_image_default'));
 	} else {
 		$_POST['viewer_size_image_selection'] = true; // ignore default size
-		$postdefault = $saved;
+		$postdefault = zp_cookieEncode($saved);
 	}
 }
 

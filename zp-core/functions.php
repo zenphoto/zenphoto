@@ -1685,12 +1685,21 @@ function zp_getCookie($name) {
 		debugLog("zp_getCookie($name)::".'album_session='.GALLERY_SESSION."; SESSION[".session_id()."]=".$sessionv.", COOKIE=".$cookiev);
 	}
 	if (!empty($cookiev) && !GALLERY_SESSION) {
-		return rc4(getUserIP().HASH_SEED,$cookiev);
+		return zp_cookieEncode($cookiev);
 	}
 	if (isset($_SESSION[$name])) {
 		return $_SESSION[$name];
 	}
 	return false;
+}
+
+/**
+ *
+ * Encodes a cookie value tying it to the user IP
+ * @param $value
+ */
+function zp_cookieEncode($value) {
+	return rc4(getUserIP().HASH_SEED,$value);
 }
 
 /**
@@ -1706,7 +1715,7 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 	if (empty($value)) {
 		$cookiev = '';
 	} else {
-		$cookiev = rc4(getUserIP().HASH_SEED,$value);
+		$cookiev = zp_cookieEncode($value);
 	}
 	if (is_null($time)) {
 		$time = COOKIE_PESISTENCE;
