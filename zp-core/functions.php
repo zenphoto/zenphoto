@@ -1027,18 +1027,20 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 		$sql = "SELECT ".prefix('albums').".`folder`,".prefix('admin_to_object').".`edit` FROM ".prefix('albums').", ".
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
 						" AND ".prefix('albums').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='album'";
-		$currentvalues = query_full_array($sql);
-		foreach($currentvalues as $albumitem) {
-			$folder = $albumitem['folder'];
-			if (hasDynamicAlbumSuffix($folder)) {
-				$name = substr($folder, 0, -4); // Strip the .'.alb' suffix
-			} else {
-				$name = $folder;
-			}
-			if ($type && !$rights) {
-				$cv[$name] = $folder;
-			} else {
-				$cv[] = array('data'=>$folder,'name'=>$name,'type'=>'album','edit'=>$albumitem['edit']+0);
+		$currentvalues = query_full_array($sql,false);
+		if ($currentvalues) {
+			foreach($currentvalues as $albumitem) {
+				$folder = $albumitem['folder'];
+				if (hasDynamicAlbumSuffix($folder)) {
+					$name = substr($folder, 0, -4); // Strip the .'.alb' suffix
+				} else {
+					$name = $folder;
+				}
+				if ($type && !$rights) {
+					$cv[$name] = $folder;
+				} else {
+					$cv[] = array('data'=>$folder,'name'=>$name,'type'=>'album','edit'=>$albumitem['edit']+0);
+				}
 			}
 		}
 	}
@@ -1046,12 +1048,14 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 		$sql = 'SELECT '.prefix('pages').'.`title`,'.prefix('pages').'.`titlelink` FROM '.prefix('pages').', '.
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
 						" AND ".prefix('pages').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='pages'";
-		$currentvalues = query_full_array($sql);
-		foreach ($currentvalues as $item) {
-			if ($type) {
-				$cv[get_language_string($item['title'])] = $item['titlelink'];
-			} else {
-				$cv[] = array('data'=>$item['titlelink'],'type'=>'pages');
+		$currentvalues = query_full_array($sql,false);
+		if ($currentvalues) {
+			foreach ($currentvalues as $item) {
+				if ($type) {
+					$cv[get_language_string($item['title'])] = $item['titlelink'];
+				} else {
+					$cv[] = array('data'=>$item['titlelink'],'type'=>'pages');
+				}
 			}
 		}
 	}
@@ -1059,12 +1063,14 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 		$sql = 'SELECT '.prefix('news_categories').'.`titlelink`,'.prefix('news_categories').'.`title` FROM '.prefix('news_categories').', '.
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
 						" AND ".prefix('news_categories').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='news'";
-		$currentvalues = query_full_array($sql);
-		foreach ($currentvalues as $item) {
-			if ($type) {
-				$cv[get_language_string($item['title'])] = $item['titlelink'];
-			} else {
-				$cv[] = array('data'=>$item['titlelink'],'type'=>'news');
+		$currentvalues = query_full_array($sql,false);
+		if ($currentvalues) {
+			foreach ($currentvalues as $item) {
+				if ($type) {
+					$cv[get_language_string($item['title'])] = $item['titlelink'];
+				} else {
+					$cv[] = array('data'=>$item['titlelink'],'type'=>'news');
+				}
 			}
 		}
 	}

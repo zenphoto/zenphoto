@@ -215,13 +215,6 @@ if (file_exists(CONFIGFILE)) {
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'].'administrators' . ' ADD COLUMN `valid` int(1) default 1', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'].'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
 				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `loggedin` datetime', false);
-				//v1.3.2
-				query("RENAME TABLE ".$_zp_conf_vars['mysql_prefix'].'zenpage_news'." TO ".$_zp_conf_vars['mysql_prefix'].'news',false);
-				query("RENAME TABLE ".$_zp_conf_vars['mysql_prefix'].'zenpage_news2cat'." TO ".$_zp_conf_vars['mysql_prefix'].'news2cat',false);
-				query("RENAME TABLE ".$_zp_conf_vars['mysql_prefix'].'zenpage_news_categories'." TO ".$_zp_conf_vars['mysql_prefix'].'news_categories',false);
-				query("RENAME TABLE ".$_zp_conf_vars['mysql_prefix'].'zenpage_pages'." TO ".$_zp_conf_vars['mysql_prefix'].'pages',false);
-				query("ALTER TABLE ".$_zp_conf_vars['mysql_prefix'].'news_categories'." CHANGE `cat_name` `title` TEXT",false);
-				query("ALTER TABLE ".$_zp_conf_vars['mysql_prefix'].'news_categories'." CHANGE `cat_link` `titlelink` varchar(255) NOT NULL",false);
 			}
 		}
 
@@ -1814,6 +1807,12 @@ if (file_exists(CONFIGFILE)) {
 	 ******                                                                            ******
 	 ****************************************************************************************/
 
+	//v1.3.2
+	$sql_statements[] = "RENAME TABLE ".prefix('zenpage_news')." TO $tbl_news,".
+																			prefix('zenpage_news2cat')." TO $tbl_news2cat,".
+																			prefix('zenpage_news_categories')." TO $tbl_news_categories,".
+																			prefix('zenpage_pages')." TO $tbl_pages";
+
 	// v. 1.0.0b
 	$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `sort_type` varchar(20);";
 	$sql_statements[] = "ALTER TABLE $tbl_albums ADD COLUMN `sort_order` int(11);";
@@ -2046,6 +2045,8 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `user` varchar(64) default ''";
 	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' ADD COLUMN `password` VARCHAR(64)';
 	$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `password_hint` text;";
+	$sql_statements[] = "ALTER TABLE $tbl_news_categories CHANGE `cat_name` `title` TEXT";
+	$sql_statements[] = "ALTER TABLE $tbl_news_categories CHANGE `cat_link` `titlelink` varchar(255) NOT NULL";
 	$sql_statements[] = 'UPDATE '.$tbl_obj_to_tag.' SET `type`="news" WHERE `type`="zenpage_news"';
 	$sql_statements[] = 'UPDATE '.$tbl_obj_to_tag.' SET `type`="pages" WHERE `type`="zenpage_pages"';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `language` VARCHAR(5)';
@@ -2226,7 +2227,7 @@ if (file_exists(CONFIGFILE)) {
 				}
 			} else {
 				?>
-				<p><?php echo sprintf(gettext('You can now  <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'),'..','admin.php'); ?></p>
+				<p><?php echo sprintf(gettext('You can now <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'),'..','admin.php'); ?></p>
 				<?php
 			}
 		}
