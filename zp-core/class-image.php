@@ -876,8 +876,8 @@ class _Image extends MediaObject {
 	 * @param string $type the type of thumb (in case it ever matters in the cropping, now it does not.)
 	 */
 	function getThumbCropping($type) {
-		$sw = THUMB_CROP_WIDTH;
-		$sh = THUMB_CROP_HEIGHT;
+		$sw = getOption('thumb_crop_width');
+		$sh = getOption('thumb_crop_height');
 		if (is_null($cy = $this->get('thumbY'))) {
 			$custom = $cx = $cw = $ch = NULL;
 		} else {
@@ -909,8 +909,8 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getThumb($type='image') {
-		$ts = THUMB_SIZE;
-		if (THUMB_CROP) {
+		$ts = getOption('thumb_size');
+		if (getOption('thumb_crop')) {
 			list($custom, $sw, $sh, $cw, $ch, $cx, $cy) = $this->getThumbCropping($type);
 			if ($custom) {
 				return $this->getCustomImage(NULL, $sw, $sh, $cw, $ch, $cx, $cy, true);

@@ -1639,12 +1639,12 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td width="175"><?php echo gettext("Image quality:"); ?></td>
 			<td width="350">
 				<p class="nowrap">
-					<?php echo gettext('Normal Image'); ?>&nbsp;<input type="text" size="3" id="imagequality" name="image_quality" value="<?php echo IMAGE_QUALITY;?>" />
+					<?php echo gettext('Normal Image'); ?>&nbsp;<input type="text" size="3" id="imagequality" name="image_quality" value="<?php echo getOption('image_quality');?>" />
 					<script type="text/javascript">
 						// <!-- <![CDATA[
 						$(function() {
 							$("#slider-imagequality").slider({
-							<?php $v = IMAGE_QUALITY; ?>
+							<?php $v = getOption('image_quality'); ?>
 								startValue: <?php echo $v; ?>,
 								value: <?php echo $v; ?>,
 								min: 0,
@@ -1681,12 +1681,12 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<div id="slider-fullimagequality"></div>
 				</p>
 				<p class="nowrap">
-					<?php echo gettext('Thumbnail'); ?>&nbsp;<input type="text" size="3" id="thumbquality" name="thumb_quality" value="<?php echo TUMB_QUALITY;?>" />
+					<?php echo gettext('Thumbnail'); ?>&nbsp;<input type="text" size="3" id="thumbquality" name="thumb_quality" value="<?php echo getOption('thumb_quality');?>" />
 					<script type="text/javascript">
 						// <!-- <![CDATA[
 						$(function() {
 							$("#slider-thumbquality").slider({
-								<?php $v = TUMB_QUALITY; ?>
+								<?php $v = getOption('thumb_quality'); ?>
 								startValue: <?php echo $v; ?>,
 								value: <?php echo $v; ?>,
 								min: 0,

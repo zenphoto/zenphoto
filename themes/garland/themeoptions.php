@@ -17,9 +17,9 @@ class ThemeOptions {
 		setOptionDefault('colorbox_garland_search', 1);
 		setThemeOptionDefault('garland_menu', '');
 		if (getOption('zp_plugin_zenpage')) {
-			setOption('custom_index_page', 'gallery', false);
+			setThemeOption('custom_index_page', 'gallery', NULL, NULL, false);
 		} else {
-			setOption('custom_index_page', '', false);
+			setThemeOption('custom_index_page', '', NULL, NULL, false);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(

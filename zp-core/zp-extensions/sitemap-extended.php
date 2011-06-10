@@ -606,7 +606,7 @@ function getSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images) {
 					$data .= sitemap_echonl("\t\t\t<video:content_loc>".$host.pathurlencode($imageobj->getFullImage())."</video:content_loc>");
 					$data .= sitemap_echonl("\t\t</video:video>");
 				} else { // this might need to be extended!
-					$data .= sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>".$host.html_encode($imageobj->getSizedImage(IMAGE_SIZE))."</image:loc>\n\t\t\t<image:title>".$imageobj->getTitle()."</image:title>");
+					$data .= sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>".$host.html_encode($imageobj->getSizedImage(getOption('image_size')))."</image:loc>\n\t\t\t<image:title>".$imageobj->getTitle()."</image:title>");
 					if ($imageobj->getDesc()) {
 						$data .= sitemap_echonl("\t\t\t<image:caption>".$imageobj->getDesc()."</image:caption>");
 					}

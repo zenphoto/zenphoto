@@ -165,8 +165,8 @@ class WEBdocs extends TextObject {
 	 * @see zp-core/_Image::updateDimensions()
 	 */
 	function updateDimensions() {
-		$this->set('width', IMAGE_SIZE);
-		$this->set('height', floor((IMAGE_SIZE * 24) / 36));
+		$this->set('width', getOption('image_size'));
+		$this->set('height', floor((getOption('image_size') * 24) / 36));
 	}
 
 }

@@ -1409,11 +1409,11 @@ function printAlbumThumbImage($alt, $class=NULL, $id=NULL) {
 	if ($id) {
 		$id = ' id="'.$id.'"';
 	}
-	$s = THUMB_SIZE;
+	$s = getOption('thumb_size');
 	$thumb = getAlbumThumb();
-	if (THUMB_CROP) {
-		$w = THUMB_CROP_WIDTH;
-		$h = THUMB_CROP_HEIGHT;
+	if (getOption('thumb_crop')) {
+		$w = getOption('thumb_crop_width');
+		$h = getOption('thumb_crop_height');
 		if ($w > $h) {
 			$h = round($h * $s/$w);
 			$w = $s;
@@ -2423,7 +2423,7 @@ function getSizeCustomImage($size, $width=NULL, $height=NULL, $cw=NULL, $ch=NULL
  * @return array
  */
 function getSizeDefaultImage($size=NULL) {
-	if (is_null($size)) $size = IMAGE_SIZE;
+	if (is_null($size)) $size = getOption('image_size');
 	return getSizeCustomImage($size);
 }
 
@@ -2502,7 +2502,7 @@ function isLandscape() {
 function getDefaultSizedImage() {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image)) return false;
-	return $_zp_current_image->getSizedImage(IMAGE_SIZE);
+	return $_zp_current_image->getSizedImage(getOption('image_size'));
 }
 
 /**
@@ -2562,10 +2562,10 @@ function printImageThumb($alt, $class=NULL, $id=NULL) {
 		$class .= " password_protected";
 	}
 	$url = getImageThumb();
-	$s = THUMB_SIZE;
-	if (THUMB_CROP) {
-		$w = THUMB_CROP_WIDTH;
-		$h = THUMB_CROP_HEIGHT;
+	$s = getOption('thumb_size');
+	if (getOption('thumb_crop')) {
+		$w = getOption('thumb_crop_width');
+		$h = getOption('thumb_crop_height');
 		if ($w > $h) {
 			$h = round($h * $s/$w);
 			$w = $s;

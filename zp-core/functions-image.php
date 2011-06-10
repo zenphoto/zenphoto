@@ -155,7 +155,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		$watermark_use_image = IMAGE_WATERMARK;
 	}
 	if (!$effects) {
-		if ($thumb && THUMB_GRAY) {
+		if ($thumb && getOption('thumb_gray')) {
 			$effects = 'gray';
 		} else if (getOption('image_gray')) {
 			$effects = 'gray';

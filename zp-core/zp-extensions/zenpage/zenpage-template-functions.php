@@ -2962,7 +2962,7 @@ function zenpageAlbumImage($albumname, $imagename=NULL, $size=NULL) {
 	$album = new Album($_zp_gallery, $albumname);
 	if ($album->loaded) {
 		if (is_null($size)) {
-			$size = floor(IMAGE_SIZE * 0.5);
+			$size = floor(getOption('image_size') * 0.5);
 		}
 		if (is_null($imagename)) {
 			makeImageCurrent($album->getAlbumThumbImage());

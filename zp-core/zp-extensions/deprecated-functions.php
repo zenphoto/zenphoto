@@ -807,7 +807,7 @@ function setupAllowedMaps($defaultmap, $allowedmaps) {
 function printPreloadScript() {
 	deprecated_function_notify(gettext('printPreloadScript is deprecated. It is a helper for a specific theme and should be placed within that theme\'s "functions.php" script.'));
 	global $_zp_current_image;
-	$size = IMAGE_SIZE;
+	$size = getOption('image_size');
 	if (hasNextImage() || hasPrevImage()) {
 		echo "<script type=\"text/javascript\">\n// <!-- <![CDATA[\n";
 		if (hasNextImage()) {

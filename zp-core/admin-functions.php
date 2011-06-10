@@ -199,7 +199,7 @@ function printSortableHead() {
 
 function adminPrintImageThumb($image, $class=NULL, $id=NULL) {
 	echo "\n  <img class=\"imagethumb\" id=\"id_". $image->id ."\" src=\"" . $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1) . "\" alt=\"". html_encode($image->getTitle()) . "\" title=\"". html_encode($image->getTitle()) . " (". html_encode($image->getFileName()) . ")\"" .
-	((THUMB_CROP) ? " width=\"".THUMB_CROP_WIDTH."\" height=\"".THUMB_CROP_HEIGHT."\"" : "") .
+	((getOption('thumb_crop')) ? " width=\"".getOption('thumb_crop_width')."\" height=\"".getOption('thumb_crop_height')."\"" : "") .
 	(($class) ? " class=\"$class\"" : "") .
 	(($id) ? " id=\"$id\"" : "") . " />";
 }

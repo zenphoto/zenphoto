@@ -50,7 +50,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 		<!-- The Image -->
 		<?php
  		makeImageCurrent(getRandomImages(true));
- 		$size = floor(IMAGE_SIZE * $imagereduction);
+ 		$size = floor(getOption('image_size') * $imagereduction);
 		$s = getDefaultWidth($size) + 22;
 		$wide = " style=\"width:".$s."px;";
 		$s = getDefaultHeight($size) + 72;

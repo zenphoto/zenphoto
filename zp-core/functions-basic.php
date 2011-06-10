@@ -188,14 +188,6 @@ define('ALBUM_FOLDER_WEBPATH', getAlbumFolder(WEBPATH));
 define('ALBUM_FOLDER_SERVERPATH', getAlbumFolder(SERVERPATH));
 define('ALBUM_FOLDER_EMPTY',getAlbumFolder(''));
 
-define('THUMB_SIZE',getOption('thumb_size'));
-define('THUMB_CROP',getOption('thumb_crop'));
-define('THUMB_CROP_WIDTH',getOption('thumb_crop_width'));
-define('THUMB_CROP_HEIGHT',getOption('thumb_crop_height'));
-define('TUMB_QUALITY',getOption('thumb_quality'));
-define('IMAGE_SIZE',getOption('image_size'));
-define('IMAGE_QUALITY',getOption('image_quality'));
-define('THUMB_GRAY',getOption('thumb_gray'));
 define('IMAGE_WATERMARK',getOption('fullimage_watermark'));
 define('FULLIMAGE_WATERMARK',getOption('fullsizeimage_watermark'));
 define('THUMB_WATERMARK',getOption('Image_watermark'));
@@ -599,13 +591,13 @@ function getImageCachePostfix($args) {
  * @return array
  */
 function getImageParameters($args, $album=NULL) {
-	$thumb_crop = THUMB_CROP;
-	$thumb_size = THUMB_SIZE;
-	$thumb_crop_width = THUMB_CROP_WIDTH;
-	$thumb_crop_height = THUMB_CROP_HEIGHT;
-	$thumb_quality = TUMB_QUALITY;
-	$image_default_size = IMAGE_SIZE;
-	$quality = IMAGE_QUALITY;
+	$thumb_crop = getOption('thumb_crop');
+	$thumb_size = getOption('thumb_size');
+	$thumb_crop_width = getOption('thumb_crop_width');
+	$thumb_crop_height = getOption('thumb_crop_height');
+	$thumb_quality = getOption('thumb_quality');
+	$image_default_size = getOption('image_size');
+	$quality = getOption('image_quality');
 	// Set up the parameters
 	$thumb = $crop = false;
 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects) = $args;
@@ -640,7 +632,7 @@ function getImageParameters($args, $album=NULL) {
 	}
 	if (is_null($effects)) {
 		if ($thumb) {
-			if (THUMB_GRAY) {
+			if (getOption('thumb_gray')) {
 			$effects = 'gray';
 			}
 		} else {
@@ -653,7 +645,7 @@ function getImageParameters($args, $album=NULL) {
 		if ($thumb) {
 			$quality = round($thumb_quality);
 		} else {
-			$quality = IMAGE_QUALITY;
+			$quality = getOption('image_quality');
 		}
 	}
 	if (empty($WM)) {

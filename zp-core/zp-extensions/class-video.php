@@ -184,7 +184,7 @@ class Video extends _Image {
 		} else {
 			$filename = $this->objectsThumb;
 		}
-		$args = getImageParameters(array(THUMB_SIZE, $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
+		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
 		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
 		if (file_exists(SERVERCACHE . $cachefilename)	&& filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
 			return WEBPATH . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($cachefilename));
