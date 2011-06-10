@@ -1553,7 +1553,7 @@ if (file_exists(CONFIGFILE)) {
 		`prime_album` varchar(255) DEFAULT NULL,
 		`other_credentials` TEXT,
 		PRIMARY KEY (`id`),
-		UNIQUE (`user`)
+		UNIQUE `valid` (`user`,`valid`)
 		)	$collation;";
 	}
 	if (isset($create[$_zp_conf_vars['mysql_prefix'].'admin_to_object'])) {

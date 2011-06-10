@@ -113,7 +113,7 @@ function db_fetch_assoc($resource) {
 	if (!is_object($resource)) {
 		return false;
 	}
-	$result = $resource->fetch();
+	$result = $resource->fetch(PDO::FETCH_ASSOC);
 	return $result;
 }
 

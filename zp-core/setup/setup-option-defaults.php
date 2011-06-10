@@ -30,7 +30,12 @@ if (!empty($admin)) {   // transfer the old credentials and then remove them
 }
 
 if ($_zp_authority->preferred_version > ($oldv = getOption('libauth_version'))) {
-	if (!empty($oldv)) {
+	if (empty($oldv)) {
+		//	The password hash of these old versions did not have the extra text.
+		//	Note: if the administrators table is empty we will re-do this option with the good stuff.
+		purgeOption('extra_auth_hash_text');
+		setOptionDefault('extra_auth_hash_text', '');
+	} else {
 		$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, $_zp_authority->preferred_version);
 		if (!$_zp_authority->migrateAuth($_zp_authority->preferred_version)) {
 			$msg .= ': '.gettext('failed');

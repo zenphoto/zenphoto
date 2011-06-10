@@ -976,8 +976,8 @@ function getAlbumFolder($root=SERVERPATH) {
 		}
 		if (substr($_zp_album_folder, -1) != '/') $_zp_album_folder .= '/';
 	}
-	switch ($_zp_conf_vars['album_folder_class']) {
-		case '':
+	switch (@$_zp_conf_vars['album_folder_class']) {
+		default:
 			$_zp_conf_vars['album_folder_class'] = 'std';
 		case 'std':
 			$root = str_replace('\\', '/', $root);
