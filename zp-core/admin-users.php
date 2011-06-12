@@ -178,7 +178,8 @@ if (isset($_GET['action'])) {
 			exit();
 
 	}
-}$refresh = '';
+}
+$refresh = '';
 if (!$_zp_current_admin_obj && !$_zp_null_account) {
 	if (isset($_GET['saved']) && isset($_GET['xsrftoken']) && $_GET['xsrftoken'] == getXSRFToken('saved')) {
 		$refresh = '<meta http-equiv="refresh" content="3; url=admin.php" />;';

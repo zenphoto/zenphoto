@@ -328,25 +328,23 @@ function setOption($key, $value, $persistent=true) {
  * @param mixed $default the value to be used as the default
  */
 function setOptionDefault($key, $default) {
-	global $_zp_conf_vars, $_zp_options;
-	if (NULL == $_zp_options) {
-		getOption('nil');  // pre-load from the database
-	}
-
 	$bt = debug_backtrace();
 	$b = array_shift($bt);
 	$creator = str_replace(str_replace("\\", '/', dirname(dirname(__FILE__))).'/', '', str_replace('\\', '/', $b['file']));
-
-	if (array_key_exists($key, $_zp_options)) {
-		$sql = 'UPDATE '.prefix('options').' SET `creator`='.db_quote($creator).' WHERE `name`='.db_quote($key).' AND `ownerid`=0';
-		query($sql, false);
+	$sql = 'SELECT * FROM '.prefix('options').' WHERE `name`='.db_quote($key).' AND `ownerid`=0';
+	$result = query_single_row($sql, false);
+	if ($result) {
+		if (empty($result['creator'])) {
+			$sql = 'UPDATE '.prefix('options').' SET `creator`='.db_quote($creator).' WHERE `name`='.db_quote($key).' AND `ownerid`=0';
+			query($sql, false);
+		}
 	} else {
 		if (is_null($default)) {
 			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`, `creator`) VALUES (" . db_quote($key) . ", NULL,
 							0, ".db_quote($creator).");";
 		} else {
 			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`, `creator`) VALUES (" . db_quote($key) . ", ".
-							db_quote($default) . ", 0, ".db_quote($creator).");";
+			db_quote($default) . ", 0, ".db_quote($creator).");";
 		}
 		query($sql, false);
 		$_zp_options[$key] = $default;
