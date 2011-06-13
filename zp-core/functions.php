@@ -2059,10 +2059,12 @@ function setThemeOption($key, $value, $album=NULL, $theme=NULL, $default=false) 
 	}
 	$creator = THEMEFOLDER.'/'.$theme;
 
-	$exists = query_single_row("SELECT `name`, `value`, `id` FROM ".prefix('options')." WHERE `name`=".db_quote($key)." AND `ownerid`=".$id.' AND `theme`='.db_quote($theme), true);
+	$exists = query_single_row("SELECT * FROM ".prefix('options')." WHERE `name`=".db_quote($key)." AND `ownerid`=".$id.' AND `theme`='.db_quote($theme), true);
 	if ($exists) {
 		if ($default) {
-			$sql = "UPDATE " . prefix('options') . " SET `creator`=".db_quote($creator)." WHERE `id`=" . $exists['id'];
+			if (empty($exists['creator'])) {
+				$sql = "UPDATE " . prefix('options') . " SET `creator`=".db_quote($creator)." WHERE `id`=" . $exists['id'];
+			}
 			return; // don't update if setting the default
 		}
 		if (is_null($value)) {

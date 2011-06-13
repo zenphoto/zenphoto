@@ -101,19 +101,8 @@ function writeHeader($type, $value) {
 }
 
 $gallery = new Gallery();
+$refresh = $messages = '';
 
-printAdminHeader(gettext('utilities'),gettext('backup'));
-echo '</head>';
-?>
-
-<body>
-<?php printLogoAndLinks(); ?>
-<div id="main">
-<?php printTabs(); ?>
-<div id="content">
-<?php zp_apply_filter('admin_note','backkup', '');; ?>
-<h1><?php echo (gettext('Backup and Restore your Database')); ?></h1>
-<?php
 $prefix = prefix();
 if (isset($_REQUEST['backup']) && db_connect()) {
 	$compression_level = sanitize($_REQUEST['compress'],3);
@@ -189,28 +178,30 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		$writeresult = false;
 	}
 	if ($writeresult) {
-		?>
+		$messages = '
 		<div class="messagebox fade-message">
 		<h2>
-		<?php
+		';
 		if ($compression_level > 0) {
-			printf(gettext('backup completed using <em>%1$s(%2$s)</em> compression'),$compression_handler, $compression_level);
+			$messages .= sprintf(gettext('backup completed using <em>%1$s(%2$s)</em> compression'),$compression_handler, $compression_level);
 		} else {
-			echo gettext('backup completed');
+			$messages .= gettext('backup completed');
 		}
-		?>
+		$messages .= '
 		</h2>
 		</div>
 		<?php
+		';
 	} else {
-		?>
+		$messages = '
 		<div class="errorbox fade-message">
-		<h2><?php echo gettext("backup failed"); ?></h2>
-		<p><?php echo $msg; ?></p>
+		<h2>'.gettext("backup failed").'</h2>
+		<p>'.$msg.'</p>
 		</div>
-		<?php
+		';
 	}
 } else if (isset($_REQUEST['restore']) && db_connect()) {
+//	$refresh = '<meta http-equiv="refresh" content="3"; url="'.FULLWEBPATH.'/'.ZENFOLDER.'/admin.php" />'."\n";
 	$oldlibauth = $_zp_authority->getVersion();
 	$success = 1;
 	if (isset($_REQUEST['backupfile'])) {
@@ -323,95 +314,98 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 	}
 
 	if (!empty($missing_table) || !empty($missing_element)) {
-		?>
+		$messages = '
 		<div class="warningbox">
-			<h2><?php echo gettext("Restore encountered exceptions"); ?></h2>
-			<?php
+			<h2>'.gettext("Restore encountered exceptions").'</h2>';
 			if (!empty($missing_table)) {
-				?>
-				<p>
-				<?php
-				echo gettext('The following tables were not restored because the table no longer exists:');
-				?>
+				$messages .= '
+				<p>'.gettext('The following tables were not restored because the table no longer exists:').'
 					<ul>
-					<?php
+					';
 					foreach (array_unique($missing_table) as $item) {
-						?>
-						<li><em><?php echo $item; ?></em></li>
-						<?php
+						$messages .= '<li><em>'.$item.'</em></li>';
 					}
-					?>
+					$messages .= '
 					</ul>
 				</p>
-				<?php
+				';
 			}
 			if (!empty($missing_element)) {
-				?>
-				<p>
-				<?php
-				echo gettext('The following fields were not restored because the field no longer exists:');
-				?>
+				$messages = '
+				<p>'.gettext('The following fields were not restored because the field no longer exists:').'
 					<ul>
-					<?php
+					';
+
 					foreach (array_unique($missing_element) as $item) {
-						?>
-						<li><em><?php echo $item; ?></em></li>
-						<?php
+						$messages .= '<li><em>'.$item.'</em></li>';
 					}
-					?>
+					$messages .= '
 					</ul>
 				</p>
-				<?php
+				';
 			}
-			?>
+			$messages .= '
 		</div>
-		<?php
+		';
 	} else if ($success) {
-		?>
+		$messages = '
 		<div class="errorbox">
-			<h2><?php echo gettext("Restore failed"); ?></h2>
-			<?php
+			<h2>'.gettext("Restore failed").'</h2>
+			';
 			switch ($success) {
 				case 1:
-					echo '<p>'.gettext('No backup set found.').'</p>';
+					$messages .= '<p>'.gettext('No backup set found.').'</p>';
 					break;
 				case 2:
-					echo '<p';
-					printf(gettext('Query ( <em>%1$s</em> ) failed. Error: %2$s' ),$sql,db_error());
-					echo '</p>';
+					$messages .= '<p'.sprintf(gettext('Query ( <em>%1$s</em> ) failed. Error: %2$s' ),$sql,db_error()).'</p>';
 					break;
 			}
-			?>
+			$messages .= '
 		</div>
-		<?php
+		';
 	} else {
-		?>
+		$messages = '
 		<div class="messagebox fade-message">
 			<h2>
-			<?php
+			';
 			if ($compression_handler == 'no') {
-				echo(gettext('Restore completed'));
+				$messages .= (gettext('Restore completed'));
 			} else {
-				printf(gettext('Restore completed using %s compression'), $compression_handler);
+				$messages .= sprintf(gettext('Restore completed using %s compression'), $compression_handler);
 			}
 
-			?>
+			$messages .= '
 			</h2>
 		</div>
-		<?php
+		';
 	}
 	setOption('zenphoto_release', ZENPHOTO_RELEASE); // be sure it is correct
 	setOption('zenphoto_install', installSignature());
 	if ($oldlibauth != $_zp_authority->getVersion()) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {
-			?>
+			$messages .= '
 			<div class="errorbox fade-message">
-			<h2><?php echo gettext('Zenphoto Rights migration failed!')?></h2>
+			<h2>'.gettext('Zenphoto Rights migration failed!').'</h2>
 			</div>
-			<?php
+			';
 		}
 	}
 }
+printAdminHeader(gettext('utilities'),gettext('backup'));
+?><!-- Refresh goes here --><?php
+echo $refresh;
+echo '</head>';
+?>
+
+<body>
+<?php printLogoAndLinks(); ?>
+<div id="main">
+<?php printTabs(); ?>
+<div id="content">
+<?php zp_apply_filter('admin_note','backkup', '');; ?>
+<h1><?php echo (gettext('Backup and Restore your Database')); ?></h1>
+<?php
+echo $messages;
 if (db_connect()) {
 	$compression_level = getOption('backup_compression');
 	?>

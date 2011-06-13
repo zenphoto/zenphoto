@@ -250,8 +250,6 @@ function js_encode($this_string) {
 function getOption($key, $db=false) {
 	global $_zp_conf_vars, $_zp_options, $_zp_optionDB_hasownerid;
 	if (is_null($_zp_options)) {
-		$_zp_options = array();
-
 		$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `ownerid`=0';
 		$optionlist = query_full_array($sql, false);
 		if ($optionlist == false) { // might be old, un-migrated option table during setup--retry without the `ownerid`.
@@ -259,6 +257,7 @@ function getOption($key, $db=false) {
 			$optionlist = query_full_array($sql, false);
 		}
 		if ($optionlist !== false) {
+			$_zp_options = array();
 			foreach($optionlist as $option) {
 				$_zp_options[$option['name']] = $option['value'];
 			}
@@ -270,15 +269,14 @@ function getOption($key, $db=false) {
 			return $optionlist['value'];
 		}
 	}
-	if (array_key_exists($key, $_zp_options)) {
+	if (is_array($_zp_options) && array_key_exists($key, $_zp_options)) {
 		return $_zp_options[$key];
 	} else {
 		if (array_key_exists($key, $_zp_conf_vars)) {
 			return $_zp_conf_vars[$key];
-		} else {
-			return NULL;
 		}
 	}
+	return NULL;
 }
 
 /**
