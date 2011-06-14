@@ -108,6 +108,13 @@ if (isset($_GET['action'])) {
 								$msg = $userobj->setPass($pass);
 								$updated = true;
 							}
+							$challenge = sanitize($_POST[$i.'-challengephrase']);
+							$response = sanitize($_POST[$i.'-challengeresponse']);
+							$info = $userobj->getChallengePhraseInfo();
+							if ($challenge != $info['challenge'] || $response != $info['response']) {
+								$userobj ->setChallengePhraseInfo($challenge, $response);
+								$updated = true;
+							}
 							if (isset($_POST['delinkAlbum_'.$i])) {
 								$userobj->setAlbum(NULL);
 								$updated = true;
@@ -659,29 +666,40 @@ function languageChange(id,lang) {
 					}
 				}
 				?>
-				<label for="<?php echo $id ?>-adminpass"><?php echo gettext("Password:"); ?><br />
-				<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass"
-					value="<?php echo $x; ?>" /></label></p>
-					<p>
-				<label for="<?php echo $id ?>-adminpass_2"><?php echo gettext("(repeat)"); ?><br />
-				<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass_2"
-					value="<?php echo $x; ?>" /></label></p>
+				<fieldset><legend><?php echo gettext("Password:"); ?></legend>
+					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass" value="<?php echo $x; ?>" />
+				</fieldset>
+				<fieldset><legend><?php echo gettext("(repeat)"); ?></legend>
+					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass_2" value="<?php echo $x; ?>" />
+				</fieldset>
 				<?php
 				$msg = $_zp_authority->passwordNote();
 				if (!empty($msg)) {
-					echo $msg;
+					echo '<br />'.$msg.'<br />';
 				}
 				?>
-				<p>
-					<label for="<?php echo $id ?>-admin_name"><?php echo gettext("Full name:"); ?><br />
+				<br />
+				<?php
+				$challenge = $userobj->getChallengePhraseInfo();
+				?>
+				<fieldset><legend><?php echo gettext('Challenge phrase:')?></legend>
+					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
+									value="<?php echo html_encode($challenge['challenge']); ?>" />
+				</fieldset>
+				<fieldset><legend><?php echo gettext('Challenge response:')?></legend>
+					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
+									value="<?php echo html_encode($challenge['response']); ?>" />
+				</fieldset>
+				<br />
+				<fieldset><legend><?php echo gettext("Full name:"); ?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
-									value="<?php echo html_encode($userobj->getName()); ?>"<?php if ($userobj->getName() && in_array('name', $no_change)) echo ' disabled="disabled"'; ?> /></label>
-				</p>
-				<p>
-					<label for="<?php echo $id ?>-admin_email"><?php echo gettext("Email:"); ?><br />
+									value="<?php echo html_encode($userobj->getName()); ?>"<?php if ($userobj->getName() && in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
+				</fieldset>
+				<fieldset><legend><?php echo gettext("Email:"); ?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
-								value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if ($userobj->getEmail() && in_array('email', $no_change)) echo ' disabled="disabled"'; ?> /></label>
-				</p>
+								value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if ($userobj->getEmail() && in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
+				</fieldset>
+				<br />
 				<?php
 				$primeAlbum = $userobj->getAlbum();
 				if (!empty($primeAlbum)) {

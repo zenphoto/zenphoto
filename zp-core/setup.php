@@ -1552,6 +1552,7 @@ if (file_exists(CONFIGFILE)) {
 		`language` varchar(5) DEFAULT NULL,
 		`prime_album` varchar(255) DEFAULT NULL,
 		`other_credentials` TEXT,
+		`challenge_phrase` TEXT,
 		PRIMARY KEY (`id`),
 		UNIQUE `valid` (`user`,`valid`)
 		)	$collation;";
@@ -2073,7 +2074,8 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' CHANGE `title` `title` TEXT';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_news_categories.' ADD UNIQUE `titlelink` (`titlelink`)';
 	$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `show` int(1) unsigned NOT NULL default '1'";
-
+	//v1.4.2
+	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `challenge_phrase` TEXT';
 
 	// do this last incase there are any field changes of like names!
 	foreach ($_zp_exifvars as $key=>$exifvar) {

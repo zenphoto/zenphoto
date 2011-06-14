@@ -600,70 +600,90 @@ class Zenphoto_Authority {
 			} else {
 				// Clear the cookie, just in case
 				zp_setCookie("zenphoto_auth", "", -368000);
-				// was it a request for a reset?
-				if (isset($_POST['code_h']) && $_zp_captcha->checkCaptcha(trim($post_pass), sanitize($_POST['code_h'],3))) {
-					require_once(dirname(__FILE__).'/class-load.php'); // be sure that the plugins are loaded for the mail handler
-					if (empty($post_user)) {
-						$requestor = gettext('You are receiving this e-mail because of a password reset request on your Zenphoto gallery.');
-					} else {
-						$requestor = sprintf(gettext("You are receiving this e-mail because of a password reset request on your Zenphoto gallery from a user who tried to log in as %s."),$post_user);
-					}
-					$admins = $_zp_authority->getAdministrators();
-					$mails = array();
-					$user = NULL;
-					foreach ($admins as $key=>$tuser) {
-						if (!empty($tuser['email'])) {
-							if (!empty($post_user) && ($tuser['user'] == $post_user || $tuser['email'] == $post_user)) {
-								$name = $tuser['name'];
-								if (empty($name)) {
-									$name = $tuser['user'];
-								}
-								$mails[$name] = $tuser['email'];
-								$user = $tuser;
-								unset($admins[$key]);	// drop him from alternate list.
-							} else {
-								if (!($tuser['rights'] & ADMIN_RIGHTS)) {
-									unset($admins[$key]);	// eliminate any peons from the list
-								}
-							}
-						} else {
-							unset($admins[$key]);	// we want to ignore groups and users with no email address here!
+				// was it a challenge response?
+				if (@$_POST['password']=='challenge') {
+					$user = $this->getAnAdmin(array('`user`=' => $post_user, '`valid`=' => 1));
+					if (is_object($user)) {
+						$info = $user->getChallengePhraseInfo();
+						if ($info['response'] == $post_pass) {
+							$pas = $user->getPass();
+							setOption('admin_reset_date', time());
+							$req = getOption('admin_reset_date');
+							$ref = sha1($req . $post_user . $pas);
+							header('location:'.WEBPATH.'/'.ZENFOLDER.'/admin-users.php?ticket='.$ref.'&user='.$post_user);
+							exit();
 						}
 					}
+					$_zp_login_error = gettext('Sorry, that is not the answer.');
+				}
+				// was it a request for a reset?
+				if (@$_POST['password']=='captcha') {
+					if (isset($_POST['code_h']) && $_zp_captcha->checkCaptcha(trim($post_pass), sanitize($_POST['code_h'],3))) {
+						require_once(dirname(__FILE__).'/class-load.php'); // be sure that the plugins are loaded for the mail handler
+						if (empty($post_user)) {
+							$requestor = gettext('You are receiving this e-mail because of a password reset request on your Zenphoto gallery.');
+						} else {
+							$requestor = sprintf(gettext("You are receiving this e-mail because of a password reset request on your Zenphoto gallery from a user who tried to log in as %s."),$post_user);
+						}
+						$admins = $_zp_authority->getAdministrators();
+						$mails = array();
+						$user = NULL;
+						foreach ($admins as $key=>$tuser) {
+							if (!empty($tuser['email'])) {
+								if (!empty($post_user) && ($tuser['user'] == $post_user || $tuser['email'] == $post_user)) {
+									$name = $tuser['name'];
+									if (empty($name)) {
+										$name = $tuser['user'];
+									}
+									$mails[$name] = $tuser['email'];
+									$user = $tuser;
+									unset($admins[$key]);	// drop him from alternate list.
+								} else {
+									if (!($tuser['rights'] & ADMIN_RIGHTS)) {
+										unset($admins[$key]);	// eliminate any peons from the list
+									}
+								}
+							} else {
+								unset($admins[$key]);	// we want to ignore groups and users with no email address here!
+							}
+						}
 
-					$cclist = array();
-					foreach ($admins as $tuser) {
-						$name = $tuser['name'];
-						if (empty($name)) {
-							$name = $tuser['user'];
+						$cclist = array();
+						foreach ($admins as $tuser) {
+							$name = $tuser['name'];
+							if (empty($name)) {
+								$name = $tuser['user'];
+							}
+							if (is_null($user)) {
+								$user = $tuser;
+								$mails[$name] = $tuser['email'];
+							} else {
+								$cclist[$name] = $tuser['email'];
+							}
 						}
 						if (is_null($user)) {
-							$user = $tuser;
-							$mails[$name] = $tuser['email'];
+							$_zp_login_error = gettext('There was no one to which to send the reset request.');
 						} else {
-							$cclist[$name] = $tuser['email'];
+							$adm = $user['user'];
+							$pas = $user['pass'];
+							setOption('admin_reset_date', time());
+							$req = getOption('admin_reset_date');
+							$ref = sha1($req . $adm . $pas);
+							$msg = "\n".$requestor.
+									"\n".sprintf(gettext("To reset your Zenphoto Admin passwords visit: %s"),FULLWEBPATH."/".ZENFOLDER."/admin-users.php?ticket=$ref&user=$adm") .
+									"\n".gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
+							$err_msg = zp_mail(gettext("The Zenphoto information you requested"), $msg, $mails, $cclist);
+							if (empty($err_msg)) {
+								$_zp_login_error = 2;
+							} else {
+								$_zp_login_error = $err_msg;
+							}
 						}
-					}
-					if (is_null($user)) {
-						$_zp_login_error = gettext('There was no one to which to send the reset request.');
 					} else {
-						$adm = $user['user'];
-						$pas = $user['pass'];
-						setOption('admin_reset_date', time());
-						$req = getOption('admin_reset_date');
-						$ref = sha1($req . $adm . $pas);
-						$msg = "\n".$requestor.
-								"\n".sprintf(gettext("To reset your Zenphoto Admin passwords visit: %s"),FULLWEBPATH."/".ZENFOLDER."/admin-users.php?ticket=$ref&user=$adm") .
-								"\n".gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
-						$err_msg = zp_mail(gettext("The Zenphoto information you requested"), $msg, $mails, $cclist);
-						if (empty($err_msg)) {
-							$_zp_login_error = 2;
-						} else {
-							$_zp_login_error = $err_msg;
-						}
+						$_zp_login_error = gettext('Your input did not match the captcha');
 					}
 				} else {
-					$_zp_login_error = 1;
+					if (!$_zp_login_error) $_zp_login_error = 1;
 				}
 			}
 		}
@@ -737,7 +757,7 @@ class Zenphoto_Authority {
 	 * @param string $hint optional hint for the password
 	 *
 	 */
-	function printLoginForm($redirect=null, $logo=true, $showUser=true, $showCaptcha='*', $hint='') {
+	function printLoginForm($redirect=null, $logo=true, $showUser=true, $showCaptcha=true, $hint='') {
 		global $_zp_login_error, $_zp_captcha, $_zp_authority;
 		if (is_null($redirect)) {
 			$redirect = WEBPATH.'/'.ZENFOLDER.'/admin.php';
@@ -753,13 +773,29 @@ class Zenphoto_Authority {
 			}
 		}
 		$alt_handlers = zp_apply_filter('alt_login_handler',array());
-		$star = '';
+		$star = false;
 		$mails = array();
+		$questions = array(	gettext("What is your father's middle name?"),
+												gettext("What street did your Grandmother live on?"),
+												gettext("Who was your favorite singer?"),
+												gettext("When did you first get a computer?"),
+												gettext("How many woods could a woodchuck chuck if a woodchuck could chuck wood?"),
+												gettext("What is the date of the Ides of March?")
+											 );
+		shuffle($questions);
+		$question = array_shift($questions);
+		$info = array('challenge'=>'','response'=>'');
 		if (!empty($requestor)) {
 			$admin = $_zp_authority->getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1));
-			if (is_object($admin) && $admin->getEmail()) {
-				$star = $showCaptcha;
+			if (is_object($admin)) {
+				if ($admin->getEmail()) {
+					$star = $showCaptcha;
+				}
+				$info = $admin->getChallengePhraseInfo();
 			}
+		}
+		if (empty($info['challenge'])) {
+			$info = array('challenge'=>$question,'response'=>0x10);
 		}
 		if (!$star) {
 			$admins = $_zp_authority->getAdministrators();
@@ -770,129 +806,189 @@ class Zenphoto_Authority {
 				}
 			}
 		}
-		?>
-		<div id="loginform">
-		<?php
-		if ($logo) echo "<p><img src=\"".WEBPATH.'/'.ZENFOLDER."/images/zen-logo.png\" title=\"ZenPhoto\" alt=\"ZenPhoto\" /></p>";
-		switch ($_zp_login_error) {
-			case 1:
+		$whichForm = sanitize(@$_REQUEST['logon_step']);
+		switch ($whichForm) {
+			case 'challenge':
 				?>
-				<div class="errorbox" id="message"><h2><?php echo gettext("There was an error logging in."); ?></h2><?php echo gettext("Check your username and password and try again.");?></div>
-				<?php
-				break;
-			case 2:
-				?>
-				<div class="messagebox fade-message">
-				<h2><?php echo gettext("A reset request has been sent."); ?></h2>
+				<div id="loginform">
+					<form name="login" action="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php" method="post">
+						<input type="hidden" name="login" value="1" />
+						<input type="hidden" name="password" value="challenge" />
+						<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
+						<input type="hidden" name="user" id="user" value="<?php echo html_encode($requestor); ?>" />
+						<fieldset style="text-align:left" ><legend><?php echo gettext('Challenge question:')?></legend>
+							<?php echo html_encode($info['challenge']); ?>
+						</fieldset>
+						<fieldset><legend><?php echo gettext('Your response:')?></legend>
+							<input class="textfield" name="pass" type="text" size="40" />
+						</fieldset>
+						<br />
+						<?php
+						if ($star) {
+							?>
+							<a href="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
+								<?php echo gettext('Request reset by e-mail'); ?>
+							</a>
+							<?php
+						}
+						?>
+						<br />
+						<br />
+						<div class="buttons">
+							<button type="submit" value="<?php echo gettext("Submit"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
+						</div>
+						<br clear="all" />
+					</form>
 				</div>
 				<?php
 				break;
 			default:
-				if (!empty($_zp_login_error)) {
-					?>
-					<div class="errorbox fade-message">
-					<h2><?php echo $_zp_login_error; ?></h2>
-					</div>
-					<?php
+				?>
+				<div id="loginform">
+				<?php
+				if ($logo) echo "<p><img src=\"".WEBPATH.'/'.ZENFOLDER."/images/zen-logo.png\" title=\"ZenPhoto\" alt=\"ZenPhoto\" /></p>";
+				switch ($_zp_login_error) {
+					case 1:
+						?>
+						<div class="errorbox" id="message"><h2><?php echo gettext("There was an error logging in."); ?></h2><?php echo gettext("Check your username and password and try again.");?></div>
+						<?php
+						break;
+					case 2:
+						?>
+						<div class="messagebox fade-message">
+						<h2><?php echo gettext("A reset request has been sent."); ?></h2>
+						</div>
+						<?php
+						break;
+					default:
+						if (!empty($_zp_login_error)) {
+							?>
+							<div class="errorbox fade-message">
+							<h2><?php echo $_zp_login_error; ?></h2>
+							</div>
+							<?php
+						}
+						break;
 				}
+				?>
+				<form name="login" action="#" method="post">
+				<input type="hidden" name="login" value="1" />
+				<input type="hidden" name="password" value="1" />
+				<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
+				<fieldset id="logon_box">
+					<?php
+					if (empty($alt_handlers)) {
+						$ledgend = gettext('Login');
+					} else {
+						$gallery = new Gallery();
+						?>
+						<script type="text/javascript">
+							<!--
+							var handlers = [];
+							<?php
+							$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
+												'<option value="0">'.html_encode(get_language_string($gallery->getTitle())).'</option>';
+							$c = 0;
+							foreach ($alt_handlers as $handler=>$details) {
+								$c++;
+								$details['params'][] = 'redirect='.$redirect;
+								if (!empty($requestor)) {
+									$details['params'][] = 'requestor='.$requestor;
+								}
+								echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
+
+								$list .= '<option value="'.$c.'">'.$handler.'</option>';
+							}
+							$list .= '</select>';
+							$ledgend = sprintf(gettext('Logon using:%s'),$list);
+							?>
+							function changeHandler(handler) {
+								handler.push('user='+$('#user').val());
+								var script = handler.shift();
+								launchScript(script,handler);
+							}
+							-->
+						</script>
+						<?php
+					}
+					?>
+					<legend><?php echo $ledgend; ?></legend>
+					<table class="password">
+						<?php
+						if ($showUser || GALLERY_SECURITY=='private') {	//	requires a "user" field
+							?>
+							<tr>
+								<td align="left">
+								<h2><?php echo gettext("User"); ?>&nbsp;</h2>
+								</td>
+								<td><input class="textfield" name="user" id="user" type="text" size="20"
+									value="<?php echo html_encode($requestor); ?>" /></td>
+							</tr>
+							<?php
+						}
+						?>
+						<tr>
+							<td align="left">
+							<h2><?php echo gettext("Password"); ?></h2>
+							</td>
+							<td><input class="textfield" name="pass" id="pass" type="password" size="20" /></td>
+						</tr>
+					</table>
+				</fieldset>
+				<table class="password">
+					<tr>
+						<td align="left" colspan="2">
+						<a href="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" >
+							<?php echo gettext('I forgot my user/password'); ?>
+						</a>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td colspan="2">
+							<div class="buttons">
+								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Log in"); ?></button>
+								<button type="reset" value="<?php echo gettext("Reset"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset"); ?></button>
+							</div>
+						</td>
+					</tr>
+				</table>
+				</form>
+				<?php
+				if ($hint) {
+					echo '<p>'.$hint.'</p>';
+				}
+				?>
+				</div>
+				<?php
+				break;
+			case 'captcha':
+				?>
+				<div id="loginform">
+					<form name="login" action="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php" method="post">
+						<input type="hidden" name="login" value="1" />
+						<input type="hidden" name="password" value="captcha" />
+						<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
+						<fieldset id="logon_box">
+							<?php
+							$captchaCode = $_zp_captcha->generateCaptcha($img);
+							?>
+							<input type="hidden" name="code_h" value="<?php echo $captchaCode; ?>" />
+							<?php echo gettext('user ID'); ?> <input class="textfield" name="user" id="user" type="text" size="20" value="<?php echo html_encode($requestor); ?>" />
+							<p><img src="<?php echo $img; ?>" alt="Code" align="middle"/></p>
+							<input class="textfield" name="pass" type="text" size="20" />
+							<p><?php echo gettext("Enter CAPTCHA."); ?></p>
+						</fieldset>
+						<br />
+						<div class="buttons">
+							<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
+						</div>
+						<br clear="all" />
+					</form>
+				</div>
+				<?php
 				break;
 		}
-		?>
-		<form name="login" action="#" method="post">
-		<input type="hidden" name="login" value="1" />
-		<input type="hidden" name="password" value="1" />
-		<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
-		<fieldset id="logon_box">
-			<?php
-			if (empty($alt_handlers)) {
-				$ledgend = gettext('Login');
-			} else {
-				$gallery = new Gallery();
-				?>
-				<script type="text/javascript">
-					<!--
-					var handlers = [];
-					<?php
-					$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
-										'<option value="0">'.html_encode(get_language_string($gallery->getTitle())).'</option>';
-					$c = 0;
-					foreach ($alt_handlers as $handler=>$details) {
-						$c++;
-						$details['params'][] = 'redirect='.$redirect;
-						if (!empty($requestor)) {
-							$details['params'][] = 'requestor='.$requestor;
-						}
-						echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
-
-						$list .= '<option value="'.$c.'">'.$handler.'</option>';
-					}
-					$list .= '</select>';
-					$ledgend = sprintf(gettext('Logon using:%s'),$list);
-					?>
-					function changeHandler(handler) {
-						handler.push('user='+$('#user').val());
-						var script = handler.shift();
-						launchScript(script,handler);
-					}
-					-->
-				</script>
-				<?php
-			}
-			?>
-			<legend><?php echo $ledgend; ?></legend>
-			<table class="password">
-				<?php
-				if ($showUser || GALLERY_SECURITY=='private') {	//	requires a "user" field
-					?>
-					<tr>
-						<td align="left">
-						<h2><?php echo gettext("User"); ?>&nbsp;</h2>
-						</td>
-						<td><input class="textfield" name="user" id="user" type="text" size="20"
-							value="<?php echo html_encode($requestor); ?>" /></td>
-					</tr>
-					<?php
-				}
-				?>
-				<tr>
-					<td align="left">
-					<h2><?php echo gettext("Password").$star; ?></h2>
-					</td>
-					<td><input class="textfield" name="pass" type="password" size="20" /></td>
-				</tr>
-			</table>
-		</fieldset>
-		<table class="password">
-		<?php
-		if ($star == '*') {
-			$captchaCode = $_zp_captcha->generateCaptcha($img);
-			$html = "<input type=\"hidden\" name=\"code_h\" value=\"" . $captchaCode . "\"/><label><img src=\"" . $img . "\" alt=\"Code\" align=\"middle\"/></label>";
-			?>
-			<tr>
-				<td align="left"><?php echo gettext("*Enter CAPTCHA in place of <em>Password</em> to request a password reset."); ?></td>
-				<td><?php echo $html; ?></td>
-			</tr>
-			<?php
-		}
-		?>
-			<tr>
-				<td></td>
-				<td colspan="2">
-					<div class="buttons">
-						<button type="submit" value="<?php echo gettext("Log in"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Log in"); ?></button>
-						<button type="reset" value="<?php echo gettext("Reset"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset"); ?></button>
-					</div>
-				</td>
-			</tr>
-		</table>
-		</form>
-		<?php
-		if ($hint) {
-			echo '<p>'.$hint.'</p>';
-		}
-		?>
-		</div>
-	<?php
 	}
 
 }
@@ -1248,6 +1344,19 @@ class Zenphoto_Administrator extends PersistentObject {
 			$this->setObjects($objects);
 		}
 
+	}
+
+	function getChallengePhraseInfo() {
+		$info = $this->get('challenge_phrase');
+		if ($info) {
+			return unserialize($info);
+		} else {
+			return array('challenge'=>'', 'response'=>'');
+		}
+	}
+
+	function setChallengePhraseInfo($challenge, $response) {
+		$this->set('challenge_phrase', serialize(array('challenge'=>$challenge,'response'=>$response)));
 	}
 
 }
