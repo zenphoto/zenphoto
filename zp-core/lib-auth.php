@@ -775,27 +775,27 @@ class Zenphoto_Authority {
 		$alt_handlers = zp_apply_filter('alt_login_handler',array());
 		$star = false;
 		$mails = array();
-		$questions = array(	gettext("What is your father's middle name?"),
-												gettext("What street did your Grandmother live on?"),
-												gettext("Who was your favorite singer?"),
-												gettext("When did you first get a computer?"),
-												gettext("How many woods could a woodchuck chuck if a woodchuck could chuck wood?"),
-												gettext("What is the date of the Ides of March?")
-											 );
-		shuffle($questions);
-		$question = array_shift($questions);
 		$info = array('challenge'=>'','response'=>'');
 		if (!empty($requestor)) {
 			$admin = $_zp_authority->getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1));
-			if (is_object($admin)) {
+			if (is_object($admin) && rand(0,4)) {
 				if ($admin->getEmail()) {
 					$star = $showCaptcha;
 				}
 				$info = $admin->getChallengePhraseInfo();
 			}
-		}
-		if (empty($info['challenge'])) {
-			$info = array('challenge'=>$question,'response'=>0x10);
+			if (empty($info['challenge'])) {
+				$questions = array(	gettext("What is your father's middle name?"),
+														gettext("What street did your Grandmother live on?"),
+														gettext("Who was your favorite singer?"),
+														gettext("When did you first get a computer?"),
+														gettext("How much wood could a woodchuck chuck if a woodchuck could chuck wood?"),
+														gettext("What is the date of the Ides of March?")
+														);
+				$v = (int)md5($requestor);
+				$v = $v % count($questions);
+				$info = array('challenge'=>$questions[$v],'response'=>0x00);
+			}
 		}
 		if (!$star) {
 			$admins = $_zp_authority->getAdministrators();
@@ -819,10 +819,10 @@ class Zenphoto_Authority {
 							<input class="textfield" name="user" id="user" type="text" size="20" value="<?php echo html_encode($requestor); ?>" />
 						</fieldset>
 						<fieldset style="text-align:left" ><legend><?php echo gettext('Challenge question:')?></legend>
-							<?php echo html_encode($info['challenge']); ?>
+							<span id="challenge" ><?php echo html_encode($info['challenge']); ?></span>
 						</fieldset>
 						<fieldset><legend><?php echo gettext('Your response:')?></legend>
-							<input class="textfield" name="pass" type="text" size="40" />
+							<input class="textfield" name="pass" id="pass" type="text" size="40" />
 						</fieldset>
 						<br />
 						<?php
@@ -837,8 +837,8 @@ class Zenphoto_Authority {
 						<br />
 						<br />
 						<div class="buttons">
-							<button type="submit" value="<?php echo gettext("Submit"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
-							<button type="button" value="<?php echo gettext("Refresh"); ?>" onclick="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
+							<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
+							<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
 						</div>
 						<br clear="all" />
 					</form>

@@ -1554,7 +1554,7 @@ if (file_exists(CONFIGFILE)) {
 		`other_credentials` TEXT,
 		`challenge_phrase` TEXT,
 		PRIMARY KEY (`id`),
-		UNIQUE `valid` (`user`,`valid`)
+		UNIQUE (`user`,`valid`)
 		)	$collation;";
 	}
 	if (isset($create[$_zp_conf_vars['mysql_prefix'].'admin_to_object'])) {

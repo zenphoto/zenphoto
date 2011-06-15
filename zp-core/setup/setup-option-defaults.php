@@ -528,14 +528,15 @@ setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
 	} else {
 		setOptionDefault('gallery_page_unprotected_register', 1);
 		setOptionDefault('gallery_page_unprotected_contact', 1);
+		$unprotected = array();
 	}
+	$_zp_options = NULL;	// get a fresh start
 	$optionlist = getOptionList();
 	foreach ($optionlist as $key=>$option) {
 		if ($option && strpos($key, 'gallery_page_unprotected_') === 0) {
 			$unprotected[] = str_replace('gallery_page_unprotected_', '', $key);
 		}
 	}
-
 
 	$data['unprotected_pages'] = serialize($unprotected);
 	setOptionDefault('gallery_data', serialize($data));
