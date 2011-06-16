@@ -658,7 +658,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 											while (count($vers)<3) {
 												$vers[] = 0;
 											}
-											$version = $vers[0].'.'.$vers[1].'.'.$vers[2];
+											$version = (int)$vers[0].'.'.(int)$vers[1].'.'.(int)$vers[2];
 										}
 									}
 									if (version_compare($version, $zpversion) < 0) {

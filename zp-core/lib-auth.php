@@ -815,32 +815,49 @@ class Zenphoto_Authority {
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="challenge" />
 						<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
-						<fieldset style="text-align:left" ><legend><?php echo gettext('User id:')?></legend>
+						<fieldset style="text-align:left" >
+							<legend><?php echo gettext('User ID:')?></legend>
 							<input class="textfield" name="user" id="user" type="text" size="20" value="<?php echo html_encode($requestor); ?>" />
 						</fieldset>
-						<fieldset style="text-align:left" ><legend><?php echo gettext('Challenge question:')?></legend>
-							<span id="challenge" ><?php echo html_encode($info['challenge']); ?></span>
-						</fieldset>
-						<fieldset><legend><?php echo gettext('Your response:')?></legend>
-							<input class="textfield" name="pass" id="pass" type="text" size="40" />
-						</fieldset>
-						<br />
 						<?php
-						if ($star) {
+						if ($requestor) {
 							?>
-							<a href="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
-								<?php echo gettext('Request reset by e-mail'); ?>
-							</a>
+							<p style="text-align:left"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?></p>
+							<fieldset style="text-align:left" ><legend><?php echo gettext('Challenge question:')?></legend>
+								<?php
+								echo html_encode($info['challenge']);
+								?>
+							</fieldset>
+							<fieldset><legend><?php echo gettext('Your response:')?></legend>
+								<input class="textfield" name="pass" id="pass" type="text" size="40" />
+							</fieldset>
+							<br />
+							<?php
+						} else {
+							?>
+							<p style="text-align:left">
+							<?php
+							echo gettext('Enter your User ID and press refresh to get your challenge question.');
+							?>
+							</p>
 							<?php
 						}
 						?>
-						<br />
-						<br />
 						<div class="buttons">
 							<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
 							<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
 						</div>
 						<br clear="all" />
+						<br />
+						<?php
+						if ($star) {
+							?>
+							<a href="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
+								<?php echo gettext('Or request reset by e-mail'); ?>
+							</a>
+							<?php
+						}
+						?>
 					</form>
 				</div>
 				<?php

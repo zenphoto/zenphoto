@@ -28,7 +28,8 @@ class Gallery {
 			$this->data = unserialize(GALLERY_DATA);
 		}
 		if (isset($this->data['unprotected_pages'])) {
-			$this->unprotected_pages = unserialize($this->data['unprotected_pages']);
+			$pages = @unserialize($this->data['unprotected_pages']);
+			if (is_array($pages)) $this->unprotected_pages = $pages;	//	protect against a failure
 		}
 
 	}
