@@ -807,37 +807,47 @@ class Zenphoto_Authority {
 			}
 		}
 		$whichForm = sanitize(@$_REQUEST['logon_step']);
+		?>
+		<div id="loginform">
+		<?php
+		if ($logo) {
+			?>
+			<p>
+				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/zen-logo.png" title="ZenPhoto" alt="ZenPhoto" />
+			</p>
+			<?php
+		}
 		switch ($whichForm) {
 			case 'challenge':
 				?>
-				<div id="loginform">
-					<form name="login" action="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php" method="post">
+				<form name="login" action="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php" method="post">
+					<fieldset id="logon_box">
 						<input type="hidden" name="login" value="1" />
 						<input type="hidden" name="password" value="challenge" />
 						<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
-						<fieldset style="text-align:left" >
-							<legend><?php echo gettext('User ID:')?></legend>
-							<input class="textfield" name="user" id="user" type="text" size="20" value="<?php echo html_encode($requestor); ?>" />
+						<fieldset>
+							<legend><?php echo gettext('User')?></legend>
+							<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
 						</fieldset>
 						<?php
 						if ($requestor) {
 							?>
-							<p style="text-align:left"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?></p>
+							<p class="logon_form_text"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?></p>
 							<fieldset style="text-align:left" ><legend><?php echo gettext('Challenge question:')?></legend>
 								<?php
 								echo html_encode($info['challenge']);
 								?>
 							</fieldset>
-							<fieldset><legend><?php echo gettext('Your response:')?></legend>
-								<input class="textfield" name="pass" id="pass" type="text" size="40" />
+							<fieldset><legend><?php echo gettext('Your response')?></legend>
+								<input class="textfield" name="pass" id="pass" type="text" size="35" />
 							</fieldset>
 							<br />
 							<?php
 						} else {
 							?>
-							<p style="text-align:left">
+							<p class="logon_form_text">
 							<?php
-							echo gettext('Enter your User ID and press refresh to get your challenge question.');
+							echo gettext('Enter your User ID and press <code>Refresh</code> to get your challenge question.');
 							?>
 							</p>
 							<?php
@@ -848,25 +858,23 @@ class Zenphoto_Authority {
 							<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
 						</div>
 						<br clear="all" />
-						<br />
-						<?php
-						if ($star) {
-							?>
+					</fieldset>
+					<br />
+					<?php
+					if ($star) {
+						?>
+						<p class="logon_link">
 							<a href="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
 								<?php echo gettext('Or request reset by e-mail'); ?>
 							</a>
-							<?php
-						}
-						?>
-					</form>
-				</div>
+						</p>
+						<?php
+					}
+					?>
+				</form>
 				<?php
 				break;
 			default:
-				?>
-				<div id="loginform">
-				<?php
-				if ($logo) echo "<p><img src=\"".WEBPATH.'/'.ZENFOLDER."/images/zen-logo.png\" title=\"ZenPhoto\" alt=\"ZenPhoto\" /></p>";
 				switch ($_zp_login_error) {
 					case 1:
 						?>
@@ -892,122 +900,106 @@ class Zenphoto_Authority {
 				}
 				?>
 				<form name="login" action="#" method="post">
-				<input type="hidden" name="login" value="1" />
-				<input type="hidden" name="password" value="1" />
-				<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
-				<fieldset id="logon_box">
-					<?php
-					if (empty($alt_handlers)) {
-						$ledgend = gettext('Login');
-					} else {
-						$gallery = new Gallery();
-						?>
-						<script type="text/javascript">
-							<!--
-							var handlers = [];
-							<?php
-							$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
-												'<option value="0">'.html_encode(get_language_string($gallery->getTitle())).'</option>';
-							$c = 0;
-							foreach ($alt_handlers as $handler=>$details) {
-								$c++;
-								$details['params'][] = 'redirect='.$redirect;
-								if (!empty($requestor)) {
-									$details['params'][] = 'requestor='.$requestor;
-								}
-								echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
-
-								$list .= '<option value="'.$c.'">'.$handler.'</option>';
-							}
-							$list .= '</select>';
-							$ledgend = sprintf(gettext('Logon using:%s'),$list);
+					<input type="hidden" name="login" value="1" />
+					<input type="hidden" name="password" value="1" />
+					<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
+					<fieldset id="logon_box">
+						<?php
+						if (empty($alt_handlers)) {
+							$ledgend = gettext('Login');
+						} else {
+							$gallery = new Gallery();
 							?>
-							function changeHandler(handler) {
-								handler.push('user='+$('#user').val());
-								var script = handler.shift();
-								launchScript(script,handler);
-							}
-							-->
-						</script>
-						<?php
-					}
-					?>
-					<legend><?php echo $ledgend; ?></legend>
-					<table class="password">
-						<?php
+							<script type="text/javascript">
+								<!--
+								var handlers = [];
+								<?php
+								$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
+													'<option value="0">'.html_encode(get_language_string($gallery->getTitle())).'</option>';
+								$c = 0;
+								foreach ($alt_handlers as $handler=>$details) {
+									$c++;
+									$details['params'][] = 'redirect='.$redirect;
+									if (!empty($requestor)) {
+										$details['params'][] = 'requestor='.$requestor;
+									}
+									echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
+
+									$list .= '<option value="'.$c.'">'.$handler.'</option>';
+								}
+								$list .= '</select>';
+								$ledgend = sprintf(gettext('Logon using:%s'),$list);
+								?>
+								function changeHandler(handler) {
+									handler.push('user='+$('#user').val());
+									var script = handler.shift();
+									launchScript(script,handler);
+								}
+								-->
+							</script>
+							<?php
+						}
 						if ($showUser || GALLERY_SECURITY=='private') {	//	requires a "user" field
 							?>
-							<tr>
-								<td align="left">
-								<h2><?php echo gettext("User"); ?>&nbsp;</h2>
-								</td>
-								<td><input class="textfield" name="user" id="user" type="text" size="20"
-									value="<?php echo html_encode($requestor); ?>" /></td>
-							</tr>
+							<fieldset><legend><?php echo gettext("User"); ?></legend>
+								<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
+							</fieldset>
 							<?php
 						}
 						?>
-						<tr>
-							<td align="left">
-							<h2><?php echo gettext("Password"); ?></h2>
-							</td>
-							<td><input class="textfield" name="pass" id="pass" type="password" size="20" /></td>
-						</tr>
-					</table>
-				</fieldset>
-				<table class="password">
-					<tr>
-						<td align="left" colspan="2">
-						<a href="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" >
-							<?php echo gettext('I forgot my user/password'); ?>
-						</a>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<div class="buttons">
+						<fieldset><legend><?php echo gettext("Password"); ?></legend>
+							<input class="textfield" name="pass" id="pass" type="password" size="35" />
+						</fieldset>
+						<div class="buttons">
+							<p>
 								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Log in"); ?></button>
 								<button type="reset" value="<?php echo gettext("Reset"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset"); ?></button>
-							</div>
-						</td>
-					</tr>
-				</table>
+							</p>
+						</div>
+						<br clear="all" />
+					</fieldset>
 				</form>
 				<?php
 				if ($hint) {
 					echo '<p>'.$hint.'</p>';
 				}
 				?>
-				</div>
+					<p class="logon_link">
+						<a href="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" >
+							<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
+						</a>
+					</p>
 				<?php
 				break;
 			case 'captcha':
+				$captchaCode = $_zp_captcha->generateCaptcha($img);
 				?>
-				<div id="loginform">
-					<form name="login" action="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php" method="post">
-						<input type="hidden" name="login" value="1" />
-						<input type="hidden" name="password" value="captcha" />
-						<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
-						<fieldset id="logon_box">
-							<?php
-							$captchaCode = $_zp_captcha->generateCaptcha($img);
-							?>
-							<input type="hidden" name="code_h" value="<?php echo $captchaCode; ?>" />
-							<?php echo gettext('user ID'); ?> <input class="textfield" name="user" id="user" type="text" size="20" value="<?php echo html_encode($requestor); ?>" />
-							<p><img src="<?php echo $img; ?>" alt="Code" align="middle"/></p>
-							<input class="textfield" name="pass" type="text" size="20" />
-							<p><?php echo gettext("Enter CAPTCHA."); ?></p>
+				<form name="login" action="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php" method="post">
+					<input type="hidden" name="login" value="1" />
+					<input type="hidden" name="password" value="captcha" />
+					<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
+					<input type="hidden" name="code_h" value="<?php echo $captchaCode; ?>" />
+					<fieldset id="logon_box">
+						<fieldset><legend><?php echo gettext('User'); ?></legend>
+							<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
+						</fieldset>
+						<p><img src="<?php echo $img; ?>" alt="Code" align="middle"/></p>
+						<fieldset><legend><?php echo gettext("Enter CAPTCHA"); ?></legend>
+							<input class="textfield" name="pass" type="text" size="35" />
 						</fieldset>
 						<br />
 						<div class="buttons">
 							<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
 						</div>
 						<br clear="all" />
-					</form>
-				</div>
+					</fieldset>
+				</form>
 				<?php
 				break;
 		}
+		?>
+		</div>
+		<?php
 	}
 
 }

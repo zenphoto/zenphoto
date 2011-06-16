@@ -870,6 +870,7 @@ label:hover {
 #loginform {
 	margin-top: 15%;
 	margin-left: 0 auto;
+	padding: 8px;
 }
 
 #loginform fieldset {
@@ -886,13 +887,15 @@ label:hover {
 	padding: 4px;
 }
 
-#loginform table {
-	margin: 0px auto;
-	border: 0px;
+.logon_form_text {
+	padding: 4px;
+	text-align:left;
+	margin-left: 10px;
+	margin-left: 5px;
 }
 
-#loginform td {
-	padding: 4px;
+.logonlink {
+	text-align:center;
 }
 
 /* Thumbnail Preview selectbox effect.
