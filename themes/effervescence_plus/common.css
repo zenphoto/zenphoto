@@ -188,22 +188,61 @@ button.positive,.buttons a.positive {
 	padding: 10px;
 	width: 300px;
 	margin: 25px auto;
+	margin-top: 15%;
+	margin-left: 0 auto;
 	font-size: 100%;
 	background: #F7F8F9;
 	border-top: 1px solid #BAC9CF;
 	border-left: 1px solid #BAC9CF;
 	border-right: 1px solid #BAC9CF;
 	border-bottom: 5px solid #BAC9CF;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-khtml-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
 	color:black;
-	background-color: #F7F8F9;
-	filter: alpha(opacity=75);
-	opacity:0.75;
-}
-.password h2{
-	font-weight:normal;
-	color:#464646;
 }
 
+#loginform fieldset {
+	-moz-border-radius: 5px 5px 5px 5px;
+	-khtml-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	border: 1px solid lightgray;
+	color:black;
+	color:black;
+	padding:10px;
+}
+
+#loginform input.textfield {
+	margin: 0px;
+	font-size: 100%;
+	padding: 4px;
+}
+
+.logon_form_text {
+	padding: 4px;
+	text-align:left;
+	margin-left: 10px;
+	margin-left: 5px;
+	color:black;
+}
+
+.logon_link a {
+	color: #4D76CF;
+	text-decoration: none;
+	border-bottom: 1px dotted #597580;
+}
+
+.logon_link a:hover {
+	color: #FF8A00; !important
+	text-decoration: none;
+	border-bottom: 1px solid #FF8A00;
+}
+.logon_link{
+	color: #4D76CF;
+	text-align:center;
+}
 
 .button {
 	cursor: pointer;
@@ -216,27 +255,6 @@ label {
 
 label:hover {
 	color: #000;
-}
-
-#loginform {
-	margin-top: 15%;
-	margin-left: 0 auto;
-	color:black;
-}
-
-#loginform input.textfield {
-	margin: 0px;
-	font-size: 100%;
-	padding: 4px;
-}
-
-#loginform table {
-	margin: 0px auto;
-	border: 0px;
-}
-
-#loginform td {
-	padding: 4px;
 }
 
 #Federated_buttons_fieldlist #Federated_buttons_fieldlist fieldlist {

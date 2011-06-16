@@ -624,3 +624,60 @@ table.password td.hint{
 	font-weight: bold;
 	margin-bottom: 1em;
 }
+/* Login
+------------------------------ */
+#loginform {
+	padding: 10px;
+	width: 300px;
+	margin: 25px auto;
+	margin-top: 15%;
+	margin-left: 0 auto;
+	font-size: 100%;
+	background: #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 5px solid #BAC9CF;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-khtml-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+#loginform fieldset {
+	-moz-border-radius: 5px 5px 5px 5px;
+	-khtml-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	border: 1px solid lightgray;
+}
+
+#loginform input.textfield {
+	margin: 0px;
+	font-size: 100%;
+	padding: 4px;
+}
+
+.logon_form_text {
+	padding: 4px;
+	text-align:left;
+	margin-left: 10px;
+	margin-left: 5px;
+}
+
+.logon_link {
+	text-align:center;
+}
+
+.button {
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+label {
+	cursor: pointer;
+}
+
+label:hover {
+	color: #000;
+}

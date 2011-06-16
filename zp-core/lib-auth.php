@@ -865,7 +865,7 @@ class Zenphoto_Authority {
 						?>
 						<p class="logon_link">
 							<a href="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=captcha', 'ref='+$('#user').val()]);" >
-								<?php echo gettext('Or request reset by e-mail'); ?>
+								<?php echo gettext('Request reset by e-mail'); ?>
 							</a>
 						</p>
 						<?php
@@ -950,11 +950,10 @@ class Zenphoto_Authority {
 						<fieldset><legend><?php echo gettext("Password"); ?></legend>
 							<input class="textfield" name="pass" id="pass" type="password" size="35" />
 						</fieldset>
+						<br />
 						<div class="buttons">
-							<p>
-								<button type="submit" value="<?php echo gettext("Log in"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Log in"); ?></button>
-								<button type="reset" value="<?php echo gettext("Reset"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset"); ?></button>
-							</p>
+							<button type="submit" value="<?php echo gettext("Log in"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Log in"); ?></button>
+							<button type="reset" value="<?php echo gettext("Reset"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/reset.png" alt="" /><?php echo gettext("Reset"); ?></button>
 						</div>
 						<br clear="all" />
 					</fieldset>

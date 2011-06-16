@@ -871,4 +871,21 @@ font-weight: bold;
 	margin-bottom: 1em;
 }
 
+/* Login
+------------------------------ */
+#loginform {
+	padding: 10px;
+	width: 300px;
+	margin: 25px auto;
+	font-size: 100%;
+	background: #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 5px solid #BAC9CF;
+	color:black;
+	background-color: #F7F8F9;
+	filter: alpha(opacity=75);
+	opacity:0.75;
+}
 

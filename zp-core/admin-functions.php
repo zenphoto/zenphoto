@@ -391,6 +391,9 @@ function setAlbumSubtabs($album) {
 		$default = 'albuminfo';
 	}
 	$zenphoto_tabs['edit']['default'] = $default;
+	if (isset($_GET['tab'])) {
+		return sanitize($_GET['tab']);
+	}
 	return $default;
 }
 

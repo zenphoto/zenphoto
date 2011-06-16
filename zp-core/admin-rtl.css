@@ -184,15 +184,21 @@ h1 {text-align:right;}
 
 /* Login
 ------------------------------ */
-#loginform table  {
-text-align:right;
-direction:rtl;
-
+#loginform {
+	text-align:right;
+	direction:rtl;
+}
+.logon_form_text {
+	padding: 4px;
+	text-align:right;
+	direction:rtl;
+	margin-left: 10px;
+	margin-left: 5px;
 }
 
 #loginform input.textfield {
-text-align:left;
-direction:ltr;
+	text-align:left;
+	direction:ltr;
 }
 
 

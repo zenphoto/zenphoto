@@ -114,7 +114,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 		if ($showLoginForm) {
 			?>
 			<div class="passwordform">
-			<?php printPasswordForm('', false); ?>
+				<?php printPasswordForm('', false); ?>
 			</div>
 			<?php
 		}

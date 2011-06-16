@@ -842,6 +842,8 @@ acronym {
 	padding: 10px;
 	width: 300px;
 	margin: 25px auto;
+	margin-top: 15%;
+	margin-left: 0 auto;
 	font-size: 100%;
 	background: #F7F8F9;
 	border-top: 1px solid #BAC9CF;
@@ -854,31 +856,13 @@ acronym {
 	border-radius: 5px 5px 5px 5px;
 }
 
-.button {
-	cursor: pointer;
-	padding: 5px 10px;
-}
-
-label {
-	cursor: pointer;
-}
-
-label:hover {
-	color: #000;
-}
-
-#loginform {
-	margin-top: 15%;
-	margin-left: 0 auto;
-	padding: 8px;
-}
-
 #loginform fieldset {
-		-moz-border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px 5px 5px 5px;
 	-khtml-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
 	border: 1px solid lightgray;
+	padding:10px;
 }
 
 #loginform input.textfield {
@@ -894,8 +878,21 @@ label:hover {
 	margin-left: 5px;
 }
 
-.logonlink {
+.logon_link {
 	text-align:center;
+}
+
+.button {
+	cursor: pointer;
+	padding: 5px 10px;
+}
+
+label {
+	cursor: pointer;
+}
+
+label:hover {
+	color: #000;
 }
 
 /* Thumbnail Preview selectbox effect.
