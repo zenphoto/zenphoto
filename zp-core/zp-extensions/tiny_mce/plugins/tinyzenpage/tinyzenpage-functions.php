@@ -183,7 +183,7 @@ function printImageslist($number) {
 					$video = $videocheck;
 					$imgurl = $imageobj->getThumb();
 				}
-				if(get_class($imageobj) == 'TextObject' || $videocheck) {
+				if(get_class($imageobj) == 'TextObject') {
 					$video = 'textobject';
 					$imgurl = $imageobj->getThumb();
 					$fullimage = html_encode($imageobj->getBody());
