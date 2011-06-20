@@ -115,11 +115,13 @@ function printImageslist($number) {
 		$fullimage = pathurlencode($albumthumb->getFullImage());
 		$videocheck = checkIfImageVideo($albumthumb);
 		if(empty($videocheck)) {
-				$video = '';
-				$backgroundcss = 'border: 1px solid gray; padding: 1px;';
+			$video = '';
+			$backgroundcss = 'border: 1px solid gray; padding: 1px;';
+			$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=". urlencode(pathurlencode($albumthumbalbum->name))."&amp;i=".urlencode(urlencode($albumthumb->filename));
 		} else {
 			$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
 			$video = $videocheck;
+			$imgurl = $albumthumb->getThumb();
 		}
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='albumthumb' style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>";
@@ -166,21 +168,22 @@ function printImageslist($number) {
 					$linkalbumobj = $albumobj;
 					$imageobj = newImage($albumobj,$images[$nr]);
 				}
-				$videocheck = checkIfImageVideo($imageobj);
-				if(empty($videocheck)) {
-					$video = '';
-					$backgroundcss = 'border: 1px solid gray; padding: 1px;';
-				} else {
-					$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
-					$video = $videocheck;
-				}
 				$imagedesc = '';
 				$imagedesc = $imageobj->getDesc();
 				$albumdesc = '';
 				$albumdesc = $linkalbumobj->getDesc();
 				$fullimage = pathurlencode($imageobj->getFullImage());
-				$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
-				if(get_class($imageobj) == 'TextObject') {
+				$videocheck = checkIfImageVideo($imageobj);
+				if(empty($videocheck)) {
+					$video = '';
+					$backgroundcss = 'border: 1px solid gray; padding: 1px;';
+					$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
+				} else {
+					$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
+					$video = $videocheck;
+					$imgurl = $imageobj->getThumb();
+				}
+				if(get_class($imageobj) == 'TextObject' || $videocheck) {
 					$video = 'textobject';
 					$imgurl = $imageobj->getThumb();
 					$fullimage = html_encode($imageobj->getBody());
