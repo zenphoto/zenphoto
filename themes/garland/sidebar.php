@@ -58,14 +58,16 @@ if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
 	<?php
 } else {	//	"standard zenpage sidebar menus
 	if(function_exists("printAllNewsCategories")) {
-		?>
-		<div class="menu">
-			<h3><?php echo gettext("News articles"); ?></h3>
-			<?php
-			printAllNewsCategories(gettext("All news"),TRUE,"news_menu","menu",true,"menu_sub","menu_sub_active");
+		if (getNumNews(false)) {
 			?>
-		</div>
-		<?php
+			<div class="menu">
+				<h3><?php echo gettext("News articles"); ?></h3>
+				<?php
+				printAllNewsCategories(gettext("All news"),TRUE,"news_menu","menu",true,"menu_sub","menu_sub_active");
+				?>
+			</div>
+			<?php
+			}
 		}
 	?>
 
@@ -103,13 +105,15 @@ if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
 
 	<?php
 	if(function_exists("printPageMenu")) {
-		?>
-		<div class="menu">
-			<h3><?php echo gettext("Pages"); ?></h3>
+		if (getNumPages()) {
+			?>
+			<div class="menu">
+				<h3><?php echo gettext("Pages"); ?></h3>
+				<?php
+				printPageMenu("list","page_menu","menu-active","submenu","menu-active"); ?>
+			</div>
 			<?php
-			printPageMenu("list","page_menu","menu-active","submenu","menu-active"); ?>
-		</div>
-		<?php
+		}
 	}
 }
 ?>

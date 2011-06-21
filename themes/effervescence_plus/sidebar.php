@@ -14,13 +14,15 @@ if(function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'
 	<?php
 } else {	//	"standard zenpage sidebar menus
 	if(function_exists("printAllNewsCategories")) {
-		?>
-		<div class="menu">
-			<h3><?php echo gettext("News articles"); ?></h3>
-			<?php printAllNewsCategories(gettext("All news"),true,"","menu-active",true,"submenu","menu-active"); ?>
-			<div class="menu_rule"></div>
-		</div>
-		<?php
+		if (getNumNews(false)) {
+			?>
+			<div class="menu">
+				<h3><?php echo gettext("News articles"); ?></h3>
+				<?php printAllNewsCategories(gettext("All news"),true,"","menu-active",true,"submenu","menu-active"); ?>
+				<div class="menu_rule"></div>
+			</div>
+			<?php
+		}
 	}
 	?>
 
@@ -42,13 +44,19 @@ if(function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'
 		?>
 		<div class="menu_rule"></div>
 	</div>
-	<?php if(function_exists("printPageMenu")) { ?>
-	<div class="menu">
-		<h3><?php echo gettext("Pages"); ?></h3>
-		<?php	printPageMenu("list","","menu-active","submenu","menu-active"); ?>
-		<div class="menu_rule"></div>
-	</div>
-	<?php } ?>
+	<?php
+	if(function_exists("printPageMenu")) {
+		if (getNumPages()) {
+			?>
+			<div class="menu">
+				<h3><?php echo gettext("Pages"); ?></h3>
+				<?php	printPageMenu("list","","menu-active","submenu","menu-active"); ?>
+				<div class="menu_rule"></div>
+			</div>
+			<?php
+		}
+	}
+	?>
 
 	<div class="menu">
 	<h3><?php echo gettext("Archive"); ?></h3>
