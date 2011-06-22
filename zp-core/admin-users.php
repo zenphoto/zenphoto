@@ -48,14 +48,19 @@ if (isset($_GET['action'])) {
 			exit();
 			break;
 		case 'saveoptions':
-			if (!$_zp_null_account) XSRFdefender('saveadmin');
+			if (!$_zp_null_account || $_zp_reset_admin) {
+				if ($_zp_reset_admin) {
+					$_zp_current_admin_obj = $_zp_reset_admin;
+				}
+				XSRFdefender('saveadmin');
+			}
 			$notify = '';
 			$returntab = '';
 
 			if (isset($_POST['saveadminoptions'])) {
 				if ($_zp_null_account || (isset($_POST['alter_enabled'])) || (sanitize_numeric($_POST['totaladmins']) > 1) ||
-				(trim(sanitize($_POST['0-adminuser'],0))) != $_zp_current_admin_obj->getUser() ||
-				isset($_POST['0-newuser'])) {
+							(trim(sanitize($_POST['0-adminuser'],0))) != $_zp_current_admin_obj->getUser() ||
+							isset($_POST['0-newuser'])) {
 					admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
 				}
 				$alter = isset($_POST['alter_enabled']);
@@ -72,7 +77,7 @@ if (isset($_GET['action'])) {
 					}
 					if (!empty($user)) {
 						$nouser = false;
-						if ($pass == trim(sanitize($_POST[$i.'-adminpass_2']))) {
+						if ($pass == trim(sanitize($_POST[$i.'-adminpass_2'])) && strlen($_POST[$i.'-adminpass']) == strlen($_POST[$i.'-adminpass_2'])) {
 							if (isset($_POST[$i.'-newuser'])) {
 								$newuser = $user;
 								$what = 'new';
@@ -99,8 +104,8 @@ if (isset($_GET['action'])) {
 								}
 							}
 							if (empty($pass)) {
-								if ($newuser) {
-									$msg = gettext('Password may not be empty!');
+								if ($newuser || @$_POST[$i.'-passrequired']) {
+									$msg = sprintf(gettext('%s password may not be empty!'),$admin_n);
 								} else {
 									$msg = '';
 								}
@@ -180,7 +185,14 @@ if (isset($_GET['action'])) {
 				}
 			}
 
-			if (empty($notify)) $notify = '?saved&xsrftoken='.getXSRFToken('saved');
+			if (empty($notify)) {
+				$notify = '?saved&xsrftoken='.getXSRFToken('saved');
+			} else {
+				if (isset($_GET['ticket'])) {
+					setOption('admin_reset_date', $_zp_request_date); // reset the date
+					$notify .= '&ticket='.$_GET['ticket'].'&user='.$_GET['user'];
+				}
+			}
 			header("Location: " . $notify . $returntab);
 			exit();
 
@@ -254,9 +266,11 @@ if ($_zp_null_account) {
 	}
 
 	$pages = 0;
+	$clearPass = false;
 	if ($_zp_null_account && isset($_zp_reset_admin)) {
 		$_zp_current_admin_obj = $_zp_reset_admin;
-		setOption('admin_reset_date', $_zp_request_date); // reset the date in case of no save
+		setOption('admin_reset_date', $_zp_request_date); // reset the date
+		$clearPass = true;
 	}
 	if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_reset_admin) {
 		$temp = $admins = $_zp_authority->getAdministrators();
@@ -656,21 +670,22 @@ function languageChange(id,lang) {
 			?>
 		<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
 			<td width="35%" <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top">
-				<?php
-				if (empty($userid)) {
-					$x = '';
-				} else {
-					$x = $userobj->getPass();
-					if (!empty($x)) {
-						$x = '          ';
-					}
+			<?php
+			if (empty($userid) || $clearPass) {
+				$x = '';
+			} else {
+				$x = $userobj->getPass();
+				if (!empty($x)) {
+					$x = '          ';
 				}
-				?>
+			}
+			?>
+				<input type="hidden" name="<?php echo $id; ?>-passrequired" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $clearPass; ?>" />
 				<fieldset><legend><?php echo gettext("Password:"); ?></legend>
-					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass" value="<?php echo $x; ?>" />
+					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass" value="<?php echo $x; ?>" onchange="$('#passrequired-<?php echo $id; ?>').val(1);" />
 				</fieldset>
 				<fieldset><legend><?php echo gettext("(repeat)"); ?></legend>
-					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass_2" value="<?php echo $x; ?>" />
+					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass_2" value="<?php echo $x; ?>" onchange="$('#passrequired-<?php echo $id; ?>').val(1);" />
 				</fieldset>
 				<?php
 				$msg = $_zp_authority->passwordNote();

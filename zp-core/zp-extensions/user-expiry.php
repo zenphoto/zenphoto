@@ -82,7 +82,8 @@ class user_expiry {
 }
 
 function user_expiry_admin_tabs($tabs, $current) {
-	if ((zp_loggedin(ADMIN_RIGHTS))) {
+	global $_zp_null_account;
+	if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_null_account) {
 		if (isset($tabs['users']['subtabs'])) {
 			$subtabs = $tabs['users']['subtabs'];
 		} else {

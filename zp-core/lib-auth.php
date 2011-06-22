@@ -297,20 +297,25 @@ class Zenphoto_Authority {
 	 * @return bit
 	 */
 	function checkAuthorization($authCode, $id) {
-		global $_zp_current_admin_obj;
+		global $_zp_current_admin_obj, $_zp_reset_admin;
+		$_zp_current_admin_obj = NULL;
 		if (DEBUG_LOGIN) { debugLogBacktrace("checkAuthorization($authCode, $id)");	}
 
 		$admins = $this->getAdministrators();
 		if (DEBUG_LOGIN) { debugLogArray("checkAuthorization: admins",$admins);	}
 		$reset_date = getOption('admin_reset_date');
-		if ((count($admins) == 0) || empty($reset_date)) {
-			$_zp_current_admin_obj = NULL;
-			if (DEBUG_LOGIN) { debugLog("checkAuthorization: no admin or reset request"); }
+		if ((count($admins) == 0)) {
+			if (DEBUG_LOGIN) { debugLog("checkAuthorization: no admins"); }
 			return ADMIN_RIGHTS; //no admins or reset request
+		}
+		if (empty($reset_date)) {
+			if (DEBUG_LOGIN) { debugLog("checkAuthorization: reset request"); }
+			if (is_object($_zp_reset_admin)) {
+				return $_zp_reset_admin->getRights();
+			}
 		}
 
 		if (empty($authCode)) return 0; //  so we don't "match" with an empty password
-		$_zp_current_admin_obj = NULL;
 		$rights = 0;
 		$criteria = array('`pass`=' => $authCode, '`valid`=' => 1);
 		if (!is_null($id)) {

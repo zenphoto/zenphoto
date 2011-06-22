@@ -36,31 +36,7 @@ if (defined('VIEW_ALL_RIGHTS')) {
 
 
 // If the auth variable gets set somehow before this, get rid of it.
-$_zp_loggedin = $_zp_null_account = false;
-if (isset($_GET['ticket'])) { // password reset query
-	$_zp_ticket = sanitize($_GET['ticket']);
-	$post_user = sanitize($_GET['user']);
-	$admins = $_zp_authority->getAdministrators();
-	foreach ($admins as $tuser) {
-		if ($tuser['user'] == $post_user && !empty($tuser['email'])) {
-			$admin = $tuser;
-			$_zp_request_date = getOption('admin_reset_date');
-			$adm = $admin['user'];
-			$pas = $admin['pass'];
-			$ref = sha1($_zp_request_date . $adm . $pas);
-			if ($ref === $_zp_ticket) {
-				if (time() <= ($_zp_request_date + (3 * 24 * 60 * 60))) { // limited time offer
-					setOption('admin_reset_date', NULL);
-					$_zp_reset_admin = new Zenphoto_Administrator($adm, 1);
-					$_zp_null_account = true;
-				}
-			}
-			break;
-		}
-	}
-}
-
-
+$_zp_loggedin = $_zp_null_account = $_zp_reset_admin = false;
 
 // we have the ssl marker cookie, normally we are already logged in
 // but we need to redirect to ssl to retrive the auth cookie (set as secure).
@@ -89,8 +65,29 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 		}
 	}
 } else {	//	no login form, check the cookie
+	if (isset($_GET['ticket'])) { // password reset query
+		$_zp_ticket = sanitize($_GET['ticket']);
+		$post_user = sanitize($_GET['user']);
+		$admins = $_zp_authority->getAdministrators();
+		foreach ($admins as $tuser) {
+			if ($tuser['user'] == $post_user) {
+				$admin = $tuser;
+				$_zp_request_date = getOption('admin_reset_date');
+				$adm = $admin['user'];
+				$pas = $admin['pass'];
+				$ref = sha1($_zp_request_date . $adm . $pas);
+				if ($ref === $_zp_ticket) {
+					if (time() <= ($_zp_request_date + (3 * 24 * 60 * 60))) { // limited time offer
+						setOption('admin_reset_date', NULL);
+						$_zp_reset_admin = new Zenphoto_Administrator($adm, 1);
+						$_zp_null_account = true;
+					}
+				}
+				break;
+			}
+		}
+	}
 	$_zp_loggedin = $_zp_authority->checkCookieCredentials();
-	$_zp_null_account = ($_zp_loggedin == ADMIN_RIGHTS);
 	if (is_object($_zp_current_admin_obj)) {
 		$_zp_current_admin_obj->lastlogon = $_zp_current_admin_obj->get('loggedin');
 		$locale = $_zp_current_admin_obj->getLanguage();
