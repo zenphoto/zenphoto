@@ -170,7 +170,7 @@ if (!defined('SERVERPATH')) define('SERVERPATH', str_replace("\\", '/', dirname(
 define('SERVER_PROTOCOL', getOption('server_protocol'));
 switch (SERVER_PROTOCOL) {
 	case 'https':
-	define('PROTOCOL', $protocol);
+	define('PROTOCOL', 'https');
 	break;
 	default:
 	if(secureServer()) {

@@ -349,6 +349,7 @@ class Gallery {
 	 */
 	function garbageCollect($cascade=true, $complete=false, $restart='') {
 		if (empty($restart)) {
+			setOption('last_garbage_collect', time());
 			/* clean the comments table */
 			$this->commentClean('images');
 			$this->commentClean('albums');

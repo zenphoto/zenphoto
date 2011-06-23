@@ -41,7 +41,6 @@ if(getOption('zp_plugin_zenpage')) {
 if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 
 	$gallery = new Gallery();
-	$gallery->garbageCollect();
 	if (isset($_GET['action'])) {
 		$rightsneeded = array('external'=>ALL_RIGHTS, 'check_for_update'=>OVERVIEW_RIGHTS);
 		$action = sanitize($_GET['action']);

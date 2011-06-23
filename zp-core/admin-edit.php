@@ -48,7 +48,6 @@ $tagsort = getTagOrder();
 $mcr_errors = array();
 
 
-$gallery->garbageCollect();
 if (isset($_GET['showthumbs'])) {	// switch the display selector
 	$how = sanitize($_GET['showthumbs']);
 	setOption('album_tab_default_thumbs_'.(is_object($album)?$album->name:''), (int) ($how == 'no'));
@@ -472,6 +471,9 @@ if (isset($_GET['action'])) {
 			break;
 	} // end of switch
 } else {
+	if (time() > getOption('last_garbage_collect')+864000) {
+		$gallery->garbageCollect();
+	}
 	if (isset($_GET['albumimagesort'])) {
 		$newsort = sanitize($_GET['albumimagesort'],3);
 		if (strpos($newsort, '_desc')) {
