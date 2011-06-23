@@ -162,13 +162,14 @@ if (isset($_GET['action'])) {
 			$fail = '';
 			$search = new SearchEngine();
 			$searchfields = array();
+			setOption('exact_tag_match', sanitize($_POST['SEARCH_Tags_tag_match']));
+			unset($_POST['SEARCH_Tags_tag_match']);
 			foreach ($_POST as $key=>$value) {
 				if (strpos($key, 'SEARCH_') !== false) {
-					$searchfields[] = sanitize($value);
+					$searchfields[] = substr(sanitize($key),7);
 				}
 			}
 			setOption('search_fields', implode(',',$searchfields));
-			setOption('exact_tag_match', sanitize($_POST['SEARCH_Tags_tag_match']));
 			$olduser = getOption('search_user');
 			$newuser = trim(sanitize($_POST['search_user'],3));
 			if ($_POST['password_enabled']) {

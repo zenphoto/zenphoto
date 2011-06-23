@@ -620,8 +620,6 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 			$disabled = $data['disabled'];
 			$stored = $data['data'];
 
-			$theme = getCurrentTheme();
-			$form = getPlugin('comment_form'.$formname, $theme);
 			if (MEMBERS_ONLY_COMMENTS && !zp_loggedin(POST_COMMENT_RIGHTS)) {
 				echo gettext('Only registered users may post comments.');
 			} else {
@@ -630,7 +628,11 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 				}
 				?>
 				<div id="commententry" <?php echo $comment_commententry_mod; ?>>
-				<?php require($form); ?>
+				<?php
+				$theme = getCurrentTheme();
+				$form = getPlugin('comment_form'.$formname, $theme);
+				require($form);
+				?>
 				</div><!-- id="commententry" -->
 				<?php
 			}

@@ -171,14 +171,14 @@ class SearchEngine
 	 */
 	function allowedSearchFields() {
 		$setlist = array();
-		$fields = getOption('search_fields');
+		$fields = strtolower(getOption('search_fields'));
 		if (is_numeric($fields)) {
 			$setlist = $this->numericFields($fields);
 		} else {
 			$list = explode(',',$fields);
 			foreach ($this->search_structure as $key=>$display) {
 				if (in_array($key,$list)) {
-					$setlist[$key] = $display;
+					$setlist[$display] = $key;
 				}
 			}
 		}
