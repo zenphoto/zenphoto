@@ -1,6 +1,6 @@
 <script language="javascript" type="text/javascript">
 /* tinyMCEPopup.requireLangPack(); */
-		
+
 var ZenpageDialog = {
 	init : function(ed) {
 		tinyMCEPopup.resizeToInnerSize();
@@ -26,7 +26,7 @@ var ZenpageDialog = {
 		var webpath = '<?php echo WEBPATH; ?>'
 		var modrewrite = '<?php echo MOD_REWRITE; ?>';
 		var modrewritesuffix = '<?php echo getOption("mod_rewrite_image_suffix"); ?>';
-		<?php 
+		<?php
 		chdir(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flowplayer3');
 		$filelist = safe_glob('flowplayer-*.swf');
 		$swf = array_shift($filelist);
@@ -39,7 +39,7 @@ var ZenpageDialog = {
 		if($('#thumbnail:checked').val() == 1) {
 			imagesize = '&amp;s=<?php echo getOption("thumb_size"); ?>&amp;cw=<?php echo getOption("thumb_crop_width"); ?>&amp;ch=<?php echo getOption("thumb_crop_height"); ?>&amp;t=true';
 			if (wm_thumb) {
-				imagesize += '&ampwmk='+wm_thumb;
+				imagesize += '&amp;wmk='+wm_thumb;
 			}
 			cssclass ='zenpage_thumb';
 		}
@@ -50,16 +50,16 @@ var ZenpageDialog = {
 			}
 			imagesize = '&amp;s='+$('#cropsize').val()+'&amp;cw='+$('#cropwidth').val()+'&amp;ch='+$('#cropheight').val()+'&amp;t=true';
 			if (wm_thumb) {
-				imagesize += '&ampwmk='+wm_thumb;
+				imagesize += '&amp;wmk='+wm_thumb;
 			}
 			cssclass ='zenpage_customthumb';
-	
+
 		}
 
 		if($('#sizedimage:checked').val() == 1) {
 			imagesize = '&amp;s=<?php echo getOption("image_size"); ?>';
 			if (wm_img) {
-				imagesize += '&ampwmk='+wm_img;
+				imagesize += '&amp;wmk='+wm_img;
 			}
 			cssclass ='zenpage_sizedimage';
 		}
@@ -70,7 +70,7 @@ var ZenpageDialog = {
 			}
 			imagesize = '&amp;s='+$('#size').val();
 			if (wm_img) {
-				imagesize += '&ampwmk='+wm_img;
+				imagesize += '&amp;wmk='+wm_img;
 			}
 			cssclass ='zenpage_customimage';
 		}
@@ -128,7 +128,7 @@ var ZenpageDialog = {
 		// getting the include type checkbox values
 		if($('#image:checked').val() == 1) {
 			includetype = '<img src=\''+imgurl+imagesize+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
-			if($('#showtitle:checked').val() == 1 || $('#imagedesc:checked').val() == 1 || $('#albumdesc:checked').val() == 1) { 
+			if($('#showtitle:checked').val() == 1 || $('#imagedesc:checked').val() == 1 || $('#albumdesc:checked').val() == 1) {
 				infowrap1 = '<div class=\'zenpage_wrapper'+textwrap_title_add+'\''+textwrap_title+'>';
 				infowrap2 = '</div>';
 			}
@@ -142,7 +142,7 @@ var ZenpageDialog = {
 			if($('#imagedesc:checked').val() == 1) {
 				descwrap = '<div class=\'zenpage_desc\'>'+imgdesc+'</div>';
 			}
-			if($('#albumdesc:checked').val() == 1) {	
+			if($('#albumdesc:checked').val() == 1) {
 				descwrap = '<div class=\'zenpage_desc\'>'+albumdesc+'</div>';
 	  	}
 			infowrap2 = titlewrap+descwrap+infowrap2;
@@ -194,7 +194,7 @@ var ZenpageDialog = {
 				imglink += '},';
 				imglink += '"clip":{';
 				imglink += '"url":"'+fullimage+'",';
-				<?php 
+				<?php
 					if(getOption("flow_player3_autoplay") == 1) {
 						$autoplay = "true";
 					} else {
