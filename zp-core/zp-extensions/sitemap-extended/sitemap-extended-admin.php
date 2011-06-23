@@ -13,6 +13,7 @@ chdir(dirname(dirname(__FILE__)));
 // user plugin variant
 require_once('../../zp-core/admin-functions.php');
 require_once('../../zp-core/admin-globals.php');
+require_once('../../zp-core/template-functions.php');
 
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
 
