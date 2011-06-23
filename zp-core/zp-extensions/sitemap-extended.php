@@ -222,7 +222,7 @@ function generateSitemapIndexCacheFile() {
 	$dirs = array_diff(scandir($cachefolder),array( '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn'));
 	if($dirs) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-		$data .= sitemap_echonl('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+		$data .= sitemap_echonl('<sitemapindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/siteindex.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		foreach($dirs as $dir) {
 			$data .= sitemap_echonl("\t<sitemap>");
 			$data .= sitemap_echonl("\t\t<loc>".FULLWEBPATH.'/cache_html/sitemap/'.$dir.'</loc>');
