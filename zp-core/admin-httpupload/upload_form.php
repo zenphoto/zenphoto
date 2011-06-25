@@ -43,7 +43,7 @@ function upload_form($uploadlimit) {
 
 	?>
 
-	<form id="file_upload" action="upload.php" method="POST" enctype="multipart/form-data">
+	<form id="file_upload" action="uploader.php" method="POST" enctype="multipart/form-data">
     <input type="file" name="file" multiple />
     <button>Upload</button>
     <div><?php echo gettext("Select files"); ?></div>

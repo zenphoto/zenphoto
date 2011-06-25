@@ -1,4 +1,5 @@
 .file_upload {
+	width:27em;
   position: relative;
   overflow: hidden;
   direction: ltr;
@@ -9,7 +10,6 @@
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  min-width: 8em;
   height: 2.4em;
   line-height: 30px;
   background: #dcdcdc;
