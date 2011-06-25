@@ -123,12 +123,12 @@ class pagedThumbsNav {
 			$this->height = sanitize_numeric($height);
 		}
 		if(empty($prev)) {
-			$this->prev = getOption("pagedthumbs_prevtext");
+			$this->prev = get_language_string(getOption("pagedthumbs_prevtext"));
 		} else {
 			$this->prev = sanitize($prev);
 		}
 		if(empty($next)) {
-			$this->next = getOption("pagedthumbs_nexttext");
+			$this->next = get_language_string(getOption("pagedthumbs_nexttext"));
 		} else {
 			$this->next = sanitize($next);
 		}
