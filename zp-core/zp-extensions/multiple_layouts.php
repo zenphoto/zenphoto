@@ -325,19 +325,19 @@ function getLayoutSelector($obj,$type,$text,$prefix='',$secondary=false) {
 
 	$html = $text;
 	if(count($files) != 0) {
-		$html .= '<select id="'.$type.$prefix.'" name="'.$prefix.$type.'">';
+		$html .= '<select id="'.$type.$prefix.'" name="'.$prefix.$type.'">'."\n";
 		if(is_array($getlayout)) {
 			$selectedlayout = $getlayout['data'];
 		} else {
 			$selectedlayout = '';
 		}
-		$html .= '<option value=""'.($selectedlayout == ''? ' selected="selected"':'').' style="background-color:LightGray" >*'.$defaulttext.'* ('.$defaultlayout.')</option>';
+		$html .= '<option value=""'.($selectedlayout == ''? ' selected="selected"':'').' style="background-color:LightGray" >*'.$defaulttext.'* ('.$defaultlayout.')</option>'."\n";
 		foreach($list as $display=>$file) {
-			$html .= '<option value="'.html_encode($file).'"'.($selectedlayout == $file? ' selected="selected"':'').'>'.$display.'</option>';
+			$html .= '<option value="'.html_encode($file).'"'.($selectedlayout == $file? ' selected="selected"':'').'>'.$display.'</option>'."\n";
 		}
-		$html .= '</select>';
+		$html .= '</select>'."\n";
 	} else {
-		$html = '<p>'.sprintf(gettext('No extra <em>%s</em> theme pages available'),$filesmask).'</p>';
+		$html = '<p>'.sprintf(gettext('No extra <em>%s</em> theme pages available'),$filesmask).'</p>'."\n";
 	}
 	return $html;
 }
@@ -466,7 +466,7 @@ function saveZenphotoLayoutSelection($obj,$prefix) {
 				}
 			}
 			$exists = query_single_row("SELECT * FROM ".prefix('plugin_storage').' WHERE `aux` = '.$obj->getID().' AND `type` = "multiple_layouts_albums_images"');
-			$selectedlayout = isset($_POST[$prefix.'multiple_layouts_albums_images']) && sanitize($_POST[$prefix.'multiple_layouts_albums_images']);
+			$selectedlayout = isset($_POST[$prefix.'multiple_layouts_albums_images']) ? sanitize($_POST[$prefix.'multiple_layouts_albums_images']):NULL;
 			if ($selectedlayout) {	// not default
 				if ($exists) {
 					$query = query('UPDATE '.prefix('plugin_storage').' SET `aux`='.$obj->getID().', `data`='.db_quote($selectedlayout).' WHERE `id`='.$exists['id']);
