@@ -27,7 +27,7 @@
  * @package plugins
  * @tags "file download", "download manager", download
  */
-$plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
+$plugin_is_filter = 20|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Plugin to generate file download lists. The source of these files may be anywhere that can be accessed by server scripts, it need not be part of your Zenphoto installation.");
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_version = '1.4.1';
