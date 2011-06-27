@@ -34,7 +34,7 @@ if (isset($_GET['action'])) {
 				}
 				setOption($opt, $value);
 			} else {
-				purgeOption($opt);
+				setOption($opt, 0);
 			}
 		}
 		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved");
