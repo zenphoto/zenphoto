@@ -660,9 +660,9 @@ function getPlugin($plugin, $inTheme=false, $webpath=false) {
 	}
 	if (!$pluginFile) {
 		$pluginFile = '/'.USER_PLUGIN_FOLDER.'/'.internalToFilesystem($plugin);
-			if (!file_exists(SERVERPATH.$pluginFile)) {
+		if (!file_exists(SERVERPATH.$pluginFile)) {
 			$pluginFile = '/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.internalToFilesystem($plugin);
-				if (!file_exists(SERVERPATH.$pluginFile)) {
+			if (!file_exists(SERVERPATH.$pluginFile)) {
 				$pluginFile = false;
 			}
 		}
@@ -674,7 +674,7 @@ function getPlugin($plugin, $inTheme=false, $webpath=false) {
 			return SERVERPATH.$pluginFile;
 		}
 	}
-		return false;
+	return false;
 }
 
 /**

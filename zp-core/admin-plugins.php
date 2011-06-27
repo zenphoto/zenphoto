@@ -160,6 +160,7 @@ foreach ($filelist as $extension) {
 	} else {
 		$plugin_disable = false;
 	}
+	$currentsetting = getOption($opt);
 	$plugin_is_filter = 1|THEME_PLUGIN;
 	if ($str = isolate('$plugin_is_filter', $pluginStream)) {
 		eval($str);
@@ -173,6 +174,9 @@ foreach ($filelist as $extension) {
 					$plugin_is_filter = $plugin_is_filter|CLASS_PLUGIN;
 				}
 			}
+		}
+		if ($currentsetting && $currentsetting != $plugin_is_filter) {
+			setOption($opt, $plugin_is_filter);	//	the script has changed its setting!
 		}
 	}
 	$optionlink = isolate('$option_interface', $pluginStream);
@@ -191,7 +195,7 @@ foreach ($filelist as $extension) {
 					$optionlink = false;
 					echo ' disabled="disabled"';
 				} else {
-					if (getOption($opt) > THEME_PLUGIN) {
+					if ($currentsetting > THEME_PLUGIN) {
 						echo ' checked="checked"';
 					}
 				} ?> />
