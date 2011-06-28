@@ -71,8 +71,13 @@ h2 {
 		font-size: 16px;
 }
 
+.newsarticle h2 {
+font-weight: bold;
+}
+
 h3 {
 		font-size: 14px;
+	font-weight: bold;
 }
 
 hr {
@@ -671,13 +676,6 @@ border-bottom: 1px dotted #666666;
 line-height: 17px;
 }
 
-.newsarticle h3 {
-	font-weight:bold;
-	margin-top:3px;
-	margin-bottom:5px;
-	font-size: 14px;
-}
-
 .newsarticle a:link, a:active, a:visited {
 text-decoration:none;
 }
@@ -716,12 +714,11 @@ font-size: 0.8em;
 
 #pagetext {
 font-size: 12px;
-line-height: 17px;
+
 margin-bottom: 1em;
 min-height: 300px;
 }
 #pagetext p {
-	line-height: 1em;
 }
 #pagetext ul {
 	margin-left: 1em;

@@ -34,10 +34,10 @@ if (!defined('WEBPATH')) die();
 					<div class="left-corner">
 						<!-- begin content -->
 						<div class="main section" id="main">
-							<h3 id="gallerytitle">
+							<h2 id="gallerytitle">
 							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
 							<?php printNewsIndexURL(gettext("News"),"  &raquo; ");  printCurrentNewsCategory("  &raquo; ".gettext('Category')." - "); ?><?php printNewsTitle("  &raquo; "); ?>
-							</h3>
+							</h2>
 							<?php
 							if(is_NewsArticle()) { // single news article
 								?>
