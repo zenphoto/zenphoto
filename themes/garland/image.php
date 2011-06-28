@@ -45,9 +45,9 @@ if (!defined('WEBPATH')) die();
 					<div class="left-corner">
 						<!-- begin content -->
 						<div class="main section" id="main">
-							<h3 id="gallerytitle">
+							<h2 id="gallerytitle">
 								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php gettext('Album Thumbnails'); ?>"><?php echo html_encode(getAlbumTitle()); ?></a> &raquo; <?php printImageTitle(true); ?>
-							</h3>
+							</h2>
 							<div id="image_container">
 							<?php
 							$fullimage = getFullImageURL();

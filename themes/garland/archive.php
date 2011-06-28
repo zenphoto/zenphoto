@@ -34,7 +34,7 @@ if (!defined('WEBPATH')) die();
           <div class="left-corner">
             <!-- begin content -->
             <div class="main section" id="main">
-              <h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle());?></a> &raquo; <?php echo gettext('Archive View'); ?></h3>
+              <h2 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle());?></a> &raquo; <?php echo gettext('Archive View'); ?></h2>
 
               	<div id="archive">
 									<p><?php echo gettext('Images By Date'); ?></p>

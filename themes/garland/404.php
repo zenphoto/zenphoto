@@ -33,11 +33,11 @@ if (!defined('WEBPATH')) die();
 					<div class="left-corner">
 						<!-- begin content -->
 						<div class="main section" id="main">
-							<h3 id="gallerytitle">
+							<h2 id="gallerytitle">
 								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo;
 								<?php echo "<em>".gettext('Page not found')."</em>"; ?>
-							</h3>
-							<h2><?php echo gettext('Page not found') ?></h2>
+							</h2>
+							<h3><?php echo gettext('Page not found') ?></h3>
 							<div class="errorbox">
 					 		<?php
 							echo gettext("The Zenphoto object you are requesting cannot be found.");

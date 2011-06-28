@@ -34,9 +34,9 @@ $map = function_exists('printGoogleMap');
 			<div class="right-corner">
 				<div class="left-corner"><!-- begin content -->
 					<div class="main section" id="main">
-						<h3 id="gallerytitle">
+						<h2 id="gallerytitle">
 							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><?php echo html_encode(getAlbumTitle()); ?>
-						</h3>
+						</h2>
 						<div id="albums">
 							<?php
 							while (next_album()) {

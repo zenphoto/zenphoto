@@ -33,11 +33,11 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 					<div class="left-corner">
 						<!-- begin content -->
 						<div class="main section" id="main">
-							<h3 id="gallerytitle">
+							<h2 id="gallerytitle">
 								<a href="<?php echo getGalleryIndexURL(false);?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo;
 								<?php echo "<em>".gettext('Password required')."</em>"; ?>
-							</h3>
-							<h2><?php echo gettext('A password is required to access this page.') ?></h2>
+							</h2>
+							<h3><?php echo gettext('A password is required to access this page.') ?></h3>
 							<?php printPasswordForm($hint, $show); ?>
 							<?php footer(); ?>
 							<p style="clear: both;"></p>
