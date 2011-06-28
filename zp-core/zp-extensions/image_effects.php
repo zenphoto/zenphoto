@@ -304,27 +304,27 @@ function image_effects_insertClass($html, $effect) {
 	if ($effect=='!') {
 		$effect = $_image_effects_random;
 	}
-	$efectData = image_effects_getEffect($effect);
-	if (array_key_exists('error', $efectData)) {
-		$html .= '<span class="errorbox">'.sprintf(gettext('Error on <em>%s</em> effect'),$effect)."</span>\n";
+	$effectData = image_effects_getEffect($effect);
+	if (array_key_exists('error', $effectData)) {
+		$html .= '<span class="errorbox">'.$effectData['error']."</span>\n";
 	} else {
-		if (array_key_exists('class', $efectData)) {
+		if (array_key_exists('class', $effectData)) {
 			$i = strpos($html,'<img');
 			if ($i !== false) {
 				$i = strpos($html, 'class=', $i);
 				if ($i === false) {
 					$i = strpos($html, '/>');
-					$html = substr($html, 0, $i).'class="'.$efectData['class'].'" '.substr($html,$i);
+					$html = substr($html, 0, $i).'class="'.$effectData['class'].'" '.substr($html,$i);
 				} else {
 					$quote = substr($html, $i+6,1);
 					$i = strpos($html, $quote, $i+7);
-					$html = substr($html, 0, $i).' '.$efectData['class'].substr($html,$i);
+					$html = substr($html, 0, $i).' '.$effectData['class'].substr($html,$i);
 				}
 			}
 		}
-		if (array_key_exists('extra', $efectData)) {
+		if (array_key_exists('extra', $effectData)) {
 			$i = strpos($html, '/>');
-			$html = substr($html, 0, $i).' '.$efectData['extra'].' '.substr($html, $i);
+			$html = substr($html, 0, $i).' '.$effectData['extra'].' '.substr($html, $i);
 		}
 	}
 	return $html;
