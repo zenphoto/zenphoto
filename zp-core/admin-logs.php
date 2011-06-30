@@ -52,6 +52,7 @@ if (isset($_GET['action'])) {
 	}
 }
 // Print our header
+$localizer = array('setup_log'=>gettext('Setup log'), 'security_log'=>gettext('Security log'), 'debug_log'=>gettext('Debug log'));
 
 $filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.txt');
 if (count($filelist)>0) {
@@ -63,8 +64,12 @@ if (count($filelist)>0) {
 	}
 	foreach ($filelist as $logfile) {
 		$log = substr(basename($logfile), 0, -4);
-		$logfiletext = str_replace('_', ' ',$log);
-		$logfiletext = strtoupper(substr($logfiletext, 0, 1)).substr($logfiletext, 1);
+		if (array_key_exists($log, $localizer)) {
+			$logfiletext = $localizer[$log];
+		} else {
+			$logfiletext = str_replace('_', ' ',$log);
+			$logfiletext = strtoupper(substr($logfiletext, 0, 1)).substr($logfiletext, 1);
+		}
 		$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&amp;tab='.$log));
 		if (filesize($logfile) > 0 && empty($default)) {
 			$default = $log;
