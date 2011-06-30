@@ -187,7 +187,7 @@ function checkLayoutUseForImages($obj) {
 			$parents = array_reverse($parents);
 			foreach($parents as $parent) {
 				$parentimagelayouts = query_full_array('SELECT id, `data` FROM '.prefix('plugin_storage').' WHERE `aux`='.$parent->getID().' AND `type` = "multiple_layouts_albums_images"');
-				if($parentlayouts && $parentlayouts['data']) {
+				if($parentimagelayouts && $parentimagelayouts['data']) {
 					return $parentimagelayouts;
 				}
 			}

@@ -887,7 +887,7 @@ class _Image extends MediaObject {
 			$ch = $this->get('thumbH');
 			// upscale to thumb_size proportions
 			if ($sw == $sh) { // square crop, set the size/width to thumbsize
-				$sw = $sh = $ts;
+				$sw = $sh = getOption('thumb_size');
 			} else {
 				if ($sw > $sh) {
 					$r = $ts/$sw;
