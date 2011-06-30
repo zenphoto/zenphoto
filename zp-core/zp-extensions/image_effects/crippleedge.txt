@@ -1,4 +1,4 @@
-<source><a href="http://www.netzgesta.de/cvi/">Astonishing image effects through JS and Canvas/VML<a></source>
+<source><a href="http://www.netzgesta.de/cvi/">Astonishing image effects through JS and Canvas/VML</a></source>
 <head>
 <script type="text/javascript"> 
 var mask2load = new Array(); 
