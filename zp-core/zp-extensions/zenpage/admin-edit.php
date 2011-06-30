@@ -312,12 +312,12 @@ zp_apply_filter('admin_note','news', $subtab);
 	</button>
 	</p>
 	<div class="floatright">
-	<?php 
+	<?php
 	if ($additem) {
 		?>
 		<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo $additem; ?>"><img src="images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
-		<?php 
-		}	
+		<?php
+		}
 	?>
 	<span id="tip"><a href="#"><img src="images/info.png" alt="" /><?php echo gettext("Usage tips"); ?></a></span>
 	<?php
@@ -441,15 +441,6 @@ zp_apply_filter('admin_note','news', $subtab);
 						} else {
 							$x = '          ';
 							?>
-							<script type="text/javascript">
-								function resetPass() {
-									$('#user_name').val('');
-									$('#pass').val('');
-									$('#pass_2').val('');
-									$('.hint').val('');
-									toggle_passwords('',true);
-								}
-							</script>
 							<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="../../images/lock.png"  alt="" class="icon-postiion-top8" /></a>
 							<?php
 						}

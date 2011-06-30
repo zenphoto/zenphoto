@@ -1114,15 +1114,6 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 							} else {
 								$x = '          ';
 								?>
-							<script type="text/javascript">
-								function resetPass() {
-									$('#user_name').val('');
-									$('#pass').val('');
-									$('#pass_2').val('');
-									$('.hint').val('');
-									toggle_passwords('',true);
-								}
-							</script>
 							<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
 								<?php
 							}

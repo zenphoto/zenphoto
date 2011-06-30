@@ -263,6 +263,15 @@ function toggle_passwords(id, pwd_enable) {
 	}
 }
 
+function resetPass() {
+	$('#user_name').val('');
+	$('#pass').val('');
+	$('#pass_2').val('');
+	$('.hint').val('');
+	toggle_passwords('',true);
+}
+
+
 // toggels the checkboxes for custom image watermarks
 function toggleWMUse(id) {
 	if (jQuery('#image_watermark-'+id).val() == '') {

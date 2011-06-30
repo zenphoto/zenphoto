@@ -224,7 +224,7 @@ echo $refresh;
 <?php printTabs(); ?>
 <div id="content">
 <?php
-if ($_zp_null_account) {
+if (isset($_zp_request_date)) {
 	echo "<div class=\"errorbox space\">";
 	echo "<h2>".gettext("Password reset request.<br />You may now set admin usernames and passwords.")."</h2>";
 	echo "</div>";
@@ -267,7 +267,7 @@ if ($_zp_null_account) {
 
 	$pages = 0;
 	$clearPass = false;
-	if ($_zp_null_account && isset($_zp_reset_admin)) {
+	if ($_zp_null_account && isset($_zp_request_date)) {
 		$_zp_current_admin_obj = $_zp_reset_admin;
 		setOption('admin_reset_date', $_zp_request_date); // reset the date
 		$clearPass = true;

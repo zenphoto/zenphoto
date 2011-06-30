@@ -953,15 +953,6 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						} else {
 							$x = '          ';
 							?>
-							<script type="text/javascript">
-								function resetPass() {
-									$('#gallery_user').val('');
-									$('#gallerypass').val('');
-									$('#gallerypass_2').val('');
-									$('.hint').val('');
-									toggle_passwords('',true);
-								}
-							</script>
 							<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
 							<?php
 						}
@@ -987,11 +978,11 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<p><?php echo gettext("Gallery password hint:"); ?></p>
 						</td>
 						<td>
-							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"id="gallery_user"  name="gallery_user" value="<?php echo html_encode($gallery->getUser()); ?>" /></p>
+							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"id="user_name"  name="gallery_user" value="<?php echo html_encode($gallery->getUser()); ?>" /></p>
 							<p>
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="gallerypass" name="gallerypass" value="<?php echo $x; ?>" />
+								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="pass" name="gallerypass" value="<?php echo $x; ?>" />
 								<br />
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="gallerypass_2" name="gallerypass_2" value="<?php echo $x; ?>" />
+								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="pass_2" name="gallerypass_2" value="<?php echo $x; ?>" />
 							</p>
 							<p><?php print_language_string_list($gallery->get('gallery_hint'), 'gallery_hint', false, NULL, 'hint') ?></p>
 						</td>
@@ -1302,15 +1293,6 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 							} else {
 								$x = '          ';
 								?>
-									<script type="text/javascript">
-								function resetPass() {
-									$('#user_name').val('');
-									$('#pass').val('');
-									$('#pass_2').val('');
-									$('.hint').val('');
-									toggle_passwords('',true);
-								}
-							</script>
 							<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
 						<?php
 							}
@@ -1907,15 +1889,6 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 								} else {
 									$x = '          ';
 									?>
-								<script type="text/javascript">
-									function resetPass() {
-										$('#user_name').val('');
-										$('#pass').val('');
-										$('#pass_2').val('');
-										$('.hint').val('');
-										toggle_passwords('',true);
-									}
-								</script>
 							<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
 							<?php
 								}

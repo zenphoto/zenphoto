@@ -297,7 +297,7 @@ class Zenphoto_Authority {
 	 * @return bit
 	 */
 	function checkAuthorization($authCode, $id) {
-		global $_zp_current_admin_obj, $_zp_reset_admin;
+		global $_zp_current_admin_obj, $_zp_reset_admin, $_zp_null_account;
 		$_zp_current_admin_obj = NULL;
 		if (DEBUG_LOGIN) { debugLogBacktrace("checkAuthorization($authCode, $id)");	}
 
@@ -306,6 +306,7 @@ class Zenphoto_Authority {
 		$reset_date = getOption('admin_reset_date');
 		if ((count($admins) == 0)) {
 			if (DEBUG_LOGIN) { debugLog("checkAuthorization: no admins"); }
+			$_zp_null_account = true;
 			return ADMIN_RIGHTS; //no admins or reset request
 		}
 		if (empty($reset_date)) {
