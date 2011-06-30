@@ -2900,9 +2900,9 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
 function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $lang='') {
 	global $_zp_current_category;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
-	$protocol = SERVER_PROTOCOL;
+	$protocol = SERVER_PROTOCOL.'://';
 	if ($protocol == 'https_admin') {
-		$protocol = 'http';
+		$protocol = 'https://';
 	}
 	if(empty($lang)) {
 		$lang = getOption("locale");
