@@ -3424,26 +3424,38 @@ function processEditSelection($subtab) {
  * @param bool $checkAll set true to include check all box
  */
 function printBulkActions($checkarray, $checkAll=false) {
-	if (in_array('addtags', $checkarray) || in_array('alltags', $checkarray)) {
-		$tags = true;
+	$tags = in_array('addtags', $checkarray) || in_array('alltags', $checkarray);
+	$movecopy = in_array('moveimages', $checkarray) || in_array('copyimages', $checkarray);
+	if ($tags || $movecopy) {
 		?>
 		<script type="text/javascript">
 			//<!-- <![CDATA[
-			function checkForTags(obj) {
+			function checkFor(obj) {
 				var sel = obj.options[obj.selectedIndex].value;
-				if (sel == 'addtags' || sel == 'alltags') {
-					$.colorbox({href:"#mass_tags_data", inline:true, open:true});
+				<?php
+				if ($tags) {
+					?>
+					if (sel == 'addtags' || sel == 'alltags') {
+						$.colorbox({href:"#mass_tags_data", inline:true, open:true});
+					}
+					<?php
 				}
+				if ($movecopy) {
+					?>
+					if (sel == 'moveimages' || sel == 'copyimages') {
+						$.colorbox({href:"#mass_movecopy_data", inline:true, open:true});
+					}
+					<?php
+				}
+				?>
 			}
 			// ]]> -->
 		</script>
 		<?php
-	} else {
-		$tags = false;
 	}
 	?>
 	<span style="float:right">
-		<select name="checkallaction" id="checkallaction" size="1" onchange="checkForTags(this);" >
+		<select name="checkallaction" id="checkallaction" size="1" onchange="checkFor(this);" >
 			<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
 		</select>
 		<?php
@@ -3466,6 +3478,40 @@ function printBulkActions($checkarray, $checkAll=false) {
 				<?php
 				tagSelector(NULL, 'mass_tags_', false, false, true);
 				?>
+			</div>
+		</div>
+		<?php
+	}
+	if ($movecopy) {
+		global $mcr_albumlist, $album, $bglevels;
+		?>
+		<div id="mass_movecopy_copy" style="display:none;">
+			<div id="mass_movecopy_data">
+				<input type="hidden" name="massfolder" value="<?php echo $album->name; ?>" />
+				<?php
+				echo gettext('Destination');
+				?>
+				<select id="massalbumselectmenu" name="massalbumselect" onchange="">
+					<?php
+					foreach ($mcr_albumlist as $fullfolder => $albumtitle) {
+						$singlefolder = $fullfolder;
+						$saprefix = "";
+						$salevel = 0;
+						$selected = "";
+						if ($album->name == $fullfolder) {
+							$selected = " selected=\"selected\" ";
+						}
+						// Get rid of the slashes in the subalbum, while also making a subalbum prefix for the menu.
+						while (strstr($singlefolder, '/') !== false) {
+							$singlefolder = substr(strstr($singlefolder, '/'), 1);
+							$saprefix = "&nbsp; &nbsp;&nbsp;" . $saprefix;
+							$salevel++;
+						}
+						echo '<option value="' . $fullfolder . '"' . ($salevel > 0 ? ' style="background-color: '.$bglevels[$salevel].';"' : '')
+						. "$selected>". $saprefix . $singlefolder ."</option>\n";
+					}
+				?>
+				</select>
 			</div>
 		</div>
 		<?php
@@ -3572,6 +3618,13 @@ function processBulkImageActions($album) {
 				}
 				$tags = sanitize($tags, 3);
 			}
+			if ($action == 'moveimages' || $action == 'copyimages') {
+				$dest = sanitize($_POST['massalbumselect']);
+				$folder = sanitize($_POST['massfolder']);
+				if (!$dest || $dest == $folder) {
+					return "&mcrerr=2";
+				}
+			}
 			$n = 0;
 			foreach ($ids as $filename) {
 				$n++;
@@ -3601,6 +3654,16 @@ function processBulkImageActions($album) {
 						break;
 					case 'cleartags':
 						$imageobj->setTags(array());
+						break;
+					case 'copyimages':
+						if ($e = $imageobj->copy($dest)) {
+							return "&mcrerr=".$e;
+						}
+						break;
+					case 'moveimages':
+						if ($e = $imageobj->moveImage($dest)) {
+							return "&mcrerr=".$e;
+						}
 						break;
 				}
 				$imageobj->save();

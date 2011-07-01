@@ -698,6 +698,9 @@ class Zenphoto_Authority {
 
 	/**
 	 * Cleans up on logout
+	 *
+	 * NOTE: this presumes the general form of an authrization cookie is:
+	 * zp_xxxxx_auth where xxxxx is the authority (e.g. gallery, image, search, ...)
 	 */
 	function handleLogout() {
 		global $_zp_loggedin, $_zp_pre_authorization;
@@ -712,13 +715,10 @@ class Zenphoto_Authority {
 		foreach ($candidate as $cookie=>$value) {
 			switch ($cookie) {
 				default:
-					if (strpos($cookie, 'zp_album_auth_') === false && strpos($cookie, 'zp_page_auth_') === false && strpos($cookie, 'zp_category_auth_') === false) {
-						break;	// do nothing
+					if (!preg_match('/zp_(.*)_auth/', $cookie, $result)) {
+						break;	// not an auth cookie
 					}
 				case 'zenphoto_auth':
-				case 'zp_gallery_auth':
-				case 'zp_search_auth':
-				case 'zp_image_auth':
 					zp_setCookie($cookie, "*", -368000);
 					break;
 			}

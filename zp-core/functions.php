@@ -1707,7 +1707,8 @@ function zp_getCookie($name) {
  * @param $value
  */
 function zp_cookieEncode($value) {
-	return rc4(getUserIP().HASH_SEED,$value);
+	return $value;
+//	return rc4(getUserIP().HASH_SEED,$value);
 }
 
 /**

@@ -616,6 +616,10 @@ $checkarray_albums = array_merge($checkarray_images,
 																	array(gettext('Add tags to images') => 'alltags',
 																				gettext('Clear tags of images') => 'clearalltags')
 																	);
+$checkarray_images = array_merge($checkarray_images,
+																	array(gettext('Move') => 'moveimages',
+																				gettext('Copy') =>'copyimages')
+																	);
 
 /** EDIT ****************************************************************************/
 /************************************************************************************/
@@ -812,9 +816,11 @@ $alb = removeParentAlbumNames($album);
 				$message = gettext('Hitcounter for selected items');
 				break;
 		}
-		echo '<div class="messagebox fade-message">';
-		echo  "<h2>".$message."</h2>";
-		echo '</div>';
+		if (isset($message)) {
+			echo '<div class="messagebox fade-message">';
+			echo  "<h2>".$message."</h2>";
+			echo '</div>';
+		}
 	}
 	$subtab = printSubtabs();
 	if ($subtab == 'albuminfo') {
