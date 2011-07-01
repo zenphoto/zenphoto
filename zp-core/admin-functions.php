@@ -3390,15 +3390,15 @@ function processEditSelection($subtab) {
 	if(isset($_GET['selection'])) {
 		switch($subtab) {
 			case '':
-				$gallery_nesting = sanitize_numeric($_GET['selection']);
+				$gallery_nesting = max(1,sanitize_numeric($_GET['selection']));
 				zp_setCookie('gallery_nesting',$gallery_nesting);
 				break;
 			case 'subalbuminfo':
-				$subalbum_nesting = sanitize_numeric($_GET['selection']);
+				$subalbum_nesting = max(1,sanitize_numeric($_GET['selection']));
 				zp_setCookie('subalbum_nesting',$subalbum_nesting);
 				break;
 			case 'imageinfo':
-				$imagesTab_imageCount = sanitize_numeric($_GET['selection']);
+				$imagesTab_imageCount = max(10,sanitize_numeric($_GET['selection']));
 				zp_setCookie('imagesTab_imageCount',$imagesTab_imageCount);
 				break;
 		}
