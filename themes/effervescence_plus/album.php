@@ -343,7 +343,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 <!-- Simpleviewer section -->
 			<div id="flash">
 					<p align="center">
-					<span style=" color=#663300"><?php echo gettext('For the best viewing experience <a href="http://www.macromedia.com/go/getflashplayer/">Get Adobe Flash.</a>'); ?></span>
+					<span style=" color=#663300"><?php printf(gettext('For the best viewing experience <a href="http://%s"> Get Adobe Flash.</a>'), 'get.adobe.com/flashplayer'); ?></span>
 					</p>
 						<p align="center">
  						<?php

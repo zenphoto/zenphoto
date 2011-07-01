@@ -69,7 +69,7 @@ $thisablum = $_zp_current_album;
 							} else if ($anumber == 1 && $inumber == 1) {
 								printf(gettext('1 album,&nbsp;1 image'));
 							} else if ($anumber > 1 && $inumber == 1) {
-								printf(gettext('%u album,&nbsp;1 images'), $anumber);
+								printf(gettext('%u album,&nbsp;1 image'), $anumber);
 							} else if ($anumber > 1 && $inumber > 1) {
 								printf(gettext('%1$u album,&nbsp;%2$u images'), $anumber, $inumber);
 							} else if ($anumber == 1 && $inumber == 0) {
