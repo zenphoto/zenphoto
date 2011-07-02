@@ -192,12 +192,14 @@ function getAuthor($fullname=false) {
  * When in search context this is the count of the articles found. Otherwise
  * it is the count of articles that match the criteria.
  *
- * @param bool $combi
+ * @param bool $total
  * @return int
  */
-function getNumNews($combi=true) {
+function getNumNews($total=false) {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
-	if (in_context(ZP_SEARCH)) {
+	if ($total) {
+		$_zp_zenpage_articles = $_zp_zenpage->getNewsArticles(0);
+	} else if (in_context(ZP_SEARCH)) {
 		$_zp_zenpage->processExpired('news');
 		$_zp_zenpage_articles = $_zp_current_search->getSearchNews();
 	} else if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
@@ -2204,22 +2206,24 @@ $_zp_zenpage_pagelist = NULL;
  * If in a page context, the count is the number of sub-pages of the current page.
  * Otherwise it is the total number of pages.
  *
+ * @param bool $total return the count of all pages
+ *
  * @return int
  */
-function getNumPages() {
+function getNumPages($total=false) {
 	global $_zp_zenpage, $_zp_zenpage_pagelist, $_zp_current_search, $_zp_current_zenpage_page;
 	$_zp_zenpage->processExpired('pages');
-	if (in_context(ZP_SEARCH)) {
-		$_zp_zenpage_pagelist = $_zp_current_search->getSearchPages();
-		$count = count($_zp_zenpage_pagelist);
-	} else if (in_context(ZP_ZENPAGE_PAGE)) {
+	if (!$total) {
+		if (in_context(ZP_SEARCH)) {
+			$_zp_zenpage_pagelist = $_zp_current_search->getSearchPages();
+			return count($_zp_zenpage_pagelist);
+		} else if (in_context(ZP_ZENPAGE_PAGE)) {
 		 $result = query('SELECT COUNT(*) FROM '.prefix('pages').' WHERE parentid='.$_zp_current_zenpage_page->getID());
-		 $count = db_result($result, 0);
-	} else {
-		$result = query('SELECT COUNT(*) FROM '.prefix('pages'));
-		$count = db_result($result, 0);
+		 return db_result($result, 0);
+		}
 	}
-	return $count;
+	$result = query('SELECT COUNT(*) FROM '.prefix('pages'));
+	return db_result($result, 0);
 }
 
 /**

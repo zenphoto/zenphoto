@@ -58,7 +58,7 @@ if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
 	<?php
 } else {	//	"standard zenpage sidebar menus
 	if(function_exists("printAllNewsCategories")) {
-		if (getNumNews(false)) {
+		if (getNumNews(true)) {
 			?>
 			<div class="menu">
 				<h3><?php echo gettext("News articles"); ?></h3>
@@ -105,7 +105,7 @@ if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
 
 	<?php
 	if(function_exists("printPageMenu")) {
-		if (getNumPages()) {
+		if (getNumPages(true)) {
 			?>
 			<div class="menu">
 				<h3><?php echo gettext("Pages"); ?></h3>
