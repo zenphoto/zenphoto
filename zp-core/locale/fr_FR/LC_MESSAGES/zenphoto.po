@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-01 20:34-0500\n"
-"PO-Revision-Date: 2011-07-01 22:11-0500\n"
+"PO-Revision-Date: 2011-07-02 00:20-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -37,7 +37,7 @@ msgstr "Articles de dépannage"
 
 #: F:\zenphoto/dev-tools/plugins/createTSarticles.php:23
 msgid "Generate Troubleshooting articles"
-msgstr "Génèrer les articles de dépannage"
+msgstr "Générer les articles de dépannage"
 
 #: F:\zenphoto/dev-tools/plugins/FilterDoc.php:7
 msgid "Generates Doc file for filters."
@@ -283,7 +283,7 @@ msgstr "<a href=\"http://www.noscope.com\" target=\"_blank\">Joen Asmussen</a> e
 
 #: F:\zenphoto/themes/default/theme_description.php:7
 msgid "The default theme in 4 distinct flavors. After choosing this theme you can pick the theme color by going to the Admin Options tab and changing the <em>Theme colors</em> option."
-msgstr "Le thème par défaut en 4 coloris distincts. Après avoir choisi ce thème, vous pouvez choisir sa couleur en vous rendant dans Options d'administration et en changeant l'option <em>Couleurs du thème</em>."
+msgstr "Le thème par défaut en 4 coloris distincts. Après avoir choisi ce thème, vous pouvez choisir sa couleur en vous rendant dans Options d'administration et en modofiant l'option <em>Couleurs du thème</em>."
 
 #: F:\zenphoto/themes/effervescence_plus/404.php:35
 #: F:\zenphoto/themes/effervescence_plus/album.php:150
@@ -1409,7 +1409,7 @@ msgstr "Choisir comme page d'accueil de votre site une page parmi toutes <em>les
 
 #: F:\zenphoto/themes/zenpage/themeoptions.php:51
 msgid "<strong>Note:</strong> This of course overrides the <em>News on index page</em> option and your theme must be setup for this feature! Visit the theming tutorial for details."
-msgstr "<strong>Note :</strong> Ce paramétrage supplante l'option <em>Actualités sur la page d'accueil</em> et votre thème doit supporter ce paramétrage. Visitez le didacticiel sur la création de thèmes pour plus de détails."
+msgstr "<strong>Note :</strong> Ce paramétrage supplante l'option <em>Actualités sur la page d'accueil</em> et votre thème doit supporter ce paramétrage. Consultez le didacticiel sur la création de thèmes pour plus de détails."
 
 #: F:\zenphoto/themes/zenpage/themeoptions.php:52
 msgid "Use standard contact page"
@@ -1914,7 +1914,7 @@ msgstr "Déplacer les albums dans l'ordre où vous souhaitez les afficher."
 #: F:\zenphoto/zp-core/admin-edit.php:870
 #: F:\zenphoto/zp-core/admin-edit.php:1675
 msgid "<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album."
-msgstr "<strong>NOTE. </strong> glisser l'album sous un autre album parent le déplacera. Vous ne pouvez pas déplacer des albums vers un album <em>dynamique</em>."
+msgstr "<strong>NOTE. </strong> Glisser l'album sous un autre album parent le déplacera. Vous ne pouvez pas déplacer des albums vers un album <em>dynamique</em>."
 
 #: F:\zenphoto/zp-core/admin-edit.php:876
 #, php-format
