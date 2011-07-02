@@ -1160,7 +1160,7 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
 			case 'news':
 				$obj = new ZenpageNews($item['titlelink']);
 				$title = html_encode($obj->getTitle());
-				$link = getNewsURL($item['titlelink']);
+				$link = html_encode(getNewsURL($item['titlelink']));
 				$count2 = 0;
 				$category = $obj->getCategories();
 				foreach($category as $cat){
@@ -1297,7 +1297,7 @@ function getNewsBaseURL() {
  * @return string
  */
 function getNewsCategoryPath() {
-	return rewrite_path("/category/","&amp;category=",false);
+	return rewrite_path("/category/","&category=",false);
 }
 
 /**
@@ -1306,7 +1306,7 @@ function getNewsCategoryPath() {
  * @return string
  */
 function getNewsArchivePath() {
-	return rewrite_path("/archive/","&amp;date=",false);
+	return rewrite_path("/archive/","&date=",false);
 }
 
 
@@ -1316,7 +1316,7 @@ function getNewsArchivePath() {
  * @return string
  */
 function getNewsTitlePath() {
-	return rewrite_path("/","&amp;title=",false);
+	return rewrite_path("/","&title=",false);
 }
 
 
@@ -1326,7 +1326,7 @@ function getNewsTitlePath() {
  * @return string
  */
 function getNewsPagePath() {
-	return rewrite_path("/","&amp;page=",false);
+	return rewrite_path("/","&page=",false);
 }
 
 
@@ -1520,14 +1520,14 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 				if($_zp_zenpage->news_on_index) {
 					echo "<a href='".html_encode(getNewsIndexURL())."' title='".gettext("Page")." 1'>1</a>";
 				} else {
-					echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()."1' title='".gettext("Page")." 1'>1</a>";
+					echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath())."1' title='".gettext("Page")." 1'>1</a>";
 				}
 			}
 			echo "</li>\n";
 			if ($j>2) {
 				echo "<li>";
 				$linktext = ($j-1>2)?'...':$k1;
-				echo "<a href=\"".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$k1."\" title=\"".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."\">".$linktext."</a>";
+				echo "<a href=\"".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$k1."\" title=\"".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."\">".$linktext."</a>";
 				echo "</li>\n";
 			}
 		}
@@ -1536,14 +1536,14 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			if ($i == $current) {
 				echo $i;
 			} else {
-				echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$i."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>";
+				echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$i."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>";
 			}
 			echo "</li>\n";
 		}
 		if ($i < $total) {
 			echo "<li>";
 			$linktext = ($total-$i>1)?'...':$k2;
-			echo "<a href='".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$k2."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
+			echo "<a href='".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$k2."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
 			echo "</li>\n";
 		}
 		if ($firstlast && $i <= $total) {
@@ -1551,7 +1551,7 @@ function printNewsPageListWithNav($next,$prev,$nextprev=true, $class='pagelist',
 			if($current == $total) {
 				echo $total;
 			} else {
-				echo "<a href=\"".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$total."\" title=\"".sprintf(ngettext('Page {%u}','Page {%u}',$total),$total)."\">".$total."</a>";
+				echo "<a href=\"".getNewsBaseURL().html_encode(getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath()).$total."\" title=\"".sprintf(ngettext('Page {%u}','Page {%u}',$total),$total)."\">".$total."</a>";
 			}
 			echo "</li>\n";
 		}
@@ -2531,7 +2531,7 @@ function getPageSortorder() {
  * @return string
  */
 function getPageLinkPath() {
-	return rewrite_path("pages/", "/index.php?p=pages&amp;title=");
+	return rewrite_path("pages/", "/index.php?p=pages&title=");
 }
 
 
@@ -2551,7 +2551,7 @@ function getPageLinkURL($titlelink) {
  * @return string
  */
 function printPageLinkURL($titlelink) {
-	echo getPageLinkURL($titlelink);
+	echo html_encode(getPageLinkURL($titlelink));
 }
 
 
@@ -2793,7 +2793,7 @@ function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomm
 				$url = getPageLinkURL($titlelink);
 				break;
 		}
-		echo "<li><a href=\"".$url."\" class=\"commentmeta\">".$title.$author."</a><br />\n";
+		echo "<li><a href=\"".html_encode($url)."\" class=\"commentmeta\">".$title.$author."</a><br />\n";
 		echo "<span class=\"commentbody\">".$shortcomment."</span></li>";
 	}
 	echo "</ul>\n";
