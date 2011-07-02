@@ -90,6 +90,7 @@ class register_user_options {
 		if (function_exists('user_groups_admin_tabs')) {
 			$admins = $_zp_authority->getAdministrators('groups');
 			$defaultrights = ALL_RIGHTS;
+			$ordered = array();
 			foreach ($admins as $key=>$admin) {
 				$ordered[$admin['user']] = $admin['user'];
 				if ($admin['rights'] < $defaultrights && $admin['rights'] >= NO_RIGHTS) {

@@ -318,7 +318,7 @@ function tweetScan($param) {
 			tweetObject($news);
 		}
 	}
-	$result = query_full_array('SELECT * FROM '.prefix('pages').' AS page,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_pages" AND store.data = pages.titlelink AND pages.date <= '.db_quote(date('Y-m-d H:i:s')));
+	$result = query_full_array('SELECT * FROM '.prefix('pages').' AS page,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_pages" AND store.data = page.titlelink AND page.date <= '.db_quote(date('Y-m-d H:i:s')));
 	if ($result) {
 		foreach ($result as $page) {
 			query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$page['id']);
