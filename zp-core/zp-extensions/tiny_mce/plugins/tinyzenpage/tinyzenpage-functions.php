@@ -114,7 +114,7 @@ function printImageslist($number) {
 		$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=". urlencode(pathurlencode($albumthumbalbum->name))."&amp;i=".urlencode(urlencode($albumthumb->filename));
 		$fullimage = pathurlencode($albumthumb->getFullImage());
 		$videocheck = checkIfImageVideo($albumthumb);
-		if(empty($videocheck)) {
+		if(get_class($albumthumb) == '_Image') {
 			$video = '';
 			$backgroundcss = 'border: 1px solid gray; padding: 1px;';
 			$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=". urlencode(pathurlencode($albumthumbalbum->name))."&amp;i=".urlencode(urlencode($albumthumb->filename));
@@ -174,19 +174,18 @@ function printImageslist($number) {
 				$albumdesc = $linkalbumobj->getDesc();
 				$fullimage = pathurlencode($imageobj->getFullImage());
 				$videocheck = checkIfImageVideo($imageobj);
-				if(empty($videocheck)) {
+				if(get_class($imageobj) == '_Image') {
 					$video = '';
 					$backgroundcss = 'border: 1px solid gray; padding: 1px;';
 					$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
+				} else if(get_class($imageobj) == 'TextObject' || get_parent_class($imageobj) == 'TextObject') {
+					$video = 'textobject';
+					$imgurl = $imageobj->getThumb();
+					$fullimage = html_encode($imageobj->getBody());
 				} else {
 					$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
 					$video = $videocheck;
 					$imgurl = $imageobj->getThumb();
-				}
-				if(get_class($imageobj) == 'TextObject') {
-					$video = 'textobject';
-					$imgurl = $imageobj->getThumb();
-					$fullimage = html_encode($imageobj->getBody());
 				}
 				$imgsizeurl = $imageobj->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 				echo "<div style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>\n";
