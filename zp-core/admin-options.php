@@ -1125,36 +1125,6 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 								<?php echo gettext("use latest image date as album date"); ?>
 							</label>
 						</p>
-						<?php
-						if (GALLERY_SECURITY=='public') {
-							$disable = $gallery->getUser() || getOption('search_user') || getOption('protected_image_user');
-							?>
-							<p class="public_gallery"<?php if (GALLERY_SECURITY == 'private') echo ' style="display:none"'; ?>>
-								<label>
-									<?php
-									if ($disable) {
-										?>
-										<input type="hidden" name="login_user_field" value="<?php echo $gallery->getUserLogonField(); ?>" />
-										<input type="checkbox" name="login_user_field_disabled" id="login_user_field"
-															value="1" checked="checked" disabled="disabled" />
-										<?php
-									} else {
-										?>
-										<input type="checkbox" name="login_user_field" id="login_user_field"
-																value="1" <?php echo checked('1', $gallery->getUserLogonField()); ?> />
-										<?php
-									}
-									echo gettext("enable user name login field");
-									?>
-								</label>
-							</p>
-							<?php
-						} else {
-							?>
-							<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $gallery->getUserLogonField(); ?>" />
-							<?php
-						}
-						?>
 						<p>
 							<label>
 								<input type="checkbox" name="thumb_select_images" id="thumb_select_images"
@@ -1341,7 +1311,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 					$extra = array('tags'=>array(	array('type'=>'radio', 'display'=>gettext('partial'),'name'=>'tag_match', 'value'=>0, 'checked'=>0),
 																				array('type'=>'radio', 'display'=>gettext('exact'),'name'=>'tag_match', 'value'=>1, 'checked'=>0)));
 					$extra['tags'][(int) (getOption('exact_tag_match') && true)]['checked'] = 1;
-					$set_fields = array_flip($engine->allowedSearchFields());
+					$set_fields = $engine->allowedSearchFields();
 					?>
 					<td>
 						<?php echo gettext('Fields list:'); ?>
@@ -2755,7 +2725,51 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 					<td><?php echo gettext('Check to cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
 				</tr>
 				<?php customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
-				<tr>
+
+						<?php
+						if (GALLERY_SECURITY=='public') {
+							$disable = $gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
+							?>
+							<div class="public_gallery"<?php if (GALLERY_SECURITY == 'private') echo ' style="display:none"'; ?>>
+								<tr>
+								<td><?php echo gettext('User name'); ?></td>
+								<td>
+									<label>
+										<?php
+										if ($disable) {
+											?>
+											<input type="hidden" name="login_user_field" value="<?php echo $gallery->getUserLogonField(); ?>" />
+											<input type="checkbox" name="login_user_field_disabled" id="login_user_field"
+																value="1" checked="checked" disabled="disabled" />
+											<?php
+										} else {
+											?>
+											<input type="checkbox" name="login_user_field" id="login_user_field"
+																	value="1" <?php echo checked('1', $gallery->getUserLogonField()); ?> />
+											<?php
+										}
+										echo gettext("enable");
+										?>
+									</label>
+									</td>
+									<td>
+										<?php
+										echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form.');
+										if ($disable) {
+											echo '<p class="notebox">'.gettext('<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated.').'</p>';
+										}
+										?>
+									</td>
+								</tr>
+							</div>
+							<?php
+						} else {
+							?>
+							<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $gallery->getUserLogonField(); ?>" />
+							<?php
+						}
+						?>
+				</tr>				<tr>
 					<?php
 					$supportedOptions = $_zp_authority->getOptionsSupported();
 					if (count($supportedOptions) > 0) {

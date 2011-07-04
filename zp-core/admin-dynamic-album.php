@@ -194,7 +194,7 @@ foreach ($albumlist as $fullfolder => $albumtitle) {
 		echo '<ul class="searchchecklist">'."\n";
 		$selected_fields = array();
 		$engine = new SearchEngine(true);
-		$available_fields = array_flip($engine->allowedSearchFields());
+		$available_fields = $engine->allowedSearchFields();
 		if (count($fields)==0) {
 			$selected_fields = $available_fields;
 		} else {

@@ -4148,6 +4148,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 			<br />
 			<?php
 			if (count($fields) > 1) {
+				$fields = array_flip($fields);
 				natcasesort($fields);
 				$fields = array_flip($fields);
 				if (is_null($query_fields)) {
@@ -4158,7 +4159,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 					}
 				}
 				if (count($query_fields)==0) {
-					$query_fields = array_flip($engine->allowedSearchFields());
+					$query_fields = $engine->allowedSearchFields();
 				}
 
 				?>

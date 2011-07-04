@@ -159,7 +159,7 @@ class SearchEngine
 	function getSearchFieldList() {
 		$list = array();
 		foreach ($this->search_structure as $key=>$display) {
-			$list[$key] = $display;
+			$list[$display] = $key;
 		}
 		return $list;
 	}
@@ -193,10 +193,10 @@ class SearchEngine
 	 */
 	function numericFields($fields) {
 		if ($fields==0) $fields = 0x0fff;
-		if ($fields & 0x01) $list['title'] = $this->search_structure['title'];
-		if ($fields & 0x02) $list['desc'] = $this->search_structure['desc'];
-		if ($fields & 0x04) $list['tags'] = $this->search_structure['tags'];
-		if ($fields & 0x08) $list['filename'] = $this->search_structure['filename'];
+		if ($fields & 0x01) $list[$this->search_structure['title']] = 'title';
+		if ($fields & 0x02) $list[$this->search_structure['desc']] = 'desc';
+		if ($fields & 0x04) $list[$this->search_structure['tags']] = 'tags';
+		if ($fields & 0x08) $list[$this->search_structure['filename']] = 'filename';
 		return $list;
 	}
 
@@ -260,7 +260,7 @@ class SearchEngine
 	 * @return string
 	 */
 	function getSearchFieldsText($fields, $param='&searchfields=') {
-		$default = array_keys($this->allowedSearchFields());
+		$default = $this->allowedSearchFields();
 		$diff = array_diff($default, $fields);
 		if (count($diff)>0) {
 			foreach ($fields as $field) {
@@ -295,13 +295,13 @@ class SearchEngine
 					break;
 				case 'searchfields':
 					if (is_numeric($v)) {
-						$this->fieldList = array_flip($this->numericFields($v));
+						$this->fieldList = $this->numericFields($v);
 					} else {
 						$this->fieldList = array();
-						$list = explode(',',$v);
+						$list = explode(',',strtolower($v));
 						foreach ($this->search_structure as $key=>$row) {
-							if (in_array($key,$list)) {
-								$this->fieldList[] = $key;
+							if (in_array(strtolower($key),$list)) {
+								$this->fieldList[] = $row;
 							}
 						}
 					}
@@ -654,7 +654,7 @@ class SearchEngine
 		} else {
 			foreach ($_REQUEST as $key=>$value) {
 				if (strpos($key, 'SEARCH_') !== false) {
-					$fields[] = $value;
+					$fields[substr($key, 7)] = $value;
 				}
 			}
 		}
@@ -862,33 +862,35 @@ class SearchEngine
 		$tag_objects = array();
 		$fields = $this->fieldList;
 		if (count($fields)==0) { // then use the default ones
-			$fields = array_keys($this->allowedSearchFields());
+			$fields = $this->allowedSearchFields();
 		}
-		$t = array_search('tags',$fields);
-		if ($t!==false) {
-			unset($fields[$t]);
-			$tagsql = 'SELECT t.`name`, o.`objectid` FROM '.prefix('tags').' AS t, '.prefix('obj_to_tag').' AS o WHERE t.`id`=o.`tagid` AND o.`type`="'.$tbl.'" AND (';
-			foreach($searchstring as $singlesearchstring){
-				switch ($singlesearchstring) {
-					case '&':
-					case '!':
-					case '|':
-					case '(':
-					case ')':
-						break;
-					default:
-						$targetfound = true;
-						if ($exact) {
-							$tagsql .= '`name` = '.db_quote($singlesearchstring).' OR ';
-						} else {
-							$tagsql .= '`name` LIKE '.db_quote('%'.$singlesearchstring.'%').' OR ';
-						}
+		foreach ($fields as $key=>$field) {
+			if (strtolower($field) == 'tags') {
+				unset($fields[$key]);
+				$tagsql = 'SELECT t.`name`, o.`objectid` FROM '.prefix('tags').' AS t, '.prefix('obj_to_tag').' AS o WHERE t.`id`=o.`tagid` AND o.`type`="'.$tbl.'" AND (';
+				foreach($searchstring as $singlesearchstring){
+					switch ($singlesearchstring) {
+						case '&':
+						case '!':
+						case '|':
+						case '(':
+						case ')':
+							break;
+						default:
+							$targetfound = true;
+							if ($exact) {
+								$tagsql .= '`name` = '.db_quote($singlesearchstring).' OR ';
+							} else {
+								$tagsql .= '`name` LIKE '.db_quote('%'.$singlesearchstring.'%').' OR ';
+							}
+					}
 				}
-			}
-			$tagsql = substr($tagsql, 0, strlen($tagsql)-4).') ORDER BY t.`id`';
-			$objects = query_full_array($tagsql, false);
-			if (is_array($objects)) {
-				$tag_objects = $objects;
+				$tagsql = substr($tagsql, 0, strlen($tagsql)-4).') ORDER BY t.`id`';
+				$objects = query_full_array($tagsql, false);
+				if (is_array($objects)) {
+					$tag_objects = $objects;
+				}
+				break;
 			}
 		}
 
