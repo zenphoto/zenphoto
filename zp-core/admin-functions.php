@@ -3749,6 +3749,7 @@ function codeblocktabsJS() {
  */
 function admin_securityChecks($rights, $return) {
 	global $_zp_current_admin_obj, $_zp_loggedin;
+	checkInstall();
 	if (SERVER_PROTOCOL == 'https_admin') {
 		// force https login
 		if (!isset($_SERVER["HTTPS"])) {
@@ -3757,11 +3758,10 @@ function admin_securityChecks($rights, $return) {
 			exit();
 		}
 	}
-	checkInstall();
 	if (!is_null(getOption('admin_reset_date'))) {
 		if (!zp_loggedin($rights)) { // prevent nefarious access to this page.
 			$returnurl = urldecode($return);
-			if (!zp_apply_filter('admin_allow_access',true, $returnurl)) {
+			if (!zp_apply_filter('admin_allow_access',false, $returnurl)) {
 				header("HTTP/1.0 302 Found");
 				header("Status: 302 Found");
 				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);

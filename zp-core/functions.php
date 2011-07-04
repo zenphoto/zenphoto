@@ -1707,8 +1707,11 @@ function zp_getCookie($name) {
  * @param $value
  */
 function zp_cookieEncode($value) {
-	return $value;
-//	return rc4(getUserIP().HASH_SEED,$value);
+	if (IP_TIED_COOKIES){
+		return rc4(getUserIP().HASH_SEED,$value);
+	} else {
+		return $value;
+	}
 }
 
 /**

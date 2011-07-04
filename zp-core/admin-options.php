@@ -439,6 +439,7 @@ if (isset($_GET['action'])) {
 			}
 			setOption('captcha', sanitize($_POST['captcha']));
 			setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
+			setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
 			$returntab = "&tab=security";
 		}
 		/*** custom options ***/
@@ -2720,56 +2721,66 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 				<tr>
 					<td width="175"><?php echo gettext('Obscure cache filenames'); ?></td>
 					<td width="350">
-						<input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php echo checked(1, getOption('obfuscate_cache')); ?> />
+						<label><input type="checkbox" name="obfuscate_cache" id="obfuscate_cache" value="1" <?php echo checked(1, getOption('obfuscate_cache')); ?> /><?php echo gettext('enable'); ?></label>
 					</td>
-					<td><?php echo gettext('Check to cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
+					<td><?php echo gettext('Cause the filename of cached items to be obscured. This makes it difficult for someone to "guess" the name in a URL.'); ?></td>
 				</tr>
-				<?php customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
-
-						<?php
-						if (GALLERY_SECURITY=='public') {
-							$disable = $gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
-							?>
-							<div class="public_gallery"<?php if (GALLERY_SECURITY == 'private') echo ' style="display:none"'; ?>>
-								<tr>
-								<td><?php echo gettext('User name'); ?></td>
-								<td>
-									<label>
-										<?php
-										if ($disable) {
-											?>
-											<input type="hidden" name="login_user_field" value="<?php echo $gallery->getUserLogonField(); ?>" />
-											<input type="checkbox" name="login_user_field_disabled" id="login_user_field"
-																value="1" checked="checked" disabled="disabled" />
-											<?php
-										} else {
-											?>
-											<input type="checkbox" name="login_user_field" id="login_user_field"
-																	value="1" <?php echo checked('1', $gallery->getUserLogonField()); ?> />
-											<?php
-										}
-										echo gettext("enable");
-										?>
-									</label>
-									</td>
-									<td>
-										<?php
-										echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form.');
-										if ($disable) {
-											echo '<p class="notebox">'.gettext('<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated.').'</p>';
-										}
-										?>
-									</td>
-								</tr>
-							</div>
-							<?php
-						} else {
-							?>
-							<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $gallery->getUserLogonField(); ?>" />
-							<?php
-						}
+				<tr>
+					<td><?php echo gettext('Cookie security')?></td>
+					<td>
+						<label><input type="checkbox" name="IP_tied_cookies" value="1" <?php echo checked(1, getOption('IP_tied_cookies')); ?> /><?php echo gettext('enable'); ?></label>
+					</td>
+					<td>
+						<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
+						<p class="notebox"><?php echo gettext('<strong>Note</strong>: If your browser does not present a consistant IP address you may not be able to log into your site when this option is enabled. You <strong>WILL</strong> have to login after changing this option.'); ?></p>
+					</td>
+				</tr>
+					<?php
+					if (GALLERY_SECURITY=='public') {
+						$disable = $gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
 						?>
-				</tr>				<tr>
+						<div class="public_gallery"<?php if (GALLERY_SECURITY == 'private') echo ' style="display:none"'; ?>>
+							<tr>
+							<td><?php echo gettext('User name'); ?></td>
+							<td>
+								<label>
+									<?php
+									if ($disable) {
+										?>
+										<input type="hidden" name="login_user_field" value="<?php echo $gallery->getUserLogonField(); ?>" />
+										<input type="checkbox" name="login_user_field_disabled" id="login_user_field"
+															value="1" checked="checked" disabled="disabled" />
+										<?php
+									} else {
+										?>
+										<input type="checkbox" name="login_user_field" id="login_user_field"
+																value="1" <?php echo checked('1', $gallery->getUserLogonField()); ?> />
+										<?php
+									}
+									echo gettext("enable");
+									?>
+								</label>
+								</td>
+								<td>
+									<?php
+									echo gettext('If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form.');
+									if ($disable) {
+										echo '<p class="notebox">'.gettext('<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated.').'</p>';
+									}
+									?>
+								</td>
+							</tr>
+						</div>
+						<?php
+					} else {
+						?>
+						<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $gallery->getUserLogonField(); ?>" />
+						<?php
+					}
+					?>
+				</tr>
+					<?php customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
+				<tr>
 					<?php
 					$supportedOptions = $_zp_authority->getOptionsSupported();
 					if (count($supportedOptions) > 0) {

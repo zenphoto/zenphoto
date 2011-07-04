@@ -48,11 +48,12 @@ if (zp_getCookie('zenphoto_ssl') && !secureServer()) {
 
 if (isset($_POST['login'])) {	//	Handle the login form.
 	if(secureServer()) {
+		// https: set the 'zenphoto_ssl' marker for redirection
 		zp_setCookie("zenphoto_ssl", "needed");
 	}
 	$_zp_loggedin = $_zp_authority->handleLogon();
 	if ($_zp_loggedin) {
-		// https: set the 'zenphoto_ssl' marker for redirection
+		setOption('admin_reset_date', 1);	//	clear pending password resets. Note: this might be a race condition. Oh well, too bad.
 		if (isset($_POST['redirect'])) {
 			$redirect = sanitize_path($_POST['redirect']);
 		} else {
