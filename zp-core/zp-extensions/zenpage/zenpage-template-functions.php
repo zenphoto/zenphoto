@@ -1060,7 +1060,7 @@ function printCurrentNewsArchive($before='',$mode='formatted',$format='%B %Y') {
  * @return string
  */
 function printAllNewsCategories($newsindex='All news', $counter=TRUE, $css_id='',$css_class_topactive='',$startlist=true,$css_class='',$css_class_active='',$option='list',$showsubs=false,$limit=NULL) {
-	printNestedMenu($option,'categories',$counter, $css_id,$css_class_topactive,$css_class,$css_class_active,$newsindex,$showsubs,$startlist,$limit);
+	printNestedMenu($option,'allcategories',$counter, $css_id,$css_class_topactive,$css_class,$css_class_active,$newsindex,$showsubs,$startlist,$limit);
 }
 
 /**
@@ -1969,6 +1969,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 			$currentitem_sortorder = getPageSortorder();
 			break;
 		case 'categories':
+		case 'allcategories':
 			$published = !zp_loggedin(ZENPAGE_NEWS_RIGHTS);
 			$items = $_zp_zenpage->getAllCategories();
 			if (is_object($_zp_current_category)) {
@@ -2007,6 +2008,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				}
 				break;
 			case 'categories':
+			case 'allcategories':
 				if(($_zp_gallery_page == "news.php" || ($_zp_zenpage->news_on_index && $_zp_gallery_page == "index.php")) && !is_NewsCategory() && !is_NewsArchive() && !is_NewsArticle()) {
 					echo "<li $css_class_topactive>".html_encode($display);
 				} else {
@@ -2016,7 +2018,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 					if(ZP_COMBINEWS) {
 						$totalcount = $_zp_zenpage->countCombiNews($published);
 					} else {
-						if(in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+						if(in_context(ZP_ZENPAGE_NEWS_CATEGORY) && $mode == 'categories') {
 							$totalcount = count($_zp_current_category->getArticles(0,$published));
 						} else {
 							$totalcount = count($_zp_zenpage->getNewsArticles(0,$published));
@@ -2052,6 +2054,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				$count = '';
 			break;
 			case 'categories':
+			case 'allcategories':
 				$catobj = new ZenpageCategory($item['titlelink']);
 				$itemtitle = $catobj->getTitle();
 				$itemsortorder = $catobj->getSortOrder();

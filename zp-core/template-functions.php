@@ -4669,11 +4669,12 @@ function getCodeblock($number=0) {
  *
  * @return string
  */
-function printCodeblock($number='',$what=NULL) {
+function printCodeblock($number=0,$what=NULL) {
 	if (is_object($what)) {
 		$codeblock = $what->getCodeblock();
 		if ($codeblock) {
 			$codeblocks = unserialize($codeblock);
+			$codeblock = $codeblocks[$number];
 		} else {
 			return;
 		}
