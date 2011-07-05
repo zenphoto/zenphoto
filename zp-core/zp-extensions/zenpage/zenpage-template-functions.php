@@ -197,17 +197,16 @@ function getAuthor($fullname=false) {
  */
 function getNumNews($total=false) {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
+	$_zp_zenpage->processExpired('news');
 	if ($total) {
-		$_zp_zenpage_articles = $_zp_zenpage->getNewsArticles(0);
+		return count($_zp_zenpage->getNewsArticles(0));
 	} else if (in_context(ZP_SEARCH)) {
-		$_zp_zenpage->processExpired('news');
-		$_zp_zenpage_articles = $_zp_current_search->getSearchNews();
+		return count($_zp_current_search->getSearchNews());
 	} else if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
-		$_zp_zenpage_articles = $_zp_zenpage->getCombiNews(ZP_ARTICLES_PER_PAGE);
+		return count($_zp_zenpage->getCombiNews(0));
 	} else {
-		$_zp_zenpage_articles = $_zp_zenpage->getNewsArticles(ZP_ARTICLES_PER_PAGE);
+		return count($_zp_zenpage->getNewsArticles(0));
 	}
-	return count($_zp_zenpage_articles);
 }
 
 /**
