@@ -352,8 +352,8 @@ if (isset($_GET['action'])) {
 				$cw = getThemeOption('thumb_crop_width', $table, $themename);
 				$ch = getThemeOption('thumb_crop_height', $table, $themename);
 				if (isset($_POST['image_size'])) setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
-				if (isset($_POST['image_use_side']))setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
-				if (isset($_POST['thumb_crop']))setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
+				if (isset($_POST['image_use_side'])) setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
+				setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
 				if (isset($_POST['thumb_size'])) {
 					$ts = sanitize_numeric($_POST['thumb_size']);
 					setThemeOption('thumb_size', $ts, $table, $themename);
