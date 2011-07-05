@@ -4633,6 +4633,7 @@ function getCodeblock($number=0) {
 			break;
 		case 'index.php':
 			$getcodeblock = $_zp_gallery->getCodeblock();
+			break;
 		case 'news.php':
 			if(is_object($_zp_current_zenpage_news)) {	// valid news article
 				if ($_zp_current_zenpage_news->checkAccess()) {
@@ -4682,7 +4683,7 @@ function printCodeblock($number=0,$what=NULL) {
 		$codeblock = getCodeblock($number);
 	}
 	$context = get_context();
-	@eval("?>".$codeblock);
+	eval('?>'.$codeblock);
 	set_context($context);
 }
 

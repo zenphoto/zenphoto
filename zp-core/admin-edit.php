@@ -196,7 +196,7 @@ if (isset($_GET['action'])) {
 				$folder = sanitize_path($_POST['album']);
 				$album = new Album($gallery, $folder);
 				$notify = '';
-				$returnalbum = '';
+				$returnalbum = NULL;
 				if (isset($_POST['savealbuminfo'])) {
 					$notify = processAlbumEdit(0, $album, $returnalbum);
 					$returntab = '&tagsort='.$tagsort.'&tab=albuminfo';
@@ -352,9 +352,9 @@ if (isset($_GET['action'])) {
 
 					} else {
 						$notify = '&post_error';
+					}
 				}
-				}
-				if (!empty($returnalbum)) {
+				if (!is_null($returnalbum)) {
 					$folder = $returnalbum;
 				}
 				$qs_albumsuffix = '';
@@ -380,7 +380,7 @@ if (isset($_GET['action'])) {
 
 			}
 			// Redirect to the same album we saved.
-			if (isset($folder)) {
+			if (isset($folder) && !empty($folder)) {
 				$qs_albumsuffix .= '&album='.pathurlencode($folder);
 			}
 			if (isset($_POST['subpage'])) {

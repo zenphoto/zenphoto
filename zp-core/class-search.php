@@ -67,7 +67,7 @@ class SearchEngine
 		}
 		//metadata fields
 		foreach ($_zp_exifvars as $field=>$row) {
-			$this->search_structure[$field]							= $row[2];
+			$this->search_structure[strtolower($field)]	= $row[2];
 		}
 
 		if (isset($_REQUEST['words'])) {
@@ -301,7 +301,7 @@ class SearchEngine
 						$list = explode(',',strtolower($v));
 						foreach ($this->search_structure as $key=>$row) {
 							if (in_array(strtolower($key),$list)) {
-								$this->fieldList[] = $row;
+								$this->fieldList[] = $key;
 							}
 						}
 					}

@@ -71,7 +71,7 @@ if (!defined('WEBPATH')) die();
 	</div><!-- center -->
 	<div class="sidebar">
 		<div id="rightsidebar">
-		<?php
+			<?php
 			if (function_exists('printLatestImages')) {
 				?>
 				<h2><?php echo gettext('Latest Images'); ?></h2>

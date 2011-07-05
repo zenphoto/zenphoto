@@ -86,7 +86,7 @@ class downloadListOptions {
 		$x = getOption('downloadList_pass');
 		$hint = getOption('downloadList_hint');
 		?>
-		<input	type="hidden" name="password_enabled_downloadList" id="password_enabled_downloadList" value="0" />
+		<input type="hidden" name="password_enabled_downloadList" id="password_enabled_downloadList" value="0" />
 		<p class="password_downloadListextrashow">
 		<a href="javascript:toggle_passwords('_downloadList',true);">
 			<?php echo gettext("Password:"); ?>
@@ -131,7 +131,7 @@ class downloadListOptions {
 
 function download_list_custom_options_save($notify,$themename,$themealbum) {
 	global $gallery, $_zp_authority;
-	if (sanitize($_POST['password_enabled_downloadList'], 3)) {
+	if (sanitize(@$_POST['password_enabled_downloadList'], 3)) {
 		$olduser = getOption('downloadList_user');
 		$newuser = trim(sanitize($_POST['downloadList_user'],3));
 		if (!empty($newuser)) {
