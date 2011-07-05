@@ -143,7 +143,6 @@ function printRating($vote=3, $object=NULL, $text=true) {
 		$object = getCurrentPageObject();
 	}
 	if (!is_object($object)) {
-		trigger_error(gettext('No object for rating.'), E_USER_NOTICE);
 		return;
 	}
 	$table = $object->table;
@@ -301,6 +300,7 @@ alert('star click');
 function getRating($object=NULL) {
 	if (is_null($object)) {
 		$object = getCurrentPageObject();
+		if (!$object) return NULL;
 	}
 	return $object->get('rating');
 }

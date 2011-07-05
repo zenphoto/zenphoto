@@ -55,7 +55,7 @@ function getCurrentPageObject() {
 		case 'pages.php':
 			return $_zp_current_zenpage_page;
 		default:
-			die(sprintf(gettext('%s is not a valid getRating() context'), $_zp_gallery_page));
+			return NULL;
 	}
 }
 ?>

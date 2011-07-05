@@ -2640,28 +2640,17 @@ function printPageMenu($option='list',$css_id=NULL,$css_class_topactive=NULL,$cs
  * @return bool
  */
 function checkForPage($titlelink) {
+	global $_zp_current_zenpage_page;
 	if(!empty($titlelink)) {
-		$sql = 'SELECT `id` FROM '.prefix('pages').' WHERE `titlelink`='.db_quote($titlelink);
-		$result = query_single_row($sql);
-		if (is_array($result)) {
-			zenpage_setup_page($titlelink);
+		$page = new ZenpagePage($titlelink);
+		if ($page->loaded) {
+			add_context(ZP_ZENPAGE_PAGE);
+			$_zp_current_zenpage_page = $page;
 			return true;
 		}
 	}
 	return false;
 }
-
-/**
- * Sets all the required items to make the titlelink the current pages page
- *
- * @param string $titlelink the titlelink of th epage to setup.
- */
-function zenpage_setup_page($titlelink) {
-	global $_zp_gallery_page, $_zp_current_zenpage_page;
-	add_context(ZP_ZENPAGE_PAGE);
-	$_zp_current_zenpage_page = new ZenpagePage($titlelink);
-}
-
 
 /************************************************/
 /* Comments
