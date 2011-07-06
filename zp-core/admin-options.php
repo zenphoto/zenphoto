@@ -349,8 +349,8 @@ if (isset($_GET['action'])) {
 			if ($themeswitch) {
 				$notify = '?switched';
 			} else {
-				$cw = getThemeOption('thumb_crop_width', $table, $themename);
-				$ch = getThemeOption('thumb_crop_height', $table, $themename);
+				$ncw = $cw = getThemeOption('thumb_crop_width', $table, $themename);
+				$nch = $ch = getThemeOption('thumb_crop_height', $table, $themename);
 				if (isset($_POST['image_size'])) setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
 				if (isset($_POST['image_use_side'])) setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
 				setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
@@ -363,16 +363,12 @@ if (isset($_GET['action'])) {
 				if (isset($_POST['thumb_crop_width'])) {
 					if (is_numeric($_POST['thumb_crop_width'])) {
 						$ncw = round($ts - $ts*2*$_POST['thumb_crop_width']/100);
-					} else {
-						$ncw = $cw;
 					}
 					setThemeOption('thumb_crop_width', $ncw, $table, $themename);
 				}
 				if (isset($_POST['thumb_crop_height'])) {
 					if (is_numeric($_POST['thumb_crop_height'])) {
 						$nch = round($ts - $ts*2*$_POST['thumb_crop_height']/100);
-					} else {
-						$nch = $ch;
 					}
 					setThemeOption('thumb_crop_height', $nch, $table, $themename);
 				}
