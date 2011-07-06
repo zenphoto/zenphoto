@@ -245,6 +245,7 @@ function next_news($sortorder="date", $sortdirection="desc") {
 		while (!empty($_zp_zenpage_articles)) {
 			$news = array_shift($_zp_zenpage_articles);
 			if (is_array($news)) {
+				set_context(ZP_ZENPAGE_NEWS_ARTICLE);
 				if(ZP_COMBINEWS AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
 					if($news['type'] == "images") {
 						$albumobj = new Album($_zp_gallery,$news['albumname']);
@@ -277,6 +278,7 @@ function next_news($sortorder="date", $sortdirection="desc") {
 		while (!empty($_zp_zenpage_articles)) {
 			$news = array_shift($_zp_zenpage_articles);
 			if (is_array($news)) {
+				set_context(ZP_ZENPAGE_NEWS_ARTICLE);
 				if(ZP_COMBINEWS AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
 					if($news['type'] == "images") {
 						$albumobj = new Album($_zp_gallery,$news['albumname']);

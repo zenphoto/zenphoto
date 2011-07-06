@@ -33,6 +33,7 @@ if (!defined('WEBPATH')) die();
 				<div class="left-corner"><!-- begin content -->
 					<div class="main section" id="main">
 						<h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; <?php echo gettext('Album index'); ?></h3>
+						<?php printCodeblock(1); ?>
 						<div id="albums">
 							<?php
 							setOption('albums_per_page', 12,false);
@@ -60,8 +61,8 @@ if (!defined('WEBPATH')) die();
 							</div><!-- album -->
 							<?php
 						?>
-
 						<p style="clear: both;"></p>
+						<?php printCodeblock(2); ?>
 						<?php footer(); ?>
 					</div><!-- main -->
 				<span class="clear"></span>

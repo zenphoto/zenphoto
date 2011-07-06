@@ -4610,12 +4610,19 @@ function exposeZenPhotoInformations( $obj = '', $plugins = '', $theme = '' ) {
 
 /**
  * Gets the content of a codeblock for an image, album or Zenpage newsarticle or page.
- * Additionally you can print codeblocks of a published or un-published specific Zenpage page (not news artcle!) by request directly.
+ *
+ * The priority for codeblocks will be (based on context)
+ * 	1: articles
+ * 	2: pages
+ * 	3: images
+ * 	4: albums
+ * 	5: gallery.
+ *
+ * This means, for instance, if we are in ZP_ZENPAGE_NEWS_ARTICLE context we will use the news article
+ * codeblock even if others are available.
  *
  * Note: Echoing this array's content does not execute it. Also no special chars will be escaped.
  * Use printCodeblock() if you need to execute script code.
- *
- * Note: Meant for script code this field is not multilingual.
  *
  * @param int $number The codeblock you want to get
  *
@@ -4623,39 +4630,33 @@ function exposeZenPhotoInformations( $obj = '', $plugins = '', $theme = '' ) {
  */
 function getCodeblock($number=0) {
 	global $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_gallery_page;
-	$getcodeblock = '';
-	switch($_zp_gallery_page) {
-		case 'album.php':
-			$getcodeblock = $_zp_current_album->getCodeblock();
-			break;
-		case 'image.php':
-			$getcodeblock = $_zp_current_image->getCodeblock();
-			break;
-		case 'index.php':
-			$getcodeblock = $_zp_gallery->getCodeblock();
-			break;
-		case 'news.php':
-			if(is_object($_zp_current_zenpage_news)) {	// valid news article
-				if ($_zp_current_zenpage_news->checkAccess()) {
-					$getcodeblock = $_zp_current_zenpage_news->getCodeblock();
-				} else {
-					$getcodeblock = '';
-				}
-			}
-			break;
-		case 'pages.php':
-			if($_zp_current_zenpage_page->checkAccess()) {
-				$getcodeblock = $_zp_current_zenpage_page->getCodeblock();
-			} else {
-				$getcodeblock = NULL;
-			}
-			break;
-		default:
-			$getcodeblock = NULL;
-			break;
+	$getcodeblock = NULL;
+	if ($_zp_gallery_page == 'index.php') {
+		$getcodeblock = $_zp_gallery->getCodeblock();
 	}
-
-	if (empty($getcodeblock)) return '';
+	if (in_context(ZP_ALBUM)) {
+		$getcodeblock = $_zp_current_album->getCodeblock();
+	}
+	if (in_context(ZP_IMAGE)) {
+		$getcodeblock = $_zp_current_image->getCodeblock();
+	}
+	if (in_context(ZP_ZENPAGE_PAGE)) {
+		if ($_zp_current_zenpage_news->checkAccess()) {
+			$getcodeblock = $_zp_current_zenpage_news->getCodeblock();
+		} else {
+			$getcodeblock = NULL;
+		}
+	}
+	if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+		if ($_zp_current_zenpage_news->checkAccess()) {
+			$getcodeblock = $_zp_current_zenpage_news->getCodeblock();
+		} else {
+			$getcodeblock = NULL;
+		}
+	}
+	if (empty($getcodeblock)) {
+		return NULL;
+	}
 	$codeblock = unserialize($getcodeblock);
 	return $codeblock[$number];
 }
@@ -4682,9 +4683,12 @@ function printCodeblock($number=0,$what=NULL) {
 	} else {
 		$codeblock = getCodeblock($number);
 	}
-	$context = get_context();
-	eval('?>'.$codeblock);
-	set_context($context);
+
+	if ($codeblock) {
+		$context = get_context();
+		eval('?>'.$codeblock);
+		set_context($context);
+	}
 }
 
 

@@ -33,8 +33,10 @@ if (!defined('WEBPATH')) die();
 				<div class="left-corner"><!-- begin content -->
 					<div class="main section" id="main">
 						<h2 id="gallerytitle"><?php echo getGalleryTitle(); ?></h2>
+						<?php printCodeblock(1); ?>
 						<?php commonNewsLoop(false); ?>
 						<p style="clear: both;"></p>
+						<?php printCodeblock(2); ?>
 						<?php footer(); ?>
 					</div><!-- main -->
 				<span class="clear"></span>

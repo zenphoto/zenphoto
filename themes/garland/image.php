@@ -48,6 +48,7 @@ if (!defined('WEBPATH')) die();
 							<h2 id="gallerytitle">
 								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php gettext('Album Thumbnails'); ?>"><?php echo html_encode(getAlbumTitle()); ?></a> &raquo; <?php printImageTitle(true); ?>
 							</h2>
+							<?php printCodeblock(1); ?>
 							<div id="image_container">
 							<?php
 							$fullimage = getFullImageURL();
@@ -70,6 +71,7 @@ if (!defined('WEBPATH')) die();
 								printCommentForm();
 							}
 							?>
+							<?php printCodeblock(2); ?>
 							<?php footer(); ?>
 							<p style="clear: both;"></p>
 						</div>
