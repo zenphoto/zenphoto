@@ -4641,8 +4641,8 @@ function getCodeblock($number=0) {
 		$getcodeblock = $_zp_current_image->getCodeblock();
 	}
 	if (in_context(ZP_ZENPAGE_PAGE)) {
-		if ($_zp_current_zenpage_news->checkAccess()) {
-			$getcodeblock = $_zp_current_zenpage_news->getCodeblock();
+		if ($_zp_current_zenpage_page->checkAccess()) {
+			$getcodeblock = $_zp_current_zenpage_page->getCodeblock();
 		} else {
 			$getcodeblock = NULL;
 		}
