@@ -3417,9 +3417,18 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
  * @param integer $height the height/cropheight of the thumb if crop=true else not used
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
  */
-function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',$width=100,$height=100,$crop=true) {
+function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',$width=NULL,$height=NULL,$crop=NULL) {
 	if (!is_null($class)) {
 		$class = ' class="' . $class . '"';
+	}
+	if (is_null($crop)) {
+		$crop = getOption('thumb_crop');
+	}
+	if (is_null($width)) {
+		$width = getOption('thumb_crop_width');
+	}
+	if (is_null($height)) {
+		$height = getOption('thumb_crop_height');
 	}
 	echo "<ul".$class.">";
 	for ($i=1; $i<=$number; $i++) {

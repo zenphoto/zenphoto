@@ -58,7 +58,7 @@
 					}
 					?>
 					<tr valign="top" align="left" id="row-email">
-						<th><?php printf(gettext('%sEmail:'),$star); ?></th>
+						<th><?php printf(gettext('Email%s:'),$star); ?></th>
 						<td>
 							<?php
 							if ($disabled['email']) {
@@ -86,7 +86,7 @@
 					}
 					?>
 					<tr valign="top" align="left">
-						<th><?php printf(gettext('%sURL:'),$star); ?></th>
+						<th><?php printf(gettext('URL%s:'),$star); ?></th>
 						<td>
 							<?php
 							if ($disabled['website']) {
@@ -113,7 +113,7 @@
 					}
 				?>
 				<tr>
-					<th><?php printf(gettext('%sStreet:'),$star); ?></th>
+					<th><?php printf(gettext('Street%s:'),$star); ?></th>
 					<td>
 						<?php
 						if ($disabled['street']) {
@@ -130,7 +130,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th><?php printf(gettext('%sCity:'),$star); ?></th>
+					<th><?php printf(gettext('City:%s'),$star); ?></th>
 					<td>
 						<?php
 						if ($disabled['city']) {
@@ -147,7 +147,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th><?php printf(gettext('%sState:'),$star); ?></th>
+					<th><?php printf(gettext('State%s:'),$star); ?></th>
 					<td>
 						<?php
 						if ($disabled['state']) {
@@ -164,7 +164,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th><?php printf(gettext('%sCountry:'),$star); ?></th>
+					<th><?php printf(gettext('Country:%s'),$star); ?></th>
 					<td>
 						<?php
 						if ($disabled['country']) {
@@ -181,7 +181,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th><?php printf(gettext('%sPostal code:'),$star); ?></th>
+					<th><?php printf(gettext('Postal code%s:'),$star); ?></th>
 					<td>
 						<?php
 						if ($disabled['postal']) {

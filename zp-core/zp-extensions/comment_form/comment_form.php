@@ -18,7 +18,7 @@
 								<tr>
 									<td>
 										<?php
-										printf(gettext("%sName:"),$star);
+										printf(gettext("Name%s:"),$star);
 										if (getOption('comment_form_anon') && !$disabled['anon']) {
 											?>
 											<label>(<input type="checkbox" name="anon" value="1"<?php if ($stored['anon']) echo ' checked="checked"'; echo $disabled['anon']; ?> /> <?php echo gettext("<em>anonymous</em>"); ?>)</label>
