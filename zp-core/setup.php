@@ -425,9 +425,7 @@ if ($connection) {
 	checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"), sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
 
 	$register_globals = ini_get('register_globals');
-	if ($register_globals !== false) {
-		$good = checkMark(!$register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>.')) && $good;
-	}
+	$good = checkMark(!$register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>.')) && $good;
 	if (ini_get('safe_mode')) {
 		$safe = -1;
 	} else {

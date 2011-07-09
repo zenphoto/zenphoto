@@ -3020,7 +3020,13 @@ function processRights($i) {
 		}
 	}
 	if ($rights & MANAGE_ALL_ALBUM_RIGHTS) {	// these are lock-step linked!
-		$rights = $rights | VIEW_ALBUMS_RIGHTS;
+		$rights = $rights | VIEW_ALBUMS_RIGHTS | ALBUM_RIGHTS;
+	}
+	if ($rights & MANAGE_ALL_NEWS_RIGHTS) {	// these are lock-step linked!
+		$rights = $rights | VIEW_NEWS_RIGHTS | NEWS_RIGHTS;
+	}
+	if ($rights & MANAGE_ALL_PAGES_RIGHTS) {	// these are lock-step linked!
+		$rights = $rights | VIEW_PAGES_RIGHTS | PAGE_RIGHTS;
 	}
 	return $rights;
 }
