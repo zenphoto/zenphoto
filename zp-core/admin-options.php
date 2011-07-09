@@ -117,7 +117,6 @@ if (isset($_GET['action'])) {
 				}
 			}
 			$gallery->setSecurity(sanitize($_POST['gallery_security'],3));
-			$gallery->setUserLogonField(isset($_POST['login_user_field']));
 			setOption('edit_in_place',(int) (sanitize_numeric($_POST['edit_in_place']) && true));
 			if ($_POST['password_enabled']) {
 			$olduser = $gallery->getUser();
@@ -429,6 +428,7 @@ if (isset($_GET['action'])) {
 		}
 		/*** Security Options ***/
 		if (isset($_POST['savesecurityoptions'])) {
+			$gallery->setUserLogonField(isset($_POST['login_user_field']));
 			setOption('server_protocol', $protocol = sanitize($_POST['server_protocol'],3));
 			if ($protocol == 'http') {
 				zp_setCookie("zenphoto_ssl", "", -368000);
@@ -436,6 +436,7 @@ if (isset($_GET['action'])) {
 			setOption('captcha', sanitize($_POST['captcha']));
 			setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
 			setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
+			$gallery->save();
 			$returntab = "&tab=security";
 		}
 		/*** custom options ***/
@@ -2743,7 +2744,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 									<?php
 									if ($disable) {
 										?>
-										<input type="hidden" name="login_user_field" value="<?php echo $gallery->getUserLogonField(); ?>" />
+										<input type="hidden" name="login_user_field" value="1" />
 										<input type="checkbox" name="login_user_field_disabled" id="login_user_field"
 															value="1" checked="checked" disabled="disabled" />
 										<?php

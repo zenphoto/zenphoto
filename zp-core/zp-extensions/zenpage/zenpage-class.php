@@ -103,7 +103,7 @@ class Zenpage {
 		global $_zp_zenpage_all_pages;
 		$this->processExpired('pages');
 		if (is_null($published)) {
-			if(zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
+			if(zp_loggedin(ZENPAGE_PAGES_RIGHTS || VIEW_PAGES_RIGHTS)) {
 				$published = FALSE;
 			} else {
 				$published = TRUE;
@@ -151,7 +151,7 @@ class Zenpage {
 		global $_zp_current_category, $_zp_post_date;
 		$this->processExpired('news');
 		if (is_null($published)) {
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS || VIEW_NEWS_RIGHTS)) {
 				$published = "all";
 			} else {
 				$published = "published";

@@ -101,7 +101,7 @@ class Gallery {
 	}
 
 	function getSortDirection() {
-		return $this->get('gallery_sortdirection');
+		return $this->get('sort_direction');
 	}
 	function setSortDirection($value) {
 		$this->set('sort_direction', (int) ($value && true));

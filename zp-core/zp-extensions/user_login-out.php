@@ -127,7 +127,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 		}
 		echo "\n".$before;
 		?>
-		<a href="javascript:launchScript('<?php echo FULLWEBPATH; ?>',[<?php echo implode(',',$params); ?>]);" title="<?php echo $logouttext; ?>" ><?php echo $logouttext; ?></a>
+		<a href="javascript:launchScript('<?php echo FULLWEBPATH.'/'; ?>',[<?php echo implode(',',$params); ?>]);" title="<?php echo $logouttext; ?>" ><?php echo $logouttext; ?></a>
 		<?php
 		echo $after."\n";
 	}

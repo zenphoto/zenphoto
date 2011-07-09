@@ -336,7 +336,7 @@ if (file_exists(dirname(__FILE__).'/js/editor_config.js.php') && file_exists(SER
 setOptionDefault('AlbumThumbSelectField','ID');
 setOptionDefault('AlbumThumbSelectDirection','DESC');
 gettext($str = 'most recent');
-setOptionDefault('AlbumThumbSelecorText',getAllTranslations($str));
+setOptionDefault('AlbumThumbSelectorText',getAllTranslations($str));
 
 setOptionDefault('site_email',"zenphoto@".$_SERVER['SERVER_NAME']);
 

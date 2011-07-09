@@ -151,7 +151,7 @@ foreach ($albumlist as $fullfolder => $albumtitle) {
 		$showThumb = $gallery->getThumbSelectImages();
 		echo "\n<option";
 		if ($showThumb) echo " class=\"thumboption\" value=\"\" style=\"background-color:#B1F7B6\"";
-		echo ' value="1">'.getOption('AlbumThumbSelecorText');
+		echo ' value="1">'.get_language_string(getOption('AlbumThumbSelectorText'));
 		echo '</option>';
 		echo "\n<option";
 		if ($showThumb) echo " class=\"thumboption\" value=\"\" style=\"background-color:#B1F7B6\"";

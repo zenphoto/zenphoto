@@ -480,98 +480,92 @@ class Zenphoto_Authority {
 	 * @param $version
 	 */
 	function getRights($version=NULL) {
-		$rightsset = $this->rightsset;
-		if (!empty($version) || is_null($rightsset)) {
-			if (empty($version)) {
-				$v = $this->getVersion();
-			} else {
-				$v = $version;
-			}
-			switch ($v) {
-				case 1:
-					$rightsset = array(	'NO_RIGHTS' => array('value'=>2,'name'=>gettext('No rights'),'set'=>'','display'=>false,'hint'=>''),
-															'OVERVIEW_RIGHTS' => array('value'=>4,'name'=>gettext('Overview'),'set'=>'','display'=>true,'hint'=>''),
-															'VIEW_ALL_RIGHTS' => array('value'=>8,'name'=>gettext('View all'),'set'=>'','display'=>true,'hint'=>''),
-															'UPLOAD_RIGHTS' => array('value'=>16,'name'=>gettext('Upload'),'set'=>'','display'=>true,'hint'=>''),
-															'POST_COMMENT_RIGHTS'=> array('value'=>32,'name'=>gettext('Post comments'),'set'=>'','display'=>true,'hint'=>''),
-															'COMMENT_RIGHTS' => array('value'=>64,'name'=>gettext('Comments'),'set'=>'','display'=>true,'hint'=>''),
-															'ALBUM_RIGHTS' => array('value'=>256,'name'=>gettext('Album'),'set'=>'','display'=>true,'hint'=>''),
-															'MANAGE_ALL_ALBUM_RIGHTS' => array('value'=>512,'name'=>gettext('Manage all albums'),'set'=>'','display'=>true,'hint'=>''),
-															'THEMES_RIGHTS' => array('value'=>1024,'name'=>gettext('Themes'),'set'=>'','display'=>true,'hint'=>''),
-															'ZENPAGE_RIGHTS' => array('value'=>2049,'name'=>gettext('Zenpage'),'set'=>'','display'=>true,'hint'=>''),
-															'TAGS_RIGHTS' => array('value'=>4096,'name'=>gettext('Tags'),'set'=>'','display'=>true,'hint'=>''),
-															'OPTIONS_RIGHTS' => array('value'=>8192,'name'=>gettext('Options'),'set'=>'','display'=>true,'hint'=>''),
-															'ADMIN_RIGHTS' => array('value'=>65536,'name'=>gettext('Admin'),'set'=>'','display'=>true,'hint'=>''));
-					break;
-				case 2:
-					$rightsset = array(	'NO_RIGHTS' => array('value'=>1,'name'=>gettext('No rights'),'set'=>'','display'=>false,'hint'=>''),
-															'OVERVIEW_RIGHTS' => array('value'=>pow(2,2),'name'=>gettext('Overview'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may view the admin overview page.')),
-															'VIEW_ALL_RIGHTS' => array('value'=>pow(2,4),'name'=>gettext('View all'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery.')),
-															'UPLOAD_RIGHTS' => array('value'=>pow(2,6),'name'=>gettext('Upload'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may upload to the albums for which they have management rights.')),
-															'POST_COMMENT_RIGHTS'=> array('value'=>pow(2,8),'name'=>gettext('Post comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
-															'COMMENT_RIGHTS' => array('value'=>pow(2,10),'name'=>gettext('Comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make comments tab changes.')),
-															'ALBUM_RIGHTS' => array('value'=>pow(2,12),'name'=>gettext('Albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may access the "albums" tab to make changes.')),
-															'ZENPAGE_PAGES_RIGHTS' => array('value'=>pow(2,14),'name'=>gettext('Pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right may edit and manage Zenpage pages.')),
-															'ZENPAGE_NEWS_RIGHTS' => array('value'=>pow(2,16),'name'=>gettext('News'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right may edit and manage Zenpage articles and categories.')),
-															'FILES_RIGHTS' => array('value'=>pow(2,18),'name'=>gettext('Files'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Allows the user access to the "filemanager" located on the upload: files sub-tab.')),
-															'MANAGE_ALL_PAGES_RIGHTS' => array('value'=>pow(2,20),'name'=>gettext('Manage all pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
-															'MANAGE_ALL_NEWS_RIGHTS' => array('value'=>pow(2,22),'name'=>gettext('Manage all news'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
-															'MANAGE_ALL_ALBUM_RIGHTS' => array('value'=>pow(2,24),'name'=>gettext('Manage all albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
-															'THEMES_RIGHTS' => array('value'=>pow(2,26),'name'=>gettext('Themes'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
-															'TAGS_RIGHTS' => array('value'=>pow(2,28),'name'=>gettext('Tags'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('Users with this right may make additions and changes to the set of tags.')),
-															'OPTIONS_RIGHTS' => array('value'=>pow(2,29),'name'=>gettext('Options'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('Users with this right may make changes on the options tabs.')),
-															'ADMIN_RIGHTS' => array('value'=>pow(2,30),'name'=>gettext('Admin'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
-					break;
-				case 3:
-					$rightsset = array(	'NO_RIGHTS' => array('value'=>1,'name'=>gettext('No rights'),'set'=>'','display'=>false,'hint'=>''),
-
-															'OVERVIEW_RIGHTS' => array('value'=>pow(2,2),'name'=>gettext('Overview'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('Users with this right may view the admin overview page.')),
-
-															'VIEW_GALLERY_RIGHTS' => array('value'=>pow(2,4),'name'=>gettext('View gallery'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may view otherwise protected generic gallery pages.')),
-															'VIEW_SEARCH_RIGHTS' => array('value'=>pow(2,5),'name'=>gettext('View search'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may view search pages even if password protected.')),
-															'VIEW_FULLIMAGE_RIGHTS' => array('value'=>pow(2,6),'name'=>gettext('View fullimage'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may view all full sized (raw) images.')),
-															'VIEW_NEWS_RIGHTS' => array('value'=>pow(2,7),'name'=>gettext('View news'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right may view all zenpage news articles.')),
-															'VIEW_PAGES_RIGHTS' => array('value'=>pow(2,8),'name'=>gettext('View pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right may view all zenpage pages.')),
-															'VIEW_ALBUMS_RIGHTS' => array('value'=>pow(2,9),'name'=>gettext('View albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may view all albums (and their images).')),
-
-															'POST_COMMENT_RIGHTS'=> array('value'=>pow(2,11),'name'=>gettext('Post comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
-															'COMMENT_RIGHTS' => array('value'=>pow(2,12),'name'=>gettext('Comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make comments tab changes.')),
-															'UPLOAD_RIGHTS' => array('value'=>pow(2,13),'name'=>gettext('Upload'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may upload to the albums for which they have management rights.')),
-
-															'ZENPAGE_NEWS_RIGHTS' => array('value'=>pow(2,15),'name'=>gettext('News'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right may edit and manage Zenpage articles and categories.')),
-															'ZENPAGE_PAGES_RIGHTS' => array('value'=>pow(2,16),'name'=>gettext('Pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right may edit and manage Zenpage pages.')),
-															'FILES_RIGHTS' => array('value'=>pow(2,17),'name'=>gettext('Files'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Allows the user access to the "filemanager" located on the upload: files sub-tab.')),
-															'ALBUM_RIGHTS' => array('value'=>pow(2,18),'name'=>gettext('Albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may access the "albums" tab to make changes.')),
-
-															'MANAGE_ALL_NEWS_RIGHTS' => array('value'=>pow(2,21),'name'=>gettext('Manage all news'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
-															'MANAGE_ALL_PAGES_RIGHTS' => array('value'=>pow(2,22),'name'=>gettext('Manage all pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
-															'MANAGE_ALL_ALBUM_RIGHTS' => array('value'=>pow(2,23),'name'=>gettext('Manage all albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
-
-															'THEMES_RIGHTS' => array('value'=>pow(2,26),'name'=>gettext('Themes'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
-
-															'TAGS_RIGHTS' => array('value'=>pow(2,28),'name'=>gettext('Tags'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make additions and changes to the set of tags.')),
-															'OPTIONS_RIGHTS' => array('value'=>pow(2,29),'name'=>gettext('Options'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('Users with this right may make changes on the options tabs.')),
-															'ADMIN_RIGHTS' => array('value'=>pow(2,30),'name'=>gettext('Admin'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
-					break;
-			}
-			$allrights = 0;
-			foreach ($rightsset as $key=>$right) {
-				$allrights = $allrights | $right['value'];
-			}
-			$rightsset['ALL_RIGHTS'] =	array('value'=>$allrights,'name'=>gettext('All rights'),'display'=>false);
-			$rightsset['DEFAULT_RIGHTS'] =	array('value'=>$rightsset['OVERVIEW_RIGHTS']['value']+$rightsset['POST_COMMENT_RIGHTS']['value'],'name'=>gettext('Default rights'),'display'=>false);
-			if (isset($rightsset['VIEW_ALL_RIGHTS']['value'])) {
-				$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']['value']|$rightsset['VIEW_ALL_RIGHTS']['value'];
-			} else {
-				$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']|$rightsset['VIEW_ALBUMS_RIGHTS']['value']|
-																			 $rightsset['VIEW_PAGES_RIGHTS']['value']|$rightsset['VIEW_NEWS_RIGHTS']['value']|
-																			 $rightsset['VIEW_SEARCH_RIGHTS']['value']|$rightsset['VIEW_GALLERY_RIGHTS']['value'];
-			}
-			$rightsset = sortMultiArray($rightsset,'value',true,false,false);
-			if (empty($version)) {
-				$this->rightsset = $rightsset;
-			}
+		if (empty($version)) {
+			$v = $this->getVersion();
+		} else {
+			$v = $version;
 		}
+		switch ($v) {
+			case 1:
+				$rightsset = array(	'NO_RIGHTS' => array('value'=>2,'name'=>gettext('No rights'),'set'=>'','display'=>false,'hint'=>''),
+														'OVERVIEW_RIGHTS' => array('value'=>4,'name'=>gettext('Overview'),'set'=>'','display'=>true,'hint'=>''),
+														'VIEW_ALL_RIGHTS' => array('value'=>8,'name'=>gettext('View all'),'set'=>'','display'=>true,'hint'=>''),
+														'UPLOAD_RIGHTS' => array('value'=>16,'name'=>gettext('Upload'),'set'=>'','display'=>true,'hint'=>''),
+														'POST_COMMENT_RIGHTS'=> array('value'=>32,'name'=>gettext('Post comments'),'set'=>'','display'=>true,'hint'=>''),
+														'COMMENT_RIGHTS' => array('value'=>64,'name'=>gettext('Comments'),'set'=>'','display'=>true,'hint'=>''),
+														'ALBUM_RIGHTS' => array('value'=>256,'name'=>gettext('Album'),'set'=>'','display'=>true,'hint'=>''),
+														'MANAGE_ALL_ALBUM_RIGHTS' => array('value'=>512,'name'=>gettext('Manage all albums'),'set'=>'','display'=>true,'hint'=>''),
+														'THEMES_RIGHTS' => array('value'=>1024,'name'=>gettext('Themes'),'set'=>'','display'=>true,'hint'=>''),
+														'ZENPAGE_RIGHTS' => array('value'=>2049,'name'=>gettext('Zenpage'),'set'=>'','display'=>true,'hint'=>''),
+														'TAGS_RIGHTS' => array('value'=>4096,'name'=>gettext('Tags'),'set'=>'','display'=>true,'hint'=>''),
+														'OPTIONS_RIGHTS' => array('value'=>8192,'name'=>gettext('Options'),'set'=>'','display'=>true,'hint'=>''),
+														'ADMIN_RIGHTS' => array('value'=>65536,'name'=>gettext('Admin'),'set'=>'','display'=>true,'hint'=>''));
+				break;
+			case 2:
+				$rightsset = array(	'NO_RIGHTS' => array('value'=>1,'name'=>gettext('No rights'),'set'=>'','display'=>false,'hint'=>''),
+														'OVERVIEW_RIGHTS' => array('value'=>pow(2,2),'name'=>gettext('Overview'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may view the admin overview page.')),
+														'VIEW_ALL_RIGHTS' => array('value'=>pow(2,4),'name'=>gettext('View all'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery.')),
+														'UPLOAD_RIGHTS' => array('value'=>pow(2,6),'name'=>gettext('Upload'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may upload to the albums for which they have management rights.')),
+														'POST_COMMENT_RIGHTS'=> array('value'=>pow(2,8),'name'=>gettext('Post comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
+														'COMMENT_RIGHTS' => array('value'=>pow(2,10),'name'=>gettext('Comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make comments tab changes.')),
+														'ALBUM_RIGHTS' => array('value'=>pow(2,12),'name'=>gettext('Albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may access the "albums" tab to make changes.')),
+														'ZENPAGE_PAGES_RIGHTS' => array('value'=>pow(2,14),'name'=>gettext('Pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right may edit and manage Zenpage pages.')),
+														'ZENPAGE_NEWS_RIGHTS' => array('value'=>pow(2,16),'name'=>gettext('News'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right may edit and manage Zenpage articles and categories.')),
+														'FILES_RIGHTS' => array('value'=>pow(2,18),'name'=>gettext('Files'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Allows the user access to the "filemanager" located on the upload: files sub-tab.')),
+														'MANAGE_ALL_PAGES_RIGHTS' => array('value'=>pow(2,20),'name'=>gettext('Manage all pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
+														'MANAGE_ALL_NEWS_RIGHTS' => array('value'=>pow(2,22),'name'=>gettext('Manage all news'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
+														'MANAGE_ALL_ALBUM_RIGHTS' => array('value'=>pow(2,24),'name'=>gettext('Manage all albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
+														'THEMES_RIGHTS' => array('value'=>pow(2,26),'name'=>gettext('Themes'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
+														'TAGS_RIGHTS' => array('value'=>pow(2,28),'name'=>gettext('Tags'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('Users with this right may make additions and changes to the set of tags.')),
+														'OPTIONS_RIGHTS' => array('value'=>pow(2,29),'name'=>gettext('Options'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('Users with this right may make changes on the options tabs.')),
+														'ADMIN_RIGHTS' => array('value'=>pow(2,30),'name'=>gettext('Admin'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
+				break;
+			case 3:
+				$rightsset = array(	'NO_RIGHTS' => array('value'=>1,'name'=>gettext('No rights'),'set'=>'','display'=>false,'hint'=>''),
+
+														'OVERVIEW_RIGHTS' => array('value'=>pow(2,2),'name'=>gettext('Overview'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('Users with this right may view the admin overview page.')),
+
+														'VIEW_GALLERY_RIGHTS' => array('value'=>pow(2,4),'name'=>gettext('View gallery'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may view otherwise protected generic gallery pages.')),
+														'VIEW_SEARCH_RIGHTS' => array('value'=>pow(2,5),'name'=>gettext('View search'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may view search pages even if password protected.')),
+														'VIEW_FULLIMAGE_RIGHTS' => array('value'=>pow(2,6),'name'=>gettext('View fullimage'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may view all full sized (raw) images.')),
+														'VIEW_NEWS_RIGHTS' => array('value'=>pow(2,7),'name'=>gettext('View news'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right may view all zenpage news articles.')),
+														'VIEW_PAGES_RIGHTS' => array('value'=>pow(2,8),'name'=>gettext('View pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right may view all zenpage pages.')),
+														'VIEW_ALBUMS_RIGHTS' => array('value'=>pow(2,9),'name'=>gettext('View albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may view all albums (and their images).')),
+
+														'POST_COMMENT_RIGHTS'=> array('value'=>pow(2,11),'name'=>gettext('Post comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
+														'COMMENT_RIGHTS' => array('value'=>pow(2,12),'name'=>gettext('Comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make comments tab changes.')),
+														'UPLOAD_RIGHTS' => array('value'=>pow(2,13),'name'=>gettext('Upload'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may upload to the albums for which they have management rights.')),
+
+														'ZENPAGE_NEWS_RIGHTS' => array('value'=>pow(2,15),'name'=>gettext('News'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right may edit and manage Zenpage articles and categories.')),
+														'ZENPAGE_PAGES_RIGHTS' => array('value'=>pow(2,16),'name'=>gettext('Pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right may edit and manage Zenpage pages.')),
+														'FILES_RIGHTS' => array('value'=>pow(2,17),'name'=>gettext('Files'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Allows the user access to the "filemanager" located on the upload: files sub-tab.')),
+														'ALBUM_RIGHTS' => array('value'=>pow(2,18),'name'=>gettext('Albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may access the "albums" tab to make changes.')),
+
+														'MANAGE_ALL_NEWS_RIGHTS' => array('value'=>pow(2,21),'name'=>gettext('Manage all news'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
+														'MANAGE_ALL_PAGES_RIGHTS' => array('value'=>pow(2,22),'name'=>gettext('Manage all pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),
+														'MANAGE_ALL_ALBUM_RIGHTS' => array('value'=>pow(2,23),'name'=>gettext('Manage all albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery.')),
+
+														'THEMES_RIGHTS' => array('value'=>pow(2,26),'name'=>gettext('Themes'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list.')),
+
+														'TAGS_RIGHTS' => array('value'=>pow(2,28),'name'=>gettext('Tags'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make additions and changes to the set of tags.')),
+														'OPTIONS_RIGHTS' => array('value'=>pow(2,29),'name'=>gettext('Options'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('Users with this right may make changes on the options tabs.')),
+														'ADMIN_RIGHTS' => array('value'=>pow(2,30),'name'=>gettext('Admin'),'set'=>gettext('General'),'display'=>true,'hint'=>gettext('The master privilege. A user with "Admin" can do anything. (No matter what his other rights might indicate!)')));
+				break;
+		}
+		$allrights = 0;
+		foreach ($rightsset as $key=>$right) {
+			$allrights = $allrights | $right['value'];
+		}
+		$rightsset['ALL_RIGHTS'] =	array('value'=>$allrights,'name'=>gettext('All rights'),'display'=>false);
+		$rightsset['DEFAULT_RIGHTS'] =	array('value'=>$rightsset['OVERVIEW_RIGHTS']['value']+$rightsset['POST_COMMENT_RIGHTS']['value'],'name'=>gettext('Default rights'),'display'=>false);
+		if (isset($rightsset['VIEW_ALL_RIGHTS']['value'])) {
+			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']['value']|$rightsset['VIEW_ALL_RIGHTS']['value'];
+		} else {
+			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']|$rightsset['VIEW_ALBUMS_RIGHTS']['value']|
+																		 $rightsset['VIEW_PAGES_RIGHTS']['value']|$rightsset['VIEW_NEWS_RIGHTS']['value']|
+																		 $rightsset['VIEW_SEARCH_RIGHTS']['value']|$rightsset['VIEW_GALLERY_RIGHTS']['value'];
+		}
+		$rightsset = sortMultiArray($rightsset,'value',true,false,false);
 		return $rightsset;
 	}
 
