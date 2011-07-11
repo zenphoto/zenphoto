@@ -43,11 +43,13 @@ if (isset($_GET['action'])) {
 				if (isset($_POST[$i.'-initgroup']) && !empty($_POST[$i.'-initgroup'])) {
 					$initgroupname = trim(sanitize($_POST[$i.'-initgroup'],3));
 					$initgroup = $_zp_authority->newAdministrator($initgroupname, 0);
+					$rights = $initgroup->getRights();
 					$group->setObjects(processManagedObjects($group->getID(),$rights));
-					$group->setRights($initgroup->getRights() | NO_RIGHTS | $rights);
+					$group->setRights(NO_RIGHTS | $rights);
 				} else {
+					$rights = processRights($i);
 					$group->setObjects(processManagedObjects($i,$rights));
-					$group->setRights(processRights($i) | NO_RIGHTS | $rights);
+					$group->setRights(NO_RIGHTS | $rights);
 				}
 				$group->setCustomData(trim(sanitize($_POST[$i.'-desc'], 3)));
 				$group->setName(trim(sanitize($_POST[$i.'-type'], 3)));

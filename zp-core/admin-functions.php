@@ -3023,10 +3023,10 @@ function processRights($i) {
 		$rights = $rights | VIEW_ALBUMS_RIGHTS | ALBUM_RIGHTS;
 	}
 	if ($rights & MANAGE_ALL_NEWS_RIGHTS) {	// these are lock-step linked!
-		$rights = $rights | VIEW_NEWS_RIGHTS | NEWS_RIGHTS;
+		$rights = $rights | VIEW_NEWS_RIGHTS | ZENPAGE_NEWS_RIGHTS;
 	}
 	if ($rights & MANAGE_ALL_PAGES_RIGHTS) {	// these are lock-step linked!
-		$rights = $rights | VIEW_PAGES_RIGHTS | PAGE_RIGHTS;
+		$rights = $rights | VIEW_PAGES_RIGHTS | ZENPAGE_PAGES_RIGHTS;
 	}
 	return $rights;
 }
@@ -3088,10 +3088,27 @@ function processManagedObjects($i, &$rights) {
 		unset($albums[$key]);
 		$albums[] = $analbum;
 	}
-	$rights = 0;
-	if (!empty($albums)) $rights = $rights | ALBUM_RIGHTS;
-	if (!empty($pages)) $rights = $rights | ZENPAGE_PAGES_RIGHTS;
-	if (!empty($news)) $rights = $rights | ZENPAGE_NEWS_RIGHTS;
+	if (empty($albums)) {
+		if (!($rights & MANAGE_ALL_ALBUM_RIGHTS)) {
+			$rights = $rights&~ALBUM_RIGHTS;
+		}
+	} else {
+		$rights = $rights | ALBUM_RIGHTS;
+	}
+	if (empty($pages)) {
+		if (!($rights & MANAGE_ALL_PAGES_RIGHTS)) {
+			$rights = $rights&~ZENPAGE_PAGES_RIGHTS;
+		}
+	} else {
+		$rights = $rights | ZENPAGE_PAGES_RIGHTS;
+	}
+	if (empty($news)) {
+		if (!($rights & MANAGE_ALL_NEWS_RIGHTS)) {
+			$rights = $rights&~ZENPAGE_NEWS_RIGHTS;
+		}
+	} else {
+		$rights = $rights | ZENPAGE_NEWS_RIGHTS;
+	}
 	$objects = array_merge($albums,$pages,$news);
 	return $objects;
 }

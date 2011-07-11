@@ -133,11 +133,11 @@ if (isset($_GET['action'])) {
 							$oldobjects = $userobj->getObjects();
 							$rights = 0;
 							if ($alter) {
+								$rights = processRights($i);
 								$objects = processManagedObjects($i, $rights);
 								if ($objects != $oldobjects) {
 									$userobj->setObjects($objects);
 								}
-								$rights = processRights($i) | $rights;
 								if ($rights != $oldrights) {
 									$userobj->setRights($rights | NO_RIGHTS);
 								}
