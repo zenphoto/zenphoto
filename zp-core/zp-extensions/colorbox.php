@@ -62,7 +62,7 @@ class colorbox_Options {
 				}
 			}
 			chdir($curdir);
-			$opts[$theme] = array('key' => 'colrobox_'.$theme.'_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+			$opts[$theme] = array('key' => 'colorbox_'.$theme.'_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
 																	'checkboxes' => $list,
 																	'desc' => gettext('The scripts for which Colorbox is enabled. {Should have been set by the themes!}')
 											);

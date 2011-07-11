@@ -123,7 +123,7 @@ function getAllTagsFromZenpage($mode='news') {
 	$tagWhere = "";
 	switch($mode) {
 		case 'news':
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
 				$published = 'all';
 			} else {
 				$published = 'published';
@@ -138,7 +138,7 @@ function getAllTagsFromZenpage($mode='news') {
 			}
 			break;
 		case 'pages':
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
 				$published = 'all';
 			} else {
 				$published = 'published';

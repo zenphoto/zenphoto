@@ -230,7 +230,7 @@ function getAlbumGeodata($obj,$MAP_OBJECT){
  *
  * @param string $text text for the "toggle" link that shows/hides the map. Set empty to omit
  * @param string $id used to set the IDs for the toggle href element ($id_toggle) and the map element ($id_data)
- * @param string $hide initial map state: "hide", "show", or "colrobox"
+ * @param string $hide initial map state: "hide", "show", or "colorbox"
  * @param object $obj optional image/album object. Pass string for generic map and use callback to set points
  * @param function $callback optional callback function to set map options.
  */

@@ -103,7 +103,7 @@ class Zenpage {
 		global $_zp_zenpage_all_pages;
 		$this->processExpired('pages');
 		if (is_null($published)) {
-			if(zp_loggedin(ZENPAGE_PAGES_RIGHTS || VIEW_PAGES_RIGHTS)) {
+			if(zp_loggedin(ZENPAGE_PAGES_RIGHTS | VIEW_PAGES_RIGHTS)) {
 				$published = FALSE;
 			} else {
 				$published = TRUE;
@@ -151,7 +151,7 @@ class Zenpage {
 		global $_zp_current_category, $_zp_post_date;
 		$this->processExpired('news');
 		if (is_null($published)) {
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS || VIEW_NEWS_RIGHTS)) {
+			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
 				$published = "all";
 			} else {
 				$published = "published";
@@ -310,7 +310,7 @@ class Zenpage {
 		$alldates = array();
 		$cleandates = array();
 		$sql = "SELECT date FROM ". prefix('news');
-		if (!zp_loggedin(ZENPAGE_NEWS_RIGHTS)) { $sql .= " WHERE `show` = 1"; }
+		if (!zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) { $sql .= " WHERE `show` = 1"; }
 		$result = query_full_array($sql);
 		foreach($result as $row){
 			$alldates[] = $row['date'];
@@ -422,7 +422,7 @@ class Zenpage {
 		global $_zp_gallery, $_zp_flash_player;
 		$this->processExpired('news');
 		if (is_null($published)) {
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
 				$published = "all";
 			} else {
 				$published = "published";
@@ -439,7 +439,7 @@ class Zenpage {
 			$imagesshow = "";
 		}
 		$passwordcheck = "";
-		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
 			$albumWhere = "";
 			$passwordcheck = "";
 		} else {
@@ -602,7 +602,7 @@ class Zenpage {
 		if(ZP_COMBINEWS) {
 			$countArticles = count($this->getNewsArticles(0));
 			if(is_null($published)) {
-				if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+				if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
 					$published = FALSE;
 				} else {
 					$published = TRUE;

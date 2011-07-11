@@ -500,11 +500,12 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($_zp_current_zenpage_news->getThumb()).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>';
 					break;
 				case 'latestimages-thumbnail-customcrop':
-					if(isImagePhoto($_zp_current_zenpage_news)) {	
+					if(isImagePhoto($_zp_current_zenpage_news)) {
 						$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($_zp_current_zenpage_news->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>';
 					} else {
 						$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($_zp_current_zenpage_news->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>';
-					}					break;
+					}
+					break;
 			}
 			$articlecontent .= getContentShorten($_zp_current_zenpage_news->getDesc(),$shorten,$shortenindicator,$readmore,$_zp_current_zenpage_news->getImageLink());
 			break;
@@ -1970,7 +1971,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 	if ($showsubs === true) $showsubs = 9999999999;
 	switch($mode) {
 		case 'pages':
-			$published = !zp_loggedin(ZENPAGE_PAGES_RIGHTS);
+			$published = !zp_loggedin(ZENPAGE_PAGES_RIGHTS | VIEW_PAGES_RIGHTS);
 			$items = $_zp_zenpage->getPages($published);
 			$currentitem_id = getPageID();
 			if (is_object($_zp_current_zenpage_page)) {
@@ -1982,7 +1983,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 			break;
 		case 'categories':
 		case 'allcategories':
-			$published = !zp_loggedin(ZENPAGE_NEWS_RIGHTS);
+			$published = !zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS);
 			$items = $_zp_zenpage->getAllCategories();
 			if (is_object($_zp_current_category)) {
 				$currentitem_sortorder = $_zp_current_category->getSortOrder();
