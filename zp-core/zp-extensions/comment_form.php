@@ -214,10 +214,16 @@ function comment_form_edit_comment($discard, $raw) {
 	} else {
 		$address = unserialize($raw);
 	}
-	return
+	$required = getOption('register_user_address_info');
+	if ($required == 'required') {
+		$required = '*';
+	} else {
+		$required = false;
+	}
+	$html =
 			 '<tr>
 					<td>'.
-						gettext('street:').
+						sprintf('street%s:',$required).
 				 '</td>
 					<td>
 						<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="'.$address['street'].'">
@@ -225,7 +231,7 @@ function comment_form_edit_comment($discard, $raw) {
 				</tr>
 				<tr>
 					<td>'.
-						gettext('city:').
+						sprintf('city%s:',$required).
 					'</td>
 					<td>
 						<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="'.$address['city'].'">
@@ -233,7 +239,7 @@ function comment_form_edit_comment($discard, $raw) {
 				</tr>
 				<tr>
 					<td>'.
-						gettext('state:').
+						sprintf('state%s:',$required).
 				 '</td>
 					<td>
 						<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="'.$address['state'].'">
@@ -241,7 +247,7 @@ function comment_form_edit_comment($discard, $raw) {
 				</tr>
 				<tr>
 					<td>'.
-						gettext('country:').
+						sprintf('country%s:',$required).
 				 '</td>
 					<td>
 						<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="'.$address['country'].'">
@@ -249,12 +255,23 @@ function comment_form_edit_comment($discard, $raw) {
 				</tr>
 				<tr>
 					<td>'.
-						gettext('postal code:').
+						sprintf('postal code%s:',$required).
 					'</td>
 					<td>
 						<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="'.$address['postal'].'">
 					</td>
 				</tr>'."\n";
+	if ($required) {
+		$html .=
+				'<tr>
+					<td>
+					</td>
+					<td>'.
+						gettext('*Required').
+					'</td>
+				</tr>'."\n";
+	}
+	return $html;
 }
 
 function comment_form_register_user($html) {

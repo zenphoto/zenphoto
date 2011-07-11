@@ -169,7 +169,7 @@ class register_user_options {
 				<?php
 				break;
 			case 'register_user_rights':
-				printAdminRightsTable('extrenal_credentials', '', true, getOption('register_user_user_rights'));
+				printAdminRightsTable('register_user', '', '', getOption('register_user_user_rights'));
 				break;
 		}
 	}
