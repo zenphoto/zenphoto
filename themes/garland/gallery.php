@@ -6,8 +6,7 @@ if (!defined('WEBPATH')) die();
 <head>
 <?php zp_apply_filter('theme_head'); ?>
 <title><?php printGalleryTitle(); ?> | <?php echo gettext('Album index');?></title>
-<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css"
-	type="text/css" />
+<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 <?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 </head>
 <body class="sidebars">

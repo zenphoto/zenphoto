@@ -536,10 +536,10 @@ class Zenphoto_Authority {
 														'COMMENT_RIGHTS' => array('value'=>pow(2,12),'name'=>gettext('Comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make comments tab changes.')),
 														'UPLOAD_RIGHTS' => array('value'=>pow(2,13),'name'=>gettext('Upload'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may upload to the albums for which they have management rights.')),
 
-														'ZENPAGE_NEWS_RIGHTS' => array('value'=>pow(2,15),'name'=>gettext('News'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right may edit and manage Zenpage articles and categories.')),
-														'ZENPAGE_PAGES_RIGHTS' => array('value'=>pow(2,16),'name'=>gettext('Pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right may edit and manage Zenpage pages.')),
+														'ZENPAGE_NEWS_RIGHTS' => array('value'=>pow(2,15),'name'=>gettext('News'),'set'=>gettext('News'),'display'=>false,'hint'=>gettext('Users with this right may edit and manage Zenpage articles and categories.')),
+														'ZENPAGE_PAGES_RIGHTS' => array('value'=>pow(2,16),'name'=>gettext('Pages'),'set'=>gettext('Pages'),'display'=>false,'hint'=>gettext('Users with this right may edit and manage Zenpage pages.')),
 														'FILES_RIGHTS' => array('value'=>pow(2,17),'name'=>gettext('Files'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Allows the user access to the "filemanager" located on the upload: files sub-tab.')),
-														'ALBUM_RIGHTS' => array('value'=>pow(2,18),'name'=>gettext('Albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may access the "albums" tab to make changes.')),
+														'ALBUM_RIGHTS' => array('value'=>pow(2,18),'name'=>gettext('Albums'),'set'=>gettext('Albums'),'display'=>false,'hint'=>gettext('Users with this right may access the "albums" tab to make changes.')),
 
 														'MANAGE_ALL_NEWS_RIGHTS' => array('value'=>pow(2,21),'name'=>gettext('Manage all news'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category.')),
 														'MANAGE_ALL_PAGES_RIGHTS' => array('value'=>pow(2,22),'name'=>gettext('Manage all pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users who do not have "Admin" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page.')),

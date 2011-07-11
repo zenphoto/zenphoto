@@ -46,10 +46,14 @@ if (getOption('Allow_search')) {
 			break;
 	}
 	printSearchForm(NULL, 'search', $_zp_themeroot.'/images/search.png', $text, NULL, NULL, $list);
+	?>
+	<br clear="all">
+	<?php
 }
 
 if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
 	?>
+	<!-- custom menu -->
 	<div class="menu">
 		<?php
 		printCustomMenu($menu,'list','',"menu-active","submenu","menu-active",2);
@@ -57,6 +61,8 @@ if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
 	</div>
 	<?php
 } else {	//	"standard zenpage sidebar menus
+	?>
+	<!-- standard menu -->	<?php
 	if(function_exists("printAllNewsCategories")) {
 		if (getNumNews(true)) {
 			?>

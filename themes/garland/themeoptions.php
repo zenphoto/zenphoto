@@ -47,7 +47,7 @@ class ThemeOptions {
   }
 
   function getOptionsDisabled() {
-  	return array('thumb_size','thumb_crop','image_size','custom_index_page');
+  	return array('thumb_size','image_size','custom_index_page');
   }
 
   function getOptionsSupported() {
@@ -66,8 +66,8 @@ class ThemeOptions {
 		switch ($option) {
 			case 'garland_menu':
 				$menusets = array();
-				echo '<select id="EF_menuset" name="garland_menu"';
-				if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NULL, 'effervescence_plus') === 'gallery') {
+				echo '<select id="garland_menuset" name="garland_menu"';
+				if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NULL, 'garland') === 'gallery') {
 					$result = query_full_array("SELECT DISTINCT menuset FROM ".prefix('menu')." ORDER BY menuset");
 					foreach ($result as $set) {
 						$menusets[$set['menuset']] = $set['menuset'];
