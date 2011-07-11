@@ -877,9 +877,9 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 			</label>
 			<?php
 
-			if (array_key_exists($key, $extra)) {
+			if (array_key_exists($item, $extra)) {
 				$unique = '';
-				foreach ($extra[$key] as $box) {
+				foreach ($extra[$item] as $box) {
 					if ($box['display']) {
 						if (isset($box['type'])) {
 							$type = $box['type'];
@@ -2935,15 +2935,15 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			if (!($rights & VIEW_ALBUMS_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublished images');
 			foreach ($full as $item) {
 				$cv[$item['name']] = $item['data'];
-				$extra[$item['name']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
+				$extra[$item['data']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
 				if ($rights & ALBUM_RIGHTS) {
-					$extra[$item['name']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
+					$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
 				}
 				if (($rights & UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
-					$extra[$item['name']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+					$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
 				}
 				if (!($rights & VIEW_ALBUMS_RIGHTS)) {
-					$extra[$item['name']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW_IMAGE,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW_IMAGE);
+					$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW_IMAGE,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW_IMAGE);
 				}
 			}
 			$rest = array_diff($objlist, $cv);

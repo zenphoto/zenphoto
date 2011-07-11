@@ -775,7 +775,7 @@ function languageChange(id,lang) {
 				if ($current && $ismaster) {
 					echo '<p>'.gettext("The <em>master</em> account has full rights to all albums.").'</p>';
 				} else {
-					printManagedObjects('albums',$albumlist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'));
+					printManagedObjects('albums', $albumlist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'));
 					if (getOption('zp_plugin_zenpage')) {
 						$pagelist = array();
 						$pages = $_zp_zenpage->getPages(false);

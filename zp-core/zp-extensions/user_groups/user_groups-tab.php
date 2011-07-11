@@ -260,7 +260,7 @@ echo '</head>'."\n";
 												</div>
 											</div>
 										<?php
-											printManagedObjects('albums',$albumlist, '', $groupid, $id, $rights, $kind);
+											printManagedObjects('albums', $albumlist, '', $groupid, $id, $rights, $kind);
 											if (getOption('zp_plugin_zenpage')) {
 												$pagelist = array();
 												$pages = $_zp_zenpage->getPages(false);
