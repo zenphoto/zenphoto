@@ -53,7 +53,6 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 	}
 	$_zp_loggedin = $_zp_authority->handleLogon();
 	if ($_zp_loggedin) {
-		setOption('admin_reset_date', 1);	//	clear pending password resets. Note: this might be a race condition. Oh well, too bad.
 		if (isset($_POST['redirect'])) {
 			$redirect = sanitize_path($_POST['redirect']);
 		} else {
@@ -67,26 +66,7 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 	}
 } else {	//	no login form, check the cookie
 	if (isset($_GET['ticket'])) { // password reset query
-		$_zp_ticket = sanitize($_GET['ticket']);
-		$post_user = sanitize($_GET['user']);
-		$admins = $_zp_authority->getAdministrators();
-		foreach ($admins as $tuser) {
-			if ($tuser['user'] == $post_user) {
-				$admin = $tuser;
-				$_zp_request_date = getOption('admin_reset_date');
-				$adm = $admin['user'];
-				$pas = $admin['pass'];
-				$ref = sha1($_zp_request_date . $adm . $pas);
-				if ($ref === $_zp_ticket) {
-					if (time() <= ($_zp_request_date + (3 * 24 * 60 * 60))) { // limited time offer
-						setOption('admin_reset_date', NULL);
-						$_zp_reset_admin = new Zenphoto_Administrator($adm, 1);
-						$_zp_null_account = true;
-					}
-				}
-				break;
-			}
-		}
+		$_zp_authority->validateTicket(sanitize($_GET['ticket']), sanitize(@$_GET['user']));
 	}
 	$_zp_loggedin = $_zp_authority->checkCookieCredentials();
 	if (is_object($_zp_current_admin_obj)) {
@@ -98,7 +78,7 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 		$_zp_loggedin = zp_apply_filter('authorization_cookie',$_zp_loggedin);
 	}
 }
-	if (!$_zp_loggedin) {	//	Clear the ssl cookie
+if (!$_zp_loggedin) {	//	Clear the ssl cookie
 	zp_setCookie("zenphoto_ssl", "", -368000);
 }
 // Handle a logout action.

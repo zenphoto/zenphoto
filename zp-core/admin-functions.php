@@ -3771,7 +3771,7 @@ function codeblocktabsJS() {
  * @param string $return--where to go after login
  */
 function admin_securityChecks($rights, $return) {
-	global $_zp_current_admin_obj, $_zp_loggedin;
+	global $_zp_current_admin_obj, $_zp_loggedin, $_zp_reset_admin;
 	checkInstall();
 	if (SERVER_PROTOCOL == 'https_admin') {
 		// force https login
@@ -3781,7 +3781,7 @@ function admin_securityChecks($rights, $return) {
 			exit();
 		}
 	}
-	if (!is_null(getOption('admin_reset_date'))) {
+	if (!$_zp_reset_admin) {
 		if (!zp_loggedin($rights)) { // prevent nefarious access to this page.
 			$returnurl = urldecode($return);
 			if (!zp_apply_filter('admin_allow_access',false, $returnurl)) {

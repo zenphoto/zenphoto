@@ -12,6 +12,11 @@ require_once(dirname(__FILE__).'/admin-functions.php');
 require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(NO_RIGHTS, currentRelativeURL(__FILE__));
+if (isset($_GET['ticket'])) {
+	$ticket = '&ticket='.sanitize($_GET['ticket']).'&user='.sanitize(@$_GET['user']);
+} else {
+	$ticket = '';
+}
 
 $gallery = new Gallery();
 if (!isset($_GET['page'])) $_GET['page'] = 'users';
@@ -162,9 +167,6 @@ if (isset($_GET['action'])) {
 							$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
 							if (empty($msg)) {
 								$userobj->save();
-								if ($i == 0) {
-									setOption('admin_reset_date', '1');
-								}
 							} else {
 								$notify = '?mismatch=format&error='.urlencode($msg);
 								$error = true;
@@ -189,25 +191,27 @@ if (isset($_GET['action'])) {
 				$notify = '?saved&xsrftoken='.getXSRFToken('saved');
 			} else {
 				if (isset($_GET['ticket'])) {
-					setOption('admin_reset_date', $_zp_request_date); // reset the date
 					$notify .= '&ticket='.$_GET['ticket'].'&user='.$_GET['user'];
 				}
 			}
-			header("Location: " . $notify . $returntab);
+			header("Location: " . $notify . $returntab.$ticket);
 			exit();
 
 	}
 }
-$refresh = '';
-if (!$_zp_current_admin_obj && !$_zp_null_account) {
-	if (isset($_GET['saved']) && isset($_GET['xsrftoken']) && $_GET['xsrftoken'] == getXSRFToken('saved')) {
-		$refresh = '<meta http-equiv="refresh" content="3; url=admin.php" />;';
-	} else {
-		header("HTTP/1.0 302 Found");
-		header("Status: 302 Found");
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-		exit();
+$refresh = false;
+
+if ($_zp_reset_admin) {
+	if (isset($_GET['saved'])) {
+		$refresh = '<meta http-equiv="refresh" content="3; url=admin.php" />';
 	}
+}
+
+if (!$_zp_current_admin_obj && !$_zp_null_account) {
+	header("HTTP/1.0 302 Found");
+	header("Status: 302 Found");
+	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
+	exit();
 }
 
 printAdminHeader($_current_tab);
@@ -224,7 +228,7 @@ echo $refresh;
 <?php printTabs(); ?>
 <div id="content">
 <?php
-if (isset($_zp_request_date)) {
+if ($_zp_reset_admin && !$refresh) {
 	echo "<div class=\"errorbox space\">";
 	echo "<h2>".gettext("Password reset request.<br />You may now set admin usernames and passwords.")."</h2>";
 	echo "</div>";
@@ -267,9 +271,8 @@ if (isset($_zp_request_date)) {
 
 	$pages = 0;
 	$clearPass = false;
-	if ($_zp_null_account && isset($_zp_request_date)) {
+	if ($_zp_null_account && $_zp_reset_admin) {
 		$_zp_current_admin_obj = $_zp_reset_admin;
-		setOption('admin_reset_date', $_zp_request_date); // reset the date
 		$clearPass = true;
 	}
 	if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_reset_admin) {
@@ -421,7 +424,7 @@ function languageChange(id,lang) {
 	}
 }
 </script>
-<form action="?action=saveoptions<?php if (isset($_zp_ticket)) echo '&amp;ticket='.$_zp_ticket.'&amp;user='.$post_user; ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
+<form action="?action=saveoptions<?php echo str_replace('&','&amp;',$ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
 	<?php XSRFToken('saveadmin');?>
 	<input type="hidden" name="saveadminoptions" value="yes" />
 	<?php

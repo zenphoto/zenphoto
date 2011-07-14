@@ -13,13 +13,10 @@ zp_register_filter('save_user', 'email_new_user_save');
 zp_register_filter('edit_admin_custom_data', 'email_new_edit_admin', 0);
 
 function email_new_user_save($savemsg, $userobj, $what) {
+	global $_zp_authority;
 	if ($what=='new' && ($mail = $userobj->getEmail())) {
 		$gallery = new Gallery();
-		$adm = $userobj->getUser();
-		$pas = $userobj->getPass();
-		setOption('admin_reset_date', time());
-		$req = getOption('admin_reset_date');
-		$ref = sha1($req . $adm . $pas);
+		$ref = $_zp_authority->getResetTicket($userobj->getUser(), $userobj->getPass());
 		$msg = "\n".sprintf(gettext('You are receiving this e-mail because a user code (%1$s) has been created for you on the Zenphoto gallery %2$s.'),$adm,$gallery->getTitle()).
 								"\n".sprintf(gettext('To set your Zenphoto User password visit: %s'),FULLWEBPATH."/".ZENFOLDER."/admin-users.php?ticket=$ref&user=$adm") .
 								"\n".gettext("This ticket will automatically expire in 3 days.");

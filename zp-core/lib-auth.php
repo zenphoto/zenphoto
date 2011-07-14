@@ -303,13 +303,12 @@ class Zenphoto_Authority {
 
 		$admins = $this->getAdministrators();
 		if (DEBUG_LOGIN) { debugLogArray("checkAuthorization: admins",$admins);	}
-		$reset_date = getOption('admin_reset_date');
 		if ((count($admins) == 0)) {
 			if (DEBUG_LOGIN) { debugLog("checkAuthorization: no admins"); }
 			$_zp_null_account = true;
 			return ADMIN_RIGHTS; //no admins or reset request
 		}
-		if (empty($reset_date)) {
+		if ($_zp_reset_admin) {
 			if (DEBUG_LOGIN) { debugLog("checkAuthorization: reset request"); }
 			if (is_object($_zp_reset_admin)) {
 				return $_zp_reset_admin->getRights();
@@ -569,6 +568,32 @@ class Zenphoto_Authority {
 		return $rightsset;
 	}
 
+	function getResetTicket($user, $pass) {
+		$req = time();
+		$ref = sha1($req . $user . $pass);
+		$time = bin2hex(rc4(HASH_SEED, $req));
+		return $time.$ref;
+	}
+
+	function validateTicket($ticket, $user) {
+		global $_zp_null_account, $_zp_reset_admin;
+		$admins = $this->getAdministrators();
+		foreach ($admins as $tuser) {
+			if ($tuser['user'] == $user) {
+				$request_date = rc4(HASH_SEED, pack("H*", $time = substr($ticket,0,20)));
+				$ticket = substr($ticket, 20);
+				$ref = sha1($request_date . $user . $tuser['pass']);
+				if ($ref === $ticket) {
+					if (time() <= ($request_date + (3 * 24 * 60 * 60))) { // limited time offer
+						$_zp_reset_admin = new Zenphoto_Administrator($user, 1);
+						$_zp_null_account = true;
+					}
+				}
+				break;
+			}
+		}
+	}
+
 	/**
 	 * Set log-in cookie for a user
 	 * @param string $user
@@ -606,10 +631,7 @@ class Zenphoto_Authority {
 					if (is_object($user)) {
 						$info = $user->getChallengePhraseInfo();
 						if ($info['response'] == $post_pass) {
-							$pas = $user->getPass();
-							setOption('admin_reset_date', time());
-							$req = getOption('admin_reset_date');
-							$ref = sha1($req . $post_user . $pas);
+							$ref = $this->getResetTicket($post_user, $user->getPass());
 							header('location:'.WEBPATH.'/'.ZENFOLDER.'/admin-users.php?ticket='.$ref.'&user='.$post_user);
 							exit();
 						}
@@ -664,11 +686,7 @@ class Zenphoto_Authority {
 						if (is_null($user)) {
 							$_zp_login_error = gettext('There was no one to which to send the reset request.');
 						} else {
-							$adm = $user['user'];
-							$pas = $user['pass'];
-							setOption('admin_reset_date', time());
-							$req = getOption('admin_reset_date');
-							$ref = sha1($req . $adm . $pas);
+							$this->getResetTicket($user['user'], $user['pass']);
 							$msg = "\n".$requestor.
 									"\n".sprintf(gettext("To reset your Zenphoto Admin passwords visit: %s"),FULLWEBPATH."/".ZENFOLDER."/admin-users.php?ticket=$ref&user=$adm") .
 									"\n".gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
