@@ -146,7 +146,7 @@ echo '</head>'."\n";
 											if ($expires < $warnInterval) {
 												$expires_display = sprintf(gettext('Expires:%s'),'<span style="color:orange" class="tooltip" title="'.gettext('Expires soon').'">'.$expires_display.'</span>');
 											} else {
-												$expires_display = sprintf(gettext('Expired:%s'),$expires_display);
+												$expires_display = sprintf(gettext('Expires:%s'),$expires_display);
 											}
 										}
 										if ($user['valid'] == 2) {
