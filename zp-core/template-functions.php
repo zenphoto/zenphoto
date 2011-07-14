@@ -3418,17 +3418,12 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
  */
 function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',$width=NULL,$height=NULL,$crop=NULL) {
-	if (!is_null($class)) {
-		$class = ' class="' . $class . '"';
-	}
-	if (is_null($crop)) {
-		$crop = getOption('thumb_crop');
-	}
-	if (is_null($width)) {
-		$width = getOption('thumb_crop_width');
-	}
-	if (is_null($height)) {
-		$height = getOption('thumb_crop_height');
+	if (is_null($crop) && is_null($width) && is_null($height)) {
+		$crop = 2;
+	} else {
+		if (is_null($width)) $width = 85;
+		if (is_null($height)) $height = 85;
+		if (is_null($crop)) $crop = true;
 	}
 	echo "<ul".$class.">";
 	for ($i=1; $i<=$number; $i++) {
@@ -3444,10 +3439,16 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 		if (is_object($randomImage) && $randomImage->exists) {
 			$randomImageURL = html_encode(getURL($randomImage));
 			echo '<a href="' . $randomImageURL . '" title="'.sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
-			if($crop) {
-				$html = "<img src=\"".html_encode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))."\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
-			} else {
-				$html =  "<img src=\"".html_encode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))."\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+			switch ($crop) {
+				case 2:
+					$html = "<img src=\"".html_encode($randomImage->getThumb())."\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					break;
+				case true:
+					$html = "<img src=\"".html_encode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))."\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					break;
+				case false:
+					$html =  "<img src=\"".html_encode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))."\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+					break;
 			}
 			echo zp_apply_filter('custom_image_html', $html, false);
 			echo "</a>";
