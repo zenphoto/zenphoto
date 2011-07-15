@@ -99,23 +99,23 @@ class register_user_options {
 				}
 			}
 			if (!empty($nullselection)) {
-				if (is_numeric(getOption('register_user_rights'))) {
-					setOption('register_user_rights', $nullselection);
+				if (is_numeric(getOption('register_user_user_rights'))) {
+					setOption('register_user_user_rights', $nullselection);
 				} else {
-					setOptionDefault('register_user_rights', $nullselection);
+					setOptionDefault('register_user_user_rights', $nullselection);
 				}
 			}
-			$options[gettext('Default user group')] =  array('key' => 'register_user_rights', 'type' => OPTION_TYPE_SELECTOR,
+			$options[gettext('Default user group')] =  array('key' => 'register_user_user_rights', 'type' => OPTION_TYPE_SELECTOR,
 										'order' => 1,
 										'selections' => $ordered,
 										'desc' => gettext("Initial group assignment for the new user."));
 		} else {
-				if (is_numeric(getOption('register_user_rights'))) {
-					setOptionDefault('register_user_rights', NO_RIGHTS);
+				if (is_numeric(getOption('register_user_user_rights'))) {
+					setOptionDefault('register_user_user_rights', NO_RIGHTS);
 				} else {
-					setOption('register_user_rights', NO_RIGHTS);
+					setOption('register_user_user_rights', NO_RIGHTS);
 				}
-			$options[gettext('Default rights')] = array('key' => 'register_user_rights', 'type' => OPTION_TYPE_CUSTOM,
+			$options[gettext('Default rights')] = array('key' => 'register_user_user_rights', 'type' => OPTION_TYPE_CUSTOM,
 																														'order' => 2,
 																														'desc' => gettext("Initial rights for the new user. (If no rights are set, approval of the user will be required.)"));
 
@@ -168,7 +168,7 @@ class register_user_options {
 				</table>
 				<?php
 				break;
-			case 'register_user_rights':
+			case 'register_user_user_rights':
 				printAdminRightsTable('register_user', '', '', getOption('register_user_user_rights'));
 				break;
 		}
@@ -206,7 +206,7 @@ function printRegistrationForm($thanks=NULL) {
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj->getEmail() == $params['email']) {
 			$userobj->setCredentials(array('registered','user','email'));
-			$rights = getOption('register_user_rights');
+			$rights = getOption('register_user_user_rights');
 			$group = NULL;
 			if (!is_numeric($rights)) {	//  a group or template
 				$admin = $_zp_authority->getAnAdmin(array('`user`=' => $rights,'`valid`=' => 0));
