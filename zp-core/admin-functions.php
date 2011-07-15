@@ -2925,35 +2925,47 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 	$ledgend = '';
 	switch ($type) {
 		case 'albums':
-			$full = populateManagedObjectsList('album', $adminid, true);
-			$cv = $extra = array();
-			$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
-			$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished images').'" />';
-			$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
-			if ($rights & ALBUM_RIGHTS) $ledgend .= $icon_edit_album.' '.gettext('edit album').' ';
-			if ($rights & UPLOAD_RIGHTS) $ledgend .= $icon_upload.' '.gettext('upload').' ';
-			if (!($rights & VIEW_ALBUMS_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublished images');
-			foreach ($full as $item) {
-				$cv[$item['name']] = $item['data'];
-				$extra[$item['data']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
-				if ($rights & ALBUM_RIGHTS) {
-					$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
+			if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
+				$cv = $objlist;
+				$rest = $extra = array();
+				$alterrights = ' disabled="disabled"';
+			} else {
+				$full = populateManagedObjectsList('album', $adminid, true);
+				$cv = $extra = array();
+				$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
+				$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished images').'" />';
+				$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
+				if ($rights & ALBUM_RIGHTS) $ledgend .= $icon_edit_album.' '.gettext('edit album').' ';
+				if ($rights & UPLOAD_RIGHTS) $ledgend .= $icon_upload.' '.gettext('upload').' ';
+				if (!($rights & VIEW_ALBUMS_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublished images');
+				foreach ($full as $item) {
+					$cv[$item['name']] = $item['data'];
+					$extra[$item['data']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
+					if ($rights & ALBUM_RIGHTS) {
+						$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
+					}
+					if (($rights & UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
+						$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+					}
+					if (!($rights & VIEW_ALBUMS_RIGHTS)) {
+						$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW_IMAGE,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW_IMAGE);
+					}
 				}
-				if (($rights & UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
-					$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
-				}
-				if (!($rights & VIEW_ALBUMS_RIGHTS)) {
-					$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW_IMAGE,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW_IMAGE);
-				}
+				$rest = array_diff($objlist, $cv);
 			}
-			$rest = array_diff($objlist, $cv);
 			$text = gettext("Managed albums:");
 			$simplename = $objectname = gettext('Albums');
 			$prefix = 'managed_albums_list_'.$prefix.'_';
 			break;
 		case 'news':
-			$cv = populateManagedObjectsList('news',$adminid);
-			$rest = array_diff($objlist, $cv);
+			if ($rights & (MANAGE_ALL_NEWS_RIGHTS | ADMIN_RIGHTS)) {
+				$cv = $objlist;
+				$rest = array();
+				$alterrights = ' disabled="disabled"';
+			} else {
+				$cv = populateManagedObjectsList('news',$adminid);
+				$rest = array_diff($objlist, $cv);
+			}
 			$text = gettext("Managed news categories:");
 			$simplename = gettext ('News');
 			$objectname = gettext ('News categories');
@@ -2961,15 +2973,21 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			$extra = array();
 			break;
 		case 'pages':
-			$cv = populateManagedObjectsList('pages',$adminid);
-			$rest = array_diff($objlist, $cv);
+			if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
+				$cv = $objlist;
+				$rest = array();
+				$alterrights = ' disabled="disabled"';
+			} else {
+				$cv = populateManagedObjectsList('pages',$adminid);
+				$rest = array_diff($objlist, $cv);
+			}
 			$text = gettext("Managed pages:");
 			$simplename = $objectname = gettext('Pages');
 			$prefix = 'managed_pages_list_'.$prefix.'_';
 			$extra = array();
 			break;
 	}
-	if (empty($album_alter_rights)) {
+	if (empty($alterrights)) {
 		$hint = sprintf(gettext('Select one or more %1$s for the %2$s to manage.'),$simplename, $kind).' ';
 		if ($kind == gettext('user')) {
 			$hint .= sprintf(gettext('Users with "Admin" or "Manage all %1$s" rights can manage all %2$s. All others may manage only those that are selected.'),$type,$objectname);
@@ -3094,6 +3112,9 @@ function processManagedObjects($i, &$rights) {
 		}
 	} else {
 		$rights = $rights | ALBUM_RIGHTS;
+		if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
+			$albums = array();
+		}
 	}
 	if (empty($pages)) {
 		if (!($rights & MANAGE_ALL_PAGES_RIGHTS)) {
@@ -3101,6 +3122,9 @@ function processManagedObjects($i, &$rights) {
 		}
 	} else {
 		$rights = $rights | ZENPAGE_PAGES_RIGHTS;
+		if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
+			$pages = array();
+		}
 	}
 	if (empty($news)) {
 		if (!($rights & MANAGE_ALL_NEWS_RIGHTS)) {
@@ -3108,6 +3132,9 @@ function processManagedObjects($i, &$rights) {
 		}
 	} else {
 		$rights = $rights | ZENPAGE_NEWS_RIGHTS;
+		if ($rights & (MANAGE_ALL_NEWS_RIGHTS | ADMIN_RIGHTS)) {
+			$news = array();
+		}
 	}
 	$objects = array_merge($albums,$pages,$news);
 	return $objects;
