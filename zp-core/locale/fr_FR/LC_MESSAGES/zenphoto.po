@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 00:12-0500\n"
-"PO-Revision-Date: 2011-07-15 21:37-0500\n"
+"PO-Revision-Date: 2011-07-15 23:25-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -5720,7 +5720,7 @@ msgstr "Indonésien"
 
 #: F:\zenphoto-dev/zp-core/functions-i18n.php:78
 msgid "Icelandic"
-msgstr "Icelandais"
+msgstr "Islandais"
 
 #: F:\zenphoto-dev/zp-core/functions-i18n.php:79
 msgid "Italian (Switzerland)"
@@ -5744,7 +5744,7 @@ msgstr "Lithuanien"
 
 #: F:\zenphoto-dev/zp-core/functions-i18n.php:84
 msgid "Latvian"
-msgstr "Latvien"
+msgstr "Letton"
 
 #: F:\zenphoto-dev/zp-core/functions-i18n.php:85
 msgid "Macedonian"
@@ -5760,7 +5760,7 @@ msgstr "Malais"
 
 #: F:\zenphoto-dev/zp-core/functions-i18n.php:88
 msgid "Malagasy"
-msgstr "Malagasy"
+msgstr "Malgache"
 
 #: F:\zenphoto-dev/zp-core/functions-i18n.php:89
 msgid "Norwegian (Bokmål)"
