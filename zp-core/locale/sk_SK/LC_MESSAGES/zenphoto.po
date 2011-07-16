@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Zenphoto 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-15 19:04+0100\n"
-"PO-Revision-Date: 2011-07-15 19:46+0100\n"
+"PO-Revision-Date: 2011-07-16 12:14+0100\n"
 "Last-Translator: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "MIME-Version: 1.0\n"
@@ -88,7 +88,7 @@ msgstr "Otestovať správy zastaraných funkcií."
 
 #: D:\Zenphoto_DEV/dev-tools/plugins/test_deprecated.php:4
 msgid "deprecated-functions is not enabled."
-msgstr "Zatarané funkcie nie sú aktívne."
+msgstr "Zastarané funkcie nie sú aktívne."
 
 #: D:\Zenphoto_DEV/dev-tools/plugins/zenphoto_package.php:7
 msgid "Generates the <em>zenphoto.package</em> file."
@@ -208,7 +208,7 @@ msgstr "Kontaktujte nás."
 
 #: D:\Zenphoto_DEV/themes/default/image.php:20
 msgid "close"
-msgstr "schließen"
+msgstr "zatvoriť"
 
 #: D:\Zenphoto_DEV/themes/default/image.php:37
 msgid "Previous Image"
@@ -872,7 +872,7 @@ msgstr "Ďalší album &raquo;"
 
 #: D:\Zenphoto_DEV/themes/garland/album.php:122
 msgid "Prev Album"
-msgstr "Vorheriges Album"
+msgstr "Predchádzajúci album"
 
 #: D:\Zenphoto_DEV/themes/garland/album.php:122
 msgid "&laquo; Prev Album"
@@ -1038,7 +1038,7 @@ msgstr "Vynulovať"
 #: D:\Zenphoto_DEV/themes/stopdesign/album.php:66
 #, php-format
 msgid "1 image"
-msgstr "1 Bild"
+msgstr "1 obrázok"
 
 #: D:\Zenphoto_DEV/themes/stopdesign/album.php:68
 #, php-format
@@ -1414,7 +1414,7 @@ msgstr "Použiť štandardnú kontaktnú stránku"
 
 #: D:\Zenphoto_DEV/themes/zenpage/themeoptions.php:52
 msgid "Disable this if you do not want to use the separate contact page with the contact form. You can also use the codeblock of a page for this. See the contact_form plugin documentation for more info."
-msgstr "Vypnúť ak nechcete používať samostatnú stránku s kontaktným formulárom. K tomu možete samozrejme použiť a kódblok stránky. Pre viac informácií si prečítajte dokumentáciu k zásuvnému modulu contact_form."
+msgstr "Vypnúť ak nechcete používať samostatnú stránku s kontaktným formulárom. K tomu možete samozrejme použiť aj kódblok stránky. Pre viac informácií si prečítajte dokumentáciu k zásuvnému modulu contact_form."
 
 #: D:\Zenphoto_DEV/themes/zenpage/themeoptions.php:53
 msgid "Use custom menu"
@@ -1434,7 +1434,7 @@ msgstr "Základná téma pre zásuvný modul Zenpage CMS. Funguje aj bez nainšt
 
 #: D:\Zenphoto_DEV/zp-core/404.php:10
 msgid "Zenphoto Error:</strong> the requested object was not found."
-msgstr "Zenphoto chyba:</strong> Objekt nenájdený."
+msgstr "Zenphoto chyba:</strong> požadovaný objekt nenájdený."
 
 #: D:\Zenphoto_DEV/zp-core/404.php:23
 #, php-format
@@ -1686,7 +1686,7 @@ msgstr "Upraviť komentár"
 
 #: D:\Zenphoto_DEV/zp-core/admin-comments.php:459
 msgid "E-mail comment author"
-msgstr "E-Mail autora komentára"
+msgstr "E-mail autora komentára"
 
 #: D:\Zenphoto_DEV/zp-core/admin-dynamic-album.php:41
 msgid "You do not have edit rights on this album."
@@ -1725,10 +1725,12 @@ msgid "Search criteria:"
 msgstr "Nastavenia vyhľadávania:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-dynamic-album.php:186
+#, fuzzy
 msgid "Return albums found"
 msgstr "Return albums found"
 
 #: D:\Zenphoto_DEV/zp-core/admin-dynamic-album.php:187
+#, fuzzy
 msgid "Return images found"
 msgstr "Return images found"
 
@@ -1765,9 +1767,8 @@ msgid "new album"
 msgstr "Nový album"
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:599
-#, fuzzy
 msgid "Show thumbnail stand-in"
-msgstr "Show thumbnail stand-in"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:602
 msgid "Show album thumb"
@@ -1932,7 +1933,7 @@ msgstr "Presuňte albumy do poradia aké chcete."
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:878
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1683
 msgid "<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album."
-msgstr "<strong>Poznámka:</strong> Presunutie albumu ako podalbum iného presunie album aj v databáze. Nemôžte presunúť album pod <em>dynamický</em> album."
+msgstr "<strong>Poznámka:</strong> Presunutie albumu ako podalbum iného presunie album aj v databáze. Nemôžete presunúť album pod <em>dynamický</em> album."
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:884
 #, php-format
@@ -2038,7 +2039,7 @@ msgstr "Majiteľ:"
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1132
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1553
 msgid "General"
-msgstr "Hlavný"
+msgstr "Hlavné"
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1136
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1558
@@ -2096,7 +2097,7 @@ msgstr "Obrázky budú vymazané keď sa aplikujú zmeny."
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1238
 msgid "Rotation:"
-msgstr "Rotieren: "
+msgstr "Natočenie: "
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1252
 msgid "90 degrees"
@@ -2159,7 +2160,7 @@ msgstr "Plný obrázok"
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1350
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1191
 msgid "Custom data:"
-msgstr "Volitelné dáta:"
+msgstr "Voliteľné dáta:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1360
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1181
@@ -2280,7 +2281,7 @@ msgstr "Nový album"
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1760
 msgid "There are no albums for you to edit."
-msgstr "Nie je tu žiadny album, ktorý môžete upraovať."
+msgstr "Nie je tu žiadny album, ktorý môžete upravovať."
 
 #: D:\Zenphoto_DEV/zp-core/admin-filemanager.php:26
 msgid "File Manager"
@@ -2516,7 +2517,7 @@ msgstr "Vymazať album"
 
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1624
 msgid "Album will be deleted when changes are applied."
-msgstr "Album bude vymazané keď sa aplikujú zmeny."
+msgstr "Album bude vymazaný keď sa aplikujú zmeny."
 
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1628
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1665
@@ -2813,7 +2814,7 @@ msgstr "používateľ"
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:2975
 #, php-format
 msgid "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All others may manage only those that are selected."
-msgstr "Používatelia a \"Administrátorskými\" alebo \"Spravovať všetko %1$s\" právami môžu spravovať všetko %2$s. Všetci ostatní môžu spravovať len to, čo je označené."
+msgstr "Používatelia s \"Administrátorskými\" alebo \"Spravovať všetko %1$s\" právami môžu spravovať všetko %2$s. Všetci ostatní môžu spravovať len to, čo je označené."
 
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:2978
 #, php-format
@@ -3090,7 +3091,7 @@ msgstr "Ak je táto funkcia deaktivovaná, inštalátor nenašiel funkčnú Apac
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:622
 msgid "If you are having problems with images who's names with contain accented characters try changing the <em>UTF8 image URIs</em> setting."
-msgstr "Ak máte problém s obrázkami, ktorých názvy obsahujú akcentové (háčik, čiarka) písmenáskúste zmeniť nastavenia <em>UTF8 URI obrázku</em>."
+msgstr "Ak máte problém s obrázkami, ktorých názvy obsahujú akcentové (háčik, čiarka) písmená skúste zmeniť nastavenia <em>UTF8 URI obrázku</em>."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:623
 msgid "If <em>mod_rewrite</em> is checked above, zenphoto will appended the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php, /view</em>, etc."
@@ -3300,7 +3301,7 @@ msgstr "Znaková sada:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:827
 msgid "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</em> if you are unsure."
-msgstr "Interne používané kódovanie znakov. Ak si nie ste isty čo s tým, nechajte zvolené <em>Unicode (UTF-8)</em>."
+msgstr "Interne používané kódovanie znakov. Ak si nie ste istý čo s tým, nechajte zvolené <em>Unicode (UTF-8)</em>."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:829
 msgid "Character sets <span style=\"color:gray\">shown in gray</span> have no character translation support."
@@ -3324,7 +3325,7 @@ msgstr "obnoviť"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:871
 msgid "Site email:"
-msgstr "E-Mail webstránky:"
+msgstr "E-mail webstránky:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:875
 msgid "This email address will be used as the <em>From</em> address for all mails sent by Zenphoto."
@@ -3360,11 +3361,11 @@ msgstr "Typ galérie:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:926
 msgid "public"
-msgstr "verejné"
+msgstr "verejná"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:927
 msgid "private"
-msgstr "súkromné"
+msgstr "súkromná"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:930
 msgid "Private galleries are viewable only by registered users."
@@ -3531,7 +3532,7 @@ msgstr "<a href=\"javascript:toggle('gallerysessions');\" >Detaily</a> pre <em>p
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1173
 msgid "Check this option if you are having issues with album password cookies not being retained. Setting the option causes zenphoto to use sessions rather than cookies."
-msgstr "Zapnite túto možnosť ak máte problémy s coockies pre heslom chránené albumy. Toto nastavenie umožňuje zenphotu použiť namiesto cookies relácie."
+msgstr "Zapnite túto možnosť ak máte problémy s cookies pre heslom chránené albumy. Toto nastavenie umožňuje zenphotu použiť namiesto cookies relácie."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1250
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1281
@@ -3564,11 +3565,11 @@ msgstr "Nastavenie vyhľadávania:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1309
 msgid "partial"
-msgstr "čiastočne"
+msgstr "čiastočné"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1310
 msgid "exact"
-msgstr "presne"
+msgstr "presné"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1315
 msgid "Fields list:"
@@ -3584,11 +3585,11 @@ msgstr "<em>medzera</em>"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1323
 msgid "<em>OR</em>"
-msgstr "<em>OR</em>"
+msgstr "<em>ALEBO</em>"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1323
 msgid "<em>AND</em>"
-msgstr "<em>AND</em>"
+msgstr "<em>A</em>"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1328
 msgid "Do not return <em>album</em> matches"
@@ -3616,7 +3617,7 @@ msgstr "Vyhľadávanie hľadá čiastočné zhody vo všetkých označených pol
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1359
 msgid "Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target."
-msgstr "Ak nastavíte <code>medzeru ako <em>OR</em></code>, bude sa vhľadávať každý výraz textu zvlášť. Ak bude nastavená na <em>AND</em> vyhľadávanie bude zamerané na všetky slová textu dokopy. Nezaškrtnutím voľby bude celý reťazec braný ako hľadanie cieľ."
+msgstr "Ak nastavíte <code>medzeru ako <em>ALEBO</em></code>, bude sa vhľadávať každý výraz textu zvlášť. Ak bude nastavená na <em>A</em> vyhľadávanie bude zamerané na všetky slová textu dokopy. Nezaškrtnutím voľby bude celý reťazec braný ako hľadanie cieľ."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1360
 msgid "Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches."
@@ -3656,7 +3657,7 @@ msgstr "RSS albumov"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1429
 msgid "The number of new items you want to appear in your site's RSS feed. The images and comments RSS share the value."
-msgstr "Počet nových položiek, ktoré sa mjú zobrazovať v RSS kanály stránky. RSS obrázkov a kometárov má spoločný počet."
+msgstr "Počet nových položiek, ktoré sa majú zobrazovať v RSS kanály stránky. RSS obrázkov a kometárov má spoločný počet."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1432
 msgid "Size of RSS feed images:"
@@ -3775,7 +3776,7 @@ msgstr "Kvalita má rozpätie od 0 (najhoršia kvalita, najmenší súbor) po 10
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1661
 msgid "Interlace:"
-msgstr "Prekladanie:"
+msgstr "Preklad:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1663
 msgid "If checked, resized images will be created <em>interlaced</em> (if the format permits)."
@@ -3799,7 +3800,7 @@ msgstr "Povoliť zväčšovanie:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1680
 msgid "Allow images to be scaled up to the requested size. This could result in loss of quality, so it's off by default."
-msgstr "Povoliť zväčšovanie obrázkov na požadovanú veľkosť. Keďe táto funkcia môže znamenať stratu kvality obrázkov je štandardne vypnutá."
+msgstr "Povoliť zväčšovanie obrázkov na požadovanú veľkosť. Keďže táto funkcia môže znamenať stratu kvality obrázkov je štandardne vypnutá."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1683
 msgid "Sharpen:"
@@ -3898,9 +3899,8 @@ msgid "Images are in png-24 format and are located in the <code>/%s/watermarks/<
 msgstr "Vodoznakové obrázky musia byť vo formáte png-24 a nahrané v zložke <code>/%s/watermarks/</code>."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1815
-#, fuzzy
 msgid "If a watermark image is selected for these <em>images classes</em> it will be used in place of the image thumbnail watermark."
-msgstr "If a watermark image is selected for these <em>images classes</em> it will be used in place of the image thumbnail watermark."
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1823
 msgid "Full image protection:"
@@ -3945,7 +3945,7 @@ msgstr "Zakázaním priameho odkazu znemožníte prístup k plným obrázkom z i
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1910
 msgid "If <em>Cache the full image</em> is checked the full image will be loaded to the cache and served from there after the first reference. <em>Full&nbsp;image&nbsp;protection</em> must be set to <em>Protected&nbsp;view</em> for the image to be cached. However, once cached, no protections are applied to the image."
-msgstr "Ak je povolené <em>nahrávanie plného obrázoku do vyrovnávacej pamäti</em> nahrá sa po prvom dopyte plný obrázok do vyrovnávacej pamäti a odtiaľ bude poskytovaný. <em>Ochrana plného obrázku</em> musí byť nastavené na <em>Chránené zobrazenie</em> aby bol obrázok nahratý do vyrovnávacej pamäti. Avšak akonáhle sa raz nahrá do vyrovnávacej pamäti už sa naň nevzťahuje ochrana."
+msgstr "Ak je povolené <em>nahrávanie plného obrázku do vyrovnávacej pamäti</em> nahrá sa po prvom dopyte plný obrázok do vyrovnávacej pamäti a odtiaľ bude poskytovaný. <em>Ochrana plného obrázku</em> musí byť nastavené na <em>Chránené zobrazenie</em> aby bol obrázok nahratý do vyrovnávacej pamäti. Avšak akonáhle sa raz nahrá do vyrovnávacej pamäti už sa naň nevzťahuje ochrana."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1911
 msgid "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the <em>Download</em> and <em>Protected view</em> level of protection. If there is a password set, the viewer must supply this password to access the image."
@@ -3953,7 +3953,7 @@ msgstr "<em>Používateľ</em>, <em>heslo</em> a <em>nápoveda</em> sa týkajú 
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1912
 msgid "Select the level of protection for full sized images. <em>Download</em> forces a download dialog rather than displaying the image. <em>No&nbsp;access</em> prevents a link to the image from being shown. <em>Protected&nbsp;view</em> forces image processing before the image is displayed, for instance to apply a watermark or to check passwords. <em>Unprotected</em> allows direct display of the image."
-msgstr "Nastavte stupeň ochrany pre plné obrázky. <em>Stiahnuť</em> zobrazí okno sťahovania namiesto obrázku. <em>Nemáte prístup</em> nezobrazí odkaz na obrázok. <em>Chránené zobrazenie</em> vyvolá zadané procesy pre obrázok (napr. umiestnenie vodoznaku, heslo). <em>Nechránené</em> povolí priame zobrazenie obrázku."
+msgstr "Nastavte stupeň ochrany pre plné obrázky. <em>Stiahnuť</em> zobrazí okno sťahovania namiesto obrázku. <em>Nemáteo&nbsp;prístup</em> nezobrazí odkaz na obrázok. <em>Chránené&nbsp;zobrazenie</em> vyvolá zadané procesy pre obrázok (napr. umiestnenie vodoznaku, heslo). <em>Nechránené</em> povolí priame zobrazenie obrázku."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1916
 msgid "Use lock image"
@@ -3969,7 +3969,7 @@ msgstr "Zobrazenie EXIF"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1939
 msgid "Check those EXIF fields you wish displayed in image EXIF information."
-msgstr "Vyberte si položky EXIF dát, ktoré sa budú zobrazovaž v EXIF informáciách obrázku."
+msgstr "Vyberte si položky EXIF dát, ktoré sa budú zobrazovať v EXIF informáciách obrázku."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1947
 msgid "IPTC encoding:"
@@ -4118,7 +4118,7 @@ msgstr "miniatúr na stránke"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:2257
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of album thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of album thumbnails that will fit in a \"row\" and the number of albums thumbnails you wish per page."
-msgstr "Toto nastavenie je špecifické pre každú tému. <a title=\"Pozritze sa na stránku albumov a spočítajte koľko miniatúr albumov sa vám zobrazuje v riadku. Toto je hodnota, ktorú by ste mali použiť pre toto nastavenie.\">CSS zistí počet</a> miniatúr albumov, ktoré sa zmestia do \"riadku\" a počet miniatúr albumov, ktoré sa zmestia na stránku."
+msgstr "Toto nastavenie je špecifické pre každú tému. <a title=\"Pozrite sa na stránku albumov a spočítajte koľko miniatúr albumov sa vám zobrazuje v riadku. Toto je hodnota, ktorú by ste mali použiť pre toto nastavenie.\">CSS zistí počet</a> miniatúr albumov, ktoré sa zmestia do \"riadku\" a počet miniatúr albumov, ktoré sa zmestia na stránku."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:2262
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:2292
@@ -4136,7 +4136,7 @@ msgstr "Obrázky:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:2287
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of image thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of image thumbnails that will fit in a \"row\" and the number of image thumbnails you wish per page."
-msgstr "Toto nastavenie je špecifické pre každú tému. <a title=\"Pozritze sa na stránku albumov a spočítajte koľko miniatúr obrázkov sa vám zobrazuje v riadku. Toto je hodnota, ktorú by ste mali použiť pre toto nastavenie.\">CSS zistí počet</a> miniatúr obrázkov, ktoré sa zmestia do \"riadku\" a počet miniatúr obrázkov, ktoré sa zmestia na stránku."
+msgstr "Toto nastavenie je špecifické pre každú tému. <a title=\"Pozrite sa na stránku albumov a spočítajte koľko miniatúr obrázkov sa vám zobrazuje v riadku. Toto je hodnota, ktorú by ste mali použiť pre toto nastavenie.\">CSS zistí počet</a> miniatúr obrázkov, ktoré sa zmestia do \"riadku\" a počet miniatúr obrázkov, ktoré sa zmestia na stránku."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:2293
 #, php-format
@@ -4257,9 +4257,8 @@ msgid "Collapse all plugin options"
 msgstr "Zbaliť nastavenia zásuvných modulov"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:2565
-#, fuzzy
 msgid "<strong>NOTE:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string."
-msgstr "<strong>NOTE:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string."
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:2596
 msgid "warning"
@@ -4295,7 +4294,7 @@ msgstr "Vyberte si <em>CAPTCHA</em> generátor, ktorý má používať Zenphoto.
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:2718
 msgid "Obscure cache filenames"
-msgstr "Obscure cache filenames"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:2720
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:2727
@@ -4350,7 +4349,7 @@ msgstr "Zásuvné moduly tretích strán sa ukladajú do <code>%s</code> a syst�
 
 #: D:\Zenphoto_DEV/zp-core/admin-plugins.php:82
 msgid "If the plugin checkbox is checked, the plugin will be loaded and its functions made available to theme pages. If the checkbox is not checked the plugin is disabled and occupies no resources."
-msgstr "Ak aktivujete niektorý plugin, spustí sa a jeho funkcie vám budú k dispozícii. Ak pole nie je zaškrtnuté zásuvný modul je neaktívny a nepotrebováva žiadne zdroje serveru."
+msgstr "Ak aktivujete niektorý plugin, spustí sa a jeho funkcie vám budú k dispozícii. Ak pole nie je zaškrtnuté zásuvný modul je neaktívny a nespotrebováva žiadne zdroje serveru."
 
 #: D:\Zenphoto_DEV/zp-core/admin-plugins.php:85
 msgid "<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."
@@ -4435,7 +4434,7 @@ msgstr "Aktualizácia databázy je ukončená"
 
 #: D:\Zenphoto_DEV/zp-core/admin-refresh-metadata.php:38
 msgid "We're all set to refresh the database"
-msgstr "Sme prípravený na aktualizáciu databázy"
+msgstr "Sme prípravení na aktualizáciu databázy"
 
 #: D:\Zenphoto_DEV/zp-core/admin-refresh-metadata.php:39
 msgid "Continue refreshing the database."
@@ -4451,7 +4450,7 @@ msgstr "Aktualizácia metadát je kompletná"
 
 #: D:\Zenphoto_DEV/zp-core/admin-refresh-metadata.php:45
 msgid "We're all set to refresh the metadata"
-msgstr "Sme prípravený na aktualizáciu metadát"
+msgstr "Sme prípravení na aktualizáciu metadát"
 
 #: D:\Zenphoto_DEV/zp-core/admin-refresh-metadata.php:46
 msgid "Continue refreshing the metadata."
@@ -4481,7 +4480,7 @@ msgstr "<em>%s</em> nenájdené"
 #: D:\Zenphoto_DEV/zp-core/admin-refresh-metadata.php:173
 #, php-format
 msgid "We're all set to refresh the metadata for <em>%s</em>"
-msgstr "Sme prípravený na aktualizáciu metadát <em>%s</em>"
+msgstr "Sme prípravení na aktualizáciu metadát <em>%s</em>"
 
 #: D:\Zenphoto_DEV/zp-core/admin-refresh-metadata.php:175
 msgid "This process should start automatically. If not press: "
@@ -4615,7 +4614,7 @@ msgstr "Aktualizovať súbor"
 
 #: D:\Zenphoto_DEV/zp-core/admin-themes-editor.php:148
 msgid "Select a file to edit from the list on your right hand. Keep in mind that you can <strong>break everything</strong> if you are not careful when updating files."
-msgstr "Zo zoznamu po pravej ruke si vyberte súbor, ktorý chcete urpavovať. Pamätajte však na to, že môžete <strong>všetko zničiť</strong> ak pri úprave nebudete opatrní."
+msgstr "Zo zoznamu po pravej ruke si vyberte súbor, ktorý chcete urpavovať. Pamätajte však na to, že môžete <strong>všetko zničiť</strong> ak pri úprave nebudete opatrný."
 
 #: D:\Zenphoto_DEV/zp-core/admin-themes.php:54
 #, php-format
@@ -4757,7 +4756,7 @@ msgstr "Aplikovať orez"
 
 #: D:\Zenphoto_DEV/zp-core/admin-thumbcrop.php:284
 msgid "Thumbnail cropping is disabled. Enable this option for the theme if you wish cropped thumbnails."
-msgstr "Orez miniatúr je vypnutý. Aktivujte túto možnosť pre tému k chcete orezávať miniatúry."
+msgstr "Orez miniatúr je vypnutý. Aktivujte túto možnosť pre tému ak chcete orezávať miniatúry."
 
 #: D:\Zenphoto_DEV/zp-core/admin-thumbcrop.php:295
 msgid "thumbnail preview"
@@ -4770,16 +4769,16 @@ msgstr "Nahrať obrázky"
 #: D:\Zenphoto_DEV/zp-core/admin-upload.php:87
 #, php-format
 msgid "This web-based upload accepts the file formats: %s, and %s."
-msgstr "Táto webová aplikácie na nahrávanie akceptuje tieto formáty súborov: %s a %s."
+msgstr "Táto webová aplikácia na nahrávanie akceptuje tieto formáty súborov: %s a %s."
 
 #: D:\Zenphoto_DEV/zp-core/admin-upload.php:89
 #, php-format
 msgid "This web-based upload accepts the file formats: %s and %s."
-msgstr "Táto webová aplikácie na nahrávanie akceptuje tieto formáty súborov: %s a %s."
+msgstr "Táto webová aplikácia na nahrávanie akceptuje tieto formáty súborov: %s a %s."
 
 #: D:\Zenphoto_DEV/zp-core/admin-upload.php:95
 msgid "<strong>Note: </strong>"
-msgstr "<strong>Poznámka:</strong>"
+msgstr "<strong>Poznámka: </strong>"
 
 #: D:\Zenphoto_DEV/zp-core/admin-upload.php:97
 msgid "ZIP files must contain only Zenphoto supported <em>image</em> types."
@@ -4865,7 +4864,7 @@ msgstr "%s heslo nesmie byť prázdne!"
 
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:233
 msgid "Password reset request.<br />You may now set admin usernames and passwords."
-msgstr "Požiadavok na obnovenie hesla.<br/>Teraz môžete zadať administrátorské mená a heslá."
+msgstr "Požiadavka na obnovenie hesla.<br/>Teraz môžete zadať administrátorské mená a heslá."
 
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:243
 msgid "Saved"
@@ -4881,7 +4880,7 @@ msgstr "Presun práv zlyhal."
 
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:387
 msgid "You must supply a password for the Gallery guest user"
-msgstr "Návšteník galérie musí zadať heslo"
+msgstr "Návštevník galérie musí zadať heslo"
 
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:390
 msgid "You must supply a password for the Search guest user"
@@ -7277,7 +7276,7 @@ msgstr "Vyberte iný druh databázy alebo nainštalujte podporu %s do vášho PH
 #: D:\Zenphoto_DEV/zp-core/setup.php:565
 #, php-format
 msgid " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" >experimental</a>)"
-msgstr " <code>%1$s</code> podpora (<a onclick=\"$('#%1$s').toggle('show')\" >esperimentálna</a>)"
+msgstr " <code>%1$s</code> podpora (<a onclick=\"$('#%1$s').toggle('show')\" >experimentálna</a>)"
 
 #: D:\Zenphoto_DEV/zp-core/setup.php:570
 #, php-format
@@ -7346,7 +7345,7 @@ msgstr "Znaková sada"
 #: D:\Zenphoto_DEV/zp-core/setup.php:666
 #, php-format
 msgid "If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems displaying the names."
-msgstr "Ak sa znaková sada systému vášho serveru líši od <code>%s</code> a vy vytvoríte album albo obrázok s diakritikou, môžu vzniknúť problémy pri zobrazovaní týchto názvov."
+msgstr "Ak sa znaková sada systému vášho serveru líši od <code>%s</code> a vy vytvoríte album alebo obrázok s diakritikou, môžu vzniknúť problémy pri zobrazovaní týchto názvov."
 
 #: D:\Zenphoto_DEV/zp-core/setup.php:668
 #, php-format
@@ -8306,7 +8305,7 @@ msgstr "Kliknite na <em>Vybrať súbory</em> a použite prehliadač súborov na 
 
 #: D:\Zenphoto_DEV/zp-core/admin-httpupload/upload_form.php:39
 msgid "You may choose files by dragging them onto <em>Select files</em> button. Or you can click on the button and use your file browser."
-msgstr "Vybrať súbory môžete jeho presunom na tlačidlo <em>Vybrať súbory</em>. Alebo môžete na tlačidlo kliknúť a vybať ich pomocou prehliadača súborov."
+msgstr "Vybrať súbory môžete ich presunom na tlačidlo <em>Vybrať súbory</em>. Alebo môžete na tlačidlo kliknúť a vybať ich pomocou prehliadača súborov."
 
 #: D:\Zenphoto_DEV/zp-core/admin-httpupload/upload_form.php:49
 msgid "Select files"
@@ -8446,19 +8445,16 @@ msgid "Average"
 msgstr "Priemer"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:498
-#, fuzzy
 msgid "Center Weighted Average"
-msgstr "Center Weighted Average"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:499
-#, fuzzy
 msgid "Spot"
-msgstr "Spot"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:500
-#, fuzzy
 msgid "Multi-Spot"
-msgstr "Multi-Spot"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:501
 msgid "Pattern"
@@ -8639,18 +8635,16 @@ msgid "Three Chip Color Area Sensor"
 msgstr "Trojčipový senzor farebnej oblasti"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:581
-#, fuzzy
 msgid "Color Sequential Area Sensor"
-msgstr "Color Sequential Area Sensor"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:582
 msgid "Trilinear Sensor"
 msgstr "Trilineárny senzor"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:583
-#, fuzzy
 msgid "Color Sequential Linear Sensor"
-msgstr "Color Sequential Linear Sensor"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:589
 msgid "Monochrome"
@@ -8865,9 +8859,8 @@ msgid "Macro/Close-Up"
 msgstr "Makro/Detail"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:145
-#, fuzzy
 msgid "Pan Focus"
-msgstr "Pan Focus"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:151
 msgid "None"
@@ -8977,14 +8970,12 @@ msgid "FP sync used"
 msgstr "použitý FP sync"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:244
-#, fuzzy
 msgid "2nd(rear)-curtain sync used"
-msgstr "2nd(rear)-curtain sync used"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:245
-#, fuzzy
 msgid "1st curtain sync"
-msgstr "1st curtain sync"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:270
 msgid "Sunny"
@@ -9022,19 +9013,16 @@ msgid "Hard"
 msgstr "Tvrdé"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:89
-#, fuzzy
 msgid "DaylightColor-fluorescence"
-msgstr "DaylightColor-fluorescence"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:90
-#, fuzzy
 msgid "DaywhiteColor-fluorescence"
-msgstr "DaywhiteColor-fluorescence"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:91
-#, fuzzy
 msgid "White-fluorescence"
-msgstr "White-fluorescence"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:92
 msgid "Incandescence"
@@ -9107,18 +9095,16 @@ msgid "Warning"
 msgstr "Upozornenie"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:153
-#, fuzzy
 msgid "Auto Focus Good"
-msgstr "Auto Focus Good"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:154
 msgid "Out of Focus"
 msgstr "Neostré"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:158
-#, fuzzy
 msgid "AE Good"
-msgstr "AE Good"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:159
 msgid "Over Exposure"
@@ -9181,9 +9167,8 @@ msgid "Fluorescence"
 msgstr "Fluorescentné"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/nikon.php:213
-#, fuzzy
 msgid "SpeedLight"
-msgstr "SpeedLight"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/nikon.php:222
 msgid "Fisheye"
@@ -9405,7 +9390,7 @@ msgstr "Chyba!"
 
 #: D:\Zenphoto_DEV/zp-core/setup/setup-functions.php:97
 msgid "<strong>Notice!</strong> click for details"
-msgstr "<strong>Poznámka!</strong> Detaily na"
+msgstr "<strong>Poznámka!</strong> kliknite pre detaily"
 
 #: D:\Zenphoto_DEV/zp-core/setup/setup-functions.php:110
 msgid "Notice!"
@@ -9489,7 +9474,7 @@ msgstr "%s vemazané."
 #: D:\Zenphoto_DEV/zp-core/setup/setup-functions.php:403
 #, php-format
 msgid "failed to delete %s."
-msgstr "Nepodarilo vymazať sa %s."
+msgstr "Nepodarilo sa vymazať %s."
 
 #: D:\Zenphoto_DEV/zp-core/setup/setup-functions.php:421
 msgid "See the <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
@@ -11383,18 +11368,16 @@ msgid "Use the Zenpage class method instead."
 msgstr "Použiť namiesto toho Zenpage class metódu."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:857
-#, fuzzy
 msgid "Use the method from either the ZenpagePage or the ZenpageCategory class instead."
-msgstr "Use the method from either the ZenpagePage or the ZenpageCategory class instead."
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1087
 msgid "Count the articles instead."
 msgstr "Spočítať namiesto toho články."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1573
-#, fuzzy
 msgid "Use the album class method <code>isProtected()</code> instead."
-msgstr "Use the album class method <code>isProtected()</code> instead."
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/downloadList.php:31
 msgid "Plugin to generate file download lists. The source of these files may be anywhere that can be accessed by server scripts, it need not be part of your Zenphoto installation."
@@ -13408,9 +13391,8 @@ msgid "Optional. Used only if the Google extension is checked. Must be an absolu
 msgstr "Voliteľné. Používa sa iba ak je zapnuté Google rozšírenie. Musí obsahovať absolútnu URL adresu vo formáte: http://mydomain.com/license.html sein."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/sitemap-extended.php:144
-#, fuzzy
 msgid "Sitemap processing chunk"
-msgstr "Sitemap processing chunk"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/sitemap-extended.php:146
 msgid "The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files."
@@ -13648,9 +13630,9 @@ msgid "The list of pages to excluded from cache generation. Pages that can be ex
 msgstr "Zoznam stánok, ktoré nemajú byť nahrávané do vyrovnávacej pamäti. Stránky, ktoré môžu byť vylúčené sú pužívateľské stránky tém ako aj Zenpage stránky (môžu byť vybrané podľa titlelinku) a štandardné súbory témy image.php (voliteľne podľa názvu obrázku), album.php (voliteľne podľa názvu zložky albumu) alebo index.php.<br /> Ak chcete vylúčiť stránku úplne vložte <em>page-filename.php/</em>. <br />Ak chcete vylúčiť stránku podľa špecifického titulu, názvu obrázku či zložky albumu, vložte <em>pagefilename.php/titlelink alebo názov obrozku či zložky albumu</em>. Viacero názvov oddelujte čiarkou."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:189
-#, fuzzy, php-format
+#, php-format
 msgid "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead."
-msgstr "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead."
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:362
 msgid "Purge HTML cache"
@@ -15413,9 +15395,8 @@ msgid "right wrap: <em>style=\"float: left\"</em>"
 msgstr "Zarovnanie vpravo: <em>style=\"float: left\"</em>"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:201
-#, fuzzy
 msgid "Also tinyZenpage attaches a default CSS class to the image (if image is chosen) to be styled with your theme's css. If you choose left or right align '_left' or '_right' is appended:"
-msgstr "Also tinyZenpage attaches a default CSS class to the image (if image is chosen) to be styled with your theme's css. If you choose left or right align '_left' or '_right' is appended:"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:204
 msgid "Default thumbnail: <em>zenpage_thumb</em> /<em>zenpage_thumb_left</em> /<em>zenpage_thumb_right</em>"
@@ -15438,9 +15419,8 @@ msgid "If you additionally have checked <em>Show title</em> or <em>Show descript
 msgstr "If you additionally have checked <em>Show title</em> or <em>Show description</em> for an image or album the div with the class <em>zenpage_wrapper</em> is wrapped around the image and link. Within that after the image and the link a div with the class <em>zenpage_title</em> wrapping the title respectively <em>zenpage_desc</em> wrapping the description."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:211
-#, fuzzy
 msgid "Additionally a default CSS class is attached to the link itself depending on the link option set:"
-msgstr "Additionally a default CSS class is attached to the link itself depending on the link option set:"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:214
 msgid "Image link: <em>zenpage_imagelink</em>"
