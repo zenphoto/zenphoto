@@ -686,9 +686,9 @@ class Zenphoto_Authority {
 						if (is_null($user)) {
 							$_zp_login_error = gettext('There was no one to which to send the reset request.');
 						} else {
-							$this->getResetTicket($user['user'], $user['pass']);
+							$ref = $this->getResetTicket($user['user'], $user['pass']);
 							$msg = "\n".$requestor.
-									"\n".sprintf(gettext("To reset your Zenphoto Admin passwords visit: %s"),FULLWEBPATH."/".ZENFOLDER."/admin-users.php?ticket=$ref&user=$adm") .
+									"\n".sprintf(gettext("To reset your Zenphoto Admin passwords visit: %s"),FULLWEBPATH."/".ZENFOLDER."/admin-users.php?ticket=$ref&user=".$user['user']) .
 									"\n".gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
 							$err_msg = zp_mail(gettext("The Zenphoto information you requested"), $msg, $mails, $cclist);
 							if (empty($err_msg)) {
