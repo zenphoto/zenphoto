@@ -3416,8 +3416,9 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size.
  * @param integer $height the height/cropheight of the thumb if crop=true else not used
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
+ * @param bool $fullimagelink 'false' (default) for the image page link , 'true' for the unprotected full image link (to use Colorbox for example)
  */
-function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',$width=NULL,$height=NULL,$crop=NULL) {
+function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',$width=NULL,$height=NULL,$crop=NULL,$fullimagelink=false) {
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
 	} else {
@@ -3437,7 +3438,11 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 				break;
 		}
 		if (is_object($randomImage) && $randomImage->exists) {
-			$randomImageURL = html_encode(getURL($randomImage));
+			if($fullimagelink) {
+				$randomImageURL = html_encode($randomImage->getFullimage());
+			} else {
+				$randomImageURL = html_encode(getURL($randomImage));
+			}
 			echo '<a href="' . $randomImageURL . '" title="'.sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
 			switch ($crop) {
 				case 2:
