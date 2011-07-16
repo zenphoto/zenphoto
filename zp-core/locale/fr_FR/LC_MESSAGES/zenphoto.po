@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-07 00:12-0500\n"
-"PO-Revision-Date: 2011-07-07 00:33-0500\n"
+"PO-Revision-Date: 2011-07-15 21:37-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -6997,7 +6997,7 @@ msgstr "Installation"
 
 #: F:\zenphoto-dev/zp-core/setup.php:356
 msgid "Welcome to Zenphoto! This page will set up Zenphoto on your web server."
-msgstr "Bienvenue sur Zenphoto ! Cette page va vous permettre de paramétrer Zenphoto sur votre serveur."
+msgstr "Bienvenue sur Zenphoto ! Cette page va vous permettre d’installer Zenphoto sur votre serveur."
 
 #: F:\zenphoto-dev/zp-core/setup.php:358
 msgid "Systems Check:"
@@ -7094,7 +7094,7 @@ msgstr "L’option <code>magic_quotes_gpc</code> de PHP est activée"
 
 #: F:\zenphoto-dev/zp-core/setup.php:444
 msgid "You should consider disabling <code>magic_quotes_gpc</code>. For more information See <em><a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#26\">What is magic_quotes_gpc and why should it be disabled?</a></em> in the Zenphoto troubleshooting guide."
-msgstr "Vous devriez songer à désactiver l’option <code>magic_quotes_gpc</code>. Pour plus d’information, voyez le chapitre <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#26\"><em>Qu’est-ce que l’option magic_quotes_gpc et pourquoi doit-elle être désactivée</em></a> du Guide de dépannage de Zenphoto."
+msgstr "Vous devriez songer à désactiver l’option <code>magic_quotes_gpc</code>. Pour plus d’information, voyez le chapitre <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#26\"><em>Qu’est-ce que l’option magic_quotes_gpc et pourquoi elle doit être désactivée</em></a> du Guide de dépannage de Zenphoto."
 
 #: F:\zenphoto-dev/zp-core/setup.php:445
 msgid "PHP <code>gettext()</code> support"
@@ -7312,7 +7312,7 @@ msgstr "Les permissions sur les fichiers et les dossiers sont : %s"
 
 #: F:\zenphoto-dev/zp-core/setup.php:612
 msgid "If file and folder permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file/folder permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission."
-msgstr "Si les permissions sur les dossiers et fichiers ne sont pas sur <em>strict</em>, il y a un risque de sécurité. Cependant, certains serveurs ne supportent pas bien les permissions strictes. Si vous rencontrez des problèmes, relancez l’installation et désactivez cette option."
+msgstr "Si les permissions sur les dossiers et fichiers ne sont pas sur <em>strict</em>, il y a un risque de sécurité. Malheureusement, certains serveurs ne supportent pas bien les permissions strictes. Si vous rencontrez des problèmes, relancez l’installation et désactivez cette option."
 
 #: F:\zenphoto-dev/zp-core/setup.php:617
 msgid "Character set"
@@ -9426,7 +9426,7 @@ msgstr "Modifiez les permissions sur le dossier <code>%1$s</code> pour le rendre
 #: F:\zenphoto-dev/zp-core/setup/setup-functions.php:225
 #, php-format
 msgid "<em>%1$s</em> folder [<em>%2$s</em> is not writeable and <strong>setup</strong> could not make it so]"
-msgstr "le dossier<em>%1$s</em> ne peut être créé [<em>%2$s</em> n’est pas accessible en écriture et <strong>l’installation</strong> ne peut rien y faire]"
+msgstr "Dossier<em>%1$s</em> – [<em>%2$s</em> n’est pas accessible en écriture et <strong>l’installation</strong> ne peut rien y faire]"
 
 #: F:\zenphoto-dev/zp-core/setup/setup-functions.php:227
 #, php-format
