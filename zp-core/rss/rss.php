@@ -62,9 +62,9 @@ $gallery = new Gallery();
 				$row = db_fetch_row($lastuploaded);
 				$count = $row[0];
 				if($count == 1) {
-					$imagenumber = sprintf(gettext('(%s: 1 new image)'),$title);
+					$imagenumber = sprintf(gettext('%s (1 new image)'),$title);
 				} else {
-					$imagenumber = sprintf(gettext('(%1$s: %2$s new images)'),$title,$count);
+					$imagenumber = sprintf(gettext('%1$s (%2$s new images)'),$title,$count);
 				}
 				$itemcontent = '<![CDATA[<a title="'.$title.'" href="'.$protocol.'://'.$itemlink.'">'.$thumburl.'</a>'.
 						'<p>'.html_encode($imagenumber).'</p>'.html_encode(get_language_string($albumitem->get("desc"),$locale)).']]>';
@@ -72,9 +72,9 @@ $gallery = new Gallery();
 				$datecontent = '<![CDATA['.sprintf(gettext("Last update: %s"),zpFormattedDate(DATE_FORMAT,$filechangedate)).']]>';
 			} else {
 				if($totalimages == 1) {
-					$imagenumber = sprintf(gettext('(%s: 1 image)'),$title);
+					$imagenumber = sprintf(gettext('%s (1 image)'),$title);
 				} else {
-					$imagenumber = sprintf(gettext('(%1$s: %2$s images)'),$title,$totalimages);
+					$imagenumber = sprintf(gettext('%1$s (%2$s images)'),$title,$totalimages);
 				}
 				$itemcontent = '<![CDATA[<a title="'.html_encode($title).'" href="'.$protocol.'://'.$itemlink.'">'.$thumburl.'</a>'.html_encode(get_language_string($albumitem->get("desc"),$locale)).']]>';
 				$datecontent = '<![CDATA['.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$albumitem->get('mtime'))).']]>';

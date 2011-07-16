@@ -48,13 +48,18 @@ function getRSSTitle() {
  * @return string
  */
 function getRSSAlbumTitle() {
+	global $_zp_gallery;
 	$rssmode = getRSSAlbumsmode();
 	if(isset($_GET['albumtitle'])) {
-		$albumname = " (".sanitize(urldecode($_GET['albumtitle'])).")";
-	} else if ($rssmode === "albums") {
-		$albumname = gettext("Latest Albums");
+		$albumname = ' - '.html_encode(sanitize(urldecode($_GET['albumtitle']))).' ('.gettext(' - latest images').')';
+	} elseif ($rssmode == "albums" && !isset($_GET['folder'])) {
+		$albumname = gettext('- latest albums');
+	} elseif ($rssmode == 'albums' && isset($_GET['folder'])) {
+		$folder = sanitize(urldecode($_GET['folder']));
+		$albobj = new Album($_zp_gallery,$folder);
+		$albumname = ' - '.html_encode(strip_tags($albobj->getTitle())).gettext(" (latest albums)");
 	} else {
-		$albumname = "";
+		$albumname = gettext(' (latest images)');
 	}
 	return $albumname;
 }

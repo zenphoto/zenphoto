@@ -23,7 +23,7 @@ $gallery = new Gallery();
 ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-<title><?php echo html_encode(get_language_string($gallery->getTitle(), $locale))." - News "; ?><?php if(!empty($cattitle)) { echo html_encode($cattitle) ; } ?></title>
+<title><?php echo html_encode(get_language_string($gallery->getTitle(), $locale)); if(!empty($cattitle)) { echo ' - '.html_encode($cattitle) ; } ?><?php echo gettext(' (Latest news)'); ?></title>
 <link><?php echo $protocol."://".$host.WEBPATH; ?></link>
 <atom:link href="<?php echo $protocol; ?>://<?php echo html_encode($_SERVER["HTTP_HOST"]); ?><?php echo html_encode($_SERVER["REQUEST_URI"]); ?>" rel="self" type="application/rss+xml" />
 <description><?php echo html_encode(strip_tags(get_language_string($gallery->get('Gallery_description'), $locale))); ?></description>
