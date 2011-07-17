@@ -2728,7 +2728,17 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 					</td>
 					<td>
 						<?php echo gettext('Tie cookies to the IP address of the browser.'); ?>
-						<p class="notebox"><?php echo gettext('<strong>Note</strong>: If your browser does not present a consistant IP address you may not be able to log into your site when this option is enabled. You <strong>WILL</strong> have to login after changing this option.'); ?></p>
+						<p class="notebox">
+						<?php
+						if (!getOption('IP_tied_cookies')) {
+							echo ' '.gettext('<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled.').' ';
+						}
+						echo gettext(' You <strong>WILL</strong> have to login after changing this option.');
+						if (!getOption('IP_tied_cookies')) {
+							echo ' '.gettext('If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first.');
+						}
+						?>
+						</p>
 					</td>
 				</tr>
 					<?php
