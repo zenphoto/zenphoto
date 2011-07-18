@@ -58,9 +58,7 @@ $gallery = new Gallery();
 			if(true || getOption("feed_sortorder_albums") === "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumitem->name));
 				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$albumitem->getAlbumID() . " AND `show` = 1 ORDER BY id DESC");
-				$lastuploaded = query("SELECT COUNT(*) FROM ".prefix('images')." WHERE albumid = ".$albumitem->getAlbumID() . " AND mtime = ". $latestimage['mtime']);
-				$row = db_fetch_row($lastuploaded);
-				$count = $row[0];
+				$count = db_count('images',"WHERE albumid = ".$albumitem->getAlbumID() . " AND mtime = ". $latestimage['mtime']);
 				if($count == 1) {
 					$imagenumber = sprintf(gettext('%s (1 new image)'),$title);
 				} else {

@@ -3381,14 +3381,14 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
 			$c = 0;
 			while (is_null($image) && $c < 10) {
 				$result = query_single_row('SELECT COUNT(*) AS row_count ' .
-				' FROM '.prefix('images'). ', '.prefix('albums').
-				' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
+																' FROM '.prefix('images'). ', '.prefix('albums').
+																' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
 				prefix('albums') . '.id ' . $albumInWhere . $albumNotWhere . $imageWhere );
 				$rand_row = rand(0, $result['row_count']-1);
 
 				$result = query_single_row('SELECT '.prefix('images').'.filename, '.prefix('albums').'.folder ' .
-				' FROM '.prefix('images').', '.prefix('albums') .
-				' WHERE '.prefix('images').'.albumid = '.prefix('albums').'.id  ' . $albumInWhere .  $albumNotWhere .
+																' FROM '.prefix('images').', '.prefix('albums') .
+																' WHERE '.prefix('images').'.albumid = '.prefix('albums').'.id  ' . $albumInWhere .  $albumNotWhere .
 				$imageWhere . ' LIMIT ' . $rand_row . ', 1');
 
 				$imageName = $result['filename'];

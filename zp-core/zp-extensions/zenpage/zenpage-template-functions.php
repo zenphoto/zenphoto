@@ -2234,12 +2234,10 @@ function getNumPages($total=false) {
 			$_zp_zenpage_pagelist = $_zp_current_search->getSearchPages();
 			return count($_zp_zenpage_pagelist);
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-		 $result = query('SELECT COUNT(*) FROM '.prefix('pages').' WHERE parentid='.$_zp_current_zenpage_page->getID());
-		 return db_result($result, 0);
+		 return db_count('pages','WHERE parentid='.$_zp_current_zenpage_page->getID());
 		}
 	}
-	$result = query('SELECT COUNT(*) FROM '.prefix('pages'));
-	return db_result($result, 0);
+	return db_count('pages');
 }
 
 /**

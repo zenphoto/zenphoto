@@ -166,13 +166,13 @@ require_once('normalizer.php');
 						</tr>
 						<tr>
 							<th><?php echo gettext('Photos'); ?></th>
-							<td><?php $photosArray = query_single_row("SELECT count(*) FROM ".prefix('images')); $photosNumber = array_shift($photosArray); echo $photosNumber ?></td>
+							<td><?php $photosNumber = db_count('images'); echo $photosNumber ?></td>
 							<td><?php printRSSLink('Gallery','','','',true,'i'); ?></td>
 						</tr>
  					<?php if (function_exists('printCommentForm')) { ?>
  						<tr>
 							<th><?php echo gettext('Comments'); ?></th>
-							<td><?php $commentsArray = query_single_row("SELECT count(*) FROM ".prefix('comments')." WHERE inmoderation = 0"); $commentsNumber = array_shift($commentsArray); echo $commentsNumber ?></td>
+							<td><?php $commentsNumber = db_count('comments'," WHERE inmoderation = 0"); echo $commentsNumber ?></td>
 							<td><?php printRSSLink('Comments','','','',true,'i'); ?></td>
 							</tr>
 						<?php } ?>

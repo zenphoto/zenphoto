@@ -1115,10 +1115,8 @@ function countArticles($category='', $published='published',$count_subcat_articl
 		} else {
 			$datesearch = "";
 		}
-		$result = query("SELECT COUNT(*) FROM ".prefix('news').$show.$datesearch);
-		$row = db_fetch_row($result);
-		$count = $row[0];
-		return $count;
+		$count = db_count('news',$show.$datesearch);
+			return $count;
 	} else {
 		$catobj = new ZenpageCategory($category);
 		switch($published) {
@@ -1501,8 +1499,7 @@ function countCombiNews($published=NULL) {
 				case "latestimagesbyalbum-thumbnail-customcrop":
 				case "latestimagesbyalbum-sizedimage":
 					($published) ? $show = "WHERE `show`= 1" : $show = "";
-					$result = query("SELECT COUNT(DISTINCT Date(date),albumid) FROM " . prefix('images'). " ".$show);
-					$countGalleryitems = db_result($result, 0);
+					$countGalleryitems = db_count('images',$show,'DISTINCT Date(date),albumid');
 					break;
 			}
 		} else {

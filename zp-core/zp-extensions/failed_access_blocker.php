@@ -86,9 +86,7 @@ function failed_access_blocker_adminGate($allow, $page) {
 	$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("failed_access", "'.time().'","'.getUserIP().'")';
 	query($sql);
 	//	check how many times this has happened recently
-	$sql = 'SELECT COUNT(*) FROM '.prefix('plugin_storage'). 'WHERE `type`="failed_access" AND `data`="'.getUserIP().'"';
-	$result = query($sql);
-	$count = db_result($result, 0);
+	$count = db_count('plugin_storage','WHERE `type`="failed_access" AND `data`="'.getUserIP().'"');
 	if ($count >= getOption('failed_access_blocker_attempt_threshold')) {
 		$block = getOption('failed_access_blocker_forbidden');
 		if ($block) {

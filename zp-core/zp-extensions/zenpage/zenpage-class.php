@@ -625,8 +625,7 @@ class Zenpage {
 					case "latestimagesbyalbum-thumbnail-customcrop":
 					case "latestimagesbyalbum-sizedimage":
 						($published) ? $show = "WHERE `show`= 1" : $show = "";
-						$result = query("SELECT COUNT(DISTINCT Date(date),albumid) FROM " . prefix('images'). " ".$show);
-						$countGalleryitems = db_result($result, 0);
+						$countGalleryitems = db_count('images',$show,'DISTINCT Date(date),albumid');
 						break;
 				}
 			} else {

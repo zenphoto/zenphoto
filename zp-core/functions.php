@@ -1300,13 +1300,7 @@ function getAllTagsCount() {
 	$tagresult = query_full_array($sql);
 	if (is_array($tagresult)) {
 		foreach ($tagresult as $tag) {
-			$sql = 'SELECT COUNT(id) FROM '.prefix('obj_to_tag').' WHERE `tagid`='.$tag['id'];
-			$result = query($sql);
-			if ($result) {
-				$count = db_result($result, 0);
-			} else {
-				$count = 0;
-			}
+			$count = db_count('obj_to_tag','WHERE `tagid`='.$tag['id']);
 			$_zp_count_tags[$tag['name']] = $count;
 		}
 	}

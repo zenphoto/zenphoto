@@ -207,28 +207,28 @@ function printItemEditLink($item) {
  *
  */
 function printItemStatusDropdown() {
-  $all="";
-  $visible="";
-  $hidden="";
-  $status = checkChosenItemStatus();
-  $menuset = checkChosenMenuset();
+	$all="";
+	$visible="";
+	$hidden="";
+	$status = checkChosenItemStatus();
+	$menuset = checkChosenMenuset();
 	?>
-  <select name="ListBoxURL" id="ListBoxURL" size="1" onchange="window.location='?menuset=<?php echo urlencode($menuset); ?>&amp;visible='+$('#ListBoxURL').val()">
-  <?php
-  switch($status) {
-  	case "hidden":
-  		$hidden = 'selected="selected"';
-  		break;
-  	case "visible":
-  		$visible = 'selected="selected"';
-  		break;
-  	default:
-  		$all = 'selected="selected"';
-  		break;
-  }
- 	echo "<option $all value='all'>".gettext("Hidden and visible items")."</option>\n";
- 	echo "<option $visible value='visible'>".gettext("Visible items")."</option>\n";
- 	echo "<option $hidden value='hidden'>".gettext("hidden items")."</option>\n";
+	<select name="ListBoxURL" id="ListBoxURL" size="1" onchange="window.location='?menuset=<?php echo urlencode($menuset); ?>&amp;visible='+$('#ListBoxURL').val()">
+	<?php
+	switch($status) {
+		case "hidden":
+			$hidden = 'selected="selected"';
+			break;
+		case "visible":
+			$visible = 'selected="selected"';
+			break;
+		default:
+			$all = 'selected="selected"';
+			break;
+	}
+	echo "<option $all value='all'>".gettext("Hidden and visible items")."</option>\n";
+	echo "<option $visible value='visible'>".gettext("Visible items")."</option>\n";
+	echo "<option $hidden value='hidden'>".gettext("hidden items")."</option>\n";
 	?>
 	</select>
 	<?php
@@ -253,16 +253,16 @@ function getMenuSetSelector($active) {
 	} else {
 		$selector = '<select name="menuset" size="1">'."\n";
 	}
-  foreach($menusets as $set) {
-  	if($menuset == $set) {
-  		$selected = 'selected="selected"';
-  	} else {
-  		$selected = '';
-  	}
- 		$selector .= '<option '.$selected.' value="'.html_encode($set).'">'.html_encode($set)."</option>\n";
-  }
-  $selector .= "</select>\n";
-  return $selector;
+	foreach($menusets as $set) {
+		if($menuset == $set) {
+			$selected = 'selected="selected"';
+		} else {
+			$selected = '';
+		}
+		$selector .= '<option '.$selected.' value="'.html_encode($set).'">'.html_encode($set)."</option>\n";
+	}
+	$selector .= "</select>\n";
+	return $selector;
  }
 
 /**
@@ -314,9 +314,7 @@ function addSubalbumMenus($menuset, $gallery, $id, $link, $sort) {
  */
 function addalbumsToDatabase($menuset, $base=NULL) {
 	if (is_null($base)) {
-		$sql = "SELECT COUNT(id) FROM ". prefix('menu') .' WHERE menuset='.db_quote($menuset);
-		$result = query($sql);
-		$albumbase = db_result($result, 0);
+		$albumbase = db_count('menu','WHERE menuset='.db_quote($menuset));
 		$sortbase = '';
 	} else {
 		$albumbase = array_pop($base);
@@ -342,9 +340,7 @@ function addalbumsToDatabase($menuset, $base=NULL) {
  */
 function addPagesToDatabase($menuset, $base=NULL) {
 	if (is_null($base)) {
-		$sql = "SELECT COUNT(id) FROM ". prefix('menu') .' WHERE menuset='.db_quote($menuset);
-		$result = query($sql);
-		$pagebase = db_result($result, 0);
+		$pagebase = db_count('menu','WHERE menuset='.db_quote($menuset));
 		$sortbase = '';
 	} else {
 		$pagebase = array_pop($base);
@@ -382,9 +378,7 @@ function addPagesToDatabase($menuset, $base=NULL) {
  */
 function addCategoriesToDatabase($menuset, $base=NULL) {
 	if (is_null($base)) {
-		$sql = "SELECT COUNT(id) FROM ". prefix('menu') .' WHERE menuset='.db_quote($menuset);
-		$result = query($sql);
-		$categorybase = db_result($result, 0);
+		$categorybase = db_count('menu','WHERE menuset='.db_quote($menuset));
 		$sortbase = '';
 	} else {
 		$categorybase = array_pop($base);
@@ -569,9 +563,8 @@ function addItem(&$reports) {
 			break;
 
 	}
-	$sql = "SELECT COUNT(id) FROM ". prefix('menu') .' WHERE menuset='.db_quote($menuset);
-	$rslt = query($sql);
-	$order = sprintf('%03u',db_result($rslt, 0));
+	$count = db_count('menu','WHERE menuset='.db_quote($menuset));
+	$order = sprintf('%03u',$count);
 	$sql = "INSERT INTO ".prefix('menu')." (`title`,`link`,`type`,`show`,`menuset`,`sort_order`,`include_li`,`span_id`,`span_class`) ".
 						"VALUES (".db_quote($result['title']).
 						",".db_quote($result['link']).
@@ -641,11 +634,11 @@ function updateMenuItem(&$reports) {
  *
  */
 function deleteItem(&$reports) {
-  if(isset($_GET['delete'])) {
-    $delete = sanitize_numeric($_GET['delete'],3);
-    query("DELETE FROM ".prefix('menu')." WHERE `id`=$delete");
-    $reports[] =  "<p class='messagebox fade-message'>".gettext("Custom menu item successfully deleted!")."</p>";
-  }
+	if(isset($_GET['delete'])) {
+		$delete = sanitize_numeric($_GET['delete'],3);
+		query("DELETE FROM ".prefix('menu')." WHERE `id`=$delete");
+		$reports[] =  "<p class='messagebox fade-message'>".gettext("Custom menu item successfully deleted!")."</p>";
+	}
 }
 
 /**
@@ -678,10 +671,10 @@ function printAlbumsSelector() {
 }
 
 /**
- 	* Prints all available pages in Zenpage
- 	*
-  * @return string
- 	*/
+	* Prints all available pages in Zenpage
+	*
+	* @return string
+	*/
 function printZenpagePagesSelector() {
 	global $_zp_gallery,$_zp_zenpage;
 	?>
@@ -705,10 +698,10 @@ function printZenpagePagesSelector() {
 
 
 /**
- 	* Prints all available articles or categories in Zenpage
-  *
- 	* @return string
- 	*/
+	* Prints all available articles or categories in Zenpage
+	*
+	* @return string
+	*/
 function printZenpageNewsCategorySelector() {
 	global $_zp_gallery,$_zp_zenpage;
 	?>
@@ -759,8 +752,8 @@ function printCustomPageSelector($current) {
 /**
  * checks if a album or image is un-published and returns a '*'
 	*
-  * @return string
- 	*/
+	* @return string
+	*/
 function unpublishedZenphotoItemCheck($obj,$dropdown=true) {
 	if($obj->getShow() != "1") {
 		$show = "*";

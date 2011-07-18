@@ -640,8 +640,8 @@ class ThemeObject extends PersistentObject {
 	function getCommentCount() {
 		if (is_null($this->commentcount)) {
 			if ($this->comments == null) {
-				$count = query_single_row("SELECT COUNT(*) FROM " . prefix("comments") . " WHERE `type`='".$this->table."' AND `inmoderation`=0 AND `private`=0 AND `ownerid`=" . $this->id);
-				$this->commentcount = array_shift($count);
+				$count = db_count("comments", "WHERE `type`='".$this->table."' AND `inmoderation`=0 AND `private`=0 AND `ownerid`=" . $this->id);
+				$this->commentcount = $count;
 			} else {
 				$this->commentcount = count($this->comments);
 			}

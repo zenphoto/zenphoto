@@ -209,12 +209,11 @@ class Gallery {
 			$this->getAlbums(0, NULL, NULL, false);
 			$count = count($this->albums);
 		} else {
-			$sql = "SELECT count(*) FROM " . prefix('albums');
+			$sql = '';
 			if ($publishedOnly) {
-				$sql .= ' WHERE `show`=1';
+				$sql = 'WHERE `show`=1';
 			}
-			$result = query($sql);
-			$count = db_result($result, 0);
+			$count = db_count('albums',$sql);
 		}
 		return $count;
 	}
@@ -284,7 +283,7 @@ class Gallery {
 
 
 	/**
-	 * Returns the number of images from a database SELECT count(*)
+	 * Returns the number of images from a database
 	 * Ideally one should call garbageCollect() before to make sure the database is current.
 	 * @param bool $publishedOnly set to true to count only published images.
 	 * @return int
@@ -311,13 +310,12 @@ class Gallery {
 				}
 			}
 			if (!empty($exclude)) {
-				$exclude = ' WHERE '.$exclude;
+				$exclude = 'WHERE '.$exclude;
 			}
 		} else {
 			$exclude = '';
 		}
-		$result = query_single_row("SELECT count(*) as `image_count` FROM ".prefix('images').$exclude);
-		return $result['image_count'];
+		return db_count('images',$exclude);
 	}
 
 
@@ -328,12 +326,11 @@ class Gallery {
 	 * @return array
 	 */
 	function getNumComments($moderated=false) {
-		$sql = "SELECT count(*) FROM ".prefix('comments');
+		$sql = '';
 		if (!$moderated) {
-			$sql .= " WHERE `inmoderation`=0";
+			$sql = "WHERE `inmoderation`=0";
 		}
-		$result = query_single_row($sql);
-		return array_shift($result);
+		return db_count('commnets',$sql);
 	}
 
 	/** For every album in the gallery, look for its file. Delete from the database

@@ -75,9 +75,7 @@ foreach ($reports as $report) {
 	echo $report;
 }
 
-$sql = 'SELECT COUNT(DISTINCT `menuset`) FROM '.prefix('menu');
-$result = query($sql);
-$count = db_result($result, 0);
+$count = db_count('menu',NULL,'DISTINCT `menuset`');
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[

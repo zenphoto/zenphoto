@@ -1501,4 +1501,15 @@ function getServerOS() {
 	$os = array_shift($ostokens);
 	return $os;
 }
+
+function db_count($table, $clause=NULL, $field="*") {
+	$sql = 'SELECT COUNT('.$field.') FROM '.prefix($table).' '.$clause;
+	$result = query_single_row($sql);
+	if ($result) {
+		return array_shift($result);
+	} else {
+		return 0;
+	}
+}
+
 ?>

@@ -483,7 +483,7 @@ function get_language_string($dbstring, $locale=NULL) {
 	if (!preg_match('/^a:[0-9]+:{/', $dbstring)) {
 		return $dbstring;
 	}
-	$strings = unserialize($dbstring);
+	$strings = @unserialize($dbstring);
 	if (!is_array($strings)) { //??????
 		return $strings;
 	}

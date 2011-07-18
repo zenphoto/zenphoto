@@ -4,11 +4,9 @@
 
 /* SQL Counting Functions */
 function get_subalbum_count() {
-	$sql = "SELECT COUNT(id) FROM ". prefix("albums") ." WHERE parentid IS NOT NULL";
-	if (!zp_loggedin()) {$sql .= " AND `show` = 1"; }  /* exclude the un-published albums */
-	$result = query($sql);
-	$count = db_result($result, 0);
-	return $count;
+	$where = "WHERE parentid IS NOT NULL";
+	if (!zp_loggedin()) {$where .= " AND `show` = 1"; }  /* exclude the un-published albums */
+	return db_count('albums',$where);
 }
 
 function show_sub_count_index() {
@@ -214,12 +212,16 @@ function printFooter($admin=true) {
 				<small>
 					<?php $albumNumber = getNumAlbums(); echo sprintf(ngettext("%u Album","%u Albums",$albumNumber),$albumNumber); ?> &middot;
 						<?php $c=get_subalbum_count(); echo sprintf(ngettext("%u Subalbum", "%u Subalbums",$c),$c); ?> &middot;
-						<?php $photosArray = query_single_row("SELECT count(*) FROM ".prefix('images'));
-						$photosNumber = array_shift($photosArray); echo sprintf(ngettext("%u Image","%u Images",$photosNumber),$photosNumber); ?>
+						<?php
+						$photosNumber = db_count('images');
+						echo sprintf(ngettext("%u Image","%u Images",$photosNumber),$photosNumber);
+						?>
 						<?php if (function_exists('printCommentForm')) { ?>
 							&middot;
-							<?php $commentsArray = query_single_row("SELECT count(*) FROM ".prefix('comments')." WHERE inmoderation = 0");
-							$commentsNumber = array_shift($commentsArray); echo sprintf(ngettext("%u Comment","%u Comments",$commentsNumber),$commentsNumber); ?>
+							<?php
+							$commentsNumber = db_count('comments'," WHERE inmoderation = 0");
+							echo sprintf(ngettext("%u Comment","%u Comments",$commentsNumber),$commentsNumber);
+							?>
 						<?php } ?>
 				</small>
 			</p>
@@ -251,8 +253,8 @@ function commonNewsLoop($paged) {
 			$newstypedisplay .= ' <small><em>'.gettext('sticky').'</em></small>';
 		}
 	?>
- 		<div class="newsarticle<?php if (stickyNews()) echo ' sticky'; ?>">
-    	<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".$newstypedisplay."]</span>"; ?></h3>
+		<div class="newsarticle<?php if (stickyNews()) echo ' sticky'; ?>">
+			<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".$newstypedisplay."]</span>"; ?></h3>
 			<div class="newsarticlecredit">
 				<span class="newsarticlecredit-left">
 					<?php
@@ -261,7 +263,7 @@ function commonNewsLoop($paged) {
 					printNewsDate();
 					if ($count > 0) {
 						echo ' | ';
-				 		printf(gettext("Comments: %d"),  $count);
+						printf(gettext("Comments: %d"),  $count);
 					}
 					?>
 				</span>
@@ -276,14 +278,14 @@ function commonNewsLoop($paged) {
 				}
 				?>
 			</div> <!-- newsarticlecredit -->
-   		<?php printCodeblock(1); ?>
-    	<?php printNewsContent(); ?>
-    	<?php printCodeblock(2); ?>
-    	</div>
+			<?php printCodeblock(1); ?>
+			<?php printNewsContent(); ?>
+			<?php printCodeblock(2); ?>
+			</div>
 	<?php
 	}
 	if ($paged) {
-  	printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
+		printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
 	}
 }
 

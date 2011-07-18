@@ -734,9 +734,8 @@ function submenuOf($link, $menuset='default') {
  * @param string $menuset current menuset
  */
 function createMenuIfNotExists($menuitems, $menuset='default') {
-	$sql = "SELECT COUNT(id) FROM ". prefix('menu') .' WHERE menuset='.db_quote($menuset);
-	$result = query($sql);
-	if (db_result($result, 0)==0) {	// there was not an existing menu set
+	$count = db_count('menu','WHERE menuset='.db_quote($menuset));
+	if ($count==0) {	// there was not an existing menu set
 		require_once(dirname(__FILE__).'/menu_manager/menu_manager-admin-functions.php');
 		$success = 1;
 		$orders = array();
