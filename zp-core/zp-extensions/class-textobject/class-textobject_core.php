@@ -103,7 +103,7 @@ class TextObject extends _Image {
 			return;
 		}
 		$this->updateDimensions();
-		if (parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->id), 'filename', false, false)) {
+		if (parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->id), 'filename')) {
 			$title = $this->getDefaultTitle();
 			$this->set('title', $title);
 			$this->set('mtime', $ts = filectime($this->localpath));

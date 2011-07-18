@@ -15,7 +15,7 @@ class ZenpageNews extends ZenpageItems {
 	var $categories = NULL;
 
 	function ZenpageNews($titlelink, $allowCreate=NULL) {
-		$new = parent::PersistentObject('news', array('titlelink'=>$titlelink), NULL, true, empty($titlelink), $allowCreate);
+		$new = parent::PersistentObject('news', array('titlelink'=>$titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
 	}
 
 	/**

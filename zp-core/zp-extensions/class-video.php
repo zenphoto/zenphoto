@@ -83,7 +83,7 @@ class Video extends _Image {
 		// This is where the magic happens...
 		$album_name = $album->name;
 		$this->updateDimensions();
-		if (parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->id), 'filename', false, empty($album_name))) {
+		if (parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->id), 'filename', true, empty($album_name))) {
 			$this->set('mtime', $ts = filemtime($this->localpath));
 			$this->updateMetaData();
 			$this->save();

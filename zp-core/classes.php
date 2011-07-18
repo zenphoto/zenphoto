@@ -38,8 +38,7 @@
 
 // The query cache
 $_zp_object_cache = array();
-$_zp_object_update_cache = array();
-
+define('OBJECT_CACHE_DEPTH', 150);	//	how many objects to hold for each object class
 
 // ABSTRACT
 class PersistentObject {
@@ -74,59 +73,49 @@ class PersistentObject {
 		$this->loaded = false;
 		$this->table = $tablename;
 		$this->unique_set = $unique_set;
-		$this->cache_by = $cache_by;
+		if (is_null($cache_by)) {
+			$this->cache_by = serialize($unique_set);
+		} else {
+			$this->cache_by = $this->unique_set[$cache_by];
+		}
 		$this->use_cache = $use_cache;
 		$this->transient = $is_transient;
 		$result = $this->load($allowCreate);
 		return $result;
 	}
 
-
 	/**
-	* Caches the current set of objects defined by a variable key $cache_by.
-	* Uses a global array to store the results of a single database query,
-	* where subsequent requests for the object look for data.
-	* @return a reference to the array location where this class' cache is stored
-	*   indexed by the field $cache_by.
-	*/
-	function cache($entry=NULL) {
+	 *
+	 * check the cache for presence of the entry and return it if found
+	 * @param $entry
+	 */
+	function getFromCache() {
 		global $_zp_object_cache;
-		if (is_null($this->cache_by)) return false;
 		$classname = get_class($this);
-		if (!isset($_zp_object_cache[$classname])) {
-			$_zp_object_cache[$classname] = array();
+		if (isset($_zp_object_cache[$classname])) {
+			return @$_zp_object_cache[$classname][$this->cache_by];
 		}
-		$cache_set = array_diff_assoc($this->unique_set, array($this->cache_by => $this->unique_set[$this->cache_by]));
-
-		// This must be done here; the references do not work returned by a function.
-		$cache_location = &$_zp_object_cache[$classname];
-		foreach($cache_set as $key => $value) {
-			if (!isset($cache_location[$value])) {
-				$cache_location[$value] = array();
-			}
-			$cache_location = &$cache_location[$value];
-		}
-		// Exit if this object set is already cached.
-		if (!empty($cache_location)) {
-			return $cache_location;
-		}
-
-		if (!is_null($entry)) {
-			$key = $entry[$this->cache_by];
-			$cache_location[$key] = $entry;
-		} else {
-			$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($cache_set);
-			$result = query($sql);
-			if ($result && db_num_rows($result) == 0) return false;
-
-			while ($row = db_fetch_assoc($result)) {
-				$key = $row[$this->cache_by];
-				$cache_location[$key] = $row;
-			}
-		}
-		return $cache_location;
+		return false;
 	}
 
+	/**
+	 *
+	 * add the entry to the cache
+	 * @param $entry
+	 */
+	function addToCache($entry) {
+		global $_zp_object_cache;
+		if ($entry) {
+			$classname = get_class($this);
+			if (!isset($_zp_object_cache[$classname])) {
+				$_zp_object_cache[$classname] = array();
+			}
+			if (count($_zp_object_cache[$classname]) >= OBJECT_CACHE_DEPTH) {
+				array_shift($_zp_object_cache[$classname]);	//	discard the oldest
+			}
+			$_zp_object_cache[$classname][$this->cache_by] = $entry;
+		}
+	}
 
 	/**
 	* Set a variable in this object. Does not persist to the database until
@@ -280,14 +269,19 @@ class PersistentObject {
 		$sql = 'SELECT * FROM ' . prefix($this->table) . getWhereClause($this->unique_set) . ' LIMIT 1;';
 		// But first, try the cache.
 		if ($this->use_cache) {
+			$entry = $this->getFromCache();
+/*
 			$reporting = error_reporting(0);
 			$cache_location = &$this->cache();
 			$entry = &$cache_location[$this->unique_set[$this->cache_by]];
 			error_reporting($reporting);
+*/
 		}
-		// Re-check the database if: 1) not using cache, or 2) didn't get a hit.
+		// Check the database if: 1) not using cache, or 2) didn't get a hit.
 		if (empty($entry)) {
 			$entry = query_single_row($sql,false);
+			// Save this entry into the cache so we get a hit next time.
+			$this->addToCache($entry);
 		}
 
 		// If we don't have an entry yet, this is a new record. Create it.
@@ -303,8 +297,11 @@ class PersistentObject {
 				$entry = query_single_row($sql);
 				// If we still don't have an entry, something went wrong...
 				if (!$entry) return null;
-				// Then save this new entry into the cache so we get a hit next time.
-				$this->cache($entry);
+				// Save this new entry into the cache so we get a hit next time.
+				$this->addToCache($entry);
+
+//				$this->cache($entry);
+
 			}
 		}
 		$this->data = $entry;
