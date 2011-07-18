@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-07-18 14:47-0500\n"
-"PO-Revision-Date: 2011-07-18 14:48-0500\n"
+"PO-Revision-Date: 2011-07-18 18:10-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -13281,7 +13281,7 @@ msgstr "Permet de définir la langue par le biais de l’URL."
 
 #: F:\zenphoto-dev/zp-core/zp-extensions/seo_locale.php:20
 msgid "<strong>Note:</strong> This plugin is not activated for <em>back&#8209;end</em> (administrative) URLs. However, once activated, the language is remembered, even for the <em>back&#8209;end</em>."
-msgstr "<strong>Note.</strong>  Ce plugin n’est pas activé pour <em>back&#8209;end</em> (administration) URLs. Cependant, une fois activé, la langue est retenue, même pour le <em>back&#8209;end</em>."
+msgstr "<strong>Note.</strong>  Ce plugin n’est pas activé pour les URL <em>des pages d’administration</em>. Cependant, une fois activé, la langue est retenue, même pour ces pages."
 
 #: F:\zenphoto-dev/zp-core/zp-extensions/seo_locale.php:22
 msgid "<em>mod_rewrite</em> must be enabled for this plugin to function."
@@ -13290,7 +13290,7 @@ msgstr "Le module <em>mod_rewrite</em> doit être activé pour que cette extensi
 #: F:\zenphoto-dev/zp-core/zp-extensions/show_not_logged-in.php:9
 #, php-format
 msgid "Treats ADMIN users as not logged in for gallery pages."
-msgstr "Considère les utilisateurs « ADMIN » comme non connectés dans les pages de la galerie."
+msgstr "Considère les utilisateurs « ADMIN » comme non connectés lorsqu’ils visitent les pages de la galerie."
 
 #: F:\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:19
 msgid "Generates individually sitemap.org compatible XML files for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories."
