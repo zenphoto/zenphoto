@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: zenphoto 1.4.1\n"
+"Project-Id-Version: zenphoto 1.4.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-17 23:39-0500\n"
-"PO-Revision-Date: 2011-07-17 23:41-0500\n"
+"POT-Creation-Date: 2011-07-18 14:47-0500\n"
+"PO-Revision-Date: 2011-07-18 14:48-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: F:\zenphoto-dev/index.php:188
 #, php-format
 msgid "Zenphoto script processing %1$s:%2$.4f seconds"
-msgstr "Temps de traitement du script Zenphoto %1$s:%2$.4f secondes"
+msgstr "Temps de traitement du script Zenphoto %1$s :%2$.4f secondes"
 
 #: F:\zenphoto-dev/index.php:191
 #, php-format
