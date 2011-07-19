@@ -3613,9 +3613,9 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 				} else {
 					$albumlist = NULL;
 				}
-				$key = search_quote($key);
+				$lkey = search_quote($key);
 				$list .= "\t<li><a href=\"".
-									html_encode(getSearchURL($key, '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
+									html_encode(getSearchURL($lkey, '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
 									$key.$counter."</a></li>\n";
 			} else {
 				$list .= "\t<li$size>".$key.$counter."</li>\n";
