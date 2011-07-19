@@ -25,12 +25,79 @@ if (getOption('zp_plugin_comment_form')) {	// 	We might get loaded by some plugi
 	zp_register_filter('save_comment_custom_data', 'comment_form_save_comment');
 	zp_register_filter('edit_comment_custom_data', 'comment_form_edit_comment');
 	zp_register_filter('admin_overview', 'comment_form_print10Most',0);
+	
+	// I choose to keep unneeded js loading low to add an option to specifially disable pagination
+	if(getOption('comment_form_pagination')) {
+		zp_register_filter('theme_head','comment_form_PaginationJS');
+	}
 }
 zp_register_filter('save_admin_custom_data', 'comment_form_save_admin');
 zp_register_filter('edit_admin_custom_data', 'comment_form_edit_admin');
 if (getOption('register_user_address_info')) {
 	zp_register_filter('register_user_form', 'comment_form_register_user');
 	zp_register_filter('register_user_registered', 'comment_form_register_save');
+}
+
+function comment_form_PaginationJS() {
+	?>
+	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER ; ?>/js/jquery.pagination.js"></script>
+	<script type="text/javascript">
+        
+            // This is a very simple demo that shows how a range of elements can
+            // be paginated.
+            // The elements that will be displayed are in a hidden DIV and are
+            // cloned for display. The elements are static, there are no Ajax 
+            // calls involved.
+        
+            /**
+             * Callback function that displays the content.
+             *
+             * Gets called every time the user clicks on a pagination link.
+             *
+             * @param {int} page_index New Page index
+             * @param {jQuery} jq the container with the pagination links as a jQuery object
+             */
+            function pageselectCallback(page_index, jq){
+            		var items_per_page = <?php echo getOption('comment_form_comments_per_page'); ?>;
+                var max_elem = Math.min((page_index+1) * items_per_page, $('#comments div.comment').length);
+                var newcontent = '';
+               // alert(members);
+                // Iterate through a selection of the content and build an HTML string
+                for(var i=page_index*items_per_page;i<max_elem;i++) {
+                	//i+2 needed as somehow nth-children needs to start that way...
+                 	newcontent += '<div class="comment">'+$('#comments div.comment:nth-child('+(i+2)+')').html()+'</div>';
+                }
+                
+                // Replace old content with new content
+                $('#Commentresult').html(newcontent);
+                
+                // Prevent click eventpropagation
+                return false;
+            }
+           
+            /** 
+             * Initialisation function for pagination
+             */
+            function initPagination() {
+                // count entries inside the hidden content
+                var num_entries = $('#comments div.comment').length;
+                // Create content inside pagination element
+                $(".Pagination").pagination(num_entries, {
+                		prev_text: "<?php echo gettext('prev'); ?>",
+                		next_text: "<?php echo gettext('next'); ?>",
+                    callback: pageselectCallback,
+                    load_first_page:true,
+                    items_per_page:<?php echo getOption('comment_form_comments_per_page'); ?> // Show only one item per page
+                });
+             }
+            
+            // When document is ready, initialize pagination
+            $(document).ready(function(){      
+                initPagination();
+            });
+                    
+        </script>
+	<?php
 }
 
 class comment_form {
@@ -52,6 +119,8 @@ class comment_form {
 		setOptionDefault('comment_form_private', 1);
 		setOptionDefault('comment_form_anon', 1);
 		setOptionDefault('comment_form_showURL', 1);
+		setOptionDefault('comment_form_comments_per_page', 10);
+		setOptionDefault('comment_form_pagination', true);
 	}
 
 
@@ -91,7 +160,13 @@ class comment_form {
 										'desc' => gettext('If checked, posters may exclude their personal information from the published post.')),
 									gettext('Include RSS link') => array('key' => 'comment_form_rss', 'type' => OPTION_TYPE_CHECKBOX,
 										'order' => 8,
-										'desc' => gettext('If checked, an RSS link will be included at the bottom of the comment section.'))
+										'desc' => gettext('If checked, an RSS link will be included at the bottom of the comment section.')),
+									gettext('Comments per page') => array('key' => 'comment_form_comments_per_page', 'type' => OPTION_TYPE_TEXTBOX,
+										'order' => 8,
+										'desc' => gettext('The comments that should show per page using the jQuery pagination')),
+									gettext('Pagination') => array('key' => 'comment_form_pagination', 'type' => OPTION_TYPE_CHECKBOX,
+										'order' => 8,
+										'desc' => gettext('Uncheck to disable the jQuery pagination of comments. Enabled by default.')),
 									);
 	}
 
@@ -496,8 +571,9 @@ function printCommentErrors() {
  * @param string $addcommenttext alternate text for "Add a comment:"
  * @param bool $addheader set true to display comment count header
  * @param string $comment_commententry_mod use to add styles, classes to the comment form div
+ * @param bool $desc_order default false, set to true to change the comment order to descending ( = newest to oldest)
  */
-function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=true, $comment_commententry_mod='') {
+function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=true, $comment_commententry_mod='',$desc_order=false) {
 	global $_zp_gallery_page, $_zp_themeroot,	$_zp_current_admin_obj, $_zp_current_comment;
 	if (is_null($addcommenttext)) $addcommenttext = '<h3>'.gettext('Add a comment:').'</h3>';
 	switch ($_zp_gallery_page) {
@@ -561,11 +637,22 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 					$display = '';
 				}
 			}
-			?>
-		<div id="comments">
+			$hideoriginalcomments = '';
+			if(getOption('comment_form_pagination') && getOption('comment_form_comments_per_page') < $num) {
+				$hideoriginalcomments = ' style="display:none"'; // hide original comment display to be replaced by jQuery pagination
+			}
+		 if(getOption('comment_form_pagination') && getOption('comment_form_comments_per_page') < $num) { ?>
+					<div class="Pagination"></div><!-- this is the jquery pagination nav placeholder -->
+					<div id="Commentresult">
+            This content will be replaced when pagination inits.
+        	</div>	
+      <?php
+      }
+		 ?>
+		<div id="comments"<?php echo $hideoriginalcomments; ?>>
 			<div id="comment_toggle"><!-- place holder for toggle button --></div>
 			<?php
-			while (next_comment()) {
+			while (next_comment($desc_order)) {
 				if (!getOption('comment_form_showURL')) {
 					$_zp_current_comment['website'] = '';
 				}
@@ -583,6 +670,10 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 		</div><!-- id "comments" -->
 		<?php
 		}
+		if(getOption('comment_form_pagination') && getOption('comment_form_comments_per_page') < $num) { ?>
+			<div class="Pagination"></div><!-- this is the jquery pagination nav placeholder -->
+      <?php
+    }
 		?>
 		<!-- Comment Box -->
 		<?php
