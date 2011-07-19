@@ -76,7 +76,7 @@ font-weight: bold;
 }
 
 h3 {
-		font-size: 14px;
+	font-size: 14px;
 	font-weight: bold;
 }
 
@@ -465,14 +465,27 @@ label:hover {
 	margin-left:0px;
 }
 
-#news_menu li,#album_menu li,#page_menu li, .menu li, .menu_menulabel{
-	background: transparent url("images/menu-album.png") no-repeat 0 .35em;
+.menu li, .menu_menulabel {
+	background: none;
 	list-style-image: none;
 	list-style-type: none;
+	font-size: 14px;
+	font-weight: bold;
 	padding: 0 0 .3em 15px;
 }
 
-#news_menu ul li,#album_menu ul li,#page_menu ul li,.submenu li{
+#news_menu li,#album_menu li,#page_menu li,.submenu li{
+	background: transparent url("images/menu-album.png") no-repeat 0 .35em;
+	list-style-image: none;
+	list-style-type: none;
+	font-size: 12px;
+	font-weight: normal;
+	padding: 0 0 .3em 15px;
+}
+
+#news_menu ul li,#album_menu ul li,#page_menu ul li, .inner_ul li{
+	font-size: 12px;
+	font-weight: normal;
 	background: transparent url("images/menu-sub.png") no-repeat 0 .35em;
 	margin-left:10px;
 }
