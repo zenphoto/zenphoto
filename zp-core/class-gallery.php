@@ -330,7 +330,7 @@ class Gallery {
 		if (!$moderated) {
 			$sql = "WHERE `inmoderation`=0";
 		}
-		return db_count('commnets',$sql);
+		return db_count('comments',$sql);
 	}
 
 	/** For every album in the gallery, look for its file. Delete from the database
