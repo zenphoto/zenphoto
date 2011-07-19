@@ -424,7 +424,7 @@ class Gallery {
 			}
 
 			// Check for the existence of top-level albums (subalbums handled recursively).
-			$sql = "SELECT * FROM " . prefix('albums');
+			$sql = "SELECT * FROM " . prefix('albums').' WHERE `parentid` is NULL';
 			$result = query($sql);
 			$dead = array();
 			$live = array(''); // purge the root album if it exists

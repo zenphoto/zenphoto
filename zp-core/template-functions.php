@@ -3097,8 +3097,8 @@ function getLatestComments($number,$type="all",$itemID="") {
 	$passwordcheck1 = "";
 	$passwordcheck2 = "";
 	if (!zp_loggedin(ADMIN_RIGHTS)) {
-		$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
-		foreach ($albumscheck as $albumcheck) {
+		$result = query("SELECT * FROM " . prefix('albums'). " ORDER BY title");
+		while ($albumcheck = db_fetch_assoc($result)) {
 			if(!checkAlbumPassword($albumcheck['folder'])) {
 				$albumpasswordcheck1= " AND i.albumid != ".$albumcheck['id'];
 				$albumpasswordcheck2= " AND a.id != ".$albumcheck['id'];
@@ -3107,6 +3107,7 @@ function getLatestComments($number,$type="all",$itemID="") {
 			}
 		}
 	}
+
 	switch ($type) {
 		case "image":
 			$whereImages = " WHERE i.show = 1 AND i.id = ".$itemID." AND c.ownerid = ".$itemID." AND i.albumid = a.id AND c.private = 0 AND c.inmoderation = 0 AND (c.type IN (".zp_image_types("'") ."))".$passwordcheck1;

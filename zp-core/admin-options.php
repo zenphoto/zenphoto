@@ -235,6 +235,7 @@ if (isset($_GET['action'])) {
 			setOption('image_sharpen', (int) isset($_POST['image_sharpen']));
 			setOption('image_interlace', (int) isset($_POST['image_interlace']));
 			setOption('ImbedIPTC', (int) isset($_POST['ImbedIPTC']));
+			setOption('default_copyright',sanitize($_POST['default_copyright']));
 			setOption('sharpen_amount', sanitize_numeric($_POST['sharpen_amount']));
 			$num = str_replace(',', '.', sanitize($_POST['sharpen_radius']));
 			if (is_numeric($num)) setOption('sharpen_radius', $num);
