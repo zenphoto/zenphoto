@@ -1393,8 +1393,6 @@ zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/langs/ru.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/langs/sk.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/langs/zh.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/mediaplayer.swf
-zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/session
-zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/session/gc_counter.ajax.php
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/theme
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/theme/default
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/theme/default/css
@@ -2770,4 +2768,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2772
+2770
