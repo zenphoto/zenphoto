@@ -110,11 +110,10 @@ function db_result($result, $row, $field=0) {
  * Fetch a result row as an associative array
  */
 function db_fetch_assoc($resource) {
-	if (!is_object($resource)) {
-		return false;
+	if (is_object($resource)) {
+		return $resource->fetch(PDO::FETCH_ASSOC);
 	}
-	$result = $resource->fetch(PDO::FETCH_ASSOC);
-	return $result;
+	return false;
 }
 
 /*
@@ -146,7 +145,10 @@ function db_affected_rows() {
  * Get a result row as an enumerated array
  */
 function db_fetch_row($result) {
-	return $result->fetch(PDO::FETCH_NUM);
+	if (is_object($result)) {
+		return $result->fetch(PDO::FETCH_NUM);
+	}
+	return false;
 }
 
 /*

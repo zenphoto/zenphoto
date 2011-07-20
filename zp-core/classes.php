@@ -93,7 +93,8 @@ class PersistentObject {
 		global $_zp_object_cache;
 		$classname = get_class($this);
 		if (isset($_zp_object_cache[$classname])) {
-			return @$_zp_object_cache[$classname][$this->cache_by];
+			$cache = @$_zp_object_cache[$classname][$this->cache_by];
+			return $cache;
 		}
 		return false;
 	}

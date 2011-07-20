@@ -151,7 +151,10 @@ function db_result($result, $row, $field=0) {
  * Fetch a result row as an associative array
  */
 function db_fetch_assoc($resource) {
-	return mysql_fetch_assoc($resource);
+	if ($resource) {
+		return mysql_fetch_assoc($resource);
+	}
+	return false;
 }
 
 /*
@@ -172,7 +175,10 @@ function db_affected_rows() {
  * Get a result row as an enumerated array
  */
 function db_fetch_row($result) {
-	return mysql_fetch_row($result);
+	if ($result) {
+		return mysql_fetch_row($result);
+	}
+	return false;
 }
 
 /*
