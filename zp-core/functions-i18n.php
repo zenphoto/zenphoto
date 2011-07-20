@@ -282,10 +282,6 @@ function setupDomain($domain=NULL,$type=NULL) {
 		case "theme":
 			$domainpath = SERVERPATH . "/" . THEMEFOLDER . "/" . $domain."/locale/";
 			break;
-		case 'admin':
-			$domainpath = getPlugin($domain . "/locale/");
-			$domain = 'zenphoto';
-			break;
 		default:
 			$domain = 'zenphoto';
 			$domainpath = SERVERPATH . "/" . ZENFOLDER . "/locale/";
@@ -557,22 +553,13 @@ function timezoneDiff($server, $local) {
 	return 0;
 }
 
-if (function_exists('date_default_timezone_set')) { // insure a correct time zone
-	$tz = getOption('time_zone');
-	if (!empty($tz)) {
-		$err = error_reporting(0);
-		date_default_timezone_set($tz);
-		@ini_set('date.timezone', $tz);
-		error_reporting($err);
-	}
-}
-
 /**
  * returns a serialized "multilingual array" of translations
  * Used for setting default options with multi-lingual strings.
  * @param string $text to be translated
  */
 function getAllTranslations($text) {
+	$entry_locale = getUserLocale();
 	$result = array('en_US'=>$text);
 	$languages = generateLanguageList();
 	foreach ($languages as $language) {
@@ -582,11 +569,21 @@ function getAllTranslations($text) {
 			$result[$language] = $xlated;
 		}
 	}
-	setupCurrentLocale();
+	setupCurrentLocale($entry_locale);
 	if (count($result) == 1) {
 		return $text;
 	}
 	return serialize($result);
+}
+
+if (function_exists('date_default_timezone_set')) { // insure a correct time zone
+	$tz = getOption('time_zone');
+	if (!empty($tz)) {
+		$err = error_reporting(0);
+		date_default_timezone_set($tz);
+		@ini_set('date.timezone', $tz);
+		error_reporting($err);
+	}
 }
 
 ?>
