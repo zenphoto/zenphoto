@@ -304,6 +304,28 @@ width: 600px;
 background: #FFFFFF; /*Color of textarea when focused*/
 }
 
+/* jQuery pagination comments */
+
+.Pagination {
+	margin-bottom: 10px;
+}
+
+.Pagination span.current,
+.Pagination span.next,
+.Pagination a,
+.Pagination a.next {
+	padding:0px 4px 0px 4px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.Pagination span.prev,
+.Pagination a.prev {
+	padding:0px 4px 0px 0px;
+	margin-left: 0;
+	margin-right: 0px;
+}
+
 /* Links  --- */
 a {
 	color: #F0F0D8; /*the current pagination link */
