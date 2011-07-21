@@ -1075,7 +1075,7 @@ class Album extends MediaObject {
 				$others_root = substr($other, 0, strrpos($other,"."));
 				foreach($files as $image) {
 					$image_root = substr($image, 0, strrpos($image,"."));
-					if ($image_root == $others_root && $image != $other) {
+					if ($image_root == $others_root && $image != $other && is_valid_image($image)) {
 						$others_thumbs[] = $image;
 					}
 				}

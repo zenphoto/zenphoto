@@ -177,13 +177,6 @@ function checkObjectsThumb($album, $image){
 			return $image.'.'.$ext;
 		}
 	}
-/* save incase the above becomes a performance issue.
-	foreach($_zp_supported_images as $ext) {
-		if(file_exists(internalToFilesystem($album."/".$image.'.'.$ext))) {
-			return $image.'.'.$ext;
-		}
-	}
-*/
 	return NULL;
 }
 
