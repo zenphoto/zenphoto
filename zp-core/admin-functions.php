@@ -2075,7 +2075,7 @@ function printAlbumEditRow($album, $show_thumb) {
  */
 function processAlbumEdit($index, $album, &$redirectto) {
 	global $gallery;
-	$redirectto = ''; // no redirection required
+	$redirectto = NULL; // no redirection required
 	if ($index == 0) {
 		$prefix = '';
 	} else {
