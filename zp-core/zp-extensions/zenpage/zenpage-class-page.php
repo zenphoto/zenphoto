@@ -162,7 +162,7 @@ class ZenpagePage extends ZenpageItems {
 	}
 
 
-	
+
 /**
  * Gets the sub pages recursivly by titlelink
  * @return array
@@ -184,10 +184,11 @@ class ZenpagePage extends ZenpageItems {
 			return FALSE;
 		}
 	}
-	
-/** 
- * Gets the sub pages recursivly by titlelink DEPRECATED
+
+/**
+ * Gets the sub pages recursivly by titlelink
  * @return array
+ * @deprecated
  */
 	function getSubPages() {
 		deprecated_function_notify(gettext('Use the Zenpage Page class method getPages().'));

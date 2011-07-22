@@ -142,7 +142,7 @@ function iptc_make_tag($rec, $data, $value) {
  * @param string $album the album containing the image
  */
 function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $theme, $album) {
- 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
+	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 	// Set the config variables for convenience.
 	$image_use_side = getOption('image_use_side');
 	$upscale = getOption('image_allow_upscale');
@@ -413,18 +413,18 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 }
 
  /* Determines the rotation of the image looking EXIF information.
-  *
-  * @param string $imgfile the image name
-  * @return false when the image should not be rotated, or the degrees the
-  *         image should be rotated otherwise.
-  *
-  * PHP GD do not support flips so when a flip is needed we make a
-  * rotation that get close to that flip. But I don't think any camera will
-  * fill a flipped value in the tag.
-  */
+	*
+	* @param string $imgfile the image name
+	* @return false when the image should not be rotated, or the degrees the
+	*         image should be rotated otherwise.
+	*
+	* PHP GD do not support flips so when a flip is needed we make a
+	* rotation that get close to that flip. But I don't think any camera will
+	* fill a flipped value in the tag.
+	*/
 function getImageRotation($imgfile) {
 	$imgfile = substr($imgfile, strlen(ALBUM_FOLDER_SERVERPATH));
-  $result = query_single_row('SELECT EXIFOrientation FROM '.prefix('images').' AS i JOIN '.prefix('albums').' as a ON i.albumid = a.id WHERE "'.$imgfile.'" = CONCAT(a.folder,"/",i.filename)');
+	$result = query_single_row('SELECT EXIFOrientation FROM '.prefix('images').' AS i JOIN '.prefix('albums').' as a ON i.albumid = a.id WHERE "'.$imgfile.'" = CONCAT(a.folder,"/",i.filename)');
 	if (is_array($result) && array_key_exists('EXIFOrientation', $result)) {
 		$splits = preg_split('/!([(0-9)])/', $result['EXIFOrientation']);
 		$rotation = $splits[0];
