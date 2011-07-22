@@ -142,7 +142,7 @@ function iptc_make_tag($rec, $data, $value) {
  * @param string $album the album containing the image
  */
 function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $theme, $album) {
-	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
+ 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 	// Set the config variables for convenience.
 	$image_use_side = getOption('image_use_side');
 	$upscale = getOption('image_allow_upscale');
@@ -337,14 +337,15 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			$watermark_height = zp_imageHeight($watermark);
 			$imw = zp_imageWidth($newim);
 			$imh = zp_imageHeight($newim);
-			$percent = getOption('watermark_scale')/100;
-
 			$nw = sqrt(($imw * $imh * $percent)*($watermark_width/$watermark_height));
 			$nh = $nw*($watermark_height/$watermark_width);
-			if (($nw > $watermark_width) || ($nh > $watermark_height)) {
-				$nw = $watermark_height;
-				$nh = $watermark_height;
+			$percent = getOption('watermark_scale')/100;
+			$r = sqrt(($imw * $imh * $percent) / ($watermark_width * $watermark_height));
+			if (!getOption('watermark_allow_upscale')) {
+				$r = min(1, $r);
 			}
+			$nw = round($watermark_width * $r);
+			$nh = round($watermark_height * $r);
 			if (($nw != $watermark_width) || ($nh != $watermark_height)) {
 				$watermark = zp_imageResizeAlpha($watermark, $nw, $nh);
 			}
