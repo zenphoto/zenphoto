@@ -2229,15 +2229,22 @@ $_zp_zenpage_pagelist = NULL;
 function getNumPages($total=false) {
 	global $_zp_zenpage, $_zp_zenpage_pagelist, $_zp_current_search, $_zp_current_zenpage_page;
 	$_zp_zenpage->processExpired('pages');
+	$addquery = '';
 	if (!$total) {
 		if (in_context(ZP_SEARCH)) {
 			$_zp_zenpage_pagelist = $_zp_current_search->getSearchPages();
 			return count($_zp_zenpage_pagelist);
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-		 return db_count('pages','WHERE parentid='.$_zp_current_zenpage_page->getID());
+			if(!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
+				$addquery = ' AND `show` = 1';
+			}
+		 	return db_count('pages','WHERE parentid='.$_zp_current_zenpage_page->getID().$addquery);
 		}
 	}
-	return db_count('pages');
+	if(!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
+		$addquery = ' WHERE `show` = 1';
+	}
+	return db_count('pages',$addquery);
 }
 
 /**
