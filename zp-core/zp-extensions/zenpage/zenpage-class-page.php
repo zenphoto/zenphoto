@@ -162,12 +162,12 @@ class ZenpagePage extends ZenpageItems {
 	}
 
 
+	
 /**
  * Gets the sub pages recursivly by titlelink
-  * @param $all set true for all sub page levels (default) or false for only the direct sub level
  * @return array
  */
-	function getSubPages() {
+	function getPages() {
 		global $_zp_zenpage;
 		$subpages = array();
 		$sortorder = $this->getSortOrder();
@@ -183,6 +183,15 @@ class ZenpagePage extends ZenpageItems {
 		} else {
 			return FALSE;
 		}
+	}
+	
+/** 
+ * Gets the sub pages recursivly by titlelink DEPRECATED
+ * @return array
+ */
+	function getSubPages() {
+		deprecated_function_notify(gettext('Use the Zenpage Page class method getPages().'));
+		return $this->getPages();
 	}
 
 	/**

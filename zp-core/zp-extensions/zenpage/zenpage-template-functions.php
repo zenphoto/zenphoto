@@ -2601,7 +2601,7 @@ function printSubPagesExcerpts($excerptlength=NULL, $readmore=NULL, $shortenindi
 	if(is_null($readmore)) {
 		$readmore = get_language_string(ZP_READ_MORE);
 	}
-	$pages = $_zp_current_zenpage_page->getSubPages();
+	$pages = $_zp_current_zenpage_page->getPages();
 	$subcount = 0;
 	if(is_null($excerptlength)) {
 		$excerptlength = ZP_SHORTEN_LENGTH;
