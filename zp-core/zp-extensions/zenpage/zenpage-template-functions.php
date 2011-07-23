@@ -618,7 +618,7 @@ function getContentShorten($text,$shorten,$shortenindicator=NULL,$readmore=NULL,
 		$readmore = get_language_string(ZP_READ_MORE);
 	}
 	if(!is_null($readmoreurl)) {
-		$readmorelink ='<p class="readmorelink"><a href="'.html_encode($readmoreurl).'"title="'.html_encode($readmore).'">'.html_encode($readmore).'</a></p>';
+		$readmorelink ='<p class="readmorelink"><a href="'.html_encode($readmoreurl).'" title="'.html_encode($readmore).'">'.html_encode($readmore).'</a></p>';
 	}
 	if(!$shorten && !is_NewsArticle()) {
 		$shorten  = ZP_SHORTEN_LENGTH;
