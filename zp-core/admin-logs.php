@@ -51,41 +51,9 @@ if (isset($_GET['action'])) {
 		}
 	}
 }
-// Print our header
-$localizer = array('setup_log'=>gettext('Setup log'), 'security_log'=>gettext('Security log'), 'debug_log'=>gettext('Debug log'));
 
-$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.txt');
-if (count($filelist)>0) {
-	$subtabs = array();
-	if (isset($_GET['tab'])) {
-		$default = sanitize($_GET['tab'],3);
-	} else {
-		$default = NULL;
-	}
-	foreach ($filelist as $logfile) {
-		$log = substr(basename($logfile), 0, -4);
-		if (array_key_exists($log, $localizer)) {
-			$logfiletext = $localizer[$log];
-		} else {
-			$logfiletext = str_replace('_', ' ',$log);
-			$logfiletext = strtoupper(substr($logfiletext, 0, 1)).substr($logfiletext, 1);
-		}
-		$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&amp;tab='.$log));
-		if (filesize($logfile) > 0 && empty($default)) {
-			$default = $log;
-		}
-	}
+$default = $zenphoto_tabs['logs']['default'];
 
-	$zenphoto_tabs['logs']['subtabs'] = $subtabs;
-	$logfiletext = str_replace('_', ' ',$default);
-	$logfiletext = strtoupper(substr($logfiletext, 0, 1)).substr($logfiletext, 1);
-	$logfile = SERVERPATH . "/" . DATA_FOLDER . '/'.$default.'.txt';
-	if (filesize($logfile) > 0) {
-		$logtext = explode("\n",file_get_contents($logfile));
-	} else {
-		$logtext = array();
-	}
-}
 printAdminHeader('logs',$default);
 echo "\n</head>";
 ?>
@@ -99,8 +67,16 @@ echo "\n</head>";
 	?>
 	<div id="content">
 	<?php
-	if (count($filelist)>0) {
-	?>
+	if ($default) {
+		$logfiletext = str_replace('_', ' ',$default);
+		$logfiletext = strtoupper(substr($logfiletext, 0, 1)).substr($logfiletext, 1);
+		$logfile = SERVERPATH . "/" . DATA_FOLDER . '/'.$default.'.txt';
+		if (file_exists($logfile) && filesize($logfile) > 0) {
+			$logtext = explode("\n",file_get_contents($logfile));
+		} else {
+			$logtext = array();
+		}
+		?>
 		<h1><?php echo gettext("View logs:");?></h1>
 
 		<?php $subtab = printSubtabs($default); ?>

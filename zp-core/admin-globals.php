@@ -139,13 +139,11 @@ if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_null_account) {
 }
 
 if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_null_account) {
-	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.txt');
-	if (count($filelist)>0) {
-		$zenphoto_tabs['logs'] = array(	'text'=>gettext("logs"),
-													'link'=>WEBPATH."/".ZENFOLDER.'/admin-logs.php?page=logs',
-													'subtabs'=>NULL);
-	}
-	unset($filelist);
+	list($subtabs,$default)  = getLogTabs();
+	$zenphoto_tabs['logs'] = array(	'text'=>gettext("logs"),
+												'link'=>WEBPATH."/".ZENFOLDER.'/admin-logs.php?page=logs',
+												'subtabs'=>$subtabs,
+												'default'=>$default);
 }
 //	so as to make it generally available as we make much use of it
 require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox.php');
