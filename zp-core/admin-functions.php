@@ -272,17 +272,41 @@ function printTabs() {
 			break;
 	}
 	?>
-	<ul class="nav" id="jsddm" style="width: <?php echo $main_tab_space; ?>em">
+	<ul class="nav" style="width: <?php echo $main_tab_space; ?>em">
 	<?php
 	foreach ($zenphoto_tabs as $key=>$atab) {
 		?>
 		<li <?php if($_zp_admin_tab == $key) echo 'class="current"' ?>>
 			<a href="<?php echo $atab['link']; ?>"><?php echo $atab['text']; ?></a>
+			<?php 
+			$subtabs = $zenphoto_tabs[$key]['subtabs'];
+			if(is_array($subtabs)) { // don't print <ul> if there is nothing
+				if($_zp_admin_tab != $key) { // don't print sublist if already on the main tab
+					?>
+					<ul class="subdropdown">
+						<?php 
+						foreach($subtabs as $key=>$link) { 
+							if (strpos($link,'/') !== 0) {	// zp_core relative
+								$link = WEBPATH.'/'.ZENFOLDER.'/'.$link;
+							} else {
+								$link = WEBPATH.$link;
+							}
+							?> 
+							<li><a href="<?php echo $link; ?>"><?php echo $key; ?></a></li>
+						<?php
+						} // foreach end
+						?>
+						</ul>
+					<?php
+					} // if $subtabs end
+					?>
 		</li>
 		<?php
+		} // if array
 	}
 	?>
 	</ul>
+	<br clear="all" /><!-- needed so the nav sits correctly -->
 	<?php
 }
 
