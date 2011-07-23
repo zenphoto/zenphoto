@@ -279,10 +279,6 @@ function printRating($vote=3, $object=NULL, $text=true) {
 			}
 		}
 		function star_click<?php echo $unique; ?>() {
-
-
-alert('star click');
-
 			$('#vote<?php echo $unique; ?>').html('<?php echo gettext('Vote pending'); ?>');
 		}
 		// ]]> -->

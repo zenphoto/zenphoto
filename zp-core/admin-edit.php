@@ -210,7 +210,6 @@ if (isset($_GET['action'])) {
 							$action = processBulkImageActions($album);
 							if(!empty($action)) $notify = '&bulkmessage='.$action;
 						} else {
-
 							if (isset($_POST['thumb'])) {
 								$thumbnail = sanitize_numeric($_POST['thumb'])-1;
 							} else {
@@ -620,6 +619,8 @@ $checkarray_images = array_merge($checkarray_images,
 																	array(gettext('Move') => 'moveimages',
 																				gettext('Copy') =>'copyimages')
 																	);
+$checkarray_images = zp_apply_filter('bulk_image_actions', $checkarray_images);
+$checkarray_albums = zp_apply_filter('bulk_album_actions', $checkarray_albums);
 
 /** EDIT ****************************************************************************/
 /************************************************************************************/
@@ -814,6 +815,9 @@ $alb = removeParentAlbumNames($album);
 				break;
 			case 'resethitcounter':
 				$message = gettext('Hitcounter for selected items');
+				break;
+			default:
+				$message = $action;
 				break;
 		}
 		if (isset($message)) {
@@ -1651,6 +1655,9 @@ zp_apply_filter('admin_note','albums', '');?>
 				break;
 			case 'clearalltags':
 				$message = gettext('Tags cleared for images of selected items');
+				break;
+			default:
+				$message = $action;
 				break;
 		}
 		echo '<div class="messagebox fade-message">';

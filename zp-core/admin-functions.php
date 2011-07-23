@@ -278,20 +278,20 @@ function printTabs() {
 		?>
 		<li <?php if($_zp_admin_tab == $key) echo 'class="current"' ?>>
 			<a href="<?php echo $atab['link']; ?>"><?php echo $atab['text']; ?></a>
-			<?php 
+			<?php
 			$subtabs = $zenphoto_tabs[$key]['subtabs'];
 			if(is_array($subtabs)) { // don't print <ul> if there is nothing
 				if($_zp_admin_tab != $key) { // don't print sublist if already on the main tab
 					?>
 					<ul class="subdropdown">
-						<?php 
-						foreach($subtabs as $key=>$link) { 
+						<?php
+						foreach($subtabs as $key=>$link) {
 							if (strpos($link,'/') !== 0) {	// zp_core relative
 								$link = WEBPATH.'/'.ZENFOLDER.'/'.$link;
 							} else {
 								$link = WEBPATH.$link;
 							}
-							?> 
+							?>
 							<li><a href="<?php echo $link; ?>"><?php echo $key; ?></a></li>
 						<?php
 						} // foreach end
@@ -3662,6 +3662,9 @@ function processAlbumBulkActions() {
 							$imageobj->save();
 						}
 						break;
+					default:
+						$action = call_user_func($action,$albumobj);
+						break;
 				}
 				$albumobj->save();
 			}
@@ -3738,6 +3741,9 @@ function processBulkImageActions($album) {
 						if ($e = $imageobj->moveImage($dest)) {
 							return "&mcrerr=".$e;
 						}
+						break;
+					default:
+						$action = call_user_func($action,$imageobj);
 						break;
 				}
 				$imageobj->save();
