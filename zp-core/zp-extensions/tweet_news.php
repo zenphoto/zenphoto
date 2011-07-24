@@ -246,7 +246,6 @@ function tweetObjectWithCheck($obj) {
  * @param object $obj
  */
 function tweetObject($obj) {
-	global $_zp_UTF8;
 	$error = '';
 	$link = getTinyURL($obj);
 	switch ($type = $obj->table) {
@@ -256,10 +255,10 @@ function tweetObject($obj) {
 			if (strlen($text) > 140) {
 				$title = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES));
 				$c = 140 - strlen($link);
-				if ($_zp_UTF8->strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
+				if (mb_strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
 					$text = truncate_string($title, $c - 4, '... ').$link;	//	allow for ellipsis
 				} else {
-					$c = $c - $_zp_UTF8->strlen($title) - 5;
+					$c = $c - mb_strlen($title) - 5;
 					$text = $title.':'.truncate_string($text, $c, '... ').$link;
 				}
 			}
@@ -277,7 +276,7 @@ function tweetObject($obj) {
 			} else {
 				$text = sprintf(gettext('New album:%s '),$item = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES)));
 			}
-			if ($_zp_UTF8->strlen($text.$link) > 140) {
+			if (mb_strlen($text.$link) > 140) {
 				$c = 140 - strlen($link);
 				$text = truncate_string($text, $c-4, '... ').$link;	//	allow for ellipsis
 			} else {
@@ -290,7 +289,7 @@ function tweetObject($obj) {
 			break;
 		case 'comments':
 			$text = trim(html_entity_decode(strip_tags($obj->getComment()),ENT_QUOTES));
-			if ($_zp_UTF8->strlen($text.$link) > 140) {
+			if (mb_strlen($text.$link) > 140) {
 				$c = 140 - strlen($link);
 				$text = truncate_string($text, $c-4, '... ').$link;	//	allow for ellipsis
 			} else {

@@ -37,7 +37,7 @@ if (count($_POST) > 0) {
 		$kill = array();
 		foreach ($_POST as $key => $value) {
 			$key = str_replace('tags_','',postIndexDecode($key));
-			$kill[] = $_zp_UTF8->strtolower($key);
+			$kill[] = mb_strtolower($key);
 		}
 		if (count($kill) > 0) {
 			$sql = "SELECT `id` FROM ".prefix('tags')." WHERE ";

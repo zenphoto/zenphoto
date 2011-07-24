@@ -4547,39 +4547,39 @@ function printZenphotoLink() {
  * @return string
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator=false) {
-	global $_user_tags, $_zp_UTF8;
-	if ($forceindicator || (strlen($articlecontent) > $shorten)) {
+	global $_user_tags;
+	if ($forceindicator || (mb_strlen($articlecontent) > $shorten)) {
 		$allowed_tags = getAllowedTags('allowed_tags');
-		$short = substr($articlecontent, 0, $shorten);
+		$short = mb_substr($articlecontent, 0, $shorten);
 		$short2 = kses($short.'</p>', $allowed_tags);
-		if (($l2 = $_zp_UTF8->strlen($short2)) < $shorten)	{
+		if (($l2 = mb_strlen($short2)) < $shorten)	{
 			$c = 0;
 			$l1 = $shorten;
 			$delta = $shorten-$l2;
 			while ($l2 < $shorten && $c++ < 5) {
-				$open = strrpos($short, '<');
-				if ($open > strrpos($short, '>')) {
-					$l1 = strpos($articlecontent,'>',$l1+1)+$delta;
+				$open = mb_strrpos($short, '<');
+				if ($open > mb_strrpos($short, '>')) {
+					$l1 = mb_strpos($articlecontent,'>',$l1+1)+$delta;
 				} else {
 					$l1 = $l1 + $delta;
 				}
-				$short = substr($articlecontent, 0, $l1);
+				$short = mb_substr($articlecontent, 0, $l1);
 				$short2 = kses($short.'</p>', $allowed_tags);
-				$l2 = $_zp_UTF8->strlen($short2);
+				$l2 = mb_strlen($short2);
 			}
 			$shorten = $l1;
 		}
 		$short = truncate_string($articlecontent, $shorten, '');
 		// drop open tag strings
-		$open = strrpos($short, '<');
-		if ($open > strrpos($short, '>')) {
-			$short = substr($short, 0, $open);
+		$open = mb_strrpos($short, '<');
+		if ($open > mb_strrpos($short, '>')) {
+			$short = mb_substr($short, 0, $open);
 		}
 		// drop unbalanced tags
 		// insert the elipsis
 		$i = strrpos($short, '</p>');
-		if (($i !== false) && ($i == $_zp_UTF8->strlen($short) - 4)) {
-			$short = substr($short, 0, -4).' '.$shortenindicator.'</p>';
+		if (($i !== false) && ($i == mb_strlen($short) - 4)) {
+			$short = mb_substr($short, 0, -4).' '.$shortenindicator.'</p>';
 		} else {
 			$short .= ' '.$shortenindicator;
 		}

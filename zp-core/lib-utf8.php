@@ -287,11 +287,13 @@ class utf8 {
 	 */
 	function substr($str, $start , $length = NULL) {
 		preg_match_all('/[\x01-\x7F]|[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF][\x80-\xBF]/', $str, $arr);
-
-		if (is_int($length))
-			return implode('', array_slice($arr[0], $start, $length));
-		else
-			return implode('', array_slice($arr[0], $start));
+		if (is_null($length)) {
+			$arr = array_slice($arr[0], $start);
+		} else {
+			$arr = array_slice($arr[0], $start, $length);
+		}
+		$result = implode('', $arr);
+		return $result;
 	}
 
 	/**
@@ -389,7 +391,6 @@ class utf8 {
 	 */
 	function strrpos($haystack, $needle) {
 		$pos = strrpos($haystack, $needle);
-
 		if ($pos === false)
 			return false;
 		else
@@ -839,5 +840,40 @@ $UTF8_TABLES['strtoupper'] = array(
 "h"=>"H","g"=>"G","f"=>"F","e"=>"E","d"=>"D","c"=>"C",
 "b"=>"B","a"=>"A"
 );
+
+/**
+ * Multi-byte string support
+ */
+if (!function_exists('mb_internal_encoding')) {
+	function mb_strtolower($str) {
+		global $_zp_UTF8;
+  	return $_zp_UTF8->strtolower($str);
+	}
+	function mb_strtoupper($str) {
+		global $_zp_UTF8;
+  	return $_zp_UTF8->strtoupper($str);
+	}
+	function mb_strlen($str) {
+		global $_zp_UTF8;
+  	return $_zp_UTF8->strlen($str);
+	}
+	function mb_substr($str, $start, $length = NULL) {
+		global $_zp_UTF8;
+  	return $_zp_UTF8->substr($str, $start, $length);
+	}
+	function mb_strrpos($haystack, $needle) {
+		global $_zp_UTF8;
+  	return $_zp_UTF8->strrpos($haystack, $needle);
+	}
+	function mb_strpos($haystack, $needle, $offset = 0) {
+		global $_zp_UTF8;
+  	return $_zp_UTF8->strpos($haystack, $needle, $offset);
+	}
+	function mb_substr_count($haystack, $needle) {
+		global $_zp_UTF8;
+  	return $_zp_UTF8->substr_count($haystack, $needle);
+	}
+
+}
 
 ?>

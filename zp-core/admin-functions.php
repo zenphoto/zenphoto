@@ -256,10 +256,10 @@ function printLogoAndLinks() {
  * @since  1.0.0
  */
 function printTabs() {
-	global $subtabs, $zenphoto_tabs, $main_tab_space, $_zp_UTF8, $_zp_admin_tab;
+	global $subtabs, $zenphoto_tabs, $main_tab_space, $_zp_admin_tab;
 	$chars = 0;
 	foreach ($zenphoto_tabs as $atab) {
-		$chars = $chars + $_zp_UTF8->strlen($atab['text']);
+		$chars = $chars + mb_strlen($atab['text']);
 	}
 	switch (getOption('locale')) {
 		case 'zh_CN':
@@ -941,7 +941,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
  * @param bool $showCounts set to true to get tag count displayed
  */
 function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew=true) {
-	global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist, $_zp_UTF8, $jaTagList;
+	global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist, $jaTagList;
 	if (is_null($_zp_admin_ordered_taglist)) {
 		if ($mostused || $showCounts) {
 			$counts = getAllTagsCount();
@@ -956,7 +956,7 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 		$_zp_admin_ordered_taglist = $them;
 		$_zp_admin_LC_taglist = array();
 		foreach ($them as $tag) {
-			$_zp_admin_LC_taglist[] = $_zp_UTF8->strtolower($tag);
+			$_zp_admin_LC_taglist[] = mb_strtolower($tag);
 		}
 	} else {
 		$them = $_zp_admin_ordered_taglist;
@@ -969,7 +969,7 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 	}
 	if (count($tags) > 0) {
 		foreach ($tags as $tag) {
-			$tagLC = 	$_zp_UTF8->strtolower($tag);
+			$tagLC = 	mb_strtolower($tag);
 			$key = array_search($tagLC, $_zp_admin_LC_taglist);
 			if ($key !== false) {
 				unset($them[$key]);

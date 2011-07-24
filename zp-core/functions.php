@@ -189,13 +189,13 @@ function checkObjectsThumb($album, $image){
  * @return string
  */
 function truncate_string($string, $length, $elipsis='...') {
-	if (strlen($string) > $length) {
-		$string = substr($string, 0, $length);
-		$pos = strrpos(strtr($string,array('~'=>' ','!'=>' ','@'=>' ','#'=>' ','$'=>' ','%'=>' ','^'=>' ','&'=>' ','*'=>' ','('=>' ',')'=>' ','+'=>' ','='=>' ','-'=>' ','{'=>' ','}'=>' ','['=>' ',']'=>' ','|'=>' ',':'=>' ',';'=>' ','<'=>' ','>'=>' ','.'=>' ','?'=>' ','/'=>' ','\\','\\'=>' ',"'"=>' ',"`"=>' ','"'=>' ')),' ');
+	if (mb_strlen($string) > $length) {
+		$string = mb_substr($string, 0, $length);
+		$pos = mb_strrpos(strtr($string,array('~'=>' ','!'=>' ','@'=>' ','#'=>' ','$'=>' ','%'=>' ','^'=>' ','&'=>' ','*'=>' ','('=>' ',')'=>' ','+'=>' ','='=>' ','-'=>' ','{'=>' ','}'=>' ','['=>' ',']'=>' ','|'=>' ',':'=>' ',';'=>' ','<'=>' ','>'=>' ','.'=>' ','?'=>' ','/'=>' ','\\','\\'=>' ',"'"=>' ',"`"=>' ','"'=>' ')),' ');
 		if ($pos === FALSE) {
 			$string .= $elipsis;
 		} else {
-			$string = substr($string, 0, $pos) . $elipsis;
+			$string = mb_substr($string, 0, $pos) . $elipsis;
 		}
 	}
 	return $string;
@@ -1308,12 +1308,11 @@ function getAllTagsCount() {
  * @param string $tbl 'albums' or 'images'
  */
 function storeTags($tags, $id, $tbl) {
-	global $_zp_UTF8;
 	$tagsLC = array();
 	foreach ($tags as $key=>$tag) {
 		$tag = trim($tag);
 		if (!empty($tag)) {
-			$lc_tag = $_zp_UTF8->strtolower($tag);
+			$lc_tag = mb_strtolower($tag);
 			if (!in_array($lc_tag, $tagsLC)) {
 				$tagsLC[] = $lc_tag;
 			}
@@ -1325,7 +1324,7 @@ function storeTags($tags, $id, $tbl) {
 	if (is_array($result)) {
 		foreach ($result as $row) {
 			$dbtag = query_single_row("SELECT `name` FROM ".prefix('tags')." WHERE `id`='".$row['tagid']."'");
-			$existingLC = $_zp_UTF8->strtolower($dbtag['name']);
+			$existingLC = mb_strtolower($dbtag['name']);
 			if (in_array($existingLC, $tagsLC)) { // tag already set no action needed
 				$existing[] = $existingLC;
 			} else { // tag no longer set, remove it
