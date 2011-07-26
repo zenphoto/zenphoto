@@ -135,7 +135,7 @@ class Zenpage {
 	 * @param int $articles_per_page The number of articles to get
 	 * @param string $published "published" for an published articles,
 	 * 													"unpublished" for an unpublised articles,
-	 * 													"sticky" for sticky articles,
+	 * 													"sticky" for sticky articles (published or not!) for admin page use only,
 	 * 													"all" for all articles
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
 	 * @param string $sortorder "date" for sorting by date (default)
@@ -150,11 +150,10 @@ class Zenpage {
 	function getNewsArticles($articles_per_page='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
 		global $_zp_current_category, $_zp_post_date;
 		$this->processExpired('news');
-		if (is_null($published)) {
+		if (empty($published)) {
+			$published = "published";
 			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
 				$published = "all";
-			} else {
-				$published = "published";
 			}
 		}
 		$show = '';
@@ -190,15 +189,19 @@ class Zenpage {
 		switch($published) {
 			case "published":
 				$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+				$getUnpublished = false;
 				break;
 			case "unpublished":
 				$show = " WHERE `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
+				$getUnpublished = true;
 				break;
 			case 'sticky':
 				$show = ' WHERE `sticky` <> 0';
+				$getUnpublished = true;
 				break;
 			case "all":
 				$show = "";
+				$getUnpublished = true;
 				break;
 		}
 		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
@@ -237,7 +240,7 @@ class Zenpage {
 			$result = array();
 			while ($item = db_fetch_assoc($resource)) {
 				$article = new ZenpageNews($item['titlelink']);
-				if ($article->categoryIsVisible()) {
+				if ($getUnpublished || $article->categoryIsVisible()) {
 					$offset--;
 					if ($offset < 0) {
 						$result[] = $item;

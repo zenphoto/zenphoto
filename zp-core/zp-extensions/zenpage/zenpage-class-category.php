@@ -260,7 +260,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param int $articles_per_page The number of articles to get
 	 * @param string $published "published" for an published articles,
 	 * 													"unpublished" for an unpublished articles,
-	 * 													"sticky" for sticky articles,
+	 * 													"sticky" for sticky articles (published or not!) for Admin page use only,
 	 * 													"all" for all articles
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
 	 * @param string $sortorder "date" for sorting by date (default)
@@ -275,11 +275,10 @@ class ZenpageCategory extends ZenpageRoot {
 	function getArticles($articles_per_page='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
 		global $_zp_current_category, $_zp_post_date, $_zp_zenpage;
 		$_zp_zenpage->processExpired('news');
-		if (is_null($published)) {
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+		if (empty($published)) {
+			$published = "published";
+			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
 				$published = "all";
-			} else {
-				$published = "published";
 			}
 		}
 		$show = "";
@@ -329,14 +328,18 @@ class ZenpageCategory extends ZenpageRoot {
 		switch($published) {
 			case "published":
 				$show = " AND `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+				$getUnpublished = false;
 				break;
 			case "unpublished":
 				$show = " AND `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
+				$getUnpublished = true;
 				break;
 			case 'sticky':
 				$show = ' AND `sticky` <> 0';
+				$getUnpublished = true;
 				break;
 			case "all":
+				$getUnpublished = true;
 				$show = "";
 				break;
 		}
@@ -357,7 +360,7 @@ class ZenpageCategory extends ZenpageRoot {
 			$result = array();
 			while ($item = db_fetch_assoc($resource)) {
 				$article = new ZenpageNews($item['titlelink']);
-				if ($currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
+				if ($getUnpublished || $currentcategory && ($article->inNewsCategory($currentcategory)) || $article->categoryIsVisible()) {
 					$offset--;
 					if ($offset < 0) {
 						$result[] = $item;

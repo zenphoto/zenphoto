@@ -99,7 +99,6 @@ printLogoAndLinks();
 				set_context(ZP_ZENPAGE_NEWS_DATE);
 				$_zp_post_date = sanitize($_GET['date']);
 			}
-
 			if(isset($_GET['published'])) {
 				switch ($_GET['published']) {
 					case 'no':

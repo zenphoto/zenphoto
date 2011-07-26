@@ -1984,6 +1984,11 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 		case 'categories':
 		case 'allcategories':
 			$published = !zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS);
+			if($published) {
+				$published = 'published';
+			} else {
+				$published = 'unpublished';
+			}
 			$items = $_zp_zenpage->getAllCategories();
 			if (is_object($_zp_current_category)) {
 				$currentitem_sortorder = $_zp_current_category->getSortOrder();
