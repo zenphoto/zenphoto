@@ -177,7 +177,9 @@ p {
 #wrapper #container #header #logo-floater {
 	position: absolute;
 }
-
+#galleryDescription {
+	color:#D1DFF1;
+}
 /* We ensure the sidebars are still clickable using z-index */
 #wrapper #container .sidebar {
 	float: left;

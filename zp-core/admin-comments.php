@@ -246,6 +246,7 @@ zp_apply_filter('admin_note','comments', $subtab);
 	$allcommentscount = count($allcomments);
 	$totalpages = ceil(($allcommentscount / COMMENTS_PER_PAGE));
 	zp_apply_filter('admin_note','comments', $subtab);
+	unset($allcomments);
 	?>
 <h1><?php echo gettext("Comments"); ?></h1>
 
@@ -268,32 +269,55 @@ if(isset($_GET['bulk'])) {
 <div class="messagebox fade-message"><?php echo $message; ?></div>
 <?php
 }
-if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])) { ?>
-<div class="messagebox fade-message"><?php if (isset($_GET['ndeleted'])) { ?>
-<h2><?php echo $_GET['ndeleted']; ?> <?php echo gettext("Comments deleted successfully."); ?></h2>
-<?php } ?> <?php if (isset($_GET['sedit'])) { ?>
-<h2><?php echo gettext("Changes applied"); ?></h2>
-<?php } ?></div>
-<?php } ?>
+if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])) {
+?>
+<div class="messagebox fade-message">
+<?php
+	if (isset($_GET['ndeleted'])) {
+	?>
+	<h2><?php echo $_GET['ndeleted']; ?> <?php echo gettext("Comments deleted successfully."); ?></h2>
+	<?php
+	}
+	if (isset($_GET['sedit'])) {
+	?>
+	<h2
+	<?php echo gettext("Changes applied"); ?></h2>
+	<?php
+	}
+	?>
+</div>
+<?php
+}
+?>
 
 <p><?php echo gettext("You can edit or delete comments on your images."); ?></p>
 
-<?php if ($totalpages > 1) {?>
+<?php
+if ($totalpages > 1) {
+	?>
 	<div align="center">
-	<?php adminPageNav($pagenum,$totalpages,'admin-comments.php',$fulltexturl); ?>
+		<?php adminPageNav($pagenum,$totalpages,'admin-comments.php',$fulltexturl); ?>
 	</div>
-	<?php } ?>
+	<?php
+}
+?>
 
 <form name="comments" action="?action=deletecomments" method="post"	onsubmit="return confirmAction();">
 	<?php XSRFToken('deletecomment');?>
 <input type="hidden" name="subpage" value="<?php echo html_encode($pagenum) ?>" />
 <p class="buttons"><button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
 <p class="buttons">
-<?php if(!$fulltext) { ?>
-			<a href="?fulltext=1<?php echo $viewall ? "&amp;viewall":""; ?>"><img src="images/arrow_out.png" alt="" /> <?php echo gettext("View full text"); ?></a><?php
-		} else {
-			?> <a	href="admin-comments.php?fulltext=0"<?php echo $viewall ? "?viewall":""; ?>"><img src="images/arrow_in.png" alt="" /> <?php echo gettext("View truncated"); ?></a> <?php
-		} ?>
+<?php
+	if(!$fulltext) {
+		?>
+		<a href="?fulltext=1<?php echo $viewall ? "&amp;viewall":""; ?>"><img src="images/arrow_out.png" alt="" /> <?php echo gettext("View full text"); ?></a>
+		<?php
+	} else {
+		?>
+		<a	href="admin-comments.php?fulltext=0"<?php echo $viewall ? "?viewall":""; ?>"><img src="images/arrow_in.png" alt="" /> <?php echo gettext("View truncated"); ?></a>
+		<?php
+	}
+	?>
 </p>
 <br clear="all" /><br />
 <table class="bordered">

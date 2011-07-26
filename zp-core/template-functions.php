@@ -288,7 +288,7 @@ function printAdminToolbox($id='admin') {
 
 		// logout link
 		$sec = (int) ((SERVER_PROTOCOL=='https') & true);
-		$link = FULLWEBPATH.'?logout='.$sec.$redirect;
+		$link = FULLWEBPATH.'/index.php?logout='.$sec.$redirect;
 		?>
 		<li><a href="<?php echo $link; ?>"><?php echo gettext("Logout"); ?></a></li>
 		<?php

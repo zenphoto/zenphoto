@@ -286,9 +286,13 @@ if (isset($_GET['add'])) {
 		    <td><span id="titlelabel"><?php echo gettext("Title:"); ?></span></td>
 				<td>
 				<span id="titleinput"><?php print_language_string_list($result['title'],"title",false,NULL,'',100); ?></span>
-				<?php printAlbumsSelector(); ?>
-				<?php printZenpagePagesSelector(); ?>
-				<?php printZenpageNewsCategorySelector(); ?>
+				<?php
+				printAlbumsSelector();
+				if (class_exists('Zenpage')) {
+					printZenpagePagesSelector();
+					printZenpageNewsCategorySelector();
+				}
+				?>
 				</td>
 			</tr>
 			<tr id="link_row">
