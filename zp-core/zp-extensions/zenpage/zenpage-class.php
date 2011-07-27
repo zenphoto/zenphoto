@@ -811,9 +811,9 @@ class ZenpageItems extends ZenpageRoot {
 		if ($d) {
 			$newtime = dateTimeConvert($d);
 			if ($newtime === false) return;
-			$this->set('expiredate', $newtime);
+			$this->set('lastchange', $newtime);
 		} else {
-			$this->set('expiredate', NULL);
+			$this->set('lastchange', NULL);
 		}
 	}
 
