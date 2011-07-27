@@ -1270,16 +1270,6 @@ function getSuffix($filename) {
 function stripSuffix($filename) {
 	return str_replace(strrchr($filename, "."),'',$filename);
 }
-/**
- * Returns the Require string for the appropriate script based on the PHP version
- *
- * @param string $v The version dermarkation
- * @param string $script the script name
- * @return string
- */
-function PHPScript($v, $script) {
-	return dirname(__FILE__).'/'.(version_compare(PHP_VERSION, $v) == 1?'PHP5':'PHP4').'_functions/'.$script;
-}
 
 /**
  * returns the non-empty value of $field from the album or one of its parents

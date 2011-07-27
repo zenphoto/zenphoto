@@ -405,8 +405,8 @@ if ($connection) {
 	}
 }
 
-	$required = '4.4.8';
-	$desired = '5.2';
+	$required = '5.0.0';
+	$desired = '5.3';
 	$err = versionCheck($required, $desired, PHP_VERSION);
 	if ($err < 0) {
 		$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is strongly recommended.'),$desired)) && $good;
