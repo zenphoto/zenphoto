@@ -32,10 +32,6 @@ $plugin_description = gettext("Plugin to generate file download lists. The sourc
 $plugin_author = "Malte Müller (acrylian)";
 $plugin_version = '1.4.1';
 $plugin_URL = "";
-$plugin_disable = (version_compare(PHP_VERSION, '5.0.0') != 1) ? gettext('PHP version 5 or greater is required.') : false;
-if ($plugin_disable) {
-	setOption('zp_plugin_downloadList',0);
-}
 $option_interface = "downloadListOptions";
 zp_register_filter('admin_utilities_buttons', 'downloadstatistics_button');
 zp_register_filter('custom_option_save', 'download_list_custom_options_save');

@@ -10,15 +10,10 @@
 $plugin_description = gettext("Support for providing Google Maps (API version 3) based on EXIF latitude and longitude in the images.");
 $plugin_author = 'Stephen Billard (sbillard)';
 $plugin_version = '1.4.1';
-$plugin_disable = (version_compare(PHP_VERSION, '5.0.0') != 1) ? gettext('PHP version 5 or greater is required.') : false;
 
-if ($plugin_disable) {
-	setOption('zp_plugin_GoogleMap',0);
-} else {
-	$option_interface = 'googlemapOptions';
-	if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
-		zp_register_filter('theme_head','googlemap_js');
-	}
+$option_interface = 'googlemapOptions';
+if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
+	zp_register_filter('theme_head','googlemap_js');
 }
 
 /**

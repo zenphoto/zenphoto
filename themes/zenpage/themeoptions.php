@@ -24,7 +24,7 @@ class ThemeOptions {
 		setOptionDefault('zp_plugin_colorbox', 1);
 		setOptionDefault('colorbox_zenpage_album', 1);
 		setOptionDefault('colorbox_zenpage_image', 1);
-		setOptionDefault('colorbox_effervescence_plus_search', 1);
+		setOptionDefault('colorbox_zenpage_search', 1);
 		if (getOption('zp_plugin_zenpage')) {
 			setThemeOption('custom_index_page', 'gallery', NULL, NULL, false);
 		} else {

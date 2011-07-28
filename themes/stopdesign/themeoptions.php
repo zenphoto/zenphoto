@@ -14,7 +14,7 @@ class ThemeOptions {
 		setOptionDefault('zp_plugin_colorbox', 1);
 		setOptionDefault('colorbox_stopdesign_album', 1);
 		setOptionDefault('colorbox_stopdesign_image', 1);
-		setOptionDefault('colorbox_effervescence_plus_search', 1);
+		setOptionDefault('colorbox_stopdesign_search', 1);
 	}
 
 	function getOptionsSupported() {
