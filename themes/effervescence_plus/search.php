@@ -106,12 +106,14 @@ $backgroundImagePath="";
 	<?php
 
 		if (getOption('Allow_search')) {
-			if (is_array($_zp_current_search->category_list)) {
-				$catlist = array('news'=>$_zp_current_search->category_list,'albums'=>'0','images'=>'0','pages'=>'0');
+			$categorylist = $_zp_current_search->getCategoryList();
+			if (is_array($categorylist)) {
+				$catlist = array('news'=>$categorylist,'albums'=>'0','images'=>'0','pages'=>'0');
 				printSearchForm(NULL, 'search', $_zp_themeroot.'/images/search.png', gettext('Search within category'), NULL, NULL, $catlist);
 			} else {
-				if (is_array($_zp_current_search->album_list)) {
-					$album_list = array('albums'=>$_zp_current_search->album_list,'pages'=>'0', 'news'=>'0');
+				$albumlist = $_zp_current_search->getAlbumList();
+				if (is_array($albumlist)) {
+					$album_list = array('albums'=>$albumlist,'pages'=>'0', 'news'=>'0');
 					printSearchForm(NULL, 'search', $_zp_themeroot.'/images/search.png', gettext('Search within album'), NULL, NULL, $album_list);
 				} else {
 					printSearchForm(NULL,'search',$_zp_themeroot.'/images/search.png',gettext('Search gallery'));
@@ -138,11 +140,11 @@ $backgroundImagePath="";
 		<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
 		<?php echo getGalleryTitle();	?></a></span> |
 		<?php
-		if (is_array($_zp_current_search->album_list)) {
-		  	echo "<em>".sprintf(ngettext('Search album: %s','Search albums: %s',count($_zp_current_search->album_list)),implode(',',$_zp_current_search->album_list))."</em>";
+		if (is_array($albumlist)) {
+		  	echo "<em>".sprintf(ngettext('Search album: %s','Search albums: %s',count($albumlist)),implode(',',$albumlist))."</em>";
 		} else {
-			if (is_array($_zp_current_search->category_list)) {
-		  	echo "<em>".sprintf(ngettext('Search category: %s','Search categories: %s',count($_zp_current_search->category_list)),implode(',',$_zp_current_search->category_list))."</em>";
+			if (is_array($categorylist)) {
+		  	echo "<em>".sprintf(ngettext('Search category: %s','Search categories: %s',count($categorylist)),implode(',',$categorylist))."</em>";
 			} else {
 		  	echo "<em>".gettext('Search')."</em>";
 			}

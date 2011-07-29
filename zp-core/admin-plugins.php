@@ -58,6 +58,9 @@ echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();
 echo "\n" . '<div id="main">';
+$paths = getPluginFiles('*.php');
+$filelist = array_keys($paths);
+natcasesort($filelist);
 printTabs();
 echo "\n" . '<div id="content">';
 
@@ -69,9 +72,6 @@ if ($saved) {
 	echo '</div>';
 }
 
-$paths = getPluginFiles('*.php');
-$filelist = array_keys($paths);
-natcasesort($filelist);
 ?>
 <h1><?php echo gettext('Plugins'); ?></h1>
 <p>

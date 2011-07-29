@@ -580,7 +580,7 @@ function getPageURL($page, $total=null) {
 		$searchwords = $_zp_current_search->codifySearchString();
 		$searchdate = $_zp_current_search->dates;
 		$searchfields = $_zp_current_search->getSearchFields(true);
-		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$_zp_current_search->album_list));
+		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$_zp_current_search->getAlbumList()));
 		return $searchpagepath;
 	} else {
 		if ($specialpage = !in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php', 'search.php'))) {
@@ -972,7 +972,7 @@ function printParentBreadcrumb($before = '', $between=' | ', $after = ' | ', $tr
 		$searchwords = $_zp_current_search->words;
 		$searchdate = $_zp_current_search->dates;
 		$searchfields = $_zp_current_search->getSearchFields(true);
-		$search_album_list=$_zp_current_search->album_list;
+		$search_album_list=$_zp_current_search->getAlbumList();
 		if (!is_array($search_album_list)) {
 			$search_album_list = array();
 		}
@@ -3534,7 +3534,7 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ',
 			}
 			echo "<ul class=\"".$class."\">\n";
 			if (is_object($_zp_current_search)) {
-				$albumlist = $_zp_current_search->album_list;
+				$albumlist = $_zp_current_search->getAlbumList();
 			} else {
 				$albumlist = NULL;
 			}
@@ -3610,7 +3610,7 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 		if ($val >= $mincount) {
 			if($links) {
 				if (is_object($_zp_current_search)) {
-					$albumlist = $_zp_current_search->album_list;
+					$albumlist = $_zp_current_search->getAlbumList();
 				} else {
 					$albumlist = NULL;
 				}
@@ -3718,7 +3718,7 @@ function printAllDates($class='archive', $yearid='year', $monthid='month', $orde
 			echo "<li $yearid>$year\n<ul $monthid>\n";
 		}
 		if (is_object($_zp_current_search)) {
-			$albumlist = $_zp_current_search->album_list;
+			$albumlist = $_zp_current_search->getAlbumList();
 		} else {
 			$albumlist = NULL;
 		}

@@ -63,8 +63,8 @@
 
 class TextObject extends _Image {
 
-	var $watermark = NULL;
-	var $watermarkDefault = NULL;
+	protected $watermark = NULL;
+	protected $watermarkDefault = NULL;
 
 	/**
 	 * creates a textobject (image standin)

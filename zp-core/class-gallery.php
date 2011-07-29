@@ -9,12 +9,12 @@
 class Gallery {
 
 	var $albumdir = NULL;
-	var $albums = NULL;
-	var $theme;
-	var $themes;
-	var $lastalbumsort = NULL;
-	var $data = array();
-	var $unprotected_pages = array();
+	protected $albums = NULL;
+	protected $theme;
+	protected $themes;
+	protected $lastalbumsort = NULL;
+	protected $data = array();
+	protected $unprotected_pages = array();
 
 	/**
 	 * Creates an instance of a gallery

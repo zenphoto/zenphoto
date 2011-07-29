@@ -36,7 +36,7 @@ if (!defined('MENU_TRUNCATE_INDICATOR')) define('MENU_TRUNCATE_INDICATOR',getOpt
 class Zenpage {
 
 	var $news_on_index = NULL;
-	var $categoryStructure = NULL;
+	protected $categoryStructure = NULL;
 
 	/**
 	 * Class instantiator
@@ -371,7 +371,7 @@ class Zenpage {
 	 * @param $offset skip this many legitimate items (used for pagination)
 	 * @param $limit return only this many items
 	 */
-	function siftResults($sql, $offset, $limit) {
+	protected function siftResults($sql, $offset, $limit) {
 		$resource = $result = query($sql);
 		if ($resource) {
 			$result = array();

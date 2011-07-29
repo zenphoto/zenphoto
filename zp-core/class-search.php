@@ -18,23 +18,23 @@ class SearchEngine
 {
 	var $words;
 	var $dates;
-	var $whichdates = 'date'; // for zenpage date searches, which date field to search
+	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
 	var $fieldList;
 	var $page;
 	var $images;
 	var $albums;
-	var $album_list = NULL;	// list of albums to search
-	var $category_list;			// list of categories for a news search
-	var $search_no_albums;	// omit albums
-	var $search_no_images;	// omit albums
-	var $search_no_pages;		// omit pages
-	var $search_no_news;		// omit news
+	protected $album_list = NULL;	// list of albums to search
+	protected $category_list;			// list of categories for a news search
+	protected $search_no_albums;	// omit albums
+	protected $search_no_images;	// omit albums
+	protected $search_no_pages;		// omit pages
+	protected $search_no_news;		// omit news
 	var $dynalbumname;
-	var $search_structure;		// relates translatable names to search fields
-	var $lastimagesort = NULL;  // remember the order for the last album/image sorts
-	var $lastsubalbumsort = NULL;
-	var $iteration = 0;	//	used by apply_filter('search_statistics') to indicate sequential searches of different objects
-	var $processed_search = NULL;
+	protected $search_structure;		// relates translatable names to search fields
+	protected $lastimagesort = NULL;  // remember the order for the last album/image sorts
+	protected $lastsubalbumsort = NULL;
+	protected $iteration = 0;	//	used by apply_filter('search_statistics') to indicate sequential searches of different objects
+	protected $processed_search = NULL;
 	var $gallery;
 
 	/**
@@ -1360,6 +1360,22 @@ class SearchEngine
 			return newImage(new Album($_zp_gallery, $img['folder']), $img['filename']);
 		}
 		return false;
+	}
+
+	/**
+	 *
+	 * return the list of albums found
+	 */
+	function getAlbumList() {
+		return $this->album_list;
+	}
+
+	/**
+	 *
+	 * return the list of categories found
+	 */
+	function getCategoryList() {
+		return $this->category_list;
 	}
 
 	/**

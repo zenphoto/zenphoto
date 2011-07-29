@@ -15,19 +15,18 @@ class Album extends MediaObject {
 	var $localpath;				 // Latin1 full server path to the album
 	var $exists = true;    // Does the folder exist?
 	var $images = null;    // Full images array storage.
-	var $subalbums = null; // Full album array storage.
+	protected $subalbums = null; // Full album array storage.
 	var $parent = null;    // The parent album name
 	var $parentalbum = null; // The parent album's album object (lazy)
 	var $gallery;
 	var $searchengine;           // cache the search engine for dynamic albums
-	var $index;
-	var $themeoverride;
-	var $lastimagesort = NULL;  // remember the order for the last album/image sorts
-	var $lastsubalbumsort = NULL;
-	var $albumthumbnail = NULL; // remember the album thumb for the duration of the script
+	protected $index;
+	protected $lastimagesort = NULL;  // remember the order for the last album/image sorts
+	protected $lastsubalbumsort = NULL;
+	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
 	var $sidecars = array();	// keeps the list of suffixes associated with this album
-	var $subrights = array();	//	cache for album subrights
-	var $myitem = array();	//	cache for album rights
+	protected $subrights = array();	//	cache for album subrights
+	protected $myitem = array();	//	cache for album rights
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
 	var $view_rights = VIEW_ALBUMS_RIGHTS;

@@ -88,9 +88,9 @@ class _Image extends MediaObject {
 	var $localpath;     			// Latin1 full SERVER path to the original image.
 	var $displayname;   			// $filename with the extension stripped off.
 	var $album;         			// An album object for the album containing this image.
-	var $index;         			// The index of the current image in the album array.
-	var $sortorder;     			// The position that this image should be shown in the album
-	var $filemtime;     			// Last modified time of this image
+	protected $index;         			// The index of the current image in the album array.
+	protected $sortorder;     			// The position that this image should be shown in the album
+	protected $filemtime;     			// Last modified time of this image
 	var $sidecars = array();	// keeps the list of suffixes associated with this image
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;

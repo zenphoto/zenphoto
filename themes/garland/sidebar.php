@@ -27,12 +27,14 @@ if (getOption('Allow_search')) {
 			}
 			break;
 		case 'search.php':
-			if (is_array($_zp_current_search->category_list)) {
-				$list = array('news'=>$_zp_current_search->category_list,'albums'=>'0','images'=>'0','pages'=>'0');
+			$categorylist = $_zp_current_search->getCategoryList();
+			if (is_array($categorylist)) {
+				$list = array('news'=>$categorylist,'albums'=>'0','images'=>'0','pages'=>'0');
 				$text = gettext('Search within category');
 			} else {
-				if (is_array($_zp_current_search->album_list)) {
-					$list = array('albums'=>$_zp_current_search->album_list,'pages'=>'0', 'news'=>'0');
+				$albumlist = $_zp_current_search->getAlbumList();
+				if (is_array($albumlist)) {
+					$list = array('albums'=>$albumlist,'pages'=>'0', 'news'=>'0');
 					$text = gettext('Search within album');
 				} else {
 					$list = NULL;

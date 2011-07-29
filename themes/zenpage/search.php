@@ -36,12 +36,14 @@ if (!defined('WEBPATH')) die();
 			$_zp_current_search->clearSearchWords();
 		}
 		if (getOption('Allow_search')) {
-			if (is_array($_zp_current_search->category_list)) {
-				$catlist = array('news'=>$_zp_current_search->category_list,'albums'=>'0','images'=>'0','pages'=>'0');
+			$categorylist = $_zp_current_search->getCategoryList();
+			if (is_array($categorylist)) {
+				$catlist = array('news'=>$categorylist,'albums'=>'0','images'=>'0','pages'=>'0');
 				printSearchForm(NULL, 'search', NULL, gettext('Search category'), NULL, NULL, $catlist);
 			} else {
-				if (is_array($_zp_current_search->album_list)) {
-					$album_list = array('albums'=>$_zp_current_search->album_list,'pages'=>'0', 'news'=>'0');
+				$albumlist = $_zp_current_search->getAlbumList();
+				if (is_array($albumlist)) {
+					$album_list = array('albums'=>$albumlist,'pages'=>'0', 'news'=>'0');
 					printSearchForm(NULL, 'search', NULL, gettext('Search album'), NULL, NULL, $album_list);
 				} else {
 					printSearchForm("","search","",gettext("Search gallery"));
