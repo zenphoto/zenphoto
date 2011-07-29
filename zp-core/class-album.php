@@ -137,7 +137,7 @@ class Album extends MediaObject {
 	 *
 	 * @return bool
 	 */
-	function setDefaults() {
+	protected function setDefaults() {
 		// Set default data for a new Album (title and parent_id)
 		$parentalbum = $this->getParent();
 		$this->setShow(getOption('album_publish'));
@@ -711,7 +711,7 @@ class Album extends MediaObject {
 	 *
 	 * @param string $newfolder The folder name of the new parent
 	 */
-	function updateParent($newfolder) {
+	protected function updateParent($newfolder) {
 		$this->name = $newfolder;
 		$parentname = dirname($newfolder);
 		if ($parentname == '/' || $parentname == '.') $parentname = '';
@@ -1037,7 +1037,7 @@ class Album extends MediaObject {
 	 * @param  $dirs Whether or not to return directories ONLY with the file array.
 	 * @return array
 	 */
-	function loadFileNames($dirs=false) {
+	protected function loadFileNames($dirs=false) {
 		if ($this->isDynamic()) {  // there are no 'real' files
 			return array();
 		}

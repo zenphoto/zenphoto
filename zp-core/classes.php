@@ -89,7 +89,7 @@ class PersistentObject {
 	 * check the cache for presence of the entry and return it if found
 	 * @param $entry
 	 */
-	function getFromCache() {
+	protected function getFromCache() {
 		global $_zp_object_cache;
 		$classname = get_class($this);
 		if (isset($_zp_object_cache[$classname])) {
@@ -104,7 +104,7 @@ class PersistentObject {
 	 * add the entry to the cache
 	 * @param $entry
 	 */
-	function addToCache($entry) {
+	protected function addToCache($entry) {
 		global $_zp_object_cache;
 		if ($entry) {
 			$classname = get_class($this);
@@ -139,7 +139,7 @@ class PersistentObject {
 	* Sets default values for new objects using the set() method.
 	* Should do nothing in the base class; subclasses should override.
 	*/
-	function setDefaults() {
+	protected function setDefaults() {
 		return;
 	}
 
@@ -263,7 +263,7 @@ class PersistentObject {
 	* @param bool $allowCreate set to true to enable new object creation.
 	* @return false if the record already exists, true if a new record was created.
 	*/
-	function load($allowCreate) {
+	protected function load($allowCreate) {
 		$new = false;
 		$entry = null;
 		// Set up the SQL query in case we need it...
@@ -271,12 +271,6 @@ class PersistentObject {
 		// But first, try the cache.
 		if ($this->use_cache) {
 			$entry = $this->getFromCache();
-/*
-			$reporting = error_reporting(0);
-			$cache_location = &$this->cache();
-			$entry = &$cache_location[$this->unique_set[$this->cache_by]];
-			error_reporting($reporting);
-*/
 		}
 		// Check the database if: 1) not using cache, or 2) didn't get a hit.
 		if (empty($entry)) {

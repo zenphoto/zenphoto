@@ -191,7 +191,7 @@ class SearchEngine
 	 * @param bit $fields
 	 * @return array
 	 */
-	function numericFields($fields) {
+	protected function numericFields($fields) {
 		if ($fields==0) $fields = 0x0fff;
 		if ($fields & 0x01) $list[$this->search_structure['title']] = 'title';
 		if ($fields & 0x02) $list[$this->search_structure['desc']] = 'desc';
@@ -665,7 +665,7 @@ class SearchEngine
 	 *
 	 * Returns an array of News article IDs belonging to the search categories
 	 */
-	function subsetNewsCategories() {
+	protected function subsetNewsCategories() {
 		global $_zp_zenpage;
 		if (!is_array($this->category_list)) return false;
 		$cat = '';
@@ -697,7 +697,7 @@ class SearchEngine
 	 *
 	 * @param array $idlist list of IDs to be compressed for a where clause
 	 */
-	function compressedIDList($idlist) {
+	protected function compressedIDList($idlist) {
 		$sql = '';
 		asort($idlist);
 		$last = $base = array_shift($idlist);
@@ -847,13 +847,13 @@ class SearchEngine
 	 * Searches the table for tags
 	 * Returns an array of database records.
 	 *
-	 * @param string $searchstring
-	 * @param string $tbl set to 'albums' or 'images'
+	 * @param array $searchstring
+	 * @param string $tbl set DB table name to be searched
 	 * @param string $sorttype what to sort on
 	 * @param string $sortdirection what direction
 	 * @return array
 	 */
-	function searchFieldsAndTags($searchstring, $tbl, $sorttype, $sortdirection) {
+	protected function searchFieldsAndTags($searchstring, $tbl, $sorttype, $sortdirection) {
 		$allIDs = null;
 		$idlist = array();
 		$exact = EXACT_TAG_MATCH;

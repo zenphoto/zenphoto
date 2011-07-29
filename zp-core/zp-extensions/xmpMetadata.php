@@ -246,8 +246,8 @@ function xmpMetadata_new_album($album) {
 			if (strtolower(getSuffix($file)) == XMP_EXTENSION) {
 				$source = file_get_contents($file);
 				$metadata = xmpMetadata_extract($source);
-				if (array_key_exists('EXIFDescription',$metadata)) {
-					$album->setDesc(xmpMetadata_to_string($metadata['EXIFDescription']));
+				if (array_key_exists('IPTCImageCaption' ,$metadata)) {
+					$album->setDesc(xmpMetadata_to_string($metadata['IPTCImageCaption' ]));
 				}
 				if (array_key_exists('IPTCImageHeadline',$metadata)) {
 					$album->setTitle(xmpMetadata_to_string($metadata['IPTCImageHeadline']));
@@ -261,8 +261,8 @@ function xmpMetadata_new_album($album) {
 				if (array_key_exists('EXIFDateTimeOriginal',$metadata)) {
 					$album->setDateTime($metadata['EXIFDateTimeOriginal']);
 				}
-				if (array_key_exists('thumbnail',$metadata)) {
-					$album->setThumb($metadata['thhumbnail']);
+				if (array_key_exists('thumb',$metadata)) {
+					$album->setAlbumThumb($metadata['thumb']);
 				}
 				if (array_key_exists('owner',$metadata)) {
 					$album->setOwner($metadata['owner']);

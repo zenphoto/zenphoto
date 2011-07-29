@@ -149,7 +149,7 @@ class _Image extends MediaObject {
 	 * @return bool
 	 *
 	 */
-	function classSetup(&$album, $filename) {
+	protected function classSetup(&$album, $filename) {
 		global $_zp_current_admin_obj;
 		$fileFS = internalToFilesystem($filename);
 		if ($filename != filesystemToInternal($fileFS)) { // image name spoof attempt
@@ -194,7 +194,7 @@ class _Image extends MediaObject {
 	 *
 	 * @return bool
 	 */
-	function fileChanged() {
+	protected function fileChanged() {
 		$storedmtime = $this->get('mtime');
 		return (empty($storedmtime) || $this->filemtime > $storedmtime);
 	}
@@ -484,7 +484,7 @@ class _Image extends MediaObject {
 	 * @param string $characterset the internal encoding of the data
 	 * @return string
 	 */
-	function prepIPTCString($iptcstring, $characterset) {
+	protected function prepIPTCString($iptcstring, $characterset) {
 		global $_zp_UTF8;
 		// Remove null byte at the end of the string if it exists.
 		if (substr($iptcstring, -1) === 0x0) {
