@@ -258,8 +258,9 @@ class ZenpageCategory extends ZenpageRoot {
 	 *
 	 *
 	 * @param int $articles_per_page The number of articles to get
-	 * @param string $published "published" for an published articles,
-	 * 													"unpublished" for an unpublished articles,
+	 * @param string $published "published" for published articles,
+	 *													"published-unpublished" for published articles only from an unpublished category,
+	 * 													"unpublished" for unpublished articles,
 	 * 													"sticky" for sticky articles (published or not!) for Admin page use only,
 	 * 													"all" for all articles
 	 * @param boolean $ignorepagination Since also used for the news loop this function automatically paginates the results if the "page" GET variable is set. To avoid this behaviour if using it directly to get articles set this TRUE (default FALSE)
@@ -329,6 +330,10 @@ class ZenpageCategory extends ZenpageRoot {
 			case "published":
 				$show = " AND `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
 				$getUnpublished = false;
+				break;
+			case "published-unpublished":
+				$show = " AND `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+				$getUnpublished = true;
 				break;
 			case "unpublished":
 				$show = " AND `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
