@@ -1205,15 +1205,18 @@ class Album extends MediaObject {
 		foreach ($_zp_admin_album_list as $adminalbum=>$rights) { // see if it is one of the managed folders or a subfolder there of
 			$admin_folders = explode('/', $adminalbum);
 			$level = 0;
+			$ok = true;
 			foreach ($admin_folders as $folder) {
 				if ($level >= count($desired_folders) || $folder != $desired_folders[$level]) {
-					$this->subrights[0] =  NULL;
-					return $this->subrights[0];
+					$ok = false;
+					break;
 				}
 				$level++;
 			}
-			$this->subrights[0] =  $rights;
-			return $this->subrights[0];
+			if ($ok) {
+				$this->subrights[0] =  $rights;
+				return $this->subrights[0];
+			}
 		}
 		$this->subrights[0] =  NULL;
 		return $this->subrights[0];
