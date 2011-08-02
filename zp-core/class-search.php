@@ -601,7 +601,7 @@ class SearchEngine
 						break;
 					case '(':
 					case ')':
-						$sanitizedwords .= " $singlesearchstring ";
+						$sanitizedwords .= "$singlesearchstring";
 						break;
 					default:
 						$sanitizedword = sanitize($singlesearchstring, 3);
@@ -619,10 +619,15 @@ class SearchEngine
 						} else {
 							$sanitizedwords .= ' '.sanitize($singlesearchstring, 3).' ';
 						}
+						break;
 				}
 			}
 		}
-		return trim(str_replace(array('   ','  '),' ', $sanitizedwords));
+
+		$sanitizedwords = trim(str_replace(array('   ','  ',),' ', $sanitizedwords));
+		$sanitizedwords = trim(str_replace('( ','(', $sanitizedwords));
+		$sanitizedwords = trim(str_replace(' )',')', $sanitizedwords));
+		return $sanitizedwords;
 	}
 
 	/**

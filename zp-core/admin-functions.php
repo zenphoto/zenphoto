@@ -3472,7 +3472,7 @@ function processEditSelection($subtab) {
 				zp_setCookie('subalbum_nesting',$subalbum_nesting);
 				break;
 			case 'imageinfo':
-				$imagesTab_imageCount = max(10,sanitize_numeric($_GET['selection']));
+				$imagesTab_imageCount = max(ADMIN_IMAGES_STEP,sanitize_numeric($_GET['selection']));
 				zp_setCookie('imagesTab_imageCount',$imagesTab_imageCount);
 				break;
 		}

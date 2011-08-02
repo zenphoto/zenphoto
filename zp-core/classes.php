@@ -444,8 +444,7 @@ class ThemeObject extends PersistentObject {
 	 * counts visits to the object
 	 */
 	function countHit() {
-		$hc = $this->get('hitcounter')+1;
-		$this->set('hitcounter', $hc);
+		$this->set('hitcounter', $this->get('hitcounter')+1);
 		$this->save();
 	}
 

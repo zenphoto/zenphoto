@@ -3987,10 +3987,13 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 		$url = WEBPATH."/index.php?p=search";
 	}
 	if (!empty($fields) && empty($dates)) {
-		if (!is_array($fields)) $fields = explode(',',$fields);
-		if ($mr && count($fields)==1 && $fields[0]=='tags') {
-				$url .= "tags/";
-				$urls = '';
+		if (!is_array($fields)) {
+			$fields = explode(',',$fields);
+		}
+		$temp = $fields;
+		if ($mr && count($fields)==1 && array_shift($temp)=='tags') {
+			$url .= "tags/";
+			$urls = '';
 		} else {
 			$search = new SearchEngine();
 			$urls = $search->getSearchFieldsText($fields, 'searchfields=');
@@ -4020,6 +4023,13 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 			$url .= "&date=$dates";
 		}
 	}
+	if ($page > 1) {
+		if ($mr) {
+			$url .= "/$page";
+		} else {
+			$urls .= ($urls)?'&':''."page=$page";
+		}
+	}
 	if (!empty($urls)) {
 		if (MOD_REWRITE) {
 			$url .= '?'.$urls;
@@ -4034,13 +4044,6 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 				$mr = false;
 				$url .= '&in'.$key.'='.html_encode(implode(',', $list));
 			}
-		}
-	}
-	if ($page > 1) {
-		if ($mr) {
-			$url .= "/$page";
-		} else {
-			$url .= "&page=$page";
 		}
 	}
 

@@ -23,6 +23,7 @@ if (isset($_GET['tab'])) {
 $gallery = new Gallery();
 $subalbum_nesting = 1;
 $gallery_nesting = 1;
+define('ADMIN_IMAGES_STEP', 5);	//	the step for imges per page
 $imagesTab_imageCount = 10;
 processEditSelection($subtab);
 
@@ -761,7 +762,7 @@ $alb = removeParentAlbumNames($album);
 		?>
 		<div class="errorbox fade-message">
 			<h2>
-			<?php echo gettext('The form post is incomplete.'); ?>
+			<?php echo gettext('The image edit form submission has been truncated. Try displaying fewer images on a page.'); ?>
 			</h2>
 		</div>
 		<?php
@@ -979,11 +980,11 @@ $alb = removeParentAlbumNames($album);
 		<div id="tab_imageinfo" class="tabbox">
 		<?php
 		zp_apply_filter('admin_note','albums', $subtab);
-		$numsteps = ceil(max($allimagecount,$imagesTab_imageCount)/10);
+		$numsteps = ceil(max($allimagecount,$imagesTab_imageCount)/ADMIN_IMAGES_STEP);
 		if ($numsteps) {
 			$steps = array();
 			for ($i=1;$i<=$numsteps;$i++) {
-				$steps[] = $i*10;
+				$steps[] = $i*ADMIN_IMAGES_STEP;
 			}
 			?>
 			<div style="padding-bottom:10px;">

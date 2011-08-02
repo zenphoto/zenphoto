@@ -266,7 +266,7 @@ class Zenphoto_Authority {
 
 	/**
 	 * Returns an admin object from the $pat:$criteria
-	 * @param string $criteria [ match => criteria ]
+	 * @param array $criteria [ match => criteria ]
 	 * @return Zenphoto_Administrator
 	 */
 	function getAnAdmin($criteria) {
