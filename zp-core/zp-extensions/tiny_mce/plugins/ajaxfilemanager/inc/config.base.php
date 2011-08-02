@@ -67,7 +67,17 @@ error_reporting(E_ALL);
 	define('CONFIG_SYS_DELETE_RECURSIVE', 1); //delete all contents within a specific folder if set to be 1
 
 	//UPLOAD OPTIONS CONFIG
-	define('CONFIG_UPLOAD_MAXSIZE', ini_get('upload_max_filesize'));
+	$size = ini_get('upload_max_filesize');
+	$suffixes = array(
+		'' => 1,
+		'k' => 1024,
+		'm' => 1048576, // 1024 * 1024
+		'g' => 1073741824, // 1024 * 1024 * 1024
+	);
+	if (preg_match('/([0-9]+)\s*(k|m|g)?(b?(ytes?)?)/i', $size, $match)) {
+		$size =  $match[1] * $suffixes[strtolower($match[2])];
+	}
+	define('CONFIG_UPLOAD_MAXSIZE', $size);
 	//define('CONFIG_UPLOAD_MAXSIZE', 50 * 1024 & 1024 ); //by bytes
 	//define('CONFIG_UPLOAD_MAXSIZE', 2048); //by bytes
 	//define('CONFIG_UPLOAD_VALID_EXTS', 'txt');//
