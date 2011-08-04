@@ -327,6 +327,9 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 		$obj = $_zp_gallery;
 	}
 	getImageAlbumAlbumList($obj, $albumlist);
+	if (empty($albumlist)) {
+		return array();
+	}
 	$albumWhere = ' AND (albums.`id`='.implode(' OR albums.`id`=', $albumlist).')';
 	switch ($option) {
 		case "popular":

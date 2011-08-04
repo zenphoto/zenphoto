@@ -26,7 +26,6 @@ class Album extends MediaObject {
 	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
 	var $sidecars = array();	// keeps the list of suffixes associated with this album
 	protected $subrights = array();	//	cache for album subrights
-	protected $myitem = array();	//	cache for album rights
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
 	var $view_rights = VIEW_ALBUMS_RIGHTS;
@@ -1229,36 +1228,31 @@ class Album extends MediaObject {
 	 * returns true of access is allowed
 	*/
 	function isMyItem($action) {
-		if (!empty($this->myitem)) {
-			return $this->myitem[0];
-		}
 		global $_zp_loggedin;
-		if (parent::isMyItem($action)) {
-			$this->myitem[0] = $_zp_loggedin;
-			return $this->myitem[0];
+		if ($parent = parent::isMyItem($action)) {
+			return $parent;
 		}
 		if (zp_loggedin($action)) {
 			$subRights = $this->albumSubRights();
 			if (!is_null($subRights)) {
-				if ($action == LIST_RIGHTS) {
-					$this->myitem[0] = $_zp_loggedin;
-					return $this->myitem[0];
+				$albumrights = 0;
+				if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT)) {
+					$albumrights = $albumrights | ALBUM_RIGHTS;
+				}
+				if ($subRights & MANAGED_OBJECT_RIGHTS_UPLOAD) {
+					$albumrights = $albumrights | UPLOAD_RIGHTS;
+				}
+				if ($subRights & MANAGED_OBJECT_RIGHTS_VIEW_IMAGE) {
+					$albumrights = $albumrights | LIST_RIGHTS;
+				}
+				if ($action & $albumrights) {
+					return ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $albumrights;
 				} else {
-					$albumrights = 0;
-					if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT)) $albumrights = $albumrights | ALBUM_RIGHTS;
-					if ($subRights & MANAGED_OBJECT_RIGHTS_UPLOAD) $albumrights = $albumrights | UPLOAD_RIGHTS;
-					if ($action & $albumrights) {
-						$this->myitem[0] = ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $albumrights;
-						return $this->myitem[0];
-					} else {
-						$this->myitem[0] = false;
-						return $this->myitem[0];
-					}
+					return false;
 				}
 			}
 		}
-		$this->myitem[0] = false;
-		return $this->myitem[0];
+		return false;
 	}
 
 	/**
