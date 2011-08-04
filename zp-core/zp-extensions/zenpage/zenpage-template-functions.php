@@ -2243,7 +2243,7 @@ function getNumPages($total=false) {
 			if(!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
 				$addquery = ' AND `show` = 1';
 			}
-		 	return db_count('pages','WHERE parentid='.$_zp_current_zenpage_page->getID().$addquery);
+			return db_count('pages','WHERE parentid='.$_zp_current_zenpage_page->getID().$addquery);
 		}
 	}
 	if(!zp_loggedin(ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
@@ -2273,7 +2273,7 @@ function next_page() {
 		return false;
 	}
 	$page = array_shift($_zp_zenpage_pagelist);
-	$_zp_current_zenpage_page = new ZenpagePage($page['titlelink']);
+	$_zp_current_zenpage_page = new ZenpagePage($page);
 	return true;
 }
 

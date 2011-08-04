@@ -268,7 +268,7 @@ function printRegistrationForm($thanks=NULL) {
 		$user = trim(sanitize($_POST['adminuser']));
 		if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
 			if ($pass == trim(sanitize($_POST['adminpass_2']))) {
-				$currentadmin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+				$currentadmin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					$notify = 'exists';
 				}

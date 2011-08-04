@@ -85,10 +85,16 @@ if (isset($_GET['action'])) {
 						if ($pass == trim(sanitize($_POST[$i.'-adminpass_2'])) && strlen($_POST[$i.'-adminpass']) == strlen($_POST[$i.'-adminpass_2'])) {
 							if (isset($_POST[$i.'-newuser'])) {
 								$newuser = $user;
-								$what = 'new';
-								$userobj = $_zp_authority->newAdministrator('');
-								$userobj->transient = false;
-								$userobj->setUser($user);
+								$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+								if (is_object($userobj)) {
+									$notify = '?exists';
+									break;
+								} else {
+									$what = 'new';
+									$userobj = $_zp_authority->newAdministrator('');
+									$userobj->transient = false;
+									$userobj->setUser($user);
+								}
 							} else {
 								$what = 'update';
 								$userobj = $_zp_authority->newAdministrator($user);
@@ -275,8 +281,15 @@ if ($_zp_reset_admin && !$refresh) {
 		$_zp_current_admin_obj = $_zp_reset_admin;
 		$clearPass = true;
 	}
+	$alladmins = array();
 	if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_reset_admin) {
-		$temp = $admins = $_zp_authority->getAdministrators();
+		$admins = $_zp_authority->getAdministrators('allusers');
+		foreach ($admins as $key => $user) {
+			$alladmins[] = $user['user'];
+			if ($user['valid'] > 1) {
+				unset($admins[$key]);
+			}
+		}
 		if (empty($admins) || $_zp_null_account) {
 			$rights = ALL_RIGHTS;
 			$groupname = 'administrators';
@@ -374,6 +387,11 @@ if ($_zp_reset_admin && !$refresh) {
 	if (isset($_GET['migration_error'])) {
 		echo '<div class="errorbox fade-message">';
 		echo  "<h2>".gettext("Rights migration failed.")."</h2>";
+		echo '</div>';
+	}
+	if (isset($_GET['exists'])) {
+		echo '<div class="errorbox fade-message">';
+		echo  "<h2>".gettext("User id already used.")."</h2>";
 		echo '</div>';
 	}
 	if (isset($_GET['mismatch'])) {
@@ -849,6 +867,7 @@ if ($_zp_authority->getVersion() < $_zp_authority->supports_version) {
 ?>
 <script language="javascript" type="text/javascript">
 	//<!-- <![CDATA[
+	var admins = ["<?php echo implode('","', $alladmins); ?>"];
 	function checkNewuser() {
 		newuserid = <?php echo ($id-1); ?>;
 		newuser = $('#adminuser-'+newuserid).val().replace(/^\s+|\s+$/g,"");;
@@ -857,8 +876,8 @@ if ($_zp_authority->getVersion() < $_zp_authority->supports_version) {
 			alert('<?php echo js_encode(gettext('User names may not contain "?", "&", or quotation marks.')); ?>');
 			return false;
 		}
-		for (i=newuserid-1;i>=0;i--) {
-			if ($('#adminuser-'+i).val() == newuser) {
+		for (i=0;i<admins.length;i++) {
+			if (admins[i] == newuser) {
 				alert(sprintf('<?php echo js_encode(gettext('The user "%s" already exists.')); ?>',newuser));
 				return false;
 			}

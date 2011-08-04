@@ -47,6 +47,7 @@ class Zenphoto_Authority {
 
 	var $admin_users = NULL;
 	var $admin_groups = NULL;
+	var $admin_other = NULL;
 	var $admin_all = NULL;
 	var $rightsset = NULL;
 	var $master_user = NULL;
@@ -234,7 +235,7 @@ class Zenphoto_Authority {
 	 */
 	function getAdministrators($what='users') {
 		if (is_null($this->admin_users)) {
-			$this->admin_all = $this->admin_groups = $this->admin_users = array();
+			$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
 			$sql = 'SELECT * FROM '.prefix('administrators').' ORDER BY `rights` DESC, `id`';
 			$admins = query_full_array($sql, false);
 			if ($admins !== false) {
@@ -248,7 +249,7 @@ class Zenphoto_Authority {
 							$this->admin_groups[$user['id']] = $user;
 							break;
 						default:
-							//these are found in "all"
+							$this->admin_other[$user['id']] = $user;
 							break;
 					}
 				}
@@ -259,6 +260,8 @@ class Zenphoto_Authority {
 				return $this->admin_users;
 			case 'groups':
 				return $this->admin_groups;
+			case 'allusers':
+				return array_merge($this->admin_users, $this->admin_other);
 			default:
 				return $this->admin_all;
 		}

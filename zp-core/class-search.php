@@ -698,31 +698,13 @@ class SearchEngine
 	}
 
 	/**
-	 * Takes a list of IDs and makes a where clause with the minimal elements
+	 * Takes a list of IDs and makes a where clause
 	 *
-	 * @param array $idlist list of IDs to be compressed for a where clause
+	 * @param array $idlist list of IDs for a where clause
 	 */
 	protected function compressedIDList($idlist) {
-		$sql = '';
 		asort($idlist);
-		$last = $base = array_shift($idlist);
-		foreach ($idlist as $object) {
-			if ($last < $object-1) {
-				if ($base == $last) {
-					$sql .= '(`id`='.$base.') OR ';
-				} else {
-					$sql .= '(`id` BETWEEN '.$base.' AND '.$last.') OR ';
-				}
-				$base = $object;
-			}
-			$last = $object;
-		}
-		if ($base == $last) {
-			$sql .= '(`id`='.$base.')';
-		} else {
-			$sql .= '(`id` BETWEEN '.$base.' AND '.$last.')';
-		}
-		return $sql;
+		return '`id` IN ('.implode(',',$idlist).')';
 	}
 
 	/**
@@ -1133,7 +1115,7 @@ class SearchEngine
 		}
 		$sql .= '('.$this->compressedIDList($idlist).')';
 		$sql .= " ORDER BY ".$key;
-		$result = query_full_array($sql);
+		$result = query($sql);
 		return $result;
 	}
 
@@ -1150,9 +1132,9 @@ class SearchEngine
 		$albums = array();
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) { return $albums; } // nothing to find
-		$search_results = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
-		if (isset($search_results) && is_array($search_results)) {
-			foreach ($search_results as $row) {
+		$search_result = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
+		if ($search_result) {
+			while ($row = db_fetch_assoc($search_result)) {
 				$albumname = $row['folder'];
 				if ($albumname != $this->dynalbumname) {
 					if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
@@ -1261,33 +1243,41 @@ class SearchEngine
 	 */
 	function getSearchImages($sorttype, $sortdirection, $mine=NULL) {
 		if (getOption('search_no_images') || $this->search_no_images) return array();
-		$hint = '';
-		$images = array();
+		$albums_seen = $images = array();
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) { return $images; } // nothing to find
 		if (empty($searchdate)) {
-			$search_results = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
+			$search_result = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
 		} else {
-			$search_results = $this->SearchDate($searchstring, $searchdate, 'images', $sorttype, $sortdirection);
+			$search_result = $this->SearchDate($searchstring, $searchdate, 'images', $sorttype, $sortdirection);
 		}
-		if (isset($search_results) && is_array($search_results)) {
-			foreach ($search_results as $row) {
+		if ($search_result) {
+			while ($row = db_fetch_assoc($search_result)) {
 				$albumid = $row['albumid'];
-				$query = "SELECT id, title, folder,`show` FROM ".prefix('albums')." WHERE id = $albumid";
-				$row2 = query_single_row($query); // id is unique
-				$albumname = $row2['folder'];
-				if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname) . '/' . internalToFilesystem($row['filename']))) {
+				if (array_key_exists($albumid, $albums_seen)) {
+					$album = $albums_seen[$albumid];
+				} else {
+					$query = "SELECT folder,`show` FROM ".prefix('albums')." WHERE id = $albumid";
+					$row2 = query_single_row($query); // id is unique
+					$albumname = $row2['folder'];
+					$allow = false;
 					$album = new Album(new gallery(), $albumname);
-					if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $row2['show'])) {
-						if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
-							$images[] = array('filename' => $row['filename'], 'folder' => $albumname);
-						}
+					if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {
+						$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
+					}
+					$albums_seen[$albumid] = $album = array('allow'=>$allow,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
+				}
+				if ($album['allow']) {
+					if (file_exists($album['localpath'].internalToFilesystem($row['filename']))) {	//	still exists
+						$images[] = array('filename' => $row['filename'], 'folder' => $album['folder']);
 					}
 				}
 			}
 		}
-		if (empty($searchdate)) zp_apply_filter('search_statistics',$searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
+		if (empty($searchdate)) {
+			zp_apply_filter('search_statistics',$searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
+		}
 		return $images;
 	}
 
@@ -1384,29 +1374,34 @@ class SearchEngine
 	}
 
 	/**
-	 * Returns a list of Pages IDs found in the search
+	 * Returns a list of Pages Titlelinks found in the search
 	 *
 	 * @return array
 	 */
 	function getSearchPages() {
+		$result = array();
 		if (getOption('zp_plugin_zenpage')) {
 			if (getOption('search_no_pages') || $this->search_no_pages) return array();
 			$searchstring = $this->getSearchString();
 			$searchdate = $this->dates;
 			if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
 			if (empty($searchdate)) {
-				$search_results = $this->searchFieldsAndTags($searchstring, 'pages', false, false);
-				zp_apply_filter('search_statistics',$searchstring, 'pages', !empty($search_results), false, $this->iteration++);
+				$search_result = $this->searchFieldsAndTags($searchstring, 'pages', false, false);
+				zp_apply_filter('search_statistics',$searchstring, 'pages', !$search_result, false, $this->iteration++);
 			} else {
-				$search_results = $this->SearchDate($searchstring, $searchdate, 'pages', false, false);
+				$search_result = $this->SearchDate($searchstring, $searchdate, 'pages', false, false);
 			}
-			return $search_results;
+			if ($search_result) {
+				while ($row = db_fetch_assoc($search_result)) {
+					$result[] = $row['titlelink'];
+				}
 			}
-		return false;
+		}
+		return $result;
 	}
 
 	/**
-	 * Returns a list of News IDs found in the search
+	 * Returns a list of News Titlelinks found in the search
 	 *
 	 * @param string $sortorder "date" for sorting by date (default)
 	 * 													"title" for sorting by title
@@ -1416,20 +1411,25 @@ class SearchEngine
 	 * @return array
 	 */
 	function getSearchNews($sortorder="date", $sortdirection="desc") {
+		$result = array();
 		if (getOption('zp_plugin_zenpage')) {
 			if (getOption('search_no_news') || $this->search_no_news) return array();
 			$searchstring = $this->getSearchString();
 			$searchdate = $this->dates;
 			if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
 			if (empty($searchdate)) {
-				$search_results = $this->searchFieldsAndTags($searchstring, 'news', $sortorder, $sortdirection);
+				$search_result = $this->searchFieldsAndTags($searchstring, 'news', $sortorder, $sortdirection);
 				zp_apply_filter('search_statistics',$searchstring, 'news', !empty($search_results), false, $this->iteration++);
 			} else {
-				$search_results = $this->SearchDate($searchstring, $searchdate, 'news', $sortorder, $sortdirection,$this->whichdates);
+				$search_result = $this->SearchDate($searchstring, $searchdate, 'news', $sortorder, $sortdirection,$this->whichdates);
 			}
-			return $search_results;
+			if ($search_result) {
+				while ($row = db_fetch_assoc($search_result)) {
+					$result[] = array('id'=>$row['id'],'titlelink'=>$row['titlelink']);
+				}
+			}
 		}
-		return false;
+		return $result;
 	}
 
 	function clearSearchWords() {

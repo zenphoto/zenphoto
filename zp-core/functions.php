@@ -1141,7 +1141,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 			if (!empty($pages)) {
 				$tltlelink = $_zp_current_zenpage_page->getTitlelink();
 				foreach ($pages as $apage) {
-					if ($apage['titlelink']==$tltlelink) {
+					if ($apage==$tltlelink) {
 						$context = $context | ZP_SEARCH_LINKED;
 						break;
 					}
