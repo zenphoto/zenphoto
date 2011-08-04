@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-03 12:32-0500\n"
-"PO-Revision-Date: 2011-08-03 12:50-0500\n"
+"POT-Creation-Date: 2011-08-04 04:53-0500\n"
+"PO-Revision-Date: 2011-08-04 04:55-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -2226,7 +2226,7 @@ msgid "show fewer fields"
 msgstr "afficher moins de champs"
 
 #: F:\zenphoto-dev/zp-core/admin-edit.php:1546
-#: F:\zenphoto-dev/zp-core/admin-users.php:402
+#: F:\zenphoto-dev/zp-core/admin-users.php:420
 msgid "Your passwords did not match"
 msgstr "Vos mots de passe ne correspondent pas"
 
@@ -2392,7 +2392,7 @@ msgstr "%s a bien été supprimé(e)."
 
 #: F:\zenphoto-dev/zp-core/admin-functions.php:739
 #: F:\zenphoto-dev/zp-core/admin-tags.php:147
-#: F:\zenphoto-dev/zp-core/admin-users.php:455
+#: F:\zenphoto-dev/zp-core/admin-users.php:473
 msgid "all"
 msgstr "Tous"
 
@@ -2803,9 +2803,9 @@ msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Sélectionnez un ou plusieurs %1$s de %2$s à gérer."
 
 #: F:\zenphoto-dev/zp-core/admin-functions.php:3016
-#: F:\zenphoto-dev/zp-core/admin-users.php:781
-#: F:\zenphoto-dev/zp-core/admin-users.php:790
-#: F:\zenphoto-dev/zp-core/admin-users.php:796
+#: F:\zenphoto-dev/zp-core/admin-users.php:799
+#: F:\zenphoto-dev/zp-core/admin-users.php:808
+#: F:\zenphoto-dev/zp-core/admin-users.php:814
 msgid "user"
 msgstr "utilisateur"
 
@@ -3031,7 +3031,7 @@ msgstr "Lisez le guide de dépannage sur zenphoto.org pour plus de détails."
 #: F:\zenphoto-dev/zp-core/admin-options.php:2644
 #: F:\zenphoto-dev/zp-core/admin-options.php:2682
 #: F:\zenphoto-dev/zp-core/admin-options.php:2802
-#: F:\zenphoto-dev/zp-core/admin-users.php:439
+#: F:\zenphoto-dev/zp-core/admin-users.php:457
 msgid "reset"
 msgstr "reset"
 
@@ -3096,7 +3096,7 @@ msgid "If <em>mod_rewrite</em> is checked above, zenphoto will appended the <em>
 msgstr "Si l’option <em>Utiliser mod_rewrite</em> est cochée, Zenphoto ajoute cette extension aux URL pour améliorer le référencement par les moteurs de recherche. Par exemple : <em>.html, .php</em>, etc."
 
 #: F:\zenphoto-dev/zp-core/admin-options.php:628
-#: F:\zenphoto-dev/zp-core/admin-users.php:739
+#: F:\zenphoto-dev/zp-core/admin-users.php:757
 msgid "Language:"
 msgstr "Langue :"
 
@@ -3385,7 +3385,7 @@ msgstr "Identifiant de l’invité : "
 #: F:\zenphoto-dev/zp-core/admin-options.php:975
 #: F:\zenphoto-dev/zp-core/admin-options.php:1283
 #: F:\zenphoto-dev/zp-core/admin-options.php:1884
-#: F:\zenphoto-dev/zp-core/admin-users.php:690
+#: F:\zenphoto-dev/zp-core/admin-users.php:708
 msgid "(repeat)"
 msgstr "(saisir de nouveau)"
 
@@ -3727,7 +3727,7 @@ msgid "Check if you want to store the hitcount on RSS feeds."
 msgstr "Cocher pour stocker le compteur d’affichages des flux RSS."
 
 #: F:\zenphoto-dev/zp-core/admin-options.php:1508
-#: F:\zenphoto-dev/zp-core/admin-users.php:384
+#: F:\zenphoto-dev/zp-core/admin-users.php:402
 #, php-format
 msgid "Your %s passwords were empty or did not match"
 msgstr "Vos %s mots de passe sont vides ou ne correspondent pas"
@@ -4863,171 +4863,175 @@ msgstr "Généré automatiquement"
 msgid "There are no albums to which you can upload."
 msgstr "Il n’existe aucun album dans lequel vous pouvez charger des images."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:113
+#: F:\zenphoto-dev/zp-core/admin-users.php:119
 #, php-format
 msgid "%s password may not be empty!"
 msgstr "Le mot de passe %s ne peut pas être vide !"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:233
+#: F:\zenphoto-dev/zp-core/admin-users.php:239
 msgid "Password reset request.<br />You may now set admin usernames and passwords."
 msgstr "Demande de réinitialisation du mot de passe. <br />Vous devriez maintenant spécifier les identifiant et mot de passe de l’administrateur."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:243
+#: F:\zenphoto-dev/zp-core/admin-users.php:249
 msgid "Saved"
 msgstr "Enregistré"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:371
+#: F:\zenphoto-dev/zp-core/admin-users.php:384
 msgid "Your Allowed tags change did not parse successfully."
 msgstr "Le changement de vos tags autorisés ne s’est pas déroulé correctement."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:376
+#: F:\zenphoto-dev/zp-core/admin-users.php:389
 msgid "Rights migration failed."
 msgstr "La migration des droits a échoué."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:387
+#: F:\zenphoto-dev/zp-core/admin-users.php:394
+msgid "User id already used."
+msgstr "Ce nom d'utilisateur est déjà utilisé."
+
+#: F:\zenphoto-dev/zp-core/admin-users.php:405
 msgid "You must supply a password for the Gallery guest user"
 msgstr "Vous devez fournir un mot de passe pour l’invité de la galerie"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:390
+#: F:\zenphoto-dev/zp-core/admin-users.php:408
 msgid "You must supply a password for the Search guest user"
 msgstr "Vous devez fournir un mot de passe pour l’utilisateur Recherche"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:393
+#: F:\zenphoto-dev/zp-core/admin-users.php:411
 msgid "You must supply a password"
 msgstr "Vous devez fournir un mot de passe"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:396
+#: F:\zenphoto-dev/zp-core/admin-users.php:414
 msgid "User name not provided"
 msgstr "Nom d’utilisateur non saisi"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:409
+#: F:\zenphoto-dev/zp-core/admin-users.php:427
 msgid "Your Website URL is not valid"
 msgstr "L’URL de votre site internet n’est pas valide"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:447
+#: F:\zenphoto-dev/zp-core/admin-users.php:465
 msgid "Expand all"
 msgstr "Tout afficher"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:449
+#: F:\zenphoto-dev/zp-core/admin-users.php:467
 msgid "Collapse all"
 msgstr "Tout masquer"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:453
+#: F:\zenphoto-dev/zp-core/admin-users.php:471
 msgid "show"
 msgstr "afficher"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:456
-#: F:\zenphoto-dev/zp-core/admin-users.php:535
+#: F:\zenphoto-dev/zp-core/admin-users.php:474
+#: F:\zenphoto-dev/zp-core/admin-users.php:553
 msgid "pending verification"
 msgstr "en attente de vérification"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:457
+#: F:\zenphoto-dev/zp-core/admin-users.php:475
 msgid "no group"
 msgstr "aucun groupe"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:541
+#: F:\zenphoto-dev/zp-core/admin-users.php:559
 msgid "Master"
 msgstr "Principal"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:569
+#: F:\zenphoto-dev/zp-core/admin-users.php:587
 msgid "Show details"
 msgstr "Afficher les détails"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:570
+#: F:\zenphoto-dev/zp-core/admin-users.php:588
 msgid "Hide details"
 msgstr "Masquer les détails"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:572
+#: F:\zenphoto-dev/zp-core/admin-users.php:590
 #, php-format
 msgid "Show details for user %s"
 msgstr "Afficher les détails de l’utilisateur %s"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:573
+#: F:\zenphoto-dev/zp-core/admin-users.php:591
 #, php-format
 msgid "Hide details for user %s"
 msgstr "Masquer les détails de l’utilisateur %s"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:582
-#: F:\zenphoto-dev/zp-core/admin-users.php:597
+#: F:\zenphoto-dev/zp-core/admin-users.php:600
+#: F:\zenphoto-dev/zp-core/admin-users.php:615
 msgid "New User"
 msgstr "Nouvel utilisateur"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:620
+#: F:\zenphoto-dev/zp-core/admin-users.php:638
 msgid "Authenticate user"
 msgstr "Authentifier l’utilisateur"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:630
+#: F:\zenphoto-dev/zp-core/admin-users.php:648
 msgid "Are you sure you want to delete this user?"
 msgstr "Êtes-vous certain(e) de vouloir supprimer cet utilisateur ?"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:632
+#: F:\zenphoto-dev/zp-core/admin-users.php:650
 msgid "This is the master user account. If you delete it another user will be promoted to master user."
 msgstr "Il s’agit du compte utilisateur principal. Si vous le supprimez, un autre utilisateur sera élevé au rang d’utilisateur principal."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:637
+#: F:\zenphoto-dev/zp-core/admin-users.php:655
 msgid "Delete this user."
 msgstr "Supprimer cet utilisateur."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:666
+#: F:\zenphoto-dev/zp-core/admin-users.php:684
 msgid "<strong>Note:</strong> You must have ADMIN rights to alter anything but your personal information."
 msgstr "<strong>Note :</strong> Vous devez avoir des droits ADMINISTRATEUR pour modifier autre chose que vos informations personnelles."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:687
+#: F:\zenphoto-dev/zp-core/admin-users.php:705
 msgid "Password:"
 msgstr "Mot de passe : "
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:703
+#: F:\zenphoto-dev/zp-core/admin-users.php:721
 msgid "Challenge phrase:"
 msgstr "Phrase défi :"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:707
+#: F:\zenphoto-dev/zp-core/admin-users.php:725
 msgid "Challenge response:"
 msgstr "Réponse défi :"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:712
+#: F:\zenphoto-dev/zp-core/admin-users.php:730
 msgid "Full name:"
 msgstr "Nom complet : "
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:716
+#: F:\zenphoto-dev/zp-core/admin-users.php:734
 msgid "Email:"
 msgstr "Email :"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:728
+#: F:\zenphoto-dev/zp-core/admin-users.php:746
 #, php-format
 msgid "delink primary album (<em>%s</em>)"
 msgstr "Enlever le lien de l’album primaire (<em>%s</em>)"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:732
+#: F:\zenphoto-dev/zp-core/admin-users.php:750
 msgid "The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association."
 msgstr "Lors de sa création, l’album primaire a été lié à l’utilisateur. Il sera effacé lorsque l’utilisateur sera effacé. Vous pouvez défaire ce lien pour enlever cette association."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:779
+#: F:\zenphoto-dev/zp-core/admin-users.php:797
 msgid "The <em>master</em> account has full rights to all albums."
 msgstr "Le <em>compte-maître</em> a l’accès intégral à tous les albums."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:830
+#: F:\zenphoto-dev/zp-core/admin-users.php:848
 #, php-format
 msgid "The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides."
 msgstr "L’objet <em>Zenphoto_Authority</em> supporte une version plus élevée des droits utilisateur que celle actuellement sélectionnée. Envisagez de migrer ces droits pour bénéficier des nouvelles fonctionnalités."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:833
+#: F:\zenphoto-dev/zp-core/admin-users.php:851
 msgid "Migrate rights"
 msgstr "Migrer les droits"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:841
+#: F:\zenphoto-dev/zp-core/admin-users.php:859
 #, php-format
 msgid "You may wish to revert the user rights <em>Zenphoto_Authority</em> to version %s for backwards compatibility with prior Zenphoto releases."
 msgstr "Vous pouvez choisir de rétablir les droits d’utilisateur <em>Zenphoto_Authority</em> vers la version %s pour la compatibilité avec les versions antérieures de Zenphoto."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:844
+#: F:\zenphoto-dev/zp-core/admin-users.php:862
 msgid "Revert rights"
 msgstr "Rétablir les droits"
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:857
+#: F:\zenphoto-dev/zp-core/admin-users.php:876
 msgid "User names may not contain \"?\", \"&\", or quotation marks."
 msgstr "Le nom d’utilisateur ne peut contenir « ? », « & », « \" » ni des caractères accentués."
 
-#: F:\zenphoto-dev/zp-core/admin-users.php:862
+#: F:\zenphoto-dev/zp-core/admin-users.php:881
 #, php-format
 msgid "The user \"%s\" already exists."
 msgstr "L’utilisateur « %s » existe déjà."
@@ -6481,417 +6485,417 @@ msgstr "Le traitement d’image s’est soldé par une erreur fatale."
 msgid "Method Not Allowed"
 msgstr "Méthode non autorisée"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:86
+#: F:\zenphoto-dev/zp-core/lib-auth.php:87
 msgid "Minimum password length:"
 msgstr "Longueur minimale du mot de passe :"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:87
+#: F:\zenphoto-dev/zp-core/lib-auth.php:88
 msgid "Minimum number of characters a password must contain."
 msgstr "Le nombre minimal de caractères qu’un mot de passe peut comporter."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:88
+#: F:\zenphoto-dev/zp-core/lib-auth.php:89
 msgid "Password characters:"
 msgstr "Caractères pour le mot de passe :"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:89
+#: F:\zenphoto-dev/zp-core/lib-auth.php:90
 msgid "Passwords must contain at least one of the characters from each of the groups. Groups are separated by \"|\". (Use \"\\|\" to represent the \"|\" character in the groups.)"
 msgstr "Les mots de passe doivent contenir au moins un caractère de chacun de ces groupes. Les groupes sont séparés par « | ». (Utiliser « \\| » pour représenter le caractère « | » dans un des groupes.)"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:90
+#: F:\zenphoto-dev/zp-core/lib-auth.php:91
 msgid "settings"
 msgstr "paramètres"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:104
+#: F:\zenphoto-dev/zp-core/lib-auth.php:105
 #, php-format
 msgid "Authorization class <em>%s</em> is active."
 msgstr "La classe d’autorisation <em>%s</em> est active."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:108
+#: F:\zenphoto-dev/zp-core/lib-auth.php:109
 #, php-format
 msgid "Administrator class <em>%s</em> is active."
 msgstr "La classe d’administrateur <em>%s</em> est active."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:110
+#: F:\zenphoto-dev/zp-core/lib-auth.php:111
 #, php-format
 msgid "Password hash seed: <span><small style=\"color:gray\">%s</small></span>"
 msgstr "Clé de hachage du mot de passe : <span><small style=\"color:gray\">%s</small></span>"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:116
+#: F:\zenphoto-dev/zp-core/lib-auth.php:117
 #, php-format
 msgid "<em>%s</em> hashing is activated"
 msgstr "Le hachage <em>%s</em> est activé."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:156
+#: F:\zenphoto-dev/zp-core/lib-auth.php:157
 #, php-format
 msgid "Password must be at least %u characters"
 msgstr "Le mot de passe doit comporter au moins %u caractères"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:182
+#: F:\zenphoto-dev/zp-core/lib-auth.php:183
 #, php-format
 msgid "Password must contain at least one of %s"
 msgstr "Le mot de passe doit comporter au moins un de(s) %s."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:211
+#: F:\zenphoto-dev/zp-core/lib-auth.php:212
 #, php-format
 msgid "<strong>Note:</strong> passwords must be at least %1$u characters long and contain at least one character from %2$s."
 msgid_plural "<strong>Note</strong>: passwords must be at least %1$u characters long and contain at least one character from each of the following groups: %2$s."
 msgstr[0] "<strong>Note.</strong> Le mot de passe doit comporter au moins %1$u caractères, dont au moins un caractère de : %2$s."
 msgstr[1] "<strong>Note.</strong> Le mot de passe doit comporter au moins %1$u caractères, dont au moins un de chacun des groupes suivants : %2$s."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:214
+#: F:\zenphoto-dev/zp-core/lib-auth.php:215
 #, php-format
 msgid "<strong>Note</strong>: passwords must contain at least one character from %s."
 msgid_plural "<strong>Note</strong>: passwords must contain at least one character from each of the following groups: %s."
 msgstr[0] "<strong>Note.</strong> Le mot de passe doit comporter au moins un caractère de : %s."
 msgstr[1] "<strong>Note.</strong> Le mot de passe doit comporter au moins un caractère de chaque groupe : %s."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:219
+#: F:\zenphoto-dev/zp-core/lib-auth.php:220
 #, php-format
 msgid "<strong>Note</strong>: passwords must be at least %u characters long."
 msgstr "<strong>Note</strong> : les mots de passe doivent comporter au moins %u caractères."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:385
+#: F:\zenphoto-dev/zp-core/lib-auth.php:388
 #, php-format
 msgid "Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)"
 msgstr "Impossible de migrer les droits vers la version %1$s (Zenphoto_Authority ne gère que les versions %2$s et %3$s)."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:489
-#: F:\zenphoto-dev/zp-core/lib-auth.php:504
-#: F:\zenphoto-dev/zp-core/lib-auth.php:523
+#: F:\zenphoto-dev/zp-core/lib-auth.php:492
+#: F:\zenphoto-dev/zp-core/lib-auth.php:507
+#: F:\zenphoto-dev/zp-core/lib-auth.php:526
 msgid "No rights"
 msgstr "Aucun droit"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:490
-#: F:\zenphoto-dev/zp-core/lib-auth.php:505
-#: F:\zenphoto-dev/zp-core/lib-auth.php:525
+#: F:\zenphoto-dev/zp-core/lib-auth.php:493
+#: F:\zenphoto-dev/zp-core/lib-auth.php:508
+#: F:\zenphoto-dev/zp-core/lib-auth.php:528
 msgid "Overview"
 msgstr "Aperçu"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:491
-#: F:\zenphoto-dev/zp-core/lib-auth.php:506
+#: F:\zenphoto-dev/zp-core/lib-auth.php:494
+#: F:\zenphoto-dev/zp-core/lib-auth.php:509
 msgid "View all"
 msgstr "Tout voir"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:492
-#: F:\zenphoto-dev/zp-core/lib-auth.php:507
-#: F:\zenphoto-dev/zp-core/lib-auth.php:536
+#: F:\zenphoto-dev/zp-core/lib-auth.php:495
+#: F:\zenphoto-dev/zp-core/lib-auth.php:510
+#: F:\zenphoto-dev/zp-core/lib-auth.php:539
 msgid "Upload"
 msgstr "Charger"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:493
-#: F:\zenphoto-dev/zp-core/lib-auth.php:508
-#: F:\zenphoto-dev/zp-core/lib-auth.php:534
+#: F:\zenphoto-dev/zp-core/lib-auth.php:496
+#: F:\zenphoto-dev/zp-core/lib-auth.php:511
+#: F:\zenphoto-dev/zp-core/lib-auth.php:537
 msgid "Post comments"
 msgstr "Poster des commentaires"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:496
-#: F:\zenphoto-dev/zp-core/lib-auth.php:516
-#: F:\zenphoto-dev/zp-core/lib-auth.php:545
+#: F:\zenphoto-dev/zp-core/lib-auth.php:499
+#: F:\zenphoto-dev/zp-core/lib-auth.php:519
+#: F:\zenphoto-dev/zp-core/lib-auth.php:548
 msgid "Manage all albums"
 msgstr "Gérer tous les albums"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:497
-#: F:\zenphoto-dev/zp-core/lib-auth.php:517
-#: F:\zenphoto-dev/zp-core/lib-auth.php:547
+#: F:\zenphoto-dev/zp-core/lib-auth.php:500
+#: F:\zenphoto-dev/zp-core/lib-auth.php:520
+#: F:\zenphoto-dev/zp-core/lib-auth.php:550
 msgid "Themes"
 msgstr "Thèmes"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:498
+#: F:\zenphoto-dev/zp-core/lib-auth.php:501
 msgid "Zenpage"
 msgstr "Zenpage"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:500
-#: F:\zenphoto-dev/zp-core/lib-auth.php:519
-#: F:\zenphoto-dev/zp-core/lib-auth.php:550
+#: F:\zenphoto-dev/zp-core/lib-auth.php:503
+#: F:\zenphoto-dev/zp-core/lib-auth.php:522
+#: F:\zenphoto-dev/zp-core/lib-auth.php:553
 msgid "Options"
 msgstr "Options"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:501
-#: F:\zenphoto-dev/zp-core/lib-auth.php:520
-#: F:\zenphoto-dev/zp-core/lib-auth.php:551
+#: F:\zenphoto-dev/zp-core/lib-auth.php:504
+#: F:\zenphoto-dev/zp-core/lib-auth.php:523
+#: F:\zenphoto-dev/zp-core/lib-auth.php:554
 msgid "Admin"
 msgstr "Administrer"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:505
-#: F:\zenphoto-dev/zp-core/lib-auth.php:525
+#: F:\zenphoto-dev/zp-core/lib-auth.php:508
+#: F:\zenphoto-dev/zp-core/lib-auth.php:528
 msgid "Users with this right may view the admin overview page."
 msgstr "Ce niveau d’autorisation permet de voir la page d’aperçu de l’administration."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:506
+#: F:\zenphoto-dev/zp-core/lib-auth.php:509
 msgid "Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery."
 msgstr "Ce niveau d’autorisation permet de voir toutes les galeries (quelle que soit leur protection). Sans ce droit, l’utilisateur ne pourra voir que les galeries publiques ou celles pour lesquelles il est spécifiquement autorisé."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:507
-#: F:\zenphoto-dev/zp-core/lib-auth.php:536
+#: F:\zenphoto-dev/zp-core/lib-auth.php:510
+#: F:\zenphoto-dev/zp-core/lib-auth.php:539
 msgid "Users with this right may upload to the albums for which they have management rights."
 msgstr "Ce niveau d’autorisation permet à un utilisateur de charger des contenus vers les albums pour lesquels il est autorisé."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:508
-#: F:\zenphoto-dev/zp-core/lib-auth.php:534
+#: F:\zenphoto-dev/zp-core/lib-auth.php:511
+#: F:\zenphoto-dev/zp-core/lib-auth.php:537
 msgid "When the comment_form plugin is used for comments and its \"Only members can comment\" option is set, only users with this right may post comments."
 msgstr "Quand l’extension « comment_form » est utilisée pour les commentaires et que l’option « Seuls les membres peuvent commenter », seuls les utilisateurs ayant ce droit peuvent envoyer des commentaires."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:509
-#: F:\zenphoto-dev/zp-core/lib-auth.php:535
+#: F:\zenphoto-dev/zp-core/lib-auth.php:512
+#: F:\zenphoto-dev/zp-core/lib-auth.php:538
 msgid "Users with this right may make comments tab changes."
 msgstr "Ce niveau d’autorisation permet de voir l’onglet Commentaires et d’y effectuer des modifications."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:510
-#: F:\zenphoto-dev/zp-core/lib-auth.php:541
+#: F:\zenphoto-dev/zp-core/lib-auth.php:513
+#: F:\zenphoto-dev/zp-core/lib-auth.php:544
 msgid "Users with this right may access the \"albums\" tab to make changes."
 msgstr "Ce niveau d’autorisation permet de voir toutes les galeries (quelle que soit leur protection). Sans ce droit, l’utilisateur ne pourra voir que les galeries publiques ou celles pour lesquelles il est spécifiquement autorisé."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:511
-#: F:\zenphoto-dev/zp-core/lib-auth.php:539
+#: F:\zenphoto-dev/zp-core/lib-auth.php:514
+#: F:\zenphoto-dev/zp-core/lib-auth.php:542
 msgid "Users with this right may edit and manage Zenpage pages."
 msgstr "Ce niveau d’autorisation permet de modifier et de gérer les pages Zenpage."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:512
-#: F:\zenphoto-dev/zp-core/lib-auth.php:538
+#: F:\zenphoto-dev/zp-core/lib-auth.php:515
+#: F:\zenphoto-dev/zp-core/lib-auth.php:541
 msgid "Users with this right may edit and manage Zenpage articles and categories."
 msgstr "Ce niveau d’autorisation permet de modifier et de gérer les articles et les catégories Zenpage."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:513
-#: F:\zenphoto-dev/zp-core/lib-auth.php:540
+#: F:\zenphoto-dev/zp-core/lib-auth.php:516
+#: F:\zenphoto-dev/zp-core/lib-auth.php:543
 msgid "Files"
 msgstr "Fichiers"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:513
-#: F:\zenphoto-dev/zp-core/lib-auth.php:540
+#: F:\zenphoto-dev/zp-core/lib-auth.php:516
+#: F:\zenphoto-dev/zp-core/lib-auth.php:543
 msgid "Allows the user access to the \"filemanager\" located on the upload: files sub-tab."
 msgstr "Permet à l’utilisateur d’accéder au gestionnaire de fichiers situé dans le sous-onglet « Télécharger des fichiers »."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:514
-#: F:\zenphoto-dev/zp-core/lib-auth.php:544
+#: F:\zenphoto-dev/zp-core/lib-auth.php:517
+#: F:\zenphoto-dev/zp-core/lib-auth.php:547
 msgid "Manage all pages"
 msgstr "Gérer toutes les pages"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:514
-#: F:\zenphoto-dev/zp-core/lib-auth.php:544
+#: F:\zenphoto-dev/zp-core/lib-auth.php:517
+#: F:\zenphoto-dev/zp-core/lib-auth.php:547
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page."
 msgstr "Les utilisateurs qui n’ont pas de droit d’administrateur ne peuvent gérer que les objets qui leur sont attribués. Ce droit leur permet de gérer toutes les pages Zenpage."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:515
-#: F:\zenphoto-dev/zp-core/lib-auth.php:543
+#: F:\zenphoto-dev/zp-core/lib-auth.php:518
+#: F:\zenphoto-dev/zp-core/lib-auth.php:546
 msgid "Manage all news"
 msgstr "Gérer tous les actualités"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:515
-#: F:\zenphoto-dev/zp-core/lib-auth.php:543
+#: F:\zenphoto-dev/zp-core/lib-auth.php:518
+#: F:\zenphoto-dev/zp-core/lib-auth.php:546
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category."
 msgstr "Les utilisateurs qui n’ont pas de droit d’administrateur ne peuvent gérer que les objets qui leur sont attribués. Ce droit leur permet de gérer tous les articles et toutes les catégories Zenpage."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:516
-#: F:\zenphoto-dev/zp-core/lib-auth.php:545
+#: F:\zenphoto-dev/zp-core/lib-auth.php:519
+#: F:\zenphoto-dev/zp-core/lib-auth.php:548
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery."
 msgstr "Les utilisateurs qui n’ont pas de droit d’administrateur ne peuvent gérer que les objets qui leur sont attribués. Ce droit leur permet de gérer n’importe quel album de la galerie."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:517
-#: F:\zenphoto-dev/zp-core/lib-auth.php:547
+#: F:\zenphoto-dev/zp-core/lib-auth.php:520
+#: F:\zenphoto-dev/zp-core/lib-auth.php:550
 msgid "Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list."
 msgstr "Ce niveau d’autorisation permet d’effectuer des modifications sur les thèmes (dans la limite de ceux correspondant aux albums sur lesquels l’utilisateur a des droits)."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:518
-#: F:\zenphoto-dev/zp-core/lib-auth.php:549
+#: F:\zenphoto-dev/zp-core/lib-auth.php:521
+#: F:\zenphoto-dev/zp-core/lib-auth.php:552
 msgid "Users with this right may make additions and changes to the set of tags."
 msgstr "Ce niveau d’autorisation permet de voir toutes les galeries (quelque soit leur protection). Sans ce droit, l’utilisateur ne pourra voir que les galeries publiques ou celles pour lesquelles il est spécifiquement autorisé."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:519
-#: F:\zenphoto-dev/zp-core/lib-auth.php:550
+#: F:\zenphoto-dev/zp-core/lib-auth.php:522
+#: F:\zenphoto-dev/zp-core/lib-auth.php:553
 msgid "Users with this right may make changes on the options tabs."
 msgstr "Ce niveau d’autorisation permet d’effectuer des changements dans l’onglet Options."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:520
-#: F:\zenphoto-dev/zp-core/lib-auth.php:551
+#: F:\zenphoto-dev/zp-core/lib-auth.php:523
+#: F:\zenphoto-dev/zp-core/lib-auth.php:554
 msgid "The master privilege. A user with \"Admin\" can do anything. (No matter what his other rights might indicate!)"
 msgstr "Le niveau d’autorisation maximal. Un tel niveau permet de tout faire sur la galerie (quels que soient les droits sélectionnés en plus de celui-ci !)."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:527
+#: F:\zenphoto-dev/zp-core/lib-auth.php:530
 msgid "View gallery"
 msgstr "Voir la galerie"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:527
+#: F:\zenphoto-dev/zp-core/lib-auth.php:530
 msgid "Users with this right may view otherwise protected generic gallery pages."
 msgstr "Ce niveau d’autorisation permet de voir les pages génériques qui seraient normalement protégées."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:528
+#: F:\zenphoto-dev/zp-core/lib-auth.php:531
 msgid "View search"
 msgstr "Voir la recherche"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:528
+#: F:\zenphoto-dev/zp-core/lib-auth.php:531
 msgid "Users with this right may view search pages even if password protected."
 msgstr "Ce niveau d’autorisation permet de voir les pages de recherche même si elles sont protégées par mot de passe."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:529
+#: F:\zenphoto-dev/zp-core/lib-auth.php:532
 msgid "View fullimage"
 msgstr "Voir les images à la taille originale"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:529
+#: F:\zenphoto-dev/zp-core/lib-auth.php:532
 msgid "Users with this right may view all full sized (raw) images."
 msgstr "Ce niveau d’autorisation permet de voir toutes les images à la taille originale (images brutes)."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:530
+#: F:\zenphoto-dev/zp-core/lib-auth.php:533
 msgid "View news"
 msgstr "Voir les actualités"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:530
+#: F:\zenphoto-dev/zp-core/lib-auth.php:533
 msgid "Users with this right may view all zenpage news articles."
 msgstr "Ce niveau d’autorisation permet de voir tous les articles Zenpage."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:531
+#: F:\zenphoto-dev/zp-core/lib-auth.php:534
 msgid "View pages"
 msgstr "Voir les pages"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:531
+#: F:\zenphoto-dev/zp-core/lib-auth.php:534
 msgid "Users with this right may view all zenpage pages."
 msgstr "Ce niveau d’autorisation permet de voir toutes les pages Zenpage"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:532
+#: F:\zenphoto-dev/zp-core/lib-auth.php:535
 msgid "View albums"
 msgstr "Voir les albums"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:532
+#: F:\zenphoto-dev/zp-core/lib-auth.php:535
 msgid "Users with this right may view all albums (and their images)."
 msgstr "Ce niveau d’autorisation permet de voir tous les albums (et leurs images)."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:558
+#: F:\zenphoto-dev/zp-core/lib-auth.php:561
 msgid "All rights"
 msgstr "Tous les droits"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:559
+#: F:\zenphoto-dev/zp-core/lib-auth.php:562
 msgid "Default rights"
 msgstr "Droits par défaut"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:639
+#: F:\zenphoto-dev/zp-core/lib-auth.php:642
 msgid "Sorry, that is not the answer."
 msgstr "Désolé, ce n’est pas la réponse"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:646
+#: F:\zenphoto-dev/zp-core/lib-auth.php:649
 msgid "You are receiving this e-mail because of a password reset request on your Zenphoto gallery."
 msgstr "Vous avez reçu ce message suite à une demande de réinitialisation de mot de passe sur votre galerie Zenphoto."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:648
+#: F:\zenphoto-dev/zp-core/lib-auth.php:651
 #, php-format
 msgid "You are receiving this e-mail because of a password reset request on your Zenphoto gallery from a user who tried to log in as %s."
 msgstr "Vous avez reçu ce message suite à une demande de réinitialisation de mot de passe sur votre galerie Zenphoto par un utilisateur qui a essayé de se connecter avec l’identifiant %s."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:687
+#: F:\zenphoto-dev/zp-core/lib-auth.php:690
 msgid "There was no one to which to send the reset request."
 msgstr "Aucun destinataire n’a été trouvé pour la demande d’envoi de réinitialisation."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:691
+#: F:\zenphoto-dev/zp-core/lib-auth.php:694
 #, php-format
 msgid "To reset your Zenphoto Admin passwords visit: %s"
 msgstr "Pour réinitialiser votre mot de passe administrateur Zenphoto, rendez-vous à : %s"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:692
+#: F:\zenphoto-dev/zp-core/lib-auth.php:695
 msgid "If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days."
 msgstr "Si vous ne souhaitez pas réinitialiser vos mots de passe, vous n’avez qu’à ignorer ce message. Cette demande expirera automatiquement dans 3 jours."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:693
+#: F:\zenphoto-dev/zp-core/lib-auth.php:696
 msgid "The Zenphoto information you requested"
 msgstr "Les informations que vous avez demandé sur Zenphoto"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:701
+#: F:\zenphoto-dev/zp-core/lib-auth.php:704
 msgid "Your input did not match the captcha"
 msgstr "Ce que vous avez saisi ne correspond pas au Captcha"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:806
+#: F:\zenphoto-dev/zp-core/lib-auth.php:809
 msgid "What is your father's middle name?"
 msgstr "Quel est le 2e prénom de votre père ?"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:807
+#: F:\zenphoto-dev/zp-core/lib-auth.php:810
 msgid "What street did your Grandmother live on?"
 msgstr "Sur quelle rue vit votre grand-mère ?"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:808
+#: F:\zenphoto-dev/zp-core/lib-auth.php:811
 msgid "Who was your favorite singer?"
 msgstr "Quel est votre chanteur favori ?"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:809
+#: F:\zenphoto-dev/zp-core/lib-auth.php:812
 msgid "When did you first get a computer?"
 msgstr "Quand avez-vous eu votre premier ordinateur ?"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:810
+#: F:\zenphoto-dev/zp-core/lib-auth.php:813
 msgid "How much wood could a woodchuck chuck if a woodchuck could chuck wood?"
 msgstr "Les saucisses de l’archiduchesse sont-elles sèches ou archisèches ?"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:811
+#: F:\zenphoto-dev/zp-core/lib-auth.php:814
 msgid "What is the date of the Ides of March?"
 msgstr "À quelle date tombent les ides en mars ?"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:847
-#: F:\zenphoto-dev/zp-core/lib-auth.php:962
-#: F:\zenphoto-dev/zp-core/lib-auth.php:1000
+#: F:\zenphoto-dev/zp-core/lib-auth.php:850
+#: F:\zenphoto-dev/zp-core/lib-auth.php:965
+#: F:\zenphoto-dev/zp-core/lib-auth.php:1003
 msgid "User"
 msgstr "Utilisateur"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:853
+#: F:\zenphoto-dev/zp-core/lib-auth.php:856
 msgid "Supply the correct response to the question below and you will be directed to a page where you can change your password."
 msgstr "Répondez correctement à la question qui suit et vous serez redirigé vers une page où vous pourrez modifier votre mot de passe."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:854
+#: F:\zenphoto-dev/zp-core/lib-auth.php:857
 msgid "Challenge question:"
 msgstr "Question défi : "
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:859
+#: F:\zenphoto-dev/zp-core/lib-auth.php:862
 msgid "Your response"
 msgstr "Votre réponse"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:868
+#: F:\zenphoto-dev/zp-core/lib-auth.php:871
 msgid "Enter your User ID and press <code>Refresh</code> to get your challenge question."
 msgstr "Saisissez votre nom d’utilisateur et cliquez sur <code>Rafraîchir</code> afin d’obtenir votre question secrète."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:875
+#: F:\zenphoto-dev/zp-core/lib-auth.php:878
 msgid "Submit"
 msgstr "Soumettre"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:876
+#: F:\zenphoto-dev/zp-core/lib-auth.php:879
 msgid "Refresh"
 msgstr "Actualiser"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:886
+#: F:\zenphoto-dev/zp-core/lib-auth.php:889
 msgid "Request reset by e-mail"
 msgstr "Demande de réinitialisation par email"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:899
+#: F:\zenphoto-dev/zp-core/lib-auth.php:902
 msgid "There was an error logging in."
 msgstr "Impossible de se connecter."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:899
+#: F:\zenphoto-dev/zp-core/lib-auth.php:902
 msgid "Check your username and password and try again."
 msgstr "Vérifiez vos identifiant et mot de passe et réessayez."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:905
+#: F:\zenphoto-dev/zp-core/lib-auth.php:908
 msgid "A reset request has been sent."
 msgstr "Une demande de réinitialisation a été envoyée."
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:927
+#: F:\zenphoto-dev/zp-core/lib-auth.php:930
 msgid "Login"
 msgstr "Connexion"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:949
+#: F:\zenphoto-dev/zp-core/lib-auth.php:952
 #, php-format
 msgid "Logon using:%s"
 msgstr "Se connecter en utilisant :%s"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:968
+#: F:\zenphoto-dev/zp-core/lib-auth.php:971
 msgid "Password"
 msgstr "Mot de passe"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:973
+#: F:\zenphoto-dev/zp-core/lib-auth.php:976
 msgid "Log in"
 msgstr "Se connecter"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:986
+#: F:\zenphoto-dev/zp-core/lib-auth.php:989
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr "J’ai oublié mon <strong>identifiant d’utilisateur</strong> et/ou mon <strong>mot de passe</strong>"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:1009
+#: F:\zenphoto-dev/zp-core/lib-auth.php:1012
 msgid "Request"
 msgstr "Demande"
 
-#: F:\zenphoto-dev/zp-core/lib-auth.php:1009
+#: F:\zenphoto-dev/zp-core/lib-auth.php:1012
 msgid "Request password reset"
 msgstr "Demande de réinitialisation du mot de passe"
 
@@ -7105,6 +7109,10 @@ msgstr "PHP <code>Register Globals</code>"
 #: F:\zenphoto-dev/zp-core/setup.php:428
 msgid "PHP <code>Register Globals</code> [is set]"
 msgstr "PHP <code>Register Globals</code> [est activé]"
+
+#: F:\zenphoto-dev/zp-core/setup.php:428
+msgid "<strong>Note</strong>: There should be no quotation marks in this setting!"
+msgstr "<strong>Note.</strong> Il ne doit pas y avoir de guillemets dans ce paramètre !"
 
 #: F:\zenphoto-dev/zp-core/setup.php:428
 msgid "PHP Register globals presents a security risk to any PHP application. See <a href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>."
