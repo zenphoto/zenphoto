@@ -168,6 +168,7 @@ if (isset($_GET['action'])) {
 					$searchfields[] = substr(sanitize($key),7);
 				}
 			}
+			setOption('search_cache_duration', sanitize_numeric($_POST['search_cache_duration']));
 			setOption('search_fields', implode(',',$searchfields));
 			$olduser = getOption('search_user');
 			$newuser = trim(sanitize($_POST['search_user'],3));
@@ -1352,7 +1353,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 							</p>
 							<?php
 						}
-					?>
+						?>
 					</td>
 					<td>
 						<p><?php echo gettext("<em>Field list</em> is the set of fields on which searches may be performed."); ?></p>
@@ -1360,6 +1361,15 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p><?php echo gettext('Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target.') ?></p>
 						<p><?php echo gettext('Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches.') ?></p>
 					</td>
+					<tr>
+						<td><?php echo gettext('Cache expiry'); ?></td>
+						<td>
+							<?php printf('Redo search after %s minutes.', '<input type="textbox" size="4" name="search_cache_duration" value="'.getOption('search_cache_duration').'" />'); ?>
+						</td>
+						<td>
+							<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed.');?>
+						</td>
+					</tr>
 				</tr>
 				<tr>
 					<td colspan="3">

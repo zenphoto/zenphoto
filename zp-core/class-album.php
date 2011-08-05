@@ -15,20 +15,20 @@ class Album extends MediaObject {
 	var $localpath;				 // Latin1 full server path to the album
 	var $exists = true;    // Does the folder exist?
 	var $images = null;    // Full images array storage.
-	protected $subalbums = null; // Full album array storage.
 	var $parent = null;    // The parent album name
 	var $parentalbum = null; // The parent album's album object (lazy)
 	var $gallery;
 	var $searchengine;           // cache the search engine for dynamic albums
+	var $sidecars = array();	// keeps the list of suffixes associated with this album
+	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
+	var $manage_some_rights = ALBUM_RIGHTS;
+	var $view_rights = VIEW_ALBUMS_RIGHTS;
+	protected $subalbums = null; // Full album array storage.
 	protected $index;
 	protected $lastimagesort = NULL;  // remember the order for the last album/image sorts
 	protected $lastsubalbumsort = NULL;
 	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
-	var $sidecars = array();	// keeps the list of suffixes associated with this album
-	protected $subrights = array();	//	cache for album subrights
-	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
-	var $manage_some_rights = ALBUM_RIGHTS;
-	var $view_rights = VIEW_ALBUMS_RIGHTS;
+	protected $subrights = NULL;	//	cache for album subrights
 
 
 	/**
@@ -1187,18 +1187,18 @@ class Album extends MediaObject {
 	 * returns NULL if not a managed album
 	 */
 	function albumSubRights() {
-		if (!empty($this->subrights)) {
-			return $this->subrights[0];
+		if (!is_null($this->subrights)) {
+			return $this->subrights;
 		}
 		global $_zp_admin_album_list;
 		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			$this->subrights[0] = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW_IMAGE;
-			return $this->subrights[0];
+			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW_IMAGE;
+			return $this->subrights;
 		}
 		getManagedAlbumList();
 		if (count($_zp_admin_album_list) == 0) {
-			$this->subrights[0] =  false;
-			return $this->subrights[0];
+			$this->subrights =  false;
+			return $this->subrights;
 		}
 		$desired_folders = explode('/', $this->name);
 		foreach ($_zp_admin_album_list as $adminalbum=>$rights) { // see if it is one of the managed folders or a subfolder there of
@@ -1213,12 +1213,12 @@ class Album extends MediaObject {
 				$level++;
 			}
 			if ($ok) {
-				$this->subrights[0] =  $rights;
-				return $this->subrights[0];
+				$this->subrights =  $rights;
+				return $this->subrights;
 			}
 		}
-		$this->subrights[0] =  NULL;
-		return $this->subrights[0];
+		$this->subrights =  NULL;
+		return $this->subrights;
 	}
 
 	/**

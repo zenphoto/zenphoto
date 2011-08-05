@@ -13,6 +13,7 @@
 
 define('EXACT_TAG_MATCH',getOption('exact_tag_match'));
 define('SEARCH_DURATION', 3000);
+define('SEARCH_CACHE_DURATION', getOption('search_cache_duration'));
 
 class SearchEngine
 {
@@ -23,19 +24,18 @@ class SearchEngine
 	var $page;
 	var $images;
 	var $albums;
-	protected $album_list = NULL;	// list of albums to search
-	protected $category_list;			// list of categories for a news search
+	var $dynalbumname;
+	var $gallery;
 	protected $search_no_albums;	// omit albums
 	protected $search_no_images;	// omit albums
 	protected $search_no_pages;		// omit pages
 	protected $search_no_news;		// omit news
-	var $dynalbumname;
 	protected $search_structure;		// relates translatable names to search fields
-	protected $lastimagesort = NULL;  // remember the order for the last album/image sorts
-	protected $lastsubalbumsort = NULL;
 	protected $iteration = 0;	//	used by apply_filter('search_statistics') to indicate sequential searches of different objects
 	protected $processed_search = NULL;
-	var $gallery;
+	protected $album_list = NULL;	// list of albums to search
+	protected $category_list;			// list of categories for a news search
+	protected $searches = NULL;		// remember the criteria for past searches
 
 	/**
 	 * Constuctor
@@ -148,7 +148,7 @@ class SearchEngine
 		}
 		$this->images = NULL;
 		$this->albums = NULL;
-
+		$this->searches = array('images'=>NULL, 'albums'=>NULL, 'pages'=>NULL, 'news'=>NULL);
 	}
 
 	/**
@@ -1037,17 +1037,17 @@ class SearchEngine
 		}
 		if (count($idlist)==0) {return NULL; }
 
-		$sql = 'SELECT DISTINCT `id`,`show`,`title`,';
+		$sql = 'SELECT DISTINCT `id`,`show`,';
 		switch ($tbl) {
 			case 'pages':
 			case 'news':
 				$sql .= '`titlelink` ';
 				break;
 			case 'albums':
-				$sql .= "`desc`,`folder` ";
+				$sql .= "`folder` ";
 				break;
 			default:
-				$sql .= "`desc`,`albumid`,`filename`,`location`,`city`,`state`,`country` ";
+				$sql .= "`albumid`,`filename` ";
 				break;
 		}
 
@@ -1115,8 +1115,7 @@ class SearchEngine
 		}
 		$sql .= '('.$this->compressedIDList($idlist).')';
 		$sql .= " ORDER BY ".$key;
-		$result = query($sql);
-		return $result;
+		return $sql;
 	}
 
 	/**
@@ -1132,23 +1131,34 @@ class SearchEngine
 		$albums = array();
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) { return $albums; } // nothing to find
-		$search_result = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
-		if ($search_result) {
-			while ($row = db_fetch_assoc($search_result)) {
-				$albumname = $row['folder'];
-				if ($albumname != $this->dynalbumname) {
-					if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
-						$album = new Album(new gallery(), $albumname);
-						if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $row['show'])) {
-							if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
-								$albums[] = $albumname;
+		$criteria = array('item'=>'albums','search'=>serialize($searchstring), 'sort'=>$sorttype.' '.$sortdirection);
+		if ($criteria == $this->searches['albums']) {
+			return $this->albums;
+		}
+		$albums = $this->getCachedSearch($criteria);
+		if (is_null($albums)) {
+			$search_query = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
+			$search_result = query($search_query);
+			if ($search_result) {
+				while ($row = db_fetch_assoc($search_result)) {
+					$albumname = $row['folder'];
+					if ($albumname != $this->dynalbumname) {
+						if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
+							$album = new Album(new gallery(), $albumname);
+							if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $row['show'])) {
+								if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
+									$albums[] = $albumname;
+								}
 							}
 						}
 					}
 				}
 			}
+			zp_apply_filter('search_statistics',$searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);
+			$this->cacheSearch($criteria,$albums);
 		}
-		zp_apply_filter('search_statistics',$searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);
+		$this->albums = $albums;
+		$this->searches['images'] = $criteria;
 		return $albums;
 	}
 
@@ -1242,42 +1252,55 @@ class SearchEngine
 	 * @return array
 	 */
 	function getSearchImages($sorttype, $sortdirection, $mine=NULL) {
-		if (getOption('search_no_images') || $this->search_no_images) return array();
-		$albums_seen = $images = array();
+		if (getOption('search_no_images') || $this->search_no_images) {
+			return array();
+		}
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) { return $images; } // nothing to find
-		if (empty($searchdate)) {
-			$search_result = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
-		} else {
-			$search_result = $this->SearchDate($searchstring, $searchdate, 'images', $sorttype, $sortdirection);
+		$criteria = array('item'=>'images','search'=>serialize($searchstring).' '.$searchdate, 'sort'=>$sorttype.' '.$sortdirection);
+		if ($criteria == $this->searches['images']) {
+			return $this->images;
 		}
-		if ($search_result) {
-			while ($row = db_fetch_assoc($search_result)) {
-				$albumid = $row['albumid'];
-				if (array_key_exists($albumid, $albums_seen)) {
-					$album = $albums_seen[$albumid];
-				} else {
-					$query = "SELECT folder,`show` FROM ".prefix('albums')." WHERE id = $albumid";
-					$row2 = query_single_row($query); // id is unique
-					$albumname = $row2['folder'];
-					$allow = false;
-					$album = new Album(new gallery(), $albumname);
-					if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {
-						$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
+		$images = $this->getCachedSearch($criteria);
+		if (is_null($images)) {
+			if (empty($searchdate)) {
+				$search_query = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
+			} else {
+				$search_query = $this->SearchDate($searchstring, $searchdate, 'images', $sorttype, $sortdirection);
+			}
+			$search_result = query($search_query);
+			if ($search_result) {
+				$albums_seen = $images = array();
+				while ($row = db_fetch_assoc($search_result)) {
+					$albumid = $row['albumid'];
+					if (array_key_exists($albumid, $albums_seen)) {
+						$album = $albums_seen[$albumid];
+					} else {
+						$query = "SELECT folder,`show` FROM ".prefix('albums')." WHERE id = $albumid";
+						$row2 = query_single_row($query); // id is unique
+						$albumname = $row2['folder'];
+						$allow = false;
+						$album = new Album(new gallery(), $albumname);
+						if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {
+							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
+						}
+						$albums_seen[$albumid] = $album = array('allow'=>$allow,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
 					}
-					$albums_seen[$albumid] = $album = array('allow'=>$allow,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
-				}
-				if ($album['allow']) {
-					if (file_exists($album['localpath'].internalToFilesystem($row['filename']))) {	//	still exists
-						$images[] = array('filename' => $row['filename'], 'folder' => $album['folder']);
+					if ($album['allow']) {
+						if (file_exists($album['localpath'].internalToFilesystem($row['filename']))) {	//	still exists
+							$images[] = array('filename' => $row['filename'], 'folder' => $album['folder']);
+						}
 					}
 				}
 			}
+			if (empty($searchdate)) {
+				zp_apply_filter('search_statistics',$searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
+			}
+			$this->cacheSearch($criteria,$images);
 		}
-		if (empty($searchdate)) {
-			zp_apply_filter('search_statistics',$searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
-		}
+		$this->images = $images;
+		$this->searches['images'] = $criteria;
 		return $images;
 	}
 
@@ -1293,10 +1316,7 @@ class SearchEngine
 	 * @return array
 	 */
 	function getImages($page=0, $firstPageCount=0, $sorttype=NULL, $sortdirection=NULL, $mine=NULL) {
-		if (is_null($this->images) || $sorttype.$sortdirection !== $this->lastimagesort) {
-			$this->images = $this->getSearchImages($sorttype, $sortdirection, $mine);
-			$this->lastimagesort = $sorttype.$sortdirection;
-		}
+		$this->getSearchImages($sorttype, $sortdirection, $mine);
 		if ($page == 0) {
 			return $this->images;
 		} else {
@@ -1326,9 +1346,7 @@ class SearchEngine
 	 * @return int
 	 */
 	function getImageIndex($album, $filename) {
-		if (is_null($this->images)) {
-			$this->images = $this->getSearchImages(NULL, NULL);
-		}
+		$this->getSearchImages(NULL, NULL);
 		$images = $this->getImages();
 		$c = 0;
 		foreach($images as $image) {
@@ -1386,10 +1404,12 @@ class SearchEngine
 			$searchdate = $this->dates;
 			if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
 			if (empty($searchdate)) {
-				$search_result = $this->searchFieldsAndTags($searchstring, 'pages', false, false);
+				$search_query = $this->searchFieldsAndTags($searchstring, 'pages', false, false);
+				$search_result = query($search_query);
 				zp_apply_filter('search_statistics',$searchstring, 'pages', !$search_result, false, $this->iteration++);
 			} else {
-				$search_result = $this->SearchDate($searchstring, $searchdate, 'pages', false, false);
+				$search_query = $this->SearchDate($searchstring, $searchdate, 'pages', false, false);
+				$search_result = query($search_query);
 			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
@@ -1418,11 +1438,12 @@ class SearchEngine
 			$searchdate = $this->dates;
 			if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
 			if (empty($searchdate)) {
-				$search_result = $this->searchFieldsAndTags($searchstring, 'news', $sortorder, $sortdirection);
+				$search_query = $this->searchFieldsAndTags($searchstring, 'news', $sortorder, $sortdirection);
 				zp_apply_filter('search_statistics',$searchstring, 'news', !empty($search_results), false, $this->iteration++);
 			} else {
-				$search_result = $this->SearchDate($searchstring, $searchdate, 'news', $sortorder, $sortdirection,$this->whichdates);
+				$search_query = $this->SearchDate($searchstring, $searchdate, 'news', $sortorder, $sortdirection,$this->whichdates);
 			}
+			$search_result = query($search_query);
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
 					$result[] = array('id'=>$row['id'],'titlelink'=>$row['titlelink']);
@@ -1436,6 +1457,50 @@ class SearchEngine
 		$this->processed_search = '';
 		$this->words = '';
 	}
+
+	function cacheSearch($criteria, $found) {
+		$criteria = serialize($criteria);
+		$sql = 'SELECT `id` FROM '.prefix('searches').' WHERE `criteria`='.db_quote($criteria);
+		$result = query_single_row($sql);
+		if ($result) {
+			$id = $result['id'];
+			$sql = 'DELETE FROM '.prefix('search_storage').' WHERE `search_id`='.$id;
+			query($sql);
+		} else {
+			$sql = 'INSERT INTO '.prefix('searches').' (criteria, date) VALUES ('.db_quote($criteria).','.db_quote(date('Y-m-d H:i:s.u')).')';
+			$result = query($sql);
+			$id = db_insert_id();
+		}
+		foreach ($found as $row) {
+			$sql = 'INSERT INTO '.prefix('search_storage').' (search_id, data) VALUES ('.$id.','.db_quote(serialize($row)).')';
+			query($sql);
+		}
+	}
+
+	function getCachedSearch($criteria) {
+		$sql = 'SELECT `id`, `date` FROM '.prefix('searches').' WHERE `criteria`='.db_quote(serialize($criteria));
+		$result = query_single_row($sql);
+		if ($result) {
+			$now = new DateTime("now");
+			$criteriaDate = new DateTime($result['date']);
+			$interval = time() - strtotime($result['date']);
+			if ($interval > SEARCH_CACHE_DURATION*60) {
+				query('DELETE FROM '.prefix('searches').' WHERE `id`='.$result['id']);
+				query('DELETE FROM '.prefix('search_storage').' WHERE `search_id`='.$result['id']);
+			} else {
+				$result = query_full_array('SELECT `data` FROM '.prefix('search_storage').' WHERE `search_id`='.$result['id']);
+				$items = array();
+				if ($result) {
+					foreach ($result as $row) {
+						$items[] = unserialize($row['data']);
+					}
+				}
+				return $items;
+			}
+		}
+		return NULL;
+	}
+
 } // search class end
 
 /**
@@ -1451,4 +1516,5 @@ function search_quote($word) {
 	return $word;
 
 }
+
 ?>

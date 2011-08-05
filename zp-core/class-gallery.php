@@ -347,6 +347,21 @@ class Gallery {
 	function garbageCollect($cascade=true, $complete=false, $restart='') {
 		if (empty($restart)) {
 			setOption('last_garbage_collect', time());
+			/* purge old search cache items */
+			$sql = 'SELECT `id` FROM '.prefix('searches').' WHERE `date`<'.db_quote(date('Y-m-d'));
+			$result = query_full_array($sql);
+			if ($result) {
+				$dead = array();
+				foreach ($result as $row) {
+					$dead[] = $row['id'];
+				}
+				$dead = implode(',',$dead);
+				$sql = 'DELETE FROM '.prefix('searches').' WHERE `id` IN ('.$dead.')';
+				query($sql);
+				$sql = 'DELETE FROM '.prefix('search_storage').' WHERE `search_id` IN ('.$dead.')';
+				query($sql);
+			}
+
 			/* clean the comments table */
 			$this->commentClean('images');
 			$this->commentClean('albums');

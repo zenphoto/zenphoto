@@ -609,4 +609,6 @@ appropriate gallery methods.
 		setOption('edit_in_place', 0);
 		echo '<p class="notebox">'.gettext('Front-end editing has been disabled. Front-end editing presents serious security vulnerability and is strongly discouraged.').'</p>';
 	}
+
+	setOptionDefault('search_cache_duration', 30);
 ?>
