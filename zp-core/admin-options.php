@@ -1367,7 +1367,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<?php printf('Redo search after %s minutes.', '<input type="textbox" size="4" name="search_cache_duration" value="'.getOption('search_cache_duration').'" />'); ?>
 						</td>
 						<td>
-							<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed.');?>
+							<?php echo gettext('Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches.');?>
 						</td>
 					</tr>
 				</tr>

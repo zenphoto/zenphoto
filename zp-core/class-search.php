@@ -1479,15 +1479,17 @@ class SearchEngine
 	 * @param string $found reslts of the search
 	 */
 	protected function cacheSearch($criteria, $found) {
-		$criteria = serialize($criteria);
-		$sql = 'SELECT `id`, data`, `date` FROM '.prefix('search_cache').' WHERE `criteria`='.db_quote($criteria);
-		$result = query_single_row($sql);
-		if ($result) {
-				$sql = 'UPDATE '.prefix('search_cache').' SET `data`='.db_quote(serialize($found)).', `date`='.db_quote(date('Y-m-d H:m:s')).' WHERE `id`='.$result['id'];
-				query($sql);
-		} else {
-				$sql = 'INSERT INTO '.prefix('search_cache').' (criteria, data, date) VALUES ('.db_quote($criteria).','.db_quote(serialize($found)).','.db_quote(date('Y-m-d H:m:s')).')';
-				query($sql);
+		if (SEARCH_CACHE_DURATION) {
+			$criteria = serialize($criteria);
+			$sql = 'SELECT `id`, data`, `date` FROM '.prefix('search_cache').' WHERE `criteria`='.db_quote($criteria);
+			$result = query_single_row($sql);
+			if ($result) {
+					$sql = 'UPDATE '.prefix('search_cache').' SET `data`='.db_quote(serialize($found)).', `date`='.db_quote(date('Y-m-d H:m:s')).' WHERE `id`='.$result['id'];
+					query($sql);
+			} else {
+					$sql = 'INSERT INTO '.prefix('search_cache').' (criteria, data, date) VALUES ('.db_quote($criteria).','.db_quote(serialize($found)).','.db_quote(date('Y-m-d H:m:s')).')';
+					query($sql);
+			}
 		}
 	}
 
@@ -1497,13 +1499,15 @@ class SearchEngine
 	 * @param string $criteria
 	 */
 	protected function getCachedSearch($criteria) {
-		$sql = 'SELECT `id`, `date`, `data` FROM '.prefix('search_cache').' WHERE `criteria`='.db_quote(serialize($criteria));
-		$result = query_single_row($sql);
-		if ($result) {
-			if ((time() - strtotime($result['date'])) > SEARCH_CACHE_DURATION*60) {
-				query('DELETE FROM '.prefix('search_cache').' WHERE `id`='.$result['id']);
-			} else {
-				return unserialize($result['data']);
+		if (SEARCH_CACHE_DURATION) {
+			$sql = 'SELECT `id`, `date`, `data` FROM '.prefix('search_cache').' WHERE `criteria`='.db_quote(serialize($criteria));
+			$result = query_single_row($sql);
+			if ($result) {
+				if ((time() - strtotime($result['date'])) > SEARCH_CACHE_DURATION*60) {
+					query('DELETE FROM '.prefix('search_cache').' WHERE `id`='.$result['id']);
+				} else {
+					return unserialize($result['data']);
+				}
 			}
 		}
 		return NULL;

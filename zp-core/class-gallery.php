@@ -348,7 +348,7 @@ class Gallery {
 		if (empty($restart)) {
 			setOption('last_garbage_collect', time());
 			/* purge old search cache items */
-			$sql = 'DELETE FROM '.prefix('searche_cache').' WHERE `date`<'.db_quote(date('Y-m-d H:m:s'),now()-SEARCH_CACHE_DURATION*60);
+			$sql = 'DELETE FROM '.prefix('search_cache').' WHERE `date`<'.db_quote(date('Y-m-d H:m:s',time()-SEARCH_CACHE_DURATION*60));
 			$result = query_full_array($sql);
 
 			/* clean the comments table */
