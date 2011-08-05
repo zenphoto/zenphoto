@@ -1131,7 +1131,7 @@ class SearchEngine
 		$albums = array();
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) { return $albums; } // nothing to find
-		$criteria = array('item'=>'albums','search'=>serialize($searchstring), 'sort'=>$sorttype.' '.$sortdirection);
+		$criteria = array('item'=>'albums','fields'=>implode(',',$this->fieldList),'search'=>serialize($searchstring), 'sort'=>$sorttype.' '.$sortdirection);
 		if ($criteria == $this->searches['albums']) {
 			return $this->albums;
 		}
@@ -1262,7 +1262,7 @@ class SearchEngine
 			$this->images = array();
 			return $this->images;
 		}
-		$criteria = array('item'=>'images','search'=>serialize($searchstring).' '.$searchdate, 'sort'=>$sorttype.' '.$sortdirection);
+		$criteria = array('item'=>'images','fields'=>implode(',',$this->fieldList),'search'=>serialize($searchstring).' '.$searchdate, 'sort'=>$sorttype.' '.$sortdirection);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
 		}
