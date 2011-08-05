@@ -1253,11 +1253,15 @@ class SearchEngine
 	 */
 	function getSearchImages($sorttype, $sortdirection, $mine=NULL) {
 		if (getOption('search_no_images') || $this->search_no_images) {
-			return array();
+			$this->images = array();
+			return $this->images;
 		}
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
-		if (empty($searchstring) && empty($searchdate)) { return $images; } // nothing to find
+		if (empty($searchstring) && empty($searchdate)) {
+			$this->images = array();
+			return $this->images;
+		} // nothing to find
 		$criteria = array('item'=>'images','search'=>serialize($searchstring).' '.$searchdate, 'sort'=>$sorttype.' '.$sortdirection);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
