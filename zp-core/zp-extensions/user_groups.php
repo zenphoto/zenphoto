@@ -314,7 +314,7 @@ function user_groups_edit_admin($html, $userobj, $i, $background, $current) {
 	return $html.$result;
 }
 
-function user_groups_admin_tabs($tabs, $current) {
+function user_groups_admin_tabs($tabs) {
 	global $_zp_null_account;
 	if ((zp_loggedin(ADMIN_RIGHTS) && !$_zp_null_account)) {
 		if (isset($tabs['users']['subtabs'])) {

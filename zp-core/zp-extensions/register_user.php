@@ -27,6 +27,7 @@ $plugin_version = '1.4.1';
 $option_interface = 'register_user_options';
 
 zp_register_filter('custom_option_save','register_user_handleOptionSave');
+
 if (getOption('register_user_address_info')) {
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/comment_form.php');
 }
@@ -110,15 +111,14 @@ class register_user_options {
 										'selections' => $ordered,
 										'desc' => gettext("Initial group assignment for the new user."));
 		} else {
-				if (is_numeric(getOption('register_user_user_rights'))) {
-					setOptionDefault('register_user_user_rights', NO_RIGHTS);
-				} else {
-					setOption('register_user_user_rights', NO_RIGHTS);
-				}
+			if (is_numeric(getOption('register_user_user_rights'))) {
+				setOptionDefault('register_user_user_rights', NO_RIGHTS);
+			} else {
+				setOption('register_user_user_rights', NO_RIGHTS);
+			}
 			$options[gettext('Default rights')] = array('key' => 'register_user_user_rights', 'type' => OPTION_TYPE_CUSTOM,
 																														'order' => 2,
 																														'desc' => gettext("Initial rights for the new user. (If no rights are set, approval of the user will be required.)"));
-
 		}
 		return $options;
 	}
@@ -176,15 +176,17 @@ class register_user_options {
 }
 
 function register_user_handleOptionSave($notify,$themename,$themealbum) {
-	global $_zp_authority;
-	$saved_rights = NO_RIGHTS;
-	$rightslist = sortMultiArray($_zp_authority->getRights(), array('set', 'value'));
-	foreach ($rightslist as $rightselement=>$right) {
-		if (isset($_POST['register_user-'.$rightselement])) {
-			$saved_rights = $saved_rights | $_POST['register_user-'.$rightselement];
+	if (!function_exists('user_groups_admin_tabs')) {
+		global $_zp_authority;
+		$saved_rights = NO_RIGHTS;
+		$rightslist = sortMultiArray($_zp_authority->getRights(), array('set', 'value'));
+		foreach ($rightslist as $rightselement=>$right) {
+			if (isset($_POST['register_user-'.$rightselement])) {
+				$saved_rights = $saved_rights | $_POST['register_user-'.$rightselement];
+			}
 		}
+		setOption('register_user_user_rights', $saved_rights);
 	}
-	setOption('register_user_user_rights', $saved_rights);
 	return $notify;
 }
 
@@ -223,14 +225,14 @@ function printRegistrationForm($thanks=NULL) {
 			zp_apply_filter('register_user_verified', $userobj);
 			$notify = false;
 			if (getOption('register_user_notify')) {
-				$notify = zp_mail(gettext('Zenphoto Gallery registration'),
-				sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'),$userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
+				$notify = zp_mail(gettext('Zenphoto Gallery registration'),sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'),$userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 			}
 			if (empty($notify)) {
 				if (getOption('register_user_create_album')) {
 					$userobj->createPrimealbum();
 				}
 				$notify = 'verified';
+				$_POST['user'] = $userobj->getUser();
 			}
 			$userobj->save();
 		} else {

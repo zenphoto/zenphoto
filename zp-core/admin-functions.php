@@ -71,7 +71,6 @@ function datepickerJS() {
  */
 function printAdminHeader($tab,$subtab=NULL) {
 	global $_zp_admin_tab, $_zp_admin_subtab, $gallery, $zenphoto_tabs,$_zp_RTL_css,$_zp_last_modified;
-	$zenphoto_tabs = zp_apply_filter('admin_tabs', $zenphoto_tabs, $_zp_admin_tab);
 	if (!is_object($gallery)) $gallery = new Gallery();
 	$_zp_admin_tab = $tab;
 	if (isset($_GET['tab'])) {

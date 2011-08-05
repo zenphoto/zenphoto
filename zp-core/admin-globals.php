@@ -145,6 +145,9 @@ if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_null_account) {
 												'subtabs'=>$subtabs,
 												'default'=>$default);
 }
+
+$zenphoto_tabs = zp_apply_filter('admin_tabs', $zenphoto_tabs);
+
 //	so as to make it generally available as we make much use of it
 require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox.php');
 

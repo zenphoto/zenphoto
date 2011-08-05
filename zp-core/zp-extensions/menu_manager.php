@@ -73,7 +73,7 @@ class menu_manager {
  * @param string $current current tab
  * @return unknown
  */
-function menu_tabs($tabs, $current) {
+function menu_tabs($tabs) {
 	if (zp_loggedin()) {
 		$newtabs = array();
 		foreach ($tabs as $key=>$tab) {
