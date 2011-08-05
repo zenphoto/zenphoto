@@ -39,7 +39,7 @@ class Album extends MediaObject {
 	 * @param bool $cache load from cache if present
 	 * @return Album
 	 */
-	function Album(&$gallery, $folder8, $cache=true, $quiet=false) {
+	function __construct(&$gallery, $folder8, $cache=true, $quiet=false) {
 		if (!is_object($gallery) || strtolower(get_class($gallery)) != 'gallery') {
 			$msg = sprintf(gettext('Bad gallery in instantiation of album %s.'),$folder8);
 			debugLogBacktrace($msg);

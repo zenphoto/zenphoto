@@ -41,7 +41,7 @@ class Zenpage {
 	/**
 	 * Class instantiator
 	 */
-	function Zenpage() {
+	function __construct() {
 	}
 
 	function getCategoryStructure() {
@@ -753,7 +753,7 @@ class ZenpageItems extends ZenpageRoot {
 	/**
 	 * Class instantiator
 	 */
-	function ZenpageItems() {
+	function __construct() {
 		// no action required
 	}
 

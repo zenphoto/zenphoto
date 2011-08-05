@@ -13,7 +13,7 @@ class ZenpageCategory extends ZenpageRoot {
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
 	var $view_rights = VIEW_NEWS_RIGHTS;
 
-	function ZenpageCategory($catlink, $create=NULL) {
+	function __construct($catlink, $create=NULL) {
 		$new = parent::PersistentObject('news_categories', array('titlelink'=>$catlink), 'titlelink', true, empty($catlink), $create);
 	}
 

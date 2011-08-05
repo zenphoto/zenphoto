@@ -43,7 +43,7 @@ class SearchEngine
 	 * @param bool $dynamic_album set true for dynamic albums (limits the search fields)
 	 * @return SearchEngine
 	 */
-	function SearchEngine($dynamic_album = false) {
+	function __construct($dynamic_album = false) {
 		global $_zp_exifvars;
 		//image/album fields
 		$this->gallery = new Gallery();
@@ -1131,7 +1131,7 @@ class SearchEngine
 		$albums = array();
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) { return $albums; } // nothing to find
-		$criteria = array('item'=>'albums','fields'=>implode(',',$this->fieldList),'search'=>serialize($searchstring), 'sort'=>$sorttype.' '.$sortdirection);
+		$criteria = $this->getCacheTag('albums',serialize($searchstring), $sorttype.' '.$sortdirection);
 		if ($criteria == $this->searches['albums']) {
 			return $this->albums;
 		}
@@ -1230,7 +1230,6 @@ class SearchEngine
 		return null;
 	}
 
-
 	/**
 	 * Returns the number of images found in the search
 	 *
@@ -1262,7 +1261,7 @@ class SearchEngine
 			$this->images = array();
 			return $this->images;
 		}
-		$criteria = array('item'=>'images','fields'=>implode(',',$this->fieldList),'search'=>serialize($searchstring).' '.$searchdate, 'sort'=>$sorttype.' '.$sortdirection);
+		$criteria = $this->getCacheTag('images',($searchstring).' '.$searchdate, $sorttype.' '.$sortdirection);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
 		}
@@ -1462,47 +1461,49 @@ class SearchEngine
 		$this->words = '';
 	}
 
-	function cacheSearch($criteria, $found) {
+	/**
+	 *
+	 * creates a unique id for a search
+	 * @param string $table	Database table
+	 * @param string $search	Search string
+	 * @param string $sort	Sort criteria
+	 */
+	protected function getCacheTag($table,$search,$sort) {
+		return array('item'=>$table,'fields'=>implode(',',$this->fieldList),'search'=>$search, 'sort'=>$sort,'user'=>getUserIP());
+	}
+
+	/**
+	 *
+	 * Caches a search
+	 * @param string $criteria
+	 * @param string $found reslts of the search
+	 */
+	protected function cacheSearch($criteria, $found) {
 		$criteria = serialize($criteria);
-		$sql = 'SELECT `id` FROM '.prefix('searches').' WHERE `criteria`='.db_quote($criteria);
+		$sql = 'SELECT `id`, data`, `date` FROM '.prefix('search_cache').' WHERE `criteria`='.db_quote($criteria);
 		$result = query_single_row($sql);
 		if ($result) {
-			$id = $result['id'];
-			$sql = 'DELETE FROM '.prefix('search_storage').' WHERE `search_id`='.$id;
-			query($sql);
-		} else {
-			$sql = 'INSERT INTO '.prefix('searches').' (criteria, date) VALUES ('.db_quote($criteria).','.db_quote(date('Y-m-d H:i:s.u')).')';
-			$result = query($sql);
-			$id = db_insert_id();
-		}
-
-		if ($found) {
-			foreach ($found as $row) {
-				$sql = 'INSERT INTO '.prefix('search_storage').' (search_id, data) VALUES ('.$id.','.db_quote(serialize($row)).')';
+				$sql = 'UPDATE '.prefix('search_cache').' SET `data`='.db_quote(serialize($found)).', `date`='.db_quote(date('Y-m-d H:m:s')).' WHERE `id`='.$result['id'];
 				query($sql);
-			}
+		} else {
+				$sql = 'INSERT INTO '.prefix('search_cache').' (criteria, data, date) VALUES ('.db_quote($criteria).','.db_quote(serialize($found)).','.db_quote(date('Y-m-d H:m:s')).')';
+				query($sql);
 		}
 	}
 
-	function getCachedSearch($criteria) {
-		$sql = 'SELECT `id`, `date` FROM '.prefix('searches').' WHERE `criteria`='.db_quote(serialize($criteria));
+	/**
+	 *
+	 * Fetches a search from the cache if it exists and has not expired
+	 * @param string $criteria
+	 */
+	protected function getCachedSearch($criteria) {
+		$sql = 'SELECT `id`, `date`, `data` FROM '.prefix('search_cache').' WHERE `criteria`='.db_quote(serialize($criteria));
 		$result = query_single_row($sql);
 		if ($result) {
-			$now = new DateTime("now");
-			$criteriaDate = new DateTime($result['date']);
-			$interval = time() - strtotime($result['date']);
-			if ($interval > SEARCH_CACHE_DURATION*60) {
-				query('DELETE FROM '.prefix('searches').' WHERE `id`='.$result['id']);
-				query('DELETE FROM '.prefix('search_storage').' WHERE `search_id`='.$result['id']);
+			if ((time() - strtotime($result['date'])) > SEARCH_CACHE_DURATION*60) {
+				query('DELETE FROM '.prefix('search_cache').' WHERE `id`='.$result['id']);
 			} else {
-				$result = query_full_array('SELECT `data` FROM '.prefix('search_storage').' WHERE `search_id`='.$result['id']);
-				$items = array();
-				if ($result) {
-					foreach ($result as $row) {
-						$items[] = unserialize($row['data']);
-					}
-				}
-				return $items;
+				return unserialize($result['data']);
 			}
 		}
 		return NULL;

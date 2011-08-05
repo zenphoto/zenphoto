@@ -14,7 +14,7 @@ class ZenpageNews extends ZenpageItems {
 	var $view_rights = VIEW_NEWS_RIGHTS;
 	var $categories = NULL;
 
-	function ZenpageNews($titlelink, $allowCreate=NULL) {
+	function __construct($titlelink, $allowCreate=NULL) {
 		$new = parent::PersistentObject('news', array('titlelink'=>$titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
 	}
 

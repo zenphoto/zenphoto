@@ -73,7 +73,7 @@ class TextObject extends _Image {
 	 * @param string $filename the filename of the text file
 	 * @return TextObject
 	 */
-	function TextObject($album, $filename) {
+	function __construct($album, $filename) {
 
 		$this->watermark = getOption('TextObject_watermark');
 		$this->watermarkDefault = getOption('textobject_watermark_default_images');

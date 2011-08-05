@@ -21,7 +21,7 @@ class Gallery {
 	 *
 	 * @return Gallery
 	 */
-	function Gallery() {
+	function __construct() {
 		// Set our album directory
 		$this->albumdir = ALBUM_FOLDER_SERVERPATH;
 		if (GALLERY_DATA) {
@@ -348,19 +348,8 @@ class Gallery {
 		if (empty($restart)) {
 			setOption('last_garbage_collect', time());
 			/* purge old search cache items */
-			$sql = 'SELECT `id` FROM '.prefix('searches').' WHERE `date`<'.db_quote(date('Y-m-d'));
+			$sql = 'DELETE FROM '.prefix('searche_cache').' WHERE `date`<'.db_quote(date('Y-m-d H:m:s'),now()-SEARCH_CACHE_DURATION*60);
 			$result = query_full_array($sql);
-			if ($result) {
-				$dead = array();
-				foreach ($result as $row) {
-					$dead[] = $row['id'];
-				}
-				$dead = implode(',',$dead);
-				$sql = 'DELETE FROM '.prefix('searches').' WHERE `id` IN ('.$dead.')';
-				query($sql);
-				$sql = 'DELETE FROM '.prefix('search_storage').' WHERE `search_id` IN ('.$dead.')';
-				query($sql);
-			}
 
 			/* clean the comments table */
 			$this->commentClean('images');

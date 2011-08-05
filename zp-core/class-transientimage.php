@@ -14,11 +14,11 @@ class Transientimage extends _Image {
 	 * @param string $image the full path to the image
 	 * @return transientimage
 	 */
-	function Transientimage(&$album, $image) {
+	function __construct(&$album, $image) {
 		if (!is_object($album)) return NULL;
 		$this->album = $album;
 		$this->localpath = $image;
-		
+
 		$filename = makeSpecialImageName($image);
 		$this->filename = $filename;
 		$this->displayname = substr(basename($image), 0, strrpos(basename($image), '.'));

@@ -394,7 +394,7 @@ class ThemeObject extends PersistentObject {
 	/**
 	 * Class instantiator
 	 */
-	function ThemeObject() {
+	function __construct() {
 		// no action required
 	}
 
@@ -691,7 +691,7 @@ class MediaObject extends ThemeObject {
 	/**
 	 * Class instantiator
 	 */
-	function MediaObject() {
+	function __construct() {
 	//	no actions required
 	}
 

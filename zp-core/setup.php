@@ -1419,7 +1419,7 @@ if (file_exists(CONFIGFILE)) {
 			$_zp_conf_vars['mysql_prefix'].'pages',	$_zp_conf_vars['mysql_prefix'].'news2cat',
 			$_zp_conf_vars['mysql_prefix'].'news_categories',	$_zp_conf_vars['mysql_prefix'].'news',
 			$_zp_conf_vars['mysql_prefix'].'menu',$_zp_conf_vars['mysql_prefix'].'plugin_storage',
-			$_zp_conf_vars['mysql_prefix'].'searches',$_zp_conf_vars['mysql_prefix'].'search_storage'
+			$_zp_conf_vars['mysql_prefix'].'search_cache'
 			);
 
 		// v1.3.2 handle zenpage table name change transition:
@@ -1482,8 +1482,7 @@ if (file_exists(CONFIGFILE)) {
 	$tbl_news2cat = prefix('news2cat');
 	$tbl_menu_manager = prefix('menu');
 	$tbl_plugin_storage = prefix('plugin_storage');
-	$tbl_searches = prefix('searches');
-	$tbl_search_storage = prefix('search_storage');
+	$tbl_searches = prefix('search_cache');
 
 	// Prefix the constraint names:
 	$db_schema = array();
@@ -1801,19 +1800,13 @@ if (file_exists(CONFIGFILE)) {
 		) $collation;";
 	}
 	// v 1.4.2
-	if (isset($create[$_zp_conf_vars['mysql_prefix'].'search_storage'])) {
-		$db_schema[] = "CREATE TABLE IF NOT EXISTS ".prefix('search_storage')." (
-		`id` int(11) UNSIGNED NOT NULL auto_increment,
-		`search_id` int(11) unsigned NOT NULL,
-		`data` TEXT,
-		PRIMARY KEY (`id`)
-		) $collation;";
-	}
-	if (isset($create[$_zp_conf_vars['mysql_prefix'].'searches'])) {
-		$db_schema[] = "CREATE TABLE IF NOT EXISTS ".prefix('searches')." (
+	if (isset($create[$_zp_conf_vars['mysql_prefix'].'search_cache'])) {
+		$db_schema[] = "CREATE TABLE IF NOT EXISTS ".prefix('search_cache')." (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`criteria` TEXT,
 		`date` datetime default NULL,
+		`data` TEXT,
+		INDEX (`criteria`(255)),
 		PRIMARY KEY (`id`)
 		) $collation;";
 	}

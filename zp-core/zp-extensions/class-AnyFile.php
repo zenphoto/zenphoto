@@ -80,7 +80,7 @@ class AnyFile extends TextObject {
 	 * @param string $filename the filename of the text file
 	 * @return TextObject
 	 */
-	function AnyFile($album, $filename) {
+	function __construct($album, $filename) {
 
 		$this->watermark = getOption('AnyFile_watermark');
 		$this->watermarkDefault = getOption('AnyFile_watermark_default_images');
