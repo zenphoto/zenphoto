@@ -1258,10 +1258,10 @@ class SearchEngine
 		}
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
-		if (empty($searchstring) && empty($searchdate)) {
+		if (empty($searchstring) && empty($searchdate)) {	 // nothing to find
 			$this->images = array();
 			return $this->images;
-		} // nothing to find
+		}
 		$criteria = array('item'=>'images','search'=>serialize($searchstring).' '.$searchdate, 'sort'=>$sorttype.' '.$sortdirection);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
@@ -1475,9 +1475,12 @@ class SearchEngine
 			$result = query($sql);
 			$id = db_insert_id();
 		}
-		foreach ($found as $row) {
-			$sql = 'INSERT INTO '.prefix('search_storage').' (search_id, data) VALUES ('.$id.','.db_quote(serialize($row)).')';
-			query($sql);
+
+		if ($found) {
+			foreach ($found as $row) {
+				$sql = 'INSERT INTO '.prefix('search_storage').' (search_id, data) VALUES ('.$id.','.db_quote(serialize($row)).')';
+				query($sql);
+			}
 		}
 	}
 

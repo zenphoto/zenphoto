@@ -168,8 +168,8 @@ if (isset($_GET['action'])) {
 					$searchfields[] = substr(sanitize($key),7);
 				}
 			}
-			setOption('search_cache_duration', sanitize_numeric($_POST['search_cache_duration']));
 			setOption('search_fields', implode(',',$searchfields));
+			setOption('search_cache_duration', sanitize_numeric($_POST['search_cache_duration']));
 			$olduser = getOption('search_user');
 			$newuser = trim(sanitize($_POST['search_user'],3));
 			if ($_POST['password_enabled']) {
