@@ -91,14 +91,13 @@ if (isset($_GET['action'])) {
 			$groupname = trim(sanitize($_POST[$i.'-group'],3));
 			$group = $_zp_authority->newAdministrator($groupname, 0);
 			if (empty($groupname)) {
-				$_zp_authority->updateAdminField('group', NULL, array('id'=>$user->getID()));
+				$user->setGroup(NULL);
 			} else {
-				$rights = 0;
 				$user->setObjects(processManagedObjects($group->getID(),$rights));
-				$user->setRights($group->getRights() | $rights);
+				$user->setRights($group->getRights() | NO_RIGHTS);
 				$user->setGroup($groupname);
-				$user->save();
 			}
+			$user->save();
 		}
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=assignments&saved');
 		exit();

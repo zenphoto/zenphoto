@@ -2974,8 +2974,9 @@ function printZenpageRSSHeaderLink($option,$category,$linktext,$lang) {
  * @param string $albumname
  * @param string $imagename
  * @param int $size the size to make the image. If omitted image will be 50% of 'image_size' option.
+ * @param bool $linkalbum set true to link specific image to album instead of image
  */
-function zenpageAlbumImage($albumname, $imagename=NULL, $size=NULL) {
+function zenpageAlbumImage($albumname, $imagename=NULL, $size=NULL, $linkalbum=false) {
 	global $_zp_gallery;
 	echo '<br />';
 	$album = new Album($_zp_gallery, $albumname);
@@ -2983,31 +2984,36 @@ function zenpageAlbumImage($albumname, $imagename=NULL, $size=NULL) {
 		if (is_null($size)) {
 			$size = floor(getOption('image_size') * 0.5);
 		}
+		$image = NULL;
 		if (is_null($imagename)) {
-			makeImageCurrent($album->getAlbumThumbImage());
-			rem_context(ZP_IMAGE);
-			echo '<a href="'.html_encode(getAlbumLinkURL($album)).'"   title="'.sprintf(gettext('View the %s album'), $albumname).'">';
-			add_context(ZP_IMAGE);
-			printCustomSizedImage(sprintf(gettext('View the album %s'), $albumname), $size);
-			rem_context(ZP_IMAGE | ZP_ALBUM);
-			echo '</a>';
+			$linkalbum = true;
+			$image = $album->getAlbumThumbImage();
 		} else {
 			$image = newImage($album, $imagename);
-			if ($image->loaded) {
-				makeImageCurrent($image);
+		}
+		if ($image && $image->loaded) {
+			makeImageCurrent($image);
+			if ($linkalbum) {
+				rem_context(ZP_IMAGE);
+				echo '<a href="'.html_encode(getAlbumLinkURL($album)).'"   title="'.sprintf(gettext('View the %s album'), $albumname).'">';
+				add_context(ZP_IMAGE);
+				printCustomSizedImage(sprintf(gettext('View the album %s'), $albumname), $size);
+				rem_context(ZP_IMAGE | ZP_ALBUM);
+				echo '</a>';
+			} else {
 				echo '<a href="'.html_encode(getImageLinkURL($image)).'" title="'.sprintf(gettext('View %s'), $imagename).'">';
 				printCustomSizedImage(sprintf(gettext('View %s'), $imagename), $size);
 				rem_context(ZP_IMAGE | ZP_ALBUM);
 				echo '</a>';
-			} else {
-				?>
-				<span style="background:red;color:black;">
-				<?php
-				printf(gettext('<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s'), $albumname, $imagename);
-				?>
-				</span>
-				<?php
 			}
+		} else {
+			?>
+			<span style="background:red;color:black;">
+			<?php
+			printf(gettext('<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s'), $albumname, $imagename);
+			?>
+			</span>
+			<?php
 		}
 	} else {
 		?>

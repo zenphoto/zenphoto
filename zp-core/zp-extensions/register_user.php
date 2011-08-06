@@ -213,11 +213,13 @@ function printRegistrationForm($thanks=NULL) {
 			if (!is_numeric($rights)) {	//  a group or template
 				$admin = $_zp_authority->getAnAdmin(array('`user`=' => $rights,'`valid`=' => 0));
 				if ($admin) {
-					$rights = $admin->getRights();
 					$userobj->setObjects($admin->getObjects());
 					if ($admin->getName() != 'template') {
 						$group = $rights;
 					}
+					$rights = $admin->getRights();
+				} else {
+					$rights = NO_RIGHTS;
 				}
 			}
 			$userobj->setRights($rights | NO_RIGHTS);
