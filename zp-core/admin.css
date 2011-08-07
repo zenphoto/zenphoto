@@ -540,19 +540,23 @@ table.bordered .subhead {
 	border-top: 1px solid #cccccc;
 }
 
-table.bordered td {
-	padding: 8px 16px;
-	margin: 0px;
-	background-color: #fff;
-	border-bottom: 0px solid #E5E5E5;
-}
-
 table.bordered tr td {
 	padding: 8px 16px;
 	margin: 0px;
 	background-color: #fff;
-	border-bottom: 1px solid #ECECEC;
+	border-bottom: 1px solid #E5E5E5; 
 }
+
+/*****
+/* some additions for the plugins and options tables, easier to read if top aligned IMHO */
+table.options td {
+	padding: 16px 16px 10px 16px !important;
+	vertical-align: top;
+}
+table.options td p {
+ margin-top: 0;
+}
+/*******/
 
 table.bordered tr.alt1 td {
 	background-color: #ECF1F2;
