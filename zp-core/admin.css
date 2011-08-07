@@ -1785,25 +1785,30 @@ span.tagMatches span {
 	border-radius: 5px;
 }
 
+
 .box-rights {
 	width: 460px;
 	margin: 0 0 10px 0;
 	padding: 0px 0px 0px 0px;
 }
 
+fieldset,
 .box-rights fieldset {
 	padding: 5px;
-	border: 1px solid gray;
+	border: 1px solid darkgray;
 	-moz-border-radius: 05px;
 	-khtml-border-radius: px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+	margin-bottom: 5px;
+	line-height: 20px;
 }
 
 .box-rights legend {
 	text-weight: bold;
 	color: black;
 }
+
 
 .box-rights fieldset {
 	margin-bottom: 15px;
