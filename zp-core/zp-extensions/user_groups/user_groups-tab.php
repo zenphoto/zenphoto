@@ -31,7 +31,7 @@ if (isset($_GET['action'])) {
 		$groupobj = $_zp_authority->newAdministrator($groupname, 0);
 		$groupobj->remove();
 		// clear out existing user assignments
-		$_zp_authority->updateAdminField('group', NULL, array('valid'=>1, 'group'=>$groupname));
+		$_zp_authority->updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&deleted');
 		exit();
 	} else if ($action == 'savegroups') {
@@ -60,19 +60,21 @@ if (isset($_GET['action'])) {
 					//have to update any users who have this group designate.
 					foreach ($admins as $admin) {
 						if ($admin['valid'] && $admin['group']===$groupname) {
-							$user = $_zp_authority->newAdministrator($admin['user'], 1);
+							$user = $_zp_authority->newAdministrator($admin['user'], $admin['valid']);
 							$user->setRights($group->getRights());
 							$user->setObjects($group->getObjects());
 							$user->save();
 						}
 					}
 					//user assignments: first clear out existing ones
-					$_zp_authority->updateAdminField('group', NULL, array('valid'=>1, 'group'=>$groupname));
+					$_zp_authority->updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
 					//then add the ones marked
 					$target = 'user_'.$i.'-';
 					foreach ($_POST as $item=>$username) {
+						$item = sanitize(postIndexDecode($item));
 						if (strpos($item, $target)!==false) {
-							$user = $_zp_authority->newAdministrator($username, 1);
+							$username = substr($item, strlen($target));
+							$user = $_zp_authority->getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 							$user->setRights($group->getRights());
 							$user->setObjects($group->getObjects());
 							$user->setGroup($groupname);
@@ -87,7 +89,7 @@ if (isset($_GET['action'])) {
 	} else if ($action == 'saveauserassignments') {
 		for ($i = 0; $i < $_POST['totalusers']; $i++) {
 			$username = trim(sanitize($_POST[$i.'-user'],3));
-			$user = $_zp_authority->newAdministrator($username, 1);
+			$user = $_zp_authority->getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 			$groupname = trim(sanitize($_POST[$i.'-group'],3));
 			$group = $_zp_authority->newAdministrator($groupname, 0);
 			if (empty($groupname)) {

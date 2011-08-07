@@ -445,24 +445,29 @@ class Zenphoto_Authority {
 	/**
 	 * Updates a field in admin record(s)
 	 *
-	 * @param string $field name of the field
+	 * @param string $update name of the field
 	 * @param mixed $value what to store
-	 * @param array $constraints field value pairs for constraining the update
+	 * @param array $constraints on the update [ field<op>,value ]
 	 * @return mixed Query result
 	 */
-	function updateAdminField($field, $value, $constraints) {
+	function updateAdminField($update, $value, $constraints) {
 		$where = '';
 		foreach ($constraints as $field=>$clause) {
 			if (!empty($where)) $where .= ' AND ';
-			$where .= '`'.$field.'`='.db_quote($clause);
+			if (is_numeric($clause)) {
+				$where .= $field.$clause;
+			} else {
+				$where .= $field.db_quote($clause);
+			}
 		}
 		if (is_null($value)) {
 			$value = 'NULL';
 		} else {
-			$value = '"'.$value.'"';
+			$value = db_quote($value);
 		}
-		$sql = 'UPDATE '.prefix('administrators').' SET `'.$field.'`='.$value.' WHERE '.$where;
-		return query($sql);
+		$sql = 'UPDATE '.prefix('administrators').' SET `'.$update.'`='.$value.' WHERE '.$where;
+		$result = query($sql);
+		return $result;
 	}
 
 	/**

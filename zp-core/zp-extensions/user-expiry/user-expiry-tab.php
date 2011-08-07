@@ -31,8 +31,8 @@ if (isset($_GET['action'])) {
 	XSRFdefender($action);
 	if ($action == 'expiry') {
 		foreach ($_POST as $key=>$action) {
-			if (strpos($key,'r_') == 0) {
-				$userobj = $_zp_authority->getAnAdmin(array('`id`=' => str_replace('r_', '', $key)));
+			if (strpos($key,'r_') === 0) {
+				$userobj = $_zp_authority->getAnAdmin(array('`id`=' => str_replace('r_', '', postIndexDecode($key))));
 				if ($userobj) {
 					switch ($action) {
 						case 'delete':
@@ -104,97 +104,97 @@ echo '</head>'."\n";
 				<?php
 				zp_apply_filter('admin_note','users', $subtab);
 				$groups = array();
-						$subscription = 86400*getOption('user_expiry_interval');
-						$now = time();
-						$warnInterval = $now + getOption('user_expiry_warn_interval')*86400;
-						?>
-						<p>
-						<?php	echo gettext("Manage user expiry."); ?>
-						</p>
-						<form action="?action=expiry" method="post" autocomplete="off" >
-							<?php XSRFToken('expiry'); ?>
-							<span class="buttons">
-								<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-								<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-								<div class="floatright">
-									<a title="<?php echo gettext('options')?>" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;show-user-expiry#user-expiry">
-										<strong><?php echo gettext('Options')?></strong>
-									</a>
-								</div>
-							</span>
-							<br clear="all" />
-							<br /><br />
-							<ul class="fullchecklist">
-								<?php
-								foreach ($adminordered as $user) {
-									if (!($user['rights'] & ADMIN_RIGHTS)) {
-										$checked_delete = $checked_disable = $checked_renew = $dup = '';
-										$expires = strtotime($user['date'])+$subscription;
-										$expires_display = date('Y-m-d',$expires);
-										$loggedin = $user['loggedin'];
-										if (empty($loggedin)) {
-											$loggedin = gettext('never');
-										} else {
-											$loggedin = date('Y-m-d',strtotime($loggedin));
-										}
-										if ($expires < $now) {
-											if ($user['valid'] == 1) {
-												$checked_delete = ' checked="chedked"';
-											}
-											$expires_display = sprintf(gettext('Expired:%s'),'<span style="color:red" >'.$expires_display.'</span>');
-										} else {
-											if ($expires < $warnInterval) {
-												$expires_display = sprintf(gettext('Expires:%s'),'<span style="color:orange" class="tooltip" title="'.gettext('Expires soon').'">'.$expires_display.'</span>');
-											} else {
-												$expires_display = sprintf(gettext('Expires:%s'),$expires_display);
-											}
-										}
-										if ($user['valid'] == 2) {
-											$hits = 0;
-											foreach ($adminordered as $tuser) {
-												if ($tuser['user'] == $user['user']) {
-													$hits++;
-												}
-											}
-											if ($hits > 1) {
-												$checked_delete = ' checked="chedked"';
-												$checked_disable = ' disabled="disabled"';
-												$expires_display = ' <span style="color:red">'.gettext('User id has been preempted').'</span>';
-											}
-										}
-										$id = $user['id'];
-										$r1 = '<img src="../../images/fail.png" title="'.gettext('delete').'" /><input type="radio" name="r_'.$id.'" value="delete"'.$checked_delete.' />&nbsp;';
-										if ($user['valid'] == 2) {
-											$r2 = '<img src="../../images/lock_open.png" title="'.gettext('enable').'" /><input type="radio" name="r_'.$id.'" value="enable"'.$checked_disable.' />&nbsp;';
-										} else {
-											$r2 = '<img src="../../images/lock_2.png" title="'.gettext('disable').'" /><input type="radio" name="r_'.$id.'" value="disable"'.$checked_disable.' />&nbsp;';
-										}
-										$r3 = '<img src="../../images/pass.png" title="'.gettext('renew').'" /><input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.$checked_disable.' />&nbsp;';
-										if (!$user['email']) {
-											$checked_disable = ' disabled="disabled"';
-										}
-										$r4 = '<img src="../../images/envelope.png" title="'.gettext('Email renewal').'" /><input type="radio" name="r_'.$id.'" value="revalidate"'.$checked_disable.' />&nbsp;';
-										?>
-										<li>
-											<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$s; last logon:%4$s)'),$r1.$r2.$r3.$r4,html_encode($user['user']),$expires_display,$loggedin); ?>
-										</li>
-										<?php
+				$subscription = 86400*getOption('user_expiry_interval');
+				$now = time();
+				$warnInterval = $now + getOption('user_expiry_warn_interval')*86400;
+				?>
+				<p>
+				<?php	echo gettext("Manage user expiry."); ?>
+				</p>
+				<form action="?action=expiry" method="post" autocomplete="off" >
+					<?php XSRFToken('expiry'); ?>
+					<span class="buttons">
+						<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+						<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						<div class="floatright">
+							<a title="<?php echo gettext('options')?>" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-options.php?'page=options&amp;tab=plugin&amp;show-user-expiry#user-expiry">
+								<strong><?php echo gettext('Options')?></strong>
+							</a>
+						</div>
+					</span>
+					<br clear="all" />
+					<br /><br />
+					<ul class="fullchecklist">
+						<?php
+						foreach ($adminordered as $user) {
+							if (!($user['rights'] & ADMIN_RIGHTS)) {
+								$checked_delete = $checked_disable = $checked_renew = $dup = '';
+								$expires = strtotime($user['date'])+$subscription;
+								$expires_display = date('Y-m-d',$expires);
+								$loggedin = $user['loggedin'];
+								if (empty($loggedin)) {
+									$loggedin = gettext('never');
+								} else {
+									$loggedin = date('Y-m-d',strtotime($loggedin));
+								}
+								if ($expires < $now) {
+									if ($user['valid'] == 1) {
+										$checked_delete = ' checked="chedked"';
+									}
+									$expires_display = sprintf(gettext('Expired:%s'),'<span style="color:red" >'.$expires_display.'</span>');
+								} else {
+									if ($expires < $warnInterval) {
+										$expires_display = sprintf(gettext('Expires:%s'),'<span style="color:orange" class="tooltip" title="'.gettext('Expires soon').'">'.$expires_display.'</span>');
+									} else {
+										$expires_display = sprintf(gettext('Expires:%s'),$expires_display);
 									}
 								}
+								if ($user['valid'] == 2) {
+									$hits = 0;
+									foreach ($adminordered as $tuser) {
+										if ($tuser['user'] == $user['user']) {
+											$hits++;
+										}
+									}
+									if ($hits > 1) {
+										$checked_delete = ' checked="chedked"';
+										$checked_disable = ' disabled="disabled"';
+										$expires_display = ' <span style="color:red">'.gettext('User id has been preempted').'</span>';
+									}
+								}
+								$id = postIndexEncode($user['id']);
+								$r1 = '<img src="../../images/fail.png" title="'.gettext('delete').'" /><input type="radio" name="r_'.$id.'" value="delete"'.$checked_delete.' />&nbsp;';
+								if ($user['valid'] == 2) {
+									$r2 = '<img src="../../images/lock_open.png" title="'.gettext('enable').'" /><input type="radio" name="r_'.$id.'" value="enable"'.$checked_disable.' />&nbsp;';
+								} else {
+									$r2 = '<img src="../../images/lock_2.png" title="'.gettext('disable').'" /><input type="radio" name="r_'.$id.'" value="disable"'.$checked_disable.' />&nbsp;';
+								}
+								$r3 = '<img src="../../images/pass.png" title="'.gettext('renew').'" /><input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.$checked_disable.' />&nbsp;';
+								if (!$user['email']) {
+									$checked_disable = ' disabled="disabled"';
+								}
+								$r4 = '<img src="../../images/envelope.png" title="'.gettext('Email renewal').'" /><input type="radio" name="r_'.$id.'" value="revalidate"'.$checked_disable.' />&nbsp;';
 								?>
-							</ul>
-							<img src="../../images/fail.png" /> <?php echo gettext('Remove'); ?>
-							<img src="../../images/lock_2.png" /> <?php echo gettext('Disable'); ?>
-							<img src="../../images/lock_open.png" /> <?php echo gettext('Enable'); ?>
-							<img src="../../images/pass.png" /> <?php echo gettext('Renew'); ?>
-							<img src="../../images/envelope.png" /> <?php echo gettext('Email renewal link'); ?>
-							<p class="buttons">
-							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-							</p>
-							<br clear="all" /><br /><br />
-						</form>
-						<br clear="all" /><br />
+								<li>
+									<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$s; last logon:%4$s)'),$r1.$r2.$r3.$r4,html_encode($user['user']),$expires_display,$loggedin); ?>
+								</li>
+								<?php
+							}
+						}
+						?>
+					</ul>
+					<img src="../../images/fail.png" /> <?php echo gettext('Remove'); ?>
+					<img src="../../images/lock_2.png" /> <?php echo gettext('Disable'); ?>
+					<img src="../../images/lock_open.png" /> <?php echo gettext('Enable'); ?>
+					<img src="../../images/pass.png" /> <?php echo gettext('Renew'); ?>
+					<img src="../../images/envelope.png" /> <?php echo gettext('Email renewal link'); ?>
+					<p class="buttons">
+					<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+					<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+					</p>
+					<br clear="all" /><br /><br />
+				</form>
+				<br clear="all" /><br />
 			</div>
 
 		</div>

@@ -112,7 +112,7 @@ if (isset($_GET['action'])) {
 			}
 			foreach ($_POST as $item=>$value) {
 				if (strpos($item, 'gallery-page_')===0) {
-					$item = sanitize(substr($item, 13));
+					$item = sanitize(substr(postIndexDecode($item), 13));
 					$gallery->setUnprotectedPage($item, (int) isset($_POST['gallery_page_unprotected_'.$item]));
 				}
 			}
@@ -165,7 +165,7 @@ if (isset($_GET['action'])) {
 			unset($_POST['SEARCH_Tags_tag_match']);
 			foreach ($_POST as $key=>$value) {
 				if (strpos($key, 'SEARCH_') !== false) {
-					$searchfields[] = substr(sanitize($key),7);
+					$searchfields[] = substr(sanitize(postIndexDecode($key)),7);
 				}
 			}
 			setOption('search_fields', implode(',',$searchfields));

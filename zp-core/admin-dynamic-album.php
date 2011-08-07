@@ -50,7 +50,7 @@ if (isset($_POST['savealbum'])) {
 	$searchfields = array();
 	foreach ($_POST as $key=>$value) {
 		if (strpos($key, 'SEARCH_') !== false) {
-			$searchfields[] = sanitize(str_replace('SEARCH_', '', $key));
+			$searchfields[] = sanitize(str_replace('SEARCH_', '', postIndexDecode($key)));
 		}
 	}
 	$constraints = "\nCONSTRAINTS=".'inalbums='.((int) (isset($_POST['return_albums']))).'&inimages='.((int) (isset($_POST['return_images'])));
