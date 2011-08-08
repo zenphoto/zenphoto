@@ -207,7 +207,7 @@ if (file_exists($newfile) & !$adminrequest) {
 
 if ($process) { // If the file hasn't been cached yet, create it.
 	// setup standard image options from the album theme if it exists
-	if (!cacheImage_protected($newfilename, $imgfile, $args, $allowWatermark, $theme, $album)) {
+	if (!cacheImage($newfilename, $imgfile, $args, $allowWatermark, $theme, $album)) {
 		imageError(gettext('Image processing resulted in a fatal error.'));
 	}
 	$fmt = filemtime($newfile);

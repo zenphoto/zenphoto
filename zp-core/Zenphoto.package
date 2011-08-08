@@ -356,12 +356,12 @@ zp-core/images/edit-delete.png
 zp-core/images/edit-image.png
 zp-core/images/envelope.png
 zp-core/images/err-cachewrite.png
+zp-core/images/err-failimage.png
 zp-core/images/err-imagegeneral.png
 zp-core/images/err-imagenotfound.png
 zp-core/images/err-noflashplayer.png
 zp-core/images/err-passwordprotected.png
 zp-core/images/fail.png
-zp-core/images/failed_image.png
 zp-core/images/favicon.ico
 zp-core/images/folder.png
 zp-core/images/folder_picture.png
