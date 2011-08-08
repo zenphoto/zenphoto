@@ -171,245 +171,246 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 	if (zp_imageCanRotate() && getOption('auto_rotate'))  {
 		$rotate = getImageRotation($imgfile);
 	}
-
-	if ($im = zp_imageGet($imgfile)) {
-		if ($rotate) {
-			$im = zp_rotateImage($im, $rotate);
-		}
-		$w = zp_imageWidth($im);
-		$h = zp_imageHeight($im);
-		// Give the sizing dimension to $dim
-		$ratio_in = '';
-		$ratio_out = '';
-		$crop = ($crop || $cw != 0 || $ch != 0);
-		if (!empty($size)) {
-			$dim = $size;
-			$width = $height = false;
-			if ($crop) {
-				$dim = $size;
-				if (!$ch) $ch = $size;
-				if (!$cw) $cw = $size;
-			}
-		} else if (!empty($width) && !empty($height)) {
-			$ratio_in = $h / $w;
-			$ratio_out = $height / $width;
-			if ($ratio_in > $ratio_out) { // image is taller than desired, $height is the determining factor
-				$thumb = true;
-				$dim = $width;
-				if (!$ch) $ch = $height;
-			} else { // image is wider than desired, $width is the determining factor
-				$dim = $height;
-				if (!$cw) $cw = $width;
-			}
-		} else if (!empty($width)) {
-			$dim = $width;
-			$size = $height = false;
-		} else if (!empty($height)) {
-			$dim = $height;
-			$size = $width = false;
-		} else {
-			// There's a problem up there somewhere...
-			imageError(gettext("Unknown error! Please report to the developers at <a href=\"http://www.zenphoto.org/\">www.zenphoto.org</a>"), 'err-imagegeneral.png');
-		}
-
-		$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
-		list($neww, $newh) = $sizes;
-
-		if (DEBUG_IMAGE) debugLog("cacheImage:".basename($imgfile).": \$size=$size, \$width=$width, \$height=$height, \$w=$w; \$h=$h; \$cw=$cw, ".
-											"\$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$newh=$newh, \$neww=$neww, \$dim=$dim, ".
-											"\$ratio_in=$ratio_in, \$ratio_out=$ratio_out \$upscale=$upscale \$rotate=$rotate \$effects=$effects");
-
-		if (!$upscale && $newh >= $h && $neww >= $w) { // image is the same size or smaller than the request
-			$neww = $w;
-			$newh = $h;
-			$allowscale = false;
-			if ($crop) {
-				if ($width > $neww) {
-					$width = $neww;
-				}
-				if ($height > $newh) {
-					$height = $newh;
-				}
-			}
-			if (DEBUG_IMAGE) debugLog("cacheImage:no upscale ".basename($imgfile).":  \$newh=$newh, \$neww=$neww, \$crop=$crop, \$thumb=$thumb, \$rotate=$rotate, watermark=".$watermark_use_image);
-		}
-		// Crop the image if requested.
-		if ($crop) {
-			if ($cw > $ch) {
-				$ir = $ch/$cw;
-			} else {
-				$ir = $cw/$ch;
-			}
-			if ($size) {
-				$neww = $size;
-				$newh = $ir*$size;
-			} else {
-				$neww = $width;
-				$newh = $height;
-				if ($neww > $newh) {
-					if ($newh === false) {
-						$newh = $ir*$neww;
-					}
-				} else {
-					if ($neww === false) {
-						$neww = $ir*$newh;
-					}
-				}
-			}
-			if (is_null($cx) && is_null($cy)) {	// scale crop to max of image
-				// set crop scale factor
-				$cf = 1;
-				if ($cw) $cf = min($cf,$cw/$neww);
-				if ($ch) $cf = min($cf,$ch/$newh);
-				//	set the image area of the crop (use the most image possible, rule of thirds positioning)
-				if (!$cw || $w/$cw*$ch > $h) {
-					$cw = round($h/$ch*$cw*$cf);
-					$ch = round($h*$cf);
-					$cx = round(($w - $cw) / 3);
-				} else {
-					$ch = round($w/$cw*$ch*$cf);
-					$cw = round($w*$cf);
-					$cy = round(($h - $ch) / 3);
-				}
-			} else {	// custom crop
-				if (!$cw || $cw > $w) $cw = $w;
-				if (!$ch || $ch > $h) $ch = $h;
-			}
-			// force the crop to be within the image
-			if ($cw + $cx > $w) $cx = $w - $cw;
-			if ($cx < 0) {
-				$cw = $cw + $cx;
-				$cx = 0;
-			}
-			if ($ch + $cy > $h) $cy = $h - $ch;
-			if ($cy < 0) {
-				$ch = $ch + $cy;
-				$cy = 0;
-			}
-			if (DEBUG_IMAGE) debugLog("cacheImage:crop ".basename($imgfile).":\$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate");
-			$newim = zp_createImage($neww, $newh);
-			zp_resampleImage($newim, $im, 0, 0, $cx, $cy, $neww, $newh, $cw, $ch);
-		} else {
-			if ($allowscale) {
-				$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
-				list($neww, $newh) = $sizes;
-
-			}
-			if (DEBUG_IMAGE) debugLog("cacheImage:no crop ".basename($imgfile).":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
-			$newim = zp_createImage($neww, $newh);
-			zp_resampleImage($newim, $im, 0, 0, 0, 0, $neww, $newh, $w, $h);
-		}
-
-		$imgEffects = explode(',', $effects);
-		if (in_array('gray', $imgEffects)) {
-			zp_imageGray($newim);
-		}
-
-		if (($thumb && $sharpenthumbs) || (!$thumb && $sharpenimages)) {
-			zp_imageUnsharpMask($newim, getOption('sharpen_amount'), getOption('sharpen_radius'), getOption('sharpen_threshold'));
-		}
-		$watermark_image = false;
-		if ($passedWM) {
-			if ($passedWM != NO_WATERMARK) {
-				$watermark_image = getWatermarkPath($passedWM);
-				if (!file_exists($watermark_image)) {
-					$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
-				}
-			}
-		} else {
-			if ($allow_watermark) {
-				$watermark_image = $watermark_use_image;
-				if ($watermark_image) {
-					if ($watermark_image != NO_WATERMARK) {
-						$watermark_image = getWatermarkPath($watermark_image);
-						if (!file_exists($watermark_image)) {
-							$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
-						}
-					}
-				}
-			}
-		}
-		if ($watermark_image) {
-			$offset_h = getOption('watermark_h_offset') / 100;
-			$offset_w = getOption('watermark_w_offset') / 100;
-			$watermark = zp_imageGet($watermark_image);
-			$watermark_width = zp_imageWidth($watermark);
-			$watermark_height = zp_imageHeight($watermark);
-			$imw = zp_imageWidth($newim);
-			$imh = zp_imageHeight($newim);
-			$nw = sqrt(($imw * $imh * $percent)*($watermark_width/$watermark_height));
-			$nh = $nw*($watermark_height/$watermark_width);
-			$percent = getOption('watermark_scale')/100;
-			$r = sqrt(($imw * $imh * $percent) / ($watermark_width * $watermark_height));
-			if (!getOption('watermark_allow_upscale')) {
-				$r = min(1, $r);
-			}
-			$nw = round($watermark_width * $r);
-			$nh = round($watermark_height * $r);
-			if (($nw != $watermark_width) || ($nh != $watermark_height)) {
-				$watermark = zp_imageResizeAlpha($watermark, $nw, $nh);
-			}
-			// Position Overlay in Bottom Right
-			$dest_x = max(0, floor(($imw - $nw) * $offset_w));
-			$dest_y = max(0, floor(($imh - $nh) * $offset_h));
-			if (DEBUG_IMAGE) debugLog("Watermark:".basename($imgfile).": \$offset_h=$offset_h, \$offset_w=$offset_w, \$watermark_height=$watermark_height, \$watermark_width=$watermark_width, \$imw=$imw, \$imh=$imh, \$percent=$percent, \$r=$r, \$nw=$nw, \$nh=$nh, \$dest_x=$dest_x, \$dest_y=$dest_y");
-			zp_copyCanvas($newim, $watermark, $dest_x, $dest_y, 0, 0, $nw, $nh);
-			zp_imageKill($watermark);
-		}
-
-		// Create the cached file (with lots of compatibility)...
-		mkdir_recursive(dirname($newfile));
-		if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) {	//	successful save of cached image
-			if (getOption('ImbedIPTC') && getSuffix($newfilename)=='jpg') {	// the imbed function works only with JPEG images
-				$iptc_data = zp_imageIPTC($imgfile);
-				if (empty($iptc_data)) {
-					global $_zp_extra_filetypes;	//	because we are doing the require in a function!
-					if (!$_zp_extra_filetypes) $_zp_extra_filetypes = array();
-					require_once(dirname(__FILE__).'/functions.php');	//	it is ok to increase memory footprint now since the image processing is complete
-					$gallery = new Gallery();
-					$iptc = array('1#090' => chr(0x1b) . chr(0x25) . chr(0x47),	//	character set is UTF-8
-												'2#115' =>$gallery->getTitle()	//	source
-												);
-					$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
-					$imagename = basename($imgfile);
-					$albumname = dirname($imgfile);
-					$image = newImage(new Album(new Gallery(),$albumname), $imagename);
-					$copyright = $image->getCopyright();
-					if (empty($copyright)) {
-						$copyright = getOption('default_copyright');
-					}
-					if (!empty($copyright)) {
-						$iptc['2#116'] = $copyright;
-					}
-					$credit = $image->getCredit();
-					if (!empty($credit)) {
-						$iptc['2#110'] = $credit;
-					}
-					foreach($iptc as $tag => $string) {
-						$tag_parts = explode('#',$tag);
-						$iptc_data .= iptc_make_tag($tag_parts[0], $tag_parts[1], $string);
-					}
-				} else {
-					if (GRAPHICS_LIBRARY=='Imagick' && IMAGICK_RETAIN_PROFILES) {	//	Imageick has preserved the metadata
-						$iptc_data = false;
-					}
-				}
-				if ($iptc_data) {
-					$content = iptcembed($iptc_data, $newfile);
-					$fw = fopen($newfile, 'w');
-					fwrite($fw, $content);
-					fclose($fw);
-					clearstatcache();
-				}
-			}
-			if (DEBUG_IMAGE) debugLog('Finished:'.basename($imgfile));
-		} else {
-			if (DEBUG_IMAGE) debugLog('cacheImage: failed to create '.$newfile);
-		}
-		@chmod($newfile, 0666 & CHMOD_VALUE);
-		zp_imageKill($newim);
-		zp_imageKill($im);
+	$im = zp_imageGet($imgfile);
+	if (!$im) {
+		imageError(gettext('Image not renderable.'), 'failed_image.png');
 	}
+	if ($rotate) {
+		$im = zp_rotateImage($im, $rotate);
+	}
+	$w = zp_imageWidth($im);
+	$h = zp_imageHeight($im);
+	// Give the sizing dimension to $dim
+	$ratio_in = '';
+	$ratio_out = '';
+	$crop = ($crop || $cw != 0 || $ch != 0);
+	if (!empty($size)) {
+		$dim = $size;
+		$width = $height = false;
+		if ($crop) {
+			$dim = $size;
+			if (!$ch) $ch = $size;
+			if (!$cw) $cw = $size;
+		}
+	} else if (!empty($width) && !empty($height)) {
+		$ratio_in = $h / $w;
+		$ratio_out = $height / $width;
+		if ($ratio_in > $ratio_out) { // image is taller than desired, $height is the determining factor
+			$thumb = true;
+			$dim = $width;
+			if (!$ch) $ch = $height;
+		} else { // image is wider than desired, $width is the determining factor
+			$dim = $height;
+			if (!$cw) $cw = $width;
+		}
+	} else if (!empty($width)) {
+		$dim = $width;
+		$size = $height = false;
+	} else if (!empty($height)) {
+		$dim = $height;
+		$size = $width = false;
+	} else {
+		// There's a problem up there somewhere...
+		imageError(gettext("Unknown error! Please report to the developers at <a href=\"http://www.zenphoto.org/\">www.zenphoto.org</a>"), 'err-imagegeneral.png');
+	}
+
+	$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
+	list($neww, $newh) = $sizes;
+
+	if (DEBUG_IMAGE) debugLog("cacheImage:".basename($imgfile).": \$size=$size, \$width=$width, \$height=$height, \$w=$w; \$h=$h; \$cw=$cw, ".
+										"\$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$newh=$newh, \$neww=$neww, \$dim=$dim, ".
+										"\$ratio_in=$ratio_in, \$ratio_out=$ratio_out \$upscale=$upscale \$rotate=$rotate \$effects=$effects");
+
+	if (!$upscale && $newh >= $h && $neww >= $w) { // image is the same size or smaller than the request
+		$neww = $w;
+		$newh = $h;
+		$allowscale = false;
+		if ($crop) {
+			if ($width > $neww) {
+				$width = $neww;
+			}
+			if ($height > $newh) {
+				$height = $newh;
+			}
+		}
+		if (DEBUG_IMAGE) debugLog("cacheImage:no upscale ".basename($imgfile).":  \$newh=$newh, \$neww=$neww, \$crop=$crop, \$thumb=$thumb, \$rotate=$rotate, watermark=".$watermark_use_image);
+	}
+	// Crop the image if requested.
+	if ($crop) {
+		if ($cw > $ch) {
+			$ir = $ch/$cw;
+		} else {
+			$ir = $cw/$ch;
+		}
+		if ($size) {
+			$neww = $size;
+			$newh = $ir*$size;
+		} else {
+			$neww = $width;
+			$newh = $height;
+			if ($neww > $newh) {
+				if ($newh === false) {
+					$newh = $ir*$neww;
+				}
+			} else {
+				if ($neww === false) {
+					$neww = $ir*$newh;
+				}
+			}
+		}
+		if (is_null($cx) && is_null($cy)) {	// scale crop to max of image
+			// set crop scale factor
+			$cf = 1;
+			if ($cw) $cf = min($cf,$cw/$neww);
+			if ($ch) $cf = min($cf,$ch/$newh);
+			//	set the image area of the crop (use the most image possible, rule of thirds positioning)
+			if (!$cw || $w/$cw*$ch > $h) {
+				$cw = round($h/$ch*$cw*$cf);
+				$ch = round($h*$cf);
+				$cx = round(($w - $cw) / 3);
+			} else {
+				$ch = round($w/$cw*$ch*$cf);
+				$cw = round($w*$cf);
+				$cy = round(($h - $ch) / 3);
+			}
+		} else {	// custom crop
+			if (!$cw || $cw > $w) $cw = $w;
+			if (!$ch || $ch > $h) $ch = $h;
+		}
+		// force the crop to be within the image
+		if ($cw + $cx > $w) $cx = $w - $cw;
+		if ($cx < 0) {
+			$cw = $cw + $cx;
+			$cx = 0;
+		}
+		if ($ch + $cy > $h) $cy = $h - $ch;
+		if ($cy < 0) {
+			$ch = $ch + $cy;
+			$cy = 0;
+		}
+		if (DEBUG_IMAGE) debugLog("cacheImage:crop ".basename($imgfile).":\$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate");
+		$newim = zp_createImage($neww, $newh);
+		zp_resampleImage($newim, $im, 0, 0, $cx, $cy, $neww, $newh, $cw, $ch);
+	} else {
+		if ($allowscale) {
+			$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
+			list($neww, $newh) = $sizes;
+
+		}
+		if (DEBUG_IMAGE) debugLog("cacheImage:no crop ".basename($imgfile).":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
+		$newim = zp_createImage($neww, $newh);
+		zp_resampleImage($newim, $im, 0, 0, 0, 0, $neww, $newh, $w, $h);
+	}
+
+	$imgEffects = explode(',', $effects);
+	if (in_array('gray', $imgEffects)) {
+		zp_imageGray($newim);
+	}
+
+	if (($thumb && $sharpenthumbs) || (!$thumb && $sharpenimages)) {
+		zp_imageUnsharpMask($newim, getOption('sharpen_amount'), getOption('sharpen_radius'), getOption('sharpen_threshold'));
+	}
+	$watermark_image = false;
+	if ($passedWM) {
+		if ($passedWM != NO_WATERMARK) {
+			$watermark_image = getWatermarkPath($passedWM);
+			if (!file_exists($watermark_image)) {
+				$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
+			}
+		}
+	} else {
+		if ($allow_watermark) {
+			$watermark_image = $watermark_use_image;
+			if ($watermark_image) {
+				if ($watermark_image != NO_WATERMARK) {
+					$watermark_image = getWatermarkPath($watermark_image);
+					if (!file_exists($watermark_image)) {
+						$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
+					}
+				}
+			}
+		}
+	}
+	if ($watermark_image) {
+		$offset_h = getOption('watermark_h_offset') / 100;
+		$offset_w = getOption('watermark_w_offset') / 100;
+		$watermark = zp_imageGet($watermark_image);
+		$watermark_width = zp_imageWidth($watermark);
+		$watermark_height = zp_imageHeight($watermark);
+		$imw = zp_imageWidth($newim);
+		$imh = zp_imageHeight($newim);
+		$nw = sqrt(($imw * $imh * $percent)*($watermark_width/$watermark_height));
+		$nh = $nw*($watermark_height/$watermark_width);
+		$percent = getOption('watermark_scale')/100;
+		$r = sqrt(($imw * $imh * $percent) / ($watermark_width * $watermark_height));
+		if (!getOption('watermark_allow_upscale')) {
+			$r = min(1, $r);
+		}
+		$nw = round($watermark_width * $r);
+		$nh = round($watermark_height * $r);
+		if (($nw != $watermark_width) || ($nh != $watermark_height)) {
+			$watermark = zp_imageResizeAlpha($watermark, $nw, $nh);
+		}
+		// Position Overlay in Bottom Right
+		$dest_x = max(0, floor(($imw - $nw) * $offset_w));
+		$dest_y = max(0, floor(($imh - $nh) * $offset_h));
+		if (DEBUG_IMAGE) debugLog("Watermark:".basename($imgfile).": \$offset_h=$offset_h, \$offset_w=$offset_w, \$watermark_height=$watermark_height, \$watermark_width=$watermark_width, \$imw=$imw, \$imh=$imh, \$percent=$percent, \$r=$r, \$nw=$nw, \$nh=$nh, \$dest_x=$dest_x, \$dest_y=$dest_y");
+		zp_copyCanvas($newim, $watermark, $dest_x, $dest_y, 0, 0, $nw, $nh);
+		zp_imageKill($watermark);
+	}
+
+	// Create the cached file (with lots of compatibility)...
+	mkdir_recursive(dirname($newfile));
+	if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) {	//	successful save of cached image
+		if (getOption('ImbedIPTC') && getSuffix($newfilename)=='jpg') {	// the imbed function works only with JPEG images
+			$iptc_data = zp_imageIPTC($imgfile);
+			if (empty($iptc_data)) {
+				global $_zp_extra_filetypes;	//	because we are doing the require in a function!
+				if (!$_zp_extra_filetypes) $_zp_extra_filetypes = array();
+				require_once(dirname(__FILE__).'/functions.php');	//	it is ok to increase memory footprint now since the image processing is complete
+				$gallery = new Gallery();
+				$iptc = array('1#090' => chr(0x1b) . chr(0x25) . chr(0x47),	//	character set is UTF-8
+											'2#115' =>$gallery->getTitle()	//	source
+											);
+				$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
+				$imagename = basename($imgfile);
+				$albumname = dirname($imgfile);
+				$image = newImage(new Album(new Gallery(),$albumname), $imagename);
+				$copyright = $image->getCopyright();
+				if (empty($copyright)) {
+					$copyright = getOption('default_copyright');
+				}
+				if (!empty($copyright)) {
+					$iptc['2#116'] = $copyright;
+				}
+				$credit = $image->getCredit();
+				if (!empty($credit)) {
+					$iptc['2#110'] = $credit;
+				}
+				foreach($iptc as $tag => $string) {
+					$tag_parts = explode('#',$tag);
+					$iptc_data .= iptc_make_tag($tag_parts[0], $tag_parts[1], $string);
+				}
+			} else {
+				if (GRAPHICS_LIBRARY=='Imagick' && IMAGICK_RETAIN_PROFILES) {	//	Imageick has preserved the metadata
+					$iptc_data = false;
+				}
+			}
+			if ($iptc_data) {
+				$content = iptcembed($iptc_data, $newfile);
+				$fw = fopen($newfile, 'w');
+				fwrite($fw, $content);
+				fclose($fw);
+				clearstatcache();
+			}
+		}
+		if (DEBUG_IMAGE) debugLog('Finished:'.basename($imgfile));
+	} else {
+		if (DEBUG_IMAGE) debugLog('cacheImage: failed to create '.$newfile);
+	}
+	@chmod($newfile, 0666 & CHMOD_VALUE);
+	zp_imageKill($newim);
+	zp_imageKill($im);
 }
 
  /* Determines the rotation of the image looking EXIF information.

@@ -361,6 +361,7 @@ zp-core/images/err-imagenotfound.png
 zp-core/images/err-noflashplayer.png
 zp-core/images/err-passwordprotected.png
 zp-core/images/fail.png
+zp-core/images/failed_image.png
 zp-core/images/favicon.ico
 zp-core/images/folder.png
 zp-core/images/folder_picture.png
@@ -2760,4 +2761,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2762
+2763
