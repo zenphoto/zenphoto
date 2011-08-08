@@ -718,5 +718,18 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 
 		return $metrics['characterHeight'];
 	}
+
+	/**
+	 *
+	 * creates an image from an image stream
+	 * @param $string
+	 */
+	function zp_imageFromString($string) {
+		$im = new Imagick();
+		$im->readImageBlob($string);
+		return $im;
+	}
+
 }
+
 ?>

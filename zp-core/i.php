@@ -217,7 +217,6 @@ $path = $protocol . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($newfilename));
 
 if (!$debug) {
 	// ... and redirect the browser to it.
-	header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt).' GMT');
 	$suffix = getSuffix($newfilename);
 	switch ($suffix) {
 		case 'bmp':
@@ -234,6 +233,7 @@ if (!$debug) {
 			pageError(405, gettext("Method Not Allowed"));
 			exit();
 	}
+	header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt).' GMT');
 	header('Content-Type: image/'.$suffix);
 	header('Location: ' . $path, true, 301);
 	exit();

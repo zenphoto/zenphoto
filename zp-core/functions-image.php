@@ -163,7 +163,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			}
 		}
 		$newfile = SERVERCACHE . $newfilename;
-		if (DEBUG_IMAGE) debugLog("cacheImage(\$imgfile=".basename($imgfile).", \$newfilename=$newfilename, \$allow_watermark=$allow_watermark, \$theme=$theme) \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=".(is_null($cx)?'NULL':$cx).", \$cy=".(is_null($cy)?'NULL':$cy).", \$quality=$quality, \$thumb=$thumb, \$crop=$crop \$image_use_side=$image_use_side; \$upscale=$upscale;");
+		if (DEBUG_IMAGE) debugLog("cacheImage(\$imgfile=".basename($imgfile).", \$newfilename=$newfilename, \$allow_watermark=$allow_watermark, \$theme=$theme) \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=".(is_null($cx)?'NULL':$cx).", \$cy=".(is_null($cy)?'NULL':$cy).", \$quality=$quality, \$thumb=$thumb, \$crop=$crop \$image_use_side=$image_use_side; \$upscale=$upscale);");
 		// Check for the source image.
 		if (!file_exists($imgfile) || !is_readable($imgfile)) {
 			imageError(gettext('Image not found or is unreadable.'), 'err-imagenotfound.png');
@@ -172,7 +172,27 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		if (zp_imageCanRotate() && getOption('auto_rotate'))  {
 			$rotate = getImageRotation($imgfile);
 		}
-		$im = zp_imageGet($imgfile);
+		if (function_exists('exif_thumbnail')) {
+			$im = exif_thumbnail($imgfile, $tw, $th, $tt);
+			if ($im) {
+				if ($size) {
+					$big_enough = $tw>=$size && $th>=$size;
+				} else {
+					$big_enough = $tw>=$width && $th>=$height;
+				}
+				if ($big_enough) {
+					$im = zp_imageFromString($im);
+					if (DEBUG_IMAGE && $im) debugLog(sprintf(gettext('Using %1$ux%2$u %3$s thumbnail image.'),$tw,$th, image_type_to_mime_type ($tt)));
+				} else {
+					$im = false;
+				}
+			} else {
+				$im = false;
+			}
+		}
+		if (!$im) {
+			$im = zp_imageGet($imgfile);
+		}
 		if (!$im) {
 			imageError(gettext('Image not renderable.'), 'err-failimage.png');
 		}
@@ -427,12 +447,13 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		@chmod($newfile, 0666 & CHMOD_VALUE);
 		zp_imageKill($newim);
 		zp_imageKill($im);
-		return true;
 	} catch (Exception $e) {
 		debugLog('cacheImage('.$newfilename.') exception: '.$e->getMessage());
 		imageError(sprintf(gettext('cacheImage(%1$s) exception: %2$s'),$newfilename,$e->getMessage()), 'err-failimage.png');
 		return false;
 	}
+	clearstatcache();
+	return true;
 }
 
  /* Determines the rotation of the image looking EXIF information.

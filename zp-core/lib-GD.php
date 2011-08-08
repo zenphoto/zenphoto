@@ -571,6 +571,16 @@ if (!function_exists('zp_graphicsLibInfo')) {
 			}
 		}
 	}
+
+	/**
+	 *
+	 * creates an image from an image stream
+	 * @param $string
+	 */
+	function zp_imageFromString($string) {
+		return imagecreatefromstring($string);
+	}
+
 }
 
 ?>
