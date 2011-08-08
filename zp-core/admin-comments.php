@@ -478,7 +478,7 @@ if ($totalpages > 1) {
 		<ul class="iconlegend">
 				<li><img src="images/reset.png" alt="" /><?php echo gettext("Private message"); ?></li>
 				<li><img src="images/warn.png" alt="Marked as spam" /><img src="images/pass.png" alt="Approved" /><?php echo gettext("Marked as spam/approved"); ?></li>
-				<li><img src="images/action.png" alt="Cache the album" /><?php echo gettext("Anonymous posting"); ?></li>
+				<li><img src="images/action.png" alt="Anonymous posting" /><?php echo gettext("Anonymous posting"); ?></li>
 				<li><img src="images/pencil.png" alt="Edit comment" /><?php echo gettext("Edit comment"); ?></li>
 				<li><img src="images/icon_mail.png" alt="E-mail comment author" /><?php echo gettext("E-mail comment author"); ?></li>
 				<li><img src="images/fail.png" alt="Delete" /><?php echo gettext("Delete"); ?></li>

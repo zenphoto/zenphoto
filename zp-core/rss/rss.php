@@ -51,11 +51,10 @@ $gallery = new Gallery();
 			$albumitem = new Album($galleryobj, $item['folder']);
 			$totalimages = $albumitem->getNumImages();
 			$itemlink = $host.WEBPATH.$albumpath.pathurlencode($albumitem->name);
-			$albumthumb = $albumitem->getAlbumThumbImage();
-			$thumb = newImage($albumitem, $albumthumb->filename);
+			$thumb = $albumitem->getAlbumThumbImage();
 			$thumburl = '<img border="0" src="'.$thumb->getCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.html_encode(get_language_string($albumitem->get("title"),$locale)) .'" />';
 			$title =  get_language_string($albumitem->get("title"),$locale);
-			if(true || getOption("feed_sortorder_albums") === "latestupdated") {
+			if(true || getOption("feed_sortorder_albums") == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumitem->name));
 				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$albumitem->getAlbumID() . " AND `show` = 1 ORDER BY id DESC");
 				$count = db_count('images',"WHERE albumid = ".$albumitem->getAlbumID() . " AND mtime = ". $latestimage['mtime']);

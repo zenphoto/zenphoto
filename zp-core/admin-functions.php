@@ -1782,23 +1782,6 @@ function printAlbumButtons($album) {
 			</button>
 			</div>
 		</form>
-
-		<?php
-		if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/cache_images.php')) {
-		?>
-			<form name="cache_images" action="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER; ?>/cache_images.php" method="post">
-				<?php XSRFToken('cache_images');?>
-				<input type="hidden" name="album" value="<?php echo html_encode($album->name); ?>" />
-				<input type="hidden" name="return" value="<?php echo html_encode($album->name); ?>" />
-				<div class="buttons">
-				<button type="submit" class="tooltip" id="edit_cache2" title="<?php echo gettext("Cache newly uploaded images."); ?>">
-				<img src="images/cache1.png" style="border: 0px;" alt="cache" />
-				<?php echo gettext("Pre-Cache Images"); ?></button>
-				</div>
-			</form>
-		<?php
-		}
-		?>
 		<form name="reset_hitcounters" action="?action=reset_hitcounters" method="post">
 			<?php XSRFToken('hitcounters');?>
 			<input type="hidden" name="action" value="reset_hitcounters" />
@@ -1849,7 +1832,6 @@ function printAlbumLedgend() {
 		<li><img src="images/pass.png" alt="Published" /><img src="images/action.png" alt="" /><?php echo gettext("Published/Un-published"); ?></li>
 		<li><img src="images/comments-on.png" alt="" /><img src="images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 		<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
-		<li><img src="images/cache.png" alt="" /><?php echo gettext("Cache the album"); ?></li>
 		<li><img src="images/refresh1.png" alt="" /><?php echo gettext("Refresh metadata"); ?></li>
 		<li><img src="images/reset.png" alt="" /><?php echo gettext("Reset hitcounters"); ?></li>
 		<li><img src="images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
@@ -2008,27 +1990,6 @@ function printAlbumEditRow($album, $show_thumb) {
 			<img src="images/view.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('View album %s'), $album->name); ?>" />
 			</a>
 		</div>
-		<?php
-		if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/cache_images.php')) {
-		?>
-			<div class="page-list_icon">
-				<?php
-				if ($album->isDynamic() || !$enableEdit) {
-					?>
-					<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
-					<?php
-				} else {
-					?>
-					<a class="cache" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER; ?>/cache_images.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('cache_images')?>" title="<?php echo sprintf(gettext('Pre-cache images in %s'), $album->name); ?>">
-					<img src="images/cache1.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Cache the album %s'), $album->name); ?>" />
-					</a>
-					<?php
-				}
-				?>
-			</div>
-		<?php
-		}
-		?>
 		<div class="page-list_icon">
 			<?php
 			if ($album->isDynamic() || !$enableEdit) {
