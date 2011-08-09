@@ -309,6 +309,7 @@ if (isset($_GET['action'])) {
 			setOption('image_sorttype', $st);
 			setOption('image_sortdirection', (int) isset($_POST['image_sortdirection']));
 			setOption('auto_rotate', (int) isset($_POST['auto_rotate']));
+			setOption('use_embedded_thumb', (int) isset($_POST['use_embedded_thumb']));
 			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
 			foreach ($_zp_exifvars as $key=>$item) {
 				setOption($key, (int) array_key_exists($key, $_POST));
@@ -1682,6 +1683,28 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<p><?php	echo gettext("Automatically rotate images based on the EXIF orientation setting."); ?></p>
 				<?php
 				if (!function_exists('imagerotate')) echo '<p class="notebox">'.gettext("Image rotation requires the <em>imagerotate</em> function found in the bundled GD library of PHP version 4.3 or greater.").'</p>';
+				?>
+			</td>
+		</tr>
+		<tr>
+			<td><?php  echo gettext('Use embedded thumbnail'); ?></td>
+			<?php
+			if (function_exists('exif_thumbnail')) {
+				$disabled = '';
+			} else {
+				$disabled = ' disabled="disabled"';
+				setOption('use_embedded_thumb', 0);
+			}
+			?>
+			<td><input type="checkbox" name="use_embedded_thumb" value="1" <?php echo checked('1', getOption('use_embedded_thumb')); ?><?php echo $disabled; ?> /></td>
+			<td>
+				<p><?php echo gettext('If set, Zenphoto will use the thumbnail imbedded in the image when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image.'); ?></p>
+				<?php
+					if ($disabled) {
+					?>
+					<p class="notebox"><?php echo gettext('The PHP EXIF extension is required for this option.')?></p>
+					<?php
+					}
 				?>
 			</td>
 		</tr>
