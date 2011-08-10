@@ -408,22 +408,20 @@ if ($connection) {
 	$required = '5.0.0';
 	$desired = '5.3';
 	$err = versionCheck($required, $desired, PHP_VERSION);
-	if ($err < 0) {
-		$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is strongly recommended.'),$desired)) && $good;
-	} else {
-		if ($err == 0) $err = -1; // make it non-fatal
-		$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Use earlier versions at your own risk. Version %2$s or greater is strongly recommended.'),$required, $desired)) && $good;
-	}
-
+	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired)) && $good;
 	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup_log.txt';
-	$permission = fileperms($path)&0777;
-	if ($permission & 0077) {
-		$p = -1;
+	if (isWin()) {
+		checkMark(-1, '', gettext("General file security"),gettext('Zenphoto is unable to manage file security on Windows servers. Please insure that your logs are not browsable.'));
 	} else {
-		$p = true;
+		$permission = fileperms($path)&0777;
+		if ($permission & 0077) {
+			$p = -1;
+		} else {
+			$p = true;
+		}
+		checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"),
+								sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
 	}
-	checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"), sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
-
 	$register_globals = ini_get('register_globals');
 	$good = checkMark(!$register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>.'.(is_string($register_globals)?' '.gettext('<strong>Note</strong>: There should be no quotation marks in this setting!'):''))) && $good;
 	if (ini_get('safe_mode')) {
@@ -520,63 +518,6 @@ if ($connection) {
 		$cfg = false;
 	}
 
-	$curdir = getcwd();
-	chdir(dirname(__FILE__));
-
-	// Important. when adding new database support this switch may need to be extended,
-	$engines = array();
-	foreach (setup_glob('functions-db-*.php') as $key=>$engineMC) {
-		$engineMC = substr($engineMC,13,-4);
-		$engine = strtolower($engineMC);
-		if (extension_loaded($engine)) {
-			switch ($engine) {
-				case 'pdo_mysql':
-					if (version_compare(PHP_VERSION,'5.0.0') == 1) {
-						$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'path'=>false,'name'=>true,'prefix'=>true);
-					}
-					break;
-				case 'mysql':
-				default:
-					$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'path'=>false,'name'=>true,'prefix'=>true);
-					break;
-				case 'pdo_sqlite':
-					if (version_compare(PHP_VERSION,'5.0.0') == 1) {
-						$engines[$engineMC] = array('user'=>false,'pass'=>false,'host'=>false,'path'=>true,'name'=>true,'prefix'=>true,'experimental'=>gettext('SQLite is a limited database and does not support all Zenphoto functionality. Use of this database is for <em>Database abstraction</em> proof of concept only.'));
-					}
-					break;
-			}
-		} else {
-			$engines[$engineMC] = false;
-		}
-	}
-	chdir($curdir);
-	primeMark(gettext('Database'));
-	foreach ($engines as $engine=>$enabled) {
-		if ($engine == $selected_database) {
-			if ($enabled && isset($enabled['experimental'])) {
-				$good = checkMark(-1, $engine, sprintf(gettext('PHP <code>%s support</code> for configured Database [is experimental]'),$engine), $enabled['experimental']) && $good;
-			} else {
-				$good = checkMark($enabled, sprintf(gettext('PHP <code>%s</code> support for configured Database'),$engine), sprintf(gettext('PHP <code>%s support</code> for configured Database [is not installed]'),$engine), sprintf(gettext('Choose a different database engine or install %s support in your PHP to clear this condition.'),$engine)) && $good;
-			}
-		} else {
-			if ($enabled) {
-				if (isset($enabled['experimental'])){
-					?>
-					<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle(\'show\')" >experimental</a>)'),$engine); ?></li>
-					<p class="warning" id="<?php echo $engine; ?>" style="display:none;" ><?php echo $enabled['experimental']?></p>
-					<?php
-				} else {
-					?>
-					<li class="note_ok"><?php echo sprintf(gettext('PHP <code>%s</code> support'),$engine); ?></li>
-					<?php
-				}
-			} else {
-				?>
-				<li class="note_exception"><?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'),$engine); ?></li>
-				<?php
-			}
-		}
-	}
 
 	$good = checkMark($cfg, gettext('<em>zp-config.php</em> file'), gettext('<em>zp-config.php</em> file [does not exist]'),
 							sprintf(gettext('Setup was not able to create this file. You will need to edit the <code>zp-config.php.source</code> file as indicated in the file\'s comments and rename it to <code>zp-config.php</code>.'.
@@ -774,6 +715,59 @@ if ($connection) {
 		}
 
 	}
+	$curdir = getcwd();
+	chdir(dirname(__FILE__));
+
+	// Important. when adding new database support this switch may need to be extended,
+	$engines = array();
+	foreach (setup_glob('functions-db-*.php') as $key=>$engineMC) {
+		$engineMC = substr($engineMC,13,-4);
+		$engine = strtolower($engineMC);
+		if (extension_loaded($engine)) {
+			switch ($engine) {
+				case 'pdo_mysql':
+					$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'path'=>false,'name'=>true,'prefix'=>true);
+					break;
+				case 'mysql':
+				default:
+					$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'path'=>false,'name'=>true,'prefix'=>true);
+					break;
+				case 'pdo_sqlite':
+					$engines[$engineMC] = array('user'=>false,'pass'=>false,'host'=>false,'path'=>true,'name'=>true,'prefix'=>true,'experimental'=>gettext('SQLite is a limited database and does not support all Zenphoto functionality. Use of this database is for <em>Database abstraction</em> proof of concept only.'));
+					break;
+			}
+		} else {
+			$engines[$engineMC] = false;
+		}
+	}
+	chdir($curdir);
+	primeMark(gettext('Database'));
+	foreach ($engines as $engine=>$enabled) {
+		if ($engine == $selected_database) {
+			if ($enabled && isset($enabled['experimental'])) {
+				$good = checkMark(-1, $engine, sprintf(gettext('PHP <code>%s support</code> for configured Database [is experimental]'),$engine), $enabled['experimental']) && $good;
+			} else {
+				$good = checkMark($enabled, sprintf(gettext('PHP <code>%s</code> support for configured Database'),$engine), sprintf(gettext('PHP <code>%s support</code> for configured Database [is not installed]'),$engine), sprintf(gettext('Choose a different database engine or install %s support in your PHP to clear this condition.'),$engine)) && $good;
+			}
+		} else {
+			if ($enabled) {
+				if (isset($enabled['experimental'])){
+					?>
+					<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle(\'show\')" >experimental</a>)'),$engine); ?></li>
+					<p class="warning" id="<?php echo $engine; ?>" style="display:none;" ><?php echo $enabled['experimental']?></p>
+					<?php
+				} else {
+					?>
+					<li class="note_ok"><?php echo sprintf(gettext('PHP <code>%s</code> support'),$engine); ?></li>
+					<?php
+				}
+			} else {
+				?>
+				<li class="note_exception"><?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'),$engine); ?></li>
+				<?php
+			}
+		}
+	}
 	$db = $connection = db_connect(false);
 	if (!$db) {
 		$connectDBErr = db_error();
@@ -810,7 +804,7 @@ if ($connection) {
 		}
 	}
 	if ($connection) {
-		$good = checkMark($sqlv, sprintf(gettext('%1$s version %2$s'),$dbapp,$dbversion), "", sprintf(gettext('Version %1$s or greater is required. Use a lower version at your own risk.<br />Version %2$s or greater is preferred.'),$required,$desired)) && $good;
+		$good = checkMark($sqlv, sprintf(gettext('%1$s version %2$s'),$dbapp,$dbversion), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is preferred. Use a lower version at your own risk.'),$required,$desired)) && $good;
 		if ($DBcreated || !empty($connectDBErr)) {
 			if (empty($connectDBErr)) {
 				$severity = 1;
@@ -826,14 +820,7 @@ if ($connection) {
 				$good = checkmark(0, '', gettext('Connect to the database [Database does not exist]'),sprintf(gettext('Click here to attempt to create <a href="?Create_Database" >%s</a>.'),$_zp_conf_vars['mysql_database']));
 			}
 		}
-		if ($environ) {
-			if ($sqlv == 0) $sqlv = -1; // make it non-fatal
-			$good = checkMark($sqlv, gettext("Connect to the database"), '',
-								sprintf(gettext('Could not access the <strong>%1$s</strong> database (<code>%2$s</code>).'), $selected_database, $_zp_conf_vars['mysql_database']).' '.
-								gettext("Check the <code>user</code>, <code>password</code>, <code>database name</code>, and <code>Database host</code>.").'<br />' .
-								sprintf(gettext("Make sure the database has been created and that <code>%s</code> has access to it."),$_zp_conf_vars['mysql_user'])) && $good;
-
-
+		if ($environ && $sqlv) {
 			$oldmode = db_getSQLmode();
 			$result = db_setSQLmode();
 			$msg = gettext('You may need to set <code>SQL mode</code> <em>empty</em> in your Database configuration.');
@@ -1169,7 +1156,9 @@ if ($connection) {
 															'</code><p class="buttons"><a href="?delete_extra'.($debug?'&amp;debug':'').'">'.gettext("Delete extra files").'</a></p><br clear="all" /><br clear="all" />');
 				}
 			}
-			checkMark($permissions, gettext("Zenphoto core file permissions"), gettext("Zenphoto core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'));
+			if (!isWin()) {
+				checkMark($permissions, gettext("Zenphoto core file permissions"), gettext("Zenphoto core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'));
+			}
 		}
 	}
 	$msg = gettext("<em>.htaccess</em> file");
@@ -1593,6 +1582,8 @@ if (file_exists(CONFIGFILE)) {
 		`hitcounter` int(11) unsigned default 0,
 		`password` varchar(255) NOT NULL DEFAULT '',
 		`password_hint` text,
+		`publishdate` datetime default NULL,
+		`expiredate` datetime default NULL,
 		`total_value` int(11) DEFAULT 0,
 		`total_votes` int(11) DEFAULT 0,
 		`used_ips` longtext,
@@ -1656,6 +1647,8 @@ if (file_exists(CONFIGFILE)) {
 		`thumbW` int(10) unsigned default NULL,
 		`thumbH` int(10) unsigned default NULL,
 		`mtime` int(32) default NULL,
+		`publishdate` datetime default NULL,
+		`expiredate` datetime default NULL,
 		`hitcounter` int(11) unsigned default 0,
 		`total_value` int(11) unsigned default '0',
 		`total_votes` int(11) unsigned default '0',
@@ -1806,7 +1799,7 @@ if (file_exists(CONFIGFILE)) {
 		`criteria` TEXT,
 		`date` datetime default NULL,
 		`data` TEXT,
-		INDEX (`criteria`(255)),
+		KEY (`criteria`(255)),
 		PRIMARY KEY (`id`)
 		) $collation;";
 	}
@@ -2087,6 +2080,10 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = "ALTER TABLE $tbl_news_categories ADD COLUMN `show` int(1) unsigned NOT NULL default '1'";
 	//v1.4.2
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `challenge_phrase` TEXT';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `publishdate` datetime default NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `expiredate` datetime default NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' ADD COLUMN `publishdate` datetime default NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' ADD COLUMN `expiredate` datetime default NULL';
 
 	// do this last incase there are any field changes of like names!
 	foreach ($_zp_exifvars as $key=>$exifvar) {

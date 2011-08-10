@@ -78,15 +78,15 @@ function checkMark($check, $text, $text2, $msg) {
 					?>
 					<div class="error">
 						<h1><?php echo gettext('Error!'); ?></h1>
-						<?php  echo $msg; ?>
+						<p><?php  echo $msg; ?></p>
 					</div>
 					<?php
 					break;
 				case -1:
 					?>
-					<div class='warning' id='more".$moreid."'>
+					<div class="warning">
 						<h1><?php echo gettext('Warning!'); ?></h1>
-						<?php  echo $msg; ?>
+						<p><?php  echo $msg; ?></p>
 					</div>
 					<?php
 					break;
@@ -99,19 +99,17 @@ function checkMark($check, $text, $text2, $msg) {
 					<?php
 					if ($check == -3) {
 						?>
-						<div class="warning" id="more<?php echo $moreid; ?>"
-							style="display: none">
+						<div class="warning" id="more<?php echo $moreid; ?>" style="display: none">
 						<h1><?php echo gettext('Warning!'); ?></h1>
 						<?php
 					} else {
 						?>
-						<div class="notice" id="more<?php echo $moreid; ?>"
-							style="display: none">
+						<div class="notice" id="more<?php echo $moreid; ?>" style="display: none">
 						<h1><?php echo gettext('Notice!'); ?></h1>
 						<?php
 					}
 					?>
-					<?php  echo $msg; ?>
+						<p><?php echo $msg; ?></p>
 					</div>
 					<?php
 					break;
