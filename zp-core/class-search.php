@@ -880,7 +880,6 @@ class SearchEngine
 				break;
 			}
 		}
-
 		// create an array of [name, objectid] pairs for the search fields.
 		$field_objects = array();
 		if (count($fields)>0) {
@@ -924,7 +923,6 @@ class SearchEngine
 				}
 			}
 		}
-
 		$objects = array_merge($tag_objects, $field_objects);
 		if (count($objects) != 0) {
 			$tagid = '';
@@ -1036,7 +1034,6 @@ class SearchEngine
 			}
 		}
 		if (count($idlist)==0) {return NULL; }
-
 		$sql = 'SELECT DISTINCT `id`,`show`,';
 		switch ($tbl) {
 			case 'pages':
@@ -1138,7 +1135,11 @@ class SearchEngine
 		$albums = $this->getCachedSearch($criteria);
 		if (is_null($albums)) {
 			$search_query = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
-			$search_result = query($search_query);
+			if (empty($search_query)) {
+				$search_result = false;
+			} else {
+				$search_result = query($search_query);
+			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
 					$albumname = $row['folder'];
@@ -1272,7 +1273,11 @@ class SearchEngine
 			} else {
 				$search_query = $this->SearchDate($searchstring, $searchdate, 'images', $sorttype, $sortdirection);
 			}
-			$search_result = query($search_query);
+			if (empty($search_query)) {
+				$search_result = false;
+			} else {
+				$search_result = query($search_query);
+			}
 			if ($search_result) {
 				$albums_seen = $images = array();
 				while ($row = db_fetch_assoc($search_result)) {
@@ -1408,7 +1413,11 @@ class SearchEngine
 			if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
 			if (empty($searchdate)) {
 				$search_query = $this->searchFieldsAndTags($searchstring, 'pages', false, false);
-				$search_result = query($search_query);
+				if (empty($search_query)) {
+					$search_result = false;
+				} else {
+					$search_result = query($search_query);
+				}
 				zp_apply_filter('search_statistics',$searchstring, 'pages', !$search_result, false, $this->iteration++);
 			} else {
 				$search_query = $this->SearchDate($searchstring, $searchdate, 'pages', false, false);
@@ -1446,7 +1455,11 @@ class SearchEngine
 			} else {
 				$search_query = $this->SearchDate($searchstring, $searchdate, 'news', $sortorder, $sortdirection,$this->whichdates);
 			}
-			$search_result = query($search_query);
+			if (empty($search_query)) {
+				$search_result = false;
+			} else {
+				$search_result = query($search_query);
+			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
 					$result[] = array('id'=>$row['id'],'titlelink'=>$row['titlelink']);

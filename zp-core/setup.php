@@ -524,33 +524,29 @@ if ($connection) {
 							' Place the file in the %s folder.'),DATA_FOLDER).
 							sprintf(gettext('<br /><br />You can find the file in the "%s" directory.'),ZENFOLDER)) && $good;
 	if ($cfg) {
-		primeMark(gettext('File/Folder permissions'));
-		if (zp_loggedin(ADMIN_RIGHTS)) {
+		if (!isWin()) {
+			primeMark(gettext('File/Folder permissions'));
 			$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" />'.
-													'<p>'.sprintf(gettext('Set File/Folder permissions to %s.'),permissionsSelector($permission_names, $chmod)).
-													'</p></form>';
-		} else {
-			$chmodselector = '<p>'.gettext('You must be logged in to change permissions.').'</p>';
-		}
-		if (array_key_exists($chmod, $permission_names)) {
-			$value = sprintf(gettext('<em>%1$s</em> (<code>0%2$o</code>)'),$permission_names[$chmod],$chmod);
-		} else {
-			$value = sprintf(gettext('<em>unknown</em> (<code>%o</code>)'),$chmod);
-		}
-		if ($chmod>0755) {
-			if (isset($_zp_conf_vars['CHMOD'])) {
-				$severity = -3;
+						'<p>'.sprintf(gettext('Set File/Folder permissions to %s.'),permissionsSelector($permission_names, $chmod)).
+						'</p></form>';
+			if (array_key_exists($chmod, $permission_names)) {
+				$value = sprintf(gettext('<em>%1$s</em> (<code>0%2$o</code>)'),$permission_names[$chmod],$chmod);
 			} else {
-				$severity = -1;
+				$value = sprintf(gettext('<em>unknown</em> (<code>%o</code>)'),$chmod);
 			}
-		} else {
-			$severity = -2;
+			if ($chmod>0755) {
+				if (isset($_zp_conf_vars['CHMOD'])) {
+					$severity = -3;
+				} else {
+					$severity = -1;
+				}
+			} else {
+				$severity = -2;
+			}
+			$msg = sprintf(gettext('File/Folder Permissions [are %s]'),$value);
+			checkMark($severity, $msg, $msg,'<p>'.gettext('If file and folder permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file/folder permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission.').'</p>'.
+			$chmodselector);
 		}
-		$msg = sprintf(gettext('File/Folder Permissions [are %s]'),$value);
-		checkMark($severity, $msg, $msg,
-								'<p>'.gettext('If file and folder permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file/folder permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission.').'</p>'.
-								$chmodselector);
-
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if ($environ) {
 				primeMark(gettext('Character set'));
