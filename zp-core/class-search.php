@@ -1482,7 +1482,13 @@ class SearchEngine
 	 * @param string $sort	Sort criteria
 	 */
 	protected function getCacheTag($table,$search,$sort) {
-		return array('item'=>$table,'fields'=>implode(',',$this->fieldList),'search'=>$search, 'sort'=>$sort,'user'=>getUserIP());
+		global $_zp_authority;
+		$user = 'guest';
+		$authCookies = $_zp_authority->getAuthCookies();
+		if (zp_loggedin() || !empty($authCookies)) {
+			$user = getUserIP();
+		}
+		return array('item'=>$table,'fields'=>implode(',',$this->fieldList),'search'=>$search, 'sort'=>$sort,'user'=>$user);
 	}
 
 	/**

@@ -3584,7 +3584,7 @@ function processAlbumBulkActions() {
 						$albumobj->remove();
 						break;
 					case 'showall':
-						$albumobj->seShow(1);
+						$albumobj->setShow(1);
 						break;
 					case 'hideall':
 						$albumobj->setShow(0);
