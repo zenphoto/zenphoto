@@ -64,7 +64,7 @@ function db_connect($errorstop=true) {
 function db_software() {
 	global $_zp_DB_connection;
 	$dbversion = trim($_zp_DB_connection->getAttribute(PDO::ATTR_SERVER_VERSION));
-	return array('application'=>DATABASE_SOFTWARE,'required'=>'5.0','desired'=>'5.1','version'=>$dbversion);
+	return array('application'=>DATABASE_SOFTWARE,'required'=>'5.0','desired'=>'5.5','version'=>$dbversion);
 }
 
 /**

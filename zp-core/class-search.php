@@ -1481,7 +1481,7 @@ class SearchEngine
 	protected function cacheSearch($criteria, $found) {
 		if (SEARCH_CACHE_DURATION) {
 			$criteria = serialize($criteria);
-			$sql = 'SELECT `id`, data`, `date` FROM '.prefix('search_cache').' WHERE `criteria`='.db_quote($criteria);
+			$sql = 'SELECT `id`, `data`, `date` FROM '.prefix('search_cache').' WHERE `criteria`='.db_quote($criteria);
 			$result = query_single_row($sql);
 			if ($result) {
 					$sql = 'UPDATE '.prefix('search_cache').' SET `data`='.db_quote(serialize($found)).', `date`='.db_quote(date('Y-m-d H:m:s')).' WHERE `id`='.$result['id'];

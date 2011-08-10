@@ -207,7 +207,7 @@ function db_software() {
 	if ($i !== false) {
 		$dbversion = substr($dbversion, 0, $i);
 	}
-	return array('application'=>'MySQL','required'=>'4.1','desired'=>'5.0','version'=>$dbversion);
+	return array('application'=>'MySQL','required'=>'5.0','desired'=>'5.5','version'=>$dbversion);
 }
 
 /**
@@ -223,13 +223,7 @@ function db_create() {
  */
 function db_permissions() {
 	global $_zp_conf_vars;
-	$dbversion = db_software();
-	$dbversion = $dbversion['version'];
-	if (versioncheck('4.2.1', '4.2.1', $dbversion)) {
-		$sql = "SHOW GRANTS FOR CURRENT_USER;";
-	} else {
-		$sql = "SHOW GRANTS FOR " . $_zp_conf_vars['mysql_user'].";";
-	}
+	$sql = "SHOW GRANTS FOR " . $_zp_conf_vars['mysql_user'].";";
 	$result = query($sql, false);
 	if (!$result) {
 		$result = query("SHOW GRANTS;", false);
@@ -265,12 +259,7 @@ function db_getSQLmode() {
 }
 
 function db_collation() {
-	$software = db_software();
-	if (substr(trim($software['version']), 0, 1) > '4') {
-		$collation = ' CHARACTER SET utf8 COLLATE utf8_unicode_ci';
-	} else {
-		$collation = '';
-	}
+	$collation = ' CHARACTER SET utf8 COLLATE utf8_unicode_ci';
 	return $collation;
 }
 

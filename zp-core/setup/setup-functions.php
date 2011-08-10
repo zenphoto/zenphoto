@@ -166,7 +166,11 @@ function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL) 
 					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [subfolder creation failure]'),$which, $f), sprintf(gettext('Setup could not create the following subfolders:<br />%s'),substr($subfolderfailed,2)));
 				}
 			}
-			$perms = fileperms($path)&0777;
+			if (isWin()) {
+				$perms = $chmod;
+			} else {
+				$perms = fileperms($path)&0777;
+			}
 			if (zp_loggedin(ADMIN_RIGHTS) && (($chmod<$perms) || ($relaxation && $chmod!=$perms))) {
 				@chmod($path,$chmod);
 				clearstatcache();
