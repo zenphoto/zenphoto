@@ -120,7 +120,6 @@ class captcha {
 	 * @return string;
 	 */
 	function generateCaptcha(&$image) {
-
 		$captcha_len = getOption('zenphoto_captcha_length');
 		$key = $this->getCaptchaKey();
 		$lettre = getOption('zenphoto_captcha_string');

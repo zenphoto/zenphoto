@@ -579,7 +579,7 @@ class Zenphoto_Authority {
 	function getResetTicket($user, $pass) {
 		$req = time();
 		$ref = sha1($req . $user . $pass);
-		$time = bin2hex(rc4(HASH_SEED, $req));
+		$time = bin2hex(rc4('ticket'.HASH_SEED, $req));
 		return $time.$ref;
 	}
 
@@ -588,7 +588,7 @@ class Zenphoto_Authority {
 		$admins = $this->getAdministrators();
 		foreach ($admins as $tuser) {
 			if ($tuser['user'] == $user) {
-				$request_date = rc4(HASH_SEED, pack("H*", $time = substr($ticket,0,20)));
+				$request_date = rc4('ticket'.HASH_SEED, pack("H*", $time = substr($ticket,0,20)));
 				$ticket = substr($ticket, 20);
 				$ref = sha1($request_date . $user . $tuser['pass']);
 				if ($ref === $ticket) {
