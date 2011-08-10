@@ -610,7 +610,7 @@ class Zenphoto_Authority {
 		$user->lastlogon = $user->get('loggedin');
 		$user->set('loggedin',date('Y-m-d H:i:s'));
 		$user->save();
-		zp_setCookie("zenphoto_auth", $user->getPass(), NULL, NULL, secureServer());
+		zp_setCookie("zp_user_auth", $user->getPass(), NULL, NULL, secureServer());
 	}
 
 	/**
@@ -632,7 +632,7 @@ class Zenphoto_Authority {
 				$this->logUser($user);
 			} else {
 				// Clear the cookie, just in case
-				zp_setCookie("zenphoto_auth", "", -368000);
+				zp_setCookie("zp_user_auth", "", -368000);
 				// was it a challenge response?
 				if (@$_POST['password']=='challenge') {
 					$user = $this->getAnAdmin(array('`user`=' => $post_user, '`valid`=' => 1));
@@ -717,35 +717,37 @@ class Zenphoto_Authority {
 	}
 
 	/**
-	 * Cleans up on logout
+	 *
+	 * returns an array of the active "password" cookies
 	 *
 	 * NOTE: this presumes the general form of an authrization cookie is:
-	 * zp_xxxxx_auth where xxxxx is the authority (e.g. gallery, image, search, ...)
+	 * zp_xxxxx_auth{_dddd) where xxxxx is the authority (e.g. gallery, image, search, ...)
+	 * and dddd if present is the object id.
+	 *
+	 */
+	function getAuthCookies() {
+		$candidates = array();
+		if (isset($_COOKIE)) {
+			$candidates = $_COOKIE;
+		}
+		if (isset($_SESSION)) {
+			$candidates = array_merge($candidates,$_SESSION);
+		}
+		preg_match_all('/zp_.+?_auth[_[0-9]*]*?/', implode(' ',array_keys($candidates)).',', $matches);
+		return array_intersect_key($candidates, array_flip($matches[0]));
+	}
+
+	/**
+	 * Cleans up on logout
+	 *
 	 */
 	function handleLogout() {
 		global $_zp_loggedin, $_zp_pre_authorization;
-		$candidate = array();
-		if (isset($_COOKIE)) {
-			$candidate = $_COOKIE;
-		}
-		if (isset($_SESSION)) {
-			$candidate = Array_merge($candidate, $_SESSION);
-		}
-		$candidate = array_unique($candidate);
-		foreach ($candidate as $cookie=>$value) {
-			switch ($cookie) {
-				default:
-					if (!preg_match('/zp_(.*)_auth/', $cookie, $result)) {
-						break;	// not an auth cookie
-					}
-				case 'zenphoto_auth':
-					zp_setCookie($cookie, "*", -368000);
-					break;
-			}
+		foreach ($this->getAuthCookies() as $cookie=>$value) {
+			zp_setCookie($cookie, "*", -368000);
 		}
 		$_zp_loggedin = false;
 		$_zp_pre_authorization = array();
-		return true;
 	}
 
 	/**
@@ -757,7 +759,7 @@ class Zenphoto_Authority {
 		} else {
 			$hashlen = 32;
 		}
-		$auth = zp_getCookie('zenphoto_auth');
+		$auth = zp_getCookie('zp_user_auth');
 		if (strlen($auth) > $hashlen) {
 			$id = substr($auth, $hashlen);
 			$auth = substr($auth, 0, $hashlen);
@@ -768,7 +770,7 @@ class Zenphoto_Authority {
 		if ($_zp_loggedin) {
 			return $_zp_loggedin;
 		} else {
-			zp_setCookie("zenphoto_auth", "", -368000);
+			zp_setCookie("zp_user_auth", "", -368000);
 			return false;
 		}
 	}

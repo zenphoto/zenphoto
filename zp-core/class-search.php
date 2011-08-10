@@ -1485,7 +1485,7 @@ class SearchEngine
 		global $_zp_authority;
 		$user = 'guest';
 		$authCookies = $_zp_authority->getAuthCookies();
-		if (zp_loggedin() || !empty($authCookies)) {
+		if (!empty($authCookies)) {	// some sort of password exists, play it safe and make the tag unique
 			$user = getUserIP();
 		}
 		return array('item'=>$table,'fields'=>implode(',',$this->fieldList),'search'=>$search, 'sort'=>$sort,'user'=>$user);

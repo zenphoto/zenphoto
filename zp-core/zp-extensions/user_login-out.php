@@ -86,30 +86,12 @@ if (in_context(ZP_INDEX)) {
  * @param string $logouttext optional replacement text for "Logout"
  */
 function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logouttext=NULL) {
-	global $__redirect;
-	$cookies = array();
-	$candidate = array();
-	if (isset($_COOKIE)) {
-		$candidate = $_COOKIE;
-	}
-	if (isset($_SESSION)) {
-		$candidate = array_merge($candidate, $_SESSION);
-	}
-
-	$candidate = array_unique($candidate);
-	foreach ($candidate as $cookie=>$value) {
-		if ($cookie == 'zenphoto_auth' || $cookie == 'zp_gallery_auth' ||
-				$cookie == 'zp_search_auth' || $cookie == 'zp_image_auth' ||
-				strpos($cookie, 'zp_album_auth_') !== false ||
-				strpos($cookie, 'zp_page_auth_') !== false ||
-				strpos($cookie, 'zp_category_auth_') !== false) {
-			$cookies[] = $cookie;
-		}
-	}
+	global $__redirect, $_zp_authority;
 	if (is_null($logouttext)) $logouttext = gettext("Logout");
 	if (is_null($showLoginForm) && getOption('user_logout_login_form')) {
 		$showLoginForm = true;
 	}
+	$cookies = $_zp_authority->getAuthCookies();
 	if (empty($cookies)) {
 		if ($showLoginForm) {
 			?>

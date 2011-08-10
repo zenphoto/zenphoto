@@ -17,10 +17,10 @@ function show_not_loggedin_adminCookie($success) {
 	global $_zp_current_admin_obj;
 	if (!OFFSET_PATH) {
 		if (isset($_SESSION)) {
-			unset($_SESSION['zenphoto_auth']);
+			unset($_SESSION['zp_user_auth']);
 		}
 		if (isset($_COOKIE)) {
-			unset($_COOKIE['zenphoto_auth']);
+			unset($_COOKIE['zp_user_auth']);
 		}
 		$_zp_current_admin_obj = NULL;
 		return 0;
