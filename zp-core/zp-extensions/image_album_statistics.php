@@ -410,7 +410,7 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
  * @return string
  */
 function printImageStatistic($number, $option, $albumfolder='', $showtitle=false, $showdate=false, $showdesc=false, $desclength=40,$showstatistic='',$width=NULL,$height=NULL,$crop=NULL,$collection=false,$fullimagelink=false) {
-	$images = getImageStatistic($number, $option, $albumfolder,$collection,$fullimagelink);
+	$images = getImageStatistic($number, $option, $albumfolder,$collection);
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
 	} else {
@@ -422,9 +422,9 @@ function printImageStatistic($number, $option, $albumfolder='', $showtitle=false
 	echo "<ul>";
 	foreach ($images as $image) {
 		if($fullimagelink) {
-			$imagelink = $image->getImageLink();
-		} else {
 			$imagelink = $image->getFullImage();
+		} else {
+			$imagelink = $image->getImageLink();
 		}
 		echo "<li><a href=\"" . html_encode($imagelink)."\" title=\"" . html_encode($image->getTitle()) . "\">\n";
 		switch ($crop) {
