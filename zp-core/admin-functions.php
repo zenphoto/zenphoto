@@ -70,7 +70,7 @@ function datepickerJS() {
  * @param string $subtab the sub-tab if any
  */
 function printAdminHeader($tab,$subtab=NULL) {
-	global $_zp_admin_tab, $_zp_admin_subtab, $gallery, $zenphoto_tabs,$_zp_RTL_css,$_zp_last_modified;
+	global $_zp_admin_tab, $_zp_admin_subtab, $gallery, $zenphoto_tabs,$_zp_RTL_css;
 	if (!is_object($gallery)) $gallery = new Gallery();
 	$_zp_admin_tab = $tab;
 	if (isset($_GET['tab'])) {
@@ -107,7 +107,7 @@ function printAdminHeader($tab,$subtab=NULL) {
 			$subtabtext = '-'.$_zp_admin_subtab;
 		}
 	}
-	header('Last-Modified: ' . $_zp_last_modified);
+	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	zp_apply_filter('admin_headers');
 	?>

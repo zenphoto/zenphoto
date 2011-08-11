@@ -1188,7 +1188,7 @@ function galleryAlbumsPerPage() {
  * @return string
  */
 function setupTheme() {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_zp_themeroot, $_zp_last_modified;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_zp_themeroot;
 	if (!is_object($_zp_gallery)) $_zp_gallery = new Gallery();
 	$albumtheme = '';
 	if (in_context(ZP_SEARCH_LINKED)) {
@@ -1214,7 +1214,7 @@ function setupTheme() {
 	$theme = zp_apply_filter('setupTheme', $theme);
 	$themeindex = getPlugin('index.php', $theme);
 	if (empty($theme) || empty($themeindex)) {
-		header('Last-Modified: ' . $_zp_last_modified);
+		header('Last-Modified: ' . ZP_LAST_MODIFIED);
 		header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 		?>
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -2194,6 +2194,9 @@ function is_connected($host = 'www.zenphoto.org') {
  */
 function debug404($album, $image, $theme) {
 	if (DEBUG_404) {
+		if (array_shift(explode('/',$album)) == 'cache') {
+			return;
+		}
 		$ignore = array('/favicon.ico','/zp-data/tést.jpg');
 		$target = $_SERVER['REQUEST_URI'];
 		foreach ($ignore as $uri) {

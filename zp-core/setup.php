@@ -5,7 +5,7 @@
  */
 
 // force UTF-8 Ø
-$_zp_last_modified = gmdate('D, d M Y H:i:s').' GMT';
+define('ZP_LAST_MODIFIED',gmdate('D, d M Y H:i:s').' GMT');
 // leave this as the second executable statement to avoid problems with PHP not having gettext support.
 if(!function_exists("gettext")) {
 	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
@@ -17,7 +17,7 @@ if(!function_exists("gettext")) {
 define('OFFSET_PATH', 2);
 
 require_once(dirname(__FILE__).'/global-definitions.php');
-header('Last-Modified: ' . $_zp_last_modified);
+header('Last-Modified: ' . ZP_LAST_MODIFIED);
 header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
 

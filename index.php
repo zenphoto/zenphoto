@@ -150,7 +150,7 @@ if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj)
 	header ('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	header("HTTP/1.0 200 OK");
 	header("Status: 200 OK");
-	header('Last-Modified: ' . $_zp_last_modified);
+	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	zp_apply_filter('theme_headers');
 	include(internalToFilesystem($_zp_obj));
 } else {

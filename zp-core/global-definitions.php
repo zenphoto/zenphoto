@@ -1,5 +1,5 @@
 <?php
-$_zp_last_modified = gmdate('D, d M Y H:i:s').' GMT';
+define('ZP_LAST_MODIFIED',gmdate('D, d M Y H:i:s').' GMT');
 require_once(dirname(__FILE__).'/version.php'); // Include the version info.
 define('ZENFOLDER', 'zp-core');
 define('PLUGIN_FOLDER', 'zp-extensions');
