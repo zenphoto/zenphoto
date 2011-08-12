@@ -661,6 +661,7 @@ class Gallery {
 				if (is_dir($fullname) && !(substr($filename, 0, 1) == '.')) {
 					if (($filename != '.') && ($filename != '..')) {
 						$this->clearCache($fullname);
+						clearstatcache();
 						rmdir($fullname);
 					}
 				} else {

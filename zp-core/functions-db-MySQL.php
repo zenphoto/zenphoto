@@ -203,11 +203,8 @@ function db_close() {
  */
 function db_software() {
 	$dbversion = trim(@mysql_get_server_info());
-	$i = strpos($dbversion, "-");
-	if ($i !== false) {
-		$dbversion = substr($dbversion, 0, $i);
-	}
-	return array('application'=>'MySQL','required'=>'5.0','desired'=>'5.5','version'=>$dbversion);
+	preg_match('/[0-9,\.]*/', $dbversion, $matches);
+	return array('application'=>DATABASE_SOFTWARE,'required'=>'3.6.15','desired'=>'3.6.15','version'=>$matches[0]);
 }
 
 /**

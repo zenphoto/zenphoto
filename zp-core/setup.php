@@ -5,8 +5,7 @@
  */
 
 // force UTF-8 Ø
-define('ZP_LAST_MODIFIED',gmdate('D, d M Y H:i:s').' GMT');
-// leave this as the second executable statement to avoid problems with PHP not having gettext support.
+// leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if(!function_exists("gettext")) {
 	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
 	$noxlate = -1;
