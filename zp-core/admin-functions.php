@@ -1137,7 +1137,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 							} else {
 								$x = '          ';
 								?>
-							<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
+							<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
 								<?php
 							}
 							?>
@@ -2331,11 +2331,6 @@ $_zp_current_locale = NULL;
 function print_language_string_list($dbstring, $name, $textbox=false, $locale=NULL, $edit='', $wide=TEXT_INPUT_SIZE, $ulclass='language_string_list', $rows=6) {
 	global $_zp_active_languages, $_zp_current_locale;
 	if (!empty($edit)) $edit = ' class="'.$edit.'"';
-	if (empty($id)) {
-		$groupid ='';
-	} else {
-		$groupid = ' id="'.$id.'"';
-	}
 	if (is_null($locale)) {
 		if (is_null($_zp_current_locale)) {
 			$_zp_current_locale = getUserLocale();
@@ -2352,7 +2347,7 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 		$emptylang = array_flip($emptylang);
 		unset($emptylang['']);
 		if ($textbox) $class = 'box'; else $class = '';
-		echo '<ul'.$groupid.' class="'.$ulclass.$class.'"'.">\n";
+		echo '<ul class="'.$ulclass.$class.'"'.">\n";
 		$empty = true;
 		foreach ($emptylang as $key=>$lang) {
 			if (isset($strings[$key])) {
@@ -2400,9 +2395,9 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 			$dbstring = array_shift($strings);
 		}
 		if ($textbox) {
-			echo '<textarea'.$groupid.' name="'.$name.'_'.$locale.'"'.$edit.' cols="'.$wide.'"	rows="'.$rows.'">'.html_encode($dbstring).'</textarea>';
+			echo '<textarea name="'.$name.'_'.$locale.'"'.$edit.' cols="'.$wide.'"	rows="'.$rows.'">'.html_encode($dbstring).'</textarea>';
 		} else {
-			echo '<input'.$groupid.' name="'.$name.'_'.$locale.'"'.$edit.' type="text" value="'.html_encode($dbstring).'" size="'.$wide.'" />';
+			echo '<input name="'.$name.'_'.$locale.'"'.$edit.' type="text" value="'.html_encode($dbstring).'" size="'.$wide.'" />';
 		}
 	}
 }

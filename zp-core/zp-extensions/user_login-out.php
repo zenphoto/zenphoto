@@ -26,7 +26,11 @@ class user_logout_options {
 
 	function getOptionsSupported() {
 		return array(	gettext('Enable login form') => array('key' => 'user_logout_login_form', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('If enabled, a login form will be displayed if the viewer is not logged in.'))
+										'order'=>1,
+										'desc' => gettext('If enabled, a login form will be displayed if the viewer is not logged in.')),
+									gettext('Display user field') => array('key' => 'user_logout_show_user', 'type' => OPTION_TYPE_CHECKBOX,
+										'order'=>2,
+										'desc' => gettext('If enabled, the logon form will include the <em>User</em> field so that Zenphoto users may login.'))
 		);
 	}
 	function handleOption($option, $currentValue) {
@@ -84,19 +88,23 @@ if (in_context(ZP_INDEX)) {
  * @param string $after after text
  * @param bool $showLoginForm set to true to display a login form if no one is logged in
  * @param string $logouttext optional replacement text for "Logout"
+ * @param bool $show_user set to true to force the USER field on the form.
  */
-function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logouttext=NULL) {
+function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logouttext=NULL, $show_user=NULL) {
 	global $__redirect, $_zp_authority;
 	if (is_null($logouttext)) $logouttext = gettext("Logout");
 	if (is_null($showLoginForm) && getOption('user_logout_login_form')) {
 		$showLoginForm = true;
+	}
+	if (is_null($show_user) && getOption('user_logout_show_user')) {
+		$show_user = true;
 	}
 	$cookies = $_zp_authority->getAuthCookies();
 	if (empty($cookies)) {
 		if ($showLoginForm) {
 			?>
 			<div class="passwordform">
-				<?php printPasswordForm('', false); ?>
+				<?php printPasswordForm('', false, $show_user); ?>
 			</div>
 			<?php
 		}

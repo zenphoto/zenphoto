@@ -441,7 +441,7 @@ zp_apply_filter('admin_note','news', $subtab);
 						} else {
 							$x = '          ';
 							?>
-							<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="../../images/lock.png"  alt="" class="icon-postiion-top8" /></a>
+							<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="../../images/lock.png"  alt="" class="icon-postiion-top8" /></a>
 							<?php
 						}
 						?>

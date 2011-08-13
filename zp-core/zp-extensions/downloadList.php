@@ -95,7 +95,7 @@ class downloadListOptions {
 		} else {
 			$x = '          ';
 			?>
-			<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/lock.png"  alt="" class="icon-postiion-top8" /></a>
+			<a onclick="resetPass('_downloadList');" title="<?php echo gettext('clear password'); ?>"><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/lock.png"  alt="" class="icon-postiion-top8" /></a>
 			<?php
 		}
 		?>
@@ -106,19 +106,19 @@ class downloadListOptions {
 		</a>
 		<br />
 		<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
-		<input type="text" size="27" id="user_name" name="downloadList_user" value="<?php echo html_encode($user); ?>" />
+		<input type="text" size="27" id="user_name_downloadList" name="downloadList_user" value="<?php echo html_encode($user); ?>" />
 		<br />
 		<?php echo gettext("Password:"); ?>
 		<br />
-		<input type="password" size="27" id="pass" name="downloadList_pass" value="<?php echo $x; ?>" />
+		<input type="password" size="27" id="pass_downloadList" name="downloadList_pass" value="<?php echo $x; ?>" />
 		<br />
 		<?php echo gettext("(repeat)"); ?>
 		<br />
-		<input type="password" size="27" id="pass_2" name="downloadList_pass_2" value="<?php echo $x; ?>" />
+		<input type="password" size="27" id="pass_2_downloadList" name="downloadList_pass_2" value="<?php echo $x; ?>" />
 		<br />
 		<?php echo gettext("Password hint:"); ?>
 		<br />
-		<?php print_language_string_list($hint, 'downloadList_hint', false, NULL, 'hint', 27); ?>
+		<?php print_language_string_list($hint, 'downloadList_hint', false, NULL, 'hint_downloadList', 27); ?>
 	</div>
 	<?php
 

@@ -954,7 +954,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						} else {
 							$x = '          ';
 							?>
-							<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
+							<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
 							<?php
 						}
 						?>
@@ -1264,7 +1264,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 							} else {
 								$x = '          ';
 								?>
-							<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
+							<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
 						<?php
 							}
 							?>
@@ -1890,7 +1890,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 								} else {
 									$x = '          ';
 									?>
-							<a onclick="resetPass();" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
+							<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
 							<?php
 								}
 								?>

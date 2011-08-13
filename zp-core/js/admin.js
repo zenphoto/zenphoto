@@ -263,12 +263,12 @@ function toggle_passwords(id, pwd_enable) {
 	}
 }
 
-function resetPass() {
-	$('#user_name').val('');
-	$('#pass').val('');
-	$('#pass_2').val('');
-	$('.hint').val('');
-	toggle_passwords('',true);
+function resetPass(id) {
+	$('#user_name'+id).val('');
+	$('#pass'+id).val('');
+	$('#pass_2'+id).val('');
+	$('.hint'+id).val('');
+	toggle_passwords(id,true);
 }
 
 
