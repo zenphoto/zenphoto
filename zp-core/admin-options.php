@@ -312,7 +312,18 @@ if (isset($_GET['action'])) {
 			setOption('use_embedded_thumb', (int) isset($_POST['use_embedded_thumb']));
 			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
 			foreach ($_zp_exifvars as $key=>$item) {
-				setOption($key, (int) array_key_exists($key, $_POST));
+				$v = sanitize_numeric($_POST[$key]);
+				switch($v) {
+					case 0:
+					case 1:
+						setOption($key.'-disabled', 0);
+						setOption($key, $v);
+						break;
+					case 2:
+						setOption($key, 0);
+						setOption($key.'-disabled', 1);
+						break;
+				}
 			}
 			$returntab = "&tab=image";
 		}
@@ -1957,22 +1968,44 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo gettext("EXIF display"); ?></td>
+			<td><?php echo gettext("Metadata"); ?></td>
 			<td>
 			<ul class="searchchecklist">
 			<?php
 			$exifstuff = sortMultiArray($_zp_exifvars,2,false);
 			foreach ($exifstuff as $key=>$item) {
-				echo '<li><label><input id="'.$key.'" name="'.$key.'" type="checkbox"';
-				if ($item[3]) {
-					echo ' checked="checked" ';
+				$checked_show = $checked_hide = $checked_disabled = '';
+				if (!$item[5]) {
+					$checked_disabled = ' checked="checked"';
+				} else {
+					if ($item[3]) {
+						$checked_show = ' checked="checked"';
+					} else {
+						$checked_hide = ' checked="checked"';
+					}
 				}
-				echo ' value="1"  /> ' . $item[2] . "</label></li>"."\n";
+				?>
+				<li>
+					<?php echo $item[2]; ?>&nbsp;&nbsp;&nbsp;
+					<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio"<?php echo $checked_show?> value="1" /><img src ="images/accept.png" alt="<?php echo gettext('show'); ?>" /></label>
+					<label><input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio"<?php echo $checked_hide?> value="0" /><img src ="images/reset1.png" alt="<?php echo gettext('hide'); ?>" /></label>
+					<label><input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio"<?php echo $checked_disabled?> value="2" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
+				</li>
+				<?php
 			}
 			?>
 			</ul>
 			</td>
-			<td><?php echo gettext("Check those EXIF fields you wish displayed in image EXIF information."); ?></td>
+			<td>
+			<p>
+				<?php echo gettext("Select how image metadata fields are handled."); ?>
+				<ul style="list-style: none;">
+					<li><img src ="images/accept.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Show the field'); ?></li>
+					<li><img src ="images/reset1.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Hide the field'); ?></li>
+					<li><img src ="images/fail.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Do not process the field'); ?></li>
+				</ul>
+				</p>
+			</td>
 		</tr>
 		<?php
 		$sets = array_merge($_zp_UTF8->iconv_sets, $_zp_UTF8->mb_sets);

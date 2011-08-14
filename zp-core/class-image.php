@@ -287,12 +287,14 @@ class _Image extends MediaObject {
 			if (isset($exifraw['ValidEXIFData'])) {
 				$this->set('hasMetadata',1);
 				foreach($_zp_exifvars as $field => $exifvar) {
-					if (isset($exifraw[$exifvar[0]][$exifvar[1]])) {
-						$exif = trim(sanitize($exifraw[$exifvar[0]][$exifvar[1]],1));
-						$this->set($field, $exif);
-					} else if (isset($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]])) {
-						$exif = trim(sanitize($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]],1));
-						$this->set($field, $exif);
+					if ($exifvar[5]) {	// enabled field
+						if (isset($exifraw[$exifvar[0]][$exifvar[1]])) {
+							$exif = trim(sanitize($exifraw[$exifvar[0]][$exifvar[1]],1));
+							$this->set($field, $exif);
+						} else if (isset($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]])) {
+							$exif = trim(sanitize($exifraw[$exifvar[0]]['MakerNote'][$exifvar[1]],1));
+							$this->set($field, $exif);
+						}
 					}
 				}
 			}
@@ -317,9 +319,11 @@ class _Image extends MediaObject {
 					}
 					// Extract IPTC fields of interest
 					foreach ($_zp_exifvars as $field=>$exifvar) {
-						if ($exifvar[0]=='IPTC') {
-							$datum = $this->getIPTCTag($IPTCtags[$exifvar[1]], $iptc);
-							$this->set($field, $this->prepIPTCString($datum, $characterset));
+						if ($exifvar[5]) {
+							if ($exifvar[0]=='IPTC') {	// enabled field
+								$datum = $this->getIPTCTag($IPTCtags[$exifvar[1]], $iptc);
+								$this->set($field, $this->prepIPTCString($datum, $characterset));
+							}
 						}
 					}
 					/* iptc keywords (tags) */
