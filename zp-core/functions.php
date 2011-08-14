@@ -67,7 +67,7 @@ function setexifvars() {
 		'IPTCObjectName'						=> array('IPTC',	 'ObjectName',						gettext('Object Name'),																false,			256, 	true),
 		'IPTCImageHeadline'  				=> array('IPTC',	 'ImageHeadline',					gettext('Image Headline'),														false,			256, 	true),
 		'IPTCImageCaption' 					=> array('IPTC',	 'ImageCaption',					gettext('Image Caption'),															false,			2000, true),
-		'IPTCImageCaptionWriter' 		=> array('IPTC',	 'ImageCaptionWriter',		gettext('Image Caption writer'),											false,			32, 	true),
+		'IPTCImageCaptionWriter' 		=> array('IPTC',	 'ImageCaptionWriter',		gettext('Image Caption Writer'),											false,			32, 	true),
 		'EXIFDateTime'  						=> array('SubIFD', 'DateTime', 				 			gettext('Time Taken'),            										true,				52, 	true),
 		'EXIFDateTimeOriginal'  		=> array('SubIFD', 'DateTimeOriginal',  		gettext('Original Time Taken'),        								true,				52, 	true),
 		'EXIFDateTimeDigitized'  		=> array('SubIFD', 'DateTimeDigitized',  		gettext('Time Digitized'),            								true,				52, 	true),
