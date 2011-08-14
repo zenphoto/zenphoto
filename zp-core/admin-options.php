@@ -161,8 +161,8 @@ if (isset($_GET['action'])) {
 			$fail = '';
 			$search = new SearchEngine();
 			$searchfields = array();
-			setOption('exact_tag_match', sanitize($_POST['SEARCH_Tags_tag_match']));
-			unset($_POST['SEARCH_Tags_tag_match']);
+			setOption('exact_tag_match', sanitize($_POST['SEARCH_tags_tag_match']));
+			unset($_POST['SEARCH_tags_tag_match']);
 			foreach ($_POST as $key=>$value) {
 				if (strpos($key, 'SEARCH_') !== false) {
 					$searchfields[] = substr(sanitize(postIndexDecode($key)),7);
@@ -1313,12 +1313,14 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 																				array('type'=>'radio', 'display'=>gettext('exact'),'name'=>'tag_match', 'value'=>1, 'checked'=>0)));
 					$extra['tags'][(int) (getOption('exact_tag_match') && true)]['checked'] = 1;
 					$set_fields = $engine->allowedSearchFields();
+					$fields = array_diff($fields, $set_fields);
 					?>
 					<td>
 						<?php echo gettext('Fields list:'); ?>
 						<ul class="searchchecklist">
 							<?php
-							generateUnorderedListFromArray($set_fields, $fields, 'SEARCH_', false, true, true, NULL, $extra);
+							generateUnorderedListFromArray($set_fields, $set_fields, 'SEARCH_', false, true, true, NULL, $extra);
+							generateUnorderedListFromArray(array(), $fields, 'SEARCH_', false, true, true, NULL, $extra);
 							?>
 						</ul>
 						<br />

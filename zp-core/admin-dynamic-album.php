@@ -204,7 +204,6 @@ foreach ($albumlist as $fullfolder => $albumtitle) {
 				}
 			}
 		}
-
 		generateUnorderedListFromArray($selected_fields, $available_fields, 'SEARCH_', false, true, true);
 		echo '</ul>';
 		?>
