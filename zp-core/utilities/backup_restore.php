@@ -201,9 +201,8 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		';
 	}
 } else if (isset($_REQUEST['restore']) && db_connect()) {
-//	$refresh = '<meta http-equiv="refresh" content="3"; url="'.FULLWEBPATH.'/'.ZENFOLDER.'/admin.php" />'."\n";
 	$oldlibauth = $_zp_authority->getVersion();
-	$success = 1;
+	$success = -1;
 	if (isset($_REQUEST['backupfile'])) {
 		$file_version = 0;
 		$compression_handler = 'gzip';
@@ -257,13 +256,13 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 				$counter = 0;
 				$missing_table = array();
 				$missing_element = array();
-				while (!empty($string) && !$success) {
+				while (!empty($string) && $success<10) {
 					$sep = strpos($string, TABLE_SEPARATOR);
 					$table = substr($string, 0, $sep);
 					if (array_key_exists($prefix.$table,$tables)) {
 						if (!$table_cleared[$prefix.$table]) {
 							if (!db_truncate_table($table)) {
-								$success = 2;
+								$success++;
 							}
 							$table_cleared[$prefix.$table] = true;
 							set_time_limit(60);
@@ -273,12 +272,14 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 						$items = '';
 						$values = '';
 						foreach($row as $key=>$element) {
+							if (!empty($element)) {
+								$element = decompress($element);
+							}
 							if (array_search($key,$tables[$prefix.$table]) === false) {
-								$missing_element[] = $table.'->'.$key;
-							} else {
-								if (!empty($element)) {
-									$element = decompress($element);
+								if ($element) {	//	Flag it if data will be lost
+									$missing_element[] = $table.'->'.$key;
 								}
+							} else {
 								$items .= '`'.$key.'`,';
 								if (is_null($element)) {
 									$values .= 'NULL,';
@@ -291,10 +292,9 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 							if ($table!='options' || strpos($values,'zenphoto_release')===false) {
 								$items = substr($items,0,-1);
 								$values = substr($values,0,-1);
-
 								$sql = 'INSERT INTO '.prefix($table).' ('.$items.') VALUES ('.$values.')';
 								if (!query($sql, false)) {
-									$success = 2;
+									$success++;
 								}
 							}
 						}
@@ -353,10 +353,10 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 			<h2>'.gettext("Restore failed").'</h2>
 			';
 			switch ($success) {
-				case 1:
+				case -1:
 					$messages .= '<p>'.gettext('No backup set found.').'</p>';
 					break;
-				case 2:
+				default:
 					$messages .= '<p'.sprintf(gettext('Query ( <em>%1$s</em> ) failed. Error: %2$s' ),$sql,db_error()).'</p>';
 					break;
 			}

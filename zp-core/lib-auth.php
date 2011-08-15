@@ -158,7 +158,7 @@ class Zenphoto_Authority {
 		}
 		$p = getOption('password_pattern');
 		if (!empty($p)) {
-			$strong = false;
+			$strong = true;
 			$p = str_replace('\|', "\t", $p);
 			$patterns = explode('|', $p);
 			$p2 = '';
@@ -175,12 +175,12 @@ class Zenphoto_Authority {
 						}
 					}
 					$patrn .= addcslashes($pat,'\\/.()[]^-');
-					if (preg_match('/(['.$patrn.'])/', $pass)) {
-						$strong = true;
-					}
+					$strong = $strong && preg_match('/(['.$patrn.'])/', $pass);
 				}
 			}
-			if (!$strong)	return sprintf(gettext('Password must contain at least one of %s'), substr($p2,0,-2));
+			if (!$strong)	{
+				return sprintf(gettext('Password must contain at least one of %s'), substr($p2,0,-2));
+			}
 		}
 		return false;
 	}
