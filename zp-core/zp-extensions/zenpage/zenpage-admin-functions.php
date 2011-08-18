@@ -1632,10 +1632,10 @@ function authorSelector($author=NULL) {
 		$author = $_zp_current_admin_obj->getUser();
 	}
 	$authors = array($author=>$author);
-	if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
+	if (zp_loggedin(MANAGE_ALL_PAGES_RIGHTS | MANAGE_ALL_NEWS_RIGHTS)) {
 		$admins = $_zp_authority->getAdministrators();
 		foreach($admins as $admin) {
-			if($admin['rights'] & (ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS)) {
+			if($admin['rights'] & (ADMIN_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) {
 				$authors[$admin['user']] = $admin['user'];
 			}
 		}
