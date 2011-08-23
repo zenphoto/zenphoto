@@ -1876,12 +1876,13 @@ function imageNumber() {
 		}
 	} else {
 		if ($_zp_current_album->isDynamic()) {
+			$alb = $_zp_current_image->getAlbum()->name;
 			$search = $_zp_current_album->getSearchEngine();
 			$images = $search->getImages();
 			$c = 0;
 			foreach ($images as $image) {
 				$c++;
-				if ($name == $image['filename']) {
+				if ($name == $image['filename'] && $alb == $image['folder']) {
 					return $c;
 				}
 			}
