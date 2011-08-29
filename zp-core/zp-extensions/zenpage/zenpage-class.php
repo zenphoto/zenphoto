@@ -307,9 +307,10 @@ class Zenpage {
 	/**
 	 * Retrieves a list of all unique years & months
 	 * @param bool $yearsonly If set to true only the years' count is returned (Default false)
+	 * @param string $order 'desc' (default) or 'asc' for descending or ascending
 	 * @return array
 	 */
-	function getAllArticleDates($yearsonly=false) {
+	function getAllArticleDates($yearsonly=false,$order='desc') {
 		$alldates = array();
 		$cleandates = array();
 		$sql = "SELECT date FROM ". prefix('news');
@@ -328,7 +329,15 @@ class Zenpage {
 			}
 		}
 		$datecount = array_count_values($cleandates);
-		ksort($datecount);
+		switch($order) {
+			case 'desc':
+			default:
+				krsort($datecount);
+				break;
+			case 'asc':
+				ksort($datecount);
+			break;
+		}
 		return $datecount;
 	}
 

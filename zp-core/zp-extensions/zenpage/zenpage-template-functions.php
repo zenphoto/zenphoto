@@ -966,14 +966,15 @@ function printNewsDate() {
  * @param string $monthclass optional class for "month"
  * @param string $activeclass optional class for the currently active archive
  * @param bool $yearsonly If set to true the archive only shows the years with total count (Default false)
+ * @param string $order 'desc' (default) or 'asc' for descending or ascending
  */
-function printNewsArchive($class='archive', $yearclass='year', $monthclass='month', $activeclass="archive-active",$yearsonly=false) {
+function printNewsArchive($class='archive', $yearclass='year', $monthclass='month', $activeclass="archive-active",$yearsonly=false,$order='desc') {
 	global $_zp_zenpage;
 	if (!empty($class)){ $class = "class=\"$class\""; }
 	if (!empty($yearclass)){ $yearclass = "class=\"$yearclass\""; }
 	if (!empty($monthclass)){ $monthclass = "class=\"$monthclass\""; }
 	if (!empty($activeclass)){ $activeclass = "class=\"$activeclass\""; }
-	$datecount = $_zp_zenpage->getAllArticleDates($yearsonly);
+	$datecount = $_zp_zenpage->getAllArticleDates($yearsonly,$order);
 	$lastyear = "";
 	$nr = "";
 	echo "\n<ul $class>\n";
