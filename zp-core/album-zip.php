@@ -53,12 +53,12 @@ function zipAddAlbum($album, $base, $zip) {
  */
 function createAlbumZip($albumname){
 	global $_zp_zip_list, $zip_gallery;
-	if (!checkAlbumPassword($albumname)) {
+	$zip_gallery = new Gallery();
+	$album = new Album($zip_gallery, $albumname);
+	if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
 		pageError(403, gettext("Forbidden"));
 		exit();
 	}
-	$zip_gallery = new Gallery();
-	$album = new Album($zip_gallery, $albumname);
 	if (!$album->exists) {
 		pageError(404, gettext('Album not found'));
 		exit();

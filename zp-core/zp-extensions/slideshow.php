@@ -368,7 +368,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		$albumq = query_single_row("SELECT title, folder FROM ". prefix('albums') ." WHERE id = ".$albumid);
 		$album = new Album($gallery, $albumq['folder']);
 		$albumtitle = $album->getTitle();
-		if(!checkAlbumPassword($albumq['folder'])) {
+		if(!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumq['folder'])) {
 			echo gettext("This album is password protected!");
 			exit();
 		}

@@ -514,12 +514,6 @@ function checkAlbumPassword($album, &$hint=NULL) {
 		if (!is_object($_zp_gallery)) $_zp_gallery = new Gallery();
 		$album = new Album($_zp_gallery, $albumname=$album);
 	}
-	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
-		return 'zp_master_admin';
-	}
-	if ($album->isMyItem(LIST_RIGHTS)) {
-		return 'zp_album_admin';  // he is allowed to see it.
-	}
 	if (isset($_zp_pre_authorization[$albumname])) {
 		return $_zp_pre_authorization[$albumname];
 	}

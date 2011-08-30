@@ -1427,7 +1427,7 @@ function printAlbumThumbImage($alt, $class=NULL, $id=NULL) {
 		getMaxSpaceContainer($w, $h, $thumbobj, true);
 	}
 	$size = ' width="'.$w.'" height="'.$h.'"';
-	if (!getOption('use_lock_image') || checkAlbumPassword($_zp_current_album->name)) {
+	if (!getOption('use_lock_image') || checkAlbumPassword($_zp_current_album->name)=='zp_public_access') {
 		$html = '<img src="' . html_encode($thumb). '"' . $size . ' alt="' . html_encode($alt) . '"' .	$class . $id . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html);
 		echo $html;
@@ -1509,7 +1509,7 @@ function printCustomAlbumThumbImage($alt, $size, $width=NULL, $height=NULL, $cro
 	} else {
 		$sizing = $sizing.' height="'.$height.'"';
 	}
-	if (!getOption('use_lock_image') || checkAlbumPassword($_zp_current_album->name)){
+	if (!getOption('use_lock_image') || checkAlbumPassword($_zp_current_album->name)=='zp_public_access'){
 		$html = '<img src="' . html_encode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy)). '"' . $sizing . ' alt="' . html_encode($alt) . '"' .
 		(($class) ? ' class="'.$class.'"' : '') .	(($id) ? ' id="'.$id.'"' : '') . " />";
 		$html = zp_apply_filter('custom_album_thumb_html', $html);
@@ -3094,13 +3094,15 @@ function printAlbumZip(){
  * @param int $itemID the ID of the element to get the comments for if $type != "all"
  */
 function getLatestComments($number,$type="all",$itemID="") {
+	global $_zp_gallery;
 	$itemID = sanitize_numeric($itemID);
 	$passwordcheck1 = "";
 	$passwordcheck2 = "";
 	if (!zp_loggedin(ADMIN_RIGHTS)) {
-		$result = query("SELECT * FROM " . prefix('albums'). " ORDER BY title");
-		while ($albumcheck = db_fetch_assoc($result)) {
-			if(!checkAlbumPassword($albumcheck['folder'])) {
+		$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
+		foreach ($albumscheck as $albumcheck) {
+			$album = new Album($_zp_gallery, $albumcheck['folder']);
+			if($album->isMyItem(LIST_RIGHTS) || !checkAlbumPassword($albumcheck['folder'])) {
 				$albumpasswordcheck1= " AND i.albumid != ".$albumcheck['id'];
 				$albumpasswordcheck2= " AND a.id != ".$albumcheck['id'];
 				$passwordcheck1 = $passwordcheck1.$albumpasswordcheck1;
