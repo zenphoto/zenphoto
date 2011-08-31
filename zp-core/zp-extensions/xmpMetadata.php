@@ -457,7 +457,7 @@ function xmpMetadataPut($object, $prefix) {
 	if (isset($_POST['xmpMedadataPut_'.$prefix])) {
 		xmpMetadataPublish($object);
 	}
-	return object;
+	return $object;
 }
 
 function xmpMetadataPublish($object) {
