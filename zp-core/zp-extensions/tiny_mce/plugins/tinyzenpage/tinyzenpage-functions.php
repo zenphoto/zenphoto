@@ -220,6 +220,7 @@ function printImageslist($number) {
  */
 
 function checkIfImageVideo($imageobj) {
+	$video = '';
 	if(isImageVideo($imageobj) && getOption('zp_plugin_flowplayer3')) {
 		$imagesuffix = getSuffix($imageobj->filename);
 		switch($imagesuffix) {
