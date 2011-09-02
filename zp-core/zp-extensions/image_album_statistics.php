@@ -57,7 +57,10 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 		$obj = $_zp_gallery;
 	}
 	getImageAlbumAlbumList($obj, $albumlist);
-	$albumWhere = ' WHERE (`id`='.implode(' OR `id`=', $albumlist).')';
+	$albumWhere = '';
+	if(!empty($albumlist)) {
+		$albumWhere = ' WHERE (`id`='.implode(' OR `id`=', $albumlist).')';
+	} 
 	switch($option) {
 		case "popular":
 			$sortorder = "hitcounter";
