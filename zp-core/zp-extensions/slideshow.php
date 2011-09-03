@@ -274,7 +274,7 @@ function is_valid($image, $valid_types) {
  *
  * b) Calling directly via printSlideShow() function (jQuery mode recommended)
  * Call printSlideShowJS() function in the head section of the theme page you want to use the slideshow on.
- * Them place the printSlideShow() function where you want the slideshow to appear and set $albumobj and if needed $imageobj.
+ * Then place the printSlideShow() function where you want the slideshow to appear and set $albumobj and if needed $imageobj.
  * The controls are disabled automatically.
  *
  * NOTE: The jQuery mode does not support movie and audio files anymore. If you need to show them please use the Flash mode.
