@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-24 19:05+0100\n"
-"PO-Revision-Date: 2011-08-24 19:51+0100\n"
+"POT-Creation-Date: 2011-09-03 11:50+0100\n"
+"PO-Revision-Date: 2011-09-03 12:02+0100\n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -2081,7 +2081,7 @@ msgstr "Weet je zeker dat je deze afbeelding wilt selecteren voor verwijdering?"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1198
 msgid "Delete image"
-msgstr "Verwijder afbeelding"
+msgstr "Verwijder"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1201
 #: ZpTranslation-Development/zp-core/admin-edit.php:1227
@@ -2435,7 +2435,7 @@ msgstr "Album gastgebruiker:"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:1156
 msgid "repeat:"
-msgstr "herhaal:"
+msgstr "Herhaal wachtwoord:"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:1159
 msgid "Password hint:"
@@ -2767,7 +2767,7 @@ msgstr "Beheerde nieuwscategorieën."
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:2950
 msgid "News categories"
-msgstr "Nieuwscategorie&euml;n"
+msgstr "Nieuwscategorieën"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:2963
 msgid "Managed pages:"
@@ -2884,7 +2884,7 @@ msgstr "nieuwsartikelen"
 
 #: ZpTranslation-Development/zp-core/admin-globals.php:71
 msgid "categories"
-msgstr "categoriën"
+msgstr "categorieën"
 
 #: ZpTranslation-Development/zp-core/admin-globals.php:76
 msgid "tags"
@@ -3907,7 +3907,7 @@ msgstr "Volledige afbeelding bescherming"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1875
 msgid "Disable hotlinking"
-msgstr "Hotlinken uitzetten"
+msgstr "<em>Hotlinken uitzetten</em>"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1880
 msgid "cache the full image"
@@ -3960,7 +3960,7 @@ msgstr "Gebruik slot-afbeelding"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1968
 msgid "Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."
-msgstr "Vervang een <em>slot</em>-afbeelding voor thumbnails van met wachtwoord beveiligde albums als de bezoeker niet het wachtwoord heeft ingevoerd. Als je thema een <code>images/err-passwordprotected.gif</code> afbeelding bevat, zal deze getoond worden. Anders wordt de standaard Zenphoto slotafbeelding getoond."
+msgstr "Vervangt een <em>slot</em>-afbeelding voor thumbnails van met wachtwoord beveiligde albums. Als je thema een <code>images/err-passwordprotected.gif</code> afbeelding bevat, zal deze getoond worden. Anders wordt de standaard Zenphoto slotafbeelding getoond."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1971
 msgid "Metadata"
@@ -5187,7 +5187,7 @@ msgstr[1] "<strong>%1$u</strong> Artikelen (%2$u niet gepubliceerd)"
 msgid "<strong>%1$u</strong> Category"
 msgid_plural "<strong>%1$u</strong> Categories"
 msgstr[0] "<strong>%1$u</strong> categorie"
-msgstr[1] "<strong>%1$u</strong> categorie&euml;n"
+msgstr[1] "<strong>%1$u</strong> categorieën"
 
 #: ZpTranslation-Development/zp-core/admin.php:270
 msgid "Installation information"
@@ -5292,7 +5292,7 @@ msgstr[1] "%u actieve filters:"
 msgid "Utility functions"
 msgstr "Extra functies"
 
-#: ZpTranslation-Development/zp-core/album-zip.php:57
+#: ZpTranslation-Development/zp-core/album-zip.php:59
 msgid "Forbidden"
 msgstr "Verboden"
 
@@ -6332,7 +6332,6 @@ msgid "Originating Program "
 msgstr "Gebruikt programma"
 
 #: ZpTranslation-Development/zp-core/functions.php:116
-#, fuzzy
 msgid "Program Version"
 msgstr "Programmaversie"
 
@@ -6374,77 +6373,77 @@ msgstr "Verzenden van mail mislukt. Er is geen mail script geconfigureerd!"
 msgid "No \"to\" address list provided."
 msgstr "Geen \"to\" adreslijst opgegeven."
 
-#: ZpTranslation-Development/zp-core/functions.php:842
+#: ZpTranslation-Development/zp-core/functions.php:836
 msgid "You must supply an e-mail address."
 msgstr "Je moet een e-mailadres invoeren."
 
-#: ZpTranslation-Development/zp-core/functions.php:847
+#: ZpTranslation-Development/zp-core/functions.php:841
 msgid "You must enter your name."
 msgstr "Je moet je naam invoeren."
 
-#: ZpTranslation-Development/zp-core/functions.php:852
+#: ZpTranslation-Development/zp-core/functions.php:846
 msgid "You must supply a WEB page URL."
 msgstr "Je moet een webpagina URL invoeren."
 
-#: ZpTranslation-Development/zp-core/functions.php:858
+#: ZpTranslation-Development/zp-core/functions.php:852
 msgid "CAPTCHA verification failed."
 msgstr "CAPTCHA verificatie mislukt."
 
-#: ZpTranslation-Development/zp-core/functions.php:864
+#: ZpTranslation-Development/zp-core/functions.php:858
 msgid "You must enter something in the comment text."
 msgstr "Je bent vergeten een bericht te schrijven."
 
-#: ZpTranslation-Development/zp-core/functions.php:875
+#: ZpTranslation-Development/zp-core/functions.php:869
 #, php-format
 msgid "Your comment was rejected by the <em>%s</em> SPAM filter."
 msgstr "Je reactie is geweigerd door het <em>%s</em> SPAM filter."
 
-#: ZpTranslation-Development/zp-core/functions.php:879
+#: ZpTranslation-Development/zp-core/functions.php:873
 #, php-format
 msgid "Your comment has been marked for moderation by the <em>%s</em> SPAM filter."
 msgstr "Je reactie is door het <em>%s</em> SPAM filter aangemerkt voor aanpassingen."
 
-#: ZpTranslation-Development/zp-core/functions.php:912
+#: ZpTranslation-Development/zp-core/functions.php:906
 #, php-format
 msgid "A comment has been placed in moderation on your album \"%1$s\"."
 msgstr "Er is een reactie ter goedkeuring op het album \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/functions.php:914
+#: ZpTranslation-Development/zp-core/functions.php:908
 #, php-format
 msgid "A comment has been posted on your album \"%1$s\"."
 msgstr "Er is een reactie op het album \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/functions.php:920
+#: ZpTranslation-Development/zp-core/functions.php:914
 #, php-format
 msgid "A comment has been placed in moderation on your article \"%1$s\"."
 msgstr "Er is een reactie ter goedkeuring op het artikel \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/functions.php:922
+#: ZpTranslation-Development/zp-core/functions.php:916
 #, php-format
 msgid "A comment has been posted on your article \"%1$s\"."
 msgstr "Er is een reactie op het artikel \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/functions.php:928
+#: ZpTranslation-Development/zp-core/functions.php:922
 #, php-format
 msgid "A comment has been placed in moderation on your page \"%1$s\"."
 msgstr "Er is een reactie ter goedkeuring op de pagina \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/functions.php:930
+#: ZpTranslation-Development/zp-core/functions.php:924
 #, php-format
 msgid "A comment has been posted on your page \"%1$s\"."
 msgstr "Er is een reactie op de pagina \"%1$s\"."
 
-#: ZpTranslation-Development/zp-core/functions.php:938
+#: ZpTranslation-Development/zp-core/functions.php:932
 #, php-format
 msgid "A comment has been placed in moderation on your image \"%1$s\" in the album \"%2$s\"."
 msgstr "Er is een reactie ter goedkeuring op de afbeelding  \"%1$s\" in het album \"%2$s\"."
 
-#: ZpTranslation-Development/zp-core/functions.php:940
+#: ZpTranslation-Development/zp-core/functions.php:934
 #, php-format
 msgid "A comment has been posted on your image \"%1$s\" in the album \"%2$s\"."
 msgstr "Er is een reactie op de afbeelding  \"%1$s\" in het album \"%2$s\"."
 
-#: ZpTranslation-Development/zp-core/functions.php:946
+#: ZpTranslation-Development/zp-core/functions.php:940
 #, php-format
 msgid ""
 "Author: %1$s\n"
@@ -6461,7 +6460,7 @@ msgstr ""
 "\n"
 "%4$s"
 
-#: ZpTranslation-Development/zp-core/functions.php:947
+#: ZpTranslation-Development/zp-core/functions.php:941
 #, php-format
 msgid ""
 "You can view all comments about this item here:\n"
@@ -6470,7 +6469,7 @@ msgstr ""
 "Je kunt hier alle reacties over dit thema hier zien:\n"
 "%1$s"
 
-#: ZpTranslation-Development/zp-core/functions.php:948
+#: ZpTranslation-Development/zp-core/functions.php:942
 #, php-format
 msgid ""
 "You can edit the comment here:\n"
@@ -6479,42 +6478,42 @@ msgstr ""
 "Je kunt hier de reactie aanpassen:\n"
 "%1$s"
 
-#: ZpTranslation-Development/zp-core/functions.php:972
+#: ZpTranslation-Development/zp-core/functions.php:966
 msgid "Comment posted"
 msgstr "Reactie geplaatst"
 
-#: ZpTranslation-Development/zp-core/functions.php:1228
+#: ZpTranslation-Development/zp-core/functions.php:1222
 #, php-format
 msgid "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your installation."
 msgstr "Zenphoto heeft geen themascripts gevonden. Controleer a.u.b. de <em>%s</em> map van de installatie."
 
-#: ZpTranslation-Development/zp-core/functions.php:1573
+#: ZpTranslation-Development/zp-core/functions.php:1567
 msgid "Unknown name"
 msgstr "Onbekende naam"
 
-#: ZpTranslation-Development/zp-core/functions.php:1573
+#: ZpTranslation-Development/zp-core/functions.php:1567
 msgid "Unknown author"
 msgstr "Onbekende auteur"
 
-#: ZpTranslation-Development/zp-core/functions.php:1573
-#: ZpTranslation-Development/zp-core/functions.php:1581
+#: ZpTranslation-Development/zp-core/functions.php:1567
+#: ZpTranslation-Development/zp-core/functions.php:1575
 msgid "<strong>Theme description error!</strong>"
 msgstr "<strong>Fout in omschrijving van thema!</strong>"
 
-#: ZpTranslation-Development/zp-core/functions.php:1573
+#: ZpTranslation-Development/zp-core/functions.php:1567
 msgid "Unknown date"
 msgstr "Onbekende datum"
 
-#: ZpTranslation-Development/zp-core/functions.php:1606
+#: ZpTranslation-Development/zp-core/functions.php:1600
 #, php-format
 msgid "Page error: %2$s (%1$s)"
 msgstr "Fout op pagina: %2$s (%1$s)"
 
-#: ZpTranslation-Development/zp-core/functions.php:1827
+#: ZpTranslation-Development/zp-core/functions.php:1821
 msgid "0 Bytes"
 msgstr "0 Bytes"
 
-#: ZpTranslation-Development/zp-core/functions.php:2209
+#: ZpTranslation-Development/zp-core/functions.php:2203
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr "Zenphoto heeft een 404 fout verwerkt in %s. Zie het debug log voor details."
@@ -8258,90 +8257,90 @@ msgstr "Download Zip van het album."
 msgid "Download a zip file of this album"
 msgstr "Download een zip-bestand van dit album."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3170
+#: ZpTranslation-Development/zp-core/template-functions.php:3172
 msgid "by"
 msgstr "door"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3448
+#: ZpTranslation-Development/zp-core/template-functions.php:3450
 #, php-format
 msgid "View image: %s"
 msgstr "Bekijk afbeelding: %s"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3515
+#: ZpTranslation-Development/zp-core/template-functions.php:3517
 msgid "(No tags...)"
 msgstr "(Geen tags...)"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3631
+#: ZpTranslation-Development/zp-core/template-functions.php:3633
 msgid "No popular tags"
 msgstr "Geen populaire tags"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3840
+#: ZpTranslation-Development/zp-core/template-functions.php:3842
 msgid "Latest images RSS"
 msgstr "Laatste afbeeldingen RSS"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3845
+#: ZpTranslation-Development/zp-core/template-functions.php:3847
 msgid "Latest images of this album RSS"
 msgstr "Laatste afbeeldingen van deze album RSS"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3850
+#: ZpTranslation-Development/zp-core/template-functions.php:3852
 msgid "Latest images of this album and its subalbums RSS"
 msgstr "Laatste afbeeldingen van dit album en z'n subalbums RSS"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3855
+#: ZpTranslation-Development/zp-core/template-functions.php:3857
 msgid "Latest comments RSS"
 msgstr "Laatste reacties RSS"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3860
+#: ZpTranslation-Development/zp-core/template-functions.php:3862
 msgid "Latest comments RSS for this image"
 msgstr "Laatste reacties RSS op dze afbeelding"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3865
+#: ZpTranslation-Development/zp-core/template-functions.php:3867
 msgid "Latest comments RSS for this album"
 msgstr "Laatste reacties RSS voor dit album"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3870
-#: ZpTranslation-Development/zp-core/template-functions.php:3875
+#: ZpTranslation-Development/zp-core/template-functions.php:3872
+#: ZpTranslation-Development/zp-core/template-functions.php:3877
 msgid "Latest albums RSS"
 msgstr "Laatste albums RSS"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3981
+#: ZpTranslation-Development/zp-core/template-functions.php:3983
 msgid "getSearchURL $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "getSearchURL $album_list parameter is verouderd. Gebruik in plaats daarvan array(\"albums\"=>array(album, album,...))."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4080
+#: ZpTranslation-Development/zp-core/template-functions.php:4082
 msgid "printSearchForm $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "printSearchForm $album_list parameter is verouderd. Gebruik in plaats daarvan array(\"albums\"=>aray(album, album,...))."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4097
+#: ZpTranslation-Development/zp-core/template-functions.php:4099
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4155
+#: ZpTranslation-Development/zp-core/template-functions.php:4157
 msgid "select search fields"
 msgstr "selecteer zoekvelden"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4155
+#: ZpTranslation-Development/zp-core/template-functions.php:4157
 msgid "fields"
 msgstr "velden"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4157
+#: ZpTranslation-Development/zp-core/template-functions.php:4159
 msgid "Clear search"
 msgstr "Maak zoekveld leeg"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4157
+#: ZpTranslation-Development/zp-core/template-functions.php:4159
 msgid "Reset search"
 msgstr "Reset zoeken"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4229
+#: ZpTranslation-Development/zp-core/template-functions.php:4231
 msgid "no date"
 msgstr "geen datum"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4481
+#: ZpTranslation-Development/zp-core/template-functions.php:4483
 msgid "The page you are trying to view is password protected."
 msgstr "De pagina die je probeert te bekijken is beveiligd met een wachtwoord."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4487
+#: ZpTranslation-Development/zp-core/template-functions.php:4489
 msgid "printPasswordForm custom theme password forms is deprecated. You should style the form created by the Zenphoto_Authority class (or its derivatives) instead. Use of these forms will prevent alternative credentials implementations from working with a theme."
 msgstr "De functie <em>printPasswordForm</em> is verouderd.<br />Je zou nu gebruik moeten maken van een <em>method</em> van de Zenphoto_Authority class. (bijvooorbeeld: $_zp_authority->printLoginForm('', false))"
 
@@ -9405,13 +9404,17 @@ msgstr "Draai 270 rechtsom"
 msgid "Natural"
 msgstr "Natuurlijk"
 
-#: ZpTranslation-Development/zp-core/rss/rss-comments.php:24
-msgid " (latest comments"
+#: ZpTranslation-Development/zp-core/rss/rss-comments.php:27
+msgid " (latest comments)"
 msgstr " (laatste reacties)"
 
-#: ZpTranslation-Development/zp-core/rss/rss-news.php:26
+#: ZpTranslation-Development/zp-core/rss/rss-news.php:20
 msgid " (Latest news)"
 msgstr " (laatste nieuws)"
+
+#: ZpTranslation-Development/zp-core/rss/rss-news.php:23
+msgid " (Latest news and images)"
+msgstr " (laatste nieuws en afbeeldingen)"
 
 #: ZpTranslation-Development/zp-core/rss/rss.php:62
 #, php-format
@@ -9850,7 +9853,7 @@ msgstr "statistieken"
 
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:80
 msgid "News Categories"
-msgstr "Nieuwscategoriën"
+msgstr "Nieuwscategorieën"
 
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:87
 msgid "rss"
@@ -10027,7 +10030,7 @@ msgstr "RSS feeds"
 
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:676
 msgid "Statistics for news categories"
-msgstr "Statistieken voor nieuwscategorie&euml;n"
+msgstr "Statistieken voor nieuwscategorieën"
 
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:683
 msgid "Statistics for RSS feeds"
@@ -10393,11 +10396,11 @@ msgstr "Categorie <em>%s</em> toegevoegd"
 #: ZpTranslation-Development/zp-core/utilities/wordpress_import.php:117
 #, php-format
 msgid "A category with the title/titlelink <em>%s</em> already exists!"
-msgstr "Er bestaat reeds een categoriel met de titel/titel-link <em>%s</em>!"
+msgstr "Er bestaat reeds een categorie met de titel/titel-link <em>%s</em>!"
 
 #: ZpTranslation-Development/zp-core/utilities/wordpress_import.php:121
 msgid "No categories to import."
-msgstr "Geen categorie&euml;n om te importeren."
+msgstr "Geen categorieën om te importeren."
 
 #: ZpTranslation-Development/zp-core/utilities/wordpress_import.php:136
 #, php-format
@@ -10487,7 +10490,7 @@ msgstr "<strong>Pagina's (alleen bericht_status gepubliceerd  en concept) => Zen
 
 #: ZpTranslation-Development/zp-core/utilities/wordpress_import.php:372
 msgid "<strong>Post categories => Zenpage categories including assignment to their article</strong>"
-msgstr "<strong>Berichten categorie&euml;n => Zenpage categorie&euml;n, inclusief verwijzing naar hun artikelen</strong>"
+msgstr "<strong>Berichten categorieën => Zenpage categorieën, inclusief verwijzing naar hun artikelen</strong>"
 
 #: ZpTranslation-Development/zp-core/utilities/wordpress_import.php:373
 msgid "<strong>Post tags => Zenphoto tags including assignment to their article</strong>"
@@ -12199,7 +12202,7 @@ msgstr "Vul IP-adres(sen) in"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:13
 msgid "A plugin to print the most common HTML meta tags to the head of your site's pages. Tags are selected from existing Zenphoto info such as gallery description, tags, or Zenpage news categories."
-msgstr "Een plugin voor het automatsch genereren van de meest voorkomende HTML meta-tags in de <em>head</em> van de pagina's.<br />Hierbij wordt gebruik gemaakt van bestaande informatie als galerijbeschrijving, tags of Zenpage nieuws categorie&euml;n."
+msgstr "Een plugin voor het automatsch genereren van de meest voorkomende HTML meta-tags in de <em>head</em> van de pagina's.<br />Hierbij wordt gebruik gemaakt van bestaande informatie als galerijbeschrijving, tags of Zenpage nieuws categorieën."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:56
 msgid "Cache control"
@@ -12253,19 +12256,19 @@ msgstr "Welke HTML meta-tags gebruikt moeten worden. Gedetailleerde informatie h
 msgid "Functions that provide various statistics about images and albums in the gallery."
 msgstr "Functies die diverse statistieken over afbeeldingen en albums in de galerij leveren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:185
+#: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:188
 #, php-format
 msgid "%1$u new %2$s"
 msgstr "%1$u nieuw %2$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:196
-#: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:454
+#: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:199
+#: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:457
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "waardering: %1$u (Stemmen: %2$u )"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:201
-#: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:459
+#: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:204
+#: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:462
 #, php-format
 msgid "Views: %u"
 msgstr "Bekeken: %u"
@@ -13408,7 +13411,7 @@ msgstr "Frequentie - Zenpage nieuwsaritkelen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:128
 msgid "Change frequency - Zenpage news categories"
-msgstr "Frequentie - Zenpage nieuws categorie&euml;n"
+msgstr "Frequentie - Zenpage nieuws categorieën"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:138
 msgid "Enable Google image and video extension"
@@ -13455,8 +13458,8 @@ msgid "Slide width"
 msgstr "Breedte"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:56
-msgid "Width of the images in the slideshow. <em>[jQuery Cycle mode option]</em><br />If empty the theme options <em>image size</em> is used."
-msgstr "Breedte van de afbeeldingen in de slideshow. <em>[jQuery Cycle optie]</em><br/>Als dit leeg is wordt de themaoptie <em>afbeeldingsgrootte</em> gebruikt."
+msgid "Width of the images in the slideshow. <em>[jQuery Cycle/Colorbox sizedimage mode option]</em><br />If empty the theme options <em>image size</em> is used."
+msgstr "Breedte van de afbeeldingen in de slideshow. <em>[jQuery Cycle/jQuery Colorbox optie]</em><br/>Als dit leeg is in de thema-opties wordt de themaoptie <em>afbeeldingsgrootte</em> gebruikt."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:57
 msgid "Slide height"
@@ -13610,7 +13613,7 @@ msgstr "vorige"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:294
 msgid "Invalid linking to the slideshow page."
-msgstr "Ongeldige referentie naar de slideshowpagina."
+msgstr "Ongeldige verwijzing naar de slideshowpagina."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:372
 msgid "This album is password protected!"
@@ -14653,7 +14656,7 @@ msgstr "Menu voor alle Zenpage pagina's."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:459
 msgid "Menu items for all Zenpage categories added."
-msgstr "Menu voor alle Zenpage categorie&euml;n."
+msgstr "Menu voor alle Zenpage categorieën."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:464
 msgid "You forgot to select an album."
@@ -14875,11 +14878,11 @@ msgstr "Maakt een link naar de Zenpage nieuws index."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:118
 msgid "All Zenpage categories"
-msgstr "Alle Zenpage categorie&euml;n"
+msgstr "Alle Zenpage categorieën"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:119
 msgid "This adds menu items for all Zenpage categories."
-msgstr "Dit voegt menu-onderdelen toe voor alle Zenpage categorie&euml;n."
+msgstr "Dit voegt menu-onderdelen toe voor alle Zenpage categorieën."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:123
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:244
@@ -14958,7 +14961,7 @@ msgstr "*Selecteer het soort menu-onderdeel dat je wilt toevoegen*"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:243
 msgid "All Zenpage news categories"
-msgstr "Alle Zenpage nieuws categorie&euml;n"
+msgstr "Alle Zenpage nieuws categorieën"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:248
 msgid "Custom theme page"
@@ -15258,16 +15261,16 @@ msgstr "<em>Album thumbnail</em>"
 msgid "<strong>Note:</strong> This album does not contain any images."
 msgstr "<strong>LET OP!:</strong> Dit album bevat geen afbeeldingen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:250
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:251
 msgid "Articles"
 msgstr "Artikelen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:250
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:443
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:251
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:444
 msgid "(Click on article title to include a link)"
 msgstr "(Klik op artikel om in te voegen)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:285
+#: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:286
 msgid "Categories:"
 msgstr "Categoriën:"
 
@@ -15319,7 +15322,7 @@ msgstr "Ingesteld formaat afbeelding/multimedia bestand"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:100
 msgid "Custom size (un-cropped)"
-msgstr "Aangepaste afbeelding (geen uitsnede)"
+msgstr "Aangepast formaat (geen uitsnede)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:108
 msgid "Title and description"
@@ -15373,7 +15376,7 @@ msgstr "Geen tekstomloop"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:152
 msgid "This provides access to your images and albums (dropdown 'Zenphoto') as well as pages, news articles and news categories (dropdown 'Zenpage') to easily include them in your pages and articles. You need at least 'Manage all albums' or 'Edit' rights to specific albums to be able to included image from them."
-msgstr "Dit biedt toegang tot je afbeeldingen en albums (dropdown 'Zenphoto') maar ook tot pagina's, nieuwsartikelen en nieuwscategorie&euml;n (dropdown 'Zenpage'). Zo kun je ze eenvoudig invoegen in je pagina's en artikelen. Je hebt minimaal  'Beheer alle albums' rechten of 'Bewerk' rechten voor specifieke albums nodig om daaruit afbeeldingen in te voegen."
+msgstr "Dit biedt toegang tot je afbeeldingen en albums (dropdown 'Zenphoto') maar ook tot pagina's, nieuwsartikelen en nieuwscategorieën (dropdown 'Zenpage'). Zo kun je ze eenvoudig invoegen in je pagina's en artikelen. Je hebt minimaal  'Beheer alle albums' rechten of 'Bewerk' rechten voor specifieke albums nodig om daaruit afbeeldingen in te voegen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:155
 msgid "Select first the items type using the 'Zenphoto' or 'Zenpage' drop down"
@@ -15397,7 +15400,7 @@ msgstr "Het venster sluit niet automatisch. Je kunt dus meerdere afbeeldingen ac
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:167
 msgid "Select to show a list of Zenpage pages, articles or categories. Click on a title to include a link. Hover of the link to see an excerpt of the page or article. Un-published pages or articles are marked with an '*' and protected with an '+'. There are no further options."
-msgstr "Hier kun je kiezen voor een lijst van Zenpage pagina's, artikelen of categorie&euml;n. Klik op een titel om een link in te voegen. Beweeg de muis over de link om een stukje uit de pagina of het artikel te zien. Ongepubliceerde artikelen zijn gemarkeerd met een <span style=\"font-size: 18px\">*</span>, beschermde onderdelen met een '+'."
+msgstr "Hier kun je kiezen voor een lijst van Zenpage pagina's, artikelen of categorieën. Klik op een titel om een link in te voegen. Beweeg de muis over de link om een stukje uit de pagina of het artikel te zien. Ongepubliceerde artikelen zijn gemarkeerd met een <span style=\"font-size: 18px\">*</span>, beschermde onderdelen met een '+'."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:171
 msgid "Select an album to include images from into your page or article. Click on the image to included it. Un-published albums or images are marked with an '*'. You can also click on the magnify glass icon to see a preview of the item (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.). Note the first thumbnail is always the album thumbnail of the currently selected album itself. It is always titled <em>Albumthumb</em> and appears on every thumbnail page.<br />You have several options what to include and how:"
@@ -15502,7 +15505,7 @@ msgstr "Help"
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/js/dialog.php:48
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/js/dialog.php:68
 msgid "It is not possible to include custom thumbs or custom size images for multimedia items."
-msgstr "Het is niet mogelijk om \"Aangepaste thumbnail\" of \"Aangepaste afbeelding\" te gebruiken voor video/audio-bestanden."
+msgstr "Het is niet mogelijk om \"Aangepaste thumbnail\" of \"Aangepast formaat\" te gebruiken voor video/audio-bestanden."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:65
 #, php-format
@@ -16038,7 +16041,7 @@ msgstr "Sorteer op titel oplopend"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:923
 msgid "All categories"
-msgstr "Alle categorie&euml;n"
+msgstr "Alle categorieën"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:993
 msgid "15 per page"
@@ -16158,7 +16161,7 @@ msgstr[1] "(<strong>%1$u</strong> artikelen, <strong>%2$u</strong> niet gepublic
 msgid "(<strong>%1$u</strong> category)"
 msgid_plural "(<strong>%1$u</strong> categories)"
 msgstr[0] "<strong>%1$u</strong> categorie"
-msgstr[1] "<strong>%1$u</strong> categorie&euml;n"
+msgstr[1] "<strong>%1$u</strong> categorieën"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1612
 msgid "Published/Not published/Scheduled for publishing"
@@ -16215,61 +16218,61 @@ msgstr "<em>Dit artikel valt onder een beveiligde categorie.</em>"
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Deze invoer valt onder een beveiligd album.</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1444
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1445
 msgid "Prev page"
 msgstr "Vorige pagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2623
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2624
 msgid "This page is password protected"
 msgstr "Deze pagina is beveiligd met een wachtwoord!"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2870
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2871
 msgid "News RSS"
 msgstr "Nieuws RSS"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2875
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2876
 msgid "News Category RSS"
 msgstr "Nieuws category RSS"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2880
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2881
 msgid "News and Gallery RSS"
 msgstr "Nieuws en galerij RSS"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2885
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2886
 msgid "Zenpage Comments RSS"
 msgstr "Zenpage reacties RSS"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2890
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2891
 msgid "News article comments RSS"
 msgstr "Nieuwsartikelen reacties RSS"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2895
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2900
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2896
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2901
 msgid "Page Comments RSS"
 msgstr "Paginareacties RSS"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2998
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2999
 #, php-format
 msgid "View the %s album"
 msgstr "Bekijk het %s album"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3000
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3001
 #, php-format
 msgid "View the album %s"
 msgstr "Bekijk het album %s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3004
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3005
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3006
 #, php-format
 msgid "View %s"
 msgstr "Album %s bekijken"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3013
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3014
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3022
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3023
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
