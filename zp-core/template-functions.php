@@ -1427,7 +1427,7 @@ function printAlbumThumbImage($alt, $class=NULL, $id=NULL) {
 		getMaxSpaceContainer($w, $h, $thumbobj, true);
 	}
 	$size = ' width="'.$w.'" height="'.$h.'"';
-	if (!getOption('use_lock_image') || checkAlbumPassword($_zp_current_album->name)=='zp_public_access') {
+	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($_zp_current_album->name)=='zp_public_access') {
 		$html = '<img src="' . html_encode($thumb). '"' . $size . ' alt="' . html_encode($alt) . '"' .	$class . $id . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html);
 		echo $html;
@@ -1509,7 +1509,7 @@ function printCustomAlbumThumbImage($alt, $size, $width=NULL, $height=NULL, $cro
 	} else {
 		$sizing = $sizing.' height="'.$height.'"';
 	}
-	if (!getOption('use_lock_image') || checkAlbumPassword($_zp_current_album->name)=='zp_public_access'){
+	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($_zp_current_album->name)=='zp_public_access') {
 		$html = '<img src="' . html_encode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy)). '"' . $sizing . ' alt="' . html_encode($alt) . '"' .
 		(($class) ? ' class="'.$class.'"' : '') .	(($id) ? ' id="'.$id.'"' : '') . " />";
 		$html = zp_apply_filter('custom_album_thumb_html', $html);
