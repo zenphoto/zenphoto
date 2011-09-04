@@ -150,7 +150,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		$allowscale = true;
 		$sharpenthumbs = getOption('thumb_sharpen');
 		$sharpenimages = getOption('image_sharpen');
-		$id = NULL;
+		$id = $im = NULL;
 		$watermark_use_image = getAlbumInherited($album, 'watermark', $id);
 		if (empty($watermark_use_image)) {
 			$watermark_use_image = IMAGE_WATERMARK;

@@ -1074,7 +1074,7 @@ class _Image extends MediaObject {
 		if ($album->isMyItem($this->view_rights)) {
 			return true;
 		}
-		return $album->checkforGuest($hint=NULL, $show=NULL);
+		return $album->checkforGuest($hint, $show);
 	}
 
 	/**

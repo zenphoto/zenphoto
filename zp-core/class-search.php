@@ -1048,6 +1048,11 @@ class SearchEngine
 				break;
 		}
 
+		if(zp_loggedin()) {
+			$show = '';
+		} else {
+			$show = "`show` = 1 AND ";
+		}
 		switch ($tbl) {
 			case 'news':
 				if (is_array($this->category_list)) {
@@ -1060,8 +1065,14 @@ class SearchEngine
 				} else {
 					$key = trim('`'.$sorttype.'` '.$sortdirection);
 				}
+				if ($show) {
+					$show .= '`date`<='.db_quote(date('Y-m-d H:i:s')).' AND ';
+				}
 				break;
 			case 'pages':
+				if ($show) {
+					$show .= '`date`<='.db_quote(date('Y-m-d H:i:s')).' AND ';
+				}
 				$key = '`sort_order`';
 				break;
 			case 'albums':
@@ -1106,10 +1117,7 @@ class SearchEngine
 				break;
 		}
 
-		$sql .= "FROM ".prefix($tbl)." WHERE ";
-		if(!zp_loggedin()) {
-			$sql .= "`show` = 1 AND ";
-		}
+		$sql .= "FROM ".prefix($tbl)." WHERE ".$show;
 		$sql .= '('.$this->compressedIDList($idlist).')';
 		$sql .= " ORDER BY ".$key;
 		return $sql;
@@ -1278,8 +1286,8 @@ class SearchEngine
 			} else {
 				$search_result = query($search_query);
 			}
+			$albums_seen = $images = array();
 			if ($search_result) {
-				$albums_seen = $images = array();
 				while ($row = db_fetch_assoc($search_result)) {
 					$albumid = $row['albumid'];
 					if (array_key_exists($albumid, $albums_seen)) {
@@ -1445,6 +1453,7 @@ class SearchEngine
 	function getSearchNews($sortorder="date", $sortdirection="desc") {
 		$result = array();
 		if (getOption('zp_plugin_zenpage')) {
+			$all = zp_loggedin();
 			if (getOption('search_no_news') || $this->search_no_news) return array();
 			$searchstring = $this->getSearchString();
 			$searchdate = $this->dates;
