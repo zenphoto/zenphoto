@@ -643,9 +643,9 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						$image = newImage($album, $filename);
 						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($folder)."/".pathurlencode($filename);
 					}
-				$ext = is_valid($filename, array('jpg','jpeg','gif','png','flv','mp3','mp4'));
+				$ext = is_valid($filename, array('jpg','jpeg','gif','png','flv','mp3','mp4','fla','m4v','m4a'));
 				if ($ext) {
-					if (($ext == "flv") || ($ext == "mp3") || ($ext == "mp4")) {
+					if ($ext == "flv" || $ext == "mp3" || $ext == "mp4" || $ext == "fla" || $ext == "m4v" || $ext == "m4a") {
 						$duration = "";
 					} else {
 						$duration = ", duration: ".getOption("slideshow_timeout")/1000;

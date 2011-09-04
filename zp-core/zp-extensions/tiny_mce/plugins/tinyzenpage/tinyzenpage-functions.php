@@ -226,10 +226,13 @@ function checkIfImageVideo($imageobj) {
 		switch($imagesuffix) {
 			case 'flv':
 			case 'mp4':
+			case 'm4v':
 				$video = 'video';
 				break;
 			case 'mp3':
-				$video = 'mp3';
+			case 'fla':
+			case 'm4a':
+				$video = 'audio';
 				break;
 		}
 	} else {

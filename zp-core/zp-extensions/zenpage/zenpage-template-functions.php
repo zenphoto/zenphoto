@@ -86,7 +86,7 @@ function is_Pages() {
 /**
  * Gets the news type of a news item.
  * "news" for a news article or if using the CombiNews feature
- * "flvmovie" (for flv, mp3 and mp4), "image", "3gpmovie" or "quicktime"
+ * "flvmovie" (for flv, fla, mp3, m4a and mp4/m4v), "image", "3gpmovie" or "quicktime"
  *
  * @param obj $newsobj optional news object to check directly outside news context
  * @return string
@@ -137,7 +137,7 @@ function stickyNews($newsobj=NULL) {
  *
  * @param string $type The type to check for
  * 										 "news" for a news article or if using the CombiNews feature
- * 										"flvmovie" (for flv, mp3 and mp4), "image", "3gpmovie" or "quicktime"
+ * 										"flvmovie" (for flv, fla, mp3, m4a and mp4/m4v), "image", "3gpmovie" or "quicktime"
  * @param obj $newsobj optional news object to check directly outside news context
  * @return bool
  */
@@ -656,6 +656,9 @@ function getNewsVideoContent($imageobj) {
 		case '.flv':
 		case '.mp3':
 		case '.mp4':
+		case '.fla':
+		case '.m4a':
+		case '.m4v':
 			if (is_null($_zp_flash_player)) {
 				$videocontent = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="'.gettext('No flash player installed.').'" />';
 			} else {

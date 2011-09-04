@@ -159,7 +159,7 @@ var ZenpageDialog = {
 
 		// building the final item to include
 		if(type == "zenphoto") {
-			if((video == 'video' || video == 'mp3') && $('#sizedimage:checked').val() == 1) {
+			if((video == 'video' || video == 'audio') && $('#sizedimage:checked').val() == 1) {
 				if(video == 'video') {
 					playerheight = "<?php echo getOption('tinymce_tinyzenpage_flowplayer_height'); ?>";
 				} else {

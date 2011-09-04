@@ -7,15 +7,18 @@
 // force UTF-8 Ø
 
 $plugin_is_filter = 9|CLASS_PLUGIN;
-$plugin_description = gettext('Video and MP3/4 handling for Zenphoto. This plugin must always be enabled to use multimedia content.');
+$plugin_description = gettext('Audio (MP3,M4A,FLA) and video (MP4/M4V,FLV pluas Quicktime,3GP if Quicktime is installed on the visitor system) handling for Zenphoto. This plugin must always be enabled to use multimedia content. Note that you also need to enable a multimedia player. See the info there how each format is used.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 
 addPluginType('flv', 'Video');
+addPluginType('fla', 'Video');
 addPluginType('3gp', 'Video');
 addPluginType('mov', 'Video');
 addPluginType('mp3', 'Video');
 addPluginType('mp4', 'Video');
+addPluginType('m4v', 'Video');
+addPluginType('m4a', 'Video');
 $option_interface = 'VideoObject_Options';
 
 
@@ -135,10 +138,13 @@ class Video extends _Image {
 				case "mp3":
 					$img = '/mp3Default.png';
 					break;
-				case "mp4":
+				case "mp4": // generic suffix for mp4 stuff
+				case "m4v": // specific suffix for mp4 video
+				case "m4a": // specific suffix for mp4 audo
 					$img = '/mp4Default.png';
 					break;
-				case "flv":
+				case "flv": // suffix for flash video container
+				case "fla": // suffix for flash audio container
 					$img = '/flvDefault.png';
 					break;
 				case "mov":
@@ -277,8 +283,11 @@ class Video extends _Image {
 		$ext = strtolower(strrchr($this->getFullImage(), "."));
 		switch ($ext) {
 			case '.flv':
+			case '.fla':
 			case '.mp3':
 			case '.mp4':
+			case '.m4v':
+			case '.m4a':
 				if (is_null($_zp_flash_player)) {
 					return  '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="'.gettext('No flash player installed.').'" />';
 				} else {
