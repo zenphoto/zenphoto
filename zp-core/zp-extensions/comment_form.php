@@ -25,7 +25,7 @@ if (getOption('zp_plugin_comment_form')) {	// 	We might get loaded by some plugi
 	zp_register_filter('save_comment_custom_data', 'comment_form_save_comment');
 	zp_register_filter('edit_comment_custom_data', 'comment_form_edit_comment');
 	zp_register_filter('admin_overview', 'comment_form_print10Most',0);
-	
+
 	// I choose to keep unneeded js loading low to add an option to specifially disable pagination
 	if(getOption('comment_form_pagination')) {
 		zp_register_filter('theme_head','comment_form_PaginationJS');
@@ -42,13 +42,13 @@ function comment_form_PaginationJS() {
 	?>
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER ; ?>/js/jquery.pagination.js"></script>
 	<script type="text/javascript">
-        
+
             // This is a very simple demo that shows how a range of elements can
             // be paginated.
             // The elements that will be displayed are in a hidden DIV and are
-            // cloned for display. The elements are static, there are no Ajax 
+            // cloned for display. The elements are static, there are no Ajax
             // calls involved.
-        
+
             /**
              * Callback function that displays the content.
              *
@@ -67,15 +67,15 @@ function comment_form_PaginationJS() {
                 	//i+2 needed as somehow nth-children needs to start that way...
                  	newcontent += '<div class="comment">'+$('#comments div.comment:nth-child('+(i+2)+')').html()+'</div>';
                 }
-                
+
                 // Replace old content with new content
                 $('#Commentresult').html(newcontent);
-                
+
                 // Prevent click eventpropagation
                 return false;
             }
-           
-            /** 
+
+            /**
              * Initialisation function for pagination
              */
             function initPagination() {
@@ -90,12 +90,12 @@ function comment_form_PaginationJS() {
                     items_per_page:<?php echo getOption('comment_form_comments_per_page'); ?> // Show only one item per page
                 });
              }
-            
+
             // When document is ready, initialize pagination
-            $(document).ready(function(){      
+            $(document).ready(function(){
                 initPagination();
             });
-                    
+
         </script>
 	<?php
 }
@@ -606,8 +606,8 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 <!-- printCommentForm -->
 	<div id="commentcontent">
 		<?php
+		$num = getCommentCount();
 		if ($showcomments) {
-			$num = getCommentCount();
 			if ($num==0) {
 				if ($addheader) echo '<h3 class="empty">'.gettext('No Comments').'</h3>';
 				$display = '';
@@ -645,7 +645,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 					<div class="Pagination"></div><!-- this is the jquery pagination nav placeholder -->
 					<div id="Commentresult">
             This content will be replaced when pagination inits.
-        	</div>	
+        	</div>
       <?php
       }
 		 ?>
