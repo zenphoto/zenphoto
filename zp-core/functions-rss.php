@@ -53,13 +53,13 @@ function getRSSAlbumTitle() {
 	if(isset($_GET['albumtitle'])) {
 		$albumname = ' - '.html_encode(sanitize(urldecode($_GET['albumtitle']))).' ('.gettext(' - latest images').')';
 	} elseif ($rssmode == "albums" && !isset($_GET['folder'])) {
-		$albumname = gettext('- latest albums');
+		$albumname = ' ('.gettext('latest albums').')';
 	} elseif ($rssmode == 'albums' && isset($_GET['folder'])) {
 		$folder = sanitize(urldecode($_GET['folder']));
 		$albobj = new Album($_zp_gallery,$folder);
-		$albumname = ' - '.html_encode(strip_tags($albobj->getTitle())).gettext(" (latest albums)");
+		$albumname = ' - '.html_encode(strip_tags($albobj->getTitle())).' ('.gettext('latest albums').')';
 	} else {
-		$albumname = gettext(' (latest images)');
+		$albumname = ' ('.gettext('latest images').')';
 	}
 	return $albumname;
 }
