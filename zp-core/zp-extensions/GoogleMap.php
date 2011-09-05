@@ -319,14 +319,6 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 		case 'colorbox':
 			$w = str_replace('px','',$MAP_OBJECT->width)+20;
 			$h = str_replace('px','',$MAP_OBJECT->height)+20;
-			if (function_exists('bzcompress')) {
-				$method = 'bzip2';
-				$data = bzcompress(serialize($MAP_OBJECT));
-			} else {
-				$method = 'gzip';
-				$data = gzcompress(serialize($MAP_OBJECT));
-			}
-			$param = base64_encode($data);
 			?>
 			<a href="javascript:<?php echo $id_data; ?>Colorbox();" title="<?php echo $text; ?>" class="google_map">
 				<?php echo $text; ?>

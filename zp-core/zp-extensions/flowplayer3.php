@@ -83,7 +83,7 @@ class flowplayer3_options {
 		setOptionDefault('flow_player3_splashimagescale', 'fit');
 		setOptionDefault('flow_player3_scaling', 'fit');
 		setOptionDefault('flow_player3_mp3coverimage', '');
-		
+
 		//playlist specific options
 
 		setOptionDefault('flow_player3_playlistwidth', '320');
@@ -325,7 +325,7 @@ class flowplayer3 {
 	 * @return int
 	 */
 	function getVideoHeigth($image=NULL) {
-		$ext = strtolower(strrchr($image->filename, ".");
+		$ext = getSuffix($image->filename);
 		if (!is_null($image) && ($ext == '.mp3' || $ext == '.m4a' || $ext == '.fla') && !getOption('flow_player3_mp3coverimage')) {
 			return FLOW_PLAYER_MP3_HEIGHT;
 		}
