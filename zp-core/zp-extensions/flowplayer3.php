@@ -325,7 +325,8 @@ class flowplayer3 {
 	 * @return int
 	 */
 	function getVideoHeigth($image=NULL) {
-		if (!is_null($image) && strtolower(strrchr($image->filename, ".") == '.mp3') && !getOption('flow_player3_mp3coverimage')) {
+		$ext = strtolower(strrchr($image->filename, ".");
+		if (!is_null($image) && ($ext == '.mp3' || $ext == '.m4a' || $ext == '.fla') && !getOption('flow_player3_mp3coverimage')) {
 			return FLOW_PLAYER_MP3_HEIGHT;
 		}
 		return getOption('flow_player3_height');
@@ -488,7 +489,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 				getMaxSpaceContainer($coverimagerwidth, $coverimageheight, $image, true);
 				$cover = $image->getCustomImage(null, $coverimagerwidth, $coverimageheight, null, null, null, null, true);
 				$ext = strtolower(strrchr($item, "."));
-				if (($ext == ".flv") || ($ext == ".mp3") || ($ext == ".mp4")) {
+				if ($ext == ".flv" || $ext == ".mp3" || $ext == ".mp4" || $ext == ".fla" || $ext == ".m4v" || $ext == ".m4a") {
 				$list .= '{
 					url:"'.ALBUM_FOLDER_WEBPATH.$album->name.'/'.$item.'",
 					autoPlay: '.$autoplay.',
