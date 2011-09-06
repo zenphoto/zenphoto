@@ -138,14 +138,20 @@ class Video extends _Image {
 				case "mp3":
 					$img = '/mp3Default.png';
 					break;
-				case "mp4": // generic suffix for mp4 stuff
-				case "m4v": // specific suffix for mp4 video
-				case "m4a": // specific suffix for mp4 audo
+				case "mp4": // generic suffix for mp4 stuff - considered video
 					$img = '/mp4Default.png';
 					break;
+				case "m4v": // specific suffix for mp4 video
+					$img = '/m4vDefault.png';
+					break;
+				case "m4a": // specific suffix for mp4/AAC audio
+					$img = '/m4aDefault.png';
+					break;
 				case "flv": // suffix for flash video container
-				case "fla": // suffix for flash audio container
 					$img = '/flvDefault.png';
+					break;
+				case "fla": // suffix for flash audio container
+					$img = '/flaDefault.png';
 					break;
 				case "mov":
 					$img = '/movDefault.png';
