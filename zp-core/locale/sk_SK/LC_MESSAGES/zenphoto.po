@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.1.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-16 18:48+0100\n"
-"PO-Revision-Date: 2011-08-16 19:10+0100\n"
+"POT-Creation-Date: 2011-09-07 17:08+0100\n"
+"PO-Revision-Date: 2011-09-07 17:20+0100\n"
 "Last-Translator: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "MIME-Version: 1.0\n"
@@ -5293,7 +5293,7 @@ msgstr[1] "%u aktívnych filtrov:"
 msgid "Utility functions"
 msgstr "Pomocné funkcie"
 
-#: D:\Zenphoto_DEV/zp-core/album-zip.php:57
+#: D:\Zenphoto_DEV/zp-core/album-zip.php:59
 msgid "Forbidden"
 msgstr "Nepovolené"
 
@@ -6121,16 +6121,13 @@ msgid " - latest images"
 msgstr " - najnovšie obrázky"
 
 #: D:\Zenphoto_DEV/zp-core/functions-rss.php:56
-msgid "- latest albums"
-msgstr "- najnovšie albumy"
-
 #: D:\Zenphoto_DEV/zp-core/functions-rss.php:60
-msgid " (latest albums)"
-msgstr " (najnovšie albumy)"
+msgid "latest albums"
+msgstr "najnovšie albumy"
 
 #: D:\Zenphoto_DEV/zp-core/functions-rss.php:62
-msgid " (latest images)"
-msgstr " (najnovšie obrázky)"
+msgid "latest images"
+msgstr "najnovšie obrázky"
 
 #: D:\Zenphoto_DEV/zp-core/functions.php:64
 msgid "Camera Maker"
@@ -6374,77 +6371,77 @@ msgstr "Odoslanie mailu zlyhalo. Nie je nakonfigurovaný mail."
 msgid "No \"to\" address list provided."
 msgstr "Adresa \"Komu\" nie je zadaná."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:842
+#: D:\Zenphoto_DEV/zp-core/functions.php:836
 msgid "You must supply an e-mail address."
 msgstr "Musíte zadať mailovú adresu"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:847
+#: D:\Zenphoto_DEV/zp-core/functions.php:841
 msgid "You must enter your name."
 msgstr "Musíte zadať svoje meno."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:852
+#: D:\Zenphoto_DEV/zp-core/functions.php:846
 msgid "You must supply a WEB page URL."
 msgstr "Musíte zadať adresu webstránky."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:858
+#: D:\Zenphoto_DEV/zp-core/functions.php:852
 msgid "CAPTCHA verification failed."
 msgstr "Kontrola CAPTCHA zlyhala."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:864
+#: D:\Zenphoto_DEV/zp-core/functions.php:858
 msgid "You must enter something in the comment text."
 msgstr "V komentári músí byť napísaný text."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:875
+#: D:\Zenphoto_DEV/zp-core/functions.php:869
 #, php-format
 msgid "Your comment was rejected by the <em>%s</em> SPAM filter."
 msgstr "Komentár bol odmietnutý <em>%s</em> SPAM filtrom."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:879
+#: D:\Zenphoto_DEV/zp-core/functions.php:873
 #, php-format
 msgid "Your comment has been marked for moderation by the <em>%s</em> SPAM filter."
 msgstr "Komentár bol po kontrole <em>%s</em> SPAM filtrom postúpený moderátorovi."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:912
+#: D:\Zenphoto_DEV/zp-core/functions.php:906
 #, php-format
 msgid "A comment has been placed in moderation on your album \"%1$s\"."
 msgstr "Nový komentár na moderáciu pre album \"%1$s\"."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:914
+#: D:\Zenphoto_DEV/zp-core/functions.php:908
 #, php-format
 msgid "A comment has been posted on your album \"%1$s\"."
 msgstr "Nový komentár pre album \"%1$s\"."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:920
+#: D:\Zenphoto_DEV/zp-core/functions.php:914
 #, php-format
 msgid "A comment has been placed in moderation on your article \"%1$s\"."
 msgstr "Nový komentár na moderáciu pre článok \"%1$s\"."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:922
+#: D:\Zenphoto_DEV/zp-core/functions.php:916
 #, php-format
 msgid "A comment has been posted on your article \"%1$s\"."
 msgstr "Nový komentár pre článok \"%1$s\"."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:928
+#: D:\Zenphoto_DEV/zp-core/functions.php:922
 #, php-format
 msgid "A comment has been placed in moderation on your page \"%1$s\"."
 msgstr "Nový komentár na moderáciu pre stránku \"%1$s\"."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:930
+#: D:\Zenphoto_DEV/zp-core/functions.php:924
 #, php-format
 msgid "A comment has been posted on your page \"%1$s\"."
 msgstr "Nový komentár pre stránku \"%1$s\"."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:938
+#: D:\Zenphoto_DEV/zp-core/functions.php:932
 #, php-format
 msgid "A comment has been placed in moderation on your image \"%1$s\" in the album \"%2$s\"."
 msgstr "Nový komentár na moderáciu pre obázok \"%1$s\" v albume \"%2$s\"."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:940
+#: D:\Zenphoto_DEV/zp-core/functions.php:934
 #, php-format
 msgid "A comment has been posted on your image \"%1$s\" in the album \"%2$s\"."
 msgstr "Nový komentár pre obázok \"%1$s\" v albume \"%2$s\"."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:946
+#: D:\Zenphoto_DEV/zp-core/functions.php:940
 #, php-format
 msgid ""
 "Author: %1$s\n"
@@ -6461,7 +6458,7 @@ msgstr ""
 "\n"
 "%4$s"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:947
+#: D:\Zenphoto_DEV/zp-core/functions.php:941
 #, php-format
 msgid ""
 "You can view all comments about this item here:\n"
@@ -6470,7 +6467,7 @@ msgstr ""
 "Všetky komentáre k tejto položke si môžete prezrieť tu:\n"
 "%1$s"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:948
+#: D:\Zenphoto_DEV/zp-core/functions.php:942
 #, php-format
 msgid ""
 "You can edit the comment here:\n"
@@ -6479,42 +6476,42 @@ msgstr ""
 "Komentár môžete upraviť tu:\n"
 "%1$s"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:972
+#: D:\Zenphoto_DEV/zp-core/functions.php:966
 msgid "Comment posted"
 msgstr "komentár odoslaný"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1228
+#: D:\Zenphoto_DEV/zp-core/functions.php:1222
 #, php-format
 msgid "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your installation."
 msgstr "Zenphoto nenašlo skript témy. Skotrolujte zložku <em>%s</em>."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1573
+#: D:\Zenphoto_DEV/zp-core/functions.php:1567
 msgid "Unknown name"
 msgstr "Neznáme meno"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1573
+#: D:\Zenphoto_DEV/zp-core/functions.php:1567
 msgid "Unknown author"
 msgstr "Neznámy autor"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1573
-#: D:\Zenphoto_DEV/zp-core/functions.php:1581
+#: D:\Zenphoto_DEV/zp-core/functions.php:1567
+#: D:\Zenphoto_DEV/zp-core/functions.php:1575
 msgid "<strong>Theme description error!</strong>"
 msgstr "<strong>Chyba v popise témy!</strong>"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1573
+#: D:\Zenphoto_DEV/zp-core/functions.php:1567
 msgid "Unknown date"
 msgstr "Neznámy dátum"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1606
+#: D:\Zenphoto_DEV/zp-core/functions.php:1600
 #, php-format
 msgid "Page error: %2$s (%1$s)"
 msgstr "Chyba stránky: %2$s (%1$s)"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1827
+#: D:\Zenphoto_DEV/zp-core/functions.php:1821
 msgid "0 Bytes"
 msgstr "0 bytov"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:2209
+#: D:\Zenphoto_DEV/zp-core/functions.php:2203
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr "Zenphoto vygenerovalo chybu 404 na %s. Skontrolujte záznam opravy chýb."
@@ -8207,7 +8204,7 @@ msgid "(No title...)"
 msgstr "(Bez názvu...)"
 
 #: D:\Zenphoto_DEV/zp-core/template-functions.php:1090
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1938
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:1939
 msgid "(No date...)"
 msgstr "(Bez dátumu...)"
 
@@ -8216,7 +8213,7 @@ msgid "(No Location...)"
 msgstr "(Bez lokácie...)"
 
 #: D:\Zenphoto_DEV/zp-core/template-functions.php:1151
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:2022
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:2023
 msgid "(No description...)"
 msgstr "(Bez popisu...)"
 
@@ -8234,7 +8231,7 @@ msgstr "(...)"
 
 #: D:\Zenphoto_DEV/zp-core/template-functions.php:1251
 #: D:\Zenphoto_DEV/zp-core/template-functions.php:1291
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:2085
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:2086
 msgid "(No data...)"
 msgstr "(Žiadne dáta...)"
 
@@ -8242,106 +8239,106 @@ msgstr "(Žiadne dáta...)"
 msgid "The image is marked un-published."
 msgstr "Obrázok je označený ako nezverejnený."
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:2327
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:2328
 msgid "(No data)"
 msgstr "(Žiadne dáta)"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:2957
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:2958
 msgid "Anonymous"
 msgstr "Anonym"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3082
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3083
 msgid "Download Zip of the Album"
 msgstr "Stiahnuť album v ZIPe"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3082
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3083
 msgid "Download a zip file of this album"
 msgstr "Stiahnuť album v ZIPe"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3169
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3172
 msgid "by"
 msgstr "od"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3447
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3450
 #, php-format
 msgid "View image: %s"
 msgstr "Zobraziť obrázok: %s"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3514
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3517
 msgid "(No tags...)"
 msgstr "(Bez tagov...)"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3630
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3633
 msgid "No popular tags"
 msgstr "Žiadne obľúbené tagy"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3839
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3842
 msgid "Latest images RSS"
 msgstr "RSS najnovších obrázkov"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3844
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3847
 msgid "Latest images of this album RSS"
 msgstr "RSS najnovších obrázkov tohto albumu"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3849
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3852
 msgid "Latest images of this album and its subalbums RSS"
 msgstr "RSS najnovších obrázkov tohto albumu a jeho podalbumov"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3854
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3857
 msgid "Latest comments RSS"
 msgstr "RSS najnovších komentárov"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3859
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3862
 msgid "Latest comments RSS for this image"
 msgstr "RSS najnovších komentárov tohto obrázku"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3864
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3867
 msgid "Latest comments RSS for this album"
 msgstr "RSS najnovších komentárov tohto albumu"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3869
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3874
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3872
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3877
 msgid "Latest albums RSS"
 msgstr "RSS najnovších albumov"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3980
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3983
 msgid "getSearchURL $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "getSearchURL $album_list parameter je zastaraný. Spustite namieto toho pole (\"albums\"=>array(album, album,...))."
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4079
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4082
 msgid "printSearchForm $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "printSearchForm $album_list  parameter je zastaraný. Spustite namieto toho pole (\"albums\"=>array(album, album,...))."
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4096
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4099
 #, php-format
 msgid "%s within previous results"
 msgstr "%s v predchádzajúcich výsledkoch"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4154
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4157
 msgid "select search fields"
 msgstr "vybrať vyhľadávacie polia"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4154
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4157
 msgid "fields"
 msgstr "polia"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4156
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4159
 msgid "Clear search"
 msgstr "Vymazať vyhľadávanie"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4156
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4159
 msgid "Reset search"
 msgstr "Obnoviť vyhľadávanie"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4228
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4231
 msgid "no date"
 msgstr "bez dátumu"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4480
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4483
 msgid "The page you are trying to view is password protected."
 msgstr "Stránka, ktorú požadujete je chránená heslom."
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4486
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4489
 msgid "printPasswordForm custom theme password forms is deprecated. You should style the form created by the Zenphoto_Authority class (or its derivatives) instead. Use of these forms will prevent alternative credentials implementations from working with a theme."
 msgstr "printPasswordForm formulár hesla používateľskej témy je zastaraný. Maly by ste preštýlovať formulár pomocou Zenphoto_Authority class (alebo jej derivátov). Použitie týchto formulárov zabráni vkladanie alternatívnych údajov poverení do témy."
 
@@ -9405,13 +9402,17 @@ msgstr "Otočiť o 270 stupňov v smere hodín"
 msgid "Natural"
 msgstr "Prirodzene"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss-comments.php:24
-msgid " (latest comments"
-msgstr "(najnovšie komentáre"
+#: D:\Zenphoto_DEV/zp-core/rss/rss-comments.php:27
+msgid " (latest comments)"
+msgstr "(najnovšie komentáre)"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss-news.php:26
+#: D:\Zenphoto_DEV/zp-core/rss/rss-news.php:20
 msgid " (Latest news)"
 msgstr " (Najnovší článok)"
+
+#: D:\Zenphoto_DEV/zp-core/rss/rss-news.php:23
+msgid " (Latest news and images)"
+msgstr "(Najnovšie správy a obrázky)"
 
 #: D:\Zenphoto_DEV/zp-core/rss/rss.php:62
 #, php-format
@@ -10606,26 +10607,26 @@ msgid "Provides a means for showing text type documents (.txt, .html, .htm) wher
 msgstr "Poskytuje možnosť zobrazovať typy dokumentov (.txt, .html, .htm), ktoré by Zenphoto normálne zobrazilo ako obrázky. Dokumentácia je v súbore skriptu."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:10
-msgid "Video and MP3/4 handling for Zenphoto. This plugin must always be enabled to use multimedia content."
-msgstr "Video a MP3/4 spracovanie v Zenphote. Tento zásuvný modul musí byť aktívny ak používate multimediálny obsah."
+msgid "Audio (MP3,M4A,FLA) and video (MP4/M4V,FLV pluas Quicktime,3GP if Quicktime is installed on the visitor system) handling for Zenphoto. This plugin must always be enabled to use multimedia content. Note that you also need to enable a multimedia player. See the info there how each format is used."
+msgstr "Spracovávanie audia (MP3, M4A, FLA) a videa (MP4/M4V, FLV plus Quicktime, 3GP ak je Quicktime nainštalovaný v systéme návštevníka) pre Zenphoto. Tento zásuvný modul musí byť pri používaní multimediálneho obsahu vždy zapnutý. Pamätajte, že tiež musíte povoliť multimediálny prehrávač. Pozrite si informácie ako sa ktorý formát používa."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:43
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:46
 msgid "Quicktime video width"
 msgstr "Šírka Quicktime videa"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:45
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:48
 msgid "Quicktime video height"
 msgstr "Výška Quicktime videa"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:47
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:50
 msgid "3gp video width"
 msgstr "Výška 3gp videa"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:49
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:52
 msgid "3gp video height"
 msgstr "Šírka 3gp videa"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:283
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:298
 msgid "No flash player installed."
 msgstr "Flashplayer nie je nainštalovaný."
 
@@ -11749,296 +11750,299 @@ msgid "<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enab
 msgstr "<strong>Dôležité:</strong> Súčasne môže byť aktívny iba jeden multimediálny zásuvný modul. A zárove§ musí byť aktivovaný zásuvný modul class-video."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:14
+msgid "The former separate flowplayer3_playlist plugin is now incorporated. You can use it to show the content of an multimedia album only as a playlist or as separate players on one page with Flowplayer 3"
+msgstr "Pôvodne samostatný zásuvný modul flowplayer3_playlist je teraz už súčasťou. Môžete ho použiť na zobrazenie obsahu multimediálneho albumu buď ako zoznam alebo ako samostatný prehrávač na stránke použitím Flowplayer 3"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:14
 msgid "Please see <a href='http://flowplayer.org'>flowplayer.org</a> for more info about the player and its license."
 msgstr "Navštívte <a href='http://flowplayer.org'>flowplayer.org</a> ak potrebujete viac informácií o prehrávač a jeho licencii."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:17
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:20
 msgid "Flash players do not support <em>External Albums</em>."
 msgstr "Prehrávač Flash nepodporuje <em>externé albumy</em>."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:75
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:60
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:100
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:151
 msgid "flow player width"
 msgstr "Šírka prehrávača Flow"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:76
-msgid "Player width (ignored for <em>mp3</em> files.)"
-msgstr "Šírka prehrávača (pri <em>mp3</em> ignorovaná)."
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:101
+msgid "Player width (ignored for <em>mp3/m4a/fla</em> files.)"
+msgstr "Šírka prehrávača (pri <em>mp3/m4v/fla</em> ignorovaná)."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:77
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:62
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:102
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:153
 msgid "flow player height"
 msgstr "Výška prehrávača Flow"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:78
-msgid "Player height (ignored for <em>mp3</em> files.)"
-msgstr "Výška prehrávača (pri <em>mp3</em> ignorovaná)."
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:103
+msgid "Player height (ignored for <em>mp3/m4a/fla</em> files.)"
+msgstr "Výška prehrávača (pri <em>mp3/m4v/fla</em> ignorovaná)."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:79
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:104
 msgid "Player background color gradient"
 msgstr "Farebný prechod pozadia prehrávača"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:80
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:85
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:103
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:108
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:113
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:105
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:110
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:128
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:133
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:138
 msgid "low"
 msgstr "nízky"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:80
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:85
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:103
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:108
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:113
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:105
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:110
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:128
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:133
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:138
 msgid "medium"
 msgstr "stredný"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:80
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:85
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:103
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:108
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:113
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:105
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:110
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:128
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:133
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:138
 msgid "high"
 msgstr "vysoký"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:81
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:106
 msgid "Gradient setting for player background color."
 msgstr "Nastavenie prechodu pre farbu pozadia prehrávača."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:82
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:107
 msgid "Controls background color"
 msgstr "Farba pozadia ovládania"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:83
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:108
 msgid "Background color of the controls."
 msgstr "Farba pozadia pre ovládacie prvky prehrávača."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:84
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:109
 msgid "Controls background color gradient"
 msgstr "Farebný prechod pozadia ovládania"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:86
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:111
 msgid "Gradient setting for background color of the controls."
 msgstr "Nastavenie farebného prechodu pozadia ovládania"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:87
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:112
 msgid "Controls border color"
 msgstr "Farba okraja ovládania"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:88
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:113
 msgid "Color of the border of the player controls"
 msgstr "Farba okraja ovládacích prvkov prehrávača."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:89
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:64
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:114
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:155
 msgid "Autoplay"
 msgstr "Autoštart"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:90
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:65
-msgid "Should the video start automatically. Yes if selected. (NOTE: Probably because of a flowplayer bug mp3s are always autoplayed.)"
-msgstr "Aktivovaním sa vydeo po načítaní automaticky spustí. (Poznámka: Kvôli predpokladanej chybe v prehrávači sa mp3 spúšťajú automaticky vždy.)"
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:115
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:156
+msgid "Should the video start automatically. Yes if selected. (NOTE: Probably because of a flowplayer bug mp3/m4a/fla are always autoplayed.)"
+msgstr "Aktivovaním sa vydeo po načítaní automaticky spustí. (Poznámka: Kvôli predpokladanej chybe v prehrávači sa mp3/m4v/fla spúšťajú automaticky vždy.)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:91
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:116
 msgid "Background color"
 msgstr "Farba pozadia"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:92
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:117
 msgid "Changes the color of the Flowplayer's background canvas. By default the canvas is all black. You can specify a value of -1 and the background will not be drawn (only the video will be visible)."
 msgstr "Zmení farbu pozadia plátna za prehrávačom. Štandardne je nastavená na čiernu. Môžete nastaviť hodnotu na -1 a pozadie sa nebude vykreslovať (bude viditeľné iba video)."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:93
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:66
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:118
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:157
 msgid "Controls autohide"
 msgstr "Automatické skrývanie ovládania"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:94
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:67
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:119
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:158
 msgid "never"
 msgstr "nikdy"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:94
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:67
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:119
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:158
 msgid "always"
 msgstr "vždy"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:94
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:119
 msgid "fullscreen"
 msgstr "na celú obrazovku"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:95
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:68
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:120
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:159
 msgid "Specifies whether the controlbar should be hidden when the user is not actively using the player."
 msgstr "Nastavuje automatické skrývanie ovládania, keď ho používateľ aktívne nevyužíva."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:96
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:121
 msgid "Controls time color"
 msgstr "Farba časomiery"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:97
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:122
 msgid "Value for the font color in the time field. This is the running time."
 msgstr "Nastavenie farby časomiery. Ukazuje trvanie prehrávania."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:98
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:123
 msgid "Controls duration color"
 msgstr "Farba celkovej dĺžky"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:99
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:124
 msgid "Value for the font color in the time field that specifies the total duration of the clip or total time."
 msgstr "Nastavuje farbu pola, ktoré obsahuje celkovú dĺžku klipu. "
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:100
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:125
 msgid "Controls progress bar color"
 msgstr "Farba stavu načítania"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:101
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:126
 msgid "Color of the progress bar. This is the bar in the timeline from zero time to the point where playback is at a given time."
 msgstr "Nastavuje farbu stavu načítania. To je farba linky na časovej osy od nuloveho času až po bod kde sa práve nachádza prehrávanie."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:102
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:127
 msgid "Controls progress bar gradient"
 msgstr "Farba prechodu stavu načítania"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:104
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:129
 msgid "Gradient setting for the progress bar."
 msgstr "Nastavuje farbu prechodu stavu načítania"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:105
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:130
 msgid "Controls buffer color"
 msgstr "Farba vyrovnávacej pamäti"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:106
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:131
 msgid "Color of the buffer. The buffer is the bar that indicates how much video data has been read into the player's memory."
 msgstr "Nastavuje farbu vyrovnávacej pamäti. Linka vyrovnávacej pamäti ukazuje koľko dát z videa bolo načítaných do pamäti prehrávača."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:107
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:132
 msgid "Controls buffer gradient"
 msgstr "Farba prechodu vyrovnávacej pamäti"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:109
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:134
 msgid "Gradient setting for the buffer."
 msgstr "Nastavenie farby prechodu vyrovnávacej pamäti"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:110
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:135
 msgid "Controls slider color"
 msgstr "Farba jazdca"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:111
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:136
 msgid "Background color for the timeline before the buffer bar fills it. The same background color is also used in the volume slider."
 msgstr "Farba pozadia časovej osy kým sa zaplní vyrovnávacia pamäť. Rovnaká farba sa používa aj pre jazdca hlasitosti."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:112
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:137
 msgid "Controls slider gradient"
 msgstr "Farba prechodu jazdca"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:114
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:139
 msgid "Gradient setting for the sliders."
 msgstr "Nastavuje farbu prechodu jazdca"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:115
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:140
 msgid "Controls button color"
 msgstr "Farba tlačítok"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:116
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:141
 msgid "Color of the player buttons: stop, play, pause and full screen."
 msgstr "Nastavuje farbu tlačítok: zastaviť, prehrávať, pauza a na celú obrazovku."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:117
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:142
 msgid "Controls hover button color"
 msgstr "Farba tlačítok pri prechode myšou"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:118
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:143
 msgid "Button color when the mouse is positioned over them."
 msgstr "Nastavuje farbu tlačítok keď sa nad ne nastaví jazdec myši."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:119
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:69
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:144
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:160
 msgid "Splash image"
 msgstr "Titulný obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:120
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:145
 msgid "Enable if you want to show the videothumb as an splash image before the actual video starts (don't set the player to autoPlay then). If you want to use this for mp3s as well set also the mp3 cover image option."
 msgstr "Aktivujte ak chcete pri nahrávaní videa zobraziť miniatúru videa ako titulný obrázok kým sa video spustí (autoštart musí byť vypnutý). Ak chcete túto funkciu používať aj pre mp3 musíte si nastaviť titulný obrázok mp3ky."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:120
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:125
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:71
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:145
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:150
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:162
 msgid "The image is always scaled to fit (unless it is smaller than the width and height) so best make sure it matches at least the aspect ratio and size of your player width and height."
 msgstr "Obrázok sa vždy zväčšuje na použitý rozmer (pokial nie je menší než výška a šírka), takže sa uistite, že postačuje pomeru strán a veľkosti vášho prehrávača."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:121
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:146
 msgid "Video scale"
 msgstr "Zväčšovanie videa"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:122
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:147
 msgid "fit"
 msgstr "prispôsobiť"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:122
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:147
 msgid "half"
 msgstr "polovičné"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:122
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:147
 msgid "orig"
 msgstr "originál"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:122
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:147
 msgid "scale"
 msgstr "zväčšiť"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:123
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:148
 msgid "Setting which defines how video is scaled on the video screen. Available options are:<br /><em>fit</em>: Fit to window by preserving the aspect ratio encoded in the file's metadata.<br /><em>half</em>: Half-size (preserves aspect ratio)<br /><em>orig</em>: Use the dimensions encoded in the file. If the video is too big for the available space, the video is scaled using the 'fit' option.<br /><em>scale</em>: Scale the video to fill all available space. This is the default setting."
 msgstr "Nastavenie, ktoré definuje akosa bude video zväčšovať: <br /><em>prispôsobiť</em>: Prispôsobí sa veľkosti prehrávača s pomerom strán z metadát súboru.<br /><em>polovičné</em>: polovičná veľkosť (pomer strán sa zachováva)<br /><em>originál</em>: Používa veľkosť v akej bolo video vytvorené. Ak je veľkosť pre prehrávač príliš veľká, použijú sa parametre nastavenia \"pripôsobiť\".<br /><em>zväčšiť</em>: Zväčší video tak, aby vyplnilo priestor, ktorý je k dispozícii. Toto je štandardné nastavenie."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:124
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:149
 msgid "MP3 cover image"
 msgstr "Titulný obrázok MP3"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:125
-msgid "If unchecked only the controlbar is shown for mp3s but if checked the video thumb is displayed as a cover image on the player screen."
-msgstr "Ak nie je aktívny, zobrazí sa pri prehrávaní mp3 iba panel ovládania. Po aktivácii sa v prehrávači bude zobrazovať miniatúra."
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:150
+msgid "If unchecked only the controlbar is shown for mp3/m4v/fla but if checked the video thumb is displayed as a cover image on the player screen."
+msgstr "Ak nie je aktívny, zobrazí sa pri prehrávaní mp3/m4v/fla iba panel ovládania. Po aktivácii sa v prehrávači bude zobrazovať miniatúra."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:17
-msgid "Use to show the content of an media album with .flv/.mp4/.mp3 movie/audio files only as a playlist or as separate players on one page with Flowplayer 3."
-msgstr "Vyberte si či chcete aby sa obsah multimediálneho albumu s flv/.mp4/.mp3 video/audio súbormi zobrazoval ako zoznam alebo ako samostatné prehrávače."
-
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:20
-msgid "This plugin requires the Flowplayer 3 plugin to be activated. "
-msgstr "Tento zásuvný modul vyžaduje aby bol aktivovaný zásuvný modul Flowplayer3."
-
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:61
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:152
 msgid "Player width (Note this refers to the player window. The playlist display itself is styled via CSS.)"
 msgstr "Šírka prehrávača (Toto nastavenie sa týka iba okna prehrávača. Zoznam skladieb sa upravuje cez CSS.)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:63
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:154
 msgid "Player height (Note this refers to the player window. The playlist display itself is styled via CSS.)"
 msgstr "Výška prehrávača (Toto nastavenie sa týka iba okna prehrávača. Zoznam skladieb sa upravuje cez CSS.)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:67
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:158
 msgid "full screen"
 msgstr "na celú obrazovku"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:70
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:161
 msgid "Video thumb of first playlist entry"
 msgstr "Miniatúra prvej položky zoznamu skladieb"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:70
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:161
 msgid "Album thumbnail"
 msgstr "Miniatúra albumu"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:71
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:162
 msgid "Check if you want to display a splash/cover image for the playlist. Since this playlist plugin only lists multimedia items the album thumbnail of course could also be special separate normal image and not one of the entries."
 msgstr "Zvoľte ak chcete zobraziť titulný obrázok pre zoznam skladieb. Keďže zásuvný modul zoznamu skladieb vyhľadáva iba multimediálne objekty miniatúra albumu môže, samozrejme, byť aj normálny obrázok a nie jeden z obrázkov položiek."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:72
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:163
 msgid "Numbered playlist"
 msgstr "Číslovaný zoznam skladieb"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3_playlist.php:73
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:164
 msgid "If the playlist should be shown with numbers. Then a standard html ordered list is used instead of just a div with links. (Your playlist css may require changes.)"
 msgstr "Ak sa má zoznam skladieb zobrazovať s číslami, použije sa štandardný dopytový html zoznam. (CSS vášho zoznamu skladieb bude možno otrebovať úpravy.)"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:165
+msgid "Load playlist scripts"
+msgstr "Nahrať skripty zoznamu skladieb"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/flowplayer3.php:166
+msgid "If the Flowplayer playlist scripts should be loaded. Note that you have to add the function flowplayerPlaylist() to your theme yourself. See the documentation of this function on how to do this."
+msgstr "Ak má byť nahraný zoznam skladieb Flowplayeru. Funkciu flowplayerPlaylist() si musíte do témy pridať sami. Pozrite si dokumentáciu k tejto funkcii, aby ste vedeli ako na to."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/GoogleMap.php:10
 msgid "Support for providing Google Maps (API version 3) based on EXIF latitude and longitude in the images."
@@ -12144,8 +12148,8 @@ msgstr "Výberom <em>skryť</em> bude mapa na začiatku skrytá. Výberom <em>co
 msgid "Google Map"
 msgstr "Google Map"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/GoogleMap.php:369
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/GoogleMap.php:382
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/GoogleMap.php:361
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/GoogleMap.php:374
 msgid "Display or hide the Google Map."
 msgstr "Zobraziť alebo skryť Google Map."
 
@@ -12253,19 +12257,19 @@ msgstr "Ktoré HTML meta tagy sa majú používať. Bližšie informácie hľada
 msgid "Functions that provide various statistics about images and albums in the gallery."
 msgstr "Táto funkcia poskytuje rôzne štatistiky o obrázkoch a albumoch v galérii."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/image_album_statistics.php:185
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/image_album_statistics.php:188
 #, php-format
 msgid "%1$u new %2$s"
 msgstr "%1$u nové %2$s"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/image_album_statistics.php:196
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/image_album_statistics.php:454
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/image_album_statistics.php:199
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/image_album_statistics.php:457
 #, php-format
 msgid "Rating: %1$u (Votes: %2$u)"
 msgstr "Hodnotenie: %1$u (Hlasov: %2$u)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/image_album_statistics.php:201
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/image_album_statistics.php:459
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/image_album_statistics.php:204
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/image_album_statistics.php:462
 #, php-format
 msgid "Views: %u"
 msgstr "Návštev: %u"
@@ -13455,8 +13459,8 @@ msgid "Slide width"
 msgstr "Šírka snímky"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/slideshow.php:56
-msgid "Width of the images in the slideshow. <em>[jQuery Cycle mode option]</em><br />If empty the theme options <em>image size</em> is used."
-msgstr "Šírka obrázku v prezentácii. <em>[jQuery Cycle mode option]</em><br />Ak je táto položka prázdna použije sa hodnota <em>image size</em>  z témy."
+msgid "Width of the images in the slideshow. <em>[jQuery Cycle/Colorbox sizedimage mode option]</em><br />If empty the theme options <em>image size</em> is used."
+msgstr "Šírka obrázku v prezentácii. <em>[jQuery Cycle/Colorbox sizedimage mode option]</em><br />Ak je táto položka prázdna použije sa hodnota <em>image size</em>  z témy."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/slideshow.php:57
 msgid "Slide height"
@@ -14564,10 +14568,12 @@ msgid "Identity URL:"
 msgstr "URL totožnosti:"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/federated_logon/OpenID_logon.php:49
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/federated_logon/Verisign_logon.php:55
 msgid "Verify"
 msgstr "Overiť"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/federated_logon/OpenID_logon.php:55
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/federated_logon/Verisign_logon.php:61
 msgid "Return to Zenphoto"
 msgstr "Vrátiť sa do Zenphota"
 
@@ -15258,16 +15264,16 @@ msgstr "<em>Miniatúra albumu</em>"
 msgid "<strong>Note:</strong> This album does not contain any images."
 msgstr "<strong>Poznámka:</strong> Tento album neobsahuje žiadne obrázky."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:250
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:254
 msgid "Articles"
 msgstr "Články"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:250
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:443
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:254
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:447
 msgid "(Click on article title to include a link)"
 msgstr "(kliknite na titul článku pre pridanie odkazu)"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:285
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:289
 msgid "Categories:"
 msgstr "Kategorien:"
 
@@ -15631,6 +15637,7 @@ msgid "Assign users to groups."
 msgstr "Pridať používateľov do skupiny."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-categories.php:60
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:127
 msgid "Are you sure you want to delete this category? THIS CANNOT BE UNDONE!"
 msgstr "Ste si istí, že chcete vymazať túto kategóriu? NEVRATNÁ OPERÁCIA!"
 
@@ -15680,7 +15687,6 @@ msgstr "Dátum budúceho uverejnenia:"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:188
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:219
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:180
 msgid "New Article"
 msgstr "Nový článok"
 
@@ -15695,8 +15701,6 @@ msgstr "Nová kategória"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:211
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:229
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-pages.php:112
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-pages.php:113
 msgid "New Page"
 msgstr "Ďalšia stránka"
 
@@ -16214,61 +16218,61 @@ msgstr "<em>Tento záznam je súčasťou chránenej kategórie.</em>"
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Tento záznam je súčasťou chráneného albumu.</em>"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1444
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1448
 msgid "Prev page"
 msgstr "Predchádzajúca stránka"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2623
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2627
 msgid "This page is password protected"
 msgstr "Stránka je chránená heslom"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2870
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2874
 msgid "News RSS"
 msgstr "RSS správ"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2875
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2879
 msgid "News Category RSS"
 msgstr "RSS kategórií správ"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2880
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2884
 msgid "News and Gallery RSS"
 msgstr "RSS správ a gelérie"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2885
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2889
 msgid "Zenpage Comments RSS"
 msgstr "RSS Zenpage komentárov"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2890
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2894
 msgid "News article comments RSS"
 msgstr "RSS komentárov článkov"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2895
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2900
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2899
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2904
 msgid "Page Comments RSS"
 msgstr "RSS komentárov stránok"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2998
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3002
 #, php-format
 msgid "View the %s album"
 msgstr "Zobraziť album %s"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3000
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3004
 #, php-format
 msgid "View the album %s"
 msgstr "Prezrieť album: %s"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3004
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3005
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3008
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3009
 #, php-format
 msgid "View %s"
 msgstr "Zobraziť %s"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3013
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3017
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> nenašiel obrázok %1$s:%2$s"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3022
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3026
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> nenašiel album %1$s"
@@ -16277,6 +16281,20 @@ msgstr "<code>zenpageAlbumImage()</code> nenašiel album %1$s"
 #, php-format
 msgid "Failed to retrieve link <em>%s</em>"
 msgstr "Nepodarilo sa načítať odkaz <em>%s</em>"
+
+#~ msgid " (latest albums)"
+#~ msgstr " (najnovšie albumy)"
+
+#~ msgid ""
+#~ "Video and MP3/4 handling for Zenphoto. This plugin must always be enabled "
+#~ "to use multimedia content."
+#~ msgstr ""
+#~ "Video a MP3/4 spracovanie v Zenphote. Tento zásuvný modul musí byť "
+#~ "aktívny ak používate multimediálny obsah."
+
+#~ msgid "This plugin requires the Flowplayer 3 plugin to be activated. "
+#~ msgstr ""
+#~ "Tento zásuvný modul vyžaduje aby bol aktivovaný zásuvný modul Flowplayer3."
 
 #~ msgid "Cache newly uploaded images."
 #~ msgstr "Nahrať najnovšie obrázky do vyrovnávacej pamäte."
@@ -17908,9 +17926,6 @@ msgstr "Nepodarilo sa načítať odkaz <em>%s</em>"
 #~ "Wenn die <em>Wiedergabelist</em> auf  <em>unten</em> eingestellt ist, "
 #~ "bezieht sich dies auf die Höhe. Wenn <em>rechts</em> eingestellt ist, auf "
 #~ "die Breite  (nur bei Verwendung der Funktion <code>flvplaylist()</code>)."
-
-#~ msgid "Playlist repeat"
-#~ msgstr "Wiedergabeliste-Wiederholung"
 
 #~ msgid "Always"
 #~ msgstr "Immer"
