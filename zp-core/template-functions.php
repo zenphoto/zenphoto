@@ -3805,7 +3805,70 @@ function getAlbumId() {
 }
 
 /**
- * Prints a RSS link
+ * Prints a RSS link for printRSSLink() and printRSSHeaderLink()
+ *
+ * @param string $option type of RSS: "Gallery" feed for latest images of the whole gallery
+ * 																		"Album" for latest images only of the album it is called from
+ * 																		"Collection" for latest images of the album it is called from and all of its subalbums
+ * 																		"Comments" for all comments of all albums and images
+ * 																		"Comments-image" for latest comments of only the image it is called from
+ * 																		"Comments-album" for latest comments of only the album it is called from
+ * 																		"AlbumsRSS" for latest albums
+ * 																		"AlbumsRSScollection" only for latest subalbums with the album it is called from
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ * @since 1.4.2
+ */
+function getRSSLink($option,$lang='') {
+	global $_zp_current_album;
+	if(empty($lang)) {
+		$lang = getOption('locale');
+	}
+	switch($option) {
+		case 'Gallery':
+			if (getOption('RSS_album_image')) {
+				return WEBPATH.'/index.php?rss&amp;lang='.$lang;
+			}
+			break;
+		case 'Album':
+			if (getOption('RSS_album_image')) {
+				return WEBPATH.'/index.php?rss&amp;albumtitle='.urlencode(getAlbumTitle()).'&amp;albumname='.urlencode($_zp_current_album->getFolder()).'&amp;lang='.$lang;
+				break;
+			}
+		case 'Collection':
+			if (getOption('RSS_album_image')) {
+				return WEBPATH.'/index.php?rss&amp;albumtitle='.urlencode(getAlbumTitle()).'&amp;folder='.urlencode($_zp_current_album->getFolder()).'&amp;lang='.$lang;
+			}
+			break;
+		case 'Comments':
+			if (getOption('RSS_comments')) {
+				return WEBPATH.'/index.php?rss-comments&type=gallery&amp;lang='.$lang;
+			}
+			break;
+		case 'Comments-image':
+			if (getOption('RSS_comments')) {
+				return WEBPATH.'/index.php?rss-comments&amp;id='.getImageID().'&amp;title='.urlencode(getImageTitle()).'&amp;type=image&amp;lang='.$lang;
+			}
+			break;
+		case 'Comments-album':
+			if (getOption('RSS_comments')) {
+				return WEBPATH.'/index.php?rss-comments&amp;id='.getAlbumID().'&amp;title='.urlencode(getAlbumTitle()).'&amp;type=album&amp;lang='.$lang;
+			}
+			break;
+		case 'AlbumsRSS':
+			if (getOption('RSS_album_image')) {
+				return WEBPATH.'/index.php?rss&amp;lang='.$lang.'&amp;albumsmode';
+			}
+			break;
+		case 'AlbumsRSScollection':
+			if (getOption('RSS_album_image')) {
+				return WEBPATH.'/index.php?rss&amp;folder='.urlencode($_zp_current_album->getFolder()).'&amp;lang='.$lang.'&amp;albumsmode';
+			}
+			break;
+	}
+}
+
+/**
+ * Prints an RSS link
  *
  * @param string $option type of RSS: "Gallery" feed for latest images of the whole gallery
  * 																		"Album" for latest images only of the album it is called from
@@ -3824,7 +3887,6 @@ function getAlbumId() {
  * @since 1.1
  */
 function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=null,$lang='') {
-	global $_zp_current_album;
 	if ($printIcon) {
 		$icon = ' <img src="' . FULLWEBPATH . '/' . ZENFOLDER . '/images/rss.png" alt="RSS Feed" />';
 	} else {
@@ -3836,120 +3898,32 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=
 	if(empty($lang)) {
 		$lang = getOption("locale");
 	}
-	switch($option) {
-		case "Gallery":
-			if (getOption('RSS_album_image')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss&amp;lang=".$lang."\" title=\"".gettext("Latest images RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "Album":
-			if (getOption('RSS_album_image')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;albumname=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" title=\"".gettext("Latest images of this album RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
-				break;
-			}
-		case "Collection":
-			if (getOption('RSS_album_image')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;folder=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" title=\"".gettext("Latest images of this album and its subalbums RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "Comments":
-			if (getOption('RSS_comments')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-comments&type=gallery&amp;lang=".$lang."\" title=\"".gettext("Latest comments RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "Comments-image":
-			if (getOption('RSS_comments')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-comments&amp;id=".getImageID()."&amp;title=".urlencode(getImageTitle())."&amp;type=image&amp;lang=".$lang."\" title=\"".gettext("Latest comments RSS for this image")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "Comments-album":
-			if (getOption('RSS_comments')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-comments&amp;id=".getAlbumID()."&amp;title=".urlencode(getAlbumTitle())."&amp;type=album&amp;lang=".$lang."\" title=\"".gettext("Latest comments RSS for this album")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "AlbumsRSS":
-			if (getOption('RSS_album_image')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss&amp;lang=".$lang."&amp;albumsmode\" title=\"".gettext("Latest albums RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "AlbumsRSScollection":
-			if (getOption('RSS_album_image')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss&amp;folder=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."&amp;albumsmode\" title=\"".gettext("Latest albums RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-	}
-}
-
-/**
- * Returns the RSS link for use in the HTML HEAD
- *
- * @param string $option type of RSS: "Gallery" feed for the whole gallery
- * 																		"Album" for only the album it is called from
- * 																		"Collection" for the album it is called from and all of its subalbums
- * 																		 "Comments" for all comments
- * 																		"Comments-image" for comments of only the image it is called from
- * 																		"Comments-album" for comments of only the album it is called from
- * @param string $linktext title of the link
- * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
- *
- *
- * @return string
- * @since 1.1
- */
-function getRSSHeaderLink($option, $linktext='', $lang='') {
-	global $_zp_current_album;
-	$host = html_encode($_SERVER["HTTP_HOST"]);
-	$protocol = SERVER_PROTOCOL.'://';
-	if ($protocol == 'https_admin') {
-		$protocol = 'https://';
-	}
-	if(empty($lang)) {
-		$lang = getOption("locale");
-	}
-	switch($option) {
-		case "Gallery":
-			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;lang=".$lang."\" />\n";
-			}
-		case "Album":
-			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;albumname=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
-			}
-		case "Collection":
-			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;folder=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
-			}
-		case "Comments":
-			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."\" />\n";
-			}
-		case "Comments-image":
-			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;id=".getImageID()."&amp;title=".urlencode(getImageTitle())."&amp;type=image&amp;lang=".$lang."\" />\n";
-			}
-		case "Comments-album":
-			if (getOption('RSS_comments')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;id=".getAlbumID()."&amp;title=".urlencode(getAlbumTitle())."&amp;type=album&amp;lang=".$lang."\" />\n";
-			}
-		case "AlbumsRSS":
-			if (getOption('RSS_album_image')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."&amp;albumsmode\" />\n";
-			}
-
-	}
+	echo $prev."<a $class href=\"".getRSSLink($option,$lang)."\" title=\"".gettext("Latest images RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
 }
 
 /**
  * Prints the RSS link for use in the HTML HEAD
  *
- * @param string $option type of RSS (Gallery, Album, Collection, Comments)
+ * @param string $option type of RSS: "Gallery" feed for latest images of the whole gallery
+ * 																		"Album" for latest images only of the album it is called from
+ * 																		"Collection" for latest images of the album it is called from and all of its subalbums
+ * 																		"Comments" for all comments of all albums and images
+ * 																		"Comments-image" for latest comments of only the image it is called from
+ * 																		"Comments-album" for latest comments of only the album it is called from
+ * 																		"AlbumsRSS" for latest albums
+ * 																		"AlbumsRSScollection" only for latest subalbums with the album it is called from
  * @param string $linktext title of the link
  * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  *
  * @since 1.1.6
  */
 function printRSSHeaderLink($option, $linktext, $lang='') {
-	echo getRSSHeaderLink($option, $linktext);
+	$host = html_encode($_SERVER["HTTP_HOST"]);
+	$protocol = SERVER_PROTOCOL.'://';
+	if ($protocol == 'https_admin') {
+		$protocol = 'https://';
+	}
+	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.getRSSLink($option,$lang)."\" />\n";
 }
 
 

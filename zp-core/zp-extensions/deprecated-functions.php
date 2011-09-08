@@ -1574,4 +1574,111 @@ function isProtectedAlbum($album=NULL) {
 }
 
 
+/**
+ * Returns the RSS link for use in the HTML HEAD
+ *
+ * @param string $option type of RSS: "Gallery" feed for the whole gallery
+ * 																		"Album" for only the album it is called from
+ * 																		"Collection" for the album it is called from and all of its subalbums
+ * 																		 "Comments" for all comments
+ * 																		"Comments-image" for comments of only the image it is called from
+ * 																		"Comments-album" for comments of only the album it is called from
+ * @param string $linktext title of the link
+ * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ *
+ *
+ * @return string
+ * @since 1.1
+ */
+function getRSSHeaderLink($option, $linktext='', $lang='') {
+	deprecated_function_notify(gettext('Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link <code>getRSSLink()</code> just returns the URL.'));
+	global $_zp_current_album;
+	$host = html_encode($_SERVER["HTTP_HOST"]);
+	$protocol = SERVER_PROTOCOL.'://';
+	if ($protocol == 'https_admin') {
+		$protocol = 'https://';
+	}
+	if(empty($lang)) {
+		$lang = getOption("locale");
+	}
+	switch($option) {
+		case "Gallery":
+			if (getOption('RSS_album_image')) {
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;lang=".$lang."\" />\n";
+			}
+		case "Album":
+			if (getOption('RSS_album_image')) {
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;albumname=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
+			}
+		case "Collection":
+			if (getOption('RSS_album_image')) {
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss&amp;albumtitle=".urlencode(getAlbumTitle())."&amp;folder=".urlencode($_zp_current_album->getFolder())."&amp;lang=".$lang."\" />\n";
+			}
+		case "Comments":
+			if (getOption('RSS_comments')) {
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."\" />\n";
+			}
+		case "Comments-image":
+			if (getOption('RSS_comments')) {
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;id=".getImageID()."&amp;title=".urlencode(getImageTitle())."&amp;type=image&amp;lang=".$lang."\" />\n";
+			}
+		case "Comments-album":
+			if (getOption('RSS_comments')) {
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;id=".getAlbumID()."&amp;title=".urlencode(getAlbumTitle())."&amp;type=album&amp;lang=".$lang."\" />\n";
+			}
+		case "AlbumsRSS":
+			if (getOption('RSS_album_image')) {
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-comments&amp;lang=".$lang."&amp;albumsmode\" />\n";
+			}
+
+	}
+}
+
+/**
+ * Returns the RSS link for use in the HTML HEAD
+ *
+ * @param string $option type of RSS: "News" feed for all news articles
+ * 																		"Category" for only the news articles of a specific category
+ * 																		"NewsWithImages" for all news articles and latest images
+ * @param string $categorylink The specific category you want a RSS feed from (only 'Category' mode)
+ * @param string $linktext title of the link
+ * @param string $lang optional to display a feed link for a specific language (currently works for latest images only). Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ *
+ * @return string
+ */
+function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $lang='') {
+	deprecated_function_notify(gettext('Use the template function <code>getZenpageRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getZenpageRSSLink()</code> just returns the URL.'));
+	global $_zp_current_category;
+	$host = html_encode($_SERVER["HTTP_HOST"]);
+	$protocol = SERVER_PROTOCOL.'://';
+	if ($protocol == 'https_admin') {
+		$protocol = 'https://';
+	}
+	if(empty($lang)) {
+		$lang = getOption("locale");
+	}
+	if($option == 'Category') {
+		if(!is_null($categorylink)) {
+			$categorylink = '&amp;category='.sanitize($categorylink);
+		} elseif(empty($categorylink) AND !is_null($_zp_current_category)) {
+			$categorylink = '&amp;category='.$_zp_current_category->getTitlelink();
+		} else {
+			$categorylink = '';
+		}
+	}
+	switch($option) {
+		case "News":
+			if (getOption('RSS_articles')) {
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-news&amp;lang=".$lang."\" />\n";
+			}
+		case "Category":
+			if (getOption('RSS_articles')) {
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-news&amp;lang=".$lang.$categorylink."\" />\n";
+			}
+		case "NewsWithImages":
+			if (getOption('RSS_articles')) {
+				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-news&amp;withimages&amp;lang=".$lang."\" />\n";
+			}
+	}
+}
 ?>

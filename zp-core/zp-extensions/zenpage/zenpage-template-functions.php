@@ -2828,6 +2828,77 @@ function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomm
 /************************************************/
 
 /**
+ * Gets a RSS link
+ *
+ * @param string $option type of RSS: "News" feed for all news articles
+ * 																		"Category" for only the news articles of the category that is currently selected
+ * 																		"NewsWithImages" for all news articles and latest images
+ * 																		"Comments" for all news articles and pages
+ * 																		"Comments-news" for comments of only the news article it is called from
+ * 																		"Comments-page" for comments of only the page it is called from
+ * 																		"Comments-all" for comments from all albums, images, news articels and pages
+ * @param string $categorylink The specific category you want a RSS feed from (only 'Category' mode)
+ * @param string $prev text to before before the link
+ * @param string $linktext title of the link
+ * @param string $next text to appear after the link
+ * @param bool $printIcon print an RSS icon beside it? if true, the icon is zp-core/images/rss.png
+ * @param string $class css class
+ * @param string $lang optional to display a feed link for a specific language (currently works for latest images only). Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
+ */
+function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
+	global $_zp_current_category;
+	if(empty($lang)) {
+		$lang = getOption('locale');
+	}
+	if($option == 'Category') {
+		if(!is_null($categorylink)) {
+			$categorylink = '&amp;category='.sanitize($categorylink);
+		} elseif(empty($categorylink) AND !is_null($_zp_current_category)) {
+			$categorylink = '&amp;category='.$_zp_current_category->getTitlelink();
+		} else {
+			$categorylink = '';
+		}
+	}
+	switch($option) {
+		case 'News':
+			if (getOption('RSS_articles')) {
+				return WEBPATH.'/index.php?rss-news&amp;lang='.$lang;
+			}
+			break;
+		case 'Category':
+			if (getOption('RSS_articles')) {
+				return WEBPATH.'/index.php?rss-news&amp;lang='.$lang.$categorylink;
+			}
+			break;
+		case 'NewsWithImages':
+			if (getOption('RSS_articles')) {
+				return .WEBPATH.'/index.php?rss-news&amp;withimages&amp;lang='.$lang;
+			}
+			break;
+		case 'Comments':
+			if (getOption('RSS_article_comments')) {
+				return WEBPATH.'/index.php?rss-comments&amp;type=zenpage&amp;lang='.$lang;
+			}
+			break;
+		case 'Comments-news':
+			if (getOption('RSS_article_comments')) {
+				return WEBPATH.'/index.php?rss-comments&amp;id='.getNewsID().'&amp;title='.urlencode(getNewsTitle()).'&amp;type=news&amp;lang='.$lang;
+			}
+			break;
+		case 'Comments-page':
+			if (getOption('RSS_article_comments')) {
+				return WEBPATH.'/index.php?rss-comments&amp;id='.getPageID().'&amp;title='.urlencode(getPageTitle()).'&amp;type=page&amp;lang='.$lang;
+			}
+			break;
+			case 'Comments-all':
+			if (getOption('RSS_article_comments')) {
+				return WEBPATH.'/index.php?rss-comments&amp;type=allcomments&amp;lang='.$lang;
+			}
+			break;
+	}
+}
+
+/**
  * Prints a RSS link
  *
  * @param string $option type of RSS: "News" feed for all news articles
@@ -2846,7 +2917,6 @@ function printLatestZenpageComments($number, $shorten='123', $id='showlatestcomm
  * @param string $lang optional to display a feed link for a specific language (currently works for latest images only). Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  */
 function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linktext='', $next='', $printIcon=true, $class=null, $lang=NULL) {
-	global $_zp_current_category;
 	if ($printIcon) {
 		$icon = ' <img src="' . FULLWEBPATH . '/' . ZENFOLDER . '/images/rss.png" alt="RSS Feed" />';
 	} else {
@@ -2855,118 +2925,32 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
 	if (!is_null($class)) {
 		$class = 'class="' . $class . '"';
 	}
-	if(empty($lang)) {
-		$lang = getOption("locale");
-	}
-	if($option == 'Category') {
-		if(!is_null($categorylink)) {
-			$categorylink = '&amp;category='.sanitize($categorylink);
-		} elseif(empty($categorylink) AND !is_null($_zp_current_category)) {
-			$categorylink = '&amp;category='.$_zp_current_category->getTitlelink();
-		} else {
-			$categorylink = '';
-		}
-	}
 	$linktext = html_encode($linktext);
-	switch($option) {
-		case "News":
-			if (getOption('RSS_articles')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-news&amp;lang=".$lang."\" title=\"".gettext("News RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "Category":
-			if (getOption('RSS_articles')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-news&amp;lang=".$lang.$categorylink."\" title=\"".gettext("News Category RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "NewsWithImages":
-			if (getOption('RSS_articles')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-news&amp;withimages&amp;lang=".$lang."\" title=\"".gettext("News and Gallery RSS")."\"  rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "Comments":
-			if (getOption('RSS_article_comments')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-comments&amp;type=zenpage&amp;lang=".$lang."\" title=\"".gettext("Zenpage Comments RSS")."\"  rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "Comments-news":
-			if (getOption('RSS_article_comments')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-comments&amp;id=".getNewsID()."&amp;title=".urlencode(getNewsTitle())."&amp;type=news&amp;lang=".$lang."\" title=\"".gettext("News article comments RSS")."\"  rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-		case "Comments-page":
-			if (getOption('RSS_article_comments')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-comments&amp;id=".getPageID()."&amp;title=".urlencode(getPageTitle())."&amp;type=page&amp;lang=".$lang."\" title=\"".gettext("Page Comments RSS")."\"  rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-			case "Comments-all":
-			if (getOption('RSS_article_comments')) {
-				echo $prev."<a $class href=\"".WEBPATH."/index.php?rss-comments&amp;type=allcomments&amp;lang=".$lang."\" title=\"".gettext("Page Comments RSS")."\"  rel=\"nofollow\">".$linktext."$icon</a>".$next;
-			}
-			break;
-	}
-}
-
-
-/**
- * Returns the RSS link for use in the HTML HEAD
- *
- * @param string $option type of RSS: "News" feed for all news articles
- * 																		"Category" for only the news articles of a specific category
- * 																		"NewsWithImages" for all news articles and latest images
- * @param string $categorylink The specific category you want a RSS feed from (only 'Category' mode)
- * @param string $linktext title of the link
- * @param string $lang optional to display a feed link for a specific language (currently works for latest images only). Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
- *
- * @return string
- */
-function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $lang='') {
-	global $_zp_current_category;
-	$host = html_encode($_SERVER["HTTP_HOST"]);
-	$protocol = SERVER_PROTOCOL.'://';
-	if ($protocol == 'https_admin') {
-		$protocol = 'https://';
-	}
-	if(empty($lang)) {
-		$lang = getOption("locale");
-	}
-	if($option == 'Category') {
-		if(!is_null($categorylink)) {
-			$categorylink = '&amp;category='.sanitize($categorylink);
-		} elseif(empty($categorylink) AND !is_null($_zp_current_category)) {
-			$categorylink = '&amp;category='.$_zp_current_category->getTitlelink();
-		} else {
-			$categorylink = '';
-		}
-	}
-	switch($option) {
-		case "News":
-			if (getOption('RSS_articles')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-news&amp;lang=".$lang."\" />\n";
-			}
-		case "Category":
-			if (getOption('RSS_articles')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-news&amp;lang=".$lang.$categorylink."\" />\n";
-			}
-		case "NewsWithImages":
-			if (getOption('RSS_articles')) {
-				return "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.WEBPATH."/index.php?rss-news&amp;withimages&amp;lang=".$lang."\" />\n";
-			}
-	}
+	echo $prev."<a $class href=\"".getZenpageRSSLink($option,$categorylink,$lang)."\" title=\"".gettext("News RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
 }
 
 
 /**
  * Prints the RSS link for use in the HTML HEAD
- *
- * @param string $option type of RSS (News, NewsCategory, NewsWithLatestImages)
+ * @param string $option type of RSS: "News" feed for all news articles
+ * 																		"Category" for only the news articles of the category that is currently selected
+ * 																		"NewsWithImages" for all news articles and latest images
+ * 																		"Comments" for all news articles and pages
+ * 																		"Comments-news" for comments of only the news article it is called from
+ * 																		"Comments-page" for comments of only the page it is called from
+ * 																		"Comments-all" for comments from all albums, images, news articels and pages
  * @param string $categorylink The specific category you want a RSS feed from (only 'Category' mode)
  * @param string $linktext title of the link
  * @param string $lang optional to display a feed link for a specific language (currently works for latest images only). Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  *
  */
 function printZenpageRSSHeaderLink($option,$category,$linktext,$lang) {
-	echo getZenpageRSSHeaderLink($option,$category,$linktext,$lang);
+	$host = html_encode($_SERVER["HTTP_HOST"]);
+	$protocol = SERVER_PROTOCOL.'://';
+	if ($protocol == 'https_admin') {
+		$protocol = 'https://';
+	}
+	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.getZenpageRSSLink($option,$categorylink,$lang)."\" />\n";
 }
 
 /**
