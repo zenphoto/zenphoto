@@ -36,12 +36,7 @@ if (!defined('WEBPATH')) die();
 	<div id="content-left">
 	<div><p><?php printAlbumDesc(true); ?></p></div>
 	
-	<?php 
-	if($_zp_current_album->name == 'video') {
-		echo "Playlisttest"; echo getOption('jplayer_playlist');
-		printjPlayerPlaylist("playlist");
-	}
-	?>
+	
 <?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
 			<div id="albums">
 			<?php while (next_album()): ?>
