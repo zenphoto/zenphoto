@@ -2872,7 +2872,7 @@ function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
 			break;
 		case 'NewsWithImages':
 			if (getOption('RSS_articles')) {
-				return .WEBPATH.'/index.php?rss-news&amp;withimages&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss-news&amp;withimages&amp;lang='.$lang;
 			}
 			break;
 		case 'Comments':
