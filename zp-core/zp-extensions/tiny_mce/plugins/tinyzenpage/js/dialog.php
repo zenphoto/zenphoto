@@ -159,7 +159,7 @@ var ZenpageDialog = {
 
 		// building the final item to include
 		if(type == "zenphoto") {
-			if((video == 'video' || video == 'audio') && $('#sizedimage:checked').val() == 1) {
+			if((video == 'video' || video == 'audio') && $('#sizedimage:checked')) {
 				if(video == 'video') {
 					playerheight = "<?php echo getOption('tinymce_tinyzenpage_flowplayer_height'); ?>";
 				} else {
@@ -208,7 +208,7 @@ var ZenpageDialog = {
 				imglink += '}\' />';
 				imglink += '</object>';
 				imglink += infowrap2;
-			}	else if(video == 'textobject' && $('#sizedimage:checked').val() == 1) {
+			}	else if(video == 'textobject' && $('#sizedimage:checked')) {
 				imglink = infowrap1+fullimage+infowrap2;
 			} else {
 				imglink = infowrap1+linkpart1+includetype+linkpart2+infowrap2;
