@@ -48,6 +48,7 @@ class slideshowOptions {
 		setOptionDefault('slideshow_flow_player_width', '640');
 		setOptionDefault('slideshow_flow_player_height', '480');
 		setOptionDefault('slideshow_colorbox_imagetype', 'sizedimage');
+		setOptionDefault('slideshow_colorbox_imagetitle', 1);
 	}
 
 
@@ -79,7 +80,9 @@ class slideshowOptions {
 									gettext('flow player width') => array('key' => 'slideshow_flow_player_width', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Width of the Flowplayer display for the slideshow <em>(Flash mode)</em>.")),
 									gettext('flow player height') => array('key' => 'slideshow_flow_player_height', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Height of the Flowplayer display for the slideshow <em>(Flash mode)</em>."))
+										'desc' => gettext("Height of the Flowplayer display for the slideshow <em>(Flash mode)</em>.")),
+									gettext('Colorbox image title') => array('key' => 'slideshow_colorbox_imagetitle', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => gettext("If the image title should be shown at the bottom of the Colorbox <em>[jQuery Colorbox mode option]</em>."))
 		);
 	}
 
@@ -235,9 +238,13 @@ function printSlideShowLink($linktext='', $linkstyle='') {
 								$imagelink = $imgobj->getSizedImage(getOption("slideshow_width"));
 								break;
 						}
+						$imagetitle = '';
+						if(getOption('slideshow_colorbox_imagetitle')) {
+							$imagetitle = html_encode(strip_tags($imgobj->getTitle()));
+						}
 						?>
 						<p>
-						<a href="<?php echo html_encode($imagelink); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo html_encode(strip_tags($imgobj->getTitle())); ?>"><?php echo $linktext; ?></a>
+						<a href="<?php echo html_encode($imagelink); ?>" rel="slideshow"<?php echo $style; ?> title="<?php echo $imagetitle; ?>"><?php echo $linktext; ?></a>
 						</p>
 						<?php
 					}
