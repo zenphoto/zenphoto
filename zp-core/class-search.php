@@ -22,8 +22,8 @@ class SearchEngine
 	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
 	var $fieldList;
 	var $page;
-	var $images;
-	var $albums;
+	var $images = NULL;
+	var $albums = NULL;
 	var $dynalbumname;
 	var $gallery;
 	protected $search_no_albums;	// omit albums
@@ -1137,11 +1137,12 @@ class SearchEngine
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) { return $albums; } // nothing to find
 		$criteria = $this->getCacheTag('albums',serialize($searchstring), $sorttype.' '.$sortdirection);
-		if ($criteria == $this->searches['albums']) {
+		if ($this->albums && $criteria == $this->searches['albums']) {
 			return $this->albums;
 		}
 		$albums = $this->getCachedSearch($criteria);
 		if (is_null($albums)) {
+			$albums = array();
 			$search_query = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
 			if (empty($search_query)) {
 				$search_result = false;

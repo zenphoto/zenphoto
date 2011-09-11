@@ -674,6 +674,7 @@ class _Image extends MediaObject {
 	 */
 
 	function remove() {
+		$result = false;
 		if (parent::remove()) {
 			$result = true;
 			$filestodelete = safe_glob(substr($this->localpath,0,strrpos($this->localpath,'.')).'.*');
@@ -684,9 +685,9 @@ class _Image extends MediaObject {
 				query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='images' AND `objectid`=" . $this->id);
 				query("DELETE FROM ".prefix('comments') . "WHERE `type` ='images' AND `ownerid`=" . $this->id);
 			}
-			return $result;
 		}
-		return false;
+		clearstatcache();
+		return $result;
 	}
 
 	/**

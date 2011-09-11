@@ -729,6 +729,7 @@ class Album extends MediaObject {
 	 * @return bool
 	 */
 	function remove() {
+		$rslt = false;
 		if (parent::remove()) {
 			if (!$this->isDynamic()) {
 				foreach ($this->getAlbums() as $folder) {
@@ -764,12 +765,13 @@ class Album extends MediaObject {
 				}
 			}
 			if ($this->isDynamic()) {
-				return @unlink($this->localpath) && $success;
+				$rslt = @unlink($this->localpath) && $success;
 			} else {
-				return @rmdir($this->localpath) && $success;
+				$rslt = @rmdir($this->localpath) && $success;
 			}
 		}
-		return false;
+		clearstatcache();
+		return $rslt;
 	}
 
 	/**
