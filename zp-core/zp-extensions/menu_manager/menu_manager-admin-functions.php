@@ -183,22 +183,7 @@ function printItemEditLink($item) {
 	} else {
 		$title = html_encode($array['title']);
 	}
-	switch($item['type']) {
-		case "album":
-			$link = '<a href="../../admin-edit.php?page=edit&amp;album='.$item['link'].'">'.$title.'</a>';
-			break;
-		case "zenpagepage":
-			$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink='.$item['link'].'">'.$title.'</a>';
-			break;
-		case "zenpagecategory":
-			$cat = new ZenpageCategory($item['link']);
-			$catid = $cat->getID();
-			$link = '<a href="../zenpage/admin-categories.php?edit&amp;id='.$catid.'&amp;tab=categories">'.$title.'</a>';
-			break;
-		default:
-			$link = '<a href="menu_tab_edit.php?edit&amp;id='.$item['id']."&amp;type=".$item['type']."&amp;menuset=".html_encode(checkChosenMenuset()).'">'.$title.'</a>';
-			break;
-	}
+	$link = '<a href="menu_tab_edit.php?edit&amp;id='.$item['id']."&amp;type=".$item['type']."&amp;menuset=".html_encode(checkChosenMenuset()).'">'.$title.'</a>';
 	echo $link;
 }
 
@@ -593,15 +578,13 @@ function addItem(&$reports) {
  */
 function updateMenuItem(&$reports) {
 	$menuset = checkChosenMenuset();
-	$result['id'] = sanitize($_POST['id']);
+	$result = query_single_row('SELECT * FROM '.prefix('menu').' WHERE `id`='.sanitize($_POST['id']));
 	$result['show'] = getCheckboxState('show');
 	$result['type'] = sanitize($_POST['type']);
 	$result['title'] = process_language_string_save("title",2);
 	$result['include_li'] = getCheckboxState('include_li');
 	if (isset($_POST['link'])) {
 		$result['link'] = sanitize($_POST['link'],0);
-	} else {
-		$result['link'] = '';
 	}
 	if (getCheckboxState('span')) {
 		$result['span_id'] = sanitize($_POST['span_id']);
@@ -644,10 +627,12 @@ function deleteItem(&$reports) {
 /**
  * Prints all albums of the Zenphoto gallery as a partial drop down menu (<option></option> parts).
  *
+ * @param string $current set to the album name selected (if any)
+ *
  * @return string
  */
 
-function printAlbumsSelector() {
+function printAlbumsSelector($current) {
 	global $_zp_gallery;
 	$albumlist;
 	genAlbumUploadList($albumlist);
@@ -657,12 +642,17 @@ function printAlbumsSelector() {
 	foreach($albumlist as $key => $value) {
 		$albumobj = new Album($_zp_gallery,$key);
 		$albumname = $albumobj->name;
+		if ($albumname == $current) {
+			$selected = ' selected="selected"';
+		} else {
+			$selected = '';
+		}
 		$level = substr_count($albumname,"/");
 		$arrow = "";
 		for($count = 1; $count <= $level; $count++) {
 			$arrow .= "&raquo; ";
 		}
-		echo "<option value='".html_encode($albumobj->name)."'>";
+		echo "<option value='".html_encode($albumobj->name)."'".$selected.'>';
 		echo $arrow.$albumobj->getTitle().unpublishedZenphotoItemCheck($albumobj)."</option>";
 	}
 	?>
@@ -671,24 +661,31 @@ function printAlbumsSelector() {
 }
 
 /**
-	* Prints all available pages in Zenpage
-	*
-	* @return string
-	*/
-function printZenpagePagesSelector() {
+ * Prints all available pages in Zenpage
+ *
+ * @param string $current set to the page selected (if any)
+ *
+ * @return string
+*/
+function printZenpagePagesSelector($current) {
 	global $_zp_gallery,$_zp_zenpage;
 	?>
 	<select id="pageselector" name="pageselect">
 	<?php
 	$pages = $_zp_zenpage->getPages(false);
 	foreach ($pages as $key=>$page) {
+		if ($page['titlelink'] == $current) {
+			$selected = ' selected="selected"';
+		} else {
+			$selected = '';
+		}
 		$pageobj = new ZenpagePage($page['titlelink']);
 		$level = substr_count($pageobj->getSortOrder(),"-");
 		$arrow = "";
 		for($count = 1; $count <= $level; $count++) {
 			$arrow .= "&raquo; ";
 		}
-		echo "<option value='".html_encode($pageobj->getTitlelink())."'>";
+		echo "<option value='".html_encode($pageobj->getTitlelink())."'".$selected.'>';
 		echo $arrow.$pageobj->getTitle().unpublishedZenphotoItemCheck($pageobj)."</option>";
 	}
 	?>
@@ -700,15 +697,22 @@ function printZenpagePagesSelector() {
 /**
 	* Prints all available articles or categories in Zenpage
 	*
+	* @param string $current set to category selected (if any)
+	*
 	* @return string
 	*/
-function printZenpageNewsCategorySelector() {
+function printZenpageNewsCategorySelector($current) {
 	global $_zp_gallery,$_zp_zenpage;
 	?>
 <select id="categoryselector" name="categoryselect">
 <?php
 	$cats = $_zp_zenpage->getAllCategories(false);
 	foreach($cats  as $cat) {
+		if ($cat['titlelink'] == $current) {
+			$selected = ' selected="selected"';
+		} else {
+			$selected = '';
+		}
 		$catobj = new ZenpageCategory($cat['titlelink']);
 		//This is much easier than hacking the nested list function to work with this
 		$getparents = $catobj->getParents();
@@ -716,7 +720,7 @@ function printZenpageNewsCategorySelector() {
 		foreach($getparents as $parent) {
 			$levelmark .= '&raquo; ';
 		}
-		echo "<option value='".html_encode($catobj->getTitlelink())."'>";
+		echo "<option value='".html_encode($catobj->getTitlelink())."'".$selected.'>';
 		echo $levelmark.$catobj->getTitle()."</option>";
 	}
 ?>

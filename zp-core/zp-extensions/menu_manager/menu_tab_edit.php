@@ -202,17 +202,29 @@ function handleSelectorChange(type) {
 <h1>
 <?php
 if(is_array($result) && $result['id']) {
-	if (isset($_GET['edit'])) {
-		echo gettext("Menu Manager: Edit Menu Item");
-	} else {
-		echo gettext("Menu Manager: Edit Menu Item or add new Menu Item");
-	}
+	echo gettext("Menu Manager: Edit Menu Item");
 } else {
 	echo gettext("Menu Manager: Add Menu Item");
 }
 ?>
 </h1>
-<p class="buttons"><strong><a href="menu_tab.php?menuset=<?php echo $menuset; ?>" title="<?php echo gettext("Back"); ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong></p>
+<?php
+if (isset($_GET['save'])) {
+	?>
+	<div class="messagebox fade-message">
+		<h2>
+		<?php echo gettext("Changes applied") ?>
+		</h2>
+	</div>
+	<?php
+}
+?>
+<p class="buttons">
+	<strong><a href="menu_tab.php?menuset=<?php echo $menuset; ?>" title="<?php echo gettext("Back"); ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>
+	<span class="floatright">
+	<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>" title="<?php echo gettext("Add Menu Items"); ?>"><img src="../../images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
+	</span>
+</p>
 <br clear="all" /><br />
 <div class="box" style="padding:15px; margin-top: 10px">
 <?php
@@ -287,10 +299,10 @@ if (isset($_GET['add'])) {
 				<td>
 				<span id="titleinput"><?php print_language_string_list($result['title'],"title",false,NULL,'',100); ?></span>
 				<?php
-				printAlbumsSelector();
+				printAlbumsSelector($result['link']);
 				if (class_exists('Zenpage')) {
-					printZenpagePagesSelector();
-					printZenpageNewsCategorySelector();
+					printZenpagePagesSelector($result['link']);
+					printZenpageNewsCategorySelector($result['link']);
 				}
 				?>
 				</td>
