@@ -336,7 +336,7 @@ if (isset($_GET['add'])) {
 					?>
 					<tr>
 						<td colspan="2">
-							<span class="notebox"><?php echo gettext('The target for this menu element no longer exists'); ?></span>
+							<span class="notebox"><?php echo gettext('Target no longer exists'); ?></span>
 						</td>
 					</tr>
 					<?php

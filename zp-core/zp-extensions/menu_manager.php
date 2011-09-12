@@ -219,7 +219,8 @@ function getItemTitleAndURL($item) {
 			$array = array("title" => get_language_string($item['title']),"url" => $url,"name" => $url,'protected'=>false);
 			break;
 		case "zenpagecategory":
-			$obj = query_single_row("SELECT title FROM ".prefix('news_categories')." WHERE titlelink = '".$item['link']."'",false);
+			$sql = "SELECT title FROM ".prefix('news_categories')." WHERE titlelink = '".$item['link']."'";
+			$obj = query_single_row($sql,false);
 			if ($obj) {
 				$obj = new ZenpageCategory($item['link']);
 				$title = $obj->getTitle();
@@ -758,12 +759,12 @@ function createMenuIfNotExists($menuitems, $menuset='default') {
 				case 'all_items':
 					$orders[$nesting]++;
 					query("INSERT INTO ".prefix('menu')." (`title`,`link`,`type`,`show`,`menuset`,`sort_order`) ".
-								"VALUES ('".gettext('Home')."', '".WEBPATH.'/'.	"','galleryindex','1',".db_quote($menuset).',"'.$orders.'"',true);
+								"VALUES ('".gettext('Home')."', '".WEBPATH.'/'.	"','galleryindex','1',".db_quote($menuset).','.db_quote($orders),true);
 					$orders[$nesting] = addAlbumsToDatabase($menuset,$orders);
 					if(getOption('zp_plugin_zenpage')) {
 						$orders[$nesting]++;
 						query("INSERT INTO ".prefix('menu')." (title`,`link`,`type`,`show`,`menuset`,`sort_order`) ".
-									"VALUES ('".gettext('News index')."', '".rewrite_path('news','?p=news').	"','zenpagenewsindex','1',".db_quote($menuset).',"'.sprintf('%03u',$base+1).'"',true);
+									"VALUES ('".gettext('News index')."', '".rewrite_path('news','?p=news').	"','zenpagenewsindex','1',".db_quote($menuset).','.db_quote(sprintf('%03u',$base+1)),true);
 						$orders[$nesting] = addPagesToDatabase($menuset, $orders)+1;
 						$orders[$nesting] = addCategoriesToDatabase($menuset,$orders);
 					}
@@ -868,7 +869,7 @@ function createMenuIfNotExists($menuitems, $menuset='default') {
 									"VALUES (".db_quote($result['title']).
 									", ".db_quote($result['link']).
 									",".db_quote($result['type']).",".$result['show'].
-									",".db_quote($menuset).",'$sort_order',$includeli)";
+									",".db_quote($menuset).",".db_quote($sort_order).",$includeli)";
 				if (!query($sql, false)) {
 					$success = -2;
 					debugLog(sprintf(gettext('createMenuIfNotExists item %1$s query (%2$s) failed: %3$s.'),$key, $sql, db_error()));

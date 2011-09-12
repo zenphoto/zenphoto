@@ -179,7 +179,7 @@ function printItemEditLink($item) {
 	$link = "";
 	$array = getItemTitleAndURL($item);
 	if (is_null($array['title'])) {
-		$title = '<span class="notebox">'.gettext('The target for this menu element no longer exists').'</span>';
+		$title = '<span class="notebox">'.gettext('Target no longer exists').'</span>';
 	} else {
 		$title = html_encode($array['title']);
 	}
@@ -361,14 +361,14 @@ function addPagesToDatabase($menuset, $base=NULL) {
 		$link = $item['titlelink'];
 		$parent = $parents[$level-1];
 		$sql = "INSERT INTO ".prefix('menu')." (`link`, `type`, `show`,`menuset`,`sort_order`, `parentid`) ".
-				'VALUES ('.db_quote($link).',"zenpagepage",'.$show.','.db_quote($menuset).','.$order.','.$parent.')';
+				'VALUES ('.db_quote($link).',"zenpagepage",'.$show.','.db_quote($menuset).','.db_quote($order).','.$parent.')';
 		if (query($sql, false)) {
 			$id = db_insert_id();
 		} else {
 			$rslt = query_single_row('SELECT `id` FROM'.prefix('menu').' WHERE `type`="zenpagepage" AND `link`="'.$link.'"');
 			$id = $rslt['id'];
 		}
-		$parents[$level] =$id;
+		$parents[$level] = $id;
 	}
 	return $result;
 }
@@ -395,10 +395,10 @@ function addCategoriesToDatabase($menuset, $base=NULL) {
 		$level = count($sorts);
 		$sorts[0] = sprintf('%03u',$result = $sorts[0]+$categorybase);
 		$order = $sortbase.implode('-',$sorts);
-		$link = $item['title'];
+		$link = $item['titlelink'];
 		$parent = $parents[$level-1];
 		$sql = "INSERT INTO ".prefix('menu')." (`link`, `type`, `show`,`menuset`,`sort_order`,`parentid`) ".
-										'VALUES ('.db_quote($link).',"zenpagecategory", 1,'.db_quote($menuset).','.$order.','.$parent.')';
+										'VALUES ('.db_quote($link).',"zenpagecategory", 1,'.db_quote($menuset).','.db_quote($order).','.$parent.')';
 		if (query($sql, false)) {
 			$id = db_insert_id();
 		} else {
@@ -569,7 +569,7 @@ function addItem(&$reports) {
 						"VALUES (".db_quote($result['title']).
 						",".db_quote($result['link']).
 						",".db_quote($result['type']).",".$result['show'].
-						",".db_quote($menuset).",".$order.",".$result['include_li'].
+						",".db_quote($menuset).",".db_quote($order).",".$result['include_li'].
 						",".db_quote($result['span_id']).",".db_quote($result['span_class']).
 						")";
 	if (query($sql, true)) {
