@@ -204,6 +204,8 @@ printLogoAndLinks();
 														gettext('Disable comments') => 'commentsoff',
 														gettext('Enable comments') => 'commentson',
 														gettext('Reset hitcounter') => 'resethitcounter',
+														gettext('Add categories') => 'addcats',
+														gettext('Clear categories') => 'clearcats'
 														);
 						printBulkActions($checkarray);
 						?>

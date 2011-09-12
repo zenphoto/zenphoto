@@ -3455,6 +3455,7 @@ function processEditSelection($subtab) {
 function printBulkActions($checkarray, $checkAll=false) {
 	$tags = in_array('addtags', $checkarray) || in_array('alltags', $checkarray);
 	$movecopy = in_array('moveimages', $checkarray) || in_array('copyimages', $checkarray);
+	$categories = in_array('addcats', $checkarray) || in_array('clearcats', $checkarray);
 	if ($tags || $movecopy) {
 		?>
 		<script type="text/javascript">
@@ -3473,6 +3474,13 @@ function printBulkActions($checkarray, $checkAll=false) {
 					?>
 					if (sel == 'moveimages' || sel == 'copyimages') {
 						$.colorbox({href:"#mass_movecopy_data", inline:true, open:true});
+					}
+					<?php
+				}
+				if ($categories) {
+					?>
+					if (sel == 'addcats' || sel == 'clearcats') {
+						$.colorbox({href:"#mass_cats_data", inline:true, open:true});
 					}
 					<?php
 				}
@@ -3508,6 +3516,17 @@ function printBulkActions($checkarray, $checkAll=false) {
 				tagSelector(NULL, 'mass_tags_', false, false, true);
 				?>
 			</div>
+		</div>
+		<?php
+	}
+	if($categories) {
+		?>
+		<div id="mass_cats" style="display:none;">
+			<ul id="mass_cats_data">
+				<?php
+				 printNestedItemsList('cats-checkboxlist','','','all');
+				?>
+			</ul>
 		</div>
 		<?php
 	}
