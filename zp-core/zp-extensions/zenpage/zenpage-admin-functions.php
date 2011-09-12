@@ -1843,6 +1843,17 @@ function processZenpageBulkActions($type,&$reports) {
 					}
 					$tags = sanitize($tags, 3);
 				}
+				if ($action == 'addcats') {
+					foreach ($_POST as $key => $value) {
+						$key = postIndexDecode($key);
+						if (substr($key, 0, 3) == 'cat') {
+							if ($value) {
+								$cats[] = substr($key, 3);
+							}
+						}
+					}
+					$cats = sanitize($cats, 3);
+				}
 				$n = 0;
 				switch($action) {
 					case 'deleteall':
@@ -1874,6 +1885,12 @@ function processZenpageBulkActions($type,&$reports) {
 						break;
 					case 'clearalltags':
 						$message = gettext('Tags cleared from articles of selected items');
+						break;
+					case 'addcats':
+						$message = gettext('Categories added to selected items');
+						break;
+					case 'clearcats':
+						$message = gettext('Categories cleared from selected items');
 						break;
 				}
 				foreach ($links as $titlelink) {
@@ -1907,6 +1924,13 @@ function processZenpageBulkActions($type,&$reports) {
 								$newsobj->setTags(array());
 								$newsobj->save();
 							}
+							break;
+						case 'addcats':
+							//$mycats = array_unique(array_merge($cats, $obj->getCategories()));
+							//$obj->setCategories($mycats);
+							break;
+						case 'clearcats':
+							$obj->setCategories(array());
 							break;
 						case 'showall':
 							$obj->set('show',1);

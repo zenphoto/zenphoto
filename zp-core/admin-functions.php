@@ -3479,7 +3479,7 @@ function printBulkActions($checkarray, $checkAll=false) {
 				}
 				if ($categories) {
 					?>
-					if (sel == 'addcats' || sel == 'clearcats') {
+					if (sel == 'addcats') {
 						$.colorbox({href:"#mass_cats_data", inline:true, open:true});
 					}
 					<?php
