@@ -349,7 +349,7 @@ class Gallery {
 			setOption('last_garbage_collect', time());
 			/* purge old search cache items */
 			$sql = 'DELETE FROM '.prefix('search_cache').' WHERE `date`<'.db_quote(date('Y-m-d H:m:s',time()-SEARCH_CACHE_DURATION*60));
-			$result = query_full_array($sql);
+			$result = query($sql);
 
 			/* clean the comments table */
 			$this->commentClean('images');

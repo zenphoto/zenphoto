@@ -49,7 +49,7 @@ class PersistentObject {
 	var $table;
 	var $unique_set = NULL;
 	var $cache_by;
-	var $id;
+	var $id = 0;
 	var $use_cache = false;
 	var $transient;
 	var $tempdata = NULL;
