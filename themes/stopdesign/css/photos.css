@@ -1371,3 +1371,11 @@ table.password td.hint{
 	font-weight: bold;
 	margin-bottom: 1em;
 }
+
+
+.jp-audio,
+.jp-video {
+	position: relative !important;
+	margin: 0 auto;
+	padding: 0;
+}

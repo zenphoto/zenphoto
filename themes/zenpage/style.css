@@ -522,8 +522,10 @@ ul.pagelist li.next {
 	font-size: 1.6em;
 	}
 
-/* centering flowplayer 3 on image.php */
-#image .flowplayer {
+/* centering flowplayer 3 and jPlayer on image.php (and jplayer playlists elsewhere) */
+#image .flowplayer,
+.jp-audio,
+.jp-video {
 	margin: 0 auto;
 }
 

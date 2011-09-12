@@ -354,6 +354,13 @@ clear: both;
 	text-align: center;
 	line-height: 0;
 }
+
+#image .flowplayer,
+.jp-audio,
+.jp-video {
+	margin: 0 auto;
+}
+
 .imgnav {
 	float: right;
 	width: 140px;

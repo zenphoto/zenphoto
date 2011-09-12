@@ -526,7 +526,9 @@ ul.archive .month {
 }
 
 /* centering flowplayer 3 on image.php */
-#image .flowplayer {
+#image .flowplayer,
+.jp-audio,
+.jp-video {
 	margin: 0 auto;
 }
 
