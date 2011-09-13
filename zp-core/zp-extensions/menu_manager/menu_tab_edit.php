@@ -237,7 +237,7 @@ if(is_array($result)) {
 	}
 	$action = !empty($id);
 }
-if (isset($_GET['add'])) {
+if (isset($_GET['add']) && !isset($_GET['save'])) {
 	$add = '&amp;add'
 	?>
 	<select id="typeselector" name="typeselector">

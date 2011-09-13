@@ -46,6 +46,13 @@ function printItemsListTable($item, $flag) {
 			$catid = $cat->getID();
 			$link = '<a href="../zenpage/admin-categories.php?edit&amp;id='.html_encode($catid).'&amp;tab=categories">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
 			break;
+		case 'html':
+		case 'menufunction':
+			$link = html_encode(truncate_string($item['link'], 40, '...'));
+			break;
+		case 'menulabel':
+			$link = '<em>label</em>';
+			break;
 		default:
 			$link = '<a href="menu_tab_edit.php?edit&amp;id='.$item['id']."&amp;type=".$item['type']."&amp;menuset=".html_encode(checkChosenMenuset()).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
 			break;
@@ -328,7 +335,7 @@ function addalbumsToDatabase($menuset, $base=NULL) {
 	$gallery = new Gallery();
 	$albums = $gallery->getAlbums();
 	foreach ($albums as $key=>$link) {
-		addSubalbumMenus($menuset, $gallery, 0, $link, $sortbase.sprintf('%03u', $result = $key+$albumbase));
+		addSubalbumMenus($menuset, $gallery, 'NULL', $link, $sortbase.sprintf('%03u', $result = $key+$albumbase));
 	}
 	return $result;
 }
@@ -351,7 +358,7 @@ function addPagesToDatabase($menuset, $base=NULL) {
 		}
 	}
 	$result = $pagebase;
-	$parents = array(0);
+	$parents = array('NULL');
 	$result = query_full_array("SELECT `titlelink`, `show`, `sort_order` FROM ".prefix('pages')." ORDER BY sort_order");
 	foreach($result as $key=>$item) {
 		$sorts = explode('-',$item['sort_order']);
@@ -389,7 +396,7 @@ function addCategoriesToDatabase($menuset, $base=NULL) {
 		}
 	}
 	$result = $categorybase;
-	$parents = array(0);
+	$parents = array('NULL');
 	$result = query_full_array("SELECT * FROM ".prefix('news_categories')." ORDER BY sort_order");
 	foreach($result as $key=>$item) {
 		$sorts = explode('-',$item['sort_order']);
