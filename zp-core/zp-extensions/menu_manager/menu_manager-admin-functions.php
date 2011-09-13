@@ -33,15 +33,31 @@ function updateItemsSortorder(&$reports) {
 function printItemsListTable($item, $flag) {
 	$gallery = new Gallery();
 
+	$array = getItemTitleAndURL($item);
+	switch($item['type']) {
+		case "album":
+			$link = '<a href="../../admin-edit.php?page=edit&amp;album='.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
+			break;
+		case "zenpagepage":
+			$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink='.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
+			break;
+		case "zenpagecategory":
+			$cat = new ZenpageCategory($item['link']);
+			$catid = $cat->getID();
+			$link = '<a href="../zenpage/admin-categories.php?edit&amp;id='.html_encode($catid).'&amp;tab=categories">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
+			break;
+		default:
+			$link = '<a href="menu_tab_edit.php?edit&amp;id='.$item['id']."&amp;type=".$item['type']."&amp;menuset=".html_encode(checkChosenMenuset()).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
+			break;
+	}
 	?>
  <div class="page-list_row">
 	<div class="page-list_title">
 			<?php
-			$array = getItemTitleAndURL($item);
 			printItemEditLink($item);
 			?>
 		</div>
-		<div class="page-list_extra"><?php echo html_encode(truncate_string($array['name'], 40, '...')); ?></div>
+		<div class="page-list_extra"><?php echo $link; ?></div>
 		<div class="page-list_extra"><em><?php echo $item['type']; ?></em></div>
 		<div class="page-list_iconwrapper">
 		<div class="page-list_icon">
