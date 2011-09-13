@@ -1926,8 +1926,18 @@ function processZenpageBulkActions($type,&$reports) {
 							}
 							break;
 						case 'addcats':
-							//$mycats = array_unique(array_merge($cats, $obj->getCategories()));
-							//$obj->setCategories($mycats);
+							$catarray = array();
+							$allcats = $obj->getCategories();
+							foreach($cats as $cat) {
+								$catitem = $_zp_zenpage->getCategory($cat);
+								$catarray[] = $catitem['titlelink']; //to use the setCategories method we need an array with just the titlelinks!
+							}
+							$allcatsarray = array();
+							foreach($allcats as $allcat) {
+								$allcatsarray[] = $allcat['titlelink']; //same here!
+							}
+							$mycats = array_unique(array_merge($catarray, $allcatsarray));
+							$obj->setCategories($catarray);
 							break;
 						case 'clearcats':
 							$obj->setCategories(array());
