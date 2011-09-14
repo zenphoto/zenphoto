@@ -209,7 +209,7 @@ if(is_array($result) && $result['id']) {
 ?>
 </h1>
 <?php
-if (isset($_GET['save'])) {
+if (isset($_GET['save']) && !isset($_GET['add'])) {
 	?>
 	<div class="messagebox fade-message">
 		<h2>
@@ -344,7 +344,7 @@ if (isset($_GET['add']) && !isset($_GET['save'])) {
 			<?php
 			if (is_array($result) && !empty($result['type'])) {
 				$array = getItemTitleAndURL($result);
-				if (is_null($array['title'])) {
+				if (!$array['valid']) {
 					?>
 					<tr>
 						<td colspan="2">

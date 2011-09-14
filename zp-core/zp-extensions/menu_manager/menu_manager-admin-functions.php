@@ -34,28 +34,26 @@ function printItemsListTable($item, $flag) {
 	$gallery = new Gallery();
 
 	$array = getItemTitleAndURL($item);
-	switch($item['type']) {
-		case "album":
-			$link = '<a href="../../admin-edit.php?page=edit&amp;album='.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
-			break;
-		case "zenpagepage":
-			$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink='.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
-			break;
-		case "zenpagecategory":
-			$cat = new ZenpageCategory($item['link']);
-			$catid = $cat->getID();
-			$link = '<a href="../zenpage/admin-categories.php?edit&amp;id='.html_encode($catid).'&amp;tab=categories">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
-			break;
-		case 'html':
-		case 'menufunction':
-			$link = html_encode(truncate_string($item['link'], 40, '...'));
-			break;
-		case 'menulabel':
-			$link = '<em>label</em>';
-			break;
-		default:
-			$link = '<a href="menu_tab_edit.php?edit&amp;id='.$item['id']."&amp;type=".$item['type']."&amp;menuset=".html_encode(checkChosenMenuset()).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
-			break;
+	if ($array['valid']) {
+		switch($item['type']) {
+			case "album":
+				$link = '<a href="../../admin-edit.php?page=edit&amp;album='.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
+				break;
+			case "zenpagepage":
+				$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink='.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
+				break;
+			case "zenpagecategory":
+				$link = '<a href="../zenpage/admin-edit.php?category&amp;titlelink='.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
+				break;
+			case 'customlink':
+				$link = '<a href="'.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
+				break;
+			default:
+				$link = html_encode(truncate_string($item['link'], 40, '...'));
+				break;
+		}
+	} else {
+		$link = '<span class="notebox">'.gettext('Target no longer exists').'</span>';
 	}
 	?>
  <div class="page-list_row">
@@ -64,69 +62,69 @@ function printItemsListTable($item, $flag) {
 			printItemEditLink($item);
 			?>
 		</div>
-		<div class="page-list_extra"><?php echo $link; ?></div>
 		<div class="page-list_extra"><em><?php echo $item['type']; ?></em></div>
+		<div class="page-list_extra"><?php echo $link; ?></div>
 		<div class="page-list_iconwrapper">
-		<div class="page-list_icon">
-			<?php
-			if ($array['protected']) {
+			<div class="page-list_icon">
+				<?php
+				if ($array['protected']) {
+					?>
+					<img src="../../images/lock_2.png" alt="<?php echo gettext("The object of this menu is under password protection"); ?>" title="<?php echo gettext("The object of this menu is under password protection"); ?>" style="border: 0px;" />
+					<?php
+				} else {
+					?>
+					<img src="../../images/place_holder_icon.png" alt="<?php echo gettext("under password protection"); ?>"style="border: 0px;" />
+					<?php
+				}
 				?>
-				<img src="../../images/lock_2.png" alt="<?php echo gettext("The object of this menu is under password protection"); ?>" title="<?php echo gettext("The object of this menu is under password protection"); ?>" style="border: 0px;" />
+			</div>
+			<div class="page-list_icon">
+			<?php
+			if($item['show'] === '1') {
+				?>
+				<a href="menu_tab.php?publish&amp;id=<?php echo $item['id']."&amp;show=0"; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu')?>" title="<?php echo gettext('hide'); ?>" >
+					<img src="../../images/pass.png"	alt="<?php echo gettext('hide'); ?>" style="border: 0px;" />
+				</a>
 				<?php
 			} else {
 				?>
-				<img src="../../images/place_holder_icon.png" alt="<?php echo gettext("under password protection"); ?>"style="border: 0px;" />
+				<a href="menu_tab.php?publish&amp;id=<?php echo $item['id']."&amp;show=1"; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu')?>"  title="<?php echo gettext('show'); ?>">
+					<img src="../../images/action.png"	alt="<?php echo gettext('show'); ?>" style="border: 0px;" />
+				</a>
 				<?php
 			}
 			?>
 		</div>
-		<div class="page-list_icon">
-		<?php
-		if($item['show'] === '1') {
-			?>
-			<a href="menu_tab.php?publish&amp;id=<?php echo $item['id']."&amp;show=0"; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu')?>" title="<?php echo gettext('hide'); ?>" >
-				<img src="../../images/pass.png"	alt="<?php echo gettext('hide'); ?>" style="border: 0px;" />
-			</a>
-			<?php
-		} else {
-			?>
-			<a href="menu_tab.php?publish&amp;id=<?php echo $item['id']."&amp;show=1"; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('update_menu')?>"  title="<?php echo gettext('show'); ?>">
-				<img src="../../images/action.png"	alt="<?php echo gettext('show'); ?>" style="border: 0px;" />
-			</a>
-			<?php
-		}
-		?>
-	</div>
-		<div class="page-list_icon">
-			<?php
-			switch ($item['type']) {
-				default:
-					if (!empty($array['url'])) {
+			<div class="page-list_icon">
+				<?php
+				switch ($item['type']) {
+					default:
+						if (!empty($array['url'])) {
+							?>
+							<a href="<?php echo $array['url']; ?>">
+								<img src="../../images/view.png" alt="<?php echo gettext('view'); ?>" title="<?php echo gettext('view'); ?>" style="border: 0px;" />
+							</a>
+							<?php
+							break;
+						}
+					case 'menulabel':
+					case 'menufunction':
+					case 'html':
 						?>
-						<a href="<?php echo $array['url']; ?>">
-							<img src="../../images/view.png" alt="<?php echo gettext('view'); ?>" title="<?php echo gettext('view'); ?>" style="border: 0px;" />
-						</a>
+						<img src="../../images/icon_inactive.png" alt="" style="border: 0px;" />
 						<?php
 						break;
-					}
-				case 'menulabel':
-				case 'menufunction':
-				case 'html':
-					?>
-					<img src="../../images/icon_inactive.png" alt="" style="border: 0px;" />
-					<?php
-					break;
-			}
-			?>
+				}
+				?>
+			</div>
+			<div class="page-list_icon">
+				<a href="javascript:deleteMenuItem('<?php echo $item['id']; ?>','<?php printf(gettext('Ok to delete %s? This cannot be undone.'),html_encode($array['name'])); ?>');" >
+					<img src="../../images/fail.png" alt="<?php echo gettext('delete'); ?>" title="<?php echo gettext('delete'); ?>" style="border: 0px;" />
+				</a>
+			</div>
+			<div class="page-list_icon">
+			<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo html_encode($item['id']); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 		</div>
-		<div class="page-list_icon">
-			<a href="javascript:deleteMenuItem('<?php echo $item['id']; ?>','<?php printf(gettext('Ok to delete %s? This cannot be undone.'),html_encode($array['name'])); ?>');" >
-				<img src="../../images/fail.png" alt="<?php echo gettext('delete'); ?>" title="<?php echo gettext('delete'); ?>" style="border: 0px;" />
-			</a>
-		</div>
-		<div class="page-list_icon">
-		<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo html_encode($item['id']); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
-	</div>
 	</div>
 </div>
 	<?php
@@ -201,11 +199,7 @@ function printItemsList($items) {
 function printItemEditLink($item) {
 	$link = "";
 	$array = getItemTitleAndURL($item);
-	if (is_null($array['title'])) {
-		$title = '<span class="notebox">'.gettext('Target no longer exists').'</span>';
-	} else {
-		$title = html_encode($array['title']);
-	}
+	$title = html_encode($array['title']);
 	$link = '<a href="menu_tab_edit.php?edit&amp;id='.$item['id']."&amp;type=".$item['type']."&amp;menuset=".html_encode(checkChosenMenuset()).'">'.$title.'</a>';
 	echo $link;
 }
@@ -359,7 +353,7 @@ function addPagesToDatabase($menuset, $base=NULL) {
 	}
 	$result = $pagebase;
 	$parents = array('NULL');
-	$result = query_full_array("SELECT `titlelink`, `show`, `sort_order` FROM ".prefix('pages')." ORDER BY sort_order");
+	$result = query_full_array("SELECT * FROM ".prefix('pages')." ORDER BY sort_order");
 	foreach($result as $key=>$item) {
 		$sorts = explode('-',$item['sort_order']);
 		$level = count($sorts);
@@ -368,8 +362,8 @@ function addPagesToDatabase($menuset, $base=NULL) {
 		$show = $item['show'];
 		$link = $item['titlelink'];
 		$parent = $parents[$level-1];
-		$sql = "INSERT INTO ".prefix('menu')." (`link`, `type`, `show`,`menuset`,`sort_order`, `parentid`) ".
-				'VALUES ('.db_quote($link).',"zenpagepage",'.$show.','.db_quote($menuset).','.db_quote($order).','.$parent.')';
+		$sql = "INSERT INTO ".prefix('menu')." (`title`, `link`, `type`, `show`,`menuset`,`sort_order`, `parentid`) ".
+				'VALUES ('.db_quote($item['title']).','.db_quote($link).',"zenpagepage",'.$show.','.db_quote($menuset).','.db_quote($order).','.$parent.')';
 		if (query($sql, false)) {
 			$id = db_insert_id();
 		} else {
@@ -405,8 +399,8 @@ function addCategoriesToDatabase($menuset, $base=NULL) {
 		$order = $sortbase.implode('-',$sorts);
 		$link = $item['titlelink'];
 		$parent = $parents[$level-1];
-		$sql = "INSERT INTO ".prefix('menu')." (`link`, `type`, `show`,`menuset`,`sort_order`,`parentid`) ".
-										'VALUES ('.db_quote($link).',"zenpagecategory", 1,'.db_quote($menuset).','.db_quote($order).','.$parent.')';
+		$sql = "INSERT INTO ".prefix('menu')." (`title`, `link`, `type`, `show`,`menuset`,`sort_order`,`parentid`) ".
+										'VALUES ('.db_quote($item['title']).','.db_quote($link).',"zenpagecategory", 1,'.db_quote($menuset).','.db_quote($order).','.$parent.')';
 		if (query($sql, false)) {
 			$id = db_insert_id();
 		} else {
@@ -565,7 +559,7 @@ function addItem(&$reports) {
 				$reports[] =  "<p class='errorbox fade-message'>".gettext("You forgot to provide a <strong>function</strong>!")."</p>";
 				return $result;
 			}
-			$successmsg = gettext("Horizontal rule added");
+			$successmsg = gettext("<em>HTML</em> added");
 			break;
 		default:
 			break;

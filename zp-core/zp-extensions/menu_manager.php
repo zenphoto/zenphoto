@@ -178,6 +178,8 @@ function checkChosenItemStatus() {
 function getItemTitleAndURL($item) {
 	$gallery = new Gallery();
 	$array = array();
+	$valid = true;
+	$title = get_language_string($item['title']);
 	switch ($item['type']) {
 		case "galleryindex":
 			$array = array("title" => get_language_string($item['title']),"url" => WEBPATH,"name" => WEBPATH,'protected'=>false);
@@ -188,7 +190,7 @@ function getItemTitleAndURL($item) {
 			$dynamic = hasDynamicAlbumSuffix($folderFS);
 			$valid = file_exists($localpath) && ($dynamic || is_dir($localpath));
 			if(!$valid || strpos($localpath, '..') !== false) {
-				$title = NULL;
+				$valid = false;
 				$url = '';
 				$protected = 0;
 			} else {
@@ -208,7 +210,7 @@ function getItemTitleAndURL($item) {
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
 			} else {
-				$title = NULL;
+				$valid = false;
 				$url = '';
 				$protected = 0;
 			}
@@ -227,7 +229,7 @@ function getItemTitleAndURL($item) {
 				$protected = $obj->isProtected();
 				$url = rewrite_path("/news/category/".$item['link'],"/index.php?p=news&amp;category=".$item['link']);
 			} else {
-				$title = NULL;
+				$valid = false;
 				$url = '';
 				$protected = 0;
 			}
@@ -238,9 +240,8 @@ function getItemTitleAndURL($item) {
 			$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$themename.'/';
 			if (file_exists($root.$item['link'].'.php')) {
 				$url = rewrite_path("/page/".$item['link'],"/index.php?p=".$item['link']);
-				$title = get_language_string($item['title']);
 			} else {
-				$title = NULL;
+				$valid = false;
 				$url = '';
 			}
 			$array = array("title"=>$title,"url" => $url,"name"=>$item['link'],'protected'=>false);
@@ -256,6 +257,7 @@ function getItemTitleAndURL($item) {
 			break;
 	}
 	$limit = MENU_TRUNCATE_STRING;
+	$array['valid'] = $valid;
 	if ($limit) {
 		$array['title'] = shortenContent($array['title'],$limit,MENU_TRUNCATE_INDICATOR);
 	}
