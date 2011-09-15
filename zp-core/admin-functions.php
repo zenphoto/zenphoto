@@ -3604,10 +3604,10 @@ function processAlbumBulkActions() {
 						$albumobj->setShow(0);
 						break;
 					case 'commentson':
-						$albumobj->setCommentson(1);
+						$albumobj->setCommentsAllowed(1);
 						break;
 					case 'commentsoff':
-						$albumobj->setCommentson(0);
+						$albumobj->setCommentsAllowed(0);
 						break;
 					case 'resethitcounter':
 						$albumobj->set('hitcounter',0);
