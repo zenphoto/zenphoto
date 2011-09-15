@@ -2944,7 +2944,7 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
  * @param string $lang optional to display a feed link for a specific language (currently works for latest images only). Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  *
  */
-function printZenpageRSSHeaderLink($option,$category,$linktext,$lang) {
+function printZenpageRSSHeaderLink($option,$categorylink,$linktext,$lang) {
 	$host = html_encode($_SERVER["HTTP_HOST"]);
 	$protocol = SERVER_PROTOCOL.'://';
 	if ($protocol == 'https_admin') {
