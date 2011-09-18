@@ -113,8 +113,27 @@ function setexifvars() {
 		'EXIFGPSAltitude'       		=> array('GPS',    'Altitude',          		gettext('Altitude'),              										false,			52, 	true),
 		'EXIFGPSAltitudeRef'    		=> array('GPS',    'Altitude Reference',		gettext('Altitude Reference'),  											false,			52, 	true),
 		'IPTCOriginatingProgram'		=> array('IPTC',	 'OriginatingProgram',		gettext('Originating Program '),											false,			32, 	true),
-		'IPTCProgramVersion'			 	=> array('IPTC',	 'ProgramVersion',				gettext('Program Version'),														false,			10, 	true)
-		);
+		'IPTCProgramVersion'			 	=> array('IPTC',	 'ProgramVersion',				gettext('Program Version'),														false,			10, 	true),
+		'VideoFormat'							 	=> array('VIDEO',	 'fileformat',						gettext('Video File Format'),													false,			32, 	true),
+		'VideoSize'								 	=> array('VIDEO',	 'filesize',							gettext('Video File Size'),														false,			32, 	true),
+		'VideoArtist'							 	=> array('VIDEO',	 'artist',								gettext('Video Artist'),															false,			256, 	true),
+		'VideoTitle'							 	=> array('VIDEO',	 'title',									gettext('Video Title'),																false,			256, 	true),
+		'VideoBitrate'						 	=> array('VIDEO',	 'bitrate',								gettext('Bitrate'),																		false,			32, 	true),
+		'VideoBitrate_mode'				 	=> array('VIDEO',	 'bitrate_mode',					gettext('Bitrate_Mode'),															false,			32, 	true),
+		'VideoBits_per_sample'		 	=> array('VIDEO',	 'bits_per_sample',				gettext('Bits per sample'),														false,			32, 	true),
+		'VideoCodec'							 	=> array('VIDEO',	 'codec',									gettext('Codec'),																			false,			32, 	true),
+		'VideoCompression_ratio'		=> array('VIDEO',	 'compression_ratio',			gettext('Compression Ratio'),													false,			32, 	true),
+		'VideoDataformat'						=> array('VIDEO',	 'dataformat',						gettext('Video Dataformat'),													false,			32, 	true),
+		'VideoEncoder'							=> array('VIDEO',	 'encoder',								gettext('File Encoder'),															false,			10, 	true),
+		'VideoChannelmode'					=> array('VIDEO',	 'sample_rate',						gettext('Sample rate'),																false,			32, 	true),
+		'VideoFormat'							 	=> array('VIDEO',	 'channelmode',						gettext('Channel mode'),															false,			10, 	true),
+		'VideoChannels'							=> array('VIDEO',	 'channels',							gettext('Channels'),																	false,			10, 	true),
+		'VideoFramerate'						=> array('VIDEO',	 'framerate',							gettext('Frame rate'),																false,			32, 	true),
+		'VideoResolution_x'					=> array('VIDEO',	 'resolution_x',					gettext('X Resolution'),															false,			32, 	true),
+		'VideoResolution_y'					=> array('VIDEO',	 'resolution_y',					gettext('Y Resolution'),															false,			32, 	true),
+		'VideoAspect_ratio'					=> array('VIDEO',	 'pixel_aspect_ratio',		gettext('Aspect ratio'),															false,			32, 	true),
+		'VideoFormatPlaytime'				=> array('VIDEO',	 'playtime_string',				gettext('Play Time'),																	false,			10, 	true)
+	);
 	foreach ($_zp_exifvars as $key=>$item) {
 		if (!is_null($disable = getOption($key.'-disabled'))) {
 			$_zp_exifvars[$key][5] = !$disable;
@@ -1706,7 +1725,6 @@ function zp_cookieEncode($value) {
  * @param string $path The path on the server in which the cookie will be available on
  */
 function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
-	if (DEBUG_LOGIN) debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".GALLERY_SESSION);
 	if (empty($value)) {
 		$cookiev = '';
 	} else {
@@ -1719,6 +1737,14 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 		if (($path = WEBPATH) == '') {
 			$path = '/';
 		}
+	}
+	if (DEBUG_LOGIN) {
+		if (isset($_SESSION[$name])) {
+			$sessionv = $_SESSION[$name];
+		} else {
+			$sessionv = '';
+		}
+		debugLog("zp_setCookie($name, $value, $time, $path)::album_session=".GALLERY_SESSION."; SESSION=".session_id());
 	}
 	if (($time < 0) || !GALLERY_SESSION) {
 		setcookie($name, $cookiev, time()+$time, $path, "", $secure);

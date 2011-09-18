@@ -6,6 +6,7 @@
 
 // force UTF-8 Ø
 
+require_once(dirname(__FILE__).'/functions-basic.php');
 if (session_id() == '') {
 	// force session cookie to be secure when in https
 	if(secureServer()) {
@@ -14,6 +15,15 @@ if (session_id() == '') {
 	}
 	session_start();
 }
+if (SERVER_PROTOCOL == 'https_admin') {
+	// force https login
+	if (!isset($_SERVER["HTTPS"])) {
+		$redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		header("Location:$redirect");
+		exit();
+	}
+}
+require_once(dirname(__FILE__).'/admin-functions.php');
 
 $sortby = array(gettext('Filename') => 'filename',
 								gettext('Date') => 'date',

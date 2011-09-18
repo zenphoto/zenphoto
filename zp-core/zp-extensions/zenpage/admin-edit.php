@@ -7,7 +7,6 @@
  * @subpackage zenpage
  */
 define("OFFSET_PATH",4);
-require_once(dirname(dirname(dirname(__FILE__))).'/admin-functions.php');
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 require_once("zenpage-admin-functions.php");
 if(is_AdminEditPage('newsarticle')) {

@@ -5,7 +5,6 @@
  */
 
 define('OFFSET_PATH', 3);
-require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
 $button_text = gettext('SEO Cleaner');

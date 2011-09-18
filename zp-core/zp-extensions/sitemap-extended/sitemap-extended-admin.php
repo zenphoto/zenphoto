@@ -10,8 +10,6 @@
 define('OFFSET_PATH', 4);
 chdir(dirname(dirname(__FILE__)));
 
-// user plugin variant
-require_once('../../zp-core/admin-functions.php');
 require_once('../../zp-core/admin-globals.php');
 require_once('../../zp-core/template-functions.php');
 

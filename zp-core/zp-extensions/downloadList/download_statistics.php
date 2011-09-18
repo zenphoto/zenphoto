@@ -10,12 +10,7 @@
  */
 
 define('OFFSET_PATH', 4);
-require_once(dirname(dirname(dirname(__FILE__))).'/admin-functions.php');
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
-
-//zp-extensions variant
-//require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
-//require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
 $button_text = gettext('Download Statistics');
 $button_hint = gettext("Shows statistical graphs and info about your gallery's downloads if using the downloadList plugin.");

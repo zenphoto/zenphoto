@@ -9,28 +9,12 @@
 /* Don't put anything before this line! */
 define('OFFSET_PATH', 1);
 
-// The login will always occur in this file thanks to printLoginForm() function.
-// to implement 'server_protocol' == 'https_admin' we need to redirect to https
-// very soon in that file (before auth_zp.php is processed as it might clear
-// the cookies)
-// When already logged in, auth_zp.php take care of the redirection.
-// To retrive getOption function:
-require_once(dirname(__FILE__).'/functions-basic.php');
+require_once(dirname(__FILE__).'/admin-globals.php');
+require_once(dirname(__FILE__).'/functions-rss.php');
+
 if (isset($_GET['_zp_login_error'])) {
 	$_zp_login_error = sanitize($_GET['_zp_login_error']);
 }
-if (SERVER_PROTOCOL == 'https_admin') {
-	// force https login
-	if (!isset($_SERVER["HTTPS"])) {
-		$redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-		header("Location:$redirect");
-		exit();
-	}
-}
-
-require_once(dirname(__FILE__).'/admin-functions.php');
-require_once(dirname(__FILE__).'/admin-globals.php');
-require_once(dirname(__FILE__).'/functions-rss.php');
 
 checkInstall();
 

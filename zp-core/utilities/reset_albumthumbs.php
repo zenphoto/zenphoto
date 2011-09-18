@@ -8,7 +8,6 @@
 define('OFFSET_PATH', 3);
 chdir(dirname(dirname(__FILE__)));
 
-require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 require_once(dirname(dirname(__FILE__)).'/template-functions.php');
 $button_text = gettext('Reset album thumbs');

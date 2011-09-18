@@ -8,13 +8,8 @@
 define('OFFSET_PATH', 3);
 chdir(dirname(dirname(__FILE__)));
 
-require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
-/*
-if(getOption('zp_plugin_zenpage')) {
-	require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-admin-functions.php');
-}
-*/
+
 $button_text = gettext('Database quick reference');
 $button_hint = gettext('Shows all database table and field info for quick reference.');
 $button_icon = 'images/info.png';

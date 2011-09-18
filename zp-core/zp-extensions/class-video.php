@@ -21,6 +21,8 @@ addPluginType('m4v', 'Video');
 addPluginType('m4a', 'Video');
 $option_interface = 'VideoObject_Options';
 
+define('GETID3_INCLUDEPATH', SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/class-video/getid3/');
+require_once(dirname(__FILE__).'/class-video/getid3/getid3.php');
 
 /**
  * Option class for video objects
@@ -313,6 +315,80 @@ class Video extends _Image {
 					</object><a>';
 				break;
 		}
+	}
+
+	/**
+	 *
+	 * "video" metadata support function
+	 */
+	private function getMetaDataID3() {
+		$allowedmedia = array('m4a','m4v','mp3','mp4','flv','fla','mov','3gp');
+		$albobj = $this->getAlbum();
+		$FullFileName = SERVERPATH.'/'.ALBUMFOLDER.'/'.$albobj->name.'/'.$this->filename; //this full path is required
+		$suffix = getSuffix($FullFileName);
+		if(in_array($suffix,$allowedmedia)) {
+			$getID3 = new getID3;
+			set_time_limit(30);
+			$ThisFileInfo = $getID3->analyze($FullFileName);
+			getid3_lib::CopyTagsToComments($ThisFileInfo);
+			// output desired information in whatever format you want
+			if(is_array($ThisFileInfo)) {
+				return $ThisFileInfo;
+			} else {
+				return NULL; // don't try to cover other files even if getid3 reads images as well
+			}
+		}
+	}
+
+
+	/**
+	 * Processes multi-media file metadata
+	 * (non-PHPdoc)
+	 * @see zp-core/_Image::updateMetaData()
+	 */
+	function updateMetaData() {
+		global $_zp_exifvars;
+		$ThisFileInfo = $this->getMetaDataID3();
+		if(is_array($ThisFileInfo)) {
+			foreach ($ThisFileInfo as $key=>$info) {
+				if (is_array($info)) {
+					switch ($key) {
+						case 'comments':
+							foreach ($info as $key1=>$data) {
+								$ThisFileInfo[$key1] = array_shift($data);
+							}
+							break;
+						case 'audio':
+						case 'video':
+							foreach ($info as $key1=>$data) {
+								$ThisFileInfo[$key1] = $data;
+							}
+							break;
+						default:
+							//discard, not used
+							break;
+					}
+					unset($ThisFileInfo[$key]);
+				}
+			}
+			foreach ($_zp_exifvars as $field=>$exifvar) {
+				if (strpos($exifvar[0], 'VIDEO') !== false) {
+					if ($exifvar[0] == 'VIDEO') {
+						if (isset($ThisFileInfo[$exifvar[1]])) {
+							$data = $ThisFileInfo[$exifvar[1]];
+							if (!empty($data)) {
+								$this->set($field, $data);
+							}
+						}
+					}
+				}
+			}
+			$title = $this->get('VideoTitle');
+			if(!empty($title)) {
+				$this->setTitle($title);
+			}
+		}
+		parent::updateMetaData();
 	}
 }
 ?>

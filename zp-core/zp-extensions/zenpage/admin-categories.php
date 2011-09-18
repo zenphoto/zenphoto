@@ -7,7 +7,6 @@
  * @subpackage zenpage
  */
 define("OFFSET_PATH",4);
-require_once(dirname(dirname(dirname(__FILE__))).'/admin-functions.php');
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 require_once("zenpage-admin-functions.php");
 
@@ -112,13 +111,13 @@ printLogoAndLinks();
 					<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
 						<img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
 					</button>
-					<?php 
+					<?php
 					if (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 						?>
 						<span class="floatright">
 							<strong><a href="admin-edit.php?category&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New category'); ?>"><img src="images/add.png" alt="" /> <?php echo gettext('New category'); ?></a></strong>
 						</span>
-						<?php 
+						<?php
 						}
 					?>
 				</p>

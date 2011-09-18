@@ -16,7 +16,6 @@ $plugin_version = '1.4.1';
 
 if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 3);
-	require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
 	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 	require_once(dirname(dirname(__FILE__)).'/functions-image.php');
 	admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL(__FILE__));

@@ -9,7 +9,6 @@
 define('OFFSET_PATH', 1);
 define('UPLOAD_ERR_QUOTA', -1);
 
-require_once(dirname(__FILE__).'/admin-functions.php');
 require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
