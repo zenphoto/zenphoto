@@ -93,6 +93,7 @@ class flowplayer3_options {
 		setOptionDefault('flow_player3_playlistsplashimage','firstentry');
 		setOptionDefault('flow_player3_playlistnumbered','1');
 		setOptionDefault('flow_player3_loadplaylist', '');
+		setOptionDefault('flow_player3_playlistplaytime', 0);
 	}
 
 
@@ -163,8 +164,11 @@ class flowplayer3_options {
 		gettext('Numbered playlist') => array('key' => 'flow_player3_playlistnumbered', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If the playlist should be shown with numbers. Then a standard html ordered list is used instead of just a div with links. (Your playlist css may require changes.)")),
 		gettext('Load playlist scripts') => array('key' => 'flow_player3_loadplaylist', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If the Flowplayer playlist scripts should be loaded. Note that you have to add the function flowplayerPlaylist() to your theme yourself. See the documentation of this function on how to do this."))
+										'desc' => gettext("If the Flowplayer playlist scripts should be loaded. Note that you have to add the function flowplayerPlaylist() to your theme yourself. See the documentation of this function on how to do this.")),
+		gettext('Playlist playtime') => array('key' => 'flow_player3_playlistplaytime', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => gettext("Enable to show the playtime for playlist entries."))
 
+		
 		);
 	}
 }
@@ -485,10 +489,10 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 			foreach($playlist as $item) {
 				$image = newImage($album, $item);
 				$playtime = '';
-				if(!getOption('flow_player3_playlist_playtime') ) {
+				if(getOption('flow_player3_playlistplaytime') ) {
 					$playtime = $image->get('VideoPlaytime');
 					if(!empty($playtime)) {
-						$playtime = ' ('.$image->get('VideoPlaytime').')';
+						$playtime = $image->get('VideoPlaytime');
 					}
 				}
 				$coverimagerwidth = getOption('flow_player3_playlistwidth');
@@ -500,7 +504,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 				$list .= '{
 					url:"'.ALBUM_FOLDER_WEBPATH.$album->name.'/'.$item.'",
 					autoPlay: '.$autoplay.',
-					title: "'.$image->getTitle().' <small>('.$playtime.' / '.$ext.')</small>",
+					title: "'.$image->getTitle().' <small>('.$playtime.')</small>",
 					autoBuffering: '.$autoplay.',
 					coverImage: {
 						url: "'.urlencode($cover).'",
