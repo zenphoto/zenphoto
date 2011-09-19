@@ -81,6 +81,7 @@ class jplayer_options {
 		setOptionDefault('jplayer_showtitle', ''); 
 		setOptionDefault('jplayer_playlist', ''); 
 		setOptionDefault('jplayer_playlist_numbered', 1); 
+		setOptionDefault('jplayer_playlist_playtime', 0);
 		setOptionDefault('jplayer_download', '');
 		setOptionDefault('jplayer_size', 'jp-video-270p');
 		setOptionDefault('jplayer_skin', 'zenphotolight');
@@ -110,6 +111,8 @@ class jplayer_options {
 										'desc' => gettext("Enable this if you wish to use the playlist mode this loads the scripts needed. NOTE: You have to add the function printjPlayerPlaylist() to your theme yourself. See the documentation for info.")),
 						   gettext('Playlist numbered') => array('key' => 'jplayer_playlist_numbered', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Enable this if you wish the playlist to be numbered.")),
+							 gettext('Playlist playtime') => array('key' => 'jplayer_playlist_playtime', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => gettext("Enable if you want to show the playtime of playlist entries.")),
 						   gettext('Enable download') => array('key' => 'jplayer_download', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Enables direct file downloads (playlists only).")),
 						   gettext('Player size') => array('key' => 'jplayer_size', 'type' => OPTION_TYPE_SELECTOR,
@@ -615,9 +618,15 @@ class jplayer {
 									$albumfolder = $albumobj->name;
 									$videoThumb = ',poster:"'.$video->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true).'"';
 								} 
+								$playtime = '';
+								if(getOption('jplayer_playlist_playtime')) {
+									if(!empty($playtime)) {
+										$playtime = ' ('.$video->get('VideoPlaytime').')';
+									}
+								}
 								?>
 								{
-									title:"<?php echo $numbering.html_encode($video->getTitle()); ?>",
+									title:"<?php echo $numbering.html_encode($video->getTitle()).$playtime; ?>",
 									<?php	if(getOption('jplayer_download')) { ?>
 										free:true,
 									<?php } ?>

@@ -484,6 +484,13 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 			$list = '';
 			foreach($playlist as $item) {
 				$image = newImage($album, $item);
+				$playtime = '';
+				if(!getOption('flow_player3_playlist_playtime') ) {
+					$playtime = $image->get('VideoPlaytime');
+					if(!empty($playtime)) {
+						$playtime = ' ('.$image->get('VideoPlaytime').')';
+					}
+				}
 				$coverimagerwidth = getOption('flow_player3_playlistwidth');
 				$coverimageheight = getOption('flow_player3_playlistheight');
 				getMaxSpaceContainer($coverimagerwidth, $coverimageheight, $image, true);
@@ -493,7 +500,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 				$list .= '{
 					url:"'.ALBUM_FOLDER_WEBPATH.$album->name.'/'.$item.'",
 					autoPlay: '.$autoplay.',
-					title: "'.$image->getTitle().' <small>('.$ext.')</small>",
+					title: "'.$image->getTitle().' <small>('.$playtime.' / '.$ext.')</small>",
 					autoBuffering: '.$autoplay.',
 					coverImage: {
 						url: "'.urlencode($cover).'",
