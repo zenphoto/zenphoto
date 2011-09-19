@@ -384,8 +384,9 @@ class Video extends _Image {
 				}
 			}
 			$title = $this->get('VideoTitle');
-			if(!empty($title)) {
-				$this->setTitle($title);
+			$imagetitle = $this->getTitle(); 
+			if(!empty($title) && empty($imagetitle)) {
+				$this->set('title',$title);
 			}
 		}
 		parent::updateMetaData();
