@@ -133,7 +133,7 @@ function setexifvars() {
 		'VideoResolution_x'					=> array('VIDEO',	 'resolution_x',					gettext('X Resolution'),															false,			32, 	true),
 		'VideoResolution_y'					=> array('VIDEO',	 'resolution_y',					gettext('Y Resolution'),															false,			32, 	true),
 		'VideoAspect_ratio'					=> array('VIDEO',	 'pixel_aspect_ratio',		gettext('Aspect ratio'),															false,			32, 	true),
-		'VideoFormatPlaytime'				=> array('VIDEO',	 'playtime_string',				gettext('Play Time'),																	false,			10, 	true)
+		'VideoPlaytime'							=> array('VIDEO',	 'playtime_string',				gettext('Play Time'),																	false,			10, 	true)
 	);
 	foreach ($_zp_exifvars as $key=>$item) {
 		if (!is_null($disable = getOption($key.'-disabled'))) {
