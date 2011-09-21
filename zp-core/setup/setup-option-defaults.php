@@ -385,25 +385,6 @@ if (!file_exists(SERVERPATH.'/'.WEBPATH.'/'.ZENFOLDER.'/favicon.ico')) {
 	@copy(SERVERPATH.'/'.ZENFOLDER.'/images/favicon.ico',SERVERPATH.'/favicon.ico');
 }
 
-$result = db_list_fields('albums');
-if (is_array($result)) {
-	foreach ($result as $row) {
-		if ($row['Field'] == 'show') {
-			setOptionDefault('album_publish', $row['Default']);
-			break;
-		}
-	}
-}
-$result = db_list_fields('images');
-if (is_array($result)) {
-	foreach ($result as $row) {
-		if ($row['Field'] == 'show') {
-			setOptionDefault('image_publish', $row['Default']);
-			break;
-		}
-	}
-}
-
 //set plugin default options by instantiating the options interface
 $plugins = array_keys(getEnabledPlugins());
 foreach ($plugins as $extension) {
@@ -537,9 +518,10 @@ setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
 			$unprotected[] = str_replace('gallery_page_unprotected_', '', $key);
 		}
 	}
-
+	if (!isset($data['album_default'])) $data['album_default'] = getOption('album_default');
+	if (!isset($data['image_default'])) $data['image_default'] = getOption('image_default');
 	$data['unprotected_pages'] = serialize($unprotected);
-	setOptionDefault('gallery_data', serialize($data));
+	setDefault('gallery_data', serialize($data));
 
 /*TODO:enable on the 1.5 release
  *
@@ -562,6 +544,8 @@ on the Zenphoto 1.5 release.
  album_use_new_image_date
  thumb_select_images
  persistent_archive
+ album_default
+ image_default
 
 * these may have been used in third party themes. Themes should cease using these options and instead use the
 appropriate gallery methods.

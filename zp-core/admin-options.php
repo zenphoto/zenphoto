@@ -92,6 +92,18 @@ if (isset($_GET['action'])) {
 		/*** Gallery options ***/
 		if (isset($_POST['savegalleryoptions'])) {
 
+			if (isset($_POST['album_default'])) {
+				$albpublish = 1;
+			} else {
+				$albpublish = 0;
+			}
+			$gallery->setAlbumPublish($albpublish);
+			if (isset($_POST['image_default'])) {
+				$imgpublish = 1;
+			} else {
+				$imgpublish = 0;
+			}
+			$gallery->setImagePublish($imgpublish);
 			$gallery->setPersistentArchive((int) isset($_POST['persistent_archive']));
 			$gallery->setGallerySession((int) isset($_POST['album_session']));
 			$gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
@@ -1129,6 +1141,18 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td><?php echo gettext("Gallery behavior:"); ?></td>
 					<td>
+						<p>
+							<label>
+								<input type="checkbox" name="album_default"	value="1"<?php if ($gallery->getAlbumPublish()) echo ' checked="checked"'; ?> />
+								<?php echo gettext("Publish albums by default"); ?>
+							</label>
+						</p>
+						<p>
+							<label>
+								<input type="checkbox" name="image_default"	value="1"<?php if ($gallery->getImagePublish()) echo ' checked="checked"'; ?> />
+								<?php echo gettext("Publish images by default"); ?>
+							</label>
+						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="album_use_new_image_date" id="album_use_new_image_date"

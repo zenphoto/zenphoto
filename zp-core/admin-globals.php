@@ -30,7 +30,8 @@ $sortby = array(gettext('Filename') => 'filename',
 								gettext('Title') => 'title',
 								gettext('ID') => 'id',
 								gettext('Filemtime') => 'mtime',
-								gettext('Owner') => 'owner'
+								gettext('Owner') => 'owner',
+								gettext('Published') => 'show'
 								);
 
 $_thumb_field_text =	array('ID'=>gettext('most recent'),

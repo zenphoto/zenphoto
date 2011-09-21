@@ -636,8 +636,6 @@ zp-core/utilities/refresh_database.php
 zp-core/utilities/refresh_metadata.php
 zp-core/utilities/reset_albumthumbs.php
 zp-core/utilities/reset_hitcounters.php
-zp-core/utilities/schedule_content.css
-zp-core/utilities/scheduled_content.php
 zp-core/utilities/seo_cleanup.php
 zp-core/utilities/user_mailing_list.php
 zp-core/utilities/wordpress_import.php
@@ -2818,4 +2816,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2820
+2818

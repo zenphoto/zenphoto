@@ -217,7 +217,7 @@ if ($rootrights || !empty($albumlist)) {
 							$publishchecked = '';
 						}
 					} else {
-						if ($albpublish = getOption('album_publish')) {
+						if ($albpublish = $gallery->getAlbumPublish()) {
 							$publishchecked = ' checked="checked"';
 						} else {
 							$publishchecked = '';

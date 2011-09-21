@@ -131,7 +131,7 @@ class _Image extends MediaObject {
 		$new = parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->id), 'filename', false, empty($album_name));
 		$mtime = filemtime($this->localpath);
 		if ($new || ($mtime != $this->get('mtime'))) {
-			$this->setShow(getOption('image_publish'));
+			$this->setShow($album->gallery->getImagePublish());
 			$this->set('mtime', $mtime);
 			$this->updateMetaData();			// extract info from image
 			$this->updateDimensions();		// deal with rotation issues

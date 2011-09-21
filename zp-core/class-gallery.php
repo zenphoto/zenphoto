@@ -867,6 +867,20 @@ class Gallery {
 		$this->set('unprotected_pages', serialize($this->unprotected_pages));
 	}
 
+	function getAlbumPublish() {
+		return $this->get('album_publish');
+	}
+	function setAlbumPublish($v) {
+		$this->set('album_publish', $v);
+	}
+
+	function getImagePublish() {
+		return $this->get('image_publish');
+	}
+	function setImagePublish($v) {
+		$this->set('image_publish', $v);
+	}
+
 	/**
 	 * Returns the codeblocks as an serialized array
 	 *

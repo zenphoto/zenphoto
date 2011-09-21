@@ -138,7 +138,7 @@ class Album extends MediaObject {
 	protected function setDefaults() {
 		// Set default data for a new Album (title and parent_id)
 		$parentalbum = $this->getParent();
-		$this->setShow(getOption('album_publish'));
+		$this->setShow($this->gallery->getAlbumPublish());
 		$this->set('mtime', filemtime($this->localpath));
 		$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
 		$title = trim($this->name);
