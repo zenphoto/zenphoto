@@ -794,6 +794,25 @@ input.tags {
 	margin-left: 0px;
 }
 
+#overview-utility fieldset {
+	padding: 10px 5px 5px 5px;
+	margin: 15px;
+	border: 1px solid #cccccc;
+}
+
+#overview-utility fieldset legend {
+	margin: 0 5px 0px 5px;
+	padding: 0 5px 0 5px;
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+#overview-utility form {
+	max-height: 100px;
+	float: left;
+	padding-left: 8px;
+}
+
 #overview-info ul.plugins {
 	width: 450px;
 	list-style-type: none;
