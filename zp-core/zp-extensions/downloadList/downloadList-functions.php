@@ -160,6 +160,7 @@ function printdownloadList_formatBytes($b,$p = null) {
  */
 function downloadstatistics_button($buttons) {
 	$buttons[] = array(
+								'category'=>'info',
 								'enable'=>true,
 								'button_text'=>gettext('Download statistics'),
 								'formname'=>'downloadstatistics_button',

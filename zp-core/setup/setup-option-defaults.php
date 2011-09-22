@@ -521,7 +521,7 @@ setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
 	if (!isset($data['album_default'])) $data['album_default'] = getOption('album_default');
 	if (!isset($data['image_default'])) $data['image_default'] = getOption('image_default');
 	$data['unprotected_pages'] = serialize($unprotected);
-	setDefault('gallery_data', serialize($data));
+	setOption('gallery_data', serialize($data));
 
 /*TODO:enable on the 1.5 release
  *
