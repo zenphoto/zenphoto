@@ -4367,7 +4367,7 @@ function checkAccess(&$hint, &$show) {
 	if (zp_loggedin()) {
 		$fail = zp_apply_filter('isMyItemToView', NULL);
 		if (!is_null($fail)) {	//	filter had something to say about access, honor it
-		return $fail;
+			return $fail;
 		}
 		switch ($_zp_gallery_page) {
 			case 'album.php':

@@ -1237,15 +1237,12 @@ class Album extends MediaObject {
 		if (zp_loggedin($action)) {
 			$subRights = $this->albumSubRights();
 			if (!is_null($subRights)) {
-				$albumrights = 0;
+				$albumrights = LIST_RIGHTS;
 				if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT)) {
 					$albumrights = $albumrights | ALBUM_RIGHTS;
 				}
 				if ($subRights & MANAGED_OBJECT_RIGHTS_UPLOAD) {
 					$albumrights = $albumrights | UPLOAD_RIGHTS;
-				}
-				if ($subRights & MANAGED_OBJECT_RIGHTS_VIEW_IMAGE) {
-					$albumrights = $albumrights | LIST_RIGHTS;
 				}
 				if ($action & $albumrights) {
 					return ($_zp_loggedin ^ (ALBUM_RIGHTS | UPLOAD_RIGHTS)) | $albumrights;

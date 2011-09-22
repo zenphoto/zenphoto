@@ -1271,7 +1271,7 @@ class SearchEngine
 			$this->images = array();
 			return $this->images;
 		}
-		$criteria = $this->getCacheTag('images',($searchstring).' '.$searchdate, $sorttype.' '.$sortdirection);
+		$criteria = $this->getCacheTag('images',serialize($searchstring).' '.$searchdate, $sorttype.' '.$sortdirection);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
 		}
@@ -1507,7 +1507,7 @@ class SearchEngine
 	 * @param string $criteria
 	 * @param string $found reslts of the search
 	 */
-	protected function cacheSearch($criteria, $found) {
+	private function cacheSearch($criteria, $found) {
 		if (SEARCH_CACHE_DURATION) {
 			$criteria = serialize($criteria);
 			$sql = 'SELECT `id`, `data`, `date` FROM '.prefix('search_cache').' WHERE `criteria`='.db_quote($criteria);
@@ -1527,7 +1527,7 @@ class SearchEngine
 	 * Fetches a search from the cache if it exists and has not expired
 	 * @param string $criteria
 	 */
-	protected function getCachedSearch($criteria) {
+	private function getCachedSearch($criteria) {
 		if (SEARCH_CACHE_DURATION) {
 			$sql = 'SELECT `id`, `date`, `data` FROM '.prefix('search_cache').' WHERE `criteria`='.db_quote(serialize($criteria));
 			$result = query_single_row($sql);

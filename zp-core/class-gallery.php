@@ -427,8 +427,8 @@ class Gallery {
 				query('DELETE FROM '.prefix('news2cat').' WHERE `id`='.implode(' OR `id`=', $dead));
 			}
 
-			// Check for the existence of top-level albums (subalbums handled recursively).
-			$sql = "SELECT * FROM " . prefix('albums').' WHERE `parentid` is NULL';
+			// Check for the existence albums
+			$sql = "SELECT * FROM " . prefix('albums');
 			$result = query($sql);
 			$dead = array();
 			$live = array(''); // purge the root album if it exists
@@ -447,21 +447,17 @@ class Gallery {
 			}
 
 			if (count($dead) > 0) { /* delete the dead albums from the DB */
+				asort($dead);
+				$criteria =  '('.implode(',',$dead).')';
 				$first = array_pop($dead);
-				$sql1 = "DELETE FROM " . prefix('albums') . " WHERE `id`='$first'";
-				$sql2 = "DELETE FROM " . prefix('images') . " WHERE `albumid`='$first'";
-				$sql3 = "DELETE FROM " . prefix('comments') . " WHERE `type`='albums' AND `ownerid`='$first'";
-				$sql4 = "DELETE FROM " . prefix('obj_to_tag'). " WHERE `type`='albums' AND `objectid`='$first'";
-				foreach ($dead as $albumid) {
-					$sql1 .= " OR `id` = '$albumid'";
-					$sql2 .= " OR `albumid` = '$albumid'";
-					$sql3 .= " OR `ownerid` = '$albumid'";
-					$sql4 .= " OR `objectid` = '$albumid'";
-				}
+				$sql1 = "DELETE FROM " . prefix('albums') . " WHERE `id` IN $criteria";
 				$n = query($sql1);
 				if (!$complete && $n && $cascade) {
+					$sql2 = "DELETE FROM " . prefix('images') . " WHERE `albumid` IN $criteria";
 					query($sql2);
+					$sql3 = "DELETE FROM " . prefix('comments') . " WHERE `type`='albums' AND `ownerid` IN $criteria";
 					query($sql3);
+					$sql4 = "DELETE FROM " . prefix('obj_to_tag'). " WHERE `type`='albums' AND `objectid` IN $criteria";
 					query($sql4);
 				}
 			}
