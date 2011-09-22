@@ -465,43 +465,16 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	$filelist = safe_glob('*'.'php');
 	natcasesort($filelist);
 	foreach ($filelist as $utility) {
-		$button_category = gettext('misc');
-		$button_text = '';
-		$button_hint = '';
-		$button_icon = '';
-		$button_alt = '';
-		$button_hidden = '';
-		$button_action = UTILITIES_FOLDER.'/'.$utility;
-		$button_rights = false;
-		$button_enable = true;
-		$button_XSRFTag = '';
-
 		$utilityStream = file_get_contents($utility);
-		eval(isolate('$button_category', $utilityStream));
-		eval(isolate('$button_text', $utilityStream));
-		eval(isolate('$button_hint', $utilityStream));
-		eval(isolate('$button_icon', $utilityStream));
-		eval(isolate('$button_rights', $utilityStream));
-		eval(isolate('$button_alt', $utilityStream));
-		eval(isolate('$button_hidden', $utilityStream));
-		eval(isolate('$button_action', $utilityStream));
-		eval(isolate('$button_enable', $utilityStream));
-		eval(isolate('$button_XSRFTag', $utilityStream));
+		$s = strpos($utilityStream, '$buttonlist');
+		if ($s !== false) {
+			$e = strpos($utilityStream, ';', $s);
+			if ($e) {
+				$str = substr($utilityStream, $s, $e-$s).';';
+				eval($str);
 
-		$buttonlist[] = array(
-								'XSRFTag'=>$button_XSRFTag,
-								'category'=>$button_category,
-								'enable'=>$button_enable,
-								'button_text'=>$button_text,
-								'formname'=>$utility,
-								'action'=>$button_action,
-								'icon'=>$button_icon,
-								'title'=>$button_hint,
-								'alt'=>$button_alt,
-								'hidden'=>$button_hidden,
-								'rights'=> $button_rights  | ADMIN_RIGHTS
-		);
-
+			}
+		}
 	}
 	$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
 	foreach ($buttonlist as $key=>$button) {

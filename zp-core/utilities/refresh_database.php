@@ -1,11 +1,15 @@
 <?php
-$button_category = gettext('database');
-$button_text = gettext("Refresh the Database");
-$button_action = WEBPATH.'/'.ZENFOLDER.'/admin-refresh-metadata.php?prune';
-$button_icon = 'images/refresh.png';
-$button_title = gettext("Cleans the database and removes any orphan entries for comments, images, and albums.");
-$button_alt = gettext("Refresh the Database");
-$button_hidden = '<input type="hidden" name="prune" value="true" />';
-$button_rights = ADMIN_RIGHTS;
-$button_XSRFTag = 'refresh';
+$buttonlist[] = array(
+								'XSRFTag'=>'refresh',
+								'category'=>gettext('database'),
+								'enable'=>'1',
+								'button_text'=>gettext('Refresh the Database'),
+								'formname'=>'refresh_database.php',
+								'action'=>WEBPATH.'/'.ZENFOLDER.'/admin-refresh-metadata.php?prune',
+								'icon'=>'images/refresh.png',
+								'title'=>'',
+								'alt'=>gettext('Refresh the Database'),
+								'hidden'=>'<input type="hidden" name="prune" value="true" />',
+								'rights'=> ADMIN_RIGHTS
+);
 ?>

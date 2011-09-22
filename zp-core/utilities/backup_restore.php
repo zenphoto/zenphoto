@@ -18,11 +18,18 @@ chdir(dirname(dirname(__FILE__)));
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 require_once(dirname(dirname(__FILE__)).'/template-functions.php');
 
-$button_category = gettext('admin');
-$button_text = gettext('Backup/Restore');
-$button_hint = gettext('Backup and restore your gallery database.');
-$button_icon = 'images/folder.png';
-$button_rights = ADMIN_RIGHTS;
+$buttonlist[] = array(
+								'category'=>gettext('admin'),
+								'enable'=>'1',
+								'button_text'=>gettext('Backup/Restore'),
+								'formname'=>'backup_restore.php',
+								'action'=>'utilities/backup_restore.php',
+								'icon'=>'images/folder.png',
+								'title'=>gettext('Backup and restore your gallery database.'),
+								'alt'=>'',
+								'hidden'=>'',
+								'rights'=> ADMIN_RIGHTS
+								);
 
 admin_securityChecks(NULL, currentRelativeURL(__FILE__));
 

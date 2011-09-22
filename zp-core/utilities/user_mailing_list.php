@@ -17,11 +17,18 @@ if(getOption('zp_plugin_zenphoto_sendmail')) {
 } else if(getOption('zp_plugin_PHPMailer')) {
 	require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/PHPMailer.php');
 }
-$button_category = gettext('admin');
-$button_text = gettext('User mailing list');
-$button_hint = gettext('A tool to send e-mails to all registered users who have provided an e-mail address.');
-$button_icon = 'images/icon_mail.png';
-$button_rights = ADMIN_RIGHTS;
+$buttonlist[] = array(
+								'category'=>gettext('admin'),
+								'enable'=>'1',
+								'button_text'=>gettext('User mailing list'),
+								'formname'=>'user_mailing_list.php',
+								'action'=>'utilities/user_mailing_list.php',
+								'icon'=>'images/icon_mail.png',
+								'title'=>gettext('A tool to send e-mails to all registered users who have provided an e-mail address.'),
+								'alt'=>'',
+								'hidden'=>'',
+								'rights'=> ADMIN_RIGHTS
+								);
 
 admin_securityChecks(NULL, currentRelativeURL(__FILE__));
 

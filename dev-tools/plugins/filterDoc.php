@@ -15,6 +15,7 @@ function filterDoc_button($buttons) {
 		processFilters();
 	}
 	$buttons[] = array(
+								'category'=>gettext('development'),
 								'enable'=>true,
 								'button_text'=>gettext('Filter Doc Gen'),
 								'formname'=>'filterDoc_button',

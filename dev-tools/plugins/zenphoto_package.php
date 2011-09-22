@@ -25,6 +25,7 @@ class zenphoto_package {
 
 function zenphoto_package_button($buttons) {
 	$buttons[] = array(
+								'category'=>gettext('development'),
 								'enable'=>true,
 								'button_text'=>gettext('Create package'),
 								'formname'=>'zenphoto_package_button',

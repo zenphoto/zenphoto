@@ -16,11 +16,18 @@ if(getOption('zp_plugin_zenpage')) {
 	require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-admin-functions.php');
 }
 
-$button_category = gettext('admin');
-$button_text = gettext('Wordpress Importer');
-$button_hint = gettext('An importer for Wordpress posts and pages to Zenpage.');
-$button_icon = 'images/wpmini-blue.png';
-$button_rights = ADMIN_RIGHTS;
+$buttonlist[] = array(
+								'category'=>gettext('admin'),
+								'enable'=>'1',
+								'button_text'=>gettext('Wordpress Importer'),
+								'formname'=>'wordpress_import.php',
+								'action'=>'utilities/wordpress_import.php',
+								'icon'=>'images/wpmini-blue.png',
+								'title'=>gettext('An importer for Wordpress posts and pages to Zenpage.'),
+								'alt'=>'',
+								'hidden'=>'',
+								'rights'=> ADMIN_RIGHTS
+								);
 
 admin_securityChecks(NULL, currentRelativeURL(__FILE__));
 

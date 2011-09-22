@@ -7,12 +7,19 @@
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
-$button_category = gettext('seo');
-$button_text = gettext('SEO Cleaner');
-$button_hint = gettext('Make file and folder names in the Gallery SEO friendly.');
-$button_icon = 'images/redo.png';
-$button_rights = ADMIN_RIGHTS;
-$button_XSRFTag = 'seo_cleanup';
+$buttonlist[] = array(
+								'XSRFTag'=>'seo_cleanup',
+								'category'=>gettext('seo'),
+								'enable'=>'1',
+								'button_text'=>gettext('SEO Cleaner'),
+								'formname'=>'seo_cleanup.php',
+								'action'=>'utilities/seo_cleanup.php',
+								'icon'=>'images/redo.png',
+								'title'=>gettext('Make file and folder names in the Gallery SEO friendly.'),
+								'alt'=>'',
+								'hidden'=>'',
+								'rights'=> ADMIN_RIGHTS
+								);
 
 admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL(__FILE__));
 
