@@ -1,4 +1,5 @@
 <?php
+$button_category = gettext('database');
 $button_text = gettext("Refresh Metadata");
 $button_action = WEBPATH.'/'.ZENFOLDER.'/admin-refresh-metadata.php';
 $button_icon = 'images/refresh.png';

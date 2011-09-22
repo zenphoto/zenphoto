@@ -1,7 +1,8 @@
 <?php
+$button_category = gettext('database');
 $button_text = gettext("Reset all hitcounters");
 $button_action = WEBPATH.'/'.ZENFOLDER.'/admin.php?action=reset_hitcounters=true';
-$button_icon = 'images/reset1.png'; 
+$button_icon = 'images/reset1.png';
 $button_title = gettext("Sets all hitcounters to zero.");
 $button_alt = gettext('Reset hitcounters');
 $button_hidden = '<input type="hidden" name="action" value="reset_hitcounters" />';

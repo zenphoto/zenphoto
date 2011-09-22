@@ -17,6 +17,7 @@ if(getOption('zp_plugin_zenpage')) {
 	require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-admin-functions.php');
 }
 
+$button_category = gettext('info');
 $button_text = gettext('Gallery Statistics');
 $button_hint = gettext('Shows statistical graphs and info about your gallery\'s images and albums.');
 $button_icon = 'images/bar_graph.png';

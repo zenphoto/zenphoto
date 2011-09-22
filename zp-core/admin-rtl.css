@@ -95,17 +95,6 @@ form td {text-align:right !important;}
     float: right;
 }
 
-#overview-maint_l {
-    float: right;
-    width: 50%;
-    margin: 5px 16px 0px 0px;
-}
-
-#overview-maint_r {
-    float: right;
-    width: 45%;
-    margin: 5px 0px 0px 0px;
-}
 
 #overview-comments, #overview-gallerystats, #overview-info, #overview-news {
     float: right;

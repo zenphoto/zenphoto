@@ -10,6 +10,7 @@ chdir(dirname(dirname(__FILE__)));
 
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
+$button_category = gettext('info');
 $button_text = gettext('Database quick reference');
 $button_hint = gettext('Shows all database table and field info for quick reference.');
 $button_icon = 'images/info.png';

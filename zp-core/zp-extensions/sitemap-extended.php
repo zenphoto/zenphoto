@@ -167,6 +167,7 @@ if(isset($_GET['sitemap'])) {
  */
 function sitemap_button($buttons) {
 	$buttons[] = array(
+								'category'=>gettext('seo'),
 								'enable'=>true,
 								'button_text'=>gettext('Sitemap tools'),
 								'formname'=>'sitemap_button',

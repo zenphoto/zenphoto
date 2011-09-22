@@ -357,6 +357,7 @@ class staticCache {
  */
 function static_cache_html_purgebutton($buttons) {
 	$buttons[] = array(
+								'category'=>gettext('cache'),
 								'enable'=>true,
 								'button_text'=>gettext('Purge HTML cache'),
 								'formname'=>'clearcache_button',

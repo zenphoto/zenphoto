@@ -340,6 +340,7 @@ function optionVoteStatusSave($object, $prefix) {
 
 function rating_purgebutton($buttons) {
 	$buttons[] = array(
+								'category'=>gettext('database'),
 								'enable'=>true,
 								'button_text'=>gettext('Reset all ratings'),
 								'formname'=>'clearrating_button',

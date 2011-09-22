@@ -465,6 +465,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	$filelist = safe_glob('*'.'php');
 	natcasesort($filelist);
 	foreach ($filelist as $utility) {
+		$button_category = gettext('misc');
 		$button_text = '';
 		$button_hint = '';
 		$button_icon = '';
@@ -476,6 +477,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		$button_XSRFTag = '';
 
 		$utilityStream = file_get_contents($utility);
+		eval(isolate('$button_category', $utilityStream));
 		eval(isolate('$button_text', $utilityStream));
 		eval(isolate('$button_hint', $utilityStream));
 		eval(isolate('$button_icon', $utilityStream));
@@ -488,6 +490,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 
 		$buttonlist[] = array(
 								'XSRFTag'=>$button_XSRFTag,
+								'category'=>$button_category,
 								'enable'=>$button_enable,
 								'button_text'=>$button_text,
 								'formname'=>$utility,
@@ -501,25 +504,37 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 
 	}
 	$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
-	$buttonlist = sortMultiArray($buttonlist, 'button_text', false);
-	$count = 0;
 	foreach ($buttonlist as $key=>$button) {
 		if (zp_loggedin($button['rights'])) {
-			$count ++;
+			if (!array_key_exists('category', $button)) {
+				$buttonlist[$key]['category'] = gettext('misc');
+			}
 		} else {
 			unset($buttonlist[$key]);
 		}
 	}
-	$count = round($count/2);
+	$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
 	?>
 	<div class="box" id="overview-utility">
 	<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
-		<div id="overview-maint_l">
 		<?php
+		$category = '';
 		foreach ($buttonlist as $button) {
+			$button_category = $button['category'];
 			$button_icon = $button['icon'];
+			if ($category != $button_category) {
+				if ($category) {
+					?>
+					</fieldset>
+					<?php
+				}
+				$category = $button_category;
+				?>
+				<fieldset><legend><?php echo $category; ?></legend>
+				<?php
+			}
 			?>
-			<form name="<?php echo $button['formname']; ?>"	action="<?php echo $button['action']; ?>">
+			<form name="<?php echo $button['formname']; ?>"	action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
 				<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
 				<?php echo $button['hidden']; ?>
 				<div class="buttons">
@@ -534,21 +549,15 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 					?>
 					</button>
 				</div><!--buttons -->
-				<br clear="all" />
-			</form>&nbsp;
+			</form>
 			<?php
-			$count --;
-			if (!$count) { // half way through
-				?>
-				<br clear="all" />
-				</div><!-- overview-maint_l -->
-				<div id="overview-maint_r">
-				<?php
-			}
+		}
+		if ($category) {
+			?>
+			</fieldset>
+			<?php
 		}
 		?>
-		<br clear="all" />
-		</div><!-- over-maint_r -->
 	</div><!-- overview-utility -->
 	<?php
 	zp_apply_filter('admin_overview', 'right');

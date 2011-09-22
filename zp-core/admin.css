@@ -761,16 +761,8 @@ input.tags {
 	padding: 0px;
 }
 
-#overview-maint_l {
-	float: left;
-	width: 50%;
-	margin: 5px 0px 0px 16px;
-}
-
-#overview-maint_r {
-	float: left;
-	width: 45%;
-	margin: 5px 0px 0px 0px;
+.overview_utility_buttons {
+	padding-bottom: 10px;
 }
 
 #overview-comments,#overview-gallerystats,#overview-info,#overview-news

@@ -7,6 +7,7 @@
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
+$button_category = gettext('seo');
 $button_text = gettext('SEO Cleaner');
 $button_hint = gettext('Make file and folder names in the Gallery SEO friendly.');
 $button_icon = 'images/redo.png';

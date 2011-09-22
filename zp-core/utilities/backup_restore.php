@@ -18,6 +18,7 @@ chdir(dirname(dirname(__FILE__)));
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 require_once(dirname(dirname(__FILE__)).'/template-functions.php');
 
+$button_category = gettext('admin');
 $button_text = gettext('Backup/Restore');
 $button_hint = gettext('Backup and restore your gallery database.');
 $button_icon = 'images/folder.png';
