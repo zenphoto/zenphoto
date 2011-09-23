@@ -687,19 +687,19 @@ class Gallery {
 	 * @since  1.0.0
 	 */
 	function sortAlbumArray($parentalbum, $albums, $sortkey='`sort_order`', $sortdirection=NULL, $mine=NULL) {
-		if (is_null($mine)) {
-			$mine = zp_loggedin(VIEW_ALBUMS_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
+		if (is_null($mine) && zp_loggedin(VIEW_ALBUMS_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
+			$mine = true;
 		}
 		if (is_null($parentalbum)) {
 			$albumid = ' IS NULL';
 			$obj = $this;
+			$viewUnpublished = $mine;
 		} else {
 			$albumid = '='.$parentalbum->id;
 			$obj = $parentalbum;
-			if (is_null($mine)) {
-				$mine = $obj->albumSubRights() & MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED;
-			}
+			$viewUnpublished = ($obj->albumSubRights() & MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED);
 		}
+
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
 			$order = false;
 		} else {
@@ -743,7 +743,7 @@ class Gallery {
 		foreach($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = new Album($this, $folder);
-			if ($row['show'] || $mine || (is_null($mine) && $album->isMyItem(VIEW_ALBUMS_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS | LIST_RIGHTS))) {
+			if ($row['show'] || $mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished)) {
 				$albums_ordered[] = $folder;
 			}
 		}
