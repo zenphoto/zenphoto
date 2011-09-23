@@ -690,9 +690,11 @@ class Gallery {
 		if (is_null($parentalbum)) {
 			$albumid = ' IS NULL';
 			$obj = $this;
+			$view_all = false;
 		} else {
 			$albumid = '='.$parentalbum->id;
 			$obj = $parentalbum;
+			$view_all = $obj->albumSubRights() & MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED;
 		}
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
 			$order = false;
@@ -737,7 +739,7 @@ class Gallery {
 		foreach($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = new Album($this, $folder);
-			if ($row['show'] || $mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS))) {
+			if ($row['show'] || $mine || (is_null($mine) && ($album->isMyItem(LIST_RIGHTS)) && $view_all)) {
 				$albums_ordered[] = $folder;
 			}
 		}

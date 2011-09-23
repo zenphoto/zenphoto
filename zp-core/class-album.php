@@ -441,7 +441,7 @@ class Album extends MediaObject {
 			$mine = $this->isMyItem(LIST_RIGHTS);
 		}
 		if ($mine && !($mine & (VIEW_ALBUMS_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {	//	check for managed album view unpublished image rights
-			$mine = $this->albumSubRights() & MANAGED_OBJECT_RIGHTS_VIEW_IMAGE;
+			$mine = $this->albumSubRights() & MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED;
 		}
 		$sortkey = str_replace('`','',$this->getImageSortKey($sorttype));
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
@@ -1194,7 +1194,7 @@ class Album extends MediaObject {
 		}
 		global $_zp_admin_album_list;
 		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW_IMAGE;
+			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED;
 			return $this->subrights;
 		}
 		getManagedAlbumList();

@@ -1268,7 +1268,7 @@ class Zenphoto_Administrator extends PersistentObject {
 			if ($result) {
 				foreach ($objects as $object) {
 					if (array_key_exists('edit',$object)) {
-						$edit = $object['edit'] | 32767 & ~(MANAGED_OBJECT_RIGHTS_VIEW_IMAGE |  MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD);
+						$edit = $object['edit'] | 32767 & ~(MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED |  MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD);
 					} else {
 						$edit = 32767;
 					}
