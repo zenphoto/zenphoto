@@ -687,14 +687,18 @@ class Gallery {
 	 * @since  1.0.0
 	 */
 	function sortAlbumArray($parentalbum, $albums, $sortkey='`sort_order`', $sortdirection=NULL, $mine=NULL) {
+		if (is_null($mine)) {
+			$mine = zp_loggedin(VIEW_ALBUMS_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
+		}
 		if (is_null($parentalbum)) {
 			$albumid = ' IS NULL';
 			$obj = $this;
-			$view_all = false;
 		} else {
 			$albumid = '='.$parentalbum->id;
 			$obj = $parentalbum;
-			$view_all = $obj->albumSubRights() & MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED;
+			if (is_null($mine)) {
+				$mine = $obj->albumSubRights() & MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED;
+			}
 		}
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
 			$order = false;
@@ -739,7 +743,7 @@ class Gallery {
 		foreach($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = new Album($this, $folder);
-			if ($row['show'] || $mine || (is_null($mine) && ($album->isMyItem(LIST_RIGHTS)) && $view_all)) {
+			if ($row['show'] || $mine || (is_null($mine) && $album->isMyItem(VIEW_ALBUMS_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS | LIST_RIGHTS))) {
 				$albums_ordered[] = $folder;
 			}
 		}
