@@ -438,10 +438,10 @@ class Album extends MediaObject {
 	 */
 	function sortImageArray($images, $sorttype, $sortdirection, $mine= NULL) {
 		if (is_null($mine)) {
-			$mine = $this->isMyItem(LIST_RIGHTS | VIEW_ALBUMS_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
+			$mine = $this->isMyItem(LIST_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
 		}
-		if ($mine && !($mine & (VIEW_ALBUMS_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {	//	check for managed album view unpublished image rights
-			$mine = $this->albumSubRights() & MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED;
+		if ($mine && !($mine & (MANAGE_ALL_ALBUM_RIGHTS))) {	//	check for managed album view unpublished image rights
+			$mine = $this->albumSubRights() & (MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED | MANAGED_OBJECT_RIGHTS_EDIT);
 		}
 		$sortkey = str_replace('`','',$this->getImageSortKey($sorttype));
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending

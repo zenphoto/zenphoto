@@ -687,7 +687,7 @@ class Gallery {
 	 * @since  1.0.0
 	 */
 	function sortAlbumArray($parentalbum, $albums, $sortkey='`sort_order`', $sortdirection=NULL, $mine=NULL) {
-		if (is_null($mine) && zp_loggedin(VIEW_ALBUMS_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
+		if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$mine = true;
 		}
 		if (is_null($parentalbum)) {
@@ -697,7 +697,7 @@ class Gallery {
 		} else {
 			$albumid = '='.$parentalbum->id;
 			$obj = $parentalbum;
-			$viewUnpublished = ($obj->albumSubRights() & MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED);
+			$viewUnpublished = ($obj->albumSubRights() & (MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED | MANAGED_OBJECT_RIGHTS_EDIT));
 		}
 
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
