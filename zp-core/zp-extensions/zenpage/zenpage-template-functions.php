@@ -1987,7 +1987,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 			break;
 		case 'categories':
 		case 'allcategories':
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
+			if(zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 				$published = 'all';
 			} else {
 				$published = 'published';
