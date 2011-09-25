@@ -2916,7 +2916,6 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
 				if ($rights & ALBUM_RIGHTS) $ledgend .= $icon_edit_album.' '.gettext('edit album').' ';
 				if ($rights & UPLOAD_RIGHTS) $ledgend .= $icon_upload.' '.gettext('upload').' ';
-				if (!($rights&VIEW_ALBUMS_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublished items');
 				foreach ($full as $item) {
 					$cv[$item['name']] = $item['data'];
 					$extra[$item['data']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
@@ -2925,9 +2924,6 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 					}
 					if (($rights&UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
 						$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
-					}
-					if (!($rights&VIEW_ALBUMS_RIGHTS) && !($item['edit']&MANAGED_OBJECT_RIGHTS_EDIT)) {
-						$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED);
 					}
 				}
 				$rest = array_diff($objlist, $cv);
@@ -3044,11 +3040,6 @@ function processManagedObjects($i, &$rights) {
 				$key = substr($key, 0, -8);
 				if (isset($albums[$key])) {	// album still part of the list
 					$albums[$key]['edit'] = sanitize_numeric($value);
-				}
-			} else if (strpos($key, '_view')) {
-				$key = substr($key, 0, -5);
-				if (isset($albums[$key])) {	// album still part of the list
-					$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED;
 				}
 			} else if (strpos($key, '_edit')) {
 				$key = substr($key, 0, -5);

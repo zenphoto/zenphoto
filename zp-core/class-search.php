@@ -1166,7 +1166,7 @@ class SearchEngine
 						if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
 							$album = new Album(new gallery(), $albumname);
 							$uralbum = getUrAlbum($album);
-							$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED | MANAGED_OBJECT_RIGHTS_EDIT));
+							$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT);
 							if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
 								if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 									$albums[] = $albumname;
@@ -1315,7 +1315,7 @@ class SearchEngine
 						$allow = false;
 						$album = new Album(new gallery(), $albumname);
 						$uralbum = getUrAlbum($album);
-						$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED | MANAGED_OBJECT_RIGHTS_EDIT));
+						$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT);
 						if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 						}
