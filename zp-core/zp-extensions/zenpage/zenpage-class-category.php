@@ -278,7 +278,7 @@ class ZenpageCategory extends ZenpageRoot {
 		$_zp_zenpage->processExpired('news');
 		if (empty($published)) {
 			$published = "published";
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
+			if(zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 				$published = "all";
 			}
 		}

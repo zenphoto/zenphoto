@@ -1035,26 +1035,15 @@ class SearchEngine
 		}
 		if (count($idlist)==0) {return NULL; }
 		$sql = 'SELECT DISTINCT `id`,`show`,';
-		switch ($tbl) {
-			case 'pages':
-			case 'news':
-				$sql .= '`titlelink` ';
-				break;
-			case 'albums':
-				$sql .= "`folder` ";
-				break;
-			default:
-				$sql .= "`albumid`,`filename` ";
-				break;
-		}
 
-		if(zp_loggedin()) {
-			$show = '';
-		} else {
-			$show = "`show` = 1 AND ";
-		}
 		switch ($tbl) {
 			case 'news':
+				if(zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+					$show = '';
+				} else {
+					$show = "`show` = 1 AND ";
+				}
+				$sql .= '`titlelink` ';
 				if (is_array($this->category_list)) {
 					$news_list = $this->subsetNewsCategories();
 					$idlist = array_intersect($news_list,$idlist);
@@ -1070,12 +1059,24 @@ class SearchEngine
 				}
 				break;
 			case 'pages':
+				if(zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
+					$show = '';
+				} else {
+					$show = "`show` = 1 AND ";
+				}
+				$sql .= '`titlelink` ';
 				if ($show) {
 					$show .= '`date`<='.db_quote(date('Y-m-d H:i:s')).' AND ';
 				}
 				$key = '`sort_order`';
 				break;
 			case 'albums':
+				if(zp_loggedin()) {
+					$show = '';
+				} else {
+					$show = "`show` = 1 AND ";
+				}
+				$sql .= "`folder` ";
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
 						$key = lookupSortKey($this->gallery->getSortType(), 'sort_order', 'folder');
@@ -1096,6 +1097,12 @@ class SearchEngine
 				}
 				break;
 			default:
+				if(zp_loggedin()) {
+					$show = '';
+				} else {
+					$show = "`show` = 1 AND ";
+				}
+				$sql .= "`albumid`,`filename` ";
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
 						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'filename');
@@ -1142,6 +1149,9 @@ class SearchEngine
 		}
 		$albums = $this->getCachedSearch($criteria);
 		if (is_null($albums)) {
+			if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+				$mine = true;
+			}
 			$albums = array();
 			$search_query = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
 			if (empty($search_query)) {
@@ -1155,7 +1165,9 @@ class SearchEngine
 					if ($albumname != $this->dynalbumname) {
 						if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
 							$album = new Album(new gallery(), $albumname);
-							if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $row['show'])) {
+							$uralbum = getUrAlbum($album);
+							$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED | MANAGED_OBJECT_RIGHTS_EDIT));
+							if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
 								if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 									$albums[] = $albumname;
 								}
@@ -1265,6 +1277,9 @@ class SearchEngine
 			$this->images = array();
 			return $this->images;
 		}
+		if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+			$mine = true;
+		}
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) {	 // nothing to find
@@ -1292,21 +1307,23 @@ class SearchEngine
 				while ($row = db_fetch_assoc($search_result)) {
 					$albumid = $row['albumid'];
 					if (array_key_exists($albumid, $albums_seen)) {
-						$album = $albums_seen[$albumid];
+						$albumrow = $albums_seen[$albumid];
 					} else {
 						$query = "SELECT folder,`show` FROM ".prefix('albums')." WHERE id = $albumid";
 						$row2 = query_single_row($query); // id is unique
 						$albumname = $row2['folder'];
 						$allow = false;
 						$album = new Album(new gallery(), $albumname);
-						if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {
+						$uralbum = getUrAlbum($album);
+						$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_VIEW_UNPUBLISHED | MANAGED_OBJECT_RIGHTS_EDIT));
+						if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 						}
-						$albums_seen[$albumid] = $album = array('allow'=>$allow,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
+						$albums_seen[$albumid] = $albumrow = array('allow'=>$allow,'viewUnpublished'=>$viewUnpublished,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
 					}
-					if ($album['allow']) {
-						if (file_exists($album['localpath'].internalToFilesystem($row['filename']))) {	//	still exists
-							$images[] = array('filename' => $row['filename'], 'folder' => $album['folder']);
+					if ($albumrow['allow'] && ($row['show']||$albumrow['viewUnpublished'])) {
+						if (file_exists($albumrow['localpath'].internalToFilesystem($row['filename']))) {	//	still exists
+							$images[] = array('filename' => $row['filename'], 'folder' => $albumrow['folder']);
 						}
 					}
 				}

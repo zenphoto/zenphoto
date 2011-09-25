@@ -931,7 +931,6 @@ class Zenphoto_Authority {
 					<input type="hidden" name="login" value="1" />
 					<input type="hidden" name="password" value="1" />
 					<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
-					<fieldset id="logon_box">
 						<?php
 						if (empty($alt_handlers)) {
 							$ledgend = gettext('Login');
@@ -967,6 +966,9 @@ class Zenphoto_Authority {
 							</script>
 							<?php
 						}
+					?>
+					<fieldset id="logon_box"><legend><?php echo $ledgend; ?></legend>
+						<?php
 						if ($showUser || GALLERY_SECURITY=='private') {	//	requires a "user" field
 							?>
 							<fieldset><legend><?php echo gettext("User"); ?></legend>

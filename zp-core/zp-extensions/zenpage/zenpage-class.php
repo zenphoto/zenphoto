@@ -103,11 +103,7 @@ class Zenpage {
 		global $_zp_zenpage_all_pages;
 		$this->processExpired('pages');
 		if (is_null($published)) {
-			if(zp_loggedin(ZENPAGE_PAGES_RIGHTS | VIEW_PAGES_RIGHTS)) {
-				$published = FALSE;
-			} else {
-				$published = TRUE;
-			}
+			$published = !zp_loggedin(MANAGE_ALL_PAGES_RIGHTS);
 		}
 		if($published) {
 			$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
@@ -151,9 +147,10 @@ class Zenpage {
 		global $_zp_current_category, $_zp_post_date;
 		$this->processExpired('news');
 		if (empty($published)) {
-			$published = "published";
 			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
 				$published = "all";
+			} else {
+				$published = "published";
 			}
 		}
 		$show = '';
@@ -314,7 +311,7 @@ class Zenpage {
 		$alldates = array();
 		$cleandates = array();
 		$sql = "SELECT date FROM ". prefix('news');
-		if (!zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) { $sql .= " WHERE `show` = 1"; }
+		if (!zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) { $sql .= " WHERE `show` = 1"; }
 		$result = query_full_array($sql);
 		foreach($result as $row){
 			$alldates[] = $row['date'];

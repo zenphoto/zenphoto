@@ -14,6 +14,7 @@ if (file_exists(dirname(dirname(__FILE__)).'/'.USER_PLUGIN_FOLDER.'/alt/lib-auth
 	require_once(dirname(__FILE__).'/lib-auth.php');
 	$_zp_authority = new Zenphoto_Authority();
 }
+
 foreach ($_zp_authority->getRights() as $key=>$right) {
 	define($key,$right['value']);
 }
