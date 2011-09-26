@@ -416,14 +416,14 @@ if ($totalpages > 1) {
 		}
 		$date  = myts_date('%m/%d/%Y %I:%M %p', $comment['date']);
 		$website = $comment['website'];
-		$shortcomment = truncate_string(strip_tags($comment['comment']), 123);
-		$fullcomment = html_encode($comment['comment']);
+		$fullcomment = sanitize($comment['comment'],0);
+		$shortcomment = truncate_string(strip_tags($fullcomment), 123);
 		$inmoderation = $comment['inmoderation'];
 		$private = $comment['private'];
 		$anon = $comment['anon'];
 		?>
 	<tr class="newstr">
-		<td><?php echo ($fulltext) ? $fullcomment : $shortcomment; ?></td>
+		<td><?php echo ($fulltext) ? html_encode($fullcomment) : $shortcomment; ?></td>
 		<td><?php echo $date; ?></td>
 		<td>
 		<?php
