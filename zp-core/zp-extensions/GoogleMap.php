@@ -25,6 +25,7 @@ function googlemap_js() {
 	global $MAP_OBJECT, $_zp_current_image, $_zp_current_album;
 	$MAP_OBJECT = new GoogleMapAPI();
 	$MAP_OBJECT->setLocale(substr(getOption('locale'),0,2));
+	$MAP_OBJECT->bounds_fudge = 0.001;
 	echo $MAP_OBJECT->getHeaderJS()."\n";
 	?>
 	<style type="text/css">

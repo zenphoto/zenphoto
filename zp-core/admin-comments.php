@@ -417,7 +417,7 @@ if ($totalpages > 1) {
 		$date  = myts_date('%m/%d/%Y %I:%M %p', $comment['date']);
 		$website = $comment['website'];
 		$shortcomment = truncate_string(strip_tags($comment['comment']), 123);
-		$fullcomment = $comment['comment'];
+		$fullcomment = html_encode($comment['comment']);
 		$inmoderation = $comment['inmoderation'];
 		$private = $comment['private'];
 		$anon = $comment['anon'];
