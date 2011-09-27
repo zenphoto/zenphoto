@@ -794,21 +794,27 @@ function sanitize_string($input_string, $sanitize_level) {
 	// User specified sanititation.
 	if (function_exists('kses')) {
 		switch($sanitize_level) {
+			//Note: kses does not deal with incomplete tags that the browser may still interpret. However it seems
+			//to properly handle them as long as there is a ">" present, so we add it here and then remove it if
+			//it was unnecessary
 			case 1:
 				$allowed_tags = getAllowedTags('allowed_tags');
-				$input_string = html_entity_decode(kses($input_string, $allowed_tags));
+				$input_string = html_entity_decode(kses($input_string.' >', $allowed_tags));
 				break;
 
 				// Text formatting sanititation.
 			case 2:
 				$allowed_tags = getAllowedTags('style_tags');
-				$input_string = html_entity_decode(kses($input_string, $allowed_tags));
+				$input_string = html_entity_decode(kses($input_string.' >', $allowed_tags));
 				break;
 				// Full sanitation.  Strips all code.
 			case 3:
 				$allowed_tags = array();
-				$input_string = html_entity_decode(kses($input_string, $allowed_tags));
+				$input_string = html_entity_decode(kses($input_string.' >', $allowed_tags));
 				break;
+		}
+		if (substr($input_string, -2) == ' >') {
+			$input_string = substr($input_string, 0, -2);
 		}
 	} else {	//	in a basic environment--allow NO HTML tags.
 		$input_string = strip_tags($input_string);
