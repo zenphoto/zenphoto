@@ -7,17 +7,19 @@ if (!defined('WEBPATH')) die();
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle()); ?> | <?php echo html_encode(getImageTitle()); ?></title>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		$(document).ready(function(){
-			$(".colorbox").colorbox({
-				inline:true,
-				href:"#imagemetadata",
-				close: '<?php echo gettext("close"); ?>'
+	<?php if(getOption('zp_plugin_colorbox')) { ?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			$(document).ready(function(){
+				$(".colorbox").colorbox({
+					inline:true,
+					href:"#imagemetadata",
+					close: '<?php echo gettext("close"); ?>'
+				});
 			});
-		});
-		// ]]> -->
-	</script>
+			// ]]> -->
+		</script>
+	<?php } ?>
 	<?php printRSSHeaderLink('Album',gettext('Gallery RSS')); ?>
 </head>
 <body class="sidebars">

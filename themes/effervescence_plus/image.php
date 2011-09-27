@@ -14,17 +14,19 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<script type="text/javascript" src="<?php echo  $_zp_themeroot ?>/scripts/bluranchors.js"></script>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		$(document).ready(function(){
-			$(".colorbox").colorbox({
-				inline:true, 
-				href:"#imagemetadata",
-				close: '<?php echo gettext("close"); ?>'
-				});
-		});
-		// ]]> -->
-	</script>
+	<?php if(getOption('zp_plugin_colorbox')) { ?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			$(document).ready(function(){
+				$(".colorbox").colorbox({
+					inline:true, 
+					href:"#imagemetadata",
+					close: '<?php echo gettext("close"); ?>'
+					});
+			});
+			// ]]> -->
+		</script>
+	<?php } ?>
 	<?php printRSSHeaderLink('Gallery','Gallery RSS'); ?>
 </head>
 

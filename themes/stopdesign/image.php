@@ -13,22 +13,24 @@ require_once('normalizer.php');
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<script type="text/javascript">var blogrelurl = "<?php echo $_zp_themeroot ?>";</script>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		$(document).ready(function(){
-			$(".colorbox").colorbox({
-				inline:true, 
-				href:"#imagemetadata",
-				close: '<?php echo gettext("close"); ?>'
+	<?php if(if(getOption('zp_plugin_colorbox')) { ?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			$(document).ready(function(){
+				$(".colorbox").colorbox({
+					inline:true, 
+					href:"#imagemetadata",
+					close: '<?php echo gettext("close"); ?>'
+				});
+				$("a.thickbox").colorbox({
+					maxWidth:"98%", 
+					maxHeight:"98%",
+					close: '<?php echo gettext("close"); ?>'
+				});
 			});
-			$("a.thickbox").colorbox({
-				maxWidth:"98%", 
-				maxHeight:"98%",
-				close: '<?php echo gettext("close"); ?>'
-			});
-		});
-		// ]]> -->
-  </script>
+			// ]]> -->
+		</script>
+  <?php } ?>
 	<?php
 		printRSSHeaderLink('Gallery',gettext('Gallery RSS'));
 		setOption('thumb_crop_width', 85, false);

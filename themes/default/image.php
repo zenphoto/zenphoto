@@ -11,19 +11,20 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?> | <?php echo getBareImageTitle();?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		$(document).ready(function(){
-			$(".colorbox").colorbox({
-				inline:true,
-				href:"#imagemetadata",
-				close: '<?php echo gettext("close"); ?>'
+	<?php if(getOption('zp_plugin_colorbox')) { ?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			$(document).ready(function(){
+				$(".colorbox").colorbox({
+					inline:true,
+					href:"#imagemetadata",
+					close: '<?php echo gettext("close"); ?>'
+				});
 			});
-		});
-		// ]]> -->
-	</script>
-		<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
-
+			// ]]> -->
+		</script>
+	<?php } ?>
+	<?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 </head>
 
 <body>

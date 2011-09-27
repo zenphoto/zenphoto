@@ -12,22 +12,24 @@ if (!defined('WEBPATH')) die();
 	<title><?php echo getBareImageTitle();?> | <?php echo getBareAlbumTitle();?> | <?php echo getBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		$(document).ready(function(){
-			$(".colorbox").colorbox({
-				inline:true, 
-				href:"#imagemetadata",
-				close: '<?php echo gettext("close"); ?>'
+	<?php if(if(getOption('zp_plugin_colorbox')) { ?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			$(document).ready(function(){
+				$(".colorbox").colorbox({
+					inline:true, 
+					href:"#imagemetadata",
+					close: '<?php echo gettext("close"); ?>'
+					});
+				$("a.thickbox").colorbox({
+					maxWidth:"98%", 
+					maxHeight:"98%",
+					close: '<?php echo gettext("close"); ?>'
 				});
-			$("a.thickbox").colorbox({
-				maxWidth:"98%", 
-				maxHeight:"98%",
-				close: '<?php echo gettext("close"); ?>'
 			});
-		});
-		// ]]> -->
-	</script>
+			// ]]> -->
+		</script>
+	<?php } ?>
 		<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
 </head>
 <body>
