@@ -1183,15 +1183,17 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</p>
 					</td>
 					<td>
+						<p><?php  echo gettext("<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish albums by default</em>" ); ?></p>
+						<div id="albumpub" style="display: none">
+							<p><?php echo gettext("This sets the default behavior for when Zenphoto discovers an album. If checked, the album will be published, if unchecked it will be unpublished.") ?></p>
+						</div>
+						<p><?php  echo gettext("<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish images by default</em>" ); ?></p>
+						<div id="imagepub" style="display: none">
+							<p><?php echo gettext("This sets the default behavior for when Zenphoto discovers an image. If checked, the image will be published, if unchecked it will be unpublished.") ?></p>
+						</div>
 						<p><?php  echo gettext("<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest image date as album date</em>" ); ?></p>
 						<div id="albumdate" style="display: none">
 							<p><?php echo gettext("If you wish your album date to reflect the date of the latest image uploaded set this option. Otherwise the date will be set initially to the date the album was created.") ?></p>
-						</div>
-
-						<p><?php  echo gettext("<a href=\"javascript:toggle('username');\" >Details</a> for <em>enable user name login field</em>" ); ?></p>
-						<div id="username" style="display: none">
-						<p><?php echo gettext("This option places a field on the gallery (search, album) login form for entering a user name. This is necessary if you have set guest login user names. It is also useful to allow Admin users to log in on these pages rather than at the Admin login."); ?></p>
-						<p class="notebox"><?php echo gettext("<strong>Note:</strong> this field is required (and will be set) if any guest credentials require a user name."); ?></p>
 						</div>
 
 						<p><?php  echo gettext("<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual thumb selection</em>" ); ?></p>
