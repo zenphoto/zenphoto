@@ -3642,7 +3642,7 @@ function processAlbumBulkActions() {
  * Handles Image bulk actions
  * @param $album
  */
-function processBulkImageActions($album) {
+function processImageBulkActions($album) {
 	$action = sanitize($_POST['checkallaction']);
 	$ids = $_POST['ids'];
 	$total = count($ids);

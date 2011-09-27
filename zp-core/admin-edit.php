@@ -207,7 +207,7 @@ if (isset($_GET['action'])) {
 						$returntab = '&tagsort='.$tagsort.'&tab=imageinfo';
 
 						if (isset($_POST['ids'])) {	//	process bulk actions, not individual image actions.
-							$action = processBulkImageActions($album);
+							$action = processImageBulkActions($album);
 							if(!empty($action)) $notify = '&bulkmessage='.$action;
 						} else {
 							if (isset($_POST['thumb'])) {

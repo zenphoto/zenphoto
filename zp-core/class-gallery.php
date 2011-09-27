@@ -743,7 +743,9 @@ class Gallery {
 		foreach($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = new Album($this, $folder);
-			if ($row['show'] || $mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished)) {
+			$list = $album->isMyItem(LIST_RIGHTS);
+
+			if ($row['show'] || $mine || ($list && is_null($album->getParent())) || (is_null($mine) && $list && $viewUnpublished)) {
 				$albums_ordered[] = $folder;
 			}
 		}
