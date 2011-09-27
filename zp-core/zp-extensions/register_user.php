@@ -207,36 +207,40 @@ function printRegistrationForm($thanks=NULL) {
 		$params = unserialize(pack("H*", trim(sanitize($_GET['verify']),'.')));
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj->getEmail() == $params['email']) {
-			$userobj->setCredentials(array('registered','user','email'));
-			$rights = getOption('register_user_user_rights');
-			$group = NULL;
-			if (!is_numeric($rights)) {	//  a group or template
-				$admin = $_zp_authority->getAnAdmin(array('`user`=' => $rights,'`valid`=' => 0));
-				if ($admin) {
-					$userobj->setObjects($admin->getObjects());
-					if ($admin->getName() != 'template') {
-						$group = $rights;
+			if (!$userobj->getRights()) {
+				$userobj->setCredentials(array('registered','user','email'));
+				$rights = getOption('register_user_user_rights');
+				$group = NULL;
+				if (!is_numeric($rights)) {	//  a group or template
+					$admin = $_zp_authority->getAnAdmin(array('`user`=' => $rights,'`valid`=' => 0));
+					if ($admin) {
+						$userobj->setObjects($admin->getObjects());
+						if ($admin->getName() != 'template') {
+							$group = $rights;
+						}
+						$rights = $admin->getRights();
+					} else {
+						$rights = NO_RIGHTS;
 					}
-					$rights = $admin->getRights();
-				} else {
-					$rights = NO_RIGHTS;
 				}
-			}
-			$userobj->setRights($rights | NO_RIGHTS);
-			$userobj->setGroup($group);
-			zp_apply_filter('register_user_verified', $userobj);
-			$notify = false;
-			if (getOption('register_user_notify')) {
-				$notify = zp_mail(gettext('Zenphoto Gallery registration'),sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'),$userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
-			}
-			if (empty($notify)) {
-				if (getOption('register_user_create_album')) {
-					$userobj->createPrimealbum();
+				$userobj->setRights($rights | NO_RIGHTS);
+				$userobj->setGroup($group);
+				zp_apply_filter('register_user_verified', $userobj);
+				$notify = false;
+				if (getOption('register_user_notify')) {
+					$notify = zp_mail(gettext('Zenphoto Gallery registration'),sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'),$userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 				}
-				$notify = 'verified';
-				$_POST['user'] = $userobj->getUser();
+				if (empty($notify)) {
+					if (getOption('register_user_create_album')) {
+						$userobj->createPrimealbum();
+					}
+					$notify = 'verified';
+					$_POST['user'] = $userobj->getUser();
+				}
+				$userobj->save();
+			} else {
+				$notify = 'already_verified';
 			}
-			$userobj->save();
 		} else {
 			$notify = 'not_verified';	// User ID no longer exists
 		}
@@ -374,6 +378,9 @@ function printRegistrationForm($thanks=NULL) {
 					break;
 				case 'not_verified':
 					echo gettext('Your registration request could not be completed.');
+					break;
+				case 'already_verified':
+					echo gettext('Your registration request was previsously accepted.');
 					break;
 				case 'filter':
 					if (is_object($userobj) && !empty($userobj->msg)) {

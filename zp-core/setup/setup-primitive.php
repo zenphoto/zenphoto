@@ -9,7 +9,7 @@
 
 
 require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
-require_once(dirname(dirname(__FILE__)).'/lib-htmlawed.php');
+require_once(dirname(dirname(__FILE__)).'/lib-htmLawed.php');
 
 $const_webpath = dirname(dirname($_SERVER['SCRIPT_NAME']));
 $const_webpath = str_replace("\\", '/', $const_webpath);

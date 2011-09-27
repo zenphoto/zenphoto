@@ -17,7 +17,7 @@ if(!function_exists("json_encode")) {
 
 require_once(dirname(__FILE__).'/functions-basic.php');
 require_once(dirname(__FILE__).'/functions-filter.php');
-require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-htmlawed.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-htmLawed.php');
 
 
 $_zp_captcha = getOption('captcha');
