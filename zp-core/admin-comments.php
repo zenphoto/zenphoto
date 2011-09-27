@@ -423,7 +423,7 @@ if ($totalpages > 1) {
 		$anon = $comment['anon'];
 		?>
 	<tr class="newstr">
-		<td><?php echo ($fulltext) ? html_encode($fullcomment) : $shortcomment; ?></td>
+		<td><?php echo ($fulltext) ? $fullcomment : $shortcomment; ?></td>
 		<td><?php echo $date; ?></td>
 		<td>
 		<?php
