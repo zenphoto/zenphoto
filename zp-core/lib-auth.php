@@ -71,6 +71,7 @@ class Zenphoto_Authority {
 		setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);
 		setOptionDefault('min_password_lenght', 6);
 		setOptionDefault('password_pattern', 'A-Za-z0-9   |   ~!@#$%&*_+`-(),.\^\'"/[]{}=:;?\|');
+		setOptionDefault('user_album_edit_default', 1);
 		$sql = 'SELECT * FROM '.prefix('administrators').' WHERE `valid`=1 ORDER BY `rights` DESC, `id` LIMIT 1';
 		$master = query_single_row($sql,false);
 		if ($master) {
@@ -88,6 +89,8 @@ class Zenphoto_Authority {
 										'desc' => gettext('Minimum number of characters a password must contain.')),
 									gettext('Password characters:') => array('key' => 'password_pattern', 'type' => OPTION_TYPE_CLEARTEXT,
 										'desc' => gettext('Passwords must contain at least one of the characters from each of the groups. Groups are separated by "|". (Use "\|" to represent the "|" character in the groups.)')),
+									gettext('User album edit') => array('key' => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned to <em>user albums</em>.')),
 									gettext('settings')=> array('key'=>'lib_auth_info', 'type'=>OPTION_TYPE_CUSTOM,
 										'order'=>9,
 										'desc'=>'')
@@ -1344,7 +1347,11 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * removed if the user is removed.
 	 */
 	function setAlbum($album) {
-		$this->set('prime_album', $album->getID());
+		if ($album) {
+			$this->set('prime_album', $album->getID());
+		} else {
+			$this->set('prime_album', NULL);
+		}
 	}
 
 	/**
@@ -1379,8 +1386,17 @@ class Zenphoto_Administrator extends PersistentObject {
 			$album = new Album(new Gallery(), $filename.$ext);
 			$album->save();
 			$this->setAlbum($album);
+			$this->setRights($this->getRights() | ALBUM_RIGHTS);
+			if (getOption('user_album_edit_default')) {
+				$subrights = MANAGED_OBJECT_RIGHTS_EDIT;
+			} else {
+				$subrights = 0;
+			}
+			if ($this->getRights() & UPLOAD_RIGHTS) {
+				$subrights = $subrights | MANAGED_OBJECT_RIGHTS_UPLOAD;
+			}
 			$objects = $this->getObjects();
-			$objects[] = array('data'=>$filename.$ext, 'name'=>$filename.$ext, 'type'=>'album');
+			$objects[] = array('data'=>$filename.$ext, 'name'=>$filename.$ext, 'type'=>'album', 'edit'=>$subrights);
 			$this->setObjects($objects);
 		}
 
