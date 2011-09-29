@@ -5,6 +5,30 @@
  */
 
 /**
+ * Returns the rss channel main title part (gallery and/or website title)
+ *
+ * @return string
+ */
+function getRSSChanneltitle() {
+	global $_zp_gallery;
+	$mode = getOption('feed_title');
+	$locale = getRSSLocale();
+	switch($mode) {
+		case 'gallery':
+			$channeltitle = strip_tags(get_language_string($_zp_gallery->get('gallery_title'), $locale));
+			break;
+		case 'website':
+			$channeltitle = strip_tags(get_language_string($_zp_gallery->get('website_title'), $locale));
+			break;
+		case 'both':
+			$channeltitle = strip_tags(get_language_string($_zp_gallery->get('website_title'), $locale).' - '.get_language_string($_zp_gallery->get('gallery_title'), $locale));
+		break;
+	}
+	return $channeltitle;
+}
+
+
+/**
  * Returns the host
  *
  * @return string

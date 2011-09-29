@@ -226,6 +226,7 @@ if (isset($_GET['action'])) {
 			setOption('feed_items_albums', sanitize($_POST['feed_items_albums'],3));
 			setOption('feed_imagesize_albums', sanitize($_POST['feed_imagesize_albums'],3));
 			setOption('feed_sortorder_albums', sanitize($_POST['feed_sortorder_albums'],3));
+			setOption('feed_title', sanitize($_POST['feed_title'],3));
 			setOption('feed_cache_expire', sanitize($_POST['feed_cache_expire'],3));
 			setOption('feed_enclosure', (int) isset($_POST['feed_enclosure']));
 			setOption('feed_mediarss', (int) isset($_POST['feed_mediarss']));
@@ -1534,6 +1535,15 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><input type="checkbox" name="feed_hitcounter"
 				value="1" <?php echo checked('1', getOption('feed_hitcounter')); ?> /></td>
 			<td><?php echo gettext("Check if you want to store the hitcount on RSS feeds."); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo gettext("RSS title"); ?></td>
+			<td>
+				<label for="feed_title1"><input type="radio" name="feed_title" id="feed_title1" value="gallery" <?php echo checked('gallery', getOption('feed_title')); ?> /><?php echo gettext('Gallery title'); ?></label>
+				<label for="feed_title2"><input type="radio" name="feed_title" id="feed_title2" value="website" <?php echo checked('website', getOption('feed_title')); ?> /><?php echo gettext('Website title'); ?></label>
+				<label for="feed_title3"><input type="radio" name="feed_title" id="feed_title3" value="both" <?php echo checked('both', getOption('feed_title')); ?> /><?php echo gettext('Both'); ?></label>
+			</td>
+			<td><?php echo gettext("Select what you want to use as the main RSS feed (channel) title. 'Both' means Website title followed by Gallery title"); ?></td>
 		</tr>
 		<tr>
 			<td colspan="3">

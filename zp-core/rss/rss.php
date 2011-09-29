@@ -1,5 +1,6 @@
 <?php
 $host = getRSSHost();
+$channeltitle = getRSSChanneltitle();
 $protocol = SERVER_PROTOCOL;
 if ($protocol == 'https_admin') {
 	$protocol = 'http';
@@ -20,7 +21,7 @@ $gallery = new Gallery();
 ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
 <channel>
-<title><?php echo strip_tags(get_language_string($gallery->get('gallery_title'), $locale)).' '.strip_tags($albumname); ?></title>
+<title><?php echo html_encode($channeltitle).' '.strip_tags($albumname); ?></title>
 <link><?php echo $protocol."://".$host.WEBPATH; ?></link>
 <atom:link href="<?php echo $protocol; ?>://<?php echo html_encode($_SERVER["HTTP_HOST"]); ?><?php echo html_encode($_SERVER["REQUEST_URI"]); ?>" rel="self"	type="application/rss+xml" />
 <description><?php echo strip_tags(get_language_string($gallery->get('Gallery_description'), $locale)); ?></description>
