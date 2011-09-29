@@ -125,7 +125,6 @@ setOptionDefault('feed_mediarss', '0');
 setOptionDefault('feed_cache', '1');
 setOptionDefault('feed_cache_expire', 86400);
 setOptionDefault('feed_hitcounter', 1);
-setOptionDefault('feed_title', 'gallery');
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 
 $a =	"a => (href =>() title =>() target=>() class=>() id=>())\n" .
@@ -588,11 +587,6 @@ appropriate gallery methods.
 				query($sql);
 			}
 		}
-	}
-
-	if (getOption('edit_in_place')) {
-		setOption('edit_in_place', 0);
-		echo '<p class="notebox">'.gettext('Front-end editing has been disabled. Front-end editing presents serious security vulnerability and is strongly discouraged.').'</p>';
 	}
 
 	setOptionDefault('search_cache_duration', 30);

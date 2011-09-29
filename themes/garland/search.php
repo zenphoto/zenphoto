@@ -81,7 +81,7 @@ if (!$total) {
 					?>
 					<p>
 					<?php
-					printf(ngettext('%1$u Hit for <em>%2$s</em>','%1$u Hits for <em>%2$s</em>',$total), $total, $searchwords);
+					printf(ngettext('%1$u Hit for <em>%2$s</em>','%1$u Hits for <em>%2$s</em>',$total), $total, html_encode($searchwords));
 					?>
 					</p>
 					<?php

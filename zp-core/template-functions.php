@@ -49,33 +49,8 @@ function printZenJavascripts() {
 		var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
 		var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
 		// ]]> -->
-		</script>
-		<?php
-		if (getOption('edit_in_place')) {
-			if (($rights = zp_loggedin()) & (ADMIN_RIGHTS | ALBUM_RIGHTS)) {
-				if (in_context(ZP_ALBUM)) {
-					$grant = $_zp_current_album->isMyItem(ALBUM_RIGHTS);
-				} else {
-					$grant = $rights & ADMIN_RIGHTS;
-				}
-				if ($grant) {
-					?>
-					<script type="text/javascript">
-						// <!-- <![CDATA[
-						var zpstrings = {
-							/* Used in jquery.editinplace.js */
-							'Save' : "<?php echo gettext('Save'); ?>",
-							'Cancel' : "<?php echo gettext('Cancel'); ?>",
-							'Saving' : "<?php echo gettext('Saving'); ?>",
-							'ClickToEdit' : "<?php echo gettext('Click to edit...'); ?>"
-						};
-						// ]]> -->
-					</script>
-					<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.editinplace.js"></script>
-					<?php
-				}
-			}
-		}
+	</script>
+	<?php
 
 }
 
@@ -856,7 +831,7 @@ function printAlbumTitle($editable=false, $editclass='', $messageIfEmpty = true)
 	if ( $messageIfEmpty === true ) {
 		$messageIfEmpty = gettext('(No title...)');
 	}
-	printEditable('album', 'title', $editable, $editclass, $messageIfEmpty);
+	printField('album', 'title', $editable, $editclass, $messageIfEmpty);
 }
 
 /**
@@ -1090,7 +1065,7 @@ function printAlbumDate($before='', $nonemessage='', $format=null, $editable=fal
 			$messageIfEmpty = gettext('(No date...)');
 		}
 	}
-	printEditable('album', 'date', $editable, $editclass, $messageIfEmpty, false, $date);
+	printField('album', 'date', $editable, $editclass, $messageIfEmpty, false, $date);
 }
 
 /**
@@ -1115,7 +1090,7 @@ function printAlbumLocation($editable=false, $editclass='', $messageIfEmpty = tr
 	if ( $messageIfEmpty === true ) {
 		$messageIfEmpty = gettext('(No Location...)');
 	}
-	printEditable('album', 'location', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
+	printField('album', 'location', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
 }
 
 /**
@@ -1150,7 +1125,7 @@ function printAlbumDesc($editable=false, $editclass='', $messageIfEmpty = true )
 	if ( $messageIfEmpty === true ) {
 		$messageIfEmpty = gettext('(No description...)');
 	}
-	printEditable('album', 'desc', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
+	printField('album', 'desc', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
 }
 
 
@@ -1169,7 +1144,7 @@ function printAlbumDesc($editable=false, $editclass='', $messageIfEmpty = true )
  * @since 1.3
  * @author Ozh
  */
-function printEditable($context, $field, $editable = false, $editclass = 'editable', $messageIfEmpty = true, $convertBR = false, $override = false, $label='') {
+function printField($context, $field, $editclass = 'unspecified', $convertBR = false, $override = false, $label='') {
 	switch($context) {
 		case 'image':
 			global $_zp_current_image;
@@ -1188,41 +1163,27 @@ function printEditable($context, $field, $editable = false, $editclass = 'editab
 			$object = $_zp_current_zenpage_news;
 			break;
 		default:
-			trigger_error(gettext('printEditable() incomplete function call.'), E_USER_NOTICE);
+			trigger_error(gettext('printField() incomplete function call.'), E_USER_NOTICE);
 			return false;
 	}
 	if (!$field || !is_object($object)) {
-		trigger_error(gettext('printEditable() invalid function call.'), E_USER_NOTICE);
+		trigger_error(gettext('printField() invalid function call.'), E_USER_NOTICE);
 		return false;
 	}
 	$text = trim( $override !== false ? $override : get_language_string($object->get($field)) );
-	$text = zp_apply_filter('front-end_edit', $text, $object, $context, $field);
 	if ($convertBR) {
 		$text = str_replace("\r\n", "\n", $text);
 		$text = str_replace("\n", "<br />", $text);
 	}
 
-	if (empty($text)) {
-		if ( $editable && zp_loggedin() ) {
-			if ( $messageIfEmpty === true ) {
-				$text = gettext('(...)');
-			} elseif ( is_string($messageIfEmpty) ) {
-				$text = $messageIfEmpty;
-			}
-		}
-	}
 	if (!empty($text)) echo $label;
-	if ($editable && getOption('edit_in_place') && zp_loggedin()) {
-		// Increment a variable to make sure all elements will have a distinct HTML id
-		static $id = 1;
-		$id++;
-		$class= 'class="' . trim("$editclass zp_editable zp_editable_{$context}_{$field}") . '"';
-		echo "<span id=\"editable_{$context}_$id\" $class>" . $text . "</span>\n";
-		echo "<script type=\"text/javascript\">editInPlace('editable_{$context}_$id', '$context', '$field');</script>";
-	} else {
-		$class= 'class="' . "zp_uneditable zp_uneditable_{$context}_{$field}" . '"';
-		echo "<span $class>" . $text . "</span>\n";
+	if ($editclass) {
+		$editclass = ' class="'.trim($editclass).'"';
 	}
+
+	$html = '<span' . $editclass . '>' . $text . "</span>\n";
+	echo zp_apply_filter('printObjectField', $html, $object, $context, $field);
+
 }
 
 
@@ -1250,7 +1211,7 @@ function printAlbumCustomData($editable = false, $editclass='', $messageIfEmpty 
 	if ( $messageIfEmpty === true ) {
 		$messageIfEmpty = gettext('(No data...)');
 	}
-	printEditable('album', 'custom_data', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
+	printField('album', 'custom_data', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
 }
 
 /**
@@ -1291,7 +1252,7 @@ function printAlbumData($field, $label='', $editable=false, $editclass='', $mess
 		$messageIfEmpty = gettext('(No data...)');
 	}
 	if (empty($editclass)) $editclass = 'metadata';
-	printEditable('album', $field, $editable, $editclass, $messageIfEmpty, false, false, $label);
+	printField('album', $field, $editable, $editclass, $messageIfEmpty, false, false, $label);
 }
 
 
@@ -1853,7 +1814,7 @@ function printImageTitle($editable=false, $editclass='editable imageTitleEditabl
 	if ( $messageIfEmpty === true ) {
 		$messageIfEmpty = gettext('(No title...)');
 	}
-	printEditable('image', 'title', $editable, $editclass, $messageIfEmpty);
+	printField('image', 'title', $editable, $editclass, $messageIfEmpty);
 }
 
 /**
@@ -1940,7 +1901,7 @@ function printImageDate($before='', $nonemessage='', $format=null, $editable=fal
 		}
 	}
 
-	printEditable('image', 'date', $editable, $editclass, $messageIfEmpty, false, $date);
+	printField('image', 'date', $editable, $editclass, $messageIfEmpty, false, $date);
 }
 
 // IPTC fields
@@ -2022,7 +1983,7 @@ function printImageDesc($editable=false, $editclass='', $messageIfEmpty = true) 
 	if ( $messageIfEmpty === true ) {
 		$messageIfEmpty = gettext('(No description...)');
 	}
-	printEditable('image', 'desc', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
+	printField('image', 'desc', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
 }
 
 /**
@@ -2086,7 +2047,7 @@ function printImageData($field, $label='', $editable=false, $editclass='', $mess
 		$messageIfEmpty = gettext('(No data...)');
 	}
 	if (empty($editclass)) $editclass = 'metadata';
-	printEditable('image', $field, $editable, $editclass, $messageIfEmpty, false, false, $label);
+	printField('image', $field, $editable, $editclass, $messageIfEmpty, false, false, $label);
 }
 
 /**
@@ -2338,7 +2299,7 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
 	foreach ($exif as $field => $value) {
 		$label = $_zp_exifvars[$field][2];
 		echo "<tr><td class=\"label\">$label:</td><td class=\"value\">";
-		printEditable('image', $field, $editable, $editclass, $messageIfEmpty, false, $value);
+		printField('image', $field, $editable, $editclass, $messageIfEmpty, false, $value);
 		echo "</td></tr>\n";
 	}
 	echo "</table>\n</div>\n";
@@ -3508,7 +3469,6 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ',
 	if (is_null($class)) {
 		$class = 'taglist';
 	}
-	$editable = $editable && getOption('edit_in_place');
 	$singletag = getTags();
 	$tagstring = implode(', ', $singletag);
 	if ($tagstring === '' or $tagstring === NULL ) {
@@ -3528,36 +3488,32 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ',
 	} else if(in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
 		$object = "news";
 	}
-	if ($editable && zp_loggedin()) {
-		printEditable($object, '_update_tags', true, $editclass, $tagstring);
-	} else {
-		if (count($singletag) > 0) {
-			if (!empty($preText)) {
-				echo "<span class=\"tags_title\">".$preText."</span>";
-			}
-			echo "<ul class=\"".$class."\">\n";
-			if (is_object($_zp_current_search)) {
-				$albumlist = $_zp_current_search->getAlbumList();
-			} else {
-				$albumlist = NULL;
-			}
-			$ct = count($singletag);
-			$x = 0;
-			foreach ($singletag as $atag) {
-				$latag = search_quote($atag);
-				if (++$x == $ct) { $separator = ""; }
-				if ($option === "links") {
-					$links1 = "<a href=\"".html_encode(getSearchURL($latag, '', 'tags', 0, array('albums'=>$albumlist)))."\" title=\"".html_encode($atag)."\" rel=\"nofollow\">";
-					$links2 = "</a>";
-				} else {
-					$links1 = $links2 = '';
-				}
-				echo "\t<li>".$links1.$atag.$links2.$separator."</li>\n";
-			}
-			echo "</ul>";
-		} else {
-			echo "$tagstring";
+	if (count($singletag) > 0) {
+		if (!empty($preText)) {
+			echo "<span class=\"tags_title\">".$preText."</span>";
 		}
+		echo "<ul class=\"".$class."\">\n";
+		if (is_object($_zp_current_search)) {
+			$albumlist = $_zp_current_search->getAlbumList();
+		} else {
+			$albumlist = NULL;
+		}
+		$ct = count($singletag);
+		$x = 0;
+		foreach ($singletag as $atag) {
+			$latag = search_quote($atag);
+			if (++$x == $ct) { $separator = ""; }
+			if ($option === "links") {
+				$links1 = "<a href=\"".html_encode(getSearchURL($latag, '', 'tags', 0, array('albums'=>$albumlist)))."\" title=\"".html_encode($atag)."\" rel=\"nofollow\">";
+				$links2 = "</a>";
+			} else {
+				$links1 = $links2 = '';
+			}
+			echo "\t<li>".$links1.$atag.$links2.$separator."</li>\n";
+		}
+		echo "</ul>";
+	} else {
+		echo "$tagstring";
 	}
 }
 
@@ -4187,7 +4143,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 function getSearchWords() {
 	global $_zp_current_search;
 	if (!in_context(ZP_SEARCH)) return '';
-	return $_zp_current_search->codifySearchString('&quot;');
+	return $_zp_current_search->codifySearchString();
 }
 
 /**

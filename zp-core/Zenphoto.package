@@ -420,7 +420,6 @@ zp-core/js/flash_detect_min.js
 zp-core/js/htmlencoder.js
 zp-core/js/jquery.Jcrop.css
 zp-core/js/jquery.Jcrop.js
-zp-core/js/jquery.editinplace.js
 zp-core/js/jquery.flashembed.pack.js
 zp-core/js/jquery.js
 zp-core/js/jquery.pagination.js
@@ -2816,4 +2815,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2818
+2817

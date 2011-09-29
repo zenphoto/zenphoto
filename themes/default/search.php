@@ -44,7 +44,7 @@ if (!$total) {
 			if (isset($_REQUEST['date'])){
 				$searchwords = getSearchDate();
  		} else { $searchwords = getSearchWords(); }
-			echo '<p>'.sprintf(gettext('Total matches for <em>%1$s</em>: %2$u'), $searchwords, $total).'</p>';
+			echo '<p>'.sprintf(gettext('Total matches for <em>%1$s</em>: %2$u'), html_encode($searchwords), $total).'</p>';
 		}
 		$c = 0;
 		?>

@@ -255,12 +255,16 @@ function getAlbumPlace() {
  */
 function printAlbumPlace($editable=false, $editclass='', $messageIfEmpty = true) {
 	deprecated_function_notify(gettext('Use printAlbumLocation().'));
-	if ( $messageIfEmpty === true ) {
-		$messageIfEmpty = gettext('(No place...)');
-	}
-	printEditable('album', 'location', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
+	printField('album', 'location', $editclass, !getOption('tinyMCEPresent'));
 }
 
+/**
+ * @deprecated
+ */
+function printEditable($context, $field, $editable = false, $editclass = 'unspecified', $messageIfEmpty = true, $convertBR = false, $override = false, $label='') {
+	deprecated_function_notify(gettext('Use printField().'));
+	printField($context,$field,$editclass,$convertBR,$override,$label);
+}
 
 /***************************
  * ZENPAGE PLUGIN FUNCTIONS

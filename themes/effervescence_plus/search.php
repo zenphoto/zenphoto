@@ -164,7 +164,7 @@ $backgroundImagePath="";
 		</h2>
 		<?php
 		if ($total > 0 ) {
-			printf(ngettext('%1$u Hit for <em>%2$s</em>','%1$u Hits for <em>%2$s</em>',$total), $total, $searchwords);
+			printf(ngettext('%1$u Hit for <em>%2$s</em>','%1$u Hits for <em>%2$s</em>',$total), $total, html_encode($searchwords));
 		}
 		if ($zenpage && $_zp_page==1) { //test of zenpage searches
 			define ('TRUNCATE_LENGTH',80);

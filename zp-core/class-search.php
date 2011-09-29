@@ -583,7 +583,7 @@ class SearchEngine
 	 * @return string
 	 *
 	 */
-	function codifySearchString($quote='"') {
+	function codifySearchString() {
 		$searchstring = $this->getSearchString();
 		$sanitizedwords = '';
 		if (is_array($searchstring)) {
@@ -603,16 +603,7 @@ class SearchEngine
 						$sanitizedwords .= "$singlesearchstring";
 						break;
 					default:
-						$sanitizedword = sanitize($singlesearchstring, 3);
-						$setQuote = $sanitizedword != $singlesearchstring;
-						if (!$setQuote) {
-							$setQuote = is_numeric($singlesearchstring) || preg_match("/[ &|!'\"`,()]/",$singlesearchstring);
-						}
-						if ($setQuote) {
-							$sanitizedwords .= search_quote($singlesearchstring);
-						} else {
-							$sanitizedwords .= ' '.sanitize($singlesearchstring, 3).' ';
-						}
+						$sanitizedwords .= search_quote(sanitize($singlesearchstring, 3));
 						break;
 				}
 			}

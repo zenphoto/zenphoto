@@ -149,7 +149,7 @@ require_once('normalizer.php');
 			<?php
 					}
 					echo '</p>';
-					echo "<em class=\"count\">"  .sprintf(gettext('Total matches for <em>%1$s</em>: %2$u'),getSearchWords(), $results);
+					echo "<em class=\"count\">"  .sprintf(gettext('Total matches for <em>%1$s</em>: %2$u'),html_encode(getSearchWords()), $results);
 				} else {
 					echo "<p>".gettext('Sorry, no matches found. Try refining your search.')."</p>";
 				}

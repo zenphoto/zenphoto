@@ -128,7 +128,6 @@ if (isset($_GET['action'])) {
 				}
 			}
 			$gallery->setSecurity(sanitize($_POST['gallery_security'],3));
-			setOption('edit_in_place',(int) (sanitize_numeric($_POST['edit_in_place']) && true));
 			if ($_POST['password_enabled']) {
 			$olduser = $gallery->getUser();
 			$newuser = trim(sanitize($_POST['gallery_user'],3));
@@ -1122,21 +1121,6 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<?php
 						echo gettext('Sort order for the albums on the index of the gallery. Custom sort values must be database field names. You can have multiple fields separated by commas. This option is also the default sort for albums and subalbums.');
 						?>
-					</td>
-				</tr>
-				<tr>
-					<td width="175"><?php echo gettext('Front-end editing'); ?></td>
-					<td width="350">
-						<label>
-							<input type="radio" name = "edit_in_place" id="edit_in_place_no" value=0<?php if (!getOption('edit_in_place')) echo ' checked="checked"'; ?>><?php echo gettext('Disabled'); ?></input>
-						</label>
-						<label>
-							<input type="radio" name = "edit_in_place" id="edit_in_place_yes" value=1<?php if (getOption('edit_in_place')) echo ' checked="checked"'; ?> onclick="xsrfWarning('edit_in_place','<?php echo gettext('This is really not a secure setting. Are you sure you want to enable it?'); ?>');"><?php echo gettext('Enabled'); ?></input>
-						</label>
-					</td>
-					<td>
-						<p><?php echo gettext('Check to allow editing of Gallery data on the front-end pages. (Sometimes known as <em>Ajax</em> editing.)'); ?></p>
-						<p class="notebox"><?php echo gettext('<strong>NOTE:</strong> enabling this feature is not recommended as it is susceptible to Cross Site Request Forgeries.')?></p>
 					</td>
 				</tr>
 				<tr>
