@@ -89,8 +89,8 @@ class Zenphoto_Authority {
 										'desc' => gettext('Minimum number of characters a password must contain.')),
 									gettext('Password characters:') => array('key' => 'password_pattern', 'type' => OPTION_TYPE_CLEARTEXT,
 										'desc' => gettext('Passwords must contain at least one of the characters from each of the groups. Groups are separated by "|". (Use "\|" to represent the "|" character in the groups.)')),
-									gettext('User album edit') => array('key' => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned to <em>user albums</em>.')),
+									gettext('Primary album edit') => array('key' => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
 									gettext('settings')=> array('key'=>'lib_auth_info', 'type'=>OPTION_TYPE_CUSTOM,
 										'order'=>9,
 										'desc'=>'')

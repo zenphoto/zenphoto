@@ -584,7 +584,6 @@ class SearchEngine
 	 *
 	 */
 	function codifySearchString($quote='"') {
-		$opChars = array ('('=>2, '&'=>1, '|'=>1, '!'=>1, ','=>1);
 		$searchstring = $this->getSearchString();
 		$sanitizedwords = '';
 		if (is_array($searchstring)) {
@@ -607,15 +606,10 @@ class SearchEngine
 						$sanitizedword = sanitize($singlesearchstring, 3);
 						$setQuote = $sanitizedword != $singlesearchstring;
 						if (!$setQuote) {
-							foreach ($opChars as $char => $value) {
-								if ((strpos($singlesearchstring, $char) !== false)) {
-									$setQuote = true;
-									break;
-								}
-							}
+							$setQuote = is_numeric($singlesearchstring) || preg_match("/[ &|!'\"`,()]/",$singlesearchstring);
 						}
 						if ($setQuote) {
-							$sanitizedwords .= $quote.$singlesearchstring.$quote;
+							$sanitizedwords .= search_quote($singlesearchstring);
 						} else {
 							$sanitizedwords .= ' '.sanitize($singlesearchstring, 3).' ';
 						}
