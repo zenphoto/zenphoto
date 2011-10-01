@@ -65,19 +65,13 @@ function front_end_edit_editor($html, $object, $context, $field) {
 
 //	$html = '<span class="' . trim($editclass) . '">' . $text . "</span>\n";
 
-	$p = strpos($html, 'class="');
-	$q = strpos($html, '">');
-	if ($p) {
-		$editclass = substr($html, $p+7, $q-$p-7);
-	} else {
-		$editclass= '';
-	}
+	$q = strpos($html, '>');
 	$r = strpos($html, '</span>');
-	$text = substr($html, $q+2, $r-$q-2);
+	$text = substr($html, $q+1, $r-$q-1);
 	if (empty($text)) {
 		$text = $messageIfEmpty;
 	}
-	$class= 'class="' . trim("$editclass zp_editable zp_editable_{$context}_{$field}") . '"';
+	$class= 'class="' . "zp_editable zp_editable_{$context}_{$field}" . '"';
 
 	$html = "<span id=\"editable_{$context}_$id\" $class>" . $text . "</span>\n".
 					"<script type=\"text/javascript\">editInPlace('editable_{$context}_$id', '$context', '$field');</script>";

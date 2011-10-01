@@ -258,7 +258,7 @@ function tweetObject($obj) {
 					$text = truncate_string($title, $c - 4, '... ').$link;	//	allow for ellipsis
 				} else {
 					$c = $c - mb_strlen($title) - 5;
-					$text = $title.':'.truncate_string($text, $c, '... ').$link;
+					$text = $title.': '.truncate_string($text, $c, '... ').$link;
 				}
 			}
 			$error = sendTweet($text);
@@ -270,10 +270,10 @@ function tweetObject($obj) {
 		case 'albums':
 		case 'images':
 			if ($type=='images') {
-				$text = sprintf(gettext('New image:[%2$s]%1$s '),$item = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES)),
+				$text = sprintf(gettext('New image: [%2$s]%1$s '),$item = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES)),
 																														trim(html_entity_decode(strip_tags($obj->album->name),ENT_QUOTES)));
 			} else {
-				$text = sprintf(gettext('New album:%s '),$item = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES)));
+				$text = sprintf(gettext('New album: %s '),$item = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES)));
 			}
 			if (mb_strlen($text.$link) > 140) {
 				$c = 140 - strlen($link);

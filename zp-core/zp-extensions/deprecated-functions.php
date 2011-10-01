@@ -253,17 +253,17 @@ function getAlbumPlace() {
 /**
  * @deprecated
  */
-function printAlbumPlace($editable=false, $editclass='', $messageIfEmpty = true) {
+function printAlbumPlace() {
 	deprecated_function_notify(gettext('Use printAlbumLocation().'));
-	printField('album', 'location', $editclass, !getOption('tinyMCEPresent'));
+	printField('album', 'location');
 }
 
 /**
  * @deprecated
  */
-function printEditable($context, $field, $editable = false, $editclass = 'unspecified', $messageIfEmpty = true, $convertBR = false, $override = false, $label='') {
+function printEditable($context, $field, $editable = NULL, $editclass = 'unspecified', $messageIfEmpty = true, $convertBR = false, $override = false, $label='') {
 	deprecated_function_notify(gettext('Use printField().'));
-	printField($context,$field,$editclass,$convertBR,$override,$label);
+	printField($context,$field,$convertBR,$override,$label);
 }
 
 /***************************

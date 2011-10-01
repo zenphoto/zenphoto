@@ -822,16 +822,10 @@ function getAnnotatedAlbumTitle() {
  * Prints an encapsulated title of the current album.
  * If you are logged in you can click on this to modify the title on the fly.
  *
- * @param bool   $editable set to true to allow editing (for the admin)
- * @param string $editclass CSS class applied to element if editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @author Ozh
  */
-function printAlbumTitle($editable=false, $editclass='', $messageIfEmpty = true) {
-	if ( $messageIfEmpty === true ) {
-		$messageIfEmpty = gettext('(No title...)');
-	}
-	printField('album', 'title', $editable, $editclass, $messageIfEmpty);
+function printAlbumTitle() {
+	printField('album', 'title');
 }
 
 /**
@@ -1045,12 +1039,9 @@ function getAlbumDate($format=null) {
  * @param string $before Insert here the text to be printed before the date.
  * @param string $nonemessage Insert here the text to be printed if there is no date.
  * @param string $format Format string for the date formatting
- * @param bool $editable when true, enables AJAX editing in place
- * @param string $editclass CSS class applied to element if editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @author Ozh
  */
-function printAlbumDate($before='', $nonemessage='', $format=null, $editable=false, $editclass='', $messageIfEmpty = true) {
+function printAlbumDate($before='', $nonemessage='', $format=null) {
 	if (is_null($format)) {
 		$format = DATE_FORMAT;
 	}
@@ -1059,13 +1050,8 @@ function printAlbumDate($before='', $nonemessage='', $format=null, $editable=fal
 		$date = $before . $date;
 	} else {
 		$date = '';
-		if ($nonemessage != '') {
-			$messageIfEmpty = $nonemessage;
-		} elseif ( $messageIfEmpty === true ) {
-			$messageIfEmpty = gettext('(No date...)');
-		}
 	}
-	printField('album', 'date', $editable, $editclass, $messageIfEmpty, false, $date);
+	printField('album', 'date', false, $date);
 }
 
 /**
@@ -1081,16 +1067,10 @@ function getAlbumLocation() {
 /**
  * Prints the location of the album and make it editable
  *
- * @param bool $editable when true, enables AJAX editing in place
- * @param string $editclass CSS class applied to element if editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @author Ozh
  */
-function printAlbumLocation($editable=false, $editclass='', $messageIfEmpty = true) {
-	if ( $messageIfEmpty === true ) {
-		$messageIfEmpty = gettext('(No Location...)');
-	}
-	printField('album', 'location', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
+function printAlbumLocation() {
+	printField('album', 'location');
 }
 
 /**
@@ -1116,16 +1096,10 @@ function getBareAlbumDesc() {
 /**
  * Prints description of the current album and makes it editable in place
  *
- * @param bool $editable when true, enables AJAX editing in place
- * @param string $editclass CSS class applied to element if editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @author Ozh
  */
-function printAlbumDesc($editable=false, $editclass='', $messageIfEmpty = true ) {
-	if ( $messageIfEmpty === true ) {
-		$messageIfEmpty = gettext('(No description...)');
-	}
-	printField('album', 'desc', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
+function printAlbumDesc() {
+	printField('album', 'desc');
 }
 
 
@@ -1135,16 +1109,14 @@ function printAlbumDesc($editable=false, $editclass='', $messageIfEmpty = true )
  *
  * @param string $context	either 'image' or 'album'
  * @param string $field		the data field to echo & edit if applicable: 'date', 'title', 'place', 'description', ...
- * @param bool   $editable 	when true, enables AJAX editing in place
- * @param string $editclass CSS class applied to element if editable
- * @param mixed  $messageIfEmpty message echoed if no value to print
  * @param bool   $convertBR	when true, converts new line characters into HTML line breaks
  * @param string $override	if not empty, print this string instead of fetching field value from database
  * @param string $label "label" text to print if the field is not empty
  * @since 1.3
  * @author Ozh
  */
-function printField($context, $field, $editclass = 'unspecified', $convertBR = false, $override = false, $label='') {
+function printField($context, $field, $convertBR = NULL, $override = false, $label='') {
+	if (is_null($convertBR)) $convertBR = !getOption('tinyMCEPresent');
 	switch($context) {
 		case 'image':
 			global $_zp_current_image;
@@ -1163,7 +1135,7 @@ function printField($context, $field, $editclass = 'unspecified', $convertBR = f
 			$object = $_zp_current_zenpage_news;
 			break;
 		default:
-			trigger_error(gettext('printField() incomplete function call.'), E_USER_NOTICE);
+			trigger_error(gettext('printField() invalid function call.'), E_USER_NOTICE);
 			return false;
 	}
 	if (!$field || !is_object($object)) {
@@ -1177,11 +1149,8 @@ function printField($context, $field, $editclass = 'unspecified', $convertBR = f
 	}
 
 	if (!empty($text)) echo $label;
-	if ($editclass) {
-		$editclass = ' class="'.trim($editclass).'"';
-	}
 
-	$html = '<span' . $editclass . '>' . $text . "</span>\n";
+	$html = '<span>' . $text . "</span>\n";
 	echo zp_apply_filter('printObjectField', $html, $object, $context, $field);
 
 }
@@ -1202,16 +1171,10 @@ function getAlbumCustomData() {
  * Prints the custom_data field of the current album.
  * Converts and displays line break in the admin field as <br />.
  *
- * @param bool $editable when true, enables AJAX editing in place
- * @param string $editclass CSS class applied to element if editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @author Ozh
  */
-function printAlbumCustomData($editable = false, $editclass='', $messageIfEmpty = true) {
-	if ( $messageIfEmpty === true ) {
-		$messageIfEmpty = gettext('(No data...)');
-	}
-	printField('album', 'custom_data', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
+function printAlbumCustomData() {
+	printField('album', 'custom_data');
 }
 
 /**
@@ -1242,17 +1205,10 @@ function getAlbumData($field) {
  *
  * @param string $field the field name of the data desired
  * @param string $label text to label the field
- * @param bool $editable when true, enables AJAX editing in place
- * @param string $editclass CSS class applied to element if editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @author Ozh
  */
-function printAlbumData($field, $label='', $editable=false, $editclass='', $messageIfEmpty = true) {
-	if ( $messageIfEmpty === true ) {
-		$messageIfEmpty = gettext('(No data...)');
-	}
-	if (empty($editclass)) $editclass = 'metadata';
-	printField('album', $field, $editable, $editclass, $messageIfEmpty, false, false, $label);
+function printAlbumData($field, $label='') {
+	printField('album', $field, false, false, $label);
 }
 
 
@@ -1805,16 +1761,10 @@ function getAnnotatedImageTitle() {
 /**
  * Prints title of the current image and make it editable in place
  *
- * @param bool   $editable if set to true and the admin is logged in allows editing of the title
- * @param string $editclass CSS class applied to element if editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @author Ozh
  */
-function printImageTitle($editable=false, $editclass='editable imageTitleEditable', $messageIfEmpty = true ) {
-	if ( $messageIfEmpty === true ) {
-		$messageIfEmpty = gettext('(No title...)');
-	}
-	printField('image', 'title', $editable, $editclass, $messageIfEmpty);
+function printImageTitle() {
+	printField('image', 'title');
 }
 
 /**
@@ -1880,28 +1830,18 @@ function getImageDate($format=null) {
  * @param string $before Insert here the text to be printed before the date.
  * @param string $nonemessage Insert here the text to be printed if there is no date.
  * @param string $format Format string for the date formatting
- * @param bool $editable when true, enables AJAX editing in place
- * @param string $editclass CSS class applied to element if editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @author Ozh
  */
-function printImageDate($before='', $nonemessage='', $format=null, $editable=false, $editclass='', $messageIfEmpty = true) {
+function printImageDate($before='', $nonemessage='', $format=null) {
 	if (is_null($format)) {
 		$format = DATE_FORMAT;
 	}
 	$date = getImageDate($format);
 	if ($date) {
 		$date = $before . $date;
-	} else {
-		$date = '';
-		if ($nonemessage != '') {
-			$messageIfEmpty = $nonemessage;
-		} elseif ( $messageIfEmpty === true ) {
-			$messageIfEmpty = gettext('(No date...)');
-		}
 	}
 
-	printField('image', 'date', $editable, $editclass, $messageIfEmpty, false, $date);
+	printField('image', 'date', false, $date);
 }
 
 // IPTC fields
@@ -1974,16 +1914,9 @@ function getBareImageDesc() {
  * Prints the description of the current image.
  * Converts and displays line breaks set in the admin field as <br />.
  *
- * @param bool $editable set true to allow editing by the admin
- * @param string $editclass CSS class applied to element when editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
- * @author Ozh
  */
-function printImageDesc($editable=false, $editclass='', $messageIfEmpty = true) {
-	if ( $messageIfEmpty === true ) {
-		$messageIfEmpty = gettext('(No description...)');
-	}
-	printField('image', 'desc', $editable, $editclass, $messageIfEmpty, !getOption('tinyMCEPresent'));
+function printImageDesc() {
+	printField('image', 'desc');
 }
 
 /**
@@ -2037,17 +1970,10 @@ function setImageCustomData($val) {
  *
  * @param string $field the field name of the data desired
  * @param string $label text to label the field.
- * @param bool $editable when true, enables AJAX editing in place
- * @param string $editclass CSS class applied to element if editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @author Ozh
  */
-function printImageData($field, $label='', $editable=false, $editclass='', $messageIfEmpty = true) {
-	if ( $messageIfEmpty === true ) {
-		$messageIfEmpty = gettext('(No data...)');
-	}
-	if (empty($editclass)) $editclass = 'metadata';
-	printField('image', $field, $editable, $editclass, $messageIfEmpty, false, false, $label);
+function printImageData($field, $label='') {
+	printField('image', $field, false, false, $label);
 }
 
 /**
@@ -2267,12 +2193,9 @@ function getImageMetaData($image=NULL, $displayonly=true) {
  * @param bool $toggle set to true to get a javascript toggle on the display of the data
  * @param string $id style class id
  * @param string $class style class
- * @param bool $editable set true to allow editing by the admin
- * @param string $editclass CSS class applied to element when editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @author Ozh
  */
-function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $class=null, $editable = false, $editclass='', $messageIfEmpty = '') {
+function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $class=null) {
 	global $_zp_exifvars, $_zp_current_image;
 
 	if (false === ($exif = getImageMetaData($_zp_current_image,true))) {
@@ -2282,12 +2205,6 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
 		$title = gettext('Image Info');
 	}
 
-	// Metadata values will be editable only with sufficient privileges
-	$editable = ($editable && zp_loggedin());
-
-	if ( $messageIfEmpty === true ) {
-		$messageIfEmpty = gettext('(No data)');
-	}
 
 	$dataid = $id . '_data';
 	echo "<div" . (($class) ? " class=\"$class\"" : "") . (($id) ? " id=\"$id\"" : "") . ">\n";
@@ -2299,7 +2216,7 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
 	foreach ($exif as $field => $value) {
 		$label = $_zp_exifvars[$field][2];
 		echo "<tr><td class=\"label\">$label:</td><td class=\"value\">";
-		printField('image', $field, $editable, $editclass, $messageIfEmpty, false, $value);
+		printField('image', $field, false, $value);
 		echo "</td></tr>\n";
 	}
 	echo "</table>\n</div>\n";
@@ -3459,12 +3376,9 @@ function getTags() {
  * @param string $preText text to go before the printed tags
  * @param string $class css class to apply to the div surrounding the UL list
  * @param string $separator what charactor shall separate the tags
- * @param bool   $editable true to allow admin to edit the tags
- * @param string $editclass CSS class applied to editable element if editable
- * @param mixed $messageIfEmpty Either bool or string. If false, echoes nothing when description is empty. If true, echoes default placeholder message if empty. If string, echoes string.
  * @since 1.1
  */
-function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ', $editable=true, $editclass=NULL, $messageIfEmpty = true ) {
+function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ') {
 	global $_zp_current_search;
 	if (is_null($class)) {
 		$class = 'taglist';
@@ -3473,11 +3387,6 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ',
 	$tagstring = implode(', ', $singletag);
 	if ($tagstring === '' or $tagstring === NULL ) {
 		$preText = '';
-		if ( $messageIfEmpty === true && $editable && zp_loggedin() ) {
-			$tagstring = gettext('(No tags...)');
-		} elseif ( is_string($messageIfEmpty) ) {
-			$tagstring = $messageIfEmpty;
-		}
 	}
 	if(in_context(ZP_IMAGE)) {
 		$object = "image";

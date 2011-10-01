@@ -60,8 +60,25 @@
 						<li class="call_list">admin-albumsort.php</li>
 						<li class="call_list">admin-dynamic-album.php</li>
 						<li class="call_list">admin-edit.php</li>
-						<li class="call_list">admin-httpupload/uploader.php</li>
 						<li>...</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>bulk_album_actions</strong></tt>(<em>checkarray_albums</em>)</p>
+					<!-- description(Admin.Media)-bulk_album_actions --><p>Allows a filter to establish bulk album action items</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/xmpMetadata.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-edit.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>bulk_image_actions</strong></tt>(<em>checkarray_images</em>)</p>
+					<!-- description(Admin.Media)-bulk_image_actions --><p>Allows a filter to establish bulk image action items</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/xmpMetadata.php</p>
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-edit.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -101,7 +118,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>edit_image_utilities</strong></tt>(<em>string, image, currentimage, pagenum, tagsort</em>)</p>
 					<!-- description(Admin.Media)-edit_image_utilities --><p>Allows a plugin to place items in the <em>utilities</em> area for images. This invocation is for when the image is presented for editing.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/rating.php</p>
+					<p class="handlers">For example see <em>plugin</em>/crop_image.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-edit.php</li>
@@ -206,7 +223,6 @@
 						<li class="call_list">admin-albumsort.php2 (2)</li>
 						<li class="call_list">admin-comments.php</li>
 						<li class="call_list">admin-dynamic-album.php</li>
-						<li class="call_list">admin-edit.php4 (4)</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -220,12 +236,20 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>admin_tabs</strong></tt>(<em>zenphoto_tabs, _zp_admin_tab</em>)</p>
+					<p class="filterdef"><tt><strong>admin_tabs</strong></tt>(<em>zenphoto_tabs</em>)</p>
 					<!-- description(Admin.Miscellaneous)-admin_tabs --><p>Allows plugins to add <em>Tabs</em> to the administrative pages.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/user-expiry.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
-						<li class="call_list">admin-functions.php</li>
+						<li class="call_list">admin-globals.php</li>
+					</ul><!-- calls -->
+				</li><!-- filterdetail -->
+				<li class="filterdetail">
+					<p class="filterdef"><tt><strong>admin_theme_buttons</strong></tt>(<em>theme, alb</em>)</p>
+					<!-- description(Admin.Miscellaneous)-admin_theme_buttons --><p>Allows a filter to insert buttons in the Theme tab actions column</p><!--e-->
+					<p class="calls">Invoked from:</p>
+					<ul><!-- calls -->
+						<li class="call_list">admin-themes.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
@@ -240,7 +264,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>custom_option_save</strong></tt>(<em>string, themename, themealbum</em>)</p>
 					<!-- description(Admin.Miscellaneous)-custom_option_save --><p>Invoked when options are saved to allow processing of the POST of plugin custom options.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/register_user.php</p>
+					<p class="handlers">For example see <em>plugin</em>/downloadList.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">admin-options.php</li>
@@ -481,14 +505,14 @@
 						<li class="call_list">admin-edit.php</li>
 						<li class="call_list">admin-options.php</li>
 						<li class="call_list">admin-plugins.php</li>
-						<li class="call_list"><em>plugin</em>/zenpage/admin-categories.php</li>
+						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 			</ul><!-- filterdetail -->
 	<h5><a name="Object"></a>Object filters</h5>
 	<!-- classhead Object --><p>These filters provide modifications to the behavior of object methods.</p><!--e-->
 			<h6 class="filter"><a name="Object_Media"></a>Media</h6>
-			<!-- subclasshead Object.Media --><p></p><!--e-->
+			<!-- subclasshead Object.Media --><p>These filtera apply to Zenphoto "media" objects</p><!--e-->
 			<ul class="filterdetail">
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>album_filter</strong></tt>(<em>files</em>)</p>
@@ -562,7 +586,7 @@
 				<li class="filterdetail">
 					<p class="filterdef"><tt><strong>new_album</strong></tt>(<em>object</em>)</p>
 					<!-- description(Object.Media)-new_album --><p>Invoked when a new album is discovered.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/xmpMetadata.php</p>
+					<p class="handlers">For example see <em>plugin</em>/tweet_news.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">class-album.php</li>
@@ -744,17 +768,17 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>front-end_edit</strong></tt>(<em>text, object, context, field</em>)</p>
-					<!-- description(Template.Miscellaneous)-front-end_edit --><p>Invoked when the <em>ajax</em> front end editor processes an edit.</p><!--e-->
+					<p class="filterdef"><tt><strong>isMyItemToView</strong></tt>(<em>string</em>)</p>
+					<!-- description(Template.Miscellaneous)-isMyItemToView --><p>Invoked when checking if an object may be viewed by a user.</p><!--e-->
+					<p class="handlers">For example see <em>plugin</em>/zenpage.php</p>
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">template-functions.php</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>isMyItemToView</strong></tt>(<em>string</em>)</p>
-					<!-- description(Template.Miscellaneous)-isMyItemToView --><p>Invoked when checking if an object may be viewed by a user.</p><!--e-->
-					<p class="handlers">For example see <em>plugin</em>/zenpage.php</p>
+					<p class="filterdef"><tt><strong>printObjectField</strong></tt>(<em>html, object, context, field</em>)</p>
+					<!-- description(Template.Miscellaneous)-printObjectField --><p>Allows a filter to modify the HTML of standard database field displays (Description, etc.)</p><!--e-->
 					<p class="calls">Invoked from:</p>
 					<ul><!-- calls -->
 						<li class="call_list">template-functions.php</li>
@@ -799,7 +823,6 @@
 						<li class="call_list"><em>theme</em>/default/404.php</li>
 						<li class="call_list"><em>theme</em>/default/album.php</li>
 						<li class="call_list"><em>theme</em>/default/archive.php</li>
-						<li class="call_list"><em>theme</em>/default/contact.php</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -811,7 +834,6 @@
 						<li class="call_list"><em>theme</em>/default/404.php</li>
 						<li class="call_list"><em>theme</em>/default/album.php</li>
 						<li class="call_list"><em>theme</em>/default/archive.php</li>
-						<li class="call_list"><em>theme</em>/default/contact.php</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -824,7 +846,6 @@
 						<li class="call_list"><em>theme</em>/default/404.php</li>
 						<li class="call_list"><em>theme</em>/default/album.php</li>
 						<li class="call_list"><em>theme</em>/default/archive.php</li>
-						<li class="call_list"><em>theme</em>/default/contact.php</li>
 						<li>...</li>
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
@@ -926,7 +947,7 @@
 					</ul><!-- calls -->
 				</li><!-- filterdetail -->
 				<li class="filterdetail">
-					<p class="filterdef"><tt><strong>authorization_cookie</strong></tt>(<em>_zp_loggedin</em>)</p>
+					<p class="filterdef"><tt><strong>authorization_cookie</strong></tt>(<em>_zp_authority->checkCookieCredentials(</em>)</p>
 					<!-- description(User_management.Miscellaneous)-authorization_cookie --><p>Allows a plugin to override cookie based authorization credentials.</p><!--e-->
 					<p class="handlers">For example see <em>plugin</em>/show_not_logged-in.php</p>
 					<p class="calls">Invoked from:</p>
