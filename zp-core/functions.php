@@ -1306,12 +1306,11 @@ function getAllTagsCount() {
 	global $_zp_count_tags;
 	if (!is_null($_zp_count_tags)) return $_zp_count_tags;
 	$_zp_count_tags = array();
-	$sql = "SELECT DISTINCT `name`, `id` from ".prefix('tags').' ORDER BY `name`';
+	$sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM ".prefix('obj_to_tag')." as object WHERE object.tagid = tags.id) AS count FROM ".prefix('tags')." as tags ORDER BY `name`";
 	$tagresult = query_full_array($sql);
 	if (is_array($tagresult)) {
 		foreach ($tagresult as $tag) {
-			$count = db_count('obj_to_tag','WHERE `tagid`='.$tag['id']);
-			$_zp_count_tags[$tag['name']] = $count;
+			$_zp_count_tags[$tag['name']] = $tag['count']; 
 		}
 	}
 	return $_zp_count_tags;
