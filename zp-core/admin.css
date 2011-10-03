@@ -717,6 +717,11 @@ textarea {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 100%;
 }
+table.mceLayout td {
+margin: 0 !important;
+padding: 0 !important;	
+background-color: transparent !important;
+}
 
 input.tags {
 	width: 408px;
