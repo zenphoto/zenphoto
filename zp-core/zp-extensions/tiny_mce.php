@@ -64,14 +64,7 @@ class tinymceOptions {
 function tinymceConfigJS($editorconfig,$mode) {
 	if (empty($editorconfig)) {	// only if we get here first!
 		$locale = getLocaleForTinyMCEandAFM();
-		switch($mode) {
-			case 'zenphoto':
-				$editorconfig = getOption('tinymce_zenphoto');
-				break;
-			case 'zenpage';
-			$editorconfig = getOption('tinymce_zenpage');
-			break;
-		}
+		$editorconfig = getOption('tinymce_'.$mode);
 		if (!empty($editorconfig)) {
 			$editorconfig = getPlugin('/tiny_mce/config/'.$editorconfig);
 			require_once($editorconfig);

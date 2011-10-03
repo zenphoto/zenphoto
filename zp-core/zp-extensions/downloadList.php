@@ -215,7 +215,7 @@ function getdownloadList($dir,$filters,$excludesuffixes,$sort) {
 	}
 	foreach($dirs as $file) {
 		if(is_dir($dir.'/'.$file)) {
-			$dir_array[$file] = getdownloadList($dir."/".$file, $filters,$excludesuffixes);
+			$dir_array[$file] = getdownloadList($dir."/".$file, $filters,$excludesuffixes,$sort);
 		} else {
 			if(!in_array(getSuffix($file),$excludesuffixes)) {
 				$dir_array[$file] = $dir.'/'.$file;

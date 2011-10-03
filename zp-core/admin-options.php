@@ -486,7 +486,6 @@ if (isset($_GET['action'])) {
 }
 printAdminHeader($_current_tab);
 
-zp_apply_filter('texteditor_config', '','zenphoto');
 ?>
 <script type="text/javascript" src="js/farbtastic.js"></script>
 <link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
@@ -523,6 +522,7 @@ if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 	</script>
 	<?php
 }
+zp_apply_filter('texteditor_config', '','zenphoto');
 ?>
 </head>
 <body>
