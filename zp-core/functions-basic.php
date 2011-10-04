@@ -41,19 +41,12 @@ if (defined("RELEASE")) {
 	}
 }
 $_zp_error = false;
+if (!file_exists(dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . "/zp-config.php")) {
+	reconfigure();
+}
 
 require_once(dirname(__FILE__).'/lib-utf8.php');
 
-if (!file_exists(dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . "/zp-config.php")) {
-	if (file_exists(dirname(dirname(__FILE__)).'/'.ZENFOLDER.'/setup.php')) {
-		$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-		if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
-		$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php";
-		header("Location: $location" );
-	} else {
-		die('Zenphoto needs to run setup but the setup scripts missing. Please reinstall the setup scripts.');
-	}
-}
 // Including zp-config.php more than once is OK, and avoids $conf missing.
 require(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
 
@@ -1508,4 +1501,33 @@ function db_count($table, $clause=NULL, $field="*") {
 	}
 }
 
+/**
+ *
+ * Check to see if the setup script needs to be run
+ */
+function checkInstall() {
+	if ((getOption('zenphoto_release') != ZENPHOTO_RELEASE) ||
+			(defined('RELEASE') && (getOption('zenphoto_install') != installSignature()))) {
+		reconfigure();
+	}
+}
+
+/**
+ *
+ * Redirects to setup if the files are present. Otherwise notifies need for re-upload
+ */
+function reconfigure() {
+	if (file_exists(dirname(__FILE__).'/setup.php') && count(safe_glob(dirname(__FILE__).'/setup/*'))==10) {
+		$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+		$p = strpos($dir, ZENFOLDER);
+		if ($p !== false) {
+			$dir = substr($dir, 0, $p);
+		}
+		if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
+		$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php";
+		header("Location: $location" );
+	} else {
+		die('Zenphoto needs to run setup but the setup scripts are not present. Please reinstall the setup scripts.');
+	}
+}
 ?>

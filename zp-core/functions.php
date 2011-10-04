@@ -1310,7 +1310,7 @@ function getAllTagsCount() {
 	$tagresult = query_full_array($sql);
 	if (is_array($tagresult)) {
 		foreach ($tagresult as $tag) {
-			$_zp_count_tags[$tag['name']] = $tag['count']; 
+			$_zp_count_tags[$tag['name']] = $tag['count'];
 		}
 	}
 	return $_zp_count_tags;
@@ -2308,22 +2308,6 @@ function cron_starter($script, $params, $inline=false) {
 function zp_loggedin($rights=ALL_RIGHTS) {
 	global $_zp_loggedin;
 	return $_zp_loggedin & ($rights | ADMIN_RIGHTS);
-}
-
-/**
- *
- * Check to see if the setup script needs to be run
- */
-function checkInstall() {
-	if ((getOption('zenphoto_release') != ZENPHOTO_RELEASE) ||
-			(defined('RELEASE') && (getOption('zenphoto_install') != installSignature()))) {
-		if (file_exists(dirname(__FILE__).'/setup.php')) {
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/setup.php");
-			exit();
-		} else {
-			die('setup scripts missing');
-		}
-	}
 }
 
 /**
