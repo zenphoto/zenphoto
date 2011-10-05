@@ -635,9 +635,6 @@ zp-core/utilities/refresh_database.php
 zp-core/utilities/refresh_metadata.php
 zp-core/utilities/reset_albumthumbs.php
 zp-core/utilities/reset_hitcounters.php
-zp-core/utilities/seo_cleanup.php
-zp-core/utilities/user_mailing_list.php
-zp-core/utilities/wordpress_import.php
 zp-core/version.php
 zp-core/watermarks
 zp-core/watermarks/copyright.png
@@ -940,6 +937,7 @@ zp-core/zp-extensions/search_statistics
 zp-core/zp-extensions/search_statistics.php
 zp-core/zp-extensions/search_statistics/search_analysis.php
 zp-core/zp-extensions/security-logger.php
+zp-core/zp-extensions/seo_cleanup.php
 zp-core/zp-extensions/seo_locale.php
 zp-core/zp-extensions/show_not_logged-in.php
 zp-core/zp-extensions/sitemap-extended
@@ -2785,7 +2783,9 @@ zp-core/zp-extensions/user_groups
 zp-core/zp-extensions/user_groups.php
 zp-core/zp-extensions/user_groups/user_groups-tab.php
 zp-core/zp-extensions/user_login-out.php
+zp-core/zp-extensions/user_mailing_list.php
 zp-core/zp-extensions/viewer_size_image.php
+zp-core/zp-extensions/wordpress_import.php
 zp-core/zp-extensions/xmpMetadata.php
 zp-core/zp-extensions/zenpage
 zp-core/zp-extensions/zenpage.php
