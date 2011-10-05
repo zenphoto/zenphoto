@@ -62,9 +62,6 @@ function front_end_edit_editor($html, $object, $context, $field) {
 		$messageIfEmpty = gettext('(No data...)');
 	}
 
-
-//	$html = '<span class="' . trim($editclass) . '">' . $text . "</span>\n";
-
 	$q = strpos($html, '>');
 	$r = strpos($html, '</span>');
 	$text = substr($html, $q+1, $r-$q-1);
