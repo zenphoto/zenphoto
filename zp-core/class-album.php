@@ -1295,11 +1295,11 @@ class Album extends MediaObject {
 	}
 
 	function getUpdatedDate() {
-		return $this->get('updareddate');
+		return $this->get('updateddate');
 	}
 
 	function setUpdatedDate($date) {
-		return $this->set('updareddate',$date);
+		return $this->set('updateddate',$date);
 	}
 
 }
