@@ -9,7 +9,7 @@
  */
 $plugin_description = gettext("Support for providing Google Maps (API version 3) based on EXIF latitude and longitude in the images.");
 $plugin_author = 'Stephen Billard (sbillard)';
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 
 $option_interface = 'googlemapOptions';
 if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {

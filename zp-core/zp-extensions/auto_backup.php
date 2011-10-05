@@ -17,7 +17,7 @@ $plugin_is_filter = 2|ADMIN_PLUGIN|THEME_PLUGIN;
 */
 $plugin_description = gettext("Periodically backup the Zenphoto database.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 
 $option_interface = 'auto_backup';
 if ((getOption('last_backup_run')+getOption('backup_interval')*86400) < time()) {	// register if it is time for a backup

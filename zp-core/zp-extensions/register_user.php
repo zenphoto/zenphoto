@@ -22,7 +22,7 @@
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Provides a means for placing a user registration form on your theme pages.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 
 $option_interface = 'register_user_options';
 

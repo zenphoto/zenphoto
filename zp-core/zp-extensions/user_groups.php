@@ -11,7 +11,7 @@
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Provides rudimentary user groups.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 
 zp_register_filter('admin_tabs', 'user_groups_admin_tabs');
 zp_register_filter('admin_alterrights', 'user_groups_admin_alterrights');

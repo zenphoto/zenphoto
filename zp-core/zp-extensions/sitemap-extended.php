@@ -18,7 +18,7 @@
 $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext('Generates individually sitemap.org compatible XML files for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories.').'<p class="notebox">'.gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!').'</p>';
 $plugin_author = 'Malte Müller (acrylian) based on the <a href="http://github.com/Tenzer/zenphoto-sitemap">plugin</a> by Jeppe Toustrup (Tenzer) and modifications by Timo and Blue Dragonfly';
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 $option_interface = 'sitemap';
 
 zp_register_filter('admin_utilities_buttons', 'sitemap_button');

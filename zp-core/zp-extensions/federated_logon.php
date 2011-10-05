@@ -53,7 +53,7 @@ $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = gettext('Handles federated logon. See <em>Usage information</em> for details.').' '.
 											sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'),FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/federated_logon/Auth/OpenID_detect.php');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 $plugin_disable = (getOption('federated_logon_detect')) ? false : sprintf(gettext('Run the <a href="%s">OpenID detect</a> script to check compatibility of your server configuration.'),FULLWEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/federated_logon/Auth/OpenID_detect.php');
 if ($plugin_disable) {
 	setOption('zp_plugin_federated_login',0);

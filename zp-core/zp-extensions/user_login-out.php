@@ -11,7 +11,7 @@
 
 $plugin_description = gettext("Provides a means for placing a user login form or logout link on your theme pages.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 $option_interface = 'user_logout_options';
 
 /**

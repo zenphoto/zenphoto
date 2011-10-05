@@ -56,7 +56,7 @@
 
 $plugin_description = gettext('Attaches "Image effects" to images and thumbnails.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 
 $option_interface = 'image_effects';
 

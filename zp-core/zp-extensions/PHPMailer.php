@@ -9,7 +9,7 @@
 $plugin_is_filter = 8|CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 zp_register_filter('sendmail', 'zenphoto_PHPMailer');
 
 
