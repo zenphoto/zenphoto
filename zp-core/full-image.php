@@ -45,11 +45,12 @@ if ( $test == FALSE && getOption('hotlink_protection')) { /* It seems they are d
 
 $_zp_gallery = new Gallery();
 $albumobj = new Album($_zp_gallery, $album8);
-if (!$albumobj->checkAccess() && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS)) {
+
+$hash = getOption('protected_image_password');
+if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS)) {
 	//	handle password form if posted
 	zp_handle_password('zp_image_auth', getOption('protected_image_password'), getOption('protected_image_user'));
 	//check for passwords
-	$hash = getOption('protected_image_password');
 	$authType = 'zp_image_auth';
 	$hint = get_language_string(getOption('protected_image_hint'));
 	$show = getOption('protected_image_user');
@@ -94,8 +95,6 @@ if (!$albumobj->checkAccess() && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS)) {
 		printPasswordForm($hint, true, $_zp_gallery->getUserLogonField() || $show, $action);
 		exit();
 	}
-	exit();
-
 }
 
 $image_path = ALBUM_FOLDER_SERVERPATH.$album.'/'.$image;
@@ -115,7 +114,7 @@ switch ($suffix) {
 	default:
 		if ($disposal == 'Download') {
 			header('Content-Disposition: attachment; filename="' . $image . '"');  // enable this to make the image a download
-			$fp = fopen($cache_path, 'rb');
+			$fp = fopen($image_path, 'rb');
 			// send the right headers
 			header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 			header('Content-Disposition: attachment; filename="' . $image . '"');  // enable this to make the image a download
