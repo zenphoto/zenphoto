@@ -49,7 +49,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 	</div> <!-- header -->
 		<!-- The Image -->
 		<?php
- 		makeImageCurrent(getRandomImages(true));
+ 		makeImageCurrent(getRandomImages(getThemeOption('effervescence_daily_album_image')));
  		$size = floor(getOption('image_size') * $imagereduction);
 		$s = getDefaultWidth($size) + 22;
 		$wide = " style=\"width:".$s."px;";

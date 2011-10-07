@@ -3111,42 +3111,29 @@ function getHitcounter($obj=NULL) {
 }
 
 /**
- * Returns a where clause for filter password protected album.
- * Used by the random images functions.
  *
- * If the viewer is not logged in as ADMIN this function fails all password protected albums.
- * It does not check to see if the viewer has credentials for an album.
+ * performs a query and then filters out "illegal" images returning the first "good" image
+ * used by the random image functions.
  *
- * @return string
+ * @param $result object query result
  */
-
-function getProtectedAlbumsWhere() {
-	$result = query_single_row("SELECT MAX(LENGTH(folder) - LENGTH(REPLACE(folder, '/', ''))) AS max_depth FROM " . prefix('albums') );
-	$max_depth = $result['max_depth'];
-
-	$sql = "SELECT level0.id FROM " . prefix('albums') . " AS level0 ";
-				$where = " WHERE (level0.password > ''";
-	$i = 1;
-	while ($i <= $max_depth) {
-		$sql = $sql . " LEFT JOIN " . prefix('albums') . "AS level" . $i . " ON level" . $i . ".id = level" . ($i - 1) . ".parentid";
-		$where = $where . " OR level" . $i . ".password > ''";
-		$i++;
-	}
-	$sql = $sql . $where . " )";
-
-	$result = query_full_array($sql);
+function filterImageQuery($result, $showunpublished) {
 	if ($result) {
-		$albumWhere = prefix('albums') . ".id not in (";
-		foreach ($result as $row) {
-			$albumWhere = $albumWhere . $row['id'] . ", ";
+		while ($row = db_fetch_assoc($result)) {
+			$image = newImage(NULL, $row);
+			if ($image->checkAccess($hint, $show)) {
+				if ($showunpublished || $image->getShow()) {
+					return $image;
+				} else {
+					$album = $image->getAlbum();
+					if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+						return $image;
+					}
+				}
+			}
 		}
-		$albumWhere = substr($albumWhere, 0, -2) . ')';
-	} else {
-		$albumWhere = '';
 	}
-
-	if (!empty($albumWhere)) $albumWhere = ' AND '.$albumWhere;
-	return $albumWhere;
+	return NULL;
 }
 
 /**
@@ -3162,40 +3149,28 @@ function getRandomImages($daily = false) {
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
 			$album = new Album($_zp_gallery, $potd['folder']);
 			$image = newImage($album, $potd['filename']);
-			if ($image->exists)	return $image;
+			if ($image->exists)	{
+				return $image;
+			}
 		}
 	}
 	if (zp_loggedin()) {
-		$albumWhere = '';
 		$imageWhere = '';
 	} else {
-		$albumWhere = " AND " . prefix('albums') . ".show=1" . getProtectedAlbumsWhere() ;
 		$imageWhere = " AND " . prefix('images') . ".show=1";
 	}
-	$c = 0;
-	while ($c < 10) {
-		$result = query_single_row('SELECT COUNT(*) AS row_count ' .
-																' FROM '.prefix('images'). ', '.prefix('albums').
-																' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
-																prefix('albums') . '.id ' .    $albumWhere . $imageWhere );
-		$rand_row = rand(0, $result['row_count']-1);
+	$result = query('SELECT `folder`, `filename` ' .
+									' FROM '.prefix('images'). ', '.prefix('albums').
+									' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
+									prefix('albums') . '.id ' . $imageWhere . 'ORDER BY RAND()');
 
-		$result = query_single_row('SELECT '.prefix('images').'.filename, '.prefix('albums').'.folder ' .
-																' FROM '.prefix('images').', '.prefix('albums') .
-																' WHERE '.prefix('images').'.albumid = '.prefix('albums').'.id  ' . $albumWhere .
-																$imageWhere . ' LIMIT ' . $rand_row . ', 1');
-
-		$imageName = $result['filename'];
-		if (is_valid_image($imageName)) {
-			$album = new Album($_zp_gallery, $result['folder']);
-			$image = newImage($album, $imageName );
-			if ($daily) {
-				$potd = array('day' => time(), 'folder' => $result['folder'], 'filename' => $imageName);
-				setThemeOption('picture_of_the_day', serialize($potd));
-			}
-			return $image;
+	$image = filterImageQuery($result, false);
+	if ($image) {
+		if ($daily) {
+			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
+			setThemeOption('picture_of_the_day', serialize($potd));
 		}
-		$c++;
+		return $image;
 	}
 	return NULL;
 }
@@ -3242,11 +3217,9 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
 		$albumfolder = $album->getFolder();
 		if ($album->isMyItem(LIST_RIGHTS) || $showunpublished) {
 			$imageWhere = '';
-			$albumNotWhere = '';
 			$albumInWhere = '';
 		} else {
 			$imageWhere = " AND " . prefix('images'). ".show=1";
-			$albumNotWhere = getProtectedAlbumsWhere();
 			$albumInWhere = prefix('albums') . ".show=1";
 		}
 
@@ -3260,30 +3233,18 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
 				$albumInWhere = $albumInWhere . $row['id'] . ", ";
 			}
 			$albumInWhere =  ' AND '.substr($albumInWhere, 0, -2) . ')';
-			$c = 0;
-			while (is_null($image) && $c < 10) {
-				$result = query_single_row('SELECT COUNT(*) AS row_count ' .
-																' FROM '.prefix('images'). ', '.prefix('albums').
-																' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
-				prefix('albums') . '.id ' . $albumInWhere . $albumNotWhere . $imageWhere );
-				$rand_row = rand(0, $result['row_count']-1);
-
-				$result = query_single_row('SELECT '.prefix('images').'.filename, '.prefix('albums').'.folder ' .
-																' FROM '.prefix('images').', '.prefix('albums') .
-																' WHERE '.prefix('images').'.albumid = '.prefix('albums').'.id  ' . $albumInWhere .  $albumNotWhere .
-				$imageWhere . ' LIMIT ' . $rand_row . ', 1');
-
-				$imageName = $result['filename'];
-				if (is_valid_image($imageName)) {
-					$image = newImage(new Album(new Gallery(), $result['folder']), $imageName );
-				}
-				$c++;
-			}
+			$result = query('SELECT `folder`, `filename` ' .
+															' FROM '.prefix('images'). ', '.prefix('albums').
+															' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
+			prefix('albums') . '.id ' . $albumInWhere . $imageWhere . 'ORDER BY RAND()');
+			$image = filterImageQuery($result, $showunpublished);
 		}
 	}
-	if ($daily && is_object($image)) {
-		$potd = array('day' => time(), 'folder' => $result['folder'], 'filename' => $result['filename']);
-		setThemeOption('picture_of_the_day:'.$album->name, serialize($potd));
+	if ($image) {
+		if ($daily) {
+			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
+			setThemeOption('picture_of_the_day:'.$album->name, serialize($potd));
+		}
 	}
 	return $image;
 }
