@@ -4409,7 +4409,10 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 					$l1 = $l1 + $delta;
 				}
 				$short = mb_substr($articlecontent, 0, $l1);
-				$short2 = kses($short.'</p>', $allowed_tags);
+				preg_match_all('/(<p>)/', $short, $open);
+				preg_match_all('/(<\/p>)/', $short, $close);
+				if (count($open) > count($close)) $short .= '</p>';
+				$short2 = kses($short, $allowed_tags);
 				$l2 = mb_strlen($short2);
 			}
 			$shorten = $l1;
@@ -4420,15 +4423,18 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		if ($open > mb_strrpos($short, '>')) {
 			$short = mb_substr($short, 0, $open);
 		}
-		// drop unbalanced tags
-		// insert the elipsis
-		$i = strrpos($short, '</p>');
-		if (($i !== false) && ($i == mb_strlen($short) - 4)) {
-			$short = mb_substr($short, 0, -4).' '.$shortenindicator.'</p>';
+		preg_match_all('/(<p>)/', $short, $open);
+		preg_match_all('/(<\/p>)/', $short, $close);
+		if (count($open) > count($close)) {
+			$short .= ' '.$shortenindicator.'</p>';
 		} else {
-			$short .= ' '.$shortenindicator;
+			if (mb_substr($short, -4) == '</p>') {
+				$short = mb_substr($short, 0, -4).' '.$shortenindicator.'</p>';
+			} else {
+				$short .= ' '.$shortenindicator;
+			}
 		}
-		$short = trim(kses($short.'</p>', $allowed_tags));
+		$short = trim(kses($short, $allowed_tags));
 		return $short;
 	}
 	return $articlecontent;

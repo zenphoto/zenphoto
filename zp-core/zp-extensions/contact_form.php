@@ -238,18 +238,19 @@ function printContactForm($subject_override='') {
 			$mailaddress = $mailcontent['email'];
 			$name = $mailcontent['name'];
 			$subject = $mailcontent['subject']." (".getBareGalleryTitle().")";
-			$message = $mailcontent['message']."\n\n";
+			$message = '';
 			if(!empty($mailcontent['title'])) { $message .= $mailcontent['title']; }
 			if(!empty($mailcontent['name'])) { $message .= $mailcontent['name']."\n"; }
+			if(!empty($mailcontent['email'])) { $message .= $mailcontent['email']."\n"; }
 			if(!empty($mailcontent['company'])) { $message .= $mailcontent['company']."\n"; }
 			if(!empty($mailcontent['street'])) { $message .= $mailcontent['street']."\n"; }
 			if(!empty($mailcontent['city'])) { $message .= $mailcontent['city']."\n"; }
 			if(!empty($mailcontent['state'])) { $message .= $mailcontent['state']."\n"; }
 			if(!empty($mailcontent['postal'])) { $message .= $mailcontent['postal']."\n"; }
 			if(!empty($mailcontent['country'])) { $message .= $mailcontent['country']."\n"; }
-			if(!empty($mailcontent['email'])) { $message .= $mailcontent['email']."\n"; }
 			if(!empty($mailcontent['phone'])) { $message .= $mailcontent['phone']."\n"; }
 			if(!empty($mailcontent['website'])) { $message .= $mailcontent['website']."\n"; }
+			$message .= "\n\n".$mailcontent['message'];
 			$message .= "\n\n";
 
 			if (getOption('contactform_confirm')) {

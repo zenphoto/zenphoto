@@ -37,6 +37,7 @@ $map = function_exists('printGoogleMap');
 						<h2 id="gallerytitle">
 							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); ?><?php echo html_encode(getAlbumTitle()); ?>
 						</h2>
+						<?php printAlbumDesc(); ?>
 						<?php printCodeblock(1); ?>
 						<div id="albums">
 							<?php

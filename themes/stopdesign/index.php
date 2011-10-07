@@ -67,12 +67,9 @@ require_once('normalizer.php');
 							}
 							echo ')</em><br />';
 						}
-						$text = getAlbumDesc();
-						if(strlen($text) > 50) {
-							$text = preg_replace("/[^ ]*$/", '', sanitize(substr($text, 0, 50),1)) . "...";
-						}
-						echo $text;
-					?></p>
+						echo shortenContent(strip_tags(getAlbumDesc()), 50, '...');
+					?>
+					</p>
 							<div class="date"><?php printAlbumDate(); ?></div>
 					</li>
 				<?php
