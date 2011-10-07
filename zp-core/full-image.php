@@ -161,10 +161,13 @@ if (!$cache_path && empty($watermark_use_image) && !$rotate) { // no processing 
 		}
 		exit();
 	} else {  // the web server does not have access to the image, have to supply it
+		require_once(dirname(__FILE__).'/mime-types.php');
 		$fp = fopen($image_path, 'rb');
 		// send the right headers
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
-		header("Content-Type: image/$suffix");
+		if ($mimetype = getMimeString($suffix)) {
+			header("Content-Type: $mimetype");
+		}
 		if ($disposal == 'Download') {
 			header('Content-Disposition: attachment; filename="' . $image . '"');  // enable this to make the image a download
 		}
