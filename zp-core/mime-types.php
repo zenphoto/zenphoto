@@ -453,7 +453,7 @@ function getMimeString($suffix) {
 	if (array_key_exists($suffix, $mime_types)) {
 		return $mime_types[$suffix];
 	} else {
-		return NULL;
+		return 'application/octet-stream';
 	}
 }
 ?>

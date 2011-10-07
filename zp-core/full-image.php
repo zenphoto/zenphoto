@@ -97,8 +97,6 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 	}
 }
 
-require_once(dirname(__FILE__).'/mime-types.php');
-
 $image_path = ALBUM_FOLDER_SERVERPATH.$album.'/'.$image;
 $suffix = getSuffix($image_path);
 $cache_file = $album . "/" . substr($image, 0, -strlen($suffix)-1) . '_FULL.' . $suffix;
@@ -115,14 +113,13 @@ switch ($suffix) {
 		break;
 	default:
 		if ($disposal == 'Download') {
+			require_once(dirname(__FILE__).'/mime-types.php');
 			$mimetype = getMimeString($suffix);
 			header('Content-Disposition: attachment; filename="' . $image . '"');  // enable this to make the image a download
 			$fp = fopen($image_path, 'rb');
 			// send the right headers
 			header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
-			if ($mimetype) {
-				header("Content-Type: $mimetype");
-			}
+			header("Content-Type: $mimetype");
 			header("Content-Length: " . filesize($image_path));
 			// dump the picture and stop the script
 			fpassthru($fp);
