@@ -864,7 +864,7 @@ if ($_zp_authority->getVersion() < $_zp_authority->supports_version) {
 	<?php
 }
 ?>
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 	//<!-- <![CDATA[
 	var admins = ["<?php echo implode('","', $alladmins); ?>"];
 	function checkNewuser() {

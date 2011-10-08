@@ -1507,7 +1507,7 @@ $alb = removeParentAlbumNames($album);
 			}
 			if (!empty($target_image)) {
 				?>
-				<script language="Javascript" type="text/javascript" >
+				<script type="text/javascript" >
 					// <!-- <![CDATA[
 					toggleExtraInfo('<?php echo $target_image_nr;?>', 'image', true);
 					// ]]> -->

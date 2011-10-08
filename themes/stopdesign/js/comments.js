@@ -1,4 +1,3 @@
-<!--
 /*
 The hide/show code is based on an example from the article "Unobtrusive show/hide behavior reloaded" by Bobby van der Sluis
 URL: http://www.bobbyvandersluis.com/articles/unobtrusiveshowhide.php
@@ -67,4 +66,3 @@ function createExpires() {
   now = now.toGMTString();
   return now;
 }
-//-->

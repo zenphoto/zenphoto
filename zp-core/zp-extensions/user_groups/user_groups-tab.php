@@ -307,7 +307,7 @@ echo '</head>'."\n";
 							</p>
 							<input type="hidden" name="totalgroups" value="<?php echo $id; ?>" />
 						</form>
-						<script language="javascript" type="text/javascript">
+						<script type="text/javascript">
 							//<!-- <![CDATA[
 							function checkSubmit() {
 								newgroupid = <?php echo ($id-1); ?>;

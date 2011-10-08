@@ -66,7 +66,7 @@ class hitcounter_options {
 		switch ($option) {
 			case 'hitcounter_set_defaults':
 				?>
-				<script language="javascript" type="text/javascript">
+				<script type="text/javascript">
 				// <!-- <![CDATA[
 				function hitcounter_defaults() {
 					$('#hitcounter_ignoreIPList').val('');
@@ -84,7 +84,7 @@ class hitcounter_options {
 				?>
 				<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>'text-hitcounter_ignoreIPList" value="0" />
 				<input type="text" size="30" id="hitcounter_ignoreIPList" name="hitcounter_ignoreIPList" value="<?php echo html_encode($currentValue); ?>" />
-				<script language="javascript" type="text/javascript">
+				<script type="text/javascript">
 				// <!-- <![CDATA[
 				function hitcounter_insertIP() {
 					if ($('#hitcounter_ignoreIPList').val() == '') {

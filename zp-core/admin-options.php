@@ -2737,7 +2737,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 			}
 			?>
 		</form>
-		<script language="javascript" type="text/javascript">
+		<script type="text/javascript">
 			// <!-- <![CDATA[
 			function setShow(v) {
 				<?php

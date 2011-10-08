@@ -682,7 +682,7 @@ function printArticleDatesDropdown() {
 	}
 ?>
 	</select>
-	<script language="JavaScript" type="text/javascript" >
+	<script type="text/javascript" >
 		// <!-- <![CDATA[
 		function gotoLink(form) {
 		var OptionIndex=form.ListBoxURL.selectedIndex;
@@ -830,7 +830,7 @@ function printUnpublishedDropdown() {
 	echo "<option $sticky value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,false,true,true)."&amp;published=sticky'>".gettext("Sticky")."</option>\n";
 	?>
 </select>
-	<script language="JavaScript" type="text/javascript">
+	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function gotoLink(form) {
 		var OptionIndex=form.ListBoxURL.selectedIndex;
@@ -881,7 +881,7 @@ function printSortOrderDropdown() {
 	echo "<option $ordertitle_asc value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=title-asc'>".gettext("Order by title ascending")."</option>\n";
 	?>
 </select>
-	<script language="JavaScript" type="text/javascript">
+	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function gotoLink(form) {
 		var OptionIndex=form.ListBoxURL.selectedIndex;
@@ -948,7 +948,7 @@ if(isset($_GET['category'])) {
 		}
 		?>
 	</select>
-	<script language="JavaScript" type="text/javascript" >
+	<script type="text/javascript" >
 		// <!-- <![CDATA[
 		function gotoLink(form) {
 		var OptionIndex=form.ListBoxURL.selectedIndex;
@@ -996,7 +996,7 @@ function printArticlesPerPageDropdown() {
 	echo "<option $articles_page[0] value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=all'>".gettext("All")."</option>\n";
 	?>
 </select>
-	<script language="JavaScript" type="text/javascript">
+	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function gotoLink(form) {
 		var OptionIndex=form.ListBoxURL.selectedIndex;

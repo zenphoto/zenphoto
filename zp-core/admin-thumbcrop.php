@@ -164,7 +164,7 @@ printAdminHeader('edit','thumbcrop');
 
 <script src="js/jquery.Jcrop.js" type="text/javascript"></script>
 <link rel="stylesheet" href="js/jquery.Jcrop.css" type="text/css" />
-<script language="javascript" type="text/javascript" >
+<script type="text/javascript" >
 	//<!-- <![CDATA[
 	var jcrop_api;
 	jQuery(window).load(function(){
@@ -295,7 +295,7 @@ printAdminHeader('edit','thumbcrop');
 					</div>
 
 					<!-- set the initial view for the preview -->
-					<script language="Javascript" type="text/javascript" >
+					<script type="text/javascript" >
 						// <!-- <![CDATA[
 						jQuery('#preview').css({
 							width: '<?php echo round($cropwidth / $iW * $sizedwidth); ?>px',

@@ -132,7 +132,7 @@ function printAdminHeader($tab,$subtab=NULL) {
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.tooltip.js" type="text/javascript"></script>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
-	<script language="javascript" type="text/javascript">
+	<script type="text/javascript">
 		// <!-- <![CDATA[
 		$(document).ready(function(){
 			$("a.colorbox").colorbox({ maxWidth:"98%", maxHeight:"98%"});
@@ -3392,7 +3392,7 @@ function printEditDropdown($subtab,$nestinglevels = array('1','2','3','4','5')) 
 		}
 ?>
 	</select>
-	<script language="JavaScript" type="text/javascript" >
+	<script type="text/javascript" >
 		// <!-- <![CDATA[
 		function gotoLink(form) {
 		var OptionIndex=form.ListBoxURL.selectedIndex;

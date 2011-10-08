@@ -198,7 +198,7 @@ printAdminHeader('edit',gettext('crop image'));
 <script src="<?php echo WEBPATH.'/'.ZENFOLDER ?>/js/jquery.Jcrop.js" type="text/javascript"></script>
 <link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER ?>/js/jquery.Jcrop.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER ?>/crop_image/crop_image.css" type="text/css" />
-<script language="javascript" type="text/javascript" >
+<script type="text/javascript" >
 	//<!-- <![CDATA[
 	var jcrop_api;
 	jQuery(window).load(function(){

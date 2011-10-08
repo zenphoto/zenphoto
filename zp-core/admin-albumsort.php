@@ -52,7 +52,7 @@ setAlbumSubtabs($album);
 printAdminHeader('edit','sort');
 
 ?>
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 	//<!-- <![CDATA[
 	$(function() {
 		$('#images').sortable();
@@ -113,7 +113,7 @@ if (!isset($_GET['album'])) {
 			<?php zp_apply_filter('admin_note','albums', $subtab); ?>
 			<form action="?page=edit&amp;album=<?php echo $album->getFolder(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm">
 				<?php XSRFToken('save_sort');?>
-				<script language="javascript" type="text/javascript">
+				<script type="text/javascript">
 					// <!-- <![CDATA[
 					function postSort(form) {
 						$('#sortableList').val($('#images').sortable('serialize'));

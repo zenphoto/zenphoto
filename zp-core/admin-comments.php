@@ -273,15 +273,16 @@ if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])
 <div class="messagebox fade-message">
 <?php
 	if (isset($_GET['ndeleted'])) {
-	?>
-	<h2><?php echo $_GET['ndeleted']; ?> <?php echo gettext("Comments deleted successfully."); ?></h2>
-	<?php
+		?>
+		<h2><?php echo $_GET['ndeleted']; ?> <?php echo gettext("Comments deleted successfully."); ?></h2>
+		<?php
 	}
 	if (isset($_GET['sedit'])) {
-	?>
-	<h2
-	<?php echo gettext("Changes applied"); ?></h2>
-	<?php
+		?>
+		<h2>
+		<?php echo gettext("Changes applied"); ?>
+		</h2>
+		<?php
 	}
 	?>
 </div>
