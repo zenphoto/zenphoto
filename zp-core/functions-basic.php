@@ -1517,7 +1517,10 @@ function checkInstall() {
  * Redirects to setup if the files are present. Otherwise notifies need for re-upload
  */
 function reconfigure() {
-	if (file_exists(dirname(__FILE__).'/setup.php') && count(safe_glob(dirname(__FILE__).'/setup/*'))==10) {
+	$package = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package');
+	preg_match_all('|'.ZENFOLDER.'/setup/(.*)|', $package, $matches);
+	$found = safe_glob(dirname(__FILE__).'/setup/setup*.*');
+	if (file_exists(dirname(__FILE__).'/setup.php') && count($found)==count($matches[1])) {
 		$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 		$p = strpos($dir, ZENFOLDER);
 		if ($p !== false) {

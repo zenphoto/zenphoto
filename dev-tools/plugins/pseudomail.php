@@ -9,7 +9,7 @@
 $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext("Pseudo mailing handler for localhost testing.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.1';
+$plugin_version = '1.4.2';
 
 zp_register_filter('sendmail', 'pseudo_sendmail');
 
