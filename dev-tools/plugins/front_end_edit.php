@@ -4,7 +4,7 @@
  * @package plugins
  */
 $plugin_is_filter = 5|THEME_PLUGIN;
-$plugin_description = gettext('Provieds front-end editing capability. <strong>Note:</strong> this is not secure!');
+$plugin_description = gettext('Provides front-end editing capability. <strong>Note:</strong> this is not secure!');
 $plugin_author = "Stephen Billard (sbillard)";
 
 if (zp_loggedin()) {
