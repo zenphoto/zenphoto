@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.1.3\n"
+"Project-Id-Version: Zenphoto 1.4.1.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-27 08:05+0100\n"
-"PO-Revision-Date: 2011-09-30 20:21+0100\n"
+"POT-Creation-Date: 2011-10-08 12:49+0100\n"
+"PO-Revision-Date: 2011-10-08 13:03+0100\n"
 "Last-Translator: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "MIME-Version: 1.0\n"
@@ -55,6 +55,58 @@ msgstr "Generátor Doc filtrov"
 #: D:\Zenphoto_DEV/dev-tools/plugins/filterDoc.php:24
 msgid "Generate filter document"
 msgstr "Generuje dokument filtra"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:7
+msgid "Provides front-end editing capability. <strong>Note:</strong> this is not secure!"
+msgstr "Umožňuje upravovať webstránku cez front-end. <strong>Poznámka:</strong> toto nie je bezpečné!"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:38
+msgid "Save"
+msgstr "Uložiť"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:39
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:40
+msgid "Saving"
+msgstr "Ukladá sa"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:41
+msgid "Click to edit..."
+msgstr "Kliknutím upravíte..."
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:54
+msgid "(No title...)"
+msgstr "(Bez názvu...)"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:55
+msgid "(No date...)"
+msgstr "(Bez dátumu...)"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:56
+msgid "(No Location...)"
+msgstr "(Bez lokácie...)"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:57
+msgid "(No description...)"
+msgstr "(Bez popisu...)"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:62
+msgid "(No data...)"
+msgstr "(Žiadne dáta...)"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:82
+msgid "Oops.. Cannot edit from this page"
+msgstr "Hopla... Z tejto stránky nemôžete upravovať"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:103
+msgid "Error: malformed Ajax POST"
+msgstr "Chyba: chybný Ajax POST"
+
+#: D:\Zenphoto_DEV/dev-tools/plugins/front_end_edit.php:136
+msgid "Could not save!"
+msgstr "Nedá sa uložiť!"
 
 #: D:\Zenphoto_DEV/dev-tools/plugins/PluginNews.php:7
 msgid "Generates news articles for supported plugins."
@@ -123,7 +175,6 @@ msgstr "Objekt nenájdený"
 #: D:\Zenphoto_DEV/themes/default/404.php:23
 #: D:\Zenphoto_DEV/themes/default/archive.php:26
 #: D:\Zenphoto_DEV/themes/default/contact.php:24
-#: D:\Zenphoto_DEV/themes/default/password.php:24
 msgid "Gallery Index"
 msgstr "Index galérie"
 
@@ -147,7 +198,7 @@ msgid "Page: %s"
 msgstr "Strana: %s"
 
 #: D:\Zenphoto_DEV/themes/default/album.php:22
-#: D:\Zenphoto_DEV/themes/default/image.php:42
+#: D:\Zenphoto_DEV/themes/default/image.php:43
 msgid "Albums Index"
 msgstr "Index albumov"
 
@@ -159,24 +210,24 @@ msgid "View album:"
 msgstr "Prezrieť album:"
 
 #: D:\Zenphoto_DEV/themes/default/album.php:54
-#: D:\Zenphoto_DEV/themes/default/image.php:37
+#: D:\Zenphoto_DEV/themes/default/image.php:38
 #: D:\Zenphoto_DEV/themes/default/index.php:45
 msgid "prev"
 msgstr "späť"
 
 #: D:\Zenphoto_DEV/themes/default/album.php:54
-#: D:\Zenphoto_DEV/themes/default/image.php:39
+#: D:\Zenphoto_DEV/themes/default/image.php:40
 #: D:\Zenphoto_DEV/themes/default/index.php:45
 msgid "next"
 msgstr "ďalej"
 
 #: D:\Zenphoto_DEV/themes/default/album.php:55
-#: D:\Zenphoto_DEV/themes/default/image.php:84
+#: D:\Zenphoto_DEV/themes/default/image.php:85
 msgid "<strong>Tags:</strong>"
 msgstr "<strong>Tagy:</strong>"
 
 #: D:\Zenphoto_DEV/themes/default/album.php:58
-#: D:\Zenphoto_DEV/themes/default/image.php:77
+#: D:\Zenphoto_DEV/themes/default/image.php:78
 msgid "View Slideshow"
 msgstr "Spustiť prezeranie"
 
@@ -187,13 +238,13 @@ msgstr "RSS albumov"
 #: D:\Zenphoto_DEV/themes/default/album.php:68
 #: D:\Zenphoto_DEV/themes/default/archive.php:11
 #: D:\Zenphoto_DEV/themes/default/archive.php:27
-#: D:\Zenphoto_DEV/themes/default/image.php:99
+#: D:\Zenphoto_DEV/themes/default/image.php:100
 #: D:\Zenphoto_DEV/themes/default/index.php:58
 msgid "Archive View"
 msgstr "Archív"
 
 #: D:\Zenphoto_DEV/themes/default/archive.php:14
-#: D:\Zenphoto_DEV/themes/default/image.php:25
+#: D:\Zenphoto_DEV/themes/default/image.php:27
 #: D:\Zenphoto_DEV/themes/default/index.php:14
 msgid "Gallery RSS"
 msgstr "RSS galérie"
@@ -211,24 +262,23 @@ msgstr "Kontaktujte nás"
 msgid "Contact us."
 msgstr "Kontaktujte nás."
 
-#: D:\Zenphoto_DEV/themes/default/image.php:20
+#: D:\Zenphoto_DEV/themes/default/image.php:21
 msgid "close"
 msgstr "zatvoriť"
 
-#: D:\Zenphoto_DEV/themes/default/image.php:37
+#: D:\Zenphoto_DEV/themes/default/image.php:38
 msgid "Previous Image"
 msgstr "Predchádzajúci obrázok"
 
-#: D:\Zenphoto_DEV/themes/default/image.php:39
+#: D:\Zenphoto_DEV/themes/default/image.php:40
 msgid "Next Image"
 msgstr "Nasledujúci obrázok"
 
-#: D:\Zenphoto_DEV/themes/default/image.php:80
+#: D:\Zenphoto_DEV/themes/default/image.php:81
 msgid "Image Info"
 msgstr "Informácie o obrázku"
 
 #: D:\Zenphoto_DEV/themes/default/index.php:67
-#: D:\Zenphoto_DEV/themes/default/password.php:39
 msgid "Register for this site"
 msgstr "Zaregistrujte sa na tejto stránke"
 
@@ -295,9 +345,8 @@ msgstr "Štandardná téma je v 4 rôznych variantoch. Keď si ju nastavíte mô
 #: D:\Zenphoto_DEV/themes/effervescence_plus/archive.php:36
 #: D:\Zenphoto_DEV/themes/effervescence_plus/contact.php:81
 #: D:\Zenphoto_DEV/themes/effervescence_plus/gallery.php:51
-#: D:\Zenphoto_DEV/themes/effervescence_plus/image.php:81
+#: D:\Zenphoto_DEV/themes/effervescence_plus/image.php:83
 #: D:\Zenphoto_DEV/themes/effervescence_plus/news.php:50
-#: D:\Zenphoto_DEV/themes/effervescence_plus/pages.php:40
 msgid "Main Index"
 msgstr "Hlavný index"
 
@@ -306,9 +355,8 @@ msgstr "Hlavný index"
 #: D:\Zenphoto_DEV/themes/effervescence_plus/archive.php:36
 #: D:\Zenphoto_DEV/themes/effervescence_plus/contact.php:81
 #: D:\Zenphoto_DEV/themes/effervescence_plus/gallery.php:51
-#: D:\Zenphoto_DEV/themes/effervescence_plus/image.php:81
+#: D:\Zenphoto_DEV/themes/effervescence_plus/image.php:83
 #: D:\Zenphoto_DEV/themes/effervescence_plus/news.php:50
-#: D:\Zenphoto_DEV/themes/effervescence_plus/pages.php:40
 msgid "Home"
 msgstr "Domov"
 
@@ -560,6 +608,8 @@ msgid "Category"
 msgstr "Kategórie"
 
 #: D:\Zenphoto_DEV/themes/effervescence_plus/pages.php:12
+#: D:\Zenphoto_DEV/themes/effervescence_plus/sidebar.php:52
+#: D:\Zenphoto_DEV/themes/effervescence_plus/themeoptions.php:44
 msgid "Pages"
 msgstr "Stránky"
 
@@ -855,40 +905,40 @@ msgstr "Obrázok"
 msgid "Theme page"
 msgstr "Strana témy"
 
-#: D:\Zenphoto_DEV/themes/garland/album.php:46
-#: D:\Zenphoto_DEV/themes/garland/album.php:51
+#: D:\Zenphoto_DEV/themes/garland/album.php:47
+#: D:\Zenphoto_DEV/themes/garland/album.php:52
 #: D:\Zenphoto_DEV/themes/garland/gallery.php:42
 #: D:\Zenphoto_DEV/themes/garland/gallery.php:47
 #, php-format
 msgid "View album:  %s"
 msgstr "Prezrieť album: %s"
 
-#: D:\Zenphoto_DEV/themes/garland/album.php:109
+#: D:\Zenphoto_DEV/themes/garland/album.php:110
 msgid "Album Navigation"
 msgstr "Navigácia albumu:"
 
-#: D:\Zenphoto_DEV/themes/garland/album.php:114
+#: D:\Zenphoto_DEV/themes/garland/album.php:115
 msgid "Next album"
 msgstr "Ďalší album"
 
-#: D:\Zenphoto_DEV/themes/garland/album.php:114
+#: D:\Zenphoto_DEV/themes/garland/album.php:115
 msgid "Next album &raquo;"
 msgstr "Ďalší album &raquo;"
 
-#: D:\Zenphoto_DEV/themes/garland/album.php:122
+#: D:\Zenphoto_DEV/themes/garland/album.php:123
 msgid "Prev Album"
 msgstr "Predchádzajúci album"
 
-#: D:\Zenphoto_DEV/themes/garland/album.php:122
+#: D:\Zenphoto_DEV/themes/garland/album.php:123
 msgid "&laquo; Prev Album"
 msgstr "&laquo; Predchádzajúci album"
 
-#: D:\Zenphoto_DEV/themes/garland/album.php:128
-#: D:\Zenphoto_DEV/themes/garland/image.php:104
+#: D:\Zenphoto_DEV/themes/garland/album.php:129
+#: D:\Zenphoto_DEV/themes/garland/image.php:106
 msgid "Tags: "
 msgstr "Tagy:"
 
-#: D:\Zenphoto_DEV/themes/garland/album.php:145
+#: D:\Zenphoto_DEV/themes/garland/album.php:146
 #, php-format
 msgid "Latest Images for %s"
 msgstr "Najnovšie obrázky v %s"
@@ -899,27 +949,26 @@ msgid "Album index"
 msgstr "Index albumov"
 
 #: D:\Zenphoto_DEV/themes/garland/gallery.php:77
-#: D:\Zenphoto_DEV/themes/garland/main.php:52
 msgid "Latest Images"
 msgstr "Najnovšie obrázky"
 
-#: D:\Zenphoto_DEV/themes/garland/image.php:49
+#: D:\Zenphoto_DEV/themes/garland/image.php:51
 msgid "Album Thumbnails"
 msgstr "Miniatúry albumu"
 
-#: D:\Zenphoto_DEV/themes/garland/image.php:89
+#: D:\Zenphoto_DEV/themes/garland/image.php:91
 msgid "Next &raquo;"
 msgstr "Ďalej &raquo;"
 
-#: D:\Zenphoto_DEV/themes/garland/image.php:90
+#: D:\Zenphoto_DEV/themes/garland/image.php:92
 msgid "Next image"
 msgstr "Nasledujúci obrázok"
 
-#: D:\Zenphoto_DEV/themes/garland/image.php:97
+#: D:\Zenphoto_DEV/themes/garland/image.php:99
 msgid "&laquo; Previous"
 msgstr "&laquo; Späť"
 
-#: D:\Zenphoto_DEV/themes/garland/image.php:98
+#: D:\Zenphoto_DEV/themes/garland/image.php:100
 msgid "Previous image"
 msgstr "Predchádzajúci obrázok"
 
@@ -1094,12 +1143,12 @@ msgid "images %1$u-%2$u of %3$u"
 msgstr "Obrázky %1$u-%2$u z %3$u"
 
 #: D:\Zenphoto_DEV/themes/stopdesign/album.php:151
-#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:90
+#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:88
 msgid "prev page"
 msgstr "predchádzajúca strana"
 
 #: D:\Zenphoto_DEV/themes/stopdesign/album.php:154
-#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:93
+#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:91
 msgid "next page"
 msgstr "ďalšia strana"
 
@@ -1141,7 +1190,7 @@ msgid "Contact form"
 msgstr "Kontaktný formulár"
 
 #: D:\Zenphoto_DEV/themes/stopdesign/contact.php:43
-#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:120
+#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:118
 msgid "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> from Stopdesign"
 msgstr "<a href=\"http://stopdesign.com/templates/photos/\">Témy</a> od Stopdesign-u"
 
@@ -1163,40 +1212,41 @@ msgid_plural "%1$u albums,&nbsp;%2$s"
 msgstr[0] "%1$u album,&nbsp;%2$s"
 msgstr[1] "%1$u albumov,&nbsp;%2$s"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:100
+#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:98
 msgid "Gallery Feeds"
 msgstr "Kanály galérie"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:102
+#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:100
 msgid "Photos"
 msgstr "Obrázky"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:103
+#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:101
 msgid "Comments"
 msgstr "Komentáre"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:113
+#: D:\Zenphoto_DEV/themes/stopdesign/gallery.php:111
 msgid "Gallery Archive"
 msgstr "Archív galérie"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/image.php:84
+#: D:\Zenphoto_DEV/themes/stopdesign/image.php:86
 #, php-format
 msgid "%1$u of %2$u images"
 msgstr "%1$u z %2$u obrázkov"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/image.php:97
+#: D:\Zenphoto_DEV/themes/stopdesign/image.php:99
 msgid "Full Size"
 msgstr "Plná veľkosť"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/image.php:135
+#: D:\Zenphoto_DEV/themes/stopdesign/image.php:137
 msgid "Previous"
 msgstr "Späť"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/image.php:155
+#: D:\Zenphoto_DEV/themes/stopdesign/image.php:157
 msgid "Next"
 msgstr "Ďalej"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/image.php:172
+#: D:\Zenphoto_DEV/themes/stopdesign/image.php:174
+#: D:\Zenphoto_DEV/themes/stopdesign/index.php:200
 msgid "<a href=\"http://stopdesign.com/templates/photos/\">Photo Templates</a> from Stopdesign."
 msgstr "<a href=\"http://stopdesign.com/templates/photos/\">Témy</a> od Stopdesign-u"
 
@@ -1212,26 +1262,26 @@ msgstr "Nedávno aktualizované galérie"
 msgid "View album: %s"
 msgstr "Prezrieť album: %s"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/index.php:101
+#: D:\Zenphoto_DEV/themes/stopdesign/index.php:98
 #: D:\Zenphoto_DEV/themes/stopdesign/themeoptions.php:24
 msgid "Recent images"
 msgstr "Najnovšie obrázky"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/index.php:120
-#: D:\Zenphoto_DEV/themes/stopdesign/index.php:148
+#: D:\Zenphoto_DEV/themes/stopdesign/index.php:117
+#: D:\Zenphoto_DEV/themes/stopdesign/index.php:145
 msgid "View image:"
 msgstr "Prezrieť obrázok:"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/index.php:131
+#: D:\Zenphoto_DEV/themes/stopdesign/index.php:128
 #: D:\Zenphoto_DEV/themes/stopdesign/themeoptions.php:24
 msgid "Random images"
 msgstr "Náhodné obrázky"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/index.php:160
+#: D:\Zenphoto_DEV/themes/stopdesign/index.php:157
 msgid "Gallery data"
 msgstr "Dáta galérie"
 
-#: D:\Zenphoto_DEV/themes/stopdesign/index.php:163
+#: D:\Zenphoto_DEV/themes/stopdesign/index.php:160
 msgid "Galleries"
 msgstr "Galérie"
 
@@ -1368,11 +1418,11 @@ msgstr "Postavené na <a href=\"http://www.zenphoto.org\" title=\"Jednoduchá ga
 msgid "Comments:"
 msgstr "Komentáre:"
 
-#: D:\Zenphoto_DEV/themes/zenpage/image.php:67
+#: D:\Zenphoto_DEV/themes/zenpage/image.php:69
 msgid "&laquo; prev thumbs"
 msgstr "&laquo; späť"
 
-#: D:\Zenphoto_DEV/themes/zenpage/image.php:67
+#: D:\Zenphoto_DEV/themes/zenpage/image.php:69
 msgid "next thumbs &raquo;"
 msgstr "ďalej &raquo;"
 
@@ -1511,11 +1561,6 @@ msgstr "Ste si istý, že chcete vymazať tento komentár?"
 #: D:\Zenphoto_DEV/zp-core/admin-comments.php:483
 msgid "Delete"
 msgstr "Vymazať"
-
-#: D:\Zenphoto_DEV/zp-core/admin-comments.php:134
-#: D:\Zenphoto_DEV/zp-core/admin-comments.php:136
-msgid "Cancel"
-msgstr "Zrušiť"
 
 #: D:\Zenphoto_DEV/zp-core/admin-comments.php:146
 msgid "Author:"
@@ -1718,10 +1763,12 @@ msgid "Create in:"
 msgstr "Vytvoriť v:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-dynamic-album.php:147
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:1403
 msgid "Thumbnail:"
 msgstr "Miniatúra:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-dynamic-album.php:158
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:1424
 msgid "randomly selected"
 msgstr "náhodne vybrať"
 
@@ -2201,25 +2248,25 @@ msgstr "Nie je označené nič na zobrazenie"
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1427
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1541
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1218
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1203
 msgid "Codeblocks:"
 msgstr "Kódové bloky:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1432
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1546
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1223
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1208
 msgid "Codeblock 1"
 msgstr "Kódový blok 1"
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1433
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1547
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1224
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1209
 msgid "Codeblock 2"
 msgstr "Kódový blok 2"
 
 #: D:\Zenphoto_DEV/zp-core/admin-edit.php:1434
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1548
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1225
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1210
 msgid "Codeblock 3"
 msgstr "Kódový blok 3"
 
@@ -2373,8 +2420,8 @@ msgstr "Zobraziť index galérie"
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:394
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1380
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1820
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1760
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1813
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1754
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1807
 msgid "Images"
 msgstr "obrázky"
 
@@ -2431,8 +2478,8 @@ msgstr "Heslo albumu:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1140
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:979
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1303
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1931
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1288
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1925
 msgid "clear password"
 msgstr "vymazať heslo"
 
@@ -2451,7 +2498,7 @@ msgstr "Nápoveda k heslu:"
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1225
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:775
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1071
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1595
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1589
 msgid "Custom"
 msgstr "Používatelské nastavenie"
 
@@ -2470,19 +2517,19 @@ msgstr "*poradie podalbumov"
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1260
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1311
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1105
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1622
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1616
 msgid "Descending"
 msgstr "Zostupne"
 
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1274
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1326
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1113
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1628
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1622
 msgid "custom fields:"
 msgstr "používatelské polia:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1281
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1590
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1584
 msgid "Sort images by:"
 msgstr "Zoradiť obrázky podľa: "
 
@@ -2507,7 +2554,7 @@ msgid "Album watermarks:"
 msgstr "Vodoznak albumu:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-functions.php:1395
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1764
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1758
 msgid "Thumbs"
 msgstr "Miniatúry"
 
@@ -2763,76 +2810,76 @@ msgstr "upraviť album"
 msgid "upload"
 msgstr "nahrať"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2931
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2929
 msgid "Managed albums:"
 msgstr "Spravované albumy:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2944
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2942
 msgid "Managed news categories:"
 msgstr "Spravované kategórie správ:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2946
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2944
 msgid "News categories"
 msgstr "Kategórie správ"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2959
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2957
 msgid "Managed pages:"
 msgstr "Spravované stránky:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2966
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2964
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Označte jeden alebo viaceré %1$s pre  %2$s na správu."
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2967
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2965
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:798
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:807
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:813
 msgid "user"
 msgstr "používateľ"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2968
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2966
 #, php-format
 msgid "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All others may manage only those that are selected."
 msgstr "Používatelia s \"Administrátorskými\" alebo \"Spravovať všetko %1$s\" právami môžu spravovať všetko %2$s. Všetci ostatní môžu spravovať len to, čo je označené."
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2971
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:2969
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Máte právo spravovať toto %s podľa označených práv hore."
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3387
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3385
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Zobraziť %u úroveň albumu"
 msgstr[1] "Zobraziť %u úrovne albumu"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3390
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3388
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u obrázok na stranu"
 msgstr[1] "%u obrázkov na stranu"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3531
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3529
 msgid "Destination"
 msgstr "Destinácia"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3829
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3827
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
 msgstr "\"%s\" Cross Site Request Forgery blokovaný."
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3935
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3933
 msgid "Setup log"
 msgstr "Inštalačný protokol"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3935
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3933
 msgid "Security log"
 msgstr "Bezpečnostný protokol"
 
-#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3935
+#: D:\Zenphoto_DEV/zp-core/admin-functions.php:3933
 msgid "Debug log"
 msgstr "Chybový protokol"
 
@@ -2968,7 +3015,7 @@ msgid "Download %s ZIP file"
 msgstr "Stiahnuť %s ZIP archív"
 
 #: D:\Zenphoto_DEV/zp-core/admin-logs.php:115
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1975
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1969
 msgid "Download"
 msgstr "Stiahnuť"
 
@@ -2998,21 +3045,21 @@ msgstr "Viac informácií nájdete v sprievodcovi problémami na zenphoto.org."
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:575
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:907
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:930
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1255
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1278
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1417
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1439
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1542
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1580
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2076
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2097
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2198
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2325
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2580
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2626
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2737
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2775
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2895
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1240
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1263
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1402
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1424
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1536
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1574
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2070
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2091
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2192
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2319
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2574
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2620
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2731
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2769
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2889
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:456
 msgid "reset"
 msgstr "obnoviť"
@@ -3312,10 +3359,10 @@ msgid "This email address will be used as the <em>From</em> address for all mail
 msgstr "Táto mailová adresa bude použitá ako odosielateľ všetkých mailov poslaných zo Zenphota."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:906
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2625
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2736
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2774
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2894
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2619
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2730
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2768
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2888
 msgid "save"
 msgstr "uložiť"
 
@@ -3365,8 +3412,8 @@ msgid "Gallery guest user:"
 msgstr "Návštevník galérie:"
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:999
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1321
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1955
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1306
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1949
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:707
 msgid "(repeat)"
 msgstr "(zopakovať)"
@@ -3384,7 +3431,7 @@ msgid "Master password for the gallery. If this is set, visitors must know this 
 msgstr "Hlavné heslo galérie. Ak je nastavené, návštevníci musia poznať toto heslo, aby si mohli prezrieť galériu."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1015
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1337
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1322
 msgid "A reminder hint for the password."
 msgstr "Nápoveda pre heslo."
 
@@ -3421,965 +3468,964 @@ msgid "Sort order for the albums on the index of the gallery. Custom sort values
 msgstr "Poradie albumov v indexe galérie. Voliteľné hodnoty zoradenia musia byť platné názvy databázových polí. Môžete použiť viacero polí oddelených čiarkou. Toto nastavenie je aj základným nastavením poradia albumov a podalbumov."
 
 #: D:\Zenphoto_DEV/zp-core/admin-options.php:1127
-msgid "Front-end editing"
-msgstr "Povolenie úprav z prednej stránky"
-
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1130
-msgid "Disabled"
-msgstr "Deaktivovať"
-
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1133
-msgid "This is really not a secure setting. Are you sure you want to enable it?"
-msgstr "Toto naozaj nie je bezpečné nastavenie. Naozaj ho chcete aktivovať?"
-
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1133
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1526
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1991
-msgid "Enabled"
-msgstr "Aktivovať"
-
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1137
-msgid "Check to allow editing of Gallery data on the front-end pages. (Sometimes known as <em>Ajax</em> editing.)"
-msgstr "Označte ok chcete povoliť možnosť úprav z prednej stránky webstránky. (Niekedy sa táto funkcia nazýva aj <em>Ajax</em> upravovanie.)"
-
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1138
-msgid "<strong>NOTE:</strong> enabling this feature is not recommended as it is susceptible to Cross Site Request Forgeries."
-msgstr "<strong>Poznámka:</strong> povolenie tejto funkcie sa neodporúča, pretože sa podobá na <a href=\"http://de.wikipedia.org/wiki/Cross-Site_Request_Forgery\">Cross Site Request Forgeries</a> "
-
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1142
 msgid "Gallery behavior:"
 msgstr "Správanie sa galérie:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1147
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1132
 msgid "Publish albums by default"
 msgstr "Predvolené zverejnenie albumu"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1153
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1138
 msgid "Publish images by default"
 msgstr "Zverejniť obrázky podľa predvolenia"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1160
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1145
 msgid "use latest image date as album date"
 msgstr "použiť dátum posledného obrázku ako dátum galérie"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1167
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1152
 msgid "visual thumb selection"
 msgstr "vizuálny výber miniatúr"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1174
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1159
 msgid "enable persistent archives"
 msgstr "povoliť trvalé archívy"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1181
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1166
 msgid "enable gallery sessions"
 msgstr "povoliť relácie pre galériu"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1186
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1171
 msgid "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish albums by default</em>"
 msgstr "<a href=\"javascript:toggle('albumpub');\" >Detaily</a> pre <em>štandardné publikovanie albumov</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1188
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1173
 msgid "This sets the default behavior for when Zenphoto discovers an album. If checked, the album will be published, if unchecked it will be unpublished."
 msgstr "Nastavenie základného chovania Zenphota pri objavení nového albumu. Zaškrtnutím sa album publikuje, prázdne políčko znamená nepublikovať."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1190
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1175
 msgid "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish images by default</em>"
 msgstr "<a href=\"javascript:toggle('imagepub');\" >Detaily</a> pre <em>štandardné publikovanie obrázkov</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1192
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1177
 msgid "This sets the default behavior for when Zenphoto discovers an image. If checked, the image will be published, if unchecked it will be unpublished."
 msgstr "Nastavenie základného chovania Zenphota pri objavení nového obrázku. Zaškrtnutím sa obrázok publikuje, prázdne políčko znamená nepublikovať."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1194
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1179
 msgid "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest image date as album date</em>"
 msgstr "<a href=\"javascript:toggle('albumdate');\" >Detaily</a> pre <em>použiť dátum posledného obrázku ako dátum galérie</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1196
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1181
 msgid "If you wish your album date to reflect the date of the latest image uploaded set this option. Otherwise the date will be set initially to the date the album was created."
 msgstr "Ak chcete použiť dátum posledného obrázku ako dátum galérie zvoľte túto možnosť. Inak sa ako dátum galérie použije dátum jej založenia."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1199
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1184
 msgid "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual thumb selection</em>"
 msgstr "<a href=\"javascript:toggle('visualthumb');\" >Detaily</a> pre <em>vizuálny výber miniatúr</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1201
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1186
 msgid "Setting this option places thumbnails in the album thumbnail selection list (the dropdown list on each album's edit page). In Firefox the dropdown shows the thumbs, but in IE and Safari only the names are displayed (even if the thumbs are loaded!). In albums with many images loading these thumbs takes much time and is unnecessary when the browser won't display them. Uncheck this option and the images will not be loaded. "
 msgstr "Zapnutím tejto možnosti sa vo výbere miniatúry pre album zobrazí rozbalovacia ponuka miniatúr. Vo Firefoxe rozbalovacia ponuka ukazuje aj miniatúry, ale v IE a Safari sa zobrazujú iba názvy (aj keď sú miniatúry nahraté!). Pri albumoch s veľa obrázkami trvá nahrávanie týchto miniatúr dlhý čas a je to zbytočné ak ich prehliadač nezobrazuje, takže môžete túto možnosť vypnúť a miniatúry sa nebudú nahrávať."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1204
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1189
 msgid "<a href=\"javascript:toggle('persistentarchive');\" >Details</a> for <em>enable persistent archive</em>"
 msgstr "<a href=\"javascript:toggle('persistentarchive');\" >Detaily</a> pre <em>povoliť trvalé archívy</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1206
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1191
 msgid "Put a checkmark here to re-serve Zip Archive files if you are using the optional template function <em>printAlbumZip()</em> to enable visitors of your site to download images of an album as .zip files. If not checked that .zip file will be regenerated each time."
 msgstr "Označte túto možnosť ak používate funkciu tém <em>printAlbumZip()</em>, ktorá umožňuje návštevníkom stiahnuť si albumy ako .zip súbor. Po zapnutí sa vytvorené ZIP súbory budú uchovávať a nebudú sa pri každom dopyte vytvárať nanovo."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1207
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1192
 msgid "<strong>Note: </strong>Setting this option may impact password protected albums!"
 msgstr "<strong>Poznámka: </strong>Zapnutie tejto možnosti môže ohroziť albumy chránené heslom!"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1210
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1195
 msgid "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>enable gallery sessions</em>"
 msgstr "<a href=\"javascript:toggle('gallerysessions');\" >Detaily</a> pre <em>povoliť relácie pre galériu</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1212
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1197
 msgid "Check this option if you are having issues with album password cookies not being retained. Setting the option causes zenphoto to use sessions rather than cookies."
 msgstr "Zapnite túto možnosť ak máte problémy s cookies pre heslom chránené albumy. Toto nastavenie umožňuje zenphotu použiť namiesto cookies relácie."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1289
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1320
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1274
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1305
 msgid "Search password:"
 msgstr "Heslo pre vyhľadávanie:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1309
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1294
 msgid "Password for the search guest user. click on <em>Search password</em> to change."
 msgstr "Heslo na vyhľadávanie pre návštevníkov. Ak ho chcete zmeniť, kliknite na <em>Heslo pre vyhľadávanie</em>."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1316
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1301
 msgid "Search guest user:"
 msgstr "Vyhľadávací návštevník:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1323
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1308
 msgid "Search password hint:"
 msgstr "Nápoveda vyhľadávacieho hesla:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1335
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1320
 msgid "User ID for the search guest user"
 msgstr "Používatelské ID pre vyhľadávacieho návštevníka"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1336
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1321
 msgid "Password for the search guest user. If this is set, visitors must know this password to view search results."
 msgstr "Heslo pre vyhľadávacieho návštevníka. Ak je zadané návštevník musí poznať heslo, aby sa mu zobrazili výsledky vyhľadávania."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1344
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1329
 msgid "Search behavior settings:"
 msgstr "Nastavenie vyhľadávania:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1348
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1333
 msgid "partial"
 msgstr "čiastočné"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1349
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1334
 msgid "exact"
 msgstr "presné"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1355
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1340
 msgid "Fields list:"
 msgstr "Zoznam polí:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1363
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1348
 msgid "Treat spaces as"
 msgstr "Registorvať medzery ako"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1364
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1349
 msgid "<em>space</em>"
 msgstr "<em>medzera</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1364
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1349
 msgid "<em>OR</em>"
 msgstr "<em>ALEBO</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1364
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1349
 msgid "<em>AND</em>"
 msgstr "<em>A</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1369
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1354
 msgid "Do not return <em>album</em> matches"
 msgstr "Nezobrazovať zhody v <em>albumoch</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1375
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1360
 msgid "Do not return <em>image</em> matches"
 msgstr "Nezobrazovať zhody v <em>obrázkoch</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1384
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1369
 msgid "Do not return <em>news</em> matches"
 msgstr "Nezobrazovať zhody v <em>článkoch</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1390
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1375
 msgid "Do not return <em>page</em> matches"
 msgstr "Nezobrazovať zhody v <em>stránkach</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1398
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1383
 msgid "<em>Field list</em> is the set of fields on which searches may be performed."
 msgstr "<em>Zoznam polí</em> je zoznam polí, v ktorých sa má vyhľadávať."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1399
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1384
 msgid "Search does partial matches on all fields selected with the possible exception of <em>Tags</em>. This means that if the field contains the search criteria anywhere within it a result will be returned. If <em>exact</em> is selected for <em>Tags</em> then the search criteria must exactly match the tag for a result to be returned."
 msgstr "Vyhľadávanie hľadá čiastočné zhody vo všetkých označených poliach s možnými výnimkami v <em>tagoch</em>. To znamená, že ak pole obsahuje vyhľadávaný výraz kdekoľvek vo svojom tele bude vygenerovaný výsledok. Ak je pre <em>tagy</em> označené <em>presne</em> tak vyhľadávaný výraz musí byť presne rovnaký, inak sa nezobrazia žiadne výsledky."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1400
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1385
 msgid "Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target."
 msgstr "Ak nastavíte <code>medzeru ako <em>ALEBO</em></code>, bude sa vhľadávať každý výraz textu zvlášť. Ak bude nastavená na <em>A</em> vyhľadávanie bude zamerané na všetky slová textu dokopy. Nezaškrtnutím voľby bude celý reťazec braný ako hľadanie cieľ."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1401
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1386
 msgid "Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches."
 msgstr "Ak zvolíte <code>Nezobrazovať zhody v <em>{položke}</em></code>, nebude sa tejto <em>{položke}</em> vyhľadávať."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1404
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1389
 msgid "Cache expiry"
 msgstr "Vypršanie vyrovnávacej pamäti"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1406
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1391
 #, php-format
 msgid "Redo search after %s minutes."
 msgstr "Opakovať vyhľadávanie po %s minútach."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1409
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1394
 msgid "Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches."
 msgstr "Vyhľadávanie si bude pamätať výsledky jednotlivých vyhľadávaní, kvôli väčšej efektivite etc. Po čase môžu byť tieto zapamätané vyhľadávania zastarané, takže by mali byť obnovené. Toto nastavenie vám umožní vybrať si dobu, po ktorej budú tieto vyhľadávania platné. Nastavením možnosti na <em>zero</em> zruší archivovanie vyhľadávaní."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1444
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1429
 msgid "RSS feeds enabled:"
 msgstr "Aktivovať RSS kanál:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1456
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1441
 msgid "News/Page comments"
 msgstr "Komentáre článkov / stránok"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1463
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1448
 msgid "Check each RSS feed you wish to activate."
 msgstr "Označte, ktoré RSS kanály chcete aktivovať."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1468
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1453
 msgid "<strong>Note:</strong> Theme support is required to display RSS links."
 msgstr "<strong>Poznámka:</strong> Téma musí podporovať zobrazovanie RSS odkazov."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1474
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1459
 msgid "Number of RSS feed items:"
 msgstr "Počet položiek RSS kanálu:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1476
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1485
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1505
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1461
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1470
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1490
 msgid "Images RSS"
 msgstr "RSS obrázkov"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1477
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1487
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1508
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1462
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1472
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1493
 msgid "Albums RSS"
 msgstr "RSS albumov"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1479
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1464
 msgid "The number of new items you want to appear in your site's RSS feed. The images and comments RSS share the value."
 msgstr "Počet nových položiek, ktoré sa majú zobrazovať v RSS kanály stránky. RSS obrázkov a kometárov má spoločný počet."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1482
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1467
 msgid "Size of RSS feed images:"
 msgstr "Veľkosť obrázkov v RSS kanaly:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1489
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1474
 msgid "The size you want your images to have in your site's RSS feed."
 msgstr "Veľkosť, v akej sa majú zobrazovať obrázky v RSS kanály."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1492
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1477
 msgid "RSS feed sort order:"
 msgstr "Poradie v RSS kanály:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1495
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1499
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1480
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1484
 msgid "latest by id"
 msgstr "najnovšie podľa ID"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1496
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1481
 msgid "latest by date"
 msgstr "najnovšie podľa dátumu"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1497
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1482
 msgid "latest by mtime"
 msgstr "najnovšie podľa mtime"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1500
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1485
 msgid "latest updated"
 msgstr "podľa poslednej úpravy"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1510
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1495
 msgid "a) Images RSS: Choose between <em>latest by id</em> for the latest uploaded, <em>latest by date</em> for the latest uploaded fetched by date, or <em>latest by mtime</em> for the latest uploaded fetched by the file's last change timestamp.<br />b) Albums RSS: Choose between <em>latest by id</em> for the latest uploaded and <em>latest updated</em>"
 msgstr "a) RSS obrázkov: Vyberte si z <em>najnovšie podľa ID</em> – naposledy nahraté, <em>najnovšie podľa dátumu</em> – najnovšie podľa dátumu alebo <em>najnovšie podľa mtime</em> – najnovšie pridané zoradené podľa času poslednej úpravy. <br />b)RSS albumov: Vyberte si z <em>najnovšie podľa ID</em> – naposledy nahraté a <em>podľa poslednej úpravy</em>."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1513
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1498
 msgid "RSS enclosure:"
 msgstr "Príloha RSS:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1516
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1501
 msgid "Check if you want to enable the <em>RSS enclosure</em> feature which provides a direct download for full images, movies etc. from within certain RSS reader clients <em>(only Images RSS)</em>."
 msgstr "Zapnutím povolíte funkciu <em>Príloha RSS</em>, ktorá umožňuje niektorým RSS čítačkám zobrazovať link na priame stiahnutie plných obrázkov, videí atď. <em>(len pre RSS obrázkov)</em>."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1519
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1504
 msgid "Media RSS:"
 msgstr "Media RSS:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1521
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1506
 msgid "Check if <em>media RSS</em> support is to be enabled. This support is used by some services and programs <em>(only Images RSS)</em>."
 msgstr "Zapnutím aktivujete podporu <em>media RSS</em>. Tú používajú niektoré služby a programy <em>(len pre RSS obrázkov)</em>."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1524
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1509
 msgid "RSS cache"
 msgstr "Vyrovnávacia pamäť RSS"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1528
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1511
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1985
+msgid "Enabled"
+msgstr "Aktivovať"
+
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1513
 msgid "RSS cache expire"
 msgstr "Expirácia vyrovnávaciej pamäti RSS"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1530
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1515
 msgid "Check if you want to enable static RSS feed caching. The cached file will be placed within the <em>cache_html</em> folder.<br /> Cache expire default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec)."
 msgstr "Zapnutím, sa aktivuje nahrávanie vyrovnávaciej pamäti pre kanál RSS. Dočasné súbory sa ukladajú do zložky <em>cache_html</em>.<br /> Základná expirácia je nastavená na 86400 s (1 deň = 24 h, * 60 min * 60 s)."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1533
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1518
 msgid "RSS hitcounter"
 msgstr "Počítadlo RSS"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1536
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1521
 msgid "Check if you want to store the hitcount on RSS feeds."
 msgstr "Označte ak chcete uchovávať poočet prístupov na kanál RSS"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1557
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1524
+msgid "RSS title"
+msgstr "RSS titul"
+
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1526
+msgid "Gallery title"
+msgstr "Názov galérie"
+
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1527
+msgid "Website title"
+msgstr "Názov webstránky"
+
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1528
+msgid "Both"
+msgstr "Oboje"
+
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1530
+msgid "Select what you want to use as the main RSS feed (channel) title. 'Both' means Website title followed by Gallery title"
+msgstr "Vyberte si, čo chcete použiť ako hlavný titulok RSS kanálu. Oboje znamená, že za názovom webstránky bude nasledovať názov galérie"
+
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1551
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:401
 #, php-format
 msgid "Your %s passwords were empty or did not match"
 msgstr "Vaše %s heslo nebolo správne, alebo ste nechali pole prázdne"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1560
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1554
 msgid "You must supply a password for the Protected image user"
 msgstr "Pre prístup k chráneným udajom musíte vložiť heslo"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1572
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1566
 msgid "See also the <a href=\"?tab=theme\">Theme Options</a> tab for theme specific image options."
 msgstr "Skontrolujte aj záložku <a href=\"?tab=theme\">nastavenia tém</a> kvôli špecifickým nastaveniam obrázkov pre tému."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1634
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1628
 msgid "Default sort order for images."
 msgstr "Štandardné radenie obrázkov."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1635
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1629
 msgid "Custom sort values must be database field names. You can have multiple fields separated by commas."
 msgstr "Voliteľné hodnoty zoradenia musia byť platné názvy databázových polí. Môžete použiť viacero polí oddelených čiarkou."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1639
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1633
 msgid "Image quality:"
 msgstr "Kvalita obrázku:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1642
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1636
 msgid "Normal Image"
 msgstr "Normálny obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1663
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1657
 msgid "<em>full</em> Image"
 msgstr "<em>plný</em> obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1684
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1678
 msgid "Thumbnail"
 msgstr "Miniatúra"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1706
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1700
 msgid "Compression quality for images and thumbnails generated by Zenphoto."
 msgstr "Kvalita kompresie obrázkov a miniatúr použitá Zenphotom."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1707
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1701
 msgid "Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, biggest file). "
 msgstr "Kvalita má rozpätie od 0 (najhoršia kvalita, najmenší súbor) po 100 (najlepšia kvalita, najväčší súbor)."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1711
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1705
 msgid "Interlace:"
 msgstr "Preklad:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1713
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1707
 msgid "If checked, resized images will be created <em>interlaced</em> (if the format permits)."
 msgstr "Ak je táto funkcia zvolená zmenšený obrázok sa uloží <em>prekladaný</em> (ak to formát umožňuje)."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1716
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1710
 msgid "Auto rotate images:"
 msgstr "Automaticky obracať obrázky:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1721
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1715
 msgid "Automatically rotate images based on the EXIF orientation setting."
 msgstr "Automatické obracanie obrázkov je postavené na informáciach z EXIF dát."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1723
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1717
 msgid "Image rotation requires the <em>imagerotate</em> function found in the bundled GD library of PHP version 4.3 or greater."
 msgstr "Obracanie obrázkov potrebuje funkciu <em>imagerotate</em>, ktorá je súčasťou GD Libary v PHP 4.3 alebo novšom."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1728
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1722
 msgid "Use embedded thumbnail"
 msgstr "Použiť pripojenú miniatúru"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1739
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1733
 msgid "If set, Zenphoto will use the thumbnail imbedded in the image when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image."
 msgstr "Po nastavení bude Zenphoto používať miniatúru pripojenú k obrázku pri vytváraní dočasného obrázku, ktorý je v rovnakej alebo menšej veľkosti. Poznámka: kvalita tohto obrázku sa líši v závislosti od použitého fotoaparátu a jeho orientácia nemusí byť rovnaká ako u originálneho obrázku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1743
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1737
 msgid "The PHP EXIF extension is required for this option."
 msgstr "Pre toto nastavenie je vyžadovaný doplnok PHP EXIF."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1750
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1744
 msgid "Allow upscale:"
 msgstr "Povoliť zväčšovanie:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1752
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1746
 msgid "Allow images to be scaled up to the requested size. This could result in loss of quality, so it's off by default."
 msgstr "Povoliť zväčšovanie obrázkov na požadovanú veľkosť. Keďže táto funkcia môže znamenať stratu kvality obrázkov je štandardne vypnutá."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1755
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1749
 msgid "Sharpen:"
 msgstr "Doostriť:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1768
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1762
 msgid "Amount"
 msgstr "Sila"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1792
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1786
 msgid "Radius"
 msgstr "Rádius"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1796
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1790
 msgid "Threshold"
 msgstr "Prah"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1802
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1796
 msgid "Add an unsharp mask to images and/or thumbnails."
 msgstr "Doostrovanie obrázkov a/alebo miniatúr."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1802
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1796
 msgid "<strong>Warning</strong>: can overload slow servers."
 msgstr "<strong>Pozor</strong>: táto funkcia môže preťažiť pomalšie servery."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1803
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1797
 msgid "<em>Amount</em>: the strength of the sharpening effect. Values are between 0 (least sharpening) and 100 (most sharpening)."
 msgstr "<em>Sila</em>: sila doostrovacieho efektu. Hodnoty sú od 0 (minimálne doostrenie) do 100 (maximálne doostrenie)."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1804
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1798
 msgid "<em>Radius</em>: the pixel radius of the sharpening mask. A smaller radius sharpens smaller details, and a larger radius sharpens larger details."
 msgstr "<em>Rádius</em>: Rozsah doostrovacej masky v pixeloch. Menší rádius doostruje menšie detaily, väčší doostruje väčšie detaily."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1805
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1799
 msgid "<em>Threshold</em>: the color difference threshold required for sharpening. A low threshold sharpens all edges including faint ones, while a higher threshold only sharpens more distinct edges."
 msgstr "<em>Prah</em>: prah rozdielu farieb pre doostrovanie. Nízky prah doostruje všetky obrysy vrátane najmenších, zatiaľ čo vyšší prah doostruje iba výraznejšie obrysy."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1809
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1803
 msgid "Watermarks:"
 msgstr "Vodoznak:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1826
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1820
 msgid "Full sized images"
 msgstr "Originálny obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1847
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1841
 msgid "thumbnails"
 msgstr "miniatúry"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1850
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1844
 msgid "image thumb"
 msgstr "miniatúry obrázkov"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1863
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1857
 msgid "cover"
 msgstr "pokrytie"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1865
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1859
 #, no-php-format
 msgid "% of image"
 msgstr "% obrázku"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1868
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1862
 msgid "allow upscale"
 msgstr "povoliť zväčšenie"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1872
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1866
 msgid "offset h"
 msgstr "posun v"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1874
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1868
 #, no-php-format
 msgid "% w, "
 msgstr "% š "
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1876
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1870
 #, no-php-format
 msgid "%"
 msgstr "%"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1880
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1874
 msgid "The watermark image is scaled by to cover <em>cover percentage</em> of the image and placed relative to the upper left corner of the image."
 msgstr "Vodoznak je zväčšovaný podľa percent pokrytia obrázku a je umiestňovaný od ľavého horného okraju obrázku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1881
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1875
 msgid "It is offset from there (moved toward the lower right corner) by the <em>offset</em> percentages of the height and width difference between the image and the watermark."
 msgstr "Je to posun (smerom k pravému dolnému rohu) vyjadrený v percentuálnom pomere výšky a šírky originálneho obrázku a vodoznaku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1882
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1876
 msgid "If <em>allow upscale</em> is not checked the watermark will not be made larger than the original watermark image."
 msgstr "Pokial nie je <em>povolené zväčšenie</em> vodoznak sa nebude zväčšovať a zobrazí sa vo svojej pôvodnej velkosti."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1883
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1877
 #, php-format
 msgid "Images are in png-24 format and are located in the <code>/%s/watermarks/</code> folder."
 msgstr "Vodoznakové obrázky musia byť vo formáte png-24 a nahrané v zložke <code>/%s/watermarks/</code>."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1887
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1881
 msgid "If a watermark image is selected for these <em>images classes</em> it will be used in place of the image thumbnail watermark."
 msgstr "Ak je pre tieto <em>triedy obrázkov</em> vybraný vodoznak, bude použitý namiesto vodoznaku miniatúry obrázku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1895
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1889
 msgid "Full image protection:"
 msgstr "Ochrana plného obrázku:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1900
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1894
 msgid "Disable hotlinking"
 msgstr "Zakázať priamy odkaz"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1905
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1899
 msgid "cache the full image"
 msgstr "nahrať plný obrázok do vyrovnávacej pamäti"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1918
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1947
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1912
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1941
 msgid "password:"
 msgstr "heslo:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1940
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1934
 msgid "user:"
 msgstr "používateľ:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1962
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1956
 msgid "hint:"
 msgstr "nápoveda:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1975
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1969
 msgid "Unprotected"
 msgstr "Nechránené"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1975
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1969
 msgid "Protected view"
 msgstr "Chránené zobrazenie"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1975
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1969
 msgid "No access"
 msgstr "Nemáte prístup"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1981
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1975
 msgid "Disabling hotlinking prevents linking to the full image from other domains. If enabled, external links are redirect to the image page. If you are having problems with full images being displayed, try disabling this setting. Hotlinking is not prevented if <em>Full&nbsp;image&nbsp;protection</em> is <em>Unprotected</em> or if the image is cached."
 msgstr "Zakázaním priameho odkazu znemožníte prístup k plným obrázkom z iných domén. Ak je nastavenie aktívne externé odkazy budú smerované na stránku obrázku. Ak máte problémy so zobrazovaním plných obrázkov skúste toto nastavenie vypnúť. Priame odkazy sa nedajú zakázať ak <em>Ochrana plného obrázku</em> je nastavená na <em>Nechránené</em> alebo je obrázok nahraný vo vyrovnávacej pamäti."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1982
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1976
 msgid "If <em>Cache the full image</em> is checked the full image will be loaded to the cache and served from there after the first reference. <em>Full&nbsp;image&nbsp;protection</em> must be set to <em>Protected&nbsp;view</em> for the image to be cached. However, once cached, no protections are applied to the image."
 msgstr "Ak je povolené <em>nahrávanie plného obrázku do vyrovnávacej pamäti</em> nahrá sa po prvom dopyte plný obrázok do vyrovnávacej pamäti a odtiaľ bude poskytovaný. <em>Ochrana plného obrázku</em> musí byť nastavené na <em>Chránené zobrazenie</em> aby bol obrázok nahratý do vyrovnávacej pamäti. Avšak akonáhle sa raz nahrá do vyrovnávacej pamäti už sa naň nevzťahuje ochrana."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1983
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1977
 msgid "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the <em>Download</em> and <em>Protected view</em> level of protection. If there is a password set, the viewer must supply this password to access the image."
 msgstr "<em>Používateľ</em>, <em>heslo</em> a <em>nápoveda</em> sa týkajú bezpečnostných krokov <em>Stiahnuť</em> a <em>chránené zobrazenie</em>. Ak je nastavené heslo, návštevník ho musí zadať aby sa dostal k obrázku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1984
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1978
 msgid "Select the level of protection for full sized images. <em>Download</em> forces a download dialog rather than displaying the image. <em>No&nbsp;access</em> prevents a link to the image from being shown. <em>Protected&nbsp;view</em> forces image processing before the image is displayed, for instance to apply a watermark or to check passwords. <em>Unprotected</em> allows direct display of the image."
 msgstr "Nastavte stupeň ochrany pre plné obrázky. <em>Stiahnuť</em> zobrazí okno sťahovania namiesto obrázku. <em>Nemáteo&nbsp;prístup</em> nezobrazí odkaz na obrázok. <em>Chránené&nbsp;zobrazenie</em> vyvolá zadané procesy pre obrázok (napr. umiestnenie vodoznaku, heslo). <em>Nechránené</em> povolí priame zobrazenie obrázku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1988
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1982
 msgid "Use lock image"
 msgstr "Použiť obrázok zámku"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1993
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1987
 msgid "Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."
 msgstr "Nahradí miniatúru chráneného albumu obrázkom <em>zámku</em> ak návštevník nezadá heslo. Ak to téma podporuje, bude sa zobrazovať obrázok <code>images/err-passwordprotected.png</code>. Inak sa bude zobrazovať štandardný obrázok zámku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:1996
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:1990
 msgid "Metadata"
 msgstr "Metadáta"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2015
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2028
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2029
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2030
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2009
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2022
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2023
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2024
 #: D:\Zenphoto_DEV/zp-core/admin-users.php:470
 msgid "show"
 msgstr "zobraziť"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2016
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2010
 msgid "hide"
 msgstr "skryť"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2017
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2011
 msgid "disabled"
 msgstr "deaktivované"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2026
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2020
 msgid "Select how image metadata fields are handled."
 msgstr "Vyberte si akým spôsobom sa budú spracovávať polia metadát."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2028
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2022
 msgid "Show the field"
 msgstr "Zobraziť pole"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2029
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2023
 msgid "Hide the field"
 msgstr "Skryť pole"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2030
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2024
 msgid "Do not process the field"
 msgstr "Toto pole nespracovávať"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2041
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2035
 msgid "IPTC encoding:"
 msgstr "IPTC kódovanie:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2047
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2041
 msgid "The default character encoding of image IPTC metadata."
 msgstr "Štandardné kódovanie metadát IPTC."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2052
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2046
 msgid "Imbed IPTC copyright"
 msgstr "Vložiť IPTC copyright"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2053
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2047
 msgid "If checked and an image has no IPTC data a copyright notice will be imbedded cached copies."
 msgstr "Ak je táto možnosť zaškrtnutá a obrázok nemá žiadne IPTC dáta bude do kópií vo vyrovnávacej pamäti vložená poznámka o copyrighte."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2055
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2049
 msgid "Replicate IPTC metadata"
 msgstr "Skopírovať IPTC metadáta"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2056
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2050
 msgid "If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded."
 msgstr "Ak je táto možnosť zaškrtnutá IPTC dáta originálneho obrázku budú vložené do kópií vo vyrovnávacej pamäti. Ak obrázok nemá žiadne IPTC dáta bude do kópií vo vyrovnávacej pamäti vložená poznámka o copyrighte."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2060
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2054
 msgid "IPTC Imbedding:"
 msgstr "Vkladanie IPTC:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2068
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2062
 msgid "<strong>NOTE:</strong> This option is applies only to JPEG format images."
 msgstr "<strong>Poznámka:</strong> Toto nastavenie sa aplikuje iba na obrázky vo formáte JPEG."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2102
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2096
 msgid "Enable comment notification:"
 msgstr "Povoliť upozornenie na komentár:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2105
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2099
 msgid "Email the Admin when new comments are posted"
 msgstr "Posiela mail adminstrátorovi ak je pridaný nový komentár."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2109
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2103
 msgid "Spam filter:"
 msgstr "Spam filter:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2117
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2111
 msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
 msgstr "Vyberte si zásuvný modul spam filter, ktorý chcete používať na kontrolu komentárov."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2129
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2123
 msgid "Name field"
 msgstr "Pole mena"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2133
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2150
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2167
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2184
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2127
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2144
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2161
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2178
 msgid "Omit"
 msgstr "Vynechať"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2137
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2154
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2171
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2131
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2148
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2165
 msgid "Show"
 msgstr "Zobraziť"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2141
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2158
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2175
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2188
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2135
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2152
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2169
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2182
 msgid "Require"
 msgstr "Vyžadované"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2144
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2138
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
 msgstr "Pokial je pole <em>Meno</em> vyžadované, zadávateľ musí vložiť meno."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2146
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2140
 msgid "Email field"
 msgstr "Pole mailu"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2161
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2155
 msgid "If the <em>Email</em> field is required, the poster must provide an email address."
 msgstr "Pokial je pole <em>Email</em> vyžadované, zadávateľ musí vložiť emailovú adresu."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2163
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2157
 msgid "Website field"
 msgstr "Pole webstránky"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2178
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2172
 msgid "If the <em>Website</em> field is required, the poster must provide a website."
 msgstr "Pokial je pole <em>Web</em> vyžadované, zadávateľ musí vložiť webstránku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2180
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2174
 msgid "Captcha"
 msgstr "Captcha"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2191
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2185
 msgid "If <em>Captcha</em> is required, the form will include a Captcha verification."
 msgstr "Pokial je pole <em>Captcha</em> vyžadované, formulár bude obsahovať potvrdenie Captcha."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2284
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2278
 #: D:\Zenphoto_DEV/zp-core/admin-themes.php:152
 msgid "There are no themes for which you have rights to administer."
 msgstr "Nie su k dispozícii žiadne témy k úprave ktorých máte práva."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2299
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2293
 #, php-format
 msgid "Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 msgstr "Natavenia pre <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2301
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2295
 #, php-format
 msgid "Options for <em>%s</em>"
 msgstr "Natavenia pre <em>%s</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2309
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2303
 msgid "Show theme for:"
 msgstr "Ukáž tému pre:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2331
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2325
 msgid "<strong>Standard options</strong>"
 msgstr "<strong>Štandardné nastavenia</strong>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2333
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2327
 msgid "<em>These image and album presentation options provided by the Zenphoto core for all themes.</em>"
 msgstr "<em>Nastavenia prezentácie albumov a obrázkov poskytované Zenphotom pre všetky témy.</em>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2333
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2327
 msgid "<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons"
 msgstr "<strong>Poznámka:</strong> Toto sú iba <em>odporúčania</em>, niektoré témy môžu tieto nastavenia nahradiť kvôli vlastnej štruktúre."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2343
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2337
 msgid "Albums:"
 msgstr "Albumy:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2345
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2375
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2339
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2369
 msgid "thumbnails per row"
 msgstr "miniatúr v riadku"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2347
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2377
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2341
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2371
 msgid "thumbnails per page"
 msgstr "miniatúr na stránke"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2351
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2345
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of album thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of album thumbnails that will fit in a \"row\" and the number of albums thumbnails you wish per page."
 msgstr "Toto nastavenie je špecifické pre každú tému. <a title=\"Pozrite sa na stránku albumov a spočítajte koľko miniatúr albumov sa vám zobrazuje v riadku. Toto je hodnota, ktorú by ste mali použiť pre toto nastavenie.\">CSS zistí počet</a> miniatúr albumov, ktoré sa zmestia do \"riadku\" a počet miniatúr albumov, ktoré sa zmestia na stránku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2356
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2386
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2350
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2380
 msgid "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it."
 msgstr "<strong>Poznámka:</strong> Ak je počet <em>miniatúr v riadku</em> nastavený na viac ako 1, skutočné číslo zobrazených miniatúr na stránke bude zaokrúhlené k jeho ďalšiemu násobku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2357
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2351
 #, php-format
 msgid "For album pages there will be %1$u rows of thumbnails."
 msgstr "Na stránkach albumov bude %1$u riadkov miniatúr."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2373
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2367
 msgid "Images:"
 msgstr "Obrázky:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2381
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2375
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of image thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of image thumbnails that will fit in a \"row\" and the number of image thumbnails you wish per page."
 msgstr "Toto nastavenie je špecifické pre každú tému. <a title=\"Pozrite sa na stránku albumov a spočítajte koľko miniatúr obrázkov sa vám zobrazuje v riadku. Toto je hodnota, ktorú by ste mali použiť pre toto nastavenie.\">CSS zistí počet</a> miniatúr obrázkov, ktoré sa zmestia do \"riadku\" a počet miniatúr obrázkov, ktoré sa zmestia na stránku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2387
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2381
 #, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
 msgstr "Na stránkach obsahujúcich obrázky bude %1$u riadkov miniatúr."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2403
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2397
 msgid "Transition:"
 msgstr "Prechod:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2419
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2413
 msgid "separate"
 msgstr "oddelene"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2420
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2414
 msgid "combined"
 msgstr "kombinovane"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2423
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2417
 msgid "if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails."
 msgstr "Ak je počet <em>miniatúr v riadku</em> u albumov aj u obrázkov nastavený na viac ako 1 a miniatúry albumov a obrázkov sú spoločne na jednej stránke, môžete zvoliť či sa prechody budú týkať iba albumov alebo iba obrázkov."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2440
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2434
 msgid "Thumb size:"
 msgstr "Veľkosť miniatúr:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2444
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2438
 #, php-format
 msgid "Standard thumbnails will be scaled to %u pixels."
 msgstr "Štandardné miniatúry budu zmenšené na %u pixelov."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2454
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2448
 msgid "Crop thumbnails:"
 msgstr "Orezať miniatúry:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2459
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2453
 #, php-format
 msgid "%s%% left &amp; right"
 msgstr "%s%% zľava &amp; zprava"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2463
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2457
 #, php-format
 msgid "%s%% top &amp; bottom"
 msgstr "%s%% zhora &amp; zdola"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2468
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2462
 #, php-format
 msgid "If checked the thumbnail will be cropped %1$.1f%% in from the top and the bottom margins and %2$.1f%% in from the left and the right margins."
 msgstr "Ak zvolíte túto možnosť bude miniatúra orezaná o %1$.1f%% zvrchu a zospodu a o %2$.1f%% zľava a zprava."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2470
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2464
 msgid "<strong>Note:</strong> changing crop will invalidate existing custom crops."
 msgstr "<strong>Poznámka</strong> zmenou tohoto nastavenia sa zrušia už exitujúce orezy."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2474
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2468
 msgid "Gray scale conversion:"
 msgstr "Prevod na ČB:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2481
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2475
 msgid "thumbnail"
 msgstr "miniatúra"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2485
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2479
 msgid "If checked, images/thumbnails will be created in gray scale."
 msgstr "Po aktivovaní budú obrázky/miniatúry prevedené do čiernobiela."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2495
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2489
 msgid "Image size:"
 msgstr "Veľkosť obrázku:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2506
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2500
 msgid "height"
 msgstr "výška"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2510
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2504
 msgid "width"
 msgstr "šírka"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2517
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2511
 msgid "shortest side"
 msgstr "najkratšia strana"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2521
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2515
 msgid "longest side"
 msgstr "najdlhšia strana"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2526
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2520
 msgid "Default image display size."
 msgstr "Štandardná zobrazovaná veľkosť obrázku."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2527
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2521
 msgid "The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."
 msgstr "Obrázok bude upravený na rozmer <em>výšky</em>, <em>šírky</em>, <em>najkratšej strany</em> alebo <em>najdlhšej strany</em>."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2539
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2533
 msgid "Gallery index page link:"
 msgstr "Odkaz na index galérie:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2558
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2552
 msgid "If this option is not empty, the Gallery Index URL that would normally link to the theme <code>index.php</code> script will instead link to this script. This frees up the <code>index.php</code> script so that you can create a customized <em>Home page</em> script. This option applies only to the main theme for the <em>Gallery</em>."
 msgstr "Ak toto pole nie je prázdne, bude odkaz na index galérie, ktorý normálne smeruje na skript témy <code>index.php</code> nahradený cestou na tento skript. To uvolní <code>index.php</code> skript, takže si budete môcť vytvoriť vlastnú <em>domovskú stránku</em>. Toto nastavenie sa týka iba hlavnej témy <em>galérie</em>."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2566
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2560
 msgid "<strong>Custom theme options</strong>"
 msgstr "<strong>Voliteľné nastavenia témy</strong>"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2568
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2562
 #, php-format
 msgid "The following are options specifically implemented by %s."
 msgstr "nasledujúce nastavenia sa týkajú výhradne %s."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2633
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2627
 msgid "Expand plugin options"
 msgstr "Rozbaliť nastavenia zásuvných modulov"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2635
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2629
 msgid "Collapse all plugin options"
 msgstr "Zbaliť nastavenia zásuvných modulov"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2659
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2653
 msgid "<strong>NOTE:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string."
 msgstr ""
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2690
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2684
 msgid "warning"
 msgstr "Pozor: "
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2726
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2720
 msgid "There are no plugin options to administer."
 msgstr "Nemáte zapnuté žiadne zasuvné moduly, ktoré môžete nastavovať."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2780
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2774
 msgid "Server protocol:"
 msgstr "Protokol serveru:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2786
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2780
 msgid "secure admin"
 msgstr "bezpečná administrácia"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2790
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2784
 msgid "Normally this option should be set to <em>http</em>. If you're running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."
 msgstr "Toto nastavenie by malo zvyčajne byť nastavené na <em>http</em>. Ak používate zabezpečený server zmeňte nastavenie na <em>https</em>. Vyberte <em>bezpečnú administráciu</em> na poistenie zabezpečeného prístupu na stránky <code>administrácie</code>."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2791
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2785
 msgid "<strong>Note:</strong><br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected.<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! Your only possibility then is to change the option in the database."
 msgstr "<strong>Poznámka:</strong><br /><br />Prístup používateľa z prednej strany je zabezpečený iba ak je vybrané <em>https</em>.<br /><br />Ak vyberiete <em>https</em> alebo <em>secure admin</em> váš server <strong>MUSÍ</strong> podporovať <em>https</em>. Ak vyberieťe jednu z týchto možností na serveri, ktorý nepodporuje <em>https</em> nebudete mať možnosť vstúpiť na <code>administrátorské</code> stránky a zmeniť toto nastavenie! Vašou jedinou možnosťou je zmeniť toto nastavenie priamo v databáze."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2800
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2794
 msgid "CAPTCHA generator:"
 msgstr "CAPTCHA generátor:"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2809
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2803
 msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
 msgstr "Vyberte si <em>CAPTCHA</em> generátor, ktorý má používať Zenphoto."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2812
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2806
 msgid "Obscure cache filenames"
 msgstr "Nejasné názvy súborov vyrovnávaciej pamäte"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2814
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2821
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2860
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2808
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2815
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2854
 msgid "enable"
 msgstr "aktivovať"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2816
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2810
 msgid "Cause the filename of cached items to be obscured. This makes it difficult for someone to \"guess\" the name in a URL."
 msgstr "Zakliknutím sa názvy súborov obrázkov vo vyrovnávacej pamäti skryjú. Sťaží to \"hádanie\" názvu URL."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2819
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2813
 msgid "Cookie security"
 msgstr "Bezpečnosť cookies"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2824
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2818
 msgid "Tie cookies to the IP address of the browser."
 msgstr "Naviaže cookies na IP adresu prehliadača."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2828
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2822
 msgid "<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled."
 msgstr "<strong>Poznámka</strong>: Ak váš prehliadač neposkytuje riadnu IP adresu nemusí sa vám, po aktivovaní tejto možnosti, podariť prihlásiť sa na vašu stránku. "
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2830
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2824
 msgid " You <strong>WILL</strong> have to login after changing this option."
 msgstr " Budete sa <strong>musieť</strong> znovu prihlásť po zmene tohto nastavenia."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2832
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2826
 msgid "If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first."
 msgstr "Ak nastavíte túto možnosť a nedokážete sa prihlásiť na vašu stránku, budete musieť obnoviť databázu do stavu pred týmto nastavením, takže by ste mali databázu najprv zálohovať."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2844
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2838
 msgid "User name"
 msgstr "Meno používateľa"
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2866
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2860
 msgid "If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form."
 msgstr "Ak je táto možnosť zapnutá formulár na prihlasovanie hosťov bude obsahovať pole <em>Používateľské meno</em>. To dovolí používateľom <em>Zenphota</em> prihlásiť sa cez tento formulár."
 
-#: D:\Zenphoto_DEV/zp-core/admin-options.php:2868
+#: D:\Zenphoto_DEV/zp-core/admin-options.php:2862
 msgid "<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated."
 msgstr "<strong>Poznámka:</strong> Toto pole je potrebné, pretože jeden či viaceré heslá <em>Hosťa</em> majú priradené používateľské meno."
 
@@ -5315,6 +5361,7 @@ msgid "Utility functions"
 msgstr "Pomocné funkcie"
 
 #: D:\Zenphoto_DEV/zp-core/album-zip.php:59
+#: D:\Zenphoto_DEV/zp-core/full-image.php:18
 msgid "Forbidden"
 msgstr "Nepovolené"
 
@@ -5482,25 +5529,13 @@ msgstr "Titellink"
 msgid "Too few arguments! Image not found."
 msgstr "Málo informácií! Obrázok nenájdený."
 
-#: D:\Zenphoto_DEV/zp-core/functions-basic.php:382
+#: D:\Zenphoto_DEV/zp-core/functions-basic.php:375
 msgid "ERROR: Assertion failed in"
 msgstr "Chyba: Tvrdenie zlyhalo v"
 
-#: D:\Zenphoto_DEV/zp-core/functions-basic.php:843
+#: D:\Zenphoto_DEV/zp-core/functions-basic.php:842
 msgid "<strong>Backtrace:</strong>"
 msgstr "<strong>Sledovať späť:</strong>"
-
-#: D:\Zenphoto_DEV/zp-core/functions-controller.php:212
-msgid "Oops.. Cannot edit from this page"
-msgstr "Hopla... Z tejto stránky nemôžete upravovať"
-
-#: D:\Zenphoto_DEV/zp-core/functions-controller.php:233
-msgid "Error: malformed Ajax POST"
-msgstr "Chyba: chybný Ajax POST"
-
-#: D:\Zenphoto_DEV/zp-core/functions-controller.php:266
-msgid "Could not save!"
-msgstr "Nedá sa uložiť!"
 
 #: D:\Zenphoto_DEV/zp-core/functions-db-MySQL.php:24
 msgid "MySQL Error: The PHP MySQL extensions have not been installed correctly. Please ask your administrator to add MySQL support to your PHP installation."
@@ -6137,16 +6172,16 @@ msgstr "cacheImage(%1$s) výnimky: %2$s"
 msgid "%s not connected"
 msgstr "%s nie je pripojené"
 
-#: D:\Zenphoto_DEV/zp-core/functions-rss.php:54
+#: D:\Zenphoto_DEV/zp-core/functions-rss.php:78
 msgid " - latest images"
 msgstr " - najnovšie obrázky"
 
-#: D:\Zenphoto_DEV/zp-core/functions-rss.php:56
-#: D:\Zenphoto_DEV/zp-core/functions-rss.php:60
+#: D:\Zenphoto_DEV/zp-core/functions-rss.php:80
+#: D:\Zenphoto_DEV/zp-core/functions-rss.php:84
 msgid "latest albums"
 msgstr "najnovšie albumy"
 
-#: D:\Zenphoto_DEV/zp-core/functions-rss.php:62
+#: D:\Zenphoto_DEV/zp-core/functions-rss.php:86
 msgid "latest images"
 msgstr "najnovšie obrázky"
 
@@ -6586,33 +6621,33 @@ msgstr "komentár odoslaný"
 msgid "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your installation."
 msgstr "Zenphoto nenašlo skript témy. Skotrolujte zložku <em>%s</em>."
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1587
+#: D:\Zenphoto_DEV/zp-core/functions.php:1586
 msgid "Unknown name"
 msgstr "Neznáme meno"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1587
+#: D:\Zenphoto_DEV/zp-core/functions.php:1586
 msgid "Unknown author"
 msgstr "Neznámy autor"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1587
-#: D:\Zenphoto_DEV/zp-core/functions.php:1595
+#: D:\Zenphoto_DEV/zp-core/functions.php:1586
+#: D:\Zenphoto_DEV/zp-core/functions.php:1594
 msgid "<strong>Theme description error!</strong>"
 msgstr "<strong>Chyba v popise témy!</strong>"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1587
+#: D:\Zenphoto_DEV/zp-core/functions.php:1586
 msgid "Unknown date"
 msgstr "Neznámy dátum"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1620
+#: D:\Zenphoto_DEV/zp-core/functions.php:1619
 #, php-format
 msgid "Page error: %2$s (%1$s)"
 msgstr "Chyba stránky: %2$s (%1$s)"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:1848
+#: D:\Zenphoto_DEV/zp-core/functions.php:1847
 msgid "0 Bytes"
 msgstr "0 bytov"
 
-#: D:\Zenphoto_DEV/zp-core/functions.php:2230
+#: D:\Zenphoto_DEV/zp-core/functions.php:2229
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr "Zenphoto vygenerovalo chybu 404 na %s. Skontrolujte záznam opravy chýb."
@@ -6637,417 +6672,425 @@ msgstr "Spracovanie obrázku hlási vážnu chybu."
 msgid "Method Not Allowed"
 msgstr "Táto metóda nie je povolená"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:87
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:88
 msgid "Minimum password length:"
 msgstr "Minimálna dĺžka hesla:"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:88
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:89
 msgid "Minimum number of characters a password must contain."
 msgstr "Minimálny počet znakov, ktoré musí obsahovať heslo."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:89
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:90
 msgid "Password characters:"
 msgstr "Znaky hesla:"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:90
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:91
 msgid "Passwords must contain at least one of the characters from each of the groups. Groups are separated by \"|\". (Use \"\\|\" to represent the \"|\" character in the groups.)"
 msgstr "Heslo musí obsahovať aspoň jeden znak z každej z týchto skupín. Skupiny sa oddelujú \"|\". (Použite znak \"\\|\" pre \"|\".)"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:91
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:92
+msgid "Primary album edit"
+msgstr "Úprava hlavného albumu"
+
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:93
+msgid "Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created."
+msgstr "Zaškrtnite, ak chcete automaticky <em>upraviť pridelené práva</em> ak používateľ vytvorí <em>hlavný album</em>."
+
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:94
 msgid "settings"
 msgstr "nastavenia"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:105
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:108
 #, php-format
 msgid "Authorization class <em>%s</em> is active."
 msgstr "Authorizačná trieda <em>%s</em> je aktívna."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:109
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:112
 #, php-format
 msgid "Administrator class <em>%s</em> is active."
 msgstr "Administrátorská trieda <em>%s</em> je aktívna."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:111
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:114
 #, php-format
 msgid "Password hash seed: <span><small style=\"color:gray\">%s</small></span>"
 msgstr "Zdroj rozsekania hesla: <span><small style=\"color:gray\">%s</small></span>"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:117
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:120
 #, php-format
 msgid "<em>%s</em> hashing is activated"
 msgstr "<em>%s</em> rozsekávanie je aktívne"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:157
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:160
 #, php-format
 msgid "Password must be at least %u characters"
 msgstr "Heslo musí mať minimálne %u znakov"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:182
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:185
 #, php-format
 msgid "Password must contain at least one of %s"
 msgstr "Heslo musí obsahovať aspoň jeden znak %s."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:212
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:215
 #, php-format
 msgid "<strong>Note:</strong> passwords must be at least %1$u characters long and contain at least one character from %2$s."
 msgid_plural "<strong>Note</strong>: passwords must be at least %1$u characters long and contain at least one character from each of the following groups: %2$s."
 msgstr[0] "<strong>Poznámka:</strong> heslá musia mať minimálne %1$u znakov a obsahovať minimálne jeden znak %2$s."
 msgstr[1] "<strong>Poznámka:</strong> heslá musia mať minimálne %1$u znakov a obsahovať minimálne jeden znak z každej z nasledujúcich skupín: %2$s."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:215
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:218
 #, php-format
 msgid "<strong>Note</strong>: passwords must contain at least one character from %s."
 msgid_plural "<strong>Note</strong>: passwords must contain at least one character from each of the following groups: %s."
 msgstr[0] "<strong>Poznámka:</strong> heslá musia obsahovať minimálne jeden znak  %s."
 msgstr[1] "<strong>Poznámka:</strong> heslá musia obsahovať minimálne jeden znak z každej z nasledujúcich skupín: %s."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:220
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:223
 #, php-format
 msgid "<strong>Note</strong>: passwords must be at least %u characters long."
 msgstr "<strong>Poznámka:</strong> Heslo musí mať minimálne %u znakov"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:388
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:391
 #, php-format
 msgid "Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)"
 msgstr "Presun práv do verzie %1$s sa nemôže uskutočniť (Zenphoto_Authority podporuje iba %2$s a %3$s.)"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:497
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:512
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:531
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:500
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:515
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:534
 msgid "No rights"
 msgstr "Žiadne práva"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:498
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:513
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:533
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:501
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:516
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:536
 msgid "Overview"
 msgstr "Prehľad"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:499
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:514
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:502
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:517
 msgid "View all"
 msgstr "Zobraziť všetko"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:500
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:515
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:544
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:503
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:518
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:547
 msgid "Upload"
 msgstr "Nahrať"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:501
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:516
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:542
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:504
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:519
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:545
 msgid "Post comments"
 msgstr "Odoslať komentár"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:504
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:524
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:553
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:507
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:527
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:556
 msgid "Manage all albums"
 msgstr "Upravovať všetky albumy"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:505
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:525
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:555
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:508
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:528
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:558
 msgid "Themes"
 msgstr "Témy"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:506
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:509
 msgid "Zenpage"
 msgstr "Zenpage"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:508
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:527
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:558
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:511
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:530
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:561
 msgid "Options"
 msgstr "Nastavenia"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:509
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:528
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:559
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:512
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:531
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:562
 msgid "Admin"
 msgstr "Administrátor"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:513
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:533
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:516
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:536
 msgid "Users with this right may view the admin overview page."
 msgstr "Používatelia s právami si môžu prezrieť stránku administrátorského prehľadu."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:514
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:517
 msgid "Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery."
 msgstr "Používatelia s týmto oprávnením si môžu prezrieť celú galériu bez ohľadu na heslá. Bez práv si môžu prezrieť iba verejné stránky a tie, ktoré sú povolené v ich konte alebo podľa povolení v Zobrazení vyhľadávania a Zobrazení galérie."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:515
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:544
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:518
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:547
 msgid "Users with this right may upload to the albums for which they have management rights."
 msgstr "Používatelia s týmto oprávnením môžu nahrávať do albumov, na ktoré majú práva k úpravám."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:516
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:542
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:519
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:545
 msgid "When the comment_form plugin is used for comments and its \"Only members can comment\" option is set, only users with this right may post comments."
 msgstr "Ak používate zásuvný modul comment_form na komentáre a máte nastavené \"Komentovať môžu iba členovia\", komentovať môžu iba používatelia s týmto oprávnením."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:517
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:543
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:520
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:546
 msgid "Users with this right may make comments tab changes."
 msgstr "Používatelia s týmto oprávnením môže robiť úpravy v záložke komentárov"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:518
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:549
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:521
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:552
 msgid "Users with this right may access the \"albums\" tab to make changes."
 msgstr "Používatelia s týmto oprávnením môžu robiť zmeny v záložke albumov."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:519
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:547
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:522
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:550
 msgid "Users with this right may edit and manage Zenpage pages."
 msgstr "Používatelia s týmto oprávnením môžu upravovať záložku stránok."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:520
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:546
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:523
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:549
 msgid "Users with this right may edit and manage Zenpage articles and categories."
 msgstr "Používatelia s týmto oprávnením môžu upravovať záložku správ a kategórií."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:521
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:548
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:524
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:551
 msgid "Files"
 msgstr "Súbory"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:521
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:548
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:524
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:551
 msgid "Allows the user access to the \"filemanager\" located on the upload: files sub-tab."
 msgstr "Umožňuje používateľom prístup do \"správcu súborov\", ktorý je v záložke nahrávania."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:522
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:552
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:525
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:555
 msgid "Manage all pages"
 msgstr "Upravovať všetky stránky"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:522
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:552
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:525
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:555
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page."
 msgstr "Používatelia, ktorí nemajú \"administrátorské\" práva, majú zvyčajne právo iba na úpravu objektov, ktoré im boli pridelené. Toto právo im umožní úpravu každej stránky v Zenpage."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:523
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:551
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:526
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:554
 msgid "Manage all news"
 msgstr "Upravovať všetky články"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:523
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:551
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:526
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:554
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category."
 msgstr "Používatelia, ktorí nemajú \"administrátorské\" práva, majú zvyčajne právo iba na úpravu objektov, ktoré im boli pridelené. Toto právo im umožní úpravu každého článku a kategórie v Zenpage."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:524
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:553
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:527
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:556
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery."
 msgstr "Používatelia, ktorí nemajú \"administrátorské\" práva, majú zvyčajne právo iba na úpravu objektov, ktoré im boli pridelené. Toto právo im umožní úpravu každého albumu a galérie v Zenpage."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:525
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:555
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:528
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:558
 msgid "Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list."
 msgstr "Používatelia s týmto oprávnením môžu robiť zmeny týkajúce sa tém. Upravovať môžu iba témy, ktoré sú označené v ich Zozname albumov na úpravu."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:526
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:557
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:529
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:560
 msgid "Users with this right may make additions and changes to the set of tags."
 msgstr "Používatelia s týmto oprávnením môžu upravovať skupiny tagov."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:527
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:558
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:530
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:561
 msgid "Users with this right may make changes on the options tabs."
 msgstr "Používatelia s týmto oprávnením môžu robiť zmany v záložke nastavení."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:528
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:559
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:531
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:562
 msgid "The master privilege. A user with \"Admin\" can do anything. (No matter what his other rights might indicate!)"
 msgstr "Hlavné práva. Používateľ s týmto oprávnením môže robiť čokoľvek. (Je jedno aké ďalšie práva má povolené!)"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:535
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:538
 msgid "View gallery"
 msgstr "Zobraziť galériu"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:535
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:538
 msgid "Users with this right may view otherwise protected generic gallery pages."
 msgstr "Používatelia s týmto oprávnením môžu prezerať aj inak chránené všeobecné stránky galérie."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:536
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:539
 msgid "View search"
 msgstr "Zobraziť vyhľadávanie"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:536
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:539
 msgid "Users with this right may view search pages even if password protected."
 msgstr "Používatelia s týmto oprávnením môžu prezerať stránky vyhľadávania aj keď sú chránené heslom."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:537
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:540
 msgid "View fullimage"
 msgstr "Zobraziť plný obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:537
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:540
 msgid "Users with this right may view all full sized (raw) images."
 msgstr "Používatelia s týmto oprávnením môžu prezerať obrázky v plnom rozlýšení."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:538
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:541
 msgid "View news"
 msgstr "Zobraziť správy"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:538
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:541
 msgid "Users with this right may view all zenpage news articles."
 msgstr "Používatelia s týmto oprávnením môžu prezerať všetky články"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:539
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:542
 msgid "View pages"
 msgstr "Zobraziť stránky"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:539
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:542
 msgid "Users with this right may view all zenpage pages."
 msgstr "Používatelia s týmto oprávnením môžu prezerať stránky."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:540
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:543
 msgid "View albums"
 msgstr "Zobraziť albumy"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:540
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:543
 msgid "Users with this right may view all albums (and their images)."
 msgstr "Používatelia s týmto oprávnením môžu prezerať všetky albumy (vrátane obrázkov)."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:566
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:569
 msgid "All rights"
 msgstr "Všetky práva"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:567
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:570
 msgid "Default rights"
 msgstr "Štandardné práva"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:647
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:650
 msgid "Sorry, that is not the answer."
 msgstr "Prepáčte, toto nie je správna odpoveď."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:654
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:657
 msgid "You are receiving this e-mail because of a password reset request on your Zenphoto gallery."
 msgstr "Tento mail ste dostali, pretože ste požiadali o obnovenie hesla do Zenphoto galérie."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:656
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:659
 #, php-format
 msgid "You are receiving this e-mail because of a password reset request on your Zenphoto gallery from a user who tried to log in as %s."
 msgstr "Tento mail ste dostali, pretože bola zadaná požiadavka na obnovenie hesla do Zenphoto galérie používateľom, ktorý sa snažil prihlásiť ako %s."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:695
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:698
 msgid "There was no one to which to send the reset request."
 msgstr "Nie je komu poslať správu o požiadavke na obnovenie."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:699
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:702
 #, php-format
 msgid "To reset your Zenphoto Admin passwords visit: %s"
 msgstr "Pre obnovenie administrátorského hesla do Zenphota navštívte: %s"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:700
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:703
 msgid "If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days."
 msgstr "Ak ste nepožiadali o obnovenie hesla jednoducho tento mail ignorujte. Požiadavka expiruje sama po 3 dňoch."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:701
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:704
 msgid "The Zenphoto information you requested"
 msgstr "Informácie, ktoré ste žiadali od Zenphota"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:709
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:712
 msgid "Your input did not match the captcha"
 msgstr "Captcha sa nezhoduje"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:816
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:819
 msgid "What is your father's middle name?"
 msgstr "Aké je stredné meno vášho otca?"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:817
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:820
 msgid "What street did your Grandmother live on?"
 msgstr "Na akej ulici bývala vaša babka?"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:818
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:821
 msgid "Who was your favorite singer?"
 msgstr "Kto je váš obľúbený spevák?"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:819
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:822
 msgid "When did you first get a computer?"
 msgstr "Kedy ste dostali prvý počítač?"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:820
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:823
 msgid "How much wood could a woodchuck chuck if a woodchuck could chuck wood?"
 msgstr "Koľko dreva by nasekal svišť ak by svišť vedel sekať drevo?"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:821
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:824
 msgid "What is the date of the Ides of March?"
 msgstr "Aký je dátum Ides of March?"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:857
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:974
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:1012
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:860
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:977
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:1015
 msgid "User"
 msgstr "Používateľ"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:863
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:866
 msgid "Supply the correct response to the question below and you will be directed to a page where you can change your password."
 msgstr "Vpíšte správnu odpoveď na otázku hore a budete presmerovaní na stránku, kde môžete zmeniť svoje heslo."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:864
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:867
 msgid "Challenge question:"
 msgstr "Kontrolná otázka:"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:869
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:872
 msgid "Your response"
 msgstr "Vaša odpoveď"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:878
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:881
 msgid "Enter your User ID and press <code>Refresh</code> to get your challenge question."
 msgstr "Vpíšte vaše Používateľské ID, stlačte <code>Obnoviť</code> a dostanete sa k otázke výzvy."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:885
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:888
 msgid "Submit"
 msgstr "Odoslať"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:886
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:889
 msgid "Refresh"
 msgstr "Obnoviť"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:896
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:899
 msgid "Request reset by e-mail"
 msgstr "Požiadavka na reset e-mailom"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:909
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:912
 msgid "There was an error logging in."
 msgstr "Pri prihlasovaní sa vyskytla chyba."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:909
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:912
 msgid "Check your username and password and try again."
 msgstr "Skontroľujte prihlasovacie meno a heslo a skúste znova."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:915
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:918
 msgid "A reset request has been sent."
 msgstr "Požiadavka na obnovenie bola odoslaná."
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:936
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:939
 msgid "Login"
 msgstr "Prihlásiť"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:958
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:961
 #, php-format
 msgid "Logon using:%s"
 msgstr "Prihlásiť s použitím: %s"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:980
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:983
 msgid "Password"
 msgstr "Heslo"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:985
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:988
 msgid "Log in"
 msgstr "Prihlásiť"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:998
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:1001
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr "Zabudol som <strong>Používateľské ID</strong>/<strong>Heslo</strong>"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:1021
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:1024
 msgid "Request"
 msgstr "Požiadavka"
 
-#: D:\Zenphoto_DEV/zp-core/lib-auth.php:1021
+#: D:\Zenphoto_DEV/zp-core/lib-auth.php:1024
 msgid "Request password reset"
 msgstr "Požiadavka na obnovenie hesla"
 
@@ -8148,273 +8191,221 @@ msgstr "Ste si istý, že chcete vymazať tento článok? NEVRATNÁ OPERÁCIA!"
 msgid "Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"
 msgstr "Ste si istý, že chcete vymazať túto stránku? NEVRATNÁ OPERÁCIA!"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:67
-msgid "Save"
-msgstr "Uložiť"
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:69
-msgid "Saving"
-msgstr "Ukladá sa"
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:70
-msgid "Click to edit..."
-msgstr "Kliknutím upravíte..."
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:109
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:84
 msgid "Admin Toolbox"
 msgstr "Administrátorká sekcia"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:146
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:121
 msgid "Sort Gallery"
 msgstr "Zoradiť galérie"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:154
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:129
 msgid "New Album"
 msgstr "Nový album"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:165
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:140
 msgid "Edit album"
 msgstr "Upraviť album"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:170
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:145
 msgid "Sort subalbums"
 msgstr "Zoradiť podalbumy"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:176
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:151
 msgid "Sort album images"
 msgstr "Zoradiť obrázky albumu"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:186
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:161
 msgid "Delete the album"
 msgstr "Vymazať album"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:194
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:169
 msgid "Upload Here"
 msgstr "Nahrať sem"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:200
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:175
 msgid "New Album Here"
 msgstr "Nový album sem"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:222
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:197
 msgid "Delete the image"
 msgstr "Vymazať tento obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:227
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:202
 msgid "Edit this image"
 msgstr "Upraviť tento obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:227
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:202
 msgid "Edit image"
 msgstr "Upraviť obrázok"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:238
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:213
 msgid "Create an album from the search"
 msgstr "Vytvoriť album z vyhľadávania"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:238
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:213
 msgid "Create Album"
 msgstr "Vytvoriť album"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:261
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:236
 msgid "Edit Article"
 msgstr "Upraviť článok"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:265
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:240
 msgid "Delete article"
 msgstr "Vymazať článok"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:265
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:240
 msgid "Delete Article"
 msgstr "Vymazať článok"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:268
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:243
 msgid "Add Article"
 msgstr "Pridať článok"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:276
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:251
 msgid "Edit Page"
 msgstr "Upraviť stránku"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:280
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:255
 msgid "Delete page"
 msgstr "Vymazať stránku"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:280
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:255
 msgid "Delete Page"
 msgstr "Vymazať stránku"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:283
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:258
 msgid "Add Page"
 msgstr "Pridať stránku"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:293
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:268
 msgid "Logout"
 msgstr "Odhlásiť"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:694
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:743
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:669
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:718
 msgid "Previous Page"
 msgstr "Predchádzajúca stránka"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:696
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:787
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:671
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:762
 msgid "Next Page"
 msgstr "Ďalšia stránka"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:751
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:726
 msgid "Page 1"
 msgstr "Strana 1"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:756
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:773
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:731
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:748
 #, php-format
 msgid "Page %u"
 msgid_plural "Page %u"
 msgstr[0] "Strana %u"
 msgstr[1] "Strana %u"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:763
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:738
 #, php-format
 msgid "Page %1$u (Current Page)"
 msgid_plural "Page %1$u (Current Page)"
 msgstr[0] "Strana %1$u (aktuálna strana)"
 msgstr[1] "Strana %1$u (aktuálna strana)"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:766
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:741
 #, php-format
 msgid "Page %1$u"
 msgid_plural "Page %1$u"
 msgstr[0] "Strana %1$u"
 msgstr[1] "Strana %1$u"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:781
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:756
 #, php-format
 msgid "Page {%u}"
 msgid_plural "Page {%u}"
 msgstr[0] "Strana {%u}"
 msgstr[1] "Strana {%u}"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:841
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:816
 msgid "The album is un-published."
 msgstr "Album nie je zverejnený."
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:857
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1854
-msgid "(No title...)"
-msgstr "(Bez názvu...)"
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:1138
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:1142
+msgid "printField() invalid function call."
+msgstr "printField() nesprávny dopyt funkcie."
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1090
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1939
-msgid "(No date...)"
-msgstr "(Bez dátumu...)"
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1116
-msgid "(No Location...)"
-msgstr "(Bez lokácie...)"
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1151
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:2023
-msgid "(No description...)"
-msgstr "(Bez popisu...)"
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1191
-msgid "printEditable() incomplete function call."
-msgstr "printEditable() neúplný dopyt funkcie."
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1195
-msgid "printEditable() invalid function call."
-msgstr "printEditable() nesprávny dopyt funkcie."
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1208
-msgid "(...)"
-msgstr "(...)"
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1251
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1291
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:2086
-msgid "(No data...)"
-msgstr "(Žiadne dáta...)"
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:1840
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:1757
 msgid "The image is marked un-published."
 msgstr "Obrázok je označený ako nezverejnený."
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:2328
-msgid "(No data)"
-msgstr "(Žiadne dáta)"
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:2958
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:2836
 msgid "Anonymous"
 msgstr "Anonym"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3083
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:2961
 msgid "Download Zip of the Album"
 msgstr "Stiahnuť album v ZIPe"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3083
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:2961
 msgid "Download a zip file of this album"
 msgstr "Stiahnuť album v ZIPe"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3172
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3050
 msgid "by"
 msgstr "od"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3450
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3289
 #, php-format
 msgid "View image: %s"
 msgstr "Zobraziť obrázok: %s"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3517
-msgid "(No tags...)"
-msgstr "(Bez tagov...)"
-
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3633
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3459
 msgid "No popular tags"
 msgstr "Žiadne obľúbené tagy"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3901
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3727
 msgid "Latest images RSS"
 msgstr "RSS najnovších obrázkov"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:3957
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3783
 msgid "getSearchURL $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "getSearchURL $album_list parameter je zastaraný. Spustite namieto toho pole (\"albums\"=>array(album, album,...))."
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4056
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3882
 msgid "printSearchForm $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "printSearchForm $album_list  parameter je zastaraný. Spustite namieto toho pole (\"albums\"=>array(album, album,...))."
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4073
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3899
 #, php-format
 msgid "%s within previous results"
 msgstr "%s v predchádzajúcich výsledkoch"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4131
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3957
 msgid "select search fields"
 msgstr "vybrať vyhľadávacie polia"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4131
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3957
 msgid "fields"
 msgstr "polia"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4133
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3959
 msgid "Clear search"
 msgstr "Vymazať vyhľadávanie"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4133
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:3959
 msgid "Reset search"
 msgstr "Obnoviť vyhľadávanie"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4205
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4031
 msgid "no date"
 msgstr "bez dátumu"
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4457
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4283
 msgid "The page you are trying to view is password protected."
 msgstr "Stránka, ktorú požadujete je chránená heslom."
 
-#: D:\Zenphoto_DEV/zp-core/template-functions.php:4463
+#: D:\Zenphoto_DEV/zp-core/template-functions.php:4289
 msgid "printPasswordForm custom theme password forms is deprecated. You should style the form created by the Zenphoto_Authority class (or its derivatives) instead. Use of these forms will prevent alternative credentials implementations from working with a theme."
 msgstr "printPasswordForm formulár hesla používateľskej témy je zastaraný. Maly by ste preštýlovať formulár pomocou Zenphoto_Authority class (alebo jej derivátov). Použitie týchto formulárov zabráni vkladanie alternatívnych údajov poverení do témy."
 
@@ -8540,7 +8531,6 @@ msgid "Datum Point"
 msgstr "Miesto dátumu"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:485
-#: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:216
 msgid "Program"
 msgstr "Program"
 
@@ -8549,7 +8539,6 @@ msgid "Aperture Priority"
 msgstr "Priorita uzávierky"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:487
-#: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:138
 msgid "Shutter Priority"
 msgstr "Priorita spúšte"
 
@@ -8562,14 +8551,10 @@ msgid "Program Action"
 msgstr "Program Action"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:490
-#: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:142
-#: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:132
 msgid "Portrait"
 msgstr "Vodorovne"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:491
-#: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:136
-#: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:133
 msgid "Landscape"
 msgstr "Zvisle"
 
@@ -8594,7 +8579,6 @@ msgid "Pattern"
 msgstr "Vzor"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:502
-#: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:192
 msgid "Partial"
 msgstr "Čiastočne"
 
@@ -8604,23 +8588,19 @@ msgid "Other"
 msgstr "Iné"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:509
-#: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:87
 msgid "Daylight"
 msgstr "Denné svetlo"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:510
-#: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:273
 msgid "Fluorescent"
 msgstr "Svetielkujúce"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:511
-#: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:272
 msgid "Tungsten"
 msgstr "Žiarovka"
 
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:514
 #: D:\Zenphoto_DEV/zp-core/exif/exif.php:536
-#: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:274
 msgid "Flash"
 msgstr "Blesk"
 
@@ -8841,6 +8821,7 @@ msgid "Illegal size for InteroperabilityIFD"
 msgstr "Nepovolená veľkosť InteroperabilityIFD"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:77
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:138
 msgid "Macro"
 msgstr "Makro"
 
@@ -8850,6 +8831,11 @@ msgstr "Makro"
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:165
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:172
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:80
+#: D:\Zenphoto_DEV/zp-core/exif/makers/nikon.php:184
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:130
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:203
+#: D:\Zenphoto_DEV/zp-core/exif/makers/sanyo.php:63
+#: D:\Zenphoto_DEV/zp-core/exif/makers/sanyo.php:71
 msgid "Normal"
 msgstr "Normálne"
 
@@ -8859,6 +8845,11 @@ msgstr "Normálne"
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:116
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:126
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:143
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:120
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:126
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:165
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:173
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:191
 msgid "Off"
 msgstr "vypnuté"
 
@@ -8882,6 +8873,9 @@ msgstr "Superjemné"
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:109
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:121
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:131
+#: D:\Zenphoto_DEV/zp-core/exif/makers/nikon.php:207
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:101
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:112
 msgid "Auto"
 msgstr "Auto"
 
@@ -8890,6 +8884,7 @@ msgstr "Auto"
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:117
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:127
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:144
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:125
 msgid "On"
 msgstr "zapnuté"
 
@@ -8980,6 +8975,7 @@ msgid "Black & White"
 msgstr "Čiernobiele"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:141
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:169
 msgid "Sepia"
 msgstr "Sépia"
 
@@ -8996,6 +8992,7 @@ msgid "Pan Focus"
 msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:151
+#: D:\Zenphoto_DEV/zp-core/exif/makers/nikon.php:221
 msgid "None"
 msgstr "nič"
 
@@ -9010,12 +9007,18 @@ msgstr "4x"
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:159
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:166
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:173
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:94
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:181
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:187
+#: D:\Zenphoto_DEV/zp-core/exif/makers/sanyo.php:67
 msgid "High"
 msgstr "Vysoké"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:160
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:167
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:174
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:180
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:186
 msgid "Low"
 msgstr "Nízke"
 
@@ -9062,6 +9065,7 @@ msgstr "Vpravo"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:209
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:287
+#: D:\Zenphoto_DEV/zp-core/exif/makers/nikon.php:236
 msgid "Center"
 msgstr "Stred"
 
@@ -9116,6 +9120,8 @@ msgstr "Slnečno"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/canon.php:271
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:88
+#: D:\Zenphoto_DEV/zp-core/exif/makers/nikon.php:212
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:103
 msgid "Cloudy"
 msgstr "Zamračené"
 
@@ -9158,6 +9164,7 @@ msgid "White-fluorescence"
 msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:92
+#: D:\Zenphoto_DEV/zp-core/exif/makers/nikon.php:210
 msgid "Incandescence"
 msgstr "Vyžarovanie"
 
@@ -9204,6 +9211,7 @@ msgid "Red-Eye Reduction"
 msgstr "Redukcia červených očí"
 
 #: D:\Zenphoto_DEV/zp-core/exif/makers/fujifilm.php:134
+#: D:\Zenphoto_DEV/zp-core/exif/makers/panasonic.php:133
 msgid "Sports"
 msgstr "Športy"
 
@@ -9478,44 +9486,44 @@ msgstr "Otočiť o 270 stupňov v smere hodín"
 msgid "Natural"
 msgstr "Prirodzene"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss-comments.php:27
+#: D:\Zenphoto_DEV/zp-core/rss/rss-comments.php:28
 msgid " (latest comments)"
 msgstr "(najnovšie komentáre)"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss-news.php:20
+#: D:\Zenphoto_DEV/zp-core/rss/rss-news.php:21
 msgid " (Latest news)"
 msgstr " (Najnovší článok)"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss-news.php:23
+#: D:\Zenphoto_DEV/zp-core/rss/rss-news.php:24
 msgid " (Latest news and images)"
 msgstr "(Najnovšie správy a obrázky)"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss.php:62
+#: D:\Zenphoto_DEV/zp-core/rss/rss.php:63
 #, php-format
 msgid "%s (1 new image)"
 msgstr "%s (1 nový obrázok)"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss.php:64
+#: D:\Zenphoto_DEV/zp-core/rss/rss.php:65
 #, php-format
 msgid "%1$s (%2$s new images)"
 msgstr "%1$s (%2$s nových obrázkov)"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss.php:69
+#: D:\Zenphoto_DEV/zp-core/rss/rss.php:70
 #, php-format
 msgid "Last update: %s"
 msgstr "Posledná aktualizácia: %s"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss.php:72
+#: D:\Zenphoto_DEV/zp-core/rss/rss.php:73
 #, php-format
 msgid "%s (1 image)"
 msgstr "%s (1 obrázok)"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss.php:74
+#: D:\Zenphoto_DEV/zp-core/rss/rss.php:75
 #, php-format
 msgid "%1$s (%2$s images)"
 msgstr "%1$s (%2$s obrázkov)"
 
-#: D:\Zenphoto_DEV/zp-core/rss/rss.php:77
+#: D:\Zenphoto_DEV/zp-core/rss/rss.php:78
 #, php-format
 msgid "Date: %s"
 msgstr "Dátum: %s"
@@ -9667,10 +9675,6 @@ msgstr "Copyright %1$u: %2$s"
 msgid "You can insert your Gallery description on the Admin Options Gallery tab."
 msgstr "Popis galérie môžete upraviť v záložke administrátorských nastavení."
 
-#: D:\Zenphoto_DEV/zp-core/setup/setup-option-defaults.php:594
-msgid "Front-end editing has been disabled. Front-end editing presents serious security vulnerability and is strongly discouraged."
-msgstr "Možnosť upravovania z prednej strany bola vypnutá. Táto možnosť je vážnym bezpečnostným rizikom a neodporúčame jej použitie."
-
 #: D:\Zenphoto_DEV/zp-core/setup/setup-primitive.php:94
 msgid "A simpler web album"
 msgstr "Jednoduchá galéria fotografií"
@@ -9817,6 +9821,9 @@ msgid "Zenphoto Rights migration failed!"
 msgstr "Presun práv Zenphota zlyhal."
 
 #: D:\Zenphoto_DEV/zp-core/utilities/backup_restore.php:401
+#: D:\Zenphoto_DEV/zp-core/utilities/database_reference.php:34
+#: D:\Zenphoto_DEV/zp-core/utilities/gallery_statistics.php:39
+#: D:\Zenphoto_DEV/zp-core/utilities/reset_albumthumbs.php:44
 msgid "utilities"
 msgstr "nástoroje"
 
@@ -10203,321 +10210,6 @@ msgstr "Základná miniatúra albumu"
 msgid "Reset all hitcounters"
 msgstr "Vymazať všetky počítadlá"
 
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:12
-msgid "seo"
-msgstr "seo"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:14
-msgid "SEO Cleaner"
-msgstr "SEO Cleaner"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:18
-msgid "Make file and folder names in the Gallery SEO friendly."
-msgstr "Upraviť názvy súborov a zložiek galérie aby boli kompatibilné so SEO."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:60
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:87
-#, php-format
-msgid "<em>%1$s</em> renamed to <em>%2$s</em>"
-msgstr "<em>%1$s</em> premenované na <em>%2$s</em>"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:102
-msgid "SEO cleaner"
-msgstr "SEO cleaner"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:147
-msgid "Cleanup album and image names to be SEO friendly"
-msgstr "Prečistiť názvy albumov a obrázkov aby boli použitelné pre SEO"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:149
-msgid "Albums to clean:"
-msgstr "Albumu na prečistenie:"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:159
-msgid "If this script does not complete, <a href=\"javascript:reStart();\" title=\"restart\">click here</a>"
-msgstr "Ak sa tento skript nedokončí <a href=\"javascript:reStart();\" title=\"restart\">kliknite sem</a>"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:179
-#, php-format
-msgid "%u image name cleaned."
-msgid_plural "%u images names cleaned."
-msgstr[0] "%u názov obrázku vyčistený."
-msgstr[1] "%u názvov obrázkov vyčistených."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:181
-msgid "No image names needed cleaning."
-msgstr "Názvy obrázkov nepotrebujú prečistenie."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:184
-#, php-format
-msgid "%u album folder name cleaned."
-msgid_plural "%u albums folder names cleaned."
-msgstr[0] "%u názov zložky vyčistený."
-msgstr[1] "%u názvov zložiek vyčistených."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/seo_cleanup.php:186
-msgid "No album folder names needed cleaning."
-msgstr "Názvy zložiek albumov nepotrebujú vyčistiť."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:23
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:51
-msgid "User mailing list"
-msgstr "Zoznam mailov používateľov"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:27
-msgid "A tool to send e-mails to all registered users who have provided an e-mail address."
-msgstr "Nástroj na posielanie mailov všetkým zaregistrovaným používateľom, ktorý poskytli mailovú adresu."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:42
-msgid "mailing"
-msgstr "maily"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:52
-msgid "A tool to send e-mails to all registered users who have provided an e-mail address. There is always a copy sent to the current admin and all e-mails are sent as <em>blind copies</em>."
-msgstr "Nástroj na posielanie mailov všetkým zaregistrovaným používateľom, ktorý poskytli mailovú adresu. Kópia sa vždy pošle aktuálnemu administrátorovi a všetky maily sa posielajú ako neviditeľné kópie (Bc)."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:59
-msgid "<strong>Note: </strong>No <em>sendmail</em> filter is registered. You must activate and configure a mailer plugin."
-msgstr "<strong>Poznámka:</strong> Nie je k dispozícii filter <em>sendmail</em>. Musíte aktivovať a nastaviť zásuvný modul mailu."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:92
-msgid "Mail sent."
-msgstr "Mail odoslaný."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:94
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:108
-msgid "Subject:"
-msgstr "Predmet:"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:95
-msgid "To:"
-msgstr "Pre:"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:96
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:110
-msgid "Message:"
-msgstr "Správa:"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:97
-msgid "Send another mail"
-msgstr "Poslať ďalší mail"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:102
-msgid "Please enter the message you want to send."
-msgstr "Vložte správu, ktorú chcete poslať."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:114
-msgid "Select users:"
-msgstr "Vybrať používateľov:"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:144
-#: D:\Zenphoto_DEV/zp-core/utilities/user_mailing_list.php:145
-msgid "Send mail"
-msgstr "Odoslať mail"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:22
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:373
-msgid "Wordpress Importer"
-msgstr "Wordpress import"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:26
-msgid "An importer for Wordpress posts and pages to Zenpage."
-msgstr "Nástroj na import stránok a článkov z Wordpressu do Zenphota."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:43
-msgid "Query failed : "
-msgstr "Dopyt zlyhal:"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:59
-msgid "Please try again"
-msgstr "Skúste to znova"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:73
-msgid "Missing"
-msgstr "Chýba"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:81
-msgid "Wordpress-Database info"
-msgstr "Info o databáze Wordpress"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:84
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:401
-msgid "Database user"
-msgstr "Používateľ databázy"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:85
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:402
-msgid "Database password"
-msgstr "Heslo databázy"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:97
-msgid "<strong>ERROR:</strong> Could not connect to the Wordpress database - Query failed : "
-msgstr "<strong>CHYBA:</strong> Nepodarilo sa spojiť s databázou Wordpressu - Dopyt zlyhal:"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:100
-msgid "<strong>ERROR:</strong> Wordpress database could not be selected - Query failed : "
-msgstr "<strong>CHYBA:</strong> Nedá sa vybrať databáza Wordpressu - Dopyt zlyhal:"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:122
-#, php-format
-msgid "Category <em>%s</em> added"
-msgstr "Pridané kategórie <em>%s</em>"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:124
-#, php-format
-msgid "A category with the title/titlelink <em>%s</em> already exists!"
-msgstr "Kategória s Názvom/titlelink <em>%s</em> už existuje!"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:128
-msgid "No categories to import."
-msgstr "Kategórie na import neexistujú"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:143
-#, php-format
-msgid "Tag <em>%s</em> added"
-msgstr "Pridaných <em>%s</em> tagov"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:145
-#, php-format
-msgid "A tag with the title/titlelink <em>%s</em> already exists!"
-msgstr "Tag s Názvom/Titlelink <em>%s</em> už existuje!"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:149
-msgid "No tags to import."
-msgstr "Tagy na import neexistujú"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:208
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:271
-#, php-format
-msgid "%1$s <em>%2$s</em> added"
-msgstr "%1$s <em>%2$s</em> pridané"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:210
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:273
-#, php-format
-msgid "%1$s with the title/titlelink <em>%2$s</em> already exists!"
-msgstr "%1$s s názvom/titlelink <em>%2$s</em> už exituje!"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:237
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:252
-#, php-format
-msgid "%1$s <em>%2$s</em> already assigned"
-msgstr "%1$s <em>%2$s</em> už je pridelené"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:240
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:255
-#, php-format
-msgid "%1$s <em>%2$s</em> assigned"
-msgstr "%1$s <em>%2$s</em> pridelené"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:242
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:257
-#, php-format
-msgid "%1$s <em>%2$s</em> could not be assigned!"
-msgstr "%1$s <em>%2$s</em> sa nedá prideliť!"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:320
-msgid "Comment could not be assigned!"
-msgstr "Komentár nemôže byť pridelený!"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:325
-#, php-format
-msgid "%1$u comment already exists."
-msgid_plural "%1$u comments already exist."
-msgstr[0] "%1$u komentár už existuje."
-msgstr[1] "%1$u komentárov už existuje."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:328
-#, php-format
-msgid "%1$u comment imported."
-msgid_plural "%1$u comments imported."
-msgstr[0] "%1$u komentár importovaný"
-msgstr[1] "%1$u komentárov importovaných"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:331
-msgid "No comments to import"
-msgstr "Komentáre na import neexistujú"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:340
-msgid "No posts or pages to import."
-msgstr "Stránky na import neexistujú"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:345
-msgid "Wordpress"
-msgstr "Wordpress"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:375
-msgid "An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin that imports the following:"
-msgstr "Importér <strong>Wordpress 3.x</strong>, ktorý do zásuvného modulu Zenpage CMS naimportuje nasledujúce:"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:377
-msgid "<strong>Posts (post_status published and draft only) => Zenpage articles</strong>"
-msgstr "<strong>Články (iba post_status zverejnené a rozpísané) => Zenpage články</strong>"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:378
-msgid "<strong>Pages (post_status published and draft only) => Zenpage pages</strong>"
-msgstr "<strong>Stránky (iba post_status zverejnené a rozpísané) => Zenpage stránky</strong>"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:379
-msgid "<strong>Post categories => Zenpage categories including assignment to their article</strong>"
-msgstr "<strong>Kategórie článkov => Zenpage kategórie aj s priradením k článkom</strong>"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:380
-msgid "<strong>Post tags => Zenphoto tags including assignment to their article</strong>"
-msgstr "<strong>Tagy článkov => Zenphoto tagy aj s priradením k článkom</strong>"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:381
-msgid "<strong>Post and page comments => Zenphoto comments including assignment to their article</strong>"
-msgstr "<strong>Komentáre stránok a článkov => Zenphoto komentáre aj s priradením k článkom</strong>"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:384
-msgid "<strong>IMPORTANT: </strong>If you are not using an fresh Zenphoto install it is <strong>strongly recommended to backup your database</strong> before running this importer. Make also sure that both databases use the same encoding so you do not get messed up character display."
-msgstr "<strong>Dôležité:</strong> Ak máte novonaištalované Zenphoto <strong>odporúčame urobiť zálohu databázy</strong> kým spustíte import. Uistite sa, že obe databázy používajú rovnakú znakovú sadu aby nedošlo k pomiešaniu znakov."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:387
-msgid "<strong>Note:</strong> <em>Wordpress page and category nesting</em> is currently not preserved but can easily be recreated by drag and drop sorting."
-msgstr "<strong>Poznámka:</strong> <em>Usporiadanie stránok a kategórií sa vo Wordpresse</em> momentálne nevyužíva, ale môžete ho jednoducho urobiť pretiahnutím položiek."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:390
-msgid "In case anything does not work as expected the query results from the Wordpress database are logged in <code>zp-data/debug_log.txt</code>"
-msgstr "Ak neprebehlo všetko tak ako ste predpokladali, môžete si pozrieť výsledky dopytov na databázu Wordpressu v <code>zp-data/debug_log.txt</code>."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:392
-msgid "<strong>ERROR: </strong>The Zenpage CMS plugin is not enabled."
-msgstr "<strong>CHYBA:</strong> Zásuvný modul Zenpage CMS nie je aktívny."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:397
-msgid "Please enter your Wordpress database details:"
-msgstr "Zadajte detaily databázy Wordpressu:"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:405
-msgid "Convert linefeeds to new lines (br)"
-msgstr "Konvertovať linefeeds do nových riadkov (br)"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:406
-msgid "Import"
-msgstr "Import"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:427
-msgid "Import finished."
-msgstr "Import dokončený."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:430
-msgid "Importing...patience please."
-msgstr "Importuje sa... chvíľku strpenia."
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:436
-msgid "Categories"
-msgstr "Kategórie"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:454
-msgid "Pages and Articles"
-msgstr "Stránky a články"
-
-#: D:\Zenphoto_DEV/zp-core/utilities/wordpress_import.php:468
-msgid "New import"
-msgstr "Nový import"
-
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/admin-approval.php:12
 msgid "Allows only users with Admin or Manage All rights to change the publish state of objects."
 msgstr "Zmena stavu zverejnenia objektov je povolená iba používateľom s právami Admin a Upravovať všetko."
@@ -10552,11 +10244,13 @@ msgstr "Poskytuje možnosti na správu ľubovolných typov súborov. (Bez render
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/class-AnyFile.php:45
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/class-textobject.php:84
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:46
 msgid "Watermark default images"
 msgstr "Vodoznak štandardných obrázkov"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/class-AnyFile.php:46
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/class-textobject.php:85
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-video.php:47
 msgid "Check to place watermark image on default thumbnail images."
 msgstr "Označením sa na štandardné miniatúry obrázkov umiestni vodoznak."
 
@@ -10611,6 +10305,12 @@ msgstr "Poskytuje možnosť zobrazovať .pdf, .pps dokumenty s použitím render
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/class-WEBdocs.php:51
 msgid "PDF"
 msgstr "PDF"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-WEBdocs.php:52
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-WEBdocs.php:63
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/class-WEBdocs.php:70
+msgid "Disabled"
+msgstr "Deaktivovať"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/class-WEBdocs.php:53
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/class-WEBdocs.php:64
@@ -11097,15 +10797,15 @@ msgstr "Prosím uveďte %1$s a %2$s . Ďakujeme."
 msgid "Please enter: %sThanks."
 msgstr "Prosím uveďte: %s. Ďakujeme."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/contact_form.php:270
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/contact_form.php:271
 msgid "Confirm"
 msgstr "Potvrdiť"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/contact_form.php:274
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/contact_form.php:275
 msgid "Discard"
 msgstr "Zrušiť"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/contact_form.php:308
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/contact_form.php:309
 msgid "Error sending mail:"
 msgid_plural "Errors sending mail:"
 msgstr[0] "Chyba pri odosielaní mailu:"
@@ -11186,7 +10886,7 @@ msgstr "Túto chybovú hlášku môžete vypnúť tak, že v zásuvnom module <e
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:84
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:200
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:273
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:277
 msgid "Use getHitcounter()."
 msgstr "Použiť getHitcounter()."
 
@@ -11224,186 +10924,186 @@ msgstr "Použiť getAlbumLocation()."
 msgid "Use printAlbumLocation()."
 msgstr "Použiť printAlbumLocation()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:259
-msgid "(No place...)"
-msgstr "(Bez umiestnenia...)"
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:265
+msgid "Use printField()."
+msgstr "Použiť printField()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:318
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:322
 msgid "Use rewrite_path()."
 msgstr "Použiť rewrite_path()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:330
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:334
 msgid "Use object->getTags() method."
 msgstr "Použiť object->getTags() metódu."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:343
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:347
 msgid "Use printTags()."
 msgstr "Použiť printTags()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:375
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:379
 msgid "Use getNumAlbums()."
 msgstr "Použiť getNumAlbums()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:383
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:387
 msgid "Use getAllAlbums()."
 msgstr "Použiť getAllAlbums()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:391
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:395
 msgid "Register a \"theme_head\" filter."
 msgstr "Použiť filter \"theme_head\"."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:412
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:416
 msgid "Use zp_apply_filter(\"theme_head\")."
 msgstr "Použiť zp_apply_filter(\"theme_head\")."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:420
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:424
 msgid "Use instead the theme options for images and albums per row."
 msgstr "Používa sa namiesto nastavenia albumov a obrázkov v riadku pre tému."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:432
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:436
 msgid "Use printZenpageItemsBreadcrumb()."
 msgstr "Použiť printZenpageItemsBreadcrum()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:440
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:444
 msgid "Use instead the Album class method isMyItem()."
 msgstr "Používa sa namiesto Album class metódy isMyItem()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:457
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:461
 msgid "Use instead the Zenpage category class method getSubCategories()."
 msgstr "Používa sa namiesto Zenpage category class metódy getSubCategories()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:474
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:478
 msgid "Use instead the Zenpage news class method inProtectedCategory()."
 msgstr "Používa sa namiesto Zenpage news class metódy inProtectedCategory()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:493
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:497
 msgid "Use instead the Zenpage category class method isProtected()."
 msgstr "Používa sa namiesto Zenpage category class metódy isProtected()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:512
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:516
 msgid "Use instead the Zenpage category class method getParents()."
 msgstr "Používa sa namiesto Zenpage category class metódy getParents()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:524
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:528
 msgid "Use instead the Zenpage category class method getTitle()."
 msgstr "Používa sa namiesto Zenpage category class metódy getTitle()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:537
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:541
 msgid "Use instead the Zenpage category class method getID()."
 msgstr "Používa sa namiesto Zenpage category class metódy getID()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:551
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:555
 msgid "Use instead the Zenpage category class method getParentID()."
 msgstr "Používa sa namiesto Zenpage category class metódy getParentID()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:564
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:568
 msgid "Use instead the Zenpage category class method getSortOrder()."
 msgstr "Používa sa namiesto Zenpage category class metódy getSortOrder()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:578
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:582
 msgid "Use instead the Zenpage page class method getParents()."
 msgstr "Používa sa namiesto Zenpage page class metódy getParents()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:590
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:594
 msgid "Use instead the Zenpage page class method isProtected()."
 msgstr "Používa sa namiesto Zenpage page class metódy isProtected()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:603
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:607
 msgid "Use instead the Zenpage category class method isMyItem()."
 msgstr "Používa sa namiesto Zenpage category class metódy isMyItem()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:617
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:655
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:621
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:659
 msgid "Use instead the Zenpage category class method checkforGuest()."
 msgstr "Používa sa namiesto Zenpage category class metódy checkforGuest()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:630
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:634
 msgid "Use instead the Zenpage news class method isMyItem()."
 msgstr "Používa sa namiesto Zenpage news class metódy isMyItem()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:643
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:647
 msgid "Use instead the Zenpage news class method checkNewsAccess()."
 msgstr "Používa sa namiesto Zenpage news class metódy checkNewsAccess()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:667
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:671
 msgid "Use instead the Zenpage category global object variable: $_zp_current_category->getTitlelink()."
 msgstr "Používa sa namiesto Zenpage category global object variable: $_zp_current_category->getTitlelink()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:679
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:683
 msgid "Use instead the Zenpage category global object variable: $_zp_current_category->getID()."
 msgstr "Používa sa namiesto Zenpage category global object variable: $_zp_current_category->getID()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:691
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:695
 msgid "Use instead the Zenpage category global object variable: $_zp_current_category->getParentID()."
 msgstr "Používa sa namiesto Zenpage category global object variable: $_zp_current_category->getParentID()."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:704
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:708
 msgid "Use instead the Zenpage news global object variable: $_zp_current_zenpage_news->inNewsCategory($catlink)."
 msgstr "Používa sa namiesto Zenpage news global object variable: $_zp_current_zenpage_news->inNewsCategory($catlink)."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:717
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:721
 msgid "Use instead the Zenpage news global object variable: $_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
 msgstr "Používa sa namiesto Zenpage news global object variable: $_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:731
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:735
 msgid "Use instead the Zenpage category global object variable: $_zp_current_category->isSubNewsCategoryOf($catlink)."
 msgstr "Používa sa namiesto Zenpage category global object variable: $_zp_current_category->isSubNewsCategoryOf($catlink)."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:743
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:747
 msgid "Functionality is now included in getNewsContent(), printNewsContent() and getContentShorten() to properly cover custom shortening via TinyMCE <pagebreak>."
 msgstr "Funkcie sú teraz obsiahnuté v getNewsContent(), printNewsContent() a getContentShorten(), aby sa pokrylo upravené skracovanie cez TinyMCE <pagebreak>."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:769
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:773
 msgid "Use getContentShorten() instead. Note the read more url must be passed directly."
 msgstr "Použiť radšej getContentShorten(). Pamätajte na to, že read more url musí byť pustené priamo."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:777
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:781
 msgid "There is no need for this function as password handling is done by the core."
 msgstr "Táto funkcia nemá využitie pretože spracovávanie hesiel obstaráva jadro."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:785
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:793
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:801
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:789
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:797
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:805
 msgid "The google-maps plugin is deprecated. Convert to GoogleMap."
 msgstr "Zásuvný modul google-maps je zastaraný. Použite GoogleMap."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:808
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:812
 msgid "printPreloadScript is deprecated. It is a helper for a specific theme and should be placed within that theme's \"functions.php\" script."
 msgstr "printPreloadScript je zastaraný. Pomocná funkcia pre jednotlivé témy, ktorá by mala byť vložená do skriptu \"functions.php\"."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:841
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:883
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:937
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1158
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1187
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1211
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1241
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1259
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1296
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1472
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1524
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1540
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1556
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:845
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:887
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:941
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1162
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1191
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1215
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1245
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1263
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1300
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1476
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1528
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1544
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1560
 msgid "Use the Zenpage class method instead."
 msgstr "Použiť namiesto toho Zenpage class metódu."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:857
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:861
 msgid "Use the method from either the ZenpagePage or the ZenpageCategory class instead."
 msgstr ""
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1087
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1091
 msgid "Count the articles instead."
 msgstr "Spočítať namiesto toho články."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1570
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1574
 msgid "Use the album class method <code>isProtected()</code> instead."
 msgstr "Použíte album class method <code>isProtected()</code>."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1594
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1598
 msgid "Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link <code>getRSSLink()</code> just returns the URL."
 msgstr "Použite namiesto toho funkciu témy <code>getRSSLink()</code>. POZNÁMKA: Keďže táto funkcia má plný html odkaz <code>getRSSLink()</code> iba vráti URL."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1650
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/deprecated-functions.php:1654
 msgid "Use the template function <code>getZenpageRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getZenpageRSSLink()</code> just returns the URL."
 msgstr "Použite namiesto toho funkciu témy <code>getZenpageRSSLink()</code>. POZNÁMKA: Keďže táto funkcia má plný html odkaz <code>getZenpageRSSLink()</code> iba vráti URL."
 
@@ -13241,56 +12941,60 @@ msgstr "Text odkazu"
 msgid "Hint text"
 msgstr "Text nápovedy"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:303
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:307
 msgid "Registration confirmation"
 msgstr "Potvrdenie registrácie"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:323
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:327
 msgid "you are already logged in."
 msgstr "už ste prihlasený(á)."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:335
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:339
 msgid "Thank you for registering."
 msgstr "Ďakujeme za registráciu."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:338
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:342
 msgid "Your registration information has been accepted. An email has been sent to you to verify your email address."
 msgstr "Vaše registračné údaje boli akceptované. Overovací mail bol poslaný na vašu mailovú adresu."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:347
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:351
 msgid "You may now log onto the site."
 msgstr "Teraz sa môžete prihlásiť na stránku."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:354
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:358
 msgid "Registration failed."
 msgstr "Registrácia sa nepodarila."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:358
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:362
 #, php-format
 msgid "The user ID <em>%s</em> is already in use."
 msgstr "Používateľské ID <em>%s</em> už je použité."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:364
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:368
 msgid "You have not filled in all the fields."
 msgstr "Nevyplnili ste všetky polia."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:367
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:371
 msgid "Invalid verification link."
 msgstr "Neplatný odkaz na overenie."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:370
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:374
 msgid "Enter a valid email address."
 msgstr "Zadajte funkčnú mailovú adresu."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:373
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:377
 msgid "The CAPTCHA you entered was not correct."
 msgstr "CAPTCHA text nebol správny."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:376
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:380
 msgid "Your registration request could not be completed."
 msgstr "Požiadavka na registráciu nemohla byť dokončená."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:382
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:383
+msgid "Your registration request was previsously accepted."
+msgstr "Požiadavka na registráciu už bola predtým akceptovaná."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/register_user.php:389
 msgid "Your registration attempt failed a <code>register_user_registered</code> filter check."
 msgstr "Pokus o registráciu zlyhal pri kontrole <code>register_user_registered</code>."
 
@@ -13452,6 +13156,66 @@ msgstr "Nastaviť práve bezpečnostného protokolu"
 #, php-format
 msgid "File permissions of Security log are %04o"
 msgstr "Práva súboru Bezpečnostného protokolu sú %04o"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:9
+msgid "Provides a utility SEO file/folder name clenser."
+msgstr "Nástroj na čistenie názvov SEO súborov/zložiek."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:18
+msgid "seo"
+msgstr "seo"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:20
+msgid "SEO Cleaner"
+msgstr "SEO Cleaner"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:24
+msgid "Make file and folder names in the Gallery SEO friendly."
+msgstr "Upraviť názvy súborov a zložiek galérie aby boli kompatibilné so SEO."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:73
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:100
+#, php-format
+msgid "<em>%1$s</em> renamed to <em>%2$s</em>"
+msgstr "<em>%1$s</em> premenované na <em>%2$s</em>"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:115
+msgid "SEO cleaner"
+msgstr "SEO cleaner"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:160
+msgid "Cleanup album and image names to be SEO friendly"
+msgstr "Prečistiť názvy albumov a obrázkov aby boli použitelné pre SEO"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:162
+msgid "Albums to clean:"
+msgstr "Albumu na prečistenie:"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:172
+msgid "If this script does not complete, <a href=\"javascript:reStart();\" title=\"restart\">click here</a>"
+msgstr "Ak sa tento skript nedokončí <a href=\"javascript:reStart();\" title=\"restart\">kliknite sem</a>"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:192
+#, php-format
+msgid "%u image name cleaned."
+msgid_plural "%u images names cleaned."
+msgstr[0] "%u názov obrázku vyčistený."
+msgstr[1] "%u názvov obrázkov vyčistených."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:194
+msgid "No image names needed cleaning."
+msgstr "Názvy obrázkov nepotrebujú prečistenie."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:197
+#, php-format
+msgid "%u album folder name cleaned."
+msgid_plural "%u albums folder names cleaned."
+msgstr[0] "%u názov zložky vyčistený."
+msgstr[1] "%u názvov zložiek vyčistených."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_cleanup.php:199
+msgid "No album folder names needed cleaning."
+msgstr "Názvy zložiek albumov nepotrebujú vyčistiť."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/seo_locale.php:19
 msgid "Allows setting language locale through the URI."
@@ -13810,8 +13574,8 @@ msgstr "Kliknite vpravo v lište ovládania, aby ste prepli na plnú veľkosť."
 msgid "Adds static HTML cache functionality to Zenphoto."
 msgstr "Pridáva do Zenphota funkciu štatickej HTML vyrovnávacej pamäti."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:39
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:47
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:37
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:45
 msgid "Static HTML Cache folder could not be created. Please try to create it manually via FTP with chmod 0777."
 msgstr "Zložka štatickej HTML vyrovnávacej pamäti nemohla byť vytvorená. Prosíme vytvorte ju manuálne cez FTP s chmod 0777."
 
@@ -13819,34 +13583,34 @@ msgstr "Zložka štatickej HTML vyrovnávacej pamäti nemohla byť vytvorená. P
 msgid "HTML cache cleared."
 msgstr "HTML vyrovnávacia pamäť vymazaná."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:77
-msgid "Static HTML cache expire"
-msgstr "Štatická HTML vyrovnávacia pamäť vyprší."
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:70
+msgid "Purge HTML cache"
+msgstr "Vymazať HTML vyrovnávaciu pamäť"
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:78
-msgid "When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec)."
-msgstr "Kedy má vypršať vyrovnávacia pamäť v sekundách. Štandardné nastavenie je 86400 sekúnd (1 deň  = 24 h * 60 min * 60 s). "
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:74
+msgid "Clear the static HTML cache. HTML pages will be re-cached as they are viewed."
+msgstr "Vymaže HTML vyrovnávaciu pamäť. HTML stránky sa znovu nahrajú do vyrovnávacej pamäti ako budú prezerané."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:79
-msgid "Excluded pages"
-msgstr "Okrem stránok"
-
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:80
-msgid "The list of pages to excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma."
-msgstr "Zoznam stánok, ktoré nemajú byť nahrávané do vyrovnávacej pamäti. Stránky, ktoré môžu byť vylúčené sú pužívateľské stránky tém ako aj Zenpage stránky (môžu byť vybrané podľa titlelinku) a štandardné súbory témy image.php (voliteľne podľa názvu obrázku), album.php (voliteľne podľa názvu zložky albumu) alebo index.php.<br /> Ak chcete vylúčiť stránku úplne vložte <em>page-filename.php/</em>. <br />Ak chcete vylúčiť stránku podľa špecifického titulu, názvu obrázku či zložky albumu, vložte <em>pagefilename.php/titlelink alebo názov obrozku či zložky albumu</em>. Viacero názvov oddelujte čiarkou."
-
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:188
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:176
 #, php-format
 msgid "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead."
 msgstr ""
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:362
-msgid "Purge HTML cache"
-msgstr "Vymazať HTML vyrovnávaciu pamäť"
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:363
+msgid "Static HTML cache expire"
+msgstr "Štatická HTML vyrovnávacia pamäť vyprší."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:364
+msgid "When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec)."
+msgstr "Kedy má vypršať vyrovnávacia pamäť v sekundách. Štandardné nastavenie je 86400 sekúnd (1 deň  = 24 h * 60 min * 60 s). "
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:365
+msgid "Excluded pages"
+msgstr "Okrem stránok"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/static_html_cache.php:366
-msgid "Clear the static HTML cache. HTML pages will be re-cached as they are viewed."
-msgstr "Vymaže HTML vyrovnávaciu pamäť. HTML stránky sa znovu nahrajú do vyrovnávacej pamäti ako budú prezerané."
+msgid "The list of pages to excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma."
+msgstr "Zoznam stánok, ktoré nemajú byť nahrávané do vyrovnávacej pamäti. Stránky, ktoré môžu byť vylúčené sú pužívateľské stránky tém ako aj Zenpage stránky (môžu byť vybrané podľa titlelinku) a štandardné súbory témy image.php (voliteľne podľa názvu obrázku), album.php (voliteľne podľa názvu zložky albumu) alebo index.php.<br /> Ak chcete vylúčiť stránku úplne vložte <em>page-filename.php/</em>. <br />Ak chcete vylúčiť stránku podľa špecifického titulu, názvu obrázku či zložky albumu, vložte <em>pagefilename.php/titlelink alebo názov obrozku či zložky albumu</em>. Viacero názvov oddelujte čiarkou."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/tag_extras.php:12
 msgid "Provides functions to print a tag cloud of all image tags from an album optionally including the subalbums or the album tags including sub album tags or alternatively of all tags used by either Zenpage news articles or pages."
@@ -13928,7 +13692,7 @@ msgstr "tinyZenpage - výška prehrávača Flow"
 msgid "Video player height if included using tinyZenpage (for mp3s only the control bar is used)"
 msgstr "Výška prehrávača videa ak je vložený použitím tinyZenpage (pri mp3 sa zobrazuje iba lišta ovládania)."
 
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce.php:86
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce.php:79
 msgid "TinyMCE disabled"
 msgstr "TinyMCE deaktivovaný"
 
@@ -14017,12 +13781,12 @@ msgstr "Chyba tweetovania <code>%1$s</code>: %2$s"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/tweet_news.php:273
 #, php-format
-msgid "New image:[%2$s]%1$s "
-msgstr "Nový obrázok:[%2$s]%1$s "
+msgid "New image: [%2$s]%1$s "
+msgstr "Nový obrázok: [%2$s]%1$s "
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/tweet_news.php:276
 #, php-format
-msgid "New album:%s "
+msgid "New album: %s "
 msgstr "Nový album:%s"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/tweet_news.php:353
@@ -14152,6 +13916,66 @@ msgstr "Zobraziť používateľské pole"
 msgid "If enabled, the logon form will include the <em>User</em> field so that Zenphoto users may login."
 msgstr "Ak je táto možnosť zapnutá formulár na prihlasovanie bude obsahovať pole <em>Používateľ</em>, aby sa používatelia Zenphota mohli prihlásiť."
 
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:13
+msgid "Provides a utility function to send e-mails to all registered users who have provided an e-mail address."
+msgstr "Nástroj na posielanie mailov všetkým zaregistrovaným používateľom, ktorý poskytli mailovú adresu."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:24
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:70
+msgid "User mailing list"
+msgstr "Zoznam mailov používateľov"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:28
+msgid "A tool to send e-mails to all registered users who have provided an e-mail address."
+msgstr "Nástroj na posielanie mailov všetkým zaregistrovaným používateľom, ktorý poskytli mailovú adresu."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:61
+msgid "mailing"
+msgstr "maily"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:71
+msgid "A tool to send e-mails to all registered users who have provided an e-mail address. There is always a copy sent to the current admin and all e-mails are sent as <em>blind copies</em>."
+msgstr "Nástroj na posielanie mailov všetkým zaregistrovaným používateľom, ktorý poskytli mailovú adresu. Kópia sa vždy pošle aktuálnemu administrátorovi a všetky maily sa posielajú ako neviditeľné kópie (Bc)."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:78
+msgid "<strong>Note: </strong>No <em>sendmail</em> filter is registered. You must activate and configure a mailer plugin."
+msgstr "<strong>Poznámka:</strong> Nie je k dispozícii filter <em>sendmail</em>. Musíte aktivovať a nastaviť zásuvný modul mailu."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:111
+msgid "Mail sent."
+msgstr "Mail odoslaný."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:113
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:127
+msgid "Subject:"
+msgstr "Predmet:"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:114
+msgid "To:"
+msgstr "Pre:"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:115
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:129
+msgid "Message:"
+msgstr "Správa:"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:116
+msgid "Send another mail"
+msgstr "Poslať ďalší mail"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:121
+msgid "Please enter the message you want to send."
+msgstr "Vložte správu, ktorú chcete poslať."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:133
+msgid "Select users:"
+msgstr "Vybrať používateľov:"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:163
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/user_mailing_list.php:164
+msgid "Send mail"
+msgstr "Odoslať mail"
+
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/viewer_size_image.php:23
 msgid "Provides a means allowing users to select the image size to view."
 msgstr "Poskytuje možnosť, ktorá dovoľuje používateľom nastaviť si zobrazovanú veľkosť obrázkov."
@@ -14217,6 +14041,213 @@ msgstr "Chyba formátu v používateľskom nastavení veľkosti"
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/viewer_size_image.php:234
 msgid "There is a format error in your $default parameter"
 msgstr "Chyba formátu v parametri $default"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:13
+msgid "Provides a utility function to import Wordpress pages, posts, categories and comments to Zenpage."
+msgstr "Nástroj na importovanie stránok, článkov, kategórií a komentárov z Wordpressu do Zenpage."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:23
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:388
+msgid "Wordpress Importer"
+msgstr "Wordpress import"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:27
+msgid "An importer for Wordpress posts and pages to Zenpage."
+msgstr "Nástroj na import stránok a článkov z Wordpressu do Zenphota."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:58
+msgid "Query failed : "
+msgstr "Dopyt zlyhal:"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:74
+msgid "Please try again"
+msgstr "Skúste to znova"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:88
+msgid "Missing"
+msgstr "Chýba"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:96
+msgid "Wordpress-Database info"
+msgstr "Info o databáze Wordpress"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:99
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:416
+msgid "Database user"
+msgstr "Používateľ databázy"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:100
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:417
+msgid "Database password"
+msgstr "Heslo databázy"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:112
+msgid "<strong>ERROR:</strong> Could not connect to the Wordpress database - Query failed : "
+msgstr "<strong>CHYBA:</strong> Nepodarilo sa spojiť s databázou Wordpressu - Dopyt zlyhal:"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:115
+msgid "<strong>ERROR:</strong> Wordpress database could not be selected - Query failed : "
+msgstr "<strong>CHYBA:</strong> Nedá sa vybrať databáza Wordpressu - Dopyt zlyhal:"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:137
+#, php-format
+msgid "Category <em>%s</em> added"
+msgstr "Pridané kategórie <em>%s</em>"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:139
+#, php-format
+msgid "A category with the title/titlelink <em>%s</em> already exists!"
+msgstr "Kategória s Názvom/titlelink <em>%s</em> už existuje!"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:143
+msgid "No categories to import."
+msgstr "Kategórie na import neexistujú"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:158
+#, php-format
+msgid "Tag <em>%s</em> added"
+msgstr "Pridaných <em>%s</em> tagov"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:160
+#, php-format
+msgid "A tag with the title/titlelink <em>%s</em> already exists!"
+msgstr "Tag s Názvom/Titlelink <em>%s</em> už existuje!"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:164
+msgid "No tags to import."
+msgstr "Tagy na import neexistujú"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:223
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:286
+#, php-format
+msgid "%1$s <em>%2$s</em> added"
+msgstr "%1$s <em>%2$s</em> pridané"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:225
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:288
+#, php-format
+msgid "%1$s with the title/titlelink <em>%2$s</em> already exists!"
+msgstr "%1$s s názvom/titlelink <em>%2$s</em> už exituje!"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:252
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:267
+#, php-format
+msgid "%1$s <em>%2$s</em> already assigned"
+msgstr "%1$s <em>%2$s</em> už je pridelené"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:255
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:270
+#, php-format
+msgid "%1$s <em>%2$s</em> assigned"
+msgstr "%1$s <em>%2$s</em> pridelené"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:257
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:272
+#, php-format
+msgid "%1$s <em>%2$s</em> could not be assigned!"
+msgstr "%1$s <em>%2$s</em> sa nedá prideliť!"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:335
+msgid "Comment could not be assigned!"
+msgstr "Komentár nemôže byť pridelený!"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:340
+#, php-format
+msgid "%1$u comment already exists."
+msgid_plural "%1$u comments already exist."
+msgstr[0] "%1$u komentár už existuje."
+msgstr[1] "%1$u komentárov už existuje."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:343
+#, php-format
+msgid "%1$u comment imported."
+msgid_plural "%1$u comments imported."
+msgstr[0] "%1$u komentár importovaný"
+msgstr[1] "%1$u komentárov importovaných"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:346
+msgid "No comments to import"
+msgstr "Komentáre na import neexistujú"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:355
+msgid "No posts or pages to import."
+msgstr "Stránky na import neexistujú"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:360
+msgid "Wordpress"
+msgstr "Wordpress"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:390
+msgid "An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin that imports the following:"
+msgstr "Importér <strong>Wordpress 3.x</strong>, ktorý do zásuvného modulu Zenpage CMS naimportuje nasledujúce:"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:392
+msgid "<strong>Posts (post_status published and draft only) => Zenpage articles</strong>"
+msgstr "<strong>Články (iba post_status zverejnené a rozpísané) => Zenpage články</strong>"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:393
+msgid "<strong>Pages (post_status published and draft only) => Zenpage pages</strong>"
+msgstr "<strong>Stránky (iba post_status zverejnené a rozpísané) => Zenpage stránky</strong>"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:394
+msgid "<strong>Post categories => Zenpage categories including assignment to their article</strong>"
+msgstr "<strong>Kategórie článkov => Zenpage kategórie aj s priradením k článkom</strong>"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:395
+msgid "<strong>Post tags => Zenphoto tags including assignment to their article</strong>"
+msgstr "<strong>Tagy článkov => Zenphoto tagy aj s priradením k článkom</strong>"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:396
+msgid "<strong>Post and page comments => Zenphoto comments including assignment to their article</strong>"
+msgstr "<strong>Komentáre stránok a článkov => Zenphoto komentáre aj s priradením k článkom</strong>"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:399
+msgid "<strong>IMPORTANT: </strong>If you are not using an fresh Zenphoto install it is <strong>strongly recommended to backup your database</strong> before running this importer. Make also sure that both databases use the same encoding so you do not get messed up character display."
+msgstr "<strong>Dôležité:</strong> Ak máte novonaištalované Zenphoto <strong>odporúčame urobiť zálohu databázy</strong> kým spustíte import. Uistite sa, že obe databázy používajú rovnakú znakovú sadu aby nedošlo k pomiešaniu znakov."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:402
+msgid "<strong>Note:</strong> <em>Wordpress page and category nesting</em> is currently not preserved but can easily be recreated by drag and drop sorting."
+msgstr "<strong>Poznámka:</strong> <em>Usporiadanie stránok a kategórií sa vo Wordpresse</em> momentálne nevyužíva, ale môžete ho jednoducho urobiť pretiahnutím položiek."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:405
+msgid "In case anything does not work as expected the query results from the Wordpress database are logged in <code>zp-data/debug_log.txt</code>"
+msgstr "Ak neprebehlo všetko tak ako ste predpokladali, môžete si pozrieť výsledky dopytov na databázu Wordpressu v <code>zp-data/debug_log.txt</code>."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:407
+msgid "<strong>ERROR: </strong>The Zenpage CMS plugin is not enabled."
+msgstr "<strong>CHYBA:</strong> Zásuvný modul Zenpage CMS nie je aktívny."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:412
+msgid "Please enter your Wordpress database details:"
+msgstr "Zadajte detaily databázy Wordpressu:"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:420
+msgid "Convert linefeeds to new lines (br)"
+msgstr "Konvertovať linefeeds do nových riadkov (br)"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:421
+msgid "Import"
+msgstr "Import"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:442
+msgid "Import finished."
+msgstr "Import dokončený."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:445
+msgid "Importing...patience please."
+msgstr "Importuje sa... chvíľku strpenia."
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:451
+msgid "Categories"
+msgstr "Kategórie"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:469
+msgid "Pages and Articles"
+msgstr "Stránky a články"
+
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/wordpress_import.php:483
+msgid "New import"
+msgstr "Nový import"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/xmpMetadata.php:29
 msgid "Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files."
@@ -14730,12 +14761,10 @@ msgid "Identity URL:"
 msgstr "URL totožnosti:"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/federated_logon/OpenID_logon.php:49
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/federated_logon/Verisign_logon.php:55
 msgid "Verify"
 msgstr "Overiť"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/federated_logon/OpenID_logon.php:55
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/federated_logon/Verisign_logon.php:61
 msgid "Return to Zenphoto"
 msgstr "Vrátiť sa do Zenphota"
 
@@ -14771,7 +14800,6 @@ msgid "Sort order saved."
 msgstr "Poradie uložené"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:56
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:350
 msgid "Target no longer exists"
 msgstr "Cieľ už neexistuje."
 
@@ -15438,7 +15466,6 @@ msgid "<strong>Note:</strong> This album does not contain any images."
 msgstr "<strong>Poznámka:</strong> Tento album neobsahuje žiadne obrázky."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:254
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:90
 msgid "Articles"
 msgstr "Články"
 
@@ -15807,7 +15834,6 @@ msgid "Assign users to groups."
 msgstr "Pridať používateľov do skupiny."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-categories.php:59
-#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:126
 msgid "Are you sure you want to delete this category? THIS CANNOT BE UNDONE!"
 msgstr "Ste si istí, že chcete vymazať túto kategóriu? NEVRATNÁ OPERÁCIA!"
 
@@ -15872,6 +15898,8 @@ msgstr "Nová kategória"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:210
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:228
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-pages.php:111
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-pages.php:112
 msgid "New Page"
 msgstr "Ďalšia stránka"
 
@@ -15969,6 +15997,8 @@ msgid "Hint: If you need more space for your text use TinyMCE's full screen mode
 msgstr "Nápoveda: Ak potrebujete viac miesta pre váš text, použite mód TinyMCE na celú stránku (kliknite na modrý štvorec v pravom hornom rohu ovládacej lišty editoru)."
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-edit.php:370
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1223
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1728
 msgid "Publish"
 msgstr "Zverejniť"
 
@@ -16046,10 +16076,13 @@ msgid "Custom:"
 msgstr "Zmenené:"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:17
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-pages.php:17
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:564
 msgid "Article successfully deleted!"
 msgstr "Článok vymazaný úspešne!"
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:52
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-pages.php:55
 msgid "Hitcounter reset"
 msgstr "Vynulovanie počítadiel návštev"
 
@@ -16070,6 +16103,12 @@ msgstr "Vymazať kategórie"
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:315
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:318
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/admin-news-articles.php:321
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:338
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:341
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:365
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:368
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:371
+#: D:\Zenphoto_DEV/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1233
 msgid "locked"
 msgstr "zamknuté"
 
@@ -16443,3 +16482,46 @@ msgstr "<code>zenpageAlbumImage()</code> nenašiel album %1$s"
 msgid "Failed to retrieve link <em>%s</em>"
 msgstr "Nepodarilo sa načítať odkaz <em>%s</em>"
 
+#~ msgid "Front-end editing"
+#~ msgstr "Povolenie úprav z prednej stránky"
+
+#~ msgid ""
+#~ "This is really not a secure setting. Are you sure you want to enable it?"
+#~ msgstr "Toto naozaj nie je bezpečné nastavenie. Naozaj ho chcete aktivovať?"
+
+#~ msgid ""
+#~ "Check to allow editing of Gallery data on the front-end pages. (Sometimes "
+#~ "known as <em>Ajax</em> editing.)"
+#~ msgstr ""
+#~ "Označte ok chcete povoliť možnosť úprav z prednej stránky webstránky. "
+#~ "(Niekedy sa táto funkcia nazýva aj <em>Ajax</em> upravovanie.)"
+
+#~ msgid ""
+#~ "<strong>NOTE:</strong> enabling this feature is not recommended as it is "
+#~ "susceptible to Cross Site Request Forgeries."
+#~ msgstr ""
+#~ "<strong>Poznámka:</strong> povolenie tejto funkcie sa neodporúča, pretože "
+#~ "sa podobá na <a href=\"http://de.wikipedia.org/wiki/Cross-"
+#~ "Site_Request_Forgery\">Cross Site Request Forgeries</a> "
+
+#~ msgid "printEditable() incomplete function call."
+#~ msgstr "printEditable() neúplný dopyt funkcie."
+
+#~ msgid "(...)"
+#~ msgstr "(...)"
+
+#~ msgid "(No data)"
+#~ msgstr "(Žiadne dáta)"
+
+#~ msgid "(No tags...)"
+#~ msgstr "(Bez tagov...)"
+
+#~ msgid ""
+#~ "Front-end editing has been disabled. Front-end editing presents serious "
+#~ "security vulnerability and is strongly discouraged."
+#~ msgstr ""
+#~ "Možnosť upravovania z prednej strany bola vypnutá. Táto možnosť je vážnym "
+#~ "bezpečnostným rizikom a neodporúčame jej použitie."
+
+#~ msgid "(No place...)"
+#~ msgstr "(Bez umiestnenia...)"
