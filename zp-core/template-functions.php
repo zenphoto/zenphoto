@@ -3117,21 +3117,12 @@ function getHitcounter($obj=NULL) {
  *
  * @param $result object query result
  */
-function filterImageQuery($result, $showunpublished) {
+function filterImageQuery($result) {
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
 			$image = newImage(NULL, $row);
-			if (isImagePhoto($image)) {
-				if ($image->checkAccess($hint, $show)) {
-					$album = $image->getAlbum();
-					if (($showunpublished || ($album->getShow() && $image->getShow()))) {
-						return $image;
-					} else {
-						if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
-							return $image;
-						}
-					}
-				}
+			if (isImagePhoto($image) && $image->checkAccess($hint, $show)) {
+				return $image;
 			}
 		}
 	}
@@ -3166,7 +3157,7 @@ function getRandomImages($daily = false) {
 									' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
 									prefix('albums') . '.id ' . $imageWhere . 'ORDER BY RAND()');
 
-	$image = filterImageQuery($result, false);
+	$image = filterImageQuery($result);
 	if ($image) {
 		if ($daily) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
@@ -3182,11 +3173,10 @@ function getRandomImages($daily = false) {
  *
  * @param mixed $rootAlbum optional album object/folder from which to get the image.
  * @param bool $daily set to true to change picture only once a day.
- * @param bool $showunpublished set true to consider all images
  *
  * @return object
  */
-function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=false) {
+function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 	global $_zp_current_album, $_zp_gallery, $_zp_current_search;
 	if (empty($rootAlbum)) {
 		$album = $_zp_current_album;
@@ -3239,7 +3229,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false,$showunpublished=fals
 															' FROM '.prefix('images'). ', '.prefix('albums').
 															' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
 			prefix('albums') . '.id ' . $albumInWhere . $imageWhere . 'ORDER BY RAND()');
-			$image = filterImageQuery($result, $showunpublished);
+			$image = filterImageQuery($result);
 		}
 	}
 	if ($image) {
