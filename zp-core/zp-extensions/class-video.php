@@ -102,14 +102,14 @@ class Video extends _Image {
 	 */
 	function updateDimensions() {
 		global $_zp_flash_player;
-		$ext = strtolower(strrchr($this->filename, "."));
-		if (is_null($_zp_flash_player) || $ext == '.3gp' || $ext == '.mov') {
+		$ext = getSuffix($this->filename);
+		if (is_null($_zp_flash_player) || $ext == '3gp' || $ext == 'mov') {
 			switch ($ext) {
-				case '.3gp':
+				case '3gp':
 					$h = getOption('zp_plugin_class-video_3gp_h');
 					$w = getOption('zp_plugin_class-video_3gp_w');
 					break;
-				case '.mov':
+				case 'mov':
 					$h = getOption('zp_plugin_class-video_mov_h');
 					$w = getOption('zp_plugin_class-video_mov_w');
 					break;
@@ -288,22 +288,22 @@ class Video extends _Image {
 		global $_zp_flash_player;
 		if (is_null($w)) $w = $this->getWidth();
 		if (is_null($h)) $h = $this->getHeight();
-		$ext = strtolower(strrchr($this->getFullImage(), "."));
+		$ext = getSuffix($this->getFullImage());
 		switch ($ext) {
-			case '.flv':
-			case '.fla':
-			case '.mp3':
-			case '.mp4':
-			case '.m4v':
-			case '.m4a':
+			case 'flv':
+			case 'fla':
+			case 'mp3':
+			case 'mp4':
+			case 'm4v':
+			case 'm4a':
 				if (is_null($_zp_flash_player)) {
 					return  '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="'.gettext('No flash player installed.').'" />';
 				} else {
 					return $_zp_flash_player->getPlayerConfig('',$this->getTitle(), '', $w, $h);
 				}
 				break;
-			case '.3gp':
-			case '.mov':
+			case '3gp':
+			case 'mov':
 				return '</a>
 					<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="'.$w.'" height="'.$h.'" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
 					<param name="src" value="' . pathurlencode($this->getFullImage()) . '"/>

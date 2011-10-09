@@ -189,15 +189,15 @@ class flowplayer3 {
 		$playerheight = getOption('flow_player3_height');
 		if(empty($moviepath)) {
 			$moviepath = getUnprotectedImageURL();
-			$ext = strtolower(strrchr(getUnprotectedImageURL(), "."));
+			$ext = getSuffix(getUnprotectedImageURL());
 		} else {
 			$moviepath = $moviepath;
-			$ext = strtolower(strrchr($moviepath, "."));
+			$ext = getSuffix($moviepath);
 		}
 		if(!empty($count)) {
 			$count = "-".$count;
 		}
-		$imgextensions = array(".jpg",".jpeg",".gif",".png");
+		$imgextensions = array("jpg","jpeg","gif","png");
 		$videoThumbImg = '';
 		if(is_null($_zp_current_image)) {
 			$albumfolder = $moviepath;
@@ -220,7 +220,7 @@ class flowplayer3 {
 		} else {
 			$autoplay = "false";
 		}
-		if($ext == ".mp3" || $ext == ".m4a" || $ext == ".fla") {
+		if($ext == "mp3" || $ext == "m4a" || $ext == "fla") {
 			if(getOption('flow_player3_mp3coverimage')) {
 				if (is_null($height)) $height = $playerheight;
 			} else {
@@ -284,7 +284,7 @@ class flowplayer3 {
 				autoPlay: '.$autoplay.',
 				autoBuffering: '.$autoplay.',
 				scaling: "'.getOption('flow_player3_scaling').'"';
-			if(($ext == ".mp3" || $ext == ".m4a" || $ext == ".fla") && getOption('flow_player3_mp3coverimage')) {
+			if(($ext == "mp3" || $ext == "m4a" || $ext == "fla") && getOption('flow_player3_mp3coverimage')) {
 				$playerconfigadd .= ',
 				coverImage: {
 					url:"'.urlencode($videoThumb).'",
@@ -330,7 +330,7 @@ class flowplayer3 {
 	 */
 	function getVideoHeigth($image=NULL) {
 		$ext = getSuffix($image->filename);
-		if (!is_null($image) && ($ext == '.mp3' || $ext == '.m4a' || $ext == '.fla') && !getOption('flow_player3_mp3coverimage')) {
+		if (!is_null($image) && ($ext == 'mp3' || $ext == 'm4a' || $ext == 'fla') && !getOption('flow_player3_mp3coverimage')) {
 			return FLOW_PLAYER_MP3_HEIGHT;
 		}
 		return getOption('flow_player3_height');
@@ -499,8 +499,8 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 				$coverimageheight = getOption('flow_player3_playlistheight');
 				getMaxSpaceContainer($coverimagerwidth, $coverimageheight, $image, true);
 				$cover = $image->getCustomImage(null, $coverimagerwidth, $coverimageheight, null, null, null, null, true);
-				$ext = strtolower(strrchr($item, "."));
-				if ($ext == ".flv" || $ext == ".mp3" || $ext == ".mp4" || $ext == ".fla" || $ext == ".m4v" || $ext == ".m4a") {
+				$ext = getSuffix($item);
+				if ($ext == "flv" || $ext == "mp3" || $ext == "mp4" || $ext == "fla" || $ext == "m4v" || $ext == "m4a") {
 				$list .= '{
 					url:"'.ALBUM_FOLDER_WEBPATH.$album->name.'/'.$item.'",
 					autoPlay: '.$autoplay.',

@@ -216,12 +216,12 @@ class jplayer {
 		global $_zp_current_album, $_zp_current_image;
 		if(empty($moviepath)) {
 			$moviepath = getUnprotectedImageURL();
-			$ext = strtolower(strrchr(getUnprotectedImageURL(), "."));
+			$ext = getSuffix(getUnprotectedImageURL());
 		} else {
 			$moviepath = $moviepath;
-			$ext = strtolower(strrchr($moviepath, "."));
+			$ext = getSuffix($moviepath);
 		}
-		if(!in_array($ext,array('.m4a','.m4v','.mp3','.mp4','.flv','.fla'))) { 
+		if(!in_array($ext,array('m4a','m4v','mp3','mp4','flv','fla'))) { 
 			echo '<p>'.gettext('This multimedia format is not supported by jPlayer').'</p>';
 			return NULL;
 		} 
@@ -237,7 +237,7 @@ class jplayer {
 		if(getOption('jplayer_autoplay') && !multiplayer) {
 			$autoplay = ',jPlayer("play");';
 		}
-		$imgextensions = array(".jpg",".jpeg",".gif",".png");
+		$imgextensions = array("jpg","jpeg","gif","png");
 		$videoThumb = '';
 		if(getOption('jplayer_poster') && ($this->mode == 'video' || ($this->mode == 'audio' && getOption('jplayer_audioposter')))) {
 			if(is_null($_zp_current_image)) {
@@ -485,32 +485,32 @@ class jplayer {
 	 */	
 	function setModeAndSuppliedFormat($ext) {
 		switch($ext) {
-			case '.m4a':
-			case '.mp3':
-			case '.fla':
+			case 'm4a':
+			case 'mp3':
+			case 'fla':
 				$this->mode = 'audio';
 				switch($ext) {
-					case '.m4a':
+					case 'm4a':
 						$this->supplied = 'm4a';
 						break;
-					case '.mp3':
+					case 'mp3':
 						$this->supplied = 'mp3';
 						break;
-					case '.fla':
+					case 'fla':
 						$this->supplied = 'fla';
 						break;
 				}
 				break;
-			case '.mp4':
-			case '.m4v':
-			case '.flv':
+			case 'mp4':
+			case 'm4v':
+			case 'flv':
 				$this->mode = 'video';
 				switch($ext) {
-					case '.m4v':
-					case '.mp4':
+					case 'm4v':
+					case 'mp4':
 						$this->supplied = 'm4v';
 						break;
-					case '.flv':
+					case 'flv':
 						$this->supplied = 'flv';
 						break;
 				}
@@ -529,15 +529,15 @@ class jplayer {
 	function getCounterpartFiles($moviepath,$ext) {
 		$counterparts = '';
 		switch($ext) {
-			case '.mp3':
-			case '.m4a':
-			case '.fla':
-				$suffixes = array('.webma','.oga');
+			case 'mp3':
+			case 'm4a':
+			case 'fla':
+				$suffixes = array('webma','oga');
 				break;	
-			case '.mp4':
-			case '.m4v':
-			case '.flv':
-				$suffixes = array('.webmv','.ogv');
+			case 'mp4':
+			case 'm4v':
+			case 'flv':
+				$suffixes = array('webmv','ogv');
 				break;
 			default:
 				$suffixes = array();
@@ -545,11 +545,11 @@ class jplayer {
 		}
 		foreach($suffixes as $suffix) {
 			$filesuffix = $suffix;
-			if($suffix == '.oga') {
-				$filesuffix = '.ogg';
+			if($suffix == 'oga') {
+				$filesuffix = 'ogg';
 			} 
 			$counterpart = str_replace($ext,$filesuffix,$moviepath,$count);
-			$suffix = str_replace('.','',$suffix);
+			//$suffix = str_replace('.','',$suffix);
 			if(file_exists(str_replace(WEBPATH,SERVERPATH,$counterpart))) {
 				$this->supplied_counterparts .= $suffix.',';
 				$counterparts .= ','.$suffix.':"'.pathurlencode($counterpart).'"';
@@ -594,13 +594,13 @@ class jplayer {
 						$number = '';
 						foreach($entries as $entry) {
 							$count++;
-							$ext = strtolower(strrchr($entry, "."));
+							$ext = getSuffix($entry);
 							switch($option) {
 								case 'playlist':
-									$suffixes = array('.m4a','.m4v','.mp3','.mp4','.flv','.fla');
+									$suffixes = array('m4a','m4v','mp3','mp4','flv','fla');
 									break;
 								case 'playlist-audio':
-									$suffixes = array('.m4a','.mp3','.fla');
+									$suffixes = array('m4a','mp3','fla');
 									break; 
 							}
 							$numbering = '';
