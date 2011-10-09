@@ -11,7 +11,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?> | <?php echo getBareImageTitle();?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
-	<?php if(getOption('zp_plugin_colorbox')) { ?>
+	<?php if(getOption('zp_plugin_colorbox') && getOption('colorbox_'.getCurrentTheme().'_image')) { ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(document).ready(function(){

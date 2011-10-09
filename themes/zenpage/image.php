@@ -12,7 +12,7 @@ if (!defined('WEBPATH')) die();
 	<title><?php echo getBareImageTitle();?> | <?php echo getBareAlbumTitle();?> | <?php echo getBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-	<?php if(getOption('zp_plugin_colorbox')) { ?>
+	<?php if(getOption('zp_plugin_colorbox') && getOption('colorbox_'.getCurrentTheme().'_image')) { ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(document).ready(function(){
@@ -35,8 +35,6 @@ if (!defined('WEBPATH')) die();
 <body>
 <?php zp_apply_filter('theme_body_open'); ?>
 
-<div style="margin-top: 16px;"><!-- somehow the thickbox.css kills the top margin here that all other pages have... -->
-</div>
 <div id="main">
 <div id="header">
 		<h1><?php echo getGalleryTitle();?></h1>
