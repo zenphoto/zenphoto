@@ -58,7 +58,7 @@ if (isset($_GET['p'])) { $__redirect['p'] = sanitize($_GET['p']); }
 if (isset($_GET['searchfields'])) { $__redirect['searchfields'] = sanitize($_GET['searchfields']); }
 if (isset($_GET['words'])) { $__redirect['words'] = sanitize($_GET['words']); }
 if (isset($_GET['date'])) { $__redirect['date'] = sanitize($_GET['date']); }
-if (isset($_GET['title'])) { $__redirect['title'] = "title=" . sanitize($_GET['title']); }
+if (isset($_GET['title'])) { $__redirect['title'] = sanitize($_GET['title']); }
 if (isset($_GET['page'])) { $__redirect['page'] = sanitize($_GET['page']); }
 
 if (in_context(ZP_INDEX)) {

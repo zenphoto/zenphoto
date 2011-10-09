@@ -1068,18 +1068,17 @@ class _Image extends MediaObject {
 	}
 
 	/**
-	 * returns true if user is allowed to see the album
+	 * returns true if user is allowed to see the image
 	 */
 	function checkAccess(&$hint=NULL, &$show=NULL) {
 		$album = $this->getAlbum();
-		if ($album->isMyItem($this->view_rights)) {
-			if ($this->getShow()) {
+		$rights = $album->isMyItem(LIST_RIGHTS);
+		if (empty($rights)) {
+			if ($album->checkforGuest($hint, $show) && $this->getShow()) {
 				return true;
-			} else {
-				return $album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
 			}
 		}
-		return $album->checkforGuest($hint, $show);
+		return $rights & (LIST_RIGHTS | ALBUM_RIGHTS);
 	}
 
 	/**

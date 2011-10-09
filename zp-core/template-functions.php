@@ -1344,7 +1344,7 @@ function printAlbumThumbImage($alt, $class=NULL, $id=NULL) {
 		getMaxSpaceContainer($w, $h, $thumbobj, true);
 	}
 	$size = ' width="'.$w.'" height="'.$h.'"';
-	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($_zp_current_album->name)=='zp_public_access') {
+	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
 		$html = '<img src="' . html_encode($thumb). '"' . $size . ' alt="' . html_encode($alt) . '"' .	$class . $id . ' />';
 		$html = zp_apply_filter('standard_album_thumb_html', $html);
 		echo $html;
@@ -1426,7 +1426,7 @@ function printCustomAlbumThumbImage($alt, $size, $width=NULL, $height=NULL, $cro
 	} else {
 		$sizing = $sizing.' height="'.$height.'"';
 	}
-	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($_zp_current_album->name)=='zp_public_access') {
+	if (!getOption('use_lock_image') || $_zp_current_album->isMyItem(LIST_RIGHTS) || empty($pwd)) {
 		$html = '<img src="' . html_encode(getCustomAlbumThumb($size, $width, $height, $cropw, $croph, $cropx, $cropy)). '"' . $sizing . ' alt="' . html_encode($alt) . '"' .
 		(($class) ? ' class="'.$class.'"' : '') .	(($id) ? ' id="'.$id.'"' : '') . " />";
 		$html = zp_apply_filter('custom_album_thumb_html', $html);
@@ -3121,13 +3121,15 @@ function filterImageQuery($result, $showunpublished) {
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
 			$image = newImage(NULL, $row);
-			if ($image->checkAccess($hint, $show)) {
-				if ($showunpublished || $image->getShow()) {
-					return $image;
-				} else {
+			if (isImagePhoto($image)) {
+				if ($image->checkAccess($hint, $show)) {
 					$album = $image->getAlbum();
-					if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+					if (($showunpublished || ($album->getShow() && $image->getShow()))) {
 						return $image;
+					} else {
+						if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+							return $image;
+						}
 					}
 				}
 			}
@@ -4246,7 +4248,11 @@ function getPageRedirect() {
 			if (!empty($title)) $action .= '&title='.urlencode(getNewsTitlelink());
 			break;
 		case 'password.php':
-			return urldecode(sanitize($_SERVER['REQUEST_URI'], 0));
+			$action = str_replace(WEBPATH, '', urldecode(sanitize($_SERVER['REQUEST_URI'], 0)));
+			if ($action == '/') {
+				$action = '/index.php';
+			}
+			break;
 		default:
 		if (in_context(ZP_SEARCH)) {
 			$action = '/index.php?userlog=1&p=search' . $_zp_current_search->getSearchParams();
@@ -4521,4 +4527,5 @@ function printCodeblock($number=0,$what=NULL) {
 
 
 zp_register_filter('theme_head','printZenJavascripts',0);
+
 ?>
