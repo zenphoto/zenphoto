@@ -254,46 +254,6 @@ function getRSSNewsCatOptions($arrayfield) {
 }
 
 /**
- * Returns the mimetype for the standard gallery items
- *
- * @param string $ext The extension/suffix of the filename
- * @return string
- */
-function getMimeType($ext) {
-	switch($ext) {
-		case  ".flv":
-			$mimetype = "video/x-flv";
-			break;
-		case ".mp3":
-			$mimetype = "audio/mpeg";
-			break;
-		case ".mp4":
-			$mimetype = "video/mpeg";
-			break;
-		case ".3gp":
-			$mimetype = "video/3gpp";
-			break;
-		case ".mov":
-			$mimetype = "video/quicktime";
-			break;
-		case ".jpg":
-		case ".jpeg":
-			$mimetype = "image/jpeg";
-			break;
-		case ".gif":
-			$mimetype = "image/gif";
-			break;
-		case ".png":
-			$mimetype = "image/png";
-			break;
-		default:
-			$mimetype = "image/jpeg";
-			break;
-	}
-	return $mimetype;
-}
-
-/**
  * Gets the RSS file name from the feed url and clears out query items and special chars
  *
  * @return string

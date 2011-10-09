@@ -10,6 +10,8 @@ $validlocale = getRSSLocaleXML();
 $modrewritesuffix = getRSSImageAndAlbumPaths("modrewritesuffix");
 require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . "/image_album_statistics.php");
 require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . "/zenpage/zenpage-template-functions.php");
+require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . "/image_album_statistics.php");
+require_once(ZENFOLDER .  "/lib-MimeTypes.php");
 header('Content-Type: application/xml');
 $themepath = THEMEFOLDER;
 $catlink = getRSSNewsCatOptions("catlink");
@@ -88,11 +90,11 @@ foreach($latest as $item) {
 			$link = $obj->getImageLink();
 			$type = "image";
 			$filename = $obj->getFilename();
-			$ext = strtolower(strrchr($filename, "."));
+			$ext = getSuffix($filename);
 			$album = $albumobj->getFolder();
 			$fullimagelink = $host.WEBPATH."/albums/".$album."/".$filename;
 			$imagefile = "albums/".$album."/".$filename;
-			$mimetype = getMimeType($ext);
+			$mimetype = getMimeString($ext);
 			if(getOption('zenpage_rss_length') != "") { // empty value means full content!
 				$content = shortenContent(get_language_string($obj->get('desc'),$locale),getOption('zenpage_rss_length'), $elipsis='...');
 			}
@@ -101,8 +103,6 @@ foreach($latest as $item) {
 			} else {
 				$content = '<![CDATA[<a title="'.html_encode($title).' in '.html_encode($categories).'" href="'.$protocol.'://'.$host.$link.'"><img src="'.$obj->getThumb().'" alt="'.html_encode($title).'" /></a>'.$content.']]>';
 			}
-			//$thumb = "<a href=\"".$link."\" title=\"".html_encode($title)."\"><img src=\"".$obj->getThumb()."\" alt=\"".html_encode($title)."\" /></a>\n";
-
 			break;
 		case 'albums':
 			break;

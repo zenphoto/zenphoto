@@ -8,6 +8,7 @@ if ($protocol == 'https_admin') {
 $locale = getRSSLocale();
 $validlocale = getRSSLocaleXML();
 $modrewritesuffix = getRSSImageAndAlbumPaths("modrewritesuffix");
+require_once(ZENFOLDER .  "/lib-MimeTypes.php");
 header('Content-Type: application/xml');
 $rssmode = getRSSAlbumsmode();
 $albumfolder = getRSSAlbumnameAndCollection("albumfolder");
@@ -38,7 +39,7 @@ $gallery = new Gallery();
 	}
 	foreach ($result as $item) {
 		if($rssmode != "albums") {
-			$ext = strtolower(strrchr($item->filename, "."));
+			$ext = getSuffix($item->filename);
 			$albumobj = $item->getAlbum();
 			$itemlink = $host.WEBPATH.$albumpath.pathurlencode($albumobj->name).$imagepath.pathurlencode($item->filename).$modrewritesuffix;
 			$fullimagelink = $host.WEBPATH."/albums/".pathurlencode($albumobj->name)."/".$item->filename;
@@ -77,9 +78,9 @@ $gallery = new Gallery();
 				$itemcontent = '<![CDATA[<a title="'.html_encode($title).'" href="'.$protocol.'://'.$itemlink.'">'.$thumburl.'</a>'.html_encode(get_language_string($albumitem->get("desc"),$locale)).']]>';
 				$datecontent = '<![CDATA['.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$albumitem->get('mtime'))).']]>';
 			}
-			$ext = strtolower(strrchr($thumb->filename, "."));
+			$ext = getSuffix($thumb->filename);
 		}
-		$mimetype = getMimeType($ext);
+		$mimetype = getMimeString($ext);
 		?>
 <item>
 <title><?php
@@ -94,7 +95,7 @@ if($rssmode != "albums") {
 </link>
 <description>
 <?php
-if ((($ext == ".flv") || ($ext == ".mp3") || ($ext == ".mp4") ||  ($ext == ".3gp") ||  ($ext == ".mov")) AND $rssmode != "album") {
+if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") ||  ($ext == "3gp") ||  ($ext == "mov")) AND $rssmode != "album") {
 	echo $videocontent;
 } else {
 	echo $itemcontent;

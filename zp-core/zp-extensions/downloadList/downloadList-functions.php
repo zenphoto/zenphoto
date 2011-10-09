@@ -1,4 +1,5 @@
 <?php
+require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
 /** downloadList functions
  *
  * @author Malte Müller (acrylian)
@@ -38,8 +39,10 @@ if(isset($_GET['download'])) {
 		$file = getDownloadItemPath($item);
 		if(file_exists($file)) {
 			updatedownloadListItemCount($file);
+			$ext = getSuffix($file);
+			$mimetype = getMimeString($ext);
 			header('Content-Description: File Transfer');
-			header('Content-Type: application/octet-stream');
+			header('Content-Type: '.$mimetype);
 			header('Content-Disposition: attachment; filename='.basename(urldecode($file)));
 			header('Content-Transfer-Encoding: binary');
 			header('Expires: 0');
