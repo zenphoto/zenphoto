@@ -154,10 +154,18 @@ if(is_object($_zp_current_album) && is_object($_zp_current_image) && $_zp_curren
 			} else {
 				$link = $imgobj->getImageLink();
 			}
-			if($_zp_current_image->filename == $imgobj->filename) {
-				$active = 'active';
+			if($_zp_current_album->isDynamic()) {
+				if($_zp_current_image->filename == $imgobj->filename && $_zp_current_image->getAlbum()->name == $imgobj->getAlbum()->name) {
+					$active = 'active';
+				} else {
+					$active = '';
+				}
 			} else {
-				$active = '';
+				if($_zp_current_image->filename == $imgobj->filename) {
+					$active = 'active';
+				} else {
+					$active = '';
+				}
 			}
 			$imageurl = $imgobj->getCustomImage(NULL, $width, $height, $cropw, $croph, NULL, NULL,true);
 			$items .= ' {url: "'.html_encode($imageurl).'", title: "'.html_encode($imgobj->getTitle()).'", link: "'.html_encode($link).'", active: "'.$active.'"},';
