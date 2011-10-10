@@ -908,6 +908,11 @@ zp-core/zp-extensions/jplayer/skin/pink.flag/jplayer.pink.flag.css
 zp-core/zp-extensions/jplayer/skin/pink.flag/jplayer.pink.flag.jpg
 zp-core/zp-extensions/jplayer/skin/pink.flag/jplayer.pink.flag.seeking.gif
 zp-core/zp-extensions/jplayer/skin/pink.flag/jplayer.pink.flag.video.play.png
+zp-core/zp-extensions/jplayer/skin/zenphotodark
+zp-core/zp-extensions/jplayer/skin/zenphotodark/jplayer.zenphoto.css
+zp-core/zp-extensions/jplayer/skin/zenphotodark/jplayer.zenphoto.play.png
+zp-core/zp-extensions/jplayer/skin/zenphotodark/jplayer.zenphoto.png
+zp-core/zp-extensions/jplayer/skin/zenphotodark/jplayer.zenphoto.seeking.gif
 zp-core/zp-extensions/jplayer/skin/zenphotolight
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.play.png
 zp-core/zp-extensions/jplayer/skin/zenphotolight/jplayer.zenphoto.png
@@ -2816,4 +2821,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2818
+2823
