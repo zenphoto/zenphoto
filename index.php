@@ -58,38 +58,17 @@ $_zp_obj = '';
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {
 	handleSearchParms('page', $_zp_current_album, $_zp_current_image);
-	$theme = setupTheme();
-	$page = str_replace(array('/','\\','.'), '', sanitize($_GET['p']));
-	if (isset($_GET['z'])) { // system page
-		if ($subfolder = sanitize($_GET['z'])) {
-			$subfolder .= '/';
-		}
-		$_zp_gallery_page = basename($_zp_obj = ZENFOLDER.'/'.$subfolder.$page.'.php');
-	} else {
-		$_zp_obj = THEMEFOLDER."/$theme/$page.php";
-		$_zp_gallery_page = basename($_zp_obj);
-	}
+	$theme = prepareCustomPage();
 // Display an Image page.
 } else if (in_context(ZP_IMAGE)) {
-	handleSearchParms('image', $_zp_current_album, $_zp_current_image);
-	$theme = setupTheme();
-	$_zp_gallery_page = basename($_zp_obj = THEMEFOLDER."/$theme/image.php");
+	$theme = prepareImagePage();
 
 // Display an Album page.
 } else if (in_context(ZP_ALBUM)) {
-	if ($_zp_current_album->isDynamic()) {
-		$search = $_zp_current_album->getSearchEngine();
-		zp_setCookie("zenphoto_search_params", $search->getSearchParams(), SEARCH_DURATION);
-	} else {
-		handleSearchParms('album', $_zp_current_album);
-	}
-	$theme = setupTheme();
-	$_zp_gallery_page = basename($_zp_obj = THEMEFOLDER."/$theme/album.php");
+	$theme = prepareAlbumPage();
 	// Display the Index page.
 } else if (in_context(ZP_INDEX)) {
-	handleSearchParms('index');
-	$theme = setupTheme();
-	$_zp_gallery_page = basename($_zp_obj = THEMEFOLDER."/$theme/index.php");
+	$theme = prepareIndexPage();
 }
 
 //$_zp_script_timer['page'] = microtime();
@@ -129,12 +108,7 @@ if ($zp_request) {
 }
 //$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj))) {
-	$hint = $show = false;
 	if (checkAccess($hint, $show)) { // ok to view
-		// re-initialize video dimensions if needed
-		if (isImageVideo() & isset($_zp_flash_player)) {
-			$_zp_current_image->updateDimensions();
-		}
 		setThemeColumns();
 	} else {
 		if (is_object($_zp_HTML_cache)) {	//	don't cache the logon page or you can never see the real one

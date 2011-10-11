@@ -456,4 +456,73 @@ function zp_load_request() {
 	return $success;
 }
 
+/**
+*
+* sets up for loading the index page
+* @return string
+*/
+function prepareIndexPage() {
+	global  $_zp_gallery_page, $_zp_obj;
+	handleSearchParms('index');
+	$theme = setupTheme();
+	$_zp_gallery_page = basename($_zp_obj = THEMEFOLDER."/$theme/index.php");
+	return $theme;
+}
+
+/**
+ *
+ * sets up for loading an album page
+ */
+function prepareAlbumPage() {
+	global  $_zp_current_album, $_zp_gallery_page, $_zp_obj;
+	if ($_zp_current_album->isDynamic()) {
+		$search = $_zp_current_album->getSearchEngine();
+		zp_setCookie("zenphoto_search_params", $search->getSearchParams(), SEARCH_DURATION);
+	} else {
+		handleSearchParms('album', $_zp_current_album);
+	}
+	$theme =  setupTheme();
+	$_zp_gallery_page = basename($_zp_obj = THEMEFOLDER."/$theme/album.php");
+	return $theme;
+}
+
+/**
+ *
+ * sets up for loading an image page
+ * @return string
+ */
+function prepareImagePage() {
+	global  $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_obj;
+	handleSearchParms('image', $_zp_current_album, $_zp_current_image);
+	$theme =  setupTheme();
+	$_zp_gallery_page =  basename($_zp_obj = THEMEFOLDER."/$theme/image.php");
+	// re-initialize video dimensions if needed
+	if (isImageVideo() & isset($_zp_flash_player)) {
+		$_zp_current_image->updateDimensions();
+	}
+	return $theme;
+}
+
+/**
+ *
+ * sets up for loading p=page pages
+ * @return string
+ */
+function prepareCustomPage() {
+	global  $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_obj;
+	handleSearchParms('page', $_zp_current_album, $_zp_current_image);
+	$theme = setupTheme();
+	$page = str_replace(array('/','\\','.'), '', sanitize($_GET['p']));
+	if (isset($_GET['z'])) { // system page
+		if ($subfolder = sanitize($_GET['z'])) {
+			$subfolder .= '/';
+		}
+		$_zp_gallery_page = basename($_zp_obj = ZENFOLDER.'/'.$subfolder.$page.'.php');
+	} else {
+		$_zp_obj = THEMEFOLDER."/$theme/$page.php";
+		$_zp_gallery_page = basename($_zp_obj);
+	}
+	return $theme;
+}
+
 ?>
