@@ -777,11 +777,6 @@ function printPageListWithNav($prevtext, $nexttext, $oneImagePage=false, $nextpr
 function makeAlbumCurrent($album) {
 	global $_zp_current_album;
 	$_zp_current_album = $album;
-	if ($album->isDynamic()) {
-		$_zp_dynamic_album = $_zp_current_album;
-	} else {
-		$_zp_dynamic_album = null;
-	}
 	set_context(ZP_INDEX | ZP_ALBUM);
 }
 
@@ -839,20 +834,16 @@ function printAlbumTitle() {
  * @return int
  */
 function albumNumber() {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery, $_zp_dynamic_album;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery;
 	$name = $_zp_current_album->getFolder();
 	if (in_context(ZP_SEARCH)) {
 		$albums = $_zp_current_search->getAlbums();
 	} else if (in_context(ZP_ALBUM)) {
-		if (is_null($_zp_dynamic_album)) {
-			$parent = $_zp_current_album->getParent();
-			if (is_null($parent)) {
-				$albums = $_zp_gallery->getAlbums();
-			} else {
-				$albums = $parent->getAlbums();
-			}
+		$parent = $_zp_current_album->getParent();
+		if (is_null($parent)) {
+			$albums = $_zp_gallery->getAlbums();
 		} else {
-			$albums = $_zp_dynamic_album->getAlbums();
+			$albums = $parent->getAlbums();
 		}
 	}
 	$c = 0;
