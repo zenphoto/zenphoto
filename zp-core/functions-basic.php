@@ -1529,6 +1529,7 @@ function reconfigure() {
 		if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
 		$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php";
 		header("Location: $location" );
+		exit();
 	} else {
 		die('Zenphoto needs to run setup but the setup scripts are not present. Please reinstall the setup scripts.');
 	}
