@@ -8,7 +8,17 @@
 	 *
 	 */
 
-	//FILESYSTEM CONFIG	<br>
+/* Timezone Fix Start */
+if (function_exists('date_default_timezone_set')) {
+	$level = error_reporting(0);
+	$_zp_server_timezone = date_default_timezone_get();
+	date_default_timezone_set($_zp_server_timezone);
+	@ini_set('date.timezone', $_zp_server_timezone);
+	error_reporting($level);
+}
+/* Timezone Fix End */
+
+//FILESYSTEM CONFIG	<br>
 	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "class.auth.php");
 	define('CONFIG_QUERY_STRING_ENABLE', true); //Enable passed query string to setting the system configuration
 	if(!isset($_SESSION))

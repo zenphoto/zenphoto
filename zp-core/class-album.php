@@ -1198,25 +1198,24 @@ class Album extends MediaObject {
 			return $this->subrights;
 		}
 		getManagedAlbumList();
-		if (count($_zp_admin_album_list) == 0) {
-			$this->subrights =  false;
-			return $this->subrights;
-		}
-		$desired_folders = explode('/', $this->name);
-		foreach ($_zp_admin_album_list as $adminalbum=>$rights) { // see if it is one of the managed folders or a subfolder there of
-			$admin_folders = explode('/', $adminalbum);
-			$level = 0;
-			$ok = true;
-			foreach ($admin_folders as $folder) {
-				if ($level >= count($desired_folders) || $folder != $desired_folders[$level]) {
-					$ok = false;
-					break;
+		if (count($_zp_admin_album_list) > 0) {
+			$desired_folders = explode('/', $this->name);
+			foreach ($_zp_admin_album_list as $adminalbum=>$rights) {
+				// see if it is one of the managed folders or a subfolder there of
+				$admin_folders = explode('/', $adminalbum);
+				$level = 0;
+				$ok = true;
+				foreach ($admin_folders as $folder) {
+					if ($level >= count($desired_folders) || $folder != $desired_folders[$level]) {
+						$ok = false;
+						break;
+					}
+					$level++;
 				}
-				$level++;
-			}
-			if ($ok) {
-				$this->subrights =  $rights;
-				return $this->subrights;
+				if ($ok) {
+					$this->subrights =  $rights;
+					return $this->subrights;
+				}
 			}
 		}
 		$this->subrights =  NULL;

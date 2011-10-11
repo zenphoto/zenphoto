@@ -49,27 +49,49 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 	</div> <!-- header -->
 		<!-- The Image -->
 		<?php
- 		makeImageCurrent(getRandomImages(getThemeOption('effervescence_daily_album_image')));
- 		$size = floor(getOption('image_size') * $imagereduction);
-		$s = getDefaultWidth($size) + 22;
-		$wide = " style=\"width:".$s."px;";
-		$s = getDefaultHeight($size) + 72;
-		$high = " height:".$s."px;\"";
+		$randomImage = getRandomImages($imageofday = getThemeOption('effervescence_daily_album_image'));
+		if ($randomImage) {
+			makeImageCurrent(getRandomImages($imageofday = getThemeOption('effervescence_daily_album_image')));
+	 		$size = floor(getOption('image_size') * $imagereduction);
+			$s = getDefaultWidth($size) + 22;
+			$wide = " style=\"width:".$s."px;";
+			$s = getDefaultHeight($size) + 72;
+			$high = " height:".$s."px;\"";
+		} else {
+			$wide = " style=\"width:332px;";
+			$high = " height:162px;\"";
+		}
 		?>
 		<div id="image" <?php echo $wide.$high; ?>>
-		<p align="center">
-		<?php echo gettext('Picture of the day'); ?>
-		</p>
 			<div id="pic_day">
-				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-					<?php printCustomSizedImage(gettext('Visit the image gallery'), $size); ?>
-				</a>
+			<?php
+				if ($imageofday) {
+					?>
+					<p align="center">
+					<?php echo gettext('Picture of the day'); ?>
+					</p>
+					<?php
+				}
+				if ($randomImage) {
+					?>
+					<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
+						<?php printCustomSizedImage(gettext('Visit the image gallery'), $size); ?>
+					</a>
+					<?php
+				} else {
+					echo '<img src="'.$_zp_themeroot.'/images/zen-logo.jpg" width="310" height="90" alt="'.gettext('There were no images from which to select the random heading.').'" />';
+				}
+				?>
 			</div>
-			<?php if (!$zenpage) { ?>
-			<p align="center">
-			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo gettext('Visit the image gallery');?></a>
-			</p>
-			<?php } ?>
+			<?php
+			if (!$zenpage) {
+				?>
+				<p align="center">
+				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo gettext('Visit the image gallery');?></a>
+				</p>
+				<?php
+			}
+			?>
 		</div> <!-- image -->
 		<br />
 	<?php

@@ -777,6 +777,11 @@ function printPageListWithNav($prevtext, $nexttext, $oneImagePage=false, $nextpr
 function makeAlbumCurrent($album) {
 	global $_zp_current_album;
 	$_zp_current_album = $album;
+	if ($album->isDynamic()) {
+		$_zp_dynamic_album = $_zp_current_album;
+	} else {
+		$_zp_dynamic_album = null;
+	}
 	set_context(ZP_INDEX | ZP_ALBUM);
 }
 

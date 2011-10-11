@@ -11,6 +11,16 @@
 error_reporting(E_ALL);
 //error_reporting(E_ALL ^ E_NOTICE);
 
+/* Timezone Fix Start */
+if (function_exists('date_default_timezone_set')) {
+	$level = error_reporting(0);
+	$_zp_server_timezone = date_default_timezone_get();
+	date_default_timezone_set($_zp_server_timezone);
+	@ini_set('date.timezone', $_zp_server_timezone);
+	error_reporting($level);
+}
+/* Timezone Fix End */
+
 
 
 	//Access Control Setting
