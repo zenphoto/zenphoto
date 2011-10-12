@@ -238,6 +238,7 @@ themes/zenpage/theme_description.php
 themes/zenpage/themeoptions.php
 zp-core
 zp-core/404.php
+zp-core/Signature
 zp-core/Zenphoto.package
 zp-core/admin-albumsort.php
 zp-core/admin-comments.php
@@ -2821,4 +2822,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-2823
+2824

