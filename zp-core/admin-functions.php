@@ -1420,8 +1420,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								if ($thumb === '1') {	?>selected="selected"<?php } ?>	value="1"><?php echo $_thumb_field_text[getOption('AlbumThumbSelectField')]; ?>
 							</option>
 							<option <?php if ($showThumb) { ?>class="thumboption" style="background-color:#B1F7B6" <?php } ?>
-								<?php	if (empty($thumb) && $thumb !== '1') { ?> selected="selected" <?php } ?>
-									value=""><?php echo gettext('randomly selected');?>
+								<?php	if (empty($thumb) && $thumb !== '1') { ?> selected="selected" <?php } ?> value=""><?php echo gettext('randomly selected');?>
 							</option>
 							<?php
 							if ($album->isDynamic()) {

@@ -57,7 +57,6 @@ $_zp_obj = '';
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {
-	handleSearchParms('page', $_zp_current_album, $_zp_current_image);
 	$theme = prepareCustomPage();
 // Display an Image page.
 } else if (in_context(ZP_IMAGE)) {

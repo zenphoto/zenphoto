@@ -142,7 +142,7 @@ if(is_object($_zp_current_album) && is_object($_zp_current_image) && $_zp_curren
 		} else {
 			$jcarousel_items =  $_zp_current_album->getImages();
 		}
-	if($_zp_current_album->getNumImages() >= 2 || $_zp_current_search->getNumImages() >= 2) {
+	if(count($jcarousel_items) >= 2) {
 		foreach($jcarousel_items as $item) {
 			if(is_array($item)) {
 				$imgobj = newImage(new Album($_zp_gallery,$item['folder']),$item['filename']);
