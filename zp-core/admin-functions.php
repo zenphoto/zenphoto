@@ -1429,12 +1429,14 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								$search = new SearchEngine(true);
 								$search->setSearchParams($params);
 								$images = $search->getImages(0);
-								$thumb = $album->get('thumb');
 								$imagelist = array();
 								foreach ($images as $imagerow) {
 									$folder = $imagerow['folder'];
 									$filename = $imagerow['filename'];
 									$imagelist[] = '/'.$folder.'/'.$filename;
+								}
+								if ($thumb && $thumb != 1 && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
+									array_unshift($imagearray, $thumb);
 								}
 								if (count($imagelist) == 0) {
 									$subalbums = $search->getAlbums(0);
@@ -1483,6 +1485,9 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 											$ID['id'] .'"';
 											$imagearray = array_merge($imagearray, query_full_array($query));
 										}
+										if ($thumb && $thumb != 1 && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
+											array_unshift($imagearray, $thumb);
+										}
 										foreach ($imagearray as $imagerow) {
 											$filename = $imagerow['filename'];
 											$folder = $albumnames[$imagerow['albumid']];
@@ -1508,9 +1513,13 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 										}
 									}
 								} else {
-									foreach ($images as $filename) {
+									$imagearray = $images;
+									if ($thumb && $thumb != 1 && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
+										array_unshift($imagearray, $thumb);
+									}
+									foreach ($imagearray as $filename) {
 										$image = newImage($album, $filename);
-										$selected = ($filename == $album->get('thumb'));
+										$selected = ($filename == $thumb);
 										if (is_valid_image($filename)) {
 											echo "\n<option";
 											if ($gallery->getThumbSelectImages()) {
