@@ -31,7 +31,7 @@ if (!defined('WEBPATH')) die();
 			<div class="right-corner">
 				<div class="left-corner"><!-- begin content -->
 					<div class="main section" id="main">
-						<h3 id="gallerytitle"><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; <?php echo gettext('Album index'); ?></h3>
+						<h3 id="gallerytitle"><?php printHomeLink('',' &raquo; '); ?><a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; <?php echo gettext('Album index'); ?></h3>
 						<?php printCodeblock(1); ?>
 						<div id="albums">
 							<?php

@@ -998,7 +998,7 @@ function printParentBreadcrumb($before = '', $between=' | ', $after = ' | ', $tr
  *  */
 function printHomeLink($before='', $after='', $title=NULL, $class=NULL, $id=NULL) {
 	global $_zp_gallery;
-	$site = getOption('website_url');
+	$site = $_zp_gallery->getWebsiteURL();
 	if (!empty($site)) {
 		if (substr($site,-1) == "/") { $site = substr($site, 0, -1); }
 		if (empty($name)) { $name = $_zp_gallery->getWebsiteTitle(); }

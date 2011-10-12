@@ -73,6 +73,7 @@ if (!$total) {
             <!-- begin content -->
             <div class="main section" id="main">
               <h2 id="gallerytitle">
+              	<?php printHomeLink('',' &raquo; '); ?>
               	<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; Search
               </h2>
 

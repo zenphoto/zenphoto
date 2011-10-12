@@ -34,6 +34,7 @@ require_once (ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
 						<!-- begin content -->
 						<div class="main section" id="main">
 							<h2 id="gallerytitle">
+								<?php printHomeLink('',' &raquo; '); ?>
 								<a href="<?php echo getGalleryIndexURL(false);?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo;
 								<?php echo "<em>".gettext('Password required')."</em>"; ?>
 							</h2>

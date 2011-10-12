@@ -47,9 +47,9 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 				<span><?php printHomeLink('', ' | ');?>
 				<?php
 				if (getOption('custom_index_page') === 'gallery') {
-				?>
-				<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> |
-				<?php
+					?>
+					<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> |
+					<?php
 				}
  				printGalleryTitle();
  				?>
