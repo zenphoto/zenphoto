@@ -33,34 +33,38 @@ function installSignature_gen() {
 	$function_encoded = '';
 	for ($i=$s;$i<$e;$i++) {
 		$c = substr($text,$i,1);
-		$function_encoded .= sprintf('\%o',ord($c));
+		if ($c != "\t" && $c != "\n") {
+			$function_encoded .= sprintf('\%03o',ord($c));
+		}
 	}
 
 	$f = fopen(SERVERPATH.'/'.ZENFOLDER.'/Signature','w');
 	fwrite($f, $function_encoded);
 	fclose($f);
-
+	header('Location: '.FULLWEBPATH.'/'.ZENFOLDER.'/admin.php?action=external&msg=installSignature file created.');
+	exit();
 
 	if (false) {
 		/*start installSignature*/
 		function installSignature() {
+			$t1 = ZENPHOTO_VERSION.ZENPHOTO_RELEASE;
 			if (isset($_SERVER['UNIQUE_ID'])) {
-				$t1 = $_SERVER['UNIQUE_ID'];
+				$t1 .= $_SERVER['UNIQUE_ID'];
 			} else {
-				$t1 = '';
+				$t1 .= 'UNIQUE_ID';
 			}
 			if (defined('RELEASE')) {
-				$t1 .= ZENPHOTO_RELEASE.filesize(__FILE__);
+				$t1 .= filesize(__FILE__);
+			} else {
+				$t1 .= 'SVN';
 			}
-			if (isset($_SERVER['DOCUMENT_ROOT'])) {
-				$t1 .= $_SERVER['DOCUMENT_ROOT'];
-			}
+			$t1 .= dirname(__FILE__);
 			$t1 = sha1($t1);
 			$id = "{"	.substr($t1, 0, 8).'-'
-			.substr($t1, 8, 4).'-'
-			.substr($t1,12, 4).'-'
-			.substr($t1,16, 4).'-'
-			.substr($t1,20,12)."}";
+								.substr($t1, 8, 4).'-'
+								.substr($t1,12, 4).'-'
+								.substr($t1,16, 4).'-'
+								.substr($t1,20,12)."}";
 			return $id;
 		}
 		/*end installSignature*/

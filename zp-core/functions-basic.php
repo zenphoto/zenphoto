@@ -1483,7 +1483,7 @@ function db_count($table, $clause=NULL, $field="*") {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if ((getOption('zenphoto_release') != ZENPHOTO_RELEASE) || (getOption('zenphoto_install') != installSignature())) {
+	if (getOption('zenphoto_install') != installSignature()) {
 		reconfigure();
 	}
 }

@@ -7,7 +7,6 @@ var ZenpageDialog = {
 	},
 
 	insert : function(imgurl,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video,imgdesc,albumdesc) {
-
 		var ed = tinyMCEPopup.editor, dom = ed.dom;
 		var imglink = '';
 		var includetype = '';
@@ -26,6 +25,9 @@ var ZenpageDialog = {
 		var webpath = '<?php echo WEBPATH; ?>'
 		var modrewrite = '<?php echo MOD_REWRITE; ?>';
 		var modrewritesuffix = '<?php echo getOption("mod_rewrite_image_suffix"); ?>';
+		var plainimgtitle = imgtitle.replace(/'|\\'/g, "\\'");
+		var plainalbumtitle = albumtitle.replace(/'|\\'/g, "\\'");
+
 		<?php
 		chdir(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flowplayer3');
 		$filelist = safe_glob('flowplayer-*.swf');
@@ -103,21 +105,21 @@ var ZenpageDialog = {
 		// getting the link type checkbox values
 		if($('#imagelink:checked').val() == 1) {
 			if(modrewrite == '1') {
-				linkpart1 = '<a href=\''+webpath+'/'+albumname+'/'+imgname+modrewritesuffix+'\' title=\''+imgtitle+'\' class=\'zenpage_imagelink\'>';
+				linkpart1 = '<a href=\''+webpath+'/'+albumname+'/'+imgname+modrewritesuffix+'\' title=\''+plainimgtitle+'\' class=\'zenpage_imagelink\'>';
 			} else {
-				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'&amp;image='+imgname+'\' title=\''+imgtitle+'\' class=\'zenpage_imagelink\'>';
+				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'&amp;image='+imgname+'\' title=\''+plainimgtitle+'\' class=\'zenpage_imagelink\'>';
 			}
 			linkpart2 = '</a>';
 		}
 		if($('#fullimagelink:checked').val() == 1) {
-				linkpart1 = '<a href=\''+fullimage+'\' title=\''+imgtitle+'\' class=\'zenpage_fullimagelink\'>';
+				linkpart1 = '<a href=\''+fullimage+'\' title=\''+plainimgtitle+'\' class=\'zenpage_fullimagelink\'>';
 				linkpart2 = '</a>';
 		}
 		if($('#albumlink:checked').val() == 1) {
 			if(modrewrite == '1') {
-				linkpart1 = '<a href=\''+webpath+'/'+albumname+'\' title=\''+albumtitle+'\' class=\'zenpage_albumlink\'>';
+				linkpart1 = '<a href=\''+webpath+'/'+albumname+'\' title=\''+planealbumtitle+'\' class=\'zenpage_albumlink\'>';
 			} else {
-				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'\' title=\''+albumtitle+'\' class=\'zenpage_albumlink\'>';
+				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'\' title=\''+planealbumtitle+'\' class=\'zenpage_albumlink\'>';
 			}
 			linkpart2 = '</a>';
 		}
@@ -144,7 +146,7 @@ var ZenpageDialog = {
 			}
 			if($('#albumdesc:checked').val() == 1) {
 				descwrap = '<div class=\'zenpage_desc\'>'+albumdesc+'</div>';
-	  	}
+			}
 			infowrap2 = titlewrap+descwrap+infowrap2;
 		}
 		if($('#imagetitle:checked').val() == 1) {
@@ -216,23 +218,23 @@ var ZenpageDialog = {
 		} else {
 			if(type == "pages") {
 				if(modrewrite == '1') {
-					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+imgtitle+'\'>'+imgtitle+'</a>';
+					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				} else {
-					imglink = '<a href=\''+webpath+'/index.php?p=pages&amp;title='+imgname+'\' title=\''+imgtitle+'\'>'+imgtitle+'</a>';
+					imglink = '<a href=\''+webpath+'/index.php?p=pages&amp;title='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				}
 			}
 			if(type == "articles") {
 				if(modrewrite == '1') {
-					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+imgtitle+'\'>'+imgtitle+'</a>';
+					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				} else {
-					imglink = '<a href=\''+webpath+'/index.php?p=news&amp;title='+imgname+'\' title=\''+imgtitle+'\'>'+imgtitle+'</a>';
+					imglink = '<a href=\''+webpath+'/index.php?p=news&amp;title='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				}
 			}
 			if(type == "categories") {
 				if(modrewrite == '1') {
-					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+imgtitle+'\'>'+imgtitle+'</a>';
+					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				} else {
-					imglink = '<a href=\''+webpath+'/index.php?p=news&amp;category='+imgname+'\' title=\''+imgtitle+'\'>'+imgtitle+'</a>';
+					imglink = '<a href=\''+webpath+'/index.php?p=news&amp;category='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				}
 			}
 		}
