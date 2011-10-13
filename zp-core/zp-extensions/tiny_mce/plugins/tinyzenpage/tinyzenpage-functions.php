@@ -108,11 +108,10 @@ function printImageslist($number) {
 			// album thumb display;
 		$albumthumb = $albumobj->getAlbumThumbImage();
 		$albumthumbalbum = $albumthumb->getAlbum();
-		$albumdesc = '';
 		$albumdesc = $albumobj->getDesc();
 		$imagedesc = $albumthumb->getDesc();
 		$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=". urlencode(pathurlencode($albumthumbalbum->name))."&amp;i=".urlencode(urlencode($albumthumb->filename));
-		$fullimage = pathurlencode($albumthumb->getFullImage());
+		$fullimage = pathurlencode(addslashes($albumthumb->getFullImage()));
 		$videocheck = checkIfImageVideo($albumthumb);
 		if(get_class($albumthumb) == '_Image') {
 			$video = '';
@@ -125,16 +124,15 @@ function printImageslist($number) {
 		}
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='albumthumb' style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>";
-		echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".urlencode($albumthumb->filename)."','".
+		echo "<a href=\"javascript: ZenpageDialog.insert('".$imgurl."','".urlencode($albumthumb->filename)."','".
 																											js_encode($albumthumb->getTitle())."','".
 																											js_encode($albumobj->getTitle())."','".
 																											$fullimage."','zenphoto','".
 																											js_encode(getWatermarkParam($albumthumb, WATERMARK_THUMB))."','".
 																											js_encode(getWatermarkParam($albumthumb, WATERMARK_IMAGE))."','".
 																											$video."','".js_encode($imagedesc)."','".js_encode($albumdesc)."');\"".
-																											" title='".
-																											js_encode($albumthumb->getTitle())." (".js_encode($albumthumb->filename).")'><img src='".
-																											$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
+																											" title='".html_encode($albumthumb->getTitle())." (".html_encode($albumthumb->filename).")'>
+																											<img src='".$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
 		echo "<a href='zoom.php?image=".urlencode($albumthumb->filename)."&amp;album=".pathurlencode($albumthumbalbum->name).
 																											"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
 																											gettext('<em>Albumthumb</em>').unpublishedZenphotoItemCheck($albumthumb,false);
@@ -168,11 +166,9 @@ function printImageslist($number) {
 					$linkalbumobj = $albumobj;
 					$imageobj = newImage($albumobj,$images[$nr]);
 				}
-				$imagedesc = '';
 				$imagedesc = $imageobj->getDesc();
-				$albumdesc = '';
 				$albumdesc = $linkalbumobj->getDesc();
-				$fullimage = pathurlencode($imageobj->getFullImage());
+				$fullimage = pathurlencode(addslashes($imageobj->getFullImage()));
 				$videocheck = checkIfImageVideo($imageobj);
 				if(get_class($imageobj) == '_Image') {
 					$video = '';
@@ -196,9 +192,8 @@ function printImageslist($number) {
 																												js_encode(getWatermarkParam($imageobj, WATERMARK_THUMB))."','".
 																												js_encode(getWatermarkParam($imageobj, WATERMARK_IMAGE))."','".
 																												$video."','".js_encode($imagedesc)."','".js_encode($albumdesc)."');\"".
-																												" title='".
-																												js_encode($imageobj->getTitle())." (".js_encode($imageobj->filename).")'><img src='".
-																												$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
+																												" title='".html_encode($imageobj->getTitle())." (".html_encode($imageobj->filename).")'>
+																												<img src='".$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
 				echo "<a href='zoom.php?image=".urlencode($imageobj->filename)."&amp;album=".pathurlencode($linkalbumobj->name).
 																												"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
 																												html_encode(shortentitle($imageobj->getTitle(),8)).unpublishedZenphotoItemCheck($imageobj,false);
