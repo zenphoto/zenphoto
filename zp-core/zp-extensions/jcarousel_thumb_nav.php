@@ -14,6 +14,10 @@ $plugin_author = "Malte Müller (acrylian) based on a jCarousel example";
 $plugin_version = '1.4.2';
 $option_interface = 'jcarouselOptions';
 
+if (!OFFSET_PATH && (getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page)))) {
+	zp_register_filter('theme_head','jcaroselThemeJS');
+}
+
 /**
  * Plugin option handling class
  *
@@ -31,7 +35,7 @@ class jcarouselOptions {
 	}
 
 	function getOptionsSupported() {
-		return array(	gettext('Thumbs number') => array('key' => 'jcarousel_scroll', 'type' => OPTION_TYPE_TEXTBOX,
+		$options = array(	gettext('Thumbs number') => array('key' => 'jcarousel_scroll', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("The number of thumbs to scroll by. Note that the CSS might need to be adjusted.")),
 		gettext('width') => array('key' => 'jcarousel_width', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("Width of the carousel. Note that the CSS might need to be adjusted.")),
@@ -46,13 +50,30 @@ class jcarouselOptions {
 		gettext('Vertical') => array('key' => 'jcarousel_vertical', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If checked the carousel will flow vertically instead of the default horizontal. Changing this may require theme changes!"))
 		);
+		$gallery = new Gallery();
+		$opts = array();
+		$exclude = array('404.php','themeoptions.php','theme_description.php');
+		foreach (array_keys($gallery->getThemes()) as $theme) {
+			$curdir = getcwd();
+			$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/';
+			chdir($root);
+			$filelist = safe_glob('*.php');
+			$list = array();
+			foreach($filelist as $file) {
+				if (!in_array($file,$exclude)) {
+					$list[$script = stripSuffix(filesystemToInternal($file))] = 'jcarousel_'.$theme.'_'.$script;
+				}
+			}
+			chdir($curdir);
+			$options[$theme] = array('key' => 'jcarousel_'.$theme.'_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+																	'checkboxes' => $list,
+																	'desc' => gettext('The scripts for which jCarousel is enabled. {Should have been set by the themes!}')
+											);
+		}
+		return $options;
 	}
-
 }
 
-if (isset($_zp_current_album) && is_object($_zp_current_album) && is_object($_zp_current_image) && $_zp_current_album->getNumImages() >= 2) {
-	zp_register_filter('theme_head','jcaroselThemeJS');
-}
 
 function jcaroselThemeJS() {
 	$theme = getCurrentTheme();
