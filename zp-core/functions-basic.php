@@ -222,7 +222,7 @@ function html_encode($this_string) {
 }
 
 /**
- * encodes a pre-sanitized string to be used in a Javascript alert box
+ * encodes a pre-sanitized string to be used as a Javascript parameter
  *
  * @param string $this_string
  * @return string

@@ -126,14 +126,14 @@ function printImageslist($number) {
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='albumthumb' style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>";
 		echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".urlencode($albumthumb->filename)."','".
-																											html_encode($albumthumb->getTitle())."','".
-																											html_encode($albumobj->getTitle())."','".
+																											js_encode($albumthumb->getTitle())."','".
+																											js_encode($albumobj->getTitle())."','".
 																											$fullimage."','zenphoto','".
-																											html_encode(getWatermarkParam($albumthumb, WATERMARK_THUMB))."','".
-																											html_encode(getWatermarkParam($albumthumb, WATERMARK_IMAGE))."','".
-																											$video."','".html_encode($imagedesc)."','".html_encode($albumdesc)."');\"".
+																											js_encode(getWatermarkParam($albumthumb, WATERMARK_THUMB))."','".
+																											js_encode(getWatermarkParam($albumthumb, WATERMARK_IMAGE))."','".
+																											$video."','".js_encode($imagedesc)."','".js_encode($albumdesc)."');\"".
 																											" title='".
-																											html_encode($albumthumb->getTitle())." (".html_encode($albumthumb->filename).")'><img src='".
+																											js_encode($albumthumb->getTitle())." (".js_encode($albumthumb->filename).")'><img src='".
 																											$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
 		echo "<a href='zoom.php?image=".urlencode($albumthumb->filename)."&amp;album=".pathurlencode($albumthumbalbum->name).
 																											"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
@@ -190,14 +190,14 @@ function printImageslist($number) {
 				$imgsizeurl = $imageobj->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 				echo "<div style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>\n";
 				echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".urlencode($imageobj->filename)."','".
-																												html_encode($imageobj->getTitle())."','".
-																												html_encode($linkalbumobj->getTitle())."','".
+																												js_encode($imageobj->getTitle())."','".
+																												js_encode($linkalbumobj->getTitle())."','".
 																												$fullimage."','zenphoto','".
-																												html_encode(getWatermarkParam($imageobj, WATERMARK_THUMB))."','".
-																												html_encode(getWatermarkParam($imageobj, WATERMARK_IMAGE))."','".
-																												$video."','".html_encode($imagedesc)."','".html_encode($albumdesc)."');\"".
+																												js_encode(getWatermarkParam($imageobj, WATERMARK_THUMB))."','".
+																												js_encode(getWatermarkParam($imageobj, WATERMARK_IMAGE))."','".
+																												$video."','".js_encode($imagedesc)."','".js_encode($albumdesc)."');\"".
 																												" title='".
-																												html_encode($imageobj->getTitle())." (".html_encode($imageobj->filename).")'><img src='".
+																												js_encode($imageobj->getTitle())." (".js_encode($imageobj->filename).")'><img src='".
 																												$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
 				echo "<a href='zoom.php?image=".urlencode($imageobj->filename)."&amp;album=".pathurlencode($linkalbumobj->name).
 																												"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
