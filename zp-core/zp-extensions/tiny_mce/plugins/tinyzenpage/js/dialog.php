@@ -1,6 +1,32 @@
 <script language="javascript" type="text/javascript">
 /* tinyMCEPopup.requireLangPack(); */
 
+function stripHTML(oldString) {
+
+   var newString = "";
+   var inTag = false;
+   for(var i = 0; i < oldString.length; i++) {
+
+        if(oldString.charAt(i) == '<') inTag = true;
+        if(oldString.charAt(i) == '>') {
+              if(oldString.charAt(i+1)=="<")
+              {
+              		//dont do anything
+	}
+	else
+	{
+		inTag = false;
+		i++;
+	}
+        }
+
+        if(!inTag) newString += oldString.charAt(i);
+
+   }
+
+   return newString;
+}
+
 var ZenpageDialog = {
 	init : function(ed) {
 		tinyMCEPopup.resizeToInnerSize();
@@ -27,6 +53,10 @@ var ZenpageDialog = {
 		var modrewritesuffix = '<?php echo getOption("mod_rewrite_image_suffix"); ?>';
 		var plainimgtitle = imgtitle.replace(/'|\\'/g, "\\'");
 		var plainalbumtitle = albumtitle.replace(/'|\\'/g, "\\'");
+
+
+		plainimgtitle = stripHTML(plainimgtitle);
+		plainalbumtitle = stripHTML(plainalbumtitle);
 
 		<?php
 		chdir(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flowplayer3');

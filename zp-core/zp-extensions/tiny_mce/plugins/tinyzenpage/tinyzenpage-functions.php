@@ -124,20 +124,19 @@ function printImageslist($number) {
 		}
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='albumthumb' style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>";
-		echo "<a href=\"javascript: ZenpageDialog.insert('".$imgurl."','".urlencode($albumthumb->filename)."','".
+		echo $a = "<a href=\"javascript: ZenpageDialog.insert('".$imgurl."','".urlencode($albumthumb->filename)."','".
 																											js_encode($albumthumb->getTitle())."','".
 																											js_encode($albumobj->getTitle())."','".
 																											$fullimage."','zenphoto','".
 																											js_encode(getWatermarkParam($albumthumb, WATERMARK_THUMB))."','".
 																											js_encode(getWatermarkParam($albumthumb, WATERMARK_IMAGE))."','".
-																											$video."','".js_encode($imagedesc)."','".js_encode($albumdesc)."');\"".
+																											$video."','".html_encode(addslashes($imagedesc))."','".html_encode(addslashes($albumdesc))."');\"".
 																											" title='".html_encode($albumthumb->getTitle())." (".html_encode($albumthumb->filename).")'>
 																											<img src='".$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
 		echo "<a href='zoom.php?image=".urlencode($albumthumb->filename)."&amp;album=".pathurlencode($albumthumbalbum->name).
 																											"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
 																											gettext('<em>Albumthumb</em>').unpublishedZenphotoItemCheck($albumthumb,false);
 		echo "</div>";
-
 		$images = $albumobj->getImages();
 
 		if($albumobj->getNumImages() != 0) {
@@ -191,7 +190,7 @@ function printImageslist($number) {
 																												$fullimage."','zenphoto','".
 																												js_encode(getWatermarkParam($imageobj, WATERMARK_THUMB))."','".
 																												js_encode(getWatermarkParam($imageobj, WATERMARK_IMAGE))."','".
-																												$video."','".js_encode($imagedesc)."','".js_encode($albumdesc)."');\"".
+																												$video."','".html_encode(addslashes($imagedesc))."','".html_encode(addslashes($albumdesc))."');\"".
 																												" title='".html_encode($imageobj->getTitle())." (".html_encode($imageobj->filename).")'>
 																												<img src='".$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
 				echo "<a href='zoom.php?image=".urlencode($imageobj->filename)."&amp;album=".pathurlencode($linkalbumobj->name).
