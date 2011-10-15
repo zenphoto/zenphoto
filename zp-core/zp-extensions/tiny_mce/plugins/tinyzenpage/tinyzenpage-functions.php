@@ -124,7 +124,7 @@ function printImageslist($number) {
 		}
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='albumthumb' style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>";
-		echo $a = "<a href=\"javascript: ZenpageDialog.insert('".$imgurl."','".urlencode($albumthumb->filename)."','".
+		echo "<a href=\"javascript: ZenpageDialog.insert('".$imgurl."','".urlencode($albumthumb->filename)."','".
 																											js_encode($albumthumb->getTitle())."','".
 																											js_encode($albumobj->getTitle())."','".
 																											$fullimage."','zenphoto','".
