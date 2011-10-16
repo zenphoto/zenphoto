@@ -15,11 +15,6 @@ require_once('../../zp-core/template-functions.php');
 
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
 
-if (getOption('zenphoto_release') != ZENPHOTO_RELEASE) {
-	header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/setup.php");
-	exit();
-}
-
 if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
 	exit();

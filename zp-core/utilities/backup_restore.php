@@ -296,7 +296,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 							}
 						}
 						if (!empty($items)) {
-							if ($table!='options' || strpos($values,'zenphoto_release')===false) {
+							if ($table!='options' || strpos($values,'zenphoto_install')===false) {
 								$items = substr($items,0,-1);
 								$values = substr($values,0,-1);
 								$sql = 'INSERT INTO '.prefix($table).' ('.$items.') VALUES ('.$values.')';
@@ -386,7 +386,6 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		</div>
 		';
 	}
-	setOption('zenphoto_release', ZENPHOTO_RELEASE); // be sure it is correct
 	setOption('zenphoto_install', installSignature());
 	if ($oldlibauth != $_zp_authority->getVersion()) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {

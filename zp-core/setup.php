@@ -370,38 +370,57 @@ if (!$setup_checked && zp_loggedin(ADMIN_RIGHTS)) {
 <ul>
 <?php
 if ($connection) {
-	//TODO: add each release as it happens
-	$zp_versions = array(	'1.2'=>'2213','1.2.1'=>'2635','1.2.2'=>'2983','1.2.3'=>'3427','1.2.4'=>'3716','1.2.5'=>'4022',
-												'1.2.6'=>'4335', '1.2.7'=>'4741','1.2.8'=>'4881','1.2.9'=>'5088','1.3.0'=>'5088','1.3.1'=>'5736',
-												'1.4'=>'6454','1.4.1-DEV'=>'6506',
-												'x.x.x'=>'99999999');
-	$c = 0;
-	$prev = getOption('zenphoto_release');
-	if (!empty($prev)) {
-		$release = gettext('Upgrade from before Zenphoto v1.2');
-		foreach ($zp_versions as $rel=>$build) {
-			if ($build > $prev) {
-				break;
-			} else {
-				$c++;
-				$release = sprintf(gettext('Upgrade from Zenphoto v%s'),$rel);
-			}
-		}
-		if ($c == count($zp_versions)-1) {
-			$check = 1;
-			if ($build != $prev) {
-				$release = gettext('Updating current Zenphoto release');
-			}
+	$prevRel = getOption('zenphoto_version');
+	if (empty($prevRel)) {	// pre 1.4.2 release, compute the version
+		$prevRel = getOption('zenphoto_release');
+		$zp_versions = array(	'1.2'=>'2213','1.2.1'=>'2635','1.2.2'=>'2983','1.2.3'=>'3427','1.2.4'=>'3716','1.2.5'=>'4022',
+													'1.2.6'=>'4335', '1.2.7'=>'4741','1.2.8'=>'4881','1.2.9'=>'5088',
+													'1.3.0'=>'5088','1.3.1'=>'5736',
+													'1.4'=>'6454','1.4.1'=>'6506',
+													'x.x.x'=>'99999999');
+		if (empty($prevRel)) {
+			$release = gettext('Upgrade from before Zenphoto v1.2');
+			$prevRel = '1.x';
+			$c = count($zp_versions);
+			$check = -1;
 		} else {
-			$c = count($zp_versions) - 1 - $c;
-			if ($c > 1) {
-				$check = -1;
-			} else {
+			foreach ($zp_versions as $rel=>$build) {
+				if ($build > $prevRel) {
+					break;
+				} else {
+					$c++;
+					$release = sprintf(gettext('Upgrade from Zenphoto v%s'),$rel);
+				}
+			}
+			if ($c == count($zp_versions)-1) {
 				$check = 1;
+			} else {
+				$check = -1;
+				$c = count($zp_versions) - 1 - $c;
 			}
 		}
-		checkmark($check,$release,$release.' '.sprintf(ngettext('[%u release skipped]','[%u releases skipped]',$c),$c),gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
+	} else {
+		preg_match('/[0-9,\.]*/', ZENPHOTO_VERSION, $matches);
+		$rel = explode('.', $matches[0].'.0');
+		preg_match('/[0-9,\.]*/', $prevRel, $matches);
+		$prevRel = explode('.', $matches[0].'.0');
+		$release = sprintf(gettext('Upgrade from Zenphoto v%s'),$matches[0]);
+		$c = ($rel[0]-$prevRel[0])*100 + ($rel[1]-$prevRel[1])*10+($rel[1]-$prevRel[1]);
+		if ($prevRel[0] == 1 && $prevRel[1] <= 3) {
+			$c = $c-8;	// there were only two 1.3.x releases
+		}
+		switch ($c) {
+			case 0:
+				$release = gettext('Updating current Zenphoto release');
+			case 1:
+				$check = 1;
+				break;
+			default:
+				$check = -1;
+				break;
+		}
 	}
+	checkmark($check,$release,$release.' '.sprintf(ngettext('[%u release skipped]','[%u releases skipped]',$c),$c),gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
 }
 
 	$required = '5.0.0';

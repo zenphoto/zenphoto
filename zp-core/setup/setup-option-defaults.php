@@ -11,7 +11,8 @@ require(CONFIGFILE);
 require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 zp_apply_filter('log_setup', true, 'install', '');
 
-setOption('zenphoto_release', ZENPHOTO_RELEASE);
+purgeOption('zenphoto_release');
+setOption('zenphoto_version', ZENPHOTO_VERSION.' ['.ZENPHOTO_RELEASE.']');
 setOption('zenphoto_install', installSignature());
 
 //clear out old admin user and cleartext password
