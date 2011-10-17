@@ -55,11 +55,22 @@ echo '</head>';
 <?php
 if (isset($_REQUEST['thumbtype']) && db_connect()) {
 	$key = sanitize_numeric($_REQUEST['thumbtype'], 3);
-	$sql = 'UPDATE '.prefix('albums').' SET `thumb`="'.$selector[$key]['field'].'"';
+	$sql = 'UPDATE '.prefix('albums').' SET `thumb`='.$key;
 	if (query($sql)) {
+		if ($key) {
+			$currentfield = getOption('AlbumThumbSelectField');
+			foreach ($selector as $key=>$selection) {
+				if ($selection['field'] == $currentfield) {
+					$text = $selection['desc'];
+					break;
+				}
+			}
+		} else {
+			$text = gettext('random');
+		}
 		?>
 		<div class="messagebox fade-message">
-		<h2><?php printf(gettext("Thumbnails all set to <em>%s</em>."), $selector[$key]['desc']); ?></h2>
+		<h2><?php printf(gettext("Thumbnails all set to <em>%s</em>."), $text); ?></h2>
 		</div>
 		<?php
 	} else {
@@ -84,12 +95,11 @@ if (isset($_REQUEST['thumbselector'])) {
 	}
 }
 
+
 if (db_connect()) {
 	$selections = array();
-	$currentkey = '';
 	foreach ($selector as $key=>$selection) {
 		$selections[$selection['desc']] = $key;
-		if ($selection['desc'] == $current) $currentkey=$key;
 	}
 	?>
 	<form name="set_random" action="">
@@ -99,9 +109,8 @@ if (db_connect()) {
 				<img src="<?php echo $webpath; ?>images/burst1.png" alt="" /> <?php echo gettext("Set all albums to"); ?>
 			</button>
 			<select id="thumbtype" name="thumbtype" >
-				<?php
-				generateListFromArray(array($current),$selections,false,true);
-				?>
+				<option value="0" <?php if (!$current) echo ' selected="selected"'; ?>><?php echo gettext('random'); ?></option>
+				<option value="1"<?php if ($current) echo ' selected="selected"'; ?>><?php echo $selector[$current]['desc']; ?></option>
 			</select>
 		</div>
 		<br clear="all" />
