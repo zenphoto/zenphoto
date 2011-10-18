@@ -45,6 +45,12 @@ require_once(dirname(__FILE__).'/auth_zp.php');
 
 $_zp_current_context_stack = array();
 
+$_zp_albumthumb_selector = array(array('field'=>'', 'direction'=>'', 'desc'=>'random'),
+																	array('field'=>'ID', 'direction'=>'DESC', 'desc'=>gettext('most recent')),
+																	array('field'=>'mtime', 'direction'=>'', 'desc'=>gettext('oldest')),
+																	array('field'=>'title', 'direction'=>'', 'desc'=>gettext('first alphabetically')),
+																	array('field'=>'hitcounter', 'direction'=>'DESC', 'desc'=>gettext('most viewed'))
+																	);
 
 /**
  * initializes the $_zp_exifvars array display state

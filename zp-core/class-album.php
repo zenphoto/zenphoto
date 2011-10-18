@@ -526,6 +526,7 @@ class Album extends MediaObject {
 	 * @return Image
 	 */
 	function getAlbumThumbImage() {
+		global $_zp_albumthumb_selector;
 
 		if (!is_null($this->albumthumbnail)) return $this->albumthumbnail;
 
@@ -536,9 +537,6 @@ class Album extends MediaObject {
 			$thumb = substr($thumb, 1); // strip off the slash
 			$albumdir = ALBUM_FOLDER_SERVERPATH;
 		}
-		$shuffle = empty($thumb);
-		$field = getOption('AlbumThumbSelectField');
-		$direction = getOption('AlbumThumbSelectDirection');
 		if (!empty($thumb) && !is_numeric($thumb) && file_exists($albumdir.internalToFilesystem($thumb))) {
 			if ($i===false) {
 				return newImage($this, $thumb);
@@ -553,6 +551,12 @@ class Album extends MediaObject {
 				return $this->albumthumbnail;
 			}
 		} else {
+			$shuffle = empty($thumb);
+			if (!is_numeric($thumb)) {
+				$thumb = getOption('AlbumThumbSelect');
+			}
+			$field = $_zp_albumthumb_selector[$thumb]['field'];
+			$direction = $_zp_albumthumb_selector[$thumb]['direction'];
 			$this->getImages(0, 0, $field, $direction);
 			$thumbs = $this->images;
 			if (!is_null($thumbs)) {

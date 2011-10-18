@@ -1024,7 +1024,7 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
  * @since 1.1.3
  */
 function printAlbumEditForm($index, $album, $collapse_tags) {
-	global $sortby, $gallery, $mcr_albumlist, $albumdbfields, $imagedbfields, $_thumb_field_text;
+	global $sortby, $gallery, $mcr_albumlist, $albumdbfields, $imagedbfields, $_zp_albumthumb_selector;
 	$tagsort = getTagOrder();
 	if ($index == 0) {
 		if (isset($saved)) {
@@ -1398,13 +1398,24 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 					<?php
 				}
 				if ($index==0) {	// suppress for mass-edit
+					$showThumb =$gallery->getThumbSelectImages();
+					$thumb = $album->get('thumb');
+					if (empty($thumb) && !is_numeric($thumb)) {
+						$thumb = getOption('AlbumThumbSelect');
+					}
+					$selections = array();
+					$selected = array();
+					foreach ($_zp_albumthumb_selector as $key=>$selection) {
+						$selections[$selection['desc']] = $key;
+						if ($key == $thumb) {
+							$selected[] = $key;
+						}
+					}
 					?>
 					<tr>
 						<td align="left" valign="top" width="150"><?php echo gettext("Thumbnail:"); ?> </td>
 						<td>
 						<?php
-						$showThumb =$gallery->getThumbSelectImages();
-						$thumb = $album->get('thumb');
 						if ($showThumb)  {
 							?>
 							<script type="text/javascript">
@@ -1416,13 +1427,8 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						}
 						?>
 						<select style="width:320px" <?php	if ($showThumb) {	?>class="thumbselect" onchange="updateThumbPreview(this)"	<?php	}	?> name="<?php echo $prefix; ?>thumb">
-							<option <?php if ($showThumb) {	?>class="thumboption" style="background-color:#B1F7B6"<?php		}
-								if ($thumb === '1') {	?>selected="selected"<?php } ?>	value="1"><?php echo $_thumb_field_text[getOption('AlbumThumbSelectField')]; ?>
-							</option>
-							<option <?php if ($showThumb) { ?>class="thumboption" style="background-color:#B1F7B6" <?php } ?>
-								<?php	if (empty($thumb) && $thumb !== '1') { ?> selected="selected" <?php } ?> value=""><?php echo gettext('randomly selected');?>
-							</option>
 							<?php
+							generateListFromArray($selected,$selections,false,true);
 							if ($album->isDynamic()) {
 								$params = $album->getSearchParams();
 								$search = new SearchEngine(true);
@@ -1434,7 +1440,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 									$filename = $imagerow['filename'];
 									$imagelist[] = '/'.$folder.'/'.$filename;
 								}
-								if ($thumb && $thumb != 1 && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
+								if ($thumb && !is_numeric($thumb) && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
 									array_unshift($imagearray, $thumb);
 								}
 								if (count($imagelist) == 0) {
@@ -1484,7 +1490,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 											$ID['id'] .'"';
 											$imagearray = array_merge($imagearray, query_full_array($query));
 										}
-										if ($thumb && $thumb != 1 && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
+										if ($thumb && !is_numeric($thumb) && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
 											array_unshift($imagearray, $thumb);
 										}
 										foreach ($imagearray as $imagerow) {
@@ -1513,7 +1519,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 									}
 								} else {
 									$imagearray = $images;
-									if ($thumb && $thumb != 1 && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
+									if ($thumb && !is_numeric($thumb) && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
 										array_unshift($imagearray, $thumb);
 									}
 									foreach ($imagearray as $filename) {
@@ -1889,7 +1895,7 @@ function printAlbumEditRow($album, $show_thumb) {
 			<a href="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>" title="<?php echo sprintf(gettext('Edit this album: %s'), $album->name); ?>">
 			<?php
 		}
-		echo $album->getTitle();
+		echo strip_tags($album->getTitle());
 		if ($enableEdit) {
 			?>
 			</a>

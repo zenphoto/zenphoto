@@ -33,12 +33,6 @@ if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 $buffer = '';
 $gallery = new Gallery();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
-$selector = array(array('field'=>'', 'direction'=>'', 'desc'=>'random'),
-									array('field'=>'ID', 'direction'=>'DESC', 'desc'=>$_thumb_field_text['ID']),
-									array('field'=>'mtime', 'direction'=>'', 'desc'=>$_thumb_field_text['mtime']),
-									array('field'=>'title', 'direction'=>'', 'desc'=>$_thumb_field_text['title']),
-									array('field'=>'hitcounter', 'direction'=>'DESC', 'desc'=>$_thumb_field_text['hitcounter'])
-									);
 
 
 printAdminHeader(gettext('utilities'),gettext('thumbs'));
@@ -56,90 +50,48 @@ echo '</head>';
 if (isset($_REQUEST['thumbtype']) && db_connect()) {
 	$key = sanitize_numeric($_REQUEST['thumbtype'], 3);
 	$sql = 'UPDATE '.prefix('albums').' SET `thumb`='.$key;
+	$text = $_zp_albumthumb_selector[$key]['desc'];
 	if (query($sql)) {
-		if ($key) {
-			$currentfield = getOption('AlbumThumbSelectField');
-			foreach ($selector as $key=>$selection) {
-				if ($selection['field'] == $currentfield) {
-					$text = $selection['desc'];
-					break;
-				}
-			}
-		} else {
-			$text = gettext('random');
-		}
 		?>
 		<div class="messagebox fade-message">
-		<h2><?php printf(gettext("Thumbnails all set to <em>%s</em>."), $text); ?></h2>
+			<h2>
+			<?php printf(gettext("Thumbnails all set to <em>%s</em>."), $text); ?></h2>
 		</div>
 		<?php
 	} else {
 		?>
 		<div class="errorbox fade-message">
-		<h2><?php echo gettext("Thumbnail reset query failed"); ?></h2>
+			<h2>
+			<?php echo gettext("Thumbnail reset query failed"); ?></h2>
 		</div>
 		<?php
 	}
 }
-if (isset($_REQUEST['thumbselector'])) {
-	$current = sanitize_numeric($_REQUEST['thumbselector']);
-	setOption('AlbumThumbSelectField',$selector[$current]['field']);
-	setOption('AlbumThumbSelectDirection',$selector[$current]['direction']);
-} else {
-	$currentfield = getOption('AlbumThumbSelectField');
-	foreach ($selector as $key=>$selection) {
-		if ($selection['field'] == $currentfield) {
-			$current = $key;
-			break;
-		}
-	}
-}
-
+$current = getOption('AlbumThumbSelect');
 
 if (db_connect()) {
 	$selections = array();
-	foreach ($selector as $key=>$selection) {
+	foreach ($_zp_albumthumb_selector as $key=>$selection) {
 		$selections[$selection['desc']] = $key;
 	}
 	?>
 	<form name="set_random" action="">
 		<?php XSRFToken('reset_thumbs')?>
-		<div class="buttons pad_button" id="set_all">
-			<button class="tooltip" type="submit" title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
-				<img src="<?php echo $webpath; ?>images/burst1.png" alt="" /> <?php echo gettext("Set all albums to"); ?>
-			</button>
-			<select id="thumbtype" name="thumbtype" >
-				<option value="0" <?php if (!$current) echo ' selected="selected"'; ?>><?php echo gettext('random'); ?></option>
-				<option value="1"<?php if ($current) echo ' selected="selected"'; ?>><?php echo $selector[$current]['desc']; ?></option>
-			</select>
-		</div>
-		<br clear="all" />
-		<br clear="all" />
-	</form>
-	<br />
-	<br />
-	<table>
-		<tr>
-			<td>
-				<form name="set_default" action="">
-					<?php XSRFToken('reset_thumbs')?>
-					<div class="buttons pad_button" id="set_default">
-						<button class="tooltip" type="submit" title="<?php echo gettext("Set album thumb default to the selected criteria"); ?>">
-							<img src="<?php echo $webpath; ?>images/burst1.png" alt="" />
-							<?php echo gettext('Album thumbnail default'); ?>
-						</button>
-						<select id="thumbselector" name="thumbselector" >
-							<?php
-							generateListFromArray(array($current),$selections,false,true);
-							?>
-						</select>
-					</div>
-				</form>
-			</td>
-		</tr>
-	</table>
-	<br clear="all" />
-	<br clear="all" />
+				<div class="buttons pad_button" id="set_all">
+					<button class="tooltip" type="submit"
+						title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
+						<img src="<?php echo $webpath; ?>images/burst1.png" alt="" />
+						 <?php echo gettext("Set all albums to"); ?>
+					</button>
+					<select id="thumbtype" name="thumbtype">
+						<?php
+						generateListFromArray(array($current),$selections,false,true);
+						?>
+					</select>
+				</div>
+				<br clear="all" /> <br clear="all" />
+			</form>
+			<br clear="all" /> <br clear="all" />
 	<?php
 } else {
 	echo "<h3>".gettext("database not connected")."</h3>";
@@ -147,9 +99,7 @@ if (db_connect()) {
 }
 
 ?>
-
-
-</div>
+		</div>
 <!-- content --></div>
 <!-- main -->
 <?php printAdminFooter(); ?>

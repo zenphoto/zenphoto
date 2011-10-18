@@ -103,6 +103,8 @@ if (isset($_GET['action'])) {
 			} else {
 				$imgpublish = 0;
 			}
+
+			setOption('AlbumThumbSelect', sanitize_numeric($_POST['thumbselector']));
 			$gallery->setImagePublish($imgpublish);
 			$gallery->setPersistentArchive((int) isset($_POST['persistent_archive']));
 			$gallery->setGallerySession((int) isset($_POST['album_session']));
@@ -1062,6 +1064,23 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						value="<?php echo html_encode($gallery->getWebsiteURL());?>" /></td>
 					<td><?php echo gettext("This is used to link back to your main site, but your theme must support it."); ?></td>
 				</tr>
+				<tr>
+				</tr>
+					<td><?php echo gettext("Ablbum thumbnails:"); ?></td>
+					<td>
+						<?php
+						$selections = array();
+						foreach ($_zp_albumthumb_selector as $key=>$selection) {
+							$selections[$selection['desc']] = $key;
+						}
+						?>
+						<select id="thumbselector" name="thumbselector">
+						<?php
+						generateListFromArray(array(getOption('AlbumThumbSelect')),$selections,false,true);
+						?>
+						</select>
+					</td>
+					<td><?php echo gettext("Default thumbnail selection for albums."); ?></td>
 				<tr>
 					<td><?php echo gettext("Sort gallery by:"); ?></td>
 					<td>
