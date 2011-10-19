@@ -384,6 +384,7 @@ if ($connection) {
 			$c = count($zp_versions);
 			$check = -1;
 		} else {
+			$c = 0;
 			foreach ($zp_versions as $rel=>$build) {
 				if ($build > $prevRel) {
 					break;
@@ -394,6 +395,7 @@ if ($connection) {
 			}
 			if ($c == count($zp_versions)-1) {
 				$check = 1;
+				$release = gettext('Updating current Zenphoto release');
 			} else {
 				$check = -1;
 				$c = count($zp_versions) - 1 - $c;

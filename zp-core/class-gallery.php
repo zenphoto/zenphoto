@@ -484,6 +484,8 @@ class Gallery {
 						$album->set('mtime', $mtime);
 						if ($album->isDynamic()) {
 							$data = file_get_contents($album->localpath);
+							$thumb = getOption('AlbumThumbSelect');
+							$words = $fields = '';
 							while (!empty($data)) {
 								$data1 = trim(substr($data, 0, $i = strpos($data, "\n")));
 								if ($i === false) {

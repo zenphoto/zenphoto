@@ -129,19 +129,19 @@ setOptionDefault('feed_hitcounter', 1);
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 
 $a =	"a => (href =>() title =>() target=>() class=>() id=>())\n" .
- 			"abbr =>(class=>() id=>() title =>())\n" .
- 			"acronym =>(class=>() id=>() title =>())\n" .
- 			"b => (class=>() id=>() )\n" .
- 			"blockquote =>(class=>() id=>() cite =>())\n" .
+			"abbr =>(class=>() id=>() title =>())\n" .
+			"acronym =>(class=>() id=>() title =>())\n" .
+			"b => (class=>() id=>() )\n" .
+			"blockquote =>(class=>() id=>() cite =>())\n" .
 			"br => (class=>() id=>() )\n" .
 			"code => (class=>() id=>() )\n" .
- 			"em => (class=>() id=>() )\n" .
- 			"i => (class=>() id=>() ) \n" .
- 			"strike => (class=>() id=>() )\n" .
- 			"strong => (class=>() id=>() )\n" .
- 			"ul => (class=>() id=>())\n" .
- 			"ol => (class=>() id=>())\n" .
- 			"li => (class=>() id=>())\n" .
+			"em => (class=>() id=>() )\n" .
+			"i => (class=>() id=>() ) \n" .
+			"strike => (class=>() id=>() )\n" .
+			"strong => (class=>() id=>() )\n" .
+			"ul => (class=>() id=>())\n" .
+			"ol => (class=>() id=>())\n" .
+			"li => (class=>() id=>())\n" .
 			"p => (class=>() id=>() style=>())\n" .
 			"h1=>(class=>() id=>() style=>())\n" .
 			"h2=>(class=>() id=>() style=>())\n" .
