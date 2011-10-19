@@ -57,7 +57,11 @@ class Gallery {
 	 *
 	 */
 	function getPassword() {
-		return $this->get('gallery_password');
+		if (GALLERY_SECURITY == 'private') {
+			return NULL;
+		} else {
+			return $this->get('gallery_password');
+		}
 	}
 	function setPassword($value) {
 		$this->set('gallery_password', $value);

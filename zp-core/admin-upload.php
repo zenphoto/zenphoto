@@ -188,7 +188,7 @@ if ($rootrights || !empty($albumlist)) {
 						if ($rootrights) {
 							$passedalbum = NULL;
 						} else {
-							$alist = $albumlist;
+							$alist = array_keys($albumlist);
 							$passedalbum = array_shift($alist);
 						}
 					}

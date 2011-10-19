@@ -59,7 +59,11 @@ class ZenpageCategory extends ZenpageRoot {
 	function setUser($user) { $this->set('user', $user);	}
 
 	function getPassword() {
-		return $this->get('password');
+			if (GALLERY_SECURITY == 'private') {
+			return NULL;
+		} else {
+			return $this->get('password');
+		}
 	}
 
 	/**

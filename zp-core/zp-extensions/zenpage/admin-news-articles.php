@@ -248,7 +248,7 @@ printLogoAndLinks();
 							</td>
 							<td class="icons">
 							<?php
-								if($article->inProtectedCategory() &&	(GALLERY_SECURITY != 'private')) {
+								if($article->inProtectedCategory()) {
 									echo '<img src="../../images/lock.png" style="border: 0px;" alt="'.gettext('Password protected').'" title="'.gettext('Password protected').'" />';
 								}
 								?>

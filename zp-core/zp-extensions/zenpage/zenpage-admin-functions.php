@@ -306,7 +306,7 @@ function printPagesListTable($page, $flag) {
 		<div class="page-list_iconwrapper">
 	<div class="page-list_icon">
 	<?php
-	if ($page->isProtected() && (GALLERY_SECURITY != 'private')) {
+	if ($page->getPassword()) {
 		echo '<img src="../../images/lock.png" style="border: 0px;" alt="'.gettext('Password protected').'" title="'.gettext('Password protected').'" />';
 	}
 	?>
@@ -621,7 +621,7 @@ function printCategorySelection($id='', $option='') {
 		}
 		$catname = $catobj->getTitle();
 		$catlink = $catobj->getTitlelink();
-		if($catobj->isProtected() && ((GALLERY_SECURITY != 'private'))) {
+		if($catobj->getPassword()) {
 			$protected = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/lock.png" alt="'.gettext('password protected').'" />';
 		} else {
 			$protected = '';
@@ -1206,7 +1206,7 @@ function printCategoryListSortableTable($cat,$flag) {
 		<div class="page-list_iconwrapper">
 			<div class="page-list_icon"><?php
 			$password = $cat->getPassword();
-			if (!empty($password)  && (GALLERY_SECURITY != 'private')) {
+			if (!empty($password)) {
 				echo '<img src="../../images/lock.png" style="border: 0px;" alt="'.gettext('Password protected').'" title="'.gettext('Password protected').'" />';
 			}
 			?>
@@ -1277,7 +1277,7 @@ function printCategoryCheckboxListEntry($cat,$articleid,$option) {
 	}
 	$catname = $cat->getTitle();
 	$catlink = $cat->getTitlelink();
-	if($cat->isProtected() && ((GALLERY_SECURITY != 'private'))) {
+	if($cat->getPassword()) {
 		$protected = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/lock.png" alt="'.gettext('password protected').'" />';
 	} else {
 		$protected = '';

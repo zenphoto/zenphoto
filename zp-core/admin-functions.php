@@ -1929,7 +1929,7 @@ function printAlbumEditRow($album, $show_thumb) {
 		<div class="page-list_icon">
 		<?php
 		$pwd = $album->getPassword();
-		if (!empty($pwd) && (GALLERY_SECURITY != 'private')) {			echo '<a title="'.gettext('Password protected').'"><img src="images/lock.png" style="border: 0px;" alt="" title="'.gettext('Password protected').'" /></a>';
+		if (!empty($pwd)) {			echo '<a title="'.gettext('Password protected').'"><img src="images/lock.png" style="border: 0px;" alt="" title="'.gettext('Password protected').'" /></a>';
 		}
 	 ?>
 		</div>

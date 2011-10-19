@@ -239,7 +239,7 @@ codeblocktabsJS();
 					echo '<p class="scheduledate"><small>'.gettext('<strong>Note:</strong> Scheduled publishing is not active unless the article is also set to <em>published</em>').'</small></p>';
 				}
 			}
-			if($result->inProtectedCategory() && (GALLERY_SECURITY != 'private')) {
+			if($result->inProtectedCategory()) {
 			 echo '<p class="notebox">'.gettext('<strong>Note:</strong> This article belongs to a password protected category.').'</p>';
 			}
 		}
@@ -258,8 +258,8 @@ codeblocktabsJS();
 					echo '<p class="scheduledate"><small>'.gettext('Note: Scheduled publishing is not active unless the page is also set to <em>published</em>').'</small></p>';
 				}
 			}
-			if($result->isProtected() && (GALLERY_SECURITY != 'private')) {
-				echo '<p class="notebox">'.gettext('<strong>Note:</strong> This page is either password protected or has a passport protected parent.').'</p>';
+			if($result->getPassword()) {
+				echo '<p class="notebox">'.gettext('<strong>Note:</strong> This page is password protected.').'</p>';
 			}
 		}
 }

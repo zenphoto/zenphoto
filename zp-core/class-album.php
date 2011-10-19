@@ -1239,7 +1239,12 @@ class Album extends MediaObject {
 		}
 		if (zp_loggedin($action)) {
 			$subRights = $this->albumSubRights();
-			if (!is_null($subRights)) {
+			if (is_null($subRights)) {
+				// no direct rights, but if this is a private gallery and the album is published he should be allowed to see it
+				if (GALLERY_SECURITY == 'private' && $this->getShow()) {
+					return LIST_RIGHTS;
+				}
+			} else {
 				$albumrights = LIST_RIGHTS;
 				if ($subRights & (MANAGED_OBJECT_RIGHTS_EDIT)) {
 					$albumrights = $albumrights | ALBUM_RIGHTS;

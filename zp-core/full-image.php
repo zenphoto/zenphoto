@@ -79,7 +79,7 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 		$hint = $_zp_gallery->getPasswordHint();;
 		$show = $_zp_gallery->getUser();
 	}
-	if ((empty($hash) && GALLERY_SECURITY == 'private') || (!empty($hash) && zp_getCookie($authType) != $hash)) {
+	if (empty($hash) || (!empty($hash) && zp_getCookie($authType) != $hash)) {
 		require_once(dirname(__FILE__) . "/template-functions.php");
 		$parms = '';
 		if (isset($_GET['wmk'])) {

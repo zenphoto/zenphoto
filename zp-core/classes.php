@@ -744,7 +744,13 @@ class MediaObject extends ThemeObject {
 	 *
 	 * @return string
 	 */
-	function getPassword() { return $this->get('password'); }
+	function getPassword() {
+		if (GALLERY_SECURITY == 'private') {
+			return NULL;
+		} else {
+			return $this->get('password');
+		}
+	}
 
 	/**
 	 * Sets the encrypted password
