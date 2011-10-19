@@ -1234,7 +1234,9 @@ function setupTheme() {
 			$id = $parent->id;
 		}
 	}
-	$theme = zp_apply_filter('setupTheme', $theme);
+	if ($theme != $theme = zp_apply_filter('setupTheme', $theme)) {
+		$_zp_gallery->setCurrentTheme($theme);
+	}
 	$themeindex = getPlugin('index.php', $theme);
 	if (empty($theme) || empty($themeindex)) {
 		header('Last-Modified: ' . ZP_LAST_MODIFIED);
