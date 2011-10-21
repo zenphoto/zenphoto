@@ -47,16 +47,16 @@ function installSignature_gen() {
 	if (false) {
 		/*start installSignature*/
 		function installSignature() {
-			$t1 = ZENPHOTO_VERSION.ZENPHOTO_RELEASE;
-			if (isset($_SERVER['UNIQUE_ID'])) {
-				$t1 .= $_SERVER['UNIQUE_ID'];
+			$t1 = ZENPHOTO_VERSION.ZENPHOTO_RELEASE.':';
+			if (isset($_SERVER['SERVER_SOFTWARE'])) {
+				$t1 .= $_SERVER['SERVER_SOFTWARE'].':';
 			} else {
-				$t1 .= 'UNIQUE_ID';
+				$t1 .= 'software unknown:';
 			}
 			if (defined('RELEASE')) {
-				$t1 .= filesize(__FILE__);
+				$t1 .= filesize(__FILE__).':';
 			} else {
-				$t1 .= 'SVN';
+				$t1 .= 'SVN:';
 			}
 			$t1 .= dirname(__FILE__);
 			$t1 = sha1($t1);

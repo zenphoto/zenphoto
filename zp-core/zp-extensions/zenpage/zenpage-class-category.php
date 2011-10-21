@@ -245,9 +245,15 @@ class ZenpageCategory extends ZenpageRoot {
 			return true;
 		}
 		if (zp_loggedin($action)) {
+			if ($action == LIST_RIGHTS && $this->getShow()) {
+				return true;
+			}
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {
-				if (in_array($this->getTitlelink(), $mycategories)) {
+				$allowed = $this->getParents();
+				array_unshift($allowed, $this->getTitlelink());
+				$overlap = array_intersect($mycategories, $allowed);
+				if (!empty($overlap)) {
 					return true;
 				}
 			}

@@ -192,7 +192,10 @@ class ZenpageNews extends ZenpageItems {
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {
 				foreach ($this->getCategories() as $category) {
-					if (array_search($category['titlelink'], $mycategories)!==false) return true;
+					$cat = new ZenpageCategory($category['titlelink']);
+					if ($cat->isMyItem($action)) {
+						return true;
+					}
 				}
 			}
 		}

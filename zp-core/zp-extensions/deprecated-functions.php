@@ -937,7 +937,7 @@ function getPages($published=NULL) {
  * @param bool $sticky set to true to place "sticky" articles at the front of the list.
  * @return array
  */
-function getNewsArticles($articles_per_page='', $category='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
+function getArticles($articles_per_page='', $category='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_current_category, $_zp_post_date;
 	processExpired('news');
@@ -1420,7 +1420,7 @@ function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder
 		case "latestupdatedalbums-thumbnail":
 		case "latestupdatedalbums-thumbnail-customcrop":
 		case "latestupdatedalbums-sizedimage":
-			$latest = getNewsArticles($articles_per_page,'',NULL,true);
+			$latest = getArticles($articles_per_page,'',NULL,true);
 			$counter = '';
 			foreach($latest as $news) {
 				$article = new ZenpageNews($news['titlelink']);

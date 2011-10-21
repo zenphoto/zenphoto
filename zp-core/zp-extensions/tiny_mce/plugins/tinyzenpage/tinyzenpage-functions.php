@@ -247,14 +247,14 @@ function printNewsArticlesList($number) {
 	if(isset($_GET['zenpage']) && $_GET['zenpage'] == "articles") {
 		echo "<h3 style='margin-bottom:10px'>Zenpage: <em>".gettext('Articles')."</em> <small>".gettext("(Click on article title to include a link)")."</small></h3>";
 		echo "<ul style='list-style-type: none; width: 85%;'>";
-		$items = $_zp_zenpage ->getNewsArticles("","all");
+		$items = $_zp_zenpage ->getArticles("","all");
 		$news_per_page = $number;
 		if(isset($_GET['page'])) {
 			$currentpage = sanitize_numeric($_GET['page']);
 		} else {
 			$currentpage = 1;
 		}
-		$newscount = count($_zp_zenpage ->getNewsArticles(0,'all'));
+		$newscount = count($_zp_zenpage ->getArticles(0,'all'));
 		$pagestotal = ceil($newscount / $news_per_page);
 		for ($nr = 1;$nr <= $pagestotal; $nr++) {
 			$startnews[$nr] = $nr * $news_per_page - $news_per_page; // get start image number
@@ -415,7 +415,7 @@ function printZenpageItems() {
 	$categories = $_zp_zenpage->getAllCategories(false);
 	$catcount = count($categories);
 	echo "<option value='pages'>".gettext("pages")." (".$pagenumber.")</option>";
-	echo "<option value='articles'>".gettext("articles")." (".count($_zp_zenpage ->getNewsArticles(0,'all')).")</option>";
+	echo "<option value='articles'>".gettext("articles")." (".count($_zp_zenpage ->getArticles(0,'all')).")</option>";
 	echo "<option value='categories'>".gettext("categories")." (".$catcount.")</option>";
 }
 

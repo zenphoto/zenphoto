@@ -94,7 +94,7 @@ printLogoAndLinks();
 			}
 			if (isset($_GET['date'])) {
 				echo '<em><small> ('.$_GET['date'].')</small></em>';
-				// require for getNewsArticles() so the date dropdown is working
+				// require for getArticles() so the date dropdown is working
 				set_context(ZP_ZENPAGE_NEWS_DATE);
 				$_zp_post_date = sanitize($_GET['date']);
 			}
@@ -140,8 +140,8 @@ printLogoAndLinks();
 				$result = $catobj->getArticles(0,$published,false,$sortorder,$direction);
 			} else {
 				$catobj = NULL;
-				$resultU = $_zp_zenpage->getNewsArticles(0,'unpublished',false,$sortorder,$direction);
-				$result = $_zp_zenpage->getNewsArticles(0,$published,false,$sortorder,$direction);
+				$resultU = $_zp_zenpage->getArticles(0,'unpublished',false,$sortorder,$direction);
+				$result = $_zp_zenpage->getArticles(0,$published,false,$sortorder,$direction);
 			}
 			foreach ($result as $key=>$article) {
 				$article = new ZenpageNews($article['titlelink']);

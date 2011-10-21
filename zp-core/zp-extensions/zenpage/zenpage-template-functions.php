@@ -199,13 +199,13 @@ function getNumNews($total=false) {
 	global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_news_restore, $_zp_zenpage_articles, $_zp_gallery, $_zp_current_search;
 	$_zp_zenpage->processExpired('news');
 	if ($total) {
-		return count($_zp_zenpage->getNewsArticles(0));
+		return count($_zp_zenpage->getArticles(0));
 	} else if (in_context(ZP_SEARCH)) {
 		return count($_zp_current_search->getSearchNews());
 	} else if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
 		return count($_zp_zenpage->getCombiNews(0));
 	} else {
-		return count($_zp_zenpage->getNewsArticles(0));
+		return count($_zp_zenpage->getArticles(0));
 	}
 }
 
@@ -239,7 +239,7 @@ function next_news($sortorder="date", $sortdirection="desc") {
 			if(in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
 				$_zp_zenpage_articles = $_zp_current_category->getArticles(ZP_ARTICLES_PER_PAGE,NULL,false,$sortorder,$sortdirection);
 			} else {
-				$_zp_zenpage_articles = $_zp_zenpage->getNewsArticles(ZP_ARTICLES_PER_PAGE,NULL,false,$sortorder,$sortdirection);
+				$_zp_zenpage_articles = $_zp_zenpage->getArticles(ZP_ARTICLES_PER_PAGE,NULL,false,$sortorder,$sortdirection);
 			}
 		}
 		while (!empty($_zp_zenpage_articles)) {
@@ -444,22 +444,57 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 	$newstype = getNewsType();
 	switch($newstype) {
 		case 'news':
-			if (!$_zp_current_zenpage_news->checkAccess()) {
-				return '<p>'.gettext('<em>This article belongs to a protected category.</em>').'</p>';
+			if (zp_loggedin()) {
+				if (GALLERY_SECURITY == 'private' && $_zp_current_zenpage_news->getShow()) {
+					$ok = true;
+				} else {
+					$ok = $_zp_current_zenpage_news->checkAccess();
+				}
+			} else {
+				$ok = false;
+			}
+			if (!$ok) {
+				$ok = $_zp_current_zenpage_news->checkforGuest();
+			}
+			break;
+		case 'album':
+			$album = getNewsAlbumName();
+			$albumobj = new Album($_zp_gallery,$album);
+			if (zp_loggedin()) {
+				if (GALLERY_SECURITY == 'private' && $albumobj->getShow()) {
+					$ok = true;
+				} else {
+					$ok = $albumobj->checkAccess();
+				}
+			} else {
+				$ok = false;
+			}
+			if (!$ok) {
+				$ok = $albumobj->checkforGuest();
 			}
 			break;
 		case 'image':
 			$album = getNewsAlbumName();
 			$albumobj = new Album($_zp_gallery,$album);
-			if(!$albumobj->checkAccess()) {
-				return '<p>'.gettext('<em>This entry belongs to a protected album.</em>').'</p>';
+			if (zp_loggedin()) {
+				if (GALLERY_SECURITY == 'private' && $_zp_current_zenpage_news->getShow()) {
+					$ok = true;
+				} else {
+					$ok = $albumobj->checkAccess();
+				}
+			} else {
+				$ok = false;
+			}
+			if (!$ok) {
+				$ok = $albumobj->checkforGuest();
 			}
 			break;
-		case 'album':
-			if(!$_zp_current_zenpage_news->checkAccess()) {
-				return '<p>'.gettext('<em>This entry belongs to a protected album.</em>').'</p>';
-			}
+			default:
+			$ok = false;
 			break;
+	}
+	if (!$ok) {
+		return '<p>'.gettext('<em>This entry belongs to a protected album.</em>').'</p>';
 	}
 	$excerptbreak = false;
 	if(!$shorten && !is_NewsArticle()) {
@@ -1104,7 +1139,7 @@ function getLatestNews($number=2,$option='none', $category='') {
 				$catobj = new ZenpageCategory($category);
 				$latest = $catobj->getArticles($number,NULL,true);
 			} else {
-				$latest = $_zp_zenpage->getNewsArticles($number,NULL,true);
+				$latest = $_zp_zenpage->getArticles($number,NULL,true);
 			}
 			$counter = '';
 			$latestnews = array();
@@ -1587,7 +1622,7 @@ function getTotalNewsPages() {
 	if(ZP_COMBINEWS AND !is_NewsCategory() AND !is_NewsArchive()) {
 		$articlecount = $_zp_zenpage->countCombiNews();
 	} else {
-		$articlecount = count($_zp_zenpage ->getNewsArticles(0,'all'));
+		$articlecount = count($_zp_zenpage ->getArticles(0,'all'));
 	}
 }
 
@@ -1614,7 +1649,7 @@ function getNextPrevNews($option='',$sortorder='date',$sortdirection='desc') {
 	if(!ZP_COMBINEWS) {
 		$current = 0;
 		if(!empty($option)) {
-			$all_articles = $_zp_zenpage->getNewsArticles('',NULL,false,$sortorder,$sortdirection);
+			$all_articles = $_zp_zenpage->getArticles('',NULL,false,$sortorder,$sortdirection);
 			$count = 0;
 			foreach($all_articles as $article) {
 				$newsobj = new ZenpageNews($article['titlelink']);
@@ -1975,8 +2010,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 	if ($showsubs === true) $showsubs = 9999999999;
 	switch($mode) {
 		case 'pages':
-			$published = !zp_loggedin(ZENPAGE_PAGES_RIGHTS | VIEW_PAGES_RIGHTS);
-			$items = $_zp_zenpage->getPages($published);
+			$items = $_zp_zenpage->getPages();
 			$currentitem_id = getPageID();
 			if (is_object($_zp_current_zenpage_page)) {
 				$currentitem_parentid = $_zp_current_zenpage_page->getParentID();
@@ -1987,11 +2021,6 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 			break;
 		case 'categories':
 		case 'allcategories':
-			if(zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
-				$published = 'all';
-			} else {
-				$published = 'published';
-			}
 			$items = $_zp_zenpage->getAllCategories();
 			if (is_object($_zp_current_category)) {
 				$currentitem_sortorder = $_zp_current_category->getSortOrder();
@@ -2040,9 +2069,9 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 						$totalcount = $_zp_zenpage->countCombiNews($published);
 					} else {
 						if(in_context(ZP_ZENPAGE_NEWS_CATEGORY) && $mode == 'categories') {
-							$totalcount = count($_zp_current_category->getArticles(0,$published));
+							$totalcount = count($_zp_current_category->getArticles(0));
 						} else {
-							$totalcount = count($_zp_zenpage->getNewsArticles(0,$published));
+							$totalcount = count($_zp_zenpage->getArticles(0));
 						}
 					}
 					echo "<small> (".$totalcount.")</small>";
@@ -2620,7 +2649,19 @@ function printSubPagesExcerpts($excerptlength=NULL, $readmore=NULL, $shortenindi
 			$subcount++;
 			$pagetitle = $pageobj->getTitle();
 			$pagecontent = $pageobj->getContent();
-			if($pageobj->checkAccess()) {
+			if (zp_loggedin()) {
+				if (GALLERY_SECURITY == 'private' && $pageobj->getShow()) {
+					$ok = true;
+				} else {
+					$ok = $pageobj->checkAccess();
+				}
+			} else {
+				$ok = false;
+			}
+			if (!$ok) {
+				$ok = $pageobj->checkforGuest();
+			}
+			if($ok) {
 				$pagecontent = getContentShorten($pagecontent, $excerptlength, $shortenindicator,$readmore, getPageLinkURL($pageobj->getTitlelink()));
 			} else {
 				$pagecontent = '<p><em>'.gettext('This page is password protected').'</em></p>';

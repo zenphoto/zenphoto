@@ -729,7 +729,7 @@ function getSitemapZenpageNewsArticles() {
 		$data = '';
 		$sitemap_locales = generateLanguageList();
 		$changefreq = getOption('sitemap_changefreq_news');
-		$articles = $_zp_zenpage->getNewsArticles('','published',true,"date","desc");
+		$articles = $_zp_zenpage->getArticles('','published',true,"date","desc");
 		if($articles) {
 			$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');

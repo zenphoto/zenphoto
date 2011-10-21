@@ -1521,7 +1521,7 @@ function getNewsPagesStatistic($option) {
 	global $_zp_zenpage;
 	switch($option) {
 		case "news":
-			$items = $_zp_zenpage->getNewsArticles();
+			$items = $_zp_zenpage->getArticles();
 			$type = gettext("Articles");
 			break;
 		case "pages":

@@ -100,10 +100,13 @@ class Zenpage {
 	 * @return array
 	 */
 	function getPages($published=NULL) {
-		global $_zp_zenpage_all_pages;
+		global $_zp_zenpage_all_pages, $_zp_loggedin;
 		$this->processExpired('pages');
 		if (is_null($published)) {
-			$published = !zp_loggedin(MANAGE_ALL_PAGES_RIGHTS);
+			$published = !zp_loggedin();
+			$all = zp_loggedin(MANAGE_ALL_PAGES_RIGHTS);
+		} else {
+			$all = !$published;;
 		}
 		if($published) {
 			$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
@@ -111,12 +114,20 @@ class Zenpage {
 			$show = '';
 		}
 		$_zp_zenpage_all_pages = NULL; // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
-		if(is_null($_zp_zenpage_all_pages)) {
-			$_zp_zenpage_all_pages  = query_full_array("SELECT * FROM ".prefix('pages').$show." ORDER by `sort_order`");
-			return $_zp_zenpage_all_pages;
-		} else {
-			return $_zp_zenpage_all_pages;
+		$result  = query("SELECT * FROM ".prefix('pages').$show." ORDER by `sort_order`");
+		if ($result) {
+			while ($row = db_fetch_assoc($result)) {
+				if ($all || $row['show']) {
+					$_zp_zenpage_all_pages[] = $row;
+				} else if ($_zp_loggedin) {
+					$page = new ZenpagePage($row['titlelink']);
+					if ($page->isMyItem(LIST_RIGHTS)) {
+						$_zp_zenpage_all_pages[] = $row;
+					}
+				}
+			}
 		}
+		return $_zp_zenpage_all_pages;
 	}
 	/************************************/
 	/* general news article functions   */
@@ -143,14 +154,20 @@ class Zenpage {
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
-	function getNewsArticles($articles_per_page='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
+	function getArticles($articles_per_page='', $published=NULL,$ignorepagination=false,$sortorder='date', $sortdirection='desc',$sticky=true) {
 		global $_zp_current_category, $_zp_post_date;
 		$this->processExpired('news');
+		$getUnpublished = NULL;
 		if (empty($published)) {
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
+			if(zp_loggedin( VIEW_NEWS_RIGHTS)) {
 				$published = "all";
+				$getUnpublished = true;
 			} else {
-				$published = "published";
+				if (zp_loggedin()) {
+					$published = 'all';
+				} else {
+					$published = "published";
+				}
 			}
 		}
 		$show = '';
@@ -186,7 +203,6 @@ class Zenpage {
 		switch($published) {
 			case "published":
 				$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
-				$getUnpublished = false;
 				break;
 			case "unpublished":
 				$show = " WHERE `show` = 0 AND date <= '".date('Y-m-d H:i:s')."'";
@@ -194,11 +210,9 @@ class Zenpage {
 				break;
 			case 'sticky':
 				$show = ' WHERE `sticky` <> 0';
-				$getUnpublished = true;
 				break;
 			case "all":
 				$show = "";
-				$getUnpublished = true;
 				break;
 		}
 		if(in_context(ZP_ZENPAGE_NEWS_DATE)) {
@@ -227,14 +241,14 @@ class Zenpage {
 			$order = " ORDER BY ".$sticky.$sort1." ".$dir;
 		}
 		$sql = "SELECT titlelink FROM ".prefix('news').$show.$datesearch." ".$order;
-		$resource = $result = query($sql);
+		$resource = query($sql);
+		$result = array();
 		if ($resource) {
 			if ($ignorepagination) {
 				$offset = 0;
 			} else {
 				$offset = $this->getOffset($articles_per_page);
 			}
-			$result = array();
 			while ($item = db_fetch_assoc($resource)) {
 				$article = new ZenpageNews($item['titlelink']);
 				if ($getUnpublished || $article->categoryIsVisible()) {
@@ -292,7 +306,7 @@ class Zenpage {
 					$cat = sanitize($_GET['category']);
 					$catobj = new ZenpageCategory($cat);
 				} else {
-					return count($this->getNewsArticles(0));
+					return count($this->getArticles(0));
 				}
 			} else {
 				$catobj = $_zp_current_category;
@@ -552,7 +566,7 @@ class Zenpage {
 			case "latestupdatedalbums-thumbnail":
 			case "latestupdatedalbums-thumbnail-customcrop":
 			case "latestupdatedalbums-sizedimage":
-				$latest = $this->getNewsArticles($articles_per_page,NULL,true);
+				$latest = $this->getArticles($articles_per_page,NULL,true);
 				$counter = '';
 				foreach($latest as $news) {
 					$article = new ZenpageNews($news['titlelink']);
@@ -609,7 +623,7 @@ class Zenpage {
 		$countGalleryitems = 0;
 		$countArticles = 0;
 		if(ZP_COMBINEWS) {
-			$countArticles = count($this->getNewsArticles(0));
+			$countArticles = count($this->getArticles(0));
 			if(is_null($published)) {
 				if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
 					$published = FALSE;
