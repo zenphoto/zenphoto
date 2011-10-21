@@ -54,7 +54,7 @@ function installSignature_gen() {
 				$t1 .= 'software unknown:';
 			}
 			if (defined('RELEASE')) {
-				$t1 .= filesize(__FILE__).':';
+				$t1 .= filesize(SERVERPATH.'/'.ZENFOLDER.'/functions.php').':';
 			} else {
 				$t1 .= 'SVN:';
 			}
