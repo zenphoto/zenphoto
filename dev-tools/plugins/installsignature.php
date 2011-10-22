@@ -56,9 +56,9 @@ function installSignature_gen() {
 			if (defined('RELEASE')) {
 				$t1 .= filesize(SERVERPATH.'/'.ZENFOLDER.'/functions.php').':';
 			} else {
-				$t1 .= 'SVN:';
+				$t1 .= filesize(SERVERPATH.'/'.ZENFOLDER.'/Signature').':';
 			}
-			$t1 .= dirname(__FILE__);
+			$t1 .= dirname(SERVERPATH.'/'.ZENFOLDER);
 			$t1 = sha1($t1);
 			$id = "{"	.substr($t1, 0, 8).'-'
 								.substr($t1, 8, 4).'-'

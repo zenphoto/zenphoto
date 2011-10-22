@@ -189,6 +189,9 @@ class ZenpageNews extends ZenpageItems {
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true;	//	he is the author
 			}
+			if ($this->getShow() && $action == LIST_RIGHTS) {
+				return true;
+			}
 			$mycategories = $_zp_current_admin_obj->getObjects('news');
 			if (!empty($mycategories)) {
 				foreach ($this->getCategories() as $category) {
