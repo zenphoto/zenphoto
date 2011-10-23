@@ -41,7 +41,7 @@ $thisablum = $_zp_current_album;
 
 				<div class="galleryinfo">
 					<h1><?php printAlbumTitle(true);?></h1>
-					<p class="desc"><?php printAlbumDesc(true); ?></p>
+					<div class="desc"><?php printAlbumDesc(true); ?></div>
 				</div>
 
 		<?php

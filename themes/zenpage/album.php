@@ -34,7 +34,7 @@ if (!defined('WEBPATH')) die();
 </div>
 
 	<div id="content-left">
-	<div><p><?php printAlbumDesc(true); ?></p></div>
+	<div><?php printAlbumDesc(true); ?></div>
 	
 	
 <?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
