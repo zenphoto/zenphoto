@@ -1025,7 +1025,6 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		$installed_files = array();
 	}
 	$folders = array();
-	$zenphoto_themes = array();
 	foreach ($installed_files as $key=>$value) {
 		$component_data = explode(':',$value);
 		$value = trim($component_data[0]);
@@ -1055,7 +1054,6 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				$folders[$component] = $component;
 				unset($installed_files[$key]);
 				if (dirname($value) == THEMEFOLDER) {
-					$zenphoto_themes[] = basename($value);
 					getResidentZPFiles($base.$value);
 				}
 			} else {
@@ -2394,11 +2392,6 @@ if (file_exists(CONFIGFILE)) {
 		<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="dont" />
 		<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken?>" />
 		<?php
-			if (isset($zenphoto_themes)) {
-				?>
-				<input type="hidden" id="themelist" name="themelist" value="<?php echo html_encode(serialize($zenphoto_themes)); ?>" />
-				<?php
-			}
 			if (isset($_REQUEST['autorun'])) {
 				if(!empty($_REQUEST['autorun'])) {
 					$auto = setup_sanitize($_REQUEST['autorun']);

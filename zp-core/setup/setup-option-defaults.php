@@ -340,33 +340,35 @@ purgeOption('AlbumThumbSelectDirection');
 
 setOptionDefault('site_email',"zenphoto@".$_SERVER['SERVER_NAME']);
 
-if (isset($_POST['themelist'])) {
-	$list = sanitize($_POST['themelist']);
-	setOption('Zenphoto_theme_list',$list);
-	$gallery = new Gallery();
-	$themes = unserialize($list);
-	$foreignthemes = array_diff(array_keys($gallery->getThemes()), $themes);
-	?>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		<?php
-		foreach (array_keys($gallery->getThemes()) as $theme) {
-			$requirePath = getPlugin('themeoptions.php', $theme);
-			if (!empty($requirePath)) {
-				?>
-				$.ajax({
-					type: 'POST',
-					url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_themeOptions.php',
-					data: 'theme=<?php echo $theme; ?>'
-				});
-				<?php
-			}
-		}
-		?>
-	// ]]> -->
-	</script>
-	<?php
+if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
+	$package = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package');
+	if (!empty($package)) {
+		preg_match_all('|[^/]themes/([^/\r\n]*)|', $package, $matches);
+		$themes = array_unique($matches[1]);
+		setOption('Zenphoto_theme_list',serialize($themes));
+	}
 }
+$gallery = new Gallery();
+?>
+<script type="text/javascript">
+	// <!-- <![CDATA[
+	<?php
+	foreach (array_keys($gallery->getThemes()) as $theme) {
+		$requirePath = getPlugin('themeoptions.php', $theme);
+		if (!empty($requirePath)) {
+			?>
+			$.ajax({
+				type: 'POST',
+				url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_themeOptions.php',
+				data: 'theme=<?php echo $theme; ?>'
+			});
+			<?php
+		}
+	}
+	?>
+	// ]]> -->
+</script>
+<?php
 setOption('zp_plugin_deprecated-functions',9|CLASS_PLUGIN);	//	Yes, I know some people will be annoyed that this keeps coming back,
 																														//	but each release may deprecated new functions which would then just give
 																														//	(perhaps unseen) errors. Better the user should disable this once he knows
