@@ -1336,7 +1336,7 @@ button.positive,.buttons a.positive {
 .searchchecklist {
 	border: 1px solid #ccc;
 	list-style: none;
-	height: 6em;
+	height: 120px;
 	width: 350px;
 	overflow: auto;
 	background-color: white;

@@ -2005,10 +2005,15 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			</td>
 			<td><?php echo gettext("Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."); ?></td>
 		</tr>
+		<script>
+		$(function() {
+			$( "#resizable" ).resizable({ maxWidth: 350, minWidth: 350, minHeight: 120 });
+		});
+		</script>
 		<tr>
 			<td><?php echo gettext("Metadata"); ?></td>
 			<td>
-			<ul class="searchchecklist">
+			<ul id="resizable" class="searchchecklist">
 			<?php
 			$exifstuff = sortMultiArray($_zp_exifvars,2,false);
 			foreach ($exifstuff as $key=>$item) {
@@ -2035,13 +2040,16 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			</ul>
 			</td>
 			<td>
-			<p>
+				<p>
 				<?php echo gettext("Select how image metadata fields are handled."); ?>
 				<ul style="list-style: none;">
 					<li><img src ="images/accept.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Show the field'); ?></li>
 					<li><img src ="images/reset1.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Hide the field'); ?></li>
 					<li><img src ="images/fail.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Do not process the field'); ?></li>
 				</ul>
+				</p>
+				<p>
+				<?php echo gettext('Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections.')?>
 				</p>
 			</td>
 		</tr>
