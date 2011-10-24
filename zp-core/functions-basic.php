@@ -1497,7 +1497,7 @@ function checkInstall() {
  * Redirects to setup if the files are present. Otherwise notifies need for re-upload
  */
 function reconfigure() {
-	$package = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package');
+	$package = file_get_contents(dirname(__FILE__).'/Zenphoto.package');
 	preg_match_all('|'.ZENFOLDER.'/setup/(.*)|', $package, $matches);
 	$found = safe_glob(dirname(__FILE__).'/setup/setup*.*');
 	if (file_exists(dirname(__FILE__).'/setup.php') && count($found)==count($matches[1])) {
@@ -1506,8 +1506,13 @@ function reconfigure() {
 		if ($p !== false) {
 			$dir = substr($dir, 0, $p);
 		}
+		if (OFFSET_PATH) {
+			$where = 'admin';
+		} else {
+			$where = 'gallery';
+		}
 		if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
-		$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php";
+		$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php?autorun=$where";
 		header("Location: $location" );
 		exit();
 	} else {

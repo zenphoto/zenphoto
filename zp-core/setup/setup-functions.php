@@ -39,8 +39,8 @@ function primeMark($text) {
 	<?php
 }
 
-function checkMark($check, $text, $text2, $msg) {
-	global $warn, $moreid, $primeid;
+function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
+	global $warn, $moreid, $primeid,$autorun;
 	?>
 	<script type="text/javascript">
 		$("#prime<?php echo $primeid; ?>").remove();
@@ -56,6 +56,9 @@ function checkMark($check, $text, $text2, $msg) {
 		case -3:
 			$dsp = "warn";
 			$warn = true;
+			if ($stopAutorun) {
+				$autorun = false;
+			}
 			break;
 		case 1:
 		case -2:

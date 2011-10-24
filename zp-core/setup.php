@@ -30,6 +30,17 @@ $upgrade = false;
 
 require_once(dirname(__FILE__).'/setup/setup-functions.php');
 require_once(dirname(__FILE__).'/lib-utf8.php');
+
+if (isset($_REQUEST['autorun'])) {
+	if(!empty($_REQUEST['autorun'])) {
+		$autorun = setup_sanitize($_REQUEST['autorun']);
+	} else {
+		$autorun = 'admin';
+	}
+} else {
+	$autorun = false;
+}
+
 $const_webpath = dirname(dirname($_SERVER['SCRIPT_NAME']));
 $const_webpath = str_replace("\\", '/', $const_webpath);
 if ($const_webpath == '/') $const_webpath = '';
@@ -369,7 +380,7 @@ if (!$setup_checked && zp_loggedin(ADMIN_RIGHTS)) {
 	?>
 <ul>
 <?php
-if ($connection) {
+if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$prevRel = getOption('zenphoto_version');
 	if (empty($prevRel)) {	// pre 1.4.2 release, compute the version
 		$prevRel = getOption('zenphoto_release');
@@ -423,6 +434,8 @@ if ($connection) {
 		}
 	}
 	checkmark($check,$release,$release.' '.sprintf(ngettext('[%u release skipped]','[%u releases skipped]',$c),$c),gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
+} else {
+	checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
 }
 
 	$required = '5.0.0';
@@ -431,7 +444,7 @@ if ($connection) {
 	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired)) && $good;
 	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup_log.txt';
 	if (isWin()) {
-		checkMark(-1, '', gettext("General file security"),gettext('Zenphoto is unable to manage file security on Windows servers. Please insure that your logs are not browsable.'));
+		checkMark(-1, '', gettext("General file security"),gettext('Zenphoto is unable to manage file security on Windows servers. Please insure that your logs are not browsable.'),false);
 	} else {
 		$permission = fileperms($path)&0777;
 		if ($permission & 0077) {
@@ -1126,7 +1139,7 @@ if ($connection) {
 		}
 		$msg2 = '';
 	}
-	checkMark($mark, gettext("Zenphoto core files"), $msg1, $msg2);
+	checkMark($mark, gettext("Zenphoto core files"), $msg1, $msg2,false);
 	if (zp_loggedin(ADMIN_RIGHTS) && $connection) {
 		primeMark(gettext('Installation files'));
 		$systemlist = $filelist = array();
@@ -2215,12 +2228,14 @@ if (file_exists(CONFIGFILE)) {
 			}
 		}
 		if ($createTables) {
-			if (isset($_GET['delete_files'])) {
+			if (isset($_GET['delete_files']) || ($autorun && defined("RELEASE"))) {
 				$curdir = getcwd();
 				chdir(dirname(__FILE__).'/setup');
 				$list = setup_glob('*.*');
 				chdir($curdir);
 				$rslt = true;
+
+
 				foreach ($list as $component) {
 					if ($component != '..' && $component != '.') {
 						$rslt = $rslt && setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component),$component);
@@ -2228,6 +2243,7 @@ if (file_exists(CONFIGFILE)) {
 				}
 				$rslt = $rslt && setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup.php'),'setup.php');
 				$rslt = $rslt && setupDeleteComponent(@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/'),'setup/');
+
 				if (!$rslt) {
 					?>
 					<p class="errorbox"><?php echo gettext('Deleting files failed!'); ?></p>
@@ -2250,11 +2266,37 @@ if (file_exists(CONFIGFILE)) {
 					echo "<p>".sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'),'admin-users.php?page=users',UTILITIES_FOLDER.'/backup_restore.php')."</p>";
 				} else {
 					echo "<p>".sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'),'admin-users.php?page=users')."</p>";
+					if ($autorun) {
+						?>
+						<script type="text/javascript">
+							window.location = 'admin-users.php?page=users';
+						</script>"
+						<?php
+					}
 				}
 			} else {
 				?>
 				<p><?php echo sprintf(gettext('You can now <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'),'..','admin.php'); ?></p>
 				<?php
+
+				switch ($autorun) {
+					case 'admin':
+						?>
+						<script type="text/javascript">
+							window.location = 'admin.php';
+						</script>"
+						<?php
+						break;
+					case 'gallery':
+						?>
+						<script type="text/javascript">
+							window.location = '..';
+						</script>"
+						<?php
+						break;
+					default:
+						break;
+				}
 			}
 		}
 	} else if (db_connect()) {
@@ -2324,6 +2366,7 @@ if (file_exists(CONFIGFILE)) {
 
 		if (isset($tables[$_zp_conf_vars['mysql_prefix'].'zenpage_news'])) {
 			$hideGoButton = ' style="display:none"';
+			$autorun = false;
 			?>
 			</script>
 			<div class="warning" id="dbrestructure">
@@ -2343,6 +2386,9 @@ if (file_exists(CONFIGFILE)) {
 		} else {
 			$img = 'pass.png';
 		}
+		if ($autorun) {
+			$task .= '&autorun='.$autorun;
+		}
 		?>
 		<form id="setup" action="?checked&amp;<?php echo $task.$mod; ?>" method="post"<?php echo $hideGoButton; ?> >
 		<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="dont" />
@@ -2353,11 +2399,28 @@ if (file_exists(CONFIGFILE)) {
 				<input type="hidden" id="themelist" name="themelist" value="<?php echo html_encode(serialize($zenphoto_themes)); ?>" />
 				<?php
 			}
+			if (isset($_REQUEST['autorun'])) {
+				if(!empty($_REQUEST['autorun'])) {
+					$auto = setup_sanitize($_REQUEST['autorun']);
+				} else {
+					$auto = 'admin';
+				}
+				?>
+				<input type="hidden" id="autorun" name="autorun" value="<?php echo $auto; ?>" />
+				<?php
+			}
 			?>
 			<p class="buttons"><button class="submitbutton" type="submit"	title="<?php echo gettext('run setup'); ?>" ><img src="images/<?php echo $img; ?>" alt="" /><?php echo gettext("Go"); ?></button></p>
 			<br clear="all" /><br clear="all" />
 		</form>
 		<?php
+		if ($autorun) {
+			?>
+			<script type="text/javascript">
+				$('#setup').submit();
+			</script>
+			<?php
+		}
 
 	} else {
 		?>
