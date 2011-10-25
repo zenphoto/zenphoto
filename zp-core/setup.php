@@ -709,6 +709,11 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 										$('#UTF8_uri_warn').html('<?php echo gettext('You should enable the URL option <em>UTF8 image URIs</em>.'); ?>'+' <?php echo gettext('<a href="javascript:uri(true)">Please do</a>'); ?>');
 										$('#UTF8_uri_warn').show();
 										<?php
+										if ($autorun) {
+											?>
+											uri(true);
+											<?php
+										}
 									}
 									?>
 							};
@@ -721,7 +726,13 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 									$('#UTF8_uri_warn').html('<?php echo gettext('You should disable the URL option <em>UTF8 image URIs</em>.'); ?>'+' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');
 									$('#UTF8_uri_warn').show();
 									<?php
-								}?>
+									if ($autorun) {
+										?>
+										uri(false);
+										<?php
+									}
+								}
+								?>
 							};
 							image.src = '<?php echo $test_image; ?>';
 
@@ -774,7 +785,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	foreach ($engines as $engine=>$enabled) {
 		if ($engine == $selected_database) {
 			if ($enabled && isset($enabled['experimental'])) {
-				$good = checkMark(-1, $engine, sprintf(gettext('PHP <code>%s support</code> for configured Database [is experimental]'),$engine), $enabled['experimental']) && $good;
+				$good = checkMark(-1, $engine, sprintf(gettext('PHP <code>%s support</code> for configured Database [is experimental]'),$engine), $enabled['experimental'],false) && $good;
 			} else {
 				$good = checkMark($enabled, sprintf(gettext('PHP <code>%s</code> support for configured Database'),$engine), sprintf(gettext('PHP <code>%s support</code> for configured Database [is not installed]'),$engine), sprintf(gettext('Choose a different database engine or install %s support in your PHP to clear this condition.'),$engine)) && $good;
 			}
@@ -2246,16 +2257,17 @@ if (file_exists(CONFIGFILE)) {
 					?>
 					<p class="errorbox"><?php echo gettext('Deleting files failed!'); ?></p>
 					<?php
+					$autorun = false;
 				}
 			} else {
 				?>
-					<div class="notebox">
-						<p><?php echo gettext('<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future.')?></p>
-						<p class="buttons"><a href="?checked&amp;delete_files&xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup files'); ?></a></p>
-						<br clear="all" />
-						<br clear="all" />
-					</div>
+				<div class="notebox">
+					<p><?php echo gettext('<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future.')?></p>
+					<p class="buttons"><a href="?checked&amp;delete_files&xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup files'); ?></a></p>
 					<br clear="all" />
+					<br clear="all" />
+				</div>
+				<br clear="all" />
 				<?php
 			}
 			if (!$_zp_loggedin || $_zp_loggedin == ADMIN_RIGHTS) {
