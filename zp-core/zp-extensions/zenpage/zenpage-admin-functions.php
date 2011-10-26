@@ -16,7 +16,7 @@ require_once("zenpage-class-page.php");
 require_once("zenpage-class-news.php");
 require_once("zenpage-class-category.php");
 
-global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category, $_zp_zenpage_currentadminnewspage;
 
 /**
  * Retrieves posted expiry date and checks it against the current date/time
@@ -638,9 +638,9 @@ function printCategorySelection($id='', $option='') {
  *
  */
 function printArticleDatesDropdown() {
-	global $_zp_zenpage;
+	global $_zp_zenpage,$_zp_zenpage_currentadminnewspage;
 	$datecount = $_zp_zenpage->getAllArticleDates();
-	$currentpage = $_zp_zenpage->getCurrentAdminNewsPage();
+	$currentpage = $_zp_zenpage_currentadminnewspage;
 	$lastyear = "";
 	$nr = "";
  ?>
@@ -699,8 +699,8 @@ function printArticleDatesDropdown() {
  * @param int $total the page count
  */
 function printArticlesPageNav($total) {
-	global $_zp_zenpage;
-	$current = $_zp_zenpage->getCurrentAdminNewsPage();
+	global $_zp_zenpage,$_zp_zenpage_currentadminnewspage;
+	$current = $_zp_zenpage_currentadminnewspage;
 	$navlen = 9;
 	if($total > 1) {
 		$extralinks = 4;
@@ -799,8 +799,8 @@ function getNewsAdminOptionPath($categorycheck='', $postedcheck='',$publishedche
  *
  */
 function printUnpublishedDropdown() {
-	global $_zp_zenpage;
-	$currentpage = $_zp_zenpage->getCurrentAdminNewsPage();
+	global $_zp_zenpage,$_zp_zenpage_currentadminnewspage;
+	$currentpage = $_zp_zenpage_currentadminnewspage;
 ?>
 <form name="AutoListBox3" id="unpublisheddropdown" style="float: left; margin-left: 10px;"	action="#">
 	<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
@@ -847,8 +847,8 @@ function printUnpublishedDropdown() {
  *
  */
 function printSortOrderDropdown() {
-	global $_zp_zenpage;
-	$currentpage = $_zp_zenpage->getCurrentAdminNewsPage();
+	global $_zp_zenpage,$_zp_zenpage_currentadminnewspage;
+	$currentpage = $_zp_zenpage_currentadminnewspage;
 ?>
 <form name="AutoListBox4" id="sortorderdropdown" style="float: left; margin-left: 10px;"	action="#">
 	<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
@@ -898,8 +898,8 @@ function printSortOrderDropdown() {
  *
  */
 function printCategoryDropdown() {
-	global $_zp_zenpage;
-	$currentpage = $_zp_zenpage->getCurrentAdminNewsPage();
+	global $_zp_zenpage, $_zp_zenpage_currentadminnewspage;
+	$currentpage = $_zp_zenpage_currentadminnewspage;
 	$result = $_zp_zenpage->getAllCategories(false);
 	if(isset($_GET['date'])) {
 		$datelink = "&amp;date=".$_GET['date'];
@@ -965,8 +965,8 @@ if(isset($_GET['category'])) {
  *
  */
 function printArticlesPerPageDropdown() {
-	global $_zp_zenpage;
-	$currentpage = $_zp_zenpage->getCurrentAdminNewsPage();
+	global $_zp_zenpage,$_zp_zenpage_currentadminnewspage;
+	$currentpage = $_zp_zenpage_currentadminnewspage; 
 ?>
 <form name="AutoListBox5" id="articlesperpagedropdown" method="POST" style="float: left; margin-left: 10px;"	action="#">
 	<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
@@ -1695,11 +1695,17 @@ function checkIfScheduled($object) {
  * @return string
  */
 function printPublishIconLink($object,$type) {
-	$urladd1 = "";$urladd2 = "";$urladd3 = "";
+	$urladd1 = '';
+	$urladd2 = '';
+	$urladd3 = ''; 
+	$urladd4 = '';
+	$urladd5 = '';
 	if($type == "news") {
-		if(isset($_GET['page'])) { $urladd1 = "&amp;page=".$_GET['page']; }
+		if(isset($_GET['pagenr'])) { $urladd1 = "&amp;pagenr=".$_GET['pagenr']; }
 		if(isset($_GET['date'])) { $urladd2 = "&amp;date=".$_GET['date']; }
 		if(isset($_GET['category'])) { $urladd3 = "&amp;category=".$_GET['category']; }
+		if(isset($_GET['sortorder'])) { $urladd4 = "&amp;sortorder=".$_GET['sortorder']; }
+		if(isset($_GET['articles_page'])) { $urladd5 = "&amp;articles_page=".$_GET['articles_page']; }
 	}
 	if ($object->getDateTime() > date('Y-m-d H:i:s')) {
 		if ($object->getShow()) {

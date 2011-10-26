@@ -170,17 +170,23 @@ printLogoAndLinks();
 				$total = ceil($articles / $articles_page);
 				$result = array_slice($result, $offset, $articles_page);
 			}
+			// setting up the global for the current admin page
+			if(count($result) == 0 || !isset($_GET['pagenr'])) { 
+				$_zp_zenpage_currentadminnewspage = 1;
+			} else {
+				$_zp_zenpage_currentadminnewspage = sanitize_numeric($_GET['pagenr']);
+			}
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU));?></span></h1>
 				<div class="floatright">
 					<?php printCategoryDropdown(); printArticleDatesDropdown(); printUnpublishedDropdown(); printSortOrderDropdown(); printArticlesPerPageDropdown(); ?>
 						<?php //echo "optionpath: ".getNewsAdminOptionPath(true,true,true); // debugging only; ?>
 						<span class="buttons">
-						<a href="admin-edit.php?newsarticle&amp;add&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"><img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
+						<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"><img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
 						</span>
 						<br style="clear: both" /><br />
 				</div>
-				<form action="admin-news-articles.php" method="post" name="checkeditems" onsubmit="return confirmAction();">
+				<form action="admin-news-articles.php?pagenr=<?php echo $_zp_zenpage_currentadminnewspage.getNewsAdminOptionPath(true,true,true,true,true);?>" method="post" name="checkeditems" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
 				<input name="processcheckeditems" type="hidden" value="apply" />
 				<div class="buttons">
@@ -227,7 +233,7 @@ printLogoAndLinks();
 							<td>
 							 <?php
 							 if(checkIfLockedNews($article)) {
-								 echo '<a href="admin-edit.php?newsarticle&amp;titlelink='.urlencode($article->getTitlelink()).'&amp;pagenr='.$_zp_zenpage->getCurrentAdminNewsPage().'">'; checkForEmptyTitle($article->getTitle(),"news"); echo '</a>'.checkHitcounterDisplay($article->getHitcounter());
+								 echo '<a href="admin-edit.php?newsarticle&amp;titlelink='.urlencode($article->getTitlelink()).'&amp;pagenr='.$_zp_zenpage_currentadminnewspage.'">'; checkForEmptyTitle($article->getTitle(),"news"); echo '</a>'.checkHitcounterDisplay($article->getHitcounter());
 							 } else {
 								 echo checkForEmptyTitle($article->getTitle(),"news").'</a>'.checkHitcounterDisplay($article->getHitcounter());
 							 }

@@ -273,8 +273,9 @@ class Zenpage {
 	 * @return string
 	 */
 	function getOffset($articles_per_page,$ignorepagination=false) {
+		global $_zp_zenpage_currentadminnewspage;
 		if(strstr(dirname($_SERVER['REQUEST_URI']), '/'.PLUGIN_FOLDER.'/zenpage')) {
-			$page = $this->getCurrentAdminNewsPage();
+			$page = $_zp_zenpage_currentadminnewspage;
 		} else {
 			$page = $this->getCurrentNewsPage();
 		}
