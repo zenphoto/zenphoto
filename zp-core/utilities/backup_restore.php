@@ -338,7 +338,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 				';
 			}
 			if (!empty($missing_element)) {
-				$messages = '
+				$messages .= '
 				<p>'.gettext('The following fields were not restored because the field no longer exists:').'
 					<ul>
 					';

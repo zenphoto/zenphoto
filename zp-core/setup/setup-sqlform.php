@@ -102,7 +102,7 @@
 		<tr id="prefix" >
 			<td><?php echo gettext("Database table prefix"); ?></td>
 			<td><input type="text" size="40" name="db_prefix"
-				value="<?php echo $_zp_conf_vars['mysql_prefix']; ?>" /></td>
+				value="<?php if($_zp_conf_vars['mysql_prefix']=='.') echo str_replace(' ', '_', basename(dirname(dirname(dirname(__FILE__))))).'_'; else echo $_zp_conf_vars['mysql_prefix']; ?>" /></td>
 		</tr>
 		<tr>
 			<td></td>
