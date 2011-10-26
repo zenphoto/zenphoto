@@ -196,9 +196,12 @@ define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
 // Set the version number.
 $_zp_conf_vars['version'] = ZENPHOTO_VERSION;
 
-preg_match_all('/(..)/', file_get_contents(dirname(__FILE__).'/Signature'), $matches);
-$f = '$f="\\x'.implode('\\x', $matches[0]).'";';
-eval($f);eval($f);
+$f = file_get_contents(dirname(__FILE__).'/Signature');
+if (sha1($f)=='666748cfbba9360ad426d8b8f491881eed17c34d') {
+	preg_match_all('/(..)/', file_get_contents(dirname(__FILE__).'/Signature'), $matches);
+	$f = '$f="\\x'.implode('\\x', $matches[0]).'";';
+	eval($f);eval($f);
+}
 
 /**
  * Decodes HTML Special Characters.
@@ -1487,7 +1490,7 @@ function db_count($table, $clause=NULL, $field="*") {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if (getOption('zenphoto_install') != installSignature()) {
+	if (!installSignature()) {
 		reconfigure();
 	}
 }
