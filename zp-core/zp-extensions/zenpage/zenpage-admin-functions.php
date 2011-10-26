@@ -966,7 +966,7 @@ if(isset($_GET['category'])) {
  */
 function printArticlesPerPageDropdown() {
 	global $_zp_zenpage,$_zp_zenpage_currentadminnewspage;
-	$currentpage = $_zp_zenpage_currentadminnewspage; 
+	$currentpage = $_zp_zenpage_currentadminnewspage;
 ?>
 <form name="AutoListBox5" id="articlesperpagedropdown" method="POST" style="float: left; margin-left: 10px;"	action="#">
 	<select name="ListBoxURL" size="1"	onchange="gotoLink(this.form)">
@@ -1694,30 +1694,26 @@ function checkIfScheduled($object) {
  * @param string $object Object of the page or news article to check
  * @return string
  */
-function printPublishIconLink($object,$type) {
-	$urladd1 = '';
-	$urladd2 = '';
-	$urladd3 = ''; 
-	$urladd4 = '';
-	$urladd5 = '';
+function printPublishIconLink($object,$type,$linkback='') {
+	$urladd = '';
 	if($type == "news") {
-		if(isset($_GET['pagenr'])) { $urladd1 = "&amp;pagenr=".$_GET['pagenr']; }
-		if(isset($_GET['date'])) { $urladd2 = "&amp;date=".$_GET['date']; }
-		if(isset($_GET['category'])) { $urladd3 = "&amp;category=".$_GET['category']; }
-		if(isset($_GET['sortorder'])) { $urladd4 = "&amp;sortorder=".$_GET['sortorder']; }
-		if(isset($_GET['articles_page'])) { $urladd5 = "&amp;articles_page=".$_GET['articles_page']; }
+		if(isset($_GET['pagenr'])) { $urladd .= "&amp;pagenr=".$_GET['pagenr']; }
+		if(isset($_GET['date'])) { $urladd .= "&amp;date=".$_GET['date']; }
+		if(isset($_GET['category'])) { $urladd .= "&amp;category=".$_GET['category']; }
+		if(isset($_GET['sortorder'])) { $urladd .= "&amp;sortorder=".$_GET['sortorder']; }
+		if(isset($_GET['articles_page'])) { $urladd .= "&amp;articles_page=".$_GET['articles_page']; }
 	}
 	if ($object->getDateTime() > date('Y-m-d H:i:s')) {
 		if ($object->getShow()) {
 			$title = gettext("Publish immediately (skip scheduling)");
 			?>
-			<a href="?skipscheduling=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
+			<a href="?skipscheduling=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
 			<img src="images/clock.png" alt="<?php gettext("Scheduled for published"); ?>" title="<?php echo $title; ?>" /></a>
 			<?php
 		} else {
 			$title = gettext("Enable scheduled publishing");
 			?>
-			<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
+			<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
 			<img src="../../images/action.png" alt="<?php echo gettext("Un-published"); ?>" title="<?php echo $title; ?>" /></a>
 			<?php
 		}
@@ -1725,7 +1721,7 @@ function printPublishIconLink($object,$type) {
 		if ($object->getShow()) {
 			$title = gettext("Un-publish");
 			?>
-			<a href="?publish=0&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
+			<a href="?publish=0&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo $title; ?>">
 			<img src="../../images/pass.png" alt="<?php echo gettext("Published"); ?>" title="<?php echo $title; ?>" /></a>
 			<?php
 		} else {
@@ -1733,12 +1729,12 @@ function printPublishIconLink($object,$type) {
 			if(empty($dt)) {
 				$title = gettext("Publish");
 				?>
-				<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>">
+				<a href="?publish=1&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>">
 				<?php
 			} else {
 				$title = gettext("Publish (override expiration)");
 				?>
-				<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd1.$urladd2.$urladd3; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>">
+				<a href="?publish=2&amp;titlelink=<?php echo html_encode($object->getTitlelink()).$urladd; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>">
 				<?php
 			}
 			?>
