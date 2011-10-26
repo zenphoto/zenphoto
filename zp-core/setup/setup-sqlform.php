@@ -101,8 +101,14 @@
 		</tr>
 		<tr id="prefix" >
 			<td><?php echo gettext("Database table prefix"); ?></td>
-			<td><input type="text" size="40" name="db_prefix"
-				value="<?php if($_zp_conf_vars['mysql_prefix']=='.') echo str_replace(' ', '_', basename(dirname(dirname(dirname(__FILE__))))).'_'; else echo $_zp_conf_vars['mysql_prefix']; ?>" /></td>
+			<?php
+			if($_zp_conf_vars['mysql_prefix']=='.') {
+				$path = str_replace(' ', '_', basename(dirname(dirname($_SERVER['SCRIPT_NAME'])))).'_';
+			} else {
+				$path = $_zp_conf_vars['mysql_prefix'];
+			}
+			?>
+			<td><input type="text" size="40" name="db_prefix" value="<?php echo $path; ; ?>" /></td>
 		</tr>
 		<tr>
 			<td></td>

@@ -1639,40 +1639,6 @@ function isValidURL($url) {
 }
 
 /**
- * Provide an alternative to glob which does not return filenames with accented charactes in them
- *
- * @param string $pattern the 'pattern' for matching files
- * @param bit $flags glob 'flags'
- */
-function safe_glob($pattern, $flags=0) {
-	$split=explode('/',$pattern);
-	$match = '/^' . strtr(addcslashes(array_pop($split), '\\.+^$(){}=!<>|'), array('*' => '.*', '?' => '.?')) . '$/i';
-	$path_return = $path = implode('/',$split);
-	if (empty($path)) {
-		$path = '.';
-	} else {
-		$path_return = $path_return . '/';
-	}
-	if (!is_dir($path)) return array();
-	if (($dir=opendir($path))!==false) {
-		$glob=array();
-		while(($file=readdir($dir))!==false) {
-			if(@preg_match($match, $file)) {
-				if ((is_dir("$path/$file"))||(!($flags&GLOB_ONLYDIR))) {
-					if ($flags&GLOB_MARK) $file.='/';
-					$glob[]=$path_return.$file;
-				}
-			}
-		}
-		closedir($dir);
-		if (!($flags&GLOB_NOSORT)) sort($glob);
-		return $glob;
-	} else {
-		return array();
-	}
-}
-
-/**
  * pattern match function Works with accented characters where the PHP one does not.
  *
  * @param string $pattern pattern
