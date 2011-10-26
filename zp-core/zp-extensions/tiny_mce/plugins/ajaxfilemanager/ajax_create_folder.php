@@ -7,13 +7,15 @@
 	 *
 	 */
 
-	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "inc" . DIRECTORY_SEPARATOR . "config.php");	
+	require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "inc" . DIRECTORY_SEPARATOR . "config.php");
+	/*
 	@ob_start();
 	displayArray($_POST);
-	writeInfo(@ob_get_clean());	
+	writeInfo(@ob_get_clean());
+	*/
 	echo "{";
 	$error = "";
-	$info = "";	
+	$info = "";
 /*	$_POST['new_folder'] = substr(md5(time()), 1, 5);
 	$_POST['currentFolderPath'] = "../../uploaded/";*/
 	if(CONFIG_SYS_VIEW_ONLY || !CONFIG_OPTIONS_NEWFOLDER)
@@ -43,12 +45,12 @@
 					$manager = new manager(addTrailingSlash($_POST['currentFolderPath']) . $_POST['new_folder'], false);
 					$pathInfo = $manager->getFolderInfo(addTrailingSlash($_POST['currentFolderPath']) . $_POST['new_folder']);
 					foreach($pathInfo as $k=>$v)
-					{				
+					{
 						switch ($k)
 						{
 
 
-							case "ctime";								
+							case "ctime";
 							case "mtime":
 							case "atime":
 								$v = date(DATE_TIME_FORMAT, $v);
@@ -59,10 +61,10 @@
 							case 'cssClass':
 								$v = 'folderEmpty';
 								break;
-						}							
+						}
 						$info .= sprintf(", %s:'%s'", $k, $v);
 					}
-		}else 
+		}else
 		{
 			$error = ERR_FOLDER_CREATION_FAILED;
 		}
