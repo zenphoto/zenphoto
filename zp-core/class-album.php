@@ -436,7 +436,7 @@ class Album extends MediaObject {
 	 * @param bool $mine set to true/false to override ownership clause
 	 * @return array
 	 */
-	function sortImageArray($images, $sorttype, $sortdirection, $mine= NULL) {
+	protected function sortImageArray($images, $sorttype, $sortdirection, $mine= NULL) {
 		if (is_null($mine)) {
 			$mine = $this->isMyItem(LIST_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
 		}
@@ -476,6 +476,11 @@ class Album extends MediaObject {
 		// the results are now in the correct order
 		$images_ordered = array();
 		foreach ($results as $key=>$row) { // check for visible
+			if ($this->gallery->checkExpired($row)) {
+				$row['show'] = 0;
+				$imageobj = newImage($this,$row['filename']);
+				$imageobj->setShow(0);
+			}
 			if ($row['show'] || $mine) {	// don't display it
 				$images_ordered[] = $row['filename'];
 			}
