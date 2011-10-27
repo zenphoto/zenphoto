@@ -1152,6 +1152,12 @@ class SearchEngine
 							$album = new Album(new gallery(), $albumname);
 							$uralbum = getUrAlbum($album);
 							$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT);
+							switch (checkPublishDates($row)) {
+								case 1:
+									$album->setShow(0);
+								case 2:
+									$row['show'] = 0;
+							}
 							if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
 								if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 									$albums[] = $albumname;
@@ -1301,7 +1307,16 @@ class SearchEngine
 						$album = new Album(new gallery(), $albumname);
 						$uralbum = getUrAlbum($album);
 						$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT);
-						if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
+						switch (checkPublishDates($row)) {
+							case 1:
+								$imageobj = newImage($this,$row['filename']);
+								$imageobj->setShow(0);
+							case 2:
+								$row['show'] = 0;
+								break;
+						}
+						if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {
+							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 						}
 						$albums_seen[$albumid] = $albumrow = array('allow'=>$allow,'viewUnpublished'=>$viewUnpublished,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
@@ -1456,7 +1471,6 @@ class SearchEngine
 	function getSearchNews($sortorder="date", $sortdirection="desc") {
 		$result = array();
 		if (getOption('zp_plugin_zenpage')) {
-			$all = zp_loggedin();
 			if (getOption('search_no_news') || $this->search_no_news) return array();
 			$searchstring = $this->getSearchString();
 			$searchdate = $this->dates;

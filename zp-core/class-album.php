@@ -476,10 +476,13 @@ class Album extends MediaObject {
 		// the results are now in the correct order
 		$images_ordered = array();
 		foreach ($results as $key=>$row) { // check for visible
-			if ($this->gallery->checkExpired($row)) {
-				$row['show'] = 0;
-				$imageobj = newImage($this,$row['filename']);
-				$imageobj->setShow(0);
+			switch (checkPublishDates($row)) {
+				case 1:
+					$imageobj = newImage($this,$row['filename']);
+					$imageobj->setShow(0);
+				case 2:
+					$row['show'] = 0;
+					break;
 			}
 			if ($row['show'] || $mine) {	// don't display it
 				$images_ordered[] = $row['filename'];

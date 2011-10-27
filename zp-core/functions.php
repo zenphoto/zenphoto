@@ -1196,6 +1196,27 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 }
 
 /**
+ *
+ * checks if the item has expired
+ * @param array $row database row of the object
+ */
+function checkPublishDates($row) {
+	if ($row['show']) {
+		if (!(is_null($row['expiredate']) || $row['expiredate']=='0000-00-00 00:00:00')) {
+			if ($row['expiredate'] <= date('Y-m-d H:i:s')) {
+				return 1;
+			}
+			if (!(is_null($row['publishdate']) || $row['publishdate']=='0000-00-00 00:00:00')) {
+				if ($row['publishdate'] >= date('Y-m-d H:i:s')) {
+					return 2;
+				}
+			}
+		}
+		return null;
+	}
+}
+
+/**
  * Returns the number of album thumbs that go on a gallery page
  *
  * @return int

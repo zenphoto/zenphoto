@@ -677,17 +677,6 @@ class Gallery {
 		}
 	}
 
-	/**
-	 *
-	 * checks if the item has expired
-	 * @param array $row database row of the object
-	 */
-	function checkExpired($row) {
-		if ($row['show'] && !(is_null($row['expiredate']) || $row['expiredate']=='0000-00-00 00:00:00')) {
-			return($row['expiredate'] <= date('Y-m-d H:i:s'));
-		}
-		return false;
-	}
 
 	/**
 	 * Sort the album array based on either according to the sort key.
@@ -758,11 +747,14 @@ class Gallery {
 		foreach($results as $row) { // check for visible
 			$folder = $row['folder'];
 			$album = new Album($this, $folder);
-			if ($this->checkExpired($row)) {
-				$album->setShow(0);
+			switch (checkPublishDates($row)) {
+				case 1:
+					$album->setShow(0);
+				case 2:
+					$row['show'] = 0;
 			}
 
-			if ($mine || $album->getShow() || (($list = $album->isMyItem(LIST_RIGHTS)) && is_null($album->getParent())) || (is_null($mine) && $list && $viewUnpublished)) {
+			if ($mine || $row['show'] || (($list = $album->isMyItem(LIST_RIGHTS)) && is_null($album->getParent())) || (is_null($mine) && $list && $viewUnpublished)) {
 				$albums_ordered[] = $folder;
 			}
 		}
