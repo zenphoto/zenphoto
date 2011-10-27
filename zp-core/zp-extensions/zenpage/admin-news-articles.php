@@ -165,17 +165,22 @@ printLogoAndLinks();
 					$articles_page = sanitize_numeric($_GET['articles_page']);
 				}
 			}
-			// setting up the global for the current admin page
-			if(count($result) == 0 || !isset($_GET['pagenr'])) {
+			// Basic setup for the global for the current admin page first
+			if(!isset($_GET['pagenr'])) {
 				$_zp_zenpage_currentadminnewspage = 1;
 			} else {
 				$_zp_zenpage_currentadminnewspage = sanitize_numeric($_GET['pagenr']);
 			}
-			if ($articles_page) {
-				$offset = $_zp_zenpage->getOffset($articles_page);
+			if($articles_page) {
 				$total = ceil($articles / $articles_page);
+				//Needed check if we really have articles for page x or not otherwise we are just on page 1
+				if($total < $_zp_zenpage_currentadminnewspage) {
+					$_zp_zenpage_currentadminnewspage = 1;
+				} 
+				$offset = $_zp_zenpage->getOffset($articles_page);
 				$result = array_slice($result, $offset, $articles_page);
 			}
+			echo "<br />current admin page:".$_zp_zenpage_currentadminnewspage;
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU));?></span></h1>
 				<div class="floatright">
