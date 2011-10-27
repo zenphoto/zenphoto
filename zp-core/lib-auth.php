@@ -429,12 +429,12 @@ class Zenphoto_Authority {
 				}
 				if ($oldversion == 1) {	// need to migrate zenpage rights
 					if ($rights & $oldrights['ZENPAGE_RIGHTS']) {
-						$newrights = $newrights | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS | FILES_RIGHTS;
+						$newrights = $newrights | $currentrights['ZENPAGE_PAGES_RIGHTS'] | $currentrights['ZENPAGE_NEWS_RIGHTS'] | $currentrights['FILES_RIGHTS'];
 					}
 				}
 				if ($to == 1) {
 					if ($rights & ($oldrights['ZENPAGE_PAGES_RIGHTS'] | $oldrights['ZENPAGE_NEWS_RIGHTS'] | $oldrights['FILES_RIGHTS'])) {
-						$newrights = $newrights | ZENPAGE_RIGHTS;
+						$newrights = $newrights | $currentrights['ZENPAGE_RIGHTS'];
 					}
 				}
 
