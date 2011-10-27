@@ -194,7 +194,7 @@ class _Image extends MediaObject {
 	 *
 	 * @return bool
 	 */
-	protected function fileChanged() {
+	private function fileChanged() {
 		$storedmtime = $this->get('mtime');
 		return (empty($storedmtime) || $this->filemtime > $storedmtime);
 	}
@@ -488,7 +488,7 @@ class _Image extends MediaObject {
 	 * @param string $characterset the internal encoding of the data
 	 * @return string
 	 */
-	protected function prepIPTCString($iptcstring, $characterset) {
+	private function prepIPTCString($iptcstring, $characterset) {
 		global $_zp_UTF8;
 		// Remove null byte at the end of the string if it exists.
 		if (substr($iptcstring, -1) === 0x0) {

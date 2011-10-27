@@ -392,7 +392,7 @@ class Zenpage {
 	 * @param $offset skip this many legitimate items (used for pagination)
 	 * @param $limit return only this many items
 	 */
-	protected function siftResults($sql, $offset, $limit) {
+	private function siftResults($sql, $offset, $limit) {
 		$resource = $result = query($sql);
 		if ($resource) {
 			$result = array();

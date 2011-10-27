@@ -159,7 +159,7 @@ class Gallery {
 	 *
 	 * @return array
 	 */
-	function loadAlbumNames() {
+	private function loadAlbumNames() {
 		$albumdir = $this->getAlbumDir();
 
 		$dir = opendir($albumdir);
@@ -719,13 +719,11 @@ class Gallery {
 		$sql = 'SELECT * FROM ' .	prefix("albums") . ' WHERE `parentid`'.$albumid;
 		$result = query($sql);
 		$results = array();
-		while ($row = db_fetch_assoc($result)) {
-			$results[$row['folder']] = $row;
-		}
 		//	check database aganist file system
-		foreach ($results as $dbrow=>$row) {
+		while ($row = db_fetch_assoc($result)) {
 			$folder = $row['folder'];
 			if (($key = array_search($folder,$albums)) !== false) {	// album exists in filesystem
+				$results[$row['folder']] = $row;
 				unset($albums[$key]);
 			} else {																								// album no longer exists
 				$id = $row['id'];
@@ -733,7 +731,6 @@ class Gallery {
 				query("DELETE FROM ".prefix('comments')." WHERE `type` ='images' AND `ownerid`= '$id'"); // remove image comments
 				query("DELETE FROM " . prefix('obj_to_tag') . "WHERE `type`='albums' AND `objectid`=" . $id);
 				query("DELETE FROM " . prefix('albums') . " WHERE `id` = " . $id);
-				unset($results[$dbrow]);
 			}
 		}
 		foreach ($albums as $folder) {	// these albums are not in the database

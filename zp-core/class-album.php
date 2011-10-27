@@ -457,17 +457,14 @@ class Album extends MediaObject {
 		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->id);
 		$results = array();
 		while ($row = db_fetch_assoc($result)) {
-			$results[] = $row;
-		}
-		foreach ($results as $rowkey=>$row) {
 			$filename = $row['filename'];
 			if (($key = array_search($filename,$images)) !== false) {	// the image exists in the filesystem
+				$results[] = $row;
 				unset($images[$key]);
 			} else {																									// the image no longer exists
 				$id = $row['id'];
 				query("DELETE FROM ".prefix('images')." WHERE `id`=$id"); // delete the record
 				query("DELETE FROM ".prefix('comments')." WHERE `type` ='images' AND `ownerid`= '$id'"); // remove image comments
-				unset($results[$rowkey]);
 			}
 		}
 		foreach ($images as $filename) {	// these images are not in the database
@@ -713,7 +710,7 @@ class Album extends MediaObject {
 	 *
 	 * @param string $newfolder The folder name of the new parent
 	 */
-	protected function updateParent($newfolder) {
+	private function updateParent($newfolder) {
 		$this->name = $newfolder;
 		$parentname = dirname($newfolder);
 		if ($parentname == '/' || $parentname == '.') $parentname = '';
@@ -1041,7 +1038,7 @@ class Album extends MediaObject {
 	 * @param  $dirs Whether or not to return directories ONLY with the file array.
 	 * @return array
 	 */
-	protected function loadFileNames($dirs=false) {
+	private function loadFileNames($dirs=false) {
 		if ($this->isDynamic()) {  // there are no 'real' files
 			return array();
 		}
