@@ -126,6 +126,8 @@ setOptionDefault('feed_mediarss', '0');
 setOptionDefault('feed_cache', '1');
 setOptionDefault('feed_cache_expire', 86400);
 setOptionDefault('feed_hitcounter', 1);
+setOptionDefault('feed_title','both');
+
 setOptionDefault('search_fields', 'title,desc,tags,file,location,city,state,country,content,author');
 
 $a =	"a => (href =>() title =>() target=>() class=>() id=>())\n" .
@@ -158,13 +160,13 @@ $a =	"a => (href =>() title =>() target=>() class=>() id=>())\n" .
 setOption('allowed_tags_default', $a);
 setOptionDefault('allowed_tags', $a);
 setOptionDefault('style_tags',
-"abbr => (title => ())\n" .
- "acronym => (title => ())\n" .
- "b => ()\n" .
- "em => ()\n" .
- "i => () \n" .
- "strike => ()\n" .
- "strong => ()\n");
+									"abbr => (title => ())\n" .
+									 "acronym => (title => ())\n" .
+									 "b => ()\n" .
+									 "em => ()\n" .
+									 "i => () \n" .
+									 "strike => ()\n" .
+									 "strong => ()\n");
 setOptionDefault('comment_name_required', 1);
 setOptionDefault('comment_email_required', 1);
 setOptionDefault('comment_web_required', 'show');
