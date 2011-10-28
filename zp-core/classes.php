@@ -782,4 +782,61 @@ class MediaObject extends ThemeObject {
 	function setPasswordHint($hint) { $this->set('password_hint', $hint); }
 
 }
+
+/**
+* Returns the expire date
+*
+* @return string
+*/
+function getExpireDate() {
+	$dt = $this->get("expiredate");
+	if ($dt == '0000-00-00 00:00:00') {
+		return NULL;
+	} else {
+		return $dt;
+	}
+}
+
+/**
+ * sets the expire date
+ *
+ */
+function setExpireDate($ed) {
+	if ($ed) {
+		$newtime = dateTimeConvert($ed);
+		if ($newtime === false) return;
+		$this->set('expiredate', $newtime);
+	} else {
+		$this->set('expiredate', NULL);
+	}
+}
+
+/**
+* Returns the publish date
+*
+* @return string
+*/
+function getPublishDate() {
+	$dt = $this->get("publishdate");
+	if ($dt == '0000-00-00 00:00:00') {
+		return NULL;
+	} else {
+		return $dt;
+	}
+}
+
+/**
+ * sets the publish date
+ *
+ */
+function setPublishDate($ed) {
+	if ($ed) {
+		$newtime = dateTimeConvert($ed);
+		if ($newtime === false) return;
+		$this->set('publishdate', $newtime);
+	} else {
+		$this->set('publishdate', NULL);
+	}
+}
+
 ?>
