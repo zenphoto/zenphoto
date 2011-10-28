@@ -230,7 +230,23 @@ function tweetObjectWithCheck($obj) {
 							break;
 						}
 					case 'albums':
+						$dt = $obj->getDateTime();
+						if($dt > date('Y-m-d H:i:s')) {
+							$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_albums" AND `data`='.db_quote($obj->getTitlelink()));
+							if (!$result) {
+								query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_albums",'.db_quote($obj->name).')');
+							}
+							break;
+						}
 					case 'images':
+						$dt = $obj->getDateTime();
+						if($dt > date('Y-m-d H:i:s')) {
+							$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_images" AND `data`='.db_quote($obj->getTitlelink()));
+							if (!$result) {
+								query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_images",'.db_quote($obj->album->name.'/'.$obj->filename).')');
+							}
+							break;
+						}
 						$error = tweetObject($obj);
 				}
 			}
@@ -324,6 +340,26 @@ function tweetScan($param) {
 			tweetObject($page);
 		}
 	}
+	$result = query_full_array('SELECT * FROM '.prefix('albums').' AS album,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_albums" AND store.data = album.folder AND album.date <= '.db_quote(date('Y-m-d H:i:s')));
+	if ($result) {
+		$gallery = new Gallery();
+		foreach ($result as $album) {
+			query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$album['id']);
+			$album = new Album($gallery, $album['folder']);
+			tweetObject($album);
+		}
+	}
+	$result = query_full_array('SELECT * FROM '.prefix('images').' AS image,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_images" AND store.data LIKE image.filename AND image.date <= '.db_quote(date('Y-m-d H:i:s')));
+	if ($result) {
+		$gallery = new Gallery();
+		foreach ($result as $image) {
+			query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$image['id']);
+			$album = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$image['albumid']);
+			$album = new Album($gallery, $album['folder']);
+			$image = newImage($album, $image['filename']);
+			tweetObject($image);
+		}
+	}
 	return $param;
 }
 
@@ -347,7 +383,25 @@ function tweetRepopulate() {
 		foreach ($result as $pending) {
 			query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_pages",'.db_quote($pending['titlelink']).')');
 		}
-		$found = gettext('pages');
+		$found[] = gettext('pages');
+	}
+	query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_albums"');
+	$result = query_full_array('SELECT * FROM '.prefix('albums').' WHERE `show`=1 AND `date`>'.db_quote(date('Y-m-d H:i:s')));
+	if ($result) {
+		foreach ($result as $pending) {
+			query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_albums",'.db_quote($pending['folder']).')');
+		}
+		$found[] = gettext('albums');
+	}
+	query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_images"');
+	$result = query_full_array('SELECT * FROM '.prefix('images').' WHERE `show`=1 AND `date`>'.db_quote(date('Y-m-d H:i:s')));
+	if ($result) {
+		$gallery = new Gallery();
+		foreach ($result as $pending) {
+			$album = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$pending['albumid']);
+			query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_images",'.db_quote($album['folder'].'/'.$pending['filename']).')');
+		}
+		$found[] = gettext('images');
 	}
 	if (empty($found)) {
 		return '<p class="messagebox">'.gettext('No scheduled news articles found.').'</p>';

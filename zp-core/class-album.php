@@ -480,6 +480,7 @@ class Album extends MediaObject {
 				case 1:
 					$imageobj = newImage($this,$row['filename']);
 					$imageobj->setShow(0);
+					$imageobj->save();
 				case 2:
 					$row['show'] = 0;
 					break;

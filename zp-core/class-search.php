@@ -1155,6 +1155,7 @@ class SearchEngine
 							switch (checkPublishDates($row)) {
 								case 1:
 									$album->setShow(0);
+									$album->save();
 								case 2:
 									$row['show'] = 0;
 							}
@@ -1311,6 +1312,7 @@ class SearchEngine
 							case 1:
 								$imageobj = newImage($this,$row['filename']);
 								$imageobj->setShow(0);
+								$imageobj->save();
 							case 2:
 								$row['show'] = 0;
 								break;

@@ -750,6 +750,7 @@ class Gallery {
 			switch (checkPublishDates($row)) {
 				case 1:
 					$album->setShow(0);
+					$album->save();
 				case 2:
 					$row['show'] = 0;
 			}

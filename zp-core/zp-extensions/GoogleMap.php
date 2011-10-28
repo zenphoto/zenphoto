@@ -4,10 +4,15 @@
  * based on EXIF latitude and longitude in the images.
  * Automatically detects if it is on an Image or Album page.
  *
+ * Note:
+ * Google does place limits on the use of its Maps API.
+ * Please review these to be sure your site is in compliance:
+ * 	http://googlegeodevelopers.blogspot.com/2011/10/introduction-of-usage-limits-to-maps.html
+ *
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
-$plugin_description = gettext("Support for providing Google Maps (API version 3) based on EXIF latitude and longitude in the images.");
+$plugin_description = gettext('Support for providing Google Maps (API version 3) based on EXIF latitude and longitude in the images.').'<p class=notebox>'.sprintf(gettext('<strong>Note</strong>: Google does place limits on the use of its <a href="%s"><em>Maps API</em></a>. Please review these to be sure your site is in compliance.'),'http://googlegeodevelopers.blogspot.com/2011/10/introduction-of-usage-limits-to-maps.html').'</p>';
 $plugin_author = 'Stephen Billard (sbillard)';
 $plugin_version = '1.4.2';
 
