@@ -840,6 +840,16 @@ class Gallery {
 	}
 
 	/**
+	* Option to show subalbum images in the thumbnail selector
+	*/
+	function getSecondLevelThumbs() {
+		return $this->get('multilevel_thumb_select_images');
+	}
+	function setSecondLevelThumbs($value) {
+		$this->set('multilevel_thumb_select_images', $value);
+	}
+
+	/**
 	 * Option of caching Album ZIP files
 	 */
 	function getPersistentArchive() {

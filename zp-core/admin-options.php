@@ -109,6 +109,7 @@ if (isset($_GET['action'])) {
 			$gallery->setPersistentArchive((int) isset($_POST['persistent_archive']));
 			$gallery->setGallerySession((int) isset($_POST['album_session']));
 			$gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
+			$gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
 			$gallery->set('gallery_title', process_language_string_save('gallery_title', 2));
 			$gallery->set('Gallery_description', process_language_string_save('Gallery_description', 1));
 			$gallery->set('website_title', process_language_string_save('website_title', 2));
@@ -1173,6 +1174,13 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</p>
 						<p>
 							<label>
+								<input type="checkbox" name="multilevel_thumb_select_images" id="thumb_select_images"
+										value="1" <?php echo checked('1', $gallery->getSecondLevelThumbs()); ?> />
+								<?php echo gettext("show subalbum thumbs"); ?>
+							</label>
+						</p>
+						<p>
+							<label>
 								<input type="checkbox" name="persistent_archive" id="persistent_archive"
 										value="1" <?php echo checked('1', $gallery->getPersistentArchive()); ?> />
 								<?php echo gettext("enable persistent archives"); ?>
@@ -1203,6 +1211,11 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p><?php  echo gettext("<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual thumb selection</em>" ); ?></p>
 						<div id="visualthumb" style="display: none">
 						<p><?php echo gettext("Setting this option places thumbnails in the album thumbnail selection list (the dropdown list on each album's edit page). In Firefox the dropdown shows the thumbs, but in IE and Safari only the names are displayed (even if the thumbs are loaded!). In albums with many images loading these thumbs takes much time and is unnecessary when the browser won't display them. Uncheck this option and the images will not be loaded. "); ?></p>
+						</div>
+
+						<p><?php  echo gettext("<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum thumb selection</em>" ); ?></p>
+						<div id="multithumb" style="display: none">
+						<p><?php echo gettext("Setting this option allows selecting images from subalbums as well as from the album. Naturally populating these images adds overhead. If your album edit tabs load too slowly, do not select this option."); ?></p>
 						</div>
 
 						<p><?php  echo gettext("<a href=\"javascript:toggle('persistentarchive');\" >Details</a> for <em>enable persistent archive</em>" ); ?></p>

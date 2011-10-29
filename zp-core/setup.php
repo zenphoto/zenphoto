@@ -2406,7 +2406,6 @@ if (file_exists(CONFIGFILE)) {
 		}
 		if ($autorun) {
 			$task .= '&autorun='.$autorun;
-			$hideGoButton = ' style="display:none"';
 		}
 		?>
 		<form id="setup" action="?checked&amp;<?php echo $task.$mod; ?>" method="post"<?php echo $hideGoButton; ?> >

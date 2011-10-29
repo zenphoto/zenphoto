@@ -1429,118 +1429,58 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						<select style="width:320px" <?php	if ($showThumb) {	?>class="thumbselect" onchange="updateThumbPreview(this)"	<?php	}	?> name="<?php echo $prefix; ?>thumb">
 							<?php
 							generateListFromArray($selected,$selections,false,true);
-							if ($album->isDynamic()) {
-								$params = $album->getSearchParams();
-								$search = new SearchEngine(true);
-								$search->setSearchParams($params);
-								$images = $search->getImages(0);
-								$imagelist = array();
-								foreach ($images as $imagerow) {
-									$folder = $imagerow['folder'];
-									$filename = $imagerow['filename'];
-									$imagelist[] = '/'.$folder.'/'.$filename;
-								}
-								if ($thumb && !is_numeric($thumb) && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
-									array_unshift($imagearray, $thumb);
-								}
-								if (count($imagelist) == 0) {
-									$subalbums = $search->getAlbums(0);
-									foreach ($subalbums as $folder) {
-										$newalbum = new Album($gallery, $folder);
-										if (!$newalbum->isDynamic()) {
-											$images = $newalbum->getImages(0);
-											foreach ($images as $filename) {
-												$imagelist[] = '/'.$folder.'/'.$filename;
-											}
+							$imagelist = $album->getImages(0);
+							if ($gallery->getSecondLevelThumbs()) {
+								$subalbums = $album->getAlbums(0);
+								foreach ($subalbums as $folder) {
+									$newalbum = new Album($gallery, $folder);
+									$images = $newalbum->getImages(0);
+									foreach ($images as $filename) {
+										if (is_array($filename)) {
+											$imagelist[] = $filename;
+										} else {
+											$imagelist[] = '/'.$folder.'/'.$filename;
 										}
 									}
 								}
-								foreach ($imagelist as $imagepath) {
-									$list = explode('/', $imagepath);
-									$filename = $list[count($list)-1];
-									unset($list[count($list)-1]);
-									$folder = implode('/', $list);
-									$albumx = new Album($gallery, $folder);
-									$image = newImage($albumx, $filename);
-									$selected = ($imagepath == $thumb);
-									echo "\n<option";
-									if ($showThumb) {
-										echo " class=\"thumboption\"";
-										echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) .	"); background-repeat: no-repeat;\"";
-									}
-									echo " value=\"".$imagepath."\"";
-									if ($selected) {
-										echo " selected=\"selected\"";
-									}
-									echo ">" . $image->getTitle();
-									echo  " ($imagepath)";
-									echo "</option>";
-								}
-							} else {
-								$images = $album->getImages();
-								if (count($images) == 0 && $album->getNumAlbums() > 0) {
-									$imagearray = array();
-									$albumnames = array();
-									$strip = strlen($album->name) + 1;
-									$subIDs = getAllSubAlbumIDs($album->name);
-									if(!is_null($subIDs)) {
-										foreach ($subIDs as $ID) {
-											$albumnames[$ID['id']] = $ID['folder'];
-											$query = 'SELECT `id` , `albumid` , `filename` , `title` FROM '.prefix('images').' WHERE `albumid` = "'.
-											$ID['id'] .'"';
-											$imagearray = array_merge($imagearray, query_full_array($query));
-										}
-										if ($thumb && !is_numeric($thumb) && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
-											array_unshift($imagearray, $thumb);
-										}
-										foreach ($imagearray as $imagerow) {
-											$filename = $imagerow['filename'];
-											$folder = $albumnames[$imagerow['albumid']];
-											$imagepath = substr($folder, $strip).'/'.$filename;
-											if (substr($imagepath, 0, 1) == '/') { $imagepath = substr($imagepath, 1); }
-											$albumx = new Album($gallery, $folder);
-											$image = newImage($albumx, $filename);
-											if (is_valid_image($filename)) {
-												$selected = ($imagepath == $thumb);
-												echo "\n<option";
-												if ($gallery->getThumbSelectImages()) {
-													echo " class=\"thumboption\"";
-													echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) . "); background-repeat: no-repeat;\"";
-												}
-												echo " value=\"".$imagepath."\"";
-												if ($selected) {
-													echo " selected=\"selected\"";
-												}
-												echo ">" . $image->getTitle();
-												echo  " ($imagepath)";
-												echo "</option>";
-											}
-										}
-									}
+							}
+							if ($thumb && !is_numeric($thumb)) {
+								// check for current thumb being in the list. If not, add it
+								if (is_array($imagelist)) {
+									$target = array('folder'=>dirname($thumb),'filename'=>basename($thumb));
 								} else {
-									$imagearray = $images;
-									if ($thumb && !is_numeric($thumb) && !in_array($thumb, $imagearray)) {	// current thumbnail somehow not in the list
-										array_unshift($imagearray, $thumb);
-									}
-									foreach ($imagearray as $filename) {
+									$target = $thumb;
+								}
+								if (!in_array($target, $imagelist)) {
+									array_unshift($imagelist, $target);
+								}
+							}
+							if (!empty($imagelist)) {
+								// there are some images to choose from
+								foreach ($imagelist as $imagename) {
+									if (is_array($imagename)) {
+										$image = newImage(NULL, $imagename);
+										$filename = $imagename['folder'].'/'.$imagename['filename'];
+									} else {
+										$filename = $imagename;
 										$image = newImage($album, $filename);
-										$selected = ($filename == $thumb);
-										if (is_valid_image($filename)) {
-											echo "\n<option";
-											if ($gallery->getThumbSelectImages()) {
-												echo " class=\"thumboption\"";
-												echo " style=\"background-image: url(" . html_encode($image->getSizedImage(80)) . "); background-repeat: no-repeat;\"";
-											}
-											echo " value=\"" . $filename . "\"";
-											if ($selected) {
-												echo " selected=\"selected\"";
-											}
-											echo ">" . $image->getTitle();
-											if ($filename != $image->getTitle()) {
-												echo  " ($filename)";
-											}
-											echo "</option>";
+									}
+									$selected = ($filename == $thumb);
+									if (is_valid_image($filename) || $image->objectsThumb != NULL) {
+										echo "\n<option";
+										if ($gallery->getThumbSelectImages()) {
+											echo " class=\"thumboption\"";
+											echo " style=\"background-image: url(" . html_encode($image->getCustomImage(80, NULL, NULL, NULL, NULL, NULL, NULL, -1)) . "); background-repeat: no-repeat;\"";
 										}
+										echo " value=\"" . $filename . "\"";
+										if ($selected) {
+											echo " selected=\"selected\"";
+										}
+										echo ">" . $image->getTitle();
+										if ($filename != $image->getTitle()) {
+											echo  " ($filename)";
+										}
+										echo "</option>";
 									}
 								}
 							}
