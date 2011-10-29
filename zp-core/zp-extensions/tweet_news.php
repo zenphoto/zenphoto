@@ -230,18 +230,18 @@ function tweetObjectWithCheck($obj) {
 							break;
 						}
 					case 'albums':
-						$dt = $obj->getDateTime();
+						$dt = $obj->getPublishDate();
 						if($dt > date('Y-m-d H:i:s')) {
-							$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_albums" AND `data`='.db_quote($obj->getTitlelink()));
+							$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_albums" AND `data`='.db_quote($obj->name));
 							if (!$result) {
 								query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_albums",'.db_quote($obj->name).')');
 							}
 							break;
 						}
 					case 'images':
-						$dt = $obj->getDateTime();
+						$dt = $obj->getPublishDate();
 						if($dt > date('Y-m-d H:i:s')) {
-							$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_images" AND `data`='.db_quote($obj->getTitlelink()));
+							$result = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_images" AND `data`='.db_quote($obj->album->name.'/'.$obj->filename));
 							if (!$result) {
 								query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_images",'.db_quote($obj->album->name.'/'.$obj->filename).')');
 							}
