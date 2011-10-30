@@ -993,7 +993,7 @@ $alb = removeParentAlbumNames($album);
 			<?php
 		}
 		if ($allimagecount) {
-			?>
+	  ?>
 		<form name="albumedit2"	action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" autocomplete="off">
 			<?php XSRFToken('albumedit'); ?>
 			<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
@@ -1151,6 +1151,7 @@ $alb = removeParentAlbumNames($album);
 									<input type="checkbox" name="<?php echo $currentimage; ?>reset_hitcounter" />
 									<?php echo sprintf(gettext("Reset hitcounter (%u hits)"), $hc); ?>
 								</label>
+							
 								<?php
 								$tv = $image->get('total_value');
 								$tc = $image->get('total_votes');
@@ -1171,8 +1172,62 @@ $alb = removeParentAlbumNames($album);
 									</label>
 									<?php
 								}
-								?>
 
+								$publishdate = $image->getPublishDate();
+								$expirationdate =  $image->getExpireDate();
+							?>
+							<script type="text/javascript">
+								// <!-- <![CDATA[
+								$(function() {
+									$("#publishdate-<?php echo $currentimage; ?>,#expirationdate-<?php echo $currentimage; ?>").datepicker({
+										showOn: 'button',
+										buttonImage: '../zp-core/images/calendar.png',
+										buttonText: '<?php echo gettext("calendar"); ?>',
+										buttonImageOnly: true
+									});
+									$('#publishdate-<?php echo $currentimage; ?>').change(function() {
+										var today = new Date();
+										var pub = $('#publishdate-<?php echo $currentimage; ?>').datepicker('getDate');
+										if(pub.getTime() > today.getTime()) {
+											$(".scheduledpublishing-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
+										} else {
+											$(".scheduledpublishing-<?php echo $currentimage; ?>").html('');
+										}
+									});
+									$('#expirationdate-<?php echo $currentimage; ?>').change(function() {
+										var today = new Date();
+										var expiry = $('#expirationdate-<?php echo $currentimage; ?>').datepicker('getDate');
+										if(expiry.getTime() > today.getTime()) {
+											$(".expire<-<?php echo $currentimage; ?>").html('');
+										} else {
+											$(".expire-<?php echo $currentimage; ?>").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
+										}
+									});
+								});
+							// ]]> -->
+					</script>
+						<br clear="both" />
+						<hr />
+							<p>
+							<label for "publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $currentimage; ?>" id="publishdate-<?php echo $currentimage; ?>" /><br />
+							<strong class="scheduledpublishing-<?php echo $currentimage; ?>" style="color:red">
+							<?php
+							if(!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
+								echo '<br />'.gettext('Future publishing date.');
+							}
+							?>
+							</strong>
+							<label for "expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $currentimage; ?>" id="expirationdate-<?php echo $currentimage; ?>" />
+							<strong class="expire-<?php echo $currentimage; ?>" style="color:red">
+							<?php
+							if(!empty($expirationdate) && ($expirationdate <= date('Y-m-d H:i:s'))) {
+								echo '<br />'.gettext('Expired!');
+							}
+							?>
+							</strong>
+						</p>
+											
+						
 							<br clear="all" />
 						</div>
 

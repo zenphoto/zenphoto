@@ -1566,7 +1566,59 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 									</label>
 							<?php
 						}
-						?>
+						$publishdate = $album->getPublishDate();
+						$expirationdate =  $album->getExpireDate();
+							?>
+							<script type="text/javascript">
+								// <!-- <![CDATA[
+								$(function() {
+									$("#<?php echo $prefix; ?>publishdate,#<?php echo $prefix; ?>expirationdate").datepicker({
+										showOn: 'button',
+										buttonImage: '../zp-core/images/calendar.png',
+										buttonText: '<?php echo gettext("calendar"); ?>',
+										buttonImageOnly: true
+									});
+									$('#<?php echo $prefix; ?>publishdate').change(function() {
+										var today = new Date();
+										var pub = $('#<?php echo $prefix; ?>publishdate').datepicker('getDate');
+										if(pub.getTime() > today.getTime()) {
+											$(".<?php echo $prefix; ?>scheduledpublishing").html('<br /><?php echo addslashes(gettext('Future publishing date.')); ?>');
+										} else {
+											$(".<?php echo $prefix; ?>scheduledpublishing").html('');
+										}
+									});
+									$('#<?php echo $prefix; ?>expirationdate').change(function() {
+										var today = new Date();
+										var expiry = $('#<?php echo $prefix; ?>expirationdate').datepicker('getDate');
+										if(expiry.getTime() > today.getTime()) {
+											$(".<?php echo $prefix; ?>expire").html('');
+										} else {
+											$(".<?php echo $prefix; ?>expire").html('<br /><?php echo addslashes(gettext('Expired!')); ?>');
+										}
+									});
+								});
+							// ]]> -->
+					</script>
+						<br clear="both" />
+						<hr />
+							<p>
+							<label for "<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="<?php echo $prefix; ?>publishdate" id="<?php echo $prefix; ?>publishdate" /><br />
+							<strong class="scheduledpublishing-<?php echo $currentimage; ?>" style="color:red">
+							<?php
+							if(!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
+								echo '<br />'.gettext('Future publishing date.');
+							}
+							?>
+							</strong>
+							<label for "<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="<?php echo $prefix; ?>expirationdate" id="<?php echo $prefix; ?>expirationdate" />
+							<strong class="<?php echo $prefix; ?>expire" style="color:red">
+							<?php
+							if(!empty($expirationdate) && ($expirationdate <= date('Y-m-d H:i:s'))) {
+								echo '<br />'.gettext('Expired!');
+							}
+							?>
+							</strong>
+						</p>
 
 					<br clear="all" />
 				</div>

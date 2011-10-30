@@ -822,21 +822,23 @@ class MediaObject extends ThemeObject {
 			$this->set('publishdate', NULL);
 		}
 	}
-
-}
-
-/**
-* Returns the expire date
-*
-* @return string
-*/
-function getExpireDate() {
-	$dt = $this->get("expiredate");
-	if ($dt == '0000-00-00 00:00:00') {
-		return NULL;
-	} else {
-		return $dt;
+	
+	/**
+	* Returns the expire date
+	*
+	* @return string
+	*/
+	function getExpireDate() {
+		$dt = $this->get("expiredate");
+		if ($dt == '0000-00-00 00:00:00') {
+			return NULL;
+		} else {
+			return $dt;
+		}
 	}
+
 }
+
+
 
 ?>
