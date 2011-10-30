@@ -2060,9 +2060,15 @@ button.positive,.log_buttons a.positive {
 
 .metadata_table {
 	table-layout: fixed;
-	width: 320px;
 	border: 1px solid #BAC9CF;
 	word-wrap: break-word;
+}
+
+.metadata_container {
+	width: 350px;
+	height: 320px;
+	overflow:scroll;
+	overflow-x:hidden;
 }
 
 .resizeable_metadata {

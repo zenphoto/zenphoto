@@ -1474,9 +1474,11 @@ $alb = removeParentAlbumNames($album);
 									echo gettext('None selected for display');
 								} else {
 									?>
+									<div class="metadata_container">
 									<table class="metadata_table" >
 									<?php echo $data; ?>
 									</table>
+									</div>
 									<?php
 								}
 								?>
