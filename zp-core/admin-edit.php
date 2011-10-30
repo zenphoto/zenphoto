@@ -993,7 +993,7 @@ $alb = removeParentAlbumNames($album);
 			<?php
 		}
 		if ($allimagecount) {
-	  ?>
+		?>
 		<form name="albumedit2"	action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post" autocomplete="off">
 			<?php XSRFToken('albumedit'); ?>
 			<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
@@ -1151,7 +1151,7 @@ $alb = removeParentAlbumNames($album);
 									<input type="checkbox" name="<?php echo $currentimage; ?>reset_hitcounter" />
 									<?php echo sprintf(gettext("Reset hitcounter (%u hits)"), $hc); ?>
 								</label>
-							
+
 								<?php
 								$tv = $image->get('total_value');
 								$tc = $image->get('total_votes');
@@ -1226,8 +1226,8 @@ $alb = removeParentAlbumNames($album);
 							?>
 							</strong>
 						</p>
-											
-						
+
+
 							<br clear="all" />
 						</div>
 
@@ -1473,7 +1473,11 @@ $alb = removeParentAlbumNames($album);
 								if (empty($data)) {
 									echo gettext('None selected for display');
 								} else {
-									echo '<table class="metadata_table" >'.$data.'</table>';
+									?>
+									<table class="metadata_table" >
+									<?php echo $data; ?>
+									</table>
+									<?php
 								}
 								?>
 							</td>

@@ -939,7 +939,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
  * @param string $postit prefix to prepend for posting
  * @param bool $showCounts set to true to get tag count displayed
  */
-function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew=true) {
+function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew=true, $resizeable=false) {
 	global $_zp_admin_ordered_taglist, $_zp_admin_LC_taglist, $jaTagList;
 	if (is_null($_zp_admin_ordered_taglist)) {
 		if ($mostused || $showCounts) {
@@ -980,38 +980,58 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 		if (count($tags) == 0) {
 			$hr = '<li><hr /></li>';
 		}
-		?>
-
-			<span class="new_tag displayinline" >
-				<a href="javascript:addNewTag('<?php echo $postit; ?>','<?php echo gettext('tag set!'); ?>');" title="<?php echo gettext('add tag'); ?>">
-					<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
-				</a>
-				<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
-			</span>
-
-		<?php
-	}
-	?>
-	<ul id="list_<?php echo $postit; ?>" class="tagchecklist">
-	<?php echo $hr; ?>
-	<?php
-	if ($showCounts) {
-		$displaylist = array();
-		foreach ($them as $tag) {
-			$displaylist[$tag.' ['.$counts[$tag].']'] = $tag;
+		if ($resizeable) {
+			$tagclass = 'resizeable_tagchecklist';
+			?>
+			<script>
+			$(function() {
+				$("#resizable_<?php echo $postit; ?>").resizable({
+							maxWidth: 250,
+							minWidth: 250,
+							minHeight: 120,
+							resize: function(event, ui) {
+								$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height()-20);
+							 }
+				});
+			});
+			</script>
+			<?php
+		} else {
+			$tagclass = 'tagchecklist';
 		}
-	} else {
-		$displaylist = $them;
-	}
-	if (count($tags) > 0) {
-		generateUnorderedListFromArray($tags, $tags, $postit, false, !$mostused, $showCounts);
 		?>
-		<li><hr /></li>
+			<div id="resizable_<?php echo $postit;?>">
+				<span class="new_tag displayinline" >
+					<a href="javascript:addNewTag('<?php echo $postit; ?>','<?php echo gettext('tag set!'); ?>');" title="<?php echo gettext('add tag'); ?>">
+						<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
+					</a>
+					<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
+				</span>
+
+			<?php
+		}
+		?>
+		<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
+		<?php echo $hr; ?>
 		<?php
-	}
-	generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts);
-	?>
-	</ul>
+		if ($showCounts) {
+			$displaylist = array();
+			foreach ($them as $tag) {
+				$displaylist[$tag.' ['.$counts[$tag].']'] = $tag;
+			}
+		} else {
+			$displaylist = $them;
+		}
+		if (count($tags) > 0) {
+			generateUnorderedListFromArray($tags, $tags, $postit, false, !$mostused, $showCounts);
+			?>
+			<li><hr /></li>
+			<?php
+		}
+		generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts);
+		?>
+		</ul>
+	</div>
 	<?php
 }
 
@@ -1603,7 +1623,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						<hr />
 							<p>
 							<label for "<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="<?php echo $prefix; ?>publishdate" id="<?php echo $prefix; ?>publishdate" /><br />
-							<strong class="scheduledpublishing-<?php echo $currentimage; ?>" style="color:red">
+							<strong class="scheduledpublishing-<?php echo $prefix; ?>" style="color:red">
 							<?php
 							if(!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
 								echo '<br />'.gettext('Future publishing date.');
@@ -1708,7 +1728,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 					<div class="box-edit-unpadded">
 						<?php
 						$tagsort = getTagOrder();
-						tagSelector($album, 'tags_'.$prefix, false, $tagsort);
+						tagSelector($album, 'tags_'.$prefix, false, $tagsort, true, true);
 						?>
 					</div>
 			</td>
@@ -3508,7 +3528,7 @@ function printBulkActions($checkarray, $checkAll=false) {
 		<div id="mass_tags" style="display:none;">
 			<div id="mass_tags_data">
 				<?php
-				tagSelector(NULL, 'mass_tags_', false, false, true);
+				tagSelector(NULL, 'mass_tags_', false, false);
 				?>
 			</div>
 		</div>

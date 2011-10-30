@@ -2020,13 +2020,12 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 		</tr>
 		<script>
 		$(function() {
-			$( "#resizable" ).resizable({
+			$("#resizable").resizable({
 						maxWidth: 350,
 						minWidth: 350, minHeight: 120,
 						resize: function(event, ui) {
 															$('#metadatalist').height($('#resizable').height());
 														 }
-
 			});
 		});
 		</script>

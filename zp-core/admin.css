@@ -266,12 +266,12 @@ ul.nav ul {
  left: 0;
  z-index: 598;
  width: 100%;
- 
+
 }
 
 ul.nav ul li {
  float: none;
- 
+
 }
 /* These are the dropdown sublist entries */
 ul.nav ul.subdropdown li a {
@@ -282,9 +282,9 @@ ul.nav ul.subdropdown li a {
 	border-radius: 0px;
 	margin: 0;
 	padding: 6px 12px;
- 	top: 0;
- 	min-width: 100px;
- 	height: 21px;
+	top: 0;
+	min-width: 100px;
+	height: 21px;
 	_height: 24px;
 	background: #F8F8F8;
 }
@@ -544,7 +544,7 @@ table.bordered tr td {
 	padding: 8px 16px;
 	margin: 0px;
 	background-color: #fff;
-	border-bottom: 1px solid #E5E5E5; 
+	border-bottom: 1px solid #E5E5E5;
 }
 
 /*****
@@ -719,7 +719,7 @@ textarea {
 }
 table.mceLayout td {
 margin: 0 !important;
-padding: 0 !important;	
+padding: 0 !important;
 background-color: transparent !important;
 }
 
@@ -1232,6 +1232,44 @@ button.positive,.buttons a.positive {
 }
 
 * html .tagchecklist label {
+	height: 1%;
+}
+.resizeable_tagchecklist li {
+	background: none;
+	padding-left: 0;
+	text-align: left;
+}
+
+/* CSS for tag checklists */
+.resizeable_tagchecklist hr {
+	padding: 0;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.resizeable_tagchecklist {
+	border: 1px solid #ccc;
+	list-style: none;
+	height: 120px;
+	width: 255px;
+	overflow: auto;
+	background-color: white;
+}
+
+.resizeable_tagchecklist,.resizeable_tagchecklist li {
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px dotted #BAC9CF;
+}
+
+.resizeable_tagchecklist label:hover, .resizeable_tagchecklist li:hover, .resizeable_tagchecklist li label.hover {
+	background: #F1F2F3;
+	color: #333;
+}
+
+* html .resizeable_tagchecklist label {
 	height: 1%;
 }
 
@@ -2025,6 +2063,11 @@ button.positive,.log_buttons a.positive {
 	width: 320px;
 	border: 1px solid #BAC9CF;
 	word-wrap: break-word;
+}
+
+.resizeable_metadata {
+	height=240px;
+	overflow:scroll;
 }
 
 /* Codeblock fields tabs
