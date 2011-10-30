@@ -129,11 +129,11 @@ if (defined('OFFSET_PATH')) {
 				foreach($cats as $cat) {
 					$cattitlelink = $cat['slug'];
 					$cattitle = $_zp_UTF8->convert($cat['name']);
-					$catdesc = $_zp_UTF8->convert($cat['description']);
+					//$catdesc = $_zp_UTF8->convert($cat['description']);
 					if(getcheckboxState('convertlinefeeds')) {
 						$catdesc = nl2br($catdesc);
 					}
-					if (query("INSERT INTO ".prefix('news_categories')." (titlelink, title, desc, permalink) VALUES (".db_quote($cattitlelink).", ".db_quote($cattitle).", ".db_quote($catdesc).",'1')", false)) {
+					if (query("INSERT INTO ".prefix('news_categories')." (titlelink, title, permalink) VALUES (".db_quote($cattitlelink).", ".db_quote($cattitle).", '1')", false)) {
 						$catinfo .= '<li class="import-success">'.sprintf(gettext("Category <em>%s</em> added"),$cat['name']).'</li>';
 					} else {
 						$catinfo .= '<li class="import-exists">'.sprintf(gettext("A category with the title/titlelink <em>%s</em> already exists!"),$cat['name']).'</li>';
