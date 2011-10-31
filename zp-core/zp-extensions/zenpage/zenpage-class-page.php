@@ -261,6 +261,9 @@ class ZenpagePage extends ZenpageItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
+			if (GALLERY_SECURITY == 'private' && $this->getShow() && $action == LIST_RIGHTS) {
+				return LIST_RIGHTS;
+			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {
 				return true;
 			}

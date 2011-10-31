@@ -444,54 +444,17 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 	$newstype = getNewsType();
 	switch($newstype) {
 		case 'news':
-			if (zp_loggedin()) {
-				if (GALLERY_SECURITY == 'private' && $_zp_current_zenpage_news->getShow()) {
-					$ok = true;
-				} else {
-					$ok = $_zp_current_zenpage_news->checkAccess();
-				}
-			} else {
-				$ok = false;
-			}
-			if (!$ok) {
-				$ok = $_zp_current_zenpage_news->checkforGuest();
-			}
+			$ok = $_zp_current_zenpage_news->checkAccess();
 			break;
 		case 'album':
-			$album = getNewsAlbumName();
-			$albumobj = new Album($_zp_gallery,$album);
-			if (zp_loggedin()) {
-				if (GALLERY_SECURITY == 'private' && $albumobj->getShow()) {
-					$ok = true;
-				} else {
-					$ok = $albumobj->checkAccess();
-				}
-			} else {
-				$ok = false;
-			}
-			if (!$ok) {
-				$ok = $albumobj->checkforGuest();
-			}
-			break;
 		case 'image':
 			$album = getNewsAlbumName();
 			$albumobj = new Album($_zp_gallery,$album);
-			if (zp_loggedin()) {
-				if (GALLERY_SECURITY == 'private' && $_zp_current_zenpage_news->getShow()) {
-					$ok = true;
-				} else {
-					$ok = $albumobj->checkAccess();
-				}
-			} else {
-				$ok = false;
-			}
-			if (!$ok) {
-				$ok = $albumobj->checkforGuest();
-			}
+			$ok = $albumobj->checkAccess();
 			break;
-			default:
+		default:
 			$ok = false;
-			break;
+		break;
 	}
 	if (!$ok) {
 		return '<p>'.gettext('<em>This entry belongs to a protected album.</em>').'</p>';
@@ -2671,19 +2634,7 @@ function printSubPagesExcerpts($excerptlength=NULL, $readmore=NULL, $shortenindi
 			$subcount++;
 			$pagetitle = $pageobj->getTitle();
 			$pagecontent = $pageobj->getContent();
-			if (zp_loggedin()) {
-				if (GALLERY_SECURITY == 'private' && $pageobj->getShow()) {
-					$ok = true;
-				} else {
-					$ok = $pageobj->checkAccess();
-				}
-			} else {
-				$ok = false;
-			}
-			if (!$ok) {
-				$ok = $pageobj->checkforGuest();
-			}
-			if($ok) {
+			if($pageobj->checkAccess()) {
 				$pagecontent = getContentShorten($pagecontent, $excerptlength, $shortenindicator,$readmore, getPageLinkURL($pageobj->getTitlelink()));
 			} else {
 				$pagecontent = '<p><em>'.gettext('This page is password protected').'</em></p>';
