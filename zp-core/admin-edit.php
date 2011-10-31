@@ -242,6 +242,8 @@ if (isset($_GET['action'])) {
 												$image->set('total_votes', 0);
 												$image->set('used_ips', 0);
 											}
+											$image->setPublishDate(sanitize($_POST['publishdate-'.$i]));
+											$image->setExpireDate(sanitize($_POST['expirationdate-'.$i]));
 											$image->setTitle(process_language_string_save("$i-title", 2));
 											$image->setDesc(process_language_string_save("$i-desc", 0));
 											$image->setLocation(process_language_string_save("$i-location", 3));
@@ -1208,7 +1210,7 @@ $alb = removeParentAlbumNames($album);
 					</script>
 						<br clear="both" />
 						<hr />
-							<p>
+						<p>
 							<label for "publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $currentimage; ?>" id="publishdate-<?php echo $currentimage; ?>" /><br />
 							<strong class="scheduledpublishing-<?php echo $currentimage; ?>" style="color:red">
 							<?php
@@ -1217,6 +1219,8 @@ $alb = removeParentAlbumNames($album);
 							}
 							?>
 							</strong>
+						</p>
+						<p>
 							<label for "expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $currentimage; ?>" id="expirationdate-<?php echo $currentimage; ?>" />
 							<strong class="expire-<?php echo $currentimage; ?>" style="color:red">
 							<?php

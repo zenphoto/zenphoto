@@ -1621,8 +1621,8 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 					</script>
 						<br clear="both" />
 						<hr />
-							<p>
-							<label for "<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="<?php echo $prefix; ?>publishdate" id="<?php echo $prefix; ?>publishdate" /><br />
+						<p>
+							<label for "<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>publishdate" /><br />
 							<strong class="scheduledpublishing-<?php echo $prefix; ?>" style="color:red">
 							<?php
 							if(!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
@@ -1630,7 +1630,9 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 							}
 							?>
 							</strong>
-							<label for "<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="<?php echo $prefix; ?>expirationdate" id="<?php echo $prefix; ?>expirationdate" />
+						</p>
+							<p>
+							<label for "<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>expirationdate" />
 							<strong class="<?php echo $prefix; ?>expire" style="color:red">
 							<?php
 							if(!empty($expirationdate) && ($expirationdate <= date('Y-m-d H:i:s'))) {
@@ -1639,7 +1641,6 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 							?>
 							</strong>
 						</p>
-
 					<br clear="all" />
 				</div>
 				<!-- **************** Move/Copy/Rename ****************** -->
@@ -2143,6 +2144,8 @@ function processAlbumEdit($index, $album, &$redirectto) {
 		$album->set('total_votes', 0);
 		$album->set('used_ips', 0);
 	}
+	$album->setPublishDate(sanitize($_POST['publishdate-'.$prefix]));
+	$album->setExpireDate(sanitize($_POST['expirationdate-'.$prefix]));
 	$fail = '';
 	if (sanitize($_POST[$prefix.'password_enabled'])) {
 		$olduser = $album->getUser();
