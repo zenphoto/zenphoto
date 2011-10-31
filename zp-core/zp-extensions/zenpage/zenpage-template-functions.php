@@ -2051,7 +2051,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				}
 				if($counter) {
 					if(ZP_COMBINEWS) {
-						$totalcount = $_zp_zenpage->countCombiNews($published);
+						$totalcount = $_zp_zenpage->countCombiNews();
 					} else {
 						if(in_context(ZP_ZENPAGE_NEWS_CATEGORY) && $mode == 'categories') {
 							$totalcount = count($_zp_current_category->getArticles(0));
