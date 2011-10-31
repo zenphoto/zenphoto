@@ -1206,10 +1206,10 @@ function checkPublishDates($row) {
 			if ($row['expiredate'] <= date('Y-m-d H:i:s')) {
 				return 1;
 			}
-			if (!(is_null($row['publishdate']) || $row['publishdate']=='0000-00-00 00:00:00')) {
-				if ($row['publishdate'] >= date('Y-m-d H:i:s')) {
-					return 2;
-				}
+		}
+		if (!(is_null($row['publishdate']) || $row['publishdate']=='0000-00-00 00:00:00')) {
+			if ($row['publishdate'] >= date('Y-m-d H:i:s')) {
+				return 2;
 			}
 		}
 		return null;

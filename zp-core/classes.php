@@ -837,7 +837,4 @@ class MediaObject extends ThemeObject {
 	}
 
 }
-
-
-
 ?>
