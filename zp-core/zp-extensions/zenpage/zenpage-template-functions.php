@@ -775,13 +775,35 @@ function printNewsCustomData() {
 }
 
 /**
- * Gets the author of a news article
+ * Gets the author of a news article (if in Combinews mode for gallery items the owner)
  *
  * @return string
  */
 function getNewsAuthor($fullname=false) {
-	if(is_News() AND is_NewsType("news")) {
-		return getAuthor($fullname);
+	global $_zp_current_zenpage_news,$_zp_authority;
+	if(is_News()) {
+		if(is_NewsType("news")) {
+			return getAuthor($fullname);
+		} else {
+			$authorname = '';
+			$authorid = $_zp_current_zenpage_news->getOwner();
+			if($fullname) {
+				$admins = $_zp_authority->getAdministrators();
+				foreach($admins as $admin) {
+					if($admin['user'] == $authorid) {
+						$authorname = $admin['name'];
+						break;
+					}
+				}
+				if(empty($authorname)) {
+					return $authorid;
+				} else {
+					return $authorname;
+				}
+			} else {
+				return $authorid;
+			}
+		}
 	}
 }
 
