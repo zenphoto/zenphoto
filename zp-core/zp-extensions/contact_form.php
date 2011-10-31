@@ -89,7 +89,7 @@ class contactformOptions {
 										'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
 									gettext('Mail address') => array('key' => 'contactform_mailaddress', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 17,
-										'desc' => gettext("The e-mail address the messages should be sent to. Enter more than one address separated by comma without any spaces.")),
+										'desc' => gettext("The e-mail address the messages should be sent to. Enter more than one address separated by semicolon without any spaces.")),
 									gettext('Title field') => array('key' => 'contactform_title', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 1,
 										'desc' => sprintf($mailfieldinstruction,gettext("Title field"))),
