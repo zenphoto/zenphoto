@@ -1619,29 +1619,29 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								});
 							// ]]> -->
 					</script>
-						<br clear="both" />
-						<hr />
-						<p>
-							<label for "<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>publishdate" /><br />
-							<strong class="scheduledpublishing-<?php echo $prefix; ?>" style="color:red">
-							<?php
-							if(!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
-								echo '<br />'.gettext('Future publishing date.');
-							}
-							?>
-							</strong>
-						</p>
-							<p>
-							<label for "<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>expirationdate" />
-							<strong class="<?php echo $prefix; ?>expire" style="color:red">
-							<?php
-							if(!empty($expirationdate) && ($expirationdate <= date('Y-m-d H:i:s'))) {
-								echo '<br />'.gettext('Expired!');
-							}
-							?>
-							</strong>
-						</p>
-					<br clear="all" />
+					<br clear="both" />
+					<hr />
+					<p>
+						<label for "<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
+							<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>publishdate" />
+						<strong class="scheduledpublishing-<?php echo $prefix; ?>" style="color:red">
+						<?php
+						if(!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
+							echo '<br />'.gettext('Future publishing date.');
+						}
+						?>
+						</strong>
+						<br /><br />
+						<label for "<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
+							<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>expirationdate" />
+						<strong class="<?php echo $prefix; ?>expire" style="color:red">
+						<?php
+						if(!empty($expirationdate) && ($expirationdate <= date('Y-m-d H:i:s'))) {
+							echo '<br />'.gettext('Expired!');
+						}
+						?>
+						</strong>
+					</p>
 				</div>
 				<!-- **************** Move/Copy/Rename ****************** -->
 				<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>

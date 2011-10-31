@@ -1211,7 +1211,8 @@ $alb = removeParentAlbumNames($album);
 						<br clear="both" />
 						<hr />
 						<p>
-							<label for "publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $currentimage; ?>" id="publishdate-<?php echo $currentimage; ?>" /><br />
+							<label for "publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
+								<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $currentimage; ?>" id="publishdate-<?php echo $currentimage; ?>" />
 							<strong class="scheduledpublishing-<?php echo $currentimage; ?>" style="color:red">
 							<?php
 							if(!empty($publishdate) && ($publishdate > date('Y-m-d H:i:s'))) {
@@ -1219,9 +1220,9 @@ $alb = removeParentAlbumNames($album);
 							}
 							?>
 							</strong>
-						</p>
-						<p>
-							<label for "expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label><br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $currentimage; ?>" id="expirationdate-<?php echo $currentimage; ?>" />
+							<br /><br />
+							<label for "expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
+								<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $currentimage; ?>" id="expirationdate-<?php echo $currentimage; ?>" />
 							<strong class="expire-<?php echo $currentimage; ?>" style="color:red">
 							<?php
 							if(!empty($expirationdate) && ($expirationdate <= date('Y-m-d H:i:s'))) {
@@ -1230,9 +1231,6 @@ $alb = removeParentAlbumNames($album);
 							?>
 							</strong>
 						</p>
-
-
-							<br clear="all" />
 						</div>
 
 						<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>
