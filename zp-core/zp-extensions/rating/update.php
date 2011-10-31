@@ -15,8 +15,7 @@ $table = sanitize($_POST['table'],3);
 $dbtable = prefix($table);
 $ip = getUserIP();
 $unique = '_'.$table.'_'.$id;
-$split_stars = getOption('rating_split_stars')+1;
-$rating = max(0, min(5, round(sanitize_numeric($_POST['star_rating-value'.$unique])/$split_stars)));
+$rating = ceil(sanitize_numeric($_POST['star_rating-value'.$unique])/max(1,getOption('rating_split_stars')));
 $IPlist = query_single_row("SELECT * FROM $dbtable WHERE id= $id");
 if (is_array($IPlist)) {
 	$oldrating = getRatingByIP($ip, $IPlist['used_ips'], $IPlist['rating']);
