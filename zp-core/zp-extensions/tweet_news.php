@@ -204,8 +204,10 @@ function tweetObjectWithCheck($obj) {
 							if (!$result) {
 								query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_pages",'.db_quote($obj->getTitlelink()).')');
 							}
-							break;
+						} else {
+							$error = tweetObject($obj);
 						}
+						break;
 					case 'news':
 						$tweet = false;
 						$mycategories = $obj->getCategories();
@@ -227,8 +229,10 @@ function tweetObjectWithCheck($obj) {
 							if (!$result) {
 								query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending",'.db_quote($obj->getTitlelink()).')');
 							}
-							break;
+						} else {
+							$error = tweetObject($obj);
 						}
+						break;
 					case 'albums':
 						$dt = $obj->getPublishDate();
 						if($dt > date('Y-m-d H:i:s')) {
@@ -236,8 +240,10 @@ function tweetObjectWithCheck($obj) {
 							if (!$result) {
 								query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_albums",'.db_quote($obj->name).')');
 							}
-							break;
+						} else {
+							$error = tweetObject($obj);
 						}
+						break;
 					case 'images':
 						$dt = $obj->getPublishDate();
 						if($dt > date('Y-m-d H:i:s')) {
@@ -245,9 +251,10 @@ function tweetObjectWithCheck($obj) {
 							if (!$result) {
 								query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_images",'.db_quote($obj->album->name.'/'.$obj->filename).')');
 							}
-							break;
+						} else {
+							$error = tweetObject($obj);
 						}
-						$error = tweetObject($obj);
+						break;
 				}
 			}
 		}

@@ -66,6 +66,7 @@ class ZenpageNews extends ZenpageItems {
 			$newobj = new ZenpageNews($newID);
 			$newobj->setTitle($newtitle);
 			$newobj->setTags($this->getTags());
+			$newobj->setShow(0);
 			$newobj->save();
 			$categories = array();
 			foreach ($this->getCategories() as $cat) {

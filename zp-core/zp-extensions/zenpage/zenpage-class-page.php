@@ -104,6 +104,7 @@ class ZenpagePage extends ZenpageItems {
 			$newobj->setTitle($newtitle);
 			$newobj->setSortOrder(NULL);
 			$newobj->setTags($this->getTags());
+			$newobj->setShow(0);
 			$newobj->save();
 			return $newobj;
 		}
