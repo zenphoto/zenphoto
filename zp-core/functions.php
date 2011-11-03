@@ -662,13 +662,11 @@ function getPluginFiles($pattern, $folder='', $stripsuffix=true) {
  * @return string
  */
 function getPlugin($plugin, $inTheme=false, $webpath=false) {
-	global $_zp_themeroot;
 	$pluginFile = NULL;
 	if ($inTheme === true) {
 		$inTheme = getCurrentTheme();
 	}
 	if ($inTheme) {
-		$_zp_themeroot = WEBPATH.'/'. THEMEFOLDER.'/'.$inTheme;
 		$pluginFile = '/'.THEMEFOLDER.'/'.internalToFilesystem($inTheme.'/'.$plugin);
 		if (!file_exists(SERVERPATH.$pluginFile)) {
 			$pluginFile = false;
@@ -1255,9 +1253,8 @@ function setupTheme() {
 			$id = $parent->id;
 		}
 	}
-	if ($theme != $theme = zp_apply_filter('setupTheme', $theme)) {
-		$_zp_gallery->setCurrentTheme($theme);
-	}
+	$theme = zp_apply_filter('setupTheme', $theme);
+	$_zp_gallery->setCurrentTheme($theme);
 	$themeindex = getPlugin('index.php', $theme);
 	if (empty($theme) || empty($themeindex)) {
 		header('Last-Modified: ' . ZP_LAST_MODIFIED);

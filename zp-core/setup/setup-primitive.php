@@ -344,8 +344,4 @@ function internalToFilesystem($filename) {
 	return $_zp_UTF8->convert($filename, 'UTF-8', FILESYSTEM_CHARSET);
 }
 
-function isWin() {
-	return (strtoupper (substr(PHP_OS, 0,3)) == 'WIN' ) ;
-}
-
 ?>

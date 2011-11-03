@@ -614,8 +614,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				} else {
 					$tries = 0;
 				}
-				$os = getServerOS();
-				if ($os =='darwin') {
+				if ($mac = isMac()) {
 					if ($tries & 4) {
 						$test = $file_t;
 					} else {
@@ -658,7 +657,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					if ((filesystemToInternal(trim($test)) == $file_t)) {
 						//	and the active character set define worked
 						$notice = 1;
-						if ($os == 'darwin') {
+						if ($mac) {
 							$confirm = gettext('Mac');
 						} else {
 							$confirm = gettext('confirmed');
@@ -1019,9 +1018,15 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 
 	set_time_limit(120);
+	$lcFilesystem = file_exists(strtoupper(__FILE__));
 	$base = str_replace('\\', '/', dirname(dirname(__FILE__))).'/';
-	getResidentZPFiles(SERVERPATH.'/'.ZENFOLDER);
-	$res = array_search($base.ZENFOLDER.'/Zenphoto.package',$_zp_resident_files);
+	getResidentZPFiles(SERVERPATH.'/'.ZENFOLDER, $lcFilesystem);
+	if ($lcFilesystem) {
+		$res = array_search(strtolower($base.ZENFOLDER.'/Zenphoto.package'),$_zp_resident_files);
+		$base = strtolower($base);
+	} else {
+		$res = array_search($base.ZENFOLDER.'/Zenphoto.package',$_zp_resident_files);
+	}
 	unset($_zp_resident_files[$res]);
 	$permissions = 1;
 	$cum_mean = filemtime(SERVERPATH.'/'.ZENFOLDER.'/version.php');
@@ -1033,6 +1038,9 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$package_file_count = false;
 	if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
 		$package = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package');
+		if ($lcFilesystem) {	// case insensitive file systems
+			$package = strtolower($package);
+		}
 		if (!empty($package)) {
 			$installed_files = explode("\n", trim($package));
 			$count = array_pop($installed_files);
@@ -1073,7 +1081,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				$folders[$component] = $component;
 				unset($installed_files[$key]);
 				if (dirname($value) == THEMEFOLDER) {
-					getResidentZPFiles($base.$value);
+					getResidentZPFiles($base.$value, $lcFilesystem);
 				}
 			} else {
 				if ($updatechmod) {

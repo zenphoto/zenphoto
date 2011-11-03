@@ -441,24 +441,10 @@ function printNewsTitleLink($before='') {
  */
 function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 	global $_zp_flash_player, $_zp_current_image, $_zp_gallery, $_zp_current_zenpage_news, $_zp_page;
-	$newstype = getNewsType();
-	switch($newstype) {
-		case 'news':
-			$ok = $_zp_current_zenpage_news->checkAccess();
-			break;
-		case 'album':
-		case 'image':
-			$album = getNewsAlbumName();
-			$albumobj = new Album($_zp_gallery,$album);
-			$ok = $albumobj->checkAccess();
-			break;
-		default:
-			$ok = false;
-		break;
-	}
-	if (!$ok) {
+	if (!$_zp_current_zenpage_news->checkAccess()) {
 		return '<p>'.gettext('<em>This entry belongs to a protected album.</em>').'</p>';
 	}
+	$newstype = getNewsType();
 	$excerptbreak = false;
 	if(!$shorten && !is_NewsArticle()) {
 		$shorten = ZP_SHORTEN_LENGTH;

@@ -154,10 +154,10 @@ function printLogo() {
 	global $_zp_themeroot;
 	if ($img = getOption('Graphic_logo')) {
 		$fullimg = '/'.UPLOAD_FOLDER.'/images/'.$img.'.png';
-		if (!file_exists(SERVERPATH.$fullimg)) {
-			echo '<img src="'.$_zp_themeroot.'/images/effervescence.png" alt="Logo"/>';
+		if (file_exists(SERVERPATH.$fullimg)) {
+			echo '<img src="'.pathurlencode(WEBPATH.$fullimg).'" alt="Logo"/>';
 		} else {
-			echo '<img src="'.WEBPATH.$fullimg.'" alt="Logo"/>';
+			echo '<img src="'.$_zp_themeroot.'/images/effervescence.png" alt="Logo"/>';
 		}
 	} else {
 		$name = get_language_string(getOption('Theme_logo'));

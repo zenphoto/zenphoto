@@ -42,11 +42,11 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 	} else {
 		$backgroundColor = parseCSSDef($zenCSS);
 	}
-?>
+	?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<?php zp_apply_filter('theme_head'); ?>
+<?php zp_apply_filter('theme_head'); ?>
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
@@ -75,8 +75,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 		break;
 	}
 	echo "<script type=\"text/javascript\" src=\"$_zp_themeroot/scripts/bluranchors.js\"></script>\n";
-	global $_zp_current_album;
-?>
+	?>
 </head>
 
 <body onload="blurAnchors()">

@@ -61,17 +61,17 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 			$wide = " style=\"width:332px;";
 			$high = " height:162px;\"";
 		}
+		if ($imageofday) {
+			?>
+			<p align="center">
+			<?php echo gettext('Picture of the day'); ?>
+			</p>
+			<?php
+		}
 		?>
 		<div id="image" <?php echo $wide.$high; ?>>
 			<div id="pic_day">
 			<?php
-				if ($imageofday) {
-					?>
-					<p align="center">
-					<?php echo gettext('Picture of the day'); ?>
-					</p>
-					<?php
-				}
 				if ($randomImage) {
 					?>
 					<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">

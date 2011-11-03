@@ -169,7 +169,6 @@ $_downloadList_linkpath = substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0))
  * @param string $sort 'asc" or "desc" (default) for alphabetical ascending or descending list
  */
 function printdownloadList($dir='',$listtype='ol',$filters = array(),$excludesuffixes='',$sort='desc') {
-	global $_zp_themeroot;
 	if($listtype != 'ol' || $listtype != 'ul') {
 		$listtype = 'ol';
 	}

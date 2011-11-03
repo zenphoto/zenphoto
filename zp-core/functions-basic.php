@@ -1001,14 +1001,6 @@ function getAlbumFolder($root=SERVERPATH) {
 	}
 }
 
-function get_caller_method() {
-	$traces = @debug_backtrace();
-	if (isset($traces[2]))     {
-		return $traces[2]['function'];
-	}
-	return null;
-}
-
 /**
  * Write output to the debug log
  * Use this for debugging when echo statements would come before headers are sent
@@ -1238,15 +1230,6 @@ function is_valid_other($filename) {
 	global $_zp_extra_filetypes;
 	$ext = strtolower(substr(strrchr($filename, "."), 1));
 	return isset($_zp_extra_filetypes[$ext]);
-}
-
-/**
- * Returns true if we are running on a Windows server
- *
- * @return bool
- */
-function isWin() {
-	return (strtoupper (substr(PHP_OS, 0,3)) == 'WIN' ) ;
 }
 
 /**
@@ -1496,19 +1479,6 @@ function getSetClause($new_unique_set) {
 function db_name() {
 	global $_zp_conf_vars;
 	return $_zp_conf_vars['mysql_database'];
-}
-
-function getServerOS() {
-	ob_start();
-	phpinfo(INFO_GENERAL);
-	$phpinfo = ob_get_contents();
-	ob_end_clean();
-	$i = strpos($phpinfo,'<td class="v">');
-	$j = strpos($phpinfo,'</td>',$i);
-	$osinfo = strtolower(substr($phpinfo, $i+14,$j-$i-14));
-	$ostokens = explode(' ', $osinfo);
-	$os = array_shift($ostokens);
-	return $os;
 }
 
 function db_count($table, $clause=NULL, $field="*") {

@@ -12,7 +12,7 @@ require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
  * enumerates the files in folder(s)
  * @param $folder
  */
-function getResidentZPFiles($folder) {
+function getResidentZPFiles($folder,  $lcFilesystem=false) {
 	global $_zp_resident_files;
 	$dir = opendir($folder);
 	while(($file = readdir($dir)) !== false) {
@@ -20,11 +20,15 @@ function getResidentZPFiles($folder) {
 		if (strpos($file, '.') !== 0) {
 			if (is_dir($folder.'/'.$file)) {
 				if ($file != 'session') {
-					getResidentZPFiles($folder.'/'.$file);
-					$_zp_resident_files[]=$folder.'/'.$file;
+					getResidentZPFiles($folder.'/'.$file, $lcFilesystem);
+					$entry = $folder.'/'.$file;
+					if ($lcFilesystem) $entry = strtolower($entry);
+					$_zp_resident_files[]=$entry;
 				}
 			} else {
-				$_zp_resident_files[]=$folder.'/'.$file;
+				$entry = $folder.'/'.$file;
+				if ($lcFilesystem) $entry = strtolower($entry);
+				$_zp_resident_files[]=$entry;
 			}
 		}
 	}
@@ -142,7 +146,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
  * @param $subfolders
  */
 function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL) {
-	global $const_webpath, $serverpath, $chmod, $permission_names;
+	global $serverpath, $chmod, $permission_names;
 	$path = str_replace('\\', '/', $path);
 	if (!is_dir($path) && $class == 'std') {
 		mkdir_recursive($path, $chmod);
@@ -205,12 +209,15 @@ function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL) 
 			}
 			break;
 		case 'in_webpath':
-			if (empty($const_webpath)) {
+			$webpath = $_SERVER['SCRIPT_NAME'];
+			if (empty($webpath)) {
 				$serverroot = $serverpath;
 			} else {
-				$serverroot = substr($serverpath, 0, strpos($serverpath, $const_webpath));
+				$i = strpos($webpath, '/'.ZENFOLDER);
+				$webpath = substr($webpath, 0, $i);
+				$serverroot = substr($serverpath, 0, strpos($serverpath, $webpath));
 			}
-			$append = substr($path, strlen($serverroot));
+			$append = substr($path, strlen($serverroot)+1);
 			$f = " (<em>$append</em>)";
 			break;
 		case 'external':
@@ -219,7 +226,7 @@ function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL) 
 			break;
 	}
 	if (!is_dir($path)) {
-		$msg = " ".sprintf(gettext('You must create the folder <em>%1$s</em><br /><code>mkdir(%2$s, 0777)</code>.'),$append,$path);
+		$msg = " ".sprintf(gettext('You must create the folder <em>%1$s</em><br /><code>mkdir(%2$s, 0777)</code>.'),$append,substr($path,0,-1));
 		if ($class != 'std') {
 			return checkMark(false, '', sprintf(gettext('<em>%1$s</em> folder [<em>%2$s</em> does not exist]'),$which, $append), $msg);
 		} else {
@@ -499,5 +506,37 @@ function setup_sanitize_string($input_string, $sanitize_level) {
 	}
 	return $input_string;
 }
+
+function getServerOS() {
+	ob_start();
+	phpinfo(INFO_GENERAL);
+	$phpinfo = ob_get_contents();
+	ob_end_clean();
+	$i = strpos($phpinfo,'<td class="v">');
+	$j = strpos($phpinfo,'</td>',$i);
+	$osinfo = strtolower(substr($phpinfo, $i+14,$j-$i-14));
+	$ostokens = explode(' ', $osinfo);
+	$os = array_shift($ostokens);
+	return $os;
+}
+
+/**
+ * Returns true if we are running on a Windows server
+ *
+ * @return bool
+ */
+function isWin() {
+	return (strtoupper (substr(PHP_OS, 0,3)) == 'WIN' ) ;
+}
+
+/**
+ * Returns true if we are running on a Macintosh
+ */
+function isMac() {
+	$os = getServerOS();
+	return strtoupper($os) =='DARWIN';
+}
+
+
 
 ?>
