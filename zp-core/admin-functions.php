@@ -1466,12 +1466,9 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 							}
 							if ($thumb && !is_numeric($thumb)) {
 								// check for current thumb being in the list. If not, add it
-								if (is_array($imagelist)) {
-									$target = array('folder'=>dirname($thumb),'filename'=>basename($thumb));
-								} else {
-									$target = $thumb;
-								}
-								if (!in_array($target, $imagelist)) {
+								$target = $thumb;
+								$targetA = array('folder'=>dirname($thumb),'filename'=>basename($thumb));
+								if (!in_array($target, $imagelist) && !in_array($targetA, $imagelist)) {
 									array_unshift($imagelist, $target);
 								}
 							}

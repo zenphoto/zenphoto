@@ -45,7 +45,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$notify = '?tag_parse_error';
 			}
-			$oldloc = getOption('locale', true); // get the option as stored in the database, not what might have been set by a cookie
+			$oldloc = getOptionFromDB('locale'); // get the option as stored in the database, not what might have been set by a cookie
 			$newloc = sanitize($_POST['locale'],3);
 			$languages = generateLanguageList(true);
 			foreach ($languages as $text=>$lang) {
@@ -655,7 +655,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td width="175"><?php echo gettext("Language:"); ?></td>
 					<td width="350">
 						<?php
-						$currentValue = getOption('locale',true);
+						$currentValue = getOptionFromDB('locale');
 						?>
 						<br />
 						<ul class="languagelist">

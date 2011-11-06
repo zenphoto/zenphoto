@@ -248,38 +248,36 @@ function js_encode($this_string) {
  * Get a option stored in the database.
  * This function reads the options only once, in order to improve performance.
  * @param string $key the name of the option.
- * @param bool $db set to true to force retrieval from the database.
  */
-function getOption($key, $db=false) {
-	global $_zp_conf_vars, $_zp_options, $_zp_optionDB_hasownerid;
-	if (is_null($_zp_options)) {
-		$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `ownerid`=0';
-		$optionlist = query_full_array($sql, false);
-		if ($optionlist == false) { // might be old, un-migrated option table during setup--retry without the `ownerid`.
-			$sql = "SELECT `name`, `value` FROM ".prefix('options');
+function getOption($key) {
+	global $_zp_conf_vars, $_zp_options;
+	if (isset($_zp_options[$key])) {
+		$v = $_zp_options[$key];
+	} else {
+		if (is_null($_zp_options)) {
+			// option table not yet loaded, load it
+			$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `ownerid`=0';
 			$optionlist = query_full_array($sql, false);
-		}
-		if ($optionlist !== false) {
-			$_zp_options = array();
-			foreach($optionlist as $option) {
-				$_zp_options[$option['name']] = $option['value'];
+			if ($optionlist == false) {
+				// might be old, un-migrated option table during setup--retry without the `ownerid`.
+				$sql = "SELECT `name`, `value` FROM ".prefix('options');
+				$optionlist = query_full_array($sql, false);
+			}
+			if ($optionlist !== false) {
+				$_zp_options = array();
+				foreach($optionlist as $option) {
+					$_zp_options[$option['name']] = $option['value'];
+					if ($option['name']==$key) {
+						$v = $option['value'];
+					}
+				}
 			}
 		}
-	} else {
-		if ($db) {
-			$sql = "SELECT `value` FROM ".prefix('options')." WHERE `name`=".db_quote($key)." AND `ownerid`=0";
-			$optionlist = query_single_row($sql);
-			return $optionlist['value'];
+		if (!isset($v)) {
+			$v = @$_zp_conf_vars[$key];
 		}
 	}
-	if (is_array($_zp_options) && array_key_exists($key, $_zp_options)) {
-		return $_zp_options[$key];
-	} else {
-		if (array_key_exists($key, $_zp_conf_vars)) {
-			return $_zp_conf_vars[$key];
-		}
-	}
-	return NULL;
+	return $v;
 }
 
 /**

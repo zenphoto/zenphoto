@@ -783,7 +783,7 @@ $alb = removeParentAlbumNames($album);
 		?>
 		<div class="messagebox fade-message">
 			<h2><?php echo gettext("Upload complete"); ?></h2>
-			<?php echo zp_apply_filter('get_upload_header_text',gettext('Your files have been uploaded.')); ?>
+			<?php echo gettext('Your files have been uploaded.'); ?>
 		</div>
 		<?php
 	}

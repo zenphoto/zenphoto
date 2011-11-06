@@ -20,10 +20,13 @@ function updateFolder(nameObj, folderID, checkboxID, msg1, msg2) {
 	return validateFolder(folder, msg1, msg2);
 }
 
-function switchUploader(url) {
-	var urlx = url+'&album='+$('#albumselectmenu').val()+'&publishalbum='+$('#publishalbum').attr("checked")+
-									'&albumtitle='+encodeURIComponent($('#albumtitle').val())+'&folderdisplay='+encodeURIComponent($('#folderdisplay').val())+
-									'&autogen='+$('#autogen').attr("checked");
+function switchUploader() {
+	var urlx = '?uploadtype='+$('#uploadtype option:selected').val()+
+							'&album='+$('#albumselectmenu').val()+
+							'&albumtitle='+encodeURIComponent($('#albumtitle').val())+
+							'&folderdisplay='+encodeURIComponent($('#folderdisplay').val());
+	if ($('#autogen').attr("checked")) urlx = urlx+'&autogen=1';
+	if ($('#publishalbum').attr("checked")) urlx = urlx+'&publishalbum=1';
 	if ($('#newalbumcheckbox').attr("checked")) urlx = urlx+'&new';
 	window.location = urlx;
 }

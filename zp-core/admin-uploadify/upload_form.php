@@ -13,10 +13,14 @@ function upload_head() {
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/admin-uploadify/swfobject.js"></script>
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
 	<?php
+	return 'action=""';
 }
 
 function upload_form($uploadlimit) {
-	global $_zp_current_admin_obj, $upload_extensions;
+}
+
+function upload_extra($uploadlimit) {
+	global $_zp_current_admin_obj, $upload_extensions, $passedalbum;
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
@@ -86,13 +90,16 @@ function upload_form($uploadlimit) {
 	<div id="fileUpload" style="color:red">
 		<?php echo gettext("There appears to be no <em>Flash</em> plugin installed in your browser."); ?>
 	</div>
-	<p class="buttons" id="fileUploadbuttons" style="display: none;">
+	<p class="buttons" id="fileUploadbuttons"<?php if (!$passedalbum) echo ' style="display: none;"'; ?>>
 		<a href="javascript:$('#fileUpload').uploadifySettings('folder','/'+$('#publishalbum').attr('checked')+':'+$('#folderdisplay').val()+':'+$('#albumtitle').val());
 												$('#fileUpload').uploadifyUpload()"><img src="images/pass.png" alt="" /><?php echo gettext("Upload"); ?></a>
 		<a href="javascript:$('#fileUpload').uploadifyClearQueue()"><img src="images/fail.png" alt="" /><?php echo gettext("Cancel"); ?></a>
 	<br clear="all" /><br />
 	</p>
-	<p id="uploadswitch"><?php echo gettext('If your upload does not work try the <a href="javascript:switchUploader(\'admin-upload.php?uploadtype=httpupload\');" >jquery file upload</a> or use FTP instead.'); ?></p>
 	<?php
 }
+
+function showFields() {
+}
+
 ?>

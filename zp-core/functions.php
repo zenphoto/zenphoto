@@ -639,8 +639,8 @@ function getPluginFiles($pattern, $folder='', $stripsuffix=true) {
 			}
 			$list[$key] = $basepath.$file;
 		}
-		chdir($curdir);
 	}
+	chdir($curdir);
 	return $list;
 }
 
@@ -2040,6 +2040,17 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 			zp_setCookie($authType, "", -368000);
 		}
 	}
+}
+
+/**
+ *
+ * Gets an option directly from the database.
+ * @param string $key
+ */
+function getOptionFromDB($key) {
+	$sql = "SELECT `value` FROM ".prefix('options')." WHERE `name`=".db_quote($key)." AND `ownerid`=0";
+	$optionlist = query_single_row($sql);
+	return @$optionlist['value'];
 }
 
 /**

@@ -294,7 +294,7 @@ class flowplayer3 {
 			}
 			$playerconfigadd .= '
 			}
-		});
+		}).ipad();
 		// ]]> -->
 		</script>';
 		$playerconfig = $playerconfig.$playerconfigadd;

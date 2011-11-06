@@ -316,7 +316,7 @@ function charsetSelector($select) {
 	$selector =	'<select id="FILESYSTEM_CHARSET" name="FILESYSTEM_CHARSET" >';
 	$selector .= '<option value ="unknown">'.gettext('Unknown').'</option>';
 	$totalsets = $_zp_UTF8->charsets;
-	asort($totalsets);
+	ksort($totalsets);
 	foreach ($totalsets as $key=>$char) {
 		$selector .= '	<option value="'.$key.'"';
 		if ($key == $select) {
@@ -507,19 +507,6 @@ function setup_sanitize_string($input_string, $sanitize_level) {
 	return $input_string;
 }
 
-function getServerOS() {
-	ob_start();
-	phpinfo(INFO_GENERAL);
-	$phpinfo = ob_get_contents();
-	ob_end_clean();
-	$i = strpos($phpinfo,'<td class="v">');
-	$j = strpos($phpinfo,'</td>',$i);
-	$osinfo = strtolower(substr($phpinfo, $i+14,$j-$i-14));
-	$ostokens = explode(' ', $osinfo);
-	$os = array_shift($ostokens);
-	return $os;
-}
-
 /**
  * Returns true if we are running on a Windows server
  *
@@ -533,8 +520,7 @@ function isWin() {
  * Returns true if we are running on a Macintosh
  */
 function isMac() {
-	$os = getServerOS();
-	return strtoupper($os) =='DARWIN';
+	return strtoupper(PHP_OS) =='DARWIN';
 }
 
 

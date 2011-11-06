@@ -590,173 +590,165 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		}
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if ($environ) {
-				primeMark(gettext('Character set'));
-				$charset_defined = str_replace('-','&#8209;',FILESYSTEM_CHARSET);
-				$file_t = 'charset.tést';
-				$charset = LOCAL_CHARSET;
-				if (empty($charset)) {
-					$charset = 'UTF-8';
-				}
-				$test = '';
-				if (($dir=opendir(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/')) !== false) {
-					$testfiles=array();
-					while(($file=readdir($dir)) !== false) {
-						if (strpos($file,'charset.') === 0) {
-							$test = $file;
-							break;
-
-						}
-					}
-					closedir($dir);
-				}
-				if (isset($_REQUEST['charset_attempts'])) {
-					$tries = sanitize_numeric($_REQUEST['charset_attempts']);
-				} else {
-					$tries = 0;
-				}
-				if ($mac = isMac()) {
-					if ($tries & 4) {
-						$test = $file_t;
-					} else {
-						$trialset = 'UTF-8';
-						$tries = 4;
-					}
-				}
-				switch (FILESYSTEM_CHARSET) {
-					case 'ISO-8859-1':
-						if ($tries & 2) {
-							$trialset = 'unknown';
-						} else {
-							$trialset = 'UTF-8';
-							$tries = $tries | 1;
-						}
-						break;
-					default:
-						if ($tries & 1) {
-							$trialset = 'unknown';
-						} else {
-							$trialset = 'ISO-8859-1';
-							$tries = $tries | 2;
-						}
-						break;
-				}
-				$msg2 = '<p>'.sprintf(gettext('If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems displaying the names.'),$charset_defined).'</p>'.
-								'<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" /><input type="hidden" name="charset_attempts" value="'.$tries.'" /><p>'.
-								gettext('Change the filesystem character set define to %1$s.<br />If you do not know the character set try "%2$s"').
-								'</p></form><br clear="all" />';
-
-				$selectedset = FILESYSTEM_CHARSET;
-				if (isset($_zp_conf_vars['FILESYSTEM_CHARSET'])) {
-					$selectedset = $_zp_conf_vars['FILESYSTEM_CHARSET'];
-				} else {
-					$selectedset = FILESYSTEM_CHARSET;
-				}
-				$msg = '';
-				if ($test) {
-					//	fount the test file
-					if ((filesystemToInternal(trim($test)) == $file_t)) {
-						//	and the active character set define worked
-						$notice = 1;
-						if ($mac) {
-							$confirm = gettext('Mac');
-						} else {
-							$confirm = gettext('confirmed');
-						}
-						$msg = sprintf(gettext('The Zenphoto filesystem character define is %1$s [%2$s]'),$charset_defined, $confirm);
-						$msg1 = '';
-					} else {
-						if ($selectedset=='unknown') {
-							$notice = 1;
-							$msg = gettext('The Zenphoto filesystem character define is ISO-8859-1 [assumed]');
-							$msg1= '';
-						} else {
-							//	active character set is not correct
-							$notice = 0;
-							$msg1 = sprintf(gettext('The Zenphoto filesystem character define is %1$s [which seems wrong]'),$charset_defined);
-						}
-					}
-				} else {
-					//	no test file
-					$msg1 = sprintf(gettext('The Zenphoto filesystem character define is %1$s [no test performed]'),$charset_defined);
-					$msg2 = '<p>'.sprintf(gettext('Setup did not perform a test of the filesystem character set. You can cause setup to test for a proper definition by creating a file in your <code>%1$s</code> folder named <strong><code>%2$s</code></strong> and re-running setup.'),DATA_FOLDER,$file_t).'</p>'.$msg2;
-					if (isset($_zp_conf_vars['FILESYSTEM_CHARSET'])) {
-						//	but we have a define value
-						$notice = -3;
-					} else {
-						//	no defined value, who knows....
-						$notice = -1;
-					}
-				}
-				checkMark($notice, $msg, $msg1, sprintf($msg2,charsetSelector($trialset),$trialset));
-				// UTF-8 URI
-				if (($notice != -1) && @copy(SERVERPATH.'/'.ZENFOLDER.'/images/pass.png', SERVERPATH.'/'.DATA_FOLDER.'/'.internalToFilesystem('tést.jpg'))) {
-					$test_image = WEBPATH.'/'.DATA_FOLDER.'/'.urlencode('tést.jpg');
-					$req_iso = gettext('Image URIs appear require the <em>filesystem</em> character set.');
-					$req_UTF8 = gettext('Image URIs appear to require the UTF-8 character set.');
+				if (isMac()) {
+					checkMark(-1, '', gettext('Your filesystem is Macintosh'), gettext('Zenphoto is unable to deal with Macintosh file names containing diacritical marks. You should avoid these.'),false);
 					?>
-					<script type="text/javascript">
-						// <!-- <![CDATA[
-						function uri(enable) {
-							var text;
-							if (enable) {
-								text = 'true';
-							} else {
-								text = 'false';
+					<input type="hidden" name="FILESYSTEM_CHARSET" value="UTF-8" />
+					<?php
+				} else {
+					primeMark(gettext('Character set'));
+					$charset_defined = str_replace('-','&#8209;',FILESYSTEM_CHARSET);
+					$charset = LOCAL_CHARSET;
+					if (empty($charset)) {
+						$charset = 'UTF-8';
+					}
+					$test = '';
+					if (($dir=opendir(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/')) !== false) {
+						$testfiles=array();
+						while(($file=readdir($dir)) !== false) {
+							if (preg_match('/^charset[\._]t(.*)$/', $file, $matches)) {
+								$test = substr($matches[1],-3);
+								break;
 							}
-							$('#setUTF8URI').val(enable);
-							$('#UTF8_uri_warn').hide();
 						}
-						var loadSucceeded = true;
-						$(document).ready(function() {
-							var image = new Image();
-							image.onload = function() {
-									<?php
-									if (!UTF8_IMAGE_URI) {
+						closedir($dir);
+					}
+					if (isset($_REQUEST['charset_attempts'])) {
+						$tries = sanitize_numeric($_REQUEST['charset_attempts']);
+					} else {
+						$tries = 0;
+					}
+
+					switch (FILESYSTEM_CHARSET) {
+						case 'ISO-8859-1':
+							if ($tries & 2) {
+								$trialset = 'unknown';
+							} else {
+								$trialset = 'UTF-8';
+								$tries = $tries | 1;
+							}
+							break;
+						default:
+							if ($tries & 1) {
+								$trialset = 'unknown';
+							} else {
+								$trialset = 'ISO-8859-1';
+								$tries = $tries | 2;
+							}
+							break;
+					}
+					$msg2 = '<p>'.sprintf(gettext('If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems displaying the names.'),$charset_defined).'</p>'.
+									'<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" /><input type="hidden" name="charset_attempts" value="'.$tries.'" /><p>'.
+									gettext('Change the filesystem character set define to %1$s.<br />If you do not know the character set try "%2$s"').
+									'</p></form><br clear="all" />';
+
+					if (isset($_zp_conf_vars['FILESYSTEM_CHARSET'])) {
+						$selectedset = $_zp_conf_vars['FILESYSTEM_CHARSET'];
+					} else {
+						$selectedset = FILESYSTEM_CHARSET;
+					}
+					$msg = '';
+					if ($test) {
+						//	fount the test file
+						if ((filesystemToInternal(trim($test)) == 'ést')) {
+							//	and the active character set define worked
+							$notice = 1;
+							$msg = sprintf(gettext('The Zenphoto filesystem character define is %1$s [confirmed]'),$charset_defined);
+							$msg1 = '';
+						} else {
+							if ($selectedset=='unknown') {
+								$notice = 1;
+								$msg = gettext('The Zenphoto filesystem character define is ISO-8859-1 [assumed]');
+								$msg1= '';
+							} else {
+								//	active character set is not correct
+								$notice = 0;
+								$msg1 = sprintf(gettext('The Zenphoto filesystem character define is %1$s [which seems wrong]'),$charset_defined);
+							}
+						}
+					} else {
+						//	no test file
+						$msg1 = sprintf(gettext('The Zenphoto filesystem character define is %1$s [no test performed]'),$charset_defined);
+						$msg2 = '<p>'.sprintf(gettext('Setup did not perform a test of the filesystem character set. You can cause setup to test for a proper definition by creating a file in your <code>%1$s</code> folder named <strong><code>%2$s</code></strong> and re-running setup.'),DATA_FOLDER,'charset_tést').'</p>'.$msg2;
+						if (isset($_zp_conf_vars['FILESYSTEM_CHARSET'])) {
+							//	but we have a define value
+							$notice = -3;
+						} else {
+							//	no defined value, who knows....
+							$notice = -1;
+						}
+					}
+					checkMark($notice, $msg, $msg1, sprintf($msg2,charsetSelector($trialset),$trialset));
+					// UTF-8 URI
+					if (($notice != -1) && @copy(SERVERPATH.'/'.ZENFOLDER.'/images/pass.png', SERVERPATH.'/'.DATA_FOLDER.'/'.internalToFilesystem('tést.jpg'))) {
+						$test_image = WEBPATH.'/'.DATA_FOLDER.'/'.urlencode('tést.jpg');
+						$req_iso = gettext('Image URIs appear require the <em>filesystem</em> character set.');
+						$req_UTF8 = gettext('Image URIs appear to require the UTF-8 character set.');
+						?>
+						<script type="text/javascript">
+							// <!-- <![CDATA[
+							function uri(enable) {
+								var text;
+								if (enable) {
+									text = 'true';
+								} else {
+									text = 'false';
+								}
+								$('#setUTF8URI').val(enable);
+								$('#UTF8_uri_warn').hide();
+							}
+							var loadSucceeded = true;
+							$(document).ready(function() {
+								var image = new Image();
+								image.onload = function() {
+										<?php
+										if (!UTF8_IMAGE_URI) {
+											?>
+											$('#UTF8_uri_warn').html('<?php echo gettext('You should enable the URL option <em>UTF8 image URIs</em>.'); ?>'+' <?php echo gettext('<a href="javascript:uri(true)">Please do</a>'); ?>');
+											$('#UTF8_uri_warn').show();
+											<?php
+											if ($autorun) {
+												?>
+												uri(true);
+												<?php
+											}
+										}
 										?>
-										$('#UTF8_uri_warn').html('<?php echo gettext('You should enable the URL option <em>UTF8 image URIs</em>.'); ?>'+' <?php echo gettext('<a href="javascript:uri(true)">Please do</a>'); ?>');
+								};
+								image.onerror = function() {
+									$('#UTF8_uri_text').html('<?php echo $req_iso; ?>');
+									<?php
+									if (UTF8_IMAGE_URI) {
+										?>
+										$('#UTF8_uri').attr('class','warn');
+										$('#UTF8_uri_warn').html('<?php echo gettext('You should disable the URL option <em>UTF8 image URIs</em>.'); ?>'+' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');
 										$('#UTF8_uri_warn').show();
 										<?php
 										if ($autorun) {
 											?>
-											uri(true);
+											uri(false);
 											<?php
 										}
 									}
 									?>
-							};
-							image.onerror = function() {
-								$('#UTF8_uri_text').html('<?php echo $req_iso; ?>');
-								<?php
-								if (UTF8_IMAGE_URI) {
-									?>
-									$('#UTF8_uri').attr('class','warn');
-									$('#UTF8_uri_warn').html('<?php echo gettext('You should disable the URL option <em>UTF8 image URIs</em>.'); ?>'+' <?php echo gettext('<a href="javascript:uri(false)">Please do</a>'); ?>');
-									$('#UTF8_uri_warn').show();
-									<?php
-									if ($autorun) {
-										?>
-										uri(false);
-										<?php
-									}
-								}
-								?>
-							};
-							image.src = '<?php echo $test_image; ?>';
+								};
+								image.src = '<?php echo $test_image; ?>';
 
 
-						});
-						// ]]> -->
-					</script>
-					<li id="UTF8_uri" class="pass" >
-						<span id="UTF8_uri_text">
-							<?php echo $req_UTF8; ?>
-						</span>
-						<div id="UTF8_uri_warn" class="warning"  style="display:none" >
-							<h1><?php echo gettext('Warning!'); ?></h1>
-							<span id="UTR8_uri_warn"></span>
-						</div>
-					</li>
-					<?php
+							});
+							// ]]> -->
+						</script>
+						<li id="UTF8_uri" class="pass" >
+							<span id="UTF8_uri_text">
+								<?php echo $req_UTF8; ?>
+							</span>
+							<div id="UTF8_uri_warn" class="warning"  style="display:none" >
+								<h1><?php echo gettext('Warning!'); ?></h1>
+								<span id="UTR8_uri_warn"></span>
+							</div>
+						</li>
+						<?php
+					}
 				}
 			}
 		}
@@ -1357,8 +1349,9 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				$albumfolder = str_replace('\\', '/', dirname(dirname(__FILE__))) . $albumfolder;
 				break;
 			case 'in_webpath':
+				$webpath = $_SERVER['SCRIPT_NAME'];
 				$root = str_replace('\\', '/', dirname(dirname(__FILE__)));
-				if (!empty($const_webpath)) {
+				if (!empty($webpath)) {
 					$root = str_replace('\\', '/', dirname($root));
 				}
 				$albumfolder = $root . $albumfolder;

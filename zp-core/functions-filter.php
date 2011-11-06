@@ -40,9 +40,8 @@ $_zp_filters = array();
  * @param integer $priority optional. Used to specify the order in which the functions associated with a particular
  * 																		action are executed (default=5, lower=earlier execution, and functions with
  * 																		the same priority are executed in the order in which they were added to the filter)
- * @param int $accepted_args optional. The number of arguments the function accept (default is the number provided).
  */
-function zp_register_filter($hook, $function_name, $priority = NULL, $accepted_args = NULL) {
+function zp_register_filter($hook, $function_name, $priority = NULL) {
 	global $_zp_filters, $_EnabledPlugins;
 	$bt = @debug_backtrace();
 	if (is_array($bt)) {
@@ -65,7 +64,6 @@ function zp_register_filter($hook, $function_name, $priority = NULL, $accepted_a
 
 	$_zp_filters[$hook][$priority][$id] = array(
 		'function' => $function_name,
-		'accepted_args' => $accepted_args,
 		'script' => $base
 	);
 	if (DEBUG_FILTERS) debugLog($base.'=>'.$function_name.' registered to '.$hook.' at priority '.$priority);
@@ -148,12 +146,7 @@ function zp_apply_filter($hook, $value = '') {
 			if ( !is_null($the_['function']) ){
 				if (DEBUG_FILTERS) $debug .= "\n    ".$the_['function'];
 				$args[1] = $value;
-				$count = $the_['accepted_args'];
-				if (is_null($count)) {
-					$value = call_user_func_array($the_['function'], array_slice($args, 1));
-				} else {
-					$value = call_user_func_array($the_['function'], array_slice($args, 1, (int) $count));
-				}
+				$value = call_user_func_array($the_['function'], array_slice($args, 1));
 			}
 		}
 	} while ( next($_zp_filters[$hook]) !== false );

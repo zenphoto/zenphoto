@@ -322,14 +322,11 @@ class Video extends _Image {
 	 * "video" metadata support function
 	 */
 	private function getMetaDataID3() {
-		$allowedmedia = array('m4a','m4v','mp3','mp4','flv','fla','mov','3gp');
-		$albobj = $this->getAlbum();
-		$FullFileName = SERVERPATH.'/'.ALBUMFOLDER.'/'.$albobj->name.'/'.$this->filename; //this full path is required
-		$suffix = getSuffix($FullFileName);
-		if(in_array($suffix,$allowedmedia)) {
+		$suffix = getSuffix($this->localpath);
+		if(in_array($suffix,array('m4a','m4v','mp3','mp4','flv','fla','mov','3gp'))) {
 			$getID3 = new getID3;
 			set_time_limit(30);
-			$ThisFileInfo = $getID3->analyze($FullFileName);
+			$ThisFileInfo = $getID3->analyze($this->localpath);
 			getid3_lib::CopyTagsToComments($ThisFileInfo);
 			// output desired information in whatever format you want
 			if(is_array($ThisFileInfo)) {

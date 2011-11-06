@@ -1,12 +1,12 @@
 /*
- * jQuery Tooltip plugin 1.2
+ * jQuery Tooltip plugin 1.3
  *
  * http://bassistance.de/jquery-plugins/jquery-plugin-tooltip/
  * http://docs.jquery.com/Plugins/Tooltip
  *
  * Copyright (c) 2006 - 2008 Jörn Zaefferer
  *
- * $Id: jquery.tooltip.js 4569 2008-01-31 19:36:35Z joern.zaefferer $
+ * $Id: jquery.tooltip.js 5741 2008-06-21 15:22:16Z joern.zaefferer $
  * 
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -32,6 +32,7 @@
 		blocked: false,
 		defaults: {
 			delay: 200,
+			fade: false,
 			showURL: true,
 			extraClass: "",
 			top: 15,
@@ -48,14 +49,16 @@
 			settings = $.extend({}, $.tooltip.defaults, settings);
 			createHelper(settings);
 			return this.each(function() {
-					$.data(this, "tooltip-settings", settings);
+					$.data(this, "tooltip", settings);
+					this.tOpacity = helper.parent.css("opacity");
 					// copy tooltip into its own expando and remove the title
 					this.tooltipText = this.title;
 					$(this).removeAttr("title");
 					// also remove alt attribute to prevent default tooltip in IE
 					this.alt = "";
 				})
-				.hover(save, hide)
+				.mouseover(save)
+				.mouseout(hide)
 				.click(hide);
 		},
 		fixPNG: IE ? function() {
@@ -111,7 +114,7 @@
 	}
 	
 	function settings(element) {
-		return $.data(element, "tooltip-settings");
+		return $.data(element, "tooltip");
 	}
 	
 	// main event handler to start showing tooltips
@@ -153,9 +156,9 @@
 			var parts = title.split(settings(this).showBody);
 			helper.title.html(parts.shift()).show();
 			helper.body.empty();
-			for(var i = 0, part; part = parts[i]; i++) {
+			for(var i = 0, part; (part = parts[i]); i++) {
 				if(i > 0)
-					helper.body.append("<br />");
+					helper.body.append("<br/>");
 				helper.body.append(part);
 			}
 			helper.body.hideWhenEmpty();
@@ -183,7 +186,14 @@
 	// delete timeout and show helper
 	function show() {
 		tID = null;
-		helper.parent.show();
+		if ((!IE || !$.fn.bgiframe) && settings(current).fade) {
+			if (helper.parent.is(":animated"))
+				helper.parent.stop().show().fadeTo(settings(current).fade, current.tOpacity);
+			else
+				helper.parent.is(':visible') ? helper.parent.fadeTo(settings(current).fade, current.tOpacity) : helper.parent.fadeIn(settings(current).fade);
+		} else {
+			helper.parent.show();
+		}
 		update();
 	}
 	
@@ -195,6 +205,10 @@
 	function update(event)	{
 		if($.tooltip.blocked)
 			return;
+		
+		if (event && event.target.tagName == "OPTION") {
+			return;
+		}
 		
 		// stop updating when tracking is disabled and the tooltip is visible
 		if ( !track && helper.parent.is(":visible")) {
@@ -212,25 +226,31 @@
 		
 		var left = helper.parent[0].offsetLeft;
 		var top = helper.parent[0].offsetTop;
-		if(event) {
+		if (event) {
 			// position the helper 15 pixel to bottom right, starting from mouse position
 			left = event.pageX + settings(current).left;
 			top = event.pageY + settings(current).top;
+			var right='auto';
+			if (settings(current).positionLeft) {
+				right = $(window).width() - left;
+				left = 'auto';
+			}
 			helper.parent.css({
-				left: left + 'px',
-				top: top + 'px'
+				left: left,
+				right: right,
+				top: top
 			});
 		}
 		
 		var v = viewport(),
 			h = helper.parent[0];
 		// check horizontal position
-		if(v.x + v.cx < h.offsetLeft + h.offsetWidth) {
+		if (v.x + v.cx < h.offsetLeft + h.offsetWidth) {
 			left -= h.offsetWidth + 20 + settings(current).left;
 			helper.parent.css({left: left + 'px'}).addClass("viewport-right");
 		}
 		// check vertical position
-		if(v.y + v.cy < h.offsetTop + h.offsetHeight) {
+		if (v.y + v.cy < h.offsetTop + h.offsetHeight) {
 			top -= h.offsetHeight + 20 + settings(current).top;
 			helper.parent.css({top: top + 'px'}).addClass("viewport-bottom");
 		}
@@ -255,12 +275,20 @@
 		// no more current element
 		current = null;
 		
-		helper.parent.hide().removeClass( settings(this).extraClass );
+		var tsettings = settings(this);
+		function complete() {
+			helper.parent.removeClass( tsettings.extraClass ).hide().css("opacity", "");
+		}
+		if ((!IE || !$.fn.bgiframe) && tsettings.fade) {
+			if (helper.parent.is(':animated'))
+				helper.parent.stop().fadeTo(tsettings.fade, 0, complete);
+			else
+				helper.parent.stop().fadeOut(tsettings.fade, complete);
+		} else
+			complete();
 		
 		if( settings(this).fixPNG )
 			helper.parent.unfixPNG();
 	}
-	
-	$.fn.Tooltip = $.fn.tooltip;
 	
 })(jQuery);

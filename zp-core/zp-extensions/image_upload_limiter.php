@@ -18,6 +18,7 @@ $option_interface = 'uploadlimit';
 zp_register_filter('upload_helper_js', 'uploadLimiterJS');
 zp_register_filter('get_upload_header_text', 'uploadLimiterHeaderMessage');
 zp_register_filter('upload_filetypes','limitUploadFiletypes');
+zp_register_filter('upload_hadlers','limitUploadHandlers');
 
 /**
  * Option handler class
@@ -75,18 +76,11 @@ function uploadLimiterJS($defaultJS) {
 		$albumlist = array();
 		genAlbumUploadList($albumlist);
 		$rootrights = accessAllAlbums(UPLOAD_RIGHTS);
-		$uploadtype = zp_getcookie('uploadtype');
 		$limitalbums = getUploadLimitedAlbums($albumlist);
 		$imagenumber = getUploadImagesInAlbum($albumlist);
-		if($uploadtype == "httpupload") {
-			$js .= "$(document).ready(function() {
-										$('#albumselect').hide();
-							});";
-		} else {
-			$js .= "$(document).ready(function() {
-										$('#uploadswitch').hide();
-							});";
-		}
+		$js .= "$(document).ready(function() {
+									$('#uploadswitch').hide();
+						});";
 		if(getOption('imageuploadlimit_newalbum')) {
 			$js .= "
 				jQuery(document).ready(function() {
@@ -124,11 +118,6 @@ function uploadLimiterJS($defaultJS) {
 		return queuelimit;
 	}";
 
-	/*
-	if($uploadtype == "httpupload") {
-		$js .= "$('#albumselect').hide();";
-	}
-	*/
 	$js .= "var limitalbums = new Array(".$limitalbums.");";
 	if(isset($_GET['album']) && !empty($_GET['album'])) { // if we upload
 		$selectedalbum = sanitize($_GET['album']);
@@ -175,15 +164,7 @@ function uploadLimiterHeaderMessage($default) {
 	if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 		return $default;
 	}
-	$warn = "";
-	$uploadtype = zp_getcookie('uploadtype');
-	if($uploadtype == "httpupload") {
-		$warn = '<p style="color:red;">'.gettext('HTTP single file uploading is disabled because upload limitations are in effect. Please use the <a href="javascript:switchUploader(\'admin-upload.php?uploadtype=multifile\');" >multi file upload</a>').'</p>';
-	} else {
-		$uploadlimit = getOption('imageuploadlimit');
-		$warn = '<p style="color: green">'. sprintf(gettext("<strong>Note:</strong> You can upload a maximum of %s images to each album."),$uploadlimit).'</p>';
-	}
-	return $warn;
+	return '<p style="color: green">'. sprintf(gettext("<strong>Note:</strong> You can upload a maximum of %s images to each album."),getOption('imageuploadlimit')).'</p>';
 }
 
 /*
@@ -253,4 +234,20 @@ function limitUploadFiletypes($types) {
 	$key = array_search('ZIP', $types);
 	unset($types[$key]);
 	return $types;
+}
+
+/**
+ *
+ * Remove all but "flash" from the upload handlers since that is all we support
+ * @param array $handlers
+ * @return array
+ */
+function limitUploadHandlers($handlers) {
+	if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+		$foreign = array_diff(array_keys($handlers), array('flash'));
+		foreach ($foreign as $handler) {
+			unset($handlers[$handler]);
+		}
+	}
+	return $handlers;
 }

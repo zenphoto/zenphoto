@@ -29,6 +29,7 @@ class Album extends MediaObject {
 	protected $lastsubalbumsort = NULL;
 	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
 	protected $subrights = NULL;	//	cache for album subrights
+	protected $dynamic = false;	// will be true for dynamic albums
 
 
 	/**
@@ -63,7 +64,7 @@ class Album extends MediaObject {
 		}
 		if ($dynamic = hasDynamicAlbumSuffix($folder8)) {
 			$localpath = substr($localpath, 0, -1);
-			$this->set('dynamic', 1);
+			$this->dynamic = true;
 		}
 		// Must be a valid (local) folder:
 		if(!file_exists($localpath) || !($dynamic || is_dir($localpath))) {
@@ -1048,11 +1049,13 @@ class Album extends MediaObject {
 	 * @return array
 	 */
 	private function loadFileNames($dirs=false) {
-		if ($this->isDynamic()) {  // there are no 'real' files
-			return array();
-		}
 		$albumdir = $this->localpath;
-		if (!is_dir($albumdir) || !is_readable($albumdir)) {
+		$dir = @opendir($albumdir);
+		if (!$dir) {
+			if ($this->isDynamic()) {
+				// there are no 'real' files
+				return array();
+			}
 			if (!is_dir($albumdir)) {
 				$msg = sprintf(gettext("Error: The album named %s cannot be found."), $this->name);
 			} else {
@@ -1061,13 +1064,13 @@ class Album extends MediaObject {
 			zp_error($msg,false);
 			return array();
 		}
-		$dir = opendir($albumdir);
+
 		$files = array();
 		$others = array();
 
 		while (false !== ($file = readdir($dir))) {
 			$file8 = filesystemToInternal($file);
-			if ($dirs && (is_dir($albumdir.$file) && (substr($file, 0, 1) != '.') || hasDynamicAlbumSuffix($file))) {
+			if ($dirs && ((substr($file, 0, 1) != '.' && is_dir($albumdir.$file)) || hasDynamicAlbumSuffix($file))) {
 				$files[] = $file8;
 			} else if (!$dirs && is_file($albumdir.$file)) {
 				if (is_valid_other_type($file)) {
@@ -1084,9 +1087,11 @@ class Album extends MediaObject {
 			foreach($others as $other) {
 				$others_root = substr($other, 0, strrpos($other,"."));
 				foreach($files as $image) {
-					$image_root = substr($image, 0, strrpos($image,"."));
-					if ($image_root == $others_root && $image != $other && is_valid_image($image)) {
-						$others_thumbs[] = $image;
+					if ($image != $other) {
+						$image_root = substr($image, 0, strrpos($image,"."));
+						if ($image_root == $others_root && is_valid_image($image)) {
+							$others_thumbs[] = $image;
+						}
 					}
 				}
 			}
@@ -1106,7 +1111,7 @@ class Album extends MediaObject {
 	 * @return bool
 	 */
 	function isDynamic() {
-		return $this->get('dynamic');
+		return $this->dynamic;
 	}
 
 	/**
