@@ -238,15 +238,24 @@
 								<?php
 							}
 							if (getOption('Use_Captcha')) {
- 								$captchaCode=generateCaptcha($img); ?>
+ 								$captcha = $_zp_captcha->getCaptcha();
+ 								?>
  								<tr>
 	 								<td>
-	 									<?php echo gettext("Enter CAPTCHA:"); ?>
-	 									<img src=<?php echo "\"$img\"";?> alt="Code" align="middle" />
+	 									<?php
+	 									echo gettext("Enter CAPTCHA:");
+	 									if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html'];
+	 									?>
 	 								</td>
 	 								<td>
-	 									<input type="text" id="code" name="code" size="22" class="inputbox" />
-	 									<input type="hidden" name="code_h" value="<?php echo $captchaCode;?>" />
+										<?php
+										if (isset($captcha['input'])) {
+											echo $captcha['input'];
+										} else {
+										 if (isset($captcha['html'])) echo $captcha['html'];
+										}
+										if (isset($captcha['hidden'])) echo $captcha['hidden'];
+										?>
 	 								</td>
  								</tr>
 							<?php

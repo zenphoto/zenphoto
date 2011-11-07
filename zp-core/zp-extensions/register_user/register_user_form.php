@@ -57,15 +57,16 @@
 			<tr>
 				<td>
 					<?php
-					$captchaCode = generateCaptcha($img);
-					$html = "<img src=\"" . $img . "\" alt=\"Code\" align=\"bottom\"/>";
-					?>
-					<input type="hidden" name="code_h" value="<?php echo $captchaCode; ?>" size="22" />
-					<?php
-					printf(gettext("Enter %s"),$html);
+					$captcha = $_zp_captcha->getCaptcha();
+					if (isset($captcha['html'])) printf(gettext("Enter %s"),$captcha['html']);
 					?>
 				</td>
-				<td><input type="text" id="code" name="code" value="" size="22" /></td>
+				<td>
+					<?php
+					if (isset($captcha['input'])) echo $captcha['input'];
+					if (isset($captcha['hidden'])) echo $captcha['hidden'];
+					?>
+				</td>
 			</tr>
 			<?php
 		}

@@ -915,7 +915,7 @@ font-weight: bold;
 ------------------------------ */
 #loginform {
 	padding: 10px;
-	width: 300px;
+	width: 370px;
 	margin: 25px auto;
 	font-size: 100%;
 	background: #F7F8F9;
@@ -929,3 +929,18 @@ font-weight: bold;
 	opacity:0.75;
 }
 
+#loginform fieldset {
+	-moz-border-radius: 5px 5px 5px 5px;
+	-khtml-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	border: 1px solid lightgray;
+	padding:10px;
+}
+
+#loginform input.textfield {
+	margin: 0px;
+	width:270px;
+	font-size: 100%;
+	padding: 4px;
+}

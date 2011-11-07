@@ -915,7 +915,7 @@ acronym {
 ------------------------------ */
 #loginform {
 	padding: 10px;
-	width: 300px;
+	width: 350px;
 	margin: 25px auto;
 	margin-top: 15%;
 	margin-left: 0 auto;
@@ -942,6 +942,7 @@ acronym {
 
 #loginform input.textfield {
 	margin: 0px;
+	width:270px;
 	font-size: 100%;
 	padding: 4px;
 }

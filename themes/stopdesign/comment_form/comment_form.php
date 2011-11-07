@@ -2,6 +2,7 @@
 
 // force UTF-8 Ø
 
+global $_zp_themeroot;
 ?>
 <p class="mainbutton" id="addcommentbutton"><a href="#addcomment" class="btn"><img src="<?php echo $_zp_themeroot ?>/images/btn_add_a_comment.gif" alt="" width="116" height="21" /></a></p>
 	<!-- BEGIN #addcomment -->

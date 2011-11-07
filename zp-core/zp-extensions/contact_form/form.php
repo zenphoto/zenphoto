@@ -83,15 +83,24 @@
 			<td><?php printf(gettext("Phone<strong>%s</strong>:"),(checkRequiredField(getOption('contactform_phone')))); ?></td>
 			<td><input type="text" id="phone" name="phone" size="50" value="<?php echo html_encode($mailcontent['phone']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> /></td>
 		</tr>
-		<?php } ?>
-		<?php if(getOption("contactform_captcha") && !$_processing_post) { $captchaCode=generateCaptcha($img); ?>
+		<?php
+		}
+		if(getOption("contactform_captcha") && !$_processing_post) {
+			$captcha = $_zp_captcha->getCaptcha();
+		?>
 		<tr>
 			<td>
-				<?php echo gettext("Enter CAPTCHA<strong>*</strong>:"); ?>
-				<img src=<?php echo "\"$img\"";?> alt="Code" align="middle" />
+				<?php
+				echo gettext("Enter CAPTCHA<strong>*</strong>:");
+				if (isset($captcha['html'])) echo $captcha['html'];
+				?>
 			</td>
-			<td><input type="text" id="code" name="code" size="50" />
-					<input type="hidden" name="code_h" value="<?php echo $captchaCode;?>"/></td>
+			<td>
+				<?php
+				if (isset($captcha['input'])) echo $captcha['input'];
+				if (isset($captcha['hidden'])) echo $captcha['hidden'];
+				?>
+			</td>
 		</tr>
 		<?php } ?>
 		<?php if(showOrNotShowField(getOption('contactform_subject'))) { ?>

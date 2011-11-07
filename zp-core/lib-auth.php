@@ -621,9 +621,9 @@ class Zenphoto_Authority {
 	 */
 	function handleLogon() {
 		global $_zp_authority, $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha, $_zp_loggedin;
-		if (isset($_POST['login']) && isset($_POST['user']) && isset($_POST['pass'])) {
-			$post_user = sanitize($_POST['user']);
-			$post_pass = sanitize($_POST['pass'],0);
+		if (isset($_POST['login'])) {
+			$post_user = sanitize(@$_POST['user']);
+			$post_pass = sanitize(@$_POST['pass'],0);
 			$user = $this->checkLogon($post_user, $post_pass, true);
 			if ($user) {
 				$_zp_loggedin = $user->getRights();
@@ -651,7 +651,7 @@ class Zenphoto_Authority {
 				}
 				// was it a request for a reset?
 				if (@$_POST['password']=='captcha') {
-					if (isset($_POST['code_h']) && $_zp_captcha->checkCaptcha(trim($post_pass), sanitize($_POST['code_h'],3))) {
+					if ($_zp_captcha->checkCaptcha(trim($post_pass), sanitize(@$_POST['code_h'],3))) {
 						require_once(dirname(__FILE__).'/class-load.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {
 							$requestor = gettext('You are receiving this e-mail because of a password reset request on your Zenphoto gallery.');
@@ -1004,21 +1004,29 @@ class Zenphoto_Authority {
 				<?php
 				break;
 			case 'captcha':
-				$captchaCode = $_zp_captcha->generateCaptcha($img);
+				$captcha = $_zp_captcha->getCaptcha();
 				?>
 				<form name="login" action="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php" method="post">
+					<?php if (isset($captcha['hidden'])) echo $captcha['hidden']; ?>
 					<input type="hidden" name="login" value="1" />
 					<input type="hidden" name="password" value="captcha" />
 					<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
-					<input type="hidden" name="code_h" value="<?php echo $captchaCode; ?>" />
+					<?php
+					?>
 					<fieldset id="logon_box">
 						<fieldset><legend><?php echo gettext('User'); ?></legend>
-							<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
+							<input class="textfield" name="user" id="user" type="text" value="<?php echo html_encode($requestor); ?>" />
 						</fieldset>
-						<p><img src="<?php echo $img; ?>" alt="Code" align="middle"/></p>
-						<fieldset><legend><?php echo gettext("Enter CAPTCHA"); ?></legend>
-							<input class="textfield" name="pass" type="text" size="35" />
-						</fieldset>
+						<?php if (isset($captcha['html'])) echo $captcha['html']; ?>
+						<?php
+						if (isset($captcha['input'])) {
+							?>
+							<fieldset><legend><?php echo gettext("Enter CAPTCHA"); ?></legend>
+								<?php echo $captcha['input']; ?>
+							</fieldset>
+							<?php
+						}
+						?>
 						<br />
 						<div class="buttons">
 							<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>

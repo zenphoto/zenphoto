@@ -1685,4 +1685,9 @@ function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $la
 			}
 	}
 }
+
+function generateCaptcha(&$img) {
+	deprecated_function_notify(gettext('Use $_zp_captcha->getCaptcha(). Note that you will require updating your code to the new function.'));
+	return $img = NULL;
+}
 ?>

@@ -2850,6 +2850,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 					</td>
 					<td><?php echo gettext('Select the <em>CAPTCHA</em> generator to be used by Zenphoto.'); ?></td>
 				</tr>
+					<?php customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
 				<tr>
 					<td width="175"><?php echo gettext('Obscure cache filenames'); ?></td>
 					<td width="350">
@@ -2921,7 +2922,6 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 					}
 					?>
 				</tr>
-					<?php customOptions($_zp_captcha, "&nbsp;&nbsp;&nbsp;-&nbsp;"); ?>
 				<tr>
 					<?php
 					$supportedOptions = $_zp_authority->getOptionsSupported();

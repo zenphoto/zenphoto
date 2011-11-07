@@ -46,7 +46,7 @@ class captcha {
 								);
 	}
 	function handleOption($key, $cv) {
-		$captchaCode = $this->generateCaptcha($img);
+		$captcha = $this->getCaptcha();
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
@@ -58,7 +58,7 @@ class captcha {
 			});
 			// ]]> -->
 		</script>
-		<span id="zenphoto_captcha_image_loc"><img src="<?php echo $img; ?>" alt="" /></span>
+		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['html']; ?></span>
 		<?php
 	}
 
@@ -88,7 +88,6 @@ class captcha {
 	 * Checks if a CAPTCHA string matches the CAPTCHA attached to the comment post
 	 * Returns true if there is a match.
 	 *
-	 * @param string $key
 	 * @param string $code
 	 * @param string $code_ok
 	 * @return bool
@@ -111,15 +110,11 @@ class captcha {
 	}
 
 	/**
-	 * generates a simple captcha for comments
+	 * generates a simple captcha
 	 *
-	 * Thanks to gregb34 who posted the original code
-	 *
-	 * Returns the captcha code string and image URL (via the $image parameter).
-	 *
-	 * @return string;
+	 * @return array;
 	 */
-	function generateCaptcha(&$image) {
+	function getCaptcha() {
 		$captcha_len = getOption('zenphoto_captcha_length');
 		$key = $this->getCaptchaKey();
 		$lettre = getOption('zenphoto_captcha_string');
@@ -133,8 +128,10 @@ class captcha {
 		$code=sha1($cypher);
 		query('DELETE FROM '.prefix('captcha').' WHERE `ptime`<'.(time()-3600), false);  // expired tickets
 		query("INSERT INTO " . prefix('captcha') . " (ptime, hash) VALUES (" . db_quote(time()) . "," . db_quote($code) . ")", false);
-		$image = WEBPATH . '/' . ZENFOLDER . "/c.php?i=$cypher";
-		return $code;
+		$html = '<img src="'.WEBPATH .'/'.ZENFOLDER.'/c.php?i='.$cypher.'" alt="Code" align="middle" />';
+		$input = '<input type="text" id="code" name="code" class="captchainputbox" />';
+		$hidden = '<input type="hidden" name="code_h" value="'.$code.'" />';
+		return array('input'=>$input, 'html'=>$html, 'hidden'=>$hidden);
 	}
 }
 

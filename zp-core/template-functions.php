@@ -41,17 +41,20 @@ function printZenJavascripts() {
 	?>
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/jquery.js"></script>
 	<script type="text/javascript" src="<?php echo WEBPATH . "/" . ZENFOLDER; ?>/js/zenphoto.js"></script>
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
-		var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
-		var deleteImage = "<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>";
-		var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
-		var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
-		// ]]> -->
-	</script>
 	<?php
-
+	if (zp_loggedin()) {
+		?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			var deleteAlbum1 = "<?php echo gettext("Are you sure you want to delete this entire album?"); ?>";
+			var deleteAlbum2 = "<?php echo gettext("Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"); ?>";
+			var deleteImage = "<?php echo gettext("Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"); ?>";
+			var deleteArticle = "<?php echo gettext("Are you sure you want to delete this article? THIS CANNOT BE UNDONE!"); ?>";
+			var deletePage = "<?php echo gettext("Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"); ?>";
+			// ]]> -->
+		</script>
+		<?php
+	}
 }
 
 /**
@@ -3138,7 +3141,7 @@ function getRandomImages($daily = false) {
 	if (zp_loggedin()) {
 		$imageWhere = '';
 	} else {
-		$imageWhere = " AND " . prefix('images') . ".show=1";
+		$imageWhere = " AND " . prefix('images') . ".show=1 ";
 	}
 	$result = query('SELECT `folder`, `filename` ' .
 									' FROM '.prefix('images'). ', '.prefix('albums').
@@ -4282,18 +4285,6 @@ function printPasswordForm($_password_hint, $_password_showProtected=true, $_pas
 }
 
 /**
- * Shell for calling the installed captcha generator.
- * Returns a captcha string and captcha image URI
- *
- * @param string $img the captcha image URI
- * @return string
- */
-function generateCaptcha(&$img) {
-	global $_zp_captcha;
-	return $_zp_captcha->generateCaptcha($img);
-}
-
-/**
  * Simple captcha for comments.
  *
  * Prints a captcha entry field for a form such as the comments form.
@@ -4306,15 +4297,14 @@ function generateCaptcha(&$img) {
 function printCaptcha($preText='', $midText='', $postText='', $size=4) {
 	global $_zp_captcha;
 	if (getOption('Use_Captcha')) {
-		$captchaCode = $_zp_captcha->generateCaptcha($img);
-		$inputBox =  "<input type=\"text\" id=\"code\" name=\"code\" size=\"" . $size . "\" class=\"captchainputbox\" />";
-		$captcha = "<input type=\"hidden\" name=\"code_h\" value=\"" . $captchaCode . "\" />" .
-						"<img src=\"" . $img . "\" alt=\"Code\" style=\"vertical-align:bottom\"/>&nbsp;";
-
+		$captcha = $_zp_captcha->getCaptcha();
+		if (isset($captcha['hidden'])) echo $captcha['hidden'];
 		echo $preText;
-		echo $captcha;
-		echo $midText;
-		echo $inputBox;
+		if (isset($captcha['input'])) {
+			echo $captcha['input'];
+			echo $midText;
+		}
+		if (isset($captcha['html'])) echo $captcha['html'];
 		echo $postText;
 	}
 }

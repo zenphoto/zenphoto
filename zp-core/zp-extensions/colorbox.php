@@ -24,12 +24,22 @@ if (OFFSET_PATH) {
 
 function colorbox_css() {
 	global $_zp_gallery;
+	$theme = getOption('colorbox_theme');
+	if(empty($theme)) { 
+		$themepath = 'colorbox/themes/example1/colorbox.css';
+	} else {
+		if($theme == 'custom') {
+			$themepath = 'colorbox/colorbox.css';
+		} else {
+			$themepath = 'colorbox/themes/'.$theme.'/colorbox.css';
+		}
+	}
 	if (OFFSET_PATH) {
 		$inTheme = false;
 	} else {
 		$inTheme = $_zp_gallery->getCurrentTheme();
 	}
-	$css = getPlugin('colorbox/colorbox.css',$inTheme,true);
+	$css = getPlugin($themepath,$inTheme,true);
 	?>
 	<script type="text/javascript" src="<?php echo FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/colorbox/jquery.colorbox-min.js"></script>
 	<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
@@ -40,15 +50,19 @@ function colorbox_css() {
 	}
 }
 
-class colorbox_Options {
+class colorbox_Options {	
 
 	function colorbox_Options() {
 		//	These are best set by the theme itself!
+		setOptionDefault('colorbox_theme','example1');
 	}
 
 	function getOptionsSupported() {
 		$gallery = new Gallery();
-		$opts = array();
+		$opts  = array(gettext('Colorbox theme') => array('key' => 'colorbox_theme', 'type' => OPTION_TYPE_SELECTOR,
+										'selections' => array(gettext('Example1') => "example1", gettext('Example2') => "example2", gettext('Example3') => "example3", gettext('Example4') => "example4",gettext('Example5') => "example5",gettext('Custom (theme based)') => "custom"),
+										'desc' => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
+									);
 		$exclude = array('404.php','themeoptions.php','theme_description.php');
 		foreach (array_keys($gallery->getThemes()) as $theme) {
 			$curdir = getcwd();
@@ -67,6 +81,7 @@ class colorbox_Options {
 																	'desc' => gettext('The scripts for which Colorbox is enabled. {Should have been set by the themes!}')
 											);
 		}
+		
 		return $opts;
 	}
 
