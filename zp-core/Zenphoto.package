@@ -672,21 +672,6 @@ zp-core/zp-extensions/class-video/multimediaDefault.png
 zp-core/zp-extensions/colorbox
 zp-core/zp-extensions/colorbox.php
 zp-core/zp-extensions/colorbox/colorbox_ie.css.php
-zp-core/zp-extensions/colorbox/images
-zp-core/zp-extensions/colorbox/images/border.png
-zp-core/zp-extensions/colorbox/images/controls.png
-zp-core/zp-extensions/colorbox/images/internet_explorer
-zp-core/zp-extensions/colorbox/images/internet_explorer/borderBottomCenter.png
-zp-core/zp-extensions/colorbox/images/internet_explorer/borderBottomLeft.png
-zp-core/zp-extensions/colorbox/images/internet_explorer/borderBottomRight.png
-zp-core/zp-extensions/colorbox/images/internet_explorer/borderMiddleLeft.png
-zp-core/zp-extensions/colorbox/images/internet_explorer/borderMiddleRight.png
-zp-core/zp-extensions/colorbox/images/internet_explorer/borderTopCenter.png
-zp-core/zp-extensions/colorbox/images/internet_explorer/borderTopLeft.png
-zp-core/zp-extensions/colorbox/images/internet_explorer/borderTopRight.png
-zp-core/zp-extensions/colorbox/images/loading.gif
-zp-core/zp-extensions/colorbox/images/loading_background.png
-zp-core/zp-extensions/colorbox/images/overlay.png
 zp-core/zp-extensions/colorbox/jquery.colorbox-min.js
 zp-core/zp-extensions/colorbox/themes
 zp-core/zp-extensions/colorbox/themes/example1
@@ -1821,4 +1806,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1823
+1808

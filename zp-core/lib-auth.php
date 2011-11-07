@@ -648,6 +648,7 @@ class Zenphoto_Authority {
 						}
 					}
 					$_zp_login_error = gettext('Sorry, that is not the answer.');
+					$_REQUEST['logon_step'] = 'challenge';
 				}
 				// was it a request for a reset?
 				if (@$_POST['password']=='captcha') {
@@ -710,6 +711,7 @@ class Zenphoto_Authority {
 						}
 					} else {
 						$_zp_login_error = gettext('Your input did not match the captcha');
+						$_REQUEST['logon_step'] = 'captcha';
 					}
 				} else {
 					if (!$_zp_login_error) $_zp_login_error = 1;
@@ -848,6 +850,29 @@ class Zenphoto_Authority {
 			</p>
 			<?php
 		}
+		switch ($_zp_login_error) {
+			case 1:
+				?>
+				<div class="errorbox" id="message"><h2><?php echo gettext("There was an error logging in."); ?></h2><?php echo gettext("Check your username and password and try again.");?></div>
+				<?php
+				break;
+			case 2:
+				?>
+				<div class="messagebox fade-message">
+				<h2><?php echo gettext("A reset request has been sent."); ?></h2>
+				</div>
+				<?php
+				break;
+			default:
+				if (!empty($_zp_login_error)) {
+					?>
+					<div class="errorbox fade-message">
+					<h2><?php echo $_zp_login_error; ?></h2>
+					</div>
+					<?php
+				}
+				break;
+		}
 		switch ($whichForm) {
 			case 'challenge':
 				?>
@@ -887,6 +912,7 @@ class Zenphoto_Authority {
 						<div class="buttons">
 							<button type="submit" value="<?php echo gettext("Submit"); ?>"<?php if (!$info['challenge']) echo ' disabled="disabled"'; ?> ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Submit"); ?></button>
 							<button type="button" value="<?php echo gettext("Refresh"); ?>" id="challenge_refresh" onclick="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Refresh"); ?></button>
+							<button type="button" value="<?php echo gettext("Return"); ?>" onclick="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=', 'ref='+$('#user').val()]);" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 						</div>
 						<br clear="all" />
 					</fieldset>
@@ -906,29 +932,6 @@ class Zenphoto_Authority {
 				<?php
 				break;
 			default:
-				switch ($_zp_login_error) {
-					case 1:
-						?>
-						<div class="errorbox" id="message"><h2><?php echo gettext("There was an error logging in."); ?></h2><?php echo gettext("Check your username and password and try again.");?></div>
-						<?php
-						break;
-					case 2:
-						?>
-						<div class="messagebox fade-message">
-						<h2><?php echo gettext("A reset request has been sent."); ?></h2>
-						</div>
-						<?php
-						break;
-					default:
-						if (!empty($_zp_login_error)) {
-							?>
-							<div class="errorbox fade-message">
-							<h2><?php echo $_zp_login_error; ?></h2>
-							</div>
-							<?php
-						}
-						break;
-				}
 				?>
 				<form name="login" action="#" method="post">
 					<input type="hidden" name="login" value="1" />
@@ -1030,6 +1033,7 @@ class Zenphoto_Authority {
 						<br />
 						<div class="buttons">
 							<button type="submit" value="<?php echo gettext("Request"); ?>" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" alt="" /><?php echo gettext("Request password reset"); ?></button>
+							<button type="button" value="<?php echo gettext("Return"); ?>" onclick="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=', 'ref='+$('#user').val()]);" ><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/refresh.png" alt="" /><?php echo gettext("Return"); ?></button>
 						</div>
 						<br clear="all" />
 					</fieldset>
