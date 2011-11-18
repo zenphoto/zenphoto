@@ -390,16 +390,16 @@ ul.pagelist li.next {
 /* Tags
 ------------------------------ */
 .taglist {
+	margin: 0;
+	padding: 0;
 	display: inline;
 	list-style-type: none;
 }
 
 .taglist li {
-	background: url(../images/tag.png) no-repeat left center;
 	list-style-type: none;
-	padding-left: 0px;
-	float: left;
-	padding-right: 0px;
+	padding: 0px;
+	display: inline;
 	color: #999999;
 	display: inline;
 	list-style-type: none;

@@ -8,7 +8,7 @@
  * @package plugins
  */
 $plugin_is_filter = 9|CLASS_PLUGIN;
-$plugin_description = sprintf(gettext("Logs all attempts to login to or illegally access the admin pages. Log is kept in <em>security_log.txt</em> in the %s folder."),DATA_FOLDER);
+$plugin_description = sprintf(gettext("Logs all attempts to login to or illegally access the admin pages. Log is kept in <em>security.log</em> in the %s folder."),DATA_FOLDER);
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.2';
 $option_interface = 'security_logger';
@@ -129,7 +129,7 @@ function security_logger_loginLogger($success, $user, $name, $ip, $action, $auth
 			$type = $action;
 	}
 
-	$file = dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/security_log.txt';
+	$file = dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/security.log';
 	$preexists = file_exists($file) && filesize($file) > 0;
 	$f = fopen($file, 'a');
 	if($f) {

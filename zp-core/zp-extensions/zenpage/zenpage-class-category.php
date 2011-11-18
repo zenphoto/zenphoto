@@ -388,6 +388,18 @@ class ZenpageCategory extends ZenpageRoot {
 		}
 		return $result;
 	}
+	
+	
+	/**
+ * Returns the full path to a news category
+ *
+ * @param string $catlink The category link of a category
+ *
+ * @return string
+ */
+function getCategoryLink() {
+	return $this->getNewsCategoryPath().urlencode($this->getTitlelink());
+}
 
 
 } // zenpage news category class end

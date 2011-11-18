@@ -1,6 +1,6 @@
 	<li>
 	<div class="sqlform">
-	<p><?php echo gettext("Fill in the information below and <strong>setup</strong> will attempt to update your <code>zp-config.php</code> file."); ?><br />
+	<p><?php echo gettext("Fill in the information below and <strong>setup</strong> will attempt to update your configuration file."); ?><br />
 	</p>
 	<form action="setup.php" method="post"><input type="hidden" name="db" value="yes" />
 		<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken?>" />

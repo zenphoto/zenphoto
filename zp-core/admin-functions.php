@@ -1044,7 +1044,12 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
  * @since 1.1.3
  */
 function printAlbumEditForm($index, $album, $collapse_tags) {
-	global $sortby, $gallery, $mcr_albumlist, $albumdbfields, $imagedbfields, $_zp_albumthumb_selector;
+	global $sortby, $gallery, $mcr_albumlist, $albumdbfields, $imagedbfields, $_zp_albumthumb_selector, $_zp_current_admin_obj;
+	if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) && $album->getID() == $_zp_current_admin_obj->getAlbum()->getID()) {
+		$isPrimaryAlbum = ' disabled="disabled"';
+	} else {
+		$isPrimaryAlbum = '';
+	}
 	$tagsort = getTagOrder();
 	if ($index == 0) {
 		if (isset($saved)) {
@@ -1479,11 +1484,17 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 										$image = newImage(NULL, $imagename);
 										$filename = $imagename['folder'].'/'.$imagename['filename'];
 									} else {
-										$filename = $imagename;
-										$image = newImage($album, $filename);
+										$albumname = dirname($imagename);
+										if (empty($albumname) || $albumname=='.') {
+											$thumbalbum = $album;
+										} else {
+											$thumbalbum = new Album($gallery, $albumname);
+										}
+										$filename = basename($imagename);
+										$image = newImage($thumbalbum, $filename);
 									}
 									$selected = ($filename == $thumb);
-									if (is_valid_image($filename) || $image->objectsThumb != NULL) {
+									if (is_valid_image($filename) || !is_null($image->objectsThumb)) {
 										echo "\n<option";
 										if ($gallery->getThumbSelectImages()) {
 											echo " class=\"thumboption\"";
@@ -1641,12 +1652,14 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 					</p>
 				</div>
 				<!-- **************** Move/Copy/Rename ****************** -->
+				<?php
+				?>
 				<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>
 				<div class="box-edit">
 
 						<label class="checkboxlabel">
 							<input type="radio" id="a-<?php echo $prefix; ?>move" name="a-<?php echo $prefix; ?>MoveCopyRename" value="move"
-								onclick="toggleAlbumMoveCopyRename('<?php echo $prefix; ?>', 'movecopy');"/>
+								onclick="toggleAlbumMoveCopyRename('<?php echo $prefix; ?>', 'movecopy');"<?php echo $isPrimaryAlbum; ?> />
 							<?php echo gettext("Move");?>
 						</label>
 
@@ -1658,12 +1671,12 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 
 						<label class="checkboxlabel">
 							<input type="radio" id="a-<?php echo $prefix; ?>rename" name="a-<?php echo $prefix; ?>MoveCopyRename" value="rename"
-								onclick="toggleAlbumMoveCopyRename('<?php echo $prefix; ?>', 'rename');"/>
+								onclick="toggleAlbumMoveCopyRename('<?php echo $prefix; ?>', 'rename');" <?php echo $isPrimaryAlbum; ?> />
 							<?php echo gettext("Rename Folder");?>
 						</label>
 						<label class="checkboxlabel">
 								<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
-									onclick="image_deleteconfirm(this,'<?php echo $prefix; ?>',deleteAlbum1)" />
+									onclick="image_deleteconfirm(this,'<?php echo $prefix; ?>',deleteAlbum1)" <?php echo $isPrimaryAlbum; ?> />
 							<?php echo gettext("Delete album");?>
 						</label>
 						<br clear="all" />
@@ -1871,6 +1884,7 @@ function printAlbumLedgend() {
  *
  **/
 function printAlbumEditRow($album, $show_thumb) {
+	global $_zp_current_admin_obj;
 	$enableEdit = $album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
 	?>
 	<div class='page-list_row'>
@@ -2046,7 +2060,8 @@ function printAlbumEditRow($album, $show_thumb) {
 		</div>
 		<div class="page-list_icon">
 			<?php
-			if (!$enableEdit) {
+			$supress = !zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) && $album->getID() == $_zp_current_admin_obj->getAlbum()->getID();
+			if (!$enableEdit || $supress) {
 				?>
 				<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
 				<?php
@@ -2063,7 +2078,7 @@ function printAlbumEditRow($album, $show_thumb) {
 			if ($enableEdit) {
 				?>
 				<div class="page-list_icon">
-					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getFolder(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
+					<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $album->getFolder(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" <?php if ($supress) echo ' disabled="disabled"'; ?> />
 				</div>
 				<?php
 			}
@@ -2926,7 +2941,7 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
  * @param int $prefix the admin row
  * @param bit $rights the privileges  of the user
  */
-function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $rights, $kind) {
+function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $rights, $kind, $flag) {
 	$ledgend = '';
 	switch ($type) {
 		case 'albums':
@@ -2940,10 +2955,18 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
 				$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished items').'" />';
 				$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
+				if (!empty($flag)) {
+					$ledgend .= '* '.gettext('Primary album').' ';
+				}
 				$ledgend .= $icon_edit_album.' '.gettext('edit album').' ';
 				if ($rights & UPLOAD_RIGHTS) $ledgend .= $icon_upload.' '.gettext('upload').' ';
 				foreach ($full as $item) {
-					$cv[$item['name']] = $item['data'];
+					if (in_array($item['data'],$flag)) {
+						$note = '*';
+					} else {
+						$note = '';
+					}
+					$cv[$item['name'].$note] = $item['data'];
 					$extra[$item['data']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
 					$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
 					if (($rights&UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
@@ -3956,8 +3979,8 @@ function admin_album_list($owner) {
 function getLogTabs() {
 	$subtabs = array();
 	$default = NULL;
-	$localizer = array('setup_log'=>gettext('Setup log'), 'security_log'=>gettext('Security log'), 'debug_log'=>gettext('Debug log'));
-	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.txt');
+	$localizer = array('setup'=>gettext('Setup log'), 'security'=>gettext('Security log'), 'debug'=>gettext('Debug log'));
+	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.log');
 	if (count($filelist)>0) {
 		if (isset($_GET['tab'])) {
 			$default = sanitize($_GET['tab'],3);

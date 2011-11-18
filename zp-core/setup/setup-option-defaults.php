@@ -7,7 +7,7 @@
  * @package setup
  */
 
-require(CONFIGFILE);
+eval(file_get_contents(CONFIGFILE));;
 require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 zp_apply_filter('log_setup', true, 'install', '');
 
@@ -46,7 +46,7 @@ if ($_zp_authority->preferred_version > ($oldv = getOption('libauth_version'))) 
 
 }
 
-// old zp-config.php opitons. preserve them
+// old configuration opitons. preserve them
 $conf = $_zp_conf_vars;
 setOptionDefault('time_offset', 0);
 if (isset($_GET['mod_rewrite'])) {

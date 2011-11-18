@@ -129,6 +129,17 @@ class Zenpage {
 		}
 		return $_zp_zenpage_all_pages;
 	}
+	
+	
+	/**
+	* Returns path to the pages.php page without the title(link)
+	*
+	* @return string
+	*/
+	function getPagesLinkPath() {
+		return rewrite_path("pages/", "/index.php?p=pages&title=");
+	}
+	
 	/************************************/
 	/* general news article functions   */
 	/************************************/
@@ -495,6 +506,7 @@ class Zenpage {
 			case "latestimages-thumbnail":
 			case "latestimages-thumbnail-customcrop":
 			case "latestimages-sizedimage":
+			case "latestimages-sizedimage-maxspace":
 				$sortorder = "images.".$combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='images'");
@@ -518,6 +530,7 @@ class Zenpage {
 			case "latestalbums-thumbnail":
 			case "latestalbums-thumbnail-customcrop":
 			case "latestalbums-sizedimage":
+			case "latestalbums-sizedimage-maxspace":
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
@@ -541,6 +554,7 @@ class Zenpage {
 			case "latestimagesbyalbum-thumbnail":
 			case "latestimagesbyalbum-thumbnail-customcrop":
 			case "latestimagesbyalbum-sizedimage":
+			case "latestimagesbyalbum-sizedimage-maxspace":
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
 				if(empty($combinews_sortorder) || $combinews_sortorder != "date" || $combinews_sortorder != "mtime" ) {
@@ -567,6 +581,7 @@ class Zenpage {
 			case "latestupdatedalbums-thumbnail":
 			case "latestupdatedalbums-thumbnail-customcrop":
 			case "latestupdatedalbums-sizedimage":
+			case "latestupdatedalbums-sizedimage-maxspace":
 				$latest = $this->getArticles($articles_per_page,NULL,true);
 				$counter = '';
 				foreach($latest as $news) {
@@ -660,6 +675,69 @@ class Zenpage {
 			return $totalcount;
 		}
 	}
+	
+	/**
+ 	* Returns the full path of the news index page (news page 1) or if the "news on zp index" option is set a link to the gallery index.
+	*
+ 	* @return string
+ 	*/
+	function getNewsIndexURL() {
+		if($this->news_on_index) {
+			return getGalleryIndexURL(false);
+		} else {
+			return rewrite_path('news', "/index.php?p=news");
+		}
+	}
+	
+	
+	/**
+ 	* Returns the base /news or index.php?p=news url
+ 	*
+ 	* @return string
+ 	*/
+	function getNewsBaseURL() {
+		return rewrite_path('news', "/index.php?p=news");
+	}
+
+
+	/**
+ 	* Returns partial path of news category
+ 	*
+ 	* @return string
+ 	*/
+	function getNewsCategoryPath() {
+		return rewrite_path("/category/","&category=",false);
+	}
+
+	/**
+ 	* Returns partial path of news date archive
+ 	*
+ 	* @return string
+ 	*/	
+	function getNewsArchivePath() {
+		return rewrite_path("/archive/","&date=",false);
+	}
+
+
+	/**
+ 	* Returns partial path of news article title
+ 	*
+ 	* @return string
+ 	*/
+	function getNewsTitlePath() {
+		return rewrite_path("/","&title=",false);
+	}
+
+
+	/**
+ 	* Returns partial path of a news page number path
+ 	*
+ 	* @return string
+ 	*/
+	function getNewsPagePath() {
+		return rewrite_path("/","&page=",false);
+	}
+
 
 	/************************************/
 	/* general news category functions  */
@@ -712,6 +790,9 @@ class Zenpage {
 		}
 		return $structure;
 	}
+	
+	
+	
 
 }	// ZenpageCMS
 

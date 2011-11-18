@@ -1,16 +1,5 @@
 /* Zenphoto administration javascript. */
 
-function addUploadBoxes(placeholderid, copyfromid, num) {
-	for (i=0; i<num; i++) {
-		jQuery('#'+copyfromid).clone().insertBefore('#'+placeholderid);
-		window.totalinputs++;
-		if (window.totalinputs >= 50) {
-			jQuery('#addUploadBoxes').toggle('slow');
-			return;
-		}
-	}
-}
-
 function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 	var selected = sel.options[sel.selectedIndex];
 	var albumtext = document.getElementById("albumtext");
@@ -19,9 +8,9 @@ function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 	var titlebox = document.getElementById("albumtitle");
 	var checkbox = document.getElementById("autogen");
 	var newalbumbox = sel.form.newalbum;
-	var folder = sel.form.folder;
-	var exists = sel.form.existingfolder;	
-	
+	var folder = document.getElementById("folderslot");
+	var exists = document.getElementById("existingfolder");
+
 	if (selected.value == "") {
 		newalbumbox.checked = true;
 		newalbumbox.disabled = true;
@@ -33,7 +22,7 @@ function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 		newalbumbox.disabled = false;
 		newalbumbox.style.display = "";
 	}
-	
+
 	var newalbum = selected.value == "" || newalbumbox.checked;
 	if (newalbum) {
 		albumtext.style.display = "block";
@@ -53,7 +42,7 @@ function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 		titlebox.value = selected.text;
 		exists.value = "true";
 	}
-	
+
 	var rslt = validateFolder(folder, msg1, msg2);
 	return rslt;
 }
@@ -71,9 +60,8 @@ function contains(arr, key) {
 function validateFolder(folderObj, msg1, msg2) {
 	var errorDiv = document.getElementById("foldererror");
 	var exists = $('#existingfolder').val() != "false";
-	var uploadBoxesDiv = document.getElementById("uploadboxes");
 	var folder = folderObj.value;
-	
+	$('#folderslot').val(folder);
 	if (!exists && albumArray && contains(albumArray, folder)) {
 		errorDiv.style.display = "block";
 		errorDiv.innerHTML = msg1;
@@ -287,10 +275,10 @@ String.prototype.replaceAll = function(stringToFind,stringToReplace){
 	while(index != -1){
 		temp = temp.replace(stringToFind,stringToReplace);
 		index = temp.indexOf(stringToFind);
-	}	
+	}
 	return temp;
 }
-	 
+
 
 function addNewTag(id,dupmsg) {
 	var tag;
@@ -322,7 +310,7 @@ function addNewTag(id,dupmsg) {
 					'" type="checkbox" checked="checked" value="'+
 					tag+'" />'+tag+'</label></li>';
 			$('#list_'+id).prepend(html);
-		}		
+		}
 	}
 }
 

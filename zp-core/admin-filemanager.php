@@ -26,9 +26,18 @@ echo "\n</head>";
 				<?php
 				$locale = substr(getOption("locale"),0,2);
 				if (empty($locale)) $locale = 'en';
+				$ajax = PLUGIN_FOLDER.'/tiny_mce/plugins/ajaxfilemanager/ajaxfilemanager.php';
+				if (file_exists($ajax)) {
+					?>
+					<iframe src="<?php echo $ajax; ?>?language=<?php echo $locale; ?>&tab=files&XSRFToken=<?php echo getXSRFToken('ajaxfilemanager')?>" width="100%" height="480" style="border: 0">
+					</iframe>
+					<?php
+				} else {
+					?>
+					<p class="errorbox"><?php echo gettext('The ajax filemanager files are not present.'); ?></p>
+					<?php
+				}
 				?>
-				<iframe src="zp-extensions/tiny_mce/plugins/ajaxfilemanager/ajaxfilemanager.php?language=<?php echo $locale; ?>&tab=files" width="100%" height="480" style="border: 0">
-				</iframe>
 			</div>
 		</div>
 	</div>
@@ -38,3 +47,5 @@ echo "\n</head>";
 
 </body>
 </html>
+<?php
+?>

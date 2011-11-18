@@ -13,17 +13,17 @@ require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
 
-if (isset($_REQUEST['uploadtype'])) {
-	$uploadtype = sanitize($_REQUEST['uploadtype'])	;
+if (isset($_GET['uploadtype'])) {
+	$uploadtype = sanitize($_GET['uploadtype'])	;
 } else {
 	$uploadtype = zp_getcookie('uploadtype');
 }
 
 $uploadHandlers = array('http'=>SERVERPATH.'/'.ZENFOLDER.'/admin-httpupload',
-//does not work with current jQuery	'jQuery'=>SERVERPATH.'/'.ZENFOLDER.'/admin-jQuery',
+												'jQuery'=>SERVERPATH.'/'.ZENFOLDER.'/admin-jQuery',
 												'flash'=>SERVERPATH.'/'.ZENFOLDER.'/admin-uploadify');
 
-$handlers = array_keys($uploadHandlers = zp_apply_filter('upload_hadlers',$uploadHandlers));
+$handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers',$uploadHandlers));
 
 if (!isset($uploadHandlers[$uploadtype]) || !file_exists($uploadHandlers[$uploadtype].'/upload_form.php')) {
 	$uploadtype = array_shift($handlers);
@@ -164,8 +164,9 @@ if ($rootrights || !empty($albumlist)) {
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function buttonstate(good) {
+			$('#albumtitleslot').val($('#albumtitle').val());
+			$('#publishalbumslot').val($('#publishalbum').attr('checked'));
 			if (good) {
-				<?php showFields(); ?>
 				$('#fileUploadbuttons').show();
 			} else {
 				$('#fileUploadbuttons').hide();
@@ -173,6 +174,8 @@ if ($rootrights || !empty($albumlist)) {
 		}
 		function albumSelect() {
 			var sel = document.getElementById('albumselectmenu');
+			var selected = sel.options[sel.selectedIndex].value;
+			$('#folderslot').val(selected);
 			var state = albumSwitch(sel, true, '<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>');
 			buttonstate(state);
 		}
@@ -181,9 +184,7 @@ if ($rootrights || !empty($albumlist)) {
 
 	<div id="albumselect">
 
-		<form name="file_upload_datum" id="file_upload_datum" method="post" <?php  echo $formAction; ?> >
-			<input type="hidden" name="processed" id="processed" value="1" />
-			<input type="hidden" name="existingfolder" id="existingfolder" value="false" />
+		<form name="file_upload_datum" id="file_upload_datum" method="post" action="<?php  echo $formAction; ?>" enctype="multipart/form-data" >
 
 			<select id="albumselectmenu" name="albumselect" onchange="albumSelect()">
 				<?php
@@ -261,7 +262,8 @@ if ($rootrights || !empty($albumlist)) {
 				<input type="text" name="albumtitle" id="albumtitle" size="42"
 											onkeyup="buttonstate(updateFolder(this, 'folderdisplay', 'autogen','<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
 
-				<div style="position: relative; margin-top: 4px;"><?php echo gettext("with the folder name:"); ?>
+				<div style="position: relative; margin-top: 4px;">
+					<?php echo gettext("with the folder name:"); ?>
 					<div id="foldererror" style="display: none; color: #D66; position: absolute; z-index: 100; top: 2.5em; left: 0px;"></div>
 					<input type="text" name="folderdisplay" disabled="disabled" id="folderdisplay" size="18"
 												onkeyup="buttonstate(validateFolder(this,'<?php echo gettext('That name is already used.'); ?>','<?php echo gettext('This upload has to have a folder. Type a title or folder name to continue...'); ?>'));" />
@@ -271,15 +273,14 @@ if ($rootrights || !empty($albumlist)) {
 					<br />
 					<br />
 				</div>
-				<input type="hidden" name="folder" id="folderslot" value="<?php echo html_encode($passedalbum); ?>" />
 			</div>
 			<hr />
-			<?php upload_form($uploadlimit); ?>
+			<?php upload_form($uploadlimit, $passedalbum); ?>
 		</form>
 		<div id="upload_action">
 			<?php
 			//	load the uploader specific form stuff
-			upload_extra($uploadlimit);
+			upload_extra($uploadlimit, $passedalbum);
 			if (count($uploadHandlers)>1) {
 				?>
 				<p>
@@ -322,7 +323,6 @@ if ($rootrights || !empty($albumlist)) {
 					$('#folderdisplay').attr('disabled', 'disabled');
 					if ($('#albumtitle').val() != '') {
 						$('#foldererror').hide();
-						buttonstate(true);
 					}
 					<?php
 				} else {
@@ -331,11 +331,11 @@ if ($rootrights || !empty($albumlist)) {
 					$('#folderdisplay').removeAttr('disabled');
 					if ($('#folderdisplay').val() != '') {
 						$('#foldererror').hide();
-							buttonstate(false);
 					}
 					<?php
 				}
 				?>
+				buttonstate($('#folderdisplay').val() != '');
 			// ]]> -->
 		</script>
 		<?php

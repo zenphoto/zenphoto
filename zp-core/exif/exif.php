@@ -420,8 +420,7 @@ function formatData($type,$tag,$intel,$data) {
 					// ApertureValue is given in the APEX Mode. Many thanks to Matthieu Froment for this code
 					// The formula is : Aperture = 2*log2(FNumber) <=> FNumber = e((Aperture.ln(2))/2)
 					$datum = exp((unRational($data,$type,$intel)*log(2))/2);
-					$data = round($datum, 1);// Focal is given with a precision of 1 digit.
-					$data='f/'.$datum;
+					$data = 'f/'.round($datum, 1);// Focal is given with a precision of 1 digit.
 					break;
 				case '920a': // FocalLength
 					$data = unRational($data,$type,$intel).' mm';

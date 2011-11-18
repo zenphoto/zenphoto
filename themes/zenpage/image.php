@@ -94,7 +94,7 @@ if (!defined('WEBPATH')) die();
 	</div>
 	<div id="narrow">
 		<div id="imagedesc"><?php printImageDesc(true); ?></div>
-		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
+		 <?php if(getTags()) { echo gettext('<strong>Tags:</strong>'); } printTags('links', '', 'taglist', ', '); ?>
 		<br style="clear:both;" /><br />
 		<?php if (function_exists('printSlideShowLink')) {
 			echo '<span id="slideshowlink">';

@@ -1379,3 +1379,23 @@ table.password td.hint{
 	margin: 0 auto;
 	padding: 0;
 }
+
+#Federated_buttons_fieldlist ul.logon_buttons {
+display: inline;
+
+}
+
+#Federated_buttons_fieldlist ul.logon_buttons li {
+display: inline;
+margin: 0 !important;
+padding: 0!important;
+height: 40px; 
+width: 150px;
+}
+
+#Federated_buttons_fieldlist ul.logon_buttons li span{
+
+}
+
+
+

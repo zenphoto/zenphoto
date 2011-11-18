@@ -3141,12 +3141,12 @@ function getRandomImages($daily = false) {
 	if (zp_loggedin()) {
 		$imageWhere = '';
 	} else {
-		$imageWhere = " AND " . prefix('images') . ".show=1 ";
+		$imageWhere = " AND " . prefix('images') . ".show=1";
 	}
 	$result = query('SELECT `folder`, `filename` ' .
 									' FROM '.prefix('images'). ', '.prefix('albums').
 									' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
-									prefix('albums') . '.id ' . $imageWhere . 'ORDER BY RAND()');
+									prefix('albums') . '.id ' . $imageWhere . ' ORDER BY RAND()');
 
 	$image = filterImageQuery($result);
 	if ($image) {

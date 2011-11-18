@@ -6,9 +6,9 @@
  *
  */
 require_once(dirname(dirname(__FILE__)).'/functions.php');
-define('CONFIGFILE',SERVERPATH.'/'.DATA_FOLDER.'/zp-config.php');
+define('CONFIGFILE',SERVERPATH.'/'.DATA_FOLDER.'/zenphoto.cfg');
 $chmod = CHMOD_VALUE;
-$f = fopen(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup_log.txt', 'a');
+$f = fopen(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup.log', 'a');
 if (!isset($_POST['folder'])) exit();
 $folder = sanitize($_POST['folder'],3);
 if (substr($folder,-1,1) == '/') $folder = substr($folder,0,-1);

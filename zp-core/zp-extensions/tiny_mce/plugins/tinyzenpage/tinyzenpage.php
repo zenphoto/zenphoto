@@ -1,8 +1,11 @@
 <?php
+$plugin_version = '1.4.2';
 define('OFFSET_PATH', 5);
 $const_webpath = dirname(dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))))));
 $basepath = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
-require_once($basepath."/admin-functions.php");
+require_once($basepath."/admin-globals.php");
+admin_securityChecks(NO_RIGHTS, '');
+//TODO: add XSRFDefender('tinyzenpage'); All the launch URLs need to pass XSRFToken=<?php getXSRFToken('tinyzenpage');
 require_once($basepath .'/'. PLUGIN_FOLDER ."/zenpage/zenpage-template-functions.php");
 require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
 ?>
@@ -20,13 +23,13 @@ require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
 	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
 	<script type="text/javascript" src="../../../../js/jquery.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
-	<link rel="stylesheet" href="../../../../zp-extensions/colorbox/colorbox.css" type="text/css" />
+	<link rel="stylesheet" href="../../../../zp-extensions/colorbox/themes/example1/colorbox.css" type="text/css" />
 	<script src="../../../../zp-extensions/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
 	<script language="javascript" type="text/javascript">
 	$(document).ready(function(){
 		$("a[rel='colorbox']").colorbox({iframe:true, innerWidth:450, innerHeight:450});
 		$("a.colorbox").colorbox({iframe:true, innerWidth:450, innerHeight:450});
-		
+
 		$('#imagetitle,#albumtitle,#customtext').click(function() {
 			$('#imagesize').hide();
 			$('#titledesc').hide();
@@ -101,7 +104,7 @@ require_once("tinyzenpage-functions.php");
   		</fieldset>
 		</div>
 	</form>
-	
+
 	<form name="titledesc" id="titledesc" action="" method="post" style="margin: 8px 0px 8px 0px">
 	<div class="panel current">
 		<fieldset>
@@ -147,7 +150,7 @@ require_once("tinyzenpage-functions.php");
 	 <?php
 	 		if(empty($_GET['zenpage']) AND empty($_GET['album'])) {
 	 			echo "<h2 style='margin-left: 8px'>";
-	 			echo "<em>tiny</em>Zenpage (v1.4.1)</h2>";
+	 			echo "<em>tiny</em>Zenpage (v$plugin_version)</h2>";
 	 			echo "<p style='margin-left: 8px'>";
 	 			echo gettext("This provides access to your images and albums (dropdown 'Zenphoto') as well as pages, news articles and news categories (dropdown 'Zenpage') to easily include them in your pages and articles. You need at least 'Manage all albums' or 'Edit' rights to specific albums to be able to included image from them.")."</p>";
 	 			echo "<h3 style='margin-left: 1px'>General usage</h3>";
@@ -223,7 +226,7 @@ require_once("tinyzenpage-functions.php");
 	  	printAllNestedList();
 	 		printNewsArticlesList(12);
 			printImageslist(19);
-			
+
 		 ?>
 	</div>
 </div>

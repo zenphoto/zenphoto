@@ -468,9 +468,19 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 		case 'image':
 			switch($mode) {
 				case 'latestimages-sizedimage':
+				case 'latestimages-sizedimage-maxspace':
 					if(isImagePhoto($_zp_current_zenpage_news)) {
 						$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'">';
-						$articlecontent .= '<img src="'.html_encode($_zp_current_zenpage_news->getSizedImage($size)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
+						switch($mode) {
+							case 'latestimages-sizedimage':
+								$imagesource = html_encode($_zp_current_zenpage_news->getSizedImage($size));
+								break;
+							case 'latestimages-sizedimage-maxspace':
+								getMaxSpaceContainer($width, $height, $_zp_current_zenpage_news,true);
+								$imagesource = html_encode($_zp_current_zenpage_news->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true));
+								break;
+						}
+						$articlecontent .= '<img src="'.$imagesource.'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
 						$articlecontent .= '</a>';
 					} else if(isImageVideo($_zp_current_zenpage_news)) {
 						$articlecontent .= $_zp_current_zenpage_news->getSizedImage($size);
@@ -502,12 +512,20 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 			$albumthumbobj = $_zp_current_zenpage_news->getAlbumThumbImage();
 			switch($mode) {
 				case 'latestalbums-sizedimage':
+				case 'latestalbums-sizedimage-maxspacce':
 					if(isImagePhoto($albumthumbobj)) {
-						$imgurl = html_encode($albumthumbobj->getSizedImage($size));
+						switch($mode) {
+							case 'latestalbums-sizedimage':
+								$imgurl = html_encode($albumthumbobj->getSizedImage($size));								
+								break;
+							case 'latestalbums-sizedimage-maxspacce':
+								getMaxSpaceContainer($width, $height, $albumthumbobj,true);
+								$imgurl = html_encode($albumthumbobj->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true));
+								break;
+						}
 					} else {
 						$imgurl = html_encode($albumthumbobj->getCustomImage($size, NULL,NULL, NULL, NULL, NULL, NULL,true));
 					}
-
 					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.$imgurl.'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
 					break;
 				case 'latestalbums-thumbnail':
@@ -519,6 +537,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 				case 'latestimagesbyalbum-thumbnail':
 				case 'latestimagesbyalbum-thumbnail-customcrop':
 				case 'latestimagesbyalbum-sizedimage':
+				case 'latestimagesbyalbum-sizedimage-maxspace':
 					$images = query_full_array("SELECT title, filename FROM ".prefix('images')." AS images WHERE date LIKE '".$_zp_current_zenpage_news->getDateTime()."%' AND albumid = ".$_zp_current_zenpage_news->id." ORDER BY date DESC");
 					foreach($images as $image) {
 						$imageobj = newImage($_zp_current_zenpage_news,$image['filename']);
@@ -545,9 +564,19 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 								}
 								break;
 							case 'latestimagesbyalbum-sizedimage':
+							case 'latestimagesbyalbum-sizedimage-maxspace':
 								if(getOption('combinews-latestimagesbyalbum-imgtitle')) $articlecontent .= '<h4>'.html_encode($imageobj->getTitle()).'</h4>';
 								if(isImagePhoto($imageobj)) {
-									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.pathurlencode($imageobj->getSizedImage($size)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$imagedesc;
+									switch($mode) {
+										case 'latestimagesbyalbum-sizedimage':
+											$imagesource = pathurlencode($imageobj->getSizedImage($size));
+											break;
+										case 'latestimagesbyalbum-sizedimage-maxspace':
+											getMaxSpaceContainer($maxwidth, $maxheight,$imageobj,true);
+											$imagesource = pathurlencode($imageobj->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true));
+											break;
+									}
+									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.$imagesource.'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$imagedesc;
 								} else if(isImageVideo($imageobj)) {
 									$articlecontent .= getNewsVideoContent($imageobj).$imagedesc;
 								} else {
@@ -1260,7 +1289,13 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
  * @return string
  */
 function getNewsCategoryURL($catlink='') {
-	return rewrite_path(getNewsBaseURL()."/category/".urlencode($catlink),getNewsBaseURL()."&amp;category=".urlencode($catlink),false);
+	global $_zp_zenpage, $_zp_current_category;
+	if(empty($catlink)) {
+		$titlelink = $_zp_current_category->getTitlelink();
+	} else {
+		$titlelink = $catlink;
+	}
+	return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsCategoryPath().urlencode($titlelink);
 }
 
 
@@ -1273,9 +1308,7 @@ function getNewsCategoryURL($catlink='') {
  * @return string
  */
 function printNewsCategoryURL($before='',$catlink='') {
-	if (!empty($catlink)) {
-		echo "<a href=\"".getNewsCategoryURL($catlink)."\" title=\"".html_encode(getCategoryTitle($catlink))."\">".$before.getCategoryTitle($catlink)."</a>";
-	}
+	echo "<a href=\"".getNewsCategoryURL($catlink)."\" title=\"".html_encode(getCategoryTitle($catlink))."\">".$before.getCategoryTitle($catlink)."</a>";
 }
 
 
@@ -1289,7 +1322,7 @@ function getNewsIndexURL() {
 	if($_zp_zenpage->news_on_index) {
 		return getGalleryIndexURL(false);
 	} else {
-		return rewrite_path('news', "/index.php?p=news");
+		return $_zp_zenpage->getNewsIndexURL();
 	}
 }
 
@@ -1312,7 +1345,8 @@ function printNewsIndexURL($name='', $before='') {
  * @return string
  */
 function getNewsBaseURL() {
-	return rewrite_path('news', "/index.php?p=news");
+	global $_zp_zenpage;
+	return $_zp_zenpage->getNewsBaseURL();
 }
 
 
@@ -1322,7 +1356,8 @@ function getNewsBaseURL() {
  * @return string
  */
 function getNewsCategoryPath() {
-	return rewrite_path("/category/","&category=",false);
+	global $_zp_zenpage;
+	return $_zp_zenpage->getNewsCategoryPath();
 }
 
 /**
@@ -1331,7 +1366,8 @@ function getNewsCategoryPath() {
  * @return string
  */
 function getNewsArchivePath() {
-	return rewrite_path("/archive/","&date=",false);
+	global $_zp_zenpage;
+	return $_zp_zenpage->getNewsArchivePath();
 }
 
 
@@ -1341,7 +1377,8 @@ function getNewsArchivePath() {
  * @return string
  */
 function getNewsTitlePath() {
-	return rewrite_path("/","&title=",false);
+	global $_zp_zenpage;
+	return $_zp_zenpage->getNewsTitlePath();
 }
 
 
@@ -1351,7 +1388,8 @@ function getNewsTitlePath() {
  * @return string
  */
 function getNewsPagePath() {
-	return rewrite_path("/","&page=",false);
+	global $_zp_zenpage;
+	return $_zp_zenpage->getNewsPagePath();
 }
 
 
@@ -1363,9 +1401,11 @@ function getNewsPagePath() {
  * @return string
  */
 function getNewsURL($titlelink='') {
-	if(!empty($titlelink)) {
-		$path = getNewsBaseURL().getNewsTitlePath().urlencode($titlelink);
-		return $path;
+	global $_zp_current_zenpage_news;
+	if(empty($titlelink)) {
+		return $_zp_current_zenpage_news->getNewsLink();
+	} else {
+		return getNewsBaseURL().getNewsTitlePath().urlencode($titlelink);
 	}
 }
 
@@ -2564,7 +2604,8 @@ function getPageSortorder() {
  * @return string
  */
 function getPageLinkPath() {
-	return rewrite_path("pages/", "/index.php?p=pages&title=");
+	global $_zp_zenpage;
+	return $_zp_zenpage->getPagesLinkPath();
 }
 
 
@@ -2573,8 +2614,13 @@ function getPageLinkPath() {
  *
  * @return string
  */
-function getPageLinkURL($titlelink) {
-	return getPageLinkPath().$titlelink;
+function getPageLinkURL($titlelink='') {
+	global $_zp_zenpage, $_zp_current_zenpage_page;
+	if(empty($titlelink)) {
+		return $_zp_current_zenpage_page->getPageLink();
+	} else {
+		return getPageLinkPath().$titlelink;
+	}
 }
 
 

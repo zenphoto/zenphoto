@@ -37,19 +37,23 @@ if (isset($_POST['processed'])) {
 	// Make sure the folder exists. If not, create it.
 	if (isset($_POST['processed']) && !empty($_POST['folder'])) {
 		$folder = zp_apply_filter('admin_upload_process',trim(sanitize_path($_POST['folder'])));
-		$album = new Album($gallery, $folder);
-		// see if he has rights to the album.
-		if (!$modified_rights = $album->isMyItem(UPLOAD_RIGHTS)) {
+		$targetPath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($folder);
+		$new = !is_dir($targetPath);
+		if ($new) {
+			$rightsalbum = new Album($gallery, dirname($folder));
+		} else{
+			$rightsalbum = new Album($gallery, $folder);
+		}
+		if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 			if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 				$error = UPLOAD_ERR_CANT_WRITE;
 			}
 		}
 		if (!$error) {
-			$uploaddir = $gallery->albumdir . internalToFilesystem($folder);
-			if (!is_dir($uploaddir)) {
-				mkdir_recursive($uploaddir, CHMOD_VALUE);
+			if (!is_dir($targetPath)) {
+				mkdir_recursive($targetPath, CHMOD_VALUE);
 			}
-			@chmod($uploaddir, CHMOD_VALUE);
+			@chmod($targetPath, CHMOD_VALUE);
 			$album = new Album($gallery, $folder);
 			if ($album->exists) {
 				if (!isset($_POST['publishalbum'])) {
@@ -77,11 +81,11 @@ if (isset($_POST['processed'])) {
 						if (is_valid_image($name) || is_valid_other_type($name)) {
 							if (strrpos($soename,'.')===0) $soename = md5($name).$soename; // soe stripped out all the name.
 							if (!$error) {
-								$uploadfile = $uploaddir . '/' . internalToFilesystem($soename);
+								$uploadfile = $targetPath . '/' . internalToFilesystem($soename);
 								if (file_exists($uploadfile)) {
 									$append = '_'.time();
 									$soename = stripSuffix($soename).$append.'.'.getSuffix($soename);
-									$uploadfile = $uploaddir . '/' . internalToFilesystem($soename);
+									$uploadfile = $targetPath . '/' . internalToFilesystem($soename);
 								}
 								move_uploaded_file($tmp_name, $uploadfile);
 								@chmod($uploadfile, 0666 & CHMOD_VALUE);
@@ -92,7 +96,7 @@ if (isset($_POST['processed'])) {
 								}
 							}
 						} else if (is_zip($name)) {
-							unzip($tmp_name, $uploaddir);
+							unzip($tmp_name, $targetPath);
 						} else {
 							$error = UPLOAD_ERR_EXTENSION;	// invalid file uploaded
 							break;

@@ -277,5 +277,18 @@ class ZenpagePage extends ZenpageItems {
 		}
 		return false;
 	}
+	
+	/**
+	* Returns full path to a specific page
+ 	*
+ 	* @return string
+ 	*/
+	function getPageLink() {
+		return $this->getPagesLinkPath().urlencode($this->getTitlelink());
+	}
+	
 }
+
+
+
 ?>

@@ -257,6 +257,16 @@ class ZenpageNews extends ZenpageItems {
 			return false;
 		}
 	}
+	
+	/**
+ 	* Returns the url to a news article
+ 	*
+ 	*
+ 	* @return string
+ 	*/
+	function getNewsLink() {
+		return $this->getNewsBaseURL().$this->getNewsTitlePath().urlencode($this->getTitlelink());
+	}
 
 } // zenpage news class end
 

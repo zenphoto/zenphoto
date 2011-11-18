@@ -11,7 +11,7 @@ if (!defined('WEBPATH')) die();
 	<title><?php if(!isset($ishomepage)) { echo getBarePageTitle(); } ?> | <?php echo getBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-	<?php printZenpageRSSHeaderLink("Pages","", "Zenpage news", ""); ?>
+	<?php printZenpageRSSHeaderLink("News","", "Zenpage news", ""); ?>
 	<?php zp_apply_filter('theme_head'); ?>
 </head>
 
@@ -36,7 +36,7 @@ if (!defined('WEBPATH')) die();
 <?php
 printPageContent();
 printCodeblock(1);
-printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', ');
+if(getTags()) { echo gettext('<strong>Tags:</strong>'); } printTags('links', '', 'taglist', ', '); 
 ?>
 <br style="clear:both;" /><br />
 <?php

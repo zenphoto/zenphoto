@@ -68,6 +68,9 @@ if (isset($_GET['action'])) {
 				}
 			}
 
+			//TODO: temporary
+			setOption('enable_ajaxfilemanager', isset($_POST['enable_ajaxfilemanager']));
+
 			setOption('mod_rewrite', (int) isset($_POST['mod_rewrite']));
 			setOption('mod_rewrite_image_suffix', sanitize($_POST['mod_rewrite_image_suffix'],3));
 			if (isset($_POST['time_zone'])) {
@@ -901,6 +904,16 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<input type="text" size="40" id="site_email" name="site_email" style="width: 338px" value="<?php echo getOption('site_email'); ?>" />
 					</td>
 					<td><?php echo gettext("This email address will be used as the <em>From</em> address for all mails sent by Zenphoto."); ?></td>
+				</tr>
+				<?php
+				//TODO: remove when ajaxfilemanage detects XSRF
+				?>
+				<tr>
+					<td width="175"><?php echo gettext("Ajax Filemanager:"); ?></td>
+					<td width="350">
+						<input type="checkbox" id="enable_ajaxfilemanager" name="enable_ajaxfilemanager"  <?php if(getOption('enable_ajaxfilemanager')) echo ' checked="checked"'; ?>" />
+					</td>
+					<td><?php echo gettext("Set to enable the Ajax Filemanager. NOTE: currently this feature is vulnerable to Cross Site Reference Forgeries. Enable at your own discretion."); ?></td>
 				</tr>
 				<?php zp_apply_filter('admin_general_data'); ?>
 				<tr>

@@ -41,11 +41,11 @@ if (defined("RELEASE")) {
 	}
 }
 $_zp_error = false;
-if (!file_exists(dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . "/zp-config.php")) {
+if (!file_exists(dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . "/zenphoto.cfg")) {
 	reconfigure();
 }
-// Including zp-config.php more than once is OK, and avoids $conf missing.
-require(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
+// Including the config file more than once is OK, and avoids $conf missing.
+eval(file_get_contents(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zenphoto.cfg'));
 
 if (empty($_zp_conf_vars['mysql_database'])) {
 	reconfigure();
@@ -64,7 +64,7 @@ if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', 0777); }
 if (!defined('OFFSET_PATH')) { define('OFFSET_PATH', 0); }
 if (!defined('COOKIE_PESISTENCE')) { define('COOKIE_PESISTENCE', 5184000); }
 
-// If the server protocol is not set, set it to the default (obscure zp-config.php change).
+// If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
 
 $_zp_imagick_present = false;
@@ -879,7 +879,7 @@ function zp_error($message, $fatal=true) {
 
 /**
  * Returns either the rewrite path or the plain, non-mod_rewrite path
- * based on the mod_rewrite option in zp-config.php.
+ * based on the mod_rewrite option.
  * The given paths can start /with or without a slash, it doesn't matter.
  *
  * IDEA: this function could be used to specially escape items in
@@ -1003,14 +1003,14 @@ function getAlbumFolder($root=SERVERPATH) {
  * Write output to the debug log
  * Use this for debugging when echo statements would come before headers are sent
  * or would create havoc in the HTML.
- * Creates (or adds to) a file named debug_log.txt which is located in the zenphoto core folder
+ * Creates (or adds to) a file named debug.log which is located in the zenphoto core folder
  *
  * @param string $message the debug information
  * @param bool $reset set to true to reset the log to zero before writing the message
  */
 function debugLog($message, $reset=false) {
 	global $_zp_debug_written;
-	$path = dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . '/debug_log.txt';
+	$path = dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . '/debug.log';
 	if ($reset || ($size = @filesize($path)) == 0 || $size > 5000000) {
 		$f = fopen($path, 'w');
 		if ($f) {

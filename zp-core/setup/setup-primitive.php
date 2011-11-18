@@ -97,7 +97,7 @@ function printAdminFooter() {
 
 function debugLog($message, $reset=false) {
 	if ($reset) { $mode = 'w'; } else { $mode = 'a'; }
-	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug_log.txt';
+	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
 	$f = fopen($path, $mode);
 	fwrite($f, $message . "\n");
 	fclose($f);

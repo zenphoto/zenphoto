@@ -20,7 +20,7 @@ header('Last-Modified: ' . ZP_LAST_MODIFIED);
 header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
 
-define('CONFIGFILE',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
+define('CONFIGFILE',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zenphoto.cfg');
 define('HTACCESS_VERSION', '1.4.1');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
 
 $debug = isset($_REQUEST['debug']);
@@ -64,12 +64,22 @@ if (file_exists(CONFIGFILE)) {
 		@mkdir(dirname(dirname(__FILE__)).'/'.DATA_FOLDER, $chmod);
 	}
 	if (file_exists(dirname(dirname(__FILE__)).'/'.ZENFOLDER.'/zp-config.php')) {
+		// copy old file from zp-core
 		@copy(dirname(dirname(__FILE__)).'/'.ZENFOLDER.'/zp-config.php', CONFIGFILE);
 		@unlink(dirname(dirname(__FILE__)).'/'.ZENFOLDER.'/zp-config.php');
+	}
+	if (file_exists(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php')) {
+		//migrate old file.
+		$zpconfig = file_get_contents(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
+		$i = strpos($zpconfig, 'global');
+		$j = strpos($zpconfig, '?>');
+		$zpconfig = substr($zpconfig, $i, $j-$i);
+		file_put_contents(CONFIGFILE, $zpconfig);
+		$result = unlink(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
 		$newconfig = false;
 	} else {
 		$newconfig = true;
-		@copy('zp-config.php.source', CONFIGFILE);
+		@copy('zenphoto.cfg', CONFIGFILE);
 	}
 }
 
@@ -191,7 +201,7 @@ if ($updatezp_config) {
 	if (is_writeable(CONFIGFILE)) {
 		if ($handle = fopen(CONFIGFILE, 'w')) {
 			if (fwrite($handle, $zp_cfg)) {
-				setupLog(gettext("Updated zp-config.php"));
+				setupLog(gettext("Updated configuration file"));
 				$base = true;
 			}
 		}
@@ -208,7 +218,7 @@ $oktocreate = false;
 $connection = false;
 $connectDBErr = '';
 if (file_exists(CONFIGFILE)) {
-	require(CONFIGFILE);
+	eval(file_get_contents(CONFIGFILE));
 	if (isset($_zp_conf_vars['db_software'])) {
 		$selected_database = $_zp_conf_vars['db_software'];
 	} else {
@@ -442,7 +452,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$desired = '5.3';
 	$err = versionCheck($required, $desired, PHP_VERSION);
 	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired)) && $good;
-	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup_log.txt';
+	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup.log';
 	if (isWin()) {
 		checkMark(-1, '', gettext("General file security"),gettext('Zenphoto is unable to manage file security on Windows servers. Please insure that your logs are not browsable.'),false);
 	} else {
@@ -553,15 +563,15 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 
 	if (file_exists(CONFIGFILE)) {
-		require(CONFIGFILE);
+		eval(file_get_contents(CONFIGFILE));;
 		$cfg = true;
 	} else {
 		$cfg = false;
 	}
 
 
-	$good = checkMark($cfg, gettext('<em>zp-config.php</em> file'), gettext('<em>zp-config.php</em> file [does not exist]'),
-							sprintf(gettext('Setup was not able to create this file. You will need to edit the <code>zp-config.php.source</code> file as indicated in the file\'s comments and rename it to <code>zp-config.php</code>.'.
+	$good = checkMark($cfg, gettext('<em>zenphoto.cfg</em> file'), gettext('<em>zenphoto.cfg</em> file [does not exist]'),
+							sprintf(gettext('Setup was not able to create this file. You will need to edit the <code>zenphoto.cfg</code> file as indicated in the file\'s comments and copy it to <code>zp-data</code> folder.'.
 							' Place the file in the %s folder.'),DATA_FOLDER).
 							sprintf(gettext('<br /><br />You can find the file in the "%s" directory.'),ZENFOLDER)) && $good;
 	if ($cfg) {
@@ -823,16 +833,16 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	if ($cfg) {
 		@chmod(CONFIGFILE, 0666 & $chmod);
 		if (($adminstuff = !$engines[$selected_database] || !$connection  || !$db) && is_writable(CONFIGFILE)) {
-			$good = checkMark(false, '', gettext("Database setup in <em>zp-config.php</em>"), $connectDBErr) && $good;
+			$good = checkMark(false, '', gettext("Database setup in configuration file"), $connectDBErr) && $good;
 			// input form for the information
 			include(dirname(__FILE__).'/setup/setup-sqlform.php');
 		} else {
 			if ($connectDBErr) {
 				$msg = $connectDBErr;
 			} else {
-				$msg = gettext("You have not correctly set your <strong>Database</strong> <code>user</code>, <code>password</code>, etc. in your <code>zp-config.php</code> file and <strong>setup</strong> is not able to write to the file.");
+				$msg = gettext("You have not correctly set your <strong>Database</strong> <code>user</code>, <code>password</code>, etc. in your configuration file and <strong>setup</strong> is not able to write to the file.");
 			}
-			$good = checkMark(!$adminstuff, gettext("Database setup in <em>zp-config.php</em>"), '',$msg) && $good;
+			$good = checkMark(!$adminstuff, gettext("Database setup in configuration file"), '',$msg) && $good;
 		}
 	} else {
 		$good = checkMark($connection, sprintf(gettext('Connect to %s'),$selected_database), gettext("Connect to Database [<code>CONNECT</code> query failed]"), $connectDBErr) && $good;
@@ -1335,7 +1345,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 
 	if (isset($_zp_conf_vars['external_album_folder']) && !is_null($_zp_conf_vars['external_album_folder'])) {
-		checkmark(-1, 'albums', gettext("albums [<code>\$conf['external_album_folder']</code> is deprecated]"), gettext('You should update your zp-config.php file to conform to the current zp-config.php.example file.'));
+		checkmark(-1, 'albums', gettext("albums [<code>\$conf['external_album_folder']</code> is deprecated]"), gettext('You should update your configuration file to conform to the current zenphoto.cfg example file.'));
 		$_zp_conf_vars['album_folder_class'] = 'external';
 		$albumfolder = $_zp_conf_vars['external_album_folder'];
 	}
@@ -1359,7 +1369,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		}
 		$good = folderCheck('albums', $albumfolder, $_zp_conf_vars['album_folder_class']) && $good;
 	} else {
-		checkmark(-1, gettext('<em>albums</em> folder'), gettext("<em>albums</em> folder [The line <code>\$conf['album_folder']</code> is missing from your zp-config.php file]"), gettext('You should update your zp-config.php file to conform to the current zp-config.php.example file.'));
+		checkmark(-1, gettext('<em>albums</em> folder'), gettext("<em>albums</em> folder [The line <code>\$conf['album_folder']</code> is missing from your configuration file]"), gettext('You should update your configuration file to conform to the current zenphoto.cfg example file.'));
 	}
 
 	$good = folderCheck('cache', dirname(dirname(__FILE__)) . "/cache/", 'std') && $good;
@@ -1423,7 +1433,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 } // system check
 if (file_exists(CONFIGFILE)) {
 
-	require(CONFIGFILE);
+	eval(file_get_contents(CONFIGFILE));;
 	require_once(dirname(__FILE__).'/functions.php');
 	$task = '';
 	if (isset($_GET['create'])) {
@@ -2450,7 +2460,7 @@ if (file_exists(CONFIGFILE)) {
 	// The config file hasn't been created yet. Show the steps.
 	?>
 	<div class="error">
-		<?php echo gettext("The zp-config.php file does not exist. You should run setup.php to check your configuration and create this file."); ?>
+		<?php echo gettext("The zenphoto.cfg file does not exist. You should run setup.php to check your configuration and create this file."); ?>
 	</div>
 <?php
 }

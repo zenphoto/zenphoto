@@ -6,6 +6,10 @@
  *
  * Note on splash images: Flowplayer will try to use the first frame of a movie as a splash image or a videothumb if existing.
  *
+ * The playlist part of the plugin supports custom CSS styling. You may override the default by placing a CSS file your theme folder:
+ * flowplayer3_playlist.css or alternativels within the user plugins folder /flowplayer3/flowplayer3_playlist.css
+ * This will allow you to customize the appearance of the comments on your site.
+ *
  * @author Malte Müller (acrylian)
  * @package plugins
  */

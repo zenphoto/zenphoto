@@ -130,10 +130,6 @@ if (isset($_GET['action'])) {
 								$userobj ->setChallengePhraseInfo($challenge, $response);
 								$updated = true;
 							}
-							if (isset($_POST['delinkAlbum_'.$i])) {
-								$userobj->setAlbum(NULL);
-								$updated = true;
-							}
 							$lang = sanitize($_POST[$i.'-admin_language'],3);
 							if ($lang != $userobj->getLanguage()) {
 								$userobj->setLanguage($lang);
@@ -165,6 +161,14 @@ if (isset($_GET['action'])) {
 								if ($oldobjects != $objects) {
 									$updated = true;
 								}
+							}
+							if (isset($_POST['delinkAlbum_'.$i])) {
+								$userobj->setAlbum(NULL);
+								$updated = true;
+							}
+							if (isset($_POST['createAlbum_'.$i])) {
+								$userobj->createPrimealbum();
+								$updated = true;
 							}
 							if ($updated) {
 								$returntab .= '&show-'.$user;
@@ -736,19 +740,32 @@ function languageChange(id,lang) {
 				</fieldset>
 				<br />
 				<?php
-				$primeAlbum = $userobj->getAlbum();
-				if (!empty($primeAlbum)) {
-					?>
-					<p>
-					<label>
-						<input type="checkbox" name="delinkAlbum_<?php echo $id ?>" id="delinkAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
-						<?php printf(gettext('delink primary album (<em>%s</em>)'),$primeAlbum->name); ?>
-					</label>
-					</p>
-					<p class="notebox">
-						<?php echo gettext('The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association.'); ?>
-					</p>
-					<?php
+				if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+					$primeAlbum = $userobj->getAlbum();
+					if (empty($primeAlbum)) {
+						if (!($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
+							?>
+							<p>
+								<label>
+									<input type="checkbox" name="createAlbum_<?php echo $id ?>" id="createAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
+									<?php echo gettext('create primary album'); ?>
+								</label>
+							</p>
+							<?php
+						}
+					} else {
+						?>
+						<p>
+							<label>
+								<input type="checkbox" name="delinkAlbum_<?php echo $id ?>" id="delinkAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
+								<?php printf(gettext('delink primary album (<em>%s</em>)'),$primeAlbum->name); ?>
+							</label>
+						</p>
+						<p class="notebox">
+							<?php echo gettext('The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association.'); ?>
+						</p>
+						<?php
+					}
 				}
 				$currentValue = $userobj->getLanguage();
 				?>
@@ -795,7 +812,12 @@ function languageChange(id,lang) {
 				if ($current && $ismaster) {
 					echo '<p>'.gettext("The <em>master</em> account has full rights to all albums.").'</p>';
 				} else {
-					printManagedObjects('albums', $albumlist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'));
+					if (is_object($primeAlbum)) {
+						$flag = array($primeAlbum->name);
+					} else {
+						$flag = array();
+					}
+					printManagedObjects('albums', $albumlist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'), $flag);
 					if (getOption('zp_plugin_zenpage')) {
 						$pagelist = array();
 						$pages = $_zp_zenpage->getPages(false);
@@ -804,13 +826,13 @@ function languageChange(id,lang) {
 								$pagelist[get_language_string($page['title'])] = $page['titlelink'];
 							}
 						}
-						printManagedObjects('pages',$pagelist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'));
+						printManagedObjects('pages',$pagelist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'), NULL);
 						$newslist = array();
 						$categories = $_zp_zenpage->getAllCategories(false);
 						foreach ($categories as $category) {
 							$newslist[get_language_string($category['title'])] = $category['titlelink'];
 						}
-						printManagedObjects('news',$newslist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'));
+						printManagedObjects('news',$newslist, $album_alter_rights, $user['id'], $id, $userobj->getRights(), gettext('user'), NULL);
 					}
 				}
 				?>

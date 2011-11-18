@@ -349,7 +349,7 @@ function setupLog($message, $anyway=false, $reset=false) {
 			mkdir_recursive(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER, $chmod);
 		}
 		if ($reset) { $mode = 'w'; } else { $mode = 'a'; }
-		$path = dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup_log.txt';
+		$path = dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup.log';
 		$f = fopen($path, $mode);
 		if ($f) {
 			fwrite($f, strip_tags($message) . "\n");

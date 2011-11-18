@@ -402,7 +402,7 @@ if (defined('OFFSET_PATH')) {
 	<?php echo gettext("<strong>Note:</strong> <em>Wordpress page and category nesting</em> is currently not preserved but can easily be recreated by drag and drop sorting."); ?>
 	</p>
 
-	<p><?php echo gettext("In case anything does not work as expected the query results from the Wordpress database are logged in <code>zp-data/debug_log.txt</code>"); ?></p>
+	<p><?php echo gettext("In case anything does not work as expected the query results from the Wordpress database are logged in <code>zp-data/debug.log</code>"); ?></p>
 	<?php if(!getOption('zp_plugin_zenpage')) { ?>
 		<p class="errorbox"><?php echo gettext('<strong>ERROR: </strong>The Zenpage CMS plugin is not enabled.'); ?></p>
 	<?php

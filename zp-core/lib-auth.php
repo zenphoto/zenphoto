@@ -1282,39 +1282,37 @@ class Zenphoto_Administrator extends PersistentObject {
 		if (is_array($objects)) {
 			$sql = "DELETE FROM ".prefix('admin_to_object').' WHERE `adminid`='.$id;
 			$result = query($sql,false);
-			if ($result) {
-				foreach ($objects as $object) {
-					if (array_key_exists('edit',$object)) {
-						$edit = $object['edit'] | 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD);
-					} else {
-						$edit = 32767;
-					}
-					switch ($object['type']) {
-						case 'album':
-							$album = new Album($gallery, $object['data']);
-							$albumid = $album->getAlbumID();
-							$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $albumid, 'album', $edit)";
+			foreach ($objects as $object) {
+				if (array_key_exists('edit',$object)) {
+					$edit = $object['edit'] | 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD);
+				} else {
+					$edit = 32767;
+				}
+				switch ($object['type']) {
+					case 'album':
+						$album = new Album($gallery, $object['data']);
+						$albumid = $album->getAlbumID();
+						$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $albumid, 'album', $edit)";
+						$result = query($sql);
+						break;
+					case 'pages':
+						$sql = 'SELECT * FROM '.prefix('pages').' WHERE `titlelink`='.db_quote($object['data']);
+						$result = query_single_row($sql);
+						if (is_array($result)) {
+							$objectid = $result['id'];
+							$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $objectid, 'pages', $edit)";
 							$result = query($sql);
-							break;
-						case 'pages':
-							$sql = 'SELECT * FROM '.prefix('pages').' WHERE `titlelink`='.db_quote($object['data']);
-							$result = query_single_row($sql);
-							if (is_array($result)) {
-								$objectid = $result['id'];
-								$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $objectid, 'pages', $edit)";
-								$result = query($sql);
-							}
-							break;
-						case 'news':
-							$sql = 'SELECT * FROM '.prefix('news_categories').' WHERE `titlelink`='.db_quote($object['data']);
-							$result = query_single_row($sql);
-							if (is_array($result)) {
-								$objectid = $result['id'];
-								$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $objectid, 'news', $edit)";
-								$result = query($sql);
-							}
-							break;
-					}
+						}
+						break;
+					case 'news':
+						$sql = 'SELECT * FROM '.prefix('news_categories').' WHERE `titlelink`='.db_quote($object['data']);
+						$result = query_single_row($sql);
+						if (is_array($result)) {
+							$objectid = $result['id'];
+							$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $objectid, 'news', $edit)";
+							$result = query($sql);
+						}
+						break;
 				}
 			}
 		}
@@ -1411,7 +1409,6 @@ class Zenphoto_Administrator extends PersistentObject {
 			$objects[] = array('data'=>$filename.$ext, 'name'=>$filename.$ext, 'type'=>'album', 'edit'=>$subrights);
 			$this->setObjects($objects);
 		}
-
 	}
 
 	function getChallengePhraseInfo() {
