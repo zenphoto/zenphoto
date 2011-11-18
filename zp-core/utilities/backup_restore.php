@@ -473,7 +473,7 @@ if (db_connect()) {
 	<?php
 } else {
 	echo "<h3>".gettext("database not connected")."</h3>";
-	echo "<p>".gettext("Check yorui configuration file to make sure you've got the right username, password, host, and database. If you haven't created the database yet, now would be a good time.");
+	echo "<p>".gettext("Check your configuration file to make sure you've got the right username, password, host, and database. If you haven't created the database yet, now would be a good time.");
 }
 
 echo	'<p>';
