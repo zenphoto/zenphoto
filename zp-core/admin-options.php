@@ -1080,7 +1080,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				</tr>
 				<tr>
 				</tr>
-					<td><?php echo gettext("Ablbum thumbnails:"); ?></td>
+					<td><?php echo gettext("Album thumbnails:"); ?></td>
 					<td>
 						<?php
 						$selections = array();
