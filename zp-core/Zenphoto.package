@@ -615,6 +615,7 @@ zp-core/zp-extensions/GoogleMap
 zp-core/zp-extensions/GoogleMap.php
 zp-core/zp-extensions/GoogleMap/GoogleMap.php
 zp-core/zp-extensions/GoogleMap/JSMin.php
+zp-core/zp-extensions/GoogleMap/m.php
 zp-core/zp-extensions/PHPMailer
 zp-core/zp-extensions/PHPMailer.php
 zp-core/zp-extensions/PHPMailer/class.phpmailer.php
@@ -843,6 +844,7 @@ zp-core/zp-extensions/flowplayer3/images/control_play_blue.png
 zp-core/zp-extensions/flowplayer3/jquery.tools.min.js
 zp-core/zp-extensions/hitcounter.php
 zp-core/zp-extensions/html_meta_tags.php
+zp-core/zp-extensions/http_auth.php
 zp-core/zp-extensions/image_album_statistics.php
 zp-core/zp-extensions/image_effects
 zp-core/zp-extensions/image_effects.php
@@ -1803,4 +1805,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1805
+1807

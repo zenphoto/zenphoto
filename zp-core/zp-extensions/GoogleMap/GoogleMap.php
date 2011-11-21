@@ -2289,7 +2289,7 @@ class GoogleMapAPI {
 			        var infowindow = new google.maps.InfoWindow({content: html});
 			        google.maps.event.addListener(new_marker, '".$this->window_trigger."', function() {
 			          infowindow.open(map,new_marker);
-			        });
+    });
 					if(openers != ''&&!isEmpty(openers)){
 			           for(var i in openers){
 			             var opener = document.getElementById(openers[i]);
@@ -2442,11 +2442,6 @@ class GoogleMapAPI {
     function getMap() {
         $_output = '<script type="text/javascript" charset="utf-8">' . "\n" . '//<![CDATA[' . "\n";
         //$_output .= 'if (GBrowserIsCompatible()) {' . "\n";
-        if(strlen($this->width) > 0 && strlen($this->height) > 0) {
-            $_output .= sprintf('document.write(\'<div id="%s" style="width: %s; height: %s; position:relative;"><\/div>\');',$this->map_id,$this->width,$this->height) . "\n";
-        } else {
-            $_output .= sprintf('document.write(\'<div id="%s" style="position:relative;"><\/div>\');',$this->map_id) . "\n";
-        }
         //$_output .= '}';
 
         //if(!empty($this->js_alert)) {
@@ -2461,6 +2456,11 @@ class GoogleMapAPI {
             $_output .= '<noscript>' . $this->js_alert . '</noscript>' . "\n";
         }
 
+            if(strlen($this->width) > 0 && strlen($this->height) > 0) {
+            $_output .= sprintf('<div id="%s" style="width: %s; height: %s; position:relative;"></div>',$this->map_id,$this->width,$this->height) . "\n";
+        } else {
+            $_output .= sprintf('<div id="%s" style="position:relative;"></div>',$this->map_id) . "\n";
+        }
         return $_output;
     }
 

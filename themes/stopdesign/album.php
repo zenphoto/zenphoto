@@ -4,7 +4,7 @@
 
 if (!defined('WEBPATH')) die();
 require_once('normalizer.php');
-$thisablum = $_zp_current_album;
+$thisalbum = $_zp_current_album;
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -165,7 +165,7 @@ $thisablum = $_zp_current_album;
 		</p>
 
 		<div class="main">
-			<?php if (function_exists('printGoogleMap')) printGoogleMap(NULL, NULL, NULL, $thisablum); ?>
+			<?php if (function_exists('printGoogleMap')) printGoogleMap(NULL, NULL, NULL, $thisalbum); ?>
 			<?php
 			if (function_exists('printCommentForm')) {
 				require_once('comment.php');

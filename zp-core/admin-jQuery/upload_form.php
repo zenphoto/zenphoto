@@ -33,11 +33,11 @@ function upload_extra($uploadlimit, $passedalbum) {
 																			'a:not([target^=_blank])',
 																			'click',
 																			function (e) {
-																			e.preventDefault();
-																			$('<iframe style="display:none;"></iframe>')
-																					.prop('src', this.href)
-																					.appendTo('body');
-																			}
+																										e.preventDefault();
+																										$('<iframe style="display:none;"></iframe>')
+																												.prop('src', this.href)
+																												.appendTo('body');
+																										}
 																			);
 
 /*

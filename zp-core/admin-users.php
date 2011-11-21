@@ -706,10 +706,10 @@ function languageChange(id,lang) {
 			?>
 				<input type="hidden" name="<?php echo $id; ?>-passrequired" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $clearPass; ?>" />
 				<fieldset><legend><?php echo gettext("Password:"); ?></legend>
-					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass" value="<?php echo $x; ?>" onchange="$('#passrequired-<?php echo $id; ?>').val(1);" />
+					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass" value="<?php echo $x; ?>" onchange="$('#passrequired-<?php echo $id; ?>').val(1);"<?php if (in_array('password', $no_change)) echo ' disabled="disabled"'; ?> />
 				</fieldset>
 				<fieldset><legend><?php echo gettext("(repeat)"); ?></legend>
-					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass_2" value="<?php echo $x; ?>" onchange="$('#passrequired-<?php echo $id; ?>').val(1);" />
+					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass_2" value="<?php echo $x; ?>" onchange="$('#passrequired-<?php echo $id; ?>').val(1);"<?php if (in_array('password', $no_change)) echo ' disabled="disabled"'; ?> />
 				</fieldset>
 				<?php
 				$msg = $_zp_authority->passwordNote();

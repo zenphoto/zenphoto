@@ -12,7 +12,15 @@ $basepath = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__))))));
 require_once($basepath."/admin-globals.php");
 
 //TODO: remove when XSRF is available
-if (!getOption('enable_ajaxfilemanager')) die('ajaxfilemanager is currently disabled');
+if (!getOption('enable_ajaxfilemanager')) {
+	die('<p style="padding: 10px 15px 10px 15px;
+	background-color: #FDD;
+	border-width: 1px 1px 2px 1px;
+	border-style: solid;
+	border-color: #FAA;
+	margin-bottom: 10px;
+	font-size: 100%;">'.gettext('ajaxfilemanager is currently disabled').'</p>');
+}
 
 ?>
 <?php
@@ -43,7 +51,14 @@ if (!getOption('enable_ajaxfilemanager')) die('ajaxfilemanager is currently disa
 		 */
 		function isLoggedIn()
 		{
-			return (zp_loggedin(FILES_RIGHTS)?true:false);
+			if (zp_loggedin(FILES_RIGHTS | ZENPAGE_NEWS_RIGHTS | MANAGE_ALL_NEWS_RIGHTS | ZENPAGE_PAGES_RIGHTS | MANAGE_ALL_PAGES_RIGHTS)) return true;
+			die('<p style="padding: 10px 15px 10px 15px;
+						background-color: #FDD;
+						border-width: 1px 1px 2px 1px;
+						border-style: solid;
+						border-color: #FAA;
+						margin-bottom: 10px;
+						font-size: 100%;">'.gettext('You do not have the <em>Rights</em> to access the filemanager.').'</p>');
 		}
 		/**
 		 * validate the username & password

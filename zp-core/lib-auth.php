@@ -346,12 +346,10 @@ class Zenphoto_Authority {
 	 *
 	 * @param string $user
 	 * @param string $pass
-	 * @param bool $admin_login will be true if the login for the backend. If false, it is a guest login beging checked for admin credentials
 	 * @return bool
 	 */
-	function checkLogon($user, $pass, $admin_login) {
+	protected function checkLogon($user, $pass) {
 		global $_zp_authority;
-		$success = false;
 		$hash = $this->passwordHash($user, $pass);
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`pass`=' => $hash, '`valid`=' => 1));
 		return $userobj;
@@ -624,7 +622,7 @@ class Zenphoto_Authority {
 		if (isset($_POST['login'])) {
 			$post_user = sanitize(@$_POST['user']);
 			$post_pass = sanitize(@$_POST['pass'],0);
-			$user = $this->checkLogon($post_user, $post_pass, true);
+			$user = $this->checkLogon($post_user, $post_pass);
 			if ($user) {
 				$_zp_loggedin = $user->getRights();
 			} else {

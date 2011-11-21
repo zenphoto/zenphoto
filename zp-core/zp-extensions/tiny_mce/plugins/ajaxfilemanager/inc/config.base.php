@@ -39,13 +39,14 @@ error_reporting(E_ALL);
 	define('CONFIG_SYS_THUMBNAIL_VIEW_ENABLE', true);//REMOVE THE thumbnail view if false
 
 	//User Permissions
-	define('CONFIG_OPTIONS_DELETE', true); //disable to delete folder
-	define('CONFIG_OPTIONS_CUT', true);	//disalbe to cut a file/folder
-	define('CONFIG_OPTIONS_COPY', true);	//disable to copy a file/folder
-	define('CONFIG_OPTIONS_NEWFOLDER', true); //disable to create new folder
-	define('CONFIG_OPTIONS_RENAME', true); //disable to rename the file/folder
-	define('CONFIG_OPTIONS_UPLOAD', true); //disable to upload the file
-	define('CONFIG_OPTIONS_EDITABLE', true); //disable image editor and text editor
+	$fullaccess = zp_loggedin(FILES_RIGHTS);
+	define('CONFIG_OPTIONS_DELETE', $fullaccess); //disable to delete folder
+	define('CONFIG_OPTIONS_CUT', $fullaccess);	//disalbe to cut a file/folder
+	define('CONFIG_OPTIONS_COPY', $fullaccess);	//disable to copy a file/folder
+	define('CONFIG_OPTIONS_NEWFOLDER', $fullaccess); //disable to create new folder
+	define('CONFIG_OPTIONS_RENAME', $fullaccess); //disable to rename the file/folder
+	define('CONFIG_OPTIONS_UPLOAD', $fullaccess); //disable to upload the file
+	define('CONFIG_OPTIONS_EDITABLE', false); //disable image editor and text editor
 	define('CONFIG_OPTIONS_SEARCH', true); //disable to search documents
 	//FILESYSTEM CONFIG
 		/*

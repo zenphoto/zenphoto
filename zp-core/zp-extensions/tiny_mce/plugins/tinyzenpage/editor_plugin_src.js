@@ -22,7 +22,7 @@
 			// Register the command so that it can be invoked by using tinyMCE.activeEditor.execCommand('mceExample');
 			ed.addCommand('mcetinyzenpage', function() {
 				ed.windowManager.open({
-					file : url + '/dialog.php',
+					file : url + '/tinyzenpage.php',
 					width : 320 + parseInt(ed.getLang('tinyzenpage.delta_width', 0)),
 					height : 120 + parseInt(ed.getLang('tinyzenpage.delta_height', 0)),
 					inline : 1

@@ -12,14 +12,8 @@
 			mode : "textareas",
 			editor_selector: /(content|extracontent|desc)/,
 			language: "<?php echo $locale; ?>",
-			<?php
-			if (zp_loggedin(FILES_RIGHTS)) {
-				?>
-				elements : "ajaxfilemanager",
-				file_browser_callback : "ajaxfilemanager",
-				<?php
-			}
-			?>
+			elements : "ajaxfilemanager",
+			file_browser_callback : "ajaxfilemanager",
 			theme : "advanced",
 			plugins : "pagebreak,style,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,tinyzenpage",
 			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,|,bullist,numlist,|,outdent,indent,blockquote",

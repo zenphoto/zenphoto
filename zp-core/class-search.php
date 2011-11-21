@@ -810,9 +810,7 @@ class SearchEngine
 				break;
 		}
 		$sql .= " ORDER BY ".$key;
-		$result = query_full_array($sql);
-		if (!$result) return array();
-		return $result;
+		return $sql;
 	}
 
 	/**
@@ -1287,7 +1285,7 @@ class SearchEngine
 			if (empty($searchdate)) {
 				$search_query = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
 			} else {
-				$search_query = $this->SearchDate($searchstring, $searchdate, 'images', $sorttype, $sortdirection);
+				$search_query = $this->searchDate($searchstring, $searchdate, 'images', $sorttype, $sortdirection);
 			}
 			if (empty($search_query)) {
 				$search_result = false;
@@ -1448,7 +1446,7 @@ class SearchEngine
 				}
 				zp_apply_filter('search_statistics',$searchstring, 'pages', !$search_result, false, $this->iteration++);
 			} else {
-				$search_query = $this->SearchDate($searchstring, $searchdate, 'pages', false, false);
+				$search_query = $this->searchDate($searchstring, $searchdate, 'pages', false, false);
 				$search_result = query($search_query);
 			}
 			if ($search_result) {
@@ -1481,7 +1479,7 @@ class SearchEngine
 				$search_query = $this->searchFieldsAndTags($searchstring, 'news', $sortorder, $sortdirection);
 				zp_apply_filter('search_statistics',$searchstring, 'news', !empty($search_results), false, $this->iteration++);
 			} else {
-				$search_query = $this->SearchDate($searchstring, $searchdate, 'news', $sortorder, $sortdirection,$this->whichdates);
+				$search_query = $this->searchDate($searchstring, $searchdate, 'news', $sortorder, $sortdirection,$this->whichdates);
 			}
 			if (empty($search_query)) {
 				$search_result = false;

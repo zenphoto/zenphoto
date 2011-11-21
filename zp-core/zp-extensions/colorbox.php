@@ -8,6 +8,7 @@
  * @package plugins
  */
 
+$plugin_is_filter = 9|THEME_PLUGIN;
 $plugin_description = gettext("Loads Colorbox JS and CSS scripts for selected theme page scripts. Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself. Visit the <a href='http://colorpowered.com/colorbox/'>Colorbox website</a> about that.");
 $plugin_author = 'Stephen Billard (sbillard)';
 $plugin_version = '1.4.2';
@@ -26,7 +27,7 @@ if (OFFSET_PATH) {
 function colorbox_css() {
 	global $_zp_gallery;
 	$theme = getOption('colorbox_theme');
-	if(empty($theme)) { 
+	if(empty($theme)) {
 		$themepath = 'colorbox/themes/example1/colorbox.css';
 	} else {
 		if($theme == 'custom') {
@@ -42,16 +43,18 @@ function colorbox_css() {
 	}
 	$css = getPlugin($themepath,$inTheme,true);
 	?>
-	<script type="text/javascript" src="<?php echo FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/colorbox/jquery.colorbox-min.js"></script>
 	<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
 	<?php
 	$navigator_user_agent = ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) ? strtolower( $_SERVER['HTTP_USER_AGENT'] ) : '';
 	if (stristr($navigator_user_agent, "msie") && !stristr($navigator_user_agent, '9')) {
 		include(dirname(__FILE__).'/colorbox/colorbox_ie.css.php');
 	}
+	?>
+	<script type="text/javascript" src="<?php echo FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/colorbox/jquery.colorbox-min.js"></script>
+	<?php
 }
 
-class colorbox_Options {	
+class colorbox_Options {
 
 	function colorbox_Options() {
 		//	These are best set by the theme itself!
@@ -82,7 +85,7 @@ class colorbox_Options {
 																	'desc' => gettext('The scripts for which Colorbox is enabled. {Should have been set by the themes!}')
 											);
 		}
-		
+
 		return $opts;
 	}
 
