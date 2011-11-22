@@ -67,11 +67,7 @@ function printLanguageSelector($flags=NULL) {
 						<a href="javascript:launchScript('',['locale=<?php echo $lang; ?>']);" >
 						<?php
 					}
-					if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/locale/'.$lang.'/flag.png')) {
-						$flag = WEBPATH.'/'.ZENFOLDER.'/locale/'.$lang.'/flag.png';
-					} else {
-						$flag = WEBPATH.'/'.ZENFOLDER.'/locale/missing_flag.png';
-					}
+					$flag = getLanguageFlag($lang);
 					?>
 					<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
 					<?php

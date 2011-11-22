@@ -703,11 +703,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 								if (empty($dirname)) {
 									$flag = WEBPATH.'/'.ZENFOLDER.'/locale/auto.png';
 								} else {
-									if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/locale/'.$dirname.'/flag.png')) {
-										$flag = WEBPATH.'/'.ZENFOLDER.'/locale/'.$dirname.'/flag.png';
-									} else {
-										$flag = WEBPATH.'/'.ZENFOLDER.'/locale/missing_flag.png';
-									}
+									$flag = getLanguageFlag($dirname);
 								}
 								if (getOption('disallow_'.$dirname)) {
 									$c_attrs = '';

@@ -113,7 +113,7 @@ class Zenpage {
 		} else {
 			$show = '';
 		}
-		$_zp_zenpage_all_pages = NULL; // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
+		$_zp_zenpage_all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
 		$result  = query("SELECT * FROM ".prefix('pages').$show." ORDER by `sort_order`");
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
@@ -129,8 +129,8 @@ class Zenpage {
 		}
 		return $_zp_zenpage_all_pages;
 	}
-	
-	
+
+
 	/**
 	* Returns path to the pages.php page without the title(link)
 	*
@@ -139,7 +139,7 @@ class Zenpage {
 	function getPagesLinkPath() {
 		return rewrite_path("pages/", "/index.php?p=pages&title=");
 	}
-	
+
 	/************************************/
 	/* general news article functions   */
 	/************************************/
@@ -675,7 +675,7 @@ class Zenpage {
 			return $totalcount;
 		}
 	}
-	
+
 	/**
  	* Returns the full path of the news index page (news page 1) or if the "news on zp index" option is set a link to the gallery index.
 	*
@@ -688,8 +688,8 @@ class Zenpage {
 			return rewrite_path('news', "/index.php?p=news");
 		}
 	}
-	
-	
+
+
 	/**
  	* Returns the base /news or index.php?p=news url
  	*
@@ -713,7 +713,7 @@ class Zenpage {
  	* Returns partial path of news date archive
  	*
  	* @return string
- 	*/	
+ 	*/
 	function getNewsArchivePath() {
 		return rewrite_path("/archive/","&date=",false);
 	}
@@ -790,9 +790,9 @@ class Zenpage {
 		}
 		return $structure;
 	}
-	
-	
-	
+
+
+
 
 }	// ZenpageCMS
 

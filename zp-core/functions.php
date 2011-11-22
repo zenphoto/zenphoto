@@ -2361,5 +2361,16 @@ function read_exif_data_protected($path) {
 	return $rslt;
 }
 
+function getLanguageFlag($lang) {
+	if (file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/locale/'.$lang.'/flag.png')) {
+		$flag = WEBPATH.'/'.USER_PLUGIN_FOLDER.'/locale/'.$lang.'/flag.png';
+	} else if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/locale/'.$lang.'/flag.png')) {
+		$flag = WEBPATH.'/'.ZENFOLDER.'/locale/'.$lang.'/flag.png';
+	} else {
+		$flag = WEBPATH.'/'.ZENFOLDER.'/locale/missing_flag.png';
+	}
+	return $flag;
+}
+
 setexifvars();
 ?>

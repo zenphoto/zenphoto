@@ -188,7 +188,7 @@ class ZenpagePage extends ZenpageItems {
 		if(count($subpages) != 0) {
 			return $subpages;
 		} else {
-			return FALSE;
+			return array();
 		}
 	}
 
@@ -277,7 +277,7 @@ class ZenpagePage extends ZenpageItems {
 		}
 		return false;
 	}
-	
+
 	/**
 	* Returns full path to a specific page
  	*
@@ -286,7 +286,7 @@ class ZenpagePage extends ZenpageItems {
 	function getPageLink() {
 		return $this->getPagesLinkPath().urlencode($this->getTitlelink());
 	}
-	
+
 }
 
 

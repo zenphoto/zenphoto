@@ -780,14 +780,7 @@ function languageChange(id,lang) {
 						?>
 						<li id="<?php echo $lang.'_'.$id; ?>"<?php if ($lang==$currentValue) echo ' class="currentLanguage"'; ?>>
 							<a onclick="javascript:languageChange('<?php echo $id; ?>','<?php echo $lang; ?>');" >
-							<?php
-							if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/locale/'.$lang.'/flag.png')) {
-								$flag = WEBPATH.'/'.ZENFOLDER.'/locale/'.$lang.'/flag.png';
-							} else {
-								$flag = WEBPATH.'/'.ZENFOLDER.'/locale/missing_flag.png';
-							}
-							?>
-							<img src="<?php echo $flag; ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
+							<img src="<?php echo getLanguageFlag($lang); ?>" alt="<?php echo $text; ?>" title="<?php echo $text; ?>" />
 							</a>
 						</li>
 						<?php

@@ -71,9 +71,9 @@ if (file_exists(CONFIGFILE)) {
 	if (file_exists(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php')) {
 		//migrate old file.
 		$zpconfig = file_get_contents(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
-		$i = strpos($zpconfig, 'global');
+		$i = strpos($zpconfig, '/** Do not edit above this line. **/');
 		$j = strpos($zpconfig, '?>');
-		$zpconfig = substr($zpconfig, $i, $j-$i);
+		$zpconfig = 'global $_zp_conf_vars;'."\n".'$conf = array();'."\n".substr($zpconfig, $i, $j-$i);
 		file_put_contents(CONFIGFILE, $zpconfig);
 		$result = unlink(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
 		$newconfig = false;
