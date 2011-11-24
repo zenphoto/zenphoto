@@ -44,10 +44,10 @@ $gallery = new Gallery();
 			$itemlink = $host.WEBPATH.$albumpath.pathurlencode($albumobj->name).$imagepath.pathurlencode($item->filename).$modrewritesuffix;
 			$fullimagelink = $host.WEBPATH."/albums/".pathurlencode($albumobj->name)."/".$item->filename;
 			$imagefile = "albums/".$albumobj->name."/".$item->filename;
-			$thumburl = '<img border="0" src="'.$protocol.'://'.$host.$item->getCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.get_language_string(get_language_string($item->get("title"),$locale)) .'" />';
+			$thumburl = '<img border="0" src="'.$protocol.'://'.$host.$item->getCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.get_language_string(get_language_string($item->get("title"),$locale)) .'" /><br />';
 			$itemcontent = '<![CDATA[<a title="'.html_encode(get_language_string($item->get("title"),$locale)).' in '.html_encode(get_language_string($albumobj->get("title"),$locale)).'" href="'.$protocol.'://'.$itemlink.'">'.$thumburl.'</a>' . get_language_string(get_language_string($item->get("desc"),$locale)) . ']]>';
 			$videocontent = '<![CDATA[<a title="'.html_encode(get_language_string($item->get("title"),$locale)).' in '.html_encode(get_language_string($albumobj->getTitle(),$locale)).'" href="'.$protocol.'://'.$itemlink.'"><img src="'.$protocol.'://'.$host.$item->getThumb().'" alt="'.get_language_string(get_language_string($item->get("title"),$locale)) .'" /></a>' . get_language_string(get_language_string($item->get("desc"),$locale)) . ']]>';
-			$datecontent = '<![CDATA[Date: '.zpFormattedDate(DATE_FORMAT,$item->get('mtime')).']]>';
+			$datecontent = '<![CDATA[<br />Date: '.zpFormattedDate(DATE_FORMAT,$item->get('mtime')).']]>';
 		} else {
 			$galleryobj = new Gallery();
 			$albumitem = new Album($galleryobj, $item['folder']);
