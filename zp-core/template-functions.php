@@ -62,7 +62,7 @@ function printZenJavascripts() {
  * @param string $id the html/css theming id
  */
 function printAdminToolbox($id='admin') {
-	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery;
+	global $_zp_current_album, $_zp_current_image, $_zp_current_search, $_zp_gallery_page, $_zp_gallery, $_zp_current_admin_obj;
 	if (zp_loggedin()) {
 		$protocol = SERVER_PROTOCOL;
 		if ($protocol == 'https_admin') {
@@ -264,15 +264,19 @@ function printAdminToolbox($id='admin') {
 			}
 		}
 
-		// logout link
-		$sec = (int) ((SERVER_PROTOCOL=='https') & true);
-		$link = FULLWEBPATH.'/index.php?logout='.$sec.$redirect;
-		?>
-		<li><a href="<?php echo $link; ?>"><?php echo gettext("Logout"); ?></a></li>
-		<?php
-		// close the list
-		echo "</ul>\n";
-		echo "</div>\n";
+		if (!$_zp_current_admin_obj->no_zp_login)  {
+			// logout link
+			$sec = (int) ((SERVER_PROTOCOL=='https') & true);
+			$link = FULLWEBPATH.'/index.php?logout='.$sec.$redirect;
+			?>
+			<li>
+				<a href="<?php echo $link; ?>"><?php echo gettext("Logout"); ?> </a>
+			</li>
+			<?php
+			// close the list
+			echo "</ul>\n";
+			echo "</div>\n";
+		}
 	}
 }
 
@@ -3252,7 +3256,8 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 		if (is_null($height)) $height = 85;
 		if (is_null($crop)) $crop = true;
 	}
-	echo "<ul ".$class.">";
+	if (!empty($class)) $class .= ' class="'.$class.'"';
+	echo "<ul".$class.">";
 	for ($i=1; $i<=$number; $i++) {
 		echo "<li>\n";
 		switch($option) {
@@ -3905,8 +3910,8 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		<?php
 	}
 	?>
-	<div id="<?php echo $id; ?>"><!-- search form -->
-
+	<div id="<?php echo $id; ?>">
+		<!-- search form -->
 		<form method="post" action="<?php echo WEBPATH.$searchurl; ?>" id="search_form">
 			<script type="text/javascript">
 				// <!-- <![CDATA[

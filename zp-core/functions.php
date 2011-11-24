@@ -1726,10 +1726,9 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 		$time = COOKIE_PESISTENCE;
 	}
 	if (is_null($path)) {
-		if (($path = WEBPATH) == '') {
-			$path = '/';
-		}
+		$path = WEBPATH;
 	}
+	if (substr($path, -1, 1) != '/') $path .= '/';
 	if (DEBUG_LOGIN) {
 		if (isset($_SESSION[$name])) {
 			$sessionv = $_SESSION[$name];

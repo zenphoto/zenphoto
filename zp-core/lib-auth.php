@@ -1059,6 +1059,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	var $master = false;	//	will be set to true if this is the inherited master user
 	var $lastlogon = NULL;	// date of last use
 	var $msg = NULL;	//	a means of storing error messages from filter processing
+	var $no_zp_login = false;
 
 	/**
 	 * Constructor for an Administrator
@@ -1290,7 +1291,7 @@ class Zenphoto_Administrator extends PersistentObject {
 					case 'album':
 						$album = new Album($gallery, $object['data']);
 						$albumid = $album->getAlbumID();
-						$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $albumid, 'album', $edit)";
+						$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $albumid, 'albums', $edit)";
 						$result = query($sql);
 						break;
 					case 'pages':

@@ -365,25 +365,19 @@ class Gallery {
 			$result = query_full_array("SELECT * FROM ".prefix('obj_to_tag'));
 			if (is_array($result)) {
 				foreach ($result as $row) {
+					$tbl = $row['type'];
 					$dbtag = query_single_row("SELECT * FROM ".prefix('tags')." WHERE `id`='".$row['tagid']."'");
 					if (!$dbtag) {
-						$dead['id'] = $row['id'];
-					}
-					switch ($row['type']) {
-						case 'album':
-							$tbl = 'albums';
-							break;
-						default:
-							$tbl = $row['type'];
-							break;
+						$dead[] = $row['id'];
 					}
 					$dbtag = query_single_row("SELECT * FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
 					if (!$dbtag) {
-						$dead['id'] = $row['id'];
+						$dead[] = $row['id'];
 					}
 				}
 			}
 			if (!empty($dead)) {
+				$dead = array_unique($dead);
 				query('DELETE FROM '.prefix('obj_to_tag').' WHERE `id`='.implode(' OR `id`=', $dead));
 			}
 			// clean up admin_to_object
@@ -393,23 +387,21 @@ class Gallery {
 				foreach ($result as $row) {
 					$dbtag = query_single_row("SELECT * FROM ".prefix('administrators')." WHERE `id`='".$row['adminid']."'");
 					if (!$dbtag) {
-						$dead['id'] = $row['id'];
+						$dead[] = $row['id'];
 					}
-					switch ($row['type']) {
-						case 'album':
-							$tbl = 'albums';
-							break;
-						default:
-							$tbl = $row['type'];
-							break;
+					$tbl = $row['type'];
+					//TODO: remove the following on v1.5
+					if ($row['type']=='album') {
+						$tbl = 'albums';
 					}
 					$dbtag = query_single_row("SELECT * FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
 					if (!$dbtag) {
-						$dead['id'] = $row['id'];
+						$dead[] = $row['id'];
 					}
 				}
 			}
 			if (!empty($dead)) {
+				$dead = array_unique($dead);
 				query('DELETE FROM '.prefix('admin_to_object').' WHERE `id`='.implode(' OR `id`=', $dead));
 			}
 			// clean up news2cat
@@ -419,15 +411,16 @@ class Gallery {
 				foreach ($result as $row) {
 					$dbtag = query_single_row("SELECT * FROM ".prefix('news')." WHERE `id`='".$row['news_id']."'");
 					if (!$dbtag) {
-						$dead['id'] = $row['id'];
+						$dead[] = $row['id'];
 					}
 					$dbtag = query_single_row("SELECT * FROM ".prefix('news_categories')." WHERE `id`='".$row['cat_id']."'");
 					if (!$dbtag) {
-						$dead['id'] = $row['id'];
+						$dead[] = $row['id'];
 					}
 				}
 			}
 			if (!empty($dead)) {
+				$dead = array_unique($dead);
 				query('DELETE FROM '.prefix('news2cat').' WHERE `id`='.implode(' OR `id`=', $dead));
 			}
 

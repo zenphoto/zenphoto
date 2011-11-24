@@ -91,7 +91,14 @@ if (in_context(ZP_INDEX)) {
  * @param bool $show_user set to true to force the USER field on the form.
  */
 function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logouttext=NULL, $show_user=NULL) {
-	global $__redirect, $_zp_authority;
+	global $__redirect, $_zp_authority, $_zp_current_admin_obj;
+	if (is_object($_zp_current_admin_obj)) {
+		if ($_zp_current_admin_obj->no_zp_login)  {
+			return;
+		}
+	}
+
+
 	if (is_null($logouttext)) $logouttext = gettext("Logout");
 	if (is_null($showLoginForm) && getOption('user_logout_login_form')) {
 		$showLoginForm = true;

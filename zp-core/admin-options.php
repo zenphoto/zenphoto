@@ -909,7 +909,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td width="350">
 						<input type="checkbox" id="enable_ajaxfilemanager" name="enable_ajaxfilemanager"  <?php if(getOption('enable_ajaxfilemanager')) echo ' checked="checked"'; ?>" />
 					</td>
-					<td><?php echo gettext('Set to enable the Ajax Filemanager. <p class="notebox">NOTE: currently this feature is vulnerable to Cross Site Reference Forgeries. Enable at your own discretion.</p>'); ?></td>
+					<td><?php echo gettext('Set to enable the Ajax Filemanager. <p class="notebox">NOTE: Ajax filemanager v1.1 is vulnerable to Cross Site Reference Forgeries so this option is disabled by default. Enable at your own discretion. This option will be removed when we have an updated version that closes this hole.</p>'); ?></td>
 				</tr>
 				<?php zp_apply_filter('admin_general_data'); ?>
 				<tr>

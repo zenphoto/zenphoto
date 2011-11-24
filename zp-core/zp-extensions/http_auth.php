@@ -7,7 +7,8 @@
  * cleartext.)
  *
  * Note that the HTTP logins are outside of Zenphoto so there is no security logging of
- * them. Nor can Zenphoto "log off" the user.
+ * them. Nor can Zenphoto "log off" the user. The normal logout links will not show for
+ * users logged in via this plugin.
  *
  * Apache configuration:
  *
@@ -103,9 +104,8 @@ function http_auth_check($authorized) {
 			}
 			$userobj = $_zp_authority->getAnAdmin($searchfor);
 			if ($userobj) {
-				$credentials = array('http_auth','password');
-				$userobj->setCredentials($credentials);
 				$_zp_current_admin_obj = $userobj;
+				$_zp_current_admin_obj->no_zp_login = true;
 				$authorized = $_zp_current_admin_obj->getRights();
 			}
 		}
