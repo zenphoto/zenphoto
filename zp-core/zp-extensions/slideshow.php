@@ -230,12 +230,17 @@ function printSlideShowLink($linktext='', $linkstyle='') {
 								$style = ' style="display:none"';
 							}
 						}
+						if(getOption('slideshow_watermark')) {
+							$thumbStandin = true;
+						} else {
+							$thumbStandin = false;
+						} 
 						switch(getOption('slideshow_colorbox_imagetype')) {
 							case 'fullimage':
 								$imagelink = $imgobj->getFullImage();
 								break;
 							case 'sizedimage':
-								$imagelink = $imgobj->getSizedImage(getOption("slideshow_width"));
+								$imagelink = $imgobj->getCustomImage(getOption("slideshow_width"), NULL, NULL, NULL, NULL, NULL, NULL, $thumbStandin);
 								break;
 						}
 						$imagetitle = '';
@@ -390,6 +395,11 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 	}
 	if($shuffle) shuffle($images);
 	$showdesc = getOption("slideshow_showdesc");
+	if(getOption('slideshow_watermark')) {
+		$thumbStandin = true;		
+	} else {
+		$thumbStandin = false;					
+	}
 	// slideshow display section
 	switch($option) {
 		case "jQuery":
@@ -419,9 +429,13 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 							if ($ext) {
 								makeImageCurrent($image);
 								if($crop) {
-									$img = getCustomImageURL(NULL, $width, $height,$width, $height);
+									$img = getCustomImageURL(NULL,$width,$height,$width,$height,NULL,NULL,$thumbStandin);
 								} else {
-									$img = getCustomSizedImageMaxSpace($width,$height);
+									if($thumbStandin) {
+										$img = getCustomSizedImageThumbMaxSpace($width,$height);
+									} else {
+										$img = getCustomSizedImageMaxSpace($width,$height);
+									}
 								}
 								//$img = WEBPATH . '/' . ZENFOLDER . '/i.php?a=' . pathurlencode($image->album->name) . '&i=' . pathurlencode($filename) . '&s=' . $imagesize;
 								echo 'ImageList[' . $cntr . '] = "' . $img . '";'. "\n";
@@ -586,9 +600,9 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						} else {
 							makeImageCurrent($image);
 							if($crop) {
-								printCustomSizedImage('', NULL, $width, $height, $width, $height, NULL, NULL, NULL, NULL, false);
+								printCustomSizedImage('',NULL,$width, $height, $width, $height, NULL, NULL, NULL, NULL, $thumbStandin);
 							} else {
-								printCustomSizedImageMaxSpace($alt='',$width,$height,NULL,NULL,false);
+								printCustomSizedImageMaxSpace('',$width,$height,NULL,NULL,$thumbStandin);
 							}
 							//echo "<img src='".WEBPATH."/".ZENFOLDER."/i.php?a=".pathurlencode($folder)."&i=".urlencode($filename)."&s=".$imagesize."' alt='".html_encode($image->getTitle())."' title='".html_encode($image->getTitle())."' />\n";
 						}
