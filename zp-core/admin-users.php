@@ -93,6 +93,7 @@ if (isset($_GET['action'])) {
 									$userobj = $_zp_authority->newAdministrator('');
 									$userobj->transient = false;
 									$userobj->setUser($user);
+									$updated = true;
 								}
 							} else {
 								$what = 'update';
@@ -120,8 +121,10 @@ if (isset($_GET['action'])) {
 									$msg = '';
 								}
 							} else {
-								$msg = $userobj->setPass($pass);
-								$updated = true;
+								if ($pass != $userobj->getPass()) {
+									$msg = $userobj->setPass($pass);
+									$updated = true;
+								}
 							}
 							$challenge = sanitize($_POST[$i.'-challengephrase']);
 							$response = sanitize($_POST[$i.'-challengeresponse']);
@@ -172,13 +175,13 @@ if (isset($_GET['action'])) {
 							}
 							if ($updated) {
 								$returntab .= '&show-'.$user;
-							}
-							$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
-							if (empty($msg)) {
-								$userobj->save();
-							} else {
-								$notify = '?mismatch=format&error='.urlencode($msg);
-								$error = true;
+								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
+								if (empty($msg)) {
+									$userobj->save();
+								} else {
+									$notify = '?mismatch=format&error='.urlencode($msg);
+									$error = true;
+								}
 							}
 						} else {
 							$notify = '?mismatch=password';
@@ -527,11 +530,8 @@ function languageChange(id,lang) {
 	$id = 0;
 	$albumlist = array();
 	foreach ($gallery->getAlbums() as $folder) {
-		if (hasDynamicAlbumSuffix($folder)) {
-			$name = substr($folder, 0, -4); // Strip the .'.alb' suffix
-		} else {
-			$name = $folder;
-		}
+		$alb = new Album($gallery, $folder);
+		$name = $alb->getTitle();
 		$albumlist[$name] = $folder;
 	}
 	$background = '';

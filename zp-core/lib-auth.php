@@ -1385,19 +1385,17 @@ class Zenphoto_Administrator extends PersistentObject {
 		//	create his album
 		$t = 0;
 		$ext = '';
-		$filename = str_replace(array('<', '>', ':', '"'. '/'. '\\', '|', '?', '*'), '_', seoFriendly($this->getUser()));
+		$filename = internalToFilesystem(str_replace(array('<', '>', ':', '"'. '/'. '\\', '|', '?', '*'), '_', seoFriendly($this->getUser())));
 		while (file_exists(ALBUM_FOLDER_SERVERPATH.'/'.$filename.$ext)) {
 			$t++;
 			$ext = '-'.$t;
 		}
 		$path = ALBUM_FOLDER_SERVERPATH.'/'.$filename.$ext;
+		$albumname = filesystemToInternal($filename.$ext);
 		if (@mkdir_recursive($path,CHMOD_VALUE)) {
-			$album = new Album(new Gallery(), $filename.$ext);
-			$title = trim($album->name);
-			if ($this->getName()) {
-				if ($album->getTitle()==sanitize($title, 2)) {
-					$album->setTitle($this->getName());
-				}
+			$album = new Album(new Gallery(), $albumname);
+			if ($title = $this->getName()) {
+				$album->setTitle($title);
 			}
 			$album->save();
 			$this->setAlbum($album);
@@ -1411,7 +1409,7 @@ class Zenphoto_Administrator extends PersistentObject {
 				$subrights = $subrights | MANAGED_OBJECT_RIGHTS_UPLOAD;
 			}
 			$objects = $this->getObjects();
-			$objects[] = array('data'=>$filename.$ext, 'name'=>$filename.$ext, 'type'=>'album', 'edit'=>$subrights);
+			$objects[] = array('data'=>$albumname, 'name'=>$albumname, 'type'=>'album', 'edit'=>$subrights);
 			$this->setObjects($objects);
 		}
 	}

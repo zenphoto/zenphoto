@@ -98,6 +98,13 @@ if ( $file_to_edit ) {
 	echo '</div>';
 } ?>
 
+<p class="buttons">
+	<a title="<?php echo gettext('Back to the theme list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-themes.php">
+		<img	src="images/arrow_left_blue_round.png" alt="" />
+		<strong><?php echo gettext("Back"); ?></strong>
+	</a>
+</p>
+<br clear="all">
 <div id="theme-editor">
 
 	<div id="files">

@@ -2257,24 +2257,38 @@ if (file_exists(CONFIGFILE)) {
 		}
 		if ($createTables) {
 			if (isset($_GET['delete_files']) || ($autorun && defined("RELEASE"))) {
+				require_once(dirname(__FILE__).'/'.PLUGIN_FOLDER.'/security-logger.php');
 				$curdir = getcwd();
 				chdir(dirname(__FILE__).'/setup');
 				$list = setup_glob('*.*');
 				chdir($curdir);
-				$rslt = true;
-
-
+				$rslt = array();
 				foreach ($list as $component) {
 					if ($component != '..' && $component != '.') {
-						$rslt = $rslt && setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component),$component);
+						if(!setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component),$component)) {
+							$rslt[] = '../setup/'.$component;
+						}
 					}
 				}
-				$rslt = $rslt && setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup.php'),'setup.php');
-				$rslt = $rslt && setupDeleteComponent(@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/'),'setup/');
+				if (!setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup.php'),'setup.php')) {
+					$rslt[] = '../setup.php';
+				}
+				if (!setupDeleteComponent(@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/'),'setup/')) {
+					$rslt[] = '../setup/';
+				}
 
-				if (!$rslt) {
+				if (empty($rslt)) {
+					zp_apply_filter('log_setup', true, 'delete', '');
 					?>
-					<p class="errorbox"><?php echo gettext('Deleting files failed!'); ?></p>
+					<p class="messagebox"><?php echo gettext('Setup files deleted.'); ?></p>
+					<?php
+				} else {
+					$rslt = implode(', ', $rslt);
+					zp_apply_filter('log_setup', false, 'delete', $rslt);
+					?>
+					<p class="errorbox">
+						<?php printf(gettext('Failed to delete: %s'), $rslt); ?>
+					</p>
 					<?php
 					$autorun = false;
 				}
@@ -2292,12 +2306,13 @@ if (file_exists(CONFIGFILE)) {
 			if (!$_zp_loggedin || $_zp_loggedin == ADMIN_RIGHTS) {
 				$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
 				if (count($filelist) > 0) {
-					echo "<p>".sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'),'admin-users.php?page=users',UTILITIES_FOLDER.'/backup_restore.php')."</p>";
+					echo '<p>'.sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'),'admin-users.php?page=users',UTILITIES_FOLDER.'/backup_restore.php')."</p>";
 				} else {
-					echo "<p>".sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'),'admin-users.php?page=users')."</p>";
+					echo '<p id="golink">'.sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'),'admin-users.php?page=users')."</p>";
 					if ($autorun) {
 						?>
 						<script type="text/javascript">
+							$('#golink').hide();
 							window.location = 'admin-users.php?page=users';
 						</script>"
 						<?php
@@ -2305,13 +2320,14 @@ if (file_exists(CONFIGFILE)) {
 				}
 			} else {
 				?>
-				<p><?php echo sprintf(gettext('You can now <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'),'..','admin.php'); ?></p>
+				<p id="golink"><?php echo sprintf(gettext('You can now <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'),'..','admin.php'); ?></p>
 				<?php
 
 				switch ($autorun) {
 					case 'admin':
 						?>
 						<script type="text/javascript">
+							$('#golink').hide();
 							window.location = 'admin.php';
 						</script>"
 						<?php
@@ -2319,6 +2335,7 @@ if (file_exists(CONFIGFILE)) {
 					case 'gallery':
 						?>
 						<script type="text/javascript">
+							$('#golink').hide();
 							window.location = '..';
 						</script>"
 						<?php
@@ -2434,13 +2451,14 @@ if (file_exists(CONFIGFILE)) {
 				<?php
 			}
 			?>
-			<p class="buttons"><button class="submitbutton" type="submit"	title="<?php echo gettext('run setup'); ?>" ><img src="images/<?php echo $img; ?>" alt="" /><?php echo gettext("Go"); ?></button></p>
+			<p class="buttons"><button class="submitbutton" id="submitbutton" type="submit"	title="<?php echo gettext('run setup'); ?>" ><img src="images/<?php echo $img; ?>" alt="" /><?php echo gettext("Go"); ?></button></p>
 			<br clear="all" /><br clear="all" />
 		</form>
 		<?php
 		if ($autorun) {
 			?>
 			<script type="text/javascript">
+				$('#submitbutton').hide();
 				$('#setup').submit();
 			</script>
 			<?php

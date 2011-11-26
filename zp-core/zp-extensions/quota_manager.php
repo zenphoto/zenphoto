@@ -88,7 +88,7 @@ function quota_save_admin($updated, $userobj, $i, $alter) {
 	if (isset($_POST[$i.'quota']) && $alter) {
 		$oldquota = $userobj->getQuota();
 		$userobj->setQuota(sanitize_numeric($_POST[$i.'quota']));
-		$updated = $oldquota == $userobj->getQuota();
+		$updated = $oldquota != $userobj->getQuota();
 	}
 	return $updated;
 }

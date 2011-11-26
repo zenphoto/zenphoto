@@ -148,11 +148,8 @@ echo '</head>'."\n";
 						$gallery = new Gallery();
 						$albumlist = array();
 						foreach ($gallery->getAlbums() as $folder) {
-							if (hasDynamicAlbumSuffix($folder)) {
-								$name = substr($folder, 0, -4); // Strip the .'.alb' suffix
-							} else {
-								$name = $folder;
-							}
+							$alb = new Album($gallery, $folder);
+							$name = $alb->getTitle();
 							$albumlist[$name] = $folder;
 						}
 						?>

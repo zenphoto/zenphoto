@@ -51,7 +51,11 @@ if (isset($_GET['action'])) {
 	}
 }
 
-$default = $zenphoto_tabs['logs']['default'];
+list($subtabs, $default) = getLogTabs();
+$zenphoto_tabs['logs'] = array(	'text'=>gettext("logs"),
+												'link'=>WEBPATH."/".ZENFOLDER.'/admin-logs.php?page=logs',
+												'subtabs'=>$subtabs,
+												'default'=>$default);
 
 printAdminHeader('logs',$default);
 echo "\n</head>";

@@ -978,6 +978,7 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 		}
 	}
 	$hr = '';
+	$tagclass = 'tagchecklist';
 	if ($addnew) {
 		if (count($tags) == 0) {
 			$hr = '<li><hr /></li>';
@@ -998,8 +999,6 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 			});
 			</script>
 			<?php
-		} else {
-			$tagclass = 'tagchecklist';
 		}
 		?>
 			<div id="resizable_<?php echo $postit;?>">
@@ -3984,11 +3983,12 @@ function getLogTabs() {
 	$localizer = array('setup'=>gettext('Setup log'), 'security'=>gettext('Security log'), 'debug'=>gettext('Debug log'));
 	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.log');
 	if (count($filelist)>0) {
-		if (isset($_GET['tab'])) {
-			$default = sanitize($_GET['tab'],3);
-		}
+		$tab = sanitize(@$_GET['tab'],3);
 		foreach ($filelist as $logfile) {
 			$log = substr(basename($logfile), 0, -4);
+			if ($log == $tab) {
+				$default = $tab;
+			}
 			if (array_key_exists($log, $localizer)) {
 				$logfiletext = $localizer[$log];
 			} else {

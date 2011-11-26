@@ -92,11 +92,8 @@ function user_groups_edit_admin($html, $userobj, $i, $background, $current) {
 		$albumlist = array();
 		$allalb = array();
 		foreach ($gallery->getAlbums() as $folder) {
-			if (hasDynamicAlbumSuffix($folder)) {
-				$name = substr($folder, 0, -4); // Strip the .'.alb' suffix
-			} else {
-				$name = $folder;
-			}
+			$alb = new Album($gallery, $folder);
+			$name = $alb->getTitle();
 			$albumlist[$name] = $folder;
 			$allalb[] = "'#managed_albums_".$i.'_'.postIndexEncode($folder)."'";
 		}

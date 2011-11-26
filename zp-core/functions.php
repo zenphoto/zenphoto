@@ -975,7 +975,7 @@ function postComment($name, $email, $website, $comment, $code, $code_ok, $receiv
 			}
 			if($type === "images" OR $type === "albums") { // mail to album admins
 				$id = $ur_album->getAlbumID();
-				$sql = 'SELECT `adminid` FROM '.prefix('admin_to_object').' WHERE `objectid`='.$id.' AND `type`="album"';
+				$sql = 'SELECT `adminid` FROM '.prefix('admin_to_object').' WHERE `objectid`='.$id.' AND `type` LIKE "album%"';
 				$result = query_full_array($sql);
 				foreach ($result as $anadmin) {
 					$id = $anadmin['adminid'];
@@ -1015,7 +1015,7 @@ function getManagedAlbumList() {
 	} else {
 		$sql = 'SELECT '.prefix('albums').'.`folder`,'.prefix('admin_to_object').'.`edit` FROM '.prefix('albums').', '.
 						prefix('admin_to_object').' WHERE '.prefix('admin_to_object').'.adminid='.
-						$_zp_current_admin_obj->getID().' AND '.prefix('albums').'.id='.prefix('admin_to_object').'.objectid AND `type`="album"';
+						$_zp_current_admin_obj->getID().' AND '.prefix('albums').'.id='.prefix('admin_to_object').'.objectid AND `type` LIKE "album%"';
 		$albums = query_full_array($sql);
 		foreach($albums as $album) {
 			$_zp_admin_album_list[$album['folder']] = $album['edit'];
@@ -1037,7 +1037,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 		return array();
 	}
 	$cv = array();
-	if (empty($type) || $type=='album') {
+	if (empty($type) || $type=='albums' || $type=='album') {
 		$sql = "SELECT ".prefix('albums').".`folder`,".prefix('albums').".`title`,".prefix('admin_to_object').".`edit` FROM ".prefix('albums').", ".
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
 						" AND ".prefix('albums').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type LIKE 'album%'";
