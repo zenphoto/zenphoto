@@ -1038,18 +1038,14 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 	}
 	$cv = array();
 	if (empty($type) || $type=='album') {
-		$sql = "SELECT ".prefix('albums').".`folder`,".prefix('admin_to_object').".`edit` FROM ".prefix('albums').", ".
+		$sql = "SELECT ".prefix('albums').".`folder`,".prefix('albums').".`title`,".prefix('admin_to_object').".`edit` FROM ".prefix('albums').", ".
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
-						" AND ".prefix('albums').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='album'";
+						" AND ".prefix('albums').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type LIKE 'album%'";
 		$currentvalues = query_full_array($sql,false);
 		if ($currentvalues) {
 			foreach($currentvalues as $albumitem) {
 				$folder = $albumitem['folder'];
-				if (hasDynamicAlbumSuffix($folder)) {
-					$name = substr($folder, 0, -4); // Strip the .'.alb' suffix
-				} else {
-					$name = $folder;
-				}
+				$name = get_language_string($albumitem['title']);
 				if ($type && !$rights) {
 					$cv[$name] = $folder;
 				} else {
@@ -2119,7 +2115,7 @@ function setThemeOptionDefault($key, $value) {
  * @return mixed
  */
 function getThemeOption($option, $album=NULL, $theme=NULL) {
-	global $_set_theme_album;
+	global $_set_theme_album, $_zp_gallery;
 	if (is_null($album)) {
 		$album = $_set_theme_album;
 	}
@@ -2130,8 +2126,8 @@ function getThemeOption($option, $album=NULL, $theme=NULL) {
 		$theme = $album->getAlbumTheme();
 	}
 	if (empty($theme)) {
-		$gallery = new Gallery();
-		$theme = $gallery->getCurrentTheme();
+		if (!$_zp_gallery) $_zp_gallery = new Gallery();
+		$theme = $_zp_gallery->getCurrentTheme();
 	}
 
 	// album-theme

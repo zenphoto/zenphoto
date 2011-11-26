@@ -65,12 +65,13 @@ printAdminHeader('themes');
 // Script for the "Duplicate theme" feature
 ?>
 
+<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
 <script type="text/javascript">
 	//<!-- <![CDATA[
 	function copyClick(source) {
-		var targetname = prompt('<?php echo gettext('New theme name? (e.g. "My Theme")'); ?>', '<?php echo gettext('My Theme'); ?>');
+		var targetname = prompt('<?php echo gettext('New theme name?'); ?>', sprintf('<?php echo gettext('Copy of %s');?>',source));
 		if (targetname) {
-			var targetdir = prompt('<?php echo gettext('New directory name? (e.g. "my_theme")'); ?>', targetname.toLowerCase().replace(/ /g,'_').replace(/[^A-Za-z0-9_]/g,'') );
+			var targetdir = prompt('<?php echo gettext('Theme folder name?'); ?>', targetname.toLowerCase().replace(/ /g,'_').replace(/[^A-Za-z0-9_]/g,'') );
 			if (targetdir) {
 				launchScript('',['action=copytheme','XSRFToken=<?php echo getXSRFToken('admin-themes')?>','source='+encodeURIComponent(source),'target='+encodeURIComponent(targetdir),'name='+encodeURIComponent(targetname)]);
 				return false;

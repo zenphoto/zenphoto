@@ -1393,6 +1393,12 @@ class Zenphoto_Administrator extends PersistentObject {
 		$path = ALBUM_FOLDER_SERVERPATH.'/'.$filename.$ext;
 		if (@mkdir_recursive($path,CHMOD_VALUE)) {
 			$album = new Album(new Gallery(), $filename.$ext);
+			$title = trim($album->name);
+			if ($this->getName()) {
+				if ($album->getTitle()==sanitize($title, 2)) {
+					$album->setTitle($this->getName());
+				}
+			}
 			$album->save();
 			$this->setAlbum($album);
 			$this->setRights($this->getRights() | ALBUM_RIGHTS);

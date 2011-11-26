@@ -282,7 +282,7 @@ class Gallery {
 	 * @param string the name of the current theme
 	 */
 	function setCurrentTheme($theme) {
-		$this->set('current_theme', $theme);
+		$this->set('current_theme', $this->theme = $theme);
 	}
 
 

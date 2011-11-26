@@ -48,6 +48,9 @@ function printItemsListTable($item, $flag) {
 			case 'customlink':
 				$link = '<a href="'.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
 				break;
+			case 'menulabel':
+				$link = '';
+				break;
 			default:
 				$link = html_encode(truncate_string($item['link'], 40, '...'));
 				break;

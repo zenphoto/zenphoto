@@ -740,8 +740,8 @@ function languageChange(id,lang) {
 				</fieldset>
 				<br />
 				<?php
+				$primeAlbum = $userobj->getAlbum();
 				if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-					$primeAlbum = $userobj->getAlbum();
 					if (empty($primeAlbum)) {
 						if (!($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
 							?>
@@ -758,7 +758,7 @@ function languageChange(id,lang) {
 						<p>
 							<label>
 								<input type="checkbox" name="delinkAlbum_<?php echo $id ?>" id="delinkAlbum_<?php echo $id ?>" value="1" <?php echo $alterrights; ?>/>
-								<?php printf(gettext('delink primary album (<em>%s</em>)'),$primeAlbum->name); ?>
+								<?php printf(gettext('delink primary album <strong>%1$s</strong>(<em>%2$s</em>)'),$primeAlbum->getTitle(), $primeAlbum->name); ?>
 							</label>
 						</p>
 						<p class="notebox">

@@ -49,7 +49,18 @@ if (isset($_GET['deletemenuset'])) {
 	$sql = 'DELETE FROM '.prefix('menu').' WHERE `menuset`='.db_quote(sanitize($_GET['deletemenuset']));
 	query($sql);
 	$_menu_manager_items = array();
-	$delmsg =  "<p class='messagebox fade-message'>".sprintf(gettext("Menu set '%s' deleted"),html_encode($_GET['deletemenuset']))."</p>";
+	$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Menu set '%s' deleted"),html_encode($_GET['deletemenuset']))."</p>";
+}
+if (isset($_GET['dupmenuset'])) {
+	XSRFdefender('dup_menu');
+	$oldmenuset = sanitize($_GET['dupmenuset']);
+	$_GET['menuset'] = $menuset = sanitize($_GET['targetname']);
+	$menuitems = query_full_array('SELECT * FROM '.prefix('menu').' WHERE `menuset`='.db_quote($oldmenuset));
+	if (createMenuIfNotExists($menuitems,$menuset)) {
+		$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Menu set '%s' duplicated"),html_encode($oldmenuset))."</p>";
+	} else {
+		$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Menu set '%s' already exists"),html_encode($menuset))."</p>";
+	}
 }
 // publish or un-publish page by click
 if(isset($_GET['publish'])) {
@@ -70,18 +81,21 @@ printTabs();
 <div id="content">
 <?php
 zp_apply_filter('admin_note','menu', '');
-foreach ($reports as $report) {
-	echo $report;
-}
 
 $count = db_count('menu',NULL,'DISTINCT `menuset`');
 ?>
 <script type="text/javascript">
 	//<!-- <![CDATA[
-	 function newMenuSet() {
+	function newMenuSet() {
 		var new_menuset = prompt("<?php echo gettext('Menuset id'); ?>","<?php echo 'menu_'.$count; ?>");
 		if (new_menuset) {
 			window.location = '?menuset='+encodeURIComponent(new_menuset);
+		}
+	};
+	function dupMenuSet() {
+		var targetname = prompt('<?php echo gettext('Name for new menset:'); ?>','<?php printf(gettext('Copy_of_%s'),$menuset); ?>');
+		if (tartetname) {
+			launchScript('',['dupmenuset=<?php echo html_encode($menuset); ?>','targetname='+encodeURIComponent(targetname),'XSRFToken=<?php echo getXSRFToken('dup_menu')?>']);
 		}
 	};
 	function deleteMenuSet() {
@@ -113,6 +127,11 @@ $count = db_count('menu',NULL,'DISTINCT `menuset`');
 <p class="notebox">
 <?php echo gettext("<strong>IMPORTANT:</strong> This menu's order is completely independent from any order of albums or pages set on the other admin pages. It is recommend to uses is with customized themes only that do not use the standard Zenphoto display structure. Standard Zenphoto functions like the breadcrumb functions or the next_album() loop for example will NOT take care of this menu's structure!");?>
 </p>
+<?php
+foreach ($reports as $report) {
+	echo $report;
+}
+?>
 <span class="buttons">
 	<button class="serialize" type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 	<strong><a href="menu_tab_edit.php?add&amp;menuset=<?php echo urlencode($menuset); ?>" title="<?php echo gettext("Add Menu Items"); ?>"><img src="../../images/add.png" alt="" /> <?php echo gettext("Add Menu Items"); ?></a></strong>
@@ -141,6 +160,12 @@ $count = db_count('menu',NULL,'DISTINCT `menuset`');
 		<span style="float:right">
 			<?php
 				if ($count > 0) {
+					$buttontext = sprintf(gettext("Duplicate menu set '%s'"),html_encode($menuset));
+					?>
+					<span class="buttons">
+						<strong><a href="javascript:dupMenuSet();" title="<?php echo $buttontext; ?>"><img src="../../images/page_white_copy.png" alt="" /><?php echo $buttontext; ?></a></strong>
+					</span>
+					<?php
 					$buttontext = sprintf(gettext("Delete menu set '%s'"),html_encode($menuset));
 					?>
 					<span class="buttons">

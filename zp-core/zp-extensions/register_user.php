@@ -380,7 +380,7 @@ function printRegistrationForm($thanks=NULL) {
 					echo gettext('Your registration request could not be completed.');
 					break;
 				case 'already_verified':
-					echo gettext('Your registration request was previsously accepted.');
+					echo gettext('Your registration request was previously accepted.');
 					break;
 				case 'filter':
 					if (is_object($userobj) && !empty($userobj->msg)) {

@@ -3256,7 +3256,7 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 		if (is_null($height)) $height = 85;
 		if (is_null($crop)) $crop = true;
 	}
-	if (!empty($class)) $class .= ' class="'.$class.'"';
+	if (!empty($class)) $class = ' class="'.$class.'"';
 	echo "<ul".$class.">";
 	for ($i=1; $i<=$number; $i++) {
 		echo "<li>\n";
