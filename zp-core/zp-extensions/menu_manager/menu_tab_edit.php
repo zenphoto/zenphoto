@@ -283,7 +283,7 @@ if (isset($_GET['add']) && !isset($_GET['save'])) {
 		}
 			?>
 			<tr>
-				<td colspan="2"><?php printf(gettext("Menu set <em>%s</em>"), $selector); ?></td>
+				<td colspan="2"><?php printf(gettext("Menu <em>%s</em>"), $selector); ?></td>
 			</tr>
 			<tr style="vertical-align: top">
 				<td style="width: 13%"><?php echo gettext("Type:"); ?></td>

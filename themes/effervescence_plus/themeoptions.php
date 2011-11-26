@@ -77,7 +77,7 @@ class ThemeOptions {
 											gettext('Theme personality') => array('key' => 'Theme_personality', 'type' => OPTION_TYPE_SELECTOR, 'selections' => array(gettext('Image page') => 'Image page', gettext('Simpleviewer') => 'Simpleviewer', gettext('Slimbox') => 'Slimbox', gettext('Smoothgallery') => 'Smoothgallery'),
 															'desc' => gettext('Select the theme personality')),
 											gettext('Theme colors') => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the colors of the theme')),
-											gettext('Custom menu') => array('key' => 'effervescence_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu set you wish to use.').$note)
+											gettext('Custom menu') => array('key' => 'effervescence_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.').$note)
 											);
 
 		if (!function_exists('printCustomMenu') || getThemeOption('custom_index_page', NULL, 'effervescence_plus') != 'gallery')	{
