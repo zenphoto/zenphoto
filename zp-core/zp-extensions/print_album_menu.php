@@ -399,8 +399,8 @@ function checkSelectedAlbum($checkalbum, $option) {
  * @param object $albumobj The object of the album to use
  */
 function getFirstImageOfAlbum($albumobj) {
-	$images = $albumobj->getImages();
-	$firstimage = newImage($albumobj,array_shift($images));
+	$image = $albumobj->getImage(0);
+	$firstimage = newImage($albumobj,$image);
 	$link = $firstimage->getImageLink();
 	return html_encode($link);
 }
