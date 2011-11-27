@@ -2283,7 +2283,7 @@ div.bordered {
 
 div.bordered .headline {
 	font-weight: bold;
-	padding: 8px 10px 10px 10px;
+	padding: 8px 10px 13px 10px;
 	border-bottom: 2px solid #cccccc;
 	background: #ECF1F2;
 	background-image: url(images/admin-headlineback.jpg);

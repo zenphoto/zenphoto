@@ -180,7 +180,6 @@ printLogoAndLinks();
 				$offset = $_zp_zenpage->getOffset($articles_page);
 				$result = array_slice($result, $offset, $articles_page);
 			}
-			echo "<br />current admin page:".$_zp_zenpage_currentadminnewspage;
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU));?></span></h1>
 				<div class="floatright">
