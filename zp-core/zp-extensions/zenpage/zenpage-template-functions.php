@@ -458,6 +458,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 	$cropx = ZP_CN_CROPX;
 	$cropy = ZP_CN_CROPY;
 	$mode = ZP_CN_MODE;
+	$headline = '';
 	switch($newstype) {
 		case 'news':
 			$articlecontent = $_zp_current_zenpage_news->getContent();
@@ -550,22 +551,22 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 						$articlecontent .= '<div class="latestimagesbyalbum">'; // entry wrapper
 						switch($mode) {
 							case 'latestimagesbyalbum-thumbnail':
-								if(getOption('combinews-latestimagesbyalbum-imgtitle')) $articlecontent .= '<h4>'.html_encode($imageobj->getTitle()).'</h4>';
-								$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getThumb()).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$imagedesc;
+								if(getOption('combinews-latestimagesbyalbum-imgtitle')) $headline = '<h4>'.html_encode($imageobj->getTitle()).'</h4>';
+								$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getThumb()).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
 								break;
 							case 'latestimagesbyalbum-thumbnail-customcrop':
-								if(getOption('combinews-latestimagesbyalbum-imgtitle')) $articlecontent .= '<h4>'.html_encode($imageobj->getTitle()).'</h4>';
+								if(getOption('combinews-latestimagesbyalbum-imgtitle')) $headline = '<h4>'.html_encode($imageobj->getTitle()).'</h4>';
 								if(isImagePhoto($imageobj)){
-									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$imagedesc;
+									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
 								} else if(isImageVideo($imageobj)) {
 									$articlecontent .= getNewsVideoContent($imageobj).$imagedesc;
 								} else  {
-									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$imagedesc;
+									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
 								}
 								break;
 							case 'latestimagesbyalbum-sizedimage':
 							case 'latestimagesbyalbum-sizedimage-maxspace':
-								if(getOption('combinews-latestimagesbyalbum-imgtitle')) $articlecontent .= '<h4>'.html_encode($imageobj->getTitle()).'</h4>';
+								if(getOption('combinews-latestimagesbyalbum-imgtitle')) $headline = '<h4>'.html_encode($imageobj->getTitle()).'</h4>';
 								if(isImagePhoto($imageobj)) {
 									switch($mode) {
 										case 'latestimagesbyalbum-sizedimage':
@@ -576,11 +577,11 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 											$imagesource = pathurlencode($imageobj->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true));
 											break;
 									}
-									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.$imagesource.'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$imagedesc;
+									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.$imagesource.'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
 								} else if(isImageVideo($imageobj)) {
-									$articlecontent .= getNewsVideoContent($imageobj).$imagedesc;
+									$articlecontent .= getNewsVideoContent($imageobj).$headline.$imagedesc;
 								} else {
-									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getCustomImage($size, NULL,NULL, NULL, NULL, NULL, NULL,true)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$imagedesc;
+									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getCustomImage($size, NULL,NULL, NULL, NULL, NULL, NULL,true)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
 								}
 								break;
 						} // switch "latest images by album end"
