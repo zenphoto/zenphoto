@@ -12,11 +12,6 @@
 define('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 
-$button_text = gettext('Download Statistics');
-$button_hint = gettext("Shows statistical graphs and info about your gallery's downloads if using the downloadList plugin.");
-$button_icon = WEBPATH.'/'.ZENFOLDER.'/images/bar_graph.png';
-$button_rights = ADMIN_RIGHTS;
-
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
 
 if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.

@@ -228,7 +228,7 @@ function printLogoAndLinks() {
 	echo "\n  ";
 	if (!is_null($_zp_current_admin_obj)) {
 		$sec = (int) ((SERVER_PROTOCOL=='https') & true);
-		$last = $_zp_current_admin_obj->lastlogon;
+		$last = $_zp_current_admin_obj->getLastlogon();
 		if (empty($last)) {
 			printf(gettext('Logged in as %1$s'), $_zp_current_admin_obj->getUser());
 		} else {

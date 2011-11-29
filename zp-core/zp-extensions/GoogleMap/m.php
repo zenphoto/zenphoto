@@ -16,6 +16,28 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <?php googlemap_js(); ?>
+<style type="text/css">
+.errorbox {
+	padding: 20px;
+	background-color: #FDD;
+	border-top: 1px solid #FAA;
+	border-left: 1px solid #FAA;
+	border-right: 1px solid #FAA;
+	border-bottom: 5px solid #FAA;
+	margin-bottom: 10px;
+	font-size: 100%;
+	color: #DD6666;
+}
+.errorbox h2 {
+	color: #DD6666;
+	font-size: 100%;
+	font-weight: bold;
+	margin: 0px;
+}
+.errorlist {
+	list-style-type: none;
+}
+</style>
 </head>
 <body>
 	<script type="text/javascript">
@@ -60,9 +82,23 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 		echo $MAP_OBJECT->printMap();
 		echo $MAP_OBJECT->printOnLoad();
 	} else {
-		$msg = gettext('GoogleMaps:bad "mapdata" parameter');
-		debugLog($msg);
-		trigger_error($msg, E_USER_NOTICE);
+		?>
+		<div class="errorbox">
+			<p>
+				<?php echo gettext('The GoogleMap plugin <em>map display</em> script has received a corrupt <em>Map</em> parameter.
+				This is most likely caused by URL character limitations from your browser.'); ?>
+				<?php echo gettext('For URL limits visit <a href="javascript:parent.window.location=\'http://www.boutell.com/newfaq/misc/urllength.html\';">What is the maximum length of a URL</a>.'); ?>
+			</p>
+			<p>
+			<?php echo gettext('If you are the manager of this site you can try the following to reduce the size of the map parameter:'); ?>
+				<ul>
+					<li><?php echo gettext('Reduce the number of <em>points</em> being displayed'); ?></li>
+					<li><?php echo gettext('Reduce the text passed as the description of each <em>point</em>'); ?></li>
+					<li><?php echo gettext('Truncate the titles of the <em>points</em>'); ?></li>
+				</ul>
+			</p>
+		</div>
+		<?php
 	}
 	?>
 </body>

@@ -608,7 +608,7 @@ class Zenphoto_Authority {
 	 * @param string $user
 	 */
 	function logUser($user) {
-		$user->lastlogon = $user->get('loggedin');
+		$user->set('lastloggedin', $user->get('loggedin'));
 		$user->set('loggedin',date('Y-m-d H:i:s'));
 		$user->save();
 		zp_setCookie("zp_user_auth", $user->getPass(), NULL, NULL, secureServer());
@@ -1057,7 +1057,6 @@ class Zenphoto_Administrator extends PersistentObject {
 	 */
 	var $objects = NULL;
 	var $master = false;	//	will be set to true if this is the inherited master user
-	var $lastlogon = NULL;	// date of last use
 	var $msg = NULL;	//	a means of storing error messages from filter processing
 	var $no_zp_login = false;
 
@@ -1425,6 +1424,14 @@ class Zenphoto_Administrator extends PersistentObject {
 
 	function setChallengePhraseInfo($challenge, $response) {
 		$this->set('challenge_phrase', serialize(array('challenge'=>$challenge,'response'=>$response)));
+	}
+
+	/**
+	 *
+	 * returns the last time the user has logged on
+	 */
+	function getLastLogon() {
+		return $this->get('lastloggedin');
 	}
 
 }

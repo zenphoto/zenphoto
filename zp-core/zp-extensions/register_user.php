@@ -40,7 +40,7 @@ class register_user_options {
 
 	function register_user_options() {
 		global $_zp_authority;
-		gettext($str = 'You have received this email because you registered on the site. To complete your registration visit %s.');
+		gettext($str = 'You have received this email because you registered with the user id %3$s on this site.'."\n".'To complete your registration visit %1$s.');
 		setOptionDefault('register_user_text', getAllTranslations($str));
 		gettext($str = 'Click here to register for this site.');
 		setOptionDefault('register_user_page_tip', getAllTranslations($str));
@@ -75,7 +75,7 @@ class register_user_options {
 												'desc' => gettext('If checked, The user\'s e-mail address will be used as his User ID.')),
 											gettext('Email notification text') => array('key' => 'register_user_text', 'type' => OPTION_TYPE_TEXTAREA,
 												'order' => 3,
-												'desc' => gettext('Text for the body of the email sent to the user. <p class="notebox"><strong>Note:</strong> You must include <code>%s</code> in your message where you wish the registration completion link to appear.</p>')),
+												'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant\'s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
 											gettext('User registration page') => array('key' => 'register_user_page', 'type' => OPTION_TYPE_CUSTOM,
 												'order' => 0,
 												'desc' => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
@@ -303,7 +303,7 @@ function printRegistrationForm($thanks=NULL) {
 							$userobj->save();
 							$link = rewrite_path(	FULLWEBPATH.'/page/'.substr($_zp_gallery_page,0, -4).'?verify='.bin2hex(serialize(array('user'=>$user,'email'=>$admin_e))),
 																		FULLWEBPATH.'/index.php?p='.substr($_zp_gallery_page,0, -4).'&verify='.bin2hex(serialize(array('user'=>$user,'email'=>$admin_e))),false);
-							$message = sprintf(get_language_string(getOption('register_user_text')), $link);
+							$message = sprintf(get_language_string(getOption('register_user_text')), $link, $admin_n, $user, $pass);
 							$notify = zp_mail(get_language_string(gettext('Registration confirmation')), $message, array($user=>$admin_e));
 							if (empty($notify)) {
 								$notify = 'accepted';

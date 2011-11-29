@@ -89,16 +89,20 @@ if (!defined('WEBPATH')) die();
 				if (hasNextImage()) {
 					?>
 					<div id="next" class="slides">
-						<h2><?php echo gettext('Next &raquo;'); ?></h2>
-						<a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext('Next image'); ?>"><img src="<?php echo html_encode(getNextImageThumb()); ?>" /></a>
+						<a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext('Next image'); ?>">
+							<h2><?php echo gettext('Next &raquo;'); ?></h2>
+							<img src="<?php echo html_encode(getNextImageThumb()); ?>" />
+						</a>
 					</div>
 					<?php
 				}
 				if (hasPrevImage()) {
 					?>
 					<div id="prev" class="slides">
-						<h2><?php echo gettext('&laquo; Previous'); ?></h2>
-						<a href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext('Previous image'); ?>"><img src="<?php echo html_encode(getPrevImageThumb()); ?>" /></a>
+						<a href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext('Previous image'); ?>">
+							<h2><?php echo gettext('&laquo; Previous'); ?></h2>
+							<img src="<?php echo html_encode(getPrevImageThumb()); ?>" />
+						</a>
 					</div>
 					<?php
 				}

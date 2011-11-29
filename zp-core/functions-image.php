@@ -361,6 +361,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		if ($watermark_image) {
 			$offset_h = getOption('watermark_h_offset') / 100;
 			$offset_w = getOption('watermark_w_offset') / 100;
+			$percent = getOption('watermark_scale')/100;
 			$watermark = zp_imageGet($watermark_image);
 			if (!$watermark) {
 				imageError(gettext('Watermark not renderable.'), 'err-failimage.png');
@@ -371,7 +372,6 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			$imh = zp_imageHeight($newim);
 			$nw = sqrt(($imw * $imh * $percent)*($watermark_width/$watermark_height));
 			$nh = $nw*($watermark_height/$watermark_width);
-			$percent = getOption('watermark_scale')/100;
 			$r = sqrt(($imw * $imh * $percent) / ($watermark_width * $watermark_height));
 			if (!getOption('watermark_allow_upscale')) {
 				$r = min(1, $r);

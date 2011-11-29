@@ -2288,6 +2288,7 @@ div.bordered .headline {
 	background: #ECF1F2;
 	background-image: url(images/admin-headlineback.jpg);
 	background-repeat: repeat-x;
+	vertical-align: middle;
 }
 
 div.bordered .subhead  {

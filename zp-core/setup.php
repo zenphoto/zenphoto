@@ -235,6 +235,7 @@ if (file_exists(CONFIGFILE)) {
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'].'administrators' . ' ADD COLUMN `valid` int(1) default 1', false);
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'].'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
 				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `loggedin` datetime', false);
+				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `lastloggedin` datetime', false);
 			}
 		}
 
@@ -454,7 +455,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired)) && $good;
 	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup.log';
 	if (isWin()) {
-		checkMark(-1, '', gettext("General file security"),gettext('Zenphoto is unable to manage file security on Windows servers. Please insure that your logs are not browsable.'),false);
+		checkMark(-1, '', gettext("General file security"),gettext('Zenphoto is unable to manage file security on Windows servers. Please insure that your logs and config file are not browsable.'),false);
 	} else {
 		$permission = fileperms($path)&0777;
 		if ($permission & 0077) {
@@ -617,7 +618,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 						$testfiles=array();
 						while(($file=readdir($dir)) !== false) {
 							if (preg_match('/^charset[\._]t(.*)$/', $file, $matches)) {
-								$test = substr($matches[1],-3);
+								$test = stripSuffix($matches[1]);
 								break;
 							}
 						}
@@ -782,7 +783,9 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'path'=>false,'name'=>true,'prefix'=>true);
 					break;
 				case 'pdo_sqlite':
-					$engines[$engineMC] = array('user'=>false,'pass'=>false,'host'=>false,'path'=>true,'name'=>true,'prefix'=>true,'experimental'=>gettext('SQLite is a limited database and does not support all Zenphoto functionality. Use of this database is for <em>Database abstraction</em> proof of concept only.'));
+					if (!defined('RELEASE')) {
+						$engines[$engineMC] = array('user'=>false,'pass'=>false,'host'=>false,'path'=>true,'name'=>true,'prefix'=>true,'experimental'=>gettext('SQLite is a limited database and does not support all Zenphoto functionality. Use of this database is for <em>Database abstraction</em> proof of concept only.'));
+					}
 					break;
 			}
 		} else {
@@ -1150,7 +1153,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	if (count($installed_files) > 0) {
 		if (!defined("RELEASE")) {
-			$msg1 = gettext("Zenphoto core files [This is not an official build. Some files are missing or seem wrong]");
+			$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]");
 		} else {
 			$msg1 = gettext("Zenphoto core files [Some files are missing or seem wrong]");
 		}
@@ -1159,7 +1162,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	} else {
 		if (!defined("RELEASE")) {
 			$mark = -1;
-			$msg1 = gettext("Zenphoto core files [This is not an official build]");
+			$msg1 = gettext("Zenphoto core files [This is a <em>debug</em> build]");
 		} else {
 			$msg1 = '';
 			$mark = 1;
@@ -1594,6 +1597,7 @@ if (file_exists(CONFIGFILE)) {
 		`group` varchar(64) DEFAULT NULL,
 		`date` datetime,
 		`loggedin` datetime,
+		`lastloggedin` datetime,
 		`quota` int(11) DEFAULT NULL,
 		`language` varchar(5) DEFAULT NULL,
 		`prime_album` varchar(255) DEFAULT NULL,
@@ -2141,6 +2145,7 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `expiredate` datetime default NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' ADD COLUMN `publishdate` datetime default NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' ADD COLUMN `expiredate` datetime default NULL';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `lastloggedin` datetime';
 
 	// do this last incase there are any field changes of like names!
 	foreach ($_zp_exifvars as $key=>$exifvar) {

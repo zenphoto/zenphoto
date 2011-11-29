@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.1.6\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-27 16:35+0100\n"
-"PO-Revision-Date: 2011-11-27 16:39+0100\n"
+"POT-Creation-Date: 2011-11-27 10:53+0100\n"
+"PO-Revision-Date: 2011-11-27 16:33+0100\n"
 "Last-Translator: Jakub Meisner <jakub@jlfoto.sk>\n"
 "Language-Team: Jakub Meisner <jakub@jlfoto.sk>\n"
 "MIME-Version: 1.0\n"
@@ -13617,7 +13617,7 @@ msgstr "Voliteľné. Používa sa iba ak je zapnuté Google rozšírenie. Musí 
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/sitemap-extended.php:144
 msgid "Sitemap processing chunk"
-msgstr "Dostupné súbory mapy stránky:"
+msgstr ""
 
 #: D:\Zenphoto_DEV/zp-core/zp-extensions/sitemap-extended.php:146
 msgid "The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files."

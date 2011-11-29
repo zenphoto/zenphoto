@@ -1517,12 +1517,7 @@ function getNextAlbum() {
 	if (in_context(ZP_SEARCH) || in_context(ZP_SEARCH_LINKED)) {
 		$nextalbum = $_zp_current_search->getNextAlbum($_zp_current_album->name);
 	} else if (in_context(ZP_ALBUM)) {
-		if ($_zp_current_album->isDynamic()) {
-			$search = $_zp_current_album->getSearchEngine();
-			$nextalbum = $search->getNextAlbum($_zp_current_album->name);
-		} else {
-			$nextalbum = $_zp_current_album->getNextAlbum();
-		}
+		$nextalbum = $_zp_current_album->getNextAlbum();
 	} else {
 		return null;
 	}
@@ -1553,12 +1548,7 @@ function getPrevAlbum() {
 	if (in_context(ZP_SEARCH) || in_context(ZP_SEARCH_LINKED)) {
 		$prevalbum = $_zp_current_search->getPrevAlbum($_zp_current_album->name);
 	} else if(in_context(ZP_ALBUM)) {
-		if ($_zp_current_album->isDynamic()) {
-			$search = $_zp_current_album->getSearchEngine();
-			$prevalbum = $search->getPrevAlbum($_zp_current_album->name);
-		} else {
-			$prevalbum = $_zp_current_album->getPrevAlbum();
-		}
+		$prevalbum = $_zp_current_album->getPrevAlbum();
 	} else {
 		return null;
 	}
@@ -1612,12 +1602,7 @@ function getNumImages() {
 	if ((in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) || in_context(ZP_SEARCH) && is_null($_zp_current_album)) {
 		return $_zp_current_search->getNumImages();
 	} else {
-		if ($_zp_current_album->isDynamic()) {
-			$search = $_zp_current_album->getSearchEngine();
-			return $search->getNumImages();
-		} else {
-			return $_zp_current_album->getNumImages();
-		}
+		return $_zp_current_album->getNumImages();
 	}
 	return false;
 }
@@ -1781,20 +1766,7 @@ function imageNumber() {
 			}
 		}
 	} else {
-		if ($_zp_current_album->isDynamic()) {
-			$alb = $_zp_current_image->getAlbum()->name;
-			$search = $_zp_current_album->getSearchEngine();
-			$images = $search->getImages();
-			$c = 0;
-			foreach ($images as $image) {
-				$c++;
-				if ($name == $image['filename'] && $alb == $image['folder']) {
-					return $c;
-				}
-			}
-		} else {
-			return $_zp_current_image->getIndex()+1;
-		}
+		return $_zp_current_image->getIndex()+1;
 	}
 	return false;
 }

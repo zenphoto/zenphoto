@@ -17,6 +17,7 @@ chdir(dirname(dirname(__FILE__)));
 
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 require_once(dirname(dirname(__FILE__)).'/template-functions.php');
+$signaure = getOption('zenphoto_install');
 
 $buttonlist[] = array(
 								'category'=>gettext('admin'),
@@ -386,7 +387,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		</div>
 		';
 	}
-	setOption('zenphoto_install', installSignature());
+	setOption('zenphoto_install', $signaure);
 	if ($oldlibauth != $_zp_authority->getVersion()) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {
 			$messages .= '

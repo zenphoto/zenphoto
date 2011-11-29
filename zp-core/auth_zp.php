@@ -70,7 +70,6 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 	}
 	$_zp_loggedin = zp_apply_filter('authorization_cookie',$_zp_authority->checkCookieCredentials());
 	if (is_object($_zp_current_admin_obj)) {
-		$_zp_current_admin_obj->lastlogon = $_zp_current_admin_obj->get('loggedin');
 		$locale = $_zp_current_admin_obj->getLanguage();
 		if (!empty($locale)) {	//	set his prefered language
 			setupCurrentLocale($locale);

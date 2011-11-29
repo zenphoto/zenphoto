@@ -258,7 +258,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	if (defined('RELEASE')) {
 			$official = gettext('Official Build');
 		} else {
-			$official = gettext('SVN');
+			$official = gettext('<em>Debug</em> Build');
 		}
 		$graphics_lib = zp_graphicsLibInfo();
 		?>
