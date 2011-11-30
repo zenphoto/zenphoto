@@ -100,7 +100,7 @@ foreach($latest as $item) {
 			if(getOption('zenpage_rss_length') == "") { // empty value means full content!
 				$content = get_language_string($obj->get('desc'),$locale);
 			} else {
-				$content = shortenContent(get_language_string($obj->get('desc'),$locale),getOption('zenpage_rss_length'), $elipsis='...');
+				$content = shortenContent(get_language_string($obj->get('desc'),$locale),getOption('zenpage_rss_length'), '...');
 			}
 			if(isImagePhoto($obj)) {
 				$content = '<![CDATA[<a title="'.html_encode($title).' in '.html_encode($categories).'" href="'.$protocol.'://'.$host.$link.'"><img border="0" src="'.$protocol.'://'.$host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$filename.'&s='.$s.'" alt="'. html_encode($title) .'"></a>' . $content . ']]>';
@@ -111,10 +111,15 @@ foreach($latest as $item) {
 		case 'albums':
 			break;
 	}
-	$categories = html_encode($categories);
+	if(empty($categories) {
+		$cat_title = '';
+	} else {
+		$categories = html_encode($categories);
+		$cat_title = ' ('.html_encode($categories).')';
+	}
 ?>
 <item>
-	<title><?php echo html_encode($title)." (".html_encode($categories).")"; ?></title>
+	<title><?php echo html_encode($title).$cat_title; ?></title>
 	<link><?php echo '<![CDATA['.$protocol.'://'.$host.$link.']]>';?></link>
 	<description>
 	<?php echo $content;	?>
