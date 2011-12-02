@@ -3774,20 +3774,26 @@ function processCommentBulkActions() {
 	global $gallery;
 	if (isset($_POST['ids'])) { // these is actually the folder name here!
 		$action = sanitize($_POST['checkallaction']);
-		$ids = $_POST['ids'];
 		if($action != 'noaction') {
+			$ids = $_POST['ids'];
 			if (count($ids) > 0) {
 				foreach ($ids as $id) {
-					$comment = new Comment($id);
+					$comment = new Comment(sanitize_numeric($id));
 					switch($action) {
 						case 'deleteall':
 							$comment->remove();
 							break;
 						case 'spam':
-							$comment->setInModeration(1);
+							if (!$comment->getInModeration()) {
+								$comment->setInModeration(1);
+								zp_apply_filter('comment_disapprove', $comment);
+							}
 							break;
 						case 'approve':
-							$comment->setInModeration(0);
+							if ($comment->getInModeration()) {
+								$comment->setInModeration(0);
+								zp_apply_filter('comment_approve', $comment);
+							}
 							break;
 					}
 					$comment->save();

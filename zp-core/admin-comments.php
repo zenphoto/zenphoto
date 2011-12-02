@@ -27,8 +27,8 @@ if (isset($_GET['action'])) {
 	case "spam":
 		XSRFdefender('comment_update');
 		$comment = new Comment(sanitize_numeric($_GET['id']));
-		zp_apply_filter('comment_disapprove', $comment);
 		$comment->setInModeration(1);
+		zp_apply_filter('comment_disapprove', $comment);
 		$comment->save();
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-comments.php');
 		exit();
@@ -36,14 +36,14 @@ if (isset($_GET['action'])) {
 	case "notspam":
 		XSRFdefender('comment_update');
 		$comment = new Comment(sanitize_numeric($_GET['id']));
-		zp_apply_filter('comment_approve', $comment);
 		$comment->setInModeration(0);
+		zp_apply_filter('comment_approve', $comment);
 		$comment->save();
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-comments.php');
 		exit();
 
-	case 'deletecomments':
-		XSRFdefender('deletecomment');
+	case 'applycomments':
+		XSRFdefender('applycomments');
 		if (isset($_POST['ids'])) {
 			$action = processCommentBulkActions();
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-comments.php?bulk=".$action);
@@ -302,8 +302,8 @@ if ($totalpages > 1) {
 }
 ?>
 
-<form name="comments" action="?action=deletecomments" method="post"	onsubmit="return confirmAction();">
-	<?php XSRFToken('deletecomment');?>
+<form name="comments" action="?action=applycomments" method="post"	onsubmit="return confirmAction();">
+	<?php XSRFToken('applycomments');?>
 <input type="hidden" name="subpage" value="<?php echo html_encode($pagenum) ?>" />
 <p class="buttons"><button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button></p>
 <p class="buttons">

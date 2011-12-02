@@ -19,6 +19,9 @@ $plugin_version = '1.4.2';
 
 $option_interface = 'googlemapOptions';
 if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
+	if (session_id() == '' && getOption('gmap_sessions')) {
+		session_start();
+	}
 	zp_register_filter('theme_head','googlemap_js');
 }
 
@@ -114,8 +117,11 @@ class googlemapOptions {
 									gettext('Map display') => array('key' => 'gmap_display', 'type' => OPTION_TYPE_SELECTOR,
 																	'selections' => array(gettext('show')=>'show', gettext('hide')=>'hide',gettext('colorbox')=>'colorbox'),
 																	'order'=>2.5,
-																	'desc' => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.'))
-									);
+																	'desc' => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.')),
+									gettext('Map sessions') => array('key' => 'gmap_sessions', 'type' => OPTION_TYPE_CHECKBOX,
+																	'order'=>8,
+																	'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. If the option is not checked the data is passed as part of the link and may excede the size allowed by some browsers.'))
+		);
 	}
 
 	function handleOption($option, $currentValue) {
@@ -335,40 +341,34 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 			foreach ($mapvars as $key=>$value) {
 				if ($empty[$key] == $mapvars[$key]) {
 					unset ($mapvars[$key]);
+				} else {
+					if (is_float($value)) {
+						$mapvars[$key] = (string) $value;	// force the rounding
+					}
 				}
 			}
-			if (function_exists('bzcompress')) {
-				$data = bzcompress(serialize($mapvars));
+			if (getOption('gmap_sessions')) {
+				$param = '';
+				$_SESSION['GoogleMapVars'] = $mapvars;
 			} else {
-				$data = gzcompress(serialize($mapvars));
+				if (isset($mapvars['_markers'])) {
+					//	force rounding of lat/lon for shorter string
+					foreach ($mapvars['_markers'] as $key=>$marker) {
+						$mapvars['_markers'][$key]['lat'] = (string) $marker['lat'];
+						$mapvars['_markers'][$key]['lon'] = (string) $marker['lon'];
+					}
+				}
+				$serializedData = serialize($mapvars);
+				if (function_exists('bzcompress')) {
+					$data = bzcompress($serializedData);
+				} else {
+					$data = gzcompress($serializedData);
+				}
+				$param = '&amp;data='.base64_encode($data);
 			}
-			$param = base64_encode($data);
 			?>
 
-<?php
-/* somehow it should be possible to post to the colorbox, but this does not display the map
- *
-			<form action="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?type='.$maptype; ?>" id="form_<?php echo $id_data; ?>" method="post">
-			  <input type="hidden" name="data" value="<?php echo $param; ?>" />
-			  <input type="submit" name="do" value="Submit" />
-			</form>
-
-
-			<script type="text/javascript">
-			$(function() {
-			    $("#form_<?php echo $id_data; ?>").submit(function() {
-			        $.post($(this).attr("action"), $(this).serialize(), function(data) {
-			            $.colorbox({html:data});
-			        },
-			        'html');
-			        return false;
-			    });
-			});
-			</script>
-*/
-?>
-
-			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?type='.$maptype.'&amp;data='.$param ?>" title="<?php echo $text; ?>" class="google_map">
+			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?type='.$maptype.$param ?>" title="<?php echo $text; ?>" class="google_map">
 				<?php echo $text; ?>
 			</a>
 			<script type="text/javascript">
