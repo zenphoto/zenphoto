@@ -14,7 +14,7 @@
 	 */
 
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . "class.file.php");
-class Session 
+class Session
 {
     var $lifeTime;
     var $fp = null;
@@ -24,13 +24,13 @@ class Session
     var $sessionFile = null;
     var $ext = '.txt';
     var $gcCounter = 5; //call gc to delete expired session each ten request
-		var $gcCounterFileName = 'gc_counter.ajax.php';
+		var $gcCounterFileName = 'gc_counter.ajax';
 		var $gcCounterFile = null;
-		var $gcLogFileName = 'gc_log.ajax.php';
+		var $gcLogFileName = 'gc_log.ajax.log';
 		var $gcLogFile = null;
 		var $debug = true; //turn it on when you want to see gc log
-		
-		
+
+
     /**
      * constructor
      *
@@ -49,37 +49,37 @@ class Session
     		if(!$dir->isReadable(CONFIG_SYS_DIR_SESSION_PATH))
     		{
     			die('Permission denied: ' . CONFIG_SYS_DIR_SESSION_PATH . " is not readable.");
-    		}    		
+    		}
     		if(!$dir->isWritable(CONFIG_SYS_DIR_SESSION_PATH))
     		{
     			die('Permission denied: ' . CONFIG_SYS_DIR_SESSION_PATH . " is not writable.");
     		}
     	$this->dir = backslashToSlash(addTrailingSlash(CONFIG_SYS_DIR_SESSION_PATH));
-        $this->lifeTime = get_cfg_var("session.gc_maxlifetime");  
-        $this->gcCounterFile = $this->dir . $this->gcCounterFileName; 
+        $this->lifeTime = get_cfg_var("session.gc_maxlifetime");
+        $this->gcCounterFile = $this->dir . $this->gcCounterFileName;
         $this->gcLogFile = $this->dir  . $this->gcLogFileName;
        	$this->sessionDir = backslashToSlash($this->dir.session_id().DIRECTORY_SEPARATOR);
-        $this->init();    	
+        $this->init();
     }
      /**
      * constructor
      *
-     */   
-    function Session() 
+     */
+    function Session()
     {
-    		$this->__construct();        
+    		$this->__construct();
     }
     /**
      * session init
      * @return boolean
      */
-    function init() 
+    function init()
     {
 
-        
-        
+
+
     }
-    
+
     function gc()
     {
      		//init the counter file
@@ -98,17 +98,17 @@ class Session
         		die(SESSION_COUNTER_FILE_WRITE_FAILED);
         	}
         	@fclose($fp);
-        }else 
+        }else
         {
         	die(SESSION_COUNTER_FILE_CREATE_FAILED);
-        }   	
+        }
     }
 
     /**
      * garbage collection function
      *
      */
-    function _gc() 
+    function _gc()
     {
 			//remove expired file from session folder
 	 		$dirHandler = @opendir($this->dir);
@@ -120,32 +120,32 @@ class Session
 				while(false !== ($file = readdir($dirHandler)))
 				{
 					if($file != '.' && $file != '..' && $file != $this->gcCounterFileName && $file != $this->gcLogFileName && $file != session_id() )
-					{						
+					{
 						$path=$this->dir.$file;
 						$output .= $path ;
 						//check if this is a expired session file
 						if(filemtime($path) + $this->lifeTime < time())
-						{							
+						{
 							if($fo->delete($path))
 							{
 								$output .= ' Deleted at ' . date('d/M/Y H:i:s');
-							}else 
+							}else
 							{
 								$output .= " Failed at " . date('d/M/Y H:i:s');
-							}																			
+							}
 						}
 						$output .= "\n";
-											
+
 					}
 				}
 				if($this->debug)
 				{
 					$this->_log($output);
 				}
-				
+
 				@closedir($dirHandler);
 
-			} 
+			}
 			if(CONFIG_SYS_DEMO_ENABLE)
 			{
 				//remove expired files from uploaded folder
@@ -158,34 +158,34 @@ class Session
 					while(false !== ($file = readdir($dirHandler)))
 					{
 						if($file != '.' && $file != '..')
-						{						
+						{
 							$path=CONFIG_SYS_ROOT_PATH.$file;
 							$output .= $path ;
 							//check if this is a expired session file
 							if(filemtime($path) + $this->lifeTime < time())
-							{							
+							{
 								if($fo->delete($path))
 								{
 									$output .= ' Deleted at ' . date('d/M/Y H:i:s');
-								}else 
+								}else
 								{
 									$output .= " Failed at " . date('d/M/Y H:i:s');
-								}																			
+								}
 							}
 							$output .= "\n";
-												
+
 						}
 					}
 					if($this->debug)
 					{
 						$this->_log($output);
 					}
-					
+
 					@closedir($dirHandler);
-	
-				}					
+
+				}
 			}
-		    
+
     }
     /**
      * log action taken by the gc
@@ -203,7 +203,7 @@ class Session
     		@fclose($fp);
     	}
     }
-    
+
     /**
      * get the current session directory
      *
@@ -218,17 +218,17 @@ class Session
     		{
     			return '';
     		}
-    	}else 
+    	}else
     	{
 	     	if(!@is_dir($this->sessionDir))
 	    	{
 	    		return '';
-	    	}   		
+	    	}
     	}
     	return $this->sessionDir;
     }
-    
 
-    
+
+
 }
 ?>

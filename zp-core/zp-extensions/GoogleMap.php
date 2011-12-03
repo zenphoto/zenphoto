@@ -120,7 +120,7 @@ class googlemapOptions {
 																	'desc' => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.')),
 									gettext('Map sessions') => array('key' => 'gmap_sessions', 'type' => OPTION_TYPE_CHECKBOX,
 																	'order'=>8,
-																	'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. If the option is not checked the data is passed as part of the link and may excede the size allowed by some browsers.'))
+																	'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. If the option is not checked the data is passed as part of the link and may exceed the size allowed by some browsers.'))
 		);
 	}
 

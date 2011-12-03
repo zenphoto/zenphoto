@@ -60,7 +60,7 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 	$albumWhere = '';
 	if(!empty($albumlist)) {
 		$albumWhere = ' WHERE (`id`='.implode(' OR `id`=', $albumlist).')';
-	} 
+	}
 	switch($option) {
 		case "popular":
 			$sortorder = "hitcounter";
@@ -144,7 +144,11 @@ function printAlbumStatisticItem($album, $option, $showtitle=false, $showdate=fa
 	} else {
 		if (is_null($width)) $width = 85;
 		if (is_null($height)) $height = 85;
-		if (is_null($crop)) $crop = true;
+		if (is_null($crop)) {
+			$crop = 1;
+		} else {
+			$crop = (int) $crop && true;
+		}
 	}
 	$tempalbum = new Album($_zp_gallery, $album['folder']);
 	if($firstimglink && $tempalbum->getNumImages() != 0) {
@@ -160,14 +164,14 @@ function printAlbumStatisticItem($album, $option, $showtitle=false, $showdate=fa
 	$albumthumb = $tempalbum->getAlbumThumbImage();
 	$thumb = newImage($tempalbum, $albumthumb->filename);
 	switch ($crop) {
-		case 2:
-			echo "<img src=\"".html_encode($albumthumb->getThumb())."\" alt=\"" . html_encode($albumthumb->getTitle()) . "\" /></a>\n<br />";
+		case 0:
+			echo "<img src=\"".html_encode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))."\" alt=\"" . html_encode($albumthumb->getTitle()) . "\" /></a>\n<br />";
 			break;
-		case true;
+		case 1;
 			echo "<img src=\"".html_encode($albumthumb->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))."\" alt=\"" . html_encode($albumthumb->getTitle()) . "\" /></a>\n<br />";
 			break;
-		case false:
-			echo "<img src=\"".html_encode($albumthumb->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))."\" alt=\"" . html_encode($albumthumb->getTitle()) . "\" /></a>\n<br />";
+		case 2:
+			echo "<img src=\"".html_encode($albumthumb->getThumb())."\" alt=\"" . html_encode($albumthumb->getTitle()) . "\" /></a>\n<br />";
 			break;
 	}
 	if($showtitle) {
@@ -419,7 +423,11 @@ function printImageStatistic($number, $option, $albumfolder='', $showtitle=false
 	} else {
 		if (is_null($width)) $width = 85;
 		if (is_null($height)) $height = 85;
-		if (is_null($crop)) $crop = true;
+		if (is_null($crop)) {
+			$crop = 1;
+		} else {
+			$crop = (int) $crop && true;
+		}
 	}
 	echo "\n<div id=\"$option\">\n";
 	echo "<ul>";
@@ -431,14 +439,14 @@ function printImageStatistic($number, $option, $albumfolder='', $showtitle=false
 		}
 		echo "<li><a href=\"" . html_encode($imagelink)."\" title=\"" . html_encode($image->getTitle()) . "\">\n";
 		switch ($crop) {
-			case 2:
-				echo "<img src=\"".html_encode($image->getThumb())."\" alt=\"" . html_encode($image->getTitle()) . "\" /></a>\n<br />";
+			case 0:
+				echo "<img src=\"".html_encode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))."\" alt=\"" . html_encode($image->getTitle()) . "\" /></a>\n";
 				break;
-			case true:
+			case 1:
 				echo "<img src=\"".html_encode($image->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))."\" alt=\"" . html_encode($image->getTitle()) . "\" /></a>\n";
 				break;
-			case false:
-				echo "<img src=\"".html_encode($image->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))."\" alt=\"" . html_encode($image->getTitle()) . "\" /></a>\n";
+			case 2:
+				echo "<img src=\"".html_encode($image->getThumb())."\" alt=\"" . html_encode($image->getTitle()) . "\" /></a>\n<br />";
 				break;
 		}
 		if($showtitle) {

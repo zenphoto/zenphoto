@@ -3226,7 +3226,11 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 	} else {
 		if (is_null($width)) $width = 85;
 		if (is_null($height)) $height = 85;
-		if (is_null($crop)) $crop = true;
+		if (is_null($crop)) {
+			$crop = 1;
+		} else {
+			$crop = (int) $crop && true;
+		}
 	}
 	if (!empty($class)) $class = ' class="'.$class.'"';
 	echo "<ul".$class.">";
@@ -3248,14 +3252,14 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 			}
 			echo '<a href="' . $randomImageURL . '" title="'.sprintf(gettext('View image: %s'), html_encode($randomImage->getTitle())) . '">';
 			switch ($crop) {
-				case 2:
-					$html = "<img src=\"".html_encode($randomImage->getThumb())."\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+				case 0:
+					$html = "<img src=\"".html_encode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))."\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 					break;
-				case true:
+				case 1:
 					$html = "<img src=\"".html_encode($randomImage->getCustomImage(NULL, $width, $height, $width, $height, NULL, NULL, TRUE))."\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 					break;
-				case false:
-					$html =  "<img src=\"".html_encode($randomImage->getCustomImage($width, NULL, NULL, NULL, NULL, NULL, NULL, TRUE))."\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
+				case 2:
+					$html = "<img src=\"".html_encode($randomImage->getThumb())."\" alt=\"" . html_encode($randomImage->getTitle()) . "\" />\n";
 					break;
 			}
 			echo zp_apply_filter('custom_image_html', $html, false);
