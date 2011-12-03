@@ -904,13 +904,6 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<?php
 				//TODO: remove when ajaxfilemanage detects XSRF
 				?>
-				<tr>
-					<td width="175"><?php echo gettext("Ajax Filemanager:"); ?></td>
-					<td width="350">
-						<input type="checkbox" id="enable_ajaxfilemanager" name="enable_ajaxfilemanager"  <?php if(getOption('enable_ajaxfilemanager')) echo ' checked="checked"'; ?>" />
-					</td>
-					<td><?php echo gettext('Set to enable the Ajax Filemanager. The Ajax filemanager is used for the <em>upload:files</em> tab and to insert images in the <em>TinyMCE editor</em> (see the <a href="http://www.zenphoto.org/news/using-the-ajax-file-manager">tutorial</a>.)<p class="notebox">NOTE: Ajax filemanager v1.1 is vulnerable to <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery">Cross Site Reference Forgeries</a> so this option is disabled by default. Enable at your own discretion. This option will be removed when we have an updated version that closes this hole.</p>'); ?></td>
-				</tr>
 				<?php zp_apply_filter('admin_general_data'); ?>
 				<tr>
 					<td colspan="3">

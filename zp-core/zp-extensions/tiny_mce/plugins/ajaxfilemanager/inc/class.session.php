@@ -24,9 +24,9 @@ class Session
     var $sessionFile = null;
     var $ext = '.txt';
     var $gcCounter = 5; //call gc to delete expired session each ten request
-		var $gcCounterFileName = 'gc_counter.ajax';
+		var $gcCounterFileName = 'gc_counter.ajax';//Zenphoto
 		var $gcCounterFile = null;
-		var $gcLogFileName = 'gc_log.ajax.log';
+		var $gcLogFileName = 'gc_log.ajax.log';//Zenphoto
 		var $gcLogFile = null;
 		var $debug = true; //turn it on when you want to see gc log
 
@@ -82,7 +82,7 @@ class Session
 
     function gc()
     {
-     		//init the counter file
+    		//init the counter file
         $fp = @fopen($this->gcCounterFile, 'a+');
         if($fp)
         {

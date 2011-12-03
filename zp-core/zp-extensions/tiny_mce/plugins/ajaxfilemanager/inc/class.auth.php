@@ -12,14 +12,14 @@ $basepath = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__))))));
 require_once($basepath."/admin-globals.php");
 
 //TODO: remove when XSRF is available
-if (!getOption('enable_ajaxfilemanager')) {
+if (!getOption('zp_plugin_ajaxFilemanager')) {
 	die('<p style="padding: 10px 15px 10px 15px;
 	background-color: #FDD;
 	border-width: 1px 1px 2px 1px;
 	border-style: solid;
 	border-color: #FAA;
 	margin-bottom: 10px;
-	font-size: 100%;">'.gettext('ajaxfilemanager is currently disabled').'</p>');
+	font-size: 100%;">'.gettext('The ajaxFilemanager plugin is currently disabled. To use this feature, enable the plugin from the <em>plugins</em> tab.').'</p>');
 }
 
 ?>
@@ -51,7 +51,17 @@ if (!getOption('enable_ajaxfilemanager')) {
 		 */
 		function isLoggedIn()
 		{
-			if (zp_loggedin(FILES_RIGHTS | ZENPAGE_NEWS_RIGHTS | MANAGE_ALL_NEWS_RIGHTS | ZENPAGE_PAGES_RIGHTS | MANAGE_ALL_PAGES_RIGHTS)) return true;
+			if (zp_loggedin(FILES_RIGHTS | ZENPAGE_NEWS_RIGHTS | MANAGE_ALL_NEWS_RIGHTS | ZENPAGE_PAGES_RIGHTS | MANAGE_ALL_PAGES_RIGHTS)) {
+				if (isset($_GET['XSRFToken'])) {
+					$_SESSION['XSRFToken'] = $_GET['XSRFToken'];
+				} else {
+					$_REQUEST['XSRFToken'] = @$_SESSION['XSRFToken'];
+				}
+				XSRFdefender('ajaxfilemanager');
+				GLOBAL $session;
+				$session->debug = false;
+				return true;
+			}
 			die('<p style="padding: 10px 15px 10px 15px;
 						background-color: #FDD;
 						border-width: 1px 1px 2px 1px;

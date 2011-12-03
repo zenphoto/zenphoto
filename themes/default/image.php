@@ -78,11 +78,14 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 		<?php if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow')); ?>
 		<hr /><br />
 		<?php
-			if (getImageMetaData()) {echo "<div id=\"exif_link\"><a href=\"#\" title=\"".gettext("Image Info")."\" class=\"colorbox\">".gettext("Image Info")."</a></div>";
-				echo "<div style='display:none'>"; printImageMetadata('', false); echo "</div>";
-			}
+		if (getImageMetaData()) {
+			echo printImageMetadata(NULL, 'colorbox');
+			?>
+			<br clear="all" />
+			<?php
+		}
+		printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', '');
 		?>
-		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ''); ?>
 		<br clear="all" />
 
 		<?php if (function_exists('printGoogleMap')) printGoogleMap(); ?>

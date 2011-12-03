@@ -334,52 +334,54 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 
 	switch ($hide) {
 		case 'colorbox':
-			$w = str_replace('px','',$MAP_OBJECT->width)+20;
-			$h = str_replace('px','',$MAP_OBJECT->height)+20;
+			if (zp_has_filter('theme_head','colorbox_css')) {
+				$w = str_replace('px','',$MAP_OBJECT->width)+20;
+				$h = str_replace('px','',$MAP_OBJECT->height)+20;
 
-			$mapvars = get_object_vars($MAP_OBJECT);
-			foreach ($mapvars as $key=>$value) {
-				if ($empty[$key] == $mapvars[$key]) {
-					unset ($mapvars[$key]);
-				} else {
-					if (is_float($value)) {
-						$mapvars[$key] = (string) $value;	// force the rounding
+				$mapvars = get_object_vars($MAP_OBJECT);
+				foreach ($mapvars as $key=>$value) {
+					if ($empty[$key] == $mapvars[$key]) {
+						unset ($mapvars[$key]);
+					} else {
+						if (is_float($value)) {
+							$mapvars[$key] = (string) $value;	// force the rounding
+						}
 					}
 				}
-			}
-			if (getOption('gmap_sessions')) {
-				$param = '';
-				$_SESSION['GoogleMapVars'] = $mapvars;
-			} else {
-				if (isset($mapvars['_markers'])) {
-					//	force rounding of lat/lon for shorter string
-					foreach ($mapvars['_markers'] as $key=>$marker) {
-						$mapvars['_markers'][$key]['lat'] = (string) $marker['lat'];
-						$mapvars['_markers'][$key]['lon'] = (string) $marker['lon'];
-					}
-				}
-				$serializedData = serialize($mapvars);
-				if (function_exists('bzcompress')) {
-					$data = bzcompress($serializedData);
+				if (getOption('gmap_sessions')) {
+					$param = '';
+					$_SESSION['GoogleMapVars'] = $mapvars;
 				} else {
-					$data = gzcompress($serializedData);
+					if (isset($mapvars['_markers'])) {
+						//	force rounding of lat/lon for shorter string
+						foreach ($mapvars['_markers'] as $key=>$marker) {
+							$mapvars['_markers'][$key]['lat'] = (string) $marker['lat'];
+							$mapvars['_markers'][$key]['lon'] = (string) $marker['lon'];
+						}
+					}
+					$serializedData = serialize($mapvars);
+					if (function_exists('bzcompress')) {
+						$data = bzcompress($serializedData);
+					} else {
+						$data = gzcompress($serializedData);
+					}
+					$param = '&amp;data='.base64_encode($data);
 				}
-				$param = '&amp;data='.base64_encode($data);
-			}
-			?>
+				?>
 
-			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?type='.$maptype.$param ?>" title="<?php echo $text; ?>" class="google_map">
-				<?php echo $text; ?>
-			</a>
-			<script type="text/javascript">
-				// <!-- <![CDATA[
-				$(document).ready(function(){
-					$(".google_map").colorbox({iframe:true, innerWidth:'<?php echo $w; ?>px', innerHeight:'<?php echo $h; ?>px'});
-				});
-				// ]]> -->
-			</script>
-			<?php
-			break;
+				<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/GoogleMap/m.php?type='.$maptype.$param ?>" title="<?php echo $text; ?>" class="google_map">
+					<?php echo $text; ?>
+				</a>
+				<script type="text/javascript">
+					// <!-- <![CDATA[
+					$(document).ready(function(){
+						$(".google_map").colorbox({iframe:true, innerWidth:'<?php echo $w; ?>px', innerHeight:'<?php echo $h; ?>px'});
+					});
+					// ]]> -->
+				</script>
+				<?php
+				break;
+			}
 		case 'hide':
 			?>
 			<script type="text/javascript">

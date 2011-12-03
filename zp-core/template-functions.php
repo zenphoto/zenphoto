@@ -2162,32 +2162,53 @@ function getImageMetaData($image=NULL, $displayonly=true) {
  * @param string $class style class
  * @author Ozh
  */
-function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $class=null) {
+function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $class=null, $span=NULL) {
 	global $_zp_exifvars, $_zp_current_image;
-
 	if (false === ($exif = getImageMetaData($_zp_current_image,true))) {
 		return;
 	}
 	if (is_null($title)) {
 		$title = gettext('Image Info');
 	}
-
-
-	$dataid = $id . '_data';
-	echo "<div" . (($class) ? " class=\"$class\"" : "") . (($id) ? " id=\"$id\"" : "") . ">\n";
-	if ($toggle) echo "<a href=\"javascript:toggle('$dataid');\">";
-	echo "<span class='metadata_title'>$title</span>";
-	if ($toggle) echo "</a>\n";
-
-	echo "<table id=\"$dataid\"" . ($toggle ? " style=\"display: none;\"" : '') . ">\n";
-	foreach ($exif as $field => $value) {
-		$label = $_zp_exifvars[$field][2];
-		echo "<tr><td class=\"label\">$label:</td><td class=\"value\">";
-		printField('image', $field, false, $value);
-		echo "</td></tr>\n";
+	if ($class) {
+		$class = ' class="'.$class.'"';
 	}
-	echo "</table>\n</div>\n";
-
+	if (!$span) {
+		$span = 'exif_link';
+	}
+	$dataid = $id.'_data';
+	if ($id) {
+		$id = ' id="'.$id.'"';
+	}
+	$refh = $refa = $style = '';
+	if ($toggle == 'colorbox' && zp_has_filter('theme_head','colorbox_css')) {
+		$refh = '<a href="#" class="colorbox" title="'.$title.'">';
+		$refa = '</a>';
+		$style = ' style="display:none"';
+	} else if ($toggle) {
+		$refh = '<a href="javascript:toggle(\''.$dataid.'\');" title="'.$title.'">';
+		$refa = '</a>';
+		$style = ' style="display:none"';
+	}
+	?>
+	<span id="<?php echo $span; ?> class="metadata_title">
+		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
+	</span>
+	<span id="<?php echo $dataid; ?>"<?php echo $style; ?>>
+	<div<?php echo $id.$class; ?>>
+		<table>
+		<?php
+			foreach ($exif as $field => $value) {
+				$label = $_zp_exifvars[$field][2];
+				echo "<tr><td class=\"label\">$label:</td><td class=\"value\">";
+				printField('image', $field, false, $value);
+				echo "</td></tr>\n";
+			}
+			?>
+		</table>
+	</div>
+	</span>
+	<?php
 }
 
 /**

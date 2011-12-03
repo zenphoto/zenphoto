@@ -88,9 +88,9 @@ require_once('normalizer.php');
 					<li class="date"><?php printImageDate(); ?></li>
 					<li class="tags"><?php echo getAlbumLocation(); ?></li>
 					<li class="exif">
-				<?php
-					if (getImageMetaData()) {echo "<a href=\"#\" title=\"".gettext("Image Info")."\" class=\"colorbox\">".gettext("Image Info")."</a>";
-						echo "<div style='display:none'>"; printImageMetadata('', false); echo "</div>";
+					<?php
+					if (getImageMetaData()) {
+						echo printImageMetadata(NULL, 'colorbox');
 						if (isImagePhoto()) echo "&nbsp;/&nbsp;";
 					}
 					$fullimage = getFullImageURL();

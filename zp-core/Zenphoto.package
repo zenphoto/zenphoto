@@ -622,6 +622,7 @@ zp-core/zp-extensions/PHPMailer/class.phpmailer.php
 zp-core/zp-extensions/PHPMailer/class.pop3.php
 zp-core/zp-extensions/PHPMailer/class.smtp.php
 zp-core/zp-extensions/admin-approval.php
+zp-core/zp-extensions/ajaxFilemanager.php
 zp-core/zp-extensions/auto_backup.php
 zp-core/zp-extensions/captcha
 zp-core/zp-extensions/captcha/reCaptcha
@@ -1804,4 +1805,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1806
+1807

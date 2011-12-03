@@ -19,7 +19,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 			// <!-- <![CDATA[
 			$(document).ready(function(){
 				$(".colorbox").colorbox({
-					inline:true, 
+					inline:true,
 					href:"#imagemetadata",
 					close: '<?php echo gettext("close"); ?>'
 					});
@@ -130,18 +130,11 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 				<div id="map_link">
 					<?php printGoogleMap(); ?>
 				</div>
+				<br clear="all" />
 				<?php
 			}
 			if (getImageMetaData()) {
-				?>
-				<br clear="all" />
-				<div id="exif_link">
-					<a href="#" title="<?php echo gettext("Image Info"); ?>" class="colorbox"><?php echo gettext("Image Info"); ?></a>
-				</div>
-				<div style="display:none">
-					<?php echo printImageMetadata('', false); ?>
-				</div>
-				<?php
+				echo printImageMetadata(NULL, 'colorbox');
 			}
 			?>
 			<p><?php	printImageDesc(true); ?></p>

@@ -104,9 +104,9 @@ if (!defined('WEBPATH')) die();
 		?>
 
 		<?php
-			if (getImageMetaData()) {echo "<div id=\"exif_link\"><a href=\"#\" title=\"".gettext("Image Info")."\" class=\"colorbox\">".gettext("Image Info")."</a></div>";
-				echo "<div style='display:none'>"; printImageMetadata('', false); echo "</div>";
-			}
+		if (getImageMetaData()) {
+			echo printImageMetadata(NULL, 'colorbox');
+		}
 		?>
 
 		<br style="clear:both" />

@@ -111,13 +111,8 @@ if (!defined('WEBPATH')) die();
 				<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
 				<?php
 				if (getImageMetaData()) {
+					echo printImageMetadata(NULL, 'colorbox');
 					?>
-					<span id="exif_link">
-						<a href="#" title="<?php echo gettext("Image Info"); ?>" class="colorbox"><?php echo gettext("Image Info"); ?></a>
-					</span>
-					<span style="display:none">
-						<?php echo printImageMetadata('', false); ?>
-					</span>
 					<br clear="all" />
 					<?php
 				}

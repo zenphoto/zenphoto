@@ -11,7 +11,6 @@ class ThemeOptions {
 		setThemeOptionDefault('albums_per_row', 3);
 		setThemeOptionDefault('images_per_row', 6);
 		setThemeOptionDefault('thumb_transition', 1);
-		setOptionDefault('zp_plugin_colorbox', 1);
 		setOptionDefault('colorbox_stopdesign_album', 1);
 		setOptionDefault('colorbox_stopdesign_image', 1);
 		setOptionDefault('colorbox_stopdesign_search', 1);

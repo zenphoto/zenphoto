@@ -26,7 +26,6 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_transition', 1);
 		setThemeOptionDefault('effervescence_daily_album_image', 1);
 		setThemeOptionDefault('effervescence_daily_album_image_effect', '');
-		setOptionDefault('zp_plugin_colorbox', 1);
 		setOptionDefault('colorbox_effervescence_plus_album', 1);
 		setOptionDefault('colorbox_effervescence_plus_image', 1);
 		setOptionDefault('colorbox_effervescence_plus_search', 1);
