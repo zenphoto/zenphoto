@@ -111,7 +111,7 @@ foreach($latest as $item) {
 		case 'albums':
 			break;
 	}
-	if(empty($categories) {
+	if(empty($categories)) {
 		$cat_title = '';
 	} else {
 		$categories = html_encode($categories);
