@@ -34,12 +34,17 @@ $album8 = filesystemToInternal($album);
 $image8 = filesystemToInternal($image);
 $theme = themeSetup($album); // loads the theme based image options.
 
-/* Prevent hotlinking to the full image from other servers. */
-$server = $_SERVER['SERVER_NAME'];
-if (isset($_SERVER['HTTP_REFERER'])) $test = strpos($_SERVER['HTTP_REFERER'], $server); else $test = true;
-if ( $test == FALSE && getOption('hotlink_protection')) { /* It seems they are directly requesting the full image. */
-	$i = 'index.php?album='.$album8 . '&image=' . $image8;
-	header("Location: {$i}");
+/* Prevent hotlinking to the full image from other domains. */
+$server = preg_replace('/^www\./i', '', $_SERVER['SERVER_NAME']);
+if (isset($_SERVER['HTTP_REFERER'])) {
+	preg_match('|(.*)//([^/]*)|', $_SERVER['HTTP_REFERER'], $matches);
+	$test = strpos($matches[2], $server);
+} else {
+	$test = true;
+}
+if (($test === FALSE) && getOption('hotlink_protection')) {
+	/* It seems they are directly requesting the full image. */
+	header('Location: '.FULLWEBPATH.'\index.php?album='.$album8 . '&image=' . $image8);
 	exit();
 }
 

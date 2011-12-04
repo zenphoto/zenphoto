@@ -73,7 +73,7 @@ class SearchEngine
 
 
 		if (isset($_REQUEST['words'])) {
-			$this->words = sanitize($_REQUEST['words']);
+			$this->words = sanitize($_REQUEST['words'],0);
 		} else {
 			$this->words = NULL;
 			if (isset($_REQUEST['date'])) {  // words & dates are mutually exclusive
