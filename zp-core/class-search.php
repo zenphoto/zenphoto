@@ -58,7 +58,8 @@ class SearchEngine
 		$this->search_structure['state']							= gettext('State');
 		$this->search_structure['country']						= gettext('Country');
 		$this->search_structure['copyright']					= gettext('Copyright');
-		if (getOption('zp_plugin_zenpage') && !$dynamic_album) {//zenpage fields
+		if (getOption('zp_plugin_zenpage') && !$dynamic_album) {
+			//zenpage fields
 			$this->search_structure['content']					= gettext('Content');
 			$this->search_structure['extracontent']			= gettext('ExtraContent');
 			$this->search_structure['author']						= gettext('Author');
@@ -70,17 +71,18 @@ class SearchEngine
 			$this->search_structure[strtolower($field)]	= $row[2];
 		}
 
+
 		if (isset($_REQUEST['words'])) {
-			$this->words = $_REQUEST['words'];
+			$this->words = sanitize($_REQUEST['words']);
 		} else {
-			$this->words = '';
+			$this->words = NULL;
 			if (isset($_REQUEST['date'])) {  // words & dates are mutually exclusive
 				$this->dates = sanitize($_REQUEST['date'], 3);
 				if (isset($_REQUEST['whichdate'])) {
 					$this->whichdates = sanitize($_REQUEST['whichdate']);
 				}
 			} else {
-				$this->dates = '';
+				$this->dates = NULL;
 			}
 		}
 		$this->fieldList = $this->parseQueryFields();
@@ -600,7 +602,7 @@ class SearchEngine
 						break;
 					case '(':
 					case ')':
-						$sanitizedwords .= "$singlesearchstring";
+						$sanitizedwords .= $singlesearchstring;
 						break;
 					default:
 						$sanitizedwords .= search_quote(sanitize($singlesearchstring, 3));

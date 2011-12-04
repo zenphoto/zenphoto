@@ -3,7 +3,7 @@
   @url: http://remysharp.com/2007/12/28/jquery-tag-suggestion/
   @usage: setGlobalTags(['javascript', 'jquery', 'java', 'json']); // applied tags to be used for all implementations
           $('input.tags').tagSuggest(options);
-          
+
           The selector is the element that the user enters their tag list
   @params:
     matchClass - class applied to the suggestions, defaults to 'tagMatches'
@@ -28,25 +28,25 @@
     window.setGlobalTags = function(tags /* array */) {
         globalTags = getTags(tags);
     };
-    
+
     function getTags(tags) {
         var tag, i, goodTags = [];
         for (i = 0; i < tags.length; i++) {
             tag = tags[i];
             if (typeof tags[i] == 'object') {
                 tag = tags[i].tag;
-            } 
+            }
             goodTags.push(tag.toLowerCase());
         }
-        
+
         return goodTags;
     }
-    
+
     $.fn.tagSuggest = function (options) {
-        var defaults = { 
-            'matchClass' : 'tagMatches', 
-            'tagContainer' : 'span', 
-            'tagWrap' : 'span', 
+        var defaults = {
+            'matchClass' : 'tagMatches',
+            'tagContainer' : 'span',
+            'tagWrap' : 'span',
             'sort' : true,
             'tags' : null,
             'url' : null,
@@ -70,7 +70,7 @@
             var workingTags = [];
             var currentTag = {"position": 0, tag: ""};
             var tagMatches = document.createElement(settings.tagContainer);
-            
+
             function showSuggestionsDelayed(el, key) {
                 if (settings.delay) {
                     if (elm.timer) clearTimeout(elm.timer);
@@ -89,9 +89,9 @@
 
                 // we're looking to complete the tag on currentTag.position (to start with)
                 currentTag = { position: currentTags.length-1, tag: '' };
-                
+
                 for (i = 0; i < currentTags.length && i < workingTags.length; i++) {
-                    if (!tagSelected && 
+                    if (!tagSelected &&
                         currentTags[i].toLowerCase() != workingTags[i].toLowerCase()) {
                         currentTag = { position: i, tag: workingTags[i].toLowerCase() };
                         tagSelected = true;
@@ -117,16 +117,16 @@
                             if (userTags[i].indexOf(currentTag.tag) === 0) {
                                 matches.push(userTags[i]);
                             }
-                        }                        
+                        }
                     }
-                    
+
                     matches = $.grep(matches, function (v, i) {
                         return !chosenTags[v.toLowerCase()];
                     });
 
                     if (settings.sort) {
                         matches = matches.sort();
-                    }                    
+                    }
 
                     for (i = 0; i < matches.length; i++) {
                         html += '<' + settings.tagWrap + ' class="_tag_suggestion">' + matches[i] + '</' + settings.tagWrap + '>';
@@ -169,7 +169,7 @@
                 var result = false;
                 var pat = false;
                 var testfor = ['&','|','!',',','(',')','"','`',"'",' '];
-                tag = Encoder.htmlDecode(tag);  
+                tag = Encoder.htmlDecode(tag);
                  for (var j in testfor) {
                  	if (tag.indexOf(testfor[j])>=0) {
                  		result = true;
@@ -177,17 +177,9 @@
                  	}
                 }
                 if (result) {
-                	if (tag.indexOf('"')<0) {
-                 		tag = '`'+tag+'`';
-                	} else {
-                		if (tag.indexOf('"')<0) {
-	                 		tag = '"'+tag+'"';
-	                	} else {
-	                		tag = '\''+tag+'\'';
-	                	}
-                	}
+	                tag = '"'+addslashes(tag)+'"';
                 }
-                
+
                 workingTags[i] = tag;
                 tagsElm.val(workingTags.join(settings.separator) + settings.separator);
                 tagsElm.blur().focus();
@@ -198,7 +190,7 @@
                 fromTab = false;
                 var type = ev.type;
                 var resetSelection = false;
-                
+
                 switch (ev.keyCode) {
                     case 37: // ignore cases (arrow keys)
                     case 38:
@@ -233,7 +225,7 @@
                         if (suggestionsShow) {
                             // complete
                             chooseTag(matches[0]);
-                            
+
                             fromTab = true;
                             return false;
                         } else {
@@ -259,10 +251,10 @@
                         }
                     }
 
-                    if (resetSelection) { 
+                    if (resetSelection) {
                         setSelection();
                     }
-                    showSuggestionsDelayed(this, ev.charCode);            
+                    showSuggestionsDelayed(this, ev.charCode);
                 }
             }
 
@@ -277,7 +269,7 @@
             tagMatches = $(tagMatches).click(function (ev) {
                 if (ev.target.nodeName == settings.tagWrap.toUpperCase() && $(ev.target).is('._tag_suggestion')) {
                     chooseTag(ev.target.innerHTML);
-                }                
+                }
             }).addClass(settings.matchClass);
 
             // initialise
