@@ -204,7 +204,7 @@ function db_close() {
 function db_software() {
 	$dbversion = trim(@mysql_get_server_info());
 	preg_match('/[0-9,\.]*/', $dbversion, $matches);
-	return array('application'=>DATABASE_SOFTWARE,'required'=>'3.6.15','desired'=>'3.6.15','version'=>$matches[0]);
+	return array('application'=>DATABASE_SOFTWARE,'required'=>'5.0.0','desired'=>'5.5.0','version'=>$matches[0]);
 }
 
 /**

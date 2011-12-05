@@ -301,6 +301,7 @@ zp-core/class-transientimage.php
 zp-core/classes.php
 zp-core/controller.php
 zp-core/cron_runner.php
+zp-core/dataaccess
 zp-core/example_robots.txt
 zp-core/exif
 zp-core/exif/exif.php
@@ -1805,4 +1806,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1807
+1808

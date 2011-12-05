@@ -84,7 +84,7 @@ function db_software() {
 	global $_zp_DB_connection;
 	$dbversion = trim($_zp_DB_connection->getAttribute(PDO::ATTR_SERVER_VERSION));
 	preg_match('/[0-9,\.]*/', $dbversion, $matches);
-	return array('application'=>DATABASE_SOFTWARE,'required'=>'3.6.15','desired'=>'3.6.15','version'=>$matches[0]);
+	return array('application'=>DATABASE_SOFTWARE,'required'=>'3.6.15','desired'=>'3.7.0','version'=>$matches[0]);
 }
 
 /**

@@ -1,0 +1,7 @@
+# block WEB access to Zenphoto data files
+IndexIgnore *
+<FilesMatch "\.(htaccess|cfg|log)$">
+  Order Allow,Deny
+  Deny from all
+	</FilesMatch>
+ 

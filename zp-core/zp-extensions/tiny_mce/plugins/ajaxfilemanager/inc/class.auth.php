@@ -11,7 +11,6 @@ $const_webpath = dirname(dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIP
 $basepath = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__))))));
 require_once($basepath."/admin-globals.php");
 
-//TODO: remove when XSRF is available
 if (!getOption('zp_plugin_ajaxFilemanager')) {
 	die('<p style="padding: 10px 15px 10px 15px;
 	background-color: #FDD;

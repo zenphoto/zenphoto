@@ -82,6 +82,7 @@ if (file_exists(CONFIGFILE)) {
 		@copy('zenphoto.cfg', CONFIGFILE);
 	}
 }
+@copy('dataaccess',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess');
 
 if (session_id() == '') {
 	session_start();
