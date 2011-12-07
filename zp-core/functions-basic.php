@@ -156,14 +156,11 @@ if (!defined('OFFSET_PATH')) { define('OFFSET_PATH', 0); }
 
 if (!defined('WEBPATH')) {
 	if (OFFSET_PATH) {
-		preg_match('|(.*)/'.ZENFOLDER.'/|',$_SERVER['SCRIPT_NAME'], $matches);
-		if (empty($matches)) {
-			preg_match('|(.*)/'.USER_PLUGIN_FOLDER.'/|',$_SERVER['SCRIPT_NAME'], $matches);
-		}
+		preg_match('~(.*)/('.ZENFOLDER.'|'.USER_PLUGIN_FOLDER.')/~',$_SERVER['SCRIPT_NAME'], $matches);
 		if (empty($matches)) {
 			$const_webpath = '';
 		} else {
-			$const_webpath = str_replace("\\", '/', $matches[1]).'/';
+			$const_webpath = str_replace("\\", '/', $matches[1]);
 		}
 	} else {
 		$const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
@@ -174,7 +171,6 @@ if (!defined('WEBPATH')) {
 	define('WEBPATH', $const_webpath);
 	unset($const_webpath);
 }
-
 
 define('SERVER_PROTOCOL', getOption('server_protocol'));
 switch (SERVER_PROTOCOL) {
