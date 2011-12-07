@@ -9,7 +9,7 @@
  * @package admin
  */
 
-define('OFFSET_PATH', 4);
+define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));

@@ -1,6 +1,5 @@
 <?php
-define('OFFSET_PATH', 5);
-$const_webpath = dirname(dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))))));
+define('OFFSET_PATH', 3);
 require_once("../../../../functions.php");
 $host = "http://".html_encode($_SERVER["HTTP_HOST"]);
 
@@ -65,7 +64,7 @@ if(isset($_GET['image']) && isset($_GET['album'])) {
 	} else {
 	?>
 	<img src="<?php echo pathurlencode($imageobj->getSizedImage(440)); ?>" />
-	<?php } 
+	<?php }
 } else {
 	echo "<div style='text-align: left; width 450px; font-size:0.8em'>";
 	if(isset($_GET['news'])) {

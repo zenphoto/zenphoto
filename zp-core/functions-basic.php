@@ -61,7 +61,7 @@ if (!defined('FILESYSTEM_CHARSET')) {
 	}
 }
 if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', 0777); }
-if (!defined('OFFSET_PATH')) { define('OFFSET_PATH', 0); }
+
 if (!defined('COOKIE_PESISTENCE')) { define('COOKIE_PESISTENCE', 5184000); }
 
 // If the server protocol is not set, set it to the default.
@@ -141,28 +141,41 @@ if (function_exists('zp_graphicsLibInfo')) {
 
 require_once(dirname(__FILE__).'/lib-encryption.php');
 
-switch (OFFSET_PATH) {
-	case 0:	// starts from the root index.php
-		$const_webpath = dirname($_SERVER['SCRIPT_NAME']);
-		break;
-	case 1:	// starts from the zp-core folder
-	case 2:	// things which do not need admin tabs (setup, image processor scripts, etc.)
-		$const_webpath = dirname(dirname($_SERVER['SCRIPT_NAME']));
-		break;
-	case 3: // starts from the plugins folder
-		$const_webpath = dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])));
-		break;
-	case 4: // starts from within a folder within the plugins folder
-		$const_webpath = dirname(dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))));
-		break;
-	case 5: // $const_webpath provided by the "loading function"
-		break;
+if (!defined('SERVERPATH')) {
+	define('SERVERPATH', str_replace("\\", '/', dirname(dirname(__FILE__))));
 }
-$const_webpath = str_replace("\\", '/', $const_webpath);
-if ($const_webpath == '/') $const_webpath = '';
-if (!defined('WEBPATH')) { define('WEBPATH', $const_webpath); }
-unset($const_webpath);
-if (!defined('SERVERPATH')) define('SERVERPATH', str_replace("\\", '/', dirname(dirname(__FILE__))));
+
+if (!defined('OFFSET_PATH')) { define('OFFSET_PATH', 0); }
+/**
+ * OFFSET_PATH definisions:
+ * 		0		Theme scripts (root index.php)
+ * 		1		zp-core scripts
+ * 		2		setup scripts
+ * 		3		plugin scripts
+ */
+
+if (!defined('WEBPATH')) {
+	if (OFFSET_PATH) {
+		preg_match('|(.*)/'.ZENFOLDER.'/|',$_SERVER['SCRIPT_NAME'], $matches);
+		if (empty($matches)) {
+			preg_match('|(.*)/'.USER_PLUGIN_FOLDER.'/|',$_SERVER['SCRIPT_NAME'], $matches);
+		}
+		if (empty($matches)) {
+			$const_webpath = '';
+		} else {
+			$const_webpath = str_replace("\\", '/', $matches[1]).'/';
+		}
+	} else {
+		$const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
+		if ($const_webpath == '/' || $const_webpath == '.') {
+			$const_webpath = '';
+		}
+	}
+	define('WEBPATH', $const_webpath);
+	unset($const_webpath);
+}
+
+
 define('SERVER_PROTOCOL', getOption('server_protocol'));
 switch (SERVER_PROTOCOL) {
 	case 'https':

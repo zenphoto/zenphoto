@@ -6,8 +6,7 @@
 ?>
 <?php	// Zenphoto security stuff
 
-define('OFFSET_PATH', 5);
-$const_webpath = dirname(dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))))));
+define('OFFSET_PATH', 3);
 $basepath = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__))))));
 require_once($basepath."/admin-globals.php");
 

@@ -532,7 +532,6 @@ if (!$_include) {
 		}
 }
 if (!defined('OFFSET_PATH')) define('OFFSET_PATH',5);
-$const_webpath = dirname(dirname(dirname(dirname(dirname($_SERVER['SCRIPT_NAME'])))));
 require_once(dirname(dirname(dirname(dirname(__FILE__)))).'/admin-functions.php');
 setOption('federated_logon_detect', 1);
 $body .= '<a href="'.FULLWEBPATH.'/'.ZENFOLDER.'/admin-plugins.php">'.gettext('back to Zenphoto').'</a>';

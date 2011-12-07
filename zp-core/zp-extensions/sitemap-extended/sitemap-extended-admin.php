@@ -7,7 +7,7 @@
  * @package admin
  */
 
-define('OFFSET_PATH', 4);
+define('OFFSET_PATH', 3);
 chdir(dirname(dirname(__FILE__)));
 
 require_once('../../zp-core/admin-globals.php');

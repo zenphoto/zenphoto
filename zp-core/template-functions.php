@@ -1137,7 +1137,7 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 		trigger_error(gettext('printField() invalid function call.'), E_USER_NOTICE);
 		return false;
 	}
-	$text = trim( $override !== false ? $override : get_language_string($object->get($field)) );
+	$text = preg_replace('/&[^amp;]/', '&amp;', trim($override ? $override : get_language_string($object->get($field))));
 	if ($convertBR) {
 		$text = str_replace("\r\n", "\n", $text);
 		$text = str_replace("\n", "<br />", $text);
@@ -1145,8 +1145,7 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 
 	if (!empty($text)) echo $label;
 
-	$html = '<span>' . $text . "</span>\n";
-	echo zp_apply_filter('printObjectField', $html, $object, $context, $field);
+	echo zp_apply_filter('printObjectField', $text, $object, $context, $field);
 
 }
 

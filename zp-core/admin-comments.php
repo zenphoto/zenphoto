@@ -116,117 +116,121 @@ zp_apply_filter('admin_note','comments', $subtab);
 <div class="box" style="padding: 10px">
 <?php
 	$id = sanitize_numeric($_GET['id']);
-
 	$commentarr = query_single_row("SELECT * FROM ".prefix('comments')." WHERE id = $id LIMIT 1");
-	extract($commentarr);
-	?>
-
-<form action="?action=savecomment" method="post">
-<?php XSRFToken('savecomment');?>
-<input	type="hidden" name="id" value="<?php echo $id; ?>" />
-	<span class="buttons">
-	<p class="buttons">
-		<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment')?>'; }"
-		title="<?php echo gettext('Delete'); ?>" ><img src="images/fail.png" alt="" />
-		<?php echo gettext('Delete'); ?></a>
-	</p>
-	<p class="buttons" style="margin-top: 10px">
-		<button type="submit" title="<?php echo gettext("Apply"); ?>">
-		<img src="images/pass.png" alt="" />
-		<strong><?php echo gettext("Apply"); ?></strong>
-		</button>
-	</p>
-	<p class="buttons" style="margin-top: 10px">
-		<button type="button" title="<?php echo gettext("Cancel"); ?>" onclick="window.location = 'admin-comments.php';">
-		<img src="images/reset.png" alt="" />
-		<strong><?php echo gettext("Cancel"); ?></strong>
-		</button>
-		</p>
-	</span>
-	<br style="clear:both" /><br />
-
-
-<table style="float:left;margin-right:2em;">
-
-	<tr>
-		<td width="100"><?php echo gettext("Author:"); ?></td>
-		<td><input type="text" size="40" name="name" value="<?php echo html_encode($name); ?>" /></td>
-	</tr>
-	<tr>
-		<td><?php echo gettext("Web Site:"); ?></td>
-		<td><input type="text" size="40" name="website" value="<?php echo html_encode($website); ?>" /></td>
-	</tr>
-	<tr>
-		<td><?php echo gettext("E-Mail:"); ?></td>
-		<td><input type="text" size="40" name="email" value="<?php echo html_encode($email); ?>" /></td>
-	</tr>
-	<tr>
-		<td><?php echo gettext("Date/Time:"); ?></td>
-		<td><input type="text" size="18" name="date" value="<?php echo html_encode($date); ?>" /></td>
-	</tr>
-	<tr>
-		<td><?php echo gettext("IP:"); ?></td>
-		<td><input type="text" size="18" name="date" value="<?php echo html_encode($IP); ?>" /></td>
-	</tr>
-	<?php
-	echo zp_apply_filter('edit_comment_custom_data', '', $custom_data);
-	?>
-	<tr>
-		<td valign="top"><?php echo gettext("Comment:"); ?></td>
-		<td><textarea rows="8" cols="60" name="comment" /><?php echo html_encode($comment); ?></textarea></td>
-	</tr>
-	<tr>
-		<td></td>
-		<td>
+	if ($commentarr) {
+		extract($commentarr);
+		?>
+		<form action="?action=savecomment" method="post">
+		<?php XSRFToken('savecomment');?>
+		<input	type="hidden" name="id" value="<?php echo $id; ?>" />
+			<span class="buttons">
+			<p class="buttons">
+				<a href="javascript:if(confirm('<?php echo gettext('Are you sure you want to delete this comment?'); ?>')) { window.location='?action=deletecomment&id=<?php echo $id; ?>&amp;XSRFToken=<?php echo getXSRFToken('deletecomment')?>'; }"
+				title="<?php echo gettext('Delete'); ?>" ><img src="images/fail.png" alt="" />
+				<?php echo gettext('Delete'); ?></a>
+			</p>
+			<p class="buttons" style="margin-top: 10px">
+				<button type="submit" title="<?php echo gettext("Apply"); ?>">
+				<img src="images/pass.png" alt="" />
+				<strong><?php echo gettext("Apply"); ?></strong>
+				</button>
+			</p>
+			<p class="buttons" style="margin-top: 10px">
+				<button type="button" title="<?php echo gettext("Cancel"); ?>" onclick="window.location = 'admin-comments.php';">
+				<img src="images/reset.png" alt="" />
+				<strong><?php echo gettext("Cancel"); ?></strong>
+				</button>
+				</p>
+			</span>
+			<br style="clear:both" /><br />
 
 
-		</td>
-	</tr>
-</table>
-<div style="width:260px; float:right">
-<h2 class="h2_bordered_edit"><?php echo gettext('Comment management'); ?></h2>
-<div class="box-edit">
-<?php
-	if ($inmoderation) {
-		$status_moderation = '<span style="color: red">'.gettext('Comment is un-approved').'</span>';
-		$link_moderation = gettext('Approve');
-		$title_moderation = gettext('Approve this comment');
-		$url_moderation = '?action=notspam&amp;id='.$id;
-		$linkimage = "images/pass.png";
+		<table style="float:left;margin-right:2em;">
+
+			<tr>
+				<td width="100"><?php echo gettext("Author:"); ?></td>
+				<td><input type="text" size="40" name="name" value="<?php echo html_encode($name); ?>" /></td>
+			</tr>
+			<tr>
+				<td><?php echo gettext("Web Site:"); ?></td>
+				<td><input type="text" size="40" name="website" value="<?php echo html_encode($website); ?>" /></td>
+			</tr>
+			<tr>
+				<td><?php echo gettext("E-Mail:"); ?></td>
+				<td><input type="text" size="40" name="email" value="<?php echo html_encode($email); ?>" /></td>
+			</tr>
+			<tr>
+				<td><?php echo gettext("Date/Time:"); ?></td>
+				<td><input type="text" size="18" name="date" value="<?php echo html_encode($date); ?>" /></td>
+			</tr>
+			<tr>
+				<td><?php echo gettext("IP:"); ?></td>
+				<td><input type="text" size="18" name="date" value="<?php echo html_encode($IP); ?>" /></td>
+			</tr>
+			<?php
+			echo zp_apply_filter('edit_comment_custom_data', '', $custom_data);
+			?>
+			<tr>
+				<td valign="top"><?php echo gettext("Comment:"); ?></td>
+				<td><textarea rows="8" cols="60" name="comment" /><?php echo html_encode($comment); ?></textarea></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+
+
+				</td>
+			</tr>
+		</table>
+		<div style="width:260px; float:right">
+		<h2 class="h2_bordered_edit"><?php echo gettext('Comment management'); ?></h2>
+		<div class="box-edit">
+		<?php
+			if ($inmoderation) {
+				$status_moderation = '<span style="color: red">'.gettext('Comment is un-approved').'</span>';
+				$link_moderation = gettext('Approve');
+				$title_moderation = gettext('Approve this comment');
+				$url_moderation = '?action=notspam&amp;id='.$id;
+				$linkimage = "images/pass.png";
+			} else {
+				$status_moderation = '<span style="color: green">'.gettext('Comment is approved').'</span>';
+				$link_moderation = gettext('Un-approve');
+				$title_moderation = gettext('Un-approve this comment');
+				$url_moderation = '?action=spam&amp;id='.$id;
+				$linkimage = "images/warn.png";
+			}
+
+			if ($private) {
+				$status_private = gettext('Comment is private');
+			} else {
+				$status_private = gettext('Comment is public');
+			}
+
+			if ($anon) {
+				$status_anon = gettext('Comment is anonymous');
+			} else {
+				$status_anon = gettext('Comment is not anonymous');
+			}
+
+
+		?>
+		<p><?php echo $status_moderation; ?>. <div class="buttons"><a href="<?php echo $url_moderation; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update')?>" title="<?php echo $title_moderation; ?>" ><img src="<?php echo $linkimage; ?>" alt="" /><?php echo $link_moderation; ?></a></div></p>
+		<br clear="all" />
+		<hr />
+		<p><?php echo $status_private; ?></p>
+		<p><?php echo $status_anon; ?></p>
+		</div><!-- div box-edit-unpadded end -->
+		</div>
+		</form>
+		<br clear="all" />
+		</div> <!-- div box end -->
+		<?php
+		// end of $page == "editcomment"
 	} else {
-		$status_moderation = '<span style="color: green">'.gettext('Comment is approved').'</span>';
-		$link_moderation = gettext('Un-approve');
-		$title_moderation = gettext('Un-approve this comment');
-		$url_moderation = '?action=spam&amp;id='.$id;
-		$linkimage = "images/warn.png";
+		?>
+		<p class="errorbox"><?php echo gettext('Comment does not exist'); ?></p>
+		<?php
 	}
-
-	if ($private) {
-		$status_private = gettext('Comment is private');
-	} else {
-		$status_private = gettext('Comment is public');
-	}
-
-	if ($anon) {
-		$status_anon = gettext('Comment is anonymous');
-	} else {
-		$status_anon = gettext('Comment is not anonymous');
-	}
-
-
-?>
-<p><?php echo $status_moderation; ?>. <div class="buttons"><a href="<?php echo $url_moderation; ?>&amp;XSRFToken=<?php echo getXSRFToken('comment_update')?>" title="<?php echo $title_moderation; ?>" ><img src="<?php echo $linkimage; ?>" alt="" /><?php echo $link_moderation; ?></a></div></p>
-<br clear="all" />
-<hr />
-<p><?php echo $status_private; ?></p>
-<p><?php echo $status_anon; ?></p>
-</div><!-- div box-edit-unpadded end -->
-</div>
-</form>
-<br clear="all" />
-</div> <!-- div box end -->
-<?php
-// end of $page == "editcomment"
 } else {
 	// Set up some view option variables.
 

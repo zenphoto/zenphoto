@@ -41,9 +41,12 @@ if (isset($_REQUEST['autorun'])) {
 	$autorun = false;
 }
 
-$const_webpath = dirname(dirname($_SERVER['SCRIPT_NAME']));
-$const_webpath = str_replace("\\", '/', $const_webpath);
-if ($const_webpath == '/') $const_webpath = '';
+preg_match('|(.*)/'.ZENFOLDER.'/|',$_SERVER['SCRIPT_NAME'], $matches);
+if (empty($matches)) {
+	$const_webpath = '';
+} else {
+	$const_webpath = $matches[1].'/';
+}
 $serverpath = str_replace("\\", '/', dirname(dirname(__FILE__)));
 
 $chmod = fileperms(dirname(__FILE__))&0777;
@@ -453,7 +456,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$required = '5.0.0';
 	$desired = '5.3';
 	$err = versionCheck($required, $desired, PHP_VERSION);
-	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired)) && $good;
+	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired), false) && $good;
 	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup.log';
 	if (isWin()) {
 		checkMark(-1, '', gettext("General file security"),gettext('Zenphoto is unable to manage file security on Windows servers. Please insure that your logs and config file are not browsable.'),false);
@@ -857,7 +860,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		}
 	}
 	if ($connection) {
-		$good = checkMark($sqlv, sprintf(gettext('%1$s version %2$s'),$dbapp,$dbversion), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is preferred. Use a lower version at your own risk.'),$required,$desired)) && $good;
+		$good = checkMark($sqlv, sprintf(gettext('%1$s version %2$s'),$dbapp,$dbversion), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is preferred. Use a lower version at your own risk.'),$required,$desired), false) && $good;
 		if ($DBcreated || !empty($connectDBErr)) {
 			if (empty($connectDBErr)) {
 				$severity = 1;
