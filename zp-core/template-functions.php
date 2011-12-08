@@ -976,7 +976,7 @@ function printParentBreadcrumb($before = '', $between=' | ', $after = ' | ', $tr
 		foreach($parents as $parent) {
 			if ($i > 0) echo $between;
 			$url = rewrite_path("/" . pathurlencode($parent->name) . "/", "/index.php?album=" . pathurlencode($parent->name));
-			$desc = $parent->getDesc();
+			$desc = strip_tags($parent->getDesc());
 			if (!empty($desc) && $truncate) $desc = truncate_string($string, $length, $elipsis);
 			printLink($url, $parent->getTitle(), $desc);
 			$i++;

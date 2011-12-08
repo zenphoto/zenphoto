@@ -4,7 +4,6 @@ define('OFFSET_PATH', 3);
 $basepath = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
 require_once($basepath."/admin-globals.php");
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS, '');
-//TODO: add XSRFDefender('tinyzenpage'); All the launch URLs need to pass XSRFToken=<?php getXSRFToken('tinyzenpage');
 require_once($basepath .'/'. PLUGIN_FOLDER ."/zenpage/zenpage-template-functions.php");
 require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
 ?>

@@ -68,9 +68,6 @@ if (isset($_GET['action'])) {
 				}
 			}
 
-			//TODO: temporary
-			setOption('enable_ajaxfilemanager', isset($_POST['enable_ajaxfilemanager']));
-
 			setOption('mod_rewrite', (int) isset($_POST['mod_rewrite']));
 			setOption('mod_rewrite_image_suffix', sanitize($_POST['mod_rewrite_image_suffix'],3));
 			if (isset($_POST['time_zone'])) {
@@ -901,9 +898,6 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					</td>
 					<td><?php echo gettext("This email address will be used as the <em>From</em> address for all mails sent by Zenphoto."); ?></td>
 				</tr>
-				<?php
-				//TODO: remove when ajaxfilemanage detects XSRF
-				?>
 				<?php zp_apply_filter('admin_general_data'); ?>
 				<tr>
 					<td colspan="3">
@@ -955,13 +949,16 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td>
 						<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY == 'public') echo ' checked="checked"' ?> onclick="javascript:$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
 						<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY == 'private') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
-<?php /** TODO:
+<?php /**
+TODO: Restricted galleries
 						<label><input type="radio" name="gallery_security" value="restricted" alt="<?php echo gettext('restricted'); ?>"<?php if (GALLERY_SECURITY == 'restricted') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('restricted'); ?></label>
 */ ?>
 					</td>
 					<td>
 						<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
-						<?php //TODO: echo gettext('Restricted galleries are private galleries but users may see only their managed albums.'); ?>
+						<?php
+						//TODO: Restricted galleries
+						//echo gettext('Restricted galleries are private galleries but users may see only their managed albums.'); ?>
 					</td>
 				</tr>
 				<?php
