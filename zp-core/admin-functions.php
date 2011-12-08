@@ -134,9 +134,15 @@ function printAdminHeader($tab,$subtab=NULL) {
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.scrollTo.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
-		$(document).ready(function(){
-			$("a.colorbox").colorbox({ maxWidth:"98%", maxHeight:"98%"});
-		});
+		<?php
+		if(zp_has_filter('admin_head','colorbox_css')) {
+			?>
+			$(document).ready(function(){
+				$("a.colorbox").colorbox({ maxWidth:"98%", maxHeight:"98%"});
+			});
+			<?php
+		}
+		?>
 		jQuery(function( $ ){
 			$("#fade-message").fadeTo(5000, 1).fadeOut(1000);
 			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
@@ -2061,7 +2067,8 @@ function printAlbumEditRow($album, $show_thumb) {
 		</div>
 		<div class="page-list_icon">
 			<?php
-			$supress = !zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) && $album->getID() == $_zp_current_admin_obj->getAlbum()->getID();
+			$myalbum = $_zp_current_admin_obj->getAlbum();
+			$supress = !zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) && $myalbum && $album->getID() == $myalbum->getID();
 			if (!$enableEdit || $supress) {
 				?>
 				<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />

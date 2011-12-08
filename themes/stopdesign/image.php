@@ -13,7 +13,7 @@ require_once('normalizer.php');
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<script type="text/javascript">var blogrelurl = "<?php echo $_zp_themeroot ?>";</script>
-	<?php if(getOption('zp_plugin_colorbox') && getOption('colorbox_'.getCurrentTheme().'_image')) { ?>
+	<?php if(zp_has_filter('theme_head','colorbox_css')) { ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(document).ready(function(){

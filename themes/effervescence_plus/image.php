@@ -14,7 +14,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<script type="text/javascript" src="<?php echo  $_zp_themeroot ?>/scripts/bluranchors.js"></script>
-	<?php if(getOption('zp_plugin_colorbox') && getOption('colorbox_'.getCurrentTheme().'_image')) { ?>
+	<?php if(zp_has_filter('theme_head','colorbox_css')) { ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(document).ready(function(){
