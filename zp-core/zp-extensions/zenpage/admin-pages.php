@@ -92,7 +92,7 @@ zenpageJSCSS();
 <div>
 <p><?php echo gettext("Select a page to edit or drag the pages into the order, including subpage levels, you wish them displayed."); ?></p>
 <?php
-if (GALLERY_SECURITY != 'private') {
+if (GALLERY_SECURITY == 'public') {
 	?>
 	<p class="notebox"><?php echo gettext("<strong>Note:</strong> Subpages of password protected pages inherit the protection."); ?></p>
 	<?php

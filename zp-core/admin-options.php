@@ -953,17 +953,21 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td><?php echo gettext('Gallery type')?></td>
 					<td>
-						<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY != 'private') echo ' checked="checked"' ?> onclick="javascript:$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
+						<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY == 'public') echo ' checked="checked"' ?> onclick="javascript:$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
 						<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY == 'private') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
+<?php /** TODO:
+						<label><input type="radio" name="gallery_security" value="restricted" alt="<?php echo gettext('restricted'); ?>"<?php if (GALLERY_SECURITY == 'restricted') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('restricted'); ?></label>
+*/ ?>
 					</td>
 					<td>
 						<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
+						<?php //TODO: echo gettext('Restricted galleries are private galleries but users may see only their managed albums.'); ?>
 					</td>
 				</tr>
 				<?php
-				if (GALLERY_SECURITY != 'private') {
+				if (GALLERY_SECURITY == 'public') {
 					?>
-					<tr class="passwordextrashow public_gallery" <?php if (GALLERY_SECURITY == 'private') echo 'style="display:none"'; ?> >
+					<tr class="passwordextrashow public_gallery" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?> >
 						<td style="background-color: #ECF1F2;">
 							<p>
 								<a href="javascript:toggle_passwords('',true);">
@@ -1299,7 +1303,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 					</td>
 				</tr>
 				<?php
-				if (GALLERY_SECURITY != 'private') {
+				if (GALLERY_SECURITY == 'public') {
 					?>
 					<tr class="passwordextrashow">
 						<td width="175" style="background-color: #ECF1F2;">
@@ -1936,7 +1940,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 
 				<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 				<?php
-				if (GALLERY_SECURITY != 'private') {
+				if (GALLERY_SECURITY == 'public') {
 					?>
 					<br clear="all" />
 					<table class="compact">
@@ -2881,10 +2885,10 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 					</td>
 				</tr>
 					<?php
-					if (GALLERY_SECURITY=='public') {
+					if (GALLERY_SECURITY =='public') {
 						$disable = $gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
 						?>
-						<div class="public_gallery"<?php if (GALLERY_SECURITY == 'private') echo ' style="display:none"'; ?>>
+						<div class="public_gallery"<?php if (GALLERY_SECURITY != 'public') echo ' style="display:none"'; ?>>
 							<tr>
 							<td><?php echo gettext('User name'); ?></td>
 							<td>

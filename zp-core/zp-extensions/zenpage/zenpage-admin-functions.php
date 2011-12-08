@@ -1607,7 +1607,7 @@ function zenpageJSCSS() {
 function printZenpageIconLegend() { ?>
 	<ul class="iconlegend">
 	<?php
-	if (GALLERY_SECURITY != 'private') {
+	if (GALLERY_SECURITY == 'public') {
 		?>
 		<li><img src="../../images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>	<li><img src="../../images/pass.png" alt="" /><img	src="../../images/action.png" alt="" /><img src="images/clock.png" alt="" /><?php echo gettext("Published/Not published/Scheduled for publishing"); ?></li>
 		<?php

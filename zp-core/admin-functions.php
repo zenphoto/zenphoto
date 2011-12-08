@@ -1149,9 +1149,9 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						</td>
 					</tr>
 					<?php
-					if (GALLERY_SECURITY != 'private') {
+					if (GALLERY_SECURITY == 'public') {
 						?>
-						<tr class="password<?php echo $suffix; ?>extrashow" <?php if (GALLERY_SECURITY == 'private') echo 'style="display:none"'; ?> >
+						<tr class="password<?php echo $suffix; ?>extrashow" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?> >
 							<td align="left" valign="top">
 								<p>
 									<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',true);">
@@ -1867,7 +1867,7 @@ function printAlbumLedgend() {
 	</ul>
 	<ul class="iconlegend">
 		<?php
-		if (GALLERY_SECURITY != 'private') {
+		if (GALLERY_SECURITY == 'public') {
 			?>
 			<li><img src="images/lock.png" alt="" /><?php echo gettext("Has Password"); ?></li>
 			<?php

@@ -57,7 +57,7 @@ class Gallery {
 	 *
 	 */
 	function getPassword() {
-		if (GALLERY_SECURITY == 'private') {
+		if (GALLERY_SECURITY != 'public') {
 			return NULL;
 		} else {
 			return $this->get('gallery_password');
@@ -922,7 +922,7 @@ class Gallery {
 	 * @param unknown_type $show
 	 */
 	function checkforGuest(&$hint=NULL, &$show=NULL) {
-		if (!(GALLERY_SECURITY == 'private')) {
+		if (!(GALLERY_SECURITY != 'public')) {
 			return false;
 		}
 		$hint = '';

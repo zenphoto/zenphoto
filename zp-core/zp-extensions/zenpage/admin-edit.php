@@ -424,10 +424,10 @@ zp_apply_filter('admin_note','news', $subtab);
 				}
 				if(is_AdminEditPage('page') || is_AdminEditPage('category')) {
 				?>
-					<p class="passwordextrashow" <?php if (GALLERY_SECURITY == 'private') echo 'style="display:none"'; ?>>
+					<p class="passwordextrashow" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?>>
 					<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
 					<?php
-					if (GALLERY_SECURITY != 'private') {
+					if (GALLERY_SECURITY == 'public') {
 						?>
 						<a href="javascript:toggle_passwords('',true);">
 							<?php echo gettext("Password:"); ?>

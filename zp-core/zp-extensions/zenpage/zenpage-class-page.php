@@ -51,7 +51,7 @@ class ZenpagePage extends ZenpageItems {
 	 * @return string
 	 */
 	function getPassword() {
-			if (GALLERY_SECURITY == 'private') {
+			if (GALLERY_SECURITY != 'public') {
 			return NULL;
 		} else {
 			return $this->get('password');
@@ -262,7 +262,7 @@ class ZenpagePage extends ZenpageItems {
 			return true;
 		}
 		if (zp_loggedin($action)) {
-			if (GALLERY_SECURITY == 'private' && $this->getShow() && $action == LIST_RIGHTS) {
+			if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
 				return LIST_RIGHTS;
 			}
 			if ($_zp_current_admin_obj->getUser() == $this->getAuthor()) {

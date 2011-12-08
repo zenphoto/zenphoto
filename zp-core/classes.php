@@ -662,7 +662,7 @@ class ThemeObject extends PersistentObject {
 	 * @param $show
 	 */
 	function checkForGuest(&$hint=NULL, &$show=NULL) {
-		return !(GALLERY_SECURITY == 'private');
+		return !(GALLERY_SECURITY != 'public');
 	}
 
 	/**
@@ -744,7 +744,7 @@ class MediaObject extends ThemeObject {
 	 * @return string
 	 */
 	function getPassword() {
-		if (GALLERY_SECURITY == 'private') {
+		if (GALLERY_SECURITY != 'public') {
 			return NULL;
 		} else {
 			return $this->get('password');

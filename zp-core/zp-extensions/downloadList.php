@@ -69,7 +69,7 @@ class downloadListOptions {
 												'order' => 1,
 									  		'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
 		);
-		if (GALLERY_SECURITY != 'private') {
+		if (GALLERY_SECURITY == 'public') {
 			$options[chr(0x00)] = array('key' => 'downloadlist_credentials', 'type' => OPTION_TYPE_CUSTOM,
 																	'order' => 0,
 																	'desc' => gettext('Provide credentials to password protect downloads'));

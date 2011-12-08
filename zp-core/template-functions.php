@@ -4194,7 +4194,7 @@ function checkAccess(&$hint, &$show) {
 				break;
 		}
 	}
-	if (GALLERY_SECURITY == 'private') {	// only registered users allowed
+	if (GALLERY_SECURITY != 'public') {	// only registered users allowed
 		return false;
 	}
 	if (checkForGuest($hint, $show)) {
