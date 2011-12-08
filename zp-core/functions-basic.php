@@ -1281,7 +1281,7 @@ function stripSuffix($filename) {
 function getAlbumInherited($folder, $field, &$id) {
 	$folders = explode('/',filesystemToInternal($folder));
 	$album = array_shift($folders);
-	$like = ' LIKE "'.$album.'"';
+	$like = ' LIKE '.db_quote($album);
 	while (count($folders) > 0) {
 		$album .= '/'.array_shift($folders);
 		$like .= ' OR `folder` LIKE '.db_quote($album);

@@ -399,7 +399,7 @@ function validateLocale($userlocale,$source) {
 				$locale = $value;
 				if (DEBUG_LOCALE) debugLog("locale set from $source: ".$locale);
 				break;
-			} else if (preg_match('/^'.$userlocale.'/', strtoupper($value))) { // we got a partial match
+			} else if (@preg_match('/^'.$userlocale.'/', strtoupper($value))) { // we got a partial match
 				$locale = $value;
 				if (DEBUG_LOCALE) debugLog("locale set from $source (partial match): ".$locale);
 				break;
