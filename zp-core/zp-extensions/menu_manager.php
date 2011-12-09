@@ -206,7 +206,7 @@ function getItemTitleAndURL($item) {
 			$result = query_single_row($sql);
 			if (is_array($result)) {
 				$obj = new ZenpagePage($item['link']);
-				$url = rewrite_path("/pages/".$item['link'],"/index.php?p=pages&amp;titlelink=".$item['link']);
+				$url = rewrite_path("/pages/".$item['link'],"/index.php?p=pages&amp;title=".$item['link']);
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
 			} else {
