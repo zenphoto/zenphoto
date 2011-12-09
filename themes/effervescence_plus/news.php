@@ -52,7 +52,15 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 				}
 				?>
 				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a></span>
-				<?php printNewsIndexURL(gettext("News")," | ");  printCurrentNewsCategory(" | ".gettext('Category')." - "); ?><?php printNewsTitle(" | "); ?>
+				<?php
+				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY) || getNewsTitle()) {
+					printNewsIndexURL(gettext("News")," | ");
+					printCurrentNewsCategory(" | ".gettext('Category')." - ");
+					printNewsTitle(" | ");
+				} else {
+					echo ' | '.gettext("News");
+				}
+				?>
 			</div>
 		</div> <!-- wrapnav -->
 

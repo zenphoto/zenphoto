@@ -1,5 +1,8 @@
 <?php
 /**
+ *
+ * File handling for "uploaded" files
+ *
  */
 define('OFFSET_PATH', 1);
 

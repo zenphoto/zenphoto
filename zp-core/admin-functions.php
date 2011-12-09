@@ -28,7 +28,7 @@ function printAdminFooter($addl='') {
 			echo ' | '. $addl;
 		}
 		?>
-		 | <a href="http://www.gnu.org/licenses/old-licenses/gpl-2.0.html" title="<?php echo gettext('GPLv2'); ?>"><?php echo gettext('License:GPLv2'); ?></a>
+		 | <a href="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/license.php'?>" title="<?php echo gettext('GPLv2'); ?>"><?php echo gettext('License:GPLv2'); ?></a>
 		 | <a href="http://www.zenphoto.org/news/category/user-guide" title="<?php echo gettext('User guide'); ?>"><?php echo gettext('User guide'); ?></a>
 		 | <a href="http://www.zenphoto.org/support/" title="<?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
 		 | <a href="http://www.zenphoto.org/trac/report/10" title="<?php echo gettext('Bugtracker'); ?>"><?php echo gettext('Bugtracker'); ?></a>
@@ -79,6 +79,7 @@ function printAdminHeader($tab,$subtab=NULL) {
 		$_zp_admin_subtab = $subtab;
 	}
 	$tabtext = $_zp_admin_tab;
+	$tabrow = NULL;
 	foreach ($zenphoto_tabs as $key=>$tabrow) {
 		if ($key == $_zp_admin_tab) {
 			$tabtext = $tabrow['text'];

@@ -62,8 +62,6 @@ if (!defined('FILESYSTEM_CHARSET')) {
 }
 if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', 0777); }
 
-if (!defined('COOKIE_PESISTENCE')) { define('COOKIE_PESISTENCE', 5184000); }
-
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
 
@@ -185,6 +183,10 @@ switch (SERVER_PROTOCOL) {
 	}
 	break;
 }
+if (!defined('COOKIE_PESISTENCE')) {
+	define('COOKIE_PESISTENCE', getOption('cookie_persistence'));
+}
+
 define('FULLWEBPATH', PROTOCOL."://" . $_SERVER['HTTP_HOST'] . WEBPATH);
 define('SAFE_MODE_ALBUM_SEP', '__');
 define('SERVERCACHE', SERVERPATH . '/'.CACHEFOLDER);

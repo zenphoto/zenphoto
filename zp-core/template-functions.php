@@ -928,9 +928,12 @@ function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
  * @param mixed $truncate if not empty, the max lenght of the description.
  * @param string $elipsis the text to append to the truncated description
  */
-function printParentBreadcrumb($before = '', $between=' | ', $after = ' | ', $truncate=NULL, $elipsis='...') {
+function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $truncate=NULL, $elipsis=NULL) {
 	global $_zp_gallery, $_zp_current_search, $_zp_current_album, $_zp_last_album;
 	echo $before;
+	if (is_null($between)) $between=' | ';
+	if (is_null($after)) $after=' | ';
+	if (is_null($elipsis)) $between='...';
 	if (in_context(ZP_SEARCH_LINKED)) {
 		$page = $_zp_current_search->page;
 		$searchwords = $_zp_current_search->words;
@@ -976,8 +979,9 @@ function printParentBreadcrumb($before = '', $between=' | ', $after = ' | ', $tr
 		foreach($parents as $parent) {
 			if ($i > 0) echo $between;
 			$url = rewrite_path("/" . pathurlencode($parent->name) . "/", "/index.php?album=" . pathurlencode($parent->name));
-			$desc = strip_tags($parent->getDesc());
-			if (!empty($desc) && $truncate) $desc = truncate_string($string, $length, $elipsis);
+			//cleanup things in description for use as attribute tag
+			$desc = html_entity_decode(strip_tags(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc()))));
+			if (!empty($desc) && $truncate) $desc = truncate_string($desc , $truncate, $elipsis);
 			printLink($url, $parent->getTitle(), $desc);
 			$i++;
 		}

@@ -517,7 +517,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 					if(isImagePhoto($albumthumbobj)) {
 						switch($mode) {
 							case 'latestalbums-sizedimage':
-								$imgurl = html_encode($albumthumbobj->getSizedImage($size));								
+								$imgurl = html_encode($albumthumbobj->getSizedImage($size));
 								break;
 							case 'latestalbums-sizedimage-maxspacce':
 								getMaxSpaceContainer($width, $height, $albumthumbobj,true);
@@ -2228,7 +2228,6 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 /**
  * Prints the parent items breadcrumb navigation for pages or categories
  *
- * @param string $mode 'pages or 'categories'
  * @param string $before Text to place before the breadcrumb item
  * @param string $after Text to place after the breadcrumb item
  */

@@ -104,6 +104,13 @@ if (isset($_GET['action'])) {
 				$imgpublish = 0;
 			}
 
+			if (isset($_POST['cookie_persistence'])) {
+				$cookie_persistence = sanitize_numeric($_POST['cookie_persistence']);
+				if (empty($cookie_persistence)) {
+					$cookie_persistence = 5184000;
+				}
+			}
+			setOption('cookie_persistence', $cookie_persistence);
 			setOption('AlbumThumbSelect', sanitize_numeric($_POST['thumbselector']));
 			$gallery->setImagePublish($imgpublish);
 			$gallery->setPersistentArchive((int) isset($_POST['persistent_archive']));
@@ -1195,6 +1202,18 @@ TODO: Restricted galleries
 										value="1" <?php echo checked('1', GALLERY_SESSION); ?> />
 								<?php echo gettext("enable gallery sessions"); ?>
 							</label>
+							<?php
+							if (!GALLERY_SESSION) {
+								?>
+								<p>
+									<?php
+									echo gettext('Cookie duration');
+									?>
+									<input type="text" name="cookie_persistence" value="<?php echo COOKIE_PESISTENCE; ?>" />
+								</p>
+								<?php
+							}
+							?>
 						</p>
 					</td>
 					<td>
@@ -1230,6 +1249,10 @@ TODO: Restricted galleries
 						<p><?php  echo gettext("<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>enable gallery sessions</em>" ); ?></p>
 						<div id="gallerysessions" style="display: none">
 						<p><?php echo gettext("Check this option if you are having issues with album password cookies not being retained. Setting the option causes zenphoto to use sessions rather than cookies."); ?></p>
+						</div>
+						<p><?php  echo gettext("<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for <em>Cookie duration</em>" ); ?></p>
+						<div id="cookie_persistence" style="display: none">
+						<p><?php echo gettext("Set to the time in seconds that cookies should be kept by browsers."); ?></p>
 						</div>
 					</td>
 				</tr>
@@ -1371,14 +1394,27 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 					$set_fields = $engine->allowedSearchFields();
 					$fields = array_diff($fields, $set_fields);
 					?>
+					<script>
+						$(function() {
+							$("#resizable").resizable({
+										maxWidth: 350,
+										minWidth: 350, minHeight: 120,
+										resize: function(event, ui) {
+																			$('#searchchecklist').height($('#resizable').height());
+																		 }
+							});
+						});
+					</script>
 					<td>
 						<?php echo gettext('Fields list:'); ?>
-						<ul class="searchchecklist">
+						<div id="resizable">
+						<ul class="searchchecklist" id="searchchecklist">
 							<?php
 							generateUnorderedListFromArray($set_fields, $set_fields, 'SEARCH_', false, true, true, NULL, $extra);
 							generateUnorderedListFromArray(array(), $fields, 'SEARCH_', false, true, true, NULL, $extra);
 							?>
 						</ul>
+						</div>
 						<br />
 						<?php echo gettext('Treat spaces as')?>
 						<?php generateRadiobuttonsFromArray(getOption('search_space_is'),array(gettext('<em>space</em>')=>'',gettext('<em>OR</em>')=>'OR',gettext('<em>AND</em>')=>'AND'),'search_space_is',false,false); ?>

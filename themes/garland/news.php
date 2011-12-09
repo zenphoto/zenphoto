@@ -37,7 +37,15 @@ if (!defined('WEBPATH')) die();
 							<h2 id="gallerytitle">
 							<?php printHomeLink('',' &raquo; '); ?>
 							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
-							<?php printNewsIndexURL(gettext("News"),"  &raquo; ");  printCurrentNewsCategory("  &raquo; ".gettext('Category')." - "); ?><?php printNewsTitle("  &raquo; "); ?>
+							<?php
+							if (in_context(ZP_ZENPAGE_NEWS_CATEGORY) || getNewsTitle()) {
+								printNewsIndexURL(gettext("News"),"  &raquo; ");
+								printCurrentNewsCategory("  &raquo; ".gettext('Category')." - ");
+								printNewsTitle("  &raquo; ");
+							} else {
+								echo ' &raquo; '.gettext("News");
+							}
+							?>
 							</h2>
 							<?php
 							if(is_NewsArticle()) { // single news article

@@ -594,4 +594,8 @@ appropriate gallery methods.
 	}
 
 	setOptionDefault('search_cache_duration', 30);
-?>
+	setOptionDefault('cookie_persistence', 5184000);
+	if (getOption('license_accepted') != ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']') {
+		purgeOption('license_accepted');
+	}
+	?>

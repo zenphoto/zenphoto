@@ -24,6 +24,10 @@ if (SERVER_PROTOCOL == 'https_admin') {
 	}
 }
 require_once(dirname(__FILE__).'/admin-functions.php');
+$zenphoto_tabs = array();
+
+if (!getOption('license_accepted')) require_once(dirname(__FILE__).'/license.php');
+
 
 $sortby = array(gettext('Filename') => 'filename',
 								gettext('Date') => 'date',
@@ -36,7 +40,6 @@ $sortby = array(gettext('Filename') => 'filename',
 
 
 // setup sub-tab arrays for use in dropdown
-$zenphoto_tabs = array();
 if (zp_loggedin(OVERVIEW_RIGHTS) && !$_zp_null_account) {
 	$zenphoto_tabs['overview'] = array('text'=>gettext("overview"),
 						'link'=>WEBPATH."/".ZENFOLDER.'/admin.php',
