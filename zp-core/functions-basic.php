@@ -184,7 +184,10 @@ switch (SERVER_PROTOCOL) {
 	break;
 }
 if (!defined('COOKIE_PESISTENCE')) {
-	define('COOKIE_PESISTENCE', getOption('cookie_persistence'));
+	$persistence = getOption('cookie_persistence');
+	if (!$persistence) $persistence = 5184000;
+	define('COOKIE_PESISTENCE', $persistence);
+	unset($persistence);
 }
 
 define('FULLWEBPATH', PROTOCOL."://" . $_SERVER['HTTP_HOST'] . WEBPATH);

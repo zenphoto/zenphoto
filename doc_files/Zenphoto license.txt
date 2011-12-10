@@ -1,0 +1,6 @@
+Zenphoto is licensed under the GPL licence agreement. 
+
+The specific licence agreement can be found in the zp-core folder
+and is displayed for acceptance when Zenphoto is insatalled. It can
+also be viewed by clicking on the link in the footer of all admin
+pages.

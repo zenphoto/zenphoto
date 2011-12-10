@@ -55,11 +55,7 @@ if(isset($_GET['rss']) || isset($_GET['rss-news']) || isset($_GET['rss-comments'
 require_once(dirname(__FILE__). "/".ZENFOLDER.'/controller.php');
 $_zp_obj = '';
 //$_zp_script_timer['controller'] = microtime();
-if (!getOption('license_accepted')) {	// License needs agreement
-	$_zp_gallery_page = basename($_zp_obj = ZENFOLDER.'/license.php');
-
-
-} else if (isset($_GET['p'])) {	// Display an arbitrary theme-included PHP page
+if (isset($_GET['p'])) {	// Display an arbitrary theme-included PHP page
 	$theme = prepareCustomPage();
 
 

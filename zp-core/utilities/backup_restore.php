@@ -388,6 +388,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		';
 	}
 	setOption('zenphoto_install', $signaure);
+	setOption('license_accepted', ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']');
 	if ($oldlibauth != $_zp_authority->getVersion()) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {
 			$messages .= '

@@ -525,4 +525,9 @@ function prepareCustomPage() {
 	return $theme;
 }
 
+if (!getOption('license_accepted')) {
+	// License needs agreement
+	$_GET['p'] = 'license';
+	$_GET['z'] = '';
+}
 ?>

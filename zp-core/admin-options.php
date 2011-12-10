@@ -105,12 +105,8 @@ if (isset($_GET['action'])) {
 			}
 
 			if (isset($_POST['cookie_persistence'])) {
-				$cookie_persistence = sanitize_numeric($_POST['cookie_persistence']);
-				if (empty($cookie_persistence)) {
-					$cookie_persistence = 5184000;
-				}
+				setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
 			}
-			setOption('cookie_persistence', $cookie_persistence);
 			setOption('AlbumThumbSelect', sanitize_numeric($_POST['thumbselector']));
 			$gallery->setImagePublish($imgpublish);
 			$gallery->setPersistentArchive((int) isset($_POST['persistent_archive']));
@@ -1248,12 +1244,19 @@ TODO: Restricted galleries
 
 						<p><?php  echo gettext("<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>enable gallery sessions</em>" ); ?></p>
 						<div id="gallerysessions" style="display: none">
-						<p><?php echo gettext("Check this option if you are having issues with album password cookies not being retained. Setting the option causes zenphoto to use sessions rather than cookies."); ?></p>
+						<p><?php echo gettext("Check this option if you are having issues with password and other cookie data not being retained. Setting the option causes zenphoto to use sessions rather than cookies."); ?></p>
+						<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Browsers will normally close sessions when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the browser implementation. The longer <em>life</em> of cookies is generally more conducive to a pleasant user experience.')?>
 						</div>
-						<p><?php  echo gettext("<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for <em>Cookie duration</em>" ); ?></p>
-						<div id="cookie_persistence" style="display: none">
-						<p><?php echo gettext("Set to the time in seconds that cookies should be kept by browsers."); ?></p>
-						</div>
+						<?php
+						if (!GALLERY_SESSION) {
+							?>
+							<p><?php  echo gettext("<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for <em>Cookie duration</em>" ); ?></p>
+							<div id="cookie_persistence" style="display: none">
+							<p><?php echo gettext("Set to the time in seconds that cookies should be kept by browsers."); ?></p>
+							</div>
+							<?php
+						}
+						?>
 					</td>
 				</tr>
 
