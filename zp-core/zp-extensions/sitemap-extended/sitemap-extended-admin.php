@@ -89,7 +89,7 @@ echo '</head>';
 <body>
 <?php printLogoAndLinks(); ?>
 <div id="main">
-<a name="top"></a>
+<span id="top"></span>
 <?php printTabs('home');
 ?>
 <div id="content">

@@ -1086,7 +1086,7 @@ $alb = removeParentAlbumNames($album);
 			?>
 				<td colspan="4">
 				<input type="hidden" name="<?php echo $currentimage; ?>-filename"	value="<?php echo $image->filename; ?>" />
-				<table border="0" class="formlayout" id="image-<?php echo $currentimage; ?>">
+				<table style="border:none" class="formlayout" id="image-<?php echo $currentimage; ?>">
 					<tr>
 						<td valign="top" width="150" rowspan="17">
 
@@ -1211,7 +1211,7 @@ $alb = removeParentAlbumNames($album);
 						<br clear="both" />
 						<hr />
 						<p>
-							<label for "publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
+							<label for="publishdate-<?php echo $currentimage; ?>"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
 								<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $currentimage; ?>" id="publishdate-<?php echo $currentimage; ?>" />
 							<strong class="scheduledpublishing-<?php echo $currentimage; ?>" style="color:red">
 							<?php
@@ -1221,7 +1221,7 @@ $alb = removeParentAlbumNames($album);
 							?>
 							</strong>
 							<br /><br />
-							<label for "expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
+							<label for="expirationdate-<?php echo $currentimage; ?>"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
 								<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $currentimage; ?>" id="expirationdate-<?php echo $currentimage; ?>" />
 							<strong class="expire-<?php echo $currentimage; ?>" style="color:red">
 							<?php

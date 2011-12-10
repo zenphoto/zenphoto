@@ -2,11 +2,11 @@
 /**
  * The configuration functions for TinyMCE with Ajax File Manager.
  *
- * Zenphoto plugin default light configuration 
- */ 
-?> 
-	<script language="javascript" type="text/javascript" src="<?php echo WEBPATH ."/" . ZENFOLDER .'/'. PLUGIN_FOLDER; ?>/tiny_mce/tiny_mce.js"></script>
-	<script language="javascript" type="text/javascript">
+ * Zenphoto plugin default light configuration
+ */
+?>
+	<script type="text/javascript" src="<?php echo WEBPATH ."/" . ZENFOLDER .'/'. PLUGIN_FOLDER; ?>/tiny_mce/tiny_mce.js"></script>
+	<script type="text/javascript">
 		// <!-- <![CDATA[
 		tinyMCE.init({
 			mode : "specific_textareas",
@@ -29,7 +29,7 @@
 			apply_source_formatting : true,
 			force_br_newlines : false,
 			forced_root_block: "",
-			force_p_newlines : true,	
+			force_p_newlines : true,
 			relative_urls : false,
 			document_base_url : "<?php echo WEBPATH."/"; ?>",
 			convert_urls : false,

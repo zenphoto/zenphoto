@@ -94,9 +94,9 @@ echo '</head>';
 <body>
 <?php printLogoAndLinks(); ?>
 <div id="main">
-<a name="top"></a>
-<?php printTabs('home');
-?>
+<span id="top">
+<?php printTabs('home');?>
+</span>
 <div id="content">
 	<?php
 	if(isset($_GET['removeoutdateddownloads'])) {

@@ -18,7 +18,7 @@ global $_zp_themeroot;
 		<form method="post" action="#" id="comments-form">
 			<input type="hidden" name="comment" value="1" />
 			<input type="hidden" name="remember" value="1" />
-			<table cellspacing="0">
+			<table>
 				<?php
 				if ($req = getOption('comment_name_required')) {
 					if ($req == 'required') {

@@ -952,16 +952,12 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td>
 						<label><input type="radio" name="gallery_security" value="public" alt="<?php echo gettext('public'); ?>"<?php if (GALLERY_SECURITY == 'public') echo ' checked="checked"' ?> onclick="javascript:$('.public_gallery').show();" /><?php echo gettext('public'); ?></label>
 						<label><input type="radio" name="gallery_security" value="private" alt="<?php echo gettext('private'); ?>"<?php if (GALLERY_SECURITY == 'private') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('private'); ?></label>
-<?php /**
-TODO: Restricted galleries
 						<label><input type="radio" name="gallery_security" value="restricted" alt="<?php echo gettext('restricted'); ?>"<?php if (GALLERY_SECURITY == 'restricted') echo  'checked="checked"'?> onclick="javascript:$('.public_gallery').hide();" /><?php echo gettext('restricted'); ?></label>
-*/ ?>
 					</td>
 					<td>
 						<?php echo gettext('Private galleries are viewable only by registered users.'); ?>
 						<?php
-						//TODO: Restricted galleries
-						//echo gettext('Restricted galleries are private galleries but users may see only their managed albums.'); ?>
+						echo gettext('Restricted galleries are private galleries but users may see only their managed albums.'); ?>
 					</td>
 				</tr>
 				<?php
@@ -2764,7 +2760,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 							}
 							?>
 							<th  colspan="3" style="text-align:left">
-								<a name="<?php echo $extension; ?>" ></a>
+								<span id="<?php echo $extension; ?>" ></span>
 								<input type="hidden" name="show-<?php echo $extension;?>" id="show-<?php echo $extension;?>" value="<?php echo $v; ?>" />
 								<span style="display:<?php echo $show_show; ?>;" class="pluginextrashow">
 									<a href="javascript:$('#show-<?php echo $extension;?>').val(1);toggleExtraInfo('<?php echo $extension;?>','plugin',true);"><?php echo $extension; ?></a>

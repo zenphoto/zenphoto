@@ -5,8 +5,8 @@
  * Zenpage plugin default light configuration
  */
 ?>
-	<script language="javascript" type="text/javascript" src="../tiny_mce/tiny_mce.js"></script>
-	<script language="javascript" type="text/javascript">
+	<script type="text/javascript" src="../tiny_mce/tiny_mce.js"></script>
+	<script type="text/javascript">
 		// <!-- <![CDATA[
 		tinyMCE.init({
 			mode : "textareas",

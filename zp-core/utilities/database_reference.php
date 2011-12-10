@@ -66,7 +66,7 @@ h2 {
 <?php printTabs(); ?>
 <div id="content">
 <?php zp_apply_filter('admin_note','database', ''); ?>
-<h1><a name="top"></a><?php echo $mybutton['button_text']; ?></h1>
+<h1><span id="top"><?php echo $mybutton['button_text']; ?></span></h1>
 <p>
 	<?php echo $mybutton['title'];; ?>
 	<?php echo gettext("The internal Zenphoto table relations can be viewed on the PDF database reference that is included in the release package within the /docs_files folder of your Zenphoto installation. For more detailed info about the database use tools like myPhpAdmin."); ?>

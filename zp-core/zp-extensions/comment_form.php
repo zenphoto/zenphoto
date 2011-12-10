@@ -658,7 +658,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 				}
 				?>
 				<div class="comment" <?php echo $display; ?>>
-					<a name="c_<?php echo $_zp_current_comment['id']; ?>"></a>
+					<span id="c_<?php echo $_zp_current_comment['id']; ?>"></span>
 					<div class="commentinfo">
 						<h4><?php	printCommentAuthorLink(); ?>: on <?php echo getCommentDateTime(); printEditCommentLink('Edit', ', ', ''); ?></h4>
 					</div><!-- class "commentinfo" -->

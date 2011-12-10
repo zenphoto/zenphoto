@@ -453,7 +453,7 @@ echo '</head>';
 <body>
 <?php printLogoAndLinks(); ?>
 <div id="main">
-<a name="top"></a>
+<span id="top"></span>
 <?php printTabs();
 
 
@@ -605,90 +605,90 @@ if(!isset($_GET['stats']) AND !isset($_GET['fulllist'])) {
 <br style="clear:both" />
 
 <!-- images -->
-<a name="images-latest"></a>
+<span id="images-latest"></span>
 <?php printBarGraph("latest","images"); ?>
 
-<a name="images-popular"></a>
+<span id="images-popular"></span>
 <?php printBarGraph("popular","images"); ?>
 
-<a name="images-mostrated"></a>
+<span id="images-mostrated"></span>
 <?php printBarGraph("mostrated","images"); ?>
 
-<a name="images-toprated"></a>
+<span id="images-toprated"></span>
 <?php printBarGraph("toprated","images"); ?>
 
-<a name="images-mostcommented"></a>
+<span id="images-mostcommented"></span>
 <?php printBarGraph("mostcommented","images"); ?>
 
 <hr />
 
 <!-- albums -->
-<a name="albums-latest"></a>
+<span id="albums-latest"></a>
 <?php printBarGraph("latest","albums"); ?>
 
-<a name="albums-latestupdated"></a>
+<span id="albums-latestupdated"></span>
 <?php printBarGraph("latestupdated","albums"); ?>
 
-<a name="albums-mostimages"></a>
+<span id="albums-mostimages"></span>
 <?php printBarGraph("mostimages","albums"); ?>
 
-<a name="albums-popular"></a>
+<span id="albums-popular"></span>
 <?php printBarGraph("popular","albums"); ?>
 
-<a name="albums-mostrated"></a>
+<span id="albums-mostrated"></span>
 <?php printBarGraph("mostrated","albums"); ?>
 
-<a name="albums-toprated"></a>
+<span id="albums-toprated"></span>
 <?php printBarGraph("toprated","albums"); ?>
 
-<a name="albums-mostcommented"></a>
+<span id="albums-mostcommented"></span>
 <?php printBarGraph("mostcommented","albums"); ?>
 
 <hr />
 
-<a name="tags-mostused"></a>
+<span id="tags-mostused"></span>
 <?php printBarGraph("mostused","tags"); ?>
 
 <?php if(getOption('zp_plugin_zenpage')) { ?>
 <hr />
 <!-- Zenpage pages -->
-<a name="pages-popular"></a>
+<span id="pages-popular"></span>
 <?php printBarGraph("popular","pages"); ?>
 
-<a name="pages-mostcommented"></a>
+<span id="pages-mostcommented"></span>
 <?php printBarGraph("mostcommented","pages"); ?>
 
-<a name="pages-mostrated"></a>
+<span id="pages-mostrated"></span>
 <?php printBarGraph("mostrated","pages"); ?>
 
-<a name="pages-toprated"></a>
+<span id="pages-toprated"></span>
 <?php printBarGraph("toprated","pages"); ?>
 
 <hr />
 
 <!-- Zenpage news articles -->
-<a name="news-popular"></a>
+<span id="news-popular"></a>
 <?php printBarGraph("popular","news"); ?>
 
-<a name="news-mostcommented"></a>
+<span id="news-mostcommented"></span>
 <?php printBarGraph("mostcommented","news"); ?>
 
-<a name="news-mostrated"></a>
+<span id="news-mostrated"></span>
 <?php printBarGraph("mostrated","news"); ?>
 
-<a name="news-toprated"></a>
+<span id="news-toprated"></span>
 <?php printBarGraph("toprated","news"); ?>
 <hr />
 
 <h2><?php echo gettext('Statistics for news categories'); ?></h2>
-<a name="newscategories-popular"></a>
+<span id="newscategories-popular"></span>
 <?php printBarGraph("popular","newscategories"); ?>
 
-<a name="newscategories-mostarticles"></a>
+<span id="newscategories-mostarticles"></span>
 <?php printBarGraph("mostused","newscategories"); ?>
 
 <h2><?php echo gettext('Statistics for RSS feeds'); ?></h2>
-<a name="rss-popular"></a>
+<span id="rss-popular"></span>
 <?php printBarGraph("popular","rss"); ?>
 
 <?php } ?>

@@ -5,7 +5,7 @@
 						printCommentErrors();
 						$required = false;
 						?>
-						<table border="0">
+						<table style="border:none">
 							<?php
 							if ($req = getOption('comment_name_required')) {
 								if ($req == 'required') {

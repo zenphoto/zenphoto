@@ -389,42 +389,6 @@ if (!file_exists(SERVERPATH.'/'.WEBPATH.'/'.ZENFOLDER.'/favicon.ico')) {
 	@copy(SERVERPATH.'/'.ZENFOLDER.'/images/favicon.ico',SERVERPATH.'/favicon.ico');
 }
 
-//set plugin default options by instantiating the options interface
-$plugins = array_keys(getEnabledPlugins());
-foreach ($plugins as $extension) {
-	$option_interface = NULL;
-	$path = getPlugin($extension.'.php');
-	$pluginStream = file_get_contents($path);
-	if (getOption('zp_plugin_').$extension) {
-		$plugin_is_filter = NULL;
-		$str = isolate('$plugin_is_filter', $pluginStream);
-		if ($str) {
-			eval($str);
-			if ($plugin_is_filter < THEME_PLUGIN) {
-				if ($plugin_is_filter < 0) {
-					$plugin_is_filter = abs($plugin_is_filter)|THEME_PLUGIN|ADMIN_PLUGIN;
-				} else {
-					if ($plugin_is_filter == 1) {
-						$plugin_is_filter = 1|THEME_PLUGIN;
-					} else {
-						$plugin_is_filter = $plugin_is_filter|CLASS_PLUGIN;
-					}
-				}
-			}
-		} else {
-			$plugin_is_filter = 1|THEME_PLUGIN;
-		}
-		setOption('zp_plugin_'.$extension, $plugin_is_filter);
-		$str = isolate('$option_interface', $pluginStream);
-		if (false !== $str) {
-			require_once($path);
-			eval($str);
-			if (is_string($option_interface)) {
-				$option_interface = new $option_interface;
-			}
-		}
-	}
-}
 if (getOption('zp_plugin_zenphoto_sendmail')) {
 	setOption('zp_plugin_zenphoto_sendmail', 5|CLASS_PLUGIN);
 }
@@ -594,8 +558,42 @@ appropriate gallery methods.
 	}
 
 	setOptionDefault('search_cache_duration', 30);
-	setOptionDefault('cookie_persistence', 5184000);
-	if (getOption('license_accepted') != ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']') {
-		purgeOption('license_accepted');
+
+//The following should be done LAST so it catches anything done above
+//set plugin default options by instantiating the options interface
+$plugins = array_keys(getEnabledPlugins());
+foreach ($plugins as $extension) {
+	$option_interface = NULL;
+	$path = getPlugin($extension.'.php');
+	$pluginStream = file_get_contents($path);
+	if (getOption('zp_plugin_').$extension) {
+		$plugin_is_filter = NULL;
+		$str = isolate('$plugin_is_filter', $pluginStream);
+		if ($str) {
+			eval($str);
+			if ($plugin_is_filter < THEME_PLUGIN) {
+				if ($plugin_is_filter < 0) {
+					$plugin_is_filter = abs($plugin_is_filter)|THEME_PLUGIN|ADMIN_PLUGIN;
+				} else {
+					if ($plugin_is_filter == 1) {
+						$plugin_is_filter = 1|THEME_PLUGIN;
+					} else {
+						$plugin_is_filter = $plugin_is_filter|CLASS_PLUGIN;
+					}
+				}
+			}
+		} else {
+			$plugin_is_filter = 1|THEME_PLUGIN;
+		}
+		setOption('zp_plugin_'.$extension, $plugin_is_filter);
+		$str = isolate('$option_interface', $pluginStream);
+		if (false !== $str) {
+			require_once($path);
+			eval($str);
+			if (is_string($option_interface)) {
+				$option_interface = new $option_interface;
+			}
+		}
 	}
+}
 	?>

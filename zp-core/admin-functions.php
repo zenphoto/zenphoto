@@ -1638,7 +1638,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 					<br clear="both" />
 					<hr />
 					<p>
-						<label for "<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
+						<label for="<?php echo $prefix; ?>publishdate"><?php echo gettext('Publish date'); ?> <small>(YYYY-MM-DD)</small></label>
 							<br /><input value="<?php echo $publishdate; ?>" type="text" size="20" maxlength="30" name="publishdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>publishdate" />
 						<strong class="scheduledpublishing-<?php echo $prefix; ?>" style="color:red">
 						<?php
@@ -1648,7 +1648,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						?>
 						</strong>
 						<br /><br />
-						<label for "<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
+						<label for="<?php echo $prefix; ?>expirationdate"><?php echo gettext('Expiration date'); ?> <small>(YYYY-MM-DD)</small></label>
 							<br /><input value="<?php echo $expirationdate; ?>" type="text" size="20" maxlength="30" name="expirationdate-<?php echo $prefix; ?>" id="<?php echo $prefix; ?>expirationdate" />
 						<strong class="<?php echo $prefix; ?>expire" style="color:red">
 						<?php
@@ -3820,7 +3820,9 @@ function processCommentBulkActions() {
  */
 function getLocaleForTinyMCEandAFM() {
 	$locale = substr(getOption("locale"),0,2);
-	if (empty($locale)) $locale = 'en';
+	if (empty($locale) || !file_exists(SERVERPATH.'/'.PLUGIN_FOLDER.'/tiny_mce/langs/'.$locale.'.js')) {
+		$locale = 'en';
+	}
 	return $locale;
 }
 
