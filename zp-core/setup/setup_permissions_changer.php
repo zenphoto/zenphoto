@@ -6,14 +6,21 @@
  *
  */
 require_once(dirname(dirname(__FILE__)).'/functions.php');
+require_once(dirname(__FILE__).'/setup-functions.php');
 define('CONFIGFILE',SERVERPATH.'/'.DATA_FOLDER.'/zenphoto.cfg');
-$chmod = CHMOD_VALUE;
-$f = fopen(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup.log', 'a');
-if (!isset($_POST['folder'])) exit();
+define('FOLDER_MOD',CHMOD_VALUE | ((CHMOD_VALUE & 0444)>>1));
+define('FILE_MOD',0666&CHMOD_VALUE);
+if (!isset($_POST['folder'])) {
+	exit();
+}
 $folder = sanitize($_POST['folder'],3);
 if (substr($folder,-1,1) == '/') $folder = substr($folder,0,-1);
+$f = fopen(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup.log', 'a');
+
 if ($_POST['key']==sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE))) {
-	if (!folderPermissions($folder)) {
+	if (folderPermissions($folder)) {
+		fwrite($f, sprintf(gettext('Setting permissions for %s.'), basename($folder)) . "\n");
+	} else {
 		fwrite($f, sprintf(gettext('Notice: failed setting permissions for %s.'), basename($folder)) . "\n");
 	}
 } else {
@@ -21,36 +28,36 @@ if ($_POST['key']==sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE))) {
 }
 fclose($f);
 clearstatcache();
-
 function folderPermissions($folder) {
-	global $chmod, $f;
-	$curdir = getcwd();
-	chdir($folder);
-	$files = safe_glob('*.*');
-	chdir($curdir);
+	$files = array();
+	if (($dir=opendir($folder))!==false) {
+		while(($file=readdir($dir))!==false) {
+			if($file != '.' && $file != '..') {
+				$files[] = $file;
+			}
+		}
+		closedir($dir);
+	}
 	foreach ($files as $file) {
 		$path = $folder.'/'.$file;
 		if (is_dir($path)) {
-				if($file != '.' && $file != '..') {
-				@chmod($path,$chmod);
-				clearstatcache();
-				if(checkPermissions(fileperms($path)&0777,$chmod)) {
-					if (!folderPermissions($path)) {
-						return false;
-					}
-				} else {
+			@chmod($path,FOLDER_MOD);
+			clearstatcache();
+			if(checkPermissions(fileperms($path)&0777,FOLDER_MOD)) {
+				if (!folderPermissions($path)) {
 					return false;
 				}
+			} else {
+				return false;
 			}
 		} else {
-			@chmod($path,0666&$chmod);
+			@chmod($path,FILE_MOD);
 			clearstatcache();
-			if (!checkPermissions(fileperms($path)&0777,0666&$chmod)) {
+			if (!checkPermissions(fileperms($path)&0777,FILE_MOD)) {
 				return false;
 			}
 		}
 	}
 	return true;
 }
-
 ?>

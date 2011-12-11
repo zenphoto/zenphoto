@@ -23,5 +23,5 @@ if (!file_exists($htaccess)) {
 	@mkdir(SERVERPATH.'/'.DATA_FOLDER.'/ajaxfilemanager/');
 	file_put_contents($htaccess, "deny from all\n");
 }
-chmod($htaccess,0400);
+chmod($htaccess,0444);
 ?>

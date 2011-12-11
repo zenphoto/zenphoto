@@ -145,8 +145,9 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
  * @param $relaxation
  * @param $subfolders
  */
-function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL, $recurse=true) {
-	global $serverpath, $chmod, $permission_names;
+function folderCheck($which, $path, $class, $relaxation, $subfolders, $recurse, $chmod) {
+	$chmod = $chmod | (($chmod & 0444)>>1);
+	global $serverpath, $permission_names;
 	$path = str_replace('\\', '/', $path);
 	if (!is_dir($path) && $class == 'std') {
 		mkdir_recursive($path, $chmod);
@@ -204,7 +205,7 @@ function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL, 
 							// <!-- <![CDATA[
 							$.ajax({
 								type: 'POST',
-								url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup_permissions_changer.php',
+								url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_permissions_changer.php',
 								data: 'folder=<?php echo $path; ?>&key=<?php echo sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE)); ?>'
 							});
 							// ]]> -->

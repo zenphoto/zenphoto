@@ -86,7 +86,7 @@ if (file_exists(CONFIGFILE)) {
 	}
 }
 @copy('dataaccess',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess');
-chmod(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess', 0400);
+chmod(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess', 0444);
 
 if (session_id() == '') {
 	session_start();
@@ -297,7 +297,7 @@ $updatechmod = $updatechmod  && zp_loggedin(ADMIN_RIGHTS);
 if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists(dirname(dirname(__FILE__)).'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
 		copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
-		chmod(dirname(dirname(__FILE__)).'/.htaccess',0400);
+		chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
 	}
 }
 
@@ -1260,7 +1260,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				chmod(dirname(dirname(__FILE__)).'/.htaccess',0666);
 				@unlink($htfile);
 				$ch = @copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
-				chmod(dirname(dirname(__FILE__)).'/.htaccess',0400);
+				chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
 			}
 		}
 		if (!$ch) {
@@ -1337,7 +1337,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		checkmark(-1, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup could not find the  <em>example_robots.txt</em> file.'));
 	} else {
 		if (file_exists(dirname(dirname(__FILE__)).'/robots.txt')) {
-			checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), '<p>'.gettext('Setup did not create a <em>robots.txt</em> file because one already exists.').'</p>');
+			checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists.'));
 		} else {
 			$text = explode('****delete all lines above and including this one *******'."\n", $robots);
 			$d = dirname(dirname($_SERVER['SCRIPT_NAME']));
@@ -1376,17 +1376,17 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				$albumfolder = $root . $albumfolder;
 				break;
 		}
-		$good = folderCheck('albums', $albumfolder, $_zp_conf_vars['album_folder_class']) && $good;
+		$good = folderCheck('albums', $albumfolder, $_zp_conf_vars['album_folder_class'], true, NULL, true, $chmod) && $good;
 	} else {
 		checkmark(-1, gettext('<em>albums</em> folder'), gettext("<em>albums</em> folder [The line <code>\$conf['album_folder']</code> is missing from your configuration file]"), gettext('You should update your configuration file to conform to the current zenphoto.cfg example file.'));
 	}
 
-	$good = folderCheck('cache', dirname(dirname(__FILE__)) . "/cache/", 'std') && $good;
+	$good = folderCheck('cache', dirname(dirname(__FILE__)) . "/cache/", 'std', true, NULL, true, $chmod) && $good;
 	$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder.')) && $good;
-	$good = folderCheck(gettext('uploaded'), dirname(dirname(__FILE__)) . "/uploaded/", 'std') && $good;
-	$good = folderCheck(DATA_FOLDER, dirname(dirname(__FILE__)) . '/'.DATA_FOLDER.'/', 'std', true, NULL, false) && $good;
-	$good = folderCheck(gettext('HTML cache'), dirname(dirname(__FILE__)) . '/cache_html/', 'std', true, $Cache_html_subfolders) && $good;
-	$good = folderCheck(gettext('Third party plugins'), dirname(dirname(__FILE__)) . '/'.USER_PLUGIN_FOLDER.'/', 'std', false, $plugin_subfolders) && $good;
+	$good = folderCheck(gettext('uploaded'), dirname(dirname(__FILE__)) . "/uploaded/", 'std', true, NULL, false, $chmod) && $good;
+	$good = folderCheck(DATA_FOLDER, dirname(dirname(__FILE__)) . '/'.DATA_FOLDER.'/', 'std', true, NULL, false, $chmod) && $good;
+	$good = folderCheck(gettext('HTML cache'), dirname(dirname(__FILE__)) . '/cache_html/', 'std', true, $Cache_html_subfolders, true, $chmod) && $good;
+	$good = folderCheck(gettext('Third party plugins'), dirname(dirname(__FILE__)) . '/'.USER_PLUGIN_FOLDER.'/', 'std', false, $plugin_subfolders, true, $chmod) && $good;
 
 	?>
 </ul>
