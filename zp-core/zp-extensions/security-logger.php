@@ -155,7 +155,11 @@ function security_logger_Logger($success, $user, $name, $ip, $action, $authority
 		clearstatcache();
 		if (!$preexists) {
 			chmod($file, 0600);
-			$permission = fileperms($file)&0777;
+			if (strtoupper(substr(PHP_OS, 0,3)) == 'WIN') {
+				$permission = fileperms($file)&0700;	//	on Windows owner==group==public
+			} else {
+				$permission = fileperms($file)&0777;
+			}
 			if ($permission != 0600) {
 				$f = fopen($file, 'a');
 				fwrite($f,"\t\t".gettext('Set Security log permissions')."\t\t\t".gettext('Failed')."\t\t".sprintf(gettext('File permissions of Security log are %04o'),$permission)."\n");

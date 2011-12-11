@@ -145,7 +145,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
  * @param $relaxation
  * @param $subfolders
  */
-function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL) {
+function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL, $recurse=true) {
 	global $serverpath, $chmod, $permission_names;
 	$path = str_replace('\\', '/', $path);
 	if (!is_dir($path) && $class == 'std') {
@@ -173,15 +173,19 @@ function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL) 
 					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [subfolder creation failure]'),$which, $f), sprintf(gettext('Setup could not create the following subfolders:<br />%s'),substr($subfolderfailed,2)));
 				}
 			}
+
 			if (isWin()) {
-				$perms = $chmod;
+				$perms = fileperms($path)&0700;
+				$check = $chmod & 0700;
 			} else {
 				$perms = fileperms($path)&0777;
+				$check = $chmod;
 			}
 			if (zp_loggedin(ADMIN_RIGHTS) && (($chmod<$perms) || ($relaxation && $chmod!=$perms))) {
 				@chmod($path,$chmod);
 				clearstatcache();
-				if (($perms = fileperms($path)&0777)!=$chmod) {
+				$perms = fileperms($path)&0777;
+				if (false && !checkPermissions($perms, $chmod)) {
 					if (array_key_exists($perms, $permission_names)) {
 						$perms_class = $permission_names[$perms];
 					} else {
@@ -194,17 +198,19 @@ function folderCheck($which, $path, $class, $relaxation=true, $subfolders=NULL) 
 					}
 					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'),$which, $f), sprintf(gettext('Setup could not change the folder permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'),$perms_class,$perms,$chmod_class,$chmod));
 				} else {
-					?>
-					<script type="text/javascript">
-						// <!-- <![CDATA[
-						$.ajax({
-							type: 'POST',
-							url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup_permissions_changer.php',
-							data: 'folder=<?php echo $path; ?>&key=<?php echo sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE)); ?>'
-						});
-						// ]]> -->
-					</script>
-					<?php
+					if ($recurse) {
+						?>
+						<script type="text/javascript">
+							// <!-- <![CDATA[
+							$.ajax({
+								type: 'POST',
+								url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup_permissions_changer.php',
+								data: 'folder=<?php echo $path; ?>&key=<?php echo sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE)); ?>'
+							});
+							// ]]> -->
+						</script>
+						<?php
+					}
 				}
 			}
 			break;
@@ -513,7 +519,7 @@ function setup_sanitize_string($input_string, $sanitize_level) {
  * @return bool
  */
 function isWin() {
-	return (strtoupper (substr(PHP_OS, 0,3)) == 'WIN' ) ;
+	return (strtoupper(substr(PHP_OS, 0,3)) == 'WIN') ;
 }
 
 /**
@@ -523,6 +529,12 @@ function isMac() {
 	return strtoupper(PHP_OS) =='DARWIN';
 }
 
-
+function checkPermissions($actual, $expected) {
+	if (isWin()) {
+		return ($actual & 0700) == ($expected & 0700);	//	with windows owner==group==public
+	} else {
+		return ($actual & 0777) == $expected;
+	}
+}
 
 ?>

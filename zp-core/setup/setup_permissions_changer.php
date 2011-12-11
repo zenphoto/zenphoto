@@ -34,7 +34,7 @@ function folderPermissions($folder) {
 				if($file != '.' && $file != '..') {
 				@chmod($path,$chmod);
 				clearstatcache();
-				if((fileperms($path)&0777)==$chmod) {
+				if(checkPermissions(fileperms($path)&0777,$chmod)) {
 					if (!folderPermissions($path)) {
 						return false;
 					}
@@ -45,7 +45,7 @@ function folderPermissions($folder) {
 		} else {
 			@chmod($path,0666&$chmod);
 			clearstatcache();
-			if ((fileperms($path)&0777)!=(0666&$chmod)) {
+			if (!checkPermissions(fileperms($path)&0777,0666&$chmod)) {
 				return false;
 			}
 		}

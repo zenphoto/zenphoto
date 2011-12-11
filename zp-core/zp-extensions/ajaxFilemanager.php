@@ -18,9 +18,10 @@ $plugin_description = gettext('Ajax Filemanager files handling in tinyMCE and th
 
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.2';
-
-if (!file_exists((SERVERPATH.'/'.DATA_FOLDER.'/ajaxfilemanager/.htaccess'))) {
+$htaccess = SERVERPATH.'/'.DATA_FOLDER.'/ajaxfilemanager/.htaccess';
+if (!file_exists($htaccess)) {
 	@mkdir(SERVERPATH.'/'.DATA_FOLDER.'/ajaxfilemanager/');
-	file_put_contents(SERVERPATH.'/'.DATA_FOLDER.'/ajaxfilemanager/.htaccess', "deny from all\n");
+	file_put_contents($htaccess, "deny from all\n");
 }
+chmod($htaccess,0400);
 ?>

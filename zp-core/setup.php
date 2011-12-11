@@ -86,6 +86,7 @@ if (file_exists(CONFIGFILE)) {
 	}
 }
 @copy('dataaccess',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess');
+chmod(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess', 0400);
 
 if (session_id() == '') {
 	session_start();
@@ -133,7 +134,13 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	}
 }
 
-$permissions = array(0750,0755,0775,0777); // NOTE: also $permission_names array below
+$permission_names = array(
+													0555=>gettext('readonly'),
+													0755=>gettext('strict'),
+													0775=>gettext('relaxed'),
+													0777=>gettext('loose')
+													);
+$permissions = array_keys($permission_names);
 if ($updatechmod = isset($_REQUEST['chmod_permissions'])) {
 	setupXSRFDefender();
 	$selected = round($_REQUEST['chmod_permissions']);
@@ -176,6 +183,7 @@ if ($updatechmod || $newconfig) {
 	}
 	$updatezp_config = true;
 }
+
 if ($updatefileset = isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	setupXSRFDefender();
 	$fileset = $_REQUEST['FILESYSTEM_CHARSET'];
@@ -201,7 +209,7 @@ if ($updatefileset = isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 }
 
 if ($updatezp_config) {
-	@chmod(CONFIGFILE, 0666 & $chmod);
+	@chmod(CONFIGFILE, 0666);
 	if (is_writeable(CONFIGFILE)) {
 		if ($handle = fopen(CONFIGFILE, 'w')) {
 			if (fwrite($handle, $zp_cfg)) {
@@ -212,6 +220,7 @@ if ($updatezp_config) {
 		fclose($handle);
 		clearstatcache();
 	}
+	@chmod(CONFIGFILE, 0666 & $chmod);
 	$xsrftoken = sha1(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
 }
 
@@ -288,6 +297,7 @@ $updatechmod = $updatechmod  && zp_loggedin(ADMIN_RIGHTS);
 if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists(dirname(dirname(__FILE__)).'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
 		copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
+		chmod(dirname(dirname(__FILE__)).'/.htaccess',0400);
 	}
 }
 
@@ -328,13 +338,6 @@ if (!isset($_zp_setupCurrentLocale_result) || empty($_zp_setupCurrentLocale_resu
 	$_zp_setupCurrentLocale_result = setMainDomain();
 	if (DEBUG_LOCALE) debugLog('$_zp_setupCurrentLocale_result = '.$_zp_setupCurrentLocale_result);
 }
-
-// NOTE: see also $permissions array avove
-$permission_names = array(0750=>gettext('strict+'),
-													0755=>gettext('strict'),
-													0775=>gettext('relaxed'),
-													0777=>gettext('loose')
-													);
 
 $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"));
 ?>
@@ -458,18 +461,14 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$err = versionCheck($required, $desired, PHP_VERSION);
 	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired), false) && $good;
 	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup.log';
-	if (isWin()) {
-		checkMark(-1, '', gettext("General file security"),gettext('Zenphoto is unable to manage file security on Windows servers. Please insure that your logs and config file are not browsable.'),false);
+	$permission = fileperms($path)&0777;
+	if (checkPermissions($permission, 0600)) {
+		$p = true;
 	} else {
-		$permission = fileperms($path)&0777;
-		if ($permission & 0077) {
-			$p = -1;
-		} else {
-			$p = true;
-		}
-		checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"),
-								sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
+		$p = -1;
 	}
+	checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"),
+							sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
 	$register_globals = ini_get('register_globals');
 	$good = checkMark(!$register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>.'.(is_string($register_globals)?' '.gettext('<strong>Note</strong>: There should be no quotation marks in this setting!'):''))) && $good;
 	if (ini_get('safe_mode')) {
@@ -580,29 +579,28 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 							' Place the file in the %s folder.'),DATA_FOLDER).
 							sprintf(gettext('<br /><br />You can find the file in the "%s" directory.'),ZENFOLDER)) && $good;
 	if ($cfg) {
-		if (!isWin()) {
-			primeMark(gettext('File/Folder permissions'));
-			$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" />'.
-						'<p>'.sprintf(gettext('Set File/Folder permissions to %s.'),permissionsSelector($permission_names, $chmod)).
-						'</p></form>';
-			if (array_key_exists($chmod, $permission_names)) {
-				$value = sprintf(gettext('<em>%1$s</em> (<code>0%2$o</code>)'),$permission_names[$chmod],$chmod);
-			} else {
-				$value = sprintf(gettext('<em>unknown</em> (<code>%o</code>)'),$chmod);
-			}
-			if ($chmod>0755) {
-				if (isset($_zp_conf_vars['CHMOD'])) {
-					$severity = -3;
-				} else {
-					$severity = -1;
-				}
-			} else {
-				$severity = -2;
-			}
-			$msg = sprintf(gettext('File/Folder Permissions [are %s]'),$value);
-			checkMark($severity, $msg, $msg,'<p>'.gettext('If file and folder permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file/folder permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission.').'</p>'.
-			$chmodselector);
+		primeMark(gettext('File/Folder permissions'));
+		$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" />'.
+					'<p>'.sprintf(gettext('Set File/Folder permissions to %s.'),permissionsSelector($permission_names, $chmod)).
+					'</p></form>';
+		if (array_key_exists($chmod, $permission_names)) {
+			$value = sprintf(gettext('<em>%1$s</em> (<code>0%2$o</code>)'),$permission_names[$chmod],$chmod);
+		} else {
+			$value = sprintf(gettext('<em>unknown</em> (<code>%o</code>)'),$chmod);
 		}
+		if ($chmod>0755) {
+			if (isset($_zp_conf_vars['CHMOD'])) {
+				$severity = -3;
+			} else {
+				$severity = -1;
+			}
+		} else {
+			$severity = -2;
+		}
+		$msg = sprintf(gettext('File/Folder Permissions [are %s]'),$value);
+		checkMark($severity, $msg, $msg,'<p>'.gettext('If file and folder permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file/folder permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission.').'</p>'.
+		$chmodselector);
+
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			if ($environ) {
 				if (isMac()) {
@@ -838,7 +836,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	primeMark(gettext('Database connection'));
 	if ($cfg) {
-		@chmod(CONFIGFILE, 0666 & $chmod);
+		@chmod(CONFIGFILE, 0666 & ($chmod|0400));
 		if (($adminstuff = !$engines[$selected_database] || !$connection  || !$db) && is_writable(CONFIGFILE)) {
 			$good = checkMark(false, '', gettext("Database setup in configuration file"), $connectDBErr) && $good;
 			// input form for the information
@@ -1079,8 +1077,9 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				if ($updatechmod) {
 					@chmod($component,$chmod);
 					clearstatcache();
-					if ($permissions==1 && ($perms = fileperms($component)&0777)!=$chmod) {
-						if (($perms&0754) == 0754) { // could not set them, but they will work.
+					$perms = fileperms($component)&0777;
+					if ($permissions==1 && !checkPermissions($perms, $chmod)) {
+						if (checkPermissions($perms&0754,0754)) { // could not set them, but they will work.
 							$permissions = -1;
 						} else {
 							$permissions = 0;
@@ -1096,8 +1095,9 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				if ($updatechmod) {
 					@chmod($component,0666&$chmod);
 					clearstatcache();
-					if ($permissions==1 && ($perms = fileperms($component)&0777)!=($chmod & 0666)) {
-						if (($perms&0644) == 0644) { // could not set them, but they will work.
+					$perms = fileperms($component)&0777;
+					if ($permissions==1 && !checkPermissions($perms,$chmod & 0666)) {
+						if (checkPermissions($perms&0644,0644)) { // could not set them, but they will work.
 							$permissions = -1;
 						} else {
 							$permissions = 0;
@@ -1116,11 +1116,12 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	if (count($folders)>0) {
 		foreach ($folders as $key=>$folder) {
-			if ((fileperms($folder)&0777) != 0755) { // need to set them?.
+			if (!checkPermissions(fileperms($folder)&0777,0755)) { // need to set them?.
 				@chmod($folder, $chmod);
 				clearstatcache();
-				if ($permissions==1 && ($perms = fileperms($folder)&0777)!=$chmod) {
-					if (($perms&0755) != 0755) { // could not set them, but they will work.
+				$perms = fileperms($folder)&0777;
+				if ($permissions==1 && !checkPermissions($perms,$chmod)) {
+					if (checkPermissions($perms&0755,0755)) { // could not set them, but they will work.
 						$permissions = 0;
 					} else {
 						$permissions = -1;
@@ -1219,9 +1220,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 															'</code><p class="buttons"><a href="?delete_extra'.($debug?'&amp;debug':'').'">'.gettext("Delete extra files").'</a></p><br clear="all" /><br clear="all" />');
 				}
 			}
-			if (!isWin()) {
-				checkMark($permissions, gettext("Zenphoto core file permissions"), gettext("Zenphoto core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'));
-			}
+			checkMark($permissions, gettext("Zenphoto core file permissions"), gettext("Zenphoto core file permissions [not correct]"), gettext('Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'));
 		}
 	}
 	$msg = gettext("<em>.htaccess</em> file");
@@ -1258,8 +1257,10 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			$i = strpos($oht, 'RewriteBase /zenphoto');
 			$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $i+21);
 			if ($oht == $ht) {	// an unmodified .htaccess file, we can just replace it
+				chmod(dirname(dirname(__FILE__)).'/.htaccess',0666);
 				@unlink($htfile);
 				$ch = @copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
+				chmod(dirname(dirname(__FILE__)).'/.htaccess',0400);
 			}
 		}
 		if (!$ch) {
@@ -1311,7 +1312,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		}
 		$f = '';
 		if (!$base) { // try and fix it
-			@chmod($htfile, 0666&$chmod);
+			@chmod($htfile, 0666);
 			if (is_writeable($htfile)) {
 				$ht = substr($ht, 0, $i) . "RewriteBase $d\n" . substr($ht, $j+1);
 				if ($handle = fopen($htfile, 'w')) {
@@ -1324,6 +1325,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					clearstatcache();
 				}
 			}
+			@chmod($htfile, 0400);
 		}
 		$good = checkMark($base, $b, $err,
 											gettext("Setup was not able to write to the file change RewriteBase match the install folder.") .
@@ -1382,7 +1384,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$good = folderCheck('cache', dirname(dirname(__FILE__)) . "/cache/", 'std') && $good;
 	$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder.')) && $good;
 	$good = folderCheck(gettext('uploaded'), dirname(dirname(__FILE__)) . "/uploaded/", 'std') && $good;
-	$good = folderCheck(DATA_FOLDER, dirname(dirname(__FILE__)) . '/'.DATA_FOLDER.'/', 'std') && $good;
+	$good = folderCheck(DATA_FOLDER, dirname(dirname(__FILE__)) . '/'.DATA_FOLDER.'/', 'std', true, NULL, false) && $good;
 	$good = folderCheck(gettext('HTML cache'), dirname(dirname(__FILE__)) . '/cache_html/', 'std', true, $Cache_html_subfolders) && $good;
 	$good = folderCheck(gettext('Third party plugins'), dirname(dirname(__FILE__)) . '/'.USER_PLUGIN_FOLDER.'/', 'std', false, $plugin_subfolders) && $good;
 

@@ -55,19 +55,18 @@ if(isset($_GET['rss']) || isset($_GET['rss-news']) || isset($_GET['rss-comments'
 require_once(dirname(__FILE__). "/".ZENFOLDER.'/controller.php');
 $_zp_obj = '';
 //$_zp_script_timer['controller'] = microtime();
-if (isset($_GET['p'])) {	// Display an arbitrary theme-included PHP page
+// Display an arbitrary theme-included PHP page
+if (isset($_GET['p'])) {
 	$theme = prepareCustomPage();
-
-
-} else if (in_context(ZP_IMAGE)) {	// Display an Image page.
+// Display an Image page.
+} else if (in_context(ZP_IMAGE)) {
 	$theme = prepareImagePage();
 
-
-} else if (in_context(ZP_ALBUM)) {	// Display an Album page.
+// Display an Album page.
+} else if (in_context(ZP_ALBUM)) {
 	$theme = prepareAlbumPage();
-
-
-} else if (in_context(ZP_INDEX)) {	// Display the Index page.
+	// Display the Index page.
+} else if (in_context(ZP_INDEX)) {
 	$theme = prepareIndexPage();
 }
 
