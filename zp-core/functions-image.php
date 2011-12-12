@@ -396,6 +396,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 
 		// Create the cached file (with lots of compatibility)...
 		mkdir_recursive(dirname($newfile),FOLDER_MOD);
+		chmod($newfile, 0666);
 		if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) {	//	successful save of cached image
 			if (getOption('ImbedIPTC') && getSuffix($newfilename)=='jpg') {	// the imbed function works only with JPEG images
 				$iptc_data = zp_imageIPTC($imgfile);
@@ -439,10 +440,11 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 					clearstatcache();
 				}
 			}
+			chmod($newfile, FILE_MOD);
 			if (DEBUG_IMAGE) debugLog('Finished:'.basename($imgfile));
 		} else {
 			if (DEBUG_IMAGE) debugLog('cacheImage: failed to create '.$newfile);
-			imageError(sprintf(gettext('cacheImage: failed to create %s').$newfile), 'err-failimage.png');
+			imageError(sprintf(gettext('cacheImage: failed to create %s'),$newfile), 'err-failimage.png');
 		}
 		@chmod($newfile, FILE_MOD);
 		zp_imageKill($newim);

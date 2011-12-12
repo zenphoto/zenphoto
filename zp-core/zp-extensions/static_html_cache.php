@@ -303,6 +303,7 @@ class staticCache {
 	 */
 	function deleteStaticCacheFile($cachefilepath) {
 		if(file_exists($cachefilepath)) {
+			chmod($cachefilepath, 0666);
 			@unlink($cachefilepath);
 		}
 	}
@@ -327,6 +328,7 @@ class staticCache {
 						}
 					} else {
 						if (file_exists($fullname) && !(substr($filename, 0, 1) == '.')) {
+							chmod($fullname, 0666);
 							unlink($fullname);
 						}
 					}

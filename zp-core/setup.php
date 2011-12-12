@@ -1196,6 +1196,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				if (isset($_GET['delete_extra'])) {
 					foreach ($systemlist as $key=>$file) {
 						if (!is_dir($file)) {
+							chmod($file, 0666);
 							if (setupDeleteComponent(@unlink($file),$filelist[$key])) {
 								unset($filelist[$key]);
 								unset($systemlist[$key]);
@@ -1204,6 +1205,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					}
 					foreach ($systemlist as $key=>$file) {
 						if (is_dir($file)) {
+							chmod($file, 0666);
 							if (setupDeleteComponent(@rmdir($file),$filelist[$key].'/')) {
 								unset($filelist[$key]);
 							}
@@ -2216,13 +2218,6 @@ if (file_exists(CONFIGFILE)) {
 			$_zp_gallery = new Gallery();
 			require(dirname(__FILE__).'/setup/setup-option-defaults.php');
 
-			// 1.1.6 special cleanup section for plugins
-			$badplugs = array ('exifimagerotate.php', 'flip_image.php', 'image_mirror.php', 'image_rotate.php', 'supergallery-functions.php');
-			foreach ($badplugs as $plug) {
-				$path = SERVERPATH . '/' . ZENFOLDER .'/'.PLUGIN_FOLDER.'/' . $plug;
-				@unlink($path);
-			}
-
 			// update zenpage codeblocks--remove the base64 encoding
 			$sql = 'SELECT `id`, `codeblock` FROM '.prefix('news').' WHERE `codeblock` NOT REGEXP "^a:[0-9]+:{"';
 			$result = query_full_array($sql,false);
@@ -2275,14 +2270,17 @@ if (file_exists(CONFIGFILE)) {
 				$rslt = array();
 				foreach ($list as $component) {
 					if ($component != '..' && $component != '.') {
+						chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
 						if(!setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component),$component)) {
 							$rslt[] = '../setup/'.$component;
 						}
 					}
 				}
+				chmod(SERVERPATH.'/'.ZENFOLDER.'/setup.php', 0666);
 				if (!setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup.php'),'setup.php')) {
 					$rslt[] = '../setup.php';
 				}
+				chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/', 0666);
 				if (!setupDeleteComponent(@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/'),'setup/')) {
 					$rslt[] = '../setup/';
 				}

@@ -189,7 +189,7 @@ function folderCheck($which, $path, $class, $relaxation, $subfolders, $recurse, 
 				@chmod($path,$chmod);
 				clearstatcache();
 				$perms = fileperms($path)&0777;
-				if (false && !checkPermissions($perms, $chmod)) {
+				if (!checkPermissions($perms, $chmod)) {
 					if (array_key_exists($perms, $permission_names)) {
 						$perms_class = $permission_names[$perms];
 					} else {

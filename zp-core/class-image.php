@@ -679,6 +679,7 @@ class _Image extends MediaObject {
 			$result = true;
 			$filestodelete = safe_glob(substr($this->localpath,0,strrpos($this->localpath,'.')).'.*');
 			foreach ($filestodelete as $file) {
+				chmod($file, 0666);
 				$result = $result && @unlink($file);
 			}
 			if ($result) {

@@ -833,6 +833,7 @@ function clearSitemapCache() {
 				}
 			} else {
 				if (file_exists($fullname) && !(substr($filename, 0, 1) == '.')) {
+					chmod($fullname, 0666);
 					unlink($fullname);
 				}
 			}

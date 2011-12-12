@@ -2806,6 +2806,7 @@ function deleteThemeDirectory($source) {
 				}
 			} else {
 				if (file_exists($fullname)) {
+					chmod($fullname, 0666);
 					$result = $result && unlink($fullname);
 				}
 			}
