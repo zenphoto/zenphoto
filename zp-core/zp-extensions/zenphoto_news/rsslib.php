@@ -9,7 +9,7 @@
  RSS Extractor and Displayer
  (c) 2007-2009  Scriptol.com - License Mozilla 1.1.
  rsslib.php
- 
+
  Modified for zenphoto by s. billard
  		removed unused functions
  		made more resilient
@@ -124,8 +124,7 @@ function RSS_Display($url, $size = 15, $site = 0) {
 			}
 		}
 		$title = $article["title"];
-		$format = DATE_FORMAT;
-		$date = zpFormattedDate($format, strtotime($article["pubDate"]));
+		$date = zpFormattedDate(DATE_FORMAT, strtotime($article["pubDate"]));
 		$link = $article["link"];
 		$description = $article["description"];
 		$page .= "<li><a href=\"$link\"><strong>$title</strong> ($date)</a>";
