@@ -108,8 +108,11 @@ function writeHeader($type, $value) {
 	return fwrite($handle, HEADER.$type.'='.$value.RECORD_SEPARATOR);
 }
 
+printAdminHeader(gettext('utilities'),gettext('backup'));
+echo '</head>';
+
 $gallery = new Gallery();
-$refresh = $messages = '';
+$messages = '';
 
 $prefix = prefix();
 if (isset($_REQUEST['backup']) && db_connect()) {
@@ -400,10 +403,6 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		}
 	}
 }
-printAdminHeader(gettext('utilities'),gettext('backup'));
-?><!-- Refresh goes here --><?php
-echo $refresh;
-echo '</head>';
 ?>
 
 <body>
