@@ -292,7 +292,7 @@ if (function_exists('setOption')) {
 	require_once(dirname(__FILE__).'/functions-filter.php');
 	require_once(dirname(__FILE__).'/functions-i18n.php');
 }
-$updatechmod = $updatechmod  && zp_loggedin(ADMIN_RIGHTS);
+$updatechmod = ($updatechmod || !checkPermissions(fileperms(dirname(__FILE__).'/setup.php'), $chmod)) && zp_loggedin(ADMIN_RIGHTS);
 
 if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists(dirname(dirname(__FILE__)).'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
@@ -2280,7 +2280,7 @@ if (file_exists(CONFIGFILE)) {
 				if (!setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup.php'),'setup.php')) {
 					$rslt[] = '../setup.php';
 				}
-				chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/', 0666);
+				chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/', 0766);
 				if (!setupDeleteComponent(@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/'),'setup/')) {
 					$rslt[] = '../setup/';
 				}

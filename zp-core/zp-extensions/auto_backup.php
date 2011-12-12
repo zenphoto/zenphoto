@@ -81,7 +81,7 @@ function auto_backup_timer_handler($discard) {
 	$keep = getOption('backups_to_keep');
 	while (count($list) >= $keep) {
 		$file = array_shift($list);
-		chmod($file, 0666);
+		chmod(SERVERPATH . "/" . BACKUPFOLDER.'/'.$file, 0666);
 		unlink(SERVERPATH . "/" . BACKUPFOLDER.'/'.$file);
 	}
 
