@@ -134,7 +134,7 @@ if (getOption('cache_full_image')) {
 	$args = array('FULL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 	$cache_file = getImageCacheFilename($album, $image, $args);
 	$cache_path = SERVERCACHE.$cache_file;
-	mkdir_recursive(dirname($cache_path), CHMOD_VALUE);
+	mkdir_recursive(dirname($cache_path), FOLDER_MOD);
 } else {
 	$cache_path = NULL;
 }

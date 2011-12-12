@@ -559,7 +559,7 @@ function xmpMetadataPublish($object) {
 	fwrite($f, '</x:xmpmeta>'."\n");
 	fclose($f);
 	clearstatcache();
-	chmod($file, 0666&CHMOD_VALUE);
+	chmod($file, FILE_MOD);
 	return gettext('Metadata exported');
 }
 

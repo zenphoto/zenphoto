@@ -51,9 +51,9 @@ if (isset($_POST['processed'])) {
 		}
 		if (!$error) {
 			if (!is_dir($targetPath)) {
-				mkdir_recursive($targetPath, CHMOD_VALUE);
+				mkdir_recursive($targetPath, FOLDER_MOD);
 			}
-			@chmod($targetPath, CHMOD_VALUE);
+			@chmod($targetPath, FOLDER_MOD);
 			$album = new Album($gallery, $folder);
 			if ($album->exists) {
 				if (!isset($_POST['publishalbum'])) {
@@ -88,7 +88,7 @@ if (isset($_POST['processed'])) {
 									$uploadfile = $targetPath . '/' . internalToFilesystem($soename);
 								}
 								move_uploaded_file($tmp_name, $uploadfile);
-								@chmod($uploadfile, 0666 & CHMOD_VALUE);
+								@chmod($uploadfile, FILE_MOD);
 								$image = newImage($album, $soename);
 								if ($name != $soename) {
 									$image->setTitle($name);

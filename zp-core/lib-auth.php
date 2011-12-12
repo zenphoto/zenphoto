@@ -1391,7 +1391,7 @@ class Zenphoto_Administrator extends PersistentObject {
 		}
 		$path = ALBUM_FOLDER_SERVERPATH.'/'.$filename.$ext;
 		$albumname = filesystemToInternal($filename.$ext);
-		if (@mkdir_recursive($path,CHMOD_VALUE)) {
+		if (@mkdir_recursive($path,FOLDER_MOD)) {
 			$album = new Album(new Gallery(), $albumname);
 			if ($title = $this->getName()) {
 				$album->setTitle($title);

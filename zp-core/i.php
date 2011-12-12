@@ -134,13 +134,13 @@ if ($debug) imageDebug($album, $image, $args, $imgfile);
  ******************************************/
 // Make sure the cache directory is writable, attempt to fix. Issue a warning if not fixable.
 if (!is_dir(SERVERCACHE)) {
-	@mkdir(SERVERCACHE, CHMOD_VALUE);
-	@chmod(SERVERCACHE, CHMOD_VALUE);
+	@mkdir(SERVERCACHE, FOLDER_MOD);
+	@chmod(SERVERCACHE, FOLDER_MOD);
 	if (!is_dir(SERVERCACHE))
 		imageError(gettext("The cache directory does not exist. Please create it and set the permissions to 0777."), 'err-cachewrite.png');
 }
 if (!is_writable(SERVERCACHE)) {
-	@chmod(SERVERCACHE, CHMOD_VALUE);
+	@chmod(SERVERCACHE, FOLDER_MOD);
 	if (!is_writable(SERVERCACHE))
 		imageError(gettext("The cache directory is not writable! Attempts to chmod didn't work."), 'err-cachewrite.png');
 }
@@ -189,10 +189,10 @@ if (!ini_get("safe_mode")) {
 		$dir = internalToFilesystem($dir);
 		$dir = SERVERCACHE . '/' . $dir;
 		if (!is_dir($dir)) {
-			@mkdir($dir, CHMOD_VALUE);
-			chmod($dir, CHMOD_VALUE);
+			@mkdir($dir, FOLDER_MOD);
+			chmod($dir, FOLDER_MOD);
 		} else if (!is_writable($dir)) {
-			chmod($dir, CHMOD_VALUE);
+			chmod($dir, FOLDER_MOD);
 		}
 	}
 }

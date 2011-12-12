@@ -67,7 +67,7 @@ function auto_backup_timer_handler($discard) {
 	$curdir = getcwd();
 	$folder = SERVERPATH . "/" . BACKUPFOLDER;
 	if (!is_dir($folder)) {
-		mkdir ($folder, CHMOD_VALUE);
+		mkdir ($folder, FOLDER_MOD);
 	}
 	chdir($folder);
 	$filelist = safe_glob('*'.'.zdb');

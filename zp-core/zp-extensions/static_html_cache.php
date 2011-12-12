@@ -33,7 +33,7 @@ require_once(dirname(dirname(__FILE__)).'/functions.php');
 
 $cache_path = SERVERPATH.'/'.STATIC_CACHE_FOLDER."/";
 if (!file_exists($cache_path)) {
-	if (!mkdir($cache_path, CHMOD_VALUE)) {
+	if (!mkdir($cache_path, FOLDER_MOD)) {
 		die(gettext("Static HTML Cache folder could not be created. Please try to create it manually via FTP with chmod 0777."));
 	}
 }
@@ -41,7 +41,7 @@ $cachesubfolders = array("index", "albums", "images", "pages");
 foreach($cachesubfolders as $cachesubfolder) {
 	$cache_folder = $cache_path.$cachesubfolder.'/';
 	if (!file_exists($cache_folder)) {
-		if(!mkdir($cache_folder, CHMOD_VALUE)) {
+		if(!mkdir($cache_folder, FOLDER_MOD)) {
 			die(gettext("Static HTML Cache folder could not be created. Please try to create it manually via FTP with chmod 0777."));
 		}
 	}

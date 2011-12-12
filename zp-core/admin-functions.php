@@ -2681,10 +2681,10 @@ function copyThemeDirectory($source, $target, $newname) {
 	}
 
 	// We must be able to create the directory
-	if (! mkdir($target, CHMOD_VALUE)) {
+	if (! mkdir($target, FOLDER_MOD)) {
 		return gettext('Cannot create new theme.') .' '.gettext('Could not create directory for the new theme');
 	}
-	chmod($target, CHMOD_VALUE);
+	chmod($target, FOLDER_MOD);
 
 	// Get a list of files to copy: get all files from the directory, remove those containing '/.svn/'
 	$source_files = array_filter( listDirectoryFiles( $source ), create_function('$str', 'return strpos($str, "/.svn/") === false;') );
@@ -2716,8 +2716,8 @@ function copyThemeDirectory($source, $target, $newname) {
 
 	// Create new directory structure
 	foreach ($dirs_to_create as $dir) {
-		mkdir("$target/$dir", CHMOD_VALUE);
-		chmod("$target/$dir", CHMOD_VALUE); // Using chmod as PHP doc suggested: "Avoid using umask() in multithreaded webservers. It is better to change the file permissions with chmod() after creating the file."
+		mkdir("$target/$dir", FOLDER_MOD);
+		chmod("$target/$dir", FOLDER_MOD);
 	}
 
 	// Now copy every file
@@ -2725,7 +2725,7 @@ function copyThemeDirectory($source, $target, $newname) {
 		$newfile = str_replace($source, $target, $file);
 		if (! copy("$file", "$newfile" ) )
 			return sprintf(gettext("An error occurred while copying files. Please delete manually the new theme directory '%s' and retry or copy files manually."), basename($target));
-		chmod("$newfile", CHMOD_VALUE);
+		chmod("$newfile", FOLDER_MOD);
 	}
 
 	// Rewrite the theme header.

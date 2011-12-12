@@ -135,9 +135,9 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		$folder = SERVERPATH . "/" . BACKUPFOLDER;
 		$filename = $folder . '/backup-' . date('Y_m_d-H_i_s').'.zdb';
 		if (!is_dir($folder)) {
-			mkdir ($folder, CHMOD_VALUE);
+			mkdir ($folder, FOLDER_MOD);
 		}
-		@chmod($folder, CHMOD_VALUE);
+		@chmod($folder, FOLDER_MOD);
 		$handle = fopen($filename, 'w');
 		if ($handle === false) {
 			printf(gettext('Failed to open %s for writing.'), $filename);
@@ -180,6 +180,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 				if ($writeresult === false) break;
 			}
 			fclose($handle);
+			chmod($filename, FILE_MOD);
 		}
 	} else {
 		$msg = gettext('SHOW TABLES failed!');

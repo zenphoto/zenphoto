@@ -49,12 +49,12 @@ if (empty($matches)) {
 }
 $serverpath = str_replace("\\", '/', dirname(dirname(__FILE__)));
 
-$chmod = fileperms(dirname(__FILE__))&0777;
+$chmod = fileperms(dirname(__FILE__))&0666;
 
 $en_US = dirname(__FILE__).'/locale/en_US/';
 if (!file_exists($en_US)) {
-	@mkdir(dirname(__FILE__).'/locale/', $chmod);
-	@mkdir($en_US, $chmod);
+	@mkdir(dirname(__FILE__).'/locale/', $chmod | 0311);
+	@mkdir($en_US, $chmod | 0311);
 }
 
 $selected_database = 'MySQL';
@@ -64,7 +64,7 @@ if (file_exists(CONFIGFILE)) {
 } else {
 	$zptime = time();
 	if (!file_exists(dirname(dirname(__FILE__)).'/'.DATA_FOLDER)) {
-		@mkdir(dirname(dirname(__FILE__)).'/'.DATA_FOLDER, $chmod);
+		@mkdir(dirname(dirname(__FILE__)).'/'.DATA_FOLDER, $chmod | 0311);
 	}
 	if (file_exists(dirname(dirname(__FILE__)).'/'.ZENFOLDER.'/zp-config.php')) {
 		// copy old file from zp-core
@@ -135,10 +135,10 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 }
 
 $permission_names = array(
-													0555=>gettext('readonly'),
-													0755=>gettext('strict'),
-													0775=>gettext('relaxed'),
-													0777=>gettext('loose')
+													0444=>gettext('readonly'),
+													0644=>gettext('strict'),
+													0664=>gettext('relaxed'),
+													0666=>gettext('loose')
 													);
 $permissions = array_keys($permission_names);
 if ($updatechmod = isset($_REQUEST['chmod_permissions'])) {
@@ -220,7 +220,7 @@ if ($updatezp_config) {
 		fclose($handle);
 		clearstatcache();
 	}
-	@chmod(CONFIGFILE, 0666 & $chmod);
+	@chmod(CONFIGFILE, $chmod);
 	$xsrftoken = sha1(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
 }
 
@@ -281,7 +281,7 @@ if (file_exists(CONFIGFILE)) {
 
 }
 if (defined('CHMOD_VALUE')) {
-	$chmod = CHMOD_VALUE;
+	$chmod = CHMOD_VALUE & 0666;
 }
 
 if (function_exists('setOption')) {
@@ -579,16 +579,16 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 							' Place the file in the %s folder.'),DATA_FOLDER).
 							sprintf(gettext('<br /><br />You can find the file in the "%s" directory.'),ZENFOLDER)) && $good;
 	if ($cfg) {
-		primeMark(gettext('File/Folder permissions'));
+		primeMark(gettext('File permissions'));
 		$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" />'.
-					'<p>'.sprintf(gettext('Set File/Folder permissions to %s.'),permissionsSelector($permission_names, $chmod)).
+					'<p>'.sprintf(gettext('Set File permissions to %s.'),permissionsSelector($permission_names, $chmod)).
 					'</p></form>';
 		if (array_key_exists($chmod, $permission_names)) {
 			$value = sprintf(gettext('<em>%1$s</em> (<code>0%2$o</code>)'),$permission_names[$chmod],$chmod);
 		} else {
 			$value = sprintf(gettext('<em>unknown</em> (<code>%o</code>)'),$chmod);
 		}
-		if ($chmod>0755) {
+		if ($chmod>0644) {
 			if (isset($_zp_conf_vars['CHMOD'])) {
 				$severity = -3;
 			} else {
@@ -597,8 +597,8 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		} else {
 			$severity = -2;
 		}
-		$msg = sprintf(gettext('File/Folder Permissions [are %s]'),$value);
-		checkMark($severity, $msg, $msg,'<p>'.gettext('If file and folder permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file/folder permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission.').'</p>'.
+		$msg = sprintf(gettext('File Permissions [are %s]'),$value);
+		checkMark($severity, $msg, $msg,'<p>'.gettext('If file permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission.').'</p>'.
 		$chmodselector);
 
 		if (zp_loggedin(ADMIN_RIGHTS)) {
@@ -786,7 +786,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					break;
 				case 'pdo_sqlite':
 					if (!defined('RELEASE')) {
-						$engines[$engineMC] = array('user'=>false,'pass'=>false,'host'=>false,'path'=>true,'name'=>true,'prefix'=>true,'experimental'=>gettext('SQLite is a limited database and does not support all Zenphoto functionality. Use of this database is for <em>Database abstraction</em> proof of concept only.'));
+						$engines[$engineMC] = array('user'=>false,'pass'=>false,'host'=>false,'path'=>true,'name'=>true,'prefix'=>true,'experimental'=>gettext('SQLite is a limited database and does not support all Zenphoto functionality. Use of this database is for <em>Testing</em> only.'));
 					}
 					break;
 			}
@@ -836,7 +836,6 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	primeMark(gettext('Database connection'));
 	if ($cfg) {
-		@chmod(CONFIGFILE, 0666 & ($chmod|0400));
 		if (($adminstuff = !$engines[$selected_database] || !$connection  || !$db) && is_writable(CONFIGFILE)) {
 			$good = checkMark(false, '', gettext("Database setup in configuration file"), $connectDBErr) && $good;
 			// input form for the information
@@ -1075,11 +1074,11 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			}
 			if (is_dir($component)) {
 				if ($updatechmod) {
-					@chmod($component,$chmod);
+					@chmod($component,$chmod | 0311);
 					clearstatcache();
 					$perms = fileperms($component)&0777;
-					if ($permissions==1 && !checkPermissions($perms, $chmod)) {
-						if (checkPermissions($perms&0754,0754)) { // could not set them, but they will work.
+					if ($permissions==1 && !checkPermissions($perms, $chmod | 0311)) {
+						if (checkPermissions($perms&0755, 0755)) { // could not set them, but they will work.
 							$permissions = -1;
 						} else {
 							$permissions = 0;
@@ -1093,10 +1092,10 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				}
 			} else {
 				if ($updatechmod) {
-					@chmod($component,0666&$chmod);
+					@chmod($component, $chmod);
 					clearstatcache();
 					$perms = fileperms($component)&0777;
-					if ($permissions==1 && !checkPermissions($perms,$chmod & 0666)) {
+					if ($permissions==1 && !checkPermissions($perms,$chmod)) {
 						if (checkPermissions($perms&0644,0644)) { // could not set them, but they will work.
 							$permissions = -1;
 						} else {
@@ -1117,10 +1116,10 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	if (count($folders)>0) {
 		foreach ($folders as $key=>$folder) {
 			if (!checkPermissions(fileperms($folder)&0777,0755)) { // need to set them?.
-				@chmod($folder, $chmod);
+				@chmod($folder, $chmod | 0311);
 				clearstatcache();
 				$perms = fileperms($folder)&0777;
-				if ($permissions==1 && !checkPermissions($perms,$chmod)) {
+				if ($permissions==1 && !checkPermissions($perms,$chmod | 0311)) {
 					if (checkPermissions($perms&0755,0755)) { // could not set them, but they will work.
 						$permissions = 0;
 					} else {

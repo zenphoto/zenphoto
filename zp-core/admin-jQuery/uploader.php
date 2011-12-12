@@ -59,13 +59,14 @@ if (!empty($folder)) {
 		}
 	}
 	if ($new) {
-		mkdir_recursive($targetPath, CHMOD_VALUE);
+		mkdir_recursive($targetPath, FOLDER_MOD);
 		$album = new Album($gallery, $folder);
 		$album->setShow((int) !empty($_POST['publishalbum']));
 		$album->setTitle(sanitize($_POST['albumtitle']));
 		$album->setOwner($_zp_current_admin_obj->getUser());
 		$album->save();
 	}
+	@chmod($targetPath, FOLDER_MOD);
 }
 
 class UploadHandler
@@ -267,7 +268,7 @@ class UploadHandler
 					);
 				} else {
 					move_uploaded_file($uploaded_file, $file_path);
-					@chmod($targetFile, 0666 & CHMOD_VALUE);
+					@chmod($targetFile, FILE_MOD);
 					$album = new Album($gallery, $folder);
 					$image = newImage($album, $seoname);
 					$image->setOwner($_zp_current_admin_obj->getUser());

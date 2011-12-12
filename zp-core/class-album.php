@@ -900,7 +900,7 @@ class Album extends MediaObject {
 			$success = @copy($this->localpath, $dest);
 			$filemask = substr($this->localpath,0,strrpos($this->localpath,'.')).'.*';
 		} else {
-			$success = mkdir_recursive($dest) === TRUE;
+			$success = mkdir_recursive($dest,FOLDER_MOD) === TRUE;
 			$filemask = substr($this->localpath,0,-1).'.*';
 		}
 		if ($success) {

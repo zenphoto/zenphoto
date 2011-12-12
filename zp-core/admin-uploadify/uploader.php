@@ -48,14 +48,14 @@ if (!empty($_FILES)) {
 				}
 			}
 			if ($new) {
-				mkdir_recursive($targetPath, CHMOD_VALUE);
+				mkdir_recursive($targetPath, FOLDER_MOD);
 				$album = new Album($gallery, $folder);
 				$album->setShow($albumparmas[0]!='false');
 				$album->setTitle($albumparmas[2]);
 				$album->setOwner($_zp_current_admin_obj->getUser());
 				$album->save();
 			}
-			@chmod($targetPath, CHMOD_VALUE);
+			@chmod($targetPath, FOLDER_MOD);
 			$error = zp_apply_filter('check_upload_quota', UPLOAD_ERR_OK, $tempFile);
 			if (!$error) {
 				if (is_valid_image($name) || is_valid_other_type($name)) {
@@ -68,7 +68,7 @@ if (!empty($_FILES)) {
 						$targetFile =  $targetPath.'/'.internalToFilesystem($seoname);
 					}
 					if (move_uploaded_file($tempFile,$targetFile)) {
-						@chmod($targetFile, 0666 & CHMOD_VALUE);
+						@chmod($targetFile, FILE_MOD);
 						$album = new Album($gallery, $folder);
 						$image = newImage($album, $seoname);
 						$image->setOwner($_zp_current_admin_obj->getUser());

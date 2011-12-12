@@ -8,8 +8,6 @@
 require_once(dirname(dirname(__FILE__)).'/functions.php');
 require_once(dirname(__FILE__).'/setup-functions.php');
 define('CONFIGFILE',SERVERPATH.'/'.DATA_FOLDER.'/zenphoto.cfg');
-define('FOLDER_MOD',CHMOD_VALUE | ((CHMOD_VALUE & 0444)>>1));
-define('FILE_MOD',0666&CHMOD_VALUE);
 if (!isset($_POST['folder'])) {
 	exit();
 }

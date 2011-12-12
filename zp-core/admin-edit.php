@@ -454,9 +454,9 @@ if (isset($_GET['action'])) {
 				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit$albumdir&exists=" . urlencode($name).$tab);
 				exit();
 			} else {
-				mkdir_recursive($uploaddir, CHMOD_VALUE);
+				mkdir_recursive($uploaddir, FOLDER_MOD);
 			}
-			@chmod($uploaddir, CHMOD_VALUE);
+			@chmod($uploaddir, FOLDER_MOD);
 
 			$album = new Album($gallery, $folder);
 			if ($album->exists) {
@@ -1238,23 +1238,23 @@ $alb = removeParentAlbumNames($album);
 						<!-- Move/Copy/Rename this image -->
 						<label class="checkboxlabel">
 								<input type="radio" id="move-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="move"
-									onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', 'movecopy');"  /> <?php echo gettext("Move");?>
+									onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', 'move');"  /> <?php echo gettext("Move");?>
 						</label>
 						<label class="checkboxlabel">
 								<input type="radio" id="copy-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="copy"
-									onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', 'movecopy');"  /> <?php echo gettext("Copy");?>
+									onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', 'copy');"  /> <?php echo gettext("Copy");?>
 						</label>
 						<label class="checkboxlabel">
 								<input type="radio" id="rename-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="rename"
 									onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', 'rename');"  /> <?php echo gettext("Rename File");?>
-
 						</label>
 						<label class="checkboxlabel">
 								<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
 									onclick="image_deleteconfirm(this, '<?php echo $currentimage; ?>','<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
 						</label>
-						<div id="movecopydiv-<?php echo $currentimage; ?>"
-							style="padding-top: .5em; padding-left: .5em; display: none;"><?php echo gettext("to"); ?>:
+						<br clear='all'>
+						<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
+						<?php echo gettext("to"); ?>:
 						<select id="albumselectmenu-<?php echo $currentimage; ?>"
 							name="<?php echo $currentimage; ?>-albumselect" onchange="">
 							<?php
@@ -1280,7 +1280,8 @@ $alb = removeParentAlbumNames($album);
 						<br /><p class="buttons"><a href="javascript:toggleMoveCopyRename('<?php echo $currentimage; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
 						</p>
 						</div>
-						<div id="renamediv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;"><?php echo gettext("to"); ?>:
+						<div id="renamediv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">
+						<?php echo gettext("to"); ?>:
 						<input name="<?php echo $currentimage; ?>-renameto" type="text" value="<?php echo $image->filename;?>" /><br />
 						<br /><p class="buttons"><a	href="javascript:toggleMoveCopyRename('<?php echo $currentimage; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
 						</p>

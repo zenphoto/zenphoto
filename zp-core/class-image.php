@@ -716,7 +716,9 @@ class _Image extends MediaObject {
 			return 2;
 		}
 		$filename = basename($this->localpath);
+		chmod($filename, 0666);
 		$result = @rename($this->localpath, $newpath);
+		chmod($filename, FILE_MOD);
 		if ($result) {
 			$filestomove = safe_glob(substr($this->localpath,0,strrpos($this->localpath,'.')).'.*');
 			foreach ($filestomove as $file) {

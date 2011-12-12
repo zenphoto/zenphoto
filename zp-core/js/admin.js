@@ -187,16 +187,24 @@ function toggleMoveCopyRename(id, operation) {
 		jQuery('#copy-'+id).attr('checked',false);
 		jQuery('#rename-'+id).attr('checked',false);
 		jQuery('#Delete-'+id).attr('checked',false);
-	} else if (operation == 'movecopy') {
+	} else if (operation == 'copy') {
 		jQuery('#movecopydiv-'+id).show();
 		jQuery('#renamediv-'+id).hide();
 		jQuery('#Delete-'+id).attr('checked',false);
 		jQuery('#deletemsg'+id).hide();
+		jQuery('#copy-'+id).attr('checked','checked');
+	} else if (operation == 'move') {
+		jQuery('#movecopydiv-'+id).show();
+		jQuery('#renamediv-'+id).hide();
+		jQuery('#Delete-'+id).attr('checked',false);
+		jQuery('#deletemsg'+id).hide();
+		jQuery('#move-'+id).attr('checked','checked');
 	} else if (operation == 'rename') {
 		jQuery('#movecopydiv-'+id).hide();
 		jQuery('#renamediv-'+id).show();
 		jQuery('#Delete-'+id).attr('checked',false);
 		jQuery('#deletemsg'+id).hide();
+		jQuery('#rename-'+id).attr('checked','checked');
 	}
 }
 

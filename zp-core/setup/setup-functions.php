@@ -100,17 +100,20 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
 				default:
 					$moreid++;
 					?>
-					<a href="javascript:toggle_visibility('more<?php echo $moreid; ?>');">
-						<?php echo gettext('<strong>Notice!</strong> click for details'); ?>
-					</a>
 					<?php
 					if ($check == -3) {
 						?>
+						<a href="javascript:toggle_visibility('more<?php echo $moreid; ?>');">
+							<?php echo gettext('<strong>Warning!</strong> click for details'); ?>
+						</a>
 						<div class="warning" id="more<?php echo $moreid; ?>" style="display: none">
 						<h1><?php echo gettext('Warning!'); ?></h1>
 						<?php
 					} else {
 						?>
+						<a href="javascript:toggle_visibility('more<?php echo $moreid; ?>');">
+							<?php echo gettext('<strong>Notice!</strong> click for details'); ?>
+						</a>
 						<div class="notice" id="more<?php echo $moreid; ?>" style="display: none">
 						<h1><?php echo gettext('Notice!'); ?></h1>
 						<?php
@@ -146,7 +149,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
  * @param $subfolders
  */
 function folderCheck($which, $path, $class, $relaxation, $subfolders, $recurse, $chmod) {
-	$chmod = $chmod | (($chmod & 0444)>>1);
+	$chmod = $chmod | 0311;
 	global $serverpath, $permission_names;
 	$path = str_replace('\\', '/', $path);
 	if (!is_dir($path) && $class == 'std') {
@@ -197,7 +200,7 @@ function folderCheck($which, $path, $class, $relaxation, $subfolders, $recurse, 
 					} else {
 						$chmod_class = gettext('unknown');
 					}
-					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'),$which, $f), sprintf(gettext('Setup could not change the folder permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'),$perms_class,$perms,$chmod_class,$chmod));
+					return checkMark(-1, '', sprintf(gettext('<em>%1$s</em> folder%2$s [permissions failure]'),$which, $f), sprintf(gettext('Setup could not change the file permissions from <em>%1$s</em> (<code>0%2$o</code>) to <em>%3$s</em> (<code>0%4$o</code>). You will have to set the permissions manually. See the <a href="http://www.zenphoto.org/news/troubleshooting-zenphoto#29">Troubleshooting guide</a> for details on Zenphoto permissions requirements.'),$perms_class,$perms,$chmod_class,$chmod));
 				} else {
 					if ($recurse) {
 						?>
@@ -353,7 +356,7 @@ function setupLog($message, $anyway=false, $reset=false) {
 	global $debug, $chmod;
 	if ($debug || $anyway) {
 		if (!file_exists(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER)) {
-			mkdir_recursive(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER, $chmod);
+			mkdir_recursive(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER, $chmod & 0311);
 		}
 		if ($reset) { $mode = 'w'; } else { $mode = 'a'; }
 		$path = dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup.log';

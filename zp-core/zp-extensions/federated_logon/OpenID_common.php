@@ -56,7 +56,7 @@ function &getStore() {
 	$store_path = dirname($tmpfile);
 	unlink($tmpfile);
 
-	if (!file_exists($store_path) && !mkdir_recursive($store_path,CHMOD_VALUE)) {
+	if (!file_exists($store_path) && !mkdir_recursive($store_path,FOLDER_MOD)) {
 		printf(gettext('Could not create the FileStore directory %s. Please check the effective permissions.'),$store_path);
 		exit(0);
 	}

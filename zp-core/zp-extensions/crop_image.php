@@ -165,7 +165,7 @@ if (isset($_REQUEST['crop'])) {
 	} else {
 		if (DEBUG_IMAGE) debugLog('image_crop: failed to create '.$imgpath);
 	}
-	@chmod($imgpath, 0666 & CHMOD_VALUE);
+	@chmod($imgpath, FILE_MOD);
 	zp_imageKill($newim);
 	zp_imageKill($timg);
 	$gallery->clearCache(SERVERCACHE . '/' . $albumname);

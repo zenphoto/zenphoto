@@ -326,7 +326,7 @@ function endRSSCache() {
 	if($caching) {
 		$cachefilepath = SERVERPATH."/cache_html/rss/".getRSSCacheFilename();
 		if(!empty($cachefilepath)) {
-			mkdir_recursive(SERVERPATH."/cache_html/rss/");
+			mkdir_recursive(SERVERPATH."/cache_html/rss/",FOLDER_MOD);
 			$pagecontent = ob_get_contents();
 			ob_end_clean();
 			if ($fh = @fopen($cachefilepath,"w")) {

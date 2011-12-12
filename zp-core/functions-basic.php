@@ -60,7 +60,11 @@ if (!defined('FILESYSTEM_CHARSET')) {
 		define('FILESYSTEM_CHARSET', 'ISO-8859-1');
 	}
 }
-if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', 0777); }
+if (!defined('CHMOD_VALUE')) {
+	define('CHMOD_VALUE', 0666);
+}
+define('FOLDER_MOD',CHMOD_VALUE | 0311);
+define('FILE_MOD', CHMOD_VALUE & 0666);
 
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
@@ -1168,9 +1172,11 @@ function instrument($point) {
  * @return boolean TRUE if exists or made or FALSE on failure.
  */
 
-function mkdir_recursive($pathname, $mode=0777) {
-	if (!is_dir(dirname($pathname))) mkdir_recursive(dirname($pathname), $mode);
-	return is_dir($pathname) || @mkdir($pathname, $mode & CHMOD_VALUE);
+function mkdir_recursive($pathname, $mode) {
+	if (!is_dir(dirname($pathname))) {
+		mkdir_recursive(dirname($pathname), $mode);
+	}
+	return is_dir($pathname) || @mkdir($pathname, $mode);
 }
 
 /**
