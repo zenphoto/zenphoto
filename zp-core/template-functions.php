@@ -108,7 +108,29 @@ function printAdminToolbox($id='admin') {
 			printLink($zf . '/admin-options.php?tab=general', gettext("Options"), NULL, NULL, NULL);
 			echo "</li>\n";
 		}
-		zp_apply_filter('admin_toolbox_global');
+		if (zp_loggedin(ALBUM_RIGHTS)) {
+			?>
+			<li>
+				<?php printLink($zf . '/admin-edit.php', gettext("Albums"), NULL, NULL, NULL); ?>
+			</li>
+			<?php
+		}
+		if (zp_loggedin(ADMIN_RIGHTS)) {
+			echo "<li>";
+			printLink($zf . '/admin-plugins.php', gettext("Plugins"), NULL, NULL, NULL);
+			echo "</li>\n";
+		}
+		if (zp_loggedin(ADMIN_RIGHTS | THEMES_RIGHTS)) {
+			echo "<li>";
+			printLink($zf . '/admin-themes.php', gettext("Themes"), NULL, NULL, NULL);
+			echo "</li>\n";
+		}
+		if (zp_loggedin(ADMIN_RIGHTS | COMMENT_RIGHTS)) {
+			echo "<li>";
+			printLink($zf . '/admin-comments.php', gettext("Comments"), NULL, NULL, NULL);
+			echo "</li>\n";
+		}
+		zp_apply_filter('admin_toolbox_global', $zf);
 
 		$gal = getOption('custom_index_page');
 		if (empty($gal) || !file_exists(SERVERPATH.'/'.THEMEFOLDER.'/'.$_zp_gallery->getCurrentTheme().'/'.internalToFilesystem($gal).'.php')) {
@@ -133,8 +155,9 @@ function printAdminToolbox($id='admin') {
 					<?php
 				}
 			}
-			zp_apply_filter('admin_toolbox_gallery');
-		} else if ($_zp_gallery_page === 'album.php') {
+			zp_apply_filter('admin_toolbox_gallery',$zf);
+		}
+		if ($_zp_gallery_page === 'album.php') {
 			// script is album.php
 			$albumname = $_zp_current_album->name;
 			if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
@@ -181,13 +204,14 @@ function printAdminToolbox($id='admin') {
 				}
 			}
 			// set the return to this album/page
-			zp_apply_filter('admin_toolbox_album', $albumname);
+			zp_apply_filter('admin_toolbox_album', $albumname, $zf);
 			$redirect = "&amp;album=".pathurlencode($albumname);
 			if ($page > 1) {
 				$redirect .= "&amp;page=$page";
 			}
 
-		} else if ($_zp_gallery_page === 'image.php') {
+		}
+		if ($_zp_gallery_page === 'image.php') {
 			// script is image.php
 			if (!$_zp_current_album->isDynamic()) { // don't provide links when it is a dynamic album
 				$albumname = $_zp_current_album->name;
@@ -206,64 +230,19 @@ function printAdminToolbox($id='admin') {
 					<?php
 				}
 				// set return to this image page
-				zp_apply_filter('admin_toolbox_image', $albumname, $imagename);
+				zp_apply_filter('admin_toolbox_image', $albumname, $imagename,$zf);
 				$redirect = "&amp;album=".pathurlencode($albumname)."&amp;image=".urlencode($imagename);
 			}
-		} else if (($_zp_gallery_page === 'search.php') && !empty($_zp_current_search->words)) {
+		}
+		if (($_zp_gallery_page === 'search.php') && !empty($_zp_current_search->words)) {
 			// script is search.php with a search string
 			if (zp_loggedin(UPLOAD_RIGHTS)) {
 				// if admin has edit rights allow him to create a dynamic album from the search
 				echo "<li><a href=\"".$zf."/admin-dynamic-album.php\" title=\"".gettext("Create an album from the search")."\">".gettext("Create Album")."</a></li>";
 			}
-			zp_apply_filter('admin_toolbox_search');
+			zp_apply_filter('admin_toolbox_search',$zf);
 			$redirect = "&amp;p=search" . $_zp_current_search->getSearchParams() . "&amp;page=$page";
 		}
-
-		// zenpage script pages
-		if(function_exists('is_NewsArticle')) {
-			if (is_NewsArticle()) {
-				// page is a NewsArticle--provide zenpage edit, delete, and Add links
-				$titlelink = getNewsTitlelink();
-				$redirect .= '&amp;title='.urlencode($titlelink);
-			}
-			if (is_Pages()) {
-				// page is zenpage page--provide edit, delete, and add links
-				$titlelink = getPageTitlelink();
-				$redirect .= '&amp;title='.urlencode($titlelink);
-			}
-			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
-				// admin has zenpage rights, provide link to the Zenpage admin tab
-				echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-news-articles.php\">".gettext("News")."</a></li>";
-				if (is_NewsArticle()) {
-					// page is a NewsArticle--provide zenpage edit, delete, and Add links
-					echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=".urlencode($titlelink)."\">".gettext("Edit Article")."</a></li>";
-					if (GALLERY_SESSION) { // XSRF defense requires sessions
-						?>
-						<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
-							title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?></a></li>
-						<?php
-					}
-					echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;add\">".gettext("Add Article")."</a></li>";
-					zp_apply_filter('admin_toolbox_news', $titlelink);
-				}
-			}
-			if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
-				echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-pages.php\">".gettext("Pages")."</a></li>";
-				if (is_Pages()) {
-					// page is zenpage page--provide edit, delete, and add links
-					echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=".urlencode($titlelink)."\">".gettext("Edit Page")."</a></li>";
-					if (GALLERY_SESSION) { // XSRF defense requires sessions
-						?>
-						<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/page-admin.php?del=<?php echo getPageID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deletePage)"
-							title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?></a></li>
-						<?php
-					}
-					echo "<li><a href=\"".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;add\">".gettext("Add Page")."</a></li>";
-					zp_apply_filter('admin_toolbox_page', $titlelink);
-				}
-			}
-		}
-
 		if (!$_zp_current_admin_obj->no_zp_login)  {
 			// logout link
 			$sec = (int) ((SERVER_PROTOCOL=='https') & true);

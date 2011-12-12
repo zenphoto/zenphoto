@@ -13,6 +13,7 @@ $zenpage_version = $plugin_version;
 
 zp_register_filter('checkForGuest', 'zenpageCheckForGuest');
 zp_register_filter('isMyItemToView', 'zenpageIsMyItemToView');
+zp_register_filter('admin_toolbox_global', 'zenpage_admin_toolbox_global');
 
 class zenpagecms {
 
@@ -184,5 +185,60 @@ function zenpageIsMyItemToView($fail) {
 			break;
 	}
 	return $fail;
+}
+
+/**
+ *
+ * Zenpage admin toolbox links
+ */
+function zenpage_admin_toolbox_global($zf) {
+
+	// zenpage script pages
+	if (is_NewsArticle()) {
+		// page is a NewsArticle--provide zenpage edit, delete, and Add links
+		$titlelink = getNewsTitlelink();
+		$redirect .= '&amp;title='.urlencode($titlelink);
+	}
+	if (is_Pages()) {
+		// page is zenpage page--provide edit, delete, and add links
+		$titlelink = getPageTitlelink();
+		$redirect .= '&amp;title='.urlencode($titlelink);
+	}
+	if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+		// admin has zenpage rights, provide link to the Zenpage admin tab
+		echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-news-articles.php\">".gettext("News")."</a></li>";
+		if (is_NewsArticle()) {
+			// page is a NewsArticle--provide zenpage edit, delete, and Add links
+			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=".urlencode($titlelink)."\">".gettext("Edit Article")."</a></li>";
+			if (GALLERY_SESSION) {
+				// XSRF defense requires sessions
+									?>
+				<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
+					title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?>
+				</a></li>
+
+				<?php
+			}
+			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;add\">".gettext("Add Article")."</a></li>";
+			zp_apply_filter('admin_toolbox_news', $titlelink);
+		}
+	}
+	if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
+		echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-pages.php\">".gettext("Pages")."</a></li>";
+		if (is_Pages()) {
+			// page is zenpage page--provide edit, delete, and add links
+			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=".urlencode($titlelink)."\">".gettext("Edit Page")."</a></li>";
+			if (GALLERY_SESSION) {
+				// XSRF defense requires sessions
+				?>
+				<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/page-admin.php?del=<?php echo getPageID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deletePage)"
+					title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?>
+				</a></li>
+				<?php
+			}
+			echo "<li><a href=\"".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;add\">".gettext("Add Page")."</a></li>";
+			zp_apply_filter('admin_toolbox_page', $titlelink);
+		}
+	}
 }
 ?>

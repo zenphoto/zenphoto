@@ -20,6 +20,8 @@ $option_interface = 'menu_manager';
 if (OFFSET_PATH) {
 	require_once(dirname(dirname(__FILE__)).'/template-functions.php');
 	zp_register_filter('admin_tabs', 'menu_tabs');
+}	else {
+	zp_register_filter('admin_toolbox_global', 'menu_admin_toolbox_global');
 }
 
 if (!defined('MENU_TRUNCATE_STRING')) define('MENU_TRUNCATE_STRING',getOption('menu_truncate_string'));
@@ -66,6 +68,17 @@ class menu_manager {
 
 }
 
+/**
+ *
+ * Add menu to the admin toolbox
+ */
+function menu_admin_toolbox_global($zf) {
+	if (zp_loggedin(ADMIN_RIGHTS)) {
+		echo "<li>";
+		printLink($zf.'/'.PLUGIN_FOLDER.'/menu_manager/menu_tab.php', gettext("Menu"), NULL, NULL, NULL);
+		echo "</li>\n";
+	}
+}
 /**
  * Adds menu manager to admin tabs
  *
