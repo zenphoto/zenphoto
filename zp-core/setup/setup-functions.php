@@ -148,7 +148,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
  * @param $relaxation
  * @param $subfolders
  */
-function folderCheck($which, $path, $class, $relaxation, $subfolders, $recurse, $chmod) {
+function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod) {
 	$chmod = $chmod | 0311;
 	global $serverpath, $permission_names;
 	$path = str_replace('\\', '/', $path);
@@ -185,7 +185,7 @@ function folderCheck($which, $path, $class, $relaxation, $subfolders, $recurse, 
 				$perms = fileperms($path)&0777;
 				$check = $chmod;
 			}
-			if (zp_loggedin(ADMIN_RIGHTS) && (($chmod<$perms) || ($relaxation && $chmod!=$perms))) {
+			if (zp_loggedin(ADMIN_RIGHTS) && ($chmod!=$perms)) {
 				@chmod($path,$chmod);
 				clearstatcache();
 				$perms = fileperms($path)&0777;

@@ -1058,6 +1058,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		$installed_files = array();
 	}
 	$folders = array();
+	setupLog(sprintf(gettext('Setting permissions (0%o) for Zenphoto package.'),$chmod),true);
 	foreach ($installed_files as $key=>$value) {
 		$component_data = explode(':',$value);
 		$value = trim($component_data[0]);
@@ -1377,17 +1378,17 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				$albumfolder = $root . $albumfolder;
 				break;
 		}
-		$good = folderCheck('albums', $albumfolder, $_zp_conf_vars['album_folder_class'], true, NULL, true, $chmod) && $good;
+		$good = folderCheck('albums', $albumfolder, $_zp_conf_vars['album_folder_class'], NULL, true, $chmod) && $good;
 	} else {
 		checkmark(-1, gettext('<em>albums</em> folder'), gettext("<em>albums</em> folder [The line <code>\$conf['album_folder']</code> is missing from your configuration file]"), gettext('You should update your configuration file to conform to the current zenphoto.cfg example file.'));
 	}
 
-	$good = folderCheck('cache', dirname(dirname(__FILE__)) . "/cache/", 'std', true, NULL, true, $chmod) && $good;
+	$good = folderCheck('cache', dirname(dirname(__FILE__)) . "/cache/", 'std', NULL, true, $chmod) && $good;
 	$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder.')) && $good;
-	$good = folderCheck(gettext('uploaded'), dirname(dirname(__FILE__)) . "/uploaded/", 'std', true, NULL, false, $chmod) && $good;
-	$good = folderCheck(DATA_FOLDER, dirname(dirname(__FILE__)) . '/'.DATA_FOLDER.'/', 'std', true, NULL, false, $chmod) && $good;
-	$good = folderCheck(gettext('HTML cache'), dirname(dirname(__FILE__)) . '/cache_html/', 'std', true, $Cache_html_subfolders, true, $chmod) && $good;
-	$good = folderCheck(gettext('Third party plugins'), dirname(dirname(__FILE__)) . '/'.USER_PLUGIN_FOLDER.'/', 'std', false, $plugin_subfolders, true, $chmod) && $good;
+	$good = folderCheck(gettext('uploaded'), dirname(dirname(__FILE__)) . "/uploaded/", 'std', NULL, false, $chmod) && $good;
+	$good = folderCheck(DATA_FOLDER, dirname(dirname(__FILE__)) . '/'.DATA_FOLDER.'/', 'std', NULL, false, $chmod) && $good;
+	$good = folderCheck(gettext('HTML cache'), dirname(dirname(__FILE__)) . '/cache_html/', 'std', $Cache_html_subfolders, true, $chmod) && $good;
+	$good = folderCheck(gettext('Third party plugins'), dirname(dirname(__FILE__)) . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod) && $good;
 
 	?>
 </ul>

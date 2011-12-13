@@ -13,9 +13,8 @@
  *
  */
 
-$plugin_is_filter = 5|ADMIN_PLUGIN;
+$plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext('Ajax Filemanager files handling in tinyMCE and the "files" upload tab');
-
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.2';
 $htaccess = SERVERPATH.'/'.DATA_FOLDER.'/ajaxfilemanager/.htaccess';
@@ -24,4 +23,8 @@ if (!file_exists($htaccess)) {
 	file_put_contents($htaccess, "deny from all\n");
 }
 chmod($htaccess,0444);
+unset($htaccess);
+if (OFFSET_PATH!=99) {
+	unset($_SESSION['XSRFToken']);
+}
 ?>

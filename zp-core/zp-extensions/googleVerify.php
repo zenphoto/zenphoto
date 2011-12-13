@@ -3,6 +3,8 @@
  *
  * Use to insert the Google Webmaster Tools verification meta tag into your site pages
  *
+ * See:www.google.com/webmasters/tools for details
+ *
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
@@ -10,7 +12,7 @@
 $plugin_is_filter = 9|THEME_PLUGIN;
 $plugin_description = gettext("Places a Google Site Verification metatag into the header of your site's pages.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.2';
+$plugin_version = '1.4.3';
 $option_interface = 'googleVerifyOptions';
 
 if (getOption('google-site-verification')) {

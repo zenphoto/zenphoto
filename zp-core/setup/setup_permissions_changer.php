@@ -13,18 +13,16 @@ if (!isset($_POST['folder'])) {
 }
 $folder = sanitize($_POST['folder'],3);
 if (substr($folder,-1,1) == '/') $folder = substr($folder,0,-1);
-$f = fopen(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup.log', 'a');
 
 if ($_POST['key']==sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE))) {
 	if (folderPermissions($folder)) {
-		fwrite($f, sprintf(gettext('Setting permissions for %s.'), basename($folder)) . "\n");
+		setupLog(sprintf(gettext('Setting permissions (0%o) for %s.'), FILE_MOD, basename($folder)),true);
 	} else {
-		fwrite($f, sprintf(gettext('Notice: failed setting permissions for %s.'), basename($folder)) . "\n");
+		setupLog(sprintf(gettext('Notice: failed setting permissions (0%o) for %s.'), FILE_MOD, basename($folder)),true);
 	}
 } else {
-	fwrite($f, sprintf(gettext('Notice: illegal call for permissions setting for %s.'), basename($folder)) . "\n");
+	setupLog(sprintf(gettext('Notice: illegal call for permissions setting for %s.'), basename($folder)),true);
 }
-fclose($f);
 clearstatcache();
 function folderPermissions($folder) {
 	$files = array();
