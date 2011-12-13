@@ -377,18 +377,11 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		';
 	} else {
 		$messages = '
-		<div class="messagebox fade-message">
-			<h2>
-			';
-			if ($compression_handler == 'no') {
-				$messages .= (gettext('Restore completed'));
-			} else {
-				$messages .= sprintf(gettext('Restore completed using %s compression'), $compression_handler);
-			}
-
-			$messages .= '
-			</h2>
-		</div>
+			<script type="text/javascript">
+				window.onload = function() {
+					window.location = "'.FULLWEBPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/backup_restore.php?compression='.$compression_handler.'";
+				}
+			</script>
 		';
 	}
 	setOption('zenphoto_install', $signaure);
@@ -402,6 +395,23 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 			';
 		}
 	}
+}
+
+if (isset($_GET['compression'])) {
+	$compression_handler = sanitize($_GET['compression']);
+	$messages = '
+	<div class="messagebox fade-message">
+		<h2>
+			';
+			if ($compression_handler == 'no') {
+				$messages .= (gettext('Restore completed'));
+			} else {
+				$messages .= sprintf(gettext('Restore completed using %s compression'), $compression_handler);
+			}
+			$messages .= '
+		</h2>
+	</div>
+	';
 }
 ?>
 

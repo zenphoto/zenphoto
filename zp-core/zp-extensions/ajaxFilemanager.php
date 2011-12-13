@@ -13,7 +13,7 @@
  *
  */
 
-$plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
+$plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext('Ajax Filemanager files handling in tinyMCE and the "files" upload tab');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.2';

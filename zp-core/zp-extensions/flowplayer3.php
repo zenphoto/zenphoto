@@ -162,7 +162,7 @@ class flowplayer3_options {
 		gettext('Controls autohide') => array('key' => 'flow_player3_playlistautohide', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext('never')=>"never", gettext('always')=>"always", gettext('full screen')=>"fullscreen"),
 										'desc' => gettext("Specifies whether the controlbar should be hidden when the user is not actively using the player.")),
-		gettext('Splash image') => array('key' => 'flow_player3_playlistsplashimage', 'type' => OPTION_TYPE_SELECTOR,
+		gettext('Splash image - playlist') => array('key' => 'flow_player3_playlistsplashimage', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext('none')=>"none", gettext('Video thumb of first playlist entry')=>"firstentry", gettext('Album thumbnail')=>"albumthumb"),
 										'desc' => gettext("Check if you want to display a splash/cover image for the playlist. Since this playlist plugin only lists multimedia items the album thumbnail of course could also be special separate normal image and not one of the entries.").gettext("The image is always scaled to fit (unless it is smaller than the width and height) so best make sure it matches at least the aspect ratio and size of your player width and height.")),
 		gettext('Numbered playlist') => array('key' => 'flow_player3_playlistnumbered', 'type' => OPTION_TYPE_CHECKBOX,
