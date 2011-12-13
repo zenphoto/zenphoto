@@ -59,10 +59,21 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 		echo "<script type=\"text/javascript\" src=\"$_zp_themeroot/scripts/swfobject.js\"></script>\n";
 		$oneImagePage = true;
 		break;
-	case 'Slimbox':
-		echo "<link rel=\"stylesheet\" href=\"$_zp_themeroot/slimbox.css\" type=\"text/css\" media=\"screen\" />\n";
-		echo "<script type=\"text/javascript\" src=\"$_zp_themeroot/scripts/mootools.v1.11.js\"></script>\n";
-		echo "<script type=\"text/javascript\" src=\"$_zp_themeroot/scripts/slimbox.js\"></script>\n";
+	case 'Colorbox':
+		if(zp_has_filter('theme_head','colorbox_css')) { ?>
+				<script type="text/javascript">
+					// <!-- <![CDATA[
+					$(document).ready(function(){
+						$("a.thickbox").colorbox({
+							maxWidth:"98%",
+							maxHeight:"98%",
+							close: '<?php echo gettext("close"); ?>'
+						});
+					});
+					// ]]> -->
+				</script>
+			<?php
+		}
 		break;
 	case 'Smoothgallery':
 		echo "<link rel=\"stylesheet\" href=\"$_zp_themeroot/jd.gallery.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />\n";
@@ -266,7 +277,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 							$firstImage = null;
  							$lastImage = null;
  							while (next_image()){
-								if (!(($personality == 'Slimbox') && !isImagePhoto())) { // Slimbox does not do video
+								if (!(($personality == 'Colorbox') && !isImagePhoto())) { // Colorbox does not do video
  									if (is_null($firstImage)) {
  										$lastImage = imageNumber();
  										$firstImage = $lastImage;
@@ -286,13 +297,12 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 			 									}
 		 									}
 		 									$annotate = annotateImage();
-		 									if ($personality == 'Slimbox') {
-		 										echo "<a href=\"".html_encode(getCustomImageURL(550, null))."\"";
-		 										echo "rel=\"lightbox[".getAlbumTitle()."]\"\n";
+											if ($personality == 'Colorbox') {
+		 										echo '<a href="'.html_encode(getUnprotectedImageURL()).'" class="thickbox"';
 		 									} else {
 		 										echo '<a href="' . html_encode(getImageLinkURL()) . '"';
 		 									}
-		 									echo " title=\"".$annotate."\">\n";
+		 									echo ' title="'.$annotate."\">\n";
 		 									printImageThumb($annotate);
 		 									echo "</a>";
 		 									?>
@@ -302,7 +312,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 									}
  								}
 	 							echo '<div class="clearage"></div>';
-								if (!empty($points) && map) {
+								if (!empty($points) && $map) {
 									function map_callback($map) {
 										global $points;
 										foreach ($points as $coord) {

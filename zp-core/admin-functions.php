@@ -2704,15 +2704,6 @@ function copyThemeDirectory($source, $target, $newname) {
 			$dirs_to_create[$dirs] = $dirs;
 		}
 	}
-	/*
-	Example result for theme 'effervescence_plus': $dirs_to_create = array (
-		'/styles' => '/styles',
-		'/scripts' => '/scripts',
-		'/images' => '/images',
-		'/images/smooth' => '/images/smooth',
-		'/images/slimbox' => '/images/slimbox',
-	);
-	*/
 
 	// Create new directory structure
 	foreach ($dirs_to_create as $dir) {

@@ -52,6 +52,7 @@ class ThemeOptions {
 										array('type'=>'customlink','title'=>gettext('News and Gallery'),'link'=>WEBPATH.'/index.php?rss-news.php?withimages','show'=>1,'nesting'=>1),
 										);
 			createMenuIfNotExists($menuitems, 'effervescence');
+			if (getOption('Theme_personality')=='Slimbox') setOption('Theme_personality','Colorbox');
 		}
 
 	}
@@ -73,7 +74,8 @@ class ThemeOptions {
 											gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
 											gettext('Slideshow') => array('key' => 'Slideshow', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable slideshow for the <em>Smoothgallery</em> personality.')),
 											gettext('Graphic logo') => array('key' => 'Graphic_logo', 'type' => OPTION_TYPE_CUSTOM, 'desc' => sprintf(gettext('Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty for text logo.'),UPLOAD_FOLDER)),
-											gettext('Theme personality') => array('key' => 'Theme_personality', 'type' => OPTION_TYPE_SELECTOR, 'selections' => array(gettext('Image page') => 'Image page', gettext('Simpleviewer') => 'Simpleviewer', gettext('Slimbox') => 'Slimbox', gettext('Smoothgallery') => 'Smoothgallery'),
+											gettext('Theme personality') => array('key' => 'Theme_personality', 'type' => OPTION_TYPE_SELECTOR,
+															'selections' => array(gettext('Image page') => 'Image page', gettext('Simpleviewer') => 'Simpleviewer', gettext('Colorbox') => 'Colorbox', gettext('Smoothgallery') => 'Smoothgallery'),
 															'desc' => gettext('Select the theme personality')),
 											gettext('Theme colors') => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the colors of the theme')),
 											gettext('Custom menu') => array('key' => 'effervescence_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.').$note)

@@ -74,7 +74,6 @@ themes/effervescence_plus/scripts/jd.gallery.js
 themes/effervescence_plus/scripts/jd.gallery.set.js
 themes/effervescence_plus/scripts/jd.gallery.transitions.js
 themes/effervescence_plus/scripts/mootools.v1.11.js
-themes/effervescence_plus/scripts/slimbox.js
 themes/effervescence_plus/scripts/swfobject.js
 themes/effervescence_plus/search.php
 themes/effervescence_plus/sidebar.php
@@ -82,7 +81,6 @@ themes/effervescence_plus/simpleviewer.swf
 themes/effervescence_plus/slideshow-controls.png
 themes/effervescence_plus/slideshow.css
 themes/effervescence_plus/slideshow.php
-themes/effervescence_plus/slimbox.css
 themes/effervescence_plus/styles
 themes/effervescence_plus/styles/blue and green play.css
 themes/effervescence_plus/styles/effervescence.css
@@ -1825,4 +1823,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1827
+1825
