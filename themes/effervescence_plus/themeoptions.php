@@ -19,6 +19,7 @@ class ThemeOptions {
 		setThemeOptionDefault('Graphic_logo', '*');
 		setThemeOptionDefault('Watermark_head_image', true);
 		setThemeOptionDefault('Theme_personality', 'Image page');
+		setThemeOptionDefault('effervescence_smooth_transition', 'fadeslideleft');
 		setThemeOptionDefault('Theme_colors', 'kish-my father');
 		setThemeOptionDefault('effervescence_menu', '');
 		setThemeOptionDefault('albums_per_row', 3);
@@ -67,22 +68,29 @@ class ThemeOptions {
 		if (!getOption('zp_plugin_print_album_menu') && (($m = getOption('effervescence_menu'))=='effervescence' || $m=='zenpage' || $m == 'garland')) {
 			$note .= '<p class="notebox">'.sprintf(gettext('<strong>Note:</strong> The <em>%s</em> custom menu makes use of the <em>print_album_menu</em> plugin.'),$m).'</p>';
 		}
-		$options = array(	gettext('Theme logo') => array('key' => 'Theme_logo', 'type' => OPTION_TYPE_TEXTBOX, 'multilingual' => 1, 'desc' => gettext('The text for the theme logo')),
-											gettext('Watermark head image') => array('key' => 'Watermark_head_image', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to place a watermark on the heading image. (Image watermarking must be set.)')),
-											gettext('Daily image') => array('key' => 'effervescence_daily_album_image', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('If checked on the heading image will change daily rather than on each page load.')),
-											gettext('ZIP file download') => array('key' => 'enable_album_zipfile', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable album ZIP file download link.')),
-											gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
-											gettext('Slideshow') => array('key' => 'Slideshow', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable slideshow for the <em>Smoothgallery</em> personality.')),
-											gettext('Graphic logo') => array('key' => 'Graphic_logo', 'type' => OPTION_TYPE_CUSTOM, 'desc' => sprintf(gettext('Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty for text logo.'),UPLOAD_FOLDER)),
+		$options = array(	gettext('Theme logo') => array('key' => 'Theme_logo', 'type' => OPTION_TYPE_TEXTBOX, 'multilingual' => 1, 'order'=>8, 'desc' => gettext('The text for the theme logo')),
+											gettext('Watermark head image') => array('key' => 'Watermark_head_image', 'type' => OPTION_TYPE_CHECKBOX, 'order'=>11, 'desc' => gettext('Check to place a watermark on the heading image. (Image watermarking must be set.)')),
+											gettext('Daily image') => array('key' => 'effervescence_daily_album_image', 'type' => OPTION_TYPE_CHECKBOX, 'order'=>3, 'desc' => gettext('If checked on the heading image will change daily rather than on each page load.')),
+											gettext('ZIP file download') => array('key' => 'enable_album_zipfile', 'type' => OPTION_TYPE_CHECKBOX, 'order'=>12, 'desc' => gettext('Check to enable album ZIP file download link.')),
+											gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'order'=>1, 'desc' => gettext('Check to enable search form.')),
+											gettext('Slideshow') => array('key' => 'Slideshow', 'type' => OPTION_TYPE_CHECKBOX, 'order'=>6, 'desc' => gettext('Check to enable slideshow for the <em>Smoothgallery</em> personality.')),
+											gettext('Graphic logo') => array('key' => 'Graphic_logo', 'type' => OPTION_TYPE_CUSTOM, 'order'=>4, 'desc' => sprintf(gettext('Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty for text logo.'),UPLOAD_FOLDER)),
 											gettext('Theme personality') => array('key' => 'Theme_personality', 'type' => OPTION_TYPE_SELECTOR,
 															'selections' => array(gettext('Image page') => 'Image page', gettext('Simpleviewer') => 'Simpleviewer', gettext('Colorbox') => 'Colorbox', gettext('Smoothgallery') => 'Smoothgallery'),
+															'order'=>9,
 															'desc' => gettext('Select the theme personality')),
-											gettext('Theme colors') => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Select the colors of the theme')),
-											gettext('Custom menu') => array('key' => 'effervescence_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.').$note)
+											gettext('Theme colors') => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'order'=>7, 'desc' => gettext('Select the colors of the theme')),
+											gettext('Custom menu') => array('key' => 'effervescence_menu', 'type' => OPTION_TYPE_CUSTOM, 'order'=>2, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.').$note)
 											);
 
 		if (!function_exists('printCustomMenu') || getThemeOption('custom_index_page', NULL, 'effervescence_plus') != 'gallery')	{
 			$options[gettext('Custom menu')]['desc'] .= '<p class="notebox">'.gettext('This option requires the <em>menu_manager</em> plugin to be enabled and the <em>Gallery index page link</em> to be set to "gallery".').'</p>';
+		}
+		if (getOption('Theme_personality')=='Smoothgallery') {
+			$options[gettext('Smoothgallery transition')] = array('key' => 'effervescence_smooth_transition', 'type' => OPTION_TYPE_SELECTOR,
+															'selections' => array(gettext('Fade') => 'fade', gettext('Sliding') => 'fadeslideleft', gettext('Horizontal') => 'continuoushorizontal', gettext('Vertical') => 'continuousvertical'),
+															'order'=>10,
+															'desc' => gettext('Transition effect for Smoothgallery'));
 		}
 		$effects = new image_effects();
 		$effectOptions = $effects->getOptionsSupported();
@@ -93,6 +101,7 @@ class ThemeOptions {
 		if ($effect && array_key_exists('selections', $effect)) {
 			$options[gettext('Index Image')] = array('key'=>'effervescence_daily_album_image_effect','type'=>OPTION_TYPE_SELECTOR,
 														'selections'=>$effect['selections'],'null_selection' => gettext('none'),
+														'order'=>5,
 														'desc'=>gettext('Apply this effect to the index page image.'));
 			if (!getOption('zp_plugin_image_effects')) {
 				$options[gettext('Index Image')]['disabled'] = true;

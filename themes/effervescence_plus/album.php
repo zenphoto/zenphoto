@@ -46,11 +46,9 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<?php zp_apply_filter('theme_head'); ?>
+	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
-	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<?php
 	$oneImagePage = false;
 	$show = false;
@@ -60,25 +58,31 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 		$oneImagePage = true;
 		break;
 	case 'Colorbox':
-		if(zp_has_filter('theme_head','colorbox_css')) { ?>
-				<script type="text/javascript">
-					// <!-- <![CDATA[
-					$(document).ready(function(){
-						$("a.thickbox").colorbox({
-							maxWidth:"98%",
-							maxHeight:"98%",
-							close: '<?php echo gettext("close"); ?>'
-						});
+		if(zp_has_filter('theme_head','colorbox_css')) {
+			?>
+			<script type="text/javascript">
+				// <!-- <![CDATA[
+				$(document).ready(function(){
+					$("a.thickbox").colorbox({
+						maxWidth:"98%",
+						maxHeight:"98%",
+						close: '<?php echo gettext("close"); ?>'
 					});
-					// ]]> -->
-				</script>
+				});
+				// ]]> -->
+			</script>
 			<?php
 		}
 		break;
 	case 'Smoothgallery':
-		echo "<link rel=\"stylesheet\" href=\"$_zp_themeroot/jd.gallery.css\" type=\"text/css\" media=\"screen\" charset=\"utf-8\" />\n";
-		echo "<script src=\"$_zp_themeroot/scripts/mootools.v1.11.js\" type=\"text/javascript\"></script>\n";
-		echo "<script src=\"$_zp_themeroot/scripts/jd.gallery.js\" type=\"text/javascript\"></script>\n";
+		?>
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/scripts/layout.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/scripts/jd.gallery.css" type="text/css" media="screen" charset="utf-8" />
+		<script src="<?php echo $_zp_themeroot; ?>/scripts/mootools-1.2.1-core-yc.js" type="text/javascript"></script>
+		<script src="<?php echo $_zp_themeroot; ?>/scripts/mootools-1.2-more.js" type="text/javascript"></script>
+		<script src="<?php echo $_zp_themeroot; ?>/scripts/jd.gallery.js" type="text/javascript"></script>
+		<script src="<?php echo $_zp_themeroot; ?>/scripts/jd.gallery.transitions.js" type="text/javascript"></script>
+		<?php
 		setOption('thumb_crop_width', 100, false);
 		setOption('thumb_crop_height', 75, false);
 		$oneImagePage = true;
@@ -87,22 +91,32 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 	}
 	echo "<script type=\"text/javascript\" src=\"$_zp_themeroot/scripts/bluranchors.js\"></script>\n";
 	?>
+	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 </head>
 
 <body onload="blurAnchors()">
 <?php zp_apply_filter('theme_body_open'); ?>
-<?php if ($personality == 'Smoothgallery') { ?>
-<script type="text/javascript">
-	//<!-- <![CDATA[
-	function startGallery() {
-		var myGallery = new gallery($('smoothImages'), {
-			timed: <?php ($show) ? print 'true' : print 'false'; ?>
-		});
-	}
-	window.addEvent('domready',startGallery);
-	// ]]> -->
-</script>
-<?php } ?>
+<?php
+if ($personality == 'Smoothgallery') { ?>
+	<script type="text/javascript">
+		function startGallery() {
+			var myGallery = new gallery($('myGallery'), {
+				<?php
+				if (($transition = getOption('effervescence_smooth_transition'))!='none') {
+					?>
+					defaultTransition: "<?php echo $transition; ?>",
+					<?php
+				}
+				?>
+				timed: <?php echo ($show) ? 'true' : 'false'; ?>
+			});
+		}
+		window.addEvent('domready', startGallery);
+	</script>
+<?php
+}
+?>
 
 	<!-- Wrap Header -->
 	<div id="header">
@@ -243,7 +257,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 							if ($imagePage = isImagePage()) {
 								?>
 <!-- Smoothimage section -->
-						<div id="smoothImages">
+						<div id="myGallery">
 						<?php
 						while (next_image(true, 0)){
 							if (isImagePhoto()) { // Smoothgallery does not do videos
@@ -297,12 +311,12 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 			 									}
 		 									}
 		 									$annotate = annotateImage();
-											if ($personality == 'Colorbox') {
+		 									if ($personality == 'Colorbox') {
 		 										echo '<a href="'.html_encode(getUnprotectedImageURL()).'" class="thickbox"';
 		 									} else {
 		 										echo '<a href="' . html_encode(getImageLinkURL()) . '"';
 		 									}
-		 									echo ' title="'.$annotate."\">\n";
+		 									echo " title=\"".$annotate."\">\n";
 		 									printImageThumb($annotate);
 		 									echo "</a>";
 		 									?>
@@ -312,7 +326,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 									}
  								}
 	 							echo '<div class="clearage"></div>';
-								if (!empty($points) && $map) {
+								if (!empty($points) && map) {
 									function map_callback($map) {
 										global $points;
 										foreach ($points as $coord) {
@@ -337,7 +351,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
  						printAlbumZip();
  						echo "</p>";
  					}
-					if (function_exists('printRating')) {
+					if (function_exists('printRating') && $personality != 'Smoothgallery') {
 						printRating();
 					}
  					?>

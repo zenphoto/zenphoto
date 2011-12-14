@@ -61,7 +61,7 @@ class slideshowOptions {
 										'desc' => gettext("Check if you want to use your watermark on the images <em>[jQuery Cycle mode option]</em>.")),
 									gettext('Mode') => array('key' => 'slideshow_mode', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext("jQuery Cycle")=>"jQuery", gettext("jQuery Colorbox")=>"colorbox", gettext("Flowplayer3 (flash)")=>"flash"),
-										'desc' => gettext("<ol><li><em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin <em></li><li>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).</li><li><em>flash</em> for flash based slideshow using Flowplayer3.</li></ol> NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.")),
+										'desc' => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br /><em>flash</em> for flash based slideshow using Flowplayer3.<br /><br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
 									gettext('Cycle Effect') => array('key' => 'slideshow_effect', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext('fade')=>"fade", gettext('shuffle')=>"shuffle", gettext('zoom')=>"zoom", gettext('slide X')=>"slideX", gettext('slide Y')=>"slideY", gettext('scroll up')=>"scrollUp", gettext('scroll down')=>"scrollDown", gettext('scroll left')=>"scrollLeft", gettext('scroll right')=>"scrollRight"),
 										'desc' => gettext("The cycle slide effect to be used. <em>[jQuery Cycle mode option]</em>")),
@@ -234,7 +234,7 @@ function printSlideShowLink($linktext='', $linkstyle='') {
 							$thumbStandin = true;
 						} else {
 							$thumbStandin = false;
-						} 
+						}
 						switch(getOption('slideshow_colorbox_imagetype')) {
 							case 'fullimage':
 								$imagelink = $imgobj->getFullImage();
@@ -396,9 +396,9 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 	if($shuffle) shuffle($images);
 	$showdesc = getOption("slideshow_showdesc");
 	if(getOption('slideshow_watermark')) {
-		$thumbStandin = true;		
+		$thumbStandin = true;
 	} else {
-		$thumbStandin = false;					
+		$thumbStandin = false;
 	}
 	// slideshow display section
 	switch($option) {
