@@ -149,7 +149,6 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
  * @param $subfolders
  */
 function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod) {
-	$chmod = $chmod | 0311;
 	global $serverpath, $permission_names;
 	$path = str_replace('\\', '/', $path);
 	if (!is_dir($path) && $class == 'std') {
@@ -365,7 +364,7 @@ function setupLog($message, $anyway=false, $reset=false) {
 			fwrite($f, strip_tags($message) . "\n");
 			fclose($f);
 			clearstatcache();
-			chmod($path, 0600);
+			@chmod($path, 0600);
 		}
 	}
 }

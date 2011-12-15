@@ -22,6 +22,9 @@ body {
 	padding-bottom: 15px;
 	background: #FFF;
 	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px; 
+ 	-khtml-border-radius: 10px; 
+ 	border-radius: 10px; 
 	border: 1px solid #CCC;
 }
 * html #main{width: 720px;}
@@ -43,8 +46,10 @@ body {
 }
 #gallerytitle {
 	padding: 20px 10px 10px 20px;
-	-moz-border-radius-topleft: 10px;
-	-moz-border-radius-topright: 10px;
+	-moz-border-radius: 10px 10px 0px 0px;
+	-webkit-border-radius: 10px 10px 0px 0px; 
+ 	-khtml-border-topright: 10px 10px 0px 0px; 
+ 	border-radius: 10px 10px 0px 0px; 
 	background: #F8F8F8;
 	height:30px;
 	border-bottom: 1px solid #CCC;
@@ -661,17 +666,17 @@ table.password td.hint{
 	border-left: 1px solid #BAC9CF;
 	border-right: 1px solid #BAC9CF;
 	border-bottom: 5px solid #BAC9CF;
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 }
 
 #loginform fieldset {
-	-moz-border-radius: 5px 5px 5px 5px;
-	-khtml-border-radius: 5px 5px 5px 5px;
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 	border: 1px solid lightgray;
 }
 

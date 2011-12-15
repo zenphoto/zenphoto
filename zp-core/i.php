@@ -190,9 +190,9 @@ if (!ini_get("safe_mode")) {
 		$dir = SERVERCACHE . '/' . $dir;
 		if (!is_dir($dir)) {
 			@mkdir($dir, FOLDER_MOD);
-			chmod($dir, FOLDER_MOD);
+			@chmod($dir, FOLDER_MOD);
 		} else if (!is_writable($dir)) {
-			chmod($dir, FOLDER_MOD);
+			@chmod($dir, FOLDER_MOD);
 		}
 	}
 }

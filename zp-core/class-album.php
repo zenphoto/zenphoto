@@ -757,7 +757,7 @@ class Album extends MediaObject {
 				$filelist = safe_glob('*');
 				foreach($filelist as $file) {
 					if (($file != '.') && ($file != '..')) {
-						chmod($file, 0666);
+						@chmod($file, 0666);
 						unlink($this->localpath . $file); // clean out any other files in the folder
 					}
 				}
@@ -774,11 +774,11 @@ class Album extends MediaObject {
 			}
 			foreach ($filestoremove as $file) {
 				if(in_array(strtolower(getSuffix($file)), $this->sidecars)) {
-					chmod($file, 0666);
+					@chmod($file, 0666);
 					$success = $success && unlink($file);
 				}
 			}
-			chmod($this->localpath, 0666);
+			@chmod($this->localpath, 0666);
 			if ($this->isDynamic()) {
 				$rslt = @unlink($this->localpath) && $success;
 			} else {
@@ -827,17 +827,17 @@ class Album extends MediaObject {
 			$filemask = substr($this->localpath,0,-1).'.*';
 			$perms = FOLDER_MOD;
 		}
-		chmod($this->localpath, 0666);
+		@chmod($this->localpath, 0666);
 		$success = @rename($this->localpath, $dest);
-		chmod($dest, $perms);
+		@chmod($dest, $perms);
 		if ($success) {
 			$filestomove = safe_glob($filemask);
 			foreach ($filestomove as $file) {
 				if(in_array(strtolower(getSuffix($file)), $this->sidecars)) {
 					$d = dirname($dest).'/'.basename($file);
-					chmod($file, 0666);
+					@chmod($file, 0666);
 					$success = $success && @rename($file, $d);
-					chmod($d, FILE_MOD);
+					@chmod($d, FILE_MOD);
 				}
 			}
 			$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newfolder) . " WHERE `id` = ".$this->getAlbumID();

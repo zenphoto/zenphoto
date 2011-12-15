@@ -457,14 +457,14 @@ class tar_file extends archive
 				else if ($file['type'] == 2)
 				{
 					symlink($temp['symlink'], $file['name']);
-					chmod($file['name'], $file['stat'][2]);
+					@chmod($file['name'], $file['stat'][2]);
 				}
 				else if ($new = @fopen($file['name'], "wb"))
 				{
 					fwrite($new, fread($fp, $file['stat'][7]));
 					fread($fp, (512 - $file['stat'][7] % 512) == 512 ? 0 : (512 - $file['stat'][7] % 512));
 					fclose($new);
-					chmod($file['name'], $file['stat'][2]);
+					@chmod($file['name'], $file['stat'][2]);
 				}
 				else
 				{

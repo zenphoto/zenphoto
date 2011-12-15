@@ -105,7 +105,7 @@ function debugLog($message, $reset=false) {
 	fwrite($f, $message . "\n");
 	fclose($f);
 	clearstatcache();
-	chmod($path, 0600);
+	@chmod($path, 0600);
 
 }
 

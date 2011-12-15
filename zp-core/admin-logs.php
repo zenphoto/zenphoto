@@ -25,7 +25,7 @@ if (isset($_GET['action'])) {
 				}
 				break;
 			case 'delete_log':
-				chmod($file, 0666);
+				@chmod($file, 0666);
 				@unlink($file);
 				clearstatcache();
 				unset($_GET['tab']); // it is gone, after all
@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
 				header('Content-Disposition: attachment; filename="' . $subtab . '.zip"');
 				header("Content-Length: " . filesize($dest));
 				printLargeFileContents($dest);
-				chmod($dest, 0666);
+				@chmod($dest, 0666);
 				unlink($dest);
 				break;
 		}

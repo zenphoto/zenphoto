@@ -154,7 +154,7 @@ function security_logger_Logger($success, $user, $name, $ip, $action, $authority
 		fclose($f);
 		clearstatcache();
 		if (!$preexists) {
-			chmod($file, 0600);
+			@chmod($file, 0600);
 			if (strtoupper(substr(PHP_OS, 0,3)) == 'WIN') {
 				$permission = fileperms($file)&0700;	//	on Windows owner==group==public
 			} else {

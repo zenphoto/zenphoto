@@ -310,7 +310,7 @@ function startRSSCache() {
 			exit();
 		} else {
 			if(file_exists($cachefilepath)) {
-				chmod($cachefilepath, 0666);
+				@chmod($cachefilepath, 0666);
 				@unlink($cachefilepath);
 			}
 			ob_start();
@@ -361,7 +361,7 @@ function clearRSSCache($cachefolder=NULL) {
 				}
 			} else {
 				if (file_exists($fullname) && !(substr($filename, 0, 1) == '.')) {
-					chmod($fullname, 0666);
+					@chmod($fullname, 0666);
 					unlink($fullname);
 				}
 			}

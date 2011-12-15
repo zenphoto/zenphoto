@@ -183,7 +183,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 				if ($writeresult === false) break;
 			}
 			fclose($handle);
-			chmod($filename, FILE_MOD);
+			@chmod($filename, FILE_MOD);
 		}
 	} else {
 		$msg = gettext('SHOW TABLES failed!');

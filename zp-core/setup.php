@@ -86,7 +86,7 @@ if (file_exists(CONFIGFILE)) {
 	}
 }
 @copy('dataaccess',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess');
-chmod(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess', 0444);
+@chmod(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess', 0444);
 
 if (session_id() == '') {
 	session_start();
@@ -297,7 +297,7 @@ $updatechmod = ($updatechmod || !checkPermissions(fileperms(dirname(__FILE__).'/
 if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists(dirname(dirname(__FILE__)).'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
 		copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
-		chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
+		@chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
 	}
 }
 
@@ -1197,7 +1197,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				if (isset($_GET['delete_extra'])) {
 					foreach ($systemlist as $key=>$file) {
 						if (!is_dir($file)) {
-							chmod($file, 0666);
+							@chmod($file, 0666);
 							if (setupDeleteComponent(@unlink($file),$filelist[$key])) {
 								unset($filelist[$key]);
 								unset($systemlist[$key]);
@@ -1206,7 +1206,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					}
 					foreach ($systemlist as $key=>$file) {
 						if (is_dir($file)) {
-							chmod($file, 0666);
+							@chmod($file, 0666);
 							if (setupDeleteComponent(@rmdir($file),$filelist[$key].'/')) {
 								unset($filelist[$key]);
 							}
@@ -1259,10 +1259,10 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			$i = strpos($oht, 'RewriteBase /zenphoto');
 			$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $i+21);
 			if ($oht == $ht) {	// an unmodified .htaccess file, we can just replace it
-				chmod(dirname(dirname(__FILE__)).'/.htaccess',0666);
+				@chmod(dirname(dirname(__FILE__)).'/.htaccess',0666);
 				@unlink($htfile);
 				$ch = @copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
-				chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
+				@chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
 			}
 		}
 		if (!$ch) {
@@ -1378,17 +1378,17 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				$albumfolder = $root . $albumfolder;
 				break;
 		}
-		$good = folderCheck('albums', $albumfolder, $_zp_conf_vars['album_folder_class'], NULL, true, $chmod) && $good;
+		$good = folderCheck('albums', $albumfolder, $_zp_conf_vars['album_folder_class'], NULL, true, $chmod | 0311) && $good;
 	} else {
 		checkmark(-1, gettext('<em>albums</em> folder'), gettext("<em>albums</em> folder [The line <code>\$conf['album_folder']</code> is missing from your configuration file]"), gettext('You should update your configuration file to conform to the current zenphoto.cfg example file.'));
 	}
 
-	$good = folderCheck('cache', dirname(dirname(__FILE__)) . "/cache/", 'std', NULL, true, $chmod) && $good;
+	$good = folderCheck('cache', dirname(dirname(__FILE__)) . "/cache/", 'std', NULL, true, $chmod | 0311) && $good;
 	$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder.')) && $good;
-	$good = folderCheck(gettext('uploaded'), dirname(dirname(__FILE__)) . "/uploaded/", 'std', NULL, false, $chmod) && $good;
-	$good = folderCheck(DATA_FOLDER, dirname(dirname(__FILE__)) . '/'.DATA_FOLDER.'/', 'std', NULL, false, $chmod) && $good;
-	$good = folderCheck(gettext('HTML cache'), dirname(dirname(__FILE__)) . '/cache_html/', 'std', $Cache_html_subfolders, true, $chmod) && $good;
-	$good = folderCheck(gettext('Third party plugins'), dirname(dirname(__FILE__)) . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod) && $good;
+	$good = folderCheck(gettext('uploaded'), dirname(dirname(__FILE__)) . "/uploaded/", 'std', NULL, false, $chmod | 0311) && $good;
+	$good = folderCheck(DATA_FOLDER, dirname(dirname(__FILE__)) . '/'.DATA_FOLDER.'/', 'std', NULL, false, $chmod | 0311) && $good;
+	$good = folderCheck(gettext('HTML cache'), dirname(dirname(__FILE__)) . '/cache_html/', 'std', $Cache_html_subfolders, true, $chmod | 0311) && $good;
+	$good = folderCheck(gettext('Third party plugins'), dirname(dirname(__FILE__)) . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod | 0311) && $good;
 
 	?>
 </ul>
@@ -2271,17 +2271,17 @@ if (file_exists(CONFIGFILE)) {
 				$rslt = array();
 				foreach ($list as $component) {
 					if ($component != '..' && $component != '.') {
-						chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
+						@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component, 0666);
 						if(!setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup/'.$component),$component)) {
 							$rslt[] = '../setup/'.$component;
 						}
 					}
 				}
-				chmod(SERVERPATH.'/'.ZENFOLDER.'/setup.php', 0666);
+				@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup.php', 0666);
 				if (!setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup.php'),'setup.php')) {
 					$rslt[] = '../setup.php';
 				}
-				chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/', 0766);
+				@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/', 0766);
 				if (!setupDeleteComponent(@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/'),'setup/')) {
 					$rslt[] = '../setup/';
 				}

@@ -2684,7 +2684,7 @@ function copyThemeDirectory($source, $target, $newname) {
 	if (! mkdir($target, FOLDER_MOD)) {
 		return gettext('Cannot create new theme.') .' '.gettext('Could not create directory for the new theme');
 	}
-	chmod($target, FOLDER_MOD);
+	@chmod($target, FOLDER_MOD);
 
 	// Get a list of files to copy: get all files from the directory, remove those containing '/.svn/'
 	$source_files = array_filter( listDirectoryFiles( $source ), create_function('$str', 'return strpos($str, "/.svn/") === false;') );
@@ -2708,7 +2708,7 @@ function copyThemeDirectory($source, $target, $newname) {
 	// Create new directory structure
 	foreach ($dirs_to_create as $dir) {
 		mkdir("$target/$dir", FOLDER_MOD);
-		chmod("$target/$dir", FOLDER_MOD);
+		@chmod("$target/$dir", FOLDER_MOD);
 	}
 
 	// Now copy every file
@@ -2716,7 +2716,7 @@ function copyThemeDirectory($source, $target, $newname) {
 		$newfile = str_replace($source, $target, $file);
 		if (! copy("$file", "$newfile" ) )
 			return sprintf(gettext("An error occurred while copying files. Please delete manually the new theme directory '%s' and retry or copy files manually."), basename($target));
-		chmod("$newfile", FOLDER_MOD);
+		@chmod("$newfile", FOLDER_MOD);
 	}
 
 	// Rewrite the theme header.
@@ -2797,7 +2797,7 @@ function deleteThemeDirectory($source) {
 				}
 			} else {
 				if (file_exists($fullname)) {
-					chmod($fullname, 0666);
+					@chmod($fullname, 0666);
 					$result = $result && unlink($fullname);
 				}
 			}

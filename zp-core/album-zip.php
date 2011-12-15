@@ -83,7 +83,7 @@ function createAlbumZip($albumname){
 	header("Content-Length: " . filesize($dest));
 	printLargeFileContents($dest);
 	if (!$persist) {
-		chmod($dest, 0666);
+		@chmod($dest, 0666);
 		unlink($dest);
 	}
 	unset($zip_gallery);

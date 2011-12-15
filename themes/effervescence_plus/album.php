@@ -54,7 +54,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 	$show = false;
 	switch ($personality) {
 	case 'Simpleviewer':
-		echo "<script type=\"text/javascript\" src=\"$_zp_themeroot/scripts/swfobject.js\"></script>\n";
+		echo "<script type=\"text/javascript\" src=\"$_zp_themeroot/scripts/simpleviewer/swfobject.js\"></script>\n";
 		$oneImagePage = true;
 		break;
 	case 'Colorbox':
@@ -76,12 +76,12 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 		break;
 	case 'Smoothgallery':
 		?>
-		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/scripts/layout.css" type="text/css" media="screen" charset="utf-8" />
-		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/scripts/jd.gallery.css" type="text/css" media="screen" charset="utf-8" />
-		<script src="<?php echo $_zp_themeroot; ?>/scripts/mootools-1.2.1-core-yc.js" type="text/javascript"></script>
-		<script src="<?php echo $_zp_themeroot; ?>/scripts/mootools-1.2-more.js" type="text/javascript"></script>
-		<script src="<?php echo $_zp_themeroot; ?>/scripts/jd.gallery.js" type="text/javascript"></script>
-		<script src="<?php echo $_zp_themeroot; ?>/scripts/jd.gallery.transitions.js" type="text/javascript"></script>
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>scripts/jd_gallery/scripts/layout.css" type="text/css" media="screen" charset="utf-8" />
+		<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/scripts/jd_gallery/jd.gallery.css" type="text/css" media="screen" charset="utf-8" />
+		<script src="<?php echo $_zp_themeroot; ?>/scripts/jd_gallery/mootools-1.2.1-core-yc.js" type="text/javascript"></script>
+		<script src="<?php echo $_zp_themeroot; ?>/scripts/jd_gallery/mootools-1.2-more.js" type="text/javascript"></script>
+		<script src="<?php echo $_zp_themeroot; ?>/scripts/jd_gallery/jd.gallery.js" type="text/javascript"></script>
+		<script src="<?php echo $_zp_themeroot; ?>/scripts/jd_gallery/jd.gallery.transitions.js" type="text/javascript"></script>
 		<?php
 		setOption('thumb_crop_width', 100, false);
 		setOption('thumb_crop_height', 75, false);
