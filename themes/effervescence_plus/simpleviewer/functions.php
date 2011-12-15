@@ -113,7 +113,6 @@ class simpleviewer {
 					</div>
 					<?php
  				}
-		}
 		?>
 			</div><!-- flash -->
 			<div id="main">
@@ -133,6 +132,7 @@ class simpleviewer {
 		<div class="clearage"></div>
 		</div> <!-- content -->
 		<?php
+		}
 	}
 
 	function XML_part() {

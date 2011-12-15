@@ -20,6 +20,7 @@ class ThemeOptions {
 		setThemeOptionDefault('Watermark_head_image', true);
 		setThemeOptionDefault('Theme_personality', 'Image page');
 		setThemeOptionDefault('effervescence_transition', 'slide-hori');
+		setThemeOptionDefault('effervescence_caption_location', 'image');
 		setThemeOptionDefault('Theme_colors', 'kish-my father');
 		setThemeOptionDefault('effervescence_menu', '');
 		setThemeOptionDefault('albums_per_row', 3);
@@ -92,7 +93,11 @@ class ThemeOptions {
 			$options[gettext('Image gallery transition')] = array('key' => 'effervescence_transition', 'type' => OPTION_TYPE_SELECTOR,
 															'selections' => array(gettext('None') => '', gettext('Fade') => 'fade', gettext('Shrink/grow') => 'resize', gettext('Horizontal') => 'slide-hori', gettext('Vertical') => 'slide-vert'),
 															'order'=>10,
-															'desc' => gettext('Transition effect for Smoothgallery'));
+															'desc' => gettext('Transition effect for Image gallery'));
+			$options[gettext('Image gallery caption')] = array('key' => 'effervescence_caption_location', 'type' => OPTION_TYPE_RADIO,
+															'buttons' => array(gettext('On image')=>'image', gettext('Separate')=>'separate',gettext('Omit')=>'none'),
+															'order'=>10.5,
+															'desc' => gettext('Location for Imagegallery picture caption'));
 		}
 
 		$effects = new image_effects();

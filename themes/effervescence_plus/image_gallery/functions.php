@@ -4,7 +4,6 @@
  */
 // initialization stuff
 $personality = new imagegallery();
-$show = getOption('Slideshow') || (isset($_GET['slideshow']));
 
 class imagegallery {
 	function __construct() {
@@ -20,17 +19,18 @@ class imagegallery {
 	}
 
 	function theme_bodyopen($_zp_themeroot) {
+		$location = getOption('effervescence_caption_location');
 		?>
-	  <script type="text/javascript">
+		<script type="text/javascript">
 		  $(function() {
 		  	var galleries = $('.ad-gallery').adGallery({
 		  	  width: 600, // Width of the image, set to false and it will read the CSS width
 		  	  height: 400, // Height of the image, set to false and it will read the CSS height
 		  	  start_at_index: 0, // Which image should be displayed at first? 0 is the first image
-		  	  description_wrapper: $('#captions'), // Either false or a jQuery object, if you want the image descriptions
+		  	  description_wrapper: <?php if ($location!='image') { ?>$('#caption')<?php } else { ?>false<?php } ?>, // Either false or a jQuery object, if you want the image descriptions
 		  	                                           // to be placed somewhere else than on top of the image
 		  	  animate_first_image: false, // Should first image just be displayed, or animated in?
-		  	  animation_speed: 400, // Which ever effect is used to switch images, how long should it take?
+		  	  animation_speed: 500, // Which ever effect is used to switch images, how long should it take?
 		  	  display_next_and_prev: true, // Can you navigate by clicking on the left/right on the image?
 		  	  display_back_and_forward: true, // Are you allowed to scroll the thumb list?
 		  	  scroll_jump: 0, // If 0, it jumps the width of the container
@@ -62,104 +62,122 @@ class imagegallery {
 		  	          context.loading(false);
 		  	        }
 		  	      );
-
+		  	      <?php
+		  	      if ($location=='separate') {
+			  	      ?>
+			  	      $('#caption').show();
+			  	      <?php
+							}
+							?>
 		  	    },
+		  	    beforeImageVisible: function(new_image, old_image) {
+		  	      <?php
+		  	      if ($location=='separate') {
+			  	      ?>
+			  	      $('#caption').hide();
+			  	      <?php
+							}
+							?>
+		  	    }
 		  	  }
 		  	});
 		  });
 	  </script>
+
 		<?php
 	}
 
 	function theme_content($map) {
 		global $_zp_current_image, $points;
-		?>
-		<!-- Gallery section -->
-		<div id="content">
-			<div id="main">
-				<div id="images">
-					<?php
-					$points = array();
-					$firstImage = null;
-					$lastImage = null;
-					?>
-	<div id="gallery" class="ad-gallery">
-		<div class="ad-image-wrapper"></div>
-			<div class="ad-controls"></div>
-			<div class="ad-nav">
-				<div class="ad-thumbs">
-					<ul class="ad-thumb-list">
-					<?php
-					while (next_image()){
-						if ($map) {
-							$coord = getGeoCoord($_zp_current_image);
-							if ($coord) {
-								$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
-								$points[] = $coord;
-							}
-						}
-						if (isImagePhoto()) {
-							// does not do video
-							if (is_null($firstImage)) {
-								$lastImage = imageNumber();
-								$firstImage = $lastImage;
-							} else {
-								$lastImage++;
+		if (isImagePage()) {
+			?>
+			<!-- Gallery section -->
+			<div id="content">
+				<div id="main">
+					<div id="images">
+						<?php
+						$points = array();
+						$firstImage = null;
+						$lastImage = null;
+						?>
+						<div id="gallery" class="ad-gallery">
+							<div class="ad-image-wrapper"></div>
+								<div class="ad-controls"></div>
+								<div class="ad-nav">
+									<div class="ad-thumbs">
+										<ul class="ad-thumb-list">
+										<?php
+										while (next_image()){
+											if ($map) {
+												$coord = getGeoCoord($_zp_current_image);
+												if ($coord) {
+													$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+													$points[] = $coord;
+												}
+											}
+											if (isImagePhoto()) {
+												// does not do video
+												if (is_null($firstImage)) {
+													$lastImage = imageNumber();
+													$firstImage = $lastImage;
+												} else {
+													$lastImage++;
+												}
+												?>
+												<li>
+													<a href="<?php echo html_encode(getUnprotectedImageURL()); ?>">
+														<img src="<?php echo getImageThumb(); ?>"
+															class="image<?php echo $lastImage; ?>"
+															alt="<?php echo $_zp_current_image->getDesc(); ?>">
+													</a>
+												</li>
+											<?php
+											}
+										}
+										?>
+					          </ul>
+					        </div>
+					      </div>
+					    </div>
+
+					    <div id="caption"<?php if (getOption('effervescence_caption_location')=='none') echo ' style="display:none"'?>>
+					    </div>
+						<div class="clearage"></div>
+						<?php
+						if (!empty($points) && $map) {
+							function map_callback($map) {
+								global $points;
+								foreach ($points as $coord) {
+									addGeoCoord($map, $coord);
+								}
 							}
 							?>
-							<li>
-								<a href="<?php echo html_encode(getUnprotectedImageURL()); ?>">
-									<img src="<?php echo getImageThumb(); ?>"
-										class="image<?php echo $lastImage; ?>"
-										alt="<?php echo $_zp_current_image->getDesc(); ?>">
-								</a>
-							</li>
-						<?php
+							<div id="map_link">
+							<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
+							</div>
+							<?php
 						}
-					}
-					?>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div id="captions">
-    </div>
-					<div class="clearage"></div>
-					<?php
-					if (!empty($points) && $map) {
-						function map_callback($map) {
-							global $points;
-							foreach ($points as $coord) {
-								addGeoCoord($map, $coord);
-							}
+						if (function_exists('printSlideShowLink')) {
+							printSlideShowLink(gettext('View Slideshow'),'text-align:center;');
 						}
 						?>
-						<div id="map_link">
-						<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
-						</div>
-						<?php
+					</div><!-- images -->
+					<?php
+					if (getOption('enable_album_zipfile')) {
+						echo "<p align=\"center\">";
+						printAlbumZip();
+						echo "</p>";
 					}
-					if (function_exists('printSlideShowLink')) {
-						printSlideShowLink(gettext('View Slideshow'),'text-align:center;');
+					if (function_exists('printRating')) {
+						printRating();
 					}
 					?>
-				</div><!-- images -->
-				<?php
-				if (getOption('enable_album_zipfile')) {
-					echo "<p align=\"center\">";
-					printAlbumZip();
-					echo "</p>";
-				}
-				if (function_exists('printRating')) {
-					printRating();
-				}
-				?>
-		 		</div><!-- main -->
-				<div class="clearage"></div>
-		 <?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
-		</div><!-- content -->
-		<?php
+			 		</div><!-- main -->
+					<div class="clearage"></div>
+			 <?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
+			</div><!-- content -->
+			<?php
+		}
 	}
 
 	function XML_part() {

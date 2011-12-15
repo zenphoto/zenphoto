@@ -4060,7 +4060,7 @@ function getTheme(&$zenCSS, &$themeColor, $defaultColor) {
  * index.php script before the theme script is loaded.
  */
 function setThemeColumns() {
-	global $_zp_current_album, $_firstPageImages;
+	global $_zp_current_album, $_firstPageImages, $oneImagePage;
 	$_firstPageImages = false;
 	if (($albumColumns = getOption('albums_per_row'))<=1) $albumColumns = false;
 	if (($imageColumns = getOption('images_per_row'))<=1) $imageColumns = false;
@@ -4072,7 +4072,7 @@ function setThemeColumns() {
 	if (($imageColumns) && (($imgcount % $imageColumns) != 0)) {
 		setOption('images_per_page', $imgcount = ((floor($imgcount / $imageColumns) + 1) * $imageColumns), false);
 	}
-	if (getOption('thumb_transition') && in_context(ZP_ALBUM | ZP_SEARCH) && $albumColumns && $imageColumns) {
+	if ((getOption('thumb_transition') && !$oneImagePage) && in_context(ZP_ALBUM | ZP_SEARCH) && $albumColumns && $imageColumns) {
 		$count = getNumAlbums();
 		if ($count == 0) {
 			$_firstPageImages = 0;

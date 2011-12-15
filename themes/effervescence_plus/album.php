@@ -17,7 +17,6 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php
-	$show = false;
 	$oneImagePage = $personality->theme_head($_zp_themeroot);
 	?>
 	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/scripts/bluranchors.js\"></script>
