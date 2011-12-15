@@ -304,3 +304,7 @@ label:hover {
 	font-weight: bold;
 	margin-bottom: 1em;
 }
+
+#captions {
+	text-align:center;
+}

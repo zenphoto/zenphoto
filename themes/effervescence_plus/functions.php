@@ -77,22 +77,6 @@ function getImage_AlbumCount() {
 	}
 	return $result;
 }
-function parseCSSDef($file) {
-	$file = str_replace(WEBPATH, '', $file);
-	$file = SERVERPATH . internalToFilesystem($file);
-	if (is_readable($file) && $fp = @fopen($file, "r")) {
-		while($line = fgets($fp)) {
-			if (!(false === strpos($line, "#main2 {"))) {
-				$line = fgets($fp);
-				$line = trim($line);
-				$item = explode(":", $line);
-				$rslt = trim(substr($item[1], 0, -1));
-				return $rslt;
-			}
-		}
-	}
-	return "#0b9577"; /* the default value */
-}
 
 function printNofM($what, $first, $last, $total) {
 	if (!is_null($first)) {
@@ -115,16 +99,18 @@ function printNofM($what, $first, $last, $total) {
 }
 
 function printThemeInfo() {
-	global $themeColor, $themeResult, $_noFlash;
+	global $themeColor, $themeResult;
 	if ($themeColor == 'effervescence') {
 		$themeColor = '';
 	}
 	$personality = getOption('Theme_personality');
 	if ($personality == 'Image page') {
 		$personality = '';
-	} else if (($personality == 'Simpleviewer') && (!MOD_REWRITE || $_noFlash)) {
+	} else if (($personality == 'Simpleviewer' && !class_exists('simpleviewer')) ||
+							($personality == 'Colorbox' && !getOption('zp_plugin_colorbox'))) {
 		$personality = "<strike>$personality</strike>";
 	}
+	$personality = str_replace('_', ' ', $personality);
 	if (empty($themeColor) && empty($personality)) {
 		echo '<p><small>Effervescence</small></p>';
 	} else if (empty($themeColor)) {
@@ -228,6 +214,7 @@ function printFooter($admin=true) {
 			<?php
 		}
 		?>
+
 		<?php printThemeInfo(); ?>
 		<?php printZenphotoLink(); ?>
 		<?php if ($_zp_gallery_page == 'gallery') { printRSSLink('Gallery','<br />', 'Gallery RSS', ''); } ?>

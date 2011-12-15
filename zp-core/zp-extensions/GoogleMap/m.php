@@ -7,7 +7,6 @@
 
 // force UTF-8 Ø
 
-define ('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))).'/functions.php');
 if (getOption('gmap_sessions')) {
 	session_start();

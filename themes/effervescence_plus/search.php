@@ -3,35 +3,8 @@
 // force UTF-8 Ø
 
 if (!defined('WEBPATH')) die();
-$_noFlash = true;  /* don't know how to deal with the variable folder depth file names
-if ((getOption('Use_Simpleviewer')==0) || !MOD_REWRITE) { $_noFlash = true; }
-
-if (isset($_GET['noflash'])) {
-	$_noFlash = true;
-	zp_setCookie("noFlash", "noFlash");
-	} elseif (zp_getCookie("noFlash") != '') {
-	$_noFlash = true;
-	}
-	*/
-
-// Change the configuration here
 
 $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
-if ($_noFlash) {
-	$backgroundColor = "#0";  /* who cares, we won't use it */
-} else {
-	$backgroundColor = parseCSSDef($zenCSS);
-}
-
-$maxImageWidth="600";
-$maxImageHeight="600";
-
-$preloaderColor="0xFFFFFF";
-$textColor="0xFFFFFF";
-$frameColor="0xFFFFFF";
-
-$frameWidth="10";
-$stagePadding="20";
 
 $thumbnailColumns="3";
 $thumbnailRows="6";
@@ -302,7 +275,6 @@ $backgroundImagePath="";
 <!-- Wrap Main Body -->
  	<?php
  	if ($numimages > 0){  /* Only print if we have images. */
- 		if ($_noFlash) {
 	 ?>
  			<div id="content">
  				<div id="main">
@@ -336,39 +308,7 @@ $backgroundImagePath="";
  					?>
  					</div> <!-- content -->
 	 		<?php
-	 		} else {  /* flash */
-	 			if ($imagePage = isImagePage()) {
-	 			?>
- 					<div id="flash">
- 					<p align=center><font color=#663300><?php echo gettext('For the best viewing experience').' '; ?><a href="http://www.macromedia.com/go/getflashplayer/"><?php echo gettext('get Adobe Flash.'); ?></a></p>
- 					<p align="center"><a href="
- 					<?php
- 					if ($imagePage) {
- 						$url = html_encode(getPageURL(getTotalPages(true)));
- 					} else {
- 						$url = html_encode(getPageURL(getCurrentPage()));
- 					}
- 					if (substr($url, -1, 1) == '/') {$url = substr($url, 0, (strlen($url)-1));}
- 					echo $url = $url . (MOD_REWRITE ? "?" : "&amp;") . 'noflash';
- 					?>">
- 					View gallery without Flash</a>.</p>
- 					</div> <!-- flash -->
- 					<?php
- 					$flash_url = "index.php?p=search" . html_encode(getSearchParams()) . "&amp;format=xml";
- 					?>
- 					<script type="text/javascript">
- 						// <!-- <![CDATA[
-						var fo = new SWFObject("<?php echo  $_zp_themeroot ?>/simpleviewer.swf", "viewer", "100%", "100%", "7", "<?php echo $backgroundColor ?>");
-						fo.addVariable("preloaderColor", "<?php echo $preloaderColor ?>");
-						fo.addVariable("xmlDataPath", "<?php echo $flash_url ?>");
-						fo.addVariable("width", "100%");
-						fo.addVariable("height", "100%");
-						fo.write("flash");
-						// ]]> -->
- 					</script>
- 					<?php
-	 			}
-	 		} /* image loop */
+
 	 	}
 
 	 	if ($total == 0){
@@ -395,9 +335,7 @@ $backgroundImagePath="";
 
 		<div id="pagenumbers">
 		<?php
-		if (($numalbums != 0) || $_noFlash){
-			printPageListWithNav("&laquo; prev", "next &raquo;", !$_noFlash);
-		}
+		printPageListWithNav("&laquo; prev", "next &raquo;");
 		?>
 		</div> <!-- pagenumbers -->
 </div> <!-- subcontent -->

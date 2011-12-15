@@ -3,39 +3,8 @@
 // force UTF-8 Ø
 
 if (!defined('WEBPATH')) die();
-$_noFlash = true;  /* don't know how to deal with the variable folder depth file names
-if ((getOption('Use_Simpleviewer')==0) || !MOD_REWRITE) { $_noFlash = true; }
-
-if (isset($_GET['noflash'])) {
-	$_noFlash = true;
-	zp_setCookie("noFlash", "noFlash");
-	} elseif (zp_getCookie("noFlash") != '') {
-	$_noFlash = true;
-	}
-	*/
-
-// Change the configuration here
 
 $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
-if ($_noFlash) {
-	$backgroundColor = "#0";  /* who cares, we won't use it */
-} else {
-	$backgroundColor = parseCSSDef($zenCSS);
-}
-
-$maxImageWidth="600";
-$maxImageHeight="600";
-
-$preloaderColor="0xFFFFFF";
-$textColor="0xFFFFFF";
-$frameColor="0xFFFFFF";
-
-$frameWidth="10";
-$stagePadding="20";
-
-$thumbnailColumns="3";
-$thumbnailRows="6";
-$navPosition="left";
 
 $enableRightClickOpen="true";
 

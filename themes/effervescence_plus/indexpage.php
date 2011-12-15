@@ -42,7 +42,10 @@ $themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
 		<!-- Crumb Trail Navigation -->
 		<div id="wrapnav">
 			<div id="navbar">
-				<span><?php printHomeLink('', ' | '); echo (empty($mainsite))?'&nbsp;':$mainsite; ?></span>
+				<span><?php
+				if ($_zp_gallery->getWebsiteURL()) printHomeLink('', ' | ');
+				echo gettext('Home');
+				?></span>
 			</div>
 		</div> <!-- wrapnav -->
 

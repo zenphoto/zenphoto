@@ -24,7 +24,7 @@ if (!file_exists($htaccess)) {
 }
 @chmod($htaccess,0444);
 unset($htaccess);
-if (OFFSET_PATH!=99) {
+if (OFFSET_PATH!=99 && session_id() != '') {
 	unset($_SESSION['XSRFToken']);
 }
 ?>
