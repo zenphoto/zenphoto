@@ -17,7 +17,7 @@ function getResidentZPFiles($folder,  $lcFilesystem=false) {
 	$dir = opendir($folder);
 	while(($file = readdir($dir)) !== false) {
 		$file = str_replace('\\','/',$file);
-		if (strpos($file, '.') !== 0) {
+		if ($file != '.' && $file != '..') {
 			if (is_dir($folder.'/'.$file)) {
 				if ($file != 'session') {
 					getResidentZPFiles($folder.'/'.$file, $lcFilesystem);

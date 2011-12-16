@@ -1180,7 +1180,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		$systemlist = $filelist = array();
 		$svncount = 0;
 		foreach ($_zp_resident_files as $extra) {
-			if (defined("RELEASE") || (strpos($extra, '.svn')===false)) {
+			if (defined("RELEASE") || (strpos($extra, '/.svn')===false)) {
 				$systemlist[] = $extra;
 				$filelist[] = $_zp_UTF8->convert(str_replace($base,'',$extra), FILESYSTEM_CHARSET, 'UTF-8');
 			} else {
@@ -1188,29 +1188,26 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			}
 		}
 		if ($svncount) {
-			$svn = '<br />'.sprintf(gettext('.svn [%s instances]'),$svncount);
-		} else {
-			$svn = '';
+			$filelist[] = '<br />'.sprintf(gettext('.svn [%s instances]'),$svncount);
 		}
 		if ($package_file_count) {	//	no point in this if the package list was damaged!
 			if (!empty($filelist)) {
 				if (isset($_GET['delete_extra'])) {
 					foreach ($systemlist as $key=>$file) {
+						@chmod($file, 0666);
 						if (!is_dir($file)) {
-							@chmod($file, 0666);
-							if (setupDeleteComponent(@unlink($file),$filelist[$key])) {
+							if (@unlink($file)) {
 								unset($filelist[$key]);
 								unset($systemlist[$key]);
 							}
 						}
 					}
+					rsort($systemlist);
 					foreach ($systemlist as $key=>$file) {
-						if (is_dir($file)) {
-							@chmod($file, 0666);
-							if (setupDeleteComponent(@rmdir($file),$filelist[$key].'/')) {
-								unset($filelist[$key]);
-							}
+						if (@rmdir($file)) {
+							unset($filelist[$key]);
 						}
+
 					}
 
 					if (!empty($filelist)) {
@@ -1218,7 +1215,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					}
 				} else {
 					checkMark(-1, '', gettext('Zenphoto core folders [Some unknown files were found]'),
-					gettext('You should remove the following files: ').'<br /><code>'.implode('<br />',$filelist).$svn.
+														gettext('You should remove the following files: ').'<br /><code>'.implode('<br />',$filelist).
 															'</code><p class="buttons"><a href="?delete_extra'.($debug?'&amp;debug':'').'">'.gettext("Delete extra files").'</a></p><br clear="all" /><br clear="all" />');
 				}
 			}
