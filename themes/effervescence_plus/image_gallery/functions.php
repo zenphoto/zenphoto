@@ -125,10 +125,10 @@ class imagegallery {
 												}
 												?>
 												<li>
-													<a href="<?php echo html_encode(getUnprotectedImageURL()); ?>">
+													<a href="<?php echo html_encode(getDefaultSizedImage()); ?>">
 														<img src="<?php echo getImageThumb(); ?>"
 															class="image<?php echo $lastImage; ?>"
-															alt="<?php echo $_zp_current_image->getDesc(); ?>">
+															alt="<?php echo getImageDesc(); ?>">
 													</a>
 												</li>
 											<?php

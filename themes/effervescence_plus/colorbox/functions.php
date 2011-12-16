@@ -23,6 +23,7 @@ class colorbox {
 				$("a.thickbox").colorbox({
 					maxWidth:"98%",
 					maxHeight:"98%",
+					photo:true,
 					close: '<?php echo gettext("close"); ?>'
 				});
 			});
@@ -68,7 +69,7 @@ class colorbox {
 								}
 							}
 							$annotate = annotateImage();
-							echo '<a href="'.html_encode(getUnprotectedImageURL()).'" class="thickbox"';
+							echo '<a href="'.html_encode(getDefaultSizedImage()).'" class="thickbox"';
 							echo " title=\"".$annotate."\">\n";
 							printImageThumb($annotate);
 							echo "</a>";

@@ -645,7 +645,6 @@ zp-core/zp-extensions/class-video/3gpDefault.png
 zp-core/zp-extensions/class-video/flaDefault.png
 zp-core/zp-extensions/class-video/flvDefault.png
 zp-core/zp-extensions/class-video/getid3
-zp-core/zp-extensions/class-video/getid3/!delete any module you don't like, but check dependencies.txt
 zp-core/zp-extensions/class-video/getid3/changelog.txt
 zp-core/zp-extensions/class-video/getid3/dependencies.txt
 zp-core/zp-extensions/class-video/getid3/extension.cache.dbm.php
@@ -1153,7 +1152,6 @@ zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/jscripts/edit_area/langs/
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/jscripts/edit_area/langs/pl.js
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/jscripts/edit_area/langs/pt.js
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/jscripts/edit_area/langs/zh_cn.js
-zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/jscripts/edit_area/plugins
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/jscripts/edit_area/reg_syntax
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/jscripts/edit_area/reg_syntax/basic.js
 zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/jscripts/edit_area/reg_syntax/brainfuck.js
@@ -1820,4 +1818,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1822
+1820
