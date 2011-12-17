@@ -44,7 +44,7 @@ echo "\n</head>";
 				$_SESSION['license_return'] = $_SERVER['REQUEST_URI'];
 				?>
 				<p class="buttons">
-					<a href="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/license.php?XSRFToken='.getXSRFToken('ZenphotoLicense'); ?>" alt="<?php echo gettext('You must accept this license t continue to use Zenphot.'); ?>"><?php echo gettext('I agree to these terms and conditions'); ?></a>
+					<a href="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/license.php?XSRFToken='.getXSRFToken('ZenphotoLicense'); ?>" alt="<?php echo gettext('You must accept this license t continue to use Zenphoto.'); ?>"><?php echo gettext('I agree to these terms and conditions'); ?></a>
 				</p>
 				<br clear="all" />
 				<?php
