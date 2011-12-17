@@ -23,7 +23,10 @@ if (defined('OFFSET_PATH')) {
 
 	if (!file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/close.html')) {
 		mkdir_recursive(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/', FOLDER_MOD);
-		copy(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/closed.html', SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.html');
+		$gallery = new Gallery();
+		$html = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/closed.html');
+		$html = sprintf($html, sprintf(gettext('%s upgrade'),$gallery->getTitle()),gettext('The site is undergoing an upgrade'), gettext('Please return later'));
+		file_put_contents(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.html', $html);
 		copy(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/closed.png', SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.png');
 	}
 
@@ -37,7 +40,7 @@ if (defined('OFFSET_PATH')) {
 			$button_text = gettext('Close the site.');
 			$image = 'images/action.png';
 		} else {
-			preg_match('|[#\s]\sRewriteRule(.*)plugins/site_upgrade/closed|',$ht,$matches);
+			preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|',$ht,$matches);
 			if (strpos($matches[0],'#')===0) {
 				$button_text = gettext('Close site');
 				$title = gettext('Make site unavialable for viewing, redirect to closed sign.');
@@ -74,17 +77,19 @@ if (defined('OFFSET_PATH')) {
 	$htpath = SERVERPATH.'/.htaccess';
 	$ht = file_get_contents($htpath);
 
-	preg_match_all('|[#\s]\sRewriteRule(.*)plugins/site_upgrade/closed|',$ht,$matches);
+	preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|',$ht,$matches);
 	if (strpos($matches[0][1],'#')===0) {
-		$ht = str_replace($matches[0][0], substr($matches[0][0],1), $ht);
-		$ht = str_replace($matches[0][1], substr($matches[0][1],1),$ht);
+		foreach ($matches[0] as $match) {
+			$ht = str_replace($match, substr($match,1), $ht);
+		}
 		@chmod($htpath, 0777);
 		file_put_contents($htpath, $ht);
 		@chmod($htpath,0444);
 		$report = gettext('Site is now marked in upgrade.');
 	} else {
-		$ht = str_replace($matches[0][0], str_replace("\n","\n#",$matches[0][0]), $ht);
-		$ht = str_replace($matches[0][1], str_replace("\n","\n#",$matches[0][1]), $ht);
+		foreach ($matches[0] as $match) {
+			$ht = str_replace($match, preg_replace('/^ /','# ',$match), $ht);
+		}
 		@chmod($htpath, 0777);
 		file_put_contents($htpath, $ht);
 		@chmod($htpath, 0444);

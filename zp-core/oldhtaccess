@@ -3,7 +3,7 @@
 #		First make a copy of this file as 'oldhtaccess' in the zp-core folder so setup can test for unmodified files
 #		Update the above and the define in setup.php
 
-IndexIgnore *
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
   

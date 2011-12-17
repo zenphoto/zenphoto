@@ -12,8 +12,8 @@ IndexIgnore *
 #	Redirection for site updates--remove the comment crosshatches from the following rules
 #	"closed.html" in the plugins/site_update folder is the target for the rewrites. You can change 
 #	this to suit your needs.  
-#	RewriteRule ^index\.php$      plugins/site_upgrade/closed.html [NC,R,L]  
-#	RewriteRule ^$      plugins/site_upgrade/closed.html [NC,R,L] 
+# RewriteRule ^index\.php$      plugins/site_upgrade/closed.html [NC,R,L]  
+# RewriteRule ^$      plugins/site_upgrade/closed.html [NC,R,L] 
 #	End redirection for site updates 
   
   RewriteRule	^admin/?$                       zp-core/admin.php [R,L]
