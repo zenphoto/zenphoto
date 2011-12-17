@@ -245,7 +245,7 @@ class TextObject extends _Image {
 	 */
 	function getSizedImage($size) {
 		$width = $this->getWidth();
-		$height = $this->getHeight;
+		$height = $this->getHeight();
 		if ($width > $height) {	//portrait
 			$height = $height * $size/$width;
 		} else {

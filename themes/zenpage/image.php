@@ -24,6 +24,7 @@ if (!defined('WEBPATH')) die();
 				$("a.thickbox").colorbox({
 					maxWidth:"98%",
 					maxHeight:"98%",
+					photo:true,
 					close: '<?php echo gettext("close"); ?>'
 				});
 			});
@@ -71,13 +72,13 @@ if (!defined('WEBPATH')) die();
  ?>
 
 	<div id="image">
-		<?php if(getOption("Use_thickbox") && !isImageVideo()) {
+		<?php
+		if(getOption("Use_thickbox") && !isImageVideo()) {
 			$boxclass = " class=\"thickbox\"";
-			$tburl = getUnprotectedImageURL();
 		} else {
 			$boxclass = "";
-			$tburl = getFullImageURL();
 		}
+		$tburl = getFullImageURL();
 		if (!empty($tburl)) {
 			?>
 			<a href="<?php echo html_encode($tburl); ?>"<?php echo $boxclass; ?> title="<?php echo getBareImageTitle();?>">

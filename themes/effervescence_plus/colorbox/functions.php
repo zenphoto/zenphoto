@@ -49,35 +49,38 @@ class colorbox {
 					$firstImage = null;
 					$lastImage = null;
 					while (next_image()){
-						if (isImagePhoto()) {
-							// Colorbox does not do video
-							if (is_null($firstImage)) {
-								$lastImage = imageNumber();
-								$firstImage = $lastImage;
-							} else {
-								$lastImage++;
-							}
-							?>
-						<div class="image">
-							<div class="imagethumb">
-							<?php
-							if ($map) {
-								$coord = getGeoCoord($_zp_current_image);
-								if ($coord) {
-									$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
-									$points[] = $coord;
-								}
-							}
-							$annotate = annotateImage();
-							echo '<a href="'.html_encode(getDefaultSizedImage()).'" class="thickbox"';
-							echo " title=\"".$annotate."\">\n";
-							printImageThumb($annotate);
-							echo "</a>";
-							?>
-							</div>
-						</div>
-						<?php
+						// Colorbox does not do video
+						if (is_null($firstImage)) {
+							$lastImage = imageNumber();
+							$firstImage = $lastImage;
+						} else {
+							$lastImage++;
 						}
+						?>
+					<div class="image">
+						<div class="imagethumb">
+						<?php
+						if ($map) {
+							$coord = getGeoCoord($_zp_current_image);
+							if ($coord) {
+								$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+								$points[] = $coord;
+							}
+						}
+						$annotate = annotateImage();
+						if (isImagePhoto()) {
+							// colorbox is only for real images
+							echo '<a href="'.html_encode(getDefaultSizedImage()).'" class="thickbox"';
+						} else {
+							echo '<a href="'.html_encode(getImageLinkURL()).'"';
+						}
+						echo " title=\"".$annotate."\">\n";
+						printImageThumb($annotate);
+						echo "</a>";
+						?>
+						</div>
+					</div>
+					<?php
 					}
 					echo '<div class="clearage"></div>';
 					if (!empty($points) && $map) {

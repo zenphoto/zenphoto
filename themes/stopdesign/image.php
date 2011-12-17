@@ -22,11 +22,6 @@ require_once('normalizer.php');
 					href:"#imagemetadata",
 					close: '<?php echo gettext("close"); ?>'
 				});
-				$("a.thickbox").colorbox({
-					maxWidth:"98%",
-					maxHeight:"98%",
-					close: '<?php echo gettext("close"); ?>'
-				});
 			});
 			// ]]> -->
 		</script>
