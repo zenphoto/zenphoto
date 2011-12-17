@@ -2173,7 +2173,7 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
 		$style = ' style="display:none"';
 	}
 	?>
-	<span id="<?php echo $span; ?> class="metadata_title">
+	<span id="<?php echo $span; ?>" class="metadata_title">
 		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
 	</span>
 	<span id="<?php echo $dataid; ?>"<?php echo $style; ?>>
