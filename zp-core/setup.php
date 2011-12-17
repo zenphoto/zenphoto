@@ -1239,7 +1239,9 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		if ($Apache) {
 			$desc = gettext('If you have the mod_rewrite module enabled an <em>.htaccess</em> file is required the root zenphoto folder to create cruft-free URLs.').
 						'<br /><br />'.gettext('You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option.');
-			if (zp_loggedin(ADMIN_RIGHTS)) $desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup create the file</a></p><br style="clear:both" /><br />');
+			if (zp_loggedin(ADMIN_RIGHTS)) {
+				$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup create the file</a></p><br style="clear:both" /><br />');
+			}
 		} else {
 			$desc = gettext("Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required.");
 		}
@@ -1270,7 +1272,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			} else {
 				$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of Zenphoto. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."),ZENFOLDER);
 				if (zp_loggedin(ADMIN_RIGHTS)) {
-					$desc .= ' '.gettext('Click <a href="?copyhtaccess" >here</a> to have setup replace your <em>.htaccess</em> file with the current version.');
+					$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup update the file with the current version</a></p><br style="clear:both" /><br />');
 				}
 			}
 			$err = gettext("<em>.htaccess</em> file [wrong version]");
