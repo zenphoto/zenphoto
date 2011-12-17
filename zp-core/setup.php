@@ -21,7 +21,7 @@ header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
 
 define('CONFIGFILE',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zenphoto.cfg');
-define('HTACCESS_VERSION', '1.4.1');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
+define('HTACCESS_VERSION', '1.4.3');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
 
 $debug = isset($_REQUEST['debug']);
 
@@ -296,6 +296,7 @@ $updatechmod = ($updatechmod || !checkPermissions(fileperms(dirname(__FILE__).'/
 
 if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists(dirname(dirname(__FILE__)).'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
+		@chmod(dirname(dirname(__FILE__)).'/.htaccess',0777);
 		copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
 		@chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
 	}

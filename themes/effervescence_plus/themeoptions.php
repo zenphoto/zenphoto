@@ -97,7 +97,7 @@ class ThemeOptions {
 			$options[gettext('Image gallery caption')] = array('key' => 'effervescence_caption_location', 'type' => OPTION_TYPE_RADIO,
 															'buttons' => array(gettext('On image')=>'image', gettext('Separate')=>'separate',gettext('Omit')=>'none'),
 															'order'=>10.5,
-															'desc' => gettext('Location for Imagegallery picture caption'));
+															'desc' => gettext('Location for Image gallery picture caption'));
 		}
 
 		$effects = new image_effects();

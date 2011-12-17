@@ -1,9 +1,9 @@
-# htaccess file version 1.4.0;
+# htaccess file version 1.4.1;
 # When Zenphoto requires changes to the rewrite rules:
 #		First make a copy of this file as 'oldhtaccess' in the zp-core folder so setup can test for unmodified files
 #		Update the above and the define in setup.php
 
-
+IndexIgnore *
 <IfModule mod_rewrite.c>
   RewriteEngine On
   
@@ -57,6 +57,8 @@
 	RewriteRule	^rss\.php/?$                	index.php?rss&lang=%1 [L,R=301]
 	RewriteRule	^rss-news\.php/?$                	index.php?rss-news&lang=%1 [L,R=301]
   #######################
+  #rewrite rule for tinyURLs
+  RewriteRule ^tiny/([0-9]+)/?$               index.php?p=$1&t [L,QSA]
   
   RewriteRule index\.php$                     index.php [L,QSA]
   RewriteRule ^page/([0-9]+)/?$               index.php?page=$1 [L,QSA]

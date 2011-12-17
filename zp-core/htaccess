@@ -1,4 +1,4 @@
-# htaccess file version 1.4.1;
+# htaccess file version 1.4.3;
 # When Zenphoto requires changes to the rewrite rules:
 #		First make a copy of this file as 'oldhtaccess' in the zp-core folder so setup can test for unmodified files
 #		Update the above and the define in setup.php
@@ -8,6 +8,13 @@ IndexIgnore *
   RewriteEngine On
   
   RewriteBase /zenphoto
+  
+#	Redirection for site updates--remove the comment crosshatches from the following rules
+#	"closed.html" in the plugins/site_update folder is the target for the rewrites. You can change 
+#	this to suit your needs.  
+#	RewriteRule ^index\.php$      plugins/site_upgrade/closed.html [NC,R,L]  
+#	RewriteRule ^$      plugins/site_upgrade/closed.html [NC,R,L] 
+#	End redirection for site updates 
   
   RewriteRule	^admin/?$                       zp-core/admin.php [R,L]
   

@@ -18,7 +18,12 @@ if (isset($_GET['_zp_login_error'])) {
 
 checkInstall();
 
-$msg = '';
+if (isset($_GET['report'])) {
+	$class = 'messagebox';
+	$msg = sanitize($_GET['report']);
+} else {
+	$msg = '';
+}
 if(getOption('zp_plugin_zenpage')) {
 	require_once(dirname(__FILE__).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-admin-functions.php');
 }

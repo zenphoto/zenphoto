@@ -952,6 +952,10 @@ zp-core/zp-extensions/security-logger.php
 zp-core/zp-extensions/seo_cleanup.php
 zp-core/zp-extensions/seo_locale.php
 zp-core/zp-extensions/show_not_logged-in.php
+zp-core/zp-extensions/site_upgrade
+zp-core/zp-extensions/site_upgrade.php
+zp-core/zp-extensions/site_upgrade/closed.html
+zp-core/zp-extensions/site_upgrade/closed.png
 zp-core/zp-extensions/sitemap-extended
 zp-core/zp-extensions/sitemap-extended.php
 zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php
@@ -1818,4 +1822,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1820
+1824

@@ -11,6 +11,8 @@
  * the benifits of the filemanager are not worht the risks. Thus this plugin gives you the
  * choice of enabling the feature or not.
  *
+ * @author Stephen Billard (sbillard)
+ * @package plugins
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;
