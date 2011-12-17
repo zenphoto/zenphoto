@@ -703,6 +703,10 @@ function getImageProcessorURI($args, $album, $image) {
 	if (!empty($passedWM)) $uri .= '&wmk='.$passedWM;
 	if (!empty($adminrequest)) $uri .= '&admin';
 	if (!is_null($effects)) $uri .= '&effects='.$effects;
+	if (function_exists('static_cache_html_disable_cache')) {
+		// don't cache pages that have image processor URIs
+		static_cache_html_disable_cache();
+	}
 	return $uri;
 }
 

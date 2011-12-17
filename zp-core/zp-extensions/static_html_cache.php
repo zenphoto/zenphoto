@@ -89,8 +89,9 @@ if (OFFSET_PATH) {
 
 class staticCache {
 
-	var $disable = false; // manual disable caching a page
-	var $pageCachePath = NULL;
+	var $enabled = true; // manual disable caching a page
+	private $pageCachePath = NULL;
+	private $dirty;
 
 	/**
 	 * Checks if the current page should be excluded from caching.
@@ -199,7 +200,7 @@ class staticCache {
 		if(!empty($cachefilepath)) {
 			$pagecontent = ob_get_contents();
 			ob_end_clean();
-			if ($fh = fopen($cachefilepath,"w")) {
+			if ($this->enabled && $fh = fopen($cachefilepath,"w")) {
 				fputs($fh, $pagecontent);
 				fclose($fh);
 				clearstatcache();
@@ -345,7 +346,7 @@ class staticCache {
 function static_cache_html_disable_cache() {
 	global $_zp_HTML_cache;
 	if(is_object($_zp_HTML_cache)) {
-		$_zp_HTML_cache->disable = true;
+		$_zp_HTML_cache->enabled = false;
 	}
 }
 
