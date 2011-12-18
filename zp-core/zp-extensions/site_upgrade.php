@@ -27,7 +27,7 @@ if (defined('OFFSET_PATH')) {
 		$html = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/closed.html');
 		$html = sprintf($html, sprintf(gettext('%s upgrade'),$gallery->getTitle()),sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'),$gallery->getTitle()), gettext('Please return later'));
 		file_put_contents(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.html', $html);
-		copy(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/closed.gif', SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.gif');
+		copy(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/closed.png', SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.png');
 	}
 
 	function site_upgrade_button($buttons) {

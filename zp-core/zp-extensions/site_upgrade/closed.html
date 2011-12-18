@@ -12,7 +12,11 @@
 	font-size: 200%%;
 	text-align: center;
 	border-radius: 10px 10px 10px 10px;
-	min-width: 500px;
+	width: 600px;
+	height: 400px;
+	background-image: url(closed.png);
+	margin-top: 0px;
+	padding-top: 0px;
 }
 #outer {
 	height: 500px;
@@ -22,13 +26,16 @@
   margin-left: auto;
   margin-right: auto;
 }
+#mid {
+	height: 220px;
+}
 </style>
 </head>
 <body>
 	<div id="outer">
 		<div id="closed">
-			<p>%2$s</p>
-			<img src="closed.gif">
+			<p >%2$s</p>
+			<div id="mid"></div>
 			<p>%3$s</p>
 		</div>
 	</div>
