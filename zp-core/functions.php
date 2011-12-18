@@ -177,17 +177,6 @@ function parseAllowedTags(&$source) {
 }
 
 // Image utility functions
-/**
- * Returns true if the file is an image
- *
- * @param string $filename the name of the target
- * @return bool
- */
-function is_valid_image($filename) {
-	global $_zp_supported_images;
-	$ext = strtolower(substr(strrchr($filename, "."), 1));
-	return in_array($ext, $_zp_supported_images);
-}
 
 /**
  * Search for a thumbnail for the image
@@ -1138,7 +1127,9 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 		if (!is_null($album)) {
 			$albumname = $album->name;
 			zp_setCookie('zenphoto_last_album', $albumname);
-			if (hasDynamicAlbumSuffix($albumname)) $albumname = substr($albumname, 0, -4); // strip off the .alb as it will not be reflected in the search path
+			if (hasDynamicAlbumSuffix($albumname)) {
+				$albumname = stripSuffix($albumname); // strip off the .alb as it will not be reflected in the search path
+			}
 			//	see if the album is within the search context. NB for these purposes we need to look at all albums!
 			$save_logon = $_zp_loggedin;
 			$_zp_loggedin = $_zp_loggedin | VIEW_ALL_RIGHTS;
@@ -1282,22 +1273,6 @@ function setupTheme() {
 function addPluginType($suffix, $objectName) {
 	global $_zp_extra_filetypes;
 	$_zp_extra_filetypes[strtolower($suffix)] = $objectName;
-}
-
-/**
- * Returns true if the file is handled by a plugin object
- *
- * @param string $filename
- * @return bool
- */
-function is_valid_other_type($filename) {
-	global $_zp_extra_filetypes;
-	$ext = strtolower(substr(strrchr($filename, "."), 1));
-	if (array_key_exists($ext, $_zp_extra_filetypes)) {
-		return $ext;
-	} else {
-		return false;
-	}
 }
 
 /**

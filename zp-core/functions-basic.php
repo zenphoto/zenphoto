@@ -410,7 +410,7 @@ assert_options(ASSERT_CALLBACK, 'assert_handler');
  * @return bool
  */
 function hasDynamicAlbumSuffix($path) {
-	return strtolower(substr(strrchr($path, "."), 1)) == 'alb';
+	return getSuffix($path) == 'alb';
 }
 
 
@@ -1243,15 +1243,31 @@ function getAlbumArray($albumstring, $includepaths=false) {
 }
 
 /**
- * Returns true if the file is a valid 'other' type
+ * Returns true if the file is an image
  *
  * @param string $filename the name of the target
  * @return bool
  */
-function is_valid_other($filename) {
+function is_valid_image($filename) {
+	global $_zp_supported_images;
+	$ext = strtolower(substr(strrchr($filename, "."), 1));
+	return in_array($ext, $_zp_supported_images);
+}
+
+/**
+ * Returns true if the file is handled by a plugin object
+ *
+ * @param string $filename
+ * @return bool
+ */
+function is_valid_other_type($filename) {
 	global $_zp_extra_filetypes;
 	$ext = strtolower(substr(strrchr($filename, "."), 1));
-	return isset($_zp_extra_filetypes[$ext]);
+	if (array_key_exists($ext, $_zp_extra_filetypes)) {
+		return $ext;
+	} else {
+		return false;
+	}
 }
 
 /**

@@ -53,7 +53,7 @@ if (isset($_POST['savealbum'])) {
 		}
 	}
 	$constraints = "\nCONSTRAINTS=".'inalbums='.((int) (isset($_POST['return_albums']))).'&inimages='.((int) (isset($_POST['return_images'])));
-	$redirect = $album.'/'.$albumname.".alb";
+	$redirect = $album.'/'.$albumname.'.alb';
 
 	if (!empty($albumname)) {
 		$f = fopen(internalToFilesystem(ALBUM_FOLDER_SERVERPATH.$redirect), 'w');
