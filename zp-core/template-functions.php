@@ -2528,7 +2528,7 @@ function getSizedImageURL($size) {
 }
 
 /**
- * Returns the url to the  image in that dimensions you define with this function.
+ * Returns the url to the image with the dimensions you define with this function.
  *
  * $size, $width, and $height are used in determining the final image size.
  * At least one of these must be provided. If $size is provided, $width and
@@ -2541,7 +2541,7 @@ function getSizedImageURL($size) {
 
  * $cropw and $croph "sizes" are typically proportional. That is you can
  * set them to values that reflect the ratio of width to height that you
- * want for the final image. Typically you would set them to the fincal
+ * want for the final image. Typically you would set them to the final
  * height and width. These values will always be adjusted so that they are
  * not larger than the original image dimensions.
 
@@ -2551,7 +2551,7 @@ function getSizedImageURL($size) {
  * the image. If cropx and cropy are not provided, the crop will be
  * "centered" in the image.
 
- * When $corpx and $cropy are not provided the crop is offset from the top
+ * When $cropx and $cropy are not provided the crop is offset from the top
  * left proportionally to the ratio of the final image size and the crop
  * size.
 
@@ -2561,16 +2561,15 @@ function getSizedImageURL($size) {
  * $cropx=NULL, $cropy=NULL produces an image cropped to a 2x1 ratio which
  * will fit in a 200x200 pixel frame.
 
- * $size=NUL, $width=200, $height=NULL, $cropw=200, $croph=100, $cropx=100,
+ * $size=NULL, $width=200, $height=NULL, $cropw=200, $croph=100, $cropx=100,
  * $cropy=10 will will take a 200x100 pixel slice from (10,100) of the
  * picture and create a 200x100 image
 
- * $size=NUL, $width=200, $height=100, $cropw=200, $croph=120, $cropx=NULL,
+ * $size=NULL, $width=200, $height=100, $cropw=200, $croph=120, $cropx=NULL,
  * $cropy=NULL will produce a (distorted) image 200x100 pixels from a 1x0.6
  * crop of the image.
 
-
- * $size=NUL, $width=200, $height=NULL, $cropw=180, $croph=120, $cropx=NULL, $cropy=NULL
+ * $size=NULL, $width=200, $height=NULL, $cropw=180, $croph=120, $cropx=NULL, $cropy=NULL
  * will produce an image that is 200x133 from a 1.5x1 crop that is 5% from the left
  * and 15% from the top of the image.
  *
