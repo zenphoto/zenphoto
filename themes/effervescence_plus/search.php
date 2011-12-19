@@ -281,29 +281,33 @@ $backgroundImagePath="";
  					<div id="images">
  			<?php
 
-			$firstImage = null;
-			$lastImage = null;
-			while (next_image()){
-							if (is_null($firstImage)) {
-								$lastImage = imageNumber();
-								$firstImage = $lastImage;
-							} else {
-								$lastImage++;
-							}
- 						echo '<div class="image">' . "\n";
- 						echo '<div class="imagethumb">' . "\n";
- 						echo '<a href="' . html_encode(getImageLinkURL()) .'" title="' . GetBareImageTitle() . '">' . "\n";
- 						echo printImageThumb(annotateImage()) . "</a>\n";
- 						echo "</div>\n";
- 						echo "</div>\n";
- 					} ?>
- 					</div>
+ 			$firstImage = null;
+ 			$lastImage = null;
+ 			while (next_image()){
+ 				if (is_null($firstImage)) {
+ 					$lastImage = imageNumber();
+ 					$firstImage = $lastImage;
+ 				} else {
+ 					$lastImage++;
+ 				}
+ 				echo '<div class="image">' . "\n";
+ 				echo '<div class="imagethumb">' . "\n";
+ 				echo '<a href="' . html_encode(getImageLinkURL()) .'" title="' . GetBareImageTitle() . '">' . "\n";
+ 				echo printImageThumb(annotateImage()) . "</a>\n";
+ 				echo "</div>\n";
+ 				echo "</div>\n";
+ 			}
+ 			?>
+ 			<div class="clearage"></div>
+ 			<?php
+ 			if (function_exists('printSlideShowLink')) {
+ 				printSlideShowLink(gettext('View Slideshow'),'text-align:center;');
+ 			}
+ 			?>
+				</div><!-- images -->
  					</div> <!-- main -->
 		 			<div class="clearage"></div>
  					<?php
-					if (function_exists('printSlideShowLink')) {
-						printSlideShowLink(gettext('View Slideshow'),'text-align:center;');
-					}
  					printNofM('Photo', $firstImage, $lastImage, getNumImages());
  					?>
  					</div> <!-- content -->

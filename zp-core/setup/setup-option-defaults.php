@@ -558,6 +558,7 @@ appropriate gallery methods.
 	}
 
 	setOptionDefault('search_cache_duration', 30);
+	setOptionDefault('search_within', 1);
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface

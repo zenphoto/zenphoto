@@ -3835,10 +3835,10 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
  * @param array $query_fields override selection for enabled fields with this list
  * @param array $objects_list optional array of things to search eg. [albums]=>[list], etc.
  * 														if the list is simply 0, the objects will be omitted from the search
-* @param string $reseticonsource optional theme based icon for reset search icon
+ * @param string $within set to true to search within current results, false to search fresh
  * @since 1.1.3
  */
-function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $buttontext='', $iconsource=NULL, $query_fields=NULL, $object_list=NULL, $reseticonsource=NULL) {
+function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $buttontext='', $iconsource=NULL, $query_fields=NULL, $object_list=NULL, $within=NULL) {
 	global $_zp_adminJS_loaded;
 	if (!is_null($object_list)) {
 		if (array_key_exists(0, $object_list)) {	// handle old form albums list
@@ -3872,11 +3872,14 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 	if (empty($iconsource)) {
 		$iconsource = WEBPATH.'/'.ZENFOLDER.'/images/searchfields_icon.png';
 	}
-	if (empty($reseticonsource)) {
-		$reseticonsource = WEBPATH.'/'.ZENFOLDER.'/images/reset_icon.png';
+	if (is_null($within)) {
+		$within = getOption('search_within');
 	}
 	if (MOD_REWRITE) { $searchurl = '/page/search/'; } else { $searchurl = "/index.php?p=search"; }
 	$engine = new SearchEngine();
+	if (!$within) {
+		$engine->clearSearchWords();
+	}
 	$fields = $engine->allowedSearchFields();
 	if (!$_zp_adminJS_loaded) {
 		$_zp_adminJS_loaded = true;
@@ -3890,14 +3893,19 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		<form method="post" action="<?php echo WEBPATH.$searchurl; ?>" id="search_form">
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				function reset_search() {
-					lastsearch='';
-					$('#reset_search').hide();
-					$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
-					$('#search_input').val('');
-				}
 				var lastsearch = '<?php echo addslashes(html_entity_decode(addslashes($searchwords)))?>';
 				var savedlastsearch = lastsearch;
+				function search_(way) {
+					if (way) {
+						lastsearch=savedlastsearch;
+						$('#search_submit').attr('title', '<?php echo sprintf($hint,$buttontext); ?>');
+
+					} else {
+						lastsearch='';
+						$('#search_submit').attr('title', '<?php echo $buttontext; ?>');
+					}
+					$('#search_input').val('');
+				}
 				$('#search_form').submit(function(){
 					if (lastsearch) {
 						var newsearch = $.trim($('#search_input').val());
@@ -3917,9 +3925,8 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 			<?php echo $prevtext; ?>
 			<input type="text" name="words" value="" id="search_input" size="10" />
 			<?php if(count($fields) > 1) { ?>
-				<a href="javascript:toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('select search fields'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
+				<a href="javascript:toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
 			<?php } ?>
-			<span style="white-space:nowrap;display:<?php if ($searchwords) echo 'inline'; else echo 'none';?>" id="reset_search"><a href="javascript:reset_search();" title="<?php echo gettext('Clear search'); ?>"><img src="<?php echo $reseticonsource; ?>" alt="<?php echo gettext('Reset search'); ?>" /></a></span>
 			<input type="<?php echo $type; ?>" <?php echo $button; ?> class="pushbutton" id="search_submit" <?php echo $buttonSource; ?> />
 			<?php
 			if (is_array($object_list)) {
@@ -3948,17 +3955,33 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 				}
 
 				?>
-				<ul style="display:none;" id="searchextrashow">
-				<?php
-				foreach ($fields as $display=>$key) {
-					echo '<li><label><input id="SEARCH_'.$key.'" name="SEARCH_'.$key.'" type="checkbox"';
-					if (in_array($key,$query_fields)) {
-						echo ' checked="checked" ';
+				<span style="display:none;" id="searchextrashow">
+					<?php
+					if ($searchwords) {
+						?>
+						<label>
+							<input type="radio" name="search_within" id="search_within-1" value="1"<?php if ($within) echo ' checked="checked"'; ?> onclick="search_(1)"; />
+							<?php echo gettext('Within'); ?>
+						</label>
+						<label>
+							<input type="radio" name="search_within" id="search_within-0" value="1"<?php if (!$within) echo ' checked="checked"'; ?> onclick="search_(0)"; />
+							<?php echo gettext('New'); ?>
+						</label>
+						<?php
 					}
-					echo ' value="'.$key.'"  /> ' . $display . "</label></li>"."\n";
-				}
-				?>
-				</ul>
+					?>
+					<ul>
+						<?php
+						foreach ($fields as $display=>$key) {
+							echo '<li><label><input id="SEARCH_'.$key.'" name="SEARCH_'.$key.'" type="checkbox"';
+							if (in_array($key,$query_fields)) {
+								echo ' checked="checked" ';
+							}
+							echo ' value="'.$key.'"  /> ' . $display . "</label></li>"."\n";
+						}
+						?>
+					</ul>
+				</span>
 				<?php
 			}
 			?>

@@ -215,6 +215,7 @@ if (isset($_GET['action'])) {
 				}
 				setOption('search_hint', process_language_string_save('search_hint', 3));
 			}
+			setOption('search_within',sanitize_numeric($_POST['search_within']));
 			setOption('search_space_is',sanitize($_POST['search_space_is']));
 			setOption('search_no_albums', (int) isset($_POST['search_no_albums']));
 			setOption('search_no_images', (int) isset($_POST['search_no_images']));
@@ -1420,9 +1421,12 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</ul>
 						</div>
 						<br />
-						<?php echo gettext('Treat spaces as')?>
+						<?php echo gettext('Treat spaces as'); ?>
 						<?php generateRadiobuttonsFromArray(getOption('search_space_is'),array(gettext('<em>space</em>')=>'',gettext('<em>OR</em>')=>'OR',gettext('<em>AND</em>')=>'AND'),'search_space_is',false,false); ?>
-
+						<p>
+							<?php echo gettext('Default search'); ?>
+							<?php generateRadiobuttonsFromArray(getOption('search_within'),array(gettext('<em>New</em>')=>'1',gettext('<em>Within</em>')=>'0'),'search_within',false,false); ?>
+						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="search_no_albums" value="1" <?php echo checked('1', getOption('search_no_albums')); ?> />
@@ -1458,6 +1462,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p><?php echo gettext("<em>Field list</em> is the set of fields on which searches may be performed."); ?></p>
 						<p><?php echo gettext("Search does partial matches on all fields selected with the possible exception of <em>Tags</em>. This means that if the field contains the search criteria anywhere within it a result will be returned. If <em>exact</em> is selected for <em>Tags</em> then the search criteria must exactly match the tag for a result to be returned.") ?></p>
 						<p><?php echo gettext('Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target.') ?></p>
+						<p><?php echo gettext('<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search.') ?></p>
 						<p><?php echo gettext('Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches.') ?></p>
 					</td>
 					<tr>
