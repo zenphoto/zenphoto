@@ -656,13 +656,23 @@ class Album extends MediaObject {
 	/**
 	 * Returns an URL to the album, including the current page number
 	 *
+	 * @param string $page if not null, apppend as page #
 	 * @return string
 	 */
-	function getAlbumLink() {
+	function getAlbumLink($page=NULL) {
 		global $_zp_page;
-		$rewrite = pathurlencode($this->name) . '/';
+		if (is_null($page)) {
+			$page = $_zp_page;
+		}
+		$path = $this->name;
+		if ($this->isDynamic()) {
+			if (!is_dir(ALBUM_FOLDER_SERVERPATH.stripslashes($path))) {
+				$path = stripSuffix($path);
+			}
+		}
+		$rewrite = pathurlencode($path) . '/';
 		$plain = '/index.php?album=' . pathurlencode($this->name). '/';
-		if ($_zp_page > 1) {
+		if ($page > 1) {
 			$rewrite .= "page/$_zp_page";
 			$plain .= "&page=$_zp_page";
 		}

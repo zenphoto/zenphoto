@@ -17,44 +17,35 @@ function is_query_request() {
 
 
 /**
- * Returns the URL of any main page (image/album/page#/etc.) in any form
- * desired (rewrite or query-string).
- * @param $with_rewrite boolean or null, whether the returned path should be in rewrite form.
- *   Defaults to null, meaning use the mod_rewrite configuration to decide.
- * @param $album : the Album object to use in the path. Defaults to the current album (if null).
- * @param $image : the Image object to use in the path. Defaults to the current image (if null).
- * @param $page : the page number to use in the path. Defaults to the current page (if null).
+ * Returns the URL of any main page (image/album/page#/etc.)
+ *
+ * @parem string $special query string to add to the URL
  */
-function zpurl($with_rewrite=NULL, $album=NULL, $image=NULL, $page=NULL, $special='') {
+function zpurl($special='') {
 	global $_zp_current_album, $_zp_current_image, $_zp_page;
-	// Set defaults
-	if ($with_rewrite === NULL)  $with_rewrite = MOD_REWRITE;
-	if (!$album)  $album = $_zp_current_album;
-	if (!$image)  $image = $_zp_current_image;
-	if (!$page)   $page  = $_zp_page;
 
 	$url = '';
-	if ($with_rewrite) {
+	if (MOD_REWRITE) {
 		if (in_context(ZP_IMAGE)) {
 			$encoded_suffix = implode('/', array_map('rawurlencode', explode('/', IM_SUFFIX)));
-			$url = pathurlencode($album->name) . '/' . rawurlencode($image->filename) . $encoded_suffix;
+			$url = pathurlencode($_zp_current_album->name) . '/' . rawurlencode($_zp_current_image->filename) . $encoded_suffix;
 		} else if (in_context(ZP_ALBUM)) {
-			$url = pathurlencode($album->name) . ($page > 1 ? '/page/'.$page : '');
+			$url = $_zp_current_album->getAlbumLink($_zp_page);
 		} else if (in_context(ZP_INDEX)) {
-			$url = ($page > 1 ? 'page/' . $page : '');
+			$url = ($_zp_page > 1 ? 'page/' . $_zp_page : '');
 		}
 	} else {
 		if (in_context(ZP_IMAGE)) {
-			$url = 'index.php?album=' . pathurlencode($album->name) . '&image='. rawurlencode($image->filename);
+			$url = 'index.php?album=' . pathurlencode($_zp_current_album->name) . '&image='. rawurlencode($_zp_current_image->filename);
 		} else if (in_context(ZP_ALBUM)) {
-			$url = 'index.php?album=' . pathurlencode($album->name) . ($page > 1 ? '&page='.$page : '');
+			$url = 'index.php?album=' . pathurlencode($_zp_current_album->name) . ($_zp_page > 1 ? '&page='.$_zp_page : '');
 		} else if (in_context(ZP_INDEX)) {
-			$url = 'index.php' . ($page > 1 ? '?page='.$page : '');
+			$url = 'index.php' . ($_zp_page > 1 ? '?page='.$_zp_page : '');
 		}
 	}
 	if ($url == IM_SUFFIX || empty($url)) { $url = ''; }
 	if (!empty($url) && !(empty($special))) {
-		if ($page > 1) {
+		if ($_zp_page > 1) {
 			$url .= "&$special";
 		} else {
 			$url .= "?$special";
@@ -80,7 +71,7 @@ function fix_path_redirect() {
 			$params = '';
 		}
 		if (strlen($sfx) > 0 && in_context(ZP_IMAGE) && substr($request_uri, -strlen($sfx)) != $sfx ) {
-			$redirecturl = zpurl(true, NULL, NULL, NULL, $params);
+			$redirecturl = zpurl($params);
 			header("HTTP/1.0 301 Moved Permanently");
 			header("Status: 301 Moved Permanently");
 			header('Location: ' . FULLWEBPATH . '/' . $redirecturl);

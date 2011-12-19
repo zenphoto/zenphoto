@@ -1225,16 +1225,13 @@ function getAlbumPage($album = NULL) {
 function getAlbumLinkURL($album=NULL) {
 	global $_zp_current_album;
 	if (is_null($album)) $album = $_zp_current_album;
-	$page = getAlbumPage($album);
-	if (in_context(ZP_IMAGE) && $page > 1) {
-		// Link to the page the current image belongs to.
-		$link = rewrite_path("/" . pathurlencode($album->name) . "/page/" . $page,
-			"/index.php?album=" . pathurlencode($album->name) . "&page=" . $page);
+	if (in_context(ZP_IMAGE)) {
+		$page = getAlbumPage($album);
+		if ($page <= 1) $page = NULL;
 	} else {
-		$link = rewrite_path("/" . pathurlencode($album->name) . "/",
-			"/index.php?album=" . pathurlencode($album->name));
+		$page = NULL;
 	}
-	return $link;
+	return $album->getAlbumLink($page);
 }
 
 /**

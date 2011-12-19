@@ -474,11 +474,23 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 				$ralbum = substr($path, 0, $slashpos);
 				$rimage = substr($path, $slashpos+1);
 				//	check if it might be an album, not an album/image form
-				if (!$im_suffix && (hasDynamicAlbumSuffix($rimage) || (is_dir(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($ralbum . '/' . $rimage))))) {
+				if (!$im_suffix && !(is_valid_image($rimage) || is_valid_other_type($rimage))) {
 					$ralbum = $ralbum . '/' . $rimage;
+					$albumpath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($ralbum);
+					if (!is_dir($albumpath)) {
+						if (file_exists($albumpath.'.alb')) {
+							$ralbum .= '.alb';
+						}
+					}
 					$rimage = null;
 				}
 			} else {
+				$albumpath = ALBUM_FOLDER_SERVERPATH . internalToFilesystem($path);
+				if (!is_dir($albumpath)) {
+					if (file_exists($albumpath.'.alb')) {
+						$path .= '.alb';
+					}
+				}
 				$ralbum = $path;
 				$rimage = null;
 			}

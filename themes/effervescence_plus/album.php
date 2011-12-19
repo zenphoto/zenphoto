@@ -40,8 +40,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 	 						if (is_null($album)) {
 								echo '<div class="albdisabledlink">&laquo;  '.gettext('prev').'</div>';
 							} else {
-							echo '<a href="' .
-									rewrite_path("/" . pathurlencode($album->name), "/index.php?album=" . pathurlencode($album->name)) .
+							echo '<a href="'.$album->getAlbumLink().
 									'" title="' . html_encode($album->getTitle()) . '">&laquo; '.gettext('prev').'</a>';
 							}
 						?>
@@ -52,8 +51,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 							if (is_null($album)) {
 									echo '<div class="albdisabledlink">'.gettext('next').' &raquo;</div>';
 							} else {
-								echo '<a href="' .
-										rewrite_path("/" . pathurlencode($album->name), "/index.php?album=" . pathurlencode($album->name)) .
+								echo '<a href="'.$album->getAlbumLink().
 										'" title="' . html_encode($album->getTitle()) . '">'.gettext('next').' &raquo;</a>';
 							}
 						?>
