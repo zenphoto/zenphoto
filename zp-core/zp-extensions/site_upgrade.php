@@ -80,7 +80,7 @@ if (defined('OFFSET_PATH')) {
 	preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|',$ht,$matches);
 	if (strpos($matches[0][1],'#')===0) {
 		foreach ($matches[0] as $match) {
-			$ht = str_replace($match, substr($match,1), $ht);
+			$ht = str_replace($match, ' '.substr($match,1), $ht);
 		}
 		@chmod($htpath, 0777);
 		file_put_contents($htpath, $ht);

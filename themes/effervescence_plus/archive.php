@@ -1,5 +1,5 @@
 <?php
-$themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
+$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 // force UTF-8 Ø
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

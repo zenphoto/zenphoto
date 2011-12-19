@@ -540,4 +540,32 @@ function checkPermissions($actual, $expected) {
 	}
 }
 
+/*
+ * check if site is closed for proper update of .htaccess
+ */
+function site_closed($ht) {
+	if (empty($ht)) {
+		return false;
+	} else {
+		preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|',$ht,$matches);
+		return !(empty($matches)) && strpos($matches[0],'#')===false;
+	}
+}
+
+/**
+ * if site was closed, keep it that way....
+ */
+function close_site($nht) {
+	$htpath = SERVERPATH.'/.htaccess';
+	$nht = file_get_contents($htpath);
+	preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|',$nht,$matches);
+	foreach ($matches[0] as $match) {
+		$nht = str_replace($match, ' '.substr($match,1), $nht);
+	}
+	@chmod($htpath, 0777);
+	file_put_contents($htpath, $nht);
+	@chmod($htpath, 0444);
+	return $nht;
+}
+
 ?>

@@ -16,9 +16,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-	<?php
-	$oneImagePage = $personality->theme_head($_zp_themeroot);
-	?>
+	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/scripts/bluranchors.js\"></script>
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />

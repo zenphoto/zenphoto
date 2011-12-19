@@ -4,7 +4,7 @@
 
 if (!defined('WEBPATH')) die();
 
-$themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
+$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 
 $enableRightClickOpen="true";
 

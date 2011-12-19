@@ -76,7 +76,6 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				if ($c == 0) {
 					echo "<p>" . gettext("Sorry, no image matches found. Try refining your search.") . "</p>";
 				}
-
 				printPageListWithNav("&laquo; " . gettext("prev"), gettext("next") . " &raquo;");
 				?>
 			</div>

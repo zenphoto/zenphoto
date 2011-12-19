@@ -3067,10 +3067,11 @@ function getHitcounter($obj=NULL) {
 					if (is_null($obj)) return 0;
 				}
 				break;
+			case 'search.php':
+				return NULL;
 			default:
 				$page = stripSuffix($_zp_gallery_page);
 				return getOption('Page-Hitcounter-'.$page);
-				break;
 		}
 	}
 	return $obj->getHitcounter();

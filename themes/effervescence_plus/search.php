@@ -4,7 +4,10 @@
 
 if (!defined('WEBPATH')) die();
 
-$themeResult = getTheme($zenCSS, $themeColor, 'effervescence');
+$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
+$personality = strtolower(getOption('Theme_personality'));
+if ($personality == 'simpleviewer') $personality = 'image_page';	// can't do simpleviewer without a real album
+require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
 
 $thumbnailColumns="3";
 $thumbnailRows="6";
@@ -22,6 +25,7 @@ $backgroundImagePath="";
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Search"); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
+	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<script type="text/javascript" src="<?php echo  $_zp_themeroot ?>/scripts/bluranchors.js"></script>
@@ -46,6 +50,7 @@ $backgroundImagePath="";
 <body onload="blurAnchors()">
 	<?php
 	zp_apply_filter('theme_body_open');
+	$personality->theme_bodyopen($_zp_themeroot);
 	$numimages = getNumImages();
 	$numalbums = getNumAlbums();
 	$total = $numimages + $numalbums;
@@ -275,45 +280,8 @@ $backgroundImagePath="";
 <!-- Wrap Main Body -->
  	<?php
  	if ($numimages > 0){  /* Only print if we have images. */
-	 ?>
- 			<div id="content">
- 				<div id="main">
- 					<div id="images">
- 			<?php
-
- 			$firstImage = null;
- 			$lastImage = null;
- 			while (next_image()){
- 				if (is_null($firstImage)) {
- 					$lastImage = imageNumber();
- 					$firstImage = $lastImage;
- 				} else {
- 					$lastImage++;
- 				}
- 				echo '<div class="image">' . "\n";
- 				echo '<div class="imagethumb">' . "\n";
- 				echo '<a href="' . html_encode(getImageLinkURL()) .'" title="' . GetBareImageTitle() . '">' . "\n";
- 				echo printImageThumb(annotateImage()) . "</a>\n";
- 				echo "</div>\n";
- 				echo "</div>\n";
- 			}
- 			?>
- 			<div class="clearage"></div>
- 			<?php
- 			if (function_exists('printSlideShowLink')) {
- 				printSlideShowLink(gettext('View Slideshow'),'text-align:center;');
- 			}
- 			?>
-				</div><!-- images -->
- 					</div> <!-- main -->
-		 			<div class="clearage"></div>
- 					<?php
- 					printNofM('Photo', $firstImage, $lastImage, getNumImages());
- 					?>
- 					</div> <!-- content -->
-	 		<?php
-
-	 	}
+ 		$personality->theme_content(NULL);
+	 }
 
 	 	if ($total == 0){
 		?>
@@ -339,33 +307,13 @@ $backgroundImagePath="";
 
 		<div id="pagenumbers">
 		<?php
-		printPageListWithNav("&laquo; prev", "next &raquo;");
+		printPageListWithNav("&laquo; " .gettext('prev'), gettext('next')." &raquo;", $oneImagePage);
 		?>
 		</div> <!-- pagenumbers -->
 </div> <!-- subcontent -->
 
 <!-- Footer -->
-<div class="footlinks">
-
-<?php
-if (getOption('Use_Simpleviewer') && !MOD_REWRITE) {
-	/* display missing css file error */
-	echo '<div class="errorbox" id="message">';
-	echo  "<h2>" . gettext('Simpleviewer requires <em>mod_rewrite</em> to be set. Simpleviewer is disabled.') . "</h2>";
-	echo '</div>';
-} ?>
-
-<?php printThemeInfo(); ?>
-<?php printZenphotoLink(); ?>
-<?php
-if (function_exists('printUserLogin_out')) {
-	printUserLogin_out('<br />', '', true);
-}
-?>
-
-</div> <!-- footerlinks -->
-
-
+<br style="clear:all" />
 <?php
 printFooter();
 zp_apply_filter('theme_body_close');
