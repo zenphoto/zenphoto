@@ -12,6 +12,7 @@ if(!function_exists("gettext")) {
 } else {
 	$noxlate = 1;
 }
+define('HTACCESS_VERSION', '1.4.3');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
 
 define('OFFSET_PATH', 2);
 
@@ -21,7 +22,6 @@ header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
 
 define('CONFIGFILE',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zenphoto.cfg');
-define('HTACCESS_VERSION', '1.4.3');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
 
 $debug = isset($_REQUEST['debug']);
 
@@ -297,7 +297,12 @@ $updatechmod = ($updatechmod || !checkPermissions(fileperms(dirname(__FILE__).'/
 if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists(dirname(dirname(__FILE__)).'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
 		@chmod(dirname(dirname(__FILE__)).'/.htaccess',0777);
-		copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
+		$ht = @file_get_contents(SERVERPATH.'/.htaccess');
+		$newht = file_get_contents('htaccess');
+		if (site_closed($ht)) {
+			$newht = close_site($newht);
+		}
+		file_put_contents(dirname(dirname(__FILE__)).'/.htaccess', $newht);
 		@chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
 	}
 }
@@ -1258,10 +1263,14 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			//fix the rewritebase
 			$i = strpos($oht, 'RewriteBase /zenphoto');
 			$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $i+21);
+			if (site_closed($ht)) {
+				$oht = close_site($oht);
+			}
+			$oht = trim($oht);
 			if ($oht == $ht) {	// an unmodified .htaccess file, we can just replace it
 				@chmod(dirname(dirname(__FILE__)).'/.htaccess',0666);
 				@unlink($htfile);
-				$ch = @copy('htaccess', dirname(dirname(__FILE__)).'/.htaccess');
+				$ch = file_put_contents(dirname(dirname(__FILE__)).'/.htaccess', $ht);
 				@chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
 			}
 		}
