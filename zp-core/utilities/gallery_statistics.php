@@ -50,8 +50,9 @@ function gallerystats_filesize_r($path){
 	if(!file_exists($path)) return 0;
 	if(is_file($path)) return filesize($path);
 	$ret = 0;
-	foreach(safe_glob($path."/*") as $fn)
+	foreach(safe_glob($path."/*") as $fn) {
 		$ret += gallerystats_filesize_r($fn);
+	}
 	return $ret;
 }
 
