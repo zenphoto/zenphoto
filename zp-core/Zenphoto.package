@@ -399,7 +399,6 @@ zp-core/images/refresh.png
 zp-core/images/refresh1.png
 zp-core/images/reset.png
 zp-core/images/reset1.png
-zp-core/images/reset_icon.png
 zp-core/images/rss.png
 zp-core/images/searchfields_icon.png
 zp-core/images/select_files_button.png
@@ -1822,4 +1821,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1824
+1823
