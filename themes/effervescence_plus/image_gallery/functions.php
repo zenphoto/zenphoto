@@ -107,7 +107,7 @@ class imagegallery {
 									<div class="ad-thumbs">
 										<ul class="ad-thumb-list">
 										<?php
-										while (next_image()){
+										while (next_image(true)){
 											if ($map) {
 												$coord = getGeoCoord($_zp_current_image);
 												if ($coord) {
@@ -174,7 +174,6 @@ class imagegallery {
 					?>
 			 		</div><!-- main -->
 					<div class="clearage"></div>
-			 <?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
 			</div><!-- content -->
 			<?php
 		}

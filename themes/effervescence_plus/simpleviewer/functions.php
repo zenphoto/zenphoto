@@ -65,7 +65,7 @@ class simpleviewer {
 				<?php
 				if ($map) {
 					$points = array();
-					while (next_image()) {
+					while (next_image(true)) {
 						$coord = getGeoCoord($_zp_current_image);
 						if ($coord) {
 							$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
