@@ -13,7 +13,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
-	<script type="text/javascript" src="<?php echo  $_zp_themeroot ?>/scripts/bluranchors.js"></script>
+	<?php effervescence_theme_head(); ?>
 	<?php if(zp_has_filter('theme_head','colorbox_css')) { ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[

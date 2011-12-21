@@ -12,6 +12,7 @@ class ThemeOptions {
 		setThemeOptionDefault('images_per_row', 5);
 		setThemeOptionDefault('thumb_transition', 1);
 		setThemeOptionDefault('thumb_size',85);
+		setThemeOptionDefault('garland_personality', 'Image page');
 		setOptionDefault('colorbox_garland_image', 1);
 		setOptionDefault('colorbox_garland_album', 1);
 		setOptionDefault('colorbox_garland_search', 1);
@@ -49,7 +50,11 @@ class ThemeOptions {
 		} else {
 			$note = '';
 		}
-  	return array(	gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable search form.')),
+  	return array(
+  								gettext('Theme personality') => array('key' => 'garland_personality', 'type' => OPTION_TYPE_SELECTOR,
+															'selections' => array(gettext('Image page') => 'image_page', gettext('Colorbox') => 'Colorbox', gettext('Image gallery') => 'Image_gallery'),
+															'desc' => gettext('Select the theme personality')),
+  								gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable search form.')),
 						  		gettext('Allow cloud') => array('key' => 'Allow_cloud', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable tag cloud for album page.')),
 									gettext('Custom menu') => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.').$note)
 						  	);

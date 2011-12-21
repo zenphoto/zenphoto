@@ -3631,17 +3631,17 @@ function getRSSLink($option,$lang='') {
 			break;
 		case 'Comments':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss-comments&type=gallery&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&type=gallery&amp;lang='.$lang;
 			}
 			break;
 		case 'Comments-image':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss-comments&amp;id='.getImageID().'&amp;title='.urlencode(getImageTitle()).'&amp;type=image&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&amp;id='.getImageID().'&amp;title='.urlencode(getImageTitle()).'&amp;type=image&amp;lang='.$lang;
 			}
 			break;
 		case 'Comments-album':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss-comments&amp;id='.getAlbumID().'&amp;title='.urlencode(getAlbumTitle()).'&amp;type=album&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&amp;id='.getAlbumID().'&amp;title='.urlencode(getAlbumTitle()).'&amp;type=album&amp;lang='.$lang;
 			}
 			break;
 		case 'AlbumsRSS':

@@ -50,8 +50,8 @@ class ThemeOptions {
 										array('type'=>'html','title'=>gettext('Archive Rule'),'link'=>'<li class="menu_rule menu_menulabel"></li>','show'=>1,'include_li'=>0,'nesting'=>0),
 										array('type'=>'menulabel','title'=>gettext('RSS'),'link'=>'','show'=>1,'nesting'=>0),
 										array('type'=>'customlink','title'=>gettext('Gallery'),'link'=>WEBPATH.'/index.php?rss','show'=>1,'nesting'=>1),
-										array('type'=>'customlink','title'=>gettext('News'),'link'=>WEBPATH.'/index.php?rss-news','show'=>1,'nesting'=>1),
-										array('type'=>'customlink','title'=>gettext('News and Gallery'),'link'=>WEBPATH.'/index.php?rss-news.php?withimages','show'=>1,'nesting'=>1),
+										array('type'=>'customlink','title'=>gettext('News'),'link'=>getRSSLink('news'),'show'=>1,'nesting'=>1),
+										array('type'=>'customlink','title'=>gettext('News and Gallery'),'link'=>getRSSLink('news').'&amp;withimages','show'=>1,'nesting'=>1),
 										);
 			createMenuIfNotExists($menuitems, 'effervescence');
 			if (getOption('Theme_personality')=='Slimbox') setOption('Theme_personality','Colorbox');

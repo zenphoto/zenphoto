@@ -24,8 +24,8 @@ class imagegallery {
 		<script type="text/javascript">
 		  $(function() {
 		  	var galleries = $('.ad-gallery').adGallery({
-		  	  width: 600, // Width of the image, set to false and it will read the CSS width
-		  	  height: 400, // Height of the image, set to false and it will read the CSS height
+		  	  width: 520, // Width of the image, set to false and it will read the CSS width
+		  	  height: 345, // Height of the image, set to false and it will read the CSS height
 		  	  start_at_index: 0, // Which image should be displayed at first? 0 is the first image
 		  	  description_wrapper: <?php if ($location!='image') { ?>$('#caption')<?php } else { ?>false<?php } ?>, // Either false or a jQuery object, if you want the image descriptions
 		  	                                           // to be placed somewhere else than on top of the image
@@ -92,86 +92,56 @@ class imagegallery {
 		if (isImagePage()) {
 			?>
 			<!-- Gallery section -->
-			<div id="content">
-				<div id="main">
-					<div id="images">
-						<?php
-						$points = array();
-						$firstImage = null;
-						$lastImage = null;
-						?>
-						<div id="gallery" class="ad-gallery">
-							<div class="ad-image-wrapper"></div>
-								<div class="ad-controls"></div>
-								<div class="ad-nav">
-									<div class="ad-thumbs">
-										<ul class="ad-thumb-list">
-										<?php
-										while (next_image(true)){
-											if ($map) {
-												$coord = getGeoCoord($_zp_current_image);
-												if ($coord) {
-													$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
-													$points[] = $coord;
-												}
-											}
-											if (isImagePhoto()) {
-												// does not do video
-												if (is_null($firstImage)) {
-													$lastImage = imageNumber();
-													$firstImage = $lastImage;
-												} else {
-													$lastImage++;
-												}
-												?>
-												<li>
-													<a href="<?php echo html_encode(getDefaultSizedImage()); ?>">
-														<img src="<?php echo getImageThumb(); ?>"
-															class="image<?php echo $lastImage; ?>"
-															alt="<?php echo getImageDesc(); ?>">
-													</a>
-												</li>
-											<?php
-											}
+			<div id="images">
+				<?php
+				$points = array();
+				$firstImage = null;
+				$lastImage = null;
+				?>
+				<div id="gallery" class="ad-gallery">
+					<div class="ad-image-wrapper"></div>
+						<div class="ad-controls"></div>
+						<div class="ad-nav">
+							<div class="ad-thumbs">
+								<ul class="ad-thumb-list">
+								<?php
+								while (next_image(true)){
+									if ($map) {
+										$coord = getGeoCoord($_zp_current_image);
+										if ($coord) {
+											$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+											$points[] = $coord;
+										}
+									}
+									if (isImagePhoto()) {
+										// does not do video
+										if (is_null($firstImage)) {
+											$lastImage = imageNumber();
+											$firstImage = $lastImage;
+										} else {
+											$lastImage++;
 										}
 										?>
-					          </ul>
-					        </div>
-					      </div>
-					    </div>
-
-					    <div id="caption"<?php if (getOption('effervescence_caption_location')=='none') echo ' style="display:none"'?>>
-					    </div>
-						<div class="clearage"></div>
-						<?php
-						if (!empty($points) && $map) {
-							function map_callback($map) {
-								global $points;
-								foreach ($points as $coord) {
-									addGeoCoord($map, $coord);
+										<li>
+											<a href="<?php echo html_encode(getDefaultSizedImage()); ?>">
+												<img src="<?php echo getImageThumb(); ?>"
+													class="image<?php echo $lastImage; ?>"
+													alt="<?php echo getImageDesc(); ?>">
+											</a>
+										</li>
+									<?php
+									}
 								}
-							}
-							?>
-							<div id="map_link">
-							<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
-							</div>
-							<?php
-						}
-						?>
-					</div><!-- images -->
-					<?php
-					if (getOption('enable_album_zipfile')) {
-						echo "<p align=\"center\">";
-						printAlbumZip();
-						echo "</p>";
-					}
-					if (function_exists('printRating')) {
-						printRating();
-					}
-					?>
-			 		</div><!-- main -->
-					<div class="clearage"></div>
-			</div><!-- content -->
+								?>
+			          </ul>
+			        </div>
+			      </div>
+			    </div>
+
+			    <div id="caption"<?php if (getOption('effervescence_caption_location')=='none') echo ' style="display:none"'?>>
+			    </div>
+				<div class="clearage"></div>
+			</div><!-- images -->
 			<?php
 		}
 	}

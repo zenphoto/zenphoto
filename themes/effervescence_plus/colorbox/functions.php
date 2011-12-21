@@ -117,10 +117,6 @@ class colorbox {
 		</div><!-- content -->
 		<?php
 	}
-
-	function XML_part() {
-		// not used
-	}
 }
 
 ?>

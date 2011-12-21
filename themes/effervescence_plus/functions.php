@@ -64,6 +64,7 @@ function getCustomAlbumDesc() {
 	}
 	return $desc;
 }
+
 function getImage_AlbumCount() {
 	$c = getNumAlbums();
 	if ($c > 0) {
@@ -298,6 +299,23 @@ function commonComment() {
 		</div><!-- id="commentbox" -->
 		<?php
 	}
+}
+
+function effervescence_theme_head() {
+	?>
+	<script type="text/javascript">
+		// <!-- <![CDATA[
+		function blurAnchors(){
+		  if(document.getElementsByTagName){
+		    var a = document.getElementsByTagName("a");
+		    for(var i = 0; i < a.length; i++){
+		      a[i].onfocus = function(){this.blur()};
+		    }
+		  }
+		}
+		// ]]> -->
+	</script>
+	<?php
 }
 
 if (($_ef_menu = getOption('effervescence_menu')) == 'effervescence' || $_ef_menu == 'zenpage') {

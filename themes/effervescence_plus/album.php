@@ -17,8 +17,8 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
-	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/scripts/bluranchors.js\"></script>
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
+	<?php effervescence_theme_head(); ?>
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 </head>
 
@@ -35,7 +35,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 					<div class="albprevious">
 					<?php
 						$album = getPrevAlbum();
-	 						if (is_null($album)) {
+							if (is_null($album)) {
 								echo '<div class="albdisabledlink">&laquo;  '.gettext('prev').'</div>';
 							} else {
 							echo '<a href="'.$album->getAlbumLink().
@@ -153,7 +153,7 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 		<?php
 		if (getNumImages() > 0){  /* Only print if we have images. */
 			$personality->theme_content($map);
-	 	} else { /* no images to display */
+		} else { /* no images to display */
 			if (getNumAlbums() == 0){
 			?>
 				<div id="main3">
@@ -163,24 +163,24 @@ if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
 					</div>
 				</div> <!-- main3 -->
 				<?php
-	 		} else {
-	 			?>
+			} else {
+				?>
 				<div id="main">
- 					<?php
- 					if (getOption('enable_album_zipfile')) {
+					<?php
+					if (getOption('enable_album_zipfile')) {
 						echo "<p align=\"center\">";
- 						printAlbumZip();
- 						echo "</p>";
- 					}
+						printAlbumZip();
+						echo "</p>";
+					}
 					if (function_exists('printRating')) {
 						printRating();
 					}
- 					?>
+					?>
 				</div>
 				<?php
-	 		}
-	 	}
-	 	?>
+			}
+		}
+		?>
 
 <!-- Page Numbers -->
 		<div id="pagenumbers">

@@ -6,7 +6,6 @@ if (!defined('WEBPATH')) die();
 
 $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 $personality = strtolower(getOption('Theme_personality'));
-if ($personality == 'simpleviewer') $personality = 'image_page';	// can't do simpleviewer without a real album
 require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
 
 $thumbnailColumns="3";
@@ -28,7 +27,7 @@ $backgroundImagePath="";
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
-	<script type="text/javascript" src="<?php echo  $_zp_themeroot ?>/scripts/bluranchors.js"></script>
+	<?php effervescence_theme_head(); ?>
 	<script type="text/javascript" src="<?php echo  $_zp_themeroot ?>/scripts/swfobject.js"></script>
 	<script type="text/javascript">
 		// <!-- <![CDATA[

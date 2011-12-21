@@ -3,13 +3,13 @@
  * Simpleviewer personality
  */
 // initialization stuff
-if (isset($_GET['noflash']) || !MOD_REWRITE) {
-	zp_setCookie("noFlash", "noFlash");
+if ($_zp_gallery_page=='search.php' || zp_getCookie("noFlash") || $perm = (isset($_GET['noflash']) || !MOD_REWRITE)) {
+	if (isset($perm)) {
+		zp_setCookie("noFlash", "noFlash");
+	}
 	require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/image_page/functions.php');
 } else {
-	if (true || zp_getCookie("noFlash") != '') {
-		$personality = new simpleviewer($zenCSS);
-	}
+	$personality = new simpleviewer($zenCSS);
 }
 
 

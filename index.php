@@ -7,14 +7,14 @@ require_once(ZENFOLDER . "/template-functions.php");
 checkInstall();
 //$_zp_script_timer['require'] = microtime();
 //rss feeds
-if(isset($_GET['rss']) || isset($_GET['rss-news']) || isset($_GET['rss-comments'])) {
+if(isset($_GET['rss'])) {
 	require_once(dirname(__FILE__). '/'.ZENFOLDER.'/functions-rss.php');
 	rssHitcounter();
 	startRSSCache();
+	switch (sanitize($_GET['rss'])) {
 
-	//gallery RSS
-	if(isset($_GET['rss'])) {
-		if (!getOption('RSS_album_image')) {
+		default:	//gallery RSS
+			if (!getOption('RSS_album_image')) {
 			header("HTTP/1.0 404 Not Found");
 			header("Status: 404 Not Found");
 			include(ZENFOLDER. '/404.php');
@@ -22,28 +22,27 @@ if(isset($_GET['rss']) || isset($_GET['rss-news']) || isset($_GET['rss-comments'
 		}
 		require_once(ZENFOLDER .'/'.PLUGIN_FOLDER . "/image_album_statistics.php");
 		include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss.php');
-	}
+		break;
 
-	//Zenpage News RSS
-	if(isset($_GET['rss-news'])) {
-		if (!getOption('RSS_articles')) {
-			header("HTTP/1.0 404 Not Found");
-			header("Status: 404 Not Found");
-			include(ZENFOLDER. '/404.php');
-			exit();
-		}
-		include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss-news.php');
-	}
+		case 'news':	//Zenpage News RSS
+			if (!getOption('RSS_articles')) {
+				header("HTTP/1.0 404 Not Found");
+				header("Status: 404 Not Found");
+				include(ZENFOLDER. '/404.php');
+				exit();
+			}
+			include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss-news.php');
+			break;
 
-	//Comments RSS
-	if(isset($_GET['rss-comments'])) {
-		if (!getOption('RSS_comments')) {
-			header("HTTP/1.0 404 Not Found");
-			header("Status: 404 Not Found");
-			include(ZENFOLDER. '/404.php');
-			exit();
-		}
-		include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss-comments.php');
+		case'comments':	//Comments RSS
+			if (!getOption('RSS_comments')) {
+				header("HTTP/1.0 404 Not Found");
+				header("Status: 404 Not Found");
+				include(ZENFOLDER. '/404.php');
+				exit();
+			}
+			include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss-comments.php');
+			break;
 	}
 	endRSSCache();
 	exit();
@@ -53,6 +52,9 @@ if(isset($_GET['rss']) || isset($_GET['rss-news']) || isset($_GET['rss-comments'
  * Invoke the controller to handle requests
  */
 require_once(dirname(__FILE__). "/".ZENFOLDER.'/controller.php');
+
+debugLogVar('index.php',$_GET);
+
 $_zp_obj = '';
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page
