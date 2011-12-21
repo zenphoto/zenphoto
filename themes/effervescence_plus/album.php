@@ -8,8 +8,7 @@ $map = function_exists('printGoogleMap');
 $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 $personality = strtolower(getOption('Theme_personality'));
 require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
-if (!isset($_GET['format']) || $_GET['format'] != 'xml') {
-	?>
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -203,8 +202,3 @@ zp_apply_filter('theme_body_close');
 
 </body>
 </html>
-<?php
-} else {
-	$personality->XML_part();
-}
-?>
