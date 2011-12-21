@@ -69,7 +69,11 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 							</div>
 							<p style="clear: both; "></p>
 							<?php $personality->theme_content($map); ?>
-							<?php printPageListWithNav(gettext("&laquo; prev"), gettext("next &raquo;")); ?>
+							<?php
+							if ((getNumAlbums() != 0) || !$oneImagePage){
+								printPageListWithNav(gettext("&laquo; prev"), gettext("next &raquo;"), $oneImagePage);
+							}
+							?>
 							<?php if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow')); ?>
 							<?php if (function_exists('printRating')) { printRating(); }?>
 							<?php

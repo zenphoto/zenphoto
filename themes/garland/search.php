@@ -1,11 +1,14 @@
 <?php
 if (!defined('WEBPATH')) die();
+$personality = strtolower(getOption('garland_personality'));
+require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php printGalleryTitle(); ?> | <?php echo gettext('Search'); ?></title>
+	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
   <?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 	<script type="text/javascript">
@@ -27,6 +30,7 @@ if (!defined('WEBPATH')) die();
 <body class="sidebars">
 <?php
 zp_apply_filter('theme_body_open');
+$personality->theme_bodyopen($_zp_themeroot);
 $numimages = getNumImages();
 $numalbums = getNumAlbums();
 $total = $numimages + $numalbums;
@@ -212,33 +216,17 @@ if (!$total) {
 				?>
 			  </div>
 				<p style="clear: both; "></p>
-			  <div id="images">
-				  <?php
-				  while (next_image()) {
-		  		  ?>
-					  <div class="image">
-						  <div class="imagethumb">
-						  	<a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a>
-						  </div>
-					  </div>
-					  <?php
-				  }
-					if (function_exists('printSlideShowLink')) {
-						?>
-						<p style="clear: both;"></p>
-						<?php
-						printSlideShowLink(gettext('View Slideshow'),'text-align:center;');
-					}
-					?>
-			 </div>
-			<?php
-    	    printPageListWithNav(gettext("&laquo; prev"),gettext("next &raquo;"));
-	        footer();
-	        ?>
-            <p style="clear: both;"></p>
-            </div>
-            <!-- end content -->
-            <span class="clear"></span>
+				<?php $personality->theme_content(NULL); ?>
+				<?php
+				if ((getNumAlbums() != 0) || !$oneImagePage){
+    	    printPageListWithNav(gettext("&laquo; prev"),gettext("next &raquo;"), $oneImagePage);
+				}
+        footer();
+        ?>
+				<p style="clear: both;"></p>
+			</div>
+			<!-- end content -->
+			<span class="clear"></span>
         </div>
       </div>
     </div>
