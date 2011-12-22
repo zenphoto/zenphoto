@@ -22,7 +22,20 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 					inline:true,
 					href:"#imagemetadata",
 					close: '<?php echo gettext("close"); ?>'
+				});
+				<?php
+				$disposal = getOption('protect_full_image');
+				if ($disposal == 'Unprotected' || $disposal == 'Protected view') {
+					?>
+					$("a.thickbox").colorbox({
+						maxWidth:"98%",
+						maxHeight:"98%",
+						photo:true,
+						close: '<?php echo gettext("close"); ?>'
 					});
+					<?php
+				}
+				?>
 			});
 			// ]]> -->
 		</script>
@@ -106,7 +119,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 					$fullimage = getFullImageURL();
 					if (!empty($fullimage)) {
 						?>
-						<a href="<?php echo html_encode($fullimage);?>" title="<?php echo getBareImageTitle();?>">
+						<a href="<?php echo html_encode($fullimage);?>" title="<?php echo getBareImageTitle();?>" class="thickbox">
 						<?php
 					}
 					printDefaultSizedImage(getImageTitle());

@@ -74,14 +74,14 @@ if (isset($_GET['action'])) {
 					$updated = false;
 					$error = false;
 					$userobj = NULL;
-					$pass = trim(sanitize($_POST[$i.'-adminpass']));
-					$user = trim(sanitize($_POST[$i.'-adminuser'],0));
+					$pass = trim(sanitize($_POST['adminpass'.$i]));
+					$user = trim(sanitize($_POST[$i.'adminuser'],0));
 					if (empty($user) && !empty($pass)) {
 						$notify = '?mismatch=nothing';
 					}
 					if (!empty($user)) {
 						$nouser = false;
-						if ($pass == trim(sanitize($_POST[$i.'-adminpass_2'])) && strlen($_POST[$i.'-adminpass']) == strlen($_POST[$i.'-adminpass_2'])) {
+						if ($pass == trim(sanitize($_POST['adminpass_2'.$i])) && strlen($_POST['adminpass'.$i]) == strlen($_POST[$i.'-adminpass_2'])) {
 							if (isset($_POST[$i.'-newuser'])) {
 								$newuser = $user;
 								$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
@@ -115,7 +115,7 @@ if (isset($_GET['action'])) {
 								}
 							}
 							if (empty($pass)) {
-								if ($newuser || @$_POST[$i.'-passrequired']) {
+								if ($newuser || @$_POST['passrequired'.$i]) {
 									$msg = sprintf(gettext('%s password may not be empty!'),$admin_n);
 								} else {
 									$msg = '';
@@ -232,7 +232,7 @@ echo $refresh;
 <script type="text/javascript" src="js/farbtastic.js"></script>
 <script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
 <link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
-
+<?php $_zp_authority->printPasswordFormJS(); ?>
 </head>
 <body>
 <?php printLogoAndLinks(); ?>
@@ -695,28 +695,20 @@ function languageChange(id,lang) {
 		<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
 			<td width="35%" <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top">
 			<?php
-			if (empty($userid) || $clearPass) {
-				$x = '';
-			} else {
+			$pad = false;
+			if (!empty($userid) && !$clearPass) {
 				$x = $userobj->getPass();
 				if (!empty($x)) {
-					$x = '          ';
+					$pad = true;
 				}
 			}
+			if (in_array('password', $no_change)) {
+				$password_disable = ' disabled="disabled"';
+			} else {
+				$password_disable = '';
+			}
+			$_zp_authority->printPasswordForm($id, $pad, $password_disable, $clearPass);
 			?>
-				<input type="hidden" name="<?php echo $id; ?>-passrequired" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $clearPass; ?>" />
-				<fieldset><legend><?php echo gettext("Password:"); ?></legend>
-					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass" value="<?php echo $x; ?>" onchange="$('#passrequired-<?php echo $id; ?>').val(1);"<?php if (in_array('password', $no_change)) echo ' disabled="disabled"'; ?> />
-				</fieldset>
-				<fieldset><legend><?php echo gettext("(repeat)"); ?></legend>
-					<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" name="<?php echo $id ?>-adminpass_2" value="<?php echo $x; ?>" onchange="$('#passrequired-<?php echo $id; ?>').val(1);"<?php if (in_array('password', $no_change)) echo ' disabled="disabled"'; ?> />
-				</fieldset>
-				<?php
-				$msg = $_zp_authority->passwordNote();
-				if (!empty($msg)) {
-					echo '<br />'.$msg.'<br />';
-				}
-				?>
 				<br />
 				<?php
 				$challenge = $userobj->getChallengePhraseInfo();

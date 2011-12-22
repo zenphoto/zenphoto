@@ -19,7 +19,7 @@ class imagegallery {
 	}
 
 	function theme_bodyopen($_zp_themeroot) {
-		$location = getOption('effervescence_caption_location');
+		$location = getOption('garland_caption_location');
 		?>
 		<script type="text/javascript">
 		  $(function() {
@@ -45,7 +45,7 @@ class imagegallery {
 		  	    countdown_prefix: '(', // Wrap around the countdown
 		  	    countdown_sufix: ')',
 		  	  },
-		  	  effect: '<?php echo getOption('effervescence_transition'); ?>', // or 'slide-vert', 'resize', 'fade', 'none' or false
+		  	  effect: '<?php echo getOption('garland_transition'); ?>', // or 'slide-vert', 'resize', 'fade', 'none' or false
 		  	  enable_keyboard_move: true, // Move to next/previous image with keyboard arrows?
 		  	  cycle: true, // If set to false, you can't go from the last image to the first, and vice versa
 		  	  // All callbacks has the AdGallery objects as 'this' reference
@@ -138,7 +138,7 @@ class imagegallery {
 			      </div>
 			    </div>
 
-			    <div id="caption"<?php if (getOption('effervescence_caption_location')=='none') echo ' style="display:none"'?>>
+			    <div id="caption"<?php if (getOption('garland_caption_location')=='none') echo ' style="display:none"'?>>
 			    </div>
 				<div class="clearage"></div>
 			</div><!-- images -->

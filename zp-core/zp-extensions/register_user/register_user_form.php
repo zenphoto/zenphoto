@@ -6,72 +6,65 @@
  * @subpackage usermanagement
  */
 
+$_zp_authority->printPasswordFormJS();
 ?>
 	<form action="<?php echo sanitize($_SERVER['REQUEST_URI']); ?>" method="post" autocomplete="off">
 		<input type="hidden" name="register_user" value="yes" />
-		<table class="register_user">
-		<tr>
-			<td><?php echo gettext("Name:"); ?></td>
-			<td><input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="22" /></td>
-		</tr>
-		<tr>
-			<td><?php if (getOption('register_user_email_is_id')) echo gettext("Email:"); else echo gettext("User ID:"); ?></td>
-			<td><input type="text" id="adminuser" name="adminuser" value="<?php echo html_encode($user); ?>" size="22" /></td>
-		</tr>
-		<tr>
-			<td valign="top"><?php echo gettext("Password:"); ?></td>
-			<td width=400 valign="top">
-				<p style="line-height: 1em;">
-					<input type="password" id="adminpass" name="adminpass"	value="" size="23" />
-				</p>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top"><?php echo gettext("re-enter:"); ?></td>
-			<td>
-				<input type="password" id="adminpass_2" name="adminpass_2"	value="" size="23" />
-				<?php
-				$msg = $_zp_authority->passwordNote();
-				if (!empty($msg)) {
-					?>
-					<br />
-					<?php
-					echo $msg;
-				}
-				?>
-			</td>
-		</tr>
+
+		<fieldset><legend><?php echo gettext("Name:"); ?></legend>
+			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
+		</fieldset>
+		<fieldset><legend><?php if (getOption('register_user_email_is_id')) echo gettext("Email:"); else echo gettext("User ID:"); ?></legend>
+			<input type="text" id="adminuser" name="adminuser" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
+		</fieldset>
+		<?php $_zp_authority->printPasswordForm(); ?>
 		<?php
 		if (!getOption('register_user_email_is_id')) {
 			?>
-			<tr>
-				<td><?php echo gettext("Email:"); ?></td>
-				<td><input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="22" /></td>
-			</tr>
+			<fieldset><legend><?php echo gettext("Email:"); ?></legend>
+				<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
+			</fieldset>
 			<?php
 		}
 		$html = zp_apply_filter('register_user_form', '');
-		if (!empty($html)) echo $html;
+		if (!empty($html)) {
+
+			$rows = explode('</tr>', $html);
+			foreach ($rows as $row) {
+				if (!empty($row)) {
+					$row = str_replace('<tr>','',$row);
+					$elements = explode('</td>',$row);
+					$legend = trim($elements[0]);
+					if (!empty($legend)) {
+						$input = str_replace('size="40"', 'size="'.TEXT_INPUT_SIZE.'"', $elements[1]);
+						$input = str_replace('class="inputbox"', '', $input);
+						?>
+						<fieldset><legend><?php echo trim(str_replace('<td>', '', $legend)); ?></legend>
+							<?php echo trim(str_replace('<td>', '', $input)); ?>
+						</fieldset>
+						<?php
+					}
+				}
+			}
+		}
 		if (getOption('register_user_captcha')) {
+			$captcha = $_zp_captcha->getCaptcha();
+			if (isset($captcha['html'])) {
 			?>
-			<tr>
-				<td>
+			<fieldset><legend><?php echo gettext("Enter:"); ?></legend>
 					<?php
-					$captcha = $_zp_captcha->getCaptcha();
-					if (isset($captcha['html'])) printf(gettext("Enter %s"),$captcha['html']);
+					if (isset($captcha['html'])) echo $captcha['html'];
 					?>
-				</td>
-				<td>
+					&nbsp;&nbsp;&nbsp;
 					<?php
 					if (isset($captcha['input'])) echo $captcha['input'];
 					if (isset($captcha['hidden'])) echo $captcha['hidden'];
 					?>
-				</td>
-			</tr>
+			</fieldset>
 			<?php
+			}
 		}
 		?>
-		</table>
 		<input type="submit" value="<?php echo gettext('Submit') ?>" />
 		<?php
 		if (function_exists('federated_login_buttons')) {

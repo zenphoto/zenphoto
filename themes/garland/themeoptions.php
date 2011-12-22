@@ -13,6 +13,8 @@ class ThemeOptions {
 		setThemeOptionDefault('thumb_transition', 1);
 		setThemeOptionDefault('thumb_size',85);
 		setThemeOptionDefault('garland_personality', 'Image page');
+		setThemeOptionDefault('garland_transition', 'slide-hori');
+		setThemeOptionDefault('garland_caption_location', 'image');
 		setOptionDefault('colorbox_garland_image', 1);
 		setOptionDefault('colorbox_garland_album', 1);
 		setOptionDefault('colorbox_garland_search', 1);
@@ -45,12 +47,12 @@ class ThemeOptions {
   }
 
   function getOptionsSupported() {
-		if (!getOption('zp_plugin_print_album_menu') && (($m = getOption('effervescence_menu'))=='effervescence' || $m=='zenpage' || $m == 'garland')) {
+		if (!getOption('zp_plugin_print_album_menu') && (($m = getOption('garland_menu'))=='garland' || $m=='zenpage' || $m == 'garland')) {
 			$note = '<p class="notebox">'.sprintf(gettext('<strong>Note:</strong> The <em>%s</em> custom menu makes use of the <em>print_album_menu</em> plugin.'),$m).'</p>';
 		} else {
 			$note = '';
 		}
-  	return array(
+  	$options = array(
   								gettext('Theme personality') => array('key' => 'garland_personality', 'type' => OPTION_TYPE_SELECTOR,
 															'selections' => array(gettext('Image page') => 'image_page', gettext('Colorbox') => 'Colorbox', gettext('Image gallery') => 'Image_gallery'),
 															'desc' => gettext('Select the theme personality')),
@@ -58,6 +60,17 @@ class ThemeOptions {
 						  		gettext('Allow cloud') => array('key' => 'Allow_cloud', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable tag cloud for album page.')),
 									gettext('Custom menu') => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.').$note)
 						  	);
+  	if (getOption('garland_personality')=='Image_gallery') {
+			$options[gettext('Image gallery transition')] = array('key' => 'garland_transition', 'type' => OPTION_TYPE_SELECTOR,
+															'selections' => array(gettext('None') => '', gettext('Fade') => 'fade', gettext('Shrink/grow') => 'resize', gettext('Horizontal') => 'slide-hori', gettext('Vertical') => 'slide-vert'),
+															'order'=>10,
+															'desc' => gettext('Transition effect for Image gallery'));
+			$options[gettext('Image gallery caption')] = array('key' => 'garland_caption_location', 'type' => OPTION_TYPE_RADIO,
+															'buttons' => array(gettext('On image')=>'image', gettext('Separate')=>'separate',gettext('Omit')=>'none'),
+															'order'=>10.5,
+															'desc' => gettext('Location for Image gallery picture caption'));
+		}
+		return $options;
   }
 
 	function handleOption($option, $currentValue) {

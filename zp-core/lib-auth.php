@@ -85,11 +85,7 @@ class Zenphoto_Authority {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(	gettext('Minimum password length:') => array('key' => 'min_password_lenght', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext('Minimum number of characters a password must contain.')),
-									gettext('Password characters:') => array('key' => 'password_pattern', 'type' => OPTION_TYPE_CLEARTEXT,
-										'desc' => gettext('Passwords must contain at least one of the characters from each of the groups. Groups are separated by "|". (Use "\|" to represent the "|" character in the groups.)')),
-									gettext('Primary album edit') => array('key' => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
+		return array(	gettext('Primary album edit') => array('key' => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
 									gettext('settings')=> array('key'=>'lib_auth_info', 'type'=>OPTION_TYPE_CUSTOM,
 										'order'=>9,
@@ -192,40 +188,10 @@ class Zenphoto_Authority {
 	 * Returns text describing password constraints
 	 *
 	 * @return string
+	 * @deprecated
 	 */
 	function passwordNote() {
-		$l = getOption('min_password_lenght');
-		$p = getOption('password_pattern');
-		$p = str_replace('\|', "\t", $p);
-		$c = 0;
-		if (!empty($p)) {
-			$patterns = explode('|', $p);
-			$text = '';
-			foreach ($patterns as $pat) {
-				$pat = trim(str_replace("\t", '|', $pat));
-				if (!empty($pat)) {
-					$c++;
-					$text .= ', <span style="white-space: nowrap;"><strong>{</strong><em>'.html_encode($pat).'</em><strong>}</strong></span>';
-				}
-			}
-			$text = substr($text, 2);
-		}
-		if ($c > 0) {
-			if ($l > 0) {
-				$msg = '<p class="notebox">'.sprintf(ngettext('<strong>Note:</strong> passwords must be at least %1$u characters long and contain at least one character from %2$s.',
-															'<strong>Note</strong>: passwords must be at least %1$u characters long and contain at least one character from each of the following groups: %2$s.', $c), $l, $text).'</p>';;
-			} else {
-				$msg = '<p class="notebox">'.sprintf(ngettext('<strong>Note</strong>: passwords must contain at least one character from %s.',
-															'<strong>Note</strong>: passwords must contain at least one character from each of the following groups: %s.', $c), $text).'</p>';
-			}
-		} else {
-			if ($l > 0) {
-				$msg = sprintf(gettext('<strong>Note</strong>: passwords must be at least %u characters long.'), $l);
-			} else {
-				$msg = '';
-			}
-		}
-		return $msg;
+		return '';
 	}
 
 	/**
@@ -1041,6 +1007,100 @@ class Zenphoto_Authority {
 		}
 		?>
 		</div>
+		<?php
+	}
+
+	/**
+	 *
+	 * Javascript for password change input handling
+	 */
+	function printPasswordFormJS() {
+		?>
+		<script type="text/javascript">
+		var strengthColors = ['#ff0a0a','#ff0a0a','#ff1a0a','#ff2a0a','#ff3a0a','#ff4a0a','#ff5a0a','#ff6a0a','#ff7a0a','#ff8a0a','#ff9a0a','#ffaa0a','#ffba0a','#ffca0a','#ffda0a',
+		                 			'#feff0a','#eeff0a','#deff0a','#ceff0a','#beff0a','#aeff0a','#8eff0a','#7eff0a','#6eff0a','#5eff0a','#4eff0a','#3eff0a','#2eff0a','#1eff0a','#0eff0a'];
+		function passwordStrength(inputa, inputb, displaym, displays) {
+			var numeric = 0;
+			var special = 0;
+			var upper = 0;
+			var str = $(inputa).val();
+			var len = str.length;
+			for (c=0;c<len;c++) {
+				if (str[c].match(/[0-9]/)) {
+					numeric++;
+				} else if (str[c].match(/[^A-Za-z0-9]/)) {
+					special++;
+				} else if (str[c].toUpperCase()==str[c]) {
+					upper++;
+				}
+			}
+			var strength = len+numeric*len*0.5+upper*len*0.5+special*len*0.5;
+			if (strength > 29) strength = 29;
+			if (strength < 15) {
+				$(displays).html('<?php echo gettext('password strength poor'); ?>');
+			} else if (strength < 20) {
+				$(displays).html('<?php echo gettext('password strength good'); ?>');
+			} else {
+				$(displays).html('<?php echo gettext('password strength strong'); ?>');
+			}
+			$(displays).css('background-color',strengthColors[strength]);
+
+			passwordMatch(inputa, inputb, displaym);
+		}
+
+		function passwordMatch(inputa, inputb, display) {
+			if ($(inputa).val() === $(inputb).val()) {
+				if ($(inputa).val().trim() !== '') {
+					$(display).css('color','#008000');
+					$(display).html('<?php echo gettext('passwords match'); ?>');
+				}
+			} else {
+				$(display).css('color',strengthColors[0]);
+				$(display).html('<?php echo gettext('passwords do not match'); ?>');
+			}
+		}
+
+		function passwordKeydown(inputa, inputb) {
+			if ($(inputa).val().trim() === '') {
+				$(inputa).val('');
+			}
+			if ($(inputb).val().trim() === '') {
+				$(inputb).val('');
+			}
+		}
+
+		</script>
+		<?php
+	}
+
+	function printPasswordForm($id='', $pad=false, $disable=NULL, $required=false) {
+		if ($pad) {
+			$x = '          ';
+		} else {
+			$x = '';
+		}
+		?>
+		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" />
+		<fieldset><legend><?php echo gettext("Password:"); ?></legend>
+			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+							name="adminpass<?php echo $id ?>" value="<?php echo $x; ?>"
+							id="pass<?php echo $id; ?>"
+							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
+							onkeydown="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');"
+							onkeyup="passwordStrength('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>','#match<?php echo $id; ?>','#strength<?php echo $id; ?>');"
+							<?php echo $disable; ?> />
+		</fieldset>
+		<div id="strength<?php echo $id; ?>" style="text-align:center;"></div>
+		<fieldset><legend><?php echo gettext("(repeat)"); ?></legend>
+			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+							name="adminpass_2<?php echo $id ?>" value="<?php echo $x; ?>"
+							id="pass_r<?php echo $id; ?>"
+							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
+							onkeydown="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');"
+							onkeyup="passwordMatch('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>','#match<?php echo $id; ?>');"
+							<?php echo $disable; ?> />
+		</fieldset>
+		<div id="match<?php echo $id; ?>" style="text-align:center;"></div>
 		<?php
 	}
 
