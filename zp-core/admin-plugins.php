@@ -213,7 +213,9 @@ foreach ($filelist as $extension) {
 		<td>
 		<span id="<?php echo $extension; ?>_show" class="pluginextrashow">
 			<?php
-			echo truncate_string(strip_tags($plugin_description), 70);
+			$description = str_replace('<script type="text/javascript">', '<script', $plugin_description);
+			$description = str_replace('</script>', '/>', $description);
+			echo truncate_string(strip_tags($description), 70);
 			?>
 		</span>
 		<span id="<?php echo $extension; ?>_hide" style="display: none;" class="pluginextrahide">
