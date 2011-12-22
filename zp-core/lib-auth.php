@@ -147,41 +147,12 @@ class Zenphoto_Authority {
 	 * Checks to see if password follows rules
 	 * Returns error message if not.
 	 *
+	 * @deprecated
 	 * @param string $pass
 	 * @return string
 	 */
 	function validatePassword($pass) {
-		$l = getOption('min_password_lenght');
-		if ($l > 0) {
-			if (strlen($pass) < $l) return sprintf(gettext('Password must be at least %u characters'), $l);
-		}
-		$p = getOption('password_pattern');
-		if (!empty($p)) {
-			$strong = true;
-			$p = str_replace('\|', "\t", $p);
-			$patterns = explode('|', $p);
-			$p2 = '';
-			foreach ($patterns as $pat) {
-				$pat = trim(str_replace("\t", '|', $pat));
-				if (!empty($pat)) {
-					$p2 .= '{<em>'.$pat.'</em>}, ';
-
-					$patrn = '';
-					foreach (array('0-9','a-z','A-Z') as $try) {
-						if (preg_match('/['.$try.']-['.$try.']/', $pat, $r)) {
-							$patrn .= $r[0];
-							$pat = str_replace($r[0],'',$pat);
-						}
-					}
-					$patrn .= addcslashes($pat,'\\/.()[]^-');
-					$strong = $strong && preg_match('/(['.$patrn.'])/', $pass);
-				}
-			}
-			if (!$strong)	{
-				return sprintf(gettext('Password must contain at least one of %s'), substr($p2,0,-2));
-			}
-		}
-		return false;
+		return true;
 	}
 
 	/**
@@ -1034,7 +1005,7 @@ class Zenphoto_Authority {
 					upper++;
 				}
 			}
-			var strength = len+numeric*len*0.5+upper*len*0.5+special*len*0.5;
+			var strength = len+numeric*len*0.5+upper*len*0.25+special*len*0.5;
 			if (strength > 29) strength = 29;
 			if (strength < 15) {
 				$(displays).html('<?php echo gettext('password strength poor'); ?>');
@@ -1093,7 +1064,7 @@ class Zenphoto_Authority {
 		<div id="strength<?php echo $id; ?>" style="text-align:center;"></div>
 		<fieldset><legend><?php echo gettext("(repeat)"); ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-							name="adminpass_2<?php echo $id ?>" value="<?php echo $x; ?>"
+							name="adminpass_2_<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass_r<?php echo $id; ?>"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 							onkeydown="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');"
@@ -1164,8 +1135,6 @@ class Zenphoto_Administrator extends PersistentObject {
 	 */
 	function setPass($pwd) {
 		global $_zp_authority;
-		$msg = $_zp_authority->validatePassword($pwd);
-		if (!empty($msg)) return $msg;	// password validation failure
 		$pwd = $_zp_authority->passwordHash($this->getUser(),$pwd);
 		$this->set('pass', $pwd);
 		return false;

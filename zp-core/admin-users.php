@@ -63,7 +63,7 @@ if (isset($_GET['action'])) {
 
 			if (isset($_POST['saveadminoptions'])) {
 				if ($_zp_null_account || (isset($_POST['alter_enabled'])) || (sanitize_numeric($_POST['totaladmins']) > 1) ||
-							(trim(sanitize($_POST['0-adminuser'],0))) != $_zp_current_admin_obj->getUser() ||
+							(trim(sanitize($_POST['adminuser0'],0))) != $_zp_current_admin_obj->getUser() ||
 							isset($_POST['0-newuser'])) {
 					admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
 				}
@@ -75,13 +75,13 @@ if (isset($_GET['action'])) {
 					$error = false;
 					$userobj = NULL;
 					$pass = trim(sanitize($_POST['adminpass'.$i]));
-					$user = trim(sanitize($_POST[$i.'adminuser'],0));
+					$user = trim(sanitize($_POST['adminuser'.$i],0));
 					if (empty($user) && !empty($pass)) {
 						$notify = '?mismatch=nothing';
 					}
 					if (!empty($user)) {
 						$nouser = false;
-						if ($pass == trim(sanitize($_POST['adminpass_2'.$i])) && strlen($_POST['adminpass'.$i]) == strlen($_POST[$i.'-adminpass_2'])) {
+						if ($pass == trim(sanitize($_POST['adminpass_2_'.$i])) && strlen($_POST['adminpass'.$i]) == strlen($_POST['adminpass_2_'.$i])) {
 							if (isset($_POST[$i.'-newuser'])) {
 								$newuser = $user;
 								$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
@@ -604,7 +604,7 @@ function languageChange(id,lang) {
 								<?php
 							} else {
 								?>
-								<input type="hidden" id="adminuser-<?php echo $id; ?>" name="<?php echo $id ?>-adminuser" value="<?php echo $userid ?>" />
+								<input type="hidden" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id ?>" value="<?php echo $userid ?>" />
 								<?php
 								echo '<strong>'.$userid.'</strong>';
 							}
@@ -629,7 +629,7 @@ function languageChange(id,lang) {
 					<?php
 					if (empty($userid)) {
 							?>
-							<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser-<?php echo $id; ?>" name="<?php echo $id; ?>-adminuser" value=""
+							<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
 								onclick="toggleExtraInfo('<?php echo $id;?>','user',true);" />
 							<?php
 						} else {
@@ -876,7 +876,7 @@ if ($_zp_authority->getVersion() < $_zp_authority->supports_version) {
 	var admins = ["<?php echo implode('","', $alladmins); ?>"];
 	function checkNewuser() {
 		newuserid = <?php echo ($id-1); ?>;
-		newuser = $('#adminuser-'+newuserid).val().replace(/^\s+|\s+$/g,"");;
+		newuser = $('#adminuser'+newuserid).val().replace(/^\s+|\s+$/g,"");;
 		if (newuser=='') return true;
 		if (newuser.indexOf('?')>=0 || newuser.indexOf('&')>=0 || newuser.indexOf('"')>=0 || newuser.indexOf('\'')>=0) {
 			alert('<?php echo js_encode(gettext('User names may not contain "?", "&", or quotation marks.')); ?>');

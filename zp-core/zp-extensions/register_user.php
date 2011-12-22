@@ -275,39 +275,36 @@ function printRegistrationForm($thanks=NULL) {
 		$pass = trim(sanitize($_POST['adminpass']));
 		$user = trim(sanitize($_POST['adminuser']));
 		if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
-			if ($pass == trim(sanitize($_POST['adminpass_2']))) {
+			if ($pass == trim(sanitize($_POST['adminpass_2_']))) {
 				$currentadmin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					$notify = 'exists';
 				}
 				if (empty($notify)) {
-					$notify = $_zp_authority->validatePassword($pass);	//	test for valid password
-					if (empty($notify)) {
-						$userobj = $_zp_authority->newAdministrator('');
-						$userobj->transient = false;
-						$userobj->setUser($user);
-						$userobj->setPass($pass);
-						$userobj->setName($admin_n);
-						$userobj->setEmail($admin_e);
-						$userobj->setRights(0);
-						$userobj->setObjects(NULL);
-						$userobj->setGroup('');
-						$userobj->setCustomData('');
-						$userobj->setLanguage(getUserLocale());
-						zp_apply_filter('register_user_registered', $userobj);
-						if ($userobj->transient) {
-							if (empty($notify)) {
-								$notify = 'filter';
-							}
-						} else {
-							$userobj->save();
-							$link = rewrite_path(	FULLWEBPATH.'/page/'.substr($_zp_gallery_page,0, -4).'?verify='.bin2hex(serialize(array('user'=>$user,'email'=>$admin_e))),
-																		FULLWEBPATH.'/index.php?p='.substr($_zp_gallery_page,0, -4).'&verify='.bin2hex(serialize(array('user'=>$user,'email'=>$admin_e))),false);
-							$message = sprintf(get_language_string(getOption('register_user_text')), $link, $admin_n, $user, $pass);
-							$notify = zp_mail(get_language_string(gettext('Registration confirmation')), $message, array($user=>$admin_e));
-							if (empty($notify)) {
-								$notify = 'accepted';
-							}
+					$userobj = $_zp_authority->newAdministrator('');
+					$userobj->transient = false;
+					$userobj->setUser($user);
+					$userobj->setPass($pass);
+					$userobj->setName($admin_n);
+					$userobj->setEmail($admin_e);
+					$userobj->setRights(0);
+					$userobj->setObjects(NULL);
+					$userobj->setGroup('');
+					$userobj->setCustomData('');
+					$userobj->setLanguage(getUserLocale());
+					zp_apply_filter('register_user_registered', $userobj);
+					if ($userobj->transient) {
+						if (empty($notify)) {
+							$notify = 'filter';
+						}
+					} else {
+						$userobj->save();
+						$link = rewrite_path(	FULLWEBPATH.'/page/'.substr($_zp_gallery_page,0, -4).'?verify='.bin2hex(serialize(array('user'=>$user,'email'=>$admin_e))),
+																	FULLWEBPATH.'/index.php?p='.substr($_zp_gallery_page,0, -4).'&verify='.bin2hex(serialize(array('user'=>$user,'email'=>$admin_e))),false);
+						$message = sprintf(get_language_string(getOption('register_user_text')), $link, $admin_n, $user, $pass);
+						$notify = zp_mail(get_language_string(gettext('Registration confirmation')), $message, array($user=>$admin_e));
+						if (empty($notify)) {
+							$notify = 'accepted';
 						}
 					}
 				}
