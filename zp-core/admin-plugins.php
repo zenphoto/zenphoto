@@ -50,6 +50,20 @@ function toggleDetails(plugin) {
 	toggle(plugin+'_show');
 	toggle(plugin+'_hide');
 }
+
+function truncateDesc(text,debug) {
+	text = text.replace(/(<script.*?script>)/ig,"");	//strip scripts
+	text = text.replace(/(<.*?>)/ig,"");							//strip tags
+	if (text.length <= 70) return text;
+	ls = 0;
+	for (i=0;i<text.length;i++) {
+		if (text[i] == ' ' && i>ls) ls = i;
+		if (i >= 69) break;
+	}
+	if (ls == 0) ls == i;
+	return text.substring(0,ls)+'...'
+}
+
 //-->
 </script>
 <?php
@@ -211,16 +225,12 @@ foreach ($filelist as $extension) {
 			<a href="javascript:toggleDetails('<?php echo $extension;?>');" title ="<?php echo gettext('toggle description details'); ?>" ><img src="images/info_toggle.png" alt="" /></a>
 		</td>
 		<td>
-		<span id="<?php echo $extension; ?>_show" class="pluginextrashow">
-			<?php
-			$description = str_replace('<script type="text/javascript">', '<script', $plugin_description);
-			$description = str_replace('</script>', '/>', $description);
-			echo truncate_string(strip_tags($description), 70);
-			?>
-		</span>
+		<span id="<?php echo $extension; ?>_show" class="pluginextrashow"></span>
 		<span id="<?php echo $extension; ?>_hide" style="display: none;" class="pluginextrahide">
+			<span id="<?php echo $extension; ?>_desc"><?php echo $plugin_description; ?></span>
+			<script type="text/javascript">$('#<?php echo $extension; ?>_show').html(truncateDesc($('#<?php echo $extension; ?>_desc').html(),<?php if ($extension=='tiny_mce') echo 'true';else echo 'false'; ?>));</script>
+
 			<?php
-			echo $plugin_description;
 			if (!empty($plugin_URL)) {
 				?>
 				<br />
