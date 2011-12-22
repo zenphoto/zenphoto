@@ -53,8 +53,6 @@ if(isset($_GET['rss'])) {
  */
 require_once(dirname(__FILE__). "/".ZENFOLDER.'/controller.php');
 
-debugLogVar('index.php',$_GET);
-
 $_zp_obj = '';
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page

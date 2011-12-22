@@ -166,17 +166,31 @@ class staticCache {
 			$cachefilepath = $this->createCacheFilepath();
 			if (!empty($cachefilepath)) {
 				$cachefilepath = STATIC_CACHE_FOLDER."/".$cachefilepath;
-				if(file_exists($cachefilepath) AND !isset($_POST['comment']) AND time()-filemtime($cachefilepath) < getOption("static_cache_expire")) { // don't use cache if comment is posted
-					echo file_get_contents($cachefilepath); // PHP >= 4.3
-					list($usec, $sec) = explode(' ', $_zp_script_timer['start']);
-					$start = (float)$usec + (float)$sec;
-					list($usec, $sec) = explode(' ', $_zp_script_timer['static cache start']);
-					$start_cache = (float)$usec + (float)$sec;
-					list($usec, $sec) = explode(' ', microtime());
-					$end = (float)$usec + (float)$sec;
-					echo "<!-- ".sprintf(gettext('Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead.'),$end-$start_cache,$start_cache-$start,date('D, d M Y H:i:s',filemtime($cachefilepath)))." -->";
-					db_close();
-					exit();
+				if(file_exists($cachefilepath)) {
+					$lastmodified = filemtime($cachefilepath);
+					// don't use cache if comment is posted or cache has expired
+					if (!isset($_POST['comment']) && time()-$lastmodified < getOption("static_cache_expire")) {
+
+						//send the headers!
+						header ('Content-Type: text/html; charset=' . LOCAL_CHARSET);
+						header("HTTP/1.0 200 OK");
+						header("Status: 200 OK");
+						header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $lastmodified).' GMT');
+
+						echo file_get_contents($cachefilepath);
+
+						// cache statistics
+						list($usec, $sec) = explode(' ', $_zp_script_timer['start']);
+						$start = (float)$usec + (float)$sec;
+						list($usec, $sec) = explode(' ', $_zp_script_timer['static cache start']);
+						$start_cache = (float)$usec + (float)$sec;
+						list($usec, $sec) = explode(' ', microtime());
+						$end = (float)$usec + (float)$sec;
+						echo "<!-- ".sprintf(gettext('Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead.'),$end-$start_cache,$start_cache-$start,date('D, d M Y H:i:s',filemtime($cachefilepath)))." -->\n";
+
+						db_close();	// close the database as we have served the page and are exiting.
+						exit();
+					}
 				} else {
 					$this->deleteStaticCacheFile($cachefilepath);
 					if (ob_start()) {
