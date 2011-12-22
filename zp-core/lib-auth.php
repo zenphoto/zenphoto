@@ -996,6 +996,7 @@ class Zenphoto_Authority {
 			var upper = 0;
 			var str = $(inputa).val();
 			var len = str.length;
+			var strength = 0;
 			for (c=0;c<len;c++) {
 				if (str[c].match(/[0-9]/)) {
 					numeric++;
@@ -1005,10 +1006,14 @@ class Zenphoto_Authority {
 					upper++;
 				}
 			}
-			var strength = len+numeric*len*0.5+upper*len*0.25+special*len*0.5;
+			if (upper == len || numeric == len || (upper == 0 && numeric == 0 && special == 0)) {
+				strength = len*0.5;
+			} else {
+				strength = len+upper+numeric*4+special*5;
+			}
 			if (strength > 29) strength = 29;
 			if (strength < 15) {
-				$(displays).html('<?php echo gettext('password strength poor'); ?>');
+				$(displays).html('<?php echo gettext('password strength weak'); ?>');
 			} else if (strength < 20) {
 				$(displays).html('<?php echo gettext('password strength good'); ?>');
 			} else {

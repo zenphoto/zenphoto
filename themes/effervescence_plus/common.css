@@ -308,3 +308,11 @@ label:hover {
 #caption {
 	text-align:center;
 }
+
+#registration_form {
+	width:370px;
+}
+
+#registration_form fieldset {
+	padding:10px;
+}

@@ -1390,3 +1390,7 @@ label {
 label:hover {
 	color: #000;
 }
+
+#registration_form {
+	width:370px;
+}

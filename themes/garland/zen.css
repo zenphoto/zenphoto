@@ -944,3 +944,8 @@ font-weight: bold;
 	font-size: 100%;
 	padding: 4px;
 }
+
+#registration_form {
+	width:370px;
+}
+
