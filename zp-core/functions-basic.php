@@ -147,7 +147,10 @@ if (!defined('SERVERPATH')) {
 	define('SERVERPATH', str_replace("\\", '/', dirname(dirname(__FILE__))));
 }
 
-if (!defined('OFFSET_PATH')) { define('OFFSET_PATH', 0); }
+if (!defined('OFFSET_PATH')) {
+	if (!defined('RELEASE')) debugLogBacktrace('no offset path')	;
+	define('OFFSET_PATH', 0);
+}
 /**
  * OFFSET_PATH definisions:
  * 		0		Theme scripts (root index.php)
@@ -157,15 +160,18 @@ if (!defined('OFFSET_PATH')) { define('OFFSET_PATH', 0); }
  */
 
 if (!defined('WEBPATH')) {
+	$const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
 	if (OFFSET_PATH) {
-		preg_match('~(.*)/('.ZENFOLDER.'|'.USER_PLUGIN_FOLDER.')/~',$_SERVER['SCRIPT_NAME'], $matches);
+		preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches);
+		if (empty($matches)) {
+			preg_match('~(.*)/('.USER_PLUGIN_FOLDER.')~',$const_webpath, $matches);
+		}
 		if (empty($matches)) {
 			$const_webpath = '';
 		} else {
-			$const_webpath = str_replace("\\", '/', $matches[1]);
+			$const_webpath = $matches[1];
 		}
 	} else {
-		$const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
 		if ($const_webpath == '/' || $const_webpath == '.') {
 			$const_webpath = '';
 		}
