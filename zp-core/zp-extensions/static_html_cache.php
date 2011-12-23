@@ -22,7 +22,7 @@ if (!defined('OFFSET_PATH')) {
 	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 }
 
-$plugin_is_filter = 9|ADMIN_PLUGIN|THEME_PLUGIN;
+$plugin_is_filter = 9999|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $plugin_version = '1.4.2';

@@ -1,10 +1,11 @@
 <?php
-/* Tries to authorize user based on Apache HTTP authenitcation credentials
+/**
+ *  Tries to authorize user based on Apache HTTP authenitcation credentials
  *
  * The PHP_AUTH_USER is mapped to a Zenphoto user
  * the PHP_AUTH_PW must be in cleartext and match the Zenphoto user's password
- * (If the User validation is set to "trusted" the PHP_AUTH_PW password will be ignored and need not be
- * cleartext.)
+ * (If the User validation is set to "trusted" the PHP_AUTH_PW password will be ignored and
+ * need not be cleartext.)
  *
  * Note that the HTTP logins are outside of Zenphoto so there is no security logging of
  * them. Nor can Zenphoto "log off" the user. The normal logout links will not show for
@@ -21,7 +22,8 @@
  *
  * Each user/password must match to a Zenphoto user/password or access to Zenphoto will be at a "guest"
  * level. If a user changes his password in Zenphoto someone must make the equivalent change in
- * the Apache password file for the Zenphoto user access to succeed. (However, see the User validation option.)
+ * the Apache password file for the Zenphoto user access to succeed. (However, see the User validation
+ * option.)
  *
  * create a file named "groups" in your apache folder
  * edit the "groups" file with a line similar to:
@@ -40,6 +42,7 @@
  * (replace "c:/wamp/bin/apache/" with the path to these files on your server.)
  *
  *
+ * @author Stephen Billard (sbillard)
  * @package plugins
  */
 $plugin_is_filter = 5|CLASS_PLUGIN;
