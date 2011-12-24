@@ -12,17 +12,17 @@ $_zp_authority->printPasswordFormJS();
 	<form action="<?php echo sanitize($_SERVER['REQUEST_URI']); ?>" method="post" autocomplete="off">
 		<input type="hidden" name="register_user" value="yes" />
 
-		<fieldset><legend><?php echo gettext("Name"); ?></legend>
+		<fieldset style="text-align:center"><legend><?php echo gettext("Name"); ?></legend>
 			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>
-		<fieldset><legend><?php if (getOption('register_user_email_is_id')) echo gettext("Email"); else echo gettext("User ID"); ?></legend>
+		<fieldset style="text-align:center"><legend><?php if (getOption('register_user_email_is_id')) echo gettext("Email"); else echo gettext("User ID"); ?></legend>
 			<input type="text" id="adminuser" name="adminuser" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>
 		<?php $_zp_authority->printPasswordForm(); ?>
 		<?php
 		if (!getOption('register_user_email_is_id')) {
 			?>
-			<fieldset><legend><?php echo gettext("Email"); ?></legend>
+			<fieldset style="text-align:center"><legend><?php echo gettext("Email"); ?></legend>
 				<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 			</fieldset>
 			<?php
@@ -40,7 +40,7 @@ $_zp_authority->printPasswordFormJS();
 						$input = str_replace('size="40"', 'size="'.TEXT_INPUT_SIZE.'"', $elements[1]);
 						$input = str_replace('class="inputbox"', '', $input);
 						?>
-						<fieldset><legend><?php echo trim(str_replace(array('<td>',':'), '', $legend)); ?></legend>
+						<fieldset style="text-align:center"><legend><?php echo trim(str_replace(array('<td>',':'), '', $legend)); ?></legend>
 							<?php echo trim(str_replace('<td>', '', $input)); ?>
 						</fieldset>
 						<?php
@@ -52,7 +52,7 @@ $_zp_authority->printPasswordFormJS();
 			$captcha = $_zp_captcha->getCaptcha();
 			if (isset($captcha['html'])) {
 			?>
-			<fieldset><legend><?php echo gettext("Enter"); ?></legend>
+			<fieldset style="text-align:center"><legend><?php echo gettext("Enter"); ?></legend>
 					<?php
 					if (isset($captcha['html'])) echo $captcha['html'];
 					?>

@@ -988,8 +988,6 @@ class Zenphoto_Authority {
 	function printPasswordFormJS() {
 		?>
 		<script type="text/javascript">
-		var strengthColors = ['#ff0a0a','#ff0a0a','#ff1a0a','#ff2a0a','#ff3a0a','#ff4a0a','#ff5a0a','#ff6a0a','#ff7a0a','#ff8a0a','#ff9a0a','#ffaa0a','#ffba0a','#ffca0a','#ffda0a',
-		                 			'#feff0a','#eeff0a','#deff0a','#ceff0a','#beff0a','#aeff0a','#8eff0a','#7eff0a','#6eff0a','#5eff0a','#4eff0a','#3eff0a','#2eff0a','#1eff0a','#0eff0a'];
 		function passwordStrength(inputa, inputb, displaym, displays) {
 			var numeric = 0;
 			var special = 0;
@@ -1021,17 +1019,19 @@ class Zenphoto_Authority {
 			if (special != len) {
 				special = special*5;
 			}
-			strength = upper+lower+numeric+special;
-			if (strength > 29) strength = 29;
+			strength = Math.min(30,Math.round(upper+lower+numeric+special));
 			if (strength < 15) {
+				$(displays).css('color','#ff0000');
 				$(displays).html('<?php echo gettext('password strength weak'); ?>');
 			} else if (strength < 20) {
+				$(displays).css('color','#ff0000');
 				$(displays).html('<?php echo gettext('password strength good'); ?>');
 			} else {
+				$(displays).css('color','#008000');
 				$(displays).html('<?php echo gettext('password strength strong'); ?>');
 			}
-			$(displays).css('background-color',strengthColors[strength]);
-
+			var url = 'url(<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/strengths/strength'+strength+'.png)';
+			$(inputa).css('background-image',url);
 			passwordMatch(inputa, inputb, displaym);
 		}
 
@@ -1042,7 +1042,7 @@ class Zenphoto_Authority {
 					$(display).html('<?php echo gettext('passwords match'); ?>');
 				}
 			} else {
-				$(display).css('color',strengthColors[0]);
+				$(display).css('color','#ff0000');
 				$(display).html('<?php echo gettext('passwords do not match'); ?>');
 			}
 		}
@@ -1068,7 +1068,8 @@ class Zenphoto_Authority {
 		}
 		?>
 		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" />
-		<fieldset><legend><?php echo gettext("Password:"); ?></legend>
+		<fieldset style="text-align:center">
+			<legend id="strength<?php echo $id; ?>"><?php echo gettext("Password:"); ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							name="adminpass<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass<?php echo $id; ?>"
@@ -1077,8 +1078,8 @@ class Zenphoto_Authority {
 							onkeyup="passwordStrength('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>','#match<?php echo $id; ?>','#strength<?php echo $id; ?>');"
 							<?php echo $disable; ?> />
 		</fieldset>
-		<div id="strength<?php echo $id; ?>" style="text-align:center;"></div>
-		<fieldset><legend><?php echo gettext("(repeat)"); ?></legend>
+		<fieldset style="text-align:center">
+			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password:"); ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							name="adminpass_2_<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass_r<?php echo $id; ?>"
@@ -1087,7 +1088,6 @@ class Zenphoto_Authority {
 							onkeyup="passwordMatch('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>','#match<?php echo $id; ?>');"
 							<?php echo $disable; ?> />
 		</fieldset>
-		<div id="match<?php echo $id; ?>" style="text-align:center;"></div>
 		<?php
 	}
 

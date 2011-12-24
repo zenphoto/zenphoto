@@ -3174,7 +3174,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 		}
 	} else {
 		$albumfolder = $album->getFolder();
-		if ($album->isMyItem(LIST_RIGHTS) || $showunpublished) {
+		if ($album->isMyItem(LIST_RIGHTS)) {
 			$imageWhere = '';
 			$albumInWhere = '';
 		} else {
@@ -3187,15 +3187,16 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 		$query .= "folder LIKE " . db_quote($albumfolder.'%');
 		$result = query_full_array($query);
 		if (is_array($result) && count($result) > 0) {
-			$albumInWhere = prefix('albums') . ".id in (";
+			$albumInWhere = prefix('albums') . ".id IN (";
 			foreach ($result as $row) {
 				$albumInWhere = $albumInWhere . $row['id'] . ", ";
 			}
 			$albumInWhere =  ' AND '.substr($albumInWhere, 0, -2) . ')';
-			$result = query('SELECT `folder`, `filename` ' .
-															' FROM '.prefix('images'). ', '.prefix('albums').
-															' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
-			prefix('albums') . '.id ' . $albumInWhere . $imageWhere . 'ORDER BY RAND()');
+			$sql = 'SELECT `folder`, `filename` ' .
+							' FROM '.prefix('images'). ', '.prefix('albums').
+							' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
+							prefix('albums') . '.id ' . $albumInWhere . $imageWhere . ' ORDER BY RAND()';
+			$result = query($sql);
 			$image = filterImageQuery($result);
 		}
 	}
