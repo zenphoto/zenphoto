@@ -2105,8 +2105,8 @@ class GoogleMapAPI {
 //            $_output .= "var point = new google.maps.LatLng(".$_marker['lat'].",".$_marker['lon'].");\n";
 				//Zenphoto
 				// replace commas with periods so we can pass parameters!
-				$lat = str_replace(',', '.', $_marker['lat']);
-				$lon = str_replace(',', '.', $_marker['lon']);
+				$lat = str_replace(',', '.', (string) $_marker['lat']);
+				$lon = str_replace(',', '.', (string) $_marker['lon']);
 				$_output .= "var point = new google.maps.LatLng(".$lat.",".$lon.");\n";
         //end Zenphoto
 

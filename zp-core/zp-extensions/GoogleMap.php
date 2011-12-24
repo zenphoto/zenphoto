@@ -342,10 +342,6 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 				foreach ($mapvars as $key=>$value) {
 					if ($empty[$key] == $mapvars[$key]) {
 						unset ($mapvars[$key]);
-					} else {
-						if (is_float($value)) {
-							$mapvars[$key] = (string) $value;	// force the rounding
-						}
 					}
 				}
 				if (getOption('gmap_sessions')) {
