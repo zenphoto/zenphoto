@@ -1019,11 +1019,12 @@ class Zenphoto_Authority {
 			if (special != len) {
 				special = special*5;
 			}
-			strength = Math.min(30,Math.round(upper+lower+numeric+special));
+			len = Math.max(0,(len-6)*.35);
+			strength = Math.min(30,Math.round(upper+lower+numeric+special+len));
 			if (strength < 15) {
 				$(displays).css('color','#ff0000');
 				$(displays).html('<?php echo gettext('password strength weak'); ?>');
-			} else if (strength < 20) {
+			} else if (strength < 25) {
 				$(displays).css('color','#ff0000');
 				$(displays).html('<?php echo gettext('password strength good'); ?>');
 			} else {
@@ -1060,7 +1061,7 @@ class Zenphoto_Authority {
 		<?php
 	}
 
-	function printPasswordForm($id='', $pad=false, $disable=NULL, $required=false) {
+	function printPasswordForm($id='', $pad=false, $disable=NULL, $required=false, $flag='') {
 		if ($pad) {
 			$x = '          ';
 		} else {
@@ -1069,7 +1070,7 @@ class Zenphoto_Authority {
 		?>
 		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" />
 		<fieldset style="text-align:center">
-			<legend id="strength<?php echo $id; ?>"><?php echo gettext("Password:"); ?></legend>
+			<legend id="strength<?php echo $id; ?>"><?php echo gettext("Password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							name="adminpass<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass<?php echo $id; ?>"
@@ -1079,7 +1080,7 @@ class Zenphoto_Authority {
 							<?php echo $disable; ?> />
 		</fieldset>
 		<fieldset style="text-align:center">
-			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password:"); ?></legend>
+			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							name="adminpass_2_<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass_r<?php echo $id; ?>"

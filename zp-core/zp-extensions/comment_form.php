@@ -491,32 +491,37 @@ function comment_form_edit_admin($html, $userobj, $i, $background, $current) {
 	}
 
 	return $html.
-	 '<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-			<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.gettext("Website:").'</td>
-			<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top"><input type="text" name="'.$i.'-comment_form_website" value="'.$address['website'].'" /></td>
-			<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" ></td>
-		</tr>'.
-	 '<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-			<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.gettext("Street:").'</td>
-			<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top"><input type="text" name="'.$i.'-comment_form_street" value="'.$address['street'].'" /></td>
-			<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" rowspan="5">'.gettext('Address information').'</td>
-		</tr>'.
-		'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-			<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.gettext("City:").'</td>
-			<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top"><input type="text" name="'.$i.'-comment_form_city" value="'.$address['city'].'" /></td>
-		</tr>'.
-		'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-			<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.gettext("State:").'</td>
-			<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top"><input type="text" name="'.$i.'-comment_form_state" value="'.$address['state'].'" /></td>
-		</tr>'.
-		'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-			<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.gettext("Country:").'</td>
-			<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top"><input type="text" name="'.$i.'-comment_form_country" value="'.$address['country'].'" /></td>
-		</tr>'.
-		'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-			<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.gettext("Postal code:").'</td>
-			<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top"><input type="text" name="'.$i.'-comment_form_postal" value="'.$address['postal'].'" /></td>
-		</tr>';
+		'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">'.
+			'<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">'.
+				'<fieldset style="text-align:center">
+					<legend>'.gettext("Street").'</legend>
+					<input type="text" name="'.$i.'-comment_form_street" value="'.$address['street'].'" size="'.TEXT_INPUT_SIZE.'" />
+				</fieldset>'.
+				'<fieldset style="text-align:center">
+					<legend>'.gettext("City").'</legend>
+					<input type="text" name="'.$i.'-comment_form_city" value="'.$address['city'].'" size="'.TEXT_INPUT_SIZE.'" />
+				</fieldset>'.
+				'<fieldset style="text-align:center">
+					<legend>'.gettext("State").'</legend>
+					<input type="text" name="'.$i.'-comment_form_state" value="'.$address['state'].'" size="'.TEXT_INPUT_SIZE.'" />
+				</fieldset>'.
+			'</td>'.
+			'<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">'.
+				'<fieldset style="text-align:center;width:340px;">
+					<legend>'.gettext("Website").'</legend>
+					<input type="text" name="'.$i.'-comment_form_website" value="'.$address['website'].'" size="'.TEXT_INPUT_SIZE.'" />
+				</fieldset>'.
+				'<fieldset style="text-align:center;width:340px;">
+					<legend>'.gettext("Country").'</legend>
+					<input type="text" name="'.$i.'-comment_form_country" value="'.$address['country'].'" size="'.TEXT_INPUT_SIZE.'" />
+				</fieldset>'.
+				'<fieldset style="text-align:center;width:340px;">
+					<legend>'.gettext("Postal code").'</legend>
+					<input type="text" name="'.$i.'-comment_form_postal" value="'.$address['postal'].'" size="'.TEXT_INPUT_SIZE.'" />
+				</fieldset>'.
+	'</td>'.
+			'<td'.((!empty($background)) ? ' style="'.$background.'"':'').'></td>'.
+		'</tr>';
 }
 
 /**

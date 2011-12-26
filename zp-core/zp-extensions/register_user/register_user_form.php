@@ -12,13 +12,13 @@ $_zp_authority->printPasswordFormJS();
 	<form action="<?php echo sanitize($_SERVER['REQUEST_URI']); ?>" method="post" autocomplete="off">
 		<input type="hidden" name="register_user" value="yes" />
 
-		<fieldset style="text-align:center"><legend><?php echo gettext("Name"); ?></legend>
+		<fieldset style="text-align:center"><legend><?php echo gettext("Name"); ?>*</legend>
 			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>
-		<fieldset style="text-align:center"><legend><?php if (getOption('register_user_email_is_id')) echo gettext("Email"); else echo gettext("User ID"); ?></legend>
+		<fieldset style="text-align:center"><legend><?php if (getOption('register_user_email_is_id')) echo gettext("Email"); else echo gettext("User ID"); ?>*</legend>
 			<input type="text" id="adminuser" name="adminuser" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>
-		<?php $_zp_authority->printPasswordForm(); ?>
+		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag='*'); ?>
 		<?php
 		if (!getOption('register_user_email_is_id')) {
 			?>
@@ -29,18 +29,17 @@ $_zp_authority->printPasswordFormJS();
 		}
 		$html = zp_apply_filter('register_user_form', '');
 		if (!empty($html)) {
-
 			$rows = explode('</tr>', $html);
 			foreach ($rows as $row) {
 				if (!empty($row)) {
 					$row = str_replace('<tr>','',$row);
 					$elements = explode('</td>',$row);
-					$legend = trim($elements[0]);
+					$legend = trim(str_replace(array('<td>',':'), '', $elements[0]));
 					if (!empty($legend)) {
 						$input = str_replace('size="40"', 'size="'.TEXT_INPUT_SIZE.'"', $elements[1]);
 						$input = str_replace('class="inputbox"', '', $input);
 						?>
-						<fieldset style="text-align:center"><legend><?php echo trim(str_replace(array('<td>',':'), '', $legend)); ?></legend>
+						<fieldset style="text-align:center"><legend><?php echo $legend; ?></legend>
 							<?php echo trim(str_replace('<td>', '', $input)); ?>
 						</fieldset>
 						<?php
@@ -66,6 +65,7 @@ $_zp_authority->printPasswordFormJS();
 			}
 		}
 		?>
+		<div style="text-align:right"><?php echo gettext('*Required'); ?></div>
 		<input type="submit" value="<?php echo gettext('Submit') ?>" />
 		<?php
 		if (function_exists('federated_login_buttons')) {
