@@ -411,18 +411,19 @@ function getCurrentTheme() {
  * @param bool $all true to go through all the albums
  * @param string $sorttype overrides default sort type
  * @param string $sortdirection overrides default sort direction
+ * @param bool $mine override the password checks
  * @return bool
  * @since 0.6
  */
-function next_album($all=false, $sorttype=null, $sortdirection=NULL) {
+function next_album($all=false, $sorttype=NULL, $sortdirection=NULL, $mine=NULL) {
 	global $_zp_albums, $_zp_gallery, $_zp_current_album, $_zp_page, $_zp_current_album_restore, $_zp_current_search;
 	if (is_null($_zp_albums)) {
 		if (in_context(ZP_SEARCH)) {
-			$_zp_albums = $_zp_current_search->getAlbums($all ? 0 : $_zp_page);
+			$_zp_albums = $_zp_current_search->getAlbums($all ? 0 : $_zp_page, $sorttype, $sortdirection, true, $mine);
 		} else if (in_context(ZP_ALBUM)) {
-			$_zp_albums = $_zp_current_album->getAlbums($all ? 0 : $_zp_page, $sorttype, $sortdirection);
+			$_zp_albums = $_zp_current_album->getAlbums($all ? 0 : $_zp_page, $sorttype, $sortdirection, true, $mine);
 		} else {
-			$_zp_albums = $_zp_gallery->getAlbums($all ? 0 : $_zp_page, $sorttype, $sortdirection);
+			$_zp_albums = $_zp_gallery->getAlbums($all ? 0 : $_zp_page, $sorttype, $sortdirection, true, $mine);
 		}
 		if (empty($_zp_albums)) { return false; }
 		$_zp_current_album_restore = $_zp_current_album;
@@ -1618,12 +1619,12 @@ function getTotalImagesIn($album) {
  * 							Normally this parameter should be NULL so as to use the default computations.
  * @param string $sorttype overrides the default sort type
  * @param string $sortdirection overrides the default sort direction.
- * @param bool $overridePassword the password check
+ * @param bool $mine overridePassword the password check
  * @return bool
  *
  * @return bool
  */
-function next_image($all=false, $firstPageCount=NULL, $sorttype=null, $sortdirection=NULL) {
+function next_image($all=false, $firstPageCount=NULL, $sorttype=null, $sortdirection=NULL, $mine=NULL) {
 	global $_zp_images, $_zp_current_image, $_zp_current_album, $_zp_page, $_zp_current_image_restore,
 				 $_zp_current_search, $_zp_gallery, $_firstPageImages;
 	if (is_null($firstPageCount)) {
@@ -1645,9 +1646,9 @@ function next_image($all=false, $firstPageCount=NULL, $sorttype=null, $sortdirec
 	}
 	if (is_null($_zp_images)) {
 		if (in_context(ZP_SEARCH)) {
-			$_zp_images = $_zp_current_search->getImages($all ? 0 : ($imagePage), $firstPageCount, $sorttype, $sortdirection);
+			$_zp_images = $_zp_current_search->getImages($all ? 0 : ($imagePage), $firstPageCount, $sorttype, $sortdirection, true, $mine);
 		} else {
-			$_zp_images = $_zp_current_album->getImages($all ? 0 : ($imagePage), $firstPageCount, $sorttype, $sortdirection);
+			$_zp_images = $_zp_current_album->getImages($all ? 0 : ($imagePage), $firstPageCount, $sorttype, $sortdirection, true, $mine);
 		}
 		if (empty($_zp_images)) { return false; }
 		$_zp_current_image_restore = $_zp_current_image;

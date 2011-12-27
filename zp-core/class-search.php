@@ -1348,10 +1348,11 @@ class SearchEngine
 	 * @param int $firstPageCount count of images that go on the album/image transition page
 	 * @param string $sorttype what to sort on
 	 * @param string $sortdirection what direction
+	 * @param bool $care placeholder to make the getImages methods all the same.
 	 * @param bool $mine set true/false to overried ownership
 	 * @return array
 	 */
-	function getImages($page=0, $firstPageCount=0, $sorttype=NULL, $sortdirection=NULL, $mine=NULL) {
+	function getImages($page=0, $firstPageCount=0, $sorttype=NULL, $sortdirection=NULL, $care=true, $mine=NULL) {
 		$this->getSearchImages($sorttype, $sortdirection, $mine);
 		if ($page == 0) {
 			return $this->images;
