@@ -229,17 +229,19 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 				$toplevelsubalbums = $topalbum->getAlbums();
 				$toplevelsubalbums = count($toplevelsubalbums);
 				$topalbumnumimages = $topalbum->getNumImages();
-				$count = ' <span style="white-space:nowrap;"><small>(';
-				if($toplevelsubalbums > 0) {
-					$count .= sprintf(ngettext('%u album', '%u albums',$toplevelsubalbums),$toplevelsubalbums);
-				}
-				if($topalbumnumimages > 0) {
-					if ($toplevelsubalbums) {
-						$count .= ' ';
+				if ($topalbumnumimages+$toplevelsubalbums>0) {
+					$count = ' <span style="white-space:nowrap;"><small>(';
+					if($toplevelsubalbums > 0) {
+						$count .= sprintf(ngettext('%u album', '%u albums',$toplevelsubalbums),$toplevelsubalbums);
 					}
-					$count .= sprintf(ngettext('%u image', '%u images',$topalbumnumimages),$topalbumnumimages);
+					if($topalbumnumimages > 0) {
+						if ($toplevelsubalbums) {
+							$count .= ' ';
+						}
+						$count .= sprintf(ngettext('%u image', '%u images',$topalbumnumimages),$topalbumnumimages);
+					}
+					$count .= ')</small></span>';
 				}
-				$count .= ')</small></span>';
 			}
 
 			if(in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (getAlbumID() == $topalbum->getAlbumID() || $topalbum->name == $currenturalbumname)) {

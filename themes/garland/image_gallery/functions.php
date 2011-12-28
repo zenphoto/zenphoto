@@ -97,46 +97,50 @@ class imagegallery {
 				$points = array();
 				$firstImage = null;
 				$lastImage = null;
-				?>
-				<div id="gallery" class="ad-gallery">
-					<div class="ad-image-wrapper"></div>
-						<div class="ad-controls"></div>
-						<div class="ad-nav">
-							<div class="ad-thumbs">
-								<ul class="ad-thumb-list">
-								<?php
-								while (next_image(true)){
-									if ($map) {
-										$coord = getGeoCoord($_zp_current_image);
-										if ($coord) {
-											$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
-											$points[] = $coord;
-										}
-									}
-									if (isImagePhoto()) {
-										// does not do video
-										if (is_null($firstImage)) {
-											$lastImage = imageNumber();
-											$firstImage = $lastImage;
-										} else {
-											$lastImage++;
-										}
-										?>
-										<li>
-											<a href="<?php echo html_encode(getDefaultSizedImage()); ?>">
-												<img src="<?php echo getImageThumb(); ?>"
-													class="image<?php echo $lastImage; ?>"
-													alt="<?php echo getImageDesc(); ?>">
-											</a>
-										</li>
+				if (getNumImages()>0) {
+					?>
+					<div id="gallery" class="ad-gallery">
+						<div class="ad-image-wrapper"></div>
+							<div class="ad-controls"></div>
+							<div class="ad-nav">
+								<div class="ad-thumbs">
+									<ul class="ad-thumb-list">
 									<?php
+									while (next_image(true)){
+										if ($map) {
+											$coord = getGeoCoord($_zp_current_image);
+											if ($coord) {
+												$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+												$points[] = $coord;
+											}
+										}
+										if (isImagePhoto()) {
+											// does not do video
+											if (is_null($firstImage)) {
+												$lastImage = imageNumber();
+												$firstImage = $lastImage;
+											} else {
+												$lastImage++;
+											}
+											?>
+											<li>
+												<a href="<?php echo html_encode(getDefaultSizedImage()); ?>">
+													<img src="<?php echo getImageThumb(); ?>"
+														class="image<?php echo $lastImage; ?>"
+														alt="<?php echo getImageDesc(); ?>">
+												</a>
+											</li>
+										<?php
+										}
 									}
-								}
-								?>
-			          </ul>
-			        </div>
-			      </div>
-			    </div>
+									?>
+				          </ul>
+				        </div>
+				      </div>
+				    </div>
+	          <?php
+					}
+					?>
 
 			    <div id="caption"<?php if (getOption('garland_caption_location')=='none') echo ' style="display:none"'?>>
 			    </div>

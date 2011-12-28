@@ -11,7 +11,6 @@ $plugin_version = '1.4.2';
 zp_register_filter('sendmail', 'zenphoto_sendmail');
 
 function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses) {
-	global $_zp_UTF8;
 	$headers = sprintf('From: %1$s <%2$s>', $from_name, $from_mail)."\n";
 	if (count($cc_addresses) > 0) {
 		$cclist = '';
@@ -22,7 +21,7 @@ function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $f
 	}
 	$result = true;
 	foreach ($email_list as $to_mail) {
-		$result = $result && $_zp_UTF8->send_mail($to_mail, $subject, $message, $headers);
+		$result = $result && utf8::send_mail($to_mail, $subject, $message, $headers);
 	}
 	if (!$result) {
 		if (!empty($msg)) $msg .= '<br />';

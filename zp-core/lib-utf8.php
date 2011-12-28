@@ -43,68 +43,67 @@ class utf8 {
 	 */
 
 	var $charsets;
-	var $validsets;
 	var $mb_sets;
 	var $iconv_sets;
 
 	function utf8() {
-		$this->charsets = array(	"ASMO-708" => "Arabic",
-															"BIG5" => "Chinese Traditional",
-															"CP1026" => "IBM EBCDIC (Turkish Latin-5)",
-															"cp866" => "Cyrillic (DOS)",
-															"CP870" => "IBM EBCDIC (Multilingual Latin-2)",
-															"CISO2022JP" => "Japanese (JIS-Allow 1 byte Kana)",
-															"DOS-720" => "Arabic (DOS)",
-															"DOS-862" => "Hebrew (DOS)",
-															"EBCDIC-CP-US" => "IBM EBCDIC (US-Canada)",
-															"EUC-CN" => "Chinese Simplified (EUC)",
-															"EUC-JP" => "Japanese (EUC)",
-															"EUC-KR" => "Korean (EUC)",
-															"GB2312" => "Chinese Simplified (GB2312)",
-															"HZ-GB-2312" => "Chinese Simplified (HZ)",
-															"IBM437" => "OEM United States",
-															"IBM737" => "Greek (DOS)",
-															"IBM775" => "Baltic (DOS)",
-															"IBM850" => "Western European (DOS)",
-															"IBM852" => "Central European (DOS)",
-															"IBM857" => "Turkish (DOS)",
-															"IBM861" => "Icelandic (DOS)",
-															"IBM869" => "Greek, Modern (DOS)",
-															"ISO-2022-JP" => "Japanese (JIS)",
-															"ISO-2022-JP" => "Japanese (JIS-Allow 1 byte Kana - SO/SI)",
-															"ISO-2022-KR" => "Korean (ISO)",
-															"ISO-8859-1" => "Western European (ISO)",
-															"ISO-8859-15" => "Latin 9 (ISO)",
-															"ISO-8859-2" => "Central European (ISO)",
-															"ISO-8859-3" => "Latin 3 (ISO)",
-															"ISO-8859-4" => "Baltic (ISO)",
-															"ISO-8859-5" => "Cyrillic (ISO)",
-															"ISO-8859-6" => "Arabic (ISO)",
-															"ISO-8859-7" => "Greek (ISO)",
-															"ISO-8859-8" => "Hebrew (ISO-Visual)",
-															"ISO-8859-8-i" => "Hebrew (ISO-Logical)",
-															"ISO-8859-9" => "Turkish (ISO)",
-															"JOHAB" => "Korean (Johab)",
-															"KOi8-R" => "Cyrillic (KOI8-R)",
-															"KOi8-U" => "Cyrillic (KOI8-U)",
-															"KS_C_5601-1987" => "Korean",
-															"MACINTOSH" => "Western European (MAC)",
-															"SHIFT_JIS" => "Japanese (Shift-JIS)",
-															"UNICODE" => "Unicode",
-															"UNICODEFFFE" => "Unicode (Big-Endian)",
-															"US-ASCII" => "US-ASCII",
-															"UTF-7" => "Unicode (UTF-7)",
-															"UTF-8" => "Unicode (UTF-8)",
-															"WINDOWS-1250" => "Central European (Windows)",
-															"WINDOWS-1251" => "Cyrillic (Windows)",
-															"WINDOWS-1252" => "Western European (Windows)",
-															"WINDOWS-1253" => "Greek (Windows)",
-															"WINDOWS-1254" => "Turkish (Windows)",
-															"WINDOWS-1255" => "Hebrew (Windows)",
-															"WINDOWS-1256" => "Arabic (Windows)",
-															"WINDOWS-1257" => "Baltic (Windows)",
-															"WINDOWS-1258" => "Vietnamese (Windows)",
-															"WINDOWS-874" => "Thai (Windows)"
+		$this->charsets = array(	"ASMO-708" => gettext("Arabic"),
+															"BIG5" => gettext("Chinese Traditional"),
+															"CP1026" => gettext("IBM EBCDIC (Turkish Latin-5)"),
+															"cp866" => gettext("Cyrillic (DOS)"),
+															"CP870" => gettext("IBM EBCDIC (Multilingual Latin-2)"),
+															"CISO2022JP" => gettext("Japanese (JIS-Allow 1 byte Kana)"),
+															"DOS-720" => gettext("Arabic (DOS)"),
+															"DOS-862" => gettext("Hebrew (DOS)"),
+															"EBCDIC-CP-US" => gettext("IBM EBCDIC (US-Canada)"),
+															"EUC-CN" => gettext("Chinese Simplified (EUC)"),
+															"EUC-JP" => gettext("Japanese (EUC)"),
+															"EUC-KR" => gettext("Korean (EUC)"),
+															"GB2312" => gettext("Chinese Simplified (GB2312)"),
+															"HZ-GB-2312" => gettext("Chinese Simplified (HZ)"),
+															"IBM437" => gettext("OEM United States"),
+															"IBM737" => gettext("Greek (DOS)"),
+															"IBM775" => gettext("Baltic (DOS)"),
+															"IBM850" => gettext("Western European (DOS)"),
+															"IBM852" => gettext("Central European (DOS)"),
+															"IBM857" => gettext("Turkish (DOS)"),
+															"IBM861" => gettext("Icelandic (DOS)"),
+															"IBM869" => gettext("Greek, Modern (DOS)"),
+															"ISO-2022-JP" => gettext("Japanese (JIS)"),
+															"ISO-2022-JP" => gettext("Japanese (JIS-Allow 1 byte Kana - SO/SI)"),
+															"ISO-2022-KR" => gettext("Korean (ISO)"),
+															"ISO-8859-1" => gettext("Western European (ISO)"),
+															"ISO-8859-15" => gettext("Latin 9 (ISO)"),
+															"ISO-8859-2" => gettext("Central European (ISO)"),
+															"ISO-8859-3" => gettext("Latin 3 (ISO)"),
+															"ISO-8859-4" => gettext("Baltic (ISO)"),
+															"ISO-8859-5" => gettext("Cyrillic (ISO)"),
+															"ISO-8859-6" => gettext("Arabic (ISO)"),
+															"ISO-8859-7" => gettext("Greek (ISO)"),
+															"ISO-8859-8" => gettext("Hebrew (ISO-Visual)"),
+															"ISO-8859-8-i" => gettext("Hebrew (ISO-Logical)"),
+															"ISO-8859-9" => gettext("Turkish (ISO)"),
+															"JOHAB" => gettext("Korean (Johab)"),
+															"KOi8-R" => gettext("Cyrillic (KOI8-R)"),
+															"KOi8-U" => gettext("Cyrillic (KOI8-U)"),
+															"KS_C_5601-1987" => gettext("Korean"),
+															"MACINTOSH" => gettext("Western European (MAC)"),
+															"SHIFT_JIS" => gettext("Japanese (Shift-JIS)"),
+															"UNICODE" => gettext("Unicode"),
+															"UNICODEFFFE" => gettext("Unicode (Big-Endian)"),
+															"US-ASCII" => gettext("US-ASCII"),
+															"UTF-7" => gettext("Unicode (UTF-7)"),
+															"UTF-8" => gettext("Unicode (UTF-8)"),
+															"WINDOWS-1250" => gettext("Central European (Windows)"),
+															"WINDOWS-1251" => gettext("Cyrillic (Windows)"),
+															"WINDOWS-1252" => gettext("Western European (Windows)"),
+															"WINDOWS-1253" => gettext("Greek (Windows)"),
+															"WINDOWS-1254" => gettext("Turkish (Windows)"),
+															"WINDOWS-1255" => gettext("Hebrew (Windows)"),
+															"WINDOWS-1256" => gettext("Arabic (Windows)"),
+															"WINDOWS-1257" => gettext("Baltic (Windows)"),
+															"WINDOWS-1258" => gettext("Vietnamese (Windows)"),
+															"WINDOWS-874" => gettext("Thai (Windows)")
 															);
 		// prune the list to supported character sets
 		$this->iconv_sets = array();
@@ -191,7 +190,6 @@ class utf8 {
 				}
 			}
 		}
-		$this->validsets = array_merge($this->mb_sets, $this->iconv_sets);
 	}
 
 	/**
@@ -239,7 +237,7 @@ class utf8 {
 	/**
 	 * Detect the encoding of the string
 	 */
-	function detect($string) {
+	static function detect($string) {
 		if (function_exists('mb_detect_encoding')) {
 			$encoding = mb_detect_encoding($string);
 			if ($encoding) {
@@ -269,7 +267,7 @@ class utf8 {
 	 * Determine the number of characters of a string
 	 * Compatible with mb_strlen(), an UTF-8 friendly replacement for strlen()
 	 */
-	function strlen($str) {
+	static function strlen($str) {
 		return preg_match_all('/[\x01-\x7F]|[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF][\x80-\xBF]/', $str, $arr);
 	}
 
@@ -277,7 +275,7 @@ class utf8 {
 	 * Count the number of substring occurances
 	 * Compatible with mb_substr_count(), an UTF-8 friendly replacement for substr_count()
 	 */
-	function substr_count($haystack, $needle) {
+	static function substr_count($haystack, $needle) {
 		return substr_count($haystack, $needle);
 	}
 
@@ -285,7 +283,7 @@ class utf8 {
 	 * Return part of a string, length and offset in characters
 	 * Compatible with mb_substr(), an UTF-8 friendly replacement for substr()
 	 */
-	function substr($str, $start , $length = NULL) {
+	static function substr($str, $start , $length = NULL) {
 		preg_match_all('/[\x01-\x7F]|[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF][\x80-\xBF]/', $str, $arr);
 		if (is_null($length)) {
 			$arr = array_slice($arr[0], $start);
@@ -300,7 +298,7 @@ class utf8 {
 	 * Return part of a string, length and offset in bytes
 	 * Compatible with mb_strcut()
 	 */
-	function strcut($str, $start, $length = NULL) {
+	static function strcut($str, $start, $length = NULL) {
 		if ($start < 0)	$start += strlen($str);
 		$original = $start;
 		while ($start > 0 && intval(ord($str[$start]) & 0xC0) == 0x80)
@@ -340,7 +338,7 @@ class utf8 {
 	 * Determine the width of a string
 	 * Compatible with mb_strwidth()
 	 */
-	function strwidth($str) {
+	static function strwidth($str) {
 		$double = preg_match_all('/[\xE2-\xEF][\x80-\xBF][\x80-\xBF]/', $str, $arr) - 			// U+2000 - U+FFFF = double width
 				  preg_match_all('/\xEF\xBD[\xA1-\xBF]|\xEF\xBE[\x80-\x9F]/', $str, $arr);		// U+FF61 - U+FF9F = single width
 		$null   = preg_match_all('/[\x00-\x19]/', $str, $arr);									// U+0000 - U+0019 = no width
@@ -352,7 +350,7 @@ class utf8 {
 	 * Get truncated string with specified width
 	 * Compatible with mb_strimwidth()
 	 */
-	function strimwidth($str, $start, $width, $trimmarker = '') {
+	static function strimwidth($str, $start, $width, $trimmarker = '') {
 
 		$str   = UTF8::substr($str, $start);
 		$width = $width - UTF8::strwidth($trimmarker);
@@ -389,7 +387,7 @@ class utf8 {
 	 * Find position of last occurance of a string in another string
 	 * Compatible with mb_strrpos(), an UTF-8 friendly replacement for strrpos()
 	 */
-	function strrpos($haystack, $needle) {
+	static function strrpos($haystack, $needle) {
 		$pos = strrpos($haystack, $needle);
 		if ($pos === false)
 			return false;
@@ -401,7 +399,7 @@ class utf8 {
 	 * Find position of first occurance of a string in another string
 	 * Compatible with mb_strpos(), an UTF-8 friendly replacement for strpos()
 	 */
-	function strpos($haystack, $needle, $offset = 0) {
+	static function strpos($haystack, $needle, $offset = 0) {
 		$comp = 0;
 
 		while (!isset($length) || $length < $offset)
@@ -419,7 +417,7 @@ class utf8 {
 	 * Convert a string to lower case
 	 * Compatible with mb_strtolower(), an UTF-8 friendly replacement for strtolower()
 	 */
-	function strtolower($str) {
+	static function strtolower($str) {
 		global $UTF8_TABLES;
 		return strtr($str, $UTF8_TABLES['strtolower']);
 	}
@@ -428,7 +426,7 @@ class utf8 {
 	 * Convert a string to upper case
 	 * Compatible with mb_strtoupper(), an UTF-8 friendly replacement for strtoupper()
 	 */
-	function strtoupper($str) {
+	static function strtoupper($str) {
 		global $UTF8_TABLES;
 		return strtr($str, $UTF8_TABLES['strtoupper']);
 	}
@@ -437,7 +435,7 @@ class utf8 {
 	 * Encode a string for use in a MIME header
 	 * Simplied replacement for mb_encode_mimeheader()
 	 */
-	function encode_mimeheader($str) {
+	static function encode_mimeheader($str) {
 		$length = 45; $pos = 0; $max = strlen($str);
     $buffer = '';
 		while ($pos < $max)
@@ -466,7 +464,7 @@ class utf8 {
 	 * Send mail
 	 * Replacement for mb_send_mail(), an UTF-8 friendly replacement for mail()
 	 */
-	function send_mail($to, $subject, $message , $additional_headers = '', $additional_parameter = '') {
+	static function send_mail($to, $subject, $message , $additional_headers = '', $additional_parameter = '') {
 		$subject = UTF8::encode_mimeheader($subject);
 		$message = chunk_split(base64_encode($message));
 
@@ -493,7 +491,7 @@ class utf8 {
 	/**
 	 * Prepare an UTF-8 string for use in JavaScript
 	 */
-	function encode_javascript($string)
+	static function encode_javascript($string)
 	{
 		$string = str_replace ('\\', '\\\\', $string);
 		$string = str_replace ('"', '\\"', $string);
@@ -557,7 +555,7 @@ class utf8 {
 	 * Encode an UTF-8 string with numeric entities
 	 * Simplied replacement for mb_encode_numericentity()
 	 */
-	function encode_numericentity($string)
+	static function encode_numericentity($string)
 	{
 		$len = strlen ($string);
 		$pos = 0;
@@ -846,32 +844,25 @@ $UTF8_TABLES['strtoupper'] = array(
  */
 if (!function_exists('mb_internal_encoding')) {
 	function mb_strtolower($str) {
-		global $_zp_UTF8;
-  	return $_zp_UTF8->strtolower($str);
+  	return utf8::strtolower($str);
 	}
 	function mb_strtoupper($str) {
-		global $_zp_UTF8;
-  	return $_zp_UTF8->strtoupper($str);
+  	return utf8::strtoupper($str);
 	}
 	function mb_strlen($str) {
-		global $_zp_UTF8;
-  	return $_zp_UTF8->strlen($str);
+  	return utf8::strlen($str);
 	}
 	function mb_substr($str, $start, $length = NULL) {
-		global $_zp_UTF8;
-  	return $_zp_UTF8->substr($str, $start, $length);
+  	return utf8::substr($str, $start, $length);
 	}
 	function mb_strrpos($haystack, $needle) {
-		global $_zp_UTF8;
-  	return $_zp_UTF8->strrpos($haystack, $needle);
+  	return utf8::strrpos($haystack, $needle);
 	}
 	function mb_strpos($haystack, $needle, $offset = 0) {
-		global $_zp_UTF8;
-  	return $_zp_UTF8->strpos($haystack, $needle, $offset);
+  	return utf8::strpos($haystack, $needle, $offset);
 	}
 	function mb_substr_count($haystack, $needle) {
-		global $_zp_UTF8;
-  	return $_zp_UTF8->substr_count($haystack, $needle);
+  	return utf8::substr_count($haystack, $needle);
 	}
 
 }

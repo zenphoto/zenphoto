@@ -264,7 +264,7 @@ function html_encode($this_string) {
 function js_encode($this_string) {
 	global $_zp_UTF8;
 	$this_string = preg_replace("/\r?\n/", "\\n", $this_string);
-	$this_string = $_zp_UTF8->encode_javascript($this_string);
+	$this_string = utf8::encode_javascript($this_string);
 	return $this_string;
 }
 
