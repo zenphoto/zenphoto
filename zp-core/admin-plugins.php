@@ -200,6 +200,19 @@ foreach ($filelist as $extension) {
 	<tr>
 		<td width="30%">
 		<label>
+			<?php
+ 			if ($third_party_plugin) {
+ 				$path = stripSuffix($paths[$extension]).'/logo.png';
+ 				if (file_exists($path)) {
+ 					$ico =str_replace(SERVERPATH, WEBPATH, $path);
+ 				} else {
+ 					$ico = 'images/place_holder_icon.png';
+ 				}
+ 			} else {
+ 				$ico = 'images/zp_gold.png';
+ 			}
+ 			?>
+			<img src="<?php echo $ico; ?>" />
 			<input type="checkbox" name="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
 				<?php
 				if ($parserr || $plugin_disable) {
@@ -210,7 +223,7 @@ foreach ($filelist as $extension) {
 						echo ' checked="checked"';
 					}
 				} ?> />
-			<span<?php if (!$third_party_plugin) echo ' style="font-weight:bold"' ?>><?php echo $extension; ?></span>
+			<?php echo $extension; ?>
 		</label>
 		<?php
 		if (!empty($plugin_version)) {
