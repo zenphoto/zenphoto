@@ -38,7 +38,7 @@
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Multiple layouts");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
-$plugin_version = '1.4.2';
+
 $option_interface = 'multipleLayoutOptions';
 
 zp_register_filter('load_theme_script','getLayout');

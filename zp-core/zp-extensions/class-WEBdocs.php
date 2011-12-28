@@ -12,7 +12,7 @@
 $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = gettext('Provides a means for showing .pdf, .pps documents using WEBdocs for the document rendering');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.2';
+
 
 $option_interface = 'WEBdocs_Options';
 

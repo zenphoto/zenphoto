@@ -7,7 +7,7 @@
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Emails a password set request to a newly created user.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.2';
+
 
 zp_register_filter('save_user', 'email_new_user_save');
 zp_register_filter('edit_admin_custom_data', 'email_new_edit_admin', 0);

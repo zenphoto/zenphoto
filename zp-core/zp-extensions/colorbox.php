@@ -11,7 +11,7 @@
 $plugin_is_filter = 9|THEME_PLUGIN;
 $plugin_description = gettext("Loads Colorbox JS and CSS scripts for selected theme page scripts. Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself. Visit the <a href='http://colorpowered.com/colorbox/'>Colorbox website</a> about that.");
 $plugin_author = 'Stephen Billard (sbillard)';
-$plugin_version = '1.4.2';
+
 
 $option_interface = 'colorbox_Options';
 

@@ -1,5 +1,5 @@
 <?php
-$plugin_version = '1.4.2';
+
 define('OFFSET_PATH', 3);
 $basepath = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
 require_once($basepath."/admin-globals.php");

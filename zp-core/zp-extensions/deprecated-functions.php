@@ -11,7 +11,7 @@
 $plugin_description = gettext("Deprecated Zenphoto functions. These functions have been removed from mainstream Zenphoto as they have been supplanted. They are not maintained and they are not guaranteed to function correctly with the current version of Zenphoto.  You should update your theme if you get warnings. This plugin is not required for any theme coded for the current version of Zenphoto.");
 $option_interface = 'deprecated_functions';
 $plugin_is_filter = 9|CLASS_PLUGIN;
-$plugin_version = '1.4.2';
+
 
 class deprecated_functions {
 

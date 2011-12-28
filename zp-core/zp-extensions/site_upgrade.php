@@ -16,7 +16,6 @@ if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5|ADMIN_PLUGIN;
 	$plugin_description = gettext('Utility to divert access to the gallery to a screen saying the site is upgrading.');
 	$plugin_author = "Stephen Billard (sbillard)";
-	$plugin_version = '1.4.3';
 	$plugin_disable = (MOD_REWRITE) ? false : gettext('The <em>mod_rewrite</em> must be enabled');
 
 	zp_register_filter('admin_utilities_buttons', 'site_upgrade_button');

@@ -6,7 +6,7 @@
  */
 $plugin_description = gettext('Automatically increments hitcounters on Zenphoto objects viewed by a "visitor".');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.2';
+
 $option_interface = 'hitcounter';
 
 zp_register_filter('load_theme_script', 'hitcounter::load_script');

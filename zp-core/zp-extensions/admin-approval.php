@@ -11,7 +11,6 @@
 $plugin_is_filter = 9|ADMIN_PLUGIN;
 $plugin_description = gettext('Allows only users with Admin or Manage All rights to change the publish state of objects.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.2';
 
 zp_register_filter('save_album_utilities_data', 'admin_approval_publishZenphoto');
 zp_register_filter('save_image_utilities_data', 'admin_approval_publishZenphoto');

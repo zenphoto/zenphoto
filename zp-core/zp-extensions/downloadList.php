@@ -30,7 +30,7 @@
 $plugin_is_filter = 20|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Plugin to generate file download lists. The source of these files may be anywhere that can be accessed by server scripts, it need not be part of your Zenphoto installation.");
 $plugin_author = "Malte Müller (acrylian)";
-$plugin_version = '1.4.2';
+
 $plugin_URL = "";
 $option_interface = "downloadListOptions";
 zp_register_filter('admin_utilities_buttons', 'downloadstatistics_button');

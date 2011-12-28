@@ -48,7 +48,7 @@
 $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext('Checks for Apache HTTP authenitcation authorized users');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.2';
+
 $option_interface = 'http_auth';
 
 zp_register_filter('authorization_cookie', 'http_auth::check');

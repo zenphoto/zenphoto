@@ -21,7 +21,7 @@
 $plugin_is_filter = 2|CLASS_PLUGIN;
 $plugin_description = gettext("Collects and displays search criteria.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.2';
+
 $option_interface = 'search_statistics';
 
 zp_register_filter('search_statistics','search_statistics::handler');

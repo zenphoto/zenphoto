@@ -13,7 +13,7 @@
 $plugin_is_filter = 8|CLASS_PLUGIN;
 $plugin_description = gettext("Blocks access from an IP address which has had multiple failed attempts to access the administration pages.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.2';
+
 
 $option_interface = 'failed_access_blocker';
 zp_register_filter('admin_allow_access', 'failed_access_blocker_adminGate',2);

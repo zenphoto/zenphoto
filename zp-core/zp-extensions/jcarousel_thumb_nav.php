@@ -11,7 +11,7 @@
 
 $plugin_description = gettext("jQuery jCarousel thumb nav plugin with dynamic loading of thumbs on request via JavaScript.");
 $plugin_author = "Malte Müller (acrylian) based on a jCarousel example";
-$plugin_version = '1.4.2';
+
 $option_interface = 'jcarouselOptions';
 
 if (!OFFSET_PATH && (getOption('jcarousel_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page)))) {
