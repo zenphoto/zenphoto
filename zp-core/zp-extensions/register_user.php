@@ -26,7 +26,7 @@ $plugin_version = '1.4.2';
 
 $option_interface = 'register_user_options';
 
-zp_register_filter('custom_option_save','register_user_handleOptionSave');
+zp_register_filter('custom_option_save','register_user_options::handleOptionSave');
 
 if (getOption('register_user_address_info')) {
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/comment_form.php');
@@ -38,7 +38,7 @@ if (getOption('register_user_address_info')) {
  */
 class register_user_options {
 
-	function register_user_options() {
+	function __construct() {
 		global $_zp_authority;
 		gettext($str = 'You have received this email because you registered with the user id %3$s on this site.'."\n".'To complete your registration visit %1$s.');
 		setOptionDefault('register_user_text', getAllTranslations($str));
@@ -173,23 +173,24 @@ class register_user_options {
 				break;
 		}
 	}
-}
 
-function register_user_handleOptionSave($notify,$themename,$themealbum) {
-	if (!function_exists('user_groups_admin_tabs')) {
-		global $_zp_authority;
-		$saved_rights = NO_RIGHTS;
-		$rightslist = sortMultiArray($_zp_authority->getRights(), array('set', 'value'));
-		foreach ($rightslist as $rightselement=>$right) {
-			if (isset($_POST['register_user-'.$rightselement])) {
-				$saved_rights = $saved_rights | $_POST['register_user-'.$rightselement];
+
+	static function handleOptionSave($notify,$themename,$themealbum) {
+		if (!function_exists('user_groups_admin_tabs')) {
+			global $_zp_authority;
+			$saved_rights = NO_RIGHTS;
+			$rightslist = sortMultiArray($_zp_authority->getRights(), array('set', 'value'));
+			foreach ($rightslist as $rightselement=>$right) {
+				if (isset($_POST['register_user-'.$rightselement])) {
+					$saved_rights = $saved_rights | $_POST['register_user-'.$rightselement];
+				}
 			}
+			setOption('register_user_user_rights', $saved_rights);
 		}
-		setOption('register_user_user_rights', $saved_rights);
+		return $notify;
 	}
-	return $notify;
-}
 
+}
 
 /**
  * Parses the verification and registration if they have occurred

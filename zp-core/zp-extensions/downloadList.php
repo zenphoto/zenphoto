@@ -34,7 +34,7 @@ $plugin_version = '1.4.2';
 $plugin_URL = "";
 $option_interface = "downloadListOptions";
 zp_register_filter('admin_utilities_buttons', 'downloadstatistics_button');
-zp_register_filter('custom_option_save', 'download_list_custom_options_save');
+zp_register_filter('custom_option_save', 'downloadListOptions::custom_options_save');
 
 /**
  * Plugin option handling class
@@ -42,7 +42,7 @@ zp_register_filter('custom_option_save', 'download_list_custom_options_save');
  */
 class downloadListOptions {
 
-	function downloadListOptions() {
+	function __construct() {
 		setOptionDefault('downloadList_directory', 'uploaded');
 		setOptionDefault('downloadList_showfilesize', 1);
 		setOptionDefault('downloadList_showdownloadcounter', 1);
@@ -123,38 +123,40 @@ class downloadListOptions {
 	<?php
 
 	}
-}
 
-function download_list_custom_options_save($notify,$themename,$themealbum) {
-	global $gallery, $_zp_authority;
-	if (sanitize(@$_POST['password_enabled_downloadList'], 3)) {
-		$olduser = getOption('downloadList_user');
-		$newuser = trim(sanitize($_POST['downloadList_user'],3));
-		if (!empty($newuser)) {
-			$gallery->setUserLogonField(1);
-			$gallery->save();
-		}
-		$fail = false;
-		$pwd = trim(sanitize($_POST['downloadList_pass']));
-		if ($olduser != $newuser) {
-			if (!empty($newuser) && empty($pwd) && empty($pwd2)) $fail = true;
-		}
-		if (!$fail && $_POST['downloadList_pass'] == $_POST['downloadList_pass_2']) {
-			setOption('downloadList_user',$newuser);
-			if (empty($pwd)) {
-				if (empty($_POST['downloadList_pass'])) {
-					setOption('downloadList_pass', NULL);  // clear the protected image password
+
+	static function custom_options_save($notify,$themename,$themealbum) {
+		global $gallery, $_zp_authority;
+		if (sanitize(@$_POST['password_enabled_downloadList'], 3)) {
+			$olduser = getOption('downloadList_user');
+			$newuser = trim(sanitize($_POST['downloadList_user'],3));
+			if (!empty($newuser)) {
+				$gallery->setUserLogonField(1);
+				$gallery->save();
+			}
+			$fail = false;
+			$pwd = trim(sanitize($_POST['downloadList_pass']));
+			if ($olduser != $newuser) {
+				if (!empty($newuser) && empty($pwd) && empty($pwd2)) $fail = true;
+			}
+			if (!$fail && $_POST['downloadList_pass'] == $_POST['downloadList_pass_2']) {
+				setOption('downloadList_user',$newuser);
+				if (empty($pwd)) {
+					if (empty($_POST['downloadList_pass'])) {
+						setOption('downloadList_pass', NULL);  // clear the protected image password
+					}
+				} else {
+					setOption('downloadList_pass', $_zp_authority->passwordHash($newuser, $pwd));
 				}
 			} else {
-				setOption('downloadList_pass', $_zp_authority->passwordHash($newuser, $pwd));
+				$notify .= gettext('passwords did not match').'<br />';
 			}
-		} else {
-			$notify .= gettext('passwords did not match').'<br />';
+			setOption('downloadList_hint', process_language_string_save('downloadList_hint', 3));
 		}
-		setOption('downloadList_hint', process_language_string_save('downloadList_hint', 3));
-	}
 
 	return $notify;
+}
+
 }
 
 $_downloadList_linkpath = substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1);

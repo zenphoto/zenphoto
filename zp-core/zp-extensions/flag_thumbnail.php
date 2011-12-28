@@ -23,20 +23,20 @@ $plugin_description = sprintf(gettext('Apply <img src="%1$s/lock.png" alt=""/> o
 																						 and <img src="%1$s/GPS.png" alt=""/> over thumbnails of <em>geocoded</em> images'),WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flag_thumbnail');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.2';
-$option_interface = 'flag_thumbnailOptions';
+$option_interface = 'flag_thumbnail';
 
-zp_register_filter('standard_image_thumb_html', 'flag_thumbnail_std_image_thumbs');
-zp_register_filter('standard_album_thumb_html', 'flag_thumbnail_std_album_thumbs', 1);
-zp_register_filter('custom_album_thumb_html', 'flag_thumbnail_custom_album_thumbs', 1);
-zp_register_filter('custom_image_html', 'flag_thumbnail_custom_images', 1);
+zp_register_filter('standard_image_thumb_html', 'flag_thumbnail::std_image_thumbs');
+zp_register_filter('standard_album_thumb_html', 'flag_thumbnail::std_album_thumbs', 1);
+zp_register_filter('custom_album_thumb_html', 'flag_thumbnail::custom_album_thumbs', 1);
+zp_register_filter('custom_image_html', 'flag_thumbnail::custom_images', 1);
 
 /**
  * Plugin option handling class
  *
  */
-class flag_thumbnailOptions {
+class flag_thumbnail {
 
-	function flag_thumbnailOptions() {
+	function __construct() {
 		setOptionDefault('flag_thumbnail_date', 'date');
 		setOptionDefault('flag_thumbnail_range', '3');
 		setOptionDefault('flag_thumbnail_new_text', 'NEW');
@@ -114,100 +114,101 @@ class flag_thumbnailOptions {
 
 									);
 	}
-}
 
-function flag_thumbnail_insert_class($html) {
-	global $_zp_current_album, $_zp_current_image;
-	if (getOption('flag_thumbnail_flag_new')) {
-		if(isset($_zp_current_image)) {
-			$obj = $_zp_current_image;
-		} else {
-			$obj = $_zp_current_album;
-		}
-		$html = '<span class="flag_thumbnail" style="position:relative; display:block;">'."\n".$html."\n";
-		switch(getOption('flag_thumbnail_date')) {
-			case "date":
-				$imagedatestamp = strtotime($obj->getDateTime());
-				break;
-			case "mtime":
-				$imagedatestamp = $obj->get('mtime');
-				break;
-		}
-		$not_older_as = (60*60*24*getOption('flag_thumbnail_range'));
-		$age = (time()-$imagedatestamp);
-		if($age <= $not_older_as) {
-			if(getOption('flag_thumbnail_use_text')) {
-				$text = 	getOption('flag_thumbnail_new_text');
-				$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;right: 6px;">'.$text."</span>\n";
+
+	private static function insert_class($html) {
+		global $_zp_current_album, $_zp_current_image;
+		if (getOption('flag_thumbnail_flag_new')) {
+			if(isset($_zp_current_image)) {
+				$obj = $_zp_current_image;
 			} else {
-				$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_new_icon'),false,true);
-				$html .= '<img src="'.$img.'" alt="" style="position: absolute;top: 4px;right: 4px;"/>'."\n";
+				$obj = $_zp_current_album;
 			}
-		}
-	}
-	if (getOption('flag_thumbnail_flag_geodata')) {
-		if (get_class($obj)=='Album') {
-			$obj = $obj->getAlbumThumbImage();
-		}
-		if (is_object($obj) && get_class($obj)=='_Image') {
-			$exif = $obj->getMetaData();
-			if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
+			$html = '<span class="flag_thumbnail" style="position:relative; display:block;">'."\n".$html."\n";
+			switch(getOption('flag_thumbnail_date')) {
+				case "date":
+					$imagedatestamp = strtotime($obj->getDateTime());
+					break;
+				case "mtime":
+					$imagedatestamp = $obj->get('mtime');
+					break;
+			}
+			$not_older_as = (60*60*24*getOption('flag_thumbnail_range'));
+			$age = (time()-$imagedatestamp);
+			if($age <= $not_older_as) {
 				if(getOption('flag_thumbnail_use_text')) {
-					$text = 	getOption('flag_thumbnail_geodata_text');
-					$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;right: 6px;">'.$text."</span>\n";
+					$text = 	getOption('flag_thumbnail_new_text');
+					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;right: 6px;">'.$text."</span>\n";
 				} else {
-					$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_geodata_icon'),false,true);
-					$html .= '<img src="'.$img.'" alt="" style="position: absolute;bottom: 4px;right: 4px;"/>'."\n";
+					$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_new_icon'),false,true);
+					$html .= '<img src="'.$img.'" alt="" style="position: absolute;top: 4px;right: 4px;"/>'."\n";
 				}
 			}
 		}
-	}
-	$i = strpos($html, 'class=');
-	if ($i !== false) {
-		$locked = strpos($html, 'password_protected', $i+7) !== false;
-		$unpublished = strpos($html, 'not_visible', $i+7) !== false;
-
-		if ($locked && getOption('flag_thumbnail_flag_locked')) {
-			if(getOption('flag_thumbnail_use_text')) {
-				$text = 	getOption('flag_thumbnail_locked_text');
-				$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;left: 4px;">'.$text."</span>\n";
-			} else {
-				$img =  getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_locked_icon'),false,true);
-				$html .= '<img src="'.$img.'" alt="" style="position: absolute;bottom: 4px;left: 4px;"/>'."\n";
+		if (getOption('flag_thumbnail_flag_geodata')) {
+			if (get_class($obj)=='Album') {
+				$obj = $obj->getAlbumThumbImage();
 			}
-
-		}
-		if ($unpublished && getOption('flag_thumbnail_flag_unpublished')) {
-			if(getOption('flag_thumbnail_use_text')) {
-				$text = 	getOption('flag_thumbnail_unpublished_text');
-				$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;left: 4px;">'.$text."</span>\n";
-			} else {
-				$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_unpublished_icon'),false,true);
-				$html .= '<img src="'.$img.'" alt="" style="position: absolute;top: 4px;left: 4px;"/>'."\n";
+			if (is_object($obj) && get_class($obj)=='_Image') {
+				$exif = $obj->getMetaData();
+				if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
+					if(getOption('flag_thumbnail_use_text')) {
+						$text = 	getOption('flag_thumbnail_geodata_text');
+						$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;right: 6px;">'.$text."</span>\n";
+					} else {
+						$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_geodata_icon'),false,true);
+						$html .= '<img src="'.$img.'" alt="" style="position: absolute;bottom: 4px;right: 4px;"/>'."\n";
+					}
+				}
 			}
 		}
-	}
-	$html .= "</span>\n";
-	return $html;
-}
+		$i = strpos($html, 'class=');
+		if ($i !== false) {
+			$locked = strpos($html, 'password_protected', $i+7) !== false;
+			$unpublished = strpos($html, 'not_visible', $i+7) !== false;
 
-function flag_thumbnail_custom_images($html, $thumbstandin) {
-	if ($thumbstandin) {
-		$html = flag_thumbnail_insert_class($html);
-	}
-	return $html;
-}
-function flag_thumbnail_std_image_thumbs($html) {
-	$html = flag_thumbnail_insert_class($html);
-	return $html;
-}
-function flag_thumbnail_std_album_thumbs($html) {
-	$html = flag_thumbnail_insert_class($html);
-	return $html;
-}
-function flag_thumbnail_custom_album_thumbs($html) {
-	$html = flag_thumbnail_insert_class($html);
-	return $html;
-}
+			if ($locked && getOption('flag_thumbnail_flag_locked')) {
+				if(getOption('flag_thumbnail_use_text')) {
+					$text = 	getOption('flag_thumbnail_locked_text');
+					$html .= '<span class="textasnewflag" style="position: absolute;bottom: 10px;left: 4px;">'.$text."</span>\n";
+				} else {
+					$img =  getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_locked_icon'),false,true);
+					$html .= '<img src="'.$img.'" alt="" style="position: absolute;bottom: 4px;left: 4px;"/>'."\n";
+				}
 
+			}
+			if ($unpublished && getOption('flag_thumbnail_flag_unpublished')) {
+				if(getOption('flag_thumbnail_use_text')) {
+					$text = 	getOption('flag_thumbnail_unpublished_text');
+					$html .= '<span class="textasnewflag" style="position: absolute;top: 10px;left: 4px;">'.$text."</span>\n";
+				} else {
+					$img = getPlugin('flag_thumbnail/'.getOption('flag_thumbnail_unpublished_icon'),false,true);
+					$html .= '<img src="'.$img.'" alt="" style="position: absolute;top: 4px;left: 4px;"/>'."\n";
+				}
+			}
+		}
+		$html .= "</span>\n";
+		return $html;
+	}
+
+	static function custom_images($html, $thumbstandin) {
+		if ($thumbstandin) {
+			$html = flag_thumbnail::insert_class($html);
+		}
+		return $html;
+	}
+	static function std_image_thumbs($html) {
+		$html = flag_thumbnail::insert_class($html);
+		return $html;
+	}
+	static function std_album_thumbs($html) {
+		$html = flag_thumbnail::insert_class($html);
+		return $html;
+	}
+	static function custom_album_thumbs($html) {
+		$html = flag_thumbnail::insert_class($html);
+		return $html;
+	}
+
+}
 ?>

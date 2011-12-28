@@ -22,9 +22,9 @@
 $plugin_description = gettext("Enable <strong>dynamic-locale</strong> to allow viewers of your site to select the language translation of their choice.");
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.2';
-$option_interface = 'dynamic_locale_options';
+$option_interface = 'dynamic_locale';
 
-zp_register_filter('theme_head', 'dynamic_localeJS');
+zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');
 
 /**
  * prints a form for selecting a locale
@@ -107,15 +107,9 @@ function printLanguageSelector($flags=NULL) {
 	}
 }
 
-function dynamic_localeJS() {
-	?>
-	<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/dynamic-locale/locale.css" />
-	<?php
-}
+class dynamic_locale {
 
-class dynamic_locale_options {
-
-	function dynamic_locale_options() {
+	function __construct() {
 		setOptionDefault('dynamic_locale_visual', 0);
 	}
 
@@ -123,6 +117,12 @@ class dynamic_locale_options {
 		return array(	gettext('Use flags') => array('key' => 'dynamic_locale_visual', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('Checked produces an array of flags. Not checked produces a selector.'))
 		);
+	}
+
+	static function dynamic_localeJS() {
+		?>
+		<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/dynamic-locale/locale.css" />
+		<?php
 	}
 
 }

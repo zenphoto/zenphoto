@@ -45,37 +45,19 @@ if (isset($_GET['action']) && $_GET['action']=='clear_rating') {
 
 $option_interface = 'jquery_rating';
 
-zp_register_filter('edit_album_utilities', 'optionVoteStatus');
-zp_register_filter('save_album_utilities_data', 'optionVoteStatusSave');
-zp_register_filter('admin_utilities_buttons', 'rating_purgebutton');
+zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');
+zp_register_filter('save_album_utilities_data', '::optionVoteStatusSave');
+zp_register_filter('admin_utilities_buttons', 'jquery_rating::rating_purgebutton');
 
 if (getOption('rating_image_individual_control')) {
-	zp_register_filter('edit_image_utilities', 'optionVoteStatus');
-	zp_register_filter('save_image_utilities_data', 'optionVoteStatusSave');
+	zp_register_filter('edit_image_utilities', 'jquery_rating::optionVoteStatus');
+	zp_register_filter('save_image_utilities_data', 'jquery_rating::optionVoteStatusSave');
 }
 
 // register the scripts needed
 if (in_context(ZP_INDEX)) {
-	zp_register_filter('theme_head','ratingJS');
+	zp_register_filter('theme_head','jquery_rating::ratingJS');
 }
-function ratingJS() {
-	$ME = substr(basename(__FILE__),0,-4);
-	?>
-	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$ME; ?>/jquery.MetaData.js"></script>
-	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$ME; ?>/jquery.rating.js"></script>
-	<?php
-	$css = getPlugin('rating/jquery.rating.css', true, true);
-	?>
-	<link rel="stylesheet" href="<?php echo pathurlencode($css); ?>" type="text/css" />
-	<script type="text/javascript">
-		// <!-- <![CDATA[
-		$.fn.rating.options = { cancel: '<?php echo gettext('retract'); ?>'	};
-		// ]]> -->
-	</script>
-	<?php
-}
-
-require_once(substr(basename(__FILE__),0,-4).'/functions-rating.php');
 
 /**
  * Option handler class
@@ -88,7 +70,7 @@ class jquery_rating {
 	 *
 	 * @return jquery_rating
 	 */
-	function jquery_rating() {
+	function __construct() {
 		setOptionDefault('rating_recast', 1);
 		setOptionDefault('rating_stars_count', 5);
 		setOptionDefault('rating_split_stars', 2);
@@ -126,6 +108,130 @@ class jquery_rating {
 	function handleOption($option, $currentValue) {
 	}
 
+	static function ratingJS() {
+		$ME = substr(basename(__FILE__),0,-4);
+		?>
+		<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$ME; ?>/jquery.MetaData.js"></script>
+		<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$ME; ?>/jquery.rating.js"></script>
+		<?php
+		$css = getPlugin('rating/jquery.rating.css', true, true);
+		?>
+		<link rel="stylesheet" href="<?php echo pathurlencode($css); ?>" type="text/css" />
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			$.fn.rating.options = { cancel: '<?php echo gettext('retract'); ?>'	};
+			// ]]> -->
+		</script>
+		<?php
+	}
+
+	/**
+	 * Option filter handler for images and albums
+	 *
+	 * @param string $before HTML from prior filters
+	 * @param object $object object being rated
+	 * @param string $prefix indicator if admin is processing multiple objects
+	 * @return string Combined HTML
+	 */
+	static function optionVoteStatus($before, $object, $prefix) {
+		$me = new jquery_rating();
+		$currentvalue = $object->get('rating_status');
+		$output = gettext('Vote Status:').'<br />'."\n";
+		foreach($me->ratingstate as $text=>$value) {
+			if($value == $currentvalue) {
+				$checked = 'checked="checked"';
+			} else {
+				$checked = '';
+			}
+			$output .= "<label class='checkboxlabel'>\n<input type='radio' name='rating_status".$prefix."' id='rating_status".$value."-".$prefix."' value='".($value+1)."' ".$checked."/> ".$text."\n</label>"."\n";
+		}
+		$output = $before.'<hr />'."\n".$output.'<br /clear="all">';
+		return $output;
+	}
+
+	/**
+	 * Option save handler for the filter
+	 *
+	 * @param object $object object being rated
+	 * @param string $prefix indicator if admin is processing multiple objects
+	 */
+	static function optionVoteStatusSave($object, $prefix) {
+		if (isset($_POST['rating_status'.$prefix])) {
+			$object->set('rating_status', sanitize_numeric($_POST['rating_status'.$prefix])-1);
+		}
+		return $object;
+	}
+
+	static function rating_purgebutton($buttons) {
+		$buttons[] = array(
+									'category'=>gettext('database'),
+									'enable'=>true,
+									'button_text'=>gettext('Reset all ratings'),
+									'formname'=>'clearrating_button',
+									'action'=>PLUGIN_FOLDER.'/rating.php?action=clear_rating',
+									'icon'=>'images/reset1.png',
+									'title'=>gettext('Sets all ratings to unrated.'),
+									'alt'=>'',
+									'hidden'=> '<input type="hidden" name="action" value="clear_rating" />',
+									'rights'=> ADMIN_RIGHTS,
+									'XSRFTag' => 'clear_rating'
+									);
+		return $buttons;
+	}
+
+	/**
+	 * Returns the last vote rating from an IP or false if
+	 * no vote on record
+	 *
+	 * @param string $ip
+	 * @param array $usedips
+	 * @param float $ratingAverage
+	 * @return float
+	 */
+	static function getRatingByIP($ip, $usedips, $ratingAverage) {
+		global $_rating_current_IPlist;
+		$rating = 0;
+		if (empty($_rating_current_IPlist)) {
+			if (!empty($usedips)) {
+				$_rating_current_IPlist = unserialize($usedips);
+				if (array_key_exists(0, $_rating_current_IPlist) ||
+				array_key_exists(count($_rating_current_IPlist)-1, $_rating_current_IPlist)) {
+					// convert old list
+					$rating_list = array();
+					foreach ($_rating_current_IPlist as $key) {
+						$rating_list[$key] = $ratingAverage;
+					}
+					$_rating_current_IPlist = $rating_list;
+				}
+				if (array_key_exists($ip, $_rating_current_IPlist)) {
+					return $_rating_current_IPlist[$ip];
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * returns the $object for the current loaded page
+	 *
+	 * @param object $object
+	 * @return object
+	 */
+	static function getCurrentPageObject() {
+		global $_zp_gallery_page, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+		switch ($_zp_gallery_page) {
+			case 'album.php':
+				return $_zp_current_album;
+			case 'image.php':
+				return $_zp_current_image;
+			case 'news.php':
+				return $_zp_current_zenpage_news;
+			case 'pages.php':
+				return $_zp_current_zenpage_page;
+			default:
+				return NULL;
+		}
+	}
 }
 
 /**
@@ -145,7 +251,7 @@ class jquery_rating {
 function printRating($vote=3, $object=NULL, $text=true) {
 	global $_zp_gallery_page;
 	if (is_null($object)) {
-		$object = getCurrentPageObject();
+		$object = jquery_rating::getCurrentPageObject();
 	}
 	if (!is_object($object)) {
 		return;
@@ -195,7 +301,7 @@ function printRating($vote=3, $object=NULL, $text=true) {
 	} else {
 		$ip = getUserIP();
 	}
-	$oldrating = getRatingByIP($ip,$object->get('used_ips'), $object->get('rating'));
+	$oldrating = jquery_rating::getRatingByIP($ip,$object->get('used_ips'), $object->get('rating'));
 	if ($vote && $recast==2 && $oldrating) {
 		$starselector = round($oldrating*$split_stars);
 	} else {
@@ -285,75 +391,5 @@ function printRating($vote=3, $object=NULL, $text=true) {
 	</script>
 	<?php
 }
-
-
-/**
- * Returns the current rating of an object
- *
- * @param object $object optional ratings target. If not supplied, the current script object is used
- * @return float
- */
-function getRating($object=NULL) {
-	if (is_null($object)) {
-		$object = getCurrentPageObject();
-		if (!$object) return NULL;
-	}
-	return $object->get('rating');
-}
-
-/**
- * Option filter handler for images and albums
- *
- * @param string $before HTML from prior filters
- * @param object $object object being rated
- * @param string $prefix indicator if admin is processing multiple objects
- * @return string Combined HTML
- */
-function optionVoteStatus($before, $object, $prefix) {
-	$me = new jquery_rating();
-	$currentvalue = $object->get('rating_status');
-	$output = gettext('Vote Status:').'<br />'."\n";
-	foreach($me->ratingstate as $text=>$value) {
-		if($value == $currentvalue) {
-			$checked = 'checked="checked"';
-		} else {
-			$checked = '';
-		}
-		$output .= "<label class='checkboxlabel'>\n<input type='radio' name='rating_status".$prefix."' id='rating_status".$value."-".$prefix."' value='".($value+1)."' ".$checked."/> ".$text."\n</label>"."\n";
-	}
-	$output = $before.'<hr />'."\n".$output.'<br /clear="all">';
-	return $output;
-}
-
-/**
- * Option save handler for the filter
- *
- * @param object $object object being rated
- * @param string $prefix indicator if admin is processing multiple objects
- */
-function optionVoteStatusSave($object, $prefix) {
-	if (isset($_POST['rating_status'.$prefix])) {
-		$object->set('rating_status', sanitize_numeric($_POST['rating_status'.$prefix])-1);
-	}
-	return $object;
-}
-
-function rating_purgebutton($buttons) {
-	$buttons[] = array(
-								'category'=>gettext('database'),
-								'enable'=>true,
-								'button_text'=>gettext('Reset all ratings'),
-								'formname'=>'clearrating_button',
-								'action'=>PLUGIN_FOLDER.'/rating.php?action=clear_rating',
-								'icon'=>'images/reset1.png',
-								'title'=>gettext('Sets all ratings to unrated.'),
-								'alt'=>'',
-								'hidden'=> '<input type="hidden" name="action" value="clear_rating" />',
-								'rights'=> ADMIN_RIGHTS,
-								'XSRFTag' => 'clear_rating'
-								);
-	return $buttons;
-}
-
 
 ?>

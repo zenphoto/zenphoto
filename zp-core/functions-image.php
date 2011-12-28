@@ -172,7 +172,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		if (zp_imageCanRotate() && getOption('auto_rotate'))  {
 			$rotate = getImageRotation($imgfile);
 		}
-		if (function_exists('exif_thumbnail') && getOption('use_embedded_thumb')) {
+		if (function_exists('exif_thumbnail') && getOption('use_embedded_thumb') && (($s = getSuffix($imgfile))=='jpg') || $s=='jpeg') {
 			$im = exif_thumbnail($imgfile, $tw, $th, $tt);
 			if ($im) {
 				if ($size) {

@@ -24,8 +24,8 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.2';
 $option_interface = 'search_statistics';
 
-zp_register_filter('search_statistics','search_statistics_handler');
-zp_register_filter('admin_utilities_buttons', 'search_statistics_button');
+zp_register_filter('search_statistics','search_statistics::handler');
+zp_register_filter('admin_utilities_buttons', 'search_statistics::button');
 
 /**
  * Option handler class
@@ -70,39 +70,40 @@ class search_statistics {
 	function handleOption($option, $currentValue) {
 	}
 
-}
 
-function search_statistics_button($buttons) {
-	$buttons[] = array(
-								'category'=>gettext('info'),
-								'enable'=>true,
-								'button_text'=>gettext('Search statistics'),
-								'formname'=>'search_statistics_button',
-								'action'=>PLUGIN_FOLDER.'/search_statistics/search_analysis.php',
-								'icon'=>'images/bar_graph.png',
-								'title'=>gettext('Analyze searches'),
-								'alt'=>'',
-								'hidden'=> '',
-								'rights'=> OVERVIEW_RIGHTS,
-								);
-	return $buttons;
-}
-
-/**
- *
- * Logs User searches
- * @param array $search_statistics the search criteria
- * @param string $type 'album', 'image', etc.
- * @param bool $success	did the search return a result
- * @param bool $dynamic was it from a dynamic album
- * @param int $iteration count of the filters since the search engine instantiation
- */
-function search_statistics_handler($search_statistics, $type, $success, $dynamic, $iteration) {
-	if (!$dynamic) {	// log unique user searches
-		$store = array('type'=>$type, 'success'=>$success, 'iteration'=>$iteration, 'data'=>$search_statistics);
-		$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("search_statistics", "'.getUserIP().'",'.db_quote(serialize($store)).')';
-		query($sql);
+	static function button($buttons) {
+		$buttons[] = array(
+									'category'=>gettext('info'),
+									'enable'=>true,
+									'button_text'=>gettext('Search statistics'),
+									'formname'=>'search_statistics_button',
+									'action'=>PLUGIN_FOLDER.'/search_statistics/search_analysis.php',
+									'icon'=>'images/bar_graph.png',
+									'title'=>gettext('Analyze searches'),
+									'alt'=>'',
+									'hidden'=> '',
+									'rights'=> OVERVIEW_RIGHTS,
+									);
+		return $buttons;
 	}
-	return $search_statistics;
+
+	/**
+	 *
+	 * Logs User searches
+	 * @param array $search_statistics the search criteria
+	 * @param string $type 'album', 'image', etc.
+	 * @param bool $success	did the search return a result
+	 * @param bool $dynamic was it from a dynamic album
+	 * @param int $iteration count of the filters since the search engine instantiation
+	 */
+	static function handler($search_statistics, $type, $success, $dynamic, $iteration) {
+		if (!$dynamic) {	// log unique user searches
+			$store = array('type'=>$type, 'success'=>$success, 'iteration'=>$iteration, 'data'=>$search_statistics);
+			$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("search_statistics", "'.getUserIP().'",'.db_quote(serialize($store)).')';
+			query($sql);
+		}
+		return $search_statistics;
+	}
+
 }
 ?>

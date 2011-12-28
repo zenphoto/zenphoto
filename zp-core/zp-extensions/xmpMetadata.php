@@ -29,35 +29,38 @@ $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = gettext('Extracts <em>XMP</em> metadata from images and <code>XMP</code> sidecar files.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.2';
-$option_interface = 'xmpMetadata_options';
+$option_interface = 'xmpMetadata';
 
-zp_register_filter('album_instantiate', 'xmpMetadata_album_instantiate');
-zp_register_filter('new_album', 'xmpMetadata_new_album');
-zp_register_filter('album_refresh', 'xmpMetadata_new_album');
-zp_register_filter('image_instantiate', 'xmpMetadata_image_instantiate');
-zp_register_filter('image_metadata', 'xmpMetadata_new_image');
-zp_register_filter('upload_filetypes', 'xmpMetadata_sidecars');
-zp_register_filter('save_album_utilities_data', 'xmpMetadataPut');
-zp_register_filter('edit_album_utilities', 'xmpMetadataCreate');
-zp_register_filter('save_image_utilities_data', 'xmpMetadataPut');
-zp_register_filter('edit_image_utilities', 'xmpMetadataCreate');
-zp_register_filter('bulk_image_actions', 'xmpMetadataBulkActions');
-zp_register_filter('bulk_album_actions', 'xmpMetadataBulkActions');
+zp_register_filter('album_instantiate', 'xmpMetadata::album_instantiate');
+zp_register_filter('new_album', 'xmpMetadata::new_album');
+zp_register_filter('album_refresh', 'xmpMetadata::new_album');
+zp_register_filter('image_instantiate', 'xmpMetadata::image_instantiate');
+zp_register_filter('image_metadata', 'xmpMetadata::new_image');
+zp_register_filter('upload_filetypes', 'xmpMetadata::sidecars');
+zp_register_filter('save_album_utilities_data', 'xmpMetadata::putXMP');
+zp_register_filter('edit_album_utilities', 'xmpMetadata::create');
+zp_register_filter('save_image_utilities_data', 'xmpMetadata::putXMP');
+zp_register_filter('edit_image_utilities', 'xmpMetadata::create');
+zp_register_filter('bulk_image_actions', 'xmpMetadata::bulkActions');
+zp_register_filter('bulk_album_actions', 'xmpMetadata::bulkActions');
 
 require_once(dirname(dirname(__FILE__)).'/exif/exif.php');
+
+define('XMP_EXTENSION',strtolower(getOption('xmpMetadata_suffix')));
+
 
 /**
  * Plugin option handling class
  *
  */
-class xmpMetadata_options {
+class xmpMetadata {
 
 	/**
 	 * Class instantiation function
 	 *
 	 * @return xmpMetadata_options
 	 */
-	function xmpMetadata_options() {
+	function __construct() {
 		setOptionDefault('xmpMetadata_suffix','xmp');
 	}
 
@@ -100,476 +103,475 @@ class xmpMetadata_options {
 	 */
 	function handleOption($option, $currentValue) {
 	}
-}
 
-define('XMP_EXTENSION',strtolower(getOption('xmpMetadata_suffix')));
-
-/**
- * Parses xmp metadata for interesting tags
- *
- * @param string $xmpdata
- * @return array
- */
-function xmpMetadata_extract($xmpdata) {
-$desiredtags = array(
-	'EXIFLensType'					=>	'<aux:Lens>',
-	'EXIFLensInfo'					=>	'<aux:LensInfo>',
-	'EXIFArtist'						=>	'<dc:creator>',
-	'IPTCCopyright'					=>	'<dc:rights>',
-	'IPTCImageCaption'			=>	'<dc:description>',
-	'IPTCObjectName'				=>	'<dc:title>',
-	'IPTCKeywords'  				=>	'<dc:subject>',
-	'EXIFExposureTime'			=>	'<exif:ExposureTime>',
-	'EXIFFNumber'						=>	'<exif:FNumber>',
-	'EXIFAperatureValue'		=>	'<exif:ApertureValue>',
-	'EXIFExposureProgram'		=>	'<exif:ExposureProgram>',
-	'EXIFISOSpeedRatings'		=>	'<exif:ISOSpeedRatings>',
-	'EXIFDateTimeOriginal'	=>	'<exif:DateTimeOriginal>',
-	'EXIFExposureBiasValue'	=>	'<exif:ExposureBiasValue>',
-	'EXIFGPSLatitude'				=>	'<exif:GPSLatitude>',
-	'EXIFGPSLongitude'			=>	'<exif:GPSLongitude>',
-	'EXIFGPSAltitude'				=>	'<exif:GPSAltitude>',
-	'EXIFGPSAltituedRef'		=>	'<exif:GPSAltitudeRef>',
-	'EXIFMeteringMode'			=>	'<exif:MeteringMode>',
-	'EXIFFocalLength'				=>	'<exif:FocalLength>',
-	'EXIFContrast'					=>	'<exif:Contrast>',
-	'EXIFSharpness'					=>	'<exif:Sharpness>',
-	'EXIFExposureTime'			=>	'<exif:ShutterSpeedValue>',
-	'EXIFSaturation'				=>	'<exif:Saturation>',
-	'EXIFWhiteBalance'			=>	'<exif:WhiteBalance>',
-	'IPTCLocationCode' 			=>	'<Iptc4xmpCore:CountryCode>',
-	'IPTCSubLocation' 			=>	'<Iptc4xmpCore:Location>',
-	'IPTCSource'						=>	'<photoshop:Source>',
-	'IPTCCity' 							=>	'<photoshop:City>',
-	'IPTCState' 						=>	'<photoshop:State>',
-	'IPTCLocationName' 			=>	'<photoshop:Country>',
-	'IPTCImageHeadline'  		=>	'<photoshop:Headline>',
-	'IPTCImageCredit' 			=>	'<photoshop:Credit>',
-	'EXIFMake'							=>	'<tiff:Make>',
-	'EXIFModel'							=>	'<tiff:Model>',
-	'EXIFOrientation'				=>	'<tiff:Orientation>',
-	'EXIFImageWidth'				=>	'<tiff:ImageWidth>',
-	'EXIFImageHeight'				=>	'<tiff:ImageLength>',
-	'owner'									=>	'<zp:Owner>',
-	'thumb'									=>	'<zp:Thumbnail>',
-	'watermark'							=>	'<zp:Watermark>',
-	'watermark_use'					=>	'<zp:Watermark_use>',
-	'watermark_thumb'				=>	'<zp:Watermark_thumb>',
-	'custom_data'						=>	'<zp:CustomData',
-	'codeblock'							=>	'<zp:Codeblock>'
-	);
-	$xmp_parsed = array();
-	while (!empty($xmpdata)) {
-		$s = strpos($xmpdata, '<');
-		$e = strpos($xmpdata,'>',$s);
-		$tag = substr($xmpdata,$s,$e-$s+1);
-		$xmpdata = substr($xmpdata,$e+1);
-		$key = array_search($tag,$desiredtags);
-		if ($key !== false) {
-			$close = str_replace('<','</',$tag);
-			$e = strpos($xmpdata,$close);
-			$meta = trim(substr($xmpdata,0,$e));
-			$xmpdata = substr($xmpdata,$e+strlen($close));
-			if (strpos($meta, '<') === false) {
-				$xmp_parsed[$key] = $meta;
-			} else {
-				$elements = array();
-				while (!empty($meta)) {
-					$s = strpos($meta, '<');
-					$e = strpos($meta,'>',$s);
-					$tag = substr($meta,$s,$e-$s+1);
-					$meta = substr($meta,$e+1);
-					if (strpos($tag,'rdf:li') !== false) {
-						$e = strpos($meta,'</rdf:li>');
-						$elements[] = trim(substr($meta, 0, $e));
-						$meta = substr($meta,$e+9);
-					}
-				}
-				$xmp_parsed[$key] = $elements;
-			}
-		} else {	// look for shorthand elements
-			if (strpos($tag,'<rdf:Description')!==false) {
-				$meta = substr($tag, 17);	// strip off the description tag leaving the elements
-				while (preg_match('/^[a-zA-z0-9_]+\:[a-zA-z0-9_]+\=".*"/', $meta, $element)) {
-						$item = $element[0];
-						$meta = trim(substr($meta, strlen($item)));
-						$i = strpos($item,'=');
-						$tag = '<'.substr($item,0,$i).'>';
-						$v = substr($item,$i+2,-1);
-						$key = array_search($tag,$desiredtags);
-						if ($key !== false) {
-							$xmp_parsed[$key] = $v;
+	/**
+	 * Parses xmp metadata for interesting tags
+	 *
+	 * @param string $xmpdata
+	 * @return array
+	 */
+	private static function xmpMetadata_extract($xmpdata) {
+	$desiredtags = array(
+		'EXIFLensType'					=>	'<aux:Lens>',
+		'EXIFLensInfo'					=>	'<aux:LensInfo>',
+		'EXIFArtist'						=>	'<dc:creator>',
+		'IPTCCopyright'					=>	'<dc:rights>',
+		'IPTCImageCaption'			=>	'<dc:description>',
+		'IPTCObjectName'				=>	'<dc:title>',
+		'IPTCKeywords'  				=>	'<dc:subject>',
+		'EXIFExposureTime'			=>	'<exif:ExposureTime>',
+		'EXIFFNumber'						=>	'<exif:FNumber>',
+		'EXIFAperatureValue'		=>	'<exif:ApertureValue>',
+		'EXIFExposureProgram'		=>	'<exif:ExposureProgram>',
+		'EXIFISOSpeedRatings'		=>	'<exif:ISOSpeedRatings>',
+		'EXIFDateTimeOriginal'	=>	'<exif:DateTimeOriginal>',
+		'EXIFExposureBiasValue'	=>	'<exif:ExposureBiasValue>',
+		'EXIFGPSLatitude'				=>	'<exif:GPSLatitude>',
+		'EXIFGPSLongitude'			=>	'<exif:GPSLongitude>',
+		'EXIFGPSAltitude'				=>	'<exif:GPSAltitude>',
+		'EXIFGPSAltituedRef'		=>	'<exif:GPSAltitudeRef>',
+		'EXIFMeteringMode'			=>	'<exif:MeteringMode>',
+		'EXIFFocalLength'				=>	'<exif:FocalLength>',
+		'EXIFContrast'					=>	'<exif:Contrast>',
+		'EXIFSharpness'					=>	'<exif:Sharpness>',
+		'EXIFExposureTime'			=>	'<exif:ShutterSpeedValue>',
+		'EXIFSaturation'				=>	'<exif:Saturation>',
+		'EXIFWhiteBalance'			=>	'<exif:WhiteBalance>',
+		'IPTCLocationCode' 			=>	'<Iptc4xmpCore:CountryCode>',
+		'IPTCSubLocation' 			=>	'<Iptc4xmpCore:Location>',
+		'IPTCSource'						=>	'<photoshop:Source>',
+		'IPTCCity' 							=>	'<photoshop:City>',
+		'IPTCState' 						=>	'<photoshop:State>',
+		'IPTCLocationName' 			=>	'<photoshop:Country>',
+		'IPTCImageHeadline'  		=>	'<photoshop:Headline>',
+		'IPTCImageCredit' 			=>	'<photoshop:Credit>',
+		'EXIFMake'							=>	'<tiff:Make>',
+		'EXIFModel'							=>	'<tiff:Model>',
+		'EXIFOrientation'				=>	'<tiff:Orientation>',
+		'EXIFImageWidth'				=>	'<tiff:ImageWidth>',
+		'EXIFImageHeight'				=>	'<tiff:ImageLength>',
+		'owner'									=>	'<zp:Owner>',
+		'thumb'									=>	'<zp:Thumbnail>',
+		'watermark'							=>	'<zp:Watermark>',
+		'watermark_use'					=>	'<zp:Watermark_use>',
+		'watermark_thumb'				=>	'<zp:Watermark_thumb>',
+		'custom_data'						=>	'<zp:CustomData',
+		'codeblock'							=>	'<zp:Codeblock>'
+		);
+		$xmp_parsed = array();
+		while (!empty($xmpdata)) {
+			$s = strpos($xmpdata, '<');
+			$e = strpos($xmpdata,'>',$s);
+			$tag = substr($xmpdata,$s,$e-$s+1);
+			$xmpdata = substr($xmpdata,$e+1);
+			$key = array_search($tag,$desiredtags);
+			if ($key !== false) {
+				$close = str_replace('<','</',$tag);
+				$e = strpos($xmpdata,$close);
+				$meta = trim(substr($xmpdata,0,$e));
+				$xmpdata = substr($xmpdata,$e+strlen($close));
+				if (strpos($meta, '<') === false) {
+					$xmp_parsed[$key] = $meta;
+				} else {
+					$elements = array();
+					while (!empty($meta)) {
+						$s = strpos($meta, '<');
+						$e = strpos($meta,'>',$s);
+						$tag = substr($meta,$s,$e-$s+1);
+						$meta = substr($meta,$e+1);
+						if (strpos($tag,'rdf:li') !== false) {
+							$e = strpos($meta,'</rdf:li>');
+							$elements[] = trim(substr($meta, 0, $e));
+							$meta = substr($meta,$e+9);
 						}
 					}
+					$xmp_parsed[$key] = $elements;
+				}
+			} else {	// look for shorthand elements
+				if (strpos($tag,'<rdf:Description')!==false) {
+					$meta = substr($tag, 17);	// strip off the description tag leaving the elements
+					while (preg_match('/^[a-zA-z0-9_]+\:[a-zA-z0-9_]+\=".*"/', $meta, $element)) {
+							$item = $element[0];
+							$meta = trim(substr($meta, strlen($item)));
+							$i = strpos($item,'=');
+							$tag = '<'.substr($item,0,$i).'>';
+							$v = substr($item,$i+2,-1);
+							$key = array_search($tag,$desiredtags);
+							if ($key !== false) {
+								$xmp_parsed[$key] = $v;
+							}
+						}
+				}
 			}
 		}
+		return ($xmp_parsed);
 	}
-	return ($xmp_parsed);
-}
 
-/**
- * insures that the metadata is a string
- *
- * @param mixed $meta
- * @return string
- */
-function xmpMetadata_to_string($meta) {
-	if (is_array($meta)) {
-		$meta = implode(',',$meta);
-	}
-	return trim($meta);
-}
-
-/**
- * Filter called when an album object is instantiated
- * sets the sidecars to include xmp files
- *
- * @param $album album object
- * @return $object
- */
-function xmpMetadata_album_instantiate($album) {
-	$album->sidecars[XMP_EXTENSION] = XMP_EXTENSION;
-	return $album;
-}
-
-/**
- * Filter for handling album objects
- *
- * @param object $album
- * @return object
- */
-function xmpMetadata_new_album($album) {
-	$metadata_path = dirname($album->localpath).'/'.basename($album->localpath).'*';
-	$files = safe_glob($metadata_path);
-	if (count($files)>0) {
-		foreach ($files as $file) {
-			if (strtolower(getSuffix($file)) == XMP_EXTENSION) {
-				$source = file_get_contents($file);
-				$metadata = xmpMetadata_extract($source);
-				if (array_key_exists('IPTCImageCaption' ,$metadata)) {
-					$album->setDesc(xmpMetadata_to_string($metadata['IPTCImageCaption' ]));
-				}
-				if (array_key_exists('IPTCImageHeadline',$metadata)) {
-					$album->setTitle(xmpMetadata_to_string($metadata['IPTCImageHeadline']));
-				}
-				if (array_key_exists('IPTCLocationName',$metadata)) {
-					$album->setLocation(xmpMetadata_to_string($metadata['IPTCLocationName']));
-				}
-				if (array_key_exists('IPTCKeywords',$metadata)) {
-					$album->setTags(xmpMetadata_to_string($metadata['IPTCKeywords']));
-				}
-				if (array_key_exists('EXIFDateTimeOriginal',$metadata)) {
-					$album->setDateTime($metadata['EXIFDateTimeOriginal']);
-				}
-				if (array_key_exists('thumb',$metadata)) {
-					$album->setAlbumThumb($metadata['thumb']);
-				}
-				if (array_key_exists('owner',$metadata)) {
-					$album->setOwner($metadata['owner']);
-				}
-				if (array_key_exists('custom_data',$metadata)) {
-					$album->setCustomData($metadata['custom_data']);
-				}
-				if (array_key_exists('codeblock',$metadata)) {
-					$album->setCodeblock($metadata['codeblock']);
-				}
-				if (array_key_exists('watermark',$metadata)) {
-					$album->setWatermark($metadata['watermark']);
-				}
-				if (array_key_exists('watermark_thumb',$metadata)) {
-					$album->setWatermarkThumb($metadata['watermark_thumb']);
-				}
-				$album->save();
-				break;
-			}
+	/**
+	 * insures that the metadata is a string
+	 *
+	 * @param mixed $meta
+	 * @return string
+	 */
+	private static function xmpMetadata_to_string($meta) {
+		if (is_array($meta)) {
+			$meta = implode(',',$meta);
 		}
+		return trim($meta);
+	}
+
+	/**
+	 * Filter called when an album object is instantiated
+	 * sets the sidecars to include xmp files
+	 *
+	 * @param $album album object
+	 * @return $object
+	 */
+	static function album_instantiate($album) {
+		$album->sidecars[XMP_EXTENSION] = XMP_EXTENSION;
 		return $album;
 	}
-}
 
-/**
- * Finds and returns xmp metadata
- *
- * @param int $j
- * @return string
- */
-function extractXMP($f) {
-	if (preg_match('~<.*?xmpmeta~',$f, $m)) {
-		$open = $m[0];
-		$close = str_replace('<','</',$open);
-		$j = strpos($f, $open);
-		if ($j !== false) {
-			$k = strpos($f, $close,$j+4);
-			$meta = substr($f, $j, $k+14-$j);
-			$l = 0;
-			return $meta;
+	/**
+	 * Filter for handling album objects
+	 *
+	 * @param object $album
+	 * @return object
+	 */
+	static function new_album($album) {
+		$metadata_path = dirname($album->localpath).'/'.basename($album->localpath).'*';
+		$files = safe_glob($metadata_path);
+		if (count($files)>0) {
+			foreach ($files as $file) {
+				if (strtolower(getSuffix($file)) == XMP_EXTENSION) {
+					$source = file_get_contents($file);
+					$metadata = xmpMetadata::xmpMetadata_extract($source);
+					if (array_key_exists('IPTCImageCaption' ,$metadata)) {
+						$album->setDesc(xmpMetadata::xmpMetadata_to_string($metadata['IPTCImageCaption' ]));
+					}
+					if (array_key_exists('IPTCImageHeadline',$metadata)) {
+						$album->setTitle(xmpMetadata::xmpMetadata_to_string($metadata['IPTCImageHeadline']));
+					}
+					if (array_key_exists('IPTCLocationName',$metadata)) {
+						$album->setLocation(xmpMetadata::xmpMetadata_to_string($metadata['IPTCLocationName']));
+					}
+					if (array_key_exists('IPTCKeywords',$metadata)) {
+						$album->setTags(xmpMetadata::xmpMetadata_to_string($metadata['IPTCKeywords']));
+					}
+					if (array_key_exists('EXIFDateTimeOriginal',$metadata)) {
+						$album->setDateTime($metadata['EXIFDateTimeOriginal']);
+					}
+					if (array_key_exists('thumb',$metadata)) {
+						$album->setAlbumThumb($metadata['thumb']);
+					}
+					if (array_key_exists('owner',$metadata)) {
+						$album->setOwner($metadata['owner']);
+					}
+					if (array_key_exists('custom_data',$metadata)) {
+						$album->setCustomData($metadata['custom_data']);
+					}
+					if (array_key_exists('codeblock',$metadata)) {
+						$album->setCodeblock($metadata['codeblock']);
+					}
+					if (array_key_exists('watermark',$metadata)) {
+						$album->setWatermark($metadata['watermark']);
+					}
+					if (array_key_exists('watermark_thumb',$metadata)) {
+						$album->setWatermarkThumb($metadata['watermark_thumb']);
+					}
+					$album->save();
+					break;
+				}
+			}
+			return $album;
 		}
 	}
-	return false;
-}
 
-/**
- * convert a fractional representation to something more user friendly
- *
- * @param $element string
- * @return string
- */
-function rationalNum($element) {
-	// deal with the fractional representation
-	$n = explode('/',$element);
-	$v = sprintf('%f', $n[0]/$n[1]);
-	for ($i=strlen($v)-1;$i>1;$i--) {
-		if (substr($v,$i,1) != '0') break;
-	}
-	if (substr($v,$i,1)=='.') $i--;
-	return substr($v,0,$i+1);
-}
-
-function xmpMetadata_image_instantiate($image) {
-	$image->sidecars[XMP_EXTENSION] = XMP_EXTENSION;
-	return $image;
-}
-
-/**
- * Filter for handling image objects
- *
- * @param object $image
- * @return object
- */
-function xmpMetadata_new_image($image) {
-	global $_zp_exifvars;
-	$source = '';
-	$metadata_path = '';
-	$files = safe_glob(substr($image->localpath, 0, strrpos($image->localpath, '.')).'.*');
-	if (count($files)>0) {
-		foreach ($files as $file) {
-			if (strtolower(getSuffix($file)) == XMP_EXTENSION) {
-				$metadata_path = $file;
-				break;
+	/**
+	 * Finds and returns xmp metadata
+	 *
+	 * @param int $j
+	 * @return string
+	 */
+	private static function extractXMP($f) {
+		if (preg_match('~<.*?xmpmeta~',$f, $m)) {
+			$open = $m[0];
+			$close = str_replace('<','</',$open);
+			$j = strpos($f, $open);
+			if ($j !== false) {
+				$k = strpos($f, $close,$j+4);
+				$meta = substr($f, $j, $k+14-$j);
+				$l = 0;
+				return $meta;
 			}
 		}
+		return false;
 	}
-	if (!empty($metadata_path)) {
-		$source = extractXMP(file_get_contents($metadata_path));
-	} else if (getOption('xmpMetadata_examine_images_'.strtolower(substr(strrchr($image->localpath, "."), 1)))) {
-		$f = file_get_contents($image->localpath);
-		$l = filesize($image->localpath);
-		$abort = 0;
-		$i = 0;
-		while ($i<$l && $abort<200 && !$source) {
-			$tag = bin2hex(substr($f,$i,2));
-			$size = hexdec(bin2hex(substr($f,$i+2,2)));
-			switch ($tag) {
-				case 'ffe1': // EXIF
-				case 'ffe2': // EXIF extension
-				case 'fffe': // COM
-				case 'ffe0': // IPTC marker
-					$source = extractXMP($f);
-					$i = $i + $size+2;
-					$abort = 0;
+
+	/**
+	 * convert a fractional representation to something more user friendly
+	 *
+	 * @param $element string
+	 * @return string
+	 */
+	private static function rationalNum($element) {
+		// deal with the fractional representation
+		$n = explode('/',$element);
+		$v = sprintf('%f', $n[0]/$n[1]);
+		for ($i=strlen($v)-1;$i>1;$i--) {
+			if (substr($v,$i,1) != '0') break;
+		}
+		if (substr($v,$i,1)=='.') $i--;
+		return substr($v,0,$i+1);
+	}
+
+	static function image_instantiate($image) {
+		$image->sidecars[XMP_EXTENSION] = XMP_EXTENSION;
+		return $image;
+	}
+
+	/**
+	 * Filter for handling image objects
+	 *
+	 * @param object $image
+	 * @return object
+	 */
+	static function new_image($image) {
+		global $_zp_exifvars;
+		$source = '';
+		$metadata_path = '';
+		$files = safe_glob(substr($image->localpath, 0, strrpos($image->localpath, '.')).'.*');
+		if (count($files)>0) {
+			foreach ($files as $file) {
+				if (strtolower(getSuffix($file)) == XMP_EXTENSION) {
+					$metadata_path = $file;
+					break;
+				}
+			}
+		}
+		if (!empty($metadata_path)) {
+			$source = xmpMetadata::extractXMP(file_get_contents($metadata_path));
+		} else if (getOption('xmpMetadata_examine_images_'.strtolower(substr(strrchr($image->localpath, "."), 1)))) {
+			$f = file_get_contents($image->localpath);
+			$l = filesize($image->localpath);
+			$abort = 0;
+			$i = 0;
+			while ($i<$l && $abort<200 && !$source) {
+				$tag = bin2hex(substr($f,$i,2));
+				$size = hexdec(bin2hex(substr($f,$i+2,2)));
+				switch ($tag) {
+					case 'ffe1': // EXIF
+					case 'ffe2': // EXIF extension
+					case 'fffe': // COM
+					case 'ffe0': // IPTC marker
+						$source = $this->extractXMP($f);
+						$i = $i + $size+2;
+						$abort = 0;
+						break;
+					default:
+						if (substr($f,$i,1)=='<') {
+							$source = $this->extractXMP($f);
+						}
+						$i=$i+1;
+						$abort++;
+						break;
+				}
+			}
+		}
+		if (!empty($source)) {
+			$metadata = xmpMetadata::xmpMetadata_extract($source);
+			$image->set('hasMetadata',count($metadata>0));
+			foreach ($metadata as $field=>$element) {
+				$v = xmpMetadata::xmpMetadata_to_string($element);
+				switch ($field) {
+					case 'EXIFDateTimeOriginal':
+						$image->setDateTime($element);
+						break;
+					case 'IPTCImageCaption':
+						$image->setDesc($v);
+						break;
+					case 'IPTCCity':
+						$image->setCity($v);
+						break;
+					case 'IPTCState':
+						$image->setState($v);
+						break;
+					case 'IPTCLocationName':
+						$image->setCountry($v);
+						break;
+					case 'IPTCSubLocation':
+						$image->setLocation($v);
+						break;
+					case 'EXIFExposureTime':
+						$v = formatExposure(xmpMetadata::rationalNum($element));
+						break;
+					case 'EXIFFocalLength':
+						$v = xmpMetadata::rationalNum($element).' mm';
+						break;
+					case 'EXIFAperatureValue':
+					case 'EXIFFNumber':
+						$v = 'f/'.xmpMetadata::rationalNum($element);
+						break;
+					case 'EXIFExposureBiasValue':
+					case 'EXIFGPSAltitude':
+						$v = xmpMetadata::rationalNum($element);
+						break;
+					case 'EXIFGPSLatitude':
+					case 'EXIFGPSLongitude':
+						$ref = substr($element,-1,1);
+						$image->set($field.'Ref', $ref);
+						$element = substr($element,0,-1);
+						$n = explode(',',$element);
+						if (count($n)==3) {
+							$v = $n[0]+($n[1]+($n[2]/60)/60);
+						} else {
+							$v = $n[0]+$n[1]/60;
+						}
+						break;
+					case 'watermark':
+					case 'watermark_use':
+					case 'custom_data':
+					case 'codeblock':
+					case 'owner':
+						$image->set($field, $v);
+						break;
+					case 'IPTCKeywords':
+						$image->setTags($element);
+						break;
+				}
+				if (array_key_exists($field,$_zp_exifvars)) {
+					$image->set($field, $v);
+				}
+			}
+			$image->save();
+		}
+		return $image;
+	}
+
+	static function sidecars($types) {
+		$types[] = XMP_EXTENSION;
+		return $types;
+	}
+
+	static function putXMP($object, $prefix) {
+		if (isset($_POST['xmpMedadataPut_'.$prefix])) {
+			xmpMetadataPublish($object);
+		}
+		return $object;
+	}
+
+	static function publish($object) {
+		$desiredtags = array(	'copyright'				=>	'<dc:rights>',
+													'desc'						=>	'<dc:description>',
+													'title'						=>	'<dc:title>',
+													'tags'  					=>	'<dc:subject>',
+													'location' 				=>	'<Iptc4xmpCore:Location>',
+													'city' 						=>	'<photoshop:City>',
+													'state' 					=>	'<photoshop:State>',
+													'country' 				=>	'<photoshop:Country>',
+													'title'						=>	'<photoshop:Headline>',
+													'credit' 					=>	'<photoshop:Credit>',
+													'thumb'						=>	'<zp:Thumbnail>',
+													'owner'						=>	'<zp:Owner>',
+													'watermark'				=>	'<zp:Watermark>',
+													'watermark_use'		=>	'<zp:Watermark_use>',
+													'watermark_thumb'	=>	'<zp:Watermark_thumb>',
+													'custom_data'			=>	'<zp:CustomData',
+													'codeblock'				=>	'<zp:Codeblock>',
+													'date'						=>	'<exif:DateTimeOriginal>'
+													);
+		$process = array('dc','Iptc4xmpCore','photoshop','xap');
+		if (get_class($object)=='Album') {
+			$file =$object->localpath;
+			if (substr($file, -1) == '/') {
+				$file = substr($file, 0, -1);
+			}
+			$file .= '.xmp';
+		} else {
+			$file = stripSuffix($object->localpath).'.xmp';
+		}
+		@chmod($file, 0666);
+		$f = fopen($file, 'w');
+		fwrite($f, '<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 4.2-c020 1.124078, Tue Sep 11 2007 23:21:40 ">'."\n");
+		fwrite($f, ' <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">'."\n");
+		$last_element = $special = $output = false;
+		foreach ($desiredtags as $field=>$elementXML) {
+			$elementXML = substr($elementXML, 1, -1);
+			if ($last_element != $elementXML) {
+				if ($output) {
+					fwrite($f, '  </rdf:Description>'."\n");
+					fwrite($f, '  <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/">'."\n");
+				}
+				$last_element = $elementXML;
+				$output = false;
+			}
+			$v = $object->get($field);
+			$tag = $elementXML;
+			switch ($elementXML) {
+				case 'dc:creator':
+					$special = 'rdf:Seq';
+					$tag = 'rdf:li';
+					if ($v) {
+						fwrite($f, "   <$elementXML>\n");
+						fwrite($f, "    <$special>\n");
+						fwrite($f, "     <$tag>$v</$tag>\n");
+						fwrite($f, "    </$special>\n");
+						fwrite($f, "   </$elementXML>\n");
+						$output = true;
+					}
+					break;
+				case 'dc:rights':
+				case 'xapRights:UsageTerms':
+					$special = 'rdf:Alt';
+					$tag = 'rdf:li';
+					if ($v) {
+						fwrite($f, "   <$elementXML>\n");
+						fwrite($f, "    <$special>\n");
+						fwrite($f, "     <$tag>$v</$tag>\n");
+						fwrite($f, "    </$special>\n");
+						fwrite($f, "   </$elementXML>\n");
+						$output = true;
+					}
+					break;
+				case 'dc:subject':
+					$tags = $object->getTags();
+					if (!empty($tags)) {
+						fwrite($f, "   <$elementXML>\n");
+						fwrite($f, "    <rdf:Bag>\n");
+						foreach ($tags as $tag) {
+							fwrite($f, "     <rdf:li>$tag</rdf:li>\n");
+						}
+						fwrite($f, "    </rdf:Bag>\n");
+						fwrite($f, "   </$elementXML>\n");
+						$output = true;
+					}
 					break;
 				default:
-					if (substr($f,$i,1)=='<') {
-						$source = extractXMP($f);
-					}
-					$i=$i+1;
-					$abort++;
-					break;
-			}
-		}
-	}
-	if (!empty($source)) {
-		$metadata = xmpMetadata_extract($source);
-		$image->set('hasMetadata',count($metadata>0));
-		foreach ($metadata as $field=>$element) {
-			$v = xmpMetadata_to_string($element);
-			switch ($field) {
-				case 'EXIFDateTimeOriginal':
-					$image->setDateTime($element);
-					break;
-				case 'IPTCImageCaption':
-					$image->setDesc($v);
-					break;
-				case 'IPTCCity':
-					$image->setCity($v);
-					break;
-				case 'IPTCState':
-					$image->setState($v);
-					break;
-				case 'IPTCLocationName':
-					$image->setCountry($v);
-					break;
-				case 'IPTCSubLocation':
-					$image->setLocation($v);
-					break;
-				case 'EXIFExposureTime':
-					$v = formatExposure(rationalNum($element));
-					break;
-				case 'EXIFFocalLength':
-					$v = rationalNum($element).' mm';
-					break;
-				case 'EXIFAperatureValue':
-				case 'EXIFFNumber':
-					$v = 'f/'.rationalNum($element);
-					break;
-				case 'EXIFExposureBiasValue':
-				case 'EXIFGPSAltitude':
-					$v = rationalNum($element);
-					break;
-				case 'EXIFGPSLatitude':
-				case 'EXIFGPSLongitude':
-					$ref = substr($element,-1,1);
-					$image->set($field.'Ref', $ref);
-					$element = substr($element,0,-1);
-					$n = explode(',',$element);
-					if (count($n)==3) {
-						$v = $n[0]+($n[1]+($n[2]/60)/60);
-					} else {
-						$v = $n[0]+$n[1]/60;
+					if ($v) {
+						fwrite($f, "   <$tag>$v</$tag>\n");
+						$output = true;
 					}
 					break;
-				case 'watermark':
-				case 'watermark_use':
-				case 'custom_data':
-				case 'codeblock':
-				case 'owner':
-					$image->set($field, $v);
-					break;
-				case 'IPTCKeywords':
-					$image->setTags($element);
-					break;
-			}
-			if (array_key_exists($field,$_zp_exifvars)) {
-				$image->set($field, $v);
 			}
 		}
-		$image->save();
+		fwrite($f, '  </rdf:Description>'."\n");
+		fwrite($f, ' </rdf:RDF>'."\n");
+		fwrite($f, '</x:xmpmeta>'."\n");
+		fclose($f);
+		clearstatcache();
+		@chmod($file, FILE_MOD);
+		return gettext('Metadata exported');
 	}
-	return $image;
-}
 
-function xmpMetadata_sidecars($types) {
-	$types[] = XMP_EXTENSION;
-	return $types;
-}
-
-function xmpMetadataPut($object, $prefix) {
-	if (isset($_POST['xmpMedadataPut_'.$prefix])) {
-		xmpMetadataPublish($object);
+	static function create($html, $object, $prefix) {
+		if ($html) $html .= '<hr />';
+		$html .= '<label><input type="checkbox" name="xmpMedadataPut_'.$prefix.'" value="1" /> '.gettext('Export album info to XMP sidecar.').'</label>';
+		return $html;
 	}
-	return $object;
-}
 
-function xmpMetadataPublish($object) {
-	$desiredtags = array(	'copyright'				=>	'<dc:rights>',
-												'desc'						=>	'<dc:description>',
-												'title'						=>	'<dc:title>',
-												'tags'  					=>	'<dc:subject>',
-												'location' 				=>	'<Iptc4xmpCore:Location>',
-												'city' 						=>	'<photoshop:City>',
-												'state' 					=>	'<photoshop:State>',
-												'country' 				=>	'<photoshop:Country>',
-												'title'						=>	'<photoshop:Headline>',
-												'credit' 					=>	'<photoshop:Credit>',
-												'thumb'						=>	'<zp:Thumbnail>',
-												'owner'						=>	'<zp:Owner>',
-												'watermark'				=>	'<zp:Watermark>',
-												'watermark_use'		=>	'<zp:Watermark_use>',
-												'watermark_thumb'	=>	'<zp:Watermark_thumb>',
-												'custom_data'			=>	'<zp:CustomData',
-												'codeblock'				=>	'<zp:Codeblock>',
-												'date'						=>	'<exif:DateTimeOriginal>'
-												);
-	$process = array('dc','Iptc4xmpCore','photoshop','xap');
-	if (get_class($object)=='Album') {
-		$file =$object->localpath;
-		if (substr($file, -1) == '/') {
-			$file = substr($file, 0, -1);
-		}
-		$file .= '.xmp';
-	} else {
-		$file = stripSuffix($object->localpath).'.xmp';
+	static function bulkActions($actions) {
+		return array_merge($actions,array(gettext('Export Metadata') => 'xmpMetadataPublish'));
 	}
-	@chmod($file, 0666);
-	$f = fopen($file, 'w');
-	fwrite($f, '<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 4.2-c020 1.124078, Tue Sep 11 2007 23:21:40 ">'."\n");
-	fwrite($f, ' <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">'."\n");
-	$last_element = $special = $output = false;
-	foreach ($desiredtags as $field=>$elementXML) {
-		$elementXML = substr($elementXML, 1, -1);
-		if ($last_element != $elementXML) {
-			if ($output) {
-				fwrite($f, '  </rdf:Description>'."\n");
-				fwrite($f, '  <rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/">'."\n");
-			}
-			$last_element = $elementXML;
-			$output = false;
-		}
-		$v = $object->get($field);
-		$tag = $elementXML;
-		switch ($elementXML) {
-			case 'dc:creator':
-				$special = 'rdf:Seq';
-				$tag = 'rdf:li';
-				if ($v) {
-					fwrite($f, "   <$elementXML>\n");
-					fwrite($f, "    <$special>\n");
-					fwrite($f, "     <$tag>$v</$tag>\n");
-					fwrite($f, "    </$special>\n");
-					fwrite($f, "   </$elementXML>\n");
-					$output = true;
-				}
-				break;
-			case 'dc:rights':
-			case 'xapRights:UsageTerms':
-				$special = 'rdf:Alt';
-				$tag = 'rdf:li';
-				if ($v) {
-					fwrite($f, "   <$elementXML>\n");
-					fwrite($f, "    <$special>\n");
-					fwrite($f, "     <$tag>$v</$tag>\n");
-					fwrite($f, "    </$special>\n");
-					fwrite($f, "   </$elementXML>\n");
-					$output = true;
-				}
-				break;
-			case 'dc:subject':
-				$tags = $object->getTags();
-				if (!empty($tags)) {
-					fwrite($f, "   <$elementXML>\n");
-					fwrite($f, "    <rdf:Bag>\n");
-					foreach ($tags as $tag) {
-						fwrite($f, "     <rdf:li>$tag</rdf:li>\n");
-					}
-					fwrite($f, "    </rdf:Bag>\n");
-					fwrite($f, "   </$elementXML>\n");
-					$output = true;
-				}
-				break;
-			default:
-				if ($v) {
-					fwrite($f, "   <$tag>$v</$tag>\n");
-					$output = true;
-				}
-				break;
-		}
-	}
-	fwrite($f, '  </rdf:Description>'."\n");
-	fwrite($f, ' </rdf:RDF>'."\n");
-	fwrite($f, '</x:xmpmeta>'."\n");
-	fclose($f);
-	clearstatcache();
-	@chmod($file, FILE_MOD);
-	return gettext('Metadata exported');
-}
 
-function xmpMetadataCreate($html, $object, $prefix) {
-	if ($html) $html .= '<hr />';
-	$html .= '<label><input type="checkbox" name="xmpMedadataPut_'.$prefix.'" value="1" /> '.gettext('Export album info to XMP sidecar.').'</label>';
-	return $html;
-}
-
-function xmpMetadataBulkActions($actions) {
-	return array_merge($actions,array(gettext('Export Metadata') => 'xmpMetadataPublish'));
 }
 ?>

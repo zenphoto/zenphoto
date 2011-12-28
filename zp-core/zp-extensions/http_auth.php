@@ -51,7 +51,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.2';
 $option_interface = 'http_auth';
 
-zp_register_filter('authorization_cookie', 'http_auth_check');
+zp_register_filter('authorization_cookie', 'http_auth::check');
 
 class http_auth {
 	/**
@@ -78,42 +78,41 @@ class http_auth {
 	function handleOption($option, $currentValue) {
 	}
 
-}
-
-function http_auth_check($authorized) {
-	global $_zp_authority, $_zp_current_admin_obj;
-	if (!$authorized) {
-		// not logged in via normal Zenphoto handling
-		// PHP-CGI auth fixd
-		if(isset($_SERVER['HTTP_AUTHORIZATION'])) {
-			$auth_params = explode(":" , base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
-			$_SERVER['PHP_AUTH_USER'] = $auth_params[0];
-			unset($auth_params[0]);
-			$_SERVER['PHP_AUTH_PW'] = implode('',$auth_params);
-		}
-		if(isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
-			$auth_params = explode(":" , base64_decode(substr($_SERVER['REDIRECT_HTTP_AUTHORIZATION'], 6)));
-			$_SERVER['PHP_AUTH_USER'] = $auth_params[0];
-			unset($auth_params[0]);
-			$_SERVER['PHP_AUTH_PW'] = implode('',$auth_params);
-		}
-
-		if (array_key_exists('PHP_AUTH_USER', $_SERVER) && array_key_exists('PHP_AUTH_PW', $_SERVER)) {
-			$user = $_SERVER['PHP_AUTH_USER'];
-			$pass = $_SERVER['PHP_AUTH_PW'];
-			$searchfor = array('`user`=' => $user, '`pass`=' => $_zp_authority->passwordHash($user, $pass), '`valid`=' => 1);
-			if (getOption('http_auth_trust')) {
-				unset($searchfor['`pass`=']);
+	static function check($authorized) {
+		global $_zp_authority, $_zp_current_admin_obj;
+		if (!$authorized) {
+			// not logged in via normal Zenphoto handling
+			// PHP-CGI auth fixd
+			if(isset($_SERVER['HTTP_AUTHORIZATION'])) {
+				$auth_params = explode(":" , base64_decode(substr($_SERVER['HTTP_AUTHORIZATION'], 6)));
+				$_SERVER['PHP_AUTH_USER'] = $auth_params[0];
+				unset($auth_params[0]);
+				$_SERVER['PHP_AUTH_PW'] = implode('',$auth_params);
 			}
-			$userobj = $_zp_authority->getAnAdmin($searchfor);
-			if ($userobj) {
-				$_zp_current_admin_obj = $userobj;
-				$_zp_current_admin_obj->no_zp_login = true;
-				$authorized = $_zp_current_admin_obj->getRights();
+			if(isset($_SERVER['REDIRECT_HTTP_AUTHORIZATION'])) {
+				$auth_params = explode(":" , base64_decode(substr($_SERVER['REDIRECT_HTTP_AUTHORIZATION'], 6)));
+				$_SERVER['PHP_AUTH_USER'] = $auth_params[0];
+				unset($auth_params[0]);
+				$_SERVER['PHP_AUTH_PW'] = implode('',$auth_params);
+			}
+
+			if (array_key_exists('PHP_AUTH_USER', $_SERVER) && array_key_exists('PHP_AUTH_PW', $_SERVER)) {
+				$user = $_SERVER['PHP_AUTH_USER'];
+				$pass = $_SERVER['PHP_AUTH_PW'];
+				$searchfor = array('`user`=' => $user, '`pass`=' => $_zp_authority->passwordHash($user, $pass), '`valid`=' => 1);
+				if (getOption('http_auth_trust')) {
+					unset($searchfor['`pass`=']);
+				}
+				$userobj = $_zp_authority->getAnAdmin($searchfor);
+				if ($userobj) {
+					$_zp_current_admin_obj = $userobj;
+					$_zp_current_admin_obj->no_zp_login = true;
+					$authorized = $_zp_current_admin_obj->getRights();
+				}
 			}
 		}
+		return $authorized;
 	}
-	return $authorized;
-}
 
+}
 ?>
