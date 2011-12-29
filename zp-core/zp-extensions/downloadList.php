@@ -268,7 +268,7 @@ function getDownloadLink($file) {
 		if (strpos($_downloadList_linkpath,'?') === false) {
 			$link = FULLWEBPATH.'/'.$_downloadList_linkpath.'?download='.$id;
 		} else {
-			$link = FULLWEBPATH.'/'.$_downloadList_linkpath.'&amp;download='.$id;
+			$link = FULLWEBPATH.'/'.$_downloadList_linkpath.'&download='.$id;
 		}
 	}
 	return $link;
@@ -299,7 +299,7 @@ function printDownloadLink($file,$linktext=NULL) {
 	} else {
 		$filename = $linktext;
 	}
-	echo '<a href="'.getDownloadLink($file).'" rel="nofollow">'.$filename.'</a><small>'.$filesize.'</small>';
+	echo '<a href="'.html_encode(getDownloadLink($file)).'" rel="nofollow">'.$filename.'</a><small>'.$filesize.'</small>';
 }
 
 /**
