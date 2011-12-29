@@ -90,7 +90,7 @@ printLogoAndLinks();
 			<h1><?php echo gettext('Articles'); ?>
 			<?php
 			if (isset($_GET['category'])) {
-				echo "<em>".$_GET['category'].'</em>';
+				echo "<em>".sanitize($_GET['category']).'</em>';
 			}
 			if (isset($_GET['date'])) {
 				echo '<em><small> ('.$_GET['date'].')</small></em>';
@@ -176,7 +176,7 @@ printLogoAndLinks();
 				//Needed check if we really have articles for page x or not otherwise we are just on page 1
 				if($total < $_zp_zenpage_currentadminnewspage) {
 					$_zp_zenpage_currentadminnewspage = 1;
-				} 
+				}
 				$offset = $_zp_zenpage->getOffset($articles_page);
 				$result = array_slice($result, $offset, $articles_page);
 			}

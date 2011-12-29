@@ -664,7 +664,7 @@ function printArticleDatesDropdown() {
 			$month = substr($dt, 5);
 		}
 		if(isset($_GET['category'])) {
-				$catlink = "&amp;category=".$_GET['category'];
+				$catlink = "&amp;category=".sanitize($_GET['category']);
 			} else {
 				$catlink = "";
 			}
@@ -1199,7 +1199,7 @@ function printCategoryListSortableTable($cat,$flag) {
 	?>
 	 <div class='page-list_row'>
 		<div class='page-list_title' >
-		<?php echo "<a href='admin-edit.php?category&amp;titlelink=".$cat->getTitlelink()."' title='".gettext('Edit this category')."'>".$cattitle."</a>".checkHitcounterDisplay($cat->getHitcounter()); ?>
+		<?php echo "<a href='admin-edit.php?newscategory&amp;titlelink=".$cat->getTitlelink()."' title='".gettext('Edit this category')."'>".$cattitle."</a>".checkHitcounterDisplay($cat->getHitcounter()); ?>
 		</div>
 		<div class="page-list_extra"><?php echo $count; ?> <?php echo gettext("articles"); ?>
 		</div>
@@ -1699,7 +1699,7 @@ function printPublishIconLink($object,$type,$linkback='') {
 	if($type == "news") {
 		if(isset($_GET['pagenr'])) { $urladd .= "&amp;pagenr=".$_GET['pagenr']; }
 		if(isset($_GET['date'])) { $urladd .= "&amp;date=".$_GET['date']; }
-		if(isset($_GET['category'])) { $urladd .= "&amp;category=".$_GET['category']; }
+		if(isset($_GET['category'])) { $urladd .= "&amp;category=".sanitize($_GET['category']); }
 		if(isset($_GET['sortorder'])) { $urladd .= "&amp;sortorder=".$_GET['sortorder']; }
 		if(isset($_GET['articles_page'])) { $urladd .= "&amp;articles_page=".$_GET['articles_page']; }
 	}
@@ -1810,7 +1810,7 @@ function is_AdminEditPage($page) {
 			}
 			break;
 		case "category":
-			if(isset($_GET['category'])) {
+			if(isset($_GET['newscategory'])) {
 				return TRUE;
 			} else {
 				return FALSE;

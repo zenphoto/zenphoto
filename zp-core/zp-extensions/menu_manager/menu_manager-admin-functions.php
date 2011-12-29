@@ -43,7 +43,7 @@ function printItemsListTable($item, $flag) {
 				$link = '<a href="../zenpage/admin-edit.php?page&amp;titlelink='.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
 				break;
 			case "zenpagecategory":
-				$link = '<a href="../zenpage/admin-edit.php?category&amp;titlelink='.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
+				$link = '<a href="../zenpage/admin-edit.php?newscategory&amp;titlelink='.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';
 				break;
 			case 'customlink':
 				$link = '<a href="'.html_encode($item['link']).'">'.html_encode(truncate_string($item['link'], 40, '...')).'</a>';

@@ -290,6 +290,7 @@ if($result->transient) {
 <?php
 if(is_AdminEditPage("newsarticle")) {
 	$backurl = 'admin-news-articles.php?'.$page;
+	if (isset($_GET['category'])) $backurl .= '&amp;category='.sanitize($_GET['category']);
 }
 if(is_AdminEditPage("category")) {
 	$backurl = 'admin-categories.php?';
