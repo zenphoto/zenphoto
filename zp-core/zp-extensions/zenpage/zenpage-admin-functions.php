@@ -1794,29 +1794,7 @@ function checkIfLockedNews($news) {
  * @return bool
  */
 function is_AdminEditPage($page) {
-	switch ($page) {
-		case "page":
-			if(isset($_GET['page'])) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
-			break;
-		case "newsarticle":
-			if(isset($_GET['newsarticle'])) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
-			break;
-		case "category":
-			if(isset($_GET['newscategory'])) {
-				return TRUE;
-			} else {
-				return FALSE;
-			}
-			break;
-	}
+	return isset($_GET[$page]);
 }
 
 /**

@@ -95,7 +95,7 @@ if(is_AdminEditPage('newsarticle')) {
 		}
 	}
 }
-if(is_AdminEditPage('category')) {
+if(is_AdminEditPage('newscategory')) {
 	$tab = 'news';
 	$_GET['tab'] = 'categories';
 	if(isset($_GET['save'])) {
@@ -189,7 +189,7 @@ codeblocktabsJS();
 		$themepage = 'news';
 	}
 
-	if(is_AdminEditPage('category')) {
+	if(is_AdminEditPage('newscategory')) {
 		$subtab = printSubtabs();
 		?>
 		<div id="tab_articles" class="tabbox">
@@ -218,7 +218,7 @@ codeblocktabsJS();
 			<h1><?php echo gettext('New Article'); ?></h1>
 			<?php
 		}
-		if(is_AdminEditPage('category')) {
+		if(is_AdminEditPage('newscategory')) {
 			?>
 			<h1><?php	echo gettext('New Category'); ?></h1>
 		<?php
@@ -243,7 +243,7 @@ codeblocktabsJS();
 			 echo '<p class="notebox">'.gettext('<strong>Note:</strong> This article belongs to a password protected category.').'</p>';
 			}
 		}
-		if(is_AdminEditPage('category')) {
+		if(is_AdminEditPage('newscategory')) {
 			?>
 			<h1><?php echo gettext('Edit Category:'); ?> <em><?php checkForEmptyTitle($result->getTitle(),'category',false); ?></em></h1>
 			<?php
@@ -275,7 +275,7 @@ if($result->transient) {
 		<input type="hidden" name="id" value="<?php echo $result->getID(); ?>" />
 		<input type="hidden" name="titlelink-old" id="titlelink-old" value="<?php echo html_encode($result->getTitlelink()); ?>" />
 		<?php
-		if(!is_AdminEditPage('category')) {
+		if(!is_AdminEditPage('newscategory')) {
 			?>
 				<input type="hidden" name="lastchange" id="lastchange" value="<?php echo date('Y-m-d H:i:s'); ?>" />
 				<input type="hidden" name="lastchangeauthor" id="lastchangeauthor" value="<?php echo $_zp_current_admin_obj->getUser(); ?>" />
@@ -291,8 +291,12 @@ if($result->transient) {
 if(is_AdminEditPage("newsarticle")) {
 	$backurl = 'admin-news-articles.php?'.$page;
 	if (isset($_GET['category'])) $backurl .= '&amp;category='.sanitize($_GET['category']);
+	if (isset($_GET['date'])) $backurl .= '&amp;date='.sanitize($_GET['date']);
+	if (isset($_GET['published'])) $backurl .= '&amp;published='.sanitize($_GET['published']);
+	if (isset($_GET['sortorder'])) $backurl .= '&amp;sortorder='.sanitize($_GET['sortorder']);
+	if (isset($_GET['articles_page'])) $backurl .= '&amp;articles_page='.sanitize($_GET['articles_page']);
 }
-if(is_AdminEditPage("category")) {
+if(is_AdminEditPage("newscategory")) {
 	$backurl = 'admin-categories.php?';
 }
 if(is_AdminEditPage("page")) {
@@ -322,7 +326,7 @@ zp_apply_filter('admin_note','news', $subtab);
 	<span id="tip"><a href="#"><img src="images/info.png" alt="" /><?php echo gettext("Usage tips"); ?></a></span>
 	<?php
 	if(!$result->transient) {
-		if(is_AdminEditPage("category")) {?>
+		if(is_AdminEditPage("newscategory")) {?>
 		<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 	<?php	} else { ?>
 		<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;title=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
@@ -371,7 +375,7 @@ zp_apply_filter('admin_note','news', $subtab);
 			<h2 class="h2_bordered_edit"><?php echo gettext("Publish"); ?></h2>
 				<div class="box-edit">
 				<?php
-				if(!is_AdminEditPage("category")) {
+				if(!is_AdminEditPage("newscategory")) {
 				?>
 					<p><?php echo gettext("Author:"); ?> <?php authorSelector($result->getAuthor()) ;?></p>
 				<?php
@@ -408,7 +412,7 @@ zp_apply_filter('admin_note','news', $subtab);
 				}
 				?>
 				<?php
-				if(!is_AdminEditPage("category")) {
+				if(!is_AdminEditPage("newscategory")) {
 				?>
 				<p class="checkbox">
 				<input name="locked" type="checkbox" id="locked" value="1" <?php checkIfChecked($result->getLocked()); ?> />
@@ -423,7 +427,7 @@ zp_apply_filter('admin_note','news', $subtab);
 				} else {
 					$hint = $user = $x = '';
 				}
-				if(is_AdminEditPage('page') || is_AdminEditPage('category')) {
+				if(is_AdminEditPage('page') || is_AdminEditPage('newscategory')) {
 				?>
 					<p class="passwordextrashow" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?>>
 					<input	type="hidden" name="password_enabled" id="password_enabled" value="0" />
@@ -466,7 +470,7 @@ zp_apply_filter('admin_note','news', $subtab);
 					<?php
 					}
 				}
-				if (!$result->transient && !is_AdminEditPage('category')) {
+				if (!$result->transient && !is_AdminEditPage('newscategory')) {
 					?>
 						<label class="checkboxlabel">
 								<input type="radio" id="copy_object" name="copy_delete_object" value="copy"
@@ -490,7 +494,7 @@ zp_apply_filter('admin_note','news', $subtab);
 				if(is_AdminEditPage("newsarticle")) {
 					echo zp_apply_filter('publish_article_utilities','',$result);
 				}
-				if(is_AdminEditPage("category")) {
+				if(is_AdminEditPage("newscategory")) {
 					echo zp_apply_filter('publish_category_utilities','',$result);
 				}
 				if(is_AdminEditPage("page")) {
@@ -499,7 +503,7 @@ zp_apply_filter('admin_note','news', $subtab);
 				?>
 				</div>
 				<?php
-				if(!is_AdminEditPage("category")) {
+				if(!is_AdminEditPage("newscategory")) {
 					?>
 					<h2 class="h2_bordered_edit"><?php echo gettext("Date"); ?></h2>
 					<div class="box-edit">
@@ -613,7 +617,7 @@ zp_apply_filter('admin_note','news', $subtab);
 
 			<?php } // if article for categories
 				} // if !category end
-				if (!is_AdminEditPage("category")) {
+				if (!is_AdminEditPage("newscategory")) {
 					?>
 					<h2 class="h2_bordered_edit"><?php echo gettext("Tags"); ?></h2>
 					<div class="box-edit-unpadded">
@@ -642,7 +646,7 @@ zp_apply_filter('admin_note','news', $subtab);
 			<td class="topalign-padding"><?php echo gettext("Content:"); ?></td>
 			<td>
 				<?php
-				if (is_AdminEditPage("category")) {
+				if (is_AdminEditPage("newscategory")) {
 					print_language_string_list($result->get('desc'), 'desc', true, NULL, 'desc', 92, 'zenpage_language_string_list', 20);
 				} else {
 					print_language_string_list($result->get('content'), 'content', true, NULL, 'content', 92, 'zenpage_language_string_list', 35);
@@ -651,7 +655,7 @@ zp_apply_filter('admin_note','news', $subtab);
 			</td>
 		</tr>
 		<?php
-		if (!is_AdminEditPage("category")) {
+		if (!is_AdminEditPage("newscategory")) {
 			?>
 			<tr>
 				<td class="topalign-padding"><?php echo gettext("ExtraContent:"); ?></td>
@@ -671,7 +675,7 @@ zp_apply_filter('admin_note','news', $subtab);
 		if(is_AdminEditPage("newsarticle")) {
 			$custom = zp_apply_filter('edit_article_custom_data', '', $result);
 		}
-		if(is_AdminEditPage("category")) {
+		if(is_AdminEditPage("newscategory")) {
 			$custom = zp_apply_filter('edit_category_custom_data', '', $result);
 		}
 		if(is_AdminEditPage("page")) {
@@ -686,7 +690,7 @@ zp_apply_filter('admin_note','news', $subtab);
 		</td>
 		</tr>
 		<?php
-		if(!is_AdminEditPage("category")) {
+		if(!is_AdminEditPage("newscategory")) {
 			?>
 			<tr>
 			<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
@@ -734,7 +738,7 @@ zp_apply_filter('admin_note','news', $subtab);
 		<strong><a href="admin-edit.php?<?php echo $admintype; ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo $additem; ?>"><img src="images/add.png" alt="" /> <?php echo $additem; ?></a></strong>
 		<?php
 		if(!$result->transient) {
-			if(is_AdminEditPage("category")) {
+			if(is_AdminEditPage("newscategory")) {
 				?>
 				<a href="../../../index.php?p=<?php echo $themepage; ?>&amp;category=<?php echo $result->getTitlelink(); ?>" title="<?php echo gettext("View"); ?>"><img src="images/view.png" alt="" /><?php echo gettext("View"); ?></a>
 				<?php
@@ -751,7 +755,7 @@ zp_apply_filter('admin_note','news', $subtab);
 	</div>
 </form>
 <?php
-if(is_AdminEditPage("newsarticle") || is_AdminEditPage("category")) {
+if(is_AdminEditPage("newsarticle") || is_AdminEditPage("newscategory")) {
 	?>
 	</div>
 	<?php
