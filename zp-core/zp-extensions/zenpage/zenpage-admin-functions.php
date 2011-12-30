@@ -7,15 +7,6 @@
  * @subpackage zenpage
  */
 
-/**
- * Calls the Zenpage class
- *
- */
-require_once("zenpage-class.php");
-require_once("zenpage-class-page.php");
-require_once("zenpage-class-news.php");
-require_once("zenpage-class-category.php");
-
 global $_zp_zenpage, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category, $_zp_zenpage_currentadminnewspage;
 
 /**

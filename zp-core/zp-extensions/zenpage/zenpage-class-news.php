@@ -108,7 +108,7 @@ class ZenpageNews extends ZenpageItems {
  */
 	function inProtectedCategory($only=false) {
 		$categories = $this->getCategories();
-		if(count($categories) > 0) {
+		if(!empty($categories)) {
 			foreach($categories as $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
 				$password = $catobj->getPassword();
@@ -257,7 +257,7 @@ class ZenpageNews extends ZenpageItems {
 			return false;
 		}
 	}
-	
+
 	/**
  	* Returns the url to a news article
  	*
