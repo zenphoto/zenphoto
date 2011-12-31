@@ -69,7 +69,7 @@ h2 {
 <h1><span id="top"><?php echo $mybutton['button_text']; ?></span></h1>
 <p>
 	<?php echo $mybutton['title'];; ?>
-	<?php echo gettext("The internal Zenphoto table relations can be viewed on the PDF database reference that is included in the release package within the /docs_files folder of your Zenphoto installation. For more detailed info about the database use tools like myPhpAdmin."); ?>
+	<?php echo gettext("The internal Zenphoto table relations can be viewed on the PDF database reference that is included in the release package within the /docs_files folder of your Zenphoto installation. For more detailed info about the database use tools like phpMyAdmin."); ?>
 </p>
 <?php
 $database_name =db_name();

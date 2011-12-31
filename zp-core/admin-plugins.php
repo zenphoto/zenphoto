@@ -213,7 +213,7 @@ foreach ($filelist as $extension) {
  			}
  			?>
 			<img src="<?php echo $ico; ?>" />
-			<input type="checkbox" name="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
+			<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
 				<?php
 				if ($parserr || $plugin_disable) {
 					$optionlink = false;
@@ -230,7 +230,7 @@ foreach ($filelist as $extension) {
 			echo ' v'.$plugin_version;
 		}
 		if ($plugin_disable) {
-			echo '<p><strong>'.sprintf(gettext('This plugin is disabled: %s'),$plugin_disable).'</strong></p>';
+			echo '<p id="'.$extension.'_disabled"><strong>'.sprintf(gettext('This plugin is disabled: %s'),$plugin_disable).'</strong></p>';
 		}
 		?>
 		</td>
