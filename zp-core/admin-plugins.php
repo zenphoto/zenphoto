@@ -53,7 +53,7 @@ function toggleDetails(plugin) {
 
 function truncateDesc(text,debug) {
 	text = text.replace(/(<script.*?script>)/ig,"");	//strip scripts
-	text = text.replace(/(<.*?>)/ig,"");							//strip tags
+	text = text.replace(/(<.*?>)/ig," ");							//strip tags
 	if (text.length <= 70) return text;
 	ls = 0;
 	for (i=0;i<text.length;i++) {
