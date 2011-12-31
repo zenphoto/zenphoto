@@ -2961,6 +2961,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				}
 				$ledgend .= $icon_edit_album.' '.gettext('edit album').' ';
 				if ($rights & UPLOAD_RIGHTS) $ledgend .= $icon_upload.' '.gettext('upload').' ';
+				if (TEST_UNPUBLISHED && !($rights & VIEW_UNPUBLISHED_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublilshed').' ';
 				foreach ($full as $item) {
 					if (in_array($item['data'],$flag)) {
 						$note = '*';
@@ -2972,6 +2973,9 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 					$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
 					if (($rights&UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
 						$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+					}
+					if (TEST_UNPUBLISHED && !($rights & VIEW_UNPUBLISHED_RIGHTS)) {
+						$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW);
 					}
 				}
 				$rest = array_diff($objlist, $cv);
@@ -3061,13 +3065,13 @@ function processRights($i) {
 		}
 	}
 	if ($rights & MANAGE_ALL_ALBUM_RIGHTS) {	// these are lock-step linked!
-		$rights = $rights | VIEW_ALBUMS_RIGHTS | ALBUM_RIGHTS;
+		$rights = $rights | ALL_ALBUMS_RIGHTS | ALBUM_RIGHTS;
 	}
 	if ($rights & MANAGE_ALL_NEWS_RIGHTS) {	// these are lock-step linked!
-		$rights = $rights | VIEW_NEWS_RIGHTS | ZENPAGE_NEWS_RIGHTS;
+		$rights = $rights | ALL_NEWS_RIGHTS | ZENPAGE_NEWS_RIGHTS;
 	}
 	if ($rights & MANAGE_ALL_PAGES_RIGHTS) {	// these are lock-step linked!
-		$rights = $rights | VIEW_PAGES_RIGHTS | ZENPAGE_PAGES_RIGHTS;
+		$rights = $rights | ALL_PAGES_RIGHTS | ZENPAGE_PAGES_RIGHTS;
 	}
 	return $rights;
 }
@@ -3098,6 +3102,11 @@ function processManagedObjects($i, &$rights) {
 				$key = substr($key, 0, -7);
 				if (isset($albums[$key])) {	// album still part of the list
 					$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
+				}
+			} else if (strpos($key, '_view')) {
+				$key = substr($key, 0, -5);
+				if (isset($albums[$key])) {	// album still part of the list
+					$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
 				}
 			} else if ($value) {
 				if (hasDynamicAlbumSuffix($key)) {

@@ -698,7 +698,7 @@ class Gallery {
 		} else {
 			$albumid = '='.$parentalbum->id;
 			$obj = $parentalbum;
-			$viewUnpublished = (zp_loggedin() && $obj->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT);
+			$viewUnpublished = (zp_loggedin() && $obj->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 		}
 
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending

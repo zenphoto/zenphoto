@@ -1411,7 +1411,7 @@ function accessAllAlbums($action) {
 	if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 		if (zp_loggedin($action)) return true;
 	}
-	if (zp_loggedin(VIEW_ALBUMS_RIGHTS) && ($action == LIST_RIGHTS)) {	// sees all
+	if (zp_loggedin(ALL_ALBUMS_RIGHTS) && ($action == LIST_RIGHTS)) {	// sees all
 		return $_zp_loggedin;
 	}
 	return false;

@@ -1228,9 +1228,9 @@ function getAlbumLinkURL($album=NULL) {
 	if (is_null($album)) $album = $_zp_current_album;
 	if (in_context(ZP_IMAGE)) {
 		$page = getAlbumPage($album);
-		if ($page <= 1) $page = NULL;
+		if ($page <= 1) $page = 0;
 	} else {
-		$page = NULL;
+		$page = 0;
 	}
 	return $album->getAlbumLink($page);
 }

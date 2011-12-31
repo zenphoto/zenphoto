@@ -351,14 +351,14 @@ class Zenphoto_Authority {
 				}
 				if ($to == 3 && $oldversion < 3) {
 					if ($rights & $oldrights['VIEW_ALL_RIGHTS']) {
-						$updaterights = $currentrights['VIEW_ALBUMS_RIGHTS']['value'] | $currentrights['VIEW_PAGES_RIGHTS']['value'] |
-													$currentrights['VIEW_NEWS_RIGHTS']['value'] | $currentrights['VIEW_SEARCH_RIGHTS']['value']	|
+						$updaterights = $currentrights['ALL_ALBUMS_RIGHTS']['value'] | $currentrights['ALL_PAGES_RIGHTS']['value'] |
+													$currentrights['ALL_NEWS_RIGHTS']['value'] | $currentrights['VIEW_SEARCH_RIGHTS']['value']	|
 													$currentrights['VIEW_GALLERY_RIGHTS']['value'] | $currentrights['VIEW_FULLIMAGE_RIGHTS']['value'];
 						$newrights = $newrights | $updaterights;
 					}
 				}
 				if ($oldversion == 3 && $to < 3) {
-					if ($oldrights['VIEW_ALBUMS_RIGHTS'] || $oldrights['VIEW_PAGES_RIGHTS'] || $oldrights['VIEW_NEWS_RIGHTS']) {
+					if ($oldrights['ALL_ALBUMS_RIGHTS'] || $oldrights['ALL_PAGES_RIGHTS'] || $oldrights['ALL_NEWS_RIGHTS']) {
 						$newrights = $newrights | $currentrights['VIEW_ALL_RIGHTS']['value'];
 					}
 				}
@@ -473,9 +473,10 @@ class Zenphoto_Authority {
 														'VIEW_GALLERY_RIGHTS' => array('value'=>pow(2,4),'name'=>gettext('View gallery'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may view otherwise protected generic gallery pages.')),
 														'VIEW_SEARCH_RIGHTS' => array('value'=>pow(2,5),'name'=>gettext('View search'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may view search pages even if password protected.')),
 														'VIEW_FULLIMAGE_RIGHTS' => array('value'=>pow(2,6),'name'=>gettext('View fullimage'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may view all full sized (raw) images.')),
-														'VIEW_NEWS_RIGHTS' => array('value'=>pow(2,7),'name'=>gettext('View news'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right may view all zenpage news articles.')),
-														'VIEW_PAGES_RIGHTS' => array('value'=>pow(2,8),'name'=>gettext('View pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right may view all zenpage pages.')),
-														'VIEW_ALBUMS_RIGHTS' => array('value'=>pow(2,9),'name'=>gettext('View albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right may view all albums (and their images).')),
+														'ALL_NEWS_RIGHTS' => array('value'=>pow(2,7),'name'=>gettext('All news'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right have access to all zenpage news articles.')),
+														'ALL_PAGES_RIGHTS' => array('value'=>pow(2,8),'name'=>gettext('All pages'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right have access to all zenpage pages.')),
+														'ALL_ALBUMS_RIGHTS' => array('value'=>pow(2,9),'name'=>gettext('All albums'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right have access to all albums.')),
+														'VIEW_UNPUBLISHED_RIGHTS' => array('value'=>pow(2,10),'name'=>gettext('View unpublished'),'set'=>gettext('Albums'),'display'=>TEST_UNPUBLISHED,'hint'=>gettext('Users with this right will see all upublished items.')),
 
 														'POST_COMMENT_RIGHTS'=> array('value'=>pow(2,11),'name'=>gettext('Post comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
 														'COMMENT_RIGHTS' => array('value'=>pow(2,12),'name'=>gettext('Comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make comments tab changes.')),
@@ -506,8 +507,8 @@ class Zenphoto_Authority {
 		if (isset($rightsset['VIEW_ALL_RIGHTS']['value'])) {
 			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']['value']|$rightsset['VIEW_ALL_RIGHTS']['value'];
 		} else {
-			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']|$rightsset['VIEW_ALBUMS_RIGHTS']['value']|
-																		 $rightsset['VIEW_PAGES_RIGHTS']['value']|$rightsset['VIEW_NEWS_RIGHTS']['value']|
+			$rightsset['DEFAULT_RIGHTS']['value'] = $rightsset['DEFAULT_RIGHTS']|$rightsset['ALL_ALBUMS_RIGHTS']['value']|
+																		 $rightsset['ALL_PAGES_RIGHTS']['value']|$rightsset['ALL_NEWS_RIGHTS']['value']|
 																		 $rightsset['VIEW_SEARCH_RIGHTS']['value']|$rightsset['VIEW_GALLERY_RIGHTS']['value'];
 		}
 		$rightsset = sortMultiArray($rightsset,'value',true,false,false);
@@ -1328,7 +1329,7 @@ class Zenphoto_Administrator extends PersistentObject {
 			$result = query($sql,false);
 			foreach ($objects as $object) {
 				if (array_key_exists('edit',$object)) {
-					$edit = $object['edit'] | 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD);
+					$edit = $object['edit'] | 32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW);
 				} else {
 					$edit = 32767;
 				}

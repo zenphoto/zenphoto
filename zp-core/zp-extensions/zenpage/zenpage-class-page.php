@@ -11,7 +11,7 @@ class ZenpagePage extends ZenpageItems {
 
 	var $manage_rights = MANAGE_ALL_PAGES_RIGHTS;
 	var $manage_some_rights = ZENPAGE_PAGES_RIGHTS;
-	var $view_rights = VIEW_PAGES_RIGHTS;
+	var $view_rights = ALL_PAGES_RIGHTS;
 
 	function __construct($titlelink, $allowCreate=NULL) {
 		$new = parent::PersistentObject('pages', array('titlelink'=>$titlelink), 'titlelink', true, empty($titlelink), $allowCreate);

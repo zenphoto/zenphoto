@@ -94,7 +94,7 @@ class _Image extends MediaObject {
 	var $sidecars = array();	// keeps the list of suffixes associated with this image
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
-	var $view_rights = VIEW_ALBUMS_RIGHTS;
+	var $view_rights = ALL_ALBUMS_RIGHTS;
 
 
 	// Plugin handler support

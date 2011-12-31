@@ -11,7 +11,7 @@ class ZenpageNews extends ZenpageItems {
 
 	var $manage_rights = MANAGE_ALL_NEWS_RIGHTS;
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
-	var $view_rights = VIEW_NEWS_RIGHTS;
+	var $view_rights = ALL_NEWS_RIGHTS;
 	var $categories = NULL;
 
 	function __construct($titlelink, $allowCreate=NULL) {
@@ -135,7 +135,7 @@ class ZenpageNews extends ZenpageItems {
 	 * returns true if the article exists in any published category (or in no categories)
 	 */
 	function categoryIsVisible() {
-		if (zp_loggedin(VIEW_NEWS_RIGHTS)) return true;
+		if (zp_loggedin(ALL_NEWS_RIGHTS)) return true;
 		global $_zp_zenpage;
 		$categories = $this->getCategories(false);
 		if(count($categories) > 0) {

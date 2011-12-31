@@ -50,7 +50,7 @@ class Zenpage {
 			$structure = array();
 			foreach ($allcategories as $cat) {
 				$catobj = new ZenpageCategory($cat['titlelink']);
-				if ($catobj->isMyItem(VIEW_NEWS_RIGHTS)) {
+				if ($catobj->isMyItem(ALL_NEWS_RIGHTS)) {
 					$cat['show'] = 1;
 				} else {
 					if ($cat['show'] && $cat['parentid']) {
@@ -170,7 +170,7 @@ class Zenpage {
 		$this->processExpired('news');
 		$getUnpublished = NULL;
 		if (empty($published)) {
-			if(zp_loggedin( VIEW_NEWS_RIGHTS)) {
+			if(zp_loggedin( ALL_NEWS_RIGHTS)) {
 				$published = "all";
 				$getUnpublished = true;
 			} else {
@@ -457,7 +457,7 @@ class Zenpage {
 		global $_zp_gallery, $_zp_flash_player;
 		$this->processExpired('news');
 		if (is_null($published)) {
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
+			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
 				$published = "all";
 			} else {
 				$published = "published";
@@ -474,7 +474,7 @@ class Zenpage {
 			$imagesshow = "";
 		}
 		$passwordcheck = "";
-		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
+		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
 			$albumWhere = "";
 			$passwordcheck = "";
 		} else {
@@ -641,7 +641,7 @@ class Zenpage {
 		if(ZP_COMBINEWS) {
 			$countArticles = count($this->getArticles(0));
 			if(is_null($published)) {
-				if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | VIEW_NEWS_RIGHTS)) {
+				if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
 					$published = FALSE;
 				} else {
 					$published = TRUE;

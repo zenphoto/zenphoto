@@ -1151,7 +1151,7 @@ class SearchEngine
 						if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
 							$album = new Album(new gallery(), $albumname);
 							$uralbum = getUrAlbum($album);
-							$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT);
+							$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 							switch (checkPublishDates($row)) {
 								case 1:
 									$album->setShow(0);
@@ -1307,7 +1307,7 @@ class SearchEngine
 						$allow = false;
 						$album = new Album(new gallery(), $albumname);
 						$uralbum = getUrAlbum($album);
-						$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT);
+						$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 						switch (checkPublishDates($row)) {
 							case 1:
 								$imageobj = newImage($this,$row['filename']);

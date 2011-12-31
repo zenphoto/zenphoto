@@ -22,7 +22,7 @@ class Album extends MediaObject {
 	var $sidecars = array();	// keeps the list of suffixes associated with this album
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
-	var $view_rights = VIEW_ALBUMS_RIGHTS;
+	var $view_rights = ALL_ALBUMS_RIGHTS;
 	protected $subalbums = null; // Full album array storage.
 	protected $index;
 	protected $lastimagesort = NULL;  // remember the order for the last album/image sorts
@@ -393,7 +393,7 @@ class Album extends MediaObject {
 		if (is_null($this->images) || $care && $sorttype.$sortdirection !== $this->lastimagesort) {
 			if ($this->isDynamic()) {
 				$searchengine = $this->getSearchEngine();
-				$images = $searchengine->getSearchImages($sorttype, $sortdirection);
+				$images = $searchengine->getSearchImages($sorttype, $sortdirection, $mine);
 			} else {
 				// Load, sort, and store the images in this Album.
 				$images = $this->loadFileNames();
@@ -443,7 +443,7 @@ class Album extends MediaObject {
 			$mine = $this->isMyItem(LIST_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS);
 		}
 		if ($mine && !($mine & (MANAGE_ALL_ALBUM_RIGHTS))) {	//	check for managed album view unpublished image rights
-			$mine = $this->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT;
+			$mine = $this->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
 		}
 		$sortkey = str_replace('`','',$this->getImageSortKey($sorttype));
 		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) { // manual sort is always ascending
@@ -1230,8 +1230,13 @@ class Album extends MediaObject {
 		}
 		global $_zp_admin_album_list;
 		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD;
+			$this->subrights = MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW;
 			return $this->subrights;
+		}
+		if (zp_loggedin(VIEW_UNPUBLISHED_RIGHTS)) {
+			$base = MANAGED_OBJECT_RIGHTS_VIEW;
+		} else {
+			$base = NULL;
 		}
 		getManagedAlbumList();
 		if (count($_zp_admin_album_list) > 0) {
@@ -1249,12 +1254,12 @@ class Album extends MediaObject {
 					$level++;
 				}
 				if ($ok) {
-					$this->subrights =  $rights;
+					$this->subrights =  $rights | $base;
 					return $this->subrights;
 				}
 			}
 		}
-		$this->subrights =  NULL;
+		$this->subrights =  $base;
 		return $this->subrights;
 	}
 

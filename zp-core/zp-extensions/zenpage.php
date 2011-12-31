@@ -172,7 +172,7 @@ function zenpageIsMyItemToView($fail) {
 					return true;
 				}
 			} else {	//	must be category or main news page?
-				if (zp_loggedin(VIEW_NEWS_RIGHTS) || !is_object($_zp_current_category) || !$_zp_current_category->isProtected()) {
+				if (zp_loggedin(ALL_NEWS_RIGHTS) || !is_object($_zp_current_category) || !$_zp_current_category->isProtected()) {
 					return true;
 				}
 				if (is_object($_zp_current_category)) {

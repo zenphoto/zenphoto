@@ -1543,7 +1543,7 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 }
 
 /**
- * Returns a list of album IDs that the current viewer is allowed to see
+ * Returns a list of album IDs that the current viewer is not allowed to see
  *
  * @return array
  */
