@@ -227,7 +227,7 @@ foreach($themes as $theme => $themeinfo) {
 			?>
 		</td>
 		<td <?php echo $style; ?>>
-			<img src="<?php echo $ico; ?>" alt="<?php echo gettext('theme logo'); ?>" title="<?php echo $whose; ?>" />
+			<img src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
 			<strong><?php echo $themeinfo['name']; ?></strong>
 			<br />
 			<?php echo $themeinfo['author']; ?>
