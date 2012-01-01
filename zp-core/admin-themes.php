@@ -194,17 +194,40 @@ foreach($themes as $theme => $themeinfo) {
 	$style = ($theme == $current_theme) ? " style=\"$current_theme_style\"" : "";
 	$themedir = SERVERPATH . '/themes/'.internalToFilesystem($theme);
 	$themeweb = WEBPATH . "/themes/$theme";
+	if (themeIsEditable($theme, $themes)) {
+		$whose = gettext('third party theme');
+		$path = $themedir.'/logo.png';
+		if (file_exists($path)) {
+			$ico = $themeweb.'/logo.png';
+		} else {
+			$ico = 'images/place_holder_icon.png';
+		}
+	} else {
+		$whose = 'Zenphoto official theme';
+		$ico = 'images/zp_gold.png';
+	}
 	?>
 	<tr>
-		<td style="margin: 0px; padding: 0px;"><?php
-			if (file_exists("$themedir/theme.png")) $themeimage = "$themeweb/theme.png";
-			else if (file_exists("$themedir/theme.gif")) $themeimage = "$themeweb/theme.gif";
-			else if (file_exists("$themedir/theme.jpg")) $themeimage = "$themeweb/theme.jpg";
-			else $themeimage = false;
-			if ($themeimage) { ?> <img height="150" width="150"
-				src="<?php echo $themeimage; ?>" alt="Theme Screenshot" /> <?php } ?>
+		<td style="margin: 0px; padding: 0px;">
+		<?php
+			if (file_exists("$themedir/theme.png")) {
+				$themeimage = "$themeweb/theme.png";
+			}	else if (file_exists("$themedir/theme.gif")) {
+				$themeimage = "$themeweb/theme.gif";
+			} else if (file_exists("$themedir/theme.jpg")) {
+				$themeimage = "$themeweb/theme.jpg";
+			} else {
+				$themeimage = false;
+			}
+			if ($themeimage) {
+				?>
+				<img height="150" width="150" src="<?php echo $themeimage; ?>" alt="Theme Screenshot" />
+				<?php
+			}
+			?>
 		</td>
 		<td <?php echo $style; ?>>
+			<img src="<?php echo $ico; ?>" alt="<?php echo gettext('theme logo'); ?>" title="<?php echo $whose; ?>" />
 			<strong><?php echo $themeinfo['name']; ?></strong>
 			<br />
 			<?php echo $themeinfo['author']; ?>

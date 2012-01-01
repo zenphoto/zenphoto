@@ -204,7 +204,7 @@ foreach ($filelist as $extension) {
  			if ($third_party_plugin) {
  				$path = stripSuffix($paths[$extension]).'/logo.png';
  				if (file_exists($path)) {
- 					$ico =str_replace(SERVERPATH, WEBPATH, $path);
+ 					$ico = str_replace(SERVERPATH, WEBPATH, $path);
  				} else {
  					$ico = 'images/place_holder_icon.png';
  				}
