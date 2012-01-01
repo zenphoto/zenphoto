@@ -1490,7 +1490,8 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								foreach ($imagelist as $imagename) {
 									if (is_array($imagename)) {
 										$image = newImage(NULL, $imagename);
-										$filename = $imagename['folder'].'/'.$imagename['filename'];
+										$imagename = $imagename['folder'].'/'.$imagename['filename'];
+										$filename = basename($imagename);
 									} else {
 										$albumname = dirname($imagename);
 										if (empty($albumname) || $albumname=='.') {
@@ -1501,14 +1502,14 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 										$filename = basename($imagename);
 										$image = newImage($thumbalbum, $filename);
 									}
-									$selected = ($filename == $thumb);
+									$selected = ($imagename == $thumb);
 									if (is_valid_image($filename) || !is_null($image->objectsThumb)) {
 										echo "\n<option";
 										if ($gallery->getThumbSelectImages()) {
 											echo " class=\"thumboption\"";
 											echo " style=\"background-image: url(" . html_encode($image->getCustomImage(80, NULL, NULL, NULL, NULL, NULL, NULL, -1)) . "); background-repeat: no-repeat;\"";
 										}
-										echo " value=\"" . $filename . "\"";
+										echo " value=\"" . $imagename . "\"";
 										if ($selected) {
 											echo " selected=\"selected\"";
 										}

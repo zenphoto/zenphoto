@@ -536,7 +536,9 @@ class Album extends MediaObject {
 	function getAlbumThumbImage() {
 		global $_zp_albumthumb_selector;
 
-		if (!is_null($this->albumthumbnail)) return $this->albumthumbnail;
+		if (!is_null($this->albumthumbnail)) {
+			return $this->albumthumbnail;
+		}
 
 		$albumdir = $this->localpath;
 		$thumb = $this->get('thumb');
@@ -545,57 +547,71 @@ class Album extends MediaObject {
 			$thumb = substr($thumb, 1); // strip off the slash
 			$albumdir = ALBUM_FOLDER_SERVERPATH;
 		}
-		if (!empty($thumb) && !is_numeric($thumb) && file_exists($albumdir.internalToFilesystem($thumb))) {
-			if ($i===false) {
-				return newImage($this, $thumb);
-			} else {
-				$pieces = explode('/', $thumb);
-				$i = count($pieces);
-				$thumb = $pieces[$i-1];
-				unset($pieces[$i-1]);
-				$albumdir = implode('/', $pieces);
-				if (!$root) { $albumdir = $this->name . "/" . $albumdir; } else { $albumdir = $albumdir . "/";}
-				$this->albumthumbnail = newImage(new Album($this->gallery, $albumdir), $thumb);
-				return $this->albumthumbnail;
-			}
-		} else {
-			$shuffle = empty($thumb);
-			if (!is_numeric($thumb)) {
-				$thumb = getOption('AlbumThumbSelect');
-			}
-			$field = $_zp_albumthumb_selector[$thumb]['field'];
-			$direction = $_zp_albumthumb_selector[$thumb]['direction'];
-			$this->getImages(0, 0, $field, $direction);
-			$thumbs = $this->images;
-			if (!is_null($thumbs)) {
-				if ($shuffle) {
-					shuffle($thumbs);
+		if (!empty($thumb) && !is_numeric($thumb)) {
+			if (file_exists($albumdir.internalToFilesystem($thumb))) {
+				if ($i===false) {
+					return newImage($this, $thumb);
+				} else {
+					$pieces = explode('/', $thumb);
+					$i = count($pieces);
+					$thumb = $pieces[$i-1];
+					unset($pieces[$i-1]);
+					$albumdir = implode('/', $pieces);
+					if (!$root) {
+						$albumdir = $this->name . "/" . $albumdir;
+					} else {
+						$albumdir = $albumdir . "/";
+					}
+					$this->albumthumbnail = newImage(new Album($this->gallery, $albumdir), $thumb);
+					return $this->albumthumbnail;
 				}
-				$mine = $this->isMyItem(LIST_RIGHTS);
-				$other = NULL;
-				while (count($thumbs) > 0) {	// first check for images
-					$thumb = array_shift($thumbs);
-					$thumb = newImage($this, $thumb);
-					if ($mine || $thumb->getShow()) {
-						if (isImagePhoto($thumb)) {	// legitimate image
+			} else {
+				$thumb = $this->albumthumbnail = NULL;
+			}
+		}
+		if (!is_numeric($thumb)) {
+			$thumb = getOption('AlbumThumbSelect');
+		}
+		$shuffle = empty($thumb);
+		$field = $_zp_albumthumb_selector[$thumb]['field'];
+		$direction = $_zp_albumthumb_selector[$thumb]['direction'];
+		$this->getImages(0, 0, $field, $direction);
+		$thumbs = $this->images;
+		if (!is_null($thumbs)) {
+			if ($shuffle) {
+				shuffle($thumbs);
+			}
+			$mine = $this->isMyItem(LIST_RIGHTS);
+			$other = NULL;
+			while (count($thumbs) > 0) {
+				// first check for images
+				$thumb = array_shift($thumbs);
+				$thumb = newImage($this, $thumb);
+				if ($mine || $thumb->getShow()) {
+					if (isImagePhoto($thumb)) {
+						// legitimate image
+						$this->albumthumbnail = $thumb;
+						return $this->albumthumbnail;
+					} else {
+						if (!is_null($thumb->objectsThumb)) {
+							//	"other" image with a thumb sidecar
 							$this->albumthumbnail = $thumb;
 							return $this->albumthumbnail;
 						} else {
-							if (!is_null($thumb->objectsThumb)) {	//	"other" image with a thumb sidecar
-								$this->albumthumbnail = $thumb;
-								return $this->albumthumbnail;
-							} else {
-								if (is_null($other)) $other = $thumb;
+							if (is_null($other)) {
+								$other = $thumb;
 							}
 						}
 					}
 				}
-				if (!is_null($other)) {	//	"other" image, default thumb
-					$this->albumthumbnail = $other;
-					return $this->albumthumbnail;
-				}
+			}
+			if (!is_null($other)) {
+				//	"other" image, default thumb
+				$this->albumthumbnail = $other;
+				return $this->albumthumbnail;
 			}
 		}
+
 		// Otherwise, look in sub-albums.
 		$subalbums = $this->getAlbums();
 		if (!is_null($subalbums)) {
