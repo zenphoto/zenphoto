@@ -2897,9 +2897,9 @@ function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
 	}
 	if($option == 'Category') {
 		if(!is_null($categorylink)) {
-			$categorylink = '&amp;category='.sanitize($categorylink);
+			$categorylink = '&category='.sanitize($categorylink);
 		} elseif(empty($categorylink) AND !is_null($_zp_current_category)) {
-			$categorylink = '&amp;category='.$_zp_current_category->getTitlelink();
+			$categorylink = '&category='.$_zp_current_category->getTitlelink();
 		} else {
 			$categorylink = '';
 		}
@@ -2907,37 +2907,37 @@ function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
 	switch($option) {
 		case 'News':
 			if (getOption('RSS_articles')) {
-				return WEBPATH.'/index.php?rss=news&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=news&lang='.$lang;
 			}
 			break;
 		case 'Category':
 			if (getOption('RSS_articles')) {
-				return WEBPATH.'/index.php?rss=news&amp;lang='.$lang.$categorylink;
+				return WEBPATH.'/index.php?rss=news&lang='.$lang.$categorylink;
 			}
 			break;
 		case 'NewsWithImages':
 			if (getOption('RSS_articles')) {
-				return WEBPATH.'/index.php?rss=news&amp;withimages&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=news&withimages&lang='.$lang;
 			}
 			break;
 		case 'Comments':
 			if (getOption('RSS_article_comments')) {
-				return WEBPATH.'/index.php?rss=comments&amp;type=zenpage&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&type=zenpage&lang='.$lang;
 			}
 			break;
 		case 'Comments-news':
 			if (getOption('RSS_article_comments')) {
-				return WEBPATH.'/index.php?rss=comments&amp;id='.getNewsID().'&amp;title='.urlencode(getNewsTitle()).'&amp;type=news&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&id='.getNewsID().'&title='.urlencode(getNewsTitle()).'&type=news&lang='.$lang;
 			}
 			break;
 		case 'Comments-page':
 			if (getOption('RSS_article_comments')) {
-				return WEBPATH.'/index.php?rss=comments&amp;id='.getPageID().'&amp;title='.urlencode(getPageTitle()).'&amp;type=page&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&id='.getPageID().'&title='.urlencode(getPageTitle()).'&type=page&lang='.$lang;
 			}
 			break;
 			case 'Comments-all':
 			if (getOption('RSS_article_comments')) {
-				return WEBPATH.'/index.php?rss=comments&amp;type=allcomments&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&type=allcomments&lang='.$lang;
 			}
 			break;
 	}
@@ -2971,7 +2971,7 @@ function printZenpageRSSLink($option='News', $categorylink='', $prev='', $linkte
 		$class = 'class="' . $class . '"';
 	}
 	$linktext = html_encode($linktext);
-	echo $prev."<a $class href=\"".getZenpageRSSLink($option,$categorylink,$lang)."\" title=\"".gettext("News RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
+	echo $prev."<a $class href=\"".html_encode(getZenpageRSSLink($option,$categorylink,$lang))."\" title=\"".gettext("News RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
 }
 
 
@@ -2995,7 +2995,7 @@ function printZenpageRSSHeaderLink($option='News',$categorylink='',$linktext='',
 	if ($protocol == 'https_admin') {
 		$protocol = 'https://';
 	}
-	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.getZenpageRSSLink($option,$categorylink,$lang)."\" />\n";
+	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode(strip_tags($linktext))."\" href=\"".$protocol.$host.html_encode(getZenpageRSSLink($option,$categorylink,$lang))."\" />\n";
 }
 
 /**

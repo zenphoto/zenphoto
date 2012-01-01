@@ -3618,42 +3618,42 @@ function getRSSLink($option,$lang='') {
 	switch($option) {
 		case 'Gallery':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rsslang='.$lang;
 			}
 			break;
 		case 'Album':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&amp;albumtitle='.urlencode(getAlbumTitle()).'&amp;albumname='.urlencode($_zp_current_album->getFolder()).'&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss&albumtitle='.urlencode(getAlbumTitle()).'&albumname='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang;
 				break;
 			}
 		case 'Collection':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&amp;albumtitle='.urlencode(getAlbumTitle()).'&amp;folder='.urlencode($_zp_current_album->getFolder()).'&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss&albumtitle='.urlencode(getAlbumTitle()).'&folder='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang;
 			}
 			break;
 		case 'Comments':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss=comments&type=gallery&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&type=gallery&lang='.$lang;
 			}
 			break;
 		case 'Comments-image':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss=comments&amp;id='.getImageID().'&amp;title='.urlencode(getImageTitle()).'&amp;type=image&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&id='.getImageID().'&title='.urlencode(getImageTitle()).'&type=image&lang='.$lang;
 			}
 			break;
 		case 'Comments-album':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss=comments&amp;id='.getAlbumID().'&amp;title='.urlencode(getAlbumTitle()).'&amp;type=album&amp;lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&id='.getAlbumID().'&title='.urlencode(getAlbumTitle()).'&type=album&lang='.$lang;
 			}
 			break;
 		case 'AlbumsRSS':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&amp;lang='.$lang.'&amp;albumsmode';
+				return WEBPATH.'/index.php?rss&lang='.$lang.'&albumsmode';
 			}
 			break;
 		case 'AlbumsRSScollection':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&amp;folder='.urlencode($_zp_current_album->getFolder()).'&amp;lang='.$lang.'&amp;albumsmode';
+				return WEBPATH.'/index.php?rss&folder='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang.'&albumsmode';
 			}
 			break;
 	}
@@ -3690,7 +3690,7 @@ function printRSSLink($option, $prev, $linktext, $next, $printIcon=true, $class=
 	if(empty($lang)) {
 		$lang = getOption("locale");
 	}
-	echo $prev."<a $class href=\"".getRSSLink($option,$lang)."\" title=\"".gettext("Latest images RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
+	echo $prev."<a $class href=\"".html_encode(getRSSLink($option,$lang))."\" title=\"".gettext("Latest images RSS")."\" rel=\"nofollow\">".$linktext."$icon</a>".$next;
 }
 
 /**
@@ -3715,7 +3715,7 @@ function printRSSHeaderLink($option, $linktext, $lang='') {
 	if ($protocol == 'https_admin') {
 		$protocol = 'https://';
 	}
-	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.getRSSLink($option,$lang)."\" />\n";
+	echo "<link rel=\"alternate\" type=\"application/rss+xml\" title=\"".html_encode($linktext)."\" href=\"".$protocol.$host.html_encode(getRSSLink($option,$lang))."\" />\n";
 }
 
 
