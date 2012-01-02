@@ -208,7 +208,7 @@ function getItemTitleAndURL($item) {
 				$protected = 0;
 			} else {
 				$obj = new Album($gallery,$item['link']);
-				$url = rewrite_path("/".$item['link'],"/index.php?album=".$item['link']);
+				$url = $obj->getAlbumLink(0);
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
 			}

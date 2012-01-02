@@ -259,7 +259,7 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 				$imgurl = getFirstImageOfAlbum($topalbum);
 				$link = "<li><a ".$current."href='".$imgurl."' title='".html_encode($title)."'>".html_encode($display)."</a>".$count;
 			} else {
-				$link = "<li><a ".$current."href='".html_encode($path.pathurlencode($topalbum->name))."' title='".html_encode($title)."'>".html_encode($display)."</a>".$count;
+				$link = "<li><a ".$current."href='".html_encode($topalbum->getAlbumLink(0))."' title='".html_encode($title)."'>".html_encode($display)."</a>".$count;
 			}
 			echo $link;
 		}
