@@ -148,11 +148,10 @@ foreach ($albumlist as $fullfolder => $albumtitle) {
 		<td><select id="thumb" name="thumb">
 		<?php
 		$selections = array();
-		$selected = array();
 		foreach ($_zp_albumthumb_selector as $key=>$selection) {
 			$selections[$selection['desc']] = $key;
 		}
-		generateListFromArray($selected,$selections,false,true);
+		generateListFromArray(array(getOption('AlbumThumbSelect')),$selections,false,true);
 		$showThumb = $gallery->getThumbSelectImages();
 		foreach ($imagelist as $imagepath) {
 			$pieces = explode('/', $imagepath);

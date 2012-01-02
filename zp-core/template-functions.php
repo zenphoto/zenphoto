@@ -162,9 +162,11 @@ function printAdminToolbox($id='admin') {
 			$albumname = $_zp_current_album->name;
 			if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
 				// admin is empowered to edit this album--show an edit link
-				echo "<li>";
-				printLink($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name), gettext('Edit album'), NULL, NULL, NULL);
-				echo "</li>\n";
+				?>
+				<li>
+					<?php printLink($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name), gettext('Edit album'), NULL, NULL, NULL); ?>
+				</li>
+				<?php
 				if (!$_zp_current_album->isDynamic()) {
 					if ($_zp_current_album->getNumAlbums()) {
 						?>
@@ -174,7 +176,7 @@ function printAdminToolbox($id='admin') {
 					}
 					if ($_zp_current_album->getNumImages()>0) {
 						?>
-						<li><?php printLink($zf . '/admin-albumsort.php?page=edit&album=' . pathurlencode($albumname).'&tab=sort', gettext("Sort album images"), NULL, NULL, NULL); ?>
+						<li><?php printLink($zf . '/admin-albumsort.php?page=edit&album=' . pathurlencode($albumname).'&tab=sort', gettext("Sort images"), NULL, NULL, NULL); ?>
 						</li>
 						<?php
 					}
@@ -182,8 +184,7 @@ function printAdminToolbox($id='admin') {
 				// and a delete link
 				if (GALLERY_SESSION) { // XSRF defense requires sessions
 					?>
-					<li><a
-						href="javascript:confirmDeleteAlbum('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($albumname)) ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>');"
+					<li><a href="javascript:confirmDeleteAlbum('<?php echo $zf; ?>/admin-edit.php?page=edit&amp;action=deletealbum&amp;album=<?php echo urlencode(pathurlencode($albumname)) ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>');"
 						title="<?php echo gettext('Delete the album'); ?>"><?php echo gettext('Delete album'); ?></a>
 					</li>
 					<?php
@@ -197,8 +198,8 @@ function printAdminToolbox($id='admin') {
 				<?php
 				if (GALLERY_SESSION) { // XSRF defense requires sessions
 					?>
-					<li><a
-						href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
+					<li>
+						<a href="javascript:newAlbum('<?php echo pathurlencode($albumname); ?>',true);"><?php echo gettext("New Album Here"); ?></a>
 					</li>
 					<?php
 				}
@@ -217,6 +218,11 @@ function printAdminToolbox($id='admin') {
 				$albumname = $_zp_current_album->name;
 				$imagename = $_zp_current_image->filename;
 				if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
+					?>
+					<li>
+						<?php printLink($zf . '/admin-edit.php?page=edit&album=' . pathurlencode($_zp_current_album->name), gettext('Edit album'), NULL, NULL, NULL); ?>
+					</li>
+					<?php
 					// if admin has edit rights on this album, provide a delete link for the image.
 					if (GALLERY_SESSION) { // XSRF defense requires sessions
 						?>
@@ -226,7 +232,7 @@ function printAdminToolbox($id='admin') {
 					}
 					?>
 					<li><a href="<?php  echo $zf; ?>/admin-edit.php?page=edit&amp;album=<?php  echo pathurlencode($albumname); ?>&amp;image=<?php  echo urlencode($imagename); ?>&amp;tab=imageinfo#IT"
-						title="<?php  echo gettext('Edit this image'); ?>"><?php  echo gettext('Edit image'); ?></a></li>
+						title="<?php  echo gettext('Edit image'); ?>"><?php  echo gettext('Edit image'); ?></a></li>
 					<?php
 				}
 				// set return to this image page
