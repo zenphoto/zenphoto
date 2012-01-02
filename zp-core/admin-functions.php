@@ -1432,10 +1432,8 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 				}
 				if ($index==0) {	// suppress for mass-edit
 					$showThumb =$gallery->getThumbSelectImages();
+					$album->getAlbumThumbImage();	//	prime the thumbnail since we will get the field below
 					$thumb = $album->get('thumb');
-					if (empty($thumb) && !is_numeric($thumb)) {
-						$thumb = getOption('AlbumThumbSelect');
-					}
 					$selections = array();
 					$selected = array();
 					foreach ($_zp_albumthumb_selector as $key=>$selection) {

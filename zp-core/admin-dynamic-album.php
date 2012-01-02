@@ -147,16 +147,13 @@ foreach ($albumlist as $fullfolder => $albumtitle) {
 		<td><?php echo gettext("Thumbnail:"); ?></td>
 		<td><select id="thumb" name="thumb">
 		<?php
+		$selections = array();
+		$selected = array();
+		foreach ($_zp_albumthumb_selector as $key=>$selection) {
+			$selections[$selection['desc']] = $key;
+		}
+		generateListFromArray($selected,$selections,false,true);
 		$showThumb = $gallery->getThumbSelectImages();
-		echo "\n<option";
-		if ($showThumb) echo " class=\"thumboption\" value=\"\" style=\"background-color:#B1F7B6\"";
-		echo ' value="1">'.get_language_string(getOption('AlbumThumbSelectorText'));
-		echo '</option>';
-		echo "\n<option";
-		if ($showThumb) echo " class=\"thumboption\" value=\"\" style=\"background-color:#B1F7B6\"";
-		echo " selected=\"selected\"";
-		echo ' value="">'.gettext('randomly selected');
-		echo '</option>';
 		foreach ($imagelist as $imagepath) {
 			$pieces = explode('/', $imagepath);
 			$filename = array_pop($pieces);;

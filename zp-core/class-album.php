@@ -542,6 +542,9 @@ class Album extends MediaObject {
 
 		$albumdir = $this->localpath;
 		$thumb = $this->get('thumb');
+		if (is_null($thumb)) {
+			$this->set('thumb', $thumb = getOption('AlbumThumbSelect'));
+		}
 		$i = strpos($thumb, '/');
 		if ($root = ($i === 0)) {
 			$thumb = substr($thumb, 1); // strip off the slash
@@ -566,15 +569,12 @@ class Album extends MediaObject {
 					return $this->albumthumbnail;
 				}
 			} else {
-				$thumb = $this->albumthumbnail = NULL;
+				$this->set('thumb', $thumb = getOption('AlbumThumbSelect'));
 			}
 		}
-		if (!is_numeric($thumb)) {
-			$thumb = getOption('AlbumThumbSelect');
-		}
 		$shuffle = empty($thumb);
-		$field = $_zp_albumthumb_selector[$thumb]['field'];
-		$direction = $_zp_albumthumb_selector[$thumb]['direction'];
+		$field = $_zp_albumthumb_selector[(int) $thumb]['field'];
+		$direction = $_zp_albumthumb_selector[(int) $thumb]['direction'];
 		$this->getImages(0, 0, $field, $direction);
 		$thumbs = $this->images;
 		if (!is_null($thumbs)) {
