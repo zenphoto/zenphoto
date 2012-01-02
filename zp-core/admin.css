@@ -2383,3 +2383,8 @@ div.bordered .page-list_row .page-list_icon .checkbox {
 .floatleft {
 	float: left !important;
 }
+
+img.zp_logoicon {
+position: relative;
+top: 3px;
+}

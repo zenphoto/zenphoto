@@ -201,20 +201,20 @@ foreach ($filelist as $extension) {
 		<td width="30%">
 		<label>
 			<?php
- 			if ($third_party_plugin) {
+			if ($third_party_plugin) {
 				$whose = gettext('third party plulgin');
- 				$path = stripSuffix($paths[$extension]).'/logo.png';
- 				if (file_exists($path)) {
- 					$ico = str_replace(SERVERPATH, WEBPATH, $path);
- 				} else {
- 					$ico = 'images/place_holder_icon.png';
- 				}
- 			} else {
+				$path = stripSuffix($paths[$extension]).'/logo.png';
+				if (file_exists($path)) {
+					$ico = str_replace(SERVERPATH, WEBPATH, $path);
+				} else {
+					$ico = 'images/place_holder_icon.png';
+				}
+			} else {
 				$whose = 'Zenphoto official plugin';
- 				$ico = 'images/zp_gold.png';
- 			}
- 			?>
-			<img src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
+				$ico = 'images/zp_gold.png';
+			}
+			?>
+			<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
 			<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
 				<?php
 				if ($parserr || $plugin_disable) {
