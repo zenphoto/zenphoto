@@ -203,7 +203,7 @@ function zenpage_admin_toolbox_global($zf) {
 	}
 	return $zf;
 }
-function zenpage_admin_toolbox_pages($zf) {
+function zenpage_admin_toolbox_pages($redirect, $zf) {
 	if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
 			// page is zenpage page--provide edit, delete, and add links
 			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=".urlencode(getPageTitlelink())."\">".gettext("Edit Page")."</a></li>";
@@ -217,25 +217,32 @@ function zenpage_admin_toolbox_pages($zf) {
 			}
 			echo "<li><a href=\"".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;add\">".gettext("Add Page")."</a></li>";
 	}
-	return $zf;
+	return $redirect.'&amp;title='.urlencode(getPageTitlelink());
 }
-function zenpage_admin_toolbox_news($zf) {
-	if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
-		// admin has zenpage rights, provide link to the Zenpage admin tab
-		if (is_NewsArticle()) {
+function zenpage_admin_toolbox_news($redirect, $zf) {
+	global $_zp_current_category;
+	if (is_NewsArticle()) {
+		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
 			// page is a NewsArticle--provide zenpage edit, delete, and Add links
 			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=".urlencode(getNewsTitlelink())."\">".gettext("Edit Article")."</a></li>";
 			if (GALLERY_SESSION) {
 				// XSRF defense requires sessions
 				?>
-				<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
-					title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?>
-				</a></li>
+				<li>
+					<a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
+						title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?>	</a>
+				</li>
 				<?php
 			}
 			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;add\">".gettext("Add Article")."</a></li>";
 		}
+		$redirect .= '&amp;title='.urlencode(getNewsTitlelink());
+	} else {
+
+		if (!empty($_zp_current_category)) {
+			$redirect .= '&amp;category='.$_zp_current_category->getTitlelink();
+		}
 	}
-	return $zf;
+	return $redirect;
 }
 ?>

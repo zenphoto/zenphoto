@@ -71,7 +71,6 @@ function printAdminToolbox($id='admin') {
 		$zf = $protocol.'://'.$_SERVER['HTTP_HOST'].WEBPATH."/".ZENFOLDER;
 		$dataid = $id . '_data';
 		$page = getCurrentPage();
-		$redirect = '';
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
@@ -93,13 +92,6 @@ function printAdminToolbox($id='admin') {
 				<?php printLink($zf . '/admin.php', gettext("Overview"), NULL, NULL, NULL); ?>
 			</li>
 			<?php
-			// setup for return links
-			if (isset($_GET['p'])) {
-				$redirect = "&amp;p=" . urlencode(sanitize($_GET['p']));
-			}
-			if ($page>1) {
-				$redirect .= "&amp;page=$page";
-			}
 			if (zp_loggedin(ALBUM_RIGHTS)) {
 				?>
 				<li>
@@ -124,11 +116,11 @@ function printAdminToolbox($id='admin') {
 				<?php
 			}
 			if (zp_loggedin(ADMIN_RIGHTS)) {
-			?>
-			<li>
-				<?php printLink($zf . '/admin-users.php', gettext("Users"), NULL, NULL, NULL); ?>
-			</li>
-			<?php
+				?>
+				<li>
+					<?php printLink($zf . '/admin-users.php', gettext("Users"), NULL, NULL, NULL); ?>
+				</li>
+				<?php
 			}
 			if (zp_loggedin(OPTIONS_RIGHTS)) {
 				?>
@@ -145,18 +137,14 @@ function printAdminToolbox($id='admin') {
 				<?php
 			}
 			if (zp_loggedin(ADMIN_RIGHTS)) {
-			?>
-			<li>
-				<?php printLink($zf . '/admin-plugins.php', gettext("Plugins"), NULL, NULL, NULL); ?>
-			</li>
-			<?php
-			}
-			if (zp_loggedin(ADMIN_RIGHTS)) {
-			?>
-			<li>
-				<?php printLink($zf . '/admin-logs.php', gettext("Logs"), NULL, NULL, NULL); ?>
-			</li>
-			<?php
+				?>
+				<li>
+					<?php printLink($zf . '/admin-plugins.php', gettext("Plugins"), NULL, NULL, NULL); ?>
+				</li>
+				<li>
+					<?php printLink($zf . '/admin-logs.php', gettext("Logs"), NULL, NULL, NULL); ?>
+				</li>
+				<?php
 			}
 
 			$gal = getOption('custom_index_page');
@@ -182,9 +170,19 @@ function printAdminToolbox($id='admin') {
 					// admin has upload rights, provide an upload link for a new album
 					if (GALLERY_SESSION) { // XSRF defense requires sessions
 						?>
-						<li><a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a></li>
+						<li>
+							<a href="javascript:newAlbum('',true);"><?php echo gettext("New Album"); ?></a>
+						</li>
 						<?php
 					}
+				}
+				if ($_zp_gallery_page == 'index.php') {
+					$redirect = '';
+				} else {
+					$redirect = "&amp;p=" . urlencode(stripSuffix($_zp_gallery_page));
+				}
+				if ($page>1) {
+					$redirect .= "&amp;page=$page";
 				}
 				zp_apply_filter('admin_toolbox_gallery',$zf);
 				break;
@@ -241,11 +239,11 @@ function printAdminToolbox($id='admin') {
 						<?php
 					}
 				}
+				zp_apply_filter('admin_toolbox_album', $albumname, $zf);
 				if ($inImage) {
 					// script is image.php
+					$imagename = $_zp_current_image->filename;
 					if (!$_zp_current_album->isDynamic()) { // don't provide links when it is a dynamic album
-						$albumname = $_zp_current_album->name;
-						$imagename = $_zp_current_image->filename;
 						if ($_zp_current_album->isMyItem(ALBUM_RIGHTS)) {
 							// if admin has edit rights on this album, provide a delete link for the image.
 							if (GALLERY_SESSION) { // XSRF defense requires sessions
@@ -265,11 +263,10 @@ function printAdminToolbox($id='admin') {
 						}
 						// set return to this image page
 						zp_apply_filter('admin_toolbox_image', $albumname, $imagename,$zf);
-						$redirect = "&amp;album=".pathurlencode($albumname)."&amp;image=".urlencode($imagename);
 					}
+					$redirect = "&amp;album=".pathurlencode($albumname)."&amp;image=".urlencode($imagename);
 				} else {
 					// set the return to this album/page
-					zp_apply_filter('admin_toolbox_album', $albumname, $zf);
 					$redirect = "&amp;album=".pathurlencode($albumname);
 					if ($page > 1) {
 						$redirect .= "&amp;page=$page";
@@ -284,11 +281,17 @@ function printAdminToolbox($id='admin') {
 						echo "<li><a href=\"".$zf."/admin-dynamic-album.php\" title=\"".gettext("Create an album from the search")."\">".gettext("Create Album")."</a></li>";
 					}
 					zp_apply_filter('admin_toolbox_search',$zf);
-					$redirect = "&amp;p=search" . $_zp_current_search->getSearchParams() . "&amp;page=$page";
 				}
+				$redirect = "&amp;p=search" . $_zp_current_search->getSearchParams() . "&amp;page=$page";
 				break;
 			default:
-				zp_apply_filter('admin_toolbox_'.stripSuffix($_zp_gallery_page),$zf);
+				// arbitrary custom page
+				$gal = stripSuffix($_zp_gallery_page);
+				$redirect = "&amp;p=" . urlencode($gal);
+				if ($page>1) {
+					$redirect .= "&amp;page=$page";
+				}
+				$redirect = zp_apply_filter('admin_toolbox_'.$gal,$redirect,$zf);
 				break;
 			}
 
