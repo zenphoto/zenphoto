@@ -27,6 +27,4 @@ define('DEBUG_EXIF', false); // set to true to log start/finish of exif processi
 define('DEBUG_PLUGINS', false); // set to true to log plugin load sequence.
 define('DEBUG_FILTERS', false); // set to true to log filter application sequence.
 
-// TODO: temporary while debugging the feature
-define ('TEST_UNPUBLISHED', true);
 ?>

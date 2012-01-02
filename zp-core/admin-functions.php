@@ -2960,7 +2960,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				}
 				$ledgend .= $icon_edit_album.' '.gettext('edit album').' ';
 				if ($rights & UPLOAD_RIGHTS) $ledgend .= $icon_upload.' '.gettext('upload').' ';
-				if (TEST_UNPUBLISHED && !($rights & VIEW_UNPUBLISHED_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublilshed').' ';
+				if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublilshed').' ';
 				foreach ($full as $item) {
 					if (in_array($item['data'],$flag)) {
 						$note = '*';
@@ -2973,7 +2973,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 					if (($rights&UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
 						$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
 					}
-					if (TEST_UNPUBLISHED && !($rights & VIEW_UNPUBLISHED_RIGHTS)) {
+					if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
 						$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW);
 					}
 				}
