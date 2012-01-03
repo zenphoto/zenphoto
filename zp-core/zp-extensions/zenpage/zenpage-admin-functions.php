@@ -219,6 +219,11 @@ function updatePage(&$reports) {
 	if (getcheckboxState('resethitcounter')) {
 		$page->set('hitcounter',0);
 	}
+	if (getcheckboxState('reset_rating')) {
+		$page->set('total_value', 0);
+		$page->set('total_votes', 0);
+		$page->set('used_ips', 0);
+	}
 	processTags($page);
 	$msg = zp_apply_filter('update_page', '', $page, $oldtitlelink);
 	$page->save();
@@ -339,11 +344,16 @@ function printPagesListTable($page, $flag) {
 			</a>
 		</div>
 
-	<?php if(checkIfLockedPage($page)) { ?>
-	<div class="page-list_icon">
-		<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext("Reset hitcounter"); ?>">
-		<img src="../../images/reset.png" alt="" title="<?php echo gettext("Reset hitcounter"); ?>" /></a>
-	</div>
+	<?php if(checkIfLockedPage($page)) {
+	if (getOption('zp_plugin_hitcounter')) {
+		?>
+		<div class="page-list_icon">
+			<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($page->getTitlelink()); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext("Reset hitcounter"); ?>">
+			<img src="../../images/reset.png" alt="" title="<?php echo gettext("Reset hitcounter"); ?>" /></a>
+		</div>
+		<?php
+	}
+	?>
 	<div class="page-list_icon">
 		<a href="javascript:confirmDelete('admin-pages.php?delete=<?php echo $page->getTitlelink(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('delete')?>',deletePage)" title="<?php echo gettext("Delete page"); ?>">
 		<img src="../../images/fail.png" alt="" title="delete" /></a>
@@ -509,6 +519,11 @@ function updateArticle(&$reports) {
 	$article->setSticky(sanitize_numeric($_POST['sticky']));
 	if(getcheckboxState('resethitcounter')) {
 		$article->set('hitcounter',0);
+	}
+	if (getcheckboxState('reset_rating')) {
+		$article->set('total_value', 0);
+		$article->set('total_votes', 0);
+		$article->set('used_ips', 0);
 	}
 	processTags($article);
 	$categories = array();
@@ -1131,6 +1146,11 @@ function updateCategory(&$reports) {
 	if (getcheckboxState('resethitcounter')) {
 		$cat->set('hitcounter',0);
 	}
+	if (getcheckboxState('reset_rating')) {
+		$cat->set('total_value', 0);
+		$cat->set('total_votes', 0);
+		$cat->set('used_ips', 0);
+	}
 	$msg = zp_apply_filter('update_category', '', $cat, $oldtitlelink);
 	$cat->save();
 	if($titleok) {
@@ -1230,12 +1250,18 @@ function printCategoryListSortableTable($cat,$flag) {
 				</a>
 			<?php } ?>
 			</div>
-			<div class="page-list_icon"><a
-					href="?hitcounter=1&amp;id=<?php echo $cat->getID();?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>"
-					title="<?php echo gettext("Reset hitcounter"); ?>"> <img
-					src="../../images/reset.png"
-					alt="<?php echo gettext("Reset hitcounter"); ?>" /> </a>
-			</div>
+			<?php
+			if (getOption('zp_plugin_hitcounter')) {
+				?>
+				<div class="page-list_icon"><a
+						href="?hitcounter=1&amp;id=<?php echo $cat->getID();?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>"
+						title="<?php echo gettext("Reset hitcounter"); ?>"> <img
+						src="../../images/reset.png"
+						alt="<?php echo gettext("Reset hitcounter"); ?>" /> </a>
+				</div>
+				<?php
+			}
+			?>
 			<div class="page-list_icon"><a
 					href="javascript:confirmDelete('admin-categories.php?delete=<?php echo js_encode($cat->getTitlelink()); ?>&amp;tab=categories&amp;XSRFToken=<?php echo getXSRFToken('delete_category')?>',deleteCategory)"
 					title="<?php echo gettext("Delete Category"); ?>"><img
@@ -1606,7 +1632,13 @@ function printZenpageIconLegend() { ?>
 	?>
 	<li><img src="../../images/comments-on.png" alt="" /><img src="../../images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 	<li><img src="../../images/view.png" alt="" /><?php echo gettext("View"); ?></li>
-	<li><img src="../../images/reset.png" alt="" /><?php echo gettext("Reset hitcounter"); ?></li>
+	<?php
+	if (getOption('zp_plugin_hitcounter')) {
+		?>
+		<li><img src="../../images/reset.png" alt="" /><?php echo gettext("Reset hitcounter"); ?></li>
+		<?php
+	}
+	?>
 	<li><img src="../../images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
 	</ul>
 <?php

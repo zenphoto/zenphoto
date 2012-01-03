@@ -212,10 +212,12 @@ printLogoAndLinks();
 														gettext('Clear tags') => 'cleartags',
 														gettext('Disable comments') => 'commentsoff',
 														gettext('Enable comments') => 'commentson',
-														gettext('Reset hitcounter') => 'resethitcounter',
 														gettext('Add categories') => 'addcats',
 														gettext('Clear categories') => 'clearcats'
 														);
+						if (getOption('zp_plugin_hitcounter')) {
+							$checkarray['hitcounter'] = 'resethitcounter';
+						}
 						printBulkActions($checkarray);
 						?>
 						</th>
@@ -306,12 +308,16 @@ printLogoAndLinks();
 							</td>
 
 							<?php
-							if(checkIfLockedNews($article)) {
+						if(checkIfLockedNews($article)) {
+							if (getOption('zp_plugin_hitcounter')) {
 								?>
 								<td class="icons">
-								<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($article->getTitlelink());?>&amp;pagenr=<?php echo $_zp_zenpage_currentadminnewspage.getNewsAdminOptionPath(true,true,true,true,true); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext('Reset hitcounter'); ?>">
-								<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
-							</td>
+									<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($article->getTitlelink());?>&amp;pagenr=<?php echo $_zp_zenpage_currentadminnewspage.getNewsAdminOptionPath(true,true,true,true,true); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext('Reset hitcounter'); ?>">
+									<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
+								</td>
+								<?php
+							}
+							?>
 							<td class="icons">
 								<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php echo $article->getTitlelink(); ?>&amp;pagenr=<?php echo $_zp_zenpage_currentadminnewspage.getNewsAdminOptionPath(true,true,true,true,true); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete')?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
 								<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>

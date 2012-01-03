@@ -129,9 +129,11 @@ printLogoAndLinks();
 													gettext('*Bulk actions*') => 'noaction',
 													gettext('Delete') => 'deleteall',
 													gettext('Add tags to articles') => 'alltags',
-													gettext('Clear tags of articles') => 'clearalltags',
-													gettext('Reset hitcounter') => 'resethitcounter'
+													gettext('Clear tags of articles') => 'clearalltags'
 													);
+					if (getOption('zp_plugin_hitcounter')) {
+						$checkarray['Reset hitcounter'] = 'resethitcounter';
+					}
 					printBulkActions($checkarray);
 					?>
 					</div>
@@ -167,7 +169,13 @@ printLogoAndLinks();
 					}
 					?>
 					<li><img src="images/view.png" alt="" /><?php echo gettext('View'); ?></li>
-					<li><img src="../../images/reset.png" alt="" /><?php echo gettext('Reset hitcounter'); ?></li>
+					<?php
+					if (getOption('zp_plugin_hitcounter')) {
+						?>
+						<li><img src="../../images/reset.png" alt="" /><?php echo gettext('Reset hitcounter'); ?></li>
+						<?php
+					}
+					?>
 					<li><img src="../../images/fail.png" alt="" /><?php echo gettext('Delete category'); ?></li>
 				</ul>
 			</form>

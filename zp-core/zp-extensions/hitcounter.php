@@ -4,12 +4,14 @@
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
+$plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext('Automatically increments hitcounters on Zenphoto objects viewed by a "visitor".');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'hitcounter';
 
 zp_register_filter('load_theme_script', 'hitcounter::load_script');
+zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
 
 /**
  * Plugin option handling class
@@ -166,5 +168,41 @@ class hitcounter {
 		return $obj;
 	}
 
+	static function button($buttons) {
+		$buttons[] = array(
+											'XSRFTag'=>'hitcounter',
+											'category'=>gettext('database'),
+											'enable'=>'1',
+											'button_text'=>gettext('Reset all hitcounters'),
+											'formname'=>'reset_all_hitcounters.php',
+											'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=reset_hitcounters=true',
+											'icon'=>'images/reset1.png',
+											'title'=>'',
+											'alt'=>gettext('Reset hitcounters'),
+											'hidden'=>'<input type="hidden" name="action" value="reset_hitcounters" />',
+											'rights'=> ADMIN_RIGHTS
+											);
+		return $buttons;
+	}
+
 }
+
+/** Reset hitcounters ***********************************************************/
+/********************************************************************************/
+if (isset($_GET['action'])) {
+	if (sanitize($_GET['action'])=='reset_all_hitcounters') {
+		XSRFdefender('hitcounter');
+		query('UPDATE ' . prefix('albums') . ' SET `hitcounter`= 0');
+		query('UPDATE ' . prefix('images') . ' SET `hitcounter`= 0');
+		query('UPDATE ' . prefix('news') . ' SET `hitcounter`= 0');
+		query('UPDATE ' . prefix('pages') . ' SET `hitcounter`= 0');
+		query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
+		query('UPDATE ' . prefix('options') . ' SET `value`= 0 WHERE `name` LIKE "Page-Hitcounter-%"');
+		query("DELETE FROM ".prefix('plugin_storage')." WHERE `type` = 'rsshitcounter'");
+		$msg = gettext('All hitcounters have been set to zero');
+		$_GET['msg'] = $msg;
+		$_GET['action'] = 'external';
+	}
+}
+
 ?>

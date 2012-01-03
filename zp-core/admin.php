@@ -30,11 +30,11 @@ if(getOption('zp_plugin_zenpage')) {
 if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 	$gallery = new Gallery();
 	if (isset($_GET['action'])) {
-		$rightsneeded = array('external'=>ALL_RIGHTS);
 		$action = sanitize($_GET['action']);
-		$needs = ADMIN_RIGHTS;
-		if (isset($rightsneeded[$action])) {
-			$needs = $rightsneeded[$action] | ADMIN_RIGHTS;
+		if ($action == 'external') {
+			$needs = ALL_RIGHTS;
+		} else {
+			$needs = ADMIN_RIGHTS;
 		}
 		if (zp_loggedin($needs)) {
 			switch ($action) {
@@ -54,21 +54,6 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					clearRSScache();
 					$class = 'messagebox';
 					$msg = gettext('RSS cache cleared.');
-					break;
-
-					/** Reset hitcounters ***********************************************************/
-					/********************************************************************************/
-				case "reset_hitcounters":
-					XSRFdefender('hitcounter');
-					query('UPDATE ' . prefix('albums') . ' SET `hitcounter`= 0');
-					query('UPDATE ' . prefix('images') . ' SET `hitcounter`= 0');
-					query('UPDATE ' . prefix('news') . ' SET `hitcounter`= 0');
-					query('UPDATE ' . prefix('pages') . ' SET `hitcounter`= 0');
-					query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
-					query('UPDATE ' . prefix('options') . ' SET `value`= 0 WHERE `name` LIKE "Page-Hitcounter-%"');
-					query("DELETE FROM ".prefix('plugin_storage')." WHERE `type` = 'rsshitcounter'");
-					$class = 'messagebox';
-					$msg = gettext('All hitcounters have been set to zero');
 					break;
 
 					//** external script return

@@ -1574,32 +1574,36 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 							<?php echo gettext("Allow Comments"); ?>
 						</label>
 						<?php
-						$hc = $album->get('hitcounter');
-						if (empty($hc)) { $hc = '0'; }
-						?>
-						<label class="checkboxlabel">
-							<input type="checkbox" name="<?php echo $prefix; ?>reset_hitcounter" />
-							<?php echo sprintf(gettext("Reset hitcounter (%u hits)"), $hc); ?>
-						</label>
-						<?php
-						$tv = $album->get('total_value');
-						$tc = $album->get('total_votes');
-
-						if ($tc > 0) {
-							$hc = $tv/$tc;
+						if (getOption('zp_plugin_hitcounter')) {
+							$hc = $album->get('hitcounter');
+							if (empty($hc)) { $hc = '0'; }
 							?>
 							<label class="checkboxlabel">
-								<input type="checkbox" id="reset_rating<?php echo $suffix; ?>" name="<?php echo $prefix; ?>reset_rating" value="1" />
-								<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
+								<input type="checkbox" name="reset_hitcounter<?php echo $prefix; ?>"<?php if (!$hc) echo ' disabled="disabled"'; ?> />
+								<?php echo sprintf(ngettext("Reset hitcounter (%u hit)","Reset hitcounter (%u hits)",$hc), $hc); ?>
 							</label>
 							<?php
-						} else {
-							?>
-									<label class="checkboxlabel">
-										<input type="checkbox" name="<?php echo $prefix; ?>reset_rating" value="1" disabled="disabled"/>
-										<?php echo gettext('Reset rating (unrated)'); ?>
-									</label>
-							<?php
+						}
+						if (getOption('zp_plugin_rating')) {
+							$tv = $album->get('total_value');
+							$tc = $album->get('total_votes');
+
+							if ($tc > 0) {
+								$hc = $tv/$tc;
+								?>
+								<label class="checkboxlabel">
+									<input type="checkbox" id="reset_rating<?php echo $suffix; ?>" name="<?php echo $prefix; ?>reset_rating" value="1" />
+									<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
+								</label>
+								<?php
+							} else {
+								?>
+										<label class="checkboxlabel">
+											<input type="checkbox" name="<?php echo $prefix; ?>reset_rating" value="1" disabled="disabled"/>
+											<?php echo gettext('Reset rating (unrated)'); ?>
+										</label>
+								<?php
+							}
 						}
 						$publishdate = $album->getPublishDate();
 						$expirationdate =  $album->getExpireDate();
@@ -1831,11 +1835,17 @@ function printAlbumButtons($album) {
 			<input type="hidden" name="action" value="reset_hitcounters" />
 			<input type="hidden" name="albumid" value="<?php echo $album->getAlbumID(); ?>" />
 			<input type="hidden" name="album" value="<?php echo html_encode($album->name); ?>" />
-			<div class="buttons">
-			<button type="submit" class="tooltip" id="edit_hitcounter_all" title="<?php echo gettext("Resets all hitcounters in the album."); ?>">
-			<img src="images/reset1.png" style="border: 0px;" alt="reset" /> <?php echo gettext("Reset hitcounters"); ?>
-			</button>
-			</div>
+			<?php
+			if (getOption('zp_plugin_hitcounter')) {
+				?>
+				<div class="buttons">
+				<button type="submit" class="tooltip" id="edit_hitcounter_all" title="<?php echo gettext("Resets all hitcounters in the album."); ?>">
+				<img src="images/reset1.png" style="border: 0px;" alt="reset" /> <?php echo gettext("Reset hitcounters"); ?>
+				</button>
+				</div>
+				<?php
+			}
+			?>
 		</form>
 	<?php
 	}
@@ -1877,7 +1887,13 @@ function printAlbumLedgend() {
 		<li><img src="images/comments-on.png" alt="" /><img src="images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 		<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
 		<li><img src="images/refresh1.png" alt="" /><?php echo gettext("Refresh metadata"); ?></li>
-		<li><img src="images/reset.png" alt="" /><?php echo gettext("Reset hitcounters"); ?></li>
+		<?php
+		if (getOption('zp_plugin_hitcounter')) {
+			?>
+			<li><img src="images/reset.png" alt="" /><?php echo gettext("Reset hitcounters"); ?></li>
+			<?php
+		}
+		?>
 		<li><img src="images/fail.png" alt="" /><?php echo gettext("Delete"); ?></li>
 	</ul>
 	<?php
@@ -2050,21 +2066,27 @@ function printAlbumEditRow($album, $show_thumb) {
 			}
 			?>
 		</div>
-		<div class="page-list_icon">
-			<?php
-			if ($album->isDynamic() || !$enableEdit) {
-				?>
-				<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
-				<?php
-			} else {
-				?>
-				<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getAlbumID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hitcounters for album %s'), $album->name); ?>">
-				<img src="images/reset.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Reset hitcounters for the album %s'), $album->name); ?>" />
-				</a>
-				<?php
-			}
+		<?php
+		if (getOption('zp_plugin_hitcounter')) {
 			?>
-		</div>
+			<div class="page-list_icon">
+				<?php
+					if ($album->isDynamic() || !$enableEdit) {
+						?>
+						<img src="images/icon_inactive.png" style="border: 0px;" alt="" title="<?php echo gettext('unavailable'); ?>" />
+						<?php
+					} else {
+						?>
+						<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getAlbumID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hitcounters for album %s'), $album->name); ?>">
+						<img src="images/reset.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Reset hitcounters for the album %s'), $album->name); ?>" />
+						</a>
+						<?php
+					}
+				?>
+			</div>
+			<?php
+		}
+		?>
 		<div class="page-list_icon">
 			<?php
 			$myalbum = $_zp_current_admin_obj->getAlbum();
@@ -2156,7 +2178,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 	} else {
 		$album->setSortDirection('album', isset($_POST[$prefix.'album_sortdirection']));
 	}
-	if (isset($_POST[$prefix.'reset_hitcounter'])) {
+	if (isset($_POST['reset_hitcounter'.$prefix])) {
 		$album->set('hitcounter',0);
 	}
 	if (isset($_POST[$prefix.'reset_rating'])) {

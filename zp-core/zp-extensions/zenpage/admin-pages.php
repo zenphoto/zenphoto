@@ -129,10 +129,12 @@ if (GALLERY_SECURITY == 'public') {
 									gettext('Add tags') => 'addtags',
 									gettext('Clear tags') => 'cleartags',
 							  	gettext('Disable comments') => 'commentsoff',
-							  	gettext('Enable comments') => 'commentson',
-							  	gettext('Reset hitcounter') => 'resethitcounter',
+							  	gettext('Enable comments') => 'commentson'
 					  			);
-	printBulkActions($checkarray);
+	if (getOption('zp_plugin_hitcounter')) {
+		$checkarray['Reset hitcounter'] = 'resethitcounter';
+	}
+  printBulkActions($checkarray);
   ?>
 	</div>
   <div class="subhead">

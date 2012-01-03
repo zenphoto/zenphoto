@@ -605,11 +605,39 @@ if ($result->loaded || $result->transient) {
 						<label for="commentson"> <?php echo gettext("Comments on"); ?></label>
 						</p>
 						<?php
-						if(!$result->transient) {
+						if(!$result->transient && getOption('zp_plugin_hitcounter')) {
+							$hc = $result->getHitcounter();
 							?>
 							<p class="checkbox">
-							<input name="resethitcounter" type="checkbox" id="resethitcounter" value="1" />
-							<label for="resethitcounter"> <?php printf(gettext('Reset hitcounter (Hits: %1$s)'),$result->getHitcounter()); ?></label>
+							<input name="resethitcounter" type="checkbox" id="resethitcounter" value="1"<?php if (!$hc) echo ' disabled="disabled"';?> />
+							<label for="resethitcounter"> <?php printf(ngettext("Reset hitcounter (%u hit)","Reset hitcounter (%u hits)",$hc),$hc); ?></label>
+							</p>
+							<?php
+						}
+						if (getOption('zp_plugin_rating')) {
+							?>
+							<p class="checkbox">
+							<?php
+							$tv = $result->get('total_value');
+							$tc = $result->get('total_votes');
+
+							if ($tc > 0) {
+								$hc = $tv/$tc;
+								?>
+								<label>
+									<input type="checkbox" id="reset_rating" name="reset_rating" value="1" />
+									<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
+								</label>
+								<?php
+							} else {
+								?>
+								<label>
+									<input type="checkbox" name="reset_rating" value="1" disabled="disabled"/>
+									<?php echo gettext('Reset rating (unrated)'); ?>
+								</label>
+								<?php
+							}
+							?>
 							</p>
 							<?php
 						}
@@ -735,13 +763,13 @@ if ($result->loaded || $result->transient) {
 						}
 						?>
 						<div id="first">
-							<textarea name="codeblock1" id="codeblock1" rows="40" cols="60"><?php echo html_encode($codeblock[1]); ?></textarea>
+							<textarea name="codeblock1" id="codeblock1" rows="40" cols="62"><?php echo html_encode($codeblock[1]); ?></textarea>
 						</div>
 						<div id="second">
-							<textarea name="codeblock2" id="codeblock2" rows="40" cols="60"><?php echo html_encode($codeblock[2]); ?></textarea>
+							<textarea name="codeblock2" id="codeblock2" rows="40" cols="62"><?php echo html_encode($codeblock[2]); ?></textarea>
 						</div>
 						<div id="third">
-							<textarea name="codeblock3" id="codeblock3" rows="40" cols="60"><?php echo html_encode($codeblock[3]); ?></textarea>
+							<textarea name="codeblock3" id="codeblock3" rows="40" cols="62"><?php echo html_encode($codeblock[3]); ?></textarea>
 						</div>
 					</div>
 				</td>

@@ -285,7 +285,7 @@ if (isset($_GET['action'])) {
 											$image->setDateTime(sanitize($_POST["$i-date"]));
 											$image->setShow(isset($_POST["$i-Visible"]));
 											$image->setCommentsAllowed(isset($_POST["$i-allowcomments"]));
-											if (isset($_POST["$i-reset_hitcounter"])) {
+											if (isset($_POST["reset_hitcounter$i"])) {
 												$image->set('hitcounter', 0);
 											}
 											$wmt = sanitize($_POST["$i-image_watermark"],3);
@@ -610,9 +610,11 @@ $checkarray_images = array(
 											gettext('Add tags') => 'addtags',
 											gettext('Clear tags') => 'cleartags',
 											gettext('Disable comments') => 'commentsoff',
-											gettext('Enable comments') => 'commentson',
-											gettext('Reset hitcounter') => 'resethitcounter'
+											gettext('Enable comments') => 'commentson'
 											);
+if (getOption('zp_plugin_hitcounter')) {
+	$checkarray['Reset hitcounter'] = 'resethitcounter';
+}
 $checkarray_albums = array_merge($checkarray_images,
 																	array(gettext('Add tags to images') => 'alltags',
 																				gettext('Clear tags of images') => 'clearalltags')
@@ -1146,35 +1148,37 @@ $alb = removeParentAlbumNames($album);
 									<?php echo gettext("Allow Comments"); ?>
 								</label>
 								<?php
-								$hc = $image->get('hitcounter');
-								if (empty($hc)) { $hc = '0'; }
-								?>
-								<label class="checkboxlabel">
-									<input type="checkbox" name="<?php echo $currentimage; ?>reset_hitcounter" />
-									<?php echo sprintf(gettext("Reset hitcounter (%u hits)"), $hc); ?>
-								</label>
-
-								<?php
-								$tv = $image->get('total_value');
-								$tc = $image->get('total_votes');
-
-								if ($tc > 0) {
-									$hc = $tv/$tc;
+								if (getOption('zp_plugin_hitcounter')) {
+									$hc = $image->get('hitcounter');
+									if (empty($hc)) { $hc = '0'; }
 									?>
 									<label class="checkboxlabel">
-										<input type="checkbox" id="reset_rating-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-reset_rating" value="1" />
-										<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
-									</label>
-									<?php
-								} else {
-									?>
-									<label class="checkboxlabel">
-										<input type="checkbox" id="reset_rating-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-reset_rating" value="1" disabled="disabled"/>
-										<?php echo gettext('Reset rating (unrated)'); ?>
+										<input type="checkbox" name="reset_hitcounter<?php echo $currentimage; ?>"<?php if (!$hc) echo ' disabled="disabled"'; ?> />
+										<?php echo sprintf(ngettext("Reset hitcounter (%u hit)","Reset hitcounter (%u hits)",$hc), $hc); ?>
 									</label>
 									<?php
 								}
+								if (getOption('zp_plugin_rating')) {
+									$tv = $image->get('total_value');
+									$tc = $image->get('total_votes');
 
+									if ($tc > 0) {
+										$hc = $tv/$tc;
+										?>
+										<label class="checkboxlabel">
+											<input type="checkbox" id="reset_rating-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-reset_rating" value="1" />
+											<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
+										</label>
+										<?php
+									} else {
+										?>
+										<label class="checkboxlabel">
+											<input type="checkbox" id="reset_rating-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-reset_rating" value="1" disabled="disabled"/>
+											<?php echo gettext('Reset rating (unrated)'); ?>
+										</label>
+										<?php
+									}
+								}
 								$publishdate = $image->getPublishDate();
 								$expirationdate =  $image->getExpireDate();
 							?>
