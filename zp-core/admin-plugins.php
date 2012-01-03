@@ -108,14 +108,19 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 <tr>
 <th><?php echo gettext("Available Plugins"); ?></th>
 <th colspan="2">
-	<span class="pluginextrahide" style="display:none;">
-		<p class="buttons"><a href="javascript:toggleExtraInfo('','plugin',false);" title ="<?php echo gettext('hide all description details'); ?>" ><?php echo gettext('hide all'); ?></a></p>
-	</span>
-	<span class="pluginextrashow">
-		<p class="buttons"><a href="javascript:toggleExtraInfo('','plugin',true);" title ="<?php echo gettext('show all description details'); ?>" ><?php echo gettext('show all'); ?></a></p>
-	</span>
 	<?php echo gettext("Description"); ?>
 </th>
+<tr>
+	<td></td>
+	<td colspan="2">
+		<span class="pluginextrahide" style="display:none">
+		<p class="buttons"><a href="javascript:toggleExtraInfo('','plugin',false);" title ="<?php echo gettext('hide all description details'); ?>" ><?php echo gettext('hide all'); ?></a></p>
+	</span>
+	<span class="pluginextrashow" >
+		<p class="buttons"><a href="javascript:toggleExtraInfo('','plugin',true);" title ="<?php echo gettext('show all description details'); ?>" ><?php echo gettext('show all'); ?></a></p>
+	</span>
+	</td>
+</tr>
 </tr>
 <?php
 foreach ($filelist as $extension) {

@@ -2056,6 +2056,12 @@ button.positive,.log_buttons a.positive {
 	text-align: left;
 }
 
+
+.pluginextrashow p.buttons,
+.pluginextrahide p.buttons {
+	display: inline;
+}
+
 .metadata_table {
 	table-layout: fixed;
 	border: 1px solid #BAC9CF;
