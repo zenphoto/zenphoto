@@ -379,7 +379,7 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 															" ORDER BY ".$sortorder." DESC");
 		while ($row = db_fetch_assoc($result)) {
 			$image = newImage(NULL, $row);
-			if ($image->checkAccess($hint, $show)) {
+			if ($image && $image->checkAccess($hint, $show)) {
 				$imageArray[] = $image;
 				if (count($imageArray) >= $number) {	// got enough
 					break;

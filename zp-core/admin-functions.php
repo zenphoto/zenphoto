@@ -2293,13 +2293,11 @@ function processAlbumEdit($index, $album, &$redirectto) {
  * @since 1.1.3
  */
 function checkForUpdate() {
-	global $_zp_WEB_Version;
-	if (isset($_zp_WEB_Version)) { return $_zp_WEB_Version; }
 	if (!is_connected()) return 'X';
 	$c = ZENPHOTO_VERSION;
 	$v = @file_get_contents('http://www.zenphoto.org/files/LATESTVERSION');
 	if (empty($v)) {
-		$_zp_WEB_Version = 'X';
+		$webVersion = 'X';
 	} else {
 		if ($i = strpos($v, 'RC')) {
 			$v_candidate = intval(substr($v, $i+2));
@@ -2323,12 +2321,12 @@ function checkForUpdate() {
 			$cvd = $cvd + $d * $pot[$i];
 		}
 		if ($wvd > $cvd || (($wvd == $cvd) && ($c_candidate < $v_candidate))) {
-			$_zp_WEB_Version = $v;
+			$webVersion = $v;
 		} else {
-			$_zp_WEB_Version = '';
+			$webVersion = '';
 		}
 	}
-	Return $_zp_WEB_Version;
+	Return $webVersion;
 }
 
 function adminPageNav($pagenum,$totalpages,$adminpage,$parms,$tab='') {
@@ -3967,7 +3965,7 @@ function unQuote($string) {
 	$string = trim($string);
 	$q = substr($string,0,1);
 	if ($q == '"' || $q == "'") {
-		$string = substr($string, 1, -1);
+		$string = trim($string,$q);
 	}
 	return $string;
 }
@@ -3993,6 +3991,9 @@ function admin_album_list($owner) {
 	return $adminlist;
 }
 
+/**
+ * Figures out which log tabs to display
+ */
 function getLogTabs() {
 	$subtabs = array();
 	$default = NULL;
@@ -4020,4 +4021,17 @@ function getLogTabs() {
 	return array($subtabs,$default);
 }
 
+/**
+ *
+ * Displays the "new version available" message on admin pages
+ * @param unknown_type $tab
+ * @param unknown_type $subtab
+ */
+function admin_showupdate($tab, $subtab) {
+	?>
+	<div class="notebox">
+		<h2><?php echo getOption('last_update_check'); ?></h2>
+	</div>
+	<?php
+}
 ?>

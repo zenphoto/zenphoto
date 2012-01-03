@@ -638,7 +638,6 @@ zp-core/setup/setup_themeOptions.php
 zp-core/template-functions.php
 zp-core/utilities
 zp-core/utilities/backup_restore.php
-zp-core/utilities/check_for_update.php
 zp-core/utilities/database_reference.php
 zp-core/utilities/gallery_statistics.php
 zp-core/utilities/purge_image_cache.php
@@ -673,6 +672,7 @@ zp-core/zp-extensions/captcha/reCaptcha
 zp-core/zp-extensions/captcha/reCaptcha.php
 zp-core/zp-extensions/captcha/reCaptcha/recaptchalib.php
 zp-core/zp-extensions/captcha/zenphoto.php
+zp-core/zp-extensions/check_for_update.php
 zp-core/zp-extensions/class-AnyFile
 zp-core/zp-extensions/class-AnyFile.php
 zp-core/zp-extensions/class-AnyFile/anyFileDefault.png

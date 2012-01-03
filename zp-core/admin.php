@@ -28,10 +28,9 @@ if(getOption('zp_plugin_zenpage')) {
 	require_once(dirname(__FILE__).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-admin-functions.php');
 }
 if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
-
 	$gallery = new Gallery();
 	if (isset($_GET['action'])) {
-		$rightsneeded = array('external'=>ALL_RIGHTS, 'check_for_update'=>OVERVIEW_RIGHTS);
+		$rightsneeded = array('external'=>ALL_RIGHTS);
 		$action = sanitize($_GET['action']);
 		$needs = ADMIN_RIGHTS;
 		if (isset($rightsneeded[$action])) {
@@ -72,26 +71,13 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					$msg = gettext('All hitcounters have been set to zero');
 					break;
 
-					/** check for update ***********************************************************/
-					/********************************************************************************/
-				case 'check_for_update':
-					$v = checkForUpdate();
-					if (empty($v)) {
-						$class = 'messagebox';
-						$msg = gettext("You are running the latest zenphoto version.");
-					} else {
-						$class = 'errorbox';
-						if ($v == 'X') {
-							$msg = gettext("Could not connect to <a href=\"http://www.zenphoto.org\">zenphoto.org</a>");
-						} else {
-							$msg =  "<a href=\"http://www.zenphoto.org\">". sprintf(gettext("zenphoto version %s is available."), $v)."</a>";
-						}
-					}
-					break;
 					//** external script return
 				case 'external':
 					if (isset($_GET['error'])) {
-						$class = 'errorbox';
+						$class = sanitize($_GET['error']);
+						if (empty($class)) {
+							$class = 'errorbox';
+						}
 					} else {
 						$class = 'messagebox';
 					}
@@ -177,6 +163,7 @@ if (!empty($msg)) {
 	</div>
 	<?php
 }
+zp_apply_filter('admin_note','Overview', NULL);
 ?>
 <div id="overview-leftcolumn">
 <?php

@@ -405,8 +405,23 @@ if (!$setup_checked && zp_loggedin(ADMIN_RIGHTS)) {
 <ul>
 <?php
 if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
+	if (function_exists('checkForUpdate')) {
+		$v = checkForUpdate();
+		if (!empty($v)) {
+			if ($v != 'X') {
+				$autorun = false;
+				?>
+				<p class="notebox">
+				<?php echo gettext('You are not installing the latest version of Zenphoto.'); ?>
+					<a href="http://www.zenphoto.org"><?php printf(gettext("Version %s is available."), $v); ?></a>
+				</p>
+				<?php
+			}
+		}
+	}
 	$prevRel = getOption('zenphoto_version');
-	if (empty($prevRel)) {	// pre 1.4.2 release, compute the version
+	if (empty($prevRel)) {
+		// pre 1.4.2 release, compute the version
 		$prevRel = getOption('zenphoto_release');
 		$zp_versions = array(	'1.2'=>'2213','1.2.1'=>'2635','1.2.2'=>'2983','1.2.3'=>'3427','1.2.4'=>'3716','1.2.5'=>'4022',
 													'1.2.6'=>'4335', '1.2.7'=>'4741','1.2.8'=>'4881','1.2.9'=>'5088',
@@ -447,15 +462,17 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			$c = $c-8;	// there were only two 1.3.x releases
 		}
 		switch ($c) {
-			case 0:
-				$release = gettext('Updating current Zenphoto release');
 			case 1:
 				$check = 1;
 				break;
 			default:
 				$check = -1;
-				break;
+			break;
 		}
+	}
+	if ($c<=0) {
+		$check = 1;
+		$release = gettext('Updating current Zenphoto release');
 	}
 	checkmark($check,$release,$release.' '.sprintf(ngettext('[%u release skipped]','[%u releases skipped]',$c),$c),gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
 } else {
@@ -612,7 +629,9 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				if (isMac()) {
 					checkMark(-1, '', gettext('Your filesystem is Macintosh'), gettext('Zenphoto is unable to deal with Macintosh file names containing diacritical marks. You should avoid these.'),false);
 					?>
-					<input type="hidden" name="FILESYSTEM_CHARSET" value="UTF-8" />
+				<input
+					type="hidden" name="FILESYSTEM_CHARSET" value="UTF-8" />
+
 					<?php
 				} else {
 					primeMark(gettext('Character set'));
@@ -704,7 +723,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 						$req_iso = gettext('Image URIs appear require the <em>filesystem</em> character set.');
 						$req_UTF8 = gettext('Image URIs appear to require the UTF-8 character set.');
 						?>
-						<script type="text/javascript">
+				<script type="text/javascript">
 							// <!-- <![CDATA[
 							function uri(enable) {
 								var text;
@@ -757,15 +776,16 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 							});
 							// ]]> -->
 						</script>
-						<li id="UTF8_uri" class="pass" >
-							<span id="UTF8_uri_text">
-								<?php echo $req_UTF8; ?>
-							</span>
-							<div id="UTF8_uri_warn" class="warning"  style="display:none" >
-								<h1><?php echo gettext('Warning!'); ?></h1>
-								<span id="UTR8_uri_warn"></span>
-							</div>
-						</li>
+				<li id="UTF8_uri" class="pass"><span id="UTF8_uri_text">
+								<?php echo $req_UTF8; ?> </span>
+					<div id="UTF8_uri_warn" class="warning" style="display: none">
+						<h1>
+
+							<?php echo gettext('Warning!'); ?></h1>
+						<span id="UTR8_uri_warn"></span>
+					</div>
+				</li>
+
 						<?php
 					}
 				}
@@ -813,17 +833,26 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			if ($enabled) {
 				if (isset($enabled['experimental'])){
 					?>
-					<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle(\'show\')" >experimental</a>)'),$engine); ?></li>
-					<p class="warning" id="<?php echo $engine; ?>" style="display:none;" ><?php echo $enabled['experimental']?></p>
+				<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle(\'show\')" >experimental</a>)'),$engine); ?>
+				</li>
+				<p class="warning" id="<?php echo $engine; ?>"
+					style="display: none;">
+
+					<?php echo $enabled['experimental']?></p>
+
 					<?php
 				} else {
 					?>
-					<li class="note_ok"><?php echo sprintf(gettext('PHP <code>%s</code> support'),$engine); ?></li>
+				<li class="note_ok"><?php echo sprintf(gettext('PHP <code>%s</code> support'),$engine); ?>
+				</li>
+
 					<?php
 				}
 			} else {
 				?>
-				<li class="note_exception"><?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'),$engine); ?></li>
+				<li class="note_exception"><?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'),$engine); ?>
+				</li>
+
 				<?php
 			}
 		}
@@ -1400,7 +1429,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$good = folderCheck(gettext('Third party plugins'), dirname(dirname(__FILE__)) . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod | 0311) && $good;
 
 	?>
-</ul>
+			</ul>
 <?php
 
 	if ($good) {
