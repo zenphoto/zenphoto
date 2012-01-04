@@ -530,6 +530,7 @@ if ($_zp_admin_subtab == 'gallery' || $_zp_admin_subtab == 'image') {
 	<?php
 }
 zp_apply_filter('texteditor_config', '','zenphoto');
+$_zp_authority->printPasswordFormJS();
 ?>
 </head>
 <body>
@@ -1000,8 +1001,10 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 								<?php echo gettext("Gallery guest user:"); ?>
 								</a>
 							</p>
-							<p>
-								<?php echo gettext("Gallery password:"); ?><br />
+							<p id="strength">
+								<?php echo gettext("Gallery password:"); ?>
+							</p>
+							<p id="match">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo gettext("(repeat)"); ?>
 							</p>
 							<p><?php echo gettext("Gallery password hint:"); ?></p>
@@ -1009,9 +1012,18 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<td>
 							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"id="user_name"  name="gallery_user" value="<?php echo html_encode($gallery->getUser()); ?>" /></p>
 							<p>
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="pass" name="gallerypass" value="<?php echo $x; ?>" />
-								<br />
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="pass_2" name="gallerypass_2" value="<?php echo $x; ?>" />
+								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														id="pass" name="gallerypass"
+														onkeydown="passwordKeydown('#pass','#pass_2');"
+														onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
+														value="<?php echo $x; ?>" />
+							</p>
+							<p>
+								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														id="pass_2" name="gallerypass_2"
+														onkeydown="passwordKeydown('#pass','#pass_2');"
+														onkeyup="passwordMatch('#pass','#pass_2','#match');"
+														value="<?php echo $x; ?>" />
 							</p>
 							<p><?php print_language_string_list($gallery->get('gallery_hint'), 'gallery_hint', false, NULL, 'hint') ?></p>
 						</td>
@@ -1364,8 +1376,10 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 									<?php echo gettext("Search guest user:"); ?>
 								</a>
 							</p>
-							<p>
-								<?php echo gettext("Search password:"); ?><br />
+							<p id="strength">
+								<?php echo gettext("Search password:"); ?>
+							</p>
+							<p id="match">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo gettext("(repeat)"); ?>
 							</p>
 							<p><?php echo gettext("Search password hint:"); ?></p>
@@ -1373,9 +1387,18 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<td>
 							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="user_name" name="search_user" value="<?php echo html_encode(getOption('search_user')); ?>" /></p>
 							<p>
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="pass" name="searchpass" value="<?php echo $x; ?>" />
-								<br />
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="pass_2" name="searchpass_2" value="<?php echo $x; ?>" />
+								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															id="pass" name="searchpass"
+															onkeydown="passwordKeydown('#pass','#pass_2');"
+															onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
+															value="<?php echo $x; ?>" />
+							</p>
+							<p>
+								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															id="pass_2" name="searchpass_2"
+															onkeydown="passwordKeydown('#pass','#pass_2');"
+															onkeyup="passwordMatch('#pass','#pass_2','#match');"
+															value="<?php echo $x; ?>" />
 							</p>
 							<p><?php print_language_string_list(getOption('search_hint'), 'search_hint', false, NULL, 'hint') ?></p>
 						</td>
@@ -2018,18 +2041,26 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</tr>
 						<tr class="passwordextrahide" style="display:none">
 							<td style="margin:0; padding:0">
-								<?php echo gettext("password:"); ?>
+								<span id="strength"><?php echo gettext("password:"); ?></span>
 							</td>
 							<td style="margin:0; padding:0">
-								<input type="password" size="<?php echo 30; ?>" id="pass" name="imagepass" value="<?php echo $x; ?>" />
+								<input type="password" size="<?php echo 30; ?>"
+															id="pass" name="imagepass"
+															onkeydown="passwordKeydown('#pass','#pass_2');"
+															onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
+															value="<?php echo $x; ?>" />
 							</td>
 						</tr>
 						<tr class="passwordextrahide" style="display:none">
 							<td style="margin:0; padding:0 text-align:left">
-								<?php echo gettext("(repeat)"); ?>
+								<span id="match"><?php echo gettext("(repeat)"); ?></span>
 							</td>
 							<td style="margin:0; padding:0">
-								<input type="password" size="<?php echo 30; ?>" id="pass_2" name="imagepass_2" value="<?php echo $x; ?>" />
+								<input type="password" size="<?php echo 30; ?>"
+															id="pass_2" name="imagepass_2"
+															onkeydown="passwordKeydown('#pass','#pass_2');"
+															onkeyup="passwordMatch('#pass','#pass_2','#match');"
+															value="<?php echo $x; ?>" />
 							</td>
 						</tr>
 						<tr class="passwordextrahide" style="display:none">

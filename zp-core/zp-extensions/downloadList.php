@@ -108,13 +108,21 @@ class downloadListOptions {
 		<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
 		<input type="text" size="27" id="user_name_downloadList" name="downloadList_user" value="<?php echo html_encode($user); ?>" />
 		<br />
-		<?php echo gettext("Password:"); ?>
+		<span id="strength"><?php echo gettext("Password:"); ?></span>
 		<br />
-		<input type="password" size="27" id="pass_downloadList" name="downloadList_pass" value="<?php echo $x; ?>" />
+		<input type="password" size="27"
+										id="pass_downloadList" name="downloadList_pass"
+										onkeydown="passwordKeydown('#pass_downloadList','#pass_2_downloadList');"
+										onkeyup="passwordStrength('#pass_downloadList','#pass_2_downloadList','#match','#strength');"
+										value="<?php echo $x; ?>" />
 		<br />
-		<?php echo gettext("(repeat)"); ?>
+		<span id="match"><?php echo gettext("(repeat)"); ?></span>
 		<br />
-		<input type="password" size="27" id="pass_2_downloadList" name="downloadList_pass_2" value="<?php echo $x; ?>" />
+		<input type="password" size="27"
+										id="pass_2_downloadList" name="downloadList_pass_2"
+										onkeydown="passwordKeydown('#pass_downloadList','#pass_2_downloadList');"
+										onkeyup="passwordMatch('#pass_downloadList','#pass_2_downloadList','#match');"
+										value="<?php echo $x; ?>" />
 		<br />
 		<?php echo gettext("Password hint:"); ?>
 		<br />

@@ -1183,23 +1183,33 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 									<?php echo gettext("Album guest user:"); ?>
 								</a>
 								</p>
-								<p>
+								<p id="strength">
 								<?php echo gettext("Album password:");?>
 								<br />
 								<?php echo gettext("repeat:");?>
 								</p>
-								<p>
+								<p id="match">
 								<?php echo gettext("Password hint:"); ?>
 								</p>
 							</td>
 							<td>
 								<p>
-									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="user_name" name="<?php echo $prefix; ?>albumuser" value="<?php echo $album->getUser(); ?>" />
+									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															id="user_name" name="<?php echo $prefix; ?>albumuser"
+															value="<?php echo $album->getUser(); ?>" />
 								</p>
 								<p>
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="pass" name="<?php echo $prefix; ?>albumpass"  value="<?php echo $x; ?>" />
+								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														id="pass" name="<?php echo $prefix; ?>albumpass"
+														onkeydown="passwordKeydown('#pass','#pass_2');"
+														onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
+														value="<?php echo $x; ?>" />
 								<br />
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>" id="pass_2" name="<?php echo $prefix; ?>albumpass_2" value="<?php echo $x; ?>" />
+								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														id="pass_2" name="<?php echo $prefix; ?>albumpass_2"
+														onkeydown="passwordKeydown('#pass','#pass_2');"
+														onkeyup="passwordMatch('#pass','#pass_2','#match');"
+														value="<?php echo $x; ?>" />
 								</p>
 								<p>
 								<?php print_language_string_list($album->get('password_hint'), $prefix."albumpass_hint", false, NULL, 'hint'); ?>

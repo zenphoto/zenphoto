@@ -157,6 +157,7 @@ codeblocktabsJS();
 	?>
 	// ]]> -->
 </script>
+<?php $_zp_authority->printPasswordFormJS(); ?>
 </head>
 <body>
 <?php
@@ -479,12 +480,21 @@ if ($result->loaded || $result->transient) {
 							</a>
 							<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
 							<input type="text" size="27" id="user_name" name="new_user" value="<?php echo html_encode($user); ?>" />
-							<?php echo gettext("Password:"); ?>
+							<span id="strength"><?php echo gettext("Password:"); ?></span>
 							<br />
-							<input type="password" size="27" id="pass" name="newpass" value="<?php echo $x; ?>" />
-							<?php echo gettext("(repeat)"); ?>
+							<input type="password" size="27"
+															id="pass" name="newpass"
+															onkeydown="passwordKeydown('#pass','#pass_2');"
+															onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
+															value="<?php echo $x; ?>" />
 							<br />
-							<input type="password" size="27" id="pass_2" name="newpass_2" value="<?php echo $x; ?>" />
+							<span id="match"><?php echo gettext("(repeat)"); ?></span>
+							<br />
+							<input type="password" size="27"
+															id="pass_2" name="newpass_2"
+															onkeydown="passwordKeydown('#pass','#pass_2');"
+															onkeyup="passwordMatch('#pass','#pass_2','#match');"
+															value="<?php echo $x; ?>" />
 							<br />
 							<?php echo gettext("Password hint:"); ?>
 							<br />
