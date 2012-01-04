@@ -194,7 +194,7 @@ codeblocktabsJS();
 		?>
 		<div id="tab_articles" class="tabbox">
 		<?php
-		$admintype = 'category';
+		$admintype = 'newscategory';
 		IF (zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 			$additem = gettext('New Category');
 		} else {
