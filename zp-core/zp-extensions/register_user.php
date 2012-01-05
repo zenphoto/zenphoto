@@ -347,6 +347,7 @@ function printRegistrationForm($thanks=NULL) {
 					<p><?php echo gettext('You may now log onto the site and verify your personal information.'); ?></p>
 				</div>
 				<?php
+			case 'already_verified':
 			case 'loginfailed':
 				$_SERVER['REQUEST_URI'] .= '?login';
 				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_login-out.php');
@@ -424,18 +425,6 @@ function printRegistrationForm($thanks=NULL) {
 					<p><?php echo gettext('Your registration request could not be completed.'); ?></p>
 				</div>
 				<?php
-				break;
-			case 'already_verified':
-				?>
-				<div class="errorbox fade-message">
-					<h2><?php echo gettext("Verification failed."); ?></h2>
-					<p><?php echo gettext('Your registration request was previously accepted.'); ?></p>
-				</div>
-				<?php
-				$_SERVER['REQUEST_URI'] .= '?login';
-				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_login-out.php');
-				printPasswordForm('', false, true, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
-				$notify = 'success';
 				break;
 			case 'filter':
 				?>

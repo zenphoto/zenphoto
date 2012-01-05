@@ -1060,14 +1060,6 @@ class Zenphoto_Authority {
 			}
 			len = Math.max(0,(len-6)*.35);
 			strength = Math.min(30,Math.round(upper+lower+numeric+special+len));
-			if (strength < <?php echo getOption('password_strength'); ?>) {
-				$(inputb).attr('disabled','disabled');
-				$(displaym).css('color','#ff0000');
-				$(displaym).html('<?php echo gettext('password too weak'); ?>');
-			} else {
-				$(inputb).removeAttr('disabled');
-				passwordMatch(inputa, inputb, displaym);
-			}
 			if (strength < 15) {
 				$(displays).css('color','#ff0000');
 				$(displays).html('<?php echo gettext('password strength weak'); ?>');
@@ -1077,6 +1069,14 @@ class Zenphoto_Authority {
 			} else {
 				$(displays).css('color','#008000');
 				$(displays).html('<?php echo gettext('password strength strong'); ?>');
+			}
+			if (strength < <?php echo getOption('password_strength'); ?>) {
+				$(inputb).attr('disabled','disabled');
+				$(displays).css('color','#ff0000');
+				$(displays).html('<?php echo gettext('password too weak'); ?>');
+			} else {
+				$(inputb).removeAttr('disabled');
+				passwordMatch(inputa, inputb, displaym);
 			}
 			var url = 'url(<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/strengths/strength'+strength+'.png)';
 			$(inputa).css('background-image',url);

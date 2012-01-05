@@ -13,13 +13,13 @@ $action = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']))
 	<form action="<?php echo $action; ?>" method="post" autocomplete="off">
 		<input type="hidden" name="register_user" value="yes" />
 
-		<fieldset style="text-align:center"><legend><?php echo gettext("Name"); ?>*</legend>
-			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
-		</fieldset>
-		<fieldset style="text-align:center"><legend><?php if ($emailid = getOption('register_user_email_is_id')) echo gettext("Email"); else echo gettext("User ID"); ?>*</legend>
+		<fieldset style="text-align:center"><legend><?php if ($emailid = getOption('register_user_email_is_id')) echo gettext("Email* (this will be your user id)"); else echo gettext("User ID").'*'; ?></legend>
 			<input type="text" id="adminuser" name="adminuser" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>
 		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag='*'); ?>
+		<fieldset style="text-align:center"><legend><?php echo gettext("Name"); ?>*</legend>
+			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
+		</fieldset>
 		<?php
 		if (!getOption('register_user_email_is_id')) {
 			?>
