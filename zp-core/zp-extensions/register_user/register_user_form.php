@@ -15,14 +15,14 @@ $_zp_authority->printPasswordFormJS();
 		<fieldset style="text-align:center"><legend><?php echo gettext("Name"); ?>*</legend>
 			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>
-		<fieldset style="text-align:center"><legend><?php if (getOption('register_user_email_is_id')) echo gettext("Email"); else echo gettext("User ID"); ?>*</legend>
+		<fieldset style="text-align:center"><legend><?php if ($emailid = getOption('register_user_email_is_id')) echo gettext("Email"); else echo gettext("User ID"); ?>*</legend>
 			<input type="text" id="adminuser" name="adminuser" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>
 		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag='*'); ?>
 		<?php
 		if (!getOption('register_user_email_is_id')) {
 			?>
-			<fieldset style="text-align:center"><legend><?php echo gettext("Email"); ?></legend>
+			<fieldset style="text-align:center"><legend><?php echo gettext("Email"); ?><?php if (!$emailid) echo '*'; ?></legend>
 				<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 			</fieldset>
 			<?php

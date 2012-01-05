@@ -346,9 +346,9 @@ function printRegistrationForm($thanks=NULL) {
 			if ($notify == 'verified') {
 				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_login-out.php');
 				?>
-				<p><?php echo gettext('You may now log onto the site.'); ?></p>
+				<p><?php echo gettext('You may now log onto the site and verify your personal information.'); ?></p>
 				<?php
-				printPasswordForm('', false, true, WEBPATH.'/'.ZENFOLDER.'/admin.php');
+				printPasswordForm('', false, true, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
 			}
 			$notify = 'success';
 		} else {
