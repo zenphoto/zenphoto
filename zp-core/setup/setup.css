@@ -238,7 +238,7 @@ li {
 
 #loginform {
 	padding: 10px;
-	width: 350px;
+	width: 370px;
 	margin: 25px auto;
 	font-size: 100%;
 	background: #F7F8F9;
@@ -255,6 +255,7 @@ li {
 	border-radius: 5px 5px 5px 5px;
 	border: 1px solid lightgray;
 	padding:10px;
+	text-align:center;
 }
 
 #loginform input.textfield {

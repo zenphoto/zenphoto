@@ -212,6 +212,7 @@ button.positive,.buttons a.positive {
 	color:black;
 	color:black;
 	padding:10px;
+	text-align:center;
 }
 
 #loginform input.textfield {

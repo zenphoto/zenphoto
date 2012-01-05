@@ -936,6 +936,7 @@ font-weight: bold;
 	border-radius: 5px 5px 5px 5px;
 	border: 1px solid lightgray;
 	padding:10px;
+	text-align:center;
 }
 
 #loginform input.textfield {

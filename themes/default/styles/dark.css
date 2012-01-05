@@ -632,7 +632,7 @@ table.password td.hint{
 ------------------------------ */
 #loginform {
 	padding: 10px;
-	width: 350px;
+	width: 370px;
 	margin: 25px auto;
 	margin-top: 15%;
 	margin-left: 0 auto;
@@ -654,6 +654,7 @@ table.password td.hint{
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	border: 1px solid lightgray;
+	text-align:center;
 }
 
 #loginform input.textfield {

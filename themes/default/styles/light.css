@@ -658,6 +658,7 @@ table.password td.hint{
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	border: 1px solid lightgray;
+	text-align:center;
 }
 
 #loginform input.textfield {
