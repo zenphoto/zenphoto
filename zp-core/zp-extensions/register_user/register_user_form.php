@@ -7,9 +7,10 @@
  */
 
 $_zp_authority->printPasswordFormJS();
+$action = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']));
 ?>
 <div id="registration_form">
-	<form action="<?php echo sanitize($_SERVER['REQUEST_URI']); ?>" method="post" autocomplete="off">
+	<form action="<?php echo $action; ?>" method="post" autocomplete="off">
 		<input type="hidden" name="register_user" value="yes" />
 
 		<fieldset style="text-align:center"><legend><?php echo gettext("Name"); ?>*</legend>

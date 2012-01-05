@@ -156,7 +156,7 @@ class user_expiry {
 		return $loggedin;
 	}
 
-	function checklogon($loggedin, $user) {
+	static function checklogon($loggedin, $user) {
 		global $_zp_authority;
 		if ($loggedin) {
 			if (!($loggedin & ADMIN_RIGHTS)) {

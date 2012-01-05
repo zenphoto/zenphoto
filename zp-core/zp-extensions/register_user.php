@@ -206,6 +206,10 @@ function printRegistrationForm($thanks=NULL) {
 	if (isset($_GET['verify'])) {
 		$currentadmins = $_zp_authority->getAdministrators();
 		$params = unserialize(pack("H*", trim(sanitize($_GET['verify']),'.')));
+		// expung the verify query string as it will cause us to come back here if login fails.
+		unset($_GET['verify']); // so it will not be in the way if the logon fails
+		$_SERVER['REQUEST_URI'] = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']));
+
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj->getEmail() == $params['email']) {
 			if (!$userobj->getRights()) {
@@ -316,6 +320,9 @@ function printRegistrationForm($thanks=NULL) {
 			$notify = 'incomplete';
 		}
 	}
+	if (isset($_GET['login'])) {	//presumably the user failed to login....
+		$notify = 'loginfailed';
+	}
 
 	if (zp_loggedin()) {
 		if (isset($_GET['userlog']) && $_GET['userlog'] == 1) {
@@ -328,71 +335,76 @@ function printRegistrationForm($thanks=NULL) {
 		return;
 	}
 	if (!empty($notify)) {
-		if ($notify == 'verified' || $notify == 'accepted') {
-			?>
-			<div class="Messagebox fade-message">
-				<p>
-				<?php
-				if ($notify == 'verified') {
-					if (is_null($thanks)) $thanks = gettext("Thank you for registering.");
-					echo $thanks;
-				} else {
-					echo gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.');
-				}
+		switch ($notify) {
+			case'verified':
+				if (is_null($thanks)) $thanks = gettext("Thank you for registering.");
 				?>
+				<div class="Messagebox fade-message">
+					<p><?php echo $thanks; ?></p>
+					<p><?php echo gettext('You may now log onto the site and verify your personal information.'); ?></p>
+				</div>
+				<?php
+			case 'loginfailed':
+				$_SERVER['REQUEST_URI'] .= '?login';
+				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_login-out.php');
+				printPasswordForm('', false, true, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
+				$notify = 'success';
+				break;
+			case 'accepted':
+				?>
+				<div class="Messagebox fade-message">
+					<p><?php echo gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.'); ?></p>
+				</div>
+				<?php
+				$notify = 'success';
+				break;
+			default:
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Registration failed."); ?></h2>
+					<p>
+					<?php
+					switch ($notify) {
+						case 'exists':
+							printf(gettext('The user ID <em>%s</em> is already in use.'),$admin_e);
+							break;
+						case 'mismatch':
+							echo gettext('Your passwords did not match.');
+							break;
+						case 'incomplete':
+							echo gettext('You have not filled in all the fields.');
+							break;
+						case 'notverified':
+							echo gettext('Invalid verification link.');
+							break;
+						case 'invalidemail':
+							echo gettext('Enter a valid email address.');
+							break;
+						case 'invalidcaptcha':
+							echo gettext('The CAPTCHA you entered was not correct.');
+							break;
+						case 'not_verified':
+							echo gettext('Your registration request could not be completed.');
+							break;
+						case 'already_verified':
+							echo gettext('Your registration request was previously accepted.');
+							break;
+						case 'filter':
+							if (is_object($userobj) && !empty($userobj->msg)) {
+								echo $userobj->msg;
+							} else {
+								echo gettext('Your registration attempt failed a <code>register_user_registered</code> filter check.');
+							}
+							break;
+						default:
+							echo $notify;
+						break;
+					}
+					?>
 				</p>
 			</div>
 			<?php
-			if ($notify == 'verified') {
-				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_login-out.php');
-				?>
-				<p><?php echo gettext('You may now log onto the site and verify your personal information.'); ?></p>
-				<?php
-				printPasswordForm('', false, true, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
-			}
-			$notify = 'success';
-		} else {
-			echo '<div class="errorbox fade-message">';
-			echo  '<h2>'.gettext("Registration failed.").'</h2>';
-			echo '<p>';
-			switch ($notify) {
-				case 'exists':
-					printf(gettext('The user ID <em>%s</em> is already in use.'),$admin_e);
-					break;
-				case 'mismatch':
-					echo gettext('Your passwords did not match.');
-					break;
-				case 'incomplete':
-					echo gettext('You have not filled in all the fields.');
-					break;
-				case 'notverified':
-					echo gettext('Invalid verification link.');
-					break;
-				case 'invalidemail':
-					echo gettext('Enter a valid email address.');
-					break;
-				case 'invalidcaptcha':
-					echo gettext('The CAPTCHA you entered was not correct.');
-					break;
-				case 'not_verified':
-					echo gettext('Your registration request could not be completed.');
-					break;
-				case 'already_verified':
-					echo gettext('Your registration request was previously accepted.');
-					break;
-				case 'filter':
-					if (is_object($userobj) && !empty($userobj->msg)) {
-						echo $userobj->msg;
-					} else {
-						echo gettext('Your registration attempt failed a <code>register_user_registered</code> filter check.');
-					}
-					break;
-				default:
-					echo $notify;
-					break;
-			}
-			echo '</p>';
-			echo '</div>';
+			break;
 		}
 	}
 	if ($notify != 'success') {
