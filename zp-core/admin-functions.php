@@ -1206,7 +1206,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 														value="<?php echo $x; ?>" />
 								<br />
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														id="pass_2" name="<?php echo $prefix; ?>albumpass_2"
+														id="pass_2" name="<?php echo $prefix; ?>albumpass_2" disabled="disabled"
 														onkeydown="passwordKeydown('#pass','#pass_2');"
 														onkeyup="passwordMatch('#pass','#pass_2','#match');"
 														value="<?php echo $x; ?>" />

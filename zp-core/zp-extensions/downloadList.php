@@ -119,7 +119,7 @@ class downloadListOptions {
 		<span id="match"><?php echo gettext("(repeat)"); ?></span>
 		<br />
 		<input type="password" size="27"
-										id="pass_2_downloadList" name="downloadList_pass_2"
+										id="pass_2_downloadList" name="downloadList_pass_2" disabled="disabled"
 										onkeydown="passwordKeydown('#pass_downloadList','#pass_2_downloadList');"
 										onkeyup="passwordMatch('#pass_downloadList','#pass_2_downloadList','#match');"
 										value="<?php echo $x; ?>" />

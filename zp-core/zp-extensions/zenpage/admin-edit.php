@@ -491,8 +491,8 @@ if ($result->loaded || $result->transient) {
 							<span id="match"><?php echo gettext("(repeat)"); ?></span>
 							<br />
 							<input type="password" size="27"
-															id="pass_2" name="newpass_2"
-															onkeydown="passwordKeydown('#pass','#pass_2');"
+															id="pass_2" name="newpass_2" disabled="disabled"
+ 															onkeydown="passwordKeydown('#pass','#pass_2');"
 															onkeyup="passwordMatch('#pass','#pass_2','#match');"
 															value="<?php echo $x; ?>" />
 							<br />

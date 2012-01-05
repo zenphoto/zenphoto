@@ -1129,7 +1129,7 @@ class Zenphoto_Authority {
 			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							name="adminpass_2_<?php echo $id ?>" value="<?php echo $x; ?>"
-							id="pass_r<?php echo $id; ?>"
+							id="pass_r<?php echo $id; ?>" disabled="disabled"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 							onkeydown="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');"
 							onkeyup="passwordMatch('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>','#match<?php echo $id; ?>');"

@@ -1020,7 +1020,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							</p>
 							<p>
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														id="pass_2" name="gallerypass_2"
+														id="pass_2" name="gallerypass_2" disabled="disabled"
 														onkeydown="passwordKeydown('#pass','#pass_2');"
 														onkeyup="passwordMatch('#pass','#pass_2','#match');"
 														value="<?php echo $x; ?>" />
@@ -1395,7 +1395,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 							</p>
 							<p>
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															id="pass_2" name="searchpass_2"
+															id="pass_2" name="searchpass_2" disabled="disabled"
 															onkeydown="passwordKeydown('#pass','#pass_2');"
 															onkeyup="passwordMatch('#pass','#pass_2','#match');"
 															value="<?php echo $x; ?>" />
@@ -2057,7 +2057,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 							</td>
 							<td style="margin:0; padding:0">
 								<input type="password" size="<?php echo 30; ?>"
-															id="pass_2" name="imagepass_2"
+															id="pass_2" name="imagepass_2" disabled="disabled"
 															onkeydown="passwordKeydown('#pass','#pass_2');"
 															onkeyup="passwordMatch('#pass','#pass_2','#match');"
 															value="<?php echo $x; ?>" />
