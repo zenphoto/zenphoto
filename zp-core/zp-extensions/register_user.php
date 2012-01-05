@@ -279,7 +279,9 @@ function printRegistrationForm($thanks=NULL) {
 
 		$pass = trim(sanitize($_POST['adminpass']));
 		$user = trim(sanitize($_POST['adminuser']));
-		if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
+		if (empty($pass)) {
+			$notify = 'empty';
+		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
 			if ($pass == trim(sanitize($_POST['adminpass_2_']))) {
 				$currentadmin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
@@ -320,6 +322,7 @@ function printRegistrationForm($thanks=NULL) {
 			$notify = 'incomplete';
 		}
 	}
+
 	if (isset($_GET['login'])) {	//presumably the user failed to login....
 		$notify = 'loginfailed';
 	}
@@ -358,53 +361,106 @@ function printRegistrationForm($thanks=NULL) {
 				<?php
 				$notify = 'success';
 				break;
-			default:
+			case 'exists':
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Registration failed."); ?></h2>
+					<p><?php printf(gettext('The user ID <em>%s</em> is already in use.'),$admin_e); ?></p>
+				</div>
+				<?php
+				break;
+			case 'empty':
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Registration failed."); ?></h2>
+					<p><?php echo gettext('Passwords may not be empty.'); ?></p>
+				</div>
+				<?php
+				break;
+				case 'mismatch':
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Registration failed."); ?></h2>
+					<p><?php echo gettext('Your passwords did not match.'); ?></p>
+				</div>
+				<?php
+				break;
+			case 'incomplete':
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Registration failed."); ?></h2>
+					<p><?php echo gettext('You have not filled in all the fields.'); ?></p>
+				</div>
+				<?php
+				break;
+			case 'notverified':
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Registration failed."); ?></h2>
+					<p><?php echo gettext('Invalid verification link.'); ?></p>
+				</div>
+				<?php
+				break;
+			case 'invalidemail':
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Registration failed."); ?></h2>
+					<p><?php echo gettext('Enter a valid email address.'); ?></p>
+				</div>
+				<?php
+				break;
+			case 'invalidcaptcha':
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Registration failed."); ?></h2>
+					<p><?php echo gettext('The CAPTCHA you entered was not correct.'); ?></p>
+				</div>
+				<?php
+				break;
+			case 'not_verified':
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Verification failed."); ?></h2>
+					<p><?php echo gettext('Your registration request could not be completed.'); ?></p>
+				</div>
+				<?php
+				break;
+			case 'already_verified':
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Verification failed."); ?></h2>
+					<p><?php echo gettext('Your registration request was previously accepted.'); ?></p>
+				</div>
+				<?php
+				$_SERVER['REQUEST_URI'] .= '?login';
+				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_login-out.php');
+				printPasswordForm('', false, true, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
+				$notify = 'success';
+				break;
+			case 'filter':
 				?>
 				<div class="errorbox fade-message">
 					<h2><?php echo gettext("Registration failed."); ?></h2>
 					<p>
-					<?php
-					switch ($notify) {
-						case 'exists':
-							printf(gettext('The user ID <em>%s</em> is already in use.'),$admin_e);
-							break;
-						case 'mismatch':
-							echo gettext('Your passwords did not match.');
-							break;
-						case 'incomplete':
-							echo gettext('You have not filled in all the fields.');
-							break;
-						case 'notverified':
-							echo gettext('Invalid verification link.');
-							break;
-						case 'invalidemail':
-							echo gettext('Enter a valid email address.');
-							break;
-						case 'invalidcaptcha':
-							echo gettext('The CAPTCHA you entered was not correct.');
-							break;
-						case 'not_verified':
-							echo gettext('Your registration request could not be completed.');
-							break;
-						case 'already_verified':
-							echo gettext('Your registration request was previously accepted.');
-							break;
-						case 'filter':
-							if (is_object($userobj) && !empty($userobj->msg)) {
-								echo $userobj->msg;
-							} else {
-								echo gettext('Your registration attempt failed a <code>register_user_registered</code> filter check.');
-							}
-							break;
-						default:
-							echo $notify;
-						break;
-					}
-					?>
-				</p>
-			</div>
-			<?php
-			break;
+						<?php
+						if (is_object($userobj) && !empty($userobj->msg)) {
+							echo $userobj->msg;
+						} else {
+							echo gettext('Your registration attempt failed a <code>register_user_registered</code> filter check.');
+						}
+						?>
+					</p>
+				</div>
+				<?php
+				break;
+			default:
+				?>
+				<div class="errorbox fade-message">
+					<h2><?php echo gettext("Registration failed."); ?></h2>
+					<p><?php echo $notify; ?></p>
+				</div>
+				<?php
+				break;
 		}
 	}
 	if ($notify != 'success') {

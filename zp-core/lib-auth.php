@@ -68,6 +68,7 @@ class Zenphoto_Authority {
 			$lib_auth_extratext = $lib_auth_extratext . substr($salt, $list[$i], 1);
 		}
 		setOptionDefault('strong_hash', 0);
+		setOptionDefault('password_strength', 10);
 		setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);
 		setOptionDefault('min_password_lenght', 6);
 		setOptionDefault('password_pattern', 'A-Za-z0-9   |   ~!@#$%&*_+`-(),.\^\'"/[]{}=:;?\|');
@@ -87,6 +88,9 @@ class Zenphoto_Authority {
 	function getOptionsSupported() {
 		return array(	gettext('Primary album edit') => array('key' => 'user_album_edit_default', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created.')),
+									gettext('Minimum password strength') => array('key' => 'password_strength', 'type' => OPTION_TYPE_CUSTOM,
+										'desc' => sprintf(gettext('Users must provide passwords a strength of at least %s. The repeat password field will be disabled until this floor is met.'),
+										'<span id="password_strength_display">'.getOption('password_strength').'</span>')),
 									gettext('settings')=> array('key'=>'lib_auth_info', 'type'=>OPTION_TYPE_CUSTOM,
 										'order'=>9,
 										'desc'=>'')
@@ -98,22 +102,56 @@ class Zenphoto_Authority {
 	 */
 	function handleOption($option, $currentValue) {
 		global $_zp_current_admin_obj;
-		if ($option=='lib_auth_info') {
-			$class = get_class($this);
-			if ($class != 'Zenphoto_Authority') {
-				echo '<p class="notebox">'.sprintf(gettext('Authorization class <em>%s</em> is active.'),$class).'</p>';
-			}
-			$class = get_class($_zp_current_admin_obj);
-			if ($class != 'Zenphoto_Administrator') {
-				echo '<p class="notebox">'.sprintf(gettext('Administrator class <em>%s</em> is active.'),$class).'</p>';
-			}
-			echo '<p>'.sprintf(gettext('Password hash seed: <span><small style="color:gray">%s</small></span>'),html_encode(getOption('extra_auth_hash_text'))).'</p>';
-			if (getOption('strong_hash')) {
-				$hash = 'sha1';
-			} else {
-				$hash = 'md5';
-			}
-			echo '<p>'.sprintf(gettext('<em>%s</em> hashing is activated'),$hash).'</p>';
+		switch ($option) {
+			case 'password_strength':
+				?>
+				<input type="hidden" size="3" id="password_strength" name="password_strength" value="<?php echo getOption('password_strength'); ?>" />
+				<script type="text/javascript">
+					// <!-- <![CDATA[
+					function sliderColor(strength) {
+						var url = 'url(<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/strengths/strength'+strength+'.png)';
+						$('#slider-password_strength').css('background-image',url);
+					}
+					$(function() {
+						$("#slider-password_strength").slider({
+						<?php $v = getOption('password_strength'); ?>
+							startValue: <?php echo $v; ?>,
+							value: <?php echo $v; ?>,
+							min: 1,
+							max: 30,
+							slide: function(event, ui) {
+								$("#password_strength").val(ui.value);
+								$('#password_strength_display').html(ui.value);
+								sliderColor(ui.value);
+							}
+						});
+						var strength = $("#slider-password_strength").slider("value");
+						$("#password_strength").val(strength);
+						$('#password_strength_display').html(strength);
+						sliderColor(strength);
+					});
+					// ]]> -->
+				</script>
+				<div id="slider-password_strength"></div>
+				<?php
+				break;
+			case 'lib_auth_info':
+				$class = get_class($this);
+				if ($class != 'Zenphoto_Authority') {
+					echo '<p class="notebox">'.sprintf(gettext('Authorization class <em>%s</em> is active.'),$class).'</p>';
+				}
+				$class = get_class($_zp_current_admin_obj);
+				if ($class != 'Zenphoto_Administrator') {
+					echo '<p class="notebox">'.sprintf(gettext('Administrator class <em>%s</em> is active.'),$class).'</p>';
+				}
+				echo '<p>'.sprintf(gettext('Password hash seed: <span><small style="color:gray">%s</small></span>'),html_encode(getOption('extra_auth_hash_text'))).'</p>';
+				if (getOption('strong_hash')) {
+					$hash = 'sha1';
+				} else {
+					$hash = 'md5';
+				}
+				echo '<p>'.sprintf(gettext('<em>%s</em> hashing is activated'),$hash).'</p>';
+				break;
 		}
 	}
 
@@ -869,7 +907,7 @@ class Zenphoto_Authority {
 				break;
 			default:
 				?>
-				<form name="login" action="#" method="post">
+				<form name="login" action="<?php echo sanitize($_SERVER['REQUEST_URI']); ?>" method="post">
 					<input type="hidden" name="login" value="1" />
 					<input type="hidden" name="password" value="1" />
 					<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
@@ -1022,6 +1060,14 @@ class Zenphoto_Authority {
 			}
 			len = Math.max(0,(len-6)*.35);
 			strength = Math.min(30,Math.round(upper+lower+numeric+special+len));
+			if (strength < <?php echo getOption('password_strength'); ?>) {
+				$(inputb).attr('disabled','disabled');
+				$(displaym).css('color','#ff0000');
+				$(displaym).html('<?php echo gettext('password too weak'); ?>');
+			} else {
+				$(inputb).removeAttr('disabled');
+				passwordMatch(inputa, inputb, displaym);
+			}
 			if (strength < 15) {
 				$(displays).css('color','#ff0000');
 				$(displays).html('<?php echo gettext('password strength weak'); ?>');
@@ -1034,7 +1080,6 @@ class Zenphoto_Authority {
 			}
 			var url = 'url(<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/strengths/strength'+strength+'.png)';
 			$(inputa).css('background-image',url);
-			passwordMatch(inputa, inputb, displaym);
 		}
 
 		function passwordMatch(inputa, inputb, display) {
