@@ -1118,7 +1118,7 @@ class Zenphoto_Authority {
 		<fieldset style="text-align:center">
 			<legend id="strength<?php echo $id; ?>"><?php echo gettext("Password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-							name="adminpass<?php echo $id ?>" value="<?php echo $x; ?>"
+							name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass<?php echo $id; ?>"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 							onkeydown="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');"
@@ -1128,7 +1128,7 @@ class Zenphoto_Authority {
 		<fieldset style="text-align:center">
 			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-							name="adminpass_2_<?php echo $id ?>" value="<?php echo $x; ?>"
+							name="pass_2_<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass_r<?php echo $id; ?>" disabled="disabled"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 							onkeydown="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');"

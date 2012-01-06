@@ -479,7 +479,9 @@ if ($result->loaded || $result->transient) {
 							<?php echo gettext("Guest user:"); ?>
 							</a>
 							<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
-							<input type="text" size="27" id="user_name" name="user" value="<?php echo html_encode($user); ?>" />
+							<input type="text" size="27" id="user_name" name="user"
+															onkeydown="passwordKeydown('#pass','#pass_2');"
+															value="<?php echo html_encode($user); ?>" />
 							<span id="strength"><?php echo gettext("Password:"); ?></span>
 							<br />
 							<input type="password" size="27"

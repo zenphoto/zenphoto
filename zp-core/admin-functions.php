@@ -1202,24 +1202,25 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 							<td>
 								<p>
 									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															id="user_name" name="<?php echo $prefix; ?>albumuser"
+															onkeydown="passwordKeydown('#pass<?php echo $prefix; ?>','#pass_2<?php echo $prefix; ?>');"
+															id="user_name" name="user<?php echo $prefix; ?>"
 															value="<?php echo $album->getUser(); ?>" />
 								</p>
 								<p>
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														id="pass" name="<?php echo $prefix; ?>albumpass"
-														onkeydown="passwordKeydown('#pass','#pass_2');"
-														onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
+														id="pass<?php echo $prefix; ?>" name="pass<?php echo $prefix; ?>"
+														onkeydown="passwordKeydown('#pass<?php echo $prefix; ?>','#pass_2<?php echo $prefix; ?>');"
+														onkeyup="passwordStrength('#pass<?php echo $prefix; ?>','#pass_2<?php echo $prefix; ?>','#match<?php echo $prefix; ?>','#strength<?php echo $prefix; ?>');"
 														value="<?php echo $x; ?>" />
 								<br />
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														id="pass_2" name="<?php echo $prefix; ?>albumpass_2" disabled="disabled"
-														onkeydown="passwordKeydown('#pass','#pass_2');"
-														onkeyup="passwordMatch('#pass','#pass_2','#match');"
+														id="pass_2<?php echo $prefix; ?>" name="pass_2<?php echo $prefix; ?>" disabled="disabled"
+														onkeydown="passwordKeydown('#pass<?php echo $prefix; ?>','#pass_2<?php echo $prefix; ?>');"
+														onkeyup="passwordMatch('#pass<?php echo $prefix; ?>','#pass_2<?php echo $prefix; ?>','#match<?php echo $prefix; ?>');"
 														value="<?php echo $x; ?>" />
 								</p>
 								<p>
-								<?php print_language_string_list($album->get('password_hint'), $prefix."albumpass_hint", false, NULL, 'hint'); ?>
+								<?php print_language_string_list($album->get('password_hint'), "hint".$prefix, false, NULL, 'hint'); ?>
 								</p>
 							</td>
 						</tr>
@@ -2206,30 +2207,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 	$album->setPublishDate(sanitize($_POST['publishdate-'.$prefix]));
 	$album->setExpireDate(sanitize($_POST['expirationdate-'.$prefix]));
 	$fail = '';
-	if (sanitize($_POST[$prefix.'password_enabled'])) {
-		$olduser = $album->getUser();
-		$newuser = sanitize($_POST[$prefix.'albumuser']);
-		$pwd = trim(sanitize($_POST[$prefix.'albumpass']));
-		if (($olduser != $newuser)) {
-			if (!empty($newuser) && empty($pwd) && empty($pwd2)) $fail = '&mismatch=user';
-		}
-		if (!$fail && $_POST[$prefix.'albumpass'] == $_POST[$prefix.'albumpass_2']) {
-			$album->setUser($newuser);
-			if (empty($pwd)) {
-				if (empty($_POST[$prefix.'albumpass'])) {
-					$album->setPassword(NULL);  // clear the album password
-				}
-			} else {
-				$album->setPassword($pwd);
-			}
-		} else {
-			if (empty($fail)) {
-				$notify = '&mismatch=album';
-			} else {
-				$notify = $fail;
-			}
-		}
-	}
+	processCredentials($album);
 	$oldtheme = $album->getAlbumTheme();
 	if (isset($_POST[$prefix.'album_theme'])) {
 		$newtheme = sanitize($_POST[$prefix.'album_theme']);
@@ -2237,7 +2215,6 @@ function processAlbumEdit($index, $album, &$redirectto) {
 			$album->setAlbumTheme($newtheme);
 		}
 	}
-	$album->setPasswordHint(process_language_string_save($prefix.'albumpass_hint', 3));
 	if (isset($_POST[$prefix.'album_watermark'])) {
 		$album->setWatermark(sanitize($_POST[$prefix.'album_watermark'], 3));
 		$album->setWatermarkThumb(sanitize($_POST[$prefix.'album_watermark_thumb'], 3));

@@ -106,7 +106,9 @@ class downloadListOptions {
 		</a>
 		<br />
 		<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
-		<input type="text" size="27" id="user_name_downloadList" name="user_downloadList" value="<?php echo html_encode($user); ?>" />
+		<input type="text" size="27" id="user_name_downloadList" name="user_downloadList"
+										onkeydown="passwordKeydown('#pass_downloadList','#pass_2_downloadList');"
+										value="<?php echo html_encode($user); ?>" />
 		<br />
 		<span id="strength"><?php echo gettext("Password:"); ?></span>
 		<br />
@@ -134,7 +136,14 @@ class downloadListOptions {
 
 
 	static function custom_options_save($notify,$themename,$themealbum) {
-		return processCredentials('downloadList','_downloadList');
+		$notify = processCredentials('downloadList','_downloadList');
+			if ($notify == '?mismatch=user') {
+				return gettext('You must supply a password for the DownloadList user');
+			} else if ($notify) {
+				return gettext('Your DownloadList passwords were empty or did not match');
+			} else {
+				return '';
+			}
 	}
 
 }

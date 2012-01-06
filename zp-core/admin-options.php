@@ -937,7 +937,10 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<p><?php echo gettext("Gallery password hint:"); ?></p>
 						</td>
 						<td>
-							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"id="user_name"  name="user" value="<?php echo html_encode($gallery->getUser()); ?>" /></p>
+							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															onkeydown="passwordKeydown('#pass','#pass_2');"
+															id="user_name"  name="user"
+															value="<?php echo html_encode($gallery->getUser()); ?>" /></p>
 							<p>
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														id="pass" name="pass"
@@ -1312,7 +1315,11 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<p><?php echo gettext("Search password hint:"); ?></p>
 						</td>
 						<td>
-							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="user_name" name="user" value="<?php echo html_encode(getOption('search_user')); ?>" /></p>
+							<p>
+								<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															id="user_name" name="user"
+															onkeydown="passwordKeydown('#pass','#pass_2');"
+															value="<?php echo html_encode(getOption('search_user')); ?>" /></p>
 							<p>
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 															id="pass" name="pass"
@@ -1952,7 +1959,11 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 									<?php echo gettext("user:"); ?>
 								</a>
 							</td>
-							<td style="margin:0; padding:0"><input type="text" size="<?php echo 30; ?>" id="user_name" name="user" value="<?php echo html_encode(getOption('protected_image_user')); ?>" />		</td>
+							<td style="margin:0; padding:0">
+								<input type="text" size="<?php echo 30; ?>"
+														onkeydown="passwordKeydown('#pass','#pass_2');"
+														id="user_name" name="user"
+														value="<?php echo html_encode(getOption('protected_image_user')); ?>" />		</td>
 						</tr>
 						<tr class="passwordextrahide" style="display:none">
 							<td style="margin:0; padding:0">
