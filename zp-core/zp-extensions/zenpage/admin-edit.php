@@ -479,11 +479,11 @@ if ($result->loaded || $result->transient) {
 							<?php echo gettext("Guest user:"); ?>
 							</a>
 							<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
-							<input type="text" size="27" id="user_name" name="new_user" value="<?php echo html_encode($user); ?>" />
+							<input type="text" size="27" id="user_name" name="user" value="<?php echo html_encode($user); ?>" />
 							<span id="strength"><?php echo gettext("Password:"); ?></span>
 							<br />
 							<input type="password" size="27"
-															id="pass" name="newpass"
+															id="pass" name="pass"
 															onkeydown="passwordKeydown('#pass','#pass_2');"
 															onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
 															value="<?php echo $x; ?>" />
@@ -491,14 +491,14 @@ if ($result->loaded || $result->transient) {
 							<span id="match"><?php echo gettext("(repeat)"); ?></span>
 							<br />
 							<input type="password" size="27"
-															id="pass_2" name="newpass_2" disabled="disabled"
+															id="pass_2" name="pass_2" disabled="disabled"
  															onkeydown="passwordKeydown('#pass','#pass_2');"
 															onkeyup="passwordMatch('#pass','#pass_2','#match');"
 															value="<?php echo $x; ?>" />
 							<br />
 							<?php echo gettext("Password hint:"); ?>
 							<br />
-							<?php print_language_string_list($hint, 'page_hint', false, NULL, 'hint', 27); ?>
+							<?php print_language_string_list($hint, 'hint', false, NULL, 'hint', 27); ?>
 						</div>
 						<?php
 						}

@@ -48,44 +48,6 @@ function processTags($object) {
 ***************************/
 
 /**
- * processes password saves
- * returns error indicating mismatch state
- * @param object $page
- * @return string
- */
-function processPasswordSave($obj) {
-	$notify = $fail = '';
-	if (sanitize($_POST['password_enabled'])) {
-		$olduser = $obj->getUser();
-		$newuser = sanitize($_POST['new_user']);
-		$pwd = trim(sanitize($_POST['newpass']));
-		if (($olduser != $newuser)) {
-			if (!empty($newuser) && empty($pwd) && empty($pwd2)) {
-				$fail = 'user';
-			}
-		}
-		if (!$fail && $_POST['newpass'] == $_POST['newpass_2']) {
-			$obj->setUser($newuser);
-			$obj->setPasswordHint(process_language_string_save('page_hint', 3));
-			if (empty($pwd)) {
-				if (empty($_POST['newpass'])) {
-					$obj->setPassword(NULL);  // clear the password
-				}
-			} else {
-				$obj->setPassword($pwd);
-			}
-		} else {
-			if (empty($fail)) {
-				$notify = 'pass';
-			} else {
-				$notify = $fail;
-			}
-		}
-	}
-	return $notify;
-}
-
-/**
  * Updates a new page to that database and returns the object of that page
  *
  * @return object
@@ -117,7 +79,7 @@ function addPage(&$reports) {
 		$titlelink .= '_'.seoFriendly($date); // force unique so that data may be saved.
 	}
 	$page = new ZenpagePage($titlelink, true);
-	$notice = processPasswordSave($page);
+	$notice = processCredentials($page);
 	$page->setTitle($title);
 	$page->setContent($content);
 	$page->setExtracontent($extracontent);
@@ -135,9 +97,9 @@ function addPage(&$reports) {
 	$page->save();
 	if(empty($title)) {
 		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Page <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
-	} else if ($notice == 'user') {
+	} else if ($notice == '?mismatch=user') {
 		$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Page user').'</p>';
-	} else if ($notice == 'pass') {
+	} else if ($notice) {
 		$reports[] =  "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
 	} else {
 		$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Page <em>%s</em> added"),$titlelink).'</p>';
@@ -201,7 +163,7 @@ function updatePage(&$reports) {
 	}
 	// update page
 	$page = new ZenpagePage($titlelink, true);
-	$notice = processPasswordSave($page);
+	$notice = processCredentials($page);
 	$page->setTitle($title);
 	$page->setContent($content);
 	$page->setExtracontent($extracontent);
@@ -232,9 +194,9 @@ function updatePage(&$reports) {
 		$reports[] = "<p class='errorbox fade-message'>".sprintf(gettext("A page with the title/titlelink <em>%s</em> already exists!"),$titlelink).'</p>';
 	} else 	if(empty($title)) {
 		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Page <em>%s</em> updated but you need to give it a <strong>title</strong> before publishing!"),get_language_string($titlelink)).'</p>';
-	} else if ($notice == 'user') {
+	} else if ($notice == '?mismatch=user') {
 		$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Page user').'</p>';
-	} else if ($notice == 'pass') {
+	} else if ($notice) {
 		echo "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
 	} else {
 		$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Page <em>%s</em> updated"),$titlelink).'</p>';
@@ -1074,7 +1036,7 @@ function addCategory(&$reports) {
 	// create new category
 	$show = getcheckboxState('show');
 	$cat = new ZenpageCategory($titlelink, true);
-	$notice = processPasswordSave($cat);
+	$notice = processCredentials($cat);
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title',$title);
 	$cat->setDesc($desc);
@@ -1084,9 +1046,9 @@ function addCategory(&$reports) {
 	$cat->save();
 	if(empty($title)) {
 		$reports[] =  "<p class='errorbox fade-message'>".sprintf(gettext("Category <em>%s</em> added but you need to give it a <strong>title</strong> before publishing!"),$titlelink).'</p>';
-	} else if ($notice == 'user') {
+	} else if ($notice == '?mismatch=user') {
 		$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Category user').'</p>';
-	} else if ($notice == 'pass') {
+	} else if ($notice) {
 		$reports[] =  "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
 	} else {
 		$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Category <em>%s</em> added"),$titlelink).'</p>';
@@ -1137,7 +1099,7 @@ function updateCategory(&$reports) {
 	//update category
 	$show = getcheckboxState('show');
 	$cat = new ZenpageCategory($titlelink, true);
-	$notice = processPasswordSave($cat);
+	$notice = processCredentials($cat);
 	$cat->setPermalink(getcheckboxState('permalink'));
 	$cat->set('title',$title);
 	$cat->setDesc($desc);
@@ -1156,9 +1118,9 @@ function updateCategory(&$reports) {
 	if($titleok) {
 		if(empty($titlelink) OR empty($title)) {
 			$reports[] =  "<p class='errorbox fade-message'>".gettext("You forgot to give your category a <strong>title or titlelink</strong>!")."</p>";
-		} else if ($notice == 'user') {
+		} else if ($notice == '?mismatch=user') {
 			$reports[] =  "<p class='errorbox fade-message'>".gettext('You must supply a password for the Protected Category user').'</p>';
-		} else if ($notice == 'pass') {
+		} else if ($notice) {
 			$reports[] =  "<p class='errorbox fade-message'>".gettext('Your passwords were empty or did not match').'</p>';
 		} else {
 			$reports[] =  "<p class='messagebox fade-message'>".gettext("Category updated!")."</p>";

@@ -318,8 +318,8 @@ function printTabs() {
 	<?php
 }
 
-function printSubtabs() {
-	global $zenphoto_tabs, $main_tab_space, $_zp_admin_tab, $_zp_admin_subtab;
+function getSubtabs() {
+	global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
 	$tabs = $zenphoto_tabs[$_zp_admin_tab]['subtabs'];
 	if (!is_array($tabs)) return $_zp_admin_subtab;
 	$current = $_zp_admin_subtab;
@@ -359,6 +359,13 @@ function printSubtabs() {
 			$current = $_zp_admin_subtab;
 		}
 	}
+	return $current;
+}
+
+function printSubtabs() {
+	global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
+	$tabs = $zenphoto_tabs[$_zp_admin_tab]['subtabs'];
+	$current = getSubtabs();
 	?>
 	<ul class="subnav" >
 	<?php
@@ -4065,5 +4072,70 @@ function admin_showupdate($tab, $subtab) {
 		<h2><?php echo getOption('last_update_check'); ?></h2>
 	</div>
 	<?php
+}
+
+/**
+ *
+ * handles save of user/password
+ * @param object $object
+ */
+function processCredentials($object, $suffix='') {
+	global $_zp_authority;
+	$notify = '';
+	if (isset($_POST['password_enabled'.$suffix])) {
+		if (is_object($object)) {
+			$olduser = $object->getUser();
+		} else {
+			$olduser = getOption($object.'_user');
+		}
+		$newuser = trim(sanitize($_POST['user'.$suffix],3));
+		$pwd = trim(sanitize($_POST['pass'.$suffix]));
+		if (isset($_POST['pass_2'.$suffix])) {
+			$pass2 = trim(sanitize($_POST['pass_2'.$suffix]));
+		} else {
+			$pass2 = '';
+		}
+		$fail = '';
+		if ($olduser != $newuser) {
+			if (!empty($newuser) && strlen($_POST['pass'.$suffix])==0) {
+				$fail = '?mismatch=user';
+			}
+		}
+		if (!$fail && $pwd == $pass2) {
+			if (is_object($object)) {
+				$object->setUser($newuser);
+			} else {
+				setOption($object.'_user', $newuser);
+			}
+			if (empty($pwd)) {
+				if (strlen($_POST['pass'.$suffix])==0) {	// clear the  password
+					if (is_object($object)) {
+						$object->setPassword(NULL);
+					} else {
+						setOption($object.'_password', NULL);
+					}
+				}
+			} else {
+				if (is_object($object)) {
+					$object->setPassword($_zp_authority->passwordHash($newuser, $pwd));
+				} else {
+					setOption($object.'_password', $_zp_authority->passwordHash($newuser, $pwd));
+				}
+			}
+		} else {
+			if (empty($fail)) {
+				$notify = '?mismatch';
+			} else {
+				$notify = $fail;
+			}
+		}
+		$hint = process_language_string_save('hint'.$suffix, 3);
+		if (is_object($object)) {
+			$object->setPasswordHint($hint);
+		} else {
+			setOption($object.'_hint', $hint);
+		}
+	}
+	return $notify;
 }
 ?>

@@ -1132,8 +1132,7 @@ class Zenphoto_Authority {
 							id="pass_r<?php echo $id; ?>" disabled="disabled"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 							onkeydown="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');"
-							onkeyup="passwordMatch('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>','#match<?php echo $id; ?>');"
-							<?php echo $disable; ?> />
+							onkeyup="passwordMatch('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>','#match<?php echo $id; ?>');" />
 		</fieldset>
 		<?php
 	}

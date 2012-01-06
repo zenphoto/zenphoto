@@ -93,7 +93,7 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 			$parms .= '&dsp='.sanitize_numeric($_GET['dsp']);
 		}
 		$action = WEBPATH.'/'.ZENFOLDER.'/full-image.php?userlog=1&a='.pathurlencode($album8).'&i='.urlencode($image8).$parms;
-		printPasswordForm($hint, true, $_zp_gallery->getUserLogonField() || $show, $action);
+		printPasswordForm($hint, $_zp_gallery->getUserLogonField() || $show, true, $action);
 		exit();
 	}
 }

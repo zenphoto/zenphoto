@@ -22,7 +22,7 @@ if(isset($_GET['download'])) {
 		header("Location: $location");
 		exit;
 	} else {
-		$hash = getOption('downloadList_pass');
+		$hash = getOption('downloadList_password');
 		if (GALLERY_SECURITY != 'public' || $hash) {
 			//	credentials required to download
 			if (!zp_loggedin((getOption('downloadList_rights'))?FILE_RIGHTS:ALL_RIGHTS)) {

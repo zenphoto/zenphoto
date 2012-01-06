@@ -47,7 +47,7 @@ class downloadListOptions {
 		setOptionDefault('downloadList_showfilesize', 1);
 		setOptionDefault('downloadList_showdownloadcounter', 1);
 		setOptionDefault('downloadList_user', NULL);
-		setOptionDefault('downloadList_pass', NULL);
+		setOptionDefault('downloadList_password', getOption('downloadList_pass'));
 		setOptionDefault('downloadList_hint', NULL);
 		setOptionDefault('downloadList_rights', NULL);
 	}
@@ -79,7 +79,7 @@ class downloadListOptions {
 
 	function handleOption($option, $currentValue) {
 		$user = getOption('downloadList_user');
-		$x = getOption('downloadList_pass');
+		$x = getOption('downloadList_password');
 		$hint = getOption('downloadList_hint');
 		?>
 		<input type="hidden" name="password_enabled_downloadList" id="password_enabled_downloadList" value="0" />
@@ -106,12 +106,12 @@ class downloadListOptions {
 		</a>
 		<br />
 		<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
-		<input type="text" size="27" id="user_name_downloadList" name="downloadList_user" value="<?php echo html_encode($user); ?>" />
+		<input type="text" size="27" id="user_name_downloadList" name="user_downloadList" value="<?php echo html_encode($user); ?>" />
 		<br />
 		<span id="strength"><?php echo gettext("Password:"); ?></span>
 		<br />
 		<input type="password" size="27"
-										id="pass_downloadList" name="downloadList_pass"
+										id="pass_downloadList" name="pass_downloadList"
 										onkeydown="passwordKeydown('#pass_downloadList','#pass_2_downloadList');"
 										onkeyup="passwordStrength('#pass_downloadList','#pass_2_downloadList','#match','#strength');"
 										value="<?php echo $x; ?>" />
@@ -119,14 +119,14 @@ class downloadListOptions {
 		<span id="match"><?php echo gettext("(repeat)"); ?></span>
 		<br />
 		<input type="password" size="27"
-										id="pass_2_downloadList" name="downloadList_pass_2" disabled="disabled"
+										id="pass_2_downloadList" name="pass_2_downloadList" disabled="disabled"
 										onkeydown="passwordKeydown('#pass_downloadList','#pass_2_downloadList');"
 										onkeyup="passwordMatch('#pass_downloadList','#pass_2_downloadList','#match');"
 										value="<?php echo $x; ?>" />
 		<br />
 		<?php echo gettext("Password hint:"); ?>
 		<br />
-		<?php print_language_string_list($hint, 'downloadList_hint', false, NULL, 'hint_downloadList', 27); ?>
+		<?php print_language_string_list($hint, 'hint_downloadList', false, NULL, 'hint_downloadList', 27); ?>
 	</div>
 	<?php
 
@@ -134,36 +134,8 @@ class downloadListOptions {
 
 
 	static function custom_options_save($notify,$themename,$themealbum) {
-		global $gallery, $_zp_authority;
-		if (sanitize(@$_POST['password_enabled_downloadList'], 3)) {
-			$olduser = getOption('downloadList_user');
-			$newuser = trim(sanitize($_POST['downloadList_user'],3));
-			if (!empty($newuser)) {
-				$gallery->setUserLogonField(1);
-				$gallery->save();
-			}
-			$fail = false;
-			$pwd = trim(sanitize($_POST['downloadList_pass']));
-			if ($olduser != $newuser) {
-				if (!empty($newuser) && empty($pwd) && empty($pwd2)) $fail = true;
-			}
-			if (!$fail && $_POST['downloadList_pass'] == $_POST['downloadList_pass_2']) {
-				setOption('downloadList_user',$newuser);
-				if (empty($pwd)) {
-					if (empty($_POST['downloadList_pass'])) {
-						setOption('downloadList_pass', NULL);  // clear the protected image password
-					}
-				} else {
-					setOption('downloadList_pass', $_zp_authority->passwordHash($newuser, $pwd));
-				}
-			} else {
-				$notify .= gettext('passwords did not match').'<br />';
-			}
-			setOption('downloadList_hint', process_language_string_save('downloadList_hint', 3));
-		}
-
-	return $notify;
-}
+		return processCredentials('downloadList','_downloadList');
+	}
 
 }
 

@@ -403,16 +403,6 @@ if ($_zp_reset_admin && !$refresh) {
 	if (isset($_GET['mismatch'])) {
 		echo '<div class="errorbox fade-message">';
 		switch ($_GET['mismatch']) {
-			case 'gallery':
-			case 'search':
-				echo  "<h2>".sprintf(gettext("Your %s passwords were empty or did not match"), sanitize($_GET['mismatch']))."</h2>";
-				break;
-			case 'user_gallery':
-				echo  "<h2>".gettext("You must supply a password for the Gallery guest user")."</h2>";
-				break;
-			case 'user_search':
-				echo  "<h2>".gettext("You must supply a password for the Search guest user")."</h2>";
-				break;
 			case 'mismatch':
 				echo  "<h2>".gettext('You must supply a password')."</h2>";
 				break;

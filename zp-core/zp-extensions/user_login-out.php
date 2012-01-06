@@ -27,10 +27,7 @@ class user_logout_options {
 	function getOptionsSupported() {
 		return array(	gettext('Enable login form') => array('key' => 'user_logout_login_form', 'type' => OPTION_TYPE_CHECKBOX,
 										'order'=>1,
-										'desc' => gettext('If enabled, a login form will be displayed if the viewer is not logged in.')),
-									gettext('Display user field') => array('key' => 'user_logout_show_user', 'type' => OPTION_TYPE_CHECKBOX,
-										'order'=>2,
-										'desc' => gettext('If enabled, the logon form will include the <em>User</em> field so that Zenphoto users may login.'))
+										'desc' => gettext('If enabled, a login form will be displayed if the viewer is not logged in.'))
 		);
 	}
 	function handleOption($option, $currentValue) {
@@ -102,9 +99,6 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 	if (is_null($logouttext)) $logouttext = gettext("Logout");
 	if (is_null($showLoginForm) && getOption('user_logout_login_form')) {
 		$showLoginForm = true;
-	}
-	if (is_null($show_user) && getOption('user_logout_show_user')) {
-		$show_user = true;
 	}
 	$cookies = $_zp_authority->getAuthCookies();
 	if (empty($cookies)) {

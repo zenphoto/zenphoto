@@ -19,7 +19,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 					<span>
 						<?php printHomeLink('', ' | '); ?>
 						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle(); ?></a>
-					</span> | 
+					</span> |
 					<?php echo gettext("A password is required for the page you requested"); ?>
 				</h2>
 			</div>
