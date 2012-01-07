@@ -350,12 +350,11 @@ if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
 		setOption('Zenphoto_theme_list',serialize($themes));
 	}
 }
-$gallery = new Gallery();
 ?>
 <script type="text/javascript">
 	// <!-- <![CDATA[
 	<?php
-	foreach (array_keys($gallery->getThemes()) as $theme) {
+	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
 		$requirePath = getPlugin('themeoptions.php', $theme);
 		if (!empty($requirePath)) {
 			?>

@@ -12,37 +12,40 @@
  * @author Stephen Billard (sbillard)and Malte Müller (acrylian)
  * @package plugins
  */
-if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 3);
+/*
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. <p class='notebox'><strong>Legal note:</strong> Use the <em>Disguise IP</em> option if your country considers IP tracking a privacy violation.</p>");
 $plugin_author = "Stephen Billard (sbillard) and Malte Müller (acrylian)";
+*/
+if (!defined('OFFSET_PATH')) {
+	define('OFFSET_PATH', 3);
+	require_once(dirname(dirname(__FILE__)).'/functions.php');
 
+	if (isset($_GET['action']) && $_GET['action']=='clear_rating') {
+		if (!zp_loggedin(ADMIN_RIGHTS)) {
+			// prevent nefarious access to this page.
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
+			exit();
+		}
 
-require_once(dirname(dirname(__FILE__)).'/functions.php');
-if (isset($_GET['action']) && $_GET['action']=='clear_rating') {
-	if (!(zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) { // prevent nefarious access to this page.
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
+		require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
+		if (session_id() == '') {
+			// force session cookie to be secure when in https
+			if(secureServer()) {
+				$CookieInfo=session_get_cookie_params();
+				session_set_cookie_params($CookieInfo['lifetime'],$CookieInfo['path'], $CookieInfo['domain'],TRUE);
+			}
+			session_start();
+		}
+		XSRFdefender('clear_rating');
+		query('UPDATE '.prefix('images').' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
+		query('UPDATE '.prefix('albums').' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
+		query('UPDATE '.prefix('news').' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
+		query('UPDATE '.prefix('pages').' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
+		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('All ratings have been set to <em>unrated</em>.'));
 		exit();
 	}
-
-	require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
-	if (session_id() == '') {
-		// force session cookie to be secure when in https
-		if(secureServer()) {
-			$CookieInfo=session_get_cookie_params();
-			session_set_cookie_params($CookieInfo['lifetime'],$CookieInfo['path'], $CookieInfo['domain'],TRUE);
-		}
-		session_start();
-	}
-	XSRFdefender('clear_rating');
-	query('UPDATE '.prefix('images').' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
-	query('UPDATE '.prefix('albums').' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
-	query('UPDATE '.prefix('news').' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
-	query('UPDATE '.prefix('pages').' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('All ratings have been set to <em>unrated</em>.'));
-	exit();
 }
-
 $option_interface = 'jquery_rating';
 
 zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');

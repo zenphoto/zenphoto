@@ -12,7 +12,7 @@ if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5|ADMIN_PLUGIN;
 	$plugin_description = gettext("Provides a utility function to import Wordpress pages, posts, categories and comments to Zenpage.");
 	$plugin_author = "Malte Müller (acrylian)";
-	
+
 
 	zp_register_filter('admin_utilities_buttons', 'wordpress_import_button');
 
@@ -49,7 +49,6 @@ if (defined('OFFSET_PATH')) {
 		XSRFdefender('wordpress');
 	}
 
-	$gallery = new Gallery();
 	$webpath = WEBPATH.'/'.ZENFOLDER.'/';
 
 

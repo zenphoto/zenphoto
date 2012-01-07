@@ -4,11 +4,46 @@
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
+/*
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext('Automatically increments hitcounters on Zenphoto objects viewed by a "visitor".');
 $plugin_author = "Stephen Billard (sbillard)";
-
+*/
 $option_interface = 'hitcounter';
+/** Reset hitcounters ***********************************************************/
+/********************************************************************************/
+if (!defined('OFFSET_PATH')) {
+	define('OFFSET_PATH', 3);
+	require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
+	if (isset($_GET['action'])) {
+		if (sanitize($_GET['action'])=='reset_all_hitcounters') {
+			if (!zp_loggedin(ADMIN_RIGHTS)) {
+				// prevent nefarious access to this page.
+				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
+				exit();
+			}
+			if (session_id() == '') {
+				// force session cookie to be secure when in https
+				if(secureServer()) {
+					$CookieInfo=session_get_cookie_params();
+					session_set_cookie_params($CookieInfo['lifetime'],$CookieInfo['path'], $CookieInfo['domain'],TRUE);
+				}
+				session_start();
+			}
+			XSRFdefender('hitcounter');
+			query('UPDATE ' . prefix('albums') . ' SET `hitcounter`= 0');
+			query('UPDATE ' . prefix('images') . ' SET `hitcounter`= 0');
+			query('UPDATE ' . prefix('news') . ' SET `hitcounter`= 0');
+			query('UPDATE ' . prefix('pages') . ' SET `hitcounter`= 0');
+			query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
+			query('UPDATE ' . prefix('options') . ' SET `value`= 0 WHERE `name` LIKE "Page-Hitcounter-%"');
+			query("DELETE FROM ".prefix('plugin_storage')." WHERE `type` = 'rsshitcounter'");
+			$msg = gettext('All hitcounters have been set to zero');
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('All hitcounters have been set to zero.'));
+			exit();
+		}
+	}
+}
 
 zp_register_filter('load_theme_script', 'hitcounter::load_script');
 zp_register_filter('admin_utilities_buttons', 'hitcounter::button');
@@ -175,34 +210,16 @@ class hitcounter {
 											'enable'=>'1',
 											'button_text'=>gettext('Reset all hitcounters'),
 											'formname'=>'reset_all_hitcounters.php',
-											'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=reset_hitcounters=true',
+											'action'=>PLUGIN_FOLDER.'/hitcounter.php?action=reset_all_hitcounters',
 											'icon'=>'images/reset1.png',
 											'title'=>'',
 											'alt'=>gettext('Reset hitcounters'),
-											'hidden'=>'<input type="hidden" name="action" value="reset_hitcounters" />',
+											'hidden'=>'<input type="hidden" name="action" value="reset_all_hitcounters" />',
 											'rights'=> ADMIN_RIGHTS
 											);
 		return $buttons;
 	}
 
-}
-
-/** Reset hitcounters ***********************************************************/
-/********************************************************************************/
-if (isset($_GET['action'])) {
-	if (sanitize($_GET['action'])=='reset_all_hitcounters') {
-		XSRFdefender('hitcounter');
-		query('UPDATE ' . prefix('albums') . ' SET `hitcounter`= 0');
-		query('UPDATE ' . prefix('images') . ' SET `hitcounter`= 0');
-		query('UPDATE ' . prefix('news') . ' SET `hitcounter`= 0');
-		query('UPDATE ' . prefix('pages') . ' SET `hitcounter`= 0');
-		query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
-		query('UPDATE ' . prefix('options') . ' SET `value`= 0 WHERE `name` LIKE "Page-Hitcounter-%"');
-		query("DELETE FROM ".prefix('plugin_storage')." WHERE `type` = 'rsshitcounter'");
-		$msg = gettext('All hitcounters have been set to zero');
-		$_GET['msg'] = $msg;
-		$_GET['action'] = 'external';
-	}
 }
 
 ?>

@@ -12,7 +12,6 @@ if (isset($_POST['auth'])) {
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
 
 if (!empty($_FILES)) {
-	$gallery = new Gallery();
 	$name = trim(basename(sanitize($_FILES['Filedata']['name'],3)));
 	if (isset($_FILES['Filedata']['error']) && $_FILES['Filedata']['error']) {
 		$error = $_FILES['Filedata']['error'];
@@ -37,9 +36,9 @@ if (!empty($_FILES)) {
 		$new = !is_dir($targetPath);
 		if (!empty($folder)) {
 			if ($new) {
-				$rightsalbum = new Album($gallery, dirname($folder));
+				$rightsalbum = new Album($_zp_gallery, dirname($folder));
 			} else{
-				$rightsalbum = new Album($gallery, $folder);
+				$rightsalbum = new Album($_zp_gallery, $folder);
 			}
 			if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 				if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
@@ -49,7 +48,7 @@ if (!empty($_FILES)) {
 			}
 			if ($new) {
 				mkdir_recursive($targetPath, FOLDER_MOD);
-				$album = new Album($gallery, $folder);
+				$album = new Album($_zp_gallery, $folder);
 				$album->setShow($albumparmas[0]!='false');
 				$album->setTitle($albumparmas[2]);
 				$album->setOwner($_zp_current_admin_obj->getUser());
@@ -69,7 +68,7 @@ if (!empty($_FILES)) {
 					}
 					if (move_uploaded_file($tempFile,$targetFile)) {
 						@chmod($targetFile, FILE_MOD);
-						$album = new Album($gallery, $folder);
+						$album = new Album($_zp_gallery, $folder);
 						$image = newImage($album, $seoname);
 						$image->setOwner($_zp_current_admin_obj->getUser());
 						if ($name != $seoname && $image->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {

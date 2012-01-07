@@ -8,7 +8,7 @@ if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5|ADMIN_PLUGIN;
 	$plugin_description = gettext("Provides a utility SEO file/folder name clenser.");
 	$plugin_author = "Stephen Billard (sbillard)";
-	
+
 
 	zp_register_filter('admin_utilities_buttons', 'seo_cleanup_button');
 
@@ -38,14 +38,12 @@ if (defined('OFFSET_PATH')) {
 
 	//XSRFdefender('seo_cleanup');
 
-	$gallery = new Gallery();
-
 	function checkFolder($folder) {
 		global $albums, $gallery, $count, $albumcount;
 		$files = scandir(ALBUM_FOLDER_SERVERPATH.'/'.$folder);
 		$display = true;
 		if (!empty($folder)) {
-			$album = new Album($gallery, filesystemToInternal($folder));
+			$album = new Album($_zp_gallery, filesystemToInternal($folder));
 		}
 		foreach ($files as $file) {
 			$file = str_replace('\\','/',$file);
@@ -124,7 +122,7 @@ if (defined('OFFSET_PATH')) {
 	} else {
 		$count = 0;
 		$albumcount = 0;
-		$albums = $gallery->getAlbums();
+		$albums = $_zp_gallery->getAlbums();
 	}
 
 	?>

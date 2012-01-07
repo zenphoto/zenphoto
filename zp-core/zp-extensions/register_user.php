@@ -124,7 +124,7 @@ class register_user_options {
 	}
 
 	function handleOption($option, $currentValue) {
-		global $gallery;
+		global $_zp_gallery;
 		switch ($option) {
 			case 'register_user_page':
 				?>
@@ -137,7 +137,7 @@ class register_user_options {
 								<option value="" style="background-color:LightGray"><?php echo gettext('*no page selected'); ?></option>
 								<?php
 								$curdir = getcwd();
-								$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$gallery->getCurrentTheme().'/';
+								$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$_zp_gallery->getCurrentTheme().'/';
 								chdir($root);
 								$filelist = safe_glob('*.php');
 								$list = array();

@@ -145,10 +145,9 @@ echo '</head>'."\n";
 								$groups[] = $user;
 							}
 						}
-						$gallery = new Gallery();
 						$albumlist = array();
-						foreach ($gallery->getAlbums() as $folder) {
-							$alb = new Album($gallery, $folder);
+						foreach ($_zp_gallery->getAlbums() as $folder) {
+							$alb = new Album($_zp_gallery, $folder);
 							$name = $alb->getTitle();
 							$albumlist[$name] = $folder;
 						}

@@ -17,7 +17,6 @@ if (isset($_GET['ticket'])) {
 	$ticket = '';
 }
 
-$gallery = new Gallery();
 if (!isset($_GET['page'])) $_GET['page'] = 'users';
 $_current_tab = sanitize($_GET['page'],3);
 
@@ -519,8 +518,8 @@ function languageChange(id,lang) {
 	<?php
 	$id = 0;
 	$albumlist = array();
-	foreach ($gallery->getAlbums() as $folder) {
-		$alb = new Album($gallery, $folder);
+	foreach ($_zp_gallery->getAlbums() as $folder) {
+		$alb = new Album($_zp_gallery, $folder);
 		$name = $alb->getTitle();
 		$albumlist[$name] = $folder;
 	}

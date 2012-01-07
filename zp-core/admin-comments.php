@@ -11,7 +11,6 @@ require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(COMMENT_RIGHTS, currentRelativeURL(__FILE__));
 
-$gallery = new Gallery();
 if (isset($_GET['page'])) {
 	$page = sanitize($_GET['page']);
 } else {

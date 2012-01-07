@@ -35,18 +35,13 @@ class Album extends MediaObject {
 	/**
 	 * Constructor for albums
 	 *
-	 * @param object &$gallery The parent gallery
+	 * @param object &$gallery The parent gallery: deprecated
 	 * @param string $folder8 folder name (UTF8) of the album
 	 * @param bool $cache load from cache if present
 	 * @return Album
 	 */
 	function __construct(&$gallery, $folder8, $cache=true, $quiet=false) {
-		if (!is_object($gallery) || strtolower(get_class($gallery)) != 'gallery') {
-			$msg = sprintf(gettext('Bad gallery in instantiation of album %s.'),$folder8);
-			debugLogBacktrace($msg);
-			trigger_error(html_encode($msg), E_USER_NOTICE);
-			$gallery = new Gallery();
-		}
+		global $_zp_gallery;
 		$folder8 = sanitize_path($folder8);
 		$folderFS = internalToFilesystem($folder8);
 		$this->gallery = &$gallery;

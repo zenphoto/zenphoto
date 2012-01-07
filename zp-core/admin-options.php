@@ -11,7 +11,6 @@ require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL(__FILE__));
 
-$gallery = new Gallery();
 if (!isset($_GET['page'])) {
 	if (array_key_exists('options', $zenphoto_tabs)) {
 		$_GET['page'] = 'options';
@@ -97,7 +96,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$albpublish = 0;
 			}
-			$gallery->setAlbumPublish($albpublish);
+			$_zp_gallery->setAlbumPublish($albpublish);
 			if (isset($_POST['image_default'])) {
 				$imgpublish = 1;
 			} else {
@@ -108,39 +107,39 @@ if (isset($_GET['action'])) {
 				setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
 			}
 			setOption('AlbumThumbSelect', sanitize_numeric($_POST['thumbselector']));
-			$gallery->setImagePublish($imgpublish);
-			$gallery->setPersistentArchive((int) isset($_POST['persistent_archive']));
-			$gallery->setGallerySession((int) isset($_POST['album_session']));
-			$gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
-			$gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
-			$gallery->set('gallery_title', process_language_string_save('gallery_title', 2));
-			$gallery->set('Gallery_description', process_language_string_save('Gallery_description', 1));
-			$gallery->set('website_title', process_language_string_save('website_title', 2));
+			$_zp_gallery->setImagePublish($imgpublish);
+			$_zp_gallery->setPersistentArchive((int) isset($_POST['persistent_archive']));
+			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
+			$_zp_gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
+			$_zp_gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
+			$_zp_gallery->set('gallery_title', process_language_string_save('gallery_title', 2));
+			$_zp_gallery->set('Gallery_description', process_language_string_save('Gallery_description', 1));
+			$_zp_gallery->set('website_title', process_language_string_save('website_title', 2));
 			$web = sanitize($_POST['website_url'],3);
-			$gallery->setWebsiteURL($web);
-			$gallery->setAlbumUseImagedate((int) isset($_POST['album_use_new_image_date']));
+			$_zp_gallery->setWebsiteURL($web);
+			$_zp_gallery->setAlbumUseImagedate((int) isset($_POST['album_use_new_image_date']));
 			$st = strtolower(sanitize($_POST['gallery_sorttype'],3));
 			if ($st == 'custom') $st = strtolower(sanitize($_POST['customalbumsort'],3));
-			$gallery->setSortType($st);
+			$_zp_gallery->setSortType($st);
 			if (($st == 'manual') || ($st == 'random')) {
-				$gallery->setSortDirection(0);
+				$_zp_gallery->setSortDirection(0);
 			} else {
-				$gallery->setSortDirection((int) isset($_POST['gallery_sortdirection']));
+				$_zp_gallery->setSortDirection((int) isset($_POST['gallery_sortdirection']));
 			}
 			foreach ($_POST as $item=>$value) {
 				if (strpos($item, 'gallery-page_')===0) {
 					$item = sanitize(substr(postIndexDecode($item), 13));
-					$gallery->setUnprotectedPage($item, (int) isset($_POST['gallery_page_unprotected_'.$item]));
+					$_zp_gallery->setUnprotectedPage($item, (int) isset($_POST['gallery_page_unprotected_'.$item]));
 				}
 			}
-			$gallery->setSecurity(sanitize($_POST['gallery_security'],3));
+			$_zp_gallery->setSecurity(sanitize($_POST['gallery_security'],3));
 			$notify = processCredentials($gallery);
 			$codeblock1 = sanitize($_POST['codeblock1'], 0);
 			$codeblock2 = sanitize($_POST['codeblock2'], 0);
 			$codeblock3 = sanitize($_POST['codeblock3'], 0);
 			$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
-			$gallery->setCodeblock($codeblock);
-			$gallery->save();
+			$_zp_gallery->setCodeblock($codeblock);
+			$_zp_gallery->save();
 			$returntab = "&tab=gallery";
 		}
 
@@ -341,7 +340,7 @@ if (isset($_GET['action'])) {
 				$oig = getThemeOption('image_gray', $table, $themename);
 				setThemeOption('image_gray', (int) isset($_POST['image_gray']), $table, $themename);
 				if ($oig = getThemeOption('image_gray',$table, $themename)) $wmo = 99; // force cache clear
-				if (is_null($table) && ($themename == $gallery->getCurrentTheme())) {	// record as global options as well.
+				if (is_null($table) && ($themename == $_zp_gallery->getCurrentTheme())) {	// record as global options as well.
 					if (isset($_POST['image_size'])) setOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
 					if (isset($_POST['image_use_side'])) setOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
 					if (isset($_POST['thumb_size'])) setOption('thumb_size', $ts, $table, $themename);
@@ -375,7 +374,7 @@ if (isset($_GET['action'])) {
 		}
 		/*** Security Options ***/
 		if (isset($_POST['savesecurityoptions'])) {
-			$gallery->setUserLogonField(isset($_POST['login_user_field']));
+			$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));
 			setOption('server_protocol', $protocol = sanitize($_POST['server_protocol'],3));
 			if ($protocol == 'http') {
 				zp_setCookie("zenphoto_ssl", "", -368000);
@@ -383,7 +382,7 @@ if (isset($_GET['action'])) {
 			setOption('captcha', sanitize($_POST['captcha']));
 			setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));
 			setOption('IP_tied_cookies', (int) isset($_POST['IP_tied_cookies']));
-			$gallery->save();
+			$_zp_gallery->save();
 			$returntab = "&tab=security";
 		}
 		/*** custom options ***/
@@ -865,14 +864,14 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td width="175"><?php echo gettext("Gallery title:"); ?></td>
 					<td width="350">
-					<?php print_language_string_list($gallery->get('gallery_title'), 'gallery_title') ?>
+					<?php print_language_string_list($_zp_gallery->get('gallery_title'), 'gallery_title') ?>
 					</td>
 					<td><?php echo gettext("What you want to call your Zenphoto site."); ?></td>
 				</tr>
 				<tr>
 					<td width="175"><?php echo gettext("Gallery description:"); ?></td>
 					<td width="350">
-					<?php print_language_string_list($gallery->get('Gallery_description'), 'Gallery_description', true, NULL, 'texteditor') ?>
+					<?php print_language_string_list($_zp_gallery->get('Gallery_description'), 'Gallery_description', true, NULL, 'texteditor') ?>
 					</td>
 					<td><?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?></td>
 				</tr>
@@ -902,7 +901,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</td>
 						<td style="background-color: #ECF1F2;">
 						<?php
-						$x = $gallery->getPassword();
+						$x = $_zp_gallery->getPassword();
 						if (empty($x)) {
 							?>
 							<img src="images/lock_open.png" />
@@ -940,7 +939,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 															onkeydown="passwordKeydown('#pass','#pass_2');"
 															id="user_name"  name="user"
-															value="<?php echo html_encode($gallery->getUser()); ?>" /></p>
+															value="<?php echo html_encode($_zp_gallery->getUser()); ?>" /></p>
 							<p>
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														id="pass" name="pass"
@@ -955,7 +954,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 														onkeyup="passwordMatch('#pass','#pass_2','#match');"
 														value="<?php echo $x; ?>" />
 							</p>
-							<p><?php print_language_string_list($gallery->get('gallery_hint'), 'hint', false, NULL, 'hint') ?></p>
+							<p><?php print_language_string_list($_zp_gallery->get('gallery_hint'), 'hint', false, NULL, 'hint') ?></p>
 						</td>
 						<td>
 							<p><?php echo gettext("User ID for the gallery guest user") ?></p>
@@ -971,7 +970,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td>
 						<?php
 						$curdir = getcwd();
-						$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$gallery->getCurrentTheme().'/';
+						$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$_zp_gallery->getCurrentTheme().'/';
 						chdir($root);
 						$filelist = safe_glob('*.php');
 						$list = array();
@@ -986,7 +985,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							?>
 							<input type="hidden" name="gallery-page_<?php echo $page; ?>" value="0" />
 							<?php
-							if ($gallery->isUnprotectedPage($page)) {
+							if ($_zp_gallery->isUnprotectedPage($page)) {
 								$current[] = $page;
 							}
 						}
@@ -1000,14 +999,14 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td><?php echo gettext("Website title:"); ?></td>
 					<td>
-					<?php print_language_string_list($gallery->get('website_title'), 'website_title') ?>
+					<?php print_language_string_list($_zp_gallery->get('website_title'), 'website_title') ?>
 					</td>
 					<td><?php echo gettext("Your web site title."); ?></td>
 				</tr>
 				<tr>
 					<td><?php echo gettext("Website url:"); ?></td>
 					<td><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" name="website_url"
-						value="<?php echo html_encode($gallery->getWebsiteURL());?>" /></td>
+						value="<?php echo html_encode($_zp_gallery->getWebsiteURL());?>" /></td>
 					<td><?php echo gettext("This is used to link back to your main site, but your theme must support it."); ?></td>
 				</tr>
 				<tr>
@@ -1039,7 +1038,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 
 						$sort[gettext('Random')] = 'random';
 */
-						$cvt = $cv = strtolower($gallery->getSortType());
+						$cvt = $cv = strtolower($_zp_gallery->getSortType());
 						ksort($sort,SORT_LOCALE_STRING);
 						$flip = array_flip($sort);
 						if (isset($flip[$cv])) {
@@ -1066,7 +1065,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 								<td>
 									<span id="gallery_sortdirection" style="display:<?php echo $dspd; ?>">
 										<label>
-											<input type="checkbox" name="gallery_sortdirection"	value="1" <?php echo checked('1', $gallery->getSortDirection()); ?> />
+											<input type="checkbox" name="gallery_sortdirection"	value="1" <?php echo checked('1', $_zp_gallery->getSortDirection()); ?> />
 											<?php echo gettext("Descending"); ?>
 										</label>
 									</span>
@@ -1093,41 +1092,41 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td>
 						<p>
 							<label>
-								<input type="checkbox" name="album_default"	value="1"<?php if ($gallery->getAlbumPublish()) echo ' checked="checked"'; ?> />
+								<input type="checkbox" name="album_default"	value="1"<?php if ($_zp_gallery->getAlbumPublish()) echo ' checked="checked"'; ?> />
 								<?php echo gettext("Publish albums by default"); ?>
 							</label>
 						</p>
 						<p>
 							<label>
-								<input type="checkbox" name="image_default"	value="1"<?php if ($gallery->getImagePublish()) echo ' checked="checked"'; ?> />
+								<input type="checkbox" name="image_default"	value="1"<?php if ($_zp_gallery->getImagePublish()) echo ' checked="checked"'; ?> />
 								<?php echo gettext("Publish images by default"); ?>
 							</label>
 						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="album_use_new_image_date" id="album_use_new_image_date"
-										value="1" <?php echo checked('1', $gallery->getAlbumUseImagedate()); ?> />
+										value="1" <?php echo checked('1', $_zp_gallery->getAlbumUseImagedate()); ?> />
 								<?php echo gettext("use latest image date as album date"); ?>
 							</label>
 						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="thumb_select_images" id="thumb_select_images"
-										value="1" <?php echo checked('1', $gallery->getThumbSelectImages()); ?> />
+										value="1" <?php echo checked('1', $_zp_gallery->getThumbSelectImages()); ?> />
 								<?php echo gettext("visual thumb selection"); ?>
 							</label>
 						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="multilevel_thumb_select_images" id="thumb_select_images"
-										value="1" <?php echo checked('1', $gallery->getSecondLevelThumbs()); ?> />
+										value="1" <?php echo checked('1', $_zp_gallery->getSecondLevelThumbs()); ?> />
 								<?php echo gettext("show subalbum thumbs"); ?>
 							</label>
 						</p>
 						<p>
 							<label>
 								<input type="checkbox" name="persistent_archive" id="persistent_archive"
-										value="1" <?php echo checked('1', $gallery->getPersistentArchive()); ?> />
+										value="1" <?php echo checked('1', $_zp_gallery->getPersistentArchive()); ?> />
 								<?php echo gettext("enable persistent archives"); ?>
 							</label>
 						</p>
@@ -1215,7 +1214,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<li><a href="#third"><?php echo gettext("Codeblock 3"); ?></a></li>
 				</ul>
 				<?php
-				$getcodeblock = $gallery->getCodeblock();
+				$getcodeblock = $_zp_gallery->getCodeblock();
 				if(empty($getcodeblock)) {
 					$codeblock[1] = "";
 					$codeblock[2] = "";
@@ -2259,15 +2258,15 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 	zp_apply_filter('admin_note','options', $subtab);
 	$themelist = array();
 	if (zp_loggedin(ADMIN_RIGHTS)) {
-		$gallery_title = $gallery->getTitle();
+		$gallery_title = $_zp_gallery->getTitle();
 		if ($gallery_title != gettext("Gallery")) {
 			$gallery_title .= ' ('.gettext("Gallery").')';
 		}
 		$themelist[$gallery_title] = '';
 	}
-	$albums = $gallery->getAlbums(0);
+	$albums = $_zp_gallery->getAlbums(0);
 	foreach ($albums as $alb) {
-		$album = new Album($gallery, $alb);
+		$album = new Album($_zp_gallery, $alb);
 		if ($album->isMyItem(THEMES_RIGHTS)) {
 			$theme = $album->getAlbumTheme();
 			if (!empty($theme)) {
@@ -2280,10 +2279,10 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 		}
 	}
 	$albumtitle = $optiontheme = $alb = $album = NULL;
-	$themename = $gallery->getCurrentTheme();
+	$themename = $_zp_gallery->getCurrentTheme();
 	if (!empty($_REQUEST['themealbum'])) {
 		$alb = urldecode(sanitize_path($_REQUEST['themealbum']));
-		$album = new Album($gallery, $alb);
+		$album = new Album($_zp_gallery, $alb);
 		$albumtitle = $album->getTitle();
 		$themename = $album->getAlbumTheme();
 	}
@@ -2296,7 +2295,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			$album = NULL;
 		} else {
 			$alb = sanitize_path($alb);
-			$album = new Album($gallery, $alb);
+			$album = new Album($_zp_gallery, $alb);
 			$albumtitle = $album->getTitle();
 			$themename = $album->getAlbumTheme();
 		}
@@ -2335,7 +2334,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			<?php
 		} else {
 			/* handle theme options */
-			$themes = $gallery->getThemes();
+			$themes = $_zp_gallery->getThemes();
 			$theme = $themes[$themename];
 			?>
 			<tr>
@@ -2885,7 +2884,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 				</tr>
 					<?php
 					if (GALLERY_SECURITY =='public') {
-						$disable = $gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
+						$disable = $_zp_gallery->getUser() || getOption('search_user') || getOption('protected_image_user') || getOption('downloadList_user');
 						?>
 						<div class="public_gallery"<?php if (GALLERY_SECURITY != 'public') echo ' style="display:none"'; ?>>
 							<tr>
@@ -2902,7 +2901,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 									} else {
 										?>
 										<input type="checkbox" name="login_user_field" id="login_user_field"
-																value="1" <?php echo checked('1', $gallery->getUserLogonField()); ?> />
+																value="1" <?php echo checked('1', $_zp_gallery->getUserLogonField()); ?> />
 										<?php
 									}
 									echo gettext("enable");
@@ -2922,7 +2921,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 						<?php
 					} else {
 						?>
-						<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $gallery->getUserLogonField(); ?>" />
+						<input type="hidden" name="login_user_field" id="login_user_field"	value="<?php echo $_zp_gallery->getUserLogonField(); ?>" />
 						<?php
 					}
 					?>

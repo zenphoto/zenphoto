@@ -766,8 +766,7 @@ class SearchEngine
 							}
 						}
 					} else {
-						$gallery = new Gallery();
-						$album = new Album($gallery, $this->dynalbumname);
+						$album = new Album($_zp_gallery, $this->dynalbumname);
 						$key = $album->getAlbumSortKey();
 						if ($key != '`sort_order`' && $key != 'RAND()') {
 							if ($album->getSortDirection('album')) {
@@ -796,8 +795,7 @@ class SearchEngine
 							}
 						}
 					} else {
-						$gallery = new Gallery();
-						$album = new Album($gallery, $this->dynalbumname);
+						$album = new Album($_zp_gallery, $this->dynalbumname);
 						$key = $album->getImageSortKey();
 						if ($key != '`sort_order`' && $key != 'RAND()') {
 							if ($album->getSortDirection('image')) {
@@ -826,6 +824,7 @@ class SearchEngine
 	 * @return array
 	 */
 	protected function searchFieldsAndTags($searchstring, $tbl, $sorttype, $sortdirection) {
+		global $_zp_gallery;
 		$allIDs = null;
 		$idlist = array();
 		$exact = EXACT_TAG_MATCH;
@@ -1067,8 +1066,7 @@ class SearchEngine
 						$key = lookupSortKey($this->gallery->getSortType(), 'sort_order', 'folder');
 						if ($this->gallery->getSortDirection()) { $key .= " DESC"; }
 					} else {
-						$gallery = new Gallery();
-						$album = new Album($gallery, $this->dynalbumname);
+						$album = new Album($_zp_gallery, $this->dynalbumname);
 						$key = $album->getAlbumSortKey();
 						if ($key != '`sort_order`' && $key != 'RAND()') {
 							if ($album->getSortDirection('album')) {
@@ -1093,8 +1091,7 @@ class SearchEngine
 						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'filename');
 						if (IMAGE_SORT_DIRECTION) { $key .= " DESC"; }
 					} else {
-						$gallery = new Gallery();
-						$album = new Album($gallery, $this->dynalbumname);
+						$album = new Album($_zp_gallery, $this->dynalbumname);
 						$key = $album->getImageSortKey();
 						if ($key != '`sort_order`') {
 							if ($album->getSortDirection('image')) {
@@ -1219,11 +1216,11 @@ class SearchEngine
 	 * @return object
 	 */
 	function getNextAlbum($curalbum) {
+		global $_zp_gallery;
 		$albums = $this->getAlbums(0);
 		$inx = array_search($curalbum, $albums)+1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			$gallery = new Gallery();
-			return new Album($gallery, $albums[$inx]);
+			return new Album($_zp_gallery, $albums[$inx]);
 		}
 		return null;
 	}
@@ -1235,11 +1232,11 @@ class SearchEngine
 	 * @return object
 	 */
 	function getPrevAlbum($curalbum) {
+		global $_zp_gallery;
 		$albums = $this->getAlbums(0);
 		$inx = array_search($curalbum, $albums)-1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			$gallery = new Gallery();
-			return new Album($gallery, $albums[$inx]);
+			return new Album($_zp_gallery, $albums[$inx]);
 		}
 		return null;
 	}

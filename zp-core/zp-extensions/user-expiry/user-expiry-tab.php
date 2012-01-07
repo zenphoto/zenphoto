@@ -55,8 +55,7 @@ if (isset($_GET['action'])) {
 							$userobj->save();
 							break;
 						case 'revalidate':
-							$gallery = new Gallery();
-							$site = $gallery->getTitle();
+							$site = $_zp_gallery->getTitle();
 							$user_e = $userobj->getEmail();
 							$user = $userobj->getUser();
 							$key = bin2hex(serialize(array('user'=>$user,'email'=>$user_e,'date'=>time())));

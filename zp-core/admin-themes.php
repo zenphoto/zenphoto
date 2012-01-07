@@ -11,7 +11,6 @@ require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(THEMES_RIGHTS, currentRelativeURL(__FILE__));
 
-$gallery = new Gallery();
 $_GET['page'] = 'themes';
 
 /* handle posts */
@@ -24,10 +23,10 @@ if (isset($_GET['action'])) {
 				$alb = sanitize_path($_GET['themealbum']);
 				$newtheme = sanitize($_GET['theme']);
 				if (empty($alb)) {
-					$gallery->setCurrentTheme($newtheme);
-					$gallery->save();
+					$_zp_gallery->setCurrentTheme($newtheme);
+					$_zp_gallery->save();
 				} else {
-					$_set_theme_album = new Album($gallery, $alb);
+					$_set_theme_album = new Album($_zp_gallery, $alb);
 					$oldtheme = $_set_theme_album->getAlbumTheme();
 					$_set_theme_album->setAlbumTheme($newtheme);
 					$_set_theme_album->save();
@@ -90,18 +89,18 @@ echo "\n" . '<div id="main">';
 printTabs();
 echo "\n" . '<div id="content">';
 
-	$galleryTheme = $gallery->getCurrentTheme();
+	$galleryTheme = $_zp_gallery->getCurrentTheme();
 	$themelist = array();
 	if (zp_loggedin(ADMIN_RIGHTS)) {
-		$gallery_title = $gallery->getTitle();
+		$gallery_title = $_zp_gallery->getTitle();
 		if ($gallery_title != gettext("Gallery")) {
 			$gallery_title .= ' ('.gettext("Gallery").')';
 		}
 		$themelist[$gallery_title] = '';
 	}
-	$albums = $gallery->getAlbums(0);
+	$albums = $_zp_gallery->getAlbums(0);
 	foreach ($albums as $alb) {
-		$album = new Album($gallery, $alb);
+		$album = new Album($_zp_gallery, $alb);
 		if ($album->isMyItem(THEMES_RIGHTS)) {
 			$key = $album->getTitle();
 			if ($key != $alb) {
@@ -112,7 +111,7 @@ echo "\n" . '<div id="content">';
 	}
 	if (!empty($_REQUEST['themealbum'])) {
 		$alb = sanitize_path($_REQUEST['themealbum']);
-		$album = new Album($gallery, $alb);
+		$album = new Album($_zp_gallery, $alb);
 		$albumtitle = $album->getTitle();
 		$themename = $album->getAlbumTheme();
 		$current_theme = $themename;
@@ -120,15 +119,15 @@ echo "\n" . '<div id="content">';
 		$current_theme = $galleryTheme;
 		foreach ($themelist as $albumtitle=>$alb) break;
 		if (empty($alb)) {
-			$themename = $gallery->getCurrentTheme();
+			$themename = $_zp_gallery->getCurrentTheme();
 		} else {
 			$alb = sanitize_path($alb);
-			$album = new Album($gallery, $alb);
+			$album = new Album($_zp_gallery, $alb);
 			$albumtitle = $album->getTitle();
 			$themename = $album->getAlbumTheme();
 		}
 	}
-	$themes = $gallery->getThemes();
+	$themes = $_zp_gallery->getThemes();
 	if (empty($themename)) {
 		$current_theme = $galleryTheme;
 		$theme = $themes[$galleryTheme];
@@ -188,7 +187,7 @@ echo "\n" . '<div id="content">';
 		<th><b><?php echo gettext('Action'); ?></b></th>
 	</tr>
 	<?php
-$themes = $gallery->getThemes();
+$themes = $_zp_gallery->getThemes();
 $current_theme_style = "background-color: #ECF1F2;";
 foreach($themes as $theme => $themeinfo) {
 	$style = ($theme == $current_theme) ? " style=\"$current_theme_style\"" : "";

@@ -31,7 +31,7 @@ function updateItemsSortorder(&$reports) {
  * @param bool $flag set to true to flag the element as having a problem with nesting level
  */
 function printItemsListTable($item, $flag) {
-	$gallery = new Gallery();
+	global $_zp_gallery;
 
 	$array = getItemTitleAndURL($item);
 	if ($array['valid']) {
@@ -291,7 +291,7 @@ function publishItem($id,$show,$menuset) {
  * @param string $sort xxx-xxx-xxx style sort order for album
  */
 function addSubalbumMenus($menuset, $gallery, $id, $link, $sort) {
-	$album = new Album($gallery, $link);
+	$album = new Album($_zp_gallery, $link);
 	$show = $album->get('show');
 	$title = $album->getTitle();
 	$sql = "INSERT INTO ".prefix('menu')." (`link`,`type`,`title`,`show`,`menuset`,`sort_order`, `parentid`) ".
@@ -318,6 +318,7 @@ function addSubalbumMenus($menuset, $gallery, $id, $link, $sort) {
  * @return int
  */
 function addalbumsToDatabase($menuset, $base=NULL) {
+	global $_zp_gallery;
 	if (is_null($base)) {
 		$albumbase = db_count('menu','WHERE menuset='.db_quote($menuset));
 		$sortbase = '';
@@ -329,8 +330,7 @@ function addalbumsToDatabase($menuset, $base=NULL) {
 		}
 	}
 	$result = $albumbase;
-	$gallery = new Gallery();
-	$albums = $gallery->getAlbums();
+	$albums = $_zp_gallery->getAlbums();
 	foreach ($albums as $key=>$link) {
 		addSubalbumMenus($menuset, $gallery, 'NULL', $link, $sortbase.sprintf('%03u', $result = $key+$albumbase));
 	}
@@ -847,12 +847,12 @@ function printZenpageNewsCategorySelector($current) {
  * @return string
  */
 function printCustomPageSelector($current) {
-	$gallery = new Gallery();
+	global $_zp_gallery;
 	?>
 	<select id="custompageselector" name="custompageselect">
 		<?php
 		$curdir = getcwd();
-		$themename = $gallery->getCurrentTheme();
+		$themename = $_zp_gallery->getCurrentTheme();
 		$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$themename.'/';
 		chdir($root);
 		$filelist = safe_glob('*.php');

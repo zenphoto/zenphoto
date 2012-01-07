@@ -9,7 +9,6 @@ require_once(dirname(__FILE__).'/template-functions.php');
 
 admin_securityChecks(TAGS_RIGHTS, currentRelativeURL(__FILE__));
 
-$gallery = new Gallery();
 $_GET['page'] = 'tags';
 
 if (isset($_REQUEST['tagsort'])) {
@@ -18,6 +17,7 @@ if (isset($_REQUEST['tagsort'])) {
 } else {
 	$tagsort = getOption('tagsort');
 }
+$action = '';
 if (count($_POST) > 0) {
 	if (isset($_GET['newtags'])) {
 		XSRFdefender('new_tags');
@@ -30,6 +30,7 @@ if (count($_POST) > 0) {
 				}
 			}
 		}
+		$action = gettext('New tags added');
 	} // newtags
 	if (isset($_GET['delete'])) {
 		XSRFdefender('tag_delete');
@@ -58,6 +59,7 @@ if (count($_POST) > 0) {
 				query($sqlobjects);
 			}
 		}
+		$action = gettext('Checked tags deleted');
 	} // delete
 	if (isset($_GET['rename'])) {
 		XSRFdefender('tag_rename');
@@ -82,6 +84,7 @@ if (count($_POST) > 0) {
 				}
 			}
 		}
+		$action = gettext('Tags renamed');
 	} // rename
 }
 
@@ -98,6 +101,14 @@ printLogoAndLinks();
 	?>
 	<div id="content">
 		<?php
+		if (!empty($action)) {
+			?>
+			<div class="messagebox fade-message">
+				<h2><?php echo $action; ?></h2>
+			</div>
+			<?php
+		}
+
 
 		echo "<h1>".gettext("Tag Management")."</h1>";
 		if ($tagsort == 1) {

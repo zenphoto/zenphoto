@@ -142,6 +142,7 @@ function iptc_make_tag($rec, $data, $value) {
  * @param string $album the album containing the image
  */
 function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $theme, $album) {
+	global $_zp_gallery;
 	try {
 		@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 		// Set the config variables for convenience.
@@ -404,9 +405,8 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 					global $_zp_extra_filetypes;	//	because we are doing the require in a function!
 					if (!$_zp_extra_filetypes) $_zp_extra_filetypes = array();
 					require_once(dirname(__FILE__).'/functions.php');	//	it is ok to increase memory footprint now since the image processing is complete
-					$gallery = new Gallery();
 					$iptc = array('1#090' => chr(0x1b) . chr(0x25) . chr(0x47),	//	character set is UTF-8
-											'2#115' =>$gallery->getTitle()	//	source
+											'2#115' =>$_zp_gallery->getTitle()	//	source
 					);
 					$imgfile = str_replace(ALBUM_FOLDER_SERVERPATH, '', $imgfile);
 					$imagename = basename($imgfile);

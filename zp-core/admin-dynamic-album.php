@@ -13,12 +13,11 @@ require_once(dirname(__FILE__).'/template-functions.php');
 admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL(__FILE__));
 
 $imagelist = array();
-$gallery = new Gallery();
 
 function getSubalbumImages($folder) {
-	global $imagelist, $gallery;
+	global $imagelist, $_zp_gallery;
 	if (hasDynamicAlbumSuffix($folder)) { return; }
-	$album = new Album($gallery, $folder);
+	$album = new Album($_zp_gallery, $folder);
 	$images = $album->getImages();
 	foreach ($images as $image) {
 		$imagelist[] = '/'.$folder.'/'.$image;
@@ -34,7 +33,7 @@ if (isset($_POST['savealbum'])) {
 	XSRFdefender('savealbum');
 	$albumname = sanitize($_POST['album']);
 	$album = sanitize($_POST['albumselect']);
-	$albumobj = new Album($gallery, $album);
+	$albumobj = new Album($_zp_gallery, $album);
 	if (!$albumobj->isMyItem(ALBUM_RIGHTS)) {
 		if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 			die(gettext("You do not have edit rights on this album."));
@@ -152,12 +151,12 @@ foreach ($albumlist as $fullfolder => $albumtitle) {
 			$selections[$selection['desc']] = $key;
 		}
 		generateListFromArray(array(getOption('AlbumThumbSelect')),$selections,false,true);
-		$showThumb = $gallery->getThumbSelectImages();
+		$showThumb = $_zp_gallery->getThumbSelectImages();
 		foreach ($imagelist as $imagepath) {
 			$pieces = explode('/', $imagepath);
 			$filename = array_pop($pieces);;
 			$folder = implode('/', $pieces);
-			$albumx = new Album($gallery, $folder);
+			$albumx = new Album($_zp_gallery, $folder);
 			$image = newImage($albumx, $filename);
 			if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
 				echo "\n<option class=\"thumboption\"";

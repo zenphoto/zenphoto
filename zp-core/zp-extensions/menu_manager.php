@@ -189,7 +189,7 @@ function checkChosenItemStatus() {
  * @return array
  */
 function getItemTitleAndURL($item) {
-	$gallery = new Gallery();
+	global $_zp_gallery;
 	$array = array();
 	$valid = true;
 	$title = get_language_string($item['title']);
@@ -207,7 +207,7 @@ function getItemTitleAndURL($item) {
 				$url = '';
 				$protected = 0;
 			} else {
-				$obj = new Album($gallery,$item['link']);
+				$obj = new Album($_zp_gallery,$item['link']);
 				$url = $obj->getAlbumLink(0);
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
@@ -249,7 +249,7 @@ function getItemTitleAndURL($item) {
 			$array = array("title" => $title,"url" => $url,"name" => $item['link'],'protected'=>$protected);
 			break;
 		case "custompage":
-			$themename = $gallery->getCurrentTheme();
+			$themename = $_zp_gallery->getCurrentTheme();
 			$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$themename.'/';
 			if (file_exists($root.$item['link'].'.php')) {
 				$url = rewrite_path("/page/".$item['link'],"/index.php?p=".$item['link']);

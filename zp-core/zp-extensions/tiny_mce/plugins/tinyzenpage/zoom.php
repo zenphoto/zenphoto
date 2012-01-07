@@ -34,7 +34,7 @@ if(isset($_GET['image']) && isset($_GET['album'])) {
 	$webpath = substr(FULLWEBPATH,0,$partialpath);
 	$ext = strtolower(strrchr($imagename, "."));
 	$galleryobj = new Gallery();
-	$albumobj = new Album($galleryobj,$albumname);
+	$albumobj = new Album($_zp_galleryobj,$albumname);
 	$imageobj = newImage($albumobj,$imagename);
 	echo $imageobj->getTitle()."<br />";
 	if(isImageVideo($imageobj)) {

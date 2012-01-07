@@ -11,7 +11,6 @@ require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(NULL, currentRelativeURL(__FILE__));
 
-$gallery = new Gallery();
 $_GET['page'] = 'plugins';
 
 /* handle posts */

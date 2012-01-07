@@ -348,20 +348,18 @@ class tweet {
 		}
 		$result = query_full_array('SELECT * FROM '.prefix('albums').' AS album,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_albums" AND store.data = album.folder AND album.date <= '.db_quote(date('Y-m-d H:i:s')));
 		if ($result) {
-			$gallery = new Gallery();
 			foreach ($result as $album) {
 				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$album['id']);
-				$album = new Album($gallery, $album['folder']);
+				$album = new Album($_zp_gallery, $album['folder']);
 				tweet::tweetObject($album);
 			}
 		}
 		$result = query_full_array('SELECT * FROM '.prefix('images').' AS image,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_images" AND store.data LIKE image.filename AND image.date <= '.db_quote(date('Y-m-d H:i:s')));
 		if ($result) {
-			$gallery = new Gallery();
 			foreach ($result as $image) {
 				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$image['id']);
 				$album = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$image['albumid']);
-				$album = new Album($gallery, $album['folder']);
+				$album = new Album($_zp_gallery, $album['folder']);
 				$image = newImage($album, $image['filename']);
 				tweet::tweetObject($image);
 			}
@@ -402,7 +400,6 @@ class tweet {
 		query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`="tweet_news" AND `aux`="pending_images"');
 		$result = query_full_array('SELECT * FROM '.prefix('images').' WHERE `show`=1 AND `date`>'.db_quote(date('Y-m-d H:i:s')));
 		if ($result) {
-			$gallery = new Gallery();
 			foreach ($result as $pending) {
 				$album = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$pending['albumid']);
 				query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_images",'.db_quote($album['folder'].'/'.$pending['filename']).')');

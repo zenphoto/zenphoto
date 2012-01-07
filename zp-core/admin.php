@@ -28,7 +28,6 @@ if(getOption('zp_plugin_zenpage')) {
 	require_once(dirname(__FILE__).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-admin-functions.php');
 }
 if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
-	$gallery = new Gallery();
 	if (isset($_GET['action'])) {
 		$action = sanitize($_GET['action']);
 		if ($action == 'external') {
@@ -42,7 +41,7 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 				/******************************************************************************/
 				case "clear_cache":
 					XSRFdefender('clear_cache');
-					$gallery->clearCache();
+					$_zp_gallery->clearCache();
 					$class = 'messagebox';
 					$msg = gettext('Image cache cleared.');
 					break;
@@ -160,8 +159,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 			<ul>
 				<li>
 				<?php
-				$t = $gallery->getNumImages();
-				$c = $t-$gallery->getNumImages(true);
+				$t = $_zp_gallery->getNumImages();
+				$c = $t-$_zp_gallery->getNumImages(true);
 				if ($c > 0) {
 					printf(ngettext('<strong>%1$u</strong> Image (%2$u un-published)','<strong>%1$u</strong> Images (%2$u un-published)',$t),$t, $c);
 				} else {
@@ -171,8 +170,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				</li>
 				<li>
 				<?php
-				$t = $gallery->getNumAlbums(true);
-				$c = $t-$gallery->getNumAlbums(true,true);
+				$t = $_zp_gallery->getNumAlbums(true);
+				$c = $t-$_zp_gallery->getNumAlbums(true,true);
 				if ($c > 0) {
 					printf(ngettext('<strong>%1$u</strong> Album (%2$u un-published)','<strong>%1$u</strong> Albums (%2$u un-published)',$t),$t, $c);
 				} else {
@@ -182,8 +181,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				</li>
 				<li>
 				<?php
-				$t = $gallery->getNumComments(true);
-				$c = $t - $gallery->getNumComments(false);
+				$t = $_zp_gallery->getNumComments(true);
+				$c = $t - $_zp_gallery->getNumComments(false);
 				if ($c > 0) {
 					printf(ngettext('<strong>%1$u</strong> Comment (%2$u in moderation)','<strong>%1$u</strong> Comments (%2$u in moderation)', $t), $t, $c);
 				} else {
@@ -249,8 +248,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		</li>
 		<li>
 			<?php
-			$themes = $gallery->getThemes();
-			$currenttheme = $gallery->getCurrentTheme();
+			$themes = $_zp_gallery->getThemes();
+			$currenttheme = $_zp_gallery->getCurrentTheme();
 			if (array_key_exists($currenttheme, $themes) && isset($themes[$currenttheme]['name'])) {
 				$currenttheme = $themes[$currenttheme]['name'];
 			}

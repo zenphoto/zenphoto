@@ -16,8 +16,8 @@ header('Content-Type: application/xml');
 $themepath = THEMEFOLDER;
 $catlink = getRSSNewsCatOptions("catlink");
 $cattitle = getRSSNewsCatOptions("cattitle");
-if(!empty($cattitle)) { 
-	$cattitle = ' - '.html_encode($cattitle) ; 
+if(!empty($cattitle)) {
+	$cattitle = ' - '.html_encode($cattitle) ;
 }
 $option = getRSSNewsCatOptions("option");
 $titleappendix = gettext(' (Latest news)');
@@ -27,14 +27,13 @@ if (isset($_GET['withimages'])) {
 }
 $s = getOption('feed_imagesize'); // un-cropped image size
 $items = getOption("zenpage_rss_items"); // # of Items displayed on the feed
-$gallery = new Gallery();
 ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
 <title><?php echo html_encode($channeltitle.$cattitle.$titleappendix); ?></title>
 <link><?php echo $protocol."://".$host.WEBPATH; ?></link>
 <atom:link href="<?php echo $protocol; ?>://<?php echo html_encode($_SERVER["HTTP_HOST"]); ?><?php echo html_encode($_SERVER["REQUEST_URI"]); ?>" rel="self" type="application/rss+xml" />
-<description><?php echo html_encode(strip_tags(get_language_string($gallery->get('Gallery_description'), $locale))); ?></description>
+<description><?php echo html_encode(strip_tags(get_language_string($_zp_gallery->get('Gallery_description'), $locale))); ?></description>
 <language><?php echo $validlocale; ?></language>
 <pubDate><?php echo date("r", time()); ?></pubDate>
 <lastBuildDate><?php echo date("r", time()); ?></lastBuildDate>

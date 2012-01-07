@@ -10,6 +10,7 @@ $plugin_is_filter = 8|CLASS_PLUGIN;
 $plugin_description = gettext("Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility.");
 $plugin_author = "Stephen Billard (sbillard)";
 
+$option_interface = 'zp_PHPMailer';
 zp_register_filter('sendmail', 'zenphoto_PHPMailer');
 
 
@@ -68,7 +69,7 @@ class zp_PHPMailer {
 	function handleOption($option, $currentValue) {
 		if($option=="PHPMailer_password") {
 			?>
-			<input type="password" size="40" name="<?php echo $option; ?>" style="width: 338px" value="<?php echo html_encode($currentValue); ?>">
+			<input type="password" size="40" name="<?php echo $option; ?>" style="width: 338px" value="<?php echo html_encode($currentValue); ?>" />
 			<?php
 		}
 	}

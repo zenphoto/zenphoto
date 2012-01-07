@@ -765,7 +765,7 @@ class Zenphoto_Authority {
 	 *
 	 */
 	function printLoginForm($redirect=null, $logo=true, $showUser=true, $showCaptcha=true, $hint='') {
-		global $_zp_login_error, $_zp_captcha, $_zp_authority;
+		global $_zp_login_error, $_zp_captcha, $_zp_authority, $_zp_gallery;
 		if (is_null($redirect)) {
 			$redirect = WEBPATH.'/'.ZENFOLDER.'/admin.php';
 		}
@@ -915,14 +915,13 @@ class Zenphoto_Authority {
 						if (empty($alt_handlers)) {
 							$ledgend = gettext('Login');
 						} else {
-							$gallery = new Gallery();
 							?>
 							<script type="text/javascript">
 								<!--
 								var handlers = [];
 								<?php
 								$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
-													'<option value="0">'.html_encode(get_language_string($gallery->getTitle())).'</option>';
+													'<option value="0">'.html_encode(get_language_string($_zp_gallery->getTitle())).'</option>';
 								$c = 0;
 								foreach ($alt_handlers as $handler=>$details) {
 									$c++;
@@ -1360,9 +1359,9 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * Uptates the database with all changes
 	 */
 	function save() {
+		global $_zp_gallery;
 		if (DEBUG_LOGIN) { debugLogVar("Zenphoto_Administrator->save()", $this); }
 		$objects = $this->getObjects();
-		$gallery = new Gallery();
 		if (is_null($this->get('date'))) {
 			$this->set('date',date('Y-m-d H:i:s'));
 		}
@@ -1379,7 +1378,7 @@ class Zenphoto_Administrator extends PersistentObject {
 				}
 				switch ($object['type']) {
 					case 'album':
-						$album = new Album($gallery, $object['data']);
+						$album = new Album($_zp_gallery, $object['data']);
 						$albumid = $album->getAlbumID();
 						$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $albumid, 'albums', $edit)";
 						$result = query($sql);

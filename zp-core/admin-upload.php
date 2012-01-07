@@ -32,7 +32,6 @@ if (!isset($uploadHandlers[$uploadtype]) || !file_exists($uploadHandlers[$upload
 require_once($uploadHandlers[$uploadtype].'/upload_form.php');
 zp_setCookie('uploadtype', $uploadtype);
 
-$gallery = new Gallery();
 $page = "upload";
 $_GET['page'] = 'upload';
 
@@ -225,7 +224,7 @@ if ($rootrights || !empty($albumlist)) {
 				if (isset($_GET['publishalbum'])) {
 					$publishchecked = ' checked="checked"';
 				} else {
-					if ($albpublish = $gallery->getAlbumPublish()) {
+					if ($albpublish = $_zp_gallery->getAlbumPublish()) {
 						$publishchecked = ' checked="checked"';
 					} else {
 						$publishchecked = '';
@@ -238,7 +237,7 @@ if ($rootrights || !empty($albumlist)) {
 			if (empty($passedalbum)) {
 				$modified_rights = MANAGED_OBJECT_RIGHTS_EDIT;
 			} else {
-				$rightsalbum = $rightsalbum = new Album($gallery, $passedalbum);
+				$rightsalbum = $rightsalbum = new Album($_zp_gallery, $passedalbum);
 				$modified_rights = $rightsalbum->albumSubRights();
 			}
 			if ($modified_rights & MANAGED_OBJECT_RIGHTS_EDIT) {	//	he has edit rights, allow new album creation

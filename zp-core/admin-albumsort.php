@@ -17,12 +17,10 @@ if (isset($_REQUEST['album'])) {
 }
 admin_securityChecks($localrights, $return = currentRelativeURL(__FILE__));
 
-// Create our gallery
-$gallery = new Gallery();
 
 if (isset($_GET['album'])) {
 	$folder = sanitize($_GET['album']);
-	$album = new Album($gallery, $folder);
+	$album = new Album($_zp_gallery, $folder);
 	if (!$album->isMyItem(ALBUM_RIGHTS)) {
 		if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');

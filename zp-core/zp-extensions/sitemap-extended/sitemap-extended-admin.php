@@ -20,7 +20,6 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 	exit();
 }
 
-$gallery = new Gallery();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 printAdminHeader(gettext('utilities'),gettext('Sitemap tools'));
 if(isset($_GET['generatesitemaps'])) {

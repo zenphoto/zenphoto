@@ -17,10 +17,8 @@ if (!isset($_GET['theme'])) {
 	exit();
 }
 
-// First, set up a few vars:
-$gallery = new Gallery();
 $message = $file_to_edit = $file_content = null;
-$themes = $gallery->getThemes();
+$themes = $_zp_gallery->getThemes();
 $theme = sanitize($_GET['theme']);
 $themedir = SERVERPATH . '/themes/'.internalToFilesystem($theme);
 $themefiles = listDirectoryFiles($themedir);

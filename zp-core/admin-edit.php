@@ -19,7 +19,6 @@ if (isset($_GET['tab'])) {
 	$subtab = '';
 }
 
-$gallery = new Gallery();
 $subalbum_nesting = 1;
 $gallery_nesting = 1;
 define('ADMIN_IMAGES_STEP', 5);	//	the step for imges per page
@@ -29,7 +28,7 @@ processEditSelection($subtab);
 //check for security incursions
 if (isset($_GET['album'])) {
 	$folder = sanitize_path($_GET['album']);
-	$album = new Album($gallery, $folder);
+	$album = new Album($_zp_gallery, $folder);
 	if (!$album->isMyItem(ALBUM_RIGHTS)) {
 		if (isset($_GET['uploaded'])) {	// it was an upload to an album which we cannot edit->return to sender
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-upload.php?uploaded=1');
@@ -59,9 +58,9 @@ if (isset($_GET['action'])) {
 		/******************************************************************************/
 		case 'savealbumorder':
 			XSRFdefender('savealbumorder');
-			$gallery->setSortDirection(0);
-			$gallery->setSortType('manual');
-			$gallery->save();
+			$_zp_gallery->setSortDirection(0);
+			$_zp_gallery->setSortType('manual');
+			$_zp_gallery->save();
 			$notify = postAlbumSort(NULL);
 			if (isset($_POST['ids'])) {
 				$action = processAlbumBulkActions();
@@ -72,7 +71,7 @@ if (isset($_GET['action'])) {
 			break;
 		case 'savesubalbumorder':
 			XSRFdefender('savealbumorder');
-			$album = new Album($gallery, $folder);
+			$album = new Album($_zp_gallery, $folder);
 			$album->setSubalbumSortType('manual');
 			$album->setSortDirection('album', 0);
 			$album->save();
@@ -100,13 +99,13 @@ if (isset($_GET['action'])) {
 		/******************************************************************************/
 		case "clear_cache":
 			XSRFdefender('clear_cache');
-			$gallery->clearCache(SERVERCACHE . '/' . sanitize_path($_POST['album']));
+			$_zp_gallery->clearCache(SERVERCACHE . '/' . sanitize_path($_POST['album']));
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&cleared&album='.$_POST['album']);
 			exit();
 			break;
 		case 'comments':
 			XSRFdefender('albumedit');
-			$album = new Album($gallery, $folder);
+			$album = new Album($_zp_gallery, $folder);
 			$album->setCommentsAllowed(sanitize_numeric($_GET['commentson']));
 			$album->save();
 			$return = pathurlencode(dirname($folder));
@@ -125,7 +124,7 @@ if (isset($_GET['action'])) {
 		/******************************************************************************/
 		case "publish":
 			XSRFdefender('albumedit');
-			$album = new Album($gallery, $folder);
+			$album = new Album($_zp_gallery, $folder);
 			$album->setShow($_GET['value']);
 			$album->save();
 			$return = pathurlencode(dirname($folder));
@@ -172,7 +171,7 @@ if (isset($_GET['action'])) {
 			XSRFdefender('delete');
 			$albumname = sanitize_path($_REQUEST['album']);
 			$imagename = sanitize_path($_REQUEST['image']);
-			$album = new Album($gallery, $albumname);
+			$album = new Album($_zp_gallery, $albumname);
 			$image = newImage($album, $imagename);
 			if ($image->remove()) {
 				$nd = 1;
@@ -194,7 +193,7 @@ if (isset($_GET['action'])) {
 			/** SAVE A SINGLE ALBUM *******************************************************/
 			if (isset($_POST['album'])) {
 				$folder = sanitize_path($_POST['album']);
-				$album = new Album($gallery, $folder);
+				$album = new Album($_zp_gallery, $folder);
 				$notify = '';
 				$returnalbum = NULL;
 				if (isset($_POST['savealbuminfo'])) {
@@ -266,7 +265,7 @@ if (isset($_GET['action'])) {
 												$image->set('EXIFOrientation', $rotation);
 												$image->updateDimensions();
 												$album = $image->getAlbum();
-												$gallery->clearCache(SERVERCACHE . '/' . $album->name);
+												$_zp_gallery->clearCache(SERVERCACHE . '/' . $album->name);
 											}
 											$tagsprefix = 'tags_'.$i.'-';
 											$tags = array();
@@ -370,7 +369,7 @@ if (isset($_GET['action'])) {
 						$prefix = '';
 					}
 					$f = sanitize_path(trim(sanitize($_POST[$prefix.'folder'])));
-					$album = new Album($gallery, $f);
+					$album = new Album($_zp_gallery, $f);
 					$returnalbum = '';
 					$rslt = processAlbumEdit($i, $album, $returnalbum);
 					if (!empty($rslt)) {
@@ -407,7 +406,7 @@ if (isset($_GET['action'])) {
 		case "deletealbum":
 			XSRFdefender('delete');
 			if ($folder) {
-				$album = new Album($gallery, $folder);
+				$album = new Album($_zp_gallery, $folder);
 				if ($album->remove()) {
 					$nd = 3;
 				} else {
@@ -439,7 +438,7 @@ if (isset($_GET['action'])) {
 				$albumdir = "&album=" . pathurlencode($folder);
 				$folder = $folder.'/'.$seoname;
 			}
-			$uploaddir = $gallery->albumdir . internalToFilesystem($folder);
+			$uploaddir = $_zp_gallery->albumdir . internalToFilesystem($folder);
 			if (is_dir($uploaddir)) {
 				if ($name != $seoname) $name .= ' ('.$seoname.')';
 				if (isset($_GET['albumtab'])) {
@@ -458,14 +457,14 @@ if (isset($_GET['action'])) {
 			}
 			@chmod($uploaddir, FOLDER_MOD);
 
-			$album = new Album($gallery, $folder);
+			$album = new Album($_zp_gallery, $folder);
 			if ($album->exists) {
 				$album->setTitle($name);
 				$album->save();
 				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-edit.php?page=edit" . "&album=" . pathurlencode($folder));
 				exit();
 			} else {
-				$AlbumDirName = str_replace(SERVERPATH, '', $gallery->albumdir);
+				$AlbumDirName = str_replace(SERVERPATH, '', $_zp_gallery->albumdir);
 				zp_error(gettext("The album couldn't be created in the 'albums' folder. This is usually a permissions problem. Try setting the permissions on the albums and cache folders to be world-writable using a shell:")." <code>chmod 777 " . $AlbumDirName . '/'.CACHEFOLDER.'/' ."</code>, "
 				. gettext("or use your FTP program to give everyone write permissions to those folders."));
 			}
@@ -473,7 +472,7 @@ if (isset($_GET['action'])) {
 	} // end of switch
 } else {
 	if (time() > getOption('last_garbage_collect')+864000) {
-		$gallery->garbageCollect();
+		$_zp_gallery->garbageCollect();
 	}
 	if (isset($_GET['albumimagesort'])) {
 		$newsort = sanitize($_GET['albumimagesort'],3);
@@ -503,7 +502,7 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 	} else {
 		$parent = '&amp;album='.$folder.'&amp;tab=subalbuminfo';
 	}
-	$album = new Album($gallery, $folder);
+	$album = new Album($_zp_gallery, $folder);
 	$subtab = setAlbumSubtabs($album);
 }
 if (empty($subtab)) {
@@ -1621,7 +1620,7 @@ if (isset($_GET['saved'])) {
 	$albumdir = "";
 	if (isset($_GET['album'])) {
 		$folder = sanitize_path($_GET['album']);
-		$album = new Album($gallery, $folder);
+		$album = new Album($_zp_gallery, $folder);
 		if ($album->isMyItem(ALBUM_RIGHTS)) {
 			$albums = $album->getAlbums();
 			$pieces = explode('/', $folder);
@@ -1630,10 +1629,10 @@ if (isset($_GET['saved'])) {
 			$albums = array();
 		}
 	} else {
-		$albumsprime = $gallery->getAlbums();
+		$albumsprime = $_zp_gallery->getAlbums();
 		$albums = array();
 		foreach ($albumsprime as $folder) { // check for rights
-			$album = new Album($gallery, $folder);
+			$album = new Album($_zp_gallery, $folder);
 			if ($album->isMyItem(ALBUM_RIGHTS)) {
 				$albums[] = $folder;
 			}
@@ -1650,7 +1649,7 @@ if (isset($_GET['saved'])) {
 	<?php
 	$currentalbum = 1;
 	foreach ($albums as $folder) {
-		$album = new Album($gallery, $folder);
+		$album = new Album($_zp_gallery, $folder);
 		echo "\n<!-- " . $album->name . " -->\n";
 		?>
 		<div class="innerbox" style="padding: 15px;">
@@ -1735,9 +1734,9 @@ zp_apply_filter('admin_note','albums', '');?>
 	$albums = getNestedAlbumList(NULL, $gallery_nesting);
 	if (count($albums) > 0) {
 		if (zp_loggedin(ADMIN_RIGHTS) && (count($albums)) > 1) {
-			$sorttype = strtolower($gallery->getSortType());
+			$sorttype = strtolower($_zp_gallery->getSortType());
 			if ($sorttype != 'manual') {
-				if ($gallery->getSortDirection()) {
+				if ($_zp_gallery->getSortDirection()) {
 					$dir = gettext(' descending');
 				} else {
 					$dir = '';

@@ -380,8 +380,7 @@ function is_valid_email_zp($input_email) {
  * @since  1.0.0
  */
 function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_addresses=NULL) {
-	global $_zp_authority;
-	$gallery = new Gallery();
+	global $_zp_authority, $_zp_gallery;
 	$result = '';
 	if (is_null($email_list)) {
 		$email_list = $_zp_authority->getAdminEmail();
@@ -458,7 +457,7 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 			}
 
 			$from_mail = getOption('site_email');
-			$from_name = get_language_string($gallery->get('gallery_title'), getOption('locale'));
+			$from_name = get_language_string($_zp_gallery->get('gallery_title'), getOption('locale'));
 
 			// Convert to UTF-8
 			if (LOCAL_CHARSET != 'UTF-8') {
@@ -977,8 +976,7 @@ function postComment($name, $email, $website, $comment, $code, $code_ok, $receiv
 				}
 			}
 			$on = gettext('Comment posted');
-			$gallery = new Gallery();
-			$result = zp_mail("[" . $gallery->getTitle() . "] $on", $message, $emails);
+			$result = zp_mail("[" . $_zp_gallery->getTitle() . "] $on", $message, $emails);
 			if ($result) {
 				$commentobj->setInModeration(-12);
 				$commentobj->comment_error_text = $result;
@@ -1548,10 +1546,9 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
  * @return array
  */
 function getNotViewableAlbums() {
-	global $_zp_not_viewable_album_list;
+	global $_zp_not_viewable_album_list, $_zp_gallery;
 	if (zp_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) return array(); //admins can see all
 	$hint = '';
-	$gallery = new Gallery();
 	if (is_null($_zp_not_viewable_album_list)) {
 		$sql = 'SELECT `folder`, `id`, `password`, `show` FROM '.prefix('albums').' WHERE `show`=0 OR `password`!=""';
 		$result = query_full_array($sql);
@@ -1559,7 +1556,7 @@ function getNotViewableAlbums() {
 			$_zp_not_viewable_album_list = array();
 			foreach ($result as $row) {
 				if (checkAlbumPassword($row['folder'])) {
-					$album = new Album($gallery, $row['folder']);
+					$album = new Album($_zp_gallery, $row['folder']);
 					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
 						$_zp_not_viewable_album_list[] = $row['id'];
 					}
@@ -2033,6 +2030,7 @@ function getOptionFromDB($key) {
  * @param bool $default set to true for setting default theme options (does not set the option if it already exists)
  */
 function setThemeOption($key, $value, $album=NULL, $theme=NULL, $default=false) {
+	global $_zp_gallery;
 	if (is_null($album)) {
 		$id = 0;
 	} else {
@@ -2040,8 +2038,7 @@ function setThemeOption($key, $value, $album=NULL, $theme=NULL, $default=false) 
 		$theme = $album->getAlbumTheme();
 	}
 	if (empty($theme)) {
-		$gallery = new Gallery();
-		$theme = $gallery->getCurrentTheme();
+		$theme = $_zp_gallery->getCurrentTheme();
 	}
 	$creator = THEMEFOLDER.'/'.$theme;
 

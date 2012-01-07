@@ -20,13 +20,12 @@ admin_securityChecks($localrights, $return = currentRelativeURL(__FILE__));
 
 XSRFdefender('refresh');
 
-$gallery = new Gallery();
 $imageid = '';
 if (isset($_GET['refresh'])) {
 	if (isset($_GET['id'])) {
 		$imageid = sanitize_numeric($_GET['id']);
 	}
-	$imageid = $gallery->garbageCollect(true, true, $imageid);
+	$imageid = $_zp_gallery->garbageCollect(true, true, $imageid);
 }
 
 if (isset($_GET['prune'])) {
@@ -77,7 +76,7 @@ if (db_connect()) {
 		}
 		$folder = sanitize_path($alb);
 		if (!empty($folder)) {
-			$album = new Album($gallery, $folder);
+			$album = new Album($_zp_gallery, $folder);
 			if (!$album->isMyItem(ALBUM_RIGHTS)) {
 				if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
@@ -97,7 +96,7 @@ if (db_connect()) {
 	} else {
 		if ($type !== 'prune&amp;') {
 			if (!empty($folder)) {
-				$album = new Album($gallery, $folder);
+				$album = new Album($_zp_gallery, $folder);
 				if (!$album->isMyItem(ALBUM_RIGHTS)) {
 					if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 						header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
@@ -155,7 +154,7 @@ if (isset($_GET['refresh']) && db_connect()) {
 	echo "<h3>".gettext("database connected")."</h3>";
 	if ($type !== 'prune&amp;') {
 		if (!empty($id)) {
-			$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0".($gallery->getAlbumUseImagedate()?", `date`=NULL":'')." WHERE `id`=$id";
+			$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0".($_zp_gallery->getAlbumUseImagedate()?", `date`=NULL":'')." WHERE `id`=$id";
 			query($sql);
 		}
 		$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0 $albumwhere";

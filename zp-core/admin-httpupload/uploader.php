@@ -12,9 +12,6 @@ if (isset($_POST['auth'])) {
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
 
 /* handle posts */
-$gallery = new Gallery();
-
-
 $error = false;
 if (isset($_POST['processed'])) {
 	// sometimes things just go terribly wrong!
@@ -40,9 +37,9 @@ if (isset($_POST['processed'])) {
 		$targetPath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($folder);
 		$new = !is_dir($targetPath);
 		if ($new) {
-			$rightsalbum = new Album($gallery, dirname($folder));
+			$rightsalbum = new Album($_zp_gallery, dirname($folder));
 		} else{
-			$rightsalbum = new Album($gallery, $folder);
+			$rightsalbum = new Album($_zp_gallery, $folder);
 		}
 		if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 			if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
@@ -54,7 +51,7 @@ if (isset($_POST['processed'])) {
 				mkdir_recursive($targetPath, FOLDER_MOD);
 			}
 			@chmod($targetPath, FOLDER_MOD);
-			$album = new Album($gallery, $folder);
+			$album = new Album($_zp_gallery, $folder);
 			if ($album->exists) {
 				if (!isset($_POST['publishalbum'])) {
 					$album->setShow(false);
@@ -65,7 +62,7 @@ if (isset($_POST['processed'])) {
 				}
 				$album->save();
 			} else {
-				$AlbumDirName = str_replace(SERVERPATH, '', $gallery->albumdir);
+				$AlbumDirName = str_replace(SERVERPATH, '', $_zp_gallery->albumdir);
 				zp_error(gettext("The album couldn't be created in the 'albums' folder. This is usually a permissions problem. Try setting the permissions on the albums and cache folders to be world-writable using a shell:")." <code>chmod 777 " . $AlbumDirName . '/'.CACHEFOLDER.'/' ."</code>, "
 				. gettext("or use your FTP program to give everyone write permissions to those folders."));
 			}

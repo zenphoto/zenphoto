@@ -35,6 +35,7 @@ class jcarouselOptions {
 	}
 
 	function getOptionsSupported() {
+		global $_zp_gallery;
 		$options = array(	gettext('Thumbs number') => array('key' => 'jcarousel_scroll', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("The number of thumbs to scroll by. Note that the CSS might need to be adjusted.")),
 		gettext('width') => array('key' => 'jcarousel_width', 'type' => OPTION_TYPE_TEXTBOX,
@@ -50,10 +51,9 @@ class jcarouselOptions {
 		gettext('Vertical') => array('key' => 'jcarousel_vertical', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If checked the carousel will flow vertically instead of the default horizontal. Changing this may require theme changes!"))
 		);
-		$gallery = new Gallery();
 		$opts = array();
 		$exclude = array('404.php','themeoptions.php','theme_description.php');
-		foreach (array_keys($gallery->getThemes()) as $theme) {
+		foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
 			$curdir = getcwd();
 			$root = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/';
 			chdir($root);

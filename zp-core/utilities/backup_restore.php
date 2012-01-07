@@ -111,7 +111,6 @@ function writeHeader($type, $value) {
 printAdminHeader(gettext('utilities'),gettext('backup'));
 echo '</head>';
 
-$gallery = new Gallery();
 $messages = '';
 
 $prefix = prefix();

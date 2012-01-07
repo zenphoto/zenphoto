@@ -70,8 +70,7 @@ function datepickerJS() {
  * @param string $subtab the sub-tab if any
  */
 function printAdminHeader($tab,$subtab=NULL) {
-	global $_zp_admin_tab, $_zp_admin_subtab, $gallery, $zenphoto_tabs,$_zp_RTL_css;
-	if (!is_object($gallery)) $gallery = new Gallery();
+	global $_zp_admin_tab, $_zp_admin_subtab, $_zp_gallery, $zenphoto_tabs,$_zp_RTL_css;
 	$_zp_admin_tab = $tab;
 	if (isset($_GET['tab'])) {
 		$_zp_admin_subtab = sanitize($_GET['tab'],3);
@@ -126,7 +125,7 @@ function printAdminHeader($tab,$subtab=NULL) {
 		<?php
 	}
 	?>
-	<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'),html_encode($gallery->getTitle()),gettext('admin'),html_encode($tabtext),html_encode($subtabtext)); ?></title>
+	<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($tabtext),html_encode($subtabtext)); ?></title>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jqueryui/jquery_ui_zenphoto.js" type="text/javascript"></script>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
@@ -218,7 +217,7 @@ function adminPrintImageThumb($image, $class=NULL, $id=NULL) {
  * @since  1.0.0
  */
 function printLogoAndLinks() {
-	global $_zp_current_admin_obj,$_zp_admin_tab,$_zp_admin_subtab,$gallery;
+	global $_zp_current_admin_obj,$_zp_admin_tab,$_zp_admin_subtab,$_zp_gallery;
 	if ($_zp_admin_subtab) {
 		$subtab = '-'.$_zp_admin_subtab;
 	} else {
@@ -227,7 +226,7 @@ function printLogoAndLinks() {
 	?>
 	<span id="administration">
 		<img id="logo" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/zen-logo.png"
-				title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'),html_encode($gallery->getTitle()),html_encode($_zp_admin_tab),html_encode($subtab)); ?>"
+				title="<?php echo sprintf(gettext('%1$s administration:%2$s%3$s'),html_encode($_zp_gallery->getTitle()),html_encode($_zp_admin_tab),html_encode($subtab)); ?>"
 				alt="<?php echo gettext('Zenphoto Administration'); ?>" align="bottom" />
 	</span>
 	<?php
@@ -246,7 +245,7 @@ function printLogoAndLinks() {
 		}
 	}
 	echo ' <a href="'.FULLWEBPATH.'/">';
-	$t = $gallery->getTitle();
+	$t = $_zp_gallery->getTitle();
 	if (!empty($t))	{
 		printf(gettext("View <em>%s</em>"), $t);
 	} else {
@@ -442,12 +441,12 @@ function checked($checked, $current) {
 }
 
 function genAlbumUploadList(&$list, $curAlbum=NULL) {
-	$gallery = new Gallery();
+	global $_zp_gallery;
 	$albums = array();
 	if (is_null($curAlbum)) {
-		$albumsprime = $gallery->getAlbums(0);
+		$albumsprime = $_zp_gallery->getAlbums(0);
 		foreach ($albumsprime as $album) { // check for rights
-			$albumobj = new Album($gallery, $album);
+			$albumobj = new Album($_zp_gallery, $album);
 			if ($albumobj->isMyItem(UPLOAD_RIGHTS)) {
 				$albums[] = $album;
 			}
@@ -457,7 +456,7 @@ function genAlbumUploadList(&$list, $curAlbum=NULL) {
 	}
 	if (is_array($albums)) {
 		foreach ($albums as $folder) {
-			$album = new Album($gallery, $folder);
+			$album = new Album($_zp_gallery, $folder);
 			if (!$album->isDynamic()) {
 				$list[$album->getFolder()] = $album->getTitle();
 				genAlbumUploadList($list, $album);  /* generate for subalbums */
@@ -1059,7 +1058,7 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
  * @since 1.1.3
  */
 function printAlbumEditForm($index, $album, $collapse_tags) {
-	global $sortby, $gallery, $mcr_albumlist, $albumdbfields, $imagedbfields, $_zp_albumthumb_selector, $_zp_current_admin_obj;
+	global $sortby, $_zp_gallery, $mcr_albumlist, $albumdbfields, $imagedbfields, $_zp_albumthumb_selector, $_zp_current_admin_obj;
 	if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) && $album->getID() == $_zp_current_admin_obj->getAlbum()->getID()) {
 		$isPrimaryAlbum = ' disabled="disabled"';
 	} else {
@@ -1388,7 +1387,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						<td>
 							<select id="album_theme" class="album_theme" name="<?php echo $prefix; ?>album_theme"	<?php if (!zp_loggedin(THEMES_RIGHTS)) echo 'disabled="disabled" '; ?>	>
 							<?php
-							$themes = $gallery->getThemes();
+							$themes = $_zp_gallery->getThemes();
 							$oldtheme = $album->getAlbumTheme();
 							if (empty($oldtheme)) {
 								$selected = 'selected="selected"';
@@ -1449,7 +1448,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 					<?php
 				}
 				if ($index==0) {	// suppress for mass-edit
-					$showThumb =$gallery->getThumbSelectImages();
+					$showThumb =$_zp_gallery->getThumbSelectImages();
 					$album->getAlbumThumbImage();	//	prime the thumbnail since we will get the field below
 					$thumb = $album->get('thumb');
 					$selections = array();
@@ -1479,10 +1478,10 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 							<?php
 							generateListFromArray($selected,$selections,false,true);
 							$imagelist = $album->getImages(0);
-							if ($gallery->getSecondLevelThumbs()) {
+							if ($_zp_gallery->getSecondLevelThumbs()) {
 								$subalbums = $album->getAlbums(0);
 								foreach ($subalbums as $folder) {
-									$newalbum = new Album($gallery, $folder);
+									$newalbum = new Album($_zp_gallery, $folder);
 									$images = $newalbum->getImages(0);
 									foreach ($images as $filename) {
 										if (is_array($filename)) {
@@ -1513,7 +1512,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 										if (empty($albumname) || $albumname=='.') {
 											$thumbalbum = $album;
 										} else {
-											$thumbalbum = new Album($gallery, $albumname);
+											$thumbalbum = new Album($_zp_gallery, $albumname);
 										}
 										$filename = basename($imagename);
 										$image = newImage($thumbalbum, $filename);
@@ -1521,7 +1520,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 									$selected = ($imagename == $thumb);
 									if (is_valid_image($filename) || !is_null($image->objectsThumb)) {
 										echo "\n<option";
-										if ($gallery->getThumbSelectImages()) {
+										if ($_zp_gallery->getThumbSelectImages()) {
 											echo " class=\"thumboption\"";
 											echo " style=\"background-image: url(" . html_encode($image->getCustomImage(80, NULL, NULL, NULL, NULL, NULL, NULL, -1)) . "); background-repeat: no-repeat;\"";
 										}
@@ -2145,7 +2144,7 @@ function printAlbumEditRow($album, $show_thumb) {
  *@since 1.1.3
  */
 function processAlbumEdit($index, $album, &$redirectto) {
-	global $gallery;
+	global $_zp_gallery;
 	$redirectto = NULL; // no redirection required
 	if ($index == 0) {
 		$prefix = '';
@@ -3266,7 +3265,7 @@ function processOrder($orderstr) {
  *
  */
 function postAlbumSort($parentid) {
-	global $gallery;
+	global $_zp_gallery;
 	if (isset($_POST['order']) && !empty($_POST['order'])) {
 		$order = processOrder($_POST['order']);
 		$sortToID = array();
@@ -3288,7 +3287,7 @@ function postAlbumSort($parentid) {
 				query($sql);
 			} else {	// have to do a move
 				$albumname = $currentalbum['folder'];
-				$album = new Album($gallery, $albumname);
+				$album = new Album($_zp_gallery, $albumname);
 				if (strpos($albumname,'/') !== false) {
 					$albumname = basename($albumname);
 				}
@@ -3327,17 +3326,17 @@ function postAlbumSort($parentid) {
  * @return array
  */
 function getNestedAlbumList($subalbum, $levels, $level=array()) {
-	global $gallery;
+	global $_zp_gallery;
 	$cur = count($level);
 	$levels--;	// make it 0 relative to sync with $cur
 	if (is_null($subalbum)) {
-		$albums = $gallery->getAlbums();
+		$albums = $_zp_gallery->getAlbums();
 	} else {
 		$albums = $subalbum->getAlbums();
 	}
 	$list = array();
 	foreach ($albums as $analbum) {
-		$albumobj = new Album($gallery, $analbum);
+		$albumobj = new Album($_zp_gallery, $analbum);
 		if(!is_null($subalbum) || $albumobj->isMyItem(ALBUM_RIGHTS)) {
 			$level[$cur] = sprintf('%03u',$albumobj->getSortOrder());
 			$list[] = array('name'=>$analbum, 'sort_order'=>$level);
@@ -3359,7 +3358,7 @@ function getNestedAlbumList($subalbum, $levels, $level=array()) {
  * @return bool
  */
 function printNestedAlbumsList($albums, $show_thumb) {
-	global $gallery;
+	global $_zp_gallery;
 	$indent = 1;
 	$open = array(1=>0);
 	$rslt = false;
@@ -3391,7 +3390,7 @@ function printNestedAlbumsList($albums, $show_thumb) {
 			echo str_pad("\t",$indent,"\t")."</li>\n";
 			$open[$indent]--;
 		}
-		$albumobj = new Album($gallery,$album['name']);
+		$albumobj = new Album($_zp_gallery,$album['name']);
 		if ($albumobj->isDynamic()) {
 			$nonest = ' class="no-nest"';
 		} else {
@@ -3632,7 +3631,7 @@ function printBulkActions($checkarray, $checkAll=false) {
  *
  */
 function processAlbumBulkActions() {
-	global $gallery;
+	global $_zp_gallery;
 	$action = sanitize($_POST['checkallaction']);
 	$ids = $_POST['ids'];
 	$total = count($ids);
@@ -3653,7 +3652,7 @@ function processAlbumBulkActions() {
 			$n = 0;
 			foreach ($ids as $albumname) {
 				$n++;
-				$albumobj = new Album($gallery,$albumname);
+				$albumobj = new Album($_zp_gallery,$albumname);
 				switch($action) {
 					case 'deleteall':
 						$albumobj->remove();
@@ -3793,7 +3792,7 @@ function processImageBulkActions($album) {
  *
  */
 function processCommentBulkActions() {
-	global $gallery;
+	global $_zp_gallery;
 	if (isset($_POST['ids'])) { // these is actually the folder name here!
 		$action = sanitize($_POST['checkallaction']);
 		if($action != 'noaction') {

@@ -31,7 +31,6 @@ if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 }
 
 $buffer = '';
-$gallery = new Gallery();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 
 

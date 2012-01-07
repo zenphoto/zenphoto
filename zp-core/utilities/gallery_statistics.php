@@ -32,8 +32,7 @@ $buttonlist[] = array(
 
 admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL(__FILE__));
 
-$gallery = new Gallery();
-$gallery->garbageCollect();
+$_zp_gallery->garbageCollect();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 
 printAdminHeader(gettext('utilities'),gettext('statistics'));
@@ -198,7 +197,7 @@ function printBarGraph($sortorder="mostimages",$type="albums",$from_number=0, $t
 					$allalbums = query_full_array($dbquery." ORDER BY id DESC LIMIT ".$limit);
 					$albums = array();
 					foreach ($allalbums as $album) {
-						$albumobj = new Album($gallery,$album['folder']);
+						$albumobj = new Album($_zp_gallery,$album['folder']);
 						$albumentry = array("id" => $albumobj->get('id'), "title" => $albumobj->getTitle(), "folder" => $albumobj->name,"imagenumber" => $albumobj->getNumImages(), "show" => $albumobj->get("show"));
 						array_unshift($albums,$albumentry);
 					}
@@ -219,7 +218,7 @@ function printBarGraph($sortorder="mostimages",$type="albums",$from_number=0, $t
 				$maxvalue = 1;
 				if(!empty($albums)) {
 					foreach ($albums as $key=>$album) {
-						$albumobj = new Album($gallery, $album['folder']);
+						$albumobj = new Album($_zp_gallery, $album['folder']);
 						$albums[$key]['imagenumber'] = $albumobj->getNumImages();
 					}
 				}
@@ -460,10 +459,10 @@ echo '</head>';
 
 
 // getting the counts
-$albumcount = $gallery->getNumAlbums(true);
-$albumscount_unpub = $albumcount-$gallery->getNumAlbums(true,true);
-$imagecount = $gallery->getNumImages();
-$imagecount_unpub = $imagecount-$gallery->getNumImages(true);
+$albumcount = $_zp_gallery->getNumAlbums(true);
+$albumscount_unpub = $albumcount-$_zp_gallery->getNumAlbums(true,true);
+$imagecount = $_zp_gallery->getNumImages();
+$imagecount_unpub = $imagecount-$_zp_gallery->getNumImages(true);
 ?>
 <div id="content">
 <?php zp_apply_filter('admin_note','statistics', ''); ?>
@@ -489,8 +488,8 @@ if ($albumscount_unpub > 0) {
 </li>
 <li>
 <?php
-$commentcount = $gallery->getNumComments(true);
-$commentcount_mod = $commentcount - $gallery->getNumComments(false);
+$commentcount = $_zp_gallery->getNumComments(true);
+$commentcount_mod = $commentcount - $_zp_gallery->getNumComments(false);
 if ($commentcount_mod > 0) {
 	if ($commentcount != 1) {
 		printf(gettext('<strong>%1$u</strong> comments (%2$u in moderation)'),$commentcount, $commentcount_mod);
