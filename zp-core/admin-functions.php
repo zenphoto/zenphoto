@@ -2973,7 +2973,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				}
 				$ledgend .= $icon_edit_album.' '.gettext('edit album').' ';
 				if ($rights & UPLOAD_RIGHTS) $ledgend .= $icon_upload.' '.gettext('upload').' ';
-				if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublilshed').' ';
+				if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublished').' ';
 				foreach ($full as $item) {
 					if (in_array($item['data'],$flag)) {
 						$note = '*';
