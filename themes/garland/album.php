@@ -74,7 +74,6 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 								printPageListWithNav(gettext("&laquo; prev"), gettext("next &raquo;"), $oneImagePage);
 							}
 							?>
-							<?php if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow')); ?>
 							<?php if (function_exists('printRating')) { printRating(); }?>
 							<?php
 							if (function_exists('printCommentForm')) {

@@ -41,7 +41,9 @@ class image_page {
 			}
 			?>
 		</div>
+		<br clear="all">
 		<?php
+		if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow'));
 	}
 }
 

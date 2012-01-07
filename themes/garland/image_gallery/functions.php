@@ -146,6 +146,7 @@ class imagegallery {
 			    </div>
 				<div class="clearage"></div>
 			</div><!-- images -->
+			<br clear = "all">
 			<?php
 		}
 	}
