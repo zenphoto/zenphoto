@@ -7,6 +7,7 @@
  * @package setup
  *
  */
+define('OFFSET_PATH', 2);
 require_once(dirname(dirname(__FILE__)).'/functions-basic.php');
 require_once(dirname(__FILE__).'/setup-functions.php');
 $mod_rewrite = MOD_REWRITE;

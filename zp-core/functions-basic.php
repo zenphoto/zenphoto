@@ -1024,15 +1024,14 @@ function getAlbumFolder($root=SERVERPATH) {
 		}
 		if (substr($_zp_album_folder, -1) != '/') $_zp_album_folder .= '/';
 	}
+	$root = str_replace('\\', '/', $root);
 	switch (@$_zp_conf_vars['album_folder_class']) {
 		default:
 			$_zp_conf_vars['album_folder_class'] = 'std';
 		case 'std':
-			$root = str_replace('\\', '/', $root);
 			return $root . $_zp_album_folder;
 		case 'in_webpath':
 			if (WEBPATH) { 			// strip off the WEBPATH
-				$root = str_replace('\\', '/', $root);
 				$root = str_replace(WEBPATH, '', $root);
 				if ($root == '/') {
 					$root = '';

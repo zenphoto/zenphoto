@@ -668,8 +668,8 @@ class ThemeObject extends PersistentObject {
 	/**
 	 *
 	 * Checks if viewing of object is allowed
-	 * @param unknown_type $hint
-	 * @param unknown_type $show
+	 * @param string $hint
+	 * @param string $show
 	 */
 	function checkAccess(&$hint=NULL, &$show=NULL) {
 		if ($this->isMyItem(LIST_RIGHTS)) {

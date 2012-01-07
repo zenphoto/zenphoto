@@ -1443,10 +1443,10 @@ function generateListFromFiles($currentValue, $root, $suffix, $descending=false)
  */
 function printLink($url, $text, $title=NULL, $class=NULL, $id=NULL) {
 	echo "<a href=\"" . html_encode($url) . "\"" .
-	(($title) ? " title=\"" . html_encode(strip_tags($title)) . "\"" : "") .
-	(($class) ? " class=\"$class\"" : "") .
-	(($id) ? " id=\"$id\"" : "") . ">" .
-	$text . "</a>";
+				(($title) ? " title=\"" . html_encode(strip_tags($title)) . "\"" : "") .
+				(($class) ? " class=\"$class\"" : "") .
+				(($id) ? " id=\"$id\"" : "") . ">" .
+				$text . "</a>";
 }
 
 /**
