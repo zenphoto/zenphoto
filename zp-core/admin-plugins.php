@@ -206,7 +206,7 @@ foreach ($filelist as $extension) {
 		<label>
 			<?php
 			if ($third_party_plugin) {
-				$whose = gettext('third party plulgin');
+				$whose = gettext('third party plugin');
 				$path = stripSuffix($paths[$extension]).'/logo.png';
 				if (file_exists($path)) {
 					$ico = str_replace(SERVERPATH, WEBPATH, $path);
