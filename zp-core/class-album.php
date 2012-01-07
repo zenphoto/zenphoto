@@ -35,16 +35,16 @@ class Album extends MediaObject {
 	/**
 	 * Constructor for albums
 	 *
-	 * @param object &$gallery The parent gallery: deprecated
+	 * @param object $gallery The parent gallery: deprecated
 	 * @param string $folder8 folder name (UTF8) of the album
 	 * @param bool $cache load from cache if present
 	 * @return Album
 	 */
-	function __construct(&$gallery, $folder8, $cache=true, $quiet=false) {
+	function __construct($gallery, $folder8, $cache=true, $quiet=false) {
 		global $_zp_gallery;
 		$folder8 = sanitize_path($folder8);
 		$folderFS = internalToFilesystem($folder8);
-		$this->gallery = &$gallery;
+		$this->gallery = $_zp_gallery;
 		if (empty($folder8)) {
 			$localpath = ALBUM_FOLDER_SERVERPATH;
 		} else {
