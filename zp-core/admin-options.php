@@ -281,7 +281,7 @@ if (isset($_GET['action'])) {
 				$themeswitch = urldecode(sanitize_path($_POST['old_themealbum'])) != '';
 			} else {
 				$alb = urldecode(sanitize_path($_POST['themealbum']));
-				$themealbum = $table = new Album(new Gallery(), $alb);
+				$themealbum = $table = new Album(NULL, $alb);
 				if ($themealbum->exists) {
 					$table = $themealbum;
 					$returntab .= '&themealbum='.pathurlencode($alb).'&tab=theme';
@@ -2266,7 +2266,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 	}
 	$albums = $_zp_gallery->getAlbums(0);
 	foreach ($albums as $alb) {
-		$album = new Album($_zp_gallery, $alb);
+		$album = new Album(NULL, $alb);
 		if ($album->isMyItem(THEMES_RIGHTS)) {
 			$theme = $album->getAlbumTheme();
 			if (!empty($theme)) {
@@ -2282,7 +2282,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 	$themename = $_zp_gallery->getCurrentTheme();
 	if (!empty($_REQUEST['themealbum'])) {
 		$alb = urldecode(sanitize_path($_REQUEST['themealbum']));
-		$album = new Album($_zp_gallery, $alb);
+		$album = new Album(NULL, $alb);
 		$albumtitle = $album->getTitle();
 		$themename = $album->getAlbumTheme();
 	}
@@ -2295,7 +2295,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			$album = NULL;
 		} else {
 			$alb = sanitize_path($alb);
-			$album = new Album($_zp_gallery, $alb);
+			$album = new Album(NULL, $alb);
 			$albumtitle = $album->getTitle();
 			$themename = $album->getAlbumTheme();
 		}

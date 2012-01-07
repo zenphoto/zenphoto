@@ -40,8 +40,9 @@ class Album extends MediaObject {
 	 * @param bool $cache load from cache if present
 	 * @return Album
 	 */
-	function __construct($gallery, $folder8, $cache=true, $quiet=false) {
+	function __construct($deprecated, $folder8, $cache=true, $quiet=false) {
 		global $_zp_gallery;
+		if (!$_zp_gallery) $_zp_gallery = new Gallery();
 		$folder8 = sanitize_path($folder8);
 		$folderFS = internalToFilesystem($folder8);
 		$this->gallery = $_zp_gallery;
@@ -131,11 +132,12 @@ class Album extends MediaObject {
 	 * @return bool
 	 */
 	protected function setDefaults() {
+		global $_zp_gallery;
 		// Set default data for a new Album (title and parent_id)
 		$parentalbum = $this->getParent();
-		$this->setShow($this->gallery->getAlbumPublish());
+		$this->setShow($_zp_gallery->getAlbumPublish());
 		$this->set('mtime', filemtime($this->localpath));
-		if ($this->isDynamic() || !$this->gallery->getAlbumUseImagedate()) {
+		if ($this->isDynamic() || !$_zp_gallery->getAlbumUseImagedate()) {
 			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
 		}
 		$title = trim($this->name);
@@ -171,7 +173,7 @@ class Album extends MediaObject {
 			$slashpos = strrpos($this->name, "/");
 			if ($slashpos) {
 				$parent = substr($this->name, 0, $slashpos);
-				$parentalbum = new Album($this->gallery, $parent);
+				$parentalbum =  new Album(NULL, $parent);
 				if ($parentalbum->exists) {
 					return $parentalbum;
 				}
@@ -209,6 +211,7 @@ class Album extends MediaObject {
 	 * @return string
 	 */
 	function getSortDirection($what) {
+		global $_zp_gallery;
 		if ($what == 'image') {
 			$direction = $this->get('image_sortdirection');
 			$type = $this->get('sort_type');
@@ -222,7 +225,7 @@ class Album extends MediaObject {
 				if ($what == 'image') {
 					$direction = IMAGE_SORT_DIRECTION;
 				} else {
-					$direction = $this->gallery->getSortDirection();
+					$direction = $_zp_gallery->getSortDirection();
 				}
 			} else {
 				$direction = $parentalbum->getSortDirection($what);
@@ -282,11 +285,12 @@ class Album extends MediaObject {
 	 * @return string
 	 */
 	function getAlbumSortType() {
+		global $_zp_gallery;
 		$type = $this->get('subalbum_sort_type');
 		if (empty($type)) {
 			$parentalbum = $this->getParent();
 			if (is_null($parentalbum)) {
-				$type = $this->gallery->getSortType();
+				$type = $_zp_gallery->getSortType();
 			} else {
 				$type = $parentalbum->getAlbumSortType();
 			}
@@ -336,6 +340,7 @@ class Album extends MediaObject {
 	 */
 
 	function getAlbums($page=0, $sorttype=null, $sortdirection=null, $care=true, $mine=NULL) {
+		global $_zp_gallery;
 		if (is_null($this->subalbums) || $care && $sorttype.$sortdirection !== $this->lastsubalbumsort ) {
 			if ($this->isDynamic()) {
 				$search = $this->getSearchEngine();
@@ -349,7 +354,7 @@ class Album extends MediaObject {
 				}
 			}
 			$key = $this->getAlbumSortKey($sorttype);
-			$this->subalbums = $this->gallery->sortAlbumArray($this, $subalbums, $key, $sortdirection, $mine);
+			$this->subalbums = $_zp_gallery->sortAlbumArray($this, $subalbums, $key, $sortdirection, $mine);
 			$this->lastsubalbumsort = $sorttype.$sortdirection;
 		}
 
@@ -512,7 +517,7 @@ class Album extends MediaObject {
 		$images = $this->getImages();
 		if ($index >= 0 && $index < count($images)) {
 			if ($this->isDynamic()) {
-				$album = new Album($this->gallery, $images[$index]['folder']);
+				$album =  new Album(NULL, $images[$index]['folder']);
 				return newImage($album, $images[$index]['filename']);
 			} else {
 				return newImage($this, $this->images[$index]);
@@ -529,7 +534,7 @@ class Album extends MediaObject {
 	 * @return Image
 	 */
 	function getAlbumThumbImage() {
-		global $_zp_albumthumb_selector;
+		global $_zp_albumthumb_selector, $_zp_gallery;
 
 		if (!is_null($this->albumthumbnail)) {
 			return $this->albumthumbnail;
@@ -560,7 +565,7 @@ class Album extends MediaObject {
 					} else {
 						$albumdir = $albumdir . "/";
 					}
-					$this->albumthumbnail = newImage(new Album($this->gallery, $albumdir), $thumb);
+					$this->albumthumbnail = newImage( new Album(NULL, $albumdir), $thumb);
 					return $this->albumthumbnail;
 				}
 			} else {
@@ -615,7 +620,7 @@ class Album extends MediaObject {
 			}
 			while (count($subalbums) > 0) {
 				$folder = array_pop($subalbums);
-				$subalbum = new Album($this->gallery, $folder);
+				$subalbum =  new Album(NULL, $folder);
 				$pwd = $subalbum->getPassword();
 				if (($subalbum->getShow() && empty($pwd)) || $subalbum->isMyItem(LIST_RIGHTS)) {
 					$thumb = $subalbum->getAlbumThumbImage();
@@ -635,7 +640,7 @@ class Album extends MediaObject {
 			if (!empty($albumtheme)) {
 				$theme = $albumtheme;
 			} else {
-				$theme = $this->gallery->getCurrentTheme();
+				$theme = $_zp_gallery->getCurrentTheme();
 			}
 			if (!empty($theme)) {
 				$themeimage = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/images/imageDefault.png';
@@ -696,14 +701,15 @@ class Album extends MediaObject {
 	 * @return object
 	 */
 	function getNextAlbum() {
+		global $_zp_gallery;
 		if (is_null($parent = $this->getParent())) {
-			$albums = $this->gallery->getAlbums(0);
+			$albums = $_zp_gallery->getAlbums(0);
 		} else {
 			$albums = $parent->getAlbums(0);
 		}
 		$inx = array_search($this->name, $albums)+1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return new Album($this->gallery, $albums[$inx]);
+			return  new Album(NULL, $albums[$inx]);
 		}
 		return null;
 	}
@@ -714,14 +720,15 @@ class Album extends MediaObject {
 	 * @return object
 	 */
 	function getPrevAlbum() {
+		global $_zp_gallery;
 		if (is_null($parent = $this->getParent())) {
-			$albums = $this->gallery->getAlbums(0);
+			$albums = $_zp_gallery->getAlbums(0);
 		} else {
 			$albums = $parent->getAlbums(0);
 		}
 		$inx = array_search($this->name, $albums)-1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return new Album($this->gallery, $albums[$inx]);
+			return  new Album(NULL, $albums[$inx]);
 		}
 		return null;
 	}
@@ -732,8 +739,9 @@ class Album extends MediaObject {
 	 * @return int
 	 */
 	function getGalleryPage() {
+		global $_zp_gallery;
 		if ($this->index == null)
-			$this->index = array_search($this->name, $this->gallery->getAlbums(0));
+			$this->index = array_search($this->name, $_zp_gallery->getAlbums(0));
 		return floor(($this->index / galleryAlbumsPerPage())+1);
 	}
 
@@ -749,7 +757,7 @@ class Album extends MediaObject {
 		if (empty($parentname)) {
 			$this->set('parentid', NULL);
 		} else {
-			$parent = new Album($this->gallery, $parentname);
+			$parent =  new Album(NULL, $parentname);
 			$this->set('parentid', $parent->getAlbumid());
 		}
 		$this->save();
@@ -766,7 +774,7 @@ class Album extends MediaObject {
 		if (parent::remove()) {
 			if (!$this->isDynamic()) {
 				foreach ($this->getAlbums() as $folder) {
-					$subalbum = new Album($this->gallery, $folder);
+					$subalbum =  new Album(NULL, $folder);
 					$subalbum->remove();
 				}
 				foreach($this->getImages() as $filename) {
@@ -942,7 +950,7 @@ class Album extends MediaObject {
 			if (empty($parentname) || $parentname == '/' || $parentname == '.') {
 				$uniqueset['parentid'] = NULL;
 			} else {
-				$parent = new Album($this->gallery, $parentname);
+				$parent =  new Album(NULL, $parentname);
 				$uniqueset['parentid'] =  $parent->getID();
 			}
 			$newID = parent::copy($uniqueset);
@@ -970,7 +978,7 @@ class Album extends MediaObject {
 					// copy the subalbums.
 					$subalbums = $this->getAlbums(0);
 					foreach ($subalbums as $subalbumname) {
-						$subalbum = new Album($this->gallery, $subalbumname);
+						$subalbum =  new Album(NULL, $subalbumname);
 						if ($subalbum->copy($newfolder)) {
 							$success = false;
 						}
@@ -1049,7 +1057,7 @@ class Album extends MediaObject {
 
 		if ($deep) {
 			foreach($this->getAlbums(0) as $dir) {
-				$subalbum = new Album($this->gallery, $dir);
+				$subalbum =  new Album(NULL, $dir);
 				// Could have been deleted if it didn't exist above...
 				if ($subalbum->exists)
 				$subalbum->garbageCollect($deep);
@@ -1067,7 +1075,7 @@ class Album extends MediaObject {
 		$images = $this->getImages(0);
 		$subalbums = $this->getAlbums(0);
 		foreach($subalbums as $dir) {
-			$album = new Album($this->gallery, $dir);
+			$album =  new Album(NULL, $dir);
 			$album->preLoad();
 		}
 	}

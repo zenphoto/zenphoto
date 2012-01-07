@@ -207,7 +207,7 @@ function getItemTitleAndURL($item) {
 				$url = '';
 				$protected = 0;
 			} else {
-				$obj = new Album($_zp_gallery,$item['link']);
+				$obj = new Album(NULL,$item['link']);
 				$url = $obj->getAlbumLink(0);
 				$protected = $obj->isProtected();
 				$title = $obj->getTitle();
@@ -1006,7 +1006,7 @@ function printCustomMenu($menuset='default', $option='list',$css_id='',$css_clas
 			if($counter) {
 				switch($item['type']) {
 					case'album':
-						$albumobj = new Album($_zp_gallery,$item['link']);
+						$albumobj = new Album(NULL,$item['link']);
 						$numimages = $albumobj->getNumImages();
 						$numsubalbums = $albumobj->getNumAlbums();
 						$itemcounter = ' <span style="white-space:nowrap;"><small>(';

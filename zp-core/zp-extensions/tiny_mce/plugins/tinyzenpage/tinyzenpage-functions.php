@@ -19,7 +19,7 @@ function printFullAlbumsList() {
 	}
 	$albumlist = $_zp_gallery->getAlbums();
 	foreach($albumlist as $album) {
-		$albumobj = new Album($_zp_gallery, $album);
+		$albumobj = new Album(NULL, $album);
 		if ($albumobj->isMyItem(LIST_RIGHTS)) {
 			echo "<option value='".pathurlencode($albumobj->name)."'>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj)." (".$albumobj->getNumImages().")</option>";
 			if (!$albumobj->isDynamic()) {
@@ -38,7 +38,7 @@ function printSubLevelAlbums(&$albumobj) {
 	global $_zp_gallery;
 	$albumlist = $albumobj->getAlbums();
 	foreach($albumlist as $album) {
-		$subalbumobj = new Album($_zp_gallery,$album);
+		$subalbumobj = new Album(NULL,$album);
 		$subalbumname = $subalbumobj->name;
 		$level = substr_count($subalbumname,"/");
 		$arrow = "";
@@ -102,7 +102,7 @@ function printImageslist($number) {
 	if(isset($_GET['album']) AND !empty($_GET['album'])) {
 
 		$album = urldecode(sanitize($_GET['album']));
-		$albumobj = new Album($_zp_gallery,$album);
+		$albumobj = new Album(NULL,$album);
 		echo "<h3 style='margin-bottom:10px'>".gettext("Album:")." <em>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj,false)."</em> / ".gettext("Album folder:")." <em>".html_encode($albumobj->name)."</em><br /><small>".gettext("(Click on image to include)")."</small></h3>";
 
 			// album thumb display;
@@ -159,7 +159,7 @@ function printImageslist($number) {
 					break;
 				}
 				if($albumobj->isDynamic()) {
-					$linkalbumobj = new Album($_zp_gallery,$images[$nr]['folder']);
+					$linkalbumobj = new Album(NULL,$images[$nr]['folder']);
 					$imageobj = newImage($linkalbumobj,$images[$nr]['filename']);
 				} else {
 					$linkalbumobj = $albumobj;
@@ -326,7 +326,7 @@ function checkAlbumForImages() {
 		if($album == 'gallery') {
 			return FALSE;
 		}
-		$albumobj = new Album($_zp_gallery,$album);
+		$albumobj = new Album(NULL,$album);
 		if($albumobj->getNumImages() != 0) {
 			return TRUE;
 		} else {

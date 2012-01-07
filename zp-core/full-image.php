@@ -45,7 +45,7 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 }
 
 $_zp_gallery = new Gallery();
-$albumobj = new Album($_zp_gallery, $album8);
+$albumobj = new Album(NULL, $album8);
 
 $hash = getOption('protected_image_password');
 if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS)) {

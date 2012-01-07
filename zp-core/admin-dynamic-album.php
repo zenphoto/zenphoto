@@ -17,7 +17,7 @@ $imagelist = array();
 function getSubalbumImages($folder) {
 	global $imagelist, $_zp_gallery;
 	if (hasDynamicAlbumSuffix($folder)) { return; }
-	$album = new Album($_zp_gallery, $folder);
+	$album = new Album(NULL, $folder);
 	$images = $album->getImages();
 	foreach ($images as $image) {
 		$imagelist[] = '/'.$folder.'/'.$image;
@@ -33,7 +33,7 @@ if (isset($_POST['savealbum'])) {
 	XSRFdefender('savealbum');
 	$albumname = sanitize($_POST['album']);
 	$album = sanitize($_POST['albumselect']);
-	$albumobj = new Album($_zp_gallery, $album);
+	$albumobj = new Album(NULL, $album);
 	if (!$albumobj->isMyItem(ALBUM_RIGHTS)) {
 		if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 			die(gettext("You do not have edit rights on this album."));
@@ -156,7 +156,7 @@ foreach ($albumlist as $fullfolder => $albumtitle) {
 			$pieces = explode('/', $imagepath);
 			$filename = array_pop($pieces);;
 			$folder = implode('/', $pieces);
-			$albumx = new Album($_zp_gallery, $folder);
+			$albumx = new Album(NULL, $folder);
 			$image = newImage($albumx, $filename);
 			if (isImagePhoto($image) || !is_null($image->objectsThumb)) {
 				echo "\n<option class=\"thumboption\"";

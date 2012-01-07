@@ -32,7 +32,6 @@ printAdminHeader('menu',(is_array($result) && $result['id'])?gettext('edit'):get
 ?>
 <link rel="stylesheet" href="../zenpage/zenpage.css" type="text/css" />
 <?php
-$_zp_gallery = new Gallery();
 $menuset = checkChosenMenuset();
 ?>
 </head>

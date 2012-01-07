@@ -362,7 +362,7 @@ function getLayout($path) {
 			if(getOption('multiple_layouts_images')) {
 				$currentalbumname = $_zp_current_album->name;
 				if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED) && $_zp_current_search->dynalbumname) {
-					$album = new Album($_zp_gallery, $_zp_current_search->dynalbumname);
+					$album = new Album(NULL, $_zp_current_search->dynalbumname);
 				} else {
 					$getlayout = getSelectedLayout($_zp_current_image,'multiple_layouts_images');
 					$album = $_zp_current_album;

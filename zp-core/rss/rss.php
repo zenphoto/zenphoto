@@ -48,8 +48,7 @@ $items = getOption('feed_items'); // # of Items displayed on the feed
 			$videocontent = '<![CDATA[<a title="'.html_encode(get_language_string($item->get("title"),$locale)).' in '.html_encode(get_language_string($albumobj->getTitle(),$locale)).'" href="'.$protocol.'://'.$itemlink.'"><img src="'.$protocol.'://'.$host.$item->getThumb().'" alt="'.get_language_string(get_language_string($item->get("title"),$locale)) .'" /></a>' . get_language_string(get_language_string($item->get("desc"),$locale)) . ']]>';
 			$datecontent = '<![CDATA[<br />Date: '.zpFormattedDate(DATE_FORMAT,$item->get('mtime')).']]>';
 		} else {
-			$galleryobj = new Gallery();
-			$albumitem = new Album($_zp_galleryobj, $item['folder']);
+			$albumitem = new Album(NULL, $item['folder']);
 			$totalimages = $albumitem->getNumImages();
 			$itemlink = $host.WEBPATH.$albumpath.pathurlencode($albumitem->name);
 			$thumb = $albumitem->getAlbumThumbImage();

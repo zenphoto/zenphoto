@@ -23,7 +23,7 @@ define('WATERMARK_FULL', 4);
 function newImage($album, $filename, $quiet=false) {
 	global $_zp_extra_filetypes;
 	if (is_array($filename)) {
-		$xalbum = new Album(new Gallery(),$filename['folder']);
+		$xalbum = new Album(NULL,$filename['folder']);
 		$filename = $filename['filename'];
 	} else {
 		$xalbum = $album;
@@ -113,7 +113,7 @@ class _Image extends MediaObject {
 	 * @return Image
 	 */
 	function _Image(&$album, $filename) {
-		global $_zp_current_admin_obj;
+		global $_zp_current_admin_obj, $_zp_gallery;
 		// $album is an Album object; it should already be created.
 		if (!is_object($album)) return NULL;
 		if (!$this->classSetup($album, $filename)) { // spoof attempt
@@ -131,7 +131,7 @@ class _Image extends MediaObject {
 		$new = parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->id), 'filename', false, empty($album_name));
 		$mtime = filemtime($this->localpath);
 		if ($new || ($mtime != $this->get('mtime'))) {
-			$this->setShow($album->gallery->getImagePublish());
+			$this->setShow($_zp_gallery->getImagePublish());
 			$this->set('mtime', $mtime);
 			$this->updateMetaData();			// extract info from image
 			$this->updateDimensions();		// deal with rotation issues
@@ -220,8 +220,8 @@ class _Image extends MediaObject {
 	 *
 	 */
 	function updateMetaData() {
+		global $_zp_exifvars, $_zp_gallery;
 		require_once(dirname(__FILE__).'/exif/exif.php');
-		global $_zp_exifvars;
 		$IPTCtags = array(
 											'SKIP'								=>	'2#000',	//	Record Version										Size:64
 											'ObjectType'					=>	'2#003',	//	Object Type	Ref										Size:67
@@ -437,7 +437,7 @@ class _Image extends MediaObject {
 				$alb->setUpdatedDate($this->getDateTime());
 				$save = true;
 			}
-			if (is_null($albdate = $alb->getDateTime()) || ($this->album->gallery->getAlbumUseImagedate() && strtotime($albdate) < strtotime($this->getDateTime()))) {
+			if (is_null($albdate = $alb->getDateTime()) || ($_zp_gallery->getAlbumUseImagedate() && strtotime($albdate) < strtotime($this->getDateTime()))) {
 				$this->album->setDateTime($this->getDateTime());   //  not necessarily the right one, but will do. Can be changed in Admin
 				$save = true;
 			}
@@ -699,7 +699,7 @@ class _Image extends MediaObject {
 	 * @return int
 	 */
 	function moveImage($newalbum, $newfilename=null) {
-		if (is_string($newalbum)) $newalbum = new Album($this->album->gallery, $newalbum, false);
+		if (is_string($newalbum)) $newalbum =  new Album(NULL, $newalbum, false);
 		if ($newfilename == null) {
 			$newfilename = $this->filename;
 		} else {
@@ -755,7 +755,7 @@ class _Image extends MediaObject {
 	 */
 	function copy($newalbum) {
 		if (is_string($newalbum)) {
-			$newalbum = new Album($this->album->gallery, $newalbum, false);
+			$newalbum =  new Album(NULL, $newalbum, false);
 		}
 		if ($newalbum->id == $this->album->id) {
 			// Nothing to do - moving the file to the same place.

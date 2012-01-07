@@ -601,7 +601,7 @@ class Zenpage {
 				$counter = "";
 				foreach($albums as $album) {
 					$counter++;
-					$tempalbum = new Album($_zp_gallery, $album['folder']);
+					$tempalbum = new Album(NULL, $album['folder']);
 					$tempalbumthumb = $tempalbum->getAlbumThumbImage();
 					$timestamp = $tempalbum->get('mtime');
 					if($timestamp == 0) {

@@ -519,7 +519,7 @@ function languageChange(id,lang) {
 	$id = 0;
 	$albumlist = array();
 	foreach ($_zp_gallery->getAlbums() as $folder) {
-		$alb = new Album($_zp_gallery, $folder);
+		$alb = new Album(NULL, $folder);
 		$name = $alb->getTitle();
 		$albumlist[$name] = $folder;
 	}

@@ -172,7 +172,7 @@ class flowplayer3_options {
 		gettext('Playlist playtime') => array('key' => 'flow_player3_playlistplaytime', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Enable to show the playtime for playlist entries."))
 
-		
+
 		);
 	}
 }
@@ -412,7 +412,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 				} else {
 					$albumname = $albumfolder;
 				}
-				$album = new Album(new Gallery(), $albumname);
+				$album = new Album(NULL, $albumname);
 				if(getOption("flow_player3_playlistautoplay") == 1) {
 					$autoplay = 'true';
 				} else {

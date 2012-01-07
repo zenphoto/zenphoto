@@ -526,7 +526,7 @@ function checkAlbumPassword($album, &$hint=NULL) {
 		$albumname = $album->name;
 	} else {
 		if (!is_object($_zp_gallery)) $_zp_gallery = new Gallery();
-		$album = new Album($_zp_gallery, $albumname=$album);
+		$album = new Album(NULL, $albumname=$album);
 	}
 	if (isset($_zp_pre_authorization[$albumname])) {
 		return $_zp_pre_authorization[$albumname];
@@ -1117,7 +1117,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 			if ($_zp_current_search->getImageIndex($album->name, $image->filename) !== false) {
 				$dynamic_album = $_zp_current_search->dynalbumname;
 				if (!empty($dynamic_album)) {
-					$_zp_current_album = new Album($_zp_gallery, $dynamic_album);
+					$_zp_current_album = new Album(NULL, $dynamic_album);
 				}
 				$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
 			}
@@ -1221,7 +1221,7 @@ function setupTheme() {
 	if (in_context(ZP_SEARCH_LINKED)) {
 		$name = $_zp_current_search->dynalbumname;
 		if (!empty($name)) {
-			$album = new Album($_zp_gallery, $name);
+			$album = new Album(NULL, $name);
 		} else {
 			$album = NULL;
 		}
@@ -1556,7 +1556,7 @@ function getNotViewableAlbums() {
 			$_zp_not_viewable_album_list = array();
 			foreach ($result as $row) {
 				if (checkAlbumPassword($row['folder'])) {
-					$album = new Album($_zp_gallery, $row['folder']);
+					$album = new Album(NULL, $row['folder']);
 					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {
 						$_zp_not_viewable_album_list[] = $row['id'];
 					}

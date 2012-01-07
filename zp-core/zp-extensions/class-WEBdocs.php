@@ -105,6 +105,7 @@ class WEBdocs extends TextObject {
 	 * @return s
 	 */
 	function getThumbImageFile($path=NULL) {
+		global $_zp_gallery;
 		if (is_null($path)) {
 			$path = SERVERPATH;
 		}
@@ -121,7 +122,7 @@ class WEBdocs extends TextObject {
 					$img = '/tifDefault.png';
 					break;
 			}
-			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($this->album->gallery->getCurrentTheme()) . '/images/'.$img;
+			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/'.$img;
 			if (!file_exists($imgfile)) {
 				$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER .'/'. substr(basename(__FILE__), 0, -4). '/'.$img;
 			}

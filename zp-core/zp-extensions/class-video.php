@@ -133,6 +133,7 @@ class Video extends _Image {
 	 * @return string
 	 */
 	function getThumbImageFile($path=NULL) {
+		global $_zp_gallery;
 		if (is_null($path)) $path = SERVERPATH;
 		if (is_null($this->objectsThumb)) {
 			$suffix = getSuffix($this->filename);
@@ -165,9 +166,9 @@ class Video extends _Image {
 					$img = '/multimediaDefault.png';
 					break;
 			}
-			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($this->album->gallery->getCurrentTheme()) . '/images'.$img;
+			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images'.$img;
 			if (!file_exists($imgfile)) {  // first check if the theme has adefault image
-				$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($this->album->gallery->getCurrentTheme()) . '/images/multimediaDefault.png';
+				$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/multimediaDefault.png';
 				if (!file_exists($imgfile)) { // if theme has a generic default image use it otherwise use the Zenphoto image
 					$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER.'/' . substr(basename(__FILE__), 0, -4).$img;
 				}

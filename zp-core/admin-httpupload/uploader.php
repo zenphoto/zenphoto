@@ -37,9 +37,9 @@ if (isset($_POST['processed'])) {
 		$targetPath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($folder);
 		$new = !is_dir($targetPath);
 		if ($new) {
-			$rightsalbum = new Album($_zp_gallery, dirname($folder));
+			$rightsalbum = new Album(NULL, dirname($folder));
 		} else{
-			$rightsalbum = new Album($_zp_gallery, $folder);
+			$rightsalbum = new Album(NULL, $folder);
 		}
 		if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 			if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
@@ -51,7 +51,7 @@ if (isset($_POST['processed'])) {
 				mkdir_recursive($targetPath, FOLDER_MOD);
 			}
 			@chmod($targetPath, FOLDER_MOD);
-			$album = new Album($_zp_gallery, $folder);
+			$album = new Album(NULL, $folder);
 			if ($album->exists) {
 				if (!isset($_POST['publishalbum'])) {
 					$album->setShow(false);

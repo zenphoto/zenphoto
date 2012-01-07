@@ -248,18 +248,18 @@ function next_news($sortorder="date", $sortdirection="desc") {
 				add_context(ZP_ZENPAGE_NEWS_ARTICLE);
 				if(ZP_COMBINEWS AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
 					if($news['type'] == "images") {
-						$albumobj = new Album($_zp_gallery,$news['albumname']);
+						$albumobj = new Album(NULL,$news['albumname']);
 						$_zp_current_zenpage_news = newImage($albumobj,$news['titlelink']);
 					} else if($news['type'] == "albums") {
 						switch(getOption("zenpage_combinews_mode")) {
 							case "latestimagesbyalbum-thumbnail":
 							case "latestimagesbyalbum-thumbnail-customcrop":
 							case "latestimagesbyalbum-sizedimage":
-								$_zp_current_zenpage_news = new Album($_zp_gallery,$news['titlelink']);
+								$_zp_current_zenpage_news = new Album(NULL,$news['titlelink']);
 								$_zp_current_zenpage_news->set('date', $news['date']); // in this mode this stores the date of the images to group not the album (inconvenient workaround...)
 								break;
 							default:
-								$_zp_current_zenpage_news = new Album($_zp_gallery,$news['albumname']);
+								$_zp_current_zenpage_news = new Album(NULL,$news['albumname']);
 								break;
 						}
 					} else {
@@ -281,18 +281,18 @@ function next_news($sortorder="date", $sortdirection="desc") {
 				add_context(ZP_ZENPAGE_NEWS_ARTICLE);
 				if(ZP_COMBINEWS AND array_key_exists("type",$news) AND array_key_exists("albumname",$news)) {
 					if($news['type'] == "images") {
-						$albumobj = new Album($_zp_gallery,$news['albumname']);
+						$albumobj = new Album(NULL,$news['albumname']);
 						$_zp_current_zenpage_news = newImage($albumobj,$news['titlelink']);
 					} else if($news['type'] == "albums") {
 						switch(getOption("zenpage_combinews_mode")) {
 							case "latestimagesbyalbum-thumbnail":
 							case "latestimagesbyalbum-thumbnail-customcrop":
 							case "latestimagesbyalbum-sizedimage":
-								$_zp_current_zenpage_news = new Album($_zp_gallery,$news['titlelink']);
+								$_zp_current_zenpage_news = new Album(NULL,$news['titlelink']);
 								$_zp_current_zenpage_news->set('date', $news['date']); // in this mode this stores the date of the images to group not the album (inconvenient workaround...)
 								break;
 							default:
-								$_zp_current_zenpage_news = new Album($_zp_gallery,$news['albumname']);
+								$_zp_current_zenpage_news = new Album(NULL,$news['albumname']);
 								break;
 						}
 					} else {
@@ -1246,7 +1246,7 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
 				$type = "image";
 				break;
 			case 'albums':
-				$obj = new Album($_zp_gallery,$item['albumname']);
+				$obj = new Album(NULL,$item['albumname']);
 				$title = $obj->getTitle();
 				$categories = "";
 				$link = html_encode($obj->getAlbumLink());
@@ -3012,7 +3012,7 @@ function printZenpageRSSHeaderLink($option='News',$categorylink='',$linktext='',
 function zenpageAlbumImage($albumname, $imagename=NULL, $size=NULL, $linkalbum=false) {
 	global $_zp_gallery;
 	echo '<br />';
-	$album = new Album($_zp_gallery, $albumname);
+	$album = new Album(NULL, $albumname);
 	if ($album->loaded) {
 		if (is_null($size)) {
 			$size = floor(getOption('image_size') * 0.5);

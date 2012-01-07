@@ -442,7 +442,7 @@ function printParentPagesBreadcrumb($before='', $after='') {
  */
 function isMyAlbum($albumname, $action) {
 	deprecated_function_notify(gettext('Use instead the Album class method isMyItem().'), E_USER_NOTICE);
-	$album = new Album(new Gallery(), $albumname);
+	$album = new Album(NULL, $albumname);
 	return $album->isMyItem($action);
 }
 
@@ -1439,7 +1439,7 @@ function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder
 			$counter = "";
 			foreach($albums as $album) {
 				$counter++;
-				$tempalbum = new Album($_zp_gallery, $album['folder']);
+				$tempalbum = new Album(NULL, $album['folder']);
 				$tempalbumthumb = $tempalbum->getAlbumThumbImage();
 				$timestamp = $tempalbum->get('mtime');
 				if($timestamp == 0) {

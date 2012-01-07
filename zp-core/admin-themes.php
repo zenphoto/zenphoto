@@ -26,7 +26,7 @@ if (isset($_GET['action'])) {
 					$_zp_gallery->setCurrentTheme($newtheme);
 					$_zp_gallery->save();
 				} else {
-					$_set_theme_album = new Album($_zp_gallery, $alb);
+					$_set_theme_album = new Album(NULL, $alb);
 					$oldtheme = $_set_theme_album->getAlbumTheme();
 					$_set_theme_album->setAlbumTheme($newtheme);
 					$_set_theme_album->save();
@@ -100,7 +100,7 @@ echo "\n" . '<div id="content">';
 	}
 	$albums = $_zp_gallery->getAlbums(0);
 	foreach ($albums as $alb) {
-		$album = new Album($_zp_gallery, $alb);
+		$album = new Album(NULL, $alb);
 		if ($album->isMyItem(THEMES_RIGHTS)) {
 			$key = $album->getTitle();
 			if ($key != $alb) {
@@ -111,7 +111,7 @@ echo "\n" . '<div id="content">';
 	}
 	if (!empty($_REQUEST['themealbum'])) {
 		$alb = sanitize_path($_REQUEST['themealbum']);
-		$album = new Album($_zp_gallery, $alb);
+		$album = new Album(NULL, $alb);
 		$albumtitle = $album->getTitle();
 		$themename = $album->getAlbumTheme();
 		$current_theme = $themename;
@@ -122,7 +122,7 @@ echo "\n" . '<div id="content">';
 			$themename = $_zp_gallery->getCurrentTheme();
 		} else {
 			$alb = sanitize_path($alb);
-			$album = new Album($_zp_gallery, $alb);
+			$album = new Album(NULL, $alb);
 			$albumtitle = $album->getTitle();
 			$themename = $album->getAlbumTheme();
 		}

@@ -17,7 +17,7 @@ if(isset($_GET['album']) && is_dir(realpath(ALBUM_FOLDER_SERVERPATH . internalTo
  * @param object $zip container zipfile object
  */
 function zipAddAlbum($album, $base, $zip) {
-	global $_zp_zip_list, $zip_gallery;
+	global $_zp_zip_list, $_zp_gallery;
 	$albumbase = '.'.substr($album->name,$base).'/';
 	foreach ($album->sidecars as $suffix) {
 		$f = $albumbase.$album->name.'.'.$suffix;
@@ -39,7 +39,7 @@ function zipAddAlbum($album, $base, $zip) {
 	}
 	$albums = $album->getAlbums();
 	foreach ($albums as $albumname) {
-		$subalbum = new Album($zip_gallery,$albumname);
+		$subalbum = new Album(NULL,$albumname);
 		if ($subalbum->exists && !$album->isDynamic()) {
 			zipAddAlbum($subalbum, $base, $zip);
 		}
@@ -52,9 +52,8 @@ function zipAddAlbum($album, $base, $zip) {
  * @param string $albumname album folder
  */
 function createAlbumZip($albumname){
-	global $_zp_zip_list, $zip_gallery;
-	$zip_gallery = new Gallery();
-	$album = new Album($zip_gallery, $albumname);
+	global $_zp_zip_list, $_zp_gallery;
+	$album = new Album(NULL, $albumname);
 	if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
 		pageError(403, gettext("Forbidden"));
 		exit();
@@ -63,7 +62,7 @@ function createAlbumZip($albumname){
 		pageError(404, gettext('Album not found'));
 		exit();
 	}
-	$persist = $zip_gallery->getPersistentArchive();
+	$persist = $_zp_gallery->getPersistentArchive();
 	$dest = $album->localpath.'.zip';
 	if (!$persist  || !file_exists($dest)) {
 		include_once('archive.php');
@@ -86,7 +85,7 @@ function createAlbumZip($albumname){
 		@chmod($dest, 0666);
 		unlink($dest);
 	}
-	unset($zip_gallery);
+	unset($_zp_gallery);
 	unset($album);
 	unset($persist);
 	unset($dest);

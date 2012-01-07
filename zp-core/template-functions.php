@@ -480,7 +480,7 @@ function next_album($all=false, $sorttype=NULL, $sortdirection=NULL, $mine=NULL)
 		}
 		if (empty($_zp_albums)) { return false; }
 		$_zp_current_album_restore = $_zp_current_album;
-		$_zp_current_album = new Album($_zp_gallery, array_shift($_zp_albums));
+		$_zp_current_album = new Album(NULL, array_shift($_zp_albums));
 		save_context();
 		add_context(ZP_ALBUM);
 		return true;
@@ -490,7 +490,7 @@ function next_album($all=false, $sorttype=NULL, $sortdirection=NULL, $mine=NULL)
 		restore_context();
 		return false;
 	} else {
-		$_zp_current_album = new Album($_zp_gallery, array_shift($_zp_albums));
+		$_zp_current_album = new Album(NULL, array_shift($_zp_albums));
 		return true;
 	}
 }
@@ -520,7 +520,7 @@ function getAllAlbums($album = NULL) {
 	if (is_array($subalbums)) {
 		foreach ($subalbums as $subalbum) {
 			$list[] = $subalbum;
-			$sub = new Album($_zp_gallery, $subalbum);
+			$sub = new Album(NULL, $subalbum);
 			$list = array_merge($list, getAllAlbums($sub));
 		}
 	}
@@ -902,7 +902,7 @@ function getParentAlbums($album=null) {
 		if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) {
 			$name = $_zp_current_search->dynalbumname;
 			if (empty($name)) return $parents;
-			$album = new Album($_zp_gallery, $name);
+			$album = new Album(NULL, $name);
 		} else {
 			$album = $_zp_current_album;
 		}
@@ -940,7 +940,7 @@ function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
 			if (in_context(ZP_IMAGE) && in_context(ZP_ALBUM_LINKED)) {
 				$album = $_zp_current_album;
 			} else {
-				$album = new Album($_zp_gallery, $dynamic_album);
+				$album = new Album(NULL, $dynamic_album);
 			}
 			echo "<a href=\"" . html_encode(getAlbumLinkURL($album)) . "\">";
 			echo html_encode($album->getTitle());
@@ -989,7 +989,7 @@ function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $trun
 				echo $between;
 			}
 		} else {
-			$album = new Album($_zp_gallery, $dynamic_album);
+			$album = new Album(NULL, $dynamic_album);
 			$parents = getParentAlbums($album);
 			if (in_context(ZP_ALBUM_LINKED)) {
 				array_push($parents, $album);
@@ -1654,7 +1654,7 @@ function getTotalImagesIn($album) {
 	$subalbums = $album->getAlbums(0);
 	while (count($subalbums) > 0) {
 		$albumname = array_pop($subalbums);
-		$album = new Album($_zp_gallery, $albumname);
+		$album = new Album(NULL, $albumname);
 		$sum = $sum + getTotalImagesIn($album);
 	}
 	return $sum;
@@ -2999,7 +2999,7 @@ function getLatestComments($number,$type="all",$itemID="") {
 	if (!zp_loggedin(ADMIN_RIGHTS)) {
 		$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
 		foreach ($albumscheck as $albumcheck) {
-			$album = new Album($_zp_gallery, $albumcheck['folder']);
+			$album = new Album(NULL, $albumcheck['folder']);
 			if($album->isMyItem(LIST_RIGHTS) || !checkAlbumPassword($albumcheck['folder'])) {
 				$albumpasswordcheck1= " AND i.albumid != ".$albumcheck['id'];
 				$albumpasswordcheck2= " AND a.id != ".$albumcheck['id'];
@@ -3161,7 +3161,7 @@ function getRandomImages($daily = false) {
 	if ($daily) {
 		$potd = unserialize(getOption('picture_of_the_day'));
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
-			$album = new Album($_zp_gallery, $potd['folder']);
+			$album = new Album(NULL, $potd['folder']);
 			$image = newImage($album, $potd['filename']);
 			if ($image->exists)	{
 				return $image;
@@ -3205,13 +3205,13 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 		if (is_object($rootAlbum)) {
 			$album = $rootAlbum;
 		} else {
-			$album = new Album($_zp_gallery, $rootAlbum);
+			$album = new Album(NULL, $rootAlbum);
 		}
 	}
 	if ($daily && ($potd = getOption('picture_of_the_day:'.$album->name))) {
 		$potd = unserialize($potd);
 		if (date('Y-m-d', $potd['day']) == date('Y-m-d')) {
-			$rndalbum = new Album($_zp_gallery, $potd['folder']);
+			$rndalbum = new Album(NULL, $potd['folder']);
 			$image = newImage($rndalbum, $potd['filename']);
 			if ($image->exists)	return $image;
 		}
@@ -3223,7 +3223,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 		while (count($images) > 0) {
 			$result = array_pop($images);
 			if (is_valid_image($result['filename'])) {
-				$image = newImage(new Album(new Gallery(), $result['folder']), $result['filename']);
+				$image = newImage(new Album(NULL, $result['folder']), $result['filename']);
 			}
 		}
 	} else {
@@ -4198,7 +4198,7 @@ function checkForGuest(&$hint=NULL, &$show=NULL) {
 		if ($authType = checkAlbumPassword($album, $hint)) {
 			return $authType;
 		} else {
-			$alb = new Album($_zp_gallery, $album);
+			$alb = new Album(NULL, $album);
 			$show = $alb->getUser() != '';
 			return false;
 		}

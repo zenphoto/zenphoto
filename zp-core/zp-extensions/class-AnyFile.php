@@ -97,12 +97,13 @@ class AnyFile extends TextObject {
 	 * @return s
 	 */
 	function getThumbImageFile($path=NULL) {
+		global $_zp_gallery;
 		if (is_null($path)) {
 			$path = SERVERPATH;
 		}
 		if (is_null($this->objectsThumb)) {
 			$img = '/'.getSuffix($this->filename).'Default.png';
-			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($this->album->gallery->getCurrentTheme()) . '/images/'.$img;
+			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/'.$img;
 			if (!file_exists($imgfile)) {
 				$imgfile = $path . "/" . USER_PLUGIN_FOLDER .'/'. substr(basename(__FILE__), 0, -4).$img;
 				if (!file_exists($imgfile)) {

@@ -44,9 +44,9 @@ class SearchEngine
 	 * @return SearchEngine
 	 */
 	function __construct($dynamic_album = false) {
-		global $_zp_exifvars;
+		global $_zp_exifvars, $_zp_gallery;
 		//image/album fields
-		$this->gallery = new Gallery();
+		$this->gallery = $_zp_gallery;
 		$this->search_structure['title']							= gettext('Title');
 		$this->search_structure['desc']								= gettext('Description');
 		$this->search_structure['tags']								= gettext('Tags');
@@ -705,7 +705,7 @@ class SearchEngine
 	 * @since 1.1.3
 	 */
 	function searchDate($searchstring, $searchdate, $tbl, $sorttype, $sortdirection, $whichdate='date') {
-		global $_zp_current_album;
+		global $_zp_current_album, $_zp_gallery;
 		$sql = 'SELECT DISTINCT `id`, `show`,`title`';
 		switch ($tbl) {
 			case 'pages':
@@ -759,14 +759,14 @@ class SearchEngine
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
-						$key = lookupSortKey($this->gallery->getSortType(), 'sort_order', 'folder');
+						$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'folder');
 						if ($key != '`sort_order`') {
-							if ($this->gallery->getSortDirection()) {
+							if ($_zp_gallery->getSortDirection()) {
 								$key .= " DESC";
 							}
 						}
 					} else {
-						$album = new Album($_zp_gallery, $this->dynalbumname);
+						$album = new Album(NULL, $this->dynalbumname);
 						$key = $album->getAlbumSortKey();
 						if ($key != '`sort_order`' && $key != 'RAND()') {
 							if ($album->getSortDirection('album')) {
@@ -795,7 +795,7 @@ class SearchEngine
 							}
 						}
 					} else {
-						$album = new Album($_zp_gallery, $this->dynalbumname);
+						$album = new Album(NULL, $this->dynalbumname);
 						$key = $album->getImageSortKey();
 						if ($key != '`sort_order`' && $key != 'RAND()') {
 							if ($album->getSortDirection('image')) {
@@ -1063,10 +1063,10 @@ class SearchEngine
 				$sql .= "`folder` ";
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
-						$key = lookupSortKey($this->gallery->getSortType(), 'sort_order', 'folder');
-						if ($this->gallery->getSortDirection()) { $key .= " DESC"; }
+						$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'folder');
+						if ($_zp_gallery->getSortDirection()) { $key .= " DESC"; }
 					} else {
-						$album = new Album($_zp_gallery, $this->dynalbumname);
+						$album = new Album(NULL, $this->dynalbumname);
 						$key = $album->getAlbumSortKey();
 						if ($key != '`sort_order`' && $key != 'RAND()') {
 							if ($album->getSortDirection('album')) {
@@ -1091,7 +1091,7 @@ class SearchEngine
 						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'filename');
 						if (IMAGE_SORT_DIRECTION) { $key .= " DESC"; }
 					} else {
-						$album = new Album($_zp_gallery, $this->dynalbumname);
+						$album = new Album(NULL, $this->dynalbumname);
 						$key = $album->getImageSortKey();
 						if ($key != '`sort_order`') {
 							if ($album->getSortDirection('image')) {
@@ -1146,7 +1146,7 @@ class SearchEngine
 					$albumname = $row['folder'];
 					if ($albumname != $this->dynalbumname) {
 						if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
-							$album = new Album(new gallery(), $albumname);
+							$album = new Album(NULL, $albumname);
 							$uralbum = getUrAlbum($album);
 							$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 							switch (checkPublishDates($row)) {
@@ -1220,7 +1220,7 @@ class SearchEngine
 		$albums = $this->getAlbums(0);
 		$inx = array_search($curalbum, $albums)+1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return new Album($_zp_gallery, $albums[$inx]);
+			return new Album(NULL, $albums[$inx]);
 		}
 		return null;
 	}
@@ -1236,7 +1236,7 @@ class SearchEngine
 		$albums = $this->getAlbums(0);
 		$inx = array_search($curalbum, $albums)-1;
 		if ($inx >= 0 && $inx < count($albums)) {
-			return new Album($_zp_gallery, $albums[$inx]);
+			return new Album(NULL, $albums[$inx]);
 		}
 		return null;
 	}
@@ -1302,7 +1302,7 @@ class SearchEngine
 						$row2 = query_single_row($query); // id is unique
 						$albumname = $row2['folder'];
 						$allow = false;
-						$album = new Album(new gallery(), $albumname);
+						$album = new Album(NULL, $albumname);
 						$uralbum = getUrAlbum($album);
 						$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 						switch (checkPublishDates($row)) {

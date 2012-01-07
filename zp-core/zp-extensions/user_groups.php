@@ -92,7 +92,7 @@ function user_groups_edit_admin($html, $userobj, $i, $background, $current) {
 		$albumlist = array();
 		$allalb = array();
 		foreach ($_zp_gallery->getAlbums() as $folder) {
-			$alb = new Album($_zp_gallery, $folder);
+			$alb = new Album(NULL, $folder);
 			$name = $alb->getTitle();
 			$albumlist[$name] = $folder;
 			$allalb[] = "'#managed_albums_".$i.'_'.postIndexEncode($folder)."'";

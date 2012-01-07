@@ -208,7 +208,7 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 											&& $level<=$pagelevel) // but not too deep
 								);
 
-		$topalbum = new Album($_zp_gallery,$album,true);
+		$topalbum = new Album(NULL,$album,true);
 		if ($level>1
 				|| ($option != 'omit-top')
 				) { // listing current level album
@@ -337,7 +337,7 @@ function printAlbumMenuJump($option="count", $indexname="Gallery Index",$firstim
 function printAlbumMenuJumpAlbum($albums,$option,$albumpath,$firstimagelink,$level=1) {
 	global $_zp_gallery;
 	foreach ($albums as $album) {
-		$subalbum = new Album($_zp_gallery,$album,true);
+		$subalbum = new Album(NULL,$album,true);
 
 
 		if($option === "count" AND $subalbum->getNumImages() > 0) {

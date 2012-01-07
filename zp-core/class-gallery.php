@@ -194,7 +194,7 @@ class Gallery {
 	function getAlbum($index) {
 		$this->getAlbums();
 		if ($index >= 0 && $index < $this->getNumAlbums()) {
-			return new Album($this, $this->albums[$index]);
+			return  new Album(NULL, $this->albums[$index]);
 		} else {
 			return false;
 		}
@@ -473,7 +473,7 @@ class Gallery {
 				$albumids = query_full_array("SELECT `id`, `mtime`, `folder`, `dynamic` FROM " . prefix('albums'));
 				foreach ($albumids as $analbum) {
 					if (($mtime=filemtime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($analbum['folder']))) > $analbum['mtime']) {  // refresh
-						$album = new Album($this, $analbum['folder']);
+						$album =  new Album(NULL, $analbum['folder']);
 						$album->set('mtime', $mtime);
 						if ($album->isDynamic()) {
 							$data = file_get_contents($album->localpath);
@@ -530,7 +530,7 @@ class Gallery {
 
 					// Then go into existing albums recursively to clean them... very invasive.
 					foreach ($this->getAlbums(0) as $folder) {
-						$album = new Album($this, $folder);
+						$album =  new Album(NULL, $folder);
 						if (!$album->isDynamic()) {
 							if(is_null($album->getDateTime())) {  // see if we can get one from an image
 								$images = $album->getImages(0,0,'date','DESC');
@@ -568,7 +568,7 @@ class Gallery {
 					if (file_exists($imageName)) {
 						$mtime = filemtime($imageName);
 						if ($image['mtime'] != $mtime) { // file has changed since we last saw it
-							$imageobj = newImage(new Album($this, $row['folder']), $image['filename']);
+							$imageobj = newImage( new Album(NULL, $row['folder']), $image['filename']);
 							$imageobj->set('mtime', $mtime);
 							$imageobj->updateMetaData(); // prime the EXIF/IPTC fields
 							$imageobj->updateDimensions(); // update the width/height & account for rotation
@@ -729,7 +729,7 @@ class Gallery {
 			}
 		}
 		foreach ($albums as $folder) {	// these albums are not in the database
-			$albumobj = new Album($this,$folder);
+			$albumobj =  new Album(NULL,$folder);
 			if ($albumobj->exists) {	// fail to instantiate?
 				$results[$folder] = $albumobj->data;
 			}
@@ -740,7 +740,7 @@ class Gallery {
 		$albums_ordered = array();
 		foreach($results as $row) { // check for visible
 			$folder = $row['folder'];
-			$album = new Album($this, $folder);
+			$album =  new Album(NULL, $folder);
 			switch (checkPublishDates($row)) {
 				case 1:
 					$album->setShow(0);

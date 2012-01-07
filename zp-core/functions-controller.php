@@ -242,7 +242,7 @@ function zp_load_search() {
  */
 function zp_load_album($folder, $force_nocache=false) {
 	global $_zp_current_album, $_zp_gallery;
-	$_zp_current_album = new Album($_zp_gallery, $folder, !$force_nocache, true);
+	$_zp_current_album = new Album(NULL, $folder, !$force_nocache, true);
 	if (!is_object($_zp_current_album) || !$_zp_current_album->exists) return false;
 	add_context(ZP_ALBUM);
 	return $_zp_current_album;

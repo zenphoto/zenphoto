@@ -122,6 +122,7 @@ class TextObject extends _Image {
 	 * @return s
 	 */
 	function getThumbImageFile($path=NULL) {
+		global $_zp_gallery;
 		if (is_null($path)) {
 			$path = SERVERPATH;
 		}
@@ -131,7 +132,7 @@ class TextObject extends _Image {
 					$img = '/textDefault.png';
 					break;
 			}
-			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($this->album->gallery->getCurrentTheme()) . '/images/'.$img;
+			$imgfile = $path . '/' . THEMEFOLDER . '/' . internalToFilesystem($_zp_gallery->getCurrentTheme()) . '/images/'.$img;
 			if (!file_exists($imgfile)) {
 				$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER .'/class-textobject/'.$img;
 			}

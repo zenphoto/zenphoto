@@ -80,7 +80,7 @@ function getRSSAlbumTitle() {
 		$albumname = ' ('.gettext('latest albums').')';
 	} elseif ($rssmode == 'albums' && isset($_GET['folder'])) {
 		$folder = sanitize(urldecode($_GET['folder']));
-		$albobj = new Album($_zp_gallery,$folder);
+		$albobj = new Album(NULL,$folder);
 		$albumname = ' - '.html_encode(strip_tags($albobj->getTitle())).' ('.gettext('latest albums').')';
 	} else {
 		$albumname = ' ('.gettext('latest images').')';

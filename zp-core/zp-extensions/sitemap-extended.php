@@ -371,7 +371,7 @@ function getSitemapAlbumList($obj,&$albumlist, $gateway) {
 	global $_zp_gallery;
 	$locallist = $obj->getAlbums();
 	foreach ($locallist as $folder) {
-		$album = new Album($_zp_gallery, $folder);
+		$album = new Album(NULL, $folder);
 		If ($album->getShow() && $gateway($album))  {
 			$albumlist[] = array('folder'=>$album->name, 'date'=>$album->getDateTime(), 'title'=>$album->getTitle());
 			getSitemapAlbumList($album, $albumlist, $gateway);
@@ -429,7 +429,7 @@ function getSitemapAlbums() {
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		}
 		foreach($albums as $album) {
-			$albumobj = new Album($_zp_gallery,$album['folder']);
+			$albumobj = new Album(NULL,$album['folder']);
 			set_context(ZP_ALBUM);
 			makeAlbumCurrent($albumobj);
 			//getting the album pages
@@ -523,7 +523,7 @@ function getSitemapImages() {
 		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		foreach($albums as $album) {
 			set_time_limit(120);	//	Extend script timeout to allow for gathering the images.
-			$albumobj = new Album($_zp_gallery,$album['folder']);
+			$albumobj = new Album(NULL,$album['folder']);
 			$images = $albumobj->getImages();
 
 			// print plain images links if available

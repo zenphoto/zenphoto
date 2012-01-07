@@ -350,7 +350,7 @@ class tweet {
 		if ($result) {
 			foreach ($result as $album) {
 				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$album['id']);
-				$album = new Album($_zp_gallery, $album['folder']);
+				$album = new Album(NULL, $album['folder']);
 				tweet::tweetObject($album);
 			}
 		}
@@ -359,7 +359,7 @@ class tweet {
 			foreach ($result as $image) {
 				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$image['id']);
 				$album = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$image['albumid']);
-				$album = new Album($_zp_gallery, $album['folder']);
+				$album = new Album(NULL, $album['folder']);
 				$image = newImage($album, $image['filename']);
 				tweet::tweetObject($image);
 			}

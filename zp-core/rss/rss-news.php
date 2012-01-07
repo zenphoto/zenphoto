@@ -84,7 +84,7 @@ foreach($latest as $item) {
 			$album = "";
 			break;
 		case 'images':
-			$albumobj = new Album($_zp_gallery,$item['albumname']);
+			$albumobj = new Album(NULL,$item['albumname']);
 			$obj = newImage($albumobj,$item['titlelink']);
 			$categories = get_language_string($albumobj->get('title'),$locale);
 			$title = strip_tags(get_language_string($obj->get('title'),$locale));
