@@ -91,44 +91,35 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 			</div>
 		<?php
 	}
-	?>
-	<?php
-	if (!zp_loggedin() && function_exists('printRegistrationForm')) {
+	if(function_exists("printUserLogin_out") || !zp_loggedin() && function_exists('printRegistrationForm')) {
 		?>
 		<div class="menu">
 			<ul>
-				<li>
 				<?php
-				if($_zp_gallery_page != 'register.php') {
-					printCustomPageURL(gettext('Register for this site'), 'register', '', '');
-				} else {
-					echo gettext("Register for this site");
-				}
-				?></li>
-				</ul>
-			</div>
-		<?php
-	}
-	?>
-	<?php
-	if(function_exists("printUserLogin_out")) {
-		?>
-		<?php
-		if (zp_loggedin()) {
-			?>
-			<div class="menu">
-				<ul>
+				if (!zp_loggedin() && function_exists('printRegistrationForm')) {
+					?>
 					<li>
-			<?php
-		}
-		printUserLogin_out("","");
-		if (zp_loggedin()) {
-			?>
-				</li>
+						<?php
+						if($_zp_gallery_page != 'register.php') {
+							printCustomPageURL(gettext('Register for this site'), 'register', '', '');
+						} else {
+							echo gettext("Register for this site");
+						}
+						?>
+					</li>
+					<?php
+				}
+				if (function_exists("printUserLogin_out")) {
+				?>
+					<li>
+					<?php printUserLogin_out("","", 2); ?>
+					</li>
+					<?php
+				}
+				?>
 			</ul>
 		</div>
 		<?php
-		}
 	}
 	?>
 <?php if (function_exists('printLanguageSelector')) {

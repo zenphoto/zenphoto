@@ -219,7 +219,7 @@ function printFooter($admin=true) {
 		<?php printThemeInfo(); ?>
 		<?php printZenphotoLink(); ?>
 		<?php if ($_zp_gallery_page == 'gallery') { printRSSLink('Gallery','<br />', 'Gallery RSS', ''); } ?>
-		<?php	if (function_exists('printUserLogin_out') && $_zp_gallery_page != 'password') printUserLogin_out('<br />', '', true); ?>
+		<?php	if (function_exists('printUserLogin_out') && $_zp_gallery_page != 'password') printUserLogin_out('<br />'); ?>
 		<?php	if (getOption('zp_plugin_contactform') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('contact'))) printCustomPageURL(gettext('Contact us'), 'contact', '', '<br />');	?>
 		<?php if (!zp_loggedin() && function_exists('printRegistrationForm') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('unprotected_register'))) printCustomPageURL(gettext('Register for this site'), 'register', '', '<br />');	?>
 		<?php if (function_exists('printLanguageSelector')) { printLanguageSelector(); } ?>
