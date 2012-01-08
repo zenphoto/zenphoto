@@ -109,7 +109,8 @@ if (in_context(ZP_INDEX)) {
  *
  * @param string $before before text
  * @param string $after after text
- * @param bool $showLoginForm set to true to display a login form if no one is logged in
+ * @param bool $showLoginForm to display a login form if no one is logged in set to 1 (for in colorbox, set to, but
+ * 							but you must have colorbox enabled for the theme pages where this link appears.)
  * @param string $logouttext optional replacement text for "Logout"
  * @param bool $show_user set to true to force the USER field on the form.
  */
@@ -120,20 +121,19 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 			return;
 		}
 	}
-
-
 	if (is_null($logouttext)) $logouttext = gettext("Logout");
 	if (is_null($showLoginForm)) {
 		$showLoginForm = getOption('user_logout_login_form');
 	}
+	$logintext = gettext('Login');
 	$cookies = $_zp_authority->getAuthCookies();
 	if (empty($cookies)) {
 		if ($showLoginForm) {
 			if ($showLoginForm > 1) {
 				echo $before;
 				?>
-				<a href="#" class="logonlink" title="<?php echo gettext('Login'); ?>">
-					<span id="logonlink_text"><?php echo gettext('Login'); ?></span>
+				<a href="#" class="logonlink" title="<?php echo $logintext; ?>">
+					<span id="logonlink_text"><?php echo $logintext; ?></span>
 					<?php
 					if ($_zp_login_error) {
 						?>
@@ -152,7 +152,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 			}
 			?>
 			<div class="passwordform">
-				<?php printPasswordForm('', false, $show_user); ?>
+				<?php printPasswordForm('', $show_user, false); ?>
 			</div>
 			<?php
 			if ($showLoginForm>1) {

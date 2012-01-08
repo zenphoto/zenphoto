@@ -759,16 +759,22 @@ class Zenphoto_Authority {
 	 *
 	 * @param string $redirect URL to return to after login
 	 * @param bool $logo set to true to display the ADMIN zenphoto logo.
-	 * @param bool $showUser set to true to display the user input
+	 * @param bool $showUserField set to true to display the user input
 	 * @param bool $showCaptcha set to false to not display the forgot password captcha.
 	 * @param string $hint optional hint for the password
 	 *
 	 */
-	function printLoginForm($redirect=null, $logo=true, $showUser=true, $showCaptcha=true, $hint='') {
+	function printLoginForm($redirect=null, $logo=true, $showUserField=true, $showCaptcha=true, $hint='') {
 		global $_zp_login_error, $_zp_captcha, $_zp_authority, $_zp_gallery;
 		if (is_null($redirect)) {
 			$redirect = WEBPATH.'/'.ZENFOLDER.'/admin.php';
 		}
+		if (GALLERY_SECURITY=='private') {
+			$showUserField = true;
+		} else if (is_null($showUserField)) {
+			$showUserField = $_zp_gallery->getUserLogonField();
+		}
+
 		if (isset($_POST['user'])) {
 			$requestor = sanitize($_POST['user'], 3);
 		} else {
@@ -925,7 +931,7 @@ class Zenphoto_Authority {
 						} else {
 							?>
 							<script type="text/javascript">
-								<!--
+								// <!-- <![CDATA[
 								var handlers = [];
 								<?php
 								$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
@@ -949,14 +955,14 @@ class Zenphoto_Authority {
 									var script = handler.shift();
 									launchScript(script,handler);
 								}
-								-->
+								// ]]> -->
 							</script>
 							<?php
 						}
 					?>
 					<fieldset id="logon_box"><legend><?php echo $ledgend; ?></legend>
 						<?php
-						if ($showUser || GALLERY_SECURITY=='private') {	//	requires a "user" field
+						if ($showUserField) {	//	requires a "user" field
 							?>
 							<fieldset><legend><?php echo gettext("User"); ?></legend>
 								<input class="textfield" name="user" id="user" type="text" size="35" value="<?php echo html_encode($requestor); ?>" />
