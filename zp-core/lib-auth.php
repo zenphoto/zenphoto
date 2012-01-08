@@ -826,8 +826,16 @@ class Zenphoto_Authority {
 		}
 		switch ($_zp_login_error) {
 			case 1:
-				?>
-				<div class="errorbox" id="message"><h2><?php echo gettext("There was an error logging in."); ?></h2><?php echo gettext("Check your username and password and try again.");?></div>
+					?>
+					<div class="errorbox" id="message"><h2><?php echo gettext("There was an error logging in."); ?></h2>
+					<?php
+					if ($showUser) {
+						echo gettext("Check your username and password and try again.");
+					} else {
+						echo gettext("Check password and try again.");
+					}
+					?>
+				</div>
 				<?php
 				break;
 			case 2:

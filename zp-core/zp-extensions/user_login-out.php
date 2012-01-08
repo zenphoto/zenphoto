@@ -13,6 +13,16 @@ $plugin_description = gettext("Provides a means for placing a user login form or
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'user_logout_options';
+if (isset($_zp_gallery_page) && getOption('user_logout_login_form') > 1) {
+	setOption('colorbox_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page), 1, false);
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox.php');
+	if(!zp_has_filter('theme_head','colorbox_css')) {
+		zp_register_filter('theme_head','colorbox_css');
+	}
+}
+if(zp_has_filter('theme_head','colorbox_css')) {
+	zp_register_filter('theme_head','user_logout_options::js');
+}
 
 /**
  * Plugin option handling class
@@ -25,12 +35,28 @@ class user_logout_options {
 	}
 
 	function getOptionsSupported() {
-		return array(	gettext('Enable login form') => array('key' => 'user_logout_login_form', 'type' => OPTION_TYPE_CHECKBOX,
-										'order'=>1,
-										'desc' => gettext('If enabled, a login form will be displayed if the viewer is not logged in.'))
+		return array(	gettext('Login form') => array('key' => 'user_logout_login_form', 'type' => OPTION_TYPE_RADIO,
+												'buttons' => array(gettext('None')=>0, gettext('Form')=>1,gettext('Colorbox')=>2),
+												'desc' => gettext('Diaplay a logon form or Colorbox logon link if the user is not logged in.'))
 		);
 	}
 	function handleOption($option, $currentValue) {
+	}
+
+	static function js() {
+		?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			$(document).ready(function(){
+				$(".logonlink").colorbox({
+					inline:true,
+					href:"#passwordform",
+					close: '<?php echo gettext("close"); ?>'
+				});
+			});
+			// ]]> -->
+		</script>
+		<?php
 	}
 }
 
@@ -88,7 +114,7 @@ if (in_context(ZP_INDEX)) {
  * @param bool $show_user set to true to force the USER field on the form.
  */
 function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logouttext=NULL, $show_user=NULL) {
-	global $__redirect, $_zp_authority, $_zp_current_admin_obj;
+	global $__redirect, $_zp_authority, $_zp_current_admin_obj,	$_zp_login_error;
 	if (is_object($_zp_current_admin_obj)) {
 		if ($_zp_current_admin_obj->no_zp_login)  {
 			return;
@@ -97,17 +123,44 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 
 
 	if (is_null($logouttext)) $logouttext = gettext("Logout");
-	if (is_null($showLoginForm) && getOption('user_logout_login_form')) {
-		$showLoginForm = true;
+	if (is_null($showLoginForm)) {
+		$showLoginForm = getOption('user_logout_login_form');
 	}
 	$cookies = $_zp_authority->getAuthCookies();
 	if (empty($cookies)) {
 		if ($showLoginForm) {
+			if ($showLoginForm > 1) {
+				echo $before;
+				?>
+				<a href="#" class="logonlink" title="<?php echo gettext('Login'); ?>">
+					<span id="logonlink_text"><?php echo gettext('Login'); ?></span>
+					<?php
+					if ($_zp_login_error) {
+						?>
+						<script type="text/javascript">
+							// <!-- <![CDATA[
+								$('#logonlink_text').css('color','red');
+								$('#logonlink_text').html($('#logonlink_text').html().blink());
+							// ]]> -->
+						</script>
+						<?php
+					}
+					?>
+				</a>
+				<span id="passwordform_enclosure" style="display:none">
+				<?php
+			}
 			?>
 			<div class="passwordform">
 				<?php printPasswordForm('', false, $show_user); ?>
 			</div>
 			<?php
+			if ($showLoginForm>1) {
+				?>
+				</span>
+				<?php
+				echo $after;
+			}
 		}
 	} else {
 		$params = array("'userlog=0'");

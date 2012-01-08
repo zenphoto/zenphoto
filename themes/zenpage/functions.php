@@ -67,5 +67,5 @@ function printZDToggleClass($option,$c,$number_to_show) {
 }
 
 setOption('zp_plugin_print_album_menu',1|THEME_PLUGIN,false);
-
+setOption('user_logout_login_form',2,false);
 ?>
