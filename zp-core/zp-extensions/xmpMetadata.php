@@ -139,6 +139,7 @@ class xmpMetadata {
 		'EXIFWhiteBalance'			=>	'<exif:WhiteBalance>',
 		'IPTCLocationCode' 			=>	'<Iptc4xmpCore:CountryCode>',
 		'IPTCSubLocation' 			=>	'<Iptc4xmpCore:Location>',
+		'rating'								=>	'<MicrosoftPhoto:Rating>',
 		'IPTCSource'						=>	'<photoshop:Source>',
 		'IPTCCity' 							=>	'<photoshop:City>',
 		'IPTCState' 						=>	'<photoshop:State>',
@@ -279,6 +280,12 @@ class xmpMetadata {
 					if (array_key_exists('watermark_thumb',$metadata)) {
 						$album->setWatermarkThumb($metadata['watermark_thumb']);
 					}
+					if (array_key_exists('rating',$metadata)) {
+						$v = min(getoption('rating_stars_count'),$metadata['rating'])*min(1,getOption('rating_split_stars'));
+						$album->set('total_value', $v);
+						$album->set('rating', $v);
+						$album->set('total_votes', 1);
+					}
 					$album->save();
 					break;
 				}
@@ -382,7 +389,13 @@ class xmpMetadata {
 			$metadata = xmpMetadata::xmpMetadata_extract($source);
 			$image->set('hasMetadata',count($metadata>0));
 			foreach ($metadata as $field=>$element) {
+				if (array_key_exists($field,$_zp_exifvars)) {
+					if (!$_zp_exifvars[$field][5]) {
+						continue;	//	the field has been disabled
+					}
+				}
 				$v = xmpMetadata::xmpMetadata_to_string($element);
+
 				switch ($field) {
 					case 'EXIFDateTimeOriginal':
 						$image->setDateTime($element);
@@ -428,6 +441,11 @@ class xmpMetadata {
 							$v = $n[0]+$n[1]/60;
 						}
 						break;
+					case 'rating':
+						$v = min(getoption('rating_stars_count'),$v)*min(1,getOption('rating_split_stars'));
+						$image->set('total_value', $v);
+						$image->set('total_votes', 1);
+						break;
 					case 'watermark':
 					case 'watermark_use':
 					case 'custom_data':
@@ -455,7 +473,7 @@ class xmpMetadata {
 
 	static function putXMP($object, $prefix) {
 		if (isset($_POST['xmpMedadataPut_'.$prefix])) {
-			xmpMetadataPublish($object);
+			xmpMetadata::publish($object);
 		}
 		return $object;
 	}
@@ -478,7 +496,8 @@ class xmpMetadata {
 													'watermark_thumb'	=>	'<zp:Watermark_thumb>',
 													'custom_data'			=>	'<zp:CustomData',
 													'codeblock'				=>	'<zp:Codeblock>',
-													'date'						=>	'<exif:DateTimeOriginal>'
+													'date'						=>	'<exif:DateTimeOriginal>',
+													'rating'					=>	'<MicrosoftPhoto:Rating>'
 													);
 		$process = array('dc','Iptc4xmpCore','photoshop','xap');
 		if (get_class($object)=='Album') {

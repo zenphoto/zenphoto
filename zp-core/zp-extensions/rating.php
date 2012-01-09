@@ -49,7 +49,7 @@ if (!defined('OFFSET_PATH')) {
 $option_interface = 'jquery_rating';
 
 zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');
-zp_register_filter('save_album_utilities_data', '::optionVoteStatusSave');
+zp_register_filter('save_album_utilities_data', 'jquery_rating::optionVoteStatusSave');
 zp_register_filter('admin_utilities_buttons', 'jquery_rating::rating_purgebutton');
 
 if (getOption('rating_image_individual_control')) {
