@@ -316,19 +316,19 @@ if ($rootrights || !empty($albumlist)) {
 					$('#albumtitle').val('<?php echo sanitize($_GET['albumtitle']); ?>');
 					<?php
 				}
-				if (isset($_GET['autogen'])) {
+				if (isset($_GET['autogen']) && !$_GET['autogen']) {
 					?>
-					$('#autogen').attr('checked', 'checked');
-					$('#folderdisplay').attr('disabled', 'disabled');
-					if ($('#albumtitle').val() != '') {
+					$('#autogen').removeAttr('checked');
+					$('#folderdisplay').removeAttr('disabled');
+					if ($('#folderdisplay').val() != '') {
 						$('#foldererror').hide();
 					}
 					<?php
 				} else {
 					?>
-					$('#autogen').removeAttr('checked');
-					$('#folderdisplay').removeAttr('disabled');
-					if ($('#folderdisplay').val() != '') {
+					$('#autogen').attr('checked', 'checked');
+					$('#folderdisplay').attr('disabled', 'disabled');
+					if ($('#albumtitle').val() != '') {
 						$('#foldererror').hide();
 					}
 					<?php
