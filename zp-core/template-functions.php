@@ -1013,7 +1013,7 @@ function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $trun
 			if ($i > 0) echo $between;
 			$url = rewrite_path("/" . pathurlencode($parent->name) . "/", "/index.php?album=" . pathurlencode($parent->name));
 			//cleanup things in description for use as attribute tag
-			$desc = html_entity_decode(strip_tags(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc()))));
+			$desc = html_decode(strip_tags(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc()))));
 			if (!empty($desc) && $truncate) $desc = truncate_string($desc , $truncate, $elipsis);
 			printLink($url, $parent->getTitle(), $desc);
 			$i++;
@@ -2214,7 +2214,7 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
 		$id = ' id="'.$id.'"';
 	}
 	$refh = $refa = $style = '';
-	if ($toggle == 'colorbox' && zp_has_filter('theme_head','colorbox_css')) {
+	if ($toggle == 'colorbox' && zp_has_filter('theme_head','colorbox::css')) {
 		$refh = '<a href="#" class="colorbox" title="'.$title.'">';
 		$refa = '</a>';
 		$style = ' style="display:none"';
@@ -3949,7 +3949,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		<form method="post" action="<?php echo WEBPATH.$searchurl; ?>" id="search_form">
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				var lastsearch = '<?php echo addslashes(html_entity_decode(addslashes($searchwords)))?>';
+				var lastsearch = '<?php echo addslashes(html_decode(addslashes($searchwords)))?>';
 				var savedlastsearch = lastsearch;
 				function search_(way) {
 					if (way) {

@@ -69,12 +69,12 @@ $action = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']))
 		<div style="text-align:right"><?php echo gettext('*Required'); ?></div>
 		<input type="submit" value="<?php echo gettext('Submit') ?>" />
 		<?php
-		if (function_exists('federated_login_buttons')) {
+		if (class_exists('federated_logon')) {
 
 			?>
 			<fieldset id="Federated_buttons_fieldlist">
 				<legend><?php echo gettext('You may also register using federated credentials'); ?></legend>
-				<?php federated_login_buttons(WEBPATH.'/index.php'); ?>
+				<?php federated_logon::buttons(WEBPATH.'/index.php'); ?>
 			</fieldset>
 			<?php
 		}

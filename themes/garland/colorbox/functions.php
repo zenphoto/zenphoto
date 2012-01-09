@@ -4,7 +4,7 @@
  */
 // initialization stuff
 
-if(zp_has_filter('theme_head','colorbox_css')) {
+if(zp_has_filter('theme_head','colorbox::css')) {
 	$personality = new colorbox();
 } else {
 	require_once($_zp_themeroot.'/image_page/functions.php');

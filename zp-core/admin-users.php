@@ -73,14 +73,13 @@ if (isset($_GET['action'])) {
 					$updated = false;
 					$error = false;
 					$userobj = NULL;
-					$pass = trim(sanitize($_POST['adminpass'.$i]));
+					$pass = trim(sanitize($_POST['pass'.$i]));
 					$user = trim(sanitize($_POST['adminuser'.$i],0));
 					if (empty($user) && !empty($pass)) {
 						$notify = '?mismatch=nothing';
 					}
 					if (!empty($user)) {
 						$nouser = false;
-						if ($pass == trim(sanitize($_POST['adminpass_2_'.$i])) && strlen($_POST['adminpass'.$i]) == strlen($_POST['adminpass_2_'.$i])) {
 							if (isset($_POST[$i.'-newuser'])) {
 								$newuser = $user;
 								$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
@@ -120,9 +119,16 @@ if (isset($_GET['action'])) {
 									$msg = '';
 								}
 							} else {
-								if ($pass != $userobj->getPass()) {
+								$pass2 = trim(sanitize($_POST['pass_2_'.$i]));
+								if ($pass == $pass2) {
+									$pass2 = $userobj->getPass($pass);
 									$msg = $userobj->setPass($pass);
-									$updated = true;
+									if ($pass2 !=  $userobj->getPass($pass)) {
+										$updated = true;
+									}
+								} else {
+									$notify = '?mismatch=password';
+									$error = true;
 								}
 							}
 							$challenge = sanitize($_POST[$i.'-challengephrase']);
@@ -182,9 +188,6 @@ if (isset($_GET['action'])) {
 									$error = true;
 								}
 							}
-						} else {
-							$notify = '?mismatch=password';
-							$error = true;
 						}
 					}
 				}
@@ -208,7 +211,7 @@ if (isset($_GET['action'])) {
 			header("Location: " . $notify . $returntab.$ticket);
 			exit();
 
-	}
+
 }
 $refresh = false;
 

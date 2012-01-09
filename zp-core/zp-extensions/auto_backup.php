@@ -22,8 +22,8 @@ $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'auto_backup';
 if ((getOption('last_backup_run')+getOption('backup_interval')*86400) < time()) {	// register if it is time for a backup
 	require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
-	zp_register_filter('admin_head','auto_backup_timer_handler', 10);
-	zp_register_filter('theme_head','auto_backup_timer_handler', 10);
+	zp_register_filter('admin_head','auto_backup::timer_handler', 10);
+	zp_register_filter('theme_head','auto_backup::timer_handler', 10);
 }
 
 /**
@@ -56,39 +56,40 @@ class auto_backup {
 
 	function handleOption($option, $currentValue) {
 	}
-}
 
-/**
- * Handles the periodic start of the backup/restore utility to backup the database
- * @param string $discard
- */
-function auto_backup_timer_handler($discard) {
-	setOption('last_backup_run',time());
-	$curdir = getcwd();
-	$folder = SERVERPATH . "/" . BACKUPFOLDER;
-	if (!is_dir($folder)) {
-		mkdir ($folder, FOLDER_MOD);
-	}
-	chdir($folder);
-	$filelist = safe_glob('*'.'.zdb');
-	$list = array();
-	foreach($filelist as $file) {
-		$list[$file] = filemtime($file);
-	}
-	chdir($curdir);
-	asort($list);
-	$list = array_flip($list);
-	$keep = getOption('backups_to_keep');
-	while (count($list) >= $keep) {
-		$file = array_shift($list);
-		@chmod(SERVERPATH . "/" . BACKUPFOLDER.'/'.$file, 0666);
-		unlink(SERVERPATH . "/" . BACKUPFOLDER.'/'.$file);
+	/**
+	 * Handles the periodic start of the backup/restore utility to backup the database
+	 * @param string $discard
+	 */
+	static function timer_handler($discard) {
+		setOption('last_backup_run',time());
+		$curdir = getcwd();
+		$folder = SERVERPATH . "/" . BACKUPFOLDER;
+		if (!is_dir($folder)) {
+			mkdir ($folder, FOLDER_MOD);
+		}
+		chdir($folder);
+		$filelist = safe_glob('*'.'.zdb');
+		$list = array();
+		foreach($filelist as $file) {
+			$list[$file] = filemtime($file);
+		}
+		chdir($curdir);
+		asort($list);
+		$list = array_flip($list);
+		$keep = getOption('backups_to_keep');
+		while (count($list) >= $keep) {
+			$file = array_shift($list);
+			@chmod(SERVERPATH . "/" . BACKUPFOLDER.'/'.$file, 0666);
+			unlink(SERVERPATH . "/" . BACKUPFOLDER.'/'.$file);
+		}
+
+		cron_starter(	SERVERPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/backup_restore.php',
+									array('backup'=>1, 'compress'=>sprintf('%u',getOption('backup_compression')),'XSRFTag'=>'backup')
+								);
+		return $discard;
 	}
 
-	cron_starter(	SERVERPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/backup_restore.php',
-								array('backup'=>1, 'compress'=>sprintf('%u',getOption('backup_compression')),'XSRFTag'=>'backup')
-							);
-	return $discard;
 }
 
 ?>

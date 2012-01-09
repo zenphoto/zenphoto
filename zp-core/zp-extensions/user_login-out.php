@@ -16,11 +16,11 @@ $option_interface = 'user_logout_options';
 if (isset($_zp_gallery_page) && getOption('user_logout_login_form') > 1) {
 	setOption('colorbox_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page), 1, false);
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox.php');
-	if(!zp_has_filter('theme_head','colorbox_css')) {
-		zp_register_filter('theme_head','colorbox_css');
+	if(!zp_has_filter('theme_head','colorbox::css')) {
+		zp_register_filter('theme_head','colorbox::css');
 	}
 }
-if(zp_has_filter('theme_head','colorbox_css')) {
+if(zp_has_filter('theme_head','colorbox::css')) {
 	zp_register_filter('theme_head','user_logout_options::js');
 }
 

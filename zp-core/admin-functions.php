@@ -135,7 +135,7 @@ function printAdminHeader($tab,$subtab=NULL) {
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		<?php
-		if(zp_has_filter('admin_head','colorbox_css')) {
+		if(zp_has_filter('admin_head','colorbox::css')) {
 			?>
 			$(document).ready(function(){
 				$("a.colorbox").colorbox({ maxWidth:"98%", maxHeight:"98%"});
@@ -368,26 +368,28 @@ function printSubtabs() {
 	?>
 	<ul class="subnav" >
 	<?php
-	foreach ($tabs as $key=>$link) {
-		$i = strrpos($link, 'tab=');
-		$amp = strrpos($link, '&');
-		if ($i===false) {
-			$tab = $_zp_admin_subtab;
-		} else {
-			if ($amp > $i) {
-				$source = substr($link, 0, $amp);
+	if (!empty($tabs)) {
+		foreach ($tabs as $key=>$link) {
+			$i = strrpos($link, 'tab=');
+			$amp = strrpos($link, '&');
+			if ($i===false) {
+				$tab = $_zp_admin_subtab;
 			} else {
-				$source = $link;
+				if ($amp > $i) {
+					$source = substr($link, 0, $amp);
+				} else {
+					$source = $link;
+				}
+				$tab = substr($source, $i+4);
 			}
-			$tab = substr($source, $i+4);
+			if (strpos($link,'/') !== 0) {	// zp_core relative
+				$link = WEBPATH.'/'.ZENFOLDER.'/'.$link;
+			} else {
+				$link = WEBPATH.$link;
+			}
+			echo '<li'.(($current == $tab) ? ' class="current"' : '').'>'.
+					 '<a href = "'.$link.'">'.$key.'</a></li>'."\n";
 		}
-		if (strpos($link,'/') !== 0) {	// zp_core relative
-			$link = WEBPATH.'/'.ZENFOLDER.'/'.$link;
-		} else {
-			$link = WEBPATH.$link;
-		}
-		echo '<li'.(($current == $tab) ? ' class="current"' : '').'>'.
-				 '<a href = "'.$link.'">'.$key.'</a></li>'."\n";
 	}
 	?>
 	</ul>

@@ -102,7 +102,7 @@ function run() {
 			$userid = $provider.':'.$userid;
 		}
 		$redirect = @$_SESSION['OpenID_redirect'];
-		$success .= logonFederatedCredentials($userid, $email, $name, $redirect);
+		$success .= federated_login::credentials($userid, $email, $name, $redirect);
 
 	}
 	return $success;

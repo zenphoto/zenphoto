@@ -171,7 +171,7 @@ class xmpMetadata {
 				$meta = trim(substr($xmpdata,0,$e));
 				$xmpdata = substr($xmpdata,$e+strlen($close));
 				if (strpos($meta, '<') === false) {
-					$xmp_parsed[$key] = $meta;
+					$xmp_parsed[$key] = html_decode($meta);
 				} else {
 					$elements = array();
 					while (!empty($meta)) {
@@ -181,7 +181,7 @@ class xmpMetadata {
 						$meta = substr($meta,$e+1);
 						if (strpos($tag,'rdf:li') !== false) {
 							$e = strpos($meta,'</rdf:li>');
-							$elements[] = trim(substr($meta, 0, $e));
+							$elements[] = html_decode(trim(substr($meta, 0, $e)));
 							$meta = substr($meta,$e+9);
 						}
 					}
@@ -195,7 +195,7 @@ class xmpMetadata {
 							$meta = trim(substr($meta, strlen($item)));
 							$i = strpos($item,'=');
 							$tag = '<'.substr($item,0,$i).'>';
-							$v = substr($item,$i+2,-1);
+							$v = html_decode(trim(substr($item,$i+2,-1)));
 							$key = array_search($tag,$desiredtags);
 							if ($key !== false) {
 								$xmp_parsed[$key] = $v;

@@ -32,7 +32,7 @@ $plugin_description = gettext("Plugin to generate file download lists. The sourc
 $plugin_author = "Malte Müller (acrylian)";
 
 $plugin_URL = "";
-$option_interface = "downloadListOptions";
+$option_interface = "downloadList";
 zp_register_filter('admin_utilities_buttons', 'downloadstatistics_button');
 zp_register_filter('custom_option_save', 'downloadListOptions::custom_options_save');
 
@@ -40,7 +40,7 @@ zp_register_filter('custom_option_save', 'downloadListOptions::custom_options_sa
  * Plugin option handling class
  *
  */
-class downloadListOptions {
+class downloadList {
 
 	function __construct() {
 		setOptionDefault('downloadList_directory', 'uploaded');

@@ -27,7 +27,7 @@ $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 
-$option_interface = 'staticCache_options';
+$option_interface = 'static_html_cache_options';
 
 require_once(dirname(dirname(__FILE__)).'/functions.php');
 
@@ -49,45 +49,23 @@ foreach($cachesubfolders as $cachesubfolder) {
 
 if (OFFSET_PATH) {
 
-	zp_register_filter('admin_utilities_buttons', 'static_cache_html_purgebutton');
+	zp_register_filter('admin_utilities_buttons', 'static_html_cache::purgebutton');
 	if (isset($_GET['action']) && $_GET['action']=='clear_html_cache' && zp_loggedin(ADMIN_RIGHTS)) {
 		XSRFdefender('ClearHTMLCache');
-		$_zp_HTML_cache = new staticCache();
+		$_zp_HTML_cache = new static_html_cache();
 		$_zp_HTML_cache->clearHTMLCache();
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('HTML cache cleared.'));
 		exit();
 	}
 
-	/**
-	 * creates the Utilities button to purge the static html cache
-	 * @param array $buttons
-	 * @return array
-	 */
-	function static_cache_html_purgebutton($buttons) {
-		$buttons[] = array(
-							'category'=>gettext('cache'),
-							'enable'=>true,
-							'button_text'=>gettext('Purge HTML cache'),
-							'formname'=>'clearcache_button',
-							'action'=>PLUGIN_FOLDER.'/static_html_cache.php?action=clear_html_cache',
-							'icon'=>'images/edit-delete.png',
-							'title'=>gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
-							'alt'=>'',
-							'hidden'=> '<input type="hidden" name="action" value="clear_html_cache">',
-							'rights'=> ADMIN_RIGHTS,
-							'XSRFTag'=>'ClearHTMLCache'
-							);
-							return $buttons;
-	}
-
 } else {	//	if the page is cached then handle it early
 	if (count($_zp_authority->getAuthCookies())<=0) {
-		$_zp_HTML_cache = new staticCache();
+		$_zp_HTML_cache = new static_html_cache();
 		$_zp_HTML_cache->startHTMLCache();
 	}
 }
 
-class staticCache {
+class static_html_cache {
 
 	var $enabled = true; // manual disable caching a page
 	private $pageCachePath = NULL;
@@ -192,7 +170,7 @@ class staticCache {
 						exit();
 					}
 				} else {
-					$this->deleteStaticCacheFile($cachefilepath);
+					$this->deletestatic_html_cacheFile($cachefilepath);
 					if (ob_start()) {
 						$this->pageCachePath = $cachefilepath;
 					}
@@ -316,7 +294,7 @@ class staticCache {
 	 *
 	 * @param string $cachefilepath Path to the cache file to be deleted
 	 */
-	function deleteStaticCacheFile($cachefilepath) {
+	function deletestatic_html_cacheFile($cachefilepath) {
 		if(file_exists($cachefilepath)) {
 			@chmod($cachefilepath, 0666);
 			@unlink($cachefilepath);
@@ -353,25 +331,48 @@ class staticCache {
 		}
 		//clearstatcache();
 	}
-} // class
-/**
- * call to disable caching a page
- */
-function static_cache_html_disable_cache() {
-	global $_zp_HTML_cache;
-	if(is_object($_zp_HTML_cache)) {
-		$_zp_HTML_cache->enabled = false;
-	}
-}
 
+	/**
+	 * call to disable caching a page
+	 */
+	static function disable() {
+		global $_zp_HTML_cache;
+		if(is_object($_zp_HTML_cache)) {
+			$_zp_HTML_cache->enabled = false;
+		}
+	}
+
+	/**
+	 * creates the Utilities button to purge the static html cache
+	 * @param array $buttons
+	 * @return array
+	 */
+	static function purgebutton($buttons) {
+		$buttons[] = array(
+							'category'=>gettext('cache'),
+							'enable'=>true,
+							'button_text'=>gettext('Purge HTML cache'),
+							'formname'=>'clearcache_button',
+							'action'=>PLUGIN_FOLDER.'/static_html_cache.php?action=clear_html_cache',
+							'icon'=>'images/edit-delete.png',
+							'title'=>gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
+							'alt'=>'',
+							'hidden'=> '<input type="hidden" name="action" value="clear_html_cache">',
+							'rights'=> ADMIN_RIGHTS,
+							'XSRFTag'=>'ClearHTMLCache'
+							);
+							return $buttons;
+	}
+
+}
 
 /**
  * Plugin option handling class
  *
  */
-class staticCache_options {
+class static_html_cache_options {
 
-	function staticCache_options() {
+	function static_html_cache_options() {
 		setOptionDefault('static_cache_expire', 86400);
 		setOptionDefault('static_cache_excludedpages', 'search.php/,contact.php/,register.php/');
 	}

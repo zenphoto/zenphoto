@@ -7,7 +7,7 @@ if (!defined('WEBPATH')) die();
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle()); ?> | <?php echo html_encode(getImageTitle()); ?></title>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
-	<?php if(zp_has_filter('theme_head','colorbox_css')) { ?>
+	<?php if(zp_has_filter('theme_head','colorbox::css')) { ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(document).ready(function(){

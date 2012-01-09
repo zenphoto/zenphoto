@@ -234,14 +234,11 @@ if (sha1($f)=='666748cfbba9360ad426d8b8f491881eed17c34d') {
  * Decodes HTML Special Characters.
  *
  * @param string $text
- * @param string $quote_style
  * @return string
  */
 
-function zp_html_decode($string, $quote_style = ENT_QUOTES) {
-	$translation_table = get_html_translation_table(HTML_SPECIALCHARS, $quote_style);
-	$translation_table["'"] = '&#039;';
-	return (strtr($string, array_flip($translation_table)));
+function html_decode($string) {
+	return html_entity_decode($string, ENT_QUOTES, 'UTF-8');
 }
 
 
@@ -721,9 +718,9 @@ function getImageProcessorURI($args, $album, $image) {
 	if (!empty($passedWM)) $uri .= '&wmk='.$passedWM;
 	if (!empty($adminrequest)) $uri .= '&admin';
 	if (!is_null($effects)) $uri .= '&effects='.$effects;
-	if (function_exists('static_cache_html_disable_cache')) {
+	if (class_exists('static_html_cache')) {
 		// don't cache pages that have image processor URIs
-		static_cache_html_disable_cache();
+		static_html_cache::disable();
 	}
 	return $uri;
 }
@@ -840,18 +837,18 @@ function sanitize_string($input_string, $sanitize_level) {
 			//it was unnecessary
 			case 1:
 				$allowed_tags = getAllowedTags('allowed_tags');
-				$input_string = html_entity_decode(kses($input_string.' >', $allowed_tags));
+				$input_string = html_decode(kses($input_string.' >', $allowed_tags));
 				break;
 
 				// Text formatting sanititation.
 			case 2:
 				$allowed_tags = getAllowedTags('style_tags');
-				$input_string = html_entity_decode(kses($input_string.' >', $allowed_tags));
+				$input_string = html_decode(kses($input_string.' >', $allowed_tags));
 				break;
 				// Full sanitation.  Strips all code.
 			case 3:
 				$allowed_tags = array();
-				$input_string = html_entity_decode(kses($input_string.' >', $allowed_tags));
+				$input_string = html_decode(kses($input_string.' >', $allowed_tags));
 				break;
 		}
 		if (substr($input_string, -2) == ' >') {
@@ -1170,7 +1167,7 @@ function debugLogVar($message, $var) {
 	$str = ob_get_contents();
 	ob_end_clean();
 	debugLog($message);
-	debugLog(html_entity_decode(strip_tags($str)));
+	debugLog(html_decode(strip_tags($str)));
 }
 
 /**

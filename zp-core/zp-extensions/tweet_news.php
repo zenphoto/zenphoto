@@ -8,10 +8,11 @@ $plugin_description = gettext('Tweet news articles when published.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (function_exists('curl_init')) ? false : gettext('The <em>php_curl</em> extension is required');
 
+$option_interface = 'tweet';
+
 if ($plugin_disable) {
 	setOption('zp_plugin_tweet_news',0);
 } else {
-	$option_interface = 'tweet';
 	zp_register_filter('show_change', 'tweet::published');
 	if (getOption('tweet_news_albums'))	zp_register_filter('new_album', 'tweet::published');
 	if (getOption('tweet_news_images'))	zp_register_filter('new_image', 'tweet::published');
@@ -31,8 +32,6 @@ if ($plugin_disable) {
 
 	require_once(getPlugin('tweet_news/twitteroauth.php'));
 }
-
-$option_interface = 'tweet';
 
 /**
  *
@@ -272,9 +271,9 @@ class tweet {
 		switch ($type = $obj->table) {
 			case 'pages':
 			case 'news':
-				$text = trim(html_entity_decode(strip_tags($obj->getContent()),ENT_QUOTES));
+				$text = trim(html_decode(strip_tags($obj->getContent())));
 				if (strlen($text) > 140) {
-					$title = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES));
+					$title = trim(html_decode(strip_tags($obj->getTitle())));
 					$c = 140 - strlen($link);
 					if (mb_strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
 						$text = truncate_string($title, $c - 4, '... ').$link;	//	allow for ellipsis
@@ -292,10 +291,10 @@ class tweet {
 			case 'albums':
 			case 'images':
 				if ($type=='images') {
-					$text = sprintf(gettext('New image: [%2$s]%1$s '),$item = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES)),
-																															trim(html_entity_decode(strip_tags($obj->album->name),ENT_QUOTES)));
+					$text = sprintf(gettext('New image: [%2$s]%1$s '),$item = trim(html_decode(strip_tags($obj->getTitle()))),
+																															trim(html_decode(strip_tags($obj->album->name))));
 				} else {
-					$text = sprintf(gettext('New album: %s '),$item = trim(html_entity_decode(strip_tags($obj->getTitle()),ENT_QUOTES)));
+					$text = sprintf(gettext('New album: %s '),$item = trim(html_decode(strip_tags($obj->getTitle()))));
 				}
 				if (mb_strlen($text.$link) > 140) {
 					$c = 140 - strlen($link);
@@ -309,7 +308,7 @@ class tweet {
 				}
 				break;
 			case 'comments':
-				$text = trim(html_entity_decode(strip_tags($obj->getComment()),ENT_QUOTES));
+				$text = trim(html_decode(strip_tags($obj->getComment())));
 				if (mb_strlen($text.$link) > 140) {
 					$c = 140 - strlen($link);
 					$text = truncate_string($text, $c-4, '... ').$link;	//	allow for ellipsis

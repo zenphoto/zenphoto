@@ -12,7 +12,7 @@ if (!defined('WEBPATH')) die();
 	<title><?php echo getBareImageTitle();?> | <?php echo getBareAlbumTitle();?> | <?php echo getBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-	<?php if(zp_has_filter('theme_head','colorbox_css')) { ?>
+	<?php if(zp_has_filter('theme_head','colorbox::css')) { ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(document).ready(function(){

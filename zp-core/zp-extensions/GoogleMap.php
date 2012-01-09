@@ -334,7 +334,7 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 
 	switch ($hide) {
 		case 'colorbox':
-			if (zp_has_filter('theme_head','colorbox_css')) {
+			if (zp_has_filter('theme_head','colorbox::css')) {
 				$w = str_replace('px','',$MAP_OBJECT->width)+20;
 				$h = str_replace('px','',$MAP_OBJECT->height)+20;
 

@@ -20,42 +20,45 @@ if (isset($_REQUEST['performcrop'])) {
 	require_once(dirname(dirname(__FILE__)).'/functions-image.php');
 	admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL(__FILE__));
 } else {
-	zp_register_filter('admin_toolbox_image', 'toolbox_crop_image');
-	zp_register_filter('edit_image_utilities', 'edit_crop_image', 1); // we want this one to come right after the crop thumbnail button
+	zp_register_filter('admin_toolbox_image', 'crop_image::toolbox');
+	zp_register_filter('edit_image_utilities', 'crop_image::edit', 1); // we want this one to come right after the crop thumbnail button
 	return;
 }
 
-function toolbox_crop_image($albumname, $imagename) {
-	$album = new Album(NULL, $albumname);
-	if ($album->isMyItem(ALBUM_RIGHTS)) {
-		$image = newimage($album,$imagename);
-		if (isImagePhoto($image)) {
-			?>
-			<li>
-			<a href="<?php echo WEBPATH."/".ZENFOLDER . '/'.PLUGIN_FOLDER; ?>/crop_image.php?a=<?php echo pathurlencode($albumname); ?>
-					&amp;i=<?php echo urlencode($imagename); ?>&amp;performcrop=frontend "><?php echo gettext("Crop image"); ?></a>
-			</li>
-			<?php
+class crop_image {
+
+	static function toolbox($albumname, $imagename) {
+		$album = new Album(NULL, $albumname);
+		if ($album->isMyItem(ALBUM_RIGHTS)) {
+			$image = newimage($album,$imagename);
+			if (isImagePhoto($image)) {
+				?>
+				<li>
+				<a href="<?php echo WEBPATH."/".ZENFOLDER . '/'.PLUGIN_FOLDER; ?>/crop_image.php?a=<?php echo pathurlencode($albumname); ?>
+						&amp;i=<?php echo urlencode($imagename); ?>&amp;performcrop=frontend "><?php echo gettext("Crop image"); ?></a>
+				</li>
+				<?php
+			}
 		}
 	}
-}
 
-function edit_crop_image($output, $image, $prefix, $subpage, $tagsort) {
-	$album = $image->getAlbum();
-	$albumname = $album->name;
-	$imagename = $image->filename;
-	if (isImagePhoto($image)) {
-		$output .=
-			'<p class="buttons" >'."\n".
-					'<a href="'.WEBPATH."/".ZENFOLDER . '/'.PLUGIN_FOLDER.'/crop_image.php?a='.pathurlencode($albumname)."\n".
-							'&amp;i='.urlencode($imagename).'&amp;performcrop=backend&amp;subpage='.$subpage.'&amp;tagsort='.$tagsort.'">'."\n".
-							'<img src="images/shape_handles.png" alt="" />'.gettext("Crop image").'</a>'."\n".
-			'</p>'."\n".
-			'<span style="line-height: 0em;"><br clear="all" /></span>'."\n";
+	static function edit($output, $image, $prefix, $subpage, $tagsort) {
+		$album = $image->getAlbum();
+		$albumname = $album->name;
+		$imagename = $image->filename;
+		if (isImagePhoto($image)) {
+			$output .=
+				'<p class="buttons" >'."\n".
+						'<a href="'.WEBPATH."/".ZENFOLDER . '/'.PLUGIN_FOLDER.'/crop_image.php?a='.pathurlencode($albumname)."\n".
+								'&amp;i='.urlencode($imagename).'&amp;performcrop=backend&amp;subpage='.$subpage.'&amp;tagsort='.$tagsort.'">'."\n".
+								'<img src="images/shape_handles.png" alt="" />'.gettext("Crop image").'</a>'."\n".
+				'</p>'."\n".
+				'<span style="line-height: 0em;"><br clear="all" /></span>'."\n";
+		}
+		return $output;
 	}
-	return $output;
-}
 
+}
 
 $albumname = sanitize_path($_REQUEST['a']);
 $imagename = sanitize_path($_REQUEST['i']);

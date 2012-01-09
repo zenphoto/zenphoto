@@ -835,7 +835,7 @@ class Zenphoto_Authority {
 					?>
 					<div class="errorbox" id="message"><h2><?php echo gettext("There was an error logging in."); ?></h2>
 					<?php
-					if ($showUser) {
+					if ($showUserField) {
 						echo gettext("Check your username and password and try again.");
 					} else {
 						echo gettext("Check password and try again.");

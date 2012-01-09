@@ -206,15 +206,13 @@ function mkdir_recursive($pathname, $mode) {
 	return is_dir($pathname) || @mkdir($pathname, $mode);
 }
 
-function zp_html_decode($string, $quote_style = ENT_QUOTES) {
-	$translation_table = get_html_translation_table(HTML_SPECIALCHARS, $quote_style);
-	$translation_table["'"] = '&#039;';
-	return (strtr($string, array_flip($translation_table)));
+function html_decode($string) {
+	return html_entity_decode($string, ENT_QUOTES, 'UTF-8');
 }
 
+
 function html_encode($this_string) {
-	$this_string = zp_html_decode($this_string, ENT_QUOTES);
-	return htmlspecialchars($this_string, ENT_QUOTES, 'UTF-8');
+	return htmlspecialchars($this_string, ENT_QUOTES, LOCAL_CHARSET);
 }
 
 /**

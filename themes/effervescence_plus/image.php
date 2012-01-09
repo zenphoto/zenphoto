@@ -14,7 +14,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<?php effervescence_theme_head(); ?>
-	<?php if(zp_has_filter('theme_head','colorbox_css')) { ?>
+	<?php if(zp_has_filter('theme_head','colorbox::css')) { ?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(document).ready(function(){

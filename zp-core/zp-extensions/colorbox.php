@@ -13,50 +13,20 @@ $plugin_description = gettext("Loads Colorbox JS and CSS scripts for selected th
 $plugin_author = 'Stephen Billard (sbillard)';
 
 
-$option_interface = 'colorbox_Options';
+$option_interface = 'colorbox';
 
 if (OFFSET_PATH) {
-	zp_register_filter('admin_head','colorbox_css');
+	zp_register_filter('admin_head','colorbox::css');
 } else {
 	global $_zp_gallery;
 	if (getOption('colorbox_'.$_zp_gallery->getCurrentTheme().'_'.stripSuffix($_zp_gallery_page))) {
-		zp_register_filter('theme_head','colorbox_css');
+		zp_register_filter('theme_head','colorbox::css');
 	}
 }
 
-function colorbox_css() {
-	global $_zp_gallery;
-	$theme = getOption('colorbox_theme');
-	if(empty($theme)) {
-		$themepath = 'colorbox/themes/example1/colorbox.css';
-	} else {
-		if($theme == 'custom') {
-			$themepath = 'colorbox/colorbox.css';
-		} else {
-			$themepath = 'colorbox/themes/'.$theme.'/colorbox.css';
-		}
-	}
-	if (OFFSET_PATH) {
-		$inTheme = false;
-	} else {
-		$inTheme = $_zp_gallery->getCurrentTheme();
-	}
-	$css = getPlugin($themepath,$inTheme,true);
-	?>
-	<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
-	<?php
-	$navigator_user_agent = ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) ? strtolower( $_SERVER['HTTP_USER_AGENT'] ) : '';
-	if (stristr($navigator_user_agent, "msie") && !stristr($navigator_user_agent, '9')) {
-		include(dirname(__FILE__).'/colorbox/colorbox_ie.css.php');
-	}
-	?>
-	<script type="text/javascript" src="<?php echo FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/colorbox/jquery.colorbox-min.js"></script>
-	<?php
-}
+class colorbox {
 
-class colorbox_Options {
-
-	function colorbox_Options() {
+	function __construct() {
 		//	These are best set by the theme itself!
 		setOptionDefault('colorbox_theme','example1');
 	}
@@ -91,5 +61,36 @@ class colorbox_Options {
 
 	function handleOption($option, $currentValue) {
 	}
+
+	static function css() {
+		global $_zp_gallery;
+		$theme = getOption('colorbox_theme');
+		if(empty($theme)) {
+			$themepath = 'colorbox/themes/example1/colorbox.css';
+		} else {
+			if($theme == 'custom') {
+				$themepath = 'colorbox/colorbox.css';
+			} else {
+				$themepath = 'colorbox/themes/'.$theme.'/colorbox.css';
+			}
+		}
+		if (OFFSET_PATH) {
+			$inTheme = false;
+		} else {
+			$inTheme = $_zp_gallery->getCurrentTheme();
+		}
+		$css = getPlugin($themepath,$inTheme,true);
+		?>
+		<link rel="stylesheet" href="<?php echo $css; ?>" type="text/css" />
+		<?php
+		$navigator_user_agent = ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) ? strtolower( $_SERVER['HTTP_USER_AGENT'] ) : '';
+		if (stristr($navigator_user_agent, "msie") && !stristr($navigator_user_agent, '9')) {
+			include(dirname(__FILE__).'/colorbox/colorbox_ie.css.php');
+		}
+		?>
+		<script type="text/javascript" src="<?php echo FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/colorbox/jquery.colorbox-min.js"></script>
+		<?php
+	}
+
 }
 ?>
