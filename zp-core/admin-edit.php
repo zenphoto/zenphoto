@@ -1471,7 +1471,7 @@ $alb = removeParentAlbumNames($album);
 											$display = $_zp_exifvars[$field][3];
 											if ($display) {
 												$label = $_zp_exifvars[$field][2];
-												$data .= "<tr><td align=\"right\" >$label: </td> <td>$value</td></tr>\n";
+												$data .= "<tr><td align=\"right\" >$label: </td> <td>".html_encode($value)."</td></tr>\n";
 											}
 										}
 									}

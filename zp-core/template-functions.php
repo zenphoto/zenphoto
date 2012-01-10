@@ -2234,7 +2234,7 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
 			foreach ($exif as $field => $value) {
 				$label = $_zp_exifvars[$field][2];
 				echo "<tr><td class=\"label\">$label:</td><td class=\"value\">";
-				printField('image', $field, false, $value);
+				echo html_encode($value);
 				echo "</td></tr>\n";
 			}
 			?>
@@ -4441,7 +4441,7 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
  * @param string $theme The theme being used
  */
 function exposeZenPhotoInformations( $obj = '', $plugins = '', $theme = '' ) {
-	global $zenpage_version, $_zp_filters;
+	global $_zp_filters;
 
 	$a = basename($obj);
 	if ($a != 'full-image.php') {

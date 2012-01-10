@@ -9,7 +9,6 @@ $plugin_description = gettext("A CMS plugin that adds the capability to run an e
 				."<p class='notebox'>". gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> and <em>stopdesign</em> themes.")."</p>";
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
-$zenpage_version = $plugin_version;
 
 zp_register_filter('checkForGuest', 'zenpageCheckForGuest');
 zp_register_filter('isMyItemToView', 'zenpageIsMyItemToView');
