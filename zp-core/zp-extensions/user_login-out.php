@@ -51,7 +51,8 @@ class user_logout_options {
 				$(".logonlink").colorbox({
 					inline:true,
 					href:"#passwordform",
-					close: '<?php echo gettext("close"); ?>'
+					close: '<?php echo gettext("close"); ?>',
+					open: $('#passwordform_enclosure .errorbox').length
 				});
 			});
 			// ]]> -->
@@ -132,21 +133,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 			if ($showLoginForm > 1) {
 				echo $before;
 				?>
-				<a href="#" class="logonlink" title="<?php echo $logintext; ?>">
-					<span id="logonlink_text"><?php echo $logintext; ?></span>
-					<?php
-					if ($_zp_login_error) {
-						?>
-						<script type="text/javascript">
-							// <!-- <![CDATA[
-								$('#logonlink_text').css('color','red');
-								$('#logonlink_text').html($('#logonlink_text').html().blink());
-							// ]]> -->
-						</script>
-						<?php
-					}
-					?>
-				</a>
+				<a href="#" class="logonlink" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
 				<span id="passwordform_enclosure" style="display:none">
 				<?php
 			}
