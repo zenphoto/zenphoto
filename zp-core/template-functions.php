@@ -1131,7 +1131,7 @@ function getBareAlbumDesc() {
  * @author Ozh
  */
 function printAlbumDesc() {
-	printField('album', 'desc');
+	printField('album', 'desc', NULL, false, '', false);
 }
 
 
@@ -1147,7 +1147,7 @@ function printAlbumDesc() {
  * @since 1.3
  * @author Ozh
  */
-function printField($context, $field, $convertBR = NULL, $override = false, $label='') {
+function printField($context, $field, $convertBR = NULL, $override = false, $label='', $encode=true) {
 	if (is_null($convertBR)) $convertBR = !getOption('tinyMCEPresent');
 	switch($context) {
 		case 'image':
@@ -1174,7 +1174,16 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 		trigger_error(gettext('printField() invalid function call.'), E_USER_NOTICE);
 		return false;
 	}
-	$text = preg_replace('/&[^amp;]/', '&amp;', trim($override ? $override : get_language_string($object->get($field))));
+	if ($override) {
+		$text = trim($override);
+	} else {
+		$text = trim(get_language_string($object->get($field)));
+	}
+	if ($encode) {
+		$text = html_encode($text);
+	} else {
+		$text = preg_replace('/&[^amp;]/', '&amp;', $text);
+	}
 	if ($convertBR) {
 		$text = str_replace("\r\n", "\n", $text);
 		$text = str_replace("\n", "<br />", $text);
@@ -1916,7 +1925,7 @@ function getBareImageDesc() {
  *
  */
 function printImageDesc() {
-	printField('image', 'desc');
+	printField('image', 'desc', NULL, false, '', false);
 }
 
 /**
@@ -3136,14 +3145,18 @@ function getHitcounter($obj=NULL) {
  * performs a query and then filters out "illegal" images returning the first "good" image
  * used by the random image functions.
  *
- * @param $result object query result
+ * @param object $result query result
+ * @param string $source album object if this is search within the album
  */
-function filterImageQuery($result) {
+function filterImageQuery($result, $source) {
 	if ($result) {
 		while ($row = db_fetch_assoc($result)) {
 			$image = newImage(NULL, $row);
-			if (isImagePhoto($image) && $image->checkAccess($hint, $show)) {
-				return $image;
+			$album = $image->album;
+			if ($album->name == $source || $album->checkAccess()) {
+				if (isImagePhoto($image) && $image->checkAccess()) {
+					return $image;
+				}
 			}
 		}
 	}
@@ -3178,7 +3191,7 @@ function getRandomImages($daily = false) {
 									' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
 									prefix('albums') . '.id ' . $imageWhere . ' ORDER BY RAND()');
 
-	$image = filterImageQuery($result);
+	$image = filterImageQuery($result, NULL);
 	if ($image) {
 		if ($daily) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
@@ -3251,7 +3264,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 							' WHERE ' . prefix('albums') . '.folder!="" AND '.prefix('images').'.albumid = ' .
 							prefix('albums') . '.id ' . $albumInWhere . $imageWhere . ' ORDER BY RAND()';
 			$result = query($sql);
-			$image = filterImageQuery($result);
+			$image = filterImageQuery($result, $album->name);
 		}
 	}
 	if ($image) {
