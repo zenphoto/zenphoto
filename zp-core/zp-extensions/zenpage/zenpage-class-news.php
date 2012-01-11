@@ -67,6 +67,7 @@ class ZenpageNews extends ZenpageItems {
 			$newobj->setTitle($newtitle);
 			$newobj->setTags($this->getTags());
 			$newobj->setShow(0);
+			$newobj->setDateTime(date('Y-m-d H:i:s'));
 			$newobj->save();
 			$categories = array();
 			foreach ($this->getCategories() as $cat) {

@@ -104,6 +104,7 @@ class ZenpagePage extends ZenpageItems {
 			$newobj->setTitle($newtitle);
 			$newobj->setSortOrder(NULL);
 			$newobj->setTags($this->getTags());
+			$newobj->setDateTime(date('Y-m-d H:i:s'));
 			$newobj->setShow(0);
 			$newobj->save();
 			return $newobj;

@@ -33,6 +33,8 @@ if(is_AdminEditPage('page')) {
 						$as = sprintf(gettext('copy of %s'),$result->getTitle());
 					}
 					$result->copy($as);
+					$result = new ZenpagePage($as);
+					$_GET['titlelink'] = $as;
 					break;
 				case 'delete':
 					$reports[] = deletePage($result);
@@ -72,6 +74,8 @@ if(is_AdminEditPage('newsarticle')) {
 						$as = sprintf(gettext('copy of %s'),$result->getTitle());
 					}
 					$result->copy($as);
+					$result = new ZenpageNews($as);
+					$_GET['titlelink'] = $as;
 					break;
 				case 'delete':
 					$reports[] = deleteArticle($result);
