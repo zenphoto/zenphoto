@@ -168,7 +168,7 @@ function printSlideShowLink($linktext='', $linkstyle='') {
 				break;
 			}
 			if($numberofimages > 1) {
-				if(in_context(ZP_SEARCH) || in_context(ZP_SEARCH_LINKED)) {
+				if ((in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) || in_context(ZP_SEARCH) && is_null($_zp_current_album)) {
 					$images = $_zp_current_search->getImages(0);
 				} else {
 					$images = $_zp_current_album->getImages(0);
