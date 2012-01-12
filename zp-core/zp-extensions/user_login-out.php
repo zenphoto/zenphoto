@@ -20,9 +20,6 @@ if (isset($_zp_gallery_page) && getOption('user_logout_login_form') > 1) {
 		zp_register_filter('theme_head','colorbox::css');
 	}
 }
-if(zp_has_filter('theme_head','colorbox::css')) {
-	zp_register_filter('theme_head','user_logout_options::js');
-}
 
 /**
  * Plugin option handling class
@@ -41,23 +38,6 @@ class user_logout_options {
 		);
 	}
 	function handleOption($option, $currentValue) {
-	}
-
-	static function js() {
-		?>
-		<script type="text/javascript">
-			// <!-- <![CDATA[
-			$(document).ready(function(){
-				$(".logonlink").colorbox({
-					inline:true,
-					href:"#passwordform",
-					close: '<?php echo gettext("close"); ?>',
-					open: $('#passwordform_enclosure .errorbox').length
-				});
-			});
-			// ]]> -->
-		</script>
-		<?php
 	}
 }
 
@@ -131,6 +111,23 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 	if (empty($cookies)) {
 		if ($showLoginForm) {
 			if ($showLoginForm > 1) {
+				if(zp_has_filter('theme_head','colorbox::css')) {
+					?>
+					<script type="text/javascript">
+						// <!-- <![CDATA[
+						$(document).ready(function(){
+							$(".logonlink").colorbox({
+								inline:true,
+								innerWidth: "400px",
+								href:"#passwordform",
+								close: '<?php echo gettext("close"); ?>',
+								open: $('#passwordform_enclosure .errorbox').length
+							});
+						});
+						// ]]> -->
+					</script>
+					<?php
+				}
 				echo $before;
 				?>
 				<a href="#" class="logonlink" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>

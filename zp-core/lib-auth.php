@@ -985,13 +985,15 @@ class Zenphoto_Authority {
 				if ($hint) {
 					echo '<p>'.$hint.'</p>';
 				}
-				?>
+				if (OFFSET_PATH != 2) {
+					?>
 					<p class="logon_link">
 						<a href="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" >
 							<?php echo gettext('I forgot my <strong>User ID</strong>/<strong>Password</strong>'); ?>
 						</a>
 					</p>
-				<?php
+					<?php
+				}
 				break;
 			case 'captcha':
 				$captcha = $_zp_captcha->getCaptcha();

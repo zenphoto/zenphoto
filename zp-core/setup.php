@@ -249,6 +249,7 @@ if (file_exists(CONFIGFILE)) {
 				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'].'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
 				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `loggedin` datetime', false);
 				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `lastloggedin` datetime', false);
+				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `challenge_phrase` TEXT', false);
 			}
 		}
 
