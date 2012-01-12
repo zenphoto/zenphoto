@@ -1131,7 +1131,7 @@ function getBareAlbumDesc() {
  * @author Ozh
  */
 function printAlbumDesc() {
-	printField('album', 'desc', NULL, false, '', false);
+	printField('album', 'desc');
 }
 
 
@@ -1147,7 +1147,7 @@ function printAlbumDesc() {
  * @since 1.3
  * @author Ozh
  */
-function printField($context, $field, $convertBR = NULL, $override = false, $label='', $encode=true) {
+function printField($context, $field, $convertBR = NULL, $override = false, $label='') {
 	if (is_null($convertBR)) $convertBR = !getOption('tinyMCEPresent');
 	switch($context) {
 		case 'image':
@@ -1179,11 +1179,8 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 	} else {
 		$text = trim(get_language_string($object->get($field)));
 	}
-	if ($encode) {
-		$text = html_encode($text);
-	} else {
-		$text = preg_replace('/&[^amp;]/', '&amp;', $text);
-	}
+
+	$text = html_encodeTagged($text);
 	if ($convertBR) {
 		$text = str_replace("\r\n", "\n", $text);
 		$text = str_replace("\n", "<br />", $text);
@@ -1925,7 +1922,7 @@ function getBareImageDesc() {
  *
  */
 function printImageDesc() {
-	printField('image', 'desc', NULL, false, '', false);
+	printField('image', 'desc');
 }
 
 /**
