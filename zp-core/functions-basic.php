@@ -253,6 +253,25 @@ function html_encode($this_string) {
 }
 
 /**
+ *
+ * HTML encodes the non-metatag part of the string.
+ *
+ * @param string $str string to be encoded
+ * @return string
+ */
+function html_encodeTagged($str) {
+	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
+	$output = '';
+	foreach ($matches[0] as $tag) {
+		$i = strpos($str, $tag);
+		$output .= html_encode(substr($str, 0, $i)).$tag;
+		$str = substr($str, $i+strlen($tag));
+	}
+	$output .= html_encode($str);
+	return $output;
+}
+
+/**
  * encodes a pre-sanitized string to be used as a Javascript parameter
  *
  * @param string $this_string

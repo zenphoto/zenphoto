@@ -2480,6 +2480,7 @@ function process_language_string_save($name, $sanitize_level=3) {
 	$l = strlen($name)+1;
 	$strings = array();
 	foreach ($_POST as $key=>$value) {
+		$value = html_decode($value);
 		if (!empty($value) && preg_match('/^'.$name.'_[a-z]{2}_[A-Z]{2}$/', $key)) {
 			$key = substr($key, $l);
 			if (in_array($key, $languages)) {
@@ -2490,7 +2491,7 @@ function process_language_string_save($name, $sanitize_level=3) {
 	switch (count($strings)) {
 		case 0:
 			if (isset($_POST[$name])) {
-				return sanitize($_POST[$name], $sanitize_level);
+				return html_decode(sanitize($_POST[$name], $sanitize_level));
 			} else {
 				return '';
 			}
