@@ -779,7 +779,6 @@ $alb = removeParentAlbumNames($album);
 	<?php
 	}
 
-	zp_apply_filter('admin_note','albums', $subtab);
 	if (isset($_GET['uploaded'])) {
 		?>
 		<div class="messagebox fade-message">
@@ -1671,7 +1670,8 @@ if (isset($_GET['saved'])) {
 /*** EDIT ALBUM SELECTION *********************************************************************/
 
 } else { /* Display a list of albums to edit. */
-zp_apply_filter('admin_note','albums', '');?>
+zp_apply_filter('admin_note','albums', '');
+?>
 <h1><?php echo gettext("Edit Gallery"); ?></h1>
 <?php
 	displayDeleted(); /* Display a message if needed. Fade out and hide after 2 seconds. */

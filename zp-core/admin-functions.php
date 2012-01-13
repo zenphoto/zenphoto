@@ -1061,10 +1061,12 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
  */
 function printAlbumEditForm($index, $album, $collapse_tags) {
 	global $sortby, $_zp_gallery, $mcr_albumlist, $albumdbfields, $imagedbfields, $_zp_albumthumb_selector, $_zp_current_admin_obj;
-	if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) && $album->getID() == $_zp_current_admin_obj->getAlbum()->getID()) {
-		$isPrimaryAlbum = ' disabled="disabled"';
-	} else {
-		$isPrimaryAlbum = '';
+	$isPrimaryAlbum = '';
+	if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+		$myalbum = $_zp_current_admin_obj->getAlbum();
+		if ($myalbum && $album->getID() == $myalbum->getAlbum()->getID()) {
+			$isPrimaryAlbum = ' disabled="disabled"';
+		}
 	}
 	$tagsort = getTagOrder();
 	if ($index == 0) {
@@ -1421,7 +1423,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						<td align="left" valign="top" width="150"><?php echo gettext("Album watermarks:"); ?> </td>
 						<td>
 							<?php $current = $album->getWatermark(); ?>
-							<select id="album_watermark" name="<?php echo $prefix; ?>album_watermark">
+							<select id="album_watermark<?php echo $suffix; ?>" name="<?php echo $prefix; ?>album_watermark">
 								<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current==NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
 								<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
 								<?php
@@ -1436,7 +1438,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						<td align="left" valign="top" width="150"></td>
 						<td>
 							<?php $current = $album->getWatermarkThumb(); ?>
-							<select id="album_watermark_thumb" name="<?php echo $prefix; ?>album_watermark_thumb">
+							<select id="album_watermark_thumb<?php echo $suffix; ?>" name="<?php echo $prefix; ?>album_watermark_thumb">
 								<option value="<?php echo NO_WATERMARK; ?>" <?php if ($current==NO_WATERMARK) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*no watermark'); ?></option>
 								<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('*default'); ?></option>
 								<?php
