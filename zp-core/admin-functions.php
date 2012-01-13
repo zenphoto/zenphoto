@@ -1431,7 +1431,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								generateListFromArray(array($current), $watermarks, false, false);
 								?>
 							</select>
-							<?php echo gettext('Images'); ?>
+							<em><?php echo gettext('Images'); ?></em>
 							</td>
 					</tr>
 					<tr>
@@ -1446,7 +1446,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								generateListFromArray(array($current), $watermarks, false, false);
 								?>
 							</select>
-							<?php echo gettext('Thumbs'); ?>
+							<em><?php echo gettext('Thumbs'); ?></em>
 						</td>
 					</tr>
 					<?php
