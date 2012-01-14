@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-01-07 17:39+0100\n"
-"PO-Revision-Date: 2012-01-07 18:09+0100\n"
+"PO-Revision-Date: 2012-01-12 07:05+0100\n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -12111,11 +12111,11 @@ msgstr "Als dit NIET is aangevinkt wordt voor mp3/m4v/fla alléén de bediening 
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:157
 msgid "Player width (Note this refers to the player window. The playlist display itself is styled via CSS.)"
-msgstr "Breedte van de player (Heeft betrekking op het venster van de player. De  playlist wordt vormgegeven via CSS)"
+msgstr "Breedte van de player (Heeft betrekking op het venster van de player. De playlist wordt vormgegeven met CSS)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:159
 msgid "Player height (Note this refers to the player window. The playlist display itself is styled via CSS.)"
-msgstr "Hoogte van de player (Heeft betrekking op het venster van de player. De  playlist wordt vormgegeven via CSS)"
+msgstr "Hoogte van de player (Heeft betrekking op het venster van de player. De playlist wordt vormgegeven met CSS)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:163
 msgid "full screen"
@@ -12123,7 +12123,7 @@ msgstr "volledig beeldscherm"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:165
 msgid "Splash image - playlist"
-msgstr "Splash afbeelding - playlist"
+msgstr "Playlist splash-afbeelding"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:166
 msgid "Video thumb of first playlist entry"
@@ -12139,7 +12139,7 @@ msgstr "Vink aan als je een splash/cover afbeelding wilt tonen voor de  playlist
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:168
 msgid "Numbered playlist"
-msgstr "Genummerde speelijst"
+msgstr "Playlist (genummerd)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:169
 msgid "If the playlist should be shown with numbers. Then a standard html ordered list is used instead of just a div with links. (Your playlist css may require changes.)"
@@ -12147,7 +12147,7 @@ msgstr "Als de  playlist getoond moet worden met nummers. Er wordt dan een HTML 
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:170
 msgid "Load playlist scripts"
-msgstr "Laad de playlist scripts"
+msgstr "Playlist scripts laden"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:171
 msgid "If the Flowplayer playlist scripts should be loaded. Note that you have to add the function flowplayerPlaylist() to your theme yourself. See the documentation of this function on how to do this."
@@ -12695,7 +12695,7 @@ msgstr "Vink aan als je de playlist modus wilt gebruiken. OPMERKING: Je moet zel
 
 #: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:112
 msgid "Playlist numbered"
-msgstr "Genummerde playlist"
+msgstr "Playlist (genummerd)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:113
 msgid "Enable this if you wish the playlist to be numbered."
@@ -16436,7 +16436,7 @@ msgstr "Verloopt: %s"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:160
 msgid "User id has been preempted"
-msgstr "Gebruikers ID is verwijderd"
+msgstr "Gebruikers ID is (ondertussen) overgenomen door een andere gebruiker"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:168
 msgid "disable"
