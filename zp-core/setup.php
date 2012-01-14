@@ -384,8 +384,12 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 
 <div id="content">
 <?php
-$warn = false;
-if (!$setup_checked && zp_loggedin(ADMIN_RIGHTS)) {
+$blindInstall = $warn = false;
+if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
+	if ($blindInstall = ($upgrade && $autorun) && !zp_loggedin(ADMIN_RIGHTS)) {
+		ob_start();	//	hide output for auto-upgrade
+	}
+
 	?>
 	<p>
 		<?php	echo gettext("Welcome to Zenphoto! This page will set up Zenphoto on your web server."); ?>
@@ -1545,21 +1549,6 @@ if (file_exists(CONFIGFILE)) {
 			$tables[$_zp_conf_vars['mysql_prefix'].'admin_to_object'] = 'update';
 		}
 
-		if (!($tables[$_zp_conf_vars['mysql_prefix'].'administrators'] == 'create')) {
-			if (!zp_loggedin(ADMIN_RIGHTS) && (!isset($_GET['create']) && !isset($_GET['update']))) {  // Display the login form and exit.
-				if (zp_loggedin()) { echo "<p>".gettext("You need <em>USER ADMIN</em> rights to run setup.").'</p>'; }
-				$_zp_authority->printLoginForm('', false);
-				echo "\n</div><!-- content -->";
-				if ($noxlate > 0) {
-					setupLanguageSelector();
-				}
-				echo "\n</div><!-- main -->";
-				printAdminFooter();
-				echo "\n</body>";
-				echo "\n</html>";
-				exit();
-			}
-		}
 	}
 
 	// Prefix the table names. These already have `backticks` around them!
@@ -2351,7 +2340,7 @@ if (file_exists(CONFIGFILE)) {
 				<br clear="all" />
 				<?php
 			}
-			if (!$_zp_loggedin || $_zp_loggedin == ADMIN_RIGHTS) {
+			if ($_zp_loggedin == ADMIN_RIGHTS) {
 				$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
 				if (count($filelist) > 0) {
 					echo '<p>'.sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'),'admin-users.php?page=users',UTILITIES_FOLDER.'/backup_restore.php')."</p>";
@@ -2394,68 +2383,71 @@ if (file_exists(CONFIGFILE)) {
 			}
 		}
 	} else if (db_connect()) {
-		if (!empty($dbmsg)) {
-			?>
-			<h2><?php echo $dbmsg; ?></h2>
-			<?php
-		}
-		?>
-		<div class="dbwindow">
-			<ul>
-			<?php
-			$db_list = '';
-			$create = array();
-			foreach ($expected_tables as $table) {
-				if ($tables[$table] == 'create') {
-					$create[] = $table;
-					if (!empty($db_list)) { $db_list .= ', '; }
-					$db_list .= "<code>$table</code>";
-				}
-			}
-			if (($nc = count($create)) > 0) {
-			?>
-				<li class="createdb">
-					<?php
-					printf(gettext("Database tables to create: %s"), $db_list);
-					?>
-				</li>
-				<?php
-			}
-			$db_list = '';
-			$update = array();
-			foreach ($expected_tables as $table) {
-				if ($tables[$table] == 'update') {
-					$update[] = $table;
-					if (!empty($db_list)) { $db_list .= ', '; }
-					$db_list .= "<code>$table</code>";
-				}
-			}
-			if (($nu = count($update)) > 0) {
-				?>
-				<li class="updatedb">
-					<?php
-					printf(gettext("Database tables to update: %s"), $db_list);
-					?>
-				</li>
-				<?php
-			}
-			?>
-			</ul>
-		</div>
-		<?php
 		$task = '';
-		if ($nc > 0) {
-			$task = "create=" . implode(',', $create);
-		}
-		if ($nu > 0) {
-			if (empty($task)) {
-				$task = "update";
-			} else {
-				$task .= "&update";
+		if (zp_loggedin(ADMIN_RIGHTS) || $blindInstall) {
+			if (!empty($dbmsg)) {
+				?>
+				<h2><?php echo $dbmsg; ?></h2>
+				<?php
 			}
-		}
-		if ($debug) {
-			$task .= '&debug';
+			?>
+			<div class="dbwindow">
+				<ul>
+				<?php
+				$db_list = '';
+				$create = array();
+				foreach ($expected_tables as $table) {
+					if ($tables[$table] == 'create') {
+						$create[] = $table;
+						if (!empty($db_list)) { $db_list .= ', '; }
+						$db_list .= "<code>$table</code>";
+					}
+				}
+				if (($nc = count($create)) > 0) {
+				?>
+					<li class="createdb">
+						<?php
+						printf(gettext("Database tables to create: %s"), $db_list);
+						?>
+					</li>
+					<?php
+				}
+				$db_list = '';
+				$update = array();
+				foreach ($expected_tables as $table) {
+					if ($tables[$table] == 'update') {
+						$update[] = $table;
+						if (!empty($db_list)) { $db_list .= ', '; }
+						$db_list .= "<code>$table</code>";
+					}
+				}
+				if (($nu = count($update)) > 0) {
+					?>
+					<li class="updatedb">
+						<?php
+						printf(gettext("Database tables to update: %s"), $db_list);
+						?>
+					</li>
+					<?php
+				}
+				?>
+				</ul>
+			</div>
+			<?php
+
+			if ($nc > 0) {
+				$task = "create=" . implode(',', $create);
+			}
+			if ($nu > 0) {
+				if (empty($task)) {
+					$task = "update";
+				} else {
+					$task .= "&update";
+				}
+			}
+			if ($debug) {
+				$task .= '&debug';
+			}
 		}
 
 		if (isset($tables[$_zp_conf_vars['mysql_prefix'].'zenpage_news'])) {
@@ -2483,8 +2475,34 @@ if (file_exists(CONFIGFILE)) {
 		if ($autorun) {
 			$task .= '&autorun='.$autorun;
 		}
+		if ($blindInstall) {
+			ob_end_clean();
+			$blindInstall = false;
+			$stop = !$autorun;
+		} else {
+			$stop = !zp_loggedin(ADMIN_RIGHTS);
+		}
+		if ($stop) {
+				?>
+				<div class="error">
+				<?php
+				if (zp_loggedin()) {
+					echo gettext("You need <em>USER ADMIN</em> rights to run setup.");
+				} else {
+					echo gettext('You must be logged in to run setup.');
+				}
+				?>
+				</div>
+				<?php
+			$_zp_authority->printLoginForm('', false);
+
+		} else {
+			if (!empty($task) && substr($task, 0, 1) != '&') {
+				$task = '&'.$task;
+			}
+			$task = html_encode($task);
 		?>
-		<form id="setup" action="?checked&amp;<?php echo $task.$mod; ?>" method="post"<?php echo $hideGoButton; ?> >
+		<form id="setup" action="?checked<?php echo $task.$mod; ?>" method="post"<?php echo $hideGoButton; ?> >
 		<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="dont" />
 		<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken?>" />
 		<?php
@@ -2503,6 +2521,7 @@ if (file_exists(CONFIGFILE)) {
 			<br clear="all" /><br clear="all" />
 		</form>
 		<?php
+		}
 		if ($autorun) {
 			?>
 			<script type="text/javascript">
@@ -2531,6 +2550,9 @@ if (file_exists(CONFIGFILE)) {
 <?php
 }
 
+if ($blindInstall) {
+	ob_end_clean();
+}
 ?>
 </div><!-- content -->
 <?php
