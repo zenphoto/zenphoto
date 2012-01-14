@@ -302,7 +302,7 @@ function printPagesListTable($page, $flag) {
 
 		<div class="page-list_icon">
 			<a href="../../../index.php?p=pages&amp;title=<?php echo js_encode($page->getTitlelink()) ;?>" title="<?php echo gettext("View page"); ?>">
-			<img src="images/view.png" alt="" title="view" />
+			<img src="images/view.png" alt="" title="<?php echo gettext("view"); ?>" />
 			</a>
 		</div>
 
@@ -318,7 +318,7 @@ function printPagesListTable($page, $flag) {
 	?>
 	<div class="page-list_icon">
 		<a href="javascript:confirmDelete('admin-pages.php?delete=<?php echo $page->getTitlelink(); ?>&amp;add&amp;XSRFToken=<?php echo getXSRFToken('delete')?>',deletePage)" title="<?php echo gettext("Delete page"); ?>">
-		<img src="../../images/fail.png" alt="" title="delete" /></a>
+		<img src="../../images/fail.png" alt="" title="<?php echo gettext("delete"); ?>" /></a>
 	</div>
 	<div class="page-list_icon">
 		<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $page->getTitlelink(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
