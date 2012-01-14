@@ -1509,7 +1509,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 								foreach ($imagelist as $imagename) {
 									if (is_array($imagename)) {
 										$image = newImage(NULL, $imagename);
-										$imagename = $imagename['folder'].'/'.$imagename['filename'];
+										$imagename = '/'.$imagename['folder'].'/'.$imagename['filename'];
 										$filename = basename($imagename);
 									} else {
 										$albumname = dirname($imagename);
