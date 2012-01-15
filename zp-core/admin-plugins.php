@@ -44,26 +44,33 @@ printAdminHeader('plugins');
 zp_apply_filter('texteditor_config', '','zenphoto');
 ?>
 <script type="text/javascript">
-<!--
-function toggleDetails(plugin) {
-	toggle(plugin+'_show');
-	toggle(plugin+'_hide');
-}
-
-function truncateDesc(text,debug) {
-	text = text.replace(/(<script.*?script>)/ig,"");	//strip scripts
-	text = text.replace(/(<.*?>)/ig," ");							//strip tags
-	if (text.length <= 70) return text;
-	ls = 0;
-	for (i=0;i<text.length;i++) {
-		if (text[i] == ' ' && i>ls) ls = i;
-		if (i >= 69) break;
+	<!--
+	function toggleDetails(plugin) {
+		toggle(plugin+'_show');
+		toggle(plugin+'_hide');
 	}
-	if (ls == 0) ls == i;
-	return text.substring(0,ls)+'...'
-}
 
-//-->
+	function truncateDesc(text,debug) {
+		text = text.replace(/(<script.*?script>)/ig,"");	//strip scripts
+		text = text.replace(/(<.*?>)/ig," ");							//strip tags
+		if (text.length <= 70) return text;
+		ls = 0;
+		for (i=0;i<text.length;i++) {
+			if (text[i] == ' ' && i>ls) ls = i;
+			if (i >= 69) break;
+		}
+		if (ls == 0) ls == i;
+		return text.substring(0,ls)+'...'
+	}
+
+	$(document).ready(function(){
+		$(".tpp_doc").colorbox({
+			innerWidth:'500px',
+			close: '<?php echo gettext("close"); ?>'
+		});
+	});
+
+	//-->
 </script>
 <?php
 echo "\n</head>";
@@ -158,7 +165,7 @@ foreach ($filelist as $extension) {
 				$plugin_URL = gettext('<strong>Error parsing <em>plugin_URL</em> string!</strong>.');
 			}
 		} else {
-			$plugin_URL = '';
+			$plugin_URL = FULLWEBPATH.'/'.ZENFOLDER.'/tppDoc.php?extension='.$extension;
 		}
 	} else {
 		$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---".basename($paths[$extension]).".html";
@@ -258,7 +265,7 @@ foreach ($filelist as $extension) {
 					echo $plugin_URL;
 				} else {
 					?>
-					<a href="<?php echo $plugin_URL; ?>"><strong><?php echo gettext("Usage information"); ?></strong></a>
+					<a <?php if ($third_party_plugin) echo 'class="tpp_doc" '; ?>href="<?php echo $plugin_URL; ?>"><strong><?php echo gettext("Usage information"); ?></strong></a>
 					<?php
 				}
 			}

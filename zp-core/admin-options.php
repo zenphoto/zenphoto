@@ -1188,7 +1188,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p><?php  echo gettext("<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>enable gallery sessions</em>" ); ?></p>
 						<div id="gallerysessions" style="display: none">
 						<p><?php echo gettext("Check this option if you are having issues with password and other cookie data not being retained. Setting the option causes zenphoto to use sessions rather than cookies."); ?></p>
-						<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Browsers will normally close sessions when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the browser implementation. The longer <em>life</em> of cookies is generally more conducive to a pleasant user experience.')?>
+						<p class="notebox"><?php echo gettext('<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience.')?>
 						</div>
 						<?php
 						if (!GALLERY_SESSION) {

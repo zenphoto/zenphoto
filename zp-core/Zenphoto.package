@@ -636,6 +636,7 @@ zp-core/setup/setup_permissions_changer.php
 zp-core/setup/setup_set-mod_rewrite.php
 zp-core/setup/setup_themeOptions.php
 zp-core/template-functions.php
+zp-core/tppDoc.php
 zp-core/utilities
 zp-core/utilities/backup_restore.php
 zp-core/utilities/database_reference.php
@@ -1866,4 +1867,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1868
+1869
