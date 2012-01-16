@@ -64,7 +64,7 @@ zp_apply_filter('texteditor_config', '','zenphoto');
 	}
 
 	$(document).ready(function(){
-		$(".tpp_doc").colorbox({
+		$(".plugin_doc").colorbox({
 			innerWidth:'500px',
 			close: '<?php echo gettext("close"); ?>'
 		});
@@ -158,29 +158,9 @@ foreach ($filelist as $extension) {
 	} else {
 		$plugin_version = '';
 	}
+	$plugin_URL = FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension;
 	if ($third_party_plugin) {
-		if ($str = isolate('$plugin_URL', $pluginStream)) {
-			if (false === eval($str)) {
-				$parserr = $parserr | 8;
-				$plugin_URL = gettext('<strong>Error parsing <em>plugin_URL</em> string!</strong>.');
-			}
-		} else {
-			$plugin_URL = FULLWEBPATH.'/'.ZENFOLDER.'/tppDoc.php?extension='.$extension;
-		}
-	} else {
-		$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---".basename($paths[$extension]).".html";
-	}
-	if ($str = isolate('$plugin_disable', $pluginStream)) {
-		if (false === eval($str)) {
-			$parserr = $parserr | 8;
-			$plugin_URL = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>.');
-		} else {
-			if ($plugin_disable) {
-				setOption($opt, 0);
-			}
-		}
-	} else {
-		$plugin_disable = false;
+		$plugin_URL .= '&amp;thirdparty';
 	}
 	$currentsetting = getOption($opt);
 	$plugin_is_filter = 1|THEME_PLUGIN;
@@ -265,7 +245,7 @@ foreach ($filelist as $extension) {
 					echo $plugin_URL;
 				} else {
 					?>
-					<a <?php if ($third_party_plugin) echo 'class="tpp_doc" '; ?>href="<?php echo $plugin_URL; ?>"><strong><?php echo gettext("Usage information"); ?></strong></a>
+					<a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><strong><?php echo gettext("Usage information"); ?></strong></a>
 					<?php
 				}
 			}

@@ -2,8 +2,13 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__).'/admin-globals.php');
 $extension = sanitize($_GET['extension']);
-
-$pluginStream = file_get_contents(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/'.$extension.'.php');
+$thirdparty = isset($_GET['thirdparty']);
+if ($thirdparty) {
+	$path = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/'.$extension.'.php';
+} else {
+	$path = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$extension.'.php';
+}
+$pluginStream = file_get_contents($path);
 $parserr = 0;
 if ($str = isolate('$plugin_description', $pluginStream)) {
 	if (false === eval($str)) {
@@ -29,6 +34,18 @@ if ($str = isolate('$plugin_version', $pluginStream)) {
 } else {
 	$plugin_version = '';
 }
+if ($thirdparty) {
+	$whose = gettext('third party plugin');
+	$path = stripSuffix($path).'/logo.png';
+	if (file_exists($path)) {
+		$ico = str_replace(SERVERPATH, WEBPATH, $path);
+	} else {
+		$ico = 'images/place_holder_icon.png';
+	}
+} else {
+	$whose = 'Zenphoto official plugin';
+	$ico = 'images/zp_gold.png';
+}
 
 $i = strpos($pluginStream, '/*');
 $j = strpos($pluginStream, '*/');
@@ -50,8 +67,14 @@ if ($i !== false && $j !== false) {
 				$empty = $par = true;
 			}
 		} else {
-			$doc .= html_encode($line).' ';
-			$empty = false;
+			if (strpos($line, '@') === 0) {
+				if (!$plugin_author && substr($line,0,7) == '@author') {
+					$plugin_author = trim(substr($line, 8));
+				}
+			} else {
+				$doc .= html_encode($line).' ';
+				$empty = false;
+			}
 		}
 	}
 	if ($par) {
@@ -66,12 +89,30 @@ echo "\n</head>";
 <body>
 	<div id="main">
 		<div id="content">
-			<h1><?php echo html_encode($extension); ?></h1>
-			<h3><?php printf( gettext('Version: %s'), $plugin_version); ?></h3>
+			<h1><img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" /><?php echo html_encode($extension); ?></h1>
+			<?php
+			if ($thirdparty) {
+				?>
+				<h3><?php printf( gettext('Version: %s'), $plugin_version); ?></h3>
+				<?php
+				}
+			?>
 			<h3><?php printf(gettext('author: %s'), html_encode($plugin_author)); ?></h3>
 			<div>
 			<?php echo $plugin_description; ?>
 			<?php echo $doc; ?>
+			<?php
+			if ($thirdparty) {
+				if ($str = isolate('$plugin_URL', $pluginStream)) {
+					if (false !== eval($str)) {
+						printf(gettext('See also the <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+					}
+				}
+			} else {
+				$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---".$extension.'.php'.".html";
+				printf(gettext('See also the Zenphoto online documentation:<a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+			}
+			?>
 			</div>
 		</div>
 	</div>
