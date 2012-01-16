@@ -84,12 +84,10 @@ em {
 }
 
 #content {
-	padding: 20px 30px 20px 30px;
+	padding: 20px 30px 50px 30px;
 	background-color: #fff;
 	border-top: 1px solid #CBCBCB;
 	border-bottom: 5px solid #CBCBCB;
-	min-height: 450px;
-	_height: 450px; /* IE Only */
 }
 
 /* Text Styles
