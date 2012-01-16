@@ -2,7 +2,6 @@
 /**
  * Form for contact_form plugin
  *
- * @package plugins
  */
 ?>
 <form id="mailform" action="<?php echo sanitize($_SERVER['REQUEST_URI']); ?>" method="post" accept-charset="UTF-8">
@@ -93,7 +92,7 @@
 				<?php
 				echo gettext("Enter CAPTCHA<strong>*</strong>:");
 				if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html'];
- 				?>
+				?>
 			</td>
 				<td>
 					<?php

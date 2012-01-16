@@ -1,4 +1,5 @@
 <?php
+if (!defined('WEBPATH')) die();
 $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 // force UTF-8 Ø
 ?>
