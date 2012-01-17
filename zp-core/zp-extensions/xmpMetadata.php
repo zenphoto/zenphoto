@@ -9,10 +9,10 @@
  *
  * If a sidecar file exists, it will take precedence (the image file will not be
  * examined.) The sidecar file should reside in the same folder, have the same prefix name as the
- * image (album), and the suffix ".xmp". Thus, the sidecar for <image>.jpg would be named <image>.xmp.
+ * image (album), and the suffix ".xmp". Thus, the sidecar for <i>image</i>.jpg would be named <i>image</i>.xmp.
  *
  * NOTE: dynamic albums have an ".alb" suffix. Append ".xmp" to that name so
- * that the dynamic album sidecar would be named <album>.alb.xmp
+ * that the dynamic album sidecar would be named <i>album</i>.alb.xmp
  *
  * There is one option for this plugin--to enable searching within the actual image file for
  * an xmp block. This is disabled by default scanning image files can add considerably to the

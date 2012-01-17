@@ -1,6 +1,6 @@
 <?php
 /**
- * When enabled, ADMIN users will be not be logged-in on the front-end
+ * When enabled, ADMIN users will be not appear to be logged-in when viewing gallery pages
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

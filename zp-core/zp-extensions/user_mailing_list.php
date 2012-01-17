@@ -1,6 +1,5 @@
 <?php
 /**
- * User mailing list
  *
  * A tool to send e-mails to all registered users who have provided an e-mail address.
  *

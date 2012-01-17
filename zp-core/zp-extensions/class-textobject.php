@@ -1,9 +1,7 @@
 <?php
 /**
- * Plugin handler for "text" files
- * Text type files can be displayed in place of an image in themes
  *
- * supports files of the following types:
+ * Supports files of the following types:
  * 	.txt
  * 	.htm
  * 	.html

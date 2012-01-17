@@ -1,6 +1,9 @@
 <?php
 /**
- * Provides a means where visitors can register and get limited site privileges.
+ * Support for allowing visitors to register to access your site. Users registering
+ * are verified via an e-mail to insure the validity of the e-mail address they provide.
+ * Options are provided for setting the required registration details and the default
+ * user rights that will be granted.
  *
  * Place a call on printRegistrationForm() where you want the form to appear.
  * Probably the best use is to create a new 'custom page' script just for handling these

@@ -1,14 +1,16 @@
 <?php
 /**
  *
- * Collects and analyzes searches
+ * This plugin gathers data about searches that users make on your site.
  *
  * Note on the analysis of the data:
- *   Dynamic album searches are ignored
- *   Analysis presumes that the Theme does a "uniform" set of object retrievals. That
- *   is the search.php script will always request albums, images, pages, and/or news
- *   consistently. Data collection happens for each of these objects so to "normalize"
- *   the data the analysis will divide the data by the number of objects searched.
+ *
+ *  	Dynamic album searches are ignored
+ *
+ *		Analysis presumes that the Theme does a "uniform" set of object retrievals. That
+ *		is the search.php script will always request albums, images, pages, and/or news
+ *		consistently. Data collection happens for each of these objects so to "normalize"
+ *		the data the analysis will divide the data by the number of objects searched.
  *
  *   So, if for instance, you sometimes enable Zenpage results, sometimes there will be results
  *   for images, albums, pages, and news; and other times there will just be results for

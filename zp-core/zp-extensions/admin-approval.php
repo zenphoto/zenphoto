@@ -1,6 +1,6 @@
 <?php
 /**
- * Provides override of the "show" seting such that only
+ * Overrides of the "show" seting such that only
  * someone with ADMIN_RIGHTS or MANAGE_ALL_ALBUM rights may
  * mark an object published.
  *

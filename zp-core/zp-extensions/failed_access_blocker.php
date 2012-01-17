@@ -1,6 +1,5 @@
 <?php
 /**
- * Blocks IP addresses which have had multiple failed access attempts
  *
  * Hackers often use "probing" or "password guessing" to attempt to breach your site
  * This plugin can help to throttle these attacks. It works by monitoring failed access to

@@ -1,6 +1,5 @@
 <?php
 /**
- * Wordpress importer
  *
  * This imports Wordpress pages, posts, categories and comments to Zenpage
  *

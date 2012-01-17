@@ -1,15 +1,16 @@
 <?php
 /**
- * Provides for using URLs to force language selection.
+ * Forces language selection via an URI parameter.
+ *
  * This filter will detect a language setting from the URI and
  * set the locale accordingly.
  *
- * The URL format is:
- * mod_rewrite
- *			/<languageid>/<standard url>
- * else
- * 			<standard url>?locale=<languageid>
- * Where <languageid> is the local identifier (e.g. en, en_US, fr_FR, etc.)
+ * The URL format is:<br>
+ * mod_rewrite<br>
+ *			/ <i>languageid</i> / <i>standard url</i><br>
+ * else<br>
+ * 			<i>standard url</i>?locale=<i>languageid</i><br>
+ * Where <i>languageid</i> is the local identifier (e.g. en, en_US, fr_FR, etc.)
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

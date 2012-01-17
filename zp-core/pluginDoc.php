@@ -1,6 +1,39 @@
 <?php
+/**
+ *
+ * Displays a "plugin useage" document based on the plugin's doc box.
+ *
+ * Supports the following PHPDoc markup tags:
+ * 	<i> for emphasis
+ *  <b> for strong
+ *  <code> for mono-spaced text
+ *  <hr> for horizontal rule
+ *  <ul><li> for lists
+ *  <pre>
+ *  <br> for line breaks
+ *
+ * @package admin
+ */
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__).'/admin-globals.php');
+
+$markup = array(
+						'&lt;i&gt;'=>'<em>',
+						'&lt;/i&gt;'=>'</em>',
+						'&lt;b&gt;'=>'<strong>',
+						'&lt;\b&gt;'=>'<\strong>',
+						'&lt;code&gt;'=>'<span class="inlinecode">',
+						'&lt;/code&gt;'=>'</span>',
+						'&lt;hr&gt;'=>'<hr />',
+						'&lt;ul&gt;'=>'<ul>',
+						'&lt;/ul&gt;'=>'</ul>',
+						'&lt;li&gt;'=>'<li>',
+						'&lt;/li&gt;'=>'</li>',
+						'&lt;pre&gt;'=>'<pre>',
+						'&lt;/pre&gt;'=>'</pre>',
+						'&lt;br&gt;'=>'<br />'
+);
+
 $extension = sanitize($_GET['extension']);
 $thirdparty = isset($_GET['thirdparty']);
 if ($thirdparty) {
@@ -46,6 +79,7 @@ if ($thirdparty) {
 	$whose = 'Zenphoto official plugin';
 	$ico = 'images/zp_gold.png';
 }
+$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -53,12 +87,23 @@ if ($thirdparty) {
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<title><?php echo sprintf(gettext('%1$s %2$s: %3$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($extension)); ?></title>
+	<style>
+	.border {
+		padding: 10px;
+		margin-bottom: 10px;
+		font-size: 100%;
+		background-color: #FAFAFA !important;
+	}
+	</style>
 </head>
 <body>
 	<div id="main">
 		<?php echo gettext('Plugin useage information'); ?>
 		<div id="content">
 			<h1><img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" /><?php echo html_encode($extension); ?></h1>
+			<div class="border">
+				<?php echo $plugin_description; ?>
+			</div>
 			<?php
 			if ($thirdparty) {
 				?>
@@ -69,7 +114,6 @@ if ($thirdparty) {
 			<h3><?php printf(gettext('Author: %s'), html_encode($plugin_author)); ?></h3>
 			<div>
 			<?php
-			echo $plugin_description;
 			$i = strpos($pluginStream, '/*');
 			$j = strpos($pluginStream, '*/');
 			if ($i !== false && $j !== false) {
@@ -95,7 +139,11 @@ if ($thirdparty) {
 								$plugin_author = trim(substr($line, 8));
 							}
 						} else {
-							$doc .= html_encode($line).' ';
+							$line = strtr(html_encode($line),$markup);
+							if(preg_match($reg_exUrl, $line, $url)) {
+								$line = preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a> ', $line);
+							}
+							$doc .= $line.' ';
 							$empty = false;
 						}
 					}
@@ -105,8 +153,8 @@ if ($thirdparty) {
 					echo $doc;
 					$doc = '';
 				}
-			}
 			echo $doc;
+			}
 			if ($thirdparty) {
 				if ($str = isolate('$plugin_URL', $pluginStream)) {
 					if (false !== eval($str)) {

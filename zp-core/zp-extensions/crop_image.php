@@ -1,7 +1,8 @@
 <?php
 /**
- * Provides extensions to the admin toolbox to crop images.
- * This is intended as an example only.
+ * Provides extensions to the image utilities to crop images.
+ *
+ * Note: this plugin permanently changes the image. There is no <i>undo</i>.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

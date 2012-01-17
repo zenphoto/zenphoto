@@ -1,7 +1,7 @@
 <?php
 /**
- * Plugin handler for arbitray files.
- * Only thumbnails are displayed.
+ *
+ * Use this plugin to handle filetypes as "images" that are not otherwise provided for by Zenphoto.
  *
  * Default thumbnail images may be created in the "plugins/class-AnyFile" folder. The naming convention is
  * "<suffix>Default.png". If no such file is found, the class object default thumbnail will be used.

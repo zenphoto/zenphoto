@@ -25,6 +25,12 @@ em {
 	color: black;
 }
 
+.inlinecode {
+  color: #00008B;
+  font-size: 12px;
+  font-family: Geneva, Courier, monospace;
+}
+
 /* Main Layout
 ------------------------------ */
 #logo {

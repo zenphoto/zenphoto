@@ -1,6 +1,12 @@
 <?php
 /**
  * SEO file/folder name clenser
+ *
+ * This plugin will scan your images and albums for file/folder names that are not <i>SEO friendly</i>.
+ * It will rename those that found needing improvement replacing offending characters with friendly equivalents.
+ *
+ * Note: Clicking the button causes this process to execute. There is no <i>undo</i>.
+ *
  * @package plugins
  */
 if (defined('OFFSET_PATH')) {

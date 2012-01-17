@@ -66,6 +66,7 @@ zp_apply_filter('texteditor_config', '','zenphoto');
 	$(document).ready(function(){
 		$(".plugin_doc").colorbox({
 			close: '<?php echo gettext("close"); ?>',
+			maxHeight:"98%",
 			innerWidth:'500px'
 		});
 	});

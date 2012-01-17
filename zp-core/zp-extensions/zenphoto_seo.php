@@ -1,6 +1,6 @@
 <?php
 /**
- * translates accented characters to unaccented ones
+ * Translates accented characters to unaccented ones
  * @package plugins
  */
 

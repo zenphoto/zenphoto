@@ -1,10 +1,12 @@
 <?php
 /**
- * Switches site into "update" mode for Zenphoto upgrades.
+ * Switches site into "update" mode for Zenphoto upgrades. When the site is in "update" mode, links
+ * to the gallery pages will be redirected to a single page that indicates the site is undergoing
+ * an upgrade.
  *
  * Requires mod_rewrite to be active and that the .htaccess file exists
  *
- * Change the files in plugins/site_upgrade to meet your needs. (Note these files will
+ * Change the files in <code>plugins/site_upgrade</code> to meet your needs. (Note these files will
  * be copied to that folder the first time the plugin runs.)
  *
  * @author Stephen Billard (sbillard)

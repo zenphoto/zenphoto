@@ -8,7 +8,7 @@
  * The file names of these additional files must match these patterns and should not include special or accented characters:
  *
  * Zenphoto gallery items:
- * --------------------------
+ * <hr>
  * For albums: album<customname>.php
  * For images : image<customname>.php
  *
@@ -22,13 +22,13 @@
  * Selecting this option will not clear already individually set image layouts!
  *
  * Zenpage CMS items:
- * --------------------------
+ * <hr>
  * For Zenpage pages: pages<customname>.php
  * For Zenpage news articles and news categories: news<customname>.php.
  * The main news page and the news archive can't be assigned to layout pages.
  *
  * Layout selection inheritance:
- * -----------------------------
+ * <hr>
  * The layout selection of a parent album (images see above), page or category is inherited by its sub items on all levels without their own db entry
  * if no specific layout is seleced. News articles don't inherit anything because they don't directly belong to any parent item.
  *
