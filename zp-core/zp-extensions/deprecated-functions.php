@@ -2,9 +2,13 @@
 /**
  * These functions have been removed from mainstream Zenphoto as they have been
  * supplanted.
- *
  * They are not maintained and they are not guaranteed to function correctly with the
  * current version of Zenphoto.
+ *
+ * The default settings cause an <code>E_USER_NOTICE</code> error to be generated when the function is used.
+ * The text of the error message will tell you how to replace calls on the deprecated function. The error
+ * message can be disabled to allow your scripts to continue to run. Visit the <i>deprecated-functions</i>
+ * plugin options. Find the function and uncheck the box by the function.
  *
  * @package plugins
  */

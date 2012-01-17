@@ -25,8 +25,18 @@ require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
 	<script src="../../../../zp-extensions/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
 	<script language="javascript" type="text/javascript">
 	$(document).ready(function(){
-		$("a[rel='colorbox']").colorbox({iframe:true, innerWidth:450, innerHeight:450});
-		$("a.colorbox").colorbox({iframe:true, innerWidth:450, innerHeight:450});
+		$("a[rel='colorbox']").colorbox({
+			iframe:true,
+			innerWidth:450,
+			innerHeight:450,
+			close: '<?php echo gettext("close"); ?>'
+			});
+		$("a.colorbox").colorbox({
+			iframe:true,
+			innerWidth:450,
+			innerHeight:450,
+			close: '<?php echo gettext("close"); ?>'
+			});
 
 		$('#imagetitle,#albumtitle,#customtext').click(function() {
 			$('#imagesize').hide();

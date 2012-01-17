@@ -371,7 +371,12 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 				<script type="text/javascript">
 					// <!-- <![CDATA[
 					$(document).ready(function(){
-						$(".google_map").colorbox({iframe:true, innerWidth:'<?php echo $w; ?>px', innerHeight:'<?php echo $h; ?>px'});
+						$(".google_map").colorbox({
+																	iframe:true,
+																	innerWidth:'<?php echo $w; ?>px',
+																	innerHeight:'<?php echo $h; ?>px',
+																	close: '<?php echo gettext("close"); ?>'
+																	});
 					});
 					// ]]> -->
 				</script>

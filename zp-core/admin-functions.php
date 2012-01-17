@@ -138,7 +138,11 @@ function printAdminHeader($tab,$subtab=NULL) {
 		if(zp_has_filter('admin_head','colorbox::css')) {
 			?>
 			$(document).ready(function(){
-				$("a.colorbox").colorbox({ maxWidth:"98%", maxHeight:"98%"});
+				$("a.colorbox").colorbox({
+					maxWidth:"98%",
+					maxHeight:"98%",
+					close: '<?php echo gettext("close"); ?>'
+				});
 			});
 			<?php
 		}
@@ -3531,21 +3535,36 @@ function printBulkActions($checkarray, $checkAll=false) {
 				if ($tags) {
 					?>
 					if (sel == 'addtags' || sel == 'alltags') {
-						$.colorbox({href:"#mass_tags_data", inline:true, open:true});
+						$.colorbox({
+							href:"#mass_tags_data",
+							inline:true,
+							open:true,
+							close: '<?php echo gettext("close"); ?>'
+						});
 					}
 					<?php
 				}
 				if ($movecopy) {
 					?>
 					if (sel == 'moveimages' || sel == 'copyimages') {
-						$.colorbox({href:"#mass_movecopy_data", inline:true, open:true});
+						$.colorbox({
+							href:"#mass_movecopy_data",
+							inline:true,
+							open:true.
+							close: '<?php echo gettext("close"); ?>'
+						});
 					}
 					<?php
 				}
 				if ($categories) {
 					?>
 					if (sel == 'addcats') {
-						$.colorbox({href:"#mass_cats_data", inline:true, open:true});
+						$.colorbox({
+							href:"#mass_cats_data",
+							inline:true,
+							open:true,
+							close: '<?php echo gettext("close"); ?>'
+						});
 					}
 					<?php
 				}

@@ -59,7 +59,8 @@ if(isset($_GET['generatesitemaps'])) {
 		// <!-- <![CDATA[
 		$(document).ready(function(){
 			$(".colorbox").colorbox({
-				iframe: false
+				iframe: false,
+				close: '<?php echo gettext("close"); ?>'
 			});
 		});
 		// ]]> -->
