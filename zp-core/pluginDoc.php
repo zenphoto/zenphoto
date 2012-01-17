@@ -17,6 +17,8 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__).'/admin-globals.php');
 
+admin_securityChecks(NULL, currentRelativeURL(__FILE__));
+
 $markup = array(
 						'&lt;i&gt;'=>'<em>',
 						'&lt;/i&gt;'=>'</em>',

@@ -236,7 +236,7 @@ class PersistentObject {
 	 * @return string
 	 */
 	function getID() {
-		return $this->get('id');
+		return (int) $this->get('id');
 	}
 
 
