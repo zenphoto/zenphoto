@@ -498,7 +498,7 @@ if ($result->loaded || $result->transient) {
 							<br />
 							<input type="password" size="27"
 															id="pass_2" name="pass_2" disabled="disabled"
- 															onkeydown="passwordKeydown('#pass','#pass_2');"
+															onkeydown="passwordKeydown('#pass','#pass_2');"
 															onkeyup="passwordMatch('#pass','#pass_2','#match');"
 															value="<?php echo $x; ?>" />
 							<br />
@@ -518,7 +518,7 @@ if ($result->loaded || $result->transient) {
 							</label>
 							<label class="checkboxlabel">
 									<input type="radio" id="delete_object" name="copy_delete_object" value="delete"
-										onclick="image_deleteconfirm(this,'','<?php printf(gettext('Are you sure you want to delete this %s?'), $deleteitem); ?>');$('#copyfield').hide();$('#copy_object').removeAttr('checked');" />
+										onclick="deleteConfirm('delete_object','','<?php printf(gettext('Are you sure you want to delete this %s?'), $deleteitem); ?>');$('#copyfield').hide();" />
 								<?php echo gettext('delete'); ?>
 							</label>
 							<br clear="all" />

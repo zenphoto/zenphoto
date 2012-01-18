@@ -1252,7 +1252,7 @@ $alb = removeParentAlbumNames($album);
 						</label>
 						<label class="checkboxlabel">
 								<input type="radio" id="Delete-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-MoveCopyRename" value="delete"
-									onclick="image_deleteconfirm(this, '<?php echo $currentimage; ?>','<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
+									onclick="toggleMoveCopyRename('<?php echo $currentimage; ?>', '');deleteConfirm('Delete-<?php echo $currentimage; ?>', '<?php echo $currentimage; ?>','<?php echo gettext("Are you sure you want to select this image for deletion?"); ?>')" /> <?php echo gettext("Delete image") ?>
 						</label>
 						<br clear='all'>
 						<div id="movecopydiv-<?php echo $currentimage; ?>" style="padding-top: .5em; padding-left: .5em; display: none;">

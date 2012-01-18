@@ -164,13 +164,12 @@ function update_direction(obj, element1, element2) {
 }
 
 // Uses jQuery
-function image_deleteconfirm(obj, id, msg) {
-	toggleMoveCopyRename(id, '');
+function deleteConfirm(obj, id, msg) {
 	if (confirm(msg)) {
-		jQuery('#deletemsg'+id).show();
-		obj.checked = true;
+		$('#deletemsg'+id).show();
+		$('#'+obj).attr('checked','checked');
 	} else {
-		obj.checked = false;
+		$('#'+obj).removeAttr('checked');
 	}
 }
 
@@ -179,48 +178,42 @@ function image_deleteconfirm(obj, id, msg) {
 // Toggles the interface for move/copy (select an album) or rename (text
 // field for new filename) or none.
 function toggleMoveCopyRename(id, operation) {
-	if (operation == '') {
-		jQuery('#movecopydiv-'+id).hide();
-		jQuery('#renamediv-'+id).hide();
-		jQuery('#deletemsg'+id).hide();
-		jQuery('#move-'+id).attr('checked',false);
-		jQuery('#copy-'+id).attr('checked',false);
-		jQuery('#rename-'+id).attr('checked',false);
-		jQuery('#Delete-'+id).attr('checked',false);
-	} else if (operation == 'copy') {
+	jQuery('#movecopydiv-'+id).hide();
+	jQuery('#renamediv-'+id).hide();
+	jQuery('#deletemsg'+id).hide();
+	jQuery('#move-'+id).removeAttr('checked');
+	jQuery('#copy-'+id).removeAttr('checked');
+	jQuery('#rename-'+id).removeAttr('checked');
+	jQuery('#Delete-'+id).removeAttr('checked');
+	if (operation == 'copy') {
 		jQuery('#movecopydiv-'+id).show();
-		jQuery('#renamediv-'+id).hide();
-		jQuery('#Delete-'+id).attr('checked',false);
-		jQuery('#deletemsg'+id).hide();
 		jQuery('#copy-'+id).attr('checked','checked');
 	} else if (operation == 'move') {
 		jQuery('#movecopydiv-'+id).show();
-		jQuery('#renamediv-'+id).hide();
-		jQuery('#Delete-'+id).attr('checked',false);
-		jQuery('#deletemsg'+id).hide();
 		jQuery('#move-'+id).attr('checked','checked');
 	} else if (operation == 'rename') {
-		jQuery('#movecopydiv-'+id).hide();
 		jQuery('#renamediv-'+id).show();
-		jQuery('#Delete-'+id).attr('checked',false);
-		jQuery('#deletemsg'+id).hide();
 		jQuery('#rename-'+id).attr('checked','checked');
 	}
 }
 
-function toggleAlbumMoveCopyRename(prefix, operation) {
-	if (operation == '') {
-		jQuery('#a-'+prefix+'movecopydiv').hide();
-		jQuery('#a-'+prefix+'renamediv').hide();
-		jQuery('#a-'+prefix+'move').attr('checked',false);
-		jQuery('#a-'+prefix+'copy').attr('checked',false);
-		jQuery('#a-'+prefix+'rename').attr('checked',false);
-	} else if (operation == 'movecopy') {
+function toggleAlbumMCR(prefix, operation) {
+	jQuery('#Delete-'+prefix).removeAttr('checked');
+	jQuery('#deletemsg'+prefix).hide();
+	jQuery('#a-'+prefix+'movecopydiv').hide();
+	jQuery('#a-'+prefix+'renamediv').hide();
+	jQuery('#a-'+prefix+'move').removeAttr('checked');
+	jQuery('#a-'+prefix+'copy').removeAttr('checked');
+	jQuery('#a-'+prefix+'rename').removeAttr('checked');
+	if (operation == 'copy') {
 		jQuery('#a-'+prefix+'movecopydiv').show();
-		jQuery('#a-'+prefix+'renamediv').hide();
+		jQuery('#a-'+prefix+'copy').attr('checked','checked');
+	} else if (operation == 'move') {
+		jQuery('#a-'+prefix+'movecopydiv').show();
+		jQuery('#a-'+prefix+'move').attr('checked','checked');
 	} else if (operation == 'rename') {
-		jQuery('#a-'+prefix+'movecopydiv').hide();
 		jQuery('#a-'+prefix+'renamediv').show();
+		jQuery('#a-'+prefix+'rename').attr('checked','checked');
 	}
 }
 
