@@ -1693,33 +1693,38 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 				<h2 class="h2_bordered_edit"><?php echo gettext("Utilities"); ?></h2>
 				<div class="box-edit">
 
-						<label class="checkboxlabel">
-							<input type="radio" id="a-<?php echo $prefix; ?>move" name="a-<?php echo $prefix; ?>MoveCopyRename" value="move"
-								onclick="toggleAlbumMoveCopyRename('<?php echo $prefix; ?>', 'movecopy');"<?php echo $isPrimaryAlbum; ?> />
-							<?php echo gettext("Move");?>
-						</label>
+					<label class="checkboxlabel">
+						<input type="radio" id="a-<?php echo $prefix; ?>move" name="a-<?php echo $prefix; ?>MoveCopyRename" value="move"
+							onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'move');;"<?php echo $isPrimaryAlbum; ?> />
+						<?php echo gettext("Move");?>
+					</label>
 
-						<label class="checkboxlabel">
-							<input type="radio" id="a-<?php echo $prefix; ?>copy" name="a-<?php echo $prefix; ?>MoveCopyRename" value="copy"
-								onclick="toggleAlbumMoveCopyRename('<?php echo $prefix; ?>', 'movecopy');"/>
-							<?php echo gettext("Copy");?>
-						</label>
+					<label class="checkboxlabel">
+						<input type="radio" id="a-<?php echo $prefix; ?>copy" name="a-<?php echo $prefix; ?>MoveCopyRename" value="copy"
+							onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'copy');"/>
+						<?php echo gettext("Copy");?>
+					</label>
 
-						<label class="checkboxlabel">
-							<input type="radio" id="a-<?php echo $prefix; ?>rename" name="a-<?php echo $prefix; ?>MoveCopyRename" value="rename"
-								onclick="toggleAlbumMoveCopyRename('<?php echo $prefix; ?>', 'rename');" <?php echo $isPrimaryAlbum; ?> />
-							<?php echo gettext("Rename Folder");?>
-						</label>
-						<label class="checkboxlabel">
-								<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
-									onclick="image_deleteconfirm(this,'<?php echo $prefix; ?>',deleteAlbum1)" <?php echo $isPrimaryAlbum; ?> />
-							<?php echo gettext("Delete album");?>
-						</label>
-						<br clear="all" />
-						<div class="deletemsg" id="deletemsg<?php echo $prefix; ?>"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
+					<label class="checkboxlabel">
+						<input type="radio" id="a-<?php echo $prefix; ?>rename" name="a-<?php echo $prefix; ?>MoveCopyRename" value="rename"
+							onclick="toggleAlbumMCR('<?php echo $prefix; ?>', 'rename');" <?php echo $isPrimaryAlbum; ?> />
+						<?php echo gettext("Rename Folder");?>
+					</label>
+
+					<label class="checkboxlabel">
+							<input type="radio" id="Delete-<?php echo $prefix; ?>" name="a-<?php echo $prefix; ?>MoveCopyRename" value="delete"
+								onclick="toggleAlbumMCR('<?php echo $prefix; ?>', '');deleteConfirm('Delete-<?php echo $prefix; ?>','<?php echo $prefix; ?>',deleteAlbum1)" <?php echo $isPrimaryAlbum; ?> />
+						<?php echo gettext("Delete album");?>
+					</label>
+
+					<br clear="all" />
+					<div class="deletemsg" id="deletemsg<?php echo $prefix; ?>"	style="padding-top: .5em; padding-left: .5em; color: red; display: none">
 						<?php echo gettext('Album will be deleted when changes are applied.'); ?>
-						<p class="buttons"><a	href="javascript:toggleMoveCopyRename('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a></p>
-						</div>
+						<br clear="all" />
+						<p class="buttons">
+							<a	href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
+						</p>
+					</div>
 					<div id="a-<?php echo $prefix; ?>movecopydiv" style="padding-top: .5em; padding-left: .5em; display: none;">
 						<?php echo gettext("to:"); ?>
 						<select id="a-<?php echo $prefix; ?>albumselectmenu" name="a-<?php echo $prefix; ?>albumselect" onchange="">
@@ -1754,7 +1759,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						</select>
 						<br clear="all" /><br />
 						<p class="buttons">
-							<a href="javascript:toggleAlbumMoveCopyRename('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
+							<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
 						</p>
 					</div>
 					<div id="a-<?php echo $prefix; ?>renamediv" style="padding-top: .5em; padding-left: .5em; display: none;">
@@ -1762,7 +1767,7 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						<input name="a-<?php echo $prefix; ?>renameto" type="text" value="<?php echo basename($album->name);?>"/><br />
 						<br clear="all" />
 						<p class="buttons">
-						<a href="javascript:toggleAlbumMoveCopyRename('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
+						<a href="javascript:toggleAlbumMCR('<?php echo $prefix; ?>', '');"><img src="images/reset.png" alt="" /><?php echo gettext("Cancel");?></a>
 						</p>
 					</div>
 					<span style="line-height: 0em;"><br clear="all" /></span>
