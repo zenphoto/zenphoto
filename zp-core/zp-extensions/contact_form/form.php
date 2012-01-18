@@ -91,7 +91,7 @@
 		<tr>
 			<td>
 				<?php
-				echo gettext("Enter CAPTCHA<strong>*</strong>:");
+				echo gettext("Enter CAPTCHA<strong>*</strong>:").'<br />';
 				if (isset($captcha['html'])) echo $captcha['html'];
 				?>
 			</td>

@@ -139,7 +139,7 @@ function printSlideShowLink($linktext='', $linkstyle='') {
 	$option = getOption('slideshow_mode');
 	switch($option) {
 		case 'jQuery':
-	 	case 'flash':
+		case 'flash':
 			if($numberofimages > 1) {
 				?>
 				<form name="slideshow_<?php echo $slideshow_instance; ?>" method="post"	action="<?php echo $slideshowlink; ?>">
@@ -184,9 +184,10 @@ function printSlideShowLink($linktext='', $linkstyle='') {
 							slideshowSpeed: <?php echo getOption('slideshow_speed'); ?>,
 							slideshowStart: '<?php echo gettext("start slideshow"); ?>',
 							slideshowStop: '<?php echo gettext("stop slideshow"); ?>',
-							previous: '<?php echo gettext("previous"); ?>',
+							previous: '<?php echo gettext("prev"); ?>',
 							next: '<?php echo gettext("next"); ?>',
 							close: '<?php echo gettext("close"); ?>',
+							current : '<?php printf(gettext('image {%1$s} / {%2$s}'),'current', 'total'); ?>',
 							maxWidth:'98%',
 							maxHeight:'98%',
 							photo: true
@@ -308,7 +309,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		exit();
 	}
 	global $_zp_flash_player, $_zp_current_image, $_zp_current_album, $_zp_gallery;
-  $imagenumber = 0;
+	$imagenumber = 0;
 	//getting the image to start with
 	if(!empty($_POST['imagenumber']) AND !is_object($imageobj)) {
 		$imagenumber = sanitize_numeric($_POST['imagenumber'])-1; // slideshows starts with 0, but zp with 1.
@@ -316,7 +317,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		makeImageCurrent($imageobj);
 		$imagenumber = (imageNumber()-1);
 	}
-  // set pagenumber to 0 if not called via POST link
+	// set pagenumber to 0 if not called via POST link
 	if(isset($_POST['pagenr'])) {
 		$pagenumber = sanitize_numeric($_POST['pagenr']);
 	} else {
