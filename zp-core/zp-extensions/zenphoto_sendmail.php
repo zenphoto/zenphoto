@@ -1,6 +1,8 @@
 <?php
 /**
  * PHP sendmail mailing handler
+ *
+ * @author Stephen Billard (sbillard)
  * @package plugins
  */
 $plugin_is_filter = 5|CLASS_PLUGIN;

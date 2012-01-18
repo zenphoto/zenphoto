@@ -2,6 +2,7 @@
 /**
  * Provides rudimentary user groups
  *
+ * @author Stephen Billard (sbillard)
  * @package plugins
  * @subpackage usermanagement
  */

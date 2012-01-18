@@ -9,6 +9,7 @@
  * display structure. Standard Zenphoto functions like the breadcrumb functions or the next_album()
  * loop for example will NOT take care of this menu's structure!
  *
+ * @author Stephen Billard (sbillard), Malte Müller (acrylian)
  * @package plugins
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;

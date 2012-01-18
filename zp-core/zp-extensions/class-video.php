@@ -1,6 +1,8 @@
 <?php
 /**
  * This plugin handles "video" class images
+ *
+ * @author Stephen Billard (sbillard)
  * @package classes
  */
 

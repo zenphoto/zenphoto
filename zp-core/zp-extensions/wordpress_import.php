@@ -3,6 +3,7 @@
  *
  * This imports Wordpress pages, posts, categories and comments to Zenpage
  *
+ * @author Malte Müller (acrylian)
  * @package plugins
  */
 

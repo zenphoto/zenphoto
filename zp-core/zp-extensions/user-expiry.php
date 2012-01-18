@@ -22,6 +22,7 @@
  * current date if adding the interval would not bring him up-to-date.)
  *
  *
+ * @author Stephen Billard (sbillard)
  * @package plugins
  * @subpackage usermanagement
  */

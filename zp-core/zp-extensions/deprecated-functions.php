@@ -10,6 +10,7 @@
  * message can be disabled to allow your scripts to continue to run. Visit the <i>deprecated-functions</i>
  * plugin options. Find the function and uncheck the box by the function.
  *
+ * @author Stephen Billard (sbillard)
  * @package plugins
  */
 $plugin_description = gettext("Deprecated Zenphoto functions. These functions have been removed from mainstream Zenphoto as they have been supplanted. They are not maintained and they are not guaranteed to function correctly with the current version of Zenphoto.  You should update your theme if you get warnings. This plugin is not required for any theme coded for the current version of Zenphoto.");

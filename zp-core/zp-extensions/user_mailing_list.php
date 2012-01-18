@@ -3,6 +3,7 @@
  *
  * A tool to send e-mails to all registered users who have provided an e-mail address.
  *
+ * @author Malte Müller (acrylian)
  * @package plugins
  */
 

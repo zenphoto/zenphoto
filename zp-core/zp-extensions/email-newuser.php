@@ -2,6 +2,7 @@
 /**
  * Sends new users an e-mail when their user code is created
  *
+ * @author Stephen Billard (sbillard)
  * @package plugins
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
