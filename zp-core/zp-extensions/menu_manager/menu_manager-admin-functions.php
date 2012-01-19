@@ -17,7 +17,7 @@ function updateItemsSortorder(&$reports) {
 			$level = count($orderlist);
 			$parents[$level] = $id;
 			$myparent = $parents[$level-1];
-			$sql = "UPDATE " . prefix('menu') . " SET `sort_order` = '".$sortstring."', `parentid`= ".$myparent." WHERE `id`=" . $id;
+			$sql = "UPDATE " . prefix('menu') . " SET `sort_order` = ".db_quote($sortstring).", `parentid`= ".db_quote($myparent)." WHERE `id`=" . sanitize_numeric($id);
 			query($sql);
 		}
 	$reports[] =  "<br clear: all><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";

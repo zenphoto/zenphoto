@@ -91,16 +91,12 @@
 			<td>
 				<?php
 				echo gettext("Enter CAPTCHA<strong>*</strong>:").'<br />';
-				if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html'];
+				if (isset($captcha['html'])) echo $captcha['html'];
 				?>
 			</td>
 			<td>
 				<?php
-				if (isset($captcha['input'])) {
-					echo $captcha['input'];
-				} else {
-					if (isset($captcha['html'])) echo $captcha['html'];
-				}
+				if (isset($captcha['input'])) echo $captcha['input'];
 				if (isset($captcha['hidden'])) echo $captcha['hidden'];
 				?>
 			</td>

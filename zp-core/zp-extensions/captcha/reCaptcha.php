@@ -57,7 +57,7 @@ class captcha {
 	 * @return string;
 	 */
 	function getCaptcha() {
-		return array('html'=>recaptcha_get_html(getOption('reCaptcha_public_key')));
+		return array('input'=>recaptcha_get_html(getOption('reCaptcha_public_key')));
 	}
 }
 

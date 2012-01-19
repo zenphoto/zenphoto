@@ -53,7 +53,7 @@ class Album extends MediaObject {
 		}
 		if (filesystemToInternal($folderFS) != $folder8) { // an attempt to spoof the album name.
 			$this->exists = false;
-			$msg = sprintf(gettext('Zenphoto encountered an album name spoof attempt: %1$s=>%2$s.'),filesystemToInternal($folderFS),$folder8);
+			$msg = sprintf(gettext('Zenphoto encountered an album name spoof attempt: %1$s=>%2$s.'),html_encode(filesystemToInternal($folderFS)),html_encode($folder8));
 			debugLogBacktrace($msg);
 			trigger_error(html_encode($msg), E_USER_NOTICE);
 			return;
@@ -66,7 +66,7 @@ class Album extends MediaObject {
 		if(!file_exists($localpath) || !($dynamic || is_dir($localpath))) {
 			$this->exists = false;
 			if (!$quiet) {
-				$msg = sprintf(gettext('class-album detected an invalid folder name: %s.'),$folder8);
+				$msg = sprintf(gettext('class-album detected an invalid folder name: %s.'),html_encode($folder8));
 				debugLogBacktrace($msg);
 				trigger_error(html_encode($msg), E_USER_NOTICE);
 			}
@@ -1097,9 +1097,9 @@ class Album extends MediaObject {
 				return array();
 			}
 			if (!is_dir($albumdir)) {
-				$msg = sprintf(gettext("Error: The album named %s cannot be found."), $this->name);
+				$msg = sprintf(gettext("Error: The album named %s cannot be found."), html_encode($this->name));
 			} else {
-				$msg = sprintf(gettext("Error: The album %s is not readable."), $this->name);
+				$msg = sprintf(gettext("Error: The album %s is not readable."), html_encode($this->name));
 			}
 			zp_error($msg,false);
 			return array();

@@ -3440,16 +3440,16 @@ function printEditDropdown($subtab,$nestinglevels = array('1','2','3','4','5')) 
 			$nesting = $gallery_nesting;
 			break;
 		case 'subalbuminfo':
-			$link = '?page=edit&amp;album='.sanitize($_GET['album'],3).'&amp;tab=subalbuminfo&amp;selection=';
+			$link = '?page=edit&amp;album='.html_encode($_GET['album'],3).'&amp;tab=subalbuminfo&amp;selection=';
 			$nesting = $subalbum_nesting;
 			break;
 		case 'imageinfo':
 			if (isset($_GET['tagsort'])) {
-				$tagsort = '&amp;tagsort='.sanitize($_GET['tagsort'],3);
+				$tagsort = '&amp;tagsort='.html_encode($_GET['tagsort'],3);
 			} else {
 				$tagsort = '';
 			}
-			$link = '?page=edit&amp;album='.sanitize($_GET['album'],3).'&amp;tab=imageinfo'.$tagsort.'&amp;selection=';
+			$link = '?page=edit&amp;album='.html_encode($_GET['album'],3).'&amp;tab=imageinfo'.$tagsort.'&amp;selection=';
 			$nesting = $imagesTab_imageCount;
 			break;
 	}

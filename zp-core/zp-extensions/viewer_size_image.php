@@ -218,29 +218,37 @@ function printUserSizeSelector($text='', $default=NULL, $usersizes=NULL) {
 function getViewerImageSize($default, &$size, &$width, &$height) {
 	global $postdefault;
 	if (isset($_POST['viewer_size_image_selection']) || empty($default)) {
-		$postdefault = str_replace(',',';',$postdefault);
-		$postdefault = str_replace(' ','',$postdefault).';';
-		$s = $w = $h  = NULL;
-		if (false === eval($postdefault)) {
-			trigger_error(gettext('There is a format error in user size selection'), E_USER_NOTICE);
-		}
-		$size = $s;
-		$width = $w;
-		$height = $h;
+		$msg = gettext('There is a format error in user size selection');
+		$validate = $postdefault;
 	} else {
-		$default = str_replace(',',';',$default).';';
-		$s = $w = $h  = NULL;
-		if (false === eval($default)) {
-			trigger_error(gettext('There is a format error in your $default parameter'), E_USER_NOTICE);
+		$msg = gettext('There is a format error in your $default parameter');
+		$validate = $default;
+	}
+	$size = $width = $height = NULL;
+	preg_match_all('/(\$[shw])[\s]*=[\s]*([0-9]+)/', $validate, $matches);
+	if ($matches) {
+		foreach ($matches[0] as $key=>$str) {
+			switch ($matches[1][$key]) {
+				case '$s':
+					$size = $matches[2][$key];
+					break;
+				case '$w':
+					$width = $matches[2][$key];
+					break;
+				case '$h':
+					$height = $matches[2][$key];
+					break;
+			}
 		}
-		if (!empty($s)) {
-			$size = $s;
+
+		if (!empty($size)) {
 			$width = $height  = NULL;
 		} else {
 			$size = NULL;
-			$width = $w;
-			$height = $h;
 		}
+	}
+	if (empty($size) && empty($width) && empty($height)) {
+		trigger_error($msg, E_USER_NOTICE);
 	}
 }
 

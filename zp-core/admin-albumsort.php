@@ -33,7 +33,7 @@ if (isset($_GET['album'])) {
 		if (isset($inputArray['id'])) {
 			$orderArray = $inputArray['id'];
 			foreach($orderArray as $key=>$id) {
-				$sql = 'UPDATE '.prefix('images').' SET `sort_order`="'.sprintf('%03u',$key).'" WHERE `id`='.$id;
+				$sql = 'UPDATE '.prefix('images').' SET `sort_order`='.db_quote(sprintf('%03u',$key)).' WHERE `id`='.sanitize_numeric($id);
 				query($sql);
 			}
 

@@ -43,13 +43,13 @@ if (!defined('WEBPATH')) die();
 					 		<?php
 							echo gettext("The Zenphoto object you are requesting cannot be found.");
 							if (isset($album)) {
-								echo '<br />'.gettext("Album").': '.sanitize($album);
+								echo '<br />'.gettext("Album").': '.html_encode($album);
 							}
 							if (isset($image)) {
-								echo '<br />'.gettext("Image").': '.sanitize($image);
+								echo '<br />'.gettext("Image").': '.html_encode($image);
 							}
 							if (isset($obj)) {
-								echo '<br />'.gettext("Theme page").': '.substr(basename($obj),0,-4);
+								echo '<br />'.gettext("Theme page").': '.html_encode(substr(basename($obj),0,-4));
 							}
 					 		?>
 							</div>
