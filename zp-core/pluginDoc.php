@@ -45,29 +45,23 @@ if ($thirdparty) {
 }
 $pluginStream = file_get_contents($path);
 $parserr = 0;
+$plugin_description = '';
 if ($str = isolate('$plugin_description', $pluginStream)) {
 	if (false === eval($str)) {
-		$parserr = $parserr | 1;
 		$plugin_description = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
 	}
-} else {
-	$plugin_description = '';
 }
+	$plugin_author = '';
 if ($str = isolate('$plugin_author', $pluginStream)) {
 	if (false === eval($str)) {
-		$parserr = $parserr | 2;
 		$plugin_author = gettext('<strong>Error parsing <em>plugin_author</em> string!</strong>.');
 	}
-} else {
-	$plugin_author = '';
 }
+$plugin_version = '';
 if ($str = isolate('$plugin_version', $pluginStream)) {
 	if (false === eval($str)) {
-		$parserr = $parserr | 4;
 		$plugin_version = ' '.gettext('<strong>Error parsing <em>plugin_version</em> string!</strong>.');
 	}
-} else {
-	$plugin_version = '';
 }
 if ($thirdparty) {
 	$whose = gettext('third party plugin');
@@ -89,14 +83,6 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<title><?php echo sprintf(gettext('%1$s %2$s: %3$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($extension)); ?></title>
-	<style>
-	.border {
-		padding: 10px;
-		margin-bottom: 10px;
-		font-size: 100%;
-		background-color: #FAFAFA !important;
-	}
-	</style>
 </head>
 <body>
 	<div id="main">

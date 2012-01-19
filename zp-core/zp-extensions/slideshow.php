@@ -187,7 +187,7 @@ function printSlideShowLink($linktext='', $linkstyle='') {
 							previous: '<?php echo gettext("prev"); ?>',
 							next: '<?php echo gettext("next"); ?>',
 							close: '<?php echo gettext("close"); ?>',
-							current : '<?php printf(gettext('image {%1$s} / {%2$s}'),'current', 'total'); ?>',
+							current : '<?php printf(gettext('image %1$s of %2$s'),'{current}', '{total}'); ?>',
 							maxWidth:'98%',
 							maxHeight:'98%',
 							photo: true

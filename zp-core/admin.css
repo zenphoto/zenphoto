@@ -392,6 +392,12 @@ ul.nav li:hover > ul {
 
 /* Messages
 ------------------------------ */
+.border {
+	padding: 10px;
+	margin-bottom: 10px;
+	font-size: 100%;
+	background-color: #FAFAFA !important;
+}
 .messagebox {
 	background-color: #C0FFA8;
 	padding: 10px 15px 10px 15px;
