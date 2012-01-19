@@ -662,20 +662,23 @@ class SearchEngine
 		if (!is_array($this->category_list)) return false;
 		$cat = '';
 		$list = $_zp_zenpage->getAllCategories();
-		foreach ($list as $category) {
-			if (in_array($category['title'], $this->category_list)) {
-				$catobj = new ZenpageCategory($category['titlelink']);
-				$cat .= ' `cat_id`='.$catobj->get('id').' OR';
-				$subcats = $catobj->getSubCategories();
-				if($subcats) {
-					foreach($subcats as $subcat) {
-						$catobj = new ZenpageCategory($subcat);
-						$cat .= ' `cat_id`='.$catobj->get('id').' OR';
+		if (!empty($list)) {
+			foreach ($list as $category) {
+				if (in_array($category['title'], $this->category_list)) {
+					$catobj = new ZenpageCategory($category['titlelink']);
+					$cat .= ' `cat_id`='.$catobj->get('id').' OR';
+					$subcats = $catobj->getSubCategories();
+					if($subcats) {
+						foreach($subcats as $subcat) {
+							$catobj = new ZenpageCategory($subcat);
+							$cat .= ' `cat_id`='.$catobj->get('id').' OR';
+						}
 					}
 				}
 			}
+			$cat = ' WHERE '.substr($cat,0,-3);
 		}
-		$sql = 'SELECT DISTINCT `news_id` FROM '.prefix('news2cat').' WHERE '.substr($cat,0,-3);
+		$sql = 'SELECT DISTINCT `news_id` FROM '.prefix('news2cat').$cat;
 		$result = query_full_array($sql);
 		$list = array();
 		foreach ($result as $row) {

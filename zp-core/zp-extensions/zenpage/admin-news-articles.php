@@ -13,13 +13,18 @@ require_once("zenpage-admin-functions.php");
 admin_securityChecks(ZENPAGE_NEWS_RIGHTS, currentRelativeURL(__FILE__));
 
 $reports = array();
+if (isset($_GET['bulkaction'])) {
+	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
+}
 if (isset($_GET['deleted'])) {
 	$reports[] = "<p class='messagebox fade-message'>".gettext("Article successfully deleted!")."</p>";
 }
 if(isset($_POST['processcheckeditems'])) {
 	XSRFdefender('checkeditems');
-	processZenpageBulkActions('News',$reports);
-}
+	$action = processZenpageBulkActions('News');
+	header('Location: ' . FULLWEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/admin-news-articles.php?bulkaction='.$action);
+	exit();
+	}
 if(isset($_GET['delete'])) {
 	XSRFdefender('delete');
 	$msg = deleteArticle($_GET['delete']);

@@ -1786,7 +1786,7 @@ function is_AdminEditPage($page) {
  * Processes the check box bulk actions
  *
  */
-function processZenpageBulkActions($type,&$reports) {
+function processZenpageBulkActions($type) {
 	global $_zp_zenpage;
 	if (isset($_POST['ids'])) {
 		//echo "action for checked items:". $_POST['checkallaction'];
@@ -1820,44 +1820,6 @@ function processZenpageBulkActions($type,&$reports) {
 					$cats = sanitize($cats, 3);
 				}
 				$n = 0;
-				switch($action) {
-					case 'deleteall':
-						$message = gettext('Selected items deleted');
-						break;
-					case 'showall':
-						$message = gettext('Selected items published');
-						break;
-					case 'hideall':
-						$message = gettext('Selected items unpublished');
-						break;
-					case 'commentson':
-						$message = gettext('Comments enabled for selected items');
-						break;
-					case 'commentsoff':
-						$message = gettext('Comments disabled for selected items');
-						break;
-					case 'resethitcounter':
-						$message = gettext('Hitcounter for selected items');
-						break;
-					case 'addtags':
-						$message = gettext('Tags added to selected items');
-						break;
-					case 'cleartags':
-						$message = gettext('Tags cleared from selected items');
-						break;
-					case 'alltags':
-						$message = gettext('Tags added to articles of selected items');
-						break;
-					case 'clearalltags':
-						$message = gettext('Tags cleared from articles of selected items');
-						break;
-					case 'addcats':
-						$message = gettext('Categories added to selected items');
-						break;
-					case 'clearcats':
-						$message = gettext('Categories cleared from selected items');
-						break;
-				}
 				foreach ($links as $titlelink) {
 					$class = 'Zenpage'.$type;
 					$obj = new $class($titlelink);
@@ -1925,9 +1887,54 @@ function processZenpageBulkActions($type,&$reports) {
 					}
 					$obj->save();
 				}
-				if(!is_null($message)) $reports[] = "<p class='messagebox fade-message'>".$message."</p>";
 			}
 		}
 	}
+	return $action;
+}
+
+function zenpageBulkActionMessage($action) {
+	switch($action) {
+		case 'deleteall':
+			$message = gettext('Selected items deleted');
+			break;
+		case 'showall':
+			$message = gettext('Selected items published');
+			break;
+		case 'hideall':
+			$message = gettext('Selected items unpublished');
+			break;
+		case 'commentson':
+			$message = gettext('Comments enabled for selected items');
+			break;
+		case 'commentsoff':
+			$message = gettext('Comments disabled for selected items');
+			break;
+		case 'resethitcounter':
+			$message = gettext('Hitcounter for selected items');
+			break;
+		case 'addtags':
+			$message = gettext('Tags added to selected items');
+			break;
+		case 'cleartags':
+			$message = gettext('Tags cleared from selected items');
+			break;
+		case 'alltags':
+			$message = gettext('Tags added to articles of selected items');
+			break;
+		case 'clearalltags':
+			$message = gettext('Tags cleared from articles of selected items');
+			break;
+		case 'addcats':
+			$message = gettext('Categories added to selected items');
+			break;
+		case 'clearcats':
+			$message = gettext('Categories cleared from selected items');
+			break;
+	}
+	if(!is_null($message)) {
+		return "<p class='messagebox fade-message'>".$message."</p>";
+	}
+	return false;
 }
 ?>

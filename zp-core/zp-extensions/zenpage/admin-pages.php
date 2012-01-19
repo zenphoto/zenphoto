@@ -13,13 +13,21 @@ require_once("zenpage-admin-functions.php");
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS, currentRelativeURL(__FILE__));
 
 $reports = array();
+if (isset($_GET['bulkaction'])) {
+	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
+}
 if (isset($_GET['deleted'])) {
 	$reports[] = "<p class='messagebox fade-message'>".gettext("Article successfully deleted!")."</p>";
+}
+if(isset($_POST['checkallaction'])) {
+	XSRFdefender('update');
+	$action = processZenpageBulkActions('Page');
+	header('Location: ' . FULLWEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/admin-pages.php?bulkaction='.$action);
+	exit();
 }
 // update page sort order
 if(isset($_POST['update'])) {
 	XSRFdefender('update');
-	processZenpageBulkActions('Page', $reports);
 	updateItemSortorder('pages',$reports);
 }
 // remove the page from the database

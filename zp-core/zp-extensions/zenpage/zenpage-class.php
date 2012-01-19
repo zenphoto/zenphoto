@@ -11,8 +11,6 @@
  *
  */
 
-$_zp_zenpage_all_categories = NULL; // for use by getAllCategories() only!
-
 define('ZP_SHORTENINDICATOR',$shortenindicator = getOption('zenpage_textshorten_indicator'));
 define('ZP_SINGULAR',get_language_string(getOption('combinews-customtitle-singular')));
 define('ZP_PLURAL',get_language_string(getOption('combinews-customtitle-plural')));
@@ -100,7 +98,7 @@ class Zenpage {
 	 * @return array
 	 */
 	function getPages($published=NULL) {
-		global $_zp_zenpage_all_pages, $_zp_loggedin;
+		global $_zp_loggedin;
 		$this->processExpired('pages');
 		if (is_null($published)) {
 			$published = !zp_loggedin();
@@ -113,21 +111,21 @@ class Zenpage {
 		} else {
 			$show = '';
 		}
-		$_zp_zenpage_all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
+		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
 		$result  = query("SELECT * FROM ".prefix('pages').$show." ORDER by `sort_order`");
 		if ($result) {
 			while ($row = db_fetch_assoc($result)) {
 				if ($all || $row['show']) {
-					$_zp_zenpage_all_pages[] = $row;
+					$all_pages[] = $row;
 				} else if ($_zp_loggedin) {
 					$page = new ZenpagePage($row['titlelink']);
 					if ($page->isMyItem(LIST_RIGHTS)) {
-						$_zp_zenpage_all_pages[] = $row;
+						$all_pages[] = $row;
 					}
 				}
 			}
 		}
-		return $_zp_zenpage_all_pages;
+		return $all_pages;
 	}
 
 

@@ -13,10 +13,14 @@ require_once("zenpage-admin-functions.php");
 admin_securityChecks(ZENPAGE_NEWS_RIGHTS, currentRelativeURL(__FILE__));
 
 $reports = array();
+if (isset($_GET['bulkaction'])) {
+	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
+}
 if(isset($_POST['processcheckeditems'])) {
 	XSRFdefender('checkeditems');
-	processZenpageBulkActions('Category',$reports);
-	updateItemSortorder('categories',$reports);
+	$action = processZenpageBulkActions('Category');
+	header('Location: ' . FULLWEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/admin-categories.php?bulkaction='.$action);
+	exit();
 }
 if(isset($_GET['delete'])) {
 	XSRFdefender('delete_category');
@@ -126,6 +130,8 @@ printLogoAndLinks();
 					<div class="headline"><?php echo gettext('Edit this Category'); ?>
 					<?php
 					$checkarray = array(
+													gettext('Set to published') => 'showall',
+													gettext('Set to unpublished') => 'hideall',
 													gettext('*Bulk actions*') => 'noaction',
 													gettext('Delete') => 'deleteall',
 													gettext('Add tags to articles') => 'alltags',
