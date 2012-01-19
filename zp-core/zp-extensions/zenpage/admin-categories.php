@@ -16,11 +16,19 @@ $reports = array();
 if (isset($_GET['bulkaction'])) {
 	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
 }
-if(isset($_POST['processcheckeditems'])) {
+if(isset($_POST['checkallaction'])) {
 	XSRFdefender('checkeditems');
-	$action = processZenpageBulkActions('Category');
-	header('Location: ' . FULLWEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/admin-categories.php?bulkaction='.$action);
-	exit();
+	updateItemSortorder('categories',$reports);
+	if ($action = processZenpageBulkActions('Category')) {
+		$uri = $_server['REQUEST_URI'];
+		if (strpos($uri, '?')) {
+			$uri .= '&bulkaction='.$action;
+		} else {
+			$uri .= '?bulkaction='.$action;
+		}
+		header('Location: ' .html_encode($uri));
+		exit();
+	}
 }
 if(isset($_GET['delete'])) {
 	XSRFdefender('delete_category');
@@ -110,7 +118,6 @@ printLogoAndLinks();
 			<form action="admin-categories.php?page=news&amp;tab=categories" method="post" id="checkeditems" name="checkeditems" onsubmit="return confirmAction();">
 				<?php XSRFToken('checkeditems');?>
 				<input	type="hidden" name="action" id="action" value="checkeditems" />
-				<input name="processcheckeditems" type="hidden" value="apply" />
 				<p class="buttons">
 					<button class="serialize" type="submit" title="<?php echo gettext('Apply'); ?>">
 						<img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>

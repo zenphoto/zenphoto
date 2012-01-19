@@ -21,14 +21,20 @@ if (isset($_GET['deleted'])) {
 }
 if(isset($_POST['checkallaction'])) {
 	XSRFdefender('update');
-	$action = processZenpageBulkActions('Page');
-	header('Location: ' . FULLWEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/admin-pages.php?bulkaction='.$action);
-	exit();
-}
-// update page sort order
-if(isset($_POST['update'])) {
-	XSRFdefender('update');
-	updateItemSortorder('pages',$reports);
+	if(isset($_POST['update'])) {
+		// update page sort order
+		updateItemSortorder('pages',$reports);
+	}
+	if ($action = processZenpageBulkActions('Page')) {
+		$uri = $_server['REQUEST_URI'];
+		if (strpos($uri, '?')) {
+			$uri .= '&bulkaction='.$action;
+		} else {
+			$uri .= '?bulkaction='.$action;
+		}
+		header('Location: ' .html_encode($uri));
+		exit();
+	}
 }
 // remove the page from the database
 if(isset($_GET['delete'])) {

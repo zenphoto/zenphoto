@@ -1788,6 +1788,7 @@ function is_AdminEditPage($page) {
  */
 function processZenpageBulkActions($type) {
 	global $_zp_zenpage;
+	$action = false;
 	if (isset($_POST['ids'])) {
 		//echo "action for checked items:". $_POST['checkallaction'];
 		$action = sanitize($_POST['checkallaction']);
@@ -1932,7 +1933,7 @@ function zenpageBulkActionMessage($action) {
 			$message = gettext('Categories cleared from selected items');
 			break;
 	}
-	if(!is_null($message)) {
+	if(isset($message)) {
 		return "<p class='messagebox fade-message'>".$message."</p>";
 	}
 	return false;

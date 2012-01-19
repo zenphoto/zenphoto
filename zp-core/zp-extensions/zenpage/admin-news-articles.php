@@ -19,12 +19,19 @@ if (isset($_GET['bulkaction'])) {
 if (isset($_GET['deleted'])) {
 	$reports[] = "<p class='messagebox fade-message'>".gettext("Article successfully deleted!")."</p>";
 }
-if(isset($_POST['processcheckeditems'])) {
+if(isset($_POST['checkallaction'])) {	// true if apply is pressed
 	XSRFdefender('checkeditems');
-	$action = processZenpageBulkActions('News');
-	header('Location: ' . FULLWEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/admin-news-articles.php?bulkaction='.$action);
-	exit();
+	if ($action = processZenpageBulkActions('News')) {
+		$uri = $_server['REQUEST_URI'];
+		if (strpos($uri, '?')) {
+			$uri .= '&bulkaction='.$action;
+		} else {
+			$uri .= '?bulkaction='.$action;
+		}
+		header('Location: ' .html_encode($uri));
+		exit();
 	}
+}
 if(isset($_GET['delete'])) {
 	XSRFdefender('delete');
 	$msg = deleteArticle($_GET['delete']);
@@ -197,7 +204,6 @@ printLogoAndLinks();
 				</div>
 				<form action="admin-news-articles.php?pagenr=<?php echo $_zp_zenpage_currentadminnewspage.getNewsAdminOptionPath(true,true,true,true,true);?>" method="post" name="checkeditems" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
-				<input name="processcheckeditems" type="hidden" value="apply" />
 				<div class="buttons">
 					<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
 					</button>
