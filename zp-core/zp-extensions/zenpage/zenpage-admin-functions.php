@@ -1386,10 +1386,9 @@ function printNestedItemsList($listtype='cats-sortablelist',$articleid='',$optio
  * Updates the sortorder of the items list in the database
  *
  * @param string $mode 'pages' or 'categories'
- * @param array $reports The success messagees
  * @return array
  */
-function updateItemSortorder($mode='pages', &$reports) {
+function updateItemSortorder($mode='pages') {
 	if(!empty($_POST['order'])) { // if someone didn't sort anything there are no values!
 		$order = processOrder($_POST['order']);
 		$parents = array('NULL');
@@ -1409,8 +1408,9 @@ function updateItemSortorder($mode='pages', &$reports) {
 			$sql = "UPDATE " . $dbtable . " SET `sort_order` = '".implode('-',$orderlist)."', `parentid`= ".$myparent." WHERE `id`=" . $id;
 			query($sql);
 		}
+		return true;
 	}
-	$reports[] = "<br clear=\"all\"><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
+	return false;
 }
 
 /**

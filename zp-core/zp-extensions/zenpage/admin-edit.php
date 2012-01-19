@@ -330,10 +330,17 @@ if ($result->loaded || $result->transient) {
 	if(is_AdminEditPage("page")) {
 		$backurl = 'admin-pages.php';
 	}
-	foreach ($reports as $report) {
-		echo $report;
-	}
 	zp_apply_filter('admin_note','news', $subtab);
+	if ($reports) {
+		$show = array();
+		preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports),$matches);
+		foreach ($matches[1] as $key=>$report) {
+			$show[$report][] = $matches[2][$key];
+		}
+		foreach ($show as $type=>$list) {
+			echo '<p class="'.$type.'">'.implode('<br />', $list).'</p>';
+		}
+	}
 	?>
 	<span class="buttons">
 		<strong><a href="<?php echo $backurl; ?>" title="<?php echo gettext("Back"); ?>"><img	src="../../images/arrow_left_blue_round.png" alt="" /><?php echo gettext("Back"); ?></a></strong>

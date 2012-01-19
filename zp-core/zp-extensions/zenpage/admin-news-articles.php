@@ -28,7 +28,7 @@ if(isset($_POST['checkallaction'])) {	// true if apply is pressed
 		} else {
 			$uri .= '?bulkaction='.$action;
 		}
-		header('Location: ' .html_encode($uri));
+		header('Location: ' .$uri);
 		exit();
 	}
 }
@@ -95,8 +95,15 @@ printLogoAndLinks();
 		<div id="tab_articles" class="tabbox">
 			<?php
 			zp_apply_filter('admin_note','news', $subtab);
-			foreach ($reports as $report) {
-				echo $report;
+			if ($reports) {
+				$show = array();
+				preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports),$matches);
+				foreach ($matches[1] as $key=>$report) {
+					$show[$report][] = $matches[2][$key];
+				}
+				foreach ($show as $type=>$list) {
+					echo '<p class="'.$type.'">'.implode('<br />', $list).'</p>';
+				}
 			}
 			?>
 			<h1><?php echo gettext('Articles'); ?>

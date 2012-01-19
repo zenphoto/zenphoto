@@ -15,16 +15,16 @@ admin_securityChecks(ZENPAGE_PAGES_RIGHTS, currentRelativeURL(__FILE__));
 $reports = array();
 if (isset($_GET['bulkaction'])) {
 	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
+	if (isset($_GET['sorted'])) {
+		$reports[] = "<br clear=\"all\"><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
+	}
 }
 if (isset($_GET['deleted'])) {
 	$reports[] = "<p class='messagebox fade-message'>".gettext("Article successfully deleted!")."</p>";
 }
-if(isset($_POST['checkallaction'])) {
+if(isset($_POST['update'])) {
 	XSRFdefender('update');
-	if(isset($_POST['update'])) {
-		// update page sort order
-		updateItemSortorder('pages',$reports);
-	}
+	$sorted = updateItemSortorder('pages');
 	if ($action = processZenpageBulkActions('Page')) {
 		$uri = $_server['REQUEST_URI'];
 		if (strpos($uri, '?')) {
@@ -32,8 +32,14 @@ if(isset($_POST['checkallaction'])) {
 		} else {
 			$uri .= '?bulkaction='.$action;
 		}
-		header('Location: ' .html_encode($uri));
+		if ($sorted) {
+			$uri .= '&sorted';
+		}
+		header('Location: ' .$uri);
 		exit();
+	}
+	if ($sorted) {
+		$reports[] = "<br clear=\"all\"><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
 	}
 }
 // remove the page from the database
@@ -95,8 +101,15 @@ zenpageJSCSS();
 	printTabs();
 	echo '<div id="content">';
 	zp_apply_filter('admin_note','pages', '');
-	foreach ($reports as $report) {
-		echo $report;
+	if ($reports) {
+		$show = array();
+		preg_match_all('/<p class=[\'"](.*?)[\'"]>(.*?)<\/p>/', implode('', $reports),$matches);
+		foreach ($matches[1] as $key=>$report) {
+			$show[$report][] = $matches[2][$key];
+		}
+		foreach ($show as $type=>$list) {
+			echo '<p class="'.$type.'">'.implode('<br />', $list).'</p>';
+		}
 	}
 ?>
 <h1><?php echo gettext('Pages'); ?><span class="zenpagestats"><?php printPagesStatistic();?></span></h1>
