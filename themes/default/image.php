@@ -39,7 +39,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				<h2>
 					<span>
 						<?php printHomeLink('', ' | '); ?>
-						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php gettext('Albums Index'); ?>"><?php echo getGalleryTitle(); ?></a> | 
+						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php gettext('Albums Index'); ?>"><?php echo getGalleryTitle(); ?></a> |
 						<?php
 						printParentBreadcrumb("", " | ", " | ");
 						printAlbumBreadcrumb("", " | ");
@@ -96,9 +96,6 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				<?php if (function_exists('printRating')) {
 					printRating();
 				} ?>
-				<?php if (function_exists('printShutterfly'))
-					printShutterfly(); ?>
-
 				<?php
 				if (function_exists('printCommentForm')) {
 					printCommentForm();

@@ -113,7 +113,6 @@ if (!defined('WEBPATH')) die();
 		<br style="clear:both" />
 		<?php if (function_exists('printRating')) printRating(); ?>
 		<?php if (function_exists('printGoogleMap')) printGoogleMap(); ?>
-		<?php if (function_exists('printShutterfly')) printShutterfly(); ?>
 
 </div>
 		<?php if (function_exists('printCommentForm')) {

@@ -98,7 +98,6 @@ require_once('normalizer.php');
  					</li>
 				</ul>
 			</div>
-			<?php if (function_exists('printShutterfly')) printShutterfly(); ?>
 
 			<div class="main">
 				<div class="rating"><?php if (function_exists('printRating')) printRating(); ?></div>

@@ -153,9 +153,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 			<p><?php	printImageDesc(true); ?></p>
 			<?php if (function_exists('printRating')) printRating(); ?>
 		</div>
-		<?php
-		if (function_exists('printShutterfly')) printShutterfly();
-		?>
+
 	</div>
 
 	<!-- Wrap Bottom Content -->
