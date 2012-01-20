@@ -1,7 +1,7 @@
 /*
 
 	Zen Photo Default (Dark) 1.0
-	
+
 */
 
 /* Basics
@@ -56,9 +56,9 @@ body {
 	/*min-height: 40px;
   _height: 40px;*/
 }
-#gallerytitle h2 { 
-	font-weight: normal; 
-	font-size: 12pt; 
+#gallerytitle h2 {
+	font-weight: normal;
+	font-size: 12pt;
 	margin-top: 18px;
 	width:510px;
 }
@@ -218,6 +218,12 @@ ul.pagelist li.next {
 
 /* Image Thumbnails
 ------------------------------ */
+#images {
+	float: left;
+	width: 590px;
+	border: 0px solid gray;
+}
+
 .imagethumb a, .imagethumb a:hover {
 	display: block;
 	padding: 9px;
@@ -258,7 +264,7 @@ ul.pagelist li.next {
 }
 .album a img {  }
 .album .thumb {
-    float: left; 
+    float: left;
     margin-right: 6px;
 }
 .album h3 {
@@ -278,7 +284,7 @@ ul.pagelist li.next {
 
 /* Individual Image
 ------------------------------ */
-.image { 
+.image {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -443,8 +449,8 @@ label:hover {
 text-decoration: none;
 }
 #search ul {
-border: 1px solid #444; position:absolute; text-align:left; list-style: none; 
-height: 8em; width: 20em; overflow: auto; 
+border: 1px solid #444; position:absolute; text-align:left; list-style: none;
+height: 8em; width: 20em; overflow: auto;
 background-color: #222;
 }
 #searchfields_icon {
@@ -525,7 +531,7 @@ ul.archive .month {
 }
 .errorlist {
 	list-style-type: none;
-}	
+}
 
 /* Zenphoto link
 ------------------------------ */

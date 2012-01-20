@@ -22,9 +22,9 @@ body {
 	padding-bottom: 15px;
 	background: #FFF;
 	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px; 
- 	-khtml-border-radius: 10px; 
- 	border-radius: 10px; 
+	-webkit-border-radius: 10px;
+ 	-khtml-border-radius: 10px;
+ 	border-radius: 10px;
 	border: 1px solid #CCC;
 }
 * html #main{width: 720px;}
@@ -47,9 +47,9 @@ body {
 #gallerytitle {
 	padding: 20px 10px 10px 20px;
 	-moz-border-radius: 10px 10px 0px 0px;
-	-webkit-border-radius: 10px 10px 0px 0px; 
- 	-khtml-border-topright: 10px 10px 0px 0px; 
- 	border-radius: 10px 10px 0px 0px; 
+	-webkit-border-radius: 10px 10px 0px 0px;
+ 	-khtml-border-topright: 10px 10px 0px 0px;
+ 	border-radius: 10px 10px 0px 0px;
 	background: #F8F8F8;
 	height:30px;
 	border-bottom: 1px solid #CCC;
@@ -224,6 +224,12 @@ ul.pagelist li.next {
 
 /* Image Thumbnails
 ------------------------------ */
+#images {
+	float: left;
+	width: 590px;
+	border: 0px solid gray;
+}
+
 .imagethumb a, .thumb a {
 	display: block;
 	padding: 7px;
@@ -242,6 +248,7 @@ ul.pagelist li.next {
 ------------------------------ */
 #albums {
 				float: left;
+				padding: 7px;
 }
 .album {
 	margin: 0 15px 15px 0;

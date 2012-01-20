@@ -1,7 +1,7 @@
 /*
 
 	Sterile Dark 1.0
-	
+
 */
 
 /* Main Layout
@@ -9,7 +9,7 @@
 body {
 	background: #1a1a1a;
 	margin: 0 !important;
-	margin: 0 0 10px 0; 
+	margin: 0 0 10px 0;
 	padding: 0;
 	text-align: center;
 	font: 76% 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
@@ -22,9 +22,9 @@ body {
 	width: 700px;
 	background: #333333;
 	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px; 
- 	-khtml-border-topright: 10px; 
- 	border-radius: 10px; 
+	-webkit-border-radius: 10px;
+ 	-khtml-border-topright: 10px;
+ 	border-radius: 10px;
 	border: 1px solid #2a2a2a;
 }
 * html #main{width: 720px;}
@@ -47,12 +47,12 @@ body {
 #gallerytitle {
 	padding: 20px 10px 10px 20px;
 	-moz-border-radius: 10px 10px 0px 0px;
-	-webkit-border-radius: 10px 10px 0px 0px; 
- 	-khtml-border-topright: 10px 10px 0px 0px; 
- 	border-radius: 10px 10px 0px 0px; 
+	-webkit-border-radius: 10px 10px 0px 0px;
+ 	-khtml-border-topright: 10px 10px 0px 0px;
+ 	border-radius: 10px 10px 0px 0px;
 	background: #c0db5a;
 	height:30px;
-	border-bottom: 1px solid #2a2a2a;	
+	border-bottom: 1px solid #2a2a2a;
 }
 #padbox {
  	padding: 20px !important;
@@ -110,7 +110,7 @@ h2 a:hover {
 h3 {
 	color: #666;
 	margin: 5px 0 5px 0 !important;
-	margin: 0;	
+	margin: 0;
 	padding: 0;
 }
 h4 {
@@ -225,13 +225,19 @@ ul.pagelist li.next {
 
 /* Image Thumbnails
 ------------------------------ */
+#images {
+	float: left;
+	width: 590px;
+	border: 0px solid gray;
+}
+
 .imagethumb a, .thumb a {
 	display: block;
 	padding: 7px;
 	margin: 5px;
 	line-height: 0px;
-	
-}	
+
+}
 .imagethumb, .thumb {
 	float: left;
 }
@@ -244,6 +250,7 @@ ul.pagelist li.next {
 ------------------------------ */
 #albums {
 	float: left;
+	padding: 7px;
 }
 .album {
 	margin: 0 15px 15px 0;
@@ -274,7 +281,7 @@ ul.pagelist li.next {
 
 
 /* Individual Image
------------------------------- */	
+------------------------------ */
 .imgdesc {
 	padding: 10px 0 10px 0;
 	line-height: 18px;
@@ -314,7 +321,7 @@ ul.pagelist li.next {
 	float: right;
 }
 #imgoriginal {
-	font-size: 8pt; 
+	font-size: 8pt;
 	text-align: right;
 	height:30px;
 }
@@ -430,8 +437,8 @@ label {
 text-decoration: none;
 }
 #search ul {
-border: 1px solid #ccc; position:absolute; text-align:left; list-style: none; 
-height: 8em; width: 20em; overflow: auto; 
+border: 1px solid #ccc; position:absolute; text-align:left; list-style: none;
+height: 8em; width: 20em; overflow: auto;
 color: #fff;
 background-image:url(../images/50percent.png);
 }
@@ -513,7 +520,7 @@ ul.archive .month {
 }
 .errorlist {
 	list-style-type: none;
-}	
+}
 
 /* Zenphoto link
 ------------------------------ */

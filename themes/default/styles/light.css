@@ -220,6 +220,11 @@ ul.pagelist li.next {
 
 /* Image Thumbnails
 ------------------------------ */
+#images {
+	float: left;
+	width: 590px;
+	border: 0px solid gray;
+}
 .imagethumb a, .imagethumb a:hover {
 	display: block;
 	padding: 9px;
