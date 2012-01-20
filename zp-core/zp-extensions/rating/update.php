@@ -44,7 +44,7 @@ if(!$oldrating || getOption('rating_recast')) {
 		$voting = ' total_votes=total_votes+1,';
 		$valuechange = ' total_value=total_value+'.$rating.',';
 	}
-	$sql = "UPDATE ".$dbtable.' SET'.$voting.$valuechange." rating=total_value/total_votes, used_ips='".$insertip."' WHERE id='".$id."'";
+	$sql = "UPDATE ".$dbtable.' SET'.$voting.$valuechange." rating=total_value/total_votes, used_ips=".db_quote($insertip)." WHERE id='".$id."'";
 	$rslt = query($sql,false);
 }
 

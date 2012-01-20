@@ -3297,7 +3297,7 @@ function postAlbumSort($parentid) {
 				$newparent = $parentid;
 			}
 			if ($newparent == $currentalbum['parentid']) {
-				$sql = 'UPDATE '.prefix('albums').' SET `sort_order`="'.$sortorder.'" WHERE `id`='.$item;
+				$sql = 'UPDATE '.prefix('albums').' SET `sort_order`='.db_quote($sortorder).' WHERE `id`='.$item;
 				query($sql);
 			} else {	// have to do a move
 				$albumname = $currentalbum['folder'];

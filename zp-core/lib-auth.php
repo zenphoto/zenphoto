@@ -921,45 +921,60 @@ class Zenphoto_Authority {
 				break;
 			default:
 				?>
-				<form name="login" action="<?php echo html_encode($_SERVER['REQUEST_URI']); ?>" method="post">
-					<input type="hidden" name="login" value="1" />
-					<input type="hidden" name="password" value="1" />
-					<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
-						<?php
+				<script type="text/javascript">
+					// <!-- <![CDATA[
+					function togglePassword() {
+						if($('#pass').attr('type')=='password') {
+							var oldp = $('#pass');
+							var newp = oldp.clone();
+							newp.attr('type', 'text');
+							newp.insertAfter(oldp);
+							oldp.remove();
+						} else {
+							var oldp = $('#pass');
+							var newp = oldp.clone();
+							newp.attr('type', 'password');
+							newp.insertAfter(oldp);
+							oldp.remove();
+						}
+					}
+					<?php
 						if (empty($alt_handlers)) {
 							$ledgend = gettext('Login');
 						} else {
 							?>
-							<script type="text/javascript">
-								// <!-- <![CDATA[
-								var handlers = [];
-								<?php
-								$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
-													'<option value="0">'.html_encode(get_language_string($_zp_gallery->getTitle())).'</option>';
-								$c = 0;
-								foreach ($alt_handlers as $handler=>$details) {
-									$c++;
-									$details['params'][] = 'redirect='.$redirect;
-									if (!empty($requestor)) {
-										$details['params'][] = 'requestor='.$requestor;
-									}
-									echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
+							var handlers = [];
+							<?php
+							$list = '<select id="logon_choices" onchange="changeHandler(handlers[$(this).val()]);">'.
+												'<option value="0">'.html_encode(get_language_string($_zp_gallery->getTitle())).'</option>';
+							$c = 0;
+							foreach ($alt_handlers as $handler=>$details) {
+								$c++;
+								$details['params'][] = 'redirect='.$redirect;
+								if (!empty($requestor)) {
+									$details['params'][] = 'requestor='.$requestor;
+								}
+								echo "handlers[".$c."]=['".$details['script']."','".implode("','", $details['params'])."'];";
 
-									$list .= '<option value="'.$c.'">'.$handler.'</option>';
-								}
-								$list .= '</select>';
-								$ledgend = sprintf(gettext('Logon using:%s'),$list);
-								?>
-								function changeHandler(handler) {
-									handler.push('user='+$('#user').val());
-									var script = handler.shift();
-									launchScript(script,handler);
-								}
-								// ]]> -->
-							</script>
+								$list .= '<option value="'.$c.'">'.$handler.'</option>';
+							}
+							$list .= '</select>';
+							$ledgend = sprintf(gettext('Logon using:%s'),$list);
+							?>
+							function changeHandler(handler) {
+								handler.push('user='+$('#user').val());
+								var script = handler.shift();
+								launchScript(script,handler);
+							}
 							<?php
 						}
 					?>
+					// ]]> -->
+				</script>
+				<form name="login" action="<?php echo html_encode($_SERVER['REQUEST_URI']); ?>" method="post">
+					<input type="hidden" name="login" value="1" />
+					<input type="hidden" name="password" value="1" />
+					<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
 					<fieldset id="logon_box"><legend><?php echo $ledgend; ?></legend>
 						<?php
 						if ($showUserField) {	//	requires a "user" field
@@ -971,7 +986,8 @@ class Zenphoto_Authority {
 						}
 						?>
 						<fieldset><legend><?php echo gettext("Password"); ?></legend>
-							<input class="textfield" name="pass" id="pass" type="password" size="35" />
+							<input class="textfield" name="pass" id="pass" type="password" size="35" /><br />
+							<label><input type="checkbox" name"disclose_password" onclick="togglePassword();" ><?php echo gettext('Show password')?></label>
 						</fieldset>
 						<br />
 						<div class="buttons">
@@ -1042,6 +1058,7 @@ class Zenphoto_Authority {
 	function printPasswordFormJS() {
 		?>
 		<script type="text/javascript">
+		// <!-- <![CDATA[
 		function passwordStrength(inputa, inputb, displaym, displays) {
 			var numeric = 0;
 			var special = 0;
@@ -1117,7 +1134,32 @@ class Zenphoto_Authority {
 				$(inputb).val('');
 			}
 		}
-
+		function togglePassword(id) {
+			if($('#pass'+id).attr('type')=='password') {
+				var oldp = $('#pass'+id);
+				var newp = oldp.clone();
+				newp.attr('type', 'text');
+				newp.insertAfter(oldp);
+				oldp.remove();
+				oldp = $('#pass_r'+id);
+				newp = oldp.clone();
+				newp.attr('type', 'text');
+				newp.insertAfter(oldp);
+				oldp.remove();
+			} else {
+				var oldp = $('#pass'+id);
+				var newp = oldp.clone();
+				newp.attr('type', 'password');
+				newp.insertAfter(oldp);
+				oldp.remove();
+				oldp = $('#pass_r'+id);
+				newp = oldp.clone();
+				newp.attr('type', 'password');
+				newp.insertAfter(oldp);
+				oldp.remove();
+			}
+		}
+		// ]]> -->
 		</script>
 		<?php
 	}
@@ -1140,6 +1182,7 @@ class Zenphoto_Authority {
 							onkeyup="passwordStrength('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>','#match<?php echo $id; ?>','#strength<?php echo $id; ?>');"
 							<?php echo $disable; ?> />
 		</fieldset>
+		<label><input type="checkbox" name"disclose_password" onclick="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password characters'); ?></label>
 		<fieldset style="text-align:center">
 			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"

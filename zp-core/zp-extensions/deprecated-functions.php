@@ -1668,7 +1668,7 @@ function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $la
 	}
 	if($option == 'Category') {
 		if(!is_null($categorylink)) {
-			$categorylink = '&amp;category='.sanitize($categorylink);
+			$categorylink = '&amp;category='.html_encode($categorylink);
 		} elseif(empty($categorylink) AND !is_null($_zp_current_category)) {
 			$categorylink = '&amp;category='.$_zp_current_category->getTitlelink();
 		} else {

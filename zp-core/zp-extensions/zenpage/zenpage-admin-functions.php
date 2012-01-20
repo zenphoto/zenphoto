@@ -1405,7 +1405,7 @@ function updateItemSortorder($mode='pages') {
 					$dbtable = prefix('news_categories');
 					break;
 			}
-			$sql = "UPDATE " . $dbtable . " SET `sort_order` = '".implode('-',$orderlist)."', `parentid`= ".$myparent." WHERE `id`=" . $id;
+			$sql = "UPDATE " . $dbtable . " SET `sort_order` = ".db_quote(implode('-',$orderlist)).", `parentid`= ".$myparent." WHERE `id`=" . $id;
 			query($sql);
 		}
 		return true;

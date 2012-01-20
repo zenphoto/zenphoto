@@ -239,17 +239,17 @@ codeblocktabsJS();
 			<?php
 			if(is_AdminEditPage('newsarticle')) {
 				?>
-				<h1><?php printf(gettext('Article <em>%s</em> not found'),sanitize($_GET['titlelink'])); ?></h1>
+				<h1><?php printf(gettext('Article <em>%s</em> not found'),html_encode($_GET['titlelink'])); ?></h1>
 				<?php
 			}
 			if(is_AdminEditPage('newscategory')) {
 				?>
-				<h1><?php printf(gettext('Category <em>%s</em> not found'),sanitize($_GET['titlelink'])); ?></h1>
+				<h1><?php printf(gettext('Category <em>%s</em> not found'),html_encode($_GET['titlelink'])); ?></h1>
 			<?php
 			}
 			if(is_AdminEditPage('page')) {
 				?>
-				<h1><?php printf(gettext('Page <em>%s</em> not found'),sanitize($_GET['titlelink'])); ?></h1>
+				<h1><?php printf(gettext('Page <em>%s</em> not found'),html_encode($_GET['titlelink'])); ?></h1>
 			<?php
 			}
 			?>
@@ -318,11 +318,11 @@ if ($result->loaded || $result->transient) {
 	<?php
 	if(is_AdminEditPage("newsarticle")) {
 		$backurl = 'admin-news-articles.php?'.$page;
-		if (isset($_GET['category'])) $backurl .= '&amp;category='.sanitize($_GET['category']);
-		if (isset($_GET['date'])) $backurl .= '&amp;date='.sanitize($_GET['date']);
-		if (isset($_GET['published'])) $backurl .= '&amp;published='.sanitize($_GET['published']);
-		if (isset($_GET['sortorder'])) $backurl .= '&amp;sortorder='.sanitize($_GET['sortorder']);
-		if (isset($_GET['articles_page'])) $backurl .= '&amp;articles_page='.sanitize($_GET['articles_page']);
+		if (isset($_GET['category'])) $backurl .= '&amp;category='.html_encode($_GET['category']);
+		if (isset($_GET['date'])) $backurl .= '&amp;date='.html_encode($_GET['date']);
+		if (isset($_GET['published'])) $backurl .= '&amp;published='.html_encode($_GET['published']);
+		if (isset($_GET['sortorder'])) $backurl .= '&amp;sortorder='.html_encode($_GET['sortorder']);
+		if (isset($_GET['articles_page'])) $backurl .= '&amp;articles_page='.html_encode($_GET['articles_page']);
 	}
 	if(is_AdminEditPage("newscategory")) {
 		$backurl = 'admin-categories.php?';
