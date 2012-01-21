@@ -24,9 +24,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 			<h2><?php echo gettext('User Registration') ?></h2>
 			<?php printRegistrationForm(); ?>
 		</div>
-		<?php if (function_exists('printLanguageSelector')) {
-			printLanguageSelector();
-		} ?>
+		<?php @call_user_func('printLanguageSelector');?>
 		<div id="credit">
 			<?php printZenphotoLink(); ?>
 		</div>

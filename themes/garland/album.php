@@ -74,11 +74,9 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 								printPageListWithNav(gettext("&laquo; prev"), gettext("next &raquo;"), $oneImagePage);
 							}
 							?>
-							<?php if (function_exists('printRating')) { printRating(); }?>
 							<?php
-							if (function_exists('printCommentForm')) {
-								printCommentForm();
-							}
+							@call_user_func('printRating');
+							@call_user_func('printCommentForm');
 							printCodeblock(2);
 							footer();
 							?>

@@ -166,7 +166,7 @@ if (!defined('WEBPATH')) die();
 		<br clear="all" />
 <?php } ?>
 		<?php
-		if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow'));
+		@call_user_func('printSlideShowLink',gettext('View Slideshow'));
 		if ($total == 0) {
 				echo "<p>".gettext("Sorry, no matches found. Try refining your search.")."</p>";
 			}

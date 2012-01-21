@@ -81,14 +81,12 @@ if (!defined('WEBPATH')) die();
 							}
 							?>
 							</div>
-							<?php if (function_exists('printRating')) printRating(); ?>
 							<?php
-							if (function_exists('printCommentForm')) {
-								printCommentForm();
-							}
+							@call_user_func('printRating');
+							@call_user_func('printCommentForm');
+							printCodeblock(2);
+							footer();
 							?>
-							<?php printCodeblock(2); ?>
-							<?php footer(); ?>
 							<p style="clear: both;"></p>
 						</div>
 						<!-- end content -->

@@ -64,7 +64,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 	</div>
 
 	<?php
-	if (function_exists('printRating')) printRating();
+	@call_user_func('printRating');
 	commonComment();
 	?>
 

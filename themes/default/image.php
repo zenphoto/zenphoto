@@ -58,8 +58,8 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 						<a href="<?php echo html_encode($fullimage); ?>" title="<?php echo getBareImageTitle(); ?>">
 							<?php
 						}
-						if (function_exists('printUserSizeImage') && isImagePhoto()) {
-							printUserSizeImage(getImageTitle());
+						if (isImagePhoto()) {
+							@call_user_func('printUserSizeImage',getImageTitle());
 						} else {
 							printDefaultSizedImage(getImageTitle());
 						}
@@ -71,14 +71,13 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 					?>
 				</strong>
 				<?php
-				if (function_exists('printUserSizeImage') && isImagePhoto())
-					printUserSizeSelector();
+				if (isImagePhoto())
+					@call_user_func('printUserSizeSelector');
 				?>
 			</div>
 			<div id="narrow">
 				<?php printImageDesc(true); ?>
-				<?php if (function_exists('printSlideShowLink'))
-					printSlideShowLink(gettext('View Slideshow')); ?>
+				<?php @call_user_func('printSlideShowLink',gettext('View Slideshow')); ?>
 				<hr /><br />
 				<?php
 				if (getImageMetaData()) {
@@ -91,27 +90,16 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				?>
 				<br clear="all" />
 
-				<?php if (function_exists('printGoogleMap'))
-					printGoogleMap(); ?>
-				<?php if (function_exists('printRating')) {
-					printRating();
-				} ?>
-				<?php
-				if (function_exists('printCommentForm')) {
-					printCommentForm();
-				}
-				?>
+				<?php @call_user_func('printGoogleMap'); ?>
+				<?php @call_user_func('printRating'); ?>
+				<?php @call_user_func('printCommentForm'); ?>
 			</div>
 		</div>
 		<div id="credit">
 			<?php printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php printZenphotoLink(); ?>
-			<?php
-			if (function_exists('printUserLogin_out')) {
-				printUserLogin_out(" | ");
-			}
-			?>
+			<?php @call_user_func('printUserLogin_out'," | "); ?>
 		</div>
 		<?php
 		printAdminToolbox();

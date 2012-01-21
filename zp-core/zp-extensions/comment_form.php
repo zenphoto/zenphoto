@@ -299,7 +299,7 @@ function comment_form_edit_comment($discard, $raw) {
 	$html =
 			 '<tr>
 					<td>'.
-						sprintf('street%s:',$required).
+						sprintf('Street%s:',$required).
 				 '</td>
 					<td>
 						<input type="text" name="0-comment_form_street" id="comment_form_street" class="inputbox" size="40" value="'.$address['street'].'">
@@ -307,7 +307,7 @@ function comment_form_edit_comment($discard, $raw) {
 				</tr>
 				<tr>
 					<td>'.
-						sprintf('city%s:',$required).
+						sprintf('City%s:',$required).
 					'</td>
 					<td>
 						<input type="text" name="0-comment_form_city" id="comment_form_city" class="inputbox" size="40" value="'.$address['city'].'">
@@ -315,7 +315,7 @@ function comment_form_edit_comment($discard, $raw) {
 				</tr>
 				<tr>
 					<td>'.
-						sprintf('state%s:',$required).
+						sprintf('State%s:',$required).
 				 '</td>
 					<td>
 						<input type="text" name="0-comment_form_state" id="comment_form_state" class="inputbox" size="40" value="'.$address['state'].'">
@@ -323,7 +323,7 @@ function comment_form_edit_comment($discard, $raw) {
 				</tr>
 				<tr>
 					<td>'.
-						sprintf('country%s:',$required).
+						sprintf('Country%s:',$required).
 				 '</td>
 					<td>
 						<input type="text" name="0-comment_form_country" id="comment_form_country" class="inputbox" size="40" value="'.$address['country'].'">
@@ -331,7 +331,7 @@ function comment_form_edit_comment($discard, $raw) {
 				</tr>
 				<tr>
 					<td>'.
-						sprintf('postal code%s:',$required).
+						sprintf('Postal code%s:',$required).
 					'</td>
 					<td>
 						<input type="text" name="0-comment_form_postal" id="comment_form_postal" class="inputbox" size="40" value="'.$address['postal'].'">

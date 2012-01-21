@@ -36,17 +36,12 @@ if (!defined('WEBPATH')) die();
 <?php
 printPageContent();
 printCodeblock(1);
-if(getTags()) { echo gettext('<strong>Tags:</strong>'); } printTags('links', '', 'taglist', ', '); 
+if(getTags()) { echo gettext('<strong>Tags:</strong>'); } printTags('links', '', 'taglist', ', ');
 ?>
 <br style="clear:both;" /><br />
-<?php
-if (function_exists('printRating')) { printRating(); }
-?>
+<?php @call_user_func('printRating'); ?>
 
-<?php
-if (function_exists('printCommentForm')) {
-	printCommentForm();
-} ?>
+<?php @call_user_func('printCommentForm'); ?>
 	</div><!-- content left-->
 
 

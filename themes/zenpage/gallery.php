@@ -32,7 +32,7 @@ if (!defined('WEBPATH')) die();
 	</h2>
 	</div>
 	<div id="content-left">
-	<?php if(!($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news")) OR !function_exists("printNewsPageListWithNav")) { ?>
+	<?php if(isset($_zp_zenpage) && !($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news")) OR !function_exists("printNewsPageListWithNav")) { ?>
 	<?php printGalleryDesc(); ?>
 			<div id="albums">
 				<?php while (next_album()): ?>

@@ -127,9 +127,7 @@ class simpleviewer {
 					printAlbumZip();
 					echo "</p>";
 				}
-				if (function_exists('printRating')) {
-					printRating();
-				}
+				@call_user_func('printRating');
 				?>
 				</div>
 			</div>

@@ -23,7 +23,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 					<span>
 						<?php printHomeLink('', ' | '); ?>
 						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle(); ?></a>
-					</span> | 
+					</span> |
 					<?php echo gettext("Archive View"); ?>
 				</h2>
 			</div>
@@ -38,11 +38,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 		<div id="credit">
 			<?php printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php printZenphotoLink(); ?>
-			<?php
-			if (function_exists('printUserLogin_out')) {
-				printUserLogin_out(" | ");
-			}
-			?>
+			<?php @call_user_func('printUserLogin_out'," | "); ?>
 		</div>
 		<?php
 		printAdminToolbox();

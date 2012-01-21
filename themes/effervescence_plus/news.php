@@ -106,7 +106,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 		 <?php printCodeblock(2); ?>
 		</div>
 		<?php
-		if (function_exists('printRating')) printRating();
+		@call_user_func('printRating');
 		commonComment();
 	} else { 	// news article loop
 		commonNewsLoop(true);

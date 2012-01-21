@@ -57,12 +57,11 @@ if(is_NewsArticle()) {
   <?php printNewsContent(); ?>
   <?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
   <br style="clear:both;" /><br />
-  <?php if (function_exists('printRating')) { printRating(); } ?>
-<?php
-// COMMENTS TEST
-if (function_exists('printCommentForm')) {
-		printCommentForm();
- } // comments allowed - end
+  <?php @call_user_func('printRating'); ?>
+	<?php
+	// COMMENTS TEST
+	@call_user_func('printCommentForm');
+
 } else {
 printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
 echo "<hr />";

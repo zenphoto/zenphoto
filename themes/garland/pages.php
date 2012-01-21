@@ -46,8 +46,8 @@ if (!defined('WEBPATH')) die();
 							<?php printCodeblock(2); ?>
 							</div>
 							<?php
-							if (function_exists('printRating')) printRating();
-							if (function_exists('printCommentForm')) printCommentForm();
+							@call_user_func('printRating');
+							@call_user_func('printCommentForm');
 							footer();
 							?>
 							<p style="clear: both;"></p>

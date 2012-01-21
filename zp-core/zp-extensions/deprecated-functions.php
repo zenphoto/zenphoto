@@ -20,6 +20,10 @@ $plugin_is_filter = 9|CLASS_PLUGIN;
 
 class deprecated_functions {
 
+	private $internalFunctions = array (
+																			'getSearchURL',
+																			'printPasswordForm'
+																			);
 	var $listed_functions = array();
 
 	function deprecated_functions() {
@@ -28,7 +32,7 @@ class deprecated_functions {
 		$i = strpos($deprecated, '//'.' IMPORTANT:: place all deprecated functions below this line!!!');
 		$deprecated = substr($deprecated, $i);
 		preg_match_all('/function\040+(.*)\040?\(.*\)\040?\{/',$deprecated,$functions);
-		$this->listed_functions = array_merge($functions[1],$_internalFunctions);
+		$this->listed_functions = array_merge($functions[1],$this->internalFunctions);
 		// remove the items from this class and notify function, leaving only the deprecated functions
 		foreach ($this->listed_functions as $key=>$funct) {
 			if ($funct == '_emitPluginScripts') {	// special case!!!!
@@ -831,13 +835,6 @@ function printPreloadScript() {
 	}
 }
 
-/*****************************/
-$_internalFunctions = array (
-	'getSearchURL',
-	'printPasswordForm'
-);
-
-
 /********************************************
  * former zenpage-functions.php functions
  ********************** *********************/
@@ -845,6 +842,7 @@ $_internalFunctions = array (
 /**
  * Un-publishes pages/news whose expiration date has been reached
  *
+ * @deprecated
  */
 function processExpired($table) {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -861,6 +859,7 @@ function processExpired($table) {
  * @param int $parentid The parentid of the page to get the parents of
  * @param bool $initparents If the
  * @return array
+ * @deprecated
  */
 function getParentItems($mode='pages',&$parentid,$initparents=true) {
 	deprecated_function_notify(gettext('Use the method from either the ZenpagePage or the ZenpageCategory class instead.'));
@@ -875,11 +874,6 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
 	}
 }
 
-
-
-/* general page functions   */
-
-
 /**
  * Gets the titlelink and sort order for all pages or published ones.
  *
@@ -887,6 +881,7 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
  *
  * @param bool $published TRUE for published or FALSE for all pages including un-published
  * @return array
+ * @deprecated
  */
 function getPages($published=NULL) {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -913,13 +908,6 @@ function getPages($published=NULL) {
 	}
 }
 
-
-
-
-
-/* general news article functions   */
-
-
 /**
  * Gets news articles titlelink either all or by category or by archive date.
  *
@@ -941,6 +929,7 @@ function getPages($published=NULL) {
  * 											        This parameter is not used for date archives
  * @param bool $sticky set to true to place "sticky" articles at the front of the list.
  * @return array
+ * @deprecated
  */
 function getArticles($articles_per_page='', $category='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1091,6 +1080,7 @@ function getArticles($articles_per_page='', $category='', $published=NULL,$ignor
  * 													"unpublished" for an unpublised articles,
  * 													"all" for all articles
  * @return array
+ * @deprecated
  */
 function countArticles($category='', $published='published',$count_subcat_articles=true) {
 	deprecated_function_notify(gettext('Count the articles instead.'));		global $_zp_post_date;
@@ -1162,6 +1152,7 @@ function countArticles($category='', $published='published',$count_subcat_articl
  * @param int $articles_per_page The number of articles to get
  * @param bool $ignorepagination If pagination should be ingored so always with the first is started (false is default)
  * @return string
+ * @deprecated
  */
 function getLimitAndOffset($articles_per_page,$ignorepagination=false) {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1191,6 +1182,7 @@ function getLimitAndOffset($articles_per_page,$ignorepagination=false) {
 /**
  * Returns the articles count
  *
+ * @deprecated
  */
 function getTotalArticles() {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1215,6 +1207,7 @@ function getTotalArticles() {
  * Retrieves a list of all unique years & months
  * @param bool $yearsonly If set to true only the years' count is returned (Default false)
  * @return array
+ * @deprecated
  */
 function getAllArticleDates($yearsonly=false) {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1245,6 +1238,7 @@ function getAllArticleDates($yearsonly=false) {
  * Gets the current news page number
  *
  * @return int
+ * @deprecated
  */
 function getCurrentNewsPage() {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1263,6 +1257,7 @@ function getCurrentNewsPage() {
  * could probably removed now...
  *
  * @return int
+ * @deprecated
  */
 function getCurrentAdminNewsPage() {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1300,6 +1295,7 @@ function getCurrentAdminNewsPage() {
  * @param string $sortorder 	id, date or mtime, only for latestimages-... modes
  * @param bool $sticky set to true to place "sticky" articles at the front of the list.
  * @return array
+ * @deprecated
  */
 function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder='',$sticky=true) {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1476,6 +1472,7 @@ function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder
  * CombiNews Feature: Counts all news articles and all images
  *
  * @return int
+ * @deprecated
  */
 function countCombiNews($published=NULL) {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1528,6 +1525,7 @@ function countCombiNews($published=NULL) {
  *
  * @param string $catname the title of the category
  * @return string
+ * @deprecated
  */
 function getCategoryLink($catname) {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1544,6 +1542,7 @@ function getCategoryLink($catname) {
  *
  * @param int $id id of the category
  * @return array
+ * @deprecated
  */
 function getCategory($id) {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1560,6 +1559,7 @@ function getCategory($id) {
  * Gets all categories
  *
  * @return array
+ * @deprecated
  */
 function getAllCategories() {
 	deprecated_function_notify(gettext('Use the Zenpage class method instead.'));
@@ -1574,6 +1574,7 @@ function getAllCategories() {
 /**
  * Checks if the album is password protected
  * @param object $album
+ * @deprecated
  */
 function isProtectedAlbum($album=NULL) {
 	deprecated_function_notify(gettext('Use the album class method <code>isProtected()</code> instead.'));
@@ -1597,7 +1598,7 @@ function isProtectedAlbum($album=NULL) {
  *
  *
  * @return string
- * @since 1.1
+ * @deprecated
  */
 function getRSSHeaderLink($option, $linktext='', $lang='') {
 	deprecated_function_notify(gettext('Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link <code>getRSSLink()</code> just returns the URL.'));
@@ -1654,6 +1655,7 @@ function getRSSHeaderLink($option, $linktext='', $lang='') {
  * @param string $lang optional to display a feed link for a specific language (currently works for latest images only). Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  *
  * @return string
+ * @deprecated
  */
 function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $lang='') {
 	deprecated_function_notify(gettext('Use the template function <code>getZenpageRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getZenpageRSSLink()</code> just returns the URL.'));
@@ -1690,9 +1692,12 @@ function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $la
 			}
 	}
 }
-
+/**
+ * @deprecated
+ */
 function generateCaptcha(&$img) {
 	deprecated_function_notify(gettext('Use $_zp_captcha->getCaptcha(). Note that you will require updating your code to the new function.'));
 	return $img = NULL;
 }
+
 ?>

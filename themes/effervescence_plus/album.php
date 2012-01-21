@@ -171,9 +171,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 						printAlbumZip();
 						echo "</p>";
 					}
-					if (function_exists('printRating')) {
-						printRating();
-					}
+					@call_user_func('printRating');
 					?>
 				</div>
 				<?php

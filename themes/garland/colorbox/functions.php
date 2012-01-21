@@ -72,8 +72,7 @@ class colorbox {
 			?>
 		</div>
 		<br clear="all">
-		<?php
-		if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow'));
+		<?php @call_user_func('printSlideShowLink',gettext('View Slideshow'));
 	}
 }
 

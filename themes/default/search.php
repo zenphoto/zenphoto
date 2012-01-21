@@ -71,8 +71,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				</div>
 				<br clear="all" />
 				<?php
-				if (function_exists('printSlideShowLink'))
-					printSlideShowLink(gettext('View Slideshow'));
+				 @call_user_func('printSlideShowLink',gettext('View Slideshow'));
 				if ($c == 0) {
 					echo "<p>" . gettext("Sorry, no image matches found. Try refining your search.") . "</p>";
 				}
@@ -84,11 +83,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 			<?php printRSSLink('Gallery', '', gettext('Gallery RSS'), ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php printZenphotoLink(); ?>
-			<?php
-			if (function_exists('printUserLogin_out')) {
-				printUserLogin_out(" | ");
-			}
-			?>
+			<?php @call_user_func('printUserLogin_out'," | "); ?>
 		</div>
 		<?php
 		printAdminToolbox();

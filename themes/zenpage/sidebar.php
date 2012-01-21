@@ -122,7 +122,4 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 		<?php
 	}
 	?>
-<?php if (function_exists('printLanguageSelector')) {
-	printLanguageSelector("langselector");
-	}
-?>
+<?php @call_user_func('printLanguageSelector',"langselector"); ?>

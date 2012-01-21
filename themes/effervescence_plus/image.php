@@ -151,7 +151,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 			}
 			?>
 			<p><?php	printImageDesc(true); ?></p>
-			<?php if (function_exists('printRating')) printRating(); ?>
+			<?php @call_user_func('printRating'); ?>
 		</div>
 
 	</div>

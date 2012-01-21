@@ -69,7 +69,7 @@ class register_user_options {
 											gettext('Address fields') => array('key' => 'register_user_address_info', 'type' => OPTION_TYPE_RADIO,
 												'order' => 4.5,
 												'buttons' => array(gettext('Omit')=>0, gettext('Show')=>1, gettext('Require')=>'required'),
-												'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.')),
+												'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.').'<p class="notebox">'.gettext('<strong>Note:</strong> Address fields are handled by the <em>comment_form</em> plugin.').'</p>'),
 											gettext('User album') => array('key' => 'register_user_create_album', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 6,
 												'desc' => gettext('If checked, an album will be created and assigned to the user.')),

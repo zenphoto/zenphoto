@@ -52,25 +52,17 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				<?php printPageListWithNav("&laquo; " . gettext("prev"), gettext("next") . " &raquo;"); ?>
 				<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ''); ?>
 
-				<?php if (function_exists('printGoogleMap')) printGoogleMap(); ?>
-				<?php if (function_exists('printSlideShowLink')) printSlideShowLink(gettext('View Slideshow')); ?>
-				<?php if (function_exists('printRating')) {
-					printRating();
-				} ?>
-				<?php
-				if (function_exists('printCommentForm')) {
-					printCommentForm();
-				}
-				?>
+				<?php @call_user_func('printGoogleMap'); ?>
+				<?php @call_user_func('printSlideShowLink',gettext('View Slideshow')); ?>
+				<?php @call_user_func('printRating'); ?>
+				<?php @call_user_func('printCommentForm'); ?>
 			</div>
 		</div>
 		<div id="credit">
 			<?php printRSSLink('Album', '', gettext('Album RSS'), ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php printZenphotoLink(); ?>
-			<?php
-			if (function_exists('printUserLogin_out')) {
-				printUserLogin_out(" | ");
+			<?php @call_user_func('printUserLogin_out',(" | ");
 			}
 			?>
 		</div>

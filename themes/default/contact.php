@@ -24,11 +24,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 			<h3><?php echo gettext('Contact us.') ?></h3>
 			<?php printContactForm(); ?>
 		</div>
-		<?php
-		if (function_exists('printLanguageSelector')) {
-			printLanguageSelector();
-		}
-		?>
+		<?php @call_user_func('printLanguageSelector');?>
 		<div id="credit">
 			<?php printZenphotoLink(); ?>
 		</div>

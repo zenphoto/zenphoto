@@ -43,15 +43,9 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				<?php printPageListWithNav("&laquo; " . gettext("prev"), gettext("next") . " &raquo;"); ?>
 			</div>
 		</div>
-		<?php if (function_exists('printLanguageSelector')) {
-			printLanguageSelector();
-		} ?>
+		<?php @call_user_func('printLanguageSelector'); ?>
 		<div id="credit">
-			<?php
-			if (function_exists('printUserLogin_out')) {
-				printUserLogin_out('', ' | ');
-			}
-			?>
+			<?php @call_user_func('printUserLogin_out','', ' | ');?>
 			<?php printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php

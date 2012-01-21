@@ -71,9 +71,7 @@ class image_page {
 					</div>
 					<?php
  				}
- 				if (function_exists('printSlideShowLink')) {
- 					printSlideShowLink(gettext('View Slideshow'),'text-align:center;');
- 				}
+ 				@call_user_func('printSlideShowLink',gettext('View Slideshow'),'text-align:center;');
 				?>
  				</div><!-- images -->
 				<?php
@@ -82,9 +80,7 @@ class image_page {
 					printAlbumZip();
 					echo "</p>";
 				}
-				if (function_exists('printRating')) {
-					printRating();
-				}
+				@call_user_func('printRating');
 				?>
 			</div> <!-- main -->
 		 <div class="clearage"></div>

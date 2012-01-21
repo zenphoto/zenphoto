@@ -62,11 +62,8 @@ if (!defined('WEBPATH')) die();
  //
  if (function_exists('printjCarouselThumbNav')) {
  	printjCarouselThumbNav(6,50,50,50,50,FALSE);
- }
- else {
- 	if (function_exists("printPagedThumbsNav")) {
- 		printPagedThumbsNav(6, FALSE, gettext('&laquo; prev thumbs'), gettext('next thumbs &raquo;'), 40, 40);
- 	}
+ } else {
+ 	@call_user_func('printPagedThumbsNav',6, FALSE, gettext('&laquo; prev thumbs'), gettext('next thumbs &raquo;'), 40, 40);
  }
 
  ?>
@@ -111,13 +108,11 @@ if (!defined('WEBPATH')) die();
 		?>
 
 		<br style="clear:both" />
-		<?php if (function_exists('printRating')) printRating(); ?>
-		<?php if (function_exists('printGoogleMap')) printGoogleMap(); ?>
+		<?php @call_user_func('printRating'); ?>
+		<?php @call_user_func('printGoogleMap'); ?>
 
 </div>
-		<?php if (function_exists('printCommentForm')) {
-				printCommentForm();
-		 } ?>
+		<?php @call_user_func('printCommentForm'); ?>
 
 </div><!-- content-left -->
 

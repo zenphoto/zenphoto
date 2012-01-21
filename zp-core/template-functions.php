@@ -3681,7 +3681,7 @@ function getRSSLink($option,$lang='') {
 	switch($option) {
 		case 'Gallery':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rsslang='.$lang;
+				return WEBPATH.'/index.php?rss&lang='.$lang;
 			}
 			break;
 		case 'Album':

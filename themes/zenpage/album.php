@@ -35,8 +35,8 @@ if (!defined('WEBPATH')) die();
 
 	<div id="content-left">
 	<div><?php printAlbumDesc(true); ?></div>
-	
-	
+
+
 <?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
 			<div id="albums">
 			<?php while (next_album()): ?>
@@ -80,11 +80,8 @@ if (!defined('WEBPATH')) die();
 		}
 		?>
 	<br style="clear:both;" />
-	<?php if (function_exists('printRating')) { printRating(); }?>
-	<?php
-	if (function_exists('printCommentForm')) {
-	  printCommentForm();
-	}	?>
+	<?php @call_user_func('printRating'); ?>
+	<?php @call_user_func('printCommentForm'); ?>
 
 	</div><!-- content left-->
 
