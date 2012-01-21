@@ -1192,39 +1192,47 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 						</tr>
 						<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
 							<td align="left" valign="top">
-								<p>
 								<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',false);">
 									<?php echo gettext("Album guest user:"); ?>
 								</a>
-								</p>
-								<p id="strength">
-								<?php echo gettext("Album password:");?>
 								<br />
-								<?php echo gettext("repeat:");?>
+								<label><input type="checkbox" name="disclose_password_<?php echo $prefix; ?>" id="disclose_password_<?php echo $prefix; ?>" onclick="passwordKeydown('<?php echo $prefix; ?>');togglePassword('<?php echo $prefix; ?>');"><?php echo gettext('Show password'); ?></label>
+							</td>
+							<td>
+								<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+														onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
+														id="user_name" name="user<?php echo $prefix; ?>"
+														value="<?php echo $album->getUser(); ?>" />
+							</td>
+						</tr>
+						<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
+							<td align="left" valign="top">
+								<p>
+									<span id="strength<?php echo $suffix; ?>"><?php echo gettext("Album password:");?></span>
+									<br />
+									<span id="match<?php echo $suffix; ?>" class="password_field_<?php echo $suffix; ?>">
+										<?php echo gettext("repeat password:");?>
+									</span>
 								</p>
-								<p id="match">
+								<p>
 								<?php echo gettext("Password hint:"); ?>
 								</p>
 							</td>
 							<td>
 								<p>
-									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															onkeydown="passwordKeydown('#pass<?php echo $prefix; ?>','#pass_2<?php echo $prefix; ?>');"
-															id="user_name" name="user<?php echo $prefix; ?>"
-															value="<?php echo $album->getUser(); ?>" />
-								</p>
-								<p>
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														id="pass<?php echo $prefix; ?>" name="pass<?php echo $prefix; ?>"
-														onkeydown="passwordKeydown('#pass<?php echo $prefix; ?>','#pass_2<?php echo $prefix; ?>');"
-														onkeyup="passwordStrength('#pass<?php echo $prefix; ?>','#pass_2<?php echo $prefix; ?>','#match<?php echo $prefix; ?>','#strength<?php echo $prefix; ?>');"
-														value="<?php echo $x; ?>" />
-								<br />
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														id="pass_2<?php echo $prefix; ?>" name="pass_2<?php echo $prefix; ?>" disabled="disabled"
-														onkeydown="passwordKeydown('#pass<?php echo $prefix; ?>','#pass_2<?php echo $prefix; ?>');"
-														onkeyup="passwordMatch('#pass<?php echo $prefix; ?>','#pass_2<?php echo $prefix; ?>','#match<?php echo $prefix; ?>');"
-														value="<?php echo $x; ?>" />
+									<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
+															onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
+															onkeyup="passwordStrength('<?php echo $suffix; ?>');"
+															value="<?php echo $x; ?>" />
+									<br />
+									<span class="password_field_<?php echo $prefix; ?>">
+										<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+																id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
+																onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
+																onkeyup="passwordMatch('<?php echo $suffix; ?>');"
+																value="<?php echo $x; ?>" />
+									</span>
 								</p>
 								<p>
 								<?php print_language_string_list($album->get('password_hint'), "hint".$prefix, false, NULL, 'hint'); ?>
@@ -4095,10 +4103,14 @@ function processCredentials($object, $suffix='') {
 		}
 		$newuser = trim(sanitize($_POST['user'.$suffix],3));
 		$pwd = trim(sanitize($_POST['pass'.$suffix]));
-		if (isset($_POST['pass_2'.$suffix])) {
-			$pass2 = trim(sanitize($_POST['pass_2'.$suffix]));
+		if (isset($_POST['disclose_password_'.$suffix])) {
+			$pass2 = $pwd;
 		} else {
-			$pass2 = '';
+			if (isset($_POST['pass_r'.$suffix])) {
+				$pass2 = trim(sanitize($_POST['pass_r'.$suffix]));
+			} else {
+				$pass2 = '';
+			}
 		}
 		$fail = '';
 		if ($olduser != $newuser) {

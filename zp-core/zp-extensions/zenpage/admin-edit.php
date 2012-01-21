@@ -491,24 +491,28 @@ if ($result->loaded || $result->transient) {
 							</a>
 							<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
 							<input type="text" size="27" id="user_name" name="user"
-															onkeydown="passwordKeydown('#pass','#pass_2');"
+															onkeydown="passwordKeydown('');"
 															value="<?php echo html_encode($user); ?>" />
 							<span id="strength"><?php echo gettext("Password:"); ?></span>
 							<br />
 							<input type="password" size="27"
 															id="pass" name="pass"
-															onkeydown="passwordKeydown('#pass','#pass_2');"
-															onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
+															onkeydown="passwordKeydown('');"
+															onkeyup="passwordStrength('');"
 															value="<?php echo $x; ?>" />
 							<br />
-							<span id="match"><?php echo gettext("(repeat)"); ?></span>
+							<label><input type="checkbox" name="disclose_password_" id="disclose_password_" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
 							<br />
-							<input type="password" size="27"
-															id="pass_2" name="pass_2" disabled="disabled"
-															onkeydown="passwordKeydown('#pass','#pass_2');"
-															onkeyup="passwordMatch('#pass','#pass_2','#match');"
-															value="<?php echo $x; ?>" />
-							<br />
+							<span class="password_field_">
+								<span id="match"><?php echo gettext("(repeat)"); ?></span>
+								<br />
+								<input type="password" size="27"
+																id="pass_r" name="pass_r" disabled="disabled"
+																onkeydown="passwordKeydown('');"
+																onkeyup="passwordMatch('');"
+																value="<?php echo $x; ?>" />
+								<br />
+							</span>
 							<?php echo gettext("Password hint:"); ?>
 							<br />
 							<?php print_language_string_list($hint, 'hint', false, NULL, 'hint', 27); ?>

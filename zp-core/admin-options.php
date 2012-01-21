@@ -920,46 +920,62 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							</p>
 						</td>
 					</tr>
+					<tr class="passwordextrahide" style="display:none">
+						<td>
+							<a href="javascript:toggle_passwords('',false);">
+							<?php echo gettext("Gallery guest user:"); ?>
+							</a>
+						</td>
+						<td>
+							<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															onkeydown="passwordKeydown('');"
+															id="user_name"  name="user"
+															value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
+							<br />
+							<label><input type="checkbox" name="disclose_password_" id="disclose_password_" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+						</td>
+						<td>
+							<?php echo gettext("User ID for the gallery guest user") ?>
+						</td>
+					</tr>
 					<tr class="passwordextrahide" style="display:none" >
 						<td>
-							<p>
-								<a href="javascript:toggle_passwords('',false);">
-								<?php echo gettext("Gallery guest user:"); ?>
-								</a>
-							</p>
-							<p id="strength">
+							<span id="strength">
 								<?php echo gettext("Gallery password:"); ?>
-							</p>
-							<p id="match">
+							</span>
+							<br />
+							<span id="match" class="password_field_">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo gettext("(repeat)"); ?>
-							</p>
-							<p><?php echo gettext("Gallery password hint:"); ?></p>
+							</span>
 						</td>
 						<td>
-							<p><input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															onkeydown="passwordKeydown('#pass','#pass_2');"
-															id="user_name"  name="user"
-															value="<?php echo html_encode($_zp_gallery->getUser()); ?>" /></p>
-							<p>
+							<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+													id="pass" name="pass"
+													onkeydown="passwordKeydown('');"
+													onkeyup="passwordStrength('');"
+													value="<?php echo $x; ?>" />
+							<br />
+							<span class="password_field_">
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														id="pass" name="pass"
-														onkeydown="passwordKeydown('#pass','#pass_2');"
-														onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
+														id="pass_r" name="pass_r" disabled="disabled"
+														onkeydown="passwordKeydown('');"
+														onkeyup="passwordMatch('');"
 														value="<?php echo $x; ?>" />
-							</p>
-							<p>
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														id="pass_2" name="pass_2" disabled="disabled"
-														onkeydown="passwordKeydown('#pass','#pass_2');"
-														onkeyup="passwordMatch('#pass','#pass_2','#match');"
-														value="<?php echo $x; ?>" />
-							</p>
-							<p><?php print_language_string_list($_zp_gallery->get('gallery_hint'), 'hint', false, NULL, 'hint') ?></p>
+							</span>
 						</td>
 						<td>
-							<p><?php echo gettext("User ID for the gallery guest user") ?></p>
-							<p><?php echo gettext("Master password for the gallery. If this is set, visitors must know this password to view the gallery."); ?></p>
-							<p><?php echo gettext("A reminder hint for the password."); ?></p>
+							<?php echo gettext("Master password for the gallery. If this is set, visitors must know this password to view the gallery."); ?>
+						</td>
+					</tr>
+					<tr class="passwordextrahide" style="display:none" >
+						<td>
+							<?php echo gettext("Gallery password hint:"); ?>
+						</td>
+						<td>
+							<?php print_language_string_list($_zp_gallery->get('gallery_hint'), 'hint', false, NULL, 'hint') ?>
+						</td>
+						<td>
+							<?php echo gettext("A reminder hint for the password."); ?>
 						</td>
 					</tr>
 					<?php
@@ -1298,47 +1314,62 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<p><?php echo gettext("Password for the search guest user. click on <em>Search password</em> to change."); ?></p>
 						</td>
 					</tr>
-					<tr class="passwordextrahide" style="display:none" >
+					<tr class="passwordextrahide" style="display:none">
 						<td width="175">
-							<p>
-								<a href="javascript:toggle_passwords('',false);">
-									<?php echo gettext("Search guest user:"); ?>
-								</a>
-							</p>
-							<p id="strength">
+							<a href="javascript:toggle_passwords('',false);">
+							<?php echo gettext("Search guest user:"); ?>
+							</a>
+						</td>
+						<td>
+							<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
+															onkeydown="passwordKeydown('');"
+															id="user_name"  name="user"
+															value="<?php echo html_encode(getOption('search_user')); ?>" />
+							<br />
+							<label><input type="checkbox" name="disclose_password_" id="disclose_password_" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+						</td>
+						<td>
+							<?php echo gettext("User ID for the search guest user") ?>
+						</td>
+					</tr>
+					<tr class="passwordextrahide" style="display:none" >
+						<td>
+							<span id="strength">
 								<?php echo gettext("Search password:"); ?>
-							</p>
-							<p id="match">
+							</span>
+							<br />
+							<span id="match" class="password_field_">
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?php echo gettext("(repeat)"); ?>
-							</p>
-							<p><?php echo gettext("Search password hint:"); ?></p>
+							</span>
 						</td>
 						<td>
-							<p>
-								<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															id="user_name" name="user"
-															onkeydown="passwordKeydown('#pass','#pass_2');"
-															value="<?php echo html_encode(getOption('search_user')); ?>" /></p>
-							<p>
+							<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
+													id="pass" name="pass"
+													onkeydown="passwordKeydown('');"
+													onkeyup="passwordStrength('');"
+													value="<?php echo $x; ?>" />
+							<br />
+							<span class="password_field_">
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															id="pass" name="pass"
-															onkeydown="passwordKeydown('#pass','#pass_2');"
-															onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
-															value="<?php echo $x; ?>" />
-							</p>
-							<p>
-								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															id="pass_2" name="pass_2" disabled="disabled"
-															onkeydown="passwordKeydown('#pass','#pass_2');"
-															onkeyup="passwordMatch('#pass','#pass_2','#match');"
-															value="<?php echo $x; ?>" />
-							</p>
-							<p><?php print_language_string_list(getOption('search_hint'), 'hint', false, NULL, 'hint') ?></p>
+														id="pass_r" name="pass_r" disabled="disabled"
+														onkeydown="passwordKeydown('');"
+														onkeyup="passwordMatch('');"
+														value="<?php echo $x; ?>" />
+							</span>
 						</td>
 						<td>
-							<p><?php echo gettext("User ID for the search guest user") ?></p>
-							<p><?php echo gettext("Password for the search guest user. If this is set, visitors must know this password to view search results."); ?></p>
-							<p><?php echo gettext("A reminder hint for the password."); ?></p>
+							<?php echo gettext("Password for the search guest user. If this is set, visitors must know this password to view search results."); ?>
+						</td>
+					</tr>
+					<tr class="passwordextrahide" style="display:none" >
+						<td>
+							<?php echo gettext("Search password hint:"); ?>
+						</td>
+						<td>
+							<?php print_language_string_list(getOption('search_hint'), 'hint', false, NULL, 'hint') ?>
+						</td>
+						<td>
+							<?php echo gettext("A reminder hint for the password."); ?>
 						</td>
 					</tr>
 					<?php
@@ -1952,48 +1983,55 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 								?>
 							</td>
 						</tr>
-						<tr class="passwordextrahide" style="display:none">
-							<td style="margin:0; padding:0">
-								<a href="javascript:toggle_passwords('',false);">
-									<?php echo gettext("user:"); ?>
-								</a>
-							</td>
-							<td style="margin:0; padding:0">
-								<input type="text" size="<?php echo 30; ?>"
-														onkeydown="passwordKeydown('#pass','#pass_2');"
-														id="user_name" name="user"
-														value="<?php echo html_encode(getOption('protected_image_user')); ?>" />		</td>
-						</tr>
-						<tr class="passwordextrahide" style="display:none">
-							<td style="margin:0; padding:0">
-								<span id="strength"><?php echo gettext("password:"); ?></span>
-							</td>
-							<td style="margin:0; padding:0">
-								<input type="password" size="<?php echo 30; ?>"
-															id="pass" name="pass"
-															onkeydown="passwordKeydown('#pass','#pass_2');"
-															onkeyup="passwordStrength('#pass','#pass_2','#match','#strength');"
-															value="<?php echo $x; ?>" />
-							</td>
-						</tr>
-						<tr class="passwordextrahide" style="display:none">
-							<td style="margin:0; padding:0 text-align:left">
-								<span id="match"><?php echo gettext("(repeat)"); ?></span>
-							</td>
-							<td style="margin:0; padding:0">
-								<input type="password" size="<?php echo 30; ?>"
-															id="pass_2" name="pass_2" disabled="disabled"
-															onkeydown="passwordKeydown('#pass','#pass_2');"
-															onkeyup="passwordMatch('#pass','#pass_2','#match');"
-															value="<?php echo $x; ?>" />
-							</td>
-						</tr>
-						<tr class="passwordextrahide" style="display:none">
-							<td style="margin:0; padding:0"><?php echo gettext("hint:"); ?></td>
-							<td style="margin:0; padding:0">
-							<?php print_language_string_list(getOption('protected_image_hint'), 'hint', false, NULL, 'hint', TEXT_INPUT_SIZE_SHORT) ?>
-							</td>
-						</tr>
+					<tr class="passwordextrahide" style="display:none">
+						<td style="margin:0; padding:0">
+							<a href="javascript:toggle_passwords('',false);">
+							<?php echo gettext("user:"); ?>
+							</a>
+						</td>
+						<td style="margin:0; padding:0">
+							<input type="text" size="30"
+															onkeydown="passwordKeydown('');"
+															id="user_name"  name="user"
+															value="<?php echo html_encode(getOption('protected_image_user')); ?>" />
+							<br />
+							<label><input type="checkbox" name="disclose_password_" id="disclose_password_" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+						</td>
+					</tr>
+					<tr class="passwordextrahide" style="display:none" >
+						<td style="margin:0; padding:0">
+							<span id="strength">
+								<?php echo gettext("password:"); ?>
+							</span>
+							<br />
+							<span id="match" class="password_field_">
+								<?php echo gettext("(repeat)"); ?>
+							</span>
+						</td>
+						<td style="margin:0; padding:0">
+							<input type="password" size="30"
+													id="pass" name="pass"
+													onkeydown="passwordKeydown('');"
+													onkeyup="passwordStrength('');"
+													value="<?php echo $x; ?>" />
+							<br />
+							<span class="password_field_">
+								<input type="password" size="30"
+														id="pass_r" name="pass_r" disabled="disabled"
+														onkeydown="passwordKeydown('');"
+														onkeyup="passwordMatch('');"
+														value="<?php echo $x; ?>" />
+							</span>
+						</td>
+					</tr>
+					<tr class="passwordextrahide" style="display:none" >
+						<td style="margin:0; padding:0">
+							<?php echo gettext("hint:"); ?>
+						</td>
+						<td style="margin:0; padding:0">
+							<?php print_language_string_list(getOption('protected_image_hint'), 'hint', false, NULL, 'hint') ?>
+						</td>
+					</tr>
 					</table>
 					<?php
 				}

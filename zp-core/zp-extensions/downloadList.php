@@ -34,7 +34,7 @@ $plugin_author = "Malte Müller (acrylian)";
 $plugin_URL = "";
 $option_interface = "downloadList";
 zp_register_filter('admin_utilities_buttons', 'downloadstatistics_button');
-zp_register_filter('custom_option_save', 'downloadListOptions::custom_options_save');
+zp_register_filter('custom_option_save', 'downloadList::custom_options_save');
 
 /**
  * Plugin option handling class
@@ -70,7 +70,7 @@ class downloadList {
 									  		'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
 		);
 		if (GALLERY_SECURITY == 'public') {
-			$options[chr(0x00)] = array('key' => 'downloadlist_credentials', 'type' => OPTION_TYPE_CUSTOM,
+			$options[gettext('credentials')] = array('key' => 'downloadlist_credentials', 'type' => OPTION_TYPE_CUSTOM,
 																	'order' => 0,
 																	'desc' => gettext('Provide credentials to password protect downloads'));
 		}
@@ -107,25 +107,28 @@ class downloadList {
 		<br />
 		<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
 		<input type="text" size="27" id="user_name_downloadList" name="user_downloadList"
-										onkeydown="passwordKeydown('#pass_downloadList','#pass_2_downloadList');"
+										onkeydown="passwordKeydown('_downloadList');"
 										value="<?php echo html_encode($user); ?>" />
 		<br />
-		<span id="strength"><?php echo gettext("Password:"); ?></span>
+		<span id="strength_downloadList"><?php echo gettext("Password:"); ?></span>
 		<br />
 		<input type="password" size="27"
 										id="pass_downloadList" name="pass_downloadList"
-										onkeydown="passwordKeydown('#pass_downloadList','#pass_2_downloadList');"
-										onkeyup="passwordStrength('#pass_downloadList','#pass_2_downloadList','#match','#strength');"
+										onkeydown="passwordKeydown('_downloadList');"
+										onkeyup="passwordStrength('_downloadList');"
 										value="<?php echo $x; ?>" />
+		<label><input type="checkbox" name="disclose_password__downloadList" id="disclose_password__downloadList" onclick="passwordKeydown('_downloadList');togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 		<br />
-		<span id="match"><?php echo gettext("(repeat)"); ?></span>
-		<br />
-		<input type="password" size="27"
-										id="pass_2_downloadList" name="pass_2_downloadList" disabled="disabled"
-										onkeydown="passwordKeydown('#pass_downloadList','#pass_2_downloadList');"
-										onkeyup="passwordMatch('#pass_downloadList','#pass_2_downloadList','#match');"
-										value="<?php echo $x; ?>" />
-		<br />
+		<span class="password_field__downloadList">
+			<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
+			<br />
+			<input type="password" size="27"
+											id="pass_r_downloadList" name="pass_r_downloadList" disabled="disabled"
+											onkeydown="passwordKeydown('_downloadList');"
+											onkeyup="passwordMatch('_downloadList');"
+											value="<?php echo $x; ?>" />
+			<br />
+		</span>
 		<?php echo gettext("Password hint:"); ?>
 		<br />
 		<?php print_language_string_list($hint, 'hint_downloadList', false, NULL, 'hint_downloadList', 27); ?>
@@ -137,13 +140,13 @@ class downloadList {
 
 	static function custom_options_save($notify,$themename,$themealbum) {
 		$notify = processCredentials('downloadList','_downloadList');
-			if ($notify == '?mismatch=user') {
-				return gettext('You must supply a password for the DownloadList user');
-			} else if ($notify) {
-				return gettext('Your DownloadList passwords were empty or did not match');
-			} else {
-				return '';
-			}
+		if ($notify == '?mismatch=user') {
+			return gettext('You must supply a password for the DownloadList user');
+		} else if ($notify) {
+			return gettext('Your DownloadList passwords were empty or did not match');
+		} else {
+			return '';
+		}
 	}
 
 }

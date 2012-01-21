@@ -14,7 +14,7 @@ $action = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']))
 		<input type="hidden" name="register_user" value="yes" />
 
 		<fieldset style="text-align:center"><legend><?php if ($emailid = getOption('register_user_email_is_id')) echo gettext("Email* (this will be your user id)"); else echo gettext("User ID").'*'; ?></legend>
-			<input type="text" id="adminuser" name="adminuser" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
+			<input type="text" id="adminuser" name="user" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>
 		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag='*'); ?>
 		<fieldset style="text-align:center"><legend><?php echo gettext("Name"); ?>*</legend>
@@ -50,20 +50,18 @@ $action = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']))
 		}
 		if (getOption('register_user_captcha')) {
 			$captcha = $_zp_captcha->getCaptcha();
-			if (isset($captcha['html'])) {
 			?>
 			<fieldset style="text-align:center"><legend><?php echo gettext("Enter"); ?></legend>
-					<?php
-					if (isset($captcha['html'])) echo $captcha['html'];
-					?>
-					&nbsp;&nbsp;&nbsp;
-					<?php
-					if (isset($captcha['input'])) echo $captcha['input'];
-					if (isset($captcha['hidden'])) echo $captcha['hidden'];
-					?>
+				<?php
+				if (isset($captcha['html'])) echo $captcha['html'];
+				?>
+				&nbsp;&nbsp;&nbsp;
+				<?php
+				if (isset($captcha['input'])) echo $captcha['input'];
+				if (isset($captcha['hidden'])) echo $captcha['hidden'];
+				?>
 			</fieldset>
 			<?php
-			}
 		}
 		?>
 		<div style="text-align:right"><?php echo gettext('*Required'); ?></div>

@@ -119,16 +119,18 @@ if (isset($_GET['action'])) {
 									$msg = '';
 								}
 							} else {
-								$pass2 = trim(sanitize($_POST['pass_2_'.$i]));
-								if ($pass == $pass2) {
-									$pass2 = $userobj->getPass($pass);
-									$msg = $userobj->setPass($pass);
-									if ($pass2 !=  $userobj->getPass($pass)) {
-										$updated = true;
+								if (!isset($_POST['disclose_password_'.$i])) {
+									$pass2 = trim(sanitize($_POST['pass_r_'.$i]));
+									if ($pass == $pass2) {
+										$pass2 = $userobj->getPass($pass);
+										$msg = $userobj->setPass($pass);
+										if ($pass2 !=  $userobj->getPass($pass)) {
+											$updated = true;
+										}
+									} else {
+										$notify = '?mismatch=password';
+										$error = true;
 									}
-								} else {
-									$notify = '?mismatch=password';
-									$error = true;
 								}
 							}
 							$challenge = sanitize($_POST[$i.'-challengephrase']);

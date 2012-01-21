@@ -1059,8 +1059,13 @@ class Zenphoto_Authority {
 		?>
 		<script type="text/javascript">
 		// <!-- <![CDATA[
-		function passwordStrength(inputa, inputb, displaym, displays) {
+		function passwordStrength(id) {
+			var inputa = '#pass'+id;
+			var inputb = '#pass_r'+id;
+			var displaym = '#match'+id;
+			var displays = '#strength'+id;
 			var numeric = 0;
+			var inputa = '#pass'+id;
 			var special = 0;
 			var upper = 0;
 			var lower = 0;
@@ -1108,25 +1113,32 @@ class Zenphoto_Authority {
 				$(displays).html('<?php echo gettext('password too weak'); ?>');
 			} else {
 				$(inputb).removeAttr('disabled');
-				passwordMatch(inputa, inputb, displaym);
+				passwordMatch(id);
 			}
 			var url = 'url(<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/strengths/strength'+strength+'.png)';
 			$(inputa).css('background-image',url);
 		}
 
-		function passwordMatch(inputa, inputb, display) {
-			if ($(inputa).val() === $(inputb).val()) {
-				if ($(inputa).val().trim() !== '') {
-					$(display).css('color','#008000');
-					$(display).html('<?php echo gettext('passwords match'); ?>');
+		function passwordMatch(id) {
+			var inputa = '#pass'+id;
+			var inputb = '#pass_r'+id;
+			var display = '#match'+id;
+			if ($('#disclose_password_'+id).attr('checked') != 'checked') {
+				if ($(inputa).val() === $(inputb).val()) {
+					if ($(inputa).val().trim() !== '') {
+						$(display).css('color','#008000');
+						$(display).html('<?php echo gettext('passwords match'); ?>');
+					}
+				} else {
+					$(display).css('color','#ff0000');
+					$(display).html('<?php echo gettext('passwords do not match'); ?>');
 				}
-			} else {
-				$(display).css('color','#ff0000');
-				$(display).html('<?php echo gettext('passwords do not match'); ?>');
 			}
 		}
 
-		function passwordKeydown(inputa, inputb) {
+		function passwordKeydown(id) {
+			var inputa = '#pass'+id;
+			var inputb = '#pass_r'+id;
 			if ($(inputa).val().trim() === '') {
 				$(inputa).val('');
 			}
@@ -1141,22 +1153,14 @@ class Zenphoto_Authority {
 				newp.attr('type', 'text');
 				newp.insertAfter(oldp);
 				oldp.remove();
-				oldp = $('#pass_r'+id);
-				newp = oldp.clone();
-				newp.attr('type', 'text');
-				newp.insertAfter(oldp);
-				oldp.remove();
+				$('.password_field_'+id).hide();
 			} else {
 				var oldp = $('#pass'+id);
 				var newp = oldp.clone();
 				newp.attr('type', 'password');
 				newp.insertAfter(oldp);
 				oldp.remove();
-				oldp = $('#pass_r'+id);
-				newp = oldp.clone();
-				newp.attr('type', 'password');
-				newp.insertAfter(oldp);
-				oldp.remove();
+				$('.password_field_'+id).show();
 			}
 		}
 		// ]]> -->
@@ -1178,19 +1182,20 @@ class Zenphoto_Authority {
 							name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass<?php echo $id; ?>"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
-							onkeydown="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');"
-							onkeyup="passwordStrength('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>','#match<?php echo $id; ?>','#strength<?php echo $id; ?>');"
+							onkeydown="passwordKeydown('<?php echo $id; ?>');"
+							onkeyup="passwordStrength('<?php echo $id; ?>');"
 							<?php echo $disable; ?> />
+			<br clear="all" />
+			<label><input type="checkbox" name="disclose_password_<?php echo $id; ?>" id="disclose_password_<?php echo $id; ?>" onclick="passwordKeydown('<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password'); ?></label>
 		</fieldset>
-		<label><input type="checkbox" name"disclose_password" onclick="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password characters'); ?></label>
-		<fieldset style="text-align:center">
+		<fieldset style="text-align:center" class="password_field_<?php echo $id; ?>">
 			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-							name="pass_2_<?php echo $id ?>" value="<?php echo $x; ?>"
+							name="pass_r_<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass_r<?php echo $id; ?>" disabled="disabled"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
-							onkeydown="passwordKeydown('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>');"
-							onkeyup="passwordMatch('#pass<?php echo $id; ?>','#pass_r<?php echo $id; ?>','#match<?php echo $id; ?>');" />
+							onkeydown="passwordKeydown('<?php echo $id; ?>');"
+							onkeyup="passwordMatch('<?php echo $id; ?>');" />
 		</fieldset>
 		<?php
 	}

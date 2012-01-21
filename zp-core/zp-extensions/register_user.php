@@ -280,12 +280,12 @@ function printRegistrationForm($thanks=NULL) {
 			$notify = 'invalidemail';
 		}
 
-		$pass = trim(sanitize($_POST['adminpass']));
-		$user = trim(sanitize($_POST['adminuser']));
+		$pass = trim(sanitize($_POST['pass']));
+		$user = trim(sanitize($_POST['user']));
 		if (empty($pass)) {
 			$notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
-			if ($pass == trim(sanitize($_POST['adminpass_2_']))) {
+			if (isset($_POST['disclose_password_']) || $pass == trim(sanitize($_POST['pass_r_']))) {
 				$currentadmin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					$notify = 'exists';

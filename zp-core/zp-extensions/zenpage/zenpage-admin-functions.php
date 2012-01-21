@@ -981,42 +981,6 @@ function printArticlesPerPageDropdown() {
 ***************************/
 
 /**
- * Handles saving of News Category passwords
- */
-function processCategoryPasswordSave($cat) {
-	global $_zp_authority;
-	$notify = $fail = '';
-	if ($_POST['password_enabled']) {
-		$olduser = sanitize($_POST['olduser']);
-		$newuser = sanitize($_POST['new_user']);
-		$pwd = trim(sanitize($_POST['newpass']));
-		if (($olduser != $newuser)) {
-			if (!empty($newuser) && empty($pwd) && empty($pwd2)) {
-				$fail = 'user';
-			}
-		}
-		if (!$fail && $_POST['newpass'] == $_POST['newpass_2']) {
-			$cat->setUser($newuser);
-			$cat->setPasswordHint(process_language_string_save('page_hint', 3));
-			if (empty($pwd)) {
-				if (empty($_POST['newpass'])) {
-					$cat->setPassword(NULL);  // clear the password
-				}
-			} else {
-				$cat->setPassword($pwd);
-			}
-		} else {
-			if (empty($fail)) {
-				$notify = 'pass';
-			} else {
-				$notify = $fail;
-			}
-		}
-	}
-	return $notify;
-}
-
-/**
  * Adds a category to the database
  *
  */

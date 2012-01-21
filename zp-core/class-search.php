@@ -676,7 +676,9 @@ class SearchEngine
 					}
 				}
 			}
-			$cat = ' WHERE '.substr($cat,0,-3);
+			if ($cat) {
+				$cat = ' WHERE '.substr($cat,0,-3);
+			}
 		}
 		$sql = 'SELECT DISTINCT `news_id` FROM '.prefix('news2cat').$cat;
 		$result = query_full_array($sql);
