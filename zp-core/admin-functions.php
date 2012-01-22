@@ -3331,6 +3331,7 @@ function postAlbumSort($parentid) {
 				}
 			}
 		}
+		return true;
 	}
 	return false;
 }
@@ -3669,12 +3670,11 @@ function printBulkActions($checkarray, $checkAll=false) {
  */
 function processAlbumBulkActions() {
 	global $_zp_gallery;
-	$action = sanitize($_POST['checkallaction']);
-	$ids = $_POST['ids'];
-	$total = count($ids);
-	$message = NULL;
-	if($action != 'noaction') {
-		if ($total > 0) {
+	if (isset($_POST['ids'])) {
+		$ids = $_POST['ids'];
+		$action = sanitize($_POST['checkallaction']);
+		$total = count($ids);
+		if($action != 'noaction' && $total > 0) {
 			if ($action == 'addtags' || $action == 'alltags') {
 				foreach ($_POST as $key => $value) {
 					$key = postIndexDecode($key);
@@ -3739,9 +3739,11 @@ function processAlbumBulkActions() {
 				}
 				$albumobj->save();
 			}
+			return $action;
+
 		}
-		return $action;
 	}
+	return false;
 }
 
 /**
@@ -4154,5 +4156,41 @@ function processCredentials($object, $suffix='') {
 		}
 	}
 	return $notify;
+}
+
+function reportMCERR() {
+	if (isset($_GET['mcrerr'])) {
+		?>
+		<div class="errorbox fade-message">
+			<h2>
+			<?php
+			switch (sanitize_numeric($_GET['mcrerr'])) {
+				case 2:
+					echo  gettext("Image already exists.");
+					break;
+				case 3:
+					echo  gettext("Album already exists.");
+					break;
+				case 4:
+					echo  gettext("Cannot move, copy, or rename to a subalbum of this album.");
+					break;
+				case 5:
+					echo  gettext("Cannot move, copy, or rename to a dynamic album.");
+					break;
+				case 6:
+					echo	gettext('Cannot rename an image to a different suffix');
+					break;
+				case 7:
+					echo gettext('Album delete failed');
+					break;
+				default:
+					echo  gettext("There was an error with a move, copy, or rename operation.");
+					break;
+			}
+			?>
+			</h2>
+		</div>
+		<?php
+	}
 }
 ?>

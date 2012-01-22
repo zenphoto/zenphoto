@@ -26,9 +26,16 @@ if (empty($menuset)) {	//	setup default menuset
 $reports = array();
 if(isset($_POST['update'])) {
 	XSRFdefender('update_menu');
-	processMenuBulkActions($reports);
-	updateItemsSortorder($reports);
+	if ($_POST['checkallaction']=='noaction') {
+		updateItemsSortorder($reports);
+	} else {
+		$report = processMenuBulkActions();
+		if ($report) {
+			$reports[] = $report;
+		}
+	}
 }
+
 if (isset($_GET['delete'])) {
 	XSRFdefender('delete_menu');
 	$sql = 'SELECT * FROM '.prefix('menu').' WHERE `id`='.sanitize_numeric($_GET['id']);

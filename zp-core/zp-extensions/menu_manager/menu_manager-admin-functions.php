@@ -885,7 +885,8 @@ function unpublishedZenphotoItemCheck($obj,$dropdown=true) {
  * Processes the check box bulk actions
  *
  */
-function processMenuBulkActions(&$reports) {
+function processMenuBulkActions() {
+	$report = NULL;
 	if (isset($_POST['ids'])) {
 		$action = sanitize($_POST['checkallaction']);
 		$ids = $_POST['ids'];
@@ -915,8 +916,9 @@ function processMenuBulkActions(&$reports) {
 				}
 				query($sql);
 			}
-			if(!is_null($message)) $reports[] = "<p class='messagebox fade-message'>".$message."</p>";
+			if(!is_null($message)) $report = "<p class='messagebox fade-message'>".$message."</p>";
 		}
 	}
+	return $report;
 }
 ?>

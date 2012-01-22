@@ -15,31 +15,26 @@ admin_securityChecks(ZENPAGE_PAGES_RIGHTS, currentRelativeURL(__FILE__));
 $reports = array();
 if (isset($_GET['bulkaction'])) {
 	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
-	if (isset($_GET['sorted'])) {
-		$reports[] = "<br clear=\"all\"><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
-	}
 }
 if (isset($_GET['deleted'])) {
 	$reports[] = "<p class='messagebox fade-message'>".gettext("Article successfully deleted!")."</p>";
 }
 if(isset($_POST['update'])) {
 	XSRFdefender('update');
-	$sorted = updateItemSortorder('pages');
-	if ($action = processZenpageBulkActions('Page')) {
+	if ($_POST['checkallaction']=='noaction') {
+		if (updateItemSortorder('pages')) {
+			$reports[] = "<br clear=\"all\"><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
+		}
+	} else {
+		$action = processZenpageBulkActions('Page');
 		$uri = $_server['REQUEST_URI'];
 		if (strpos($uri, '?')) {
 			$uri .= '&bulkaction='.$action;
 		} else {
 			$uri .= '?bulkaction='.$action;
 		}
-		if ($sorted) {
-			$uri .= '&sorted';
-		}
 		header('Location: ' .$uri);
 		exit();
-	}
-	if ($sorted) {
-		$reports[] = "<br clear=\"all\"><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
 	}
 }
 // remove the page from the database
@@ -148,23 +143,23 @@ if (GALLERY_SECURITY == 'public') {
 <div class="bordered">
  <div class="headline"><?php echo gettext('Edit this page'); ?>
 	<?php
-  $checkarray = array(
-							  	gettext('*Bulk actions*') => 'noaction',
-							  	gettext('Delete') => 'deleteall',
-							  	gettext('Set to published') => 'showall',
-							  	gettext('Set to unpublished') => 'hideall',
+	$checkarray = array(
+									gettext('*Bulk actions*') => 'noaction',
+									gettext('Delete') => 'deleteall',
+									gettext('Set to published') => 'showall',
+									gettext('Set to unpublished') => 'hideall',
 									gettext('Add tags') => 'addtags',
 									gettext('Clear tags') => 'cleartags',
-							  	gettext('Disable comments') => 'commentsoff',
-							  	gettext('Enable comments') => 'commentson'
-					  			);
+									gettext('Disable comments') => 'commentsoff',
+									gettext('Enable comments') => 'commentson'
+									);
 	if (getOption('zp_plugin_hitcounter')) {
 		$checkarray['Reset hitcounter'] = 'resethitcounter';
 	}
-  printBulkActions($checkarray);
-  ?>
+	printBulkActions($checkarray);
+	?>
 	</div>
-  <div class="subhead">
+	<div class="subhead">
 		<label style="float: right"><?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
 		</label>
 	</div>

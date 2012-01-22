@@ -58,29 +58,49 @@ if (isset($_GET['action'])) {
 		/******************************************************************************/
 		case 'savealbumorder':
 			XSRFdefender('savealbumorder');
-			$_zp_gallery->setSortDirection(0);
-			$_zp_gallery->setSortType('manual');
-			$_zp_gallery->save();
-			$notify = postAlbumSort(NULL);
-			if (isset($_POST['ids'])) {
-				$action = processAlbumBulkActions();
-				if(!empty($action)) $action = '&bulkmessage='.$action;
+			if ($_POST['checkallaction']=='noaction') {
+				$notify = postAlbumSort(NULL);
+				if ($notify) {
+					if ($notify === true) {
+						$notify = '&saved';
+					} else {
+						$notify = '&saved'.$notify;
+					}
+					$_zp_gallery->setSortDirection(0);
+					$_zp_gallery->setSortType('manual');
+					$_zp_gallery->save();
+				}
+			} else {
+				$notify = processAlbumBulkActions();
+				if(!empty($notify)) {
+					$notify = '&bulkmessage='.$notify;
+				}
 			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit'.$action.'&saved'.$notify);
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit'.$notify);
 			exit();
 			break;
 		case 'savesubalbumorder':
 			XSRFdefender('savealbumorder');
-			$album = new Album(NULL, $folder);
-			$album->setSubalbumSortType('manual');
-			$album->setSortDirection('album', 0);
-			$album->save();
-			$notify = postAlbumSort($album->get('id'));
-			if (isset($_POST['ids'])) {
-				$action = processAlbumBulkActions();
-				if(!empty($action)) $action = '&bulkmessage='.$action;
+			if ($_POST['checkallaction']=='noaction') {
+				$notify = postAlbumSort($album->get('id'));
+				if ($notify) {
+					if ($notify === true) {
+						$notify = '&saved';
+					} else {
+						$notify = '&saved'.$notify;
+					}
+					$album = new Album($gallery, $folder);
+					$album->setSubalbumSortType('manual');
+					$album->setSortDirection('album', 0);
+					$album->save();
+				}
+			} else {
+				$notify = processAlbumBulkActions();
+				if(!empty($notify)) {
+					$notify = '&bulkmessage='.$notify;
+				}
 			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit'.$action.'&album='.$folder.'&tab=subalbuminfo&saved'.$notify);
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album='.$folder.'&tab=subalbuminfo'.$notify);
 			exit();
 			break;
 		case 'sorttags':
@@ -718,38 +738,8 @@ $alb = removeParentAlbumNames($album);
 
 		</div>
 	<?php
-	} else if (isset($_GET['mcrerr'])) {
-		?>
-		<div class="errorbox fade-message">
-			<h2>
-			<?php
-			switch (sanitize_numeric($_GET['mcrerr'])) {
-				case 2:
-					echo  gettext("Image already exists.");
-					break;
-				case 3:
-					echo  gettext("Album already exists.");
-					break;
-				case 4:
-					echo  gettext("Cannot move, copy, or rename to a subalbum of this album.");
-					break;
-				case 5:
-					echo  gettext("Cannot move, copy, or rename to a dynamic album.");
-					break;
-				case 6:
-					echo	gettext('Cannot rename an image to a different suffix');
-					break;
-				case 7:
-					echo gettext('Album delete failed');
-					break;
-				default:
-					echo  gettext("There was an error with a move, copy, or rename operation.");
-					break;
-			}
-			?>
-			</h2>
-		</div>
-		<?php
+	} else {
+		reportMCERR();
 	}
 	if (isset($_GET['edit_error'])) {
 		?>
@@ -1601,6 +1591,7 @@ if($subtab != "albuminfo") {	?>
 /*** MULTI-ALBUM ***************************************************************************/
 
 } else if (isset($_GET['massedit'])) {
+	zp_apply_filter('admin_note','albums', 'massedit');
 	// one time generation of this list.
 	$mcr_albumlist = array();
 	genAlbumUploadList($mcr_albumlist);
@@ -1690,6 +1681,16 @@ zp_apply_filter('admin_note','albums', '');
 		echo  "<h2>".sprintf(gettext("<em>%s</em> already exists."),sanitize($_GET['exists']))."</h2>";
 		echo '</div>';
 	}
+	if (isset($_GET['saved'])) {
+		?>
+		<div class="messagebox fade-message">
+			<h2>
+			<?php echo gettext("Changes applied") ?>
+			</h2>
+		</div>
+	<?php
+	}
+	reportMCERR();
 	if (isset($_GET['bulkmessage'])) {
 		$action = sanitize($_GET['bulkmessage']);
 		switch($action) {

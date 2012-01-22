@@ -15,28 +15,23 @@ admin_securityChecks(ZENPAGE_NEWS_RIGHTS, currentRelativeURL(__FILE__));
 $reports = array();
 if (isset($_GET['bulkaction'])) {
 	$reports[] = zenpageBulkActionMessage(sanitize($_GET['bulkaction']));
-	if (isset($_GET['sorted'])) {
-		$reports[] = "<br clear=\"all\"><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
-	}
 }
 if(isset($_POST['action'])) {
 	XSRFdefender('checkeditems');
-	$sorted = updateItemSortorder('categories',$reports);
-	if ($action = processZenpageBulkActions('Category')) {
+	if ($_POST['checkallaction']=='noaction') {
+		if (updateItemSortorder('categories',$reports)) {
+			$reports[] = "<br clear=\"all\"><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
+		}
+	} else {
+		$action = processZenpageBulkActions('Category');
 		$uri = $_server['REQUEST_URI'];
 		if (strpos($uri, '?')) {
 			$uri .= '&bulkaction='.$action;
 		} else {
 			$uri .= '?bulkaction='.$action;
 		}
-		if ($sorted) {
-			$uri .= '&sorted';
-		}
 		header('Location: ' .$uri);
 		exit();
-	}
-	if ($sorted) {
-		$reports[] = "<br clear=\"all\"><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
 	}
 }
 if(isset($_GET['delete'])) {
