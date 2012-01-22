@@ -71,7 +71,7 @@ class image_page {
 					</div>
 					<?php
  				}
- 				@call_user_func('printSlideShowLink',gettext('View Slideshow'),'text-align:center;');
+ 				@call_user_func('printSlideShowLink',NULL,'text-align:center;');
 				?>
  				</div><!-- images -->
 				<?php

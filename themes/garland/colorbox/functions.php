@@ -72,7 +72,7 @@ class colorbox {
 			?>
 		</div>
 		<br clear="all">
-		<?php @call_user_func('printSlideShowLink',gettext('View Slideshow'));
+		<?php @call_user_func('printSlideShowLink');
 	}
 }
 

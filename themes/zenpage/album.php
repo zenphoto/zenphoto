@@ -75,7 +75,7 @@ if (!defined('WEBPATH')) die();
 		?>
 	<?php if (function_exists('printSlideShowLink')) {
 			echo '<span id="slideshowlink">';
-			printSlideShowLink(gettext('View Slideshow'));
+			printSlideShowLink();
 			echo '</span>';
 		}
 		?>

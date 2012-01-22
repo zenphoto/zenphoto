@@ -135,8 +135,7 @@ require_once('normalizer.php');
 						echo '<em class="count">';
 						printf( gettext('Photos %1$u-%2$u of %3$u'), $firstImage, $lastImage, getNumImages());
 						echo "</em>";
-						if (function_exists('printSlideShowLink')) {
-						printSlideShowLink(gettext('View Slideshow'));
+						@call_user_func('printSlideShowLink');
 						}
 					}
 					?>

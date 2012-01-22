@@ -146,7 +146,10 @@ function zp_apply_filter($hook, $value = '') {
 			if ( !is_null($the_['function']) ){
 				if (DEBUG_FILTERS) $debug .= "\n    ".$the_['function'];
 				$args[1] = $value;
-				$value = call_user_func_array($the_['function'], array_slice($args, 1));
+				$new_value = call_user_func_array($the_['function'], array_slice($args, 1));
+				if (!is_null($new_value)) {
+					$value = $new_value;
+				}
 			}
 		}
 	} while ( next($_zp_filters[$hook]) !== false );

@@ -17,49 +17,22 @@ $plugin_description = gettext('Support for providing Google Maps (API version 3)
 $plugin_author = 'Stephen Billard (sbillard)';
 
 
-$option_interface = 'googlemapOptions';
+$option_interface = 'googleMap';
 if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
 	if (session_id() == '' && getOption('gmap_sessions')) {
 		session_start();
 	}
-	zp_register_filter('theme_head','googlemap_js');
+	zp_register_filter('theme_head','googleMap::js');
 }
 
-/**
- * Output the header JS
- */
-function googlemap_js() {
-	require_once(dirname(__FILE__).'/GoogleMap/GoogleMap.php');
-	require_once(dirname(__FILE__).'/GoogleMap/JSMin.php');
-	global $MAP_OBJECT, $_zp_current_image, $_zp_current_album;
-	$MAP_OBJECT = new GoogleMapAPI();
-	$MAP_OBJECT->setLocale(substr(getOption('locale'),0,2));
-	$MAP_OBJECT->bounds_fudge = 0.001;
-	echo $MAP_OBJECT->getHeaderJS()."\n";
-	?>
-	<style type="text/css">
-		<!--
-		.hidden_map {
-			position: absolute;
-			left: -50000px;
-		}
-		.map_image {
-			margin-left: 30%;
-			margin-right: 10%;
-			border: 0px;
-		}
-		-->
-	</style>
-	<?php
-}
 
 /**
- * Plugin option handling class
+ * googleMap
  *
  */
-class googlemapOptions {
+class googleMap {
 
-	function googlemapOptions() {
+	function googleMap() {
 		/* put any setup code needed here */
 		setOptionDefault('gmap_width', 595);
 		setOptionDefault('gmap_height', 300);
@@ -125,6 +98,34 @@ class googlemapOptions {
 	}
 
 	function handleOption($option, $currentValue) {
+	}
+
+	/**
+	 * Output the header JS
+	 */
+	static function js() {
+		require_once(dirname(__FILE__).'/GoogleMap/GoogleMap.php');
+		require_once(dirname(__FILE__).'/GoogleMap/JSMin.php');
+		global $MAP_OBJECT, $_zp_current_image, $_zp_current_album;
+		$MAP_OBJECT = new GoogleMapAPI();
+		$MAP_OBJECT->setLocale(substr(getOption('locale'),0,2));
+		$MAP_OBJECT->bounds_fudge = 0.001;
+		echo $MAP_OBJECT->getHeaderJS()."\n";
+		?>
+		<style type="text/css">
+			<!--
+			.hidden_map {
+				position: absolute;
+				left: -50000px;
+			}
+			.map_image {
+				margin-left: 30%;
+				margin-right: 10%;
+				border: 0px;
+			}
+			-->
+		</style>
+		<?php
 	}
 }
 

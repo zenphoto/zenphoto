@@ -71,7 +71,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				</div>
 				<br clear="all" />
 				<?php
-				 @call_user_func('printSlideShowLink',gettext('View Slideshow'));
+				 @call_user_func('printSlideShowLink');
 				if ($c == 0) {
 					echo "<p>" . gettext("Sorry, no image matches found. Try refining your search.") . "</p>";
 				}

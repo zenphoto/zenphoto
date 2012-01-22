@@ -77,7 +77,6 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 			</div>
 			<div id="narrow">
 				<?php printImageDesc(true); ?>
-				<?php @call_user_func('printSlideShowLink',gettext('View Slideshow')); ?>
 				<hr /><br />
 				<?php
 				if (getImageMetaData()) {
@@ -89,7 +88,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', '');
 				?>
 				<br clear="all" />
-
+				<?php @call_user_func('printSlideShowLink'); ?>
 				<?php @call_user_func('printGoogleMap'); ?>
 				<?php @call_user_func('printRating'); ?>
 				<?php @call_user_func('printCommentForm'); ?>

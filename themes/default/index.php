@@ -43,7 +43,6 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				<?php printPageListWithNav("&laquo; " . gettext("prev"), gettext("next") . " &raquo;"); ?>
 			</div>
 		</div>
-		<?php @call_user_func('printLanguageSelector'); ?>
 		<div id="credit">
 			<?php @call_user_func('printUserLogin_out','', ' | ');?>
 			<?php printRSSLink('Gallery', '', 'RSS', ' | '); ?>
@@ -60,6 +59,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 			?>
 			<?php printZenphotoLink(); ?>
 		</div>
+		<?php @call_user_func('printLanguageSelector'); ?>
 		<?php
 		printAdminToolbox();
 		zp_apply_filter('theme_body_close');

@@ -143,7 +143,7 @@ require_once('normalizer.php');
 										$cw = 33;
 									}
 									echo '<a href="' . $randomImageURL . '" title="'.gettext("View image:").' ' . html_encode($randomImage->getTitle()) . '">' .
- 												'<img src="' . html_encode($randomImage->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) .
+												'<img src="' . html_encode($randomImage->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) .
 												'" alt="'.html_encode($randomImage->getTitle()).'"';
 									echo "/></a></td></tr></table></li>\n";
 								}
@@ -158,7 +158,7 @@ require_once('normalizer.php');
 				<table cellspacing="0" class="gallerydata">
 						<tr>
 							<th><a href="<?php echo $archivepageURL; ?>"><?php echo gettext('Galleries'); ?></a></th>
-							<td><?php $albumNumber = getNumAlbums(); echo $albumNumber ?></td>
+							<td><?php echo $_zp_gallery->getNumAlbums();?></td>
 							<td></td>
 						</tr>
 						<tr>
@@ -166,8 +166,8 @@ require_once('normalizer.php');
 							<td><?php $photosNumber = db_count('images'); echo $photosNumber ?></td>
 							<td><?php printRSSLink('Gallery','','','',true,'i'); ?></td>
 						</tr>
- 					<?php if (function_exists('printCommentForm')) { ?>
- 						<tr>
+					<?php if (function_exists('printCommentForm')) { ?>
+						<tr>
 							<th><?php echo gettext('Comments'); ?></th>
 							<td><?php $commentsNumber = db_count('comments'," WHERE inmoderation = 0"); echo $commentsNumber ?></td>
 							<td><?php printRSSLink('Comments','','','',true,'i'); ?></td>
@@ -186,24 +186,21 @@ require_once('normalizer.php');
 		<?php
 		if (getOption('zp_plugin_contact_form')) {
 			printCustomPageURL(gettext('Contact us'), 'contact', '', '');
-			echo '<br />';
 		}
 		if (!zp_loggedin() && function_exists('printRegistrationForm')) {
 			printCustomPageURL(gettext('Register for this site'), 'register', '', '');
-			echo '<br />';
 		}
-		if (function_exists('printLanguageSelector')) {
-			printLanguageSelector();
-			echo '<br />';
-		}
+		@call_user_func('printUserLogin_out',"");
 		?>
-			<?php echo gettext('<a href="http://stopdesign.com/templates/photos/">Photo Templates</a> from Stopdesign.'); ?>
-			<?php printZenphotoLink(); ?>
+		</p>
+		<p>
+		<?php
+		echo gettext('<a href="http://stopdesign.com/templates/photos/">Photo Templates</a> from Stopdesign.');
+		printZenphotoLink();
+		@call_user_func('printLanguageSelector');
+		?>
 		</p>
 		<?php
-		if (function_exists('printUserLogin_out')) {
-			printUserLogin_out("");
-		}
 		?>
 	</div>
 

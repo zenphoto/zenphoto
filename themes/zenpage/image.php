@@ -96,7 +96,7 @@ if (!defined('WEBPATH')) die();
 		<br style="clear:both;" /><br />
 		<?php if (function_exists('printSlideShowLink')) {
 			echo '<span id="slideshowlink">';
-			printSlideShowLink(gettext('View Slideshow'));
+			printSlideShowLink();
 			echo '</span>';
 		}
 		?>

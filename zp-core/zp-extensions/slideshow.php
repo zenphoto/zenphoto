@@ -25,15 +25,15 @@
 $plugin_description = gettext("Adds a theme function to call a slideshow either based on jQuery (default) or Flash using Flowplayer3 if installed.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard), Don Peterson (dpeterson)";
 
-$option_interface = 'slideshowOptions';
+$option_interface = 'slideshow';
 
 /**
- * Plugin option handling class
+ * slideshow
  *
  */
-class slideshowOptions {
+class slideshow {
 
-	function slideshowOptions() {
+	function slideshow() {
 		//setOptionDefault('slideshow_size', '595');
 		setOptionDefault('slideshow_width', '595');
 		setOptionDefault('slideshow_height', '595');
@@ -104,8 +104,11 @@ $slideshow_instance = 0;
  * @param string $linktext Text for the link
  * @param string $linkstyle Style of Text for the link
  */
-function printSlideShowLink($linktext='', $linkstyle='') {
+function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 	global $_zp_gallery, $_zp_current_image, $_zp_current_album, $_zp_current_search, $slideshow_instance, $_zp_gallery_page;
+	if (is_null($linktext)) {
+		$linktext = gettext('View Slideshow');
+	}
 	if(empty($_GET['page'])) {
 		$pagenr = 1;
 	} else {

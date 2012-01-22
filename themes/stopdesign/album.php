@@ -146,7 +146,7 @@ $thisalbum = $_zp_current_album;
 						echo "</em>";
 						}
 				?>
-				<?php if (function_exists('printSlideShowLink') && isImagePage()) printSlideShowLink(gettext('View Slideshow')); ?>
+				<?php if (isImagePage()) @call_user_func('printSlideShowLink'); ?>
 				<?php if (hasPrevPage()) { ?>
 						<a href="<?php echo html_encode(getPrevPageURL()); ?>" accesskey="x">&laquo; <?php echo gettext('prev page'); ?></a>
 				<?php } ?>
