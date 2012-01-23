@@ -914,22 +914,23 @@ function getParentAlbums($album=null) {
 }
 
 /**
- * prints the breadcrumb item for the current images's album
+ * returns the breadcrumb item for the current images's album
  *
  * @param string $before Text to place before the breadcrumb
  * @param string $after Text to place after the breadcrumb
  * @param string $title Text to be used as the URL title tag
+ * @return string
  */
-function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
+function getAlbumBreadcrumb($before='', $after='', $title=NULL) {
 	global $_zp_current_search, $_zp_gallery, $_zp_current_album, $_zp_last_album;
 	if (is_null($title)) $title = gettext('Album Thumbnails');
-	echo $before;
+	$output = $before;
 	if (in_context(ZP_SEARCH_LINKED)) {
 		$dynamic_album = $_zp_current_search->dynalbumname;
 		if (empty($dynamic_album)) {
 			if (!is_null($_zp_current_album)) {
 				if (in_context(ZP_ALBUM_LINKED) && $_zp_last_album == $_zp_current_album->name) {
-					echo "<a href=\"" . html_encode(getAlbumLinkURL()). "\" title=\"" . html_encode($title) . "\">" . getAlbumTitle() . "</a>";
+					$output .= "<a href=\"" . html_encode(getAlbumLinkURL()). "\" title=\"" . html_encode($title) . "\">" . getAlbumTitle() . "</a>";
 				} else {
 					$after = '';
 				}
@@ -942,31 +943,44 @@ function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
 			} else {
 				$album = new Album(NULL, $dynamic_album);
 			}
-			echo "<a href=\"" . html_encode(getAlbumLinkURL($album)) . "\">";
-			echo html_encode($album->getTitle());
-			echo '</a>';
+			$output .= "<a href=\"" . html_encode(getAlbumLinkURL($album)) . "\">";
+			$output .= html_encode($album->getTitle());
+			$output .= '</a>';
 		}
 	} else {
-		echo "<a href=\"" . html_encode(getAlbumLinkURL()). "\" title=\"" . html_encode($title) . "\">" . getAlbumTitle() . "</a>";
+		$output .= "<a href=\"" . html_encode(getAlbumLinkURL()). "\" title=\"" . html_encode($title) . "\">" . getAlbumTitle() . "</a>";
 	}
-	echo $after;
+	$output .= $after;
+	return $output;
 }
 
 /**
- * Prints the breadcrumb navigation for album, gallery and image view.
+* prints the breadcrumb item for the current images's album
+*
+* @param string $before Text to place before the breadcrumb
+* @param string $after Text to place after the breadcrumb
+* @param string $title Text to be used as the URL title tag
+*/
+function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
+	echo getAlbumBreadcrumb($before, $after, $title);
+}
+
+/**
+ * returns the breadcrumb navigation for album, gallery and image view.
  *
  * @param string $before Insert here the text to be printed before the links
  * @param string $between Insert here the text to be printed between the links
  * @param string $after Insert here the text to be printed after the links
  * @param mixed $truncate if not empty, the max lenght of the description.
  * @param string $elipsis the text to append to the truncated description
+ * @return string
  */
-function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $truncate=NULL, $elipsis=NULL) {
+function getParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $truncate=NULL, $elipsis=NULL) {
 	global $_zp_gallery, $_zp_current_search, $_zp_current_album, $_zp_last_album;
-	echo $before;
+	$output = $before;
 	if (is_null($between)) $between=' | ';
 	if (is_null($after)) $after=' | ';
-	if (is_null($elipsis)) $between='...';
+	if (is_null($elipsis)) $elipsis='...';
 	if (in_context(ZP_SEARCH_LINKED)) {
 		$page = $_zp_current_search->page;
 		$searchwords = $_zp_current_search->words;
@@ -979,14 +993,14 @@ function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $trun
 		$searchpagepath = html_encode(getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$search_album_list)));
 		$dynamic_album = $_zp_current_search->dynalbumname;
 		if (empty($dynamic_album)) {
-			echo "<a href=\"" . $searchpagepath . "\" title=\"Return to search\">";
-			echo "<em>".gettext("Search")."</em></a>";
+			$output .= "<a href=\"" . $searchpagepath . "\" title=\"Return to search\">";
+			$output .= "<em>".gettext("Search")."</em></a>";
 			if (is_null($_zp_current_album)) {
-				echo $after;
-				return;
+				$output .= $after;
+				return $output;
 			} else {
 				$parents = getParentAlbums();
-				echo $between;
+				$output .= $between;
 			}
 		} else {
 			$album = new Album(NULL, $dynamic_album);
@@ -1010,18 +1024,33 @@ function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $trun
 	if ($n > 0) {
 		$i = 0;
 		foreach($parents as $parent) {
-			if ($i > 0) echo $between;
+			if ($i > 0) $output .= $between;
 			$url = rewrite_path("/" . pathurlencode($parent->name) . "/", "/index.php?album=" . pathurlencode($parent->name));
 			//cleanup things in description for use as attribute tag
 			$desc = html_decode(strip_tags(preg_replace('|</p\s*>|i', '</p> ', preg_replace('|<br\s*/>|i', ' ', $parent->getDesc()))));
-			if (!empty($desc) && $truncate) $desc = truncate_string($desc , $truncate, $elipsis);
-			printLink($url, $parent->getTitle(), $desc);
+			if (!empty($desc) && $truncate) {
+				$desc = truncate_string($desc , $truncate, $elipsis);
+			}
+			$output .= '<a href="' . html_encode($url).'"'.' title="'.html_encode(strip_tags($desc)).'">'.html_encode($parent->getTitle()).'</a>';
 			$i++;
 		}
-		echo $after;
+		$output .= $after;
 	}
+	return $output;
 }
 
+/**
+* Prints the breadcrumb navigation for album, gallery and image view.
+*
+* @param string $before Insert here the text to be printed before the links
+* @param string $between Insert here the text to be printed between the links
+* @param string $after Insert here the text to be printed after the links
+* @param mixed $truncate if not empty, the max lenght of the description.
+* @param string $elipsis the text to append to the truncated description
+*/
+function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $truncate=NULL, $elipsis=NULL) {
+	echo getParentBreadcrumb($before, $between, $after, $truncate, $elipsis);
+}
 /**
  * Prints a link to the 'main website'
  * Only prints the link if the url is not empty and does not point back the gallery page

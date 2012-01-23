@@ -2623,19 +2623,21 @@ function getPageLinkURL($titlelink='') {
 	}
 }
 
-
 /**
- * Prints full path to a specific page
+ * Prints the url to a specific zenpage page
  *
- * @return string
+ * @param string $linktext Text for the URL
+ * @param string $titlelink page to include in URL
+ * @param string $prev text to insert before the URL
+ * @param string $next text to follow the URL
+ * @param string $class optional class
  */
-function printPageLinkURL($titlelink) {
-	echo html_encode(getPageLinkURL($titlelink));
+function printPageLinkURL($linktext, $titlelink, $page, $prev='', $next='', $class=NULL) {
+	if (!is_null($class)) {
+		$class = 'class="' . $class . '"';
+	}
+	echo $prev."<a href=\"".html_encode(getPageLinkURL($titlelink))."\" $class title=\"".html_encode($linktext)."\">".html_encode($linktext)."</a>".$next;
 }
-
-
-
-
 
 /**
  * Prints excerpts of the direct subpages (1 level) of a page for a kind of overview. The setup is:
