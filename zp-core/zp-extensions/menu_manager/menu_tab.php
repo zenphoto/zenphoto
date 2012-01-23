@@ -27,11 +27,13 @@ $reports = array();
 if(isset($_POST['update'])) {
 	XSRFdefender('update_menu');
 	if ($_POST['checkallaction']=='noaction') {
-		updateItemsSortorder($reports);
+		$reports[] = updateItemsSortorder();
 	} else {
 		$report = processMenuBulkActions();
 		if ($report) {
 			$reports[] = $report;
+		} else {
+			$reports[] = '<p class="notebox fade-message">'.gettext('Nothing changed').'</p>';
 		}
 	}
 }

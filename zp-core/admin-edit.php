@@ -69,10 +69,14 @@ if (isset($_GET['action'])) {
 					$_zp_gallery->setSortDirection(0);
 					$_zp_gallery->setSortType('manual');
 					$_zp_gallery->save();
+				} else {
+					$notify = '&noaction';
 				}
 			} else {
 				$notify = processAlbumBulkActions();
-				if(!empty($notify)) {
+				if(empty($notify)) {
+					$notify = '&noaction';
+				} else {
 					$notify = '&bulkmessage='.$notify;
 				}
 			}
@@ -93,10 +97,14 @@ if (isset($_GET['action'])) {
 					$album->setSubalbumSortType('manual');
 					$album->setSortDirection('album', 0);
 					$album->save();
+				} else {
+					$notify = '&noaction';
 				}
 			} else {
 				$notify = processAlbumBulkActions();
-				if(!empty($notify)) {
+				if(empty($notify)) {
+					$notify = '&noaction';
+				} else {
 					$notify = '&bulkmessage='.$notify;
 				}
 			}
@@ -722,108 +730,13 @@ if($album->getParent()) {
 $alb = removeParentAlbumNames($album);
 ?>
 <h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'),  $link, $alb); ?></h1>
-
-
-	<?php displayDeleted(); /* Display a message if needed. Fade out and hide after 2 seconds. */ ?>
-	<?php
-	if (isset($_GET['mismatch'])) {
-		?>
-		<div class="errorbox fade-message">
-		<?php if ($_GET['mismatch'] == 'user') {
-			echo '<h2>'.gettext("You must supply a  password.").'</h2>';
-		} else {
-			echo '<h2>'.gettext("Your passwords did not match.").'</h2>';
-		}
-		?>
-
-		</div>
-	<?php
-	} else {
-		reportMCERR();
-	}
-	if (isset($_GET['edit_error'])) {
-		?>
-		<div class="errorbox fade-message">
-			<h2>
-			<?php echo html_encode(sanitize($_GET['edit_error'])); ?>
-			</h2>
-		</div>
-		<?php
-	}
-	if (isset($_GET['post_error'])) {
-		?>
-		<div class="errorbox fade-message">
-			<h2>
-			<?php echo gettext('The image edit form submission has been truncated. Try displaying fewer images on a page.'); ?>
-			</h2>
-		</div>
-		<?php
-	}
-	if (isset($_GET['saved'])) {
-		?>
-		<div class="messagebox fade-message">
-			<h2>
-			<?php echo gettext("Changes applied") ?>
-			</h2>
-		</div>
-	<?php
-	}
-
-	if (isset($_GET['uploaded'])) {
-		?>
-		<div class="messagebox fade-message">
-			<h2><?php echo gettext("Upload complete"); ?></h2>
-			<?php echo gettext('Your files have been uploaded.'); ?>
-		</div>
-		<?php
-	}
-	if (isset($_GET['cleared'])) {
-		echo '<div class="messagebox fade-message">';
-		echo  "<h2>".gettext("Album cache purged")."</h2>";
-		echo '</div>';
-	}
-	if (isset($_GET['exists'])) {
-		echo '<div class="errorbox fade-message">';
-		echo  "<h2>".sprintf(gettext("<em>%s</em> already exists."),sanitize($_GET['exists']))."</h2>";
-		echo '</div>';
-	}
-	if (isset($_GET['bulkmessage'])) {
-		$action = sanitize($_GET['bulkmessage']);
-		switch($action) {
-			case 'deleteall':
-				$message = gettext('Selected items deleted');
-				break;
-			case 'showall':
-				$message = gettext('Selected items published');
-				break;
-			case 'hideall':
-				$message = gettext('Selected items unpublished');
-				break;
-			case 'commentson':
-				$message = gettext('Comments enabled for selected items');
-				break;
-			case 'commentsoff':
-				$message = gettext('Comments disabled for selected items');
-				break;
-			case 'resethitcounter':
-				$message = gettext('Hitcounter for selected items');
-				break;
-			default:
-				$message = $action;
-				break;
-		}
-		if (isset($message)) {
-			echo '<div class="messagebox fade-message">';
-			echo  "<h2>".$message."</h2>";
-			echo '</div>';
-		}
-	}
+<?php
 	$subtab = printSubtabs();
 	if ($subtab == 'albuminfo') {
 	?>
 		<!-- Album info box -->
 		<div id="tab_albuminfo" class="tabbox">
-			<?php zp_apply_filter('admin_note','albums', $subtab); ?>
+			<?php 	consolidatedEditMessages('albuminfo'); ?>
 			<form name="albumedit1" autocomplete="off" action="?page=edit&amp;action=save<?php echo "&amp;album=" . pathurlencode($album->name); ?>"	method="post">
 				<?php XSRFToken('albumedit');?>
 				<input type="hidden" name="album"	value="<?php echo $album->name; ?>" />
@@ -881,6 +794,7 @@ $alb = removeParentAlbumNames($album);
 				</p>
 			<?php
 			}
+			consolidatedEditMessages('subalbuminfo');
 			?>
 			<span class="buttons">
 				<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
@@ -970,7 +884,7 @@ $alb = removeParentAlbumNames($album);
 		<!-- Images List -->
 		<div id="tab_imageinfo" class="tabbox">
 		<?php
-		zp_apply_filter('admin_note','albums', $subtab);
+		consolidatedEditMessages('imageinfo');
 		$numsteps = ceil(max($allimagecount,$imagesTab_imageCount)/ADMIN_IMAGES_STEP);
 		if ($numsteps) {
 			$steps = array();
@@ -1586,27 +1500,14 @@ $alb = removeParentAlbumNames($album);
 if($subtab != "albuminfo") {	?>
 <!-- page trailer -->
 
-<?php }
-
+<?php
+}
 /*** MULTI-ALBUM ***************************************************************************/
 
 } else if (isset($_GET['massedit'])) {
-	zp_apply_filter('admin_note','albums', 'massedit');
 	// one time generation of this list.
 	$mcr_albumlist = array();
 	genAlbumUploadList($mcr_albumlist);
-
-if (isset($_GET['saved'])) {
-		if (isset($_GET['mismatch'])) {
-			echo "\n<div class=\"errorbox fade-message\">";
-			echo "\n<h2>".gettext("Your passwords did not match")."</h2>";
-			echo "\n</div>";
-		} else {
-			echo "\n<div class=\"messagebox fade-message\">";
-			echo "\n<h2>".gettext("Changes applied")."</h2>";
-			echo "\n</div>";
-		}
-	}
 	$albumdir = "";
 	if (isset($_GET['album'])) {
 		$folder = sanitize_path($_GET['album']);
@@ -1629,109 +1530,63 @@ if (isset($_GET['saved'])) {
 		}
 	}
 	?>
-<h1><?php echo gettext("Edit All Albums in"); ?> <?php if (!isset($_GET['album'])) { echo gettext("Gallery");} else {echo "<em>" . $album->name . "</em>";}?></h1>
-<div class="tabbox">
-<?php zp_apply_filter('admin_note','albums', $subtab); ?>
-
+<h1>
+	<?php echo gettext("Edit All Albums in"); ?> <?php if (!isset($_GET['album'])) { echo gettext("Gallery");} else {echo "<em>" . $album->name . "</em>";}?>
+</h1>
+<?php consolidatedEditMessages('massedit'); ?>
 <form name="albumedit" autocomplete="off"	action="?page=edit&amp;action=save<?php echo $albumdir ?>" method="POST">
 	<?php XSRFToken('albumedit');?>
 	<input type="hidden" name="totalalbums" value="<?php echo sizeof($albums); ?>" />
-	<?php
-	$currentalbum = 1;
-	foreach ($albums as $folder) {
-		$album = new Album(NULL, $folder);
-		echo "\n<!-- " . $album->name . " -->\n";
-		?>
-		<div class="innerbox" style="padding: 15px;">
+	<span class="buttons">
+		<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-edit.php?page=edit">
+			<img	src="images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
+		</a>
+		<button type="submit" title="<?php echo gettext("Apply"); ?>">
+			<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
+		</button>
+		<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.deletemsg').hide();" >
+			<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
+		</button>
+	</span>
+	<br clear="all" /><br />
+	<div class="outerbox">
 		<?php
-		printAlbumEditForm($currentalbum, $album, true);
-		$currentalbum++;
+		$currentalbum = 1;
+		foreach ($albums as $folder) {
+			$album = new Album(NULL, $folder);
+			echo "\n<!-- " . $album->name . " -->\n";
+			?>
+			<div class="innerbox<?php if ($currentalbum % 2) echo '_dark'; ?>" style="padding: 15px;">
+				<?php
+				printAlbumEditForm($currentalbum, $album, true, false);
+				$currentalbum++;
+				?>
+			</div>
+			<?php
+		}
 		?>
-		</div>
-		<br />
-		<hr />
-		<?php
-	}
-	?>
-	</form>
-
-</div>
+	</div>
+	<br clear="all" /><br />
+	<span class="buttons">
+		<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-edit.php?page=edit">
+			<img	src="images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
+		</a>
+		<button type="submit" title="<?php echo gettext("Apply"); ?>">
+			<img	src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong>
+		</button>
+		<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.deletemsg').hide();" >
+			<img	src="images/fail.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong>
+		</button>
+	</span>
+</form>
 <?php
 
 /*** EDIT ALBUM SELECTION *********************************************************************/
 
 } else { /* Display a list of albums to edit. */
-zp_apply_filter('admin_note','albums', '');
-?>
-<h1><?php echo gettext("Edit Gallery"); ?></h1>
-<?php
-	displayDeleted(); /* Display a message if needed. Fade out and hide after 2 seconds. */
-	if (isset($_GET['counters_reset'])) {
-		echo '<div class="messagebox fade-message">';
-		echo  "<h2>".gettext("Hitcounters have been reset.")."</h2>";
-		echo '</div>';
-	}
-	if (isset($_GET['action']) && $_GET['action'] == 'clear_cache') {
-		echo '<div class="messagebox fade-message">';
-		echo  "<h2>".gettext("Cache has been purged.")."</h2>";
-		echo '</div>';
-	}
-	if (isset($_GET['exists'])) {
-		echo '<div class="errorbox fade-message">';
-		echo  "<h2>".sprintf(gettext("<em>%s</em> already exists."),sanitize($_GET['exists']))."</h2>";
-		echo '</div>';
-	}
-	if (isset($_GET['saved'])) {
-		?>
-		<div class="messagebox fade-message">
-			<h2>
-			<?php echo gettext("Changes applied") ?>
-			</h2>
-		</div>
+	?>
+	<h1><?php echo gettext("Edit Gallery"); ?></h1>
 	<?php
-	}
-	reportMCERR();
-	if (isset($_GET['bulkmessage'])) {
-		$action = sanitize($_GET['bulkmessage']);
-		switch($action) {
-			case 'deleteall':
-				$message = gettext('Selected items deleted');
-				break;
-			case 'showall':
-				$message = gettext('Selected items published');
-				break;
-			case 'hideall':
-				$message = gettext('Selected items unpublished');
-				break;
-			case 'commentson':
-				$message = gettext('Comments enabled for selected items');
-				break;
-			case 'commentsoff':
-				$message = gettext('Comments disabled for selected items');
-				break;
-			case 'resethitcounter':
-				$message = gettext('Hitcounter for selected items');
-				break;
-			case 'addtags':
-				$message = gettext('Tags added selected items');
-				break;
-			case 'cleartags':
-				$message = gettext('Tags cleared for selected items');
-				break;
-			case 'alltags':
-				$message = gettext('Tags added for images of selected items');
-				break;
-			case 'clearalltags':
-				$message = gettext('Tags cleared for images of selected items');
-				break;
-			default:
-				$message = $action;
-				break;
-		}
-		echo '<div class="messagebox fade-message">';
-		echo  "<h2>".$message."</h2>";
-		echo '</div>';
-	}
 	$albums = getNestedAlbumList(NULL, $gallery_nesting);
 	if (count($albums) > 0) {
 		if (zp_loggedin(ADMIN_RIGHTS) && (count($albums)) > 1) {
@@ -1767,6 +1622,7 @@ zp_apply_filter('admin_note','albums', '');
 	</p>
 
 	<?php
+	consolidatedEditMessages('');
 	printEditDropdown('');
 	?>
 <form action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();">

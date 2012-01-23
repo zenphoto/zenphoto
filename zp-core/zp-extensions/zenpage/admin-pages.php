@@ -23,7 +23,9 @@ if(isset($_POST['update'])) {
 	XSRFdefender('update');
 	if ($_POST['checkallaction']=='noaction') {
 		if (updateItemSortorder('pages')) {
-			$reports[] = "<br clear=\"all\"><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
+			$reports[] = "<p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
+		} else {
+			$reports[] = "<p class='notebox fade-message'>".gettext("Nothing changed.")."</p>";
 		}
 	} else {
 		$action = processZenpageBulkActions('Page');

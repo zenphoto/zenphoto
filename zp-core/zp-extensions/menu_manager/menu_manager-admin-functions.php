@@ -7,8 +7,10 @@
  * Updates the sortorder of the pages list in the database
  *
  */
-function updateItemsSortorder(&$reports) {
-	if(!empty($_POST['order'])) { // if someone didn't sort anything there are no values!
+function updateItemsSortorder() {
+	if(empty($_POST['order'])) { // if someone didn't sort anything there are no values!
+		return '<p class="notebox fade-message">'.gettext('Nothing changed').'</p>';
+	} else {
 		$order = processOrder($_POST['order']);
 		$parents = array('NULL');
 		foreach ($order as $id=>$orderlist) {
@@ -20,7 +22,7 @@ function updateItemsSortorder(&$reports) {
 			$sql = "UPDATE " . prefix('menu') . " SET `sort_order` = ".db_quote($sortstring).", `parentid`= ".db_quote($myparent)." WHERE `id`=" . sanitize_numeric($id);
 			query($sql);
 		}
-	$reports[] =  "<br clear: all><p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
+	return "<p class='messagebox fade-message'>".gettext("Sort order saved.")."</p>";
 	}
 }
 

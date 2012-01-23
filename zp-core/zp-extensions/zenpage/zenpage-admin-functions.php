@@ -1896,6 +1896,8 @@ function zenpageBulkActionMessage($action) {
 		case 'clearcats':
 			$message = gettext('Categories cleared from selected items');
 			break;
+		default:
+			return "<p class='notebox fade-message'>".gettext('Nothing changed')."</p>";
 	}
 	if(isset($message)) {
 		return "<p class='messagebox fade-message'>".$message."</p>";

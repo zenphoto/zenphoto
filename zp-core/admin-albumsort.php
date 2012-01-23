@@ -17,7 +17,6 @@ if (isset($_REQUEST['album'])) {
 }
 admin_securityChecks($localrights, $return = currentRelativeURL(__FILE__));
 
-
 if (isset($_GET['album'])) {
 	$folder = sanitize($_GET['album']);
 	$album = new Album(NULL, $folder);
@@ -32,16 +31,17 @@ if (isset($_GET['album'])) {
 		parse_str($_POST['sortableList'],$inputArray);
 		if (isset($inputArray['id'])) {
 			$orderArray = $inputArray['id'];
-			foreach($orderArray as $key=>$id) {
-				$sql = 'UPDATE '.prefix('images').' SET `sort_order`='.db_quote(sprintf('%03u',$key)).' WHERE `id`='.sanitize_numeric($id);
-				query($sql);
+			if (!empty($orderArray)) {
+				foreach($orderArray as $key=>$id) {
+					$sql = 'UPDATE '.prefix('images').' SET `sort_order`='.db_quote(sprintf('%03u',$key)).' WHERE `id`='.sanitize_numeric($id);
+					query($sql);
+				}
+				$album->setSortType("manual");
+				$album->setSortDirection('image', 0);
+				$album->save();
+				$_GET['saved'] = 1;
 			}
-
 		}
-
-		$album->setSortType("manual");
-		$album->setSortDirection('image', 0);
-		$album->save();
 	}
 }
 
@@ -91,11 +91,6 @@ if (!isset($_GET['album'])) {
 		?>
 		<h1><?php printf(gettext('Edit Album: <em>%1$s%2$s</em>'),  $link, $alb); ?></h1>
 		<?php
-		if (isset($_GET['saved'])) {
-			echo '<div class="messagebox fade-message">';
-			echo  "<h2>".gettext("Image order saved");
-			echo '</h2></div>';
-		}
 		$images = $album->getImages();
 		$subtab = printSubtabs();
 
@@ -108,7 +103,24 @@ if (!isset($_GET['album'])) {
 		?>
 
 		<div class="tabbox">
-			<?php zp_apply_filter('admin_note','albums', $subtab); ?>
+			<?php
+			zp_apply_filter('admin_note','albums', 'imageinfo');
+			if (isset($_GET['saved'])) {
+				if (sanitize_numeric($_GET['saved'])) {
+					?>
+					<div class="messagebox fade-message">
+						<h2><?php echo gettext("Image order saved"); ?></h2>
+					</div>
+					<?php
+				} else {
+					?>
+					<div class="notebox fade-message">
+						<h2><?php echo gettext("Noting changed"); ?></h2>
+					</div>
+					<?php
+				}
+			}
+			?>
 			<form action="?page=edit&amp;album=<?php echo $album->getFolder(); ?>&amp;saved&amp;tab=sort" method="post" name="sortableListForm" id="sortableListForm">
 				<?php XSRFToken('save_sort');?>
 				<script type="text/javascript">

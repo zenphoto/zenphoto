@@ -471,29 +471,6 @@ function genAlbumUploadList(&$list, $curAlbum=NULL) {
 	}
 }
 
-function displayDeleted() {
-	/* Display a message if needed. Fade out and hide after 2 seconds. */
-	if (isset($_GET['ndeleted'])) {
-		$ntdel = sanitize_numeric($_GET['ndeleted']);
-		if ($ntdel <= 2) {
-			$msg = gettext("Image");
-		} else {
-			$msg = gettext("Album");
-			$ntdel = $ntdel - 2;
-		}
-		if ($ntdel == 2) {
-			$msg = sprintf(gettext("%s failed to delete."),$msg);
-			$class = 'errorbox';
-		} else {
-			$msg = sprintf(gettext("%s deleted successfully."),$msg);
-			$class = 'messagebox';
-		}
-		echo '<div class="' . $class . ' fade-message">';
-		echo  "<h2>" . $msg . "</h2>";
-		echo '</div>';
-	}
-}
-
 define ('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
 /**
  * Generates the HTML for custom options (e.g. theme options, plugin options, etc.)
@@ -1061,9 +1038,10 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
  * @param string $index the index of the entry in mass edit or '0' if single album
  * @param object $album the album object
  * @param bool $collapse_tags set true to initially hide tab list
+ * @param bool $buttons set true for "apply" buttons
  * @since 1.1.3
  */
-function printAlbumEditForm($index, $album, $collapse_tags) {
+function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 	global $sortby, $_zp_gallery, $mcr_albumlist, $albumdbfields, $imagedbfields, $_zp_albumthumb_selector, $_zp_current_admin_obj;
 	$isPrimaryAlbum = '';
 	if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
@@ -1087,44 +1065,50 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 	<input type="hidden" name="<?php echo $prefix; ?>folder" value="<?php echo $album->name; ?>" />
 	<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
 	<input	type="hidden" name="<?php echo $prefix; ?>password_enabled" id="password_enabled<?php echo $suffix; ?>" value="0" />
-	<span class="buttons">
-		<?php
-		$parent = dirname($album->name);
-		if ($parent == '/' || $parent == '.' || empty($parent)) {
-			$parent = '';
-		} else {
-			$parent = '&amp;album='.$parent.'&amp;tab=subalbuminfo';
-		}
+	<?php
+	if ($buttons) {
 		?>
-		<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
-		<img	src="images/arrow_left_blue_round.png" alt="" />
-		<strong><?php echo gettext("Back"); ?></strong>
-		</a>
-		<button type="submit" title="<?php echo gettext("Apply"); ?>">
-		<img	src="images/pass.png" alt="" />
-		<strong><?php echo gettext("Apply"); ?></strong>
-		</button>
-		<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.deletemsg').hide();" >
-		<img	src="images/fail.png" alt="" />
-		<strong><?php echo gettext("Reset"); ?></strong>
-		</button>
-		<div class="floatright">
-		<?php
-		if (!$album->isDynamic()) {
-			?>
-			<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>',true);">
-			<img src="images/folder.png" alt="" />
-			<strong><?php echo gettext('New subalbum'); ?></strong>
-			</button>
+		<span class="buttons">
 			<?php
-		}
-		?>
-		<a title="<?php echo gettext('View Album'); ?>" href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
-		<img src="images/view.png" alt="" />
-		<strong><?php echo gettext('View Album'); ?></strong>
-		</a>
-		</div>
-	</span>
+			$parent = dirname($album->name);
+			if ($parent == '/' || $parent == '.' || empty($parent)) {
+				$parent = '';
+			} else {
+				$parent = '&amp;album='.$parent.'&amp;tab=subalbuminfo';
+			}
+			?>
+			<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
+			<img	src="images/arrow_left_blue_round.png" alt="" />
+			<strong><?php echo gettext("Back"); ?></strong>
+			</a>
+			<button type="submit" title="<?php echo gettext("Apply"); ?>">
+			<img	src="images/pass.png" alt="" />
+			<strong><?php echo gettext("Apply"); ?></strong>
+			</button>
+			<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.deletemsg').hide();" >
+			<img	src="images/fail.png" alt="" />
+			<strong><?php echo gettext("Reset"); ?></strong>
+			</button>
+			<div class="floatright">
+			<?php
+			if (!$album->isDynamic()) {
+				?>
+				<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>',true);">
+				<img src="images/folder.png" alt="" />
+				<strong><?php echo gettext('New subalbum'); ?></strong>
+				</button>
+				<?php
+			}
+			?>
+			<a title="<?php echo gettext('View Album'); ?>" href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
+			<img src="images/view.png" alt="" />
+			<strong><?php echo gettext('View Album'); ?></strong>
+			</a>
+			</div>
+		</span>
+		<?php
+	}
+	?>
 <br clear="all" /><br />
 	<table>
 		<tr>
@@ -1815,36 +1799,42 @@ function printAlbumEditForm($index, $album, $collapse_tags) {
 
 
 <br clear="all" />
-	<span class="buttons">
-		<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
-		<img	src="images/arrow_left_blue_round.png" alt="" />
-		<strong><?php echo gettext("Back"); ?></strong>
-		</a>
-		<button type="submit" title="<?php echo gettext("Apply"); ?>">
-		<img	src="images/pass.png" alt="" />
-		<strong><?php echo gettext("Apply"); ?></strong>
-		</button>
-		<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.deletemsg').hide();">
-		<img	src="images/fail.png" alt="" />
-		<strong><?php echo gettext("Reset"); ?></strong>
-		</button>
-		<div class="floatright">
-		<?php
-		if (!$album->isDynamic()) {
-			?>
-			<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>',true);">
-			<img src="images/folder.png" alt="" />
-			<strong><?php echo gettext('New subalbum'); ?></strong>
-			</button>
-			<?php
-		}
+	<?php
+	if ($buttons) {
 		?>
-		<a title="<?php echo gettext('View Album'); ?>" href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
-		<img src="images/view.png" alt="" />
-		<strong><?php echo gettext('View Album'); ?></strong>
-		</a>
-		</div>
-	</span>
+		<span class="buttons">
+			<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?page=edit'.$parent; ?>">
+			<img	src="images/arrow_left_blue_round.png" alt="" />
+			<strong><?php echo gettext("Back"); ?></strong>
+			</a>
+			<button type="submit" title="<?php echo gettext("Apply"); ?>">
+			<img	src="images/pass.png" alt="" />
+			<strong><?php echo gettext("Apply"); ?></strong>
+			</button>
+			<button type="reset" title="<?php echo gettext("Reset"); ?>" onclick="javascript:$('.deletemsg').hide();">
+			<img	src="images/fail.png" alt="" />
+			<strong><?php echo gettext("Reset"); ?></strong>
+			</button>
+			<div class="floatright">
+			<?php
+			if (!$album->isDynamic()) {
+				?>
+				<button type="button" title="<?php echo gettext('New subalbum'); ?>" onclick="javascript:newAlbum('<?php echo pathurlencode($album->name); ?>',true);">
+				<img src="images/folder.png" alt="" />
+				<strong><?php echo gettext('New subalbum'); ?></strong>
+				</button>
+				<?php
+			}
+			?>
+			<a title="<?php echo gettext('View Album'); ?>" href="<?php echo WEBPATH . "/index.php?album=". pathurlencode($album->getFolder()); ?>">
+			<img src="images/view.png" alt="" />
+			<strong><?php echo gettext('View Album'); ?></strong>
+			</a>
+			</div>
+		</span>
+		<?php
+	}
+	?>
 <br clear="all" />
 <?php
 }
@@ -4158,37 +4148,135 @@ function processCredentials($object, $suffix='') {
 	return $notify;
 }
 
-function reportMCERR() {
+function consolidatedEditMessages($subtab) {
+	zp_apply_filter('admin_note','albums', $subtab);
+	$messagebox = $errorbox =$notebox = array();
+	if (isset($_GET['ndeleted'])) {
+		$ntdel = sanitize_numeric($_GET['ndeleted']);
+		if ($ntdel <= 2) {
+			$msg = gettext("Image");
+		} else {
+			$msg = gettext("Album");
+			$ntdel = $ntdel - 2;
+		}
+		if ($ntdel == 2) {
+			$errorbox[] = sprintf(gettext("%s failed to delete."),$msg);
+		} else {
+			$messagebox[] = sprintf(gettext("%s deleted successfully."),$msg);
+		}
+	}
+	if (isset($_GET['mismatch'])) {
+		if ($_GET['mismatch'] == 'user') {
+			$errorbox[] = gettext("You must supply a  password.");
+		} else {
+			$errorbox[] = gettext("Your passwords did not match.");
+		}
+	}
+	if (isset($_GET['edit_error'])) {
+		$errorbox[] = html_encode(sanitize($_GET['edit_error']));
+	}
+	if (isset($_GET['post_error'])) {
+		$messagebox[] =  gettext('The image edit form submission has been truncated. Try displaying fewer images on a page.');
+	}
+	if (isset($_GET['counters_reset'])) {
+		$messagebox[] = gettext("Hitcounters have been reset.");
+	}
+	if (isset($_GET['cleared']) || isset($_GET['action']) && $_GET['action'] == 'clear_cache') {
+		$messagebox[] = gettext("Cache has been purged.");
+	}
+	if (isset($_GET['uploaded'])) {
+		$messagebox[] = gettext('Your files have been uploaded.');
+	}
+	if (isset($_GET['exists'])) {
+		$errorbox[] = sprintf(gettext("<em>%s</em> already exists."),sanitize($_GET['exists']));
+	}
+	if (isset($_GET['saved'])) {
+		$messagebox[] = gettext("Changes applied");
+	}
+	if (isset($_GET['noaction'])) {
+		$notebox[] = gettext("Nothing changed");
+	}
+	if (isset($_GET['bulkmessage'])) {
+		$action = sanitize($_GET['bulkmessage']);
+		switch($action) {
+			case 'deleteall':
+				$messagebox[] = gettext('Selected items deleted');
+				break;
+			case 'showall':
+				$messagebox[] = gettext('Selected items published');
+				break;
+			case 'hideall':
+				$message = gettext('Selected items unpublished');
+				break;
+			case 'commentson':
+				$messagebox[] = gettext('Comments enabled for selected items');
+				break;
+			case 'commentsoff':
+				$messagebox[] = gettext('Comments disabled for selected items');
+				break;
+			case 'resethitcounter':
+				$messagebox[] = gettext('Hitcounter for selected items');
+				break;
+			case 'addtags':
+				$messagebox[] = gettext('Tags added selected items');
+				break;
+			case 'cleartags':
+				$messagebox[] = gettext('Tags cleared for selected items');
+				break;
+			case 'alltags':
+				$messagebox[] = gettext('Tags added for images of selected items');
+				break;
+			case 'clearalltags':
+				$messagebox[] = gettext('Tags cleared for images of selected items');
+				break;
+			default:
+				$messagebox[] = $action;
+			break;
+		}
+	}
 	if (isset($_GET['mcrerr'])) {
+		switch (sanitize_numeric($_GET['mcrerr'])) {
+			case 2:
+				$errorbox[] = gettext("Image already exists.");
+				break;
+			case 3:
+				$errorbox[] = gettext("Album already exists.");
+				break;
+			case 4:
+				$errorbox[] = gettext("Cannot move, copy, or rename to a subalbum of this album.");
+				break;
+			case 5:
+				$errorbox[] = gettext("Cannot move, copy, or rename to a dynamic album.");
+				break;
+			case 6:
+				$errorbox[] = gettext('Cannot rename an image to a different suffix');
+				break;
+			case 7:
+				$errorbox[] = gettext('Album delete failed');
+				break;
+			default:
+				$errorbox[] = gettext("There was an error with a move, copy, or rename operation.");
+			break;
+		}
+	}
+	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-			<h2>
-			<?php
-			switch (sanitize_numeric($_GET['mcrerr'])) {
-				case 2:
-					echo  gettext("Image already exists.");
-					break;
-				case 3:
-					echo  gettext("Album already exists.");
-					break;
-				case 4:
-					echo  gettext("Cannot move, copy, or rename to a subalbum of this album.");
-					break;
-				case 5:
-					echo  gettext("Cannot move, copy, or rename to a dynamic album.");
-					break;
-				case 6:
-					echo	gettext('Cannot rename an image to a different suffix');
-					break;
-				case 7:
-					echo gettext('Album delete failed');
-					break;
-				default:
-					echo  gettext("There was an error with a move, copy, or rename operation.");
-					break;
-			}
-			?>
-			</h2>
+			<?php echo implode('<br />',$errorbox);	?>
+		</div>
+		<?php
+	}
+	if (!empty($notebox)) {
+		?>
+		<div class="notebox fade-message">
+			<?php echo implode('<br />',$notebox);	?>
+		</div>
+		<?php
+	}
+	if (!empty($messagebox)) {
+		?>
+		<div class="messagebox fade-message">
+			<?php echo implode('<br />',$messagebox);	?>
 		</div>
 		<?php
 	}

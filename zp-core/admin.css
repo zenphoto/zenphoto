@@ -635,11 +635,26 @@ table.checkboxes td {
 	border-radius: 5px;
 }
 
+div.outerbox {
+	width: 100%;
+	padding: 0px;
+	border-spacing: 0px;
+	background-color: white;
+	border: 1px solid #E5E5E5;
+}
+
 .innerbox {
 	background: none;
 	border: 0px solid #BAC9CF;
 	border-bottom-width: 0px;
 }
+
+.innerbox_dark {
+	background-color: #FAFAFA;
+	border: 0px solid #BAC9CF;
+	border-bottom-width: 0px;
+}
+
 
 .imagethumb {
 	margin: 1px;
