@@ -70,6 +70,8 @@ function query($sql, $errorstop=true) {
 	$result = mysql_query($sql, $_zp_DB_connection);
 	if (!$result) {
 		if($errorstop) {
+			$sql = str_replace($_zp_conf_vars['mysql_prefix'], '['.gettext('prefix').']',$sql);
+			$sql = str_replace($_zp_conf_vars['mysql_database'], '['.gettext('DB').']',$sql);
 			$sql = html_encode($sql);
 			zp_error(sprintf(gettext('MySQL Query ( <em>%1$s</em> ) failed. MySQL returned the error <em>%2$s</em>' ),$sql,mysql_error()));
 		}

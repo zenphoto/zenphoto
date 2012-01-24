@@ -3,7 +3,7 @@
  *
  * Use to insert the Google Webmaster Tools verification meta tag into your site pages
  *
- * See:www.google.com/webmasters/tools for details
+ * See:	http://www.google.com/webmasters/tools for details
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
