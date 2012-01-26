@@ -938,6 +938,8 @@ function getAlbumBreadcrumb($title=NULL) {
 				$album = new Album(NULL, $dynamic_album);
 			}
 		}
+	} else {
+		$album = $_zp_current_album;
 	}
 	return array('link'=>getAlbumLinkURL($album), 'title'=>$title, 'text'=>$album->getDesc());
 }
