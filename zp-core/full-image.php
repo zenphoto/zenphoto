@@ -222,7 +222,7 @@ if (is_null($cache_path) || !file_exists($cache_path)) { //process the image
 }
 
 if (!is_null($cache_path)) {
-	if ($disposal == 'Download') {
+	if ($disposal == 'Download' || !OPEN_IMAGE_CACHE) {
 		$fp = fopen($cache_path, 'rb');
 		// send the right headers
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');

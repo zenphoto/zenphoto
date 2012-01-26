@@ -233,9 +233,20 @@ if (!$debug) {
 			pageError(405, gettext("Method Not Allowed"));
 			exit();
 	}
-	header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt).' GMT');
-	header('Content-Type: image/'.$suffix);
-	header('Location: ' . $path, true, 301);
+	if (OPEN_IMAGE_CACHE) {
+		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt).' GMT');
+		header('Content-Type: image/'.$suffix);
+		header('Location: ' . $path, true, 301);
+	} else {
+		$fp = fopen($newfile, 'rb');
+		// send the right headers
+		header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
+		header("Content-Type: image/$suffix");
+		header("Content-Length: " . filesize($newfile));
+		// dump the picture and stop the script
+		fpassthru($fp);
+		fclose($fp);
+	}
 	exit();
 } else {
 	echo "\n<p>Image: <img src=\"" . $path ."\" /></p>";

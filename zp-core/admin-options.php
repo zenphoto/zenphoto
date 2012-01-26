@@ -91,23 +91,13 @@ if (isset($_GET['action'])) {
 		/*** Gallery options ***/
 		if (isset($_POST['savegalleryoptions'])) {
 
-			if (isset($_POST['album_default'])) {
-				$albpublish = 1;
-			} else {
-				$albpublish = 0;
-			}
-			$_zp_gallery->setAlbumPublish($albpublish);
-			if (isset($_POST['image_default'])) {
-				$imgpublish = 1;
-			} else {
-				$imgpublish = 0;
-			}
+			$_zp_gallery->setAlbumPublish((int) isset($_POST['album_default']));
+			$_zp_gallery->setImagePublish((int) isset($_POST['image_default']));
 
 			if (isset($_POST['cookie_persistence'])) {
 				setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
 			}
 			setOption('AlbumThumbSelect', sanitize_numeric($_POST['thumbselector']));
-			$_zp_gallery->setImagePublish($imgpublish);
 			$_zp_gallery->setPersistentArchive((int) isset($_POST['persistent_archive']));
 			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
@@ -232,6 +222,15 @@ if (isset($_GET['action'])) {
 			setOption('protect_full_image', sanitize($_POST['protect_full_image'],3));
 			$notify = processCredentials('protected_image');
 
+			if (isset($_POST['protected_image_cache'])) {
+				setOption('protected_image_cache', 1);
+				copy(SERVERPATH.'/'.ZENFOLDER.'/cacheprotect', SERVERPATH.'/'.CACHEFOLDER.'/.htaccess');
+				@chmod(SERVERPATH.'/'.CACHEFOLDER.'/.htaccess', 0444);
+			} else {
+				@chmod(SERVERPATH.'/'.CACHEFOLDER.'/.htaccess', 0777);
+				unlink(SERVERPATH.'/'.CACHEFOLDER.'/.htaccess');
+				setOption('protected_image_cache', 0);
+			}
 			setOption('hotlink_protection', (int) isset($_POST['hotlink_protection']));
 			setOption('use_lock_image', (int) isset($_POST['use_lock_image']));
 			$st = sanitize($_POST['image_sorttype'],3);
@@ -1848,7 +1847,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				</table>
 			</td>
 			<td>
-				<p><?php echo gettext("Add an unsharp mask to images and/or thumbnails.")."</p><p class='notebox'>".gettext("<strong>Warning</strong>: can overload slow servers."); ?></p>
+				<p><?php echo gettext("Add an unsharp mask to images and/or thumbnails.")."</p><p class='notebox'>".gettext("<strong>WARNING</strong>: can overload slow servers."); ?></p>
 				<p><?php echo gettext("<em>Amount</em>: the strength of the sharpening effect. Values are between 0 (least sharpening) and 100 (most sharpening)."); ?></p>
 				<p><?php echo gettext("<em>Radius</em>: the pixel radius of the sharpening mask. A smaller radius sharpens smaller details, and a larger radius sharpens larger details."); ?></p>
 				<p><?php echo gettext("<em>Threshold</em>: the color difference threshold required for sharpening. A low threshold sharpens all edges including faint ones, while a higher threshold only sharpens more distinct edges."); ?></p>
@@ -1939,6 +1938,15 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				?>
 			</td>
 
+		</tr>
+		<tr>
+			<td><?php echo gettext("Protect image cache"); ?></td>
+			<td>
+				<input type="checkbox" name="protected_image_cache" value="1"
+				<?php echo checked('1', getOption('protected_image_cache')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+			</td>
+			<td><?php echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.').
+								'<p class="notebox">'.gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.').'</p>'; ?></td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("Full image protection:"); ?></td>

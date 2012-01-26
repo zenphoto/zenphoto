@@ -164,11 +164,7 @@ class TextObject extends _Image {
 			$filename = $this->objectsThumb;
 		}
 		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
-		if (file_exists(SERVERCACHE . $cachefilename)	&& filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
-			return WEBPATH . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($cachefilename));
-		} else {
-			return getImageProcessorURI($args, $this->album->name, $filename);
-		}
+		return getImageURI($args, $this->album->name, $filename, $this->filemtime);
 	}
 
 	/**
@@ -228,12 +224,7 @@ class TextObject extends _Image {
 				return getImageProcessorURI($args, $this->album->name, $filename);
 			} else {
 				$filename = $this->objectsThumb;
-				$cachefilename = getImageCacheFilename($alb = $this->album->name, $filename, $args);
-				if (file_exists(SERVERCACHE . $cachefilename) && filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
-					return WEBPATH . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($cachefilename));
-				} else {
-					return getImageProcessorURI($args, $this->album->name, $filename);
-				}
+				return getImageURI($args, $this->album->name, $filename, $this->filemtime);
 			}
 		} else {
 			return $this->getBody($width, $height);

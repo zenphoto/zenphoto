@@ -1,0 +1,3 @@
+# block WEB access to Zenphoto cache files
+IndexIgnore *
+Deny from all

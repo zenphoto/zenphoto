@@ -204,6 +204,7 @@ define('FULLWEBPATH', PROTOCOL."://" . $_SERVER['HTTP_HOST'] . WEBPATH);
 define('SAFE_MODE_ALBUM_SEP', '__');
 define('SERVERCACHE', SERVERPATH . '/'.CACHEFOLDER);
 define('MOD_REWRITE', getOption('mod_rewrite'));
+
 define('ALBUM_FOLDER_WEBPATH', getAlbumFolder(WEBPATH));
 define('ALBUM_FOLDER_SERVERPATH', getAlbumFolder(SERVERPATH));
 define('ALBUM_FOLDER_EMPTY',getAlbumFolder(''));
@@ -211,6 +212,7 @@ define('ALBUM_FOLDER_EMPTY',getAlbumFolder(''));
 define('IMAGE_WATERMARK',getOption('fullimage_watermark'));
 define('FULLIMAGE_WATERMARK',getOption('fullsizeimage_watermark'));
 define('THUMB_WATERMARK',getOption('Image_watermark'));
+define('OPEN_IMAGE_CACHE', !getOption('protected_image_cache'));
 
 define('DATE_FORMAT',getOption('date_format'));
 
@@ -742,6 +744,32 @@ function getImageProcessorURI($args, $album, $image) {
 		static_html_cache::disable();
 	}
 	return $uri;
+}
+
+/**
+ *
+ * Returns an URI to the image:
+ *
+ * 	If the image is not cached, the uri will be to the image processor
+ * 	If the image is cached then the uri will depend on the site option for
+ *	cache serving. If the site is set for open cache the uri will point to
+ *	the cached image. If the site is set for protected cache the uri will
+ *	point to the image processor (which will serve the image from the cache.)
+ *	NOTE: this latter implies added overhead for each and every image fetch!
+ *
+ * @param array $args
+ * @param string $album the album name
+ * @param string $image the image name
+ * @param int $mitme mtime of the image
+ * @return string
+ */
+function getImageURI($args, $album, $image, $mtime) {
+	$cachefilename = getImageCacheFilename($album, $image, $args);
+	if (OPEN_IMAGE_CACHE && file_exists(SERVERCACHE . $cachefilename) && filemtime(SERVERCACHE . $cachefilename) > $mtime) {
+		return WEBPATH . '/'.CACHEFOLDER . imgSrcURI($cachefilename);
+	} else {
+		return getImageProcessorURI($args,$album,$image);
+	}
 }
 
 /**

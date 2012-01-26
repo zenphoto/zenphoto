@@ -2590,7 +2590,11 @@ function getProtectedImageURL($image=NULL, $disposal=NULL) {
 	$cache_file = getImageCacheFilename($album->name, $image->filename, $args);
 	$cache_path = SERVERCACHE.$cache_file;
 	if (empty($disposal) && file_exists($cache_path)) {
-		return WEBPATH.'/'.CACHEFOLDER.pathurlencode(imgSrcURI($cache_file));
+		if (OPEN_IMAGE_CACHE) {
+			return WEBPATH.'/'.CACHEFOLDER.pathurlencode(imgSrcURI($cache_file));
+		} else {
+			return getImageURI($args, $this->album->name, $filename, $this->filemtime);
+		}
 	} else {
 		$params = '&q='.getOption('full_image_quality');
 		$watermark_use_image = getWatermarkParam($image, WATERMARK_FULL);

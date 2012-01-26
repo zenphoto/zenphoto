@@ -300,6 +300,7 @@ zp-core/album-zip.php
 zp-core/archive.php
 zp-core/auth_zp.php
 zp-core/c.php
+zp-core/cacheprotect
 zp-core/class-album.php
 zp-core/class-comment.php
 zp-core/class-gallery.php
@@ -1867,4 +1868,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1869
+1870

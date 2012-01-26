@@ -818,12 +818,7 @@ class _Image extends MediaObject {
 	function getSizedImage($size) {
 		$wmt = getWatermarkParam($this, WATERMARK_IMAGE);
 		$args = getImageParameters(array($size, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, $wmt), $this->album->name);
-		$cachefilename = getImageCacheFilename($this->album->name, $this->filename, $args);
-		if (file_exists(SERVERCACHE . $cachefilename) && filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
-			return WEBPATH . '/'.CACHEFOLDER . imgSrcURI($cachefilename);
-		} else {
-			return getImageProcessorURI($args,$this->album->name,$this->filename);
-		}
+		return getImageURI($args,$this->album->name,$this->filename, $this->filemtime);
 	}
 
 	/**
@@ -854,12 +849,7 @@ class _Image extends MediaObject {
 			}
 		}
 		$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
-		$cachefilename = getImageCacheFilename($this->album->name, $this->filename,	$args);
-		if (file_exists(SERVERCACHE . $cachefilename) && filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
-			return WEBPATH . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($cachefilename));
-		} else {
-			return getImageProcessorURI($args, $this->album->name, $this->filename);
-		}
+		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);
 	}
 
 	/**
@@ -929,12 +919,7 @@ class _Image extends MediaObject {
 		$filename = $this->filename;
 		$wmt = getWatermarkParam($this, WATERMARK_THUMB);
 		$args = getImageParameters(array($ts, NULL, NULL, $sw, $sh, NULL, NULL, NULL, true, NULL, true, $wmt, NULL, NULL), $this->album->name);
-		$cachefilename = getImageCacheFilename($alb = $this->album->name, $filename, $args);
-		if (file_exists(SERVERCACHE . $cachefilename)	&& filemtime(SERVERCACHE . $cachefilename) > $this->filemtime) {
-			return WEBPATH . '/'.CACHEFOLDER . pathurlencode(imgSrcURI($cachefilename));
-		} else {
-			return getImageProcessorURI($args, $this->album->name, $this->filename);
-		}
+		return getImageURI($args, $this->album->name, $this->filename, $this->filemtime);
 	}
 
 	/**
