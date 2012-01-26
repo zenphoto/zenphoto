@@ -70,20 +70,21 @@ class colorbox {
 
 	static function css() {
 		global $_zp_gallery;
-		$theme = getOption('colorbox_theme');
-		if(empty($theme)) {
-			$themepath = 'colorbox/themes/example1/colorbox.css';
-		} else {
-			if($theme == 'custom') {
-				$themepath = 'colorbox/colorbox.css';
-			} else {
-				$themepath = 'colorbox/themes/'.$theme.'/colorbox.css';
-			}
-		}
 		if (OFFSET_PATH) {
+			$themepath = 'colorbox/themes/example4/colorbox.css';
 			$inTheme = false;
 		} else {
-			$inTheme = $_zp_gallery->getCurrentTheme();
+			$theme = getOption('colorbox_theme');
+			if(empty($theme)) {
+				$themepath = 'colorbox/themes/example1/colorbox.css';
+			} else {
+				if($theme == 'custom') {
+					$themepath = 'colorbox/colorbox.css';
+				} else {
+					$themepath = 'colorbox/themes/'.$theme.'/colorbox.css';
+				}
+				$inTheme = $_zp_gallery->getCurrentTheme();
+			}
 		}
 		$css = getPlugin($themepath,$inTheme,true);
 		?>

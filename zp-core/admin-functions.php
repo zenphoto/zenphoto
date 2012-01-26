@@ -3543,7 +3543,7 @@ function printBulkActions($checkarray, $checkAll=false) {
 							href:"#mass_tags_data",
 							inline:true,
 							open:true,
-							close: '<?php echo gettext("close"); ?>'
+							close: '<?php echo gettext("ok"); ?>'
 						});
 					}
 					<?php
@@ -3554,8 +3554,8 @@ function printBulkActions($checkarray, $checkAll=false) {
 						$.colorbox({
 							href:"#mass_movecopy_data",
 							inline:true,
-							open:true.
-							close: '<?php echo gettext("close"); ?>'
+							open:true,
+							close: '<?php echo gettext("ok"); ?>'
 						});
 					}
 					<?php
@@ -3567,7 +3567,7 @@ function printBulkActions($checkarray, $checkAll=false) {
 							href:"#mass_cats_data",
 							inline:true,
 							open:true,
-							close: '<?php echo gettext("close"); ?>'
+							close: '<?php echo gettext("ok"); ?>'
 						});
 					}
 					<?php
