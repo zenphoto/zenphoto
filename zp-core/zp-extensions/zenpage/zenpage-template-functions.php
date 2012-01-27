@@ -2087,7 +2087,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 							$totalcount = count($_zp_zenpage->getArticles(0));
 						}
 					}
-					echo "<small> (".$totalcount.")</small>";
+					echo ' <span style="white-space:nowrap;"><small>('.sprintf(ngettext('%u article','%u articles',$totalcount),$totalcount).')</small></span>';
 				}
 				echo "</li>\n";
 				break;
@@ -2127,7 +2127,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				$itemurl = getNewsCategoryURL($catobj->getTitlelink());
 				$catcount = count($catobj->getArticles());
 				if($counter) {
-					$count = "<small> (".$catcount.")</small>";
+					$count = ' <span style="white-space:nowrap;"><small>('.sprintf(ngettext('%u article', '%u articles',$catcount),$catcount).')</small></span>';
 				} else {
 					$count = '';
 				}
@@ -2203,7 +2203,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
-				echo "<li><a $current href=\"".$itemurl."\" title=\"".html_encode(strip_tags($itemtitle))."\">".$itemtitle.$count."</a>";
+				echo "<li><a $current href=\"".$itemurl."\" title=\"".html_encode(strip_tags($itemtitle))."\">".$itemtitle."</a>".$count;
 			}
 		}
 	}
