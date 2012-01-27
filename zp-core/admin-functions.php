@@ -1895,7 +1895,7 @@ function printAlbumButtons($album) {
 	<?php
 }
 
-function printAlbumLedgend() {
+function printAlbumLegend() {
 	?>
 	<ul class="iconlegend-l">
 		<li><img src="images/folder_picture.png" alt="" /><?php echo gettext("Albums"); ?></li>
@@ -2967,7 +2967,7 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
  * @param bit $rights the privileges  of the user
  */
 function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $rights, $kind, $flag) {
-	$ledgend = '';
+	$legend = '';
 	switch ($type) {
 		case 'albums':
 			if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
@@ -2981,11 +2981,11 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished items').'" />';
 				$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
 				if (!empty($flag)) {
-					$ledgend .= '* '.gettext('Primary album').' ';
+					$legend .= '* '.gettext('Primary album').' ';
 				}
-				$ledgend .= $icon_edit_album.' '.gettext('edit album').' ';
-				if ($rights & UPLOAD_RIGHTS) $ledgend .= $icon_upload.' '.gettext('upload').' ';
-				if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) $ledgend .= $icon_view_image.' '.gettext('view unpublished').' ';
+				$legend .= $icon_edit_album.' '.gettext('edit album').' ';
+				if ($rights & UPLOAD_RIGHTS) $legend .= $icon_upload.' '.gettext('upload').' ';
+				if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) $legend .= $icon_view_image.' '.gettext('view unpublished').' ';
 				foreach ($full as $item) {
 					if (in_array($item['data'],$flag)) {
 						$note = '*';
@@ -3064,7 +3064,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true);
 				?>
 			</ul>
-			<?php echo $ledgend; ?>
+			<?php echo $legend; ?>
 		</div>
 	</div>
 	<?php

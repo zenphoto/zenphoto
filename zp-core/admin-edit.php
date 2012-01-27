@@ -851,7 +851,7 @@ $alb = removeParentAlbumNames($album);
 
 		</div>
 		 <br clear="all" /><br clear="all" />
-			<?php printAlbumLedgend(); ?>
+			<?php printAlbumLegend(); ?>
 					<span id="serializeOutput" /></span>
 					</div>
 					<input name="update" type="hidden" value="Save Order" />
@@ -1663,7 +1663,7 @@ if($subtab != "albuminfo") {	?>
 
 	</div>
 	<div>
-		<?php printAlbumLedgend(); ?>
+		<?php printAlbumLegend(); ?>
 		</div>
 
 	<span id="serializeOutput" /></span>

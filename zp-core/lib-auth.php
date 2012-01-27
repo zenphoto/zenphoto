@@ -940,7 +940,7 @@ class Zenphoto_Authority {
 					}
 					<?php
 						if (empty($alt_handlers)) {
-							$ledgend = gettext('Login');
+							$legend = gettext('Login');
 						} else {
 							?>
 							var handlers = [];
@@ -959,7 +959,7 @@ class Zenphoto_Authority {
 								$list .= '<option value="'.$c.'">'.$handler.'</option>';
 							}
 							$list .= '</select>';
-							$ledgend = sprintf(gettext('Logon using:%s'),$list);
+							$legend = sprintf(gettext('Logon using:%s'),$list);
 							?>
 							function changeHandler(handler) {
 								handler.push('user='+$('#user').val());
@@ -975,7 +975,7 @@ class Zenphoto_Authority {
 					<input type="hidden" name="login" value="1" />
 					<input type="hidden" name="password" value="1" />
 					<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />
-					<fieldset id="logon_box"><legend><?php echo $ledgend; ?></legend>
+					<fieldset id="logon_box"><legend><?php echo $legend; ?></legend>
 						<?php
 						if ($showUserField) {	//	requires a "user" field
 							?>
