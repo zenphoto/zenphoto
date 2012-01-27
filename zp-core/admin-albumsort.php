@@ -115,7 +115,7 @@ if (!isset($_GET['album'])) {
 				} else {
 					?>
 					<div class="notebox fade-message">
-						<h2><?php echo gettext("Noting changed"); ?></h2>
+						<h2><?php echo gettext("Nothing changed"); ?></h2>
 					</div>
 					<?php
 				}
