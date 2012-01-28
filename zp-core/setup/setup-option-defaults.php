@@ -485,15 +485,15 @@ setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
 			$unprotected[] = str_replace('gallery_page_unprotected_', '', $key);
 		}
 	}
-	if (!isset($data['album_default'])) {
+	if (!isset($data['album_publish'])) {
 		$set =  getOption('album_default');
 		if (is_null($set)) $set = 1;
-		$data['album_default'] = $set;
+		$data['album_publish'] = $set;
 	}
-	if (!isset($data['image_default'])) {
+	if (!isset($data['image_publish'])) {
 		$set =  getOption('image_default');
 		if (is_null($set)) $set = 1;
-		$data['image_default'] = $set;
+		$data['image_publish'] = $set;
 	}
 	$data['unprotected_pages'] = serialize($unprotected);
 	setOption('gallery_data', serialize($data));

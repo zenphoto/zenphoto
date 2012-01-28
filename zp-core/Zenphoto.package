@@ -1,5 +1,4 @@
 index.php
-test.php
 themes
 themes/default
 themes/default/404.php
@@ -1868,4 +1867,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1870
+1869

@@ -628,7 +628,7 @@ class Zenphoto_Authority {
 					$_REQUEST['logon_step'] = 'challenge';
 					break;
 				case 'captcha':
-								if ($_zp_captcha->checkCaptcha(trim($post_pass), sanitize(@$_POST['code_h'],3))) {
+					if ($_zp_captcha->checkCaptcha(trim($post_pass), sanitize(@$_POST['code_h'],3))) {
 						require_once(dirname(__FILE__).'/class-load.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {
 							$requestor = gettext('You are receiving this e-mail because of a password reset request on your Zenphoto gallery.');
