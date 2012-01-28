@@ -598,24 +598,27 @@ class Zenphoto_Authority {
 		if (isset($_POST['login'])) {
 			$post_user = sanitize(@$_POST['user']);
 			$post_pass = sanitize(@$_POST['pass'],0);
-			$user = $this->checkLogon($post_user, $post_pass);
-			if ($user) {
-				$_zp_loggedin = $user->getRights();
-			} else {
-				$_zp_loggedin = false;
-			}
-			$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
-			if ($_zp_loggedin) {
-				$this->logUser($user);
-			} else {
-				// Clear the cookie, just in case
-				zp_setCookie("zp_user_auth", "", -368000);
-				// was it a challenge response?
-				if (@$_POST['password']=='challenge') {
+			$_zp_loggedin = false;
+
+			switch (@$_POST['password']) {
+				default:
+					$user = $this->checkLogon($post_user, $post_pass);
+					if ($user) {
+						$_zp_loggedin = $user->getRights();
+					}
+					$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
+					if ($_zp_loggedin) {
+						$this->logUser($user);
+					} else {
+						zp_setCookie("zp_user_auth", "", -368000);	// Clear the cookie, just in case
+						$_zp_login_error = 1;
+					}
+					break;
+				case 'challenge':
 					$user = $this->getAnAdmin(array('`user`=' => $post_user, '`valid`=' => 1));
 					if (is_object($user)) {
 						$info = $user->getChallengePhraseInfo();
-						if ($info['response'] == $post_pass) {
+						if ($post_pass && $info['response'] == $post_pass) {
 							$ref = $this->getResetTicket($post_user, $user->getPass());
 							header('location:'.WEBPATH.'/'.ZENFOLDER.'/admin-users.php?ticket='.$ref.'&user='.$post_user);
 							exit();
@@ -623,10 +626,9 @@ class Zenphoto_Authority {
 					}
 					$_zp_login_error = gettext('Sorry, that is not the answer.');
 					$_REQUEST['logon_step'] = 'challenge';
-				}
-				// was it a request for a reset?
-				if (@$_POST['password']=='captcha') {
-					if ($_zp_captcha->checkCaptcha(trim($post_pass), sanitize(@$_POST['code_h'],3))) {
+					break;
+				case 'captcha':
+								if ($_zp_captcha->checkCaptcha(trim($post_pass), sanitize(@$_POST['code_h'],3))) {
 						require_once(dirname(__FILE__).'/class-load.php'); // be sure that the plugins are loaded for the mail handler
 						if (empty($post_user)) {
 							$requestor = gettext('You are receiving this e-mail because of a password reset request on your Zenphoto gallery.');
@@ -687,9 +689,7 @@ class Zenphoto_Authority {
 						$_zp_login_error = gettext('Your input did not match the captcha');
 						$_REQUEST['logon_step'] = 'captcha';
 					}
-				} else {
-					if (!$_zp_login_error) $_zp_login_error = 1;
-				}
+					break;
 			}
 		}
 		return $_zp_loggedin;

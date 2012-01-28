@@ -7,6 +7,7 @@
 // force UTF-8 Ø
 
 require_once(dirname(__FILE__).'/functions-basic.php');
+
 if (session_id() == '') {
 	// force session cookie to be secure when in https
 	if(secureServer()) {
