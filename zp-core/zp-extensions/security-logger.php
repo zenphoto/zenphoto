@@ -20,7 +20,7 @@ if (getOption('logger_log_admin')) {
 if (getOption('logger_log_guests')) zp_register_filter('guest_login_attempt', 'security_logger::guestLoginLogger',1);
 zp_register_filter('admin_allow_access', 'security_logger::adminGate',1);
 zp_register_filter('admin_managed_albums_access', 'security_logger::adminAlbumGate',1);
-zp_register_filter('save_user', 'security_logger_UserSave',1);
+zp_register_filter('save_user', 'security_logger::UserSave',1);
 zp_register_filter('admin_XSRF_access', 'security_logger::admin_XSRF_access',1);
 zp_register_filter('admin_log_actions', 'security_logger::log_action',1);
 zp_register_filter('log_setup','security_logger::log_setup',1);
