@@ -28,23 +28,23 @@ $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Provides a quota management system to limit the sum of sizes of images a user uploads.")."<p class='notebox'>".gettext("<strong>Note:</strong> if FTP is used to upload images, manual user assignment is necessary. ZIP file upload is disabled as quotas are not applied to the files contained therein.")."</p>";
 $plugin_author = "Stephen Billard (sbillard)";
 
-$option_interface = 'quota_management';
+$option_interface = 'quota_manager';
 
-zp_register_filter('save_admin_custom_data', 'quota_management::management::save_admin');
-zp_register_filter('edit_admin_custom_data', 'quota_management::edit_admin');
-zp_register_filter('new_image', 'quota_management::new_image');
-zp_register_filter('image_refresh', 'quota_management::image_refresh');
-zp_register_filter('check_upload_quota', 'quota_management::checkQuota');
-zp_register_filter('get_upload_limit', 'quota_management::getUploadLimit');
-zp_register_filter('get_upload_header_text', 'quota_management::get_header');
-zp_register_filter('upload_filetypes', 'quota_management::upload_filetypes');
-zp_register_filter('upload_helper_js', 'quota_management::upload_helper_js');
+zp_register_filter('save_admin_custom_data', 'quota_manager::save_admin');
+zp_register_filter('edit_admin_custom_data', 'quota_manager::edit_admin');
+zp_register_filter('new_image', 'quota_manager::new_image');
+zp_register_filter('image_refresh', 'quota_manager::image_refresh');
+zp_register_filter('check_upload_quota', 'quota_manager::checkQuota');
+zp_register_filter('get_upload_limit', 'quota_manager::getUploadLimit');
+zp_register_filter('get_upload_header_text', 'quota_manager::get_header');
+zp_register_filter('upload_filetypes', 'quota_manager::upload_filetypes');
+zp_register_filter('upload_helper_js', 'quota_manager::upload_helper_js');
 
 /**
  * Option handler class
  *
  */
-class quota_management {
+class quota_manager {
 	/**
 	 * class instantiation function
 	 *
