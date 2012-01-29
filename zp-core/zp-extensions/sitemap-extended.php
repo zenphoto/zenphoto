@@ -463,7 +463,7 @@ function getSitemapAlbums() {
 				foreach($sitemap_locales as $locale) {
 					$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-					printSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images);
+					$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images);
 					$data .= sitemap_echonl("\t</url>");
 				}
 			} else {
