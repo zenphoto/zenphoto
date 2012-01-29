@@ -113,7 +113,7 @@ class _Image extends MediaObject {
 	 * @return Image
 	 */
 	function _Image(&$album, $filename) {
-		global $_zp_current_admin_obj, $_zp_gallery;
+		global $_zp_current_admin_obj;
 		// $album is an Album object; it should already be created.
 		if (!is_object($album)) return NULL;
 		if (!$this->classSetup($album, $filename)) { // spoof attempt
@@ -129,15 +129,27 @@ class _Image extends MediaObject {
 		// This is where the magic happens...
 		$album_name = $album->name;
 		$new = parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->id), 'filename', false, empty($album_name));
-		$mtime = filemtime($this->localpath);
-		if ($new || ($mtime != $this->get('mtime'))) {
-			$this->setShow($_zp_gallery->getImagePublish());
-			$this->set('mtime', $mtime);
+		if ($this->filemtime != $this->get('mtime')) {
+			$this->set('mtime', $this->filemtime);
 			$this->updateMetaData();			// extract info from image
 			$this->updateDimensions();		// deal with rotation issues
 			$this->save();
-			if ($new) zp_apply_filter('new_image', $this);
 		}
+		if ($new) {
+			zp_apply_filter('new_image', $this);
+		}
+	}
+
+	/**
+	 * (non-PHPdoc)
+	 * @see PersistentObject::setDefaults()
+	 */
+	protected function setDefaults() {
+		global $_zp_gallery;
+		$this->setShow($_zp_gallery->getImagePublish());
+		$this->set('mtime', $this->filemtime);
+		$this->updateMetaData();			// extract info from image
+		$this->updateDimensions();		// deal with rotation issues
 	}
 
 	/**

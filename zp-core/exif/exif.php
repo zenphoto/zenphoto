@@ -258,6 +258,7 @@ function lookup_tag($tag) {
 		case 'a408': $tag = 'Contrast'; break;                 // values 0-2
 		case 'a409': $tag = 'Saturation'; break;               // values 0-2
 		case 'a40a': $tag = 'Sharpness'; break;                // values 0-2
+		case 'a434': $tag = 'LensInfo'; break;
 
 		// used by Interoperability IFD
 		case '0001': $tag = 'InteroperabilityIndex'; break;    // text string 3 bytes long
