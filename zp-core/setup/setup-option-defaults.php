@@ -384,7 +384,7 @@ if (getOption('search_space_is_OR')) {
 }
 query('DELETE FROM '.prefix('options').' WHERE `name`="search_space_is_OR"',false);
 
-if (!file_exists(SERVERPATH.'/'.WEBPATH.'/'.ZENFOLDER.'/favicon.ico')) {
+if (!file_exists(SERVERPATH.'/favicon.ico')) {
 	@copy(SERVERPATH.'/'.ZENFOLDER.'/images/favicon.ico',SERVERPATH.'/favicon.ico');
 }
 
