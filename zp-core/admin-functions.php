@@ -1046,7 +1046,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 	$isPrimaryAlbum = '';
 	if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 		$myalbum = $_zp_current_admin_obj->getAlbum();
-		if ($myalbum && $album->getID() == $myalbum->getAlbum()->getID()) {
+		if ($myalbum && $album->getID() == $myalbum->getID()) {
 			$isPrimaryAlbum = ' disabled="disabled"';
 		}
 	}

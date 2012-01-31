@@ -18,7 +18,7 @@ if(isset($_GET['id'])) {
 if(isset($_GET['save'])) {
 	XSRFdefender('update_menu');
 	if ($_POST['update']) {
-		$result = updateMenuItem($report);
+		$result = updateMenuItem($reports);
 	} else {
 		$result = addItem($reports);
 	}

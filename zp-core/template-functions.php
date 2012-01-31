@@ -1029,25 +1029,26 @@ function getParentBreadcrumb() {
 */
 function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $truncate=NULL, $elipsis=NULL) {
 	$crumbs = getParentBreadcrumb();
-	if (is_null($between)) $between=' | ';
-	if (is_null($after)) $after=' | ';
-	if (is_null($elipsis)) $elipsis='...';
-
-	$output = $before;
-	$i = 0;
-	foreach($crumbs as $crumb) {
-		if ($i > 0) $output .= $between;
-		//cleanup things in description for use as attribute tag
-		$desc = $crumb['title'];
-		if (!empty($desc) && $truncate) {
-			$desc = truncate_string($desc , $truncate, $elipsis);
+	if (!empty($crumbs)) {
+		if (is_null($between)) $between=' | ';
+		if (is_null($after)) $after=' | ';
+		if (is_null($elipsis)) $elipsis='...';
+		$output = $before;
+		$i = 0;
+		foreach($crumbs as $crumb) {
+			if ($i > 0) $output .= $between;
+			//cleanup things in description for use as attribute tag
+			$desc = $crumb['title'];
+			if (!empty($desc) && $truncate) {
+				$desc = truncate_string($desc , $truncate, $elipsis);
+			}
+			$output .= '<a href="' . html_encode($crumb['link']).'"'.' title="'.html_encode(strip_tags($desc)).'">'.html_encode($crumb['text']).'</a>';
+			$i++;
 		}
-		$output .= '<a href="' . html_encode($crumb['link']).'"'.' title="'.html_encode(strip_tags($desc)).'">'.html_encode($crumb['text']).'</a>';
-		$i++;
+		$output .= $after;
+		echo $output;
 	}
-	$output .= $after;
-	echo $output;
-	}
+}
 /**
  * Prints a link to the 'main website'
  * Only prints the link if the url is not empty and does not point back the gallery page

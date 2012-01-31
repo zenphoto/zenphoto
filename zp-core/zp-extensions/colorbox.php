@@ -76,7 +76,7 @@ class colorbox {
 		} else {
 			$theme = getOption('colorbox_theme');
 			if(empty($theme)) {
-				$themepath = 'colorbox/themes/example1/colorbox.css';
+				$themepath = 'colorbox/themes/example4/colorbox.css';
 			} else {
 				if($theme == 'custom') {
 					$themepath = 'colorbox/colorbox.css';
