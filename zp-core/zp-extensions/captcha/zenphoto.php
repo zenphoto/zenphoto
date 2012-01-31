@@ -48,17 +48,16 @@ class captcha {
 	function handleOption($key, $cv) {
 		$captcha = $this->getCaptcha();
 		?>
+		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['html']; ?></span>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$(document).ready(function() {
-					$('#zenphoto_captcha_font').change(function(){
-						var imgsrc = '<img src="<?php echo $img; ?>&amp;f='+$('#zenphoto_captcha_font').val()+'" alt="" />';
-						$('#zenphoto_captcha_image_loc').html(imgsrc);
-					});
+				$('#zenphoto_captcha_font').change(function(){
+					$('#zenphoto_captcha_image_loc').html($('#zenphoto_captcha_image_loc').html().replace(/">/, '&amp;f='+$('#zenphoto_captcha_font').val()+'"'));
+				});
 			});
 			// ]]> -->
 		</script>
-		<span id="zenphoto_captcha_image_loc"><?php echo $captcha['html']; ?></span>
 		<?php
 	}
 

@@ -3181,8 +3181,10 @@ function filterImageQuery($result, $source) {
 			$image = newImage(NULL, $row);
 			$album = $image->album;
 			if ($album->name == $source || $album->checkAccess()) {
-				if (isImagePhoto($image) && $image->checkAccess()) {
-					return $image;
+				if (isImagePhoto($image)) {
+					if ($image->checkAccess()) {
+						return $image;
+					}
 				}
 			}
 		}
