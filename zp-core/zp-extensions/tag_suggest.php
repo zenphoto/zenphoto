@@ -29,7 +29,7 @@ function tagSuggestJS() {
 	foreach ($taglist AS $tag) {
 		if ($c>0) $list .= ',';
 		$c++;
-		$list .= '"'.addslashes(sanitize($tag,3)).'"';
+		$list .= '"'.addslashes($tag).'"';
 	}
 	?>
 	<script type="text/javascript">

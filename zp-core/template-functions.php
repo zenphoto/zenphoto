@@ -921,7 +921,6 @@ function getParentAlbums($album=null) {
  */
 function getAlbumBreadcrumb($title=NULL) {
 	global $_zp_current_search, $_zp_gallery, $_zp_current_album, $_zp_last_album;
-	if (is_null($title)) $title = gettext('Album Thumbnails');
 	$output = array();
 	if (in_context(ZP_SEARCH_LINKED)) {
 		$dynamic_album = $_zp_current_search->dynalbumname;
@@ -941,6 +940,12 @@ function getAlbumBreadcrumb($title=NULL) {
 	} else {
 		$album = $_zp_current_album;
 	}
+	if (is_null($title)) {
+		$title = $album->getTitle();
+		if (empty($title)) {
+			$title = gettext('Album Thumbnails');
+		}
+	}
 	return array('link'=>getAlbumLinkURL($album), 'title'=>$title, 'text'=>$album->getDesc());
 }
 
@@ -953,7 +958,6 @@ function getAlbumBreadcrumb($title=NULL) {
 */
 function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
 	$breadcrumb = getAlbumBreadcrumb($title);
-	if (is_null($title)) $title = gettext('Album Thumbnails');
 	$output = $before;
 	$output .= "<a href=\"" . html_encode($breadcrumb['link']) . "\">";
 	$output .= html_encode($breadcrumb['title']);
