@@ -10,12 +10,18 @@ define('OFFSET_PATH', 1);
 define('USERS_PER_PAGE',10);
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-admin_securityChecks(NO_RIGHTS, currentRelativeURL(__FILE__));
+if (defined('USER_RIGHTS')) {
+	$needs = USER_RIGHTS;
+} else {
+	$needs = NO_RIGHTS;
+}
+
 if (isset($_GET['ticket'])) {
 	$ticket = '&ticket='.sanitize($_GET['ticket']).'&user='.sanitize(@$_GET['user']);
 } else {
 	$ticket = '';
 }
+admin_securityChecks($needs, currentRelativeURL(__FILE__));
 
 if (!isset($_GET['page'])) $_GET['page'] = 'users';
 $_current_tab = sanitize($_GET['page'],3);
@@ -839,30 +845,35 @@ function languageChange(id,lang) {
 <button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 </p>
 </form>
-
 <?php
-if ($_zp_authority->getVersion() < $_zp_authority->supports_version) {
-	?>
-	<br clear="all" />
-	<p>
-	<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'),$_zp_authority->getVersion(),$_zp_authority->supports_version); ?>
-	</p>
-	<p class="buttons">
-		<a onclick="launchScript('',['action=migrate_rights','XSRFToken=<?php echo getXSRFToken('migrate_rights')?>']);"><?php echo gettext('Migrate rights');?></a>
-	</p>
-	<br clear="all" />
-	<?php
-} else if ($_zp_authority->getVersion() > $_zp_authority->preferred_version) {
-	?>
-	<br clear="all" />
-	<p>
-	<?php printf(gettext('You may wish to revert the user rights <em>Zenphoto_Authority</em> to version %s for backwards compatibility with prior Zenphoto releases.'),$_zp_authority->getVersion()-1); ?>
-	</p>
-	<p class="buttons">
-		<a onclick="launchScript('',['action=migrate_rights','revert=true','XSRFToken=<?php echo getXSRFToken('migrate_rights')?>']);"><?php echo gettext('Revert rights');?></a>
-	</p>
-	<br clear="all" />
-	<?php
+if (zp_loggedin(ADMIN_RIGHTS)) {
+	if ($_zp_authority->getVersion() < $_zp_authority->supports_version) {
+		?>
+		<br clear="all" />
+		<p class="notebox">
+		<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'),$_zp_authority->getVersion(),$_zp_authority->supports_version); ?>
+			<br clear="all" />
+			<span class="buttons">
+				<a onclick="launchScript('',['action=migrate_rights','XSRFToken=<?php echo getXSRFToken('migrate_rights')?>']);"><?php echo gettext('Migrate rights');?></a>
+			</span>
+			<br clear="all" />
+		</p>
+		<br clear="all" />
+		<?php
+	} else if ($_zp_authority->getVersion() > $_zp_authority->preferred_version) {
+		?>
+		<br clear="all" />
+		<p class="notebox">
+		<?php printf(gettext('You may wish to revert the user rights <em>Zenphoto_Authority</em> to version %s for backwards compatibility with prior Zenphoto releases.'),$_zp_authority->getVersion()-1); ?>
+			<br clear="all" />
+			<span class="buttons">
+				<a onclick="launchScript('',['action=migrate_rights','revert=true','XSRFToken=<?php echo getXSRFToken('migrate_rights')?>']);"><?php echo gettext('Revert rights');?></a>
+			</span>
+			<br clear="all" />
+		</p>
+		<br clear="all" />
+		<?php
+	}
 }
 ?>
 <script type="text/javascript">

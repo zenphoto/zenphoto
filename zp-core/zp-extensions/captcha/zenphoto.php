@@ -96,7 +96,9 @@ class captcha {
 		$key = $this->getCaptchaKey();
 		$code_cypher = sha1(bin2hex(rc4($key, trim($code))));
 		$code_ok = trim($code_ok);
-		if ($code_cypher != $code_ok || strlen($code) != $captcha_len) { return false; }
+		if ($code_cypher != $code_ok || strlen($code) != $captcha_len) {
+			return false;
+		}
 		query('DELETE FROM '.prefix('captcha').' WHERE `ptime`<'.(time()-3600)); // expired tickets
 		$result = query('DELETE FROM '.prefix('captcha').' WHERE `hash`="'.$code_cypher.'"');
 		if ($result && db_affected_rows() == 1) {
