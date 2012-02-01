@@ -10,18 +10,12 @@ define('OFFSET_PATH', 1);
 define('USERS_PER_PAGE',10);
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-if (defined('USER_RIGHTS')) {
-	$needs = USER_RIGHTS;
-} else {
-	$needs = NO_RIGHTS;
-}
-
 if (isset($_GET['ticket'])) {
 	$ticket = '&ticket='.sanitize($_GET['ticket']).'&user='.sanitize(@$_GET['user']);
 } else {
 	$ticket = '';
 }
-admin_securityChecks($needs, currentRelativeURL(__FILE__));
+admin_securityChecks(USER_RIGHTS, currentRelativeURL(__FILE__));
 
 if (!isset($_GET['page'])) $_GET['page'] = 'users';
 $_current_tab = sanitize($_GET['page'],3);

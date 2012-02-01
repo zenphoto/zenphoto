@@ -136,6 +136,7 @@ class _Image extends MediaObject {
 			$this->save();
 		}
 		if ($new) {
+			$this->updateMetaData();			// extract info from image
 			zp_apply_filter('new_image', $this);
 		}
 	}
@@ -148,7 +149,6 @@ class _Image extends MediaObject {
 		global $_zp_gallery;
 		$this->setShow($_zp_gallery->getImagePublish());
 		$this->set('mtime', $this->filemtime);
-		$this->updateMetaData();			// extract info from image
 		$this->updateDimensions();		// deal with rotation issues
 	}
 

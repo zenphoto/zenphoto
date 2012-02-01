@@ -94,7 +94,7 @@ if (zp_loggedin(COMMENT_RIGHTS) && !$_zp_null_account) {
 							'link'=>WEBPATH."/".ZENFOLDER.'/admin-comments.php',
 							'subtabs'=>NULL);
 }
-if (!defined('USER_RIGHTS') || zp_loggedin(USER_RIGHTS)) {
+if (zp_loggedin(USER_RIGHTS)) {
 	$zenphoto_tabs['users'] = array('text'=>gettext("users"),
 							'link'=>WEBPATH."/".ZENFOLDER.'/admin-users.php?page=users',
 							'subtabs'=>NULL);

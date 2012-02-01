@@ -23,6 +23,9 @@ define('MANAGED_OBJECT_RIGHTS_EDIT', 1);
 define('MANAGED_OBJECT_RIGHTS_UPLOAD', 2);
 define('MANAGED_OBJECT_RIGHTS_VIEW', 4);
 define('LIST_RIGHTS', NO_RIGHTS);
+if (!defined('USER_RIGHTS')) {
+	define('USER_RIGHTS', NO_RIGHTS);
+}
 
 if (defined('VIEW_ALL_RIGHTS')) {
 	define('ALL_ALBUMS_RIGHTS',VIEW_ALL_RIGHTS);
