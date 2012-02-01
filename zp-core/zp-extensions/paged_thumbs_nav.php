@@ -8,7 +8,7 @@
  */
 $plugin_description = gettext("Prints a paged thumbs navigation on image.php, independent of the album.php's thumbs.");
 $plugin_author = "Malte Müller (acrylian)";
-
+$plugin_version = '1.4.3';
 $option_interface = 'pagedthumbsOptions';
 
 /**
@@ -105,32 +105,32 @@ class pagedThumbsNav {
 		if(is_null($crop)) {
 			$this->crop = getOption("pagedthumbs_crop");
 		} else {
-			$this->crop = sanitize($crop);
+			$this->crop = $crop;
 		}
 		if(empty($imagesperpage)) {
 			$this->imagesperpage = getOption("pagedthumbs_imagesperpage");
 		} else {
-			$this->imagesperpage = sanitize_numeric($imagesperpage);
+			$this->imagesperpage = $imagesperpage;
 		}
 		if(is_null($width)) {
 			$this->width = getOption("pagedthumbs_width");
 		} else {
-			$this->width = sanitize_numeric($width);
+			$this->width = $width;
 		}
 		if(is_null($height)) {
 			$this->height = getOption("pagedthumbs_height");
 		} else {
-			$this->height = sanitize_numeric($height);
+			$this->height = $height;
 		}
 		if(empty($prev)) {
 			$this->prev = get_language_string(getOption("pagedthumbs_prevtext"));
 		} else {
-			$this->prev = sanitize($prev);
+			$this->prev = $prev;
 		}
 		if(empty($next)) {
 			$this->next = get_language_string(getOption("pagedthumbs_nexttext"));
 		} else {
-			$this->next = sanitize($next);
+			$this->next = $next;
 		}
 		if(empty($counter)) {
 			$this->counter = getOption("pagedthumbs_counter");
@@ -138,22 +138,22 @@ class pagedThumbsNav {
 		if(is_null($placeholders)) {
 			$this->placeholders = getOption("pagedthumbs_placeholders");
 		} else {
-			$this->placeholders = sanitize($placeholders);
+			$this->placeholders = $placeholders;
 		}
 		if(is_null($showpagelist)) {
 			$this->showpagelist = getOption("pagedthumbs_pagelist");
 		} else {
-			$this->showpagelist = sanitize($showpagelist);
+			$this->showpagelist = $showpagelist;
 		}
 		if(empty($pagelistlength)) {
 			$this->pagelistlength = getOption("pagedthumbs_pagelistlength");
 		} else {
-			$this->pagelistlength = sanitize($pagelistlength);
+			$this->pagelistlength = $pagelistlength;
 		}
 		if(is_null($pagelistprevnext)) {
 			$this->pagelistprevnext = getOption("pagedthumbs_pagelistprevnext");
 		} else {
-			$this->pagelistprevnext = sanitize($pagelistprevnext);
+			$this->pagelistprevnext = $pagelistprevnext;
 		}
 		// get the image of current album
 		if(in_context(ZP_SEARCH_LINKED)) {
@@ -208,12 +208,12 @@ class pagedThumbsNav {
 	 */
 	function printPrevThumbsLink() {
 		if ($this->currentpage == 1) {
-			echo "<div id=\"pagedthumbsnav-prevdisabled\">".$this->prev;
+			echo "<div id=\"pagedthumbsnav-prevdisabled\">".html_encode($this->prev);
 		} else {
 			echo "<div id=\"pagedthumbsnav-prev\">\n";
 		}
 		// Prev thumbnails - show only if there is a prev page
-		echo "<a href=\"".html_encode($this->getPrevThumbsLink())."\" title=\"".gettext("previous thumbs")."\">".$this->prev."</a>\n";
+		echo "<a href=\"".html_encode($this->getPrevThumbsLink())."\" title=\"".gettext("previous thumbs")."\">".html_encode($this->prev)."</a>\n";
 		echo "</div>";
 	}
 
@@ -252,15 +252,15 @@ class pagedThumbsNav {
 			} else {
 				$css = "";
 			}
-			echo "<a $css href=\"".html_encode($image->getImageLink())."\" title=\"".strip_tags($image->getTitle())."\">";
+			echo "<a $css href=\"".html_encode($image->getImageLink())."\" title=\"".html_encode(strip_tags($image->getTitle()))."\">";
 
 			if($this->crop) {
-				$html = "<img src='".html_encode($image->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true))."' alt=\"".strip_tags($image->getTitle())."\" width='".$this->width."' height='".$this->height."' />";
+				$html = "<img src='".html_encode($image->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true))."' alt=\"".html_encode(strip_tags($image->getTitle()))."\" width='".$this->width."' height='".$this->height."' />";
 			} else {
 				$maxwidth = $this->width; // needed because otherwise getMaxSpaceContainer will use the values of the first image for all others, too
 				$maxheight = $this->height;
 				getMaxSpaceContainer($maxwidth, $maxheight, $image, true);
-				$html = "<img src=\"".html_encode($image->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, true))."\" alt=\"".strip_tags($image->getTitle())."\" />";
+				$html = "<img src=\"".html_encode($image->getCustomImage(NULL, $maxwidth, $maxheight, NULL, NULL, NULL, NULL, true))."\" alt=\"".html_encode(strip_tags($image->getTitle()))."\" />";
 			}
 			echo zp_apply_filter('custom_image_html', $html, true);
 			echo "</a>\n";
@@ -305,11 +305,11 @@ class pagedThumbsNav {
 	 */
 	function printNextThumbsLink() {
 		if ($this->currentpage == $this->totalpages) {
-			echo "<div id=\"pagedthumbsnav-nextdisabled\">".$this->next;
+			echo "<div id=\"pagedthumbsnav-nextdisabled\">".html_encode($this->next);
 		} else {
 			echo "<div id=\"pagedthumbsnav-next\">\n";
 		}
-		echo "<a href=\"".html_encode($this->getNextThumbsLink())."\" title=\"".gettext("next thumbs")."\">".$this->next."</a>\n";
+		echo "<a href=\"".html_encode($this->getNextThumbsLink())."\" title=\"".gettext("next thumbs")."\">".html_encode($this->next)."</a>\n";
 		echo "</div>\n";
 	}
 
@@ -361,7 +361,7 @@ class pagedThumbsNav {
 			echo "<ul id=\"pagedthumbsnav-pagelist\">\n";
 			// prev page
 			if($this->pagelistprevnext AND $this->totalpages > 1 AND is_object($this->prevpageimage)) {
-				echo "<li><a href=\"".html_encode($this->prevpageimage->getImageLink())."\" title=\"".gettext("previous thumbs")."\">".$this->prev."</a></li>\n";
+				echo "<li><a href=\"".html_encode($this->prevpageimage->getImageLink())."\" title=\"".gettext("previous thumbs")."\">".html_encode($this->prev)."</a></li>\n";
 			}
 			// 1st page
 			$this->printPagedThumbsNavPagelink($this->imagesperpage,$this->searchimages,$this->images,$this->currentpage,1,1);
@@ -384,7 +384,7 @@ class pagedThumbsNav {
 			}
 			// next page
 			if($this->pagelistprevnext AND $this->totalpages > 1 AND is_object($this->nextpageimage)) {
-				echo "<li><a href=\"".html_encode($this->nextpageimage->getImageLink())."\" title=\"".gettext("next thumbs")."\">".$this->next."</a></li>\n";
+				echo "<li><a href=\"".html_encode($this->nextpageimage->getImageLink())."\" title=\"".gettext("next thumbs")."\">".html_encode($this->next)."</a></li>\n";
 			}
 			echo "</ul>\n";
 		}
@@ -401,8 +401,8 @@ class pagedThumbsNav {
 	*/
 	function printPagedThumbsNavPagelink($i,$linktext) {
 		global $_zp_gallery, $_zp_current_album;
-		$i = sanitize_numeric($i);
-		$linktex = sanitize($linktext);
+		$i = $i;
+		$linktex = $linktext;
 		$imagenr = ($i * $this->imagesperpage) - ($this->imagesperpage);
 		if(is_array($this->images[$imagenr])) {
 			$albumobj = new Album(NULL,$this->images[$imagenr]['folder']);
@@ -411,9 +411,9 @@ class pagedThumbsNav {
 			$pageimage = newImage($_zp_current_album,$this->images[$imagenr]);
 		}
 		if($this->currentpage == $i) {
-			echo "<li class=\"pagedthumbsnav-pagelistactive\">".$linktext."</a>\n";
+			echo "<li class=\"pagedthumbsnav-pagelistactive\">".html_encode($linktext)."</a>\n";
 		} else {
-			echo "<li><a href=\"".html_encode($pageimage->getImageLink())."\" title=\"Seite ".$i."\">".$linktext."</a></li>\n";
+			echo "<li><a href=\"".html_encode($pageimage->getImageLink())."\" title=\"Seite ".$i."\">".html_encode($linktext)."</a></li>\n";
 		}
 	}
 
