@@ -665,7 +665,7 @@ function printMenuemanagerPageList($menuset='default', $class='pagelist', $id=NU
  * @param string $after after text
  */
 function printMenumanagerBreadcrumb($menuset='default', $before='', $between=' | ', $after=' | ') {
-	echo $before;
+	echo html_encode($before);
 	$sortorder = getCurrentMenuItem($menuset);
 	$items = getMenuItems($menuset, getMenuVisibility());
 	if (count($items)>0){
@@ -685,7 +685,7 @@ function printMenumanagerBreadcrumb($menuset='default', $before='', $between=' |
 			if (!empty($parents)) sortMultiArray($parents, 'sort_order', $descending=false, $natsort=false, $case_sensitive=false);
 			$i = 0;
 			foreach ($parents as $item) {
-				if ($i > 0) echo $between;
+				if ($i > 0) echo html_encode($between);
 				$itemarray = getItemTitleAndURL($item);
 				if ($item['type']=='menulabel') {
 					echo html_encode($itemarray['title']);
@@ -696,7 +696,7 @@ function printMenumanagerBreadcrumb($menuset='default', $before='', $between=' |
 			}
 		}
 	}
-	echo $after;
+	echo html_encode($after);
 }
 
 /**

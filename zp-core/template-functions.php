@@ -958,11 +958,11 @@ function getAlbumBreadcrumb($title=NULL) {
 */
 function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
 	$breadcrumb = getAlbumBreadcrumb($title);
-	$output = $before;
+	$output = html_encode(html_decode($before));
 	$output .= "<a href=\"" . html_encode($breadcrumb['link']) . "\">";
 	$output .= html_encode($breadcrumb['title']);
 	$output .= '</a>';
-	$output .= $after;
+	$output .= html_encode(html_decode($after));
 	echo $output;
 	}
 
@@ -1034,13 +1034,28 @@ function getParentBreadcrumb() {
 function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $truncate=NULL, $elipsis=NULL) {
 	$crumbs = getParentBreadcrumb();
 	if (!empty($crumbs)) {
-		if (is_null($between)) $between=' | ';
-		if (is_null($after)) $after=' | ';
-		if (is_null($elipsis)) $elipsis='...';
-		$output = $before;
+		if (!empty($before)) {
+			$before = html_decode($before);
+		}
+		if (is_null($between)) {
+			$between = ' | ';
+		} else {
+			$between = html_decode($between);
+		}
+		if (is_null($after)) {
+			$after= ' | ';
+		} else {
+			$after = html_decode($after);
+		}
+		if (is_null($elipsis)) {
+			$elipsis = '...';
+		}
+		$output = html_encode($before);
 		$i = 0;
 		foreach($crumbs as $crumb) {
-			if ($i > 0) $output .= $between;
+			if ($i > 0) {
+				$output .= html_encode($between);
+			}
 			//cleanup things in description for use as attribute tag
 			$desc = $crumb['title'];
 			if (!empty($desc) && $truncate) {
@@ -1049,7 +1064,7 @@ function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $trun
 			$output .= '<a href="' . html_encode($crumb['link']).'"'.' title="'.html_encode(strip_tags($desc)).'">'.html_encode($crumb['text']).'</a>';
 			$i++;
 		}
-		$output .= $after;
+		$output .= html_encode($after);
 		echo $output;
 	}
 }
@@ -1071,9 +1086,9 @@ function printHomeLink($before='', $after='', $title=NULL, $class=NULL, $id=NULL
 		if (empty($name)) { $name = $_zp_gallery->getWebsiteTitle(); }
 		if (empty($name)) { $name = gettext('Home'); }
 		if ($site != FULLWEBPATH) {
-			echo $before;
+			echo html_encode($before);
 			printLink($site, $name, $title, $class, $id);
-			echo $after;
+			echo html_encode($after);
 		}
 	}
 }
@@ -1110,7 +1125,7 @@ function printAlbumDate($before='', $nonemessage='', $format=null) {
 	}
 	$date = getAlbumDate($format);
 	if ($date) {
-		$date = $before . $date;
+		$date = html_encode($before) . $date;
 	} else {
 		$date = '';
 	}
@@ -1875,7 +1890,7 @@ function printImageDate($before='', $nonemessage='', $format=null) {
 	}
 	$date = getImageDate($format);
 	if ($date) {
-		$date = $before . $date;
+		$date = html_encode($before) . $date;
 	}
 
 	printField('image', 'date', false, $date);
@@ -3005,9 +3020,9 @@ function getCommentBody() {
 function printEditCommentLink($text, $before='', $after='', $title=NULL, $class=NULL, $id=NULL) {
 	global $_zp_current_comment;
 	if (zp_loggedin(COMMENT_RIGHTS)) {
-		echo $before;
+		echo html_encode($before);
 		printLink(WEBPATH . '/' . ZENFOLDER . '/admin-comments.php?page=editcomment&id=' . $_zp_current_comment['id'], $text, $title, $class, $id);
-		echo $after;
+		echo html_encode($after);
 	}
 }
 

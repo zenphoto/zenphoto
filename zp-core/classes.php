@@ -518,8 +518,9 @@ class ThemeObject extends PersistentObject {
 	function setDateTime($datetime) {
 		if ($datetime) {
 			$newtime = dateTimeConvert($datetime);
-			if ($newtime === false) return;
-			$this->set('date', $newtime);
+			if ($newtime !== false) {
+				$this->set('date', $newtime);
+			}
 		} else {
 			$this->set('date', NULL);
 		}

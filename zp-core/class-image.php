@@ -137,6 +137,7 @@ class _Image extends MediaObject {
 		}
 		if ($new) {
 			$this->updateMetaData();			// extract info from image
+			$this->save();
 			zp_apply_filter('new_image', $this);
 		}
 	}
@@ -294,7 +295,7 @@ class _Image extends MediaObject {
 		} else {
 			$localpath = $this->getThumbImageFile();
 		}
-		$xdate = $this->getDateTime();
+		$xdate = false;
 
 		if (!empty($localpath)) { // there is some kind of image to get metadata from
 			$exifraw = read_exif_data_protected($localpath);
@@ -442,7 +443,7 @@ class _Image extends MediaObject {
 			$this->set('title',$this->getDefaultTitle());
 		}
 		if (empty($xdate)) {
-			$this->set('date', strftime('%Y-%m-%d %H:%M:%S', $this->get('mtime')));
+			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->filemtime));
 		}
 		$alb = $this->album;
 		if (!is_null($alb)) {

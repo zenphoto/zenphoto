@@ -63,7 +63,7 @@ if (!defined('WEBPATH')) die();
 							<h2 id="gallerytitle">
 								<?php printHomeLink('',' &raquo; '); ?>
 								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo;
-												<?php printParentBreadcrumb("", " &raquo; ", " &raquo; "); printAlbumBreadcrumb("  ", " &raquo; "); ?>
+												<?php printParentBreadcrumb("", " » ", " » "); printAlbumBreadcrumb("  ", " » "); ?>
 												<?php printImageTitle(true); ?>
 							</h2>
 							<?php printCodeblock(1); ?>

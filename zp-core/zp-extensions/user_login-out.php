@@ -128,7 +128,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 					</script>
 					<?php
 				}
-				echo $before;
+				echo html_encode($before);
 				?>
 				<a href="#" class="logonlink" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
 				<span id="passwordform_enclosure" style="display:none">
@@ -143,7 +143,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 				?>
 				</span>
 				<?php
-				echo $after;
+				echo html_encode($after);
 			}
 		}
 	} else {
@@ -157,7 +157,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 		?>
 		<a href="javascript:launchScript('<?php echo FULLWEBPATH.'/'; ?>',[<?php echo implode(',',$params); ?>]);" title="<?php echo $logouttext; ?>" ><?php echo $logouttext; ?></a>
 		<?php
-		echo $after."\n";
+		echo html_encode($after)."\n";
 	}
 }
 

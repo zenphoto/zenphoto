@@ -125,12 +125,12 @@ class pagedThumbsNav {
 		if(empty($prev)) {
 			$this->prev = get_language_string(getOption("pagedthumbs_prevtext"));
 		} else {
-			$this->prev = $prev;
+			$this->prev = html_decode($prev);
 		}
 		if(empty($next)) {
 			$this->next = get_language_string(getOption("pagedthumbs_nexttext"));
 		} else {
-			$this->next = $next;
+			$this->next = html_decode($next);
 		}
 		if(empty($counter)) {
 			$this->counter = getOption("pagedthumbs_counter");

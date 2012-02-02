@@ -51,7 +51,7 @@ if (!defined('WEBPATH')) die();
 <div id="content">
 
 	<div id="breadcrumb">
-	<h2><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> &raquo; <?php printParentBreadcrumb(""," &raquo; "," &raquo; "); printAlbumBreadcrumb("  ", " &raquo; "); ?>
+	<h2><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> &raquo; <?php printParentBreadcrumb(""," » "," » "); printAlbumBreadcrumb("  ", " » "); ?>
 			 <strong><?php printImageTitle(true); ?></strong> (<?php echo imageNumber()."/".getNumImages(); ?>)
 			</h2>
 		</div>

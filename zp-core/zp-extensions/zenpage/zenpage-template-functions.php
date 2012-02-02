@@ -369,8 +369,8 @@ function getNewsTitle() {
  * @param string $before insert if you want to use for the breadcrumb navigation or in the html title tag
  */
 function printNewsTitle($before='') {
-	if (getNewsTitle()) {
-		echo $before.getNewsTitle();
+	if ($title = getNewsTitle()) {
+		echo html_encode($before.$title);
 	}
 }
 
@@ -421,9 +421,9 @@ function getNewsTitleLink() {
 function printNewsTitleLink($before='') {
 	if (getNewsTitle()) {
 		if(is_NewsType("news")) {
-			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".getBareNewsTitle()."\">".$before.getNewsTitle()."</a>";
+			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".getBareNewsTitle()."\">".html_encode($before.getNewsTitle())."</a>";
 		} else if (is_GalleryNewsType()) {
-			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".getBareNewsTitle()."\">".$before.getNewsTitle()."</a>";
+			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".getBareNewsTitle()."\">".html_encode($before.getNewsTitle())."</a>";
 		}
 	}
 }
@@ -897,7 +897,7 @@ function getNewsCategories() {
 function printCurrentNewsCategory($before='') {
 	global $_zp_current_category;
 	if(in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-		echo $before.$_zp_current_category->getTitle();
+		echo html_encode($before.$_zp_current_category->getTitle());
 	}
 }
 
@@ -952,7 +952,7 @@ function printNewsCategories($separator='',$before='',$class='') {
 	$catcount = count($categories);
 	if($catcount != 0) {
 		if(is_NewsType("news")) {
-			echo  $before."<ul class=\"$class\">\n";
+			echo  html_encode($before)."<ul class=\"$class\">\n";
 			$count = 0;
 			foreach($categories as $cat) {
 				$count++;
@@ -1310,7 +1310,7 @@ function getNewsCategoryURL($catlink='') {
  * @return string
  */
 function printNewsCategoryURL($before='',$catlink='') {
-	echo "<a href=\"".getNewsCategoryURL($catlink)."\" title=\"".html_encode(getCategoryTitle($catlink))."\">".$before.getCategoryTitle($catlink)."</a>";
+	echo "<a href=\"".html_encode(getNewsCategoryURL($catlink))."\" title=\"".html_encode(getCategoryTitle($catlink))."\">".html_encode($before.getCategoryTitle($catlink))."</a>";
 }
 
 
@@ -1337,7 +1337,7 @@ function getNewsIndexURL() {
  * @return string
  */
 function printNewsIndexURL($name='', $before='') {
-	echo $before."<a href=\"".html_encode(getNewsIndexURL())."\" title=\"".strip_tags(html_encode($name))."\">".html_encode($name)."</a>";
+	echo html_encode($before)."<a href=\"".html_encode(getNewsIndexURL())."\" title=\"".strip_tags(html_encode($name))."\">".html_encode($name)."</a>";
 }
 
 
@@ -2254,7 +2254,7 @@ function printZenpageItemsBreadcrumb($before=NULL, $after=NULL) {
 			$parentitemurl = getNewsCategoryURL($item);
 			$parentitemtitle = $catobj->getTitle();
 		}
-		echo $before."<a href='".$parentitemurl."'>".$parentitemtitle ."</a>".$after;
+		echo html_encode($before)."<a href='".$parentitemurl."'>".html_encode($parentitemtitle) ."</a>".html_encode($after);
 	}
 }
 
@@ -2340,7 +2340,7 @@ function getPageTitle() {
  * @return string
  */
 function printPageTitle($before=NULL) {
-	echo $before.getPageTitle();
+	echo html_encode($before.getPageTitle());
 }
 
 /**
