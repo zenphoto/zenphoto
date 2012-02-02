@@ -32,7 +32,9 @@ function printBarGraph() {
 	global $gallery, $webpath;
 	//$limit = $from_number.",".$to_number;
 	$bargraphmaxsize = 400;
-	$items = query_full_array("SELECT `aux`,`data`FROM ".prefix('plugin_storage')." WHERE `type` = 'downloadList' AND `data` != 0 ORDER BY `data` DESC");
+	$maxvalue = 0;
+	$items = query_full_array("SELECT `aux`,`data` FROM ".prefix('plugin_storage')." WHERE `type` = 'downloadList' AND `data` != 0 ORDER BY `data` DESC");
+	$items = sortMultiArray($items, 'data', true, true, false, true);
 	if($items) {
 		$maxvalue = $items[0]['data'];
 		$no_statistic_message = "";
