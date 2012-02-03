@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-31 21:32-0500\n"
-"PO-Revision-Date: 2012-01-31 22:50-0500\n"
+"POT-Creation-Date: 2012-02-02 21:18-0500\n"
+"PO-Revision-Date: 2012-02-02 23:27-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -1437,7 +1437,7 @@ msgstr "Ordre des images sauvegardé"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-albumsort.php:118
 msgid "Nothing changed"
-msgstr ""
+msgstr "Aucun changement"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-albumsort.php:136
 #: F:\sites\zenphoto-dev/zp-core/admin-albumsort.php:162
@@ -2268,7 +2268,7 @@ msgstr "Sous-albums"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:736
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:157
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:479
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:473
 msgid "all"
 msgstr "Tous"
 
@@ -2670,9 +2670,9 @@ msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Sélectionnez un ou plusieurs %1$s de %2$s à gérer."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3043
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:805
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:799
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:808
 #: F:\sites\zenphoto-dev/zp-core/admin-users.php:814
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:820
 msgid "user"
 msgstr "utilisateur"
 
@@ -2975,7 +2975,7 @@ msgid "You must supply a password for the <em>%s</em> guest user"
 msgstr "Vous devez fournir un mot de passe pour l’invité <em>%s</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:478
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:426
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:420
 msgid "Your passwords did not match"
 msgstr "Vos mots de passe ne correspondent pas"
 
@@ -3011,7 +3011,7 @@ msgstr "Lisez le guide de dépannage sur zenphoto.org pour plus de détails."
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2829
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2867
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2987
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:463
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:457
 msgid "reset"
 msgstr "reset"
 
@@ -3076,7 +3076,7 @@ msgid "If <em>mod_rewrite</em> is checked above, zenphoto will appended the <em>
 msgstr "Si l’option <em>Utiliser mod_rewrite</em> est cochée, Zenphoto ajoute cette extension aux URL pour améliorer le référencement par les moteurs de recherche. Par exemple : <em>.html, .php</em>, etc."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:585
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:765
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:759
 msgid "Language:"
 msgstr "Langue :"
 
@@ -3471,18 +3471,16 @@ msgid "Cookie duration"
 msgstr "Durée de vie des cookies"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1169
-#, fuzzy
 msgid "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish albums by default</em>"
-msgstr "<a href=\"javascript: toggle('albumpub');\" >Détails</a>  – Permettre la sélection visuelle de la vignette de l’album"
+msgstr "<a href=\"javascript: toggle('visualthumb');\" >Détails</a> pour <em>publier les albums par défaut</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1171
 msgid "This sets the default behavior for when Zenphoto discovers an album. If checked, the album will be published, if unchecked it will be unpublished."
 msgstr "Cette option gère le comportement par défaut de Zenphoto quand il découvre un nouvel album. Si elle est activée, l’album sera publié, sinon il ne le sera pas."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1173
-#, fuzzy
 msgid "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish images by default</em>"
-msgstr "<a href=\"javascript: toggle('albumdate');\" >Détails</a> – Utiliser la date de la dernière image comme date de l’album"
+msgstr "<a href=\"javascript: toggle('albumdate');\" >Détails</a> pour <em>Publier les images par défaut</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1175
 msgid "This sets the default behavior for when Zenphoto discovers an image. If checked, the image will be published, if unchecked it will be unpublished."
@@ -3498,7 +3496,7 @@ msgstr "Activez cette option si vous voulez que la date de l’album soit calée
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1183
 msgid "<strong>NOTE</strong>: Zenphoto will update the album date only if an image is discovered which is newer than the current date of the album."
-msgstr ""
+msgstr "<strong>Note</strong>. Zenphoto mettra à jour la date de l’album seulement si une image est plus récente que cette date."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1187
 msgid "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual thumb selection</em>"
@@ -3509,9 +3507,8 @@ msgid "Setting this option places thumbnails in the album thumbnail selection li
 msgstr "Activez cette option pour afficher des vignettes dans la liste de sélection des vignettes d’album (la liste déroulante sur la page d’édition de chaque album). Dans Firefox, cette liste affichera les vignettes, tandis que dans Safari et Internet Explorer, seuls les textes seront affichés (même si les vignettes sont chargées). Pour les albums comportant de nombreuses images, charger ces vignettes prend plus de temps et cela est inutile si le navigateur ne va pas les afficher. Décochez cette option et les images ne seront pas chargées."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1192
-#, fuzzy
 msgid "<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum thumb selection</em>"
-msgstr "<a href=\"javascript: toggle('visualthumb');\" >Détails</a>  – Permettre la sélection visuelle de la vignette de l’album"
+msgstr "<a href=\"javascript: toggle('multithumb');\" >Détails</a> pour <em>afficher les vignettes des sous-albums</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1194
 msgid "Setting this option allows selecting images from subalbums as well as from the album. Naturally populating these images adds overhead. If your album edit tabs load too slowly, do not select this option."
@@ -3534,9 +3531,8 @@ msgid "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>en
 msgstr "<a href=\"javascript: toggle('gallerysessions');\" >Détails</a> – Activer les sessions sur la galerie"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1205
-#, fuzzy
 msgid "Check this option if you are having issues with password and other cookie data not being retained. Setting the option causes zenphoto to use sessions rather than cookies."
-msgstr "Cocher cette case si vous avez des problèmes avec les cookies de sécurité des albums qui ne restent pas. Activer cette option fera que Zenphoto utilisera des sessions à la place des cookies."
+msgstr "Cocher cette case si vous avez des problèmes avec les cookies de sécurité des albums qui ne sont pas enregistrés. Activer cette option fera que Zenphoto utilisera des sessions à la place des cookies."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1206
 msgid "<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience."
@@ -4057,7 +4053,7 @@ msgstr "Métadonnées :"
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2117
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2118
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2119
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:477
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:471
 msgid "show"
 msgstr "afficher"
 
@@ -4628,14 +4624,12 @@ msgid "New tags added"
 msgstr "Nouveaux tags ajoutés"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:62
-#, fuzzy
 msgid "Checked tags deleted"
-msgstr "Les éléments sélectionnés ont été supprimés"
+msgstr "Les tags sélectionnés ont été supprimés"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:87
-#, fuzzy
 msgid "Tags renamed"
-msgstr "un nom"
+msgstr "Tags renommés"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:113
 msgid "Tag Management"
@@ -4719,9 +4713,8 @@ msgid "Theme File Editor"
 msgstr "Éditeur de fichiers de thème"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes-editor.php:100
-#, fuzzy
 msgid "Back to the theme list"
-msgstr "Retour à la liste des albums"
+msgstr "Retour à la liste des thèmes"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes-editor.php:114
 msgid "Theme template files (.php)"
@@ -4767,19 +4760,17 @@ msgid "Error removing theme <em>%s</em>"
 msgstr "Erreur lors de la suppression du thème <em>%s</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes.php:71
-#, fuzzy
 msgid "New theme name?"
-msgstr "Nom du nouvel album ?"
+msgstr "Nom du nouveau thème ?"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes.php:71
-#, fuzzy, php-format
+#, php-format
 msgid "Copy of %s"
 msgstr "copie de %s"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes.php:73
-#, fuzzy
 msgid "Theme folder name?"
-msgstr "avec le nom de dossier : "
+msgstr "Nom du nouveau dossier de thèmes ?"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes.php:134
 msgid "no theme assigned, defaulting to Gallery theme"
@@ -4832,9 +4823,8 @@ msgid "Action"
 msgstr "Action"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes.php:197
-#, fuzzy
 msgid "third party theme"
-msgstr "Extensions tierces"
+msgstr "Thème de tierce partie"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes.php:238
 #, php-format
@@ -4942,9 +4932,8 @@ msgid "Don't forget, you can also use <acronym title=\"File Transfer Protocol\">
 msgstr "N’oubliez pas que vous pouvez utiliser <acronym title=\"File Transfer Protocol\">le protocole FTP</acronym> pour charger des dossiers entiers d’images dans le dossier d’un album."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:120
-#, fuzzy
 msgid "Upload Error"
-msgstr "Charger dans :"
+msgstr "Erreur de chargement"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:121
 msgid "There was an error submitting the form. Please try again."
@@ -5007,176 +4996,170 @@ msgid "Auto-generate"
 msgstr "Généré automatiquement"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:286
-#, fuzzy
 msgid "Upload handler:"
-msgstr "Charger ici"
+msgstr "Gestionnaire de chargement"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:342
 msgid "There are no albums to which you can upload."
 msgstr "Il n’existe aucun album dans lequel vous pouvez charger des images."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:123
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:117
 #, php-format
 msgid "%s password may not be empty!"
 msgstr "Le mot de passe %s ne peut pas être vide !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:255
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:249
 msgid "Password reset request.<br />You may now set admin usernames and passwords."
 msgstr "Demande de réinitialisation du mot de passe. <br />Vous devriez maintenant spécifier les identifiant et mot de passe de l’administrateur."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:265
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:259
 msgid "Saved"
 msgstr "Enregistré"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:400
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:394
 msgid "Your Allowed tags change did not parse successfully."
 msgstr "Le changement de vos tags autorisés ne s’est pas déroulé correctement."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:405
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:399
 msgid "Rights migration failed."
 msgstr "La migration des droits a échoué."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:410
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:404
 msgid "User id already used."
 msgstr "Ce nom d'utilisateur est déjà utilisé."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:417
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:411
 msgid "You must supply a password"
 msgstr "Vous devez fournir un mot de passe"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:420
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:414
 msgid "User name not provided"
 msgstr "Nom d’utilisateur non saisi"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:433
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:427
 msgid "Your Website URL is not valid"
 msgstr "L’URL de votre site internet n’est pas valide"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:471
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:465
 msgid "Expand all"
 msgstr "Tout afficher"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:473
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:467
 msgid "Collapse all"
 msgstr "Tout masquer"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:480
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:556
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:474
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:550
 msgid "pending verification"
 msgstr "en attente de vérification"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:481
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:475
 msgid "no group"
 msgstr "aucun groupe"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:562
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:556
 msgid "Master"
 msgstr "Principal"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:590
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:584
 msgid "Show details"
 msgstr "Afficher les détails"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:591
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:585
 msgid "Hide details"
 msgstr "Masquer les détails"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:593
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:587
 #, php-format
 msgid "Show details for user %s"
 msgstr "Afficher les détails de l’utilisateur %s"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:594
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:588
 #, php-format
 msgid "Hide details for user %s"
 msgstr "Masquer les détails de l’utilisateur %s"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:603
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:618
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:597
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:612
 msgid "New User"
 msgstr "Nouvel utilisateur"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:641
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:635
 msgid "Authenticate user"
 msgstr "Authentifier l’utilisateur"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:651
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:645
 msgid "Are you sure you want to delete this user?"
 msgstr "Êtes-vous certain(e) de vouloir supprimer cet utilisateur ?"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:653
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:647
 msgid "This is the master user account. If you delete it another user will be promoted to master user."
 msgstr "Il s’agit du compte utilisateur principal. Si vous le supprimez, un autre utilisateur sera élevé au rang d’utilisateur principal."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:658
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:652
 msgid "Delete this user."
 msgstr "Supprimer cet utilisateur."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:687
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:681
 msgid "<strong>Note:</strong> You must have ADMIN rights to alter anything but your personal information."
 msgstr "<strong>Note :</strong> Vous devez avoir des droits ADMINISTRATEUR pour modifier autre chose que vos informations personnelles."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:716
-#, fuzzy
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:710
 msgid "Challenge phrase"
-msgstr "Phrase défi :"
+msgstr "Phrase défi (pour récupérer le mot de passe)"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:720
-#, fuzzy
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:714
 msgid "Challenge response"
-msgstr "Réponse défi :"
+msgstr "Réponse attendue :"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:725
-#, fuzzy
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:719
 msgid "Full name"
-msgstr "Nom complet : "
+msgstr "Nom complet"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:729
-#, fuzzy
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:723
 msgid "Email"
-msgstr "Email :"
+msgstr "Email"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:743
-#, fuzzy
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:737
 msgid "create primary album"
-msgstr "Créer l’album"
+msgstr "Créer l’album principal"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:753
-#, fuzzy, php-format
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:747
+#, php-format
 msgid "delink primary album <strong>%1$s</strong>(<em>%2$s</em>)"
-msgstr "Enlever le lien de l’album primaire (<em>%s</em>)"
+msgstr "Enlever le lien de l’album principal <strong>%1$s</strong> (<em>%2$s</em>)"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:757
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:751
 msgid "The primary album was created in association with the user. It will be removed if the user is deleted. Delinking the album removes this association."
 msgstr "Lors de sa création, l’album primaire a été lié à l’utilisateur. Il sera effacé lorsque l’utilisateur sera effacé. Vous pouvez défaire ce lien pour enlever cette association."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:798
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:792
 msgid "The <em>master</em> account has full rights to all albums."
 msgstr "Le <em>compte-maître</em> a l’accès intégral à tous les albums."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:854
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:848
 #, php-format
 msgid "The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides."
 msgstr "L’objet <em>Zenphoto_Authority</em> supporte une version plus élevée des droits utilisateur que celle actuellement sélectionnée. Envisagez de migrer ces droits pour bénéficier des nouvelles fonctionnalités."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:857
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:851
 msgid "Migrate rights"
 msgstr "Migrer les droits"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:867
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:861
 #, php-format
 msgid "You may wish to revert the user rights <em>Zenphoto_Authority</em> to version %s for backwards compatibility with prior Zenphoto releases."
 msgstr "Vous pouvez choisir de rétablir les droits d’utilisateur <em>Zenphoto_Authority</em> vers la version %s pour la compatibilité avec les versions antérieures de Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:870
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:864
 msgid "Revert rights"
 msgstr "Rétablir les droits"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:887
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:881
 msgid "User names may not contain \"?\", \"&\", or quotation marks."
 msgstr "Le nom d’utilisateur ne peut contenir « ? », « & », « \" » ni des caractères accentués."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-users.php:892
+#: F:\sites\zenphoto-dev/zp-core/admin-users.php:886
 #, php-format
 msgid "The user \"%s\" already exists."
 msgstr "L’utilisateur « %s » existe déjà."
@@ -5301,9 +5284,8 @@ msgid "Official Build"
 msgstr "Version officielle"
 
 #: F:\sites\zenphoto-dev/zp-core/admin.php:237
-#, fuzzy
 msgid "<em>Debug</em> Build"
-msgstr "Dossier <em>albums</em>"
+msgstr "Version <em>Debug</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin.php:241
 #, php-format
@@ -5590,9 +5572,8 @@ msgid "MySQL Error: The database is connected, but MySQL returned the error <em>
 msgstr "Erreur MySQL : la base de données est bien connectée mais MySQL a renvoyé l’erreur <em>%1$s</em> quand Zenphoto a tenté de sélectionner la base %2$s."
 
 #: F:\sites\zenphoto-dev/zp-core/functions-db-MySQL.php:73
-#, fuzzy
 msgid "prefix"
-msgstr "préc."
+msgstr "Préfixe"
 
 #: F:\sites\zenphoto-dev/zp-core/functions-db-MySQL.php:74
 msgid "DB"
@@ -6208,9 +6189,9 @@ msgid "cacheImage(%1$s) exception: %2$s"
 msgstr " erreur cacheImage(%1$s) : %2$s"
 
 #: F:\sites\zenphoto-dev/zp-core/functions-PDO.php:31
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s Error: ( <em>%2$s</em> ) failed. MySQL returned the error <em>%3$s</em>"
-msgstr "La requête MySQL ( <em>%1$s</em> ) a échoué. Erreur : %2$s"
+msgstr "Erreur %1$s : <em>%2$s</em> a échoué. MySQL a renvoyé l’erreur <em>%3$s</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/functions-PDO.php:131
 #, php-format
@@ -6467,9 +6448,8 @@ msgid "Video Title"
 msgstr "Titre de la vidéo"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:127
-#, fuzzy
 msgid "Bitrate"
-msgstr "État, province"
+msgstr "Débit"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:128
 msgid "Bitrate_Mode"
@@ -6488,39 +6468,32 @@ msgid "Compression Ratio"
 msgstr "Taux de compression"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:132
-#, fuzzy
 msgid "Video Dataformat"
-msgstr "Format de la date : "
+msgstr "Format des données vidéos"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:133
-#, fuzzy
 msgid "File Encoder"
-msgstr "Explorateur de fichiers"
+msgstr "Encodeur de fichiers"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:134
-#, fuzzy
 msgid "Sample rate"
-msgstr "modérer"
+msgstr "Taux d’échantillonage"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:135
-#, fuzzy
 msgid "Channel mode"
-msgstr "Liste des changements"
+msgstr "Mode de canaux"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:136
-#, fuzzy
 msgid "Format"
-msgstr "Forum"
+msgstr "Format"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:137
-#, fuzzy
 msgid "Channels"
-msgstr "Annuler"
+msgstr "Canaux"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:138
-#, fuzzy
 msgid "Frame rate"
-msgstr "modérer"
+msgstr "Nombre de cadres / seconde"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:139
 msgid "X Resolution"
@@ -6531,14 +6504,12 @@ msgid "Y Resolution"
 msgstr "Résolution en Y"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:141
-#, fuzzy
 msgid "Aspect ratio"
-msgstr "Espéranto"
+msgstr "Ratio d’aspect"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:142
-#, fuzzy
 msgid "Play Time"
-msgstr "Lecture"
+msgstr "Robustesse minimale du mot de passe"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:143
 msgid "XMP Rating"
@@ -7001,33 +6972,28 @@ msgstr "Ce niveau d’autorisation permet de voir toutes les images à la taille
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:550
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:551
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:552
-#, fuzzy
 msgid "Access all"
-msgstr "Jeton d’accès"
+msgstr "Accès intégral"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:517
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:550
-#, fuzzy
 msgid "Users with this right have access to all zenpage news articles."
-msgstr "Ce niveau d’autorisation permet de voir tous les articles Zenpage."
+msgstr "Les usagers ayant ce niveau d’ autorisation peuvent accéder à tous les articles Zenpage."
 
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:518
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:551
-#, fuzzy
 msgid "Users with this right have access to all zenpage pages."
-msgstr "Ce niveau d’autorisation permet de voir toutes les pages Zenpage"
+msgstr "Les usagers ayant ce niveau d’ autorisation peuvent accéder à toutes les pages Zenpage."
 
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:519
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:552
-#, fuzzy
 msgid "Users with this right have access to all albums."
-msgstr "Ce niveau d’autorisation permet de voir toutes les galeries (quelle que soit leur protection). Sans ce droit, l’utilisateur ne pourra voir que les galeries publiques ou celles pour lesquelles il est spécifiquement autorisé."
+msgstr "Les usagers ayant ce niveau d’ autorisation peuvent accéder à tous les albums."
 
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:520
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:553
-#, fuzzy
 msgid "View unpublished"
-msgstr "Afficher les images non publiées"
+msgstr "Afficher les éléments non publiés"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:520
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:553
@@ -7595,7 +7561,7 @@ msgstr "Gestion des informations de POST"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:138
 msgid "readonly"
-msgstr ""
+msgstr "lecture seule"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:139
 msgid "strict"
@@ -8820,89 +8786,89 @@ msgstr "Vignettes de l’album"
 msgid "Return to search"
 msgstr "Retour à %s"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1201
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1205
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1216
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1220
 #, fuzzy
 msgid "printField() invalid function call."
 msgstr "appel invalide de la fonction printEditable()."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1807
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1822
 msgid "The image is marked un-published."
 msgstr "L’image est marquée comme non publiée."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:2241
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:2256
 msgid "Image Info"
 msgstr "Détails sur l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:2897
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:2912
 msgid "Anonymous"
 msgstr "Anonyme"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3022
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3037
 msgid "Download Zip of the Album"
 msgstr "Télécharger un fichier zip de l’album"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3022
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3037
 msgid "Download a zip file of this album"
 msgstr "Télécharger un fichier zip de cet album"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3111
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3126
 msgid "by"
 msgstr "par"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3355
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3370
 #, php-format
 msgid "View image: %s"
 msgstr "Voir l’image : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3525
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3540
 msgid "No popular tags"
 msgstr "Aucun tag populaire"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3793
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3808
 msgid "Latest images RSS"
 msgstr "Flux RSS des dernières images"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3849
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3864
 msgid "getSearchURL $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "Le paramètre $album_list de getSearchURL est obsolète. Utilisez plutôt un tableau array(\"albums\"=>array(album, album, ...))."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3948
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3963
 msgid "printSearchForm $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "Le paramètre $album_list de printSearchForm est obsolète. Utilisez plutôt un tableau array(\"albums\"=>array(album, album, ...))."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3965
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3980
 #, php-format
 msgid "%s within previous results"
 msgstr "%s parmi les résultats précédents"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4031
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4046
 #, fuzzy
 msgid "search options"
 msgstr "options"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4031
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4046
 msgid "fields"
 msgstr "champs"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4067
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4082
 #, fuzzy
 msgid "Within"
 msgstr "Lithuanien"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4071
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4086
 msgid "New"
 msgstr "Nouveau"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4120
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4135
 msgid "no date"
 msgstr "sans date"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4375
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4390
 msgid "The page you are trying to view is password protected."
 msgstr "La page que vous essayez d’afficher est protégée par mot de passe."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4381
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4396
 msgid "printPasswordForm custom theme password forms is deprecated. You should style the form created by the Zenphoto_Authority class (or its derivatives) instead. Use of these forms will prevent alternative credentials implementations from working with a theme."
 msgstr "Les formulaires personnalisés créés avec la fonction printPasswordForm sont obsolètes. Vous devriez plutôt modifier les styles du formulaire créé par la classe Zenphoto_Authority (ou ses dérivés). L’utilisation de ces formulaires empêchera les autres modes d’inscription de fonctionner avec un thème."
 
@@ -11528,11 +11494,11 @@ msgstr "effacer les champs largeur et hauteur"
 msgid "Deprecated Zenphoto functions. These functions have been removed from mainstream Zenphoto as they have been supplanted. They are not maintained and they are not guaranteed to function correctly with the current version of Zenphoto.  You should update your theme if you get warnings. This plugin is not required for any theme coded for the current version of Zenphoto."
 msgstr "Fonctions ZenPhoto obsolètes. Ces fonctions ont été supprimées de Zenphoto car elles ont été remplacées. Elles ne sont plus mises à jour et leur fonctionnement avec cette version de Zenphoto n’est pas garanti. Veuillez mettre votre thème à jour si vous voyez de tels messages d’avertissement. Cette extension n’est pas nécessaire avec les thèmes codés pour la présente version de Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:51
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:52
 msgid "Functions"
 msgstr "Fonctions obsolètes"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:53
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:54
 msgid "Send the <em>deprecated</em> notification message if the function name is checked. Un-checking these boxes will allow you to continue using your theme without warnings while you upgrade its implementation."
 msgstr "Affiche un message d’avertissement de <em>fonction obsolète</em> lorsque les fonctions cochées ci-contre sont utilisées. En décochant ces cases, vous pouvez continuer d’utiliser votre thème sans recevoir d’avertissement. Mais mettez-le à jour rapidement !"
 
@@ -11550,231 +11516,245 @@ msgstr "%1$s (appelée depuis la ligne %3$s de %2$s) est obsolète."
 msgid "You can disable this error message by going to the <em>deprecated-functions</em> plugin options and un-checking <strong>%s</strong> in the list of functions.<br />"
 msgstr "Vous pouvez faire disparaître ce message d’erreur en allant aux options de l’extension <em>deprecated-functions</em> (fonctions obsolètes) et en décochant <strong>%s</strong> dans la liste des fonctions.<br />"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:93
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:209
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:286
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:86
+msgid "development"
+msgstr ""
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:88
+#, fuzzy
+msgid "Check deprecated use"
+msgstr "Les éléments sélectionnés ont été supprimés"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:92
+#, fuzzy
+msgid "Searches PHP scripts for use of deprecated functions."
+msgstr "Teste les messages des fonctions obsolètes."
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:111
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:227
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:304
 msgid "Use getHitcounter()."
 msgstr "Utilisez getHitcounter()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:138
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:148
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:156
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:166
 msgid "Use printRating()."
 msgstr "Utilisez printRating()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:158
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:176
 msgid "Use printImageMetadata()."
 msgstr "Utilisez printImageMetadata()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:169
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:187
 msgid "Use printCustomSizedImageMaxSpace()."
 msgstr "Utilisez printCustomSizedImageMaxSpace()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:181
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:200
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:199
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:218
 msgid "Use getCommentDateTime()."
 msgstr "Utilisez getCommentDateTime()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:234
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:252
 msgid "Use truncate_string()."
 msgstr "Utilisez truncate_string()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:247
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:265
 msgid "Use getImageMetaData()."
 msgstr "Utilisez getImageMetaData()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:257
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:275
 msgid "Use getAlbumLocation()."
 msgstr "Utilisez getAlbumLocation()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:266
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:284
 msgid "Use printAlbumLocation()."
 msgstr "Utilisez printAlbumLocation()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:274
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:292
 #, fuzzy
 msgid "Use printField()."
 msgstr "Utilisez printRating()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:331
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:349
 msgid "Use rewrite_path()."
 msgstr "Utilisez rewrite_path()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:343
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:361
 msgid "Use object->getTags() method."
 msgstr "Utilisez la méthode objet->getTags()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:356
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:374
 msgid "Use printTags()."
 msgstr "Utilisez printTags()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:388
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:406
 msgid "Use getNumAlbums()."
 msgstr "Utilisez getNumAlbums()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:396
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:414
 msgid "Use getAllAlbums()."
 msgstr "Utilisez getAllAlbums()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:404
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:422
 msgid "Register a \"theme_head\" filter."
 msgstr "Enregistrez un filtre « theme_head » (en-tête de thème)."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:425
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:443
 msgid "Use zp_apply_filter(\"theme_head\")."
 msgstr "Utilisez zp_apply_filter(\"theme_head\")."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:433
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:451
 msgid "Use instead the theme options for images and albums per row."
 msgstr "Utilisez plutôt les options de thème pour définir le nombre d’images et d’albums par ligne."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:445
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:463
 msgid "Use printZenpageItemsBreadcrumb()."
 msgstr "Utilisez printZenpageItemsBreadcrumb()."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:453
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:471
 msgid "Use instead the Album class method isMyItem()."
 msgstr "Utilisez plutôt la méthode isMyItem() de la classe Album."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:470
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:488
 msgid "Use instead the Zenpage category class method getSubCategories()."
 msgstr "Utilisez plutôt la méthode getSubCategories() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:487
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:505
 msgid "Use instead the Zenpage news class method inProtectedCategory()."
 msgstr "Utilisez plutôt la méthode inProtectedCategory() de la classe d’actualités Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:506
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:524
 msgid "Use instead the Zenpage category class method isProtected()."
 msgstr "Utilisez plutôt la méthode isProtected() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:525
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:543
 msgid "Use instead the Zenpage category class method getParents()."
 msgstr "Utilisez plutôt la méthode getParents() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:537
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:555
 msgid "Use instead the Zenpage category class method getTitle()."
 msgstr "Utilisez plutôt la méthode getTitle() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:550
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:568
 msgid "Use instead the Zenpage category class method getID()."
 msgstr "Utilisez plutôt la méthode getID() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:564
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:582
 msgid "Use instead the Zenpage category class method getParentID()."
 msgstr "Utilisez plutôt la méthode getParentID() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:577
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:595
 msgid "Use instead the Zenpage category class method getSortOrder()."
 msgstr "Utilisez plutôt la méthode getSortOrder() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:591
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:609
 msgid "Use instead the Zenpage page class method getParents()."
 msgstr "Utilisez plutôt la méthode getParents() de la classe de page Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:603
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:621
 msgid "Use instead the Zenpage page class method isProtected()."
 msgstr "Utilisez plutôt la méthode isProtected() de la classe de page Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:616
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:634
 msgid "Use instead the Zenpage category class method isMyItem()."
 msgstr "Utilisez plutôt la méthode isMyItem() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:630
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:668
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:648
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:686
 msgid "Use instead the Zenpage category class method checkforGuest()."
 msgstr "Utilisez plutôt la méthode checkforGuest() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:643
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:661
 msgid "Use instead the Zenpage news class method isMyItem()."
 msgstr "Utilisez plutôt la méthode isMyItem() de la classe d’actualités Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:656
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:674
 msgid "Use instead the Zenpage news class method checkNewsAccess()."
 msgstr "Utilisez plutôt la méthode checkNewsAccess() de la classe d’actualités Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:680
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:698
 msgid "Use instead the Zenpage category global object variable: $_zp_current_category->getTitlelink()."
 msgstr "Utilisez plutôt la variable objet globale $_zp_current_category->getTitlelink() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:692
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:710
 msgid "Use instead the Zenpage category global object variable: $_zp_current_category->getID()."
 msgstr "Utilisez plutôt la variable objet globale $_zp_current_category->getID() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:704
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:722
 msgid "Use instead the Zenpage category global object variable: $_zp_current_category->getParentID()."
 msgstr "Utilisez plutôt la variable objet globale $_zp_current_category->getParentID() de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:717
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:735
 msgid "Use instead the Zenpage news global object variable: $_zp_current_zenpage_news->inNewsCategory($catlink)."
 msgstr "Utilisez plutôt la variable objet globale $_zp_current_category->inNewsCategory($catlink) de la classe d’actualités Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:730
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:748
 msgid "Use instead the Zenpage news global object variable: $_zp_current_zenpage_news->inSubNewsCategoryOf($catlink)."
 msgstr "Utilisez plutôt la variable objet globale $_zp_current_category->inSubNewsCategoryOf($catlink) de la classe d’actualités Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:744
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:762
 msgid "Use instead the Zenpage category global object variable: $_zp_current_category->isSubNewsCategoryOf($catlink)."
 msgstr "Utilisez plutôt la variable objet globale $_zp_current_category->isSubNewsCategoryOf($catlink) de la classe de catégorie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:756
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:774
 msgid "Functionality is now included in getNewsContent(), printNewsContent() and getContentShorten() to properly cover custom shortening via TinyMCE <pagebreak>."
 msgstr "Cette fonctionnalité est désormais incluse dans getNewsContent(), printNewsContent() et getContentShorten() pour gérer efficacement la troncation via la balise <pagebreak> de TinyMCE."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:782
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:800
 msgid "Use getContentShorten() instead. Note the read more url must be passed directly."
 msgstr "Utilisez plutôt getContentShorten(). Notez que l’URL « en lire plus » doit être passée directement."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:790
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:808
 msgid "There is no need for this function as password handling is done by the core."
 msgstr "Cette fonction est inutile puisque la gestion des mots de passe est effectuée par l’application elle-même."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:798
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:806
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:814
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:816
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:824
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:832
 msgid "The google-maps plugin is deprecated. Convert to GoogleMap."
 msgstr "L’extension google-maps est obsolète. Utilisez plutôt GoogleMap."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:821
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:839
 msgid "printPreloadScript is deprecated. It is a helper for a specific theme and should be placed within that theme's \"functions.php\" script."
 msgstr "printPreloadScript est obsolète. C’est une fonction utilisée dans un thème en particulier et elle devra être placée dans le fichier « functions.php » de ce thème."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:848
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:887
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:935
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1158
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1188
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1213
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1244
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1263
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1301
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1478
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1531
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1548
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1565
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:866
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:905
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:953
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1176
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1206
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1231
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1262
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1281
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1319
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1496
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1549
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1566
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1583
 msgid "Use the Zenpage class method instead."
 msgstr "Utilisez plutôt la méthode de la classe Zenpage."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:865
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:883
 msgid "Use the method from either the ZenpagePage or the ZenpageCategory class instead."
 msgstr "Utilisez plutôt la méthode de la classe ZenpagePage ou ZenpageCategory."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1086
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1104
 msgid "Count the articles instead."
 msgstr "Faites plutôt le décompte des articles."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1580
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1598
 msgid "Use the album class method <code>isProtected()</code> instead."
 msgstr "Utilisez plutôt la méthode<code> isProtected()</code> de la classe Album."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1604
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1622
 msgid "Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link <code>getRSSLink()</code> just returns the URL."
 msgstr "Veuillez plutôt utiliser la fonction du modèle <code>getRSSLink()</code>. Note. Alors que cette fonction renvoie un lien html pleinement qualifié, la fonction <code>getRSSLink()</code> renvoie uniqument l'URL."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1661
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1679
 msgid "Use the template function <code>getZenpageRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getZenpageRSSLink()</code> just returns the URL."
 msgstr "Veuillez plutôt utiliser la fonction du modèle <code>getZenpageRSSLink()</code>. Note. Alors que cette fonction renvoie un lien html pleinement qualifié, la fonction <code>getRSSLink()</code> renvoie uniqument l'URL."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1699
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1717
 msgid "Use $_zp_captcha->getCaptcha(). Note that you will require updating your code to the new function."
 msgstr "Utilisez $_zp_captcha->getCaptcha(). Notez que vous devrez mettre votre code à jour pour refléter la syntaxe de cette nouvelle fonction."
 
@@ -13085,9 +13065,8 @@ msgid "repeat off"
 msgstr "saisir de nouveau : "
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:447
-#, fuzzy
 msgid "Update Required"
-msgstr "Mettre à jour le fichier"
+msgstr "Mise à jour requise"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:448
 msgid "To play the media you will need to either update your browser to a recent version or update your <a href=\"http://get.adobe.com/flashplayer/\" target=\"_blank\">Flash plugin</a>."
@@ -13116,9 +13095,8 @@ msgid "Limit titles to this many characters. Zero means no limit."
 msgstr "Limite les titres à ce nombre de caractères (0 = illimité)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:79
-#, fuzzy
 msgid "Menu"
-msgstr "menu"
+msgstr "Menu"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:95
 msgid "menu"
@@ -13503,9 +13481,8 @@ msgid "<em>Enable</em> state of voting."
 msgstr "<em>Activer</em> le statut de vote."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:96
-#, fuzzy
 msgid "Stars"
-msgstr "tags"
+msgstr "Étoiles"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:97
 #, php-format
@@ -13527,7 +13504,6 @@ msgid "third"
 msgstr "un tiers"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:100
-#, fuzzy
 msgid "Show fractional stars based on rating. May cause performance problems for pages with large numbers of rating elements."
 msgstr "Permet l’affichage de demi-étoiles pour les votes décimaux. Cela peut poser des problèmes de performance sur les pages comportant beaucoup d’éléments évalués."
 
@@ -13591,11 +13567,11 @@ msgid "Not yet rated"
 msgstr "Pas encore noté(e)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:335
-#, fuzzy, php-format
+#, php-format
 msgid "%u star"
 msgid_plural "%u stars"
-msgstr[0] "1 étoile"
-msgstr[1] "1 étoile"
+msgstr[0] "%u étoile"
+msgstr[1] "%u étoiles"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:341
 msgid "Submit &raquo;"
@@ -14395,9 +14371,9 @@ msgid "stop slideshow"
 msgstr "arrêter le diaporama"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:193
-#, fuzzy, php-format
+#, php-format
 msgid "image %1$s of %2$s"
-msgstr "Albums %1$u – %2$u sur %3$u"
+msgstr "image %1$s de %2$s"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:310
 msgid "Invalid linking to the slideshow page."
@@ -14641,12 +14617,12 @@ msgid "Error tweeting <code>%1$s</code>: %2$s"
 msgstr "Erreur en twittant <code>%1$s</code> : %2$s"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tweet_news.php:295
-#, fuzzy, php-format
+#, php-format
 msgid "New image: [%2$s]%1$s "
 msgstr "Nouvelle image :[%2$s]%1$s "
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tweet_news.php:298
-#, fuzzy, php-format
+#, php-format
 msgid "New album: %s "
 msgstr "Nouvel album :%s "
 
@@ -14762,14 +14738,12 @@ msgid "Provides a means for placing a user login form or logout link on your the
 msgstr "Fournit un outil vous permettant de placer un lien de connexion ou de déconnexion sur les pages de votre thème."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/user_login-out.php:35
-#, fuzzy
 msgid "Login form"
-msgstr "Connexion"
+msgstr "Formulaire de connexion"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/user_login-out.php:36
-#, fuzzy
 msgid "Form"
-msgstr "Forum"
+msgstr "Formulaire"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/user_login-out.php:37
 #, fuzzy
@@ -15136,9 +15110,8 @@ msgid "Metadata exported"
 msgstr "Métadonnées exportées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/xmpMetadata.php:1095
-#, fuzzy
 msgid "Export metadata info to XMP sidecar."
-msgstr "Exporter les informations de l'album dans un fichier associé XMP."
+msgstr "Exporter les informations de l’album dans un fichier associé XMP."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/xmpMetadata.php:1100
 msgid "Export Metadata"
@@ -15252,9 +15225,8 @@ msgid "latest images: sized image"
 msgstr "dernières images : image redimensionnée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:81
-#, fuzzy
 msgid "latest images: sized image maxspace"
-msgstr "dernières images : image redimensionnée"
+msgstr "dernières images : image maximisée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:81
 msgid "latest images: thumbnail"
@@ -15265,9 +15237,8 @@ msgid "latest albums: sized image"
 msgstr "derniers albums : image redimensionnée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:81
-#, fuzzy
 msgid "latest albums: sized image maxspace"
-msgstr "derniers albums : image redimensionnée"
+msgstr "derniers albums : image maximisée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:81
 msgid "latest albums: thumbnail"
@@ -15294,14 +15265,12 @@ msgid "latest images by album: sized image"
 msgstr "dernières images par album : image redimensionnée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:81
-#, fuzzy
 msgid "latest images by album: sized image maxspace"
-msgstr "dernières images par album : image redimensionnée"
+msgstr "dernières images par album : image maximisée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:82
-#, fuzzy
 msgid "What you want to show within the CombiNews section.<br /><ul><li>Latest images: Entries for all images ever added</li><li>Latest albums: Entries for all albums ever created</li><li>Latest images by album: Entries for all images but grouped by images that have been added within a day to each album (Scheme: 'x new images in album y on date z')</li></ul> <em>maxspace</em> means that an uncropped image fitting max. width x max. height as set on the thumbnail width and height options is used (not for multimedia items!)."
-msgstr "Ce que vous voulez afficher dans la zone CombiNews.<br /><ul><li>Dernières images : parmi toutes les images déjà présentes</li><li>Derniers albums : parmi tous les albums déjà créés</li><li>Dernières images par album : parmi toutes les images mais groupés par jour pour chaque album (Schéma : « x nouvelles images dans l’album y en date du z »)</li></ul>"
+msgstr "Ce que vous voulez afficher dans la zone CombiNews.<br /><ul><li>Dernières images : parmi toutes les images déjà présentes</li><li>Derniers albums : parmi tous les albums déjà créés</li><li>Dernières images par album : parmi toutes les images mais groupés par jour pour chaque album (Schéma : « x nouvelles images dans l’album y en date du z »)</li></ul><em>maxspace</em> signifie qu’une image non rognée occupera tout l’espace disponible (selon les options de taille de vignette (pas pour les éléments multimédias !)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:83
 msgid "CombiNews: Sized image size"
@@ -15482,23 +15451,20 @@ msgid "When set, all characters are converted to lower case."
 msgstr "Si actif, tous les caractères seront convertis en minuscules."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/captcha/reCaptcha.php:27
-#, fuzzy
 msgid "Public key"
-msgstr "Publié"
+msgstr "Clé publique"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/captcha/reCaptcha.php:29
 msgid "Enter your <em>reCaptcha</em> public key. You can obtain this key from the Google <a href=\"http://www.google.com/recaptcha\">reCaptcha</a> site"
 msgstr "Veuillez saisir votre clé publique <em>reCaptcha</em>. Vous pouvez l'obtenir du site <a href=\"http://www.google.com/recaptcha\">reCaptcha</a> de Google"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/captcha/reCaptcha.php:30
-#, fuzzy
 msgid "Private key"
-msgstr "Message privé"
+msgstr "Clé privée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/captcha/reCaptcha.php:32
-#, fuzzy
 msgid "Enter your <em>reCaptcha</em> private key."
-msgstr "Veuillez saisir vos critères de recherche."
+msgstr "Veuillez saisir votre clé privée <em>reCaptcha</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/captcha/zenphoto.php:29
 msgid "Hash key"
@@ -15608,6 +15574,34 @@ msgstr "Commentaire privé (ne pas publier)"
 msgid "Add Comment"
 msgstr "Ajouter un commentaire"
 
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:25
+msgid "Find Deprecated Functions"
+msgstr ""
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:36
+msgid "Locate calls on deprecated functions."
+msgstr "Retracer les appels de fonctions obsolètes."
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:41
+msgid "In Themes"
+msgstr "Dans les thèmes"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:44
+msgid "In User plugins"
+msgstr "Dans les extensions de l’usager"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:50
+msgid "In Zenphoto code"
+msgstr "Dans le code Zenphoto"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:64
+msgid "<strong>NOTE:</strong> This search will have false positives for instance when the function name appears in a comment or quoted string."
+msgstr ""
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:97
+msgid "No calls on deprecated functions were found."
+msgstr "Aucun appel de fonctions obsolètes n’a été trouvé."
+
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/downloadList-functions.php:168
 msgid "Download statistics"
 msgstr "Statistiques de téléchargement"
@@ -15620,43 +15614,43 @@ msgstr "Nombre de téléchargement"
 msgid "download statistics"
 msgstr "statistiques de téléchargement"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:40
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:41
 msgid "No statistic available"
 msgstr "Aucune statistique disponible"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:45
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:46
 msgid "Most downloaded files"
 msgstr "Fichiers les plus téléchargés"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:112
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:113
 msgid "Outdated file entries cleared from the database"
 msgstr "Les entrées périmées de fichiers ont été effacées de la base de données"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:118
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:119
 msgid "All download file entries cleared from the database"
 msgstr "Toutes les entrées de fichiers téléchargés ont été effacées de la base de données."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:121
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:122
 msgid "Download Statistics"
 msgstr "Statistiques de téléchargement"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:122
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:123
 msgid "Shows statistical graphs and info about your gallery's downloads if using the downloadList plugin."
 msgstr "Affiche des graphiques statistiques et des informations à propos des téléchargements effectués de votre galerie si vous utilisez l’extension downloadList."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:123
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:124
 msgid "Entries marked red do not exist in the download folder anymore but are kept for the statistics until you remove them manually via the button."
 msgstr "Les entrées identifiées en rouge n’existent plus dans le dossier de téléchargement ; elles sont conservées aux fins statistiques jusqu’à ce que vous les enleviez vous-même avec le bouton."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:127
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:128
 msgid "The downloadList plugin is not active"
 msgstr "L’extension downloadList n’est pas activée."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:130
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:131
 msgid "Clear outdated downloads from database"
 msgstr "Efface les téléchargements périmés de la base de données."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:131
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList/download_statistics.php:132
 msgid "Clear all downloads from database"
 msgstr "Efface tous les téléchargements de la base de données"
 
@@ -15732,9 +15726,8 @@ msgid "back to Zenphoto"
 msgstr "Retour à Zenphoto"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap/m.php:97
-#, fuzzy
 msgid "Map display error"
-msgstr "Affichage de la carte"
+msgstr "Erreur d’affichage de la carte"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap/m.php:99
 msgid ""
@@ -15779,7 +15772,6 @@ msgstr "Ordre de tri sauvegardé."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:61
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:349
-#, fuzzy
 msgid "Target no longer exists"
 msgstr "La cible de cet élément de menu n’existe plus"
 
@@ -15816,122 +15808,121 @@ msgstr "Éléments visibles"
 msgid "hidden items"
 msgstr "Éléments masqués"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:454
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:453
 msgid "Menu items for all Zenphoto objects added."
 msgstr "Les éléments de menu pour tous les objets Zenphoto ont été ajoutés."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:458
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:457
 msgid "Menu items for all albums added."
 msgstr "Les éléments de menu pour tous les albums ont été ajoutés."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:462
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:461
 msgid "Menu items for all Zenpage pages added."
 msgstr "Les éléments de menu pour tous les pages Zenpage ont été ajoutés."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:466
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
 msgid "Menu items for all Zenpage categories added."
 msgstr "Les éléments de menu pour tous les catégories de Zenpage ont été ajoutés."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:471
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:620
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:470
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:619
 msgid "You forgot to select an album."
 msgstr "Vous avez oublié de selectionner un album."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:474
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:473
 #, php-format
 msgid "Album menu item <em>%s</em> added"
 msgstr "L’élement de menu d’album <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:480
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:498
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:516
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:524
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:538
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:546
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:559
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:628
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:644
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:660
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:667
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:680
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:687
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:699
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:721
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:479
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:497
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:515
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:523
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:537
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:545
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:558
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:627
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:643
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:659
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:666
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:679
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:686
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:698
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:720
 msgid "You forgot to give your menu item a <strong>title</strong>!"
 msgstr "Vous avez oublié de donner un <strong>titre</strong> à votre page !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:483
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:482
 #, php-format
 msgid "Gallery index menu item <em>%s</em> added"
 msgstr "L’élément de menu de l’index de la galerie <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:489
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:507
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:636
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:652
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:723
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:488
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:506
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:635
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:651
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:722
 msgid "You forgot to give your menu item a <strong>link</strong>!"
 msgstr "Vous avez oublié de donner un <strong>lien</strong> à votre élément de menu !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:492
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:491
 #, php-format
 msgid "Zenpage page menu item <em>%s</em> added"
 msgstr "L’élément de menu de la page Zenpage <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:501
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:500
 #, php-format
 msgid "Zenpage news index menu item <em>%s</em> added"
 msgstr "L’élément de menu de la page d’accueil des actualités Zenpage <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:510
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:509
 #, php-format
 msgid "Zenpage news category menu item <em>%s</em> added"
 msgstr "L’élément de menu de la catégorie d’actualités Zenpage <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:519
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:532
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:518
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:531
 #, php-format
 msgid "Custom page menu item <em>%s</em> added"
 msgstr "L’élément de menu de la page personnalisée <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:529
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:551
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:564
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:672
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:692
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:704
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:528
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:550
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:563
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:671
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:691
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:703
 msgid "You forgot to provide a <strong>function</strong>!"
 msgstr "Vous avez oublié de donner une <strong>fonction</strong> à votre page !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:541
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:540
 msgid "Custom label added"
 msgstr "Le libellé personnalisé a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:554
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:553
 #, php-format
 msgid "Function  menu item <em>%s</em> added"
 msgstr "L’élément de menu de la fonction <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:567
-#, fuzzy
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:566
 msgid "<em>HTML</em> added"
-msgstr "Tags <em>%s</em> ajoutés"
+msgstr "<em>HTML</em> ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:589
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:588
 #, php-format
 msgid "A <em>%1$s</em> item already exists in <em>%2$s</em>!"
 msgstr "Un élément <em>%1$s</em> existe déjà dans <em>%2$s</em> !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:591
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:590
 #, php-format
 msgid "A <em>%1$s</em> item with the link <em>%2$s</em> already exists in <em>%3$s</em>!"
 msgstr "Un élément <em>%1$s</em> avec le lien <em>%2$s</em> existe déjà dans <em>%3$s</em> !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:725
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:724
 msgid "Menu item updated!"
 msgstr "L’élement de menu a été mis à jour !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:739
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:738
 msgid "Custom menu item successfully deleted!"
 msgstr "L’élement de menu personnalisé a été supprimé !"
 
@@ -15944,19 +15935,19 @@ msgid "Menu item deleted"
 msgstr "L’élément de menu a été effacé"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:61
-#, fuzzy, php-format
+#, php-format
 msgid "Menu '%s' deleted"
-msgstr "Le jeu de menu « %s » a été effacé"
+msgstr "Le menu « %s » a été effacé"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:73
-#, fuzzy, php-format
+#, php-format
 msgid "Menu '%s' duplicated"
-msgstr "Le jeu de menu « %s » a été effacé"
+msgstr "Le menu « %s » a été dupliqué"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:75
-#, fuzzy, php-format
+#, php-format
 msgid "Menu '%s' already exists"
-msgstr "%s existe déjà."
+msgstr "Le menu « %s » existe déjà."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:103
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:109
@@ -15964,31 +15955,29 @@ msgid "Name for new menu:"
 msgstr "Nom du nouveau menu :"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:109
-#, fuzzy, php-format
+#, php-format
 msgid "Copy_of_%s"
-msgstr "copie de %s"
+msgstr "Copie_de_%s"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:115
-#, fuzzy, php-format
+#, php-format
 msgid "Ok to delete menu %s? This cannot be undone!"
-msgstr "Ok pour supprimer %s du menu ? Cela ne peut pas être annulé !"
+msgstr "Ok pour supprimer le menu %s ? Cela ne peut pas être annulé !"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:133
 msgid "Menu Manager"
 msgstr "Gestionnaire de menus"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:133
-#, fuzzy, php-format
+#, php-format
 msgid " (Menu: %s)"
-msgstr " (Jeu de menus : %s)"
+msgstr " (Menu : %s)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:138
-#, fuzzy
 msgid "Drag the items into the order and nesting you wish displayed. Place the menu on your theme pages by calling printCustomMenu()."
 msgstr "Faites glisser les éléments dans l’ordre, y compris les sous-niveaux que vous souhaitez afficher. Cela vous permet de créer des menus personnalisés et les placer sur vos pages thèmes. Utilisez printCustomMenu() pour le placer sur vos pages."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:141
-#, fuzzy
 msgid "<strong>IMPORTANT:</strong> This menu's order is completely independent from any order of albums or pages set on the other admin pages. Use with customized themes that do not wish the standard Zenphoto display structure. Zenphoto functions such as the breadcrumb functions and the next_album() loop will NOT reflect of this menu's structure!"
 msgstr "<strong>Important :</strong> Ce menu est totalement indépendant de l’ordre des albums et et des pages défini sur les pages d’administration. Il est recommandé de l’utiliser uniquement avec des thèmes personnalisés qui ne font pas appel à la structure d’affichage standard Zenphoto. Les fonctions standard de Zenphoto telles que « breadcrumb » et la boucle « next_album() » ne tiennent pas compte de la structure de ce menu !"
 
@@ -16000,43 +15989,38 @@ msgstr "Ajouter des éléments de menu"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:156
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:157
-#, fuzzy
 msgid "New Menu"
-msgstr "Nouvel utilisateur"
+msgstr "Nouveau menu"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:159
-#, fuzzy
 msgid "Menu Manager options"
-msgstr "Gestionnaire de menus"
+msgstr "Options du gestionnaire de menus"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:168
 msgid "Edit the menu"
 msgstr "Modifier le menu"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:176
-#, fuzzy
 msgid "Hide"
-msgstr "masquer"
+msgstr "Masquer"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:184
-#, fuzzy, php-format
+#, php-format
 msgid "Duplicate %s menu"
-msgstr "Dupliquer %s"
+msgstr "Dupliquer le menu %s"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:184
-#, fuzzy
 msgid "Duplicate menu"
-msgstr "Dupliquer"
+msgstr "Dupliquer le menu"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:187
-#, fuzzy, php-format
+#, php-format
 msgid "Delete %s menu"
-msgstr "Supprimer %s"
+msgstr "Supprimer le menu %s"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:187
-#, fuzzy
 msgid "Delete menu"
-msgstr "Supprimer l’image"
+msgstr "Supprimer le menu"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:223
 msgid "Menu target is password protected"
@@ -16199,9 +16183,9 @@ msgid "Custom theme page"
 msgstr "Page de thème personnalisée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:285
-#, fuzzy, php-format
+#, php-format
 msgid "Menu <em>%s</em>"
-msgstr "Jeu de menu <em>%s</em>"
+msgstr "Menu <em>%s</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:288
 msgid "Type:"
@@ -16296,19 +16280,16 @@ msgid "Email* (this will be your user id)"
 msgstr "Email* (ce sera votre identifiant)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user/register_user_form.php:16
-#, fuzzy
 msgid "User ID"
-msgstr "Identifiant :"
+msgstr "Identifiant"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user/register_user_form.php:20
-#, fuzzy
 msgid "Name"
-msgstr "Nom : "
+msgstr "Nom"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user/register_user_form.php:54
-#, fuzzy
 msgid "Enter"
-msgstr "Saisir %s"
+msgstr "Saisir"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user/register_user_form.php:74
 msgid "You may also register using federated credentials"
@@ -16483,9 +16464,8 @@ msgid "The ajaxFilemanager plugin is currently disabled. To use this feature, en
 msgstr "L’extension ajaxFilemanager est désactivée. Pour l’utiliser, activez-la depuis l’onglet <em>extensions</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/inc/class.auth.php:69
-#, fuzzy
 msgid "You do not have the <em>Rights</em> to access the filemanager."
-msgstr "Vous n’avez pas les droits suffisants pour accéder à %s."
+msgstr "Vous n’avez pas les <em>droits</em> suffisants pour accéder au gestionnaire de fichiers."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:106
 msgid "Album folder:"
@@ -16504,6 +16484,8 @@ msgid "<strong>Note:</strong> This album does not contain any images."
 msgstr "<strong>Note:</strong> Cet album ne contient aucune image."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:248
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:109
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1468
 msgid "Articles"
 msgstr "Articles"
 
@@ -16517,6 +16499,7 @@ msgid "Categories:"
 msgstr "Catégories : "
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:604
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:891
 msgid "All categories"
 msgstr "Toutes les catégories"
 
@@ -16963,19 +16946,19 @@ msgid "New Page"
 msgstr "Nouvelle page"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:242
-#, fuzzy, php-format
+#, php-format
 msgid "Article <em>%s</em> not found"
-msgstr "<em>%s</em> non trouvé"
+msgstr "Article <em>%s</em> non trouvé"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:247
-#, fuzzy, php-format
+#, php-format
 msgid "Category <em>%s</em> not found"
-msgstr "<em>%s</em> non trouvé"
+msgstr "Catégorie <em>%s</em> non trouvée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:252
-#, fuzzy, php-format
+#, php-format
 msgid "Page <em>%s</em> not found"
-msgstr "<em>%s</em> non trouvé"
+msgstr "Page <em>%s</em> non trouvée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:261
 msgid "Edit Article:"
@@ -17010,9 +16993,8 @@ msgid "Note: Scheduled publishing is not active unless the page is also set to <
 msgstr "Note : La publication planifiée n’est pas active tant que la page est également mise en mode <em>publié</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:289
-#, fuzzy
 msgid "<strong>Note:</strong> This page is password protected."
-msgstr "<strong>Note :</strong> Cet article est protégé car il est assigné a une catégorie avec mot de passe."
+msgstr "<strong>Note.</strong> Cette page est protégée par mot de passe."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:361
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:377
@@ -17161,14 +17143,12 @@ msgid "Edit this article"
 msgstr "Modifier cet article"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:233
-#, fuzzy
 msgid "Add categories"
-msgstr "Toutes les catégories"
+msgstr "Ajouter des catégories"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:234
-#, fuzzy
 msgid "Clear categories"
-msgstr "Toutes les catégories"
+msgstr "Effacer les catégories"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:315
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:318
@@ -17487,65 +17467,63 @@ msgid "Tags cleared from articles of selected items"
 msgstr "Les tags des éléments sélectionnés ont été effacés"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1894
-#, fuzzy
 msgid "Categories added to selected items"
-msgstr "Les tags ont été ajoutés aux éléments sélectionnés"
+msgstr "Catégories ajoutées aux éléments sélectionnés"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1897
-#, fuzzy
 msgid "Categories cleared from selected items"
-msgstr "Les tags des éléments sélectionnés ont été effacés"
+msgstr "Catégories enlevées des éléments sélectionnés"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-class-page.php:202
-msgid "Use the Zenpage Page class method getPages()."
-msgstr "Utilisez plutôt la méthode getPages() de la classe de page Zenphoto."
+msgid "Use the Zenpage Page class->getPages() method."
+msgstr "Utilisez la méthode class->getPages() de la classe de page Zenphoto."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:446
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Cette entrée appartient à un album protégé.</em>"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1496
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1497
 msgid "Prev page"
 msgstr "Page préc."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2090
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2130
-#, fuzzy, php-format
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2091
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2131
+#, php-format
 msgid "%u article"
 msgid_plural "%u articles"
-msgstr[0] "articles"
-msgstr[1] "articles"
+msgstr[0] "%u article"
+msgstr[1] "%u articles"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2675
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2676
 msgid "This page is password protected"
 msgstr "Cet page est protégée par mot de passe"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2977
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2978
 msgid "News RSS"
 msgstr "Flux RSS des actualités"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3034
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3035
 #, php-format
 msgid "View the %s album"
 msgstr "Voir l’album %s"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3036
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3037
 #, php-format
 msgid "View the album %s"
 msgstr "Voir l’album : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3040
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3041
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3042
 #, php-format
 msgid "View %s"
 msgstr "Voir %s"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3049
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3050
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3058
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3059
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
@@ -17628,9 +17606,6 @@ msgstr "Impossible d’atteindre le lien <em>%s</em>"
 
 #~ msgid "Subject: %s"
 #~ msgstr "Sujet : %s"
-
-#~ msgid "Test the messages of deprecated functions."
-#~ msgstr "Teste les messages des fonctions obsolètes."
 
 #~ msgid "deprecated-functions is not enabled."
 #~ msgstr ""
