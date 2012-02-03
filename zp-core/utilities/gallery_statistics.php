@@ -63,7 +63,7 @@ function gallerystats_filesize_r($path){
  * @param int $limit Number of entries to show
  */
 function printBarGraph($sortorder="mostimages",$type="albums",$from_number=0, $to_number=10) {
-	global $gallery, $webpath;
+	global $webpath;
 	$limit = $from_number.",".$to_number;
 	$bargraphmaxsize = 400;
 	switch ($type) {

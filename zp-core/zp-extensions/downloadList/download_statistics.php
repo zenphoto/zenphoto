@@ -29,7 +29,6 @@ printAdminHeader(gettext('utilities'),gettext('download statistics'));
  * Prints a table with a bar graph of the values.
  */
 function printBarGraph() {
-	global $gallery, $webpath;
 	//$limit = $from_number.",".$to_number;
 	$bargraphmaxsize = 400;
 	$maxvalue = 0;

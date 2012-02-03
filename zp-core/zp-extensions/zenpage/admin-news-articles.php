@@ -113,7 +113,7 @@ printLogoAndLinks();
 			}
 			if (isset($_GET['date'])) {
 				echo '<em><small> ('.$_GET['date'].')</small></em>';
-				// require for getArticles() so the date dropdown is working
+				// require so the date dropdown is working
 				set_context(ZP_ZENPAGE_NEWS_DATE);
 				$_zp_post_date = sanitize($_GET['date']);
 			}

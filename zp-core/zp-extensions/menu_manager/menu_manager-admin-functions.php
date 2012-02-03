@@ -287,12 +287,11 @@ function publishItem($id,$show,$menuset) {
  * adds (sub)albums to menu base with their gallery sorting order intact
  *
  * @param string $menuset chosen menu set
- * @param object $gallery a gallery object
  * @param int $id table id of the parent.
  * @param string $link folder name of the album
  * @param string $sort xxx-xxx-xxx style sort order for album
  */
-function addSubalbumMenus($menuset, $gallery, $id, $link, $sort) {
+function addSubalbumMenus($menuset, $id, $link, $sort) {
 	$album = new Album(NULL, $link);
 	$show = $album->get('show');
 	$title = $album->getTitle();
@@ -308,7 +307,7 @@ function addSubalbumMenus($menuset, $gallery, $id, $link, $sort) {
 	if (!$album->isDynamic()) {
 		$albums = $album->getAlbums();
 		foreach ($albums as $key=>$link) {
-			addSubalbumMenus($menuset, $gallery, $id, $link, $sort.'-'.sprintf('%03u', $key));
+			addSubalbumMenus($menuset, $id, $link, $sort.'-'.sprintf('%03u', $key));
 		}
 	}
 }
@@ -334,7 +333,7 @@ function addalbumsToDatabase($menuset, $base=NULL) {
 	$result = $albumbase;
 	$albums = $_zp_gallery->getAlbums();
 	foreach ($albums as $key=>$link) {
-		addSubalbumMenus($menuset, $gallery, 'NULL', $link, $sortbase.sprintf('%03u', $result = $key+$albumbase));
+		addSubalbumMenus($menuset, 'NULL', $link, $sortbase.sprintf('%03u', $result = $key+$albumbase));
 	}
 	return $result;
 }

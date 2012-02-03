@@ -46,7 +46,7 @@ if (defined('OFFSET_PATH')) {
 	//XSRFdefender('seo_cleanup');
 
 	function checkFolder($folder) {
-		global $albums, $gallery, $count, $albumcount;
+		global $albums, $count, $albumcount;
 		$files = scandir(ALBUM_FOLDER_SERVERPATH.'/'.$folder);
 		$display = true;
 		if (!empty($folder)) {

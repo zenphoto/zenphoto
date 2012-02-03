@@ -93,7 +93,7 @@ if (isset($_GET['action'])) {
 					} else {
 						$notify = '&saved'.$notify;
 					}
-					$album = new Album($gallery, $folder);
+					$album = new Album(NULL, $folder);
 					$album->setSubalbumSortType('manual');
 					$album->setSortDirection('album', 0);
 					$album->save();

@@ -3861,7 +3861,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 	if (!is_null($object_list)) {
 		if (array_key_exists(0, $object_list)) {	// handle old form albums list
 			require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/deprecated-functions.php');
-			deprecated_function_notify(gettext('getSearchURL $album_list parameter is deprecated. Pass array("albums"=>array(album, album, ...)) instead.'));
+			deprecated_function::notify(gettext('getSearchURL $album_list parameter is deprecated. Pass array("albums"=>array(album, album, ...)) instead.'));
 			$object_list = array('albums' => $object_list);
 		}
 	}
@@ -4393,8 +4393,7 @@ function printPasswordForm($_password_hint, $_password_showuser=NULL, $_password
 	}
 	$passwordform = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/password_form.php';
 	if (file_exists($passwordform)) {
-		deprecated_function_notify(gettext('printPasswordForm custom theme password forms is deprecated. You should style the form created by the Zenphoto_Authority class (or its derivatives) instead. Use of these forms will prevent alternative credentials implementations from working with a theme.'));
-
+		deprecated_function::notify(gettext('printPasswordForm custom theme password forms is deprecated. You should style the form created by the Zenphoto_Authority class (or its derivatives) instead. Use of these forms will prevent alternative credentials implementations from working with a theme.'));
 		include($passwordform);
 	} else {
 		$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);

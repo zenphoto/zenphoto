@@ -72,7 +72,7 @@ class user_groups {
 	 * @return string
 	 */
 	static function edit_admin($html, $userobj, $i, $background, $current) {
-		global $gallery, $_zp_authority, $_zp_zenpage, $_zp_gallery;
+		global $_zp_authority, $_zp_zenpage, $_zp_gallery;
 		$group = $userobj->getGroup();
 		$admins = $_zp_authority->getAdministrators('all');
 		$ordered = array();

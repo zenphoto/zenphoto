@@ -236,7 +236,7 @@ class UploadHandler
 	}
 
 	private function handle_file_upload($uploaded_file, $name, $size, $type, $error) {
-		global $gallery, $folder, $targetPath, $_zp_current_admin_obj;
+		global $folder, $targetPath, $_zp_current_admin_obj;
 		$file = new stdClass();
 		$name = $this->trim_file_name($name, $type);
 		$seoname = seoFriendly($name);

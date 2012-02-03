@@ -1175,7 +1175,7 @@ function getLatestNews($number=2,$option='none', $category='') {
 			$latest = $_zp_zenpage->getCombiNews($number,'latestupdatedalbums-thumbnail',NULL,'');
 			break;
 		/*case "latestimagesbyalbum-thumbnail":
-			$latest = getCombiNews($number,'latestalbums-thumbnail',NULL,'id');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id');
 			break; */
 	}
 	return $latest;
@@ -1310,7 +1310,8 @@ function getNewsCategoryURL($catlink='') {
  * @return string
  */
 function printNewsCategoryURL($before='',$catlink='') {
-	echo "<a href=\"".html_encode(getNewsCategoryURL($catlink))."\" title=\"".html_encode(getCategoryTitle($catlink))."\">".html_encode($before.getCategoryTitle($catlink))."</a>";
+	$catobj = new ZenpageCategory($catlink);
+	echo "<a href=\"".html_encode(getNewsCategoryURL($catlink))."\" title=\"".html_encode($catobj->getTitle())."\">".html_encode($before.$catobj->getTitle())."</a>";
 }
 
 

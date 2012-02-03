@@ -366,11 +366,11 @@ class Gallery {
 			if (is_array($result)) {
 				foreach ($result as $row) {
 					$tbl = $row['type'];
-					$dbtag = query_single_row("SELECT * FROM ".prefix('tags')." WHERE `id`='".$row['tagid']."'");
+					$dbtag = query_single_row("SELECT `id` FROM ".prefix('tags')." WHERE `id`='".$row['tagid']."'");
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
-					$dbtag = query_single_row("SELECT * FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
+					$dbtag = query_single_row("SELECT `id` FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
@@ -394,7 +394,7 @@ class Gallery {
 					if ($row['type']=='album') {
 						$tbl = 'albums';
 					}
-					$dbtag = query_single_row("SELECT * FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
+					$dbtag = query_single_row("SELECT `id` FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
@@ -409,11 +409,11 @@ class Gallery {
 			$result = query_full_array("SELECT * FROM ".prefix('news2cat'));
 			if (is_array($result)) {
 				foreach ($result as $row) {
-					$dbtag = query_single_row("SELECT * FROM ".prefix('news')." WHERE `id`='".$row['news_id']."'");
+					$dbtag = query_single_row("SELECT `id` FROM ".prefix('news')." WHERE `id`='".$row['news_id']."'");
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
-					$dbtag = query_single_row("SELECT * FROM ".prefix('news_categories')." WHERE `id`='".$row['cat_id']."'");
+					$dbtag = query_single_row("SELECT `id` FROM ".prefix('news_categories')." WHERE `id`='".$row['cat_id']."'");
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
@@ -475,6 +475,9 @@ class Gallery {
 					if (($mtime=filemtime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($analbum['folder']))) > $analbum['mtime']) {  // refresh
 						$album =  new Album(NULL, $analbum['folder']);
 						$album->set('mtime', $mtime);
+						if ($this->getAlbumUseImagedate()) {
+							$album->setDateTime(NULL);
+						}
 						if ($album->isDynamic()) {
 							$data = file_get_contents($album->localpath);
 							$thumb = getOption('AlbumThumbSelect');
