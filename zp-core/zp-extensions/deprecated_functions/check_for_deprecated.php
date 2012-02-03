@@ -17,7 +17,7 @@ if (isset($_GET['action'])) {
 	$zplist = unserialize(getOption('Zenphoto_theme_list'));
 	$deprecated = new deprecated_functions();
 	$list = array_diff($deprecated->listed_functions, $deprecated->internalFunctions);
-	$pattern = '([^function]\s+)'.implode('[\(]|([^function]\s+)',$list).'[\(]';
+	$pattern = '([^function^\->]\s+)'.implode('[\(]|([^function^\->]\s+)',$list).'[\(]';
 	$report = array();
 	$selected = sanitize_numeric($_POST['target']);
 }
