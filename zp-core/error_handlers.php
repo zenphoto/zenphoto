@@ -77,4 +77,5 @@ function display_db_error($sql, $error) {
 	$sql = html_encode($sql);
 	display_error(sprintf(gettext('%1$s Error: ( <em>%2$s</em> ) failed. %1$s returned the error <em>%3$s</em>'),DATABASE_SOFTWARE,$sql,$error), true);
 }
+
 ?>

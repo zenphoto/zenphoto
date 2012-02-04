@@ -879,13 +879,13 @@ class xmpMetadata {
 					case 'ffe2': // EXIF extension
 					case 'fffe': // COM
 					case 'ffe0': // IPTC marker
-						$source = $this->extractXMP($f);
+						$source = xmpMetadata::extractXMP($f);
 						$i = $i + $size+2;
 						$abort = 0;
 						break;
 					default:
 						if (substr($f,$i,1)=='<') {
-							$source = $this->extractXMP($f);
+							$source = xmpMetadata::extractXMP($f);
 						}
 						$i=$i+1;
 						$abort++;
