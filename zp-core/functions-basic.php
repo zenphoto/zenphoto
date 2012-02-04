@@ -42,13 +42,13 @@ if (defined("RELEASE")) {
 }
 $_zp_error = false;
 if (!file_exists(dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . "/zenphoto.cfg")) {
-	reconfigure();
+	require(dirname(__FILE__).'/reconfigure.php');
 }
 // Including the config file more than once is OK, and avoids $conf missing.
 eval(file_get_contents(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zenphoto.cfg'));
 
 if (empty($_zp_conf_vars['mysql_database'])) {
-	reconfigure();
+	require(dirname(__FILE__).'/reconfigure.php');
 }
 
 require_once(dirname(__FILE__).'/lib-utf8.php');

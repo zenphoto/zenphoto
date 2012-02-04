@@ -878,7 +878,7 @@ class Album extends MediaObject {
 					//rename the cache folder
 					$cacherename = @rename(SERVERCACHE . '/' . $oldfolder, SERVERCACHE . '/' . $newfolder);
 					// Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
-						// Get the subalbums.
+					// Get the subalbums.
 					$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE ".db_quote($oldfolder.'/%');
 					$result = query_full_array($sql);
 					foreach ($result as $subrow) {

@@ -68,9 +68,6 @@ function query($sql, $errorstop=true) {
 	}
 	// Changed this to mysql_query - *never* call query functions recursively...
 	$result = mysql_query($sql, $_zp_DB_connection);
-
-$result=false;
-
 	if (!$result) {
 		if($errorstop) {
 			require_once(dirname(__FILE__).'/error_handlers.php');
