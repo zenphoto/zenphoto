@@ -882,17 +882,16 @@ class Album extends MediaObject {
 					$success = $success && query($sql);
 					if ($success) {
 						// Get the subalbums.
-						$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE ".db_quote($oldfolder.'%');
-						$result = query_full_array($sql);
-						foreach ($result as $subrow) {
-							$newsubfolder = $subrow['folder'];
-							$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
-							$sql = "UPDATE ".prefix('albums'). " SET folder=".db_quote($newsubfolder)." WHERE id=".$subrow['id'];
-							if (query($sql)) {
-								zp_apply_filter('album_rename_move', $subrow['folder'], $newsubfolder);
-							} else {
-								$success = false;
-							}
+					$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE ".db_quote($oldfolder.'/%');
+					$result = query_full_array($sql);
+					foreach ($result as $subrow) {
+						$newsubfolder = $subrow['folder'];
+						$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
+						$sql = "UPDATE ".prefix('albums'). " SET folder=".db_quote($newsubfolder)." WHERE id=".$subrow['id'];
+						if (query($sql)) {
+							zp_apply_filter('album_rename_move', $subrow['folder'], $newsubfolder);
+						} else {
+							$success = false;
 						}
 					}
 				}
