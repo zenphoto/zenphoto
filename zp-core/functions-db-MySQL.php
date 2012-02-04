@@ -68,12 +68,13 @@ function query($sql, $errorstop=true) {
 	}
 	// Changed this to mysql_query - *never* call query functions recursively...
 	$result = mysql_query($sql, $_zp_DB_connection);
+
+$result=false;
+
 	if (!$result) {
 		if($errorstop) {
-			$sql = str_replace($_zp_conf_vars['mysql_prefix'], '['.gettext('prefix').']',$sql);
-			$sql = str_replace($_zp_conf_vars['mysql_database'], '['.gettext('DB').']',$sql);
-			$sql = html_encode($sql);
-			zp_error(sprintf(gettext('MySQL Query ( <em>%1$s</em> ) failed. MySQL returned the error <em>%2$s</em>' ),$sql,mysql_error()));
+			require_once(dirname(__FILE__).'/error_handlers.php');
+			display_db_error($sql,db_error());
 		}
 		return false;
 	}

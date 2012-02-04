@@ -25,10 +25,8 @@ function query($sql, $errorstop=true) {
 		$_zp_DB_last_result = false;
 	}
 	if (!$_zp_DB_last_result && $errorstop) {
-		$sql = str_replace($_zp_conf_vars['mysql_prefix'], '['.gettext('prefix').']',$sql);
-		$sql = str_replace($_zp_conf_vars['mysql_database'], '['.gettext('DB').']',$sql);
-		$sql = html_encode($sql);
-		zp_error(sprintf(gettext('%1$s Error: ( <em>%2$s</em> ) failed. MySQL returned the error <em>%3$s</em>' ),DATABASE_SOFTWARE,$sql,db_error()));
+		require_once(dirname(__FILE__).'/error_handlers.php');
+		display_db_error($sql,db_error());
 	}
 	return $_zp_DB_last_result;
 }

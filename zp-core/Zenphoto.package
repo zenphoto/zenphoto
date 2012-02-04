@@ -311,6 +311,7 @@ zp-core/classes.php
 zp-core/controller.php
 zp-core/cron_runner.php
 zp-core/dataaccess
+zp-core/error_handlers.php
 zp-core/example_robots.txt
 zp-core/exif
 zp-core/exif/exif.php
@@ -622,6 +623,7 @@ zp-core/locale/zh_TW/select_files_button.png
 zp-core/oldhtaccess
 zp-core/password.php
 zp-core/pluginDoc.php
+zp-core/reconfigure.php
 zp-core/rss
 zp-core/rss/rss-comments.php
 zp-core/rss/rss-news.php
@@ -1870,4 +1872,4 @@ zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
 zp-core/zp-extensions/zenphoto_seo.php
-1872
+1874

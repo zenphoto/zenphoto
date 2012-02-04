@@ -916,55 +916,8 @@ function sanitize_string($input_string, $sanitize_level) {
  * @param bool $fatal set true to fail the script
  */
 function zp_error($message, $fatal=true) {
-	global $_zp_error;
-	if (!$_zp_error) {
-		if ($fatal) {
-			debugLogBacktrace("fatal zp_error:$message");
-		} else {
-			debugLogBacktrace("zp_error:$message");
-		}
-		?>
-		<div style="padding: 15px; border: 1px solid #F99; background-color: #FFF0F0; margin: 20px; font-family: Arial, Helvetica, sans-serif; font-size: 12pt;">
-			<h2 style="margin: 0px 0px 5px; color: #C30;">Zenphoto encountered an error</h2>
-			<div style=" color:#000;">
-				<?php echo $message; ?>
-			</div>
-		<?php
-		if (DEBUG_ERROR) {
-			// Get a backtrace.
-			$bt = debug_backtrace();
-			array_shift($bt); // Get rid of zp_error in the backtrace.
-			$prefix = '  ';
-			?>
-			<p>
-				<?php echo gettext('<strong>Backtrace:</strong>'); ?>
-				<br />
-				<pre>
-					<?php
-					echo "\n";
-					foreach($bt as $b) {
-						echo $prefix . ' -> '
-						. (isset($b['class']) ? $b['class'] : '')
-						. (isset($b['type']) ? $b['type'] : '')
-						. $b['function']
-						. (isset($b['file']) ? ' (' . basename($b['file']) : '')
-						. (isset($b['line']) ? ' [' . $b['line'] . "])" : '')
-						. "\n";
-						$prefix .= '  ';
-					}
-					?>
-				</pre>
-			</p>
-			<?php
-		}
-		?>
-		</div>
-		<?php
-		if ($fatal) {
-			$_zp_error = true;
-			exit();
-		}
-	}
+	require_once(dirname(__FILE__).'/error_handlers.php');
+	display_error($message, $fatal);
 }
 
 /**
@@ -1602,36 +1555,9 @@ function db_count($table, $clause=NULL, $field="*") {
  */
 function checkInstall() {
 	if (!installSignature()) {
-		reconfigure();
+		require(dirname(__FILE__).'/reconfigure.php');
 	}
 }
 
-/**
- *
- * Redirects to setup if the files are present. Otherwise notifies need for re-upload
- */
-function reconfigure() {
-	$package = file_get_contents(dirname(__FILE__).'/Zenphoto.package');
-	preg_match_all('|'.ZENFOLDER.'/setup/(.*)|', $package, $matches);
-	$found = safe_glob(dirname(__FILE__).'/setup/setup*.*');
-	if (file_exists(dirname(__FILE__).'/setup.php') && count($found)==count($matches[1])) {
-		$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-		$p = strpos($dir, ZENFOLDER);
-		if ($p !== false) {
-			$dir = substr($dir, 0, $p);
-		}
-		if (OFFSET_PATH) {
-			$where = 'admin';
-		} else {
-			$where = 'gallery';
-		}
-		if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
-		$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php?autorun=$where";
-		header("Location: $location" );
-		exit();
-	} else {
-		die('Zenphoto needs to run setup but the setup scripts are not present. Please reinstall the setup scripts.');
-	}
-}
 
 ?>
