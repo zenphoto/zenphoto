@@ -123,8 +123,17 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 						}
 					} else {
 						if (strpos($line, '@') === 0) {
-							if (!$plugin_author && substr($line,0,7) == '@author') {
-								$plugin_author = trim(substr($line, 8));
+							preg_match('/@(.*?)\s/',$line,$matches);
+							$subpackage = false;
+							if (!empty($matches)) {
+								switch ($matches[1]) {
+									case 'author':
+										$plugin_author = trim(substr($line, 8));
+										break;
+									case 'subpackage':
+										$subpackage = trim(substr($line, 11)).'/';
+										break;
+								}
 							}
 						} else {
 							$line = strtr(html_encode($line),$markup);
@@ -150,7 +159,7 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 					}
 				}
 			} else {
-				$plugin_URL = "http://www.zenphoto.org/documentation/plugins/_".PLUGIN_FOLDER."---".$extension.'.php'.".html";
+				$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
 				printf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
 			}
 			?>
