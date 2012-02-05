@@ -10,7 +10,6 @@ class Transientimage extends _Image {
 	/**
 	 * creates a transient image (that is, one that is not stored in the database)
 	 *
-	 * @param object $gallery
 	 * @param string $image the full path to the image
 	 * @return transientimage
 	 */

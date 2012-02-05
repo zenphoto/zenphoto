@@ -123,7 +123,7 @@ if (isset($_GET['action'])) {
 				}
 			}
 			$_zp_gallery->setSecurity(sanitize($_POST['gallery_security'],3));
-			$notify = processCredentials($gallery);
+			$notify = processCredentials($_zp_gallery);
 			$codeblock1 = sanitize($_POST['codeblock1'], 0);
 			$codeblock2 = sanitize($_POST['codeblock2'], 0);
 			$codeblock3 = sanitize($_POST['codeblock3'], 0);

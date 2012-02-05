@@ -85,13 +85,13 @@ if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
 		<div class="menu">
 			<h3><?php echo gettext("Gallery"); ?></h3>
 			<?php
-			$gallery = '';
+			$indexname = '';
 			if (getOption('zp_plugin_zenpage')) {
 				if ($_zp_gallery_page == 'index.php' || $_zp_gallery_page != 'gallery.php') {
-					$gallery = gettext('Album index');
+					$indexname = gettext('Album index');
 				}
 			}
-			printAlbumMenu("list","count","album_menu","menu","menu_sub","menu_sub_active", $gallery);
+			printAlbumMenu("list","count","album_menu","menu","menu_sub","menu_sub_active", $indexname);
 			?>
 		</div>
 		<?php

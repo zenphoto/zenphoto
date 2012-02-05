@@ -25,7 +25,6 @@ class SearchEngine
 	var $images = NULL;
 	var $albums = NULL;
 	var $dynalbumname;
-	var $gallery;
 	protected $search_no_albums;	// omit albums
 	protected $search_no_images;	// omit albums
 	protected $search_no_pages;		// omit pages

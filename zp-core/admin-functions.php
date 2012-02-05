@@ -3432,11 +3432,11 @@ function printNestedAlbumsList($albums, $show_thumb) {
  *
  */
 function printEditDropdown($subtab,$nestinglevels = array('1','2','3','4','5')) {
-	global $subalbum_nesting, $gallery_nesting, $imagesTab_imageCount;
+	global $subalbum_nesting, $album_nesting, $imagesTab_imageCount;
 	switch ($subtab) {
 		case '':
 			$link = '?selection=';
-			$nesting = $gallery_nesting;
+			$nesting = $album_nesting;
 			break;
 		case 'subalbuminfo':
 			$link = '?page=edit&amp;album='.html_encode($_GET['album'],3).'&amp;tab=subalbuminfo&amp;selection=';
@@ -3488,12 +3488,12 @@ function printEditDropdown($subtab,$nestinglevels = array('1','2','3','4','5')) 
 }
 
 function processEditSelection($subtab) {
-	global $subalbum_nesting, $gallery_nesting, $imagesTab_imageCount;
+	global $subalbum_nesting, $album_nesting, $imagesTab_imageCount;
 	if(isset($_GET['selection'])) {
 		switch($subtab) {
 			case '':
-				$gallery_nesting = max(1,sanitize_numeric($_GET['selection']));
-				zp_setCookie('gallery_nesting',$gallery_nesting);
+				$album_nesting = max(1,sanitize_numeric($_GET['selection']));
+				zp_setCookie('gallery_nesting',$album_nesting);
 				break;
 			case 'subalbuminfo':
 				$subalbum_nesting = max(1,sanitize_numeric($_GET['selection']));
@@ -3507,7 +3507,7 @@ function processEditSelection($subtab) {
 	} else {
 		switch($subtab) {
 			case '':
-				$gallery_nesting = zp_getCookie('gallery_nesting');
+				$album_nesting = zp_getCookie('gallery_nesting');
 				break;
 			case 'subalbuminfo':
 				$subalbum_nesting = zp_getCookie('subalbum_nesting');

@@ -51,8 +51,8 @@ class quota_manager {
 	 * @return filter_zenphoto_seo
 	 */
 	function __construct() {
-		setOptionDefault('quota_management::default', 250000);
-		setOptionDefault('quota_management::allowZIP', 1);
+		setOptionDefault('quota_default', 250000);
+		setOptionDefault('quota_allowZIP', 1);
 	}
 
 
@@ -62,9 +62,9 @@ class quota_manager {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(	gettext('Default quota') => array('key' => 'quota_management::default', 'type' => OPTION_TYPE_TEXTBOX,
+		return array(	gettext('Default quota') => array('key' => 'quota_default', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext('Default size limit in kilobytes.')),
-									gettext('Allow ZIP files') => array('key' => 'quota_management::allowZIP', 'type' => OPTION_TYPE_CHECKBOX,
+									gettext('Allow ZIP files') => array('key' => 'quota_allowZIP', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext('The size of a ZIP file may be slightly smaller than the sum of the <em>image</em> files it contains. Un-check this box if you wish to disable uploading of ZIP files.'))
 		);
 	}
@@ -105,8 +105,8 @@ class quota_manager {
 		if ($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) return $html;
 		if (!($userobj->getRights() & UPLOAD_RIGHTS)) return $html;
 		$quota = $userobj->getQuota();
-		$used = quota_management::getCurrentUse($userobj);
-		if ($quota == NULL) $quota = getOption('quota_management::default');
+		$used = quota_manager::getCurrentUse($userobj);
+		if ($quota == NULL) $quota = getOption('quota_default');
 		$result =
 			'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
 				<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.gettext("Quota:").'</td>
@@ -172,7 +172,7 @@ class quota_manager {
 			$quota = -1;
 		} else {
 			$quota = $_zp_current_admin_obj->getQuota();
-			if ($quota == NULL) $quota = getOption('quota_management::default');
+			if ($quota == NULL) $quota = getOption('quota_default');
 		}
 		return $quota;
 	}
@@ -184,7 +184,7 @@ class quota_manager {
 	 */
 	static function getUploadLimit($uploadlimit) {
 		if (!zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
-			$uploadlimit = (quota_management::getUploadQuota(0)-quota_management::getCurrentUse(NULL))*1024;
+			$uploadlimit = (quota_manager::getUploadQuota(0)-quota_manager::getCurrentUse(NULL))*1024;
 		}
 		return $uploadlimit;
 	}
@@ -202,10 +202,10 @@ class quota_manager {
 		if (getSuffix($image) == 'zip') {
 			return UPLOAD_ERR_EXTENSION;
 		}
-		$quota = quota_management::getUploadQuota(0);
+		$quota = quota_manager::getUploadQuota(0);
 		$size = round(filesize($image)/1024);
 		if ($quota > 0) {
-			if (quota_management::getCurrentUse(NULL) + $size > $quota) {
+			if (quota_manager::getCurrentUse(NULL) + $size > $quota) {
 				$error = UPLOAD_ERR_QUOTA;
 				break;
 			}
@@ -222,7 +222,7 @@ class quota_manager {
 		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			return $default;
 		}
-		$uploadlimit = quota_management::getUploadLimit(0);
+		$uploadlimit = quota_manager::getUploadLimit(0);
 		if ($uploadlimit <= 1024) {
 			$color = 'style="color:red;"';
 			$warn = ' <span style="color:red;">'.gettext('Uploading is disabled.').'</span>';
@@ -239,7 +239,7 @@ class quota_manager {
 	 * @return string
 	 */
 	static function upload_helper_js($defaultJS) {
-		$quota = quota_management::getUploadLimit(99999);
+		$quota = quota_manager::getUploadLimit(99999);
 		$quotaOK = $quota < 0 || $quota > 1024;
 		if ($quotaOK) {
 			$quota_management_js = '';
@@ -258,7 +258,7 @@ class quota_manager {
 	 * @return array
 	 */
 	static function upload_filetypes($types) {
-		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) || (getoption('quota_management::allowZIP'))) {
+		if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS) || (getoption('quota_allowZIP'))) {
 			return $types;
 		}
 		$key = array_search('ZIP', $types);

@@ -20,7 +20,7 @@ if (isset($_GET['tab'])) {
 }
 
 $subalbum_nesting = 1;
-$gallery_nesting = 1;
+$album_nesting = 1;
 define('ADMIN_IMAGES_STEP', 5);	//	the step for imges per page
 $imagesTab_imageCount = 10;
 processEditSelection($subtab);
@@ -1587,7 +1587,7 @@ if($subtab != "albuminfo") {	?>
 	?>
 	<h1><?php echo gettext("Edit Gallery"); ?></h1>
 	<?php
-	$albums = getNestedAlbumList(NULL, $gallery_nesting);
+	$albums = getNestedAlbumList(NULL, $album_nesting);
 	if (count($albums) > 0) {
 		if (zp_loggedin(ADMIN_RIGHTS) && (count($albums)) > 1) {
 			$sorttype = strtolower($_zp_gallery->getSortType());
@@ -1629,7 +1629,7 @@ if($subtab != "albuminfo") {	?>
 	<?php XSRFToken('savealbumorder');?>
 	<p class="buttons">
 		<?php
-		if ($gallery_nesting>1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+		if ($album_nesting>1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			?>
 			<button class="serialize" type="submit" title="<?php echo gettext("Apply"); ?>" class="buttons"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 			<?php
@@ -1670,7 +1670,7 @@ if($subtab != "albuminfo") {	?>
 	<input name="update" type="hidden" value="Save Order" />
 	<p class="buttons">
 		<?php
-		if ($gallery_nesting>1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
+		if ($album_nesting>1 || zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			?>
 			<button class="serialize" type="submit" title="<?php echo gettext("Apply"); ?>" class="buttons"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 			<?php
