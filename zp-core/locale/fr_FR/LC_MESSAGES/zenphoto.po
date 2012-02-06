@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: zenphoto 1.4.2\n"
+"Project-Id-Version: zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-02 21:18-0500\n"
-"PO-Revision-Date: 2012-02-02 23:27-0500\n"
+"POT-Creation-Date: 2012-02-05 21:39-0500\n"
+"PO-Revision-Date: 2012-02-05 23:18-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -5459,12 +5459,12 @@ msgstr "Zenphoto a détecté que vous essayez d’utiliser le même nom qu’un 
 msgid "class-album detected an invalid folder name: %s."
 msgstr "La fonction class-album a détecté un nom de dossier invalide : %s."
 
-#: F:\sites\zenphoto-dev/zp-core/class-album.php:1100
+#: F:\sites\zenphoto-dev/zp-core/class-album.php:1096
 #, php-format
 msgid "Error: The album named %s cannot be found."
 msgstr "Erreur : l’album %s est introuvable."
 
-#: F:\sites\zenphoto-dev/zp-core/class-album.php:1102
+#: F:\sites\zenphoto-dev/zp-core/class-album.php:1098
 #, php-format
 msgid "Error: The album %s is not readable."
 msgstr "Erreur : l’album %s n’est pas lisible."
@@ -5497,67 +5497,82 @@ msgstr "Mauvais paramètre de l’objet album pour newImage(%s)"
 msgid "Bad filename suffix in newImage(%s)"
 msgstr "Mauvais suffixe de nom de fichier dans newImage(%s)"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:53
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:52
 msgid "File/Folder name"
 msgstr "Nom du fichier ou du dossier"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:55
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:54
 msgid "Custom data"
 msgstr "Données personnalisées"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:56
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:55
 msgid "Location/Place"
 msgstr "Lieu"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:57
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:56
 msgid "City"
 msgstr "Ville"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:58
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:57
 msgid "State"
 msgstr "État, province"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:59
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:58
 msgid "Country"
 msgstr "Pays"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:60
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:59
 msgid "Copyright"
 msgstr "Copyright"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:63
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:62
 msgid "Content"
 msgstr "Contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:64
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:63
 msgid "ExtraContent"
 msgstr "Contenu boni"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:66
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:65
 msgid "Last Editor"
 msgstr "Dernier éditeur"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:67
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:66
 msgid "TitleLink"
 msgstr "Titre-lien"
+
+#: F:\sites\zenphoto-dev/zp-core/error_handlers.php:37
+msgid "<strong>Backtrace:</strong>"
+msgstr "<strong>Trace : </strong> "
+
+#: F:\sites\zenphoto-dev/zp-core/error_handlers.php:75
+msgid "prefix"
+msgstr "Préfixe"
+
+#: F:\sites\zenphoto-dev/zp-core/error_handlers.php:76
+msgid "DB"
+msgstr "BD"
+
+#: F:\sites\zenphoto-dev/zp-core/error_handlers.php:78
+#, fuzzy, php-format
+msgid "%1$s Error: ( <em>%2$s</em> ) failed. %1$s returned the error <em>%3$s</em>"
+msgstr "Erreur %1$s : <em>%2$s</em> a échoué. MySQL a renvoyé l’erreur <em>%3$s</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/full-image.php:25
 msgid "Too few arguments! Image not found."
 msgstr "Pas assez d’arguments ! Image non trouvée."
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:425
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:426
 msgid "ERROR: Assertion failed in"
 msgstr "ERREUR : erreur d’assertion sur"
-
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:939
-msgid "<strong>Backtrace:</strong>"
-msgstr "<strong>Trace : </strong> "
 
 #: F:\sites\zenphoto-dev/zp-core/functions-db-MySQL.php:24
 msgid "MySQL Error: The PHP MySQL extensions have not been installed correctly. Please ask your administrator to add MySQL support to your PHP installation."
 msgstr "Erreur MySQL : les extensions MySQL de PHP n’ont pas été installées correctement. Demandez à votre administrateur d’ajouter les fonctionnalités MySQL à votre installation de PHP."
 
 #: F:\sites\zenphoto-dev/zp-core/functions-db-MySQL.php:30
+#: F:\sites\zenphoto-dev/zp-core/functions-db-PDO_MySQL.php:28
+#: F:\sites\zenphoto-dev/zp-core/functions-db-PDO_SQLite.php:49
 msgid "The <code>$_zp_conf_vars</code> variable is not an array. Zenphoto has not been instantiated correctly."
 msgstr "La variable <code>$_zp_conf_vars</code> n’est pas un tableau. Zenphoto n’a pas été correctement instancié."
 
@@ -5570,19 +5585,6 @@ msgstr "Erreur MySQL : Zenphoto a rencontré l’erreur <em>%s</em> en essayant 
 #, php-format
 msgid "MySQL Error: The database is connected, but MySQL returned the error <em>%1$s</em> when Zenphoto tried to select the database %2$s."
 msgstr "Erreur MySQL : la base de données est bien connectée mais MySQL a renvoyé l’erreur <em>%1$s</em> quand Zenphoto a tenté de sélectionner la base %2$s."
-
-#: F:\sites\zenphoto-dev/zp-core/functions-db-MySQL.php:73
-msgid "prefix"
-msgstr "Préfixe"
-
-#: F:\sites\zenphoto-dev/zp-core/functions-db-MySQL.php:74
-msgid "DB"
-msgstr "BD"
-
-#: F:\sites\zenphoto-dev/zp-core/functions-db-MySQL.php:76
-#, php-format
-msgid "MySQL Query ( <em>%1$s</em> ) failed. MySQL returned the error <em>%2$s</em>"
-msgstr "La requête MySQL ( <em>%1$s</em> ) a échoué. Erreur : %2$s"
 
 #: F:\sites\zenphoto-dev/zp-core/functions-db-PDO_MySQL.php:40
 #, php-format
@@ -6188,12 +6190,7 @@ msgstr "cacheImage : impossible de créer %s"
 msgid "cacheImage(%1$s) exception: %2$s"
 msgstr " erreur cacheImage(%1$s) : %2$s"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-PDO.php:31
-#, php-format
-msgid "%1$s Error: ( <em>%2$s</em> ) failed. MySQL returned the error <em>%3$s</em>"
-msgstr "Erreur %1$s : <em>%2$s</em> a échoué. MySQL a renvoyé l’erreur <em>%3$s</em>"
-
-#: F:\sites\zenphoto-dev/zp-core/functions-PDO.php:131
+#: F:\sites\zenphoto-dev/zp-core/functions-PDO.php:129
 #, php-format
 msgid "%s not connected"
 msgstr "%s non connecté(e)"
@@ -7266,14 +7263,12 @@ msgid "PHP Imagick library <em>%s</em>"
 msgstr "Version <em>%s</em> de la bibliothèque Imagick pour PHP"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:50
-#, fuzzy
 msgid "Arabic"
-msgstr "Arabe (Iran)"
+msgstr "Arabe"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:51
-#, fuzzy
 msgid "Chinese Traditional"
-msgstr "Chinois (Taiwan)"
+msgstr "Chinois traditionel"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:52
 msgid "IBM EBCDIC (Turkish Latin-5)"
@@ -7292,14 +7287,12 @@ msgid "Japanese (JIS-Allow 1 byte Kana)"
 msgstr "Japonnais (JIS-permet le kana à 1 octet)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:56
-#, fuzzy
 msgid "Arabic (DOS)"
-msgstr "Arabe (Oman)"
+msgstr "Arabe (DOS)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:57
-#, fuzzy
 msgid "Hebrew (DOS)"
-msgstr "Hébreu"
+msgstr "Hébreu (DOS)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:58
 msgid "IBM EBCDIC (US-Canada)"
@@ -7310,14 +7303,12 @@ msgid "Chinese Simplified (EUC)"
 msgstr "Chinois simplifié (EUC)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:60
-#, fuzzy
 msgid "Japanese (EUC)"
-msgstr "Japonais"
+msgstr "Japonais (EUC)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:61
-#, fuzzy
 msgid "Korean (EUC)"
-msgstr "Coréen"
+msgstr "Coréen (EUC)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:62
 msgid "Chinese Simplified (GB2312)"
@@ -7328,14 +7319,12 @@ msgid "Chinese Simplified (HZ)"
 msgstr "Chinois simplifié (HZ)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:64
-#, fuzzy
 msgid "OEM United States"
 msgstr "Anglais (États-Unis)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:65
-#, fuzzy
 msgid "Greek (DOS)"
-msgstr "Grec"
+msgstr "Grec (DOS)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:66
 msgid "Baltic (DOS)"
@@ -7350,32 +7339,28 @@ msgid "Central European (DOS)"
 msgstr "Europe centrale (DOS)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:69
-#, fuzzy
 msgid "Turkish (DOS)"
-msgstr "Turc"
+msgstr "Turc (DOS)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:70
-#, fuzzy
 msgid "Icelandic (DOS)"
-msgstr "Islandais"
+msgstr "Islandais (DOS)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:71
 msgid "Greek, Modern (DOS)"
 msgstr "Grec moderne (DOS)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:72
-#, fuzzy
 msgid "Japanese (JIS)"
-msgstr "Japonais"
+msgstr "Japonais (JIS)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:73
 msgid "Japanese (JIS-Allow 1 byte Kana - SO/SI)"
 msgstr "Japonnais (JIS– permet le kana à 1 octet – SO/SI)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:74
-#, fuzzy
 msgid "Korean (ISO)"
-msgstr "Coréen"
+msgstr "Coréen (ISO)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:75
 msgid "Western European (ISO)"
@@ -7383,7 +7368,7 @@ msgstr "Europe occidentale (ISO)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:76
 msgid "Latin 9 (ISO)"
-msgstr "Latin 9 (ISO)"
+msgstr "latin 9 (ISO)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:77
 msgid "Central European (ISO)"
@@ -7402,14 +7387,12 @@ msgid "Cyrillic (ISO)"
 msgstr "Cyrillique (ISO)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:81
-#, fuzzy
 msgid "Arabic (ISO)"
-msgstr "Arabe (Iran)"
+msgstr "Arabe (ISO)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:82
-#, fuzzy
 msgid "Greek (ISO)"
-msgstr "Grec"
+msgstr "Grec (ISO)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:83
 msgid "Hebrew (ISO-Visual)"
@@ -7420,14 +7403,12 @@ msgid "Hebrew (ISO-Logical)"
 msgstr "Hébreu (ISO-logique)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:85
-#, fuzzy
 msgid "Turkish (ISO)"
-msgstr "Turc"
+msgstr "Turc (ISO)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:86
-#, fuzzy
 msgid "Korean (Johab)"
-msgstr "Coréen"
+msgstr "Coréen (Johab)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:87
 msgid "Cyrillic (KOI8-R)"
@@ -7490,18 +7471,16 @@ msgid "Hebrew (Windows)"
 msgstr "Hébreu (Windows)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:103
-#, fuzzy
 msgid "Arabic (Windows)"
-msgstr "Arabe (Iran)"
+msgstr "Arabe (Windows)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:104
 msgid "Baltic (Windows)"
 msgstr "Baltique (Windows)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:105
-#, fuzzy
 msgid "Vietnamese (Windows)"
-msgstr "Vietnamien"
+msgstr "Vietnamien (Windows)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:106
 msgid "Thai (Windows)"
@@ -7536,23 +7515,32 @@ msgid "Plugin useage information"
 msgstr "Information sur l’utilisation"
 
 #: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:98
-#, fuzzy, php-format
+#, php-format
 msgid "Version: %s"
-msgstr "Version %s de PHP"
+msgstr "Version : %s"
 
 #: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:102
-#, fuzzy, php-format
+#, php-format
 msgid "Author: %s"
-msgstr "Auteur : "
+msgstr "Auteur :  %s"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:149
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:158
 #, php-format
 msgid "See also the <a href=\"%1$s\">%2$s</a>"
 msgstr ""
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:154
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:163
 #, php-format
 msgid "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
+msgstr ""
+
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:39
+msgid "Zenphoto has detected a change in your installation signaure and needs to run Setup but some setup files are missing."
+msgstr ""
+
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:40
+#, php-format
+msgid "Please reinstall the following setup files from the %1$s [%2$s] release:"
 msgstr ""
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:115
@@ -7576,9 +7564,8 @@ msgid "loose"
 msgstr "permissif"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:216
-#, fuzzy
 msgid "Updated configuration file"
-msgstr "Confirmation de l’inscription faite par authentification unifiée"
+msgstr "Fichier de configuration mis à jour"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:313
 msgid "Completed system check"
@@ -7646,12 +7633,11 @@ msgid "Systems Check:"
 msgstr "Vérifications système : "
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:420
-#, fuzzy
 msgid "You are not installing the latest version of Zenphoto."
-msgstr "Vous utilisez présentement la dernière version de Zenphoto."
+msgstr "Vous n’installez pas la plus récente version de Zenphoto."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:421
-#, fuzzy, php-format
+#, php-format
 msgid "Version %s is available."
 msgstr "La version %s de Zenphoto est disponible."
 
@@ -7750,39 +7736,32 @@ msgid "PHP <code>magic_quotes_gpc</code> [is enabled]"
 msgstr "L’option <code>magic_quotes_gpc</code> de PHP est activée"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:515
-#, fuzzy
 msgid "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more information See <em><a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-disabled-\">What is magic_quotes_gpc and why should it be disabled?</a></em> in the Zenphoto troubleshooting guide."
-msgstr "Vous devriez songer à désactiver l’option <code>magic_quotes_gpc</code>. Pour plus d’information, voyez le chapitre <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#26\"><em>Qu’est-ce que l’option magic_quotes_gpc et pourquoi elle doit être désactivée</em></a> du Guide de dépannage de Zenphoto."
+msgstr "Vous devriez songer à désactiver l’option <code>magic_quotes_gpc</code>. Pour plus d’information, voyez le chapitre <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-disabled-\" title=\"What is magic_quotes_gpc and why should it be disabled?\"><em>Qu’est-ce que l’option magic_quotes_gpc et pourquoi elle doit être désactivée</em></a> du Guide de dépannage de Zenphoto."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:521
-#, fuzzy
 msgid "PHP <code>magic_quotes_runtime</code>"
-msgstr "Option <code>magic_quotes_gpc</code> de PHP"
+msgstr "Module <code>magic_quotes_gpc</code> de PHP"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:521
-#, fuzzy
 msgid "PHP <code>magic_quotes_runtime</code> [is enabled]"
-msgstr "L’option <code>magic_quotes_gpc</code> de PHP est activée"
+msgstr "Le module <code>magic_quotes_gpc</code> de PHP est activé"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:521
-#, fuzzy
 msgid "You must disable <code>magic_quotes_runtime</code>."
-msgstr "Option <code>magic_quotes_gpc</code> de PHP"
+msgstr "Vous devez désactiver le module <code>magic_quotes_gpc</code> de PHP."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:522
-#, fuzzy
 msgid "PHP <code>magic_quotes_sybase</code>"
-msgstr "Option <code>magic_quotes_gpc</code> de PHP"
+msgstr "Module <code>magic_quotes_sybase</code> de PHP"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:522
-#, fuzzy
 msgid "PHP <code>magic_quotes_sybase</code> [is enabled]"
-msgstr "L’option <code>magic_quotes_gpc</code> de PHP est activée"
+msgstr "Le module <code>magic_quotes_sybase</code> de PHP est activé"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:522
-#, fuzzy
 msgid "You must disable <code>magic_quotes_sybase</code>."
-msgstr "Option <code>magic_quotes_gpc</code> de PHP"
+msgstr "Vous devez désactiver le module <code>magic_quotes_sybasec</code> de PHP."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:524
 msgid "PHP <code>gettext()</code> support"
@@ -7910,14 +7889,12 @@ msgid "No Zenphoto image handling library was loaded. Be sure that your PHP has 
 msgstr "Aucune librairie de gestion d’images pour Zenphoto n’a été chargée. Vérifiez que votre installation de PHP comporte une bibliothèque graphique."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:605
-#, fuzzy
 msgid "<em>zenphoto.cfg</em> file"
-msgstr "Fichier <em>zp-config.php</em>"
+msgstr "Fichier <em>zenphoto.cfg</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:605
-#, fuzzy
 msgid "<em>zenphoto.cfg</em> file [does not exist]"
-msgstr "Le fichier <em>zp-config.php</em> n’existe pas"
+msgstr "Le fichier <em>zenphoto.cfg</em> n’existe pas"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:606
 #, fuzzy, php-format
@@ -7930,14 +7907,13 @@ msgid "<br /><br />You can find the file in the \"%s\" directory."
 msgstr "<br /><br />Vous pouvez trouver le fichier dans le dossier « %s »."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:610
-#, fuzzy
 msgid "File permissions"
-msgstr "Permissions sur les fichiers et les dossiers"
+msgstr "Droits des fichiers"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:612
-#, fuzzy, php-format
+#, php-format
 msgid "Set File permissions to %s."
-msgstr "Établit les permissions sur les fichiers et les dossiers à %s."
+msgstr "Établit les droits des fichiers à %s."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:615
 #, php-format
@@ -7950,14 +7926,13 @@ msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>inconnu</em> (<code>%o</code>)"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:628
-#, fuzzy, php-format
+#, php-format
 msgid "File Permissions [are %s]"
-msgstr "Les permissions sur les fichiers et les dossiers sont : %s"
+msgstr "Les droits des fichiers sont : %s"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:629
-#, fuzzy
 msgid "If file permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission."
-msgstr "Si les permissions sur les dossiers et fichiers ne sont pas sur <em>strict</em>, il y a un risque de sécurité. Malheureusement, certains serveurs ne supportent pas bien les permissions strictes. Si vous rencontrez des problèmes, relancez l’installation et désactivez cette option."
+msgstr "Si les droits des fichiers ne sont pas réglés à <em>strict</em>, cela pose un risque de sécurité. Malheureusement, certains serveurs ne supportent pas bien les droits d’accès stricts. Si vous rencontrez des problèmes, relancez l’installation en donnant un droit d'accès un peu plus ouvert."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:635
 msgid "Your filesystem is Macintosh"
@@ -7982,9 +7957,9 @@ msgid "Change the filesystem character set define to %1$s.<br />If you do not kn
 msgstr "Changer le jeu de caractères du système de fichiers vers %1$s.<br />Si vous ne savez pas quoi mettre, utilisez « %2$s »."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:699
-#, fuzzy, php-format
+#, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
-msgstr "Le jeu de caractères du système de fichier est %1$s [aucun test effectué]"
+msgstr "Le jeu de caractères du système de fichier est %1$s [confirmé]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:704
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
@@ -8034,9 +8009,8 @@ msgid "Warning!"
 msgstr "Attention !"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:820
-#, fuzzy
 msgid "SQLite is a limited database and does not support all Zenphoto functionality. Use of this database is for <em>Testing</em> only."
-msgstr "SQLite est un système de base de données limité et ne supporte pas toutes les fonctionnalités de Zenphoto. Il n’est disponible ici qu’à des fins de démonstration."
+msgstr "SQLite est un système de base de données limité et ne supporte pas toutes les fonctionnalités de Zenphoto. Il n’est disponible ici qu’à des fins de test."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:829
 msgid "Database"
@@ -8083,14 +8057,12 @@ msgstr "Connexion à la base de données"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:880
 #: F:\sites\zenphoto-dev/zp-core/setup.php:889
-#, fuzzy
 msgid "Database setup in configuration file"
-msgstr "Le paramétrage de la base de données est présent dans <em>zp-config.php</em>"
+msgstr "Paramétrage de la base de données dans le fichier de configuration"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:887
-#, fuzzy
 msgid "You have not correctly set your <strong>Database</strong> <code>user</code>, <code>password</code>, etc. in your configuration file and <strong>setup</strong> is not able to write to the file."
-msgstr "Vous n’avez pas spécifié vos données MySQL(<code>utilisateur</code>, <code>mot de passe</code>, etc.) dans le fichier <code>zp-config.php</code> et <strong>l’outil d’installation</strong> n’est pas en mesure d’écrire dans ce fichier."
+msgstr "Vous n’avez pas défini correctement <strong>la base de données</strong> <code>l’utilisateur</code>, <code>le mot de passe</code>, etc. dans le fichier de configuration, et <strong>l’outil d’installation</strong> (setup) n’est pas en mesure d’écrire dans ce fichier."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:892
 #, php-format
@@ -8302,9 +8274,8 @@ msgid "Setting permissions (0%o) for Zenphoto package."
 msgstr ""
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1201
-#, fuzzy
 msgid "Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]"
-msgstr "Ceci n’est pas un paquet d’installation officiel, certains fichiers principaux de Zenphoto sont manquants ou leurs <em>dates de modification</em> ne correspondent pas."
+msgstr "Fichiers de base de Zenphoto [Il s’agit d’une version de <em>debug</em>. Certains fichiers sont absents ou défectueux.]"
 
 # I removed the [ ] to use more logical sentences
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1203
@@ -8316,9 +8287,8 @@ msgid "Perhaps there was a problem with the upload. You should check the followi
 msgstr "Il y a peut être eu un problème lors du téléchargement vers le serveur. Vous devriez vérifier les fichiers suivants :"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1210
-#, fuzzy
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
-msgstr "Les fichiers principaux de Zenphoto sont différents de ceux de la version officielle"
+msgstr "Fichiers de base de Zenphoto [Il s’agit d’une version de <em>debug</em>. Certains fichiers sont absents ou défectueux.]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1217
 msgid "Zenphoto core files"
@@ -8465,18 +8435,16 @@ msgstr "L’option [<code>$conf['external_album_folder']</code> des albums est o
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1402
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1426
-#, fuzzy
 msgid "You should update your configuration file to conform to the current zenphoto.cfg example file."
-msgstr "Vous devriez mettre à jour votre fichier zp-config.php pour qu’il se conforme au fichier zp-config.php.example."
+msgstr "Vous devriez mettre à jour votre fichier de configuration qu’il se conforme au fichier zenphoto.cfg donné en exemple."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1426
 msgid "<em>albums</em> folder"
 msgstr "Dossier <em>albums</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1426
-#, fuzzy
 msgid "<em>albums</em> folder [The line <code>$conf['album_folder']</code> is missing from your configuration file]"
-msgstr "Le dossier <em>albums</em> ne peut être trouvé [La ligne <code>$conf['album_folder']</code> est absente de votre fichier zp-config.php]"
+msgstr "Le dossier <em>albums</em> [La ligne <code>$conf['album_folder']</code> est absente de votre fichier de configuration]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1430
 msgid "<em>locale</em> folders"
@@ -8579,14 +8547,13 @@ msgid "Done with table update with errors"
 msgstr "Mise à jour de la table effectuée, mais avec des erreurs !"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:2320
-#, fuzzy
 msgid "Setup files deleted."
-msgstr "L’installation a échoué."
+msgstr "Fichiers d’installation supprimés."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:2327
-#, fuzzy, php-format
+#, php-format
 msgid "Failed to delete: %s"
-msgstr "%s n’a pu être effacé(e)."
+msgstr "%s n’a pu être effacé(e)"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:2335
 msgid "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future."
@@ -8647,9 +8614,8 @@ msgid "If you haven't created the database yet, now would be a good time."
 msgstr "Si vous n’avez pas encore créé la base de données, il serait temps de le faire."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:2548
-#, fuzzy
 msgid "The zenphoto.cfg file does not exist. You should run setup.php to check your configuration and create this file."
-msgstr "Le fichier zp-config.php n’existe pas. Vous devriez lancer setup.php pour vérifier votre configuration et créer ce fichier."
+msgstr "Le fichier zenphoto.cfg n’existe pas. Vous devriez lancer setup.php pour vérifier votre configuration et créer ce fichier."
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:51
 msgid "Are you sure you want to delete the image? THIS CANNOT BE UNDONE!"
@@ -8668,14 +8634,12 @@ msgid "Admin Toolbox"
 msgstr "Outils d’administration"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:121
-#, fuzzy
 msgid "Users"
-msgstr "Utilisateur"
+msgstr "sUtilisateur"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:145
-#, fuzzy
 msgid "Logs"
-msgstr "journaux"
+msgstr "Journaux"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:165
 msgid "Sort Gallery"
@@ -8694,9 +8658,8 @@ msgid "Sort subalbums"
 msgstr "Trier les sous-albums"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:212
-#, fuzzy
 msgid "Sort images"
-msgstr "Trier les images par : "
+msgstr "Trier les images"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:222
 msgid "Delete the album"
@@ -8782,15 +8745,13 @@ msgid "Album Thumbnails"
 msgstr "Vignettes de l’album"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:989
-#, fuzzy
 msgid "Return to search"
-msgstr "Retour à %s"
+msgstr "Retour à la recherche"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:1216
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:1220
-#, fuzzy
 msgid "printField() invalid function call."
-msgstr "appel invalide de la fonction printEditable()."
+msgstr "appel invalide de la fonction printField()."
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:1822
 msgid "The image is marked un-published."
@@ -8843,18 +8804,16 @@ msgid "%s within previous results"
 msgstr "%s parmi les résultats précédents"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:4046
-#, fuzzy
 msgid "search options"
-msgstr "options"
+msgstr "options de recherche"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:4046
 msgid "fields"
 msgstr "champs"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:4082
-#, fuzzy
 msgid "Within"
-msgstr "Lithuanien"
+msgstr "parmi"
 
 #: F:\sites\zenphoto-dev/zp-core/template-functions.php:4086
 msgid "New"
@@ -8877,14 +8836,12 @@ msgid "You've most likely exceeded the upload limits. Try uploading fewer files 
 msgstr "Vous avez vraisemblablement dépassé votre quota de chargement. Veuillez charger moins de fichiers à la fois ou encore un fichier Zip."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-httpupload/uploader.php:120
-#, fuzzy
 msgid "You must upload at least one file."
-msgstr "Vous devez saisir un état ou une province."
+msgstr "Vous devez charger au moins un fichier."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-httpupload/uploader.php:122
-#, fuzzy
 msgid "You must enter a folder name for your new album."
-msgstr "Vous devez entrer votre nom."
+msgstr "Vous devez entrer le nom du répertoire de votre nouvel album."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-httpupload/uploader.php:126
 msgid "You have attempted to upload to an album for which you do not have upload rights"
@@ -8909,9 +8866,8 @@ msgid "The error %s was reported when submitting the form. Please try again. If 
 msgstr "L’erreur %s a été rapportée lorsque vous avez soumis ce formulaire. Veuillez essayer de nouveau. Si l’erreur se reproduit, veuillez vérifier votre serveur et sa configuration php. (Assurez-vous que le chargement de fichiers y est permis et que la limite upload_max_filesize est assez élevée.) Si vous croyez qu’il y a un bug, veuillez le rapporter. Merci !"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-httpupload/upload_form.php:61
-#, fuzzy
 msgid "Doesn't reload!"
-msgstr "Télécharger"
+msgstr "Ne recharge pas la page !"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-httpupload/upload_form.php:61
 msgid "Add more upload boxes"
@@ -8922,25 +8878,21 @@ msgid "(won't reload the page, but remember your upload limits!)"
 msgstr "(cela ne va pas recharger la page, mais pensez aux limites de chargement de votre serveur !)"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:92
-#, fuzzy
 msgid "Add files..."
-msgstr "Ajouter les extensions"
+msgstr "Ajouter des fichiers..."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:96
-#, fuzzy
 msgid "Start upload"
-msgstr "chargement"
+msgstr "Démarrer le chargement"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:97
-#, fuzzy
 msgid "Cancel upload"
-msgstr "Liste des changements"
+msgstr "Annuler le chargmeent"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:112
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:134
-#, fuzzy
 msgid "Error:"
-msgstr "Erreur !"
+msgstr "Erreur :"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:113
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:142
@@ -8954,9 +8906,8 @@ msgstr "Le fichier est trop petit"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:115
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:144
-#, fuzzy
 msgid "Filetype not allowed"
-msgstr "Méthode non autorisée"
+msgstr "Type de fichier non autorisé"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:116
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:145
@@ -8976,18 +8927,16 @@ msgid "File was only partially uploaded"
 msgstr "Le fichier a été chargé en partie seulement"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:138
-#, fuzzy
 msgid "No File was uploaded"
-msgstr "Vos fichiers ont été chargés."
+msgstr "Aucun fichier n’a été chargé"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:139
 msgid "Missing a temporary folder"
 msgstr "Un fichier temporaire est absent"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:140
-#, fuzzy
 msgid "Failed to write file to disk"
-msgstr "%s n’a pu être effacé(e)."
+msgstr "L’écriture sur le disque a échoué"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:141
 msgid "File upload stopped by extension"
@@ -10704,9 +10653,8 @@ msgstr "Retour en haut"
 
 #: F:\sites\zenphoto-dev/zp-core/utilities/purge_image_cache.php:4
 #: F:\sites\zenphoto-dev/zp-core/utilities/purge_rss_cache.php:4
-#, fuzzy
 msgid "cache"
-msgstr "Cache RSS"
+msgstr "cache"
 
 #: F:\sites\zenphoto-dev/zp-core/utilities/purge_image_cache.php:6
 #: F:\sites\zenphoto-dev/zp-core/utilities/purge_image_cache.php:11
@@ -10721,9 +10669,8 @@ msgstr "Vider le cache RSS"
 #: F:\sites\zenphoto-dev/zp-core/utilities/refresh_database.php:4
 #: F:\sites\zenphoto-dev/zp-core/utilities/refresh_metadata.php:4
 #: F:\sites\zenphoto-dev/zp-core/utilities/reset_albumthumbs.php:15
-#, fuzzy
 msgid "database"
-msgstr "Base de données"
+msgstr "base de données"
 
 #: F:\sites\zenphoto-dev/zp-core/utilities/refresh_database.php:6
 #: F:\sites\zenphoto-dev/zp-core/utilities/refresh_database.php:11
@@ -10739,9 +10686,8 @@ msgid "Reset album thumbs"
 msgstr "Réinitialiser les vignettes des albums"
 
 #: F:\sites\zenphoto-dev/zp-core/utilities/reset_albumthumbs.php:21
-#, fuzzy
 msgid "Reset album thumbnails to either random or most recent"
-msgstr "Réinitialise toutes les vignettes d’album, soit en mode aléatoire soit en mode %s."
+msgstr "Réinitialise toutes les vignettes d’album, soit en mode aléatoire soit au plus récent document."
 
 #: F:\sites\zenphoto-dev/zp-core/utilities/reset_albumthumbs.php:37
 msgid "thumbs"
@@ -10806,6 +10752,7 @@ msgstr ""
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/check_for_update.php:19
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/check_for_update.php:24
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:93
 msgid "Check for update"
 msgstr "Vérifier s’il existe une mise à jour de Zenphoto"
 
@@ -10831,10 +10778,16 @@ msgid "Provides a means for handling arbitrary file types. (No rendering provide
 msgstr "Permet de traiter tous les types de fichiers (sans en faire de rendu)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-AnyFile.php:45
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-textobject.php:82
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:48
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:49
 msgid "Watermark default images"
 msgstr "Images de filigrane par défaut"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-AnyFile.php:46
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-textobject.php:83
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:49
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:50
 msgid "Check to place watermark image on default thumbnail images."
 msgstr "Cocher pour afficher une image de filigrane sur les vignettes par défaut."
 
@@ -10953,9 +10906,8 @@ msgid "Loads Colorbox JS and CSS scripts for selected theme page scripts. Note t
 msgstr "Charge les scripts Javascript et les feuilles CSS de Colorbox pour les scripts des pages de thème sélectionnées. Veuillez noter que cette extension n’attache pas Colorbox à un élément en particulier, vous devez effectuer cette association vous-même. Visitez le <a href='http://colorpowered.com/colorbox/'>site de Colorbox</a> pour plus de détails."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/colorbox.php:42
-#, fuzzy
 msgid "Colorbox theme"
-msgstr "Votre thème"
+msgstr "Thème Colorbox"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/colorbox.php:43
 msgid "Example1"
@@ -11088,14 +11040,14 @@ msgid "<em>%1$s</em> commented on %2$s:"
 msgstr "<em>%1$s</em> a commenté sur %2$s  :"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/comment_form.php:310
-#, fuzzy, php-format
+#, php-format
 msgid "City%s:"
-msgstr "Ville : %s"
+msgstr "Ville%s :"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/comment_form.php:326
-#, fuzzy, php-format
+#, php-format
 msgid "Country%s:"
-msgstr "Pays : %s"
+msgstr "Pays%s :"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/comment_form.php:346
 msgid "*Required"
@@ -11127,19 +11079,16 @@ msgid "You must supply the postal code field."
 msgstr "Vous devez saisir un code postal."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/comment_form.php:498
-#, fuzzy
 msgid "Street"
-msgstr "Rue :"
+msgstr "Rue"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/comment_form.php:512
-#, fuzzy
 msgid "Website"
-msgstr "Site internet :"
+msgstr "Site internet"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/comment_form.php:520
-#, fuzzy
 msgid "Postal code"
-msgstr "Code postal :"
+msgstr "Code postal"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/comment_form.php:554
 msgid "Mail send failed"
@@ -11571,9 +11520,8 @@ msgid "Use printAlbumLocation()."
 msgstr "Utilisez printAlbumLocation()."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:292
-#, fuzzy
 msgid "Use printField()."
-msgstr "Utilisez printRating()."
+msgstr "Utilisez printField()."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:349
 msgid "Use rewrite_path()."
@@ -12091,6 +12039,7 @@ msgid "Enable <strong>flowplayer 3</strong> to handle multimedia files."
 msgstr "Activer <strong>flowplayer 3</strong> pour traiter les fichiers multimédias"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:18
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:39
 msgid "<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too."
 msgstr "<strong>Important. </strong> Une seule extension de lecture multimedia peut-être activée à la fois. L’extension class-video doit également être activée."
 
@@ -12185,6 +12134,7 @@ msgstr "Couleur de la bordure des contrôles du lecteur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:119
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:160
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:100
 msgid "Autoplay"
 msgstr "Lecture automatique"
 
@@ -12362,6 +12312,7 @@ msgid "Player height (Note this refers to the player window. The playlist displa
 msgstr "Hauteur de la fenêtre du lecteur (l’affichage de la liste de lecture est affiné par CSS)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:163
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:429
 msgid "full screen"
 msgstr "plein écran"
 
@@ -12399,6 +12350,7 @@ msgid "If the Flowplayer playlist scripts should be loaded. Note that you have t
 msgstr "Si les scripts de liste de lecture Flowplayer doivent être chargés. Vous devez ajouter la fonction flowplayerPlaylist() vous-même à votre thème (référez-vous à la documentation)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:172
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:114
 msgid "Playlist playtime"
 msgstr "Temps de lecture de la liste"
 
@@ -12542,7 +12494,6 @@ msgid "All hitcounters have been set to zero"
 msgstr "Tous les compteurs d’affichage ont été remis à zéro"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/hitcounter.php:42
-#, fuzzy
 msgid "All hitcounters have been set to zero."
 msgstr "Tous les compteurs d’affichage ont été remis à zéro"
 
@@ -12659,19 +12610,16 @@ msgid "Checks for Apache HTTP authenitcation authorized users"
 msgstr "Vérifie les utilisateurs autorisés via l’authentification HTTP Apache"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/http_auth.php:73
-#, fuzzy
 msgid "User validation"
-msgstr "Expiration d’un utilisateur"
+msgstr "Validation de l’utilisateur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/http_auth.php:74
-#, fuzzy
 msgid "verify"
-msgstr "Valider"
+msgstr "vérifier"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/http_auth.php:74
-#, fuzzy
 msgid "trusted"
-msgstr "le plus utilisé"
+msgstr "faire confiance"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/http_auth.php:75
 msgid "Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This setting does not verify passwords against the Zenphoto user.)"
@@ -12884,24 +12832,20 @@ msgid "If checked the carousel will flow vertically instead of the default horiz
 msgstr "Si cette option est activée, le caroussel se déplacera verticalement (au lieu d’ horizontalement). Cela peut nécessiter des modifications à votre thème."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jcarousel_thumb_nav.php:70
-#, fuzzy
 msgid "The scripts for which jCarousel is enabled. {Should have been set by the themes!}"
-msgstr "Les scripts pour lesquels Colorbox est activé. <br />(Cela devrait être spécifié par les thèmes.)"
+msgstr "Les scripts pour lesquels jCarousel est activé. {Cela devrait être spécifié par les thèmes !}"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:39
-#, fuzzy
 msgid "Enable <strong>jPlayer</strong> to handle multimedia files."
-msgstr "Activer <strong>flowplayer 3</strong> pour traiter les fichiers multimédias"
+msgstr "Active <strong>jPlayer</strong> pour traiter les fichiers multimédias."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:39
-#, fuzzy
 msgid "Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license."
-msgstr "Veuillez consulter<a href='http://flowplayer.org'>flowplayer.org</a> pour plus d’informations sur le lecteur et sa licence."
+msgstr "Veuillez consulter<a href='http://jplayer.org'>jplayer.org</a> pour plus d’informations sur ce lecteur et sa licence."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:42
-#, fuzzy
 msgid "This player does not support <em>External Albums</em>."
-msgstr "Les lecteurs flash ne gèrent pas les <em>Albums externes</em>."
+msgstr "Ce lecteur ne gère pas les <em>albums externes</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:101
 msgid "Disabled automatically if several players on one page"
@@ -13858,14 +13802,12 @@ msgid "Log downloaded"
 msgstr "Log téléchargé"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:96
-#, fuzzy
 msgid "Install"
 msgstr "Installation"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:100
-#, fuzzy
 msgid "Remove setup files"
-msgstr "Effacer le fichier installation"
+msgstr "Effacer les fichiers d’installation"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:103
 msgid "Request add user"
@@ -14147,9 +14089,8 @@ msgid "Utility to divert access to the gallery to a screen saying the site is up
 msgstr "Outil pour rediriger l'accès vers une page temporaire pendant la mise à jour du site."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:21
-#, fuzzy
 msgid "The <em>mod_rewrite</em> must be enabled"
-msgstr "Le module <em>mod_rewrite</em> doit être activé pour que cette extension fonctionne."
+msgstr "Le module <em>mod_rewrite</em> doit être activé."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:28
 #, fuzzy, php-format
@@ -14167,9 +14108,8 @@ msgid "Please return later"
 msgstr "Veuillez essayer de nouveau"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:38
-#, fuzzy
 msgid "There is no .htaccess file"
-msgstr "Aucun gestionnaire de mail configuré !"
+msgstr "Le fichier <em>.htaccess</em> n’existe pas"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:40
 msgid "Close the site."
@@ -14210,9 +14150,8 @@ msgid "Slide width"
 msgstr "Largeur de la diapositive"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:57
-#, fuzzy
 msgid "Width of the images in the slideshow. <em>[jQuery Cycle/Colorbox sizedimage mode option]</em><br />If empty the theme options <em>image size</em> is used."
-msgstr "Largeur des images dans le diaporama. <em>[option liée à jQuery]</em><br />Si cette valeur est vide, la <em>taille des images</em> spécifiée dans les options du thème est utilisée."
+msgstr "Largeur des images dans le diaporama. <em>[option liée au mode « image redimensionnée » de jQuery Cycle/Colorbox]</em><br />Si cette valeur est vide, la <em>taille des images</em> spécifiée dans les options du thème est utilisée."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:58
 msgid "Slide height"
@@ -14344,14 +14283,12 @@ msgid "Height of the Flowplayer display for the slideshow <em>(Flash mode)</em>.
 msgstr "Hauteur d’affichage du Flowplayer pour le diaporama <em>(mode Flash)</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:84
-#, fuzzy
 msgid "Colorbox image title"
-msgstr "Type d’image Colorbox"
+msgstr "Titre d’image Colorbox"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:85
-#, fuzzy
 msgid "If the image title should be shown at the bottom of the Colorbox <em>[jQuery Colorbox mode option]</em>."
-msgstr "L’effet de transition Colorbox à utiliser. <em>[option liée à jQuery Colorbox]</em>"
+msgstr "Si le titre de l’image doit etre affiché en bas de la boîte Colorbox <em>[option liée à jQuery Colorbox]</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:110
 msgid "View Slideshow"
@@ -14751,9 +14688,8 @@ msgid "Diaplay a logon form or Colorbox logon link if the user is not logged in.
 msgstr "Si activé, un formulaire de connexion s’affichera si le visiteur n’est pas déjà connecté."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/user_mailing_list.php:13
-#, fuzzy
 msgid "Provides a utility function to send e-mails to all registered users who have provided an e-mail address."
-msgstr "Un outil pour envoyer un email à tous les utilisateurs enregistrés qui ont fourni leur adresse."
+msgstr "Fournit un outil pour envoyer un email à tous les utilisateurs enregistrés qui ont fourni leur adresse."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/user_mailing_list.php:24
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/user_mailing_list.php:69
@@ -15045,9 +14981,8 @@ msgid "<strong>Note:</strong> <em>Wordpress page and category nesting</em> is cu
 msgstr "<strong>Note :</strong> <em>Les associations categories/pages de Wordpress</em> ne sont pas préservées mais peuvent être facilement recrées via du glisser/déposer."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/wordpress_import.php:404
-#, fuzzy
 msgid "In case anything does not work as expected the query results from the Wordpress database are logged in <code>zp-data/debug.log</code>"
-msgstr "Dans le cas où quelque chose ne fonctionnerait pas comme prévu, les résultats des requêtes sur la base de données Wordpress sont journalisés dans le journal de déboggage <code>zp-data/debug_log.txt</code>"
+msgstr "Au cas où quelque chose ne fonctionnerait pas comme prévu, les résultats des requêtes sur la base de données Wordpress sont journalisés dans le journal de déboggage <code>zp-data/debug.log</code>"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/wordpress_import.php:406
 msgid "<strong>ERROR: </strong>The Zenpage CMS plugin is not enabled."
@@ -16485,7 +16420,6 @@ msgstr "<strong>Note:</strong> Cet album ne contient aucune image."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:248
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:109
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1468
 msgid "Articles"
 msgstr "Articles"
 
@@ -16499,7 +16433,6 @@ msgid "Categories:"
 msgstr "Catégories : "
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:604
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:891
 msgid "All categories"
 msgstr "Toutes les catégories"
 
@@ -16895,11 +16828,6 @@ msgstr "L’ordre de tri des pages indiquées ne peut être enregistré parce qu
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-categories.php:201
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:333
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:334
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:313
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:314
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1184
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1186
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1564
 msgid "Reset hitcounter"
 msgstr "Remettre le compteur d’affichage à zéro"
 
@@ -17054,8 +16982,6 @@ msgid "Hint: If you need more space for your text use TinyMCE's full screen mode
 msgstr "Astuce : si vous avez besoin de plus d’espace pour saisir votre texte, utilisez le mode plein écran de TinyMCE (cliquez sur le carré bleu en haut à droite de la barre d’édition)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:410
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1160
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1679
 msgid "Publish"
 msgstr "Publier"
 
@@ -17129,7 +17055,6 @@ msgstr "Personnalisé :"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:20
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-pages.php:20
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:532
 msgid "Article successfully deleted!"
 msgstr "Article supprimé !"
 
@@ -17155,12 +17080,6 @@ msgstr "Effacer les catégories"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:349
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:352
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:355
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:296
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:299
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:328
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:331
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:334
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1170
 msgid "locked"
 msgstr "verrouillé(e)"
 
@@ -17532,6 +17451,11 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
 #, php-format
 msgid "Failed to retrieve link <em>%s</em>"
 msgstr "Impossible d’atteindre le lien <em>%s</em>"
+
+#~ msgid ""
+#~ "MySQL Query ( <em>%1$s</em> ) failed. MySQL returned the error <em>%2$s</"
+#~ "em>"
+#~ msgstr "La requête MySQL ( <em>%1$s</em> ) a échoué. Erreur : %2$s"
 
 #, fuzzy
 #~ msgid ""
