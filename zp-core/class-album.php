@@ -1354,6 +1354,10 @@ class Album extends MediaObject {
 		$this->set('owner',$owner);
 	}
 
+	/**
+	 *
+	 * Date at which the album last discovered an image
+	 */
 	function getUpdatedDate() {
 		return $this->get('updateddate');
 	}

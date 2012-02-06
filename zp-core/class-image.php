@@ -453,11 +453,11 @@ class _Image extends MediaObject {
 				$save = true;
 			}
 			if (is_null($albdate = $alb->getDateTime()) || ($_zp_gallery->getAlbumUseImagedate() && strtotime($albdate) < strtotime($this->getDateTime()))) {
-				$this->album->setDateTime($this->getDateTime());   //  not necessarily the right one, but will do. Can be changed in Admin
+				$alb->setDateTime($this->getDateTime());   //  not necessarily the right one, but will do. Can be changed in Admin
 				$save = true;
 			}
 			if ($save) {
-				$this->album->save();
+				$alb->save();
 			}
 		}
 	}

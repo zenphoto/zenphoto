@@ -923,6 +923,7 @@ function getAlbumBreadcrumb($title=NULL) {
 	global $_zp_current_search, $_zp_gallery, $_zp_current_album, $_zp_last_album;
 	$output = array();
 	if (in_context(ZP_SEARCH_LINKED)) {
+		$album = NULL;
 		$dynamic_album = $_zp_current_search->dynalbumname;
 		if (empty($dynamic_album)) {
 			if (!is_null($_zp_current_album)) {
@@ -940,13 +941,16 @@ function getAlbumBreadcrumb($title=NULL) {
 	} else {
 		$album = $_zp_current_album;
 	}
-	if (is_null($title)) {
-		$title = $album->getTitle();
-		if (empty($title)) {
-			$title = gettext('Album Thumbnails');
+	if ($album) {
+		if (is_null($title)) {
+			$title = $album->getTitle();
+			if (empty($title)) {
+				$title = gettext('Album Thumbnails');
+			}
 		}
+		return array('link'=>getAlbumLinkURL($album), 'title'=>$title, 'text'=>$album->getDesc());
 	}
-	return array('link'=>getAlbumLinkURL($album), 'title'=>$title, 'text'=>$album->getDesc());
+	return false;
 }
 
 /**
@@ -957,14 +961,15 @@ function getAlbumBreadcrumb($title=NULL) {
 * @param string $title Text to be used as the URL title tag
 */
 function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
-	$breadcrumb = getAlbumBreadcrumb($title);
-	$output = html_encode(html_decode($before));
-	$output .= "<a href=\"" . html_encode($breadcrumb['link']) . "\">";
-	$output .= html_encode($breadcrumb['title']);
-	$output .= '</a>';
-	$output .= html_encode(html_decode($after));
-	echo $output;
+	if ($breadcrumb = getAlbumBreadcrumb($title)) {
+		$output = $before;
+		$output .= "<a href=\"" . html_encode($breadcrumb['link']) . "\">";
+		$output .= html_encode($breadcrumb['title']);
+		$output .= '</a>';
+		$output .= $after;
+		echo $output;
 	}
+}
 
 /**
  * returns the breadcrumb navigation for album, gallery and image view.
