@@ -34,14 +34,15 @@ function getImageAlbumAlbumList($obj, &$albumlist) {
 }
 
 /**
- * Retuns a list of album statistic accordingly to $option
+ * Returns a list of album statistic accordingly to $option
  *
  * @param int $number the number of albums to get
- * @param string $option "popular" for the most popular albums,
- *     "latest" for the latest uploaded, "mostrated" for the most voted,
- *     "toprated" for the best voted
- * 		 "latestupdated" for the latest updated
- *	@param string $albumfolder The name of an album to get only the statistc for its subalbums
+ * @param string $option
+ *		"popular" for the most popular albums,
+ *		"latest" for the latest uploaded, "mostrated" for the most voted,
+ *		"toprated" for the best voted
+ *		"latestupdated" for the latest updated
+ * @param string $albumfolder The name of an album to get only the statistc for its subalbums
  * @return string
  */
 function getAlbumStatistic($number=5, $option, $albumfolder='') {
@@ -87,18 +88,20 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
  * A css id is attached by default named '$option_album'
  *
  * @param string $number the number of albums to get
- * @param string $option "popular" for the most popular albums,
- *                  "latest" for the latest uploaded,
- *                  "mostrated" for the most voted,
- *                  "toprated" for the best voted
- * 									"latestupdated" for the latest updated
+ * @param string $option
+ *		"popular" for the most popular albums,
+ *		"latest" for the latest uploaded,
+ *		"mostrated" for the most voted,
+ *		"toprated" for the best voted
+ *		"latestupdated" for the latest updated
  * @param bool $showtitle if the album title should be shown
  * @param bool $showdate if the album date should be shown
  * @param bool $showdesc if the album description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -118,18 +121,20 @@ function printAlbumStatistic($number, $option, $showtitle=false, $showdate=false
  * Not for standalone use.
  *
  * @param array $album the array that getAlbumsStatistic() submitted
- * @param string $option "popular" for the most popular albums,
- *                  "latest" for the latest uploaded,
- *                  "mostrated" for the most voted,
- *                  "toprated" for the best voted
- * 									"latestupdated" for the latest updated
+ * @param string $option
+ *		"popular" for the most popular albums,
+ *		"latest" for the latest uploaded,
+ *		"mostrated" for the most voted,
+ *		"toprated" for the best voted
+ *		"latestupdated" for the latest updated
  * @param bool $showtitle if the album title should be shown
  * @param bool $showdate if the album date should be shown
  * @param bool $showdesc if the album description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -221,9 +226,10 @@ function printAlbumStatisticItem($album, $option, $showtitle=false, $showdate=fa
  * @param bool $showdate if the album date should be shown
  * @param bool $showdesc if the album description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -241,9 +247,10 @@ function printPopularAlbums($number=5,$showtitle=false, $showdate=false, $showde
  * @param bool $showdate if the album date should be shown
  * @param bool $showdesc if the album description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -261,9 +268,10 @@ function printLatestAlbums($number=5,$showtitle=false, $showdate=false, $showdes
  * @param bool $showdate if the album date should be shown
  * @param bool $showdesc if the album description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -281,9 +289,10 @@ function printMostRatedAlbums($number=5,$showtitle=false, $showdate=false, $show
  * @param bool $showdate if the album date should be shown
  * @param bool $showdesc if the album description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -301,9 +310,10 @@ function printTopRatedAlbums($number=5,$showtitle=false, $showdate=false, $showd
  * @param bool $showdate if the album date should be shown
  * @param bool $showdesc if the album description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -318,11 +328,11 @@ function printLatestUpdatedAlbums($number=5,$showtitle=false, $showdate=false, $
  *
  * @param string $number the number of images to get
  * @param string $option "popular" for the most popular images,
- *                       "latest" for the latest uploaded,
- *                       "latest-date" for the latest uploaded, but fetched by date,
- * 											 "latest-mtime" for the latest uploaded, but fetched by mtime,
- *                       "mostrated" for the most voted,
- *                       "toprated" for the best voted
+ *		"latest" for the latest uploaded,
+ *		"latest-date" for the latest uploaded, but fetched by date,
+ *		"latest-mtime" for the latest uploaded, but fetched by mtime,
+ *		"mostrated" for the most voted,
+ *		"toprated" for the best voted
  * @param string $albumfolder foldername of an specific album
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
  * @return string
@@ -396,19 +406,19 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
  *
  * @param string $number the number of albums to get
  * @param string $option "popular" for the most popular images,
- *                       "latest" for the latest uploaded,
- *                       "latest-date" for the latest uploaded, but fetched by date,
- * 											 "latest-mtime" for the latest uploaded, but fetched by mtime,
- *                       "mostrated" for the most voted,
- *                       "toprated" for the best voted
+ *		"latest" for the latest uploaded,
+ *		"latest-date" for the latest uploaded, but fetched by date,
+ *		"latest-mtime" for the latest uploaded, but fetched by mtime,
+ *		"mostrated" for the most voted,
+ *		"toprated" for the best voted
  * @param string $albumfolder foldername of an specific album
  * @param bool $showtitle if the image title should be shown
  * @param bool $showdate if the image date should be shown
  * @param bool $showdesc if the image description should be shown
  * @param integer $desclength the length of the description to be shown
  * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -486,9 +496,10 @@ function printImageStatistic($number, $option, $albumfolder='', $showtitle=false
  * @param bool $showdate if the image date should be shown
  * @param bool $showdesc if the image description should be shown
  * @param integer $desclength the length of the description to be shown
-* @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -508,9 +519,10 @@ function printPopularImages($number=5, $albumfolder='', $showtitle=false, $showd
  * @param bool $showdate if the image date should be shown
  * @param bool $showdesc if the image description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -521,7 +533,6 @@ function printTopRatedImages($number=5, $albumfolder="", $showtitle=false, $show
 	printImageStatistic($number, "toprated",$albumfolder, $showtitle, $showdate, $showdesc, $desclength,$showstatistic,$width,$height,$crop,$collection,$fullimagelink);
 }
 
-
 /**
  * Prints the n most rated images
  *
@@ -531,9 +542,10 @@ function printTopRatedImages($number=5, $albumfolder="", $showtitle=false, $show
  * @param bool $showdate if the image date should be shown
  * @param bool $showdesc if the image description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -553,9 +565,10 @@ function printMostRatedImages($number=5, $albumfolder='', $showtitle=false, $sho
  * @param bool $showdate if the image date should be shown
  * @param bool $showdesc if the image description should be shown
  * @param integer $desclength the length of the description to be shown
-* @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -575,9 +588,10 @@ function printLatestImages($number=5, $albumfolder='', $showtitle=false, $showda
  * @param bool $showdate if the image date should be shown
  * @param bool $showdesc if the image description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *		"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -597,9 +611,10 @@ function printLatestImagesByDate($number=5, $albumfolder='', $showtitle=false, $
  * @param bool $showdate if the image date should be shown
  * @param bool $showdesc if the image description should be shown
  * @param integer $desclength the length of the description to be shown
- * @param string $showstatistic "hitcounter" for showing the hitcounter (views),
- * 															"rating" for rating,
- * 															"rating+hitcounter" for both.
+ * @param string $showstatistic
+ *		"hitcounter" for showing the hitcounter (views),
+ *		"rating" for rating,
+ *	"rating+hitcounter" for both.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size. (Default 85px)
  * @param integer $height the height/cropheight of the thumb if crop=true else not used.  (Default 85px)
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
@@ -609,8 +624,6 @@ function printLatestImagesByDate($number=5, $albumfolder='', $showtitle=false, $
 function printLatestImagesByMtime($number=5, $albumfolder='', $showtitle=false, $showdate=false, $showdesc=false, $desclength=40,$showstatistic='',$width=NULL,$height=NULL,$crop=NULL,$collection=false,$fullimagelink=false) {
 	printImageStatistic($number, "latest-mtime", $albumfolder, $showtitle, $showdate, $showdesc, $desclength,$showstatistic,$width,$height,$crop,$collection,$fullimagelink);
 }
-
-
 
 /**
  * A little helper function that checks if an image or album is to be considered 'new' within the time range set in relation to getImageDate()/getAlbumDate()
@@ -637,6 +650,7 @@ function checkIfNew($mode="image",$timerange=604800) {
 		return FALSE;
 	}
 }
+
 /**
  * Gets the number of all subalbums of all subalbum levels of either the current album or $albumobj
  *

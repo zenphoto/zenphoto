@@ -412,26 +412,30 @@ function setAlbumSubtabs($album) {
 	if (!$album->isDynamic() && $album->getNumImages()) {
 		if ($subrights & MANAGED_OBJECT_RIGHTS_UPLOAD) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-																						array(gettext('Images') => 'admin-edit.php'.$albumlink.'&amp;tab=imageinfo'),
-																						$zenphoto_tabs['edit']['subtabs']);
+				array(gettext('Images') => 'admin-edit.php'.$albumlink.'&amp;tab=imageinfo'),
+				$zenphoto_tabs['edit']['subtabs']
+			);
 			$default = 'imageinfo';
 		}
 		if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 			$zenphoto_tabs['edit']['subtabs'] = array_merge(
-																						array(gettext('Image order') => 'admin-albumsort.php'.$albumlink.'&amp;tab=sort'),
-																						$zenphoto_tabs['edit']['subtabs']);
+				array(gettext('Image order') => 'admin-albumsort.php'.$albumlink.'&amp;tab=sort'),
+				$zenphoto_tabs['edit']['subtabs']
+			);
 		}
 	}
 	if (!$album->isDynamic() && $album->getNumAlbums() > 0) {
 		$zenphoto_tabs['edit']['subtabs'] = array_merge(
-																					array(gettext('Subalbums') => 'admin-edit.php'.$albumlink.'&amp;tab=subalbuminfo'),
-																					$zenphoto_tabs['edit']['subtabs']);
+			array(gettext('Subalbums') => 'admin-edit.php'.$albumlink.'&amp;tab=subalbuminfo'),
+			$zenphoto_tabs['edit']['subtabs']
+		);
 		$default = 'subalbuminfo';
 	}
 	if ($subrights & MANAGED_OBJECT_RIGHTS_EDIT) {
 		$zenphoto_tabs['edit']['subtabs'] = array_merge(
-																					array(gettext('Album') => 'admin-edit.php'.$albumlink.'&amp;tab=albuminfo'),
-																					$zenphoto_tabs['edit']['subtabs']);
+			array(gettext('Album') => 'admin-edit.php'.$albumlink.'&amp;tab=albuminfo'),
+			$zenphoto_tabs['edit']['subtabs']
+		);
 		$default = 'albuminfo';
 	}
 	$zenphoto_tabs['edit']['default'] = $default;
@@ -484,21 +488,21 @@ define ('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
  * @param string $initial initila show/hide state
  *
  * There are four type of custom options:
- * 		OPTION_TYPE_TEXTBOX:				a textbox
- * 		OPTION_TYPE_CLEAARTEXT:			a textbox, but no sanitization on save
- * 		OPTION_TYPE_CHECKBOX:				a checkbox
- * 		OPTION_TYPE_CUSTOM:					handled by $optionHandler->handleOption()
- * 		OPTION_TYPE_TEXTAREA:				a textarea
- * 		OPTION_TYPE_RADIO:					radio buttons (button names are in the 'buttons' index of the supported options array)
- * 		OPTION_TYPE_SELECTOR:				selector (selection list is in the 'selections' index of the supported options array
- * 																					null_selection contains the text for the empty selection. If not present there
- * 																					will be no empty selection)
- * 		OPTION_TYPE_CHECKBOX_ARRAY:	checkbox array (checkbox list is in the 'checkboxes' index of the supported options array.)
- * 		OPTION_TYPE_CHECKBOX_UL:		checkbox UL (checkbox list is in the 'checkboxes' index of the supported options array.)
- * 		OPTION_TYPE_COLOR_PICKER:		Color picker
- * 		OPTION_TYPE_NOTE:						places a note in the options area. The note will span all three columns
+ *    OPTION_TYPE_TEXTBOX:          A textbox
+ *    OPTION_TYPE_CLEARTEXT:     	  A textbox, but no sanitization on save
+ *    OPTION_TYPE_CHECKBOX:         A checkbox
+ *    OPTION_TYPE_CUSTOM:           Handled by $optionHandler->handleOption()
+ *    OPTION_TYPE_TEXTAREA:         A textarea
+ *    OPTION_TYPE_RADIO:            Radio buttons (button names are in the 'buttons' index of the supported options array)
+ *    OPTION_TYPE_SELECTOR:         Selector (selection list is in the 'selections' index of the supported options array
+ *                                  null_selection contains the text for the empty selection. If not present there
+ *                                  will be no empty selection)
+ *    OPTION_TYPE_CHECKBOX_ARRAY:   Checkbox array (checkbox list is in the 'checkboxes' index of the supported options array.)
+ *    OPTION_TYPE_CHECKBOX_UL:      Checkbox UL (checkbox list is in the 'checkboxes' index of the supported options array.)
+ *    OPTION_TYPE_COLOR_PICKER:     Color picker
+ *    OPTION_TYPE_NOTE:             Places a note in the options area. The note will span all three columns
  *
- * type 0 and 3 support multi-lingual strings.
+ *    Types 0 and 3 support multi-lingual strings.
  */
 define('OPTION_TYPE_TEXTBOX',0);
 define('OPTION_TYPE_CHECKBOX',1);
@@ -927,7 +931,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 			</span>
 		</li>
 		<?php
-		}
+	}
 }
 
 /**
@@ -985,12 +989,12 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 			<script>
 			$(function() {
 				$("#resizable_<?php echo $postit; ?>").resizable({
-							maxWidth: 250,
-							minWidth: 250,
-							minHeight: 120,
-							resize: function(event, ui) {
-								$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height()-20);
-							 }
+					maxWidth: 250,
+					minWidth: 250,
+					minHeight: 120,
+					resize: function(event, ui) {
+						$('#list_<?php echo $postit; ?>').height($('#resizable_<?php echo $postit; ?>').height()-20);
+					}
 				});
 			});
 			</script>
@@ -1006,27 +1010,27 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 				</span>
 
 			<?php
+	}
+	?>
+	<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
+	<?php
+	echo $hr;
+	if ($showCounts) {
+		$displaylist = array();
+		foreach ($them as $tag) {
+			$displaylist[$tag.' ['.$counts[$tag].']'] = $tag;
 		}
+	} else {
+		$displaylist = $them;
+	}
+	if (count($tags) > 0) {
+		generateUnorderedListFromArray($tags, $tags, $postit, false, !$mostused, $showCounts);
 		?>
-		<ul id="list_<?php echo $postit; ?>" class="<?php echo $tagclass; ?>">
-		<?php echo $hr; ?>
+		<li><hr /></li>
 		<?php
-		if ($showCounts) {
-			$displaylist = array();
-			foreach ($them as $tag) {
-				$displaylist[$tag.' ['.$counts[$tag].']'] = $tag;
-			}
-		} else {
-			$displaylist = $them;
-		}
-		if (count($tags) > 0) {
-			generateUnorderedListFromArray($tags, $tags, $postit, false, !$mostused, $showCounts);
-			?>
-			<li><hr /></li>
-			<?php
-		}
-		generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts);
-		?>
+	}
+	generateUnorderedListFromArray(array(), $displaylist, $postit, false, !$mostused, $showCounts);
+	?>
 		</ul>
 	</div>
 	<?php
@@ -1109,7 +1113,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 		<?php
 	}
 	?>
-<br clear="all" /><br />
+	<br clear="all" /><br />
 	<table>
 		<tr>
 			<td width="70%" valign="top">
@@ -1239,11 +1243,11 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 								// <!-- <![CDATA[
 								$(function() {
 									$("#datepicker<?php echo $suffix; ?>").datepicker({
-													showOn: 'button',
-													buttonImage: 'images/calendar.png',
-													buttonText: '<?php echo gettext('calendar'); ?>',
-													buttonImageOnly: true
-													});
+										showOn: 'button',
+										buttonImage: 'images/calendar.png',
+										buttonText: '<?php echo gettext('calendar'); ?>',
+										buttonImageOnly: true
+									});
 								});
 								// ]]> -->
 							</script>
@@ -1474,7 +1478,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							<?php
 						}
 						?>
-						<select style="width:320px" <?php	if ($showThumb) {	?>class="thumbselect" onchange="updateThumbPreview(this)"	<?php	}	?> name="<?php echo $prefix; ?>thumb">
+						<select style="width:320px" <?php if ($showThumb) { ?>class="thumbselect" onchange="updateThumbPreview(this)" <?php } ?> name="<?php echo $prefix; ?>thumb">
 							<?php
 							generateListFromArray($selected,$selections,false,true);
 							$imagelist = $album->getImages(0);
@@ -1540,48 +1544,47 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						</select>
 						</td>
 					</tr>
-		<?php
-	}
-	?>
-	<tr valign="top">
-		<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
-		<td>
-		<br />
-			<div class="tabs">
-				<ul class="tabNavigation">
-					<li><a href="#first"><?php echo gettext("Codeblock 1"); ?></a></li>
-					<li><a href="#second"><?php echo gettext("Codeblock 2"); ?></a></li>
-					<li><a href="#third"><?php echo gettext("Codeblock 3"); ?></a></li>
-				</ul>
 					<?php
-							$getcodeblock = $album->getCodeblock();
-							if(!empty($getcodeblock)) {
-								$codeblock = unserialize($getcodeblock);
-							} else {
-								$codeblock[1] = "";
-								$codeblock[2] = "";
-								$codeblock[3] = "";
-							}
-							?>
-				<div id="first">
-					<textarea name="<?php echo $prefix; ?>codeblock1" id="codeblock1<?php echo $suffix; ?>" rows="40" cols="60"><?php echo html_encode($codeblock[1]); ?></textarea>
-				</div>
-				<div id="second">
-					<textarea name="<?php echo $prefix; ?>codeblock2" id="codeblock2<?php echo $suffix; ?>" rows="40" cols="60"><?php echo html_encode($codeblock[2]); ?></textarea>
-				</div>
-				<div id="third">
-					<textarea name="<?php echo $prefix; ?>codeblock3" id="codeblock3<?php echo $suffix; ?>" rows="40" cols="60"><?php echo html_encode($codeblock[3]); ?></textarea>
-				</div>
-			</div>
-		</td>
-	</tr>
-</table>
+					}
+					?>
+					<tr valign="top">
+						<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
+						<td>
+						<br />
+							<div class="tabs">
+								<ul class="tabNavigation">
+									<li><a href="#first"><?php echo gettext("Codeblock 1"); ?></a></li>
+									<li><a href="#second"><?php echo gettext("Codeblock 2"); ?></a></li>
+									<li><a href="#third"><?php echo gettext("Codeblock 3"); ?></a></li>
+								</ul>
+									<?php
+										$getcodeblock = $album->getCodeblock();
+										if(!empty($getcodeblock)) {
+											$codeblock = unserialize($getcodeblock);
+										} else {
+											$codeblock[1] = "";
+											$codeblock[2] = "";
+											$codeblock[3] = "";
+										}
+									?>
+								<div id="first">
+									<textarea name="<?php echo $prefix; ?>codeblock1" id="codeblock1<?php echo $suffix; ?>" rows="40" cols="60"><?php echo html_encode($codeblock[1]); ?></textarea>
+								</div>
+								<div id="second">
+									<textarea name="<?php echo $prefix; ?>codeblock2" id="codeblock2<?php echo $suffix; ?>" rows="40" cols="60"><?php echo html_encode($codeblock[2]); ?></textarea>
+								</div>
+								<div id="third">
+									<textarea name="<?php echo $prefix; ?>codeblock3" id="codeblock3<?php echo $suffix; ?>" rows="40" cols="60"><?php echo html_encode($codeblock[3]); ?></textarea>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
 			</td>
 			<?php	$bglevels = array('#fff','#f8f8f8','#efefef','#e8e8e8','#dfdfdf','#d8d8d8','#cfcfcf','#c8c8c8');	?>
 			<td valign="top">
 				<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 				<div class="box-edit">
-
 						<label class="checkboxlabel">
 							<input type="checkbox" name="<?php	echo $prefix; ?>Published" value="1" <?php if ($album->getShow()) echo ' checked="checked"';	?> />
 							<?php echo gettext("Published");?>
@@ -1797,7 +1800,6 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 	}
 ?>
 
-
 <br clear="all" />
 	<?php
 	if ($buttons) {
@@ -2004,7 +2006,8 @@ function printAlbumEditRow($album, $show_thumb) {
 		<div class="page-list_icon">
 		<?php
 		$pwd = $album->getPassword();
-		if (!empty($pwd)) {			echo '<a title="'.gettext('Password protected').'"><img src="images/lock.png" style="border: 0px;" alt="" title="'.gettext('Password protected').'" /></a>';
+		if (!empty($pwd)) {
+			echo '<a title="'.gettext('Password protected').'"><img src="images/lock.png" style="border: 0px;" alt="" title="'.gettext('Password protected').'" /></a>';
 		}
 	 ?>
 		</div>
@@ -2151,8 +2154,8 @@ function printAlbumEditRow($album, $show_thumb) {
  * @param int $index the index of the entry in mass edit or 0 if single album
  * @param object $album the album object
  * @param string $redirectto used to redirect page refresh on move/copy/rename
- *@return string error flag if passwords don't match
- *@since 1.1.3
+ * @return string error flag if passwords don't match
+ * @since 1.1.3
  */
 function processAlbumEdit($index, $album, &$redirectto) {
 	global $_zp_gallery;
@@ -4262,21 +4265,21 @@ function consolidatedEditMessages($subtab) {
 	if (!empty($errorbox)) {
 		?>
 		<div class="errorbox fade-message">
-			<?php echo implode('<br />',$errorbox);	?>
+			<?php echo implode('<br />',$errorbox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($notebox)) {
 		?>
 		<div class="notebox fade-message">
-			<?php echo implode('<br />',$notebox);	?>
+			<?php echo implode('<br />',$notebox); ?>
 		</div>
 		<?php
 	}
 	if (!empty($messagebox)) {
 		?>
 		<div class="messagebox fade-message">
-			<?php echo implode('<br />',$messagebox);	?>
+			<?php echo implode('<br />',$messagebox); ?>
 		</div>
 		<?php
 	}
