@@ -37,7 +37,7 @@ echo "\n</head>";
 				</iframe>
 			</div>
 			<p class="notebox">
-				<?php printf(gettext('This license is in English because the <em>Free Software Foundation</em> does not approve translations as officially valid. Unofficial translations are avialable <a href="%s">here</a>.'),'http://www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html'); ?>
+				<?php printf(gettext('This license is in English because the <em>Free Software Foundation</em> does not approve translations as officially valid. Unofficial translations are available <a href="%s">here</a>.'),'http://www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html'); ?>
 			</p>
 			<?php
 			if (!getOption('license_accepted')) {

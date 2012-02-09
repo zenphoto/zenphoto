@@ -1,7 +1,7 @@
 <?php
 /**
  *
- * Displays a "plugin useage" document based on the plugin's doc box.
+ * Displays a "plugin usage" document based on the plugin's doc box.
  *
  * Supports the following PHPDoc markup tags:
  * 	<i> for emphasis
@@ -86,7 +86,7 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 </head>
 <body>
 	<div id="main">
-		<?php echo gettext('Plugin useage information'); ?>
+		<?php echo gettext('Plugin usage information'); ?>
 		<div id="content">
 			<h1><img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" /><?php echo html_encode($extension); ?></h1>
 			<div class="border">

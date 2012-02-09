@@ -36,7 +36,7 @@ if (file_exists(dirname(__FILE__).'/setup.php') && empty($needs)) {
 				<div id="content">
 					<div class="tabbox">
 						<div class="notebox">
-							<h1><?php echo gettext('Zenphoto has detected a change in your installation signaure and needs to run Setup but some setup files are missing.'); ?></h1>
+							<h1><?php echo gettext('Zenphoto has detected a change in your installation signature and needs to run Setup but some setup files are missing.'); ?></h1>
 							<h2><?php printf(gettext('Please reinstall the following setup files from the %1$s [%2$s] release:'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE); ?></h2>
 							<ul>
 								<?php

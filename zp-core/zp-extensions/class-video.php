@@ -9,7 +9,7 @@
 // force UTF-8 Ø
 
 $plugin_is_filter = 9|CLASS_PLUGIN;
-$plugin_description = gettext('Audio (MP3,M4A,FLA) and video (MP4/M4V,FLV plus Quicktime,3GP if Quicktime is installed on the visitor system) handling for Zenphoto. This plugin must always be enabled to use multimedia content. Note that you also need to enable a multimedia player. See the info there how each format is used.');
+$plugin_description = gettext('Audio (MP3,M4A,FLA) and video (MP4/M4V,FLV, plus Quicktime,3GP if Quicktime is installed on the visitor system) handling for Zenphoto. This plugin must always be enabled to use multimedia content. Note that you also need to enable a multimedia player. See the info of the player you use to see how it is configured.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 

@@ -34,7 +34,7 @@ class user_logout_options {
 	function getOptionsSupported() {
 		return array(	gettext('Login form') => array('key' => 'user_logout_login_form', 'type' => OPTION_TYPE_RADIO,
 												'buttons' => array(gettext('None')=>0, gettext('Form')=>1,gettext('Colorbox')=>2),
-												'desc' => gettext('Diaplay a logon form or Colorbox logon link if the user is not logged in.'))
+												'desc' => gettext('Display a logon form or Colorbox logon link if the user is not logged in.'))
 		);
 	}
 	function handleOption($option, $currentValue) {
