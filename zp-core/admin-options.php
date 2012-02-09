@@ -2097,6 +2097,9 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 									$checked_hide = ' checked="checked"';
 								}
 							}
+							if (!$item[4]) {
+								$checked_show = $checked_hide = ' disabled="disabled"';
+							}
 							?>
 							<li>
 								<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio"<?php echo $checked_show?> value="1" /><img src ="images/accept.png" alt="<?php echo gettext('show'); ?>" /></label>

@@ -153,7 +153,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 				$params[] .= "'".$param.'='.urlencode($value)."'";
 			}
 		}
-		echo "\n".$before;
+		echo "\n".html_encode($before);
 		?>
 		<a href="javascript:launchScript('<?php echo FULLWEBPATH.'/'; ?>',[<?php echo implode(',',$params); ?>]);" title="<?php echo $logouttext; ?>" ><?php echo $logouttext; ?></a>
 		<?php

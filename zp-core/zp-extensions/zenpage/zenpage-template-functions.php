@@ -2460,7 +2460,7 @@ function getPageLastChangeDate() {
  * @return string
  */
 function printPageLastChangeDate() {
-	echo $before.html_encode(getPageLastChangeDate());
+	echo html_encode($before.getPageLastChangeDate());
 }
 
 

@@ -962,11 +962,11 @@ function getAlbumBreadcrumb($title=NULL) {
 */
 function printAlbumBreadcrumb($before='', $after='', $title=NULL) {
 	if ($breadcrumb = getAlbumBreadcrumb($title)) {
-		$output = $before;
+		$output = html_encode($before);
 		$output .= "<a href=\"" . html_encode($breadcrumb['link']) . "\">";
 		$output .= html_encode($breadcrumb['title']);
 		$output .= '</a>';
-		$output .= $after;
+		$output .= html_encode($after);
 		echo $output;
 	}
 }
@@ -1039,18 +1039,11 @@ function getParentBreadcrumb() {
 function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $truncate=NULL, $elipsis=NULL) {
 	$crumbs = getParentBreadcrumb();
 	if (!empty($crumbs)) {
-		if (!empty($before)) {
-			$before = html_decode($before);
-		}
 		if (is_null($between)) {
 			$between = ' | ';
-		} else {
-			$between = html_decode($between);
 		}
 		if (is_null($after)) {
 			$after= ' | ';
-		} else {
-			$after = html_decode($after);
 		}
 		if (is_null($elipsis)) {
 			$elipsis = '...';
