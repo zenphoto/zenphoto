@@ -1339,7 +1339,7 @@ function storeTags($tags, $id, $tbl) {
 		if (!empty($tag)) {
 			$lc_tag = mb_strtolower($tag);
 			if (!in_array($lc_tag, $tagsLC)) {
-				$tagsLC[] = $lc_tag;
+				$tagsLC[$tag] = $lc_tag;
 			}
 		}
 	}
@@ -1358,10 +1358,10 @@ function storeTags($tags, $id, $tbl) {
 		}
 	}
 	$tags = array_diff($tagsLC, $existing); // new tags for the object
-	foreach ($tags as $tag) {
-		$dbtag = query_single_row("SELECT `id` FROM ".prefix('tags')." WHERE `name`=".db_quote($tag));
+	foreach ($tags as $key=>$tag) {
+		$dbtag = query_single_row("SELECT `id` FROM ".prefix('tags')." WHERE `name`=".db_quote($key));
 		if (!is_array($dbtag)) { // tag does not exist
-			query("INSERT INTO " . prefix('tags') . " (name) VALUES (" . db_quote($tag) . ")",false);
+			query("INSERT INTO " . prefix('tags') . " (name) VALUES (" . db_quote($key) . ")",false);
 			$dbtag = array('id' => db_insert_id());
 		}
 		query("INSERT INTO ".prefix('obj_to_tag'). "(`objectid`, `tagid`, `type`) VALUES (".$id.",".$dbtag['id'].",'".$tbl."')");

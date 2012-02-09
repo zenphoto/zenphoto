@@ -896,7 +896,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 		<li>
 		<span style="display:inline;white-space:nowrap">
 			<label class="displayinline">
-				<input id="<?php echo $listitem; ?>"<?php echo $class;?> name="<?php echo $listitem; ?>" type="checkbox"
+				<input id="<?php echo strtolower($listitem); ?>"<?php echo $class;?> name="<?php echo $listitem; ?>" type="checkbox"
 							<?php if (isset($cv[$item])) {echo ' checked="checked"';	} ?> value="1" <?php echo $alterrights; ?> />
 				<?php echo html_encode($display); ?>
 			</label>
@@ -914,14 +914,14 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 						}
 						?>
 						<label class="displayinline">
-							<input type="<?php echo $type; ?>" id="<?php echo $listitem.'_'.$box['name'].$unique; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
+							<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem).'_'.$box['name'].$unique; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
 									 value="<?php echo html_encode($box['value']); ?>" <?php if ($box['checked']) {echo ' checked="checked"';	} ?>
 									 <?php echo $alterrights; ?> \> <?php echo $box['display'];?>
 						</label>
 						<?php
 					} else {
 						?>
-						<input type="hidden" id="<?php echo $listitem.'_'.$box['name']; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
+						<input type="hidden" id="<?php echo strtolower($listitem.'_'.$box['name']); ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
 									 value="<?php echo $box['value']; ?>" />
 						<?php
 					}
@@ -962,12 +962,12 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 	} else {
 		$them = $_zp_admin_ordered_taglist;
 	}
-
 	if (is_null($that)) {
 		$tags = array();
 	} else {
 		$tags = $that->getTags();
 	}
+
 	if (count($tags) > 0) {
 		foreach ($tags as $tag) {
 			$tagLC = 	mb_strtolower($tag);

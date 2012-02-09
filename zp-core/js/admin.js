@@ -285,18 +285,20 @@ function addNewTag(id,dupmsg) {
 	var tag;
 	tag = $('#newtag_'+id).val();
 	if (tag) {
-		var taglc = tag.toLowerCase();
 		$('#newtag_'+id).val('');
-		var name = id+taglc;
+		var name = id+tag;
 		//htmlentities
 		name = encodeURI(name);
+		name = name.replaceAll('%20','_-_');
 		name = name.replaceAll("'",'%27');
 		name = name.replaceAll('.','__2E__');
 		name = name.replaceAll('+', '_-_');
 		name = name.replaceAll('%', '_--_');
-		var exists = $('#'+name).length;
+		var lcname = name.toLowerCase();
+
+		var exists = $('#'+lcname).length;
 		if (exists) {
-			$('#'+name).attr('checked',true);
+			$('#'+lcname).attr('checked',true);
 			clearTagID = '#newtag_'+id;
 			$(clearTagID).val(dupmsg);
 			$(clearTagID).css('color','gray');
@@ -306,10 +308,8 @@ function addNewTag(id,dupmsg) {
 							$(clearTagID).css('color','black');
 						}, 3000);
 		} else {
-			html = '<li><label class="displayinline"><input id="'+
-					name+'" name="'+name+
-					'" type="checkbox" checked="checked" value="'+
-					tag+'" />'+tag+'</label></li>';
+			html = '<li><label class="displayinline"><input id="'+lcname+'" name="'+name+
+					'" type="checkbox" checked="checked" value="1" />'+tag+'</label></li>';
 			$('#list_'+id).prepend(html);
 		}
 	}
