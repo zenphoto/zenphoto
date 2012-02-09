@@ -215,9 +215,9 @@ class Zenphoto_Authority {
 		if (is_null($this->admin_users)) {
 			$this->admin_all = $this->admin_groups = $this->admin_users = $this->admin_other = array();
 			$sql = 'SELECT * FROM '.prefix('administrators').' ORDER BY `rights` DESC, `id`';
-			$admins = query_full_array($sql, false);
-			if ($admins !== false) {
-				foreach($admins as $user) {
+			$admins = query($sql, false);
+			if ($admins) {
+				while ($user = db_fetch_assoc($admins)) {
 					$this->admin_all[$user['id']] = $user;
 					switch ($user['valid']) {
 						case 1:
@@ -369,14 +369,14 @@ class Zenphoto_Authority {
 		setOption('libauth_version',$to);
 		$this->admin_users = array();
 		$sql = "SELECT * FROM ".prefix('administrators')."ORDER BY `rights` DESC, `id`";
-		$admins = query_full_array($sql, false);
-		if (count($admins)>0) { // something to migrate
+		$admins = query($sql, false);
+		if ($admins) { // something to migrate
 			$oldrights = array();
 			foreach ($this->getRights($oldversion) as $key=>$right) {
 				$oldrights[$key] = $right['value'];
 			}
 			$currentrights = $this->getRights($to);
-			foreach($admins as $user) {
+			while ($user = db_fetch_assoc($admins)) {
 				$update = false;
 				$rights = $user['rights'];
 				$newrights = $currentrights['NO_RIGHTS']['value'];

@@ -880,15 +880,17 @@ class Album extends MediaObject {
 					// Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
 					// Get the subalbums.
 					$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE ".db_quote($oldfolder.'/%');
-					$result = query_full_array($sql);
-					foreach ($result as $subrow) {
-						$newsubfolder = $subrow['folder'];
-						$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
-						$sql = "UPDATE ".prefix('albums'). " SET folder=".db_quote($newsubfolder)." WHERE id=".$subrow['id'];
-						if (query($sql)) {
-							zp_apply_filter('album_rename_move', $subrow['folder'], $newsubfolder);
-						} else {
-							$success = false;
+					$result = query($sql);
+					if ($result) {
+						while ($subrow = db_fetch_assoc($result)) {
+							$newsubfolder = $subrow['folder'];
+							$newsubfolder = $newfolder . substr($newsubfolder, strlen($oldfolder));
+							$sql = "UPDATE ".prefix('albums'). " SET folder=".db_quote($newsubfolder)." WHERE id=".$subrow['id'];
+							if (query($sql)) {
+								zp_apply_filter('album_rename_move', $subrow['folder'], $newsubfolder);
+							} else {
+								$success = false;
+							}
 						}
 					}
 				}

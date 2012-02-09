@@ -680,10 +680,12 @@ class SearchEngine
 			}
 		}
 		$sql = 'SELECT DISTINCT `news_id` FROM '.prefix('news2cat').$cat;
-		$result = query_full_array($sql);
+		$result = query($sql);
 		$list = array();
-		foreach ($result as $row) {
-			$list[] = $row['news_id'];
+		if ($result) {
+			while ($row = db_fetch_assoc($result)) {
+				$list[] = $row['news_id'];
+			}
 		}
 		return $list;
 	}
@@ -991,9 +993,9 @@ class SearchEngine
 									case '!':
 										if (is_null($allIDs)) {
 											$allIDs = array();
-											$result = query_full_array("SELECT `id` FROM ".prefix($tbl));
-											if (is_array($result)) {
-												foreach ($result as $row) {
+											$result = query("SELECT `id` FROM ".prefix($tbl));
+											if ($result) {
+												while ($row = db_fetch_assoc($result)) {
 													$allIDs[] = $row['id'];
 												}
 											}

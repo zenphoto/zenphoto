@@ -23,57 +23,59 @@ printAdminHeader(gettext('utilities'),gettext('search analysis'));
 echo '</head>';
 
 $sql = 'SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="search_statistics"';
-$data = query_full_array($sql);
+$data = query($sql);
 $ip_maxvalue = $criteria_maxvalue = $criteria_maxvalue_f = $terms_maxvalue = 1;
 $results_f = $results = $terms = $sites = array();
 $bargraphmaxsize = 400;
 $maxiterations = array();
 $opChars = array ('(', ')', '&', '|', '!', ',');
-foreach ($data as $datum) {
-	$element = unserialize($datum['data']);
-	$ip = $datum['aux'];
-	if (array_key_exists($ip,$sites)) {
-		$sites[$ip]++;
-		if ($ip_maxvalue < $sites[$ip]) {
-			$ip_maxvalue = $sites[$ip];
-		}
-	} else {
-		$sites[$ip] = 1;
-	}
-	if (is_array($element)) {
-		$maxiterations[$element['iteration']] = 1;
-		$searchset = $element['data'];
-		$type = $element['type'];
-		$success = $element['success'];
-		$instance = implode(' ',$searchset);
-		if ($success) {
-			if (array_key_exists($instance, $results)) {
-				$results[$instance]++;
-				if ($criteria_maxvalue < $results[$instance]) {
-					$criteria_maxvalue = $results[$instance];
-				}
-			} else {
-				$results[$instance] = 1;
+if ($data) {
+	while ($datum = db_fetch_assoc($data)) {
+		$element = unserialize($datum['data']);
+		$ip = $datum['aux'];
+		if (array_key_exists($ip,$sites)) {
+			$sites[$ip]++;
+			if ($ip_maxvalue < $sites[$ip]) {
+				$ip_maxvalue = $sites[$ip];
 			}
 		} else {
-			if (array_key_exists($instance, $results_f)) {
-				$results_f[$instance]++;
-				if ($criteria_maxvalue_f < $results_f[$instance]) {
-					$criteria_maxvalue_f = $results_f[$instance];
-				}
-			} else {
-				$results_f[$instance] = 1;
-			}
+			$sites[$ip] = 1;
 		}
-		foreach ($searchset as $instance) {
-			if (!in_array($instance, $opChars)) {
-				if (array_key_exists($instance, $terms)) {
-					$terms[$instance]++;
-					if ($terms_maxvalue < $terms[$instance]) {
-						$terms_maxvalue = $terms[$instance];
+		if (is_array($element)) {
+			$maxiterations[$element['iteration']] = 1;
+			$searchset = $element['data'];
+			$type = $element['type'];
+			$success = $element['success'];
+			$instance = implode(' ',$searchset);
+			if ($success) {
+				if (array_key_exists($instance, $results)) {
+					$results[$instance]++;
+					if ($criteria_maxvalue < $results[$instance]) {
+						$criteria_maxvalue = $results[$instance];
 					}
 				} else {
-					$terms[$instance] = 1;
+					$results[$instance] = 1;
+				}
+			} else {
+				if (array_key_exists($instance, $results_f)) {
+					$results_f[$instance]++;
+					if ($criteria_maxvalue_f < $results_f[$instance]) {
+						$criteria_maxvalue_f = $results_f[$instance];
+					}
+				} else {
+					$results_f[$instance] = 1;
+				}
+			}
+			foreach ($searchset as $instance) {
+				if (!in_array($instance, $opChars)) {
+					if (array_key_exists($instance, $terms)) {
+						$terms[$instance]++;
+						if ($terms_maxvalue < $terms[$instance]) {
+							$terms_maxvalue = $terms[$instance];
+						}
+					} else {
+						$terms[$instance] = 1;
+					}
 				}
 			}
 		}

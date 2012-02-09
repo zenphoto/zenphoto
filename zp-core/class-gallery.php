@@ -294,10 +294,10 @@ class Gallery {
 	 */
 	function getNumImages($publishedOnly=false) {
 		if ($publishedOnly) {
-			$rows = query_full_array("SELECT `id` FROM " . prefix('albums')." WHERE `show`=0");
-			if (is_array($rows)) {
+			$rows = query("SELECT `id` FROM " . prefix('albums')." WHERE `show`=0");
+			if ($rows) {
 				$exclude = '';
-				foreach ($rows as $row)	{
+				while ($row = db_fetch_assoc($rows))	{
 					if (!empty($row['id'])) {
 						$exclude .= " `albumid`!=".$row['id'].' AND ';
 					}
@@ -362,9 +362,9 @@ class Gallery {
 			$this->commentClean('pages');
 			// clean up obj_to_tag
 			$dead = array();
-			$result = query_full_array("SELECT * FROM ".prefix('obj_to_tag'));
-			if (is_array($result)) {
-				foreach ($result as $row) {
+			$result = query("SELECT * FROM ".prefix('obj_to_tag'));
+			if ($result) {
+				while ($row = db_fetch_assoc($result)) {
 					$tbl = $row['type'];
 					$dbtag = query_single_row("SELECT `id` FROM ".prefix('tags')." WHERE `id`='".$row['tagid']."'");
 					if (!$dbtag) {
@@ -382,9 +382,9 @@ class Gallery {
 			}
 			// clean up admin_to_object
 			$dead = array();
-			$result = query_full_array("SELECT * FROM ".prefix('admin_to_object'));
-			if (is_array($result)) {
-				foreach ($result as $row) {
+			$result = query("SELECT * FROM ".prefix('admin_to_object'));
+			if ($result) {
+				while ($row = db_fetch_assoc($result)) {
 					$dbtag = query_single_row("SELECT * FROM ".prefix('administrators')." WHERE `id`='".$row['adminid']."'");
 					if (!$dbtag) {
 						$dead[] = $row['id'];
@@ -406,9 +406,9 @@ class Gallery {
 			}
 			// clean up news2cat
 			$dead = array();
-			$result = query_full_array("SELECT * FROM ".prefix('news2cat'));
-			if (is_array($result)) {
-				foreach ($result as $row) {
+			$result = query("SELECT * FROM ".prefix('news2cat'));
+			if ($result) {
+				while ($row = db_fetch_assoc($result)) {
 					$dbtag = query_single_row("SELECT `id` FROM ".prefix('news')." WHERE `id`='".$row['news_id']."'");
 					if (!$dbtag) {
 						$dead[] = $row['id'];
@@ -425,12 +425,11 @@ class Gallery {
 			}
 
 			// Check for the existence albums
-			$sql = "SELECT * FROM " . prefix('albums');
-			$result = query($sql);
 			$dead = array();
 			$live = array(''); // purge the root album if it exists
 			$deadalbumthemes = array();
 			// Load the albums from disk
+			$result = query("SELECT * FROM " . prefix('albums'));
 			while($row = db_fetch_assoc($result)) {
 				$valid = file_exists($albumpath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($row['folder'])) && (hasDynamicAlbumSuffix($albumpath) || (is_dir($albumpath) && strpos($albumpath,'/./') === false && strpos($albumpath,'/../') === false));
 				if (!$valid || in_array($row['folder'], $live)) {
@@ -470,57 +469,68 @@ class Gallery {
 		if ($complete) {
 			if (empty($restart)) {
 				/* refresh 'metadata' albums */
-				$albumids = query_full_array("SELECT `id`, `mtime`, `folder`, `dynamic` FROM " . prefix('albums'));
-				foreach ($albumids as $analbum) {
-					if (($mtime=filemtime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($analbum['folder']))) > $analbum['mtime']) {  // refresh
-						$album =  new Album(NULL, $analbum['folder']);
-						$album->set('mtime', $mtime);
-						if ($this->getAlbumUseImagedate()) {
-							$album->setDateTime(NULL);
-						}
-						if ($album->isDynamic()) {
-							$data = file_get_contents($album->localpath);
-							$thumb = getOption('AlbumThumbSelect');
-							$words = $fields = '';
-							while (!empty($data)) {
-								$data1 = trim(substr($data, 0, $i = strpos($data, "\n")));
-								if ($i === false) {
-									$data1 = $data;
-									$data = '';
-								} else {
-									$data = substr($data, $i + 1);
-								}
-								if (strpos($data1, 'WORDS=') !== false) {
-									$words = "words=".urlencode(substr($data1, 6));
-								}
-								if (strpos($data1, 'THUMB=') !== false) {
-									$thumb = trim(substr($data1, 6));
-								}
-								if (strpos($data1, 'FIELDS=') !== false) {
-									$fields = "&searchfields=".trim(substr($data1, 7));
-								}
+				$albumids = query("SELECT `id`, `mtime`, `folder`, `dynamic` FROM " . prefix('albums'));
+				if ($albumids) {
+					while ($analbum = db_fetch_assoc($albumids)) {
+						if (($mtime=filemtime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($analbum['folder']))) > $analbum['mtime']) {
+							// refresh
+							$album =  new Album(NULL, $analbum['folder']);
+							$album->set('mtime', $mtime);
+							if ($this->getAlbumUseImagedate()) {
+								$album->setDateTime(NULL);
 							}
-							if (!empty($words)) {
-								if (empty($fields)) {
-									$fields = '&searchfields=tags';
+							if ($album->isDynamic()) {
+								$data = file_get_contents($album->localpath);
+								$thumb = getOption('AlbumThumbSelect');
+								$words = $fields = '';
+								while (!empty($data)) {
+									$data1 = trim(substr($data, 0, $i = strpos($data, "\n")));
+									if ($i === false) {
+										$data1 = $data;
+										$data = '';
+									} else {
+										$data = substr($data, $i + 1);
+									}
+									if (strpos($data1, 'WORDS=') !== false) {
+										$words = "words=".urlencode(substr($data1, 6));
+									}
+									if (strpos($data1, 'THUMB=') !== false) {
+										$thumb = trim(substr($data1, 6));
+									}
+									if (strpos($data1, 'FIELDS=') !== false) {
+										$fields = "&searchfields=".trim(substr($data1, 7));
+									}
 								}
+								if (!empty($words)) {
+									if (empty($fields)) {
+										$fields = '&searchfields=tags';
+									}
+								}
+								$album->set('search_params',$words.$fields);
+								$album->set('thumb',$thumb);
 							}
-							$album->set('search_params',$words.$fields);
-							$album->set('thumb',$thumb);
+							$album->save();
+							zp_apply_filter('album_refresh',$album);
 						}
-						$album->save();
-						zp_apply_filter('album_refresh',$album);
 					}
 				}
 
 				/* Delete all image entries that don't belong to an album at all. */
 
-				$albumids = query_full_array("SELECT `id` FROM " . prefix('albums'));                  /* all the album IDs */
+				$albumids = query("SELECT `id` FROM " . prefix('albums'));                  /* all the album IDs */
 				$idsofalbums = array();
-				foreach($albumids as $row) { $idsofalbums[] = $row['id']; }
-				$imageAlbums = query_full_array("SELECT DISTINCT `albumid` FROM " . prefix('images')); /* albumids of all the images */
+				if ($albumids) {
+					while ($row = db_fetch_assoc($albumids)) {
+						$idsofalbums[] = $row['id'];
+					}
+				}
+				$imageAlbums = query("SELECT DISTINCT `albumid` FROM " . prefix('images')); /* albumids of all the images */
 				$albumidsofimages = array();
-				foreach($imageAlbums as $row) { $albumidsofimages[] = $row['albumid']; }
+				if ($imageAlbums) {
+					while ($row = db_fetch_assoc($imageAlbums)) {
+						$albumidsofimages[] = $row['albumid'];
+					}
+				}
 				$orphans = array_diff($albumidsofimages, $idsofalbums);                                /* albumids of images with no album */
 
 				if (count($orphans) > 0 ) { /* delete dead images from the DB */
@@ -561,10 +571,10 @@ class Gallery {
 			}
 			define('RECORD_LIMIT',5);
 			$sql = 'SELECT * FROM ' . prefix('images').$restartwhere.' ORDER BY `id` LIMIT '.(RECORD_LIMIT+2);
-			$images = query_full_array($sql);
-			if (count($images) > 0) {
+			$images = query($sql);
+			if ($images) {
 				$c = 0;
-				foreach($images as $image) {
+				while ($image = db_fetch_assoc($images)) {
 					$sql = 'SELECT `folder` FROM ' . prefix('albums') . ' WHERE `id`="' . $image['albumid'] . '";';
 					$row = query_single_row($sql);
 					$imageName = internalToFilesystem(ALBUM_FOLDER_SERVERPATH . $row['folder'] . '/' . $image['filename']);
@@ -595,16 +605,20 @@ class Gallery {
 	}
 
 	function commentClean($table) {
-		$ids = query_full_array('SELECT `id` FROM ' . prefix($table));       /* all the IDs */
+		$ids = query('SELECT `id` FROM ' . prefix($table));       /* all the IDs */
 		$idsofitems = array();
-		foreach($ids as $row) {
-			$idsofitems[] = $row['id'];
+		if ($ids) {
+			while ($row = db_fetch_assoc($ids)) {
+				$idsofitems[] = $row['id'];
+			}
 		}
 		$sql = "SELECT DISTINCT `ownerid` FROM " .	prefix('comments') . ' WHERE `type` ='.db_quote($table);
-		$commentOwners = query_full_array($sql); /* all the comments */
+		$commentOwners = query($sql); /* all the comments */
 		$idsofcomments = array();
-		foreach($commentOwners as $row) {
-			$idsofcomments [] = $row['ownerid'];
+		if ($commentOwners) {
+			while ($row = db_fetch_assoc($commentOwners)) {
+				$idsofcomments [] = $row['ownerid'];
+			}
 		}
 		$orphans = array_diff($idsofcomments , $idsofitems );                 /* owner ids of comments with no owner */
 

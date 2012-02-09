@@ -3058,14 +3058,16 @@ function getLatestComments($number,$type="all",$itemID="") {
 	$passwordcheck1 = "";
 	$passwordcheck2 = "";
 	if (!zp_loggedin(ADMIN_RIGHTS)) {
-		$albumscheck = query_full_array("SELECT * FROM " . prefix('albums'). " ORDER BY title");
-		foreach ($albumscheck as $albumcheck) {
-			$album = new Album(NULL, $albumcheck['folder']);
-			if($album->isMyItem(LIST_RIGHTS) || !checkAlbumPassword($albumcheck['folder'])) {
-				$albumpasswordcheck1= " AND i.albumid != ".$albumcheck['id'];
-				$albumpasswordcheck2= " AND a.id != ".$albumcheck['id'];
-				$passwordcheck1 = $passwordcheck1.$albumpasswordcheck1;
-				$passwordcheck2 = $passwordcheck2.$albumpasswordcheck2;
+		$albumscheck = query("SELECT * FROM " . prefix('albums'). " ORDER BY title");
+		if ($albumscheck) {
+			while ($albumcheck = db_fetch_assoc($albumcheck)) {
+				$album = new Album(NULL, $albumcheck['folder']);
+				if($album->isMyItem(LIST_RIGHTS) || !checkAlbumPassword($albumcheck['folder'])) {
+					$albumpasswordcheck1= " AND i.albumid != ".$albumcheck['id'];
+					$albumpasswordcheck2= " AND a.id != ".$albumcheck['id'];
+					$passwordcheck1 = $passwordcheck1.$albumpasswordcheck1;
+					$passwordcheck2 = $passwordcheck2.$albumpasswordcheck2;
+				}
 			}
 		}
 	}
@@ -3085,23 +3087,27 @@ function getLatestComments($number,$type="all",$itemID="") {
 	$comments_images = array();
 	$comments_albums = array();
 	if ($type === "all" OR $type === "image") {
-		$comments_images = query_full_array("SELECT c.id, i.title, i.filename, a.folder, a.title AS albumtitle, c.name, c.type, c.website,"
+		$comments_images = query("SELECT c.id, i.title, i.filename, a.folder, a.title AS albumtitle, c.name, c.type, c.website,"
 		. " c.date, c.anon, c.comment FROM ".prefix('comments')." AS c, ".prefix('images')." AS i, ".prefix('albums')." AS a "
 		. $whereImages
 		. " ORDER BY c.id DESC LIMIT $number");
 	}
 	if ($type === "all" OR $type === "album") {
-		$comments_albums = query_full_array("SELECT c.id, a.folder, a.title AS albumtitle, c.name, c.type, c.website,"
+		$comments_albums = query("SELECT c.id, a.folder, a.title AS albumtitle, c.name, c.type, c.website,"
 		. " c.date, c.anon, c.comment FROM ".prefix('comments')." AS c, ".prefix('albums')." AS a "
 		. $whereAlbums
 		. " ORDER BY c.id DESC LIMIT $number");
 	}
 	$comments = array();
-	foreach ($comments_albums as $comment) {
-		$comments[$comment['id']] = $comment;
+	if ($comments_albums) {
+		while ($comment = db_fetch_assoc($comments_albums)) {
+			$comments[$comment['id']] = $comment;
+		}
 	}
-	foreach ($comments_images as $comment) {
-		$comments[$comment['id']] = $comment;
+	if ($comments_images) {
+		while ($comment = db_fetch_assoc($comments_images)) {
+			$comments[$comment['id']] = $comment;
+		}
 	}
 	krsort($comments);
 	return array_slice($comments, 0, $number);
@@ -3306,10 +3312,10 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 		$query = "SELECT id FROM " . prefix('albums') . " WHERE ";
 		if ($albumInWhere) $query .= $albumInWhere.' AND ';
 		$query .= "folder LIKE " . db_quote($albumfolder.'%');
-		$result = query_full_array($query);
-		if (is_array($result) && count($result) > 0) {
+		$result = query($query);
+		if ($result) {
 			$albumInWhere = prefix('albums') . ".id IN (";
-			foreach ($result as $row) {
+			while ($row = db_fetch_assoc($result)) {
 				$albumInWhere = $albumInWhere . $row['id'] . ", ";
 			}
 			$albumInWhere =  ' AND '.substr($albumInWhere, 0, -2) . ')';
@@ -3572,9 +3578,11 @@ function getAllDates($order='asc') {
 		}
 		$sql = substr($sql, 0, -5);
 	}
-	$result = query_full_array($sql);
-	foreach($result as $row){
-		$alldates[] = $row['date'];
+	$result = query($sql);
+	if ($result) {
+		while ($row = db_fetch_assoc($result)){
+			$alldates[] = $row['date'];
+		}
 	}
 	foreach ($alldates as $adate) {
 		if (!empty($adate)) {

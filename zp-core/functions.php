@@ -89,6 +89,7 @@ function setexifvars() {
 		'IPTCContact' 							=> array('IPTC',	 'Contact',								gettext('Contact'),																		false,			128, 	true),
 		'EXIFCopyright'			    		=> array('IFD0',   'Copyright', 						gettext('Copyright Holder'), 			 										false,			128, 	true),
 		'IPTCCopyright'							=> array('IPTC',	 'Copyright',							gettext('Copyright Notice'),													false,			128, 	true),
+		'IPTCKeywords'							=> array('IPTC',	 'Keywords',							gettext('Keywords'),																	false,			0,	true),
 		'EXIFExposureTime'      		=> array('SubIFD', 'ExposureTime',      		gettext('Shutter Speed'),          										true,				52, 	true),
 		'EXIFFNumber'           		=> array('SubIFD', 'FNumber',           		gettext('Aperture'),               										true,				52, 	true),
 		'EXIFISOSpeedRatings'   		=> array('SubIFD', 'ISOSpeedRatings',   		gettext('ISO Sensitivity'),        										true,				52, 	true),
@@ -140,7 +141,7 @@ function setexifvars() {
 		'VideoResolution_y'					=> array('VIDEO',	 'resolution_y',					gettext('Y Resolution'),															false,			32, 	true),
 		'VideoAspect_ratio'					=> array('VIDEO',	 'pixel_aspect_ratio',		gettext('Aspect ratio'),															false,			32, 	true),
 		'VideoPlaytime'							=> array('VIDEO',	 'playtime_string',				gettext('Play Time'),																	false,			10, 	true),
-		'rating'										=> array('XMP',	 	 'rating',								gettext('XMP Rating'),																		false,			10, 	true),
+		'rating'										=> array('XMP',	 	 'rating',								gettext('XMP Rating'),																false,			10, 	true),
 	);
 	foreach ($_zp_exifvars as $key=>$item) {
 		if (!is_null($disable = getOption($key.'-disabled'))) {
@@ -741,9 +742,11 @@ function fetchComments($number) {
 				}
 				$sql .= ")) ";
 				$sql .= " ORDER BY id DESC$limit";
-				$albumcomments = query_full_array($sql);
-				foreach ($albumcomments as $comment) {
-					$comments[$comment['id']] = $comment;
+				$albumcomments = query($sql);
+				if ($albumcomments) {
+					while ($comment = db_fetch_assoc($albumcomments)) {
+						$comments[$comment['id']] = $comment;
+					}
 				}
 				$sql = "SELECT *, ".prefix('comments').".id as id, ".
 				prefix('comments').".name as name, (".prefix('comments').".date + 0) AS date, ".
@@ -761,9 +764,11 @@ function fetchComments($number) {
 				}
 				$sql .= "))";
 				$sql .= " ORDER BY ".prefix('images').".`id` DESC$limit";
-				$imagecomments = query_full_array($sql);
-				foreach ($imagecomments as $comment) {
-					$comments[$comment['id']] = $comment;
+				$imagecomments = query($sql);
+				if ($imagecomments) {
+					while ($comment = db_fetch_assoc($imagecomments)) {
+						$comments[$comment['id']] = $comment;
+					}
 				}
 				krsort($comments);
 				if ($number) {
@@ -965,13 +970,15 @@ function postComment($name, $email, $website, $comment, $code, $code_ok, $receiv
 			if($type === "images" OR $type === "albums") { // mail to album admins
 				$id = $ur_album->getAlbumID();
 				$sql = 'SELECT `adminid` FROM '.prefix('admin_to_object').' WHERE `objectid`='.$id.' AND `type` LIKE "album%"';
-				$result = query_full_array($sql);
-				foreach ($result as $anadmin) {
-					$id = $anadmin['adminid'];
-					if (array_key_exists($id,$admin_users)) {
-						$admin = $admin_users[$id];
-						if (($admin['rights'] & COMMENT_RIGHTS) && !empty($admin['email'])) {
-							$emails[] = $admin['email'];
+				$result = query($sql);
+				if ($result) {
+					while ($anadmin = db_fetch_assoc($result)) {
+						$id = $anadmin['adminid'];
+						if (array_key_exists($id,$admin_users)) {
+							$admin = $admin_users[$id];
+							if (($admin['rights'] & COMMENT_RIGHTS) && !empty($admin['email'])) {
+								$emails[] = $admin['email'];
+							}
 						}
 					}
 				}
@@ -996,18 +1003,22 @@ function getManagedAlbumList() {
 	$_zp_admin_album_list = array();
 	if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 		$sql = "SELECT `folder` FROM ".prefix('albums').' WHERE `parentid` IS NULL';
-		$albums = query_full_array($sql);
-		foreach($albums as $album) {
-			$_zp_admin_album_list[$album['folder']] = 32767;
+		$albums = query($sql);
+		if ($album) {
+			while ($album = db_fetch_assoc($albums)) {
+				$_zp_admin_album_list[$album['folder']] = 32767;
+			}
 		}
 	} else {
 		if ($_zp_current_admin_obj) {
 			$sql = 'SELECT '.prefix('albums').'.`folder`,'.prefix('admin_to_object').'.`edit` FROM '.prefix('albums').', '.
 			prefix('admin_to_object').' WHERE '.prefix('admin_to_object').'.adminid='.
 			$_zp_current_admin_obj->getID().' AND '.prefix('albums').'.id='.prefix('admin_to_object').'.objectid AND `type` LIKE "album%"';
-			$albums = query_full_array($sql);
-			foreach($albums as $album) {
-				$_zp_admin_album_list[$album['folder']] = $album['edit'];
+			$albums = query($sql);
+			if ($albums) {
+				while ($album = db_fetch_assoc($albums)) {
+					$_zp_admin_album_list[$album['folder']] = $album['edit'];
+				}
 			}
 		}
 	}
@@ -1031,9 +1042,9 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 		$sql = "SELECT ".prefix('albums').".`folder`,".prefix('albums').".`title`,".prefix('admin_to_object').".`edit` FROM ".prefix('albums').", ".
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
 						" AND ".prefix('albums').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type LIKE 'album%'";
-		$currentvalues = query_full_array($sql,false);
+		$currentvalues = query($sql,false);
 		if ($currentvalues) {
-			foreach($currentvalues as $albumitem) {
+			while ($albumitem = db_fetch_assoc($currentvalues)) {
 				$folder = $albumitem['folder'];
 				$name = get_language_string($albumitem['title']);
 				if ($type && !$rights) {
@@ -1048,9 +1059,9 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 		$sql = 'SELECT '.prefix('pages').'.`title`,'.prefix('pages').'.`titlelink` FROM '.prefix('pages').', '.
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
 						" AND ".prefix('pages').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='pages'";
-		$currentvalues = query_full_array($sql,false);
+		$currentvalues = query($sql,false);
 		if ($currentvalues) {
-			foreach ($currentvalues as $item) {
+			while ($item = db_fetch_assoc($currentvalues)) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
@@ -1063,9 +1074,9 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 		$sql = 'SELECT '.prefix('news_categories').'.`titlelink`,'.prefix('news_categories').'.`title` FROM '.prefix('news_categories').', '.
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
 						" AND ".prefix('news_categories').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type='news'";
-		$currentvalues = query_full_array($sql,false);
+		$currentvalues = query($sql,false);
 		if ($currentvalues) {
-			foreach ($currentvalues as $item) {
+			while ($item = db_fetch_assoc($currentvalues)) {
 				if ($type) {
 					$cv[get_language_string($item['title'])] = $item['titlelink'];
 				} else {
@@ -1286,9 +1297,9 @@ function getAllTagsUnique() {
 	if (!is_null($_zp_unique_tags)) return $_zp_unique_tags;  // cache them.
 	$_zp_unique_tags = array();
 	$sql = "SELECT DISTINCT `name` FROM ".prefix('tags').' ORDER BY `name`';
-	$unique_tags = query_full_array($sql);
-	if (is_array($unique_tags)) {
-		foreach ($unique_tags as $tagrow) {
+	$unique_tags = query($sql);
+	if ($unique_tags) {
+		while ($tagrow = db_fetch_assoc($unique_tags)) {
 			$_zp_unique_tags[] = $tagrow['name'];
 		}
 	}
@@ -1305,9 +1316,9 @@ function getAllTagsCount() {
 	if (!is_null($_zp_count_tags)) return $_zp_count_tags;
 	$_zp_count_tags = array();
 	$sql = "SELECT DISTINCT tags.name, tags.id, (SELECT COUNT(*) FROM ".prefix('obj_to_tag')." as object WHERE object.tagid = tags.id) AS count FROM ".prefix('tags')." as tags ORDER BY `name`";
-	$tagresult = query_full_array($sql);
-	if (is_array($tagresult)) {
-		foreach ($tagresult as $tag) {
+	$tagresult = query($sql);
+	if ($tagresult) {
+		while ($tag = db_fetch_assoc($tagresult)) {
 			$_zp_count_tags[$tag['name']] = $tag['count'];
 		}
 	}
@@ -1333,10 +1344,10 @@ function storeTags($tags, $id, $tbl) {
 		}
 	}
 	$sql = "SELECT `id`, `tagid` from ".prefix('obj_to_tag')." WHERE `objectid`='".$id."' AND `type`='".$tbl."'";
-	$result = query_full_array($sql);
+	$result = query($sql);
 	$existing = array();
-	if (is_array($result)) {
-		foreach ($result as $row) {
+	if ($result) {
+		while ($row = db_fetch_assoc($result)) {
 			$dbtag = query_single_row("SELECT `name` FROM ".prefix('tags')." WHERE `id`='".$row['tagid']."'");
 			$existingLC = mb_strtolower($dbtag['name']);
 			if (in_array($existingLC, $tagsLC)) { // tag already set no action needed
@@ -1367,9 +1378,9 @@ function storeTags($tags, $id, $tbl) {
  */
 function readTags($id, $tbl) {
 	$tags = array();
-	$result = query_full_array("SELECT `tagid` FROM ".prefix('obj_to_tag')." WHERE `type`='".$tbl."' AND `objectid`='".$id."'");
-	if (is_array($result)) {
-		foreach ($result as $row) {
+	$result = query("SELECT `tagid` FROM ".prefix('obj_to_tag')." WHERE `type`='".$tbl."' AND `objectid`='".$id."'");
+	if ($result) {
+		while ($row = db_fetch_assoc($result)) {
 			$dbtag = query_single_row("SELECT `name` FROM".prefix('tags')." WHERE `id`='".$row['tagid']."'");
 			if ($dbtag) {
 				$tags[] = $dbtag['name'];
@@ -1554,10 +1565,10 @@ function getNotViewableAlbums() {
 	$hint = '';
 	if (is_null($_zp_not_viewable_album_list)) {
 		$sql = 'SELECT `folder`, `id`, `password`, `show` FROM '.prefix('albums').' WHERE `show`=0 OR `password`!=""';
-		$result = query_full_array($sql);
-		if (is_array($result)) {
+		$result = query($sql);
+		if ($result) {
 			$_zp_not_viewable_album_list = array();
-			foreach ($result as $row) {
+			while ($row = db_fetch_assoc($result)) {
 				if (checkAlbumPassword($row['folder'])) {
 					$album = new Album(NULL, $row['folder']);
 					if (!($row['show'] || $album->isMyItem(LIST_RIGHTS))) {

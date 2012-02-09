@@ -342,14 +342,16 @@ class _Image extends MediaObject {
 						}
 					}
 					/* iptc keywords (tags) */
-					$datum = $this->getIPTCTagArray('2#025', $iptc);
-					if (is_array($datum)) {
-						$tags = array();
-						$result['tags'] = array();
-						foreach ($datum as $item) {
-							$tags[] = $this->prepIPTCString(sanitize($item,3), $characterset);;
+					if ($_zp_exifvars['IPTCKeywords'][5]) {
+						$datum = $this->getIPTCTagArray($_zp_exifvars['IPTCKeywords'][1], $iptc);
+						if (is_array($datum)) {
+							$tags = array();
+							$result['tags'] = array();
+							foreach ($datum as $item) {
+								$tags[] = $this->prepIPTCString(sanitize($item,3), $characterset);;
+							}
+							$this->setTags($tags);
 						}
-						$this->setTags($tags);
 					}
 				}
 			}

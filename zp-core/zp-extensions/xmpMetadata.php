@@ -610,7 +610,7 @@ class xmpMetadata {
 	 * @param string $xmpdata
 	 * @return array
 	 */
-	private static function xmpMetadata_extract($xmpdata) {
+	private static function extract($xmpdata) {
 		$desiredtags = array(
 			'EXIFLensType'					=>	'<aux:Lens>',
 			'EXIFLensInfo'					=>	'<aux:LensInfo>',
@@ -714,7 +714,7 @@ class xmpMetadata {
 	 * @param mixed $meta
 	 * @return string
 	 */
-	private static function xmpMetadata_to_string($meta) {
+	private static function to_string($meta) {
 		if (is_array($meta)) {
 			$meta = implode(',',$meta);
 		}
@@ -746,18 +746,18 @@ class xmpMetadata {
 			foreach ($files as $file) {
 				if (strtolower(getSuffix($file)) == XMP_EXTENSION) {
 					$source = file_get_contents($file);
-					$metadata = xmpMetadata::xmpMetadata_extract($source);
+					$metadata = xmpMetadata::extract($source);
 					if (array_key_exists('IPTCImageCaption' ,$metadata)) {
-						$album->setDesc(xmpMetadata::xmpMetadata_to_string($metadata['IPTCImageCaption' ]));
+						$album->setDesc(xmpMetadata::to_string($metadata['IPTCImageCaption' ]));
 					}
 					if (array_key_exists('IPTCImageHeadline',$metadata)) {
-						$album->setTitle(xmpMetadata::xmpMetadata_to_string($metadata['IPTCImageHeadline']));
+						$album->setTitle(xmpMetadata::to_string($metadata['IPTCImageHeadline']));
 					}
 					if (array_key_exists('IPTCLocationName',$metadata)) {
-						$album->setLocation(xmpMetadata::xmpMetadata_to_string($metadata['IPTCLocationName']));
+						$album->setLocation(xmpMetadata::to_string($metadata['IPTCLocationName']));
 					}
 					if (array_key_exists('IPTCKeywords',$metadata)) {
-						$album->setTags(xmpMetadata::xmpMetadata_to_string($metadata['IPTCKeywords']));
+						$album->setTags(xmpMetadata::to_string($metadata['IPTCKeywords']));
 					}
 					if (array_key_exists('EXIFDateTimeOriginal',$metadata)) {
 						$album->setDateTime($metadata['EXIFDateTimeOriginal']);
@@ -894,7 +894,7 @@ class xmpMetadata {
 			}
 		}
 		if (!empty($source)) {
-			$metadata = xmpMetadata::xmpMetadata_extract($source);
+			$metadata = xmpMetadata::extract($source);
 			$image->set('hasMetadata',count($metadata>0));
 			foreach ($metadata as $field=>$element) {
 				if (array_key_exists($field,$_zp_exifvars)) {
@@ -902,7 +902,7 @@ class xmpMetadata {
 						continue;	//	the field has been disabled
 					}
 				}
-				$v = xmpMetadata::xmpMetadata_to_string($element);
+				$v = xmpMetadata::to_string($element);
 
 				switch ($field) {
 					case 'EXIFDateTimeOriginal':

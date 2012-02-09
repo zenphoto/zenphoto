@@ -2634,7 +2634,7 @@ function getPageLinkURL($titlelink='') {
  * @param string $next text to follow the URL
  * @param string $class optional class
  */
-function printPageLinkURL($linktext, $titlelink, $page, $prev='', $next='', $class=NULL) {
+function printPageLinkURL($linktext, $titlelink, $prev='', $next='', $class=NULL) {
 	if (!is_null($class)) {
 		$class = 'class="' . $class . '"';
 	}

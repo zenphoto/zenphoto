@@ -603,8 +603,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 
 
 	$good = checkMark($cfg, gettext('<em>zenphoto.cfg</em> file'), gettext('<em>zenphoto.cfg</em> file [does not exist]'),
-							sprintf(gettext('Setup was not able to create this file. You will need to edit the <code>zenphoto.cfg</code> file as indicated in the file\'s comments and copy it in the <code>%s</code> folder.'),DATA_FOLDER).
-							sprintf(gettext('<br /><br />You can find the file in the "%s" directory.'),ZENFOLDER)) && $good;
+							sprintf(gettext('Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto.cfg</code> file to the <code>%2$s</code> folder then edit it as indicated in the file\'s comments.'),ZENFOLDER,DATA_FOLDER)) && $good;
 	if ($cfg) {
 		primeMark(gettext('File permissions'));
 		$chmodselector = '<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" />'.
@@ -2184,14 +2183,15 @@ if (file_exists(CONFIGFILE)) {
 
 	// do this last incase there are any field changes of like names!
 	foreach ($_zp_exifvars as $key=>$exifvar) {
-		$s = $exifvar[4];
-		if ($s<255) {
-			$size = "varchar($s)";
-		} else {
-			$size = 'MEDIUMTEXT';
+		if ($s = $exifvar[4]) {
+			if ($s<255) {
+				$size = "varchar($s)";
+			} else {
+				$size = 'MEDIUMTEXT';
+			}
+			$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `$key` $size default NULL";
+			$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `$key` `$key` $size default NULL";
 		}
-		$sql_statements[] = "ALTER TABLE $tbl_images ADD COLUMN `$key` $size default NULL";
-		$sql_statements[] = "ALTER TABLE $tbl_images CHANGE `$key` `$key` $size default NULL";
 	}
 
 

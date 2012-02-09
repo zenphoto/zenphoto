@@ -680,9 +680,9 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 				$retunNull = '';
 			}
 			$sql = 'SELECT * FROM '.prefix('images').' WHERE (`albumid`='.$album->id.') AND ('.$retunNull.' `owner`="'.$requestor.'") ORDER BY `'.$oldalbumimagesort.'` '.$direction;
-			$result = query_full_array($sql);
-			if (is_array($result)) {
-				foreach ($result as $row) {
+			$result = query($sql);
+			if ($result) {
+				while ($row = db_fetch_assoc($result)) {
 					$allimages[] = $row['filename'];
 				}
 			}
