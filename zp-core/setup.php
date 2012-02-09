@@ -603,8 +603,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 
 
 	$good = checkMark($cfg, gettext('<em>zenphoto.cfg</em> file'), gettext('<em>zenphoto.cfg</em> file [does not exist]'),
-							sprintf(gettext('Setup was not able to create this file. You will need to edit the <code>zenphoto.cfg</code> file as indicated in the file\'s comments and copy it to <code>zp-data</code> folder.'.
-							' Place the file in the %s folder.'),DATA_FOLDER).
+							sprintf(gettext('Setup was not able to create this file. You will need to edit the <code>zenphoto.cfg</code> file as indicated in the file\'s comments and copy it in the <code>%s</code> folder.'),DATA_FOLDER).
 							sprintf(gettext('<br /><br />You can find the file in the "%s" directory.'),ZENFOLDER)) && $good;
 	if ($cfg) {
 		primeMark(gettext('File permissions'));
