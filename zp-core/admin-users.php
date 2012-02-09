@@ -383,6 +383,7 @@ if ($_zp_reset_admin && !$refresh) {
 			$admins = $showset = array();
 		}
 	}
+	$userlist = array_slice($admins,$subpage*USERS_PER_PAGE,USERS_PER_PAGE);
 
 	if (isset($_GET['deleted'])) {
 		echo '<div class="messagebox fade-message">';
@@ -460,65 +461,75 @@ function languageChange(id,lang) {
 <table class="bordered"> <!-- main table -->
 
 	<tr>
-		<th>
-			<span style="font-weight: normal">
-			<a href="javascript:setShow(1);toggleExtraInfo('','user',true);"><?php echo gettext('Expand all');?></a>
-			|
-			<a href="javascript:setShow(0);toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all');?></a>
-			</span>
-		</th>
-		<th>
-			<?php echo gettext('show'); ?>
-			<select name="showgroup" id="showgroup" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-users.php',['showgroup='+$('#showgroup').val()]);" >
-				<option value=""<?php if (!$showgroup) echo ' selected="selected"'; ?>><?php echo gettext('all'); ?></option>
-				<option value="*"<?php if ($showgroup=='*') echo ' selected="selected"'; ?>><?php echo gettext('pending verification'); ?></option>
-				<option value="$"<?php if ($showgroup=='$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
-				<?php
-				if (getOption('zp_plugin_user_groups')) {
-					$groups = $_zp_authority->getAdministrators('groups');
-					foreach ($groups as $group) {
-						?>
-						<option value="<?php echo $group['user']; ?>"<?php if ($showgroup==$group['user']) echo ' selected="selected"'; ?>><?php printf('%s group', $group['user']); ?></option>
-						<?php
+		<?php
+		if (count($userlist) > 1) {
+			?>
+			<th>
+				<span style="font-weight: normal">
+				<a href="javascript:setShow(1);toggleExtraInfo('','user',true);"><?php echo gettext('Expand all');?></a>
+				|
+				<a href="javascript:setShow(0);toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all');?></a>
+				</span>
+			</th>
+			<th>
+				<?php echo gettext('show'); ?>
+				<select name="showgroup" id="showgroup" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-users.php',['showgroup='+$('#showgroup').val()]);" >
+					<option value=""<?php if (!$showgroup) echo ' selected="selected"'; ?>><?php echo gettext('all'); ?></option>
+					<option value="*"<?php if ($showgroup=='*') echo ' selected="selected"'; ?>><?php echo gettext('pending verification'); ?></option>
+					<option value="$"<?php if ($showgroup=='$') echo ' selected="selected"'; ?>><?php echo gettext('no group'); ?></option>
+					<?php
+					if (getOption('zp_plugin_user_groups')) {
+						$groups = $_zp_authority->getAdministrators('groups');
+						foreach ($groups as $group) {
+							?>
+							<option value="<?php echo $group['user']; ?>"<?php if ($showgroup==$group['user']) echo ' selected="selected"'; ?>><?php printf('%s group', $group['user']); ?></option>
+							<?php
+						}
 					}
-				}
-				?>
-			</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<?php
-			if ($subpage > 0) {
-				?>
-				<a href="?subpage=<?php echo ($subpage-1); ?>&amp;showgroup=<?php echo $showgroup; ?>" ><?php echo gettext('prev'); ?></a>
+					?>
+				</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				<?php
-			}
-			if ($pages > 2) {
 				if ($subpage > 0) {
 					?>
-					|
+					<a href="?subpage=<?php echo ($subpage-1); ?>&amp;showgroup=<?php echo $showgroup; ?>" ><?php echo gettext('prev'); ?></a>
 					<?php
 				}
-				?>
-				<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-users.php',['subpage='+$('#subpage').val(),'showgroup='+$('#showgroup').val()]);" >
-					<?php
-					foreach ($rangeset as $page=>$range) {
+				if ($pages > 2) {
+					if ($subpage > 0) {
 						?>
-						<option value="<?php echo $page; ?>" <?php if ($page==$subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
+						|
 						<?php
 					}
 					?>
-				</select>
-				<?php
-			}
-			if ($pages > $subpage+1) {
-				if ($pages > 2) {
-					?>
-					|
+					<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-users.php',['subpage='+$('#subpage').val(),'showgroup='+$('#showgroup').val()]);" >
+						<?php
+						foreach ($rangeset as $page=>$range) {
+							?>
+							<option value="<?php echo $page; ?>" <?php if ($page==$subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
+							<?php
+						}
+						?>
+					</select>
 					<?php
-				}?>
-				<a href="?subpage=<?php echo ($subpage+1); ?>&amp;showgroup=<?php echo $showgroup; ?>" ><?php echo gettext('next'); ?></a>
-				<?php
-			}
+				}
+				if ($pages > $subpage+1) {
+					if ($pages > 2) {
+						?>
+						|
+						<?php
+					}?>
+					<a href="?subpage=<?php echo ($subpage+1); ?>&amp;showgroup=<?php echo $showgroup; ?>" ><?php echo gettext('next'); ?></a>
+					<?php
+				}
+				?>
+			</th>
+			<?php
+		} else {
 			?>
-		</th>
+			<th colspan=2>&nbsp;</th>
+			<?php
+		}
+		?>
 	</tr>
 	<?php
 	$id = 0;
@@ -530,7 +541,6 @@ function languageChange(id,lang) {
 	}
 	$background = '';
 	$showlist = array();
-	$userlist = array_slice($admins,$subpage*USERS_PER_PAGE,USERS_PER_PAGE);
 	if (!empty($newuser)) {
 		$userlist[-1] = $newuser;
 	}
