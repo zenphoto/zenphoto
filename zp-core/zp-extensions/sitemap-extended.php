@@ -372,9 +372,11 @@ function getSitemapAlbumList($obj,&$albumlist, $gateway) {
 	$locallist = $obj->getAlbums();
 	foreach ($locallist as $folder) {
 		$album = new Album(NULL, $folder);
-		If ($album->getShow() && $gateway($album))  {
-			$albumlist[] = array('folder'=>$album->name, 'date'=>$album->getDateTime(), 'title'=>$album->getTitle());
-			getSitemapAlbumList($album, $albumlist, $gateway);
+		if ($album->getShow() && $gateway($album))  {
+			$albumlist[] = array('folder'=>$album->name, 'date'=>$album->getDateTime(), 'title'=>$album->getTitle());				
+			if(!$album->isDynamic()) {
+				getSitemapAlbumList($album, $albumlist, $gateway);
+			}
 		}
 	}
 }
