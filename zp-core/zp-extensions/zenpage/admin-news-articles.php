@@ -196,7 +196,7 @@ printLogoAndLinks();
 				if($total < $_zp_zenpage_currentadminnewspage) {
 					$_zp_zenpage_currentadminnewspage = 1;
 				}
-				$offset = $_zp_zenpage->getOffset($articles_page);
+				$offset = Zenpage::getOffset($articles_page);
 				$result = array_slice($result, $offset, $articles_page);
 			}
 			?>

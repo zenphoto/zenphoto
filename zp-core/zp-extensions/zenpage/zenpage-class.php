@@ -163,7 +163,7 @@ class Zenpage {
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
-	function getArticles($articles_per_page='', $published=NULL,$ignorepagination=false,$sortorder='date', $sortdirection='desc',$sticky=true) {
+	function getArticles($articles_per_page=0, $published=NULL,$ignorepagination=false,$sortorder='date', $sortdirection='desc',$sticky=true) {
 		global $_zp_current_category, $_zp_post_date;
 		$this->processExpired('news');
 		$getUnpublished = NULL;
@@ -256,7 +256,7 @@ class Zenpage {
 			if ($ignorepagination) {
 				$offset = 0;
 			} else {
-				$offset = $this->getOffset($articles_per_page);
+				$offset = Zenpage::getOffset($articles_per_page);
 			}
 			while ($item = db_fetch_assoc($resource)) {
 				$article = new ZenpageNews($item['titlelink']);
@@ -281,12 +281,12 @@ class Zenpage {
 	 * @param bool $ignorepagination If pagination should be ingored so always with the first is started (false is default)
 	 * @return string
 	 */
-	function getOffset($articles_per_page,$ignorepagination=false) {
+	static function getOffset($articles_per_page,$ignorepagination=false) {
 		global $_zp_zenpage_currentadminnewspage;
 		if(strstr(dirname($_SERVER['REQUEST_URI']), '/'.PLUGIN_FOLDER.'/zenpage')) {
 			$page = $_zp_zenpage_currentadminnewspage;
 		} else {
-			$page = $this->getCurrentNewsPage();
+			$page = Zenpage::getCurrentNewsPage();
 		}
 		if($ignorepagination) {
 			$offset = 0;
@@ -368,7 +368,7 @@ class Zenpage {
 	 *
 	 * @return int
 	 */
-	function getCurrentNewsPage() {
+	static function getCurrentNewsPage() {
 		if(isset($_GET['page'])) {
 			$page = sanitize_numeric($_GET['page']);
 		} else {
@@ -486,7 +486,7 @@ class Zenpage {
 			$albumWhere = "AND albums.show=1".$passwordcheck;
 		}
 		if ($articles_per_page) {
-			$offset = $this->getOffset($articles_per_page);
+			$offset = Zenpage::getOffset($articles_per_page);
 		} else {
 			$offset = 0;
 		}

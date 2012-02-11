@@ -172,25 +172,22 @@ class ZenpagePage extends ZenpageItems {
 
 
 /**
- * Gets the sub pages recursivly by titlelink
+ * Gets the sub pages by titlelink
+ * @param bool $published TRUE for published or FALSE for all pages including un-published
  * @return array
  */
-	function getPages() {
+	function getPages($published=NULL) {
 		global $_zp_zenpage;
 		$subpages = array();
 		$sortorder = $this->getSortOrder();
-		$pages = $_zp_zenpage->getPages();
+		$pages = $_zp_zenpage->getPages($published);
 		foreach($pages as $page) {
 			$pageobj = new ZenpagePage($page['titlelink']);
 			if($pageobj->getParentID() == $this->getID() && $pageobj->getSortOrder()  != $sortorder) { // exclude the page itself!
 				array_push($subpages,$pageobj->getTitlelink());
 			}
 		}
-		if(count($subpages) != 0) {
-			return $subpages;
-		} else {
-			return array();
-		}
+		return $subpages;
 	}
 
 /**

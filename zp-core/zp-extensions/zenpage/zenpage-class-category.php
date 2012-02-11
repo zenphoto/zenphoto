@@ -283,7 +283,7 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param bool $sticky set to true to place "sticky" articles at the front of the list.
 	 * @return array
 	 */
-	function getArticles($articles_per_page='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
+	function getArticles($articles_per_page=0, $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
 		global $_zp_current_category, $_zp_post_date, $_zp_zenpage;
 		$_zp_zenpage->processExpired('news');
 		if (empty($published)) {
@@ -365,7 +365,7 @@ class ZenpageCategory extends ZenpageRoot {
 			if ($ignorepagination) {
 				$offset = 0;
 			} else {
-				$offset = $_zp_zenpage->getOffset($articles_per_page);
+				$offset = Zenpage::getOffset($articles_per_page);
 			}
 			if (is_object($_zp_current_category)) {
 				$currentcategory = $_zp_current_category->getTitlelink();
@@ -388,8 +388,8 @@ class ZenpageCategory extends ZenpageRoot {
 		}
 		return $result;
 	}
-	
-	
+
+
 	/**
  * Returns the full path to a news category
  *

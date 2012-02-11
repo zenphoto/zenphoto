@@ -1424,19 +1424,37 @@ class SearchEngine
 	}
 
 	/**
-	 * Returns a list of Pages Titlelinks found in the search
+	 *
+	 * Returns pages from a search
+	 * @param bool $published ignored, left for parameter compatibility
 	 *
 	 * @return array
 	 */
-	function getPages() {
+	function getPages($published=NULL) {
+		return $this->getSearchPages(NULL, NULL);
+	}
+
+	/**
+	 * Returns a list of Pages Titlelinks found in the search
+	 *
+	 * @parm string $sorttype optional sort field
+	 * @param string $sortdirection optional ordering
+	 *
+	 * @return array
+	 */
+	private function getSearchPages($sorttype, $sortdirection) {
 		if (!getOption('zp_plugin_zenpage') || getOption('search_no_pages') || $this->search_no_pages) return array();
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
+		$criteria = $this->getCacheTag('news',serialize($searchstring), $sorttype.' '.$sortdirection);
+		if ($this->pages && $criteria == $this->searches['pages']) {
+			return $this->pages;
+		}
 		if (is_null($this->pages)) {
 			$result = array();
 			if (empty($searchdate)) {
-				$search_query = $this->searchFieldsAndTags($searchstring, 'pages', false, false);
+				$search_query = $this->searchFieldsAndTags($searchstring, 'pages', $sorttype, $sortdirection);
 				if (empty($search_query)) {
 					$search_result = false;
 				} else {
@@ -1444,7 +1462,7 @@ class SearchEngine
 				}
 				zp_apply_filter('search_statistics',$searchstring, 'pages', !$search_result, false, $this->iteration++);
 			} else {
-				$search_query = $this->searchDate($searchstring, $searchdate, 'pages', false, false);
+				$search_query = $this->searchDate($searchstring, $searchdate, 'pages', NULL, NULL);
 				$search_result = query($search_query);
 			}
 			if ($search_result) {
@@ -1454,25 +1472,47 @@ class SearchEngine
 			}
 			$this->pages = $result;
 		}
+		$this->searches['pages'] = $criteria;
 		return $this->pages;
 	}
 
 	/**
 	 * Returns a list of News Titlelinks found in the search
 	 *
-	 * @param string $sortorder "date" for sorting by date (default)
-	 * 													"title" for sorting by title
-	 * @param string $sortdirection "desc" (default) for descending sort order
-	 * 													    "asc" for ascending sort order
+	 * @param int $articles_per_page The number of articles to get
+	 * @param bool $published placeholder for consistent parameter list
+	 * @param bool $ignorepagination ignore pagination
+	 * @param string $sorttype field to sort on
+	 * @param string $sortdirection sort order
 	 *
 	 * @return array
 	 */
-	function getArticles($sortorder="date", $sortdirection="desc") {
+	function getArticles($articles_per_page=0, $published=NULL, $ignorepagination=false, $sorttype="date", $sortdirection="desc") {
+		$articles = $this->getSearchArticles($sorttype, $sortdirection);
+		if (empty($articles)) {
+			return array();
+		} else {
+			if ($ignorepagination || !$articles_per_page) {
+				return $articles;
+			}
+			return array_slice($articles, Zenpage::getOffset($articles_per_page, $articles_per_page));
+		}
+	}
+
+	/**
+	 * Returns a list of News Titlelinks found in the search
+	 *
+	 * @param string $sorttype field to sort on
+	 * @param string $sortdirection sort order
+	 *
+	 * @return array
+	 */
+	private function getSearchArticles($sorttype, $sortdirection) {
 		if (!getOption('zp_plugin_zenpage') || getOption('search_no_news') || $this->search_no_news) { return array(); }
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
 		if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
-		$criteria = $this->getCacheTag('news',serialize($searchstring), $sortorder.' '.$sortdirection);
+		$criteria = $this->getCacheTag('news',serialize($searchstring), $sorttype.' '.$sortdirection);
 		if ($this->articles && $criteria == $this->searches['news']) {
 			return $this->articles;
 		}
@@ -1480,10 +1520,10 @@ class SearchEngine
 		if (is_null($result)) {
 			$result = array();
 			if (empty($searchdate)) {
-				$search_query = $this->searchFieldsAndTags($searchstring, 'news', $sortorder, $sortdirection);
+				$search_query = $this->searchFieldsAndTags($searchstring, 'news', $sorttype, $sortdirection);
 				zp_apply_filter('search_statistics',$searchstring, 'news', !empty($search_results), false, $this->iteration++);
 			} else {
-				$search_query = $this->searchDate($searchstring, $searchdate, 'news', $sortorder, $sortdirection,$this->whichdates);
+				$search_query = $this->searchDate($searchstring, $searchdate, 'news', $sorttype, $sortdirection,$this->whichdates);
 			}
 			if (empty($search_query)) {
 				$search_result = false;

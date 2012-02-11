@@ -1169,7 +1169,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 			}
 		}
 		if (!is_null($_zp_current_zenpage_news)) {
-			$news = $_zp_current_search->getArticles();
+			$news = $_zp_current_search->getArticles(0, NULL, true);
 			if (!empty($news)) {
 				$tltlelink = $_zp_current_zenpage_news->getTitlelink();
 				foreach ($news as $anews) {

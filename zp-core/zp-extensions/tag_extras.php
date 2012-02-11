@@ -129,7 +129,7 @@ function getAllTagsFromZenpage($mode='news') {
 				$published = 'published';
 			}
 			$type = 'news';
-			$items = $_zp_zenpage->getArticles('',$published);
+			$items = $_zp_zenpage->getArticles(false,$published);
 			foreach($items as $item) {
 				$obj = new ZenpageNews($item['titlelink']);
 				if($obj->checkAccess($hint, $show)) {
@@ -138,13 +138,9 @@ function getAllTagsFromZenpage($mode='news') {
 			}
 			break;
 		case 'pages':
-			if(zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS)) {
-				$published = 'all';
-			} else {
-				$published = 'published';
-			}
+			$published = !zp_loggedin(ZENPAGE_NEWS_RIGHTS | ALL_NEWS_RIGHTS);
 			$type = 'pages';
-			$items = $_zp_zenpage->getPages('','',$published);
+			$items = $_zp_zenpage->getPages($published);
 			foreach($items as $item) {
 				$obj = new ZenpagePage($item['titlelink']);
 				if($obj->checkAccess($hint, $show)) {
