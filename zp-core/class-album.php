@@ -393,7 +393,7 @@ class Album extends MediaObject {
 		if (is_null($this->images) || $care && $sorttype.$sortdirection !== $this->lastimagesort) {
 			if ($this->isDynamic()) {
 				$searchengine = $this->getSearchEngine();
-				$images = $searchengine->getSearchImages($sorttype, $sortdirection, $mine);
+				$images = $searchengine->getImages($page, $firstPageCount, $sorttype, $sortdirection, $care, $mine);
 			} else {
 				// Load, sort, and store the images in this Album.
 				$images = $this->loadFileNames();

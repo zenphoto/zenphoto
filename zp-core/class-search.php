@@ -24,6 +24,8 @@ class SearchEngine
 	var $page;
 	var $images = NULL;
 	var $albums = NULL;
+	var $articles = NULL;
+	var $pages = NULL;
 	var $dynalbumname;
 	protected $search_no_albums;	// omit albums
 	protected $search_no_images;	// omit albums
@@ -1126,8 +1128,8 @@ class SearchEngine
 	 *
 	 * @return array
 	 */
-	function getSearchAlbums($sorttype, $sortdirection, $mine=NULL) {
-		if (getOption('search_no_albums') || $this->search_no_albums) return array();
+	private function getSearchAlbums($sorttype, $sortdirection, $mine=NULL) {
+		if (getOption('search_no_albums') || $this->search_no_albums) { return array(); }
 		$albums = array();
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) { return $albums; } // nothing to find
@@ -1175,7 +1177,7 @@ class SearchEngine
 			$this->cacheSearch($criteria,$albums);
 		}
 		$this->albums = $albums;
-		$this->searches['images'] = $criteria;
+		$this->searches['albums'] = $criteria;
 		return $albums;
 	}
 
@@ -1192,10 +1194,7 @@ class SearchEngine
 	 * @return array
 	 */
 	function getAlbums($page=0, $sorttype=NULL, $sortdirection=NULL, $care=true, $mine=NULL) {
-		if (is_null($this->albums) || $care && $sorttype.$sortdirection !== $this->lastsubalbumsort) {
-			$this->albums = $this->getSearchAlbums($sorttype, $sortdirection, $mine);
-			$this->lastsubalbumsort = $sorttype.$sortdirection;
-		}
+		$this->albums = $this->getSearchAlbums($sorttype, $sortdirection, $mine);
 		if ($page == 0) {
 			return $this->albums;
 		} else {
@@ -1267,20 +1266,15 @@ class SearchEngine
 	 * @param bool $mine set true/false to overried ownership
 	 * @return array
 	 */
-	function getSearchImages($sorttype, $sortdirection, $mine=NULL) {
-		if (getOption('search_no_images') || $this->search_no_images) {
-			$this->images = array();
-			return $this->images;
-		}
+	private function getSearchImages($sorttype, $sortdirection, $mine=NULL) {
+		if (getOption('search_no_images') || $this->search_no_images) { return array(); }
 		if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$mine = true;
 		}
 		$searchstring = $this->getSearchString();
 		$searchdate = $this->dates;
-		if (empty($searchstring) && empty($searchdate)) {	 // nothing to find
-			$this->images = array();
-			return $this->images;
-		}
+		if (empty($searchstring) && empty($searchdate)) { return array(); }	// nothing to find
+
 		$criteria = $this->getCacheTag('images',serialize($searchstring).' '.$searchdate, $sorttype.' '.$sortdirection);
 		if ($criteria == $this->searches['images']) {
 			return $this->images;
@@ -1338,7 +1332,6 @@ class SearchEngine
 			}
 			$this->cacheSearch($criteria,$images);
 		}
-		$this->images = $images;
 		$this->searches['images'] = $criteria;
 		return $images;
 	}
@@ -1356,7 +1349,7 @@ class SearchEngine
 	 * @return array
 	 */
 	function getImages($page=0, $firstPageCount=0, $sorttype=NULL, $sortdirection=NULL, $care=true, $mine=NULL) {
-		$this->getSearchImages($sorttype, $sortdirection, $mine);
+		$this->images = $this->getSearchImages($sorttype, $sortdirection, $mine);
 		if ($page == 0) {
 			return $this->images;
 		} else {
@@ -1386,7 +1379,6 @@ class SearchEngine
 	 * @return int
 	 */
 	function getImageIndex($album, $filename) {
-		$this->getSearchImages(NULL, NULL);
 		$images = $this->getImages();
 		$c = 0;
 		foreach($images as $image) {
@@ -1436,13 +1428,13 @@ class SearchEngine
 	 *
 	 * @return array
 	 */
-	function getSearchPages() {
-		$result = array();
-		if (getOption('zp_plugin_zenpage')) {
-			if (getOption('search_no_pages') || $this->search_no_pages) return array();
-			$searchstring = $this->getSearchString();
-			$searchdate = $this->dates;
-			if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
+	function getPages() {
+		if (!getOption('zp_plugin_zenpage') || getOption('search_no_pages') || $this->search_no_pages) return array();
+		$searchstring = $this->getSearchString();
+		$searchdate = $this->dates;
+		if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
+		if (is_null($this->pages)) {
+			$result = array();
 			if (empty($searchdate)) {
 				$search_query = $this->searchFieldsAndTags($searchstring, 'pages', false, false);
 				if (empty($search_query)) {
@@ -1460,8 +1452,9 @@ class SearchEngine
 					$result[] = $row['titlelink'];
 				}
 			}
+			$this->pages = $result;
 		}
-		return $result;
+		return $this->pages;
 	}
 
 	/**
@@ -1474,13 +1467,18 @@ class SearchEngine
 	 *
 	 * @return array
 	 */
-	function getSearchNews($sortorder="date", $sortdirection="desc") {
-		$result = array();
-		if (getOption('zp_plugin_zenpage')) {
-			if (getOption('search_no_news') || $this->search_no_news) return array();
-			$searchstring = $this->getSearchString();
-			$searchdate = $this->dates;
-			if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
+	function getArticles($sortorder="date", $sortdirection="desc") {
+		if (!getOption('zp_plugin_zenpage') || getOption('search_no_news') || $this->search_no_news) { return array(); }
+		$searchstring = $this->getSearchString();
+		$searchdate = $this->dates;
+		if (empty($searchstring) && empty($searchdate)) { return array(); } // nothing to find
+		$criteria = $this->getCacheTag('news',serialize($searchstring), $sortorder.' '.$sortdirection);
+		if ($this->articles && $criteria == $this->searches['news']) {
+			return $this->articles;
+		}
+		$result = $this->getCachedSearch($criteria);
+		if (is_null($result)) {
+			$result = array();
 			if (empty($searchdate)) {
 				$search_query = $this->searchFieldsAndTags($searchstring, 'news', $sortorder, $sortdirection);
 				zp_apply_filter('search_statistics',$searchstring, 'news', !empty($search_results), false, $this->iteration++);
@@ -1497,8 +1495,11 @@ class SearchEngine
 					$result[] = array('id'=>$row['id'],'titlelink'=>$row['titlelink']);
 				}
 			}
+			$this->cacheSearch($criteria,$result);
 		}
-		return $result;
+		$this->articles = $result;
+		$this->searches['news'] = $criteria;
+		return $this->articles;
 	}
 
 	function clearSearchWords() {

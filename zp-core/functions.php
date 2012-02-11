@@ -1157,7 +1157,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 			zp_setCookie('zenphoto_last_album', '', -368000);
 		}
 		if (!is_null($_zp_current_zenpage_page)) {
-			$pages = $_zp_current_search->getSearchPages();
+			$pages = $_zp_current_search->getPages();
 			if (!empty($pages)) {
 				$tltlelink = $_zp_current_zenpage_page->getTitlelink();
 				foreach ($pages as $apage) {
@@ -1169,7 +1169,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 			}
 		}
 		if (!is_null($_zp_current_zenpage_news)) {
-			$news = $_zp_current_search->getSearchNews();
+			$news = $_zp_current_search->getArticles();
 			if (!empty($news)) {
 				$tltlelink = $_zp_current_zenpage_news->getTitlelink();
 				foreach ($news as $anews) {
