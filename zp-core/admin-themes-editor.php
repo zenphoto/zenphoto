@@ -78,12 +78,12 @@ echo "\n" . '<div id="content">';
 
 // If we're attempting to edit a file from a bundled theme, this is an illegal attempt
 if (!themeIsEditable($theme, $themes))
-	die(gettext('Cannot edit this file!'));
+	zp_error(gettext('Cannot edit this file!'));
 
 // If we're attempting to edit a file that's not a text file or that does not belong to the theme directory, this is an illegal attempt
 if ( $file_to_edit ) {
 	if ( !in_array( $file_to_edit, $themefiles ) or !isTextFile( $file_to_edit ) or filesize( $file_to_edit ) == 0)
-		die(gettext('Cannot edit this file!'));
+		zp_error(gettext('Cannot edit this file!'));
 }
 ?>
 

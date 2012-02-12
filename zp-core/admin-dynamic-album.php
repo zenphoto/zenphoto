@@ -36,7 +36,7 @@ if (isset($_POST['savealbum'])) {
 	$albumobj = new Album(NULL, $album);
 	if (!$albumobj->isMyItem(ALBUM_RIGHTS)) {
 		if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
-			die(gettext("You do not have edit rights on this album."));
+			zp_error(gettext("You do not have edit rights on this album."));
 		}
 	}
 	$words = sanitize($_POST['words']);

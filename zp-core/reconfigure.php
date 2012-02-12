@@ -74,6 +74,7 @@ if (file_exists(dirname(__FILE__).'/setup.php') && empty($needs)) {
 		</body>
 	</html>
 	<?php
+	db_close();
 	die();
 }
 ?>

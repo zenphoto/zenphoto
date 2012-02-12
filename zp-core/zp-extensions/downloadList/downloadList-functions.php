@@ -13,7 +13,7 @@ if(isset($_GET['download'])) {
 		$item = sanitize_numeric($_GET['download']);
 	}
 	if(empty($item) OR !getOption('zp_plugin_downloadList')) {
-		die();
+		zp_error(gettext('Forbidden'));
 	}
 	// script from php.net
 	if(isset($_GET['albumzip'])) {

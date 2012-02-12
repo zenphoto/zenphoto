@@ -441,7 +441,7 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 					if (strpos($v, $v2) !== false) {
 						header("HTTP/1.0 403 Forbidden");
 						header("Status: 403 Forbidden");
-						die("Forbidden");
+						zp_error("Forbidden");
 						exit();
 					}
 				}
@@ -452,7 +452,7 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 					if (strpos($v, $v2) !== false){
 						header("HTTP/1.0 403 Forbidden");
 						header("Status: 403 Forbidden");
-						die("Forbidden");
+						zp_error("Forbidden");
 						exit();
 					}
 				}

@@ -68,7 +68,7 @@ echo "\n</head>";
 
 // Create our album
 if (!isset($_GET['album'])) {
-	die(gettext("No album provided to sort."));
+	zp_error(gettext("No album provided to sort."));
 } else {
 
 	// Layout the page
