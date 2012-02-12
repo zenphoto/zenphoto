@@ -546,11 +546,7 @@ function getTotalPages($oneImagePage=false) {
 	global $_zp_gallery, $_zp_current_album, $_firstPageImages;
 	if (in_context(ZP_ALBUM | ZP_SEARCH)) {
 		$albums_per_page = max(1, getOption('albums_per_page'));
-		if (in_context(ZP_SEARCH)) {
-			$pageCount = ceil(getNumAlbums() / $albums_per_page);
-		} else {
-			$pageCount = ceil(getNumAlbums() / $albums_per_page);
-		}
+		$pageCount = ceil(getNumAlbums() / $albums_per_page);
 		$imageCount = getNumImages();
 		if ($oneImagePage) {
 			if ($oneImagePage===true) {
@@ -2568,7 +2564,7 @@ function getFullImageURL() {
 		if ($outcome == 'Unprotected') {
 			return getUnprotectedImageURL();
 		} else {
-			return getProtectedImageURL();
+			return getProtectedImageURL($_zp_current_image, $outcome);
 		}
 	}
 }
@@ -2593,6 +2589,9 @@ function getUnprotectedImageURL() {
  **/
 function getProtectedImageURL($image=NULL, $disposal=NULL) {
 	global $_zp_current_image;
+	if (is_null($disposal)) {
+		$disposal = getOption('protect_full_image');
+	}
 	if ($disposal == 'No access') return NULL;
 	if (is_null($image)) {
 		if(!in_context(ZP_IMAGE)) return false;
@@ -2607,12 +2606,10 @@ function getProtectedImageURL($image=NULL, $disposal=NULL) {
 	$args = array('FULL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, $wmt, NULL);
 	$cache_file = getImageCacheFilename($album->name, $image->filename, $args);
 	$cache_path = SERVERCACHE.$cache_file;
-	if (empty($disposal) && file_exists($cache_path)) {
-		if (OPEN_IMAGE_CACHE) {
-			return WEBPATH.'/'.CACHEFOLDER.pathurlencode(imgSrcURI($cache_file));
-		} else {
-			return getImageURI($args, $this->album->name, $filename, $this->filemtime);
-		}
+	if ($disposal != 'Download' && OPEN_IMAGE_CACHE && file_exists($cache_path)) {
+		return WEBPATH.'/'.CACHEFOLDER.pathurlencode(imgSrcURI($cache_file));
+	} else if ($disposal == 'Unprotected') {
+		return getImageURI($args, $this->album->name, $filename, $this->filemtime);
 	} else {
 		$params = '&q='.getOption('full_image_quality');
 		$watermark_use_image = getWatermarkParam($image, WATERMARK_FULL);
