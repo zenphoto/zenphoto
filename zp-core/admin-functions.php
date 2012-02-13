@@ -4221,7 +4221,7 @@ function consolidatedEditMessages($subtab) {
 				$messagebox[] = gettext('Hitcounter for selected items');
 				break;
 			case 'addtags':
-				$messagebox[] = gettext('Tags added selected items');
+				$messagebox[] = gettext('Tags added for selected items');
 				break;
 			case 'cleartags':
 				$messagebox[] = gettext('Tags cleared for selected items');
