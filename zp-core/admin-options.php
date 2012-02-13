@@ -1401,10 +1401,31 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<div id="resizable">
 						<ul class="searchchecklist" id="searchchecklist">
 							<?php
-							generateUnorderedListFromArray($set_fields, $set_fields, 'SEARCH_', false, true, true, NULL, $extra);
-							generateUnorderedListFromArray(array(), $fields, 'SEARCH_', false, true, true, NULL, $extra);
+							generateUnorderedListFromArray($set_fields, $set_fields, 'SEARCH_', false, true, true, 'search_fields', $extra);
+							generateUnorderedListFromArray(array(), $fields, 'SEARCH_', false, true, true, 'search_fields', $extra);
 							?>
 						</ul>
+						<div class="floatright">
+							<label id="autocheck">
+								<input type="checkbox" name="checkAllAuto" id="checkAllAuto" />
+								<span id="autotext"><?php echo gettext('all');?></span>
+							</label>
+						</div>
+						<script type="text/javascript">
+							// <!-- <![CDATA[
+							var checked = false;
+							$('#autocheck').click(
+							   function() {
+							      if (checked) {
+								      checked = false;
+							      } else {
+								      checked = true;
+							      }
+							      $('.search_fields').attr('checked', checked);
+							   }
+							)
+							// ]]> -->
+						</script>
 						</div>
 						<br />
 						<?php echo gettext('Treat spaces as'); ?>

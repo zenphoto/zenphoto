@@ -1655,8 +1655,8 @@ function getPrevAlbumURL() {
  */
 function isImagePage() {
 	global $_zp_page, $_firstPageImages;
-	$imagestart = getTotalPages(true);
-	if ($_firstPageImages) $imagestart --; // then images start on the last album page.
+	$imagestart = getTotalPages(2);	// # of album pages
+	if (!$_firstPageImages) $imagestart++; // then images start on the last album page.
 	return $_zp_page >= $imagestart;
 }
 
@@ -4045,7 +4045,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 			</script>
 			<?php echo $prevtext; ?>
 			<input type="text" name="words" value="" id="search_input" size="10" />
-			<?php if(count($fields) > 1) { ?>
+			<?php if(count($fields) > 1 || $searchwords) { ?>
 				<a href="javascript:toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
 			<?php } ?>
 			<input type="<?php echo $type; ?>" <?php echo $button; ?> class="pushbutton" id="search_submit" <?php echo $buttonSource; ?> />
@@ -4060,7 +4060,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 			?>
 			<br />
 			<?php
-			if (count($fields) > 1) {
+			if (count($fields) > 1 || $searchwords) {
 				$fields = array_flip($fields);
 				natcasesort($fields);
 				$fields = array_flip($fields);
@@ -4090,18 +4090,22 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 						</label>
 						<?php
 					}
-					?>
-					<ul>
-						<?php
-						foreach ($fields as $display=>$key) {
-							echo '<li><label><input id="SEARCH_'.$key.'" name="SEARCH_'.$key.'" type="checkbox"';
-							if (in_array($key,$query_fields)) {
-								echo ' checked="checked" ';
-							}
-							echo ' value="'.$key.'"  /> ' . $display . "</label></li>"."\n";
-						}
+					if (count($fields)>1) {
 						?>
-					</ul>
+						<ul>
+							<?php
+							foreach ($fields as $display=>$key) {
+								echo '<li><label><input id="SEARCH_'.$key.'" name="SEARCH_'.$key.'" type="checkbox"';
+								if (in_array($key,$query_fields)) {
+									echo ' checked="checked" ';
+								}
+								echo ' value="'.$key.'"  /> ' . $display . "</label></li>"."\n";
+							}
+							?>
+						</ul>
+						<?php
+					}
+					?>
 				</span>
 				<?php
 			}
