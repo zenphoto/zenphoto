@@ -1559,5 +1559,14 @@ function checkInstall() {
 	}
 }
 
+/**
+ *
+ * Call when terminating a script.
+ * Closes the database to be sure that we do not build up outstanding connections
+ */
+function exitZP() {
+	db_close();
+	exit();
+}
 
 ?>

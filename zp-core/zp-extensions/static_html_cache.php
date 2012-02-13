@@ -55,7 +55,7 @@ if (OFFSET_PATH) {
 		$_zp_HTML_cache = new static_html_cache();
 		$_zp_HTML_cache->clearHTMLCache();
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('HTML cache cleared.'));
-		exit();
+		exitZP();
 	}
 
 } else {	//	if the page is cached then handle it early
@@ -165,9 +165,7 @@ class static_html_cache {
 						list($usec, $sec) = explode(' ', microtime());
 						$end = (float)$usec + (float)$sec;
 						echo "<!-- ".sprintf(gettext('Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead.'),$end-$start_cache,$start_cache-$start,date('D, d M Y H:i:s',filemtime($cachefilepath)))." -->\n";
-
-						db_close();	// close the database as we have served the page and are exiting.
-						exit();
+						exitZP();
 					}
 				} else {
 					$this->deletestatic_html_cacheFile($cachefilepath);

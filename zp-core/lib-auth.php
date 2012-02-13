@@ -660,7 +660,7 @@ class Zenphoto_Authority {
 						if ($post_pass && $info['response'] == $post_pass) {
 							$ref = $this->getResetTicket($post_user, $user->getPass());
 							header('location:'.WEBPATH.'/'.ZENFOLDER.'/admin-users.php?ticket='.$ref.'&user='.$post_user);
-							exit();
+							exitZP();
 						}
 					}
 					$_zp_login_error = gettext('Sorry, that is not the answer.');

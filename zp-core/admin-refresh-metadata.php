@@ -80,7 +80,7 @@ if (db_connect()) {
 			if (!$album->isMyItem(ALBUM_RIGHTS)) {
 				if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 					header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-					exit();
+					exitZP();
 				}
 			}
 		}
@@ -100,7 +100,7 @@ if (db_connect()) {
 				if (!$album->isMyItem(ALBUM_RIGHTS)) {
 					if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 						header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-						exit();
+						exitZP();
 					}
 				}
 				$sql = "SELECT `id` FROM ". prefix('albums') . " WHERE `folder`=".db_quote($folder);

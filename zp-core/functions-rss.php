@@ -307,7 +307,7 @@ function startRSSCache() {
 		$cachefilepath = SERVERPATH."/cache_html/rss/".getRSSCacheFilename();
 		if(file_exists($cachefilepath) AND time()-filemtime($cachefilepath) < getOption("feed_cache_expire")) {
 			echo file_get_contents($cachefilepath); // PHP >= 4.3
-			exit();
+			exitZP();
 		} else {
 			if(file_exists($cachefilepath)) {
 				@chmod($cachefilepath, 0666);

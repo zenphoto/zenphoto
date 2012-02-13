@@ -32,7 +32,7 @@ if (isset($_GET['action'])) {
 		// clear out existing user assignments
 		$_zp_authority->updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&deleted');
-		exit();
+		exitZP();
 	} else if ($action == 'savegroups') {
 		for ($i = 0; $i < $_POST['totalgroups']; $i++) {
 			$groupname = trim(sanitize($_POST[$i.'-group'],0));
@@ -84,7 +84,7 @@ if (isset($_GET['action'])) {
 			}
 		}
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&saved');
-		exit();
+		exitZP();
 	} else if ($action == 'saveauserassignments') {
 		for ($i = 0; $i < $_POST['totalusers']; $i++) {
 			$username = trim(sanitize($_POST[$i.'-user'],3));
@@ -101,7 +101,7 @@ if (isset($_GET['action'])) {
 			$user->save();
 		}
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=assignments&saved');
-		exit();
+		exitZP();
 	}
 }
 

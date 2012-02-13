@@ -442,7 +442,7 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 						header("HTTP/1.0 403 Forbidden");
 						header("Status: 403 Forbidden");
 						zp_error("Forbidden");
-						exit();
+						exitZP();
 					}
 				}
 			}
@@ -453,7 +453,7 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 						header("HTTP/1.0 403 Forbidden");
 						header("Status: 403 Forbidden");
 						zp_error("Forbidden");
-						exit();
+						exitZP();
 					}
 				}
 			}
@@ -1268,7 +1268,7 @@ function setupTheme() {
 		</body>
 		</html>
 		<?php
-		exit();
+		exitZP();
 	} else {
 		loadLocalOptions($id,$theme);
 		$_zp_themeroot = WEBPATH . "/".THEMEFOLDER."/$theme";
@@ -1998,7 +1998,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 			zp_setCookie($authType, $auth);
 			if (isset($_POST['redirect']) && !empty($_POST['redirect'])) {
 				header("Location: " . FULLWEBPATH . "/" . $redirect_to);
-				exit();
+				exitZP();
 			}
 		} else {
 			// Clear the cookie, just in case

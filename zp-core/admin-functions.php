@@ -3909,7 +3909,7 @@ function admin_securityChecks($rights, $return) {
 		if (!isset($_SERVER["HTTPS"])) {
 			$redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 			header("Location:$redirect");
-			exit();
+			exitZP();
 		}
 	}
 	if (!$_zp_reset_admin) {
@@ -3919,7 +3919,7 @@ function admin_securityChecks($rights, $return) {
 				header("HTTP/1.0 302 Found");
 				header("Status: 302 Found");
 				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
-				exit();
+				exitZP();
 			}
 		}
 	}
@@ -3936,7 +3936,7 @@ function XSRFdefender($action) {
 		header("HTTP/1.0 302 Found");
 		header("Status: 302 Found");
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&error&msg='.sprintf(gettext('"%s" Cross Site Request Forgery blocked.'),$action));
-		exit();
+		exitZP();
 	}
 	unset($_REQUEST['XSRFToken']);
 	if (isset($_POST['XSRFToken'])) {

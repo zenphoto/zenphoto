@@ -12,7 +12,7 @@ $albumobj = new Album(new Gallery,$albumname);
 if (!$albumobj->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
-		exit();
+		exitZP();
 	}
 }
 
@@ -155,7 +155,7 @@ if (isset($_REQUEST['crop'])) {
 
 	$return = '/admin-edit.php?page=edit&album=' . pathurlencode($albumname).'&saved&subpage='.sanitize($_REQUEST['subpage']).'&tagsort='.sanitize($_REQUEST['tagsort']).'&tab=imageinfo';
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . $return);
-	exit();
+	exitZP();
 	}
 $subpage = sanitize($_REQUEST['subpage']);
 $tagsort = sanitize($_REQUEST['tagsort']);

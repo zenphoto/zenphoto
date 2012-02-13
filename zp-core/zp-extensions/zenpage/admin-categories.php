@@ -33,7 +33,7 @@ if(isset($_POST['action'])) {
 			$uri .= '?bulkaction='.$action;
 		}
 		header('Location: ' .$uri);
-		exit();
+		exitZP();
 	}
 }
 if(isset($_GET['delete'])) {

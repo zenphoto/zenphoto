@@ -20,7 +20,7 @@ if (!defined('OFFSET_PATH')) {
 			if (!zp_loggedin(ADMIN_RIGHTS)) {
 				// prevent nefarious access to this page.
 				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
-				exit();
+				exitZP();
 			}
 			if (session_id() == '') {
 				// force session cookie to be secure when in https
@@ -40,7 +40,7 @@ if (!defined('OFFSET_PATH')) {
 			query("DELETE FROM ".prefix('plugin_storage')." WHERE `type` = 'rsshitcounter'");
 			$msg = gettext('All hitcounters have been set to zero');
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('All hitcounters have been set to zero.'));
-			exit();
+			exitZP();
 		}
 	}
 }

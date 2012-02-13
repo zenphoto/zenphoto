@@ -32,7 +32,7 @@ function imageError($errormessage, $errorimg='err-imagegeneral.png') {
 	} else {
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/images/' . $errorimg);
 	}
-	exit();
+	exitZP();
 }
 
 /**

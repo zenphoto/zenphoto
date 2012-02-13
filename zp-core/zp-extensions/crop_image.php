@@ -67,7 +67,7 @@ $album = new Album(NULL, $albumname);
 if (!$album->isMyItem(ALBUM_RIGHTS)) { // prevent nefarious access to this page.
 	if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
-		exit();
+		exitZP();
 	}
 }
 
@@ -188,7 +188,7 @@ if (isset($_REQUEST['crop'])) {
 	}
 
 	header('Location: ' . $return);
-	exit();
+	exitZP();
 	}
 if (isset($_REQUEST['subpage'])) {
 	$subpage = sanitize($_REQUEST['subpage']);

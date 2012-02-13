@@ -359,7 +359,7 @@ class federated_logon {
 					}
 					$_zp_authority->logUser($userobj);
 					header("Location: ".FULLWEBPATH.'/' . ZENFOLDER . '/admin.php');
-					exit();
+					exitZP();
 				}
 			}
 		}

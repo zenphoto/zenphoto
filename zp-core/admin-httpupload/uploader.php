@@ -108,7 +108,7 @@ if (isset($_POST['processed'])) {
 				} else {
 					header('Location: '.FULLWEBPATH.'/'.ZENFOLDER.'/admin-upload.php?uploaded=1');
 				}
-				exit();
+				exitZP();
 			}
 		}
 	}
@@ -141,6 +141,6 @@ if (!isset($_POST['processed'])) {
 	}
 }
 header('Location: '.FULLWEBPATH.'/'.ZENFOLDER.'/admin-upload.php?error='.$errormsg);
-exit();
+exitZP();
 
 ?>

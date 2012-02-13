@@ -55,7 +55,7 @@ function filterLocale_load_request($allow) {
 		header("HTTP/1.0 302 Found");
 		header("Status: 302 Found");
 		header('Location: '.$path);
-		exit();
+		exitZP();
 	}
 	return $allow;
 }

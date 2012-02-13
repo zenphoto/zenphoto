@@ -25,7 +25,7 @@ if (!defined('OFFSET_PATH')) {
 		if (!zp_loggedin(ADMIN_RIGHTS)) {
 			// prevent nefarious access to this page.
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
-			exit();
+			exitZP();
 		}
 
 		require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
@@ -43,7 +43,7 @@ if (!defined('OFFSET_PATH')) {
 		query('UPDATE '.prefix('news').' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
 		query('UPDATE '.prefix('pages').' SET total_value=0, total_votes=0, rating=0, used_ips="" ');
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('All ratings have been set to <em>unrated</em>.'));
-		exit();
+		exitZP();
 	}
 }
 $option_interface = 'jquery_rating';

@@ -68,7 +68,7 @@ if (isset($_GET['action'])) {
 			}
 		}
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user-expiry/user-expiry-tab.php?page=users&tab=groups&applied='.$msg);
-		exit();
+		exitZP();
 	}
 }
 

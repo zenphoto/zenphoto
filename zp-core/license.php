@@ -16,7 +16,7 @@ if (isset($_SESSION['license_return']) && isset($_GET['XSRFToken'])) {
 	XSRFdefender('ZenphotoLicense');
 	setOption('license_accepted', ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']');
 	header('Location: '.$return_to);
-	exit();
+	exitZP();
 }
 
 printAdminHeader('license');

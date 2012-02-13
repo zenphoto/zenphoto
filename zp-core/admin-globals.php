@@ -21,7 +21,7 @@ if (SERVER_PROTOCOL == 'https_admin') {
 	if (!isset($_SERVER["HTTPS"])) {
 		$redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 		header("Location:$redirect");
-		exit();
+		exitZP();
 	}
 }
 require_once(dirname(__FILE__).'/admin-functions.php');

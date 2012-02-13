@@ -29,7 +29,7 @@ if(isset($_POST['checkallaction'])) {	// true if apply is pressed
 			$uri .= '?bulkaction='.$action;
 		}
 		header('Location: ' .$uri);
-		exit();
+		exitZP();
 	}
 }
 if(isset($_GET['delete'])) {

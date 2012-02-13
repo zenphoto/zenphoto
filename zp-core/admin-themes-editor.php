@@ -14,7 +14,7 @@ admin_securityChecks(THEMES_RIGHTS, currentRelativeURL(__FILE__));
 
 if (!isset($_GET['theme'])) {
 	header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php");
-	exit();
+	exitZP();
 }
 
 $message = $file_to_edit = $file_content = null;

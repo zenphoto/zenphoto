@@ -17,7 +17,7 @@ admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
 
 if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
-	exit();
+	exitZP();
 }
 
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';

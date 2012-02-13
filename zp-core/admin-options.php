@@ -399,7 +399,7 @@ if (isset($_GET['action'])) {
 
 		if (empty($notify)) $notify = '?saved';
 		header("Location: " . $notify . $returntab);
-		exit();
+		exitZP();
 
 	}
 

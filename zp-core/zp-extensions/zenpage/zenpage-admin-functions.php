@@ -221,7 +221,7 @@ function deletePage($titlelink) {
 	if($result) {
 		if (is_object($titlelink)) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER. '/zenpage/admin-pages.php?deleted');
-			exit();
+			exitZP();
 		}
 		return "<p class='messagebox fade-message'>".gettext("Page successfully deleted!")."</p>";
 	}
@@ -527,7 +527,7 @@ function deleteArticle($titlelink) {
 	if($result) {
 		if (is_object($titlelink)) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/' . PLUGIN_FOLDER. '/zenpage/admin-news-articles.php?deleted');
-			exit();
+			exitZP();
 		}
 		return "<p class='messagebox fade-message'>".gettext("Article successfully deleted!")."</p>";
 	}

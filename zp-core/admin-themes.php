@@ -37,7 +37,7 @@ if (isset($_GET['action'])) {
 					$opt = new ThemeOptions();	//	prime the default options!
 				}
 				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php?themealbum=".$_GET['themealbum']);
-				exit();
+				exitZP();
 			}
 			break;
 			// Duplicate a theme

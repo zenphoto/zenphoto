@@ -55,8 +55,7 @@ function display_error($message, $fatal) {
 		if ($fatal) {
 			$_zp_error = true;
 			debugLogBacktrace("fatal zp_error:$message");
-			db_close();
-			exit();
+			exitZP();
 		} else {
 			debugLogBacktrace("zp_error:$message");
 		}

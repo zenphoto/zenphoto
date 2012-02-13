@@ -22,7 +22,7 @@ if (file_exists(dirname(__FILE__).'/setup.php') && empty($needs)) {
 	if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
 	$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php?autorun=$where";
 	header("Location: $location" );
-	exit();
+	exitZP();
 } else {
 	?>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -75,6 +75,6 @@ if (file_exists(dirname(__FILE__).'/setup.php') && empty($needs)) {
 	</html>
 	<?php
 	db_close();
-	die();
+	exit();
 }
 ?>

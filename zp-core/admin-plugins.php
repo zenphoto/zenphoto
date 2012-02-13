@@ -36,7 +36,7 @@ if (isset($_GET['action'])) {
 			}
 		}
 		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved");
-		exit();
+		exitZP();
 	}
 }
 $saved = isset($_GET['saved']);

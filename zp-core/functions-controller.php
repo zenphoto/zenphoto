@@ -75,7 +75,7 @@ function fix_path_redirect() {
 			header("HTTP/1.0 301 Moved Permanently");
 			header("Status: 301 Moved Permanently");
 			header('Location: ' . FULLWEBPATH . '/' . $redirecturl);
-			exit();
+			exitZP();
 		}
 	}
 }
@@ -163,7 +163,7 @@ function zp_handle_comment() {
 				if (!isset($_SERVER['SERVER_SOFTWARE']) || strpos(strtolower($_SERVER['SERVER_SOFTWARE']), 'microsoft-iis') === false) {
 					// but not for Microsoft IIS because that server fails if we redirect!
 					header('Location: ' . $redirectTo);
-					exit();
+					exitZP();
 				}
 			} else {
 				$comment_error++;
@@ -414,7 +414,7 @@ function zp_load_request() {
 								header("HTTP/1.0 301 Moved Permanently");
 								header("Status: 301 Moved Permanently");
 								header('Location: ' . FULLWEBPATH . '/' . $redirect);
-								exit();
+								exitZP();
 								break;
 						}
 					}

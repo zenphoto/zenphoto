@@ -231,7 +231,7 @@ if (!$debug) {
 			break;
 		default:
 			pageError(405, gettext("Method Not Allowed"));
-			exit();
+			exitZP();
 	}
 	if (OPEN_IMAGE_CACHE) {
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt).' GMT');
@@ -247,7 +247,7 @@ if (!$debug) {
 		fpassthru($fp);
 		fclose($fp);
 	}
-	exit();
+	exitZP();
 } else {
 	echo "\n<p>Image: <img src=\"" . $path ."\" /></p>";
 }

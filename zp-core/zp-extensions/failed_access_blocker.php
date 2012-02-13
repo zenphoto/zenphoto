@@ -107,7 +107,7 @@ if ($block = getOption('failed_access_blocker_forbidden')) {
 		} else {
 			header("HTTP/1.0 403 ".gettext("Forbidden"));
 			header("Status: 403 ".gettext("Forbidden"));
-			exit();	//	terminate the script with no output
+			exitZP();	//	terminate the script with no output
 		}
 	}
 }

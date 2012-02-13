@@ -23,7 +23,7 @@ if (isset($_GET['album'])) {
 	if (!$album->isMyItem(ALBUM_RIGHTS)) {
 		if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-			exit();
+			exitZP();
 		}
 	}
 	if (isset($_GET['saved'])) {

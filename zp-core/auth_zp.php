@@ -47,7 +47,7 @@ $_zp_loggedin = $_zp_null_account = $_zp_reset_admin = false;
 if (zp_getCookie('zenphoto_ssl') && !secureServer()) {
 	$redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	header("Location:$redirect");
-	exit();
+	exitZP();
 }
 
 if (isset($_POST['login'])) {	//	Handle the login form.
@@ -65,7 +65,7 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 		if (!empty($redirect)) {
 			if (substr($redirect,0,1) != '/') $redirect = '/'.$redirect;
 			header("Location: " . $redirect);
-			exit();
+			exitZP();
 		}
 	}
 } else {	//	no login form, check the cookie
@@ -104,7 +104,7 @@ if (isset($_REQUEST['logout'])) {
 	}
 	$location = $rd_protocol."://".$_SERVER['HTTP_HOST'].WEBPATH.'/index.php'.$redirect;
 	header("Location: " . $location);
-	exit();
+	exitZP();
 }
 
 ?>

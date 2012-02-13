@@ -18,7 +18,7 @@ if(isset($_GET['rss'])) {
 			header("HTTP/1.0 404 Not Found");
 			header("Status: 404 Not Found");
 			include(ZENFOLDER. '/404.php');
-			exit();
+			exitZP();
 		}
 		require_once(ZENFOLDER .'/'.PLUGIN_FOLDER . "/image_album_statistics.php");
 		include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss.php');
@@ -29,7 +29,7 @@ if(isset($_GET['rss'])) {
 				header("HTTP/1.0 404 Not Found");
 				header("Status: 404 Not Found");
 				include(ZENFOLDER. '/404.php');
-				exit();
+				exitZP();
 			}
 			include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss-news.php');
 			break;
@@ -39,13 +39,13 @@ if(isset($_GET['rss'])) {
 				header("HTTP/1.0 404 Not Found");
 				header("Status: 404 Not Found");
 				include(ZENFOLDER. '/404.php');
-				exit();
+				exitZP();
 			}
 			include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss-comments.php');
 			break;
 	}
 	endRSSCache();
-	exit();
+	exitZP();
 }
 //$_zp_script_timer['rss'] = microtime();
 /**

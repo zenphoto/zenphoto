@@ -96,7 +96,7 @@ if ($_zp_null_account || empty($msg) && zp_loggedin() && !zp_loggedin(OVERVIEW_R
 	$tab = array_shift($zenphoto_tabs);
 	$link = $tab['link'];
 	header('location:'.$link);
-	exit();
+	exitZP();
 }
 if (!zp_loggedin()) {
 	if (isset($_GET['from'])) {
@@ -126,7 +126,7 @@ if (!zp_loggedin()) {
 	$_zp_authority->printLoginForm($from);
 	echo "\n</body>";
 	echo "\n</html>";
-	exit();
+	exitZP();
 
 } else { /* Admin-only content safe from here on. */
 	printLogoAndLinks();

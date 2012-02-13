@@ -36,7 +36,7 @@ if(isset($_POST['update'])) {
 			$uri .= '?bulkaction='.$action;
 		}
 		header('Location: ' .$uri);
-		exit();
+		exitZP();
 	}
 }
 // remove the page from the database

@@ -40,7 +40,7 @@ if (isset($_GET['action'])) {
 				$notify = '&migration_error';
 			}
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users" . $notify);
-			exit();
+			exitZP();
 			break;
 		case 'deleteadmin':
 			XSRFdefender('deleteadmin');
@@ -48,7 +48,7 @@ if (isset($_GET['action'])) {
 			zp_apply_filter('save_user', '', $adminobj, 'delete');
 			$adminobj->remove();
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted");
-			exit();
+			exitZP();
 			break;
 		case 'saveoptions':
 			if (!$_zp_null_account || $_zp_reset_admin) {
@@ -211,7 +211,7 @@ if (isset($_GET['action'])) {
 				}
 			}
 			header("Location: " . $notify . $returntab.$ticket);
-			exit();
+			exitZP();
 
 
 }
@@ -227,7 +227,7 @@ if (!$_zp_current_admin_obj && !$_zp_null_account) {
 	header("HTTP/1.0 302 Found");
 	header("Status: 302 Found");
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
-	exit();
+	exitZP();
 }
 
 printAdminHeader($_current_tab);

@@ -157,7 +157,7 @@ if(isset($_GET['sitemap'])) {
 		$sitemapfile = file_get_contents($sitemappath);
 		echo $sitemapfile;
 	}
-	exit();
+	exitZP();
 }
 
 /**
@@ -373,7 +373,7 @@ function getSitemapAlbumList($obj,&$albumlist, $gateway) {
 	foreach ($locallist as $folder) {
 		$album = new Album(NULL, $folder);
 		if ($album->getShow() && $gateway($album))  {
-			$albumlist[] = array('folder'=>$album->name, 'date'=>$album->getDateTime(), 'title'=>$album->getTitle());				
+			$albumlist[] = array('folder'=>$album->name, 'date'=>$album->getDateTime(), 'title'=>$album->getTitle());
 			if(!$album->isDynamic()) {
 				getSitemapAlbumList($album, $albumlist, $gateway);
 			}

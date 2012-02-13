@@ -309,7 +309,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 	if (!isset($_POST['albumid']) AND !is_object($albumobj)) {
 		echo "<div class=\"errorbox\" id=\"message\"><h2>".gettext("Invalid linking to the slideshow page.")."</h2></div>";
 		echo "</div></body></html>";
-		exit();
+		exitZP();
 	}
 	global $_zp_flash_player, $_zp_current_image, $_zp_current_album, $_zp_gallery;
 	$imagenumber = 0;
@@ -385,7 +385,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		$albumtitle = $album->getTitle();
 		if(!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumq['folder'])) {
 			echo gettext("This album is password protected!");
-			exit();
+			exitZP();
 		}
 		$dynamic = $album->isDynamic();
 		$images = $album->getImages(0);

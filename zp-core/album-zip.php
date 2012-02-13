@@ -56,11 +56,11 @@ function createAlbumZip($albumname){
 	$album = new Album(NULL, $albumname);
 	if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
 		pageError(403, gettext("Forbidden"));
-		exit();
+		exitZP();
 	}
 	if (!$album->exists) {
 		pageError(404, gettext('Album not found'));
-		exit();
+		exitZP();
 	}
 	$persist = $_zp_gallery->getPersistentArchive();
 	$dest = $album->localpath.'.zip';

@@ -16,7 +16,7 @@ if (isset($_GET['reset'])) {
 	$sql = 'DELETE FROM '.prefix('plugin_storage').' WHERE `type`="search_statistics"';
 	query($sql);
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/'. PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
-	exit();
+	exitZP();
 }
 
 printAdminHeader(gettext('utilities'),gettext('search analysis'));

@@ -16,7 +16,7 @@ if (isset($_GET['dsp'])) {
 }
 if ($disposal == 'No access') {	// illegal use of the script!
 		pageError(403, gettext("Forbidden"));
-		exit();
+		exitZP();
 }
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {
@@ -40,7 +40,7 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 	if (preg_replace('/^www\./', '', strtolower($_SERVER['SERVER_NAME'])) != preg_replace('/^www\./', '', strtolower($matches[2]))) {
 		/* It seems they are directly requesting the full image. */
 		header('Location: '.FULLWEBPATH.'\index.php?album='.$album8 . '&image=' . $image8);
-		exit();
+		exitZP();
 	}
 }
 
@@ -94,7 +94,7 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 		}
 		$action = WEBPATH.'/'.ZENFOLDER.'/full-image.php?userlog=1&a='.pathurlencode($album8).'&i='.urlencode($image8).$parms;
 		printPasswordForm($hint, $_zp_gallery->getUserLogonField() || $show, true, $action);
-		exit();
+		exitZP();
 	}
 }
 
@@ -128,7 +128,7 @@ switch ($suffix) {
 		} else {
 			header('Location: ' . getAlbumFolder(FULLWEBPATH).pathurlencode($album.'/'.$image), true, 301);
 		}
-		exit();
+		exitZP();
 }
 if (getOption('cache_full_image')) {
 	$args = array('FULL', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
@@ -162,7 +162,7 @@ if (!$cache_path && empty($watermark_use_image) && !$rotate) { // no processing 
 		} else {
 			header("Location: " . getAlbumFolder(FULLWEBPATH) . pathurlencode($album) . "/" . rawurlencode($image));
 		}
-		exit();
+		exitZP();
 	} else {  // the web server does not have access to the image, have to supply it
 		$fp = fopen($image_path, 'rb');
 		// send the right headers
@@ -175,7 +175,7 @@ if (!$cache_path && empty($watermark_use_image) && !$rotate) { // no processing 
 		// dump the picture and stop the script
 		fpassthru($fp);
 		fclose($fp);
-		exit();
+		exitZP();
 	}
 }
 
@@ -234,7 +234,7 @@ if (!is_null($cache_path)) {
 	} else {
 		header('Location: ' . FULLWEBPATH.'/'.CACHEFOLDER.pathurlencode(imgSrcURI($cache_file)), true, 301);
 	}
-	exit();
+	exitZP();
 }
 
 ?>

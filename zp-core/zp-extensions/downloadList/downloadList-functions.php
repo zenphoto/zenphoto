@@ -32,7 +32,7 @@ if(isset($_GET['download'])) {
 					$show = ($user)?true:NULL;
 					$hint = get_language_string(getOption('downloadList_hint'));
 					printPasswordForm($hint, true, $show, '?download='.$item);
-					exit();
+					exitZP();
 				}
 			}
 		}
@@ -51,7 +51,7 @@ if(isset($_GET['download'])) {
 			//header('Content-Length: ' . filesize($file)); // This causes corrupted files on my server
 			flush();
 			readfile($file);
-			exit();
+			exitZP();
 		}
 	}
 }

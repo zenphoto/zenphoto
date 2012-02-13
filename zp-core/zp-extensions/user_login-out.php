@@ -79,7 +79,7 @@ if (in_context(ZP_INDEX)) {
 				$params = substr($params,0,-1);
 			}
 			header("Location: " . FULLWEBPATH . '/index.php'.$params);
-			exit();
+			exitZP();
 		}
 	}
 }
