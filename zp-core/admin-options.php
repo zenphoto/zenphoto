@@ -577,8 +577,8 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 							if (is_null($mod_rewrite)) echo ' '.gettext('If the checkbox is disabled, setup did not detect a working Apache <em>mod_rewrite</em> facility and proper <em>.htaccess</em> file.');
 							?>
 						</p>
-						<p><?php echo gettext("If you are having problems with images who's names with contain accented characters try changing the <em>UTF8 image URIs</em> setting."); ?></p>
-						<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will appended the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php, /view</em>, etc."); ?></p>
+						<p><?php echo gettext("If you are having problems with images whose names contain accented characters try changing the <em>UTF8 image URIs</em> setting."); ?></p>
+						<p><?php echo gettext("If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."); ?></p>
 					</td>
 				</tr>
 				<tr>
@@ -591,7 +591,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<ul class="languagelist">
 							<?php
 							$locales = generateLanguageList('all');
-							$locales[gettext("HTTP Accept Language")] = '';
+							$locales[gettext("HTTP_Accept_Language")] = '';
 							ksort($locales,SORT_LOCALE_STRING);
 							$vers = explode('-', ZENPHOTO_VERSION);
 							$vers = explode('.', $vers[0]);
@@ -691,7 +691,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					</td>
 					<td>
 						<p><?php echo gettext("You can disable languages by unchecking their checkboxes. Only checked languages will be available to the installation."); ?></p>
-						<p><?php echo gettext("Select the preferred language to display text in. (Set to <em>HTTP Accept Language</em> to use the language preference specified by the viewer's browser.)"); ?></p>
+						<p><?php echo gettext("Select the preferred language to display text in. (Set to <em>HTTP_Accept_Language</em> to use the language preference specified by the viewer's browser.)"); ?></p>
 						<p><?php echo gettext("Set <em>Multi-lingual</em> to enable multiple languages for database fields."); ?></p>
 						<p class="notebox"><?php echo gettext("<strong>Note:</strong> if you have created multi-language strings, uncheck this option, then save anything, you will lose your strings."); ?></p>
 					</td>
