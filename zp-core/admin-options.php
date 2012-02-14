@@ -1949,7 +1949,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<p><?php echo gettext("The watermark image is scaled by to cover <em>cover percentage</em> of the image and placed relative to the upper left corner of the image."); ?></p>
 				<p><?php echo gettext("It is offset from there (moved toward the lower right corner) by the <em>offset</em> percentages of the height and width difference between the image and the watermark."); ?></p>
 				<p><?php echo gettext("If <em>allow upscale</em> is not checked the watermark will not be made larger than the original watermark image."); ?></p>
-				<p><?php printf(gettext('Images are in png-24 format and are located in the <code>/%s/watermarks/</code> folder.'), USER_PLUGIN_FOLDER); ?></p>
+				<p><?php printf(gettext('Custom watermarks should be placed in the <code>/%s/watermarks/</code> folder. The images must be in png-24 format.'), USER_PLUGIN_FOLDER); ?></p>
 				<?php
 				if (!empty($imageplugins)) {
 					?>

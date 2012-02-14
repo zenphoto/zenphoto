@@ -67,7 +67,7 @@ class Zenpage {
 	 * Un-publishes pages/news whose expiration date has been reached
 	 *
 	 */
-	function processExpired($table) {
+	static function processExpired($table) {
 		$expire = date('Y-m-d H:i:s');
 		$sql = 'SELECT * FROM '.prefix($table).' WHERE `date`<="'.$expire.'"'.
 						' AND `show`="1"'.
@@ -282,22 +282,16 @@ class Zenpage {
 	 * @return string
 	 */
 	static function getOffset($articles_per_page,$ignorepagination=false) {
-		global $_zp_zenpage_currentadminnewspage;
+		global $_zp_zenpage_currentadminnewspage, $_zp_page;
 		if(strstr(dirname($_SERVER['REQUEST_URI']), '/'.PLUGIN_FOLDER.'/zenpage')) {
 			$page = $_zp_zenpage_currentadminnewspage;
 		} else {
-			$page = Zenpage::getCurrentNewsPage();
+			$page = $_zp_page;
 		}
 		if($ignorepagination) {
 			$offset = 0;
 		} else {
 			$offset = ($page - 1) * $articles_per_page;
-		}
-		// Prevent sql limit/offset error when saving plugin options and on the plugins page
-		if(empty($articles_per_page)) {
-			$limit = "";
-		} else {
-			$limit = " LIMIT ".$offset.",".$articles_per_page;
 		}
 		return $offset;
 	}
@@ -360,38 +354,6 @@ class Zenpage {
 			break;
 		}
 		return $datecount;
-	}
-
-
-	/**
-	 * Gets the current news page number
-	 *
-	 * @return int
-	 */
-	static function getCurrentNewsPage() {
-		if(isset($_GET['page'])) {
-			$page = sanitize_numeric($_GET['page']);
-		} else {
-			$page = 1;
-		}
-		return $page;
-	}
-
-
-	/**
-	 * Get current news page for admin news pagination
-	 * Addition needed because $_GET['page'] conflict with zenphoto
-	 * could probably removed now...
-	 *
-	 * @return int
-	 */
-	function getCurrentAdminNewsPage() {
-		if(isset($_GET['pagenr'])) {
-			$page = sanitize_numeric($_GET['pagenr']);
-		} else {
-			$page = 1;
-		}
-		return $page;
 	}
 
 	/**

@@ -1495,7 +1495,7 @@ class SearchEngine
 			if ($ignorepagination || !$articles_per_page) {
 				return $articles;
 			}
-			return array_slice($articles, Zenpage::getOffset($articles_per_page, $articles_per_page));
+			return array_slice($articles, Zenpage::getOffset($articles_per_page), $articles_per_page);
 		}
 	}
 

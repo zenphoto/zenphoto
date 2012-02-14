@@ -64,7 +64,7 @@ if (!defined('WEBPATH')) die();
 									</span>
 									<?php printCodeblock(1); ?>
 									<?php printNewsContent(); ?>
-								 <?php printCodeblock(2); ?>
+									<?php printCodeblock(2); ?>
 								</div>
 								<?php
 								@call_user_func('printRating');
