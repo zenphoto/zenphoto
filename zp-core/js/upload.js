@@ -10,7 +10,7 @@ function updateFolder(nameObj, folderID, checkboxID, msg1, msg2) {
 	var fnamesuffix = "";
 	var count = 1;
 	if (autogen && name != "") {
-		fname = soejs(name);
+		fname = seoFriendlyJS(name);
 		while (contains(albumArray, parentfolder + fname + fnamesuffix)) {
 			fnamesuffix = "-"+count;
 			count++;

@@ -2162,18 +2162,37 @@ function getUserIP() {
 /**
  * Strips out and/or replaces characters from the string that are not "soe" friendly
  *
- * @param string $source
+ * @param string $string
  * @return string
  */
-function seoFriendly($source) {
+function seoFriendly($string) {
 	if (zp_has_filter('seoFriendly')) {
-		$string = zp_apply_filter('seoFriendly', $source);
+		$string = zp_apply_filter('seoFriendly', $string);
 	} else { // no filter, do basic cleanup
-		$string = preg_replace("/&([a-zA-Z])(uml|acute|grave|circ|tilde|ring),/","",$source);
-		$string = preg_replace("/[^a-zA-Z0-9_.-]/","",$string);
+		$string = preg_replace("/\s+/","_",$string);
+		$string = preg_replace("/[^a-zA-Z0-9_.-]/","-",$string);
 		$string = str_replace(array('---','--'),'-', $string);
 	}
 	return $string;
+}
+
+/**
+ *
+ * emit the javascript seojs() function
+ */
+function seoFriendlyJS() {
+	if (zp_has_filter('seoFriendly_js')) {
+		echo zp_apply_filter('seoFriendly_js');
+	} else {
+		?>
+		function seoFriendlyJS(fname) {
+			fname = fname.replace(/\s+/g, '_');
+			fname = fname.replace(/[^a-zA-Z0-9_.-]/g, '-');
+			fname = fname.replace(/--*/g, '-');
+			return fname;
+		}
+		<?php
+	}
 }
 
 /**

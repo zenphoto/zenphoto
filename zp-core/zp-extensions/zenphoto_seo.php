@@ -1093,9 +1093,8 @@ class zenphoto_seo {
 	static function filter($string) {
 		// strip/convert a few specific characters
 		$string = strtr($string,zenphoto_seo::$specialchars);
-		$string = preg_replace("/[\/,; ]/","-",$string);
 		if (getOption('zenphoto_seo_lowercase')) $string = strtolower($string);
-		$string = preg_replace("/&([a-zA-Z])(uml|acute|grave|circ|tilde|ring),/","-",$string);
+		$string = preg_replace("/\s+/","_",$string);
 		$string = preg_replace("/[^a-zA-Z0-9_.-]/","-",$string);
 		$string = str_replace(array('---','--'),'-', $string);
 		return $string;
@@ -1111,26 +1110,21 @@ class zenphoto_seo {
 			}
 		}
 		$js = "
-		<script type=\"text/javascript\">
-			// <!-- <![CDATA[
-			function soejs(fname) {
-				fname = fname.replace(/[\/,; ]/g, '-');\n";
+			function seoFriendlyJS(fname) {\n";
 
 		foreach ($xlate as $to=>$from) {
-			$js .= "			fname = fname.replace(/[".$from."]/g, '".$to."');\n";
+			$js .= "				fname = fname.replace(/[".$from."]/g, '".$to."');\n";
 		}
 
 		if (getOption('zenphoto_seo_lowercase')) {
-			$js .= "			fname = fname.toLowerCase();\n";
+			$js .= "				fname = fname.toLowerCase();\n";
 		}
-		$js .= "			fname = fname.replace(/[\!@#$\%\^&*()\~`\'\"]/g, '');
-				fname = fname.replace(/^\s+|\s+$/g, '');
-				fname = fname.replace(/[^a-zA-Z0-9]/g, '-');
+		$js .= "
+				fname = fname.replace(/\s+/g, '_');
+				fname = fname.replace(/[^a-zA-Z0-9_.-]/g, '-');
 				fname = fname.replace(/--*/g, '-');
 				return fname;
-			}
-			// ]]> -->
-		</script>";
+			}\n";
 		return $js;
 	}
 

@@ -145,23 +145,10 @@ if ($rootrights || !empty($albumlist)) {
 	} else {
 		$checked = '';
 	}
-	$defaultjs = "
-		<script type=\"text/javascript\">
-			// <!-- <![CDATA[
-			function soejs(fname) {
-				fname = fname.replace(/[\!@#$\%\^&*()\~`\'\"]/g, '');
-				fname = fname.replace(/^\s+|\s+$/g, '');
-				fname = fname.replace(/[^a-zA-Z0-9]/g, '-');
-				fname = fname.replace(/--*/g, '-');
-				return fname;
-			}
-			// ]]> -->
-		</script>
-	";
-	echo zp_apply_filter('seoFriendly_js', $defaultjs)."\n";
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
+		<?php 	seoFriendlyJS(); ?>
 		function buttonstate(good) {
 			$('#albumtitleslot').val($('#albumtitle').val());
 			$('#publishalbumslot').val($('#publishalbum').attr('checked'));
