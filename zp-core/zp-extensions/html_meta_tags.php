@@ -69,7 +69,7 @@ class htmlmetatags {
 		gettext('Expires') => array('key' => 'htmlmeta_expires', 'type' => OPTION_TYPE_TEXTBOX,
 									'desc' => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
 		gettext('Canonical URL link') => array('key' => 'htmlmeta_canonical-url', 'type' => OPTION_TYPE_CHECKBOX,
-									'desc' => gettext("This adds a link element to the head of each page with a <em>canonical url</em>.")),
+									'desc' => gettext("This adds a link element to the head of each page with a <em>canonical url</em>. If the seo_locale plugin is enabled it also generates alternate links for other languages (<link rel='alternate' hreflang='' href='' />).")),
 		gettext('HTML meta tags') => array('key' => 'htmlmeta_tags', 'type' => OPTION_TYPE_CHECKBOX_UL,
 										"checkboxes" => array(
 												"http-equiv='language'" => "htmlmeta_http-equiv-language",
@@ -240,7 +240,59 @@ class htmlmetatags {
 		if(getOption('htmlmeta_name-DC.source')) { $meta .= '<meta name="DC.source" content="'.$url.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.relation')) { $meta .= '<meta name="DC.relation" content="'.FULLWEBPATH.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.Date.created')) { $meta .= '<meta name="DC.Date.created" content="'.$date.'" />'."\n"; }
-		if(getOption('htmlmeta_canonical-url')) { $meta .= '<link rel="canonical" href="'.$canonicalurl.'" />'."\n"; }
+		if(getOption('htmlmeta_canonical-url')) { 
+			$meta .= '<link rel="canonical" href="'.$canonicalurl.'" />'."\n"; 
+			if(getOption('zp_plugin_seo_locale')) {
+				$langs = generateLanguageList();
+				if(count($langs) != 1) {
+					foreach ($langs as $text=>$lang) {
+						$lang = strtr($lang, '_','-');
+						if($lang == $locale) {
+							$altlink = '';
+						} else {
+							switch($_zp_gallery_page) {
+								case 'index.php':
+									$altlink = FULLWEBPATH.'/'.$lang;
+									break;
+								case 'album.php':
+									$altlink = FULLWEBPATH.'/'.$lang.'/'.html_encode($_zp_current_album->name);
+									break;
+								case 'image.php':
+									$altlink = FULLWEBPATH.'/'.$lang.'/'.html_encode($_zp_current_album->name).'/'.html_encode($_zp_current_image->filename).IM_SUFFIX;
+									break;
+								case 'news.php':
+									if(function_exists("is_NewsArticle")) {
+										if(is_NewsArticle()) {
+											$altlink = FULLWEBPATH.'/'.$lang.'/news/'.html_encode($_zp_current_zenpage_news->getTitlelink());
+										} else 	if(is_NewsCategory()) {
+											$altlink = FULLWEBPATH.'/'.$lang.'/news/'.html_encode($_zp_current_category->getTitlelink());
+										} else {
+											$altlink = FULLWEBPATH.'/'.$lang.'/news';
+										}
+									}
+									break;
+								case 'pages.php':
+									$altlink = FULLWEBPATH.'/'.$lang.'/pages/'.html_encode($_zp_current_zenpage_page->getTitlelink());
+									break;
+								case 'archive.php':
+									$altlink = FULLWEBPATH.'/'.$lang.'/page/'.html_encode('archive');
+									break;
+								case 'search.php':
+									$altlink = FULLWEBPATH.'/'.$lang.'/page/'.html_encode('search');
+									break;
+								case 'contact.php':
+									$altlink = FULLWEBPATH.'/'.$lang.'/page/'.html_encode('contact');
+									break;
+								default: // for all other possible none standard custom pages
+									$altlink = FULLWEBPATH.'/'.$lang.'/page/'.html_encode($pagetitle);
+									break;
+							} // switch
+							$meta .= '<link rel="alternate" hreflang="'.$lang.'" href="'.$altlink.'"'."\n";
+						} // if lang
+					} // foreach
+				} // if count
+			} // if option
+		} // if canonical
 		echo $meta;
 	}
 
