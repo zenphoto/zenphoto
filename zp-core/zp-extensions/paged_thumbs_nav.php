@@ -247,7 +247,7 @@ class pagedThumbsNav {
 		//$thcount = count($thumbs); echo "thcount:".$thcount;
 		$number = 0;
 		foreach ($thumbs as $image) {
-			if($image->id === getImageID()) {
+			if($image->getID() == getImageID()) {
 				$css = " id='pagedthumbsnav-active' ";
 			} else {
 				$css = "";

@@ -22,9 +22,9 @@ function printHeadingImage($randomImage) {
 	} else {
 		$randomAlbum = $randomImage->getAlbum();
 		$randomAlt1 = $randomAlbum->getTitle();
-		if ($randomAlbum->getAlbumId() <> $id) {
+		if ($randomAlbum->getID() <> $id) {
 			$randomAlbum = $randomAlbum->getParent();
-			while (!is_null($randomAlbum) && ($randomAlbum->getAlbumId() <> $id)) {
+			while (!is_null($randomAlbum) && ($randomAlbum->getID() <> $id)) {
 				$randomAlt1 = $randomAlbum->getTitle().":\n".$randomAlt1;
 				$randomAlbum = $randomAlbum->getParent();
 			}

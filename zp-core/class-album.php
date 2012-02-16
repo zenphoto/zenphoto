@@ -142,7 +142,7 @@ class Album extends MediaObject {
 		}
 		$title = trim($this->name);
 		if (!is_null($parentalbum)) {
-			$this->set('parentid', $parentalbum->getAlbumId());
+			$this->set('parentid', $parentalbum->getID());
 			$title = substr($title, strrpos($title, '/')+1);
 		}
 		$this->set('title', sanitize($title, 2));
@@ -155,13 +155,6 @@ class Album extends MediaObject {
 	 * @return string
 	 */
 	function getFolder() { return $this->name; }
-
-	/**
-	 * Returns the id of this album in the db
-	 *
-	 * @return int
-	 */
-	function getAlbumID() { return $this->id; }
 
 	/**
 	 * Returns The parent Album of this Album. NULL if this is a top-level album.
@@ -456,7 +449,7 @@ class Album extends MediaObject {
 			}
 		}
 
-		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->id);
+		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID());
 		$results = array();
 		while ($row = db_fetch_assoc($result)) {
 			$filename = $row['filename'];
@@ -758,7 +751,7 @@ class Album extends MediaObject {
 			$this->set('parentid', NULL);
 		} else {
 			$parent =  new Album(NULL, $parentname);
-			$this->set('parentid', $parent->getAlbumid());
+			$this->set('parentid', $parent->getID());
 		}
 		$this->save();
 	}
@@ -869,7 +862,7 @@ class Album extends MediaObject {
 					@chmod($d, FILE_MOD);
 				}
 			}
-			$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newfolder) . " WHERE `id` = ".$this->getAlbumID();
+			$sql = "UPDATE " . prefix('albums') . " SET folder=" . db_quote($newfolder) . " WHERE `id` = ".$this->id;
 			$success = query($sql);
 			if ($success) {
 				zp_apply_filter('album_rename_move', $this->name, $newfolder);

@@ -17,9 +17,6 @@ define('SEARCH_CACHE_DURATION', getOption('search_cache_duration'));
 
 class SearchEngine
 {
-	var $words;
-	var $dates;
-	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
 	var $fieldList;
 	var $page;
 	var $images = NULL;
@@ -27,6 +24,9 @@ class SearchEngine
 	var $articles = NULL;
 	var $pages = NULL;
 	var $dynalbumname;
+	protected $words;
+	protected $dates;
+	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
 	protected $search_no_albums;	// omit albums
 	protected $search_no_images;	// omit albums
 	protected $search_no_pages;		// omit pages
@@ -71,8 +71,6 @@ class SearchEngine
 		foreach ($_zp_exifvars as $field=>$row) {
 			$this->search_structure[strtolower($field)]	= $row[2];
 		}
-
-
 		if (isset($_REQUEST['words'])) {
 			$this->words = sanitize($_REQUEST['words'],0);
 		} else {

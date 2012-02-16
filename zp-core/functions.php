@@ -833,7 +833,7 @@ function postComment($name, $email, $website, $comment, $code, $code_ok, $receiv
 	// Let the comment have trailing line breaks and space? Nah...
 	// Also (in)validate HTML here, and in $name.
 	$comment = trim($comment);
-	$receiverid = $receiver->id;
+	$receiverid = $receiver->getID();
 	$goodMessage = 2;
 	if ($private) $private = 1; else $private = 0;
 	if ($anon) $anon = 1; else $anon = 0;
@@ -957,7 +957,7 @@ function postComment($name, $email, $website, $comment, $code, $code_ok, $receiv
 			$message = $action . "\n\n" .
 					sprintf(gettext('Author: %1$s'."\n".'Email: %2$s'."\n".'Website: %3$s'."\n".'Comment:'."\n\n".'%4$s'),$commentobj->getname(), $commentobj->getEmail(), $commentobj->getWebsite(), $commentobj->getComment()) . "\n\n" .
 					sprintf(gettext('You can view all comments about this item here:'."\n".'%1$s'), 'http://' . $_SERVER['SERVER_NAME'] . WEBPATH . '/index.php?'.$url) . "\n\n" .
-					sprintf(gettext('You can edit the comment here:'."\n".'%1$s'), 'http://' . $_SERVER['SERVER_NAME'] . WEBPATH . '/' . ZENFOLDER . '/admin-comments.php?page=editcomment&id='.$commentobj->id);
+					sprintf(gettext('You can edit the comment here:'."\n".'%1$s'), 'http://' . $_SERVER['SERVER_NAME'] . WEBPATH . '/' . ZENFOLDER . '/admin-comments.php?page=editcomment&id='.$commentobj->getID());
 			$emails = array();
 			$admin_users = $_zp_authority->getAdministrators();
 			foreach ($admin_users as $admin) {  // mail anyone with full rights
@@ -968,7 +968,7 @@ function postComment($name, $email, $website, $comment, $code, $code_ok, $receiv
 				}
 			}
 			if($type === "images" OR $type === "albums") { // mail to album admins
-				$id = $ur_album->getAlbumID();
+				$id = $ur_album->getID();
 				$sql = 'SELECT `adminid` FROM '.prefix('admin_to_object').' WHERE `objectid`='.$id.' AND `type` LIKE "album%"';
 				$result = query($sql);
 				if ($result) {
@@ -1249,7 +1249,7 @@ function setupTheme() {
 		$albumtheme = $parent->getAlbumTheme();
 		if (!empty($albumtheme)) {
 			$theme = $albumtheme;
-			$id = $parent->id;
+			$id = $parent->getID();
 		}
 	}
 	$theme = zp_apply_filter('setupTheme', $theme);
@@ -2048,7 +2048,7 @@ function setThemeOption($key, $value, $album=NULL, $theme=NULL, $default=false) 
 	if (is_null($album)) {
 		$id = 0;
 	} else {
-		$id = $album->id;
+		$id = $album->getID();
 		$theme = $album->getAlbumTheme();
 	}
 	if (empty($theme)) {
@@ -2108,7 +2108,7 @@ function getThemeOption($option, $album=NULL, $theme=NULL) {
 	if (is_null($album)) {
 		$id = 0;
 	} else {
-		$id = $album->id;
+		$id = $album->getID();
 		$theme = $album->getAlbumTheme();
 	}
 	if (empty($theme)) {

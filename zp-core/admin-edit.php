@@ -679,7 +679,7 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 			} else {
 				$retunNull = '';
 			}
-			$sql = 'SELECT * FROM '.prefix('images').' WHERE (`albumid`='.$album->id.') AND ('.$retunNull.' `owner`="'.$requestor.'") ORDER BY `'.$oldalbumimagesort.'` '.$direction;
+			$sql = 'SELECT * FROM '.prefix('images').' WHERE (`albumid`='.$album->getID().') AND ('.$retunNull.' `owner`="'.$requestor.'") ORDER BY `'.$oldalbumimagesort.'` '.$direction;
 			$result = query($sql);
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {

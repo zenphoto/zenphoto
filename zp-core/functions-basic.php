@@ -122,9 +122,7 @@ if (function_exists('mb_internal_encoding')) {
 // once a library has concented to load, all others will
 // abdicate.
 $_zp_graphics_optionhandlers = array();
-if (version_compare(PHP_VERSION, '5.0.0') == 1) {
-	require_once(dirname(__FILE__).'/lib-Imagick.php');
-}
+require_once(dirname(__FILE__).'/lib-Imagick.php');
 require_once(dirname(__FILE__).'/lib-GD.php');
 
 if (function_exists('zp_graphicsLibInfo')) {

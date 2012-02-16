@@ -395,14 +395,16 @@ function checkAlbumParentid($albumname, $id) {
 	Global $_zp_gallery;
 	$album = new Album(NULL, $albumname);
 	$oldid = $album->get('parentid');
-	if ($oldid !== $id) {
+	if ($oldid != $id) {
 		$album->set('parentid', $id);
 		$album->save();
 		if (is_null($oldid)) $oldid = '<em>NULL</em>';
 		if (is_null($id)) $id = '<em>NULL</em>';
-		printf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname,$oldid, $id);
+		$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname,$oldid, $id);
+		setupLog($msg);
+		echo $msg;
 	}
-	$id = $album->id;
+	$id = $album->getID();
 	if (!$album->isDynamic()) {
 		$albums = $album->getAlbums();
 		foreach ($albums as $albumname) {

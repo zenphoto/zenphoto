@@ -24,7 +24,7 @@ class Transientimage extends _Image {
 		if (empty($this->displayname)) $this->displayname = $this->filename;
 		$this->filemtime = filemtime($this->localpath);
 		$this->comments = null;
-		parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->id), 'filename', false, true);
+		parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename', false, true);
 	}
 }
 ?>

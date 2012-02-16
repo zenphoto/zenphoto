@@ -17,6 +17,23 @@ if (isset($_GET['ticket'])) {
 }
 admin_securityChecks(USER_RIGHTS, currentRelativeURL(__FILE__));
 
+$newuser = array();
+$showset = array();
+if (isset($_GET['subpage'])) {
+	$subpage = sanitize_numeric($_GET['subpage']);
+} else {
+	if (isset($_POST['subpage'])) {
+		$subpage = sanitize_numeric($_POST['subpage']);
+	} else {
+		$subpage = 0;
+	}
+	foreach ($_GET as $param=>$value) {
+		if (strpos($param, 'show-') === 0) {
+			$showset[] = substr($param,5);
+		}
+	}
+}
+
 if (!isset($_GET['page'])) $_GET['page'] = 'users';
 $_current_tab = sanitize($_GET['page'],3);
 
@@ -39,7 +56,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$notify = '&migration_error';
 			}
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users" . $notify);
+			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&subpage=".$subpage . $notify);
 			exitZP();
 			break;
 		case 'deleteadmin':
@@ -47,7 +64,7 @@ if (isset($_GET['action'])) {
 			$adminobj = $_zp_authority->newAdministrator(sanitize($_GET['adminuser']),1);
 			zp_apply_filter('save_user', '', $adminobj, 'delete');
 			$adminobj->remove();
-			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted");
+			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&subpage=".$subpage);
 			exitZP();
 			break;
 		case 'saveoptions':
@@ -272,18 +289,6 @@ if ($_zp_reset_admin && !$refresh) {
 <div id="tab_admin" class="tabbox">
 <?php
 	zp_apply_filter('admin_note','users', 'users');
-	$newuser = array();
-	$showset = array();
-	if (isset($_GET['subpage'])) {
-		$subpage = sanitize_numeric($_GET['subpage']);
-	} else {
-		$subpage = 0;
-		foreach ($_GET as $param=>$value) {
-			if (strpos($param, 'show-') === 0) {
-				$showset[] = substr($param,5);
-			}
-		}
-	}
 
 	$pages = 0;
 	$clearPass = false;
@@ -383,6 +388,10 @@ if ($_zp_reset_admin && !$refresh) {
 			$admins = $showset = array();
 		}
 	}
+	$max = floor((count($admins)-1) / USERS_PER_PAGE);
+	if ($subpage > $max) {
+		$subpage = $max;
+	}
 	$userlist = array_slice($admins,$subpage*USERS_PER_PAGE,USERS_PER_PAGE);
 
 	if (isset($_GET['deleted'])) {
@@ -446,6 +455,7 @@ function languageChange(id,lang) {
 <form action="?action=saveoptions<?php echo str_replace('&','&amp;',$ticket); ?>" method="post" autocomplete="off" onsubmit="return checkNewuser();" >
 	<?php XSRFToken('saveadmin');?>
 	<input type="hidden" name="saveadminoptions" value="yes" />
+	<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 	<?php
 	if (empty($alterrights)) {
 		?>
@@ -462,7 +472,7 @@ function languageChange(id,lang) {
 
 	<tr>
 		<?php
-		if (count($userlist) > 1) {
+		if ($subpage || count($userlist) > 1) {
 			?>
 			<th>
 				<span style="font-weight: normal">
@@ -658,7 +668,7 @@ function languageChange(id,lang) {
 							}
 							?>
 							<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
-							<a href="javascript:if(confirm(<?php echo "'".js_encode($msg)."'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin')?>'; }"
+							<a href="javascript:if(confirm(<?php echo "'".js_encode($msg)."'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin')?>'; }"
 								title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;"> <img
 								src="images/fail.png" style="border: 0px;" alt="Delete" /></a>
 							</td>

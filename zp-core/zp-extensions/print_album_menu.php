@@ -244,7 +244,7 @@ function printAlbumMenuListAlbum($albums, $path, $folder, $option, $showcount, $
 				}
 			}
 
-			if(in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (getAlbumID() == $topalbum->getAlbumID() || $topalbum->name == $currenturalbumname)) {
+			if(in_context(ZP_ALBUM) && !in_context(ZP_SEARCH_LINKED) && (getAlbumID() == $topalbum->getID() || $topalbum->name == $currenturalbumname)) {
 				$current = $css_class_t.' ';
 			} else {
 				$current = "";

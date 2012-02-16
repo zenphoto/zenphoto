@@ -186,8 +186,8 @@ function printAlbumStatisticItem($album, $option, $showtitle=false, $showdate=fa
 	if($showdate) {
 		if($option === "latestupdated") {
 			$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($tempalbum->name));
-			$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$tempalbum->getAlbumID() . " AND `show` = 1 ORDER BY id DESC");
-			$count = db_count('images',"WHERE albumid = ".$tempalbum->getAlbumID() . " AND mtime = ". $latestimage['mtime']);
+			$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$tempalbum->getID() . " AND `show` = 1 ORDER BY id DESC");
+			$count = db_count('images',"WHERE albumid = ".$tempalbum->getID() . " AND mtime = ". $latestimage['mtime']);
 			echo "<p>".sprintf(gettext("Last update: %s"),zpFormattedDate(DATE_FORMAT,$filechangedate))."</p>";
 			if($count <= 1) {
 				$image = gettext("image");

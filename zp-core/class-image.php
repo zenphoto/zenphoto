@@ -128,7 +128,7 @@ class _Image extends MediaObject {
 
 		// This is where the magic happens...
 		$album_name = $album->name;
-		$new = parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->id), 'filename', false, empty($album_name));
+		$new = parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename', false, empty($album_name));
 		if ($this->filemtime != $this->get('mtime')) {
 			$this->set('mtime', $this->filemtime);
 			$this->updateMetaData();			// extract info from image
@@ -724,7 +724,7 @@ class _Image extends MediaObject {
 				return 6;
 			}
 		}
-		if ($newalbum->id == $this->album->id && $newfilename == $this->filename) {
+		if ($newalbum->getID() == $this->album->getID() && $newfilename == $this->filename) {
 			// Nothing to do - moving the file to the same place.
 			return 2;
 		}
@@ -746,7 +746,7 @@ class _Image extends MediaObject {
 			}
 		}
 		if ($result) {
-			if ($this->move(array('filename'=>$newfilename, 'albumid'=>$newalbum->id))) {
+			if ($this->move(array('filename'=>$newfilename, 'albumid'=>$newalbum->getID()))) {
 				$this->set('mtime',filemtime($newpath));
 				$this->save();
 				return 0;
@@ -774,7 +774,7 @@ class _Image extends MediaObject {
 		if (is_string($newalbum)) {
 			$newalbum =  new Album(NULL, $newalbum, false);
 		}
-		if ($newalbum->id == $this->album->id) {
+		if ($newalbum->getID() == $this->album->getID()) {
 			// Nothing to do - moving the file to the same place.
 			return 2;
 		}
@@ -794,9 +794,9 @@ class _Image extends MediaObject {
 			}
 		}
 		if ($result) {
-			if ($newID = parent::copy(array('filename'=>$filename, 'albumid'=>$newalbum->id))) {
+			if ($newID = parent::copy(array('filename'=>$filename, 'albumid'=>$newalbum->getID()))) {
 				storeTags(readTags($this->getID(), 'images'), $newID, 'images');
-				query('UPDATE '.prefix('images').' SET `mtime`='.filemtime($newpath).' WHERE `filename`="'.$filename.'" AND `albumid`='.$newalbum->id);
+				query('UPDATE '.prefix('images').' SET `mtime`='.filemtime($newpath).' WHERE `filename`="'.$filename.'" AND `albumid`='.$newalbum->getID());
 				return 0;
 			}
 		}

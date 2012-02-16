@@ -43,16 +43,16 @@ define('OBJECT_CACHE_DEPTH', 150);	//	how many objects to hold for each object c
 // ABSTRACT
 class PersistentObject {
 
-	var $data = NULL;
-	var $updates = NULL;
 	var $loaded = false;
 	var $table;
-	var $unique_set = NULL;
-	var $cache_by;
-	var $id = 0;
-	var $use_cache = false;
 	var $transient;
-	var $tempdata = NULL;
+	private $unique_set = NULL;
+	private $cache_by;
+	private $use_cache = false;
+	private $tempdata = NULL;
+	private $id = 0;
+	private $data = NULL;
+	private $updates = NULL;
 
 	/**
 	 *
@@ -293,9 +293,6 @@ class PersistentObject {
 				if (!$entry) return null;
 				// Save this new entry into the cache so we get a hit next time.
 				$this->addToCache($entry);
-
-//				$this->cache($entry);
-
 			}
 		}
 		$this->data = $entry;
@@ -338,12 +335,10 @@ class PersistentObject {
 			foreach ($insert_data as $key=>$value) { // copy over any changes
 				$this->data[$key] = $value;
 			}
-			$this->id = db_insert_id();
-			$this->data['id'] = $this->id; // so 'get' will retrieve it!
+			$this->data['id'] = $this->id = db_insert_id(); // so 'get' will retrieve it!
 			$this->loaded = true;
 			$this->updates = array();
 			$this->tempdata = array();
-
 		} else {
 			// Save the existing object (updates only) based on the existing id.
 			if (empty($this->updates)) {
@@ -371,6 +366,7 @@ class PersistentObject {
 			}
 		}
 		zp_apply_filter('save_object', true, $this);
+		$this->addToCache($this->data);
 		return true;
 	}
 
@@ -384,8 +380,8 @@ class PersistentObject {
 
 class ThemeObject extends PersistentObject {
 
+	private $commentcount;			//Contains the number of comments
 	var $comments = NULL;		//Contains an array of the comments of the object
-	var $commentcount;			//Contains the number of comments
 	var $manage_rights = ADMIN_RIGHTS;
 	var $manage_some_rights = ADMIN_RIGHTS;
 	var $view_rights = VIEW_ALL_RIGHTS;
@@ -476,7 +472,7 @@ class ThemeObject extends PersistentObject {
 	 * @return string
 	 */
 	function getTags() {
-		return readTags($this->id, $this->table);
+		return readTags($this->getID(), $this->table);
 	}
 
 	/**
@@ -488,7 +484,7 @@ class ThemeObject extends PersistentObject {
 		if (!is_array($tags)) {
 			$tags = explode(',', $tags);
 		}
-		storeTags($tags, $this->id, $this->table);
+		storeTags($tags, $this->getID(), $this->table);
 	}
 
 	/**
@@ -585,7 +581,7 @@ class ThemeObject extends PersistentObject {
 	 */
 	function getComments($moderated=false, $private=false, $desc=false) {
 		$sql = "SELECT *, (date + 0) AS date FROM " . prefix("comments") .
-			" WHERE `type`='".$this->table."' AND `ownerid`='" . $this->id . "'";
+			" WHERE `type`='".$this->table."' AND `ownerid`='" . $this->getID() . "'";
 		if (!$moderated) {
 			$sql .= " AND `inmoderation`=0";
 		}
@@ -631,7 +627,7 @@ class ThemeObject extends PersistentObject {
 	function getCommentCount() {
 		if (is_null($this->commentcount)) {
 			if ($this->comments == null) {
-				$count = db_count("comments", "WHERE `type`='".$this->table."' AND `inmoderation`=0 AND `private`=0 AND `ownerid`=" . $this->id);
+				$count = db_count("comments", "WHERE `type`='".$this->table."' AND `inmoderation`=0 AND `private`=0 AND `ownerid`=" . $this->getID());
 				$this->commentcount = $count;
 			} else {
 				$this->commentcount = count($this->comments);

@@ -274,7 +274,8 @@ function printAdminToolbox($id='admin') {
 				}
 				break;
 			case 'search.php':
-				if (!empty($_zp_current_search->words)) {
+				$words = $_zp_current_search->getSearchWords();
+				if (!empty($words)) {
 					// script is search.php with a search string
 					if (zp_loggedin(UPLOAD_RIGHTS)) {
 						// if admin has edit rights allow him to create a dynamic album from the search
@@ -581,7 +582,7 @@ function getPageURL($page, $total=null) {
 	if (is_null($total)) { $total = getTotalPages(); }
 	if (in_context(ZP_SEARCH)) {
 		$searchwords = $_zp_current_search->codifySearchString();
-		$searchdate = $_zp_current_search->dates;
+		$searchdate = $_zp_current_search->getSearchDate();
 		$searchfields = $_zp_current_search->getSearchFields(true);
 		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$_zp_current_search->getAlbumList()));
 		return $searchpagepath;
@@ -977,8 +978,8 @@ function getParentBreadcrumb() {
 	$output = array();
 	if (in_context(ZP_SEARCH_LINKED)) {
 		$page = $_zp_current_search->page;
-		$searchwords = $_zp_current_search->words;
-		$searchdate = $_zp_current_search->dates;
+		$searchwords = $_zp_current_search->getSearchWords();
+		$searchdate = $_zp_current_search->getSearchDate();
 		$searchfields = $_zp_current_search->getSearchFields(true);
 		$search_album_list=$_zp_current_search->getAlbumList();
 		if (!is_array($search_album_list)) {
@@ -2030,7 +2031,7 @@ function printImageData($field, $label='') {
 function getImageID() {
 	if (!in_context(ZP_IMAGE)) return false;
 	global $_zp_current_image;
-	return $_zp_current_image->id;
+	return $_zp_current_image->getID();
 }
 
 /**
@@ -3711,7 +3712,7 @@ function getURL($image) {
 function getAlbumId() {
 	global $_zp_current_album;
 	if (is_null($_zp_current_album)) { return null; }
-	return $_zp_current_album->getAlbumId();
+	return $_zp_current_album->getID();
 }
 
 /**
@@ -3961,6 +3962,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
  */
 function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $buttontext='', $iconsource=NULL, $query_fields=NULL, $object_list=NULL, $within=NULL) {
 	global $_zp_adminJS_loaded;
+	$engine = new SearchEngine();
 	if (!is_null($object_list)) {
 		if (array_key_exists(0, $object_list)) {	// handle old form albums list
 			trigger_error(gettext('printSearchForm $album_list parameter is deprecated. Pass array("albums"=>array(album, album, ...)) instead.'), E_USER_NOTICE);
@@ -3973,7 +3975,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		$buttontext = sanitize($buttontext);
 	}
 	$zf = WEBPATH."/".ZENFOLDER;
-	$searchwords = getSearchWords();
+	$searchwords = $engine->codifySearchString();
 	if (substr($searchwords,-1,1)==',') {
 		$searchwords = substr($searchwords,0,-1);
 	}
@@ -3997,7 +3999,6 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		$within = getOption('search_within');
 	}
 	if (MOD_REWRITE) { $searchurl = '/page/search/'; } else { $searchurl = "/index.php?p=search"; }
-	$engine = new SearchEngine();
 	if (!$within) {
 		$engine->clearSearchWords();
 	}
@@ -4014,11 +4015,10 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		<form method="post" action="<?php echo WEBPATH.$searchurl; ?>" id="search_form">
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				var lastsearch = '<?php echo addslashes(html_decode(addslashes($searchwords)))?>';
-				var savedlastsearch = lastsearch;
+				var within = <?php echo (int) !empty($searchwords); ?>;
 				function search_(way) {
+					within=way;
 					if (way) {
-						lastsearch=savedlastsearch;
 						$('#search_submit').attr('title', '<?php echo sprintf($hint,$buttontext); ?>');
 
 					} else {
@@ -4028,15 +4028,15 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 					$('#search_input').val('');
 				}
 				$('#search_form').submit(function(){
-					if (lastsearch) {
+					if (within) {
 						var newsearch = $.trim($('#search_input').val());
 						if (newsearch.substring(newsearch.length - 1)==',') {
 							newsearch = newsearch.substr(0,newsearch.length-1);
 						}
 						if (newsearch.length > 0) {
-							$('#search_input').val('('+lastsearch+') AND ('+newsearch+')');
+							$('#search_input').val('('+<?php echo $searchwords; ?>+') AND ('+newsearch+')');
 						} else {
-							$('#search_input').val(lastsearch);
+							$('#search_input').val(<?php echo $searchwords; ?>);
 						}
 					}
 					return true;
@@ -4124,7 +4124,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 function getSearchWords() {
 	global $_zp_current_search;
 	if (!in_context(ZP_SEARCH)) return '';
-	return $_zp_current_search->codifySearchString();
+	return stripcslashes($_zp_current_search->codifySearchString());
 }
 
 /**

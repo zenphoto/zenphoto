@@ -1482,7 +1482,7 @@ class Zenphoto_Administrator extends PersistentObject {
 				switch ($object['type']) {
 					case 'album':
 						$album = new Album(NULL, $object['data']);
-						$albumid = $album->getAlbumID();
+						$albumid = $album->getID();
 						$sql = "INSERT INTO ".prefix('admin_to_object')." (adminid, objectid, type, edit) VALUES ($id, $albumid, 'albums', $edit)";
 						$result = query($sql);
 						break;

@@ -713,7 +713,7 @@ class Gallery {
 			$obj = $this;
 			$viewUnpublished = $mine;
 		} else {
-			$albumid = '='.$parentalbum->id;
+			$albumid = '='.$parentalbum->getID();
 			$obj = $parentalbum;
 			$viewUnpublished = (zp_loggedin() && $obj->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 		}

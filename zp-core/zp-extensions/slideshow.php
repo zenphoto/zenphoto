@@ -341,7 +341,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 	if(!empty($_POST['albumid']) AND !is_object($albumobj)) {
 		$albumid = sanitize_numeric($_POST['albumid']);
 	} elseif(is_object($albumobj)) {
-		$albumid = $albumobj->id;
+		$albumid = $albumobj->getID();
 	} else {
 		$albumid = -1;
 	}
@@ -366,8 +366,8 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 		$params = sanitize($_POST['preserve_search_params']);
 		$search->setSearchParams($params);
 		$images = $search->getImages(0);
-		$searchwords = $search->words;
-		$searchdate = $search->dates;
+		$searchwords = $search->getSearchWords();
+		$searchdate = $search->getSearchDate();
 		$searchfields = $search->getSearchFields(true);
 		$page = $search->page;
 		if (empty($_POST['imagenumber'])) {

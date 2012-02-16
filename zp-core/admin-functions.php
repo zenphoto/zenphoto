@@ -207,7 +207,7 @@ function printSortableHead() {
  */
 
 function adminPrintImageThumb($image, $class=NULL, $id=NULL) {
-	echo "\n  <img class=\"imagethumb\" id=\"id_". $image->id ."\" src=\"" . $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1) . "\" alt=\"". html_encode($image->getTitle()) . "\" title=\"". html_encode($image->getTitle()) . " (". html_encode($image->getFileName()) . ")\"" .
+	echo "\n  <img class=\"imagethumb\" id=\"id_". $image->getID() ."\" src=\"" . $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1) . "\" alt=\"". html_encode($image->getTitle()) . "\" title=\"". html_encode($image->getTitle()) . " (". html_encode($image->getFileName()) . ")\"" .
 	((getOption('thumb_crop')) ? " width=\"".getOption('thumb_crop_width')."\" height=\"".getOption('thumb_crop_height')."\"" : "") .
 	(($class) ? " class=\"$class\"" : "") .
 	(($id) ? " id=\"$id\"" : "") . " />";
@@ -1863,7 +1863,7 @@ function printAlbumButtons($album) {
 		<form name="reset_hitcounters" action="?action=reset_hitcounters" method="post">
 			<?php XSRFToken('hitcounters');?>
 			<input type="hidden" name="action" value="reset_hitcounters" />
-			<input type="hidden" name="albumid" value="<?php echo $album->getAlbumID(); ?>" />
+			<input type="hidden" name="albumid" value="<?php echo $album->getID(); ?>" />
 			<input type="hidden" name="album" value="<?php echo html_encode($album->name); ?>" />
 			<?php
 			if (getOption('zp_plugin_hitcounter')) {
@@ -2108,7 +2108,7 @@ function printAlbumEditRow($album, $show_thumb) {
 						<?php
 					} else {
 						?>
-						<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getAlbumID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hitcounters for album %s'), $album->name); ?>">
+						<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hitcounters for album %s'), $album->name); ?>">
 						<img src="images/reset.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Reset hitcounters for the album %s'), $album->name); ?>" />
 						</a>
 						<?php
