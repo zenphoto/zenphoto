@@ -51,7 +51,6 @@ class SearchEngine
 		$this->search_structure['title']							= gettext('Title');
 		$this->search_structure['desc']								= gettext('Description');
 		$this->search_structure['tags']								= gettext('Tags');
-		$this->search_structure['news_categories']		= gettext('Categories');
 		$this->search_structure['filename']						= gettext('File/Folder name');
 		$this->search_structure['date']								= gettext('Date');
 		$this->search_structure['custom_data']				= gettext('Custom data');
@@ -67,10 +66,13 @@ class SearchEngine
 			$this->search_structure['author']						= gettext('Author');
 			$this->search_structure['lastchangeauthor']	= gettext('Last Editor');
 			$this->search_structure['titlelink']				= gettext('TitleLink');
+			$this->search_structure['news_categories']		= gettext('Categories');
 		}
 		//metadata fields
 		foreach ($_zp_exifvars as $field=>$row) {
-			$this->search_structure[strtolower($field)]	= $row[2];
+			if ($row[4] && $row[5]) {	//	only those that are "real" and "processed"
+				$this->search_structure[strtolower($field)]	= $row[2];
+			}
 		}
 		if (isset($_REQUEST['words'])) {
 			$this->words = sanitize($_REQUEST['words'],0);

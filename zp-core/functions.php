@@ -89,7 +89,7 @@ function setexifvars() {
 		'IPTCContact' 							=> array('IPTC',	 'Contact',								gettext('Contact'),																		false,			128, 	true),
 		'EXIFCopyright'			    		=> array('IFD0',   'Copyright', 						gettext('Copyright Holder'), 			 										false,			128, 	true),
 		'IPTCCopyright'							=> array('IPTC',	 'Copyright',							gettext('Copyright Notice'),													false,			128, 	true),
-		'IPTCKeywords'							=> array('IPTC',	 'Keywords',							gettext('Keywords'),																	false,			0,	true),
+		'IPTCKeywords'							=> array('IPTC',	 'Keywords',							gettext('Keywords'),																	false,			0,		true),
 		'EXIFExposureTime'      		=> array('SubIFD', 'ExposureTime',      		gettext('Shutter Speed'),          										true,				52, 	true),
 		'EXIFFNumber'           		=> array('SubIFD', 'FNumber',           		gettext('Aperture'),               										true,				52, 	true),
 		'EXIFISOSpeedRatings'   		=> array('SubIFD', 'ISOSpeedRatings',   		gettext('ISO Sensitivity'),        										true,				52, 	true),
