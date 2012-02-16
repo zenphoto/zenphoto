@@ -51,6 +51,7 @@ class SearchEngine
 		$this->search_structure['title']							= gettext('Title');
 		$this->search_structure['desc']								= gettext('Description');
 		$this->search_structure['tags']								= gettext('Tags');
+		$this->search_structure['news_categories']		= gettext('Categories');
 		$this->search_structure['filename']						= gettext('File/Folder name');
 		$this->search_structure['date']								= gettext('Date');
 		$this->search_structure['custom_data']				= gettext('Custom data');
@@ -842,32 +843,62 @@ class SearchEngine
 			$fields = $this->allowedSearchFields();
 		}
 		foreach ($fields as $key=>$field) {
-			if (strtolower($field) == 'tags') {
-				unset($fields[$key]);
-				$tagsql = 'SELECT t.`name`, o.`objectid` FROM '.prefix('tags').' AS t, '.prefix('obj_to_tag').' AS o WHERE t.`id`=o.`tagid` AND o.`type`="'.$tbl.'" AND (';
-				foreach($searchstring as $singlesearchstring){
-					switch ($singlesearchstring) {
-						case '&':
-						case '!':
-						case '|':
-						case '(':
-						case ')':
-							break;
-						default:
-							$targetfound = true;
+			switch ($field) {
+				case 'news_categories':
+					if ($tbl != 'news') {
+						break;
+					}
+					unset($fields[$key]);
+					$tagsql = 'SELECT t.`title`, o.`news_id` FROM '.prefix('news_categories').' AS t, '.prefix('news2cat').' AS o WHERE t.`id`=o.`cat_id` AND (';
+					foreach($searchstring as $singlesearchstring){
+						switch ($singlesearchstring) {
+							case '&':
+							case '!':
+							case '|':
+							case '(':
+							case ')':
+								break;
+							default:
+								$targetfound = true;
+								$tagsql .= '`title` = '.db_quote($singlesearchstring).' OR ';
+						}
+					}
+					$tagsql = substr($tagsql, 0, strlen($tagsql)-4).') ORDER BY t.`id`';
+					$objects = query_full_array($tagsql, false);
+					if (is_array($objects)) {
+						foreach ($objects as $object) {
+							$tag_objects[] = array('name'=>$object['title'], 'objectid'=>$object['news_id']);
+						}
+					}
+					break;
+				case 'tags':
+					unset($fields[$key]);
+					$tagsql = 'SELECT t.`name`, o.`objectid` FROM '.prefix('tags').' AS t, '.prefix('obj_to_tag').' AS o WHERE t.`id`=o.`tagid` AND o.`type`="'.$tbl.'" AND (';
+					foreach($searchstring as $singlesearchstring){
+						switch ($singlesearchstring) {
+							case '&':
+							case '!':
+							case '|':
+							case '(':
+							case ')':
+								break;
+							default:
+								$targetfound = true;
 							if ($exact) {
 								$tagsql .= '`name` = '.db_quote($singlesearchstring).' OR ';
 							} else {
 								$tagsql .= '`name` LIKE '.db_quote('%'.$singlesearchstring.'%').' OR ';
 							}
+						}
 					}
-				}
-				$tagsql = substr($tagsql, 0, strlen($tagsql)-4).') ORDER BY t.`id`';
-				$objects = query_full_array($tagsql, false);
-				if (is_array($objects)) {
-					$tag_objects = $objects;
-				}
-				break;
+					$tagsql = substr($tagsql, 0, strlen($tagsql)-4).') ORDER BY t.`id`';
+					$objects = query_full_array($tagsql, false);
+					if (is_array($objects)) {
+						$tag_objects = array_merge($tag_objects,$objects);
+					}
+					break;
+				default:
+					break;
 			}
 		}
 		// create an array of [name, objectid] pairs for the search fields.

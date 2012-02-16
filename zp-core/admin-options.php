@@ -1379,8 +1379,9 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<?php
 					$engine = new SearchEngine();
 					$fields = $engine->getSearchFieldList();
-					$extra = array('tags'=>array(	array('type'=>'radio', 'display'=>gettext('partial'),'name'=>'tag_match', 'value'=>0, 'checked'=>0),
-																				array('type'=>'radio', 'display'=>gettext('exact'),'name'=>'tag_match', 'value'=>1, 'checked'=>0)));
+					$extra = array(	'tags'=>array(array('type'=>'radio', 'display'=>gettext('partial'),'name'=>'tag_match', 'value'=>0, 'checked'=>0),
+																				array('type'=>'radio', 'display'=>gettext('exact'),'name'=>'tag_match', 'value'=>1, 'checked'=>0))
+					);
 					$extra['tags'][(int) (getOption('exact_tag_match') && true)]['checked'] = 1;
 					$set_fields = $engine->allowedSearchFields();
 					$fields = array_diff($fields, $set_fields);
