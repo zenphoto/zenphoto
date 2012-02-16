@@ -3454,10 +3454,9 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ')
 		$ct = count($singletag);
 		$x = 0;
 		foreach ($singletag as $atag) {
-			$latag = search_quote($atag);
 			if (++$x == $ct) { $separator = ""; }
 			if ($option === "links") {
-				$links1 = "<a href=\"".html_encode(getSearchURL($latag, '', 'tags', 0, array('albums'=>$albumlist)))."\" title=\"".html_encode($atag)."\" rel=\"nofollow\">";
+				$links1 = "<a href=\"".html_encode(getSearchURL($atag, '', 'tags', 0, array('albums'=>$albumlist)))."\" title=\"".html_encode($atag)."\" rel=\"nofollow\">";
 				$links2 = "</a>";
 			} else {
 				$links1 = $links2 = '';
@@ -3526,9 +3525,8 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 				} else {
 					$albumlist = NULL;
 				}
-				$lkey = search_quote($key);
 				$list .= "\t<li><a href=\"".
-									html_encode(getSearchURL($lkey, '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
+									html_encode(getSearchURL($key, '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
 									$key.$counter."</a></li>\n";
 			} else {
 				$list .= "\t<li$size>".$key.$counter."</li>\n";
