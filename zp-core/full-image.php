@@ -16,7 +16,6 @@ if (isset($_GET['dsp'])) {
 }
 if ($disposal == 'No access') {	// illegal use of the script!
 		pageError(403, gettext("Forbidden"));
-		exitZP();
 }
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {

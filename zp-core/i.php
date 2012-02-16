@@ -53,6 +53,13 @@ $album = str_replace('..','', sanitize_path($ralbum));
 $image = str_replace(array('/',"\\"),'', sanitize_path($rimage));
 $theme = themeSetup($album); // loads the theme based image options.
 $adminrequest = isset($_GET['admin']);
+if (getOption('secure_image_processor')) {
+	require_once(dirname(__FILE__).'/functions.php');
+	$albumobj = new Album(NULL, $album);
+	if (!$albumobj->checkAccess()) {
+		pageError(403, gettext("Forbidden"));
+	}
+}
 
 // Extract the image parameters from the input variables
 // This validates the input as well.
@@ -231,7 +238,6 @@ if (!$debug) {
 			break;
 		default:
 			pageError(405, gettext("Method Not Allowed"));
-			exitZP();
 	}
 	if (OPEN_IMAGE_CACHE) {
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt).' GMT');

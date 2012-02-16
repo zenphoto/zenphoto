@@ -46,11 +46,11 @@ class PersistentObject {
 	var $loaded = false;
 	var $table;
 	var $transient;
+	protected $id = 0;
 	private $unique_set = NULL;
 	private $cache_by;
 	private $use_cache = false;
 	private $tempdata = NULL;
-	private $id = 0;
 	private $data = NULL;
 	private $updates = NULL;
 

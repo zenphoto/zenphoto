@@ -222,6 +222,7 @@ if (isset($_GET['action'])) {
 			setOption('protect_full_image', sanitize($_POST['protect_full_image'],3));
 			$notify = processCredentials('protected_image');
 
+			setOption('secure_image_processor', (int) isset($_POST['secure_image_processor']));
 			if (isset($_POST['protected_image_cache'])) {
 				setOption('protected_image_cache', 1);
 				copy(SERVERPATH.'/'.ZENFOLDER.'/cacheprotect', SERVERPATH.'/'.CACHEFOLDER.'/.htaccess');
@@ -1969,6 +1970,15 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			</td>
 			<td><?php echo gettext('If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file.').
 								'<p class="notebox">'.gettext('<strong>WARNING	:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option.').'</p>'; ?></td>
+		</tr>
+		<tr>
+			<td><?php echo gettext("Secure image processor"); ?></td>
+			<td>
+				<input type="checkbox" name="secure_image_processor" value="1"
+				<?php echo checked('1', getOption('secure_image_processor')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
+			</td>
+			<td><?php echo gettext('When not checked the image processordoes not check for album access credentials.').
+								'<p class="notebox">'.gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.').'</p>'; ?></td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("Full image protection:"); ?></td>

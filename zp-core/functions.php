@@ -1626,6 +1626,7 @@ function pageError($err,$text) {
 	echo "<FONT face=\"Helvitica,Arial,Sans-serif\" size=\"2\">";
 	echo "<b>".sprintf(gettext('Page error: %2$s (%1$s)'),$err, $text)."</b><br /><br />";
 	echo "</body></html>";
+	exitZP();
 }
 
 /**

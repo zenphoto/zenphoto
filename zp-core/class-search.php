@@ -66,7 +66,7 @@ class SearchEngine
 			$this->search_structure['author']						= gettext('Author');
 			$this->search_structure['lastchangeauthor']	= gettext('Last Editor');
 			$this->search_structure['titlelink']				= gettext('TitleLink');
-			$this->search_structure['news_categories']		= gettext('Categories');
+			$this->search_structure['news_categories']	= gettext('Categories');
 		}
 		//metadata fields
 		foreach ($_zp_exifvars as $field=>$row) {
