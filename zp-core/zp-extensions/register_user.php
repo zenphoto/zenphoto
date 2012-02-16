@@ -62,8 +62,8 @@ class register_user_options {
 	}
 
 	function getOptionsSupported() {
-		global $_zp_authority;
-		$options = array(	gettext('Notify') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
+		global $_zp_authority, $_common_notify_handler;
+		$options = array(	gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
 												'order' => 4,
 												'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
 											gettext('Address fields') => array('key' => 'register_user_address_info', 'type' => OPTION_TYPE_RADIO,
@@ -86,6 +86,17 @@ class register_user_options {
 												'order' => 5,
 												'desc' => gettext('If checked, CAPTCHA validation will be required for user registration.'))
 											);
+		if ($_common_notify_handler) {
+			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
+																'order' => 8,
+																'desc' => '<p class="notebox">'.$_common_notify_handler.'</p>');
+		} else {
+			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'register_user\');"><em>register_user</em></a> plugin options..');
+			$options['note'] = array('key' => 'menu_truncate_note',
+															'type' => OPTION_TYPE_NOTE,
+															'order' => 8,
+															'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+		}
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 		if (count($mailinglist) == 0) {	//	no one to send the notice to!
 			$options[gettext('Notify')]['disabled'] = true;

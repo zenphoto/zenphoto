@@ -239,9 +239,6 @@ function layoutSelector_album($html, $obj, $prefix) {
  */
 function getLayoutSelector($obj,$type,$text,$prefix='',$secondary=false) {
 	global $_zp_gallery;
-	if(is_null($_zp_gallery)) {
-		$_zp_gallery = new Gallery();
-	}
 	$selectdefault = '';
 	$selected = '';
 	$files = array();

@@ -94,18 +94,13 @@ class federated_logon {
 	 * Provides option list
 	 */
 	function getOptionsSupported() {
-		global $_zp_authority;
+		global $_zp_authority, $_common_notify_handler;
 		$admins = $_zp_authority->getAdministrators('groups');
 		$ordered = array();
 		foreach ($admins as $key=>$admin) {
 			if ($admin['rights'] && !($admin['rights']&ADMIN_RIGHTS)) {
 				$ordered[$admin['user']] = $admin['user'];
 			}
-		}
-		if (getOption('zp_plugin_register_user')) {
-			$disable = gettext('* The option may be set via the <a href="javascript:gotoName(\'register_user\');"><em>register_user</em></a> plugin options..');
-		} else {
-			$disable = false;
 		}
 		$files = getPluginFiles('*_logon.php','federated_logon');
 		foreach ($files as $key=>$link) {
@@ -119,25 +114,23 @@ class federated_logon {
 												'checkboxes'=>$list,
 												'order' => 1,
 												'desc'=> gettext('Un-check any handler you do not want to support.')),
-											sprintf(gettext('Notify%s'),($disable)?'*':'') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
-												'disabled' => $disable,
+											gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
+												'disabled' => $_common_notify_handler,
 												'order' => 7,
 												'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. (Verification is required only if the Federated Logon provider does not supply an e-mail address.)'))
 		);
 		$files = getPluginFiles('*_logon.php','federated_logon');
 
-		if ($disable) {
-			$options['note'] = array('key' => 'federated_logon_truncate_note',
+		if ($_common_notify_handler) {
+			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
+																'order' => 8,
+																'desc' => '<p class="notebox">'.$_common_notify_handler.'</p>');
+		} else {
+			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'federated_logon\');"><em>register_user</em></a> plugin options..');
+			$options['note'] = array('key' => 'menu_truncate_note',
 															'type' => OPTION_TYPE_NOTE,
 															'order' => 8,
-															'desc' => '<p class="notebox">'.$disable.'</p>');
-		} else {
-			if (getOption('zp_plugin_zenpage')) {
-				$options['note'] = array('key' => 'federated_logon_truncate_note',
-																'type' => OPTION_TYPE_NOTE,
-																'order' => 8,
-																'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other the <em>register_user</em> plugin.</p>'));
-			}
+															'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 		}
 		return $options;
 	}

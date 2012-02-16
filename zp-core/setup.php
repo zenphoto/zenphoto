@@ -2243,7 +2243,6 @@ if (file_exists(CONFIGFILE)) {
 			$prevRel = getOption('zenphoto_release');
 			setupLog(sprintf(gettext("Previous Release was %s"),$prevRel));
 
-			$_zp_gallery = new Gallery();
 			require(dirname(__FILE__).'/setup/setup-option-defaults.php');
 
 			// update zenpage codeblocks--remove the base64 encoding

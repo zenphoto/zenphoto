@@ -52,13 +52,7 @@ class zenpagecms {
 	}
 
 	function getOptionsSupported() {
-			if (getOption('zp_plugin_menu_manager')) {
-			$disable = gettext('* The options may be set via the <a href="javascript:gotoName(\'menu_manager\');"><em>menu_manager</em></a> plugin options.');
-		} else if (getOption('zp_plugin_print_album_menu')) {
-			$disable = gettext('* The options may be set via the <a href="javascript:gotoName(\'print_album_menu\');"><em>print_album_menu</em></a> plugin options.');
-		} else {
-			$disable = false;
-		}
+		global $_common_truncate_handler;
 
 		$options = array(gettext('Articles per page (theme)') => array('key' => 'zenpage_articles_per_page', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 0,
@@ -74,7 +68,7 @@ class zenpagecms {
 		gettext('RSS feed text length') => array('key' => 'zenpage_rss_length', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("The text length of the Zenpage RSS feed items. No value for full length.")),
 		gettext('CombiNews') => array('key' => 'zenpage_combinews', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("Set to enable the CombiNews feature to show news articles and latest gallery items together on the news section's overview page(s).")."<p class='notebox'>".gettext("<strong>Note:</strong> Images/albums and news articles are still separate, your Zenphoto gallery is not touched in any way! <strong>IMPORTANT: This feature requires MySQL 4.1 or later.</strong>")."</p>"),
+										'desc' => gettext("Set to enable the CombiNews feature to show news articles and latest gallery items together on the news section's overview page(s).")."<p class='notebox'>".gettext("<strong>Note:</strong> Images/albums and news articles are still separate, your Zenphoto gallery is not touched in any way!")."</p>"),
 		gettext('CombiNews: Gallery page link') => array('key' => 'zenpage_combinews_readmore', 'type' => OPTION_TYPE_TEXTBOX, 'multilingual' => 1,
 										'desc' => gettext("The text for the 'read more'/'view more' link to the gallery page for images/movies/audio.")),
 		gettext('CombiNews: Mode') => array('key' => 'zenpage_combinews_mode', 'type' => OPTION_TYPE_SELECTOR,
@@ -110,19 +104,25 @@ class zenpagecms {
 															'desc' => gettext("Custom title for the article in sprintf() syntax. %1\$u = number of new items, %2\$s = title of the album they are in, %3\$s = titles of the new items. Never leave any of these three out! (<em>latest images by album</em> option only).")),
 		gettext('CombiNews: Custom title - Number of image titles') => array('key' => 'combinews-customtitle-imagetitles', 'type' => OPTION_TYPE_TEXTBOX,
 															'desc' => gettext("How many images titles you want to show with the custom title (<em>latest images by album</em> option only).")),
-		sprintf(gettext('Truncate titles%s'),($disable)?'*':'') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_TEXTBOX,
-															'disabled' => $disable,
+		gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_TEXTBOX,
+															'disabled' => $_common_truncate_handler,
 															'order' => 6,
 															'desc' => gettext('Limit titles to this many characters. Zero means no limit.')),
-		sprintf(gettext('Truncate indicator%s'),($disable)?'*':'') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
-															'disabled' => $disable,
+		gettext('Truncate indicator*') => array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
+															'disabled' => $_common_truncate_handler,
 															'order' => 7,
 															'desc' => gettext('Append this string to truncated titles.'))
 		);
-		if ($disable) {
-			$options['<p class="notebox">'.$disable.'</p>'] = array('key' => 'menu_manager_truncate_note', 'type' => OPTION_TYPE_CUSTOM,
+		if ($_common_truncate_handler) {
+			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
 																															'order' => 8,
-																															'desc' => '');
+																															'desc' => '<p class="notebox">'.$_common_truncate_handler.'</p>');
+		} else {
+			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'zenpage\');"><em>Zenpage</em></a> plugin options.');
+			$options['note'] = array('key' => 'menu_truncate_note',
+															'type' => OPTION_TYPE_NOTE,
+															'order' => 8,
+															'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
 		}
 		return $options;
 	}

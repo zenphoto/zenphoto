@@ -46,6 +46,8 @@ class menu_manager {
 	}
 
 	function getOptionsSupported() {
+		global $_common_truncate_handler;
+
 		$options = array(
 									gettext('Truncate indicator*') =>array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 2,
@@ -54,12 +56,16 @@ class menu_manager {
 										'order' => 1,
 										'desc' => gettext('Limit titles to this many characters. Zero means no limit.'))
 		);
-		if (getOption('zp_plugin_print_album_menu') | getOption('zp_plugin_print_album_menu')) {
-				$options['note'] = array('key' => 'menu_truncate_note',
-																'type' => OPTION_TYPE_NOTE,
+		if ($_common_truncate_handler) {
+			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
 																'order' => 8,
-																'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other the <em>register_user</em> plugin.</p>'));
-
+																'desc' => '<p class="notebox">'.$_common_truncate_handler.'</p>');
+		} else {
+			$_common_truncate_handler = gettext('* These options may be set via the <a href="javascript:gotoName(\'menu_manager\');"><em>menu_manager</em></a> plugin options.');
+			$options['note'] = array('key' => 'menu_truncate_note',
+															'type' => OPTION_TYPE_NOTE,
+															'order' => 8,
+															'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>'));
 		}
 		return $options;
 	}

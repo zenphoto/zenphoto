@@ -42,7 +42,6 @@ class Album extends MediaObject {
 	 */
 	function __construct($deprecated, $folder8, $cache=true, $quiet=false) {
 		global $_zp_gallery;
-		if (!$_zp_gallery) $_zp_gallery = new Gallery();
 		$folder8 = sanitize_path($folder8);
 		$folderFS = internalToFilesystem($folder8);
 		$this->gallery = $_zp_gallery;

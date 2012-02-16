@@ -25,7 +25,6 @@ if (SERVER_PROTOCOL == 'https_admin') {
 	}
 }
 require_once(dirname(__FILE__).'/admin-functions.php');
-$_zp_gallery = new Gallery();
 $zenphoto_tabs = array();
 
 if (!getOption('license_accepted')) require_once(dirname(__FILE__).'/license.php');

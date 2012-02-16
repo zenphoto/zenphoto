@@ -41,7 +41,6 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 	}
 }
 
-$_zp_gallery = new Gallery();
 $albumobj = new Album(NULL, $album8);
 
 $hash = getOption('protected_image_password');

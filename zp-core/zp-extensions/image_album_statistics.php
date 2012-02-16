@@ -47,9 +47,6 @@ function getImageAlbumAlbumList($obj, &$albumlist) {
  */
 function getAlbumStatistic($number=5, $option, $albumfolder='') {
 	global $_zp_gallery;
-	if(!isset($_zp_gallery)) {
-		$_zp_gallery = new Gallery();
-	}
 	$albumlist = array();
 	if ($albumfolder) {
 		$obj = new Album(NULL, $albumfolder);

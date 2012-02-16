@@ -527,7 +527,6 @@ function checkAlbumPassword($album, &$hint=NULL) {
 	if (is_object($album)) {
 		$albumname = $album->name;
 	} else {
-		if (!is_object($_zp_gallery)) $_zp_gallery = new Gallery();
 		$album = new Album(NULL, $albumname=$album);
 	}
 	if (isset($_zp_pre_authorization[$albumname])) {
@@ -1230,7 +1229,6 @@ function galleryAlbumsPerPage() {
  */
 function setupTheme() {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_zp_themeroot;
-	if (!is_object($_zp_gallery)) $_zp_gallery = new Gallery();
 	$albumtheme = '';
 	if (in_context(ZP_SEARCH_LINKED)) {
 		$name = $_zp_current_search->dynalbumname;
@@ -2095,7 +2093,6 @@ function getThemeOption($option, $album=NULL, $theme=NULL) {
 		$theme = $album->getAlbumTheme();
 	}
 	if (empty($theme)) {
-		if (!$_zp_gallery) $_zp_gallery = new Gallery();
 		$theme = $_zp_gallery->getCurrentTheme();
 	}
 

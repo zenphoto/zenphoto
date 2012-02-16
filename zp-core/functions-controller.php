@@ -211,10 +211,6 @@ function zp_load_page($pagenum=NULL) {
  * Loads the gallery if it hasn't already been loaded.
  */
 function zp_load_gallery() {
-	global $_zp_gallery;
-	if (is_null($_zp_gallery)) {
-		$_zp_gallery = new Gallery();
-	}
 	set_context(ZP_INDEX);
 }
 
