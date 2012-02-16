@@ -15,13 +15,11 @@ if (isset($_GET['dsp'])) {
 	$disposal = getOption('protect_full_image');
 }
 if ($disposal == 'No access') {	// illegal use of the script!
-		pageError(403, gettext("Forbidden"));
+		imageError('403 Forbidden', gettext("Forbidden"));
 }
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {
-	header("HTTP/1.0 404 Not Found");
-	header("Status: 404 Not Found");
-	imageError(gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
+	imageError('404 Not Found', gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
 }
 
 list($ralbum, $rimage) = rewrite_get_album_image('a', 'i');

@@ -20,7 +20,7 @@ define('MAX_SIZE', 3000);
  * @param $errorimg string the filename of the error image to display for production. Defaults
  *   to 'err-imagegeneral.png'. Images should be located in /zen/images .
  */
-function imageError($errormessage, $errorimg='err-imagegeneral.png') {
+function imageError($status_text, $errormessage, $errorimg='err-imagegeneral.png') {
 	global $newfilename, $album, $image;
 	$debug = isset($_GET['debug']);
 	if ($debug) {
@@ -30,6 +30,8 @@ function imageError($errormessage, $errorimg='err-imagegeneral.png') {
 		. (empty($newfilename) ? '' : '<br />'.sprintf(gettext('Cache: [<code>%s</code>]'), '/'.CACHEFOLDER.'/' . sanitize($newfilename, 3)).' ')
 		. (empty($image) || empty($album) ? '' : ' <br />'.sprintf(gettext('Image: [<code>%s</code>]'),sanitize($album.'/'.$image, 3)).' <br />'));
 	} else {
+		header("HTTP/1.0 $status_text");
+		header("Status: $status_text");
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/images/' . $errorimg);
 	}
 	exitZP();
@@ -167,7 +169,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		if (DEBUG_IMAGE) debugLog("cacheImage(\$imgfile=".basename($imgfile).", \$newfilename=$newfilename, \$allow_watermark=$allow_watermark, \$theme=$theme) \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=".(is_null($cx)?'NULL':$cx).", \$cy=".(is_null($cy)?'NULL':$cy).", \$quality=$quality, \$thumb=$thumb, \$crop=$crop \$image_use_side=$image_use_side; \$upscale=$upscale);");
 		// Check for the source image.
 		if (!file_exists($imgfile) || !is_readable($imgfile)) {
-			imageError(gettext('Image not found or is unreadable.'), 'err-imagenotfound.png');
+			imageError('404 Not Found', gettext('Image not found or is unreadable.'), 'err-imagenotfound.png');
 		}
 		$rotate = false;
 		if (zp_imageCanRotate() && getOption('auto_rotate'))  {
@@ -195,7 +197,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			$im = zp_imageGet($imgfile);
 		}
 		if (!$im) {
-			imageError(gettext('Image not renderable.'), 'err-failimage.png');
+			imageError('404 Not Found', gettext('Image not renderable.'), 'err-failimage.png');
 		}
 		if ($rotate) {
 			$im = zp_rotateImage($im, $rotate);
@@ -233,7 +235,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			$size = $width = false;
 		} else {
 			// There's a problem up there somewhere...
-			imageError(gettext("Unknown error! Please report to the developers at <a href=\"http://www.zenphoto.org/\">www.zenphoto.org</a>"), 'err-imagegeneral.png');
+			imageError('404 Not Found', gettext("Unknown error! Please report to the developers at <a href=\"http://www.zenphoto.org/\">www.zenphoto.org</a>"), 'err-imagegeneral.png');
 		}
 
 		$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
@@ -313,7 +315,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			if (DEBUG_IMAGE) debugLog("cacheImage:crop ".basename($imgfile).":\$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate");
 			$newim = zp_createImage($neww, $newh);
 			if (!zp_resampleImage($newim, $im, 0, 0, $cx, $cy, $neww, $newh, $cw, $ch)) {
-				imageError(gettext('Image not renderable.'), 'err-failimage.png');
+				imageError('404 Not Found', gettext('Image not renderable.'), 'err-failimage.png');
 			}
 		} else {
 			if ($allowscale) {
@@ -324,7 +326,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			if (DEBUG_IMAGE) debugLog("cacheImage:no crop ".basename($imgfile).":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
 			$newim = zp_createImage($neww, $newh);
 			if (!zp_resampleImage($newim, $im, 0, 0, 0, 0, $neww, $newh, $w, $h)) {
-				imageError(gettext('Image not renderable.'), 'err-failimage.png');
+				imageError('404 Not Found', gettext('Image not renderable.'), 'err-failimage.png');
 			}
 
 			$imgEffects = explode(',', $effects);
@@ -334,7 +336,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 
 			if (($thumb && $sharpenthumbs) || (!$thumb && $sharpenimages)) {
 				if (!zp_imageUnsharpMask($newim, getOption('sharpen_amount'), getOption('sharpen_radius'), getOption('sharpen_threshold'))) {
-					imageError(gettext('Image not renderable.'), 'err-failimage.png');
+					imageError('404 Not Found', gettext('Image not renderable.'), 'err-failimage.png');
 				}
 			}
 		}
@@ -365,7 +367,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			$percent = getOption('watermark_scale')/100;
 			$watermark = zp_imageGet($watermark_image);
 			if (!$watermark) {
-				imageError(gettext('Watermark not renderable.'), 'err-failimage.png');
+				imageError('404 Not Found', gettext('Watermark not renderable.'), 'err-failimage.png');
 			}
 			$watermark_width = zp_imageWidth($watermark);
 			$watermark_height = zp_imageHeight($watermark);
@@ -382,7 +384,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			if (($nw != $watermark_width) || ($nh != $watermark_height)) {
 				$watermark = zp_imageResizeAlpha($watermark, $nw, $nh);
 				if (!$watermark) {
-					imageError(gettext('Watermark not renderable.'), 'err-failimage.png');
+					imageError('404 Not Found', gettext('Watermark not renderable.'), 'err-failimage.png');
 				}
 			}
 			// Position Overlay in Bottom Right
@@ -390,7 +392,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			$dest_y = max(0, floor(($imh - $nh) * $offset_h));
 			if (DEBUG_IMAGE) debugLog("Watermark:".basename($imgfile).": \$offset_h=$offset_h, \$offset_w=$offset_w, \$watermark_height=$watermark_height, \$watermark_width=$watermark_width, \$imw=$imw, \$imh=$imh, \$percent=$percent, \$r=$r, \$nw=$nw, \$nh=$nh, \$dest_x=$dest_x, \$dest_y=$dest_y");
 			if (!zp_copyCanvas($newim, $watermark, $dest_x, $dest_y, 0, 0, $nw, $nh)) {
-				imageError(gettext('Image not renderable.'), 'err-failimage.png');
+				imageError('404 Not Found', gettext('Image not renderable.'), 'err-failimage.png');
 			}
 			zp_imageKill($watermark);
 		}
@@ -444,14 +446,14 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			if (DEBUG_IMAGE) debugLog('Finished:'.basename($imgfile));
 		} else {
 			if (DEBUG_IMAGE) debugLog('cacheImage: failed to create '.$newfile);
-			imageError(sprintf(gettext('cacheImage: failed to create %s'),$newfile), 'err-failimage.png');
+			imageError('404 Not Found', sprintf(gettext('cacheImage: failed to create %s'),$newfile), 'err-failimage.png');
 		}
 		@chmod($newfile, FILE_MOD);
 		zp_imageKill($newim);
 		zp_imageKill($im);
 	} catch (Exception $e) {
 		debugLog('cacheImage('.$newfilename.') exception: '.$e->getMessage());
-		imageError(sprintf(gettext('cacheImage(%1$s) exception: %2$s'),$newfilename,$e->getMessage()), 'err-failimage.png');
+		imageError('404 Not Found', sprintf(gettext('cacheImage(%1$s) exception: %2$s'),$newfilename,$e->getMessage()), 'err-failimage.png');
 		return false;
 	}
 	clearstatcache();

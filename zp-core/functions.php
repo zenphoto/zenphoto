@@ -1612,24 +1612,6 @@ function parseThemeDef($file) {
 }
 
 /**
- * Emits a page error. Used for attempts to bypass password protection
- *
- * @param string $err error code
- * @param string $text error message
- *
- */
-function pageError($err,$text) {
-	header("HTTP/1.0 ".$err.' '.$text);
-	header("Status: ".$err.' '.$text);
-	echo "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head>	<title>".$err." - ".$text."</TITLE>	<META NAME=\"ROBOTS\" CONTENT=\"NOINDEX, FOLLOW\"></head>";
-	echo "<BODY bgcolor=\"#ffffff\" text=\"#000000\" link=\"#0000ff\" vlink=\"#0000ff\" alink=\"#0000ff\">";
-	echo "<FONT face=\"Helvitica,Arial,Sans-serif\" size=\"2\">";
-	echo "<b>".sprintf(gettext('Page error: %2$s (%1$s)'),$err, $text)."</b><br /><br />";
-	echo "</body></html>";
-	exitZP();
-}
-
-/**
  * Checks to see if a URL is valid
  *
  * @param string $url the URL being checked

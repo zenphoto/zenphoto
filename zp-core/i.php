@@ -38,9 +38,7 @@ $debug = isset($_GET['debug']);
 
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {
-	header("HTTP/1.0 404 Not Found");
-	header("Status: 404 Not Found");
-	imageError(gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
+	imageError('404 Not Found', gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
 }
 
 // Fix special characters in the album and image names if mod_rewrite is on:
@@ -57,7 +55,7 @@ if (getOption('secure_image_processor')) {
 	require_once(dirname(__FILE__).'/functions.php');
 	$albumobj = new Album(NULL, $album);
 	if (!$albumobj->checkAccess()) {
-		pageError(403, gettext("Forbidden"));
+		imageError('403 Forbidden', gettext("Forbidden"));
 	}
 }
 
@@ -144,12 +142,12 @@ if (!is_dir(SERVERCACHE)) {
 	@mkdir(SERVERCACHE, FOLDER_MOD);
 	@chmod(SERVERCACHE, FOLDER_MOD);
 	if (!is_dir(SERVERCACHE))
-		imageError(gettext("The cache directory does not exist. Please create it and set the permissions to 0777."), 'err-cachewrite.png');
+		imageError('404 Not Found', gettext("The cache directory does not exist. Please create it and set the permissions to 0777."), 'err-cachewrite.png');
 }
 if (!is_writable(SERVERCACHE)) {
 	@chmod(SERVERCACHE, FOLDER_MOD);
 	if (!is_writable(SERVERCACHE))
-		imageError(gettext("The cache directory is not writable! Attempts to chmod didn't work."), 'err-cachewrite.png');
+		imageError('404 Not Found', gettext("The cache directory is not writable! Attempts to chmod didn't work."), 'err-cachewrite.png');
 }
 if (!file_exists($imgfile)) {
 	$imgfile = $rimage; // undo the sanitize
@@ -184,7 +182,7 @@ if (!file_exists($imgfile)) {
 	if (!file_exists($imgfile)) {
 		header("HTTP/1.0 404 Not Found");
 		header("Status: 404 Not Found");
-		imageError(gettext("Image not found; file does not exist."), 'err-imagenotfound.png');
+		imageError('404 Not Found', gettext("Image not found; file does not exist."), 'err-imagenotfound.png');
 	}
 }
 
@@ -215,7 +213,7 @@ if (file_exists($newfile) & !$adminrequest) {
 if ($process) { // If the file hasn't been cached yet, create it.
 	// setup standard image options from the album theme if it exists
 	if (!cacheImage($newfilename, $imgfile, $args, $allowWatermark, $theme, $album)) {
-		imageError(gettext('Image processing resulted in a fatal error.'));
+		imageError('404 Not Found', gettext('Image processing resulted in a fatal error.'));
 	}
 	$fmt = filemtime($newfile);
 }
@@ -237,7 +235,7 @@ if (!$debug) {
 		case 'jpeg':
 			break;
 		default:
-			pageError(405, gettext("Method Not Allowed"));
+			imageError(405, 'Method Not Allowed', gettext("Method Not Allowed"));
 	}
 	if (OPEN_IMAGE_CACHE) {
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt).' GMT');
