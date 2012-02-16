@@ -851,7 +851,7 @@ class SearchEngine
 						break;
 					}
 					unset($fields[$key]);
-					$tagsql = 'SELECT t.`title`, o.`news_id` FROM '.prefix('news_categories').' AS t, '.prefix('news2cat').' AS o WHERE t.`id`=o.`cat_id` AND (';
+					$tagsql = 'SELECT t.`title` AS name, o.`news_id` AS `objectid` FROM '.prefix('news_categories').' AS t, '.prefix('news2cat').' AS o WHERE t.`id`=o.`cat_id` AND (';
 					foreach($searchstring as $singlesearchstring){
 						switch ($singlesearchstring) {
 							case '&':
@@ -868,9 +868,7 @@ class SearchEngine
 					$tagsql = substr($tagsql, 0, strlen($tagsql)-4).') ORDER BY t.`id`';
 					$objects = query_full_array($tagsql, false);
 					if (is_array($objects)) {
-						foreach ($objects as $object) {
-							$tag_objects[] = array('name'=>$object['title'], 'objectid'=>$object['news_id']);
-						}
+						$tag_objects = $objects;
 					}
 					break;
 				case 'tags':
