@@ -142,7 +142,7 @@ var ZenpageDialog = {
 			linkpart2 = '</a>';
 		}
 		if($('#fullimagelink:checked').val() == 1) {
-				linkpart1 = '<a href=\''+fullimage+'\' title=\''+plainimgtitle+'\' class=\'zenpage_fullimagelink\'>';
+				linkpart1 = '<a href=\''+fullimage+'\' title=\''+plainimgtitle+'\' class=\'zenpage_fullimagelink\' rel=\'colorbox\'>';
 				linkpart2 = '</a>';
 		}
 		if($('#albumlink:checked').val() == 1) {

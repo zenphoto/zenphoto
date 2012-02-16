@@ -223,7 +223,7 @@ require_once("tinyzenpage-functions.php");
 				echo "</p>";
 				echo "<ul style='margin-left: 8px'>";
 				echo "<li>".gettext("Image link: <em>zenpage_imagelink</em>")."</li>";
-				echo "<li>".gettext("Full image link: <em>zenpage_fullimagelink</em>")."</li>";
+				echo "<li>".gettext("Full image link: <em>zenpage_fullimagelink</em>. Additionally <em>rel='colorbox'</em> is attached so you can move through all images on a page using Colorbox or similar *box scripts.")."</li>";
 				echo "<li>".gettext("Album link: <em>zenpage_albumlink</em>")."</li>";
 				echo "<li>".gettext("Custom link: <em>zenpage_customlink</em>")."</li>";
 				echo "</ul>";
