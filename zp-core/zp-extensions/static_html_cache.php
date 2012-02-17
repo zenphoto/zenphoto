@@ -167,11 +167,10 @@ class static_html_cache {
 						echo "<!-- ".sprintf(gettext('Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead.'),$end-$start_cache,$start_cache-$start,date('D, d M Y H:i:s',filemtime($cachefilepath)))." -->\n";
 						exitZP();
 					}
-				} else {
-					$this->deletestatic_html_cacheFile($cachefilepath);
-					if (ob_start()) {
-						$this->pageCachePath = $cachefilepath;
-					}
+				}
+				$this->deletestatic_html_cacheFile($cachefilepath);
+				if (ob_start()) {
+					$this->pageCachePath = $cachefilepath;
 				}
 			}
 			unset($_zp_script_timer['static cache start']);	// leave it out of the summary page
