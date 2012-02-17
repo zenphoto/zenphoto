@@ -25,8 +25,8 @@ if (!isset($_GET['a']) || !isset($_GET['i'])) {
 list($ralbum, $rimage) = rewrite_get_album_image('a', 'i');
 $ralbum = internalToFilesystem($ralbum);
 $rimage = internalToFilesystem($rimage);
-$album = str_replace('..','', sanitize_path($ralbum));
-$image = str_replace(array('/',"\\"),'', sanitize_path($rimage));
+$album =sanitize_path($ralbum);
+$image = sanitize_path($rimage);
 $album8 = filesystemToInternal($album);
 $image8 = filesystemToInternal($image);
 $theme = themeSetup($album); // loads the theme based image options.

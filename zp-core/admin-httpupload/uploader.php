@@ -69,7 +69,7 @@ if (isset($_POST['processed'])) {
 				$filecount++;
 				if ($error == UPLOAD_ERR_OK) {
 					$tmp_name = $_FILES['files']['tmp_name'][$key];
-					$name = trim($_FILES['files']['name'][$key]);
+					$name = sanitize_path(trim($_FILES['files']['name'][$key]));
 					$soename = seoFriendly($name);
 					$error = zp_apply_filter('check_upload_quota', UPLOAD_ERR_OK, $tmp_name);
 					if (!$error) {

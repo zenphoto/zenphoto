@@ -22,18 +22,10 @@ if (isset($_POST['auth'])) {
 
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
 
-$folder = trim(sanitize($_POST['folder'],3));
+$folder = zp_apply_filter('admin_upload_process',trim(sanitize_path($_POST['folder'])));
 if (substr($folder,0,1) == '/') {
 	$folder = substr($folder,1);
 }
-
-if (substr($folder,0,1) == '/') {
-	$folder = substr($folder,1);
-}
-if (substr($folder,-1) == '/') {
-	$folder = substr($folder,0,-1);
-}
-$folder = zp_apply_filter('admin_upload_process',$folder);
 $types = array_keys($_zp_extra_filetypes);
 $types = array_merge($_zp_supported_images, $types);
 $types = zp_apply_filter('upload_filetypes',$types);
@@ -74,18 +66,18 @@ class UploadHandler
 
 	function __construct($options=null) {
 		$this->options = array(
-            'script_url' => $_SERVER['PHP_SELF'],
-            'upload_dir' => dirname(__FILE__).'/files/',
-            'upload_url' => dirname($_SERVER['PHP_SELF']).'/files/',
-            'param_name' => 'files',
+						'script_url' => $_SERVER['PHP_SELF'],
+						'upload_dir' => dirname(__FILE__).'/files/',
+						'upload_url' => dirname($_SERVER['PHP_SELF']).'/files/',
+						'param_name' => 'files',
 						// The php.ini settings upload_max_filesize and post_max_size
 						// take precedence over the following max_file_size setting:
-            'max_file_size' => null,
-            'min_file_size' => 1,
-            'accept_file_types' => '/.+$/i',
-            'max_number_of_files' => null,
-            'discard_aborted_uploads' => true,
-            'image_versions' => array(
+						'max_file_size' => null,
+						'min_file_size' => 1,
+						'accept_file_types' => '/.+$/i',
+						'max_number_of_files' => null,
+						'discard_aborted_uploads' => true,
+						'image_versions' => array(
 							// Uncomment the following version to restrict the size of
 							// uploaded images. You can also add additional versions with
 							// their own upload directories:
