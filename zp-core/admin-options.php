@@ -1977,7 +1977,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<input type="checkbox" name="secure_image_processor" value="1"
 				<?php echo checked('1', getOption('secure_image_processor')); ?> />&nbsp;<?php echo gettext("Enabled"); ?>
 			</td>
-			<td><?php echo gettext('When not checked the image processordoes not check for album access credentials.').
+			<td><?php echo gettext('When not checked, the image processor does not check for album access credentials.').
 								'<p class="notebox">'.gettext('<strong>WARNING	:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability.').'</p>'; ?></td>
 		</tr>
 		<tr>
