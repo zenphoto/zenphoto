@@ -57,11 +57,15 @@ $items = getOption('feed_items'); // # of Items displayed on the feed
 			if(true || getOption("feed_sortorder_albums") == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumitem->name));
 				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$albumitem->getID() . " AND `show` = 1 ORDER BY id DESC");
-				$count = db_count('images',"WHERE albumid = ".$albumitem->getID() . " AND mtime = ". $latestimage['mtime']);
-				if($count == 1) {
-					$imagenumber = sprintf(gettext('%s (1 new image)'),$title);
+				if($latestimage) {
+					$count = db_count('images',"WHERE albumid = ".$albumitem->getID() . " AND mtime = ". $latestimage['mtime']);
+					if($count == 1) {
+						$imagenumber = sprintf(gettext('%s (1 new image)'),$title);
+					} else {
+						$imagenumber = sprintf(gettext('%1$s (%2$s new images)'),$title,$count);
+					}
 				} else {
-					$imagenumber = sprintf(gettext('%1$s (%2$s new images)'),$title,$count);
+					$imagenumber = $title;
 				}
 				$itemcontent = '<![CDATA[<a title="'.$title.'" href="'.$protocol.'://'.$itemlink.'">'.$thumburl.'</a>'.
 						'<p>'.html_encode($imagenumber).'</p>'.html_encode(get_language_string($albumitem->get("desc"),$locale)).']]>';
