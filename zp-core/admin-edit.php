@@ -337,7 +337,7 @@ if (isset($_GET['action'])) {
 
 											// Process move/copy/rename
 											if ($movecopyrename_action == 'move') {
-												$dest = trim(sanitize_path($_POST[$i.'-albumselect'], 3));
+												$dest = sanitize_path($_POST[$i.'-albumselect']);
 												if ($dest && $dest != $folder) {
 													if ($e = $image->moveImage($dest)) {
 														$notify = "&mcrerr=".$e;
@@ -347,7 +347,7 @@ if (isset($_GET['action'])) {
 													$notify = "&mcrerr=2";
 												}
 											} else if ($movecopyrename_action == 'copy') {
-												$dest = trim(sanitize_path($_POST[$i.'-albumselect'],2));
+												$dest = sanitize_path($_POST[$i.'-albumselect']);
 												if ($dest && $dest != $folder) {
 													if($e = $image->copy($dest)) {
 														$notify = "&mcrerr=".$e;
@@ -358,7 +358,7 @@ if (isset($_GET['action'])) {
 													$notify = "&mcrerr=2";
 												}
 											} else if ($movecopyrename_action == 'rename') {
-												$renameto = trim(sanitize_path($_POST[$i.'-renameto'],3));
+												$renameto = sanitize_path($_POST[$i.'-renameto']);
 												if ($e = $image->rename($renameto)) {
 													$notify = "&mcrerr=".$e;
 												}

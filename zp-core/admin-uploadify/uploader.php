@@ -24,10 +24,7 @@ if (!empty($_FILES)) {
 			$folder = substr($folder,1);
 		}
 		$albumparmas = explode(':', $folder,3);
-		$folder = zp_apply_filter('admin_upload_process',sanitize_path(trim($albumparmas[1])));
-		if (substr($folder,0,1) == '/') {
-			$folder = substr($folder,1);
-		}
+		$folder = zp_apply_filter('admin_upload_process',sanitize_path($albumparmas[1]));
 		$targetPath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($folder);
 		$new = !is_dir($targetPath);
 		if (!empty($folder)) {

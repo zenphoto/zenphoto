@@ -33,7 +33,7 @@ if (isset($_POST['processed'])) {
 	$newAlbum = ((isset($_POST['existingfolder']) && $_POST['existingfolder'] == 'false') || isset($_POST['newalbum']));
 	// Make sure the folder exists. If not, create it.
 	if (isset($_POST['processed']) && !empty($_POST['folder'])) {
-		$folder = zp_apply_filter('admin_upload_process',trim(sanitize_path($_POST['folder'])));
+		$folder = zp_apply_filter('admin_upload_process',sanitize_path($_POST['folder']));
 		$targetPath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($folder);
 		$new = !is_dir($targetPath);
 		if ($new) {
@@ -69,7 +69,7 @@ if (isset($_POST['processed'])) {
 				$filecount++;
 				if ($error == UPLOAD_ERR_OK) {
 					$tmp_name = $_FILES['files']['tmp_name'][$key];
-					$name = sanitize_path(trim($_FILES['files']['name'][$key]));
+					$name = sanitize_path($_FILES['files']['name'][$key]);
 					$soename = seoFriendly($name);
 					$error = zp_apply_filter('check_upload_quota', UPLOAD_ERR_OK, $tmp_name);
 					if (!$error) {

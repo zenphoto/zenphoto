@@ -785,9 +785,9 @@ function getImageURI($args, $album, $image, $mtime) {
  * @return string
  */
 function sanitize_path($filename) {
-	if (get_magic_quotes_gpc()) $filename = stripslashes($filename);
+	if (get_magic_quotes_gpc()) $filename = stripslashes(trim($filename));
 	$filename = strip_tags(str_replace('\\', '/', $filename));
-	$filename = preg_replace(array('/x00/','/^\/+/','/\/+$/','/\/\/+/','/\/\.\./','/\/\./'), '', $filename);
+	$filename = preg_replace(array('/x00/','/\/\/+/','/\/\.\./','/\/\./','/:/','/</','/>/','/\?/','/\*/','/\"/','/\|/','/\/+$/','/^\/+/'), '', $filename);
 	return $filename;
 }
 

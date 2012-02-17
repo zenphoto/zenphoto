@@ -22,10 +22,7 @@ if (isset($_POST['auth'])) {
 
 admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
 
-$folder = zp_apply_filter('admin_upload_process',trim(sanitize_path($_POST['folder'])));
-if (substr($folder,0,1) == '/') {
-	$folder = substr($folder,1);
-}
+$folder = zp_apply_filter('admin_upload_process',sanitize_path($_POST['folder']));
 $types = array_keys($_zp_extra_filetypes);
 $types = array_merge($_zp_supported_images, $types);
 $types = zp_apply_filter('upload_filetypes',$types);

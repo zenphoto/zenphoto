@@ -159,6 +159,18 @@ foreach ($filelist as $extension) {
 	} else {
 		$plugin_version = '';
 	}
+	if ($str = isolate('$plugin_disable', $pluginStream)) {
+		if (false === eval($str)) {
+			$parserr = $parserr | 8;
+			$plugin_URL = gettext('<strong>Error parsing <em>plugin_disable</em> string!</strong>.');
+		} else {
+			if ($plugin_disable) {
+				setOption($opt, 0);
+			}
+		}
+	} else {
+		$plugin_disable = false;
+	}
 	$plugin_URL = FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension;
 	if ($third_party_plugin) {
 		$plugin_URL .= '&amp;thirdparty';
@@ -224,7 +236,7 @@ foreach ($filelist as $extension) {
 			echo ' v'.$plugin_version;
 		}
 		if ($plugin_disable) {
-			echo '<p id="'.$extension.'_disabled"><strong>'.sprintf(gettext('This plugin is disabled: %s'),$plugin_disable).'</strong></p>';
+			echo '<p id="'.$extension.'_disabled">'.sprintf(gettext('<strong>This plugin is disabled:</strong><br/> %s'),$plugin_disable).'</p>';
 		}
 		?>
 		</label>

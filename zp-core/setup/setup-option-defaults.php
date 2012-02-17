@@ -397,10 +397,13 @@ if (getOption('zp_plugin_PHPMailer')) {
 
 if ($v = getOption('zp_plugin_filter-zenphoto_seo')) {
 	setOption('zp_plugin_zenphoto_seo', 1|ADMIN_PLUGIN);
-	query('DELETE FROM '.prefix('options').' WHERE `name`="zp_plugin_filter-zenphoto_seo"', false);
+	purgeOption("zp_plugin_seo_zenphoto");
+} else if ($v = getOption('zp_plugin_zenphoto_seo')) {
+	setOption('zp_plugin_seo_zenphoto', 1|ADMIN_PLUGIN);
+	purgeOption("zp_plugin_zenphoto_seo");
 } else {
 	if (is_null($v)) {
-		setOptionDefault('zp_plugin_zenphoto_seo', 1|ADMIN_PLUGIN);
+		setOptionDefault('zp_plugin_seo_zenphoto', 1|ADMIN_PLUGIN);
 	}
 }
 
