@@ -147,9 +147,9 @@ var ZenpageDialog = {
 		}
 		if($('#albumlink:checked').val() == 1) {
 			if(modrewrite == '1') {
-				linkpart1 = '<a href=\''+webpath+'/'+albumname+'\' title=\''+planealbumtitle+'\' class=\'zenpage_albumlink\'>';
+				linkpart1 = '<a href=\''+webpath+'/'+albumname+'\' title=\''+plainalbumtitle+'\' class=\'zenpage_albumlink\'>';
 			} else {
-				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'\' title=\''+planealbumtitle+'\' class=\'zenpage_albumlink\'>';
+				linkpart1 = '<a href=\''+webpath+'/index.php?album='+albumname+'\' title=\''+plainalbumtitle+'\' class=\'zenpage_albumlink\'>';
 			}
 			linkpart2 = '</a>';
 		}
