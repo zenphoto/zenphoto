@@ -7,8 +7,9 @@
 /*
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 */
-$plugin_description = gettext("Filter to translate characters with diacritical marks to unmarked ones for SEO friendly URLs.");
+$plugin_description = gettext("SEO filter to translate extended characters into their basic alpha-numeric equivalents.");
 $plugin_author = "Stephen Billard (sbillard)";
+$plugin_disable = (zp_has_filter('seoFriendly') && !getoption('zp_plugin_seo_zenphoto'))?gettext('Only one SEO filter may be enabled.'):'';
 
 
 $option_interface = 'zenphoto_seo';
