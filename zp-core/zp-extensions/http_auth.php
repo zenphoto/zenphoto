@@ -46,7 +46,7 @@
  * @package plugins
  */
 $plugin_is_filter = 5|CLASS_PLUGIN;
-$plugin_description = gettext('Checks for Apache HTTP authenitcation authorized users');
+$plugin_description = gettext('Checks for Apache HTTP authentication of authorized users');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'http_auth';
