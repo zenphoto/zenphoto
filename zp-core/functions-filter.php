@@ -203,7 +203,6 @@ function zp_remove_filter($hook, $function_to_remove, $priority = 10, $accepted_
  */
 function zp_has_filter($hook, $function_to_check = false) {
 	global $_zp_filters;
-
 	$has = !empty($_zp_filters[$hook]);
 	if ( false === $function_to_check || false == $has ) {
 		return $has;
@@ -211,12 +210,28 @@ function zp_has_filter($hook, $function_to_check = false) {
 	if ( !$idx = zp_filter_unique_id($hook, $function_to_check, false) ) {
 		return false;
 	}
-
-	foreach ( (array) array_keys($_zp_filters[$hook]) as $priority ) {
+	foreach ( (array) array_keys($_zp_filters[$hook]) as $key=>$priority ) {
 		if ( isset($_zp_filters[$hook][$priority][$idx]) )
 			return $priority;
 	}
 	return false;
+}
+
+/**
+ *
+ * returns a list of scripts that have attached to the hook
+ * @param string $hook
+ * @return string
+ */
+function get_filterScript($hook) {
+	global $_zp_filters;
+	$scripts = array();
+	foreach ($_zp_filters[$hook] as $priority) {
+		foreach ($priority as $actor) {
+			$scripts[] = $actor['script'];
+		}
+	}
+	return implode(', ',$scripts);
 }
 
 /**
