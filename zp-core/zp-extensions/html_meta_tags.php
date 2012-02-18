@@ -246,8 +246,8 @@ class htmlmetatags {
 				$langs = generateLanguageList();
 				if(count($langs) != 1) {
 					foreach ($langs as $text=>$lang) {
-						$lang = strtr($lang, '-','_');
-						if($lang == $locale) {
+						$langcheck = strtr($lang, '_','-');	// in urls we need en_US while for hreflang we need en-US.
+						if($langcheck == $locale) {
 							$altlink = '';
 						} else {
 							switch($_zp_gallery_page) {
