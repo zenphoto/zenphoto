@@ -428,7 +428,8 @@ function getUserLocale() {
 		}
 		if (DEBUG_LOCALE) debugLog("dynamic_locale from URL: ".sanitize($_REQUEST['locale'], 0)."=>$locale");
 	} else {
-		$locale = false;
+		$matches = explode('.',@$_SERVER['HTTP_HOST']);
+		$locale = validateLocale($matches[0], 'HTTP_HOST');
 	}
 	if (!$locale && is_object($_zp_current_admin_obj)) {
 		$locale =  $_zp_current_admin_obj->getLanguage();
