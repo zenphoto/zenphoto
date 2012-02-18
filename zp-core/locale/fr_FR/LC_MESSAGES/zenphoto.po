@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-17 12:12-0500\n"
-"PO-Revision-Date: 2012-02-17 12:58-0500\n"
+"POT-Creation-Date: 2012-02-18 01:59-0500\n"
+"PO-Revision-Date: 2012-02-18 02:03-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -5208,191 +5208,191 @@ msgstr "Vous n’avez pas les droits suffisants pour %s."
 msgid "You do not have proper rights to access %s."
 msgstr "Vous n’avez pas les droits suffisants pour accéder à %s."
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:158
+#: F:\sites\zenphoto-dev/zp-core/admin.php:157
 msgid "Gallery Stats"
 msgstr "Statistiques de la galerie"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:165
+#: F:\sites\zenphoto-dev/zp-core/admin.php:164
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> image (%2$u non publiée)"
 msgstr[1] "<strong>%1$u</strong> images (%2$u non publiée(s))"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:167
+#: F:\sites\zenphoto-dev/zp-core/admin.php:166
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> image"
 msgstr[1] "<strong>%u</strong> images"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:176
+#: F:\sites\zenphoto-dev/zp-core/admin.php:175
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> album (%2$u non publié)"
 msgstr[1] "(<strong>%1$u</strong> albums (%2$u non publié(s))"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:178
+#: F:\sites\zenphoto-dev/zp-core/admin.php:177
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> album"
 msgstr[1] "<strong>%u</strong> albums"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:187
+#: F:\sites\zenphoto-dev/zp-core/admin.php:186
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
 msgstr[0] "<strong>%1$u</strong> commentaires (%2$u en modération)"
 msgstr[1] "<strong>%1$u</strong> commentaires (%2$u en modération)"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:189
+#: F:\sites\zenphoto-dev/zp-core/admin.php:188
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> commentaire"
 msgstr[1] "<strong>%u</strong> commentaires"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:199
+#: F:\sites\zenphoto-dev/zp-core/admin.php:198
 #, php-format
 msgid "<strong>%1$u</strong> Page"
 msgid_plural "<strong>%1$u</strong> Pages"
 msgstr[0] "<strong>%1$u</strong> page"
 msgstr[1] "<strong>%1$u</strong> pages"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:201
+#: F:\sites\zenphoto-dev/zp-core/admin.php:200
 #, php-format
 msgid "<strong>%1$u</strong> Page (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> page (%2$u non publiée)"
 msgstr[1] "<strong>%1$u</strong> pages (%2$u non publiée(s))"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:209
+#: F:\sites\zenphoto-dev/zp-core/admin.php:208
 #, php-format
 msgid "<strong>%1$u</strong> News"
 msgid_plural "<strong>%1$u</strong> News"
 msgstr[0] "<strong>%1$u</strong> actualité"
 msgstr[1] "<strong>%1$u</strong> actualités"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:211
+#: F:\sites\zenphoto-dev/zp-core/admin.php:210
 #, php-format
 msgid "<strong>%1$u</strong> News (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> actualité (%2$u non publiée)"
 msgstr[1] "<strong>%1$u</strong> actualités (%2$u non publiée(s))"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:218
+#: F:\sites\zenphoto-dev/zp-core/admin.php:217
 #, php-format
 msgid "<strong>%1$u</strong> Category"
 msgid_plural "<strong>%1$u</strong> Categories"
 msgstr[0] "<strong>%1$u</strong> catégorie"
 msgstr[1] "<strong>%1$u</strong> catégories"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:230
+#: F:\sites\zenphoto-dev/zp-core/admin.php:229
 msgid "Installation information"
 msgstr "Information sur l’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:235
+#: F:\sites\zenphoto-dev/zp-core/admin.php:234
 msgid "Official Build"
 msgstr "Version officielle"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:237
+#: F:\sites\zenphoto-dev/zp-core/admin.php:236
 msgid "<em>Debug</em> Build"
 msgstr "Version <em>Debug</em>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:241
+#: F:\sites\zenphoto-dev/zp-core/admin.php:240
 #, php-format
 msgid "Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>"
 msgstr "Version de Zenphoto <strong>%1$s [%2$s] (%3$s)</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:243
+#: F:\sites\zenphoto-dev/zp-core/admin.php:242
 #, php-format
 msgid "Current locale setting: <strong>%1$s</strong>"
 msgstr "Paramètre régional présentement utilisé : <strong>%1$s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:245
+#: F:\sites\zenphoto-dev/zp-core/admin.php:244
 msgid "<strong>Locale setting has failed</strong>"
 msgstr "<strong>Le paramètre régional a échoué !</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:256
+#: F:\sites\zenphoto-dev/zp-core/admin.php:255
 #, php-format
 msgid "Current gallery theme: <strong>%1$s</strong>"
 msgstr "Thème actuellement utilisé : <strong>%1$s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:259
+#: F:\sites\zenphoto-dev/zp-core/admin.php:258
 #, php-format
 msgid "PHP version: <strong>%1$s</strong>"
 msgstr "Version de PHP : <strong>%1$s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:301
+#: F:\sites\zenphoto-dev/zp-core/admin.php:300
 #, php-format
 msgid "PHP Error reporting: <strong>%s</strong>"
 msgstr "Erreur PHP rapportée : <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:307
+#: F:\sites\zenphoto-dev/zp-core/admin.php:306
 #, php-format
 msgid "Graphics support: <strong>%s</strong>"
 msgstr "Bibliothèque graphique : <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:308
+#: F:\sites\zenphoto-dev/zp-core/admin.php:307
 #, php-format
 msgid "PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate less!)"
 msgstr "Limite de mémoire de PHP : <strong>%1$s</strong> (Note : votre serveur peut en fournir moins !)"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:312
+#: F:\sites\zenphoto-dev/zp-core/admin.php:311
 #, php-format
 msgid "%1$s version: <strong>%2$s</strong>"
 msgstr "%1$s version : <strong>%2$s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:316
+#: F:\sites\zenphoto-dev/zp-core/admin.php:315
 #, php-format
 msgid "Database name: <strong>%1$s</strong>"
 msgstr "Nom de la base de données : <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:321
+#: F:\sites\zenphoto-dev/zp-core/admin.php:320
 #, php-format
 msgid "Table prefix: <strong>%1$s</strong>"
 msgstr "Préfixe des tables : <strong>%1$s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:325
+#: F:\sites\zenphoto-dev/zp-core/admin.php:324
 #, php-format
 msgid "Spam filter: <strong>%s</strong>"
 msgstr "Filtre anti-spam : <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:326
+#: F:\sites\zenphoto-dev/zp-core/admin.php:325
 #, php-format
 msgid "CAPTCHA generator: <strong>%s</strong>"
 msgstr "Générateur de Captcha : <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:330
+#: F:\sites\zenphoto-dev/zp-core/admin.php:329
 msgid "There is no mail handler configured!"
 msgstr "Aucun gestionnaire de mail configuré !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:341
+#: F:\sites\zenphoto-dev/zp-core/admin.php:340
 #, php-format
 msgid "%u active plugin:"
 msgid_plural "%u active plugins:"
 msgstr[0] "%u extension activée :"
 msgstr[1] "%u extensions activées :"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:377
-#: F:\sites\zenphoto-dev/zp-core/admin.php:415
+#: F:\sites\zenphoto-dev/zp-core/admin.php:376
+#: F:\sites\zenphoto-dev/zp-core/admin.php:414
 msgid "<em>none</em>"
 msgstr "<em>aucune</em>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:388
+#: F:\sites\zenphoto-dev/zp-core/admin.php:387
 #, php-format
 msgid "%u active filter:"
 msgid_plural "%u active filters:"
 msgstr[0] "%u filtre activé :"
 msgstr[1] "%u filtres activés :"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:459
+#: F:\sites\zenphoto-dev/zp-core/admin.php:458
 msgid "misc"
 msgstr "varia"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:468
+#: F:\sites\zenphoto-dev/zp-core/admin.php:467
 msgid "Utility functions"
 msgstr "Utilitaires"
 
@@ -10008,32 +10008,32 @@ msgstr " (Dernières actualités)"
 msgid " (Latest news and images)"
 msgstr " (Dernières nouvelles et images)"
 
-#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:62
+#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:63
 #, php-format
 msgid "%s (1 new image)"
 msgstr "%s (1 nouvelle image)"
 
-#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:64
+#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:65
 #, php-format
 msgid "%1$s (%2$s new images)"
 msgstr "%1$s (%2$s nouvelles images)"
 
-#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:69
+#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:73
 #, php-format
 msgid "Last update: %s"
 msgstr "Dernière mise à jour : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:72
+#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:76
 #, php-format
 msgid "%s (1 image)"
 msgstr "%s (1 image)"
 
-#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:74
+#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:78
 #, php-format
 msgid "%1$s (%2$s images)"
 msgstr "%1$s (%2$s images)"
 
-#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:77
+#: F:\sites\zenphoto-dev/zp-core/rss/rss.php:81
 #, php-format
 msgid "Date: %s"
 msgstr "Date : %s"
@@ -13229,63 +13229,68 @@ msgstr "Images %1$u – %2$u sur %3$u (%4$u/%5$u)"
 msgid "Zenphoto outgoing mail handler based on the <em>PHPMailer</em> class mailing facility."
 msgstr "Gestionnaire d’emails sortants pour Zenphoto, basé sur <em>PHPMailer</em>."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:45
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:12
+#, php-format
+msgid "Only one Email handler plugin may be enalbed. <code>%s</code> is already enabled."
+msgstr "Une seule extension de traitement des emails peut être activée. Or, <code>%s</code> l’est déjà."
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:46
 msgid "Mail protocol"
 msgstr "Protocole du serveur de mail"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:47
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:48
 msgid "Select the mail protocol you wish to be used."
 msgstr "Choisir le protocole d’email à utiliser."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:48
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:49
 msgid "Outgoing mail server"
 msgstr "Serveur d’email sortant"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:49
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:50
 msgid "Outgoing mail server."
 msgstr "Serveur d’email sortant."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:50
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:51
 msgid "Secure mail"
 msgstr "Email sécurisé"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:51
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:52
 msgid "Set to use <em>SSL</em> protocol."
 msgstr "À activer pour utiliser le protocole <em>SSL</em>."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:52
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:53
 msgid "Mail user"
 msgstr "Utilisateur email"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:53
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:54
 msgid "<em>User ID</em> for mail server."
 msgstr "<em>Identifiant</em> pour le serveur d’email."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:54
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:55
 msgid "Mail password"
 msgstr "Mot de passe email"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:55
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:56
 msgid "<em>Password</em> for mail server."
 msgstr "<em>Mot de passe</em> pour le serveur d’email."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:56
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:57
 msgid "POP port"
 msgstr "Port POP"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:57
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:58
 msgid "POP port number."
 msgstr "Numéro de port POP."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:58
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:59
 msgid "SMTP port"
 msgstr "Port SMTP"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:59
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:60
 msgid "SMTP port number."
 msgstr "Numéro de port SMTP."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:130
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:131
 #, php-format
 msgid "<code>PHPMailer</code> failed to send <em>%1$s</em>. ErrorInfo:%2$s"
 msgstr "<code>PHPMailer</code> n’a pu envoyer <em>%1$s</em>. Erreur : %2$s."
@@ -13914,8 +13919,9 @@ msgstr "<em>Filtre nul</em> pour moteur de recherche. Le seul effet de ce filtre
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/seo_null.php:12
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/seo_zenphoto.php:12
-msgid "Only one SEO filter may be enabled."
-msgstr "Un seul filtre pour moteur de recherche peut être activé."
+#, php-format
+msgid "Only one SEO filter plugin may be enalbed. <code>%s</code> is already enabled."
+msgstr "Une seule extension de traitement pour moteur de recherche peut être activée. Or, <code>%s</code> l’est déjà."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/seo_zenphoto.php:10
 msgid "SEO filter to translate extended characters into their basic alpha-numeric equivalents."
@@ -14351,27 +14357,27 @@ msgstr "Cache HTML vidé."
 msgid "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead."
 msgstr "Contenu en cache de %3$s servi par static_html_cache en %1$.4f secondes plus %2$.4f secondes incompressibles, liés à Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:352
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:351
 msgid "Purge HTML cache"
 msgstr "Vider le cache HTML"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:356
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:355
 msgid "Clear the static HTML cache. HTML pages will be re-cached as they are viewed."
 msgstr "Vide le cache HTML statique. Les pages HTML seront remises en cache dès leur affichage."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:379
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:378
 msgid "Static HTML cache expire"
 msgstr "Délai d’expiration du cache HTML statique"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:380
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:379
 msgid "When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec)."
 msgstr "Durée d’expiration du cache (en secondes). La valeur par défaut est de 86400 s (1 jour = 24 h * 60 min * 60 s)."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:381
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:380
 msgid "Excluded pages"
 msgstr "Pages exclues"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:382
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:381
 msgid "The list of pages to excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma."
 msgstr "La liste des pages exclues de la génération de cache. Les pages qui peuvent être exclues sont les pages des thèmes personnalisés, dont celles de Zenpage (celles-ci pouvant être identifiées par leur titre-lien) et les fichiers de thème standards comme image.php (filtrage possible par le nom de l’image), album.php (filtrage possible par le nom du dossier) ou index.php.<br /> Si vous voulez exclure une page complètement, entre <em>lenomdelapage.php</em>.<br /> Si vous voulez exclure une page selon des critères de titre-lien, de nom d’image ou de dossier d’album, saisissez <em>lenomdelapage.php/titre-lien ou nom de l’image ou dossier de l’album</em>. Vous pouvez en saisir plusieurs, séparés par des virgules."
 
@@ -15348,7 +15354,7 @@ msgstr "Aucune connexion n’a pu être établie vers <em>Zenphoto.org</em>."
 msgid "Zenphoto outgoing mail handler based on the PHP <em>mail</em> facility."
 msgstr "Le gestionnaire de mails sortants de Zenphoto, basé sur la fonction <em>mail</em> de PHP."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenphoto_sendmail.php:30
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenphoto_sendmail.php:31
 #, php-format
 msgid "<code>zenphoto_sendmail</code> failed to send <em>%s</em> to one or more recipients."
 msgstr "L’extension <code>zenphoto_sendmail</code> n’a pas pu envoyer <em>%s</em> à un ou à plusieurs destinataires."
