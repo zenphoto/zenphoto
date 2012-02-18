@@ -246,7 +246,7 @@ class htmlmetatags {
 				$langs = generateLanguageList();
 				if(count($langs) != 1) {
 					foreach ($langs as $text=>$lang) {
-						$lang = strtr($lang, '_','-');
+						$lang = strtr($lang, '-','_');
 						if($lang == $locale) {
 							$altlink = '';
 						} else {
