@@ -287,7 +287,7 @@ class htmlmetatags {
 									$altlink = FULLWEBPATH.'/'.$lang.'/page/'.html_encode($pagetitle);
 									break;
 							} // switch
-							$meta .= '<link rel="alternate" hreflang="'.$lang.'" href="'.$altlink.'" />'."\n";
+							$meta .= '<link rel="alternate" hreflang="'.$langcheck.'" href="'.$altlink.'" />'."\n";
 						} // if lang
 					} // foreach
 				} // if count
