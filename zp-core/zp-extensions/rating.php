@@ -235,6 +235,18 @@ class jquery_rating {
 				return NULL;
 		}
 	}
+
+	/**
+	 *
+	 * returns an "ID" tag for rating records
+	 */
+	static function id() {
+		if (getOption('rating_hash_ip')) {
+			return sha1(getUserIP());
+		} else {
+			return getUserIP();
+		}
+	}
 }
 
 /**
@@ -299,11 +311,8 @@ function printRating($vote=3, $object=NULL, $text=true) {
 	$votes = $object->get('total_votes');
 	$id = $object->get('id');
 	$unique = '_'.$table.'_'.$id;
-	if (getOption('rating_hash_ip')) {
-		$ip = sha1(getUserIP());
-	} else {
-		$ip = getUserIP();
-	}
+
+	$ip = jquery_rating::id();
 	$oldrating = jquery_rating::getRatingByIP($ip,$object->get('used_ips'), $object->get('rating'));
 	if ($vote && $recast==2 && $oldrating) {
 		$starselector = round($oldrating*$split_stars);

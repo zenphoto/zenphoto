@@ -15,8 +15,6 @@ if (!empty($_FILES)) {
 	$name = trim(basename(sanitize($_FILES['Filedata']['name'],3)));
 	if (isset($_FILES['Filedata']['error']) && $_FILES['Filedata']['error']) {
 		$error = $_FILES['Filedata']['error'];
-		debugLogArray('Uploadify error:', $_FILES);
-		trigger_error(sprintf(gettext('Uploadify error on %1$s. Review your debug log.'),$name));
 	} else {
 		$tempFile = sanitize($_FILES['Filedata']['tmp_name'],3);
 		$folder = trim(sanitize($_POST['folder'],3));
@@ -76,6 +74,14 @@ if (!empty($_FILES)) {
 				}
 			}
 		}
+	}
+	if ($error) {
+		if (is_bool($error)) {
+			$error = '';
+		} else {
+			$error = ' ('.$error.')';
+		}
+		debugLog(sprintf(gettext('Uploadify error%1$s on %2$s.'),$error,$name));
 	}
 }
 

@@ -288,39 +288,55 @@ class Gallery {
 
 
 	/**
-	 * Returns the number of images from a database
-	 * Ideally one should call garbageCollect() before to make sure the database is current.
-	 * @param bool $publishedOnly set to true to count only published images.
+	 * Returns the number of images in the gallery
+	 * @param int $what 0: all images from the database
+	 * 									1: published images from the database
+	 * 									2: "viewable" images via the object model
 	 * @return int
 	 */
-	function getNumImages($publishedOnly=false) {
-		if ($publishedOnly) {
-			$rows = query("SELECT `id` FROM " . prefix('albums')." WHERE `show`=0");
-			if ($rows) {
-				$exclude = '';
-				while ($row = db_fetch_assoc($rows))	{
-					if (!empty($row['id'])) {
-						$exclude .= " `albumid`!=".$row['id'].' AND ';
+	function getNumImages($what=0) {
+		switch ((int) $what) {
+			case 0:
+				return db_count('images','');
+				break;
+			case 1:
+				$rows = query("SELECT `id` FROM " . prefix('albums')." WHERE `show`=0");
+				$idlist = array();
+				$exclude = 'WHERE `show`=1';
+				if ($rows) {
+					while ($row = db_fetch_assoc($rows))	{
+						$idlist[] = $row['id'];
+					}
+					if (!empty($idlist)) {
+						$exclude .= ' AND `id` NOT IN ('.implode(',',$idlist).')';
 					}
 				}
-				$exclude = substr($exclude, 0, strlen($exclude)-5);
-			} else {
-				$exclude = '';
-			}
-			if ($publishedOnly) {
-				if (empty($exclude)) {
-					$exclude = '`show`=1';
-				} else {
-					$exclude = ' `show`=1 AND '.$exclude;
+				return db_count('images',$exclude);
+				break;
+			case 2:
+				$count = 0;
+				$albums = $this->getAlbums(0);
+				foreach ($albums as $analbum) {
+					$album = new Album(NULL, $analbum);
+					if (!$album->isDynamic()) {
+						$count = $count + gallery::getImageCount($album);
+					}
 				}
-			}
-			if (!empty($exclude)) {
-				$exclude = 'WHERE '.$exclude;
-			}
-		} else {
-			$exclude = '';
+				return $count;
+				break;
 		}
-		return db_count('images',$exclude);
+	}
+
+	private function getImageCount($album) {
+		$count = $album->getNumImages();
+		$albums = $album->getAlbums(0);
+		foreach ($albums as $analbum) {
+			$album = new Album(NULL, $analbum);
+			if (!$album->isDynamic()) {
+				$count = $count + gallery::getImageCount($album);
+			}
+		}
+		return $count;
 	}
 
 

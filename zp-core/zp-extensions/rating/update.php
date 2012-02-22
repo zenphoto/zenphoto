@@ -11,7 +11,7 @@ require_once(dirname(dirname(dirname(__FILE__))).'/template-functions.php');
 $id = sanitize_numeric($_POST['id']);
 $table = sanitize($_POST['table'],3);
 $dbtable = prefix($table);
-$ip = getUserIP();
+$ip = jquery_rating::id();
 $unique = '_'.$table.'_'.$id;
 $rating = ceil(sanitize_numeric($_POST['star_rating-value'.$unique])/max(1,getOption('rating_split_stars')));
 $IPlist = query_single_row("SELECT * FROM $dbtable WHERE id= $id");
