@@ -1216,9 +1216,11 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	if (zp_loggedin(ADMIN_RIGHTS) && $connection) {
 		primeMark(gettext('Installation files'));
 		$systemlist = $filelist = array();
-		$svncount = 0;
+		$phi_ini_count = $svncount = 0;
 		foreach ($_zp_resident_files as $extra) {
-			if (defined("RELEASE") || (strpos($extra, '/.svn')===false)) {
+			if (strpos($extra, 'php.ini')!==false) {
+				$phi_ini_count ++;
+			} else if (defined("RELEASE") || (strpos($extra, '/.svn')===false)) {
 				$systemlist[] = $extra;
 				$filelist[] = $_zp_UTF8->convert(str_replace($base,'',$extra), FILESYSTEM_CHARSET, 'UTF-8');
 			} else {
@@ -1226,7 +1228,10 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			}
 		}
 		if ($svncount) {
-			$filelist[] = '<br />'.sprintf(gettext('.svn [%s instances]'),$svncount);
+			$filelist[] = '<br />'.sprintf(ngettext('.svn [%s instance]','.svn [%s instances]',$svncount),$svncount);
+		}
+		if ($phi_ini_count && !defined('RELEASE')) {
+			$filelist[] = '<br />'.sprintf(ngettext('php.ini [%s instance]','.svn [%s instances]',$phi_ini_count),$phi_ini_count);
 		}
 		if ($package_file_count) {	//	no point in this if the package list was damaged!
 			if (!empty($filelist)) {
