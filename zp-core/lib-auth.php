@@ -281,9 +281,7 @@ class Zenphoto_Authority {
 		global $_zp_current_admin_obj, $_zp_reset_admin, $_zp_null_account;
 		$_zp_current_admin_obj = NULL;
 		if (DEBUG_LOGIN) { debugLogBacktrace("checkAuthorization($authCode, $id)");	}
-
 		$admins = $this->getAdministrators();
-		if (DEBUG_LOGIN) { debugLogArray("checkAuthorization: admins",$admins);	}
 		if ((count($admins) == 0)) {
 			if (DEBUG_LOGIN) { debugLog("checkAuthorization: no admins"); }
 			$_zp_null_account = true;
@@ -306,7 +304,7 @@ class Zenphoto_Authority {
 		if (is_object($user)) {
 			$_zp_current_admin_obj = $user;
 			$rights = $user->getRights();
-			if (DEBUG_LOGIN) { debugLog(sprintf('checkAuthorization: from $authcode %X',$rights));	}
+			if (DEBUG_LOGIN) { debugLog(sprintf('checkAuthorization: from %1$s->%2$X',$authCode,$rights));	}
 			return $rights;
 		}
 		$_zp_current_admin_obj = NULL;
@@ -327,6 +325,14 @@ class Zenphoto_Authority {
 		global $_zp_authority;
 		$hash = $this->passwordHash($user, $pass);
 		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`pass`=' => $hash, '`valid`=' => 1));
+		if (DEBUG_LOGIN) {
+			if ($userobj) {
+				$rights = sprintf('%X',$userobj->getRights());
+			} else {
+				$rights = false;
+			}
+			debugLog(sprintf('checkLogon(%1$s, %2$s)->%3$s',$user, $hash, $rights));
+		}
 		return $userobj;
 	}
 

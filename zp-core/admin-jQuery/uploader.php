@@ -249,21 +249,25 @@ class UploadHandler
 			if ($uploaded_file && is_uploaded_file($uploaded_file)) {
 				// multipart/formdata uploads (POST method uploads)
 				if ($append_file) {
-					file_put_contents(
-					$file_path,
-					fopen($uploaded_file, 'r'),
-					FILE_APPEND
-					);
+					file_put_contents($file_path,fopen($uploaded_file, 'r'),FILE_APPEND);
 				} else {
 					move_uploaded_file($uploaded_file, $file_path);
-					@chmod($targetFile, FILE_MOD);
-					$album = new Album(NULL, $folder);
-					$image = newImage($album, $seoname);
-					$image->setOwner($_zp_current_admin_obj->getUser());
-					if ($name != $seoname && $image->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {
-						$image->setTitle(substr($name, 0, strrpos($name, '.')));
+					if (is_valid_image($name) || is_valid_other_type($name)) {
+						@chmod($targetFile, FILE_MOD);
+						$album = new Album(NULL, $folder);
+						$image = newImage($album, $seoname);
+						$image->setOwner($_zp_current_admin_obj->getUser());
+						if ($name != $seoname && $image->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {
+							$image->setTitle(substr($name, 0, strrpos($name, '.')));
+						}
+						$image->save();
+					} else if (is_zip($targetFile)) {
+						unzip($targetFile, $targetPath);
+						unlink($targetFile);
+					} else {
+						$error = UPLOAD_ERR_EXTENSION;	// invalid file uploaded
+						break;
 					}
-					$image->save();
 				}
 			} else {
 				// Non-multipart uploads (PUT method support)
