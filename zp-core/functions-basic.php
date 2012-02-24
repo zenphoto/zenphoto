@@ -1565,7 +1565,7 @@ function exitZP() {
  * @return string
  */
 function installSignature() {
-	$testFiles = array('Signature', 'functions.php', 'functions-basic.php', 'functions-controller.php', 'functions-image.php');
+	$testFiles = array('lib-auth.php', 'functions.php', 'functions-basic.php', 'functions-controller.php', 'functions-image.php');
 	$m = ZENPHOTO_RELEASE % 5;
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
 		$s = $_SERVER['SERVER_SOFTWARE'];

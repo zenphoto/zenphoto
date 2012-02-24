@@ -48,6 +48,10 @@ if (in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
 	}
 } else {
 	zp_register_filter('admin_note', 'signatureChange');
+	if (zp_loggedin(ADMIN_RIGHTS)) {
+		zp_register_filter('theme_head', 'reconfigureCS');
+		zp_register_filter('theme_body_open', 'signatureChange');
+	}
 }
 
 function checkSignature() {
@@ -66,7 +70,7 @@ function checkSignature() {
 	return array($diff, $needs);
 }
 
-function signatureChange($tab, $subtab) {
+function signatureChange($tab=NULL, $subtab=NULL) {
 	list($diff, $needs) = checkSignature();
 	?>
 	<div class="notebox">
@@ -88,7 +92,7 @@ function signatureChange($tab, $subtab) {
 						echo '<li>'.sprintf(gettext('Your database software has changed from %1$s to %2$s.'),$old,$dbs['application'].' '.$dbs['version']).'</li>';
 						break;
 					default:
-						$sz = filesize(SERVERPATH.'/'.ZENFOLDER.'/'.$thing);
+						$sz = @filesize(SERVERPATH.'/'.ZENFOLDER.'/'.$thing);
 						echo '<li>'.sprintf(gettext('The size of <code>%1$s</code> has changed from %2$s to %3$s.'),$thing,$old, $sz).'</li>';
 						break;
 				}
@@ -106,6 +110,37 @@ function signatureChange($tab, $subtab) {
 	</div>
 	<?php
 	return $tab;
+}
+
+function reconfigureCS() {
+	?>
+	<style type="text/css">
+	.notebox {
+		padding: 5px 10px 5px 10px;
+		background-color: #FFEFB7;
+		border-width: 1px 1px 2px 1px;
+		border-color: #FFDEB5;
+		border-style: solid;
+		margin-bottom: 10px;
+		font-size: 100%;
+		-moz-border-radius: 5px;
+		-khtml-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+	}
+
+	.notebox li {
+		list-style-type: none;
+	}
+
+	.notebox h2,.notebox strong {
+		color: #663300;
+		font-size: 100%;
+		font-weight: bold;
+		margin-bottom: 1em;
+	}
+	</style>
+	<?php
 }
 
 function setupNeeds($needs) {
