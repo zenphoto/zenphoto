@@ -177,14 +177,14 @@ function reconfigurePage() {
 					</ul>
 				</p>
 			<?php
-			if (empty($needs)) {
+			}
+			if (!empty($needs)) {
 				$l1 = $l2 = '';
 			} else {
 				$l1 = '<a href="'.WEBPATH.'/'.ZENFOLDER.'/setup.php">';
 				$l2 = '</a>';
 			}
 			printf(gettext('These changes may not be critical but you should run %1$ssetup%2$s at your earliest convenience.'), $l1, $l2);
-			}
 		?>
 		</p>
 	</div>
