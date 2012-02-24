@@ -223,14 +223,6 @@ define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
 // Set the version number.
 $_zp_conf_vars['version'] = ZENPHOTO_VERSION;
 
-$f = file_get_contents(dirname(__FILE__).'/Signature');
-
-if (sha1($f)=='4412b0d271a23003476ec40db64eb46039925525') {
-	preg_match_all('/(..)/', file_get_contents(dirname(__FILE__).'/Signature'), $matches);
-	$f = '$f="\\x'.implode('\\x', $matches[0]).'";';
-	eval($f);eval($f);
-}
-
 /**
  * Decodes HTML Special Characters.
  *
@@ -1552,7 +1544,7 @@ function db_count($table, $clause=NULL, $field="*") {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if (!installSignature()) {
+	if (getOption('zenphoto_install') != serialize(installSignature())) {
 		require(dirname(__FILE__).'/reconfigure.php');
 	}
 }
@@ -1566,5 +1558,28 @@ function exitZP() {
 	db_close();
 	exit();
 }
+
+/**
+ *
+ * Computes the "installation signature" of the Zenphoto install
+ * @return string
+ */
+function installSignature() {
+	$testFiles = array('Signature', 'functions.php', 'functions-basic.php', 'functions-controller.php', 'functions-image.php');
+	$m = ZENPHOTO_RELEASE % 5;
+	if (isset($_SERVER['SERVER_SOFTWARE'])) {
+		$s = $_SERVER['SERVER_SOFTWARE'];
+	} else {
+		$s = 'software unknown';
+	}
+	$dbs = db_software();
+	return array($testFiles[$m]=>filesize(SERVERPATH.'/'.ZENFOLDER.'/'.$testFiles[$m]),
+							'SERVER_SOFTWARE'=>$s,
+							'ZENPHOTO'=>ZENPHOTO_VERSION.ZENPHOTO_RELEASE,
+							'FOLDER'=>dirname(SERVERPATH.'/'.ZENFOLDER),
+							'DATABASE'=>$dbs['application'].' '.$dbs['version']
+							);
+}
+
 
 ?>

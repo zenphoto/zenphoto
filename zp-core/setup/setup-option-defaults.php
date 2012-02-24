@@ -13,7 +13,7 @@ zp_apply_filter('log_setup', true, 'install', '');
 
 purgeOption('zenphoto_release');
 setOption('zenphoto_version', ZENPHOTO_VERSION.' ['.ZENPHOTO_RELEASE.']');
-setOption('zenphoto_install', installSignature());
+setOption('zenphoto_install', serialize(installSignature()));
 
 //clear out old admin user and cleartext password
 unset($_zp_conf_vars['adminuser']);
