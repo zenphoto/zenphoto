@@ -34,8 +34,7 @@ if (in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
 					<div id="content">
 						<div class="tabbox">
 							<div class="notebox">
-								<h1><?php echo gettext('Zenphoto has detected a change in your installation signature and needs to run Setup but some setup files are missing.'); ?></h1>
-								<?php setupNeeds($needs); ?>
+								<?php reconfigurePage($needs); ?>
 							</div>
 						</div>
 					</div>
@@ -71,44 +70,7 @@ function checkSignature() {
 }
 
 function signatureChange($tab=NULL, $subtab=NULL) {
-	list($diff, $needs) = checkSignature();
-	?>
-	<div class="notebox">
-		<h1>
-			<?php
-			echo gettext('Zenphoto has detected a change in your installation.');
-			?>
-		</h1>
-		<ul>
-		<?php
-			foreach ($diff as $thing=>$old) {
-
-				switch ($thing) {
-					case 'SERVER_SOFTWARE':
-						echo '<li>'.sprintf(gettext('Your server software has changed from %1$s to %2$s.'),$old,$_SERVER['SERVER_SOFTWARE']).'</li>';
-						break;
-					case 'DATABASE':
-						$dbs = db_software();
-						echo '<li>'.sprintf(gettext('Your database software has changed from %1$s to %2$s.'),$old,$dbs['application'].' '.$dbs['version']).'</li>';
-						break;
-					default:
-						$sz = @filesize(SERVERPATH.'/'.ZENFOLDER.'/'.$thing);
-						echo '<li>'.sprintf(gettext('The size of <code>%1$s</code> has changed from %2$s to %3$s.'),$thing,$old, $sz).'</li>';
-						break;
-				}
-			}
-			?>
-		</ul>
-		<p>
-		<?php
-			echo gettext('These changes may not be critical but you should run setup at your earliest convenience.');
-			if (!file_exists(dirname(__FILE__).'/setup.php') || !empty($needs)) {
-				setupNeeds($needs);
-			}
-		?>
-		</p>
-	</div>
-	<?php
+	reconfigurePage();
 	return $tab;
 }
 
@@ -143,39 +105,89 @@ function reconfigureCS() {
 	<?php
 }
 
-function setupNeeds($needs) {
+function reconfigurePage() {
+	list($diff, $needs) = checkSignature();
 	?>
-	<h2><?php printf(gettext('Please reinstall the following setup files from the %1$s [%2$s] release:'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE); ?></h2>
-	<ul>
-		<?php
-		if (!file_exists(dirname(__FILE__).'/setup.php')) {
-		?>
-		<li><?php echo ZENFOLDER; ?>
-			<ul>
-				<li>setup.php</li>
-			</ul>
-		</li>
-		<?php
-		}
-		if (!empty($needs)) {
-			?>
-			<li>
-				<?php echo ZENFOLDER; ?>/setup/
-				<ul>
-					<?php
-					foreach ($needs as $script) {
-						?>
-						<li><?php echo $script; ?></li>
-						<?php
-					}
-					?>
-				</ul>
-			</li>
+	<div class="notebox">
+		<h1>
 			<?php
-		}
+			echo gettext('Zenphoto has detected a change in your installation.');
+			?>
+		</h1>
+		<ul>
+		<?php
+			foreach ($diff as $thing=>$old) {
+
+				switch ($thing) {
+					case 'SERVER_SOFTWARE':
+						echo '<li>'.sprintf(gettext('Your server software has changed from %1$s to %2$s.'),$old,$_SERVER['SERVER_SOFTWARE']).'</li>';
+						break;
+					case 'DATABASE':
+						$dbs = db_software();
+						echo '<li>'.sprintf(gettext('Your database software has changed from %1$s to %2$s.'),$old,$dbs['application'].' '.$dbs['version']).'</li>';
+						break;
+					case 'ZENPHOTO':
+						echo '<li>'.sprintf(gettext('Zenphoto %1$s has been installed over %2$s.'),$old,ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']').'</li>';
+						break;
+					case 'FOLDER':
+						echo '<li>'.sprintf(gettext('Your installation has moved from %1$s to %2$s.'),$old,dirname(SERVERPATH.'/'.ZENFOLDER)).'</li>';
+						break;
+					default:
+						$sz = @filesize(SERVERPATH.'/'.ZENFOLDER.'/'.$thing);
+						echo '<li>'.sprintf(gettext('The size of <code>%1$s</code> has changed from %2$s to %3$s.'),$thing,$old, $sz).'</li>';
+						break;
+				}
+			}
+			?>
+		</ul>
+		<p>
+		<?php
+			if (!file_exists(dirname(__FILE__).'/setup.php') || !empty($needs)) {
+				?>
+				<p>
+				<?php printf(gettext('Please reinstall the following setup files from the %1$s [%2$s] release:'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE); ?>
+					<ul>
+						<?php
+						if (!file_exists(dirname(__FILE__).'/setup.php')) {
+						?>
+						<li><?php echo ZENFOLDER; ?>
+							<ul>
+								<li>setup.php</li>
+							</ul>
+						</li>
+						<?php
+						}
+						if (!empty($needs)) {
+							?>
+							<li>
+								<?php echo ZENFOLDER; ?>/setup/
+								<ul>
+									<?php
+									foreach ($needs as $script) {
+										?>
+										<li><?php echo $script; ?></li>
+										<?php
+									}
+									?>
+								</ul>
+							</li>
+							<?php
+						}
+						?>
+					</ul>
+				</p>
+			<?php
+			if (empty($needs)) {
+				$l1 = $l2 = '';
+			} else {
+				$l1 = '<a href="'.WEBPATH.'/'.ZENFOLDER.'/setup.php">';
+				$l2 = '</a>';
+			}
+			printf(gettext('These changes may not be critical but you should run %1$ssetup%2$s at your earliest convenience.'), $l1, $l2);
+			}
 		?>
-	</ul>
+		</p>
+	</div>
 <?php
 }
-
 ?>

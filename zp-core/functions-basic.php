@@ -1575,7 +1575,7 @@ function installSignature() {
 	$dbs = db_software();
 	return array($testFiles[$m]=>filesize(SERVERPATH.'/'.ZENFOLDER.'/'.$testFiles[$m]),
 							'SERVER_SOFTWARE'=>$s,
-							'ZENPHOTO'=>ZENPHOTO_VERSION.ZENPHOTO_RELEASE,
+							'ZENPHOTO'=>ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']',
 							'FOLDER'=>dirname(SERVERPATH.'/'.ZENFOLDER),
 							'DATABASE'=>$dbs['application'].' '.$dbs['version']
 							);
