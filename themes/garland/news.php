@@ -5,7 +5,7 @@ if (!defined('WEBPATH')) die();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php printGalleryTitle(); ?> | <?php echo gettext('News'); ?> <?php printNewsTitle(); ?></title>
+	<title><?php printGalleryTitle(); ?> | <?php echo gettext('News'); ?> <?php printNewsTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 	<?php printZenpageRSSHeaderLink("News","", "Zenpage news", ""); ?>
 </head>

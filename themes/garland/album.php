@@ -8,7 +8,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle()); ?></title>
+	<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle()); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 	<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
