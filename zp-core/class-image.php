@@ -592,8 +592,8 @@ class _Image extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getLocation() {
-		return get_language_string($this->get('location'));
+	function getLocation($locale=NULL) {
+		return get_language_string($this->get('location'),$locale);
 	}
 
 	/**
@@ -608,8 +608,8 @@ class _Image extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getCity() {
-		return get_language_string($this->get('city'));
+	function getCity($locale=NULL) {
+		return get_language_string($this->get('city'),$locale);
 	}
 
 	/**
@@ -624,8 +624,8 @@ class _Image extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getState() {
-		return get_language_string($this->get('state'));
+	function getState($locale=NULL) {
+		return get_language_string($this->get('state'),$locale);
 	}
 
 	/**
@@ -640,8 +640,8 @@ class _Image extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getCountry() {
-		return get_language_string($this->get('country'));
+	function getCountry($locale=NULL) {
+		return get_language_string($this->get('country'),$locale);
 	}
 
 	/**
@@ -656,8 +656,8 @@ class _Image extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getCredit() {
-		return get_language_string($this->get('credit'));
+	function getCredit($locale=NULL) {
+		return get_language_string($this->get('credit'),$locale=NULL);
 	}
 
 	/**
@@ -672,8 +672,8 @@ class _Image extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getCopyright() {
-		return get_language_string($this->get('copyright'));
+	function getCopyright($locale=NULL) {
+		return get_language_string($this->get('copyright'),$locale);
 	}
 
 	/**

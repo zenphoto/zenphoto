@@ -140,6 +140,7 @@ class sitemap {
 										'desc' => gettext('If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.').'<p class="notebox">'.gettext('<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts').'</p>'),
 	gettext('Google - URL to image license') => array('key' => 'sitemap_license', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 10,
+										'multilingual'=>true,
 										'desc' => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html')),
 	gettext('Sitemap processing chunk') => array('key' => 'sitemap_processing_chunk', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 11,
@@ -465,13 +466,13 @@ function getSitemapAlbums() {
 				foreach($sitemap_locales as $locale) {
 					$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-					$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images);
+					$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images,$locale);
 					$data .= sitemap_echonl("\t</url>");
 				}
 			} else {
 				$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
 				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-				$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images);
+				$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images,NULL);
 				$data .= sitemap_echonl("\t</url>");
 			}
 			// print album pages if avaiable
@@ -487,7 +488,7 @@ function getSitemapAlbums() {
 					} else {
 						$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-						$data .= getSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images,$locale);
+						$data .= getSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images,NULL);
 						$data .= sitemap_echonl("\t</url>");
 					}
 				}
@@ -594,11 +595,11 @@ function getSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images,$l
 			$imageobj = newImage($albumobj,$images[$x]);
 			$ext = strtolower(strrchr($imageobj->filename, "."));
 			$location = '';
-			if ($imageobj->getLocation()) { $location .= $imageobj->getLocation() . ', ' ; }
-			if ($imageobj->getCity()) { $location .= $imageobj->getCity() . ', ' ; }
-			if ($imageobj->getState()) { $location .= $imageobj->getState() .', ' ; }
-			if ($imageobj->getCountry()) { $location .= $imageobj->getCountry(); }
-			$license = getOption('sitemap_license');
+			if ($imageobj->getLocation()) { $location .= $imageobj->getLocation($locale) . ', ' ; }
+			if ($imageobj->getCity()) { $location .= $imageobj->getCity($locale) . ', ' ; }
+			if ($imageobj->getState()) { $location .= $imageobj->getState($locale) .', ' ; }
+			if ($imageobj->getCountry()) { $location .= $imageobj->getCountry($locale); }
+			$license = get_language_string(getOption('sitemap_license'),$locale);
 			$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
 			if($ext != '.mp3' && $ext != '.txt' && $ext != '.html') { // audio is not coverered specifically by Google currently
 				if(isImageVideo($imageobj) && $ext != '.mp3') {

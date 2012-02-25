@@ -77,8 +77,8 @@ class ZenpagePage extends ZenpageItems {
 	 *
 	 * @return string
 	 */
-	function getPasswordHint() {
-		return get_language_string($this->get('password_hint'));
+	function getPasswordHint($locale=NULL) {
+		return get_language_string($this->get('password_hint'),$locale);
 	}
 
 	/**

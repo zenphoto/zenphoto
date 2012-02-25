@@ -40,8 +40,8 @@ class Gallery {
 	 *
 	 * @return string
 	 */
-	function getTitle() {
-		return get_language_string($this->get('gallery_title'));
+	function getTitle($locale=NULL) {
+		return get_language_string($this->get('gallery_title'),$locale);
 	}
 
 	/**
@@ -49,8 +49,8 @@ class Gallery {
 	 *
 	 * @return string
 	 */
-	function getDesc() {
-		return(get_language_string($this->get('Gallery_description')));
+	function getDesc($locale=NULL) {
+		return get_language_string($this->get('Gallery_description'),$locale);
 	}
 
 	/**
@@ -73,8 +73,8 @@ class Gallery {
 	 *
 	 * @return string
 	 */
-	function getPasswordHint() {
-		return get_language_string($this->get('gallery_hint'));
+	function getPasswordHint($locale=NULL) {
+		return get_language_string($this->get('gallery_hint'),$locale);
 	}
 	function setPasswordHint($value) {
 		$this->set('gallery_hint', $value);
@@ -810,8 +810,8 @@ class Gallery {
 	/**
 	 * Title to be used for the home (not Zenphoto gallery) WEBsite
 	 */
-	function getWebsiteTitle() {
-		return get_language_string($this->get('website_title'));
+	function getWebsiteTitle($locale=NULL) {
+		return get_language_string($this->get('website_title'),$locale);
 	}
 	function setWebsiteTitle($value) {
 		$this->set('website_title', $value);

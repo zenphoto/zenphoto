@@ -1231,7 +1231,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			$filelist[] = '<br />'.sprintf(ngettext('.svn [%s instance]','.svn [%s instances]',$svncount),$svncount);
 		}
 		if ($phi_ini_count && !defined('RELEASE')) {
-			$filelist[] = '<br />'.sprintf(ngettext('php.ini [%s instance]','.svn [%s instances]',$phi_ini_count),$phi_ini_count);
+			$filelist[] = '<br />'.sprintf(ngettext('php.ini [%s instance]','php.ini [%s instances]',$phi_ini_count),$phi_ini_count);
 		}
 		if ($package_file_count) {	//	no point in this if the package list was damaged!
 			if (!empty($filelist)) {

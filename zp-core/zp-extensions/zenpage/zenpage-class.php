@@ -843,8 +843,8 @@ class ZenpageItems extends ZenpageRoot {
 	 *
 	 * @return string
 	 */
-	function getContent() {
-		return get_language_string($this->get("content"));
+	function getContent($locale=NULL) {
+		return get_language_string($this->get("content"),$locale);
 	}
 
 	/**
@@ -918,8 +918,8 @@ class ZenpageItems extends ZenpageRoot {
 	 *
 	 * @return string
 	 */
-	function getExtraContent() {
-		return get_language_string($this->get("extracontent"));
+	function getExtraContent($locale=NULL) {
+		return get_language_string($this->get("extracontent"),$locale);
 	}
 
 	/**

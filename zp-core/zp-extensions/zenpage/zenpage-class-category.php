@@ -22,8 +22,8 @@ class ZenpageCategory extends ZenpageRoot {
 	 *
 	 * @return string
 	 */
-	function getDesc() {
-		return get_language_string($this->get('desc'));
+	function getDesc($locale=NULL) {
+		return get_language_string($this->get('desc'),$locale);
 	}
 
 	/**

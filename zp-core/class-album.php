@@ -182,8 +182,8 @@ class Album extends MediaObject {
 	 *
 	 * @return string
 	 */
-	function getLocation() {
-		return get_language_string($this->get('location'));
+	function getLocation($locale=NULL) {
+		return get_language_string($this->get('location'), $locale);
 	}
 
 	/**

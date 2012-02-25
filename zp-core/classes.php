@@ -398,8 +398,8 @@ class ThemeObject extends PersistentObject {
 	 *
 	 * @return string
 	 */
-	function getTitle() {
-		return get_language_string($this->get('title'));
+	function getTitle($locale=NULL) {
+		return get_language_string($this->get('title'),$locale);
 	}
 
 	/**
@@ -544,8 +544,8 @@ class ThemeObject extends PersistentObject {
 	 *
 	 * @return string
 	 */
-	function getCustomData() {
-		return get_language_string($this->get('custom_data'));
+	function getCustomData($locale=NULL) {
+		return get_language_string($this->get('custom_data'),$locale);
 	}
 
 	/**
@@ -696,8 +696,8 @@ class MediaObject extends ThemeObject {
 	 *
 	 * @return string
 	 */
-	function getDesc() {
-		return get_language_string($this->get('desc'));
+	function getDesc($locale=NULL) {
+		return get_language_string($this->get('desc'),$locale);
 	}
 
 	/**
@@ -767,8 +767,8 @@ class MediaObject extends ThemeObject {
 	 *
 	 * @return string
 	 */
-	function getPasswordHint() {
-		return get_language_string($this->get('password_hint'));
+	function getPasswordHint($locale=NULL) {
+		return get_language_string($this->get('password_hint'),$locale);
 	}
 
 	/**
