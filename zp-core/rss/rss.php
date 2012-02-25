@@ -68,7 +68,7 @@ $items = getOption('feed_items'); // # of Items displayed on the feed
 					$imagenumber = $title;
 				}
 				$itemcontent = '<![CDATA[<a title="'.$title.'" href="'.$protocol.'://'.$itemlink.'">'.$thumburl.'</a>'.
-						'<p>'.html_encode($imagenumber).'</p>'.html_encode(get_language_string($albumitem->get("desc"),$locale)).']]>';
+						'<p>'.html_encode($imagenumber).'</p>'.get_language_string($albumitem->get("desc"),$locale).']]>';
 				$videocontent = '';
 				$datecontent = '<![CDATA['.sprintf(gettext("Last update: %s"),zpFormattedDate(DATE_FORMAT,$filechangedate)).']]>';
 			} else {
@@ -77,7 +77,7 @@ $items = getOption('feed_items'); // # of Items displayed on the feed
 				} else {
 					$imagenumber = sprintf(gettext('%1$s (%2$s images)'),$title,$totalimages);
 				}
-				$itemcontent = '<![CDATA[<a title="'.html_encode($title).'" href="'.$protocol.'://'.$itemlink.'">'.$thumburl.'</a>'.html_encode(get_language_string($albumitem->get("desc"),$locale)).']]>';
+				$itemcontent = '<![CDATA[<a title="'.html_encode($title).'" href="'.$protocol.'://'.$itemlink.'">'.$thumburl.'</a>'.get_language_string($albumitem->get("desc"),$locale).']]>';
 				$datecontent = '<![CDATA['.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$albumitem->get('mtime'))).']]>';
 			}
 			$ext = getSuffix($thumb->filename);
