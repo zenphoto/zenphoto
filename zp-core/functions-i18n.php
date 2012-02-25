@@ -390,6 +390,7 @@ function parseHttpAcceptLanguage($str=NULL) {
  */
 function validateLocale($userlocale,$source) {
 	if (DEBUG_LOCALE) debugLog("validateLocale($userlocale,$source)");
+	$userlocale = str_replace('-', '_', $userlocale);
 	$languageSupport = generateLanguageList();
 	$locale = NULL;
 	if (!empty($userlocale)) {

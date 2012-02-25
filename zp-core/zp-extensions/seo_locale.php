@@ -30,9 +30,8 @@ if ($plugin_disable) {
 }
 
 function filterLocale_load_request($allow) {
-	$uri = urldecode(sanitize($_SERVER['REQUEST_URI'], 0));
+	$uri = str_replace('\\','/',urldecode(sanitize($_SERVER['REQUEST_URI'], 0)));
 	$path = substr($uri, strlen(WEBPATH)+1);
-	$path = str_replace('\\','/',$path);
 	if (substr($path,0,1) == '/') $path = substr($path,1);
 	if (empty($path)) {
 		return $allow;
@@ -50,8 +49,7 @@ function filterLocale_load_request($allow) {
 	$locale = validateLocale($l, 'seo_locale');
 	if ($locale) {	// set the language cookie and redirect to the "base" url
 		zp_setCookie('dynamic_locale', $locale);
-		if (substr($path, -1, 1) == '/') $path = substr($path, 0, strlen($path)-1);
-		$path = FULLWEBPATH.substr($path, strlen($l));
+		$path = str_replace('//', '/', str_replace($l, '', $uri));
 		header("HTTP/1.0 302 Found");
 		header("Status: 302 Found");
 		header('Location: '.$path);
