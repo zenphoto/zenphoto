@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-24 19:39-0500\n"
-"PO-Revision-Date: 2012-02-25 01:17-0500\n"
+"POT-Creation-Date: 2012-02-25 11:27-0500\n"
+"PO-Revision-Date: 2012-02-25 17:38-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -8356,7 +8356,7 @@ msgstr "Vous devriez supprimer les fichiers suivants :"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1262
 msgid "Delete extra files"
-msgstr "Supprimer les fichiers supplémentaires"
+msgstr "Supprimez les fichiers supplémentaires"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1265
 msgid "Zenphoto core file permissions"
@@ -8380,7 +8380,7 @@ msgstr "Le fichier <em>.htaccess</em> est vide ou n’existe pas"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1282
 msgid "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is required the root zenphoto folder to create cruft-free URLs."
-msgstr "Si le module d’Apache mod_rewrite est activé, il faut placer un fichier <em>.htaccess</em> à la racine du dossier zenphoto si vous souhaitez créer des URL propres."
+msgstr "Si le module d’Apache mod_rewrite est activé, il faut placer un fichier <em>.htaccess</em> à la racine du dossier zenphoto pour créer des URL propres."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1283
 msgid "You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option."
@@ -8402,7 +8402,7 @@ msgstr "La version du fichier<em>.htaccess</em> du répertoire racine de votre g
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1321
 msgid "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup update the file with the current version</a></p><br style=\"clear:both\" /><br />"
-msgstr "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Laissez le script d’installation mettre à jour le fichier à la version courante</a></p><br style=\"clear:both\" /><br />"
+msgstr "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Laisser le script d’installation mettre à jour le fichier à la version courante</a></p><br style=\"clear:both\" /><br />"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1324
 msgid "<em>.htaccess</em> file [wrong version]"
@@ -8517,7 +8517,7 @@ msgstr "L’installation a échoué."
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1463
 #: F:\sites\zenphoto-dev/zp-core/setup.php:2493
 msgid "You need <em>USER ADMIN</em> rights to run setup."
-msgstr "Vous avez besoin de droits d’administration (<em>USER ADMIN</em)> pour réaliser l’installation."
+msgstr "Vous avez besoin de droits d’administration (<em>USER ADMIN</em>) pour réaliser l’installation."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1465
 #: F:\sites\zenphoto-dev/zp-core/setup.php:2495
@@ -8643,7 +8643,7 @@ msgstr "C’est parti !"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:2540
 msgid "database did not connect"
-msgstr "La connexion à la base de données ne fonctionne pas"
+msgstr "Impossible de se connecter à la base de données"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:2542
 msgid "If you haven't created the database yet, now would be a good time."
@@ -8932,7 +8932,7 @@ msgstr "Erreur :"
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:113
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:142
 msgid "File is too big"
-msgstr "Le fichier est trop volumineux"
+msgstr "Le fichier est trop gros"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:114
 #: F:\sites\zenphoto-dev/zp-core/admin-jQuery/upload_form.php:143
