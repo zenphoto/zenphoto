@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-18 01:59-0500\n"
-"PO-Revision-Date: 2012-02-18 02:03-0500\n"
+"POT-Creation-Date: 2012-02-24 19:39-0500\n"
+"PO-Revision-Date: 2012-02-25 01:17-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -4530,24 +4530,24 @@ msgstr "Extensions tierces"
 msgid "logo"
 msgstr "sigle"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:239
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:241
 #, php-format
 msgid "<strong>This plugin is disabled:</strong><br/> %s"
 msgstr "<strong>Cette extension est désactivée : </strong><br/>%s"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:245
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:246
 msgid "toggle description details"
 msgstr "Afficher ou masquer la description détaillée"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:262
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:263
 msgid "Usage information"
 msgstr "Information sur l’utilisation"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:272
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:273
 msgid "Author"
 msgstr "Auteur"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:280
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:281
 msgid "Change plugin options"
 msgstr "Modifier les options de l’extension"
 
@@ -4631,7 +4631,7 @@ msgstr "base de données non connectée"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-refresh-metadata.php:182
 msgid "Check your configuration file to make sure you've got the right username, password, host, and database. If you haven't created the database yet, now would be a good time."
-msgstr "Veuillez vérifier le fichier de configuration pour vous assurer que les identifiant, mot de passe et base de données sont les bons. Si vous n’avez pas encore créé la base de données, il serait temps de le faire."
+msgstr "Veuillez vérifier le fichier de configuration pour vous assurer que les identifiant, mot de passe, hôte et base de données sont les bons. Si vous n’avez pas encore créé la base de données, il serait temps de le faire."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:33
 msgid "New tags added"
@@ -5585,7 +5585,7 @@ msgstr "Erreur %1$s : <em>%2$s</em> a échoué. %1$s a renvoyé l’erreur <em>
 msgid "Too few arguments! Image not found."
 msgstr "Pas assez d’arguments ! Image non trouvée."
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:424
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:416
 msgid "ERROR: Assertion failed in"
 msgstr "ERREUR : erreur d’assertion sur"
 
@@ -6181,34 +6181,34 @@ msgstr "rognage ="
 msgid "Image not found or is unreadable."
 msgstr "L’image n’a pas été trouvée ou est illisible."
 
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:188
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:189
 #, php-format
 msgid "Using %1$ux%2$u %3$s thumbnail image."
 msgstr "Utilisation de la vignette d'image %1$u x %2$u %3$s "
 
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:200
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:318
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:329
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:339
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:395
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:201
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:319
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:330
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:340
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:396
 msgid "Image not renderable."
 msgstr "Impossible de faire le rendu de l’image."
 
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:238
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:239
 msgid "Unknown error! Please report to the developers at <a href=\"http://www.zenphoto.org/\">www.zenphoto.org</a>"
 msgstr "Erreur inconnue ! Veuillez en informer les développeurs à l’adresse <a href=\"http://www.zenphoto.org/\">www.zenphoto.org</a>"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:370
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:387
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:371
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:388
 msgid "Watermark not renderable."
 msgstr "Impossible de faire le rendu du filigrane."
 
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:449
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:450
 #, php-format
 msgid "cacheImage: failed to create %s"
 msgstr "cacheImage : impossible de créer %s"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-image.php:456
+#: F:\sites\zenphoto-dev/zp-core/functions-image.php:457
 #, php-format
 msgid "cacheImage(%1$s) exception: %2$s"
 msgstr "erreur cacheImage(%1$s) : %2$s"
@@ -6778,436 +6778,436 @@ msgstr "Clé de hachage du mot de passe : <span><small style=\"color:gray\">%s<
 msgid "<em>%s</em> hashing is activated"
 msgstr "Le hachage <em>%s</em> est activé."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:364
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:370
 #, php-format
 msgid "Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)"
 msgstr "Impossible de migrer les droits vers la version %1$s (Zenphoto_Authority ne gère que les versions %2$s et %3$s)."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:476
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:491
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:510
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:542
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:482
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:497
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:516
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:548
 msgid "No rights"
 msgstr "Aucun droit"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:477
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:492
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:512
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:544
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:483
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:498
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:518
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:550
 msgid "Overview"
 msgstr "Aperçu"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:478
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:493
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:484
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:499
 msgid "View all"
 msgstr "Tout voir"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:479
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:494
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:524
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:557
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:485
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:500
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:530
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:563
 msgid "Upload"
 msgstr "Charger"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:480
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:495
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:522
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:555
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:486
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:501
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:528
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:561
 msgid "Post comments"
 msgstr "Poster des commentaires"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:483
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:503
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:489
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:509
 msgid "Manage all albums"
 msgstr "Gérer tous les albums"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:484
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:504
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:535
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:568
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:490
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:510
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:541
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:574
 msgid "Themes"
 msgstr "Thèmes"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:485
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:491
 msgid "Zenpage"
 msgstr "Zenpage"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:487
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:506
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:538
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:571
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:493
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:512
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:544
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:577
 msgid "Options"
 msgstr "Options"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:488
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:507
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:539
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:572
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:494
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:513
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:545
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:578
 msgid "Admin"
 msgstr "Administrer"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:492
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:512
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:544
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:498
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:518
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:550
 msgid "Users with this right may view the admin overview page."
 msgstr "Ce niveau d’autorisation permet de voir la page d’aperçu de l’administration."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:493
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:499
 msgid "Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery."
 msgstr "Ce niveau d’autorisation permet de voir toutes les galeries (quelle que soit leur protection). Sans ce droit, l’utilisateur ne pourra voir que les galeries publiques et celles pour lesquelles il est spécifiquement autorisé."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:494
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:524
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:557
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:500
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:530
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:563
 msgid "Users with this right may upload to the albums for which they have management rights."
 msgstr "Ce niveau d’autorisation permet à un utilisateur de charger des contenus dans les albums dont il a les droits de gestion."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:495
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:522
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:555
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:501
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:528
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:561
 msgid "When the comment_form plugin is used for comments and its \"Only members can comment\" option is set, only users with this right may post comments."
 msgstr "Quand l’extension « comment_form » est utilisée pour les commentaires et que l’option « Seuls les membres peuvent commenter », seuls les utilisateurs ayant ce droit peuvent envoyer des commentaires."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:496
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:523
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:556
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:502
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:529
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:562
 msgid "Users with this right may make comments tab changes."
 msgstr "Ce niveau d’autorisation permet de voir l’onglet « Commentaires » et d’y effectuer des modifications."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:497
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:529
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:562
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:503
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:535
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:568
 msgid "Users with this right may access the \"albums\" tab to make changes."
 msgstr "Ce niveau d’autorisation permet d’æccéder à l'onglet « Albums » pour faire des modifications."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:498
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:527
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:560
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:504
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:533
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:566
 msgid "Users with this right may edit and manage Zenpage pages."
 msgstr "Ce niveau d’autorisation permet de modifier et de gérer les pages Zenpage."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:499
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:526
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:559
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:505
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:532
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:565
 msgid "Users with this right may edit and manage Zenpage articles and categories."
 msgstr "Ce niveau d’autorisation permet de modifier et de gérer les articles et les catégories Zenpage."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:500
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:528
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:561
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:506
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:534
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:567
 msgid "Files"
 msgstr "Fichiers"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:500
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:528
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:561
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:506
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:534
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:567
 msgid "Allows the user access to the \"filemanager\" located on the upload: files sub-tab."
 msgstr "Permet à l’utilisateur d’accéder au gestionnaire de fichiers situé dans le sous-onglet « Télécharger des fichiers »."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:501
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:507
 msgid "Manage all pages"
 msgstr "Gérer toutes les pages"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:501
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:532
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:565
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:507
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:538
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:571
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page."
 msgstr "Les utilisateurs qui n’ont pas de droit d’administrateur ne peuvent gérer que les objets qui leur sont attribués. Ce droit leur permet de gérer toutes les pages Zenpage."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:502
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:508
 msgid "Manage all news"
 msgstr "Gérer toutes les actualités"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:502
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:531
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:564
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:508
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:537
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:570
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category."
 msgstr "Les utilisateurs qui n’ont pas de droit d’administrateur ne peuvent gérer que les objets qui leur sont attribués. Ce droit leur permet de gérer tous les articles et toutes les catégories Zenpage."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:503
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:533
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:566
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:509
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:539
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:572
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery."
 msgstr "Les utilisateurs qui n’ont pas de droit d’administrateur ne peuvent gérer que les objets qui leur sont attribués. Ce droit leur permet de gérer n’importe quel album de la galerie."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:504
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:535
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:568
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:510
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:541
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:574
 msgid "Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list."
 msgstr "Ce niveau d’autorisation permet d’effectuer des modifications sur les thèmes (dans la limite de ceux correspondant aux albums sur lesquels l’utilisateur a des droits)."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:505
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:537
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:570
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:511
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:543
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:576
 msgid "Users with this right may make additions and changes to the set of tags."
 msgstr "Ce niveau d’autorisation permet d’ajouter ou de modifier les jeux de tags."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:506
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:538
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:571
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:512
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:544
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:577
 msgid "Users with this right may make changes on the options tabs."
 msgstr "Ce niveau d’autorisation permet d’effectuer des changements dans l’onglet « Options »."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:507
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:539
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:572
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:513
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:545
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:578
 msgid "The master privilege. A user with \"Admin\" can do anything. (No matter what his other rights might indicate!)"
 msgstr "Le niveau d’autorisation maximal. Un tel niveau permet de tout faire sur la galerie (quels que soient les droits sélectionnés en plus de celui-ci !)."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:514
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:547
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:520
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:553
 msgid "View gallery"
 msgstr "Voir la galerie"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:514
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:547
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:520
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:553
 msgid "Users with this right may view otherwise protected generic gallery pages."
 msgstr "Ce niveau d’autorisation permet de voir les pages ordinaires qui seraient normalement protégées."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:515
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:548
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:521
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:554
 msgid "View search"
 msgstr "Voir la recherche"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:515
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:548
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:521
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:554
 msgid "Users with this right may view search pages even if password protected."
 msgstr "Ce niveau d’autorisation permet de voir les pages de recherche même si elles sont protégées par mot de passe."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:516
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:549
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:522
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:555
 msgid "View fullimage"
 msgstr "Voir les images à la taille originale"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:516
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:549
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:522
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:555
 msgid "Users with this right may view all full sized (raw) images."
 msgstr "Ce niveau d’autorisation permet de voir toutes les images à la taille originale (images brutes)."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:517
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:518
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:519
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:550
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:551
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:552
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:523
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:524
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:525
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:556
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:557
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:558
 msgid "Access all"
 msgstr "Accès intégral"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:517
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:550
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:523
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:556
 msgid "Users with this right have access to all zenpage news articles."
 msgstr "Les usagers ayant ce niveau d’ autorisation peuvent accéder à tous les articles Zenpage."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:518
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:551
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:524
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:557
 msgid "Users with this right have access to all zenpage pages."
 msgstr "Les usagers ayant ce niveau d’ autorisation peuvent accéder à toutes les pages Zenpage."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:519
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:552
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:525
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:558
 msgid "Users with this right have access to all albums."
 msgstr "Les usagers ayant ce niveau d’ autorisation peuvent accéder à tous les albums."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:520
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:553
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:526
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:559
 msgid "View unpublished"
 msgstr "Afficher les éléments non publiés"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:520
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:553
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:526
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:559
 msgid "Users with this right will see all upublished items."
 msgstr "Ce niveau d’autorisation permet de voir tous les éléments non publiés."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:531
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:532
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:533
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:564
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:565
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:566
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:537
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:538
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:539
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:570
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:571
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:572
 msgid "Manage all"
 msgstr "Tout gérer"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:545
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:912
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1021
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1064
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:551
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:918
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1027
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1070
 msgid "User"
 msgstr "Utilisateur"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:545
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:551
 msgid "Users must have this right to change their credentials."
 msgstr "Ce niveau d’autorisation est nécessaire pour que les usagers puissent modifier leurs permissions."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:579
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:585
 msgid "All rights"
 msgstr "Tous les droits"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:580
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:586
 msgid "Default rights"
 msgstr "Droits par défaut"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:666
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:672
 msgid "Sorry, that is not the answer."
 msgstr "Désolé, ce n’est pas la réponse"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:673
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:679
 msgid "You are receiving this e-mail because of a password reset request on your Zenphoto gallery."
 msgstr "Vous recevez ce message suite à une demande de réinitialisation de mot de passe d’un utilisateur de votre galerie Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:675
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:681
 #, php-format
 msgid "You are receiving this e-mail because of a password reset request on your Zenphoto gallery from a user who tried to log in as %s."
 msgstr "Vous recevez ce message suite à une demande de réinitialisation de mot de passe d’un utilisateur de votre galerie Zenphoto qui a essayé de se connecter avec l’identifiant %s."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:714
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:720
 msgid "There was no one to which to send the reset request."
 msgstr "Il n’y a aucun destinataire à qui envoyer la demande de réinitialisation."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:718
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:724
 #, php-format
 msgid "To reset your Zenphoto Admin passwords visit: %s"
 msgstr "Pour réinitialiser votre mot de passe administrateur Zenphoto, rendez-vous à : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:719
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:725
 msgid "If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days."
 msgstr "Si vous ne souhaitez pas réinitialiser vos mots de passe, vous n’avez qu’à ignorer ce message. Cette demande expirera automatiquement dans 3 jours."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:720
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:726
 msgid "The Zenphoto information you requested"
 msgstr "Les informations que vous avez demandé sur Zenphoto"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:728
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:734
 msgid "Your input did not match the captcha"
 msgstr "Ce que vous avez saisi ne correspond pas au Captcha"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:840
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:846
 msgid "What is your father's middle name?"
 msgstr "Quel est le 2e prénom de votre père ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:841
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:847
 msgid "What street did your Grandmother live on?"
 msgstr "Sur quelle rue vit votre grand-mère ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:842
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:848
 msgid "Who was your favorite singer?"
 msgstr "Quel est votre chanteur favori ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:843
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:849
 msgid "When did you first get a computer?"
 msgstr "Quand avez-vous eu votre premier ordinateur ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:844
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:850
 msgid "How much wood could a woodchuck chuck if a woodchuck could chuck wood?"
 msgstr "Les saucisses de l’archiduchesse sont-elles sèches ou archisèches ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:845
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:851
 msgid "What is the date of the Ides of March?"
 msgstr "À quelle date tombent les ides de mars ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:875
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:881
 msgid "There was an error logging in."
 msgstr "Impossible de se connecter."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:878
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:884
 msgid "Check your username and password and try again."
 msgstr "Vérifiez vos identifiant et mot de passe et réessayez."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:880
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:886
 msgid "Check password and try again."
 msgstr "Vérifiez votre mot de passe et essayez de nouveau."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:889
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:895
 msgid "A reset request has been sent."
 msgstr "Une demande de réinitialisation a été envoyée."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:918
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:924
 msgid "Supply the correct response to the question below and you will be directed to a page where you can change your password."
 msgstr "Répondez correctement à la question qui suit et vous serez redirigé vers une page où vous pourrez modifier votre mot de passe."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:919
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:925
 msgid "Challenge question:"
 msgstr "Question défi : "
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:924
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:930
 msgid "Your response"
 msgstr "Votre réponse"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:933
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:939
 msgid "Enter your User ID and press <code>Refresh</code> to get your challenge question."
 msgstr "Saisissez votre nom d’utilisateur et cliquez sur <code>Rafraîchir</code> afin d’obtenir votre question secrète."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:940
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:946
 msgid "Submit"
 msgstr "Soumettre"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:941
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:947
 msgid "Refresh"
 msgstr "Actualiser"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:942
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1080
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:948
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1086
 msgid "Return"
 msgstr "Retour"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:952
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:958
 msgid "Request reset by e-mail"
 msgstr "Demande de réinitialisation par email"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:982
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:988
 msgid "Login"
 msgstr "Connexion"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1001
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1007
 #, php-format
 msgid "Logon using:%s"
 msgstr "Se connecter en utilisant :%s"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1027
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1219
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1033
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1225
 msgid "Password"
 msgstr "Mot de passe"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1033
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1039
 msgid "Log in"
 msgstr "Se connecter"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1047
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1053
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr "J’ai oublié mon <strong>identifiant d’utilisateur</strong> et/ou mon <strong>mot de passe</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1079
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1085
 msgid "Request"
 msgstr "Demande"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1079
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1085
 msgid "Request password reset"
 msgstr "Demande de réinitialisation du mot de passe"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1141
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1147
 msgid "password strength weak"
 msgstr "mot de passe faible"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1144
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1150
 msgid "password strength good"
 msgstr "mot de passe valide"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1147
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1153
 msgid "password strength strong"
 msgstr "Mot de passe fort"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1152
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1158
 msgid "password too weak"
 msgstr "mot de passe trop faible"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1169
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1175
 msgid "passwords match"
 msgstr "Vos mots de passe correspondent"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1173
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1179
 msgid "passwords do not match"
 msgstr "Vos mots de passe ne correspondent pas"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1231
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1237
 msgid "Repeat password"
 msgstr "Inscrivez de nouveau le mot de passe"
 
@@ -7294,7 +7294,7 @@ msgstr "IBM EBCDIC (latin-2 multilingue)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:55
 msgid "Japanese (JIS-Allow 1 byte Kana)"
-msgstr "Japonnais (JIS-permet le kana à 1 octet)"
+msgstr "Japonais (JIS-permet le kana à 1 octet)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:56
 msgid "Arabic (DOS)"
@@ -7366,7 +7366,7 @@ msgstr "Japonais (JIS)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:73
 msgid "Japanese (JIS-Allow 1 byte Kana - SO/SI)"
-msgstr "Japonnais (JIS– permet le kana à 1 octet – SO/SI)"
+msgstr "Japonais (JIS– permet le kana à 1 octet – SO/SI)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:74
 msgid "Korean (ISO)"
@@ -7434,7 +7434,7 @@ msgstr "Europe occidentale (Mac)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:91
 msgid "Japanese (Shift-JIS)"
-msgstr "Japonnais (Shift-JIS)"
+msgstr "Japonais (Shift-JIS)"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-utf8.php:92
 msgid "Unicode"
@@ -7542,14 +7542,44 @@ msgstr "Voir aussi l’extension <a href=\"%1$s\">%2$s</a>"
 msgid "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
 msgstr "Veuillez consulter la documentation en ligne de Zenphoto : <a href=\"%1$s\">%2$s</a>"
 
-#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:39
-msgid "Zenphoto has detected a change in your installation signature and needs to run Setup but some setup files are missing."
-msgstr "Zenphoto a détecté un changement dans la signature de votre installation, et doit conséquemment refaire le script d’installation. Toutefois, il manque certains fichiers d’installation."
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:114
+msgid "Zenphoto has detected a change in your installation."
+msgstr "Zenphoto a détecté un changement dans votre installation."
 
-#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:40
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:123
+#, php-format
+msgid "Your server software has changed from %1$s to %2$s."
+msgstr "Le logiciel du serveur a été modifié. Il est passé de %1$s à %2$s."
+
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:127
+#, php-format
+msgid "Your database software has changed from %1$s to %2$s."
+msgstr "Le logiciel de la base de données a été modifié. Il est passé de %1$s à %2$s."
+
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:130
+#, php-format
+msgid "Zenphoto %1$s has been installed over %2$s."
+msgstr "Zenphoto %1$s a été installé sur %2$s."
+
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:133
+#, php-format
+msgid "Your installation has moved from %1$s to %2$s."
+msgstr "Votre installation a été déplacée de %1$s à %2$s."
+
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:137
+#, php-format
+msgid "The size of <code>%1$s</code> has changed from %2$s to %3$s."
+msgstr "La taille de <code>%1$s</code> est passée de %2$s à %3$s."
+
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:148
 #, php-format
 msgid "Please reinstall the following setup files from the %1$s [%2$s] release:"
 msgstr "Veuillez installer de nouveau les fichiers d’installation suivants (dossier « setup ») de la version %1$s [%2$s] :"
+
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:187
+#, php-format
+msgid "These changes may not be critical but you should run %1$ssetup%2$s at your earliest convenience."
+msgstr "Ces changements ne sont sans doute pas critiques, mais vous devriez néanmoins exécuter la routine d'insallation (%1$ssetup%2$s) le plus rapidement possible."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:115
 msgid "db POST handling"
@@ -7952,31 +7982,31 @@ msgstr "Encodage des caractères"
 #: F:\sites\zenphoto-dev/zp-core/setup.php:681
 #, php-format
 msgid "If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems displaying the names."
-msgstr "Si l’encodage des caractères de votre système de fichiers est différent de <code>%s</code>, les noms de fichiers et de dossiers avec des caractères accentués poseront des problèmes."
+msgstr "Si l’encodage des caractères de votre système de fichiers n’est pas <code>%s</code>, les noms de fichiers et de dossiers avec des caractères accentués poseront problème."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:683
 #, php-format
 msgid "Change the filesystem character set define to %1$s.<br />If you do not know the character set try \"%2$s\""
-msgstr "Définissez plutôt l’encodage des caractères du système de fichiers en %1$s.<br />Si vous ne savez pas quoi mettre, utilisez « %2$s »."
+msgstr "Définissez plutôt l’encodage des caractères du système de fichiers en %1$s.<br />Si vous ne savez pas quoi choisir, utilisez « %2$s »."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:697
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
-msgstr "L’encodage des caractères du système de fichier est %1$s [confirmé]"
+msgstr "L’encodage des caractères du système de fichiers est %1$s [confirmé]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:702
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
-msgstr "L’encodage des caractères du système de fichier est ISO-8859-1 [par déduction]"
+msgstr "L’encodage des caractères du système de fichiers est ISO-8859-1 [par déduction]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:707
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
-msgstr "L’encodage des caractères du système de fichier est %1$s [ce qui semble incorrect]"
+msgstr "L’encodage des caractères du système de fichiers est %1$s [ce qui semble incorrect]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:712
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
-msgstr "L’encodage des caractères du système de fichier est %1$s [aucun test effectué]"
+msgstr "L’encodage des caractères du système de fichiers est %1$s [aucun test effectué]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:713
 #, php-format
@@ -8013,7 +8043,7 @@ msgstr "Attention !"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:818
 msgid "SQLite is a limited database and does not support all Zenphoto functionality. Use of this database is for <em>Testing</em> only."
-msgstr "SQLite est un système de base de données limité et ne supporte pas toutes les fonctionnalités de Zenphoto. Il n’est disponible ici qu’à des fins de test."
+msgstr "SQLite est un langage limité de base de données qui ne supporte pas toutes les fonctionnalités de Zenphoto. Il n’est disponible ici qu’à des fins de test."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:827
 msgid "Database"
@@ -8037,7 +8067,7 @@ msgstr "Le <code>support de %s</em> de PHP pour la base de données configurée 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:833
 #, php-format
 msgid "Choose a different database engine or install %s support in your PHP to clear this condition."
-msgstr "Pour résoudre ce problème, choisir un autre moteur de base de données ou installer le support de %s dans votre installation de PHP."
+msgstr "Pour résoudre ce problème, choisir un autre langage de base de données ou installer le support de %s dans votre installation de PHP."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:839
 #, php-format
@@ -8078,7 +8108,7 @@ msgstr "Connexion à la base de données : [la requête <code>CONNECT</code> a 
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:894
 msgid "Check the <code>user</code>, <code>password</code>, and <code>database host</code> and try again."
-msgstr "Vérifiez les paramètres <code>identifiant</code>, <code>mot de passe</code>, et <code>nom de base de données</code>, puis réessayez."
+msgstr "Vérifiez les paramètres <code>identifiant</code>, <code>mot de passe</code>, et <code>hôte de la base de données</code>, puis réessayez."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:898
 #, php-format
@@ -8133,7 +8163,7 @@ msgstr "<code>Mode SQL</code> : [<em>%s</em> supplanté]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:924
 msgid "Consider setting it <em>empty</em> in your Database configuration."
-msgstr "Mettez ce paramètre à <em>vide</em> dans la configuration de la votre base de données."
+msgstr "Mettez ce paramètre à <em>vide</em> dans la configuration de votre base de données."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:931
 msgid "<code>SQL mode</code>"
@@ -8196,16 +8226,16 @@ msgstr "<code>Droits d’accès</code> à la base de données [%s]"
 #: F:\sites\zenphoto-dev/zp-core/setup.php:985
 #, php-format
 msgid "Your Database user must have %s rights."
-msgstr "L’ utilisateur de base de données doit avoir les droits %s."
+msgstr "L’utilisateur de base de données doit avoir les droits %s."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:999
 msgid "<em>SHOW TABLES</em> [found no tables]"
-msgstr "La requête MySQL <em>SHOW TABLES</em> n’a trouvé aucune table"
+msgstr "La requête <em>SHOW TABLES</em> n’a trouvé aucune table"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1002
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
-msgstr "La requête MySQL <em>SHOW TABLES</em> a trouvé : %s"
+msgstr "La requête <em>SHOW TABLES</em> a trouvé : %s"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1006
 msgid "<em>SHOW TABLES</em> [Failed]"
@@ -8214,7 +8244,7 @@ msgstr "La requête <em>SHOW TABLES</em> a échoué."
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1006
 #, php-format
 msgid "The database did not return a list of the database tables for <code>%s</code>."
-msgstr "La base de données n’a pas renvoyé de liste des tables pour <code>%s</code>."
+msgstr "La base de données n’a pas renvoyé de liste de tables pour <code>%s</code>."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1007
 msgid "<strong>Setup</strong> will attempt to create all tables. This will not over write any existing tables."
@@ -8297,320 +8327,329 @@ msgstr "Fichiers de base de Zenphoto"
 msgid "Installation files"
 msgstr "Fichiers d’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1229
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1231
 #, php-format
-msgid ".svn [%s instances]"
-msgstr ".svn [%s instances]"
+msgid ".svn [%s instance]"
+msgid_plural ".svn [%s instances]"
+msgstr[0] ".svn [%s instance]"
+msgstr[1] ".svn [%s instances]"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1252
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1255
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1234
+#, fuzzy, php-format
+msgid "php.ini [%s instance]"
+msgid_plural ".svn [%s instances]"
+msgstr[0] ".svn [%s instances]"
+msgstr[1] ".svn [%s instances]"
+
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1257
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1260
 msgid "Zenphoto core folders [Some unknown files were found]"
 msgstr "Fichiers de base de Zenphoto [Certains fichiers inconnus ont été trouvés.]"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1252
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1257
 msgid "The following files could not be deleted."
 msgstr "Les fichiers suivants n’ont pu être supprimés."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1256
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1261
 msgid "You should remove the following files: "
 msgstr "Vous devriez supprimer les fichiers suivants :"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1257
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1262
 msgid "Delete extra files"
 msgstr "Supprimer les fichiers supplémentaires"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1260
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1265
 msgid "Zenphoto core file permissions"
 msgstr "Droits des fichiers de base de Zenphoto"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1260
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1265
 msgid "Zenphoto core file permissions [not correct]"
 msgstr "Les droits des fichiers de base de Zenphoto ne sont pas corrects"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1260
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1265
 msgid "Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually. See the <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Troubleshooting guide</a> for details on Zenphoto permissions requirements."
 msgstr "Le script d’installation n’a pu appliquer les droits demandés sur un ou plusieurs composants. Vous devrez les définir manuellement. Référez-vous au <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Guide de dépannage</a> pour connaître les droits d’accès nécessaires."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1263
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1268
 msgid "<em>.htaccess</em> file"
 msgstr "Fichier <em>.htaccess</em>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1274
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1279
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "Le fichier <em>.htaccess</em> est vide ou n’existe pas"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1277
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1282
 msgid "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is required the root zenphoto folder to create cruft-free URLs."
 msgstr "Si le module d’Apache mod_rewrite est activé, il faut placer un fichier <em>.htaccess</em> à la racine du dossier zenphoto si vous souhaitez créer des URL propres."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1278
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1283
 msgid "You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option."
 msgstr "Vous pouvez ignorer cette alerte si vous ne comptez pas utiliser l’option <code>mod_rewrite</code>."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1280
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1285
 msgid "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</a></p><br style=\"clear:both\" /><br />"
 msgstr "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Laisser le script d’installation créer le fichier</a></p><br style=\"clear:both\" /><br />"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1283
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1311
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1288
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1316
 msgid "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required."
 msgstr "Le serveur ne semble pas être un serveur Apache ni un compatible ; le fichier <code>.htaccess</code> n’est donc pas requis."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1314
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1319
 #, php-format
 msgid "The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of Zenphoto. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."
 msgstr "La version du fichier<em>.htaccess</em> du répertoire racine de votre galerie est différente de celle de cette version de Zenphoto. Si vous avez effectivement modifié votre fichier<em>.htaccess</em>, intégrez ces modifications au fichier <em>%s/htaccess</em> de cette version afin de produire un nouveau fichier <em>.htaccess</em>."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1316
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1321
 msgid "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup update the file with the current version</a></p><br style=\"clear:both\" /><br />"
 msgstr "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Laissez le script d’installation mettre à jour le fichier à la version courante</a></p><br style=\"clear:both\" /><br />"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1319
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1324
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "Le fichier <em>.htaccess</em> n’est pas de la bonne version"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1334
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1339
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr "Fichier <em>.htaccess</em> : (le paramètre <em>RewriteEngine</em> est à <strong>%s</strong>)"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1347
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1352
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <em>manquant</em>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1353
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1358
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <code>%s</code>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1354
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1359
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install folder]"
 msgstr "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <code>%s</code> [Cela ne correspond pas au dossier d’installation]"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1364
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1369
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr "Le paramètre RewriteBase du fichier <em>.htaccess</em> est <code>%s</code> (corrigé)"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1374
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1379
 msgid "Setup was not able to write to the file change RewriteBase match the install folder."
 msgstr "Le script d’installation n’a pas été en mesure d’écrire le fichier ; corrigez le paramètre RewriteBase pour correspondre à votre dossier d’installation."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1375
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1380
 #, php-format
 msgid "Either make the file writeable or set <code>RewriteBase</code> in your <code>.htaccess</code> file to <code>%s</code>."
 msgstr "Deux possibilités : soit rendre le fichier inscriptible, soit modifier le paramètre <code>RewriteBase</code> dans le fichier <code>.htaccess</code> en <code>%s</code>."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1380
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1383
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1395
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1385
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1388
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1400
 msgid "<em>robots.txt</em> file"
 msgstr "Fichier <em>robots.txt</em>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1380
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1383
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1395
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1385
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1388
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1400
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "Le fichier <em>robots.txt</em> n’a pas été créé"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1380
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1385
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr "Le script d’installation n’a pas réussi à trouver le fichier <em>example_robots.txt</em>."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1383
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1388
 msgid "Setup did not create a <em>robots.txt</em> file because one already exists."
 msgstr "Le fichier <em>robots.txt</em> existant déjà, le script d’installation de Zenphoto n’y a pas touché."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1395
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1400
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr "Le script d’installation n’a pas pu créer un fichier <em>robots.txt</em>."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1400
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1405
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr "L’option [<code>$conf['external_album_folder']</code> des albums est obsolète]"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1400
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1424
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1405
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1429
 msgid "You should update your configuration file to conform to the current zenphoto.cfg example file."
 msgstr "Vous devriez mettre à jour votre fichier de configuration en utilisant le fichier zenphoto.cfg comme exemple."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1424
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1429
 msgid "<em>albums</em> folder"
 msgstr "Dossier <em>albums</em>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1424
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1429
 msgid "<em>albums</em> folder [The line <code>$conf['album_folder']</code> is missing from your configuration file]"
 msgstr "Dossier <em>albums</em> : [La ligne <code>$conf['album_folder']</code> est absente de votre fichier de configuration]"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1428
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1433
 msgid "<em>locale</em> folders"
 msgstr "Dossiers <em>locale</em>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1428
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1433
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "Les dossiers <em>locale</em> sont incomplets"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1428
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1433
 msgid "Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder."
 msgstr "Vérifiez que vous avez bien transféré la totalité des fichiers de Zenphoto. Vous devez avoir au moins le dossier <em>en_US</em>."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1429
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1434
 msgid "uploaded"
 msgstr "chargé(s)"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1431
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1436
 msgid "HTML cache"
 msgstr "Cache HTML"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1432
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1437
 msgid "Third party plugins"
 msgstr "Extensions tierces"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1444
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1449
 msgid "You need to address the problems indicated above then run <code>setup.php</code> again."
 msgstr "Vous devez corriger les problèmes susmentionnés et relancer l’installation via <code>setup.php</code>."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1447
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1452
 msgid "Setup failed."
 msgstr "L’installation a échoué."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1458
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2488
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1463
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2493
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "Vous avez besoin de droits d’administration (<em>USER ADMIN</em)> pour réaliser l’installation."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:1460
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2490
+#: F:\sites\zenphoto-dev/zp-core/setup.php:1465
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2495
 msgid "You must be logged in to run setup."
 msgstr "Vous devez être connecté pour lancer l’installation."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2210
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2215
 msgid "About to create tables"
 msgstr "Prêt à créer les tables"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2212
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2217
 msgid "About to update tables"
 msgstr "Prêt à mettre à jour les tables"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2214
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2219
 msgid "Begin table creation"
 msgstr "Démarrage de la création de la table"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2220
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2235
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2225
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2240
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "La requête <em>%1$s</em> a échoué. Erreur : %2$s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2222
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2227
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Impossible de créer la table :<br />Requête : %1$s<br />Erreur : %2$s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2225
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2237
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2230
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2242
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "La requête ( %s ) a réussi."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2229
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2234
 msgid "Begin table updates"
 msgstr "Démarrage de la mise à jour de la table"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2242
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2247
 msgid "Done with database creation and update"
 msgstr "Création et mise à jour de la table effectuée !"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2244
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2249
 #, php-format
 msgid "Previous Release was %s"
 msgstr "La version précédente était la version %s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2271
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2276
 msgid "Done with table create!"
 msgstr "Création de la table effectuée !"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2273
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2278
 msgid "Done with table create with errors!"
 msgstr "Création de la table effectuée, mais avec des erreurs."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2277
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2282
 msgid "Done with table update"
 msgstr "Mise à jour de la table effectuée !"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2279
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2284
 msgid "Done with table update with errors"
 msgstr "Mise à jour de la table effectuée, mais avec des erreurs."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2318
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2323
 msgid "Setup files deleted."
 msgstr "Fichiers d’installation supprimés."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2325
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2330
 #, php-format
 msgid "Failed to delete: %s"
 msgstr "%s n’a pu être effacé(e)"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2333
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2338
 msgid "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future."
 msgstr "<strong>Note.</strong> Il est vivement conseillé de supprimer <em>les scripts d’installation</em> du dossier zp-core. Il est toujours possible de les charger de nouveau au besoin."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2334
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2339
 msgid "Delete setup files"
 msgstr "Supprimer les fichiers d’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2344
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2349
 #, php-format
 msgid "You may <a href=\"%1$s\">set your admin user and password</a> or <a href=\"%2$s\">run backup-restore</a>"
 msgstr "Vous devez <a href=\"%1$s\">spécifier les identifiant et mot de passe de l’administrateur</a> ou <a href=\"%2$s\">lancer la sauvegarde/restauration</a>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2346
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2351
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr "Vous devez <a href=\"%1$s\">spécifier les identifiant et mot de passe de l’administrateur</a>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2358
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2363
 #, php-format
 msgid "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s\">administer.</a>"
 msgstr "Vous pouvez maintenant <a href=\"%1$s\">voir votre galerie</a> ou <a href=\"%2$s\">la gérer</a>."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2408
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2413
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Tables de la base de données à créer : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2426
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2431
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Tables de la base de données à mettre à jour : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2457
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2462
 msgid "<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding."
 msgstr "<strong>Attention !</strong> Cette mise à jour effectue des modifications structurelles à la base de données. Ce sont des changements difficilement réversibles. Assurez-vous d’avoir une sauvegarde avant de continuer."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2460
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2465
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s Je comprends que cette opération va restructurer ma base de données."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2518
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2523
 msgid "run setup"
 msgstr "lancer l’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2518
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2523
 msgid "Go"
 msgstr "C’est parti !"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2535
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2540
 msgid "database did not connect"
 msgstr "La connexion à la base de données ne fonctionne pas"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2537
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2542
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr "Si vous n’avez pas encore créé la base de données, il serait temps de le faire."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2546
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2551
 msgid "The zenphoto.cfg file does not exist. You should run setup.php to check your configuration and create this file."
 msgstr "Le fichier zenphoto.cfg n’existe pas. Vous devriez lancer setup.php pour vérifier votre configuration et créer ce fichier."
 
@@ -8946,10 +8985,10 @@ msgstr "Le nombre d’octets chargés est plus grand que la taille du fichier"
 msgid "Empty file upload result"
 msgstr "Résultat du chargement vide"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-uploadify/uploader.php:19
+#: F:\sites\zenphoto-dev/zp-core/admin-uploadify/uploader.php:84
 #, php-format
-msgid "Uploadify error on %1$s. Review your debug log."
-msgstr "Erreur d’Uploadify sur %1$s. Vérifiez le journal de déboggage."
+msgid "Uploadify error%1$s on %2$s."
+msgstr "Erreur d’Uploadify %1$s sur  %2$s."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-uploadify/upload_form.php:8
 #, php-format
@@ -12459,11 +12498,11 @@ msgstr "Afficher ou masquer la carte Google."
 msgid "Places a Google Site Verification metatag into the header of your site's pages."
 msgstr "Place un meta-tag de vérification pour Google Site dans l’en-tête des pages de votre site."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/googleVerify.php:43
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/googleVerify.php:42
 msgid "Verification content"
 msgstr "Code de vérification"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/googleVerify.php:44
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/googleVerify.php:43
 msgid "Insert the <em>content</em> portion of the meta tag supplied by Google."
 msgstr "Insère la partie <em>content</em> du meta tag fournie par Google."
 
@@ -12788,12 +12827,12 @@ msgid "Height of the carousel. Note that the CSS might need to be adjusted."
 msgstr "Hauteur du caroussel. Le fichier CSS peut nécessiter des ajustements."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jcarousel_thumb_nav.php:45
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:46
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:45
 msgid "Crop width"
 msgstr "Largeur de rognage"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jcarousel_thumb_nav.php:47
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:48
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:47
 msgid "Crop height"
 msgstr "Hauteur de rognage"
 
@@ -13122,105 +13161,105 @@ msgstr "Requête échouée : %s"
 msgid "Prints a paged thumbs navigation on image.php, independent of the album.php's thumbs."
 msgstr "Prépare une page de vignettes pour la navigation dans un fichier image.php, indépendamment des vignettes du fichier album.php."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:23
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:22
 msgid "« prev thumbs"
 msgstr "« vignettes précédentes"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:25
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:24
 msgid "next thumbs »"
 msgstr "vignettes suivantes »"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:38
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:37
 msgid "Thumbs per page"
 msgstr "Vignettes par page"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:39
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:38
 msgid "Controls the number of images on a page. You might need to change this after switching themes to make it look better."
 msgstr "Indique le nombre d’images par page. Vous devrez peut être modifier la valeur après avoir changé de thème pour en améliorer l’apparence."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:40
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:39
 msgid "Counter"
 msgstr "Compteur"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:41
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:40
 msgid "If you want to show the counter 'x - y of z images'."
 msgstr "Si vous voulez afficher le compteur « x – y sur z images »."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:42
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:41
 msgid "Prevtext"
 msgstr "TextePrécédent"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:43
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:42
 msgid "The text for the previous thumbs."
 msgstr "Le texte pour les vignettes précédentes."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:44
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:43
 msgid "Nexttext"
 msgstr "TexteSuivant"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:45
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:44
 msgid "The text for the next thumbs."
 msgstr "Le texte pour les vignettes suivantes."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:47
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:46
 msgid "The thumb crop width is the maximum width when height is the shortest side"
 msgstr "La <em>largeur de rognage des vignettes</em> est la largeur maximale quand la hauteur est la plus petite dimension"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:49
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:48
 msgid "The thumb crop height is the maximum height when width is the shortest side"
 msgstr "La <em>hauteur de rognage des vignettes</em> est la hauteur maximale quand la largeur est la plus petite dimension"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:50
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:49
 msgid "Crop"
 msgstr "Rogner"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:51
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:50
 msgid "If checked the thumbnail will be a centered portion of the image with the given width and height after being resized to thumb size (by shortest side). Otherwise, it will be the full image resized to thumb size (by shortest side)."
 msgstr "Si cette case est cochée, la vignette (aux dimensions spécifiées plus bas) sera prélevée au centre de l’image redimensionnée à la <em>taille des vignettes</em>. Sinon, la vignette correspondra à l’image de taille originale redimensionnée à la taille des vignettes (selon le plus petit côté)."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:52
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:51
 msgid "Placeholders"
 msgstr "Substituants"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:53
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:52
 msgid "if you want to use placeholder for layout reasons to fill up the thumbs if the number of thumbs does not match images per page. Recommended only for cropped thumbs."
 msgstr "si vous souhaitez utiliser un substituant pour ne pas affecter la mise en page ; le substituant est mis à la place de vignettes si le nombre de vignettes ne correspond pas au nombre d'images par page. Recommandé seulement pour les vignettes rognées."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:54
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:53
 msgid "Page list"
 msgstr "Liste des pages"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:55
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:54
 msgid "If you want the list of the pages to be shown."
 msgstr "Si vous voulez afficher la liste des pages."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:56
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:55
 msgid "Pages list prev and next links"
 msgstr "Liens de navigation « précédent » et « suivant » dans la liste de pages"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:57
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:56
 msgid "If you want to show previous and next thumb page links with the page list."
 msgstr "Si vous voulez afficher les liens avec des vignettes de navigation de pages sur la liste des pages."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:58
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:57
 msgid "Pages list length"
 msgstr "Longueur de la liste de pages"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:59
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:58
 msgid "The number of links for the page list."
 msgstr "Le nombre de liens pour la liste des pages."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:216
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:364
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:215
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:363
 msgid "previous thumbs"
 msgstr "vignettes précédentes"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:312
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:387
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:311
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:386
 msgid "next thumbs"
 msgstr "vignettes suivantes"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:340
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:339
 #, php-format
 msgid "Images %1$u-%2$u of %3$u (%4$u/%5$u)"
 msgstr "Images %1$u – %2$u sur %3$u (%4$u/%5$u)"
@@ -13231,8 +13270,8 @@ msgstr "Gestionnaire d’emails sortants pour Zenphoto, basé sur <em>PHPMailer<
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:12
 #, php-format
-msgid "Only one Email handler plugin may be enalbed. <code>%s</code> is already enabled."
-msgstr "Une seule extension de traitement des emails peut être activée. Or, <code>%s</code> l’est déjà."
+msgid "Only one Email handler plugin may be enalbed. <a href=\"#%1$s\"><code>%1$s</code></a> is already enabled."
+msgstr "Une seule extension de traitement des emails peut être activée. Or, <a href=\"#%1$s\"><code>%1$s</code></a> l’est déjà."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/PHPMailer.php:46
 msgid "Mail protocol"
@@ -13477,33 +13516,33 @@ msgstr "Effacer les votes"
 msgid "Sets all ratings to unrated."
 msgstr "Remet à zéro tous les compteurs de votes."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:315
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:324
 #, php-format
 msgid "Rating %2$.1f (%1$u vote)"
 msgid_plural "Rating %2$.1f (%1$u votes)"
 msgstr[0] "Note : %2$.1f (%1$u vote)"
 msgstr[1] "Note : %2$.1f (%1$u votes)"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:317
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:326
 msgid "Not yet rated"
 msgstr "Pas encore noté(e)"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:335
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:344
 #, php-format
 msgid "%u star"
 msgid_plural "%u stars"
 msgstr[0] "%u étoile"
 msgstr[1] "%u étoiles"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:341
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:350
 msgid "Submit &raquo;"
 msgstr "Envoyer &raquo;"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:388
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:397
 msgid "Vote Submitted"
 msgstr "Vote soumis"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:390
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:399
 msgid "nothing to submit"
 msgstr "rien à envoyer"
 
@@ -13920,8 +13959,8 @@ msgstr "<em>Filtre nul</em> pour moteur de recherche. Le seul effet de ce filtre
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/seo_null.php:12
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/seo_zenphoto.php:12
 #, php-format
-msgid "Only one SEO filter plugin may be enalbed. <code>%s</code> is already enabled."
-msgstr "Une seule extension de traitement pour moteur de recherche peut être activée. Or, <code>%s</code> l’est déjà."
+msgid "Only one SEO filter plugin may be enalbed. <a href=\"#%1$s\"><code>%1$s</code></a> is already enabled."
+msgstr "Une seule extension de traitement pour moteur de recherche peut être activée. Or, <a href=\"#%1$s\"><code>%1$s</code></a> l’est déjà."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/seo_zenphoto.php:10
 msgid "SEO filter to translate extended characters into their basic alpha-numeric equivalents."
