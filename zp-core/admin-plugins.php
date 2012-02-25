@@ -203,43 +203,44 @@ foreach ($filelist as $extension) {
 	?>
 	<tr>
 		<td width="30%">
-		<label>
-			<?php
-			if ($third_party_plugin) {
-				$whose = gettext('third party plugin');
-				$path = stripSuffix($paths[$extension]).'/logo.png';
-				if (file_exists($path)) {
-					$ico = str_replace(SERVERPATH, WEBPATH, $path);
-				} else {
-					$ico = 'images/place_holder_icon.png';
-				}
-			} else {
-				$whose = 'Zenphoto official plugin';
-				$ico = 'images/zp_gold.png';
-			}
-			?>
-			<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
-			<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
+			<label id="<?php echo $extension; ?>">
 				<?php
-				if ($parserr || $plugin_disable) {
-					$optionlink = false;
-					echo ' disabled="disabled"';
-				} else {
-					if ($currentsetting > THEME_PLUGIN) {
-						echo ' checked="checked"';
+				if ($third_party_plugin) {
+					$whose = gettext('third party plugin');
+					$path = stripSuffix($paths[$extension]).'/logo.png';
+					if (file_exists($path)) {
+						$ico = str_replace(SERVERPATH, WEBPATH, $path);
+					} else {
+						$ico = 'images/place_holder_icon.png';
 					}
-				} ?> />
-			<?php echo $extension; ?>
-
+				} else {
+					$whose = 'Zenphoto official plugin';
+					$ico = 'images/zp_gold.png';
+				}
+				?>
+				<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
+				<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
+					<?php
+					if ($parserr || $plugin_disable) {
+						$optionlink = false;
+						echo ' disabled="disabled"';
+					} else {
+						if ($currentsetting > THEME_PLUGIN) {
+							echo ' checked="checked"';
+						}
+					} ?> />
+				<?php echo $extension; ?>
+				<?php
+				if (!empty($plugin_version)) {
+					echo ' v'.$plugin_version;
+				}
+				?>
+			</label>
 		<?php
-		if (!empty($plugin_version)) {
-			echo ' v'.$plugin_version;
-		}
 		if ($plugin_disable) {
 			echo '<p id="'.$extension.'_disabled">'.sprintf(gettext('<strong>This plugin is disabled:</strong><br/> %s'),$plugin_disable).'</p>';
 		}
 		?>
-		</label>
 		</td>
 		<td class="icons">
 			<a href="javascript:toggleDetails('<?php echo $extension;?>');" title ="<?php echo gettext('toggle description details'); ?>" ><img src="images/info_toggle.png" alt="" /></a>

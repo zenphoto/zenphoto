@@ -12,7 +12,6 @@
 $plugin_is_filter = 9|THEME_PLUGIN;
 $plugin_description = gettext("Places a Google Site Verification metatag into the header of your site's pages.");
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.3';
 $option_interface = 'googleVerifyOptions';
 
 if (getOption('google-site-verification')) {
