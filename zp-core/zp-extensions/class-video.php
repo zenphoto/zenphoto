@@ -333,44 +333,46 @@ class Video extends _Image {
 	 */
 	function updateMetaData() {
 		global $_zp_exifvars;
-		$ThisFileInfo = $this->getMetaDataID3();
-		if(is_array($ThisFileInfo)) {
-			foreach ($ThisFileInfo as $key=>$info) {
-				if (is_array($info)) {
-					switch ($key) {
-						case 'comments':
-							foreach ($info as $key1=>$data) {
-								$ThisFileInfo[$key1] = array_shift($data);
-							}
-							break;
-						case 'audio':
-						case 'video':
-							foreach ($info as $key1=>$data) {
-								$ThisFileInfo[$key1] = $data;
-							}
-							break;
-						default:
-							//discard, not used
-							break;
+		if (!SAFE_MODE) {
+			$ThisFileInfo = $this->getMetaDataID3();
+			if(is_array($ThisFileInfo)) {
+				foreach ($ThisFileInfo as $key=>$info) {
+					if (is_array($info)) {
+						switch ($key) {
+							case 'comments':
+								foreach ($info as $key1=>$data) {
+									$ThisFileInfo[$key1] = array_shift($data);
+								}
+								break;
+							case 'audio':
+							case 'video':
+								foreach ($info as $key1=>$data) {
+									$ThisFileInfo[$key1] = $data;
+								}
+								break;
+							default:
+								//discard, not used
+								break;
+						}
+						unset($ThisFileInfo[$key]);
 					}
-					unset($ThisFileInfo[$key]);
 				}
-			}
-			foreach ($_zp_exifvars as $field=>$exifvar) {
-				if (strpos($exifvar[0], 'VIDEO') !== false) {
-					if ($exifvar[0] == 'VIDEO') {
-						if (isset($ThisFileInfo[$exifvar[1]])) {
-							$data = $ThisFileInfo[$exifvar[1]];
-							if (!empty($data)) {
-								$this->set($field, $data);
+				foreach ($_zp_exifvars as $field=>$exifvar) {
+					if (strpos($exifvar[0], 'VIDEO') !== false) {
+						if ($exifvar[0] == 'VIDEO') {
+							if (isset($ThisFileInfo[$exifvar[1]])) {
+								$data = $ThisFileInfo[$exifvar[1]];
+								if (!empty($data)) {
+									$this->set($field, $data);
+								}
 							}
 						}
 					}
 				}
-			}
-			$title = $this->get('VideoTitle');
-			if(!empty($title)) {
-				$this->setTitle($title);
+				$title = $this->get('VideoTitle');
+				if(!empty($title)) {
+					$this->setTitle($title);
+				}
 			}
 		}
 		parent::updateMetaData();

@@ -130,7 +130,8 @@ if (isset($_GET['uploaded'])) {
 	</div>
 	<?php
 }
-if (ini_get('safe_mode')) { ?>
+if (SAFE_MODE) {
+?>
 <div class="warningbox fade-message">
 	<h2><?php echo gettext("PHP Safe Mode Restrictions in effect!"); ?></h2>
 	<p><?php echo gettext("Zenphoto may be unable to perform uploads when PHP Safe Mode restrictions are in effect"); ?></p>

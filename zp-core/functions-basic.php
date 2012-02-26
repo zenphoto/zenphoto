@@ -198,6 +198,7 @@ if (!defined('COOKIE_PESISTENCE')) {
 	unset($persistence);
 }
 
+define('SAFE_MODE',preg_match('#(1|ON)#i', ini_get('safe_mode')));
 define('FULLWEBPATH', PROTOCOL."://" . $_SERVER['HTTP_HOST'] . WEBPATH);
 define('SAFE_MODE_ALBUM_SEP', '__');
 define('SERVERCACHE', SERVERPATH . '/'.CACHEFOLDER);
@@ -548,7 +549,7 @@ function getImageCacheFilename($album8, $image8, $args) {
 	if (empty($album)) {
 		$albumsep = '';
 	} else {
-		if (ini_get('safe_mode')) {
+		if (SAFE_MODE) {
 			$albumsep = SAFE_MODE_ALBUM_SEP;
 			$album = str_replace(array('/',"\\"), $albumsep, $album);
 		} else {

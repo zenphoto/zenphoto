@@ -478,12 +478,9 @@ class utf8 {
 			"Content-Type: text/plain; charset=UTF-8\n" .
 			"Content-Transfer-Encoding: base64";
 
-		if(ini_get('safe_mode'))
-		{
+		if(SAFE_MODE){
 			return @mail($to, $subject, $message, $additional_headers);
-		}
-		else
-		{
+		} else {
 			return @mail($to, $subject, $message, $additional_headers, $additional_parameter);
 		}
 	}

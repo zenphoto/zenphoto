@@ -188,7 +188,7 @@ if (!file_exists($imgfile)) {
 
 // Make the directories for the albums in the cache, recursively.
 // Skip this for safe_mode, where we can't write to directories we create!
-if (!ini_get("safe_mode")) {
+if (!SAFE_MODE) {
 	$albumdirs = getAlbumArray($album, true);
 	foreach($albumdirs as $dir) {
 		$dir = internalToFilesystem($dir);
