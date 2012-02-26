@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-25 11:27-0500\n"
-"PO-Revision-Date: 2012-02-25 17:38-0500\n"
+"POT-Creation-Date: 2012-02-26 01:49-0500\n"
+"PO-Revision-Date: 2012-02-26 01:50-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -8335,11 +8335,11 @@ msgstr[0] ".svn [%s instance]"
 msgstr[1] ".svn [%s instances]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1234
-#, fuzzy, php-format
+#, php-format
 msgid "php.ini [%s instance]"
-msgid_plural ".svn [%s instances]"
-msgstr[0] ".svn [%s instances]"
-msgstr[1] ".svn [%s instances]"
+msgid_plural "php.ini [%s instances]"
+msgstr[0] "php.ini [%s instance]"
+msgstr[1] "php.ini [%s instances]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1257
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1260
@@ -13884,7 +13884,7 @@ msgid "Provides a utility SEO file/folder name clenser."
 msgstr "Fournit un utilitaire de nettoyage des noms de fichiers et de dossiers optimisé pour les moteurs de recherche."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/seo_cleanup.php:25
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:170
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:171
 msgid "seo"
 msgstr "optimisation pour moteurs de recherche"
 
@@ -14101,23 +14101,23 @@ msgstr "<strong>Note:</strong> Les autres moteurs de recherche (Yahoo, Bing) ne 
 msgid "Google - URL to image license"
 msgstr "Google - URL vers la licence de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:143
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:144
 msgid "Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html"
 msgstr "Optionnelle. Utilisée seulement si l’extension Google est cochée (doit être une URL complète, de la forme : http://mondomaine.com/license.html)."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:144
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:145
 msgid "Sitemap processing chunk"
 msgstr "Nombre d’albums par fichier sitemap"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:146
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:147
 msgid "The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files."
 msgstr "Le nombre d’albums traités par fichier sitemap. Veuillez diminuer cette valeur si, lors de la création des fichiers, les scripts prennent trop de temps à répondre."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:172
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:173
 msgid "Sitemap tools"
 msgstr "Outils sitemap"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:176
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:177
 msgid "Sitemap tools."
 msgstr "Outils sitemap."
 
