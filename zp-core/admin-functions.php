@@ -3852,14 +3852,15 @@ function codeblocktabsJS() {
 		// <!-- <![CDATA[
 		$(function () {
 			var tabContainers = $('div.tabs > div');
+			$('.first').addClass('selected');
 
 			$('div.tabs ul.tabNavigation a').click(function () {
 
-				var cls = this.hash.replace(/[0-9]+/,'x');
-				cls = cls.replace(/#/,'.');
+				var cls = this.hash.replace(/[0-9]+/,'x').replace(/#/,'.');
 				$(cls).hide();
+				var tcls = cls.replace(/x/,'t');
 				tabContainers.filter(this.hash).show();
-				$('div.tabs ul.tabNavigation a').removeClass('selected');
+				$(tcls).removeClass('selected');
 				$(this).addClass('selected');
 				return false;
 			});
@@ -3887,7 +3888,7 @@ function printCodeblockEdit($obj, $id) {
 			<?php
 			for ($i=0; $i<$codeblockCount; $i++) {
 				?>
-				<li><a id="<?php echo '#cbt'.$i.'-'.$id; ?>" href="<?php echo '#cb'.$i.'-'.$id; ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
+				<li><a class="<?php if (!$i) echo 'first '; ?>cbt-<?php echo $id; ; ?>" id="<?php echo '#cbt'.$i.'-'.$id; ?>" href="<?php echo '#cb'.$i.'-'.$id; ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
 			}
 			?>
