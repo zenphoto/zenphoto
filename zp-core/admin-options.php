@@ -77,7 +77,6 @@ if (isset($_GET['action'])) {
 			}
 			setOption('time_offset', $offset);
 			setOption('charset', sanitize($_POST['charset']),3);
-			setOption('number_of_codeblocks', sanitize_numeric($_POST['number_of_codeblocks']));
 			setOption('site_email', sanitize($_POST['site_email']),3);
 			setOption('multi_lingual', (int) isset($_POST['multi_lingual']));
 			$f = sanitize($_POST['date_format_list'],3);
@@ -818,13 +817,6 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<a href="javascript:resetallowedtags()" ><?php echo gettext('reset to default'); ?></a>
 						</p>
 					</td>
-				</tr>
-				<tr>
-					<td width="175"><?php echo gettext("Number of codeblocks:"); ?></td>
-					<td width="350">
-						<input type="text" size="5" id="number_of_codeblocks" name="number_of_codeblocks" value="<?php echo getOption('number_of_codeblocks'); ?>" />
-					</td>
-					<td><?php echo gettext("Set to the number of codeblocks you would like for an object."); ?></td>
 				</tr>
 				<tr>
 					<td width="175"><?php echo gettext("Site email:"); ?></td>

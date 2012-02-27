@@ -3853,18 +3853,25 @@ function codeblocktabsJS() {
 		$(function () {
 			var tabContainers = $('div.tabs > div');
 			$('.first').addClass('selected');
-
-			$('div.tabs ul.tabNavigation a').click(function () {
-
-				var cls = this.hash.replace(/[0-9]+/,'x').replace(/#/,'.');
-				$(cls).hide();
-				var tcls = cls.replace(/x/,'t');
-				tabContainers.filter(this.hash).show();
-				$(tcls).removeClass('selected');
-				$(this).addClass('selected');
-				return false;
-			});
 		});
+
+		function cbclick(num,id) {
+				$('.cbx-'+id).hide();
+				$('#cb'+num+'-'+id).show();
+				$('.cbt-'+id).removeClass('selected');
+				$('#cbt'+num+'-'+id).addClass('selected');
+			};
+
+		function cbadd(id) {
+			var num = $('#cbu-'+id+' li').size()-1;
+			$('li:last', $('#cbu-'+id)).remove();
+			$('#cbu-'+id).append('<li><a class="cbt-'+id+'" id="cbt'+num+'-'+id+'" href="javascript:cbclick('+num+','+id+');" title="'+'<?php echo gettext('codeblock %u'); ?>'.replace(/%u/,num)+'">&nbsp;&nbsp;'+num+'&nbsp;&nbsp;</a></li>');
+			$('#cbu-'+id).append('<li><a id="cbp-'+id+'" href="javascript:cbadd('+id+');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
+			$('#cbd-'+id).append('<div class="cbx-'+id+'" id="cb'+num+'-'+id+'" style="display:none">'+
+											'<textarea name="codeblock'+num+'-'+id+'" class="codeblock" id="codeblock'+num+'-'+id+'" rows="40" cols="60"></textarea>'+
+										'</div>');
+			cbclick(num,id);
+		}
 		// ]]> -->
 	</script>
 <?php
@@ -3881,17 +3888,20 @@ function printCodeblockEdit($obj, $id) {
 	if(empty($codeblock)) {
 		$codeblock = array();
 	}
-	$codeblockCount = max(1, getOption('number_of_codeblocks'),count($codeblock));
+	$keys = array_keys($codeblock);
+	array_push($keys, 0);
+	$codeblockCount =  max($keys)+1;
 	?>
-	<div class="tabs">
-		<ul class="tabNavigation">
+	<div id="cbd-<?php echo $id; ?>" class="tabs">
+		<ul id="<?php echo 'cbu'.'-'.$id; ?>" class="tabNavigation">
 			<?php
 			for ($i=0; $i<$codeblockCount; $i++) {
 				?>
-				<li><a class="<?php if (!$i) echo 'first '; ?>cbt-<?php echo $id; ; ?>" id="<?php echo '#cbt'.$i.'-'.$id; ?>" href="<?php echo '#cb'.$i.'-'.$id; ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
+				<li><a class="<?php if (!$i) echo 'first '; ?>cbt-<?php echo $id; ; ?>" id="<?php echo 'cbt'.$i.'-'.$id; ?>" href="javascript:cbclick(<?php echo $i.','.$id; ?>);" title="<?php printf(gettext('codeblock %u'),$i); ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
 				<?php
 			}
 			?>
+			<li><a id="<?php echo 'cbp'.'-'.$id; ?>" href="javascript:cbadd(<?php echo $id; ?>);" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>
 		</ul>
 
 		<?php
@@ -3919,7 +3929,10 @@ function processCodeblockSave($id) {
 	$codeblock = array();
 	$i = 0;
 	while (isset($_POST['codeblock'.$i.'-'.$id])) {
-		$codeblock[$i] = sanitize($_POST['codeblock'.$i.'-'.$id], 0);
+		$v = sanitize($_POST['codeblock'.$i.'-'.$id], 0);
+		if ($v) {
+			$codeblock[$i] = $v;
+		}
 		$i++;
 	}
 	return serialize($codeblock);

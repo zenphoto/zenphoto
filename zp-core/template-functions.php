@@ -4584,7 +4584,7 @@ function getCodeblock($number=0) {
 		return NULL;
 	}
 	$codeblock = unserialize($getcodeblock);
-	return $codeblock[$number];
+	return @$codeblock[$number];
 }
 
 /**
