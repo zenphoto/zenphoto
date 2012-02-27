@@ -35,6 +35,7 @@ class zp_PHPMailer {
 		setOptionDefault('PHPMailer_user','');
 		setOptionDefault('PHPMailer_password','');
 		setOptionDefault('PHPMailer_secure',0);
+		if (getOption('PHPMailer_secure') == 1) setOption('PHPMailer_secure','ssl');
 	}
 
 	/**
@@ -48,8 +49,9 @@ class zp_PHPMailer {
 										'desc' => gettext('Select the mail protocol you wish to be used.')),
 									gettext('Outgoing mail server') => array('key' => 'PHPMailer_server', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext('Outgoing mail server.')),
-									gettext('Secure mail') => array('key' => 'PHPMailer_secure', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Set to use <em>SSL</em> protocol.')),
+									gettext('Secure mail') => array('key' => 'PHPMailer_secure', 'type' => OPTION_TYPE_RADIO,
+										'buttons'=>array(gettext('no')=>0, gettext('SSL')=>'ssl', gettext('TSL')=>'tsl'),
+										'desc' => gettext('Set to use a secure protocol.')),
 									gettext('Mail user') => array('key' => 'PHPMailer_user', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext('<em>User ID</em> for mail server.')),
 									gettext('Mail password') => array('key' => 'PHPMailer_password', 'type' => OPTION_TYPE_CUSTOM,
@@ -103,9 +105,7 @@ function zenphoto_PHPMailer($msg, $email_list, $subject, $message, $from_mail, $
 			$mail->IsSendmail();
 			break;
 	}
-	if (getOption('PHPMailer_secure')) {
-		$mail->SMTPSecure = "ssl";
-	}
+	$mail->SMTPSecure = getOption('PHPMailer_secure');
 	$mail->CharSet = 'UTF-8';
 	$mail->From = $from_mail;
 	$mail->FromName = $from_name;
