@@ -773,32 +773,7 @@ if ($result->loaded || $result->transient) {
 				<tr>
 				<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 				<td class="topalign-nopadding">
-					<div class="tabs">
-						<ul class="tabNavigation">
-							<li><a href="#first"><?php echo gettext("Codeblock 1"); ?></a></li>
-							<li><a href="#second"><?php echo gettext("Codeblock 2"); ?></a></li>
-							<li><a href="#third"><?php echo gettext("Codeblock 3"); ?></a></li>
-						</ul>
-						<?php
-						$getcodeblock = $result->getCodeblock();
-						if(!empty($getcodeblock)) {
-							$codeblock = unserialize($getcodeblock);
-						} else {
-							$codeblock[1] = "";
-							$codeblock[2] = "";
-							$codeblock[3] = "";
-						}
-						?>
-						<div id="first">
-							<textarea name="codeblock1" id="codeblock1" rows="40" cols="62"><?php echo html_encode($codeblock[1]); ?></textarea>
-						</div>
-						<div id="second">
-							<textarea name="codeblock2" id="codeblock2" rows="40" cols="62"><?php echo html_encode($codeblock[2]); ?></textarea>
-						</div>
-						<div id="third">
-							<textarea name="codeblock3" id="codeblock3" rows="40" cols="62"><?php echo html_encode($codeblock[3]); ?></textarea>
-						</div>
-					</div>
+					<?php printCodeblockEdit($result, 0); ?>
 				</td>
 				</tr>
 				<?php

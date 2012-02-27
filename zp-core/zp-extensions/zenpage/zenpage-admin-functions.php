@@ -67,10 +67,7 @@ function addPage(&$reports) {
 	$commentson = getcheckboxState('commentson');
 	$permalink = getcheckboxState('permalink');
 	$custom = process_language_string_save("custom_data",1);
-	$codeblock1 = sanitize($_POST['codeblock1'], 0);
-	$codeblock2 = sanitize($_POST['codeblock2'], 0);
-	$codeblock3 = sanitize($_POST['codeblock3'], 0);
-	$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
+	$codeblock = processCodeblockSave(0);
 	$locked = getcheckboxState('locked');
 
 	$sql = 'SELECT `id` FROM '.prefix('pages').' WHERE `titlelink`='.db_quote($titlelink);
@@ -130,10 +127,7 @@ function updatePage(&$reports) {
 	$expiredate = getExpiryDatePost();
 	$commentson = getcheckboxState('commentson');
 	$permalink = getcheckboxState('permalink');
-	$codeblock1 = sanitize($_POST['codeblock1'], 0);
-	$codeblock2 = sanitize($_POST['codeblock2'], 0);
-	$codeblock3 = sanitize($_POST['codeblock3'], 0);
-	$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
+	$codeblock = processCodeblockSave(0);
 	$locked = getcheckboxState('locked');
 	$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old']);
 
@@ -363,10 +357,7 @@ function addArticle(&$reports) {
 	$expiredate = getExpiryDatePost();
 	$permalink = getcheckboxState('permalink');
 	$commentson = getcheckboxState('commentson');
-	$codeblock1 = sanitize($_POST['codeblock1'], 0);
-	$codeblock2 = sanitize($_POST['codeblock2'], 0);
-	$codeblock3 = sanitize($_POST['codeblock3'], 0);
-	$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
+	$codeblock = processCodeblockSave(0);
 	$locked = getcheckboxState('locked');
 
 	$rslt = query_single_row('SELECT `id` FROM '.prefix('news').' WHERE `titlelink`='.db_quote($titlelink),false);
@@ -430,10 +421,7 @@ function updateArticle(&$reports) {
 	$lastchange = sanitize($_POST['lastchange']);
 	$lastchangeauthor = sanitize($_POST['lastchangeauthor']);
 	$commentson = getcheckboxState('commentson');
-	$codeblock1 = sanitize($_POST['codeblock1'], 0);
-	$codeblock2 = sanitize($_POST['codeblock2'], 0);
-	$codeblock3 = sanitize($_POST['codeblock3'], 0);
-	$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
+	$codeblock = processCodeblockSave(0);
 	$locked = getcheckboxState('locked');
 	$titlelink = $oldtitlelink = sanitize($_POST['titlelink-old'],3);
 

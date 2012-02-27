@@ -322,11 +322,7 @@ if (isset($_GET['action'])) {
 											if (isset($_POST['wm_thumb-'.$i])) $wmuse = $wmuse | WATERMARK_THUMB;
 											if (isset($_POST['wm_full-'.$i])) $wmuse = $wmuse | WATERMARK_FULL;
 											$image->setWMUse($wmuse);
-											$codeblock1 = sanitize($_POST['codeblock1-'.$i], 0);
-											$codeblock2 = sanitize($_POST['codeblock2-'.$i], 0);
-											$codeblock3 = sanitize($_POST['codeblock3-'.$i], 0);
-											$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
-											$image->setCodeblock($codeblock);
+											$image->setCodeblock(processCodeblockSave($i));
 											if (isset($_POST[$i.'-owner'])) $image->setOwner(sanitize($_POST[$i.'-owner']));
 											$image->set('filesize',filesize($image->localpath));
 
@@ -1397,32 +1393,7 @@ $alb = removeParentAlbumNames($album);
 							<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 							<td>
 								<br />
-								<div class="tabs">
-									<ul class="tabNavigation">
-										<li><a href="#first-<?php echo $image->get('id'); ?>"><?php echo gettext("Codeblock 1"); ?></a></li>
-										<li><a href="#second-<?php echo $image->get('id'); ?>"><?php echo gettext("Codeblock 2"); ?></a></li>
-										<li><a href="#third-<?php echo $image->get('id'); ?>"><?php echo gettext("Codeblock 3"); ?></a></li>
-									</ul>
-								<?php
-									$getcodeblock = $image->getCodeblock();
-									if(!empty($getcodeblock)) {
-										$codeblock = unserialize($getcodeblock);
-									} else {
-										$codeblock[1] = "";
-										$codeblock[2] = "";
-										$codeblock[3] = "";
-									}
-									?>
-									<div id="first-<?php echo $image->get('id'); ?>">
-										<textarea name="codeblock1-<?php echo $currentimage;?>" id="codeblock1-<?php echo $image->get('id'); ?>" rows="40" cols="60"><?php echo html_encode($codeblock[1]); ?></textarea>
-									</div>
-									<div id="second-<?php echo $image->get('id'); ?>">
-										<textarea name="codeblock2-<?php echo $currentimage;?>" id="codeblock2-<?php echo $image->get('id'); ?>" rows="40" cols="60"><?php echo html_encode($codeblock[2]); ?></textarea>
-									</div>
-									<div id="third-<?php echo $image->get('id'); ?>">
-										<textarea name="codeblock3-<?php echo $currentimage;?>" id="codeblock3-<?php echo $image->get('id'); ?>" rows="40" cols="60"><?php echo html_encode($codeblock[3]); ?></textarea>
-									</div>
-								</div>
+								<?php printCodeblockEdit($image, $currentimage); ?>
 							</td>
 						</tr>
 						<?php

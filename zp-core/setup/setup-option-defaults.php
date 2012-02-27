@@ -570,6 +570,7 @@ appropriate gallery methods.
 	setOptionDefault('search_cache_duration', 30);
 	setOptionDefault('search_within', 1);
 	setOption('last_update_check', 30);
+	setOptionDefault('number_of_codeblocks', 3);
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface

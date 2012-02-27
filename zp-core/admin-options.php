@@ -77,6 +77,7 @@ if (isset($_GET['action'])) {
 			}
 			setOption('time_offset', $offset);
 			setOption('charset', sanitize($_POST['charset']),3);
+			setOption('number_of_codeblocks', sanitize_numeric($_POST['number_of_codeblocks']));
 			setOption('site_email', sanitize($_POST['site_email']),3);
 			setOption('multi_lingual', (int) isset($_POST['multi_lingual']));
 			$f = sanitize($_POST['date_format_list'],3);
@@ -124,11 +125,7 @@ if (isset($_GET['action'])) {
 			}
 			$_zp_gallery->setSecurity(sanitize($_POST['gallery_security'],3));
 			$notify = processCredentials($_zp_gallery);
-			$codeblock1 = sanitize($_POST['codeblock1'], 0);
-			$codeblock2 = sanitize($_POST['codeblock2'], 0);
-			$codeblock3 = sanitize($_POST['codeblock3'], 0);
-			$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
-			$_zp_gallery->setCodeblock($codeblock);
+			$_zp_gallery->setCodeblock(processCodeblockSave(0));
 			$_zp_gallery->save();
 			$returntab = "&tab=gallery";
 		}
@@ -823,6 +820,13 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					</td>
 				</tr>
 				<tr>
+					<td width="175"><?php echo gettext("Number of codeblocks:"); ?></td>
+					<td width="350">
+						<input type="text" size="5" id="number_of_codeblocks" name="number_of_codeblocks" value="<?php echo getOption('number_of_codeblocks'); ?>" />
+					</td>
+					<td><?php echo gettext("Set to the number of codeblocks you would like for an object."); ?></td>
+				</tr>
+				<tr>
 					<td width="175"><?php echo gettext("Site email:"); ?></td>
 					<td width="350">
 						<input type="text" size="40" id="site_email" name="site_email" style="width: 338px" value="<?php echo getOption('site_email'); ?>" />
@@ -1219,39 +1223,14 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 					</td>
 				</tr>
 
-	<tr valign="top">
-		<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
-		<td>
-		<br />
-			<div class="tabs">
-				<ul class="tabNavigation">
-					<li><a href="#first"><?php echo gettext("Codeblock 1"); ?></a></li>
-					<li><a href="#second"><?php echo gettext("Codeblock 2"); ?></a></li>
-					<li><a href="#third"><?php echo gettext("Codeblock 3"); ?></a></li>
-				</ul>
-				<?php
-				$getcodeblock = $_zp_gallery->getCodeblock();
-				if(empty($getcodeblock)) {
-					$codeblock[1] = "";
-					$codeblock[2] = "";
-					$codeblock[3] = "";
-				} else {
-					$codeblock = unserialize($getcodeblock);
-				}
-				?>
-				<div id="first">
-					<textarea name="codeblock1" id="codeblock1-0" rows="40" cols="60"><?php echo html_encode($codeblock[1]); ?></textarea>
-				</div>
-				<div id="second">
-					<textarea name="codeblock2" id="codeblock2-0" rows="40" cols="60"><?php echo html_encode($codeblock[2]); ?></textarea>
-				</div>
-				<div id="third">
-					<textarea name="codeblock3" id="codeblock3-0" rows="40" cols="60"><?php echo html_encode($codeblock[3]); ?></textarea>
-				</div>
-			</div>
-		</td>
-		<td></td>
-	</tr>
+				<tr valign="top">
+					<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
+					<td>
+					<?php printCodeblockEdit($_zp_gallery, 0); ?>
+					</td>
+					<td>
+					</td>
+				</tr>
 
 				<tr>
 					<td colspan="3">

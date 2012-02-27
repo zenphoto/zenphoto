@@ -2108,6 +2108,11 @@ button.positive,.log_buttons a.positive {
 
 /* Codeblock fields tabs
 -------------------------------------------------*/
+.codeblock {
+	background-color: none;
+	margin-left: 0px;
+}
+
 UL.tabNavigation {
 	list-style: none;
 	margin: 2px;
@@ -2161,21 +2166,6 @@ div.tabs>div {
 
 div.tabs>div h2 {
 	margin: 0;
-}
-
-#first {
-	background-color: none;
-	margin-left: 0px;
-}
-
-#second {
-	background-color: none;
-	margin-left: 0px;
-}
-
-#third {
-	background-color: none;
-	margin-left: 0px;
 }
 
 .tabs textarea {

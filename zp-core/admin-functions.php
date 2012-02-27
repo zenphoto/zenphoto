@@ -1551,32 +1551,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 						<td>
 						<br />
-							<div class="tabs">
-								<ul class="tabNavigation">
-									<li><a href="#first"><?php echo gettext("Codeblock 1"); ?></a></li>
-									<li><a href="#second"><?php echo gettext("Codeblock 2"); ?></a></li>
-									<li><a href="#third"><?php echo gettext("Codeblock 3"); ?></a></li>
-								</ul>
-									<?php
-										$getcodeblock = $album->getCodeblock();
-										if(!empty($getcodeblock)) {
-											$codeblock = unserialize($getcodeblock);
-										} else {
-											$codeblock[1] = "";
-											$codeblock[2] = "";
-											$codeblock[3] = "";
-										}
-									?>
-								<div id="first">
-									<textarea name="<?php echo $prefix; ?>codeblock1" id="codeblock1<?php echo $suffix; ?>" rows="40" cols="60"><?php echo html_encode($codeblock[1]); ?></textarea>
-								</div>
-								<div id="second">
-									<textarea name="<?php echo $prefix; ?>codeblock2" id="codeblock2<?php echo $suffix; ?>" rows="40" cols="60"><?php echo html_encode($codeblock[2]); ?></textarea>
-								</div>
-								<div id="third">
-									<textarea name="<?php echo $prefix; ?>codeblock3" id="codeblock3<?php echo $suffix; ?>" rows="40" cols="60"><?php echo html_encode($codeblock[3]); ?></textarea>
-								</div>
-							</div>
+						<?php printCodeblockEdit($album, $suffix); ?>
 						</td>
 					</tr>
 				</table>
@@ -2232,11 +2207,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 		$album->setWatermark(sanitize($_POST[$prefix.'album_watermark'], 3));
 		$album->setWatermarkThumb(sanitize($_POST[$prefix.'album_watermark_thumb'], 3));
 	}
-	$codeblock1 = sanitize($_POST[$prefix.'codeblock1'], 0);
-	$codeblock2 = sanitize($_POST[$prefix.'codeblock2'], 0);
-	$codeblock3 = sanitize($_POST[$prefix.'codeblock3'], 0);
-	$codeblock = serialize(array("1" => $codeblock1, "2" => $codeblock2, "3" => $codeblock3));
-	$album->setCodeblock($codeblock);
+	$album->setCodeblock(processCodeblockSave($prefix));
 	if (isset($_POST[$prefix.'-owner'])) $album->setOwner(sanitize($_POST[$prefix.'-owner']));
 
 	$custom = process_language_string_save($prefix.'album_custom_data', 1);
@@ -3881,19 +3852,76 @@ function codeblocktabsJS() {
 		// <!-- <![CDATA[
 		$(function () {
 			var tabContainers = $('div.tabs > div');
-			tabContainers.hide().filter(':first').show();
 
 			$('div.tabs ul.tabNavigation a').click(function () {
-				tabContainers.hide();
+
+				var cls = this.hash.replace(/[0-9]+/,'x');
+				cls = cls.replace(/#/,'.');
+				$(cls).hide();
 				tabContainers.filter(this.hash).show();
 				$('div.tabs ul.tabNavigation a').removeClass('selected');
 				$(this).addClass('selected');
 				return false;
-			}).filter(':first').click();
+			});
 		});
 		// ]]> -->
 	</script>
 <?php
+}
+
+/**
+ *
+ * prints codeblock edit boxes
+ * @param object $obj
+ * @param int $id
+ */
+function printCodeblockEdit($obj, $id) {
+	$codeblock = @unserialize($obj->getCodeblock());
+	if(empty($codeblock)) {
+		$codeblock = array();
+	}
+	$codeblockCount = max(1, getOption('number_of_codeblocks'),count($codeblock));
+	?>
+	<div class="tabs">
+		<ul class="tabNavigation">
+			<?php
+			for ($i=0; $i<$codeblockCount; $i++) {
+				?>
+				<li><a id="<?php echo '#cbt'.$i.'-'.$id; ?>" href="<?php echo '#cb'.$i.'-'.$id; ?>">&nbsp;&nbsp;<?php echo $i; ?>&nbsp;&nbsp;</a></li>
+				<?php
+			}
+			?>
+		</ul>
+
+		<?php
+		for ($i=0; $i<$codeblockCount; $i++) {
+			?>
+			<div class="cbx-<?php echo $id; ?>" id="cb<?php echo $i.'-'.$id; ?>"<?php if ($i) echo ' style="display:none"'; ?>">
+				<textarea name="codeblock<?php echo $i; ?>-<?php echo $id; ?>" class="codeblock" id="codeblock<?php echo $i; ?>-<?php echo $id; ?>" rows="40" cols="60"><?php echo html_encode(@$codeblock[$i]); ?></textarea>
+			</div>
+			<?php
+		}
+		?>
+	</div>
+
+	<?php
+}
+
+/**
+ *
+ * handles saveing of codeblock edits
+ * @param object $object
+ * @param int $id
+ * @return string
+ */
+function processCodeblockSave($id) {
+	$codeblock = array();
+	$i = 0;
+	while (isset($_POST['codeblock'.$i.'-'.$id])) {
+		$codeblock[$i] = sanitize($_POST['codeblock'.$i.'-'.$id], 0);
+		$i++;
+	}
+	return serialize($codeblock);
 }
 
 /**
@@ -4284,4 +4312,5 @@ function consolidatedEditMessages($subtab) {
 		<?php
 	}
 }
+
 ?>
