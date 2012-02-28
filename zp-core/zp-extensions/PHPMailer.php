@@ -50,7 +50,7 @@ class zp_PHPMailer {
 									gettext('Outgoing mail server') => array('key' => 'PHPMailer_server', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext('Outgoing mail server.')),
 									gettext('Secure mail') => array('key' => 'PHPMailer_secure', 'type' => OPTION_TYPE_RADIO,
-										'buttons'=>array(gettext('no')=>0, gettext('SSL')=>'ssl', gettext('TSL')=>'tsl'),
+										'buttons'=>array(gettext('no')=>0, gettext('SSL')=>'ssl', gettext('TLS')=>'tls'),
 										'desc' => gettext('Set to use a secure protocol.')),
 									gettext('Mail user') => array('key' => 'PHPMailer_user', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext('<em>User ID</em> for mail server.')),
