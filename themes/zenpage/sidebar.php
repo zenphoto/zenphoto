@@ -75,7 +75,7 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 ?>
 
 	<?php
-	if (getOption("zenpage_contactpage") && getOption('zp_plugin_contactform')) {
+	if (getOption("zenpage_contactpage") && getOption('zp_plugin_contact_form')) {
 		?>
 		<div class="menu">
 			<ul>
