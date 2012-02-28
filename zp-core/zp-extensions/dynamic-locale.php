@@ -27,6 +27,7 @@ $option_interface = 'dynamic_locale';
 zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');
 
 define('SUBDOMAIN_LOCALES',getOption('dynamic_locale_subdomain'));
+define('SEO_LOCALES',function_exists('filterLocale_load_request'));
 
 /**
  * prints a form for selecting a locale
@@ -66,21 +67,12 @@ function printLanguageSelector($flags=NULL) {
 					<?php
 					if ($lang!=$currentValue) {
 						if (SUBDOMAIN_LOCALES) {
-							$host = $_SERVER['HTTP_HOST'];
-							$matches = explode('.',$host);
-							if (validateLocale($matches[0], 'Dynamic Locale')) {
-								array_shift($matches);
-								$host = implode('.',$matches);
-							}
-							$subdomain = substr($lang,0,2);
-							$host = $subdomain.'.'.$host;
-							if (SERVER_PROTOCOL == 'https') {
-								$host = 'https://'.$host;
-							} else {
-								$host = 'http://'.$host;
-							}
 							?>
-							<a href="<?php echo html_encode($host.$_SERVER['REQUEST_URI']); ?>" >
+							<a href="<?php echo dynamic_locale::fullHostPath().html_encode($_SERVER['REQUEST_URI']); ?>" >
+							<?php
+						} else if (SEO_LOCALES) {
+							?>
+							<a href="<?php echo html_encode(str_replace(WEBPATH, WEBPATH.'/'.substr($lang,0,2), $_SERVER['REQUEST_URI'])); ?>" >
 							<?php
 						} else {
 							?>
@@ -148,6 +140,24 @@ class dynamic_locale {
 		<link type="text/css" rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/dynamic-locale/locale.css" />
 		<?php
 	}
+
+	static function fullHostPath() {
+		$host = $_SERVER['HTTP_HOST'];
+		$matches = explode('.',$host);
+		if (validateLocale($matches[0], 'Dynamic Locale')) {
+			array_shift($matches);
+			$host = implode('.',$matches);
+		}
+		$subdomain = substr($lang,0,2);
+		$host = $subdomain.'.'.$host;
+		if (SERVER_PROTOCOL == 'https') {
+			$host = 'https://'.$host;
+		} else {
+			$host = 'http://'.$host;
+		}
+		return $host;
+	}
+
 
 }
 
