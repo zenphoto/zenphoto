@@ -3867,7 +3867,8 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 			$object_list = array('albums' => $object_list);
 		}
 	}
-	if ($mr = MOD_REWRITE) {
+	$urls = '';
+	if (MOD_REWRITE) {
 		$url = WEBPATH."/page/search/";
 	} else {
 		$url = WEBPATH."/index.php?p=search";
@@ -3877,9 +3878,8 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 			$fields = explode(',',$fields);
 		}
 		$temp = $fields;
-		if ($mr && count($fields)==1 && array_shift($temp)=='tags') {
+		if (MOD_REWRITE && count($fields)==1 && array_shift($temp)=='tags') {
 			$url .= "tags/";
-			$urls = '';
 		} else {
 			$search = new SearchEngine();
 			$urls = $search->getSearchFieldsText($fields, 'searchfields=');
@@ -3910,10 +3910,13 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 		}
 	}
 	if ($page > 1) {
-		if ($mr) {
+		if (MOD_REWRITE) {
 			$url .= "/$page";
 		} else {
-			$urls .= ($urls)?'&':''."page=$page";
+			if ($urls) {
+				$urls .= '&';
+			}
+			$urls .= "page=$page";
 		}
 	}
 	if (!empty($urls)) {
@@ -3927,7 +3930,6 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 	if (is_array($object_list)) {
 		foreach ($object_list as $key=>$list) {
 			if (!empty($list)) {
-				$mr = false;
 				$url .= '&in'.$key.'='.html_encode(implode(',', $list));
 			}
 		}
