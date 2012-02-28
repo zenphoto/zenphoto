@@ -26,8 +26,9 @@ class admin_approval {
 	static function publish_object($object) {
 		$msg = '';
 		if (!zp_loggedin($object->manage_rights)) {	// not allowed to change the published status
-			if (isset($object->data['show'])) {
-				$show = $object->data['show'];
+			$data = $object->getData();
+			if (isset($data['show'])) {
+				$show = $data['show'];
 			} else {
 				$show = 0;
 			}

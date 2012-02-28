@@ -239,6 +239,16 @@ class PersistentObject {
 		return (int) $this->get('id');
 	}
 
+	/**
+	 *
+	 * returns the database record of the object
+	 * @return array
+	 */
+	function getData() {
+		$this->save();
+		return $this->data;
+	}
+
 
 	/**
 	* Get the value of a variable. If $current is false, return the value

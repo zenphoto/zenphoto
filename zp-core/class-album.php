@@ -463,7 +463,7 @@ class Album extends MediaObject {
 		}
 		foreach ($images as $filename) {	// these images are not in the database
 			$imageobj = newImage($this,$filename);
-			$results[] = $imageobj->data;
+			$results[] = $imageobj->getData();
 		}
 		// now put the results into the right order
 		$results = sortByKey($results,$sortkey,$order);

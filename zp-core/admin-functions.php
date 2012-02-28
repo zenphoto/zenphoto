@@ -3914,7 +3914,6 @@ function printCodeblockEdit($obj, $id) {
 		}
 		?>
 	</div>
-
 	<?php
 }
 

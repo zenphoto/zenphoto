@@ -58,6 +58,9 @@ if (isset($_POST['processed'])) {
 				if (!empty($title) && $newAlbum) {
 					$album->setTitle($title);
 				}
+				if ($new) {
+					$album->setOwner($_zp_current_admin_obj->getUser());
+				}
 				$album->save();
 			} else {
 				$AlbumDirName = str_replace(SERVERPATH, '', $_zp_gallery->albumdir);
@@ -85,10 +88,11 @@ if (isset($_POST['processed'])) {
 								move_uploaded_file($tmp_name, $uploadfile);
 								@chmod($uploadfile, FILE_MOD);
 								$image = newImage($album, $soename);
+								$image->setOwner($_zp_current_admin_obj->getUser());
 								if ($name != $soename) {
 									$image->setTitle($name);
-									$image->save();
 								}
+								$image->save();
 							}
 						} else if (is_zip($name)) {
 							unzip($tmp_name, $targetPath);

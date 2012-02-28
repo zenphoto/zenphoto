@@ -765,7 +765,7 @@ class Gallery {
 		foreach ($albums as $folder) {	// these albums are not in the database
 			$albumobj =  new Album(NULL,$folder);
 			if ($albumobj->exists) {	// fail to instantiate?
-				$results[$folder] = $albumobj->data;
+				$results[$folder] = $albumobj->getData();
 			}
 		}
 		//	now put the results in the right order
