@@ -329,18 +329,18 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			if (!zp_resampleImage($newim, $im, 0, 0, 0, 0, $neww, $newh, $w, $h)) {
 				imageError('404 Not Found', gettext('Image not renderable.'), 'err-failimage.png');
 			}
-
-			$imgEffects = explode(',', $effects);
-			if (in_array('gray', $imgEffects)) {
-				zp_imageGray($newim);
-			}
-
 			if (($thumb && $sharpenthumbs) || (!$thumb && $sharpenimages)) {
 				if (!zp_imageUnsharpMask($newim, getOption('sharpen_amount'), getOption('sharpen_radius'), getOption('sharpen_threshold'))) {
 					imageError('404 Not Found', gettext('Image not renderable.'), 'err-failimage.png');
 				}
 			}
 		}
+
+		$imgEffects = explode(',', $effects);
+		if (in_array('gray', $imgEffects)) {
+			zp_imageGray($newim);
+		}
+
 		$watermark_image = false;
 		if ($passedWM) {
 			if ($passedWM != NO_WATERMARK) {

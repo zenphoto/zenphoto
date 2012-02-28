@@ -26,6 +26,8 @@ $option_interface = 'dynamic_locale';
 
 zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');
 
+define('SUBDOMAIN_LOCALES',getOption('dynamic_locale_subdomain'));
+
 /**
  * prints a form for selecting a locale
  * The POST handling is by getUserLocale() called in functions.php
@@ -63,9 +65,28 @@ function printLanguageSelector($flags=NULL) {
 				<li<?php if ($lang==$currentValue) echo ' class="currentLanguage"'; ?>>
 					<?php
 					if ($lang!=$currentValue) {
-						?>
-						<a href="javascript:launchScript('',['locale=<?php echo $lang; ?>']);" >
-						<?php
+						if (SUBDOMAIN_LOCALES) {
+							$host = $_SERVER['HTTP_HOST'];
+							$matches = explode('.',$host);
+							if (validateLocale($matches[0], 'Dynamic Locale')) {
+								array_shift($matches);
+								$host = implode('.',$matches);
+							}
+							$subdomain = substr($lang,0,2);
+							$host = $subdomain.'.'.$host;
+							if (SERVER_PROTOCOL == 'https') {
+								$host = 'https://'.$host;
+							} else {
+								$host = 'http://'.$host;
+							}
+							?>
+							<a href="<?php echo html_encode($host.$_SERVER['REQUEST_URI']); ?>" >
+							<?php
+						} else {
+							?>
+							<a href="?locale=<?php echo $lang; ?>" >
+							<?php
+						}
 					}
 					$flag = getLanguageFlag($lang);
 					?>
@@ -111,12 +132,15 @@ class dynamic_locale {
 
 	function __construct() {
 		setOptionDefault('dynamic_locale_visual', 0);
+		setOptionDefault('dynamic_locale_subdomain', 0);
 	}
 
 	function getOptionsSupported() {
 		return array(	gettext('Use flags') => array('key' => 'dynamic_locale_visual', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext('Checked produces an array of flags. Not checked produces a selector.'))
-		);
+										'desc' => gettext('Checked produces an array of flags. Not checked produces a selector.')),
+									gettext('Use subdomains') => array('key' => 'dynamic_locale_subdomain', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => '<p>'.gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the two letter language code, e.g. <code><em>fr</em></code> for French.').'</p><p>'.gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains the main domain. If your provier does this, no subdomain creation is needed.)').'</p>')
+								);
 	}
 
 	static function dynamic_localeJS() {
