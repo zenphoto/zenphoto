@@ -197,15 +197,6 @@ class jquery_rating {
 		if (empty($_rating_current_IPlist)) {
 			if (!empty($usedips)) {
 				$_rating_current_IPlist = unserialize($usedips);
-				if (array_key_exists(0, $_rating_current_IPlist) ||
-				array_key_exists(count($_rating_current_IPlist)-1, $_rating_current_IPlist)) {
-					// convert old list
-					$rating_list = array();
-					foreach ($_rating_current_IPlist as $key) {
-						$rating_list[$key] = $ratingAverage;
-					}
-					$_rating_current_IPlist = $rating_list;
-				}
 				if (array_key_exists($ip, $_rating_current_IPlist)) {
 					return $_rating_current_IPlist[$ip];
 				}
