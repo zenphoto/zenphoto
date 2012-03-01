@@ -31,6 +31,12 @@ if (!file_exists($sitemapfolder)) {
 }
 
 define ('SITEMAP_CHUNK', getOption('sitemap_processing_chunk'));
+if (getOption('multi_lingual')) {
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/dynamic-locale.php');
+	define('SITEMAP_LOCALE_TYPE', LOCALE_TYPE);
+} else {
+	define('SITEMAP_LOCALE_TYPE', 0);
+}
 /**
  * Plugin option handling class
  *
@@ -54,98 +60,115 @@ class sitemap {
 	}
 
 	function getOptionsSupported() {
-		return array(
-		gettext('Album date') => array('key' => 'sitemap_lastmod_albums', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 0,
-										'selections' => array(gettext("date")=>"date",
-																					gettext("mtime")=>"mtime"),
-										'desc' => gettext('Field to use for the last modification date of albums.')),
-		gettext('Image date') => array('key' => 'sitemap_lastmod_images', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 1,
-										'selections' => array(gettext("date")=>"date",
-																					gettext("mtime")=>"mtime"),
-										'desc' => gettext('Field to use for the last modification date of images.')),
-		gettext('Change frequency - Zenphoto index') => array('key' => 'sitemap_changefreq_index', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 2,
-										'selections' => array(gettext("always")=>"always",
-																					gettext("hourly")=>"hourly",
-																					gettext("daily")=>"daily",
-																					gettext("weekly")=>"weekly",
-																					gettext("monthly")=>"monthly",
-																					gettext("yearly")=>"yearly",
-																					gettext("never")=>"never"),
-										'desc' => ''),
-		gettext('Change frequency - albums') => array('key' => 'sitemap_changefreq_albums', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 3,
-										'selections' => array(gettext("always")=>"always",
-																					gettext("hourly")=>"hourly",
-																					gettext("daily")=>"daily",
-																					gettext("weekly")=>"weekly",
-																					gettext("monthly")=>"monthly",
-																					gettext("yearly")=>"yearly",
-																					gettext("never")=>"never"),
-										'desc' => ''),
-		gettext('Change frequency - images') => array('key' => 'sitemap_changefreq_images', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 4,
-										'selections' => array(gettext("always")=>"always",
-																					gettext("hourly")=>"hourly",
-																					gettext("daily")=>"daily",
-																					gettext("weekly")=>"weekly",
-																					gettext("monthly")=>"monthly",
-																					gettext("yearly")=>"yearly",
-																					gettext("never")=>"never"),
-										'desc' => ''),
-		gettext('Change frequency - Zenpage pages') => array('key' => 'sitemap_changefreq_pages', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 5,
-										'selections' => array(gettext("always")=>"always",
-																					gettext("hourly")=>"hourly",
-																					gettext("daily")=>"daily",
-																					gettext("weekly")=>"weekly",
-																					gettext("monthly")=>"monthly",
-																					gettext("yearly")=>"yearly",
-																					gettext("never")=>"never"),
-										'desc' => ''),
-		gettext('Change frequency - Zenpage news index') => array('key' => 'sitemap_changefreq_newsindex', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 6,
-										'selections' => array(gettext("always")=>"always",
-																					gettext("hourly")=>"hourly",
-																					gettext("daily")=>"daily",
-																					gettext("weekly")=>"weekly",
-																					gettext("monthly")=>"monthly",
-																					gettext("yearly")=>"yearly",
-																					gettext("never")=>"never"),
-										'desc' => ''),
-		gettext('Change frequency: Zenpage news articles') => array('key' => 'sitemap_changefreq_news', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 7,
-										'selections' => array(gettext("always")=>"always",
-																					gettext("hourly")=>"hourly",
-																					gettext("daily")=>"daily",
-																					gettext("weekly")=>"weekly",
-																					gettext("monthly")=>"monthly",
-																					gettext("yearly")=>"yearly",
-																					gettext("never")=>"never"),
-										'desc' => ''),
-		gettext('Change frequency - Zenpage news categories') => array('key' => 'sitemap_changefreq_newscats', 'type' => OPTION_TYPE_SELECTOR,
-										'order' => 8,
-										'selections' => array(gettext("always")=>"always",
-																					gettext("hourly")=>"hourly",
-																					gettext("daily")=>"daily",
-																					gettext("weekly")=>"weekly",
-																					gettext("monthly")=>"monthly",
-																					gettext("yearly")=>"yearly",
-																					gettext("never")=>"never"),
-										'desc' => ''),
-	gettext('Enable Google image and video extension') => array('key' => 'sitemap_google', 'type' => OPTION_TYPE_CHECKBOX,
-										'order' => 9,
-										'desc' => gettext('If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.').'<p class="notebox">'.gettext('<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts').'</p>'),
-	gettext('Google - URL to image license') => array('key' => 'sitemap_license', 'type' => OPTION_TYPE_TEXTBOX,
-										'order' => 10,
-										'multilingual'=>true,
-										'desc' => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html')),
-	gettext('Sitemap processing chunk') => array('key' => 'sitemap_processing_chunk', 'type' => OPTION_TYPE_TEXTBOX,
-										'order' => 11,
-										'desc' => gettext('The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.'))
-	);
+		global $_common_locale_type;
+		$options = array(
+											gettext('Album date') => array('key' => 'sitemap_lastmod_albums', 'type' => OPTION_TYPE_SELECTOR,
+																		'order' => 0,
+																		'selections' => array(gettext("date")=>"date",
+																		gettext("mtime")=>"mtime"),
+																		'desc' => gettext('Field to use for the last modification date of albums.')),
+											gettext('Image date') => array('key' => 'sitemap_lastmod_images', 'type' => OPTION_TYPE_SELECTOR,
+																		'order' => 1,
+																		'selections' => array(gettext("date")=>"date",
+																		gettext("mtime")=>"mtime"),
+																		'desc' => gettext('Field to use for the last modification date of images.')),
+											gettext('Change frequency - Zenphoto index') => array('key' => 'sitemap_changefreq_index', 'type' => OPTION_TYPE_SELECTOR,
+																													'order' => 2,
+																													'selections' => array(gettext("always")=>"always",
+																																								gettext("hourly")=>"hourly",
+																																								gettext("daily")=>"daily",
+																																								gettext("weekly")=>"weekly",
+																																								gettext("monthly")=>"monthly",
+																																								gettext("yearly")=>"yearly",
+																																								gettext("never")=>"never"),
+																													'desc' => ''),
+											gettext('Change frequency - albums') => array('key' => 'sitemap_changefreq_albums', 'type' => OPTION_TYPE_SELECTOR,
+																									'order' => 3,
+																									'selections' => array(gettext("always")=>"always",
+																																	gettext("hourly")=>"hourly",
+																																	gettext("daily")=>"daily",
+																																	gettext("weekly")=>"weekly",
+																																	gettext("monthly")=>"monthly",
+																																	gettext("yearly")=>"yearly",
+																																	gettext("never")=>"never"),
+																									'desc' => ''),
+											gettext('Change frequency - images') => array('key' => 'sitemap_changefreq_images', 'type' => OPTION_TYPE_SELECTOR,
+																									'order' => 4,
+																									'selections' => array(gettext("always")=>"always",
+																																				gettext("hourly")=>"hourly",
+																																				gettext("daily")=>"daily",
+																																				gettext("weekly")=>"weekly",
+																																				gettext("monthly")=>"monthly",
+																																				gettext("yearly")=>"yearly",
+																																				gettext("never")=>"never"),
+																									'desc' => ''),
+											gettext('Change frequency - Zenpage pages') => array('key' => 'sitemap_changefreq_pages', 'type' => OPTION_TYPE_SELECTOR,
+																													'order' => 5,
+																													'selections' => array(gettext("always")=>"always",
+																																								gettext("hourly")=>"hourly",
+																																								gettext("daily")=>"daily",
+																																								gettext("weekly")=>"weekly",
+																																								gettext("monthly")=>"monthly",
+																																								gettext("yearly")=>"yearly",
+																																								gettext("never")=>"never"),
+																													'desc' => ''),
+											gettext('Change frequency - Zenpage news index') => array('key' => 'sitemap_changefreq_newsindex', 'type' => OPTION_TYPE_SELECTOR,
+																															'order' => 6,
+																															'selections' => array(gettext("always")=>"always",
+																																										gettext("hourly")=>"hourly",
+																																										gettext("daily")=>"daily",
+																																										gettext("weekly")=>"weekly",
+																																										gettext("monthly")=>"monthly",
+																																										gettext("yearly")=>"yearly",
+																																										gettext("never")=>"never"),
+																															'desc' => ''),
+											gettext('Change frequency: Zenpage news articles') => array('key' => 'sitemap_changefreq_news', 'type' => OPTION_TYPE_SELECTOR,
+																																'order' => 7,
+																																'selections' => array(gettext("always")=>"always",
+																																											gettext("hourly")=>"hourly",
+																																											gettext("daily")=>"daily",
+																																											gettext("weekly")=>"weekly",
+																																											gettext("monthly")=>"monthly",
+																																											gettext("yearly")=>"yearly",
+																																											gettext("never")=>"never"),
+																																'desc' => ''),
+											gettext('Change frequency - Zenpage news categories') => array('key' => 'sitemap_changefreq_newscats', 'type' => OPTION_TYPE_SELECTOR,
+																																		'order' => 8,
+																																		'selections' => array(gettext("always")=>"always",
+																																													gettext("hourly")=>"hourly",
+																																													gettext("daily")=>"daily",
+																																													gettext("weekly")=>"weekly",
+																																													gettext("monthly")=>"monthly",
+																																													gettext("yearly")=>"yearly",
+																																													gettext("never")=>"never"),
+																																		'desc' => ''),
+											gettext('Enable Google image and video extension') => array('key' => 'sitemap_google', 'type' => OPTION_TYPE_CHECKBOX,
+																																'order' => 9,
+																																'desc' => gettext('If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable.').'<p class="notebox">'.gettext('<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts').'</p>'),
+											gettext('Google - URL to image license') => array('key' => 'sitemap_license', 'type' => OPTION_TYPE_TEXTBOX,
+																																'order' => 10,
+																																'multilingual'=>true,
+																																'desc' => gettext('Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html')),
+											gettext('Sitemap processing chunk') => array('key' => 'sitemap_processing_chunk', 'type' => OPTION_TYPE_TEXTBOX,
+																																'order' => 11,
+																																'desc' => gettext('The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files.')),
+											gettext('Use subdomains').'*' => array('key' => 'dynamic_locale_subdomain', 'type' => OPTION_TYPE_CHECKBOX,
+																															'order' => 12,
+																															'disabled' => $_common_locale_type,
+																															'desc' => '<p>'.gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the two letter language code, e.g. <code><em>fr</em></code> for French.').'</p><p>'.gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains the main domain. If your provier does this, no subdomain creation is needed.)').'</p>')
+		);
+		if ($_common_locale_type) {
+			$options['note'] = array('key' => 'sitemap_locale_type', 'type' => OPTION_TYPE_NOTE,
+																'order' => 13,
+																'desc' => '<p class="notebox">'.$_common_locale_type.'</p>');
+		} else {
+			$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'sitemap-extended\');"><em>sitemap-extended</em></a> plugin options.');
+			$options['note'] = array('key' => 'sitemap_locale_type',
+															'type' => OPTION_TYPE_NOTE,
+															'order' => 13,
+															'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+		}
+		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
@@ -180,12 +203,6 @@ function sitemap_button($buttons) {
 								'rights'=> ADMIN_RIGHTS
 	);
 	return $buttons;
-}
-/**
- * Returns true if the site is set to "multilingual" and mod_rewrite and  and the seo_locale plugin are enabled.
- */
-function sitemap_multilingual() {
-	return getOption('multi_lingual') && getOption('zp_plugin_seo_locale') && MOD_REWRITE;
 }
 
 /**
@@ -334,24 +351,41 @@ function getSitemapIndexLinks() {
 		} else {
 			$changefreq = sitemap_getChangefreq($changefreq);
 		}
-		if(sitemap_multilingual()) {
-			foreach($sitemap_locales as $locale) {
-				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."/".$locale."/</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-			}
-		} else {
-			$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+		switch (SITEMAP_LOCALE_TYPE) {
+			case 1:
+				foreach($sitemap_locales as $locale) {
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."/".$locale."/</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+				}
+				break;
+			case 2:
+				foreach($sitemap_locales as $locale) {
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".dynamic_locale::fullHostPath($locale)."/</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+				}
+				break;
+			default:
+				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+				break;
 		}
 		// print further index pages if avaiable
 		if($toplevelpages) {
 			for($x = 2;$x <= $toplevelpages; $x++) {
-				if(sitemap_multilingual()) {
-					foreach($sitemap_locales as $locale) {
-						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/page/'.$x,'index.php?page='.$x,false);
+				switch (SITEMAP_LOCALE_TYPE) {
+					case 1:
+						foreach($sitemap_locales as $locale) {
+							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/page/'.$x,'index.php?page='.$x,false);
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						}
+						break;
+					case 2:
+						foreach($sitemap_locales as $locale) {
+							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('/page/'.$x,'index.php?page='.$x,false);
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						}
+						break;
+					default:
+						$url = FULLWEBPATH.'/'.rewrite_path('page/'.$x,'index.php?page='.$x,false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-					}
-				} else {
-					$url = FULLWEBPATH.'/'.rewrite_path('page/'.$x,'index.php?page='.$x,false);
-					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						break;
 				}
 			}
 		}
@@ -462,34 +496,56 @@ function getSitemapAlbums() {
 			$images = $albumobj->getImages();
 			$loop_index = getSitemapGoogleLoopIndex($imageCount,$pageCount);
 			$date = sitemap_getDateformat($albumobj,$albumlastmod);
-			if(sitemap_multilingual()) {
-				foreach($sitemap_locales as $locale) {
-					$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
+			switch (SITEMAP_LOCALE_TYPE) {
+				case 1:
+					foreach($sitemap_locales as $locale) {
+						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
+						$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images,$locale);
+						$data .= sitemap_echonl("\t</url>");
+					}
+					break;
+				case 2:
+					foreach($sitemap_locales as $locale) {
+						$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
+						$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images,$locale);
+						$data .= sitemap_echonl("\t</url>");
+					}
+					break;
+				default:
+					$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-					$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images,$locale);
+					$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images,NULL);
 					$data .= sitemap_echonl("\t</url>");
-				}
-			} else {
-				$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
-				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-				$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images,NULL);
-				$data .= sitemap_echonl("\t</url>");
+					break;
 			}
 			// print album pages if avaiable
 			if($pageCount > 1) {
 				for($x = 2;$x <= $pageCount; $x++) {
-					if(sitemap_multilingual()) {
+				switch (SITEMAP_LOCALE_TYPE) {
+					case 1:
 						foreach($sitemap_locales as $locale) {
 							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
 							$data .= getSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images,$locale);
 							$data .= sitemap_echonl("\t</url>");
 						}
-					} else {
+						break;
+					case 2:
+						foreach($sitemap_locales as $locale) {
+							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('/'.pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
+							$data .= getSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images,$locale);
+							$data .= sitemap_echonl("\t</url>");
+						}
+						break;
+					default:
 						$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
 						$data .= getSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images,NULL);
 						$data .= sitemap_echonl("\t</url>");
+						break;
 					}
 				}
 			}
@@ -545,14 +601,23 @@ function getSitemapImages() {
 					}
 					if($printimage) {
 						$date = sitemap_getDateformat($imageobj,$imagelastmod);
-						if(sitemap_multilingual()) {
-							foreach($sitemap_locales as $locale) {
-								$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+						switch (SITEMAP_LOCALE_TYPE) {
+							case 1:
+								foreach($sitemap_locales as $locale) {
+									$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+									$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
+								}
+								break;
+							case 2:
+								foreach($sitemap_locales as $locale) {
+									$path = dynamic_locale::fullHostPath($locale).'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+									$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
+								}
+								break;
+							default:
+								$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
-							}
-						} else {
-							$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
-							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
+								break;
 						}
 					}
 				}
@@ -652,14 +717,23 @@ function getSitemapZenpagePages() {
 				if(!is_null($pageobj->getLastchange())) $lastchange = substr($pageobj->getLastchange(),0,10);
 				if($date > $lastchange && !empty($lastchangedate)) $date = $lastchange;
 				if(!$pageobj->isProtected()) {
-					if(sitemap_multilingual()) {
-						foreach($sitemap_locales as $locale) {
-							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
+					switch (SITEMAP_LOCALE_TYPE) {
+						case 1:
+							foreach($sitemap_locales as $locale) {
+								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
+								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+							}
+							break;
+						case 2:
+							foreach($sitemap_locales as $locale) {
+								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
+								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+							}
+							break;
+						default:
+							$url = FULLWEBPATH.'/'.rewrite_path('pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-						}
-					} else {
-						$url = FULLWEBPATH.'/'.rewrite_path('pages/'.urlencode($page['titlelink']),'?p=pages&amp;title='.urlencode($page['titlelink']),false);
-						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+							break;
 					}
 				}
 			}
@@ -683,19 +757,28 @@ function getSitemapZenpageNewsIndex() {
 		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		$sitemap_locales = generateLanguageList();
 		$changefreq = getOption('sitemap_changefreq_newsindex');
-		if(sitemap_multilingual()) {
-			foreach($sitemap_locales as $locale) {
-				$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/1','?p=news&amp;page=1',false);
-				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-			}
-		} else {
-			$url = FULLWEBPATH.'/'.rewrite_path('news/1','?p=news&amp;page=1',false);
+		switch (SITEMAP_LOCALE_TYPE) {
+			case 1:
+				foreach($sitemap_locales as $locale) {
+					$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/1','?p=news&amp;page=1',false);
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+				}
+				Break;
+			case 2:
+				foreach($sitemap_locales as $locale) {
+					$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('news/1','?p=news&amp;page=1',false);
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+				}
+				Break;
+				default:
+				$url = FULLWEBPATH.'/'.rewrite_path('news/1','?p=news&amp;page=1',false);
 			$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+			Break;
 		}
 		// getting pages for the main news loop
 		/* Not used anyway
 		if(!empty($articlesperpage)) {
-			$zenpage_articles_per_page = sanitize_numeric($articlesperpage);
+		$zenpage_articles_per_page = sanitize_numeric($articlesperpage);
 		} else {
 			$zenpage_articles_per_page = ZP_ARTICLES_PER_PAGE;
 		} */
@@ -703,14 +786,23 @@ function getSitemapZenpageNewsIndex() {
 		$newspages = ceil($_zp_zenpage->getTotalArticles() / $zenpage_articles_per_page);
 		if($newspages > 1) {
 			for($x = 2;$x <= $newspages; $x++) {
-				if(sitemap_multilingual()) {
-					foreach($sitemap_locales as $locale) {
-						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/'.$x,'?p=news&amp;page='.$x,false);
-						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-					}
-				} else {
-					$url = FULLWEBPATH.'/'.rewrite_path('news/'.$x,'?p=news&amp;page='.$x,false);
+				switch (SITEMAP_LOCALE_TYPE) {
+					case 1:
+						foreach($sitemap_locales as $locale) {
+							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/'.$x,'?p=news&amp;page='.$x,false);
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						}
+						break;
+					case 2:
+						foreach($sitemap_locales as $locale) {
+							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('news/'.$x,'?p=news&amp;page='.$x,false);
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						}
+						break;
+					default:
+						$url = FULLWEBPATH.'/'.rewrite_path('news/'.$x,'?p=news&amp;page='.$x,false);
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					break;
 				}
 			}
 		}
@@ -743,14 +835,23 @@ function getSitemapZenpageNewsArticles() {
 				if(!is_null($articleobj->getLastchange())) $lastchange = substr($articleobj->getLastchange(),0,10);
 				if($date > $lastchange && !empty($lastchangedate)) $date = $lastchange;
 				if(!$articleobj->inProtectedCategory()) {
-					if(sitemap_multilingual()) {
-						foreach($sitemap_locales as $locale) {
-							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
-							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-						}
-					}	else {
-						$url = FULLWEBPATH.'/'.rewrite_path('news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
+					switch (SITEMAP_LOCALE_TYPE) {
+						case 1:
+							foreach($sitemap_locales as $locale) {
+								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
+								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+							}
+							break;
+						case 2:
+							foreach($sitemap_locales as $locale) {
+								$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
+								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+							}
+							break;
+						default:
+							$url = FULLWEBPATH.'/'.rewrite_path('news/'.urlencode($articleobj->getTitlelink()),'?p=news&amp;title=' . urlencode($articleobj->getTitlelink()),false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						break;
 					}
 				}
 			}
@@ -779,14 +880,23 @@ function getSitemapZenpageNewsCategories() {
 			foreach($newscats as $newscat) {
 				$catobj = new ZenpageCategory($newscat['titlelink']);
 				if(!$catobj->isProtected()) {
-					if(sitemap_multilingual()) {
-						foreach($sitemap_locales as $locale) {
-							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
-							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-						}
-					} else {
-						$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
+					switch (SITEMAP_LOCALE_TYPE) {
+						case 1:
+							foreach($sitemap_locales as $locale) {
+								$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
+								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+							}
+							break;
+						case 2:
+							foreach($sitemap_locales as $locale) {
+								$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
+								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+							}
+							break;
+						default:
+							$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/1','?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page=1',false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+						break;
 					}
 					// getting pages for the categories
 					/*
@@ -800,14 +910,23 @@ function getSitemapZenpageNewsCategories() {
 					$catpages = ceil($articlecount / $zenpage_articles_per_page);
 					if($catpages > 1) {
 						for($x = 2;$x <= $catpages ; $x++) {
-							if(sitemap_multilingual()) {
-								foreach($sitemap_locales as $locale) {
-									$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
-									$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
-								}
-							} else {
-								$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
+							switch (SITEMAP_LOCALE_TYPE) {
+								case 1:
+									foreach($sitemap_locales as $locale) {
+										$url = FULLWEBPATH.'/'.rewrite_path($locale.'/news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
+										$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+									}
+									break;
+								case 2:
+									foreach($sitemap_locales as $locale) {
+										$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
+										$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+									}
+									break;
+								default:
+									$url = FULLWEBPATH.'/'.rewrite_path('news/category/'.urlencode($catobj->getTitlelink()).'/'.$x,'?p=news&amp;category=' . urlencode($catobj->getTitlelink()).'&amp;page='.$x,false);
 								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+								break;
 							}
 						}
 					}

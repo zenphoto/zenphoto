@@ -251,14 +251,13 @@ class security_logger {
 				if ($success) return true;
 				break;
 		}
+	$name = '';
 		if ($success) {
 			$admin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = '';	// mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();
 			}
-		} else {
-			$name = '';
 		}
 		security_logger::Logger($success, $user, $name, getUserIP(), 'Front-end', $athority, $pass);
 		return $success;

@@ -51,6 +51,7 @@ class menu_manager {
 		$options = array(
 									gettext('Truncate indicator*') =>array('key' => 'menu_truncate_indicator', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 2,
+										'disabled' => $_common_truncate_handler,
 										'desc' => gettext('Append this string to truncated titles.')),
 									gettext('Truncate titles*') =>array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 1,

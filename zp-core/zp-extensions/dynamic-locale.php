@@ -26,8 +26,13 @@ $option_interface = 'dynamic_locale';
 
 zp_register_filter('theme_head', 'dynamic_locale::dynamic_localeJS');
 
-define('SUBDOMAIN_LOCALES',getOption('dynamic_locale_subdomain'));
-define('SEO_LOCALES',function_exists('filterLocale_load_request'));
+if (getOption('dynamic_locale_subdomain')) {
+	define('LOCALE_TYPE',2);
+} else if (getOption('zp_plugin_seo_locale') && MOD_REWRITE) {
+	define('LOCALE_TYPE',1);
+} else {
+	define('LOCALE_TYPE',0);
+}
 
 /**
  * prints a form for selecting a locale
@@ -66,18 +71,22 @@ function printLanguageSelector($flags=NULL) {
 				<li<?php if ($lang==$currentValue) echo ' class="currentLanguage"'; ?>>
 					<?php
 					if ($lang!=$currentValue) {
-						if (SUBDOMAIN_LOCALES) {
-							?>
-							<a href="<?php echo dynamic_locale::fullHostPath().html_encode($_SERVER['REQUEST_URI']); ?>" >
-							<?php
-						} else if (SEO_LOCALES) {
-							?>
-							<a href="<?php echo html_encode(str_replace(WEBPATH, WEBPATH.'/'.substr($lang,0,2), $_SERVER['REQUEST_URI'])); ?>" >
-							<?php
-						} else {
-							?>
-							<a href="?locale=<?php echo $lang; ?>" >
-							<?php
+						switch (LOCALE_TYPE) {
+							case 2:
+								?>
+								<a href="<?php echo dynamic_locale::fullHostPath($lang).html_encode($_SERVER['REQUEST_URI']); ?>" >
+								<?php
+								break;
+							case 1:
+								?>
+								<a href="<?php echo html_encode(str_replace(WEBPATH, WEBPATH.'/'.substr($lang,0,2), $_SERVER['REQUEST_URI'])); ?>" >
+								<?php
+								break;
+							default:
+								?>
+								<a href="?locale=<?php echo $lang; ?>" >
+								<?php
+								break;
 						}
 					}
 					$flag = getLanguageFlag($lang);
@@ -128,11 +137,27 @@ class dynamic_locale {
 	}
 
 	function getOptionsSupported() {
-		return array(	gettext('Use flags') => array('key' => 'dynamic_locale_visual', 'type' => OPTION_TYPE_CHECKBOX,
+		global $_common_locale_type;
+		$options = array(	gettext('Use flags') => array('key' => 'dynamic_locale_visual', 'type' => OPTION_TYPE_CHECKBOX,
+										'order'=>0,
 										'desc' => gettext('Checked produces an array of flags. Not checked produces a selector.')),
-									gettext('Use subdomains') => array('key' => 'dynamic_locale_subdomain', 'type' => OPTION_TYPE_CHECKBOX,
+									gettext('Use subdomains').'*' => array('key' => 'dynamic_locale_subdomain', 'type' => OPTION_TYPE_CHECKBOX,
+										'order'=>1,
+										'disabled' => $_common_locale_type,
 										'desc' => '<p>'.gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the two letter language code, e.g. <code><em>fr</em></code> for French.').'</p><p>'.gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains the main domain. If your provier does this, no subdomain creation is needed.)').'</p>')
 								);
+		if ($_common_locale_type) {
+			$options['note'] = array('key' => 'dynamic_locale_type', 'type' => OPTION_TYPE_NOTE,
+																'order' => 2,
+																'desc' => '<p class="notebox">'.$_common_locale_type.'</p>');
+		} else {
+			$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'dynamic-locale\');"><em>dynamic-locale</em></a> plugin options.');
+			$options['note'] = array('key' => 'dynamic_locale_type',
+															'type' => OPTION_TYPE_NOTE,
+															'order' => 2,
+															'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+		}
+		return $options;
 	}
 
 	static function dynamic_localeJS() {
@@ -141,15 +166,14 @@ class dynamic_locale {
 		<?php
 	}
 
-	static function fullHostPath() {
+	static function fullHostPath($lang) {
 		$host = $_SERVER['HTTP_HOST'];
 		$matches = explode('.',$host);
 		if (validateLocale($matches[0], 'Dynamic Locale')) {
 			array_shift($matches);
 			$host = implode('.',$matches);
 		}
-		$subdomain = substr($lang,0,2);
-		$host = $subdomain.'.'.$host;
+		$host = $lang.'.'.$host;
 		if (SERVER_PROTOCOL == 'https') {
 			$host = 'https://'.$host;
 		} else {

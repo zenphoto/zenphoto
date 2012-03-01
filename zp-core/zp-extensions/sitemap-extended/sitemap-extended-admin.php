@@ -10,8 +10,8 @@
 define('OFFSET_PATH', 3);
 chdir(dirname(dirname(__FILE__)));
 
-require_once('../../zp-core/admin-globals.php');
-require_once('../../zp-core/template-functions.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 
 admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
 
