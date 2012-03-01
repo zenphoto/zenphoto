@@ -108,7 +108,7 @@ function printThemeInfo() {
 	if ($personality == 'Image page') {
 		$personality = '';
 	} else if (($personality == 'Simpleviewer' && !class_exists('simpleviewer')) ||
-							($personality == 'Colorbox' && !getOption('zp_plugin_colorbox'))) {
+							($personality == 'Colorbox' && !zp_has_filter('admin_head','colorbox::css'))) {
 		$personality = "<strike>$personality</strike>";
 	}
 	$personality = str_replace('_', ' ', $personality);

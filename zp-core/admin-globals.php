@@ -160,7 +160,7 @@ if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_null_account) {
 $zenphoto_tabs = zp_apply_filter('admin_tabs', $zenphoto_tabs);
 
 //	so as to make it generally available as we make much use of it
-require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox_js.php');
 $last = getOption('last_update_check');
 if (is_numeric($last)) {
 	if (time() > $last+1728000) {	//	check each 20 days

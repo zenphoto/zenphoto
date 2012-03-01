@@ -194,6 +194,13 @@ setOptionDefault('locale', '');
 setOptionDefault('date_format', '%x');
 
 // plugins--default to enabled
+if (!is_null($v = getOption('zp_plugin_colorbox'))) {
+	setOption('zp_plugin_colorbox_js', $v);
+	purgeOption('zp_plugin_colorbox');
+} else {
+	setOptionDefault('zp_plugin_colorbox_js', 9|THEME_PLUGIN);
+}
+
 
 setOptionDefault('zp_plugin_class-video', 9|CLASS_PLUGIN);
 

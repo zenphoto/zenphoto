@@ -22,7 +22,7 @@ if (is_array($IPlist)) {
 }
 if(!$oldrating || getOption('rating_recast')) {
 	if ($rating) {
-		$_rating_current_IPlist[$ip] = $rating;
+		$_rating_current_IPlist[$ip] = (float) $rating;
 	} else {
 		if (isset($_rating_current_IPlist[$ip])) {
 			unset($_rating_current_IPlist[$ip]); // retract vote

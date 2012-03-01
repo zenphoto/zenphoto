@@ -171,13 +171,14 @@ class dynamic_locale {
 	}
 
 	static function fullHostPath($lang) {
+		global $_locale_Subdomains;
 		$host = $_SERVER['HTTP_HOST'];
 		$matches = explode('.',$host);
 		if (validateLocale($matches[0], 'Dynamic Locale')) {
 			array_shift($matches);
 			$host = implode('.',$matches);
 		}
-		$host = substr($lang,0,2).'.'.$host;
+		$host = $_locale_Subdomains[$lang].$host;
 		if (SERVER_PROTOCOL == 'https') {
 			$host = 'https://'.$host;
 		} else {
@@ -186,7 +187,32 @@ class dynamic_locale {
 		return $host;
 	}
 
+	static function LanguageSubdomains() {
+		$domains = array();
+		$langs = generateLanguageList();
+		$domains = array();
+		foreach ($langs as $value) {
+			$domains[substr($value, 0, 2)][] = $value;
+		}
+		$langs = array();
+		foreach ($domains as $simple=>$full) {
+			if (count($full) > 1) {
+				foreach ($full as $loc) {
+					$langs[$loc] = $loc.'.';
+				}
+			} else {
+				$langs[$full[0]] = $simple.'.';
+			}
+		}
+		$main = getOptionFromDB('locale');
+		if (isset($langs[$main])) {
+			$langs[$main] = '';
+		}
+		return $langs;
+	}
 
 }
+
+$_locale_Subdomains = dynamic_locale::LanguageSubdomains();
 
 ?>

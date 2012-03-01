@@ -70,18 +70,18 @@ class colorbox {
 
 	static function css() {
 		global $_zp_gallery;
+		$inTheme = false;
 		if (OFFSET_PATH) {
-			$themepath = 'colorbox/themes/example4/colorbox.css';
-			$inTheme = false;
+			$themepath = 'colorbox_js/themes/example4/colorbox.css';
 		} else {
 			$theme = getOption('colorbox_theme');
 			if(empty($theme)) {
-				$themepath = 'colorbox/themes/example4/colorbox.css';
+				$themepath = 'colorbox_js/themes/example4/colorbox.css';
 			} else {
 				if($theme == 'custom') {
-					$themepath = 'colorbox/colorbox.css';
+					$themepath = 'colorbox_js/colorbox.css';
 				} else {
-					$themepath = 'colorbox/themes/'.$theme.'/colorbox.css';
+					$themepath = 'colorbox_js/themes/'.$theme.'/colorbox.css';
 				}
 				$inTheme = $_zp_gallery->getCurrentTheme();
 			}
@@ -92,10 +92,10 @@ class colorbox {
 		<?php
 		$navigator_user_agent = ( isset( $_SERVER['HTTP_USER_AGENT'] ) ) ? strtolower( $_SERVER['HTTP_USER_AGENT'] ) : '';
 		if (stristr($navigator_user_agent, "msie") && !stristr($navigator_user_agent, '9')) {
-			include(dirname(__FILE__).'/colorbox/colorbox_ie.css.php');
+			include(dirname(__FILE__).'/colorbox_js/colorbox_ie.css.php');
 		}
 		?>
-		<script type="text/javascript" src="<?php echo FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/colorbox/jquery.colorbox-min.js"></script>
+		<script type="text/javascript" src="<?php echo FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/colorbox_js/jquery.colorbox-min.js"></script>
 		<?php
 	}
 
