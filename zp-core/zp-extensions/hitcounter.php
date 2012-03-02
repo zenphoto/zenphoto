@@ -22,14 +22,7 @@ if (!defined('OFFSET_PATH')) {
 				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
 				exitZP();
 			}
-			if (session_id() == '') {
-				// force session cookie to be secure when in https
-				if(secureServer()) {
-					$CookieInfo=session_get_cookie_params();
-					session_set_cookie_params($CookieInfo['lifetime'],$CookieInfo['path'], $CookieInfo['domain'],TRUE);
-				}
-				session_start();
-			}
+			zp_session_start();
 			XSRFdefender('hitcounter');
 			query('UPDATE ' . prefix('albums') . ' SET `hitcounter`= 0');
 			query('UPDATE ' . prefix('images') . ' SET `hitcounter`= 0');

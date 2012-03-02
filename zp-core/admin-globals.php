@@ -7,15 +7,7 @@
 // force UTF-8 Ø
 
 require_once(dirname(__FILE__).'/functions-basic.php');
-
-if (session_id() == '') {
-	// force session cookie to be secure when in https
-	if(secureServer()) {
-		$CookieInfo=session_get_cookie_params();
-		session_set_cookie_params($CookieInfo['lifetime'],$CookieInfo['path'], $CookieInfo['domain'],TRUE);
-	}
-	session_start();
-}
+zp_session_start();
 if (SERVER_PROTOCOL == 'https_admin') {
 	// force https login
 	if (!isset($_SERVER["HTTPS"])) {

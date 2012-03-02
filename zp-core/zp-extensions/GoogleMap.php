@@ -19,8 +19,8 @@ $plugin_author = 'Stephen Billard (sbillard)';
 
 $option_interface = 'googleMap';
 if (isset($_zp_gallery_page) && $_zp_gallery_page != 'index.php') {
-	if (session_id() == '' && getOption('gmap_sessions')) {
-		session_start();
+	if (getOption('gmap_sessions')) {
+		zp_session_start();;
 	}
 	zp_register_filter('theme_head','googleMap::js');
 }

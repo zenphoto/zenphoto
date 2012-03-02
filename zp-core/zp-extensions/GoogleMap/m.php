@@ -10,7 +10,7 @@
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))).'/functions.php');
 if (getOption('gmap_sessions')) {
-	session_start();
+	zp_session_start();
 }
 require_once(dirname(dirname(__FILE__)).'/GoogleMap.php');
 header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');

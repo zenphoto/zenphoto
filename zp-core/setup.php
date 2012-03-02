@@ -5,6 +5,7 @@
  */
 
 // force UTF-8 Ø
+$session = session_start();
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if(!function_exists("gettext")) {
 	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
@@ -93,7 +94,7 @@ if (session_id() == '') {
 }
 
 $zp_cfg = @file_get_contents(CONFIGFILE);
-$xsrftoken = sha1(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
+$xsrftoken = sha1(CONFIGFILE.$zp_cfg.session_id());
 
 $updatezp_config = false;
 if (isset($_GET['mod_rewrite'])) {
@@ -406,9 +407,6 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	global $_zp_conf_vars;
 	$good = true;
 
-	?>
-<ul>
-<?php
 if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	if (function_exists('checkForUpdate')) {
 		$v = checkForUpdate();
@@ -424,6 +422,9 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			}
 		}
 	}
+	?>
+	<ul>
+	<?php
 	$prevRel = getOption('zenphoto_version');
 	if (empty($prevRel)) {
 		// pre 1.4.2 release, compute the version
@@ -484,10 +485,6 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
 }
 
-	$required = '5.0.0';
-	$desired = '5.3';
-	$err = versionCheck($required, $desired, PHP_VERSION);
-	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired), false) && $good;
 	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup.log';
 	$permission = fileperms($path)&0777;
 	if (checkPermissions($permission, 0600)) {
@@ -497,6 +494,11 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"),
 							sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
+	$required = '5.0.0';
+	$desired = '5.3';
+	$err = versionCheck($required, $desired, PHP_VERSION);
+	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired), false) && $good;
+	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
 	$register_globals = preg_match('#(1|ON)#i', ini_get('register_globals'));
 	$good = checkMark(!$register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>.'.(is_string($register_globals)?' '.gettext('<strong>Note</strong>: There should be no quotation marks in this setting!'):''))) && $good;
 	if (preg_match('#(1|ON)#i', ini_get('safe_mode'))) {

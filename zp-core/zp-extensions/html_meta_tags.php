@@ -18,6 +18,8 @@ $option_interface = 'htmlmetatags';
 
 if (in_context(ZP_INDEX)) {
 	zp_register_filter('theme_head','htmlmetatags::getHTMLMetaData'); // insert the meta tags into the <head></head> if on a theme page.
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/dynamic-locale.php');
+	define('METATAG_LOCALE_TYPE', LOCALE_TYPE);
 }
 
 class htmlmetatags {
@@ -53,65 +55,88 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_canonical-url', '0');
 	}
 
- // Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
+	// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
 	function getOptionsSupported() {
-		return array(gettext('Cache control') => array('key' => 'htmlmeta_cache_control', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array('no-cache' => "no-cache",'public' => "public", 'private' => "private",'no-store' => "no-store"),
-										'desc' => gettext("If the browser cache should be used.")),
-		gettext('Pragma') => array('key' => 'htmlmeta_pragma', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array('no-cache' => "no-cache",'cache' => "cache"),
-										'desc' => gettext("If the pages should be allowed to be cached on proxy servers.")),
-		gettext('Robots') => array('key' => 'htmlmeta_robots', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array('noindex' => "noindex", 'index' => "index",	'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow",'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow",	'none' => "none"),
-										'desc' => gettext("If and how robots are allowed to visit the site. Default is 'index'. Note that you also should use a robot.txt file.")),
-		gettext('Revisit after') => array('key' => 'htmlmeta_revisit_after', 'type' => OPTION_TYPE_TEXTBOX,
-									'desc' => gettext("Request the crawler to revisit the page after x days.")),
-		gettext('Expires') => array('key' => 'htmlmeta_expires', 'type' => OPTION_TYPE_TEXTBOX,
-									'desc' => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
-		gettext('Canonical URL link') => array('key' => 'htmlmeta_canonical-url', 'type' => OPTION_TYPE_CHECKBOX,
-									'desc' => gettext("This adds a link element to the head of each page with a <em>canonical url</em>. If the seo_locale plugin is enabled it also generates alternate links for other languages (<link rel='alternate' hreflang='' href='' />).")),
-		gettext('HTML meta tags') => array('key' => 'htmlmeta_tags', 'type' => OPTION_TYPE_CHECKBOX_UL,
-										"checkboxes" => array(
-												"http-equiv='language'" => "htmlmeta_http-equiv-language",
-												"name = 'language'"=>  "htmlmeta_name-language",
-												"content-language" => "htmlmeta_name-content-language",
-												"http-equiv='imagetoolbar' ('false')" => "htmlmeta_http-equiv-imagetoolbar",
-												"http-equiv='cache-control'" => "htmlmeta_http-equiv-cache-control",
-												"http-equiv='pragma'" => "htmlmeta_http-equiv-pragma",
-												"http-equiv='content-style-type'" => "htmlmeta_http-equiv-content-style-type",
-												"name='title'" => "htmlmeta_name-title",
-												"name='keywords'" => "htmlmeta_name-keywords",
-												"name='description'" => "htmlmeta_name-description",
-												"name='page-topic'" => "htmlmeta_name-page-topic",
-												"name='robots'" => "htmlmeta_name-robots",
-												"name='publisher'" => "htmlmeta_name-publisher",
-												"name='creator'" => "htmlmeta_name-creator",
-												"name='author'" => "htmlmeta_name-author",
-												"name='copyright'" => "htmlmeta_name-copyright",
-												"name='rights'" => "htmlmeta_name-rights",
-												"name='generator' ('Zenphoto')" => "htmlmeta_name-generator",
-												"name='revisit-after'" => "htmlmeta_name-revisit-after",
-												"name='expires'" => "htmlmeta_name-expires",
-												"name='date'" => "htmlmeta_name-date",
-												"name='DC.title'" => "htmlmeta_name-DC.title",
-												"name='DC.keywords'" => "htmlmeta_name-DC.keywords",
-												"name='DC.description'" => "htmlmeta_name-DC.description",
-												"name='DC.language'" => "htmlmeta_name-DC.language",
-												"name='DC.subject'" => "htmlmeta_name-DC.subject",
-												"name='DC.publisher'" => "htmlmeta_name-DC.publisher",
-												"name='DC.creator'" => "htmlmeta_name-DC.creator",
-												"name='DC.date'" => "htmlmeta_name-DC.date",
-												"name='DC.type'" => "htmlmeta_name-DC.type",
-												"name='DC.format'" => "htmlmeta_name-DC.format",
-												"name='DC.identifier'" => "htmlmeta_name-DC.identifier",
-												"name='DC.rights'" => "htmlmeta_name-DC.rights",
-												"name='DC.source'" => "htmlmeta_name-DC.source",
-												"name='DC.relation'" => "htmlmeta_name-DC.relation",
-												"name='DC.Date.created'" => "htmlmeta_name-DC.Date.created"
-												),
-										"desc" => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net."))
+		global $_common_locale_type;
+		$localdesc = '<p>'.gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.').'</p>';
+		if (!$_common_locale_type) {
+			$localdesc .= '<p>'.gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provier does this, no subdomain creation is needed.)').'</p>';
+		}
+		$options = array(gettext('Cache control') => array('key' => 'htmlmeta_cache_control', 'type' => OPTION_TYPE_SELECTOR,
+																										'order'=>0,
+																										'selections' => array('no-cache' => "no-cache",'public' => "public", 'private' => "private",'no-store' => "no-store"),
+																										'desc' => gettext("If the browser cache should be used.")),
+										gettext('Pragma') => array('key' => 'htmlmeta_pragma', 'type' => OPTION_TYPE_SELECTOR,
+																										'selections' => array('no-cache' => "no-cache",'cache' => "cache"),
+																										'desc' => gettext("If the pages should be allowed to be cached on proxy servers.")),
+										gettext('Robots') => array('key' => 'htmlmeta_robots', 'type' => OPTION_TYPE_SELECTOR,
+																										'selections' => array('noindex' => "noindex", 'index' => "index",	'nofollow' => "nofollow", 'noindex,nofollow' => "noindex,nofollow",'noindex,follow' => "noindex,follow", 'index,nofollow' => "index,nofollow",	'none' => "none"),
+																										'desc' => gettext("If and how robots are allowed to visit the site. Default is 'index'. Note that you also should use a robot.txt file.")),
+										gettext('Revisit after') => array('key' => 'htmlmeta_revisit_after', 'type' => OPTION_TYPE_TEXTBOX,
+																										'desc' => gettext("Request the crawler to revisit the page after x days.")),
+										gettext('Expires') => array('key' => 'htmlmeta_expires', 'type' => OPTION_TYPE_TEXTBOX,
+																										'desc' => gettext("When the page should be loaded directly from the server and not from any cache. You can either set a date/time in international date format <em>Sat, 15 Dec 2001 12:00:00 GMT (example)</em> or a number. A number then means seconds, the default value <em>43200</em> means 12 hours.")),
+										gettext('Canonical URL link') => array('key' => 'htmlmeta_canonical-url', 'type' => OPTION_TYPE_CHECKBOX,
+																										'order'=>11,
+																										'desc' => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
+										gettext('HTML meta tags') => array('key' => 'htmlmeta_tags', 'type' => OPTION_TYPE_CHECKBOX_UL,
+																										"checkboxes" => array(
+																												"http-equiv='language'" => "htmlmeta_http-equiv-language",
+																												"name = 'language'"=>  "htmlmeta_name-language",
+																												"content-language" => "htmlmeta_name-content-language",
+																												"http-equiv='imagetoolbar' ('false')" => "htmlmeta_http-equiv-imagetoolbar",
+																												"http-equiv='cache-control'" => "htmlmeta_http-equiv-cache-control",
+																												"http-equiv='pragma'" => "htmlmeta_http-equiv-pragma",
+																												"http-equiv='content-style-type'" => "htmlmeta_http-equiv-content-style-type",
+																												"name='title'" => "htmlmeta_name-title",
+																												"name='keywords'" => "htmlmeta_name-keywords",
+																												"name='description'" => "htmlmeta_name-description",
+																												"name='page-topic'" => "htmlmeta_name-page-topic",
+																												"name='robots'" => "htmlmeta_name-robots",
+																												"name='publisher'" => "htmlmeta_name-publisher",
+																												"name='creator'" => "htmlmeta_name-creator",
+																												"name='author'" => "htmlmeta_name-author",
+																												"name='copyright'" => "htmlmeta_name-copyright",
+																												"name='rights'" => "htmlmeta_name-rights",
+																												"name='generator' ('Zenphoto')" => "htmlmeta_name-generator",
+																												"name='revisit-after'" => "htmlmeta_name-revisit-after",
+																												"name='expires'" => "htmlmeta_name-expires",
+																												"name='date'" => "htmlmeta_name-date",
+																												"name='DC.title'" => "htmlmeta_name-DC.title",
+																												"name='DC.keywords'" => "htmlmeta_name-DC.keywords",
+																												"name='DC.description'" => "htmlmeta_name-DC.description",
+																												"name='DC.language'" => "htmlmeta_name-DC.language",
+																												"name='DC.subject'" => "htmlmeta_name-DC.subject",
+																												"name='DC.publisher'" => "htmlmeta_name-DC.publisher",
+																												"name='DC.creator'" => "htmlmeta_name-DC.creator",
+																												"name='DC.date'" => "htmlmeta_name-DC.date",
+																												"name='DC.type'" => "htmlmeta_name-DC.type",
+																												"name='DC.format'" => "htmlmeta_name-DC.format",
+																												"name='DC.identifier'" => "htmlmeta_name-DC.identifier",
+																												"name='DC.rights'" => "htmlmeta_name-DC.rights",
+																												"name='DC.source'" => "htmlmeta_name-DC.source",
+																												"name='DC.relation'" => "htmlmeta_name-DC.relation",
+																												"name='DC.Date.created'" => "htmlmeta_name-DC.Date.created"
+																												),
+																										"desc" => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
 
-		);
+										gettext('Use subdomains').'*' => array('key' => 'dynamic_locale_subdomain', 'type' => OPTION_TYPE_CHECKBOX,
+																														'order' => 12,
+																														'disabled' => $_common_locale_type,
+																														'desc' => $localdesc)
+											);
+		if ($_common_locale_type) {
+			$options['note'] = array('key' => 'html_meta_tags_locale_type', 'type' => OPTION_TYPE_NOTE,
+																'order' => 13,
+																'desc' => '<p class="notebox">'.$_common_locale_type.'</p>');
+		} else {
+			$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'html_meta_tags\');"><em>html_meta_tags</em></a> plugin options.');
+			$options['note'] = array('key' => 'html_meta_tags_locale_type',
+															'type' => OPTION_TYPE_NOTE,
+															'order' => 13,
+															'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
+		}
+		return $options;
 	}
 
 	/**
@@ -240,51 +265,56 @@ class htmlmetatags {
 		if(getOption('htmlmeta_name-DC.source')) { $meta .= '<meta name="DC.source" content="'.$url.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.relation')) { $meta .= '<meta name="DC.relation" content="'.FULLWEBPATH.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.Date.created')) { $meta .= '<meta name="DC.Date.created" content="'.$date.'" />'."\n"; }
-		if(getOption('htmlmeta_canonical-url')) { 
-			$meta .= '<link rel="canonical" href="'.$canonicalurl.'" />'."\n"; 
-			if(getOption('zp_plugin_seo_locale')) {
+		if(getOption('htmlmeta_canonical-url')) {
+			$meta .= '<link rel="canonical" href="'.$canonicalurl.'" />'."\n";
+			if(METATAG_LOCALE_TYPE) {
 				$langs = generateLanguageList();
 				if(count($langs) != 1) {
 					foreach ($langs as $text=>$lang) {
 						$langcheck = strtr($lang, '_','-');	// in urls we need en_US while for hreflang we need en-US.
-						if($langcheck == $locale) {
-							$altlink = '';
-						} else {
-							switch($_zp_gallery_page) {
-								case 'index.php':
+						if($langcheck != $locale) {
+							switch (METATAG_LOCALE_TYPE) {
+								case 1:
 									$altlink = FULLWEBPATH.'/'.$lang;
 									break;
+								case 2:
+									$altlink = dynamic_locale::fullHostPath($lang);
+									break;
+							}
+							switch($_zp_gallery_page) {
+								case 'index.php':
+									break;
 								case 'album.php':
-									$altlink = FULLWEBPATH.'/'.$lang.'/'.html_encode($_zp_current_album->name);
+									$altlink .= '/'.html_encode($_zp_current_album->name);
 									break;
 								case 'image.php':
-									$altlink = FULLWEBPATH.'/'.$lang.'/'.html_encode($_zp_current_album->name).'/'.html_encode($_zp_current_image->filename).IM_SUFFIX;
+									$altlink .= '/'.html_encode($_zp_current_album->name).'/'.html_encode($_zp_current_image->filename).IM_SUFFIX;
 									break;
 								case 'news.php':
 									if(function_exists("is_NewsArticle")) {
 										if(is_NewsArticle()) {
-											$altlink = FULLWEBPATH.'/'.$lang.'/news/'.html_encode($_zp_current_zenpage_news->getTitlelink());
+											$altlink .= '/news/'.html_encode($_zp_current_zenpage_news->getTitlelink());
 										} else 	if(is_NewsCategory()) {
-											$altlink = FULLWEBPATH.'/'.$lang.'/news/'.html_encode($_zp_current_category->getTitlelink());
+											$altlink .= '/news/'.html_encode($_zp_current_category->getTitlelink());
 										} else {
-											$altlink = FULLWEBPATH.'/'.$lang.'/news';
+											$altlink .= '/news';
 										}
 									}
 									break;
 								case 'pages.php':
-									$altlink = FULLWEBPATH.'/'.$lang.'/pages/'.html_encode($_zp_current_zenpage_page->getTitlelink());
+									$altlink .= '/pages/'.html_encode($_zp_current_zenpage_page->getTitlelink());
 									break;
 								case 'archive.php':
-									$altlink = FULLWEBPATH.'/'.$lang.'/page/'.html_encode('archive');
+									$altlink .= '/page/'.html_encode('archive');
 									break;
 								case 'search.php':
-									$altlink = FULLWEBPATH.'/'.$lang.'/page/'.html_encode('search');
+									$altlink .= '/page/'.html_encode('search');
 									break;
 								case 'contact.php':
-									$altlink = FULLWEBPATH.'/'.$lang.'/page/'.html_encode('contact');
+									$altlink .= '/page/'.html_encode('contact');
 									break;
 								default: // for all other possible none standard custom pages
-									$altlink = FULLWEBPATH.'/'.$lang.'/page/'.html_encode($pagetitle);
+									$altlink .= '/page/'.html_encode($pagetitle);
 									break;
 							} // switch
 							$meta .= '<link rel="alternate" hreflang="'.$langcheck.'" href="'.$altlink.'" />'."\n";

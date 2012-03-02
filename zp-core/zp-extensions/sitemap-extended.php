@@ -21,7 +21,7 @@ $plugin_author = 'Malte Müller (acrylian) based on the plugin by Jeppe Toustrup
 
 $option_interface = 'sitemap';
 
-zp_register_filter('admin_utilities_buttons', 'sitemap_button');
+zp_register_filter('admin_utilities_buttons', 'sitemap-extended::button');
 
 $sitemapfolder = SERVERPATH.'/cache_html/sitemap';
 if (!file_exists($sitemapfolder)) {
@@ -61,7 +61,7 @@ class sitemap {
 
 	function getOptionsSupported() {
 		global $_common_locale_type;
-		$localdesc = '<p>'.gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the two letter language code, e.g. <code><em>fr</em></code> for French.').'</p>';
+		$localdesc = '<p>'.gettext('If checked links to the alternative languages will be in the form <code><em>language</em>.domain</code> where <code><em>language</em></code> is the language code, e.g. <code><em>fr</em></code> for French.').'</p>';
 		if (!$_common_locale_type) {
 			$localdesc .= '<p>'.gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provier does this, no subdomain creation is needed.)').'</p>';
 		}
@@ -177,6 +177,28 @@ class sitemap {
 
 	function handleOption($option, $currentValue) {
 	}
+
+	/**
+	 * creates the Utilities button to purge the static sitemap cache
+	 * @param array $buttons
+	 * @return array
+	 */
+	static function button($buttons) {
+		$buttons[] = array(
+									'category'=>gettext('seo'),
+									'enable'=>true,
+									'button_text'=>gettext('Sitemap tools'),
+									'formname'=>'sitemap_button',
+									'action'=>PLUGIN_FOLDER.'/sitemap-extended/sitemap-extended-admin.php',
+									'icon'=>'images/cache1.png',
+									'title'=>gettext('Sitemap tools.'),
+									'alt'=>'',
+									'hidden'=> '',
+									'rights'=> ADMIN_RIGHTS
+		);
+		return $buttons;
+	}
+
 }
 
 if(isset($_GET['sitemap'])) {
@@ -186,27 +208,6 @@ if(isset($_GET['sitemap'])) {
 		echo $sitemapfile;
 	}
 	exitZP();
-}
-
-/**
- * creates the Utilities button to purge the static sitemap cache
- * @param array $buttons
- * @return array
- */
-function sitemap_button($buttons) {
-	$buttons[] = array(
-								'category'=>gettext('seo'),
-								'enable'=>true,
-								'button_text'=>gettext('Sitemap tools'),
-								'formname'=>'sitemap_button',
-								'action'=>PLUGIN_FOLDER.'/sitemap-extended/sitemap-extended-admin.php',
-								'icon'=>'images/cache1.png',
-								'title'=>gettext('Sitemap tools.'),
-								'alt'=>'',
-								'hidden'=> '',
-								'rights'=> ADMIN_RIGHTS
-	);
-	return $buttons;
 }
 
 /**

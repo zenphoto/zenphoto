@@ -29,13 +29,8 @@ $_zp_captcha = new Captcha();
 //setup session before checking for logon cookie
 require_once(dirname(__FILE__).'/functions-i18n.php');
 
-if (GALLERY_SESSION && session_id() == '') {
-	// force session cookie to be secure when in https
-	if(secureServer()) {
-		$CookieInfo=session_get_cookie_params();
-		session_set_cookie_params($CookieInfo['lifetime'],$CookieInfo['path'], $CookieInfo['domain'],TRUE);
-	}
-	session_start();
+if (GALLERY_SESSION) {
+	zp_session_start();
 }
 
 define('ZENPHOTO_LOCALE',setMainDomain());

@@ -1582,5 +1582,18 @@ function installSignature() {
 							);
 }
 
-
+/**
+ *
+ * Starts a zenphoto session (perhaps a secure one)
+ */
+function zp_session_start() {
+	if (session_id() == '') {
+		// force session cookie to be secure when in https
+		if(secureServer()) {
+			$CookieInfo=session_get_cookie_params();
+			session_set_cookie_params($CookieInfo['lifetime'],$CookieInfo['path'], $CookieInfo['domain'],TRUE);
+		}
+		session_start();
+	}
+}
 ?>
