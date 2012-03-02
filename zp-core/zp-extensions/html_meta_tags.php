@@ -158,8 +158,7 @@ class htmlmetatags {
 		$url = $host.sanitize($_SERVER['REQUEST_URI']);
 
 		// Convert locale shorttag to allowed html meta format
-		$locale = getOption("locale");
-		$locale = strtr($locale,"_","-");
+		$locale = strtr(getOption("locale"),"_","-");
 		$canonicalurl = '';
 		// generate page title, get date
 		$pagetitle = ""; // for gallery index setup below switch
@@ -264,7 +263,7 @@ class htmlmetatags {
 		if(getOption('htmlmeta_name-rights')) { $meta .= '<meta name="rights" content="'.$author.'" />'."\n"; }
 		if(getOption('htmlmeta_name-revisit-after')) { $meta .= '<meta name="revisit-after" content="'.getOption("htmlmeta_revisit_after").'" />'."\n"; }
 		if(getOption('htmlmeta_name-expires')) { $meta .= '<meta name="expires" content="'.getOption("htmlmeta_expires").'" />'."\n"; }
-		
+
 		// DC meta data
 		if(getOption('htmlmeta_name-DC.title')) { $meta .= '<meta name="DC.title" content="'.$pagetitle.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.keywords')) { $meta .= '<meta name="DC.keywords" content="'.gettMetaKeywords().'" />'."\n"; }
@@ -281,14 +280,14 @@ class htmlmetatags {
 		if(getOption('htmlmeta_name-DC.source')) { $meta .= '<meta name="DC.source" content="'.$url.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.relation')) { $meta .= '<meta name="DC.relation" content="'.FULLWEBPATH.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.Date.created')) { $meta .= '<meta name="DC.Date.created" content="'.$date.'" />'."\n"; }
-		
+
 		// OpenGraph meta
 		if(getOption('htmlmeta_og.title')) { $meta .= '<meta property="og:title" content="'.$pagetitle.'" />'."\n"; }
 		if(getOption('htmlmeta_og.image') && !empty($thumb)) { $meta .= '<meta property="og:image" content="'.thumb.'" />'."\n"; }
 		if(getOption('htmlmeta_og.description')) { $meta .= '<meta property="og:description" content="'.FULLWEBPATH.'" />'."\n"; }
 		if(getOption('htmlmeta_og.url')) { $meta .= '<meta property="og:url" content="'.$url.'" />'."\n"; }
 		if(getOption('htmlmeta_og.type')) { $meta .= '<meta property="og:type" content="'.$type.'" />'."\n"; }
-		
+
 		// Canonical url
 		if(getOption('htmlmeta_canonical-url')) {
 			$meta .= '<link rel="canonical" href="'.$canonicalurl.'" />'."\n";

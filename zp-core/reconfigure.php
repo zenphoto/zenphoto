@@ -107,6 +107,7 @@ function reconfigureCS() {
 
 function reconfigurePage() {
 	list($diff, $needs) = checkSignature();
+
 	?>
 	<div class="notebox">
 		<h1>
@@ -134,7 +135,7 @@ function reconfigurePage() {
 						break;
 					default:
 						$sz = @filesize(SERVERPATH.'/'.ZENFOLDER.'/'.$thing);
-						echo '<li>'.sprintf(gettext('The size of <code>%1$s</code> has changed from %2$s to %3$s.'),$thing,$old, $sz).'</li>';
+						echo '<li>'.sprintf(gettext('The script <code>%1$s</code> has changed.'),$thing).'</li>';
 						break;
 				}
 			}

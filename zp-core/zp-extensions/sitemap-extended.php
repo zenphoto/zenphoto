@@ -21,7 +21,7 @@ $plugin_author = 'Malte Müller (acrylian) based on the plugin by Jeppe Toustrup
 
 $option_interface = 'sitemap';
 
-zp_register_filter('admin_utilities_buttons', 'sitemap-extended::button');
+zp_register_filter('admin_utilities_buttons', 'sitemap::button');
 
 $sitemapfolder = SERVERPATH.'/cache_html/sitemap';
 if (!file_exists($sitemapfolder)) {
