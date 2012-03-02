@@ -53,6 +53,7 @@ class htmlmetatags {
 		setOptionDefault('htmlmeta_name-generator', '1');
 		setOptionDefault('htmlmeta_name-date', '1');
 		setOptionDefault('htmlmeta_canonical-url', '0');
+		setOptionDefault('htmlmeta_sitelogo', '');
 	}
 
 	// Gettext calls are removed because some terms like "noindex" are fixed terms that should not be translated so user know what setting they make.
@@ -79,6 +80,8 @@ class htmlmetatags {
 										gettext('Canonical URL link') => array('key' => 'htmlmeta_canonical-url', 'type' => OPTION_TYPE_CHECKBOX,
 																										'order'=>11,
 																										'desc' => gettext('This adds a link element to the head of each page with a <em>canonical url</em>. If the <code>seo_locale</code> plugin is enabled or <code>use subdomains</code> is checked it also generates alternate links for other languages (<code>&lt;link&nbsp;rel="alternate" hreflang="</code>...<code>" href="</code>...<code>" /&gt;</code>).')),
+										gettext('Site logo') => array('key' => 'htmlmeta_sitelogo', 'type' => OPTION_TYPE_TEXTBOX,
+																										'desc' => gettext("Enter the full url to a specific site logo image. Facebook, Google+ and others will use that as the thumb shown in link previews within posts. For image or album pages the default size album or image thumb is used automatically.")),
 										gettext('HTML meta tags') => array('key' => 'htmlmeta_tags', 'type' => OPTION_TYPE_CHECKBOX_UL,
 																										"checkboxes" => array(
 																												"http-equiv='language'" => "htmlmeta_http-equiv-language",
@@ -116,7 +119,12 @@ class htmlmetatags {
 																												"name='DC.rights'" => "htmlmeta_name-DC.rights",
 																												"name='DC.source'" => "htmlmeta_name-DC.source",
 																												"name='DC.relation'" => "htmlmeta_name-DC.relation",
-																												"name='DC.Date.created'" => "htmlmeta_name-DC.Date.created"
+																												"name='DC.Date.created'" => "htmlmeta_name-DC.Date.created",
+																												"property='og:title'" => "htmlmeta_og.title",
+																												"property='og:image'" => "htmlmeta_og.image",
+																												"property='og:description'" => "htmlmeta_og.description",
+																												"property='og:url'" => "htmlmeta_og.url",
+																												"property='og:type'" => "htmlmeta_og.type"
 																												),
 																										"desc" => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
 
@@ -157,22 +165,30 @@ class htmlmetatags {
 		$pagetitle = ""; // for gallery index setup below switch
 		$date = strftime(DATE_FORMAT); // if we don't have a item date use current date
 		$desc = getBareGalleryDesc();
+		$thumb = '';
+		if(getOption('htmlmeta_sitelogo')) {
+			$thumb = getOption('htmlmeta_sitelogo');
+		}
+		$type = 'article';
 		switch($_zp_gallery_page) {
 			case 'index.php':
 				$desc = getBareGalleryDesc();
 				$canonicalurl = $host.getGalleryIndexURL();
+				$type = 'website';
 				break;
 			case 'album.php':
 				$pagetitle = getBareAlbumTitle()." - ";
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
 				$canonicalurl = $host.getAlbumLinkURL();
+				$thumb = getAlbumThumb();
 				break;
 			case 'image.php':
 				$pagetitle = getBareImageTitle()." (". getBareAlbumTitle().") - ";
 				$date = getImageDate();
 				$desc = getBareImageDesc();
 				$canonicalurl = $host.getImageLinkURL();
+				$thumb = getImageThumb();
 				break;
 			case 'news.php':
 				if(function_exists("is_NewsArticle")) {
@@ -246,11 +262,11 @@ class htmlmetatags {
 		if(getOption('htmlmeta_name-author')) { $meta .= '<meta name="author" content="'.$author.'" />'."\n"; }
 		if(getOption('htmlmeta_name-copyright')) { $meta .= '<meta name="copyright" content=" (c) '.FULLWEBPATH.' - '.$author.'" />'."\n"; }
 		if(getOption('htmlmeta_name-rights')) { $meta .= '<meta name="rights" content="'.$author.'" />'."\n"; }
-		if(getOption('htmlmeta_name-rights')) { $meta .= '<meta name="generator" content="Zenphoto '.ZENPHOTO_VERSION . ' [' . ZENPHOTO_RELEASE . ']" />'."\n"; }
 		if(getOption('htmlmeta_name-revisit-after')) { $meta .= '<meta name="revisit-after" content="'.getOption("htmlmeta_revisit_after").'" />'."\n"; }
 		if(getOption('htmlmeta_name-expires')) { $meta .= '<meta name="expires" content="'.getOption("htmlmeta_expires").'" />'."\n"; }
-		if(getOption('htmlmeta_name-expires')) { $meta .= '<meta name="date" content="'.$date.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.titl')) { $meta .= '<meta name="DC.title" content="'.$pagetitle.'" />'."\n"; }
+		
+		// DC meta data
+		if(getOption('htmlmeta_name-DC.title')) { $meta .= '<meta name="DC.title" content="'.$pagetitle.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.keywords')) { $meta .= '<meta name="DC.keywords" content="'.gettMetaKeywords().'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.description')) { $meta .= '<meta name="DC.description" content="'.$desc.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.language')) { $meta .= '<meta name="DC.language" content="'.$locale.'" />'."\n"; }
@@ -265,6 +281,15 @@ class htmlmetatags {
 		if(getOption('htmlmeta_name-DC.source')) { $meta .= '<meta name="DC.source" content="'.$url.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.relation')) { $meta .= '<meta name="DC.relation" content="'.FULLWEBPATH.'" />'."\n"; }
 		if(getOption('htmlmeta_name-DC.Date.created')) { $meta .= '<meta name="DC.Date.created" content="'.$date.'" />'."\n"; }
+		
+		// OpenGraph meta
+		if(getOption('htmlmeta_og.title')) { $meta .= '<meta property="og:title" content="'.$pagetitle.'" />'."\n"; }
+		if(getOption('htmlmeta_og.image') && !empty($thumb)) { $meta .= '<meta property="og:image" content="'.thumb.'" />'."\n"; }
+		if(getOption('htmlmeta_og.description')) { $meta .= '<meta property="og:description" content="'.FULLWEBPATH.'" />'."\n"; }
+		if(getOption('htmlmeta_og.url')) { $meta .= '<meta property="og:url" content="'.$url.'" />'."\n"; }
+		if(getOption('htmlmeta_og.type')) { $meta .= '<meta property="og:type" content="'.$type.'" />'."\n"; }
+		
+		// Canonical url
 		if(getOption('htmlmeta_canonical-url')) {
 			$meta .= '<link rel="canonical" href="'.$canonicalurl.'" />'."\n";
 			if(METATAG_LOCALE_TYPE) {
