@@ -478,6 +478,8 @@ function genAlbumUploadList(&$list, $curAlbum=NULL) {
 define ('CUSTOM_OPTION_PREFIX', '_ZP_CUSTOM_');
 /**
  * Generates the HTML for custom options (e.g. theme options, plugin options, etc.)
+ * Note: option names may not contain '.', '+', nor '%' as PHP POST handling will replace
+ * these with an underscore.
  *
  * @param object $optionHandler the object to handle custom options
  * @param string $indent used to indent the option for nested options
@@ -725,10 +727,11 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 							// <!-- <![CDATA[
 							function <?php echo $key; ?>_all() {
 								var check = $('#all_<?php echo $key; ?>').attr('checked');
+								if (typeof check == 'undefined') check = false;
 								<?php
 								foreach ($row['checkboxes'] as $display=>$checkbox) {
 									?>
-									$('#<?php echo $checkbox; ?>').attr('checked',check);
+									$('#<?php echo strtolower($checkbox); ?>').attr('checked',check);
 									<?php
 								}
 								?>

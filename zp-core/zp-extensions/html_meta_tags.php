@@ -105,26 +105,26 @@ class htmlmetatags {
 																												"name='revisit-after'" => "htmlmeta_name-revisit-after",
 																												"name='expires'" => "htmlmeta_name-expires",
 																												"name='date'" => "htmlmeta_name-date",
-																												"name='DC.title'" => "htmlmeta_name-DC.title",
-																												"name='DC.keywords'" => "htmlmeta_name-DC.keywords",
-																												"name='DC.description'" => "htmlmeta_name-DC.description",
-																												"name='DC.language'" => "htmlmeta_name-DC.language",
-																												"name='DC.subject'" => "htmlmeta_name-DC.subject",
-																												"name='DC.publisher'" => "htmlmeta_name-DC.publisher",
-																												"name='DC.creator'" => "htmlmeta_name-DC.creator",
-																												"name='DC.date'" => "htmlmeta_name-DC.date",
-																												"name='DC.type'" => "htmlmeta_name-DC.type",
-																												"name='DC.format'" => "htmlmeta_name-DC.format",
-																												"name='DC.identifier'" => "htmlmeta_name-DC.identifier",
-																												"name='DC.rights'" => "htmlmeta_name-DC.rights",
-																												"name='DC.source'" => "htmlmeta_name-DC.source",
-																												"name='DC.relation'" => "htmlmeta_name-DC.relation",
-																												"name='DC.Date.created'" => "htmlmeta_name-DC.Date.created",
-																												"property='og:title'" => "htmlmeta_og.title",
-																												"property='og:image'" => "htmlmeta_og.image",
-																												"property='og:description'" => "htmlmeta_og.description",
-																												"property='og:url'" => "htmlmeta_og.url",
-																												"property='og:type'" => "htmlmeta_og.type"
+																												"name='DC.title'" => "htmlmeta_name-DC-title",
+																												"name='DC.keywords'" => "htmlmeta_name-DC-keywords",
+																												"name='DC.description'" => "htmlmeta_name-DC-description",
+																												"name='DC.language'" => "htmlmeta_name-DC-language",
+																												"name='DC.subject'" => "htmlmeta_name-DC-subject",
+																												"name='DC.publisher'" => "htmlmeta_name-DC-publisher",
+																												"name='DC.creator'" => "htmlmeta_name-DC-creator",
+																												"name='DC.date'" => "htmlmeta_name-DC-date",
+																												"name='DC.type'" => "htmlmeta_name-DC-type",
+																												"name='DC.format'" => "htmlmeta_name-DC-format",
+																												"name='DC.identifier'" => "htmlmeta_name-DC-identifier",
+																												"name='DC.rights'" => "htmlmeta_name-DC-rights",
+																												"name='DC.source'" => "htmlmeta_name-DC-source",
+																												"name='DC.relation'" => "htmlmeta_name-DC-relation",
+																												"name='DC.Date.created'" => "htmlmeta_name-DC-Date-created",
+																												"property='og:title'" => "htmlmeta_og-title",
+																												"property='og:image'" => "htmlmeta_og-image",
+																												"property='og:description'" => "htmlmeta_og-description",
+																												"property='og:url'" => "htmlmeta_og-url",
+																												"property='og:type'" => "htmlmeta_og-type"
 																												),
 																										"desc" => gettext("Which of the HTML meta tags should be used. For info about these in detail please refer to the net.")),
 
@@ -265,28 +265,28 @@ class htmlmetatags {
 		if(getOption('htmlmeta_name-expires')) { $meta .= '<meta name="expires" content="'.getOption("htmlmeta_expires").'" />'."\n"; }
 
 		// DC meta data
-		if(getOption('htmlmeta_name-DC.title')) { $meta .= '<meta name="DC.title" content="'.$pagetitle.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.keywords')) { $meta .= '<meta name="DC.keywords" content="'.gettMetaKeywords().'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.description')) { $meta .= '<meta name="DC.description" content="'.$desc.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.language')) { $meta .= '<meta name="DC.language" content="'.$locale.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.subject')) { $meta .= '<meta name="DC.subject" content="'.$desc.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.publisher')) { $meta .= '<meta name="DC.publisher" content="'.FULLWEBPATH.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.creator')) { $meta .= '<meta name="DC.creator" content="'.FULLWEBPATH.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.date')) { $meta .= '<meta name="DC.date" content="'.$date.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.type')) { $meta .= '<meta name="DC.type" content="Text" /> <!-- ? -->'."\n"; }
-		if(getOption('htmlmeta_name-DC.format')) { $meta .= '<meta name="DC.format" content="text/html" /><!-- What else? -->'."\n"; }
-		if(getOption('htmlmeta_name-DC.identifier')) { $meta .= '<meta name="DC.identifier" content="'.FULLWEBPATH.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.rights')) { $meta .= '<meta name="DC.rights" content="'.FULLWEBPATH.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.source')) { $meta .= '<meta name="DC.source" content="'.$url.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.relation')) { $meta .= '<meta name="DC.relation" content="'.FULLWEBPATH.'" />'."\n"; }
-		if(getOption('htmlmeta_name-DC.Date.created')) { $meta .= '<meta name="DC.Date.created" content="'.$date.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-title')) { $meta .= '<meta name="DC.title" content="'.$pagetitle.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-keywords')) { $meta .= '<meta name="DC.keywords" content="'.gettMetaKeywords().'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-description')) { $meta .= '<meta name="DC.description" content="'.$desc.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-language')) { $meta .= '<meta name="DC.language" content="'.$locale.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-subject')) { $meta .= '<meta name="DC.subject" content="'.$desc.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-publisher')) { $meta .= '<meta name="DC.publisher" content="'.FULLWEBPATH.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-creator')) { $meta .= '<meta name="DC.creator" content="'.FULLWEBPATH.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-date')) { $meta .= '<meta name="DC.date" content="'.$date.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-type')) { $meta .= '<meta name="DC.type" content="Text" /> <!-- ? -->'."\n"; }
+		if(getOption('htmlmeta_name-DC-format')) { $meta .= '<meta name="DC.format" content="text/html" /><!-- What else? -->'."\n"; }
+		if(getOption('htmlmeta_name-DC-identifier')) { $meta .= '<meta name="DC.identifier" content="'.FULLWEBPATH.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-rights')) { $meta .= '<meta name="DC.rights" content="'.FULLWEBPATH.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-source')) { $meta .= '<meta name="DC.source" content="'.$url.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-relation')) { $meta .= '<meta name="DC.relation" content="'.FULLWEBPATH.'" />'."\n"; }
+		if(getOption('htmlmeta_name-DC-Date.created')) { $meta .= '<meta name="DC.Date.created" content="'.$date.'" />'."\n"; }
 
 		// OpenGraph meta
-		if(getOption('htmlmeta_og.title')) { $meta .= '<meta property="og:title" content="'.$pagetitle.'" />'."\n"; }
-		if(getOption('htmlmeta_og.image') && !empty($thumb)) { $meta .= '<meta property="og:image" content="'.thumb.'" />'."\n"; }
-		if(getOption('htmlmeta_og.description')) { $meta .= '<meta property="og:description" content="'.FULLWEBPATH.'" />'."\n"; }
-		if(getOption('htmlmeta_og.url')) { $meta .= '<meta property="og:url" content="'.$url.'" />'."\n"; }
-		if(getOption('htmlmeta_og.type')) { $meta .= '<meta property="og:type" content="'.$type.'" />'."\n"; }
+		if(getOption('htmlmeta_og-title')) { $meta .= '<meta property="og:title" content="'.$pagetitle.'" />'."\n"; }
+		if(getOption('htmlmeta_og-image') && !empty($thumb)) { $meta .= '<meta property="og:image" content="'.thumb.'" />'."\n"; }
+		if(getOption('htmlmeta_og-description')) { $meta .= '<meta property="og:description" content="'.FULLWEBPATH.'" />'."\n"; }
+		if(getOption('htmlmeta_og-url')) { $meta .= '<meta property="og:url" content="'.$url.'" />'."\n"; }
+		if(getOption('htmlmeta_og-type')) { $meta .= '<meta property="og:type" content="'.$type.'" />'."\n"; }
 
 		// Canonical url
 		if(getOption('htmlmeta_canonical-url')) {
