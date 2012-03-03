@@ -92,7 +92,6 @@ setOptionDefault('images_per_page', 15);
 
 setOptionDefault('search_password', '');
 setOptionDefault('search_hint', NULL);
-setOptionDefault('album_session', 0);
 
 if (getOption('perform_watermark')) {
 	$v = str_replace('.png', "", basename(getOption('watermark_image')));

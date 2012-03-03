@@ -2200,7 +2200,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
-				echo "<li><a $current href=\"".$itemurl."\" title=\"".html_encode(strip_tags($itemtitle))."\">".$itemtitle."</a>".$count;
+				echo "<li><a $current href=\"".html_encode($itemurl)."\" title=\"".html_encode(strip_tags($itemtitle))."\">".html_encode($itemtitle)."</a>".$count;
 			}
 		}
 	}
