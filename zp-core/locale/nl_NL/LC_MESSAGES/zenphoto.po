@@ -11832,7 +11832,7 @@ msgstr "Gebruik subdomeinen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/dynamic-locale.php:158
 msgid "* This option may be set via the <a href=\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></a> plugin options."
-msgstr "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></a> plugin opties."
+msgstr "* Deze optie kan worden ingesteld via de <a href=\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/dynamic-locale.php:162
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:133
@@ -11921,7 +11921,7 @@ msgstr "Indien aangevinkt, zal een email verzonden worden naar de administrator 
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:129
 msgid "* The option may be set via the <a href=\"javascript:gotoName('federated_logon');\"><em>register_user</em></a> plugin options.."
-msgstr "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName('federated_logon');\"><em>register_user</em></a> plugin opties."
+msgstr "* Deze optie kan worden ingesteld via de <a href=\"javascript:gotoName('federated_logon');\"><em>register_user</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:248
 #, php-format
@@ -12652,7 +12652,7 @@ msgstr "Welke HTML meta-tags gebruikt moeten worden. Gedetailleerde informatie h
 
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:141
 msgid "* This option may be set via the <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
-msgstr "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin opties."
+msgstr "* Deze optie kan worden ingesteld via de <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/http_auth.php:49
 msgid "Checks for Apache HTTP authentication of authorized users"
@@ -13658,7 +13658,7 @@ msgstr "Indien aangevinkt, zal registratie van een gebruiker gecontroleerd worde
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:94
 msgid "* The option may be set via the <a href=\"javascript:gotoName('register_user');\"><em>register_user</em></a> plugin options.."
-msgstr "* Deze optie(s) worden gedeeld met de <a href=\"javascript:gotoName('register_user');\"><em>register_user</em></a> plugin opties."
+msgstr "* Deze optie kan worden ingesteld via de <a href=\"javascript:gotoName('register_user');\"><em>register_user</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:102
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:103
@@ -14215,7 +14215,7 @@ msgstr "Het aantal albums dat verwerkt wordt voor ieder sitemap bestand. Verlaag
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:169
 msgid "* This option may be set via the <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin options."
-msgstr "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin opties."
+msgstr "* Deze optie kan worden ingesteld via de <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:190
 msgid "Sitemap tools"
