@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-03 12:05+0100\n"
+"POT-Creation-Date: 2012-03-03 18:20+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -412,7 +412,7 @@ msgstr "Album:"
 #: ZpTranslation-Development/themes/effervescence_plus/functions.php:265
 #: ZpTranslation-Development/themes/effervescence_plus/news.php:101
 msgid "Categories: "
-msgstr "CategoriÃ«n:"
+msgstr "Categori&euml;n:"
 
 #: ZpTranslation-Development/themes/effervescence_plus/functions.php:278
 msgid "next &raquo;"
@@ -494,7 +494,7 @@ msgstr[1] "Zoek in albums: %s"
 msgid "Search category: %s"
 msgid_plural "Search categories: %s"
 msgstr[0] "Zoek in categorie: %s"
-msgstr[1] "Zoek in categorieÃ«n: %s"
+msgstr[1] "Zoek in categorie&euml;n: %s"
 
 #: ZpTranslation-Development/themes/effervescence_plus/search.php:144
 #, php-format
@@ -647,7 +647,7 @@ msgstr "Foto van de dag"
 
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:75
 msgid "If checked on the heading image will change daily rather than on each page load."
-msgstr "Als dit is aangevinkt verandert  de header afbeelding Ã©Ã©n keer per dag."
+msgstr "Als dit is aangevinkt verandert  de header afbeelding &eacute;&eacute;n keer per dag."
 
 #: ZpTranslation-Development/themes/effervescence_plus/themeoptions.php:76
 msgid "ZIP file download"
@@ -1306,7 +1306,7 @@ msgstr "Voer CAPTCHA in"
 
 #: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:213
 msgid "Private comment:"
-msgstr "privÃ© reactie:"
+msgstr "priv&eacute; reactie:"
 
 #: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:216
 msgid "(don't publish)"
@@ -1322,7 +1322,7 @@ msgstr "Verzenden"
 
 #: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:233
 msgid "Avoid clicking &ldquo;Post&rdquo; more than once."
-msgstr "Voorkom meer dan Ã©Ã©n keer op <em>verzenden</em> te klikken."
+msgstr "Voorkom meer dan &eacute;&eacute;n keer op <em>verzenden</em> te klikken."
 
 #: ZpTranslation-Development/themes/zenpage/archive.php:37
 msgid "Gallery archive"
@@ -1359,7 +1359,7 @@ msgstr "Galerij en Nieuws"
 
 #: ZpTranslation-Development/themes/zenpage/theme_description.php:10
 msgid "The Zenpage CMS plugin default theme. It does also work without Zenpage installed as a normal theme. It contains extra support for print_album_menu plugin or the menu_manager plugin (one of these should be enabled for album links in the sidebar), the dynamic_locale plugin, the new paged_thumbs_nav plugin and the jCarousel_thumb_nav plugin."
-msgstr "Het Zenpage CMS  basisthema. Dit werkt ook zonder dat Zenpage geÃ¯nstalleerd is. Het biedt ondersteuning voor de print_album_menu plugin, de menu_manager plugin (Ã©Ã©n van deze twee moet actief zijn voor het tonen van albums in de sidebar), de dynamic_locale plugin; plugin, de nieuwe paged_thumbs_nav plugin en de  jCarousel_thumb_nav plugin."
+msgstr "Het Zenpage CMS  basisthema. Dit werkt ook zonder dat Zenpage ge&iuml;nstalleerd is. Het biedt ondersteuning voor de print_album_menu plugin, de menu_manager plugin (&eacute;&eacute;n van deze twee moet actief zijn voor het tonen van albums in de sidebar), de dynamic_locale plugin; plugin, de nieuwe paged_thumbs_nav plugin en de  jCarousel_thumb_nav plugin."
 
 #: ZpTranslation-Development/themes/zenpage/themeoptions.php:48
 msgid "Use Colorbox"
@@ -1576,7 +1576,7 @@ msgstr "Maak de goedkeuring van deze reactie ongedaan"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:202
 msgid "Comment is private"
-msgstr "Reactie is privÃ©"
+msgstr "Reactie is priv&eacute;"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:204
 msgid "Comment is public"
@@ -1665,7 +1665,7 @@ msgstr "Anoniem versturen"
 #: ZpTranslation-Development/zp-core/admin-comments.php:450
 #: ZpTranslation-Development/zp-core/admin-comments.php:487
 msgid "Private message"
-msgstr "privÃ© reactie"
+msgstr "priv&eacute; reactie"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:457
 msgid "Approve this message (not SPAM)"
@@ -1874,7 +1874,7 @@ msgstr "Bewerk dit album"
 #: ZpTranslation-Development/zp-core/admin-edit.php:828
 #: ZpTranslation-Development/zp-core/admin-edit.php:1622
 msgid "Thumbnail generation may be time consuming on slow servers on when there are a lot of images."
-msgstr "Het creÃ«ren van thumbnails kan veel tijd kosten op trage servers of als er zeer veel afbeeldingen zijn."
+msgstr "Het cre&euml;ren van thumbnails kan veel tijd kosten op trage servers of als er zeer veel afbeeldingen zijn."
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:910
 msgid "Click on the image to change the thumbnail cropping."
@@ -2640,11 +2640,11 @@ msgstr "Beheerde albums:"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:2997
 msgid "Managed news categories:"
-msgstr "Beheerde nieuwscategorieÃ«n."
+msgstr "Beheerde nieuwscategorie&euml;n."
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:2999
 msgid "News categories"
-msgstr "NieuwscategorieÃ«n"
+msgstr "Nieuwscategorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:3012
 msgid "Managed pages:"
@@ -2653,7 +2653,7 @@ msgstr "Beheerde pagina's"
 #: ZpTranslation-Development/zp-core/admin-functions.php:3019
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
-msgstr "Selecteer Ã©Ã©n of meer %1$s voor de %2$s om te beheren."
+msgstr "Selecteer &eacute;&eacute;n of meer %1$s voor de %2$s om te beheren."
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:3020
 #: ZpTranslation-Development/zp-core/admin-users.php:819
@@ -2866,7 +2866,7 @@ msgstr "nieuwsartikelen"
 
 #: ZpTranslation-Development/zp-core/admin-globals.php:73
 msgid "categories"
-msgstr "categorieÃ«n"
+msgstr "categorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/admin-globals.php:78
 msgid "tags"
@@ -3084,7 +3084,7 @@ msgstr "HTTP Accept Language"
 #: ZpTranslation-Development/zp-core/admin-options.php:684
 #, php-format
 msgid "Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href=\"%2$s\">translation repository</a> for new and updated language translations."
-msgstr "De geaccentueerde vertalingen (gele achtergrond) zijn niet volledig voor deze versie van Zenphoto (%1$s). De Zenphotoversie waarvoor ze wÃ©l volledig zijn staat tussen accolades.<br />Controleer de <a href=\"%2$s\"><em>translation tickets</em></a> voor de laatste vertalingen."
+msgstr "De geaccentueerde vertalingen (gele achtergrond) zijn niet volledig voor deze versie van Zenphoto (%1$s). De Zenphotoversie waarvoor ze w&eacute;l volledig zijn staat tussen accolades.<br />Controleer de <a href=\"%2$s\"><em>translation tickets</em></a> voor de laatste vertalingen."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:686
 msgid "Multi-lingual"
@@ -3340,7 +3340,7 @@ msgstr "publiek"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:878
 msgid "private"
-msgstr "privÃ©"
+msgstr "priv&eacute;"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:879
 msgid "restricted"
@@ -3348,11 +3348,11 @@ msgstr "beperkt"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:882
 msgid "Private galleries are viewable only by registered users."
-msgstr "PrivÃ© galerieÃ«n zijn alleen zichtbaar voor geregistreerde gebruikers."
+msgstr "Priv&eacute; galerie&euml;n zijn alleen zichtbaar voor geregistreerde gebruikers."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:884
 msgid "Restricted galleries are private galleries but users may see only their managed albums."
-msgstr "Beperkte galerieÃ«n zijn privÃ© galerieÃ«n maar gebruikers kunnen alleen hun eigen toegewezen album zien."
+msgstr "Beperkte galerie&euml;n zijn priv&eacute; galerie&euml;n maar gebruikers kunnen alleen hun eigen toegewezen album zien."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:894
 #: ZpTranslation-Development/zp-core/admin-options.php:940
@@ -3508,7 +3508,7 @@ msgstr "<a href=\"javascript: toggle('multithumb');\" >Info</a> voor <em>Toon su
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1191
 msgid "Setting this option allows selecting images from subalbums as well as from the album. Naturally populating these images adds overhead. If your album edit tabs load too slowly, do not select this option."
-msgstr "Deze optie maakt het mogelijk om Ã³Ã³k thumbnails te selecteren uit subalbums. Dit kan veel tijd kosten.  Als je merkt dat albumopties traag laden kan het verstandig zijn om deze optie niet te gebruiken."
+msgstr "Deze optie maakt het mogelijk om &oacute;&oacute;k thumbnails te selecteren uit subalbums. Dit kan veel tijd kosten.  Als je merkt dat albumopties traag laden kan het verstandig zijn om deze optie niet te gebruiken."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1194
 msgid "<a href=\"javascript:toggle('persistentarchive');\" >Details</a> for <em>enable persistent archive</em>"
@@ -3637,11 +3637,11 @@ msgstr "De zoekfunctie geeft gedeeltelijke overeenkomsten weer uit alle zoekveld
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1444
 msgid "Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target."
-msgstr "Het gebruik van <code>Behandel spaties als</code> <em>OF </em> zorgt ervoor dat de zoekfunctie reageert op elk woord appart indien gescheiden door een spatie. Als je kiest voor <em>EN</em> krijg je alleen resultaten te zie die alle zoektermen bevatten. Indien NIET aangevinkt zullen alle woorden in het zoekvenster samen gezien worden als Ã©Ã©n zoekterm."
+msgstr "Het gebruik van <code>Behandel spaties als</code> <em>OF </em> zorgt ervoor dat de zoekfunctie reageert op elk woord appart indien gescheiden door een spatie. Als je kiest voor <em>EN</em> krijg je alleen resultaten te zie die alle zoektermen bevatten. Indien NIET aangevinkt zullen alle woorden in het zoekvenster samen gezien worden als &eacute;&eacute;n zoekterm."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1445
 msgid "<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search."
-msgstr "<code>Standaard zoeken</code> bepaalt hoe de zoekfunctie werkt. Het zoeken gebeurt Ã³f <em>binnen</em> de zoekresultaten van de vorige zoekopdracht Ã³f er wordt een totaal <em>nieuwe</em> zoekopdracht uitgevoerd."
+msgstr "<code>Standaard zoeken</code> bepaalt hoe de zoekfunctie werkt. Het zoeken gebeurt &oacute;f <em>binnen</em> de zoekresultaten van de vorige zoekopdracht &oacute;f er wordt een totaal <em>nieuwe</em> zoekopdracht uitgevoerd."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1446
 msgid "Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches."
@@ -3854,7 +3854,7 @@ msgstr "Gebruik ingesloten thumbnail"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1781
 msgid "If set, Zenphoto will use the thumbnail imbedded in the image when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image."
-msgstr "Indien aangevinkt, zal Zenphoto de ingesloten thumbnail van de afbeelding gebruiken om een gecachte afbeelding te maken, indien deze kleiner of gelijk is aan de ingesloten thumbnail.<br />Opmerking: de kwaliteit van deze afbeelding is afhankelijk van de gebruikte camera en de oriÃ«ntatie (liggend/staand) kan verschillen van de Ã©chte afbeelding."
+msgstr "Indien aangevinkt, zal Zenphoto de ingesloten thumbnail van de afbeelding gebruiken om een gecachte afbeelding te maken, indien deze kleiner of gelijk is aan de ingesloten thumbnail.<br />Opmerking: de kwaliteit van deze afbeelding is afhankelijk van de gebruikte camera en de ori&euml;ntatie (liggend/staand) kan verschillen van de &eacute;chte afbeelding."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:1785
 msgid "The PHP EXIF extension is required for this option."
@@ -4107,15 +4107,15 @@ msgstr "Voeg IPTC copyright toe"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2151
 msgid "If checked and an image has no IPTC data a copyright notice will be imbedded cached copies."
-msgstr "Als dit is aangevinkt en een afbeelding heeft gÃ©Ã©n IPTC info, wordt er copyright informatie in de afbeeldings-info van gecachte kopiÃ«n geplaatst."
+msgstr "Als dit is aangevinkt en een afbeelding heeft g&eacute;&eacute;n IPTC info, wordt er copyright informatie in de afbeeldings-info van gecachte kopi&euml;n geplaatst."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2153
 msgid "Replicate IPTC metadata"
-msgstr "KopiÃ«er IPTC metadata"
+msgstr "Kopi&euml;er IPTC metadata"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2154
 msgid "If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded."
-msgstr "Als dit is aangevinkt wordt IPTC info van originele afbeeldingen geplaatst in gecachte kopiÃ«n. Als de afbeelding gÃ©Ã©n IPTC info heeft, wordt er copyright informatie in de afbeeldings-info van gecachte kopiÃ«n geplaatst."
+msgstr "Als dit is aangevinkt wordt IPTC info van originele afbeeldingen geplaatst in gecachte kopi&euml;n. Als de afbeelding g&eacute;&eacute;n IPTC info heeft, wordt er copyright informatie in de afbeeldings-info van gecachte kopi&euml;n geplaatst."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2158
 msgid "IPTC Imbedding:"
@@ -4272,7 +4272,7 @@ msgstr "gecombineerd"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2521
 msgid "if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails."
-msgstr "Als zowel het aantal <em>album-thumbnails</em> als het aantal <em>afbeeldings-thumbnails</em> groter is dan 1, kun je hier kiezen of album-thumbnails en afbeeldings-thumbnails samen getoond worden op de pagina die zowel album-thumbnails als afbeeldings-thumbnails weergeeft. (Dit gaat dus op voor albums met daarin afbeeldingen Ã©n sub-albums)"
+msgstr "Als zowel het aantal <em>album-thumbnails</em> als het aantal <em>afbeeldings-thumbnails</em> groter is dan 1, kun je hier kiezen of album-thumbnails en afbeeldings-thumbnails samen getoond worden op de pagina die zowel album-thumbnails als afbeeldings-thumbnails weergeeft. (Dit gaat dus op voor albums met daarin afbeeldingen &eacute;n sub-albums)"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2538
 msgid "Thumb size:"
@@ -4361,7 +4361,7 @@ msgstr "<strong>Unieke themaopties</strong>"
 #: ZpTranslation-Development/zp-core/admin-options.php:2666
 #, php-format
 msgid "The following are options specifically implemented by %s."
-msgstr "De volgende opties zijn specifiek geÃ¯mplementeerd door %s."
+msgstr "De volgende opties zijn specifiek ge&iuml;mplementeerd door %s."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2731
 msgid "Expand plugin options"
@@ -4373,7 +4373,7 @@ msgstr "Klap alle pluginopties in"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2757
 msgid "<strong>NOTE:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string."
-msgstr "<strong>Opmerking:</strong> Het instantiÃ«ren van de optie-interface van de plugin kan problemen geven met de prestaties. Je zou in plaats hiervan de <code>$option_interface</code> de naam van de class als een string geven."
+msgstr "<strong>Opmerking:</strong> Het instanti&euml;ren van de optie-interface van de plugin kan problemen geven met de prestaties. Je zou in plaats hiervan de <code>$option_interface</code> de naam van de class als een string geven."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2788
 msgid "warning"
@@ -4397,7 +4397,7 @@ msgstr "Normaal staat deze optie op <em>http</em>. Als je een beveiligde server 
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2889
 msgid "<strong>Note:</strong><br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected.<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! Your only possibility then is to change the option in the database."
-msgstr "<strong>Opmerking:</strong><br /><br />Inloggen via het front-end login-formulier is alleen veilig als <em>https</em> is geselecteerd.<br /><br />Als je <em>https</em> of <em>beveiligde toegang tot admin</em> selecteerd <strong>MOET</strong> je server <em>https</em> ondersteunen.  Als je Ã©Ã©n van deze twee selecteerd voor een server die gÃ©Ã©n <em>https</em> ondersteund kun je de <code>admin</code> pagina's niet bereiken om de optie te veranderen! De enige mogelijkheid om die dan te veranderen is in de database."
+msgstr "<strong>Opmerking:</strong><br /><br />Inloggen via het front-end login-formulier is alleen veilig als <em>https</em> is geselecteerd.<br /><br />Als je <em>https</em> of <em>beveiligde toegang tot admin</em> selecteerd <strong>MOET</strong> je server <em>https</em> ondersteunen.  Als je &eacute;&eacute;n van deze twee selecteerd voor een server die g&eacute;&eacute;n <em>https</em> ondersteund kun je de <code>admin</code> pagina's niet bereiken om de optie te veranderen! De enige mogelijkheid om die dan te veranderen is in de database."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2898
 msgid "CAPTCHA generator:"
@@ -4827,7 +4827,7 @@ msgstr "Als je een offici&euml;el thema wilt bewerken <em>dupliceer</em> het dan
 
 #: ZpTranslation-Development/zp-core/admin-themes.php:186
 msgid "Installed themes"
-msgstr "GeÃ¯nstalleerde thema's"
+msgstr "Ge&iuml;nstalleerde thema's"
 
 #: ZpTranslation-Development/zp-core/admin-themes.php:187
 msgid "Action"
@@ -5284,7 +5284,7 @@ msgstr[1] "<strong>%1$u</strong> Artikelen (%2$u niet gepubliceerd)"
 msgid "<strong>%1$u</strong> Category"
 msgid_plural "<strong>%1$u</strong> Categories"
 msgstr[0] "<strong>%1$u</strong> categorie"
-msgstr[1] "<strong>%1$u</strong> categorieÃ«n"
+msgstr[1] "<strong>%1$u</strong> categorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/admin.php:229
 msgid "Installation information"
@@ -5559,7 +5559,7 @@ msgstr "Title-link"
 
 #: ZpTranslation-Development/zp-core/class-search.php:69
 msgid "Categories"
-msgstr "CategoriÃ«n"
+msgstr "Categori&euml;n"
 
 #: ZpTranslation-Development/zp-core/error_handlers.php:32
 msgid "<strong>Backtrace:</strong>"
@@ -5588,7 +5588,7 @@ msgstr "ERROR: Bewerking mislukt in"
 
 #: ZpTranslation-Development/zp-core/functions-db-MySQL.php:24
 msgid "MySQL Error: The PHP MySQL extensions have not been installed correctly. Please ask your administrator to add MySQL support to your PHP installation."
-msgstr "MySQL Error: De PHP MySQL extensies zijn niet correct geÃ¯nstalleerd. Vraag a.u.b de administrator om MySQL support aan de PHP installatie toe te voegen."
+msgstr "MySQL Error: De PHP MySQL extensies zijn niet correct ge&iuml;nstalleerd. Vraag a.u.b de administrator om MySQL support aan de PHP installatie toe te voegen."
 
 #: ZpTranslation-Development/zp-core/functions-db-MySQL.php:30
 #: ZpTranslation-Development/zp-core/functions-db-PDO_MySQL.php:28
@@ -5807,7 +5807,7 @@ msgstr "Fins"
 
 #: ZpTranslation-Development/zp-core/functions-i18n.php:60
 msgid "Faroese"
-msgstr "FaerÃ¶ers"
+msgstr "Faer&ouml;ers"
 
 #: ZpTranslation-Development/zp-core/functions-i18n.php:61
 msgid "French (Belgium)"
@@ -5959,7 +5959,7 @@ msgstr "Russisch (Rusland)"
 
 #: ZpTranslation-Development/zp-core/functions-i18n.php:98
 msgid "Russian (Ukraine)"
-msgstr "Russisch (UkraÃ¯ne)"
+msgstr "Russisch (Ukra&iuml;ne)"
 
 #: ZpTranslation-Development/zp-core/functions-i18n.php:99
 msgid "Sinhala"
@@ -6088,7 +6088,7 @@ msgstr "Turks"
 
 #: ZpTranslation-Development/zp-core/functions-i18n.php:131
 msgid "Ukrainian"
-msgstr "OekraÃ¯ens"
+msgstr "Oekra&iuml;ens"
 
 #: ZpTranslation-Development/zp-core/functions-i18n.php:132
 msgid "Uzbek"
@@ -6366,7 +6366,7 @@ msgstr "Originele hoogte"
 
 #: ZpTranslation-Development/zp-core/functions.php:96
 msgid "Orientation"
-msgstr "OriÃ«ntatie"
+msgstr "Ori&euml;ntatie"
 
 #: ZpTranslation-Development/zp-core/functions.php:97
 msgid "Contrast Setting"
@@ -6740,7 +6740,7 @@ msgstr "Gebruikers-album bewerken"
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:90
 msgid "Check if you want <em>edit rights</em> automatically assigned when a user <em>primary album</em> is created."
-msgstr "Vink aan als je wilt dat een gebruiker automatisch <em>bewerkings-rechten</em> bij het creÃ«ren van het  'eigen' album (gastalbum)."
+msgstr "Vink aan als je wilt dat een gebruiker automatisch <em>bewerkings-rechten</em> bij het cre&euml;ren van het  'eigen' album (gastalbum)."
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:91
 msgid "Minimum password strength"
@@ -6887,7 +6887,7 @@ msgstr "Gebruikers met deze rechten kunnen de Zenpage pagina's aanpassen."
 #: ZpTranslation-Development/zp-core/lib-auth.php:532
 #: ZpTranslation-Development/zp-core/lib-auth.php:565
 msgid "Users with this right may edit and manage Zenpage articles and categories."
-msgstr "Gebruikers met deze rechten kunnen de Zenpage artikelen en categorieÃ«n aanpassen."
+msgstr "Gebruikers met deze rechten kunnen de Zenpage artikelen en categorie&euml;n aanpassen."
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:506
 #: ZpTranslation-Development/zp-core/lib-auth.php:534
@@ -6919,7 +6919,7 @@ msgstr "Beheer alle artikelen"
 #: ZpTranslation-Development/zp-core/lib-auth.php:537
 #: ZpTranslation-Development/zp-core/lib-auth.php:570
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category."
-msgstr "Gebruikers zonder \"Admin\" rechten hebben normaal gesproken alleen toegang tot de toegewezen(aangevinkte) onderdelen. Dit recht staat hen toe alle Zenpage artikelen en categorieÃ«n  te beheren."
+msgstr "Gebruikers zonder \"Admin\" rechten hebben normaal gesproken alleen toegang tot de toegewezen(aangevinkte) onderdelen. Dit recht staat hen toe alle Zenpage artikelen en categorie&euml;n  te beheren."
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:509
 #: ZpTranslation-Development/zp-core/lib-auth.php:539
@@ -7500,7 +7500,7 @@ msgstr "Zenphoto licentieovereenkomst"
 #: ZpTranslation-Development/zp-core/license.php:40
 #, php-format
 msgid "This license is in English because the <em>Free Software Foundation</em> does not approve translations as officially valid. Unofficial translations are available <a href=\"%s\">here</a>."
-msgstr "Deze licentie is in het Engels omdat de <em>Free Software Foundation</em> vertalingen niet als officiÃ«el geldig beschouwt.Niet-officÃ«le vertalingen zijn <a href=\"%s\">hier</a> te vinden."
+msgstr "Deze licentie is in het Engels omdat de <em>Free Software Foundation</em> vertalingen niet als offici&euml;el geldig beschouwt.Niet-offic&euml;le vertalingen zijn <a href=\"%s\">hier</a> te vinden."
 
 #: ZpTranslation-Development/zp-core/license.php:47
 msgid "You must accept this license to continue to use Zenphoto."
@@ -7678,7 +7678,7 @@ msgstr "Versie %s is beschikbaar."
 
 #: ZpTranslation-Development/zp-core/setup.php:438
 msgid "Upgrade from before Zenphoto v1.2"
-msgstr "Upgrade van vÃ³Ã³r Zenphoto versie 1.2"
+msgstr "Upgrade van v&oacute;&oacute;r Zenphoto versie 1.2"
 
 #: ZpTranslation-Development/zp-core/setup.php:449
 #: ZpTranslation-Development/zp-core/setup.php:465
@@ -7752,7 +7752,7 @@ msgstr "PHP <code>Register Globals</code> is [ingesteld]"
 
 #: ZpTranslation-Development/zp-core/setup.php:503
 msgid "<strong>Note</strong>: There should be no quotation marks in this setting!"
-msgstr "<strong>LET OP!:</strong> Er mogen gÃ©Ã©n aanhalingstekens gebruikt worden!"
+msgstr "<strong>LET OP!:</strong> Er mogen g&eacute;&eacute;n aanhalingstekens gebruikt worden!"
 
 #: ZpTranslation-Development/zp-core/setup.php:503
 msgid "PHP Register globals presents a security risk to any PHP application. See <a href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>."
@@ -7832,7 +7832,7 @@ msgstr "PHP <code>setlocale()</code> mislukt"
 
 #: ZpTranslation-Development/zp-core/setup.php:528
 msgid "Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work."
-msgstr "Localisatiefunctionaliteit is niet geÃ¯mplementeerd op je platform of de betreffende localisatie bestaat niet. Het is mogelijk dat vertalingen niet werken."
+msgstr "Localisatiefunctionaliteit is niet ge&iuml;mplementeerd op je platform of de betreffende localisatie bestaat niet. Het is mogelijk dat vertalingen niet werken."
 
 #: ZpTranslation-Development/zp-core/setup.php:528
 msgid "See the <a  href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
@@ -7882,7 +7882,7 @@ msgstr "Grafische ondersteuning: <code>%s</code>"
 
 #: ZpTranslation-Development/zp-core/setup.php:561
 msgid "Graphics support [is not installed]"
-msgstr "Grafische ondersteuning [is niet geÃ¯nstalleerd]"
+msgstr "Grafische ondersteuning [is niet ge&iuml;nstalleerd]"
 
 #: ZpTranslation-Development/zp-core/setup.php:561
 msgid "You need to install a graphics support library such as the <em>GD library</em> in your PHP"
@@ -7946,7 +7946,7 @@ msgstr "<em>zenphoto.cfg</em> bestand [bestaat niet]"
 #: ZpTranslation-Development/zp-core/setup.php:608
 #, php-format
 msgid "Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto.cfg</code> file to the <code>%2$s</code> folder then edit it as indicated in the file's comments."
-msgstr "Setup kon dit bestand niet aanmaken. Je moet het <code>%1$s/zenphoto.cfg</code> bestand  kopiÃ«ren naar de <code>%2$s</code> map en aanpassen zoals aangegeven in de uitleg (staat in het bestand zelf). "
+msgstr "Setup kon dit bestand niet aanmaken. Je moet het <code>%1$s/zenphoto.cfg</code> bestand  kopi&euml;ren naar de <code>%2$s</code> map en aanpassen zoals aangegeven in de uitleg (staat in het bestand zelf). "
 
 #: ZpTranslation-Development/zp-core/setup.php:610
 msgid "File permissions"
@@ -8071,7 +8071,7 @@ msgstr "PHP <code>%s ondersteuning</code> voor geconfigureerde database"
 #: ZpTranslation-Development/zp-core/setup.php:835
 #, php-format
 msgid "PHP <code>%s support</code> for configured Database [is not installed]"
-msgstr "PHP <code>%s support</code> voor geconfigureerde database [is niet geÃ¯nstalleerd]"
+msgstr "PHP <code>%s support</code> voor geconfigureerde database [is niet ge&iuml;nstalleerd]"
 
 #: ZpTranslation-Development/zp-core/setup.php:835
 #, php-format
@@ -8091,7 +8091,7 @@ msgstr "PHP <code>%s</code> ondersteuning"
 #: ZpTranslation-Development/zp-core/setup.php:858
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
-msgstr "PHP <code>%s</code> ondersteuning [is niet geÃ¯nstalleerd]"
+msgstr "PHP <code>%s</code> ondersteuning [is niet ge&iuml;nstalleerd]"
 
 #: ZpTranslation-Development/zp-core/setup.php:877
 msgid "Database connection"
@@ -8283,8 +8283,8 @@ msgstr "Database <code>field collations</code>"
 #, php-format
 msgid "%s is not UTF-8. You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code>"
 msgid_plural "%s are not UTF-8. You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code>"
-msgstr[0] "%s is gÃ©Ã©n UTF-8. Je zou moeten overwegen alle gegevens in UTF-8 codering te zetten en de collatie van de database-velden te varanderen in <code>utf8_unicode_ci</code>"
-msgstr[1] "%s zijn gÃ©Ã©n UTF-8. Je zou moeten overwegen alle gegevens in UTF-8 codering te zetten en de collatie van de database-velden te varanderen in <code>utf8_unicode_ci</code>"
+msgstr[0] "%s is g&eacute;&eacute;n UTF-8. Je zou moeten overwegen alle gegevens in UTF-8 codering te zetten en de collatie van de database-velden te varanderen in <code>utf8_unicode_ci</code>"
+msgstr[1] "%s zijn g&eacute;&eacute;n UTF-8. Je zou moeten overwegen alle gegevens in UTF-8 codering te zetten en de collatie van de database-velden te varanderen in <code>utf8_unicode_ci</code>"
 
 #: ZpTranslation-Development/zp-core/setup.php:1061
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
@@ -8376,7 +8376,7 @@ msgstr "Zenphotorechten voor <em>zp-core</em> bestanden [niet correct]"
 
 #: ZpTranslation-Development/zp-core/setup.php:1267
 msgid "Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually. See the <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Troubleshooting guide</a> for details on Zenphoto permissions requirements."
-msgstr "Setup kan de geselecteerde rechten niet toekennen aan  Ã©Ã©n of meer componenten. Je zult de rechten handmatig moeten instellen. Zie de <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Troubleshooting guide</a> voor uitleg over Zenphoto-rechten."
+msgstr "Setup kan de geselecteerde rechten niet toekennen aan  &eacute;&eacute;n of meer componenten. Je zult de rechten handmatig moeten instellen. Zie de <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Troubleshooting guide</a> voor uitleg over Zenphoto-rechten."
 
 #: ZpTranslation-Development/zp-core/setup.php:1270
 msgid "<em>.htaccess</em> file"
@@ -8893,7 +8893,7 @@ msgstr "Je hebt waarschijnlijk de uploadlimiet overschreden. Probeer minder best
 
 #: ZpTranslation-Development/zp-core/admin-httpupload/uploader.php:124
 msgid "You must upload at least one file."
-msgstr "Je moet minimaal Ã©Ã©n bestand uploaden."
+msgstr "Je moet minimaal &eacute;&eacute;n bestand uploaden."
 
 #: ZpTranslation-Development/zp-core/admin-httpupload/uploader.php:126
 msgid "You must enter a folder name for your new album."
@@ -8905,7 +8905,7 @@ msgstr "Je hebt geprobeerd te uploaden naar een album waar je geen toestemming v
 
 #: ZpTranslation-Development/zp-core/admin-httpupload/uploader.php:133
 msgid "You have attempted to upload one or more files which are not Zenphoto supported file types"
-msgstr "Je hebt geprobeerd Ã©Ã©n of meerdere bestanden te uploaden die niet door Zenphoto ondersteund worden."
+msgstr "Je hebt geprobeerd &eacute;&eacute;n of meerdere bestanden te uploaden die niet door Zenphoto ondersteund worden."
 
 #: ZpTranslation-Development/zp-core/admin-httpupload/uploader.php:137
 msgid "You have attempted to upload too large a file"
@@ -9009,7 +9009,7 @@ msgstr "Zenphoto ondersteunde bestandsformaten | alle bestanden"
 
 #: ZpTranslation-Development/zp-core/admin-uploadify/upload_form.php:97
 msgid "There appears to be no <em>Flash</em> plugin installed in your browser."
-msgstr "Waarschijnlijk is er geen <em>Flash</em> plugin geÃ¯nstalleerd in de browser."
+msgstr "Waarschijnlijk is er geen <em>Flash</em> plugin ge&iuml;nstalleerd in de browser."
 
 #: ZpTranslation-Development/zp-core/admin-uploadify/uploader.php:84
 #, php-format
@@ -10209,7 +10209,7 @@ msgstr "Gebruikers met volledige rechten."
 
 #: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:275
 msgid "Users allowed only to view zenphoto objects"
-msgstr "Gebruikers met allÃ©Ã©n toestemming om albums te bekijken."
+msgstr "Gebruikers met all&eacute;&eacute;n toestemming om albums te bekijken."
 
 #: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:284
 msgid "Banned users"
@@ -10217,7 +10217,7 @@ msgstr "Geweigerde gebruikers."
 
 #: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:293
 msgid "Managers of one or more albums"
-msgstr "Beheerders van Ã©Ã©n of meer albums."
+msgstr "Beheerders van &eacute;&eacute;n of meer albums."
 
 #: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:302
 msgid "Default user settings"
@@ -10225,7 +10225,7 @@ msgstr "Standaard gebruikers-instellingen."
 
 #: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:311
 msgid "Newly registered and verified users"
-msgstr "Nieuwe gregistreerde en geferifiÃ«erde gebruikers."
+msgstr "Nieuwe gregistreerde en geferifi&euml;erde gebruikers."
 
 #: ZpTranslation-Development/zp-core/setup/setup-option-defaults.php:416
 #, php-format
@@ -10442,7 +10442,7 @@ msgstr "Herstel de database"
 
 #: ZpTranslation-Development/zp-core/utilities/backup_restore.php:491
 msgid "The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings."
-msgstr "De backup mogelijkheid cre&euml;ert kopieÃ«n van de database in de <code>backup</code> map. Deze backups krijgen als naam de datum en tijd van het moment dat ze gemaakt worden. De sterkte van de compressie loopt van 0 (geen compressie) tot 9 (maximale compressie). Een hogere compressie vereist meer tijd en is geen garantie voor meer ruimtewinst."
+msgstr "De backup mogelijkheid cre&euml;ert kopie&euml;n van de database in de <code>backup</code> map. Deze backups krijgen als naam de datum en tijd van het moment dat ze gemaakt worden. De sterkte van de compressie loopt van 0 (geen compressie) tot 9 (maximale compressie). Een hogere compressie vereist meer tijd en is geen garantie voor meer ruimtewinst."
 
 #: ZpTranslation-Development/zp-core/utilities/backup_restore.php:494
 msgid "You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button."
@@ -10496,7 +10496,7 @@ msgstr "statistieken"
 
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:87
 msgid "News Categories"
-msgstr "NieuwscategorieÃ«n"
+msgstr "Nieuwscategorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:94
 msgid "rss"
@@ -10640,7 +10640,7 @@ msgstr "<strong>%1$u</strong> Artikelen (<strong>%2$u</strong> niet gepubliceerd
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:532
 #, php-format
 msgid "<strong>%1$u</strong> Categories"
-msgstr "<strong>%1$u</strong> CategoriÃ«n"
+msgstr "<strong>%1$u</strong> Categori&euml;n"
 
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:538
 #, php-format
@@ -10673,7 +10673,7 @@ msgstr "RSS feeds"
 
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:683
 msgid "Statistics for news categories"
-msgstr "Statistieken voor nieuwscategorieÃ«n"
+msgstr "Statistieken voor nieuwscategorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/utilities/gallery_statistics.php:690
 msgid "Statistics for RSS feeds"
@@ -10727,7 +10727,7 @@ msgstr "Reset album thumbnails."
 
 #: ZpTranslation-Development/zp-core/utilities/reset_albumthumbs.php:21
 msgid "Reset album thumbnails to either random or most recent"
-msgstr "Reset album thumbnails naar Ã³f  willekeurig Ã³f  meest recent"
+msgstr "Reset album thumbnails naar &oacute;f  willekeurig &oacute;f  meest recent"
 
 #: ZpTranslation-Development/zp-core/utilities/reset_albumthumbs.php:37
 msgid "thumbs"
@@ -10853,7 +10853,7 @@ msgstr "Maakt het mogelijk om tekstdocumenten (.txt, .html, .htm) te laten zien 
 
 #: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:12
 msgid "Audio (MP3,M4A,FLA) and video (MP4/M4V,FLV, plus Quicktime,3GP if Quicktime is installed on the visitor system) handling for Zenphoto. This plugin must always be enabled to use multimedia content. Note that you also need to enable a multimedia player. See the info of the player you use to see how it is configured."
-msgstr "Audio (MP3,M4A,FLA) en video (MP4/M4V,FLV en Quicktime,3GP als Quicktime geÃ¯nstalleerd op de computer van de bezoeker) voor Zenphoto. Deze plugin moet altijd geactiveerd zijn om multimedia content te kunnen gebruiken. Je moet ook een multimedia-player activeren. Informatie over de configuratie van de speler is te vinden op de betreffende websites."
+msgstr "Audio (MP3,M4A,FLA) en video (MP4/M4V,FLV en Quicktime,3GP als Quicktime ge&iuml;nstalleerd op de computer van de bezoeker) voor Zenphoto. Deze plugin moet altijd geactiveerd zijn om multimedia content te kunnen gebruiken. Je moet ook een multimedia-player activeren. Informatie over de configuratie van de speler is te vinden op de betreffende websites."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:50
 msgid "Quicktime video width"
@@ -10873,7 +10873,7 @@ msgstr "3gp video hoogte"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:288
 msgid "No flash player installed."
-msgstr "Geen Flashplayer geÃ¯nstalleerd."
+msgstr "Geen Flashplayer ge&iuml;nstalleerd."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/class-WEBdocs.php:13
 msgid "Provides a means for showing .pdf, .pps documents using WEBdocs for the document rendering"
@@ -11026,11 +11026,11 @@ msgstr "Indien aangevinkt, kunnen alleen ingelogde gebruikers reageren."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:156
 msgid "Allow private postings"
-msgstr "Sta privÃ© berichten toe"
+msgstr "Sta priv&eacute; berichten toe"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:158
 msgid "If checked, posters may mark their comments as private (not for publishing)."
-msgstr "Indien aangevinkt kunnen mensen die een reactie schrijven aangeven of dit privÃ© is. Wordt dus niet gepubliceerd."
+msgstr "Indien aangevinkt kunnen mensen die een reactie schrijven aangeven of dit priv&eacute; is. Wordt dus niet gepubliceerd."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form.php:159
 msgid "Allow anonymous posting"
@@ -11763,7 +11763,7 @@ msgstr "Bestanden uitsluiten van de lijst."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/downloadList.php:67
 msgid "A list of file suffixes to exclude. Separate with comma and omit the dot (e.g \"jpg\")."
-msgstr "Een lijst met extensies om uit te sluiten. Te scheiden door een komma zÃ³nder de voorafgaande punt. (bijvoorbeeld: jpg)"
+msgstr "Een lijst met extensies om uit te sluiten. Te scheiden door een komma z&oacute;nder de voorafgaande punt. (bijvoorbeeld: jpg)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/downloadList.php:68
 msgid "User rights"
@@ -11831,8 +11831,8 @@ msgid "Use subdomains"
 msgstr "Gebruik subdomeinen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/dynamic-locale.php:158
-msgid "* This option may be set via the <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> or <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin options."
-msgstr "* Deze opties kunnen ingesteld worden via de <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> of <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin opties."
+msgid "* This option may be set via the <a href=\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></a> plugin options."
+msgstr "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/dynamic-locale.php:162
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:133
@@ -11913,7 +11913,7 @@ msgstr "Vink de service(s) uit die je niet wilt gebruiken."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:117
 msgid "Notify*"
-msgstr "Informerenr*"
+msgstr "Informeren*"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:120
 msgid "If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. (Verification is required only if the Federated Logon provider does not supply an e-mail address.)"
@@ -11921,7 +11921,7 @@ msgstr "Indien aangevinkt, zal een email verzonden worden naar de administrator 
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:129
 msgid "* The option may be set via the <a href=\"javascript:gotoName('federated_logon');\"><em>register_user</em></a> plugin options.."
-msgstr "* Deze optie kan ook ingesteld worden via de <a href=\"javascript:gotoName('federated_logon');\"><em>register_user</em></a> plugin opties."
+msgstr "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName('federated_logon');\"><em>register_user</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:248
 #, php-format
@@ -12085,11 +12085,11 @@ msgstr "Activeer <strong>flowplayer 3</strong> om multimedia bestanden te kunnen
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:18
 #: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:39
 msgid "<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too."
-msgstr "<strong>BELANGRIJK</strong>: Er kan maar Ã©Ã©n multimedia-player plugin tegelijkertijd ingeschakeld zijn en de class-video extensie moet geactiveerd zijn. "
+msgstr "<strong>BELANGRIJK</strong>: Er kan maar &eacute;&eacute;n multimedia-player plugin tegelijkertijd ingeschakeld zijn en de class-video extensie moet geactiveerd zijn. "
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:18
 msgid "The former separate flowplayer3_playlist plugin is now incorporated. You can use it to show the content of an multimedia album only as a playlist or as separate players on one page with Flowplayer 3"
-msgstr "Een plugin om de inhoud van een album met .flv/.mp4/.mp3 video/geluids bestanden alleen als een playlist of als aparte players (op Ã©Ã©n pagina) met Flowplayer 3 te laten zien. "
+msgstr "Een plugin om de inhoud van een album met .flv/.mp4/.mp3 video/geluids bestanden alleen als een playlist of als aparte players (op &eacute;&eacute;n pagina) met Flowplayer 3 te laten zien. "
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:18
 msgid "Please see <a href='http://flowplayer.org'>flowplayer.org</a> for more info about the player and its license."
@@ -12190,7 +12190,7 @@ msgstr "Kleur achtergrond player"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:122
 msgid "Changes the color of the Flowplayer's background canvas. By default the canvas is all black. You can specify a value of -1 and the background will not be drawn (only the video will be visible)."
-msgstr "Achtergrondkleur van de player.<br />Standaard is deze zwart.<br />Je kunt een waarde van -1 ingeven om gÃ©Ã©n achtergrond te tonen (alleen de video zal zichtbaar zijn)."
+msgstr "Achtergrondkleur van de player.<br />Standaard is deze zwart.<br />Je kunt een waarde van -1 ingeven om g&eacute;&eacute;n achtergrond te tonen (alleen de video zal zichtbaar zijn)."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:123
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:162
@@ -12340,7 +12340,7 @@ msgstr "Flowplayer MP3 cover afbeelding"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:155
 msgid "If unchecked only the controlbar is shown for mp3/m4v/fla but if checked the video thumb is displayed as a cover image on the player screen."
-msgstr "Als dit NIET is aangevinkt wordt voor mp3/m4v/fla allÃ©Ã©n de bediening getoond.<br />Indien WEL aangevinkt wordt de video-thumbnail getoond als \"cover afbeelding\"."
+msgstr "Als dit NIET is aangevinkt wordt voor mp3/m4v/fla all&eacute;&eacute;n de bediening getoond.<br />Indien WEL aangevinkt wordt de video-thumbnail getoond als \"cover afbeelding\"."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flowplayer3.php:157
 msgid "Player width (Note this refers to the player window. The playlist display itself is styled via CSS.)"
@@ -12584,7 +12584,7 @@ msgstr "Reset alle hittellers"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:14
 msgid "A plugin to print the most common HTML meta tags to the head of your site's pages. Tags are selected from existing Zenphoto info such as gallery description, tags, or Zenpage news categories."
-msgstr "Voor het automatsch genereren van de meest voorkomende HTML meta-tags in de <em>head</em> van de pagina's.<br />Hierbij wordt gebruik gemaakt van bestaande informatie als galerijbeschrijving, tags of Zenpage nieuws categorieÃ«n."
+msgstr "Voor het automatsch genereren van de meest voorkomende HTML meta-tags in de <em>head</em> van de pagina's.<br />Hierbij wordt gebruik gemaakt van bestaande informatie als galerijbeschrijving, tags of Zenpage nieuws categorie&euml;n."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:66
 msgid "Cache control"
@@ -12651,8 +12651,8 @@ msgid "Which of the HTML meta tags should be used. For info about these in detai
 msgstr "Welke HTML meta-tags gebruikt moeten worden. Gedetailleerde informatie hierover kun je vinden op het internet."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/html_meta_tags.php:141
-msgid "* This option may be set via the <a href=\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></a> or <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin options."
-msgstr "* Deze opties kunnen ingesteld worden via de <a href=\"javascript:gotoName('dynamic-locale');\"><em>dynamic-locale</em></a> of <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin opties."
+msgid "* This option may be set via the <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
+msgstr "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/http_auth.php:49
 msgid "Checks for Apache HTTP authentication of authorized users"
@@ -12664,7 +12664,7 @@ msgstr "Gebruikers verificatie"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/http_auth.php:74
 msgid "verify"
-msgstr "verifiÃ«er"
+msgstr "verifi&euml;er"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/http_auth.php:74
 msgid "trusted"
@@ -12672,7 +12672,7 @@ msgstr "vertrouwd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/http_auth.php:75
 msgid "Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This setting does not verify passwords against the Zenphoto user.)"
-msgstr "Zet op <em>vertrouwd</em> als aangenomen kan worden dat de HTTP gebruiker geverifiÃ«erd is. (Deze instelling vergelijkt geen wachtwoorden met die van Zenphoto gebruikers)"
+msgstr "Zet op <em>vertrouwd</em> als aangenomen kan worden dat de HTTP gebruiker geverifi&euml;erd is. (Deze instelling vergelijkt geen wachtwoorden met die van Zenphoto gebruikers)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/image_album_statistics.php:13
 msgid "Functions that provide various statistics about images and albums in the gallery."
@@ -12898,7 +12898,7 @@ msgstr "Flash players ondersteunen geen <em>externe albums</em>."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:101
 msgid "Disabled automatically if several players on one page"
-msgstr "Wordt automatisch uitgezet als er meerdere players op Ã©Ã©n pagina aanwezig zijn."
+msgstr "Wordt automatisch uitgezet als er meerdere players op &eacute;&eacute;n pagina aanwezig zijn."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:102
 msgid "Poster (Videothumb)"
@@ -13054,7 +13054,7 @@ msgstr "Update vereist"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:448
 msgid "To play the media you will need to either update your browser to a recent version or update your <a href=\"http://get.adobe.com/flashplayer/\" target=\"_blank\">Flash plugin</a>."
-msgstr "Om dit media-bestand af te spelen moet je Ã³f je browser Ã³f je <a href=\"http://get.adobe.com/flashplayer/\" target=\"_blank\">Flash plugin</a> updaten."
+msgstr "Om dit media-bestand af te spelen moet je &oacute;f je browser &oacute;f je <a href=\"http://get.adobe.com/flashplayer/\" target=\"_blank\">Flash plugin</a> updaten."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:16
 msgid "A menu creation facility. The <em>Menu</em> tab admin interface lets you create arbitrary menu trees."
@@ -13082,7 +13082,7 @@ msgstr "Beperkt titels tot dit aantal karakters. Nul betekent ongelimiteerd."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:65
 msgid "* These options may be set via the <a href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a> plugin options."
-msgstr "* Deze opties kunnen ingesteld worden via de <a href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a> plugin opties."
+msgstr "* Deze optie(s) worden gedeeld met de <a href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:69
 msgid "<p class=\"notebox\">*<strong>Note:</strong> The setting of these options are shared with other plugins.</p>"
@@ -13400,7 +13400,7 @@ msgstr "Indien aangevinkt worden de aantallen afbeeldingen en albums getoond in 
 
 #: ZpTranslation-Development/zp-core/zp-extensions/print_album_menu.php:54
 msgid "* These options may be set via the <a href=\"javascript:gotoName('print_album_menu');\"><em>print_album_menu</em></a> plugin options."
-msgstr "* Deze opties kunnen ingesteld worden via de <a href=\"javascript:gotoName('print_album_menu');\"><em>print_album_menu</em></a> plugin opties."
+msgstr "* Deze opties worden gedeeld met de <a href=\"javascript:gotoName('menu_manager');\"><em>menu_manager</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/print_album_menu.php:58
 msgid "<p class=\"notebox\">*<strong>Note:</strong> The setting of these options may be shared with other plugins.</p>"
@@ -13658,7 +13658,7 @@ msgstr "Indien aangevinkt, zal registratie van een gebruiker gecontroleerd worde
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:94
 msgid "* The option may be set via the <a href=\"javascript:gotoName('register_user');\"><em>register_user</em></a> plugin options.."
-msgstr "* Deze optie kan ook ingesteld worden via de <a href=\"javascript:gotoName('register_user');\"><em>register_user</em></a> plugin opties."
+msgstr "* Deze optie(s) worden gedeeld met de <a href=\"javascript:gotoName('register_user');\"><em>register_user</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:102
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:103
@@ -13776,7 +13776,7 @@ msgstr "Aantal succesvol"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/search_statistics.php:59
 msgid "Show the top <em>Threshold</em> criteria of successful searches. (Searches which returned at least one result.)"
-msgstr "Toont het (<em>aantal</em>) meest succesvulle zoekcriteria. (Zoekopdrachten die tenminste Ã©Ã©n resultaat opleveren)"
+msgstr "Toont het (<em>aantal</em>) meest succesvulle zoekcriteria. (Zoekopdrachten die tenminste &eacute;&eacute;n resultaat opleveren)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/search_statistics.php:60
 msgid "Threshold (failed)"
@@ -13865,7 +13865,7 @@ msgstr "Log gedownload"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:96
 msgid "Install"
-msgstr "GeÃ¯nstalleerd"
+msgstr "Ge&iuml;nstalleerd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:100
 msgid "Remove setup files"
@@ -14014,7 +14014,7 @@ msgstr "SEO filter voor het vertalen van bepaalde karakters in hun alfa-nummerie
 
 #: ZpTranslation-Development/zp-core/zp-extensions/seo_zenphoto.php:41
 msgid "Lowercase only"
-msgstr "AllÃ©Ã©n onderkast (kleine letters)"
+msgstr "All&eacute;&eacute;n onderkast (kleine letters)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/seo_zenphoto.php:42
 msgid "When set, all characters are converted to lower case."
@@ -14081,7 +14081,7 @@ msgstr "Site is online"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:19
 msgid "Generates individually sitemap.org compatible XML files for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories."
-msgstr "Genereert een XML bestand volgens de sitemaps.org richtlijnen voor Google en andere zoekmachines. Het ondersteund albums, afbeeldingen, Zenpage pagina's, artikelen en categorieÃ«n."
+msgstr "Genereert een XML bestand volgens de sitemaps.org richtlijnen voor Google en andere zoekmachines. Het ondersteund albums, afbeeldingen, Zenpage pagina's, artikelen en categorie&euml;n."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:19
 msgid "<strong>Note:</strong> The index links may not match if using the Zenpage option \"news on index\" that some themes provide! Also it does not \"know\" about \"custom pages\" outside Zenpage or any special custom theme setup!!"
@@ -14183,7 +14183,7 @@ msgstr "Frequentie - Zenpage nieuwsaritkelen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:139
 msgid "Change frequency - Zenpage news categories"
-msgstr "Frequentie - Zenpage nieuws categorieÃ«n"
+msgstr "Frequentie - Zenpage nieuws categorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:149
 msgid "Enable Google image and video extension"
@@ -14195,7 +14195,7 @@ msgstr "Indien aangevinkt zal het gegenereerde XML bestand, waar nodig, Google X
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:151
 msgid "<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts"
-msgstr "<strong>Opmerking:</strong> Andere zoekmachines (Yahoo, Bing) kunnen mogelijk de sitemap niet lezen. Ook kan Google allÃ©Ã©n afbeeldings- en video-extensies weergeven. Als je andere bestands-types gebruikt (die niet ondersteund worden door Zenphoto) of types als .mp3, .txt en .html kun je deze optie beter niet gebruiken tenzij je de plugin verandert. Als je site Ã©rg groot is is het wellicht verstandig deze optie niet te gebruiken omdat de server het maken van de bestanden niet aankan."
+msgstr "<strong>Opmerking:</strong> Andere zoekmachines (Yahoo, Bing) kunnen mogelijk de sitemap niet lezen. Ook kan Google all&eacute;&eacute;n afbeeldings- en video-extensies weergeven. Als je andere bestands-types gebruikt (die niet ondersteund worden door Zenphoto) of types als .mp3, .txt en .html kun je deze optie beter niet gebruiken tenzij je de plugin verandert. Als je site &eacute;rg groot is is het wellicht verstandig deze optie niet te gebruiken omdat de server het maken van de bestanden niet aankan."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:152
 msgid "Google - URL to image license"
@@ -14214,8 +14214,8 @@ msgid "The number of albums that will be processed for each sitemap file. Lower 
 msgstr "Het aantal albums dat verwerkt wordt voor ieder sitemap bestand. Verlaag dit aantal als je een script-timeout krijgt bij het maken van de bestanden."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:169
-msgid "* This option may be set via the <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> or <a href=\"javascript:gotoName('dynamic_locale');\"><em>dynamic_locale</em></a> plugin options."
-msgstr "* Deze opties kunnen ingesteld worden via de <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> of<a href=\"javascript:gotoName('dynamic_locale');\"><em>dynamic_locale</em></a> plugin opties."
+msgid "* This option may be set via the <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin options."
+msgstr "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:190
 msgid "Sitemap tools"
@@ -14227,7 +14227,7 @@ msgstr "Sitemap"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:25
 msgid "Adds a theme function to call a slideshow either based on jQuery (default) or Flash using Flowplayer3 if installed."
-msgstr "Voegt een themafunctie toe om een slideshow aan te roepen gebaseerd op jQuery (standaard) of Flash gebruikmakend van Flowplayer 3 (indien geÃ¯nstalleerd). "
+msgstr "Voegt een themafunctie toe om een slideshow aan te roepen gebaseerd op jQuery (standaard) of Flash gebruikmakend van Flowplayer 3 (indien ge&iuml;nstalleerd). "
 
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:56
 msgid "Slide width"
@@ -14271,7 +14271,7 @@ msgstr "Flowplayer3 (flash)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:64
 msgid "<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br /><em>flash</em> for flash based slideshow using Flowplayer3.<br /><br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page."
-msgstr "<em>jQuery Cycle</em> gebruikt de jQuery Cycle voor de slideshow<br /><em>jQuery Colorbox</em> gebruikt Colorbox voor de slideshow (Colorbox plugin vereist).<br /><em>Flash</em> gebruikt Flash voor de slideshow (Flowplayer 3 plugin vereist).<br /><br /><strong>Opmerking</strong>: Het gebruik van de jQuery Colorbox optie werkt allÃ©Ã©n via de <em>slideshow</em>- link die geprint wordt door de printSlideShowLink() functie ! <br />Hij kan niet rechtstreeks of op slideshow.php aangeroepen worden."
+msgstr "<em>jQuery Cycle</em> gebruikt de jQuery Cycle voor de slideshow<br /><em>jQuery Colorbox</em> gebruikt Colorbox voor de slideshow (Colorbox plugin vereist).<br /><em>Flash</em> gebruikt Flash voor de slideshow (Flowplayer 3 plugin vereist).<br /><br /><strong>Opmerking</strong>: Het gebruik van de jQuery Colorbox optie werkt all&eacute;&eacute;n via de <em>slideshow</em>- link die geprint wordt door de printSlideShowLink() functie ! <br />Hij kan niet rechtstreeks of op slideshow.php aangeroepen worden."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/slideshow.php:65
 msgid "Cycle Effect"
@@ -14628,7 +14628,7 @@ msgstr "*geen categorie*"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:115
 msgid "Only those <em>news categories</em> checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned."
-msgstr "Alleen de aangevinkte nieuws-categorieÃ«n worden geTweet. <strong>Opmerking:</strong> <em>*geen categorie*</em> betekend artikelen die niet aan een categorie zijn toegewezen."
+msgstr "Alleen de aangevinkte nieuws-categorie&euml;n worden geTweet. <strong>Opmerking:</strong> <em>*geen categorie*</em> betekend artikelen die niet aan een categorie zijn toegewezen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:288
 #: ZpTranslation-Development/zp-core/zp-extensions/tweet_news.php:308
@@ -14898,7 +14898,7 @@ msgstr "Er is een syntaxfout in de $default parameter"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:13
 msgid "Provides a utility function to import Wordpress pages, posts, categories and comments to Zenpage."
-msgstr "Maakt het mogelijk om Wordpress pagina's, posts, categorieÃ«n en reacties te importeren in Zenpage."
+msgstr "Maakt het mogelijk om Wordpress pagina's, posts, categorie&euml;n en reacties te importeren in Zenpage."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:23
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:387
@@ -14955,7 +14955,7 @@ msgstr "Er bestaat reeds een categorie met de titel/titel-link <em>%s</em>!"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:142
 msgid "No categories to import."
-msgstr "Geen categorieÃ«n om te importeren."
+msgstr "Geen categorie&euml;n om te importeren."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:157
 #, php-format
@@ -15016,8 +15016,8 @@ msgstr[1] "%1$u reacties bestaan al."
 #, php-format
 msgid "%1$u comment imported."
 msgid_plural "%1$u comments imported."
-msgstr[0] "%1$u reactie geÃ¯mporteerd."
-msgstr[1] "%1$u reacties geÃ¯mporteerd."
+msgstr[0] "%1$u reactie ge&iuml;mporteerd."
+msgstr[1] "%1$u reacties ge&iuml;mporteerd."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:345
 msgid "No comments to import"
@@ -15033,7 +15033,7 @@ msgstr "Wordpress"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:389
 msgid "An importer for <strong>Wordpress 3.x</strong> to the Zenpage CMS plugin that imports the following:"
-msgstr "Voor het importeren van <strong>WordPress 3.x</strong> naar de Zenpage CMS plugin. De volgende onderdelen worden geÃ¯mporteerd:"
+msgstr "Voor het importeren van <strong>WordPress 3.x</strong> naar de Zenpage CMS plugin. De volgende onderdelen worden ge&iuml;mporteerd:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:391
 msgid "<strong>Posts (post_status published and draft only) => Zenpage articles</strong>"
@@ -15045,7 +15045,7 @@ msgstr "<strong>Pagina's (alleen bericht_status gepubliceerd  en concept) => Zen
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:393
 msgid "<strong>Post categories => Zenpage categories including assignment to their article</strong>"
-msgstr "<strong>Berichten categorieÃ«n => Zenpage categorieÃ«n, inclusief verwijzing naar hun artikelen</strong>"
+msgstr "<strong>Berichten categorie&euml;n => Zenpage categorie&euml;n, inclusief verwijzing naar hun artikelen</strong>"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:394
 msgid "<strong>Post tags => Zenphoto tags including assignment to their article</strong>"
@@ -15061,7 +15061,7 @@ msgstr "<strong>BELANGRIJK: </strong> Als je een oude Zenphoto installatie gebru
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:401
 msgid "<strong>Note:</strong> <em>Wordpress page and category nesting</em> is currently not preserved but can easily be recreated by drag and drop sorting."
-msgstr "<strong>Opmerking:</strong> <em>geneste Wordpress pagina's en categorieÃ«n</em> worden niet overgenomen maar kunnen makkelijk hersteld worden door middel van <em>drag en drop</em> sortering."
+msgstr "<strong>Opmerking:</strong> <em>geneste Wordpress pagina's en categorie&euml;n</em> worden niet overgenomen maar kunnen makkelijk hersteld worden door middel van <em>drag en drop</em> sortering."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/wordpress_import.php:404
 msgid "In case anything does not work as expected the query results from the Wordpress database are logged in <code>zp-data/debug.log</code>"
@@ -15121,7 +15121,7 @@ msgstr "Als er geen sidecar bestand is zoekt de plugin in het type afbeeldingsbe
 
 #: ZpTranslation-Development/zp-core/zp-extensions/xmpMetadata.php:1090
 msgid "Metadata exported"
-msgstr "Metadata geÃ«xporteerd"
+msgstr "Metadata ge&euml;xporteerd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/xmpMetadata.php:1095
 msgid "Export metadata info to XMP sidecar."
@@ -15276,7 +15276,7 @@ msgstr "laatste afbeeldingen in album: sized image maxspace"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:76
 msgid "What you want to show within the CombiNews section.<br /><ul><li>Latest images: Entries for all images ever added</li><li>Latest albums: Entries for all albums ever created</li><li>Latest images by album: Entries for all images but grouped by images that have been added within a day to each album (Scheme: 'x new images in album y on date z')</li></ul> <em>maxspace</em> means that an uncropped image fitting max. width x max. height as set on the thumbnail width and height options is used (not for multimedia items!)."
-msgstr "Wat je wilt laten zien in het CombiNews gedeelte.<br /><ul><li>Laatste afbeeldingen: Alle afbeeldingen ooit toegevoegd</li><li>Laatste albums: Alle albums ooit aangemaakt</li><li>Laatste afbeeldingen in album: Alle afbeeldingen maar gegroepeerd in afbeeldingen die zijn toegevoegd binnen Ã©Ã©n dag aan elk album(schema: 'x nieuwe afbeeldingen in album y op datum z')</li></ul> <em>maxspace</em> betekend een niet-gecropte afbeelding die past binnen max breedte x max hoogte. Dit wordt ingesteld bij de thumbnail breedte en hoogte (niet voor multimedia bestanden!)"
+msgstr "Wat je wilt laten zien in het CombiNews gedeelte.<br /><ul><li>Laatste afbeeldingen: Alle afbeeldingen ooit toegevoegd</li><li>Laatste albums: Alle albums ooit aangemaakt</li><li>Laatste afbeeldingen in album: Alle afbeeldingen maar gegroepeerd in afbeeldingen die zijn toegevoegd binnen &eacute;&eacute;n dag aan elk album(schema: 'x nieuwe afbeeldingen in album y op datum z')</li></ul> <em>maxspace</em> betekend een niet-gecropte afbeelding die past binnen max breedte x max hoogte. Dit wordt ingesteld bij de thumbnail breedte en hoogte (niet voor multimedia bestanden!)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:77
 msgid "CombiNews: Sized image size"
@@ -15373,7 +15373,7 @@ msgstr "CombiNews: Eigen titel (enkelvoud)"
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:104
 #, php-format
 msgid "Custom title for the article in sprintf() syntax. %1$u = number of new items, %2$s = title of the album they are in, %3$s = titles of the new items. Never leave any of these three out! (<em>latest images by album</em> option only)."
-msgstr "Eigen titel voor het artilkel volgens de sprintf() syntax. %1$u = aantal nieuwe onderdelen, %2$s = titel van het album waarin ze zich bevinden, %3$s = titels van de nieuwe onderdelen. Ze moeten alle drie een ingevuld worden! (allÃ©Ã©n voor de <em>laatste afbeeldingen in album</em> optie)."
+msgstr "Eigen titel voor het artilkel volgens de sprintf() syntax. %1$u = aantal nieuwe onderdelen, %2$s = titel van het album waarin ze zich bevinden, %3$s = titels van de nieuwe onderdelen. Ze moeten alle drie een ingevuld worden! (all&eacute;&eacute;n voor de <em>laatste afbeeldingen in album</em> optie)."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:103
 msgid "CombiNews: Custom title (plural)"
@@ -15385,11 +15385,11 @@ msgstr "CombiNews: Eigen titel - aantal afbeeldingen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:106
 msgid "How many images titles you want to show with the custom title (<em>latest images by album</em> option only)."
-msgstr "Hoeveel afbeeldingen je wilt laten zien met de eigen titel (allÃ©Ã©n voor de <em>laatste afbeeldingen in album</em> optie)."
+msgstr "Hoeveel afbeeldingen je wilt laten zien met de eigen titel (all&eacute;&eacute;n voor de <em>laatste afbeeldingen in album</em> optie)."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:121
 msgid "* These options may be set via the <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin options."
-msgstr "* Deze opties kunnen ingesteld worden via de <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin opties."
+msgstr "* Deze optie(s) worden gedeeld met de <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin opties."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:209
 msgid "Edit Page"
@@ -15566,7 +15566,7 @@ msgstr "Voer CAPTCHA in:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:269
 msgid "Private comment (don't publish)"
-msgstr "PrivÃ© bericht (niet publiceren)"
+msgstr "Priv&eacute; bericht (niet publiceren)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/comment_form.php:279
 msgid "Add Comment"
@@ -15669,7 +15669,7 @@ msgstr "OpenID verificatie mislukt: %s"
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php:36
 #, php-format
 msgid "You have successfully verified <a href=\"%s\">%s</a> as your identity."
-msgstr "Je hebt met succes <a href=\"%s\">%s</a> geverifiÃ«erd als jouw identiteit."
+msgstr "Je hebt met succes <a href=\"%s\">%s</a> geverifi&euml;erd als jouw identiteit."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon/OpenID_finish_auth.php:113
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon/OpenID_try_auth.php:97
@@ -15689,7 +15689,7 @@ msgstr "Identiteit URL:"
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon/OpenID_logon.php:49
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon/Verisign_logon.php:55
 msgid "Verify"
-msgstr "VerifiÃ«er"
+msgstr "Verifi&euml;er"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon/OpenID_logon.php:55
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon/Verisign_logon.php:61
@@ -15788,7 +15788,7 @@ msgstr "Bekijk"
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:126
 #, php-format
 msgid "Ok to delete %s? This cannot be undone."
-msgstr "%s Ã©cht verwijderen ? Dit kan niet hersteld worden !"
+msgstr "%s &eacute;cht verwijderen ? Dit kan niet hersteld worden !"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:127
 msgid "delete"
@@ -15820,7 +15820,7 @@ msgstr "Menu voor alle Zenpage pagina's."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
 msgid "Menu items for all Zenpage categories added."
-msgstr "Menu voor alle Zenpage categorieÃ«n."
+msgstr "Menu voor alle Zenpage categorie&euml;n."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:470
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:619
@@ -15977,7 +15977,7 @@ msgstr "Sleep de onderdelen (inclusief sublevels) in de volgorde waarin je ze ge
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:141
 msgid "<strong>IMPORTANT:</strong> This menu's order is completely independent from any order of albums or pages set on the other admin pages. Use with customized themes that do not wish the standard Zenphoto display structure. Zenphoto functions such as the breadcrumb functions and the next_album() loop will NOT reflect of this menu's structure!"
-msgstr "<strong>BELANGRIJK:</strong> De volgorde van dit menu is volledig onafhankelijk van de volgorde van albums of pagina's in andere admin pagina's. Het wordt aanbevolen om dit alleen te gebruiken met aangepaste thema's die niet de standaard Zenphoto structuur gebruiken. Functies als <em>breadcrumb</em> of <em>next_album()</em> bijvoorbeeld maken gÃ©Ã©n gebruik van deze menustructuur!"
+msgstr "<strong>BELANGRIJK:</strong> De volgorde van dit menu is volledig onafhankelijk van de volgorde van albums of pagina's in andere admin pagina's. Het wordt aanbevolen om dit alleen te gebruiken met aangepaste thema's die niet de standaard Zenphoto structuur gebruiken. Functies als <em>breadcrumb</em> of <em>next_album()</em> bijvoorbeeld maken g&eacute;&eacute;n gebruik van deze menustructuur!"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:152
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:153
@@ -16095,11 +16095,11 @@ msgstr "Maakt een link naar de Zenpage nieuws index."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:116
 msgid "All Zenpage categories"
-msgstr "Alle Zenpage categorieÃ«n"
+msgstr "Alle Zenpage categorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:117
 msgid "This adds menu items for all Zenpage categories."
-msgstr "Dit voegt menu-onderdelen toe voor alle Zenpage categorieÃ«n."
+msgstr "Dit voegt menu-onderdelen toe voor alle Zenpage categorie&euml;n."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:121
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:254
@@ -16174,7 +16174,7 @@ msgstr "*Selecteer het soort menu-onderdeel dat je wilt toevoegen*"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:253
 msgid "All Zenpage news categories"
-msgstr "Alle Zenpage nieuws categorieÃ«n"
+msgstr "Alle Zenpage nieuws categorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:258
 msgid "Custom theme page"
@@ -16207,7 +16207,7 @@ msgstr "Class"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer/class.phpmailer.php:853
 msgid "You must provide at least one recipient email address."
-msgstr "Je moet minimaal Ã©Ã©n emailadres opgeven."
+msgstr "Je moet minimaal &eacute;&eacute;n emailadres opgeven."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer/class.phpmailer.php:854
 msgid " mailer is not supported."
@@ -16223,7 +16223,7 @@ msgstr "Kon de mailfunctie niet starten."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer/class.phpmailer.php:857
 msgid "SMTP Error: Could not authenticate."
-msgstr "SMTP fout: Kon niet verifiÃ«ren."
+msgstr "SMTP fout: Kon niet verifi&euml;ren."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer/class.phpmailer.php:858
 msgid "The following From address failed: "
@@ -16493,11 +16493,11 @@ msgstr "(Klik op artikel om in te voegen)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:289
 msgid "Categories:"
-msgstr "CategoriÃ«n:"
+msgstr "Categori&euml;n:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:601
 msgid "All categories"
-msgstr "Alle categorieÃ«n"
+msgstr "Alle categorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:67
 msgid "*Select*"
@@ -16597,7 +16597,7 @@ msgstr "Geen tekstomloop"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:163
 msgid "This provides access to your images and albums (dropdown 'Zenphoto') as well as pages, news articles and news categories (dropdown 'Zenpage') to easily include them in your pages and articles. You need at least 'Manage all albums' or 'Edit' rights to specific albums to be able to included image from them."
-msgstr "Dit biedt toegang tot je afbeeldingen en albums (dropdown 'Zenphoto') maar ook tot pagina's, nieuwsartikelen en nieuwscategorieÃ«n (dropdown 'Zenpage'). Zo kun je ze eenvoudig invoegen in je pagina's en artikelen. Je hebt minimaal  'Beheer alle albums' rechten of 'Bewerk' rechten voor specifieke albums nodig om daaruit afbeeldingen in te voegen."
+msgstr "Dit biedt toegang tot je afbeeldingen en albums (dropdown 'Zenphoto') maar ook tot pagina's, nieuwsartikelen en nieuwscategorie&euml;n (dropdown 'Zenpage'). Zo kun je ze eenvoudig invoegen in je pagina's en artikelen. Je hebt minimaal  'Beheer alle albums' rechten of 'Bewerk' rechten voor specifieke albums nodig om daaruit afbeeldingen in te voegen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:166
 msgid "Select first the items type using the 'Zenphoto' or 'Zenpage' drop down"
@@ -16621,7 +16621,7 @@ msgstr "Het venster sluit niet automatisch. Je kunt dus meerdere afbeeldingen ac
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:178
 msgid "Select to show a list of Zenpage pages, articles or categories. Click on a title to include a link. Hover of the link to see an excerpt of the page or article. Un-published pages or articles are marked with an '*' and protected with an '+'. There are no further options."
-msgstr "Hier kun je kiezen voor een lijst van Zenpage pagina's, artikelen of categorieÃ«n. Klik op een titel om een link in te voegen. Beweeg de muis over de link om een stukje uit de pagina of het artikel te zien. Ongepubliceerde artikelen zijn gemarkeerd met een <span style=\"font-size: 18px\">*</span>, beschermde onderdelen met een '+'."
+msgstr "Hier kun je kiezen voor een lijst van Zenpage pagina's, artikelen of categorie&euml;n. Klik op een titel om een link in te voegen. Beweeg de muis over de link om een stukje uit de pagina of het artikel te zien. Ongepubliceerde artikelen zijn gemarkeerd met een <span style=\"font-size: 18px\">*</span>, beschermde onderdelen met een '+'."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:182
 msgid "Select an album to include images from into your page or article. Click on the image to included it. Un-published albums or images are marked with an '*'. You can also click on the magnify glass icon to see a preview of the item (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.). Note the first thumbnail is always the album thumbnail of the currently selected album itself. It is always titled <em>Albumthumb</em> and appears on every thumbnail page.<br />You have several options what to include and how:"
@@ -16804,7 +16804,7 @@ msgstr "Verwijderd"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_groups/user_groups-tab.php:157
 msgid "Set group rights and select one or more albums for the users in the group to manage. Users with <em>User admin</em> or <em>Manage all albums</em> rights can manage all albums. All others may manage only those that are selected."
-msgstr "Stel groepsrechten in en wijs Ã©Ã©n of meer albums toe aan gebruikers om te beheren. Gebruikers met <em>Admin</em>-rechten of <em>Beheer alle albums</em>-rechten kunnen alle albums beheren. Anderen mogen alleen de geselecteerde albums beheren."
+msgstr "Stel groepsrechten in en wijs &eacute;&eacute;n of meer albums toe aan gebruikers om te beheren. Gebruikers met <em>Admin</em>-rechten of <em>Beheer alle albums</em>-rechten kunnen alle albums beheren. Anderen mogen alleen de geselecteerde albums beheren."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_groups/user_groups-tab.php:180
 #: ZpTranslation-Development/zp-core/zp-extensions/user_groups/user_groups-tab.php:191
@@ -16907,7 +16907,7 @@ msgstr "kopie van of %s"
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:140
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:612
 msgid "This is not a future date!"
-msgstr "Dit is gÃ©Ã©n toekomstige datum!"
+msgstr "Dit is g&eacute;&eacute;n toekomstige datum!"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:147
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-edit.php:582
@@ -17132,11 +17132,11 @@ msgstr "Bewerk dit artikel"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:233
 msgid "Add categories"
-msgstr "Voeg categorieÃ«n toe"
+msgstr "Voeg categorie&euml;n toe"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:234
 msgid "Clear categories"
-msgstr "Verwijder categorieÃ«n"
+msgstr "Verwijder categorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:315
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:318
@@ -17404,7 +17404,7 @@ msgstr[1] "(<strong>%1$u</strong> artikelen, <strong>%2$u</strong> niet gepublic
 msgid "(<strong>%1$u</strong> category)"
 msgid_plural "(<strong>%1$u</strong> categories)"
 msgstr[0] "<strong>%1$u</strong> categorie"
-msgstr[1] "<strong>%1$u</strong> categorieÃ«n"
+msgstr[1] "<strong>%1$u</strong> categorie&euml;n"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1543
 msgid "Published/Not published/Scheduled for publishing"
@@ -17450,11 +17450,11 @@ msgstr "Tags verwijderd uit artikelen van de geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1882
 msgid "Categories added to selected items"
-msgstr "CategorieÃ«n toegevoegd aan geselecteerde onderdelen."
+msgstr "Categorie&euml;n toegevoegd aan geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1885
 msgid "Categories cleared from selected items"
-msgstr "CategorieÃ«n verwijderd uit geselecteerde onderdelen."
+msgstr "Categorie&euml;n verwijderd uit geselecteerde onderdelen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-class-page.php:199
 msgid "Use the Zenpage Page class->getPages() method."
@@ -17515,6 +17515,35 @@ msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
 msgid "Failed to retrieve link <em>%s</em>"
 msgstr "Ophalen van de link <em>%s</em> mislukt."
 
+#~ msgid ""
+#~ "* This option may be set via the <a href=\"javascript:gotoName"
+#~ "('html_meta_tags');\"><em>html_meta_tags</em></a> or <a href=\"javascript:"
+#~ "gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin "
+#~ "options."
+#~ msgstr ""
+#~ "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName"
+#~ "('html_meta_tags');\"><em>html_meta_tags</em></a> en <a href=\"javascript:"
+#~ "gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin "
+#~ "opties."
+
+#~ msgid ""
+#~ "* This option may be set via the <a href=\"javascript:gotoName('dynamic-"
+#~ "locale');\"><em>dynamic-locale</em></a> or <a href=\"javascript:gotoName"
+#~ "('sitemap-extended');\"><em>sitemap-extended</em></a> plugin options."
+#~ msgstr ""
+#~ "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName('dynamic-"
+#~ "locale');\"><em>dynamic-locale</em></a> en <a href=\"javascript:gotoName"
+#~ "('sitemap-extended');\"><em>sitemap-extended</em></a> plugin opties."
+
+#~ msgid ""
+#~ "* This option may be set via the <a href=\"javascript:gotoName"
+#~ "('html_meta_tags');\"><em>html_meta_tags</em></a> or <a href=\"javascript:"
+#~ "gotoName('dynamic_locale');\"><em>dynamic_locale</em></a> plugin options."
+#~ msgstr ""
+#~ "* Deze optie wordt gedeeld met de <a href=\"javascript:gotoName"
+#~ "('html_meta_tags');\"><em>html_meta_tags</em></a> of<a href=\"javascript:"
+#~ "gotoName('dynamic_locale');\"><em>dynamic_locale</em></a> plugin opties."
+
 #, fuzzy
 #~ msgid "* This option may be set via the <a href=\\\"javascript:gotoName("
 #~ msgstr ""
@@ -17542,7 +17571,7 @@ msgstr "Ophalen van de link <em>%s</em> mislukt."
 #~ "<em>Setup</em> opnieuw uitvoeren maar (sommige) setup bestanden ontbreken."
 
 #~ msgid "Only one SEO filter may be enabled."
-#~ msgstr "Er mag slechts Ã©Ã©n SEO filter actief zijn."
+#~ msgstr "Er mag slechts &eacute;&eacute;n SEO filter actief zijn."
 
 #~ msgid "Tags added selected items"
 #~ msgstr "Tags toegevoegd aan de geselecteerde onderdelen."
@@ -17650,7 +17679,7 @@ msgstr "Ophalen van de link <em>%s</em> mislukt."
 #~ msgstr "Je moet een wachtwoord invoeren voor de Gallerij gastgebruiker"
 
 #~ msgid "Bad gallery in instantiation of album %s."
-#~ msgstr "Verkeerde galerij in instantiÃ«ring van album %s."
+#~ msgstr "Verkeerde galerij in instanti&euml;ring van album %s."
 
 #~ msgid "View news"
 #~ msgstr "Nieuws bekijken"
@@ -17736,17 +17765,17 @@ msgstr "Ophalen van de link <em>%s</em> mislukt."
 #~ "groups. Groups are separated by \"|\". (Use \"\\|\" to represent the \"|"
 #~ "\" character in the groups.)"
 #~ msgstr ""
-#~ "Wachtwoorden moeten tenminste Ã©Ã©n van de karakters uit elke groep "
-#~ "bevatten. Groepen worden gescheiden door \"|\". (Gebruik \"\\|\" om het "
-#~ "karakter \"|\" te maken in de groepen.)"
+#~ "Wachtwoorden moeten tenminste &eacute;&eacute;n van de karakters uit elke "
+#~ "groep bevatten. Groepen worden gescheiden door \"|\". (Gebruik \"\\|\" om "
+#~ "het karakter \"|\" te maken in de groepen.)"
 
 #~ msgid "Password must be at least %u characters"
 #~ msgstr "Het wachtwoord dient tenminste %u karakters lang te zijn"
 
 #~ msgid "Password must contain at least one of %s"
 #~ msgstr ""
-#~ "Wachtwoord moet tenminste Ã©Ã©n van de volgende karakters bevatten <em>%"
-#~ "s</em>"
+#~ "Wachtwoord moet tenminste &eacute;&eacute;n van de volgende karakters "
+#~ "bevatten <em>%s</em>"
 
 #~ msgid ""
 #~ "<strong>Note:</strong> passwords must be at least %1$u characters long "
@@ -17758,11 +17787,11 @@ msgstr "Ophalen van de link <em>%s</em> mislukt."
 #~ "$s."
 #~ msgstr[0] ""
 #~ "<strong>Opmerking</strong>: wachtwoorden moeten tenminste %1$u karakters "
-#~ "lang zijn en tenminste Ã©Ã©n karakter uit %2$s bevatten."
+#~ "lang zijn en tenminste &eacute;&eacute;n karakter uit %2$s bevatten."
 #~ msgstr[1] ""
 #~ "<strong>Opmerking</strong>: wachtwoorden moeten tenminste %1$u karakters "
-#~ "lang zijn en tenminste Ã©Ã©n karakter uit elk van de volgende groepen "
-#~ "bevatten: %2$s."
+#~ "lang zijn en tenminste &eacute;&eacute;n karakter uit elk van de volgende "
+#~ "groepen bevatten: %2$s."
 
 #~ msgid ""
 #~ "<strong>Note</strong>: passwords must contain at least one character from "
@@ -17772,11 +17801,11 @@ msgstr "Ophalen van de link <em>%s</em> mislukt."
 #~ "<strong>Note</strong>: passwords must contain at least one character from "
 #~ "each of the following groups: %s."
 #~ msgstr[0] ""
-#~ "<strong>LET OP!:</strong>: wachtwoorden moeten tenminste Ã©Ã©n karakter "
-#~ "uit %s bevatten."
+#~ "<strong>LET OP!:</strong>: wachtwoorden moeten tenminste &eacute;&eacute;"
+#~ "n karakter uit %s bevatten."
 #~ msgstr[1] ""
-#~ "<strong>LET OP!:</strong>: wachtwoorden moeten tenminste Ã©n karakter uit "
-#~ "elk van de volgende groepen bevatten: %s."
+#~ "<strong>LET OP!:</strong>: wachtwoorden moeten tenminste &eacute;n "
+#~ "karakter uit elk van de volgende groepen bevatten: %s."
 
 #~ msgid ""
 #~ "<strong>Note</strong>: passwords must be at least %u characters long."
@@ -18060,13 +18089,13 @@ msgstr "Ophalen van de link <em>%s</em> mislukt."
 #~ msgstr "Opslaan mislukt!"
 
 #~ msgid "creates the installSignature function"
-#~ msgstr "creÃ«ert de installSignature functie"
+#~ msgstr "cre&euml;ert de installSignature functie"
 
 #~ msgid "installSignature Gen"
 #~ msgstr "installSignature Gen"
 
 #~ msgid "Generate installSignature function"
-#~ msgstr "CreÃ«er installSignature functie"
+#~ msgstr "Cre&euml;er installSignature functie"
 
 #~ msgid "Generates news articles for supported plugins."
 #~ msgstr "Maakt nieuws-artikelen voor ondersteunde plugins."
@@ -18634,9 +18663,9 @@ msgstr "Ophalen van de link <em>%s</em> mislukt."
 #~ "album thumb selections you have made on individual albums."
 #~ msgstr ""
 #~ "Met deze knoppen kun je alle album-thumbs instellen op &oacute;f een "
-#~ "<em>willekeurige</em> afbeelding Ã³f op de<em>%s</em> afbeelding. Dit "
-#~ "verandert elke album-thumb selectie die je gemaakt hebt voor individuele "
-#~ "albums."
+#~ "<em>willekeurige</em> afbeelding &oacute;f op de<em>%s</em> afbeelding. "
+#~ "Dit verandert elke album-thumb selectie die je gemaakt hebt voor "
+#~ "individuele albums."
 
 #~ msgid "*no owner"
 #~ msgstr "*geen eigenaar"
@@ -18766,15 +18795,15 @@ msgstr "Ophalen van de link <em>%s</em> mislukt."
 #~ "Comment posting will be rejected if any of the checked fields is not "
 #~ "valid."
 #~ msgstr ""
-#~ "Reacties worden geweigerd als Ã©Ã©n van de hier aangevinkte(en dus "
-#~ "verplichte) velden niet wordt ingevuld of ongeldig is."
+#~ "Reacties worden geweigerd als &eacute;&eacute;n van de hier aangevinkte"
+#~ "(en dus verplichte) velden niet wordt ingevuld of ongeldig is."
 
 #~ msgid ""
 #~ "Send a <em>deprecated</em> notification message if the function name is "
 #~ "checked."
 #~ msgstr ""
-#~ "Geeft een <em>verouderd</em> melding als Ã©Ã©n van de aangevinkte funties "
-#~ "wordt gevonden."
+#~ "Geeft een <em>verouderd</em> melding als &eacute;&eacute;n van de "
+#~ "aangevinkte funties wordt gevonden."
 
 #~ msgid ""
 #~ "Text to flag new images with (<span class='textasnewflag'>text</span> can "
@@ -18809,7 +18838,7 @@ msgstr "Ophalen van de link <em>%s</em> mislukt."
 #~ "verificatie."
 
 #~ msgid "Back to the list of albums (go up a level)"
-#~ msgstr "Terug naar de lijst van albums (Ã©Ã©n niveau omhoog)"
+#~ msgstr "Terug naar de lijst van albums (&eacute;&eacute;n niveau omhoog)"
 
 #~ msgid "Cropped thumbnails will be %1$u x %2$u pixels."
 #~ msgstr "De gecropte thumbnail wordt %1$u x %2$u pixels."
@@ -19406,8 +19435,8 @@ msgstr "Ophalen van de link <em>%s</em> mislukt."
 #~ "player and its license."
 #~ msgstr ""
 #~ "Schakel <strong>Flowplayer 3</strong> in om multimedia bestanden te "
-#~ "gebruiken. BELANGRIJK: Er kan maar Ã©Ã©n multimediaspeler plugin "
-#~ "tegelijkertijd ingeschakeld zijn en de class-video extensie moet "
+#~ "gebruiken. BELANGRIJK: Er kan maar &eacute;&eacute;n multimediaspeler "
+#~ "plugin tegelijkertijd ingeschakeld zijn en de class-video extensie moet "
 #~ "geactiveerd zijn. <br>Zie <a href='http://flowplayer.org'>flowplayer.org</"
 #~ "a> voor meer info over de player en de licentie."
 
