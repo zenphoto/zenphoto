@@ -83,7 +83,7 @@ class contactformOptions {
 										'desc' => gettext("If checked, a confirmation form will be presented before sending the contact message.")),
 									gettext('Send copy') => array('key' => 'contactform_sendcopy', 'type' => OPTION_TYPE_CHECKBOX,
 										'order' => 0,
-										'desc' => gettext("If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could miss use the e-mail address entered for spamming with this form and that in some countries' jurisdictions (e.g. most European countries) you may be made responsible for this then!</p>")),
+										'desc' => gettext("If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could misuse the e-mail address entered for spamming with this form and that in some countries' jurisdictions (e.g. most European countries) you may be made responsible for this then!</p>")),
 									gettext('Send copy note text') => array('key' => 'contactform_sendcopy_text', 'type' => OPTION_TYPE_TEXTAREA,
 										'order' => 0,
 										'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
