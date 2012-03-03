@@ -1345,7 +1345,6 @@ class SearchEngine
 						}
 						if ($mine || is_null($mine) && ($album->isMyItem(LIST_RIGHTS) || checkAlbumPassword($albumname) && $album->getShow())) {
 							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
-							$allow = empty($this->album_list) || in_array($albumname, $this->album_list);
 						}
 						$albums_seen[$albumid] = $albumrow = array('allow'=>$allow,'viewUnpublished'=>$viewUnpublished,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
 					}

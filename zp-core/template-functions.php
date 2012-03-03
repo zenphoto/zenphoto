@@ -10,6 +10,12 @@
 require_once(dirname(__FILE__).'/functions.php');
 require_once(dirname(__FILE__).'/functions-controller.php');
 
+if (!defined('SEO_WEBPATH')) {
+	define('SEO_WEBPATH',seo_locale::localePath());
+	define('SEO_FULLWEBPATH',seo_locale::localePath(true));
+}
+
+
 zp_load_gallery();
 
 //******************************************************************************
@@ -299,7 +305,7 @@ function printAdminToolbox($id='admin') {
 			if (!$_zp_current_admin_obj->no_zp_login)  {
 				// logout link
 				$sec = (int) ((SERVER_PROTOCOL=='https') & true);
-				$link = FULLWEBPATH.'/index.php?logout='.$sec.$redirect;
+				$link = SEO_FULLWEBPATH.'/index.php?logout='.$sec.$redirect;
 				?>
 				<li>
 					<a href="<?php echo $link; ?>"><?php echo gettext("Logout"); ?> </a>
@@ -421,7 +427,7 @@ function getGalleryIndexURL($relative=true) {
 		if ($specialpage) {
 			return rewrite_path('/page/'.$gallink1, '?'.substr($gallink2, 0, -1));
 		}
-		return WEBPATH . "/";
+		return rewrite_path('','');
 	}
 }
 
@@ -1080,7 +1086,7 @@ function printHomeLink($before='', $after='', $title=NULL, $class=NULL, $id=NULL
 		if (substr($site,-1) == "/") { $site = substr($site, 0, -1); }
 		if (empty($name)) { $name = $_zp_gallery->getWebsiteTitle(); }
 		if (empty($name)) { $name = gettext('Home'); }
-		if ($site != FULLWEBPATH) {
+		if ($site != SEO_FULLWEBPATH) {
 			echo html_encode($before);
 			printLink($site, $name, $title, $class, $id);
 			echo html_encode($after);
@@ -3116,11 +3122,6 @@ function getLatestComments($number,$type="all",$itemID="") {
  * @param int $itemID the ID of the element to get the comments for if $type != "all"
  */
 function printLatestComments($number, $shorten='123',$type="all",$itemID="") {
-	if(MOD_REWRITE) {
-		$albumpath = "/"; $imagepath = "/"; $modrewritesuffix = getOption('mod_rewrite_image_suffix');
-	} else {
-		$albumpath = "/index.php?album="; $imagepath = "&amp;image="; $modrewritesuffix = "";
-	}
 	$comments = getLatestComments($number,$type,$itemID);
 	echo "<ul id=\"showlatestcomments\">\n";
 	foreach ($comments as $comment) {
@@ -3131,7 +3132,7 @@ function printLatestComments($number, $shorten='123',$type="all",$itemID="") {
 		}
 		$album = $comment['folder'];
 		if($comment['type'] != "albums" AND $comment['type'] != "news" AND $comment['type'] != "pages") { // check if not comments on albums or Zenpage items
-			$imagetag = $imagepath.$comment['filename'].$modrewritesuffix;
+			$imagetag = $comment['filename'].(MOD_REWRITE)?getOption('mod_rewrite_image_suffix'):'';
 		} else {
 			$imagetag = "";
 		}
@@ -3146,7 +3147,7 @@ function printLatestComments($number, $shorten='123',$type="all",$itemID="") {
 		if(!empty($title)) {
 			$title = ": ".$title;
 		}
-		echo "<li><a href=\"".WEBPATH.$albumpath.$album.$imagetag."\" class=\"commentmeta\">".$albumtitle.$title.$author."</a><br />\n";
+		echo "<li><a href=\"".rewrite_path($album.$imagetag,'?album='.$album.'&amp;image='.$imagetag)."\" class=\"commentmeta\">".$albumtitle.$title.$author."</a><br />\n";
 		echo "<span class=\"commentbody\">".$shortcomment."</span></li>";
 	}
 	echo "</ul>\n";
@@ -3656,21 +3657,18 @@ function printAllDates($class='archive', $yearid='year', $monthid='month', $orde
  */
 function getCustomPageURL($page, $q='', $album='') {
 	global $_zp_current_album;
-	$result = '';
-	if (MOD_REWRITE) {
-		if (!empty($album)) {
-			$album = '/'.urlencode($album);
-		}
-		$result .= WEBPATH.$album."/page/$page";
-		if (!empty($q)) { $result .= "?$q"; }
-	} else {
-		if (!empty($album)) {
-			$album = "&album=$album";
-		}
-		$result .= WEBPATH."/index.php?p=$page".$album;
-		if (!empty($q)) { $result .= "&$q"; }
+	$result_r = '';
+	$result = "index.php?p=$page";
+	if (!empty($album)) {
+		$result_r = urlencode($album);
+		$result .= "&album=$album";
 	}
-	return $result;
+	$result_r .= "/page/$page";
+	if (!empty($q)) {
+		$result_r .= "?$q";
+		$result .= "&$q";
+	}
+	return rewrite_path($result_r,$result);
 }
 
 /**
@@ -3697,11 +3695,8 @@ function printCustomPageURL($linktext, $page, $q='', $prev='', $next='', $class=
  * @return string
  */
 function getURL($image) {
-	if (MOD_REWRITE) {
-		return WEBPATH . "/" . pathurlencode($image->getAlbumName()) . "/" . urlencode($image->filename);
-	} else {
-		return WEBPATH . "/index.php?album=" . pathurlencode($image->getAlbumName()) . "&image=" . urlencode($image->filename);
-	}
+	return rewrite_path(pathurlencode($image->getAlbumName()) . "/" . urlencode($image->filename),
+	 										"/index.php?album=" . pathurlencode($image->getAlbumName()) . "&image=" . urlencode($image->filename));
 }
 /**
  * Returns the record number of the album in the database
@@ -3869,7 +3864,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 	}
 	$urls = '';
 	if (MOD_REWRITE) {
-		$url = WEBPATH."/page/search/";
+		$url = SEO_WEBPATH . "/page/search/";
 	} else {
 		$url = WEBPATH."/index.php?p=search";
 	}
@@ -3998,7 +3993,11 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 	if (is_null($within)) {
 		$within = getOption('search_within');
 	}
-	if (MOD_REWRITE) { $searchurl = '/page/search/'; } else { $searchurl = "/index.php?p=search"; }
+	if (MOD_REWRITE) {
+		$searchurl =  SEO_WEBPATH.'/page/search/';
+	} else {
+		$searchurl = WEBPATH."/index.php?p=search";
+	}
 	if (!$within) {
 		$engine->clearSearchWords();
 	}
@@ -4012,7 +4011,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 	?>
 	<div id="<?php echo $id; ?>">
 		<!-- search form -->
-		<form method="post" action="<?php echo WEBPATH.$searchurl; ?>" id="search_form">
+		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
 				// <!-- <![CDATA[
 				var within = <?php echo (int) !empty($searchwords); ?>;
@@ -4357,7 +4356,7 @@ function getPageRedirect() {
 			if (!empty($title)) $action .= '&title='.urlencode(getNewsTitlelink());
 			break;
 		case 'password.php':
-			$action = str_replace(WEBPATH, '', urldecode(sanitize($_SERVER['REQUEST_URI'], 0)));
+			$action = str_replace(SEO_WEBPATH, '', urldecode(sanitize($_SERVER['REQUEST_URI'], 0)));
 			if ($action == '/') {
 				$action = '/index.php';
 			}
@@ -4369,7 +4368,7 @@ function getPageRedirect() {
 			$action = '/index.php?userlog=1&p='.substr($_zp_gallery_page, 0, -4);
 		}
 	}
-	return WEBPATH.$action;
+	return SEO_WEBPATH.$action;
 }
 /**
  * Prints the album password form

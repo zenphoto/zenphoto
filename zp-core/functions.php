@@ -2305,7 +2305,11 @@ function getTinyURL($obj) {
 	$asoc = array_flip(getTableAsoc());
 	$tiny = ($obj->getID()<<3)|$asoc[$obj->table];
 	if (MOD_REWRITE) {
-		return FULLWEBPATH.'/tiny/'.$tiny;
+		if (class_exists('seo_locale')) {
+			return seo_locale::localePath(true) . '/tiny/'.$tiny;
+		} else {
+			return FULLWEBPATH . '/tiny/'.$tiny;
+		}
 	} else {
 		return FULLWEBPATH.'/index.php?p='.$tiny.'&t';
 	}

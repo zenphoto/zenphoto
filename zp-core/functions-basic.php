@@ -191,6 +191,7 @@ switch (SERVER_PROTOCOL) {
 	}
 	break;
 }
+
 if (!defined('COOKIE_PESISTENCE')) {
 	$persistence = getOption('cookie_persistence');
 	if (!$persistence) $persistence = 5184000;
@@ -934,7 +935,11 @@ function rewrite_path($rewrite, $plain, $webpath=true) {
 	}
 	if (substr($path, 0, 1) == "/"  && $webpath) $path = substr($path, 1);
 	if($webpath) {
-		return WEBPATH . "/" . $path;
+		if (class_exists('seo_locale')) {
+			return seo_locale::localePath() . "/" . $path;
+		} else {
+			return WEBPATH . "/" . $path;
+		}
 	} else {
 		return $path;
 	}

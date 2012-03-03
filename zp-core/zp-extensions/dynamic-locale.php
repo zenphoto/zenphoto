@@ -204,9 +204,8 @@ class dynamic_locale {
 				$langs[$full[0]] = $simple.'.';
 			}
 		}
-		$main = getOptionFromDB('locale');
-		if (isset($langs[$main])) {
-			$langs[$main] = '';
+		if (isset($langs[SITE_LOCALE])) {
+			$langs[SITE_LOCALE] = '';
 		}
 		return $langs;
 	}

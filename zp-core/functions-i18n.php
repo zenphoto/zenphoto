@@ -7,6 +7,7 @@
 // force UTF-8 Ø
 
 define ('DEBUG_LOCALE', false); // used for examining language selection problems
+define('SITE_LOCALE',getOptionFromDB('locale'));
 
 function setupLanguageArray() {
 	global $_zp_languages;
@@ -307,7 +308,7 @@ function setupDomain($domain=NULL,$type=NULL) {
 function setupCurrentLocale($override=NULL) {
 	if(empty($domain) && empty($type)) {
 		if (is_null($override)) {
-			$locale = getOption("locale");
+			$locale = getOption('locale');
 		} else {
 			$locale = $override;
 		}
