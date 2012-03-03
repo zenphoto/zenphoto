@@ -336,12 +336,6 @@ setOptionDefault('RSS_comments', 1);
 setOptionDefault('RSS_articles', 1);
 setOptionDefault('RSS_article_comments', 1);
 
-if (file_exists(dirname(__FILE__).'/js/editor_config.js.php') && file_exists(SERVERPATH . "/" . ZENFOLDER .'/'. PLUGIN_FOLDER. "/tiny_mce/tiny_mce.js")) {
-	setOptionDefault('tinyMCEPresent',1);
-} else {
-	setOptionDefault('tinyMCEPresent',0);
-}
-
 setOptionDefault('AlbumThumbSelect',1);
 purgeOption('AlbumThumbSelectField');
 purgeOption('AlbumThumbSelectDirection');

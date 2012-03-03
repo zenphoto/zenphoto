@@ -1189,7 +1189,7 @@ function printAlbumDesc() {
  * @author Ozh
  */
 function printField($context, $field, $convertBR = NULL, $override = false, $label='') {
-	if (is_null($convertBR)) $convertBR = !getOption('tinyMCEPresent');
+	if (is_null($convertBR)) $convertBR = !getOption('zp_plugin_tiny_mce');
 	switch($context) {
 		case 'image':
 			global $_zp_current_image;
