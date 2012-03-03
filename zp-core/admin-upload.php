@@ -98,15 +98,21 @@ if (count($types)>1) {
 <p class="notebox">
 	<?php
 	echo gettext('<strong>Note: </strong>');
+	?>
+	<br />
+	<?php
 	if ($last == 'ZIP') {
 		echo gettext('ZIP files must contain only Zenphoto supported <em>image</em> types.');
+		?>
+		<br /><br />
+		<?php
 	}
 	$maxupload = ini_get('upload_max_filesize');
 	$maxpost = ini_get('post_max_size');
 	$maxuploadint = parse_size($maxupload);
 	$maxpostint = parse_size($maxpost);
 	if ($maxuploadint < $maxpostint) {
-		echo '<br />'.sprintf(gettext("The maximum size for any one file is <strong>%sB</strong>"), $maxupload);
+		echo sprintf(gettext("The maximum size for any one file is <strong>%sB</strong>"), $maxupload);
 		echo ' '.sprintf(gettext("and the maximum size for one total upload is <strong>%sB</strong> which are set by your PHP configuration <code>upload_max_filesize</code> and <code>post_max_size</code>."), $maxpost);
 	} else {
 		echo ' '.sprintf(gettext("The maximum size for your total upload is <strong>%sB</strong> which is set by your PHP configuration <code>post_max_size</code>."), $maxpost);
