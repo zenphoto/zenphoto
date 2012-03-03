@@ -166,7 +166,7 @@ class sitemap {
 																'order' => 13,
 																'desc' => '<p class="notebox">'.$_common_locale_type.'</p>');
 		} else {
-			$_common_locale_type = gettext('* This option may be set via the <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> of  <a href=\"javascript:gotoName('dynamic_locale');\"><em>dynamic_locale</em></a> plugin options.');
+			$_common_locale_type = gettext('* This option may be set via the <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> or <a href=\"javascript:gotoName('dynamic_locale');\"><em>dynamic_locale</em></a> plugin options.');
 			$options['note'] = array('key' => 'sitemap_locale_type',
 															'type' => OPTION_TYPE_NOTE,
 															'order' => 13,
