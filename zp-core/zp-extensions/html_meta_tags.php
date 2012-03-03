@@ -180,14 +180,14 @@ class htmlmetatags {
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
 				$canonicalurl = $host.getAlbumLinkURL();
-				$thumb = getAlbumThumb();
+				$thumb = $host.getAlbumThumb();
 				break;
 			case 'image.php':
 				$pagetitle = getBareImageTitle()." (". getBareAlbumTitle().") - ";
 				$date = getImageDate();
 				$desc = getBareImageDesc();
 				$canonicalurl = $host.getImageLinkURL();
-				$thumb = getImageThumb();
+				$thumb = $host.getImageThumb();
 				break;
 			case 'news.php':
 				if(function_exists("is_NewsArticle")) {
@@ -283,7 +283,7 @@ class htmlmetatags {
 
 		// OpenGraph meta
 		if(getOption('htmlmeta_og-title')) { $meta .= '<meta property="og:title" content="'.$pagetitle.'" />'."\n"; }
-		if(getOption('htmlmeta_og-image') && !empty($thumb)) { $meta .= '<meta property="og:image" content="'.thumb.'" />'."\n"; }
+		if(getOption('htmlmeta_og-image') && !empty($thumb)) { $meta .= '<meta property="og:image" content="'.$thumb.'" />'."\n"; }
 		if(getOption('htmlmeta_og-description')) { $meta .= '<meta property="og:description" content="'.$desc.'" />'."\n"; }
 		if(getOption('htmlmeta_og-url')) { $meta .= '<meta property="og:url" content="'.$url.'" />'."\n"; }
 		if(getOption('htmlmeta_og-type')) { $meta .= '<meta property="og:type" content="'.$type.'" />'."\n"; }
