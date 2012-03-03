@@ -61,6 +61,9 @@ class contactformOptions {
 
 
 	function getOptionsSupported() {
+		$mailinglist = explode(';',getOption("contactform_mailaddress"));
+		array_walk($mailinglist, 'contactformOptions::trim_value');
+		setOption('contactform_mailaddress',implode(';',$mailinglist));
 		$list = array(gettext("required") => "required",gettext("show") => "show",gettext("omitted") => "omitted");
 		$mailfieldinstruction = gettext("Set if the <code>%s</code> field should be required, just shown or omitted");
 		return array(	gettext('Intro text') => array('key' => 'contactform_introtext', 'type' => OPTION_TYPE_TEXTAREA,
@@ -75,9 +78,6 @@ class contactformOptions {
 									gettext('New message link text') => array('key' => 'contactform_newmessagelink', 'type' => OPTION_TYPE_TEXTAREA,
 										'order' => 16,
 										'desc' => gettext("The text for the link after the thanks text to return to the contact page to send another message.")),
-									gettext('Mail address') => array('key' => 'contactform_mailaddress', 'type' => OPTION_TYPE_TEXTBOX,
-										'order' => 17,
-										'desc' => gettext("The e-mail address the messages should be sent to. Enter more than one address separated by comma without any spaces.")),
 									gettext('Require confirmation') => array('key' => 'contactform_confirm', 'type' => OPTION_TYPE_CHECKBOX,
 										'order' => 0,
 										'desc' => gettext("If checked, a confirmation form will be presented before sending the contact message.")),
@@ -89,7 +89,7 @@ class contactformOptions {
 										'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
 									gettext('Mail address') => array('key' => 'contactform_mailaddress', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 17,
-										'desc' => gettext("The e-mail address the messages should be sent to. Enter more than one address separated by semicolon without any spaces.")),
+										'desc' => gettext("The e-mail address the messages should be sent to. Enter one or more address separated by semicolons.")),
 									gettext('Title field') => array('key' => 'contactform_title', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
 										'order' => 1,
 										'desc' => sprintf($mailfieldinstruction,gettext("Title field"))),
@@ -134,6 +134,14 @@ class contactformOptions {
 										'desc' => sprintf($mailfieldinstruction,gettext("Message field")))
 		);
 	}
+	/**
+	 *
+	 * Used in array_walk to trim the e-mail addresses
+	 * @param string $value
+	 */
+	static function trim_value(&$value) {
+		$value = trim($value);
+	}
 }
 
 
@@ -151,6 +159,8 @@ function getField($field, $level=3) {
 		return '';
 	}
 }
+
+
 /**
  * Prints the mail contact form, handles checks and the mail sending. It uses Zenphoto's check for valid e-mail address and website URL and also supports CAPTCHA.
  * The contact form itself is a separate file and is located within the /contact_form/form.php so that it can be style as needed.
@@ -292,8 +302,7 @@ function printContactForm($subject_override='') {
 		$message = sanitize($_POST['message'],1);
 		$mailaddress = sanitize($_POST['mailaddress']);
 		$name = sanitize($_POST['name']);
-		$contactform_mailinglist = getOption("contactform_mailaddress");
-		$mailinglist = explode(';',$contactform_mailinglist);
+		$mailinglist = explode(';',getOption("contactform_mailaddress"));
 		if(getOption('contactform_sendcopy')) {
 			$sendcopy = array($name=>$mailaddress);
 		} else {
@@ -310,7 +319,7 @@ function printContactForm($subject_override='') {
 				<ul class="errorlist">
 					<?php
 					foreach ($msgs as $line) {
-					 	echo '<li>'.trim($line).'</li>';
+						echo '<li>'.trim($line).'</li>';
 					}
 					?>
 				</ul>
