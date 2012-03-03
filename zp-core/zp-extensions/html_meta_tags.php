@@ -284,7 +284,7 @@ class htmlmetatags {
 		// OpenGraph meta
 		if(getOption('htmlmeta_og-title')) { $meta .= '<meta property="og:title" content="'.$pagetitle.'" />'."\n"; }
 		if(getOption('htmlmeta_og-image') && !empty($thumb)) { $meta .= '<meta property="og:image" content="'.thumb.'" />'."\n"; }
-		if(getOption('htmlmeta_og-description')) { $meta .= '<meta property="og:description" content="'.FULLWEBPATH.'" />'."\n"; }
+		if(getOption('htmlmeta_og-description')) { $meta .= '<meta property="og:description" content="'.$desc.'" />'."\n"; }
 		if(getOption('htmlmeta_og-url')) { $meta .= '<meta property="og:url" content="'.$url.'" />'."\n"; }
 		if(getOption('htmlmeta_og-type')) { $meta .= '<meta property="og:type" content="'.$type.'" />'."\n"; }
 
