@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-02 15:12-0500\n"
-"PO-Revision-Date: 2012-03-02 18:59-0500\n"
+"POT-Creation-Date: 2012-03-02 19:03-0500\n"
+"PO-Revision-Date: 2012-03-02 19:50-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -11263,7 +11263,7 @@ msgid "Send copy"
 msgstr "Envoyer une copie"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/contact_form.php:86
-msgid "If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could miss use the e-mail address entered for spamming with this form and that in some countries' jurisdictions (e.g. most European countries) you may be made responsible for this then!</p>"
+msgid "If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could misuse the e-mail address entered for spamming with this form and that in some countries' jurisdictions (e.g. most European countries) you may be made responsible for this then!</p>"
 msgstr "Si coché, une copie du message est envoyée à l’adresse fournie.<p class='notebox'><strong>Attention.</strong> Il est alors fortement recommandé d’utiliser le Captcha et l’option de confirmation. (Tenez compte du fait que cette utilisation peut être détournée à des fins de SPAM ; dans certains pays – comme dans la plupart des pays européens – vous pouvez en être tenu responsable !)</p>"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/contact_form.php:87
@@ -11276,7 +11276,7 @@ msgstr "Le texte de la note affichée lorsqu’une copie est envoyée à une adr
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/contact_form.php:92
 msgid "The e-mail address the messages should be sent to. Enter more than one address separated by semicolon without any spaces."
-msgstr "L’adresse email à laquelle les messages doivent être envoyés. Saisissez une ou plusieurs adresses séparées par des virgules (sans espace)."
+msgstr "L’adresse email à laquelle les messages doivent être envoyés. Saisissez une ou plusieurs adresses séparées par des points-virgules (sans espace)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/contact_form.php:93
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/contact_form.php:95
@@ -11735,19 +11735,19 @@ msgstr "Utilisez plutôt la méthode<code> isProtected()</code> de la classe Alb
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1059
 msgid "Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link <code>getRSSLink()</code> just returns the URL."
-msgstr "Veuillez plutôt utiliser la fonction du modèle <code>getRSSLink()</code>. Note. Alors que cette fonction renvoie un lien html pleinement qualifié, la fonction <code>getRSSLink()</code> renvoie uniqument l'URL."
+msgstr "Utilisez plutôt la fonction du modèle <code>getRSSLink()</code>. Note. Alors que cette fonction renvoie un lien html pleinement qualifié, la fonction <code>getRSSLink()</code> renvoie uniqument l'URL."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1116
 msgid "Use the template function <code>getZenpageRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getZenpageRSSLink()</code> just returns the URL."
-msgstr "Veuillez plutôt utiliser la fonction du modèle <code>getZenpageRSSLink()</code>. Note. Alors que cette fonction renvoie un lien html pleinement qualifié, la fonction <code>getRSSLink()</code> renvoie uniqument l'URL."
+msgstr "Utilisez plutôt la fonction du modèle <code>getZenpageRSSLink()</code>. Note. Alors que cette fonction renvoie un lien html pleinement qualifié, la fonction <code>getRSSLink()</code> renvoie uniqument l'URL."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:1154
 msgid "Use $_zp_captcha->getCaptcha(). Note that you will require updating your code to the new function."
-msgstr "Utilisez $_zp_captcha->getCaptcha(). Notez que vous devrez mettre votre code à jour pour refléter la syntaxe de cette nouvelle fonction."
+msgstr "Utilisez plutôt $_zp_captcha->getCaptcha(). Notez que vous devrez mettre votre code à jour pour refléter la syntaxe de cette nouvelle fonction."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList.php:31
 msgid "Plugin to generate file download lists. The source of these files may be anywhere that can be accessed by server scripts, it need not be part of your Zenphoto installation."
-msgstr "Extension pour générer des listes de téléchargement. Les fichiers sources peuvent être à tout endroit accessible par un script du serveur ; ils n’ont pas besoin d’être dans votre installation Zenphoto."
+msgstr "Extension pour générer des listes de téléchargement de fichiers. Les fichiers sources peuvent être à tout endroit accessible par un script du serveur ; ils n’ont pas besoin d’être dans votre installation Zenphoto."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList.php:56
 msgid "Download directory"
@@ -11779,7 +11779,7 @@ msgstr "Droits de l’utilisateur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList.php:70
 msgid "Check if users are required to have <em>file</em> rights to download."
-msgstr "Vérifie si les usagers doivent avoir les droits <em>fichiers</em> pour télécharger."
+msgstr "Cocher si les usagers doivent avoir les droits <em>fichiers</em> pour télécharger."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList.php:73
 msgid "credentials"
@@ -12190,7 +12190,7 @@ msgstr "Lecture automatique"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:120
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:161
 msgid "Should the video start automatically. Yes if selected. (NOTE: Probably because of a flowplayer bug mp3/m4a/fla are always autoplayed.)"
-msgstr "Pour que la vidéo démarre automatiquement. Oui si coché. (NOTE : sans doute à cause d’un bug du flowplayer, les fichiers mp3, m4a et fla démarrent toujours automatiquement.)"
+msgstr "Cocher pour que la vidéo démarre automatiquement. (NOTE : sans doute à cause d’un bug du flowplayer, les fichiers mp3, m4a et fla démarrent toujours automatiquement.)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:121
 msgid "Background color"
@@ -12226,15 +12226,15 @@ msgstr "Indique si la barre des contrôles est masquée quand l’utilisateur n�
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:126
 msgid "Controls time color"
-msgstr "Couleur de l’indication de temps"
+msgstr "Couleur de l’indication du temps"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:127
 msgid "Value for the font color in the time field. This is the running time."
-msgstr "Valeur de la couleur de la police pour l’indication de temps déjà écoulé."
+msgstr "Valeur de la couleur de la police pour l’indication du temps écoulé."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:128
 msgid "Controls duration color"
-msgstr "Couleur de l’indication de durée"
+msgstr "Couleur de l’indication de la durée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:129
 msgid "Value for the font color in the time field that specifies the total duration of the clip or total time."
@@ -12286,7 +12286,7 @@ msgstr "Dégradé des curseurs"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:144
 msgid "Gradient setting for the sliders."
-msgstr "Paramètre de dégradé utilisés par les curseurs."
+msgstr "Paramètre de dégradé pour les curseurs."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:145
 msgid "Controls button color"
@@ -12294,7 +12294,7 @@ msgstr "Couleur des boutons des contrôles"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:146
 msgid "Color of the player buttons: stop, play, pause and full screen."
-msgstr "Couleur des boutons du lecteur : stop,lecture, pause et plein écran"
+msgstr "Couleur des boutons du lecteur : arrêt, lecture, pause et plein écran"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:147
 msgid "Controls hover button color"
@@ -12369,7 +12369,7 @@ msgstr "Image de démarrage – liste de lecture"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:166
 msgid "Video thumb of first playlist entry"
-msgstr "Vignette de la 1re entrée de la liste de lecture"
+msgstr "Vignette de la première entrée de la liste de lecture"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:166
 msgid "Album thumbnail"
