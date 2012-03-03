@@ -155,7 +155,7 @@ class dynamic_locale {
 																'order' => 2,
 																'desc' => '<p class="notebox">'.$_common_locale_type.'</p>');
 		} else {
-			$_common_locale_type = gettext('* This option may be set via the <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> or <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin options.');
+			$_common_locale_type = gettext('* This option may be set via the <a href="javascript:gotoName(\'html_meta_tags\');"><em>html_meta_tags</em></a> or <a href="javascript:gotoName(\'sitemap-extended\');"><em>sitemap-extended</em></a> plugin options.');
 			$options['note'] = array('key' => 'dynamic_locale_type',
 															'type' => OPTION_TYPE_NOTE,
 															'order' => 2,
