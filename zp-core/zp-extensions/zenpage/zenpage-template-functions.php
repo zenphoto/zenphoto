@@ -576,7 +576,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 											$imagesource = pathurlencode($imageobj->getSizedImage($size));
 											break;
 										case 'latestimagesbyalbum-sizedimage-maxspace':
-											getMaxSpaceContainer($maxwidth, $maxheight,$imageobj,true);
+											getMaxSpaceContainer($width, $height,$imageobj,true);
 											$imagesource = pathurlencode($imageobj->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true));
 											break;
 									}
