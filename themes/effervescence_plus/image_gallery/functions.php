@@ -169,7 +169,7 @@ class imagegallery {
 						printAlbumZip();
 						echo "</p>";
 					}
-					@call_user_func('printRating'');
+					@call_user_func('printRating');
 					?>
 			 		</div><!-- main -->
 					<div class="clearage"></div>

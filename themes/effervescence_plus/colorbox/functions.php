@@ -5,12 +5,12 @@
 // initialization stuff
 
 if(zp_has_filter('theme_head','colorbox::css')) {
-	$personality = new colorbox();
+	$personality = new ef_colorbox();
 } else {
-	require_once($_zp_themeroot.'/image_page/functions.php');
+	require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/image_page/functions.php');
 }
 
-class colorbox {
+class ef_colorbox {
 	function __construct() {
 
 	}
