@@ -290,6 +290,7 @@ function next_news($sortorder="date", $sortdirection="desc") {
 							case "latestimagesbyalbum-thumbnail":
 							case "latestimagesbyalbum-thumbnail-customcrop":
 							case "latestimagesbyalbum-sizedimage":
+							case "latestimagesbyalbum-sizedimage-maxspace":
 								$_zp_current_zenpage_news = new Album(NULL,$news['titlelink']);
 								$_zp_current_zenpage_news->set('date', $news['date']); // in this mode this stores the date of the images to group not the album (inconvenient workaround...)
 								break;
