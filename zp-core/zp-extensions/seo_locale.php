@@ -38,6 +38,7 @@ define('SEO_WEBPATH',seo_locale::localePath());
 define('SEO_FULLWEBPATH',seo_locale::localePath(true));
 
 class seo_locale {
+
 	static function load_request($allow) {
 		$uri = str_replace('\\','/',urldecode(sanitize($_SERVER['REQUEST_URI'], 0)));
 		$path = substr($uri, strlen(WEBPATH)+1);
@@ -70,17 +71,18 @@ class seo_locale {
 	}
 
 	static function localePath($full=false) {
+		global $_locale_Subdomains;
 		if ($full) {
 			$path = FULLWEBPATH;
 		} else {
 			$path =  WEBPATH;
 		}
-		$locale = zp_getCookie('dynamic_locale');
-		if ($locale && $locale != SITE_LOCALE) {
+		if($locale = @$_locale_Subdomains[zp_getCookie('dynamic_locale')]) {
 			$path .= '/'.$locale;
 		}
 		return $path;
 	}
 
 }
+
 ?>
