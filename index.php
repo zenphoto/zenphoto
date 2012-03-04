@@ -5,6 +5,7 @@ require_once(dirname(__FILE__).'/zp-core/global-definitions.php');
 define('OFFSET_PATH', 0);
 require_once(ZENFOLDER . "/template-functions.php");
 checkInstall();
+
 //$_zp_script_timer['require'] = microtime();
 //rss feeds
 if(isset($_GET['rss'])) {

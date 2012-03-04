@@ -34,6 +34,8 @@ if (GALLERY_SESSION) {
 }
 
 define('ZENPHOTO_LOCALE',setMainDomain());
+define('SITE_LOCALE',getOptionFromDB('locale'));
+
 
 require_once(dirname(__FILE__).'/class-load.php');
 require_once(dirname(__FILE__).'/auth_zp.php');
@@ -2006,7 +2008,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
  */
 function getOptionFromDB($key) {
 	$sql = "SELECT `value` FROM ".prefix('options')." WHERE `name`=".db_quote($key)." AND `ownerid`=0";
-	$optionlist = query_single_row($sql);
+	$optionlist = query_single_row($sql,false);
 	return @$optionlist['value'];
 }
 

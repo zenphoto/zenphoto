@@ -7,7 +7,6 @@
 // force UTF-8 Ø
 
 define ('DEBUG_LOCALE', false); // used for examining language selection problems
-define('SITE_LOCALE',getOptionFromDB('locale'));
 
 function setupLanguageArray() {
 	global $_zp_languages;

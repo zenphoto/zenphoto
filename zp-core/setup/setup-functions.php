@@ -492,7 +492,7 @@ function setupXSRFDefender() {
 			<?php echo gettext('An attempt at cross site reference forgery has been blocked.')?>
 		</p>
 		<?php
-		exitZP();
+		exit();
 	}
 }
 

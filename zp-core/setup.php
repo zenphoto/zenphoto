@@ -6,6 +6,7 @@
 
 // force UTF-8 Ø
 $session = session_start();
+
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
 if(!function_exists("gettext")) {
 	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');

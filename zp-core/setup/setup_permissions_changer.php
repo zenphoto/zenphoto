@@ -10,7 +10,7 @@ require_once(dirname(dirname(__FILE__)).'/functions.php');
 require_once(dirname(__FILE__).'/setup-functions.php');
 define('CONFIGFILE',SERVERPATH.'/'.DATA_FOLDER.'/zenphoto.cfg');
 if (!isset($_POST['folder'])) {
-	exitZP();
+	exit();
 }
 $folder = sanitize($_POST['folder'],3);
 if (substr($folder,-1,1) == '/') $folder = substr($folder,0,-1);

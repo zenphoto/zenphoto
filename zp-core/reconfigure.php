@@ -53,11 +53,16 @@ if (in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
 }
 
 function checkSignature() {
-	$old = @unserialize(getOption('zenphoto_install'));
+	if (function_exists('query_full_array')) {
+		$old = @unserialize(getOption('zenphoto_install'));
+		$new = installSignature();
+	} else {
+		$old = NULL;
+		$new = array();
+	}
 	if (!is_array($old)) {
 		$old = array('ZENPHOTO'=>gettext('an unknown release'));
 	}
-	$new = installSignature();
 	$reconfigure = true;
 	$diff = array_diff_assoc($old, $new);
 	$package = file_get_contents(dirname(__FILE__).'/Zenphoto.package');
