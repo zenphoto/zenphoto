@@ -16,7 +16,7 @@ zp_register_filter('edit_admin_custom_data', 'email_new_user::edit_admin', 0);
 class email_new_user {
 
 	static function save($savemsg, $userobj, $what) {
-		global $_zp_authority;
+		global $_zp_authority, $_zp_gallery;
 		if ($what=='new' && ($mail = $userobj->getEmail())) {
 			$ref = $_zp_authority->getResetTicket($adm = $userobj->getUser(), $userobj->getPass());
 			$msg = "\n".sprintf(gettext('You are receiving this e-mail because a user code (%1$s) has been created for you on the Zenphoto gallery %2$s.'),$adm,$_zp_gallery->getTitle()).
