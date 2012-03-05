@@ -58,7 +58,7 @@ if (isset($_GET['action'])) {
 				if (!empty($newloc) && getOption('disallow_'.$newloc)) {
 					$notify = '?local_failed='.$newloc;
 				} else {
-					zp_setCookie('dynamic_locale', $newloc, -368000);  // clear the language cookie
+					zp_clearCookie('dynamic_locale');  // clear the language cookie
 					$result = i18nSetLocale($newloc);
 					if (!empty($newloc) && ($result === false)) {
 						$notify = '?local_failed='.$newloc;
@@ -373,7 +373,7 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));
 			setOption('server_protocol', $protocol = sanitize($_POST['server_protocol'],3));
 			if ($protocol == 'http') {
-				zp_setCookie("zenphoto_ssl", "", -368000);
+				zp_clearCookie("zenphoto_ssl");
 			}
 			setOption('captcha', sanitize($_POST['captcha']));
 			setOption('obfuscate_cache', (int) isset($_POST['obfuscate_cache']));

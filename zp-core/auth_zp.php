@@ -81,12 +81,12 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 	}
 }
 if (!$_zp_loggedin) {	//	Clear the ssl cookie
-	zp_setCookie("zenphoto_ssl", "", -368000);
+	zp_clearCookie("zenphoto_ssl");
 }
 // Handle a logout action.
 if (isset($_REQUEST['logout'])) {
 	$_zp_authority->handleLogout();
-	zp_setCookie("zenphoto_ssl", "", -368000);
+	zp_clearCookie("zenphoto_ssl");
 	$redirect = '';
 	if (isset($_GET['p'])) { $redirect .= "&p=" . sanitize($_GET['p']); }
 	if (isset($_GET['searchfields'])) { $redirect .= "&searchfields=" . sanitize($_GET['searchfields']); }

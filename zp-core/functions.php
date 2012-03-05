@@ -1051,7 +1051,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 				}
 			}
 		} else {
-			zp_setCookie('zenphoto_last_album', '', -368000);
+			zp_clearCookie('zenphoto_last_album');
 		}
 		if (!is_null($_zp_current_zenpage_page)) {
 			$pages = $_zp_current_search->getPages();
@@ -1083,7 +1083,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 			$_zp_current_search = null;
 			rem_context(ZP_SEARCH);
 			if (!isset($_REQUEST['preserve_serch_params'])) {
-				zp_setCookie("zenphoto_search_params", "", -368000);
+				zp_clearCookie("zenphoto_search_params");
 			}
 		}
 	}
@@ -1576,6 +1576,7 @@ function zp_cookieEncode($value) {
  * @param string $value The value to be stored
  * @param timestamp $time The time delta until the cookie expires
  * @param string $path The path on the server in which the cookie will be available on
+ * @param bool $secure true if secure cookie
  */
 function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 	if (empty($value)) {
@@ -1608,6 +1609,17 @@ function zp_setCookie($name, $value, $time=NULL, $path=NULL, $secure=false) {
 		$_SESSION[$name] = $value;
 		$_COOKIE[$name] = $cookiev;
 	}
+}
+
+/**
+ *
+ * Clears a cookie
+ * @param string $name
+ * @param string $path
+ * @param bool $secure true if secure cookie
+ */
+function zp_clearCookie($name, $path=NULl, $secure=false) {
+	zp_setCookie($name, '', -368000, $path, $secure);
 }
 
 /**
@@ -1882,7 +1894,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		} else {
 			// Clear the cookie, just in case
 			if (DEBUG_LOGIN) debugLog("zp_handle_password: invalid credentials");
-			zp_setCookie($authType, "", -368000);
+			zp_clearCookie($authType);
 			$_zp_login_error = true;
 		}
 		return;
@@ -1897,7 +1909,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		} else {
 			// Clear the cookie
 			if (DEBUG_LOGIN) debugLog("zp_handle_password: invalid cookie");
-			zp_setCookie($authType, "", -368000);
+			zp_clearCookie($authType);
 		}
 	}
 }

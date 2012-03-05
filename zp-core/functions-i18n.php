@@ -328,7 +328,7 @@ function setupCurrentLocale($override=NULL) {
 				if (isset($_REQUEST['oldlocale'])) {
 					$locale = sanitize($_REQUEST['oldlocale'], 3);
 					setOption('locale', $locale, false);
-					zp_setCookie('dynamic_locale', '', -368000);
+					zp_clearCookie('dynamic_locale');
 				}
 			}
 		}
@@ -430,7 +430,9 @@ function getUserLocale() {
 		if (DEBUG_LOCALE) debugLog("dynamic_locale from URL: ".sanitize($_REQUEST['locale'], 0)."=>$locale");
 	} else {
 		$matches = explode('.',@$_SERVER['HTTP_HOST']);
-		$locale = validateLocale($matches[0], 'HTTP_HOST');
+		if ($locale = validateLocale($matches[0], 'HTTP_HOST')) {
+			zp_clearCookie('dynamic_locale');
+		}
 	}
 	if (!$locale && is_object($_zp_current_admin_obj)) {
 		$locale =  $_zp_current_admin_obj->getLanguage();

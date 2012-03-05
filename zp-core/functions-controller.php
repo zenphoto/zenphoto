@@ -157,7 +157,7 @@ function zp_handle_comment() {
 					$_zp_comment_stored[3] = ''; // clear the comment itself
 					zp_setCookie('zenphoto_comment', implode('|~*~|', $_zp_comment_stored), NULL, '/');
 				} else {
-					zp_setCookie('zenphoto_comment', '', -368000, '/');
+					zp_clearCookie('zenphoto_comment', '/');
 				}
 				//use $redirectTo to send users back to where they came from instead of booting them back to the gallery index. (default behaviour)
 				if (!isset($_SERVER['SERVER_SOFTWARE']) || strpos(strtolower($_SERVER['SERVER_SOFTWARE']), 'microsoft-iis') === false) {
@@ -219,7 +219,7 @@ function zp_load_gallery() {
  */
 function zp_load_search() {
 	global $_zp_current_search;
-	zp_setCookie("zenphoto_search_params", "", -368000);
+	zp_clearCookie("zenphoto_search_params");
 	if (!is_object($_zp_current_search)) {
 		$_zp_current_search = new SearchEngine();
 	}
