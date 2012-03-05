@@ -58,8 +58,8 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 						<a href="<?php echo html_encode($fullimage); ?>" title="<?php echo getBareImageTitle(); ?>">
 							<?php
 						}
-						if (isImagePhoto()) {
-							@call_user_func('printUserSizeImage',getImageTitle());
+						if (function_exists('printUserSizeImage') && isImagePhoto()) {
+							printUserSizeImage(getImageTitle());
 						} else {
 							printDefaultSizedImage(getImageTitle());
 						}
