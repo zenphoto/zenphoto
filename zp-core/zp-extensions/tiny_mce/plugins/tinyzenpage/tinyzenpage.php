@@ -158,7 +158,7 @@ require_once("tinyzenpage-functions.php");
 	 <?php
 	 		if(empty($_GET['zenpage']) AND empty($_GET['album'])) {
 	 			echo "<h2 style='margin-left: 8px'>";
-	 			echo "<em>tiny</em>Zenpage (v$plugin_version)</h2>";
+	 			echo "<em>tiny</em>Zenpage</h2>";
 	 			echo "<p style='margin-left: 8px'>";
 	 			echo gettext("This provides access to your images and albums (dropdown 'Zenphoto') as well as pages, news articles and news categories (dropdown 'Zenpage') to easily include them in your pages and articles. You need at least 'Manage all albums' or 'Edit' rights to specific albums to be able to included image from them.")."</p>";
 	 			echo "<h3 style='margin-left: 1px'>General usage</h3>";

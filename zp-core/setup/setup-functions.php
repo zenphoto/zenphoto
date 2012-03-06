@@ -167,7 +167,6 @@ function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod) {
 	if (!is_dir($path) && $class == 'std') {
 		mkdir_recursive($path, $chmod);
 	}
-	$serverpath = str_replace('\\', '/', dirname(dirname(dirname(__FILE__))));
 	switch ($class) {
 		case 'std':
 			$append = str_replace($serverpath, '', $path);
