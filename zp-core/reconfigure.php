@@ -186,7 +186,7 @@ function reconfigurePage() {
 				$l2 = '</a>';
 			}
 			if (array_key_exists('ZENPHOTO', $diff) || array_key_exists('FOLDER', $diff)) {
-				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to functiuon.'), $l1, $l2);
+				printf(gettext('The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function.'), $l1, $l2);
 			} else {
 				printf(gettext('The change detected may not be critical but you should run %1$ssetup%2$s at your earliest convenience.'), $l1, $l2);
 			}
