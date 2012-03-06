@@ -14,7 +14,7 @@ if(is_AdminEditPage('page')) {
 } else {
 	$rights = ZENPAGE_NEWS_RIGHTS;
 }
-admin_securityChecks($rights, currentRelativeURL(__FILE__));
+admin_securityChecks($rights, currentRelativeURL());
 
 $saveitem = '';
 $reports = array();

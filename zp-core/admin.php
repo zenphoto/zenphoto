@@ -103,7 +103,7 @@ if (!zp_loggedin()) {
 		$from = sanitize($_GET['from']);
 		$from = urldecode($from);
 	} else {
-		$from = urldecode(currentRelativeURL(__FILE__));
+		$from = urldecode(currentRelativeURL());
 	}
 }
 

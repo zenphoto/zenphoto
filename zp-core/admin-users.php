@@ -15,7 +15,7 @@ if (isset($_GET['ticket'])) {
 } else {
 	$ticket = '';
 }
-admin_securityChecks(USER_RIGHTS, currentRelativeURL(__FILE__));
+admin_securityChecks(USER_RIGHTS, currentRelativeURL());
 
 $newuser = array();
 $showset = array();
@@ -40,7 +40,7 @@ $_current_tab = sanitize($_GET['page'],3);
 /* handle posts */
 if (isset($_GET['action'])) {
 	if (($action = sanitize($_GET['action'])) != 'saveoptions') {
-		admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
+		admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 	}
 	$themeswitch = false;
 	switch ($action) {
@@ -81,7 +81,7 @@ if (isset($_GET['action'])) {
 				if ($_zp_null_account || (isset($_POST['alter_enabled'])) || (sanitize_numeric($_POST['totaladmins']) > 1) ||
 							(trim(sanitize($_POST['adminuser0'],0))) != $_zp_current_admin_obj->getUser() ||
 							isset($_POST['0-newuser'])) {
-					admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
+					admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 				}
 				$alter = isset($_POST['alter_enabled']);
 				$nouser = true;

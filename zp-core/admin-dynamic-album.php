@@ -10,7 +10,7 @@ define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__).'/admin-globals.php');
 require_once(dirname(__FILE__).'/template-functions.php');
 
-admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL(__FILE__));
+admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
 $imagelist = array();
 

@@ -21,7 +21,7 @@ if (isset($_POST['auth'])) {
 }
 
 
-admin_securityChecks(NULL, currentRelativeURL(__FILE__));
+admin_securityChecks(NULL, currentRelativeURL());
 
 if (isset($_POST['XSRFTag'])) {
 	$_REQUEST['XSRFToken'] = $_POST['XSRFToken'] = $_GET['XSRFToken'] = getXSRFToken(sanitize($_POST['XSRFTag']));

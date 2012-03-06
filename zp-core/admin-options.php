@@ -9,7 +9,7 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL(__FILE__));
+admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 
 if (!isset($_GET['page'])) {
 	if (array_key_exists('options', $zenphoto_tabs)) {

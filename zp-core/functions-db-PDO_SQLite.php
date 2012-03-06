@@ -51,7 +51,7 @@ function db_connect($errorstop=true) {
 		return false;
 	}
 	if (empty($folder) || $folder == 'localhost') {
-		$folder = dirname(dirname(__FILE__)).'/zp-data/';
+		$folder = SERVERPATH.'/zp-data/';
 	} else {
 		$folder = str_replace($_zp_conf_vars['mysql_host'],'\\','/');
 		if (substr($folder, -1, 1) != '/') {

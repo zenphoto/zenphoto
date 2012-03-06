@@ -8,8 +8,8 @@
 
 global $_zp_current_admin_obj, $_zp_loggedin, $_zp_null_account, $_zp_reset_admin, $_zp_authority;
 $_zp_current_admin_obj = null;
-if (file_exists(dirname(dirname(__FILE__)).'/'.USER_PLUGIN_FOLDER.'/alt/lib-auth.php')) { // load a custom authroization package if it is present
-	require_once(dirname(dirname(__FILE__)).'/'.USER_PLUGIN_FOLDER.'/alt/lib-auth.php');
+if (file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/alt/lib-auth.php')) { // load a custom authroization package if it is present
+	require_once(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/alt/lib-auth.php');
 } else {
 	require_once(dirname(__FILE__).'/lib-auth.php');
 	$_zp_authority = new Zenphoto_Authority();

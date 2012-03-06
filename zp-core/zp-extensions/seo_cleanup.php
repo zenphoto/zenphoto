@@ -41,7 +41,7 @@ if (defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
-	admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL(__FILE__));
+	admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL());
 
 	//XSRFdefender('seo_cleanup');
 

@@ -9,7 +9,7 @@ if (isset($_POST['auth'])) {
 	$_zp_loggedin = $_zp_authority->checkAuthorization($hash, $id);
 }
 
-admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
+admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
 
 if (!empty($_FILES)) {
 	$name = trim(basename(sanitize($_FILES['Filedata']['name'],3)));

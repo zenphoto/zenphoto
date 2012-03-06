@@ -7,7 +7,7 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-admin_securityChecks(NULL, currentRelativeURL(__FILE__));
+admin_securityChecks(NULL, currentRelativeURL());
 
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action'],3);

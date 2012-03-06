@@ -127,7 +127,7 @@ class security_logger {
 				$type = $action;
 		}
 
-		$file = dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/security.log';
+		$file = SERVERPATH.'/'.DATA_FOLDER . '/security.log';
 		$preexists = file_exists($file) && filesize($file) > 0;
 		$f = fopen($file, 'a');
 		if($f) {

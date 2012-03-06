@@ -7,6 +7,19 @@
 // force UTF-8 Ø
 require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
 
+$const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
+$serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
+preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches);
+if (empty($matches)) {
+	$const_webpath = '';
+} else {
+	$const_webpath = $matches[1];
+	$serverpath = substr($serverpath,0,strrpos($serverpath,$const_webpath)).$const_webpath;
+}
+define('SETUPLOG',$serverpath.'/'.DATA_FOLDER . '/setup.log');
+define('CONFIGFILE',$serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg');
+define('SERVERPATH',$serverpath);
+
 /**
  *
  * enumerates the files in folder(s)
@@ -354,17 +367,16 @@ function permissionsSelector($permission_names, $select) {
 function setupLog($message, $anyway=false, $reset=false) {
 	global $debug, $chmod;
 	if ($debug || $anyway) {
-		if (!file_exists(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER)) {
-			mkdir_recursive(dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER, $chmod & 0311);
+		if (!file_exists(dirname(SETUPLOG))) {
+			mkdir_recursive(SETUPLOG, $chmod & 0311);
 		}
 		if ($reset) { $mode = 'w'; } else { $mode = 'a'; }
-		$path = dirname(dirname(dirname(__FILE__))).'/'.DATA_FOLDER . '/setup.log';
-		$f = fopen($path, $mode);
+		$f = fopen(SETUPLOG, $mode);
 		if ($f) {
 			fwrite($f, strip_tags($message) . "\n");
 			fclose($f);
 			clearstatcache();
-			@chmod($path, 0600);
+			@chmod(SETUPLOG, 0600);
 		}
 	}
 }

@@ -12,10 +12,10 @@
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 
-admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
+admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 
 if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
+	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
 	exitZP();
 }
 

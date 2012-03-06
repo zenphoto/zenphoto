@@ -19,7 +19,7 @@ if (!defined('OFFSET_PATH')) {
 		if (sanitize($_GET['action'])=='reset_all_hitcounters') {
 			if (!zp_loggedin(ADMIN_RIGHTS)) {
 				// prevent nefarious access to this page.
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
+				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
 				exitZP();
 			}
 			zp_session_start();

@@ -10,7 +10,7 @@ define("OFFSET_PATH",4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 require_once("zenpage-admin-functions.php");
 
-admin_securityChecks(ZENPAGE_PAGES_RIGHTS, currentRelativeURL(__FILE__));
+admin_securityChecks(ZENPAGE_PAGES_RIGHTS, currentRelativeURL());
 
 $reports = array();
 if (isset($_GET['bulkaction'])) {

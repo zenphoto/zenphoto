@@ -14,6 +14,25 @@ if(!function_exists("gettext")) {
 }
 
 global $_zp_conf_vars;
+$const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
+$const_serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
+if (OFFSET_PATH) {
+	preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches);
+	if (empty($matches)) {
+		preg_match('~(.*)/('.USER_PLUGIN_FOLDER.')~',$const_webpath, $matches);
+	}
+	if (empty($matches)) {
+		$const_webpath = '';
+	} else {
+		$const_webpath = $matches[1];
+		$const_serverpath = substr($const_serverpath,0,strrpos($const_serverpath,$const_webpath)).$const_webpath;
+	}
+} else {
+	if ($const_webpath == '/' || $const_webpath == '.') {
+		$const_webpath = '';
+	}
+}
+
 
 // Contexts (Bitwise and combinable)
 define("ZP_INDEX",   1);
@@ -41,11 +60,33 @@ if (defined("RELEASE")) {
 	}
 }
 $_zp_error = false;
-if (!file_exists(dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . "/zenphoto.cfg")) {
+if (!file_exists($const_serverpath . '/' . DATA_FOLDER . "/zenphoto.cfg")) {
 	require(dirname(__FILE__).'/reconfigure.php');
 }
 // Including the config file more than once is OK, and avoids $conf missing.
-eval(file_get_contents(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zenphoto.cfg'));
+eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg'));
+
+/**
+ * OFFSET_PATH definisions:
+ * 		0		Theme scripts (root index.php)
+ * 		1		zp-core scripts
+ * 		2		setup scripts
+ * 		3		plugin scripts
+ */
+if (!defined('OFFSET_PATH')) {
+	if (!defined('RELEASE')) debugLogBacktrace('no offset path')	;
+	define('OFFSET_PATH', 0);
+}
+
+if (!defined('WEBPATH')) {
+	define('WEBPATH', $const_webpath);
+}
+unset($const_webpath);
+
+if (!defined('SERVERPATH')) {
+	define('SERVERPATH', $const_serverpath);
+}
+unset($const_serverpath);
 
 if (empty($_zp_conf_vars['mysql_database'])) {
 	require(dirname(__FILE__).'/reconfigure.php');
@@ -140,43 +181,6 @@ if (function_exists('zp_graphicsLibInfo')) {
 }
 
 require_once(dirname(__FILE__).'/lib-encryption.php');
-
-if (!defined('SERVERPATH')) {
-	define('SERVERPATH', str_replace("\\", '/', dirname(dirname(__FILE__))));
-}
-
-if (!defined('OFFSET_PATH')) {
-	if (!defined('RELEASE')) debugLogBacktrace('no offset path')	;
-	define('OFFSET_PATH', 0);
-}
-/**
- * OFFSET_PATH definisions:
- * 		0		Theme scripts (root index.php)
- * 		1		zp-core scripts
- * 		2		setup scripts
- * 		3		plugin scripts
- */
-
-if (!defined('WEBPATH')) {
-	$const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
-	if (OFFSET_PATH) {
-		preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches);
-		if (empty($matches)) {
-			preg_match('~(.*)/('.USER_PLUGIN_FOLDER.')~',$const_webpath, $matches);
-		}
-		if (empty($matches)) {
-			$const_webpath = '';
-		} else {
-			$const_webpath = $matches[1];
-		}
-	} else {
-		if ($const_webpath == '/' || $const_webpath == '.') {
-			$const_webpath = '';
-		}
-	}
-	define('WEBPATH', $const_webpath);
-	unset($const_webpath);
-}
 
 define('SERVER_PROTOCOL', getOption('server_protocol'));
 switch (SERVER_PROTOCOL) {
@@ -364,7 +368,7 @@ function setOption($key, $value, $persistent=true) {
 function setOptionDefault($key, $default) {
 	$bt = debug_backtrace();
 	$b = array_shift($bt);
-	$creator = str_replace(str_replace("\\", '/', dirname(dirname(__FILE__))).'/', '', str_replace('\\', '/', $b['file']));
+	$creator = str_replace(SERVERPATH.'/', '', str_replace('\\', '/', $b['file']));
 	$sql = 'SELECT * FROM '.prefix('options').' WHERE `name`='.db_quote($key).' AND `ownerid`=0';
 	$result = query_single_row($sql, false);
 	if ($result) {
@@ -1048,7 +1052,7 @@ function getAlbumFolder($root=SERVERPATH) {
  */
 function debugLog($message, $reset=false) {
 	global $_zp_debug_written;
-	$path = dirname(dirname(__FILE__)) . '/' . DATA_FOLDER . '/debug.log';
+	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
 	if ($reset || ($size = @filesize($path)) == 0 || $size > 5000000) {
 		$f = fopen($path, 'w');
 		if ($f) {

@@ -6,7 +6,6 @@
  */
 
 define('OFFSET_PATH', 3);
-chdir(dirname(dirname(__FILE__)));
 
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
@@ -23,7 +22,7 @@ $buttonlist[] = $mybutton = array(
 																	'rights'=> ADMIN_RIGHTS
 																	);
 
-admin_securityChecks(NULL, currentRelativeURL(__FILE__));
+admin_securityChecks(NULL, currentRelativeURL());
 
 if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass']) || isset($_POST['dbhost'])) {
 	XSRFdefender('databaseinfo');

@@ -35,7 +35,6 @@ if (defined('OFFSET_PATH')) {
 } else {
 
 	define('OFFSET_PATH', 3);
-	chdir(dirname(dirname(__FILE__)));
 
 	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
@@ -43,7 +42,7 @@ if (defined('OFFSET_PATH')) {
 		require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-admin-functions.php');
 	}
 
-	admin_securityChecks(NULL, currentRelativeURL(__FILE__));
+	admin_securityChecks(NULL, currentRelativeURL());
 
 	if(isset($_REQUEST['dbname']) || isset($_REQUEST['dbuser']) || isset($_REQUEST['dbpass']) || isset($_REQUEST['dbhost'])) {
 		XSRFdefender('wordpress');

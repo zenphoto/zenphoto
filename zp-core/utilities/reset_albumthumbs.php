@@ -6,7 +6,6 @@
  */
 
 define('OFFSET_PATH', 3);
-chdir(dirname(dirname(__FILE__)));
 
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 require_once(dirname(dirname(__FILE__)).'/template-functions.php');
@@ -24,7 +23,7 @@ $buttonlist[] = array(
 								'rights'=> MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS
 								);
 
-admin_securityChecks(MANAGE_ALL_ALBUM_RIGHTS, $return = currentRelativeURL(__FILE__));
+admin_securityChecks(MANAGE_ALL_ALBUM_RIGHTS, $return = currentRelativeURL());
 
 if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 	XSRFdefender('reset_thumbs');

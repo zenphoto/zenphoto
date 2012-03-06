@@ -8,7 +8,7 @@ define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-admin_securityChecks(FILES_RIGHTS, currentRelativeURL(__FILE__));
+admin_securityChecks(FILES_RIGHTS, currentRelativeURL());
 
 printAdminHeader('upload','files');
 

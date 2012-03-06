@@ -15,7 +15,7 @@ if (isset($_REQUEST['album'])) {
 } else {
 	$localrights = NULL;
 }
-admin_securityChecks($localrights, $return = currentRelativeURL(__FILE__));
+admin_securityChecks($localrights, $return = currentRelativeURL());
 
 if (isset($_GET['album'])) {
 	$folder = sanitize($_GET['album']);

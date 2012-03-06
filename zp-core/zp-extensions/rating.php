@@ -24,7 +24,7 @@ if (!defined('OFFSET_PATH')) {
 	if (isset($_GET['action']) && $_GET['action']=='clear_rating') {
 		if (!zp_loggedin(ADMIN_RIGHTS)) {
 			// prevent nefarious access to this page.
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL(__FILE__));
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . currentRelativeURL());
 			exitZP();
 		}
 

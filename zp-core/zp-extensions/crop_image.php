@@ -19,7 +19,7 @@ if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 	require_once(dirname(dirname(__FILE__)).'/functions-image.php');
-	admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL(__FILE__));
+	admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 } else {
 	zp_register_filter('admin_toolbox_image', 'crop_image::toolbox');
 	zp_register_filter('edit_image_utilities', 'crop_image::edit', 1); // we want this one to come right after the crop thumbnail button

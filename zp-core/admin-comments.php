@@ -9,7 +9,7 @@
 define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-admin_securityChecks(COMMENT_RIGHTS, currentRelativeURL(__FILE__));
+admin_securityChecks(COMMENT_RIGHTS, currentRelativeURL());
 
 if (isset($_GET['page'])) {
 	$page = sanitize($_GET['page']);

@@ -5,7 +5,7 @@
  * @package setup
  *
  */
-define('OFFSET_PATH',3);
+define('OFFSET_PATH',2);
 require_once('setup-functions.php');
 require_once(dirname(dirname(__FILE__)).'/functions.php');
 $theme = sanitize(sanitize($_POST['theme']));

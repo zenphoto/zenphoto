@@ -18,7 +18,7 @@ if (empty($matches)) {
 	$const_webpath = $matches[1].'/';
 }
 if (!defined('WEBPATH')) { define('WEBPATH', $const_webpath); }
-if (!defined('SERVERPATH')) { define('SERVERPATH', dirname(dirname(dirname(__FILE__)))); }
+if (!defined('SERVERPATH')) { define('SERVERPATH', $serverpath); }
 define('LOCAL_CHARSET','UTF-8');
 define('FILESYSTEM_CHARSET', 'ISO-8859-1');
 define('ADMIN_RIGHTS',1);
@@ -100,7 +100,7 @@ function printAdminFooter() {
 
 function debugLog($message, $reset=false) {
 	if ($reset) { $mode = 'w'; } else { $mode = 'a'; }
-	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
+	$path = $serverpath . '/' . DATA_FOLDER . '/debug.log';
 	$f = fopen($path, $mode);
 	fwrite($f, $message . "\n");
 	fclose($f);

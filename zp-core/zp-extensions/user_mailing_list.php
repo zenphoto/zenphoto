@@ -49,7 +49,7 @@ if (defined('OFFSET_PATH')) {
 
 	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
-	admin_securityChecks(NULL, currentRelativeURL(__FILE__));
+	admin_securityChecks(NULL, currentRelativeURL());
 
 	if(isset($_GET['sendmail'])) {
 		XSRFdefender('mailing_list');

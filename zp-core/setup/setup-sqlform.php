@@ -82,7 +82,7 @@
 			<td><input type="text" size="40" name="db_host" value="<?php
 				$folder = $_zp_conf_vars['mysql_host'];
 				if ($folder == 'localhost') {
-					echo SERVERPATH.'/zp-data/';
+					echo $serverpath.'/zp-data/';
 				} else {
 					echo $_zp_conf_vars['mysql_host'];
 				}
@@ -103,7 +103,7 @@
 			<td><?php echo gettext("Database table prefix"); ?></td>
 			<?php
 			if($_zp_conf_vars['mysql_prefix']=='.') {
-				$path = str_replace(' ', '_', basename(dirname(dirname($_SERVER['SCRIPT_NAME'])))).'_';
+				$path = str_replace(' ', '_', trim($const_webpath,'/')).'_';
 			} else {
 				$path = $_zp_conf_vars['mysql_prefix'];
 			}

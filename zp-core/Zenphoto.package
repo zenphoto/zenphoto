@@ -719,6 +719,10 @@ zp-core/zp-extensions/class-video/movDefault.png
 zp-core/zp-extensions/class-video/mp3Default.png
 zp-core/zp-extensions/class-video/mp4Default.png
 zp-core/zp-extensions/class-video/multimediaDefault.png
+zp-core/zp-extensions/cloneZenphoto
+zp-core/zp-extensions/cloneZenphoto.php
+zp-core/zp-extensions/cloneZenphoto/clone.php
+zp-core/zp-extensions/cloneZenphoto/cloneTab.php
 zp-core/zp-extensions/colorbox_js
 zp-core/zp-extensions/colorbox_js.php
 zp-core/zp-extensions/colorbox_js/colorbox_ie.css.php
@@ -1872,4 +1876,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1874
+1878

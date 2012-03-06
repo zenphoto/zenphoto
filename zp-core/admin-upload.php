@@ -11,7 +11,7 @@ define('UPLOAD_ERR_QUOTA', -1);
 
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
+admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
 
 if (isset($_GET['uploadtype'])) {
 	$uploadtype = sanitize($_GET['uploadtype'])	;

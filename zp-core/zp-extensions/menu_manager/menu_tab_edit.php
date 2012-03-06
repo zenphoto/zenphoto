@@ -6,7 +6,7 @@ if (getOption('zp_plugin_zenpage')) {
 }
 require_once(dirname(__FILE__).'/menu_manager-admin-functions.php');
 
-admin_securityChecks(NULL, currentRelativeURL(__FILE__));
+admin_securityChecks(NULL, currentRelativeURL());
 
 $page = 'edit';
 

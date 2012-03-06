@@ -20,7 +20,7 @@ if (isset($_POST['auth'])) {
 	$_zp_loggedin = $_zp_authority->checkAuthorization($hash, $id);
 }
 
-admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL(__FILE__));
+admin_securityChecks(UPLOAD_RIGHTS, $return = currentRelativeURL());
 
 $folder = zp_apply_filter('admin_upload_process',sanitize_path($_POST['folder']));
 $types = array_keys($_zp_extra_filetypes);

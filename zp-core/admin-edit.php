@@ -11,7 +11,7 @@ define('OFFSET_PATH', 1);
 
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL(__FILE__));
+admin_securityChecks(ALBUM_RIGHTS, $return = currentRelativeURL());
 
 if (isset($_GET['tab'])) {
 	$subtab = sanitize($_GET['tab']);

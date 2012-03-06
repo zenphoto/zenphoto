@@ -2820,17 +2820,21 @@ function deleteThemeDirectory($source) {
  *
  * @param string $source the script file incase REQUEST_URI is not available
  */
-function currentRelativeURL($source) {
-	$source = str_replace('\\','/',$source);
+function currentRelativeURL() {
+	$source = str_replace('\\','/',$_SERVER['SCRIPT_FILENAME']);
 	$source = str_replace(SERVERPATH, WEBPATH, $source);
 	$q = '';
 	if (!empty($_GET)) {
 		foreach ($_GET as $parm=>$value) {
-			$q .= $parm.'='.$value.'&';
+			if ($value) {
+				$q .= $parm.'='.$value.'&';
+			} else {
+				$q .= $parm.'&';
+			}
 		}
-		$q = '?'.substr($q,0,-1);
+		$q = '?'.substr($q, 0, -1);
 	}
-	return pathurlencode($source.$q);
+	return pathurlencode($source).$q;
 }
 
 /**
@@ -3957,12 +3961,14 @@ function admin_securityChecks($rights, $return) {
 		}
 	}
 	if (!$_zp_reset_admin) {
-		if (!zp_loggedin($rights)) { // prevent nefarious access to this page.
+		if (!zp_loggedin($rights)) {
+			// prevent nefarious access to this page.
 			$returnurl = urldecode($return);
 			if (!zp_apply_filter('admin_allow_access',false, $returnurl)) {
+				$uri = explode('?', $returnurl);
 				header("HTTP/1.0 302 Found");
 				header("Status: 302 Found");
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $return);
+				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
 				exitZP();
 			}
 		}
@@ -3987,10 +3993,8 @@ function XSRFdefender($action) {
 		unset($_POST['XSRFToken']);
 	}
 	if (isset($_GET['XSRFToken'])) {
-		unset($_GET['XSRFToken']);
-	}
+		unset($_GET['XSRFToken']);	}
 }
-
 /**
  *
  * returns the shortest version of string2 that is different from string1
@@ -4010,11 +4014,10 @@ function minDiff($string1, $string2) {
 		if ($string1[$i] != $string2[$i]) {
 			$base = substr($string2,0,$i+1);
 			break;
-		}
+}
 	}
 	return $base;
 }
-
 /**
  * Returns Magick (Gmagick/Imagick) constants that begin with $filter and
  * removes the constant of the form $filter . 'UNDEFINED' if it exists.
@@ -4047,7 +4050,6 @@ function getMagickConstants($class, $filter) {
 
 	return $constantsArray;
 }
-
 /**
  * Strips off quotes from the strng
  * @param $string
@@ -4060,7 +4062,6 @@ function unQuote($string) {
 	}
 	return $string;
 }
-
 /**
  * Returns an option list of administrators who can own albums or images
  * @param string $owner
@@ -4074,14 +4075,12 @@ function admin_album_list($owner) {
 		if (($user['rights'] & (UPLOAD_RIGHTS | ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))) {
 			$adminlist .= '<option value="'.$user['user'].'"';
 			if ($owner == $user['user']) {
-				$adminlist .= ' SELECTED="SELECTED"';
-			}
+				$adminlist .= ' SELECTED="SELECTED"';			}
 			$adminlist .= '>'.$user['user']."</option>\n";
-		}
+}
 	}
 	return $adminlist;
 }
-
 /**
  * Figures out which log tabs to display
  */
@@ -4093,29 +4092,25 @@ function getLogTabs() {
 	if (count($filelist)>0) {
 		$tab = sanitize(@$_GET['tab'],3);
 		foreach ($filelist as $logfile) {
-			$log = substr(basename($logfile), 0, -4);
+			$log = substr(basename($logfile), 0,-4);
 			if ($log == $tab) {
-				$default = $tab;
-			}
+				$default = $tab;			}
 			if (array_key_exists($log, $localizer)) {
 				$logfiletext = $localizer[$log];
 			} else {
 				$logfiletext = str_replace('_', ' ',$log);
-				$logfiletext = strtoupper(substr($logfiletext, 0, 1)).substr($logfiletext, 1);
-			}
+				$logfiletext = strtoupper(substr($logfiletext, 0, 1)).substr($logfiletext, 1);			}
 			$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&amp;tab='.$log));
 			if (filesize($logfile) > 0 && empty($default)) {
-				$default = $log;
-			}
-		}
+				$default = $log;			}
+}
 	}
 	return array($subtabs,$default);
 }
-
 /**
  *
  * Displays the "new version available" message on admin pages
- * @param unknown_type $tab
+ * @param unknown_type$tab
  * @param unknown_type $subtab
  */
 function admin_showupdate($tab, $subtab) {
@@ -4125,7 +4120,6 @@ function admin_showupdate($tab, $subtab) {
 	</div>
 	<?php
 }
-
 /**
  *
  * handles save of user/password
@@ -4148,49 +4142,41 @@ function processCredentials($object, $suffix='') {
 			if (isset($_POST['pass_r'.$suffix])) {
 				$pass2 = trim(sanitize($_POST['pass_r'.$suffix]));
 			} else {
-				$pass2 = '';
-			}
+				$pass2 = '';			}
 		}
 		$fail = '';
 		if ($olduser != $newuser) {
 			if (!empty($newuser) && strlen($_POST['pass'.$suffix])==0) {
-				$fail = '?mismatch=user';
-			}
+				$fail = '?mismatch=user';			}
 		}
 		if (!$fail && $pwd == $pass2) {
 			if (is_object($object)) {
 				$object->setUser($newuser);
 			} else {
-				setOption($object.'_user', $newuser);
-			}
+				setOption($object.'_user', $newuser);			}
 			if (empty($pwd)) {
 				if (strlen($_POST['pass'.$suffix])==0) {	// clear the  password
 					if (is_object($object)) {
 						$object->setPassword(NULL);
 					} else {
-						setOption($object.'_password', NULL);
-					}
-				}
+						setOption($object.'_password', NULL);			}			}
 			} else {
 				if (is_object($object)) {
 					$object->setPassword($_zp_authority->passwordHash($newuser, $pwd));
 				} else {
-					setOption($object.'_password', $_zp_authority->passwordHash($newuser, $pwd));
-				}
-			}
+					setOption($object.'_password', $_zp_authority->passwordHash($newuser, $pwd));			}			}
 		} else {
 			if (empty($fail)) {
 				$notify = '?mismatch';
 			} else {
-				$notify = $fail;
-			}
+				$notify = $fail;			}
 		}
 		$hint = process_language_string_save('hint'.$suffix, 3);
 		if (is_object($object)) {
 			$object->setPasswordHint($hint);
 		} else {
 			setOption($object.'_hint', $hint);
-		}
+}
 	}
 	return $notify;
 }
@@ -4200,24 +4186,24 @@ function consolidatedEditMessages($subtab) {
 	$messagebox = $errorbox =$notebox = array();
 	if (isset($_GET['ndeleted'])) {
 		$ntdel = sanitize_numeric($_GET['ndeleted']);
-		if ($ntdel <= 2) {
+		if ($ntdel <=2) {
 			$msg = gettext("Image");
 		} else {
 			$msg = gettext("Album");
-			$ntdel = $ntdel - 2;
+			$ntdel = $ntdel- 2;
 		}
-		if ($ntdel == 2) {
+		if ($ntdel ==2) {
 			$errorbox[] = sprintf(gettext("%s failed to delete."),$msg);
 		} else {
 			$messagebox[] = sprintf(gettext("%s deleted successfully."),$msg);
-		}
+}
 	}
 	if (isset($_GET['mismatch'])) {
 		if ($_GET['mismatch'] == 'user') {
 			$errorbox[] = gettext("You must supply a  password.");
 		} else {
 			$errorbox[] = gettext("Your passwords did not match.");
-		}
+}
 	}
 	if (isset($_GET['edit_error'])) {
 		$errorbox[] = html_encode(sanitize($_GET['edit_error']));
@@ -4279,7 +4265,7 @@ function consolidatedEditMessages($subtab) {
 			default:
 				$messagebox[] = $action;
 			break;
-		}
+}
 	}
 	if (isset($_GET['mcrerr'])) {
 		switch (sanitize_numeric($_GET['mcrerr'])) {
@@ -4304,29 +4290,25 @@ function consolidatedEditMessages($subtab) {
 			default:
 				$errorbox[] = gettext("There was an error with a move, copy, or rename operation.");
 			break;
-		}
+}
 	}
-	if (!empty($errorbox)) {
-		?>
+	if (!empty($errorbox)) {		?>
 		<div class="errorbox fade-message">
 			<?php echo implode('<br />',$errorbox); ?>
 		</div>
 		<?php
 	}
-	if (!empty($notebox)) {
-		?>
+	if (!empty($notebox)) {		?>
 		<div class="notebox fade-message">
 			<?php echo implode('<br />',$notebox); ?>
 		</div>
 		<?php
 	}
-	if (!empty($messagebox)) {
-		?>
+	if (!empty($messagebox)) {		?>
 		<div class="messagebox fade-message">
 			<?php echo implode('<br />',$messagebox); ?>
 		</div>
-		<?php
-	}
+		<?php	}
 }
 
 ?>

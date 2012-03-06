@@ -23,14 +23,13 @@ header('Last-Modified: ' . ZP_LAST_MODIFIED);
 header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
 
-define('CONFIGFILE',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zenphoto.cfg');
+require_once(dirname(__FILE__).'/setup/setup-functions.php');
 
 $debug = isset($_REQUEST['debug']);
 
 $setup_checked = isset($_GET['checked']);
 $upgrade = false;
 
-require_once(dirname(__FILE__).'/setup/setup-functions.php');
 require_once(dirname(__FILE__).'/lib-utf8.php');
 
 if (isset($_REQUEST['autorun'])) {
@@ -42,14 +41,6 @@ if (isset($_REQUEST['autorun'])) {
 } else {
 	$autorun = false;
 }
-
-preg_match('|(.*)/'.ZENFOLDER.'/|',$_SERVER['SCRIPT_NAME'], $matches);
-if (empty($matches)) {
-	$const_webpath = '';
-} else {
-	$const_webpath = $matches[1].'/';
-}
-$serverpath = str_replace("\\", '/', dirname(dirname(__FILE__)));
 
 $chmod = fileperms(dirname(__FILE__))&0666;
 
@@ -65,30 +56,30 @@ if (file_exists(CONFIGFILE)) {
 	$zptime = filemtime(CONFIGFILE);
 } else {
 	$zptime = time();
-	if (!file_exists(dirname(dirname(__FILE__)).'/'.DATA_FOLDER)) {
-		@mkdir(dirname(dirname(__FILE__)).'/'.DATA_FOLDER, $chmod | 0311);
+	if (!file_exists($serverpath.'/'.DATA_FOLDER)) {
+		@mkdir($serverpath.'/'.DATA_FOLDER, $chmod | 0311);
 	}
 	if (file_exists(dirname(dirname(__FILE__)).'/'.ZENFOLDER.'/zp-config.php')) {
 		// copy old file from zp-core
 		@copy(dirname(dirname(__FILE__)).'/'.ZENFOLDER.'/zp-config.php', CONFIGFILE);
 		@unlink(dirname(dirname(__FILE__)).'/'.ZENFOLDER.'/zp-config.php');
 	}
-	if (file_exists(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php')) {
+	if (file_exists($serverpath.'/'.DATA_FOLDER.'/zp-config.php')) {
 		//migrate old file.
-		$zpconfig = file_get_contents(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
+		$zpconfig = file_get_contents($serverpath.'/'.DATA_FOLDER.'/zp-config.php');
 		$i = strpos($zpconfig, '/** Do not edit above this line. **/');
 		$j = strpos($zpconfig, '?>');
 		$zpconfig = 'global $_zp_conf_vars;'."\n".'$conf = array();'."\n".substr($zpconfig, $i, $j-$i);
 		file_put_contents(CONFIGFILE, $zpconfig);
-		$result = unlink(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/zp-config.php');
+		$result = unlink($serverpath.'/'.DATA_FOLDER.'/zp-config.php');
 		$newconfig = false;
 	} else {
 		$newconfig = true;
 		@copy('zenphoto.cfg', CONFIGFILE);
 	}
 }
-@copy('dataaccess',dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess');
-@chmod(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/.htaccess', 0444);
+@copy('dataaccess',$serverpath.'/'.DATA_FOLDER.'/.htaccess');
+@chmod($serverpath.'/'.DATA_FOLDER.'/.htaccess', 0444);
 
 if (session_id() == '') {
 	session_start();
@@ -298,15 +289,15 @@ if (function_exists('setOption')) {
 $updatechmod = ($updatechmod || !checkPermissions(fileperms(dirname(__FILE__).'/setup.php'), $chmod)) && zp_loggedin(ADMIN_RIGHTS);
 
 if ($newconfig || isset($_GET['copyhtaccess'])) {
-	if ($newconfig && !file_exists(dirname(dirname(__FILE__)).'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
-		@chmod(dirname(dirname(__FILE__)).'/.htaccess',0777);
+	if ($newconfig && !file_exists($serverpath.'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
+		@chmod($serverpath.'/.htaccess',0777);
 		$ht = @file_get_contents(SERVERPATH.'/.htaccess');
 		$newht = file_get_contents('htaccess');
 		if (site_closed($ht)) {
 			$newht = close_site($newht);
 		}
-		file_put_contents(dirname(dirname(__FILE__)).'/.htaccess', $newht);
-		@chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
+		file_put_contents($serverpath.'/.htaccess', $newht);
+		@chmod($serverpath.'/.htaccess',0444);
 	}
 }
 
@@ -486,8 +477,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
 }
 
-	$path = dirname(dirname(__FILE__)).'/'.DATA_FOLDER . '/setup.log';
-	$permission = fileperms($path)&0777;
+	$permission = fileperms(SETUPLOG)&0777;
 	if (checkPermissions($permission, 0600)) {
 		$p = true;
 	} else {
@@ -647,7 +637,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 						$charset = 'UTF-8';
 					}
 					$test = '';
-					if (($dir=opendir(dirname(dirname(__FILE__)).'/'.DATA_FOLDER.'/')) !== false) {
+					if (($dir=opendir($serverpath.'/'.DATA_FOLDER.'/')) !== false) {
 						$testfiles=array();
 						while(($file=readdir($dir)) !== false) {
 							if (preg_match('/^charset[\._]t(.*)$/', $file, $matches)) {
@@ -724,7 +714,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					}
 					checkMark($notice, $msg, $msg1, sprintf($msg2,charsetSelector($trialset),$trialset));
 					// UTF-8 URI
-					if (($notice != -1) && @copy(SERVERPATH.'/'.ZENFOLDER.'/images/pass.png', SERVERPATH.'/'.DATA_FOLDER.'/'.internalToFilesystem('tést.jpg'))) {
+					if (($notice != -1) && @copy(SERVERPATH.'/'.ZENFOLDER.'/images/pass.png', $serverpath.'/'.DATA_FOLDER.'/'.internalToFilesystem('tést.jpg'))) {
 						$test_image = WEBPATH.'/'.DATA_FOLDER.'/'.urlencode('tést.jpg');
 						$req_iso = gettext('Image URIs appear require the <em>filesystem</em> character set.');
 						$req_UTF8 = gettext('Image URIs appear to require the UTF-8 character set.');
@@ -1066,7 +1056,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 
 	set_time_limit(120);
 	$lcFilesystem = file_exists(strtoupper(__FILE__));
-	$base = str_replace('\\', '/', dirname(dirname(__FILE__))).'/';
+	$base = $serverpath.'/';
 	getResidentZPFiles(SERVERPATH.'/'.ZENFOLDER, $lcFilesystem);
 	if ($lcFilesystem) {
 		$res = array_search(strtolower($base.ZENFOLDER.'/Zenphoto.package'),$_zp_resident_files);
@@ -1270,7 +1260,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	$msg = gettext("<em>.htaccess</em> file");
 	$Apache = stristr($_SERVER['SERVER_SOFTWARE'], "apache");
-	$htfile = '../.htaccess';
+	$htfile = $serverpath.'/.htaccess';
 	$ht = trim(@file_get_contents($htfile));
 	$htu = strtoupper($ht);
 	$vr = "";
@@ -1308,10 +1298,10 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			}
 			$oht = trim($oht);
 			if ($oht == $ht) {	// an unmodified .htaccess file, we can just replace it
-				@chmod(dirname(dirname(__FILE__)).'/.htaccess',0666);
+				@chmod($serverpath.'/.htaccess',0666);
 				@unlink($htfile);
-				$ch = file_put_contents(dirname(dirname(__FILE__)).'/.htaccess', $ht);
-				@chmod(dirname(dirname(__FILE__)).'/.htaccess',0444);
+				$ch = file_put_contents($serverpath.'/.htaccess', $ht);
+				@chmod($serverpath.'/.htaccess',0444);
 			}
 		}
 		if (!$ch) {
@@ -1387,14 +1377,14 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	if ($robots === false) {
 		checkmark(-1, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup could not find the  <em>example_robots.txt</em> file.'));
 	} else {
-		if (file_exists(dirname(dirname(__FILE__)).'/robots.txt')) {
+		if (file_exists($serverpath.'/robots.txt')) {
 			checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists.'));
 		} else {
 			$text = explode('****delete all lines above and including this one *******'."\n", $robots);
 			$d = dirname(dirname($_SERVER['SCRIPT_NAME']));
 			if ($d == '/') $d = '';
 			$robots = str_replace('/zenphoto', $d, $text[1]);
-			$rslt = file_put_contents(dirname(dirname(__FILE__)).'/robots.txt', $robots);
+			$rslt = file_put_contents($serverpath.'/robots.txt', $robots);
 			if ($rslt === false) {
 				$rslt = -1;
 			} else {
@@ -1416,11 +1406,11 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		$albumfolder = str_replace('\\', '/', $_zp_conf_vars['album_folder']);
 		switch ($_zp_conf_vars['album_folder_class']) {
 			case 'std':
-				$albumfolder = str_replace('\\', '/', dirname(dirname(__FILE__))) . $albumfolder;
+				$albumfolder = str_replace('\\', '/', $serverpath) . $albumfolder;
 				break;
 			case 'in_webpath':
 				$webpath = $_SERVER['SCRIPT_NAME'];
-				$root = str_replace('\\', '/', dirname(dirname(__FILE__)));
+				$root = $serverpath;
 				if (!empty($webpath)) {
 					$root = str_replace('\\', '/', dirname($root));
 				}
@@ -1432,12 +1422,12 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		checkmark(-1, gettext('<em>albums</em> folder'), gettext("<em>albums</em> folder [The line <code>\$conf['album_folder']</code> is missing from your configuration file]"), gettext('You should update your configuration file to conform to the current zenphoto.cfg example file.'));
 	}
 
-	$good = folderCheck('cache', dirname(dirname(__FILE__)) . "/cache/", 'std', NULL, true, $chmod | 0311) && $good;
+	$good = folderCheck('cache', $serverpath . "/cache/", 'std', NULL, true, $chmod | 0311) && $good;
 	$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder.')) && $good;
-	$good = folderCheck(gettext('uploaded'), dirname(dirname(__FILE__)) . "/uploaded/", 'std', NULL, false, $chmod | 0311) && $good;
-	$good = folderCheck(DATA_FOLDER, dirname(dirname(__FILE__)) . '/'.DATA_FOLDER.'/', 'std', NULL, false, $chmod | 0311) && $good;
-	$good = folderCheck(gettext('HTML cache'), dirname(dirname(__FILE__)) . '/cache_html/', 'std', $Cache_html_subfolders, true, $chmod | 0311) && $good;
-	$good = folderCheck(gettext('Third party plugins'), dirname(dirname(__FILE__)) . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod | 0311) && $good;
+	$good = folderCheck(gettext('uploaded'), $serverpath . "/uploaded/", 'std', NULL, false, $chmod | 0311) && $good;
+	$good = folderCheck(DATA_FOLDER, $serverpath . '/'.DATA_FOLDER.'/', 'std', NULL, false, $chmod | 0311) && $good;
+	$good = folderCheck(gettext('HTML cache'), $serverpath . '/cache_html/', 'std', $Cache_html_subfolders, true, $chmod | 0311) && $good;
+	$good = folderCheck(gettext('Third party plugins'), $serverpath . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod | 0311) && $good;
 
 	?>
 			</ul>

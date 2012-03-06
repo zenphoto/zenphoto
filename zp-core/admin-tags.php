@@ -7,7 +7,7 @@ define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__).'/admin-globals.php');
 require_once(dirname(__FILE__).'/template-functions.php');
 
-admin_securityChecks(TAGS_RIGHTS, currentRelativeURL(__FILE__));
+admin_securityChecks(TAGS_RIGHTS, currentRelativeURL());
 
 $_GET['page'] = 'tags';
 

@@ -8,7 +8,6 @@
  */
 
 define('OFFSET_PATH', 3);
-chdir(dirname(dirname(__FILE__)));
 
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
@@ -30,7 +29,7 @@ $buttonlist[] = array(
 								'rights'=> OVERVIEW_RIGHTS | ADMIN_RIGHTS
 								);
 
-admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL(__FILE__));
+admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 
 $_zp_gallery->garbageCollect();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';

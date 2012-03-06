@@ -13,7 +13,6 @@ define('HEADER', '__HEADER__');
 define('RECORD_SEPARATOR', ':****:');
 define('TABLE_SEPARATOR', '::');
 define('RESPOND_COUNTER', 1000);
-chdir(dirname(dirname(__FILE__)));
 
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 require_once(dirname(dirname(__FILE__)).'/template-functions.php');
@@ -32,7 +31,7 @@ $buttonlist[] = array(
 								'rights'=> ADMIN_RIGHTS
 								);
 
-admin_securityChecks(NULL, currentRelativeURL(__FILE__));
+admin_securityChecks(NULL, currentRelativeURL());
 
 if (isset($_REQUEST['backup']) || isset($_REQUEST['restore'])) {
 	XSRFDefender('backup');

@@ -8,10 +8,10 @@
  */
 define ('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
-admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL(__FILE__));
+admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 
 if (isset($_GET['reset'])) {
-	admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL(__FILE__));
+	admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
 	XSRFdefender('search_statistics');
 	$sql = 'DELETE FROM '.prefix('plugin_storage').' WHERE `type`="search_statistics"';
 	query($sql);
