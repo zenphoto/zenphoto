@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-05 18:28-0500\n"
-"PO-Revision-Date: 2012-03-05 19:10-0500\n"
+"POT-Creation-Date: 2012-03-05 21:11-0500\n"
+"PO-Revision-Date: 2012-03-05 21:56-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -12043,7 +12043,7 @@ msgstr "Les vignettes des images qui ne sont pas <em>publiées</em> sont ainsi m
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flag_thumbnail.php:87
 msgid "Protected"
-msgstr "Protégé"
+msgstr "Protégé(e)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flag_thumbnail.php:89
 msgid "Thumbnails for images which are password protected or in password protected albums will be marked."
@@ -12098,7 +12098,7 @@ msgstr "Si l’option est activée, le <em>texte</em> défini sera utilisé à l
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flag_thumbnail.php:113
 msgid "Text flag for <em>geodata tagged</em> images."
-msgstr "Texte de remplacement pour les images <em>géolocalisées</em>."
+msgstr "Texte de substitution pour les images <em>géolocalisées</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:18
 msgid "Enable <strong>flowplayer 3</strong> to handle multimedia files."
@@ -12204,7 +12204,7 @@ msgstr "Lecture automatique"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:120
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:161
 msgid "Should the video start automatically. Yes if selected. (NOTE: Probably because of a flowplayer bug mp3/m4a/fla are always autoplayed.)"
-msgstr "Cocher pour que la vidéo démarre automatiquement. (NOTE : sans doute à cause d’un bug du flowplayer, les fichiers mp3, m4a et fla démarrent toujours automatiquement.)"
+msgstr "Cocher pour que la vidéo démarre automatiquement. (NOTE : sans doute à cause d’un bug de Flowplayer, les fichiers mp3, m4a et fla démarrent toujours automatiquement.)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:121
 msgid "Background color"
@@ -12212,7 +12212,7 @@ msgstr "Couleur d’arrière-plan"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:122
 msgid "Changes the color of the Flowplayer's background canvas. By default the canvas is all black. You can specify a value of -1 and the background will not be drawn (only the video will be visible)."
-msgstr "Change la couleur du canevas d’arrière-plan du Flowplayer (par défaut en noir). Avec une valeur de -1, aucun arrière-plan n’apparaîtra (seule la vidéo sera visible)."
+msgstr "Change la couleur du canevas d’arrière-plan de Flowplayer (par défaut en noir). Avec une valeur de -1, aucun arrière-plan n’apparaîtra (seule la vidéo sera visible)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:123
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:162
@@ -12231,7 +12231,7 @@ msgstr "Toujours"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:124
 msgid "fullscreen"
-msgstr "plein écran"
+msgstr "Plein écran"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:125
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:164
@@ -12338,7 +12338,7 @@ msgstr "Échelle de la vidéo"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:152
 msgid "fit"
-msgstr "Ajustement proportionnel"
+msgstr "ajustement proportionnel"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:152
 msgid "half"
@@ -12435,7 +12435,7 @@ msgstr "Plan"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:57
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:79
 msgid "Hybrid"
-msgstr "Hybride"
+msgstr "Mixte"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:58
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:79
@@ -12445,7 +12445,7 @@ msgstr "Satellite"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:59
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:79
 msgid "Terrain"
-msgstr "Terrain"
+msgstr "Relief"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:68
 msgid "Map dimensions—width"
@@ -12477,7 +12477,7 @@ msgstr "Types de cartes autorisées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:80
 msgid "Select the map types that are allowed."
-msgstr "Sélection des types de carte autorisés."
+msgstr "Sélection des types de carte qui peuvent être affichées."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:81
 msgid "Map control size"
@@ -12485,7 +12485,7 @@ msgstr "Taille des contrôles de la carte"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:83
 msgid "Use buttons or list for the map type selector."
-msgstr "Affichage du sélecteur de type de carte sous forme de boutons ou d’une liste."
+msgstr "Afficher le sélecteur de type de carte sous forme de boutons ou d’une liste."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:84
 msgid "Map controls"
@@ -12525,7 +12525,7 @@ msgstr "Sessions Map"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:96
 msgid "If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. If the option is not checked the data is passed as part of the link and may exceed the size allowed by some browsers."
-msgstr "Si cette option est activée, GoogleMaps va utiliser des sessions pour les données de cartographie pour l’affichage <em>Colorbox</em>. Dans le cas contraire, les données passeront par l’URL (ce qui peut poser problème sur certains navigateurs qui ne supportent pas les URL trop longues)"
+msgstr "Si cette option est activée, GoogleMaps utilise des sessions pour passer les données cartographiques à l’affichage <em>Colorbox</em>. Sinon, les données passeront par l’URL (ce qui peut poser problème sur certains navigateurs qui ne supportent pas les URL trop longues)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/GoogleMap.php:271
 msgid "Google Map"
@@ -12606,7 +12606,7 @@ msgstr "Remettre les compteurs à zéro"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/html_meta_tags.php:14
 msgid "A plugin to print the most common HTML meta tags to the head of your site's pages. Tags are selected from existing Zenphoto info such as gallery description, tags, or Zenpage news categories."
-msgstr "Une extension pour inscrire dans l'en-tête des pages (section Head) les métabalises HTML les plus courantes. Les métabalises sont compilées à partir d'informations fournies par Zenphoto (description de la galerie, tags, etc)."
+msgstr "Une extension pour inscrire dans l'en-tête des pages (section Head) les métabalises les plus courantes. Les métabalises sont compilées à partir d'informations de Zenphoto (description de la galerie, tags, catégories d’actualités, etc.)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/html_meta_tags.php:66
 msgid "Cache control"
@@ -12638,7 +12638,7 @@ msgstr "Visiter de nouveau après"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/html_meta_tags.php:77
 msgid "Request the crawler to revisit the page after x days."
-msgstr "Avertit le robot de visiter la page après x jours."
+msgstr "Demande au robot de visiter la page après x jours."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/html_meta_tags.php:78
 msgid "Expires"
@@ -12670,7 +12670,7 @@ msgstr "Métabalises HTML "
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/html_meta_tags.php:129
 msgid "Which of the HTML meta tags should be used. For info about these in detail please refer to the net."
-msgstr "Les métabalises HTML qui peuvent être utilisées (une recherche rapide sur internet vous donnera leur signification)."
+msgstr "Les métabalises HTML qui peuvent être utilisées (une recherche sur internet vous donnera leur signification)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/html_meta_tags.php:141
 msgid "* This option may be set via the <a href=\"javascript:gotoName('html_meta_tags');\"><em>html_meta_tags</em></a> plugin options."
@@ -12694,7 +12694,7 @@ msgstr "faire confiance"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/http_auth.php:75
 msgid "Set to <em>trusted</em> to presume the HTTP user is securely authorized. (This setting does not verify passwords against the Zenphoto user.)"
-msgstr "Cochez <em>faire confiance</em> pour présumer que l’utilisateur HTTP est dûment autorisé. (Ce paramètre ne vérifie pas les mots de passe de l’utilisateur Zenphoto)."
+msgstr "Cochez <em>faire confiance</em> pour présumer que l’utilisateur HTTP a été autorisé avec un protocole sécurisé. (Ce paramétrage ne vérifie pas les mots de passe de l’utilisateur Zenphoto)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_album_statistics.php:13
 msgid "Functions that provide various statistics about images and albums in the gallery."
@@ -12740,11 +12740,11 @@ msgstr "<strong>Erreur :</strong> l’effet <em>%s</em> n’existe plus."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:122
 msgid "Images (standard)"
-msgstr "Images (standard)"
+msgstr "Images (standards)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:125
 msgid "Apply <em>effect</em> to images shown via the <code>printDefaultSizedImage()</code> function."
-msgstr "Applique <em>l’effet</em> aux images affichées avec la fonction <code>printDefaultSizedImage()</code>."
+msgstr "Applique <em>l’effet</em> sélectionné aux images affichées avec la fonction <code>printDefaultSizedImage()</code>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:126
 msgid "Images (custom)"
@@ -12752,7 +12752,7 @@ msgstr "Images (personnalisées)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:129
 msgid "Apply <em>effect</em> to images shown via the custom image functions."
-msgstr "Applique <em>l’effet</em> aux images affichées avec les fonctions d’image personnalisées."
+msgstr "Applique <em>l’effet</em> sélectionné aux images affichées avec les fonctions d’images personnalisées."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:130
 msgid "Image thumbnails (standard)"
@@ -12760,15 +12760,15 @@ msgstr "Vignettes d’images (standards)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:133
 msgid "Apply <em>effect</em> to images shown via the <code>printImageThumb()</code> function."
-msgstr "Applique <em>l’effet</em> aux images affichées avec la fonction <code>printImageThumb()</code>."
+msgstr "Applique <em>l’effet</em> sélectionné aux images affichées avec la fonction <code>printImageThumb()</code>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:134
 msgid "Album thumbnails (standard)"
-msgstr "Vignettes de l’album (standard)"
+msgstr "Vignettes de l’album (standards)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:137
 msgid "Apply <em>effect</em> to images shown via the <code>printAlbumThumbImage()</code> function."
-msgstr "Applique <em>l’effet</em> aux images affichées avec la fonction <code>printAlbumThumbImage()</code>."
+msgstr "Applique <em>l’effet</em> sélectionné aux images affichées avec la fonction <code>printAlbumThumbImage()</code>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:138
 msgid "Image thumbnails (custom)"
@@ -12776,7 +12776,7 @@ msgstr "Vignettes d’images (personnalisées)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:141
 msgid "Apply <em>effect</em> to images shown via the custom image functions when <em>thumbstandin</em> is set."
-msgstr "Applique <em>l’effet</em> aux images affichées avec les fonctions d’image personnalisées quand <em>thumbsandin</em> est spécifié."
+msgstr "Applique <em>l’effet</em> sélectionné aux images affichées avec les fonctions d’images personnalisées quand <em>thumbsandin</em> est spécifié."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:142
 msgid "Album thumbnails  (custom)"
@@ -12784,7 +12784,7 @@ msgstr "Vignettes de l’album (personnalisées)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:145
 msgid "Apply <em>effect</em> to images shown via the <code>printCustomAlbumThumbImage()</code> function."
-msgstr "Applique <em>l’effet</em> aux images affichées avec la fonction <code>printCustomAlbumThumbImage()</code>."
+msgstr "Applique <em>l’effet</em> sélectionné aux images affichées avec la fonction <code>printCustomAlbumThumbImage()</code>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_effects.php:146
 msgid "Random pool"
@@ -12849,7 +12849,7 @@ msgstr "Il y a un conflit d’extensions avec <em>image_upload_limiter</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_upload_limiter.php:107
 msgid "The album exceeded the image number limit. You cannot upload more images!"
-msgstr "Le nombre maximal d’images pour cet album est atteint. Vous ne pouvez plus y ajouter d’image ! "
+msgstr "Le nombre maximal d’images de cet album est atteint. Vous ne pouvez plus y ajouter d’image ! "
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/image_upload_limiter.php:112
 msgid "Maximum number of images left for this album: "
@@ -12874,11 +12874,11 @@ msgstr "Définit le nombre de vignettes à faire défiler à la fois. Le fichier
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jcarousel_thumb_nav.php:42
 msgid "Width of the carousel. Note that the CSS might need to be adjusted."
-msgstr "Largeur du caroussel. Le fichier CSS peut nécessiter des ajustements."
+msgstr "Largeur du carrousel. Le fichier CSS peut nécessiter des ajustements."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jcarousel_thumb_nav.php:44
 msgid "Height of the carousel. Note that the CSS might need to be adjusted."
-msgstr "Hauteur du caroussel. Le fichier CSS peut nécessiter des ajustements."
+msgstr "Hauteur du carrousel. Le fichier CSS peut nécessiter des ajustements."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jcarousel_thumb_nav.php:45
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:45
@@ -12928,7 +12928,7 @@ msgstr "Affiche (vignette vidéo)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:103
 msgid "If the videothumb should be shown (jplayer calls it poster)"
-msgstr "Si la vignette vidéo doit être affichée (jPlayer appelle cela une affiche)"
+msgstr "Indique si la vignette vidéo doit être affichée (jPlayer appelle cela une affiche)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:104
 msgid "Poster cropping (Videothumb)"
@@ -12944,7 +12944,7 @@ msgstr "Affiche audio (vignette audio)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:107
 msgid "If the poster should be shown for audio files (mp3,m4a,fla) (does not apply for playlists which are all or none)."
-msgstr "Si le poster doit être affiché pour les fichiers audio (mp3,m4a,fla) (ne s’applique pas aux listes de lecture qui sont tout ou rien)."
+msgstr "Indique si le poster doit être affiché pour les fichiers audio (mp3,m4a,fla) (ne s’applique pas aux listes de lecture qui sont tout ou rien)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:108
 msgid "Show title"
@@ -12952,7 +12952,7 @@ msgstr "Afficher le titre"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:109
 msgid "If the title should be shown below the player in single player mode (not needed on normal themes) (ignored in playlists naturally)."
-msgstr "Si le titre doit être affiché sous le lecteur en mode « lecture individuelle » (pas nécessaire sur les thèmes normaux) (ignoré pour les listes de lecture)"
+msgstr "Indique si le titre doit être affiché sous le lecteur en mode « lecture individuelle » (pas nécessaire sur les thèmes normaux) (ignoré pour les listes de lecture)"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:110
 msgid "Playlist support"
@@ -12960,7 +12960,7 @@ msgstr "Gestion des listes de lecture"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:111
 msgid "Enable this if you wish to use the playlist mode this loads the scripts needed. NOTE: You have to add the function printjPlayerPlaylist() to your theme yourself. See the documentation for info."
-msgstr "Activez cette option si vous voulez utiliser le mode « liste de lecture » ; cela chargera les scripts nécessaires. Vous devrez ajouter la fonction printjPlayerPlaylist() à votre thème (référez-vous à la documentation)."
+msgstr "Activer cette option pour utiliser le mode « liste de lecture » ; cela chargera les scripts nécessaires. Vous devrez ajouter la fonction printjPlayerPlaylist() à votre thème (référez-vous à la documentation)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:112
 msgid "Playlist numbered"
@@ -13052,7 +13052,7 @@ msgstr "volume maximum"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:430
 msgid "restore screen"
-msgstr "Restauration de l’image"
+msgstr "restauration de l’image"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:435
 msgid "shuffle"
@@ -13064,7 +13064,7 @@ msgstr "lecture aléatoire désactivée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:440
 msgid "repeat"
-msgstr "répéter"
+msgstr "répétition"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/jplayer.php:441
 msgid "repeat off"
@@ -13524,7 +13524,7 @@ msgstr "Étoiles partielles"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:99
 msgid "full"
-msgstr "complet"
+msgstr "complètes"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:99
 msgid "third"
@@ -13544,7 +13544,7 @@ msgstr "Permet d’activer le contrôle des votes sur les images individuelles."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:103
 msgid "Recast vote"
-msgstr "Changement de vote"
+msgstr "Changer son vote"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:104
 msgid "Show rating"
@@ -13614,7 +13614,7 @@ msgstr "rien à soumettre"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:26
 msgid "Provides a means for placing a user registration form on your theme pages."
-msgstr "Fournit un outil vous permettant de placer un formulaire d’inscription sur les pages de votre thème."
+msgstr "Cet outil vous permet de placer un formulaire d’inscription sur les pages de votre thème."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:46
 #, php-format
@@ -13631,11 +13631,11 @@ msgstr "Cliquez ici pour vous inscrire sur ce site."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:68
 msgid "If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration."
-msgstr "Si activé, un mail est envoyé à l’administrateur de la galerie lorsqu'un nouvel utilisateur a validé son inscription."
+msgstr "Si activé, un mail est envoyé à l’administrateur de la galerie lorsqu’un nouvel utilisateur a validé son inscription."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:72
 msgid "If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field."
-msgstr "Si les <em>champs d’adresse</em> sont affichés ou requis, le formulaire comportera des champs pour inscrire  les détails de l’adresse. Si les champs sont requis, l’utilisateur devra remplir tous les champs d’adresse."
+msgstr "Si les <em>champs d’adresse</em> sont affichés ou requis, le formulaire comporte des champs pour inscrire les détails de l’adresse. Si les champs sont requis, l’utilisateur devra remplir tous les champs d’adresse."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:72
 msgid "<strong>Note:</strong> Address fields are handled by the <em>comment_form</em> plugin."
@@ -13664,7 +13664,7 @@ msgstr "Texte pour la notification par email"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:81
 #, php-format
 msgid "Text for the body of the email sent to the registrant for registration verification. <p class=\"notebox\"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant's <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>"
-msgstr "Texte du corps du message envoyé au nouvel inscrit pour vérifier son inscription. <p class=\"notebox\"><strong>Note.</strong> Vous devez inclure <code>%1$s</code> dans votre message à l’endroit où vous souhaitez faire paraître <em>le lien de vérification de l’inscription</em>. Vous pouvez inscrire <em>le nom du nouvel inscrit</em> (<code>%2$s</code>), <em>l’identifiant</em> (<code>%3$s</code>), et <em>le mot de passe</em>* (<code>%4$s</code>).<br /><br />*Par souci de sécurité, nous recommandons <strong>de ne pas</strong> inscrire <em>le mot de passe</em>.</p>"
+msgstr "Texte du corps du message envoyé au nouvel inscrit pour vérifier son inscription. <p class=\"notebox\"><strong>Note.</strong> Vous devez inclure <code>%1$s</code> dans votre message à l’endroit où vous souhaitez faire paraître <em>le lien de vérification de l’inscription</em>. Vous pouvez inscrire <em>le nom du nouvel inscrit</em> (<code>%2$s</code>), <em>l’identifiant</em> (<code>%3$s</code>), et <em>le mot de passe</em>* (<code>%4$s</code>).<br /><br />*Par souci de sécurité, nous recommandons toutefois <strong>de ne pas</strong> inscrire <em>le mot de passe</em>.</p>"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:82
 msgid "User registration page"
@@ -13679,7 +13679,7 @@ msgid "If checked, CAPTCHA validation will be required for user registration."
 msgstr "Si activé, la validation d’un Captcha est requise à l’inscription d’un utilisateur."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:94
-msgid "* The option may be set via the <a href=\"javascript:gotoName('register_user');\"><em>register_user</em></a> plugin options.."
+msgid "* The option may be set via the <a href=\"javascript:gotoName('register_user');\"><em>register_user</em></a> plugin options."
 msgstr "* Cette option peut être configurée au moyen des paramètres de l’extension <a href=\"javascript:gotoName('register_user');\"><em>register_user</em></a>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:102
@@ -13717,7 +13717,7 @@ msgstr "Texte du lien"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:176
 msgid "Hint text"
-msgstr "Astuce"
+msgstr "Texte de l’astuce"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/register_user.php:326
 msgid "Registration confirmation"
@@ -13891,7 +13891,7 @@ msgstr "Installation"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:100
 msgid "Remove setup files"
-msgstr "Effacer les fichiers d’installation"
+msgstr "Supprimer les fichiers d’installation"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:103
 msgid "Request add user"
@@ -14077,7 +14077,7 @@ msgstr "Champ à utiliser pour la dernière date de modification des images"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:79
 msgid "Change frequency - Zenphoto index"
-msgstr "Fréquence de changement : index Zenphoto"
+msgstr "Fréquence des modifications : index Zenphoto"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:82
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:92
@@ -14131,27 +14131,27 @@ msgstr "tous les ans"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:89
 msgid "Change frequency - albums"
-msgstr "Fréquence des changements : albums"
+msgstr "Fréquence des modifications : albums"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:99
 msgid "Change frequency - images"
-msgstr "Fréquence des changements : images"
+msgstr "Fréquence des modifications : images"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:109
 msgid "Change frequency - Zenpage pages"
-msgstr "Fréquence des changements : pages Zenpage"
+msgstr "Fréquence des modifications : pages Zenpage"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:119
 msgid "Change frequency - Zenpage news index"
-msgstr "Fréquence des changements : index des actualités Zenpage"
+msgstr "Fréquence des modifications : index des actualités Zenpage"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:129
 msgid "Change frequency: Zenpage news articles"
-msgstr "Fréquence des changements : articles d’actualités Zenpage"
+msgstr "Fréquence des modifications : articles d’actualités Zenpage"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:139
 msgid "Change frequency - Zenpage news categories"
-msgstr "Fréquence des changements : catégories d’actualités Zenpage"
+msgstr "Fréquence des modifications : catégories d’actualités Zenpage"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:149
 msgid "Enable Google image and video extension"
@@ -14159,19 +14159,19 @@ msgstr "Active l’extension Google image et vidéo"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:151
 msgid "If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable."
-msgstr "Si cette option est activée, le fichier de sortie XML sera formaté en utilisant (si possible) les extensions Google vidéo et image."
+msgstr "Si cette option est activée, le fichier de sortie XML sera formaté en utilisant si possible les extensions Google image et vidéo."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:151
 msgid "<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts"
-msgstr "<strong>Note:</strong> Les autres moteurs de recherche (Yahoo, Bing) ne pourront sans doute pas lire votre sitemap. Les extensions XML de Google ne concernent que les formats image et vidéo. Si vous utilisez d’autres types de fichiers qui ne sont pas couverts par les extensions standards Zenphoto ou des fichiers tels que mp3, txt et html, vous ne devriez pas utiliser cette extension sans la modifier. De plus, si votre site est volumineux, pensez-y sérieusement avant d’utiliser cette option car cela risque de surcharger le serveur."
+msgstr "<strong>Note:</strong> Les autres moteurs de recherche (Yahoo, Bing) ne pourront peut-être pas lire votre sitemap. Les extensions XML de Google ne concernent que les formats image et vidéo. Si vous utilisez d’autres types de fichiers qui ne sont pas couverts par les extensions standards Zenphoto ou des fichiers tels que mp3, txt et html, vous ne devriez pas utiliser cette extension sans la modifier. De plus, si votre site est volumineux, pensez-y sérieusement avant d’utiliser cette option car cela risque de surcharger le serveur."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:152
 msgid "Google - URL to image license"
-msgstr "Google - URL vers la licence de l’image"
+msgstr "Google – URL vers la licence de l’image"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:155
 msgid "Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html"
-msgstr "Optionnelle. Utilisée seulement si l’extension Google est cochée (doit être une URL complète, de la forme : http://mondomaine.com/license.html)."
+msgstr "Optionnelle. Utilisée seulement si l’extension Google est cochée (doit être une URL complète de la forme : http://mondomaine.com/license.html)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/sitemap-extended.php:156
 msgid "Sitemap processing chunk"
@@ -14221,7 +14221,7 @@ msgstr "Le fichier <em>.htaccess</em> n’existe pas"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:40
 msgid "Close the site."
-msgstr "Fermer le site"
+msgstr "Fermer le site."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:45
 msgid "Close site"
@@ -14237,7 +14237,7 @@ msgstr "Ouvrir le site"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:50
 msgid "Mark site available for viewing."
-msgstr "Rend le site de nouveau disponible"
+msgstr "Rend le site de nouveau disponible."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:88
 msgid "Site is now marked in upgrade."
@@ -14249,7 +14249,7 @@ msgstr "Le site peut être visité."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:25
 msgid "Adds a theme function to call a slideshow either based on jQuery (default) or Flash using Flowplayer3 if installed."
-msgstr "Ajoute au thème une fonction pour lancer un diaporama basé sur jQuery (par défaut) ou Flash (si Flowplayer 3 est installé)."
+msgstr "Ajoute au thème une fonction pour lancer un diaporama fonctionnant sur jQuery (par défaut) ou Flash (si Flowplayer 3 est installé)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:56
 msgid "Slide width"
@@ -14420,7 +14420,7 @@ msgstr "image %1$s de %2$s"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:310
 msgid "Invalid linking to the slideshow page."
-msgstr "Adresse vers le diaporama incorrecte."
+msgstr "Lien vers le diaporama incorrect."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:387
 msgid "This album is password protected!"
@@ -14466,7 +14466,7 @@ msgstr "Cache HTML vidé."
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:167
 #, php-format
 msgid "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead."
-msgstr "Contenu en cache de %3$s servi par static_html_cache en %1$.4f secondes plus %2$.4f secondes incompressibles, liés à Zenphoto."
+msgstr "Contenu en cache de %3$s servi par static_html_cache en %1$.4f secondes plus %2$.4f secondes incompressibles, liées à Zenphoto."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:351
 msgid "Purge HTML cache"
@@ -14490,7 +14490,7 @@ msgstr "Pages exclues"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/static_html_cache.php:381
 msgid "The list of pages to excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma."
-msgstr "La liste des pages exclues de la génération de cache. Les pages qui peuvent être exclues sont les pages des thèmes personnalisés, dont celles de Zenpage (celles-ci pouvant être identifiées par leur titre-lien) et les fichiers de thème standards comme image.php (filtrage possible par le nom de l’image), album.php (filtrage possible par le nom du dossier) ou index.php.<br /> Si vous voulez exclure une page complètement, entre <em>lenomdelapage.php</em>.<br /> Si vous voulez exclure une page selon des critères de titre-lien, de nom d’image ou de dossier d’album, saisissez <em>lenomdelapage.php/titre-lien ou nom de l’image ou dossier de l’album</em>. Vous pouvez en saisir plusieurs, séparés par des virgules."
+msgstr "La liste des pages exclues de la génération de cache. Les pages qui peuvent être exclues sont les pages des thèmes personnalisés, dont celles de Zenpage (filtrage possible par titre-lien) et les fichiers de thème standards comme image.php (filtrage possible par le nom de l’image), album.php (filtrage possible par le nom du dossier) ou index.php.<br /> Si vous voulez exclure une page complètement, saisissez <em>lenomdelapage.php</em>.<br /> Si vous voulez exclure une page selon des critères de titre-lien, de nom d’image ou de dossier d’album, saisissez <em>lenomdelapage.php/titre-lien ou nom de l’image ou dossier de l’album</em>. Vous pouvez en saisir plusieurs, séparés par des virgules."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tag_extras.php:12
 msgid "Provides functions to print a tag cloud of all image tags from an album optionally including the subalbums or the album tags including sub album tags or alternatively of all tags used by either Zenpage news articles or pages."
@@ -14514,7 +14514,7 @@ msgstr "Configuration de l’éditeur de texte – Zenphoto"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:42
 msgid "Applies to <em>admin</em> editable text other than for Zenpage pages and news articles."
-msgstr "S’applique au texte éditable par les <em>administrateurs (sauf pour les pages et actualités Zenpage)."
+msgstr "S’applique au texte éditable par les <em>administrateurs</em> (sauf pour les pages et actualités Zenpage)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:43
 msgid "Text editor configuration - Zenpage"
@@ -14522,7 +14522,7 @@ msgstr "Configuration de l’éditeur de texte – Zenpage"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:45
 msgid "Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs."
-msgstr "S’applique à la possibilité d’effectuer des modifications sur les onglets <em>pages</em> et <em>actualités</em>."
+msgstr "S’applique au texte éditable par les administrateurs pour les <em>pages</em> et les <em>actualités</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:46
 msgid "tinyZenpage - custom image size"
@@ -14530,7 +14530,7 @@ msgstr "tinyZenpage – Taille d’image personnalisée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:47
 msgid "Predefined size (px) for custom size images included using tinyZenpage."
-msgstr "Taille prédéfinie (%) pour les images de taille personnalisée incluses avec tinyZenpage."
+msgstr "Taille prédéfinie (px) pour les images de taille personnalisée insérées avec tinyZenpage."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:48
 msgid "tinyZenpage - custom thumb crop - size"
@@ -14538,7 +14538,7 @@ msgstr "tinyZenpage – rognage personnalisé des vignettes – taille"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:49
 msgid "Predefined size (px) for custom cropped thumb images included using tinyZenpage."
-msgstr "Taille prédéfinie (px) pour les images rognées incluses avec tinyZenpage."
+msgstr "Taille prédéfinie (px) pour les images rognées insérées avec tinyZenpage."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:50
 msgid "tinyZenpage - custom thumb crop - width"
@@ -14546,7 +14546,7 @@ msgstr "tinyZenpage – rognage personnalisé des vignettes – largeur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:51
 msgid "Predefined crop width (%) for custom cropped thumb  images included using tinyZenpage."
-msgstr "Largeur de rognage prédéfinie (%) pour les images rognées incluses avec tinyZenpage."
+msgstr "Largeur de rognage prédéfinie (%) pour les images rognées insérées avec tinyZenpage."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:52
 msgid "tinyZenpage - custom thumb crop - height"
@@ -14554,7 +14554,7 @@ msgstr "tinyZenpage – rognage personnalisé des vignettes – hauteur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:53
 msgid "Predefined crop height (%) for custom cropped thumb  images included using tinyZenpage."
-msgstr "Hauteur de rognage prédéfinie (%) pour les images rognées incluses avec tinyZenpage."
+msgstr "Hauteur de rognage prédéfinie (%) pour les images rognées insérées avec tinyZenpage."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:54
 msgid "tinyZenpage - Flowplayer width"
@@ -14562,7 +14562,7 @@ msgstr "tinyZenpage – largeur du flowplayer"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:55
 msgid "Video player width if included using tinyZenpage"
-msgstr "Largeur de la fenêtre du lecteur vidéo s’il est inclus avec tinyZenpage."
+msgstr "Largeur de la fenêtre du lecteur vidéo s’il est inséré avec tinyZenpage."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:56
 msgid "tinyZenpage - Flowplayer height"
@@ -14570,7 +14570,7 @@ msgstr "tinyZenpage – hauteur du flowplayer"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:57
 msgid "Video player height if included using tinyZenpage (for mp3s only the control bar is used)"
-msgstr "Hauteur de la fenêtre du lecteur vidéo s’il est inclus avec tinyZenpage (pour les mp3, seule la barre de contrôle est affichée)."
+msgstr "Hauteur de la fenêtre du lecteur vidéo s’il est inséré avec tinyZenpage (pour les mp3, seule la barre de contrôle est affichée)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce.php:82
 msgid "TinyMCE disabled"
@@ -14582,7 +14582,7 @@ msgstr "Twitter les actualités lorsqu’elles sont publiées."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tweet_news.php:10
 msgid "The <em>php_curl</em> extension is required"
-msgstr "L’extension <em>php_curl</em> est requise."
+msgstr "L’extension <em>php_curl</em> est requise"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tweet_news.php:65
 msgid "Consumer key"
