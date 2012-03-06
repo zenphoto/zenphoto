@@ -814,10 +814,8 @@ class Zenphoto_Authority {
 		if (is_null($redirect)) {
 			$redirect = WEBPATH.'/'.ZENFOLDER.'/admin.php';
 		}
-		if (GALLERY_SECURITY=='private') {
+		if (GALLERY_SECURITY=='private' || $_zp_gallery->getUserLogonField()) {
 			$showUserField = true;
-		} else if (is_null($showUserField)) {
-			$showUserField = $_zp_gallery->getUserLogonField();
 		}
 
 		if (isset($_POST['user'])) {
