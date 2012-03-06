@@ -91,7 +91,7 @@ class register_user_options {
 																'order' => 8,
 																'desc' => '<p class="notebox">'.$_common_notify_handler.'</p>');
 		} else {
-			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'register_user\');"><em>register_user</em></a> plugin options..');
+			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'register_user\');"><em>register_user</em></a> plugin options.');
 			$options['note'] = array('key' => 'menu_truncate_note',
 															'type' => OPTION_TYPE_NOTE,
 															'order' => 8,
