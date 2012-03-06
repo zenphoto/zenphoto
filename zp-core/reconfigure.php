@@ -46,6 +46,7 @@ if (in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
 	}
 } else {
 	zp_register_filter('admin_note', 'signatureChange');
+	zp_register_filter('admin_head', 'reconfigureCS');
 	if (zp_loggedin(ADMIN_RIGHTS)) {
 		zp_register_filter('theme_head', 'reconfigureCS');
 		zp_register_filter('theme_body_open', 'signatureChange');
