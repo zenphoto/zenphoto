@@ -281,19 +281,13 @@ if (isset($_GET['action'])) {
 											$image->setCopyright(process_language_string_save("$i-copyright", 1));
 											if (isset($_POST[$i.'-oldrotation'])) {
 												$oldrotation = sanitize_numeric($_POST[$i.'-oldrotation']);
-											} else {
-												$oldrotation = 0;
-											}
-											if (isset($_POST[$i.'-rotation'])) {
 												$rotation = sanitize_numeric($_POST[$i.'-rotation']);
-											} else {
-												$rotation = 0;
-											}
-											if ($rotation != $oldrotation) {
-												$image->set('EXIFOrientation', $rotation);
-												$image->updateDimensions();
-												$album = $image->getAlbum();
-												$_zp_gallery->clearCache(SERVERCACHE . '/' . $album->name);
+												if ($rotation != $oldrotation) {
+													$image->set('EXIFOrientation', $rotation);
+													$image->updateDimensions();
+													$album = $image->getAlbum();
+													$_zp_gallery->clearCache(SERVERCACHE . '/' . $album->name);
+												}
 											}
 											$tagsprefix = 'tags_'.$i.'-';
 											$tags = array();
