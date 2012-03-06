@@ -3,56 +3,67 @@
  * handles reconfiguration when the install signature has changed
  * @package core
  */
-list($diff, $needs) = checkSignature();
-$diff = array_keys($diff);
-if (in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
-	if (file_exists(dirname(__FILE__).'/setup.php') && empty($needs)) {
-		$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
-		$p = strpos($dir, ZENFOLDER);
-		if ($p !== false) {
-			$dir = substr($dir, 0, $p);
-		}
-		if (OFFSET_PATH) {
-			$where = 'admin';
+
+/**
+ *
+ * Executes the configuration change code
+ */
+function reconfigureAction() {
+	list($diff, $needs) = checkSignature();
+	$diff = array_keys($diff);
+	if (in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
+		if (file_exists(dirname(__FILE__).'/setup.php') && empty($needs)) {
+			$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
+			$p = strpos($dir, ZENFOLDER);
+			if ($p !== false) {
+				$dir = substr($dir, 0, $p);
+			}
+			if (OFFSET_PATH) {
+				$where = 'admin';
+			} else {
+				$where = 'gallery';
+			}
+			if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
+			$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php?autorun=$where";
+			header("Location: $location" );
+			exitZP();
 		} else {
-			$where = 'gallery';
-		}
-		if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
-		$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php?autorun=$where";
-		header("Location: $location" );
-		exitZP();
-	} else {
-		?>
-		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-		<html xmlns="http://www.w3.org/1999/xhtml">
-			<head>
-			<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-			<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
-			<?php reconfigureCS(); ?>
-			</head>
-			<body>
-				<div id="main">
-					<div id="content">
-						<div class="tabbox">
-							<?php reconfigurePage($needs); ?>
+			?>
+			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+			<html xmlns="http://www.w3.org/1999/xhtml">
+				<head>
+				<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+				<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
+				<?php reconfigureCS(); ?>
+				</head>
+				<body>
+					<div id="main">
+						<div id="content">
+							<div class="tabbox">
+								<?php reconfigurePage($needs); ?>
+							</div>
 						</div>
 					</div>
-				</div>
-			</body>
-		</html>
-		<?php
-		db_close();
-		exit();
-	}
-} else {
-	zp_register_filter('admin_note', 'signatureChange');
-	zp_register_filter('admin_head', 'reconfigureCS');
-	if (zp_loggedin(ADMIN_RIGHTS)) {
-		zp_register_filter('theme_head', 'reconfigureCS');
-		zp_register_filter('theme_body_open', 'signatureChange');
+				</body>
+			</html>
+			<?php
+			db_close();
+			exit();
+		}
+	} else {
+		zp_register_filter('admin_note', 'signatureChange');
+		zp_register_filter('admin_head', 'reconfigureCS');
+		if (zp_loggedin(ADMIN_RIGHTS)) {
+			zp_register_filter('theme_head', 'reconfigureCS');
+			zp_register_filter('theme_body_open', 'signatureChange');
+		}
 	}
 }
 
+/**
+ *
+ * Checks details of configuration change
+ */
 function checkSignature() {
 	if (function_exists('query_full_array')) {
 		$old = @unserialize(getOption('zenphoto_install'));
@@ -68,17 +79,41 @@ function checkSignature() {
 	$diff = array_diff_assoc($old, $new);
 	$package = file_get_contents(dirname(__FILE__).'/Zenphoto.package');
 	preg_match_all('|'.ZENFOLDER.'/setup/(.*)|', $package, $matches);
-	chdir(dirname(__FILE__).'/setup/');
-	$found = safe_glob('*.*');
+	if (file_exists(dirname(__FILE__).'/setup/')) {
+		chdir(dirname(__FILE__).'/setup/');
+		$found = safe_glob('*.*');
+	} else {
+		$found = array();
+	}
 	$needs = array_diff($matches[1], $found);
 	return array($diff, $needs);
 }
 
+/**
+ *
+ * Notificatnion handler for configuration change
+ * @param string $tab
+ * @param string $subtab
+ * @return string
+ */
 function signatureChange($tab=NULL, $subtab=NULL) {
 	reconfigurePage();
 	return $tab;
 }
 
+/**
+ *
+ * returns true if setup files are present
+ */
+function hasSetupFiles() {
+	list($diff, $needs) = checkSignature();
+	return empty($needs);
+}
+
+/**
+ *
+ * CSS for the configuration change notification
+ */
 function reconfigureCS() {
 	?>
 	<style type="text/css">
@@ -111,6 +146,10 @@ function reconfigureCS() {
 	<?php
 }
 
+/**
+ *
+ * HTML for the configuration change notification
+ */
 function reconfigurePage() {
 	list($diff, $needs) = checkSignature();
 

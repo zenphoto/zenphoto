@@ -2255,6 +2255,12 @@ function read_exif_data_protected($path) {
 	return $rslt;
 }
 
+/**
+ *
+ * fetches the path to the flag image
+ * @param string $lang whose flag
+ * @return string
+ */
 function getLanguageFlag($lang) {
 	if (file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/locale/'.$lang.'/flag.png')) {
 		$flag = WEBPATH.'/'.USER_PLUGIN_FOLDER.'/locale/'.$lang.'/flag.png';
@@ -2392,6 +2398,51 @@ class zpFunctions {
 			}
 			$_zp_exifvars[$key][3] = getOption($key);
 		}
+	}
+
+	/**
+	 *
+	 * Returns true if the install is not a "clone"
+	 */
+	static function hasPrimaryScripts() {
+		$me = str_replace('\\', '/', __FILE__);
+		return SERVERPATH == substr($me, 0, strrpos($me, '/'.ZENFOLDER));
+	}
+
+	/**
+	 *
+	 * Recursively clears and removes a folder
+	 * @param string $path
+	 * @return boolean
+	 */
+	static function removeDir($path) {
+
+echo "<br/>removeDir($path)";
+
+		if (($dir=opendir($path))!==false) {
+			$result = true;
+			while(($file=readdir($dir))!==false) {
+				if($file!='.' && $file!='..') {
+					if ((is_dir($path.'/'.$file))) {
+						if (!zpFunctions::removeDir($path.'/'.$file)) {
+							$result = false;
+						}
+					} else {
+						@chmod($path.$file, 0666);
+						if (!@unlink($path.'/'.$file)) {
+							$result = false;
+						}
+					}
+				}
+			}
+			closedir($dir);
+			@chmod($path, 0666);
+			if (!@rmdir($path)) {
+				$result = false;
+			}
+			return $result;
+		}
+		return false;
 	}
 
 }

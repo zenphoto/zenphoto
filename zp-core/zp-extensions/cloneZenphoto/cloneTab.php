@@ -20,17 +20,36 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
+	<h1><?php echo (gettext('Create a new install with symbolic links to the current Zenphoto scripts.')); ?></h1>
 	<?php zp_apply_filter('admin_note','clone', ''); ?>
 	<?php
 	if (isset($success)) {
 		if ($success) {
-			echo '<p class="notebox">'.implode('<br />', $msg).'</p>';
+			?>
+			<div class="notebox">
+			<?php
+			echo implode("\n", $msg)."\n";
+			?>
+			</div>
+			<?php
 		} else {
-			echo '<p class="errorbox">'.implode('<br />', $msg).'</p>';
+			?>
+			<div class="errorbox">
+			<?php
+			echo implode("\n", $msg)."\n";
+			?>
+			</div>
+			<?php
 		}
+	} else {
+		?>
+		<p class="notebox">
+			<?php echo gettext('<strong>Note:</strong> Existing Zenphoto scripts will be removed from the target if they exist.')?>
+		</p>
+		<?php
 	}
 	?>
-	<h1><?php echo (gettext('Create a new install with symbolic links to the current Zenphoto scripts.')); ?></h1>
+
 	</form>
 	<br />
 	<br />

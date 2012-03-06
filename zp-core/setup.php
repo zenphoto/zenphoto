@@ -2329,9 +2329,18 @@ if (file_exists(CONFIGFILE)) {
 				?>
 				<div class="notebox">
 					<p><?php echo gettext('<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future.')?></p>
-					<p class="buttons"><a href="?checked&amp;delete_files&xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup files'); ?></a></p>
-					<br clear="all" />
-					<br clear="all" />
+						<br />
+					<?php
+					if (zpFunctions::hasPrimaryScripts()) {
+						?>
+						<span class="buttons"><a href="?checked&amp;delete_files&xsrfToken=<?php echo $xsrftoken; ?>"><?php echo gettext('Delete setup files'); ?></a></span>
+						<br clear="all" />
+						<br clear="all" />
+						<?php
+					} else {
+						echo gettext('This is a clone of another installation. The setup files should be deleted from that installation');
+					}
+					?>
 				</div>
 				<br clear="all" />
 				<?php

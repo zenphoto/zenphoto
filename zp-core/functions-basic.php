@@ -62,6 +62,7 @@ if (defined("RELEASE")) {
 $_zp_error = false;
 if (!file_exists($const_serverpath . '/' . DATA_FOLDER . "/zenphoto.cfg")) {
 	require(dirname(__FILE__).'/reconfigure.php');
+	reconfigureAction();
 }
 // Including the config file more than once is OK, and avoids $conf missing.
 eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg'));
@@ -90,6 +91,7 @@ unset($const_serverpath);
 
 if (empty($_zp_conf_vars['mysql_database'])) {
 	require(dirname(__FILE__).'/reconfigure.php');
+	reconfigureAction();
 }
 
 require_once(dirname(__FILE__).'/lib-utf8.php');
@@ -1556,6 +1558,7 @@ function db_count($table, $clause=NULL, $field="*") {
 function checkInstall() {
 	if (getOption('zenphoto_install') != serialize(installSignature())) {
 		require(dirname(__FILE__).'/reconfigure.php');
+		reconfigureAction();
 	}
 }
 
