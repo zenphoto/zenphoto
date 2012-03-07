@@ -106,11 +106,11 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 				<?php
 			}
 			?>
-			<a href="javascript:buttonAction('<?php echo $uppath; ?>');" title="<?php echo gettext('Up one level'); ?>"><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/up.png" alt=""  /></a>
+			<a href="javascript:buttonAction('<?php echo $uppath; ?>');" title="<?php echo gettext('Up one level'); ?>"><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/up.png" alt="" /></a>
 			<?php
 			if (!empty($folderlist)) {
 				?>
-				<a href="javascript:buttonAction($('#cloneFolder').val());" title="<?php echo gettext('Down one level'); ?>"><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/down.png" alt=" /></a>
+				<a href="javascript:buttonAction($('#cloneFolder').val());" title="<?php echo gettext('Down one level'); ?>"><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/down.png" alt=" /></a>
 				<?php
 			}
 			?>
