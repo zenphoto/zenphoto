@@ -4,11 +4,11 @@
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
-/*
+
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext('Automatically increments hitcounters on Zenphoto objects viewed by a "visitor".');
 $plugin_author = "Stephen Billard (sbillard)";
-*/
+
 $option_interface = 'hitcounter';
 /** Reset hitcounters ***********************************************************/
 /********************************************************************************/
