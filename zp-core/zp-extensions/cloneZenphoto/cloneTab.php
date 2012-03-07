@@ -56,7 +56,15 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 	<?php
 
 	$folderlist = array();
-	$path = str_replace(WEBPATH,'/',SERVERPATH);
+	if (isset($_POST['path'])) {
+		$path = sanitize($_POST['path']);
+	} else {
+		$path = str_replace(WEBPATH,'/',SERVERPATH);
+	}
+	$uppath = str_replace('\\','/',dirname($path));
+	if (substr($uppath, -1) != '/') {
+		$uppath .= '/';
+	}
 
 	if (($dir=opendir($path))!==false) {
 		while(($file=readdir($dir))!==false) {
@@ -72,14 +80,46 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 	}
 
 	?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			function buttonAction(data) {
+				$('#newDir').val(data);
+				$('#changeDir').submit();
+
+			}
+			// ]]> -->
+		</script>
+		<form name="changeDir" id="changeDir" method="post">
+			<input type="hidden" name="path" id="newDir" value = "" />
+			<?php
+			if (empty($folderlist)) {
+				echo '<em>'.gettext('No subfolders in: ').'</em> ';
+			} else {
+				echo gettext('Select the destination folder:');
+			}
+			echo $path;
+			if (!empty($folderlist)) {
+				?>
+				<select id="cloneFolder" name="cloneFolder" onchange="folderDown();">
+				<?php	generateListFromArray(array(), $folderlist, false, true);	?>
+				</select>
+				<?php
+			}
+			?>
+			<a href="javascript:buttonAction('<?php echo $uppath; ?>');"><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/up.png" alt=""  /></a>
+			<?php
+			if (!empty($folderlist)) {
+				?>
+				<a href="javascript:buttonAction($('#cloneFolder').val());"><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/down.png" alt=" /></a>
+				<?php
+			}
+			?>
+		</form>
+		<br clear="all" />
+		<br />
+		<br />
 		<form name="cloneZenphoto" action="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cloneZenphoto/clone.php'; ?>">
 		<?php XSRFToken('cloneZenphoto');?>
-		<?php echo gettext('Select the destination folder:'); ?>
-		<select id="cloneFolder" name="cloneFolder">
-		<?php	generateListFromArray(array(), $folderlist, false, true);	?>
-		</select>
-		<br clear="all" />
-		<br clear="all" />
 		<input type="hidden" name="clone" value="true" />
 		<?php XSRFToken('cloneZenphoto'); ?>
 		<div class="buttons pad_button" id="cloneZP">

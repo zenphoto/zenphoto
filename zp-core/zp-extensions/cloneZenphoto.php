@@ -5,8 +5,8 @@
  *
  * Two buttons are placed in the Admin Utility functions box on the overview tab.
  * 	<ul>
- * 		<li>Clone installation</li>
- * 		<li>Delete setup files</li>
+ * 		<li><pre>Clone installation</pre></li>
+ * 		<li><pre>Delete setup files</pre></li>
  * 	</ul>
  *
  * The <i>Clone installation</i> button will take you to the cloning page where you can select a folder destination
@@ -14,16 +14,19 @@
  * installation. (This presumes the <code>setup</code> files are present. If not you will be told which files
  * need to be reloaded.)
  *
+ * <b>Note:</b> If the destination already has a Zenphoto installation these files and folders will be removed by the cloning
+ * process!
+ *
  * The <i>Delete setup files</i> button will remove the <code>setup</code> files from the current installation. This is
- * the same function provided by <i>Setu</i> after a successful install. It is provided here because you will likely not want to
- * remove the setup files until you have cloned all desired destinations.
+ * the same function provided by <i>Setup</i> after a successful install. It is provided here because you will likely not want to
+ * remove the setup files until you have cloned and installed all desired destinations.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
 
 $plugin_is_filter = 5|CLASS_PLUGIN;
-$plugin_description = gettext('Makes a new Zenphoto installation with symlinks pointing to the current installation.');
+$plugin_description = gettext('Allows multiple Zenphoto installations to share a single set of Zenphoto script files.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zpFunctions::hasPrimaryScripts())?false:gettext('Only the primary installation may clone offspring installations.');
 

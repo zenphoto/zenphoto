@@ -23,7 +23,7 @@ $markup = array(
 						'&lt;i&gt;'=>'<em>',
 						'&lt;/i&gt;'=>'</em>',
 						'&lt;b&gt;'=>'<strong>',
-						'&lt;\b&gt;'=>'<\strong>',
+						'&lt;/b&gt;'=>'</strong>',
 						'&lt;code&gt;'=>'<span class="inlinecode">',
 						'&lt;/code&gt;'=>'</span>',
 						'&lt;hr&gt;'=>'<hr />',
