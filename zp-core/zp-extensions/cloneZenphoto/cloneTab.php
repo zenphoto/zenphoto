@@ -64,12 +64,15 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 	$downtitle = '.../'.basename($path);
 	$uppath = str_replace('\\','/',dirname($path));
 
-	if (dirname($path) == dirname(dirname($path))) {
-		$uptitle = '';
-	} else {
-		$uptitle = '.../';
+	$up = explode('/',$uppath);
+	$uptitle = array_pop($up);
+	if (!empty($up)) {
+		$uptitle = array_pop($up).'/'.$uptitle;
 	}
-	$uptitle .= trim($uppath,'/');
+	if (!empty($up)) {
+		$uptitle = '.../'.$uptitle;
+	}
+
 	if (substr($uppath, -1) != '/') {
 		$uppath .= '/';
 	}
@@ -94,12 +97,11 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 				$('#newDir').val(data);
 				$('#changeDir').submit();
 			}
-			function folderDown() {
+			function folderChange() {
 				$('#downbutton').attr('title','<?php echo $downtitle; ?>/'+$('#cloneFolder').val().replace(/\/$/,'').replace( /.*\//, '' ));
-
 			}
 			window.onload = function() {
-				folderDown();
+				folderChange();
 			}
 			// ]]> -->
 		</script>
@@ -107,27 +109,21 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 			<input type="hidden" name="path" id="newDir" value = "" />
 			<?php
 			if (empty($folderlist)) {
-				echo '<em>'.gettext('No subfolders in: ').'</em> ';
+				echo gettext('No subfolders in: ').' ';
 			} else {
-				echo gettext('Select the destination folder: ');
+				echo gettext('Select the destination folder:').' ';
 			}
 			echo $path;
 			if (!empty($folderlist)) {
 				?>
-				<select id="cloneFolder" name="cloneFolder" onchange="folderDown();">
+				<select id="cloneFolder" name="cloneFolder" onchange="folderChange();">
 				<?php	generateListFromArray(array(), $folderlist, false, true);	?>
 				</select>
 				<?php
 			}
 			?>
 			<a id="upbutton" href="javascript:buttonAction('<?php echo $uppath; ?>');" title="<?php echo $uptitle; ?>"><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_up.png" alt="" /></a>
-			<?php
-			if (!empty($folderlist)) {
-				?>
-				<a id="downbutton" href="javascript:buttonAction($('#cloneFolder').val());" title=""><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_down.png" alt=" /></a>
-				<?php
-			}
-			?>
+			<span<?php if (empty($folderlist)) echo ' style="display:none;"'; ?>><a id="downbutton" href="javascript:buttonAction($('#cloneFolder').val());" title=""><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_down.png" alt="" /></a></span>
 		</form>
 		<br clear="all" />
 		<br />
