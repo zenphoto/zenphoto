@@ -79,9 +79,9 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 
 	if (($dir=opendir($path))!==false) {
 		while(($file=readdir($dir))!==false) {
-			if($file!='.' && $file!='..') {
+			if(substr($file, 0, 1) != '.') {
 				if ((is_dir($path.$file))) {
-					if ($file != trim(WEBPATH,'/')) {
+					if ($file != trim(WEBPATH,'/')) {	// no clones "here" or in "hidden" files
 						$folderlist[$file]=$path.$file.'/';
 					}
 				}
