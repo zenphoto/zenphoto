@@ -188,7 +188,7 @@ require_once("tinyzenpage-functions.php");
 				echo "<h4 style='margin-left: 8px'>".gettext("Image size")."</h4>";
 				echo '<ul style="margin-left: 8px">';
 				echo '<li>'.gettext("Thumbnail: Size as set in Zenphoto's options").'</li>';
-				echo '<li>'.gettext("Custom thumbnail: size for the longest side / cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options. Not available for video/audio items.").'</li>';
+				echo '<li>'.gettext("Custom thumbnail: size for the longest side / (cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options. Not available for video/audio items.").'</li>';
 				echo '<li>'.gettext("Sized image as set in Zenphoto's options.").'<br />';
 				echo gettext("<strong>Video/audio: </strong>If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3). These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (cover/splash images are not supported).<br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons.");
 				echo '</li>';
