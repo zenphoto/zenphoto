@@ -50,7 +50,6 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 	}
 	?>
 
-	</form>
 	<br />
 	<br />
 	<?php
@@ -122,8 +121,14 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 				<?php
 			}
 			?>
-			<a id="upbutton" href="javascript:buttonAction('<?php echo $uppath; ?>');" title="<?php echo $uptitle; ?>"><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_up.png" alt="" /></a>
-			<span<?php if (empty($folderlist)) echo ' style="display:none;"'; ?>><a id="downbutton" href="javascript:buttonAction($('#cloneFolder').val());" title=""><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_down.png" alt="" /></a></span>
+			<a id="upbutton" href="javascript:buttonAction('<?php echo $uppath; ?>');" title="<?php echo $uptitle; ?>">
+				<img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_up.png" alt="" />
+			</a>
+			<span<?php if (empty($folderlist)) echo ' style="display:none;"'; ?>>
+				<a id="downbutton" href="javascript:buttonAction($('#cloneFolder').val());" title="">
+					<img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_down.png" alt="" />
+				</a>
+			</span>
 		</form>
 		<br clear="all" />
 		<br />
