@@ -95,6 +95,9 @@ class security_logger {
 			case 'setup_install':
 				$type = gettext('Install');
 				$addl = gettext('version').' '.ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE."]";
+				if (!zpFunctions::hasPrimaryScripts()) {
+					$addl .= ' '.gettext('clone');
+				}
 				break;
 			case 'setup_delete':
 				$type = gettext('Remove setup files');
