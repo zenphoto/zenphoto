@@ -320,7 +320,13 @@ if ($setup_checked) {
 	if (isset($_POST['db'])) {
 		setupLog(gettext("Post of Database credentials"), true);
 	} else {
-		setupLog("Zenphoto Setup v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.'] '.date('r'), true, true);  // initialize the log file
+		$me = str_replace('\\', '/', __FILE__);
+		if (SERVERPATH == substr($me, 0, strrpos($me, '/'.ZENFOLDER))) {
+			$clone = '';
+		} else {
+			$clone = ' '.gettext('clone');
+		}
+		setupLog(sprintf(gettext('Zenphoto Setup v%1$s[%2$s]%3$s: %4$s'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE,$clone,date('r')), true, true);  // initialize the log file
 	}
 	if ($environ) {
 		setupLog(gettext("Full environment"));

@@ -235,7 +235,10 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	if (defined('RELEASE')) {
 			$official = gettext('Official Build');
 		} else {
-			$official = gettext('<em>Debug</em> Build');
+			$official = gettext('<em>Debug Build</em>');
+		}
+		if (!zpFunctions::hasPrimaryScripts()) {
+			$official .= ' <em>'.gettext('clone').'</em>';
 		}
 		$graphics_lib = zp_graphicsLibInfo();
 		?>

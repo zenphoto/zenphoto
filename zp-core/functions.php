@@ -2416,9 +2416,6 @@ class zpFunctions {
 	 * @return boolean
 	 */
 	static function removeDir($path) {
-
-echo "<br/>removeDir($path)";
-
 		if (($dir=opendir($path))!==false) {
 			$result = true;
 			while(($file=readdir($dir))!==false) {
