@@ -61,7 +61,15 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 	} else {
 		$path = str_replace(WEBPATH,'/',SERVERPATH);
 	}
+	$downtitle = '.../'.basename($path);
 	$uppath = str_replace('\\','/',dirname($path));
+
+	if (dirname($path) == dirname(dirname($path))) {
+		$uptitle = '';
+	} else {
+		$uptitle = '.../';
+	}
+	$uptitle .= trim($uppath,'/');
 	if (substr($uppath, -1) != '/') {
 		$uppath .= '/';
 	}
@@ -85,7 +93,13 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 			function buttonAction(data) {
 				$('#newDir').val(data);
 				$('#changeDir').submit();
+			}
+			function folderDown() {
+				$('#downbutton').attr('title','<?php echo $downtitle; ?>/'+$('#cloneFolder').val().replace(/\/$/,'').replace( /.*\//, '' ));
 
+			}
+			window.onload = function() {
+				folderDown();
 			}
 			// ]]> -->
 		</script>
@@ -95,7 +109,7 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 			if (empty($folderlist)) {
 				echo '<em>'.gettext('No subfolders in: ').'</em> ';
 			} else {
-				echo gettext('Select the destination folder:');
+				echo gettext('Select the destination folder: ');
 			}
 			echo $path;
 			if (!empty($folderlist)) {
@@ -106,11 +120,11 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 				<?php
 			}
 			?>
-			<a href="javascript:buttonAction('<?php echo $uppath; ?>');" title="<?php echo gettext('Up one level'); ?>"><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/up.png" alt="" /></a>
+			<a id="upbutton" href="javascript:buttonAction('<?php echo $uppath; ?>');" title="<?php echo $uptitle; ?>"><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_up.png" alt="" /></a>
 			<?php
 			if (!empty($folderlist)) {
 				?>
-				<a href="javascript:buttonAction($('#cloneFolder').val());" title="<?php echo gettext('Down one level'); ?>"><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/down.png" alt=" /></a>
+				<a id="downbutton" href="javascript:buttonAction($('#cloneFolder').val());" title=""><img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_down.png" alt=" /></a>
 				<?php
 			}
 			?>

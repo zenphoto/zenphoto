@@ -13,10 +13,6 @@
  * @package plugins
  */
 
-$plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
-$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. <p class='notebox'><strong>Legal note:</strong> Use the <em>Disguise IP</em> option if your country considers IP tracking a privacy violation.</p>");
-$plugin_author = "Stephen Billard (sbillard) and Malte Müller (acrylian)";
-
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)).'/functions.php');
@@ -46,6 +42,11 @@ if (!defined('OFFSET_PATH')) {
 		exitZP();
 	}
 }
+
+$plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
+$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. <p class='notebox'><strong>Legal note:</strong> Use the <em>Disguise IP</em> option if your country considers IP tracking a privacy violation.</p>");
+$plugin_author = "Stephen Billard (sbillard) and Malte Müller (acrylian)";
+
 $option_interface = 'jquery_rating';
 
 zp_register_filter('edit_album_utilities', 'jquery_rating::optionVoteStatus');

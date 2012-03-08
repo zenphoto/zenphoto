@@ -356,6 +356,7 @@ zp-core/images/admin-headerback.jpg
 zp-core/images/admin-headlineback.jpg
 zp-core/images/admin-navtabback.jpg
 zp-core/images/ajax-loader.gif
+zp-core/images/arrow_down.png
 zp-core/images/arrow_in.png
 zp-core/images/arrow_left_blue_round.png
 zp-core/images/arrow_out.png
@@ -369,7 +370,6 @@ zp-core/images/calendar.png
 zp-core/images/captcha_background.png
 zp-core/images/comments-off.png
 zp-core/images/comments-on.png
-zp-core/images/down.png
 zp-core/images/drag_handle.png
 zp-core/images/drag_handle_flag.png
 zp-core/images/edit-album.png
@@ -456,7 +456,6 @@ zp-core/images/togglerc.png
 zp-core/images/togglerch.png
 zp-core/images/togglero.png
 zp-core/images/toggleroh.png
-zp-core/images/up.png
 zp-core/images/view.png
 zp-core/images/warn.png
 zp-core/images/wheel.png
@@ -1877,4 +1876,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1879
+1878

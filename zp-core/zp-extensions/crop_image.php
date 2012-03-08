@@ -8,13 +8,6 @@
  * @package plugins
  */
 
-/*
-$plugin_is_filter = 5|ADMIN_PLUGIN;
-*/
-$plugin_description = gettext("An image crop tool. Places an image crop button in the image utilities box of the images tab.");
-$plugin_author = "Stephen Billard (sbillard)";
-
-
 if (isset($_REQUEST['performcrop'])) {
 	if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 3);
 	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
@@ -25,6 +18,10 @@ if (isset($_REQUEST['performcrop'])) {
 	zp_register_filter('edit_image_utilities', 'crop_image::edit', 1); // we want this one to come right after the crop thumbnail button
 	return;
 }
+
+$plugin_is_filter = 5|ADMIN_PLUGIN;
+$plugin_description = gettext("An image crop tool. Places an image crop button in the image utilities box of the images tab.");
+$plugin_author = "Stephen Billard (sbillard)";
 
 class crop_image {
 
