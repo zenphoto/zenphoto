@@ -304,6 +304,7 @@ zp-core/class-comment.php
 zp-core/class-gallery.php
 zp-core/class-image.php
 zp-core/class-load.php
+zp-core/class-rss.php
 zp-core/class-search.php
 zp-core/class-transientimage.php
 zp-core/classes.php
@@ -1876,4 +1877,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1878
+1879

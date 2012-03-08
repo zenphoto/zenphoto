@@ -9,8 +9,10 @@ checkInstall();
 //$_zp_script_timer['require'] = microtime();
 //rss feeds
 if(isset($_GET['rss'])) {
-	require_once(dirname(__FILE__). '/'.ZENFOLDER.'/functions-rss.php');
-	rssHitcounter();
+	require_once(dirname(__FILE__). '/'.ZENFOLDER.'/class-rss.php');
+	$rss = new RSS();
+	$rss->printRSSfeed();
+	/* rssHitcounter();
 	startRSSCache();
 	switch (sanitize($_GET['rss'])) {
 
@@ -46,7 +48,7 @@ if(isset($_GET['rss'])) {
 			break;
 	}
 	endRSSCache();
-	exitZP();
+	exitZP(); */
 }
 //$_zp_script_timer['rss'] = microtime();
 /**
