@@ -78,6 +78,7 @@ if (isset($_GET['action'])) {
 			setOption('time_offset', $offset);
 			setOption('charset', sanitize($_POST['charset']),3);
 			setOption('site_email', sanitize($_POST['site_email']),3);
+			setOption('site_email_name', sanitize($_POST['site_email_name']),3);
 			setOption('multi_lingual', (int) isset($_POST['multi_lingual']));
 			$f = sanitize($_POST['date_format_list'],3);
 			if ($f == 'custom') $f = sanitize($_POST['date_format'],3);
@@ -819,11 +820,16 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					</td>
 				</tr>
 				<tr>
-					<td width="175"><?php echo gettext("Site email:"); ?></td>
+					<td width="175">
+						<?php echo gettext("Name:"); ?>
+						<br />
+						<?php echo gettext("Email:"); ?>
+					</td>
 					<td width="350">
+						<input type="text" size="40" id="site_email_name" name="site_email_name" style="width: 338px" value="<?php echo getOption('site_email_name'); ?>" />
 						<input type="text" size="40" id="site_email" name="site_email" style="width: 338px" value="<?php echo getOption('site_email'); ?>" />
 					</td>
-					<td><?php echo gettext("This email address will be used as the <em>From</em> address for all mails sent by Zenphoto."); ?></td>
+					<td><?php echo gettext("This email name and address will be used as the <em>From</em> address for all mails sent by Zenphoto."); ?></td>
 				</tr>
 				<?php zp_apply_filter('admin_general_data'); ?>
 				<tr>

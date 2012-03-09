@@ -341,6 +341,7 @@ purgeOption('AlbumThumbSelectField');
 purgeOption('AlbumThumbSelectDirection');
 
 setOptionDefault('site_email',"zenphoto@".$_SERVER['SERVER_NAME']);
+setOptionDefault('site_email_name', 'Zenphoto');
 
 if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
 	$package = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package');

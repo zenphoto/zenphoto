@@ -357,7 +357,7 @@ function zp_mail($subject, $message, $email_list=NULL, $cc_addresses=NULL, $bcc_
 			}
 
 			$from_mail = getOption('site_email');
-			$from_name = get_language_string($_zp_gallery->get('gallery_title'), getOption('locale'));
+			$from_name = getOption('site_email_name');
 
 			// Convert to UTF-8
 			if (LOCAL_CHARSET != 'UTF-8') {
