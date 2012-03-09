@@ -1,7 +1,7 @@
 <?php
 /**
  * A backend plugin that displays the lastest news articles  from the RSS news feed from Zenphoto.org on Zenphoto's backend overview page.
- * An adaption of RSS Extractor and Displayer	(c) 2007-2009  Scriptol.com - License Mozilla 1.1. PHP 5 only.
+ * An adaption of RSS Extractor and Displayer	(c) 2007-2009  Scriptol.com - License Mozilla 1.1.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins

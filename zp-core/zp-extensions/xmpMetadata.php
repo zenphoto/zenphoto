@@ -5,21 +5,25 @@
  *
  * Relevant metadata found will be incorporated into the image (or album object)
  * see “Adobe XMP Specification" http://www.aiim.org/documents/standards/xmpspecification.pdf
- * for xmp metadata description. This plugin attempts to map the xmp metadata to IPTC fields
+ * for xmp metadata description. This plugin attempts to map the xmp metadata to Zenphoto or IPTC fields.
  *
  * If a sidecar file exists, it will take precedence (the image file will not be
  * examined.) The sidecar file should reside in the same folder, have the same prefix name as the
  * image (album), and the suffix ".xmp". Thus, the sidecar for <i>image</i>.jpg would be named <i>image</i>.xmp.
  *
  * NOTE: dynamic albums have an ".alb" suffix. Append ".xmp" to that name so
- * that the dynamic album sidecar would be named <i>album</i>.alb.xmp
+ * that the dynamic album sidecar would be named <i>album</i>.alb.xmp.
  *
- * There is one option for this plugin--to enable searching within the actual image file for
- * an xmp block. This is disabled by default scanning image files can add considerably to the
+ * There are two options for this plugin
+ * 	<ul>
+ * 		<li>The suffix of the metadata sidecar file</li>
+ * 		<li>A list of image file suffixes that may contain metadata</li>
+ * 	</ul>
+ * Cehck each image type you wish the plugin to search within for
+ * an xmp block. These are disabled by default because scanning image files can add considerably to the
  * processing time.
  *
- * All functions within this plugin are for internal use. The plugin does not present any
- * theme interface.
+ * The plugin does not present any theme interface.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

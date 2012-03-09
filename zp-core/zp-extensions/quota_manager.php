@@ -3,12 +3,11 @@
  * A quota management system to limit the sum of sizes of uploaded images.
  *
  * Set the default quota on the plugin options page.
- * You can change the quota for individual users on the Admin tab. Users with ADMIN_RIGHTS or MANAGE_ALL_ALBUM_RIGHTS
+ * You can change the quota for individual users on the Admin tab. Users with <code>ADMIN_RIGHTS</code> or <code>MANAGE_ALL_ALBUM_RIGHTS</code>
  * are not subject to quotas and will not be assigned ownership of an image.
  *
  * Images uploaded by a user will be marked as his and will count toward his quota.
- * Images uploaded via FTP will not necessarily have an owner assigned. If there is
- * one assiged, it is the logged on user when the image is discovered by Zenphoto.
+ * Images uploaded via FTP will not necessarily have an owner assigned.
  *
  * You may also assign the complete set of images in an albums to a user. (Just the images in the
  * album. If you want to assign images from subalbums, you need to do that for each

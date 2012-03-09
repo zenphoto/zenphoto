@@ -3,7 +3,7 @@
  * This plugin provides a facility to periodically run the Zenphoto backup utility. Use it to
  * insure that database backups are done on a regular basis.
  *
- * NOTE: The WEB site must be visited for this plugin to be able to check if it is time
+ * <b>NOTE:</b> The WEB site must be visited for this plugin to be able to check if it is time
  * to run. Inacative sites may not get backed up as frequently as the interval specifies.
  * Of course, if the site is inactive, there probably is little need to do the backup
  * in the first place.

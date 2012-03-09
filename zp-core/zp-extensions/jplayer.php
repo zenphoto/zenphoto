@@ -1,35 +1,44 @@
 <?php
 /**
- * Support for the jPlayer jQuery/Flash 2.0.0 multimedia player (jplayer.org). It will play natively via HTML5 in capable browser 
+ * Support for the jPlayer jQuery/Flash 2.0.0 multimedia player (jplayer.org). It will play natively via HTML5 in capable browser
  * if the appropiate multimedia formats are provided. This is not an adaption of the existing 3rd party plugin zenjPlayer but a full featured plugin.
- 
- * Audio: .mp3, .m4a, .fla - Counterpart formats .oga (use .ogg as a suffix!) and webma supported (see note below!)
+
+ * Audio: .mp3, .m4a, .fla - Counterpart formats .oga (use .ogg as a suffix!) and webma supported (see note below!)<br>
  * Video: .m4v/.mp4, .flv - Counterpart formats .ogv and .webmv supported (see note below!)
  *
- * IMPORTANT NOTE ON OGG AND WEBM COUNTERPART FORMATS: 
- * The counterpart formats are not valid formats for Zenphoto itself as that would confuse the management. Therefore these formats can be 
- * uploaded via ftp only. 
- * The files needed to have the same file name (beware the character case!). In single player usage the player will check via file system if 
- * a counterpart file exists if counterpart support is enabled. 
- * NOTE: Counterpart format does not work correctly on playlists yet. Detailed reason: Priority solution setting must be "flash" as otherwise flv and fla will not work on some browsers like Safari. 
- * This in return disables counterpart support for ogg and webm files for some reason on Firefox). Since the flash fallback covers all essential formats ths is not much of an issue for visitors though.
+ * IMPORTANT NOTE ON OGG AND WEBM COUNTERPART FORMATS:
+ *
+ * The counterpart formats are not valid formats for Zenphoto itself as that would confuse the management.
+ * Therefore these formats can be uploaded via ftp only.
+ * The files needed to have the same file name (beware the character case!). In single player usage the player
+ * will check via file system if a counterpart file exists if counterpart support is enabled.
+ * <b>NOTE:</b> Counterpart format does not work correctly on playlists yet. Detailed reason: Priority solution
+ * setting must be "flash" as otherwise flv and fla will not work on some browsers like Safari.
+ * This in return disables counterpart support for ogg and webm files for some reason on Firefox).
+ * Since the flash fallback covers all essential formats ths is not much of an issue for visitors though.
  *
  * Otherwise it will not work. It is all or none.
  * See http://jplayer.org/latest/developer-guide/#reference-html5-media for info on that.
  *
- * NOTE ON PLAYER SKINS:
- * The look of the player is determined by a pure HTML/CSS based skin (theme). There may occur display issues with themes. Only the Zenphoto own default skin "zenphotolight"
+ * NOTE ON PLAYER SKINS:<br>
+ * The look of the player is determined by a pure HTML/CSS based skin (theme). There may occur display issues with themes.
+ * Only the Zenphoto own default skin "zenphotolight"
  * has been tested with the standard themes (and not even with all it works perfectly).
- * So you might need to adjust the skin yourself to work with your theme. It is recommended that you place your custom skins within the root /plugins folder like:
- * plugins/jplayer/skin/<skin name1>
- * plugins/jplayer/skin/<skin name2> ...
- * You can select the skin then via the plugin options. NOTE: A skin may have only one CSS file. 
- * 
- * USING PLAYLISTS:
- * You can use $_zp_flash_player->printjPlayerPlaylist() on your theme's album.php directly to display a video/audio playlist (default) or an audio only playlist.
- * Alternativly you can show a playlist of a specific album anywhere. In any case you need to modify your theme. See the documentation for the parameter options.
+ * So you might need to adjust the skin yourself to work with your theme. It is recommended that
+ * you place your custom skins within the root /plugins folder like:
  *
- * NOTE: This player does not support external albums!
+ * plugins/jplayer/skin/<skin name1><br>
+ * plugins/jplayer/skin/<skin name2> ...
+ *
+ * You can select the skin then via the plugin options. <b>NOTE:</b> A skin may have only one CSS file.
+ *
+ * USING PLAYLISTS:<br>
+ * You can use <code>$_zp_flash_player->printjPlayerPlaylist()</code> on your theme's album.php directly to display a
+ * video/audio playlist (default) or an audio only playlist.
+ * Alternativly you can show a playlist of a specific album anywhere. In any case you need to modify your theme.
+ * See the documentation for the parameter options.
+ *
+ * <b>NOTE:</b> This player does not support external albums!
  *
  * @author Malte Müller (acrylian)
  * @package plugins
@@ -75,32 +84,32 @@ function jplayer_playlistJS() {
 class jplayer_options {
 
 	function jplayer_options() {
-		setOptionDefault('jplayer_autoplay', ''); 
-		setOptionDefault('jplayer_poster', 1); 
-		setOptionDefault('jplayer_postercrop', 1); 
-		setOptionDefault('jplayer_showtitle', ''); 
-		setOptionDefault('jplayer_playlist', ''); 
-		setOptionDefault('jplayer_playlist_numbered', 1); 
+		setOptionDefault('jplayer_autoplay', '');
+		setOptionDefault('jplayer_poster', 1);
+		setOptionDefault('jplayer_postercrop', 1);
+		setOptionDefault('jplayer_showtitle', '');
+		setOptionDefault('jplayer_playlist', '');
+		setOptionDefault('jplayer_playlist_numbered', 1);
 		setOptionDefault('jplayer_playlist_playtime', 0);
 		setOptionDefault('jplayer_download', '');
 		setOptionDefault('jplayer_size', 'jp-video-270p');
 		setOptionDefault('jplayer_skin', 'zenphotolight');
 		setOptionDefault('jplayer_counterparts', 0);
 	}
-	
-	
+
+
 	function getOptionsSupported() {
 		$skins = getjPlayerSkins();
-	 /* 
+	 /*
 	 The player size is entirely styled via the CSS skin so there is no free size option. For audio (without thumb/poster) that is always 480px width.
 	 The original jPlayer skin comes with 270p (480x270px) and 360p (640x360px) sizes for videos but the Zenphoto custom skin comes with some more like 480p and 1080p.
 	 If you need different sizes than you need to make your own skin (see the skin option for info about that)
 	 */
-	 
+
 	 return array(gettext('Autoplay') => array('key' => 'jplayer_autoplay', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Disabled automatically if several players on one page")),
 								gettext('Poster (Videothumb)') => array('key' => 'jplayer_poster', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If the videothumb should be shown (jplayer calls it poster)")),	
+										'desc' => gettext("If the videothumb should be shown (jplayer calls it poster)")),
 						   gettext('Poster cropping (Videothumb)') => array('key' => 'jplayer_postercrop', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If enable the videothumb to be cropped. Otherwise jPlayer will squish the image to fit if it does not have the correct aspect ratio.")),
 						   gettext('Audio poster (Videothumb)') => array('key' => 'jplayer_audioposter', 'type' => OPTION_TYPE_CHECKBOX,
@@ -118,8 +127,8 @@ class jplayer_options {
 						   gettext('Player size') => array('key' => 'jplayer_size', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(
 										gettext('jp-video-270p (480x270px)')=>"jp-video-270p",
-										gettext('jp-video-360p (640x360px)')=>"jp-video-360p", 
-										gettext('jp-video-480p (720x405px)*')=>"jp-video-480p", 
+										gettext('jp-video-360p (640x360px)')=>"jp-video-360p",
+										gettext('jp-video-480p (720x405px)*')=>"jp-video-480p",
 										gettext('jp-video-720p (1280x720px)*')=>"jp-video-720p",
 										gettext('jp-video-1080p (1920x1080px)*')=>"jp-video-1080p"),
 										'desc' => gettext("jPlayer cannot be sized freely as it is dependend on its HTML and CSS based skin. Sizes marked with a <strong>*</strong> are supported by the two Zenphoto custom skins only. If you need different sizes you need to modify a skin or make your own and also need to change values in the plugin class method getPlayerSize().")),
@@ -128,7 +137,7 @@ class jplayer_options {
 										'desc' => gettext("Select the skin (theme) to use. <br />NOTE: Since the skin is pure HTML/CSS only there may be display issues with certain themes that require manual adjustments. Place custom skin within the root plugins folder. See plugin documentation for more info."))
 							);
 	}
-	
+
 }
 /**
  * Gets the skin names and css files
@@ -171,9 +180,9 @@ class jplayer {
 	public $height = '';
 	public $playersize = '';
 	public $mode = '';
-	public $supplied = '';	
-	public $supplied_counterparts = ''; 
-	
+	public $supplied = '';
+	public $supplied_counterparts = '';
+
 	function __construct() {
 		$this->playersize = getOption('jplayer_size');
 		switch($this->playersize) {
@@ -199,7 +208,7 @@ class jplayer {
 		  	break;
 		}
 	}
-	
+
 	/**
 	 * Get the JS configuration of jplayer
 	 *
@@ -210,7 +219,7 @@ class jplayer {
 	 * @param string $count number (preferredly the id) of the item to append to the css for multiple players on one page
 	 * @param string $width Not supported as jPlayer is dependend on its CSS based skin to change sizes. Can only be set via plugin options.
 	 * @param string $height Not supported as jPlayer is dependend on its CSS based skin to change sizes. Can only be set via plugin options.
-	 * 	
+	 *
 	 */
 	function getPlayerConfig($moviepath='', $imagefilename, $count='', $width='', $height='') {
 		global $_zp_current_album, $_zp_current_image;
@@ -221,10 +230,10 @@ class jplayer {
 			$moviepath = $moviepath;
 			$ext = getSuffix($moviepath);
 		}
-		if(!in_array($ext,array('m4a','m4v','mp3','mp4','flv','fla'))) { 
+		if(!in_array($ext,array('m4a','m4v','mp3','mp4','flv','fla'))) {
 			echo '<p>'.gettext('This multimedia format is not supported by jPlayer').'</p>';
 			return NULL;
-		} 
+		}
 		$this->setModeAndSuppliedFormat($ext);
 		if(empty($count)) {
 			$multiplayer = false;
@@ -233,7 +242,7 @@ class jplayer {
 			$multiplayer = true; // since we need extra JS if multiple players on one page
 			$count = $count;
 		}
-		$autoplay = '';	
+		$autoplay = '';
 		if(getOption('jplayer_autoplay') && !multiplayer) {
 			$autoplay = ',jPlayer("play");';
 		}
@@ -269,7 +278,7 @@ class jplayer {
 				swfPath: "'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/jplayer/js",
 				supplied: "'.$this->supplied_counterparts.$this->supplied.'",
 				cssSelectorAncestor: "#jp_container_'.$count.'"';
-				
+
 		if($multiplayer) {
 			$playerconfig .= ',
 				play: function() { // To avoid both jPlayers playing together.
@@ -277,7 +286,7 @@ class jplayer {
 			}
 			';
 		}
-		
+
 		if($this->mode == 'video' || ($this->mode == 'audio' && getOption('jplayer_poster') && getOption('jplayer_audioposter'))) {
 				$playerconfig .= '
 				,	size: {
@@ -286,13 +295,13 @@ class jplayer {
 			cssClass: "'.$this->playersize.'"
 		}';
 			}
-		
+
 		$playerconfig .= '
 			});
 		});
 	//]]>
   </script>';
- 
+
   // I am really too lazy to figure everything out to optimize this quite complex html nesting so I generalized only parts.
   // This will also make it easier and more convenient to spot any html changes the jplayer developer might come up with later on (as he did from 2.0 to 2.1!)
 		if($this->mode == 'video' || !empty($videoThumb)) {
@@ -318,7 +327,7 @@ class jplayer {
 							<div class="jp-volume-bar">
 								<div class="jp-volume-bar-value"></div>
 							</div>';
-				$playerconfig .= $this->getPlayerHTMLparts($this->mode,'toggles');	
+				$playerconfig .= $this->getPlayerHTMLparts($this->mode,'toggles');
 				$playerconfig .= '
 						</div>';
 				if(getOption('jplayer_showtitle')) {
@@ -329,17 +338,17 @@ class jplayer {
 							</ul>
 						</div>';
 				}
-					$playerconfig .= '		
+					$playerconfig .= '
 					</div>
 				</div>';
-				$playerconfig .= $this->getPlayerHTMLparts($this->mode,'no-solution');	
+				$playerconfig .= $this->getPlayerHTMLparts($this->mode,'no-solution');
 				$playerconfig .= '
 			</div>
 		</div>
 		';
-				
+
 		} else { // audio
-			
+
 		$playerconfig .= '
 		<div id="jquery_jplayer_'.$count.'" class="jp-jplayer"></div>
 		<div id="jp_container_'.$count.'" class="jp-audio">
@@ -358,7 +367,7 @@ class jplayer {
 					<div class="jp-time-holder">
 						<div class="jp-current-time"></div>
 						<div class="jp-duration"></div>';
-				$playerconfig .= $this->getPlayerHTMLparts($this->mode,'toggles');	
+				$playerconfig .= $this->getPlayerHTMLparts($this->mode,'toggles');
 				$playerconfig .= '
 					</div>
 				</div>';
@@ -370,14 +379,14 @@ class jplayer {
 							</ul>
 						</div>';
 				}
-				$playerconfig .= $this->getPlayerHTMLparts($this->mode,'no-solution');	
+				$playerconfig .= $this->getPlayerHTMLparts($this->mode,'no-solution');
 				$playerconfig .= '
 			</div>
 		</div>
 		';
 	} // video/audio if else end
 		return $playerconfig;
-		
+
 	}
 
 	/**
@@ -390,10 +399,10 @@ class jplayer {
 	function printPlayerConfig($moviepath='',$imagefilename='',$count ='') {
 		echo $this->getPlayerConfig($moviepath,$imagefilename,$count,NULL,NULL);
 	}
-	
+
 	/**
 	 * gets commonly used html parts for the player config
-	 *	
+	 *
 	 * @param string $mode 'video' or 'audio'
 	 * @param string $part part to get: 'controls', 'controls-playlist', 'toggles', 'toggles-playlist','no-solution'
 	 */
@@ -404,7 +413,7 @@ class jplayer {
  		case 'controls-playlist':
 			$htmlpart = '
 			<ul class="jp-controls">';
-			
+
 			if($part == 'controls-playlist') {
 				$htmlpart .= '<li><a href="javascript:;" class="jp-previous" tabindex="1">'.gettext('previous').'</a></li>';
 			}
@@ -413,7 +422,7 @@ class jplayer {
 				<li><a href="javascript:;" class="jp-pause" tabindex="1">'.gettext('pause').'</a></li>';
 			if($part == 'controls-playlist') {
 				$htmlpart .= '<li><a href="javascript:;" class="jp-next" tabindex="1">'.gettext('next').'</a></li>	';
-			}	
+			}
 			$htmlpart .= '
 				<li><a href="javascript:;" class="jp-stop" tabindex="1">'.gettext('stop').'</a></li>
 				<li><a href="javascript:;" class="jp-mute" tabindex="1" title="'.gettext('mute').'">'.gettext('mute').'</a></li>
@@ -429,7 +438,7 @@ class jplayer {
 					<li><a href="javascript:;" class="jp-full-screen" tabindex="1" title="'.gettext('full screen').'">'.gettext('full screen').'</a></li>
 					<li><a href="javascript:;" class="jp-restore-screen" tabindex="1" title="'.gettext('restore screen').'">'.gettext('restore screen').'</a></li>';
 			}
-			
+
 			if($part == 'toggles-playlist') {
 				$htmlpart .= '
 					<li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="'.gettext('shuffle').'">'.gettext('shuffle').'</a></li>
@@ -451,8 +460,8 @@ class jplayer {
 	  }
 		return $htmlpart;
 	}
-	
-	
+
+
 	/**
 	 * Returns the height of the player
 	 * @param object $image the image for which the width is requested
@@ -463,7 +472,7 @@ class jplayer {
 		if (!is_null($image) && $this->mode == 'audio'&& !getOption('jplayer_poster') && !getOption('jplayer_audioposter')) {
 			return 420; //audio default
 		}
-		return $this->width; 
+		return $this->width;
 	}
 
 	/**
@@ -478,11 +487,11 @@ class jplayer {
 		}
 		return $this->height;
 	}
-	
+
 	/**
 	 * Sets the properties $mode, $supplied and $supplied_counterparts
 	 *
-	 */	
+	 */
 	function setModeAndSuppliedFormat($ext) {
 		switch($ext) {
 			case 'm4a':
@@ -517,15 +526,15 @@ class jplayer {
 				break;
 		}
 	}
-	
+
 	/** TODO: Could not get this to work with Firefox. Low priority so postponed for sometime later...
 	 * Gets the mp3, m4v,m4a,mp4 counterpart formats (webm,ogg) for html5 browser compatibilty
 	 * NOTE: THese formats need to be uploaded via FTP as they are not valid file types for Zenphoto to avoid confusion
 	 *
 	 * @param string $moviepath full link to the multimedia file to get counterpart formats to.
 	  * @param string $ext the file format extention to search the counterpart for (as we already have fetched that)
-	 */	
-	
+	 */
+
 	function getCounterpartFiles($moviepath,$ext) {
 		$counterparts = '';
 		switch($ext) {
@@ -533,7 +542,7 @@ class jplayer {
 			case 'm4a':
 			case 'fla':
 				$suffixes = array('webma','oga');
-				break;	
+				break;
 			case 'mp4':
 			case 'm4v':
 			case 'flv':
@@ -547,26 +556,26 @@ class jplayer {
 			$filesuffix = $suffix;
 			if($suffix == 'oga') {
 				$filesuffix = 'ogg';
-			} 
+			}
 			$counterpart = str_replace($ext,$filesuffix,$moviepath,$count);
 			//$suffix = str_replace('.','',$suffix);
 			if(file_exists(str_replace(WEBPATH,SERVERPATH,$counterpart))) {
 				$this->supplied_counterparts .= $suffix.',';
 				$counterparts .= ','.$suffix.':"'.pathurlencode($counterpart).'"';
-			} 
+			}
 		}
-		return $counterparts;	
-	} 
-	
+		return $counterparts;
+	}
+
 	/**
 	 * Prints a playlist using jPlayer. Several playlists per page supported.
-	 *	
+	 *
  	 * The playlist is meant to replace the 'next_image()' loop on a theme's album.php.
  	 * It can be used with a special 'album theme' that can be assigned to media albums with with .flv/.mp4/.mp3s, although Flowplayer 3 also supports images
    * Replace the entire 'next_image()' loop on album.php with this:
    * <?php printjPlayerPlaylist("playlist"); ?> or <?php printjPlayerPlaylist("playlist-audio"); ?>
-	 *	
-	 * @param string $option "playlist" use for pure video and mixed video/audio playlists or if you want to show the poster/videothumb with audio only playlists, 
+	 *
+	 * @param string $option "playlist" use for pure video and mixed video/audio playlists or if you want to show the poster/videothumb with audio only playlists,
 	 *											 "playlist-audio" use for pure audio playlists (m4a,mp3,fla supported only) if you don't need the poster/videothumb to be shown only.
 	 * @param string $albumfolder album name to get a playlist from directly
 	 */
@@ -575,7 +584,7 @@ class jplayer {
 		if(empty($albumfolder)) {
 			$albumobj = $_zp_current_album;
 		} else {
-			$albumobj = new Album(NULL,$albumfolder);		
+			$albumobj = new Album(NULL,$albumfolder);
 		}
 		$numimages = $albumobj->getNumImages();
 		if ($numimages != 0) {
@@ -601,7 +610,7 @@ class jplayer {
 									break;
 								case 'playlist-audio':
 									$suffixes = array('m4a','mp3','fla');
-									break; 
+									break;
 							}
 							$numbering = '';
 							if(in_array($ext,$suffixes)) {
@@ -611,13 +620,13 @@ class jplayer {
 										$numbering = '<span>'.$number.'</span>';
 									//}
 								}
-								$video = new Video($albumobj,$entry);	
+								$video = new Video($albumobj,$entry);
 								$videoThumb = '';
 								$this->setModeAndSuppliedFormat($ext);
 								if($option == 'playlist' && getOption('jplayer_poster')) {
 									$albumfolder = $albumobj->name;
 									$videoThumb = ',poster:"'.$video->getCustomImage(null, $this->width, $this->height, $this->width, $this->height, null, null, true).'"';
-								} 
+								}
 								$playtime = '';
 								if(getOption('jplayer_playlist_playtime')) {
 									if(!empty($playtime)) {
@@ -640,7 +649,7 @@ class jplayer {
 								}
 							} // if video
 						} // foreach
-						// for some reason the playlist must run with supplied: "flash,html" because otherwise neither videothumbs(poster) nor flv/flv work on Safari 4.1. 
+						// for some reason the playlist must run with supplied: "flash,html" because otherwise neither videothumbs(poster) nor flv/flv work on Safari 4.1.
 						// Seems the flash fallback fails here
 					?>
 					], {
@@ -650,7 +659,7 @@ class jplayer {
 						supplied: "<?php echo $this->supplied_counterparts; ?>m4v, mp4, m4a, mp3, fla, flv"
 					<?php } else { ?>
 						supplied: "<?php echo $this->supplied_counterparts; ?>m4a, mp3, fla"
-					<?php } 
+					<?php }
 					if($option != 'playlist-audio') { ?>
 						,	size: {
 						width: "<?php echo $this->width; ?>px",
@@ -741,7 +750,7 @@ class jplayer {
 	} // function playlist
 
 
-} // jplayer class 
+} // jplayer class
 
 
 // theme function wrapper for user convenience

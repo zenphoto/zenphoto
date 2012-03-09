@@ -2,7 +2,8 @@
 /**
  * Loads Colorbox JS and CSS scripts for selected theme page scripts.
  *
- * Note that this plugin does not attach Colorbox to any element because there are so many different options and usages. You need to do this on your theme yourself. Visit http://colorpowered.com/colorbox/ about that.
+ * Note that this plugin does not attach Colorbox to any element because there are so many different options and usages.
+ * You need to do this on your theme yourself. Visit http://colorpowered.com/colorbox/ for information about that.
  *
  * The plugin has built in support for 5 example Colorbox themes.
  * If you select <i>custom (within theme)</i> on the plugin option for Colorbox you need to place a folder

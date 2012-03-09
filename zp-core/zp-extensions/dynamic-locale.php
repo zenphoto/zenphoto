@@ -1,20 +1,24 @@
 <?php
 /**
- * A plugin to allow the site viewer to select a localization.
+ * Allow the site viewer to select a localization.
  * This applies only to the theme pages--not Admin. Admin continues to use the
  * language option for its language.
  *
  * Only the zenphoto and theme gettext() string are localized by this facility.
  *
  * If you want to support image descriptions, etc. in multiple languages you will
- * have to enable the multi-lingual option found next to the language selector on
+ * have to enable the <i>multi-lingual</i> option found next to the language selector on
  * the admin gallery configuration page. Then you will have to provide appropriate
- * alternate translations for the fields you use. While there will be a place for
+ * alternate translations for the fields you use. While there is a field for
  * strings for all zenphoto supported languages you need supply only those you choose.
  * The others language strings will default to your local language.
  *
- * Uses cookies to store the individual selection. Sets the 'locale' option
- * to the selected language (non-persistent.)
+ * Locale selection may occur in several ways:
+ * <ul>
+ * 	<li>A cookie stored when the user chooses his language</li>
+ * 	<li>The URI language selection provided by the <i>seo_locale</i> plugin</li>
+ * 	<li>The <i>subdomains</i> option</li>
+ * </ul>
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

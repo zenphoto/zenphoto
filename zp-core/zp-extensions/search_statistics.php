@@ -3,9 +3,9 @@
  *
  * This plugin gathers data about searches that users make on your site.
  *
- * Note on the analysis of the data:
+ * Notes on the analysis of the data:
  *
- *  	Dynamic album searches are ignored
+ *  	Searches the result of Dynamic album processing are ignored
  *
  *		Analysis presumes that the Theme does a "uniform" set of object retrievals. That
  *		is the search.php script will always request albums, images, pages, and/or news

@@ -1,9 +1,8 @@
 <?php
 /**
  *
- * Use to insert the Google Webmaster Tools verification meta tag into your site pages
- *
- * See:	http://www.google.com/webmasters/tools for details
+ * Use to insert the Google Webmaster Tools verification meta tag into your site pages.
+ * See:	http://www.google.com/webmasters/tools for details.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

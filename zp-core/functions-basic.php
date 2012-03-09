@@ -1058,7 +1058,12 @@ function debugLog($message, $reset=false) {
 	if ($reset || ($size = @filesize($path)) == 0 || $size > 5000000) {
 		$f = fopen($path, 'w');
 		if ($f) {
-			fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE."]\n");
+			if (zpFunctions::hasPrimaryScripts()) {
+				$clone = '';
+			} else {
+				$clone = ' '.gettext('clone');
+			}
+			fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']'.$clone."\n");
 		}
 	} else {
 		$f = fopen($path, 'a');

@@ -6,17 +6,17 @@
  * user rights that will be granted.
  *
  * Place a call on printRegistrationForm() where you want the form to appear.
- * Probably the best use is to create a new 'custom page' script just for handling these
+ * Probably the best use is to create a new <i>custom page</i> script just for handling these
  * user registrations. Then put a link to that script on your index page so that people
  * who wish to register will click on the link and be taken to the registration page.
  *
- * When successfully registered, a new admin user will be created with no logon rights. An e-mail
+ * When successfully registered, a new Zenphoto user will be created with no logon rights. An e-mail
  * will be sent to the user with a link to activate the user ID. When he clicks on that link
  * he will be taken to the registration page and the verification process will be completed.
- * At this point the user ID rights is set to the value of the plugin default user rights option
+ * At this point the user ID rights are set to the value of the plugin default user rights option
  * and an email is sent to the Gallery admin announcing the new registration.
  *
- * NOTE: If you change the rights on a user pending verification you have verified the user.
+ * <b>NOTE:</b> If you change the rights of a user pending verification you have verified the user!
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

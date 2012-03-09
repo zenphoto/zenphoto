@@ -1,8 +1,10 @@
 <?php
 /**
- * Plugin handler for: .pdf, .pps documents
- * These are displayed Google Docs viewer. The item is displayed in an iFrame sized as above. Of course, your site
- * must be accessable by Google and your viewer must have a google account for this to work.
+ * Plugin handler for: <code>.pdf</code> and <code>.pps</code> documents
+ * These are displayed <i>Google Docs viewer</i>. The item is displayed in an iFrame sized based on the image size option.
+ * Of course, your site must be accessable by Google and your viewer must have a google account for this to work.
+ *
+ * The plugin is an extension of <code>TextObject</code>. For more details see the <i>class-textobject</i> plugin.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

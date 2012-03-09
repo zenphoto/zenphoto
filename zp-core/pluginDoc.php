@@ -33,7 +33,8 @@ $markup = array(
 						'&lt;/li&gt;'=>'</li>',
 						'&lt;pre&gt;'=>'<pre>',
 						'&lt;/pre&gt;'=>'</pre>',
-						'&lt;br&gt;'=>'<br />'
+						'&lt;br&gt;'=>'<br />',
+						'&lt;t&gt;'=>'&nbsp;&nbsp;&nbsp;'
 );
 
 $extension = sanitize($_GET['extension']);

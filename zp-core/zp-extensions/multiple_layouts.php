@@ -9,8 +9,8 @@
  *
  * Zenphoto gallery items:
  * <hr>
- * For albums: album<customname>.php
- * For images : image<customname>.php
+ * For albums: album<i>customname</i>.php<br>
+ * For images : image<i>customname</i>.php
  *
  * "use image layout equivalent" checkbox:
  * If you want to avoid selecting a specific layout for all images in an album you can check this option
@@ -23,8 +23,9 @@
  *
  * Zenpage CMS items:
  * <hr>
- * For Zenpage pages: pages<customname>.php
- * For Zenpage news articles and news categories: news<customname>.php.
+ * For Zenpage pages: pages<i>customname</i>.php<br>
+ * For Zenpage news articles and news categories: news<i>customname</i>.php.
+ *
  * The main news page and the news archive can't be assigned to layout pages.
  *
  * Layout selection inheritance:

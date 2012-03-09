@@ -1,12 +1,12 @@
 <?php
 /**
- * When enabled, ADMIN users will be not appear to be logged-in when viewing gallery pages
+ * When enabled, Zenphoto users will be appear not to be logged-in when viewing gallery pages
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
 */
 $plugin_is_filter = 9|CLASS_PLUGIN;
-$plugin_description = sprintf(gettext("Treats ADMIN users as not logged in for gallery pages."),DATA_FOLDER);
+$plugin_description = sprintf(gettext("Treats users as not logged in for gallery pages."),DATA_FOLDER);
 $plugin_author = "Stephen Billard (sbillard)";
 
 

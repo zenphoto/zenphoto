@@ -1,8 +1,5 @@
 <?php
 /**
- * Manages user expirations
- *
- * NOTE: does not apply to users with ADMIN_RIGHTS!
  *
  * Set the "interval" to the number of days before expiration
  * Upon expiration, the user will be "disabled". He will not have
@@ -21,6 +18,7 @@
  * or renewed. (Renewal is for a new "interval" from his last renewal (or the
  * current date if adding the interval would not bring him up-to-date.)
  *
+ * <b>NOTE:</b> This plugin does not expire users with ADMIN_RIGHTS!
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

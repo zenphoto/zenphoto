@@ -1,6 +1,6 @@
 <?php
 /**
- * Switches site into "update" mode for Zenphoto upgrades. When the site is in "update" mode, links
+ * Switches site into <i>update</i> mode for Zenphoto upgrades. When the site is in <i>update</i> mode, links
  * to the gallery pages will be redirected to a single page that indicates the site is undergoing
  * an upgrade.
  *

@@ -2,7 +2,7 @@
 /**
  * This is Zenphoto's unified comment handling facility
  *
- * Place a call on the function printCommentForm() in your script where you
+ * Place a call on the function <code>printCommentForm()</code> in your script where you
  * wish the comment items to appear.
  *
  * The plugin uses the form <code>../comment_form/comment_form.php</code>.

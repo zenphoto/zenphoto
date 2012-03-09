@@ -2,9 +2,9 @@
 /**
  *  Tries to authorize user based on Apache HTTP authenitcation credentials
  *
- * The PHP_AUTH_USER is mapped to a Zenphoto user
- * the PHP_AUTH_PW must be in cleartext and match the Zenphoto user's password
- * (If the User validation is set to "trusted" the PHP_AUTH_PW password will be ignored and
+ * The <code>PHP_AUTH_USER</code> is mapped to a Zenphoto user
+ * the <code>PHP_AUTH_PW</code> must be in cleartext and match the Zenphoto user's password
+ * (If the User validation is set to <i>trusted</i> the <code>PHP_AUTH_PW</code> password will be ignored and
  * need not be cleartext.)
  *
  * Note that the HTTP logins are outside of Zenphoto so there is no security logging of
@@ -12,34 +12,32 @@
  * users logged in via this plugin.
  *
  * Apache configuration:
- *
- * run the Apache htpasswd utility to create a password file containing your first user:
- *
- * 		<path to apache executables>htpasswd -cp <path to apache folder>passwords user1
- *
- * htpasswd will prompt you for the password. You can repeat the process for each additional user
- * or you can simply edit the "passwords" file with a text editor.
- *
- * Each user/password must match to a Zenphoto user/password or access to Zenphoto will be at a "guest"
+ *	<ul>
+ * <li>Run the Apache <code>htpasswd</code> utility to create a password file containing your first user:
+ * 		<i>path to apache executables</i> <code>htpasswd -cp</code> <i>path to apache folder</i> <code>passwords user1</code><br><br>
+ * <code>htpasswd</code> will prompt you for the password. You can repeat the process for each additional user
+ * or you can simply edit the <i>passwords</i> file with a text editor.<br><br>
+ * Each <i>user/password</i> must match to a Zenphoto <i>user/password</i> or access to Zenphoto will be at a <i>guest</i>
  * level. If a user changes his password in Zenphoto someone must make the equivalent change in
- * the Apache password file for the Zenphoto user access to succeed. (However, see the User validation
- * option.)
+ * the Apache password file for the Zenphoto user access to succeed. (However, see the <i>User validation</i>
+ * option.)</li>
  *
- * create a file named "groups" in your apache folder
- * edit the "groups" file with a line similar to:
- * 		zenphoto: stephen george frank
- * this creates a group named zenphoto with the list of users as members
+ * <li>Create a file named "groups" in your apache folder</li>
+ * <li>Edit the "groups" file with a line similar to:
+ * 		<code>zenphoto: stephen george frank</code>.
+ * This creates a group named zenphoto with the list of users as members</li>
  *
- * Add the following lines to your Zenphoto root .htaccess file after the initial comments and
+ * <li>Add the following lines to your Zenphoto root .htaccess file after the initial comments and
  * before the rewrite rules:
- *
- * 		AuthType Basic
- * 		AuthName "Zenphoto realm"
- * 		AuthUserFile c:/wamp/bin/apache/passwords
- * 		AuthGroupFile c:/wamp/bin/apache/groups
- * 		Require group zenphoto
- *
- * (replace "c:/wamp/bin/apache/" with the path to these files on your server.)
+ *	<ul>
+ * 		<li>AuthType Basic</li>
+ * 		<li>AuthName "Zenphoto realm"</li>
+ * 		<li>AuthUserFile c:/wamp/bin/apache/passwords</li>
+ * 		<li>AuthGroupFile c:/wamp/bin/apache/groups</li>
+ * 		<li>Require group zenphoto</li>
+ *	</ul>
+ *	</li>
+ *	</ul>
  *
  *
  * @author Stephen Billard (sbillard)

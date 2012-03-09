@@ -1,13 +1,14 @@
 <?php
 /**
  * Supports an rating system for images, albums, pages, and news articles
- *
- * uses Star Rating Plugin by Fyneworks.com
+ * using the <i>Star Rating</i> Plugin by Fyneworks.com
  *
  * An option exists to allow viewers to recast their votes. If not set, a viewer may
- * vote only one time and not change his mind.
+ * vote only one time and may not change his mind.
  *
- * Customize the stars by placing a modified copy of jquery.rating.css in your theme folder
+ * Customize the stars by placing a modified copy of <code>jquery.rating.css</code> in your theme folder.
+ *
+ * <b>Legal note:</b> Use the <i>Disguise IP</i> option if your country considers IP tracking a privacy violation.
  *
  * @author Stephen Billard (sbillard)and Malte Müller (acrylian)
  * @package plugins
@@ -44,7 +45,7 @@ if (!defined('OFFSET_PATH')) {
 }
 
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
-$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. <p class='notebox'><strong>Legal note:</strong> Use the <em>Disguise IP</em> option if your country considers IP tracking a privacy violation.</p>");
+$plugin_description = gettext("Adds several theme functions to enable images, album, news, or pages to be rated by users. ");
 $plugin_author = "Stephen Billard (sbillard) and Malte Müller (acrylian)";
 
 $option_interface = 'jquery_rating';

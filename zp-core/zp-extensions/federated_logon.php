@@ -8,41 +8,37 @@
  * user is logged in as that Zenphoto user. If not, a Zenphoto user will be created
  * and the user logged in as him.
  *
- * The default priviledges for a created user are obtained from the "viewers" group.
+ * The default priviledges for a created user are obtained from the <i>viewers</i> group.
  * (The user will belong to that group.) This will be the case whether or not the
  * user_groups plugin is enabled. If you want to be able to specify unique default
  * priviledges you will have to use the user_groups plugin at least until you have
  * defined your default group.
  *
- * You may also find the user_expiry plugin useful in conjunction with this plugin.
+ * You may also find the <i>user_expiry</i> plugin useful in conjunction with this plugin.
  * Since users may arbitrarily be created from those visitors who login with their
  * federated credentials you may want to "age" these users and remove them after some
- * period of time. That is done by the user_expiry plugin.
+ * period of time. That is done by the <i>user_expiry</i> plugin.
  *
- * Currently there is only one handle available. It is an OpenID handler based on the
+ * Currently there is only one type of handler available. It is an OpenID handler based on the
  * Janrain OpenID Enabled library (http://www.janrain.com/openid-enabled). There are
  * some server requirements for this library. To see if you server meets them run
- * the script zp-core/zp-extensions/federated_logon/OpenID_detect.php. It will give
+ * the script <code>zp-core/zp-extensions/federated_logon/OpenID_detect.php</code>. It will give
  * you a report on what might need be done. You can ignore items about data stores as
  * they are not used in this implementation.
  *
  * See also the Janrain Readme.txt file.
  *
- *
- * Other handlers can be created and placed in the plugins/federated_logon folder.
+ * Zenphoto provides handlers for <code>Google</code>, <code>Yahoo</code>, <code>Verisign</code>, and <code>MyOpenid</code>.
+ * Other handlers can be created and placed in the <code>plugins/federated_logon</code> folder.
  * Integration with Zenphoto is fairly simple. The logon handler script should be
- * named ending in "_logon.php". The plugin will use the name up to that point as the
+ * named ending in <code>_logon.php</code>. The plugin will use the name up to that point as the
  * selector on the logon form.
  *
- * You need to preserve the $_GET['redirect'] parameter for use after the authentication
- * is successful at which time you call the federated_login::credentials() function passing a
- * user ID, e-mail and name (if you have them) and the redirection link you saved above.
- * For an example, the former is done at the beginning of the OpenID_logon.php script. The
+ * You need to preserve the <code>$_GET['redirect']</code> parameter for use after the authentication
+ * is successful at which time you call the <code>federated_login::credentials()</code> function passing a
+ * <i>user ID</i>, <i>e-mail</i> and <i>name</i> (if you have them) and the redirection link you saved above.
+ * For an example, the former is done at the beginning of the <code>OpenID_logon.php</code> script. The
  * latter is done in the "run()" function of OpenID_finish_auth.php
- *
- * There are a couple of examples of handlers here:
- * http://www.zenphoto.org/trac/wiki/ZenphotoPlugins/federated_logon.zip
- * These would be placed in the "plugins" folder (not the zp-extensions folder.)
  *
  *
  * @author Stephen Billard (sbillard)

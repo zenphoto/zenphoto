@@ -4,11 +4,11 @@
  * Sitemaps need to be generated via the button on the admin overview page and then are cached as static files in the /cache_html/sitemap/ folder.
  * There are individual sitemaps for all of the above item types generated as well as a sitemapindex file. Album sitemaps are splitted into individual sitemaps per album (incl. all albums pages) and image sitemaps into individual sitemaps per album.
  *
- * The sitemapindex file can be referenced via "www.yourdomain.com/zenphoto/index.php?sitemap" or with modrewrite "www.yourdomain.com/zenphoto/?sitemap".
+ * The sitemapindex file can be referenced via <code>www.yourdomain.com/zenphoto/index.php?sitemap</code> or with modrewrite <code>www.yourdomain.com/zenphoto/?sitemap</code>.
  *
- * NOTE: The index links may not match if using the options for "Zenpage news on index" or a "custom home page" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!
+ * <b>NOTE:</b> The index links may not match if using the options for <i>Zenpage news on index</i> or a <i>custom home page</i> that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!
  *
- * IMPORTANT: A multilingual sitemap requires the seo_locale plugin and mod_rewrite.
+ * <b>IMPORTANT:</b> A multilingual sitemap requires either the <code>seo_locale</code> plugin or <i>language subdomains</i>.
  *
  * @author Malte Müller (acrylian) based on the plugin by Jeppe Toustrup (Tenzer) http://github.com/Tenzer/zenphoto-sitemap and on contributions by timo, Blue Dragonfly and Francois Marechal (frankm)
  * @package plugins

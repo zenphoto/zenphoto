@@ -2,7 +2,7 @@
 /**
  * A plugin to print the most common html meta tags to the head of your site's pages using
  * general existing Zenphoto info like gallery description, tags or Zenpage news categories.
- * It also has support for "<link rel="canonical" href="" />"
+ * It also has support for <code><link rel="canonical" href="" /></code>
  *
  * Just enable the plugin and the meta data will be inserted into your <head> section.
  * You can choose on the plugin's admin option what tags you want to be printed.

@@ -2,7 +2,7 @@
 /**
  * Provides extensions to the image utilities to crop images.
  *
- * Note: this plugin permanently changes the image. There is no <i>undo</i>.
+ * <b>Note:</b> this plugin permanently changes the image. There is no <i>undo</i>.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

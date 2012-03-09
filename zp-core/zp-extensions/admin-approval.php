@@ -1,7 +1,7 @@
 <?php
 /**
- * Overrides of the "show" seting such that only
- * someone with ADMIN_RIGHTS or MANAGE_ALL_ALBUM rights may
+ * Overrides of the <i>publish</i> save handling use such that only
+ * a User with <code>ADMIN_RIGHTS</code> or <code>MANAGE_ALL_<i>object</i></code> rights may
  * mark an object published.
  *
  * @author Stephen Billard (sbillard)

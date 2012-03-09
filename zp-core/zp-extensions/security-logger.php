@@ -1,8 +1,15 @@
 <?php
 /**
  * Places security information in a security log
- * The logged data includes the ip address of the site attempting the login, the type of login, the user/user name,
- * and the success/failure. On failure, the password used in the attempt is also shown.
+ * The logged data includes:
+ * <ul>
+ * 	<li>the ip address of the client browser</li>
+ * 	<li>the type of entry</li>
+ * 	<li>the user/user name</li>
+ * 	<li>the success/failure</li>
+ * 	<li>the <i>authority</i> granting/denying the request</li>
+ * 	<li>Additional information, for instance on failure, the password used</li>
+ * </ul>
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

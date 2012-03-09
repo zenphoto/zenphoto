@@ -1,20 +1,21 @@
 <?php
 /**
  * Supports showing slideshows of images in an album.
+ *	<ul>
+ * 		<li>Plugin Option 'slideshow_size' -- Size of the images</li>
+ *		<li>Plugin Option 'slideshow_mode' -- The player to be used</li>
+ *		<li>Plugin Option 'slideshow_effect' -- The cycle effect</li>
+ *		<li>Plugin Option 'slideshow_speed' -- How fast it runs</li>
+ *		<li>Plugin Option 'slideshow_timeout' -- Transition time</li>
+ *		<li>Plugin Option 'slideshow_showdesc' -- Allows the show to display image descriptions</li>
+ *	</ul>
  *
- * 	Plugin Option 'slideshow_size' -- Size of the images
- *	Plugin Option 'slideshow_mode' -- The player to be used
- *	Plugin Option 'slideshow_effect' -- The cycle effect
- *	Plugin Option 'slideshow_speed' -- How fast it runs
- *	Plugin Option 'slideshow_timeout' -- Transition time
- *	Plugin Option 'slideshow_showdesc' -- Allows the show to display image descriptions
- *
- * The theme files 'slideshow.php', 'slideshow.css', and 'slideshow-controls.png' must reside in the theme
+ * The theme files <code>slideshow.php</code>, <code>slideshow.css</code>, and <code>slideshow-controls.png</code> must reside in the theme
  * folder. If you are creating a custom theme, copy these files form the "default" theme of the Zenphoto
  * distribution. Note that the Colorbox mode does not require these files as it is called on your theme's image.php and album.php direclty
  * via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
  *
- * NOTE: The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files. If you need to show them please use the Flash mode.
+ * <b>NOTE:</b> The jQuery Cycle and the jQuery Colorbox modes do not support movie and audio files. If you need to show them please use the Flash mode.
  * In Colorbox mode there will be no slideshow button on the image page if that current image is a movie/audio file.
  *
  *

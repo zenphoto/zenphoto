@@ -3,16 +3,18 @@
  *
  * Use to overlay thumbnail images with icons depending on the state of the image.
  * The icon with which the thumbnail is flagged is selectable by option. A standard
- * set of icons is provided. More can be used by storing them in the user plugin folder
- * in a subfolder named "flag_thumbnail".
+ * set of icons is provided. More can be used by storing them in the <i>user plugin folder</i>
+ * in a subfolder named <code>flag_thumbnail</code>.
  *
  * States which may be flagged:
- * 		New--images will be in this state based on their date (or mtime) being within the
- * 				 selected "range" of the current day.
- * 		Protected--images which are password protected, either themsleves or because they are
- * 							 in a password protected album.
- * 		Un-published--images that are marked as not visible.
- * 		Geodata tagged--images which have latitude/longitude information in their EXIF metadata.
+ * <ul>
+ * 		<li>New--images will be in this state based on their date (or mtime) being within the
+ * 				 selected "range" of the current day.</li>
+ * 		<li>Protected--images which are password protected, either themsleves or because they are
+ * 							 in a password protected album.</li>
+ * 		<li>Un-published--images that are marked as not visible.</li>
+ * 		<li>Geodata tagged--images which have latitude/longitude information in their EXIF metadata.</li>
+ * </ul>
  *
  * @author Stephen Billard (sbillard) and Malte Müller (acrylian)
  * @package plugins

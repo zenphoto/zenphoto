@@ -2,26 +2,27 @@
 /**
  *
  * A plugin to generate a file download list.
- * This download folder can be relative to your Zenphoto root ("foldername") or external to it ("../foldername").
+ * This download folder can be relative to your Zenphoto root (<i>foldername</i>) or external to it (<i>../foldername</i>).
  * By default the "uploaded" folder is chosen so you can use the file manager to manage those files.
  *
- * You can also override that folder by using the printdownloadList() function parameters directly. Additionally
- * you can set a downloadlink to a specific file directly as well using printDownloadLink('path-to-file');
+ * You can also override that folder by using the <code>printdownloadList()</code> function parameters directly. Additionally
+ * you can set a downloadlink to a specific file directly as well using <code>printDownloadLink(<i>path-to-file</i>);<code>.
  *
  * The file names and the download path of the items are stored with the number of downloads in the database's plugin_storage table.
  *
  * The download link is something like:
- * http://www.yourdomain.com/download.php?file=<id number nof the download>.
+ * <code>www.yourdomain.com/download.php?file=<i>id number of the download</i></code>.
  *
- * So the actual download source is not public. The list itself is generated directly from the file system. However, files which no longer exist are
+ * So the actual download source is not public. The list itself is generated directly from the file system. However,
+ * files which no longer exist are
  * kept in the database for statistical reasons until you clear them manually via the statistics utility.
  *
- * You will need to modify your theme to use this plugin. You can use the codeblock fields if your theme supports them or insert the function
- * calls directly where you want the list to appear.
+ * You will need to modify your theme to use this plugin. You can use the codeblock fields if your theme supports them or
+ * insert the function calls directly where you want the list to appear.
  *
- * To protect the download directory from direct linking you need to set up a proper .htaccess for this folder.
+ * To protect the download directory from direct linking you need to set up a proper <code>.htaccess</code> for this folder.
  *
- * The list has a CSS class 'downloadList' attached.
+ * The list has a CSS class <code>downloadList</code> attached.
  *
  * @author Malte Müller (acrylian)
  * @package plugins
