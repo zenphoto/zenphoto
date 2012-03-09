@@ -98,13 +98,14 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 			}
 			function folderChange() {
 				$('#downbutton').attr('title','<?php echo $downtitle; ?>/'+$('#cloneFolder').val().replace(/\/$/,'').replace( /.*\//, '' ));
+				$('#clonePath').val($('#cloneFolder').val());
 			}
 			window.onload = function() {
 				folderChange();
 			}
 			// ]]> -->
 		</script>
-		<form name="changeDir" id="changeDir" method="post">
+		<form name="changeDir" id="changeDir" action="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cloneZenphoto/cloneTab.php'; ?>" method="post">
 			<input type="hidden" name="path" id="newDir" value = "" />
 			<?php
 			if (empty($folderlist)) {
@@ -134,15 +135,16 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 		<br />
 		<br />
 		<form name="cloneZenphoto" action="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cloneZenphoto/clone.php'; ?>">
-		<?php XSRFToken('cloneZenphoto');?>
-		<input type="hidden" name="clone" value="true" />
-		<?php XSRFToken('cloneZenphoto'); ?>
-		<div class="buttons pad_button" id="cloneZP">
-		<button class="tooltip" type="submit" title="<?php echo gettext("Clone the installation."); ?>">
-			<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/folder.png" alt="" /> <?php echo gettext("Clone Zenphoto"); ?>
-		</button>
-		</div>
-		<br clear="all" />
+			<?php XSRFToken('cloneZenphoto');?>
+			<input type="hidden" name="clone" value="true" />
+			<input type="hidden" name="clonePath" id="clonePath" value="" />
+			<?php XSRFToken('cloneZenphoto'); ?>
+			<div class="buttons pad_button" id="cloneZP">
+			<button class="tooltip" type="submit" title="<?php echo gettext("Clone the installation."); ?>">
+				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/folder.png" alt="" /> <?php echo gettext("Clone Zenphoto"); ?>
+			</button>
+			</div>
+			<br clear="all" />
 		</form>
 
 </div><!-- content -->

@@ -267,7 +267,7 @@ foreach($themes as $theme => $themeinfo) {
 				}
 			}
 
-			if (themeIsEditable($theme, $themes)) {
+			if (themeIsEditable($theme, $themes) && zpFunctions::hasPrimaryScripts()) {
 				?>
 				<li>
 				<p class="buttons">
@@ -288,7 +288,7 @@ foreach($themes as $theme => $themeinfo) {
 					</li>
 					<?php
 				}
-			} else {
+			} else if (zpFunctions::hasPrimaryScripts()) {
 				?>
 				<li class="zp_copy_theme">
 				<p class="buttons">

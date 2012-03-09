@@ -12,7 +12,7 @@ require_once(SERVERPATH.'/'.ZENFOLDER.'/reconfigure.php');
 admin_securityChecks(NULL, currentRelativeURL());
 XSRFdefender('cloneZenphoto');
 
-$folder = sanitize($_GET['cloneFolder']);
+$folder = sanitize($_GET['clonePath']);
 $path = str_replace(WEBPATH,'/',SERVERPATH);
 $newinstall = str_replace($path, '', $folder);
 
@@ -72,7 +72,10 @@ if ($success) {
 	array_unshift($msg, '<h2>'.sprintf(gettext('Successful clone to %s'),$folder).'</h2>'."\n");
 	list($diff, $needs) = checkSignature();
 	if (empty($needs)) {
-		$msg[] = '<span class="buttons"><a href="/'.$newinstall.ZENFOLDER.'/setup.php">'.gettext('setup the new install').'</a></span><br clear="all">'."\n";
+		$rootpath = str_replace(WEBPATH,'/',SERVERPATH);
+		if (substr($folder,0,strlen($rootpath)) == $rootpath) {
+			$msg[] = '<span class="buttons"><a href="/'.$newinstall.ZENFOLDER.'/setup.php">'.gettext('setup the new install').'</a></span><br clear="all">'."\n";
+		}
 	} else {
 		$reinstall = sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'),$newinstall,ZENPHOTO_VERSION,ZENPHOTO_RELEASE).
 								"\n".'<ul>'."\n";
