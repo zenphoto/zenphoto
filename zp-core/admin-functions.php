@@ -2646,8 +2646,12 @@ function isTextFile ( $file, $ok_extensions = array('css','php','js','txt','inc'
  * @since 1.3
  */
 function themeIsEditable($theme, $themes) {
-	$zplist = unserialize(getOption('Zenphoto_theme_list'));
-	return (!in_array( $theme , $zplist));
+	if (str_replace('\\', '/', readlink(SERVERPATH.'/'.THEMEFOLDER.'/'.$theme)) == SERVERPATH.'/'.THEMEFOLDER.'/'.$theme) {
+		$zplist = unserialize(getOption('Zenphoto_theme_list'));
+		return (!in_array( $theme , $zplist));
+	} else {
+		return false;
+	}
 }
 
 

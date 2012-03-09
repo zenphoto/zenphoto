@@ -19,7 +19,16 @@ $newinstall = str_replace($path, '', $folder);
 $msg = array();
 $success = true;
 
-$targets = array(ZENFOLDER=>'dir', THEMEFOLDER=>'dir', USER_PLUGIN_FOLDER=>'dir', 'index.php'=>'file');
+$targets = array(ZENFOLDER=>'dir', USER_PLUGIN_FOLDER=>'dir', 'index.php'=>'file');
+$zplist = unserialize(getOption('Zenphoto_theme_list'));
+foreach ($zplist as $theme) {
+	$targets[THEMEFOLDER.'/'.$theme] = 'dir';
+}
+
+if (!is_dir($folder.THEMEFOLDER)) {
+	@mkdir($folder.THEMEFOLDER);
+}
+
 foreach ($targets as $target=>$type) {
 	if (file_exists($folder.$target)) {
 		$link = str_replace('\\', '/', readlink($folder.$target));
@@ -28,17 +37,17 @@ foreach ($targets as $target=>$type) {
 				if ($link == $folder.$target) {
 					// an actual folder
 					if (zpFunctions::removeDir($folder.$target)) {
-						$msg[] = '<p>'.sprintf(gettext('The existing folder <code>%s</code> was removed.'), $folder.$target)."</p>\n";
+						$msg[] = sprintf(gettext('The existing folder <code>%s</code> was removed.'), $folder.$target)."<br />\n";
 					} else {
-						$msg[] = '<p>'.sprintf(gettext('The existing folder <code>%s</code> could not be removed.'), $folder.$target)."</p>\n";
+						$msg[] = sprintf(gettext('The existing folder <code>%s</code> could not be removed.'), $folder.$target)."<br />\n";
 						$success = false;
 					}
 				} else {
 					// is a symlink
 					if (@rmdir($folder.$target)) {
-						$msg[] = '<p>'.sprintf(gettext('The existing symlink <code>%s</code> was removed.'), $folder.$target)."</p>\n";
+						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was removed.'), $folder.$target)."<br />\n";
 					} else {
-						$msg[] = '<p>'.sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.$target)."</p>\n";
+						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.$target)."<br />\n";
 						$success = false;
 					}
 				}
@@ -47,15 +56,15 @@ foreach ($targets as $target=>$type) {
 			case 'file':
 				if (@unlink($folder.$target)) {
 					if ($folder.$target == $link) {
-						$msg[] = '<p>'.sprintf(gettext('The existing file <code>%s</code> was removed.'), $folder.$target)."</p>\n";
+						$msg[] = sprintf(gettext('The existing file <code>%s</code> was removed.'), $folder.$target)."<br />\n";
 					} else {
-						$msg[] = '<p>'.sprintf(gettext('The existing symlink <code>%s</code> was removed.'), $folder.$target)."</p>\n";
+						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was removed.'), $folder.$target)."<br />\n";
 					}
 				} else {
 					if ($folder.$target == $link) {
-						$msg[] = '<p>'.sprintf(gettext('The existing file <code>%s</code> could not be removed.'), $folder.$target)."</p>\n";
+						$msg[] = sprintf(gettext('The existing file <code>%s</code> could not be removed.'), $folder.$target)."<br />\n";
 					} else {
-						$msg[] = '<p>'.sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.$target)."</p>\n";
+						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.$target)."<br />\n";
 					}
 					$success = false;
 				}
@@ -63,7 +72,7 @@ foreach ($targets as $target=>$type) {
 		}
 	}
 	if (!@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
-		$msg[] = '<p>'.sprintf(gettext('Link creation for the <code>%s</code> folder failed.'),$target)."</p>\n";
+		$msg[] = sprintf(gettext('Link creation for the <code>%s</code> folder failed.'),$target)."<br />\n";
 		$success = false;
 	}
 }
@@ -74,10 +83,10 @@ if ($success) {
 	if (empty($needs)) {
 		$rootpath = str_replace(WEBPATH,'/',SERVERPATH);
 		if (substr($folder,0,strlen($rootpath)) == $rootpath) {
-			$msg[] = '<span class="buttons"><a href="/'.$newinstall.ZENFOLDER.'/setup.php">'.gettext('setup the new install').'</a></span><br clear="all">'."\n";
+			$msg[] = '<p><span class="buttons"><a href="/'.$newinstall.ZENFOLDER.'/setup.php">'.gettext('setup the new install').'</a></span><br clear="all"></p>'."\n";
 		}
 	} else {
-		$reinstall = sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'),$newinstall,ZENPHOTO_VERSION,ZENPHOTO_RELEASE).
+		$reinstall = '<p>'.sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'),$newinstall,ZENPHOTO_VERSION,ZENPHOTO_RELEASE).
 								"\n".'<ul>'."\n";
 		if (!file_exists(dirname(__FILE__).'/setup.php')) {
 			$reinstall .= '<li>'.ZENFOLDER.'/setup.php</li>'."\n";
@@ -87,7 +96,7 @@ if ($success) {
 					$reinstall .= '<li>'.ZENFOLDER.'/setup/'.$script.'</li>'."\n";
 			}
 		}
-		$reinstall .=	'</ul>'."\n";
+		$reinstall .=	'</ul></p>'."\n";
 		$msg[] = $reinstall;
 	}
 } else {
