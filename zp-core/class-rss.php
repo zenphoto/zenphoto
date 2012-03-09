@@ -744,7 +744,6 @@ class RSS {
 			</rss>
 		<?php
 		$this->endRSSCache();
-		exitZP();
 	}
 }
 

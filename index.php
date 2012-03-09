@@ -12,6 +12,7 @@ if(isset($_GET['rss'])) {
 	require_once(dirname(__FILE__). '/'.ZENFOLDER.'/class-rss.php');
 	$rss = new RSS();
 	$rss->printRSSfeed();
+	exitZP();
 	/* rssHitcounter();
 	startRSSCache();
 	switch (sanitize($_GET['rss'])) {
