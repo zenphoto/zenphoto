@@ -14,8 +14,13 @@ class ThemeOptions {
 	function ThemeOptions() {
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('Theme_colors', 'light');
-		setThemeOptionDefault('albums_per_row', 2);
+		setThemeOptionDefault('albums_per_page', 6);
+		setThemeOptionDefault('albums_per_row', 3);
+		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
+		setThemeOptionDefault('image_size', 595);
+		setThemeOptionDefault('image_use_side', 'longest');
+		setThemeOptionDefault('thumb_size', 100);
 		setThemeOptionDefault('thumb_transition', 1);
 		setOptionDefault('colorbox_default_album', 1);
 		setOptionDefault('colorbox_default_image', 1);

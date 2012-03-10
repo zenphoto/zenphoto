@@ -23,9 +23,14 @@ class ThemeOptions {
 		setThemeOptionDefault('effervescence_caption_location', 'image');
 		setThemeOptionDefault('Theme_colors', 'kish-my father');
 		setThemeOptionDefault('effervescence_menu', '');
+		setThemeOptionDefault('albums_per_page', 9);
 		setThemeOptionDefault('albums_per_row', 3);
-		setThemeOptionDefault('images_per_row', 4);
+		setThemeOptionDefault('images_per_page', 20);
+		setThemeOptionDefault('images_per_row', 5);
+		setThemeOptionDefault('image_size', 595);
+		setThemeOptionDefault('image_use_side', 'longest');
 		setThemeOptionDefault('thumb_transition', 1);
+		setThemeOptionDefault('thumb_size', 100);
 		setThemeOptionDefault('effervescence_daily_album_image', 1);
 		setThemeOptionDefault('effervescence_daily_album_image_effect', '');
 		setOptionDefault('colorbox_effervescence_plus_album', 1);

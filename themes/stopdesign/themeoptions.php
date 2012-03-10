@@ -8,8 +8,13 @@ class ThemeOptions {
 		/* put any setup code needed here */
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('Mini_slide_selector', 'Recent images');
+		setThemeOptionDefault('albums_per_page', 9);
 		setThemeOptionDefault('albums_per_row', 3);
+		setThemeOptionDefault('images_per_page', 24);
 		setThemeOptionDefault('images_per_row', 6);
+		setThemeOptionDefault('image_size', 480);
+		setThemeOptionDefault('image_use_side', 'longest');
+		setThemeOptionDefault('thumb_size',89);
 		setThemeOptionDefault('thumb_transition', 1);
 		setOptionDefault('colorbox_stopdesign_album', 1);
 		setOptionDefault('colorbox_stopdesign_image', 1);

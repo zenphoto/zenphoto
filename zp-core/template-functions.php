@@ -572,7 +572,7 @@ function getTotalPages($oneImagePage=false) {
 			return NULL;
 		}
 	} else {
-		return null;
+		return NULL;
 	}
 }
 

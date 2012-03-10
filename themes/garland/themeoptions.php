@@ -8,8 +8,12 @@ class ThemeOptions {
   function ThemeOptions() {
  	  setThemeOptionDefault('Allow_search', true);
 	  setThemeOptionDefault('Allow_cloud', true);
+		setThemeOptionDefault('albums_per_page', 6);
 		setThemeOptionDefault('albums_per_row', 2);
+		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
+		setThemeOptionDefault('image_size', 520);
+		setThemeOptionDefault('image_use_side', 'longest');
 		setThemeOptionDefault('thumb_transition', 1);
 		setThemeOptionDefault('thumb_size',85);
 		setThemeOptionDefault('garland_personality', 'Image page');

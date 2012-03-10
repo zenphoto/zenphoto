@@ -18,8 +18,13 @@ class ThemeOptions {
 		setThemeOptionDefault('zenpage_homepage', 'none');
 		setThemeOptionDefault('zenpage_contactpage', true);
 		setThemeOptionDefault('zenpage_custommenu', false);
+		setThemeOptionDefault('albums_per_page', 6);
 		setThemeOptionDefault('albums_per_row', 2);
+		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
+		setThemeOptionDefault('image_size', 595);
+		setThemeOptionDefault('image_use_side', 'longest');
+		setThemeOptionDefault('thumb_size',85);
 		setThemeOptionDefault('thumb_transition', 1);
 		setOptionDefault('colorbox_zenpage_album', 1);
 		setOptionDefault('colorbox_zenpage_image', 1);
