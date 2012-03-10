@@ -104,18 +104,6 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 <th colspan="2">
 	<?php echo gettext("Description"); ?>
 </th>
-<tr>
-	<td></td>
-	<td colspan="2">
-		<span class="pluginextrahide" style="display:none">
-		<p class="buttons"><a href="javascript:toggleExtraInfo('','plugin',false);" title ="<?php echo gettext('hide all description details'); ?>" ><?php echo gettext('hide all'); ?></a></p>
-	</span>
-	<span class="pluginextrashow" >
-		<p class="buttons"><a href="javascript:toggleExtraInfo('','plugin',true);" title ="<?php echo gettext('show all description details'); ?>" ><?php echo gettext('show all'); ?></a></p>
-	</span>
-	</td>
-</tr>
-</tr>
 <?php
 foreach ($filelist as $extension) {
 	$opt = 'zp_plugin_'.$extension;
@@ -216,7 +204,7 @@ foreach ($filelist as $extension) {
 				<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
 				<?php
 				if ($plugin_disable) {
-					echo '<span class="icons" id="'.$extension.'_disabled"><a href="javascript:toggle(\'show_'.$extension.'\');" title="'.gettext('This plugin is disabled').'"><img src="images/action.png" alt="'.'" class="zp_logoicon" />'.'</a></span>';
+					echo '<span class="icons" id="'.$extension.'_disabled"> <a href="javascript:toggle(\'show_'.$extension.'\');" title="'.gettext('This plugin is disabled').'"><img src="images/action.png" alt="'.'" class="zp_logoicon" />'.'</a> </span>';
 				} else {
 				?>
 				<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
