@@ -7,7 +7,7 @@
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;
-$plugin_description = gettext("Places a <em>Check for update</em> button on the overview page. The button allows manual checking for more recent Zenphoto versions.");
+$plugin_description = gettext("Places a <em>Check for update</em> button on the overview page.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 zp_register_filter('admin_utilities_buttons', 'check_for_update_button');

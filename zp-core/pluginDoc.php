@@ -56,7 +56,13 @@ if ($str = isolate('$plugin_description', $pluginStream)) {
 		$plugin_description = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
 	}
 }
-	$plugin_author = '';
+$plugin_notice = '';
+if ($str = isolate('$plugin_notice', $pluginStream)) {
+	if (false === eval($str)) {
+		$plugin_notice = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
+	}
+}
+$plugin_author = '';
 if ($str = isolate('$plugin_author', $pluginStream)) {
 	if (false === eval($str)) {
 		$plugin_author = gettext('<strong>Error parsing <em>plugin_author</em> string!</strong>.');
@@ -97,16 +103,23 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 			<div class="border">
 				<?php echo $plugin_description; ?>
 			</div>
-			<?php
-			if ($thirdparty) {
-				?>
-				<h3><?php printf( gettext('Version: %s'), $plugin_version); ?></h3>
 				<?php
-				}
-			?>
-			<h3><?php printf(gettext('Author: %s'), html_encode($plugin_author)); ?></h3>
+				if ($thirdparty) {
+					?>
+					<h3><?php printf( gettext('Version: %s'), $plugin_version); ?></h3>
+					<?php
+					}
+				?>
+				<h3><?php printf(gettext('Author: %s'), html_encode($plugin_author)); ?></h3>
 			<div>
 			<?php
+			if ($plugin_notice) {
+				?>
+				<p class="notebox">
+					<?php echo $plugin_notice; ?>
+				</p>
+				<?php
+			}
 			$i = strpos($pluginStream, '/*');
 			$j = strpos($pluginStream, '*/');
 			if ($i !== false && $j !== false) {

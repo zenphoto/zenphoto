@@ -16,7 +16,8 @@
  */
 
 $plugin_is_filter = 9|THEME_PLUGIN;
-$plugin_description = gettext("Loads Colorbox JS and CSS scripts for selected theme page scripts. Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself. Visit the <a href='http://colorpowered.com/colorbox/'>Colorbox website</a> about that.");
+$plugin_description = gettext('Loads Colorbox JS and CSS scripts for selected theme page scripts');
+$plugin_notice = gettext('Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself. See <a href="http://colorpowered.com/colorbox/">Colorbox website</a>.');
 $plugin_author = 'Stephen Billard (sbillard)';
 
 

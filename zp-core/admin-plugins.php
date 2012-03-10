@@ -50,19 +50,6 @@ zp_apply_filter('texteditor_config', '','zenphoto');
 		toggle(plugin+'_hide');
 	}
 
-	function truncateDesc(text,debug) {
-		text = text.replace(/(<script.*?script>)/ig,"");	//strip scripts
-		text = text.replace(/(<.*?>)/ig," ");							//strip tags
-		if (text.length <= 70) return text;
-		ls = 0;
-		for (i=0;i<text.length;i++) {
-			if (text[i] == ' ' && i>ls) ls = i;
-			if (i >= 69) break;
-		}
-		if (ls == 0) ls == i;
-		return text.substring(0,ls)+'...'
-	}
-
 	$(document).ready(function(){
 		$(".plugin_doc").colorbox({
 			close: '<?php echo gettext("close"); ?>',
@@ -143,6 +130,14 @@ foreach ($filelist as $extension) {
 	} else {
 		$plugin_description = '';
 	}
+	if ($str = isolate('$plugin_notice', $pluginStream)) {
+		if (false === eval($str)) {
+			$parserr = $parserr | 1;
+			$plugin_notice = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
+		}
+	} else {
+		$plugin_notice = '';
+	}
 	if ($str = isolate('$plugin_author', $pluginStream)) {
 		if (false === eval($str)) {
 			$parserr = $parserr | 2;
@@ -219,6 +214,11 @@ foreach ($filelist as $extension) {
 				}
 				?>
 				<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
+				<?php
+				if ($plugin_disable) {
+					echo '<span class="icons" id="'.$extension.'_disabled"><a href="javascript:toggle(\'show_'.$extension.'\');" title="'.gettext('This plugin is disabled').'"><img src="images/action.png" alt="'.'" class="zp_logoicon" />'.'</a></span>';
+				} else {
+				?>
 				<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
 					<?php
 					if ($parserr || $plugin_disable) {
@@ -228,41 +228,52 @@ foreach ($filelist as $extension) {
 						if ($currentsetting > THEME_PLUGIN) {
 							echo ' checked="checked"';
 						}
-					} ?> />
-				<?php echo $extension; ?>
+					}
+					?>
+					/>
 				<?php
+				}
+				echo $extension;
 				if (!empty($plugin_version)) {
 					echo ' v'.$plugin_version;
 				}
 				?>
 			</label>
-		<?php
-		if ($plugin_disable) {
-			echo '<p id="'.$extension.'_disabled">'.sprintf(gettext('<strong>This plugin is disabled:</strong><br/> %s'),$plugin_disable).'</p>';
-		}
-		?>
 		</td>
-		<td class="icons">
-			<a href="javascript:toggleDetails('<?php echo $extension;?>');" title ="<?php echo gettext('toggle description details'); ?>" ><img src="images/info_toggle.png" alt="" /></a>
+		<td width="60">
+			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img src="images/info.png" title="<?php echo gettext('Useage information'); ?>" alt=""></a></span>
+			<?php
+			if ($optionlink) {
+				?>
+				<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php echo gettext("Change plugin options"); ?>"><img src="images/pencil.png" alt="" /></a></span>
+				<?php
+			}
+			if ($plugin_notice || $plugin_disable) {
+				?>
+				<span class="icons"><a href="javascript:toggle('show_<?php echo $extension;?>');" title ="<?php echo gettext('Plugin warnings'); ?>" ><img src="images/note_warn.png" alt="" /></a></span>
+				<?php
+			}
+			?>
 		</td>
 		<td>
-		<span id="<?php echo $extension; ?>_show" class="pluginextrashow"></span>
-		<span id="<?php echo $extension; ?>_hide" style="display: none;" class="pluginextrahide">
-			<span id="<?php echo $extension; ?>_desc"><?php echo $plugin_description; ?></span>
-			<script type="text/javascript">$('#<?php echo $extension; ?>_show').html(truncateDesc($('#<?php echo $extension; ?>_desc').html(),<?php if ($extension=='tiny_mce') echo 'true';else echo 'false'; ?>));</script>
-
 			<?php
-			if (!empty($plugin_URL)) {
+			echo $plugin_description;
+			if ($plugin_notice || $plugin_disable) {
 				?>
-				<br />
-				<?php
-				if ($parserr & 8) {
-					echo $plugin_URL;
-				} else {
-					?>
-					<a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><strong><?php echo gettext("Usage information"); ?></strong></a>
+				<p id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
 					<?php
-				}
+					if ($plugin_disable) {
+						echo $plugin_disable;
+					}
+					if ($plugin_notice) {
+						if ($plugin_disable) {
+							echo '<br /><br />';
+						}
+						echo $plugin_notice;
+					}
+					?>
+				</p>
+				<?php
 			}
 			if (!empty($plugin_author)) {
 				?>
@@ -275,14 +286,7 @@ foreach ($filelist as $extension) {
 				}
 				echo $plugin_author;
 			}
-			if ($optionlink) {
-				?>
-				<br />
-				<a href="<?php echo $optionlink; ?>" ><?php echo gettext("Change plugin options"); ?></a>
-				<?php
-			}
 			?>
-		</span>
 		</td>
 	</tr>
 	<?php

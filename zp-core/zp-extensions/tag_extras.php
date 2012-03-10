@@ -9,7 +9,7 @@
  * @package plugins
  */
 
-$plugin_description = gettext("Provides functions to print a tag cloud of all image tags from an album optionally including the subalbums or the album tags including sub album tags or alternatively of all tags used by either Zenpage news articles or pages.");
+$plugin_description = gettext("Provides functions to print a tag cloud of all tags from a Zenphoto object.");
 $plugin_author = "Malte Müller (acrylian)";
 
 

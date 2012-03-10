@@ -15,7 +15,7 @@
  * @package plugins
  */
 $plugin_is_filter = 9|CLASS_PLUGIN;
-$plugin_description = sprintf(gettext("Logs all attempts to login to or illegally access the admin pages. Log is kept in <em>security.log</em> in the %s folder."),DATA_FOLDER);
+$plugin_description = gettext('Logs selected security events.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'security_logger';

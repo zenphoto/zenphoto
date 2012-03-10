@@ -53,7 +53,7 @@
  */
 
 $plugin_is_filter = 9|CLASS_PLUGIN;
-$plugin_description = gettext('Provides a means for showing text type documents (.txt, .html, .htm) where zenphoto would normally display images. For documentation, see the script file.');
+$plugin_description = gettext('Provides a means for showing text type documents (.txt, .html, .htm).');
 $plugin_author = "Stephen Billard (sbillard)";
 
 

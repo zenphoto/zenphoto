@@ -1,6 +1,14 @@
 <?php
 /**
- * This plugin handles "video" class images
+ * This plugin handles "video" class images:
+ * <ul>
+ * 	<li>Audio (MP3,M4A,FLA)</li>
+ * 	<li>video (MP4/M4V,FLV, plus Quicktime</li>
+ * 	<li>3GP if Quicktime is installed on the visitor system)</li>
+ * </ul>
+ *
+ * This plugin must always be enabled to use multimedia content.
+
  *
  * @author Stephen Billard (sbillard)
  * @package classes
@@ -9,7 +17,8 @@
 // force UTF-8 Ø
 
 $plugin_is_filter = 9|CLASS_PLUGIN;
-$plugin_description = gettext('Audio (MP3,M4A,FLA) and video (MP4/M4V,FLV, plus Quicktime,3GP if Quicktime is installed on the visitor system) handling for Zenphoto. This plugin must always be enabled to use multimedia content. Note that you also need to enable a multimedia player. See the info of the player you use to see how it is configured.');
+$plugin_description = gettext('The Zenphoto <em>audio-video</em> handler.');
+$plugin_notice = gettext('This plugin must always be enabled to use multimedia content. Note that you also need to enable a multimedia player. See the info of the player you use to see how it is configured.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 

@@ -10,7 +10,7 @@
  * @package plugins
  */
 $plugin_is_filter = 8|CLASS_PLUGIN;
-$plugin_description = gettext("Blocks access from an IP address which has had multiple failed attempts to access the administration pages.");
+$plugin_description = gettext("Blocks access from an IP address which has had multiple failed logon.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 

@@ -713,20 +713,32 @@ td.albumicons {
 	width: 150px;
 	text-align: right;
 }
+.icons2 img {
+	border: 0px;
+}
 
 .icons2b { /* adjustment for the author column page-admin.php */
 	width: 62px;
 	text-align: left;
+}
+.icons2b img {
+	border: 0px;
 }
 
 .icons3 {
 	width: 150px;
 	text-align: left;
 }
+.icons3 img {
+	border: 0px;
+}
 
 .icons3b {
 	width: 145px;
 	text-align: left;
+}
+.icons3b img {
+	border: 0px;
 }
 
 

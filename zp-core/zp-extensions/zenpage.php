@@ -6,8 +6,8 @@
  * @package plugins
  */
 
-$plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.")
-				."<p class='notebox'>". gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> and <em>stopdesign</em> themes.")."</p>";
+$plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.");
+$plugin_notece = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> and <em>stopdesign</em> themes.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
 

@@ -7,7 +7,7 @@
  * @package plugins
  */
 
-$plugin_description = gettext("Enables jQuery tag suggestions on the search field. Just activate the plugin and the feature is available on the theme's search field.");
+$plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard) — ".gettext("an adaption of Remy Sharp's jQuery Tag Suggestion");
 
 

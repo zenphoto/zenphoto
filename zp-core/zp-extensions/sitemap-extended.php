@@ -6,8 +6,6 @@
  *
  * The sitemapindex file can be referenced via <code>www.yourdomain.com/zenphoto/index.php?sitemap</code> or with modrewrite <code>www.yourdomain.com/zenphoto/?sitemap</code>.
  *
- * <b>NOTE:</b> The index links may not match if using the options for <i>Zenpage news on index</i> or a <i>custom home page</i> that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!
- *
  * <b>IMPORTANT:</b> A multilingual sitemap requires either the <code>seo_locale</code> plugin or <i>language subdomains</i>.
  *
  * @author Malte Müller (acrylian) based on the plugin by Jeppe Toustrup (Tenzer) http://github.com/Tenzer/zenphoto-sitemap and on contributions by timo, Blue Dragonfly and Francois Marechal (frankm)
@@ -16,8 +14,9 @@
 
 
 $plugin_is_filter = 5|CLASS_PLUGIN;
-$plugin_description = gettext('Generates individually sitemap.org compatible XML files for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories.').'<p class="notebox">'.gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!').'</p>';
-$plugin_author = 'Malte Müller (acrylian) based on the plugin by Jeppe Toustrup (Tenzer) and modifications by Timo and Blue Dragonfly';
+$plugin_description = gettext('Generates individually sitemap.org compatible XML files for use with Google and other search engines.');
+$plugin_notice = gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!');
+$plugin_author = 'Malte Müller (acrylian)';
 
 $option_interface = 'sitemap';
 
