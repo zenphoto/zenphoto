@@ -117,7 +117,8 @@ if (defined('OFFSET_PATH')) {
 		}
 	}
 
-	printAdminHeader(gettext('utilities'),gettext('SEO cleaner'));
+	$zenphoto_tabs['overview']['subtabs']=array(gettext('SEO cleaner')=>'');
+	printAdminHeader(gettext('overview'),gettext('SEO cleaner'));
 
 	if (isset($_GET['todo'])) {
 		$count = sanitize_numeric($_GET['imagecount']);
@@ -161,6 +162,8 @@ if (defined('OFFSET_PATH')) {
 		<div id="main">
 			<?php printTabs(); ?>
 			<div id="content">
+			<?php printSubtabs('thumbs'); ?>
+			<div class="tabbox">
 			<?php zp_apply_filter('admin_note','seo_cleanup', ''); ?>
 			<h1><?php echo gettext('Cleanup album and image names to be SEO friendly'); ?></h1>
 			<div id="to_clean">
@@ -206,6 +209,7 @@ if (defined('OFFSET_PATH')) {
 				?>
 				$('#to_clean').html('<?php echo $imagecleaned; ?><br /><?php echo $albumcleaned; ?>');
 			</script>
+			</div>
 			</div><!-- content -->
 	</div><!-- main -->
 	<?php printAdminFooter(); ?>

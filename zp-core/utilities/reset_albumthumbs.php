@@ -32,8 +32,9 @@ if (isset($_REQUEST['thumbtype']) || isset($_REQUEST['thumbselector'])) {
 $buffer = '';
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Thumbs')=>'');
 
-printAdminHeader(gettext('utilities'),gettext('thumbs'));
+printAdminHeader(gettext('overview'),gettext('Thumbs'));
 echo '</head>';
 ?>
 
@@ -42,6 +43,8 @@ echo '</head>';
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
+<?php printSubtabs('Thumbs'); ?>
+<div class="tabbox">
 <?php zp_apply_filter('admin_note','reste_thumbs', ''); ?>
 <h1><?php echo (gettext('Reset your album thumbnails')); ?></h1>
 <?php
@@ -98,8 +101,9 @@ if (db_connect()) {
 
 ?>
 		</div>
-<!-- content --></div>
-<!-- main -->
+		</div>
+	</div><!-- content -->
+</div><!-- main -->
 <?php printAdminFooter(); ?>
 </body>
 <?php echo "</html>"; ?>

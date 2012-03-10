@@ -7,51 +7,6 @@ require_once(ZENFOLDER . "/template-functions.php");
 checkInstall();
 
 //$_zp_script_timer['require'] = microtime();
-//rss feeds
-if(isset($_GET['rss'])) {
-	require_once(dirname(__FILE__). '/'.ZENFOLDER.'/class-rss.php');
-	$rss = new RSS();
-	$rss->printRSSfeed();
-	exitZP();
-	/* rssHitcounter();
-	startRSSCache();
-	switch (sanitize($_GET['rss'])) {
-
-		default:	//gallery RSS
-			if (!getOption('RSS_album_image')) {
-			header("HTTP/1.0 404 Not Found");
-			header("Status: 404 Not Found");
-			include(ZENFOLDER. '/404.php');
-			exitZP();
-		}
-		require_once(ZENFOLDER .'/'.PLUGIN_FOLDER . "/image_album_statistics.php");
-		include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss.php');
-		break;
-
-		case 'news':	//Zenpage News RSS
-			if (!getOption('RSS_articles')) {
-				header("HTTP/1.0 404 Not Found");
-				header("Status: 404 Not Found");
-				include(ZENFOLDER. '/404.php');
-				exitZP();
-			}
-			include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss-news.php');
-			break;
-
-		case'comments':	//Comments RSS
-			if (!getOption('RSS_comments')) {
-				header("HTTP/1.0 404 Not Found");
-				header("Status: 404 Not Found");
-				include(ZENFOLDER. '/404.php');
-				exitZP();
-			}
-			include(dirname(__FILE__). "/".ZENFOLDER.'/rss/rss-comments.php');
-			break;
-	}
-	endRSSCache();
-	exitZP(); */
-}
-//$_zp_script_timer['rss'] = microtime();
 /**
  * Invoke the controller to handle requests
  */

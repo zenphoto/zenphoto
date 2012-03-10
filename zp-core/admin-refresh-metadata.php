@@ -47,7 +47,7 @@ if (isset($_GET['prune'])) {
 if (isset($_REQUEST['album'])) {
 	$tab = 'edit';
 } else {
-	$tab = 'utilities';
+	$tab = 'overview';
 }
 $albumparm = $folder = $albumwhere = $imagewhere = $id = $r = '';
 if (isset($_REQUEST['return'])) {
@@ -118,8 +118,9 @@ if (db_connect()) {
 		$metaURL = $starturl = '?'.$type.'refresh=start'.$albumparm.'&amp;XSRFToken='.getXSRFToken('refresh').$ret;
 	}
 }
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Refresh')=>'');
 
-printAdminHeader($tab,'refresh');
+printAdminHeader($tab,'Refresh');
 if (!empty($metaURL)) {
 	?>
 	<meta http-equiv="refresh" content="1; url=<?php echo $metaURL; ?>" />
@@ -130,8 +131,12 @@ echo "\n<body>";
 printLogoAndLinks();
 echo "\n" . '<div id="main">';
 printTabs();
-echo "\n" . '<div id="content">';
-echo "<h1>".$title."</h1>";
+?>
+<div id="content">
+<?php printSubtabs('Refresh'); ?>
+<div class="tabbox">
+<h1><?php echo $title; ?></h1>
+<?php
 if (isset($_GET['refresh']) && db_connect()) {
 	if (empty($imageid)) {
 		?>
@@ -181,7 +186,7 @@ if (isset($_GET['refresh']) && db_connect()) {
 	echo "<h3>".gettext("database not connected")."</h3>";
 	echo "<p>".gettext("Check your configuration file to make sure you've got the right username, password, host, and database. If you haven't created the database yet, now would be a good time.");
 }
-
+echo "\n" . '</div>';
 echo "\n" . '</div>';
 echo "\n" . '</div>';
 

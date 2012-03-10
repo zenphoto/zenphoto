@@ -333,7 +333,6 @@ zp-core/functions-db-PDO_SQLite.php
 zp-core/functions-filter.php
 zp-core/functions-i18n.php
 zp-core/functions-image.php
-zp-core/functions-rss.php
 zp-core/functions.php
 zp-core/gd_fonts
 zp-core/gd_fonts/addlg10.gdf
@@ -1877,4 +1876,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1879
+1878

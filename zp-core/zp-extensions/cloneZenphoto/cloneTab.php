@@ -11,7 +11,8 @@ require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
 
-printAdminHeader(gettext('utilities'),gettext('reference'));
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Clone')=>'');
+printAdminHeader(gettext('overview'),gettext('Clone'));
 
 ?>
 </head>
@@ -20,6 +21,8 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
+	<?php printSubtabs('Clone'); ?>
+	<div class="tabbox">
 	<h1><?php echo (gettext('Create a new install with symbolic links to the current Zenphoto scripts.')); ?></h1>
 	<?php zp_apply_filter('admin_note','clone', ''); ?>
 	<?php
@@ -146,7 +149,7 @@ printAdminHeader(gettext('utilities'),gettext('reference'));
 			</div>
 			<br clear="all" />
 		</form>
-
+</div>
 </div><!-- content -->
 </div><!-- main -->
 <?php printAdminFooter(); ?>

@@ -1,16 +1,17 @@
 <?php
 /**
  *
- * Displays a "plugin usage" document based on the plugin's doc box.
+ * Displays a "plugin usage" document based on the plugin's doc comment block.
  *
  * Supports the following PHPDoc markup tags:
  * 	<i> for emphasis
  *  <b> for strong
  *  <code> for mono-spaced text
  *  <hr> for horizontal rule
- *  <ul><li> for lists
+ *  <ul><li>, <ol><li> for lists
  *  <pre>
  *  <br> for line breaks
+ *  <var> for variables (treated the same as <code>)
  *
  * @package admin
  */
@@ -29,12 +30,15 @@ $markup = array(
 						'&lt;hr&gt;'=>'<hr />',
 						'&lt;ul&gt;'=>'<ul>',
 						'&lt;/ul&gt;'=>'</ul>',
+						'&lt;ol&gt;'=>'<ol>',
+						'&lt;/ol&gt;'=>'</ol>',
 						'&lt;li&gt;'=>'<li>',
 						'&lt;/li&gt;'=>'</li>',
 						'&lt;pre&gt;'=>'<pre>',
 						'&lt;/pre&gt;'=>'</pre>',
 						'&lt;br&gt;'=>'<br />',
-						'&lt;t&gt;'=>'&nbsp;&nbsp;&nbsp;'
+						'&lt;var&gt;'=>'<span class="inlinecode">',
+						'&lt;/var&gt;'=>'</span>'
 );
 
 $extension = sanitize($_GET['extension']);

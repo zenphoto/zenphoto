@@ -30,7 +30,8 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 
 
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
-printAdminHeader(gettext('utilities'),gettext('reference'));
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Database')=>'');
+printAdminHeader(gettext('overview'),gettext('Database'));
 ?>
 <link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
 <style>
@@ -64,6 +65,8 @@ h2 {
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
+<?php printSubtabs('Database') ?>
+<div class="tabbox">
 <?php zp_apply_filter('admin_note','database', ''); ?>
 <h1><span id="top"><?php echo $mybutton['button_text']; ?></span></h1>
 <p>
@@ -196,7 +199,7 @@ foreach($tables as $table) {
  <?php
 }
 ?>
-
+</div>
 </div><!-- content -->
 </div><!-- main -->
 <?php printAdminFooter(); ?>

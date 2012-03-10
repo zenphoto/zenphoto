@@ -18,8 +18,8 @@ if (isset($_GET['reset'])) {
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/'. PLUGIN_FOLDER . '/search_statistics/search_analysis.php');
 	exitZP();
 }
-
-printAdminHeader(gettext('utilities'),gettext('search analysis'));
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Analysis')=>'');
+printAdminHeader(gettext('overview'),gettext('Analysis'));
 echo '</head>';
 
 $sql = 'SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="search_statistics"';
@@ -120,7 +120,9 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 	<div id="main">
 		<?php printTabs(); ?>
 		<div id="content">
-			<?php zp_apply_filter('admin_note','albums', ''); ?>
+		<?php printSubtabs('Analysis'); ?>
+		<div class="tabbox">
+		<?php zp_apply_filter('admin_note','albums', ''); ?>
 			<h1><?php echo (gettext('Search analysis')); ?></h1>
 			<?php
 			if (empty($results) && empty($results_f)) {
@@ -277,6 +279,7 @@ $results_f = array_slice($results_f, 0, $limit_f, true);
 				}
 			}
 		?>
+		</div>
 		</div>
 	</div>
 <?php printAdminFooter(); ?>

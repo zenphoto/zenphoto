@@ -20,7 +20,8 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 }
 
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
-printAdminHeader(gettext('utilities'),gettext('Sitemap tools'));
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Sitemap')=>'');
+printAdminHeader(gettext('overview'),gettext('Sitemap'));
 if(isset($_GET['generatesitemaps'])) {
 	$sitemap_number = sanitize_numeric($_GET['number']);
 	$sitemap_index = getSitemapIndexLinks();
@@ -86,12 +87,16 @@ echo '</head>';
 ?>
 
 <body>
-<?php printLogoAndLinks(); ?>
+<?php
+printLogoAndLinks();
+?>
 <div id="main">
 <span id="top"></span>
 <?php printTabs('home');
 ?>
 <div id="content">
+<?php printSubtabs('Sitemap'); ?>
+<div class="tabbox">
 <?php zp_apply_filter('admin_note','sitemap', ''); ?>
 	<h1>Sitemap tools</h1>
 <?php if(!isset($_GET['generatesitemaps']) && !isset($_GET['clearsitemapcache'])) { ?>

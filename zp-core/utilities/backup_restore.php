@@ -107,7 +107,17 @@ function writeHeader($type, $value) {
 	return fwrite($handle, HEADER.$type.'='.$value.RECORD_SEPARATOR);
 }
 
-printAdminHeader(gettext('utilities'),gettext('backup'));
+if (!isset($zenphoto_tabs['overview'])) {
+	// invoked for restoring the DB from setup. Rearrange the tabs so they are correct.
+	$existing = array_shift($zenphoto_tabs);
+	$zenphoto_tabs['overview'] = array('text'=>gettext("overview"),
+							'link'=>WEBPATH."/".ZENFOLDER.'/admin.php',
+							'subtabs'=>NULL);
+//	array_push($zenphoto_tabs, $existing);
+}
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Backup')=>'');
+
+printAdminHeader(gettext('overview'),gettext('Backup'));
 echo '</head>';
 
 $messages = '';
@@ -418,6 +428,8 @@ if (isset($_GET['compression'])) {
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
+<?php printSubtabs('backup'); ?>
+<div class="tabbox">
 <?php zp_apply_filter('admin_note','backkup', '');; ?>
 <h1><?php echo (gettext('Backup and Restore your Database')); ?></h1>
 <?php
@@ -496,6 +508,7 @@ echo '</p><p>';
 echo gettext('Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored.');
 echo '</p>'
 ?>
+</div>
 </div><!-- content -->
 </div><!-- main -->
 <?php printAdminFooter(); ?>

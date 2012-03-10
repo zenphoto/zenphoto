@@ -21,7 +21,8 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 
-printAdminHeader(gettext('utilities'),gettext('download statistics'));
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Download')=>'');
+printAdminHeader(gettext('overview'),gettext('Download'));
 ?>
 <link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-statistics.css" type="text/css" media="screen" />
 <?php
@@ -98,7 +99,9 @@ echo '</head>';
 <?php printTabs('home');?>
 </span>
 <div id="content">
-	<?php
+<?php printSubtabs('Download'); ?>
+<div class="tabbox">
+<?php
 	if(isset($_GET['removeoutdateddownloads'])) {
 		XSRFdefender('removeoutdateddownloads');
 		$sql = "SELECT * FROM ".prefix('plugin_storage')." WHERE `type` = 'downloadList'";
@@ -136,7 +139,7 @@ if(!getOption('zp_plugin_downloadList')) {
 }
 ?>
 
-
+</div>
 </div><!-- content -->
 <?php printAdminFooter(); ?>
 </div><!-- main -->

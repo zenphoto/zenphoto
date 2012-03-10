@@ -34,7 +34,8 @@ admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
 $_zp_gallery->garbageCollect();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 
-printAdminHeader(gettext('utilities'),gettext('statistics'));
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Statistics')=>'');
+printAdminHeader(gettext('overview'),gettext('Statistics'));
 ?>
 <link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
 <?php
@@ -450,7 +451,9 @@ echo '</head>';
 ?>
 
 <body>
-<?php printLogoAndLinks(); ?>
+<?php
+printLogoAndLinks();
+?>
 <div id="main">
 <span id="top"></span>
 <?php printTabs();
@@ -464,6 +467,8 @@ $imagecount = $_zp_gallery->getNumImages();
 $imagecount_unpub = $imagecount-$_zp_gallery->getNumImages(true);
 ?>
 <div id="content">
+<?php printSubtabs('Statistics') ?>
+<div class="tabbox">
 <?php zp_apply_filter('admin_note','statistics', ''); ?>
 <h1><?php echo gettext("Gallery Statistics"); ?></h1>
 <p><?php echo gettext("This page shows more detailed statistics of your gallery. For album statistics the bar graph always shows the total number of images in that album. For image statistics always the album the image is in is shown.<br />Un-published items are marked in dark red. Images are marked un-published if their (direct) album is, too."); ?></p>
@@ -836,6 +841,7 @@ if(isset($_GET['type'])) {
 } // main if end
 
 ?>
+</div>
 </div><!-- content -->
 <?php printAdminFooter(); ?>
 </div><!-- main -->

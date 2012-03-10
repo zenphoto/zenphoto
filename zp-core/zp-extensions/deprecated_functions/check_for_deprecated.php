@@ -22,7 +22,8 @@ if (isset($_GET['action'])) {
 	$selected = sanitize_numeric($_POST['target']);
 }
 
-printAdminHeader(gettext('utilities'),gettext('Find Deprecated Functions'));
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Deprecated')=>'');
+printAdminHeader(gettext('overview'),gettext('Deprecated'));
 ?>
 <?php
 echo '</head>'."\n";
@@ -32,6 +33,7 @@ echo '</head>'."\n";
 	<div id="main">
 		<?php printTabs('home'); ?>
 		<div id="content">
+			<?php printSubtabs('Deprecated'); ?>
 			<div id="tab_deprecated" class="tabbox">
 				<h1><?php	echo gettext("Locate calls on deprecated functions."); ?></h1>
 				<form action="?action=search" method="post">

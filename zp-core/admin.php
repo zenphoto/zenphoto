@@ -49,7 +49,8 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					/******************************************************************************/
 				case "clear_rss_cache":
 					XSRFdefender('clear_cache');
-					clearRSScache();
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
+					RSS::clearRSScache();
 					$class = 'messagebox';
 					$msg = gettext('RSS cache cleared.');
 					break;
@@ -233,9 +234,9 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	<?php
 
 	if (defined('RELEASE')) {
-			$official = gettext('Official Build');
+			$official = gettext('Official build');
 		} else {
-			$official = gettext('<em>Debug Build</em>');
+			$official = gettext('<em>Debug build</em>');
 		}
 		if (!zpFunctions::hasPrimaryScripts()) {
 			$official .= ' <em>'.gettext('clone').'</em>';

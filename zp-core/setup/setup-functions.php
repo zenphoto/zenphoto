@@ -18,7 +18,7 @@ if (empty($matches)) {
 }
 define('SETUPLOG',$serverpath.'/'.DATA_FOLDER . '/setup.log');
 define('CONFIGFILE',$serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg');
-define('SERVERPATH',$serverpath);
+if (!defined('SERVERPATH')) define('SERVERPATH',$serverpath);
 
 /**
  *

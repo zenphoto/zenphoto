@@ -355,7 +355,8 @@ if (defined('OFFSET_PATH')) {
 
 
 	} // if db data set
-	printAdminHeader(gettext('utilities'),gettext('Wordpress'));
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Wordpress')=>'');
+	printAdminHeader(gettext('overview'),gettext('Wordpress'));
 	if (!empty($metaURL) && $postcount < $posttotalcount) {
 		?>
 		<meta http-equiv="refresh" content="1; url=<?php  echo $metaURL; ?>" />
@@ -382,6 +383,8 @@ if (defined('OFFSET_PATH')) {
 	<div id="main">
 	<?php printTabs(); ?>
 	<div id="content">
+	<?php printSubtabs('Wordpress'); ?>
+	<div class="tabbox">
 	<?php zp_apply_filter('admin_note','wordpress', ''); ?>
 	<h1><?php echo (gettext('Wordpress Importer')); ?></h1>
 	<?php if(!isset($_REQUEST['dbname']) && !isset($_REQUEST['dbuser']) && !isset($_REQUEST['dbpass']) && !isset($_REQUEST['dbhost']) && !isset($_GET['refresh'])) { ?>
@@ -484,6 +487,7 @@ if (defined('OFFSET_PATH')) {
 		}
 	} // if form submit if
 	?>
+	</div>
 	</div><!-- content -->
 	</div><!-- main -->
 	<?php printAdminFooter(); ?>
