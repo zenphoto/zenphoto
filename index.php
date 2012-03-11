@@ -61,6 +61,11 @@ foreach (getEnabledPlugins() as $extension=>$loadtype) {
 	}
 	$_zp_loaded_plugins[] = $extension;
 }
+
+if (!defined('SEO_WEBPATH')) {
+	define('SEO_WEBPATH',WEBPATH);
+	define('SEO_FULLWEBPATH',FULLWEBPATH);
+}
 if ($zp_request) {
 	$_zp_obj = zp_apply_filter('load_theme_script',$_zp_obj);
 }

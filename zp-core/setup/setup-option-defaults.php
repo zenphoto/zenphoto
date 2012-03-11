@@ -7,11 +7,14 @@
  * @package setup
  */
 
+setupLog(gettext('Set default options'),true);
+
 eval(file_get_contents(CONFIGFILE));;
 require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 zp_apply_filter('log_setup', true, 'install', '');
 
 purgeOption('zenphoto_release');
+
 setOption('zenphoto_version', ZENPHOTO_VERSION.' ['.ZENPHOTO_RELEASE.']');
 setOption('zenphoto_install', serialize(installSignature()));
 

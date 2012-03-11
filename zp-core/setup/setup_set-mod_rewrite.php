@@ -7,11 +7,13 @@
  * @package setup
  *
  */
+define('OFFSET_PATH',2);
 require_once(dirname(dirname(__FILE__)).'/functions-basic.php');
 require_once(dirname(__FILE__).'/setup-functions.php');
 $mod_rewrite = MOD_REWRITE;
 if (is_null($mod_rewrite)) {
 	$msg = gettext('The Zenphoto option "mod_rewrite" will be set to "enabled".');
+	setOptionDefault('mod_rewrite', 1);
 	setOption('mod_rewrite', 1);
 } else if ($mod_rewrite) {
 	$msg = gettext('The Zenphoto option "mod_rewrite" is "enabled".');

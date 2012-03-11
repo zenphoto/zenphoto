@@ -2250,9 +2250,9 @@ if (file_exists(CONFIGFILE)) {
 
 			// set defaults on any options that need it
 			setupLog(gettext("Done with database creation and update"));
-			$prevRel = getOption('zenphoto_release');
-			setupLog(sprintf(gettext("Previous Release was %s"),$prevRel));
-
+			if ($prevRel = getOption('zenphoto_release')) {
+				setupLog(sprintf(gettext("Previous Release was %s"),$prevRel),true);
+			}
 			require(dirname(__FILE__).'/setup/setup-option-defaults.php');
 
 			// update zenpage codeblocks--remove the base64 encoding

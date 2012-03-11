@@ -10,12 +10,6 @@
 require_once(dirname(__FILE__).'/functions.php');
 require_once(dirname(__FILE__).'/functions-controller.php');
 
-if (!defined('SEO_WEBPATH')) {
-	define('SEO_WEBPATH',WEBPATH);
-	define('SEO_FULLWEBPATH',FULLWEBPATH);
-}
-
-
 zp_load_gallery();
 
 //******************************************************************************

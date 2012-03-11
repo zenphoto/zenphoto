@@ -513,8 +513,10 @@ function prepareCustomPage() {
 }
 
 if (!getOption('license_accepted')) {
-	// License needs agreement
-	$_GET['p'] = 'license';
-	$_GET['z'] = '';
+	if (isset($_GET['z']) && $_GET['z'] != 'setup') {
+		// License needs agreement
+		$_GET['p'] = 'license';
+		$_GET['z'] = '';
+	}
 }
 ?>

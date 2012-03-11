@@ -19,7 +19,9 @@ if (SERVER_PROTOCOL == 'https_admin') {
 require_once(dirname(__FILE__).'/admin-functions.php');
 $zenphoto_tabs = array();
 
-if (!getOption('license_accepted')) require_once(dirname(__FILE__).'/license.php');
+if (!getOption('license_accepted')) {
+	require_once(dirname(__FILE__).'/license.php');
+}
 
 
 $sortby = array(gettext('Filename') => 'filename',

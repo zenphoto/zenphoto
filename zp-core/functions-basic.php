@@ -370,7 +370,9 @@ function setOption($key, $value, $persistent=true) {
 function setOptionDefault($key, $default) {
 	$bt = debug_backtrace();
 	$b = array_shift($bt);
-	$creator = str_replace(SERVERPATH.'/', '', str_replace('\\', '/', $b['file']));
+	$SERVERPATH = str_replace("\\", '/', dirname(dirname(__FILE__)));
+	$creator = str_replace($SERVERPATH.'/', '', str_replace('\\', '/', $b['file']));
+
 	$sql = 'SELECT * FROM '.prefix('options').' WHERE `name`='.db_quote($key).' AND `ownerid`=0';
 	$result = query_single_row($sql, false);
 	if ($result) {
