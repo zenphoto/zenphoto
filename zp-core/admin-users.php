@@ -703,7 +703,7 @@ function languageChange(id,lang) {
 				}
 			?>
 		<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
-			<td width="35%" <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top">
+			<td <?php if (!empty($background)) echo " style=\"$background\""; ?> valign="top">
 			<?php
 			$pad = false;
 			if (!empty($userid) && !$clearPass) {
@@ -723,20 +723,20 @@ function languageChange(id,lang) {
 				<?php
 				$challenge = $userobj->getChallengePhraseInfo();
 				?>
-				<fieldset style="text-align:center"><legend><?php echo gettext('Challenge phrase')?></legend>
+				<fieldset><legend><?php echo gettext('Challenge phrase')?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengephrase-<?php echo $id ?>" name="<?php echo $id ?>-challengephrase"
 									value="<?php echo html_encode($challenge['challenge']); ?>" />
 				</fieldset>
-				<fieldset style="text-align:center"><legend><?php echo gettext('Challenge response')?></legend>
+				<fieldset><legend><?php echo gettext('Challenge response')?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="challengeresponse-<?php echo $id ?>" name="<?php echo $id ?>-challengeresponse"
 									value="<?php echo html_encode($challenge['response']); ?>" />
 				</fieldset>
 				<br />
-				<fieldset style="text-align:center"><legend><?php echo gettext("Full name"); ?></legend>
+				<fieldset><legend><?php echo gettext("Full name"); ?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_name-<?php echo $id ?>" name="<?php echo $id ?>-admin_name"
 									value="<?php echo html_encode($userobj->getName()); ?>"<?php if ($userobj->getName() && in_array('name', $no_change)) echo ' disabled="disabled"'; ?> />
 				</fieldset>
-				<fieldset style="text-align:center"><legend><?php echo gettext("Email"); ?></legend>
+				<fieldset><legend><?php echo gettext("Email"); ?></legend>
 					<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="admin_email-<?php echo $id ?>" name="<?php echo $id ?>-admin_email"
 								value="<?php echo html_encode($userobj->getEmail()); ?>"<?php if ($userobj->getEmail() && in_array('email', $no_change)) echo ' disabled="disabled"'; ?> />
 				</fieldset>

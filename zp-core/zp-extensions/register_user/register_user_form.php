@@ -13,11 +13,11 @@ $action = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']))
 	<form action="<?php echo $action; ?>" method="post" autocomplete="off">
 		<input type="hidden" name="register_user" value="yes" />
 
-		<fieldset style="text-align:center"><legend><?php if ($emailid = getOption('register_user_email_is_id')) echo gettext("Email* (this will be your user id)"); else echo gettext("User ID").'*'; ?></legend>
+		<fieldset><legend><?php if ($emailid = getOption('register_user_email_is_id')) echo gettext("Email* (this will be your user id)"); else echo gettext("User ID").'*'; ?></legend>
 			<input type="text" id="adminuser" name="user" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>
 		<?php $_zp_authority->printPasswordForm('', false, NULL, false, $flag='*'); ?>
-		<fieldset style="text-align:center"><legend><?php echo gettext("Name"); ?>*</legend>
+		<fieldset><legend><?php echo gettext("Name"); ?>*</legend>
 			<input type="text" id="admin_name" name="admin_name" value="<?php echo html_encode($admin_n); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>
 		<?php
@@ -40,7 +40,7 @@ $action = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']))
 						$input = str_replace('size="40"', 'size="'.TEXT_INPUT_SIZE.'"', $elements[1]);
 						$input = str_replace('class="inputbox"', '', $input);
 						?>
-						<fieldset style="text-align:center"><legend><?php echo $legend; ?></legend>
+						<fieldset><legend><?php echo $legend; ?></legend>
 							<?php echo trim(str_replace('<td>', '', $input)); ?>
 						</fieldset>
 						<?php
@@ -51,7 +51,7 @@ $action = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']))
 		if (getOption('register_user_captcha')) {
 			$captcha = $_zp_captcha->getCaptcha();
 			?>
-			<fieldset style="text-align:center"><legend><?php echo gettext("Enter"); ?></legend>
+			<fieldset><legend><?php echo gettext("Enter"); ?></legend>
 				<?php
 				if (isset($captcha['html'])) echo $captcha['html'];
 				?>

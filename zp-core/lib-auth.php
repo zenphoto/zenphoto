@@ -920,7 +920,7 @@ class Zenphoto_Authority {
 						if ($requestor) {
 							?>
 							<p class="logon_form_text"><?php echo gettext('Supply the correct response to the question below and you will be directed to a page where you can change your password.'); ?></p>
-							<fieldset style="text-align:left" ><legend><?php echo gettext('Challenge question:')?></legend>
+							<fieldset><legend><?php echo gettext('Challenge question:')?></legend>
 								<?php
 								echo html_encode($info['challenge']);
 								?>
@@ -1219,7 +1219,7 @@ class Zenphoto_Authority {
 		}
 		?>
 		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" />
-		<fieldset style="text-align:center">
+		<fieldset>
 			<legend id="strength<?php echo $id; ?>"><?php echo gettext("Password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
@@ -1231,7 +1231,7 @@ class Zenphoto_Authority {
 			<br clear="all" />
 			<label><input type="checkbox" name="disclose_password_<?php echo $id; ?>" id="disclose_password_<?php echo $id; ?>" onclick="passwordKeydown('<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password'); ?></label>
 		</fieldset>
-		<fieldset style="text-align:center" class="password_field_<?php echo $id; ?>">
+		<fieldset class="password_field_<?php echo $id; ?>">
 			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							name="pass_r_<?php echo $id ?>" value="<?php echo $x; ?>"
