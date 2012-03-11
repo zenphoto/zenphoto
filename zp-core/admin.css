@@ -1926,6 +1926,15 @@ fieldset,
 	margin-bottom: 10px;
 }
 
+#logon_box fieldset {
+width: 310px;
+text-align: left;
+}
+
+#logon_box input#user,
+#logon_box input#pass {
+width: 300px;
+}
 /* short checklist */
 .shortchecklist {
 	border: 1px solid #ccc;
