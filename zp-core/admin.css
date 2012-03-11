@@ -134,7 +134,7 @@ h3 {
 }
 
 p {
-	line-height: 1.2em;
+	line-height: 18px;
 	margin-bottom: 0.8em;
 }
 
@@ -555,8 +555,13 @@ table.bordered tr td {
 	margin: 0px;
 	background-color: #fff;
 	border-bottom: 1px solid #E5E5E5;
+	line-height: 18px;
 }
-
+table.bordered tr td strong {
+line-height: 18px;
+position: relative;
+top: -1px;
+}
 /*****
 /* some additions for the plugins and options tables, easier to read if top aligned IMHO */
 table.options td {
@@ -565,6 +570,7 @@ table.options td {
 }
 table.options td p {
  margin-top: 0;
+line-height: 18px;
 }
 /*******/
 
@@ -2200,6 +2206,10 @@ div.tabs>div h2 {
 	padding: 0 !important;
 }
 
+.icon-position-top1 {
+	position: relative;
+	top: 1px;
+}
 .icon-position-top3 {
 	position: relative;
 	top: 3px;

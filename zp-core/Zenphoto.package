@@ -400,6 +400,7 @@ zp-core/images/marker.png
 zp-core/images/mask.png
 zp-core/images/movie.jpg
 zp-core/images/note_warn.png
+zp-core/images/options.png
 zp-core/images/page_white_copy.png
 zp-core/images/pass.png
 zp-core/images/pencil.png
@@ -1876,4 +1877,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1878
+1879
