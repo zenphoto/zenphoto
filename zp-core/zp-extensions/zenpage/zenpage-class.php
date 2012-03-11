@@ -611,11 +611,13 @@ class Zenpage {
 			if(is_object($_zp_gallery)) { // workaround if called on the admin pages....
 				switch($mode) {
 					case "latestimages-sizedimage":
+					case "latestimages-sizedimage-maxspace":
 					case "latestimages-thumbnail":
 					case "latestimages-thumbnail-customcrop":
 						$countGalleryitems = $_zp_gallery->getNumImages($published);
 						break;
 					case "latestalbums-sizedimage":
+					case "latestalbums-sizedimage-maxspace":
 					case "latestalbums-thumbnail":
 					case "latestalbums-thumbnail-customcrop":
 						$countGalleryitems =  $_zp_gallery->getNumAlbums(true,$published);
@@ -623,6 +625,7 @@ class Zenpage {
 					case "latestimagesbyalbum-thumbnail":
 					case "latestimagesbyalbum-thumbnail-customcrop":
 					case "latestimagesbyalbum-sizedimage":
+					case "latestimagesbyalbum-sizedimage-maxspace":
 						($published) ? $show = "WHERE `show`= 1" : $show = "";
 						$countGalleryitems = db_count('images',$show,'DISTINCT Date(date),albumid');
 						break;
