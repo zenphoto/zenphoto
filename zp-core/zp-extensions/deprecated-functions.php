@@ -14,7 +14,7 @@
  * @package plugins
  */
 $plugin_description = gettext("Provides deprecated Zenphoto functions.");
-$plugin_notice = gettext("This plugin is <strong>NOT</strong> requried for the Zenphoto distributed functions.");
+$plugin_notice = gettext("This plugin is <strong>NOT</strong> required for the Zenphoto distributed functions.");
 $option_interface = 'deprecated_functions';
 $plugin_is_filter = 9|CLASS_PLUGIN;
 
