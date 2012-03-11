@@ -87,8 +87,12 @@ echo gettext("Plugins provide optional functionality for Zenphoto.").' ';
 echo gettext("They may be provided as part of the Zenphoto distribution or as offerings from third parties.").' ';
 echo sprintf(gettext("Third party plugins are placed in the <code>%s</code> folder and are automatically discovered."),USER_PLUGIN_FOLDER).' ';
 echo gettext("If the plugin checkbox is checked, the plugin will be loaded and its functions made available to theme pages. If the checkbox is not checked the plugin is disabled and occupies no resources.");
+
 ?>
+<a href="http://www.zenphoto.org/news/category/extensions" alt="Zenphoto extensions section"> <?php echo gettext('Find more plugins'); ?></a>
 </p>
+
+<br clear="all" />
 <p class='notebox'><?php echo gettext("<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."); ?>
 </p>
 <form action="?action=saveplugins" method="post">
@@ -282,6 +286,12 @@ foreach ($filelist as $extension) {
 ?>
 </table>
 <br />
+<ul class="iconlegend">
+<li><img src="images/zp_gold.png" alt=""><?php echo gettext('Official plugin'); ?></li>
+<li><img src="images/info_toggle.png" alt=""><?php echo gettext('Usage info'); ?></li>
+<li><img src="images/options.png" alt=""><?php echo gettext('Optionen'); ?></li>
+<li><img src="images/note_warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
+</ul>
 <p class="buttons">
 <button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 <button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
