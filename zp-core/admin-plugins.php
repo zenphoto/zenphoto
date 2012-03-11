@@ -236,7 +236,7 @@ foreach ($filelist as $extension) {
 			</label>
 		</td>
 		<td width="60">
-			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info_toggle.png" title="<?php echo gettext('Useage information'); ?>" alt=""></a></span>
+			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info_toggle.png" title="<?php echo gettext('Usage information'); ?>" alt=""></a></span>
 			<?php
 			if ($optionlink) {
 				?>
@@ -292,7 +292,7 @@ foreach ($filelist as $extension) {
 <ul class="iconlegend">
 <li><img src="images/zp_gold.png" alt=""><?php echo gettext('Official plugin'); ?></li>
 <li><img src="images/info_toggle.png" alt=""><?php echo gettext('Usage info'); ?></li>
-<li><img src="images/options.png" alt=""><?php echo gettext('Optionen'); ?></li>
+<li><img src="images/options.png" alt=""><?php echo gettext('Options'); ?></li>
 <li><img src="images/note_warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
 </ul>
 <p class="buttons">
