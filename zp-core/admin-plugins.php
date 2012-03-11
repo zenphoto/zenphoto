@@ -206,6 +206,7 @@ foreach ($filelist as $extension) {
 				}
 				?>
 				<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
+				<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
 				<?php
 				if ($plugin_disable) {
 					echo '<span class="icons" id="'.$extension.'_disabled"> <a href="javascript:toggle(\'show_'.$extension.'\');" title="'.gettext('This plugin is disabled').'"><img src="images/action.png" alt="'.'" class="zp_logoicon" />'.'</a> </span>';

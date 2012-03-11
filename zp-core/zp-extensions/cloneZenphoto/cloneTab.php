@@ -127,10 +127,12 @@ printAdminHeader(gettext('overview'),gettext('Clone'));
 				<?php
 			}
 			?>
-			<a id="upbutton" href="javascript:buttonAction('<?php echo $uppath; ?>');" title="<?php echo $uptitle; ?>">
-				<img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_up.png" alt="" />
-			</a>
-			<span<?php if (empty($folderlist)) echo ' style="display:none;"'; ?>>
+			<span class="icons">
+				<a id="upbutton" href="javascript:buttonAction('<?php echo $uppath; ?>');" title="<?php echo $uptitle; ?>">
+					<img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_up.png" alt="" />
+				</a>
+			</span>
+			<span class="icons"<?php if (empty($folderlist)) echo ' style="display:none;"'; ?>>
 				<a id="downbutton" href="javascript:buttonAction($('#cloneFolder').val());" title="">
 					<img class="icon-position-top4" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/arrow_down.png" alt="" />
 				</a>
