@@ -2417,17 +2417,16 @@ class zpFunctions {
 	 */
 	static function removeDir($path) {
 		if (($dir=opendir($path))!==false) {
-			$result = true;
 			while(($file=readdir($dir))!==false) {
 				if($file!='.' && $file!='..') {
 					if ((is_dir($path.'/'.$file))) {
 						if (!zpFunctions::removeDir($path.'/'.$file)) {
-							$result = false;
+							return false;
 						}
 					} else {
 						@chmod($path.$file, 0666);
 						if (!@unlink($path.'/'.$file)) {
-							$result = false;
+							return false;
 						}
 					}
 				}
@@ -2435,9 +2434,9 @@ class zpFunctions {
 			closedir($dir);
 			@chmod($path, 0666);
 			if (!@rmdir($path)) {
-				$result = false;
+				return false;
 			}
-			return $result;
+			return true;
 		}
 		return false;
 	}

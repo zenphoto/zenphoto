@@ -1292,6 +1292,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			$j = strpos($htu, ";");
 			$vr = trim(substr($htu, $i+7, $j-$i-7));
 		}
+
 		$ch = !empty($vr) && ($vr == HTACCESS_VERSION);
 		$d = str_replace('\\','/',dirname(dirname($_SERVER['SCRIPT_NAME'])));
 		if (!$ch) {	// wrong version
@@ -1299,15 +1300,22 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			//fix the rewritebase
 			$i = strpos($oht, 'RewriteBase /zenphoto');
 			$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $i+21);
-			if (site_closed($ht)) {
+			if ($closed = site_closed($ht)) {
 				$oht = close_site($oht);
 			}
 			$oht = trim($oht);
 			if ($oht == $ht) {	// an unmodified .htaccess file, we can just replace it
-				@chmod($serverpath.'/.htaccess',0666);
+				$ht = trim(file_get_contents('htaccess'));
+				$i = strpos($ht, 'RewriteBase /zenphoto');
+				$ht = substr($ht, 0, $i) . "RewriteBase $d" . substr($ht, $i+21);
+				if ($closed) {
+					$ht = close_site($ht);
+				}
+				$htu = strtoupper($ht);
+				@chmod($htfile,0666);
 				@unlink($htfile);
-				$ch = file_put_contents($serverpath.'/.htaccess', $ht);
-				@chmod($serverpath.'/.htaccess',0444);
+				$ch = file_put_contents($htfile, trim($ht));
+				@chmod($htfile,0444);
 			}
 		}
 		if (!$ch) {
@@ -1358,19 +1366,17 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			$err = sprintf(gettext("<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install folder]"), $bs);
 		}
 		$f = '';
-		if (!$base) { // try and fix it
+		if (!$base) {
+			// try and fix it
 			@chmod($htfile, 0666);
 			if (is_writeable($htfile)) {
 				$ht = substr($ht, 0, $i) . "RewriteBase $d\n" . substr($ht, $j+1);
-				if ($handle = fopen($htfile, 'w')) {
-					if (fwrite($handle, $ht)) {
-						$base = true;
-						$b =  sprintf(gettext("<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"), $d);
-						$err =  '';
-					}
-					fclose($handle);
-					clearstatcache();
+				if (@file_put_contents($htfile, $ht)) {
+					$base = true;
+					$b =  sprintf(gettext("<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"), $d);
+					$err =  '';
 				}
+				clearstatcache();
 			}
 			@chmod($htfile, 0400);
 		}

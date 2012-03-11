@@ -24,7 +24,15 @@ $zplist = unserialize(getOption('Zenphoto_theme_list'));
 foreach ($zplist as $theme) {
 	$targets[THEMEFOLDER.'/'.$theme] = 'dir';
 }
+foreach (array(internalToFilesystem('charset_tést'),internalToFilesystem('charset.tést')) as $charset) {
+	if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.$charset)) {
+		$targets[DATA_FOLDER.'/'.$charset] = 'file';
+	}
+}
 
+if (!is_dir($folder.DATA_FOLDER)) {
+	@mkdir($folder.DATA_FOLDER);
+}
 if (!is_dir($folder.THEMEFOLDER)) {
 	@mkdir($folder.THEMEFOLDER);
 }
@@ -37,43 +45,60 @@ foreach ($targets as $target=>$type) {
 				if ($link == $folder.$target) {
 					// an actual folder
 					if (zpFunctions::removeDir($folder.$target)) {
-						$msg[] = sprintf(gettext('The existing folder <code>%s</code> was removed.'), $folder.$target)."<br />\n";
+						if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+							$msg[] = sprintf(gettext('The existing folder <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+						} else {
+							$msg[] = sprintf(gettext('The existing folder <code>%1$s</code> was removed but Link creation failed.'),$target)."<br />\n";
+							$success = false;
+						}
 					} else {
-						$msg[] = sprintf(gettext('The existing folder <code>%s</code> could not be removed.'), $folder.$target)."<br />\n";
+						$msg[] = sprintf(gettext('The existing folder <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
 						$success = false;
 					}
 				} else {
 					// is a symlink
 					if (@rmdir($folder.$target)) {
-						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was removed.'), $folder.$target)."<br />\n";
+						if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+							$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+						} else {
+							$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was removed but Link creation failed.'),$target)."<br />\n";
+							$success = false;
+						}
 					} else {
-						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.$target)."<br />\n";
+						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
 						$success = false;
 					}
 				}
 				break;
-
 			case 'file':
 				if (@unlink($folder.$target)) {
-					if ($folder.$target == $link) {
-						$msg[] = sprintf(gettext('The existing file <code>%s</code> was removed.'), $folder.$target)."<br />\n";
+					if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+						if ($folder.$target == $link) {
+							$msg[] = sprintf(gettext('The existing file <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+						} else {
+							$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+						}
 					} else {
-						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was removed.'), $folder.$target)."<br />\n";
+						$msg[] = sprintf(gettext('The existing file <code>%s</code> was removed but Link creation failed.'),$target)."<br />\n";
+						$success = false;
 					}
 				} else {
 					if ($folder.$target == $link) {
-						$msg[] = sprintf(gettext('The existing file <code>%s</code> could not be removed.'), $folder.$target)."<br />\n";
+						$msg[] = sprintf(gettext('The existing file <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
 					} else {
-						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.$target)."<br />\n";
+						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
 					}
 					$success = false;
 				}
 				break;
 		}
-	}
-	if (!@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
-		$msg[] = sprintf(gettext('Link creation for the <code>%s</code> folder failed.'),$target)."<br />\n";
-		$success = false;
+	} else {
+		if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+			$msg[] = sprintf(gettext('<code>%s</code> Link created.'),$target)."<br />\n";
+		} else {
+			$msg[] = sprintf(gettext('<code>%s</code> Link creation failed.'),$target)."<br />\n";
+			$success = false;
+		}
 	}
 }
 
@@ -83,7 +108,7 @@ if ($success) {
 	if (empty($needs)) {
 		$rootpath = str_replace(WEBPATH,'/',SERVERPATH);
 		if (substr($folder,0,strlen($rootpath)) == $rootpath) {
-			$msg[] = '<p><span class="buttons"><a href="/'.$newinstall.ZENFOLDER.'/setup.php">'.gettext('setup the new install').'</a></span><br clear="all"></p>'."\n";
+			$msg[] = '<p><span class="buttons"><a href="/'.$newinstall.ZENFOLDER.'/setup.php?autorun">'.gettext('setup the new install').'</a></span><br clear="all"></p>'."\n";
 		}
 	} else {
 		$reinstall = '<p>'.sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'),$newinstall,ZENPHOTO_VERSION,ZENPHOTO_RELEASE).

@@ -221,13 +221,9 @@ if (isset($_GET['action'])) {
 			}
 
 			if (empty($notify)) {
-				$notify = '?saved&xsrftoken='.getXSRFToken('saved');
-			} else {
-				if (isset($_GET['ticket'])) {
-					$notify .= '&ticket='.$_GET['ticket'].'&user='.$_GET['user'];
-				}
+				$notify = '?saved';
 			}
-			header("Location: " . $notify . $returntab.$ticket);
+			header("Location: " . $notify.$returntab.$ticket);
 			exitZP();
 
 

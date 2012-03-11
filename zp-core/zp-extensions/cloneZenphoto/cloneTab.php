@@ -15,6 +15,7 @@ $zenphoto_tabs['overview']['subtabs']=array(gettext('Clone')=>'');
 printAdminHeader(gettext('overview'),gettext('Clone'));
 
 ?>
+	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
 </head>
 <body>
 <?php printLogoAndLinks(); ?>
@@ -101,6 +102,7 @@ printAdminHeader(gettext('overview'),gettext('Clone'));
 			}
 			function folderChange() {
 				$('#downbutton').attr('title','<?php echo $downtitle; ?>/'+$('#cloneFolder').val().replace(/\/$/,'').replace( /.*\//, '' ));
+				$('#cloneButton').attr('title',sprintf('Clone installation to %s',$('#downbutton').attr('title')));
 				$('#clonePath').val($('#cloneFolder').val());
 			}
 			window.onload = function() {
@@ -143,7 +145,7 @@ printAdminHeader(gettext('overview'),gettext('Clone'));
 			<input type="hidden" name="clonePath" id="clonePath" value="" />
 			<?php XSRFToken('cloneZenphoto'); ?>
 			<div class="buttons pad_button" id="cloneZP">
-			<button class="tooltip" type="submit" title="<?php echo gettext("Clone the installation."); ?>">
+			<button id="cloneButton" class="tooltip" type="submit" title="">
 				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/folder.png" alt="" /> <?php echo gettext("Clone Zenphoto"); ?>
 			</button>
 			</div>
