@@ -249,6 +249,8 @@ class flowplayer3 {
 		$audio = array_shift($filelist);
 		$filelist = safe_glob('flowplayer.controls-*.swf');
 		$controls = array_shift($filelist);
+		$filelist = safe_glob('flowplayer.sharing-*.swf');
+		$sharing = array_shift($filelist);
 		chdir($curdir);
 		$playerconfig = '
 		<span id="player'.$count.'" class="flowplayer" style="display:block; width: '.$width.'px; height: '.$height.'px">
@@ -260,6 +262,9 @@ class flowplayer3 {
 		plugins: {
 			audio: {
 				url: "'.$audio.'"
+			},
+			sharing: {
+				url: "'.$sharing.'"
 			},
 			controls: {
 				url: "'.$controls.'",
