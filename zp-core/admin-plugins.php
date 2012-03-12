@@ -209,23 +209,25 @@ foreach ($filelist as $extension) {
 				<?php
 				if ($plugin_disable) {
 					?>
-					<span class="icons" id="<?php echo $extension;?>_disabled"> <a href="javascript:toggle('show_<?php echo $extension; ?>');" title="<?php  echo gettext('This plugin is disabled. Click for details.'); ?>"><img src="images/action.png" alt="" class="zp_logoicon" /></a> </span>
-					<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
+					<span class="icons" id="<?php echo $extension;?>_disabled">
+						<a href="javascript:toggle('show_<?php echo $extension; ?>');" title="<?php  echo gettext('This plugin is disabled. Click for details.'); ?>">
+							<img src="images/action.png" alt="" class="zp_logoicon" />
+						</a>
+						<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
+					</span>
 					<?php
 				} else {
-					?>
-					<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
-						<?php
-						if ($parserr || $plugin_disable) {
-							$optionlink = false;
-							echo ' disabled="disabled"';
-						} else {
-							if ($currentsetting > THEME_PLUGIN) {
-								echo ' checked="checked"';
-							}
+					$attributes = '';
+					if ($parserr || $plugin_disable) {
+						$optionlink = false;
+						$attributes .= ' disabled="disabled"';
+					} else {
+						if ($currentsetting > THEME_PLUGIN) {
+							$attributes .= ' checked="checked"';
 						}
-						?>
-						/>
+					}
+					?>
+					<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?>	/>
 					<?php
 				}
 				echo $extension;
