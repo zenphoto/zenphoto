@@ -1655,10 +1655,13 @@ function getPrevAlbumURL() {
  * @return bool
  */
 function isImagePage() {
-	global $_zp_page, $_firstPageImages;
-	$imagestart = getTotalPages(2);	// # of album pages
-	if (!$_firstPageImages) $imagestart++; // then images start on the last album page.
-	return $_zp_page >= $imagestart;
+	if (getNumImages()) {
+		global $_zp_page, $_firstPageImages;
+		$imagestart = getTotalPages(2);	// # of album pages
+		if (!$_firstPageImages) $imagestart++; // then images start on the last album page.
+		return $_zp_page >= $imagestart;
+	}
+	return false;
 }
 
 /**

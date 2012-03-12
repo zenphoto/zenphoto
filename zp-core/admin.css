@@ -446,6 +446,10 @@ ul.nav li:hover > ul {
 	border-left: 1px solid #996600;
 	border-right: 1px solid #996600;
 	border-bottom: 5px solid #996600;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 	margin-bottom: 10px;
 	font-size: 100%;
 }

@@ -210,7 +210,7 @@ foreach ($filelist as $extension) {
 				if ($plugin_disable) {
 					?>
 					<span class="icons" id="<?php echo $extension;?>_disabled">
-						<a href="javascript:toggle('show_<?php echo $extension; ?>');" title="<?php  echo gettext('This plugin is disabled. Click for details.'); ?>">
+						<a href="javascript:toggle('showdisable_<?php echo $extension; ?>');" title="<?php  echo gettext('This plugin is disabled. Click for details.'); ?>">
 							<img src="images/action.png" alt="" class="zp_logoicon" />
 						</a>
 						<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
@@ -255,7 +255,35 @@ foreach ($filelist as $extension) {
 		<td>
 			<?php
 			echo $plugin_description;
-			if ($plugin_notice || $plugin_disable) {
+			if (!empty($plugin_author)) {
+				?>
+				<br />
+				<?php
+				if (!($parserr & 2)) {
+					?>
+					<strong><?php echo gettext("Author"); ?></strong>
+					<?php
+				}
+				echo $plugin_author;
+			}
+			if ($plugin_disable) {
+				?>
+				<p id="showdisable_<?php echo $extension; ?>" style="display:none" class="warningbox">
+					<?php
+					if ($plugin_disable) {
+						echo $plugin_disable;
+					}
+					if ($plugin_notice) {
+						if ($plugin_disable) {
+							echo '<br /><br />';
+						}
+						echo $plugin_notice;
+					}
+					?>
+				</p>
+				<?php
+			}
+			if ($plugin_notice) {
 				?>
 				<p id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
 					<?php
@@ -271,17 +299,6 @@ foreach ($filelist as $extension) {
 					?>
 				</p>
 				<?php
-			}
-			if (!empty($plugin_author)) {
-				?>
-				<br />
-				<?php
-				if (!($parserr & 2)) {
-					?>
-					<strong><?php echo gettext("Author"); ?></strong>
-					<?php
-				}
-				echo $plugin_author;
 			}
 			?>
 		</td>
