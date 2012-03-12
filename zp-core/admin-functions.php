@@ -1848,7 +1848,7 @@ function printAlbumButtons($album) {
 				?>
 				<div class="buttons">
 				<button type="submit" class="tooltip" id="edit_hitcounter_all" title="<?php echo gettext("Resets all hitcounters in the album."); ?>">
-				<img src="images/reset1.png" style="border: 0px;" alt="reset" /> <?php echo gettext("Reset hitcounters"); ?>
+				<img src="images/reset.png" style="border: 0px;" alt="reset" /> <?php echo gettext("Reset hitcounters"); ?>
 				</button>
 				</div>
 				<?php
@@ -1894,7 +1894,7 @@ function printAlbumLegend() {
 		<li><img src="images/pass.png" alt="Published" /><img src="images/action.png" alt="" /><?php echo gettext("Published/Un-published"); ?></li>
 		<li><img src="images/comments-on.png" alt="" /><img src="images/comments-off.png" alt="" /><?php echo gettext("Comments on/off"); ?></li>
 		<li><img src="images/view.png" alt="" /><?php echo gettext("View the album"); ?></li>
-		<li><img src="images/refresh1.png" alt="" /><?php echo gettext("Refresh metadata"); ?></li>
+		<li><img src="images/refresh.png" alt="" /><?php echo gettext("Refresh metadata"); ?></li>
 		<?php
 		if (getOption('zp_plugin_hitcounter')) {
 			?>
@@ -2069,7 +2069,7 @@ function printAlbumEditRow($album, $show_thumb) {
 			} else {
 				?>
 				<a class="warn" href="admin-refresh-metadata.php?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;return=*<?php echo pathurlencode(dirname($album->name)); ?>&amp;XSRFToken=<?php echo getXSRFToken('refresh')?>" title="<?php echo sprintf(gettext('Refresh metadata for the album %s'), $album->name); ?>">
-				<img src="images/refresh1.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Refresh metadata in the album %s'), $album->name); ?>" />
+				<img src="images/refresh.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Refresh metadata in the album %s'), $album->name); ?>" />
 				</a>
 				<?php
 			}
@@ -2962,7 +2962,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			} else {
 				$full = populateManagedObjectsList('album', $adminid, true);
 				$cv = $extra = array();
-				$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/edit-album.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
+				$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/options.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
 				$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished items').'" />';
 				$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
 				if (!empty($flag)) {

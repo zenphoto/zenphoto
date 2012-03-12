@@ -16,7 +16,7 @@ $buttonlist[] = array(
 								'button_text'=>gettext('Reset album thumbs'),
 								'formname'=>'reset_albumthumbs.php',
 								'action'=>'utilities/reset_albumthumbs.php',
-								'icon'=>'images/reset1.png',
+								'icon'=>'images/reset.png',
 								'title'=>gettext('Reset album thumbnails to either random or most recent'),
 								'alt'=>'',
 								'hidden'=>'',
@@ -81,7 +81,7 @@ if (db_connect()) {
 				<div class="buttons pad_button" id="set_all">
 					<button class="tooltip" type="submit"
 						title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
-						<img src="<?php echo $webpath; ?>images/burst1.png" alt="" />
+						<img src="<?php echo $webpath; ?>images/burst.png" alt="" />
 						 <?php echo gettext("Set all albums to"); ?>
 					</button>
 					<select id="thumbtype" name="thumbtype">

@@ -795,6 +795,16 @@ input.tags {
 	float: left;
 }
 
+.utility_buttons_field {
+	padding-left: 0px;
+	padding-right: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin: 15px;
+	border: 1px solid #cccccc;
+	width: 460px;
+}
+
 #overview-stats {
 	float: left;
 	width: 400px;
@@ -804,13 +814,14 @@ input.tags {
 
 #overview-maint,#overview-utility {
 	float: left;
-	width: 520px;
+	width: 500px;
 	margin: 0 0px 10px 0px;
 	padding: 0px;
 }
 
 .overview_utility_buttons {
-	padding-bottom: 10px;
+	padding-bottom: 5px;
+	width: 220px;
 }
 
 #overview-comments,#overview-gallerystats,#overview-info,#overview-news
@@ -828,7 +839,7 @@ input.tags {
 	margin: 0;
 }
 
-#overview-comments ul,#overview-gallerystats ul,#overview-utility ul,#overview-info ul,#overview-maint ul,#overview-stats ul,#overview-news ul
+#overview-comments ul,#overview-gallerystats ul,#overview-info ul,#overview-maint ul,#overview-stats ul,#overview-news ul
 	{
 	width: 95%;
 	list-style-type: none;
@@ -840,12 +851,6 @@ input.tags {
 	margin-bottom: .5em;
 	line-height: 1.3em;
 	margin-left: 0px;
-}
-
-#overview-utility fieldset {
-	padding: 10px 5px 5px 5px;
-	margin: 15px;
-	border: 1px solid #cccccc;
 }
 
 #overview-utility fieldset legend {

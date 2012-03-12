@@ -174,7 +174,7 @@ class jquery_rating {
 									'button_text'=>gettext('Reset all ratings'),
 									'formname'=>'clearrating_button',
 									'action'=>PLUGIN_FOLDER.'/rating.php?action=clear_rating',
-									'icon'=>'images/reset1.png',
+									'icon'=>'images/reset.png',
 									'title'=>gettext('Sets all ratings to unrated.'),
 									'alt'=>'',
 									'hidden'=> '<input type="hidden" name="action" value="clear_rating" />',

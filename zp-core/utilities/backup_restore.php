@@ -450,7 +450,7 @@ if (db_connect()) {
 	<input type="hidden" name="backup" value="true" />
 	<div class="buttons pad_button" id="dbbackup">
 	<button class="tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
-		<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/burst1.png" alt="" /> <?php echo gettext("Backup the Database"); ?>
+		<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Backup the Database"); ?>
 	</button>
 	<select name="compress">
 	<?php

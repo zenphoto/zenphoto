@@ -189,7 +189,7 @@ class sitemap {
 									'button_text'=>gettext('Sitemap tools'),
 									'formname'=>'sitemap_button',
 									'action'=>PLUGIN_FOLDER.'/sitemap-extended/sitemap-extended-admin.php',
-									'icon'=>'images/cache1.png',
+									'icon'=>'images/cache.png',
 									'title'=>gettext('Sitemap tools.'),
 									'alt'=>'',
 									'hidden'=> '',

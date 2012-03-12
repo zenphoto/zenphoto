@@ -2111,8 +2111,8 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 							}
 							?>
 							<li>
-								<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio"<?php echo $checked_show?> value="1" /><img src ="images/accept.png" alt="<?php echo gettext('show'); ?>" /></label>
-								<label><input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio"<?php echo $checked_hide?> value="0" /><img src ="images/reset1.png" alt="<?php echo gettext('hide'); ?>" /></label>
+								<label><input id="<?php echo $key; ?>_show" name="<?php echo $key; ?>" type="radio"<?php echo $checked_show?> value="1" /><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /></label>
+								<label><input id="<?php echo $key; ?>_hide" name="<?php echo $key; ?>" type="radio"<?php echo $checked_hide?> value="0" /><img src ="images/reset.png" alt="<?php echo gettext('hide'); ?>" /></label>
 								<label><input id="<?php echo $key; ?>_disable" name="<?php echo $key; ?>" type="radio"<?php echo $checked_disabled?> value="2" /><img src ="images/fail.png" alt="<?php echo gettext('disabled'); ?>" /></label>
 								<?php echo $item[2]; ?>&nbsp;&nbsp;&nbsp;
 							</li>
@@ -2126,8 +2126,8 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<p>
 				<?php echo gettext("Select how image metadata fields are handled."); ?>
 				<ul style="list-style: none;">
-					<li><img src ="images/accept.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Show the field'); ?></li>
-					<li><img src ="images/reset1.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Hide the field'); ?></li>
+					<li><img src ="images/pass.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Show the field'); ?></li>
+					<li><img src ="images/reset.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Hide the field'); ?></li>
 					<li><img src ="images/fail.png" alt="<?php echo gettext('show'); ?>" /><?php echo gettext('Do not process the field'); ?></li>
 				</ul>
 				</p>

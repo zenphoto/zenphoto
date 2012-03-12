@@ -236,7 +236,7 @@ foreach ($filelist as $extension) {
 			</label>
 		</td>
 		<td width="60">
-			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info_toggle.png" title="<?php echo gettext('Usage information'); ?>" alt=""></a></span>
+			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info.png" title="<?php echo gettext('Usage information'); ?>" alt=""></a></span>
 			<?php
 			if ($optionlink) {
 				?>
@@ -245,7 +245,7 @@ foreach ($filelist as $extension) {
 			}
 			if ($plugin_notice || $plugin_disable) {
 				?>
-				<span class="icons"><a href="javascript:toggle('show_<?php echo $extension;?>');" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top4" src="images/note_warn.png" alt="" /></a></span>
+				<span class="icons"><a href="javascript:toggle('show_<?php echo $extension;?>');" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top4" src="images/warn.png" alt="" /></a></span>
 				<?php
 			}
 			?>
@@ -291,9 +291,9 @@ foreach ($filelist as $extension) {
 <br />
 <ul class="iconlegend">
 <li><img src="images/zp_gold.png" alt=""><?php echo gettext('Official plugin'); ?></li>
-<li><img src="images/info_toggle.png" alt=""><?php echo gettext('Usage info'); ?></li>
+<li><img src="images/info.png" alt=""><?php echo gettext('Usage info'); ?></li>
 <li><img src="images/options.png" alt=""><?php echo gettext('Options'); ?></li>
-<li><img src="images/note_warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
+<li><img src="images/warn.png" alt=""><?php echo gettext('Warning note'); ?></li>
 </ul>
 <p class="buttons">
 <button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>

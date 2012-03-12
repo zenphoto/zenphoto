@@ -347,7 +347,6 @@ zp-core/htaccess
 zp-core/i.php
 zp-core/images
 zp-core/images/Zp.png
-zp-core/images/accept.png
 zp-core/images/action.png
 zp-core/images/add.png
 zp-core/images/admin-boxback.jpg
@@ -363,18 +362,14 @@ zp-core/images/arrow_out.png
 zp-core/images/arrow_up.png
 zp-core/images/bar_graph.png
 zp-core/images/burst.png
-zp-core/images/burst1.png
 zp-core/images/cache.png
-zp-core/images/cache1.png
 zp-core/images/calendar.png
 zp-core/images/captcha_background.png
 zp-core/images/comments-off.png
 zp-core/images/comments-on.png
 zp-core/images/drag_handle.png
 zp-core/images/drag_handle_flag.png
-zp-core/images/edit-album.png
 zp-core/images/edit-delete.png
-zp-core/images/edit-image.png
 zp-core/images/envelope.png
 zp-core/images/err-cachewrite.png
 zp-core/images/err-failimage.png
@@ -391,7 +386,6 @@ zp-core/images/icon_inactive.png
 zp-core/images/icon_mail.png
 zp-core/images/imageDefault.png
 zp-core/images/info.png
-zp-core/images/info_toggle.png
 zp-core/images/lock.png
 zp-core/images/lock_2.png
 zp-core/images/lock_open.png
@@ -399,7 +393,6 @@ zp-core/images/magnify.png
 zp-core/images/marker.png
 zp-core/images/mask.png
 zp-core/images/movie.jpg
-zp-core/images/note_warn.png
 zp-core/images/options.png
 zp-core/images/page_white_copy.png
 zp-core/images/pass.png
@@ -407,13 +400,9 @@ zp-core/images/pencil.png
 zp-core/images/pictures.png
 zp-core/images/pictures_dn.png
 zp-core/images/place_holder_icon.png
-zp-core/images/quest.png
 zp-core/images/redo.png
-zp-core/images/redo1.png
 zp-core/images/refresh.png
-zp-core/images/refresh1.png
 zp-core/images/reset.png
-zp-core/images/reset1.png
 zp-core/images/rss.png
 zp-core/images/searchfields_icon.png
 zp-core/images/select_files_button.png
@@ -1877,4 +1866,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1879
+1868

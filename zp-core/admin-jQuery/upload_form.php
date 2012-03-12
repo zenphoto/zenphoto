@@ -162,7 +162,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 				</td>
 				<td class="size">${sizef}</td>
 				<td colspan="2"></td>
-				<td class="delete"><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/accept.png" /></td>
+				<td class="delete"><img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" /></td>
 			{{/if}}
 		</tr>
 	{{/if}}
