@@ -208,25 +208,25 @@ foreach ($filelist as $extension) {
 				<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
 				<?php
 				if ($plugin_disable) {
-					echo '<span class="icons" id="'.$extension.'_disabled"> <a href="javascript:toggle(\'show_'.$extension.'\');" title="'.gettext('This plugin is disabled').'"><img src="images/action.png" alt="'.'" class="zp_logoicon" />'.'</a> </span>';
 					?>
+					<span class="icons" id="<?php echo $extension;?>_disabled"> <a href="javascript:toggle('show_<?php echo $extension; ?>');" title="<?php  echo gettext('This plugin is disabled. Click for details.'); ?>"><img src="images/action.png" alt="" class="zp_logoicon" /></a> </span>
 					<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
 					<?php
 				} else {
-				?>
-				<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
-					<?php
-					if ($parserr || $plugin_disable) {
-						$optionlink = false;
-						echo ' disabled="disabled"';
-					} else {
-						if ($currentsetting > THEME_PLUGIN) {
-							echo ' checked="checked"';
-						}
-					}
 					?>
-					/>
-				<?php
+					<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"
+						<?php
+						if ($parserr || $plugin_disable) {
+							$optionlink = false;
+							echo ' disabled="disabled"';
+						} else {
+							if ($currentsetting > THEME_PLUGIN) {
+								echo ' checked="checked"';
+							}
+						}
+						?>
+						/>
+					<?php
 				}
 				echo $extension;
 				if (!empty($plugin_version)) {
@@ -243,7 +243,7 @@ foreach ($filelist as $extension) {
 				<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php echo gettext("Change plugin options"); ?>"><img class="icon-position-top4" src="images/options.png" alt="" /></a></span>
 				<?php
 			}
-			if ($plugin_notice || $plugin_disable) {
+			if ($plugin_notice) {
 				?>
 				<span class="icons"><a href="javascript:toggle('show_<?php echo $extension;?>');" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top4" src="images/warn.png" alt="" /></a></span>
 				<?php
