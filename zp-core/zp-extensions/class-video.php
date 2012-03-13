@@ -1,10 +1,10 @@
 <?php
 /**
- * This plugin handles "video" class images:
+ * This plugin handles <i>video</i> class images:
  * <ul>
  * 	<li>Audio (MP3,M4A,FLA)</li>
  * 	<li>video (MP4/M4V,FLV, plus Quicktime</li>
- * 	<li>3GP if Quicktime is installed on the visitor system)</li>
+ * 	<li>3GP <i>if Quicktime is installed on the visitor system</i></li>
  * </ul>
  *
  * This plugin must always be enabled to use multimedia content.

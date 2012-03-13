@@ -1,6 +1,6 @@
 <?php
 /**
- * Provides the Overview utilities button to check for more recent Zenphoto Versions.
+ * Provides a check for more recent Zenphoto Versions.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

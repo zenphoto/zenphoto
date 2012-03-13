@@ -4,10 +4,6 @@
  * based on EXIF latitude and longitude in the images.
  * Automatically detects if it is on an Image or Album page.
  *
- * Note:
- * Google does place limits on the use of its Maps API.
- * Please review these to be sure your site is in compliance:
- * 	http://googlegeodevelopers.blogspot.com/2011/10/introduction-of-usage-limits-to-maps.html
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

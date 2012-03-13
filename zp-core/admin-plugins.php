@@ -207,6 +207,15 @@ foreach ($filelist as $extension) {
 				?>
 				<img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" />
 				<?php
+				$attributes = '';
+				if ($parserr) {
+					$optionlink = false;
+					$attributes .= ' disabled="disabled"';
+				} else {
+					if ($currentsetting > THEME_PLUGIN) {
+						$attributes .= ' checked="checked"';
+					}
+				}
 				if ($plugin_disable) {
 					?>
 					<span class="icons" id="<?php echo $extension;?>_disabled">
@@ -217,15 +226,6 @@ foreach ($filelist as $extension) {
 					</span>
 					<?php
 				} else {
-					$attributes = '';
-					if ($parserr || $plugin_disable) {
-						$optionlink = false;
-						$attributes .= ' disabled="disabled"';
-					} else {
-						if ($currentsetting > THEME_PLUGIN) {
-							$attributes .= ' checked="checked"';
-						}
-					}
 					?>
 					<input type="checkbox" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="<?php echo $plugin_is_filter; ?>"<?php echo $attributes; ?>	/>
 					<?php
@@ -273,7 +273,6 @@ foreach ($filelist as $extension) {
 					if ($plugin_disable) {
 						echo $plugin_disable;
 					}
-					}
 					?>
 				</p>
 				<?php
@@ -296,7 +295,7 @@ foreach ($filelist as $extension) {
 		</td>
 	</tr>
 	<?php
-	}
+}
 ?>
 </table>
 <br />

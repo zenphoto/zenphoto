@@ -3,8 +3,8 @@
  * Support for the jPlayer jQuery/Flash 2.0.0 multimedia player (jplayer.org). It will play natively via HTML5 in capable browser
  * if the appropiate multimedia formats are provided. This is not an adaption of the existing 3rd party plugin zenjPlayer but a full featured plugin.
 
- * Audio: .mp3, .m4a, .fla - Counterpart formats .oga (use .ogg as a suffix!) and webma supported (see note below!)<br>
- * Video: .m4v/.mp4, .flv - Counterpart formats .ogv and .webmv supported (see note below!)
+ * Audio: <code>.mp3</code>, <code>.m4a</code>, <code>.fla</code> - Counterpart formats <code>.oga</code> and <code>.webma</code> supported (see note below!)<br>
+ * Video: <code>.m4v</code>/<code>.mp4</code>, <code>.flv</code> - Counterpart formats <code>.ogv</code> and <code>.webmv</code> supported (see note below!)
  *
  * IMPORTANT NOTE ON OGG AND WEBM COUNTERPART FORMATS:
  *
@@ -22,13 +22,13 @@
  *
  * NOTE ON PLAYER SKINS:<br>
  * The look of the player is determined by a pure HTML/CSS based skin (theme). There may occur display issues with themes.
- * Only the Zenphoto own default skin "zenphotolight"
+ * Only the Zenphoto's own default skin <code>zenphotolight</code>
  * has been tested with the standard themes (and not even with all it works perfectly).
  * So you might need to adjust the skin yourself to work with your theme. It is recommended that
  * you place your custom skins within the root /plugins folder like:
  *
- * plugins/jplayer/skin/<skin name1><br>
- * plugins/jplayer/skin/<skin name2> ...
+ * plugins/jplayer/skin/<i>skin name1</i><br>
+ * plugins/jplayer/skin/<i>skin name2</i> ...
  *
  * You can select the skin then via the plugin options. <b>NOTE:</b> A skin may have only one CSS file.
  *

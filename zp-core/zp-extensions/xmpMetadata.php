@@ -1,26 +1,26 @@
 <?php
 /**
  *
- * Enable this filter to scan images (or xmp sidecar files) for metadata.
+ * Enable this filter to scan images (or <i>xmp sidecar</i> files) for metadata.
  *
  * Relevant metadata found will be incorporated into the image (or album object)
- * see “Adobe XMP Specification" http://www.aiim.org/documents/standards/xmpspecification.pdf
- * for xmp metadata description. This plugin attempts to map the xmp metadata to Zenphoto or IPTC fields.
+ * see <i>Adobe XMP Specification</i> http://www.aiim.org/documents/standards/xmpspecification.pdf
+ * for xmp metadata description. This plugin attempts to map the <i>xmp metadata</i> to Zenphoto or IPTC fields.
  *
  * If a sidecar file exists, it will take precedence (the image file will not be
- * examined.) The sidecar file should reside in the same folder, have the same prefix name as the
- * image (album), and the suffix ".xmp". Thus, the sidecar for <i>image</i>.jpg would be named <i>image</i>.xmp.
+ * examined.) The sidecar file should reside in the same folder, have the same <i>prefix</i> name as the
+ * image (album), and the suffix <code>.xmp</code>. Thus, the sidecar for <code><i>image</i>.jpg</code> would be named <code><i>image</i>.xmp</code>.
  *
- * NOTE: dynamic albums have an ".alb" suffix. Append ".xmp" to that name so
- * that the dynamic album sidecar would be named <i>album</i>.alb.xmp.
+ * NOTE: dynamic albums have an <code>.alb</code> suffix. Append <code>.xmp</code> to that name so
+ * that the dynamic album sidecar would be named <code><i>album</i>.alb.xmp</code>.
  *
  * There are two options for this plugin
  * 	<ul>
  * 		<li>The suffix of the metadata sidecar file</li>
  * 		<li>A list of image file suffixes that may contain metadata</li>
  * 	</ul>
- * Cehck each image type you wish the plugin to search within for
- * an xmp block. These are disabled by default because scanning image files can add considerably to the
+ * Check each image type you wish the plugin to search within for
+ * an <i>xmp block</i>. These are disabled by default because scanning image files can add considerably to the
  * processing time.
  *
  * The plugin does not present any theme interface.

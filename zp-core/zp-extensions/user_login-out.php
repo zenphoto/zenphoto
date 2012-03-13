@@ -1,6 +1,6 @@
 <?php
 /**
- * Provides users then means to  log in or out from the theme pages.
+ * Provides users a means to log in or out from the theme pages.
  *
  * Place a call on printUserLogin_out() where you want the logout link to appear.
  *

@@ -6,7 +6,7 @@
  * wish the comment items to appear.
  *
  * The plugin uses the form <code>../comment_form/comment_form.php</code>.
- * However, you may override this form by placing a script of the same name in your theme folder.
+ * However, you may override this form by placing a script of the same name in a similar folder in your theme.
  * This will allow you to customize the appearance of the comments on your site.
  *
  * There are several options to tune what the plugin will do.

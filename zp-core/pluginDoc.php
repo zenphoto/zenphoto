@@ -51,9 +51,12 @@ if ($thirdparty) {
 
 $plugin_description = '';
 $plugin_notice = '';
+$plugin_disable = '';
 $plugin_author = '';
 $plugin_version = '';
 $plugin_is_filter = '';
+$plugin_URL = '';
+$option_interface = '';
 
 require_once($path);
 $buttonlist = zp_apply_filter('admin_utilities_buttons', array());
@@ -80,6 +83,21 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<title><?php echo sprintf(gettext('%1$s %2$s: %3$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($extension)); ?></title>
+	<style>
+	.doc_box_field {
+		padding-left: 0px;
+		padding-right: 5px;
+		padding-top: 5px;
+		padding-bottom: 5px;
+		margin: 15px;
+		border: 1px solid #cccccc;
+		width: 460px;
+		-moz-border-radius: 5px;
+		-khtml-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+	}
+	</style>
 </head>
 <body>
 	<div id="main">
@@ -99,6 +117,13 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 				<h3><?php printf(gettext('Author: %s'), html_encode($plugin_author)); ?></h3>
 			<div>
 			<?php
+			if ($plugin_disable) {
+				?>
+				<p class="warningbox">
+					<?php echo $plugin_disable; ?>
+				</p>
+				<?php
+			}
 			if ($plugin_notice) {
 				?>
 				<p class="notebox">
@@ -156,23 +181,45 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 				}
 			echo $doc;
 			}
-			if ($thirdparty) {
-				if ($str = isolate('$plugin_URL', $pluginStream)) {
-					if (false !== eval($str)) {
-						printf(gettext('See also the <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
-					}
+			if ($option_interface) {
+				if (is_string($option_interface)) {
+					$option_interface = new $option_interface;
 				}
-			} else {
-				$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
-				printf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+				$options = $supportedOptions = $option_interface->getOptionsSupported();
+				$option = array_shift($options);
+				if (array_key_exists('order', $option)) {
+					$options = sortMultiArray($supportedOptions, 'order');
+					$options = array_keys($options);
+				} else {
+					$options = array_keys($supportedOptions);
+					natcasesort($options);
+				}
+				?>
+				<p>
+				<?php echo ngettext('Option:','Options:',count($options)); ?>
+				<ul>
+					<?php
+					foreach ($options as $option) {
+						$row = $supportedOptions[$option];
+						$option = trim($option,'*'.chr(0));
+						if ($option && $row['type'] != OPTION_TYPE_NOTE) {
+							?>
+							<li><?php echo $option; ?></li>
+							<?php
+						}
+					}
+					?>
+				</ul>
+				</p>
+				<?php
 			}
 			if (!empty($buttonlist)) {
 				$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
 				?>
-				<div class="box" id="overview-utility">
-				<h2 class="h2_bordered">
-				<?php echo gettext("Added to overview utilitiy functions"); ?>
-				</h2>
+				<div id="overview-utility">
+				<p>
+				<?php echo ngettext('Overview utilitiy button','Overview utilitiy buttons',count($buttonlist)); ?>
+				</p>
 					<?php
 					$category = '';
 					foreach ($buttonlist as $button) {
@@ -186,15 +233,15 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 							}
 							$category = $button_category;
 							?>
-							<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
+							<fieldset class="doc_box_field"><legend><?php echo $category; ?></legend>
 							<?php
 						}
 						?>
-						<form name="<?php echo $button['formname']; ?>"	action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
+						<form name="<?php echo $button['formname']; ?>"	class="overview_utility_buttons">
 							<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
 							<?php echo $button['hidden']; ?>
 							<div class="buttons">
-								<button class="tooltip" type="submit"	title="<?php echo $button['title']; ?>" <?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
+								<button class="tooltip" type="reset"	title="<?php echo $button['title']; ?>" >
 								<?php
 								if(!empty($button_icon)) {
 									?>
@@ -204,7 +251,7 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 								echo html_encode($button['button_text']);
 								?>
 								</button>
-							</div><!--buttons -->
+							</div>
 						</form>
 						<?php
 					}
@@ -221,5 +268,15 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 			?>
 			</div>
 		</div>
+		<?php
+		if ($thirdparty) {
+			if ($plugin_URL) {
+				printf(gettext('See also the <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+			}
+		} else {
+			$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
+			printf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+		}
+		?>
 	</div>
 </body>

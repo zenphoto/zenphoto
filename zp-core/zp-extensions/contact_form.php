@@ -2,13 +2,13 @@
 /**
  * Prints an e-mail contact form that uses Zenphoto's internal validation functions for <i>e-mail</i> and <i>URL</i>.
  * <i>Name</i>, <i>e-mail address</i>, <i>subject</i> and <i>message</i> are required fields by default.
- * You need to enter a custom mail address that should be used for the messages.
+ * You need to set a custom mail address to be used for the messages destination.
  *
- * Support is included Zenphoto's CAPTCHA and for confirmation before the message is sent. No other spam filter support is provided
- * since mail providers have this anyway.
+ * Support is included CAPTCHA and for confirmation before the message is sent. No other spam filter support is provided.
+ * Your mail client will provide filtering on receipt of the message.
  *
- * The contact form itself is a separate file and located within <code>/contact_form/form.php</code> so
- * that it can be style as needed.
+ * The contact form itself is a separate file and located within <code>.../contact_form/form.php</code>. Place a customized
+ * version of the form in a similar folder in your theme if you wish something different from the standard form.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins

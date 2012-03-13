@@ -1,6 +1,6 @@
 <?php
 /**
- * Translates accented characters to unaccented ones
+ * Changes <i>white space</i> characters to underscores.
  * @package plugins
  */
 

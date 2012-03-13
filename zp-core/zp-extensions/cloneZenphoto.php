@@ -3,12 +3,6 @@
  * "Clones" the currrent Zenphoto installation to a new location using symlinks. The <i>zp-core</i>, <i>themes</i>, <i>user plugins</i>
  * folders and the root <i>index.php</i> file are symlinked. Setup will create the other needed folders.
  *
- * Two buttons are placed in the Admin Utility functions box on the overview tab.
- * 	<ul>
- * 		<li><pre>Clone installation</pre></li>
- * 		<li><pre>Delete setup files</pre></li>
- * 	</ul>
- *
  * The <i>Clone installation</i> button will take you to the cloning page where you can select a folder destination
  * for the cloned installation. Upon successful cloning there will be a link to <code>setup</code> for the new
  * installation. (This presumes the <code>setup</code> files are present. If not you will be told which files

@@ -1,6 +1,10 @@
 <?php
 /**
- * Provides rudimentary user groups
+ * User group management. You can create groups with common <i>rights</i> and assign users
+ * to the groups. Then you can alter these user's rights simply by changing the <i>group</i> rights.
+ *
+ * Templates can also be used. The difference between a <i>group</i> and a <i>template</i> is that the latter
+ * simply sets the user <i>rights</i> one time. Afterwards the user is independent from the <i>template</i>.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
