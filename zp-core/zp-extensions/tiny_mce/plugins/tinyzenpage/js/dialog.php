@@ -85,9 +85,7 @@ var ZenpageDialog = {
 				imagesize += '&amp;wmk='+wm_thumb;
 			}
 			cssclass ='zenpage_customthumb';
-
 		}
-
 		if($('#sizedimage:checked').val() == 1) {
 			imagesize = '&amp;s=<?php echo getOption("image_size"); ?>';
 			if (wm_img) {
@@ -105,6 +103,10 @@ var ZenpageDialog = {
 				imagesize += '&amp;wmk='+wm_img;
 			}
 			cssclass ='zenpage_customimage';
+		}
+		if($('#fullimage:checked').val() == 1) {
+			imagesize = '';
+			cssclass ='zenpage_fullimage';
 		}
 
 		// getting the text wrap checkbox values
@@ -159,7 +161,11 @@ var ZenpageDialog = {
 		}
 		// getting the include type checkbox values
 		if($('#image:checked').val() == 1) {
-			includetype = '<img src=\''+imgurl+imagesize+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
+			if($('#fullimage:checked').val() == 1) { 
+				includetype = '<img src=\''+webpath+'/<?php echo ALBUMFOLDER; ?>/'+albumname+'/'+imgname+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
+			} else {
+				includetype = '<img src=\''+imgurl+imagesize+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
+			}
 			if($('#showtitle:checked').val() == 1 || $('#imagedesc:checked').val() == 1 || $('#albumdesc:checked').val() == 1) {
 				infowrap1 = '<div class=\'zenpage_wrapper'+textwrap_title_add+'\''+textwrap_title+'>';
 				infowrap2 = '</div>';

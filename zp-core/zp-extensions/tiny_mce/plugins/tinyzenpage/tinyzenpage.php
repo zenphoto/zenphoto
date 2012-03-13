@@ -109,6 +109,7 @@ require_once("tinyzenpage-functions.php");
     		<input type="radio" name="type" id="sizedimage" "value="1" /><label for="title"> <?php echo gettext("Sized image/multimedia item"); ?></label><br />
     		<input type="radio" name="type" id="customsize" value="1" />
     		<input type="text" name="size" id="size" value="<?php echo getOption('tinymce_tinyzenpage_customimagesize'); ?>" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
+  			<input type="radio" name="type" id="fullimage" value="1"><label for="fullimage" /> <?php echo gettext("Full image"); ?></label><br />
   		</fieldset>
 		</div>
 	</form>
@@ -189,10 +190,11 @@ require_once("tinyzenpage-functions.php");
 				echo '<ul style="margin-left: 8px">';
 				echo '<li>'.gettext("Thumbnail: Size as set in Zenphoto's options").'</li>';
 				echo '<li>'.gettext("Custom thumbnail: size for the longest side / (cropwidth x cropheight). You can set default sizes for this on the TinyMCE plugin options. Not available for video/audio items.").'</li>';
-				echo '<li>'.gettext("Sized image as set in Zenphoto's options.").'<br />';
-				echo gettext("<strong>Video/audio: </strong>If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3). These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (cover/splash images are not supported).<br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons.");
+				echo '<li>'.gettext("Sized image/multimedia item: The sizeed image as set in Zenphoto's options.").'<br />';
+				echo gettext("<strong>Multimedia item: </strong>If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3). These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (cover/splash images are not supported).<br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons.");
 				echo '</li>';
-				echo '<li>'.gettext("Custom size image: Size is for the longest side of the image. Not available for video/audio items.").'</li>';
+				echo '<li>'.gettext("Custom size (un-cropped): Size is for the longest side of the image. Not available for video/audio items.").'</li>';
+				echo '<li>'.gettext("Full image: The original image.").'</li>';
 				echo '</ul>';
 				echo "<p style='margin-left: 8px'>";
 				echo gettext("If you additionally check <em>Show title</em> or <em>Show description</em> the title/description of the image or album (if you checked <em>link to album</em>) will be printed below the image. Only if <em>Image</em> is chosen as type.")."</p>";
