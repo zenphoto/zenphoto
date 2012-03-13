@@ -90,7 +90,7 @@ if (isset($_POST['processed'])) {
 								$image = newImage($album, $soename);
 								$image->setOwner($_zp_current_admin_obj->getUser());
 								if ($name != $soename) {
-									$image->setTitle($name);
+									$image->setTitle(stripSuffix($name));
 								}
 								$image->save();
 							}

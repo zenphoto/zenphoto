@@ -258,7 +258,7 @@ class UploadHandler
 						$image = newImage($album, $seoname);
 						$image->setOwner($_zp_current_admin_obj->getUser());
 						if ($name != $seoname && $image->getTitle() == substr($seoname, 0, strrpos($seoname, '.'))) {
-							$image->setTitle(substr($name, 0, strrpos($name, '.')));
+							$image->setTitle(stripSuffix($name, '.'));
 						}
 						$image->save();
 					} else if (is_zip($targetFile)) {
