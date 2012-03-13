@@ -54,7 +54,7 @@ zp_apply_filter('texteditor_config', '','zenphoto');
 		$(".plugin_doc").colorbox({
 			close: '<?php echo gettext("close"); ?>',
 			maxHeight:"98%",
-			innerWidth:'500px'
+			innerWidth:'560px'
 		});
 	});
 
@@ -125,7 +125,7 @@ foreach ($filelist as $extension) {
 	if ($str = isolate('$plugin_notice', $pluginStream)) {
 		if (false === eval($str)) {
 			$parserr = $parserr | 1;
-			$plugin_notice = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
+			$plugin_notice = gettext('<strong>Error parsing <em>plugin_notice</em> string!</strong>.');
 		}
 	} else {
 		$plugin_notice = '';
@@ -273,11 +273,6 @@ foreach ($filelist as $extension) {
 					if ($plugin_disable) {
 						echo $plugin_disable;
 					}
-					if ($plugin_notice) {
-						if ($plugin_disable) {
-							echo '<br /><br />';
-						}
-						echo $plugin_notice;
 					}
 					?>
 				</p>
@@ -287,9 +282,6 @@ foreach ($filelist as $extension) {
 				?>
 				<p id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
 					<?php
-					if ($plugin_disable) {
-						echo $plugin_disable;
-					}
 					if ($plugin_notice) {
 						if ($plugin_disable) {
 							echo '<br /><br />';

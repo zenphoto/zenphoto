@@ -15,7 +15,7 @@
  *
  * @package admin
  */
-define('OFFSET_PATH', 1);
+define('OFFSET_PATH', 2);
 require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
@@ -48,32 +48,18 @@ if ($thirdparty) {
 } else {
 	$path = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$extension.'.php';
 }
-$pluginStream = file_get_contents($path);
-$parserr = 0;
+
 $plugin_description = '';
-if ($str = isolate('$plugin_description', $pluginStream)) {
-	if (false === eval($str)) {
-		$plugin_description = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
-	}
-}
 $plugin_notice = '';
-if ($str = isolate('$plugin_notice', $pluginStream)) {
-	if (false === eval($str)) {
-		$plugin_notice = gettext('<strong>Error parsing <em>plugin_description</em> string!</strong>.');
-	}
-}
 $plugin_author = '';
-if ($str = isolate('$plugin_author', $pluginStream)) {
-	if (false === eval($str)) {
-		$plugin_author = gettext('<strong>Error parsing <em>plugin_author</em> string!</strong>.');
-	}
-}
 $plugin_version = '';
-if ($str = isolate('$plugin_version', $pluginStream)) {
-	if (false === eval($str)) {
-		$plugin_version = ' '.gettext('<strong>Error parsing <em>plugin_version</em> string!</strong>.');
-	}
-}
+$plugin_is_filter = '';
+
+require_once($path);
+$buttonlist = zp_apply_filter('admin_utilities_buttons', array());
+
+$pluginStream = file_get_contents($path);
+
 if ($thirdparty) {
 	$whose = gettext('third party plugin');
 	$path = stripSuffix($path).'/logo.png';
@@ -179,6 +165,58 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 			} else {
 				$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
 				printf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+			}
+			if (!empty($buttonlist)) {
+				$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
+				?>
+				<div class="box" id="overview-utility">
+				<h2 class="h2_bordered">
+				<?php echo gettext("Added to overview utilitiy functions"); ?>
+				</h2>
+					<?php
+					$category = '';
+					foreach ($buttonlist as $button) {
+						$button_category = $button['category'];
+						$button_icon = $button['icon'];
+						if ($category != $button_category) {
+							if ($category) {
+								?>
+								</fieldset>
+								<?php
+							}
+							$category = $button_category;
+							?>
+							<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
+							<?php
+						}
+						?>
+						<form name="<?php echo $button['formname']; ?>"	action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
+							<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
+							<?php echo $button['hidden']; ?>
+							<div class="buttons">
+								<button class="tooltip" type="submit"	title="<?php echo $button['title']; ?>" <?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
+								<?php
+								if(!empty($button_icon)) {
+									?>
+									<img src="<?php echo $button_icon; ?>" alt="<?php echo $button['alt']; ?>" />
+									<?php
+								}
+								echo html_encode($button['button_text']);
+								?>
+								</button>
+							</div><!--buttons -->
+						</form>
+						<?php
+					}
+					if ($category) {
+						?>
+						</fieldset>
+						<?php
+					}
+					?>
+				</div><!-- overview-utility -->
+				<br clear="all">
+				<?php
 			}
 			?>
 			</div>
