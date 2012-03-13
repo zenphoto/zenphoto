@@ -185,8 +185,9 @@ button.positive,.buttons a.positive {
 /* Login
 ------------------------------ */
 #loginform {
+	text-align: left;
 	padding: 10px;
-	width: 370px;
+	width: 350px;
 	margin: 25px auto;
 	margin-top: 15%;
 	margin-left: 0 auto;
@@ -200,7 +201,6 @@ button.positive,.buttons a.positive {
 	-khtml-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
-	color:black;
 }
 
 #loginform fieldset {
@@ -209,10 +209,8 @@ button.positive,.buttons a.positive {
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
 	border: 1px solid lightgray;
-	color:black;
-	color:black;
 	padding:10px;
-	text-align:center;
+	text-align:left;
 }
 
 #loginform input.textfield {
@@ -227,13 +225,10 @@ button.positive,.buttons a.positive {
 	text-align:left;
 	margin-left: 10px;
 	margin-left: 5px;
-	color:black;
 }
 
-.logon_link a {
-	color: #4D76CF;
-	text-decoration: none;
-	border-bottom: 1px dotted #597580;
+.logon_link {
+	text-align:center;
 }
 
 .logon_link a:hover {

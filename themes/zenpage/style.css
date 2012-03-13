@@ -1064,34 +1064,6 @@ hr {
 	font-weight: normal;
 }
 
-/* login form */
-table.password td.userlabel{
-	text-align:left;
-}
-table.password td.userinput{
-	text-align:left;
-}
-
-table.password td.userinput input, td.passwordinput input {
-	width: 15em;
-}
-
-/* login form */
-table.password td.passwordlabel{
-	text-align:left;
-}
-
-table.password td.passwordinput{
-	text-align:left;
-}
-
-table.password td.submit{
-	text-align:left;
-}
-
-table.password td.hint{
-	text-align:left;
-}
 .captchainputbox {
 	width: 6.6em;
 	padding: 2px;
@@ -1335,8 +1307,9 @@ height: 16px;
 /* Login
 ------------------------------ */
 #loginform {
+	text-align: left;
 	padding: 10px;
-	width: 370px;
+	width: 350px;
 	margin: 25px auto;
 	margin-top: 15%;
 	margin-left: 0 auto;
@@ -1350,7 +1323,6 @@ height: 16px;
 	-khtml-border-radius: 5px 5px 5px 5px;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
-	color:black;
 }
 
 #loginform fieldset {
@@ -1359,11 +1331,13 @@ height: 16px;
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
 	border: 1px solid lightgray;
-	text-align:center;
+	padding:10px;
+	text-align:left;
 }
 
-#loginform .textfield {
+#loginform input.textfield {
 	margin: 0px;
+	width:270px;
 	font-size: 100%;
 	padding: 4px;
 }

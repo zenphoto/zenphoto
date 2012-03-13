@@ -4,6 +4,7 @@ themes/default
 themes/default/404.php
 themes/default/album.php
 themes/default/archive.php
+themes/default/common.css
 themes/default/contact.php
 themes/default/image.php
 themes/default/images
@@ -1866,4 +1867,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1868
+1869

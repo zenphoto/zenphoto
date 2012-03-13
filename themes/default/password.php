@@ -10,6 +10,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 		<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Password required"); ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
+		<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/default/common.css" type="text/css" />
 	</head>
 	<body>
 		<?php zp_apply_filter('theme_body_open'); ?>

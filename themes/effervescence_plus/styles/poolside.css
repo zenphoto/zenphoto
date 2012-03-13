@@ -1130,44 +1130,6 @@ font-size: 0.8em;
  font-weight: bold;
 }
 
-/* login form */
-#passwordform {
-	text-align: center;
-	width: 400px;
-	margin: 0 auto;
-}
-
-table.password {
-	margin: 0 auto;
-}
-
-table.password td.userlabel{
-	text-align:right;
-}
-table.password td.userinput{
-	text-align:left;
-}
-
-table.password td.userinput input, td.passwordinput input {
-	width: 15em;
-}
-
-/* login form */
-table.password td.passwordlabel{
-	text-align:right;
-}
-
-table.password td.passwordinput{
-	text-align:left;
-}
-
-table.password td.submit{
-	text-align:center;
-}
-
-table.password td.hint{
-	text-align:left;
-}
 .inputbox {
 	width: 250px;
 	padding: 2px;

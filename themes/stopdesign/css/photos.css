@@ -1293,34 +1293,6 @@ font-family: Arial, Helvetice, sans-serif;
  font-weight: bold;
 }
 
-/* login form */
-table.password td.userlabel{
-	text-align:right;
-}
-table.password td.userinput{
-	text-align:left;
-}
-
-table.password td.userinput input, td.passwordinput input {
-	width: 15em;
-}
-
-/* login form */
-table.password td.passwordlabel{
-	text-align:right;
-}
-
-table.password td.passwordinput{
-	text-align:left;
-}
-
-table.password td.submit{
-	text-align:center;
-}
-
-table.password td.hint{
-	text-align:left;
-}
 .textobject {
 	font-size: 12px;
 	line-height: 16px;
@@ -1395,6 +1367,55 @@ width: 150px;
 
 #Federated_buttons_fieldlist ul.logon_buttons li span{
 
+}
+
+/* Login
+------------------------------ */
+#loginform {
+	text-align: left;
+	padding: 10px;
+	width: 350px;
+	margin: 25px auto;
+	margin-top: 15%;
+	margin-left: 0 auto;
+	font-size: 100%;
+	background: #F7F8F9;
+	border-top: 1px solid #BAC9CF;
+	border-left: 1px solid #BAC9CF;
+	border-right: 1px solid #BAC9CF;
+	border-bottom: 5px solid #BAC9CF;
+	-moz-border-radius: 5px 5px 5px 5px;
+	-khtml-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+#loginform fieldset {
+	-moz-border-radius: 5px 5px 5px 5px;
+	-khtml-border-radius: 5px 5px 5px 5px;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	border: 1px solid lightgray;
+	padding:10px;
+	text-align:left;
+}
+
+#loginform input.textfield {
+	margin: 0px;
+	width:270px;
+	font-size: 100%;
+	padding: 4px;
+}
+
+.logon_form_text {
+	padding: 4px;
+	text-align:left;
+	margin-left: 10px;
+	margin-left: 5px;
+}
+
+.logon_link {
+	text-align:center;
 }
 
 
