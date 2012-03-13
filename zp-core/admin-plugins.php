@@ -218,11 +218,11 @@ foreach ($filelist as $extension) {
 				}
 				if ($plugin_disable) {
 					?>
-					<span class="icons" id="<?php echo $extension;?>_disabled">
+					<span class="icons" id="<?php echo $extension;?>_checkbox">
 						<a href="javascript:toggle('showdisable_<?php echo $extension; ?>');" title="<?php  echo gettext('This plugin is disabled. Click for details.'); ?>">
 							<img src="images/action.png" alt="" class="zp_logoicon" />
 						</a>
-						<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0" />
+						<input type="hidden" name="<?php echo $opt; ?>" id="<?php echo $opt; ?>" value="0"	/>
 					</span>
 					<?php
 				} else {

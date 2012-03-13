@@ -20,8 +20,8 @@ $msg = array();
 $success = true;
 
 $targets = array(ZENFOLDER=>'dir', USER_PLUGIN_FOLDER=>'dir', 'index.php'=>'file');
-$zplist = unserialize(getOption('Zenphoto_theme_list'));
-foreach ($zplist as $theme) {
+$zplist = $_zp_gallery->getThemes();
+foreach ($zplist as $theme=>$data) {
 	$targets[THEMEFOLDER.'/'.$theme] = 'dir';
 }
 foreach (array(internalToFilesystem('charset_tést'),internalToFilesystem('charset.tést')) as $charset) {

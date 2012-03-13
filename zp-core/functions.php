@@ -2278,7 +2278,7 @@ function getLanguageFlag($lang) {
  *
  * @param string $table database table to search
  * @param int $id id of the item to get
- * @return object
+ * @return mixed
  */
 function getItemByID($table, $id) {
 		$result = query_single_row('SELECT * FROM '.prefix($table).' WHERE id ='.$id);
@@ -2295,7 +2295,7 @@ function getItemByID($table, $id) {
 		case 'news_categorys':
 			return new ZenpageCategory($result['titlelink']);
 	}
-	return NULL;
+	return result;
 }
 
 
