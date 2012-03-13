@@ -2285,8 +2285,7 @@ function getItemByID($type='', $id='') {
 	switch($type) {
 		case 'image':
 			$result = query_single_row('SELECT filename,albumid FROM '.prefix('news_categories').' WHERE id ='.$id);
-			$result2 = query_single_row('SELECT folder FROM '.prefix('album').' WHERE id ='.$result['albumid']);
-			$alb = new Album(NULL,$result2['folder']);
+			$alb = getItemByID('albums', $result['albumid']);
 			$obj = newImage($alb,$result['filename']);
 			break;
 		case 'album':
