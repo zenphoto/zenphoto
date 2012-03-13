@@ -2276,36 +2276,26 @@ function getLanguageFlag($lang) {
 /**
  * Gets an item object by id
  *
- * @param string $type type to get: image, album, new, page, category
- * @param int $id id of the item to get 
+ * @param string $table database table to search
+ * @param int $id id of the item to get
  * @return object
  */
-function getItemByID($type='', $id='') {
-	$id = sanitize_numeric($id);
-	switch($type) {
-		case 'image':
-			$result = query_single_row('SELECT filename,albumid FROM '.prefix('news_categories').' WHERE id ='.$id);
+function getItemByID($table, $id) {
+		$result = query_single_row('SELECT * FROM '.prefix($table).' WHERE id ='.$id);
+		switch($type) {
+		case 'images':
 			$alb = getItemByID('albums', $result['albumid']);
-			$obj = newImage($alb,$result['filename']);
-			break;
-		case 'album':
-			$result = query_single_row('SELECT folder FROM '.prefix('albums').' WHERE id ='.$id);
-			$alb = new Album(NULL,$result['folder']);
+			return newImage($alb,$result['filename']);
+		case 'albums':
+			return new Album(NULL,$result['folder']);
 		case 'news':
-			$result = query_single_row('SELECT titlelink FROM '.prefix('news').' WHERE id ='.$id);
-			$obj = new ZenpageNews($result['titlelink']);
-		case 'page':
-			$result = query_single_row('SELECT titlelink FROM '.prefix('pages').' WHERE id ='.$id);
-			$obj = new ZenpagePage($result['titlelink']);
-			break;
-		case 'category':
-			$result = query_single_row('SELECT titlelink FROM '.prefix('news_categories').' WHERE id ='.$id);
-			$obj = new ZenpageCategory($result['titlelink']);
-			break;	
-	}	
-	if(is_object($obj)) {
-		return $obj;
+			return new ZenpageNews($result['titlelink']);
+		case 'pages':
+			return new ZenpagePage($result['titlelink']);
+		case 'news_categorys':
+			return new ZenpageCategory($result['titlelink']);
 	}
+	return NULL;
 }
 
 
