@@ -49,10 +49,10 @@ if (!defined('WEBPATH')) die();
 				<?php endwhile; ?>
 		</div>
 		<br style="clear: both" />
-		<?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
+		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 
 	<?php } else { // news article loop
-printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
+printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
 echo "<hr />";
 while (next_news()): ;?>
  <div class="newsarticle">
@@ -77,7 +77,7 @@ if(is_GalleryNewsType()) {
 		</div>
 <?php
 	endwhile;
-	printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
+	printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
 } ?>
 
 </div><!-- content left-->

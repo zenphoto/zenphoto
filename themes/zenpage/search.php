@@ -54,7 +54,7 @@ if (!defined('WEBPATH')) die();
 		</div>
 
 <div id="breadcrumb">
-		<h2><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> &raquo; <?php echo "<strong>".gettext("Search")."</strong>";	?>
+		<h2><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php echo "<strong>".gettext("Search")."</strong>";	?>
 			</h2>
 			</div>
 
@@ -171,7 +171,7 @@ if (!defined('WEBPATH')) die();
 				echo "<p>".gettext("Sorry, no matches found. Try refining your search.")."</p>";
 			}
 
-			printPageListWithNav("&laquo; ".gettext("prev"),gettext("next")." &raquo;");
+			printPageListWithNav("« ".gettext("prev"),gettext("next")." »");
 			?>
 
 	</div><!-- content left-->

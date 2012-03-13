@@ -61,8 +61,8 @@ if (!defined('WEBPATH')) die();
 						<!-- begin content -->
 						<div class="main section" id="main">
 							<h2 id="gallerytitle">
-								<?php printHomeLink('',' &raquo; '); ?>
-								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo;
+								<?php printHomeLink('',' » '); ?>
+								<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> »
 												<?php printParentBreadcrumb("", " » ", " » "); printAlbumBreadcrumb("  ", " » "); ?>
 												<?php printImageTitle(true); ?>
 							</h2>
@@ -103,7 +103,7 @@ if (!defined('WEBPATH')) die();
 					?>
 					<div id="next" class="slides">
 						<a href="<?php echo html_encode(getNextImageURL()); ?>" title="<?php echo gettext('Next image'); ?>">
-							<h2><?php echo gettext('Next &raquo;'); ?></h2>
+							<h2><?php echo gettext('Next »'); ?></h2>
 							<img src="<?php echo html_encode(getNextImageThumb()); ?>" />
 						</a>
 					</div>
@@ -113,7 +113,7 @@ if (!defined('WEBPATH')) die();
 					?>
 					<div id="prev" class="slides">
 						<a href="<?php echo html_encode(getPrevImageURL()); ?>" title="<?php echo gettext('Previous image'); ?>">
-							<h2><?php echo gettext('&laquo; Previous'); ?></h2>
+							<h2><?php echo gettext('« Previous'); ?></h2>
 							<img src="<?php echo html_encode(getPrevImageThumb()); ?>" />
 						</a>
 					</div>

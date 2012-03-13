@@ -49,7 +49,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 						</div>
 					<?php endwhile; ?>
 				</div>
-				<?php printPageListWithNav("&laquo; " . gettext("prev"), gettext("next") . " &raquo;"); ?>
+				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 				<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ''); ?>
 
 				<?php @call_user_func('printGoogleMap'); ?>

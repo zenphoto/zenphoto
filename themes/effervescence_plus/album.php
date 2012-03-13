@@ -35,10 +35,10 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 					<?php
 						$album = getPrevAlbum();
 							if (is_null($album)) {
-								echo '<div class="albdisabledlink">&laquo;  '.gettext('prev').'</div>';
+								echo '<div class="albdisabledlink">«  '.gettext('prev').'</div>';
 							} else {
 							echo '<a href="'.$album->getAlbumLink().
-									'" title="' . html_encode($album->getTitle()) . '">&laquo; '.gettext('prev').'</a>';
+									'" title="' . html_encode($album->getTitle()) . '">« '.gettext('prev').'</a>';
 							}
 						?>
 					</div> <!-- albprevious -->
@@ -46,10 +46,10 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 						<?php
 							$album = getNextAlbum();
 							if (is_null($album)) {
-									echo '<div class="albdisabledlink">'.gettext('next').' &raquo;</div>';
+									echo '<div class="albdisabledlink">'.gettext('next').' »</div>';
 							} else {
 								echo '<a href="'.$album->getAlbumLink().
-										'" title="' . html_encode($album->getTitle()) . '">'.gettext('next').' &raquo;</a>';
+										'" title="' . html_encode($album->getTitle()) . '">'.gettext('next').' »</a>';
 							}
 						?>
 					</div><!-- albnext -->
@@ -183,7 +183,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 		<div id="pagenumbers">
 		<?php
 		if ((getNumAlbums() != 0) || !$oneImagePage){
-			printPageListWithNav("&laquo; " .gettext('prev'), gettext('next')." &raquo;", $oneImagePage);
+			printPageListWithNav("« " .gettext('prev'), gettext('next')." »", $oneImagePage);
 		}
 		?>
 		</div> <!-- pagenumbers -->

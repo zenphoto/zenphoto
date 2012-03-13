@@ -40,7 +40,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 					<?php endwhile; ?>
 				</div>
 				<br clear="all" />
-				<?php printPageListWithNav("&laquo; " . gettext("prev"), gettext("next") . " &raquo;"); ?>
+				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 			</div>
 		</div>
 		<div id="credit">

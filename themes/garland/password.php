@@ -33,8 +33,8 @@ if (!defined('WEBPATH')) die();
 						<!-- begin content -->
 						<div class="main section" id="main">
 							<h2 id="gallerytitle">
-								<?php printHomeLink('',' &raquo; '); ?>
-								<a href="<?php echo getGalleryIndexURL(false);?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo;
+								<?php printHomeLink('',' » '); ?>
+								<a href="<?php echo getGalleryIndexURL(false);?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> »
 								<?php echo "<em>".gettext('Password required')."</em>"; ?>
 							</h2>
 							<h3><?php echo gettext('A password is required to access this page.') ?></h3>

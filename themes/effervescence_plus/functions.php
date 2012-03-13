@@ -275,7 +275,7 @@ function commonNewsLoop($paged) {
 	<?php
 	}
 	if ($paged) {
-		printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
+		printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
 	}
 }
 

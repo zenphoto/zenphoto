@@ -39,8 +39,8 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 				<div class="left-corner"><!-- begin content -->
 					<div class="main section" id="main">
 						<h2 id="gallerytitle">
-							<?php printHomeLink('',' &raquo; '); ?>
-							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> &raquo; <?php printParentBreadcrumb("", " » ", " » "); ?><?php echo html_encode(getAlbumTitle()); ?>
+							<?php printHomeLink('',' » '); ?>
+							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> » <?php printParentBreadcrumb("", " » ", " » "); ?><?php echo html_encode(getAlbumTitle()); ?>
 						</h2>
 						<?php printAlbumDesc(); ?>
 						<?php printCodeblock(1); ?>
@@ -71,7 +71,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 							<?php $personality->theme_content($map); ?>
 							<?php
 							if ((getNumAlbums() != 0) || !$oneImagePage){
-								printPageListWithNav(gettext("&laquo; prev"), gettext("next &raquo;"), $oneImagePage);
+								printPageListWithNav(gettext("« prev"), gettext("next »"), $oneImagePage);
 							}
 							?>
 							<?php
@@ -99,7 +99,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 					if ($nextalbum) {
 						?>
 						<div id="next" class="slides">
-						<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album &raquo;'); ?><br /><img src="<?php echo html_encode($nextalbum->getAlbumThumb()); ?>" /></a>
+						<a href="<?php echo html_encode(getNextAlbumURL()); ?>" title="<?php echo gettext('Next album'); ?>"><?php echo gettext('Next album »'); ?><br /><img src="<?php echo html_encode($nextalbum->getAlbumThumb()); ?>" /></a>
 						</div>
 						<br />
 					<?php
@@ -107,7 +107,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 					if ($prevalbum) {
 						?>
 						<div id="prev" class="slides">
-						<a href="<?php echo html_encode(getPrevAlbumURL());?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('&laquo; Prev Album'); ?><br /><img src="<?php echo html_encode($prevalbum->getAlbumThumb()); ?>" /></a>
+						<a href="<?php echo html_encode(getPrevAlbumURL());?>" title="<?php echo gettext('Prev Album'); ?>"><?php echo gettext('« Prev Album'); ?><br /><img src="<?php echo html_encode($prevalbum->getAlbumThumb()); ?>" /></a>
 						</div>
 						<?php
 					}

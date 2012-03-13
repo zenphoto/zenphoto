@@ -35,15 +35,15 @@ if (!defined('WEBPATH')) die();
 						<!-- begin content -->
 						<div class="main section" id="main">
 							<h2 id="gallerytitle">
-							<?php printHomeLink('',' &raquo; '); ?>
+							<?php printHomeLink('',' » '); ?>
 							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a>
 							<?php
 							if (in_context(ZP_ZENPAGE_NEWS_CATEGORY) || getNewsTitle()) {
-								printNewsIndexURL(gettext("News"),"  &raquo; ");
-								printCurrentNewsCategory("  &raquo; ".gettext('Category')." - ");
-								printNewsTitle("  &raquo; ");
+								printNewsIndexURL(gettext("News"),"  » ");
+								printCurrentNewsCategory("  » ".gettext('Category')." - ");
+								printNewsTitle("  » ");
 							} else {
-								echo ' &raquo; '.gettext("News");
+								echo ' » '.gettext("News");
 							}
 							?>
 							</h2>

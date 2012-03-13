@@ -96,7 +96,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 		</div> <!-- main -->
 		<!-- Page Numbers -->
 		<div id="pagenumbers">
-			<?php printPageListWithNav("&laquo; ".gettext('prev'), gettext('next')." &raquo;"); ?>
+			<?php printPageListWithNav("« ".gettext('prev'), gettext('next')." »"); ?>
 		</div>
 	</div> <!-- content -->
 

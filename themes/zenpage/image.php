@@ -41,9 +41,9 @@ if (!defined('WEBPATH')) die();
 		<h1><?php echo getGalleryTitle();?></h1>
 	<div class="imgnav">
 			<?php if (hasPrevImage()) { ?>
-			<div class="imgprevious"><a href="<?php echo html_encode(getPrevImageURL());?>" title="<?php echo gettext("Previous Image"); ?>">&laquo; <?php echo gettext("prev"); ?></a></div>
+			<div class="imgprevious"><a href="<?php echo html_encode(getPrevImageURL());?>" title="<?php echo gettext("Previous Image"); ?>">« <?php echo gettext("prev"); ?></a></div>
 			<?php } if (hasNextImage()) { ?>
-			<div class="imgnext"><a href="<?php echo html_encode(getNextImageURL());?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?> &raquo;</a></div>
+			<div class="imgnext"><a href="<?php echo html_encode(getNextImageURL());?>" title="<?php echo gettext("Next Image"); ?>"><?php echo gettext("next"); ?> »</a></div>
 			<?php } ?>
 		</div>
 	</div>
@@ -51,7 +51,7 @@ if (!defined('WEBPATH')) die();
 <div id="content">
 
 	<div id="breadcrumb">
-	<h2><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> &raquo; <?php printParentBreadcrumb(""," » "," » "); printAlbumBreadcrumb("  ", " » "); ?>
+	<h2><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php gettext('Index'); ?>"><?php echo gettext("Index"); ?></a> » <?php printParentBreadcrumb(""," » "," » "); printAlbumBreadcrumb("  ", " » "); ?>
 			 <strong><?php printImageTitle(true); ?></strong> (<?php echo imageNumber()."/".getNumImages(); ?>)
 			</h2>
 		</div>
@@ -63,7 +63,7 @@ if (!defined('WEBPATH')) die();
  if (function_exists('printjCarouselThumbNav')) {
  	printjCarouselThumbNav(6,50,50,50,50,FALSE);
  } else {
- 	@call_user_func('printPagedThumbsNav',6, FALSE, gettext('&laquo; prev thumbs'), gettext('next thumbs &raquo;'), 40, 40);
+ 	@call_user_func('printPagedThumbsNav',6, FALSE, gettext('« prev thumbs'), gettext('next thumbs »'), 40, 40);
  }
 
  ?>

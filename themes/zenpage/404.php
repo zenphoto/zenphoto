@@ -25,7 +25,7 @@ if (!defined('WEBPATH')) die();
 
 		<div id="content">
 		<div id="breadcrumb">
-	<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> &raquo; <strong><?php echo gettext("Object not found"); ?></strong></h2>
+	<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> » <strong><?php echo gettext("Object not found"); ?></strong></h2>
 	</div>
 
 	<div id="content-error">

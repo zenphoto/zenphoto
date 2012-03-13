@@ -610,7 +610,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
  */
 function printNewsContent($shorten=false,$shortenindicator=NULL,$readmore=NULL) {
 	global $_zp_current_zenpage_news, $_zp_page;
-	echo getNewsContent($shorten,$shortenindicator,$readmore);
+	echo html_encodeTagged(getNewsContent($shorten,$shortenindicator,$readmore));
 }
 
 /**
@@ -920,7 +920,7 @@ function getNewsCategoryDesc() {
  *
  */
 function printNewsCategoryDesc() {
-	echo getNewsCategoryDesc();
+	echo html_encodeTagged(getNewsCategoryDesc());
 }
 
 /**
@@ -1491,7 +1491,7 @@ function getPrevNewsPageURL() {
  *
  * @return string
  */
-function printPrevNewsPageLink($prev='&laquo; prev',$class='disabledlink') {
+function printPrevNewsPageLink($prev='« prev',$class='disabledlink') {
 	global $_zp_zenpage, $_zp_page;
 	if(getPrevNewsPageURL()) {
 		echo "<a href='".getPrevNewsPageURL()."' title='".gettext("Prev page")." ".($_zp_page - 1)."' >".$prev."</a>\n";
@@ -1525,7 +1525,7 @@ function getNextNewsPageURL() {
  *
  * @return string
  */
-function printNextNewsPageLink($next='next &raquo;', $class='disabledlink') {
+function printNextNewsPageLink($next='next »', $class='disabledlink') {
 	global $_zp_page;
 	if (getNextNewsPageURL())	{
 		echo "<a href='".getNextNewsPageURL()."' title='".gettext("Next page")." ".($_zp_page + 1)."'>".$next."</a>\n";
@@ -1738,7 +1738,7 @@ function getPrevNewsURL($sortorder='date',$sortdirection='desc') {
  * @param string $sortdirection "date" (default) or "title" for sorting by date or titlelink. Required if these for next_news() loop are changed.
  * @return string
  */
-function printNextNewsLink($next=" &raquo;",$sortorder='date',$sortdirection='desc') {
+function printNextNewsLink($next=" »",$sortorder='date',$sortdirection='desc') {
 	$article_url = getNextPrevNews("next",$sortorder,$sortdirection);
 	if(array_key_exists('link', $article_url) && $article_url['link'] != "") {
 		echo "<a href=\"".html_encode($article_url['link'])."\" title=\"".html_encode(strip_tags($article_url['title']))."\">".$article_url['title']."</a> ".$next;
@@ -1756,7 +1756,7 @@ function printNextNewsLink($next=" &raquo;",$sortorder='date',$sortdirection='de
  * @param string $sortdirection "date" (default) or "title" for sorting by date or titlelink. Required if these for next_news() loop are changed.
  * @return string
  */
-function printPrevNewsLink($prev="&laquo; ",$sortorder='date',$sortdirection='desc') {
+function printPrevNewsLink($prev="« ",$sortorder='date',$sortdirection='desc') {
 	$article_url = getNextPrevNews("prev",$sortorder,$sortdirection);
 	if(array_key_exists('link', $article_url) && $article_url['link'] != "") {
 		echo $prev." <a href=\"".html_encode($article_url['link'])."\" title=\"".html_encode(strip_tags($article_url['title']))."\">".$article_url['title']."</a>";
@@ -2494,7 +2494,7 @@ function getPageContent($titlelink=NULL,$published=true) {
  * @return mixed
  */
 function printPageContent($titlelink=NULL,$published=true) {
-	echo getPageContent($titlelink,$published);
+	echo html_encodeTagged(getPageContent($titlelink,$published));
 }
 
 

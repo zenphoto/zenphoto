@@ -77,8 +77,8 @@ if (!$total) {
             <!-- begin content -->
             <div class="main section" id="main">
               <h2 id="gallerytitle">
-              	<?php printHomeLink('',' &raquo; '); ?>
-              	<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> &raquo; Search
+              	<?php printHomeLink('',' » '); ?>
+              	<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo html_encode(getGalleryTitle()); ?></a> » Search
               </h2>
 
 				<?php
@@ -219,7 +219,7 @@ if (!$total) {
 				<?php $personality->theme_content(NULL); ?>
 				<?php
 				if ((getNumAlbums() != 0) || !$oneImagePage){
-    	    printPageListWithNav(gettext("&laquo; prev"),gettext("next &raquo;"), $oneImagePage);
+    	    printPageListWithNav(gettext("« prev"),gettext("next »"), $oneImagePage);
 				}
         footer();
         ?>

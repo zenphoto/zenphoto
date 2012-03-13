@@ -38,7 +38,7 @@ if (!defined('WEBPATH')) die();
 <div id="content">
 
 	<div id="breadcrumb">
-	<h2><a href="<?php echo getGalleryIndexURL(false); ?>"><?php echo gettext("Index"); ?></a> <?php printNewsIndexURL(gettext('News'),' &raquo; '); ?><strong><?php printZenpageItemsBreadcrumb(' &raquo; ',''); printCurrentNewsCategory(" &raquo; "); ?><?php printNewsTitle(" &raquo; "); printCurrentNewsArchive(" &raquo; "); ?></strong>
+	<h2><a href="<?php echo getGalleryIndexURL(false); ?>"><?php echo gettext("Index"); ?></a> <?php printNewsIndexURL(gettext('News'),' » '); ?><strong><?php printZenpageItemsBreadcrumb(' » ',''); printCurrentNewsCategory(" » "); ?><?php printNewsTitle(" » "); printCurrentNewsArchive(" » "); ?></strong>
 	</h2>
 	</div>
 
@@ -63,7 +63,7 @@ if(is_NewsArticle()) {
 	@call_user_func('printCommentForm');
 
 } else {
-printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
+printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
 echo "<hr />";
 // news article loop
   while (next_news()): ;?>
@@ -89,7 +89,7 @@ if(is_GalleryNewsType()) {
     </div>
 <?php
   endwhile;
-  printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true);
+  printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
 } ?>
 
 

@@ -148,10 +148,10 @@ $thisalbum = $_zp_current_album;
 				?>
 				<?php if (isImagePage()) @call_user_func('printSlideShowLink'); ?>
 				<?php if (hasPrevPage()) { ?>
-						<a href="<?php echo html_encode(getPrevPageURL()); ?>" accesskey="x">&laquo; <?php echo gettext('prev page'); ?></a>
+						<a href="<?php echo html_encode(getPrevPageURL()); ?>" accesskey="x">« <?php echo gettext('prev page'); ?></a>
 				<?php } ?>
 				<?php if (hasNextPage()) { if (hasPrevPage()) { echo '&nbsp;'; } ?>
-						<a href="<?php echo html_encode(getNextPageURL()); ?>" accesskey="x"><?php echo gettext('next page'); ?> &raquo;</a>
+						<a href="<?php echo html_encode(getNextPageURL()); ?>" accesskey="x"><?php echo gettext('next page'); ?> »</a>
 				<?php } ?>
 				</p>
 				<?php if (function_exists('printUserLogin_out')) { printUserLogin_out(""); } ?>

@@ -30,14 +30,14 @@ if (!defined('WEBPATH')) die();
 <div id="content">
 
 	<div id="breadcrumb">
-<h2><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a><?php printParentBreadcrumb(" » "," » ",""); ?> &raquo; <strong><?php printAlbumTitle(true);?></strong></h2>
+<h2><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a><?php printParentBreadcrumb(" » "," » ",""); ?> » <strong><?php printAlbumTitle(true);?></strong></h2>
 </div>
 
 	<div id="content-left">
 	<div><?php printAlbumDesc(true); ?></div>
 
 
-<?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
+<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 			<div id="albums">
 			<?php while (next_album()): ?>
 			<div class="album">
@@ -63,7 +63,7 @@ if (!defined('WEBPATH')) die();
 
 		</div>
 				<p style="clear: both; "></p>
-		<?php printPageListWithNav("&laquo; ".gettext("prev"), gettext("next")." &raquo;"); ?>
+		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
 		<br style="clear:both;" /><br />
 		<?php

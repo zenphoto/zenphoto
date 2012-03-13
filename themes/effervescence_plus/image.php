@@ -61,9 +61,9 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 								global $_zp_current_image;
 								if (hasPrevImage()) {
 									$image = $_zp_current_image->getPrevImage();
-									echo '<a href="' . html_encode(getPrevImageURL()) . '" title="' . html_encode($image->getTitle()) . '">&laquo; '.gettext('prev').'</a>';
+									echo '<a href="' . html_encode(getPrevImageURL()) . '" title="' . html_encode($image->getTitle()) . '">« '.gettext('prev').'</a>';
 								} else {
-									echo '<div class="imgdisabledlink">&laquo; '.gettext('prev').'</div>';
+									echo '<div class="imgdisabledlink">« '.gettext('prev').'</div>';
 								}
 							?>
 						</div>
@@ -71,9 +71,9 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 							<?php
 								if (hasNextImage()) {
 									$image = $_zp_current_image->getNextImage();
-									echo '<a href="' . html_encode(getNextImageURL()) . '" title="' . html_encode($image->getTitle()) . '">'.gettext('next').' &raquo;</a>';
+									echo '<a href="' . html_encode(getNextImageURL()) . '" title="' . html_encode($image->getTitle()) . '">'.gettext('next').' »</a>';
 								} else {
-									echo '<div class="imgdisabledlink">'.gettext('next').' &raquo;</div>';
+									echo '<div class="imgdisabledlink">'.gettext('next').' »</div>';
 								}
 							?>
 						</div>
