@@ -2293,14 +2293,14 @@ function getItemByID($type='', $id='') {
 			$alb = new Album(NULL,$result['folder']);
 		case 'news':
 			$result = query_single_row('SELECT titlelink FROM '.prefix('news').' WHERE id ='.$id);
-			$obj = new ZenpageNews($result['titlelink'];
+			$obj = new ZenpageNews($result['titlelink']);
 		case 'page':
 			$result = query_single_row('SELECT titlelink FROM '.prefix('pages').' WHERE id ='.$id);
-			$obj = new ZenpagePage($result['titlelink'];
+			$obj = new ZenpagePage($result['titlelink']);
 			break;
-		ase 'category':
+		case 'category':
 			$result = query_single_row('SELECT titlelink FROM '.prefix('news_categories').' WHERE id ='.$id);
-			$obj = new ZenpageCategory($result['titlelink'];
+			$obj = new ZenpageCategory($result['titlelink']);
 			break;	
 	}	
 	if(is_object($obj)) {
