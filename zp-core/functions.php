@@ -2281,10 +2281,10 @@ function getLanguageFlag($lang) {
  * @return mixed
  */
 function getItemByID($table, $id) {
-		$result = query_single_row('SELECT * FROM '.prefix($table).' WHERE id ='.$id);
-		switch($type) {
+	$result = query_single_row('SELECT * FROM '.prefix($table).' WHERE id ='.$id);
+	switch($type) {
 		case 'images':
-			$alb = getItemByID('albums', $result['albumid']);
+			$alb = getItemByID('albums', $result['albumid']);				
 			return newImage($alb,$result['filename']);
 		case 'albums':
 			return new Album(NULL,$result['folder']);
@@ -2292,10 +2292,10 @@ function getItemByID($table, $id) {
 			return new ZenpageNews($result['titlelink']);
 		case 'pages':
 			return new ZenpagePage($result['titlelink']);
-		case 'news_categorys':
+		case 'news_categories':
 			return new ZenpageCategory($result['titlelink']);
 	}
-	return result;
+	return $result;
 }
 
 
