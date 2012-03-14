@@ -440,12 +440,11 @@ ul.nav li:hover > ul {
 /* Warning Messages
 ------------------------------ */
 .warningbox {
-	padding: 20px;
-	background-color: #FFFF00;
-	border-top: 1px solid #996600;
-	border-left: 1px solid #996600;
-	border-right: 1px solid #996600;
-	border-bottom: 5px solid #996600;
+	padding: 5px 10px 5px 10px;
+	background-color: #fcf676;
+	border-width: 1px 1px 2px 1px;
+	border-style: solid;
+	border-color: #FFDEB5;
 	-moz-border-radius: 5px;
 	-khtml-border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -489,7 +488,6 @@ ul.nav li:hover > ul {
 	color: #663300;
 	font-size: 100%;
 	font-weight: bold;
-	margin-bottom: 1em;
 }
 
 /* Miscellaneous
@@ -561,11 +559,13 @@ table.bordered tr td {
 	border-bottom: 1px solid #E5E5E5;
 	line-height: 18px;
 }
+/*
 table.bordered tr td strong {
 line-height: 18px;
 position: relative;
-top: -1px;
-}
+top: 0px;
+} */
+
 /*****
 /* some additions for the plugins and options tables, easier to read if top aligned IMHO */
 table.options td {
