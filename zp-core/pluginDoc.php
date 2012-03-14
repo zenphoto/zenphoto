@@ -97,6 +97,43 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 		-webkit-border-radius: 5px;
 		border-radius: 5px;
 	}
+	.moc_button {
+		display: block;
+		float: left;
+		width: 200px;
+		margin: 0 7px 0 0;
+		background-color: #f5f5f5;
+		background-image: url(images/admin-buttonback.jpg);
+		background-repeat: repeat-x;
+		border: 1px solid #dedede;
+		border-top: 1px solid #eee;
+		border-left: 1px solid #eee;
+		font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+		font-size: 100%;
+		line-height: 130%;
+		text-decoration: none;
+		font-weight: bold;
+		color: #565656;
+		cursor: pointer;
+		padding: 5px 10px 6px 7px; /* Links */
+		-moz-border-radius: 5px;
+		-khtml-border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+	}
+	.buttons .tip {
+		text-align: left;
+	}
+	ul.options  {
+ 		list-style: none;
+		margin-left: 0;
+		padding: 0;
+	}
+	ul.options li {
+ 		list-style: none;
+		margin-left: 1.5em;
+		padding-bottom: 2px;
+	}
 	</style>
 </head>
 <body>
@@ -197,14 +234,14 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 				?>
 				<p>
 				<?php echo ngettext('Option:','Options:',count($options)); ?>
-				<ul>
+				<ul class="options">
 					<?php
 					foreach ($options as $option) {
 						$row = $supportedOptions[$option];
 						$option = trim($option,'*'.chr(0));
 						if ($option && $row['type'] != OPTION_TYPE_NOTE) {
 							?>
-							<li><?php echo $option; ?></li>
+							<li><code><?php echo $option; ?></code></li>
 							<?php
 						}
 					}
@@ -237,11 +274,8 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 							<?php
 						}
 						?>
-						<form name="<?php echo $button['formname']; ?>"	class="overview_utility_buttons">
-							<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
-							<?php echo $button['hidden']; ?>
-							<div class="buttons">
-								<button class="tooltip" type="reset"	title="<?php echo $button['title']; ?>" >
+						<form class="overview_utility_buttons">
+							<div class="moc_button tip" title="<?php echo $button['title']; ?>" >
 								<?php
 								if(!empty($button_icon)) {
 									?>
@@ -250,7 +284,6 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 								}
 								echo html_encode($button['button_text']);
 								?>
-								</button>
 							</div>
 						</form>
 						<?php
