@@ -3054,7 +3054,7 @@ function getLatestComments($number,$type="all",$itemID="") {
 	if (!zp_loggedin(ADMIN_RIGHTS)) {
 		$albumscheck = query("SELECT * FROM " . prefix('albums'). " ORDER BY title");
 		if ($albumscheck) {
-			while ($albumcheck = db_fetch_assoc($albumcheck)) {
+			while ($albumscheck = db_fetch_assoc($albumcheck)) {
 				$album = new Album(NULL, $albumcheck['folder']);
 				if($album->isMyItem(LIST_RIGHTS) || !checkAlbumPassword($albumcheck['folder'])) {
 					$albumpasswordcheck1= " AND i.albumid != ".$albumcheck['id'];
