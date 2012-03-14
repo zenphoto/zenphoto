@@ -58,10 +58,10 @@ $plugin_is_filter = '';
 $plugin_URL = '';
 $option_interface = '';
 
-require_once($path);
+@require_once($path);
 $buttonlist = zp_apply_filter('admin_utilities_buttons', array());
 
-$pluginStream = file_get_contents($path);
+$pluginStream = @file_get_contents($path);
 
 if ($thirdparty) {
 	$whose = gettext('third party plugin');
