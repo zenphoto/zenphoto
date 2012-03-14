@@ -35,6 +35,7 @@ class RSS {
 	//comment feed specific
 	protected $id = NULL;
 	protected $commentrsstype = NULL;
+	protected $itemobj = NULL; // if comments for an item its object
 
 	//channel vars
 	protected $channel_title = NULL;
@@ -87,23 +88,35 @@ class RSS {
 					} else {
 						$this->rssmode = '';
 					}
-					if(isset($_GET['albumtitle'])) {
-						$albumname = ' - '.html_encode(sanitize(urldecode($_GET['albumtitle']))).' ('.gettext(' - latest images').')';
+					if(isset($_GET['folder'])) {
+						$this->albumfolder = sanitize(urldecode($_GET['folder']));
+						$this->collection = TRUE;
+						$alb = new Album(NULL,$this->albumfolder);
+						$albumtitle = $alb->getTitle(); 
+					} else if(isset($_GET['albumname'])){
+						$this->albumfolder = sanitize(urldecode($_GET['albumname']));
+						$this->collection = false;
+						$alb = new Album(NULL,$this->albumfolder);
+						$albumtitle = $alb->getTitle(); 
+					} else {
+						$albumtitle = '';
+						$this->collection = FALSE;
+					}
+					if(isset($_GET['folder']) || isset($_GET['albumname'])) {
+						$albumname = ' - '.html_encode($albumtitle).' ('.gettext(' - latest images').')';
 					} elseif ($this->rssmode == "albums" && !isset($_GET['folder'])) {
 						$albumname = ' ('.gettext('latest albums').')';
 					} elseif ($this->rssmode == 'albums' && isset($_GET['folder'])) {
-						$folder = sanitize(urldecode($_GET['folder']));
-						$albobj = new Album(NULL,$folder);
-						$albumname = ' - '.html_encode(strip_tags($albobj->getTitle())).' ('.gettext('latest albums').')';
+						$albumname = ' - '.html_encode($albumtitle).' ('.gettext('latest albums').')';
 					} else {
 						$albumname = ' ('.gettext('latest images').')';
 					}
 					$this->channel_title = html_encode($this->channel_title.' '.strip_tags($albumname));
 					$this->albumpath = $this->getRSSImageAndAlbumPaths('albumpath');
 					$this->imagepath = $this->getRSSImageAndAlbumPaths('imagepath');
-					$this->albumfolder = $this->getRSSAlbumnameAndCollection('albumfolder');
-					$this->collection = $this->getRSSAlbumnameAndCollection('collection');
-					$this->modrewritesuffix = $this->getRSSImageAndAlbumPaths("modrewritesuffix");
+					//$this->albumfolder = $this->getRSSAlbumnameAndCollection('albumfolder');
+					//$this->collection = $this->getRSSAlbumnameAndCollection('collection');
+					//$this->modrewritesuffix = $this->getRSSImageAndAlbumPaths("modrewritesuffix");
 					if(isset($_GET['size'])) {
 						$this->imagesize = sanitize_numeric($_GET['size']);
 					} else {
@@ -163,20 +176,40 @@ class RSS {
 					}
 					if(isset($_GET['id'])) {
 						$this->id = sanitize_numeric($_GET['id']);
+						$table = NULL;
+						switch($this->commentrsstype) {
+							case 'album': //sadly needed but the parameter cannot be changed for backward compatibility of feeds.
+								$table = 'albums';
+								break;
+							case 'image':
+								$table = 'images';
+								break;
+							case 'news':
+								$table = 'news';
+								break;
+							case 'page':
+								$table = 'pages';
+								break;
+						}
+						$this->itemobj = getItemByID($table,$this->id);
+						$title = ' - '.$this->itemobj->getTitle();
 					} else {
-						$this->id = '';
+						$this->id = NULL;
+						$this->itemobj = NULL;
+						$title = NULL;
 					}
+					/*
 					if(isset($_GET['title'])) {
 						$title = ' - '.sanitize($_GET['title']);
 					} else {
 						$title = NULL;
-					}
+					} */
 					$this->channel_title = html_encode($this->channel_title.$title.gettext(' (latest comments)'));
 					if(getOption('zp_plugin_zenpage')) {
 						require_once(ZENFOLDER . '/'.PLUGIN_FOLDER. '/zenpage/zenpage-template-functions.php');
 					}
-					break;
 					$this->itemnumber = getOption('feed_items');
+					break;
 			}
 			$this->feeditems = $this->getRSSitems();
 		}
@@ -423,7 +456,7 @@ class RSS {
 				break;
 
 			case 'comments':
-				switch($this->rssmode) {
+				switch($this->commentrsstype) {
 					case 'gallery':
 					case 'album':
 					case 'image':
@@ -431,7 +464,6 @@ class RSS {
 						if($this->commentrsstype == 'gallery') {
 							$type = 'all';
 						}
-						echo $this->itemnumber.$type.$this->id;
 						$items = getLatestComments($this->itemnumber,$type,$this->id);
 						break;
 					case 'zenpage':
@@ -472,7 +504,7 @@ class RSS {
 		if($this->rssmode != "albums") {
 			$ext = getSuffix($item->filename);
 			$albumobj = $item->getAlbum();
-			$itemlink = $this->host.WEBPATH.$this->albumpath.pathurlencode($albumobj->name).$this->imagepath.pathurlencode($item->filename).$this->modrewritesuffix;
+			$itemlink = $this->host.pathurlencode($item->getImagelink());
 			$fullimagelink = $this->host.WEBPATH."/albums/".pathurlencode($albumobj->name)."/".$item->filename;
 			$imagefile = "albums/".$albumobj->name."/".$item->filename;
 			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.$item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.get_language_string(get_language_string($item->get("title"),$this->locale)) .'" /><br />';
@@ -487,7 +519,7 @@ class RSS {
 		} else {
 			$albumobj = new Album(NULL, $item['folder']);
 			$totalimages = $albumobj->getNumImages();
-			$itemlink = $this->host.WEBPATH.$this->albumpath.pathurlencode($albumobj->name);
+			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
 			$thumb = $albumobj->getAlbumThumbImage();
 			$thumburl = '<img border="0" src="'.$thumb->getCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.html_encode(get_language_string($albumobj->get("title"),$this->locale)) .'" />';
 			$title =  get_language_string($albumobj->get("title"),$this->locale);
@@ -595,7 +627,7 @@ class RSS {
 				$filename = $obj->getFilename();
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
-				$fullimagelink = $host.WEBPATH."/albums/".$album."/".$filename;
+				$fullimagelink = $this->host.WEBPATH.'/albums/'.$album.'/'.$filename;
 				$imagefile = "albums/".$album."/".$filename;
 				if(getOption('zenpage_rss_length') == "") {
 					// empty value means full content!
@@ -643,9 +675,10 @@ class RSS {
 		switch($item['type']) {
 			case 'images':
 				$title = get_language_string($item['title']);
-				$imagetag = $imagepath.$item['filename'].$modrewritesuffix;
+				$link = $this->itemobj->getImagelink();
 			case 'albums':
 				$album = pathurlencode($item['folder']);
+				$link = $this->itemobj->getAlbumlink();
 				$feeditem['pubdate'] = date("r",strtotime($item['date']));
 				$category = $item['albumtitle'];
 				$website =$item['website'];
@@ -654,7 +687,7 @@ class RSS {
 				} else {
 					$title = $category.": ".$title;
 				}
-				$commentpath = PROTOCOL.'://'.$this->host.WEBPATH.$this->albumpath.$album.$imagetag."#".$item['id'];
+				$commentpath = PROTOCOL.'://'.$this->host.html_encode($link)."#".$item['id'];
 				break;
 			case 'news':
 			case 'pages':
@@ -666,9 +699,9 @@ class RSS {
 				$website = $item['website'];
 				if(function_exists('getNewsURL')) {
 					if ($item['type']=='news') {
-						$commentpath = $protocol.'://'.$host.getNewsURL($titlelink)."#".$item['id'];
+						$commentpath = PROTOCOL.'://'.$this->host.html_encode(getNewsURL($titlelink))."#".$item['id'];
 					} else {
-						$commentpath = $protocol.'://'.$host.getPageLinkURL($titlelink)."#".$item['id'];
+						$commentpath = PROTOCOL.'://'.$this->host.html_encode(getPageLinkURL($titlelink))."#".$item['id'];
 					}
 				} else {
 					$commentpath = '';
@@ -677,7 +710,7 @@ class RSS {
 		}
 		$feeditem['title'] = strip_tags($title.$author);
 		$feeditem['link'] = $commentpath;
-		$feeditem['desc'] = $comment['comment'];
+		$feeditem['desc'] = $item['comment'];
 		return $feeditem;
 	}
 
@@ -713,7 +746,7 @@ class RSS {
 							$item = $this->getRSSitemNews($feeditem);
 							break;
 						case 'comments':
-							$item = getRSSitemComments($feeditem);
+							$item = $this->getRSSitemComments($feeditem);
 							break;
 					}
 					?>

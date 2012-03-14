@@ -11,7 +11,13 @@ checkInstall();
  * Invoke the controller to handle requests
  */
 require_once(dirname(__FILE__). "/".ZENFOLDER.'/controller.php');
-
+// RSS feed calls before anything else
+if (isset($_GET['rss'])) {
+	require_once(dirname(__FILE__). "/".ZENFOLDER.'/class-rss.php');
+	$rss = new RSS();
+	$rss->printRSSFeed();
+	exitZP();
+}
 $_zp_obj = '';
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page

@@ -2282,7 +2282,7 @@ function getLanguageFlag($lang) {
  */
 function getItemByID($table, $id) {
 	$result = query_single_row('SELECT * FROM '.prefix($table).' WHERE id ='.$id);
-	switch($type) {
+	switch($table) {
 		case 'images':
 			$alb = getItemByID('albums', $result['albumid']);				
 			return newImage($alb,$result['filename']);
@@ -2295,7 +2295,6 @@ function getItemByID($table, $id) {
 		case 'news_categories':
 			return new ZenpageCategory($result['titlelink']);
 	}
-	return $result;
 }
 
 
