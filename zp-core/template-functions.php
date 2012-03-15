@@ -3692,7 +3692,7 @@ function printCustomPageURL($linktext, $page, $q='', $prev='', $next='', $class=
  */
 function getURL($image) {
 	return rewrite_path(pathurlencode($image->getAlbumName()) . "/" . urlencode($image->filename),
-	 										"/index.php?album=" . pathurlencode($image->getAlbumName()) . "&image=" . urlencode($image->filename));
+											"/index.php?album=" . pathurlencode($image->getAlbumName()) . "&image=" . urlencode($image->filename));
 }
 /**
  * Returns the record number of the album in the database
@@ -4029,9 +4029,9 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 							newsearch = newsearch.substr(0,newsearch.length-1);
 						}
 						if (newsearch.length > 0) {
-							$('#search_input').val('('+<?php echo $searchwords; ?>+') AND ('+newsearch+')');
+							$('#search_input').val('(<?php echo $searchwords; ?>) AND ('+newsearch+')');
 						} else {
-							$('#search_input').val(<?php echo $searchwords; ?>);
+							$('#search_input').val('<?php echo $searchwords; ?>');
 						}
 					}
 					return true;
