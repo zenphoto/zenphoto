@@ -42,6 +42,7 @@ function getImageAlbumAlbumList($obj, &$albumlist) {
  *		"latest" for the latest uploaded, "mostrated" for the most voted,
  *		"toprated" for the best voted
  *		"latestupdated" for the latest updated
+ *		"random" for random order (yes, strictly no statistical order...)
  * @param string $albumfolder The name of an album to get only the statistc for its subalbums
  * @return string
  */
@@ -74,6 +75,8 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 			break;
 		case "latestupdated":
 			$sortorder = 'updateddate';
+		case "random":
+			$sortorder = "RAND()"; break;
 			break;
 	}
 	$albums = query_full_array("SELECT id, title, folder, thumb FROM " . prefix('albums') . $albumWhere . " ORDER BY ".$sortorder." DESC LIMIT ".$number);
@@ -330,6 +333,7 @@ function printLatestUpdatedAlbums($number=5,$showtitle=false, $showdate=false, $
  *		"latest-mtime" for the latest uploaded, but fetched by mtime,
  *		"mostrated" for the most voted,
  *		"toprated" for the best voted
+ *		"random" for random order (yes, strictly no statistical order...)
  * @param string $albumfolder foldername of an specific album
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
  * @return string
@@ -361,6 +365,8 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 			$sortorder = "images.total_votes"; break;
 		case "toprated":
 			$sortorder = "(images.total_value/images.total_votes)"; break;
+		case "random":
+			$sortorder = "RAND()"; break;
 		default:
 			$sortorder = 'id'; break;
 	}
