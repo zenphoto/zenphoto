@@ -2928,12 +2928,12 @@ function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
 			break;
 		case 'Comments-news':
 			if (getOption('RSS_article_comments')) {
-				return WEBPATH.'/index.php?rss=comments&id='.getNewsID().'&title='.urlencode(getNewsTitle()).'&type=news&lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&id='.getNewsID().'&type=news&lang='.$lang;
 			}
 			break;
 		case 'Comments-page':
 			if (getOption('RSS_article_comments')) {
-				return WEBPATH.'/index.php?rss=comments&id='.getPageID().'&title='.urlencode(getPageTitle()).'&type=page&lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&id='.getPageID().'&type=page&lang='.$lang;
 			}
 			break;
 			case 'Comments-all':

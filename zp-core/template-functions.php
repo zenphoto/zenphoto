@@ -3731,12 +3731,12 @@ function getRSSLink($option,$lang='') {
 			break;
 		case 'Album':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&albumtitle='.urlencode(getAlbumTitle()).'&albumname='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang;
+				return WEBPATH.'/index.php?rss&albumname='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang;
 				break;
 			}
 		case 'Collection':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&albumtitle='.urlencode(getAlbumTitle()).'&folder='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang;
+				return WEBPATH.'/index.php?rss&folder='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang;
 			}
 			break;
 		case 'Comments':
@@ -3746,12 +3746,12 @@ function getRSSLink($option,$lang='') {
 			break;
 		case 'Comments-image':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss=comments&id='.getImageID().'&title='.urlencode(getImageTitle()).'&type=image&lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&id='.getImageID().'&type=image&lang='.$lang;
 			}
 			break;
 		case 'Comments-album':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss=comments&id='.getAlbumID().'&title='.urlencode(getAlbumTitle()).'&type=album&lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&id='.getAlbumID().'&type=album&lang='.$lang;
 			}
 			break;
 		case 'AlbumsRSS':

@@ -1,10 +1,83 @@
 <?php
 /**
- * The feed is dependend on GET parameters available
+ * The feed is dependend on GET parameters available.
+ * 
+ * The gallery and additionally Zenpage CMS plugin provide rss link functions to generate context dependent rss links. 
+ * You can however create your own links manually:
+ * 
+ * I. GALLERY: 
+ * These accept the following parameters:
  *
- * Intended Usage:
- * $rss = new RSS();
- * $rss->printRSSfeed();
+ * - "Gallery" feed for latest images of the whole gallery
+ * index.php?rss&lang=<locale></li>
+ * 
+ * - "Album" for latest images only of the album it is called from
+ * index.php?rss&albumname=<album name>&lang=<locale>
+ * 
+ * - "Collection" for latest images of the album it is called from and all of its subalbums
+ * index.php?rss&folder=<album name>&lang=<locale>
+ * 
+ * - "AlbumsRSS" for latest albums
+ * index.php?rss&lang=<locale>&albumsmode';
+ * 
+ * - "AlbumsRSScollection" only for latest subalbums with the album it is called from
+ * index.php?rss&folder=<album name>&lang=<locale>&albumsmode';
+
+ * - "Comments" for all comments of all albums and images
+ * index.php?rss=comments&type=gallery&lang=<locale>
+ * 
+ * - "Comments-image" for latest comments of only the image it is called from
+ * index.php?rss=comments&id=<id of image>&type=image&lang=<locale>
+ * 
+ * - "Comments-album" for latest comments of only the album it is called from
+ * index.php?rss=comments&id=<album id>&type=album&lang=<locale>
+ * 
+ * Other optional Gallery parameters:
+ * 
+ * 2a) "sortorder" for "Gallery", "Album", "Collection" allows these values: 
+ *  - 'latest'(latest by id)
+ *  -	'latest-date'	(latest by date)
+ *  - 'latest-mtime' (latest by mtime)
+ *  - 'random'
+ * Overrides the option value if set.
+ *  
+ * 2b) "sortorder" for latest "AlbumsRSS" and "AlbumsRSScollection" allows these values:
+ *  - 'latest'(latest by id)
+ *  -	'latestupdated'	(latest updated with images)
+ *  - 'random'
+ * Overrides the option value if set.
+ * 
+ * II. ZENPAGE CMS PLUGIN 
+ * Requires the plugin to be enabled naturally.
+ * 
+ * - "News" feed for all news articles
+ * index.php?rss=news&lang=<locale>
+ * 
+ * - "Category" for only the news articles of the category that is currently selected
+ * index.php?rss=news&lang=<locale>&category=<titlelink of category>;
+ * 
+ * - "NewsWithImages" for all news articles and latest images
+ * index.php?rss=news&withimages&lang=<locale>
+ * 
+ * - "Comments" for all news articles and pages
+ * index.php?rss=comments&type=zenpage&lang=<locale>
+ * 
+ * - "Comments-news" for comments of only the news article it is called from
+ * index.php?rss=comments&id=<news article id>&type=news&lang=<locale>
+ * 
+ * - "Comments-page" for comments of only the page it is called from
+ * index.php?rss=comments&id=<page id>&type=page&lang=<locale>
+ * 
+ * - "Comments-all" for comments from all albums, images, news articels and pages
+ * index.php?rss=comments&type=allcomments&lang=<locale>
+ * 
+ * Optional parameter to I. and II.:
+ * "itemnumber": Set the number of items to get. If set overrides the option value.
+ * "lang": Actually optional as well and if not set the currently set locale is used.
+ *
+ * Intended Usage to create a feed:
+ * $rss = new RSS(); // gets parameters from the url
+ * $rss->printRSSfeed(); // prints xml feed
  *
  */
 class RSS {
@@ -26,6 +99,7 @@ class RSS {
 	protected $imagepath = NULL;
 	protected $imagesize = NULL;
 	protected $modrewritesuffix = NULL;
+	protected $sortorder = NULL;
 
 	// news feed specific
 	protected $catlink = NULL;
@@ -72,8 +146,9 @@ class RSS {
 					$this->channel_title = strip_tags(get_language_string($_zp_gallery->get('website_title'), $this->locale).' - '.get_language_string($_zp_gallery->get('gallery_title'), $this->locale));
 					break;
 			}
+			$rssfeedtype = sanitize($_GET['rss']);
 			// individual feedtype setup
-			switch (sanitize($_GET['rss'])) {
+			switch($rssfeedtype) {
 
 				default:	//gallery RSS
 					if (!getOption('RSS_album_image')) {
@@ -114,9 +189,6 @@ class RSS {
 					$this->channel_title = html_encode($this->channel_title.' '.strip_tags($albumname));
 					$this->albumpath = $this->getRSSImageAndAlbumPaths('albumpath');
 					$this->imagepath = $this->getRSSImageAndAlbumPaths('imagepath');
-					//$this->albumfolder = $this->getRSSAlbumnameAndCollection('albumfolder');
-					//$this->collection = $this->getRSSAlbumnameAndCollection('collection');
-					//$this->modrewritesuffix = $this->getRSSImageAndAlbumPaths("modrewritesuffix");
 					if(isset($_GET['size'])) {
 						$this->imagesize = sanitize_numeric($_GET['size']);
 					} else {
@@ -131,7 +203,15 @@ class RSS {
 							$this->imagesize = getOption('feed_imagesize'); // un-cropped image size
 						}
 					}
-					$this->itemnumber = getOption('feed_items');
+					if(isset($_GET['sortorder'])) {
+						$this->sortorder = sanitize($_GET['sortorder']);
+					} else {
+						if ($this->rssmode == "albums") {
+							$this->sortorder = getOption("feed_sortorder_albums");
+						} else {
+							$this->sortorder = getOption("feed_sortorder");
+						}
+					}
 					require_once(ZENFOLDER .'/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					break;
 
@@ -156,7 +236,6 @@ class RSS {
 					}
 					$this->channel_title = html_encode($this->channel_title.$cattitle.$titleappendix);
 					$this->imagesize = getOption('feed_imagesize'); // un-cropped image size
-					$this->itemnumber = getOption("zenpage_rss_items"); // # of Items displayed on the feed
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
@@ -198,18 +277,20 @@ class RSS {
 						$this->itemobj = NULL;
 						$title = NULL;
 					}
-					/*
-					if(isset($_GET['title'])) {
-						$title = ' - '.sanitize($_GET['title']);
-					} else {
-						$title = NULL;
-					} */
 					$this->channel_title = html_encode($this->channel_title.$title.gettext(' (latest comments)'));
 					if(getOption('zp_plugin_zenpage')) {
 						require_once(ZENFOLDER . '/'.PLUGIN_FOLDER. '/zenpage/zenpage-template-functions.php');
 					}
-					$this->itemnumber = getOption('feed_items');
 					break;
+			}
+			if(isset($_GET['itemnumber']) && $rssfeedtype != 'news') {
+				$this->itemnumber = sanitize_numeric($_GET['itemnumber']);
+			} else {
+				if($rssfeedtype == 'news') {
+					$this->itemnumber = getOption("zenpage_rss_items"); // # of Items displayed on the feed
+				} else {
+					$this->itemnumber = getOption('feed_items');
+				}
 			}
 			$this->feeditems = $this->getRSSitems();
 		}
@@ -436,9 +517,9 @@ class RSS {
 		switch($this->feedtype) {
 			case 'gallery':
 				if ($this->rssmode == "albums") {
-					$items = getAlbumStatistic($this->itemnumber,getOption("feed_sortorder_albums"),$this->albumfolder);
+					$items = getAlbumStatistic($this->itemnumber,$this->sortorder,$this->albumfolder);
 				} else {
-					$items = getImageStatistic($this->itemnumber,getOption("feed_sortorder"),$this->albumfolder,$this->collection);
+					$items = getImageStatistic($this->itemnumber,$this->sortorder,$this->albumfolder,$this->collection);
 				}
 				break;
 			case 'news':
@@ -523,7 +604,7 @@ class RSS {
 			$thumb = $albumobj->getAlbumThumbImage();
 			$thumburl = '<img border="0" src="'.$thumb->getCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.html_encode(get_language_string($albumobj->get("title"),$this->locale)) .'" />';
 			$title =  get_language_string($albumobj->get("title"),$this->locale);
-			if(true || getOption("feed_sortorder_albums") == "latestupdated") {
+			if(true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumobj->name));
 				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$albumobj->getID() . " AND `show` = 1 ORDER BY id DESC");
 				if($latestimage) {
@@ -715,7 +796,7 @@ class RSS {
 	}
 
 	/**
-	* Prints the RSS feed
+	* Prints the RSS feed xml
 	*
 	*/
 	public function printRSSfeed() {
@@ -779,6 +860,4 @@ class RSS {
 		$this->endRSSCache();
 	}
 }
-
-
 ?>
