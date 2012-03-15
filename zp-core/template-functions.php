@@ -3046,15 +3046,14 @@ function printAlbumZip(){
  * 											"album" for the latest comments of one specific album
  * @param int $itemID the ID of the element to get the comments for if $type != "all"
  */
-function getLatestComments($number,$type="all",$itemID="") {
+function getLatestComments($number,$type="all",$itemID=0) {
 	global $_zp_gallery;
-	$itemID = sanitize_numeric($itemID);
 	$passwordcheck1 = "";
 	$passwordcheck2 = "";
 	if (!zp_loggedin(ADMIN_RIGHTS)) {
-		$albumscheck = query("SELECT * FROM " . prefix('albums'). " ORDER BY title");
-		if ($albumscheck) {
-			while ($albumscheck = db_fetch_assoc($albumcheck)) {
+		$rslt = query("SELECT * FROM " . prefix('albums'). " ORDER BY title");
+		if ($rslt) {
+			while ($albumcheck = db_fetch_assoc($rslt)) {
 				$album = new Album(NULL, $albumcheck['folder']);
 				if($album->isMyItem(LIST_RIGHTS) || !checkAlbumPassword($albumcheck['folder'])) {
 					$albumpasswordcheck1= " AND i.albumid != ".$albumcheck['id'];

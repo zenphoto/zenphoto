@@ -292,7 +292,7 @@ $backgroundImagePath="";
 				if (empty($searchwords)) {
 					echo gettext('Enter your search criteria.');
 				} else {
-					printf(gettext('Sorry, no matches for <em>%s</em>. Try refining your search.'),$searchwords);
+					printf(gettext('Sorry, no matches for <em>%s</em>. Try refining your search.'),html_encode($searchwords));
 				}
 			?>
 			</p>
