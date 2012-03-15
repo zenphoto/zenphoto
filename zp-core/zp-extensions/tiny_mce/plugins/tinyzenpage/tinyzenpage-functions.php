@@ -166,22 +166,23 @@ function printImageslist($number) {
 				$albumdesc = $linkalbumobj->getDesc();
 				$fullimage = pathurlencode(addslashes($imageobj->getFullImage()));
 				$videocheck = checkIfImageVideo($imageobj);
+
+				$thumburl = $imageobj->getThumb();
+				$imgurl = $imageobj->getimageLink(false);
 				if(get_class($imageobj) == '_Image') {
 					$video = '';
 					$backgroundcss = 'border: 1px solid gray; padding: 1px;';
 					$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
 				} else if(get_class($imageobj) == 'TextObject' || get_parent_class($imageobj) == 'TextObject') {
 					$video = 'textobject';
-					$imgurl = $imageobj->getThumb();
 					$fullimage = html_encode($imageobj->getBody());
 				} else {
 					$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
 					$video = $videocheck;
-					$imgurl = $imageobj->getThumb();
 				}
 				$imgsizeurl = $imageobj->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 				echo "<div style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>\n";
-				echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".urlencode($imageobj->filename)."','".
+				echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".$thumburl."','".urlencode($imageobj->filename)."','".
 																												js_encode($imageobj->getTitle())."','".
 																												js_encode($linkalbumobj->getTitle())."','".
 																												$fullimage."','zenphoto','".

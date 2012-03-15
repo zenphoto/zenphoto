@@ -32,7 +32,7 @@ var ZenpageDialog = {
 		tinyMCEPopup.resizeToInnerSize();
 	},
 
-	insert : function(imgurl,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video,imgdesc,albumdesc) {
+	insert : function(imgurl,thumburl,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video,imgdesc,albumdesc) {
 		var ed = tinyMCEPopup.editor, dom = ed.dom;
 		var imglink = '';
 		var includetype = '';
@@ -69,10 +69,6 @@ var ZenpageDialog = {
 		var stopincluding = false;
 		// getting the image size checkbox values
 		if($('#thumbnail:checked').val() == 1) {
-			imagesize = '&amp;s=<?php echo getOption("thumb_size"); ?>&amp;cw=<?php echo getOption("thumb_crop_width"); ?>&amp;ch=<?php echo getOption("thumb_crop_height"); ?>&amp;t=true';
-			if (wm_thumb) {
-				imagesize += '&amp;wmk='+wm_thumb;
-			}
 			cssclass ='zenpage_thumb';
 		}
 		if($('#customthumb:checked').val() == 1) {
@@ -161,8 +157,10 @@ var ZenpageDialog = {
 		}
 		// getting the include type checkbox values
 		if($('#image:checked').val() == 1) {
-			if($('#fullimage:checked').val() == 1) { 
+			if($('#fullimage:checked').val() == 1) {
 				includetype = '<img src=\''+webpath+'/<?php echo ALBUMFOLDER; ?>/'+albumname+'/'+imgname+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
+			} else if ($('#thumbnail:checked').val() == 1) {
+				includetype = '<img src=\''+thumburl+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
 			} else {
 				includetype = '<img src=\''+imgurl+imagesize+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
 			}
@@ -197,7 +195,7 @@ var ZenpageDialog = {
 
 		// building the final item to include
 		if(type == "zenphoto") {
-			if((video == 'video' || video == 'audio') && $('#sizedimage:checked')) {
+			if((video == 'video' || video == 'audio') && $('#sizedimage:checked').val() == 1) {
 				if(video == 'video') {
 					playerheight = "<?php echo getOption('tinymce_tinyzenpage_flowplayer_height'); ?>";
 				} else {
@@ -246,7 +244,7 @@ var ZenpageDialog = {
 				imglink += '}\' />';
 				imglink += '</object>';
 				imglink += infowrap2;
-			}	else if(video == 'textobject' && $('#sizedimage:checked')) {
+			}	else if(video == 'textobject' && $('#sizedimage:checked').val() == 1) {
 				imglink = infowrap1+fullimage+infowrap2;
 			} else {
 				imglink = infowrap1+linkpart1+includetype+linkpart2+infowrap2;

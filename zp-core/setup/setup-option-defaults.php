@@ -246,13 +246,6 @@ setOptionDefault('search_space_is_or', 0);
 setOptionDefault('search_no_albums', 0);
 
 // default groups
-define('administrators',1);
-define('viewers',2);
-define('bozos',4);
-define('album_managers',8);
-define('default_user',16);
-define('newuser',32);
-
 $admins = $_zp_authority->getAdministrators('all');
 if (empty($admins)) {	//	empty administrators table
 	$groupsdefined = NULL;

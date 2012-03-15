@@ -151,9 +151,9 @@ class WEBdocs extends TextObject {
 												'local'=>'<iframe src="%s" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>'
 											);
 		switch($suffix = getSuffix($this->filename)) {
-			case 'tif':
 			case 'tiff':
 				$suffix = 'tif';
+			case 'tif':
 			case 'pps':
 			case 'pdf':
 				$provider = 'WEBdocs_'.$suffix.'_provider';
