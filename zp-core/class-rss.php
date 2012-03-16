@@ -3,9 +3,9 @@
  * The feed is dependend on GET parameters available.
  * 
  * The gallery and additionally Zenpage CMS plugin provide rss link functions to generate context dependent rss links. 
- * You can however create your own links manually with even some more sort order options than via the backend:
+ * You can however create your own links manually with even some more options than via the backend option:
  * 
- * I. GALLERY: 
+ * I. GALLERY RSS FEEDS: 
  * These accept the following parameters:
  *
  * - "Gallery" feed for latest images of the whole gallery
@@ -34,36 +34,39 @@
  * 
  * It is recommended to use urlencode() around the album names.
  * 
- * Other optional Gallery parameters:
- * 
- * 2a) "sortorder" for "Gallery", "Album", "Collection" allows these values (the same as the image_album_statistics plugin): 
- *	- "latest" for the latest uploaded,
- *	- "latest-date" for the latest uploaded, but fetched by date,
- *	- "latest-mtime" for the latest uploaded, but fetched by mtime,
- *	-	"popular" for the most popular albums,
- *	-	"latest" for the latest uploaded, "mostrated" for the most voted,
- *	-	"toprated" for the best voted
- *	-	"random" for random order (yes, strictly no statistical order...)
- * Overrides the option value if set.
+ * Optional gallery feed parameters:
+ * "sortorder" for "Gallery", "Album", "Collection" only with the following values (the same as the image_album_statistics plugin): 
+ * - "latest" for the latest uploaded (optional used if sortorder is not set)
+ * - "latest-date" for the latest uploaded, but fetched by date,
+ * - "latest-mtime" for the latest uploaded, but fetched by mtime,
+ * - "popular" for the most popular albums,
+ * - "toprated" for the best voted
+ * - "mostrated" for the most voted
+ * - "random" for random order
+ * Overrides the admin option value if set.
  *  
- * 2b) "sortorder" for latest "AlbumsRSS" and "AlbumsRSScollection" allows these values (the same as the image_album_statistics plugin):
- *	-	"popular" for the most popular albums,
- *	-	"latest" for the latest uploaded, "mostrated" for the most voted,
- *	-	"toprated" for the best voted
- *	-	"latestupdated" for the latest updated
- *	-	"random" for random order (yes, strictly no statistical order...)
+ * "sortorder" for latest "AlbumsRSS" and "AlbumsRSScollection" only with the following values (the same as the image_album_statistics plugin):
+ * - "latest" for the latest uploaded (optional used by default if sortorder is not set)
+ * - "popular" for the most popular albums,
+ * - "toprated" for the best voted
+ * - "mostrated" for the most voted
+ * - "latestupdated" for the latest updated
+ * - "random" for random order
  * Overrides the option value if set.
+ *
+ * Optional gallery feed parameters for all except comments:
+ * "size" the pixel size for the image (uncropped and longest side)
  * 
- * II. ZENPAGE CMS PLUGIN 
+ * II. RSS FEEDS WITH THE ZENPAGE CMS PLUGIN 
  * Requires the plugin to be enabled naturally.
  * 
- * - "News" feed for all news articles
+ * - "News" feed for latest news articles
  * index.php?rss=news&lang=<locale>
  * 
- * - "Category" for only the news articles of the category that is currently selected
- * index.php?rss=news&lang=<locale>&category=<titlelink of category>;
+ * - "Category" for only the latest news articles of the category
+ * index.php?rss=news&lang=<locale>&category=<titlelink of category>
  * 
- * - "NewsWithImages" for all news articles and latest images
+ * - "NewsWithImages" for all latest news articles and latest images by date combined
  * index.php?rss=news&withimages&lang=<locale>
  * 
  * - "Comments" for all news articles and pages
@@ -78,9 +81,20 @@
  * - "Comments-all" for comments from all albums, images, news articels and pages
  * index.php?rss=comments&type=allcomments&lang=<locale>
  * 
- * III. Optional parameters to I. and II.:
- * "itemnumber": Set the number of items to get. If set overrides the option value.
- * "lang": Actually optional as well and if not set the currently set locale is used.
+ * Optional parameters for "News" and "Category":
+ * "sortorder  with these values:
+ * - "latest" for latest articles. (If "sortorder" is not set at all "latest" order is used)
+ * - "popular" for most viewed articles
+ * - "mostrated" for most voted articles
+ * - "toprated" for top voted articles
+ * - "random" for random articles
+ *
+ * Optional parameter for "NewsWithImages":
+ * "size" the pixel size for the image (uncropped and longest side)
+ *
+ * III. OPTIONAL PARAMETERS TO I. AND II.:
+ * "itemnumber" for the number of items to get. If set overrides the admin option value.
+ * "lang" for the language locale. Actually optional as well and if not set the currently set locale option is used.
  *
  * Intended Usage to create a feed:
  * $rss = new RSS(); // gets parameters from the url
@@ -167,9 +181,7 @@ class RSS {
 					$this->feedtype = 'gallery';
 					if(isset($_GET['albumsmode'])) {
 						$this->rssmode = 'albums';
-					} else {
-						$this->rssmode = '';
-					}
+					} 
 					if(isset($_GET['folder'])) {
 						$this->albumfolder = sanitize(urldecode($_GET['folder']));
 						$this->collection = TRUE;
@@ -184,41 +196,20 @@ class RSS {
 						$albumtitle = '';
 						$this->collection = FALSE;
 					}
-					if(isset($_GET['folder']) || isset($_GET['albumname'])) {
-						$albumname = ' - '.html_encode($albumtitle).' ('.gettext(' - latest images').')';
-					} elseif ($this->rssmode == "albums" && !isset($_GET['folder'])) {
-						$albumname = ' ('.gettext('latest albums').')';
+					$this->sortorder = $this->getRSSSortorder();
+					if($this->rssmode == 'albums' || isset($_GET['albumname'])) {
+						$albumextra = ' - '.html_encode($albumtitle).$this->getRSSChannelTitleExtra();
+					} elseif ($this->rssmode == 'albums' && !isset($_GET['folder'])) {
+						$albumname = $this->getRSSChannelTitleExtra();
 					} elseif ($this->rssmode == 'albums' && isset($_GET['folder'])) {
-						$albumname = ' - '.html_encode($albumtitle).' ('.gettext('latest albums').')';
+						$albumname = ' - '.html_encode($albumtitle).$this->getRSSChannelTitleExtra();
 					} else {
-						$albumname = ' ('.gettext('latest images').')';
+						$albumname = $this->getRSSChannelTitleExtra();
 					}
 					$this->channel_title = html_encode($this->channel_title.' '.strip_tags($albumname));
 					$this->albumpath = $this->getRSSImageAndAlbumPaths('albumpath');
-					$this->imagepath = $this->getRSSImageAndAlbumPaths('imagepath');
-					if(isset($_GET['size'])) {
-						$this->imagesize = sanitize_numeric($_GET['size']);
-					} else {
-						$this->imagesize = NULL;
-					}
-					if(is_numeric($this->imagesize) && !is_null($this->imagesize) && $this->imagesize < getOption('feed_imagesize')) {
-						$this->imagesize = $size;
-					} else {
-						if($this->rssmode == 'albums') {
-							$this->imagesize = getOption('feed_imagesize_albums'); // un-cropped image size
-						} else {
-							$this->imagesize = getOption('feed_imagesize'); // un-cropped image size
-						}
-					}
-					if(isset($_GET['sortorder'])) {
-						$this->sortorder = sanitize($_GET['sortorder']);
-					} else {
-						if ($this->rssmode == "albums") {
-							$this->sortorder = getOption("feed_sortorder_albums");
-						} else {
-							$this->sortorder = getOption("feed_sortorder");
-						}
-					}
+					$this->imagepath = $this->getRSSImageAndAlbumPaths('imagepath');	
+					$this->imagesize = $this->getRSSImageSize();
 					require_once(ZENFOLDER .'/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					break;
 
@@ -235,14 +226,30 @@ class RSS {
 					if(!empty($cattitle)) {
 						$cattitle = ' - '.html_encode($this->cattitle) ;
 					}
+					$this->sortorder = $this->getRSSSortorder();
 					$this->newsoption = $this->getRSSNewsCatOptions("option");
 					$titleappendix = gettext(' (Latest news)');
 					if(isset($_GET['withimages'])) {
 						$this->newsoption = 'withimages';
 						$titleappendix = gettext(' (Latest news and images)');
+					} else {
+						switch($this->sortorder) {
+							case 'popular':
+								$titleappendix = gettext(' (Most popular news)');
+								break;
+							case 'mostrated':
+								$titleappendix = gettext(' (Most rated news)');
+								break;
+							case 'toprated':
+								$titleappendix = gettext(' (Top rated news)');
+								break;
+							case 'random':
+								$titleappendix = gettext(' (Random news)');
+								break;
+						}
 					}
 					$this->channel_title = html_encode($this->channel_title.$cattitle.$titleappendix);
-					$this->imagesize = getOption('feed_imagesize'); // un-cropped image size
+					$this->imagesize = $this->getRSSImageSize();
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
@@ -302,6 +309,77 @@ class RSS {
 			$this->feeditems = $this->getRSSitems();
 		}
 	}
+	
+	
+	protected function getRSSChannelTitleExtra() {
+		switch($this->sortorder) {
+			case 'latest':
+				if($this->rssmode == 'albums') {
+					$albumextra = ' ('.gettext('latest albums').')';
+				} else {
+					$albumextra = ' ('.gettext('latest images').')';
+				}
+			case 'latest-date':
+			case 'latest-mtime':
+				$albumnameextra = ' ('.gettext('latest images').')';
+				break;
+			case 'latestupdated':
+				$albumextra = ' ('.gettext('latest updated albums').')';
+				break;
+			case 'popular':
+				if($this->rssmode == 'albums') {
+					$albumextra = ' ('.gettext('Most popular albums').')';
+				} else {
+					$albumextra = ' ('.gettext('Most popular images').')';
+				}
+				break;
+			case 'toprated':
+				if($this->rssmode == 'albums') {
+					$albumextra = ' ('.gettext('Top rated albums').')';
+				} else {
+					$albumextra = ' ('.gettext('Top rated images').')';
+				}
+				break;
+			case 'random':
+				if($this->rssmode == 'albums') {
+					$albumextra = ' ('.gettext('Random albums').')';
+				} else {
+					$albumextra = ' ('.gettext('Random images').')';
+				}
+				break;
+		}
+		return $albumextra;
+	}
+	
+ /**
+	* Helper function that gets the sortorder for gallery and plain news/category feeds
+	*
+	* @return string
+	*/
+	protected function getRSSSortorder() {
+		if(isset($_GET['sortorder'])) {
+			$sortorder = sanitize($_GET['sortorder']);
+		} else {
+			$sortorder = NULL;
+		}
+		switch($this->feedtype) {
+			case 'gallery':
+				if(is_null($sortorder)) {
+					if($this->rssmode == "albums") {
+						$sortorder = getOption("feed_sortorder_albums");
+					} else {
+						$sortorder = getOption("feed_sortorder");
+					}
+				}
+				break;
+			case 'news':
+				if($this->newsoption == 'withimages' || $sortorder == 'latest') {
+					$sortorder = NULL;
+				}
+				break;
+		}
+		return $sortorder;
+	}
 
 	/**
 	 * Helper function that returns the image path, album path and modrewrite suffix for Gallery feeds
@@ -354,6 +432,29 @@ class RSS {
 			}
 			return $array[$arrayfield];
 		}
+	}
+	
+	/**
+	* Helper function that gets the images size of the "size" get parameter
+	*
+	* @return string
+	*/
+	protected function getRSSImageSize() {
+		if(isset($_GET['size'])) {
+			$imagesize = sanitize_numeric($_GET['size']);
+		} else {
+			$imagesize = NULL;
+		}
+		if(is_numeric($imagesize) && !is_null($imagesize) && $imagesize < getOption('feed_imagesize')) {
+			$imagesize = $imagesize;
+		} else {
+			if($this->rssmode == 'albums') {
+				$imagesize = getOption('feed_imagesize_albums'); // un-cropped image size
+			} else {
+				$imagesize = getOption('feed_imagesize'); // un-cropped image size
+			}
+		}
+		return $imagesize;
 	}
 
 	/**
@@ -532,10 +633,18 @@ class RSS {
 			case 'news':
 				switch ($this->newsoption) {
 					case "category":
-						$items = getLatestNews($this->itemnumber,"none",$this->catlink);
+						if($this->sortorder) {
+							$items = getZenpageStatistic($this->itemnumber,'categories',$this->sortorder);
+						} else {
+						 	$items = getLatestNews($this->itemnumber,"none",$this->catlink);
+						}
 						break;
 					case "news":
-						$items = getLatestNews($this->itemnumber,"none");
+						if($this->sortorder) {
+							$items = getZenpageStatistic($this->itemnumber,'news',$this->sortorder);
+						} else {
+							$items = getLatestNews($this->itemnumber,"none");
+						}
 						break;
 					case "withimages":
 						$items = getLatestNews($this->itemnumber,"with_latest_images_date");
@@ -681,8 +790,9 @@ class RSS {
 	protected function getRSSitemNews($item) {
 		$categories = '';
 		$feeditem['enclosure'] = '';
+		$itemtype = strtolower($item['type']); // needed because getZenpageStatistic returns "News" instead of "news" for unknown reasons...
 		//get the type of the news item
-		switch($item['type']) {
+		switch($itemtype) {
 			case 'news':
 				$obj = new ZenpageNews($item['titlelink']);
 				$feeditem['title'] = get_language_string($obj->get('title'),$this->locale);
