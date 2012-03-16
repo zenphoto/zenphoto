@@ -66,6 +66,14 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 			break;
 		case "latest":
 			$sortorder = "id";
+		case "latest-mtime":
+				$sortorder = "images.mtime";
+				break;
+		case "latest-date":
+				$sortorder = "date";
+				break;
+		case "latest-publishdate":
+			$sortorder = "IFNULL(publishdate,date)";
 			break;
 		case "mostrated":
 			$sortorder = "total_votes";
@@ -354,21 +362,32 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 	$albumWhere = ' AND (albums.`id`='.implode(' OR albums.`id`=', $albumlist).')';
 	switch ($option) {
 		case "popular":
-			$sortorder = "images.hitcounter"; break;
+			$sortorder = "images.hitcounter"; 
+			break;
 		case "latest-date":
-			$sortorder = "images.date"; break;
+			$sortorder = "images.date"; 
+			break;
 		case "latest-mtime":
-			$sortorder = "images.mtime"; break;
+			$sortorder = "images.mtime"; 
+			break;
 		case "latest":
-			$sortorder = "images.id"; break;
+			$sortorder = "images.id"; 
+			break;
+		case "latest-publishdate":
+			$sortorder = "IFNULL(images.publishdate,images.date)"; 
+			break;
 		case "mostrated":
-			$sortorder = "images.total_votes"; break;
+			$sortorder = "images.total_votes"; 
+			break;
 		case "toprated":
-			$sortorder = "(images.total_value/images.total_votes)"; break;
+			$sortorder = "(images.total_value/images.total_votes)"; 
+			break;
 		case "random":
-			$sortorder = "RAND()"; break;
+			$sortorder = "RAND()"; 
+			break;
 		default:
-			$sortorder = 'id'; break;
+			$sortorder = 'id'; 
+			break;
 	}
 	$imageArray = array();
 	$hint = $show = NULL;

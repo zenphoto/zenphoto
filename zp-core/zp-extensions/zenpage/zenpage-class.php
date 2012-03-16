@@ -467,7 +467,7 @@ class Zenpage {
 			case "latestimages-thumbnail-customcrop":
 			case "latestimages-sizedimage":
 			case "latestimages-sizedimage-maxspace":
-				$sortorder = "images.".$combinews_sortorder;
+				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='images'");
 				switch($combinews_sortorder) {
@@ -476,6 +476,9 @@ class Zenpage {
 						$imagequery = "(SELECT albums.folder, images.filename, images.date, @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
 							WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
 						break;
+					case 'publishdate':
+						$imagequery = "(SELECT albums.folder, images.filename, IFNULL(images.publishdate,images.date), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
+													WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
 					case 'mtime':
 						$imagequery = "(SELECT albums.folder, images.filename, FROM_UNIXTIME(images.mtime), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
 							WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
@@ -500,6 +503,10 @@ class Zenpage {
 						$albumquery = "(SELECT albums.folder, albums.title, albums.date, @type2, @type3 as sticky FROM ".prefix('albums')." AS albums
 							".$show.$albumWhere.")";
 						break;
+					case 'publishdate':
+							$albumquery = "(SELECT albums.folder, albums.title, IFNULL(albums.publishdate,albums.date), @type2, @type3 as sticky FROM ".prefix('albums')." AS albums
+													".$show.$albumWhere.")";
+							break;
 					case 'mtime':
 						$albumquery = "(SELECT albums.folder, albums.title, FROM_UNIXTIME(albums.mtime), @type2, @type3 as sticky FROM ".prefix('albums')." AS albums
 							".$show.$albumWhere.")";
@@ -517,19 +524,21 @@ class Zenpage {
 			case "latestimagesbyalbum-sizedimage-maxspace":
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
-				if(empty($combinews_sortorder) || $combinews_sortorder != "date" || $combinews_sortorder != "mtime" ) {
+				if(empty($combinews_sortorder) || $combinews_sortorder != "date" || $combinews_sortorder != "mtime" || $combinews_sortorder != "publishdate") {
 					$combinews_sortorder = "date";
 				}
-				$combinews_sortorder = "date";
 				$sortorder = "images.".$combinews_sortorder;
 				switch(		$combinews_sortorder) {
 					case "date":
-						$imagequery = "(SELECT DISTINCT DATE_FORMAT(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.`date`,'%Y-%m-%d'), @type2 FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
+						$imagequery = "(SELECT DISTINCT DATE_FORMAT(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.date,'%Y-%m-%d'), @type2 FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
 														WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
 						break;
 					case "mtime":
-						$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.`mtime`,'%Y-%m-%d'), @type2 FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
+						$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.mtime,'%Y-%m-%d'), @type2 FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
 														WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
+					case "publishdate":
+							$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.publishdate,'%Y-%m-%d'), @type2 FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
+																				WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
 						break;
 				}
 				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type FROM ".prefix('news')." ".$show.")

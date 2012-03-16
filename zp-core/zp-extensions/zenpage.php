@@ -8,7 +8,7 @@
 
 $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.");
-$plugin_notece = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> and <em>stopdesign</em> themes.");
+$plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> and <em>stopdesign</em> themes.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
 
@@ -85,8 +85,8 @@ class zenpagecms {
 		gettext('CombiNews: Sized image size') => array('key' => 'zenpage_combinews_imagesize', 'type' => OPTION_TYPE_TEXTBOX,
 										'desc' => gettext("The size of the sized image shown the CombiNews section <em>(only in latest images-sizedimage or latest albums-sizedimage mode)</em>.")),
 		gettext('CombiNews: Sort order') => array('key' => 'zenpage_combinews_sortorder', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext('date') => "date", gettext('id') => "id", gettext('mtime') => "mtime"),
-										'desc' => gettext("The sort order for your gallery items within the CombiNews display except for <em>latest images by album</em> which is by date or mtime only. 'date' (date order), 'id' (added to db order), 'mtime' (upload order).")."<p class='notebox'>".gettext("<strong>Note: </strong> If you experience unexpected results, this refers only to the images that are fetched from the database. Even if they are fetched by id they will be sorted by date with the articles afterwards since articles only have a date."),"</p>"),
+										'selections' => array(gettext('date') => "date", gettext('id') => "id", gettext('mtime') => "mtime",gettext('publishdate') => "publishdate"),
+										'desc' => gettext("The sort order for your gallery items within the CombiNews display except for <em>latest images by album</em> which is by date or mtime only. <ul><li>'date' (date order)</li><li>'id' (added to db order)</li><li>'mtime' (upload order)</li><li>'publishdate' (manual publish date order - you might get really funny results if this is not set!)</li></ul>")."<p class='notebox'>".gettext("<strong>Note: </strong> If you experience unexpected results, this refers only to the images that are fetched from the database. Even if they are fetched by id they will be sorted by date with the articles afterwards since articles only have a date."),"</p>"),
 		gettext('CombiNews: Gallery link') => array('key' => 'zenpage_combinews_gallerylink', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext('image') => "image", gettext('album') => "album"),
 										'desc' => gettext("Choose if you want to link from the image entry to its image page directly or to the album page (if CombiNews mode is set for albums the link is automatically only linking to albums). This affects all links of the entry (<em>title</em>, <em>image</em> and the <em>visit gallery link</em>")),

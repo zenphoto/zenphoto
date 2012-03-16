@@ -335,7 +335,14 @@ function getNewsTitle() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
 		if(is_NewsType("album") && (getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail"	|| getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail-customcrop" || getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage")) {
-			$result = query_full_array("SELECT filename FROM ".prefix('images')." AS images WHERE date LIKE '".$_zp_current_zenpage_news->getDateTime()."%' AND albumid = ".$_zp_current_zenpage_news->getID()." ORDER BY date DESC");
+			if(getOption("zenpage_combinews_sortorder") == 'publishdate') {
+				$date = 'IFNULL(publishdate,date)';
+				$order = 'publishdate';
+			} else {
+				$date = 'date'; 
+				$order = $date;
+			}
+			$result = query_full_array("SELECT filename FROM ".prefix('images')." AS images WHERE ".$date." LIKE '".$_zp_current_zenpage_news->getDateTime()."%' AND albumid = ".$_zp_current_zenpage_news->getID()." ORDER BY ".$order." DESC");
 			$imagetitles = "";
 			$countresult = count($result);
 			$count = "";
@@ -539,7 +546,12 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 				case 'latestimagesbyalbum-thumbnail-customcrop':
 				case 'latestimagesbyalbum-sizedimage':
 				case 'latestimagesbyalbum-sizedimage-maxspace':
-					$images = query_full_array("SELECT title, filename FROM ".prefix('images')." AS images WHERE date LIKE '".$_zp_current_zenpage_news->getDateTime()."%' AND albumid = ".$_zp_current_zenpage_news->getID()." ORDER BY date DESC");
+					if(getOption("zenpage_combinews_sortorder") == 'publishdate') {
+						$date = 'IFNULL(publishdate,date)';
+					} else {
+						$date = 'date';
+					}
+					$images = query_full_array("SELECT title, filename FROM ".prefix('images')." AS images WHERE ".$date." LIKE '".$_zp_current_zenpage_news->getDateTime()."%' AND albumid = ".$_zp_current_zenpage_news->getID()." ORDER BY ".$date." DESC");
 					foreach($images as $image) {
 						$imageobj = newImage($_zp_current_zenpage_news,$image['filename']);
 						if(getOption('combinews-latestimagesbyalbum-imgdesc')) {
@@ -1126,7 +1138,11 @@ function printAllNewsCategories($newsindex='All news', $counter=TRUE, $css_id=''
  * 											 "with_latest_images" for news articles with the latest images by id
  * 											 "with_latest_images_date" for news articles with the latest images by date
  * 											 "with_latest_images_mtime" for news articles with the latest images by mtime (upload date)
+ * 											 "with_latest_images_publishdate" for news articles with the latest images by publishdate (if not set date is used)
  * 											 "with_latest_albums" for news articles with the latest albums by id
+ * 											 "with_latest_albums_date" for news articles with the latest albums by date
+ * 											 "with_latest_albums_mtime" for news articles with the latest albums by mtime (upload date)
+ * 										 	 "with_latest_albums_publishdate" for news articles with the latest albums by publishdate (if not set date is used)
  * 											 "with_latestupdated_albums" for news articles with the latest updated albums
  * @param string $category Optional news articles by category (only "none" option)
  * @return array
@@ -1167,14 +1183,26 @@ function getLatestNews($number=2,$option='none', $category='') {
 		case 'with_latest_images_mtime':
 			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'mtime');
 			break;
+		case 'with_latest_images_publishdate':
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'publishdate');
+			break;
 		case 'with_latest_albums':
 			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id');
+			break;
+		case 'with_latest_albums_date':
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'date');
+			break;
+		case 'with_latest_albums_mtime':
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'mtime');
+			break;
+		case 'with_latest_albums_publishdate':
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'publishdate');
 			break;
 		case 'with_latestupdated_albums':
 			$latest = $_zp_zenpage->getCombiNews($number,'latestupdatedalbums-thumbnail',NULL,'');
 			break;
-		/*case "latestimagesbyalbum-thumbnail":
-			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id');
+			/*case "latestimagesbyalbum-thumbnail":
+			 $latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id');
 			break; */
 	}
 	return $latest;
@@ -1191,7 +1219,11 @@ function getLatestNews($number=2,$option='none', $category='') {
  * 											 "with_latest_images" for news articles with the latest images by id
  * 											 "with_latest_images_date" for news articles with the latest images by date
  * 											 "with_latest_images_mtime" for news articles with the latest images by mtime (upload date)
+ * 											 "with_latest_images_publishdate" for news articles with the latest images by publishdate (if not set date is used)
  * 											 "with_latest_albums" for news articles with the latest albums by id
+ * 											 "with_latest_albums_date" for news articles with the latest albums by date
+ * 											 "with_latest_albums_mtime" for news articles with the latest albums by mtime (upload date)
+ * 										 	 "with_latest_albums_publishdate" for news articles with the latest albums by publishdate (if not set date is used)
  * 											 "with_latestupdated_albums" for news articles with the latest updated albums
  * @param string $category Optional news articles by category (only "none" option"
  * @param bool $showdate If the date should be shown
