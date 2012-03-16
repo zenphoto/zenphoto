@@ -28,7 +28,6 @@ $plugin_notice = gettext('<strong>Note:</strong> This plugin is not activated fo
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (!MOD_REWRITE)?gettext('<em>mod_rewrite</em> must be enabled for this plugin to function.'):false;
 
-
 if ($plugin_disable) {
 	setOption('zp_plugin_seo_locale',0);
 } else {

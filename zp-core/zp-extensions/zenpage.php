@@ -6,10 +6,18 @@
  * @package plugins
  */
 
+$plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.");
 $plugin_notece = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> and <em>stopdesign</em> themes.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
+
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-news.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-page.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-category.php');
+
+$_zp_zenpage = new Zenpage();
 
 zp_register_filter('checkForGuest', 'zenpageCheckForGuest');
 zp_register_filter('isMyItemToView', 'zenpageIsMyItemToView');

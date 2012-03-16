@@ -11,7 +11,6 @@
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Tiny MCE<span id='tinymceversion'></span> text editor for backend textareas").' <script type="text/javascript">	if (tinymce) $("#tinymceversion").html(" v"+tinymce.majorVersion + "." + tinymce.minorVersion);	</script>';
-
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'tinymceOptions';

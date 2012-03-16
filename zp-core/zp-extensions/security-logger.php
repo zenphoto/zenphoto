@@ -14,7 +14,7 @@
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
-$plugin_is_filter = 9|CLASS_PLUGIN;
+$plugin_is_filter = 10|CLASS_PLUGIN;
 $plugin_description = gettext('Logs selected security events.');
 $plugin_author = "Stephen Billard (sbillard)";
 

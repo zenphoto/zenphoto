@@ -10,7 +10,6 @@
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard) — ".gettext("an adaption of Remy Sharp's jQuery Tag Suggestion");
 
-
 zp_register_filter('theme_head','tagSuggestJS');
 
 function tagSuggestJS() {

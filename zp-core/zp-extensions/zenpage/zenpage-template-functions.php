@@ -16,9 +16,6 @@
  * Global definitions
  */
 
-if(!isset($_zp_zenpage)) {
- $_zp_zenpage = new Zenpage();
-}
 
 /************************************************/
 /* General functions

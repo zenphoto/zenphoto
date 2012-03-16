@@ -18,7 +18,6 @@
 $plugin_description = gettext("Enable <strong>flowplayer 3</strong> to handle multimedia files.");
 $plugin_notice = gettext("<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too.").gettext('The former separate flowplayer3_playlist plugin is now incorporated. You can use it to show the content of an multimedia album only as a playlist or as separate players on one page with Flowplayer 3').'<br /><br />'.gettext("Please see <a href='http://flowplayer.org'>flowplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
-
 $plugin_disable = (getOption('album_folder_class') === 'external')?gettext('Flash players do not support <em>External Albums</em>.'):false;
 
 global $_zp_flash_player;

@@ -8,7 +8,6 @@
 $plugin_description = gettext("Adds a theme function printAlbumMenu() to print an album menu either as a nested list (context sensitive) or as a dropdown menu.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
-
 $option_interface = 'print_album_menu';
 
 if (!defined('MENU_TRUNCATE_STRING')) define('MENU_TRUNCATE_STRING',getOption('menu_truncate_string'));

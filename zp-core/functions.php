@@ -1760,10 +1760,6 @@ function dateTimeConvert($datetime, $raw=false) {
  * at any given time. They should be set and unset with those variables.
  */
 
-if(getOption('zp_plugin_zenpage')) {
-	require_once(dirname(__FILE__).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
-}
-
 function get_context() {
 	global $_zp_current_context;
 	return $_zp_current_context;
@@ -2284,7 +2280,7 @@ function getItemByID($table, $id) {
 	$result = query_single_row('SELECT * FROM '.prefix($table).' WHERE id ='.$id);
 	switch($table) {
 		case 'images':
-			$alb = getItemByID('albums', $result['albumid']);				
+			$alb = getItemByID('albums', $result['albumid']);
 			return newImage($alb,$result['filename']);
 		case 'albums':
 			return new Album(NULL,$result['folder']);

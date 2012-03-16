@@ -11,11 +11,9 @@
  * @package plugins
  */
 if (defined('OFFSET_PATH')) {
-
 	$plugin_is_filter = 5|ADMIN_PLUGIN;
 	$plugin_description = gettext("Provides a utility SEO file/folder name clenser.");
 	$plugin_author = "Stephen Billard (sbillard)";
-
 
 	zp_register_filter('admin_utilities_buttons', 'seo_cleanup_button');
 

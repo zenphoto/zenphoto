@@ -44,7 +44,6 @@
  * @package plugins
  */
 
-
 $plugin_description = gettext("Enable <strong>jPlayer</strong> to handle multimedia files.");
 $plugin_notice = gettext("<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too.").'<br /><br />'.gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian)";

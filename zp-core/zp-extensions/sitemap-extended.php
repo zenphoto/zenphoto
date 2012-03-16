@@ -12,7 +12,6 @@
  * @package plugins
  */
 
-
 $plugin_is_filter = 5|CLASS_PLUGIN;
 $plugin_description = gettext('Generates individually sitemap.org compatible XML files for use with Google and other search engines.');
 $plugin_notice = gettext('<strong>Note:</strong> The index links may not match if using the Zenpage option "news on index" that some themes provide! Also it does not "know" about "custom pages" outside Zenpage or any special custom theme setup!!');
