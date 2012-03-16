@@ -1776,6 +1776,7 @@ function printPrevNewsLink($prev="« ",$sortorder='date',$sortdirection='desc') 
  * @param string $mode "popular" most viewed for pages, news articles and categories
  * 										 "mostrated" for news articles and pages
  * 										 "toprated" for news articles and pages
+ * 										 "random" for pages, news articles and categories
  * @return array
  */
 function getZenpageStatistic($number=10, $option="all",$mode="popular") {
@@ -1785,11 +1786,17 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular") {
 	$statspages = array();
 	switch($mode) {
 		case "popular":
-			$sortorder = "hitcounter"; break;
+			$sortorder = "hitcounter"; 
+			break;
 		case "mostrated":
-			$sortorder = "total_votes"; break;
+			$sortorder = "total_votes"; 
+			break;
 		case "toprated":
-			$sortorder = "rating"; break;
+			$sortorder = "rating"; 
+			break;
+		case "random":
+			$sortorder = "RAND()";
+			break;
 		}
 	if($option == "all" OR $option == "news") {
 		$articles = query_full_array("SELECT titlelink FROM " . prefix('news')." ORDER BY $sortorder DESC LIMIT $number");
@@ -1870,6 +1877,7 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular") {
  * @param string $mode "popular" most viewed for pages, news articles and categories
  * 										 "mostrated" for news articles and pages
  * 										 "toprated" for news articles and pages
+ * 										 "random" for pages, news articles and categories 
  * @param bool $showstats if the value should be shown
  * @param bool $showtype if the type should be shown
  * @param bool $showdate if the date should be shown (news articles and pages only)
@@ -1888,6 +1896,9 @@ function printZenpageStatistic($number=10, $option="all",$mode="popular",$showst
 			break;
 		case 'toprated':
 			$cssid ="'zenpagetoprated'";
+			break;
+		case 'random':
+			$cssid ="'zenpagerandom'";
 			break;
 	}
 	echo "<ul id=$cssid>";
