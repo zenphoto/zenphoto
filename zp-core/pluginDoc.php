@@ -255,7 +255,7 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 				?>
 				<div id="overview-utility">
 				<p>
-				<?php echo ngettext('Overview utilitiy button','Overview utilitiy buttons',count($buttonlist)); ?>
+				<?php echo ngettext('Overview utility button','Overview utility buttons',count($buttonlist)); ?>
 				</p>
 					<?php
 					$category = '';
