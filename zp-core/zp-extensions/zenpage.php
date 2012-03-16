@@ -143,7 +143,6 @@ require_once(dirname(__FILE__).'/zenpage/zenpage-class.php');
 require_once(dirname(__FILE__).'/zenpage/zenpage-class-news.php');
 require_once(dirname(__FILE__).'/zenpage/zenpage-class-page.php');
 require_once(dirname(__FILE__).'/zenpage/zenpage-class-category.php');
-require_once(dirname(__FILE__)."/zenpage/zenpage-template-functions.php");
 
 // zenpage filters
 

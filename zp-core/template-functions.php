@@ -9,7 +9,7 @@
 
 require_once(dirname(__FILE__).'/functions.php');
 require_once(dirname(__FILE__).'/functions-controller.php');
-if(getOption('zp_plugin_zenpage')) {
+if(class_exists('Zenpage')) {
 	require_once(dirname(__FILE__).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
 }
 

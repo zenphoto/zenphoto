@@ -8,7 +8,7 @@ if ($protocol == 'https_admin') {
 $locale = getRSSLocale();
 $validlocale = getRSSLocaleXML();
 $modrewritesuffix = getRSSImageAndAlbumPaths("modrewritesuffix");
-if(getOption('zp_plugin_zenpage')) {
+if(class_exists('Zenpage')) {
 	require_once(ZENFOLDER . '/'.PLUGIN_FOLDER. "/zenpage/zenpage-template-functions.php");
 }
 header('Content-Type: application/xml');
