@@ -614,10 +614,6 @@ zp-core/oldhtaccess
 zp-core/password.php
 zp-core/pluginDoc.php
 zp-core/reconfigure.php
-zp-core/rss
-zp-core/rss/rss-comments.php
-zp-core/rss/rss-news.php
-zp-core/rss/rss.php
 zp-core/setup
 zp-core/setup.php
 zp-core/setup/setup-functions.php
@@ -1867,4 +1863,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1869
+1865
