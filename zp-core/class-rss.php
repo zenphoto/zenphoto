@@ -3,7 +3,7 @@
  * The feed is dependend on GET parameters available.
  * 
  * The gallery and additionally Zenpage CMS plugin provide rss link functions to generate context dependent rss links. 
- * You can however create your own links manually:
+ * You can however create your own links manually with even some more sort order options than via the backend:
  * 
  * I. GALLERY: 
  * These accept the following parameters:
@@ -32,19 +32,26 @@
  * - "Comments-album" for latest comments of only the album it is called from
  * index.php?rss=comments&id=<album id>&type=album&lang=<locale>
  * 
+ * It is recommended to use urlencode() around the album names.
+ * 
  * Other optional Gallery parameters:
  * 
- * 2a) "sortorder" for "Gallery", "Album", "Collection" allows these values: 
- *  - 'latest'(latest by id)
- *  -	'latest-date'	(latest by date)
- *  - 'latest-mtime' (latest by mtime)
- *  - 'random'
+ * 2a) "sortorder" for "Gallery", "Album", "Collection" allows these values (the same as the image_album_statistics plugin): 
+ *	- "latest" for the latest uploaded,
+ *	- "latest-date" for the latest uploaded, but fetched by date,
+ *	- "latest-mtime" for the latest uploaded, but fetched by mtime,
+ *	-	"popular" for the most popular albums,
+ *	-	"latest" for the latest uploaded, "mostrated" for the most voted,
+ *	-	"toprated" for the best voted
+ *	-	"random" for random order (yes, strictly no statistical order...)
  * Overrides the option value if set.
  *  
- * 2b) "sortorder" for latest "AlbumsRSS" and "AlbumsRSScollection" allows these values:
- *  - 'latest'(latest by id)
- *  -	'latestupdated'	(latest updated with images)
- *  - 'random'
+ * 2b) "sortorder" for latest "AlbumsRSS" and "AlbumsRSScollection" allows these values (the same as the image_album_statistics plugin):
+ *	-	"popular" for the most popular albums,
+ *	-	"latest" for the latest uploaded, "mostrated" for the most voted,
+ *	-	"toprated" for the best voted
+ *	-	"latestupdated" for the latest updated
+ *	-	"random" for random order (yes, strictly no statistical order...)
  * Overrides the option value if set.
  * 
  * II. ZENPAGE CMS PLUGIN 
@@ -71,7 +78,7 @@
  * - "Comments-all" for comments from all albums, images, news articels and pages
  * index.php?rss=comments&type=allcomments&lang=<locale>
  * 
- * Optional parameter to I. and II.:
+ * III. Optional parameters to I. and II.:
  * "itemnumber": Set the number of items to get. If set overrides the option value.
  * "lang": Actually optional as well and if not set the currently set locale is used.
  *
