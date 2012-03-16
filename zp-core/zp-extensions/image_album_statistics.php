@@ -39,7 +39,11 @@ function getImageAlbumAlbumList($obj, &$albumlist) {
  * @param int $number the number of albums to get
  * @param string $option
  *		"popular" for the most popular albums,
- *		"latest" for the latest uploaded, "mostrated" for the most voted,
+ *		"latest" for the latest uploaded by id (Discovery)
+ * 		"latest-date" for the latest by date
+ * 		"latest-mtime" for the latest by mtime 
+ *   	"latest-publishdate" for the latest by publishdate
+ *    "mostrated" for the most voted,
  *		"toprated" for the best voted
  *		"latestupdated" for the latest updated
  *		"random" for random order (yes, strictly no statistical order...)
@@ -66,12 +70,13 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 			break;
 		case "latest":
 			$sortorder = "id";
+			break;
 		case "latest-mtime":
-				$sortorder = "images.mtime";
-				break;
+			$sortorder = "images.mtime";
+			break;
 		case "latest-date":
-				$sortorder = "date";
-				break;
+			$sortorder = "date";
+			break;
 		case "latest-publishdate":
 			$sortorder = "IFNULL(publishdate,date)";
 			break;
@@ -98,10 +103,14 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
  * @param string $number the number of albums to get
  * @param string $option
  *		"popular" for the most popular albums,
- *		"latest" for the latest uploaded,
- *		"mostrated" for the most voted,
+ *		"latest" for the latest uploaded by id (Discovery)
+ * 		"latest-date" for the latest by date
+ * 		"latest-mtime" for the latest by mtime 
+ *   	"latest-publishdate" for the latest by publishdate
+ *    "mostrated" for the most voted,
  *		"toprated" for the best voted
  *		"latestupdated" for the latest updated
+ *		"random" for random order (yes, strictly no statistical order...)
  * @param bool $showtitle if the album title should be shown
  * @param bool $showdate if the album date should be shown
  * @param bool $showdesc if the album description should be shown
@@ -131,10 +140,14 @@ function printAlbumStatistic($number, $option, $showtitle=false, $showdate=false
  * @param array $album the array that getAlbumsStatistic() submitted
  * @param string $option
  *		"popular" for the most popular albums,
- *		"latest" for the latest uploaded,
- *		"mostrated" for the most voted,
+ *		"latest" for the latest uploaded by id (Discovery)
+ * 		"latest-date" for the latest by date
+ * 		"latest-mtime" for the latest by mtime 
+ *   	"latest-publishdate" for the latest by publishdate
+ *    "mostrated" for the most voted,
  *		"toprated" for the best voted
  *		"latestupdated" for the latest updated
+ *		"random" for random order (yes, strictly no statistical order...)
  * @param bool $showtitle if the album title should be shown
  * @param bool $showdate if the album date should be shown
  * @param bool $showdesc if the album description should be shown
@@ -336,11 +349,14 @@ function printLatestUpdatedAlbums($number=5,$showtitle=false, $showdate=false, $
  *
  * @param string $number the number of images to get
  * @param string $option "popular" for the most popular images,
- *		"latest" for the latest uploaded,
- *		"latest-date" for the latest uploaded, but fetched by date,
- *		"latest-mtime" for the latest uploaded, but fetched by mtime,
- *		"mostrated" for the most voted,
+ *		"popular" for the most popular albums,
+ *		"latest" for the latest uploaded by id (Discovery)
+ * 		"latest-date" for the latest by date
+ * 		"latest-mtime" for the latest by mtime 
+ *   	"latest-publishdate" for the latest by publishdate
+ *    "mostrated" for the most voted,
  *		"toprated" for the best voted
+ *		"latestupdated" for the latest updated
  *		"random" for random order (yes, strictly no statistical order...)
  * @param string $albumfolder foldername of an specific album
  * @param bool $collection only if $albumfolder is set: true if you want to get statistics from this album and all of its subalbums
@@ -428,11 +444,15 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
  *
  * @param string $number the number of albums to get
  * @param string $option "popular" for the most popular images,
- *		"latest" for the latest uploaded,
- *		"latest-date" for the latest uploaded, but fetched by date,
- *		"latest-mtime" for the latest uploaded, but fetched by mtime,
- *		"mostrated" for the most voted,
+ *		"popular" for the most popular albums,
+ *		"latest" for the latest uploaded by id (Discovery)
+ * 		"latest-date" for the latest by date
+ * 		"latest-mtime" for the latest by mtime 
+ *   	"latest-publishdate" for the latest by publishdate
+ *    "mostrated" for the most voted,
  *		"toprated" for the best voted
+ *		"latestupdated" for the latest updated
+ *		"random" for random order (yes, strictly no statistical order...)
  * @param string $albumfolder foldername of an specific album
  * @param bool $showtitle if the image title should be shown
  * @param bool $showdate if the image date should be shown

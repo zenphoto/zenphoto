@@ -36,17 +36,21 @@
  * 
  * Optional gallery feed parameters:
  * "sortorder" for "Gallery", "Album", "Collection" only with the following values (the same as the image_album_statistics plugin): 
- * - "latest" for the latest uploaded (optional used if sortorder is not set)
- * - "latest-date" for the latest uploaded, but fetched by date,
- * - "latest-mtime" for the latest uploaded, but fetched by mtime,
- * - "popular" for the most popular albums,
+ * - "latest" for the latest uploaded by id (discovery order) (optional, used if sortorder is not set)
+ * - "latest-date" for the latest fetched by date
+ * - "latest-mtime" for the latest fetched by mtime
+ * - "latest-publishdate" for the latest fetched by publishdate
+ * - "popular" for the most popular albums
  * - "toprated" for the best voted
  * - "mostrated" for the most voted
  * - "random" for random order
  * Overrides the admin option value if set.
  *  
  * "sortorder" for latest "AlbumsRSS" and "AlbumsRSScollection" only with the following values (the same as the image_album_statistics plugin):
- * - "latest" for the latest uploaded (optional used by default if sortorder is not set)
+ * - "latest" for the latest uploaded by id (discovery order) (optional, used if sortorder is not set)
+ * - "latest-date" for the latest fetched by date
+ * - "latest-mtime" for the latest fetched by mtime
+ * - "latest-publishdate" for the latest fetched by publishdate
  * - "popular" for the most popular albums,
  * - "toprated" for the best voted
  * - "mostrated" for the most voted
@@ -314,14 +318,14 @@ class RSS {
 	protected function getRSSChannelTitleExtra() {
 		switch($this->sortorder) {
 			case 'latest':
-				if($this->rssmode == 'albums') {
-					$albumextra = ' ('.gettext('latest albums').')';
-				} else {
-					$albumextra = ' ('.gettext('latest images').')';
-				}
 			case 'latest-date':
 			case 'latest-mtime':
-				$albumnameextra = ' ('.gettext('latest images').')';
+			case 'latest-publishdate':
+				if($this->rssmode == 'albums') {
+					$albumextra = ' ('.gettext('Latest albums').')'; //easier to understand for translators as if I would treat "images"/"albums" in one place separately
+				} else {
+					$albumextra = ' ('.gettext('Latest images').')';
+				}
 				break;
 			case 'latestupdated':
 				$albumextra = ' ('.gettext('latest updated albums').')';
@@ -698,22 +702,7 @@ class RSS {
 	* @return array
 	*/
 	protected function getRSSitemGallery($item) {
-		if($this->rssmode != "albums") {
-			$ext = getSuffix($item->filename);
-			$albumobj = $item->getAlbum();
-			$itemlink = $this->host.pathurlencode($item->getImagelink());
-			$fullimagelink = $this->host.WEBPATH."/albums/".pathurlencode($albumobj->name)."/".$item->filename;
-			$imagefile = "albums/".$albumobj->name."/".$item->filename;
-			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.$item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.get_language_string(get_language_string($item->get("title"),$this->locale)) .'" /><br />';
-			$title = get_language_string($item->get("title"),$this->locale);
-			$albumtitle = get_language_string($albumobj->get("title"),$this->locale);
-			$datecontent = '<br />Date: '.zpFormattedDate(DATE_FORMAT,$item->get('mtime'));
-			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") ||  ($ext == "3gp") ||  ($ext == "mov")) AND $this->rssmode != "album") {
-				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode(get_language_string($albumobj->get("title"),$this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>' . get_language_string(get_language_string($item->get("desc"),$this->locale)).$datecontent;
-			} else {
-				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode(get_language_string($albumobj->get("title"),$this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'"><img src="'.PROTOCOL.'://'.$this->host.$item->getThumb().'" alt="'.html_encode($title).'" /></a>' . get_language_string(get_language_string($item->get("desc"),$this->locale)).$datecontent;
-			}
-		} else {
+		if($this->rssmode == "albums") {
 			$albumobj = new Album(NULL, $item['folder']);
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
@@ -734,7 +723,7 @@ class RSS {
 					$imagenumber = $title;
 				}
 				$feeditem['desc'] = '<a title="'.$title.'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.
-								'<p>'.html_encode($imagenumber).'</p>'.get_language_string($albumobj->get("desc"),$this->locale).'<br />'.sprintf(gettext("Last update: %s"),zpFormattedDate(DATE_FORMAT,$filechangedate));
+										'<p>'.html_encode($imagenumber).'</p>'.get_language_string($albumobj->get("desc"),$this->locale).'<br />'.sprintf(gettext("Last update: %s"),zpFormattedDate(DATE_FORMAT,$filechangedate));
 			} else {
 				if($totalimages == 1) {
 					$imagenumber = sprintf(gettext('%s (1 image)'),$title);
@@ -744,6 +733,21 @@ class RSS {
 				$feeditem['desc'] = '<a title="'.html_encode($title).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.get_language_string($albumitem->get("desc"),$this->locale).'<br />'.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$albumitem->get('mtime')));
 			}
 			$ext = getSuffix($thumb->filename);
+		} else {
+			$ext = getSuffix($item->filename);
+			$albumobj = $item->getAlbum();
+			$itemlink = $this->host.pathurlencode($item->getImagelink());
+			$fullimagelink = $this->host.WEBPATH."/albums/".pathurlencode($albumobj->name)."/".$item->filename;
+			$imagefile = "albums/".$albumobj->name."/".$item->filename;
+			$thumburl = '<img border="0" src="'.PROTOCOL.'://'.$this->host.$item->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.get_language_string(get_language_string($item->get("title"),$this->locale)) .'" /><br />';
+			$title = get_language_string($item->get("title"),$this->locale);
+			$albumtitle = get_language_string($albumobj->get("title"),$this->locale);
+			$datecontent = '<br />Date: '.zpFormattedDate(DATE_FORMAT,$item->get('mtime'));
+			if ((($ext == "flv") || ($ext == "mp3") || ($ext == "mp4") ||  ($ext == "3gp") ||  ($ext == "mov")) AND $this->rssmode != "album") {
+				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode(get_language_string($albumobj->get("title"),$this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>' . get_language_string(get_language_string($item->get("desc"),$this->locale)).$datecontent;
+			} else {
+				$feeditem['desc'] = '<a title="'.html_encode($title).' in '.html_encode(get_language_string($albumobj->get("title"),$this->locale)).'" href="'.PROTOCOL.'://'.$itemlink.'"><img src="'.PROTOCOL.'://'.$this->host.$item->getThumb().'" alt="'.html_encode($title).'" /></a>' . get_language_string(get_language_string($item->get("desc"),$this->locale)).$datecontent;
+			}
 		}
 		// title
 		if($this->rssmode != "albums") {

@@ -1543,11 +1543,17 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><?php echo gettext("RSS feed sort order:"); ?></td>
 			<td>
 			<?php
-			$feedsortorder = array(gettext('latest by id')=>'latest',
+			$feedsortorder = array(
+						gettext('latest by id')=>'latest',
 						gettext('latest by date')=>'latest-date',
-						gettext('latest by mtime')=>'latest-mtime'
+						gettext('latest by mtime')=>'latest-mtime',
+						gettext('latest by publishdate')=>'latest-publishdate'
 						);
-			$feedsortorder_albums = array(gettext('latest by id')=>'latest',
+			$feedsortorder_albums = array(
+						gettext('latest by id')=>'latest',
+						gettext('latest by date')=>'latest-date',
+						gettext('latest by mtime')=>'latest-mtime',
+						gettext('latest by publishdate')=>'latest-publishdate',
 						gettext('latest updated')=>'latestupdated'
 						);
 			?>
