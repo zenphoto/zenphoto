@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.23\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-27 12:39+0100\n"
-"PO-Revision-Date: 2012-01-27 12:39+0100\n"
+"POT-Creation-Date: 2012-03-17 12:06+0100\n"
+"PO-Revision-Date: 2012-03-17 12:06+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "MIME-Version: 1.0\n"
@@ -823,7 +823,7 @@ msgid "&laquo; Prev Album"
 msgstr "&laquo; vorheriges Album"
 
 #: •zp-translate-trunk/themes/garland/album.php:130
-#: •zp-translate-trunk/themes/garland/image.php:111
+#: •zp-translate-trunk/themes/garland/image.php:113
 #: •zp-translate-trunk/themes/garland/news.php:114
 #: •zp-translate-trunk/themes/garland/pages.php:63
 msgid "Tags: "
@@ -846,27 +846,23 @@ msgstr "Album-Index"
 msgid "Latest Images"
 msgstr "Neuste Bilder"
 
-#: •zp-translate-trunk/themes/garland/image.php:52
-msgid "Album Thumbnails"
-msgstr "Albumthumbnails"
-
-#: •zp-translate-trunk/themes/garland/image.php:92
+#: •zp-translate-trunk/themes/garland/image.php:94
 msgid "Next image"
 msgstr "Nächstes Bild"
 
-#: •zp-translate-trunk/themes/garland/image.php:93
+#: •zp-translate-trunk/themes/garland/image.php:95
 msgid "Next &raquo;"
 msgstr "weiter &raquo;"
 
-#: •zp-translate-trunk/themes/garland/image.php:102
+#: •zp-translate-trunk/themes/garland/image.php:104
 msgid "Previous image"
 msgstr "Vorheriges Bild"
 
-#: •zp-translate-trunk/themes/garland/image.php:103
+#: •zp-translate-trunk/themes/garland/image.php:105
 msgid "&laquo; Previous"
 msgstr "&laquo; zurück"
 
-#: •zp-translate-trunk/themes/garland/password.php:41
+#: •zp-translate-trunk/themes/garland/password.php:40
 msgid "A password is required to access this page."
 msgstr "Sie benötigen ein Passwort, um auf diese Seite zugreifen zu können."
 
@@ -1330,12 +1326,12 @@ msgid "Comments:"
 msgstr "Kommentare:"
 
 #: •zp-translate-trunk/themes/zenpage/image.php:67
-msgid "&laquo; prev thumbs"
-msgstr "&laquo; vorherige"
+msgid "prev thumbs"
+msgstr "vorige Thumbnails"
 
 #: •zp-translate-trunk/themes/zenpage/image.php:67
-msgid "next thumbs &raquo;"
-msgstr "nächste &raquo;"
+msgid "next thumbs"
+msgstr "nächste Thumbnails"
 
 #: •zp-translate-trunk/themes/zenpage/sidebar.php:26
 #: •zp-translate-trunk/themes/zenpage/themeoptions.php:38
@@ -1412,7 +1408,7 @@ msgid "No album provided to sort."
 msgstr "Kein Album zum Sortieren ausgewählt."
 
 #: •zp-translate-trunk/zp-core/admin-albumsort.php:94
-#: •zp-translate-trunk/zp-core/admin-edit.php:723
+#: •zp-translate-trunk/zp-core/admin-edit.php:717
 #, php-format
 msgid "Edit Album: <em>%1$s%2$s</em>"
 msgstr "Album <em>%1$s%2$s</em> bearbeiten"
@@ -1423,23 +1419,23 @@ msgstr "Bildreihenfolge gesichert"
 
 #: •zp-translate-trunk/zp-core/admin-albumsort.php:126
 #: •zp-translate-trunk/zp-core/admin-albumsort.php:152
-#: •zp-translate-trunk/zp-core/admin-edit.php:885
-#: •zp-translate-trunk/zp-core/admin-edit.php:945
-#: •zp-translate-trunk/zp-core/admin-edit.php:1033
-#: •zp-translate-trunk/zp-core/admin-edit.php:1536
-#: •zp-translate-trunk/zp-core/admin-functions.php:1092
-#: •zp-translate-trunk/zp-core/admin-functions.php:1789
+#: •zp-translate-trunk/zp-core/admin-edit.php:879
+#: •zp-translate-trunk/zp-core/admin-edit.php:939
+#: •zp-translate-trunk/zp-core/admin-edit.php:1027
+#: •zp-translate-trunk/zp-core/admin-edit.php:1530
+#: •zp-translate-trunk/zp-core/admin-functions.php:1095
+#: •zp-translate-trunk/zp-core/admin-functions.php:1792
 msgid "Back to the album list"
 msgstr "Zurück zur Albumübersicht"
 
 #: •zp-translate-trunk/zp-core/admin-albumsort.php:126
 #: •zp-translate-trunk/zp-core/admin-albumsort.php:154
-#: •zp-translate-trunk/zp-core/admin-edit.php:887
-#: •zp-translate-trunk/zp-core/admin-edit.php:947
-#: •zp-translate-trunk/zp-core/admin-edit.php:1035
-#: •zp-translate-trunk/zp-core/admin-edit.php:1538
-#: •zp-translate-trunk/zp-core/admin-functions.php:1094
-#: •zp-translate-trunk/zp-core/admin-functions.php:1791
+#: •zp-translate-trunk/zp-core/admin-edit.php:881
+#: •zp-translate-trunk/zp-core/admin-edit.php:941
+#: •zp-translate-trunk/zp-core/admin-edit.php:1029
+#: •zp-translate-trunk/zp-core/admin-edit.php:1532
+#: •zp-translate-trunk/zp-core/admin-functions.php:1097
+#: •zp-translate-trunk/zp-core/admin-functions.php:1794
 #: •zp-translate-trunk/zp-core/admin-refresh-metadata.php:142
 msgid "Back"
 msgstr "Zurück"
@@ -1452,20 +1448,20 @@ msgstr "Zurück"
 #: •zp-translate-trunk/zp-core/admin-comments.php:135
 #: •zp-translate-trunk/zp-core/admin-comments.php:318
 #: •zp-translate-trunk/zp-core/admin-comments.php:487
-#: •zp-translate-trunk/zp-core/admin-edit.php:892
-#: •zp-translate-trunk/zp-core/admin-edit.php:894
-#: •zp-translate-trunk/zp-core/admin-edit.php:949
-#: •zp-translate-trunk/zp-core/admin-edit.php:951
-#: •zp-translate-trunk/zp-core/admin-edit.php:1037
-#: •zp-translate-trunk/zp-core/admin-edit.php:1039
-#: •zp-translate-trunk/zp-core/admin-edit.php:1540
-#: •zp-translate-trunk/zp-core/admin-edit.php:1542
-#: •zp-translate-trunk/zp-core/admin-edit.php:1774
-#: •zp-translate-trunk/zp-core/admin-edit.php:1815
-#: •zp-translate-trunk/zp-core/admin-functions.php:1096
-#: •zp-translate-trunk/zp-core/admin-functions.php:1098
-#: •zp-translate-trunk/zp-core/admin-functions.php:1793
-#: •zp-translate-trunk/zp-core/admin-functions.php:1795
+#: •zp-translate-trunk/zp-core/admin-edit.php:886
+#: •zp-translate-trunk/zp-core/admin-edit.php:888
+#: •zp-translate-trunk/zp-core/admin-edit.php:943
+#: •zp-translate-trunk/zp-core/admin-edit.php:945
+#: •zp-translate-trunk/zp-core/admin-edit.php:1031
+#: •zp-translate-trunk/zp-core/admin-edit.php:1033
+#: •zp-translate-trunk/zp-core/admin-edit.php:1534
+#: •zp-translate-trunk/zp-core/admin-edit.php:1536
+#: •zp-translate-trunk/zp-core/admin-edit.php:1768
+#: •zp-translate-trunk/zp-core/admin-edit.php:1809
+#: •zp-translate-trunk/zp-core/admin-functions.php:1099
+#: •zp-translate-trunk/zp-core/admin-functions.php:1101
+#: •zp-translate-trunk/zp-core/admin-functions.php:1796
+#: •zp-translate-trunk/zp-core/admin-functions.php:1798
 #: •zp-translate-trunk/zp-core/admin-options.php:577
 #: •zp-translate-trunk/zp-core/admin-options.php:905
 #: •zp-translate-trunk/zp-core/admin-options.php:928
@@ -1485,7 +1481,7 @@ msgstr "Zurück"
 #: •zp-translate-trunk/zp-core/admin-options.php:2832
 #: •zp-translate-trunk/zp-core/admin-options.php:2952
 #: •zp-translate-trunk/zp-core/admin-plugins.php:104
-#: •zp-translate-trunk/zp-core/admin-plugins.php:292
+#: •zp-translate-trunk/zp-core/admin-plugins.php:332
 msgid "Apply"
 msgstr "Anwenden"
 
@@ -1493,10 +1489,10 @@ msgstr "Anwenden"
 #: •zp-translate-trunk/zp-core/admin-albumsort.php:133
 #: •zp-translate-trunk/zp-core/admin-albumsort.php:160
 #: •zp-translate-trunk/zp-core/admin-albumsort.php:162
-#: •zp-translate-trunk/zp-core/admin-functions.php:1115
-#: •zp-translate-trunk/zp-core/admin-functions.php:1117
-#: •zp-translate-trunk/zp-core/admin-functions.php:1812
-#: •zp-translate-trunk/zp-core/admin-functions.php:1814
+#: •zp-translate-trunk/zp-core/admin-functions.php:1118
+#: •zp-translate-trunk/zp-core/admin-functions.php:1120
+#: •zp-translate-trunk/zp-core/admin-functions.php:1815
+#: •zp-translate-trunk/zp-core/admin-functions.php:1817
 msgid "View Album"
 msgstr "Album ansehen"
 
@@ -1505,7 +1501,7 @@ msgid "Set the image order by dragging them to the positions you desire."
 msgstr "Bilder durch Verschieben sortieren."
 
 #: •zp-translate-trunk/zp-core/admin-comments.php:97
-#: •zp-translate-trunk/zp-core/admin-edit.php:595
+#: •zp-translate-trunk/zp-core/admin-edit.php:589
 msgid "Are you sure you want to delete the checked items?"
 msgstr "Sind Sie sicher, dass Sie die ausgewählten Einträge löschen wollen?"
 
@@ -1523,20 +1519,20 @@ msgstr "Sind Sie sicher, dass Sie diesen Kommentar löschen wollen?"
 #: •zp-translate-trunk/zp-core/admin-comments.php:339
 #: •zp-translate-trunk/zp-core/admin-comments.php:478
 #: •zp-translate-trunk/zp-core/admin-comments.php:494
-#: •zp-translate-trunk/zp-core/admin-edit.php:627
-#: •zp-translate-trunk/zp-core/admin-functions.php:1893
+#: •zp-translate-trunk/zp-core/admin-edit.php:621
+#: •zp-translate-trunk/zp-core/admin-functions.php:1896
 #: •zp-translate-trunk/zp-core/admin-logs.php:95
 msgid "Delete"
 msgstr "Löschen"
 
 #: •zp-translate-trunk/zp-core/admin-comments.php:139
 #: •zp-translate-trunk/zp-core/admin-comments.php:141
+#: •zp-translate-trunk/zp-core/admin-edit.php:1263
 #: •zp-translate-trunk/zp-core/admin-edit.php:1269
 #: •zp-translate-trunk/zp-core/admin-edit.php:1275
-#: •zp-translate-trunk/zp-core/admin-edit.php:1281
-#: •zp-translate-trunk/zp-core/admin-functions.php:1703
-#: •zp-translate-trunk/zp-core/admin-functions.php:1740
-#: •zp-translate-trunk/zp-core/admin-functions.php:1748
+#: •zp-translate-trunk/zp-core/admin-functions.php:1706
+#: •zp-translate-trunk/zp-core/admin-functions.php:1743
+#: •zp-translate-trunk/zp-core/admin-functions.php:1751
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -1610,8 +1606,8 @@ msgid "Comment does not exist"
 msgstr "Kommentar exisitert nicht"
 
 #: •zp-translate-trunk/zp-core/admin-comments.php:268
-#: •zp-translate-trunk/zp-core/admin-edit.php:793
-#: •zp-translate-trunk/zp-core/admin-edit.php:1694
+#: •zp-translate-trunk/zp-core/admin-edit.php:787
+#: •zp-translate-trunk/zp-core/admin-edit.php:1688
 msgid "Selected items deleted"
 msgstr "Ausgewählte Einträge gelöscht"
 
@@ -1628,9 +1624,9 @@ msgid "Comments deleted successfully."
 msgstr "Kommentare erfolgreich gelöscht"
 
 #: •zp-translate-trunk/zp-core/admin-comments.php:293
-#: •zp-translate-trunk/zp-core/admin-edit.php:765
-#: •zp-translate-trunk/zp-core/admin-edit.php:1602
-#: •zp-translate-trunk/zp-core/admin-edit.php:1684
+#: •zp-translate-trunk/zp-core/admin-edit.php:759
+#: •zp-translate-trunk/zp-core/admin-edit.php:1596
+#: •zp-translate-trunk/zp-core/admin-edit.php:1678
 msgid "Changes applied"
 msgstr "Änderungen angewendet"
 
@@ -1651,7 +1647,7 @@ msgid "Edit this comment"
 msgstr "Kommentar bearbeiten"
 
 #: •zp-translate-trunk/zp-core/admin-comments.php:338
-#: •zp-translate-trunk/zp-core/admin-edit.php:626
+#: •zp-translate-trunk/zp-core/admin-edit.php:620
 msgid "*Bulk actions*"
 msgstr "*Sammelaktionen*"
 
@@ -1660,9 +1656,9 @@ msgid "Mark as spam"
 msgstr "Als SPAM markieren"
 
 #: •zp-translate-trunk/zp-core/admin-comments.php:350
-#: •zp-translate-trunk/zp-core/admin-edit.php:924
-#: •zp-translate-trunk/zp-core/admin-edit.php:1796
-#: •zp-translate-trunk/zp-core/admin-functions.php:3577
+#: •zp-translate-trunk/zp-core/admin-edit.php:918
+#: •zp-translate-trunk/zp-core/admin-edit.php:1790
+#: •zp-translate-trunk/zp-core/admin-functions.php:3581
 msgid "Check All"
 msgstr "Alle auswählen"
 
@@ -1754,7 +1750,7 @@ msgid "Create in:"
 msgstr "Erstellt in:"
 
 #: •zp-translate-trunk/zp-core/admin-dynamic-album.php:147
-#: •zp-translate-trunk/zp-core/admin-functions.php:1454
+#: •zp-translate-trunk/zp-core/admin-functions.php:1457
 msgid "Thumbnail:"
 msgstr "Thumbnail:"
 
@@ -1778,538 +1774,538 @@ msgstr "Suchfelder:"
 msgid "Create the album"
 msgstr "Album erstellen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:489
+#: •zp-translate-trunk/zp-core/admin-edit.php:483
 msgid "The album couldn't be created in the 'albums' folder. This is usually a permissions problem. Try setting the permissions on the albums and cache folders to be world-writable using a shell:"
 msgstr "Das Album konnte nicht im Ordner 'albums' erstellt werden. Dies ist gewöhnlich ein Problem der Zugriffsrechte. Versuchen Sie die Zugriffsrechte der Ordner 'albums\" und 'cache\" auf beschreibbar zu setzen."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:490
+#: •zp-translate-trunk/zp-core/admin-edit.php:484
 msgid "or use your FTP program to give everyone write permissions to those folders."
 msgstr "oder benutzen Sie Ihr FTP-Programm, um allgemeine Zugriffe auf diese Ordner zu erlauben."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:585
+#: •zp-translate-trunk/zp-core/admin-edit.php:579
 msgid "Are you sure you want to delete this entire album?"
 msgstr "Sind Sie sicher, dass Sie das ganze Album löschen wollen?"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:586
+#: •zp-translate-trunk/zp-core/admin-edit.php:580
 msgid "Are you Absolutely Positively sure you want to delete the album? THIS CANNOT BE UNDONE!"
 msgstr "Sind Sie wirklich sicher, dass Sie dieses Album löschen wollen? ES KANN NICHT RÜCKGÄNGIG GEMACHT WERDEN!"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:588
+#: •zp-translate-trunk/zp-core/admin-edit.php:582
 msgid "New album name?"
 msgstr "Neuer Albumname?"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:588
+#: •zp-translate-trunk/zp-core/admin-edit.php:582
 msgid "new album"
 msgstr "Neues Album"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:620
+#: •zp-translate-trunk/zp-core/admin-edit.php:614
 msgid "Show thumbnail stand-in"
 msgstr "Thumbnailersatz anzeigen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:623
+#: •zp-translate-trunk/zp-core/admin-edit.php:617
 msgid "Show album thumb"
 msgstr "Albumthumb zeigen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:628
+#: •zp-translate-trunk/zp-core/admin-edit.php:622
 msgid "Set to published"
 msgstr "Auf veröffentlicht setzen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:629
+#: •zp-translate-trunk/zp-core/admin-edit.php:623
 msgid "Set to unpublished"
 msgstr "Auf unveröffentlicht setzen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:630
+#: •zp-translate-trunk/zp-core/admin-edit.php:624
 msgid "Add tags"
 msgstr "Schlagwörter hinzufügen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:631
+#: •zp-translate-trunk/zp-core/admin-edit.php:625
 msgid "Clear tags"
 msgstr "Schlagwörter löschen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:632
-#: •zp-translate-trunk/zp-core/admin-functions.php:2017
+#: •zp-translate-trunk/zp-core/admin-edit.php:626
+#: •zp-translate-trunk/zp-core/admin-functions.php:2020
 msgid "Disable comments"
 msgstr "Kommentare abschalten"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:633
-#: •zp-translate-trunk/zp-core/admin-functions.php:2031
+#: •zp-translate-trunk/zp-core/admin-edit.php:627
+#: •zp-translate-trunk/zp-core/admin-functions.php:2034
 msgid "Enable comments"
 msgstr "Kommentare einschalten"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:634
+#: •zp-translate-trunk/zp-core/admin-edit.php:628
 msgid "Reset hitcounter"
 msgstr "Besucherzähler zurücksetzen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:637
+#: •zp-translate-trunk/zp-core/admin-edit.php:631
 msgid "Add tags to images"
 msgstr "Schlagwörter Bildern hinzufügen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:638
+#: •zp-translate-trunk/zp-core/admin-edit.php:632
 msgid "Clear tags of images"
 msgstr "Schlagwörter von Bildern löschen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:641
-#: •zp-translate-trunk/zp-core/admin-edit.php:1230
-#: •zp-translate-trunk/zp-core/admin-functions.php:1677
+#: •zp-translate-trunk/zp-core/admin-edit.php:635
+#: •zp-translate-trunk/zp-core/admin-edit.php:1224
+#: •zp-translate-trunk/zp-core/admin-functions.php:1680
 msgid "Move"
 msgstr "Verschieben"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:642
-#: •zp-translate-trunk/zp-core/admin-edit.php:1234
-#: •zp-translate-trunk/zp-core/admin-functions.php:1683
+#: •zp-translate-trunk/zp-core/admin-edit.php:636
+#: •zp-translate-trunk/zp-core/admin-edit.php:1228
+#: •zp-translate-trunk/zp-core/admin-functions.php:1686
 msgid "Copy"
 msgstr "Kopieren"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:712
+#: •zp-translate-trunk/zp-core/admin-edit.php:706
 msgid "Hitcounters have been reset"
 msgstr "Die Besucherzähler wurden zurückgesetzt"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:732
+#: •zp-translate-trunk/zp-core/admin-edit.php:726
 msgid "You must supply a  password."
 msgstr "Es muss ein Passwort eingegeben werden"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:734
+#: •zp-translate-trunk/zp-core/admin-edit.php:728
 msgid "Your passwords did not match."
 msgstr "Ihr Passwort stimmt nicht überein."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:756
+#: •zp-translate-trunk/zp-core/admin-edit.php:750
 msgid "The image edit form submission has been truncated. Try displaying fewer images on a page."
 msgstr "Die Bild-Formular-Übermittlung ist unvollständig. Probieren Sie weniger Bilder pro Seite anzeigen zu lassen."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:774
+#: •zp-translate-trunk/zp-core/admin-edit.php:768
 msgid "Upload complete"
 msgstr "Hochladen vollständig"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:775
+#: •zp-translate-trunk/zp-core/admin-edit.php:769
 msgid "Your files have been uploaded."
 msgstr "Ihren Dateien wurden hochgeladen."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:781
+#: •zp-translate-trunk/zp-core/admin-edit.php:775
 msgid "Album cache purged"
 msgstr "Albumcache gelöscht"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:786
-#: •zp-translate-trunk/zp-core/admin-edit.php:1677
+#: •zp-translate-trunk/zp-core/admin-edit.php:780
+#: •zp-translate-trunk/zp-core/admin-edit.php:1671
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> existiert bereits."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:796
-#: •zp-translate-trunk/zp-core/admin-edit.php:1697
+#: •zp-translate-trunk/zp-core/admin-edit.php:790
+#: •zp-translate-trunk/zp-core/admin-edit.php:1691
 msgid "Selected items published"
 msgstr "Ausgewählte Einträge veröffentlicht"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:799
-#: •zp-translate-trunk/zp-core/admin-edit.php:1700
+#: •zp-translate-trunk/zp-core/admin-edit.php:793
+#: •zp-translate-trunk/zp-core/admin-edit.php:1694
 msgid "Selected items unpublished"
 msgstr "Ausgewählte Einträge nicht veröffentlicht"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:802
-#: •zp-translate-trunk/zp-core/admin-edit.php:1703
+#: •zp-translate-trunk/zp-core/admin-edit.php:796
+#: •zp-translate-trunk/zp-core/admin-edit.php:1697
 msgid "Comments enabled for selected items"
 msgstr "Kommentare für die ausgewählten Einträge aktiviert"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:805
-#: •zp-translate-trunk/zp-core/admin-edit.php:1706
+#: •zp-translate-trunk/zp-core/admin-edit.php:799
+#: •zp-translate-trunk/zp-core/admin-edit.php:1700
 msgid "Comments disabled for selected items"
 msgstr "Kommentare sind für die ausgewählten Einträge deaktiviert"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:808
-#: •zp-translate-trunk/zp-core/admin-edit.php:1709
+#: •zp-translate-trunk/zp-core/admin-edit.php:802
+#: •zp-translate-trunk/zp-core/admin-edit.php:1703
 msgid "Hitcounter for selected items"
 msgstr "Besucherzähler für ausgewählte Einträge"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:857
-#: •zp-translate-trunk/zp-core/admin-edit.php:1737
+#: •zp-translate-trunk/zp-core/admin-edit.php:851
+#: •zp-translate-trunk/zp-core/admin-edit.php:1731
 msgid " descending"
 msgstr " Absteigend"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:866
+#: •zp-translate-trunk/zp-core/admin-edit.php:860
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>. "
 msgstr "Aktuelle Sortierung: <em>%1$s%2$s</em>. "
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:870
-#: •zp-translate-trunk/zp-core/admin-edit.php:1751
+#: •zp-translate-trunk/zp-core/admin-edit.php:864
+#: •zp-translate-trunk/zp-core/admin-edit.php:1745
 msgid "Drag the albums into the order you wish them displayed."
 msgstr "Verschieben Sie die Alben in die gewünschte Reihenfolge."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:873
-#: •zp-translate-trunk/zp-core/admin-edit.php:1754
+#: •zp-translate-trunk/zp-core/admin-edit.php:867
+#: •zp-translate-trunk/zp-core/admin-edit.php:1748
 msgid "<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album."
 msgstr "<strong>ANMERKUNG:</strong> Das Verschieben eines Albums unter ein anderes übergeordnetes wird das Album auch auf dem Dateisystem verschieben. Sie können keine Alben zu Unteralben eines <em>dynamischen</em> Albums machen."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:879
+#: •zp-translate-trunk/zp-core/admin-edit.php:873
 #, php-format
 msgid "Select an album to edit its description and data, or <a href=\"?page=edit&amp;album=%s&amp;massedit\">mass-edit</a> all first level subalbums."
 msgstr "Wählen Sie ein Album, um seine Beschreibung und Daten zu bearbeiten oder <a href=\"?page=edit&amp;album=%s&amp;massedit\">Massenbearbeiten</a> Sie alle Alben der ersten Ebene."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:897
-#: •zp-translate-trunk/zp-core/admin-edit.php:899
-#: •zp-translate-trunk/zp-core/admin-edit.php:954
-#: •zp-translate-trunk/zp-core/admin-edit.php:956
-#: •zp-translate-trunk/zp-core/admin-functions.php:1108
-#: •zp-translate-trunk/zp-core/admin-functions.php:1110
-#: •zp-translate-trunk/zp-core/admin-functions.php:1805
-#: •zp-translate-trunk/zp-core/admin-functions.php:1807
+#: •zp-translate-trunk/zp-core/admin-edit.php:891
+#: •zp-translate-trunk/zp-core/admin-edit.php:893
+#: •zp-translate-trunk/zp-core/admin-edit.php:948
+#: •zp-translate-trunk/zp-core/admin-edit.php:950
+#: •zp-translate-trunk/zp-core/admin-functions.php:1111
+#: •zp-translate-trunk/zp-core/admin-functions.php:1113
+#: •zp-translate-trunk/zp-core/admin-functions.php:1808
+#: •zp-translate-trunk/zp-core/admin-functions.php:1810
 msgid "New subalbum"
 msgstr "Neues Unteralbum"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:908
-#: •zp-translate-trunk/zp-core/admin-edit.php:1786
+#: •zp-translate-trunk/zp-core/admin-edit.php:902
+#: •zp-translate-trunk/zp-core/admin-edit.php:1780
 msgid "Edit this album"
 msgstr "Dieses Album bearbeiten"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:917
-#: •zp-translate-trunk/zp-core/admin-edit.php:1791
+#: •zp-translate-trunk/zp-core/admin-edit.php:911
+#: •zp-translate-trunk/zp-core/admin-edit.php:1785
 msgid "Thumbnail generation may be time consuming on slow servers on when there are a lot of images."
 msgstr "Thumbnailerstellung kann auf langsamen Servern sehr zeitaufwendig sein, wenn sehr viele Bilder vorhanden sind."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:999
+#: •zp-translate-trunk/zp-core/admin-edit.php:993
 msgid "Click on the image to change the thumbnail cropping."
 msgstr "Klicken Sie auf das Bild, um den Thumbnailbeschnitt zu verändern."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1001
+#: •zp-translate-trunk/zp-core/admin-edit.php:995
 msgid "expand all fields"
 msgstr "Alle Felder aufklappen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1002
+#: •zp-translate-trunk/zp-core/admin-edit.php:996
 msgid "collapse all fields"
 msgstr "Alle Felder zusammenklappen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1008
+#: •zp-translate-trunk/zp-core/admin-edit.php:1002
 #, php-format
 msgid "%s (descending)"
 msgstr "%s (absteigend)"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1010
-#: •zp-translate-trunk/zp-core/admin-functions.php:1263
+#: •zp-translate-trunk/zp-core/admin-edit.php:1004
+#: •zp-translate-trunk/zp-core/admin-functions.php:1266
 #: •zp-translate-trunk/zp-core/admin-options.php:1093
 msgid "Manual"
 msgstr "Manuell"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1013
+#: •zp-translate-trunk/zp-core/admin-edit.php:1007
 msgid "Display images by:"
 msgstr "Bilder anzeigen sortiert nach: "
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1083
-#: •zp-translate-trunk/zp-core/admin-edit.php:1087
-#: •zp-translate-trunk/zp-core/admin-edit.php:1088
-#: •zp-translate-trunk/zp-core/admin-edit.php:1320
+#: •zp-translate-trunk/zp-core/admin-edit.php:1077
+#: •zp-translate-trunk/zp-core/admin-edit.php:1081
+#: •zp-translate-trunk/zp-core/admin-edit.php:1082
+#: •zp-translate-trunk/zp-core/admin-edit.php:1314
 #, php-format
 msgid "crop %s"
 msgstr "Beschnitt %s"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1092
+#: •zp-translate-trunk/zp-core/admin-edit.php:1086
 msgid "Zoom"
 msgstr "Zoom"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1094
+#: •zp-translate-trunk/zp-core/admin-edit.php:1088
 msgid "View image on website"
 msgstr "Bild auf Website ansehen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1094
+#: •zp-translate-trunk/zp-core/admin-edit.php:1088
 msgid "View"
 msgstr "Ansehen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1095
+#: •zp-translate-trunk/zp-core/admin-edit.php:1089
 msgid "<strong>Filename:</strong>"
 msgstr "<strong>Dateiname:</strong>"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1096
+#: •zp-translate-trunk/zp-core/admin-edit.php:1090
 msgid "<strong>Image id:</strong>"
 msgstr "<strong>Bild-Id:</strong>"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1097
+#: •zp-translate-trunk/zp-core/admin-edit.php:1091
 msgid "<strong>Dimensions:</strong>"
 msgstr "<strong>Abmessungen:</strong>"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1097
+#: •zp-translate-trunk/zp-core/admin-edit.php:1091
 msgid "px"
 msgstr "px"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1098
+#: •zp-translate-trunk/zp-core/admin-edit.php:1092
 msgid "<strong>Size:</strong>"
 msgstr "<strong>Größe:</strong>"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1105
+#: •zp-translate-trunk/zp-core/admin-edit.php:1099
 msgid "Album thumbnail."
 msgstr "Albumthumbnail."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1112
+#: •zp-translate-trunk/zp-core/admin-edit.php:1106
 msgid "Owner:"
 msgstr "Besitzer"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1127
-#: •zp-translate-trunk/zp-core/admin-functions.php:1572
+#: •zp-translate-trunk/zp-core/admin-edit.php:1121
+#: •zp-translate-trunk/zp-core/admin-functions.php:1575
 msgid "General"
 msgstr "Allgemein"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1131
-#: •zp-translate-trunk/zp-core/admin-functions.php:1577
-#: •zp-translate-trunk/zp-core/admin-functions.php:1988
+#: •zp-translate-trunk/zp-core/admin-edit.php:1125
+#: •zp-translate-trunk/zp-core/admin-functions.php:1580
+#: •zp-translate-trunk/zp-core/admin-functions.php:1991
 #: •zp-translate-trunk/zp-core/admin-globals.php:34
 msgid "Published"
 msgstr "Veröffentlicht"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1135
-#: •zp-translate-trunk/zp-core/admin-functions.php:1581
+#: •zp-translate-trunk/zp-core/admin-edit.php:1129
+#: •zp-translate-trunk/zp-core/admin-functions.php:1584
 msgid "Allow Comments"
 msgstr "Kommentare erlauben"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1143
-#: •zp-translate-trunk/zp-core/admin-functions.php:1589
+#: •zp-translate-trunk/zp-core/admin-edit.php:1137
+#: •zp-translate-trunk/zp-core/admin-functions.php:1592
 #, php-format
 msgid "Reset hitcounter (%u hits)"
 msgstr "Besucherzähler löschen (%u Besucher)"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1155
-#: •zp-translate-trunk/zp-core/admin-functions.php:1600
+#: •zp-translate-trunk/zp-core/admin-edit.php:1149
+#: •zp-translate-trunk/zp-core/admin-functions.php:1603
 #, php-format
 msgid "Reset rating (%u stars)"
 msgstr "Bewertung löschen (%u Sterne)"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1162
-#: •zp-translate-trunk/zp-core/admin-functions.php:1607
+#: •zp-translate-trunk/zp-core/admin-edit.php:1156
+#: •zp-translate-trunk/zp-core/admin-functions.php:1610
 msgid "Reset rating (unrated)"
 msgstr "Bewertung löschen (nicht bewertet)"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1176
-#: •zp-translate-trunk/zp-core/admin-edit.php:1363
-#: •zp-translate-trunk/zp-core/admin-functions.php:1234
-#: •zp-translate-trunk/zp-core/admin-functions.php:1620
+#: •zp-translate-trunk/zp-core/admin-edit.php:1170
+#: •zp-translate-trunk/zp-core/admin-edit.php:1357
+#: •zp-translate-trunk/zp-core/admin-functions.php:1237
+#: •zp-translate-trunk/zp-core/admin-functions.php:1623
 msgid "calendar"
 msgstr "Kalender"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1183
-#: •zp-translate-trunk/zp-core/admin-edit.php:1208
-#: •zp-translate-trunk/zp-core/admin-functions.php:1627
-#: •zp-translate-trunk/zp-core/admin-functions.php:1652
+#: •zp-translate-trunk/zp-core/admin-edit.php:1177
+#: •zp-translate-trunk/zp-core/admin-edit.php:1202
+#: •zp-translate-trunk/zp-core/admin-functions.php:1630
+#: •zp-translate-trunk/zp-core/admin-functions.php:1655
 msgid "Future publishing date."
 msgstr "Zukünftiges Veröffentlichungsdatum."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1194
-#: •zp-translate-trunk/zp-core/admin-edit.php:1218
-#: •zp-translate-trunk/zp-core/admin-functions.php:1638
-#: •zp-translate-trunk/zp-core/admin-functions.php:1662
+#: •zp-translate-trunk/zp-core/admin-edit.php:1188
+#: •zp-translate-trunk/zp-core/admin-edit.php:1212
+#: •zp-translate-trunk/zp-core/admin-functions.php:1641
+#: •zp-translate-trunk/zp-core/admin-functions.php:1665
 msgid "Expired!"
 msgstr "Abgelaufen!"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1203
-#: •zp-translate-trunk/zp-core/admin-functions.php:1647
+#: •zp-translate-trunk/zp-core/admin-edit.php:1197
+#: •zp-translate-trunk/zp-core/admin-functions.php:1650
 msgid "Publish date"
 msgstr "Veröffentlichungsdatum"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1213
-#: •zp-translate-trunk/zp-core/admin-functions.php:1657
+#: •zp-translate-trunk/zp-core/admin-edit.php:1207
+#: •zp-translate-trunk/zp-core/admin-functions.php:1660
 msgid "Expiration date"
 msgstr "Ablaufdatum"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1225
-#: •zp-translate-trunk/zp-core/admin-functions.php:1671
+#: •zp-translate-trunk/zp-core/admin-edit.php:1219
+#: •zp-translate-trunk/zp-core/admin-functions.php:1674
 msgid "Utilities"
 msgstr "Werkzeuge"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1238
+#: •zp-translate-trunk/zp-core/admin-edit.php:1232
 msgid "Rename File"
 msgstr "Datei umbenennen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1242
+#: •zp-translate-trunk/zp-core/admin-edit.php:1236
 msgid "Are you sure you want to select this image for deletion?"
 msgstr "Sind Sie sicher, dass Sie dieses Bild zum Löschen markieren wollen?"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1242
+#: •zp-translate-trunk/zp-core/admin-edit.php:1236
 msgid "Delete image"
 msgstr "Bild löschen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1246
-#: •zp-translate-trunk/zp-core/admin-edit.php:1273
+#: •zp-translate-trunk/zp-core/admin-edit.php:1240
+#: •zp-translate-trunk/zp-core/admin-edit.php:1267
 msgid "to"
 msgstr "nach"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1280
+#: •zp-translate-trunk/zp-core/admin-edit.php:1274
 msgid "Image will be deleted when changes are applied."
 msgstr "Das Bild wird gelöscht, wenn die Änderungen angewendet werden."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1289
+#: •zp-translate-trunk/zp-core/admin-edit.php:1283
 msgid "Rotation:"
 msgstr "Rotieren: "
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1303
+#: •zp-translate-trunk/zp-core/admin-edit.php:1297
 msgid "90 degrees"
 msgstr "90 Grad"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1307
+#: •zp-translate-trunk/zp-core/admin-edit.php:1301
 msgid "180 degrees"
 msgstr "180 Grad"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1311
+#: •zp-translate-trunk/zp-core/admin-edit.php:1305
 msgid "270 degrees"
 msgstr "270 Grad"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1321
+#: •zp-translate-trunk/zp-core/admin-edit.php:1315
 msgid "Crop thumbnail"
 msgstr "Thumbnail beschneiden"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1331
-#: •zp-translate-trunk/zp-core/admin-functions.php:1757
+#: •zp-translate-trunk/zp-core/admin-edit.php:1325
+#: •zp-translate-trunk/zp-core/admin-functions.php:1760
 msgid "Tags"
 msgstr "Schlagwörter"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1344
+#: •zp-translate-trunk/zp-core/admin-edit.php:1338
 msgid "Title:"
 msgstr "Titel:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1349
+#: •zp-translate-trunk/zp-core/admin-edit.php:1343
 msgid "Description:"
 msgstr "Beschreibung:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1378
+#: •zp-translate-trunk/zp-core/admin-edit.php:1372
 msgid "Image watermark:"
 msgstr "Bildwasserzeichen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1381
-#: •zp-translate-trunk/zp-core/admin-functions.php:1413
-#: •zp-translate-trunk/zp-core/admin-functions.php:1428
+#: •zp-translate-trunk/zp-core/admin-edit.php:1375
+#: •zp-translate-trunk/zp-core/admin-functions.php:1416
+#: •zp-translate-trunk/zp-core/admin-functions.php:1431
 msgid "*no watermark"
 msgstr "*Kein Wasserzeichen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1382
-#: •zp-translate-trunk/zp-core/admin-functions.php:1414
-#: •zp-translate-trunk/zp-core/admin-functions.php:1429
+#: •zp-translate-trunk/zp-core/admin-edit.php:1376
+#: •zp-translate-trunk/zp-core/admin-functions.php:1417
+#: •zp-translate-trunk/zp-core/admin-functions.php:1432
 msgid "*default"
 msgstr "*Voreinstellung"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1391
+#: •zp-translate-trunk/zp-core/admin-edit.php:1385
 msgid "thumb"
 msgstr "Thumbnail"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1392
+#: •zp-translate-trunk/zp-core/admin-edit.php:1386
 msgid "full image"
 msgstr "Vollbild"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1401
-#: •zp-translate-trunk/zp-core/admin-functions.php:1254
+#: •zp-translate-trunk/zp-core/admin-edit.php:1395
+#: •zp-translate-trunk/zp-core/admin-functions.php:1257
 msgid "Custom data:"
 msgstr "Sonderfeld:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1411
-#: •zp-translate-trunk/zp-core/admin-functions.php:1244
+#: •zp-translate-trunk/zp-core/admin-edit.php:1405
+#: •zp-translate-trunk/zp-core/admin-functions.php:1247
 msgid "Location:"
 msgstr "Ort:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1417
+#: •zp-translate-trunk/zp-core/admin-edit.php:1411
 msgid "City:"
 msgstr "Stadt:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1423
+#: •zp-translate-trunk/zp-core/admin-edit.php:1417
 msgid "State:"
 msgstr "Land:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1429
+#: •zp-translate-trunk/zp-core/admin-edit.php:1423
 msgid "Country:"
 msgstr "Staat:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1435
+#: •zp-translate-trunk/zp-core/admin-edit.php:1429
 msgid "Credit:"
 msgstr "Credit:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1441
+#: •zp-translate-trunk/zp-core/admin-edit.php:1435
 msgid "Copyright:"
 msgstr "Copyright:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1449
+#: •zp-translate-trunk/zp-core/admin-edit.php:1443
 msgid "Metadata:"
 msgstr "Metadaten:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1466
+#: •zp-translate-trunk/zp-core/admin-edit.php:1460
 msgid "None selected for display"
 msgstr "Nichts zum Anzeigen ausgewählt"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1480
-#: •zp-translate-trunk/zp-core/admin-functions.php:1537
+#: •zp-translate-trunk/zp-core/admin-edit.php:1474
+#: •zp-translate-trunk/zp-core/admin-functions.php:1540
 #: •zp-translate-trunk/zp-core/admin-options.php:1238
 msgid "Codeblocks:"
 msgstr "Codeblöcke:"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1485
-#: •zp-translate-trunk/zp-core/admin-functions.php:1542
+#: •zp-translate-trunk/zp-core/admin-edit.php:1479
+#: •zp-translate-trunk/zp-core/admin-functions.php:1545
 #: •zp-translate-trunk/zp-core/admin-options.php:1243
 msgid "Codeblock 1"
 msgstr "Codeblock 1"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1486
-#: •zp-translate-trunk/zp-core/admin-functions.php:1543
+#: •zp-translate-trunk/zp-core/admin-edit.php:1480
+#: •zp-translate-trunk/zp-core/admin-functions.php:1546
 #: •zp-translate-trunk/zp-core/admin-options.php:1244
 msgid "Codeblock 2"
 msgstr "Codeblock 2"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1487
-#: •zp-translate-trunk/zp-core/admin-functions.php:1544
+#: •zp-translate-trunk/zp-core/admin-edit.php:1481
+#: •zp-translate-trunk/zp-core/admin-functions.php:1547
 #: •zp-translate-trunk/zp-core/admin-options.php:1245
 msgid "Codeblock 3"
 msgstr "Codeblock 3"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1517
+#: •zp-translate-trunk/zp-core/admin-edit.php:1511
 msgid "show more fields"
 msgstr "Mehr Felder zeigen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1519
+#: •zp-translate-trunk/zp-core/admin-edit.php:1513
 msgid "show fewer fields"
 msgstr "Weniger Felder zeigen"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1598
+#: •zp-translate-trunk/zp-core/admin-edit.php:1592
 msgid "Your passwords did not match"
 msgstr "Ihre Passwörter stimmen nicht überein."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1628
+#: •zp-translate-trunk/zp-core/admin-edit.php:1622
 msgid "Edit All Albums in"
 msgstr "Alle Alben bearbeiten in"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1662
+#: •zp-translate-trunk/zp-core/admin-edit.php:1656
 msgid "Edit Gallery"
 msgstr "Galerie bearbeiten"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1667
+#: •zp-translate-trunk/zp-core/admin-edit.php:1661
 msgid "Hitcounters have been reset."
 msgstr "Die Besucherzähler wurden zurückgesetzt."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1672
+#: •zp-translate-trunk/zp-core/admin-edit.php:1666
 msgid "Cache has been purged."
 msgstr "Der Cache wurde gelöscht."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1712
+#: •zp-translate-trunk/zp-core/admin-edit.php:1706
 msgid "Tags added selected items"
 msgstr "Schlagwörter den ausgewählten Einträgen hinzugefügt"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1715
+#: •zp-translate-trunk/zp-core/admin-edit.php:1709
 msgid "Tags cleared for selected items"
 msgstr "Schlagwörter von den ausgewählten Einträgen gelöscht"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1718
+#: •zp-translate-trunk/zp-core/admin-edit.php:1712
 msgid "Tags added for images of selected items"
 msgstr "Schlagwörter den ausgewählten Einträgen hinzugefügt"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1721
+#: •zp-translate-trunk/zp-core/admin-edit.php:1715
 msgid "Tags cleared for images of selected items"
 msgstr "Schlagwörter der ausgewählten Einträge gelöscht"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1748
+#: •zp-translate-trunk/zp-core/admin-edit.php:1742
 #, php-format
 msgid "Current sort: <em>%1$s%2$s</em>."
 msgstr "Aktuelle Sortierung: <em>%1$s%2$s</em>. "
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1761
+#: •zp-translate-trunk/zp-core/admin-edit.php:1755
 msgid "Select an album to edit its description and data, or <a href=\"?page=edit&amp;massedit\">mass-edit</a> all gallery level albums."
 msgstr "Wählen Sie ein Album, um seine Beschreibung und Daten zu bearbeiten oder <a href=\"?page=edit&amp;massedit\">Massenbearbeiten</a> Sie alle Alben auf Galerieebene."
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1779
-#: •zp-translate-trunk/zp-core/admin-edit.php:1820
-#: •zp-translate-trunk/zp-core/admin-edit.php:1834
+#: •zp-translate-trunk/zp-core/admin-edit.php:1773
+#: •zp-translate-trunk/zp-core/admin-edit.php:1814
+#: •zp-translate-trunk/zp-core/admin-edit.php:1828
 msgid "New album"
 msgstr "Neues Album"
 
-#: •zp-translate-trunk/zp-core/admin-edit.php:1831
+#: •zp-translate-trunk/zp-core/admin-edit.php:1825
 msgid "There are no albums for you to edit."
 msgstr "Es gibt keine Alben, die Sie bearbeiten können."
 
@@ -2397,8 +2393,8 @@ msgid "View gallery index"
 msgstr "Galerie-Index ansehen"
 
 #: •zp-translate-trunk/zp-core/admin-functions.php:408
-#: •zp-translate-trunk/zp-core/admin-functions.php:1420
-#: •zp-translate-trunk/zp-core/admin-functions.php:1876
+#: •zp-translate-trunk/zp-core/admin-functions.php:1423
+#: •zp-translate-trunk/zp-core/admin-functions.php:1879
 #: •zp-translate-trunk/zp-core/admin-options.php:1802
 #: •zp-translate-trunk/zp-core/admin-options.php:1855
 msgid "Images"
@@ -2422,470 +2418,470 @@ msgstr "%s konnte nicht gelöscht werden."
 msgid "%s deleted successfully."
 msgstr "%s erfolgreich gelöscht."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:752
+#: •zp-translate-trunk/zp-core/admin-functions.php:755
 msgid "all"
 msgstr "Alle"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1018
+#: •zp-translate-trunk/zp-core/admin-functions.php:1021
 msgid "tag set!"
 msgstr "Schlagwort gesetzt!"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1018
-#: •zp-translate-trunk/zp-core/admin-functions.php:1019
+#: •zp-translate-trunk/zp-core/admin-functions.php:1021
+#: •zp-translate-trunk/zp-core/admin-functions.php:1022
 msgid "add tag"
 msgstr "Schlagwort hinzufügen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1127
+#: •zp-translate-trunk/zp-core/admin-functions.php:1130
 #: •zp-translate-trunk/zp-core/admin-globals.php:33
 msgid "Owner"
 msgstr "Besitzer"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1144
+#: •zp-translate-trunk/zp-core/admin-functions.php:1147
 msgid "Album Title"
 msgstr "Albumtitle"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1153
+#: •zp-translate-trunk/zp-core/admin-functions.php:1156
 msgid "Album Description:"
 msgstr "Albumbeschreibung:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1166
-#: •zp-translate-trunk/zp-core/admin-functions.php:1194
+#: •zp-translate-trunk/zp-core/admin-functions.php:1169
+#: •zp-translate-trunk/zp-core/admin-functions.php:1197
 msgid "Album password:"
 msgstr "Albumpasswort:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1180
+#: •zp-translate-trunk/zp-core/admin-functions.php:1183
 #: •zp-translate-trunk/zp-core/admin-options.php:985
 #: •zp-translate-trunk/zp-core/admin-options.php:1323
 #: •zp-translate-trunk/zp-core/admin-options.php:1973
 msgid "clear password"
 msgstr "Passwort löschen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1190
+#: •zp-translate-trunk/zp-core/admin-functions.php:1193
 msgid "Album guest user:"
 msgstr "Album-Gastbenutzer:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1196
+#: •zp-translate-trunk/zp-core/admin-functions.php:1199
 msgid "repeat:"
 msgstr "Wiederholen:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1199
+#: •zp-translate-trunk/zp-core/admin-functions.php:1202
 msgid "Password hint:"
 msgstr "Passwort-Hinweis:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1265
+#: •zp-translate-trunk/zp-core/admin-functions.php:1268
 #: •zp-translate-trunk/zp-core/admin-options.php:774
 #: •zp-translate-trunk/zp-core/admin-options.php:1094
 #: •zp-translate-trunk/zp-core/admin-options.php:1637
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1272
+#: •zp-translate-trunk/zp-core/admin-functions.php:1275
 msgid "Sort subalbums by:"
 msgstr "Unteralbumsortierung: "
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1278
+#: •zp-translate-trunk/zp-core/admin-functions.php:1281
 msgid "*gallery album sort order"
 msgstr "*Galerie-Album-Sortierung"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1280
+#: •zp-translate-trunk/zp-core/admin-functions.php:1283
 msgid "*parent album subalbum sort order"
 msgstr "*Unteralbum-Sortierung des übergeordneten Albums"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1300
-#: •zp-translate-trunk/zp-core/admin-functions.php:1351
+#: •zp-translate-trunk/zp-core/admin-functions.php:1303
+#: •zp-translate-trunk/zp-core/admin-functions.php:1354
 #: •zp-translate-trunk/zp-core/admin-options.php:1128
 #: •zp-translate-trunk/zp-core/admin-options.php:1664
 msgid "Descending"
 msgstr "Absteigend"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1314
-#: •zp-translate-trunk/zp-core/admin-functions.php:1366
+#: •zp-translate-trunk/zp-core/admin-functions.php:1317
+#: •zp-translate-trunk/zp-core/admin-functions.php:1369
 #: •zp-translate-trunk/zp-core/admin-options.php:1136
 #: •zp-translate-trunk/zp-core/admin-options.php:1670
 msgid "custom fields:"
 msgstr "Benutzerdefinierte Felder:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1321
+#: •zp-translate-trunk/zp-core/admin-functions.php:1324
 #: •zp-translate-trunk/zp-core/admin-options.php:1632
 msgid "Sort images by:"
 msgstr "Bildersortierung: "
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1327
+#: •zp-translate-trunk/zp-core/admin-functions.php:1330
 msgid "*gallery image sort order"
 msgstr "*Galerie-Standardbildsortierung"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1329
+#: •zp-translate-trunk/zp-core/admin-functions.php:1332
 msgid "*parent album image sort order"
 msgstr "*Bildsortierung des übergeordneten Albums"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1376
+#: •zp-translate-trunk/zp-core/admin-functions.php:1379
 msgid "Album theme:"
 msgstr "Albumtheme:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1388
+#: •zp-translate-trunk/zp-core/admin-functions.php:1391
 msgid "*gallery theme"
 msgstr "*Galerie-Theme"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1409
+#: •zp-translate-trunk/zp-core/admin-functions.php:1412
 msgid "Album watermarks:"
 msgstr "Album-Wasserzeichen:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1435
+#: •zp-translate-trunk/zp-core/admin-functions.php:1438
 #: •zp-translate-trunk/zp-core/admin-options.php:1806
 msgid "Thumbs"
 msgstr "Thumbnails"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1689
+#: •zp-translate-trunk/zp-core/admin-functions.php:1692
 msgid "Rename Folder"
 msgstr "Ordner umbenennen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1695
+#: •zp-translate-trunk/zp-core/admin-functions.php:1698
 msgid "Delete album"
 msgstr "Album löschen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1700
+#: •zp-translate-trunk/zp-core/admin-functions.php:1703
 msgid "Album will be deleted when changes are applied."
 msgstr "Das Album wird gelöscht, wenn die Änderungen angewendet werden."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1707
-#: •zp-translate-trunk/zp-core/admin-functions.php:1744
+#: •zp-translate-trunk/zp-core/admin-functions.php:1710
+#: •zp-translate-trunk/zp-core/admin-functions.php:1747
 msgid "to:"
 msgstr "nach:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1772
+#: •zp-translate-trunk/zp-core/admin-functions.php:1775
 msgid "Dynamic album search:"
 msgstr "Suche in dynamischen Alben:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1835
+#: •zp-translate-trunk/zp-core/admin-functions.php:1838
 msgid "Clears the album's cached images."
 msgstr "Löscht die zwischengespeicherten Bilder des Albums."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1837
+#: •zp-translate-trunk/zp-core/admin-functions.php:1840
 msgid "Clear album cache"
 msgstr "Löschte den Albumcache"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1847
+#: •zp-translate-trunk/zp-core/admin-functions.php:1850
 msgid "Resets all hitcounters in the album."
 msgstr "Besucherzähler dieses Albums zurücksetzen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1848
-#: •zp-translate-trunk/zp-core/admin-functions.php:1892
+#: •zp-translate-trunk/zp-core/admin-functions.php:1851
+#: •zp-translate-trunk/zp-core/admin-functions.php:1895
 msgid "Reset hitcounters"
 msgstr "Besucherzähler-Reset"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1861
+#: •zp-translate-trunk/zp-core/admin-functions.php:1864
 msgid "Forces a refresh of the EXIF and IPTC data for all images in the album."
 msgstr "Führt eine Aktualisierung der EXIF- und IPTC-Daten aller Bilder in diesem Album durch."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1862
+#: •zp-translate-trunk/zp-core/admin-functions.php:1865
 #: •zp-translate-trunk/zp-core/admin-refresh-metadata.php:41
 msgid "Refresh Metadata"
 msgstr "Metadaten aktualisieren"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1877
+#: •zp-translate-trunk/zp-core/admin-functions.php:1880
 msgid "Albums (dynamic)"
 msgstr "Alben (dynamisch)"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1878
+#: •zp-translate-trunk/zp-core/admin-functions.php:1881
 msgid "Images (dynamic)"
 msgstr "Bilder (dynamisch)"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1884
+#: •zp-translate-trunk/zp-core/admin-functions.php:1887
 msgid "Has Password"
 msgstr "hat Passwort"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1888
+#: •zp-translate-trunk/zp-core/admin-functions.php:1891
 msgid "Published/Un-published"
 msgstr "Veröffentlicht/Unveröffentlicht"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1889
+#: •zp-translate-trunk/zp-core/admin-functions.php:1892
 msgid "Comments on/off"
 msgstr "Kommentare an/aus"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1890
+#: •zp-translate-trunk/zp-core/admin-functions.php:1893
 msgid "View the album"
 msgstr "Album ansehen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1891
+#: •zp-translate-trunk/zp-core/admin-functions.php:1894
 msgid "Refresh metadata"
 msgstr "Metadaten aktualisieren"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1921
-#: •zp-translate-trunk/zp-core/admin-functions.php:1938
+#: •zp-translate-trunk/zp-core/admin-functions.php:1924
+#: •zp-translate-trunk/zp-core/admin-functions.php:1941
 #, php-format
 msgid "Edit this album: %s"
 msgstr "Edit this album: %s"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1951
 #: •zp-translate-trunk/zp-core/admin-functions.php:1954
-#: •zp-translate-trunk/zp-core/admin-globals.php:52
+#: •zp-translate-trunk/zp-core/admin-functions.php:1957
+#: •zp-translate-trunk/zp-core/admin-globals.php:53
 msgid "images"
 msgstr "Bilder"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1952
 #: •zp-translate-trunk/zp-core/admin-functions.php:1955
-#: •zp-translate-trunk/zp-core/admin-globals.php:63
+#: •zp-translate-trunk/zp-core/admin-functions.php:1958
+#: •zp-translate-trunk/zp-core/admin-globals.php:64
 msgid "albums"
 msgstr "Alben"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1960
-#: •zp-translate-trunk/zp-core/admin-functions.php:1965
+#: •zp-translate-trunk/zp-core/admin-functions.php:1963
+#: •zp-translate-trunk/zp-core/admin-functions.php:1968
 msgid "Subalbum List"
 msgstr "Subalbum-Übersicht"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1975
+#: •zp-translate-trunk/zp-core/admin-functions.php:1978
 msgid "Password protected"
 msgstr "Passwortgeschützt"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1984
+#: •zp-translate-trunk/zp-core/admin-functions.php:1987
 #, php-format
 msgid "Un-publish the album %s"
 msgstr "Das Album %s nicht veröffentlichen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:1998
+#: •zp-translate-trunk/zp-core/admin-functions.php:2001
 #, php-format
 msgid "Publish the album %s"
 msgstr "Album %s veröffentlichen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2002
+#: •zp-translate-trunk/zp-core/admin-functions.php:2005
 #, php-format
 msgid "Unpublished"
 msgstr "Unveröffentlicht"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2021
+#: •zp-translate-trunk/zp-core/admin-functions.php:2024
 msgid "Comments on"
 msgstr "Kommentare erlauben"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2035
+#: •zp-translate-trunk/zp-core/admin-functions.php:2038
 msgid "Comments off"
 msgstr "Kommentare aus"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2046
+#: •zp-translate-trunk/zp-core/admin-functions.php:2049
 msgid "View album"
 msgstr "Album ansehen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2047
+#: •zp-translate-trunk/zp-core/admin-functions.php:2050
 #, php-format
 msgid "View album %s"
 msgstr "Album %s ansehen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2054
-#: •zp-translate-trunk/zp-core/admin-functions.php:2069
-#: •zp-translate-trunk/zp-core/admin-functions.php:2086
+#: •zp-translate-trunk/zp-core/admin-functions.php:2057
+#: •zp-translate-trunk/zp-core/admin-functions.php:2072
+#: •zp-translate-trunk/zp-core/admin-functions.php:2089
 msgid "unavailable"
 msgstr "nicht verfügbar"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2058
+#: •zp-translate-trunk/zp-core/admin-functions.php:2061
 #, php-format
 msgid "Refresh metadata for the album %s"
 msgstr "Metadaten für das Album %s aktualisieren"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2059
+#: •zp-translate-trunk/zp-core/admin-functions.php:2062
 #, php-format
 msgid "Refresh metadata in the album %s"
 msgstr "Metadaten für das Album %s aktualisieren"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2073
+#: •zp-translate-trunk/zp-core/admin-functions.php:2076
 #, php-format
 msgid "Reset hitcounters for album %s"
 msgstr "Besucherzähler für das Album %s zurücksetzen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2074
+#: •zp-translate-trunk/zp-core/admin-functions.php:2077
 #, php-format
 msgid "Reset hitcounters for the album %s"
 msgstr "Besucherzähler für das Album %s zurücksetzen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2090
-#: •zp-translate-trunk/zp-core/admin-functions.php:2091
+#: •zp-translate-trunk/zp-core/admin-functions.php:2093
+#: •zp-translate-trunk/zp-core/admin-functions.php:2094
 #, php-format
 msgid "Delete the album %s"
 msgstr "Album %s löschen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2354
-#: •zp-translate-trunk/zp-core/admin-functions.php:2361
-#: •zp-translate-trunk/zp-core/admin-functions.php:2366
+#: •zp-translate-trunk/zp-core/admin-functions.php:2357
+#: •zp-translate-trunk/zp-core/admin-functions.php:2364
 #: •zp-translate-trunk/zp-core/admin-functions.php:2369
 #: •zp-translate-trunk/zp-core/admin-functions.php:2372
+#: •zp-translate-trunk/zp-core/admin-functions.php:2375
 #, php-format
 msgid "page %u"
 msgstr "Seite %u"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2354
-#: •zp-translate-trunk/zp-core/admin-functions.php:2356
+#: •zp-translate-trunk/zp-core/admin-functions.php:2357
+#: •zp-translate-trunk/zp-core/admin-functions.php:2359
 msgid "Previous page"
 msgstr "Vorherige Seite"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2681
-#: •zp-translate-trunk/zp-core/admin-functions.php:2686
-#: •zp-translate-trunk/zp-core/admin-functions.php:2691
-#: •zp-translate-trunk/zp-core/admin-functions.php:2696
+#: •zp-translate-trunk/zp-core/admin-functions.php:2685
+#: •zp-translate-trunk/zp-core/admin-functions.php:2690
+#: •zp-translate-trunk/zp-core/admin-functions.php:2695
+#: •zp-translate-trunk/zp-core/admin-functions.php:2700
 msgid "Cannot create new theme."
 msgstr "Es konnte kein neues Theme erstellt werden."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2681
+#: •zp-translate-trunk/zp-core/admin-functions.php:2685
 #, php-format
 msgid "Directory \"%s\" already exists!"
 msgstr "Das Verzeichnis \"%s\" existiert bereits!"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2686
+#: •zp-translate-trunk/zp-core/admin-functions.php:2690
 #, php-format
 msgid "Cannot find theme directory \"%s\" to copy!"
 msgstr "Themeverzeichnis \"%s\" konnten nicht zum Kopieren gefunden werden!"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2691
+#: •zp-translate-trunk/zp-core/admin-functions.php:2695
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Das <tt>/themes</tt>-Verzeichnis ist nicht beschreibbar!"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2696
+#: •zp-translate-trunk/zp-core/admin-functions.php:2700
 msgid "Could not create directory for the new theme"
 msgstr "Die Verzeichnis für das neue Theme konnte nicht erstellt werden."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2738
+#: •zp-translate-trunk/zp-core/admin-functions.php:2742
 #, php-format
 msgid "An error occurred while copying files. Please delete manually the new theme directory '%s' and retry or copy files manually."
 msgstr "Es ist ein Fehler beim Kopieren von Dateien aufgetreten. Bitte löschen Sie das Themeverzeichnis  '%s' manuell und versuchen die Dateien manuell zu kopieren."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2746
+#: •zp-translate-trunk/zp-core/admin-functions.php:2750
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Ihr Theme, basierend auf Theme %s"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2748
+#: •zp-translate-trunk/zp-core/admin-functions.php:2752
 msgid "Your theme"
 msgstr "Aktives Design"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2772
+#: •zp-translate-trunk/zp-core/admin-functions.php:2776
 msgid "New custom theme created successfully!"
 msgstr "Neues benutzerdefiniertes Theme erfolgreich erstellt!"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2774
+#: •zp-translate-trunk/zp-core/admin-functions.php:2778
 msgid "New custom theme created, but its description could not be updated"
 msgstr "Ein neues benutzerdefiniertes Theme wurde erstellt, aber seine Beschreibung konnte nicht aktualisiert werden"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2917
+#: •zp-translate-trunk/zp-core/admin-functions.php:2921
 msgid "Rights"
 msgstr "Rechte"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2975
+#: •zp-translate-trunk/zp-core/admin-functions.php:2979
 msgid "edit albums"
 msgstr "Alben bearbeiten"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2976
+#: •zp-translate-trunk/zp-core/admin-functions.php:2980
 msgid "view unpublished items"
 msgstr "Unveröffentlichte Einträge ansehen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2977
+#: •zp-translate-trunk/zp-core/admin-functions.php:2981
 msgid "upload to album"
 msgstr "Ins Album hochladen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2979
+#: •zp-translate-trunk/zp-core/admin-functions.php:2983
 msgid "Primary album"
 msgstr "Primäres Album"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2981
+#: •zp-translate-trunk/zp-core/admin-functions.php:2985
 msgid "edit album"
 msgstr "Album bearbeiten"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2982
-#: •zp-translate-trunk/zp-core/admin-globals.php:46
+#: •zp-translate-trunk/zp-core/admin-functions.php:2986
+#: •zp-translate-trunk/zp-core/admin-globals.php:47
 msgid "upload"
 msgstr "Hochladen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:2998
+#: •zp-translate-trunk/zp-core/admin-functions.php:3002
 msgid "Managed albums:"
 msgstr "Verwaltete Alben:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3011
+#: •zp-translate-trunk/zp-core/admin-functions.php:3015
 msgid "Managed news categories:"
 msgstr "Verwaltete Neuigkeitenkategorien:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3013
+#: •zp-translate-trunk/zp-core/admin-functions.php:3017
 msgid "News categories"
 msgstr "Kategorien"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3026
+#: •zp-translate-trunk/zp-core/admin-functions.php:3030
 msgid "Managed pages:"
 msgstr "Verwaltete Seiten:"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3033
+#: •zp-translate-trunk/zp-core/admin-functions.php:3037
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Ein oder mehrere %1$s für  %2$s zum Verwalten auswählen."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3034
+#: •zp-translate-trunk/zp-core/admin-functions.php:3038
 msgid "user"
 msgstr "Benutzer"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3035
+#: •zp-translate-trunk/zp-core/admin-functions.php:3039
 #, php-format
 msgid "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All others may manage only those that are selected."
 msgstr "Benutzer mit <em>Benutzerverwaltungs-</em> oder or <em>Alle-%1$s-</em>Verwaltungsrechten haben Zugriff auf alle %2$s. Alle anderen Benutzer können nur die ihnen zugewiesenen Alben verwalten."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3038
+#: •zp-translate-trunk/zp-core/admin-functions.php:3042
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Sie können diese %s nach Maßgabe der oben genannten Rechte verwalten."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3455
+#: •zp-translate-trunk/zp-core/admin-functions.php:3459
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "%u Albumebene anzeigen"
 msgstr[1] "%u Albumebenen anzeigen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3458
+#: •zp-translate-trunk/zp-core/admin-functions.php:3462
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u Bild pro Seite"
 msgstr[1] "%u Bilder pro Seite"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3614
+#: •zp-translate-trunk/zp-core/admin-functions.php:3618
 msgid "Destination"
 msgstr "Ziel"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:3921
+#: •zp-translate-trunk/zp-core/admin-functions.php:3925
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
 msgstr "\"%s\" Cross Site Request Forgery blockiert."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:4027
+#: •zp-translate-trunk/zp-core/admin-functions.php:4031
 msgid "Setup log"
 msgstr "Installationsprotokoll"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:4027
+#: •zp-translate-trunk/zp-core/admin-functions.php:4031
 msgid "Security log"
 msgstr "Sicherheitsprotokoll"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:4027
+#: •zp-translate-trunk/zp-core/admin-functions.php:4031
 msgid "Debug log"
 msgstr "Fehlerprotokoll"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:4059
+#: •zp-translate-trunk/zp-core/admin-functions.php:4063
 msgid "Image already exists."
 msgstr "Das Bild existiert bereits."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:4062
+#: •zp-translate-trunk/zp-core/admin-functions.php:4066
 msgid "Album already exists."
 msgstr "Das Album existiert bereits."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:4065
+#: •zp-translate-trunk/zp-core/admin-functions.php:4069
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr "Bewegen, Kopieren oder Umbenennen nicht möglich."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:4068
+#: •zp-translate-trunk/zp-core/admin-functions.php:4072
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "Bewegen, Kopieren oder Umbenennen in ein dynamisches Album nicht möglich."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:4071
+#: •zp-translate-trunk/zp-core/admin-functions.php:4075
 msgid "Cannot rename an image to a different suffix"
 msgstr "Das Suffix eines Bildes kann nicht umbenannt werden."
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:4074
+#: •zp-translate-trunk/zp-core/admin-functions.php:4078
 msgid "Album delete failed"
 msgstr "Albumlöschen fehlgeschlagen"
 
-#: •zp-translate-trunk/zp-core/admin-functions.php:4077
+#: •zp-translate-trunk/zp-core/admin-functions.php:4081
 msgid "There was an error with a move, copy, or rename operation."
 msgstr "Es ist ein Fehler beim Verschieben, Kopieren oder Umbenennen aufgetreten."
 
@@ -2909,79 +2905,79 @@ msgstr "ID"
 msgid "Filemtime"
 msgstr "Filemtime"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:41
+#: •zp-translate-trunk/zp-core/admin-globals.php:42
 msgid "overview"
 msgstr "Überblick"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:53
+#: •zp-translate-trunk/zp-core/admin-globals.php:54
 msgid "files"
 msgstr "Dateien"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:69
+#: •zp-translate-trunk/zp-core/admin-globals.php:70
 msgid "pages"
 msgstr "Seiten"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:76
+#: •zp-translate-trunk/zp-core/admin-globals.php:77
 msgid "articles"
 msgstr "Artikel"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:77
+#: •zp-translate-trunk/zp-core/admin-globals.php:78
 msgid "categories"
 msgstr "Kategorien"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:82
+#: •zp-translate-trunk/zp-core/admin-globals.php:83
 msgid "tags"
 msgstr "Schlagwörter"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:88
+#: •zp-translate-trunk/zp-core/admin-globals.php:89
 msgid "comments"
 msgstr "Kommentare"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:93
+#: •zp-translate-trunk/zp-core/admin-globals.php:94
 msgid "users"
 msgstr "Benutzer"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:103
+#: •zp-translate-trunk/zp-core/admin-globals.php:104
 msgid "general"
 msgstr "Allgemein"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:107
+#: •zp-translate-trunk/zp-core/admin-globals.php:108
 msgid "gallery"
 msgstr "Galerie"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:109
+#: •zp-translate-trunk/zp-core/admin-globals.php:110
 msgid "security"
 msgstr "Sicherheit"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:112
+#: •zp-translate-trunk/zp-core/admin-globals.php:113
 msgid "comment"
 msgstr "Kommentar"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:116
+#: •zp-translate-trunk/zp-core/admin-globals.php:117
 msgid "plugin"
 msgstr "Plugin"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:119
+#: •zp-translate-trunk/zp-core/admin-globals.php:120
 msgid "search"
 msgstr "Suche"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:123
+#: •zp-translate-trunk/zp-core/admin-globals.php:124
 msgid "theme"
 msgstr "Theme"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:129
+#: •zp-translate-trunk/zp-core/admin-globals.php:130
 msgid "options"
 msgstr "Einstellungen"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:136
+#: •zp-translate-trunk/zp-core/admin-globals.php:137
 msgid "themes"
 msgstr "Themes"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:142
+#: •zp-translate-trunk/zp-core/admin-globals.php:143
 msgid "plugins"
 msgstr "Plugins"
 
-#: •zp-translate-trunk/zp-core/admin-globals.php:149
+#: •zp-translate-trunk/zp-core/admin-globals.php:150
 #: •zp-translate-trunk/zp-core/admin-logs.php:55
 msgid "logs"
 msgstr "Protokolle"
@@ -4491,40 +4487,40 @@ msgstr "Alle zeigen"
 msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>."
 msgstr "<strong>Fehler beim Einlesen der <em>plugin_description</em>-Zeichenkette!</strong>"
 
-#: •zp-translate-trunk/zp-core/admin-plugins.php:142
+#: •zp-translate-trunk/zp-core/admin-plugins.php:149
 msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
 msgstr "<strong>Fehler beim Einlesen der <em>plugin_author</em>-Zeichenkette!</strong>"
 
-#: •zp-translate-trunk/zp-core/admin-plugins.php:150
+#: •zp-translate-trunk/zp-core/admin-plugins.php:157
 msgid "<strong>Error parsing <em>plugin_version</em> string!</strong>."
 msgstr "<strong>Fehler beim Einlesen der <em>plugin_version</em>-Zeichenkette!</strong>"
 
-#: •zp-translate-trunk/zp-core/admin-plugins.php:159
+#: •zp-translate-trunk/zp-core/admin-plugins.php:166
 msgid "<strong>Error parsing <em>plugin_URL</em> string!</strong>."
 msgstr "<strong>Fehler beim Einlesen der <em>plugin_URL</em>-Zeichenkette!</strong>"
 
-#: •zp-translate-trunk/zp-core/admin-plugins.php:170
+#: •zp-translate-trunk/zp-core/admin-plugins.php:177
 msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>."
 msgstr "<strong>Fehler beim Einlesen von <em>plugin_disable</em>-Zeichenkette</strong>!"
 
-#: •zp-translate-trunk/zp-core/admin-plugins.php:238
+#: •zp-translate-trunk/zp-core/admin-plugins.php:251
 #, php-format
 msgid "This plugin is disabled: %s"
 msgstr "Dieses Plugin ist deaktiviert: %s."
 
-#: •zp-translate-trunk/zp-core/admin-plugins.php:244
+#: •zp-translate-trunk/zp-core/admin-plugins.php:259
 msgid "toggle description details"
 msgstr "Beschreibungdetails ausblenden"
 
-#: •zp-translate-trunk/zp-core/admin-plugins.php:261
+#: •zp-translate-trunk/zp-core/admin-plugins.php:276
 msgid "Usage information"
 msgstr "Bedienungsanleitung"
 
-#: •zp-translate-trunk/zp-core/admin-plugins.php:271
+#: •zp-translate-trunk/zp-core/admin-plugins.php:286
 msgid "Author"
 msgstr "Autor"
 
-#: •zp-translate-trunk/zp-core/admin-plugins.php:279
+#: •zp-translate-trunk/zp-core/admin-plugins.php:294
 msgid "Change plugin options"
 msgstr "Plugin-Einstellungen ändern"
 
@@ -5453,27 +5449,22 @@ msgstr "%s konnte nicht zu Schreiben geöffnet werden."
 msgid "Could not open sfx module from %s"
 msgstr "Das sfx-Modul von %s konnte nicht geöffnet werden."
 
-#: •zp-translate-trunk/zp-core/class-album.php:45
-#, php-format
-msgid "Bad gallery in instantiation of album %s."
-msgstr "Ungültige Galerie beim Erstellen des Albums %s."
-
-#: •zp-translate-trunk/zp-core/class-album.php:60
+#: •zp-translate-trunk/zp-core/class-album.php:55
 #, php-format
 msgid "Zenphoto encountered an album name spoof attempt: %1$s=>%2$s."
 msgstr "Zenphoto hat einen Albumnamenbetrugsversuch festgestellt: %1$s=>%2$s.."
 
-#: •zp-translate-trunk/zp-core/class-album.php:73
+#: •zp-translate-trunk/zp-core/class-album.php:68
 #, php-format
 msgid "class-album detected an invalid folder name: %s."
 msgstr "class-album hat einen ungültigen Ordnernamen gefunden: %s."
 
-#: •zp-translate-trunk/zp-core/class-album.php:1077
+#: •zp-translate-trunk/zp-core/class-album.php:1068
 #, php-format
 msgid "Error: The album named %s cannot be found."
 msgstr "Fehler: Das Album %s wurde nicht gefunden."
 
-#: •zp-translate-trunk/zp-core/class-album.php:1079
+#: •zp-translate-trunk/zp-core/class-album.php:1070
 #, php-format
 msgid "Error: The album %s is not readable."
 msgstr "Fehler: Das Album %s ist nicht lesbar."
@@ -5554,11 +5545,11 @@ msgstr "Titellink"
 msgid "Too few arguments! Image not found."
 msgstr "Zu wenige Werte! Bild nicht gefunden."
 
-#: •zp-translate-trunk/zp-core/functions-basic.php:393
+#: •zp-translate-trunk/zp-core/functions-basic.php:412
 msgid "ERROR: Assertion failed in"
 msgstr "Fehler: Erklärung scheiterte in"
 
-#: •zp-translate-trunk/zp-core/functions-basic.php:865
+#: •zp-translate-trunk/zp-core/functions-basic.php:884
 msgid "<strong>Backtrace:</strong>"
 msgstr "<strong>Zurückverfolgung:</strong>"
 
@@ -5612,488 +5603,488 @@ msgstr "SQLite-Fehler: Zenphoto erhielt den Fehler <em>%s</em> als es eine Verbi
 msgid "%1$s Error: Zenphoto received the error <em>%2$s</em> from the database server."
 msgstr "%1$s-Fehler: Zenphoto erhielt den Fehler <em>%2$s</em> vom Datenbankserver."
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:14
+#: •zp-translate-trunk/zp-core/functions-i18n.php:15
 msgid "Afrikaans"
 msgstr "Afrikaans"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:15
+#: •zp-translate-trunk/zp-core/functions-i18n.php:16
 msgid "Albanian"
 msgstr "Albanisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:16
+#: •zp-translate-trunk/zp-core/functions-i18n.php:17
 msgid "Arabic (United Arab Emirates)"
 msgstr "Arabisch (Vereine Arabische Emirate)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:17
+#: •zp-translate-trunk/zp-core/functions-i18n.php:18
 msgid "Arabic (Bahrain)"
 msgstr "Arabisch (Bahrain)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:18
+#: •zp-translate-trunk/zp-core/functions-i18n.php:19
 msgid "Arabic (Algeria)"
 msgstr "Arabisch (Algerien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:19
+#: •zp-translate-trunk/zp-core/functions-i18n.php:20
 msgid "Arabic (Egypt)"
 msgstr "Arabisch (Ägypten)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:20
+#: •zp-translate-trunk/zp-core/functions-i18n.php:21
 msgid "Arabic (Iran)"
 msgstr "Arabisch (Iran)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:21
+#: •zp-translate-trunk/zp-core/functions-i18n.php:22
 msgid "Arabic (Iraq)"
 msgstr "Arabisch (Irak)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:22
+#: •zp-translate-trunk/zp-core/functions-i18n.php:23
 msgid "Arabic (Jordan)"
 msgstr "Arabisch (Jordanien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:23
+#: •zp-translate-trunk/zp-core/functions-i18n.php:24
 msgid "Arabic (Kuwait)"
 msgstr "Arabisch (Kuwait)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:24
+#: •zp-translate-trunk/zp-core/functions-i18n.php:25
 msgid "Arabic (Lebanon)"
 msgstr "Arabisch (Libanon)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:25
+#: •zp-translate-trunk/zp-core/functions-i18n.php:26
 msgid "Arabic (Libya)"
 msgstr "Arabisch (Libyen)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:26
+#: •zp-translate-trunk/zp-core/functions-i18n.php:27
 msgid "Arabic (Morocco)"
 msgstr "Arabisch (Marokko)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:27
+#: •zp-translate-trunk/zp-core/functions-i18n.php:28
 msgid "Arabic (Oman)"
 msgstr "Arabisch (Oman)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:28
+#: •zp-translate-trunk/zp-core/functions-i18n.php:29
 msgid "Arabic (Qatar)"
 msgstr "Arabisch (Katar)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:29
+#: •zp-translate-trunk/zp-core/functions-i18n.php:30
 msgid "Arabic (Saudi Arabia)"
 msgstr "Arabisch (Saudi-Arabien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:30
+#: •zp-translate-trunk/zp-core/functions-i18n.php:31
 msgid "Arabic (Sudan)"
 msgstr "Arabisch (Sudan)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:31
+#: •zp-translate-trunk/zp-core/functions-i18n.php:32
 msgid "Arabic (Syria)"
 msgstr "Arabisch (Syrien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:32
+#: •zp-translate-trunk/zp-core/functions-i18n.php:33
 msgid "Arabic (Tunisia)"
 msgstr "Arabisch (Tunesien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:33
+#: •zp-translate-trunk/zp-core/functions-i18n.php:34
 msgid "Arabic (Yemen)"
 msgstr "Arabisch (Jemen)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:34
+#: •zp-translate-trunk/zp-core/functions-i18n.php:35
 msgid "Basque (Basque)"
 msgstr "Baskisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:35
+#: •zp-translate-trunk/zp-core/functions-i18n.php:36
 msgid "Belarusian"
 msgstr "Weißrussisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:36
+#: •zp-translate-trunk/zp-core/functions-i18n.php:37
 msgid "Bengali"
 msgstr "Bengali"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:37
+#: •zp-translate-trunk/zp-core/functions-i18n.php:38
 msgid "Bulgarian"
 msgstr "Bulgarisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:38
+#: •zp-translate-trunk/zp-core/functions-i18n.php:39
 msgid "Catalan"
 msgstr "Katalanisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:39
+#: •zp-translate-trunk/zp-core/functions-i18n.php:40
 msgid "Chinese (People's Republic of China)"
 msgstr "Chinesisch (Volksrepublik China)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:40
+#: •zp-translate-trunk/zp-core/functions-i18n.php:41
 msgid "Chinese (Hong Kong)"
 msgstr "Chinesisch (Hong Kong)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:41
+#: •zp-translate-trunk/zp-core/functions-i18n.php:42
 msgid "Chinese (Taiwan)"
 msgstr "Chinesisch (Taiwan)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:42
+#: •zp-translate-trunk/zp-core/functions-i18n.php:43
 msgid "Croatian"
 msgstr "Kroatisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:43
+#: •zp-translate-trunk/zp-core/functions-i18n.php:44
 msgid "Czech"
 msgstr "Tschechisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:44
+#: •zp-translate-trunk/zp-core/functions-i18n.php:45
 msgid "Cambodian"
 msgstr "Kambodschanisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:45
+#: •zp-translate-trunk/zp-core/functions-i18n.php:46
 msgid "Danish"
 msgstr "Dänisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:46
+#: •zp-translate-trunk/zp-core/functions-i18n.php:47
 msgid "Dutch (Belgium)"
 msgstr "Niederländisch (Belgien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:47
+#: •zp-translate-trunk/zp-core/functions-i18n.php:48
 msgid "Dutch (The Netherlands)"
 msgstr "Niederländisch (Niederlande)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:48
+#: •zp-translate-trunk/zp-core/functions-i18n.php:49
 msgid "English (Australia)"
 msgstr "Englisch (Australien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:49
+#: •zp-translate-trunk/zp-core/functions-i18n.php:50
 msgid "English (Canada)"
 msgstr "Englisch (Kanada)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:50
+#: •zp-translate-trunk/zp-core/functions-i18n.php:51
 msgid "English (United Kingdom)"
 msgstr "Englisch (Grossbritannien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:51
+#: •zp-translate-trunk/zp-core/functions-i18n.php:52
 msgid "English (India)"
 msgstr "Englisch (Indien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:52
+#: •zp-translate-trunk/zp-core/functions-i18n.php:53
 msgid "English (New Zealand)"
 msgstr "Englisch (Neuseeland)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:53
+#: •zp-translate-trunk/zp-core/functions-i18n.php:54
 msgid "English (Philippines)"
 msgstr "Englisch (Philipinen)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:54
+#: •zp-translate-trunk/zp-core/functions-i18n.php:55
 msgid "English (United States)"
 msgstr "Englisch (USA)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:55
+#: •zp-translate-trunk/zp-core/functions-i18n.php:56
 msgid "English (South Africa)"
 msgstr "Englisch (Südafrika)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:56
+#: •zp-translate-trunk/zp-core/functions-i18n.php:57
 msgid "English (Zimbabwe)"
 msgstr "Englisch (Simbabwe)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:57
+#: •zp-translate-trunk/zp-core/functions-i18n.php:58
 msgid "Esperanto"
 msgstr "Esperanto"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:58
+#: •zp-translate-trunk/zp-core/functions-i18n.php:59
 msgid "Estonian"
 msgstr "Estnisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:59
+#: •zp-translate-trunk/zp-core/functions-i18n.php:60
 msgid "Finnish"
 msgstr "Finnisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:60
+#: •zp-translate-trunk/zp-core/functions-i18n.php:61
 msgid "Faroese"
 msgstr "Färöisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:61
+#: •zp-translate-trunk/zp-core/functions-i18n.php:62
 msgid "French (Belgium)"
 msgstr "Französisch (Belgien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:62
+#: •zp-translate-trunk/zp-core/functions-i18n.php:63
 msgid "French (Canada)"
 msgstr "Französisch (Kanada)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:63
+#: •zp-translate-trunk/zp-core/functions-i18n.php:64
 msgid "French (Switzerland)"
 msgstr "Französisch (Schweiz)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:64
+#: •zp-translate-trunk/zp-core/functions-i18n.php:65
 msgid "French (France)"
 msgstr "Französisch (Frankreich)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:65
+#: •zp-translate-trunk/zp-core/functions-i18n.php:66
 msgid "French (Luxembourg)"
 msgstr "Französisch (Luxemburg)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:66
+#: •zp-translate-trunk/zp-core/functions-i18n.php:67
 msgid "Galician"
 msgstr "Galizisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:67
+#: •zp-translate-trunk/zp-core/functions-i18n.php:68
 msgid "Gujarati"
 msgstr "Gujarati"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:68
+#: •zp-translate-trunk/zp-core/functions-i18n.php:69
 msgid "Greek"
 msgstr "Griechisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:69
+#: •zp-translate-trunk/zp-core/functions-i18n.php:70
 msgid "German (Austria)"
 msgstr "Deutsch (Österreich)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:70
+#: •zp-translate-trunk/zp-core/functions-i18n.php:71
 msgid "German (Belgium)"
 msgstr "Deutsch (Belgien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:71
+#: •zp-translate-trunk/zp-core/functions-i18n.php:72
 msgid "German (Switzerland)"
 msgstr "Deutsch (Schweiz)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:72
+#: •zp-translate-trunk/zp-core/functions-i18n.php:73
 msgid "German (Germany)"
 msgstr "Deutsch (Deutschland)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:73
+#: •zp-translate-trunk/zp-core/functions-i18n.php:74
 msgid "German (Luxembourg)"
 msgstr "Deutsch (Luxemburg)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:74
+#: •zp-translate-trunk/zp-core/functions-i18n.php:75
 msgid "Hebrew"
 msgstr "Hebräisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:75
+#: •zp-translate-trunk/zp-core/functions-i18n.php:76
 msgid "Hindi"
 msgstr "Hindi"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:76
+#: •zp-translate-trunk/zp-core/functions-i18n.php:77
 msgid "Hungarian"
 msgstr "Ungarisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:77
+#: •zp-translate-trunk/zp-core/functions-i18n.php:78
 msgid "Indonesian"
 msgstr "Indonesisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:78
+#: •zp-translate-trunk/zp-core/functions-i18n.php:79
 msgid "Icelandic"
 msgstr "Isländisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:79
+#: •zp-translate-trunk/zp-core/functions-i18n.php:80
 msgid "Italian (Switzerland)"
 msgstr "Italienisch (Schweiz)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:80
+#: •zp-translate-trunk/zp-core/functions-i18n.php:81
 msgid "Italian (Italy)"
 msgstr "Italienisch (Italien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:81
+#: •zp-translate-trunk/zp-core/functions-i18n.php:82
 msgid "Japanese"
 msgstr "Japanisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:82
+#: •zp-translate-trunk/zp-core/functions-i18n.php:83
 msgid "Korean"
 msgstr "Koreanisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:83
+#: •zp-translate-trunk/zp-core/functions-i18n.php:84
 msgid "Lithuanian"
 msgstr "Litauisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:84
+#: •zp-translate-trunk/zp-core/functions-i18n.php:85
 msgid "Latvian"
 msgstr "Lettisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:85
+#: •zp-translate-trunk/zp-core/functions-i18n.php:86
 msgid "Macedonian"
 msgstr "Makedonisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:86
+#: •zp-translate-trunk/zp-core/functions-i18n.php:87
 msgid "Mongolian"
 msgstr "Mongolisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:87
+#: •zp-translate-trunk/zp-core/functions-i18n.php:88
 msgid "Malay"
 msgstr "Malayisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:88
+#: •zp-translate-trunk/zp-core/functions-i18n.php:89
 msgid "Malagasy"
 msgstr "Madagassisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:89
+#: •zp-translate-trunk/zp-core/functions-i18n.php:90
 msgid "Norwegian (Bokmål)"
 msgstr "Norwegisch (Bokmål)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:90
+#: •zp-translate-trunk/zp-core/functions-i18n.php:91
 msgid "Norwegian"
 msgstr "Norwegisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:91
+#: •zp-translate-trunk/zp-core/functions-i18n.php:92
 msgid "Nias"
 msgstr "Nias"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:92
+#: •zp-translate-trunk/zp-core/functions-i18n.php:93
 msgid "Persian"
 msgstr "Persisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:93
+#: •zp-translate-trunk/zp-core/functions-i18n.php:94
 msgid "Polish"
 msgstr "Polnisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:94
+#: •zp-translate-trunk/zp-core/functions-i18n.php:95
 msgid "Portuguese (Brazil)"
 msgstr "Portugiesisch (Brasilien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:95
+#: •zp-translate-trunk/zp-core/functions-i18n.php:96
 msgid "Portuguese (Portugal)"
 msgstr "Portugiesisch (Portugal)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:96
+#: •zp-translate-trunk/zp-core/functions-i18n.php:97
 msgid "Romanian"
 msgstr "Rumänisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:97
+#: •zp-translate-trunk/zp-core/functions-i18n.php:98
 msgid "Russian (Russia)"
 msgstr "Russisch (Russland)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:98
+#: •zp-translate-trunk/zp-core/functions-i18n.php:99
 msgid "Russian (Ukraine)"
 msgstr "Russisch (Ukraine)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:99
+#: •zp-translate-trunk/zp-core/functions-i18n.php:100
 msgid "Sinhala"
 msgstr "Singhalesisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:100
+#: •zp-translate-trunk/zp-core/functions-i18n.php:101
 msgid "Slovak"
 msgstr "Slovakisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:101
+#: •zp-translate-trunk/zp-core/functions-i18n.php:102
 msgid "Slovenian"
 msgstr "Slowenisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:102
+#: •zp-translate-trunk/zp-core/functions-i18n.php:103
 msgid "Spanish (Argentina)"
 msgstr "Spanisch (Argentinien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:103
+#: •zp-translate-trunk/zp-core/functions-i18n.php:104
 msgid "Spanish (Bolivia)"
 msgstr "Spanisch (Bolivien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:104
+#: •zp-translate-trunk/zp-core/functions-i18n.php:105
 msgid "Spanish (Chile)"
 msgstr "Spanisch (Chile)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:105
+#: •zp-translate-trunk/zp-core/functions-i18n.php:106
 msgid "Spanish (Columbia)"
 msgstr "Spanisch (Kolumbien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:106
+#: •zp-translate-trunk/zp-core/functions-i18n.php:107
 msgid "Spanish (Costa Rica)"
 msgstr "Spanisch (Costa Rica)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:107
+#: •zp-translate-trunk/zp-core/functions-i18n.php:108
 msgid "Spanish (Dominican Republic)"
 msgstr "Spanisch (Dominikanische Republik)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:108
+#: •zp-translate-trunk/zp-core/functions-i18n.php:109
 msgid "Spanish (Ecuador)"
 msgstr "Spanisch (Ecuador)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:109
+#: •zp-translate-trunk/zp-core/functions-i18n.php:110
 msgid "Spanish (Spain)"
 msgstr "Spanisch (Spanien)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:110
+#: •zp-translate-trunk/zp-core/functions-i18n.php:111
 msgid "Spanish (Guatemala)"
 msgstr "Spanisch (Guatemala)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:111
+#: •zp-translate-trunk/zp-core/functions-i18n.php:112
 msgid "Spanish (Honduras)"
 msgstr "Spanisch (Honduras)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:112
+#: •zp-translate-trunk/zp-core/functions-i18n.php:113
 msgid "Spanish (Mexico)"
 msgstr "Spanisch (Mexiko)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:113
+#: •zp-translate-trunk/zp-core/functions-i18n.php:114
 msgid "Spanish (Nicaragua)"
 msgstr "Spanisch (Nicaragua)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:114
+#: •zp-translate-trunk/zp-core/functions-i18n.php:115
 msgid "Spanish (Panama)"
 msgstr "Spanisch (Panama)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:115
+#: •zp-translate-trunk/zp-core/functions-i18n.php:116
 msgid "Spanish (Peru)"
 msgstr "Spanisch (Peru)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:116
+#: •zp-translate-trunk/zp-core/functions-i18n.php:117
 msgid "Spanish (Puerto Rico)"
 msgstr "Spanisch (Puerto Rico)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:117
+#: •zp-translate-trunk/zp-core/functions-i18n.php:118
 msgid "Spanish (Paraguay)"
 msgstr "Spanisch (Paraguay)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:118
+#: •zp-translate-trunk/zp-core/functions-i18n.php:119
 msgid "Spanish (El Salvador)"
 msgstr "Spanisch (El Salvador)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:119
+#: •zp-translate-trunk/zp-core/functions-i18n.php:120
 msgid "Spanish (United States)"
 msgstr "Spanisch (USA)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:120
+#: •zp-translate-trunk/zp-core/functions-i18n.php:121
 msgid "Spanish (Uruguay)"
 msgstr "Spanisch (Uruguay)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:121
+#: •zp-translate-trunk/zp-core/functions-i18n.php:122
 msgid "Spanish (Venezuela)"
 msgstr "Spanisch (Venezuela)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:122
+#: •zp-translate-trunk/zp-core/functions-i18n.php:123
 msgid "Spanish (Latin America)"
 msgstr "Spanisch (Lateinamerika)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:123
 #: •zp-translate-trunk/zp-core/functions-i18n.php:124
+#: •zp-translate-trunk/zp-core/functions-i18n.php:125
 msgid "Serbian"
 msgstr "Serbisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:125
+#: •zp-translate-trunk/zp-core/functions-i18n.php:126
 msgid "Swedish (Finland)"
 msgstr "Schwedisch (Finnland)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:126
+#: •zp-translate-trunk/zp-core/functions-i18n.php:127
 msgid "Swedish (Sweden)"
 msgstr "Schwedisch (Schweden)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:127
+#: •zp-translate-trunk/zp-core/functions-i18n.php:128
 msgid "Tamil"
 msgstr "Tamilisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:128
+#: •zp-translate-trunk/zp-core/functions-i18n.php:129
 msgid "Telugu"
 msgstr "Telugu"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:129
+#: •zp-translate-trunk/zp-core/functions-i18n.php:130
 msgid "Thai"
 msgstr "Thai"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:130
+#: •zp-translate-trunk/zp-core/functions-i18n.php:131
 msgid "Turkish"
 msgstr "Türkisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:131
+#: •zp-translate-trunk/zp-core/functions-i18n.php:132
 msgid "Ukrainian"
 msgstr "Ukrainisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:132
+#: •zp-translate-trunk/zp-core/functions-i18n.php:133
 msgid "Uzbek"
 msgstr "Usbekisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:133
+#: •zp-translate-trunk/zp-core/functions-i18n.php:134
 msgid "Urdu (Pakistan)"
 msgstr "Urdu (Pakistan)"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:134
+#: •zp-translate-trunk/zp-core/functions-i18n.php:135
 msgid "Vietnamese"
 msgstr "Vietnamesisch"
 
-#: •zp-translate-trunk/zp-core/functions-i18n.php:135
+#: •zp-translate-trunk/zp-core/functions-i18n.php:136
 msgid "Welsh"
 msgstr "Walisisch"
 
@@ -6169,34 +6160,34 @@ msgstr "Beschnitt = "
 msgid "Image not found or is unreadable."
 msgstr "Bild nicht gefunden oder unlesebar."
 
-#: •zp-translate-trunk/zp-core/functions-image.php:185
+#: •zp-translate-trunk/zp-core/functions-image.php:186
 #, php-format
 msgid "Using %1$ux%2$u %3$s thumbnail image."
 msgstr "Verwende  %1$ux%2$u %3$s Thumbnail-Bild."
 
-#: •zp-translate-trunk/zp-core/functions-image.php:197
-#: •zp-translate-trunk/zp-core/functions-image.php:315
-#: •zp-translate-trunk/zp-core/functions-image.php:326
-#: •zp-translate-trunk/zp-core/functions-image.php:336
-#: •zp-translate-trunk/zp-core/functions-image.php:392
+#: •zp-translate-trunk/zp-core/functions-image.php:198
+#: •zp-translate-trunk/zp-core/functions-image.php:316
+#: •zp-translate-trunk/zp-core/functions-image.php:327
+#: •zp-translate-trunk/zp-core/functions-image.php:331
+#: •zp-translate-trunk/zp-core/functions-image.php:393
 msgid "Image not renderable."
 msgstr "Bild konnte nicht erstellt werden."
 
-#: •zp-translate-trunk/zp-core/functions-image.php:235
+#: •zp-translate-trunk/zp-core/functions-image.php:236
 msgid "Unknown error! Please report to the developers at <a href=\"http://www.zenphoto.org/\">www.zenphoto.org</a>"
 msgstr "Unbekannter Fehler! Bitte benachrichtigen Sie die Entwickler auf  <a href=\"http://www.zenphoto.org\">zenphoto.org</a>"
 
-#: •zp-translate-trunk/zp-core/functions-image.php:367
-#: •zp-translate-trunk/zp-core/functions-image.php:384
+#: •zp-translate-trunk/zp-core/functions-image.php:368
+#: •zp-translate-trunk/zp-core/functions-image.php:385
 msgid "Watermark not renderable."
 msgstr "Wasserzeichen konnte nicht erstellt werden."
 
-#: •zp-translate-trunk/zp-core/functions-image.php:445
+#: •zp-translate-trunk/zp-core/functions-image.php:446
 #, php-format
 msgid "cacheImage: failed to create %s"
 msgstr "cacheImage: Erstellung von %s fehlgeschlagen"
 
-#: •zp-translate-trunk/zp-core/functions-image.php:452
+#: •zp-translate-trunk/zp-core/functions-image.php:453
 #, php-format
 msgid "cacheImage(%1$s) exception: %2$s"
 msgstr "cacheImage(%1$s)-Ausnahme: %2$s"
@@ -6804,356 +6795,356 @@ msgstr[1] "<strong>Anmerkung:</strong> Passwörter müssen mindestens ein Zeiche
 msgid "<strong>Note</strong>: passwords must be at least %u characters long."
 msgstr "<strong>Anmerkung</strong>: Passwörter müssen mindestens  %u Zeichen lang sein."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:389
+#: •zp-translate-trunk/zp-core/lib-auth.php:397
 #, php-format
 msgid "Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)"
 msgstr "Benutzerrechte können nicht auf Version %1$s übertragen werden (Zenphoto_Authority unterstützt nur %2$s und %3$s.)"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:498
-#: •zp-translate-trunk/zp-core/lib-auth.php:513
-#: •zp-translate-trunk/zp-core/lib-auth.php:532
+#: •zp-translate-trunk/zp-core/lib-auth.php:506
+#: •zp-translate-trunk/zp-core/lib-auth.php:521
+#: •zp-translate-trunk/zp-core/lib-auth.php:540
 msgid "No rights"
 msgstr "Keine Rechte"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:499
-#: •zp-translate-trunk/zp-core/lib-auth.php:514
-#: •zp-translate-trunk/zp-core/lib-auth.php:534
+#: •zp-translate-trunk/zp-core/lib-auth.php:507
+#: •zp-translate-trunk/zp-core/lib-auth.php:522
+#: •zp-translate-trunk/zp-core/lib-auth.php:542
 msgid "Overview"
 msgstr "Überblick"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:500
-#: •zp-translate-trunk/zp-core/lib-auth.php:515
+#: •zp-translate-trunk/zp-core/lib-auth.php:508
+#: •zp-translate-trunk/zp-core/lib-auth.php:523
 msgid "View all"
 msgstr "Alle anzeigen"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:501
-#: •zp-translate-trunk/zp-core/lib-auth.php:516
-#: •zp-translate-trunk/zp-core/lib-auth.php:545
+#: •zp-translate-trunk/zp-core/lib-auth.php:509
+#: •zp-translate-trunk/zp-core/lib-auth.php:524
+#: •zp-translate-trunk/zp-core/lib-auth.php:553
 msgid "Upload"
 msgstr "Hochladen"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:502
-#: •zp-translate-trunk/zp-core/lib-auth.php:517
-#: •zp-translate-trunk/zp-core/lib-auth.php:543
+#: •zp-translate-trunk/zp-core/lib-auth.php:510
+#: •zp-translate-trunk/zp-core/lib-auth.php:525
+#: •zp-translate-trunk/zp-core/lib-auth.php:551
 msgid "Post comments"
 msgstr "Kommentare senden"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:505
-#: •zp-translate-trunk/zp-core/lib-auth.php:525
-#: •zp-translate-trunk/zp-core/lib-auth.php:554
+#: •zp-translate-trunk/zp-core/lib-auth.php:513
+#: •zp-translate-trunk/zp-core/lib-auth.php:533
+#: •zp-translate-trunk/zp-core/lib-auth.php:562
 msgid "Manage all albums"
 msgstr "Alle Alben verwalten"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:506
-#: •zp-translate-trunk/zp-core/lib-auth.php:526
-#: •zp-translate-trunk/zp-core/lib-auth.php:556
+#: •zp-translate-trunk/zp-core/lib-auth.php:514
+#: •zp-translate-trunk/zp-core/lib-auth.php:534
+#: •zp-translate-trunk/zp-core/lib-auth.php:564
 msgid "Themes"
 msgstr "Themes"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:507
+#: •zp-translate-trunk/zp-core/lib-auth.php:515
 msgid "Zenpage"
 msgstr "Zenpage"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:509
-#: •zp-translate-trunk/zp-core/lib-auth.php:528
-#: •zp-translate-trunk/zp-core/lib-auth.php:559
+#: •zp-translate-trunk/zp-core/lib-auth.php:517
+#: •zp-translate-trunk/zp-core/lib-auth.php:536
+#: •zp-translate-trunk/zp-core/lib-auth.php:567
 #: •zp-translate-trunk/zp-core/template-functions.php:108
 msgid "Options"
 msgstr "Einstellungen"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:510
-#: •zp-translate-trunk/zp-core/lib-auth.php:529
-#: •zp-translate-trunk/zp-core/lib-auth.php:560
+#: •zp-translate-trunk/zp-core/lib-auth.php:518
+#: •zp-translate-trunk/zp-core/lib-auth.php:537
+#: •zp-translate-trunk/zp-core/lib-auth.php:568
 #: •zp-translate-trunk/zp-core/template-functions.php:95
 msgid "Admin"
 msgstr "Verwalten"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:514
-#: •zp-translate-trunk/zp-core/lib-auth.php:534
+#: •zp-translate-trunk/zp-core/lib-auth.php:522
+#: •zp-translate-trunk/zp-core/lib-auth.php:542
 msgid "Users with this right may view the admin overview page."
 msgstr "Benutzer mit diesem Recht können die Admin-Übersichtseite ansehen."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:515
+#: •zp-translate-trunk/zp-core/lib-auth.php:523
 msgid "Users with this right may view all of the gallery regardless of protection of the page. Without this right, the user can view only public ones and those checked in his managed object lists or as granted by View Search or View Gallery."
 msgstr "Benutzer mit diesem Recht können alles der Galerie ansehen, unabhängig von irgendwelchen Bildschutzeinstellungen. Ohne dieses Recht können Benutzer nur die öffentlichen, die, die in ihrer Verwaltungsliste ausgewählten, oder die von \"Suche ansehen\" und \"Galerie ansehen\" freigegebenen, ansehen."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:516
-#: •zp-translate-trunk/zp-core/lib-auth.php:545
+#: •zp-translate-trunk/zp-core/lib-auth.php:524
+#: •zp-translate-trunk/zp-core/lib-auth.php:553
 msgid "Users with this right may upload to the albums for which they have management rights."
 msgstr "Benutzer mit diesem Recht können in die Alben, die in ihrer Verwaltungsliste angewählt sind, hochladen"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:517
-#: •zp-translate-trunk/zp-core/lib-auth.php:543
+#: •zp-translate-trunk/zp-core/lib-auth.php:525
+#: •zp-translate-trunk/zp-core/lib-auth.php:551
 msgid "When the comment_form plugin is used for comments and its \"Only members can comment\" option is set, only users with this right may post comments."
 msgstr "Wenn das comment_form-Plugin für Kommentare verwendet wird und seine Einstellung \"Nur Mitglieder können kommentieren\" aktiviert ist, können nur Benutzer mit diesem Recht kommentieren."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:518
-#: •zp-translate-trunk/zp-core/lib-auth.php:544
+#: •zp-translate-trunk/zp-core/lib-auth.php:526
+#: •zp-translate-trunk/zp-core/lib-auth.php:552
 msgid "Users with this right may make comments tab changes."
 msgstr "Benutzer mit diesem Recht können Kommentare bearbeiten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:519
-#: •zp-translate-trunk/zp-core/lib-auth.php:550
+#: •zp-translate-trunk/zp-core/lib-auth.php:527
+#: •zp-translate-trunk/zp-core/lib-auth.php:558
 msgid "Users with this right may access the \"albums\" tab to make changes."
 msgstr "Benutzer mit diesem Recht können Alben bearbeiten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:520
-#: •zp-translate-trunk/zp-core/lib-auth.php:548
+#: •zp-translate-trunk/zp-core/lib-auth.php:528
+#: •zp-translate-trunk/zp-core/lib-auth.php:556
 msgid "Users with this right may edit and manage Zenpage pages."
 msgstr "Benutzer mit diesem Recht können Zenpage Seiten verwalten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:521
-#: •zp-translate-trunk/zp-core/lib-auth.php:547
+#: •zp-translate-trunk/zp-core/lib-auth.php:529
+#: •zp-translate-trunk/zp-core/lib-auth.php:555
 msgid "Users with this right may edit and manage Zenpage articles and categories."
 msgstr "Benutzer mit diesem Recht können Zenpage Artikel und Kategorien verwalten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:522
-#: •zp-translate-trunk/zp-core/lib-auth.php:549
+#: •zp-translate-trunk/zp-core/lib-auth.php:530
+#: •zp-translate-trunk/zp-core/lib-auth.php:557
 msgid "Files"
 msgstr "Dateien"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:522
-#: •zp-translate-trunk/zp-core/lib-auth.php:549
+#: •zp-translate-trunk/zp-core/lib-auth.php:530
+#: •zp-translate-trunk/zp-core/lib-auth.php:557
 msgid "Allows the user access to the \"filemanager\" located on the upload: files sub-tab."
 msgstr "Erlaubt dem Benutzer, den Dateimanager zu verwenden, der als Subtab auf dem Hochladen-Tag zu finden ist."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:523
-#: •zp-translate-trunk/zp-core/lib-auth.php:553
+#: •zp-translate-trunk/zp-core/lib-auth.php:531
+#: •zp-translate-trunk/zp-core/lib-auth.php:561
 msgid "Manage all pages"
 msgstr "Alle Seiten verwalten"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:523
-#: •zp-translate-trunk/zp-core/lib-auth.php:553
+#: •zp-translate-trunk/zp-core/lib-auth.php:531
+#: •zp-translate-trunk/zp-core/lib-auth.php:561
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage page."
 msgstr "Benutzer, die nicht über \"Administrations\"-Rechte verfügen, sind normalerweise darauf beschränkt, die Objekte zu verwalten, die ihnen zugewiesen sind. Diese Recht erlaubt ihnen jede Zenpage Seite zu verwalten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:524
-#: •zp-translate-trunk/zp-core/lib-auth.php:552
+#: •zp-translate-trunk/zp-core/lib-auth.php:532
+#: •zp-translate-trunk/zp-core/lib-auth.php:560
 msgid "Manage all news"
 msgstr "Alle Artikel verwalten"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:524
-#: •zp-translate-trunk/zp-core/lib-auth.php:552
+#: •zp-translate-trunk/zp-core/lib-auth.php:532
+#: •zp-translate-trunk/zp-core/lib-auth.php:560
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any Zenpage news article or category."
 msgstr "Benutzer ohne \"Admin\"-Rechte sind normalerweise auf die Objekte beschränkt, die ihnen zugewiesen wurden. Dieses Recht erlaubt es ihnen, alle Zenpage Artikel und Kategorien zu verwalten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:525
-#: •zp-translate-trunk/zp-core/lib-auth.php:554
+#: •zp-translate-trunk/zp-core/lib-auth.php:533
+#: •zp-translate-trunk/zp-core/lib-auth.php:562
 msgid "Users who do not have \"Admin\" rights normally are restricted to manage only objects to which they have been assigned. This right allows them to manage any album in the gallery."
 msgstr "Benutzer ohne \"Admin\"-Rechte sind normalerweise auf die Objekte beschränkt, die ihnen zugewiesen wurden. Dieses Recht erlaubt es ihnen, alle Alben der Galerie zu verwalten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:526
-#: •zp-translate-trunk/zp-core/lib-auth.php:556
+#: •zp-translate-trunk/zp-core/lib-auth.php:534
+#: •zp-translate-trunk/zp-core/lib-auth.php:564
 msgid "Users with this right may make themes related changes. These are limited to the themes associated with albums checked in their managed albums list."
 msgstr "Benutzer mit diesem Recht können themebezogene Änderungen vornehmen. Diese sind auf die Themes beschränkt, die Alben zugewiesen sind, die diesem Benutzer in seiner Verwaltungsliste zugewiesen sind."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:527
-#: •zp-translate-trunk/zp-core/lib-auth.php:558
+#: •zp-translate-trunk/zp-core/lib-auth.php:535
+#: •zp-translate-trunk/zp-core/lib-auth.php:566
 msgid "Users with this right may make additions and changes to the set of tags."
 msgstr "Benutzer mit diesem Recht können Schlagwörter bearbeiten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:528
-#: •zp-translate-trunk/zp-core/lib-auth.php:559
+#: •zp-translate-trunk/zp-core/lib-auth.php:536
+#: •zp-translate-trunk/zp-core/lib-auth.php:567
 msgid "Users with this right may make changes on the options tabs."
 msgstr "Benutzer mit diesem Recht können Einstellungen verändern."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:529
-#: •zp-translate-trunk/zp-core/lib-auth.php:560
+#: •zp-translate-trunk/zp-core/lib-auth.php:537
+#: •zp-translate-trunk/zp-core/lib-auth.php:568
 msgid "The master privilege. A user with \"Admin\" can do anything. (No matter what his other rights might indicate!)"
 msgstr "Das Masterrecht. Ein Benutzer hiermit kann alles machen (Egal, was die anderen Rechte vorgeben!)"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:536
+#: •zp-translate-trunk/zp-core/lib-auth.php:544
 msgid "View gallery"
 msgstr "Galerie ansehen"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:536
+#: •zp-translate-trunk/zp-core/lib-auth.php:544
 msgid "Users with this right may view otherwise protected generic gallery pages."
 msgstr "Benutzer mit diesem Recht können ansonsten geschützte Galerie-Seiten betrachten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:537
+#: •zp-translate-trunk/zp-core/lib-auth.php:545
 msgid "View search"
 msgstr "Suche ansehen"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:537
+#: •zp-translate-trunk/zp-core/lib-auth.php:545
 msgid "Users with this right may view search pages even if password protected."
 msgstr "Benutzer mit diesem Recht können Suchseiten betrachten, auch wenn diese passwortgeschützt sind."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:538
+#: •zp-translate-trunk/zp-core/lib-auth.php:546
 msgid "View fullimage"
 msgstr "Vollbild ansehen"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:538
+#: •zp-translate-trunk/zp-core/lib-auth.php:546
 msgid "Users with this right may view all full sized (raw) images."
 msgstr "Benutzer mit diesem Recht können die Vollbilder betrachten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:539
+#: •zp-translate-trunk/zp-core/lib-auth.php:547
 msgid "View news"
 msgstr "Artikel ansehen"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:539
+#: •zp-translate-trunk/zp-core/lib-auth.php:547
 msgid "Users with this right may view all zenpage news articles."
 msgstr "Benutzer mit diesem Recht können alle Zenpage Artikel betrachten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:540
+#: •zp-translate-trunk/zp-core/lib-auth.php:548
 msgid "View pages"
 msgstr "Seiten ansehen"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:540
+#: •zp-translate-trunk/zp-core/lib-auth.php:548
 msgid "Users with this right may view all zenpage pages."
 msgstr "Benutzer mit diesem Recht können alle Zenpage Seiten ansehen."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:541
+#: •zp-translate-trunk/zp-core/lib-auth.php:549
 msgid "View albums"
 msgstr "Alben ansehen"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:541
+#: •zp-translate-trunk/zp-core/lib-auth.php:549
 msgid "Users with this right may view all albums (and their images)."
 msgstr "Benutzer mit diesem Recht können alle Album (und ihre Bilder) betrachten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:567
+#: •zp-translate-trunk/zp-core/lib-auth.php:575
 msgid "All rights"
 msgstr "Alle Rechte"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:568
+#: •zp-translate-trunk/zp-core/lib-auth.php:576
 msgid "Default rights"
 msgstr "Standardrechte"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:648
+#: •zp-translate-trunk/zp-core/lib-auth.php:656
 msgid "Sorry, that is not the answer."
 msgstr "Entschuldigung, dies ist nicht die Antwort."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:656
+#: •zp-translate-trunk/zp-core/lib-auth.php:664
 msgid "You are receiving this e-mail because of a password reset request on your Zenphoto gallery."
 msgstr "Sie erhalten diese E-Mail aufgrund einer Passwortresetanfrage auf Ihrer Zenphoto-Galerie."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:658
+#: •zp-translate-trunk/zp-core/lib-auth.php:666
 #, php-format
 msgid "You are receiving this e-mail because of a password reset request on your Zenphoto gallery from a user who tried to log in as %s."
 msgstr "Sie erhalten diese E-Mail aufgrund einer Passwortresetanfrage auf Ihrer Zenphoto-Galerie aufgrund eines Benutzers, der sich als %s anzumelden versuchte."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:697
+#: •zp-translate-trunk/zp-core/lib-auth.php:705
 msgid "There was no one to which to send the reset request."
 msgstr "Es existiert niemand, dem eine Reset-Anforderung geschickt werden könnte."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:701
+#: •zp-translate-trunk/zp-core/lib-auth.php:709
 #, php-format
 msgid "To reset your Zenphoto Admin passwords visit: %s"
 msgstr "Um Ihr Zenphoto-Administrations-Passwort zurückzusetzen, besuchen Sie: %s"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:702
+#: •zp-translate-trunk/zp-core/lib-auth.php:710
 msgid "If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days."
 msgstr "Wenn Sie Ihr Passwort nicht zurücksetzen wollen, ignorieren Sie einfach diese Nachricht. Das Ticket wird automatisch nach 3 Tagen ungültig."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:703
+#: •zp-translate-trunk/zp-core/lib-auth.php:711
 msgid "The Zenphoto information you requested"
 msgstr "Die Zenphoto-Information, die Sie angefordert haben"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:711
+#: •zp-translate-trunk/zp-core/lib-auth.php:719
 msgid "Your input did not match the captcha"
 msgstr "Ihre Eingabe stimmt nicht mit dem Captcha überein"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:826
+#: •zp-translate-trunk/zp-core/lib-auth.php:832
 msgid "What is your father's middle name?"
 msgstr "Wie lauter der zweite Vorname Ihres Vaters?"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:827
+#: •zp-translate-trunk/zp-core/lib-auth.php:833
 msgid "What street did your Grandmother live on?"
 msgstr "In welcher Straße lebte Ihre Großmutter?"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:828
+#: •zp-translate-trunk/zp-core/lib-auth.php:834
 msgid "Who was your favorite singer?"
 msgstr "Wer ist Ihr Lieblingssänger?"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:829
+#: •zp-translate-trunk/zp-core/lib-auth.php:835
 msgid "When did you first get a computer?"
 msgstr "Wann bekamen Sie Ihren ersten Computer?"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:830
+#: •zp-translate-trunk/zp-core/lib-auth.php:836
 msgid "How much wood could a woodchuck chuck if a woodchuck could chuck wood?"
 msgstr "Wieviele Fische fischt Fischers Fritz, wenn Fischers Fritze fischen könnte?"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:831
+#: •zp-translate-trunk/zp-core/lib-auth.php:837
 msgid "What is the date of the Ides of March?"
 msgstr "Was ist das Datum der Iden des März?"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:861
+#: •zp-translate-trunk/zp-core/lib-auth.php:867
 msgid "There was an error logging in."
 msgstr "Es ist ein Fehler beim Anmelden aufgetreten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:861
+#: •zp-translate-trunk/zp-core/lib-auth.php:867
 msgid "Check your username and password and try again."
 msgstr "Überprüfen Sie Ihren Benutzer und Ihr Passwort und versuchen Sie es erneut."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:867
+#: •zp-translate-trunk/zp-core/lib-auth.php:873
 msgid "A reset request has been sent."
 msgstr "Eine Reset-Anfrage wurde gesendet."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:890
-#: •zp-translate-trunk/zp-core/lib-auth.php:984
-#: •zp-translate-trunk/zp-core/lib-auth.php:1026
+#: •zp-translate-trunk/zp-core/lib-auth.php:896
+#: •zp-translate-trunk/zp-core/lib-auth.php:990
+#: •zp-translate-trunk/zp-core/lib-auth.php:1032
 msgid "User"
 msgstr "Benutzer"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:896
+#: •zp-translate-trunk/zp-core/lib-auth.php:902
 msgid "Supply the correct response to the question below and you will be directed to a page where you can change your password."
 msgstr "Geben Sie die korrekte Antwort auf die untenstehende Frage und Sie werden auf die Seite zum Ändern Ihres Passwortes geleitet."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:897
+#: •zp-translate-trunk/zp-core/lib-auth.php:903
 msgid "Challenge question:"
 msgstr "Geheimfrage:"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:902
+#: •zp-translate-trunk/zp-core/lib-auth.php:908
 msgid "Your response"
 msgstr "Geheimfrage-Antwort:"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:911
+#: •zp-translate-trunk/zp-core/lib-auth.php:917
 msgid "Enter your User ID and press <code>Refresh</code> to get your challenge question."
 msgstr "Geben Sie Ihre Benutzer-ID ein und drücken Sie auf  <code>Neuladen</code>, um Ihre Geheimfrage zu erhalten."
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:918
+#: •zp-translate-trunk/zp-core/lib-auth.php:924
 msgid "Submit"
 msgstr "Abschicken"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:919
+#: •zp-translate-trunk/zp-core/lib-auth.php:925
 #: •zp-translate-trunk/zp-core/setup.php:1406
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:920
-#: •zp-translate-trunk/zp-core/lib-auth.php:1042
+#: •zp-translate-trunk/zp-core/lib-auth.php:926
+#: •zp-translate-trunk/zp-core/lib-auth.php:1048
 msgid "Return"
 msgstr "Zurück"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:930
+#: •zp-translate-trunk/zp-core/lib-auth.php:936
 msgid "Request reset by e-mail"
 msgstr "Eine Reset-Anfrage per E-Mail anfordern"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:947
+#: •zp-translate-trunk/zp-core/lib-auth.php:953
 msgid "Login"
 msgstr "Anmelden"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:968
+#: •zp-translate-trunk/zp-core/lib-auth.php:974
 #, php-format
 msgid "Logon using:%s"
 msgstr "Anmeldung verwendet: %s"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:990
+#: •zp-translate-trunk/zp-core/lib-auth.php:996
 msgid "Password"
 msgstr "Passwort"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:995
+#: •zp-translate-trunk/zp-core/lib-auth.php:1001
 msgid "Log in"
 msgstr "Anmelden"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:1009
+#: •zp-translate-trunk/zp-core/lib-auth.php:1015
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr "Ich habe meine <strong>Benutzer-ID</strong>/mein <strong>Passwort</strong> vergessen!"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:1041
+#: •zp-translate-trunk/zp-core/lib-auth.php:1047
 msgid "Request"
 msgstr "Anfrage"
 
-#: •zp-translate-trunk/zp-core/lib-auth.php:1041
+#: •zp-translate-trunk/zp-core/lib-auth.php:1047
 msgid "Request password reset"
 msgstr "Passwort-Reset anfordern"
 
@@ -8429,90 +8420,94 @@ msgstr[1] "Seite {%u}"
 msgid "The album is un-published."
 msgstr "Das Album ist unveröffentlicht."
 
-#: •zp-translate-trunk/zp-core/template-functions.php:953
+#: •zp-translate-trunk/zp-core/template-functions.php:916
+msgid "Album Thumbnails"
+msgstr "Albumthumbnails"
+
+#: •zp-translate-trunk/zp-core/template-functions.php:962
 msgid "Return to search"
 msgstr "Zurück zur Suche"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:1164
-#: •zp-translate-trunk/zp-core/template-functions.php:1168
+#: •zp-translate-trunk/zp-core/template-functions.php:1174
+#: •zp-translate-trunk/zp-core/template-functions.php:1178
 msgid "printField() invalid function call."
 msgstr "printEditable() ungültiger Funktionsaufruf."
 
-#: •zp-translate-trunk/zp-core/template-functions.php:1767
+#: •zp-translate-trunk/zp-core/template-functions.php:1786
 msgid "The image is marked un-published."
 msgstr "Das Bild ist unveröffentlicht."
 
-#: •zp-translate-trunk/zp-core/template-functions.php:2201
+#: •zp-translate-trunk/zp-core/template-functions.php:2220
 msgid "Image Info"
 msgstr "Bildinfo"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:2853
+#: •zp-translate-trunk/zp-core/template-functions.php:2872
 msgid "Anonymous"
 msgstr "Anonym"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:2978
+#: •zp-translate-trunk/zp-core/template-functions.php:2997
 msgid "Download Zip of the Album"
 msgstr "Zip-Archiv dieses Albums runterladen"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:2978
+#: •zp-translate-trunk/zp-core/template-functions.php:2997
 msgid "Download a zip file of this album"
 msgstr "zip-Datei dieses Albums herunterladen"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3067
+#: •zp-translate-trunk/zp-core/template-functions.php:3086
 msgid "by"
 msgstr "von"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3307
+#: •zp-translate-trunk/zp-core/template-functions.php:3326
 #, php-format
 msgid "View image: %s"
 msgstr "Bild %s ansehen"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3477
+#: •zp-translate-trunk/zp-core/template-functions.php:3494
 msgid "No popular tags"
 msgstr "Keine populären Schlagwörter"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3745
+#: •zp-translate-trunk/zp-core/template-functions.php:3762
 msgid "Latest images RSS"
 msgstr "Neuste Bilder RSS "
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3801
+#: •zp-translate-trunk/zp-core/template-functions.php:3818
 msgid "getSearchURL $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "getSearchURL $album_list Parameter ist veraltet. Übergeben Sie stattdessen ein array(\"albums\"=>array(album, album,...))."
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3900
+#: •zp-translate-trunk/zp-core/template-functions.php:3920
 msgid "printSearchForm $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "printSearchForm $album_list Parameter ist veraltet. Übergeben Sie stattdessen ein array(\"albums\"=>array(album, album,...))."
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3917
+#: •zp-translate-trunk/zp-core/template-functions.php:3937
 #, php-format
 msgid "%s within previous results"
 msgstr "%s innerhalb bisheriger Treffer"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3975
+#: •zp-translate-trunk/zp-core/template-functions.php:3991
 msgid "select search fields"
 msgstr "Wählen Sie die Suchfelder"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3975
+#: •zp-translate-trunk/zp-core/template-functions.php:3991
 msgid "fields"
 msgstr "Felder"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3977
+#: •zp-translate-trunk/zp-core/template-functions.php:3993
 msgid "Clear search"
 msgstr "Suche löschen"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:3977
+#: •zp-translate-trunk/zp-core/template-functions.php:3993
 msgid "Reset search"
 msgstr "Suche zurücksetzen"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:4049
+#: •zp-translate-trunk/zp-core/template-functions.php:4065
 msgid "no date"
 msgstr "kein Datum"
 
-#: •zp-translate-trunk/zp-core/template-functions.php:4304
+#: •zp-translate-trunk/zp-core/template-functions.php:4320
 msgid "The page you are trying to view is password protected."
 msgstr "Die Seite, die Sie sehen möchten, ist passwortgeschützt."
 
-#: •zp-translate-trunk/zp-core/template-functions.php:4310
+#: •zp-translate-trunk/zp-core/template-functions.php:4326
 msgid "printPasswordForm custom theme password forms is deprecated. You should style the form created by the Zenphoto_Authority class (or its derivatives) instead. Use of these forms will prevent alternative credentials implementations from working with a theme."
 msgstr "Themebasierte Formulare/Seite für printPasswordForm() sind veraltet. Sie sollten stattdessen das Formular, dass von der Zenphoto_Authority-Klasse (oder seinen Ableitungen) erstellt wird, gestalten. Die Benutzung spezieller Formulare wird mit alternative Zusatzfeldern nicht mit einem Theme arbeiten."
 
@@ -8528,35 +8523,35 @@ msgstr "Mehr Felder zum Hochladen hinzufügen"
 msgid "(won't reload the page, but remember your upload limits!)"
 msgstr "(lädt die Seite nicht neu, aber erinnert Ihre Grenze beim Hochladen!)"
 
-#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:119
+#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:123
 msgid "You've most likely exceeded the upload limits. Try uploading fewer files at a time, or use a ZIP file."
 msgstr "Sie haben wahrscheinlich die Uploadgrenze Ihres Servers überschritten. Versuchen Sie weniger Dateien auf einmal hochzuladen oder verwenden Sie ein zip-Archiv."
 
-#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:121
+#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:125
 msgid "You must upload at least one file."
 msgstr "Sie müssen wenigstens eine Datei hochladen."
 
-#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:123
+#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:127
 msgid "You must enter a folder name for your new album."
 msgstr "Sie müssen einen Ordnernamen für das neue Album eingeben."
 
-#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:127
+#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:131
 msgid "You have attempted to upload to an album for which you do not have upload rights"
 msgstr "Sie haben versucht, in ein Album hochzuladen, für das Sie keine Hochladerechte haben."
 
-#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:130
+#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:134
 msgid "You have attempted to upload one or more files which are not Zenphoto supported file types"
 msgstr "Sie haben versucht ein oder mehrere Dateien hochzuladen, die von Zenphoto nicht unterstützt werden."
 
-#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:134
+#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:138
 msgid "You have attempted to upload too large a file"
 msgstr "Sie haben versucht, ein zu großes Bild hochzuladen"
 
-#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:137
+#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:141
 msgid "You have exceeded your upload quota"
 msgstr "Sie haben Ihr Uploadkontingent überschritten"
 
-#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:140
+#: •zp-translate-trunk/zp-core/admin-httpupload/uploader.php:144
 #, php-format
 msgid "The error %s was reported when submitting the form. Please try again. If this keeps happening, check your server and PHP configuration (make sure file uploads are enabled, and upload_max_filesize is set high enough.) If you think this is a bug, file a bug report. Thanks!"
 msgstr "Der Fehler %s ist beim Übermitteln des Formulars aufgetreten. Wenn dies weiterhin passiert, überprüfen Sie Ihren Server und Ihre PHP-Konfiguration (stellen Sie sicher, dass Dateihochladen aktiviert ist und die upload_max_filesize hoch genug eingestellt ist). Wenn Sie glauben, dass dies ein Fehler ist, übermitteln Sie uns bitten einen Fehlerbericht. Danke!"
@@ -8661,369 +8656,369 @@ msgstr "Es scheint, dass kein <em>Flash</em>-Plugin für Ihren Browser installie
 msgid "Uploadify error on %1$s. Review your debug log."
 msgstr "Uploadify -Fehler für %1$s. Bitte öffnen Sie Ihr Debuglog."
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:455
+#: •zp-translate-trunk/zp-core/exif/exif.php:456
 msgid "1: Normal (0 deg)"
 msgstr "1: Normal (0 Grad)"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:456
+#: •zp-translate-trunk/zp-core/exif/exif.php:457
 msgid "2: Mirrored"
 msgstr "2: Gespiegelt"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:457
+#: •zp-translate-trunk/zp-core/exif/exif.php:458
 msgid "3: Upside-down"
 msgstr "3: überkopf"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:458
+#: •zp-translate-trunk/zp-core/exif/exif.php:459
 msgid "4: Upside-down Mirrored"
 msgstr "4: überkopf gespiegelt"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:459
+#: •zp-translate-trunk/zp-core/exif/exif.php:460
 msgid "5: 90 deg CW Mirrored"
 msgstr "5: 90 Grad gespiegelt im Uhrzeigersinn"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:460
+#: •zp-translate-trunk/zp-core/exif/exif.php:461
 msgid "6: 90 deg CCW"
 msgstr "6: 90 Grad gegen Uhrzeigersinn"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:461
+#: •zp-translate-trunk/zp-core/exif/exif.php:462
 msgid "7: 90 deg CCW Mirrored"
 msgstr "7: 90 Grad gespiegelt gegen Uhrzeigersinn"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:462
+#: •zp-translate-trunk/zp-core/exif/exif.php:463
 msgid "8: 90 deg CW"
 msgstr "8: 90 Grad im Uhrzeigersinn"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:463
+#: •zp-translate-trunk/zp-core/exif/exif.php:464
 #, php-format
 msgid "%d: Unknown"
 msgstr "%d: Unbekannt"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:470
+#: •zp-translate-trunk/zp-core/exif/exif.php:471
 msgid "No Unit"
 msgstr "Keine Maßeinheit"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:471
+#: •zp-translate-trunk/zp-core/exif/exif.php:472
 msgid "Inch"
 msgstr "Inch"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:472
+#: •zp-translate-trunk/zp-core/exif/exif.php:473
 msgid "Centimeter"
 msgstr "Zentimeter"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:477
+#: •zp-translate-trunk/zp-core/exif/exif.php:478
 msgid "Center of Pixel Array"
 msgstr "Zentrum des Pixelarray"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:478
+#: •zp-translate-trunk/zp-core/exif/exif.php:479
 msgid "Datum Point"
 msgstr "Datumpunkt"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:484
+#: •zp-translate-trunk/zp-core/exif/exif.php:485
 #: •zp-translate-trunk/zp-core/exif/makers/canon.php:216
 #: •zp-translate-trunk/zp-core/exif/makers/panasonic.php:135
 msgid "Program"
 msgstr "Programm"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:485
+#: •zp-translate-trunk/zp-core/exif/exif.php:486
 #: •zp-translate-trunk/zp-core/exif/makers/panasonic.php:136
 msgid "Aperture Priority"
 msgstr "Priorität der Blende (Zeitautomatik)"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:486
+#: •zp-translate-trunk/zp-core/exif/exif.php:487
 #: •zp-translate-trunk/zp-core/exif/makers/fujifilm.php:138
 #: •zp-translate-trunk/zp-core/exif/makers/panasonic.php:137
 msgid "Shutter Priority"
 msgstr "Blendenverschlußpriorität"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:487
+#: •zp-translate-trunk/zp-core/exif/exif.php:488
 msgid "Program Creative"
 msgstr "Programm kreativ"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:488
+#: •zp-translate-trunk/zp-core/exif/exif.php:489
 msgid "Program Action"
 msgstr "Programmaktion"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:489
+#: •zp-translate-trunk/zp-core/exif/exif.php:490
 #: •zp-translate-trunk/zp-core/exif/makers/canon.php:142
 #: •zp-translate-trunk/zp-core/exif/makers/fujifilm.php:132
 #: •zp-translate-trunk/zp-core/exif/makers/panasonic.php:131
 msgid "Portrait"
 msgstr "Portrait"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:490
+#: •zp-translate-trunk/zp-core/exif/exif.php:491
 #: •zp-translate-trunk/zp-core/exif/makers/canon.php:136
 #: •zp-translate-trunk/zp-core/exif/makers/fujifilm.php:133
 msgid "Landscape"
 msgstr "Landschaft"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:496
+#: •zp-translate-trunk/zp-core/exif/exif.php:497
 msgid "Average"
 msgstr "Durchschnitt"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:497
+#: •zp-translate-trunk/zp-core/exif/exif.php:498
 msgid "Center Weighted Average"
 msgstr "Zentral gewichteter Mittelwert"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:498
+#: •zp-translate-trunk/zp-core/exif/exif.php:499
 msgid "Spot"
 msgstr "Spot"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:499
+#: •zp-translate-trunk/zp-core/exif/exif.php:500
 msgid "Multi-Spot"
 msgstr "Multi-Spot"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:500
+#: •zp-translate-trunk/zp-core/exif/exif.php:501
 msgid "Pattern"
 msgstr "Muster"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:501
+#: •zp-translate-trunk/zp-core/exif/exif.php:502
 #: •zp-translate-trunk/zp-core/exif/makers/canon.php:192
 msgid "Partial"
 msgstr "Teilweise"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:502
-#: •zp-translate-trunk/zp-core/exif/exif.php:528
+#: •zp-translate-trunk/zp-core/exif/exif.php:503
+#: •zp-translate-trunk/zp-core/exif/exif.php:529
 msgid "Other"
 msgstr "Andere"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:508
+#: •zp-translate-trunk/zp-core/exif/exif.php:509
 #: •zp-translate-trunk/zp-core/exif/makers/fujifilm.php:87
 #: •zp-translate-trunk/zp-core/exif/makers/nikon.php:209
 #: •zp-translate-trunk/zp-core/exif/makers/panasonic.php:102
 msgid "Daylight"
 msgstr "Tageslicht"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:509
+#: •zp-translate-trunk/zp-core/exif/exif.php:510
 #: •zp-translate-trunk/zp-core/exif/makers/canon.php:273
 msgid "Fluorescent"
 msgstr "Glimmend"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:510
+#: •zp-translate-trunk/zp-core/exif/exif.php:511
 #: •zp-translate-trunk/zp-core/exif/makers/canon.php:272
 msgid "Tungsten"
 msgstr "Wolfram"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:513
-#: •zp-translate-trunk/zp-core/exif/exif.php:535
+#: •zp-translate-trunk/zp-core/exif/exif.php:514
+#: •zp-translate-trunk/zp-core/exif/exif.php:536
 #: •zp-translate-trunk/zp-core/exif/makers/canon.php:274
 #: •zp-translate-trunk/zp-core/exif/makers/panasonic.php:106
 msgid "Flash"
 msgstr "Blitz"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:520
+#: •zp-translate-trunk/zp-core/exif/exif.php:521
 msgid "Standard Light A"
 msgstr "Standard Licht A"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:521
+#: •zp-translate-trunk/zp-core/exif/exif.php:522
 msgid "Standard Light B"
 msgstr "Standard Licht B"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:522
+#: •zp-translate-trunk/zp-core/exif/exif.php:523
 msgid "Standard Light C"
 msgstr "Standard Licht C"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:523
+#: •zp-translate-trunk/zp-core/exif/exif.php:524
 msgid "D55"
 msgstr "D55"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:524
+#: •zp-translate-trunk/zp-core/exif/exif.php:525
 msgid "D65"
 msgstr "D65"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:525
+#: •zp-translate-trunk/zp-core/exif/exif.php:526
 msgid "D75"
 msgstr "D75"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:526
+#: •zp-translate-trunk/zp-core/exif/exif.php:527
 msgid "D50"
 msgstr "D50"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:527
+#: •zp-translate-trunk/zp-core/exif/exif.php:528
 msgid "ISO Studio Tungsten"
 msgstr "ISO Studio Tungsten"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:534
-#: •zp-translate-trunk/zp-core/exif/exif.php:541
+#: •zp-translate-trunk/zp-core/exif/exif.php:535
 #: •zp-translate-trunk/zp-core/exif/exif.php:542
-#: •zp-translate-trunk/zp-core/exif/exif.php:546
+#: •zp-translate-trunk/zp-core/exif/exif.php:543
+#: •zp-translate-trunk/zp-core/exif/exif.php:547
 msgid "No Flash"
 msgstr "Kein Blitz"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:536
+#: •zp-translate-trunk/zp-core/exif/exif.php:537
 msgid "Flash, strobe return light not detected"
 msgstr "Blitz, Abtastlichtimpuls nicht erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:537
+#: •zp-translate-trunk/zp-core/exif/exif.php:538
 msgid "Flash, strobe return light detected"
 msgstr "Blitz, Abtastlichtimpuls erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:538
+#: •zp-translate-trunk/zp-core/exif/exif.php:539
 msgid "Compulsory Flash"
 msgstr "Zwangsblitz"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:539
+#: •zp-translate-trunk/zp-core/exif/exif.php:540
 msgid "Compulsory Flash, Return light not detected"
 msgstr "Zwangsblitz, Abtastimpuls nicht erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:540
+#: •zp-translate-trunk/zp-core/exif/exif.php:541
 msgid "Compulsory Flash, Return light detected"
 msgstr "Zwangsblitz, Abtastimpuls erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:543
+#: •zp-translate-trunk/zp-core/exif/exif.php:544
 msgid "Flash, Auto-Mode"
 msgstr "Blitz, Automodus"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:544
+#: •zp-translate-trunk/zp-core/exif/exif.php:545
 msgid "Flash, Auto-Mode, Return light not detected"
 msgstr "Blitz, Automodus, Abtastimpuls nicht erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:545
+#: •zp-translate-trunk/zp-core/exif/exif.php:546
 msgid "Flash, Auto-Mode, Return light detected"
 msgstr "Blitz, Automodus, Abtastimpuls erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:547
+#: •zp-translate-trunk/zp-core/exif/exif.php:548
 msgid "Red Eye"
 msgstr "Rote Augen"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:548
+#: •zp-translate-trunk/zp-core/exif/exif.php:549
 msgid "Red Eye, Return light not detected"
 msgstr "Rote Augen, Abtastimpuls nicht erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:549
+#: •zp-translate-trunk/zp-core/exif/exif.php:550
 msgid "Red Eye, Return light detected"
 msgstr "Rote Augen, Abtastimpuls erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:550
+#: •zp-translate-trunk/zp-core/exif/exif.php:551
 msgid "Red Eye, Compulsory Flash"
 msgstr "Rote Augen, Zwangsblitz"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:551
+#: •zp-translate-trunk/zp-core/exif/exif.php:552
 msgid "Red Eye, Compulsory Flash, Return light not detected"
 msgstr "Rote Augen, Zwangsblitz, Abtastimpuls nicht erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:552
+#: •zp-translate-trunk/zp-core/exif/exif.php:553
 msgid "Red Eye, Compulsory Flash, Return light detected"
 msgstr "Rote Augen, Zwangsblitz, Abtastimpuls erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:553
+#: •zp-translate-trunk/zp-core/exif/exif.php:554
 msgid "Red Eye, Auto-Mode"
 msgstr "Rote Augen, Automodus"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:554
+#: •zp-translate-trunk/zp-core/exif/exif.php:555
 msgid "Red Eye, Auto-Mode, Return light not detected"
 msgstr "Rote Augen, Automodus, Abtastimpuls nicht erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:555
+#: •zp-translate-trunk/zp-core/exif/exif.php:556
 msgid "Red Eye, Auto-Mode, Return light detected"
 msgstr "Rote Augen, Automodus, Abtastimpuls nicht erfasst"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:560
+#: •zp-translate-trunk/zp-core/exif/exif.php:561
 msgid "sRGB"
 msgstr "sRGB"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:561
+#: •zp-translate-trunk/zp-core/exif/exif.php:562
 msgid "Uncalibrated"
 msgstr "Nicht kalibriert"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:565
+#: •zp-translate-trunk/zp-core/exif/exif.php:566
 msgid "pixels"
 msgstr "Pixel"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:569
+#: •zp-translate-trunk/zp-core/exif/exif.php:570
 msgid "No Compression"
 msgstr "Keine Kompression"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:570
+#: •zp-translate-trunk/zp-core/exif/exif.php:571
 msgid "Jpeg Compression"
 msgstr "JPEG-Kompression"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:576
+#: •zp-translate-trunk/zp-core/exif/exif.php:577
 msgid "Not defined"
 msgstr "Nicht definiert"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:577
+#: •zp-translate-trunk/zp-core/exif/exif.php:578
 msgid "One Chip Color Area Sensor"
 msgstr "1-Chip-Farbbereichsensor"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:578
+#: •zp-translate-trunk/zp-core/exif/exif.php:579
 msgid "Two Chip Color Area Sensor"
 msgstr "2-Chip-Farbbereichsensor"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:579
+#: •zp-translate-trunk/zp-core/exif/exif.php:580
 msgid "Three Chip Color Area Sensor"
 msgstr "3-Chip-Farbbereichsensor"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:580
+#: •zp-translate-trunk/zp-core/exif/exif.php:581
 msgid "Color Sequential Area Sensor"
 msgstr "Farbsequenzbereichsensor"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:581
+#: •zp-translate-trunk/zp-core/exif/exif.php:582
 msgid "Trilinear Sensor"
 msgstr "Trilinearer Sensor"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:582
+#: •zp-translate-trunk/zp-core/exif/exif.php:583
 msgid "Color Sequential Linear Sensor"
 msgstr "Farbsequenzlinearsensor"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:588
+#: •zp-translate-trunk/zp-core/exif/exif.php:589
 #: •zp-translate-trunk/zp-core/exif/makers/nikon.php:176
 msgid "Monochrome"
 msgstr "Monochrom"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:589
+#: •zp-translate-trunk/zp-core/exif/exif.php:590
 msgid "RGB"
 msgstr "RGB"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:590
+#: •zp-translate-trunk/zp-core/exif/exif.php:591
 msgid "YCbCr"
 msgstr "YCbCr"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:626
+#: •zp-translate-trunk/zp-core/exif/exif.php:627
 msgid "version"
 msgstr "Version"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:631
+#: •zp-translate-trunk/zp-core/exif/exif.php:632
 msgid "Digital Still Camera"
 msgstr "Digital Standbildkamera"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:636
+#: •zp-translate-trunk/zp-core/exif/exif.php:637
 msgid "Directly Photographed"
 msgstr "Direkt fotografiert"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:665
-#: •zp-translate-trunk/zp-core/exif/exif.php:669
+#: •zp-translate-trunk/zp-core/exif/exif.php:666
+#: •zp-translate-trunk/zp-core/exif/exif.php:670
 msgid "sec"
 msgstr "sek"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:672
+#: •zp-translate-trunk/zp-core/exif/exif.php:673
 msgid "Bulb"
 msgstr "Bulb"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:808
+#: •zp-translate-trunk/zp-core/exif/exif.php:809
 msgid "The file could not be found."
 msgstr "Die Datei konnte nicht gefunden werden."
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:987
+#: •zp-translate-trunk/zp-core/exif/exif.php:988
 msgid "Could not Find SubIFD"
 msgstr "SubIFD nicht gefunden"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:1003
+#: •zp-translate-trunk/zp-core/exif/exif.php:1004
 msgid "Illegal size for SubIFD"
 msgstr "Ungültige Größe für SubIFD"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:1024
+#: •zp-translate-trunk/zp-core/exif/exif.php:1025
 msgid "Could not Find IFD1"
 msgstr "Find IFD1 nicht gefunden"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:1040
+#: •zp-translate-trunk/zp-core/exif/exif.php:1041
 msgid "Illegal size for IFD1"
 msgstr "Ungültiger Wert für IFD1"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:1064
+#: •zp-translate-trunk/zp-core/exif/exif.php:1065
 msgid "Could not Find InteroperabilityIFD"
 msgstr "InteroperabilityIFD nicht gefunden"
 
-#: •zp-translate-trunk/zp-core/exif/exif.php:1080
+#: •zp-translate-trunk/zp-core/exif/exif.php:1081
 msgid "Illegal size for InteroperabilityIFD"
 msgstr "Ungültiger Wert für InteroperabilityIFD"
 
@@ -9705,32 +9700,32 @@ msgstr " (Neuigkeiten)"
 msgid " (Latest news and images)"
 msgstr " (Neuigkeiten und neue Bilder)"
 
-#: •zp-translate-trunk/zp-core/rss/rss.php:64
+#: •zp-translate-trunk/zp-core/rss/rss.php:65
 #, php-format
 msgid "%s (1 new image)"
 msgstr "%s (1 neues Bild)"
 
-#: •zp-translate-trunk/zp-core/rss/rss.php:66
+#: •zp-translate-trunk/zp-core/rss/rss.php:67
 #, php-format
 msgid "%1$s (%2$s new images)"
 msgstr "%1$s (%2$s neue Bilder)"
 
-#: •zp-translate-trunk/zp-core/rss/rss.php:71
+#: •zp-translate-trunk/zp-core/rss/rss.php:75
 #, php-format
 msgid "Last update: %s"
 msgstr "Letzte Aktualisierung: %s"
 
-#: •zp-translate-trunk/zp-core/rss/rss.php:74
+#: •zp-translate-trunk/zp-core/rss/rss.php:78
 #, php-format
 msgid "%s (1 image)"
 msgstr "%s (1 Bild)"
 
-#: •zp-translate-trunk/zp-core/rss/rss.php:76
+#: •zp-translate-trunk/zp-core/rss/rss.php:80
 #, php-format
 msgid "%1$s (%2$s images)"
 msgstr "%1$s (%2$s Bilder)"
 
-#: •zp-translate-trunk/zp-core/rss/rss.php:79
+#: •zp-translate-trunk/zp-core/rss/rss.php:83
 #, php-format
 msgid "Date: %s"
 msgstr "Datum: %s"
@@ -10870,240 +10865,235 @@ msgid "The text for the link after the thanks text to return to the contact page
 msgstr "Der Text, um zur Kontaktseite zurückzukehren, um ggf. eine weitere Nachricht zu schicken."
 
 #: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:78
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:90
-msgid "Mail address"
-msgstr "E-Mail-Adresse"
-
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:80
-msgid "The e-mail address the messages should be sent to. Enter more than one address separated by comma without any spaces."
-msgstr "Die E-Mail-Adresse, an die die Nachrichten geschickt werden sollen. Trennen Sie mehrere E-Mail-Adress  mit Kommata und ohne Leerzeichen."
-
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:81
 msgid "Require confirmation"
 msgstr "Bestätigung erforderlich"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:83
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:80
 msgid "If checked, a confirmation form will be presented before sending the contact message."
 msgstr "Wenn ausgewählt, wird zunächst ein Bestätigungsformular angezeigt, bevor die Nachricht verschickt wird."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:84
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:81
 msgid "Send copy"
 msgstr "Kopie schicken"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:86
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:83
 msgid "If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could miss use the e-mail address entered for spamming with this form and that in some countries' jurisdictions (e.g. most European countries) you may be made responsible for this then!</p>"
 msgstr "Wenn ausgewählt, wird eine Kopie der Nachricht an die eingegebene Adresse geschickt. <p class='notebox'><strong>Achtung: </strong> Wenn Sie diese Option auswählen, ist dringend empfohlen auch die Captcha- und Bestätigungs-Optionen zu verwenden. Bedenken Sie, dass jemand die E-Mail-Adresse für Spamversenden über dieses Formular mißbrauchen könnten und dass Sie in einigen Ländern (z.B. den meisten europäischen) für dies verantwortlich gemacht werden könnten!</p>"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:87
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:84
 msgid "Send copy note text"
 msgstr "Kopie schicken Anmerkungstext"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:89
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:86
 msgid "The text for the note about sending a copy to the address provided in case that option is set."
 msgstr "Der Text für die Anmerkung, wenn eine Kopie der E-Mail an den Versender geschickt wird, sofern diese Option ausgewählt ist."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:92
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:87
+msgid "Mail address"
+msgstr "E-Mail-Adresse"
+
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:89
 msgid "The e-mail address the messages should be sent to. Enter more than one address separated by semicolon without any spaces."
 msgstr "Die E-Mail-Adresse, an die die Nachrichten geschickt werden sollen. Trennen Sie mehrere E-Mail-Adress mit Semikolon und ohne Leerzeichen."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:93
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:95
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:90
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:92
 msgid "Title field"
 msgstr "Anrede-Feld."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:99
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:96
 msgid "Company field"
 msgstr "Firma-Feld"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:101
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:98
 msgid "Company field."
 msgstr "Firma-Feld"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:102
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:104
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:99
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:101
 msgid "Street field"
 msgstr "Straße-Feld"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:105
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:107
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:102
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:104
 msgid "City field"
 msgstr "Stadt-Feld"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:108
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:110
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:105
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:107
 msgid "State field"
 msgstr "Land-Feld"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:111
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:113
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:108
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:110
 msgid "Postal code field"
 msgstr "Postleitzahlenfeld"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:114
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:116
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:111
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:113
 msgid "Country field"
 msgstr "Land-Feld."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:117
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:119
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:114
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:116
 msgid "E-mail field"
 msgstr "E-Mail-Feld"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:123
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:120
 msgid "CAPTCHA"
 msgstr "CAPTCHA"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:125
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:122
 msgid "Check if CAPTCHA should be required."
 msgstr "Ob CAPTCHA erforderlich sein soll."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:126
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:123
 msgid "Phone field"
 msgstr "Telefon-Feld"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:128
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:125
 msgid "Phone number field"
 msgstr "Telefon-Nummer-Feld"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:129
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:131
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:126
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:128
 msgid "Subject field"
 msgstr "Betreff-Feld."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:132
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:134
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:129
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:131
 msgid "Message field"
 msgstr "Nachrichten-Feld."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:180
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:177
 msgid "a title"
 msgstr "einen Titel"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:181
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:178
 msgid "a name"
 msgstr "einen Namen"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:182
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:179
 msgid "a company"
 msgstr "eine Firma"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:183
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:180
 msgid "a street"
 msgstr "eine Straße"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:184
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:181
 msgid "a city"
 msgstr "eine Stadt"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:185
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:182
 msgid "a state"
 msgstr "ein Land"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:186
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:183
 msgid "a postal code"
 msgstr "eine Postleitzahl"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:187
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:184
 msgid "a country"
 msgstr "einen Staat"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:188
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:185
 msgid "a valid email address"
 msgstr "eine gültige E-Mail-Adresse"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:190
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:187
 msgid "a website"
 msgstr "eine Website"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:198
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:195
 msgid "a phone number"
 msgstr "eine Telefonnummer"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:199
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:196
 msgid "a subject"
 msgstr "einen Betreff"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:200
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:197
 msgid "a message"
 msgstr "eine Nachricht"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:206
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:203
 msgid "the correct CAPTCHA verification code"
 msgstr "den korrekten CAPTCHA-Bestätigungs-Code"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:219
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:216
 #, php-format
 msgid "Please enter %s. Thanks."
 msgstr "Bitte geben Sie %s ein. Danke."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:222
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:219
 #, php-format
 msgid "Please enter %1$s and %2$s. Thanks."
 msgstr "Bitte geben Sie %1$s und %2$s ein. Danke."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:230
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:227
 #, php-format
 msgid "Please enter: %sThanks."
 msgstr "Bitte eingeben: %sDanke."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:271
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:268
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:275
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:272
 msgid "Discard"
 msgstr "Verwerfen"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:309
+#: •zp-translate-trunk/zp-core/zp-extensions/contact_form.php:306
 msgid "Error sending mail:"
 msgid_plural "Errors sending mail:"
 msgstr[0] "Fehler beim Mailsenden:"
 msgstr[1] "Fehler beim Mailsenden:"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:13
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:20
 msgid "An image crop tool. Places an image crop button in the image utilities box of the images tab."
 msgstr "Ein Bildbeschneidungswerkzeug. Platziert einen Bildbeschneidungs-Button innerhalb des Werkzeugabschnittes des Bildreiters. "
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:36
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:52
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:35
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:51
 msgid "Crop image"
 msgstr "Bild beschneiden"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:84
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:83
 msgid "attempt to crop an object which is not an image."
 msgstr "Versuch, ein Objekt zu beschneiden, dass kein Bild ist."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:195
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:194
 msgid "crop image"
 msgstr "Bild beschneiden"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:293
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:292
 msgid "Image cropping"
 msgstr "Bildbeschnitt"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:295
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:294
 msgid "You can crop your image by dragging the crop handles on the image"
 msgstr "Sie können Bilder beschneiden, indem Sie den Rahmen verschieben."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:296
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:295
 msgid "<strong>Note:</strong> If you save these changes they are permanent!"
 msgstr "<strong>Anmerkung:</strong> Wenn Sie diese Änderungen sicher, sind diese nicht rückgängig zu machen!"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:306
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:305
 #, php-format
 msgid "(<span id=\"new-width\">%1$u</span> x <span id=\"new-height\">%2$u</span> pixels)"
 msgstr "(<span id=\"new-width\">%1$u</span> x <span id=\"new-height\">%2$u</span> pixels)"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:311
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:310
 #, php-format
 msgid "width:%1$s %2$s height:%3$s %4$s clear %5$s"
 msgstr "Breite: %1$s %2$s Höhe:%3$s %4$s Zurücksetzen %5$s"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:313
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:312
 msgid "swap width and height fields"
 msgstr "Höhe- und Breitefelder tauschen"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:315
+#: •zp-translate-trunk/zp-core/zp-extensions/crop_image.php:314
 msgid "clear width and height fields"
 msgstr "Breite- und Höhenfelder zurücksetzen"
 
@@ -11420,11 +11410,11 @@ msgstr[1] "%u Downloads"
 msgid "Enable <strong>dynamic-locale</strong> to allow viewers of your site to select the language translation of their choice."
 msgstr "Aktivieren Sie  <strong>dynamic-locale</strong> um den Besucher Ihrer Seite die Auswahl der angezeigten Sprache zu erlauben."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/dynamic-locale.php:123
+#: •zp-translate-trunk/zp-core/zp-extensions/dynamic-locale.php:130
 msgid "Use flags"
 msgstr "Flaggen verwenden"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/dynamic-locale.php:124
+#: •zp-translate-trunk/zp-core/zp-extensions/dynamic-locale.php:131
 msgid "Checked produces an array of flags. Not checked produces a selector."
 msgstr "Ausgewählt erzeugt ein Array von Flaggen, andernfalls eine HTML-Auswahl."
 
@@ -12224,7 +12214,7 @@ msgstr "Dies fügt ein link-Element mit einer <em>canonical url</em> im <head>-B
 msgid "HTML meta tags"
 msgstr "HTML meta tags"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/html_meta_tags.php:112
+#: •zp-translate-trunk/zp-core/zp-extensions/html_meta_tags.php:117
 msgid "Which of the HTML meta tags should be used. For info about these in detail please refer to the net."
 msgstr "Welches der HTML-Meta-Tagsg verwendet werden soll. Genauere Information über diese sind im Internet zu finden."
 
@@ -12850,11 +12840,6 @@ msgstr "Die Anzahl der Links in der Seitenliste."
 msgid "previous thumbs"
 msgstr "Vorherige Thumbnails"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/paged_thumbs_nav.php:312
-#: •zp-translate-trunk/zp-core/zp-extensions/paged_thumbs_nav.php:387
-msgid "next thumbs"
-msgstr "nächste Thumbnails"
-
 #: •zp-translate-trunk/zp-core/zp-extensions/paged_thumbs_nav.php:340
 #, php-format
 msgid "Images %1$u-%2$u of %3$u (%4$u/%5$u)"
@@ -13105,45 +13090,45 @@ msgstr "IP verbergen"
 msgid "Causes the stored IP addressed to be hashed so as to avoid privacy tracking issues."
 msgstr "Die IP-Adresse wird zerstückelt, so dass Probleme bezüglich der Privatsphäre vermieden werden."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:206
+#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:202
 #, php-format
 msgid "Rating %2$.1f (%1$u vote)"
 msgid_plural "Rating %2$.1f (%1$u votes)"
 msgstr[0] "Bewertung %2$.1f (%1$u Stimme)"
 msgstr[1] "Bewertung %2$.1f (%1$u Stimmen)"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:208
+#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:204
 msgid "Not yet rated"
 msgstr "Nicht bewertet"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:226
+#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:222
 #, php-format
 msgid "%u star"
 msgid_plural "%u stars"
 msgstr[0] "%u Stern"
 msgstr[1] "%u Sterne"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:232
+#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:228
 msgid "Submit &raquo;"
 msgstr "Abschicken &raquo;"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:279
+#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:275
 msgid "Vote Submitted"
 msgstr "Bewertung abgeschickt"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:281
+#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:277
 msgid "nothing to submit"
 msgstr "Nichts zum Abschicken"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:315
+#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:311
 msgid "Vote Status:"
 msgstr "Bewertungsstatus:"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:345
+#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:341
 msgid "Reset all ratings"
 msgstr "Bewertungen-Reset"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:349
+#: •zp-translate-trunk/zp-core/zp-extensions/rating.php:345
 msgid "Sets all ratings to unrated."
 msgstr "Setzt alle Bewertungen auf unbewertet."
 
@@ -13466,7 +13451,7 @@ msgid "Provides a utility SEO file/folder name clenser."
 msgstr "Funktionalität für das suchmaschinenfreundliche Bereinigen von Datei-/Ordnernamen."
 
 #: •zp-translate-trunk/zp-core/zp-extensions/seo_cleanup.php:20
-#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:170
+#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:171
 msgid "seo"
 msgstr "SEO"
 
@@ -13661,23 +13646,23 @@ msgstr "<strong>Anmerkung:</strong> Andere Suchmaschinen (Yahoo, Bing) können m
 msgid "Google - URL to image license"
 msgstr "Google - URL zur Bildlizenz"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:143
+#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:144
 msgid "Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html"
 msgstr "Optional. Wird nur verwendet, wenn die Google-Erweiterung ausgewählt ist. Dies muß eine absolute Adresse der Form http://mydomain.com/license.html sein."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:144
+#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:145
 msgid "Sitemap processing chunk"
 msgstr "Sitemap-Teilerstellungsstück"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:146
+#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:147
 msgid "The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files."
 msgstr "Die Anzahl Alben, die für jede Sitemapdatei verarbeitet werden. Stellen Sie diesen Wert niedriger ein, sollten Timeout-Fehler auftreten."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:172
+#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:173
 msgid "Sitemap tools"
 msgstr "Sitemap-Werkzeuge"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:176
+#: •zp-translate-trunk/zp-core/zp-extensions/sitemap-extended.php:177
 msgid "Sitemap tools."
 msgstr "Sitemap-Werkzeuge."
 
@@ -13843,35 +13828,35 @@ msgstr "Diaschau starten"
 msgid "stop slideshow"
 msgstr "Diaschau anhalten"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:307
+#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:305
 msgid "Invalid linking to the slideshow page."
 msgstr "Ungültiger Aufruf der Diaschau-Seite."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:385
+#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:383
 msgid "This album is password protected!"
 msgstr "Dieses Album ist passwortgeschützt!"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:547
+#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:545
 msgid "Stop and return to album or image page"
 msgstr "Anhalten und zur Album- oder Bildseite zurückkehren"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:549
+#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:547
 msgid "Pause (to stop the slideshow without returning)"
 msgstr "Pause (um die Diaschau anzuhalten, ohne zurückzukehren)"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:550
+#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:548
 msgid "Play"
 msgstr "Abspielen"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:577
+#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:575
 msgid ":"
 msgstr ":"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:624
+#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:622
 msgid "back"
 msgstr "Zurück"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:696
+#: •zp-translate-trunk/zp-core/zp-extensions/slideshow.php:694
 msgid "Click on the right in the player control bar to view full size."
 msgstr "Klicken Sie rechts in der Player-Kontrollleiste, um den Vollbildmodus zu aktivieren."
 
@@ -13901,19 +13886,19 @@ msgstr "Leert den HTML-Cache. HTML-Seiten werden erneut zwischengespeichert, sob
 msgid "Cached content of %3$s served by static_html_cache in %1$.4f seconds plus %2$.4f seconds unavoidable Zenphoto overhead."
 msgstr "Der Cacheinhalt von %3$s wurde vom static_html_cache in %1$.4f Sekunden plus %2$.4f Sekunden unvermeidbaren Zenphoto-Aufwandes geliefert."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/static_html_cache.php:378
+#: •zp-translate-trunk/zp-core/zp-extensions/static_html_cache.php:377
 msgid "Static HTML cache expire"
 msgstr "Statischer HTML-Cache-Auslaufdatum"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/static_html_cache.php:379
+#: •zp-translate-trunk/zp-core/zp-extensions/static_html_cache.php:378
 msgid "When the cache should expire in seconds. Default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec)."
 msgstr "Wann der Cache ungültig werden soll. Voreinstellung ist 86400 Sekunden (1 Tag  = 24 Stunden. * 60 min * 60 sek)."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/static_html_cache.php:380
+#: •zp-translate-trunk/zp-core/zp-extensions/static_html_cache.php:379
 msgid "Excluded pages"
 msgstr "Ausgeschlossene Seiten"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/static_html_cache.php:381
+#: •zp-translate-trunk/zp-core/zp-extensions/static_html_cache.php:380
 msgid "The list of pages to excluded from cache generation. Pages that can be excluded are custom theme pages including Zenpage pages (these optionally more specific by titlelink) and the standard theme files image.php (optionally by image file name), album.php (optionally by album folder name) or index.php.<br /> If you want to exclude a page completely enter <em>page-filename.php/</em>. <br />If you want to exclude a page by a specific title, image filename, or album folder name enter <em>pagefilename.php/titlelink or image filename or album folder</em>. Separate several entries by comma."
 msgstr "Die Liste der Seiten, die vom Cache ausgeschlossen werden sollen. Es können sowohl benutzerdefinierte Seite inklusive Zenpage Seiten (optional mit Titellink)  als auch die Standardthemeseiten image.php (optional mit Bild-Dateiname), album.php (optional mit Albumordnername) or index.php ausgeschlossen werden.<br /> Wenn Sie eine Seite komplett ausschließen möchten, geben Sie <em>page-filename.php/</em> ein. <br />Wenn Sie eine Seite nur mit einem speziellen Titel/Bild/Album ausschließen möchten, geben Sie <em>pagefilename.php/titlelink or image filename or album folder</em> ein. Trennen Sie mehrere Einträge durch Kommata."
 
@@ -15007,43 +14992,43 @@ msgstr "Kommentar hinzufügen"
 msgid "download statistics"
 msgstr "Download-Statistiken"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:41
+#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:43
 msgid "No statistic available"
 msgstr "Keine Statistik verfügbar"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:46
+#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:48
 msgid "Most downloaded files"
 msgstr "Am meisten heruntergeladen"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:113
+#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:115
 msgid "Outdated file entries cleared from the database"
 msgstr "Veraltete Dateieinträge aus der Datenbank entfernt."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:119
+#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:121
 msgid "All download file entries cleared from the database"
 msgstr "Alle Downloaddateieinträge wurden aus der Datenbank entfernt."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:122
+#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:124
 msgid "Download Statistics"
 msgstr "Download-Statistiken"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:123
+#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:125
 msgid "Shows statistical graphs and info about your gallery's downloads if using the downloadList plugin."
 msgstr "Zeigt statistische Grafiken und Information über die Downloads Ihrer Galerie an, wenn Sie das downloadList-Plugin verwenden."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:124
+#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:126
 msgid "Entries marked red do not exist in the download folder anymore but are kept for the statistics until you remove them manually via the button."
 msgstr "Einträge, die rot markiert sind, existieren nicht mehr im Downloadordner, aber werden für die Statitik solange aufbewahrt bis Sie sie manually entfernen."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:128
+#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:130
 msgid "The downloadList plugin is not active"
 msgstr "Das Downloadlist-Plugin ist nicht aktiv."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:131
+#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:133
 msgid "Clear outdated downloads from database"
 msgstr "Veraltete Downloads aus Datenbank löschen"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:132
+#: •zp-translate-trunk/zp-core/zp-extensions/downloadList/download_statistics.php:134
 msgid "Clear all downloads from database"
 msgstr "Veraltete Downloads aus Datenbank löschen"
 
@@ -16848,44 +16833,44 @@ msgstr "Kategorien von den ausgewählten Einträgen gelöscht"
 msgid "Use the Zenpage Page class method getPages()."
 msgstr "Verwenden Sie stattdessen die Zenpage Seiten-Klassenmethode getPages()."
 
-#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:446
+#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:447
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Dieser Eintrag gehört zu einem geschützten Album.</em>"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1496
+#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1497
 msgid "Prev page"
 msgstr "Vorherige Seite"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2675
+#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2676
 msgid "This page is password protected"
 msgstr "Diese Seite ist passwortgeschützt"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2977
+#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2978
 msgid "News RSS"
 msgstr "Neues RSS"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3034
+#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3035
 #, php-format
 msgid "View the %s album"
 msgstr "Album %s ansehen"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3036
+#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3037
 #, php-format
 msgid "View the album %s"
 msgstr "Album %s ansehen"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3040
 #: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3041
+#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3042
 #, php-format
 msgid "View %s"
 msgstr "%s ansehen"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3049
+#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3050
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> konnte das Bild %1$s:%2$s nicht finden"
 
-#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3058
+#: •zp-translate-trunk/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3059
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> konnte das Album %1$s nicht finden"
@@ -16894,6 +16879,22 @@ msgstr "<code>zenpageAlbumImage()</code> konnte das Album %1$s nicht finden"
 #, php-format
 msgid "Failed to retrieve link <em>%s</em>"
 msgstr "Der Link <em>%s</em> konnte nicht abgerufen werden"
+
+#~ msgid "&laquo; prev thumbs"
+#~ msgstr "&laquo; vorherige"
+
+#~ msgid "next thumbs &raquo;"
+#~ msgstr "nächste &raquo;"
+
+#~ msgid "Bad gallery in instantiation of album %s."
+#~ msgstr "Ungültige Galerie beim Erstellen des Albums %s."
+
+#~ msgid ""
+#~ "The e-mail address the messages should be sent to. Enter more than one "
+#~ "address separated by comma without any spaces."
+#~ msgstr ""
+#~ "Die E-Mail-Adresse, an die die Nachrichten geschickt werden sollen. "
+#~ "Trennen Sie mehrere E-Mail-Adress  mit Kommata und ohne Leerzeichen."
 
 #~ msgid "Display user field"
 #~ msgstr "Benutzefeld aktivieren"
