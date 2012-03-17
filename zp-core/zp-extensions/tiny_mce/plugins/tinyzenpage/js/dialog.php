@@ -152,9 +152,6 @@ var ZenpageDialog = {
 			linkpart2 = '</a>';
 		}
 		if($('#fullimagelink').attr('checked') == 'checked') {
-
-alert('fullimage'+fullimage);
-
 				linkpart1 = '<a href=\''+fullimage+'\' title=\''+plainimgtitle+'\' class=\'zenpage_fullimagelink\' rel=\'colorbox\'>';
 				linkpart2 = '</a>';
 		}
