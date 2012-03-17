@@ -23,6 +23,7 @@ if (getOption('WEBdocs_pdf_provider')) {
 }
 if (getOption('WEBdocs_pps_provider')) {
 	addPluginType('pps', 'WEBdocs');
+	addPluginType('ppt', 'WEBdocs');
 }
 if (getOption('WEBdocs_tif_provider')) {
 	addPluginType('tif', 'WEBdocs');
