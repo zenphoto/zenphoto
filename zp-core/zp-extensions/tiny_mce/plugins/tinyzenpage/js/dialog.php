@@ -27,6 +27,10 @@ function stripHTML(oldString) {
    return newString;
 }
 
+function alertUnsupported(name) {
+	alert('<?php echo gettext("It is not possible to a include custom thumb or custom size image for %s."); ?>'.replace(/%s/,name));
+}
+
 var ZenpageDialog = {
 	init : function(ed) {
 		tinyMCEPopup.resizeToInnerSize();
@@ -68,12 +72,12 @@ var ZenpageDialog = {
 		var playerheight = '';
 		var stopincluding = false;
 		// getting the image size checkbox values
-		if($('#thumbnail:checked').val() == 1) {
+		if($('#thumbnail').attr('checked') == 'checked') {
 			cssclass ='zenpage_thumb';
 		}
-		if($('#customthumb:checked').val() == 1) {
+		if($('#customthumb').attr('checked') == 'checked') {
 			if(video) {
-				alert('<?php echo gettext("It is not possible to include custom thumbs or custom size images for multimedia items."); ?>');
+				alertUnsupported(imgname);
 				stopincluding = true;
 			}
 			imagesize = '&amp;s='+$('#cropsize').val()+'&amp;cw='+$('#cropwidth').val()+'&amp;ch='+$('#cropheight').val()+'&amp;t=true';
@@ -82,16 +86,20 @@ var ZenpageDialog = {
 			}
 			cssclass ='zenpage_customthumb';
 		}
-		if($('#sizedimage:checked').val() == 1) {
+		if($('#sizedimage').attr('checked') == 'checked') {
+			if(video && video !='video' && video!='audio') {
+				alertUnsupported(imgname);
+				stopincluding = true;
+			}
 			imagesize = '&amp;s=<?php echo getOption("image_size"); ?>';
 			if (wm_img) {
 				imagesize += '&amp;wmk='+wm_img;
 			}
 			cssclass ='zenpage_sizedimage';
 		}
-		if($('#customsize:checked').val() == 1) {
+		if($('#customsize').attr('checked') == 'checked') {
 			if(video) {
-				alert('<?php echo gettext("It is not possible to include custom thumbs or custom size images for multimedia items."); ?>');
+				alertUnsupported(imgname);
 				stopincluding = true;
 			}
 			imagesize = '&amp;s='+$('#size').val();
@@ -100,28 +108,32 @@ var ZenpageDialog = {
 			}
 			cssclass ='zenpage_customimage';
 		}
-		if($('#fullimage:checked').val() == 1) {
+		if($('#fullimage').attr('checked') == 'checked') {
+			if(video) {
+				alertUnsupported(imgname);
+				stopincluding = true;
+			}
 			imagesize = '';
 			cssclass ='zenpage_fullimage';
 		}
 
 		// getting the text wrap checkbox values
 		// Customize the textwrap variable if you need specific CSS
-		if($('#nowrap:checked').val() == 1) {
+		if($('#nowrap').attr('checked') == 'checked') {
 			textwrap = 'class=\''+cssclass+'\'';
 			textwrap_title = '';
 			textwrap_title_add = '';
 		}
-		if($('#rightwrap:checked').val() == 1) {
+		if($('#rightwrap').attr('checked') == 'checked') {
 			// we don't need (inline) css attached to the image/link it they are wrapped for the title, the div does the wrapping!
-			if($('#showtitle:checked').val() != 1) {
+			if($('#showtitle').attr('checked') == 'checked') {
 				textwrap_float = ' style=\'float: left;\'';
 			}
 			textwrap = 'class=\''+cssclass+'_left\''+textwrap_float;
 			textwrap_title = ' style=\'float: left;\' ';
 			textwrap_title_add = '_left';
 		}
-		if($('#leftwrap:checked').val() == 1) {
+		if($('#leftwrap').attr('checked') == 'checked') {
 			// we don't need (inline) css attached to the image/link it they are wrapped for the title, the div does the wrapping!
 			if($('#showtitle:checked').val() != 1 && $('#showdesc:checked').val() != 1) {
 				textwrap_float = ' style=\'float: right;\'';
@@ -131,7 +143,7 @@ var ZenpageDialog = {
 			textwrap_title_add = '_right';
 		}
 		// getting the link type checkbox values
-		if($('#imagelink:checked').val() == 1) {
+		if($('#imagelink').attr('checked') == 'checked') {
 			if(modrewrite == '1') {
 				linkpart1 = '<a href=\''+webpath+'/'+albumname+'/'+imgname+modrewritesuffix+'\' title=\''+plainimgtitle+'\' class=\'zenpage_imagelink\'>';
 			} else {
@@ -139,11 +151,14 @@ var ZenpageDialog = {
 			}
 			linkpart2 = '</a>';
 		}
-		if($('#fullimagelink:checked').val() == 1) {
+		if($('#fullimagelink').attr('checked') == 'checked') {
+
+alert('fullimage'+fullimage);
+
 				linkpart1 = '<a href=\''+fullimage+'\' title=\''+plainimgtitle+'\' class=\'zenpage_fullimagelink\' rel=\'colorbox\'>';
 				linkpart2 = '</a>';
 		}
-		if($('#albumlink:checked').val() == 1) {
+		if($('#albumlink').attr('checked') == 'checked') {
 			if(modrewrite == '1') {
 				linkpart1 = '<a href=\''+webpath+'/'+albumname+'\' title=\''+plainalbumtitle+'\' class=\'zenpage_albumlink\'>';
 			} else {
@@ -151,126 +166,128 @@ var ZenpageDialog = {
 			}
 			linkpart2 = '</a>';
 		}
-		if($('#customlink:checked').val() == 1) {
+		if($('#customlink').attr('checked') == 'checked') {
 			linkpart1 = '<a href=\''+$('#linkurl').val()+'\' title=\''+linktype+'\' '+textwrap+' class=\'zenpage_customlink\'>';
 			linkpart2 = '</a>';
 		}
 		// getting the include type checkbox values
-		if($('#image:checked').val() == 1) {
-			if($('#fullimage:checked').val() == 1) {
+		if($('#image').attr('checked') == 'checked') {
+			if($('#fullimage').attr('checked') == 'checked') {
 				includetype = '<img src=\''+webpath+'/<?php echo ALBUMFOLDER; ?>/'+albumname+'/'+imgname+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
-			} else if ($('#thumbnail:checked').val() == 1) {
+			} else if ($('#thumbnail').attr('checked') == 'checked') {
 				includetype = '<img src=\''+thumburl+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
 			} else {
 				includetype = '<img src=\''+imgurl+imagesize+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
 			}
-			if($('#showtitle:checked').val() == 1 || $('#imagedesc:checked').val() == 1 || $('#albumdesc:checked').val() == 1) {
+			if($('#showtitle').attr('checked') == 'checked' || $('#imagedesc').attr('checked') == 'checked' || $('#albumdesc').attr('checked') == 'checked') {
 				infowrap1 = '<div class=\'zenpage_wrapper'+textwrap_title_add+'\''+textwrap_title+'>';
 				infowrap2 = '</div>';
 			}
-			if($('#showtitle:checked').val() == 1) {
-				if($('#albumlink:checked').val() == 1) {
+			if($('#showtitle').attr('checked') == 'checked') {
+				if($('#albumlink').attr('checked') == 'checked') {
 					titlewrap = '<div class=\'zenpage_title\'>'+albumtitle+'</div>';
 				} else {
 					titlewrap = '<div class=\'zenpage_title\'>'+imgtitle+'</div>';
 				}
 			}
-			if($('#imagedesc:checked').val() == 1) {
+			if($('#imagedesc').attr('checked') == 'checked') {
 				descwrap = '<div class=\'zenpage_desc\'>'+imgdesc+'</div>';
 			}
-			if($('#albumdesc:checked').val() == 1) {
+			if($('#albumdesc').attr('checked') == 'checked') {
 				descwrap = '<div class=\'zenpage_desc\'>'+albumdesc+'</div>';
 			}
 			infowrap2 = titlewrap+descwrap+infowrap2;
 		}
-		if($('#imagetitle:checked').val() == 1) {
+		if($('#imagetitle').attr('checked') == 'checked') {
 			includetype = html_encode(imgtitle);
 		}
-		if($('#albumtitle:checked').val() == 1) {
+		if($('#albumtitle').attr('checked') == 'checked') {
 			includetype = html_encode(albumtitle);
 		}
-		if($('#customtext:checked').val() == 1) {
+		if($('#customtext').attr('checked') == 'checked') {
 			includetype = $('#text').val();
 		}
 
 		// building the final item to include
-		if(type == "zenphoto") {
-			if((video == 'video' || video == 'audio') && $('#sizedimage:checked').val() == 1) {
-				if(video == 'video') {
-					playerheight = "<?php echo getOption('tinymce_tinyzenpage_flowplayer_height'); ?>";
-				} else {
-					playerheight = "<?php echo FLOW_PLAYER_MP3_HEIGHT; ?>";
-				}
-				imglink = infowrap1;
-				imglink += '<object '+textwrap+' width="<?php echo getOption('tinymce_tinyzenpage_flowplayer_width'); ?>" height="'+playerheight+'" data="'+flowplayerpath+'" type="application/x-shockwave-flash">';
-				imglink += '<param name="movie" value="'+flowplayerpath+'" />';
-				imglink += '<param name="allowfullscreen" value="true" />';
-				imglink += '<param name="allowscriptaccess" value="always" />';
-				imglink += '<param name="flashvars" value=\'config={';
-				imglink += '"plugins": {';
-				imglink += '"controls":{';
-				imglink += '"backgroundColor": "<?php echo getOption('flow_player3_controlsbackgroundcolor'); ?>",';
-				imglink += '"backgroundGradient": "<?php echo getOption('flow_player3_controlsbackgroundcolorgradient'); ?>",';
-				imglink += '"autoHide": "<?php echo getOption('flow_player3_controlsautohide'); ?>",';
-				imglink += '"timeColor":"<?php echo getOption('flow_player3_controlstimecolor'); ?>",';
-				imglink += '"durationColor": "<?php echo getOption('flow_player3_controlsdurationcolor'); ?>",';
-				imglink += '"progressColor": "<?php echo getOption('flow_player3_controlsprogresscolor'); ?>",';
-				imglink += '"progressGradient": "<?php echo getOption('flow_player3_controlsprogressgradient'); ?>",';
-				imglink += '"bufferColor": "<?php echo getOption('flow_player3_controlsbuffercolor'); ?>",';
-				imglink += '"bufferGradient":	 "<?php echo getOption('flow_player3_controlsbuffergradient'); ?>",';
-				imglink += '"sliderColor": "<?php echo getOption('flow_player3_controlsslidercolor'); ?>",';
-				imglink += '"sliderGradient": "<?php echo getOption('flow_player3_controlsslidergradient'); ?>",';
-				imglink += '"buttonColor": "<?php echo getOption('flow_player3_controlsbuttoncolor'); ?>",';
-				imglink += '"buttonOverColor": "<?php echo getOption('flow_player3_controlsbuttonovercolor'); ?>"';
-				imglink += '}';
-				imglink += '},';
-				imglink += '"canvas": {';
-				imglink += '"backgroundColor": "<?php echo getOption('flow_player3_backgroundcolor'); ?>",';
-				imglink += '"backgroundGradient": "<?php echo getOption('flow_player3_backgroundcolorgradient'); ?>"';
-				imglink += '},';
-				imglink += '"clip":{';
-				imglink += '"url":"'+fullimage+'",';
-				<?php
-					if(getOption("flow_player3_autoplay") == 1) {
-						$autoplay = "true";
+		switch (type) {
+			case 'zenphoto':
+
+				if((video == 'video' || video == 'audio') && $('#sizedimage').attr('checked')=='checked') {
+					if(video == 'video') {
+						playerheight = "<?php echo getOption('tinymce_tinyzenpage_flowplayer_height'); ?>";
 					} else {
-						$autoplay = "false";
+						playerheight = "<?php echo FLOW_PLAYER_MP3_HEIGHT; ?>";
 					}
-				?>
-				imglink += '"autoPlay":<?php echo $autoplay; ?>,';
-				imglink += '"autoBuffering": <?php echo $autoplay; ?>,';
-				imglink += '"scaling": "<?php echo getOption('flow_player3_scaling'); ?>"';
-				imglink += '}';
-				imglink += '}\' />';
-				imglink += '</object>';
-				imglink += infowrap2;
-			}	else if(video == 'textobject' && $('#sizedimage:checked').val() == 1) {
-				imglink = infowrap1+fullimage+infowrap2;
-			} else {
-				imglink = infowrap1+linkpart1+includetype+linkpart2+infowrap2;
-			}
-		} else {
-			if(type == "pages") {
-				if(modrewrite == '1') {
+					imglink = infowrap1;
+					imglink += '<object '+textwrap+' width="<?php echo getOption('tinymce_tinyzenpage_flowplayer_width'); ?>" height="'+playerheight+'" data="'+flowplayerpath+'" type="application/x-shockwave-flash">';
+					imglink += '<param name="movie" value="'+flowplayerpath+'" />';
+					imglink += '<param name="allowfullscreen" value="true" />';
+					imglink += '<param name="allowscriptaccess" value="always" />';
+					imglink += '<param name="flashvars" value=\'config={';
+					imglink += '"plugins": {';
+					imglink += '"controls":{';
+					imglink += '"backgroundColor": "<?php echo getOption('flow_player3_controlsbackgroundcolor'); ?>",';
+					imglink += '"backgroundGradient": "<?php echo getOption('flow_player3_controlsbackgroundcolorgradient'); ?>",';
+					imglink += '"autoHide": "<?php echo getOption('flow_player3_controlsautohide'); ?>",';
+					imglink += '"timeColor":"<?php echo getOption('flow_player3_controlstimecolor'); ?>",';
+					imglink += '"durationColor": "<?php echo getOption('flow_player3_controlsdurationcolor'); ?>",';
+					imglink += '"progressColor": "<?php echo getOption('flow_player3_controlsprogresscolor'); ?>",';
+					imglink += '"progressGradient": "<?php echo getOption('flow_player3_controlsprogressgradient'); ?>",';
+					imglink += '"bufferColor": "<?php echo getOption('flow_player3_controlsbuffercolor'); ?>",';
+					imglink += '"bufferGradient":	 "<?php echo getOption('flow_player3_controlsbuffergradient'); ?>",';
+					imglink += '"sliderColor": "<?php echo getOption('flow_player3_controlsslidercolor'); ?>",';
+					imglink += '"sliderGradient": "<?php echo getOption('flow_player3_controlsslidergradient'); ?>",';
+					imglink += '"buttonColor": "<?php echo getOption('flow_player3_controlsbuttoncolor'); ?>",';
+					imglink += '"buttonOverColor": "<?php echo getOption('flow_player3_controlsbuttonovercolor'); ?>"';
+					imglink += '}';
+					imglink += '},';
+					imglink += '"canvas": {';
+					imglink += '"backgroundColor": "<?php echo getOption('flow_player3_backgroundcolor'); ?>",';
+					imglink += '"backgroundGradient": "<?php echo getOption('flow_player3_backgroundcolorgradient'); ?>"';
+					imglink += '},';
+					imglink += '"clip":{';
+					imglink += '"url":"'+fullimage+'",';
+					<?php
+						if(getOption("flow_player3_autoplay") == 1) {
+							$autoplay = "true";
+						} else {
+							$autoplay = "false";
+						}
+					?>
+					imglink += '"autoPlay":<?php echo $autoplay; ?>,';
+					imglink += '"autoBuffering": <?php echo $autoplay; ?>,';
+					imglink += '"scaling": "<?php echo getOption('flow_player3_scaling'); ?>"';
+					imglink += '}';
+					imglink += '}\' />';
+					imglink += '</object>';
+					imglink += infowrap2;
+				}	else if(video == 'textobject' && $('#sizedimage').attr('checked')=='checked') {
+					imglink = infowrap1+fullimage+infowrap2;
+				} else {
+					imglink = infowrap1+linkpart1+includetype+linkpart2+infowrap2;
+				}
+				break;
+			case 'pages':
+				if(modrewrite) {
 					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				} else {
 					imglink = '<a href=\''+webpath+'/index.php?p=pages&amp;title='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				}
-			}
-			if(type == "articles") {
-				if(modrewrite == '1') {
+				break;
+			case 'articles':
+				if(modrewrite) {
 					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				} else {
 					imglink = '<a href=\''+webpath+'/index.php?p=news&amp;title='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				}
-			}
-			if(type == "categories") {
-				if(modrewrite == '1') {
+				break;
+			case 'categories':
+				if(modrewrite) {
 					imglink = '<a href=\''+webpath+'/'+imgurl+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				} else {
 					imglink = '<a href=\''+webpath+'/index.php?p=news&amp;category='+imgname+'\' title=\''+plainimgtitle+'\'>'+imgtitle+'</a>';
 				}
-			}
+			break;
 		}
 		if(!stopincluding) {
 			tinyMCEPopup.execCommand('mceInsertContent', false, imglink);

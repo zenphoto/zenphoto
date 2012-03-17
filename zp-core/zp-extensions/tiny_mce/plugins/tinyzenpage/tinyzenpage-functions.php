@@ -109,25 +109,29 @@ function printImageslist($number) {
 		$imagedesc = $albumthumb->getDesc();
 		$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=". urlencode(pathurlencode($albumthumbalbum->name))."&amp;i=".urlencode(urlencode($albumthumb->filename));
 		$fullimage = pathurlencode(addslashes($albumthumb->getFullImage()));
-		$videocheck = checkIfImageVideo($albumthumb);
-		if(get_class($albumthumb) == '_Image') {
-			$video = '';
+		$imageType = getImageType($albumthumb);
+		if($imageType) {
+			// Not a pure image
+			$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
+			$imgurl = $albumthumb->getThumb();
+		} else {
 			$backgroundcss = 'border: 1px solid gray; padding: 1px;';
 			$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=". urlencode(pathurlencode($albumthumbalbum->name))."&amp;i=".urlencode(urlencode($albumthumb->filename));
-		} else {
-			$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
-			$video = $videocheck;
-			$imgurl = $albumthumb->getThumb();
 		}
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='albumthumb' style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>";
-		echo "<a href=\"javascript: ZenpageDialog.insert('".$imgurl."','".$albumobj->getAlbumThumb()."','".urlencode($albumthumb->filename)."','".
+		echo "<a href=\"javascript: ZenpageDialog.insert('".$imgurl."','".
+		                                                  $albumobj->getAlbumThumb()."','".
+		                                                  urlencode($albumthumb->filename)."','".
 																											js_encode($albumthumb->getTitle())."','".
 																											js_encode($albumobj->getTitle())."','".
-																											$fullimage."','zenphoto','".
+																											$fullimage."',
+																											'zenphoto','".
 																											js_encode(getWatermarkParam($albumthumb, WATERMARK_THUMB))."','".
 																											js_encode(getWatermarkParam($albumthumb, WATERMARK_IMAGE))."','".
-																											$video."','".html_encode(addslashes($imagedesc))."','".html_encode(addslashes($albumdesc))."');\"".
+																											$imageType."',
+																											'".html_encode(addslashes($imagedesc))."',
+																											'".html_encode(addslashes($albumdesc))."');\"".
 																											" title='".html_encode($albumthumb->getTitle())." (".html_encode($albumthumb->filename).")'>
 																											<img src='".$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
 		echo "<a href='zoom.php?image=".urlencode($albumthumb->filename)."&amp;album=".pathurlencode($albumthumbalbum->name).
@@ -165,30 +169,40 @@ function printImageslist($number) {
 				$imagedesc = $imageobj->getDesc();
 				$albumdesc = $linkalbumobj->getDesc();
 				$fullimage = pathurlencode(addslashes($imageobj->getFullImage()));
-				$videocheck = checkIfImageVideo($imageobj);
-
+				$imageType = getImageType($imageobj);
 				$thumburl = $imageobj->getThumb();
 				$imgurl = $imageobj->getimageLink(false);
-				if(get_class($imageobj) == '_Image') {
-					$video = '';
-					$backgroundcss = 'border: 1px solid gray; padding: 1px;';
-					$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
-				} else if(get_class($imageobj) == 'TextObject' || get_parent_class($imageobj) == 'TextObject') {
-					$video = 'textobject';
-					$fullimage = html_encode($imageobj->getBody());
-				} else {
-					$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
-					$video = $videocheck;
+				switch ($imageType) {
+					case '':
+						// image photo
+						$backgroundcss = 'border: 1px solid gray; padding: 1px;';
+						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
+						break;
+					case 'textobject':
+						$backgroundcss = 'border: 1px solid yellow; padding: 1px;background-color: yellow';
+						break;
+					case 'video':
+					case 'audio':
+						$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
+						break;
+					default:
+						$backgroundcss = 'border: 1px solid red; padding: 1px;background-color: red';
+						break;
 				}
 				$imgsizeurl = $imageobj->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 				echo "<div style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>\n";
-				echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".$thumburl."','".urlencode($imageobj->filename)."','".
+				echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".
+				                                                $thumburl."','".
+				                                                urlencode($imageobj->filename)."','".
 																												js_encode($imageobj->getTitle())."','".
 																												js_encode($linkalbumobj->getTitle())."','".
-																												$fullimage."','zenphoto','".
+																												$fullimage."',
+																												'zenphoto','".
 																												js_encode(getWatermarkParam($imageobj, WATERMARK_THUMB))."','".
 																												js_encode(getWatermarkParam($imageobj, WATERMARK_IMAGE))."','".
-																												$video."','".html_encode(addslashes($imagedesc))."','".html_encode(addslashes($albumdesc))."');\"".
+																												$imageType."',
+																												'".html_encode(addslashes($imagedesc))."',
+																												'".html_encode(addslashes($albumdesc))."');\"".
 																												" title='".html_encode($imageobj->getTitle())." (".html_encode($imageobj->filename).")'>
 																												<img src='".$imgsizeurl."' style='".$backgroundcss."' /></a>\n";
 				echo "<a href='zoom.php?image=".urlencode($imageobj->filename)."&amp;album=".pathurlencode($linkalbumobj->name).
@@ -206,32 +220,53 @@ function printImageslist($number) {
 }
 
 /**
- * Checks if the Zenphoto items is a video object (mp3,mp4,flv)
+ * Returns the object "type" of the "image".
+ *
+ * Note:
+ *	If the root object is a video object then
+ *	If flowplayer3 is enabled a sub-type of video or audio will
+ *	be determined from the suffix. If it is not one of the
+ *	known suffixes or if flowplayer3 is not enabled then 'other' is
+ *	returned as the object type.
+ *
+ *	Pure images return empty for an object type.
  *
  * @return string
  */
 
-function checkIfImageVideo($imageobj) {
-	$video = '';
-	if(isImageVideo($imageobj) && getOption('zp_plugin_flowplayer3')) {
-		$imagesuffix = getSuffix($imageobj->filename);
-		switch($imagesuffix) {
-			case 'flv':
-			case 'mp4':
-			case 'm4v':
-				$video = 'video';
-				break;
-			case 'mp3':
-			case 'fla':
-			case 'm4a':
-				$video = 'audio';
-				break;
-		}
-	} else {
-		$video = '';
-		$backgroundcss = 'border: 1px solid gray; padding: 1px;';
+function getImageType($imageobj) {
+	$imageType = strtolower(get_class($imageobj));
+	switch ($imageType) {
+		case 'video':
+			if(getOption('zp_plugin_flowplayer3')) {
+				$imagesuffix = getSuffix($imageobj->filename);
+				switch($imagesuffix) {
+					case 'flv':
+					case 'mp4':
+					case 'm4v':
+						$imageType = 'video';
+						break;
+					case 'mp3':
+					case 'fla':
+					case 'm4a':
+						$imageType = 'audio';
+						break;
+				}
+			} else {
+				$imageType = 'other';
+			}
+			break;
+		case '_image':
+			$imageType = '';
+			break;
+		default:
+			$parent = strtolower(get_parent_class($imageobj));
+		if ($parent == 'textobject') {
+				$imageType = 'textobject';
+			}
+			break;
 	}
-	return $video;
+	return $imageType;
 }
 
 
