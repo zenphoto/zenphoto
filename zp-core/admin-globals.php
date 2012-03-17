@@ -170,4 +170,6 @@ if (is_numeric($last)) {
 	zp_register_filter('admin_note', 'admin_showupdate');
 }
 unset($last);
+
+loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
 ?>

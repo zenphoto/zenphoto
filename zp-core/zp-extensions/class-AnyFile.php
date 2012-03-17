@@ -136,30 +136,6 @@ class AnyFile extends TextObject {
 			return '<img src="'.$this->getThumb().'">';
 	}
 
-	/**
-	 * (non-PHPdoc)
-	 * @see zp-core/_Image::getSizedImage()
-	 */
-	function getSizedImage($size) {
-		$width = $this->getWidth();
-		$height = $this->getHeight();
-		if ($width > $height) {	//portrait
-			$height = $height * $size/$width;
-		} else {
-			$width = $width * $size/$height;
-		}
-		return $this->getBody($width, $height);
-	}
-
-	/**
-	 * (non-PHPdoc)
-	 * @see zp-core/_Image::updateDimensions()
-	 */
-	function updateDimensions() {
-		$this->set('width', getOption('image_size'));
-		$this->set('height', floor((getOption('image_size') * 24) / 36));
-	}
-
 }
 
 ?>

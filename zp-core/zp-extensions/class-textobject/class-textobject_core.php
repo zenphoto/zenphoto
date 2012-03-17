@@ -236,14 +236,7 @@ class TextObject extends _Image {
 	 * @see zp-core/_Image::getSizedImage()
 	 */
 	function getSizedImage($size) {
-		$width = $this->getWidth();
-		$height = $this->getHeight();
-		if ($width > $height) {	//portrait
-			$height = $height * $size/$width;
-		} else {
-			$width = $width * $size/$height;
-		}
-		return $this->getBody($width, $height);
+		return $this->getBody($this->getWidth(), $this->getHeight());
 	}
 
 	/**
@@ -251,16 +244,18 @@ class TextObject extends _Image {
 	 * @see zp-core/_Image::updateDimensions()
 	 */
 	function updateDimensions() {
-		switch(getSuffix($this->filename)) {
-			case 'txt':
-			case 'htm':
-			case 'html':
+		$size = getOption('image_size');
+		$side = getOption('image_use_side');
+		switch (getOption('image_use_side')) {
+			case 'width':
+			case 'longest':
 				$this->set('width', getOption('image_size'));
 				$this->set('height', floor((getOption('image_size') * 24) / 36));
 				break;
-			default: // just in case we extend and are lazy...
-				$this->set('width', getOption('thumb_size'));
-				$this->set('height', getOption('thumb_size'));
+			case 'height':
+			case 'shortest':
+				$this->set('height', getOption('image_size'));
+				$this->set('width', floor((getOption('image_size') * 36) / 24));
 				break;
 		}
 	}
