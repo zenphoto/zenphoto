@@ -27,16 +27,12 @@ function stripHTML(oldString) {
    return newString;
 }
 
-function alertUnsupported(name) {
-	alert('<?php echo gettext("It is not possible to a include custom thumb or custom size image for %s."); ?>'.replace(/%s/,name));
-}
-
 var ZenpageDialog = {
 	init : function(ed) {
 		tinyMCEPopup.resizeToInnerSize();
 	},
 
-	insert : function(imgurl,thumburl,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video,imgdesc,albumdesc) {
+	insert : function(imgurl,thumburl,sizedimage,imgname,imgtitle,albumtitle,fullimage,type, wm_thumb, wm_img,video,imgdesc,albumdesc) {
 		var ed = tinyMCEPopup.editor, dom = ed.dom;
 		var imglink = '';
 		var includetype = '';
@@ -76,10 +72,6 @@ var ZenpageDialog = {
 			cssclass ='zenpage_thumb';
 		}
 		if($('#customthumb').attr('checked') == 'checked') {
-			if(video) {
-				alertUnsupported(imgname);
-				stopincluding = true;
-			}
 			imagesize = '&amp;s='+$('#cropsize').val()+'&amp;cw='+$('#cropwidth').val()+'&amp;ch='+$('#cropheight').val()+'&amp;t=true';
 			if (wm_thumb) {
 				imagesize += '&amp;wmk='+wm_thumb;
@@ -87,19 +79,11 @@ var ZenpageDialog = {
 			cssclass ='zenpage_customthumb';
 		}
 		if($('#sizedimage').attr('checked') == 'checked') {
-			if(video && video !='video' && video!='audio') {
-				alertUnsupported(imgname);
-				stopincluding = true;
-			}
-			imagesize = '&amp;s=<?php echo getOption("image_size"); ?>';
-			if (wm_img) {
-				imagesize += '&amp;wmk='+wm_img;
-			}
 			cssclass ='zenpage_sizedimage';
 		}
 		if($('#customsize').attr('checked') == 'checked') {
 			if(video) {
-				alertUnsupported(imgname);
+				alert('<?php echo gettext('It is not possible to a include a custom size %s.'); ?>'.replace(/%s/,imgname));
 				stopincluding = true;
 			}
 			imagesize = '&amp;s='+$('#size').val();
@@ -110,7 +94,7 @@ var ZenpageDialog = {
 		}
 		if($('#fullimage').attr('checked') == 'checked') {
 			if(video) {
-				alertUnsupported(imgname);
+				alert('<?php echo gettext('It is not possible to a include a full size %s.'); ?>'.replace(/%s/,imgname));
 				stopincluding = true;
 			}
 			imagesize = '';
@@ -258,8 +242,8 @@ var ZenpageDialog = {
 					imglink += '}\' />';
 					imglink += '</object>';
 					imglink += infowrap2;
-				}	else if(video == 'textobject' && $('#sizedimage').attr('checked')=='checked') {
-					imglink = infowrap1+fullimage+infowrap2;
+				}	else if($('#sizedimage').attr('checked')=='checked') {
+					imglink = infowrap1+sizedimage+infowrap2;
 				} else {
 					imglink = infowrap1+linkpart1+includetype+linkpart2+infowrap2;
 				}

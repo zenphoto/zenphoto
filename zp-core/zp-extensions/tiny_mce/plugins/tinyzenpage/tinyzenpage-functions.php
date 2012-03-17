@@ -122,6 +122,7 @@ function printImageslist($number) {
 		echo "<div class='albumthumb' style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>";
 		echo "<a href=\"javascript: ZenpageDialog.insert('".$imgurl."','".
 		                                                  $albumobj->getAlbumThumb()."','".
+		                                                  "','".
 		                                                  urlencode($albumthumb->filename)."','".
 																											js_encode($albumthumb->getTitle())."','".
 																											js_encode($albumobj->getTitle())."','".
@@ -172,17 +173,31 @@ function printImageslist($number) {
 				$imageType = getImageType($imageobj);
 				$thumburl = $imageobj->getThumb();
 				$imgurl = $imageobj->getimageLink(false);
+				$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 				switch ($imageType) {
 					case '':
 						// image photo
 						$backgroundcss = 'border: 1px solid gray; padding: 1px;';
 						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
+						$sizedimage = '<img src="'.$sizedimage.'" alt="'.$imageobj->getTitle().'" />';
 						break;
 					case 'textobject':
+						if (is_null($imageobj->objectsThumb)) {
+							$filename = makeSpecialImageName($imageobj->getThumbImageFile());
+						} else {
+							$filename = $imageobj->objectsThumb;
+						}
+						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($filename));
 						$backgroundcss = 'border: 1px solid yellow; padding: 1px;background-color: yellow';
 						break;
 					case 'video':
 					case 'audio':
+						if (is_null($imageobj->objectsThumb)) {
+							$filename = makeSpecialImageName($imageobj->getThumbImageFile());
+						} else {
+							$filename = $imageobj->objectsThumb;
+						}
+						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($filename));
 						$backgroundcss = 'border: 1px solid orange; padding: 1px;background-color: orange';
 						break;
 					default:
@@ -193,7 +208,8 @@ function printImageslist($number) {
 				echo "<div style='width: 85px; height: 100px; float: left; margin: 10px 10px 10px 13px'>\n";
 				echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".
 				                                                $thumburl."','".
-				                                                urlencode($imageobj->filename)."','".
+				                                                html_encode($sizedimage)."','".
+																												urlencode($imageobj->filename)."','".
 																												js_encode($imageobj->getTitle())."','".
 																												js_encode($linkalbumobj->getTitle())."','".
 																												$fullimage."',
@@ -320,7 +336,7 @@ function printNewsArticlesList($number) {
 				}
 				echo "<li style='".$firstitemcss."'>";
 				if($_GET['zenpage'] == "articles") {
-					echo "<a href=\"javascript:ZenpageDialog.insert('news/".$newsobj->getTitlelink()."','','".$newsobj->getTitlelink()."','".html_encode($newsobj->getTitle())."','','','articles','','','','');\" title='".html_encode(truncate_string(strip_tags($newsobj->getContent()),300))."'>".html_encode($newsobj->getTitle()).unpublishedZenpageItemCheck($newsobj)."</a> <small><em>".$newsobj->getDatetime()."</em></small>";
+					echo "<a href=\"javascript:ZenpageDialog.insert('news/".$newsobj->getTitlelink()."','','','".$newsobj->getTitlelink()."','".html_encode($newsobj->getTitle())."','','','articles','','','','');\" title='".html_encode(truncate_string(strip_tags($newsobj->getContent()),300))."'>".html_encode($newsobj->getTitle()).unpublishedZenpageItemCheck($newsobj)."</a> <small><em>".$newsobj->getDatetime()."</em></small>";
 					echo " <a href='zoom.php?news=".urlencode($newsobj->getTitlelink())."' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a><br />";
 					echo '<small><em>'.gettext('Categories:');
 					$cats = $newsobj->getCategories();
@@ -539,7 +555,7 @@ function printAllNestedList() {
 				$open[$indent]--;
 			}
 			echo "<li id='".$itemid."' style='list-style: none; padding: 4px 0px 4px 0px;border-top: 1px dotted gray'>";
-			echo "<a href=\"javascript:ZenpageDialog.insert('".$zenpagepage."','','".$itemtitlelink."','".html_encode($itemtitle)."','','','".$mode."','','','','');\" title='".html_encode($itemcontent)."'>".html_encode($itemtitle).$unpublished.$counter."</a> <small><em>".$obj->getDatetime()."</em></small>";
+			echo "<a href=\"javascript:ZenpageDialog.insert('".$zenpagepage."','','','".$itemtitlelink."','".html_encode($itemtitle)."','','','".$mode."','','','','');\" title='".html_encode($itemcontent)."'>".html_encode($itemtitle).$unpublished.$counter."</a> <small><em>".$obj->getDatetime()."</em></small>";
 			if($mode == 'pages') {
 				echo " <a href='zoom.php?pages=".urlencode($itemtitlelink)."' title='Zoom' class='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a>";
 			}
