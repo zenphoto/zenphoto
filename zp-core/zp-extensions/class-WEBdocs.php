@@ -117,6 +117,7 @@ class WEBdocs extends TextObject {
 				case "pdf":
 					$img = '/pdfDefault.png';
 					break;
+				case 'ppt':
 				case 'pps':
 					$img = '/ppsDefault.png';
 					break;
@@ -152,8 +153,10 @@ class WEBdocs extends TextObject {
 												'local'=>'<iframe src="%s" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>'
 											);
 		switch($suffix = getSuffix($this->filename)) {
+			case 'ppt':
+				$suffix = 'pps';
 			case 'tiff':
-				$suffix = 'tif';
+				$suffix = substr($suffix, 0, 3);
 			case 'tif':
 			case 'pps':
 			case 'pdf':

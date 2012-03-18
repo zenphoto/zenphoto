@@ -12,8 +12,12 @@ $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('sendmail') && !getoption('zp_plugin_PHPMailer'))?sprintf(gettext('Only one Email handler plugin may be enalbed. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),stripSuffix(get_filterScript('sendmail'))):'';
 
 $option_interface = 'zp_PHPMailer';
-zp_register_filter('sendmail', 'zenphoto_PHPMailer');
 
+if ($plugin_disable) {
+	setOption('zp_plugin_PHPMailer', 0);
+} else {
+	zp_register_filter('sendmail', 'zenphoto_PHPMailer');
+}
 
 /**
  * Option handler class

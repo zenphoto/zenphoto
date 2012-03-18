@@ -1,11 +1,10 @@
 <?php
 
 define('OFFSET_PATH', 3);
-$basepath = dirname(dirname(dirname(dirname(dirname(__FILE__)))));
-require_once($basepath."/admin-globals.php");
+require_once(dirname(dirname(dirname(dirname(dirname(__FILE__)))))."/admin-globals.php");
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS, '');
-require_once($basepath .'/'. PLUGIN_FOLDER ."/zenpage/zenpage-template-functions.php");
-require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/zenpage/zenpage-template-functions.php");
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/flowplayer3.php");
 ?>
 <!-- tinyZenpage - A TinyMCE plugin for Zenphoto with Zenpage
 		 Version: 1.0.6.1
@@ -17,12 +16,10 @@ require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
 <head>
 	<title>tinyZenpage</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
-	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
-	<script type="text/javascript" src="../../../../js/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo WEBPATH.'/'. ZENFOLDER; ?>/js/htmlencoder.js"></script>
+	<script type="text/javascript" src="<?php echo WEBPATH.'/'. ZENFOLDER; ?>/js/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo WEBPATH.'/'. ZENFOLDER.'/'.PLUGIN_FOLDER; ?>/tiny_mce/tiny_mce_popup.js"></script>
 
-	<link rel="stylesheet" href="../../../../zp-extensions/colorbox/themes/example1/colorbox.css" type="text/css" />
-	<script src="../../../../zp-extensions/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
 	<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
 	<script language="javascript" type="text/javascript">
 	$(document).ready(function(){
@@ -67,12 +64,12 @@ if(getOption('zp_plugin_zenpage')) {
 		<div class="panel current">
 			<fieldset>
 				<legend>Zenpage</legend>
-    		<select name="zenpage" size="1" onchange="javascript:this.form.submit();">
-    			<option><?php echo gettext("*Select*"); ?></option>
-      		<?php printZenpageItems(); ?>
-    		</select>
-    		<br /><small><strong><?php echo gettext("(only direct links!)"); ?></strong></small>
-  		</fieldset>
+				<select name="zenpage" size="1" onchange="javascript:this.form.submit();">
+					<option><?php echo gettext("*Select*"); ?></option>
+					<?php printZenpageItems(); ?>
+				</select>
+				<br /><small><strong><?php echo gettext("(only direct links!)"); ?></strong></small>
+			</fieldset>
 		</div>
 	</form>
 	<?php
@@ -82,12 +79,12 @@ if(getOption('zp_plugin_zenpage')) {
 		<div class="panel current">
 			<fieldset>
 				<legend>Zenphoto</legend>
-    		<select name="album" size="1" onchange="javascript:this.form.submit();">
-    			<option><?php echo gettext("*Select an album*"); ?></option>
-      		<?php printFullAlbumsList(); ?>
-    		</select>
-    		<br /><small><strong><?php echo gettext("(select variant below)"); ?></strong></small>
-  		</fieldset>
+				<select name="album" size="1" onchange="javascript:this.form.submit();">
+					<option><?php echo gettext("*Select an album*"); ?></option>
+					<?php printFullAlbumsList(); ?>
+				</select>
+				<br /><small><strong><?php echo gettext("(select variant below)"); ?></strong></small>
+			</fieldset>
 		</div>
 	</form>
 
@@ -98,12 +95,12 @@ if(showZenphotoOptions()) {
 		<div class="panel current">
 			<fieldset>
 				<legend><?php echo gettext("What to include"); ?></legend>
-    		<input type="radio" name="type" id="image" value="1" checked='checked' /><label for="image"> <?php echo gettext("Image"); ?></label><br />
-    		<?php if(checkAlbumForImages()) { ?><input type="radio" name="type" id="imagetitle" value="1" /><label for="imagetitle"> <?php echo gettext("Image title"); ?></label><br /><?php } ?>
-    		<input type="radio" name="type" id="albumtitle" value="1" /><label for="albumtitle"> <?php echo gettext("Album title"); ?></label><br />
-    		<input type="radio" name="type" id="customtext" value="1" />
-    		<input type="text" name="text" id="text" value="" /><label for="customtext"><br /><span class="customtext"> <?php echo gettext("Custom text"); ?></span></label>
-  		</fieldset>
+				<input type="radio" name="type" id="image" value="1" checked='checked' /><label for="image"> <?php echo gettext("Image"); ?></label><br />
+				<?php if(checkAlbumForImages()) { ?><input type="radio" name="type" id="imagetitle" value="1" /><label for="imagetitle"> <?php echo gettext("Image title"); ?></label><br /><?php } ?>
+				<input type="radio" name="type" id="albumtitle" value="1" /><label for="albumtitle"> <?php echo gettext("Album title"); ?></label><br />
+				<input type="radio" name="type" id="customtext" value="1" />
+				<input type="text" name="text" id="text" value="" /><label for="customtext"><br /><span class="customtext"> <?php echo gettext("Custom text"); ?></span></label>
+			</fieldset>
 		</div>
 	</form>
 
@@ -111,14 +108,14 @@ if(showZenphotoOptions()) {
 		<div class="panel current">
 			<fieldset>
 				<legend><?php echo gettext("Image size"); ?></legend>
-    		<input type="radio" name="type" id="thumbnail" value="1" checked='checked'><label for="thumbnail" /> <?php echo gettext("Thumbnail"); ?></label><br />
-    		<input type="radio" name="type" id="customthumb" value="1" />
-    		s <input type="text" name="cropsize" id="cropsize" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_size'); ?>" style="width:25px" /> / cw <input type="text" name="cropwidth" id="cropwidth" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /> x ch <input type="text" name="cropheight" id="cropheight" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /><label for="customthumb"><br /><span class="customtext"><?php echo gettext("Custom thumbnail"); ?></span></label><br />
-    		<input type="radio" name="type" id="sizedimage" "value="1" /><label for="title"> <?php echo gettext("Sized image/multimedia item"); ?></label><br />
-    		<input type="radio" name="type" id="customsize" value="1" />
-    		<input type="text" name="size" id="size" value="<?php echo getOption('tinymce_tinyzenpage_customimagesize'); ?>" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
-  			<input type="radio" name="type" id="fullimage" value="1"><label for="fullimage" /> <?php echo gettext("Full image"); ?></label><br />
-  		</fieldset>
+				<input type="radio" name="type" id="thumbnail" value="1" checked='checked'><label for="thumbnail" /> <?php echo gettext("Thumbnail"); ?></label><br />
+				<input type="radio" name="type" id="customthumb" value="1" />
+				s <input type="text" name="cropsize" id="cropsize" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_size'); ?>" style="width:25px" /> / cw <input type="text" name="cropwidth" id="cropwidth" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /> x ch <input type="text" name="cropheight" id="cropheight" value="<?php echo getOption('tinymce_tinyzenpage_customthumb_cropwidth'); ?>" style="width:25px" /><label for="customthumb"><br /><span class="customtext"><?php echo gettext("Custom thumbnail"); ?></span></label><br />
+				<input type="radio" name="type" id="sizedimage" "value="1" /><label for="title"> <?php echo gettext("Sized image/multimedia item"); ?></label><br />
+				<input type="radio" name="type" id="customsize" value="1" />
+				<input type="text" name="size" id="size" value="<?php echo getOption('tinymce_tinyzenpage_customimagesize'); ?>" /><label for="customsize"><br /><span class="customtext"><?php echo gettext("Custom size (un-cropped)"); ?></span></label><br />
+				<input type="radio" name="type" id="fullimage" value="1"><label for="fullimage" /> <?php echo gettext("Full image"); ?></label><br />
+			</fieldset>
 		</div>
 	</form>
 
@@ -126,26 +123,26 @@ if(showZenphotoOptions()) {
 	<div class="panel current">
 		<fieldset>
 			<legend><?php echo gettext("Title and description"); ?></legend>
-  		<input type="checkbox" name="type" id="showtitle" value="1" /><label for="showtitle"> <?php echo gettext("Show title"); ?></label><br />
-  		<input type="radio" name="type" id="nodesc" value="1" /><label for="nodesc"> <?php echo gettext("No description"); ?></label><br />
-  		<input type="radio" name="type" id="imagedesc" value="1" /><label for="imagedesc"> <?php echo gettext("Show image description"); ?></label><br />
-  		<input type="radio" name="type" id="albumdesc" value="1" /><label for="albumdesc"> <?php echo gettext("Show album description"); ?></label>
-  	</fieldset>
-  	</div>
+			<input type="checkbox" name="type" id="showtitle" value="1" /><label for="showtitle"> <?php echo gettext("Show title"); ?></label><br />
+			<input type="radio" name="type" id="nodesc" value="1" /><label for="nodesc"> <?php echo gettext("No description"); ?></label><br />
+			<input type="radio" name="type" id="imagedesc" value="1" /><label for="imagedesc"> <?php echo gettext("Show image description"); ?></label><br />
+			<input type="radio" name="type" id="albumdesc" value="1" /><label for="albumdesc"> <?php echo gettext("Show album description"); ?></label>
+		</fieldset>
+		</div>
 	</form>
 
 	<form name="linktype" action="" method="post" style="margin: 8px 0px 8px 0px">
 		<div class="panel current">
 			<fieldset>
 				<legend><?php echo gettext("Link type"); ?></legend>
-    		<?php if(checkAlbumForImages()) { ?>
-    		<input type="radio" name="link" id="imagelink" value="1" checked='checked' /><label for="imagelink"> <?php echo gettext("Link to image"); ?></label><br />
-    		<input type="radio" name="link" id="fullimagelink" value="1"><label for="fullimagelink" /> <?php echo gettext("Link to full image"); ?></label><br /><?php } ?>
-    		<input type="radio" name="link" id="albumlink" value="1" /><label for="albumlink"> <?php echo gettext("Link to album"); ?></label><br />
-    		<input type="radio" name="link" id="nolink" value="1" /><label for="nolink"> <?php echo gettext("No link"); ?></label><br />
-    		<input type="radio" name="link" id="customlink" value="1" />
-    		<input type="text" name="linkurl" id="linkurl" value="" /><label for="customlink"><br /><span class="customtext"><?php echo gettext("Custom link"); ?></span></label>
-  		</fieldset>
+				<?php if(checkAlbumForImages()) { ?>
+				<input type="radio" name="link" id="imagelink" value="1" checked='checked' /><label for="imagelink"> <?php echo gettext("Link to image"); ?></label><br />
+				<input type="radio" name="link" id="fullimagelink" value="1"><label for="fullimagelink" /> <?php echo gettext("Link to full image"); ?></label><br /><?php } ?>
+				<input type="radio" name="link" id="albumlink" value="1" /><label for="albumlink"> <?php echo gettext("Link to album"); ?></label><br />
+				<input type="radio" name="link" id="nolink" value="1" /><label for="nolink"> <?php echo gettext("No link"); ?></label><br />
+				<input type="radio" name="link" id="customlink" value="1" />
+				<input type="text" name="linkurl" id="linkurl" value="" /><label for="customlink"><br /><span class="customtext"><?php echo gettext("Custom link"); ?></span></label>
+			</fieldset>
 		</div>
 	</form>
 
@@ -153,10 +150,10 @@ if(showZenphotoOptions()) {
 		<div class="panel current">
 			<fieldset>
 				<legend><?php echo gettext("Text wrap"); ?></legend>
-  			<input type="radio" name="wrap" id="nowrap" value="1" checked='checked' /><label for="nowrap"><img src="img/wrapNone.gif" class="wrapicon" alt="" /> <?php echo gettext("No wrap"); ?></label><br />
-    		<input type="radio" name="wrap" id="rightwrap" value="1" /><label for="rightwrap"><img src="img/wrapRight.gif" class="wrapicon" alt="" /> <?php echo gettext("Right"); ?></label><br />
-    		<input type="radio" name="wrap" id="leftwrap" value="1" /><label for="leftwrap"><img src="img/wrapLeft.gif" class="wrapicon" alt="" /> <?php echo gettext("Left"); ?></label>
-    	</fieldset>
+				<input type="radio" name="wrap" id="nowrap" value="1" checked='checked' /><label for="nowrap"><img src="img/wrapNone.gif" class="wrapicon" alt="" /> <?php echo gettext("No wrap"); ?></label><br />
+				<input type="radio" name="wrap" id="rightwrap" value="1" /><label for="rightwrap"><img src="img/wrapRight.gif" class="wrapicon" alt="" /> <?php echo gettext("Right"); ?></label><br />
+				<input type="radio" name="wrap" id="leftwrap" value="1" /><label for="leftwrap"><img src="img/wrapLeft.gif" class="wrapicon" alt="" /> <?php echo gettext("Left"); ?></label>
+			</fieldset>
 		</div>
 	</form>
 	<?php
@@ -167,37 +164,37 @@ if(showZenphotoOptions()) {
 <div class="albumdiv">
 	 <div style="margin-top: 10px">
 	 <?php
-	 		if(empty($_GET['zenpage']) AND empty($_GET['album'])) {
-	 			?>
-	 			<h2 style='margin-left: 8px'>
-	 			<em>tiny</em>Zenpage</h2>
-	 			<p style='margin-left: 8px'>
-	 			<?php echo gettext("This provides access to your images and albums (select from the <em>Zenphoto</em> dropdown) as well as pages, news articles and news categories (select from the <em>Zenpage</em> dropdown) to easily include them in your pages and articles."); ?>
-	 			</p>
-	 			<p style='margin-left: 8px'>
+			if(empty($_GET['zenpage']) AND empty($_GET['album'])) {
+				?>
+				<h2 style='margin-left: 8px'>
+				<em>tiny</em>Zenpage</h2>
+				<p style='margin-left: 8px'>
+				<?php echo gettext("This provides access to your images and albums (select from the <em>Zenphoto</em> dropdown) as well as pages, news articles and news categories (select from the <em>Zenpage</em> dropdown) to easily include them in your pages and articles."); ?>
+				</p>
+				<p style='margin-left: 8px'>
 
-	 			<h3 style='margin-left: 1px'>Zenpage</h3>
-	 			<p style='margin-left: 8px'>
-	 			<?php echo gettext("Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a list of these items. Click on a title to include a link. Hover of the link to see an excerpt of the page or article. Un-published pages or articles are marked with an '*' and protected with an '+'. There are no further options."); ?>
-	 			</p>
+				<h3 style='margin-left: 1px'>Zenpage</h3>
+				<p style='margin-left: 8px'>
+				<?php echo gettext("Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a list of these items. Click on a title to include a link. Hover of the link to see an excerpt of the page or article. Un-published pages or articles are marked with an '*' and protected with an '+'. There are no further options."); ?>
+				</p>
 
-	 			<h3 style='margin-left: 1px'>Zenphoto</h3>
-	 			<p style='margin-left: 8px'>
-	 				<?php echo gettext("Select an album to include images from into your page or article. Click on the image to included it.".
-	 														" Un-published albums or images are marked with an '*'.".
-	 														" You can also click on the magnify glass icon to see a preview of the item. (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.)".
-	 														" The first thumbnail is always the thumbnail of the selected album.".
-	 														" It is titled <em>Albumthumb</em> and appears on every thumbnail page."); ?>
-	 			</p>
+				<h3 style='margin-left: 1px'>Zenphoto</h3>
+				<p style='margin-left: 8px'>
+					<?php echo gettext("Select an album to include images from into your page or article. Click on the image to included it.".
+															" Un-published albums or images are marked with an '*'.".
+															" You can also click on the magnify glass icon to see a preview of the item. (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.)".
+															" The first thumbnail is always the thumbnail of the selected album.".
+															" It is titled <em>Albumthumb</em> and appears on every thumbnail page."); ?>
+				</p>
 				<h4 style='margin-left: 24px'><?php echo gettext("Options on what to include"); ?></h4>
 
 				<p style='margin-left: 24px'>
 					<?php echo gettext("Include the image itself, only its title, the title of its album, or some custom text."); ?>
 				</p>
-	 			<p style='margin-left: 24px'>
-	 				<?php echo gettext("NOTE: These selections are not sticky. If you change albums or change pages in an album you will have to select them again."); ?>
-		 			<?php echo gettext("The window does not close automatically so you can include several images one after another."); ?>
-	 			</p>
+				<p style='margin-left: 24px'>
+					<?php echo gettext("NOTE: These selections are not sticky. If you change albums or change pages in an album you will have to select them again."); ?>
+					<?php echo gettext("The window does not close automatically so you can include several images one after another."); ?>
+				</p>
 
 				<h4 style='margin-left: 24px'><?php echo gettext("Image size"); ?></h4>
 				<ul style="margin-left: 24px">
@@ -250,9 +247,9 @@ if(showZenphotoOptions()) {
 				<?php echo gettext("If you would like to do some direct styling you can also use TinyMCE's image button or source code editor."); ?>
 				</p>
 				<?php
-	 		}
-	  	printAllNestedList();
-	 		printNewsArticlesList(12);
+			}
+			printAllNestedList();
+			printNewsArticlesList(12);
 			printImageslist(19);
 
 		 ?>

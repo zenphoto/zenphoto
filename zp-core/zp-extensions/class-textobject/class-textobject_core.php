@@ -236,7 +236,20 @@ class TextObject extends _Image {
 	 * @see zp-core/_Image::getSizedImage()
 	 */
 	function getSizedImage($size) {
-		return $this->getBody($this->getWidth(), $this->getHeight());
+		switch (getOption('image_use_side')) {
+			case 'width':
+			case 'longest':
+				$w = $size;
+				$h = floor(($size * 24) / 36);
+				break;
+			case 'height':
+			case 'shortest':
+				$h = $size;
+				$w = floor(($size * 36) / 24);
+				break;
+		}
+
+		return $this->getBody($w, $h);
 	}
 
 	/**
@@ -245,7 +258,6 @@ class TextObject extends _Image {
 	 */
 	function updateDimensions() {
 		$size = getOption('image_size');
-		$side = getOption('image_use_side');
 		switch (getOption('image_use_side')) {
 			case 'width':
 			case 'longest':

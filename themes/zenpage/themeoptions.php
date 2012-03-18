@@ -22,7 +22,7 @@ class ThemeOptions {
 		setThemeOptionDefault('albums_per_row', 2);
 		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
-		setThemeOptionDefault('image_size', 595);
+		setThemeOptionDefault('image_size', 580);
 		setThemeOptionDefault('image_use_side', 'longest');
 		setThemeOptionDefault('thumb_size',85);
 		setThemeOptionDefault('thumb_transition', 1);

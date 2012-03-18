@@ -10,8 +10,12 @@ $plugin_description = gettext("Zenphoto outgoing mail handler based on the PHP <
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('sendmail') && !getoption('zp_plugin_zenphoto_sendmail'))?sprintf(gettext('Only one Email handler plugin may be enalbed. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),stripSuffix(get_filterScript('sendmail'))):'';
 
+if ($plugin_disable) {
+	setOption('zp_plugin_zenphoto_sendmail', 0);
+} else {
+	zp_register_filter('sendmail', 'zenphoto_sendmail');
+}
 
-zp_register_filter('sendmail', 'zenphoto_sendmail');
 
 function zenphoto_sendmail($msg, $email_list, $subject, $message, $from_mail, $from_name, $cc_addresses) {
 	$headers = sprintf('From: %1$s <%2$s>', $from_name, $from_mail)."\n";

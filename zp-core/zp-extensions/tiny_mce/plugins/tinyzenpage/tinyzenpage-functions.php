@@ -101,7 +101,7 @@ function printImageslist($number) {
 		$album = urldecode(sanitize($_GET['album']));
 		$albumobj = new Album(NULL,$album);
 		echo "<h3 style='margin-bottom:10px'>".gettext("Album:")." <em>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj,false)."</em> / ".gettext("Album folder:")." <em>".html_encode($albumobj->name)."</em><br /><small>".gettext("(Click on image to include)")."</small></h3>";
-		
+
 		$images_per_page = $number;
 		if(isset($_GET['page'])) {
 			$currentpage = sanitize_numeric($_GET['page']);
@@ -180,7 +180,7 @@ function printImageslist($number) {
 						// image photo
 						$backgroundcss = 'border: 1px solid gray; padding: 1px;';
 						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
-						$sizedimage = '<img src="'.$sizedimage.'" alt="'.$imageobj->getTitle().'" />';
+						$sizedimage = '<img src="'.$sizedimage.'" alt="'.$imageobj->getTitle().'" class="zenpage_sizedimage" />';
 						break;
 					case 'textobject':
 						if (is_null($imageobj->objectsThumb)) {
@@ -188,11 +188,13 @@ function printImageslist($number) {
 						} else {
 							$filename = $imageobj->objectsThumb;
 						}
+						$sizedimage = str_replace('class="textobject"', 'class="textobject zenpage_sizedimage"', $sizedimage);
 						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($filename));
 						$backgroundcss = 'border: 1px solid yellow; padding: 1px;background-color: yellow';
 						break;
 					case 'video':
 					case 'audio':
+						$sizedimage = str_replace('class="flowplayer"', 'class="flowplayer zenpage_sizedimage"', $sizedimage);
 						if (is_null($imageobj->objectsThumb)) {
 							$filename = makeSpecialImageName($imageobj->getThumbImageFile());
 						} else {
