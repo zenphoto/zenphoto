@@ -154,7 +154,7 @@ var ZenpageDialog = {
 		// getting the include type checkbox values
 		if($('#image').attr('checked') == 'checked') {
 			if($('#fullimage').attr('checked') == 'checked') {
-				includetype = '<img src=\''+webpath+'/<?php echo ALBUMFOLDER; ?>/'+albumname+'/'+imgname+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
+				includetype = '<img src=\''+fullimage+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
 			} else if ($('#thumbnail').attr('checked') == 'checked') {
 				includetype = '<img src=\''+thumburl+'\' alt=\''+imgtitle+'\' '+textwrap+' />';
 			} else {
