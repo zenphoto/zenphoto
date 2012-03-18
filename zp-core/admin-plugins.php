@@ -240,7 +240,7 @@ foreach ($filelist as $extension) {
 		<td width="60">
 			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info.png" title="<?php echo gettext('Usage information'); ?>" alt=""></a></span>
 			<?php
-			if ($optionlink) {
+			if ($optionlink && !$plugin_disable) {
 				?>
 				<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php echo gettext("Change plugin options"); ?>"><img class="icon-position-top4" src="images/options.png" alt="" /></a></span>
 				<?php
