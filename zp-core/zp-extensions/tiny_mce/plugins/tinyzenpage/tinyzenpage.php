@@ -20,9 +20,10 @@ require_once($basepath .'/'. PLUGIN_FOLDER ."/flowplayer3.php");
 	<script type="text/javascript" src="<?php echo WEBPATH . '/' . ZENFOLDER; ?>/js/htmlencoder.js"></script>
 	<script type="text/javascript" src="../../tiny_mce_popup.js"></script>
 	<script type="text/javascript" src="../../../../js/jquery.js"></script>
-	<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
+
 	<link rel="stylesheet" href="../../../../zp-extensions/colorbox/themes/example1/colorbox.css" type="text/css" />
 	<script src="../../../../zp-extensions/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
+	<link rel="stylesheet" type="text/css" href="css/tinyzenpage.css" media="screen" />
 	<script language="javascript" type="text/javascript">
 	$(document).ready(function(){
 		$("a[rel='colorbox']").colorbox({
@@ -56,6 +57,7 @@ require_once("tinyzenpage-functions.php");
 </head>
 
 <body>
+<div id="help"><a href="tinyzenpage.php" target="_self"><small><?php echo gettext("Help"); ?><small></a></div>
 <div id="main" style="margin-top: -10px;">
 <div class="optionsdiv">
 <?php
@@ -258,6 +260,6 @@ if(showZenphotoOptions()) {
 </div>
 <br style="clear: both" />
 </div><!-- main div -->
-<div id="help"><a href="tinyzenpage.php" target="_self"><small><?php echo gettext("Help"); ?><small></a></div>
+
 </body>
 </html>

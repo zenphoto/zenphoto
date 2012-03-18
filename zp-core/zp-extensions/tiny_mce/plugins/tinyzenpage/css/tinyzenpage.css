@@ -29,28 +29,26 @@ font-style: italic;
 	margin-left: 18px
 }
 
-.optionsdiv {
+#main .optionsdiv {
 	float: left; 
-	width: 25%; 
-	margin: 0;
+	width: 194px !important; 
+	height: 200px;
+	border: 1px solid red;
 }
 
 
-.albumdiv {
-	width: 73%; 
+#main .albumdiv {
 	background-color: white; 
 	border: 0px solid gray; 
 	overflow: none;
-	float: left; 
 	padding: 0px 0px 0px 0px;
 	font-size: 12px;
 }
 
 
-.albumdiv p {
-margin-left: 5px;
+#main .albumdiv p {
+margin-left: 0px;
 }
-
 
 #help {
 padding: 4px;
@@ -61,7 +59,7 @@ background-color: white;
 border: 1px solid gray;
 position: fixed;
 top: 0px;
-z-index: 1000;
+z-index: 2000;
 left: 700px;
 text-align: center;
 }

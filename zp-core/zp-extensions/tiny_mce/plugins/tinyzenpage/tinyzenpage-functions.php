@@ -101,6 +101,16 @@ function printImageslist($number) {
 		$album = urldecode(sanitize($_GET['album']));
 		$albumobj = new Album(NULL,$album);
 		echo "<h3 style='margin-bottom:10px'>".gettext("Album:")." <em>".html_encode($albumobj->getTitle()).unpublishedZenphotoItemCheck($albumobj,false)."</em> / ".gettext("Album folder:")." <em>".html_encode($albumobj->name)."</em><br /><small>".gettext("(Click on image to include)")."</small></h3>";
+		
+		$images_per_page = $number;
+		if(isset($_GET['page'])) {
+			$currentpage = sanitize_numeric($_GET['page']);
+		} else {
+			$currentpage = 1;
+		}
+		$imagecount = $albumobj->getNumImages();
+		$pagestotal = ceil($imagecount / $images_per_page);
+		printTinyPageNav($pagestotal,$currentpage,'images');
 
 			// album thumb display;
 		$albumthumb = $albumobj->getAlbumThumbImage();
@@ -142,20 +152,11 @@ function printImageslist($number) {
 		$images = $albumobj->getImages();
 
 		if($albumobj->getNumImages() != 0) {
-			$images_per_page = $number;
-			if(isset($_GET['page'])) {
-				$currentpage = sanitize_numeric($_GET['page']);
-			} else {
-				$currentpage = 1;
-			}
-			$imagecount = $albumobj->getNumImages();
-			$pagestotal = ceil($imagecount / $images_per_page);
 			for ($nr = 1;$nr <= $pagestotal; $nr++) {
 				$startimage[$nr] = $nr * $images_per_page - $images_per_page; // get start image number
 				$endimage[$nr] = $nr * $images_per_page - 1; // get end image number
 			}
 			$number = $startimage[$currentpage];
-			printTinyPageNav($pagestotal,$currentpage,'images');
 			for ($nr = $number;$nr <= $images_per_page*$currentpage; $nr++)	{
 				if ($nr === $imagecount){
 					break;
@@ -230,7 +231,7 @@ function printImageslist($number) {
 				}
 			} // for end
 		} else {
-			echo "<p style='margin-left: 8px'>".gettext("<strong>Note:</strong> This album does not contain any images.")."</p>";
+			echo "<p style='clear: left; padding-top: 20px; margin-left: 13px'>".gettext("<strong>Note:</strong> This album does not contain any images.")."</p>";
 		}	// if/else  no image end
 	} // if GET album end
 }
@@ -418,7 +419,7 @@ function printTinyPageNav($pagestotal="",$currentpage="",$mode='images') {
 			break;
 	}
 	if($pagestotal > 1) {
-		echo "<br /><br /><ul style='display: inline; margin-left: -45px;'>";
+		echo "<br /><br /><ul style='clear: both; margin-top: -18px; margin-left: -30px;'>";
 		if($currentpage != 1) {
 			echo "<li class=\"first\" style='display: inline; margin-left: 5px;'><a href='tinyzenpage.php?".$url.$cat."&amp;page=1'>&laquo; first</a></li>";
 		} else {
@@ -457,7 +458,7 @@ function printTinyPageNav($pagestotal="",$currentpage="",$mode='images') {
 		} else {
 			echo "<li class=\"last\" style='display: inline; margin-left: 5px; color: gray'>last &raquo;</li>";
 		}
-		echo "</ul><br />";
+		echo "</ul>";
 	}
 }
 
