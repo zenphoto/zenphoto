@@ -392,11 +392,7 @@ function checkAlbumForImages() {
  * @return bool
  */
 function showZenphotoOptions() {
-	if((!isset($_GET['zenpage']) OR !isset($_GET['album'])) OR (isset($_GET['album']) AND !empty($_GET['album']))) {
-		return TRUE;
-	} else {
-		return FALSE;
-	}
+	return isset($_GET['album']) && !empty($_GET['album']);
 }
 
 
