@@ -78,26 +78,38 @@ function getrow($handle) {
 	return $result;
 }
 
-function compress($str, $lvl) {
+function decompressField($str) {
 	global $compression_handler;
 	switch ($compression_handler) {
-		case 'no':
+		default:
 			return $str;
 		case 'bzip2':
-			return bzcompress($str, $lvl);
+			return bzdecompress($str);
+		case 'gzip':
+			return gzuncompress($str);
+	}
+}
+
+function compressRow($str, $lvl) {
+	global $compression_handler;
+	switch ($compression_handler) {
 		default:
+			return $str;
+		case 'bzip2_row':
+			return bzcompress($str, $lvl);
+		case 'gzip_row':
 			return gzcompress($str, $lvl);
 	}
 }
 
-function decompress($str) {
+function decompressRow($str) {
 	global $compression_handler;
 	switch ($compression_handler) {
-		case 'no':
-			return $str;
-		case 'bzip2':
-			return bzdecompress($str);
 		default:
+			return $str;
+		case 'bzip2_row':
+			return bzdecompress($str);
+		case 'gzip_row':
 			return gzuncompress($str);
 	}
 }
@@ -128,9 +140,9 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 	setOption('backup_compression', $compression_level);
 	if ($compression_level > 0) {
 		if (function_exists('bzcompress')) {
-			$compression_handler = 'bzip2';
+			$compression_handler = 'bzip2_row';
 		} else {
-			$compression_handler = 'gzip';
+			$compression_handler = 'gzip_row';
 		}
 	} else {
 		$compression_handler = 'no';
@@ -169,12 +181,9 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 				$result = query($sql);
 				if ($result) {
 					while ($tablerow = db_fetch_assoc($result)) {
-						foreach ($tablerow as $key=>$element) {
-							if (!empty($element)) {
-								$tablerow[$key] = compress($element, $compression_level);
-							}
-						}
-						$storestring = $unprefixed_table.TABLE_SEPARATOR.serialize($tablerow);
+						$storestring = serialize($tablerow);
+						$storestring = compressRow($storestring, $compression_level);
+						$storestring = $unprefixed_table.TABLE_SEPARATOR.$storestring;
 						$storestring = strlen($storestring).':'.$storestring;
 						$writeresult = fwrite($handle, $storestring);
 						if ($writeresult === false) {
@@ -288,12 +297,15 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 							set_time_limit(60);
 						}
 						$row = substr($string, $sep+strlen(TABLE_SEPARATOR));
+						$row = decompressRow($row);
 						$row = unserialize($row);
 						$items = '';
 						$values = '';
 						foreach($row as $key=>$element) {
-							if (!empty($element)) {
-								$element = decompress($element);
+							if ($compression_handler=='bzip2' || $compression_handler=='gzip') {
+								if (!empty($element)) {
+									$element = decompressField($element);
+								}
 							}
 							if (array_search($key,$tables[$prefix.$table]) === false) {
 								if ($element) {	//	Flag it if data will be lost
