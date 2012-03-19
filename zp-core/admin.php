@@ -309,7 +309,20 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		<?php
 		}
 		?>
-		<li><?php printf(gettext("Graphics support: <strong>%s</strong>"),$graphics_lib['Library_desc']); ?></li>
+		<li>
+		<?php	printf(gettext("Graphics support: <strong>%s</strong>"),$graphics_lib['Library_desc']); ?>
+			<br />&nbsp;&nbsp;&nbsp;
+		<?php
+			unset($graphics_lib['Library']);
+			unset($graphics_lib['Library_desc']);
+			foreach ($graphics_lib as $key=>$type) {
+				if (!$type) {
+					unset($graphics_lib[$key]);
+				}
+			}
+			printf(gettext('supporting: %s'),'<em>'.strtolower(implode(', ', array_keys($graphics_lib))).'</em>');
+			?>
+		</li>
 		<li><?php printf(gettext('PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate less!)'),INI_GET('memory_limit')); ?></li>
 		<li>
 			<?php

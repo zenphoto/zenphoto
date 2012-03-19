@@ -22,9 +22,9 @@ class ThemeOptions {
 		setThemeOptionDefault('albums_per_row', 2);
 		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
-		setThemeOptionDefault('image_size', 580);
-		setThemeOptionDefault('image_use_side', 'longest');
-		setThemeOptionDefault('thumb_size',85);
+		setThemeOption('image_size', 580);
+		setThemeOption('image_use_side', 'longest');
+		setThemeOption('thumb_size',95);
 		setThemeOptionDefault('thumb_transition', 1);
 		setOptionDefault('colorbox_zenpage_album', 1);
 		setOptionDefault('colorbox_zenpage_image', 1);
@@ -59,7 +59,7 @@ class ThemeOptions {
 	}
 
   function getOptionsDisabled() {
-  	return array('custom_index_page');
+  	return array('custom_index_page','image_size','thumb_size');
   }
 
 	function handleOption($option, $currentValue) {

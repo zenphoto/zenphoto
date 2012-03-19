@@ -1,14 +1,15 @@
 <?php
 /**
- * Provide javaScript tag "suggestions" based on Remy Sharp's jQuery Tag Suggestion (http://remysharp.com/2007/12/28/jquery-tag-suggestion/) plugin
- * Just activate the plugin and the feature is available on the theme's search field.
+ * Provide javaScript tag "suggestions" based on Remy Sharp's jQuery Tag Suggestion (http://remysharp.com/2007/12/28/jquery-tag-suggestion/) plugin.
+ *
+ * Activate the plugin and the feature is available on the theme's search field.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard) - an adaption of Remy Sharp's jQuery Tag Suggestion
  * @package plugins
  */
 
 $plugin_description = gettext("Enables jQuery tag suggestions on the search field.");
-$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard) — ".gettext("an adaption of Remy Sharp's jQuery Tag Suggestion");
+$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 zp_register_filter('theme_head','tagSuggestJS');
 

@@ -12,10 +12,10 @@ class ThemeOptions {
 		setThemeOptionDefault('albums_per_row', 2);
 		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
-		setThemeOptionDefault('image_size', 520);
-		setThemeOptionDefault('image_use_side', 'longest');
+		setThemeOption('image_size', 520);
+		setThemeOption('image_use_side', 'longest');
 		setThemeOptionDefault('thumb_transition', 1);
-		setThemeOptionDefault('thumb_size',85);
+		setThemeOption('thumb_size',85);
 		setThemeOptionDefault('garland_personality', 'Image page');
 		setThemeOptionDefault('garland_transition', 'slide-hori');
 		setThemeOptionDefault('garland_caption_location', 'image');
