@@ -242,12 +242,12 @@ foreach ($filelist as $extension) {
 			<?php
 			if ($optionlink && !$plugin_disable) {
 				?>
-				<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php echo gettext("Change plugin options"); ?>"><img class="icon-position-top4" src="images/options.png" alt="" /></a></span>
+				<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php echo gettext("Change plugin options"); ?>"><img class="icon-position-top3" src="images/options.png" alt="" /></a></span>
 				<?php
 			}
 			if ($plugin_notice) {
 				?>
-				<span class="icons"><a href="javascript:toggle('show_<?php echo $extension;?>');" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top4" src="images/warn.png" alt="" /></a></span>
+				<span class="icons"><a href="javascript:toggle('show_<?php echo $extension;?>');" title ="<?php echo gettext('Plugin warnings'); ?>" ><img class="icon-position-top3" src="images/warn.png" alt="" /></a></span>
 				<?php
 			}
 			?>
