@@ -467,6 +467,7 @@ class Zenpage {
 			case "latestimages-thumbnail-customcrop":
 			case "latestimages-sizedimage":
 			case "latestimages-sizedimage-maxspace":
+			case "latestimages-fullimage":
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='images'");
@@ -494,6 +495,7 @@ class Zenpage {
 			case "latestalbums-thumbnail-customcrop":
 			case "latestalbums-sizedimage":
 			case "latestalbums-sizedimage-maxspace":
+			case "latestalbums-fullimage":
 				$sortorder = $combinews_sortorder;
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
@@ -522,6 +524,7 @@ class Zenpage {
 			case "latestimagesbyalbum-thumbnail-customcrop":
 			case "latestimagesbyalbum-sizedimage":
 			case "latestimagesbyalbum-sizedimage-maxspace":
+			case "latestimagesbyalbum-fullimage":
 				$type1 = query("SET @type1:='news'");
 				$type2 = query("SET @type2:='albums'");
 				if(empty($combinews_sortorder) || $combinews_sortorder != "date" || $combinews_sortorder != "mtime" || $combinews_sortorder != "publishdate") {
@@ -551,6 +554,7 @@ class Zenpage {
 			case "latestupdatedalbums-thumbnail-customcrop":
 			case "latestupdatedalbums-sizedimage":
 			case "latestupdatedalbums-sizedimage-maxspace":
+			case "latestupdatedalbums-fullimage":
 				$latest = $this->getArticles($articles_per_page,NULL,true);
 				$counter = '';
 				foreach($latest as $news) {
@@ -621,12 +625,14 @@ class Zenpage {
 				switch($mode) {
 					case "latestimages-sizedimage":
 					case "latestimages-sizedimage-maxspace":
+					case "latestimages-sizedimage-fullimage":
 					case "latestimages-thumbnail":
 					case "latestimages-thumbnail-customcrop":
 						$countGalleryitems = $_zp_gallery->getNumImages($published);
 						break;
 					case "latestalbums-sizedimage":
 					case "latestalbums-sizedimage-maxspace":
+					case "latestalbums-fullimage":
 					case "latestalbums-thumbnail":
 					case "latestalbums-thumbnail-customcrop":
 						$countGalleryitems =  $_zp_gallery->getNumAlbums(true,$published);
@@ -635,6 +641,7 @@ class Zenpage {
 					case "latestimagesbyalbum-thumbnail-customcrop":
 					case "latestimagesbyalbum-sizedimage":
 					case "latestimagesbyalbum-sizedimage-maxspace":
+					case "latestimagesbyalbum-fullimage":
 						($published) ? $show = "WHERE `show`= 1" : $show = "";
 						$countGalleryitems = db_count('images',$show,'DISTINCT Date(date),albumid');
 						break;

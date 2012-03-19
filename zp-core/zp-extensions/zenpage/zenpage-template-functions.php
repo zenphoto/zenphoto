@@ -254,6 +254,7 @@ function next_news($sortorder="date", $sortdirection="desc") {
 							case "latestimagesbyalbum-thumbnail-customcrop":
 							case "latestimagesbyalbum-sizedimage":
 							case "latestimagesbyalbum-sizedimage-maxspace":
+							case "latestimagesbyalbum-fullimage":
 								$_zp_current_zenpage_news = new Album(NULL,$news['titlelink']);
 								$_zp_current_zenpage_news->set('date', $news['date']); // in this mode this stores the date of the images to group not the album (inconvenient workaround...)
 								break;
@@ -288,6 +289,7 @@ function next_news($sortorder="date", $sortdirection="desc") {
 							case "latestimagesbyalbum-thumbnail-customcrop":
 							case "latestimagesbyalbum-sizedimage":
 							case "latestimagesbyalbum-sizedimage-maxspace":
+							case "latestimagesbyalbum-fullimage":
 								$_zp_current_zenpage_news = new Album(NULL,$news['titlelink']);
 								$_zp_current_zenpage_news->set('date', $news['date']); // in this mode this stores the date of the images to group not the album (inconvenient workaround...)
 								break;
@@ -334,7 +336,12 @@ function getNewsID() {
 function getNewsTitle() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
-		if(is_NewsType("album") && (getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail"	|| getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail-customcrop" || getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage")) {
+		if(is_NewsType("album") && (
+		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail" || 
+		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail-customcrop" || 
+		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage" || 
+		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage-maxspace" || 
+		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-fullimage")) {
 			if(getOption("zenpage_combinews_sortorder") == 'publishdate') {
 				$date = 'IFNULL(publishdate,date)';
 				$order = 'publishdate';
@@ -477,6 +484,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 			switch($mode) {
 				case 'latestimages-sizedimage':
 				case 'latestimages-sizedimage-maxspace':
+				case 'latestimages-fullimage':
 					if(isImagePhoto($_zp_current_zenpage_news)) {
 						$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'">';
 						switch($mode) {
@@ -486,6 +494,9 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 							case 'latestimages-sizedimage-maxspace':
 								getMaxSpaceContainer($width, $height, $_zp_current_zenpage_news,true);
 								$imagesource = html_encode($_zp_current_zenpage_news->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true));
+								break;
+							case 'latestimages-fullimage':
+								$imagesource = html_encode($_zp_current_zenpage_news->getFullImage());
 								break;
 						}
 						$articlecontent .= '<img src="'.$imagesource.'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
@@ -521,14 +532,18 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 			switch($mode) {
 				case 'latestalbums-sizedimage':
 				case 'latestalbums-sizedimage-maxspacce':
+				case 'latestalbums-fullimage':
 					if(isImagePhoto($albumthumbobj)) {
 						switch($mode) {
 							case 'latestalbums-sizedimage':
 								$imgurl = html_encode($albumthumbobj->getSizedImage($size));
 								break;
-							case 'latestalbums-sizedimage-maxspacce':
+							case 'latestalbums-sizedimage-maxspace':
 								getMaxSpaceContainer($width, $height, $albumthumbobj,true);
 								$imgurl = html_encode($albumthumbobj->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true));
+								break;
+							case 'latestalbums-fullimage':
+								$imgurl = html_encode($albumthumbobj->getFullImage());
 								break;
 						}
 					} else {
@@ -546,6 +561,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 				case 'latestimagesbyalbum-thumbnail-customcrop':
 				case 'latestimagesbyalbum-sizedimage':
 				case 'latestimagesbyalbum-sizedimage-maxspace':
+				case 'latestimagesbyalbum-fullimage':
 					if(getOption("zenpage_combinews_sortorder") == 'publishdate') {
 						$date = 'IFNULL(publishdate,date)';
 					} else {
@@ -578,6 +594,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 								break;
 							case 'latestimagesbyalbum-sizedimage':
 							case 'latestimagesbyalbum-sizedimage-maxspace':
+							case 'latestimagesbyalbum-fullimage':
 								if(getOption('combinews-latestimagesbyalbum-imgtitle')) $headline = '<h4>'.html_encode($imageobj->getTitle()).'</h4>';
 								if(isImagePhoto($imageobj)) {
 									switch($mode) {
@@ -587,6 +604,9 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 										case 'latestimagesbyalbum-sizedimage-maxspace':
 											getMaxSpaceContainer($width, $height,$imageobj,true);
 											$imagesource = pathurlencode($imageobj->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true));
+											break;
+										case 'latestimagesbyalbum-fullimage':
+											$imagesource = pathurlencode($imageobj->getFullImage());
 											break;
 									}
 									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.$imagesource.'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
