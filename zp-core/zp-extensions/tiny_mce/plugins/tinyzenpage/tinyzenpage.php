@@ -206,7 +206,7 @@ if(showZenphotoOptions()) {
 						<?php echo gettext("<strong>Multimedia item: </strong>If the FLowplayer3 plugin is enabled you can also embed video/audio files (.flv, .mp4, .mp3). These items are highlighted with an orange border to be easily spotted. <br />Default values for the player width and height can be set on the TinyMCE plugin options (except for mp3s only the controlbar is shown). All other settings are inherited from the Flowplayer3 plugin options (cover/splash images are not supported).<br />NOTE: After embedding no frame of the embedded item might be visible in the editor until saving the page/article for unknown reasons."); ?>
 					</li>
 					<li><?php echo gettext("Custom size (un-cropped)."); ?></li>
-					<li><?php echo gettext("Full image: The original image."); ?></li>
+					<li><?php echo gettext("Full image: The original image directly. NOTE: Full image protection options do not apply!."); ?></li>
 				</ul>
 				<p style='margin-left: 24px'>
 				<?php echo gettext("If you additionally check <em>Show title</em> or <em>Show description</em> the title/description of the image or album (if you checked <em>link to album</em>) will be printed below the image. Only if <em>Image</em> is chosen as type."); ?>
