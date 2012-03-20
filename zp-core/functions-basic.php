@@ -1060,7 +1060,7 @@ function debugLog($message, $reset=false) {
 	if ($reset || ($size = @filesize($path)) == 0 || $size > 5000000) {
 		$f = fopen($path, 'w');
 		if ($f) {
-			if (zpFunctions::hasPrimaryScripts()) {
+			if (!class_exists('zpFunctions') || zpFunctions::hasPrimaryScripts()) {
 				$clone = '';
 			} else {
 				$clone = ' '.gettext('clone');

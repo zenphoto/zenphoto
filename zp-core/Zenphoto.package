@@ -679,10 +679,6 @@ zp-core/zp-extensions/class-video/3gpDefault.png
 zp-core/zp-extensions/class-video/flaDefault.png
 zp-core/zp-extensions/class-video/flvDefault.png
 zp-core/zp-extensions/class-video/getid3
-zp-core/zp-extensions/class-video/getid3/changelog.txt
-zp-core/zp-extensions/class-video/getid3/dependencies.txt
-zp-core/zp-extensions/class-video/getid3/extension.cache.dbm.php
-zp-core/zp-extensions/class-video/getid3/extension.cache.mysql.php
 zp-core/zp-extensions/class-video/getid3/getid3.lib.php
 zp-core/zp-extensions/class-video/getid3/getid3.php
 zp-core/zp-extensions/class-video/getid3/license.commercial.txt
@@ -693,13 +689,9 @@ zp-core/zp-extensions/class-video/getid3/module.audio-video.quicktime.php
 zp-core/zp-extensions/class-video/getid3/module.audio-video.swf.php
 zp-core/zp-extensions/class-video/getid3/module.audio.aac.php
 zp-core/zp-extensions/class-video/getid3/module.audio.mp3.php
-zp-core/zp-extensions/class-video/getid3/module.tag.apetag.php
 zp-core/zp-extensions/class-video/getid3/module.tag.id3v1.php
 zp-core/zp-extensions/class-video/getid3/module.tag.id3v2.php
 zp-core/zp-extensions/class-video/getid3/module.tag.lyrics3.php
-zp-core/zp-extensions/class-video/getid3/module.tag.xmp.php
-zp-core/zp-extensions/class-video/getid3/readme.txt
-zp-core/zp-extensions/class-video/getid3/structure.txt
 zp-core/zp-extensions/class-video/m4aDefault.png
 zp-core/zp-extensions/class-video/m4vDefault.png
 zp-core/zp-extensions/class-video/movDefault.png
@@ -1863,4 +1855,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1865
+1857

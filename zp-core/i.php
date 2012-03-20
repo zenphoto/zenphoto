@@ -160,7 +160,7 @@ if (!file_exists($imgfile)) {
 		$i = strpos($imgfile, '_{');
 		if ($i !== false) {
 			$j = strpos($imgfile, '}_');
-			$source2 = '/'.substr($imgfile, $i+2, $j-$i-2);
+			$source2 = '/'.str_replace('_-_', '/', substr($imgfile, $i+2, $j-$i-2));
 			$imgfile = substr($imgfile, $j+2);
 		} else {
 			$source2 = '';
@@ -176,8 +176,8 @@ if (!file_exists($imgfile)) {
 		$args[3] = $args[4] = 0;
 		$args[5] = 1;    // full crops for these default images
 		$args[9] = NULL;
+		if (DEBUG_IMAGE) debugLog("Transient image:$source$source2/$imgfile=>$newfile");
 		$imgfile = SERVERPATH .'/'. $source.$source2 . "/" . $imgfile;
-
 	}
 	if (!file_exists($imgfile)) {
 		header("HTTP/1.0 404 Not Found");

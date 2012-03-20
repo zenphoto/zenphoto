@@ -7,7 +7,7 @@
  * @package setup
  */
 
-setupLog(gettext('Set default options'),true);
+setupLog(gettext('Set Zenphoto default options'),true);
 
 eval(file_get_contents(CONFIGFILE));;
 require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');

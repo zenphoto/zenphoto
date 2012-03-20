@@ -328,10 +328,9 @@ class Video extends _Image {
 			// output desired information in whatever format you want
 			if(is_array($ThisFileInfo)) {
 				return $ThisFileInfo;
-			} else {
-				return NULL; // don't try to cover other files even if getid3 reads images as well
 			}
 		}
+		return NULL; // don't try to cover other files even if getid3 reads images as well
 	}
 
 
@@ -367,13 +366,11 @@ class Video extends _Image {
 					}
 				}
 				foreach ($_zp_exifvars as $field=>$exifvar) {
-					if (strpos($exifvar[0], 'VIDEO') !== false) {
-						if ($exifvar[0] == 'VIDEO') {
-							if (isset($ThisFileInfo[$exifvar[1]])) {
-								$data = $ThisFileInfo[$exifvar[1]];
-								if (!empty($data)) {
-									$this->set($field, $data);
-								}
+					if ($exifvar[5] && $exifvar[0] == 'VIDEO') {
+						if (isset($ThisFileInfo[$exifvar[1]])) {
+							$data = $ThisFileInfo[$exifvar[1]];
+							if (!empty($data)) {
+								$this->set($field, $data);
 							}
 						}
 					}

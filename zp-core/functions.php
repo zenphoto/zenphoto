@@ -1727,14 +1727,18 @@ function makeSpecialImageName($image) {
 	if ($i === false) {
 		$i = strpos($image, USER_PLUGIN_FOLDER);
 		if ($i === false) {
-			$folder = '_{'.basename(dirname(dirname($image))).'}_{'.basename(dirname($image)).'}_';
+			$sourceFolder = basename(dirname(dirname($image)));
+			$sourceSubfolder = basename(dirname($image));
 		} else {
-			$folder = '_{'.USER_PLUGIN_FOLDER.'}_{'.substr($image, $i + strlen(USER_PLUGIN_FOLDER) + 1 , - strlen($filename) - 1).'}_';
+			$sourceFolder = USER_PLUGIN_FOLDER;
+			$sourceSubfolder = trim(substr($image, $i + strlen(USER_PLUGIN_FOLDER) + 1 , - strlen($filename) - 1),'/');
 		}
 	} else {
-		$folder = '_{'.ZENFOLDER.'}_{'.substr($image, $i + strlen(ZENFOLDER) + 1 , - strlen($filename) - 1).'}_';
+		$sourceFolder = ZENFOLDER;
+		$sourceSubfolder = trim(substr($image, $i + strlen(ZENFOLDER) + 1 , - strlen($filename) - 1),'/');
 	}
-	return $folder.$filename;
+
+	return '_{'.$sourceFolder.'}_{'.str_replace('/', '_-_', $sourceSubfolder).'}_'.$filename;
 }
 
 /**

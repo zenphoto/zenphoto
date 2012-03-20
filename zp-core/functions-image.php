@@ -166,6 +166,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			}
 		}
 		$newfile = SERVERCACHE . $newfilename;
+		mkdir_recursive(dirname($newfile),FOLDER_MOD);
 		if (DEBUG_IMAGE) debugLog("cacheImage(\$imgfile=".basename($imgfile).", \$newfilename=$newfilename, \$allow_watermark=$allow_watermark, \$theme=$theme) \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=".(is_null($cx)?'NULL':$cx).", \$cy=".(is_null($cy)?'NULL':$cy).", \$quality=$quality, \$thumb=$thumb, \$crop=$crop \$image_use_side=$image_use_side; \$upscale=$upscale);");
 		// Check for the source image.
 		if (!file_exists($imgfile) || !is_readable($imgfile)) {
@@ -260,6 +261,29 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			}
 			if (DEBUG_IMAGE) debugLog("cacheImage:no upscale ".basename($imgfile).":  \$newh=$newh, \$neww=$neww, \$crop=$crop, \$thumb=$thumb, \$rotate=$rotate, watermark=".$watermark_use_image);
 		}
+
+		$watermark_image = false;
+		if ($passedWM) {
+			if ($passedWM != NO_WATERMARK) {
+				$watermark_image = getWatermarkPath($passedWM);
+				if (!file_exists($watermark_image)) {
+					$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
+				}
+			}
+		} else {
+			if ($allow_watermark) {
+				$watermark_image = $watermark_use_image;
+				if ($watermark_image) {
+					if ($watermark_image != NO_WATERMARK) {
+						$watermark_image = getWatermarkPath($watermark_image);
+						if (!file_exists($watermark_image)) {
+							$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
+						}
+					}
+				}
+			}
+		}
+
 		// Crop the image if requested.
 		if ($crop) {
 			if ($cw > $ch) {
@@ -319,6 +343,19 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 				imageError('404 Not Found', gettext('Image not renderable.'), 'err-failimage.png');
 			}
 		} else {
+
+			if ($newh>=$h && $neww>=$w && !$rotate && !$effects && !$watermark_image && !$allowscale) {
+				// we can just use the original!
+				if (@symlink($imgfile, $newfile)) {
+					if (DEBUG_IMAGE) debugLog("cacheImage:copy original ".basename($imgfile).":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
+					clearstatcache();
+					return true;
+				} else if (@copy($imgfile, $newfile)) {
+					if (DEBUG_IMAGE) debugLog("cacheImage:copy original ".basename($imgfile).":\$size=$size, \$width=$width, \$height=$height, \$dim=$dim, \$neww=$neww; \$newh=$newh; \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$rotate=$rotate; \$allowscale=$allowscale;");
+					clearstatcache();
+					return true;
+				}
+			}
 			if ($allowscale) {
 				$sizes = propSizes($size, $width, $height, $w, $h, $thumb, $image_use_side, $dim);
 				list($neww, $newh) = $sizes;
@@ -341,27 +378,6 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			zp_imageGray($newim);
 		}
 
-		$watermark_image = false;
-		if ($passedWM) {
-			if ($passedWM != NO_WATERMARK) {
-				$watermark_image = getWatermarkPath($passedWM);
-				if (!file_exists($watermark_image)) {
-					$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
-				}
-			}
-		} else {
-			if ($allow_watermark) {
-				$watermark_image = $watermark_use_image;
-				if ($watermark_image) {
-					if ($watermark_image != NO_WATERMARK) {
-						$watermark_image = getWatermarkPath($watermark_image);
-						if (!file_exists($watermark_image)) {
-							$watermark_image = SERVERPATH . '/' . ZENFOLDER . '/images/imageDefault.png';
-						}
-					}
-				}
-			}
-		}
 		if ($watermark_image) {
 			$offset_h = getOption('watermark_h_offset') / 100;
 			$offset_w = getOption('watermark_w_offset') / 100;
@@ -399,7 +415,6 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		}
 
 		// Create the cached file (with lots of compatibility)...
-		mkdir_recursive(dirname($newfile),FOLDER_MOD);
 		@chmod($newfile, 0666);
 		if (zp_imageOutput($newim, getSuffix($newfile), $newfile, $quality)) {	//	successful save of cached image
 			if (getOption('ImbedIPTC') && getSuffix($newfilename)=='jpg') {	// the imbed function works only with JPEG images
