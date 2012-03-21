@@ -2382,7 +2382,7 @@ class zpFunctions {
 			'EXIFFocalLength'       		=> array('SubIFD', 'FocalLength',       		gettext('Focal Length'),           										true,				52, 	true),
 			'EXIFLensType'       				=> array('SubIFD', 'LensType',       				gettext('Lens Type'),   	        										false,			52, 	true),
 			'EXIFLensInfo'       				=> array('SubIFD', 'LensInfo',      		 		gettext('Lens Info'),           											false,			52, 	true),
-			'EXIFFocalLengthIn35mmFilm'	=> array('SubIFD', 'FocalLengthIn35mmFilm',	gettext('Focal Length Equivalent in 35mm Film'),			false,			52, 	true),
+			'EXIFFocalLengthIn35mmFilm'	=> array('SubIFD', 'FocalLengthIn35mmFilm',	gettext('35mm Focal Length Equivalent'),							false,			52, 	true),
 			'IPTCCity' 									=> array('IPTC',	 'City',									gettext('City'),																			false,			32, 	true),
 			'IPTCSubLocation' 					=> array('IPTC',	 'SubLocation',						gettext('Sub-location'),															false,			32, 	true),
 			'IPTCState' 								=> array('IPTC',	 'State',									gettext('Province/State'),														false,			32, 	true),

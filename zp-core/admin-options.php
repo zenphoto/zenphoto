@@ -1898,15 +1898,15 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 					$current = getOption($opt);
 					?>
 					<tr>
-						<td class="image_option_tablerow"><?php	echo gettext($plugin); ?> <?php echo gettext('thumbnails'); ?> </td>
+						<td class="image_option_tablerow"><?php	printf(gettext('%s thumbnails'), gettext($plugin)); if ($plugin != 'Image') echo ' *'; ?> </td>
 						<td class="image_option_tablerow">
 							<select id="<?php echo $opt; ?>" name="<?php echo $opt; ?>">
-							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php echo gettext('image thumb'); ?></option>
+							<option value="" <?php if (empty($current)) echo ' selected="selected"' ?> style="background-color:LightGray"><?php if ($plugin == 'Image') echo gettext('none'); else echo gettext('image thumb')?></option>
 							<?php
 							$watermarks = getWatermarks();
 							generateListFromArray(array($current), $watermarks, false, false);
 							?>
-							</select><?php if ($plugin != 'Image') echo ' *'; ?>
+							</select>
 						</td>
 					</tr>
 					<?php
