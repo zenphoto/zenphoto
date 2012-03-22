@@ -5,7 +5,7 @@
  */
 
 // force UTF-8 Ø
-if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 2); // don't need any admin tabs
+if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 1);
 require_once(dirname(__FILE__) . "/functions.php");
 require_once(dirname(__FILE__) . "/functions-image.php");
 
@@ -42,6 +42,7 @@ if (getOption('hotlink_protection') && isset($_SERVER['HTTP_REFERER'])) {
 }
 
 $albumobj = new Album(NULL, $album8);
+$imageobj = newImage($albumobj, $image8);
 
 $hash = getOption('protected_image_password');
 if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS)) {
@@ -96,7 +97,9 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 
 $image_path = ALBUM_FOLDER_SERVERPATH.$album.'/'.$image;
 $suffix = getSuffix($image_path);
+$mimetype = getMimeString($suffix);
 $cache_file = $album . "/" . substr($image, 0, -strlen($suffix)-1) . '_FULL.' . $suffix;
+
 switch ($suffix) {
 	case 'bmp':
 		$suffix = 'wbmp';
@@ -111,7 +114,6 @@ switch ($suffix) {
 	default:
 		if ($disposal == 'Download') {
 			require_once(dirname(__FILE__).'/lib-MimeTypes.php');
-			$mimetype = getMimeString($suffix);
 			header('Content-Disposition: attachment; filename="' . $image . '"');  // enable this to make the image a download
 			$fp = fopen($image_path, 'rb');
 			// send the right headers
@@ -122,7 +124,7 @@ switch ($suffix) {
 			fpassthru($fp);
 			fclose($fp);
 		} else {
-			header('Location: ' . getAlbumFolder(FULLWEBPATH).pathurlencode($album.'/'.$image), true, 301);
+			header('Location: ' . $imageobj->getFullImageURL(), true, 301);
 		}
 		exitZP();
 }
@@ -139,7 +141,6 @@ $rotate = false;
 if (zp_imageCanRotate() && getOption('auto_rotate'))  {
 	$rotate = getImageRotation($image_path);
 }
-$imageobj = newImage($albumobj, $image8);
 $watermark_use_image = getWatermarkParam($imageobj, WATERMARK_FULL);
 if ($watermark_use_image==NO_WATERMARK) {
 	$watermark_use_image = '';
@@ -222,7 +223,7 @@ if (!is_null($cache_path)) {
 		$fp = fopen($cache_path, 'rb');
 		// send the right headers
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
-		header("Content-Type: image/$suffix");
+		header("Content-Type: $mimetype");
 		header("Content-Length: " . filesize($image_path));
 		// dump the picture and stop the script
 		fpassthru($fp);

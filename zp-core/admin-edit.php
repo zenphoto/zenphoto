@@ -994,7 +994,7 @@ $alb = removeParentAlbumNames($album);
 								/>
 						</a>
 						<?php if(isImagePhoto($image)) { ?>
-							<p class="buttons"><a href="<?php echo pathurlencode($image->getFullImage()); ?>" class="colorbox"><img src="images/magnify.png" alt="" /><strong><?php echo gettext('Zoom'); ?></strong></a></p><br style="clear: both" />
+							<p class="buttons"><a href="<?php echo pathurlencode($image->getFullImageURL()); ?>" class="colorbox"><img src="images/magnify.png" alt="" /><strong><?php echo gettext('Zoom'); ?></strong></a></p><br style="clear: both" />
 						<?php } ?>
 						<p class="buttons"><a href="<?php echo $image->getImageLink();?>" title="<?php echo gettext('View image on website'); ?>"><img src="images/view.png" alt="" /><strong><?php echo gettext('View'); ?></strong></a></p><br style="clear: both" />
 						<p><?php echo gettext('<strong>Filename:</strong>'); ?><br /><?php echo $image->filename; ?></p>

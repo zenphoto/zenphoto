@@ -41,7 +41,7 @@ function getImageAlbumAlbumList($obj, &$albumlist) {
  *		"popular" for the most popular albums,
  *		"latest" for the latest uploaded by id (Discovery)
  * 		"latest-date" for the latest by date
- * 		"latest-mtime" for the latest by mtime 
+ * 		"latest-mtime" for the latest by mtime
  *   	"latest-publishdate" for the latest by publishdate
  *    "mostrated" for the most voted,
  *		"toprated" for the best voted
@@ -105,7 +105,7 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
  *		"popular" for the most popular albums,
  *		"latest" for the latest uploaded by id (Discovery)
  * 		"latest-date" for the latest by date
- * 		"latest-mtime" for the latest by mtime 
+ * 		"latest-mtime" for the latest by mtime
  *   	"latest-publishdate" for the latest by publishdate
  *    "mostrated" for the most voted,
  *		"toprated" for the best voted
@@ -142,7 +142,7 @@ function printAlbumStatistic($number, $option, $showtitle=false, $showdate=false
  *		"popular" for the most popular albums,
  *		"latest" for the latest uploaded by id (Discovery)
  * 		"latest-date" for the latest by date
- * 		"latest-mtime" for the latest by mtime 
+ * 		"latest-mtime" for the latest by mtime
  *   	"latest-publishdate" for the latest by publishdate
  *    "mostrated" for the most voted,
  *		"toprated" for the best voted
@@ -352,7 +352,7 @@ function printLatestUpdatedAlbums($number=5,$showtitle=false, $showdate=false, $
  *		"popular" for the most popular albums,
  *		"latest" for the latest uploaded by id (Discovery)
  * 		"latest-date" for the latest by date
- * 		"latest-mtime" for the latest by mtime 
+ * 		"latest-mtime" for the latest by mtime
  *   	"latest-publishdate" for the latest by publishdate
  *    "mostrated" for the most voted,
  *		"toprated" for the best voted
@@ -378,31 +378,31 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 	$albumWhere = ' AND (albums.`id`='.implode(' OR albums.`id`=', $albumlist).')';
 	switch ($option) {
 		case "popular":
-			$sortorder = "images.hitcounter"; 
+			$sortorder = "images.hitcounter";
 			break;
 		case "latest-date":
-			$sortorder = "images.date"; 
+			$sortorder = "images.date";
 			break;
 		case "latest-mtime":
-			$sortorder = "images.mtime"; 
+			$sortorder = "images.mtime";
 			break;
 		case "latest":
-			$sortorder = "images.id"; 
+			$sortorder = "images.id";
 			break;
 		case "latest-publishdate":
-			$sortorder = "IFNULL(images.publishdate,images.date)"; 
+			$sortorder = "IFNULL(images.publishdate,images.date)";
 			break;
 		case "mostrated":
-			$sortorder = "images.total_votes"; 
+			$sortorder = "images.total_votes";
 			break;
 		case "toprated":
-			$sortorder = "(images.total_value/images.total_votes)"; 
+			$sortorder = "(images.total_value/images.total_votes)";
 			break;
 		case "random":
-			$sortorder = "RAND()"; 
+			$sortorder = "RAND()";
 			break;
 		default:
-			$sortorder = 'id'; 
+			$sortorder = 'id';
 			break;
 	}
 	$imageArray = array();
@@ -447,7 +447,7 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
  *		"popular" for the most popular albums,
  *		"latest" for the latest uploaded by id (Discovery)
  * 		"latest-date" for the latest by date
- * 		"latest-mtime" for the latest by mtime 
+ * 		"latest-mtime" for the latest by mtime
  *   	"latest-publishdate" for the latest by publishdate
  *    "mostrated" for the most voted,
  *		"toprated" for the best voted
@@ -485,7 +485,7 @@ function printImageStatistic($number, $option, $albumfolder='', $showtitle=false
 	echo "<ul>";
 	foreach ($images as $image) {
 		if($fullimagelink) {
-			$imagelink = $image->getFullImage();
+			$imagelink = $image->getFullImageURL();
 		} else {
 			$imagelink = $image->getImageLink();
 		}

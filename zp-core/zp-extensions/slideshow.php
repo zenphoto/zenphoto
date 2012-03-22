@@ -242,7 +242,7 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 						}
 						switch(getOption('slideshow_colorbox_imagetype')) {
 							case 'fullimage':
-								$imagelink = $imgobj->getFullImage();
+								$imagelink = $imgobj->getFullImageURL();
 								break;
 							case 'sizedimage':
 								$imagelink = $imgobj->getCustomImage(getOption("slideshow_width"), NULL, NULL, NULL, NULL, NULL, NULL, $thumbStandin);

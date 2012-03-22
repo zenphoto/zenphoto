@@ -275,6 +275,25 @@ class Video extends _Image {
 	}
 
 	/**
+	 * returns URL to the original image or to a high quality alternate
+	 * e.g. ogg, avi, wmv files that can be handled by the client browser
+	 *
+	 * @param unknown_type $path
+	 */
+	function getFullImageURL() {
+		// Search for a high quality version of the video
+		$folder = $this->album->getFolder();
+		$video = stripSuffix($this->filename);
+		foreach(array(".ogg",".OGG",".avi",".AVI",".wmv",".WMV") as $ext) {
+			if(file_exists(internalToFilesystem(ALBUM_FOLDER_SERVERPATH.$folder."/".$video.$ext))) {
+				return ALBUM_FOLDER_WEBPATH. $folder."/".$video.$ext;
+			}
+		}
+		return parent::getFullImageURL();
+	}
+
+
+	/**
 	 * returns the content of the vido
 	 *
 	 * @param $w

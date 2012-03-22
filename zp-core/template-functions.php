@@ -2555,24 +2555,10 @@ function getFullImageURL() {
 	if (is_null($_zp_current_image)) return false;
 	$outcome = getOption('protect_full_image');
 	if ($outcome == 'No access') return NULL;
-	if (isImageVideo()) {		// Download, Protected View, and Unprotected access all allowed
-		// Search for a high quality version of the video
-		$album = $_zp_current_image->getAlbum();
-		$folder = $album->getFolder();
-		$video = $_zp_current_image->getFileName();
-		$video = substr($video, 0, strrpos($video,'.'));
-		foreach(array(".ogg",".OGG",".avi",".AVI",".wmv",".WMV") as $ext) {
-			if(file_exists(internalToFilesystem(ALBUM_FOLDER_SERVERPATH.$folder."/".$video.$ext))) {
-				return ALBUM_FOLDER_WEBPATH. $folder."/".$video.$ext;
-			}
-		}
+	if ($outcome == 'Unprotected') {
 		return getUnprotectedImageURL();
 	} else {
-		if ($outcome == 'Unprotected') {
-			return getUnprotectedImageURL();
-		} else {
-			return getProtectedImageURL($_zp_current_image, $outcome);
-		}
+		return getProtectedImageURL($_zp_current_image, $outcome);
 	}
 }
 
@@ -2585,7 +2571,7 @@ function getFullImageURL() {
 function getUnprotectedImageURL() {
 	global $_zp_current_image;
 	if (is_null($_zp_current_image)) return false;
-	return $_zp_current_image->getFullImage();
+	return $_zp_current_image->getFullImageURL();
 }
 /**
  * Returns an url to the password protected/watermarked current image
@@ -3365,7 +3351,7 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 		}
 		if (is_object($randomImage) && $randomImage->exists) {
 			if($fullimagelink) {
-				$randomImageURL = html_encode($randomImage->getFullimage());
+				$randomImageURL = html_encode($randomImage->getFullimageURL());
 			} else {
 				$randomImageURL = html_encode(getURL($randomImage));
 			}

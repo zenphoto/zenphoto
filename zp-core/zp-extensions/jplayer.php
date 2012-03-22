@@ -639,8 +639,8 @@ class jplayer {
 									<?php	if(getOption('jplayer_download')) { ?>
 										free:true,
 									<?php } ?>
-									<?php echo $this->supplied; ?>:"<?php echo pathurlencode($video->getFullImage()); ?>"
-									<?php echo $this->getCounterpartFiles($video->getFullImage(),$ext); ?>
+									<?php echo $this->supplied; ?>:"<?php echo pathurlencode($video->getFullImageURL()); ?>"
+									<?php echo $this->getCounterpartFiles($video->getFullImageURL(),$ext); ?>
 									<?php echo $videoThumb; ?>
 								}
 								<?php

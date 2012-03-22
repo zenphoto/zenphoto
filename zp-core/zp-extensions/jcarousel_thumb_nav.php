@@ -171,7 +171,7 @@ if(is_object($_zp_current_album) && is_object($_zp_current_image) && $_zp_curren
 				$imgobj = newImage($_zp_current_album,$item);
 			}
 			if($fullimagelink) {
-				$link = $imgobj->getFullImage();
+				$link = $imgobj->getFullImageURL();
 			} else {
 				$link = $imgobj->getImageLink();
 			}

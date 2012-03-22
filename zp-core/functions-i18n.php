@@ -259,12 +259,14 @@ function gettext_pl($string,$plugin) {
  * @return string
  */
 function i18nSetLocale($locale) {
-	global $_zp_RTL_css;
+	global $_zp_RTL_css, $_zp_languages;
 	$en1 = LOCAL_CHARSET;
 	$en2 = str_replace('ISO-','ISO',$en1);
 	$simple = explode('-',$locale);
 	$rslt = setlocale(LC_ALL, $locale.'.UTF8', $locale.'.UTF-8', $locale.'@euro', $locale.'.'.$en2, $locale.'.'.$en1, $locale, $simple[0], NULL);
-	setupLanguageArray();
+	if (is_null($_zp_languages)) {
+		setupLanguageArray();
+	}
 	$_zp_RTL_css = in_array(substr($rslt,0,2), array('fa','ar','he', 'hi', 'ur'));
 	return $rslt;
 }

@@ -827,6 +827,15 @@ class _Image extends MediaObject {
 	}
 
 	/**
+	 * returns URL to the original image
+	 * @param unknown_type $path
+	 */
+	function getFullImageURL() {
+		return getAlbumFolder(WEBPATH) . ($this->album->name) . "/" . ($this->filename);
+	}
+
+
+	/**
 	 * Returns a path to a sized version of the image
 	 *
 	 * @param int $size how big an image is wanted
