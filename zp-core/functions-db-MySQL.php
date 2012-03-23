@@ -19,18 +19,6 @@ define('DATABASE_SOFTWARE','MySql');
 function db_connect($errorstop=true) {
 	global $_zp_DB_connection, $_zp_conf_vars;
 	$db = $_zp_conf_vars['mysql_database'];
-	if (!function_exists('mysql_connect')) {
-		if ($errorstop) {
-			zp_error(gettext('MySQL Error: The PHP MySQL extensions have not been installed correctly. Please ask your administrator to add MySQL support to your PHP installation.'));
-		}
-		return false;
-	}
-	if (!is_array($_zp_conf_vars)) {
-		if ($errorstop) {
-			zp_error(gettext('The <code>$_zp_conf_vars</code> variable is not an array. Zenphoto has not been instantiated correctly.'));
-		}
-		return false;
-	}
 	$_zp_DB_connection = @mysql_connect($_zp_conf_vars['mysql_host'], $_zp_conf_vars['mysql_user'], $_zp_conf_vars['mysql_pass']);
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {

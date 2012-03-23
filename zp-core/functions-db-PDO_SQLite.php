@@ -44,12 +44,6 @@ function db_connect($errorstop=true) {
 	global $_zp_DB_connection, $_zp_DB_last_result, $_zp_conf_vars;
 	$_zp_DB_last_result = NULL;
 	$db = $_zp_conf_vars['mysql_database'];
-	if (!is_array($_zp_conf_vars)) {
-		if ($errorstop) {
-			zp_error(gettext('The <code>$_zp_conf_vars</code> variable is not an array. Zenphoto has not been instantiated correctly.'));
-		}
-		return false;
-	}
 	if (empty($folder) || $folder == 'localhost') {
 		$folder = SERVERPATH.'/zp-data/';
 	} else {

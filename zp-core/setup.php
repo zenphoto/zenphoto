@@ -232,24 +232,23 @@ if (file_exists(CONFIGFILE)) {
 	}
 	require_once(dirname(__FILE__).'/functions-db-'.($_zp_conf_vars['db_software']).'.php');
 	$connectDBErr = '';
-	if($connection = db_connect(false)) {	// got both MySQL and the database connected
+	if($connection = db_connect(false)) {	// got the database handler and the database itself connected
 		$result = query("SELECT `id` FROM " . $_zp_conf_vars['mysql_prefix'].'options' . " LIMIT 1", false);
 		if ($result) {
 			if (db_num_rows($result) > 0) {
 				$upgrade = true;
 				// apply some critical updates to the database for migration issues
-				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'].'administrators' . ' ADD COLUMN `valid` int(1) default 1', false);
-				query('ALTER TABLE ' . $_zp_conf_vars['mysql_prefix'].'administrators' . ' CHANGE `password` `pass` varchar(64)', false);
+				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `valid` int(1) default 1', false);
+				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' CHANGE `password` `pass` varchar(64)', false);
 				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `loggedin` datetime', false);
 				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `lastloggedin` datetime', false);
 				query('ALTER TABLE '.$_zp_conf_vars['mysql_prefix'].'administrators'.' ADD COLUMN `challenge_phrase` TEXT', false);
 			}
 		}
-
 		$environ = true;
 		require_once(dirname(__FILE__).'/admin-functions.php');
 	} else {
-		if ($_zp_DB_connection) {	// there was a connection to MySQL but not to the database.
+		if ($_zp_DB_connection) {	// there was a connection to the database handler but not to the database.
 			if (!empty($_zp_conf_vars['mysql_database'])) {
 				if (isset($_GET['Create_Database'])) {
 					$result = db_create();
