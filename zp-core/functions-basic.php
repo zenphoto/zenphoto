@@ -52,14 +52,14 @@ define('ZP_ZENPAGE_SINGLE', 4096);
 // Set error reporting.
 if (defined("RELEASE")) {
 	error_reporting(E_ALL ^E_NOTICE);
+	@ini_set('display_errors', 0);
 } else {
-	if (version_compare(PHP_VERSION,'5.0.0') == 1) {
-		error_reporting(E_ALL | E_STRICT);
-	} else {
-		error_reporting(E_ALL);
-	}
+	error_reporting(E_ALL | E_STRICT);
+	@ini_set('display_errors', 1);
 }
-$_zp_error = false;
+set_error_handler("zpErrorHandler");
+set_exception_handler("zpErrorHandler");
+
 if (!file_exists($const_serverpath . '/' . DATA_FOLDER . "/zenphoto.cfg")) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
 	reconfigureAction();
@@ -915,9 +915,8 @@ function sanitize_string($input_string, $sanitize_level) {
  * @param string $message
  * @param bool $fatal set true to fail the script
  */
-function zp_error($message, $fatal=true) {
-	require_once(dirname(__FILE__).'/error_handlers.php');
-	display_error($message, $fatal);
+function zp_error($message, $fatal=E_USER_ERROR) {
+	trigger_error($message, $fatal);
 }
 
 /**
@@ -1136,11 +1135,14 @@ function debugLogArray($name, $source, $indent=0, $trail='') {
  *
  * @param string $message Message to prefix the backtrace
  */
-function debugLogBacktrace($message) {
+function debugLogBacktrace($message, $omit=0) {
 	debugLog("Backtrace: $message");
 	// Get a backtrace.
 	$bt = debug_backtrace();
-	array_shift($bt); // Get rid of debug_backtrace in the backtrace.
+	while ($omit>=0) {
+		array_shift($bt); // Get rid of debug_backtrace, callers in the backtrace.
+		$omit--;
+	}
 	$prefix = '';
 	$line = '';
 	$caller = '';
@@ -1615,4 +1617,68 @@ function zp_session_start() {
 		session_start();
 	}
 }
+
+/**
+ *
+ * Traps errors and insures thy are logged.
+ * @param unknown_type $errno
+ * @param unknown_type $errstr
+ * @param unknown_type $errfile
+ * @param unknown_type $errline
+ * @return void|boolean
+ */
+function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
+	// if error has been supressed with an @
+	if (error_reporting() == 0) {
+		return;
+	}
+	// check if function has been called by an exception
+	if(func_num_args() == 5) {
+		// called by trigger_error()
+		list($errno, $errstr, $errfile, $errline) = func_get_args();
+	} else {
+		// caught exception
+		$exc = func_get_arg(0);
+		$errno = $exc->getCode();
+		$errstr = $exc->getMessage();
+		$errfile = $exc->getFile();
+		$errline = $exc->getLine();
+	}
+
+	$errorType = array (E_ERROR         		=> gettext('ERROR'),
+											E_WARNING      			=> gettext('WARNING'),
+											E_PARSE         		=> gettext('PARSING ERROR'),
+											E_NOTICE        		=> gettext('NOTICE'),
+											E_CORE_ERROR    		=> gettext('CORE ERROR'),
+											E_CORE_WARNING  		=> gettext('CORE WARNING'),
+											E_COMPILE_ERROR			=> gettext('COMPILE ERROR'),
+											E_COMPILE_WARNING		=> gettext('COMPILE WARNING'),
+											E_USER_ERROR  			=> gettext('USER ERROR'),
+											E_USER_WARNING			=> gettext('USER WARNING'),
+											E_USER_NOTICE 			=> gettext('USER NOTICE'),
+											E_STRICT     				=> gettext('STRICT NOTICE'),
+											E_RECOVERABLE_ERROR	=> gettext('RECOVERABLE ERROR')
+											);
+
+	// create error message
+	if (array_key_exists($errno, $errorType)) {
+		$err = $errorType[$errno];
+	} else {
+		$err = gettext('CAUGHT EXCEPTION');
+	}
+	$errMsg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'),$err,$errstr,$errfile,$errline);
+	debugLogBacktrace($errMsg, 1);
+	if(!defined('RELEASE')) {	// let PHP handle if debug build
+		return false;
+	}
+	// what to do
+	switch ($errno) {
+		case E_NOTICE:
+		case E_USER_NOTICE:
+			return false;
+		default:
+			exitZP();
+	}
+}
+
 ?>

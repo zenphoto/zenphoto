@@ -30,8 +30,7 @@ function newImage($album, $filename, $quiet=false) {
 	}
 	if (!is_object($xalbum) || strtoLower(get_class($xalbum)) != 'album' || !$xalbum->exists) {
 		$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'),$filename);
-		debugLogBacktrace($msg);
-		trigger_error(html_encode($msg), E_USER_NOTICE);
+		trigger_error($msg, E_USER_NOTICE);
 		return NULL;
 	}
 	if ($ext = is_valid_other_type($filename)) {
@@ -55,8 +54,7 @@ function newImage($album, $filename, $quiet=false) {
 
 	if (!$quiet) {
 		$msg = sprintf(gettext('Bad filename suffix in newImage(%s)'),$filename);
-		debugLogBacktrace($msg);
-		trigger_error(html_encode($msg), E_USER_NOTICE);
+		trigger_error($msg, E_USER_NOTICE);
 	}
 	return NULL;
 }

@@ -23,6 +23,10 @@ define('LOCAL_CHARSET','UTF-8');
 define('FILESYSTEM_CHARSET', 'ISO-8859-1');
 define('ADMIN_RIGHTS',1);
 define('PROTOCOL', 'http');
+error_reporting(E_ALL | E_STRICT);
+@ini_set('display_errors', 1);
+set_error_handler("zpErrorHandler");
+set_exception_handler("zpErrorHandler");
 
 $_zp_imagick_present = false;
 
@@ -137,11 +141,14 @@ function debugLogArray($name, $source, $indent=0, $trail='') {
 	}
 }
 
-function debugLogBacktrace($message) {
+function debugLogBacktrace($message, $omit=0) {
 	debugLog("Backtrace: $message");
 	// Get a backtrace.
 	$bt = debug_backtrace();
-	array_shift($bt); // Get rid of debug_backtrace in the backtrace.
+	while ($omit>=0) {
+		array_shift($bt); // Get rid of debug_backtrace, callers in the backtrace.
+		$omit--;
+	}
 	$prefix = '';
 	$line = '';
 	$caller = '';
@@ -345,6 +352,70 @@ function filesystemToInternal($filename) {
 function internalToFilesystem($filename) {
 	global $_zp_UTF8;
 	return $_zp_UTF8->convert($filename, 'UTF-8', FILESYSTEM_CHARSET);
+}
+
+/**
+*
+* Traps errors and insures thy are logged.
+* @param unknown_type $errno
+* @param unknown_type $errstr
+* @param unknown_type $errfile
+* @param unknown_type $errline
+* @return void|boolean
+*/
+function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
+	// if error has been supressed with an @
+	if (error_reporting() == 0) {
+		return;
+	}
+	// check if function has been called by an exception
+	if(func_num_args() == 5) {
+		// called by trigger_error()
+		list($errno, $errstr, $errfile, $errline) = func_get_args();
+	} else {
+		// caught exception
+		$exc = func_get_arg(0);
+		$errno = $exc->getCode();
+		$errstr = $exc->getMessage();
+		$errfile = $exc->getFile();
+		$errline = $exc->getLine();
+	}
+
+	$errorType = array (E_ERROR         		=> gettext('ERROR'),
+	E_WARNING      			=> gettext('WARNING'),
+	E_PARSE         		=> gettext('PARSING ERROR'),
+	E_NOTICE        		=> gettext('NOTICE'),
+	E_CORE_ERROR    		=> gettext('CORE ERROR'),
+	E_CORE_WARNING  		=> gettext('CORE WARNING'),
+	E_COMPILE_ERROR			=> gettext('COMPILE ERROR'),
+	E_COMPILE_WARNING		=> gettext('COMPILE WARNING'),
+	E_USER_ERROR  			=> gettext('USER ERROR'),
+	E_USER_WARNING			=> gettext('USER WARNING'),
+	E_USER_NOTICE 			=> gettext('USER NOTICE'),
+	E_STRICT     				=> gettext('STRICT NOTICE'),
+	E_RECOVERABLE_ERROR	=> gettext('RECOVERABLE ERROR')
+	);
+
+	// create error message
+	if (array_key_exists($errno, $errorType)) {
+		$err = $errorType[$errno];
+	} else {
+		$err = gettext('CAUGHT EXCEPTION');
+	}
+	$errMsg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'),$err,$errstr,$errfile,$errline);
+	debugLogBacktrace($errMsg, 1);
+	if(!defined('RELEASE')) {
+		// let PHP handle if debug build
+		return false;
+	}
+	// what to do
+	switch ($errno) {
+		case E_NOTICE:
+		case E_USER_NOTICE:
+			return false;
+		default:
+			exitZP();
+	}
 }
 
 ?>

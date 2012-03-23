@@ -53,8 +53,7 @@ class Album extends MediaObject {
 		if (filesystemToInternal($folderFS) != $folder8) { // an attempt to spoof the album name.
 			$this->exists = false;
 			$msg = sprintf(gettext('Zenphoto encountered an album name spoof attempt: %1$s=>%2$s.'),html_encode(filesystemToInternal($folderFS)),html_encode($folder8));
-			debugLogBacktrace($msg);
-			trigger_error(html_encode($msg), E_USER_NOTICE);
+			trigger_error($msg, E_USER_NOTICE);
 			return;
 		}
 		if ($dynamic = hasDynamicAlbumSuffix($folder8)) {
@@ -66,8 +65,7 @@ class Album extends MediaObject {
 			$this->exists = false;
 			if (!$quiet) {
 				$msg = sprintf(gettext('class-album detected an invalid folder name: %s.'),html_encode($folder8));
-				debugLogBacktrace($msg);
-				trigger_error(html_encode($msg), E_USER_NOTICE);
+				trigger_error($msg, E_USER_NOTICE);
 			}
 			return;
 		}
@@ -1091,7 +1089,7 @@ class Album extends MediaObject {
 			} else {
 				$msg = sprintf(gettext("Error: The album %s is not readable."), html_encode($this->name));
 			}
-			zp_error($msg,false);
+			trigger_error($msg,E_USER_NOTICE);
 			return array();
 		}
 
