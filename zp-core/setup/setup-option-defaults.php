@@ -371,7 +371,7 @@ setOption('zp_plugin_deprecated-functions',9|CLASS_PLUGIN);	//	Yes, I know some 
 																														//	but each release may deprecated new functions which would then just give
 																														//	(perhaps unseen) errors. Better the user should disable this once he knows
 																														//	his site is working.
-setOptionDefault('zp_plugin_zenphoto_news', 5|ADMIN_PLUGIN:0);
+setOptionDefault('zp_plugin_zenphoto_news', 5|ADMIN_PLUGIN);
 setOptionDefault('zp_plugin_hitcounter',1);
 setOptionDefault('zp_plugin_tiny_mce', 5|ADMIN_PLUGIN);
 setOptionDefault('zp_plugin_security-logger', 9|CLASS_PLUGIN);
