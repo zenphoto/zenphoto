@@ -277,10 +277,9 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 													E_COMPILE_WARNING=>'E_COMPILE_WARNING',
 													E_USER_ERROR=>'E_USER_ERROR',
 													E_USER_NOTICE=>'E_USER_NOTICE',
-													E_USER_WARNING=>'E_USER_WARNING');
-				if (version_compare(PHP_VERSION,'5.0.0') == 1) {
-					$erToTxt[E_STRICT] = 'E_STRICT';
-				}
+													E_USER_WARNING=>'E_USER_WARNING',
+													E_STRICT=>'E_STRICT'
+												);
 				if (version_compare(PHP_VERSION,'5.2.0') == 1) {
 					$erToTxt[E_RECOVERABLE_ERROR] = 'E_RECOVERABLE_ERROR';
 				}

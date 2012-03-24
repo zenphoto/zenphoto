@@ -70,15 +70,7 @@ class deprecated_functions {
 			} else {
 				$script = $line = gettext('unknown');
 			}
-			// insure that the error shows!
-			$old_reporting = error_reporting();
-			if (version_compare(PHP_VERSION,'5.0.0') == 1) {
-				error_reporting(E_ALL | E_STRICT);
-			} else {
-				error_reporting(E_ALL);
-			}
-			trigger_error(sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated'),$fcn,$script,$line).$use.'<br />'.sprintf(gettext('You can disable this error message by going to the <em>deprecated-functions</em> plugin options and un-checking <strong>%s</strong> in the list of functions.'.'<br />'),$fcn), E_USER_NOTICE);
-			error_reporting($old_reporting);
+			trigger_error(sprintf(gettext('%1$s (called from %2$s line %3$s) is deprecated'),$fcn,$script,$line).$use.'<br />'.sprintf(gettext('You can disable this error message by going to the <em>deprecated-functions</em> plugin options and un-checking <strong>%s</strong> in the list of functions.'.'<br />'),$fcn), E_USER_WARNING);
 		}
 	}
 

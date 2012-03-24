@@ -1575,39 +1575,33 @@ function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
 		$errline = $exc->getLine();
 	}
 
-	$errorType = array (E_ERROR         		=> gettext('ERROR'),
-											E_WARNING      			=> gettext('WARNING'),
-											E_PARSE         		=> gettext('PARSING ERROR'),
+	$errorType = array (E_ERROR           	=> gettext('ERROR'),
+ 											E_WARNING      			=> gettext('WARNING'),
 											E_NOTICE        		=> gettext('NOTICE'),
-											E_CORE_ERROR    		=> gettext('CORE ERROR'),
-											E_CORE_WARNING  		=> gettext('CORE WARNING'),
-											E_COMPILE_ERROR			=> gettext('COMPILE ERROR'),
-											E_COMPILE_WARNING		=> gettext('COMPILE WARNING'),
 											E_USER_ERROR  			=> gettext('USER ERROR'),
 											E_USER_WARNING			=> gettext('USER WARNING'),
 											E_USER_NOTICE 			=> gettext('USER NOTICE'),
-											E_STRICT     				=> gettext('STRICT NOTICE'),
-											E_RECOVERABLE_ERROR	=> gettext('RECOVERABLE ERROR')
+											E_STRICT     				=> gettext('STRICT NOTICE')
 											);
 
 	// create error message
 	if (array_key_exists($errno, $errorType)) {
 		$err = $errorType[$errno];
 	} else {
-		$err = gettext('CAUGHT EXCEPTION');
+		$err = gettext("EXCEPTION ($errno)");
+		$errno = E_ERROR;
 	}
-	$errMsg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'),$err,$errstr,$errfile,$errline);
-	debugLogBacktrace($errMsg, 1);
+	debugLogBacktrace(sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'),$err,$errstr,$errfile,$errline), 1);
 	if(!defined('RELEASE')) {	// let PHP handle if debug build
 		return false;
 	}
 	// what to do
 	switch ($errno) {
-		case E_NOTICE:
-		case E_USER_NOTICE:
-			return false;
-		default:
+		case E_USER_ERROR:
+		case E_ERROR:
 			exitZP();
+		default:
+			return false;
 	}
 }
 
