@@ -24,7 +24,7 @@ $option_interface = 'flowplayer3_options';
 if (isset($_zp_flash_player) || $plugin_disable) {
 	setOption('zp_plugin_flowplayer3', 0);
 	if (isset($_zp_flash_player)) {
-		trigger_error(sprintf(gettext('Flowplayer3 not enabled, %s is already instantiaed.'),get_class($_zp_flash_player)),E_USER_NOTICE);
+		trigger_error(sprintf(gettext('Flowplayer3 not enabled, %s is already instantiated.'),get_class($_zp_flash_player)),E_USER_NOTICE);
 	}
 } else {
 	$_zp_flash_player = new Flowplayer3(); // claim to be the flash player.

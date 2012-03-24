@@ -53,7 +53,7 @@ $option_interface = 'jplayer_options';
 if (isset($_zp_flash_player) || $plugin_disable) {
 	setOption('zp_plugin_jplayer',0);
 	if (isset($_zp_flash_player)) {
-		trigger_error(sprintf(gettext('jPlayer not enabled, %s is already instantiaed.'),get_class($_zp_flash_player)),E_USER_NOTICE);
+		trigger_error(sprintf(gettext('jPlayer not enabled, %s is already instantiated.'),get_class($_zp_flash_player)),E_USER_NOTICE);
 	}
 } else {
 	$_zp_flash_player = new jPlayer(); // claim to be the flash player.
