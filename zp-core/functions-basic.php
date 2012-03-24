@@ -60,7 +60,7 @@ if (defined("RELEASE")) {
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 
-if (!file_exists($const_serverpath . '/' . DATA_FOLDER . "/zenphoto.cfg")) {
+if (!file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphoto.cfg")) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
 	reconfigureAction();
 }
@@ -115,10 +115,13 @@ if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol']
 $_zp_imagick_present = false;
 require_once(dirname(__FILE__).'/functions-db-'.(isset($_zp_conf_vars['db_software'])?$_zp_conf_vars['db_software']:'MySQL').'.php');
 db_connect();
+
 $_charset = getOption('charset');
 if (!$_charset) {
 	$_charset = 'UTF-8';
 }
+define('LOCAL_CHARSET',$_charset);
+unset($_charset);
 
 define ('GALLERY_DATA', getOption('gallery_data'));
 if (GALLERY_DATA) {
@@ -126,21 +129,10 @@ if (GALLERY_DATA) {
 } else {
 	$data = array();
 }
-if (isset($data['album_session'])) {
-	define('GALLERY_SESSION',$data['album_session']);
-} else {
-	define('GALLERY_SESSION',getOption('album_session'));
-}
-if (isset($data['gallery_security']))	{
-	define('GALLERY_SECURITY',$data['gallery_security']);
-} else {
-	define('GALLERY_SECURITY',getOption('gallery_security'));
-}
+define('GALLERY_SESSION',@$data['album_session']);
+define('GALLERY_SECURITY',@$data['gallery_security']);
 unset($data);
 
-define('LOCAL_CHARSET',$_charset);
-
-unset($_charset);
 // insure a correct timezone
 if (function_exists('date_default_timezone_set')) {
 	$level = error_reporting(0);
@@ -149,16 +141,16 @@ if (function_exists('date_default_timezone_set')) {
 	@ini_set('date.timezone', $_zp_server_timezone);
 	error_reporting($level);
 }
+
 // Set the memory limit higher just in case -- suppress errors if user doesn't have control.
 // 100663296 bytes = 96M
 if (ini_get('memory_limit') && parse_size(ini_get('memory_limit')) < 100663296) {
 	@ini_set('memory_limit','96M');
 }
+
 // Set the internal encoding
 if (function_exists('mb_internal_encoding')) {
-	if (mb_internal_encoding() != LOCAL_CHARSET) {
-		@mb_internal_encoding(LOCAL_CHARSET);
-	}
+	@mb_internal_encoding(LOCAL_CHARSET);
 }
 
 // load graphics libraries in priority order
@@ -168,19 +160,15 @@ $_zp_graphics_optionhandlers = array();
 require_once(dirname(__FILE__).'/lib-Imagick.php');
 require_once(dirname(__FILE__).'/lib-GD.php');
 
-if (function_exists('zp_graphicsLibInfo')) {
-	$_zp_supported_images = zp_graphicsLibInfo();
-	define('GRAPHICS_LIBRARY',$_zp_supported_images['Library']);
-	unset($_zp_supported_images['Library']);
-	unset($_zp_supported_images['Library_desc']);
-	foreach ($_zp_supported_images as $key=>$type) {
-		unset($_zp_supported_images[$key]);
-		if ($type) $_zp_supported_images[strtolower($key)] = true;
-	}
-	$_zp_supported_images = array_keys($_zp_supported_images);
-} else {
-	$_zp_supported_images = array();
+$_zp_supported_images = zp_graphicsLibInfo();
+define('GRAPHICS_LIBRARY',$_zp_supported_images['Library']);
+unset($_zp_supported_images['Library']);
+unset($_zp_supported_images['Library_desc']);
+foreach ($_zp_supported_images as $key=>$type) {
+	unset($_zp_supported_images[$key]);
+	if ($type) $_zp_supported_images[strtolower($key)] = true;
 }
+$_zp_supported_images = array_keys($_zp_supported_images);
 
 require_once(dirname(__FILE__).'/lib-encryption.php');
 
@@ -228,8 +216,6 @@ define('MEMBERS_ONLY_COMMENTS',getOption('comment_form_members_only'));
 
 define('HASH_SEED', getOption('extra_auth_hash_text'));
 define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
-// Set the version number.
-$_zp_conf_vars['version'] = ZENPHOTO_VERSION;
 
 /**
  * Decodes HTML Special Characters.
@@ -293,8 +279,9 @@ function js_encode($this_string) {
 function getOption($key) {
 	global $_zp_conf_vars, $_zp_options;
 	if (isset($_zp_options[$key])) {
-		$v = $_zp_options[$key];
+		return $_zp_options[$key];
 	} else {
+		$v = NULL;
 		if (is_null($_zp_options)) {
 			// option table not yet loaded, load it
 			$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `ownerid`=0';
@@ -313,9 +300,6 @@ function getOption($key) {
 					}
 				}
 			}
-		}
-		if (!isset($v)) {
-			$v = @$_zp_conf_vars[$key];
 		}
 	}
 	return $v;
@@ -407,26 +391,11 @@ function purgeOption($key) {
  */
 function getOptionList() {
 	global $_zp_options;
-	if (NULL == $_zp_options) { getOption('nil'); } // pre-load from the database
+	if (NULL == $_zp_options) {
+		getOption('nil'); // pre-load from the database
+	}
 	return $_zp_options;
 }
-
-// Set up assertions for debugging.
-assert_options(ASSERT_ACTIVE, 0);
-assert_options(ASSERT_WARNING, 0);
-assert_options(ASSERT_QUIET_EVAL, 1);
-/**
- * Emits an assertion error
- *
- * @param string $file the script file
- * @param string $line the line of the assertion
- * @param string $code the error message
- */
-function assert_handler($file, $line, $code) {
-	dmesg(gettext("ERROR: Assertion failed in")." [$file:$line]: $code");
-}
-// Set up assertion callback
-assert_options(ASSERT_CALLBACK, 'assert_handler');
 
 /**
  * Returns true if the file has the dynamic album suffix
@@ -437,7 +406,6 @@ assert_options(ASSERT_CALLBACK, 'assert_handler');
 function hasDynamicAlbumSuffix($path) {
 	return getSuffix($path) == 'alb';
 }
-
 
 /**
  * rewrite_get_album_image - Fix special characters in the album and image names if mod_rewrite is on:
@@ -966,44 +934,6 @@ function pathurlencode($path) {
 	return implode("/", array_map("rawurlencode", explode("/", $path)));
 }
 
-
-/**
- * Return human readable sizes
- * From: http://aidan.dotgeek.org/lib/
- *
- * @param       int    $size        Size
- * @param       int    $unit        The maximum unit
- * @param       int    $retstring   The return string format
- * @author      Aidan Lister <aidan@php.net>
- * @version     1.1.0
- */
-function size_readable($size, $unit = null, $retstring = null)
-{
-	// Units
-	$sizes = array('B', 'KB', 'MB', 'GB', 'TB');
-	$ii = count($sizes) - 1;
-
-	// Max unit
-	$unit = array_search((string) $unit, $sizes);
-	if ($unit === null || $unit === false) {
-		$unit = $ii;
-	}
-
-	// Return string
-	if ($retstring === null) {
-		$retstring = '%01.2f %s';
-	}
-
-	// Loop
-	$i = 0;
-	while ($unit != $i && $size >= 1024 && $i < $ii) {
-		$size /= 1024;
-		$i++;
-	}
-
-	return sprintf($retstring, $size, $sizes[$i]);
-}
-
 /**
  * Returns the fully qualified path to the album folders
  *
@@ -1445,10 +1375,7 @@ function getWatermarkPath($wm) {
  * @return bool
  */
 function secureServer() {
-	if(isset($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']),'on')===0) {
-		return true;
-	}
-	return false;
+	return isset($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']),'on')===0;
 }
 
 /**
@@ -1535,11 +1462,14 @@ function getSetClause($new_unique_set) {
 	$i = 0;
 	$set = ' SET';
 	foreach($new_unique_set as $var => $value) {
-		if ($i > 0) $set .= ', ';
-		$set .= ' `' . $var . '`=' . db_quote($value);
-		$i++;
+		$set .= ' `' . $var . '`=';
+		if (is_null($value)) {
+			$set .= 'NULL';
+		} else {
+			$set .= db_quote($value).',';
+		}
 	}
-	return $set;
+	return substr($set,0,-1);
 }
 
 /*

@@ -26,7 +26,6 @@ function db_connect($errorstop=true) {
 		}
 		return false;
 	}
-
 	if (!@mysql_select_db($db)) {
 		if ($errorstop) {
 			zp_error(sprintf(gettext('MySQL Error: The database is connected, but MySQL returned the error <em>%1$s</em> when Zenphoto tried to select the database %2$s.'),mysql_error(),$db));
@@ -51,20 +50,15 @@ function db_connect($errorstop=true) {
  */
 function query($sql, $errorstop=true) {
 	global $_zp_DB_connection, $_zp_conf_vars;
-	if (is_null($_zp_DB_connection)) {
-		db_connect();
+	if ($result = mysql_query($sql, $_zp_DB_connection)) {
+		return $result;
 	}
-	// Changed this to mysql_query - *never* call query functions recursively...
-	$result = mysql_query($sql, $_zp_DB_connection);
-	if (!$result) {
-		if($errorstop) {
-			$sql = str_replace($_zp_conf_vars['mysql_prefix'], '['.gettext('prefix').']',$sql);
-			$sql = str_replace($_zp_conf_vars['mysql_database'], '['.gettext('DB').']',$sql);
-			trigger_error(sprintf(gettext('%1$s Error: ( <em>%2$s</em> ) failed. %1$s returned the error <em>%3$s</em>'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
-		}
-		return false;
+	if($errorstop) {
+		$sql = str_replace($_zp_conf_vars['mysql_prefix'], '['.gettext('prefix').']',$sql);
+		$sql = str_replace($_zp_conf_vars['mysql_database'], '['.gettext('DB').']',$sql);
+		trigger_error(sprintf(gettext('%1$s Error: ( <em>%2$s</em> ) failed. %1$s returned the error <em>%3$s</em>'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
 	}
-	return $result;
+	return false;
 }
 
 /**

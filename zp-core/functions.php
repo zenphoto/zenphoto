@@ -21,7 +21,9 @@ require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-htmLawed.php');
 
 
 $_zp_captcha = getOption('captcha');
-if (empty($_zp_captcha)) 	$_zp_captcha = 'zenphoto';
+if (empty($_zp_captcha)) 	{
+	$_zp_captcha = 'zenphoto';
+}
 $_zp_captcha = getPlugin('captcha/'.$_zp_captcha.'.php');
 require_once($_zp_captcha);
 $_zp_captcha = new Captcha();
@@ -35,7 +37,6 @@ if (GALLERY_SESSION) {
 
 define('ZENPHOTO_LOCALE',setMainDomain());
 define('SITE_LOCALE',getOptionFromDB('locale'));
-
 
 require_once(dirname(__FILE__).'/class-load.php');
 require_once(dirname(__FILE__).'/auth_zp.php');
@@ -75,8 +76,6 @@ function parseAllowedTags(&$source) {
 	$source = trim(substr($source, 1)); //strip the close paren
 	return $a;
 }
-
-// Image utility functions
 
 /**
  * Search for a thumbnail for the image
@@ -195,7 +194,6 @@ function zpFormattedDate($format, $dt) {
  * @return string
  */
 function myts_date($format,$mytimestamp) {
-	// If your server is in a different time zone than you, set this.
 	$timezoneadjust = getOption('time_offset');
 
 	$month  = substr($mytimestamp,4,2);
@@ -210,40 +208,6 @@ function myts_date($format,$mytimestamp) {
 	$date   = zpFormattedDate($format, $epoch);
 	return $date;
 }
-
-/**
- * Get the size of a directory.
- * From: http://aidan.dotgeek.org/lib/
- *
- * @author      Aidan Lister <aidan@php.net>
- * @version     1.0.0
- * @param       string $directory   Path to directory
- */
-function dirsize($directory) {
-	$size = 0;
-	if (substr($directory, -1, 1) !== DIRECTORY_SEPARATOR) {
-		$directory .= DIRECTORY_SEPARATOR;
-	}
-	$stack = array($directory);
-	for ($i = 0, $j = count($stack); $i < $j; ++$i) {
-		if (is_file($stack[$i])) {
-			$size += filesize($stack[$i]);
-		} else if (is_dir($stack[$i])) {
-			$dir = dir($stack[$i]);
-			while (false !== ($entry = $dir->read())) {
-				if ($entry == '.' || $entry == '..') continue;
-				$add = $stack[$i] . $entry;
-				if (is_dir($stack[$i] . $entry)) $add .= DIRECTORY_SEPARATOR;
-				$stack[] = $add;
-			}
-			$dir->close();
-		}
-		$j = count($stack);
-	}
-	return $size;
-}
-
-// Text formatting and checking functions
 
 /**
  * Determines if the input is an e-mail address. Adapted from WordPress.
@@ -1222,11 +1186,11 @@ function getAllTagsCount() {
 }
 
 /**
- * Stores tags for an album/image
+ * Stores tags for an object
  *
  * @param array $tags the tag values
  * @param int $id the record id of the album/image
- * @param string $tbl 'albums' or 'images'
+ * @param string $tbl database table of the object
  */
 function storeTags($tags, $id, $tbl) {
 	$tagsLC = array();
@@ -1477,34 +1441,6 @@ function getNotViewableAlbums() {
 		}
 	}
 	return $_zp_not_viewable_album_list;
-}
-
-/**
- * Parses and sanitizes Theme definition text
- *
- * @param file $file theme file
- * @return string
- */
-function parseThemeDef($file) {
-	$file = internalToFilesystem($file);
-	$themeinfo = array('name'=>gettext('Unknown name'), 'author'=>gettext('Unknown author'), 'version'=>gettext('Unknown'), 'desc'=>gettext('<strong>Theme description error!</strong>'), 'date'=>gettext('Unknown date'));
-	if (is_readable($file) && $fp = @fopen($file, "r")) {
-		while($line = trim(fgets($fp))) {
-			if (!empty($line) && substr($line, 0, 1) != "#") {
-				$item = explode("::", $line);
-				if (count($item)>1) {
-					$v = sanitize(trim($item[1]), 1);
-				} else {
-					$v = gettext('<strong>Theme description error!</strong>');
-				}
-				$i = sanitize(trim($item[0]), 1);
-				$themeinfo[$i] = $v;
-			}
-		}
-		return $themeinfo;
-	} else {
-		return false;
-	}
 }
 
 /**
@@ -1790,19 +1726,6 @@ function save_context() {
 function restore_context() {
 	global $_zp_current_context, $_zp_current_context_stack;
 	$_zp_current_context = array_pop($_zp_current_context_stack);
-}
-
-/**
- * Logs a time into the debug log
- *
- * @param string $tag log annotation
- */
-function logTime($tag) {
-	 $mtime = microtime();
-	 $mtime = explode(" ",$mtime);
-	 $mtime = $mtime[1] + $mtime[0];
-	 $time = $mtime;
-	 debugLog($tag.' '.$time);
 }
 
 /**

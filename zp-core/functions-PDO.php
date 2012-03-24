@@ -15,9 +15,6 @@
  */
 function query($sql, $errorstop=true) {
 	global $_zp_DB_connection, $_zp_DB_last_result, $_zp_conf_vars;
-	if ($_zp_DB_connection == null) {
-		db_connect();
-	}
 	$_zp_DB_last_result = false;
 	try {
 		$_zp_DB_last_result = $_zp_DB_connection->query($sql);

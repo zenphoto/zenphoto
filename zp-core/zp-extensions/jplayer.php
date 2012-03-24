@@ -47,20 +47,22 @@
 $plugin_description = gettext("Enable <strong>jPlayer</strong> to handle multimedia files.");
 $plugin_notice = gettext("<strong>IMPORTANT</strong>: Only one multimedia player plugin can be enabled at the time and the class-video plugin must be enabled, too.").'<br /><br />'.gettext("Please see <a href='http://jplayer.org'>jplayer.org</a> for more info about the player and its license.");
 $plugin_author = "Malte Müller (acrylian)";
-
 $plugin_disable = (getOption('album_folder_class') === 'external')?gettext('This player does not support <em>External Albums</em>.'):false;
+$option_interface = 'jplayer_options';
 
-if ($plugin_disable) {
+if (isset($_zp_flash_player) || $plugin_disable) {
 	setOption('zp_plugin_jplayer',0);
+	if (isset($_zp_flash_player)) {
+		trigger_error(sprintf(gettext('jPlayer not enabled, %s is already instantiaed.'),get_class($_zp_flash_player)),E_USER_NOTICE);
+	}
 } else {
-	global $_zp_flash_player;
-	$option_interface = 'jplayer_options';
-	$_zp_flash_player = new jplayer(); // claim to be the flash player.
+	$_zp_flash_player = new jPlayer(); // claim to be the flash player.
 	zp_register_filter('theme_head','jplayerJS');
 	if(getOption('jplayer_playlist')) {
-			zp_register_filter('theme_head','jplayer_playlistJS');
+		zp_register_filter('theme_head','jplayer_playlistJS');
 	}
 }
+
 
 function jplayerJS() {
 	$skin = getOption('jplayer_skin');
@@ -175,7 +177,7 @@ function getjPlayerSkinCSS($skins,$dir) {
 }
 
 
-class jplayer {
+class jPlayer {
 	public $width = '';
 	public $height = '';
 	public $playersize = '';

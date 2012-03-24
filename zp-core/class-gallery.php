@@ -242,8 +242,6 @@ class Gallery {
 							$theme_description = array();
 							require($themefile);
 							$themes[$dir8] = sanitize($theme_description, 1);
-						} else if (file_exists($themedir . "/$dir/theme.txt")) {
-							$themes[$dir8] = parseThemeDef($themedir . "/$dir/theme.txt");
 						} else {
 							$themes[$dir8] = array('name'=>gettext('Unknown'), 'author'=>gettext('Unknown'), 'version'=>gettext('Unknown'), 'desc'=>gettext('<strong>Missing theme info file!</strong>'), 'date'=>gettext('Unknown'));
 						}
@@ -645,34 +643,6 @@ class Gallery {
 		}
 
 	}
-
-	/**
-	 * Returns the size in bytes of the cache folder. WARNING: VERY SLOW.
-	 * @return int
-	 */
-	function sizeOfCache() {
-		$cachefolder = SERVERCACHE;
-		if (is_dir($cachefolder)) {
-			return dirsize($cachefolder);
-		} else {
-			return 0;
-		}
-	}
-
-
-	/**
-	 * Returns the size in bytes of the albums folder. WARNING: VERY SLOW.
-	 * @return int
-	 */
-	function sizeOfImages() {
-		$imagefolder = substr(ALBUM_FOLDER_SERVERPATH, 0, -1);
-		if (is_dir($imagefolder)) {
-			return dirsize($imagefolder);
-		} else {
-			return 0;
-		}
-	}
-
 
 	/**
 	 * Cleans out the cache folder
