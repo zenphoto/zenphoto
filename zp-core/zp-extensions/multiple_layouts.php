@@ -205,11 +205,10 @@ function checkLayoutUseForImages($obj) {
  */
 function layoutSelector($html, $obj, $prefix='') {
 	$type = 'multiple_layouts_'.$obj->table;
-	if(!getOption($type)) {
-		return $html;
+	if(getOption($type)) {
+		$html .= getLayoutSelector($obj, $type, '<hr /><p>'.gettext('Select layout:').'</p>',$prefix);
 	}
-	$newhtml = getLayoutSelector($obj, $type, '<hr /><p>'.gettext('Select layout:').'</p>',$prefix);
-	return $html.$newhtml;
+	return $html;
 }
 
 /**
@@ -220,12 +219,12 @@ function layoutSelector($html, $obj, $prefix='') {
  */
 function layoutSelector_album($html, $obj, $prefix) {
 	if(getOption('multiple_layouts_albums')) {
-		$newhtml = getLayoutSelector($obj, 'multiple_layouts_albums', '<hr /><p>'.gettext('Select album layout:').'</p>',$prefix);
-		$newhtml .= getLayoutSelector($obj, 'multiple_layouts_albums_images', '<p>'.gettext('Select default album image layout:').'</p>',$prefix,true);
-		if(!$obj->isDynamic()) {
-			$newhtml .= '<br /><input type="checkbox" id="layout_selector_resetimagelayouts" name="layout_selector_resetimagelayouts" /><label for="layout_selector_resetimagelayouts">'.gettext('Reset individual image layouts').'</label>';
+		$albumhtml = getLayoutSelector($obj, 'multiple_layouts_albums', '<hr /><p>'.gettext('Select album layout:').'</p>',$prefix);
+		$imagehtml = getLayoutSelector($obj, 'multiple_layouts_albums_images', '<p>'.gettext('Select default album image layout:').'</p>',$prefix,true);
+		if(!$obj->isDynamic() && strpos($imagehtml, '<p class="no_extra">')===false) {
+			$imagehtml .= '<br /><input type="checkbox" id="layout_selector_resetimagelayouts" name="layout_selector_resetimagelayouts" /><label for="layout_selector_resetimagelayouts">'.gettext('Reset individual image layouts').'</label>';
 		}
-		return $html.$newhtml;
+		return $html.$albumhtml.$imagehtml;
 	}
 	return false;
 }
@@ -262,7 +261,7 @@ function getLayoutSelector($obj,$type,$text,$prefix='',$secondary=false) {
 		case 'images':
 			$filesmask = 'image';
 			$album = $obj->album;
-			$child = $album->getParentID();
+			$child = $album->getID();
 			$defaulttext = gettext('album default');
 			break;
 		case 'pages':
@@ -335,7 +334,7 @@ function getLayoutSelector($obj,$type,$text,$prefix='',$secondary=false) {
 		}
 		$html .= '</select>'."\n";
 	} else {
-		$html = '<p>'.sprintf(gettext('No extra <em>%s</em> theme pages available'),$filesmask).'</p>'."\n";
+		$html = '<p class="no_extra">'.sprintf(gettext('No extra <em>%s</em> theme pages available'),$filesmask).'</p>'."\n";
 	}
 	return $html;
 }
