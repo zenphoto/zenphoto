@@ -155,10 +155,9 @@ class user_expiry {
 	}
 
 	static function checklogon($loggedin, $user) {
-		global $_zp_authority;
 		if ($loggedin) {
 			if (!($loggedin & ADMIN_RIGHTS)) {
-				$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 				$loggedin = user_expiry::checkexpires($loggedin, $userobj);
 			}
 		}
@@ -170,12 +169,11 @@ class user_expiry {
 	 * Re-validates user's e-mail via ticket.
 	 */
 	static function reverify($obj) {
-		global $_zp_authority;
 		//process any verifications posted
 		if (isset($_GET['user_expiry_reverify'])) {
 			$params = unserialize(pack("H*", trim(sanitize($_GET['user_expiry_reverify']),'.')));
 			if ((time() - $params['date']) < 2592000) {
-				$userobj = $_zp_authority->getAnAdmin(array('`user`='=>$params['user'], '`email`='=>$params['email'], '`valid`>' => 0));
+				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='=>$params['user'], '`email`='=>$params['email'], '`valid`>' => 0));
 				if ($userobj) {
 					$credentials = $userobj->getCredentials();
 					$credentials[] = 'expiry';
@@ -187,7 +185,7 @@ class user_expiry {
 				$userobj->set('loggedin',date('Y-m-d H:i:s'));
 				$userobj->save();
 
-				$_zp_authority->logUser($userobj);
+				Zenphoto_Authority::logUser($userobj);
 				header("Location: ".FULLWEBPATH.'/' . ZENFOLDER . '/admin.php');
 				exitZP();
 			}
@@ -220,9 +218,8 @@ class user_expiry {
 	}
 
 	static function notify($tab, $subtab) {
-		global $_zp_authority;
 		if ($tab=='users' && $subtab='users') {
-			if ($_zp_authority->getAnAdmin(array('`valid`>' => 1))) {
+			if (Zenphoto_Authority::getAnAdmin(array('`valid`>' => 1))) {
 				echo '<p class="notebox">'.gettext('You have users whose credentials have expired'),'</p>';
 			}
 		}

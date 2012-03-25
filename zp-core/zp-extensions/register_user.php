@@ -191,9 +191,8 @@ class register_user_options {
 
 	static function handleOptionSave($notify,$themename,$themealbum) {
 		if (!function_exists('user_groups_admin_tabs')) {
-			global $_zp_authority;
 			$saved_rights = NO_RIGHTS;
-			$rightslist = sortMultiArray($_zp_authority->getRights(), array('set', 'value'));
+			$rightslist = sortMultiArray(Zenphoto_Authority::getRights(), array('set', 'value'));
 			foreach ($rightslist as $rightselement=>$right) {
 				if (isset($_POST['register_user-'.$rightselement])) {
 					$saved_rights = $saved_rights | $_POST['register_user-'.$rightselement];
@@ -224,14 +223,14 @@ function printRegistrationForm($thanks=NULL) {
 		unset($_GET['verify']); // so it will not be in the way if the logon fails
 		$_SERVER['REQUEST_URI'] = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']));
 
-		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
+		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj->getEmail() == $params['email']) {
 			if (!$userobj->getRights()) {
 				$userobj->setCredentials(array('registered','user','email'));
 				$rights = getOption('register_user_user_rights');
 				$group = NULL;
 				if (!is_numeric($rights)) {	//  a group or template
-					$admin = $_zp_authority->getAnAdmin(array('`user`=' => $rights,'`valid`=' => 0));
+					$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $rights,'`valid`=' => 0));
 					if ($admin) {
 						$userobj->setObjects($admin->getObjects());
 						if ($admin->getName() != 'template') {
@@ -297,12 +296,12 @@ function printRegistrationForm($thanks=NULL) {
 			$notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
 			if (isset($_POST['disclose_password_']) || $pass == trim(sanitize($_POST['pass_r_']))) {
-				$currentadmin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+				$currentadmin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					$notify = 'exists';
 				}
 				if (empty($notify)) {
-					$userobj = $_zp_authority->newAdministrator('');
+					$userobj = Zenphoto_Authority::newAdministrator('');
 					$userobj->transient = false;
 					$userobj->setUser($user);
 					$userobj->setPass($pass);

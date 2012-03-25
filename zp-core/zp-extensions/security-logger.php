@@ -80,7 +80,7 @@ class security_logger {
 	 */
 	private static function Logger($success, $user, $name, $ip, $action, $authority, $addl=NULL) {
 		global $_zp_authority;
-		$admin = $_zp_authority->getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
+		$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
 		if ($admin) {
 			$locale = $admin->getLanguage();
 		}
@@ -203,7 +203,6 @@ class security_logger {
 	 * @return int
 	 */
 	static function adminLoginLogger($success, $user, $pass, $auth='zp_admin_auth') {
-		global $_zp_authority;
 		switch (getOption('logger_log_type')) {
 			case 'all':
 				break;
@@ -216,7 +215,7 @@ class security_logger {
 		}
 		$name = '';
 		if ($success) {
-			$admin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = '';	// mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();
@@ -250,7 +249,6 @@ class security_logger {
 	 * @return bool
 	 */
 	static function guestLoginLogger($success, $user, $pass, $athority) {
-		global $_zp_authority;
 		switch (getOption('logger_log_type')) {
 			case 'all':
 				break;
@@ -263,7 +261,7 @@ class security_logger {
 		}
 	$name = '';
 		if ($success) {
-			$admin = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 			$pass = '';	// mask it from display
 			if (is_object($admin)) {
 				$name = $admin->getName();

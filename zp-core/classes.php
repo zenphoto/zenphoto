@@ -292,7 +292,7 @@ class PersistentObject {
 		if (empty($entry)) {
 			if ($this->transient) { // no don't save it in the DB!
 				$entry = array_merge($this->unique_set, $this->updates, $this->tempdata);
-				$entry['id'] = '';
+				$entry['id'] = 0;
 			} else if (!$allowCreate) {
 				return NULL;	// does not exist and we are not allowed to create it
 			} else {
@@ -306,7 +306,7 @@ class PersistentObject {
 			}
 		}
 		$this->data = $entry;
-		$this->id = $entry['id'];
+		$this->id = (int) $entry['id'];
 		$this->loaded = true;
 		return $new;
 	}
@@ -321,7 +321,7 @@ class PersistentObject {
 			return;
 		}
 		if ($this->transient) return; // If this object isn't supposed to be persisted, don't save it.
-		if ($this->id == null) {
+		if (!$this->id) {
 			$this->setDefaults();
 			// Create a new object and set the id from the one returned.
 			$insert_data = array_merge($this->unique_set, $this->updates, $this->tempdata);
@@ -345,7 +345,7 @@ class PersistentObject {
 			foreach ($insert_data as $key=>$value) { // copy over any changes
 				$this->data[$key] = $value;
 			}
-			$this->data['id'] = $this->id = db_insert_id(); // so 'get' will retrieve it!
+			$this->data['id'] = $this->id = (int) db_insert_id(); // so 'get' will retrieve it!
 			$this->loaded = true;
 			$this->updates = array();
 			$this->tempdata = array();
@@ -764,11 +764,10 @@ class MediaObject extends ThemeObject {
 	 * @param string $pwd the cleartext password
 	 */
 	function setPassword($pwd) {
-		global $_zp_authority;
 		if (empty($pwd)) {
 			$this->set('password', "");
 		} else {
-			$this->set('password', $_zp_authority->passwordHash($this->get('user'), $pwd));
+			$this->set('password', Zenphoto_Authority::passwordHash($this->get('user'), $pwd));
 		}
 	}
 

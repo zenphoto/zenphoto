@@ -61,7 +61,7 @@ if (isset($_GET['action'])) {
 			break;
 		case 'deleteadmin':
 			XSRFdefender('deleteadmin');
-			$adminobj = $_zp_authority->newAdministrator(sanitize($_GET['adminuser']),1);
+			$adminobj = Zenphoto_Authority::newAdministrator(sanitize($_GET['adminuser']),1);
 			zp_apply_filter('save_user', '', $adminobj, 'delete');
 			$adminobj->remove();
 			header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-users.php?page=users&deleted&subpage=".$subpage);
@@ -99,20 +99,20 @@ if (isset($_GET['action'])) {
 						$nouser = false;
 							if (isset($_POST[$i.'-newuser'])) {
 								$newuser = $user;
-								$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+								$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 								if (is_object($userobj)) {
 									$notify = '?exists';
 									break;
 								} else {
 									$what = 'new';
-									$userobj = $_zp_authority->newAdministrator('');
+									$userobj = Zenphoto_Authority::newAdministrator('');
 									$userobj->transient = false;
 									$userobj->setUser($user);
 									$updated = true;
 								}
 							} else {
 								$what = 'update';
-								$userobj = $_zp_authority->newAdministrator($user);
+								$userobj = Zenphoto_Authority::newAdministrator($user);
 							}
 
 							if (isset($_POST[$i.'-admin_name'])) {
@@ -249,7 +249,7 @@ echo $refresh;
 <script type="text/javascript" src="js/farbtastic.js"></script>
 <script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
 <link rel="stylesheet" href="js/farbtastic.css" type="text/css" />
-<?php $_zp_authority->printPasswordFormJS(); ?>
+<?php Zenphoto_Authority::printPasswordFormJS(); ?>
 </head>
 <body>
 <?php printLogoAndLinks(); ?>
@@ -555,7 +555,7 @@ function languageChange(id,lang) {
 		$userid = $user['user'];
 		$current = in_array($userid,$showset);
 		$showlist[] = '#show-'.$userid;
-		$userobj = $_zp_authority->newAdministrator($userid);
+		$userobj = Zenphoto_Authority::newAdministrator($userid);
 		if (empty($userid)) {
 			$userobj->setGroup($user['group']);
 			$userobj->setRights($user['rights']);
@@ -717,7 +717,7 @@ function languageChange(id,lang) {
 			} else {
 				$password_disable = '';
 			}
-			$_zp_authority->printPasswordForm($id, $pad, $password_disable, $clearPass);
+			Zenphoto_Authority::printPasswordForm($id, $pad, $password_disable, $clearPass);
 			?>
 				<br />
 				<?php
@@ -857,11 +857,11 @@ function languageChange(id,lang) {
 </form>
 <?php
 if (zp_loggedin(ADMIN_RIGHTS)) {
-	if ($_zp_authority->getVersion() < $_zp_authority->supports_version) {
+	if (Zenphoto_Authority::getVersion() < $_zp_authority->supports_version) {
 		?>
 		<br clear="all" />
 		<p class="notebox">
-		<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'),$_zp_authority->getVersion(),$_zp_authority->supports_version); ?>
+		<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'),Zenphoto_Authority::getVersion(),$_zp_authority->supports_version); ?>
 			<br clear="all" />
 			<span class="buttons">
 				<a onclick="launchScript('',['action=migrate_rights','XSRFToken=<?php echo getXSRFToken('migrate_rights')?>']);"><?php echo gettext('Migrate rights');?></a>
@@ -870,11 +870,11 @@ if (zp_loggedin(ADMIN_RIGHTS)) {
 		</p>
 		<br clear="all" />
 		<?php
-	} else if ($_zp_authority->getVersion() > $_zp_authority->preferred_version) {
+	} else if (Zenphoto_Authority::getVersion() > $_zp_authority->preferred_version) {
 		?>
 		<br clear="all" />
 		<p class="notebox">
-		<?php printf(gettext('You may wish to revert the user rights <em>Zenphoto_Authority</em> to version %s for backwards compatibility with prior Zenphoto releases.'),$_zp_authority->getVersion()-1); ?>
+		<?php printf(gettext('You may wish to revert the user rights <em>Zenphoto_Authority</em> to version %s for backwards compatibility with prior Zenphoto releases.'),Zenphoto_Authority::getVersion()-1); ?>
 			<br clear="all" />
 			<span class="buttons">
 				<a onclick="launchScript('',['action=migrate_rights','revert=true','XSRFToken=<?php echo getXSRFToken('migrate_rights')?>']);"><?php echo gettext('Revert rights');?></a>

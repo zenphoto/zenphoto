@@ -241,7 +241,7 @@ class htmlmetatags {
 		}
 		$pagetitle = $pagetitle.getBareGalleryTitle();
 		// get master admin
-		$admin = $_zp_authority->getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
+		$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
 		$author = $admin->getName();
 		$meta = '';
 		if(getOption('htmlmeta_http-equiv-language')) { $meta .= '<meta http-equiv="language" content="'.$locale.'" />'."\n"; }

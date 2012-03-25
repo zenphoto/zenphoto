@@ -71,7 +71,7 @@ class captcha {
 		global $_zp_authority;
 		$key = getOption('zenphoto_captcha_key');
 		if (empty($key)) {
-			$admin = $_zp_authority->getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
+			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
 			if (is_object($admin)) {
 				$key = $admin->getPass();
 			} else {

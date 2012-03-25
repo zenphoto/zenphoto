@@ -4382,13 +4382,7 @@ function printPasswordForm($_password_hint, $_password_showuser=NULL, $_password
 		</p>
 		<?php
 	}
-	$passwordform = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/password_form.php';
-	if (file_exists($passwordform)) {
-		deprecated_function::notify(gettext('printPasswordForm custom theme password forms is deprecated. You should style the form created by the Zenphoto_Authority class (or its derivatives) instead. Use of these forms will prevent alternative credentials implementations from working with a theme.'));
-		include($passwordform);
-	} else {
-		$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);
-	}
+	$_zp_authority->printLoginForm($_password_redirect, false, $_password_showuser, false, $_password_hint);
 	?>
 	</div>
 	<?php

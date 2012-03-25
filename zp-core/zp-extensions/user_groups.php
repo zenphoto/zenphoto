@@ -44,12 +44,12 @@ class user_groups {
 				$oldgroup = $userobj->getGroup();
 				if (empty($groupname)) {
 					if (!empty($oldgroup)) {
-						$group = $_zp_authority->newAdministrator($oldgroup, 0);
+						$group = Zenphoto_Authority::newAdministrator($oldgroup, 0);
 						$userobj->setRights($group->getRights());
 						$userobj->setObjects($group->getObjects());
 					}
 				} else {
-					$group = $_zp_authority->newAdministrator($groupname, 0);
+					$group = Zenphoto_Authority::newAdministrator($groupname, 0);
 					$userobj->setRights($group->getRights());
 					$userobj->setObjects($group->getObjects());
 					if ($group->getName() == 'template') {
@@ -123,7 +123,7 @@ class user_groups {
 				}
 			}
 			$rights = array();
-			foreach ($_zp_authority->getRights() as $rightselement=>$right) {
+			foreach (Zenphoto_Authority::getRights() as $rightselement=>$right) {
 				if ($right['display']) {
 					$rights[] = "'#".$rightselement.'-'.$i."'";
 				}

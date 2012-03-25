@@ -161,7 +161,7 @@ function is_GalleryNewsType() {
  * @return string
  */
 function getAuthor($fullname=false) {
-	global $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_authority;
+	global $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 		if(is_Pages()) {
 			$obj = $_zp_current_zenpage_page;
 		}
@@ -170,7 +170,7 @@ function getAuthor($fullname=false) {
 		}
 	if(is_Pages() || is_News()) {
 		if($fullname) {
-			$admin = $_zp_authority->getAnAdmin(array('`user`=' => $obj->getAuthor(), '`valid`=' => 1));
+			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $obj->getAuthor(), '`valid`=' => 1));
 			if (is_object($admin)) {
 				return $admin->getName();
 			}
@@ -337,16 +337,16 @@ function getNewsTitle() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
 		if(is_NewsType("album") && (
-		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail" || 
-		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail-customcrop" || 
-		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage" || 
-		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage-maxspace" || 
+		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail" ||
+		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail-customcrop" ||
+		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage" ||
+		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage-maxspace" ||
 		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-fullimage")) {
 			if(getOption("zenpage_combinews_sortorder") == 'publishdate') {
 				$date = 'IFNULL(publishdate,date)';
 				$order = 'publishdate';
 			} else {
-				$date = 'date'; 
+				$date = 'date';
 				$order = $date;
 			}
 			$result = query_full_array("SELECT filename FROM ".prefix('images')." AS images WHERE ".$date." LIKE '".$_zp_current_zenpage_news->getDateTime()."%' AND albumid = ".$_zp_current_zenpage_news->getID()." ORDER BY ".$order." DESC");
@@ -1838,13 +1838,13 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular") {
 	$statspages = array();
 	switch($mode) {
 		case "popular":
-			$sortorder = "hitcounter"; 
+			$sortorder = "hitcounter";
 			break;
 		case "mostrated":
-			$sortorder = "total_votes"; 
+			$sortorder = "total_votes";
 			break;
 		case "toprated":
-			$sortorder = "rating"; 
+			$sortorder = "rating";
 			break;
 		case "random":
 			$sortorder = "RAND()";
@@ -1929,7 +1929,7 @@ function getZenpageStatistic($number=10, $option="all",$mode="popular") {
  * @param string $mode "popular" most viewed for pages, news articles and categories
  * 										 "mostrated" for news articles and pages
  * 										 "toprated" for news articles and pages
- * 										 "random" for pages, news articles and categories 
+ * 										 "random" for pages, news articles and categories
  * @param bool $showstats if the value should be shown
  * @param bool $showtype if the type should be shown
  * @param bool $showdate if the date should be shown (news articles and pages only)

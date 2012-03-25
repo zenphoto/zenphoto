@@ -77,7 +77,7 @@ class http_auth {
 	}
 
 	static function check($authorized) {
-		global $_zp_authority, $_zp_current_admin_obj;
+		global $_zp_current_admin_obj;
 		if (!$authorized) {
 			// not logged in via normal Zenphoto handling
 			// PHP-CGI auth fixd
@@ -97,11 +97,11 @@ class http_auth {
 			if (array_key_exists('PHP_AUTH_USER', $_SERVER) && array_key_exists('PHP_AUTH_PW', $_SERVER)) {
 				$user = $_SERVER['PHP_AUTH_USER'];
 				$pass = $_SERVER['PHP_AUTH_PW'];
-				$searchfor = array('`user`=' => $user, '`pass`=' => $_zp_authority->passwordHash($user, $pass), '`valid`=' => 1);
+				$searchfor = array('`user`=' => $user, '`pass`=' => Zenphoto_Authority::passwordHash($user, $pass), '`valid`=' => 1);
 				if (getOption('http_auth_trust')) {
 					unset($searchfor['`pass`=']);
 				}
-				$userobj = $_zp_authority->getAnAdmin($searchfor);
+				$userobj = Zenphoto_Authority::getAnAdmin($searchfor);
 				if ($userobj) {
 					$_zp_current_admin_obj = $userobj;
 					$_zp_current_admin_obj->no_zp_login = true;

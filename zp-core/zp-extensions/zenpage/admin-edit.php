@@ -161,7 +161,7 @@ codeblocktabsJS();
 	?>
 	// ]]> -->
 </script>
-<?php $_zp_authority->printPasswordFormJS(); ?>
+<?php Zenphoto_Authority::printPasswordFormJS(); ?>
 </head>
 <body>
 <?php

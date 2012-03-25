@@ -59,7 +59,7 @@ if (OFFSET_PATH) {
 	}
 
 } else {	//	if the page is cached then handle it early
-	if (count($_zp_authority->getAuthCookies())<=0) {
+	if (count(Zenphoto_Authority::getAuthCookies())<=0) {
 		$_zp_HTML_cache = new static_html_cache();
 		$_zp_HTML_cache->startHTMLCache();
 	}

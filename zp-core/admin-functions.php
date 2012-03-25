@@ -2900,8 +2900,7 @@ function removeParentAlbumNames($album) {
  * @param bit $rights rights of the admin
  */
 function printAdminRightsTable($id, $background, $alterrights, $rights) {
-	global $_zp_authority;
-	$rightslist = sortMultiArray($_zp_authority->getRights(), array('set', 'value'));
+	$rightslist = sortMultiArray(Zenphoto_Authority::getRights(), array('set', 'value'));
 	?>
 	<div class="box-rights">
 		<strong><?php echo gettext("Rights"); ?>:</strong>
@@ -3062,13 +3061,12 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
  * @return bit
  */
 function processRights($i) {
-	global $_zp_authority;
 	if (isset($_POST[$i.'-confirmed'])) {
 		$rights = NO_RIGHTS;
 	} else {
 		$rights = 0;
 	}
-	foreach ($_zp_authority->getRights() as $name=>$right) {
+	foreach (Zenphoto_Authority::getRights() as $name=>$right) {
 		if (isset($_POST[$i.'-'.$name])) {
 			$rights = $rights | $right['value'] | NO_RIGHTS;
 		}
@@ -4130,7 +4128,6 @@ function admin_showupdate($tab, $subtab) {
  * @param object $object
  */
 function processCredentials($object, $suffix='') {
-	global $_zp_authority;
 	$notify = '';
 	if (isset($_POST['password_enabled'.$suffix])) {
 		if (is_object($object)) {
@@ -4166,9 +4163,9 @@ function processCredentials($object, $suffix='') {
 						setOption($object.'_password', NULL);			}			}
 			} else {
 				if (is_object($object)) {
-					$object->setPassword($_zp_authority->passwordHash($newuser, $pwd));
+					$object->setPassword(Zenphoto_Authority::passwordHash($newuser, $pwd));
 				} else {
-					setOption($object.'_password', $_zp_authority->passwordHash($newuser, $pwd));			}			}
+					setOption($object.'_password', Zenphoto_Authority::passwordHash($newuser, $pwd));			}			}
 		} else {
 			if (empty($fail)) {
 				$notify = '?mismatch';

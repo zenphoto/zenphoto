@@ -185,8 +185,7 @@ class federated_logon {
 	 * @param $redirect
 	 */
 	static function Credentials($user, $email, $name, $redirect) {
-		global $_zp_authority;
-		$userobj = $_zp_authority->getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 		$more = false;
 		if ($userobj) {	//	update if changed
 			$save = false;
@@ -203,13 +202,13 @@ class federated_logon {
 			}
 		} else {	//	User does not exist, create him
 			$groupname = getOption('federated_login_group');
-			$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
+			$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
 			if ($groupobj) {
 				$group = NULL;
 				if ($groupobj->getName() != 'template') {
 					$group = $groupname;
 				}
-				$userobj = $_zp_authority->newAdministrator('');
+				$userobj = Zenphoto_Authority::newAdministrator('');
 				$userobj->transient = false;
 				$userobj->setUser($user);
 				$credentials = array('federated','user','email');
@@ -227,9 +226,9 @@ class federated_logon {
 						$userobj->createPrimealbum();
 					}
 				} else {
-					$groupobj = $_zp_authority->getAnAdmin(array('`user`='=>'federated_verify','`valid`='=>0));
+					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`='=>'federated_verify','`valid`='=>0));
 					if (empty($verify_group)) {
-						$groupobj = $_zp_authority->newAdministrator('federated_verify',0);
+						$groupobj = Zenphoto_Authority::newAdministrator('federated_verify',0);
 						$groupobj->setName('group');
 						$groupobj->setRights(NO_RIGHTS);
 						$groupobj->save();
@@ -246,7 +245,7 @@ class federated_logon {
 		}
 		if (!$more) {
 			zp_apply_filter('federated_login_attempt', true, $user);
-			$_zp_authority->logUser($userobj);
+			Zenphoto_Authority::logUser($userobj);
 			if ($redirect) {
 				header("Location: ".$redirect);
 			}
@@ -323,15 +322,14 @@ class federated_logon {
 	 * Processes the verification POST tickets
 	 */
 	static function verify($obj) {
-		global $_zp_authority;
 		//process any verifications posted
 		if (isset($_GET['verify_federated_user'])) {
 			$params = unserialize(pack("H*", trim(sanitize($_GET['verify_federated_user']),'.')));
 			if ((time() - $params['date']) < 2592000) {
-				$userobj = $_zp_authority->getAnAdmin(array('`user`='=>$params['user'], '`email`='=>$params['email'], '`valid`>'=>0));
+				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`='=>$params['user'], '`email`='=>$params['email'], '`valid`>'=>0));
 				if ($userobj) {
 					$groupname = getOption('federated_login_group');
-					$groupobj = $_zp_authority->getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
+					$groupobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $groupname, '`valid`=' => 0));
 					if ($groupobj) {
 						$userobj->setRights($groupobj->getRights());
 						$userobj->setGroup($groupname);
@@ -346,7 +344,7 @@ class federated_logon {
 						zp_mail(gettext('Zenphoto Gallery registration'),
 						sprintf(gettext('%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s.'),$userobj->getName(), $userobj->getUser(), $userobj->getEmail()));
 					}
-					$_zp_authority->logUser($userobj);
+					Zenphoto_Authority::logUser($userobj);
 					header("Location: ".FULLWEBPATH.'/' . ZENFOLDER . '/admin.php');
 					exitZP();
 				}

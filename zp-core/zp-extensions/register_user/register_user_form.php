@@ -6,7 +6,7 @@
  * @subpackage usermanagement
  */
 
-$_zp_authority->printPasswordFormJS();
+Zenphoto_Authority::printPasswordFormJS();
 $action = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']));
 ?>
 <div id="registration_form">

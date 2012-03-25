@@ -1734,7 +1734,7 @@ function restore_context() {
  * @param string $authType override of athorization type
  */
 function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) {
-	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_authority, $_zp_current_zenpage_page, $_zp_gallery;
+	global $_zp_loggedin, $_zp_login_error, $_zp_current_album, $_zp_current_zenpage_page, $_zp_gallery;
 	if (empty($authType)) { // not supplied by caller
 		$check_auth = '';
 		if (isset($_GET['z']) && $_GET['p'] == 'full-image' || isset($_GET['p']) && $_GET['p'] == '*full-image') {
@@ -1792,7 +1792,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 			$post_user = '';
 		}
 		$post_pass = sanitize($_POST['pass']);
-		$auth = $_zp_authority->passwordHash($post_user, $post_pass);
+		$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass);
 		if (DEBUG_LOGIN) debugLog("zp_handle_password: \$post_user=$post_user; \$post_pass=$post_pass; \$auth=$auth; ");
 		$redirect_to = sanitize($_POST['redirect'],0);
 		if (substr($redirect_to,0,1)=='/') {
@@ -2077,7 +2077,7 @@ function XSRFToken($action) {
  */
 function cron_starter($script, $params, $inline=false) {
 	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj, $_zp_null_account;
-	$admin = $_zp_authority->getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
+	$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
 
 	if ($inline) {
 		$_zp_null_account = NULL;

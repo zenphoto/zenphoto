@@ -15,7 +15,7 @@ if (file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/alt/lib-auth.php')) { // loa
 	$_zp_authority = new Zenphoto_Authority();
 }
 
-foreach ($_zp_authority->getRights() as $key=>$right) {
+foreach (Zenphoto_Authority::getRights() as $key=>$right) {
 	define($key,$right['value']);
 }
 
@@ -55,7 +55,7 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 		// https: set the 'zenphoto_ssl' marker for redirection
 		zp_setCookie("zenphoto_ssl", "needed");
 	}
-	$_zp_loggedin = $_zp_authority->handleLogon();
+	$_zp_loggedin = Zenphoto_Authority::handleLogon();
 	if ($_zp_loggedin) {
 		if (isset($_POST['redirect'])) {
 			$redirect = sanitize_path($_POST['redirect']);
@@ -85,7 +85,7 @@ if (!$_zp_loggedin) {	//	Clear the ssl cookie
 }
 // Handle a logout action.
 if (isset($_REQUEST['logout'])) {
-	$_zp_authority->handleLogout();
+	Zenphoto_Authority::handleLogout();
 	zp_clearCookie("zenphoto_ssl");
 	$redirect = '';
 	if (isset($_GET['p'])) { $redirect .= "&p=" . sanitize($_GET['p']); }

@@ -230,7 +230,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		';
 	}
 } else if (isset($_REQUEST['restore']) && db_connect()) {
-	$oldlibauth = $_zp_authority->getVersion();
+	$oldlibauth = Zenphoto_Authority::getVersion();
 	$success = -1;
 	if (isset($_REQUEST['backupfile'])) {
 		$file_version = 0;
@@ -406,7 +406,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 	}
 	setOption('zenphoto_install', $signaure);
 	setOption('license_accepted', ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']');
-	if ($oldlibauth != $_zp_authority->getVersion()) {
+	if ($oldlibauth != Zenphoto_Authority::getVersion()) {
 		if (!$_zp_authority->migrateAuth($oldlibauth)) {
 			$messages .= '
 			<div class="errorbox fade-message">

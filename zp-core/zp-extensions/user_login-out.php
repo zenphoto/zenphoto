@@ -68,7 +68,7 @@ if (isset($_GET['page'])) { $__redirect['page'] = sanitize($_GET['page']); }
 if (in_context(ZP_INDEX)) {
 	if (isset($_GET['userlog'])) { // process the logout.
 		if ($_GET['userlog'] == 0) {
-			$_zp_authority->handleLogout();
+			Zenphoto_Authority::handleLogout();
 			if (empty($__redirect)) {
 				$params = '';
 			} else {
@@ -96,7 +96,7 @@ if (in_context(ZP_INDEX)) {
  * @param bool $show_user set to true to force the USER field on the form.
  */
 function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logouttext=NULL, $show_user=NULL) {
-	global $__redirect, $_zp_authority, $_zp_current_admin_obj,	$_zp_login_error;
+	global $__redirect, $_zp_current_admin_obj,	$_zp_login_error;
 	if (is_object($_zp_current_admin_obj)) {
 		if ($_zp_current_admin_obj->no_zp_login)  {
 			return;
@@ -107,7 +107,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 		$showLoginForm = getOption('user_logout_login_form');
 	}
 	$logintext = gettext('Login');
-	$cookies = $_zp_authority->getAuthCookies();
+	$cookies = Zenphoto_Authority::getAuthCookies();
 	if (empty($cookies)) {
 		if ($showLoginForm) {
 			if ($showLoginForm > 1) {

@@ -72,11 +72,10 @@ class ZenpageCategory extends ZenpageRoot {
 	 * @param string $pwd the cleartext password
 	 */
 	function setPassword($pwd) {
-		global $_zp_authority;
 		if (empty($pwd)) {
 			$this->set('password', "");
 		} else {
-			$this->set('password', $_zp_authority->passwordHash($this->get('user'), $pwd));
+			$this->set('password', Zenphoto_Authority::passwordHash($this->get('user'), $pwd));
 		}
 	}
 

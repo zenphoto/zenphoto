@@ -27,10 +27,10 @@ if (isset($_GET['action'])) {
 	$themeswitch = false;
 	if ($action == 'deletegroup') {
 		$groupname = trim(sanitize($_GET['group'],0));
-		$groupobj = $_zp_authority->newAdministrator($groupname, 0);
+		$groupobj = Zenphoto_Authority::newAdministrator($groupname, 0);
 		$groupobj->remove();
 		// clear out existing user assignments
-		$_zp_authority->updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
+		Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
 		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&deleted');
 		exitZP();
 	} else if ($action == 'savegroups') {
@@ -38,10 +38,10 @@ if (isset($_GET['action'])) {
 			$groupname = trim(sanitize($_POST[$i.'-group'],0));
 			if (!empty($groupname)) {
 				$rights = 0;
-				$group = $_zp_authority->newAdministrator($groupname, 0);
+				$group = Zenphoto_Authority::newAdministrator($groupname, 0);
 				if (isset($_POST[$i.'-initgroup']) && !empty($_POST[$i.'-initgroup'])) {
 					$initgroupname = trim(sanitize($_POST[$i.'-initgroup'],3));
-					$initgroup = $_zp_authority->newAdministrator($initgroupname, 0);
+					$initgroup = Zenphoto_Authority::newAdministrator($initgroupname, 0);
 					$rights = $initgroup->getRights();
 					$group->setObjects(processManagedObjects($group->getID(),$rights));
 					$group->setRights(NO_RIGHTS | $rights);
@@ -59,21 +59,21 @@ if (isset($_GET['action'])) {
 					//have to update any users who have this group designate.
 					foreach ($admins as $admin) {
 						if ($admin['valid'] && $admin['group']===$groupname) {
-							$user = $_zp_authority->newAdministrator($admin['user'], $admin['valid']);
+							$user = Zenphoto_Authority::newAdministrator($admin['user'], $admin['valid']);
 							$user->setRights($group->getRights());
 							$user->setObjects($group->getObjects());
 							$user->save();
 						}
 					}
 					//user assignments: first clear out existing ones
-					$_zp_authority->updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
+					Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
 					//then add the ones marked
 					$target = 'user_'.$i.'-';
 					foreach ($_POST as $item=>$username) {
 						$item = sanitize(postIndexDecode($item));
 						if (strpos($item, $target)!==false) {
 							$username = substr($item, strlen($target));
-							$user = $_zp_authority->getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
+							$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 							$user->setRights($group->getRights());
 							$user->setObjects($group->getObjects());
 							$user->setGroup($groupname);
@@ -88,9 +88,9 @@ if (isset($_GET['action'])) {
 	} else if ($action == 'saveauserassignments') {
 		for ($i = 0; $i < $_POST['totalusers']; $i++) {
 			$username = trim(sanitize($_POST[$i.'-user'],3));
-			$user = $_zp_authority->getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
+			$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $username, '`valid`>=' => 1));
 			$groupname = trim(sanitize($_POST[$i.'-group'],3));
-			$group = $_zp_authority->newAdministrator($groupname, 0);
+			$group = Zenphoto_Authority::newAdministrator($groupname, 0);
 			if (empty($groupname)) {
 				$user->setGroup(NULL);
 			} else {
