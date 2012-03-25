@@ -219,15 +219,15 @@ function layoutSelector($html, $obj, $prefix='') {
  * @param object $obj
  */
 function layoutSelector_album($html, $obj, $prefix) {
-	if(!getOption('multiple_layouts_albums')) {
-		return false;
+	if(getOption('multiple_layouts_albums')) {
+		$newhtml = getLayoutSelector($obj, 'multiple_layouts_albums', '<hr /><p>'.gettext('Select album layout:').'</p>',$prefix);
+		$newhtml .= getLayoutSelector($obj, 'multiple_layouts_albums_images', '<p>'.gettext('Select default album image layout:').'</p>',$prefix,true);
+		if(!$obj->isDynamic()) {
+			$newhtml .= '<br /><input type="checkbox" id="layout_selector_resetimagelayouts" name="layout_selector_resetimagelayouts" /><label for="layout_selector_resetimagelayouts">'.gettext('Reset individual image layouts').'</label>';
+		}
+		return $html.$newhtml;
 	}
-	$newhtml = getLayoutSelector($obj, 'multiple_layouts_albums', '<hr /><p>'.gettext('Select album layout:').'</p>',$prefix);
-	$newhtml .= getLayoutSelector($obj, 'multiple_layouts_albums_images', '<p>'.gettext('Select default album image layout:').'</p>',$prefix,true);
-	if(!$obj->isDynamic()) {
-		$newhtml .= '<br /><input type="checkbox" id="layout_selector_resetimagelayouts" name="layout_selector_resetimagelayouts" /><label for="layout_selector_resetimagelayouts">'.gettext('Reset individual image layouts').'</label>';
-	}
-	return $html.$newhtml;
+	return false;
 }
 
 /**

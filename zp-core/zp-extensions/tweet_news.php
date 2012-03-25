@@ -470,7 +470,7 @@ class tweet {
 	 */
 	static function tweeter($before, $object, $prefix=NULL) {
 			$output = '<p class="checkbox">'."\n".'<label>'."\n".'<input type="checkbox" name="tweet_me'.$prefix.'" id="tweet_me'.$prefix.'" value="1" /> <img src="'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/tweet_news/twitter_newbird_blue.png" /> '.gettext('Tweet me')."\n</label>\n</p>\n";
-			return html_encode($before).$output;;
+			return $before.$output;;
 	}
 
 	/**
