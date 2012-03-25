@@ -39,7 +39,7 @@ class cloneZenphoto {
 											'formname'=>'cloneZenphoto',
 											'action'=>PLUGIN_FOLDER.'/cloneZenphoto/cloneTab.php',
 											'icon'=>'images/folder.png',
-											'title'=>'',
+											'title'=>gettext('Create a new installation using links to the current install files.'),
 											'alt'=>gettext('Clone'),
 											'hidden'=>'',
 											'rights'=> ADMIN_RIGHTS

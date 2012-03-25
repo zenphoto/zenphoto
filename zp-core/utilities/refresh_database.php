@@ -7,8 +7,8 @@ $buttonlist[] = array(
 								'formname'=>'refresh_database.php',
 								'action'=>WEBPATH.'/'.ZENFOLDER.'/admin-refresh-metadata.php?prune',
 								'icon'=>'images/refresh.png',
-								'title'=>'',
-								'alt'=>gettext('Refresh the Database'),
+								'alt'=>'',
+								'title'=>gettext('Perform a garbage collection of the Database'),
 								'hidden'=>'<input type="hidden" name="prune" value="true" />',
 								'rights'=> ADMIN_RIGHTS
 );

@@ -205,8 +205,8 @@ class hitcounter {
 											'formname'=>'reset_all_hitcounters.php',
 											'action'=>PLUGIN_FOLDER.'/hitcounter.php?action=reset_all_hitcounters',
 											'icon'=>'images/reset.png',
-											'title'=>'',
-											'alt'=>gettext('Reset hitcounters'),
+											'alt'=>'',
+											'title'=>gettext('Reset all hitcounters to zero'),
 											'hidden'=>'<input type="hidden" name="action" value="reset_all_hitcounters" />',
 											'rights'=> ADMIN_RIGHTS
 											);

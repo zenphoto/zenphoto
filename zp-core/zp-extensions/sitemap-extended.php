@@ -189,7 +189,7 @@ class sitemap {
 									'formname'=>'sitemap_button',
 									'action'=>PLUGIN_FOLDER.'/sitemap-extended/sitemap-extended-admin.php',
 									'icon'=>'images/cache.png',
-									'title'=>gettext('Sitemap tools.'),
+									'title'=>gettext('Generate or purge sitemap cache files.'),
 									'alt'=>'',
 									'hidden'=> '',
 									'rights'=> ADMIN_RIGHTS
