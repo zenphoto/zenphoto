@@ -226,7 +226,7 @@ function layoutSelector_album($html, $obj, $prefix) {
 		}
 		return $html.$albumhtml.$imagehtml;
 	}
-	return false;
+	return $html;
 }
 
 /**
