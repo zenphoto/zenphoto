@@ -662,7 +662,7 @@ function formatData($type,$tag,$intel,$data) {
 
 function formatExposure($data) {
 	if (strpos($data,'/')===false) {
-		if ($data > 1) {
+		if ($data >= 1) {
 			return round($data, 2).' '.gettext('sec');
 		} else {
 			$n=0; $d=0;
