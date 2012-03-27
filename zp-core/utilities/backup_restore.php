@@ -31,7 +31,7 @@ $buttonlist[] = array(
 								'rights'=> ADMIN_RIGHTS
 								);
 
-if ($_zp_current_admin_obj->getID()) {
+if (!$_zp_current_admin_obj || $_zp_current_admin_obj->getID()) {
 	$rights = NULL;
 } else {
 	$rights = USER_RIGHTS;
