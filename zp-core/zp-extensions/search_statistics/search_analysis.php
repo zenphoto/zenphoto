@@ -19,7 +19,7 @@ if (isset($_GET['reset'])) {
 	exitZP();
 }
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Analysis')=>'');
-printAdminHeader(gettext('overview'),gettext('Analysis'));
+printAdminHeader('overview','analysis');
 echo '</head>';
 
 $sql = 'SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="search_statistics"';

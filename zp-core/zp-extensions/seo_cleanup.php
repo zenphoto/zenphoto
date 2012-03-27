@@ -116,7 +116,7 @@ if (defined('OFFSET_PATH')) {
 	}
 
 	$zenphoto_tabs['overview']['subtabs']=array(gettext('SEO cleaner')=>'');
-	printAdminHeader(gettext('overview'),gettext('SEO cleaner'));
+	printAdminHeader('overview','SEO cleaner');
 
 	if (isset($_GET['todo'])) {
 		$count = sanitize_numeric($_GET['imagecount']);

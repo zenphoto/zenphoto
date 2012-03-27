@@ -36,20 +36,24 @@ $sortby = array(gettext('Filename') => 'filename',
 								);
 
 // setup sub-tab arrays for use in dropdown
-if ($_zp_loggedin & ADMIN_RIGHTS && $_zp_current_admin_obj->getID()) {
-	$_zp_loggedin = ALL_RIGHTS;
+if ($_zp_loggedin &&$_zp_current_admin_obj->reset) {
+	$_zp_loggedin = USER_RIGHTS;
 } else {
-	if ($_zp_loggedin & MANAGE_ALL_ALBUM_RIGHTS) {
-		// these are lock-step linked!
-		$_zp_loggedin = $_zp_loggedin | ALBUM_RIGHTS;
-	}
-	if ($_zp_loggedin & MANAGE_ALL_NEWS_RIGHTS) {
-		// these are lock-step linked!
-		$_zp_loggedin = $_zp_loggedin | ZENPAGE_NEWS_RIGHTS;
-	}
-	if ($_zp_loggedin & MANAGE_ALL_PAGES_RIGHTS) {
-		// these are lock-step linked!
-		$_zp_loggedin = $_zp_loggedin | ZENPAGE_PAGES_RIGHTS;
+	if ($_zp_loggedin & ADMIN_RIGHTS) {
+		$_zp_loggedin = ALL_RIGHTS;
+	} else {
+		if ($_zp_loggedin & MANAGE_ALL_ALBUM_RIGHTS) {
+			// these are lock-step linked!
+			$_zp_loggedin = $_zp_loggedin | ALBUM_RIGHTS;
+		}
+		if ($_zp_loggedin & MANAGE_ALL_NEWS_RIGHTS) {
+			// these are lock-step linked!
+			$_zp_loggedin = $_zp_loggedin | ZENPAGE_NEWS_RIGHTS;
+		}
+		if ($_zp_loggedin & MANAGE_ALL_PAGES_RIGHTS) {
+			// these are lock-step linked!
+			$_zp_loggedin = $_zp_loggedin | ZENPAGE_PAGES_RIGHTS;
+		}
 	}
 }
 
@@ -170,7 +174,7 @@ if ($_zp_loggedin & ADMIN_RIGHTS && !$_zp_current_admin_obj->reset) {
 																 'subtabs'=>$subtabs,
 																 'default'=>$default);
 }
-if ($_zp_loggedin && $_zp_current_admin_obj->reset) {
+if ($_zp_loggedin && !$_zp_current_admin_obj->getID()) {
 	$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
 	if (count($filelist) > 0) {
 		$zenphoto_tabs['restore'] = array('text'=>gettext("Restore"),

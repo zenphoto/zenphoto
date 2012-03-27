@@ -12,7 +12,7 @@ require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 admin_securityChecks(NULL, currentRelativeURL());
 
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Clone')=>'');
-printAdminHeader(gettext('overview'),gettext('Clone'));
+printAdminHeader('overview','clone');
 
 ?>
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>

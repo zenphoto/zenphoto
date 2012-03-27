@@ -57,7 +57,7 @@ if (defined('OFFSET_PATH')) {
 	$admins = $_zp_authority->getAdministrators();
 	$zenphoto_tabs['overview']['subtabs']=array(gettext('Mailing')=>'');
 
-	printAdminHeader(gettext('overview'),gettext('Mailing'));
+	printAdminHeader('overview','Mailing');
 	?>
 	</head>
 	<body>

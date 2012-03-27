@@ -23,7 +23,7 @@ if (isset($_GET['action'])) {
 }
 
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Deprecated')=>'');
-printAdminHeader(gettext('overview'),gettext('Deprecated'));
+printAdminHeader('overview','deprecated');
 ?>
 <?php
 echo '</head>'."\n";

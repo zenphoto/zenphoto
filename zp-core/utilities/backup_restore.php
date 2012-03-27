@@ -31,10 +31,10 @@ $buttonlist[] = array(
 								'rights'=> ADMIN_RIGHTS
 								);
 
-if ($_zp_current_admin_obj->reset) {
-	$rights = USER_RIGHTS;
-} else {
+if ($_zp_current_admin_obj->getID()) {
 	$rights = NULL;
+} else {
+	$rights = USER_RIGHTS;
 }
 admin_securityChecks($rights, currentRelativeURL());
 
@@ -125,10 +125,10 @@ function writeHeader($type, $value) {
 }
 
 if ($_zp_current_admin_obj->reset) {
-	printAdminHeader(gettext('Restore'));
+	printAdminHeader('restore');
 } else {
 	$zenphoto_tabs['overview']['subtabs']=array(gettext('Backup')=>'');
-	printAdminHeader(gettext('overview'),gettext('Backup'));
+	printAdminHeader('overview','backup');
 }
 
 echo '</head>';

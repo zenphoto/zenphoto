@@ -35,7 +35,7 @@ $_zp_gallery->garbageCollect();
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Statistics')=>'');
-printAdminHeader(gettext('overview'),gettext('Statistics'));
+printAdminHeader('overview','statistics');
 ?>
 <link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
 <?php

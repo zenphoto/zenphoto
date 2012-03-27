@@ -21,7 +21,7 @@ if (!zp_loggedin(OVERVIEW_RIGHTS)) { // prevent nefarious access to this page.
 
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Sitemap')=>'');
-printAdminHeader(gettext('overview'),gettext('Sitemap'));
+printAdminHeader('overview','sitemap');
 if(isset($_GET['generatesitemaps'])) {
 	$sitemap_number = sanitize_numeric($_GET['number']);
 	$sitemap_index = getSitemapIndexLinks();
@@ -133,7 +133,7 @@ printLogoAndLinks();
 		}
 		echo '<ul>';
 		generateSitemapCacheFile('sitemap-zenphoto-index',$sitemap_index);
-	  generateSitemapCacheFile('sitemap-zenphoto-albums'.$numberAppend,$sitemap_albums);
+		generateSitemapCacheFile('sitemap-zenphoto-albums'.$numberAppend,$sitemap_albums);
 		generateSitemapCacheFile('sitemap-zenphoto-images'.$numberAppend,$sitemap_images);
 		if(getOption('zp_plugin_zenpage')) {
 			generateSitemapCacheFile('sitemap-zenpage-newsindex',$sitemap_newsindex);

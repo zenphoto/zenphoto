@@ -546,6 +546,7 @@ function languageChange(id,lang) {
 	if (!empty($newuser)) {
 		$userlist[-1] = $newuser;
 	}
+	$ismaster = false;
 	foreach($userlist as $key=>$user) {
 		$local_alterrights = $alterrights;
 		$userid = $user['user'];
@@ -569,20 +570,25 @@ function languageChange(id,lang) {
 				$userobj->setRights($userobj->getRights() | ADMIN_RIGHTS);
 				$ismaster = true;
 			}
-		} else {
-			$ismaster = false;
 		}
 		if ($background) {
 			$background = "";
 		} else {
 			$background = "background-color:#ECF1F2;";
 		}
-
+		if ($_zp_current_admin_obj->reset) {
+			$custom_row = NULL;
+		} else {
+			?>
+			<!-- apply alterrights filter -->
+			<?php
+			$local_alterrights = zp_apply_filter('admin_alterrights', $local_alterrights, $userobj);
+			?>
+			<!-- apply admin_custom_data filter -->
+			<?php
+			$custom_row = zp_apply_filter('edit_admin_custom_data', '', $userobj, $id, $background, $current, $local_alterrights);
+		}
 		?>
-		<!-- apply alterrights filter -->
-		<?php $local_alterrights = zp_apply_filter('admin_alterrights', $local_alterrights, $userobj); ?>
-		<!-- apply admin_custom_data filter -->
-		<?php $custom_row = zp_apply_filter('edit_admin_custom_data', '', $userobj, $id, $background, $current, $local_alterrights); ?>
 		<!-- finished with filters -->
 		<tr>
 			<td colspan="2" style="margin: 0pt; padding: 0pt;">
@@ -684,7 +690,7 @@ function languageChange(id,lang) {
 			</tr>
 			<?php
 			$no_change = array();
-			if (!zp_loggedin(ADMIN_RIGHTS)) {
+			if (!zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset) {
 				$no_change = $userobj->getCredentials();
 				?>
 				<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">

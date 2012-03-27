@@ -206,10 +206,10 @@ if (defined('OFFSET_PATH')) {
 				}
 				$post['title']= $_zp_UTF8->convert($post['title']);
 				$titlelink = $post['titlelink'];
-			 	$post['content'] = $_zp_UTF8->convert($post['content']);
-			 	if(getcheckboxState('convertlinefeeds')) {
-			 		$post['content'] = nl2br($post['content']);
-			 	}
+				$post['content'] = $_zp_UTF8->convert($post['content']);
+				if(getcheckboxState('convertlinefeeds')) {
+					$post['content'] = nl2br($post['content']);
+				}
 				$post['date']  = $post['date'];
 				$post['lastchange'] = $post['lastchange'];
 				$post['type'] = $post['type'];
@@ -355,7 +355,7 @@ if (defined('OFFSET_PATH')) {
 
 	} // if db data set
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Wordpress')=>'');
-	printAdminHeader(gettext('overview'),gettext('Wordpress'));
+	printAdminHeader('overview','wordpress');
 	if (!empty($metaURL) && $postcount < $posttotalcount) {
 		?>
 		<meta http-equiv="refresh" content="1; url=<?php  echo $metaURL; ?>" />

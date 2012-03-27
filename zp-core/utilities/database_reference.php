@@ -31,7 +31,7 @@ if(isset($_POST['dbname']) || isset($_POST['dbuser']) || isset($_POST['dbpass'])
 
 $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Database')=>'');
-printAdminHeader(gettext('overview'),gettext('Database'));
+printAdminHeader('overview','Database');
 ?>
 <link rel="stylesheet" href="../admin-statistics.css" type="text/css" media="screen" />
 <style>

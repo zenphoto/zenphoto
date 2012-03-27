@@ -34,7 +34,7 @@ $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Thumbs')=>'');
 
-printAdminHeader(gettext('overview'),gettext('Thumbs'));
+printAdminHeader('overview','thumbs');
 echo '</head>';
 ?>
 
