@@ -982,17 +982,18 @@ $alb = removeParentAlbumNames($album);
 				<input type="hidden" name="<?php echo $currentimage; ?>-filename"	value="<?php echo $image->filename; ?>" />
 				<table style="border:none" class="formlayout" id="image-<?php echo $currentimage; ?>">
 					<tr>
-						<td valign="top" width="150" rowspan="17">
-
-						<a <?php echo $placemark; ?>href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>"
-										title="<?php printf(gettext('crop %s'), $image->filename); ?>"  >
-							<img
-								id="thumb_img-<?php echo $currentimage; ?>"
-								src="<?php echo $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1); ?>"
-								alt="<?php printf(gettext('crop %s'), $image->filename); ?>"
-								title="<?php printf(gettext('crop %s'), $image->filename); ?>"
-								/>
-						</a>
+						<td valign="top" rowspan="17" style="border-bottom:none;">
+						<div style="width: 135px;">
+							<a <?php echo $placemark; ?>href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>"
+								title="<?php printf(gettext('crop %s'), $image->filename); ?>">
+								<img
+									id="thumb_img-<?php echo $currentimage; ?>"
+									src="<?php echo $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1); ?>"
+									alt="<?php printf(gettext('crop %s'), $image->filename); ?>"
+									title="<?php printf(gettext('crop %s'), $image->filename); ?>"
+									/>
+							</a>
+						</div>
 						<?php if(isImagePhoto($image)) { ?>
 							<p class="buttons"><a href="<?php echo pathurlencode($image->getFullImageURL()); ?>" class="colorbox"><img src="images/magnify.png" alt="" /><strong><?php echo gettext('Zoom'); ?></strong></a></p><br style="clear: both" />
 						<?php } ?>
@@ -1014,8 +1015,8 @@ $alb = removeParentAlbumNames($album);
 						}
 						?>
 						</td>
-						<td align="left" valign="top" width="100"><?php echo gettext("Owner:"); ?></td>
-						<td>
+						<td align="left" valign="top"><div style="width:105px;"><?php echo gettext("Owner:"); ?></div></td>
+						<td style="width:100%;">
 							<?php
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
@@ -1028,7 +1029,7 @@ $alb = removeParentAlbumNames($album);
 							}
 							?>
 						</td>
-						<td style="padding-left: 1em; text-align: left;" rowspan="14" valign="top">
+						<td style="padding-left: 1em; text-align: left; border-bottom:none;" rowspan="14" valign="top">
 						<h2 class="h2_bordered_edit"><?php echo gettext("General"); ?></h2>
 							<div class="box-edit">
 								<label class="checkboxlabel">
@@ -1236,12 +1237,12 @@ $alb = removeParentAlbumNames($album);
 						</div>
 
 						<h2 class="h2_bordered_edit imageextrainfo" style="display: none"><?php echo gettext("Tags"); ?></h2>
-						<div class="box-edit-unpadded imageextrainfo" style="display: none">
+						<div class="box-edit-unpadded imageextrainfo" style="display: none;width: 19.6em;">
 							<?php	tagSelector($image, 'tags_'.$currentimage.'-', false, $tagsort);	?>
 						</div>
 
 						</td>
-						<td>
+						<td class="bulk_checkbox">
 							<div class="page-list_icon">
 								<input class="checkbox" type="checkbox" name="ids[]" value="<?php echo $image->getFileName(); ?>" onclick="triggerAllBox(this.form, 'ids[]', this.form.allbox);" />
 							</div>
@@ -1249,12 +1250,12 @@ $alb = removeParentAlbumNames($album);
 					</tr>
 					<tr>
 						<td align="left" valign="top" width="100"><?php echo gettext("Title:"); ?></td>
-						<td><?php print_language_string_list($image->get('title'), $currentimage.'-title'); ?>
+						<td><?php print_language_string_list($image->get('title'), $currentimage.'-title', false, NULL, '', '100%'); ?>
 					</tr>
 
 					<tr>
 						<td align="left" valign="top"><?php echo gettext("Description:"); ?></td>
-						<td><?php print_language_string_list($image->get('desc'), $currentimage.'-desc', true, NULL, 'texteditor'); ?></td>
+						<td><?php print_language_string_list($image->get('desc'), $currentimage.'-desc', true, NULL, 'texteditor', '100%'); ?></td>
 					</tr>
 
 
@@ -1306,7 +1307,7 @@ $alb = removeParentAlbumNames($album);
 						?>
 						<tr>
 							<td valign="top"><?php echo gettext("Custom data:"); ?></td>
-							<td><?php print_language_string_list($image->get('custom_data'), $currentimage.'-custom_data', true,NULL,'texteditor_imagecustomdata'); ?></td>
+							<td><?php print_language_string_list($image->get('custom_data'), $currentimage.'-custom_data', true,NULL,'texteditor_imagecustomdata', '100%'); ?></td>
 						</tr>
 						<?php
 						} else {
@@ -1316,37 +1317,37 @@ $alb = removeParentAlbumNames($album);
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("Location:"); ?></td>
-						<td><?php print_language_string_list($image->get('location'), $currentimage.'-location'); ?>
+						<td><?php print_language_string_list($image->get('location'), $currentimage.'-location', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("City:"); ?></td>
-						<td><?php print_language_string_list($image->get('city'), $currentimage.'-city'); ?>
+						<td><?php print_language_string_list($image->get('city'), $currentimage.'-city', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("State:"); ?></td>
-						<td><?php print_language_string_list($image->get('state'), $currentimage.'-state'); ?>
+						<td><?php print_language_string_list($image->get('state'), $currentimage.'-state', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("Country:"); ?></td>
-						<td><?php print_language_string_list($image->get('country'), $currentimage.'-country'); ?>
+						<td><?php print_language_string_list($image->get('country'), $currentimage.'-country', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("Credit:"); ?></td>
-						<td><?php print_language_string_list($image->get('credit'), $currentimage.'-credit'); ?>
+						<td><?php print_language_string_list($image->get('credit'), $currentimage.'-credit', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("Copyright:"); ?></td>
-						<td><?php print_language_string_list($image->get('copyright'), $currentimage.'-copyright'); ?>
+						<td><?php print_language_string_list($image->get('copyright'), $currentimage.'-copyright', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 					<?php
@@ -1394,11 +1395,11 @@ $alb = removeParentAlbumNames($album);
 					}
 					?>
 					<tr>
-						<td colspan="2">
-						<span style="display: block" class="imageextrashow">
-						<a href="javascript:toggleExtraInfo('<?php echo $currentimage;?>', 'image', true);"><?php echo gettext('show more fields');?></a></span>
-						<span style="display: none" class="imageextrahide">
-						<a href="javascript:toggleExtraInfo('<?php echo $currentimage;?>', 'image', false);"><?php echo gettext('show fewer fields');?></a></span>
+						<td colspan="2" style="border-bottom:none;">
+							<span style="display: block" class="imageextrashow">
+							<a href="javascript:toggleExtraInfo('<?php echo $currentimage;?>', 'image', true);"><?php echo gettext('show more fields');?></a></span>
+							<span style="display: none" class="imageextrahide">
+							<a href="javascript:toggleExtraInfo('<?php echo $currentimage;?>', 'image', false);"><?php echo gettext('show fewer fields');?></a></span>
 						</td>
 					</tr>
 

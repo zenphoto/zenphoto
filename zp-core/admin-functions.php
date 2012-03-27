@@ -2445,9 +2445,17 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 			$dbstring = array_shift($strings);
 		}
 		if ($textbox) {
-			echo '<textarea name="'.$name.'_'.$locale.'"'.$edit.' cols="'.$wide.'"	rows="'.$rows.'">'.html_encode($dbstring).'</textarea>';
+			if ($wide == '100%') {
+				echo '<textarea name="'.$name.'_'.$locale.'"'.$edit.' style="width:100%;"	rows="'.$rows.'">'.html_encode($dbstring).'</textarea>';
+			} else {
+				echo '<textarea name="'.$name.'_'.$locale.'"'.$edit.' cols="'.$wide.'"	rows="'.$rows.'">'.html_encode($dbstring).'</textarea>';
+			}
 		} else {
-			echo '<input name="'.$name.'_'.$locale.'"'.$edit.' type="text" value="'.html_encode($dbstring).'" size="'.$wide.'" />';
+			if ($wide == '100%') {
+				echo '<input name="'.$name.'_'.$locale.'"'.$edit.' type="text" value="'.html_encode($dbstring).'" style="width:100%;" />';
+			} else {
+				echo '<input name="'.$name.'_'.$locale.'"'.$edit.' type="text" value="'.html_encode($dbstring).'" size="'.$wide.'" />';
+			}
 		}
 	}
 }

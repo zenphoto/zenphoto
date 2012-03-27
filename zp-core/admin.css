@@ -26,9 +26,9 @@ em {
 }
 
 .inlinecode {
-  color: #00008B;
-  font-size: 12px;
-  font-family: Geneva, Courier, monospace;
+	color: #00008B;
+	font-size: 12px;
+	font-family: Geneva, Courier, monospace;
 }
 
 /* Main Layout
@@ -600,9 +600,17 @@ table.bordered table.compact td {
 	margin: 0px;
 }
 
+table.formlayout {
+	width: 100%;
+}
+
 table.formlayout td {
 	padding: 2px;
 	vertical-align: top;
+}
+
+table.formlayout td.bulk_checkbox {
+	width: 21px;
 }
 
 table.checkboxes {
