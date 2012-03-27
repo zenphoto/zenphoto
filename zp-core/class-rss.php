@@ -1,41 +1,41 @@
 <?php
 /**
  * The feed is dependend on GET parameters available.
- * 
- * The gallery and additionally Zenpage CMS plugin provide rss link functions to generate context dependent rss links. 
+ *
+ * The gallery and additionally Zenpage CMS plugin provide rss link functions to generate context dependent rss links.
  * You can however create your own links manually with even some more options than via the backend option:
- * 
- * I. GALLERY RSS FEEDS: 
+ *
+ * I. GALLERY RSS FEEDS:
  * These accept the following parameters:
  *
  * - "Gallery" feed for latest images of the whole gallery
  * index.php?rss&lang=<locale></li>
- * 
+ *
  * - "Album" for latest images only of the album it is called from
  * index.php?rss&albumname=<album name>&lang=<locale>
- * 
+ *
  * - "Collection" for latest images of the album it is called from and all of its subalbums
  * index.php?rss&folder=<album name>&lang=<locale>
- * 
+ *
  * - "AlbumsRSS" for latest albums
  * index.php?rss&lang=<locale>&albumsmode';
- * 
+ *
  * - "AlbumsRSScollection" only for latest subalbums with the album it is called from
  * index.php?rss&folder=<album name>&lang=<locale>&albumsmode';
 
  * - "Comments" for all comments of all albums and images
  * index.php?rss=comments&type=gallery&lang=<locale>
- * 
+ *
  * - "Comments-image" for latest comments of only the image it is called from
  * index.php?rss=comments&id=<id of image>&type=image&lang=<locale>
- * 
+ *
  * - "Comments-album" for latest comments of only the album it is called from
  * index.php?rss=comments&id=<album id>&type=album&lang=<locale>
- * 
+ *
  * It is recommended to use urlencode() around the album names.
- * 
+ *
  * Optional gallery feed parameters:
- * "sortorder" for "Gallery", "Album", "Collection" only with the following values (the same as the image_album_statistics plugin): 
+ * "sortorder" for "Gallery", "Album", "Collection" only with the following values (the same as the image_album_statistics plugin):
  * - "latest" for the latest uploaded by id (discovery order) (optional, used if sortorder is not set)
  * - "latest-date" for the latest fetched by date
  * - "latest-mtime" for the latest fetched by mtime
@@ -45,7 +45,7 @@
  * - "mostrated" for the most voted
  * - "random" for random order
  * Overrides the admin option value if set.
- *  
+ *
  * "sortorder" for latest "AlbumsRSS" and "AlbumsRSScollection" only with the following values (the same as the image_album_statistics plugin):
  * - "latest" for the latest uploaded by id (discovery order) (optional, used if sortorder is not set)
  * - "latest-date" for the latest fetched by date
@@ -60,31 +60,31 @@
  *
  * Optional gallery feed parameters for all except comments:
  * "size" the pixel size for the image (uncropped and longest side)
- * 
- * II. RSS FEEDS WITH THE ZENPAGE CMS PLUGIN 
+ *
+ * II. RSS FEEDS WITH THE ZENPAGE CMS PLUGIN
  * Requires the plugin to be enabled naturally.
- * 
+ *
  * - "News" feed for latest news articles
  * index.php?rss=news&lang=<locale>
- * 
+ *
  * - "Category" for only the latest news articles of the category
  * index.php?rss=news&lang=<locale>&category=<titlelink of category>
- * 
+ *
  * - "NewsWithImages" for all latest news articles and latest images by date combined
  * index.php?rss=news&withimages&lang=<locale>
- * 
+ *
  * - "Comments" for all news articles and pages
  * index.php?rss=comments&type=zenpage&lang=<locale>
- * 
+ *
  * - "Comments-news" for comments of only the news article it is called from
  * index.php?rss=comments&id=<news article id>&type=news&lang=<locale>
- * 
+ *
  * - "Comments-page" for comments of only the page it is called from
  * index.php?rss=comments&id=<page id>&type=page&lang=<locale>
- * 
+ *
  * - "Comments-all" for comments from all albums, images, news articels and pages
  * index.php?rss=comments&type=allcomments&lang=<locale>
- * 
+ *
  * Optional parameters for "News" and "Category":
  * "sortorder  with these values:
  * - "latest" for latest articles. (If "sortorder" is not set at all "latest" order is used)
@@ -185,17 +185,17 @@ class RSS {
 					$this->feedtype = 'gallery';
 					if(isset($_GET['albumsmode'])) {
 						$this->rssmode = 'albums';
-					} 
+					}
 					if(isset($_GET['folder'])) {
 						$this->albumfolder = sanitize(urldecode($_GET['folder']));
 						$this->collection = TRUE;
 						$alb = new Album(NULL,$this->albumfolder);
-						$albumtitle = $alb->getTitle(); 
+						$albumtitle = $alb->getTitle();
 					} else if(isset($_GET['albumname'])){
 						$this->albumfolder = sanitize(urldecode($_GET['albumname']));
 						$this->collection = false;
 						$alb = new Album(NULL,$this->albumfolder);
-						$albumtitle = $alb->getTitle(); 
+						$albumtitle = $alb->getTitle();
 					} else {
 						$albumtitle = '';
 						$this->collection = FALSE;
@@ -212,7 +212,7 @@ class RSS {
 					}
 					$this->channel_title = html_encode($this->channel_title.' '.strip_tags($albumname));
 					$this->albumpath = $this->getRSSImageAndAlbumPaths('albumpath');
-					$this->imagepath = $this->getRSSImageAndAlbumPaths('imagepath');	
+					$this->imagepath = $this->getRSSImageAndAlbumPaths('imagepath');
 					$this->imagesize = $this->getRSSImageSize();
 					require_once(ZENFOLDER .'/'.PLUGIN_FOLDER . '/image_album_statistics.php');
 					break;
@@ -313,8 +313,8 @@ class RSS {
 			$this->feeditems = $this->getRSSitems();
 		}
 	}
-	
-	
+
+
 	protected function getRSSChannelTitleExtra() {
 		switch($this->sortorder) {
 			case 'latest':
@@ -354,7 +354,7 @@ class RSS {
 		}
 		return $albumextra;
 	}
-	
+
  /**
 	* Helper function that gets the sortorder for gallery and plain news/category feeds
 	*
@@ -437,7 +437,7 @@ class RSS {
 			return $array[$arrayfield];
 		}
 	}
-	
+
 	/**
 	* Helper function that gets the images size of the "size" get parameter
 	*
@@ -587,7 +587,7 @@ class RSS {
 				$fullname = $cachefolder . '/' . $filename;
 				if (is_dir($fullname) && !(substr($filename, 0, 1) == '.')) {
 					if (($filename != '.') && ($filename != '..')) {
-						RSS::clearRSSCache($fullname);
+						self::clearRSSCache($fullname);
 						rmdir($fullname);
 					}
 				} else {

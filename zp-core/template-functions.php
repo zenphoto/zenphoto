@@ -298,7 +298,6 @@ function printAdminToolbox($id='admin') {
 				$redirect = zp_apply_filter('admin_toolbox_'.$gal,$redirect,$zf);
 				break;
 			}
-
 			if (!$_zp_current_admin_obj->no_zp_login)  {
 				// logout link
 				$sec = (int) ((SERVER_PROTOCOL=='https') & true);

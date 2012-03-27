@@ -465,7 +465,6 @@ function printLargeFileContents($dest) {
 function getPluginFiles($pattern, $folder='', $stripsuffix=true) {
 	if (!empty($folder) && substr($folder, -1) != '/') $folder .= '/';
 	$list = array();
-
 	$curdir = getcwd();
 	$basepath = SERVERPATH."/".USER_PLUGIN_FOLDER.'/'.$folder;
 	if (is_dir($basepath)) {
@@ -2076,11 +2075,10 @@ function XSRFToken($action) {
  * @param bool $inline set to true to run the task "in-line". Set false run asynchronously
  */
 function cron_starter($script, $params, $inline=false) {
-	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj, $_zp_null_account;
+	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj;
 	$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
 
 	if ($inline) {
-		$_zp_null_account = NULL;
 		$_zp_current_admin_obj = $admin;
 		$_zp_loggedin = $_zp_current_admin_obj->getRights();
 		foreach ($params as $key=>$value) {

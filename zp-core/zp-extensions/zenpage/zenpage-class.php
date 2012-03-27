@@ -256,7 +256,7 @@ class Zenpage {
 			if ($ignorepagination) {
 				$offset = 0;
 			} else {
-				$offset = Zenpage::getOffset($articles_per_page);
+				$offset = self::getOffset($articles_per_page);
 			}
 			while ($item = db_fetch_assoc($resource)) {
 				$article = new ZenpageNews($item['titlelink']);
@@ -448,7 +448,7 @@ class Zenpage {
 			$albumWhere = "AND albums.show=1".$passwordcheck;
 		}
 		if ($articles_per_page) {
-			$offset = Zenpage::getOffset($articles_per_page);
+			$offset = self::getOffset($articles_per_page);
 		} else {
 			$offset = 0;
 		}

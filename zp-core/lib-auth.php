@@ -51,8 +51,8 @@ class Zenphoto_Authority {
 	var $admin_all = NULL;
 	var $rightsset = NULL;
 	var $master_user = NULL;
-	var $preferred_version = 3;
-	var $supports_version = 4;
+	static $preferred_version = 3;
+	static $supports_version = 4;
 
 	/**
 	 * class instantiation function
@@ -158,7 +158,7 @@ class Zenphoto_Authority {
 	static function getVersion() {
 		$v = getOption('libauth_version');
 		if (empty($v)) {
-			return $this->preferred_version;
+			return self::$preferred_version;
 		} else {
 			return $v;
 		}
@@ -240,7 +240,7 @@ class Zenphoto_Authority {
 		$sql = 'SELECT * FROM '.prefix('administrators').' WHERE '.implode(' AND ',$selector).' LIMIT 1';
 		$admin = query_single_row($sql,false);
 		if ($admin) {
-			return Zenphoto_Authority::newAdministrator($admin['user'], $admin['valid']);
+			return self::newAdministrator($admin['user'], $admin['valid']);
 		} else {
 			return NULL;
 		}
@@ -256,21 +256,19 @@ class Zenphoto_Authority {
 	 * @return bit
 	 */
 	function checkAuthorization($authCode, $id) {
-		global $_zp_current_admin_obj, $_zp_reset_admin, $_zp_null_account;
-		$_zp_current_admin_obj = NULL;
+		global $_zp_current_admin_obj;
 		if (DEBUG_LOGIN) { debugLogBacktrace("checkAuthorization($authCode, $id)");	}
 		$admins = $this->getAdministrators();
 		if ((count($admins) == 0)) {
 			if (DEBUG_LOGIN) { debugLog("checkAuthorization: no admins"); }
-			$_zp_null_account = true;
+			$_zp_current_admin_obj = new Zenphoto_Administrator('', 1);
 			return ADMIN_RIGHTS; //no admins or reset request
 		}
-		if ($_zp_reset_admin) {
+		if (is_object($_zp_current_admin_obj) && $_zp_current_admin_obj->reset) {
 			if (DEBUG_LOGIN) { debugLog("checkAuthorization: reset request"); }
-			if (is_object($_zp_reset_admin)) {
-				return $_zp_reset_admin->getRights();
-			}
+			return $_zp_current_admin_obj->getRights();
 		}
+		$_zp_current_admin_obj = NULL;
 		if (empty($authCode)) return 0; //  so we don't "match" with an empty password
 		if (DEBUG_LOGIN) { debugLogArray("checkAuthorization: admins",$admins);	}
 		$rights = 0;
@@ -278,7 +276,7 @@ class Zenphoto_Authority {
 		if (!is_null($id)) {
 			$criteria['`id`='] = $id;
 		}
-		$user = Zenphoto_Authority::getAnAdmin($criteria);
+		$user = self::getAnAdmin($criteria);
 		if (is_object($user)) {
 			$_zp_current_admin_obj = $user;
 			$rights = $user->getRights();
@@ -300,8 +298,8 @@ class Zenphoto_Authority {
 	 * @return bool
 	 */
 	protected static function checkLogon($user, $pass) {
-		$hash = Zenphoto_Authority::passwordHash($user, $pass);
-		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`pass`=' => $hash, '`valid`=' => 1));
+		$hash = self::passwordHash($user, $pass);
+		$userobj = self::getAnAdmin(array('`user`=' => $user, '`pass`=' => $hash, '`valid`=' => 1));
 		if (DEBUG_LOGIN) {
 			if ($userobj) {
 				$rights = sprintf('%X',$userobj->getRights());
@@ -343,22 +341,22 @@ class Zenphoto_Authority {
 	 * @param int $oldversion
 	 */
 	function migrateAuth($to) {
-		if ($to > $this->supports_version || $to < $this->preferred_version-1) {
-			trigger_error(sprintf(gettext('Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)'),$to,$this->supports_version,$this->preferred_version), E_USER_NOTICE);
+		if ($to > self::$supports_version || $to < self::$preferred_version-1) {
+			trigger_error(sprintf(gettext('Cannot migrate rights to version %1$s (Zenphoto_Authority supports only %2$s and %3$s.)'),$to,self::$supports_version,self::$preferred_version), E_USER_NOTICE);
 			return false;
 		}
 		$success = true;
-		$oldversion = Zenphoto_Authority::getVersion();
+		$oldversion = self::getVersion();
 		setOption('libauth_version',$to);
 		$this->admin_users = array();
 		$sql = "SELECT * FROM ".prefix('administrators')."ORDER BY `rights` DESC, `id`";
 		$admins = query($sql, false);
 		if ($admins) { // something to migrate
 			$oldrights = array();
-			foreach (Zenphoto_Authority::getRights($oldversion) as $key=>$right) {
+			foreach (self::getRights($oldversion) as $key=>$right) {
 				$oldrights[$key] = $right['value'];
 			}
-			$currentrights = Zenphoto_Authority::getRights($to);
+			$currentrights = self::getRights($to);
 			while ($user = db_fetch_assoc($admins)) {
 				$update = false;
 				$rights = $user['rights'];
@@ -391,9 +389,22 @@ class Zenphoto_Authority {
 						$newrights = $newrights | $currentrights['ZENPAGE_PAGES_RIGHTS'] | $currentrights['ZENPAGE_NEWS_RIGHTS'] | $currentrights['FILES_RIGHTS'];
 					}
 				}
-				if ($to == 1) {
-					if ($rights & ($oldrights['ZENPAGE_PAGES_RIGHTS'] | $oldrights['ZENPAGE_NEWS_RIGHTS'] | $oldrights['FILES_RIGHTS'])) {
-						$newrights = $newrights | $currentrights['ZENPAGE_RIGHTS'];
+				if ($to >= 3) {
+					if ($newrights & $currentrights['ADMIN_RIGHTS']['value']) {
+						$newrights = $currentrights['ALL_RIGHTS']['value'];
+					} else {
+						if ($newrights & $currentrights['MANAGE_ALL_ALBUM_RIGHTS']['value']) {
+							// these are lock-step linked!
+							$newrights = $newrights | $currentrights['ALBUM_RIGHTS']['value'];
+						}
+						if ($newrights & $currentrights['MANAGE_ALL_NEWS_RIGHTS']['value']) {
+							// these are lock-step linked!
+							$newrights = $newrights | $currentrights['ZENPAGE_NEWS_RIGHTS']['value'];
+						}
+						if ($newrights & $currentrights['MANAGE_ALL_PAGES_RIGHTS']['value']) {
+							// these are lock-step linked!
+							$newrights = $newrights | $currentrights['ZENPAGE_PAGES_RIGHTS']['value'];
+						}
 					}
 				}
 
@@ -450,7 +461,7 @@ class Zenphoto_Authority {
 	 */
 	static function getRights($version=NULL) {
 		if (empty($version)) {
-			$v = Zenphoto_Authority::getVersion();
+			$v = self::getVersion();
 		} else {
 			$v = $version;
 		}
@@ -580,7 +591,7 @@ class Zenphoto_Authority {
 	}
 
 	function validateTicket($ticket, $user) {
-		global $_zp_null_account, $_zp_reset_admin;
+		global $_zp_current_admin_obj;
 		$admins = $this->getAdministrators();
 		foreach ($admins as $tuser) {
 			if ($tuser['user'] == $user) {
@@ -591,8 +602,8 @@ class Zenphoto_Authority {
 					if ($ref === $ticket) {
 						if (time() <= ($request_date + (3 * 24 * 60 * 60))) {
 							// limited time offer
-							$_zp_reset_admin = new Zenphoto_Administrator($user, 1);
-							$_zp_null_account = true;
+							$_zp_current_admin_obj = new Zenphoto_Administrator($user, 1);
+							$_zp_current_admin_obj->reset = true;
 						}
 					}
 					break;
@@ -615,7 +626,7 @@ class Zenphoto_Authority {
 	/**
 	 * User authentication support
 	 */
-	static function handleLogon() {
+	function handleLogon() {
 		global $_zp_current_admin_obj, $_zp_login_error, $_zp_captcha, $_zp_loggedin;
 		if (isset($_POST['login'])) {
 			$post_user = sanitize(@$_POST['user']);
@@ -624,24 +635,24 @@ class Zenphoto_Authority {
 
 			switch (@$_POST['password']) {
 				default:
-					$user = Zenphoto_Authority::checkLogon($post_user, $post_pass);
+					$user = self::checkLogon($post_user, $post_pass);
 					if ($user) {
 						$_zp_loggedin = $user->getRights();
 					}
 					$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
 					if ($_zp_loggedin) {
-						Zenphoto_Authority::logUser($user);
+						self::logUser($user);
 					} else {
 						zp_clearCookie("zp_user_auth");	// Clear the cookie, just in case
 						$_zp_login_error = 1;
 					}
 					break;
 				case 'challenge':
-					$user = Zenphoto_Authority::getAnAdmin(array('`user`=' => $post_user, '`valid`=' => 1));
+					$user = self::getAnAdmin(array('`user`=' => $post_user, '`valid`=' => 1));
 					if (is_object($user)) {
 						$info = $user->getChallengePhraseInfo();
 						if ($post_pass && $info['response'] == $post_pass) {
-							$ref = Zenphoto_Authority::getResetTicket($post_user, $user->getPass());
+							$ref = self::getResetTicket($post_user, $user->getPass());
 							header('location:'.WEBPATH.'/'.ZENFOLDER.'/admin-users.php?ticket='.$ref.'&user='.$post_user);
 							exitZP();
 						}
@@ -696,7 +707,7 @@ class Zenphoto_Authority {
 						if (is_null($user)) {
 							$_zp_login_error = gettext('There was no one to which to send the reset request.');
 						} else {
-							$ref = Zenphoto_Authority::getResetTicket($user['user'], $user['pass']);
+							$ref = self::getResetTicket($user['user'], $user['pass']);
 							$msg = "\n".$requestor.
 									"\n".sprintf(gettext("To reset your Zenphoto Admin passwords visit: %s"),FULLWEBPATH."/".ZENFOLDER."/admin-users.php?ticket=$ref&user=".$user['user']) .
 									"\n".gettext("If you do not wish to reset your passwords just ignore this message. This ticket will automatically expire in 3 days.");
@@ -744,7 +755,7 @@ class Zenphoto_Authority {
 	 */
 	static function handleLogout() {
 		global $_zp_loggedin, $_zp_pre_authorization;
-		foreach (Zenphoto_Authority::getAuthCookies() as $cookie=>$value) {
+		foreach (self::getAuthCookies() as $cookie=>$value) {
 			zp_clearCookie($cookie);
 		}
 		$_zp_loggedin = false;
@@ -810,7 +821,7 @@ class Zenphoto_Authority {
 		$mails = array();
 		$info = array('challenge'=>'','response'=>'');
 		if (!empty($requestor)) {
-			$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1));
+			$admin = self::getAnAdmin(array('`user`=' => $requestor, '`valid`=' => 1));
 			if (is_object($admin) && rand(0,4)) {
 				if ($admin->getEmail()) {
 					$star = $showCaptcha;
@@ -1235,6 +1246,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	var $master = false;	//	will be set to true if this is the inherited master user
 	var $msg = NULL;	//	a means of storing error messages from filter processing
 	var $no_zp_login = false;
+	var $reset = false;	// if true the user was setup by a "reset password" event
 
 	/**
 	 * Constructor for an Administrator

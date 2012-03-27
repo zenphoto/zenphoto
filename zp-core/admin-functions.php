@@ -2903,7 +2903,7 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
 	$rightslist = sortMultiArray(Zenphoto_Authority::getRights(), array('set', 'value'));
 	?>
 	<div class="box-rights">
-		<strong><?php echo gettext("Rights"); ?>:</strong>
+		<strong><?php echo gettext("Rights:"); ?></strong>
 		<?php
 		$element = 3;
 		$activeset = false;
@@ -3952,7 +3952,7 @@ function processCodeblockSave($id) {
  * @param string $return--where to go after login
  */
 function admin_securityChecks($rights, $return) {
-	global $_zp_current_admin_obj, $_zp_loggedin, $_zp_reset_admin;
+	global $_zp_current_admin_obj, $_zp_loggedin;
 	checkInstall();
 	if (SERVER_PROTOCOL == 'https_admin') {
 		// force https login
@@ -3962,7 +3962,7 @@ function admin_securityChecks($rights, $return) {
 			exitZP();
 		}
 	}
-	if (!$_zp_reset_admin) {
+	if (!$_zp_current_admin_obj->reset) {
 		if (!zp_loggedin($rights)) {
 			// prevent nefarious access to this page.
 			$returnurl = urldecode($return);

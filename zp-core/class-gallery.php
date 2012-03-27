@@ -317,7 +317,7 @@ class Gallery {
 				foreach ($albums as $analbum) {
 					$album = new Album(NULL, $analbum);
 					if (!$album->isDynamic()) {
-						$count = $count + gallery::getImageCount($album);
+						$count = $count + self::getImageCount($album);
 					}
 				}
 				return $count;
@@ -331,7 +331,7 @@ class Gallery {
 		foreach ($albums as $analbum) {
 			$album = new Album(NULL, $analbum);
 			if (!$album->isDynamic()) {
-				$count = $count + gallery::getImageCount($album);
+				$count = $count + self::getImageCount($album);
 			}
 		}
 		return $count;

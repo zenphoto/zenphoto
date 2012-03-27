@@ -412,7 +412,7 @@ function checkAlbumParentid($albumname, $id) {
 		if (is_null($oldid)) $oldid = '<em>NULL</em>';
 		if (is_null($id)) $id = '<em>NULL</em>';
 		$msg = sprintf('Fixed album <strong>%1$s</strong>: parentid was %2$s should have been %3$s<br />', $albumname,$oldid, $id);
-		setupLog($msg);
+		setupLog($msg, true);
 		echo $msg;
 	}
 	$id = $album->getID();

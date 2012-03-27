@@ -7,6 +7,7 @@
 // force UTF-8 Ø
 
 require_once(dirname(__FILE__).'/functions-basic.php');
+
 zp_session_start();
 if (SERVER_PROTOCOL == 'https_admin') {
 	// force https login
@@ -17,6 +18,7 @@ if (SERVER_PROTOCOL == 'https_admin') {
 	}
 }
 require_once(dirname(__FILE__).'/admin-functions.php');
+
 $zenphoto_tabs = array();
 
 if (!getOption('license_accepted')) {
@@ -33,42 +35,57 @@ $sortby = array(gettext('Filename') => 'filename',
 								gettext('Published') => 'show'
 								);
 
-
 // setup sub-tab arrays for use in dropdown
-if (zp_loggedin(OVERVIEW_RIGHTS) && !$_zp_null_account) {
+if ($_zp_loggedin & ADMIN_RIGHTS && $_zp_current_admin_obj->getID()) {
+	$_zp_loggedin = ALL_RIGHTS;
+} else {
+	if ($_zp_loggedin & MANAGE_ALL_ALBUM_RIGHTS) {
+		// these are lock-step linked!
+		$_zp_loggedin = $_zp_loggedin | ALBUM_RIGHTS;
+	}
+	if ($_zp_loggedin & MANAGE_ALL_NEWS_RIGHTS) {
+		// these are lock-step linked!
+		$_zp_loggedin = $_zp_loggedin | ZENPAGE_NEWS_RIGHTS;
+	}
+	if ($_zp_loggedin & MANAGE_ALL_PAGES_RIGHTS) {
+		// these are lock-step linked!
+		$_zp_loggedin = $_zp_loggedin | ZENPAGE_PAGES_RIGHTS;
+	}
+}
+
+if ($_zp_loggedin & OVERVIEW_RIGHTS) {
 	$zenphoto_tabs['overview'] = array('text'=>gettext("overview"),
 						'link'=>WEBPATH."/".ZENFOLDER.'/admin.php',
 						'subtabs'=>NULL);
 }
-if ((zp_loggedin(UPLOAD_RIGHTS) || zp_loggedin(FILES_RIGHTS))  && !$_zp_null_account) {
+if ($_zp_loggedin & UPLOAD_RIGHTS || $_zp_loggedin & FILES_RIGHTS) {
 	$zenphoto_tabs['upload'] = array('text'=>gettext("upload"),
 							'subtabs'=>NULL);
-	if (zp_loggedin(UPLOAD_RIGHTS) && zp_loggedin(FILES_RIGHTS)) {
+	if ($_zp_loggedin & UPLOAD_RIGHTS) {
 		$locale = substr(getOption("locale"),0,2);
 		if (empty($locale)) $locale = 'en';
 		$zenphoto_tabs['upload']['link'] = WEBPATH."/".ZENFOLDER.'/admin-upload.php';
 		$zenphoto_tabs['upload']['subtabs'] = array(gettext('images')=>'admin-upload.php?page=upload&amp;tab=albums',
 																								gettext('files')=>'admin-filemanager.php?page=upload&amp;tab=files');
 		$zenphoto_tabs['upload']['default'] = 'albums';
-	} else if (zp_loggedin(UPLOAD_RIGHTS)) {
+	} else if ($_zp_loggedin & UPLOAD_RIGHTS) {
 		$zenphoto_tabs['upload']['link'] = WEBPATH."/".ZENFOLDER.'/admin-upload.php';
 	} else {
 		$zenphoto_tabs['upload']['link'] = WEBPATH."/".ZENFOLDER.'/admin-filemanager.php';
 	}
 }
 
-if (zp_loggedin(ALBUM_RIGHTS) && !$_zp_null_account) {
+if ($_zp_loggedin & (ALBUM_RIGHTS)) {
 	$zenphoto_tabs['edit'] = array('text'=>gettext("albums"),
 							'link'=>WEBPATH."/".ZENFOLDER.'/admin-edit.php',
 							'subtabs'=>NULL);
 }
-
-if ((getOption('zp_plugin_zenpage') && (zp_loggedin(ZENPAGE_PAGES_RIGHTS))) && !$_zp_null_account) {
+if (getOption('zp_plugin_zenpage') && $_zp_loggedin & ZENPAGE_PAGES_RIGHTS) {
 	$zenphoto_tabs['pages'] = array('text'=>gettext("pages"),
 							'link'=>WEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/admin-pages.php',
 							'subtabs'=>NULL);
 }
-if ((getOption('zp_plugin_zenpage') && (zp_loggedin(ZENPAGE_NEWS_RIGHTS))) && !$_zp_null_account) {
+if (getOption('zp_plugin_zenpage') && $_zp_loggedin & ZENPAGE_NEWS_RIGHTS) {
 	$zenphoto_tabs['news'] = array('text'=>gettext("news"),
 							'link'=>WEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/admin-news-articles.php',
 							'subtabs'=>array(	gettext('articles')=>PLUGIN_FOLDER.'/zenpage/admin-news-articles.php?page=news&amp;tab=articles',
@@ -76,27 +93,27 @@ if ((getOption('zp_plugin_zenpage') && (zp_loggedin(ZENPAGE_NEWS_RIGHTS))) && !$
 																'default'=>'articles');
 }
 
-if (zp_loggedin(TAGS_RIGHTS) && !$_zp_null_account) {
+if ($_zp_loggedin & TAGS_RIGHTS) {
 	$zenphoto_tabs['tags'] = array('text'=>gettext("tags"),
 							'link'=>WEBPATH."/".ZENFOLDER.'/admin-tags.php',
 							'subtabs'=>NULL);
 }
 
-if (zp_loggedin(COMMENT_RIGHTS) && !$_zp_null_account) {
+if ($_zp_loggedin & COMMENT_RIGHTS) {
 	$zenphoto_tabs['comments'] = array('text'=>gettext("comments"),
 							'link'=>WEBPATH."/".ZENFOLDER.'/admin-comments.php',
 							'subtabs'=>NULL);
 }
-if (zp_loggedin(USER_RIGHTS)) {
+if ($_zp_loggedin & USER_RIGHTS) {
 	$zenphoto_tabs['users'] = array('text'=>gettext("users"),
 							'link'=>WEBPATH."/".ZENFOLDER.'/admin-users.php?page=users',
 							'subtabs'=>NULL);
 }
 
-if (!$_zp_null_account) {
+
 	$subtabs = array();
 	$optiondefault='';
-	if (zp_loggedin(OPTIONS_RIGHTS)) {
+	if ($_zp_loggedin & OPTIONS_RIGHTS) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			$optiondefault='&amp;tab=general';
 			$subtabs[gettext("general")] = 'admin-options.php?page=options&amp;tab=general';
@@ -104,24 +121,24 @@ if (!$_zp_null_account) {
 			$optiondefault='&amp;tab=gallery';
 		}
 		$subtabs[gettext("gallery")] = 'admin-options.php?page=options&amp;tab=gallery';
-		if (zp_loggedin(ADMIN_RIGHTS)) {
+		if ($_zp_loggedin & ADMIN_RIGHTS) {
 			$subtabs[gettext("security")] = 'admin-options.php?page=options&amp;tab=security';
 		}
 		$subtabs[gettext("image")] = 'admin-options.php?page=options&amp;tab=image';
 		$subtabs[gettext("comment")] = 'admin-options.php?page=options&amp;tab=comments';
 	}
-	if (zp_loggedin(ADMIN_RIGHTS)) {
+	if ($_zp_loggedin & ADMIN_RIGHTS) {
 		if (empty($optiondefault)) $optiondefault='&amp;tab=plugin';
 		$subtabs[gettext("plugin")] = 'admin-options.php?page=options&amp;tab=plugin';
 	}
-	if (zp_loggedin(OPTIONS_RIGHTS)) {
+	if ($_zp_loggedin & OPTIONS_RIGHTS) {
 		$subtabs[gettext("search")] = 'admin-options.php?page=options&amp;tab=search';
 	}
-	if (zp_loggedin(THEMES_RIGHTS)) {
+	if ($_zp_loggedin & THEMES_RIGHTS) {
 		if (empty($optiondefault)) $optiondefault='&amp;tab=theme';
 		$subtabs[gettext("theme")] = 'admin-options.php?page=options&amp;tab=theme';
 	}
-	if (zp_loggedin(OPTIONS_RIGHTS)) {
+	if ($_zp_loggedin & OPTIONS_RIGHTS) {
 		$subtabs[gettext("RSS")] = 'admin-options.php?page=options&amp;tab=rss';
 	}
 	if (!empty($subtabs)) {
@@ -130,20 +147,20 @@ if (!$_zp_null_account) {
 				'subtabs'=>$subtabs,
 				'default'=>'gallery');
 	}
-}
-if (zp_loggedin(THEMES_RIGHTS) && !$_zp_null_account) {
+
+if ($_zp_loggedin & THEMES_RIGHTS) {
 	$zenphoto_tabs['themes'] = array('text'=>gettext("themes"),
 						'link'=>WEBPATH."/".ZENFOLDER.'/admin-themes.php',
 						'subtabs'=>NULL);
 }
 
-if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_null_account) {
+if ($_zp_loggedin & ADMIN_RIGHTS) {
 	$zenphoto_tabs['plugins'] = array('text'=>gettext("plugins"),
 							'link'=>WEBPATH."/".ZENFOLDER.'/admin-plugins.php',
 							'subtabs'=>NULL);
 }
 
-if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_null_account) {
+if ($_zp_loggedin & ADMIN_RIGHTS) {
 	list($subtabs,$default)  = getLogTabs();
 	$zenphoto_tabs['logs'] = array(	'text'=>gettext("logs"),
 												'link'=>WEBPATH."/".ZENFOLDER.'/admin-logs.php?page=logs',

@@ -6,7 +6,7 @@
 
 // force UTF-8 Ø
 
-global $_zp_current_admin_obj, $_zp_loggedin, $_zp_null_account, $_zp_reset_admin, $_zp_authority;
+global $_zp_current_admin_obj, $_zp_loggedin, $_zp_authority;
 $_zp_current_admin_obj = null;
 if (file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/alt/lib-auth.php')) { // load a custom authroization package if it is present
 	require_once(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/alt/lib-auth.php');
@@ -38,9 +38,8 @@ if (defined('VIEW_ALL_RIGHTS')) {
 	define('VIEW_ALL_RIGHTS',ALL_ALBUMS_RIGHTS|ALL_PAGES_RIGHTS|ALL_NEWS_RIGHTS);
 }
 
-
 // If the auth variable gets set somehow before this, get rid of it.
-$_zp_loggedin = $_zp_null_account = $_zp_reset_admin = false;
+$_zp_loggedin = false;
 
 // we have the ssl marker cookie, normally we are already logged in
 // but we need to redirect to ssl to retrive the auth cookie (set as secure).
@@ -55,7 +54,7 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 		// https: set the 'zenphoto_ssl' marker for redirection
 		zp_setCookie("zenphoto_ssl", "needed");
 	}
-	$_zp_loggedin = Zenphoto_Authority::handleLogon();
+	$_zp_loggedin = $_zp_authority->handleLogon();
 	if ($_zp_loggedin) {
 		if (isset($_POST['redirect'])) {
 			$redirect = sanitize_path($_POST['redirect']);
@@ -73,7 +72,7 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 		$_zp_authority->validateTicket(sanitize($_GET['ticket']), sanitize(@$_GET['user']));
 	}
 	$_zp_loggedin = zp_apply_filter('authorization_cookie',$_zp_authority->checkCookieCredentials());
-	if (is_object($_zp_current_admin_obj)) {
+	if ($_zp_loggedin) {
 		$locale = $_zp_current_admin_obj->getLanguage();
 		if (!empty($locale)) {	//	set his prefered language
 			setupCurrentLocale($locale);

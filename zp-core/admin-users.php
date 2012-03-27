@@ -49,7 +49,7 @@ if (isset($_GET['action'])) {
 			if (isset($_GET['revert'])) {
 				$v = getOption('libauth_version')-1;
 			} else {
-				$v = $_zp_authority->supports_version;
+				$v = Zenphoto_Authority::$supports_version;
 			}
 			if ($_zp_authority->migrateAuth($v)) {
 				$notify = '';
@@ -68,17 +68,14 @@ if (isset($_GET['action'])) {
 			exitZP();
 			break;
 		case 'saveoptions':
-			if (!$_zp_null_account || $_zp_reset_admin) {
-				if ($_zp_reset_admin) {
-					$_zp_current_admin_obj = $_zp_reset_admin;
-				}
+			if ($_zp_current_admin_obj->getID() || $_zp_current_admin_obj->reset) {
 				XSRFdefender('saveadmin');
 			}
 			$notify = '';
 			$returntab = '';
 
 			if (isset($_POST['saveadminoptions'])) {
-				if ($_zp_null_account || (isset($_POST['alter_enabled'])) || (sanitize_numeric($_POST['totaladmins']) > 1) ||
+				if (!$_zp_current_admin_obj->getID() || (isset($_POST['alter_enabled'])) || (sanitize_numeric($_POST['totaladmins']) > 1) ||
 							(trim(sanitize($_POST['adminuser0'],0))) != $_zp_current_admin_obj->getUser() ||
 							isset($_POST['0-newuser'])) {
 					admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
@@ -230,13 +227,13 @@ if (isset($_GET['action'])) {
 }
 $refresh = false;
 
-if ($_zp_reset_admin) {
+if ($_zp_current_admin_obj->reset) {
 	if (isset($_GET['saved'])) {
 		$refresh = '<meta http-equiv="refresh" content="3; url=admin.php" />';
 	}
 }
 
-if (!$_zp_current_admin_obj && !$_zp_null_account) {
+if (!$_zp_current_admin_obj && $_zp_current_admin_obj->getID()) {
 	header("HTTP/1.0 302 Found");
 	header("Status: 302 Found");
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php');
@@ -257,7 +254,7 @@ echo $refresh;
 <?php printTabs(); ?>
 <div id="content">
 <?php
-if ($_zp_reset_admin && !$refresh) {
+if ($_zp_current_admin_obj->reset && !$refresh) {
 	echo "<div class=\"errorbox space\">";
 	echo "<h2>".gettext("Password reset request.<br />You may now set admin usernames and passwords.")."</h2>";
 	echo "</div>";
@@ -288,12 +285,11 @@ if ($_zp_reset_admin && !$refresh) {
 
 	$pages = 0;
 	$clearPass = false;
-	if ($_zp_null_account && $_zp_reset_admin) {
-		$_zp_current_admin_obj = $_zp_reset_admin;
+	if (!$_zp_current_admin_obj->getID() && $_zp_current_admin_obj->reset) {
 		$clearPass = true;
 	}
 	$alladmins = array();
-	if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_reset_admin) {
+	if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset) {
 		$admins = $_zp_authority->getAdministrators('allusers');
 		foreach ($admins as $key => $user) {
 			$alladmins[] = $user['user'];
@@ -301,7 +297,7 @@ if ($_zp_reset_admin && !$refresh) {
 				unset($admins[$key]);
 			}
 		}
-		if (empty($admins) || $_zp_null_account) {
+		if (empty($admins) || !$_zp_current_admin_obj->getID()) {
 			$rights = ALL_RIGHTS;
 			$groupname = 'administrators';
 			$showset = array('');
@@ -567,7 +563,7 @@ function languageChange(id,lang) {
 		} else {
 			$master = '&nbsp;';
 		}
-		if ($userobj->master && !$_zp_null_account) {
+		if ($userobj->master && $_zp_current_admin_obj->getID()) {
 			if (zp_loggedin(ADMIN_RIGHTS)) {
 				$master = "(<em>".gettext("Master")."</em>)";
 				$userobj->setRights($userobj->getRights() | ADMIN_RIGHTS);
@@ -857,11 +853,11 @@ function languageChange(id,lang) {
 </form>
 <?php
 if (zp_loggedin(ADMIN_RIGHTS)) {
-	if (Zenphoto_Authority::getVersion() < $_zp_authority->supports_version) {
+	if (Zenphoto_Authority::getVersion() < Zenphoto_Authority::$supports_version) {
 		?>
 		<br clear="all" />
 		<p class="notebox">
-		<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'),Zenphoto_Authority::getVersion(),$_zp_authority->supports_version); ?>
+		<?php printf(gettext('The <em>Zenphoto_Authority</em> object supports a higher version of user rights than currently selected. You may wish to migrate the user rights to gain the new functionality this version provides.'),Zenphoto_Authority::getVersion(),Zenphoto_Authority::$supports_version); ?>
 			<br clear="all" />
 			<span class="buttons">
 				<a onclick="launchScript('',['action=migrate_rights','XSRFToken=<?php echo getXSRFToken('migrate_rights')?>']);"><?php echo gettext('Migrate rights');?></a>
@@ -870,7 +866,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {
 		</p>
 		<br clear="all" />
 		<?php
-	} else if (Zenphoto_Authority::getVersion() > $_zp_authority->preferred_version) {
+	} else if (Zenphoto_Authority::getVersion() > Zenphoto_Authority::$preferred_version) {
 		?>
 		<br clear="all" />
 		<p class="notebox">

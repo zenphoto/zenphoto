@@ -18,30 +18,15 @@ purgeOption('zenphoto_release');
 setOption('zenphoto_version', ZENPHOTO_VERSION.' ['.ZENPHOTO_RELEASE.']');
 setOption('zenphoto_install', serialize(installSignature()));
 
-//clear out old admin user and cleartext password
-unset($_zp_conf_vars['adminuser']);
-unset($_zp_conf_vars['adminpass']);
-$admin = getOption('adminuser');
-if (!empty($admin)) {   // transfer the old credentials and then remove them
-	$sql = 'DELETE FROM '.prefix('options').' WHERE `name`="adminuser"';
-	query($sql);
-	$sql = 'DELETE FROM '.prefix('options').' WHERE `name`="adminpass"';
-	query($sql);
-	$sql = 'DELETE FROM '.prefix('options').' WHERE `name`="admin_name"';
-	query($sql);
-	$sql = 'DELETE FROM '.prefix('options').' WHERE `name`="admin_email"';
-	query($sql);
-}
-
-if ($_zp_authority->preferred_version > ($oldv = getOption('libauth_version'))) {
+if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version'))) {
 	if (empty($oldv)) {
 		//	The password hash of these old versions did not have the extra text.
 		//	Note: if the administrators table is empty we will re-do this option with the good stuff.
 		purgeOption('extra_auth_hash_text');
 		setOptionDefault('extra_auth_hash_text', NULL);
 	}
-	$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, $_zp_authority->preferred_version);
-	if (!$_zp_authority->migrateAuth($_zp_authority->preferred_version)) {
+	$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
+	if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
 		$msg .= ': '.gettext('failed');
 	}
 	echo $msg;
@@ -253,7 +238,9 @@ if (empty($admins)) {	//	empty administrators table
 } else {
 	$groupsdefined = @unserialize(getOption('defined_groups'));
 }
-if (!is_array($groupsdefined)) $groupsdefined = array();
+if (!is_array($groupsdefined)) {
+	$groupsdefined = array();
+}
 if (!in_array('administrators',$groupsdefined)) {
 	$groupobj = Zenphoto_Authority::newAdministrator('administrators',0);
 	$groupobj->setName('group');

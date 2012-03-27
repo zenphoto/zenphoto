@@ -92,16 +92,18 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 /************************************************************************************/
 /** End Action Handling *************************************************************/
 /************************************************************************************/
-
 }
 
-if ($_zp_null_account || empty($msg) && zp_loggedin() && !zp_loggedin(OVERVIEW_RIGHTS)) {	// admin access without overview rights, redirect to first tab
-	$tab = array_shift($zenphoto_tabs);
-	$link = $tab['link'];
-	header('location:'.$link);
-	exitZP();
-}
-if (!zp_loggedin()) {
+if (zp_loggedin()) {
+	if (!$_zp_current_admin_obj->getID() || empty($msg) && !zp_loggedin(OVERVIEW_RIGHTS)) {
+		// admin access without overview rights, redirect to first tab
+
+		$tab = array_shift($zenphoto_tabs);
+		$link = $tab['link'];
+		header('location:'.$link);
+		exitZP();
+	}
+} else {
 	if (isset($_GET['from'])) {
 		$from = sanitize($_GET['from']);
 		$from = urldecode($from);
@@ -109,6 +111,7 @@ if (!zp_loggedin()) {
 		$from = urldecode(currentRelativeURL());
 	}
 }
+
 
 // Print our header
 printAdminHeader('overview');

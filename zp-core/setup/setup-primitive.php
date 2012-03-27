@@ -103,6 +103,7 @@ function printAdminFooter() {
 }
 
 function debugLog($message, $reset=false) {
+	global $serverpath;
 	if ($reset) { $mode = 'w'; } else { $mode = 'a'; }
 	$path = $serverpath . '/' . DATA_FOLDER . '/debug.log';
 	$f = fopen($path, $mode);

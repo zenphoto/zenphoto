@@ -319,8 +319,8 @@ class user_groups {
 	}
 
 	static function admin_tabs($tabs) {
-		global $_zp_null_account;
-		if ((zp_loggedin(ADMIN_RIGHTS) && !$_zp_null_account)) {
+		global $_zp_current_admin_obj;
+		if ((zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID())) {
 			if (isset($tabs['users']['subtabs'])) {
 				$subtabs = $tabs['users']['subtabs'];
 			} else {
