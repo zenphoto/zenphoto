@@ -47,13 +47,19 @@ class auto_backup {
 	 */
 	function getOptionsSupported() {
 		return  array(	gettext('Run interval') => array('key' => 'backup_interval', 'type' => OPTION_TYPE_TEXTBOX,
+												'order'=>1,
 												'desc' => gettext('The run interval (in days) for auto backup.')),
+										gettext('Last backup') => array('key' => 'last_backup_run', 'type' => OPTION_TYPE_CUSTOM,
+												'order'=>2,
+												'desc' => gettext('Last time Auto Backup ran.')),
 										gettext('Backups to keep') => array('key' => 'backups_to_keep', 'type' => OPTION_TYPE_TEXTBOX,
+												'order'=>0,
 												'desc' => gettext('Auto backup will keep only this many backup sets. Older sets will be removed.'))
 		);
 	}
 
 	function handleOption($option, $currentValue) {
+		echo date('Y-m-d H:i:s', getOption('last_backup_run'));
 	}
 
 	/**

@@ -187,7 +187,7 @@ if ($_zp_loggedin) {
 	//	so as to make it generally available as we make much use of it
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox_js.php');
 	$last = getOption('last_update_check');
-	if (is_numeric($last)) {
+	if (empty($last) || is_numeric($last)) {
 		if (time() > $last+1728000) {
 			//	check each 20 days
 			setOption('last_update_check', time());

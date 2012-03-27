@@ -143,7 +143,7 @@ function zp_apply_filter($hook, $value = '') {
 	if (DEBUG_FILTERS) $debug = 'Apply filters for '.$hook;
 	do {
 		foreach( (array) current($_zp_filters[$hook]) as $the_ ) {
-			if ( !is_null($the_['function']) ){
+			if (!is_null($the_['function'])) {
 				if (DEBUG_FILTERS) $debug .= "\n    ".$the_['function'];
 				$args[1] = $value;
 				$new_value = call_user_func_array($the_['function'], array_slice($args, 1));
