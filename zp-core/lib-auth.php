@@ -262,6 +262,7 @@ class Zenphoto_Authority {
 		if ((count($admins) == 0)) {
 			if (DEBUG_LOGIN) { debugLog("checkAuthorization: no admins"); }
 			$_zp_current_admin_obj = new Zenphoto_Administrator('', 1);
+			$_zp_current_admin_obj->reset = true;
 			return ADMIN_RIGHTS; //no admins or reset request
 		}
 		if (is_object($_zp_current_admin_obj) && $_zp_current_admin_obj->reset) {

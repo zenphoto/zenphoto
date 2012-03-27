@@ -31,7 +31,12 @@ $buttonlist[] = array(
 								'rights'=> ADMIN_RIGHTS
 								);
 
-admin_securityChecks(NULL, currentRelativeURL());
+if ($_zp_current_admin_obj->reset) {
+	$rights = USER_RIGHTS;
+} else {
+	$rights = NULL;
+}
+admin_securityChecks($rights, currentRelativeURL());
 
 if (isset($_REQUEST['backup']) || isset($_REQUEST['restore'])) {
 	XSRFDefender('backup');
@@ -119,17 +124,13 @@ function writeHeader($type, $value) {
 	return fwrite($handle, HEADER.$type.'='.$value.RECORD_SEPARATOR);
 }
 
-if (!isset($zenphoto_tabs['overview'])) {
-	// invoked for restoring the DB from setup. Rearrange the tabs so they are correct.
-	$existing = array_shift($zenphoto_tabs);
-	$zenphoto_tabs['overview'] = array('text'=>gettext("overview"),
-							'link'=>WEBPATH."/".ZENFOLDER.'/admin.php',
-							'subtabs'=>NULL);
-//	array_push($zenphoto_tabs, $existing);
+if ($_zp_current_admin_obj->reset) {
+	printAdminHeader(gettext('Restore'));
+} else {
+	$zenphoto_tabs['overview']['subtabs']=array(gettext('Backup')=>'');
+	printAdminHeader(gettext('overview'),gettext('Backup'));
 }
-$zenphoto_tabs['overview']['subtabs']=array(gettext('Backup')=>'');
 
-printAdminHeader(gettext('overview'),gettext('Backup'));
 echo '</head>';
 
 $messages = '';
@@ -440,10 +441,22 @@ if (isset($_GET['compression'])) {
 <div id="main">
 <?php printTabs(); ?>
 <div id="content">
-<?php printSubtabs('backup'); ?>
+<?php
+if (!$_zp_current_admin_obj->reset) {
+	printSubtabs('backup');
+}
+?>
 <div class="tabbox">
 <?php zp_apply_filter('admin_note','backkup', '');; ?>
-<h1><?php echo (gettext('Backup and Restore your Database')); ?></h1>
+<h1>
+	<?php
+	if ($_zp_current_admin_obj->reset) {
+		echo (gettext('Restore your Database'));
+	} else {
+		echo (gettext('Backup and Restore your Database'));
+	}
+	?>
+</h1>
 <?php
 echo $messages;
 if (db_connect()) {
@@ -457,29 +470,33 @@ if (db_connect()) {
 	</p>
 	<br />
 	<br />
-	<form name="backup_gallery" action="">
-		<?php XSRFToken('backup');?>
-	<input type="hidden" name="backup" value="true" />
-	<div class="buttons pad_button" id="dbbackup">
-	<button class="tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
-		<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Backup the Database"); ?>
-	</button>
-	<select name="compress">
 	<?php
-	for ($v=0; $v<=9; $v++) {
-	?>
-		<option value="<?php echo $v;?>"<?php if($compression_level == $v) echo ' selected="selected"'; ?>><?php echo $v; ?></option>
-	<?php
+	if (!$_zp_current_admin_obj->reset) {
+		?>
+		<form name="backup_gallery" action="">
+			<?php XSRFToken('backup');?>
+		<input type="hidden" name="backup" value="true" />
+		<div class="buttons pad_button" id="dbbackup">
+		<button class="tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
+			<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Backup the Database"); ?>
+		</button>
+		<select name="compress">
+		<?php
+		for ($v=0; $v<=9; $v++) {
+		?>
+			<option value="<?php echo $v;?>"<?php if($compression_level == $v) echo ' selected="selected"'; ?>><?php echo $v; ?></option>
+		<?php
+		}
+		?>
+		</select> Compression level
+		</div>
+		<br clear="all" />
+		<br clear="all" />
+		</form>
+		<br />
+		<br />
+		<?php
 	}
-	?>
-	</select> Compression level
-	</div>
-	<br clear="all" />
-	<br clear="all" />
-	</form>
-	<br />
-	<br />
-	<?php
 	$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
 	if (count($filelist) <= 0) {
 		echo gettext('You have not yet created a backup set.');
@@ -511,9 +528,11 @@ if (db_connect()) {
 }
 
 echo	'<p>';
-echo gettext('The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. '.
-							'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
-echo '</p><p>';
+if (!$_zp_current_admin_obj->reset) {
+	echo gettext('The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. '.
+								'The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings.');
+	echo '</p><p>';
+}
 echo gettext('You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button.');
 echo '</p><p class="notebox">'.gettext('<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created.');
 echo '</p><p>';

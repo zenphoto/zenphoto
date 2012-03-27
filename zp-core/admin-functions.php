@@ -323,7 +323,7 @@ function printTabs() {
 
 function getSubtabs() {
 	global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
-	$tabs = $zenphoto_tabs[$_zp_admin_tab]['subtabs'];
+	$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
 	if (!is_array($tabs)) return $_zp_admin_subtab;
 	$current = $_zp_admin_subtab;
 	if (isset($_GET['tab'])) {
@@ -367,7 +367,7 @@ function getSubtabs() {
 
 function printSubtabs() {
 	global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
-	$tabs = $zenphoto_tabs[$_zp_admin_tab]['subtabs'];
+	$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
 	$current = getSubtabs();
 	?>
 	<ul class="subnav" >
@@ -3970,19 +3970,21 @@ function admin_securityChecks($rights, $return) {
 			exitZP();
 		}
 	}
-	if (!$_zp_current_admin_obj->reset) {
-		if (!zp_loggedin($rights)) {
-			// prevent nefarious access to this page.
-			$returnurl = urldecode($return);
-			if (!zp_apply_filter('admin_allow_access',false, $returnurl)) {
-				$uri = explode('?', $returnurl);
-				header("HTTP/1.0 302 Found");
-				header("Status: 302 Found");
-				header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
-				exitZP();
-			}
+	if ($_zp_current_admin_obj->reset) {
+		$_zp_loggedin = USER_RIGHTS;
+	}
+	if (!zp_loggedin($rights)) {
+		// prevent nefarious access to this page.
+		$returnurl = urldecode($return);
+		if (!zp_apply_filter('admin_allow_access',false, $returnurl)) {
+			$uri = explode('?', $returnurl);
+			header("HTTP/1.0 302 Found");
+			header("Status: 302 Found");
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?from=' . $uri[0]);
+			exitZP();
 		}
 	}
+
 }
 
 /**
