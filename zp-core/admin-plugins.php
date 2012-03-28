@@ -279,7 +279,7 @@ foreach ($filelist as $extension) {
 			}
 			if ($plugin_notice) {
 				?>
-				<p id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
+				<div id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
 					<?php
 					if ($plugin_notice) {
 						if ($plugin_disable) {
@@ -288,7 +288,7 @@ foreach ($filelist as $extension) {
 						echo $plugin_notice;
 					}
 					?>
-				</p>
+				</div>
 				<?php
 			}
 			?>

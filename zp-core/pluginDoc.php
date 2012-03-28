@@ -163,9 +163,9 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 			}
 			if ($plugin_notice) {
 				?>
-				<p class="notebox">
+				<div class="notebox">
 					<?php echo $plugin_notice; ?>
-				</p>
+				</div>
 				<?php
 			}
 			$i = strpos($pluginStream, '/*');

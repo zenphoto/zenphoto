@@ -20,11 +20,12 @@
  * @package plugins
  */
 $plugin_description = gettext('Overlay icons over thumbnails to indicate status');
-$plugin_notice = sprintf(gettext('Apply<br />
-																					&nbsp;&nbsp;&nbsp;<img src="%1$s/lock.png" alt=""/> over thumbnails of <em>password protected</em> images and albums<br />
-																					&nbsp;&nbsp;&nbsp;<img src="%1$s/action.png" alt=""/> over thumbnails of <em>un-published</em> albums  images<br />
-																					&nbsp;&nbsp;&nbsp;<img src="%1$s/new.png" alt=""/> over thumbnails of <em>"new"</em> images and albums<br />
-																					&nbsp;&nbsp;&nbsp;<img src="%1$s/GPS.png" alt=""/> over thumbnails of <em>geocoded</em> images<br />'
+$plugin_notice = sprintf(gettext('Apply<ul>
+<li><img src="%1$s/lock.png" alt=""/> over thumbnails of <em>password protected</em> images and albums</li>
+<li><img src="%1$s/action.png" alt=""/> over thumbnails of <em>un-published</em> albums  images</li>
+<li><img src="%1$s/new.png" alt=""/> over thumbnails of <em>"new"</em> images and albums</li>
+<li><img src="%1$s/GPS.png" alt=""/> over thumbnails of <em>geocoded</em> images</li>
+</ul>'
 																				),WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flag_thumbnail');
 $plugin_author = "Stephen Billard (sbillard)";
 
