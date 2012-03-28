@@ -57,34 +57,40 @@ function primeMark($text) {
 }
 
 function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
-	global $warn, $moreid, $primeid,$autorun;
+	global $warn, $moreid, $primeid, $autorun;
+	$classes = array('fail'=>gettext('fail'),'warn'=>gettext('warn'),'pass'=>gettext('pass'));
 	?>
 	<script type="text/javascript">
 		$("#prime<?php echo $primeid; ?>").remove();
 	</script>
 	<?php
+	$anyway = 0;
 	$dsp = '';
 	if ($check > 0) {$check = 1; }
 	switch ($check) {
 		case 0:
-			$dsp = "fail";
+			$cls = "fail";
 			break;
 		case -1:
 		case -3:
-			$dsp = "warn";
+			$cls = "warn";
 			$warn = true;
-			if ($stopAutorun) {
+			if ($stopAutorun && $autorun) {
 				$autorun = false;
+				$anyway = 2;
+				$check = -1;
+			} else {
+				$anyway = 1;
 			}
 			break;
 		case 1:
 		case -2:
-			$dsp = "pass";
+			$cls = "pass";
 			break;
 	}
 	if ($check <= 0) {
 		?>
-		<li class="<?php echo $dsp; ?>"><?php
+		<li class="<?php echo $cls; ?>"><?php
 		if (!empty($text2)) {
 			echo  $text2;
 			$dsp .= ': '.trim($text2);
@@ -103,6 +109,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
 					<?php
 					break;
 				case -1:
+					$anyway = 1;
 					?>
 					<div class="warning">
 						<h1><?php echo gettext('Warning!'); ?></h1>
@@ -137,18 +144,23 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
 					<?php
 					break;
 			}
-			$dsp .= ' '.trim($msg);
+			$dsp = $msg;
 		}
 		?>
 		</li>
 		<?php
 	} else {
+		$dsp = $text;
 		?>
 		<li class="<?php echo $dsp; ?>"><?php echo $text; ?></li>
 		<?php
-		$dsp .= ': '.trim($text);
 	}
-	setupLog($dsp, $check<=0 && $check!=-2 );
+	if ($anyway==2) {
+		$stopped = '('.gettext('Autorun aborted)').') ';
+	} else {
+		$stopped = ' ';
+	}
+	setupLog($classes[$cls].$stopped.$dsp, $anyway);
 	return $check;
 }
 

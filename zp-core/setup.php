@@ -2375,7 +2375,6 @@ if (file_exists(CONFIGFILE)) {
 				?>
 				<p id="golink"><?php echo sprintf(gettext('You can now <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'),'..','admin.php'); ?></p>
 				<?php
-
 				switch ($autorun) {
 					case 'admin':
 						?>
