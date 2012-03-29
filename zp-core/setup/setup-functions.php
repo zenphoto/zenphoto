@@ -14,8 +14,9 @@ if (empty($matches)) {
 	$const_webpath = '';
 } else {
 	$const_webpath = $matches[1];
-	$serverpath = substr($serverpath,0,strrpos($serverpath,$const_webpath)).$const_webpath;
+	$serverpath = substr($serverpath,0,strrpos($serverpath,'/'.ZENFOLDER));
 }
+
 define('SETUPLOG',$serverpath.'/'.DATA_FOLDER . '/setup.log');
 define('CONFIGFILE',$serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg');
 if (!defined('SERVERPATH')) define('SERVERPATH',$serverpath);
@@ -152,7 +153,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
 	} else {
 		$dsp = $text;
 		?>
-		<li class="<?php echo $dsp; ?>"><?php echo $text; ?></li>
+		<li class="<?php echo $cls; ?>"><?php echo $text; ?></li>
 		<?php
 	}
 	if ($anyway==2) {

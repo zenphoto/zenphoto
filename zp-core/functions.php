@@ -2352,8 +2352,12 @@ class zpFunctions {
 	 * Returns true if the install is not a "clone"
 	 */
 	static function hasPrimaryScripts() {
-		$me = str_replace('\\', '/', __FILE__);
-		return SERVERPATH == substr($me, 0, strrpos($me, '/'.ZENFOLDER));
+		$zen = @readlink(SERVERPATH.'/'.ZENFOLDER);
+		$data = @readlink(SERVERPATH.'/'.DATA_FOLDER);
+		if ($zen && $data) {	// no error reading the link info
+			return dirname($data) == dirname($zen);
+		}
+		return true;
 	}
 
 	/**

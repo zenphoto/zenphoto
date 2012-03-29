@@ -16,23 +16,24 @@ if(!function_exists("gettext")) {
 global $_zp_conf_vars;
 $const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
 $const_serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
+$lookfor = '/'.ZENFOLDER;
 if (OFFSET_PATH) {
 	preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches);
 	if (empty($matches)) {
 		preg_match('~(.*)/('.USER_PLUGIN_FOLDER.')~',$const_webpath, $matches);
+		$lookfor = '/'.USER_PLUGIN_FOLDER;
 	}
 	if (empty($matches)) {
 		$const_webpath = '';
 	} else {
 		$const_webpath = $matches[1];
-		$const_serverpath = substr($const_serverpath,0,strrpos($const_serverpath,$const_webpath)).$const_webpath;
+		$const_serverpath = substr($const_serverpath,0,strrpos($const_serverpath,$lookfor));
 	}
 } else {
 	if ($const_webpath == '/' || $const_webpath == '.') {
 		$const_webpath = '';
 	}
 }
-
 
 // Contexts (Bitwise and combinable)
 define("ZP_INDEX",   1);

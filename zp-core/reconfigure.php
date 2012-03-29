@@ -51,11 +51,13 @@ function reconfigureAction() {
 			exit();
 		}
 	} else {
-		zp_register_filter('admin_note', 'signatureChange');
-		zp_register_filter('admin_head', 'reconfigureCS');
-		if (zp_loggedin(ADMIN_RIGHTS)) {
-			zp_register_filter('theme_head', 'reconfigureCS');
-			zp_register_filter('theme_body_open', 'signatureChange');
+		if (function_exists('zp_register_filter')) {
+			zp_register_filter('admin_note', 'signatureChange');
+			zp_register_filter('admin_head', 'reconfigureCS');
+			if (zp_loggedin(ADMIN_RIGHTS)) {
+				zp_register_filter('theme_head', 'reconfigureCS');
+				zp_register_filter('theme_body_open', 'signatureChange');
+			}
 		}
 	}
 }

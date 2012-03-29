@@ -68,17 +68,16 @@ if (isset($_GET['action'])) {
 			exitZP();
 			break;
 		case 'saveoptions':
-			if ($_zp_current_admin_obj->getID() || $_zp_current_admin_obj->reset) {
-				XSRFdefender('saveadmin');
-			}
+			XSRFdefender('saveadmin');
 			$notify = '';
 			$returntab = '';
-
 			if (isset($_POST['saveadminoptions'])) {
-				if (!$_zp_current_admin_obj->getID() || (isset($_POST['alter_enabled'])) || (sanitize_numeric($_POST['totaladmins']) > 1) ||
-							(trim(sanitize($_POST['adminuser0'],0))) != $_zp_current_admin_obj->getUser() ||
-							isset($_POST['0-newuser'])) {
-					admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
+				if (isset($_POST['alter_enabled']) || sanitize_numeric($_POST['totaladmins']) > 1 ||
+											trim(sanitize($_POST['adminuser0'],0)) != $_zp_current_admin_obj->getUser() ||
+											isset($_POST['0-newuser'])) {
+					if (!$_zp_current_admin_obj->reset) {
+						admin_securityChecks(ADMIN_RIGHTS, currentRelativeURL());
+					}
 				}
 				$alter = isset($_POST['alter_enabled']);
 				$nouser = true;
@@ -636,9 +635,7 @@ function languageChange(id,lang) {
 					</span>
 
 				<?php
-				if (!$alterrights) {
-					?>
-					<?php
+				if (!$alterrights || !$userobj->getID()) {
 					if (empty($userid)) {
 							?>
 							<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""

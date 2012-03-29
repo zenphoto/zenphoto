@@ -24,7 +24,6 @@ header('Content-Type: text/html; charset=UTF-8');
 header("Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0");
 
 require_once(dirname(__FILE__).'/setup/setup-functions.php');
-
 $debug = isset($_REQUEST['debug']);
 
 $setup_checked = isset($_GET['checked']);
@@ -216,7 +215,6 @@ if ($updatezp_config) {
 	@chmod(CONFIGFILE, $chmod);
 	$xsrftoken = sha1(CONFIGFILE.@file_get_contents(CONFIGFILE).session_id());
 }
-
 $result = true;
 $environ = false;
 $DBcreated = false;
@@ -1474,14 +1472,11 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			$_zp_authority->printLoginForm('', false);
 		}
 		if ($noxlate > 0) {
-			?>
-			<div>
-			<?php
 			setupLanguageSelector();
-			?>
-			</div>
-			<?php
 		}
+		?>
+		<br clear="all">
+		<?php
 		echo "\n</div><!-- content -->";
 		echo "\n</div><!-- main -->";
 		printadminfooter();
@@ -2569,13 +2564,13 @@ if ($blindInstall) {
 	ob_end_clean();
 }
 ?>
-</div><!-- content -->
 <?php
 if ($noxlate > 0) {
 	setupLanguageSelector();
 }
-
 ?>
+<br clear="all">
+</div><!-- content -->
 </div><!-- main -->
 <?php
 printAdminFooter();

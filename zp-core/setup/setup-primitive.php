@@ -11,12 +11,16 @@
 require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
 require_once(dirname(dirname(__FILE__)).'/lib-htmLawed.php');
 
-preg_match('|(.*)/'.ZENFOLDER.'/|',$_SERVER['SCRIPT_NAME'], $matches);
+$const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
+$serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
+preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches);
 if (empty($matches)) {
 	$const_webpath = '';
 } else {
-	$const_webpath = $matches[1].'/';
+	$const_webpath = $matches[1];
+	$serverpath = substr($serverpath,0,strrpos($serverpath,'/'.ZENFOLDER));
 }
+
 if (!defined('WEBPATH')) { define('WEBPATH', $const_webpath); }
 if (!defined('SERVERPATH')) { define('SERVERPATH', $serverpath); }
 define('LOCAL_CHARSET','UTF-8');
