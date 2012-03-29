@@ -2,6 +2,10 @@
 	Zen Photo Admin
 */ /* Basics
 ------------------------------ */
+* {
+line-height: 19px;
+}
+
 html { /* Force vertical scrollbar to prevent page shift "jog" */
 	/* IE */
 	overflow-y: scroll;
@@ -20,6 +24,8 @@ body {
 	margin: 0;
 	padding: 0;
 }
+
+
 
 em {
 	color: black;
@@ -134,7 +140,7 @@ h3 {
 }
 
 p {
-	line-height: 18px;
+
 	margin-bottom: 0.8em;
 }
 
@@ -183,7 +189,6 @@ ul.nav {
 
 ul.nav li {
  float: left;
- line-height: 1.3em;
  vertical-align: middle;
  zoom: 1;
 }
@@ -557,14 +562,8 @@ table.bordered tr td {
 	margin: 0px;
 	background-color: #fff;
 	border-bottom: 1px solid #E5E5E5;
-	line-height: 18px;
 }
-/*
-table.bordered tr td strong {
-line-height: 18px;
-position: relative;
-top: 0px;
-} */
+
 
 /*****
 /* some additions for the plugins and options tables, easier to read if top aligned IMHO */
@@ -574,7 +573,6 @@ table.options td {
 }
 table.options td p {
  margin-top: 0;
-line-height: 18px;
 }
 /*******/
 
@@ -861,7 +859,6 @@ input.tags {
 #overview-comments ul li,#overview-gallerystats ul li,#overview-utility ul li,#overview-info ul li,#overview-maint ul li,#overview-news ul li
 	{
 	margin-bottom: .5em;
-	line-height: 1.3em;
 	margin-left: 0px;
 }
 
@@ -1822,7 +1819,6 @@ span.tagMatches span {
 	border: 1px solid #cccccc;
 	border-bottom-width: 5px;
 	width: 18.4em;
-	line-height: 1.5em;
 	-moz-border-radius: 0 0 5px 5px;
 	-khtml-border-radius: 0 0 5px 5px;
 	-webkit-border-radius: 0 0 5px 5px;
@@ -1919,7 +1915,6 @@ fieldset,
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	margin-bottom: 5px;
-	line-height: 20px;
 	width: 335px;
 }
 
@@ -1986,7 +1981,6 @@ width: 300px;
 
 /* css for the log viewer */
 .logtext {
-	line-height: 0.7em;
 	border-spacing: 1px;
 	border: 1px solid #BAC9CF;
 	max-height: 600px;
@@ -2459,4 +2453,10 @@ div.bordered .page-list_row .page-list_icon .checkbox {
 img.zp_logoicon {
 position: relative;
 top: 3px;
+}
+
+/* background-color for currently selected items */
+.currentselection,
+tr.currentselection td {
+	background-color: #ECF1F2 !important;
 }

@@ -188,9 +188,9 @@ echo "\n" . '<div id="content">';
 	</tr>
 	<?php
 $themes = $_zp_gallery->getThemes();
-$current_theme_style = "background-color: #ECF1F2;";
+$current_theme_style = 'class="currentselection"';
 foreach($themes as $theme => $themeinfo) {
-	$style = ($theme == $current_theme) ? " style=\"$current_theme_style\"" : "";
+	$style = ($theme == $current_theme) ? ' '.$current_theme_style : '';
 	$themedir = SERVERPATH . '/themes/'.internalToFilesystem($theme);
 	$themeweb = WEBPATH . "/themes/$theme";
 	if (themeIsEditable($theme, $themes)) {

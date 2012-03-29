@@ -87,12 +87,9 @@ echo gettext("Plugins provide optional functionality for Zenphoto.").' ';
 echo gettext("They may be provided as part of the Zenphoto distribution or as offerings from third parties.").' ';
 echo sprintf(gettext("Third party plugins are placed in the <code>%s</code> folder and are automatically discovered."),USER_PLUGIN_FOLDER).' ';
 echo gettext("If the plugin checkbox is checked, the plugin will be loaded and its functions made available to theme pages. If the checkbox is not checked the plugin is disabled and occupies no resources.");
-
 ?>
 <a href="http://www.zenphoto.org/news/category/extensions" alt="Zenphoto extensions section"> <?php echo gettext('Find more plugins'); ?></a>
 </p>
-
-<br clear="all" />
 <p class='notebox'><?php echo gettext("<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."); ?>
 </p>
 <form action="?action=saveplugins" method="post">
@@ -187,8 +184,12 @@ foreach ($filelist as $extension) {
 	} else {
 		$optionlink = NULL;
 	}
+	$selected_style = '';
+	if ($currentsetting > THEME_PLUGIN) {
+		$selected_style = ' class="currentselection"';
+	}
 	?>
-	<tr>
+	<tr<?php echo $selected_style;?>>
 		<td width="30%">
 			<label id="<?php echo $extension; ?>">
 				<?php
