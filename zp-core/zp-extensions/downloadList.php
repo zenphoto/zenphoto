@@ -44,7 +44,7 @@ zp_register_filter('custom_option_save', 'downloadList::custom_options_save');
 class downloadList {
 
 	function __construct() {
-		setOptionDefault('downloadList_directory', 'uploaded');
+		setOptionDefault('downloadList_directory', UPLOAD_FOLDER);
 		setOptionDefault('downloadList_showfilesize', 1);
 		setOptionDefault('downloadList_showdownloadcounter', 1);
 		setOptionDefault('downloadList_user', NULL);

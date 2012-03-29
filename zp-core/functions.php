@@ -2352,10 +2352,8 @@ class zpFunctions {
 	 * Returns true if the install is not a "clone"
 	 */
 	static function hasPrimaryScripts() {
-		$zen = @readlink(SERVERPATH.'/'.ZENFOLDER);
-		$data = @readlink(SERVERPATH.'/'.DATA_FOLDER);
-		if ($zen && $data) {	// no error reading the link info
-			return dirname($data) == dirname($zen);
+		if ($zen = @readlink(SERVERPATH.'/'.ZENFOLDER)) {	// no error reading the link info
+			return dirname(@readlink(SERVERPATH.'/'.DATA_FOLDER)) == dirname($zen);
 		}
 		return true;
 	}
@@ -2375,7 +2373,7 @@ class zpFunctions {
 							return false;
 						}
 					} else {
-						@chmod($path.$file, 0666);
+						@chmod($path.$file, 0777);
 						if (!@unlink($path.'/'.$file)) {
 							return false;
 						}
@@ -2383,7 +2381,7 @@ class zpFunctions {
 				}
 			}
 			closedir($dir);
-			@chmod($path, 0666);
+			@chmod($path, 0777);
 			if (!@rmdir($path)) {
 				return false;
 			}

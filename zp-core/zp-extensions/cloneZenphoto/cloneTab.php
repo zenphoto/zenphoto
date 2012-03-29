@@ -62,7 +62,11 @@ printAdminHeader('overview','clone');
 	if (isset($_POST['path'])) {
 		$path = sanitize($_POST['path']);
 	} else {
-		$path = str_replace(WEBPATH,'/',SERVERPATH);
+		if (WEBPATH) {
+			$path = str_replace(WEBPATH,'/',SERVERPATH);
+		} else {
+			$path = SERVERPATH.'/';
+		}
 	}
 	$downtitle = '.../'.basename($path);
 	$uppath = str_replace('\\','/',dirname($path));
@@ -79,12 +83,13 @@ printAdminHeader('overview','clone');
 	if (substr($uppath, -1) != '/') {
 		$uppath .= '/';
 	}
+	$zp_folders = array(ALBUMFOLDER,BACKUPFOLDER,CACHEFOLDER,STATIC_CACHE_FOLDER,USER_PLUGIN_FOLDER,THEMEFOLDER,UPLOAD_FOLDER,ZENFOLDER,DATA_FOLDER);
 
 	if (($dir=opendir($path))!==false) {
 		while(($file=readdir($dir))!==false) {
 			if(substr($file, 0, 1) != '.') {
 				if ((is_dir($path.$file))) {
-					if ($file != trim(WEBPATH,'/')) {	// no clones "here" or in "hidden" files
+					if (!in_array($file, $zp_folders)) {	// no clones "here" or in "hidden" files
 						$folderlist[$file]=$path.$file.'/';
 					}
 				}

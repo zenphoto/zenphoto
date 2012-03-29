@@ -1375,7 +1375,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				}
 				clearstatcache();
 			}
-			@chmod($htfile, 0400);
+			@chmod($htfile, 0444);
 		}
 		$good = checkMark($base, $b, $err,
 											gettext("Setup was not able to write to the file change RewriteBase match the install folder.") .
@@ -1431,11 +1431,11 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		checkmark(-1, gettext('<em>albums</em> folder'), gettext("<em>albums</em> folder [The line <code>\$conf['album_folder']</code> is missing from your configuration file]"), gettext('You should update your configuration file to conform to the current zenphoto.cfg example file.'));
 	}
 
-	$good = folderCheck('cache', $serverpath . "/cache/", 'std', NULL, true, $chmod | 0311) && $good;
+	$good = folderCheck('cache', $serverpath . '/'.CACHEFOLDER.'/', 'std', NULL, true, $chmod | 0311) && $good;
 	$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder.')) && $good;
-	$good = folderCheck(gettext('uploaded'), $serverpath . "/uploaded/", 'std', NULL, false, $chmod | 0311) && $good;
+	$good = folderCheck(gettext('uploaded'), $serverpath . '/'.UPLOAD_FOLDER.'/', 'std', NULL, false, $chmod | 0311) && $good;
 	$good = folderCheck(DATA_FOLDER, $serverpath . '/'.DATA_FOLDER.'/', 'std', NULL, false, $chmod | 0311) && $good;
-	$good = folderCheck(gettext('HTML cache'), $serverpath . '/cache_html/', 'std', $Cache_html_subfolders, true, $chmod | 0311) && $good;
+	$good = folderCheck(gettext('HTML cache'), $serverpath . '/'.STATIC_CACHE_FOLDER.'/', 'std', $Cache_html_subfolders, true, $chmod | 0311) && $good;
 	$good = folderCheck(gettext('Third party plugins'), $serverpath . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod | 0311) && $good;
 
 	?>

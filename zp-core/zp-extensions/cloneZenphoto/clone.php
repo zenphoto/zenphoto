@@ -57,7 +57,12 @@ foreach ($targets as $target=>$type) {
 					}
 				} else {
 					// is a symlink
-					if (@rmdir($folder.$target)) {
+					@chmod($path.$file, 0777);
+					$success = @rmdir($folder.$target);
+					if (!$success) {	// some systems treat it as a dir, others as a file!
+						$success = @unlink($folder.$target);
+					}
+					if ($success) {
 						if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
 							$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
 						} else {
@@ -71,6 +76,7 @@ foreach ($targets as $target=>$type) {
 				}
 				break;
 			case 'file':
+				@chmod($path.$file, 0777);
 				if (@unlink($folder.$target)) {
 					if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
 						if ($folder.$target == $link) {
@@ -106,9 +112,13 @@ if ($success) {
 	array_unshift($msg, '<h2>'.sprintf(gettext('Successful clone to %s'),$folder).'</h2>'."\n");
 	list($diff, $needs) = checkSignature();
 	if (empty($needs)) {
-		$rootpath = str_replace(WEBPATH,'/',SERVERPATH);
+		if (WEBPATH) {
+			$rootpath = str_replace(WEBPATH,'/',SERVERPATH);
+		} else {
+			$rootpath = SERVERPATH.'/';
+		}
 		if (substr($folder,0,strlen($rootpath)) == $rootpath) {
-			$msg[] = '<p><span class="buttons"><a href="/'.$newinstall.ZENFOLDER.'/setup.php?autorun">'.gettext('setup the new install').'</a></span><br clear="all"></p>'."\n";
+			$msg[] = '<p><span class="buttons"><a href="'.FULLWEBPATH.$newinstall.ZENFOLDER.'/setup.php?autorun">'.gettext('setup the new install').'</a></span><br clear="all"></p>'."\n";
 		}
 	} else {
 		$reinstall = '<p>'.sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'),$newinstall,ZENPHOTO_VERSION,ZENPHOTO_RELEASE).

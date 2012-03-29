@@ -386,13 +386,14 @@ function printSubtabs() {
 				}
 				$tab = substr($source, $i+4);
 			}
-			if (strpos($link,'/') !== 0) {	// zp_core relative
-				$link = WEBPATH.'/'.ZENFOLDER.'/'.$link;
-			} else {
-				$link = WEBPATH.$link;
+			if ($link) {
+				if (strpos($link,'/') !== 0) {	// zp_core relative
+					$link = 'href = "'.WEBPATH.'/'.ZENFOLDER.'/'.$link.'"';
+				} else {
+					$link = 'href = "'.WEBPATH.$link.'"';
+				}
 			}
-			echo '<li'.(($current == $tab) ? ' class="current"' : '').'>'.
-					 '<a href = "'.$link.'">'.$key.'</a></li>'."\n";
+			echo '<li'.(($current == $tab) ? ' class="current"' : '').'><a id="'.$tab.'" '.$link.'">'.$key.'</a></li>'."\n";
 		}
 	}
 	?>
@@ -3970,7 +3971,7 @@ function admin_securityChecks($rights, $return) {
 			exitZP();
 		}
 	}
-	if ($_zp_current_admin_obj->reset) {
+	if ($_zp_current_admin_obj && $_zp_current_admin_obj->reset) {
 		$_zp_loggedin = USER_RIGHTS;
 	}
 	if (!zp_loggedin($rights)) {
