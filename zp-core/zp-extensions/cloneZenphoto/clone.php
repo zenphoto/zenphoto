@@ -39,10 +39,10 @@ if (!is_dir($folder.THEMEFOLDER)) {
 
 foreach ($targets as $target=>$type) {
 	if (file_exists($folder.$target)) {
-		$link = str_replace('\\', '/', readlink($folder.$target));
+		$link = str_replace('\\', '/', @readlink($folder.$target));
 		switch ($type) {
 			case 'dir':
-				if ($link == $folder.$target) {
+				if (empty($link) || $link == $folder.$target) {
 					// an actual folder
 					if (zpFunctions::removeDir($folder.$target)) {
 						if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {

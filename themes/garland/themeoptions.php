@@ -16,7 +16,7 @@ class ThemeOptions {
 		setThemeOption('image_use_side', 'longest');
 		setThemeOptionDefault('thumb_transition', 1);
 		setThemeOption('thumb_size',85);
-		setThemeOptionDefault('garland_personality', 'Image page');
+		setThemeOptionDefault('garland_personality', 'image_page');
 		setThemeOptionDefault('garland_transition', 'slide-hori');
 		setThemeOptionDefault('garland_caption_location', 'image');
 		setOptionDefault('colorbox_garland_image', 1);
@@ -58,7 +58,7 @@ class ThemeOptions {
 		}
   	$options = array(
   								gettext('Theme personality') => array('key' => 'garland_personality', 'type' => OPTION_TYPE_SELECTOR,
-															'selections' => array(gettext('Image page') => 'image_page', gettext('Colorbox') => 'Colorbox', gettext('Image gallery') => 'Image_gallery'),
+															'selections' => array(gettext('Image page') => 'image_page', gettext('Colorbox') => 'colorbox', gettext('Image gallery') => 'image_gallery'),
 															'desc' => gettext('Select the theme personality')),
   								gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable search form.')),
 						  		gettext('Allow cloud') => array('key' => 'Allow_cloud', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable tag cloud for album page.')),
