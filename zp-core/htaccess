@@ -27,58 +27,6 @@ IndexIgnore *
   
   ##### put no rules before this line #######
   
-  
-  #######################
-  #Rewrite rules for removed sitemap.php
-  RewriteRule	^sitemap\.php                  		index.php?sitemap [L,R=301]
-  
-  #Rewrite rules for removed RSS files
-	RewriteCond %{QUERY_STRING} albumtitle=(.*)&albumname=(.*)&lang=".$lang
-	RewriteRule	^rss\.php/?$                	index.php?rss&albumtitle=%1&albumname=%2&lang=%3 [L,R=301]
-	
-	RewriteCond %{QUERY_STRING} albumtitle=(.*)&folder=(.*)&lang=(.*)
-	RewriteRule	^rss\.php/?$                	index.php?rss&albumtitle=%1&folder=%2&lang=%3 [L,R=301]
-	
-	RewriteCond %{QUERY_STRING} albumtitle=(.*)&albumname=(.*)&lang=(.*)
-	RewriteRule	^rss\.php/?$                	index.php?rss&albumtitle=%1&albumname=%2&lang=%3 [L,R=301]
-	
-	RewriteCond %{QUERY_STRING} folder=(.*)&lang=(.*)&albumsmode
-	RewriteRule	^rss\.php/?$                	index.php?rss&folder%1&lang=%2&albumsmode [L,R=301]
-	
-  RewriteCond %{QUERY_STRING} withimages&lang=(.*)
-	RewriteRule	^rss-news\.php/?$							index.php?rss=news&withimages&lang=%1 [L,R=301]
-	
-	RewriteCond %{QUERY_STRING} id=(.*)&title=(.*)&type=(.*)&lang=(.*)
-	RewriteRule	^rss-comments\.php/?$				index.php?rss=comments&id=%1&title=%2&type=%3&lang=%4 [L,R=301]
-	
-  RewriteCond %{QUERY_STRING} type=(.*)&lang=(.*)
-	RewriteRule	^rss-comments\.php/?$				index.php?rss=comments&type=%1&lang=%2 [L,R=301]
-  
-  RewriteCond %{QUERY_STRING} lang=(.*)&albumsmode
-	RewriteRule	^rss\.php/?$								index.php?rss&lang=%1&albumsmode [L,R=301]
-
-  RewriteCond %{QUERY_STRING} lang=(.*)&category=(.*)
-	RewriteRule	^rss-news\.php/?$						index.php?rss=news&lang=%1&category=%2 [L,R=301]
-  
-  RewriteCond %{QUERY_STRING} lang=(.*)
-	RewriteRule	^rss\.php/?$								index.php?rss&lang=%1 [L,R=301]
-	RewriteRule	^rss-news\.php/?$						index.php?rss=news&lang=%1 [L,R=301]
-	
-  RewriteCond %{QUERY_STRING} withimages&lang=(.*)
-	RewriteRule	^index\.php?rss-news/?$                	index.php?rss=news&withimages&lang=%1 [L,R=301]
-	
-	RewriteCond %{QUERY_STRING} id=(.*)&title=(.*)&type=(.*)&lang=(.*)
-	RewriteRule	^index\.php?rss-comments/?$              index.php?rss=comments&id=%1&title=%2&type=%3&lang=%4 [L,R=301]
-	
-  RewriteCond %{QUERY_STRING} type=(.*)&lang=(.*)
-	RewriteRule	^index\.php?rss-comments/?$              index.php?rss=comments&type=%1&lang=%2 [L,R=301]
- 
-  RewriteCond %{QUERY_STRING} lang=(.*)&category=(.*)
-	RewriteRule	^index\.php?rss-news/?$                	index.php?rss=news&lang=%1&category=%2 [L,R=301]
-  
-  RewriteCond %{QUERY_STRING} lang=(.*)
-	RewriteRule	^index\.php?rss-news/?$                	index.php?rss=news&lang=%1 [L,R=301]
-  #######################
   #rewrite rule for tinyURLs
   RewriteRule ^tiny/([0-9]+)/?$               index.php?p=$1&t [L,QSA]
   
