@@ -14,7 +14,7 @@ XSRFdefender('cloneZenphoto');
 
 $folder = sanitize($_GET['clonePath']);
 $path = str_replace(WEBPATH,'/',SERVERPATH);
-$newinstall = str_replace($path, '', $folder);
+$newinstall = trim(str_replace($path, '', $folder),'/').'/';
 
 $msg = array();
 $success = true;
@@ -114,11 +114,14 @@ if ($success) {
 	if (empty($needs)) {
 		if (WEBPATH) {
 			$rootpath = str_replace(WEBPATH,'/',SERVERPATH);
+			$urlpath = str_replace(WEBPATH,'/',FULLWEBPATH);
 		} else {
 			$rootpath = SERVERPATH.'/';
+			$urlpath = FULLWEBPATH.'/';
 		}
+
 		if (substr($folder,0,strlen($rootpath)) == $rootpath) {
-			$msg[] = '<p><span class="buttons"><a href="'.FULLWEBPATH.$newinstall.ZENFOLDER.'/setup.php?autorun">'.gettext('setup the new install').'</a></span><br clear="all"></p>'."\n";
+			$msg[] = '<p><span class="buttons"><a href="'.$urlpath.$newinstall.ZENFOLDER.'/setup.php?autorun">'.gettext('setup the new install').'</a></span><br clear="all"></p>'."\n";
 		}
 	} else {
 		$reinstall = '<p>'.sprintf(gettext('Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:'),$newinstall,ZENPHOTO_VERSION,ZENPHOTO_RELEASE).

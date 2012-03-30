@@ -2292,7 +2292,7 @@ if (file_exists(CONFIGFILE)) {
 			}
 		}
 		if ($createTables) {
-			if (isset($_GET['delete_files']) || ($autorun && defined("RELEASE"))) {
+			if (isset($_GET['delete_files']) || ($autorun && defined("RELEASE") && zpFunctions::hasPrimaryScripts())) {
 				require_once(dirname(__FILE__).'/'.PLUGIN_FOLDER.'/security-logger.php');
 				$curdir = getcwd();
 				chdir(dirname(__FILE__).'/setup');

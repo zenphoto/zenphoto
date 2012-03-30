@@ -19,7 +19,7 @@
  * @package plugins
  */
 
-$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext('Allows multiple Zenphoto installations to share a single set of Zenphoto script files.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zpFunctions::hasPrimaryScripts())?false:gettext('Only the primary installation may clone offspring installations.');
