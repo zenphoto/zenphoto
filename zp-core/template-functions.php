@@ -2601,7 +2601,7 @@ function getProtectedImageURL($image=NULL, $disposal=NULL) {
 	if ($disposal != 'Download' && OPEN_IMAGE_CACHE && file_exists($cache_path)) {
 		return WEBPATH.'/'.CACHEFOLDER.pathurlencode(imgSrcURI($cache_file));
 	} else if ($disposal == 'Unprotected') {
-		return getImageURI($args, $this->album->name, $filename, $this->filemtime);
+		return getImageURI($args, $this->album->name, $filename, $image->filemtime);
 	} else {
 		$params = '&q='.getOption('full_image_quality');
 		$watermark_use_image = getWatermarkParam($image, WATERMARK_FULL);
@@ -2627,59 +2627,60 @@ function getSizedImageURL($size) {
 /**
  * Returns the url to the image with the dimensions you define with this function.
  *
- * $size, $width, and $height are used in determining the final image size.
- * At least one of these must be provided. If $size is provided, $width and
- * $height are ignored. If both $width and $height are provided, the image
- * will have those dimensions regardless of the original image height/width
- * ratio. (Yes, this means that the image may be distorted!)
-
- * The $crop* parameters determine the portion of the original image that
- * will be incorporated into the final image.
-
- * $cropw and $croph "sizes" are typically proportional. That is you can
- * set them to values that reflect the ratio of width to height that you
- * want for the final image. Typically you would set them to the final
- * height and width. These values will always be adjusted so that they are
- * not larger than the original image dimensions.
-
- * The $cropx and $cropy values represent the offset of the crop from the
- * top left corner of the image. If these values are provided, the $croph
- * and $cropw parameters are treated as absolute pixels not proportions of
- * the image. If cropx and cropy are not provided, the crop will be
- * "centered" in the image.
-
- * When $cropx and $cropy are not provided the crop is offset from the top
- * left proportionally to the ratio of the final image size and the crop
- * size.
-
- * Some typical croppings:
-
- * $size=200, $width=NULL, $height=NULL, $cropw=200, $croph=100,
- * $cropx=NULL, $cropy=NULL produces an image cropped to a 2x1 ratio which
- * will fit in a 200x200 pixel frame.
-
- * $size=NULL, $width=200, $height=NULL, $cropw=200, $croph=100, $cropx=100,
- * $cropy=10 will will take a 200x100 pixel slice from (10,100) of the
- * picture and create a 200x100 image
-
- * $size=NULL, $width=200, $height=100, $cropw=200, $croph=120, $cropx=NULL,
- * $cropy=NULL will produce a (distorted) image 200x100 pixels from a 1x0.6
- * crop of the image.
-
- * $size=NULL, $width=200, $height=NULL, $cropw=180, $croph=120, $cropx=NULL, $cropy=NULL
- * will produce an image that is 200x133 from a 1.5x1 crop that is 5% from the left
- * and 15% from the top of the image.
- *
  * @param int $size the size of the image to have
  * @param int $width width
  * @param int $height height
- * @param int $cropw cropwidth
+ * @param int $cropw crop width
  * @param int $croph crop height
  * @param int $cropx crop part x axis
  * @param int $cropy crop part y axis
  * @param bool $thumbStandin set true to inhibit watermarking
  * @param bool $effects image effects (e.g. set gray to force to grayscale)
  * @return string
+ *
+ * $size, $width, and $height are used in determining the final image size.
+ * At least one of these must be provided. If $size is provided, $width and
+ * $height are ignored. If both $width and $height are provided, the image
+ * will have those dimensions regardless of the original image height/width
+ * ratio. (Yes, this means that the image may be distorted!)
+ *
+ * The $crop* parameters determine the portion of the original image that
+ * will be incorporated into the final image.
+ *
+ * $cropw and $croph "sizes" are typically proportional. That is you can
+ * set them to values that reflect the ratio of width to height that you
+ * want for the final image. Typically you would set them to the final
+ * height and width. These values will always be adjusted so that they are
+ * not larger than the original image dimensions.
+ *
+ * The $cropx and $cropy values represent the offset of the crop from the
+ * top left corner of the image. If these values are provided, the $croph
+ * and $cropw parameters are treated as absolute pixels not proportions of
+ * the image. If cropx and cropy are not provided, the crop will be
+ * "centered" in the image.
+ *
+ * When $cropx and $cropy are not provided the crop is offset from the top
+ * left proportionally to the ratio of the final image size and the crop
+ * size.
+ *
+ * Some typical croppings:
+ *
+ * $size=200, $width=NULL, $height=NULL, $cropw=200, $croph=100,
+ * $cropx=NULL, $cropy=NULL produces an image cropped to a 2x1 ratio which
+ * will fit in a 200x200 pixel frame.
+ *
+ * $size=NULL, $width=200, $height=NULL, $cropw=200, $croph=100, $cropx=100,
+ * $cropy=10 will will take a 200x100 pixel slice from (10,100) of the
+ * picture and create a 200x100 image
+ *
+ * $size=NULL, $width=200, $height=100, $cropw=200, $croph=120, $cropx=NULL,
+ * $cropy=NULL will produce a (distorted) image 200x100 pixels from a 1x0.6
+ * crop of the image.
+ *
+ * $size=NULL, $width=200, $height=NULL, $cropw=180, $croph=120, $cropx=NULL, $cropy=NULL
+ * will produce an image that is 200x133 from a 1.5x1 crop that is 5% from the left
+ * and 15% from the top of the image.
+ *
  */
 function getCustomImageURL($size, $width=NULL, $height=NULL, $cropw=NULL, $croph=NULL, $cropx=NULL, $cropy=NULL, $thumbStandin=false, $effects=NULL) {
 	global $_zp_current_image;

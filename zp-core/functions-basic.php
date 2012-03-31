@@ -679,7 +679,6 @@ function getImageParameters($args, $album=NULL) {
 			}
 		}
 	}
-
 	// Return an array of parameters used in image conversion.
 	$args =  array($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects);
 	return $args;
@@ -700,8 +699,8 @@ function getImageProcessorURI($args, $album, $image) {
 	if (!empty($width)) $uri .= '&w='.$width;
 	if (!empty($height)) $uri .= '&h='.$height;
 	if (!is_null($crop) && $crop) $uri .= '&c=1';
-	if (!is_null($cw)) $uri .= '&cw='.$cw;
-	if (!is_null($ch)) $uri .= '&ch='.$ch;
+	if ($cw) $uri .= '&cw='.$cw;
+	if ($ch) $uri .= '&ch='.$ch;
 	if (!is_null($cx)) $uri .= '&cx='.$cx;
 	if (!is_null($cy)) $uri .= '&cy='.$cy;
 	if (!empty($quality)) $uri .= '&q='.$quality;
@@ -735,7 +734,7 @@ function getImageProcessorURI($args, $album, $image) {
  */
 function getImageURI($args, $album, $image, $mtime) {
 	$cachefilename = getImageCacheFilename($album, $image, $args);
-	if (OPEN_IMAGE_CACHE && file_exists(SERVERCACHE . $cachefilename) && filemtime(SERVERCACHE . $cachefilename) > $mtime) {
+	if (OPEN_IMAGE_CACHE && file_exists(SERVERCACHE . $cachefilename) && filemtime(SERVERCACHE . $cachefilename) >= $mtime) {
 		return WEBPATH . '/'.CACHEFOLDER . imgSrcURI($cachefilename);
 	} else {
 		return getImageProcessorURI($args,$album,$image);

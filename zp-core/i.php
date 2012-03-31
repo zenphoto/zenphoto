@@ -207,6 +207,7 @@ $fmt = filemtime($imgfile);
 if (file_exists($newfile) & !$adminrequest) {
 	if (filemtime($newfile) >= filemtime($imgfile)) {
 		$process = false;
+		if (DEBUG_IMAGE) debugLog("Cache file valid");
 	}
 }
 

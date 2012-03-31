@@ -127,8 +127,13 @@ if (isset($_GET['action'])) {
 		/******************************************************************************/
 		case "clear_cache":
 			XSRFdefender('clear_cache');
-			$_zp_gallery->clearCache(SERVERCACHE . '/' . sanitize_path($_POST['album']));
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&cleared&album='.$_POST['album']);
+			if (isset($_GET['album'])) {
+				$album = sanitize_path($_GET['album']);
+			} else {
+				$album = sanitize_path($_POST['album']);
+			}
+			$_zp_gallery->clearCache(SERVERCACHE . '/' . $album);
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&cleared&album='.$album);
 			exitZP();
 			break;
 		case 'comments':
@@ -177,16 +182,21 @@ if (isset($_GET['action'])) {
 			$return = '?counters_reset';
 			$subalbum = '';
 			if (isset($_REQUEST['subalbum'])) {
-				$return = pathurlencode(dirname(sanitize_path($_REQUEST['album'])));
+				$return = pathurlencode(dirname(sanitize_path($_REQUEST['subalbum'])));
 				$subalbum = '&tab=subalbuminfo';
 			} else {
-				$return = pathurlencode(sanitize_path(urldecode($_POST['album'])));
+				if (isset($_GET['album'])) {
+					$return = pathurlencode(sanitize_path($_GET['album']));
+				} else {
+					$return = pathurlencode(sanitize_path(urldecode($_POST['album'])));
+				}
 			}
 			if (empty($return) || $return == '.' || $return == '/') {
 				$return = '?page=edit&counters_reset';
 			} else {
 				$return = '?page=edit&album='.$return.'&counters_reset'.$subalbum;
 			}
+
 			query("UPDATE " . prefix('albums') . " SET `hitcounter`= 0" . $where);
 			query("UPDATE " . prefix('images') . " SET `hitcounter`= 0" . $imgwhere);
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $return);
@@ -735,9 +745,6 @@ $alb = removeParentAlbumNames($album);
 			</form>
 			<br clear="all" />
 			<hr />
-
-			<?php printAlbumButtons($album); ?>
-
 		</div>
 		<?php
 	} else if ($subtab == 'subalbuminfo' && !$album->isDynamic())  {

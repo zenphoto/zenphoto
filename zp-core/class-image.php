@@ -86,9 +86,9 @@ class _Image extends MediaObject {
 	var $localpath;     			// Latin1 full SERVER path to the original image.
 	var $displayname;   			// $filename with the extension stripped off.
 	var $album;         			// An album object for the album containing this image.
-	protected $index;         			// The index of the current image in the album array.
-	protected $sortorder;     			// The position that this image should be shown in the album
-	protected $filemtime;     			// Last modified time of this image
+	protected $index;         // The index of the current image in the album array.
+	protected $sortorder;     // The position that this image should be shown in the album
+	var $filemtime;     			// Last modified time of this image
 	var $sidecars = array();	// keeps the list of suffixes associated with this image
 	var $manage_rights = MANAGE_ALL_ALBUM_RIGHTS;
 	var $manage_some_rights = ALBUM_RIGHTS;
@@ -848,7 +848,6 @@ class _Image extends MediaObject {
 	/**
 	 *  Get a custom sized version of this image based on the parameters.
 	 *
-	 * @param string $alt Alt text for the url
 	 * @param int $size size
 	 * @param int $width width
 	 * @param int $height height
@@ -856,8 +855,6 @@ class _Image extends MediaObject {
 	 * @param int $croph crop height
 	 * @param int $cropx crop x axis
 	 * @param int $cropy crop y axis
-	 * @param string $class Optional style class
-	 * @param string $id Optional style id
 	 * @param bool $thumbStandin set to true to treat as thumbnail
 	 * @param bool $effects set to desired image effect (e.g. 'gray' to force gray scale)
 	 * @return string

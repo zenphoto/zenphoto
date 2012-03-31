@@ -30,6 +30,7 @@ function imageError($status_text, $errormessage, $errorimg='err-imagegeneral.png
 		. (empty($newfilename) ? '' : '<br />'.sprintf(gettext('Cache: [<code>%s</code>]'), '/'.CACHEFOLDER.'/' . sanitize($newfilename, 3)).' ')
 		. (empty($image) || empty($album) ? '' : ' <br />'.sprintf(gettext('Image: [<code>%s</code>]'),sanitize($album.'/'.$image, 3)).' <br />'));
 	} else {
+		trigger_error($errormessage, E_USER_NOTICE);
 		header("HTTP/1.0 $status_text");
 		header("Status: $status_text");
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/images/' . $errorimg);
@@ -202,7 +203,11 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			imageError('404 Not Found', gettext('Image not renderable.'), 'err-failimage.png');
 		}
 		if ($rotate) {
+			if (DEBUG_IMAGE) debugLog("cacheImage:rotate->$rotate");
 			$im = zp_rotateImage($im, $rotate);
+			if (!$im) {
+				imageError('404 Not Found', gettext('Image not rotatable.'), 'err-failimage.png');
+			}
 		}
 		$w = zp_imageWidth($im);
 		$h = zp_imageHeight($im);
