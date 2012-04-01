@@ -8,6 +8,10 @@
 // force UTF-8 Ø
 
 require_once(dirname(__FILE__).'/functions.php');
+if (!defined('SEO_FULLWEBPATH')) {
+	define('SEO_FULLWEBPATH',FULLWEBPATH);
+	define('SEO_WEBPATH',WEBPATH);
+}
 require_once(dirname(__FILE__).'/functions-controller.php');
 if(class_exists('Zenpage')) {
 	require_once(dirname(__FILE__).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');

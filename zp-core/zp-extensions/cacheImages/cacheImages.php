@@ -116,8 +116,8 @@ if (empty($custom)) {
 	$custom[] = array('image_size'=>getOption('thumb_size'),'thumb'=>1);
 }
 
-$zenphoto_tabs['overview']['subtabs']=array(gettext('Pre-cache')=>'');
-printAdminHeader($tab,gettext('Pre-cache'));
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Cache')=>'');
+printAdminHeader($tab,gettext('Cache'));
 echo "\n</head>";
 echo "\n<body>";
 
@@ -126,7 +126,7 @@ echo "\n" . '<div id="main">';
 printTabs();
 echo "\n" . '<div id="content">';
 ?>
-<?php printSubtabs('Pre-cache'); ?>
+<?php printSubtabs('Cache'); ?>
 <div class="tabbox">
 <?php
 zp_apply_filter('admin_note','cache', '');

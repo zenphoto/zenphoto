@@ -11,13 +11,20 @@ admin_securityChecks(NULL, currentRelativeURL());
 
 if (isset($_GET['action'])) {
 	$action = sanitize($_GET['action'],3);
-	$file = SERVERPATH.'/'.DATA_FOLDER . '/'.sanitize($_POST['filename'],3);
+	$what = sanitize($_GET['filename'],3);
+	$file = SERVERPATH.'/'.DATA_FOLDER . '/'.$what.'.log';
 	XSRFdefender($action);
 	if (zp_apply_filter('admin_log_actions', true, $file, $action)) {
 		switch ($action) {
 			case 'clear_log':
 				$f = fopen($file, 'w');
-				ftruncate($f,0);
+				if (@ftruncate($f,0)) {
+					$class = 'messagebox';
+					$result = sprintf(gettext('%s log was emptied.'),$what);
+				} else {
+					$class = 'errorbox';
+					$result = sprintf(gettext('%s log could not be emptied.'),$what);
+				}
 				fclose($f);
 				clearstatcache();
 				if (basename($file) == 'security.log') {
@@ -26,7 +33,13 @@ if (isset($_GET['action'])) {
 				break;
 			case 'delete_log':
 				@chmod($file, 0666);
-				@unlink($file);
+				if (@unlink($file)) {
+					$class = 'messagebox';
+					$result = sprintf(gettext('%s log was removed.'),$what);
+				} else {
+					$class = 'errorbox';
+					$result = sprintf(gettext('%s log could not be removed.'),$what);
+				}
 				clearstatcache();
 				unset($_GET['tab']); // it is gone, after all
 				if (basename($file) == 'security.log') {
@@ -88,40 +101,30 @@ echo "\n</head>";
 			<!-- A log -->
 			<div id="theme-editor" class="tabbox">
 				<?php zp_apply_filter('admin_note','logs', $subtab); ?>
-				<form name="delete_log" action="?action=delete_log&amp;page=logs&amp;tab=<?php echo $subtab; ?>" method="post" style="float: left">
-					<?php XSRFToken('delete_log');?>
-					<input type="hidden" name="action" value="delete" />
-					<input type="hidden" name="filename" value="<?php echo $subtab; ?>.log" />
-					<div class="buttons">
-						<button type="submit" class="tooltip" id="delete_log_<?php echo $subtab; ?>" title="<?php printf(gettext("Delete %s"),$logfiletext);?>">
-							<img src="images/edit-delete.png" style="border: 0px;" alt="delete" /> <?php echo gettext("Delete");?>
-						</button>
+				<?php
+				if (isset($result)) {
+					?>
+					<div class="<?php echo $class; ?> fade-message">
+						<h2><?php echo $result; ?></h2>
 					</div>
-				</form>
+					<?php
+				}
+				?>
+				<span class="button buttons tooltip" title="<?php printf(gettext("Delete %s"),$logfiletext);?>">
+					<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-logs.php?action=delete_log&amp;page=logs&amp;tab='.$subtab.'&amp;filename='.html_encode($subtab); ?>&amp;XSRFToken=<?php  echo getXSRFToken('delete_log'); ?>">
+					<img src="images/edit-delete.png" /><?php echo gettext('Delete'); ?></a>
+				</span>
 				<?php
 				if (!empty($logtext)) {
 					?>
-					<form name="clear_log" action="?action=clear_log&amp;page=logs&amp;tab=<?php echo $subtab; ?>" method="post" style="float: left">
-						<?php XSRFToken('clear_log');?>
-						<input type="hidden" name="action" value="clear" />
-						<input type="hidden" name="filename" value="<?php echo $subtab; ?>.log" />
-						<div class="buttons">
-							<button type="submit" class="tooltip" id="clear_log_<?php echo $subtab; ?>" title="<?php printf(gettext("Reset %s"),$logfiletext);?>">
-								<img src="images/refresh.png" style="border: 0px;" alt="clear" /> <?php echo gettext("Reset");?>
-							</button>
-						</div>
-					</form>
-
-					<form name="download_log" action="?action=download_log&amp;page=logs&amp;tab=<?php echo $subtab; ?>" method="post" style="float: left">
-						<?php XSRFToken('download_log');?>
-						<input type="hidden" name="action" value="download" />
-						<input type="hidden" name="filename" value="<?php echo $subtab; ?>.log" />
-						<div class="buttons">
-							<button type="submit" class="tooltip" id="download_log_<?php echo $subtab; ?>" title="<?php printf(gettext("Download %s ZIP file"),$logfiletext);?>">
-								<img src="images/arrow_down.png" style="border: 0px;" alt="download" /> <?php echo gettext("Download");?>
-							</button>
-						</div>
-					</form>
+					<span class="button buttons tooltip" title="<?php printf(gettext("Reset %s"),$logfiletext);?>">
+						<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-logs.php?action=clear_log&amp;page=logs&amp;tab='.$subtab.'&amp;filename='.html_encode($subtab); ?>&amp;XSRFToken=<?php  echo getXSRFToken('clear_log'); ?>">
+						<img src="images/refresh.png" /><?php echo gettext('Reset'); ?></a>
+					</span>
+					<span class="button buttons tooltip" title="<?php printf(gettext("Download %s ZIP file"),$logfiletext);?>">
+						<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-logs.php?action=download_log&amp;page=logs&amp;tab='.$subtab.'&amp;filename='.html_encode($subtab); ?>&amp;XSRFToken=<?php  echo getXSRFToken('download_log'); ?>">
+						<img src="images/arrow_down.png" /><?php echo gettext('Download'); ?></a>
+					</span>
 					<?php
 				}
 				?>

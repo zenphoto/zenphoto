@@ -1,14 +1,11 @@
 <?php
 /**
- * Pre-caching is not considered necessary as Zenphoto will cache the images on the first display.
- * This plugin is not recommended nor supported but is provided for those of you who simply insist
- * on pre-caching.
  *
  * This plugin will examine the gallery and make image references to any images which have not
  * already been cached. Your browser will then request these images causing the caching process to be
  * executed.
  *
- * <b>Note:</b> The pre-caching process will cause your browser to display each and every image that has not
+ * <b>Note:</b> The Caching process will cause your browser to display each and every image that has not
  * been previously cached. If your server does not do a good job of thread management this may swamp
  * it!
  *
@@ -37,7 +34,7 @@ class cache_images {
 		$buttons[] = array(
 									'category'=>gettext('cache'),
 									'enable'=>$enable,
-									'button_text'=>gettext('Pre-cache images'),
+									'button_text'=>gettext('Cache images'),
 									'formname'=>'cache_images_button',
 									'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cacheImages/cacheImages.php',
 									'icon'=>'images/cache.png',
@@ -58,7 +55,7 @@ class cache_images {
 			$disable = ' disabled="disabled"';
 			$title = gettext("You must first set the plugin's options for cached image parameters.");
 		}
-		$html .= '<div class="button buttons tooltip" title="'.$title.'"><a href="'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cacheImages/cacheImages.php?album='.html_encode($object->name).'&amp;XSRFToken='.getXSRFToken('cache_images').'"'.$disable.'><img src="images/cache.png" />'.gettext('Pre-cache album images').'</a><br clear="all" /></div>';
+		$html .= '<div class="button buttons tooltip" title="'.$title.'"><a href="'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cacheImages/cacheImages.php?album='.html_encode($object->name).'&amp;XSRFToken='.getXSRFToken('cache_images').'"'.$disable.'><img src="images/cache.png" />'.gettext('Cache album images').'</a><br clear="all" /></div>';
 		return $html;
 
 	}
@@ -74,7 +71,7 @@ class cache_images {
 																						'<li>'.gettext('<code>photo_85_cw72_ch72_thumb_copyright_gray.jpg</code>: sized 85px cropped at about 7.6% (one half of 72/85) from the horizontal and vertical sides with a watermark (<code>copyright</code>) and rendered in grayscale (<code>gray</code>).').'</li>'.
 																						'<li>'.gettext('<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: a custom cropped 85px thumbnail with watermark.').'</li>'.
 																						'</ul>'.
-																						gettext('If a field is not represented in the cached name, leave the field blank. Custom crops (those with cx and cy) really cannot be pre-cached easily since each image has unique values. '.
+																						gettext('If a field is not represented in the cached name, leave the field blank. Custom crops (those with cx and cy) really cannot be cached easily since each image has unique values. '.
 																						'See the <em>template-functions</em>::<code>getCustomImageURL()</code> comment block for details on these fields.')
 
 													));
