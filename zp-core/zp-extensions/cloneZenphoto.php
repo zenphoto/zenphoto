@@ -34,7 +34,7 @@ class cloneZenphoto {
 	static function button($buttons) {
 		$buttons[] = array(
 											'category'=>gettext('admin'),
-											'enable'=>'1',
+											'enable'=>true,
 											'button_text'=>gettext('Clone installation'),
 											'formname'=>'cloneZenphoto',
 											'action'=>PLUGIN_FOLDER.'/cloneZenphoto/cloneTab.php',
@@ -45,11 +45,11 @@ class cloneZenphoto {
 											'rights'=> ADMIN_RIGHTS
 											);
 		list($diff, $needs) = checkSignature();
-		if (empty($needs)) {
+		if (empty($needs) && zpFunctions::hasPrimaryScripts()) {
 			$buttons[] = array(
 												'XSRFTag'=>'removeSetup',
 												'category'=>gettext('admin'),
-												'enable'=>zpFunctions::hasPrimaryScripts(),
+												'enable'=>true,
 												'button_text'=>gettext('Delete setup files'),
 												'formname'=>'removeSetup',
 												'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=removeSetup',

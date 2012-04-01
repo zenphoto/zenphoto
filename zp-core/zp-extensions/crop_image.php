@@ -45,12 +45,12 @@ class crop_image {
 		$imagename = $image->filename;
 		if (isImagePhoto($image)) {
 			$output .=
-				'<p class="buttons" >'."\n".
+				'<div class="button buttons tooltip" title="'.gettext('Permanantly corp the actual image.').'">'."\n".
 						'<a href="'.WEBPATH."/".ZENFOLDER . '/'.PLUGIN_FOLDER.'/crop_image.php?a='.pathurlencode($albumname)."\n".
 								'&amp;i='.urlencode($imagename).'&amp;performcrop=backend&amp;subpage='.$subpage.'&amp;tagsort='.$tagsort.'">'."\n".
 								'<img src="images/shape_handles.png" alt="" />'.gettext("Crop image").'</a>'."\n".
-				'</p>'."\n".
-				'<span style="line-height: 0em;"><br clear="all" /></span>'."\n";
+					'<br clear="all" />'.
+				'</div>'."\n";
 		}
 		return $output;
 	}

@@ -1829,29 +1829,27 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 function printAlbumButtons($album) {
 	if ($imagcount = $album->getNumImages() > 0) {
 		?>
-		<p class="buttons tooltip" title="<?php echo gettext("Clears the album's cached images.");?>">
+		<div class="button buttons tooltip" title="<?php echo gettext("Clears the album's cached images.");?>">
 			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?action=clear_cache&amp;album='.html_encode($album->name); ?>&amp;XSRFToken=<?php  echo getXSRFToken('clear_cache'); ?>">
 			<img src="images/edit-delete.png" /><?php echo gettext('Clear album image cache'); ?></a>
-		</p>
-		<br clear="all" />
-		<p class="buttons tooltip" title="<?php echo gettext("Resets album's hit counters.");?>">
+			<br clear="all" />
+		</div>
+		<div class="button buttons tooltip" title="<?php echo gettext("Resets album's hit counters.");?>">
 			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?action=reset_hitcounters&amp;album='.html_encode($album->name).'&amp;albumid='.$album->getID(); ?>&amp;XSRFToken=<?php  echo getXSRFToken('hitcounter'); ?>">
 			<img src="images/reset.png" /><?php echo gettext('Reset album hitcounters'); ?></a>
-		</p>
+			<br clear="all" />
+		</div>
 		<?php
 	}
 	if ($imagcount || (!$album->isDynamic() && $album->getNumAlbums()>0)) {
 		?>
-		<br clear="all" />
-		<p class="buttons tooltip" title="<?php echo gettext("Refreshes the metadata for the album.");?>">
+		<div class="button buttons tooltip" title="<?php echo gettext("Refreshes the metadata for the album.");?>">
 			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-refresh-metadata.php?album='.html_encode($album->name).'&amp;return='.html_encode($album->name); ?>&amp;XSRFToken=<?php  echo getXSRFToken('refresh'); ?>">
 			<img src="images/cache.png" /><?php echo gettext('Refresh album metadata'); ?></a>
-		</p>
+			<br clear="all" />
+		</div>
 		<?php
 	}
-	?>
-	<br />
-	<?php
 }
 
 function printAlbumLegend() {

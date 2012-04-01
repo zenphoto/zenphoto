@@ -12,7 +12,7 @@ require_once(dirname(dirname(__FILE__)).'/template-functions.php');
 
 $buttonlist[] = array(
 								'category'=>gettext('database'),
-								'enable'=>'1',
+								'enable'=>true,
 								'button_text'=>gettext('Reset album thumbs'),
 								'formname'=>'reset_albumthumbs.php',
 								'action'=>'utilities/reset_albumthumbs.php',

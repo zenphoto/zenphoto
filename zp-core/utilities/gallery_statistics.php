@@ -18,7 +18,7 @@ if(getOption('zp_plugin_zenpage')) {
 
 $buttonlist[] = array(
 								'category'=>gettext('info'),
-								'enable'=>'1',
+								'enable'=>true,
 								'button_text'=>gettext('Gallery Statistics'),
 								'formname'=>'gallery_statistics.php',
 								'action'=>'utilities/gallery_statistics.php',

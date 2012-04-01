@@ -30,15 +30,14 @@ if (defined('OFFSET_PATH')) {
 	}
 
 	function site_upgrade_button($buttons) {
-		$enable = 1;
-		$hidden = '';
 		$ht = @file_get_contents(SERVERPATH.'/.htaccess');
 		if (empty($ht)) {
 			$title = gettext('There is no .htaccess file');
-			$enable = 0;
+			$enable = false;
 			$button_text = gettext('Close the site.');
 			$image = 'images/action.png';
 		} else {
+			$enable = true;
 			preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|',$ht,$matches);
 			if (strpos($matches[0],'#')===0) {
 				$button_text = gettext('Close site');
@@ -60,7 +59,7 @@ if (defined('OFFSET_PATH')) {
 											'icon'=>$image,
 											'title'=>$title,
 											'alt'=>$title,
-											'hidden'=>$hidden,
+											'hidden'=>'',
 											'rights'=> ADMIN_RIGHTS
 		);
 		return $buttons;

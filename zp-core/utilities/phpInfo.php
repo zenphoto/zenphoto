@@ -10,7 +10,7 @@ require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
 $buttonlist[] = array(
 									'category'=>gettext('admin'),
-									'enable'=>'1',
+									'enable'=>true,
 									'button_text'=>gettext('Show PHP Information'),
 									'formname'=>'cloneZenphoto',
 									'action'=> 'utilities/phpInfo.php',

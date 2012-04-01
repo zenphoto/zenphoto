@@ -18,7 +18,7 @@ if (defined('OFFSET_PATH')) {
 	function wordpress_import_button($buttons) {
 		$buttons[] = array(
 											'category'=>gettext('admin'),
-											'enable'=>'1',
+											'enable'=>true,
 											'button_text'=>gettext('Wordpress Importer'),
 											'formname'=>'wordpress_import.php',
 											'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/wordpress_import.php',

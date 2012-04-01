@@ -21,7 +21,7 @@ if (defined('OFFSET_PATH')) {
 		$buttons[] = array(
 											'XSRFTag'=>'seo_cleanup',
 											'category'=>gettext('seo'),
-											'enable'=>'1',
+											'enable'=>true,
 											'button_text'=>gettext('SEO Cleaner'),
 											'formname'=>'seo_cleanup.php',
 											'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/seo_cleanup.php',

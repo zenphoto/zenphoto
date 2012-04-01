@@ -2,7 +2,7 @@
 $buttonlist[] = array(
 								'XSRFTag'=>'refresh',
 								'category'=>gettext('database'),
-								'enable'=>'1',
+								'enable'=>true,
 								'button_text'=>gettext('Refresh Metadata'),
 								'formname'=>'refresh_metadata.php',
 								'action'=>WEBPATH.'/'.ZENFOLDER.'/admin-refresh-metadata.php',

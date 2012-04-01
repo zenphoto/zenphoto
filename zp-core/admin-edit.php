@@ -1230,13 +1230,13 @@ $alb = removeParentAlbumNames($album);
 						?>
 						<br clear="all" />
 						<hr />
-						<p class="buttons" style="clear: both">
+						<div class="button buttons tooltip" title="<?php echo gettext("Choose a custom crop for the thumbnail."); ?>">
 							<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>"
 										title="<?php printf(gettext('crop %s'), $image->filename); ?>"  >
 								<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
 							</a>
-						</p>
-						<span style="line-height: 0em;"><br clear="all" /></span>
+							<br clear="all" />
+						</div>
 						<?php
 						echo zp_apply_filter('edit_image_utilities', '<!--image-->', $image, $currentimage, $pagenum, $tagsort); //pass space as HTML because there is already a button shown for cropimage
 						?>

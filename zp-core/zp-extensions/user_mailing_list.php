@@ -18,12 +18,12 @@ if (defined('OFFSET_PATH')) {
 		global $_zp_authority,$_zp_current_admin_obj;
 		$button = array(
 										'category'=>gettext('admin'),
-										'enable'=>'0',
+										'enable'=>false,
 										'button_text'=>gettext('User mailing list'),
 										'formname'=>'user_mailing_list.php',
 										'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_mailing_list.php',
 										'icon'=>'images/icon_mail.png',
-										'title'=>gettext('A tool to send e-mails to all registered users who have provided an e-mail address.'),
+										'title'=>gettext('There are no other registered users who have provided an e-mail address.'),
 										'alt'=>'',
 										'hidden'=>'',
 										'rights'=> ADMIN_RIGHTS
@@ -32,7 +32,8 @@ if (defined('OFFSET_PATH')) {
 		$admins = $_zp_authority->getAdministrators();
 		foreach($admins as $admin) {
 			if(!empty($admin['email']) && $currentadminuser != $admin['user']) {
-				$button['enable'] = 1;
+				$button['enable'] = true;
+				$button['title'] = gettext('A tool to send e-mails to all registered users who have provided an e-mail address.');
 				break;
 			}
 		}

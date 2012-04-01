@@ -506,8 +506,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 			<form name="<?php echo $button['formname']; ?>"	action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
 				<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
 				<?php echo $button['hidden']; ?>
-				<div class="buttons">
-					<button class="tooltip" type="submit"	title="<?php echo $button['title']; ?>" <?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
+				<div class="buttons tooltip" title="<?php echo $button['title']; ?>">
+					<button class="tooltip" type="submit"<?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
 					<?php
 					if(!empty($button_icon)) {
 						?>

@@ -13,14 +13,21 @@ $plugin_author = "Stephen Billard (sbillard)";
 zp_register_filter('admin_utilities_buttons', 'check_for_update_button');
 
 function check_for_update_button($buttons) {
+	if (is_connected()) {
+		$enable = true;
+		$title = gettext("Queries the Zenphoto web site for the latest version and compares that with the one that is running.");
+	} else {
+		$enable = false;
+		$title = gettext("There appears to be no internet connection.");
+	}
 	$buttons[] = array(
 										'category'=>gettext('admin'),
-										'enable'=>is_connected(),
+										'enable'=>$enable,
 										'button_text'=>gettext('Check for update'),
 										'formname'=>'check_for_update.php',
 										'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=check_for_update',
 										'icon'=>'images/pass.png',
-										'title'=>gettext("Queries the Zenphoto web site for the latest version and compares that with the one that is running."),
+										'title'=>$title,
 										'alt'=>gettext('Check for update'),
 										'hidden'=>'<input type="hidden" name="action" value="check_for_update" />',
 										'rights'=> ADMIN_RIGHTS

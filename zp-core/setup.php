@@ -2362,7 +2362,7 @@ if (file_exists(CONFIGFILE)) {
 						<script type="text/javascript">
 							$('#golink').hide();
 							window.location = 'admin-users.php?page=users';
-						</script>"
+						</script>
 						<?php
 					}
 				}
@@ -2371,12 +2371,14 @@ if (file_exists(CONFIGFILE)) {
 				<p id="golink"><?php echo sprintf(gettext('You can now <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'),'..','admin.php'); ?></p>
 				<?php
 				switch ($autorun) {
+					case false:
+						break;
 					case 'admin':
 						?>
 						<script type="text/javascript">
 							$('#golink').hide();
 							window.location = 'admin.php';
-						</script>"
+						</script>
 						<?php
 						break;
 					case 'gallery':
@@ -2384,10 +2386,16 @@ if (file_exists(CONFIGFILE)) {
 						<script type="text/javascript">
 							$('#golink').hide();
 							window.location = '..';
-						</script>"
+						</script>
 						<?php
 						break;
 					default:
+						?>
+						<script type="text/javascript">
+							$('#golink').hide();
+							window.location = '<?php echo $autorun; ?>';
+						</script>
+						<?php
 						break;
 				}
 			}
@@ -2523,7 +2531,7 @@ if (file_exists(CONFIGFILE)) {
 					$auto = 'admin';
 				}
 				?>
-				<input type="hidden" id="autorun" name="autorun" value="<?php echo $auto; ?>" />
+				<input type="hidden" id="autorun" name="autorun" value="<?php echo html_encode($auto); ?>" />
 				<?php
 			}
 			?>

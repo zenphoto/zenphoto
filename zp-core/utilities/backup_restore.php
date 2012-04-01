@@ -20,7 +20,7 @@ $signaure = getOption('zenphoto_install');
 
 $buttonlist[] = array(
 								'category'=>gettext('admin'),
-								'enable'=>'1',
+								'enable'=>true,
 								'button_text'=>gettext('Backup/Restore'),
 								'formname'=>'backup_restore.php',
 								'action'=>'utilities/backup_restore.php',

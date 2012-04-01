@@ -248,8 +248,8 @@ class _Image extends MediaObject {
 											'SuppCategory'				=>	'2#020',	//	Supplemental category							Size:32
 											'FixtureID'						=>	'2#022',	//	Fixture	ID 												Size:32
 											'Keywords'						=>	'2#025',	//	Keywords 													Size:64
-											'ContentLocCode'			=>	'2#026',	//	Content	Location Code							Size:3
-											'ContentLocName'			=>	'2#027',	//	Content	Location Name							Size:64
+											'ContentLocationCode'	=>	'2#026',	//	Content	Location Code							Size:3
+											'ContentLocationName'	=>	'2#027',	//	Content	Location Name							Size:64
 											'ReleaseDate'					=>	'2#030',	//	Release	Date 											Size:8
 											'ReleaseTime'					=>	'2#035',	//	Release	Time											Size:11
 											'ExpireDate'					=>	'2#037',	//	Expiration Date										Size:8
@@ -332,8 +332,8 @@ class _Image extends MediaObject {
 					}
 					// Extract IPTC fields of interest
 					foreach ($_zp_exifvars as $field=>$exifvar) {
-						if ($exifvar[5]) {
-							if ($exifvar[0]=='IPTC') {	// enabled field
+						if ($exifvar[5]) {	// enabled field
+							if ($exifvar[0]=='IPTC') {
 								$datum = $this->getIPTCTag($IPTCtags[$exifvar[1]], $iptc);
 								$this->set($field, $this->prepIPTCString($datum, $characterset));
 							}

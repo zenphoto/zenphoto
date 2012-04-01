@@ -2,7 +2,7 @@
 $buttonlist[] = array(
 								'XSRFTag'=>'clear_cache',
 								'category'=>gettext('cache'),
-								'enable'=>'1',
+								'enable'=>true,
 								'button_text'=>gettext('Purge RSS cache'),
 								'formname'=>'purge_rss_cache.php',
 								'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=clear_rss_cache',

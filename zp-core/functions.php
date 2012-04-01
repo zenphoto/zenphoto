@@ -2309,6 +2309,8 @@ class zpFunctions {
 			'IPTCState' 								=> array('IPTC',	 'State',									gettext('Province/State'),														false,			32, 	true),
 			'IPTCLocationCode' 					=> array('IPTC',	 'LocationCode',					gettext('Country/Primary Location Code'),							false,			3, 		true),
 			'IPTCLocationName' 					=> array('IPTC',	 'LocationName',					gettext('Country/Primary Location Name'),							false,			64, 	true),
+			'IPTCContentLocationCode' 	=> array('IPTC',	 'ContentLocationCode',		gettext('Content Location Code'),											false,			3, 		true),
+			'IPTCContentLocationName' 	=> array('IPTC',	 'ContentLocationName',		gettext('Content Location Name'),											false,			64, 	true),
 			'EXIFGPSLatitude'       		=> array('GPS',    'Latitude',          		gettext('Latitude'),              										false,			52, 	true),
 			'EXIFGPSLatitudeRef'    		=> array('GPS',    'Latitude Reference',		gettext('Latitude Reference'),    										false,			52, 	true),
 			'EXIFGPSLongitude'      		=> array('GPS',    'Longitude',         		gettext('Longitude'),             										false,			52, 	true),
@@ -2337,7 +2339,7 @@ class zpFunctions {
 			'VideoResolution_y'					=> array('VIDEO',	 'resolution_y',					gettext('Y Resolution'),															false,			32, 	true),
 			'VideoAspect_ratio'					=> array('VIDEO',	 'pixel_aspect_ratio',		gettext('Aspect ratio'),															false,			32, 	true),
 			'VideoPlaytime'							=> array('VIDEO',	 'playtime_string',				gettext('Play Time'),																	false,			10, 	true),
-			'rating'										=> array('XMP',	 	 'rating',								gettext('XMP Rating'),																false,			10, 	true),
+			'XMPrating'									=> array('XMP',	 	 'rating',								gettext('XMP Rating'),																false,			10, 	true),
 		);
 		foreach ($_zp_exifvars as $key=>$item) {
 			if (!is_null($disable = getOption($key.'-disabled'))) {

@@ -21,14 +21,22 @@ $plugin_version = '1.4.3';
 $option_interface = 'cache_images';
 
 zp_register_filter('admin_utilities_buttons', 'cache_images::overviewbutton');
-zp_register_filter('edit_album_utilities', 'cache_images::albumbutton');
+zp_register_filter('edit_album_utilities', 'cache_images::albumbutton',9999);
 zp_register_filter('custom_option_save','cache_images::handleOptionSave');
 
 class cache_images {
 	static function overviewbutton($buttons) {
+		if (query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="cacheImages" LIMIT 1')) {
+			$enable = true;
+			$title = gettext('Finds images that have not been cached and creates the cached versions.');
+		} else {
+			$enable = false;
+			$title = gettext('You must first set the plugin options for cached image parameters.');
+		}
+
 		$buttons[] = array(
 									'category'=>gettext('cache'),
-									'enable'=>true,
+									'enable'=>$enable,
 									'button_text'=>gettext('Pre-cache images'),
 									'formname'=>'cache_images_button',
 									'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cacheImages/cacheImages.php',
@@ -37,13 +45,20 @@ class cache_images {
 									'hidden'=>'',
 									'rights'=>ADMIN_RIGHTS,
 									'XSRFTag'=>'cache_images',
-									'title'=>gettext('Finds newly uploaded images that have not been cached and creates the cached version.')
+									'title'=>$title
 		);
 		return $buttons;
 	}
 	static function albumbutton($html, $object, $prefix) {
-		if ($html) $html .= '<hr />';
-		$html .= '<span class="buttons tooltip" title="'.gettext("Creates cache images for any album image not already cached.").'"><a href="'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cacheImages/cacheImages.php?album='.html_encode($object->name).'&amp;XSRFToken='.getXSRFToken('cache_images').'"><img src="images/cache.png" />'.gettext('Pre-cache album images').'</a><br clear="all" /></span>';
+		$html .= '<hr />';
+		if (query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="cacheImages" LIMIT 1')) {
+			$disable = '';
+			$title = gettext('Finds images that have not been cached and creates the cached versions.');
+		} else {
+			$disable = ' disabled="disabled"';
+			$title = gettext("You must first set the plugin's options for cached image parameters.");
+		}
+		$html .= '<div class="button buttons tooltip" title="'.$title.'"><a href="'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/cacheImages/cacheImages.php?album='.html_encode($object->name).'&amp;XSRFToken='.getXSRFToken('cache_images').'"'.$disable.'><img src="images/cache.png" />'.gettext('Pre-cache album images').'</a><br clear="all" /></div>';
 		return $html;
 
 	}

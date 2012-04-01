@@ -11,7 +11,7 @@ require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
 $buttonlist[] = $mybutton = array(
 																	'category'=>gettext('info'),
-																	'enable'=>'1',
+																	'enable'=>true,
 																	'button_text'=>gettext('Database quick reference'),
 																	'formname'=>'database_reference.php',
 																	'action'=>'utilities/database_reference.php',
