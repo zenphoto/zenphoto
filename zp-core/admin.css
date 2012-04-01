@@ -1250,6 +1250,14 @@ button.positive,.buttons a.positive {
 	margin: 0;
 }
 
+
+/*sidebar vertical buttons */
+.box-edit .buttons a,
+.theme_links .buttons a{
+width: 90% !important;
+}
+
+
 /* scrollable checklists
 -----------------------------*/
 	/* Undo some styles from the master stylesheet */
