@@ -11,7 +11,7 @@
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;
-$plugin_description = gettext("Provides the means to set an limit of the number of images that can be uploaded to an album from the admin upload tab.");
+$plugin_description = gettext("Limits the number of images that can be uploaded to an album via the Zenphoto upload.");
 $plugin_author = "Malte Müller (acrylian)";
 
 $option_interface = 'uploadlimit';

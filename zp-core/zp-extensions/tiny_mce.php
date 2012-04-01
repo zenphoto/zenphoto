@@ -1,16 +1,16 @@
 <?php
 /**
- * Back-end WYSIWYG editor
+ * Back-end <i>WYSIWYG</i> editor
  *
  * You can place your own additional custom configuration files within
- * <code>plugins/tiny_mce/config</code>
+ * <code>%USER_PLUGIN_FOLDER%/tiny_mce/config</code>
  * (e.g. <i>filename</i>.js.php)
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
-$plugin_description = gettext("Tiny MCE<span id='tinymceversion'></span> text editor for backend textareas").' <script type="text/javascript">	if (tinymce) $("#tinymceversion").html(" v"+tinymce.majorVersion + "." + tinymce.minorVersion);	</script>';
+$plugin_description = gettext("Tiny MCE<span id='tinymceversion'></span> text editor for backend <em>textareas</em>").' <script type="text/javascript">	if (tinymce) $("#tinymceversion").html(" v"+tinymce.majorVersion + "." + tinymce.minorVersion);	</script>';
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'tinymceOptions';

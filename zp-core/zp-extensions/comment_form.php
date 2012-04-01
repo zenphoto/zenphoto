@@ -5,7 +5,7 @@
  * Place a call on the function <code>printCommentForm()</code> in your script where you
  * wish the comment items to appear.
  *
- * The plugin uses the form <code>../comment_form/comment_form.php</code>.
+ * The plugin uses <code>%ZENFOLDER%/%PLUGIN_FOLDER%/comment_form/comment_form.php</code>.
  * However, you may override this form by placing a script of the same name in a similar folder in your theme.
  * This will allow you to customize the appearance of the comments on your site.
  *

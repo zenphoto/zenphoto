@@ -9,7 +9,7 @@
 
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5|ADMIN_PLUGIN;
-	$plugin_description = gettext("Provides a utility function to send e-mails to all registered users who have provided an e-mail address.");
+	$plugin_description = gettext("Provides a utility function to send e-mails to all users who have provided an e-mail address.");
 	$plugin_author = "Malte Müller (acrylian)";
 
 	zp_register_filter('admin_utilities_buttons', 'user_mailing_list_button');

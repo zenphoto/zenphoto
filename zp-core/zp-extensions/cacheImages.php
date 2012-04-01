@@ -11,7 +11,7 @@
  *
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
-$plugin_description = gettext("Caches newly uploaded images.");
+$plugin_description = gettext("Caches uncached images sizes.");
 $plugin_notice = gettext('<strong>NOTE</strong>: The default caching is based on the gallery\'s default theme <em>thumbnail</em> and <em>image</em> options. Should your theme use custom images or thumbs you should change the plugin options accordingly. The caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may excede the capacity of your server and not complete. You may have to refresh the page multiple times until the report of the number of images cached is zero.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.3';
@@ -62,7 +62,7 @@ class cache_images {
 
 	function getOptionsSupported() {
 		if (getOption('zp_plugin_cacheImages')) {
-			return array(''=>array('key' => 'cropImage_list', 'type' => OPTION_TYPE_CUSTOM,
+			return array(gettext('Image sizes')=>array('key' => 'cropImage_list', 'type' => OPTION_TYPE_CUSTOM,
 																						'desc' => gettext('Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings.'.
 																						'You can determine the values for these fields by examining your cached images. The file names will look something like these:').
 																						'<ul>'.

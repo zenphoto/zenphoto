@@ -9,7 +9,7 @@
 
 if (defined('OFFSET_PATH')) {
 	$plugin_is_filter = 5|ADMIN_PLUGIN;
-	$plugin_description = gettext("Provides a utility function to import Wordpress pages, posts, categories and comments to Zenpage.");
+	$plugin_description = gettext("Import Wordpress pages, posts, categories, and comments to Zenpage.");
 	$plugin_author = "Malte Müller (acrylian)";
 
 

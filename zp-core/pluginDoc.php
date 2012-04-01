@@ -12,6 +12,8 @@
  *  <pre>
  *  <br> for line breaks
  *  <var> for variables (treated the same as <code>)
+ *  <a href= ...></a>
+ *  <img src= ... />
  *
  * @package admin
  */
@@ -39,6 +41,20 @@ $markup = array(
 						'&lt;br&gt;'=>'<br />',
 						'&lt;var&gt;'=>'<span class="inlinecode">',
 						'&lt;/var&gt;'=>'</span>'
+);
+$const_tr = array('%ZENFOLDER%'=>ZENFOLDER,
+									'%PLUGIN_FOLDER%'=>PLUGIN_FOLDER,
+									'%USER_PLUGIN_FOLDER%'=>USER_PLUGIN_FOLDER,
+									'%ALBUMFOLDER%'=>ALBUMFOLDER,
+									'%THEMEFOLDER%'=>THEMEFOLDER,
+									'%BACKUPFOLDER%'=>BACKUPFOLDER,
+									'%UTILITIES_FOLDER%'=>UTILITIES_FOLDER,
+									'%DATA_FOLDER%'=>DATA_FOLDER,
+									'%CACHEFOLDER%'=>CACHEFOLDER,
+									'%UPLOAD_FOLDER%'=>UPLOAD_FOLDER,
+									'%STATIC_CACHE_FOLDER%'=>STATIC_CACHE_FOLDER,
+									'%FULLWEBPATH%'=>FULLWEBPATH,
+									'%WEBPATH%'=>WEBPATH
 );
 
 $extension = sanitize($_GET['extension']);
@@ -72,10 +88,13 @@ if ($thirdparty) {
 		$ico = 'images/place_holder_icon.png';
 	}
 } else {
+	$subpackage = false;
 	$whose = 'Zenphoto official plugin';
 	$ico = 'images/zp_gold.png';
 }
-$reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+$regex_Url = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+$regex_img = '|&lt;img(\s*)src=(\s*)&quot;(.*)&quot;(\s*)/&gt;|';
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -125,12 +144,12 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 		text-align: left;
 	}
 	ul.options  {
- 		list-style: none;
+		list-style: none;
 		margin-left: 0;
 		padding: 0;
 	}
 	ul.options li {
- 		list-style: none;
+		list-style: none;
 		margin-left: 1.5em;
 		padding-bottom: 2px;
 	}
@@ -171,7 +190,7 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 			$i = strpos($pluginStream, '/*');
 			$j = strpos($pluginStream, '*/');
 			if ($i !== false && $j !== false) {
-				$commentBlock = substr($pluginStream, $i+2, $j-$i-2);
+				$commentBlock = strtr(substr($pluginStream, $i+2, $j-$i-2), $const_tr);
 				$lines = explode('*', $commentBlock);
 				$doc = '';
 				$par = false;
@@ -190,7 +209,6 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 					} else {
 						if (strpos($line, '@') === 0) {
 							preg_match('/@(.*?)\s/',$line,$matches);
-							$subpackage = false;
 							if (!empty($matches)) {
 								switch ($matches[1]) {
 									case 'author':
@@ -203,8 +221,12 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 							}
 						} else {
 							$line = strtr(html_encode($line),$markup);
-							if(preg_match($reg_exUrl, $line, $url)) {
-								$line = preg_replace($reg_exUrl, '<a href="'.$url[0].'">'.$url[0].'</a> ', $line);
+							if(preg_match($regex_Url, $line, $url)) {
+								$line = preg_replace($regex_Url, '<a href="'.$url[0].'">'.$url[0].'</a> ', $line);
+							} else {
+								if (preg_match($regex_img, $line, $img)) {
+									$line = preg_replace($regex_img, '<img src="'.$img[3].'" />', $line);
+								}
 							}
 							$doc .= $line.' ';
 							$empty = false;
@@ -218,6 +240,7 @@ $reg_exUrl = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)
 				}
 			echo $doc;
 			}
+
 			if ($option_interface) {
 				if (is_string($option_interface)) {
 					$option_interface = new $option_interface;

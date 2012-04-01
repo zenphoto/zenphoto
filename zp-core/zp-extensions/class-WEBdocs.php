@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin handler for certain standard document formats.
- * These are displayed <i>Google Docs viewer</i>. The item is displayed in an iFrame sized based on the image size option.
- * Of course, your site must be accessable by Google and your viewer must have a google account for this to work.
+ * These are displayed a <i>WEBdocs</i> provider e.g. <i>Google Docs viewer</i>. The item is displayed in an iFrame sized based on the image size option.
+ * Of course, your site must be accessable by provider and your viewer must have a any required account credentials for this to work.
  *
  * The plugin is an extension of <code>TextObject</code>. For more details see the <i>class-textobject</i> plugin.
  *
@@ -12,7 +12,7 @@
  */
 
 $plugin_is_filter = 9|CLASS_PLUGIN;
-$plugin_description = gettext('Provides a means for showing documents using <em>WEBdocs</em> for the document rendering');
+$plugin_description = gettext('Provides a means for showing documents using <em>WEBdocs</em> for the document rendering.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 

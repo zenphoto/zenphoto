@@ -2,6 +2,7 @@
 /**
  * Provides extensions to the image utilities to crop images.
  *
+ * Places an image crop button in the image utilities box of the images tab.
  * <b>Note:</b> this plugin permanently changes the image. There is no <i>undo</i>.
  *
  * @author Stephen Billard (sbillard)
@@ -17,7 +18,7 @@ if (isset($_REQUEST['performcrop'])) {
 	zp_register_filter('admin_toolbox_image', 'crop_image::toolbox');
 	zp_register_filter('edit_image_utilities', 'crop_image::edit', 1); // we want this one to come right after the crop thumbnail button
 	$plugin_is_filter = 5|ADMIN_PLUGIN;
-	$plugin_description = gettext("An image crop tool. Places an image crop button in the image utilities box of the images tab.");
+	$plugin_description = gettext("An image cropping tool.");
 	$plugin_author = "Stephen Billard (sbillard)";
 	return;
 }

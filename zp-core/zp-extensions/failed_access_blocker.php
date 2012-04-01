@@ -2,15 +2,15 @@
 /**
  *
  * Hackers often use "probing" or "password guessing" to attempt to breach your site
- * This plugin can help to throttle these attacks. It works by monitoring failed access to
- * the admin pages. If a defined threashold is exceeded by requests from a particular IP
+ * This plugin can help to throttle these attacks. It works by monitoring failed logon attempts.
+ * If a defined threashold is exceeded by requests from a particular IP
  * address, further access attempts from that IP accress will be ignored until a timeout has expired.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
 $plugin_is_filter = 8|CLASS_PLUGIN;
-$plugin_description = gettext("Blocks access from an IP address which has had multiple failed logon.");
+$plugin_description = gettext("Blocks access from an IP address which has had multiple failed logon attempts.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 

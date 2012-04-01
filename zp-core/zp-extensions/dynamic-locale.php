@@ -1,8 +1,6 @@
 <?php
 /**
  * Allow the site viewer to select a localization.
- * This applies only to the theme pages--not Admin. Admin continues to use the
- * language option for its language.
  *
  * Only the zenphoto and theme gettext() string are localized by this facility.
  *
@@ -17,13 +15,16 @@
  * <ul>
  * 	<li>A cookie stored when the user chooses his language</li>
  * 	<li>The URI language selection provided by the <i>seo_locale</i> plugin</li>
- * 	<li>The <i>subdomains</i> option</li>
+ * 	<li>The <i>subdomain  locales</i> option</li>
  * </ul>
+ *
+ * This plugiin applies only to the theme pages--not Admin. The <em>language cookie</i>, if set, will
+ * carry over to the admin pages. As will using <i>subdomains</i>.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
-$plugin_description = gettext("Enable <strong>dynamic-locale</strong> to allow viewers of your site to select the language translation of their choice.");
+$plugin_description = gettext("Allows viewers of your site to select the language translation of their choice.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'dynamic_locale';

@@ -1,9 +1,9 @@
 <?php
 /**
  * JavaScript thumb nav plugin with dynamic loading of thumbs on request via JavaScript.
- * Place printjCarousel() on your theme's image.php where you want it to appear.
+ * Place <code>printjCarousel()</code> on your theme's image.php where you want it to appear.
  *
- * Supports theme based custom css files (place jcarousel.css and needed images in your theme's folder).
+ * Supports theme based custom css files (place <code>jcarousel.css</code> and needed images in your theme's folder).
  *
  * @author Malte Müller (acrylian)
  * @package plugins

@@ -1,12 +1,13 @@
 <?php
 /**
- * Sends new users an e-mail when their user code is created
+ * Sends new users an e-mail message urging the user to change his password.
+ * It contains a link allowing him to do a password reset.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
-$plugin_description = gettext("Emails a password set request to a newly created user.");
+$plugin_description = gettext("Emails a password reset request to a newly created user.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 

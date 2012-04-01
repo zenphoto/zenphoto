@@ -280,16 +280,13 @@ foreach ($filelist as $extension) {
 			}
 			if ($plugin_notice) {
 				?>
-				<div id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
+				<p id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
 					<?php
 					if ($plugin_notice) {
-						if ($plugin_disable) {
-							echo '<br /><br />';
-						}
 						echo $plugin_notice;
 					}
 					?>
-				</div>
+				</p>
 				<?php
 			}
 			?>

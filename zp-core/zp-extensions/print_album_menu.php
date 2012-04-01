@@ -1,11 +1,24 @@
 <?php
 /**
+ * Prints a list of all albums context sensitive.
+ *
+ * menu types:
+ * 	<ul>
+ * 			<li><code>list</code> for html list</li>
+ * 			<li><code>list-top</code> for only the top level albums</li>
+ * 			<li><code>omit-top</code> same as list, but the first level of albums is omitted</li>
+ * 			<li><code>list-sub</code> lists the offspring level of subalbums for the current album</li>
+ * 			<li><code>jump</code> dropdown menu of all albums(not context sensitive)</li>
+ * 	</ul>
+ *
+ * Call the function <code>printAlbumMenu()</code> at the point where you want the menu to appear.
+ *
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
  */
 
-$plugin_description = gettext("Adds a theme function printAlbumMenu() to print an album menu either as a nested list (context sensitive) or as a dropdown menu.");
+$plugin_description = gettext("Adds a theme function to print an album menu either as a nested list or as a dropdown menu.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $option_interface = 'print_album_menu';
@@ -72,7 +85,7 @@ class print_album_menu {
  * Call the function printAlbumMenu() at the point where you want the menu to appear.
  *
  * @param string $option
- * * 								"list" for html list,
+ * 									"list" for html list,
  * 									"list-top" for only the top level albums,
  * 									"omit-top" same as list, but the first level of albums is omitted
  * 									"list-sub" lists the offspring level of subalbums for the current album

@@ -8,7 +8,7 @@
 
 $plugin_is_filter = 9|CLASS_PLUGIN;
 $plugin_description = gettext("A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto.");
-$plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> and <em>stopdesign</em> themes.");
+$plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> or the <em>stopdesign</em> theme.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
 
@@ -81,19 +81,19 @@ class zenpagecms {
 										'desc' => gettext("The text for the 'read more'/'view more' link to the gallery page for images/movies/audio.")),
 		gettext('CombiNews: Mode') => array('key' => 'zenpage_combinews_mode', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(
-										gettext('latest images: sized image') => "latestimages-sizedimage", 
-										gettext('latest images: sized image maxspace') => "latestimages-sizedimage-maxspace", 
-										gettext('latest images: thumbnail') => "latestimages-thumbnail", 
-										gettext('latest images: thumbnail-customcrop') => "latestimages-thumbnail-customcrop", 
+										gettext('latest images: sized image') => "latestimages-sizedimage",
+										gettext('latest images: sized image maxspace') => "latestimages-sizedimage-maxspace",
+										gettext('latest images: thumbnail') => "latestimages-thumbnail",
+										gettext('latest images: thumbnail-customcrop') => "latestimages-thumbnail-customcrop",
 										gettext('latest images: full image') => "latestimages-fullimage",
-										gettext('latest albums: sized image') => "latestalbums-sizedimage", 
+										gettext('latest albums: sized image') => "latestalbums-sizedimage",
 										gettext('latest albums: sized image maxspace') => "latestalbums-sizedimage-maxspace",
 										gettext('latest albums: thumbnail') => "latestalbums-thumbnail",
 										gettext('latest albums: thumbnail-customcrop') => "latestalbums-thumbnail-customcrop",
-										gettext('latest albums: full image') => "latestalbums-fullimage", 
+										gettext('latest albums: full image') => "latestalbums-fullimage",
 										gettext('latest images by album: thumbnail') => "latestimagesbyalbum-thumbnail",
-										gettext('latest images by album: thumbnail-customcrop') => "latestimagesbyalbum-thumbnail-customcrop", 
-										gettext('latest images by album: sized image') => "latestimagesbyalbum-sizedimage", 
+										gettext('latest images by album: thumbnail-customcrop') => "latestimagesbyalbum-thumbnail-customcrop",
+										gettext('latest images by album: sized image') => "latestimagesbyalbum-sizedimage",
 										gettext('latest images by album: sized image maxspace') => "latestimagesbyalbum-sizedimage-maxspace",
 										gettext('latest images by album: full image') => "latestimagesbyalbum-fullimage"),
 										'desc' => gettext("What you want to show within the CombiNews section.<br /><ul><li>Latest images: Entries for all images ever added</li><li>Latest albums: Entries for all albums ever created</li><li>Latest images by album: Entries for all images but grouped by images that have been added within a day to each album (Scheme: 'x new images in album y on date z')</li></ul> <em>maxspace</em> means that an uncropped image fitting max. width x max. height as set on the thumbnail width and height options is used (not for multimedia items!).")),

@@ -185,7 +185,9 @@ if ($_zp_loggedin) {
 	$zenphoto_tabs = zp_apply_filter('admin_tabs', $zenphoto_tabs);
 
 	//	so as to make it generally available as we make much use of it
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox_js.php');
+	if (OFFSET_PATH != 2) {
+		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/colorbox_js.php');
+	}
 	$last = getOption('last_update_check');
 	if (empty($last) || is_numeric($last)) {
 		if (time() > $last+1728000) {

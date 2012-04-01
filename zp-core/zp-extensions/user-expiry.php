@@ -5,7 +5,7 @@
  * Upon expiration, the user will be "disabled". He will not have
  * login access to the gallery.
  *
- * if the user visits the gallery within one week prior to his expiry date
+ * If the user visits the gallery within one week prior to his expiry date
  * a mail will be sent to the user (if there is an email address)
  * warning of the impending expiration.
  *

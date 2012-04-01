@@ -5,7 +5,8 @@
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;
-$plugin_description = gettext('<em>Null</em> SEO filter. The only translation it performs is <em>white space</em> characters to <em>underscore</em>.');
+$plugin_description = gettext('SEO <em>Null</em> filter.');
+$plugin_notice = gettext('The only translation performed is <em>white space</em> characters to <em>underscore</em>.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('seoFriendly') && !getoption('zp_plugin_seo_null'))?sprintf(gettext('Only one SEO filter plugin may be enalbed. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),stripSuffix(get_filterScript('seoFriendly'))):'';
 

@@ -4,7 +4,7 @@
  * to the gallery pages will be redirected to a single page that indicates the site is undergoing
  * an upgrade.
  *
- * Requires mod_rewrite to be active and that the .htaccess file exists
+ * Requires mod_rewrite to be active and that the <code>.htaccess</code> file exists
  *
  * Change the files in <code>plugins/site_upgrade</code> to meet your needs. (Note these files will
  * be copied to that folder the first time the plugin runs.)
@@ -32,36 +32,49 @@ if (defined('OFFSET_PATH')) {
 	function site_upgrade_button($buttons) {
 		$ht = @file_get_contents(SERVERPATH.'/.htaccess');
 		if (empty($ht)) {
-			$title = gettext('There is no .htaccess file');
-			$enable = false;
-			$button_text = gettext('Close the site.');
-			$image = 'images/action.png';
+			$buttons[] = array(
+												'XSRFTag'=>'site_upgrade',
+												'category'=>gettext('admin'),
+												'enable'=>false,
+												'button_text'=>gettext('Close the site.'),
+												'formname'=>'site_upgrade.php',
+												'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade.php',
+												'icon'=>'images/action.png',
+												'title'=>gettext('There is no .htaccess file'),
+												'alt'=>'',
+												'hidden'=>'',
+												'rights'=> ADMIN_RIGHTS
+												);
 		} else {
-			$enable = true;
 			preg_match('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|',$ht,$matches);
-			if (strpos($matches[0],'#')===0) {
-				$button_text = gettext('Close site');
-				$title = gettext('Make site unavialable for viewing, redirect to closed sign.');
-				$image = 'images/lock.png';
-			} else {
-				$button_text = gettext('Open the site');
-				$title = gettext('Mark site available for viewing.');
-				$image = 'images/lock_open.png';
-			}
+			$enable = strpos($matches[0],'#')===0;
+			$buttons[] = array(
+												'XSRFTag'=>'site_upgrade',
+												'category'=>gettext('admin'),
+												'enable'=>$enable,
+												'button_text'=>gettext('Close site'),
+												'formname'=>'site_upgrade.php',
+												'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade.php',
+												'icon'=>'images/lock.png',
+												'title'=>gettext('Make site unavialable for viewing, redirect to closed sign.'),
+												'alt'=>'',
+												'hidden'=>'',
+												'rights'=> ADMIN_RIGHTS
+												);
+			$buttons[] = array(
+												'XSRFTag'=>'site_upgrade',
+												'category'=>gettext('admin'),
+												'enable'=>!$enable,
+												'button_text'=>gettext('Open the site'),
+												'formname'=>'site_upgrade.php',
+												'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade.php',
+												'icon'=>'images/lock_open.png',
+												'title'=>gettext('Mark site available for viewing.'),
+												'alt'=>'',
+												'hidden'=>'',
+												'rights'=> ADMIN_RIGHTS
+												);
 		}
-		$buttons[] = array(
-											'XSRFTag'=>'site_upgrade',
-											'category'=>gettext('admin'),
-											'enable'=>$enable,
-											'button_text'=>$button_text,
-											'formname'=>'site_upgrade.php',
-											'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade.php',
-											'icon'=>$image,
-											'title'=>$title,
-											'alt'=>$title,
-											'hidden'=>'',
-											'rights'=> ADMIN_RIGHTS
-		);
 		return $buttons;
 	}
 

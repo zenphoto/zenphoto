@@ -8,7 +8,7 @@
  * In addition, theme URLs will have the languageid inserted into them
  * so that the above processing will result in the language being set.
  *
- * This plugin should not be used if you are using <i>domain</i> locales
+ * This plugin should not be used if you are using <i>subdomain locales</i>
  * (See the dynamic_locales plugin.)
  *
  * The URL format is:<br>

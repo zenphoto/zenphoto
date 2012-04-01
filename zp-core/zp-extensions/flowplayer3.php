@@ -4,7 +4,7 @@
  * Support for the flowplayer 3.x.x flash video player. Now incorporates the former separate flowplayer3_playlist plugin.
  * NOTE: Flash players do not support external albums!
  *
- * <b>Note</b> on splash images: Flowplayer will try to use the first frame of a movie as a splash image or a videothumb if existing.
+ * Note on splash images: Flowplayer will try to use the first frame of a movie as a splash image or a videothumb if existing.
  *
  * The playlist part of the plugin supports custom CSS styling. You may override the default by placing a CSS file your theme folder:
  * flowplayer3_playlist.css or alternativels within the user plugins folder /flowplayer3/flowplayer3_playlist.css

@@ -3,9 +3,16 @@
  * Loads Colorbox JS and CSS scripts for selected theme page scripts.
  *
  * Note that this plugin does not attach Colorbox to any element because there are so many different options and usages.
- * You need to do this on your theme yourself. Visit http://colorpowered.com/colorbox/ for information about that.
+ * You need to do this in your theme yourself. Visit http://colorpowered.com/colorbox/ for information.
  *
- * The plugin has built in support for 5 example Colorbox themes.
+ * The plugin has built in support for 5 example Colorbox themes shown below:
+ *
+ * 		<img src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/colorbox_js/themes/example1.jpg" />
+ * 		<img src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/colorbox_js/themes/example2.jpg" />
+ * 		<img src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/colorbox_js/themes/example3.jpg" />
+ * 		<img src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/colorbox_js/themes/example4.jpg" />
+ * 		<img src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/colorbox_js/themes/example5.jpg" />
+ *
  * If you select <i>custom (within theme)</i> on the plugin option for Colorbox you need to place a folder
  * <i>colorbox</i> containing a <i>colorbox.css</i> file and a folder <i>images</i> within the current theme
  * to override to use a custom Colorbox theme.
@@ -16,11 +23,9 @@
  */
 
 $plugin_is_filter = 9|THEME_PLUGIN;
-$plugin_description = gettext('Loads Colorbox JS and CSS scripts for selected theme page scripts');
+$plugin_description = gettext('Loads Colorbox JS and CSS scripts for selected theme page scripts.');
 $plugin_notice = gettext('Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself. See <a href="http://colorpowered.com/colorbox/">Colorbox website</a>.');
 $plugin_author = 'Stephen Billard (sbillard)';
-
-
 $option_interface = 'colorbox';
 
 if (OFFSET_PATH) {

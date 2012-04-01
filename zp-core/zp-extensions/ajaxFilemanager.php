@@ -8,7 +8,7 @@
  *
  * We believe that the filemanager is now completely secure. However we understand that
  * the damage caused by the previous vulnerabilities may lead some sites to decide that
- * the benifits of the filemanager are not worht the risks. Thus this plugin gives you the
+ * the benifits of the filemanager are not worth the risks. Thus this plugin gives you the
  * choice of enabling the feature or not. If disabled <b>no</b> access is allowed to the Ajax FIlemanager scripts.
  *
  * @author Stephen Billard (sbillard)
@@ -16,7 +16,7 @@
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;
-$plugin_description = gettext('Ajax Filemanager files handling in tinyMCE and the "files" upload tab');
+$plugin_description = gettext('Provides file handling in tinyMCE and the "files" upload tab.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $htaccess = SERVERPATH.'/'.DATA_FOLDER.'/ajaxfilemanager/.htaccess';

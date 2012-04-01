@@ -711,6 +711,7 @@ zp-core/zp-extensions/colorbox_js/colorbox_ie.css.php
 zp-core/zp-extensions/colorbox_js/jquery.colorbox-min.js
 zp-core/zp-extensions/colorbox_js/themes
 zp-core/zp-extensions/colorbox_js/themes/example1
+zp-core/zp-extensions/colorbox_js/themes/example1.jpg
 zp-core/zp-extensions/colorbox_js/themes/example1/colorbox.css
 zp-core/zp-extensions/colorbox_js/themes/example1/images
 zp-core/zp-extensions/colorbox_js/themes/example1/images/border.png
@@ -728,16 +729,19 @@ zp-core/zp-extensions/colorbox_js/themes/example1/images/loading.gif
 zp-core/zp-extensions/colorbox_js/themes/example1/images/loading_background.png
 zp-core/zp-extensions/colorbox_js/themes/example1/images/overlay.png
 zp-core/zp-extensions/colorbox_js/themes/example2
+zp-core/zp-extensions/colorbox_js/themes/example2.jpg
 zp-core/zp-extensions/colorbox_js/themes/example2/colorbox.css
 zp-core/zp-extensions/colorbox_js/themes/example2/images
 zp-core/zp-extensions/colorbox_js/themes/example2/images/controls.png
 zp-core/zp-extensions/colorbox_js/themes/example2/images/loading.gif
 zp-core/zp-extensions/colorbox_js/themes/example3
+zp-core/zp-extensions/colorbox_js/themes/example3.jpg
 zp-core/zp-extensions/colorbox_js/themes/example3/colorbox.css
 zp-core/zp-extensions/colorbox_js/themes/example3/images
 zp-core/zp-extensions/colorbox_js/themes/example3/images/controls.png
 zp-core/zp-extensions/colorbox_js/themes/example3/images/loading.gif
 zp-core/zp-extensions/colorbox_js/themes/example4
+zp-core/zp-extensions/colorbox_js/themes/example4.jpg
 zp-core/zp-extensions/colorbox_js/themes/example4/colorbox.css
 zp-core/zp-extensions/colorbox_js/themes/example4/images
 zp-core/zp-extensions/colorbox_js/themes/example4/images/border1.png
@@ -753,6 +757,7 @@ zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6/borderTopLeft.png
 zp-core/zp-extensions/colorbox_js/themes/example4/images/ie6/borderTopRight.png
 zp-core/zp-extensions/colorbox_js/themes/example4/images/loading.gif
 zp-core/zp-extensions/colorbox_js/themes/example5
+zp-core/zp-extensions/colorbox_js/themes/example5.jpg
 zp-core/zp-extensions/colorbox_js/themes/example5/colorbox.css
 zp-core/zp-extensions/colorbox_js/themes/example5/images
 zp-core/zp-extensions/colorbox_js/themes/example5/images/border.png
@@ -1858,4 +1863,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1860
+1865

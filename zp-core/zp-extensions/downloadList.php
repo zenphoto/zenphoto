@@ -3,7 +3,7 @@
  *
  * A plugin to generate a file download list.
  * This download folder can be relative to your Zenphoto root (<i>foldername</i>) or external to it (<i>../foldername</i>).
- * By default the "uploaded" folder is chosen so you can use the file manager to manage those files.
+ * By default the <code>%UPLOAD_FOLDER%</code> folder is chosen so you can use the file manager to manage those files.
  *
  * You can also override that folder by using the <code>printdownloadList()</code> function parameters directly. Additionally
  * you can set a downloadlink to a specific file directly as well using <code>printDownloadLink(<i>path-to-file</i>);<code>.

@@ -2,14 +2,14 @@
 /**
  * Provides users a means to log in or out from the theme pages.
  *
- * Place a call on printUserLogin_out() where you want the logout link to appear.
+ * Place a call on <code>printUserLogin_out()</code> where you want the link or form to appear.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
  * @subpackage usermanagement
  */
 
-$plugin_description = gettext("Provides a means for placing a user login form or logout link on your theme pages.");
+$plugin_description = gettext("Provides a means users to login/out from your theme pages.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'user_logout_options';

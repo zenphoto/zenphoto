@@ -4,10 +4,10 @@
  * <i>Name</i>, <i>e-mail address</i>, <i>subject</i> and <i>message</i> are required fields by default.
  * You need to set a custom mail address to be used for the messages destination.
  *
- * Support is included CAPTCHA and for confirmation before the message is sent. No other spam filter support is provided.
+ * Support is included <i>CAPTCHA</i> and for confirmation before the message is sent. No other spam filter support is provided.
  * Your mail client will provide filtering on receipt of the message.
  *
- * The contact form itself is a separate file and located within <code>.../contact_form/form.php</code>. Place a customized
+ * The contact form itself is a separate file and located within <code>%ZENFOLDER%/%PLUGIN_FOLDER%/contact_form/form.php</code>. Place a customized
  * version of the form in a similar folder in your theme if you wish something different from the standard form.
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)

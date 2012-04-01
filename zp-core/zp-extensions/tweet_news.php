@@ -100,7 +100,7 @@ class tweet {
 																			'checkboxes' => $list,
 																			'desc'=>gettext('If an <em>type</em> is checked, a Tweet will be made when an object of that <em>type</em> is published.'));
 
-		if (getOption('tweet_news_news')) {
+		if (getOption('tweet_news_news') && is_object($_zp_zenpage)) {
 			$catlist = unserialize(getOption('tweet_news_categories'));
 			$news_categories = $_zp_zenpage->getAllCategories(false);
 			$catlist = array(gettext('*not categorized*')=>'tweet_news_categories_none');

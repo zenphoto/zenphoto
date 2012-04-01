@@ -1,17 +1,16 @@
 <?php
 /**
- * A plugin to print the most common html meta tags to the head of your site's pages using
- * general existing Zenphoto info like gallery description, tags or Zenpage news categories.
+ * The plugin usses general existing Zenphoto info like <i>gallery description</i>, <i>tags</i> or Zenpage <i>news categories</i>.
  * It also has support for <code><link rel="canonical" href="" /></code>
  *
- * Just enable the plugin and the meta data will be inserted into your <head> section.
- * You can choose on the plugin's admin option what tags you want to be printed.
+ * Just enable the plugin and the meta data will be inserted into your <code><head></code> section.
+ * Use the plugin's options to choose which tags you want printed.
  *
  * @author Malte Müller (acrylian)
  * @package plugins
  */
 
-$plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site's pages");
+$plugin_description = gettext("A plugin to print the most common HTML meta tags to the head of your site's pages.");
 $plugin_author = "Malte Müller (acrylian)";
 
 $option_interface = 'htmlmetatags';

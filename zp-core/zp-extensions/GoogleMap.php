@@ -1,15 +1,16 @@
 <?php
 /**
- * Provides for placing google maps on image and album pages
- * based on EXIF latitude and longitude in the images.
- * Automatically detects if it is on an Image or Album page.
+ * Supports Google Maps API version 3
+ *
+ * Automatically detects if it is on an Image or Album page. Album pages should use the
+ * callback function to populate the geo-cordinates to show on the map.
  *
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
  */
 $plugin_is_filter = 5|THEME_PLUGIN;
-$plugin_description = gettext('Support for providing Google Maps (API version 3) based on EXIF latitude and longitude in the images.');
+$plugin_description = gettext('Display Google Maps based on <em>latitude</em> and <em>longitude</em> netadata in the images.');
 $plugin_notice = sprintf(gettext('<strong>Note</strong>: Google does place limits on the use of its <a href="%s"><em>Maps API</em></a>. Please review these to be sure your site is in compliance.'),'http://googlegeodevelopers.blogspot.com/2011/10/introduction-of-usage-limits-to-maps.html');
 $plugin_author = 'Stephen Billard (sbillard)';
 

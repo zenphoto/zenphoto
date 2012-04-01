@@ -33,7 +33,7 @@ if (!defined('OFFSET_PATH')) {
 }
 
 $plugin_is_filter = 5|ADMIN_PLUGIN|THEME_PLUGIN;
-$plugin_description = gettext('Automatically increments hitcounters on Zenphoto objects viewed by a "visitor".');
+$plugin_description = gettext('Automatically increments hitcounters on Zenphoto objects viewed by a <em>visitor</em>.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'hitcounter';
