@@ -68,11 +68,17 @@ function loadAlbum($album) {
 							echo ' | ';
 						}
 						$countit = 1;
-						if ($thumbstandin) {
-							echo '<img src="' . $uri . '" height="8" width="8" />'."\n";
-						} else {
-							echo ' <img src="' . $uri . '" height="20" width="20" />'."\n";
-						}
+						?>
+						<a href="<?php echo $uri; ?>&amp;debug">
+							<?php
+							if ($thumbstandin) {
+								echo '<img src="' . $uri . '" height="8" width="8" />'."\n";
+							} else {
+								echo ' <img src="' . $uri . '" height="20" width="20" />'."\n";
+							}
+							?>
+						</a>
+						<?php
 					}
 				}
 				$count = $count+$countit;

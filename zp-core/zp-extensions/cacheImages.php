@@ -9,10 +9,15 @@
  * been previously cached. If your server does not do a good job of thread management this may swamp
  * it!
  *
+ * You may have to refresh the page multiple times until the report of the number of images cached is zero.
+ * If some images seem to never be rendered you may be experiencing memory limit or other graphics processor
+ * errors. You can click on the image that does not render to get the <code>i.php</code> debug screen for the
+ * image. This may help in figuring out what has gone wrong.
+ *
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Caches uncached images sizes.");
-$plugin_notice = gettext('<strong>NOTE</strong>: The default caching is based on the gallery\'s default theme <em>thumbnail</em> and <em>image</em> options. Should your theme use custom images or thumbs you should change the plugin options accordingly. The caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may excede the capacity of your server and not complete. You may have to refresh the page multiple times until the report of the number of images cached is zero.');
+$plugin_notice = gettext('<strong>NOTE</strong>: The default caching is based on the gallery\'s default theme <em>thumbnail</em> and <em>image</em> options. Should your theme use custom images or thumbs you should change the plugin options accordingly. The caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may excede the capacity of your server and not complete.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_version = '1.4.3';
 $option_interface = 'cache_images';
