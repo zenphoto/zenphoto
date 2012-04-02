@@ -1,9 +1,9 @@
 <?php
 /**
  * The plugin usses general existing Zenphoto info like <i>gallery description</i>, <i>tags</i> or Zenpage <i>news categories</i>.
- * It also has support for <code><link rel="canonical" href="" /></code>
+ * It also has support for <var><link rel="canonical" href="" /></var>
  *
- * Just enable the plugin and the meta data will be inserted into your <code><head></code> section.
+ * Just enable the plugin and the meta data will be inserted into your <var><head></var> section.
  * Use the plugin's options to choose which tags you want printed.
  *
  * @author Malte Müller (acrylian)
