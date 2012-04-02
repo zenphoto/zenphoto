@@ -93,7 +93,7 @@ class flowplayer3_options {
 		setOptionDefault('flow_player3_splashimagescale', 'fit');
 		setOptionDefault('flow_player3_scaling', 'fit');
 		setOptionDefault('flow_player3_mp3coverimage', '');
-
+		setOptionDefault('flow_player3_sharing', '');
 		//playlist specific options
 
 		setOptionDefault('flow_player3_playlistwidth', '320');
@@ -176,7 +176,9 @@ class flowplayer3_options {
 		gettext('Load playlist scripts') => array('key' => 'flow_player3_loadplaylist', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("If the Flowplayer playlist scripts should be loaded. Note that you have to add the function flowplayerPlaylist() to your theme yourself. See the documentation of this function on how to do this.")),
 		gettext('Playlist playtime') => array('key' => 'flow_player3_playlistplaytime', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("Enable to show the playtime for playlist entries."))
+										'desc' => gettext("Enable to show the playtime for playlist entries.")),
+		gettext('Sharing') => array('key' => 'flow_player3_sharing', 'type' => OPTION_TYPE_CHECKBOX,
+										'desc' => gettext("Enables sharing and embed code links."))
 
 
 		);
@@ -254,8 +256,16 @@ class Flowplayer3 {
 		$audio = array_shift($filelist);
 		$filelist = safe_glob('flowplayer.controls-*.swf');
 		$controls = array_shift($filelist);
-		$filelist = safe_glob('flowplayer.sharing-*.swf');
-		$sharing = array_shift($filelist);
+		$sharingenabled = '';
+		if(getOption('flow_player3_sharing')) {
+			$filelist = safe_glob('flowplayer.sharing-*.swf');
+			$sharing = array_shift($filelist);
+			$sharingenabled = '
+						sharing: {
+							url: "'.$sharing.'"
+						},						
+			';
+		}
 		chdir($curdir);
 		$playerconfig = '
 		<span id="player'.$count.'" class="flowplayer" style="display:block; width: '.$width.'px; height: '.$height.'px">
@@ -268,9 +278,7 @@ class Flowplayer3 {
 			audio: {
 				url: "'.$audio.'"
 			},
-			sharing: {
-				url: "'.$sharing.'"
-			},
+			'.$sharingenabled.'
 			controls: {
 				url: "'.$controls.'",
 				backgroundColor: "'.getOption('flow_player3_controlsbackgroundcolor').'",
