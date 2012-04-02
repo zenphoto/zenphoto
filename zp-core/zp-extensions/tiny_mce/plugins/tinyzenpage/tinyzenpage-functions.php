@@ -174,12 +174,13 @@ function printImageslist($number) {
 				$imageType = getImageType($imageobj);
 				$thumburl = $imageobj->getThumb();
 				$imgurl = $imageobj->getimageLink(false);
-				$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
+				//$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 				switch ($imageType) {
 					case '':
 						// image photo
 						$backgroundcss = 'thumb-image';
 						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($imageobj->filename));
+						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 						$sizedimage = '<img src="'.$sizedimage.'" alt="'.$imageobj->getTitle().'" class="zenpage_sizedimage" />';
 						break;
 					case 'textobject':
@@ -188,13 +189,15 @@ function printImageslist($number) {
 						} else {
 							$filename = $imageobj->objectsThumb;
 						}
+						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 						$sizedimage = str_replace('class="textobject"', 'class="textobject zenpage_sizedimage"', $sizedimage);
 						$imgurl = $host.WEBPATH.'/'.ZENFOLDER."/i.php?a=".urlencode(pathurlencode($linkalbumobj->name))."&amp;i=".urlencode(urlencode($filename));
 						$backgroundcss = 'thumb-textobject';
 						break;
 					case 'video':
 					case 'audio':
-						$sizedimage = str_replace('class="flowplayer"', 'class="flowplayer zenpage_sizedimage"', $sizedimage);
+						//$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
+						//$sizedimage = str_replace('class="flowplayer"', 'class="flowplayer zenpage_sizedimage"', $sizedimage);
 						if (is_null($imageobj->objectsThumb)) {
 							$filename = makeSpecialImageName($imageobj->getThumbImageFile());
 						} else {
@@ -204,6 +207,7 @@ function printImageslist($number) {
 						$backgroundcss = 'thumb-multimedia';
 						break;
 					default:
+						$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
 						$backgroundcss = 'thumb-default';
 						break;
 				}
