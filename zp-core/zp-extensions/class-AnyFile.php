@@ -3,10 +3,10 @@
  *
  * Use this plugin to handle filetypes as "images" that are not otherwise provided for by Zenphoto.
  *
- * Default thumbnail images may be created in the <code>%USER_PLUGIN_FOLDER%/class-AnyFile</code> folder. The naming convention is
- * <code><i>suffix</i>Default.png</code>. If no such file is found, the class object default thumbnail will be used.
+ * Default thumbnail images may be created in the <var>%USER_PLUGIN_FOLDER%/class-AnyFile</var> folder. The naming convention is
+ * <i>suffix</i><var>Default.png</var>. If no such file is found, the class object default thumbnail will be used.
  *
- * The plugin is an extension of <code>TextObject</code>. For more details see the <i>class-textobject</i> plugin.
+ * The plugin is an extension of <var>TextObject</var>. For more details see the <i>class-textobject</i> plugin.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

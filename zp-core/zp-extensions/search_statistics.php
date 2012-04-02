@@ -8,7 +8,7 @@
  *  	Searches the result of Dynamic album processing are ignored
  *
  *		Analysis presumes that the Theme does a "uniform" set of object retrievals. That
- *		is the <code>search.php</code> script will always request albums, images, pages, and/or news
+ *		is the <var>search.php</var> script will always request albums, images, pages, and/or news
  *		consistently. Data collection happens for each of these objects so to "normalize"
  *		the data the analysis will divide the data by the number of objects searched.
  *

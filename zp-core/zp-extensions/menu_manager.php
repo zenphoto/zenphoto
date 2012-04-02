@@ -3,10 +3,10 @@
  *
  * Lets you create arbitrary menus and place them on your theme pages.
  *
- * Use the <code>Menu</code> tab to create your menus. Use <code>printCustomMenu()</code> to place them on your pages.
+ * Use the <var>Menu</var> tab to create your menus. Use <var>printCustomMenu()</var> to place them on your pages.
  *
  * This plugin is recommend for customized themes only that do not use the standard Zenphoto
- * display structure. Standard Zenphoto functions like the breadcrumb functions or the <code>next_album()</code>
+ * display structure. Standard Zenphoto functions like the breadcrumb functions or the <var>next_album()</var>
  * loop for example will <b>NOT</b> take care of this menu's structure!
  *
  * @author Stephen Billard (sbillard), Malte Müller (acrylian)

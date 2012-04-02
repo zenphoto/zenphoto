@@ -9,10 +9,11 @@
  *
  * If a sidecar file exists, it will take precedence (the image file will not be
  * examined.) The sidecar file should reside in the same folder, have the same <i>prefix</i> name as the
- * image (album), and the suffix <code>.xmp</code>. Thus, the sidecar for <code><i>image</i>.jpg</code> would be named <code><i>image</i>.xmp</code>.
+ * image (album), and the suffix <var>.xmp</var>. Thus, the sidecar for <code><i>image</i>.jpg</var> would be named
+ * <i>image</i><var>.xmp</var>.
  *
- * NOTE: dynamic albums have an <code>.alb</code> suffix. Append <code>.xmp</code> to that name so
- * that the dynamic album sidecar would be named <code><i>album</i>.alb.xmp</code>.
+ * NOTE: dynamic albums have an <var>.alb</var> suffix. Append <var>.xmp</var> to that name so
+ * that the dynamic album sidecar would be named <i>album</i><var>.alb.xmp</var>.
  *
  * There are two options for this plugin
  * 	<ul>

@@ -12,9 +12,9 @@
  * (See the dynamic_locales plugin.)
  *
  * The URL format is:<br>
- * <code>mod_rewrite</code><br>
+ * <var>mod_rewrite</var><br>
  *			/ <i>languageid</i> / <i>standard url</i><br>
- * <code>else</code><br>
+ * <var>else</var><br>
  * 			<i>standard url</i>?locale=<i>languageid</i><br>
  * Where <i>languageid</i> is the local identifier (e.g. en, en_US, fr_FR, etc.)
  *

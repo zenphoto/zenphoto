@@ -3,7 +3,7 @@
  *
  * This plugin controls the Ajax Filemanager utility for Zenphoto.
  *
- * This utility is used by the <i>image insert</i> feature of <code>tinyMCE</code> and as the handler for
+ * This utility is used by the <i>image insert</i> feature of <var>tinyMCE</var> and as the handler for
  * the <i>Files</i> subtab on the <i>Upload</i> tab.
  *
  * We believe that the filemanager is now completely secure. However we understand that

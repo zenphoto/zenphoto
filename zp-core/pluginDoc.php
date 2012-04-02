@@ -6,12 +6,12 @@
  * Supports the following PHPDoc markup tags:
  * 	<i> for emphasis
  *  <b> for strong
- *  <code> for mono-spaced text
+ *  <code> for code blocks (Note: PHPDocs will create an ordered list of the lines)
  *  <hr> for horizontal rule
  *  <ul><li>, <ol><li> for lists
  *  <pre>
  *  <br> for line breaks
- *  <var> for variables (treated the same as <code>)
+ *  <var> for mono-spaced text
  *  <a href= ...></a>
  *  <img src= ... />
  *

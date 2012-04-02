@@ -4,9 +4,9 @@
  * to the gallery pages will be redirected to a single page that indicates the site is undergoing
  * an upgrade.
  *
- * Requires mod_rewrite to be active and that the <code>.htaccess</code> file exists
+ * Requires mod_rewrite to be active and that the <var>.htaccess</var> file exists
  *
- * Change the files in <code>plugins/site_upgrade</code> to meet your needs. (Note these files will
+ * Change the files in <var>plugins/site_upgrade</var> to meet your needs. (Note these files will
  * be copied to that folder the first time the plugin runs.)
  *
  * @author Stephen Billard (sbillard)

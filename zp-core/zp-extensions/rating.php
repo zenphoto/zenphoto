@@ -6,7 +6,7 @@
  * An option exists to allow viewers to recast their votes. If not set, a viewer may
  * vote only one time and may not change his mind.
  *
- * Customize the stars by placing a modified copy of <code>jquery.rating.css</code> in your theme folder.
+ * Customize the stars by placing a modified copy of <var>jquery.rating.css</var> in your theme folder.
  *
  * <b>Legal note:</b> Use the <i>Disguise IP</i> option if your country considers IP tracking a privacy violation.
  *

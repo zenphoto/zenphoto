@@ -3,9 +3,9 @@
  *
  * Supports files of the following types:
  * <ul>
- * 	<li><code>.txt</code></li>
- * 	<li><code>.htm</code></li>
- * 	<li><code>.html</code></li>
+ * 	<li><var>.txt</var></var>
+ * 	<li><var>.htm</var></li>
+ * 	<li><var>.html</var></var>
  * </ul>
  * 		The contents of these files are "dumpped" into a SPAN sized to a 24x36 ratioed box based on your
  * 		theme	"image size" option. This has a class of "textobject" so it can be styled.
@@ -29,20 +29,20 @@
  * </ul>
  *
  * So, briefly, the first three lines of code below are the standard plugin interface to Admin.
- * Then there are calls on <code>addPlginType(«file extension», «Object Name»);</code> This function registers the plugin as the
+ * Then there are calls on <var>addPlginType(«file extension», «Object Name»);</var> This function registers the plugin as the
  * handler for files with the specified extension. If the plugin can handle more than one file extension, make a call
  * to the registration function for each extension that it handles.
  * The rest is the object class for handling these files.
  *
- * The code of the object instantiation function is mostly required. Plugin <i>images</i> follow the lead of <code>class-video</code> in that
+ * The code of the object instantiation function is mostly required. Plugin <i>images</i> follow the lead of <var>class-video</var> in that
  * if there is a real image file with the same name save the suffix, it will be considered the thumb image of the object.
- * This image is fetched by the call on <code>checkObjectsThumb()</code>. There is also code in the <code>getThumb()</code> method to deal with
+ * This image is fetched by the call on <var>checkObjectsThumb()</var>. There is also code in the <var>getThumb()</var> method to deal with
  * this property.
  *
  * Since text files have no natural height and width, we set them based on the image size option. This happens after the call
- * <code>PersistentObject()</code>. The rest of the code there sets up the default title.
+ * <var>PersistentObject()</var>. The rest of the code there sets up the default title.
  *
- * <code>getThumb()</code> is responsible for generating the thumbnail image for the object. As above, if there is a similar named real
+ * <var>getThumb()</var> is responsible for generating the thumbnail image for the object. As above, if there is a similar named real
  * image, it will be used. Otherwise [for this object implementation] we will use a thumbnail image provided with the plugin.
  * The particular form of the file name used when there is no thumb stand-in image allows zenphoto to choose an image in the
  * plugin folder.

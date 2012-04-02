@@ -22,22 +22,22 @@
  * Currently there is only one type of handler available. It is an OpenID handler based on the
  * Janrain OpenID Enabled library (http://www.janrain.com/openid-enabled). There are
  * some server requirements for this library. To see if you server meets them run
- * the script <code>zp-core/zp-extensions/federated_logon/OpenID_detect.php</code>. It will give
+ * the script <var>zp-core/zp-extensions/federated_logon/OpenID_detect.php</var>. It will give
  * you a report on what might need be done. You can ignore items about data stores as
  * they are not used in this implementation.
  *
  * See also the Janrain Readme.txt file.
  *
- * Zenphoto provides handlers for <code>Google</code>, <code>Yahoo</code>, <code>Verisign</code>, and <code>MyOpenid</code>.
- * Other handlers can be created and placed in the <code>plugins/federated_logon</code> folder.
+ * Zenphoto provides handlers for <var>Google</var>, <var>Yahoo</var>, <var>Verisign</var>, and <var>MyOpenid</var>.
+ * Other handlers can be created and placed in the <var>plugins/federated_logon</var> folder.
  * Integration with Zenphoto is fairly simple. The logon handler script should be
- * named ending in <code>_logon.php</code>. The plugin will use the name up to that point as the
+ * named ending in <var>_logon.php</var>. The plugin will use the name up to that point as the
  * selector on the logon form.
  *
- * You need to preserve the <code>$_GET['redirect']</code> parameter for use after the authentication
- * is successful at which time you call the <code>federated_login::credentials()</code> function passing a
+ * You need to preserve the <var>$_GET['redirect']</var> parameter for use after the authentication
+ * is successful at which time you call the <var>federated_login::credentials()</var> function passing a
  * <i>user ID</i>, <i>e-mail</i> and <i>name</i> (if you have them) and the redirection link you saved above.
- * For an example, the former is done at the beginning of the <code>OpenID_logon.php</code> script. The
+ * For an example, the former is done at the beginning of the <var>OpenID_logon.php</var> script. The
  * latter is done in the "run()" function of OpenID_finish_auth.php
  *
  *

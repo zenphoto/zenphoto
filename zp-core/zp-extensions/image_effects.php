@@ -3,31 +3,31 @@
  * This plugin is an example demonstrating the use of the various <i>image_html</i> filters.
  * Each effect is defined by a text file these sections (no individual section is required).
  *
- * <code><source>...</source></code><br>
+ * <var><source>...</source></var><br>
  *  Documents the source of the effect
  *
- * <code><head>...</head></code><br>
+ * <var><head>...</head></var><br>
  * 	Each effect will have a head section that contains the HTML to be emitted in the theme head.
  *
- * <code><class>...</class></code><br>
- * 	Elements from this section will be added to the class element of the <code><img src... /></code> tag.
+ * <var><class>...</class></var><br>
+ * 	Elements from this section will be added to the class element of the <var><img src... /></var> tag.
  *
- * <code><extra>..</extra></code><br>
+ * <var><extra>..</extra></var><br>
  * 	It is also possible to create a extra section for html that will be inserted into the
- * 	<code><img src... /></code> just befor the <code>/></code>. This can be used to insert <code>style="..."</code> or other elements.
+ * 	<var><img src... /></var> just befor the <var>/></var>. This can be used to insert <var>style="..."</var> or other elements.
  *
- * <code><validate><i>file path</i></validate></code><br>
+ * <var><validate><i>file path</i></validate></var><br>
  * 	Used specially for Effenberger effects, but applicable to similar situations. Causes the
  * 	named file to have its presence tested. If it is not present, the "effect" is not made available.
  * 	Multiple files are separated by semicolons. Each is tested.
  *
  * The following tokens are available to represent paths:
  *	<ul>
- *		<li><code>%WEBPATH%</code> to represent the WEB path to the Zenphoto installation.</li>
- *		<li><code>%SERVERPATH%</code> to represent the server path to the Zenphoto installation.</li>
- *		<li><code>%PLUGIN_FOLDER%</code> to represent the Zenphoto "extensions" folder.</li>
- *		<li><code>%USER_PLUGIN_FOLDER%</code> to represent the root "plugin" folder.</li>
- *		<li><code>%ZENFOLDER%</code> to represent the zp-core folder.</li>
+ *		<li><var>%WEBPATH%</v> to represent the WEB path to the Zenphoto installation.</li>
+ *		<li><var>%SERVERPATH%</var> to represent the server path to the Zenphoto installation.</li>
+ *		<li><var>%PLUGIN_FOLDER%</var> to represent the Zenphoto "extensions" folder.</li>
+ *		<li><var>%USER_PLUGIN_FOLDER%</var> to represent the root "plugin" folder.</li>
+ *		<li><var>%ZENFOLDER%</var> to represent the zp-core folder.</li>
  * </ul>
  *
  * Pixastic effects:<br>
@@ -42,9 +42,9 @@
  * 	To add an effect to the plugin, download the zip file from the site. Extract the effect
  * 	files and place in the image_effects folder (in the global plugins folder.)
  *
- * 	For instance, to add the <i>Reflex effect</i>, download <code>reflex.zip</code>, unzip it, and place <code>reflex.js</code>
+ * 	For instance, to add the <i>Reflex effect</i>, download <var>reflex.zip</var>, unzip it, and place <var>reflex.js</var>
  * 	in the folder. Check the image_effects foder in the zenphoto extensions to see if there is already
- * 	header file. If not create one in the <code>plugins/image_effects</code> folder. Use as a model one of the other
+ * 	header file. If not create one in the <var>plugins/image_effects</var> folder. Use as a model one of the other
  * 	Effenberger effects header files.
  *
  * 	Included are some typical Effenberger files as examples. Simply provide the appropriate js script as above

@@ -3,7 +3,7 @@
  * A quota management system to limit the sum of sizes of uploaded images.
  *
  * Set the default quota on the plugin options page.
- * You can change the quota for individual users on the Admin tab. Users with <code>ADMIN_RIGHTS</code> or <code>MANAGE_ALL_ALBUM_RIGHTS</code>
+ * You can change the quota for individual users on the Admin tab. Users with <var>ADMIN_RIGHTS</var> or <var>MANAGE_ALL_ALBUM_RIGHTS</var>
  * are not subject to quotas and will not be assigned ownership of an image.
  *
  * Images uploaded by a user will be marked as his and will count toward his quota.

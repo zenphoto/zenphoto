@@ -3,7 +3,7 @@
  * Back-end <i>WYSIWYG</i> editor
  *
  * You can place your own additional custom configuration files within
- * <code>%USER_PLUGIN_FOLDER%/tiny_mce/config</code>
+ * <var>%USER_PLUGIN_FOLDER%/tiny_mce/config</var>
  * (e.g. <i>filename</i>.js.php)
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)

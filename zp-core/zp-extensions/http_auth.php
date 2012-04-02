@@ -2,9 +2,9 @@
 /**
  *  Tries to authorize user based on Apache HTTP authenitcation credentials
  *
- * The <code>PHP_AUTH_USER</code> is mapped to a Zenphoto user
- * the <code>PHP_AUTH_PW</code> must be in cleartext and match the Zenphoto user's password
- * (If the User validation is set to <i>trusted</i> the <code>PHP_AUTH_PW</code> password will be ignored and
+ * The <var>PHP_AUTH_USER</var> is mapped to a Zenphoto user
+ * the <var>PHP_AUTH_PW</var> must be in cleartext and match the Zenphoto user's password
+ * (If the User validation is set to <i>trusted</i> the <var>PHP_AUTH_PW</var> password will be ignored and
  * need not be cleartext.)
  *
  * Note that the HTTP logins are outside of Zenphoto so there is no security logging of
@@ -13,9 +13,9 @@
  *
  * Apache configuration:
  *	<ul>
- * <li>Run the Apache <code>htpasswd</code> utility to create a password file containing your first user:
- * 		<i>path to apache executables</i> <code>htpasswd -cp</code> <i>path to apache folder</i> <code>passwords user1</code><br><br>
- * <code>htpasswd</code> will prompt you for the password. You can repeat the process for each additional user
+ * <li>Run the Apache <var>htpasswd</var> utility to create a password file containing your first user:
+ * 		<i>path to apache executables</i> <var>htpasswd -cp</var> <i>path to apache folder</i> <var>passwords user1</var><br><br>
+ * <var>htpasswd</var> will prompt you for the password. You can repeat the process for each additional user
  * or you can simply edit the <i>passwords</i> file with a text editor.<br><br>
  * Each <i>user/password</i> must match to a Zenphoto <i>user/password</i> or access to Zenphoto will be at a <i>guest</i>
  * level. If a user changes his password in Zenphoto someone must make the equivalent change in
@@ -24,7 +24,7 @@
  *
  * <li>Create a file named "groups" in your apache folder</li>
  * <li>Edit the "groups" file with a line similar to:
- * 		<code>zenphoto: stephen george frank</code>.
+ * 		<var>zenphoto: stephen george frank</var>.
  * This creates a group named zenphoto with the list of users as members</li>
  *
  * <li>Add the following lines to your Zenphoto root .htaccess file after the initial comments and

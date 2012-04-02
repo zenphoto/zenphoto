@@ -10,7 +10,7 @@
  * warning of the impending expiration.
  *
  * There is a subtab added to the "admin" tab for managing expirations.
- * A list of users without <code>ADMIN_RITGHTS</code> will be presented indicating each
+ * A list of users without <var>ADMIN_RITGHTS</var> will be presented indicating each
  * user's expiry date. Dates within one week of expiry are shown in orange,
  * expired dates are shown in red.
  *
@@ -18,7 +18,7 @@
  * or renewed. (Renewal is for a new "interval" from his last renewal (or the
  * current date if adding the interval would not bring him up-to-date.)
  *
- * <b>NOTE:</b> This plugin does not expire users with <code>ADMIN_RIGHTS</code>!
+ * <b>NOTE:</b> This plugin does not expire users with <var>ADMIN_RIGHTS</var>!
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

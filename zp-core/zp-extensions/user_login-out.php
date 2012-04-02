@@ -2,7 +2,7 @@
 /**
  * Provides users a means to log in or out from the theme pages.
  *
- * Place a call on <code>printUserLogin_out()</code> where you want the link or form to appear.
+ * Place a call on <var>printUserLogin_out()</var> where you want the link or form to appear.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

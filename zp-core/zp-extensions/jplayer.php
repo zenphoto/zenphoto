@@ -3,8 +3,8 @@
  * Support for the jPlayer jQuery/Flash 2.0.0 multimedia player (jplayer.org). It will play natively via HTML5 in capable browser
  * if the appropiate multimedia formats are provided. This is not an adaption of the existing 3rd party plugin zenjPlayer but a full featured plugin.
 
- * Audio: <code>.mp3</code>, <code>.m4a</code>, <code>.fla</code> - Counterpart formats <code>.oga</code> and <code>.webma</code> supported (see note below!)<br>
- * Video: <code>.m4v</code>/<code>.mp4</code>, <code>.flv</code> - Counterpart formats <code>.ogv</code> and <code>.webmv</code> supported (see note below!)
+ * Audio: <var>.mp3</var>, <var>.m4a</var>, <var>.fla</var> - Counterpart formats <var>.oga</var> and <var>.webma</var> supported (see note below!)<br>
+ * Video: <var>.m4v</var>/<var>.mp4</var>, <var>.flv</var> - Counterpart formats <var>.ogv</var> and <var>.webmv</var> supported (see note below!)
  *
  * IMPORTANT NOTE ON OGG AND WEBM COUNTERPART FORMATS:
  *
@@ -22,7 +22,7 @@
  *
  * NOTE ON PLAYER SKINS:<br>
  * The look of the player is determined by a pure HTML/CSS based skin (theme). There may occur display issues with themes.
- * Only the Zenphoto's own default skin <code>zenphotolight</code>
+ * Only the Zenphoto's own default skin <var>zenphotolight</var>
  * has been tested with the standard themes (and not even with all it works perfectly).
  * So you might need to adjust the skin yourself to work with your theme. It is recommended that
  * you place your custom skins within the root /plugins folder like:
@@ -33,7 +33,7 @@
  * You can select the skin then via the plugin options. <b>NOTE:</b> A skin may have only one CSS file.
  *
  * USING PLAYLISTS:<br>
- * You can use <code>$_zp_flash_player->printjPlayerPlaylist()</code> on your theme's album.php directly to display a
+ * You can use <var>$_zp_flash_player->printjPlayerPlaylist()</var> on your theme's album.php directly to display a
  * video/audio playlist (default) or an audio only playlist.
  * Alternativly you can show a playlist of a specific album anywhere. In any case you need to modify your theme.
  * See the documentation for the parameter options.

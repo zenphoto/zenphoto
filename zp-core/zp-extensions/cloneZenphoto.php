@@ -4,14 +4,14 @@
  * folders and the root <i>index.php</i> file are symlinked. Setup will create the other needed folders.
  *
  * The <i>Clone installation</i> button will take you to the cloning page where you can select a folder destination
- * for the cloned installation. Upon successful cloning there will be a link to <code>setup</code> for the new
- * installation. (This presumes the <code>setup</code> files are present. If not you will be told which files
+ * for the cloned installation. Upon successful cloning there will be a link to <var>setup</var> for the new
+ * installation. (This presumes the <var>setup</var> files are present. If not you will be told which files
  * need to be reloaded.)
  *
  * <b>Note:</b> If the destination already has a Zenphoto installation these files and folders will be removed by the cloning
  * process!
  *
- * The <i>Delete setup files</i> button will remove the <code>setup</code> files from the current installation. This is
+ * The <i>Delete setup files</i> button will remove the <var>setup</var> files from the current installation. This is
  * the same function provided by <i>Setup</i> after a successful install. It is provided here because you will likely not want to
  * remove the setup files until you have cloned and installed all desired destinations.
  *

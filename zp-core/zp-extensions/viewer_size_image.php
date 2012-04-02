@@ -9,11 +9,11 @@
  * a cookie and used as the default for future image viewing.
  *
  * Sizes as used for the default size and the allowed size list are strings with the
- * The form is <code>$s=<i>size</i></code> or <code>$h=<i>heigh</i>; $w=<i>width</i>;</code>.... See printCustomSizedImage() for
+ * The form is <var>$s=<i>size</i></var> or <var>$h=<i>heigh</i>; $w=<i>width</i>;</var>.... See printCustomSizedImage() for
  * information about how these values are used.
  *
- * If <code>$s</code> is present, the plugin will use printCustomSizedImage() to display the image. Otherwise
- * both <code>$w</code> and <code>$h</code> must be present. Then printCustomSizedImageMaxSpace() is used for
+ * If <var>$s</var> is present, the plugin will use printCustomSizedImage() to display the image. Otherwise
+ * both <var>$w</var> and <var>$h</var> must be present. Then printCustomSizedImageMaxSpace() is used for
  * displaying the image.
  *
  * @author Stephen Billard (sbillard)

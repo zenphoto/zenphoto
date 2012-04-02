@@ -11,9 +11,11 @@
  *
  * You may have to refresh the page multiple times until the report of the number of images cached is zero.
  * If some images seem to never be rendered you may be experiencing memory limit or other graphics processor
- * errors. You can click on the image that does not render to get the <code>i.php</code> debug screen for the
+ * errors. You can click on the image that does not render to get the <var>i.php</var> debug screen for the
  * image. This may help in figuring out what has gone wrong.
  *
+ * @package plugins
+ * @author Stephen Billard (sbillard)
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Caches uncached images sizes.");

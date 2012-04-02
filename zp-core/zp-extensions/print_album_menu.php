@@ -4,14 +4,14 @@
  *
  * menu types:
  * 	<ul>
- * 			<li><code>list</code> for html list</li>
- * 			<li><code>list-top</code> for only the top level albums</li>
- * 			<li><code>omit-top</code> same as list, but the first level of albums is omitted</li>
- * 			<li><code>list-sub</code> lists the offspring level of subalbums for the current album</li>
- * 			<li><code>jump</code> dropdown menu of all albums(not context sensitive)</li>
+ * 			<li><var>list</var> for html list</li>
+ * 			<li><var>list-top</var> for only the top level albums</li>
+ * 			<li><var>omit-top</var> same as list, but the first level of albums is omitted</li>
+ * 			<li><var>list-sub</var> lists the offspring level of subalbums for the current album</li>
+ * 			<li><var>jump</var> dropdown menu of all albums(not context sensitive)</li>
  * 	</ul>
  *
- * Call the function <code>printAlbumMenu()</code> at the point where you want the menu to appear.
+ * Call the function <var>printAlbumMenu()</var> at the point where you want the menu to appear.
  *
  *
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)

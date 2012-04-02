@@ -1,12 +1,17 @@
 <?php
 /**
- * Generates individually sitemap.org compatible XML files for use with Google and other search engines. It supports albums and images as well as optionally Zenpage pages, news articles and news categories.
- * Sitemaps need to be generated via the button on the admin overview page and then are cached as static files in the /cache_html/sitemap/ folder.
- * There are individual sitemaps for all of the above item types generated as well as a sitemapindex file. Album sitemaps are splitted into individual sitemaps per album (incl. all albums pages) and image sitemaps into individual sitemaps per album.
+ * Generates individually sitemap.org compatible XML files for use with Google and other search engines.
+ * It supports albums and images as well as optionally Zenpage pages, news articles and news categories.
+ * Sitemaps need to be generated via the button on the admin overview page and then are cached as static
+ * files in the /cache_html/sitemap/ folder.
+ * There are individual sitemaps for all of the above item types generated as well as a sitemapindex file.
+ * Album sitemaps are splitted into individual sitemaps per album (incl. all albums pages) and image sitemaps
+ * into individual sitemaps per album.
  *
- * The sitemapindex file can be referenced via <code>www.yourdomain.com/zenphoto/index.php?sitemap</code> or with modrewrite <code>www.yourdomain.com/zenphoto/?sitemap</code>.
+ * The sitemapindex file can be referenced via <var>www.yourdomain.com/zenphoto/index.php?sitemap</var> or
+ * with modrewrite <var>www.yourdomain.com/zenphoto/?sitemap</var>.
  *
- * <b>IMPORTANT:</b> A multilingual sitemap requires either the <code>seo_locale</code> plugin or <i>language subdomains</i>.
+ * <b>IMPORTANT:</b> A multilingual sitemap requires either the <var>seo_locale</var> plugin or <i>language subdomains</i>.
  *
  * @author Malte Müller (acrylian) based on the plugin by Jeppe Toustrup (Tenzer) http://github.com/Tenzer/zenphoto-sitemap and on contributions by timo, Blue Dragonfly and Francois Marechal (frankm)
  * @package plugins

@@ -3,15 +3,15 @@
  *
  * Used to cache Theme pages (i.e. those pages launched by the Zenphoto index.php script.)
  *
- * Exceptions to this are the <code>password.php</code> and <code>404.php</code> pages, any page listed in the
+ * Exceptions to this are the <var>password.php</var> and <var>404.php</var> pages, any page listed in the
  * <i>Excluded pages</i> option, and any page whose script makes a call on the
- * <code>static_cache_html_disable_cache()</code> function. <b>NOTE:</b> this function only prevents the
+ * <var>static_cache_html_disable_cache()</var> function. <b>NOTE:</b> this function only prevents the
  * creation of a cache image of the page being viewed. If there is already an existing
  * cached page and none of the other exclusions are in effect, the cached page will be
  * shown.
  *
  * In addition, caching does not occur for pages viewed by Zenphoto users if the user has
- * <code>ADMIN</code> privileges or if he is the manager of an album being viewed or whose images are
+ * <var>ADMIN</var> privileges or if he is the manager of an album being viewed or whose images are
  * being viewed. Likewise, Zenpage News and Pages are not cached when viewed by the author.
  *
  * @author Malte Müller (acrylian)

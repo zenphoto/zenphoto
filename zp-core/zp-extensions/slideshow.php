@@ -10,7 +10,7 @@
  *		<li>Plugin Option 'slideshow_showdesc' -- Allows the show to display image descriptions</li>
  *	</ul>
  *
- * The theme files <code>slideshow.php</code>, <code>slideshow.css</code>, and <code>slideshow-controls.png</code> must reside in the theme
+ * The theme files <var>slideshow.php</var>, <var>slideshow.css</var>, and <var>slideshow-controls.png</var> must reside in the theme
  * folder. If you are creating a custom theme, copy these files form the "default" theme of the Zenphoto
  * distribution. Note that the Colorbox mode does not require these files as it is called on your theme's image.php and album.php direclty
  * via the slideshow button. The Colorbox plugin must be enabled and setup for these pages.
