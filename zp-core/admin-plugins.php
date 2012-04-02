@@ -239,11 +239,11 @@ foreach ($filelist as $extension) {
 			</label>
 		</td>
 		<td width="60">
-			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info.png" title="<?php echo gettext('Usage information'); ?>" alt=""></a></span>
+			<span class="icons"><a class="plugin_doc" href="<?php echo $plugin_URL; ?>"><img class="icon-position-top3" src="images/info.png" title="<?php printf(gettext('More information on %s'),$extension); ?>" alt=""></a></span>
 			<?php
 			if ($optionlink && !$plugin_disable) {
 				?>
-				<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php echo gettext("Change plugin options"); ?>"><img class="icon-position-top3" src="images/options.png" alt="" /></a></span>
+				<span class="icons"><a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"),$extension); ?>"><img class="icon-position-top3" src="images/options.png" alt="" /></a></span>
 				<?php
 			}
 			if ($plugin_notice) {
@@ -256,6 +256,7 @@ foreach ($filelist as $extension) {
 		<td>
 			<?php
 			echo $plugin_description;
+/* TODO: remove is we accept this change
 			if (!empty($plugin_author)) {
 				?>
 				<br />
@@ -267,6 +268,7 @@ foreach ($filelist as $extension) {
 				}
 				echo $plugin_author;
 			}
+*/
 			if ($plugin_disable) {
 				?>
 				<div id="showdisable_<?php echo $extension; ?>" style="display:none" class="warningbox">
