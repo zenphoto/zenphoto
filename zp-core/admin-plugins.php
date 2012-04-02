@@ -269,24 +269,24 @@ foreach ($filelist as $extension) {
 			}
 			if ($plugin_disable) {
 				?>
-				<p id="showdisable_<?php echo $extension; ?>" style="display:none" class="warningbox">
+				<div id="showdisable_<?php echo $extension; ?>" style="display:none" class="warningbox">
 					<?php
 					if ($plugin_disable) {
 						echo $plugin_disable;
 					}
 					?>
-				</p>
+				</div>
 				<?php
 			}
 			if ($plugin_notice) {
 				?>
-				<p id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
+				<div id="show_<?php echo $extension; ?>" style="display:none" class="notebox">
 					<?php
 					if ($plugin_notice) {
 						echo $plugin_notice;
 					}
 					?>
-				</p>
+				</div>
 				<?php
 			}
 			?>
