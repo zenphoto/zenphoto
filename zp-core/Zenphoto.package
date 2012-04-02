@@ -870,6 +870,7 @@ zp-core/zp-extensions/flowplayer3/flowplayer.controls-3.2.8.swf
 zp-core/zp-extensions/flowplayer3/flowplayer.embed-3.2.8.min.js
 zp-core/zp-extensions/flowplayer3/flowplayer.ipad-3.2.8.min.js
 zp-core/zp-extensions/flowplayer3/flowplayer.playlist-3.2.8.min.js
+zp-core/zp-extensions/flowplayer3/flowplayer.sharing-3.2.8.swf
 zp-core/zp-extensions/flowplayer3/flowplayer3_playlist.css
 zp-core/zp-extensions/flowplayer3/images
 zp-core/zp-extensions/flowplayer3/images/arrow_bottom_blue.png
@@ -1863,4 +1864,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1865
+1866
