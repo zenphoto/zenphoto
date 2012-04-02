@@ -196,8 +196,8 @@ function printImageslist($number) {
 						break;
 					case 'video':
 					case 'audio':
-						//$sizedimage = $imageobj->getSizedImage(getOption('image_size'));
-						//$sizedimage = str_replace('class="flowplayer"', 'class="flowplayer zenpage_sizedimage"', $sizedimage);
+						$sizedimage = $imageobj->getThumb();
+						$sizedimage = str_replace('class="flowplayer"', 'class="flowplayer zenpage_sizedimage"', $sizedimage);
 						if (is_null($imageobj->objectsThumb)) {
 							$filename = makeSpecialImageName($imageobj->getThumbImageFile());
 						} else {
