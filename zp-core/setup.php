@@ -1068,7 +1068,6 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		$res = array_search($base.ZENFOLDER.'/Zenphoto.package',$_zp_resident_files);
 	}
 	unset($_zp_resident_files[$res]);
-	$permissions = 1;
 	$cum_mean = filemtime(SERVERPATH.'/'.ZENFOLDER.'/version.php');
 	$hours = 3600;
 	$lowset = $cum_mean - $hours;
@@ -1092,7 +1091,12 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		$installed_files = array();
 	}
 	$folders = array();
-	setupLog(sprintf(gettext('Setting permissions (0%o) for Zenphoto package.'),$chmod),true);
+	if ($updatechmod) {
+		$permissions = 1;
+		setupLog(sprintf(gettext('Setting permissions (0%o) for Zenphoto package.'),$chmod),true);
+	} else {
+		$permission = 0;
+	}
 	foreach ($installed_files as $key=>$value) {
 		$component_data = explode(':',$value);
 		$value = trim($component_data[0]);
@@ -1148,7 +1152,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			}
 		}
 	}
-	if (count($folders)>0) {
+	if ($updatechmod && count($folders)>0) {
 		foreach ($folders as $key=>$folder) {
 			if (!checkPermissions(fileperms($folder)&0777,0755)) { // need to set them?.
 				@chmod($folder, $chmod | 0311);
@@ -1426,17 +1430,17 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				$albumfolder = $root . $albumfolder;
 				break;
 		}
-		$good = folderCheck('albums', $albumfolder, $_zp_conf_vars['album_folder_class'], NULL, true, $chmod | 0311) && $good;
+		$good = folderCheck('albums', $albumfolder, $_zp_conf_vars['album_folder_class'], NULL, true, $chmod | 0311, $updatechmod) && $good;
 	} else {
 		checkmark(-1, gettext('<em>albums</em> folder'), gettext("<em>albums</em> folder [The line <code>\$conf['album_folder']</code> is missing from your configuration file]"), gettext('You should update your configuration file to conform to the current zenphoto.cfg example file.'));
 	}
 
-	$good = folderCheck('cache', $serverpath . '/'.CACHEFOLDER.'/', 'std', NULL, true, $chmod | 0311) && $good;
+	$good = folderCheck('cache', $serverpath . '/'.CACHEFOLDER.'/', 'std', NULL, true, $chmod | 0311,$updatechmod) && $good;
 	$good = checkmark(file_exists($en_US), gettext('<em>locale</em> folders'), gettext('<em>locale</em> folders [Are not complete]'), gettext('Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder.')) && $good;
-	$good = folderCheck(gettext('uploaded'), $serverpath . '/'.UPLOAD_FOLDER.'/', 'std', NULL, false, $chmod | 0311) && $good;
-	$good = folderCheck(DATA_FOLDER, $serverpath . '/'.DATA_FOLDER.'/', 'std', NULL, false, $chmod | 0311) && $good;
-	$good = folderCheck(gettext('HTML cache'), $serverpath . '/'.STATIC_CACHE_FOLDER.'/', 'std', $Cache_html_subfolders, true, $chmod | 0311) && $good;
-	$good = folderCheck(gettext('Third party plugins'), $serverpath . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod | 0311) && $good;
+	$good = folderCheck(gettext('uploaded'), $serverpath . '/'.UPLOAD_FOLDER.'/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
+	$good = folderCheck(DATA_FOLDER, $serverpath . '/'.DATA_FOLDER.'/', 'std', NULL, false, $chmod | 0311, $updatechmod) && $good;
+	$good = folderCheck(gettext('HTML cache'), $serverpath . '/'.STATIC_CACHE_FOLDER.'/', 'std', $Cache_html_subfolders, true, $chmod | 0311, $updatechmod) && $good;
+	$good = folderCheck(gettext('Third party plugins'), $serverpath . '/'.USER_PLUGIN_FOLDER.'/', 'std', $plugin_subfolders, true, $chmod | 0311, $updatechmod) && $good;
 
 	?>
 			</ul>
