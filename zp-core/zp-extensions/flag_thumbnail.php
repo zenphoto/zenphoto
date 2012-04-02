@@ -2,31 +2,31 @@
 /**
  *
  * Use to overlay thumbnail images with icons depending on the state of the image.
- * The icon with which the thumbnail is flagged is selectable by option. A standard
- * set of icons is provided. More can be used by storing them in the <i>user plugin folder</i>
- * in a subfolder named <code>flag_thumbnail</code>.
  *
- * States which may be flagged:
+ *
+ * Thumbnails may be flagged with the following icons:
  * <ul>
- * 		<li>New--images will be in this state based on their date (or mtime) being within the
- * 				 selected "range" of the current day.</li>
- * 		<li>Protected--images which are password protected, either themsleves or because they are
- * 							 in a password protected album.</li>
- * 		<li>Un-published--images that are marked as not visible.</li>
- * 		<li>Geodata tagged--images which have latitude/longitude information in their EXIF metadata.</li>
+ * 		<li><img src="%PLUGIN_FOLDER%/flag_thumbnail/lock.png" />: <i>New</i>—images whose <code>date</code> (or <code>mtime</code>) are within the selected "range" of the current day.</li>
+ * 		<li><img src="%PLUGIN_FOLDER%/flag_thumbnail/action.png" />: <i>Protected</i>—images which are in a password protected album or because
+ * 							 a parent album is password protected.</li>
+ * 		<li><img src="%PLUGIN_FOLDER%/flag_thumbnail/new.png" />: <i>Un-published</i>—images that are marked as not visible.</li>
+ * 		<li><img src="%PLUGIN_FOLDER%/flag_thumbnail/GPS.png" />: <i>Geotagged</i>—images which have latitude/longitude information in their metadata.</li>
  * </ul>
+ *
+ * The icon with which the thumbnail is flagged is selectable by option. The above standard icons are provided as defaults.
+ * Additional icons can be used by placing them in the <code>%USER_PLUGIN_FOLDER%/flag_thumbnail</code> folder.
  *
  * @author Stephen Billard (sbillard) and Malte Müller (acrylian)
  * @package plugins
- */
-$plugin_description = gettext('Overlay icons over thumbnails to indicate status.');
-$plugin_notice = sprintf(gettext('Apply<ul>'.
+sprintf(gettext('Apply<ul>'.
 																				'<li><img src="%1$s/lock.png" alt=""/> over thumbnails of <em>password protected</em> images and albums</li>'.
 																				'<li><img src="%1$s/action.png" alt=""/> over thumbnails of <em>un-published</em> albums  images</li>'.
 																				'<li><img src="%1$s/new.png" alt=""/> over thumbnails of <em>"new"</em> images and albums</li>'.
 																				'<li><img src="%1$s/GPS.png" alt=""/> over thumbnails of <em>geocoded</em> images</li>'.
 																			'</ul>'
 																	),WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flag_thumbnail');
+ */
+$plugin_description = gettext('Overlay icons over thumbnails to indicate image status.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'flag_thumbnail';

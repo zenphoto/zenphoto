@@ -225,7 +225,7 @@ $regex_img = '|&lt;img(\s*)src=(\s*)&quot;(.*)&quot;(\s*)/&gt;|';
 								$line = preg_replace($regex_Url, '<a href="'.$url[0].'">'.$url[0].'</a> ', $line);
 							} else {
 								if (preg_match($regex_img, $line, $img)) {
-									$line = preg_replace($regex_img, '<img src="'.$img[3].'" />', $line);
+									$line = preg_replace($regex_img, '<img src="'.$img[3].'" alt="" />', $line);
 								}
 							}
 							$doc .= $line.' ';
@@ -261,7 +261,10 @@ $regex_img = '|&lt;img(\s*)src=(\s*)&quot;(.*)&quot;(\s*)/&gt;|';
 					<?php
 					foreach ($options as $option) {
 						$row = $supportedOptions[$option];
-						$option = trim($option,'*'.chr(0));
+						if (false!==$i=stripos($option,chr(0))) {
+							$option = substr($option, 0, $i);
+						}
+						$option = trim($option,'*');
 						if ($option && $row['type'] != OPTION_TYPE_NOTE) {
 							?>
 							<li><code><?php echo $option; ?></code></li>
