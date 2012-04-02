@@ -213,8 +213,8 @@ function printContactForm($subject_override='') {
 
 		// CAPTCHA start
 		if(getOption("contactform_captcha")) {
-			$code_ok = trim(sanitize($_POST['code_h']));
-			$code = trim(sanitize($_POST['code']));
+			$code_ok = trim(sanitize(@$_POST['code_h']));
+			$code = trim(sanitize(@$_POST['code']));
 			if (!$_zp_captcha->checkCaptcha($code, $code_ok)) { $error[5] = gettext("the correct CAPTCHA verification code"); } // no ticket
 		}
 		// CAPTCHA end
