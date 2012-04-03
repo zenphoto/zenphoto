@@ -2253,11 +2253,22 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 					$gettitle = '';
 					$getname = '';
 				}
-				if ($itemtitlelink == $getname && !in_context(ZP_SEARCH)) {
-					$current = $class;
-				} else {
-					$current = "";
-				}
+				$current = "";
+				if($itemtitlelink == $getname && !in_context(ZP_SEARCH)) {
+					switch($mode) {
+						case 'pages':
+							if ($_zp_gallery_page == 'pages.php') {
+								$current = $class;
+							}
+							break;
+						case 'categories':
+						case 'allcategories':
+							if ($_zp_gallery_page == 'news.php') {
+								$current = $class;
+							}
+							break;
+					}
+				} 
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
