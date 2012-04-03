@@ -31,12 +31,12 @@
  * </ul>
  *
  * Pixastic effects:<br>
- *	Included standard are several effects from http://www.pixastic.com/. Please visit their site for
+ *	Included standard are several effects from {@link http://www.pixastic.com/ Pixastic}. Please visit their site for
  *	detailed documentation.
  *
  * Effenberger effects::<br>
  * 	Some effects which can be used are the javascript effects created by Christian Effenberger
- * 	which may be downloaded from his site: http://www.netzgesta.de/cvi/
+ * 	which may be downloaded from his {@link http://www.netzgesta.de/cvi/ site}:
  *
  * 	<b>Note:</b> No effenberger effects are distributed with this plugin to conform with CVI licensing constraints.
  * 	To add an effect to the plugin, download the zip file from the site. Extract the effect

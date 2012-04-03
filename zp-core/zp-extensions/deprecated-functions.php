@@ -10,6 +10,9 @@
  * message can be disabled to allow your scripts to continue to run. Visit the <i>deprecated-functions</i>
  * plugin options. Find the function and uncheck the box by the function.
  *
+ * A utility button is provided that allows you to search themes and plugins for uses of functions which have been deprecated.
+ * Use it to be proactive in replacing these discontinued items.
+ *
  * @author Stephen Billard (sbillard)
  * @package plugins
  */

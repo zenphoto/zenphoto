@@ -279,8 +279,8 @@ function is_valid($image, $valid_types) {
 }
 
 /**
- * Prints the slideshow using the jQuery plugin Cycle (http://http://www.malsup.com/jquery/cycle/)
- * or Flash based using Flowplayer3 http://flowplayer.org if installed
+ * Prints the slideshow using the {@link http://http://www.malsup.com/jquery/cycle/  jQuery plugin Cycle}
+ * or Flash based using {@link http://flowplayer.org  Flowplayer3}if installed
  *
  * Two ways to use:
  * a) Use on your theme's slideshow.php page and called via printSlideShowLink():

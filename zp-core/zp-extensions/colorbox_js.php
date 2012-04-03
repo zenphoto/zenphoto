@@ -3,7 +3,7 @@
  * Loads Colorbox JS and CSS scripts for selected theme page scripts.
  *
  * Note that this plugin does not attach Colorbox to any element because there are so many different options and usages.
- * You need to do this in your theme yourself. Visit http://colorpowered.com/colorbox/ for information.
+ * You need to do this in your theme yourself. Visit the {@link http://colorpowered.com/colorbox/ colorbox} site for information.
  *
  * The plugin has built in support for 5 example Colorbox themes shown below:
  *
@@ -24,7 +24,7 @@
 
 $plugin_is_filter = 9|THEME_PLUGIN;
 $plugin_description = gettext('Loads Colorbox JS and CSS scripts for selected theme page scripts.');
-$plugin_notice = gettext('Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself. See <a href="http://colorpowered.com/colorbox/">Colorbox website</a>.');
+$plugin_notice = gettext('Note that this plugin does not attach Colorbox to any element. You need to do this on your theme yourself.');
 $plugin_author = 'Stephen Billard (sbillard)';
 $option_interface = 'colorbox';
 

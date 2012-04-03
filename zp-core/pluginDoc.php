@@ -4,16 +4,17 @@
  * Displays a "plugin usage" document based on the plugin's doc comment block.
  *
  * Supports the following PHPDoc markup tags:
+ *  {@link URL link_text}
+ *  {@link URL}
+ *  <img src= ... /> to insert an image
  * 	<i> for emphasis
  *  <b> for strong
- *  <code> for code blocks (Note: PHPDocs will create an ordered list of the lines)
+ *  <var> for mono-spaced text
+ *  <code> for code blocks (Note: PHPDocs will create an ordered list of the enclosed text)
  *  <hr> for horizontal rule
  *  <ul><li>, <ol><li> for lists
  *  <pre>
  *  <br> for line breaks
- *  <var> for mono-spaced text
- *  <a href= ...></a>
- *  <img src= ... />
  *
  * @package admin
  */
@@ -78,6 +79,93 @@ $option_interface = '';
 $buttonlist = zp_apply_filter('admin_utilities_buttons', array());
 
 $pluginStream = @file_get_contents($path);
+$regex_Url = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+$regex_img = '|&lt;img(\s*)src=(\s*)&quot;(.*)&quot;(\s*)/&gt;|';
+$i = strpos($pluginStream, '/*');
+$j = strpos($pluginStream, '*/');
+$body = '';
+$links = array();
+if ($i !== false && $j !== false) {
+	$commentBlock = strtr(substr($pluginStream, $i+2, $j-$i-2), $const_tr);
+	$lines = explode('*', $commentBlock);
+	$doc = '';
+	$par = false;
+	$empty = false;
+
+	foreach ($lines as $line) {
+		$line = trim($line);
+		if (empty($line)) {
+			if (!$empty) {
+				if ($par) {
+					$doc .=  '</p>';
+				}
+				$doc .= '<p>';
+				$empty = $par = true;
+			}
+		} else {
+			if (strpos($line, '@') === 0) {
+				preg_match('/@(.*?)\s/',$line,$matches);
+				if (!empty($matches)) {
+					switch ($matches[1]) {
+						case 'author':
+							$plugin_author = trim(substr($line, 8));
+							break;
+						case 'subpackage':
+							$subpackage = trim(substr($line, 11)).'/';
+							break;
+						case 'link':
+							$line = trim(substr($line, 5));
+							$l = strpos($line, ' ');
+							if ($l === false) {
+								$text = $line;
+							} else {
+								$text = substr($line, $l+1);
+								$line = substr($line,0,$l);
+							}
+							$links[] = array('text'=>$text,'link'=>$line);
+							break;
+					}
+				}
+			} else {
+				$tags = array();
+				preg_match_all('|<img src="(.*?)"\s*/>|', $line, $matches);
+				if (!empty($matches[0])) {
+					foreach ($matches[0] as $key=>$match) {
+						if (!empty($match)) {
+						$line = preg_replace('|'.$match.'|', '%'.$key.'$i', $line);
+						$tags['%'.$key.'$i'] = '<img src="'.$matches[1][$key].'" alt="" />';
+						}
+					}
+				}
+				preg_match_all('|\{@link (.*?)\}|', $line, $matches);
+				if (!empty($matches[0])) {
+					foreach ($matches[0] as $key=>$match) {
+						if (!empty($match)) {
+							$line = preg_replace('|'.$match.'|', '%'.$key.'$l', $line);
+							$l = strpos($matches[1][$key], ' ');
+							if ($l === false) {
+								$link = $text = $matches[1][$key];
+							} else {
+								$text = substr($matches[1][$key], $l+1);
+								$link = substr($matches[1][$key],0,$l);
+							}
+							$tags['%'.$key.'$l'] = '<a href="'.$link.'">'.$text.'</a>';
+						}
+					}
+				}
+				$line = strtr(html_encode($line),$markup);
+				$line = strtr($line, $tags);
+				$doc .= $line.' ';
+				$empty = false;
+			}
+		}
+	}
+	if ($par) {
+		$doc .=  '</p>';
+		$body .=  $doc;
+		$doc = '';
+	}
+}
 
 if ($thirdparty) {
 	$whose = gettext('third party plugin');
@@ -92,8 +180,6 @@ if ($thirdparty) {
 	$whose = 'Zenphoto official plugin';
 	$ico = 'images/zp_gold.png';
 }
-$regex_Url = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-$regex_img = '|&lt;img(\s*)src=(\s*)&quot;(.*)&quot;(\s*)/&gt;|';
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -169,162 +255,119 @@ $regex_img = '|&lt;img(\s*)src=(\s*)&quot;(.*)&quot;(\s*)/&gt;|';
 					<h3><?php printf( gettext('Version: %s'), $plugin_version); ?></h3>
 					<?php
 					}
-				?>
-				<h3><?php printf(gettext('Author: %s'), html_encode($plugin_author)); ?></h3>
-			<div>
-			<?php
-			if ($plugin_disable) {
-				?>
-				<p class="warningbox">
-					<?php echo $plugin_disable; ?>
-				</p>
-				<?php
-			}
-			if ($plugin_notice) {
-				?>
-				<div class="notebox">
-					<?php echo $plugin_notice; ?>
-				</div>
-				<?php
-			}
-			$i = strpos($pluginStream, '/*');
-			$j = strpos($pluginStream, '*/');
-			if ($i !== false && $j !== false) {
-				$commentBlock = strtr(substr($pluginStream, $i+2, $j-$i-2), $const_tr);
-				$lines = explode('*', $commentBlock);
-				$doc = '';
-				$par = false;
-				$empty = false;
-
-				foreach ($lines as $line) {
-					$line = trim($line);
-					if (empty($line)) {
-						if (!$empty) {
-							if ($par) {
-								$doc .=  '</p>';
-							}
-							$doc .= '<p>';
-							$empty = $par = true;
-						}
-					} else {
-						if (strpos($line, '@') === 0) {
-							preg_match('/@(.*?)\s/',$line,$matches);
-							if (!empty($matches)) {
-								switch ($matches[1]) {
-									case 'author':
-										$plugin_author = trim(substr($line, 8));
-										break;
-									case 'subpackage':
-										$subpackage = trim(substr($line, 11)).'/';
-										break;
-								}
-							}
-						} else {
-							$line = strtr(html_encode($line),$markup);
-							if(preg_match($regex_Url, $line, $url)) {
-								$line = preg_replace($regex_Url, '<a href="'.$url[0].'">'.$url[0].'</a> ', $line);
-							} else {
-								if (preg_match($regex_img, $line, $img)) {
-									$line = preg_replace($regex_img, '<img src="'.$img[3].'" alt="" />', $line);
-								}
-							}
-							$doc .= $line.' ';
-							$empty = false;
-						}
-					}
-				}
-				if ($par) {
-					$doc .=  '</p>';
-					echo $doc;
-					$doc = '';
-				}
-			echo $doc;
-			}
-
-			if ($option_interface) {
-				if (is_string($option_interface)) {
-					$option_interface = new $option_interface;
-				}
-				$options = $supportedOptions = $option_interface->getOptionsSupported();
-				$option = array_shift($options);
-				if (array_key_exists('order', $option)) {
-					$options = sortMultiArray($supportedOptions, 'order');
-					$options = array_keys($options);
-				} else {
-					$options = array_keys($supportedOptions);
-					natcasesort($options);
-				}
-				?>
-				<p>
-				<?php echo ngettext('Option:','Options:',count($options)); ?>
-				<ul class="options">
+				if ($plugin_author) {
+					?>
+					<h3><?php printf(gettext('Author: %s'), html_encode($plugin_author)); ?></h3>
 					<?php
-					foreach ($options as $option) {
-						$row = $supportedOptions[$option];
-						if (false!==$i=stripos($option,chr(0))) {
-							$option = substr($option, 0, $i);
-						}
-						$option = trim($option,'*');
-						if ($option && $row['type'] != OPTION_TYPE_NOTE) {
-							?>
-							<li><code><?php echo $option; ?></code></li>
-							<?php
-						}
+				}
+				foreach ($links as $key=>$link) {
+					if ($key) echo "<br />";
+					echo '<a href="'.html_encode($link['link']).'">'.html_encode($link['text']).'</a>';
+				}
+				?>
+			<div>
+				<?php
+				if ($plugin_disable) {
+					?>
+					<div class="warningbox">
+						<?php echo $plugin_disable; ?>
+					</div>
+					<?php
+				}
+				if ($plugin_notice) {
+					?>
+					<div class="notebox">
+						<?php echo $plugin_notice; ?>
+					</div>
+					<?php
+				}
+
+				echo $body;
+
+				if ($option_interface) {
+					if (is_string($option_interface)) {
+						$option_interface = new $option_interface;
+					}
+					$options = $supportedOptions = $option_interface->getOptionsSupported();
+					$option = array_shift($options);
+					if (array_key_exists('order', $option)) {
+						$options = sortMultiArray($supportedOptions, 'order');
+						$options = array_keys($options);
+					} else {
+						$options = array_keys($supportedOptions);
+						natcasesort($options);
 					}
 					?>
-				</ul>
-				</p>
-				<?php
-			}
-			if (!empty($buttonlist)) {
-				$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
-				?>
-				<div id="overview-utility">
-				<p>
-				<?php echo ngettext('Overview utility button','Overview utility buttons',count($buttonlist)); ?>
-				</p>
-					<?php
-					$category = '';
-					foreach ($buttonlist as $button) {
-						$button_category = $button['category'];
-						$button_icon = $button['icon'];
-						if ($category != $button_category) {
-							if ($category) {
+					<p>
+					<?php echo ngettext('Option:','Options:',count($options)); ?>
+					<ul class="options">
+						<?php
+						foreach ($options as $option) {
+							$row = $supportedOptions[$option];
+							if (false!==$i=stripos($option,chr(0))) {
+								$option = substr($option, 0, $i);
+							}
+							$option = trim($option,'*');
+							if ($option && $row['type'] != OPTION_TYPE_NOTE) {
 								?>
-								</fieldset>
+								<li><code><?php echo $option; ?></code></li>
 								<?php
 							}
-							$category = $button_category;
-							?>
-							<fieldset class="doc_box_field"><legend><?php echo $category; ?></legend>
-							<?php
 						}
 						?>
-						<form class="overview_utility_buttons">
-							<div class="moc_button tip" title="<?php echo $button['title']; ?>" >
-								<?php
-								if(!empty($button_icon)) {
+					</ul>
+					</p>
+					<?php
+				}
+				if (!empty($buttonlist)) {
+					$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
+					?>
+					<div id="overview-utility">
+					<p>
+					<?php echo ngettext('Overview utility button','Overview utility buttons',count($buttonlist)); ?>
+					</p>
+						<?php
+						$category = '';
+						foreach ($buttonlist as $button) {
+							$button_category = $button['category'];
+							$button_icon = $button['icon'];
+							if ($category != $button_category) {
+								if ($category) {
 									?>
-									<img src="<?php echo $button_icon; ?>" alt="<?php echo $button['alt']; ?>" />
+									</fieldset>
 									<?php
 								}
-								echo html_encode($button['button_text']);
+								$category = $button_category;
 								?>
-							</div>
-						</form>
-						<?php
-					}
-					if ($category) {
+								<fieldset class="doc_box_field"><legend><?php echo $category; ?></legend>
+								<?php
+							}
+							?>
+							<form class="overview_utility_buttons">
+								<div class="moc_button tip" title="<?php echo $button['title']; ?>" >
+									<?php
+									if(!empty($button_icon)) {
+										?>
+										<img src="<?php echo $button_icon; ?>" alt="<?php echo $button['alt']; ?>" />
+										<?php
+									}
+									echo html_encode($button['button_text']);
+									?>
+								</div>
+							</form>
+							<?php
+						}
+						if ($category) {
+							?>
+							</fieldset>
+							<?php
+						}
 						?>
-						</fieldset>
-						<?php
-					}
-					?>
-				</div><!-- overview-utility -->
-				<br clear="all">
-				<?php
-			}
-			?>
+					</div><!-- overview-utility -->
+					<br clear="all">
+					<?php
+				}
+				?>
 			</div>
 		</div>
 		<?php

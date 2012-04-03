@@ -18,7 +18,7 @@
  * Since the flash fallback covers all essential formats ths is not much of an issue for visitors though.
  *
  * Otherwise it will not work. It is all or none.
- * See http://jplayer.org/latest/developer-guide/#reference-html5-media for info on that.
+ * See {@link http://jplayer.org/latest/developer-guide/#reference-html5-media the developer guide} for info on that.
  *
  * NOTE ON PLAYER SKINS:<br>
  * The look of the player is determined by a pure HTML/CSS based skin (theme). There may occur display issues with themes.

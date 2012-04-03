@@ -20,7 +20,7 @@
  * period of time. That is done by the <i>user_expiry</i> plugin.
  *
  * Currently there is only one type of handler available. It is an OpenID handler based on the
- * Janrain OpenID Enabled library (http://www.janrain.com/openid-enabled). There are
+ * {@link http://www.janrain.com/openid-enabled Janrain OpenID Enabled library}. There are
  * some server requirements for this library. To see if you server meets them run
  * the script <var>zp-core/zp-extensions/federated_logon/OpenID_detect.php</var>. It will give
  * you a report on what might need be done. You can ignore items about data stores as
