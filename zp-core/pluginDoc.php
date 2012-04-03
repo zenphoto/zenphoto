@@ -16,12 +16,19 @@
  *  <pre>
  *  <br> for line breaks
  *
+ *  NOTE: These apply ONLY to the plugin's document block. Normal string use (e.g. plugin_notices, etc.).
+ *  should use standard markup.
+ *
  * @package admin
  */
 define('OFFSET_PATH', 2);
 require_once(dirname(__FILE__).'/admin-globals.php');
 
-admin_securityChecks(NULL, currentRelativeURL());
+if (is_null($_zp_current_locale)) {
+	$_zp_current_locale = getUserLocale();
+}
+$real_locale = $_zp_current_locale;
+setupCurrentLocale('en_US');
 
 $markup = array(
 						'&lt;i&gt;'=>'<em>',
@@ -133,7 +140,7 @@ if ($i !== false && $j !== false) {
 					foreach ($matches[0] as $key=>$match) {
 						if (!empty($match)) {
 						$line = preg_replace('|'.$match.'|', '%'.$key.'$i', $line);
-						$tags['%'.$key.'$i'] = '<img src="'.$matches[1][$key].'" alt="" />';
+						$tags['%'.$key.'$i'] = '<img src="'.html_encode($matches[1][$key]).'" alt="" />';
 						}
 					}
 				}
@@ -149,7 +156,7 @@ if ($i !== false && $j !== false) {
 								$text = substr($matches[1][$key], $l+1);
 								$link = substr($matches[1][$key],0,$l);
 							}
-							$tags['%'.$key.'$l'] = '<a href="'.$link.'">'.$text.'</a>';
+							$tags['%'.$key.'$l'] = '<a href="'.html_encode($link).'">'.html_encode($text).'</a>';
 						}
 					}
 				}
@@ -378,6 +385,12 @@ if ($thirdparty) {
 		} else {
 			$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
 			printf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+		}
+		if ($real_locale != 'en_US') {
+			setupCurrentLocale($real_locale);
+			?>
+			<br /><a href="http://www.google.com/translate_c?langpair=en|<?php echo strtolower(substr($real_locale,0,2)); ?>&u=<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension?>" title=""><?php echo gettext('Translate this page.'); ?></a>
+			<?php
 		}
 		?>
 	</div>

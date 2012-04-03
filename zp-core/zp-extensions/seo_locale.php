@@ -33,8 +33,10 @@ if ($plugin_disable) {
 } else {
 	zp_register_filter('load_request', 'seo_locale::load_request');
 }
-define('SEO_WEBPATH',seo_locale::localePath());
-define('SEO_FULLWEBPATH',seo_locale::localePath(true));
+if (!defined('SEO_WEBPATH')) {
+	define('SEO_WEBPATH',seo_locale::localePath());
+	define('SEO_FULLWEBPATH',seo_locale::localePath(true));
+}
 
 class seo_locale {
 
