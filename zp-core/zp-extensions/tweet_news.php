@@ -497,7 +497,7 @@ class tweet {
 	 * @param unknown_type $object
 	 */
 	static function tweeterZenpageExecute($custom, $object) {
-		tweeterExecute($object, '');
+		tweet::tweeterExecute($object, '');
 		return $custom;
 	}
 

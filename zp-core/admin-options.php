@@ -226,7 +226,7 @@ if (isset($_GET['action'])) {
 				@chmod(SERVERPATH.'/'.CACHEFOLDER.'/.htaccess', 0444);
 			} else {
 				@chmod(SERVERPATH.'/'.CACHEFOLDER.'/.htaccess', 0777);
-				unlink(SERVERPATH.'/'.CACHEFOLDER.'/.htaccess');
+				@unlink(SERVERPATH.'/'.CACHEFOLDER.'/.htaccess');
 				setOption('protected_image_cache', 0);
 			}
 			setOption('hotlink_protection', (int) isset($_POST['hotlink_protection']));
@@ -2113,7 +2113,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 								}
 							}
 							if (!$item[4]) {
-								$checked_show = $checked_hide = ' disabled="disabled"';
+								$checked_show = ' disabled="disabled"';
 							}
 							?>
 							<li>
