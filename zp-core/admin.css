@@ -168,7 +168,9 @@ code {
  * @copyright	2006-2008 Live Web Institute
  *
  */
-
+ul.no_bullets {
+	list-style: none;
+}
 ul.nav,
 ul.nav li,
 ul.nav ul {
@@ -1240,8 +1242,10 @@ button.positive,.buttons a.positive {
 }
 
 .buttons .tooltip {
-	width: 17em;
 	text-align: left;
+}
+.buttons .fixedwidth {
+	width: 17em;
 }
 
 #tooltip {

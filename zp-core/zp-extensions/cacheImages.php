@@ -158,13 +158,13 @@ class cache_images {
 		foreach ($_POST as $key=>$value) {
 			preg_match('/^cacheImages_(.*)_(.*)/', $key, $matches);
 			if ($value && !empty($matches)) {
-				$cache[$matches[2]][$matches[1]] = sanitize($value);
+				$cache[$matches[2]][$matches[1]] = sanitize(trim($value));
 			}
 		}
 		query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`="cacheImages"');
 		foreach($cache as $cacheimage) {
 			if (!isset($cacheimage['delete']) && count($cacheimage)>1) {
-				$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("cacheImages",'.db_quote(@$cacheimage['theme']).','.db_quote(serialize($cacheimage)).')';
+				$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("cacheImages",'.db_quote($cacheimage['theme']).','.db_quote(serialize($cacheimage)).')';
 				query($sql);
 			}
 		}

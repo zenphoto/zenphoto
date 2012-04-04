@@ -176,7 +176,9 @@ function db_num_rows($result) {
  */
 function db_close() {
 	global $_zp_DB_connection;
-	$rslt = mysql_close($_zp_DB_connection);
+	if ($_zp_DB_connection) {
+		$rslt = mysql_close($_zp_DB_connection);
+	}
 	$_zp_DB_connection = NULL;
 	return $rslt;
 }

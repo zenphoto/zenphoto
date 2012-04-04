@@ -136,6 +136,7 @@ echo '</head>';
 $messages = '';
 
 $prefix = prefix();
+
 if (isset($_REQUEST['backup']) && db_connect()) {
 	$compression_level = sanitize($_REQUEST['compress'],3);
 	setOption('backup_compression', $compression_level);
@@ -477,7 +478,7 @@ if (db_connect()) {
 			<?php XSRFToken('backup');?>
 		<input type="hidden" name="backup" value="true" />
 		<div class="buttons pad_button" id="dbbackup">
-		<button class="tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
+		<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Backup the tables in your database."); ?>">
 			<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/burst.png" alt="" /> <?php echo gettext("Backup the Database"); ?>
 		</button>
 		<select name="compress">
@@ -511,7 +512,7 @@ if (db_connect()) {
 		</select>
 		<input type="hidden" name="restore" value="true" />
 		<div class="buttons pad_button" id="dbrestore">
-		<button class="tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>">
+		<button class="fixedwidth tooltip" type="submit" title="<?php echo gettext("Restore the tables in your database from a previous backup."); ?>">
 			<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Restore the Database"); ?>
 		</button>
 		</div>

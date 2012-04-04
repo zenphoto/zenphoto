@@ -70,12 +70,12 @@ function loadAlbum($album) {
 							}
 							$countit = 1;
 							?>
-							<a href="<?php echo $uri; ?>&amp;debug">
+							<a href="<?php echo html_encode($uri); ?>&amp;debug">
 								<?php
 								if ($thumbstandin) {
-									echo '<img src="' . $uri . '" height="8" width="8" />'."\n";
+									echo '<img src="' . html_encode($uri) . '" height="8" width="8" alt="X" />'."\n";
 								} else {
-									echo ' <img src="' . $uri . '" height="20" width="20" />'."\n";
+									echo ' <img src="' . html_encode($uri) . '" height="20" width="20" alt="X" />'."\n";
 								}
 								?>
 							</a>
@@ -157,16 +157,19 @@ if ($alb) {
 $cachesizes = 0;
 $currenttheme = $_zp_gallery->getCurrentTheme();
 ?>
-<form name="size_selections" action="?select" method="post">
+<form name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
 	<?php XSRFToken('cache_images')?>
-	<ul>
+	<ul class="no_bullets">
 		<?php
 		foreach ($custom as $key=>$cacheimage) {
 			if (!is_array($enabled) || in_array($key, $enabled)) {
 				if (is_array($enabled)) {
 					$checked = ' checked="checked" disabled="disabled"';
+					?>
+					<input type="hidden" name="enable[]" value="<?php echo $key; ?>" />
+					<?php
 				} else {
-					if ($currenttheme == @$cacheimage['theme']) {
+					if ($currenttheme == $cacheimage['theme']) {
 						$checked = ' checked="checked"';
 					} else {
 						$checked = '';
@@ -186,65 +189,78 @@ $currenttheme = $_zp_gallery->getCurrentTheme();
 				$args = array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, $thumbstandin, NULL, $thumbstandin, $passedWM, NULL, $effects);
 				$postfix = getImageCachePostfix($args);
 				?>
-				<li><?php echo gettext('Apply'); ?> <input type="checkbox" name="enable[]" value="<?php echo $key; ?>"<?php echo $checked; ?> /><i><?php echo $cacheimage['theme']; ?></i> <?php echo $postfix; ?></li>
+				<li><input type="checkbox" name="enable[]" value="<?php echo $key; ?>"<?php echo $checked; ?> /> <?php echo gettext('Apply'); ?> <i><?php echo $cacheimage['theme']; ?></i><?php echo $postfix; ?></li>
 				<?php
 			}
 		}
 		?>
 	</ul>
 	<?php
-
-	if (!isset($_GET['select']))		{
-		?>
-		<p class="buttons">
-			<button class="tooltip" type="submit" title="<?php echo gettext("Executes the caching of the selected image sizes."); ?>">
-				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/redo.png" alt="" /> <?php echo gettext("Cache the images"); ?>
-			</button>
-		</p>
-		<br clear="all">
-		<?php
-	}
-
-	?>
-</form>
-<?php
-if (is_array($enabled)) {
-	if ($cachesizes) {
-		echo '<p>';
-		printf(ngettext('%u cache size to apply.','%u cache sizes to apply.',$cachesizes),$cachesizes);
-		echo '</p>';
-		if ($alb) {
-			$album = new Album(NULL, $folder);
-			$count =loadAlbum($album);
-			echo "\n" . "<br />".sprintf(gettext("Finished: Total of %u images cached."), $count);
-		} else {
-			$albums = $_zp_gallery->getAlbums();
-			shuffle($albums);
-			foreach ($albums as $folder) {
-				$album = new Album($_zp_gallery, $folder);
-				if (!$album->isDynamic()) {
-					$count = $count + loadAlbum($album);
+	if (is_array($enabled)) {
+		if ($cachesizes) {
+			echo '<p>';
+			printf(ngettext('%u cache size to apply.','%u cache sizes to apply.',$cachesizes),$cachesizes);
+			echo '</p>';
+			if ($alb) {
+				$album = new Album(NULL, $folder);
+				$count =loadAlbum($album);
+				echo "\n" . "<br />".sprintf(gettext("Finished: Total of %u images cached."), $count);
+			} else {
+				$albums = $_zp_gallery->getAlbums();
+				shuffle($albums);
+				foreach ($albums as $folder) {
+					$album = new Album($_zp_gallery, $folder);
+					if (!$album->isDynamic()) {
+						$count = $count + loadAlbum($album);
+					}
 				}
+				echo "\n" . "<br />".sprintf(gettext("Finished: Total of %u images cached."), $count);
 			}
-			echo "\n" . "<br />".sprintf(gettext("Finished: Total of %u images cached."), $count);
+			?>
+			<p class="buttons">
+				<a title="<?php echo gettext('Back to the album list'); ?>"href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
+					<strong><?php echo gettext("Back"); ?> </strong>
+				</a>
+			</p>
+			<?php
+			if ($count) {
+				?>
+				<p class="buttons">
+					<button class="tooltip" type="submit" title="<?php echo gettext('Retry the caching of the selected image sizes if some images did not render.'); ?>">
+						<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/redo.png" alt="" />
+							 <?php echo gettext("Retry"); ?>
+					</button>
+				</p>
+				<?php
+			}
+		} else {
+			?>
+			<p><?php  echo gettext('No cache sizes enabled.'); ?></p>';
+			<p class="buttons">
+				<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
+					<strong><?php echo gettext("Back"); ?> </strong>
+				</a>
+			</p>
+			<?php
 		}
 	} else {
-		echo '<p>'.gettext('No cache sizes enabled.').'</p>';
+		?>
+		<p class="buttons">
+			<a title="<?php echo gettext('Back to the album list'); ?>"href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
+				<strong><?php echo gettext("Back"); ?> </strong>
+			</a>
+		</p>
+		<p class="buttons">
+			<button class="tooltip" type="submit" title="<?php echo gettext('Executes the caching of the selected image sizes.'); ?>" >
+				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/redo.png" alt="" />
+				 <?php echo gettext("Cache the images"); ?>
+			</button>
+		</p>
+		<?php
 	}
-}
-
-?>
-	<p class="buttons">
-		<a title="<?php echo gettext('Back to the album list'); ?>"
-			href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img
-			src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png"
-			alt="" /> <strong><?php echo gettext("Back"); ?> </strong>
-		</a>
-	</p>
-	<br clear="all">
-
-
-
+	?>
+		<br clear="all">
+</form>
 
 <?php
 echo "\n" . '</div>';

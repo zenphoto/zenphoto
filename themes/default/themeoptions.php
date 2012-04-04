@@ -25,9 +25,11 @@ class ThemeOptions {
 		setOptionDefault('colorbox_default_album', 1);
 		setOptionDefault('colorbox_default_image', 1);
 		setOptionDefault('colorbox_default_search', 1);
-		cache_images::deleteThemeCacheSizes('default');
-		cache_images::addThemeCacheSize('default', 595, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
-		cache_images::addThemeCacheSize('default', 100, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL);
+		if (class_exists('cache_images')) {
+			cache_images::deleteThemeCacheSizes('default');
+			cache_images::addThemeCacheSize('default', 595, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
+			cache_images::addThemeCacheSize('default', 100, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL);
+		}
 	}
 
 	function getOptionsSupported() {

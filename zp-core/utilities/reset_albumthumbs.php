@@ -79,7 +79,7 @@ if (db_connect()) {
 	<form name="set_random" action="">
 		<?php XSRFToken('reset_thumbs')?>
 				<div class="buttons pad_button" id="set_all">
-					<button class="tooltip" type="submit"
+					<button class="fixedwidth tooltip" type="submit"
 						title="<?php echo gettext("Sets all album thumbs to the selected criteria"); ?>">
 						<img src="<?php echo $webpath; ?>images/burst.png" alt="" />
 						 <?php echo gettext("Set all albums to"); ?>

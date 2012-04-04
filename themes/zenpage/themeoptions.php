@@ -34,10 +34,11 @@ class ThemeOptions {
 		} else {
 			setThemeOption('custom_index_page', '', NULL, NULL, false);
 		}
-		cache_images::deleteThemeCacheSizes('zenpage');
-		cache_images::addThemeCacheSize('zenpage', 580, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
-		cache_images::addThemeCacheSize('zenpage', 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL);
-
+		if (class_exists('cache_images')) {
+			cache_images::deleteThemeCacheSizes('zenpage');
+			cache_images::addThemeCacheSize('zenpage', 580, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
+			cache_images::addThemeCacheSize('zenpage', 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL);
+		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
 			array('type'=>'menulabel','title'=>gettext('News Articles'),'link'=>'','show'=>1,'nesting'=>0),
