@@ -96,7 +96,7 @@ if (!defined('WEBPATH')) die();
 						<div class="singlenews_next"><?php printNextNewsLink(); ?></div>
 						<?php
 					}
-					if(getPrevNewsURL() OR getNextNewsURL()) {
+					if(getPrevNewsURL() || getNextNewsURL()) {
 					 ?>
 					 <br clear="all" />
 					 <?php
