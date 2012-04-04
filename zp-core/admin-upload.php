@@ -7,7 +7,6 @@
 // force UTF-8 Ø
 
 define('OFFSET_PATH', 1);
-define('UPLOAD_ERR_QUOTA', -1);
 
 require_once(dirname(__FILE__).'/admin-globals.php');
 

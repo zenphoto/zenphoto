@@ -43,7 +43,7 @@ if (isset($_POST['processed'])) {
 		}
 		if (!$rightsalbum->isMyItem(UPLOAD_RIGHTS)) {
 			if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
-				$error = UPLOAD_ERR_CANT_WRITE;
+				$error = UPLOAD_ERR_BLOCKED;
 			}
 		}
 		if (!$error) {
@@ -126,11 +126,14 @@ if (!isset($_POST['processed'])) {
 	$errormsg = gettext("You must enter a folder name for your new album.");
 } else {
 	switch ($error) {
-		case UPLOAD_ERR_CANT_WRITE:
+		case UPLOAD_ERR_BLOCKED:
 			$errormsg = gettext('You have attempted to upload to an album for which you do not have upload rights');
 			break;
 		case UPLOAD_ERR_EXTENSION:
 			$errormsg = gettext('You have attempted to upload one or more files which are not Zenphoto supported file types');
+			break;
+		case UPLOAD_ERR_CANT_WRITE:
+			$errormsg = gettext('The uploader could not write the file.');
 			break;
 		case UPLOAD_ERR_INI_SIZE:
 		case UPLOAD_ERR_FORM_SIZE:

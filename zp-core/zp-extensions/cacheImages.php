@@ -122,9 +122,8 @@ class cache_images {
 			}
 			$theme = @$cache['theme'];
 			?>
-			<span class="nowrap"><?php echo gettext('Theme'); ?> <input type="textbox" size="25" name="cacheImages_theme_<?php echo $key; ?>" value="<?php echo $theme; ?>" /></span>
-			<?php echo gettext('Apply'); ?> <input type="checkbox" name="cacheImages_enable_<?php echo $key; ?>" value="1"<?php echo $allow; ?> />
-			<?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheImages_delete_<?php echo $key; ?>" value="1" />
+			<input type="textbox" size="25" name="cacheImages_theme_<?php echo $key; ?>" value="<?php echo $theme; ?>" />
+			<span class="nowrap"><?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheImages_delete_<?php echo $key; ?>" value="1" /></span>
 			<div class="<?php echo $class; ?>">
 			<?php
 			foreach (array('image_size'=>gettext('Size'),'image_width'=>gettext('Width'),'image_height'=>gettext('Height'),
@@ -163,9 +162,9 @@ class cache_images {
 			}
 		}
 		query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`="cacheImages"');
-		foreach($cache as $crop) {
-			if (!isset($crop['delete']) && count($crop)>1) {
-				$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("cacheImages",'.db_quote(@$crop['theme']).','.db_quote(serialize($crop)).')';
+		foreach($cache as $cacheimage) {
+			if (!isset($cacheimage['delete']) && count($cacheimage)>1) {
+				$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("cacheImages",'.db_quote(@$cacheimage['theme']).','.db_quote(serialize($cacheimage)).')';
 				query($sql);
 			}
 		}

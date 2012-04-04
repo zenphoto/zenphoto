@@ -6,6 +6,9 @@
 
 // force UTF-8 Ø
 
+define('UPLOAD_ERR_QUOTA', -1);
+define('UPLOAD_ERR_BLOCKED', -2);
+
 require_once(dirname(__FILE__).'/functions-basic.php');
 
 zp_session_start();
