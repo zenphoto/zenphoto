@@ -7,12 +7,21 @@
  *
  * <b>Note:</b> The Caching process will cause your browser to display each and every image that has not
  * been previously cached. If your server does not do a good job of thread management this may swamp
- * it!
+ * it! You should probably also clear your browser cache before using this utility. Otherwise
+ * your browser may fetch the images locally rendering the above process useless.
  *
  * You may have to refresh the page multiple times until the report of the number of images cached is zero.
  * If some images seem to never be rendered you may be experiencing memory limit or other graphics processor
  * errors. You can click on the image that does not render to get the <var>i.php</var> debug screen for the
  * image. This may help in figuring out what has gone wrong.
+ *
+ * The <i>default</i>, <i>effervescence+</i>,<i>garland</i>, <i>stopdesign</i>, and <i>zenpage</i> themes have created <i>Caching</i> size options
+ * for the images sizes they use. The <i>stopdesign</i> theme creates some two sets of thumbnail sizes, one for landscape and one for protrait
+ * "35mm slide" thumbnails. You may wish not to apply both (or either) of these sizes if you do not want the excess images. The caching
+ * process does not consider the image orientation, it simply creates a cache image at the sizes specified.
+ *
+ * <b>NOTE:</b> setting theme options or installing a new version of Zenphoto will re-create these caching sizes.
+ * Use a different <i>theme name</i> for custom versions that you create.
  *
  * @package plugins
  * @author Stephen Billard (sbillard)
@@ -87,30 +96,36 @@ class cache_images {
 		}
 	}
 	function handleOption($option, $currentValue) {
-		$options = $custom = array();
-		$result = query('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="cacheImages"');
+		global $_zp_gallery;
+		$currenttheme = $_zp_gallery->getCurrentTheme();
+		$custom = array();
+		$result = query('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="cacheImages" ORDER BY `aux`');
 		while ($row = db_fetch_assoc($result)) {
 			$custom[] = unserialize($row['data']);
 		}
-		if (empty($custom)) {
-			$custom[] = array('image_size'=>getOption('image_size'),'image_use_side'=>getOption('image_use_side'));
-			$custom[] = array('image_size'=>getOption('thumb_size'),'thumb'=>1);
-		}
+		$custom = sortMultiArray($custom, array('theme','thumb','size'));
 		$custom[] = array();
 		$c = 0;
 		foreach($custom as $key=>$cache) {
 			if ($c % 2) {
-				?>
-				<div style="background-color:LightGray">
-				<?php
+				$class = 'boxb';
 			} else {
-				?>
-				<div>
-				<?php
+				$class = 'box';
 			}
-			$c++;
 			?>
-			<input type="checkbox" name="cacheImages_enable_<?php echo $key; ?>" value="1" checked="checked" /><?php echo gettext('Apply:'); ?><br />
+			<div>
+			<?php
+			$c++;
+			$theme = $allow = '';
+			if (isset($cache['enable']) && $cache['enable']) {
+				$allow = ' checked="checked"';
+			}
+			$theme = @$cache['theme'];
+			?>
+			<span class="nowrap"><?php echo gettext('Theme'); ?> <input type="textbox" size="25" name="cacheImages_theme_<?php echo $key; ?>" value="<?php echo $theme; ?>" /></span>
+			<?php echo gettext('Apply'); ?> <input type="checkbox" name="cacheImages_enable_<?php echo $key; ?>" value="1"<?php echo $allow; ?> />
+			<?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheImages_delete_<?php echo $key; ?>" value="1" />
+			<div class="<?php echo $class; ?>">
 			<?php
 			foreach (array('image_size'=>gettext('Size'),'image_width'=>gettext('Width'),'image_height'=>gettext('Height'),
 											'crop_width'=>gettext('Crop width'),'crop_height'=>gettext('Crop height'),'crop_x'=>gettext('Crop X axis'),
@@ -129,10 +144,11 @@ class cache_images {
 			} else {
 				$wmk = '';
 			}
-			?>
+						?>
 			<span class="nowrap"><?php echo gettext('Watermark'); ?> <input type="textbox" size="20" name="cacheImages_wmk_<?php echo $key; ?>" value="<?php echo $wmk; ?>" /></span>
-			<span class="nowrap"><?php echo gettext('Thumbnail'); ?><input type="checkbox"  name="cacheImages_thumb_<?php echo $key; ?>" value="1"<?php if (isset($cache['thumb'])) echo ' checked="checked"'; ?> /></span>
-			<span class="nowrap"><?php echo gettext('Grayscale'); ?><input type="checkbox"  name="cacheImages_gray_<?php echo $key; ?>" value="gray"<?php if (isset($cache['gray'])) echo ' checked="checked"'; ?> /></span>
+			<span class="nowrap"><?php echo gettext('Thumbnail'); ?><input type="checkbox"  name="cacheImages_thumb_<?php echo $key; ?>" value="1"<?php if (isset($cache['thumb'])&&$cache['thumb']) echo ' checked="checked"'; ?> /></span>
+			<span class="nowrap"><?php echo gettext('Grayscale'); ?><input type="checkbox"  name="cacheImages_gray_<?php echo $key; ?>" value="gray"<?php if (isset($cache['gray'])&&$cache['gray']) echo ' checked="checked"'; ?> /></span>
+			</div>
 			</div><br />
 			<?php
 		}
@@ -148,12 +164,23 @@ class cache_images {
 		}
 		query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`="cacheImages"');
 		foreach($cache as $crop) {
-			if (isset($crop['enable']) && count($crop)>1) {
-				$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("cacheImages", "",'.db_quote(serialize($crop)).')';
+			if (!isset($crop['delete']) && count($crop)>1) {
+				$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("cacheImages",'.db_quote(@$crop['theme']).','.db_quote(serialize($crop)).')';
 				query($sql);
 			}
 		}
 		return $notify;
+	}
+
+	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects) {
+		$cacheSize = serialize( array('theme'=>$theme,'apply'=>false,'image_size'=>$size, 'image_width'=>$width, 'image_height'=>$height,
+									'crop_width'=>$cw, 'crop_height'=>$ch, 'crop_x'=>$cx, 'crop_y'=>$cy, 'thumb'=>$thumb, 'wmk'=>$watermark, 'gray'=>$effects));
+		$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("cacheImages",'.db_quote($theme).','.db_quote($cacheSize).')';
+		query($sql);
+	}
+
+	static function deleteThemeCacheSizes($theme) {
+		query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`="cacheImages" AND `aux`='.db_quote($theme));
 	}
 
 }

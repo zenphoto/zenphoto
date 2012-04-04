@@ -6,6 +6,8 @@ class ThemeOptions {
 
 
   function ThemeOptions() {
+  	require_once(SERVERPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/cacheImages.php');
+
  	  setThemeOptionDefault('Allow_search', true);
 	  setThemeOptionDefault('Allow_cloud', true);
 		setThemeOptionDefault('albums_per_page', 6);
@@ -28,6 +30,10 @@ class ThemeOptions {
 		} else {
 			setThemeOption('custom_index_page', '', NULL, NULL, false);
 		}
+		cache_images::deleteThemeCacheSizes('garland');
+		cache_images::addThemeCacheSize('garland', 520, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
+		cache_images::addThemeCacheSize('garland', 85, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL);
+
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(
 										array('type'=>'menulabel','title'=>gettext('News Articles'),'link'=>'','show'=>1,'nesting'=>0),

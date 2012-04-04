@@ -219,10 +219,10 @@ function printFooter($admin=true) {
 
 		<?php printThemeInfo(); ?>
 		<?php printZenphotoLink(); ?>
-		<?php if ($_zp_gallery_page == 'gallery') { printRSSLink('Gallery','<br />', 'Gallery RSS', ''); } ?>
-		<?php	if ($_zp_gallery_page != 'password') @call_user_func('printUserLogin_out','<br />'); ?>
-		<?php	if (getOption('zp_plugin_contactform') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('contact'))) printCustomPageURL(gettext('Contact us'), 'contact', '', '<br />');	?>
-		<?php if (!zp_loggedin() && function_exists('printRegistrationForm') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('unprotected_register'))) printCustomPageURL(gettext('Register for this site'), 'register', '', '<br />');	?>
+		<?php if ($_zp_gallery_page == 'gallery') { printRSSLink('Gallery','', 'Gallery RSS', ''); echo '<br />'; } ?>
+		<?php	if ($_zp_gallery_page != 'password') { @call_user_func('printUserLogin_out',''); echo '<br />'; } ?>
+		<?php	if (getOption('zp_plugin_contactform') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('contact'))) { printCustomPageURL(gettext('Contact us'), 'contact', '', '');	echo '<br />'; } ?>
+		<?php if (!zp_loggedin() && function_exists('printRegistrationForm') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('unprotected_register'))) { printCustomPageURL(gettext('Register for this site'), 'register', '', ''); echo '<br />'; }	?>
 		<?php @call_user_func('printLanguageSelector'); ?>
 		<br clear="all" />
 	</div>

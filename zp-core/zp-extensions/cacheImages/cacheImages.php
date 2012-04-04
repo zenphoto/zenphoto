@@ -112,14 +112,15 @@ if ($alb) {
 	$object = '<em>'.gettext('Gallery').'</em>';
 	$tab = gettext('overview');
 }
-$options = $custom = array();
+$custom = array();
+$enable = 0;
 $result = query('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="cacheImages"');
 while ($row = db_fetch_assoc($result)) {
-	$custom[] = unserialize($row['data']);
-}
-if (empty($custom)) {
-	$custom[] = array('image_size'=>getOption('image_size'),'image_use_side'=>getOption('image_use_side'));
-	$custom[] = array('image_size'=>getOption('thumb_size'),'thumb'=>1);
+	$row = unserialize($row['data']);
+	if (isset($row['enable'])&&$row['enable']) {
+		$custom[] = $row;
+		$enable ++;
+	}
 }
 
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Cache')=>'');
@@ -134,6 +135,8 @@ echo "\n" . '<div id="content">';
 ?>
 <?php printSubtabs('Cache'); ?>
 <div class="tabbox">
+
+
 <?php
 zp_apply_filter('admin_note','cache', '');
 $clear = sprintf(gettext('Refreshing cache for %s'), $object);
@@ -143,30 +146,50 @@ $count = 0;
 if ($alb) {
 	$r = '/admin-edit.php?page=edit&album='.$alb;
 	echo "\n<h2>".$clear."</h2>";
-	$album = new Album(NULL, $folder);
-	$count =loadAlbum($album);
+	if ($enable) {
+		echo '<p>';
+		printf(ngettext('%u cache size to apply.','%u cache sizes to apply.',$enable),$enable);
+		echo '</p>';
+		$album = new Album(NULL, $folder);
+		$count =loadAlbum($album);
+		echo "\n" . "<br />".sprintf(gettext("Finished: Total of %u images cached."), $count);
+	} else {
+		echo '<p>'.gettext('No cache sizes enabled.').'</p>';
+	}
 } else {
 	$r = '/admin.php';
 	echo "\n<h2>".$clear."</h2>";
-	$albums = $_zp_gallery->getAlbums();
-	shuffle($albums);
-	foreach ($albums as $folder) {
-		$album = new Album($_zp_gallery, $folder);
-		if (!$album->isDynamic()) {
-			$count = $count + loadAlbum($album);
+	if ($enable) {
+		echo '<p>';
+		printf(ngettext('%u cache size to apply.','%u cache sizes to apply.',$enable),$enable);
+		echo '</p>';
+		$albums = $_zp_gallery->getAlbums();
+		shuffle($albums);
+		foreach ($albums as $folder) {
+			$album = new Album($_zp_gallery, $folder);
+			if (!$album->isDynamic()) {
+				$count = $count + loadAlbum($album);
+			}
 		}
+		echo "\n" . "<br />".sprintf(gettext("Finished: Total of %u images cached."), $count);
+	} else {
+		echo '<p>'.gettext('No cache sizes enabled.').'</p>';
 	}
 }
-echo "\n" . "<br />".sprintf(gettext("Finished: Total of %u images cached."), $count);
 
 ?>
-<p class="buttons">
-	<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>">
-	<img	src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
-	<strong><?php echo gettext("Back"); ?></strong>
-	</a>
-</p>
-<br clear="all">
+	<p class="buttons">
+		<a title="<?php echo gettext('Back to the album list'); ?>"
+			href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img
+			src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png"
+			alt="" /> <strong><?php echo gettext("Back"); ?> </strong>
+		</a>
+	</p>
+	<br clear="all">
+
+
+
+
 <?php
 echo "\n" . '</div>';
 echo "\n" . '</div>';

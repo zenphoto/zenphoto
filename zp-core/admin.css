@@ -639,6 +639,16 @@ table.checkboxes td {
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 }
+.boxb {
+	padding: 0;
+	background-color: LightGray;
+	border: 1px solid #E5E5E5;
+	border-bottom-width: 5px;
+	-moz-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
 
 .tabbox {
 	padding: 10px;
