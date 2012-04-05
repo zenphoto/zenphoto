@@ -4,20 +4,25 @@
  * Displays a "plugin usage" document based on the plugin's doc comment block.
  *
  * Supports the following PHPDoc markup tags:
- *  {@link URL link_text}
- *  {@link URL}
- *  <img src= ... /> to insert an image
- * 	<i> for emphasis
- *  <b> for strong
- *  <var> for mono-spaced text
- *  <code> for code blocks (Note: PHPDocs will create an ordered list of the enclosed text)
- *  <hr> for horizontal rule
- *  <ul><li>, <ol><li> for lists
- *  <pre>
- *  <br> for line breaks
+ * <code>
+ * { @link URL text } text may be empty in which case the link is used as the link text.
+ * <i> emphasis
+ * <b> strong
+ * <var> mono-spaced text
+ * <code> code blocks (Note: PHPDocs will create an ordered list of the enclosed text)
+ * <hr> horizontal rule
+ * <ul><li>, <ol><li> lists
+ * <pre>
+ * <br> line break
+ * </code>
  *
- *  NOTE: These apply ONLY to the plugin's document block. Normal string use (e.g. plugin_notices, etc.).
- *  should use standard markup.
+ * NOTE: These apply ONLY to the plugin's document block. Normal string use (e.g. plugin_notices, etc.).
+ * should use standard markup.
+ *
+ * The Zenphoto definitions for folder names and paths are represented by <var>%define%</var> (e.g. <var>%WEBPATH%</var>). The
+ * document processor will substitute the actual value for these tags when it renders the document.
+ * Image URIs are also processed. Use the appropriate Zenphoto definition tokens to cause the URI to point
+ * to the actual image. E.g. <var><img src="%WEBPATH%/%ZENFOLDER%/images/action.png" /></var>
  *
  * @package admin
  */
@@ -160,9 +165,7 @@ if ($i !== false && $j !== false) {
 						}
 					}
 				}
-				$line = strtr(html_encode($line),$markup);
-				$line = strtr($line, $tags);
-				$doc .= $line.' ';
+				$doc .= strtr(html_encode($line),array_merge($tags,$markup));
 				$empty = false;
 			}
 		}
@@ -389,7 +392,11 @@ if ($thirdparty) {
 		if ($real_locale != 'en_US') {
 			setupCurrentLocale($real_locale);
 			?>
-			<br /><a href="http://www.google.com/translate_c?langpair=en|<?php echo strtolower(substr($real_locale,0,2)); ?>&u=<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension?>" title=""><?php echo gettext('Translate this page.'); ?></a>
+			<br />
+			<a href="http://www.google.com/translate_c?langpair=en|<?php echo strtolower(substr($real_locale,0,2)); ?>&u=<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension?>"
+							title="<?php echo gettext('This document is generated from the plugin comment block and other items that are in English and outside of the Zenphoto translation system. This link will send the URL to the Google translation WEB to present the page in your language.'); ?>">
+				<?php echo gettext('Translate this page.'); ?>
+			</a>
 			<?php
 		}
 		?>

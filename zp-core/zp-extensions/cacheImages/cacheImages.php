@@ -216,49 +216,38 @@ $currenttheme = $_zp_gallery->getCurrentTheme();
 				}
 				echo "\n" . "<br />".sprintf(gettext("Finished: Total of %u images cached."), $count);
 			}
-			?>
-			<p class="buttons">
-				<a title="<?php echo gettext('Back to the album list'); ?>"href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
-					<strong><?php echo gettext("Back"); ?> </strong>
-				</a>
-			</p>
-			<?php
 			if ($count) {
-				?>
-				<p class="buttons">
-					<button class="tooltip" type="submit" title="<?php echo gettext('Retry the caching of the selected image sizes if some images did not render.'); ?>">
-						<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/redo.png" alt="" />
-							 <?php echo gettext("Retry"); ?>
-					</button>
-				</p>
-				<?php
+				$button = array('text'=>gettext("Refresh"), 'title'=>gettext('Refresh the caching of the selected image sizes if some images did not render.'));
+			} else {
+				$button = false;
 			}
 		} else {
+			$button = false;
 			?>
 			<p><?php  echo gettext('No cache sizes enabled.'); ?></p>';
-			<p class="buttons">
-				<a title="<?php echo gettext('Back to the album list'); ?>" href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
-					<strong><?php echo gettext("Back"); ?> </strong>
-				</a>
-			</p>
 			<?php
 		}
 	} else {
-		?>
+		$button = array('text'=>gettext("Cache the images"), 'title'=>gettext('Executes the caching of the selected image sizes.'));
+	}
+	?>
 		<p class="buttons">
 			<a title="<?php echo gettext('Back to the album list'); ?>"href="<?php echo WEBPATH.'/'.ZENFOLDER.$r; ?>"> <img src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/images/cache.png" alt="" />
 				<strong><?php echo gettext("Back"); ?> </strong>
 			</a>
 		</p>
-		<p class="buttons">
-			<button class="tooltip" type="submit" title="<?php echo gettext('Executes the caching of the selected image sizes.'); ?>" >
-				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/redo.png" alt="" />
-				 <?php echo gettext("Cache the images"); ?>
-			</button>
-		</p>
 		<?php
-	}
-	?>
+		if ($button) {
+			?>
+			<p class="buttons">
+				<button class="tooltip" type="submit" title="<?php echo $button['title']; ?>" >
+					<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/redo.png" alt="" />
+					 <?php echo $button['text']; ?>
+				</button>
+			</p>
+			<?php
+		}
+		?>
 		<br clear="all">
 </form>
 

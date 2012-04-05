@@ -216,8 +216,26 @@ if (isset($_GET['action'])) {
 			} else {
 				$nd = 2;
 			}
-
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album='.pathurlencode($albumname).'&ndeleted='.$nd);
+			exitZP();
+			break;
+
+		/** REFRESH IMAGE METADATA */
+		case 'refresh':
+			XSRFdefender('imagemetadata');
+			$albumname = sanitize_path($_REQUEST['album']);
+			$imagename = sanitize_path($_REQUEST['image']);
+			$album = new Album(NULL, $albumname);
+			$image = newImage($album, $imagename);
+			$image->updateMetaData();
+			if (isset($_GET['album'])) {
+				$return = pathurlencode(sanitize_path($_GET['album']));
+			} else {
+				$return = pathurlencode(sanitize_path(urldecode($_POST['album'])));
+			}
+
+			$return = '?page=edit&tab=imageinfo&album='.$return.'&metadata_refresh';
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php' . $return);
 			exitZP();
 			break;
 
@@ -719,6 +737,11 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 	if (isset($_GET['counters_reset'])) {
 		echo '<div class="messagebox fade-message">';
 		echo  "<h2>".gettext("Hitcounters have been reset")."</h2>";
+		echo '</div>';
+	}
+	if (isset($_GET['metadata_refresh'])) {
+		echo '<div class="messagebox fade-message">';
+		echo  "<h2>".gettext("Image metadata refreshed.")."</h2>";
 		echo '</div>';
 	}
 
@@ -1230,9 +1253,14 @@ $alb = removeParentAlbumNames($album);
 						?>
 						<br clear="all" />
 						<hr />
-						<div class="button buttons tooltip" title="<?php echo gettext("Choose a custom crop for the thumbnail."); ?>">
-							<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>"
-										title="<?php printf(gettext('crop %s'), $image->filename); ?>"  >
+						<div class="button buttons tooltip" title="<?php printf(gettext('Refresn %s metadata'), $image->filename); ?>">
+							<a href="admin-edit.php?action=refresh&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
+								<img src="images/cache.png" alt="" /><?php echo gettext("Refresh Metadata"); ?>
+							</a>
+							<br clear="all" />
+						</div>
+						<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
+							<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>" >
 								<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
 							</a>
 							<br clear="all" />

@@ -1241,10 +1241,8 @@ button.positive,.buttons a.positive {
 	color: #fff;
 }
 
-.buttons .tooltip {
-	text-align: left;
-}
 .buttons .fixedwidth {
+	text-align: left;
 	width: 17em;
 }
 
