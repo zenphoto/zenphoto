@@ -18,7 +18,7 @@ if (isset($_REQUEST['album'])) {
 }
 admin_securityChecks($localrights, $return = currentRelativeURL());
 
-XSRFdefender('cache_images');
+XSRFdefender('cacheImages');
 
 function loadAlbum($album) {
 	global $_zp_current_album, $_zp_current_image, $_zp_gallery, $custom, $enabled;
@@ -115,7 +115,7 @@ if ($alb) {
 	$tab = gettext('overview');
 }
 $custom = array();
-$result = query('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="cacheImages" ORDER BY `aux`');
+$result = query('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`="cacheManager" ORDER BY `aux`');
 while ($row = db_fetch_assoc($result)) {
 	$row = unserialize($row['data']);
 		$custom[] = $row;
@@ -158,7 +158,7 @@ $cachesizes = 0;
 $currenttheme = $_zp_gallery->getCurrentTheme();
 ?>
 <form name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
-	<?php XSRFToken('cache_images')?>
+	<?php XSRFToken('cacheImages')?>
 	<ul class="no_bullets">
 		<?php
 		foreach ($custom as $key=>$cacheimage) {
