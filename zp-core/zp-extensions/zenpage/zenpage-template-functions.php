@@ -2268,7 +2268,7 @@ function printNestedMenu($option='list',$mode=NULL,$counter=TRUE, $css_id=NULL,$
 							}
 							break;
 					}
-				} 
+				}
 				if ($limit) {
 					$itemtitle = shortenContent($itemtitle, $limit, MENU_TRUNCATE_INDICATOR);
 				}
@@ -2847,7 +2847,7 @@ function getLatestZenpageComments($number,$type="all",$itemID="") {
 		if (!zp_loggedin(ADMIN_RIGHTS)) {
 			$pagescheck = query_full_array("SELECT * FROM " . prefix('pages'). " ORDER BY date");
 			foreach ($pagescheck as $pagecheck) {
-				$obj = new ZenpagePage($page['titlelink']);
+				$obj = new ZenpagePage($pagecheck['titlelink']);
 				if($obj->isProtected()) {
 					$excludepages = " AND id != ".$pagecheck['id'];
 					$pagepasswordcheck = $pagepasswordcheck.$excludepages;

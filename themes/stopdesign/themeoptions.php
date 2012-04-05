@@ -19,12 +19,12 @@ class ThemeOptions {
 		setOptionDefault('colorbox_stopdesign_album', 1);
 		setOptionDefault('colorbox_stopdesign_image', 1);
 		setOptionDefault('colorbox_stopdesign_search', 1);
-		if (class_exists('cache_images')) {
-		cache_images::deleteThemeCacheSizes('stopdesign');
-			cache_images::addThemeCacheSize('stopdesign', 480, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
-			cache_images::addThemeCacheSize('stopdesign', NULL, NULL, 89, 67, 89, NULL, NULL, true, getOption('Image_watermark'), NULL);
-			cache_images::addThemeCacheSize('stopdesign', NULL, 89, NULL, 89, 67, NULL, NULL, true, getOption('Image_watermark'), NULL);
-			cache_images::addThemeCacheSize('stopdesign', NULL, 210, 59, 310, 59, NULL, NULL, true, getOption('Image_watermark'), NULL);
+		if (class_exists('cacheManager')) {
+		cacheManager::deleteThemeCacheSizes('stopdesign');
+			cacheManager::addThemeCacheSize('stopdesign', 480, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
+			cacheManager::addThemeCacheSize('stopdesign', NULL, NULL, 89, 67, 89, NULL, NULL, true, getOption('Image_watermark'), NULL);
+			cacheManager::addThemeCacheSize('stopdesign', NULL, 89, NULL, 89, 67, NULL, NULL, true, getOption('Image_watermark'), NULL);
+			cacheManager::addThemeCacheSize('stopdesign', NULL, 210, 59, 310, 59, NULL, NULL, true, getOption('Image_watermark'), NULL);
 		}
 	}
 

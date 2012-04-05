@@ -99,7 +99,7 @@ class tweet {
 		$options[gettext('Tweet')] = array('key'=>'tweet_news_items', 'type'=>OPTION_TYPE_CHECKBOX_ARRAY,
 																			'order'=>6,
 																			'checkboxes' => $list,
-																			'desc'=>gettext('If an <em>type</em> is checked, a Tweet will be made when an object of that <em>type</em> is published.'));
+																			'desc'=>gettext('If a <em>type</em> is checked, a Tweet will be made when an object of that <em>type</em> is published.'));
 
 		if (getOption('tweet_news_news') && is_object($_zp_zenpage)) {
 			$catlist = unserialize(getOption('tweet_news_categories'));
@@ -117,7 +117,7 @@ class tweet {
 		}
 		if (getOption('tweet_news_rescan')) {
 			setOption('tweet_news_rescan', 0);
-			$note = tweet::tweetRepopulate();
+			$note = self::tweetRepopulate();
 		}
 		if ($note) {
 			$options['note'] = array('key'=>'tweet_news_rescan', 'type'=>OPTION_TYPE_NOTE,
@@ -165,7 +165,7 @@ class tweet {
 	 * @param object $article
 	 */
 	static function newZenpageObject($msg, $article) {
-		$error = tweet::tweetObjectWithCheck($article);
+		$error = self::tweetObjectWithCheck($article);
 		if ($error) {
 			$msg .= '<p class="errorbox">'.$error.'</p>';
 		}
@@ -178,7 +178,7 @@ class tweet {
 	 * @param object $obj
 	 */
 	static function published($obj) {
-		$error = tweet::tweetObjectWithCheck($obj);
+		$error = self::tweetObjectWithCheck($obj);
 		if ($error) {
 			query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","error",'.db_quote($error).')');
 		}
@@ -205,7 +205,7 @@ class tweet {
 									query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_pages",'.db_quote($obj->getTitlelink()).')');
 								}
 							} else {
-								$error = tweet::tweetObject($obj);
+								$error = self::tweetObject($obj);
 							}
 							break;
 						case 'news':
@@ -230,7 +230,7 @@ class tweet {
 									query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending",'.db_quote($obj->getTitlelink()).')');
 								}
 							} else {
-								$error = tweet::tweetObject($obj);
+								$error = self::tweetObject($obj);
 							}
 							break;
 						case 'albums':
@@ -241,7 +241,7 @@ class tweet {
 									query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_albums",'.db_quote($obj->name).')');
 								}
 							} else {
-								$error = tweet::tweetObject($obj);
+								$error = self::tweetObject($obj);
 							}
 							break;
 						case 'images':
@@ -252,7 +252,7 @@ class tweet {
 									query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","pending_images",'.db_quote($obj->album->name.'/'.$obj->filename).')');
 								}
 							} else {
-								$error = tweet::tweetObject($obj);
+								$error = self::tweetObject($obj);
 							}
 							break;
 					}
@@ -284,7 +284,7 @@ class tweet {
 						$text = $title.': '.truncate_string($text, $c, '... ').$link;
 					}
 				}
-				$error = tweet::sendTweet($text);
+				$error = self::sendTweet($text);
 				if ($error) {
 					$error =  sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$obj->getTitlelink(),$error);
 				}
@@ -304,7 +304,7 @@ class tweet {
 				} else {
 					$text = $text.$link;
 				}
-				$error = tweet::sendTweet($text);
+				$error = self::sendTweet($text);
 				if ($error) {
 					$error = sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$item,$error);
 				}
@@ -317,7 +317,7 @@ class tweet {
 				} else {
 					$text = $text.$link;
 				}
-				$error = tweet::sendTweet($text);
+				$error = self::sendTweet($text);
 				if ($error) {
 					$error = sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$item,$error);
 				}
@@ -336,7 +336,7 @@ class tweet {
 			foreach ($result as $article) {
 				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$article['id']);
 				$news = new ZenpageNews($article['titlelink']);
-				tweet::tweetObject($news);
+				self::tweetObject($news);
 			}
 		}
 		$result = query_full_array('SELECT * FROM '.prefix('pages').' AS page,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_pages" AND store.data = page.titlelink AND page.date <= '.db_quote(date('Y-m-d H:i:s')));
@@ -344,7 +344,7 @@ class tweet {
 			foreach ($result as $page) {
 				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$page['id']);
 				$page = new ZenpageNews($page['titlelink']);
-				tweet::tweetObject($page);
+				self::tweetObject($page);
 			}
 		}
 		$result = query_full_array('SELECT * FROM '.prefix('albums').' AS album,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_albums" AND store.data = album.folder AND album.date <= '.db_quote(date('Y-m-d H:i:s')));
@@ -352,7 +352,7 @@ class tweet {
 			foreach ($result as $album) {
 				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$album['id']);
 				$album = new Album(NULL, $album['folder']);
-				tweet::tweetObject($album);
+				self::tweetObject($album);
 			}
 		}
 		$result = query_full_array('SELECT * FROM '.prefix('images').' AS image,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_images" AND store.data LIKE image.filename AND image.date <= '.db_quote(date('Y-m-d H:i:s')));
@@ -362,7 +362,7 @@ class tweet {
 				$album = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$image['albumid']);
 				$album = new Album(NULL, $album['folder']);
 				$image = newImage($album, $image['filename']);
-				tweet::tweetObject($image);
+				self::tweetObject($image);
 			}
 		}
 		return $param;
@@ -435,7 +435,7 @@ class tweet {
 	 */
 	static function errorsOnOverview($side){
 		if ($side=='left') {
-			$errors = tweet::tweetFetchErrors();
+			$errors = self::tweetFetchErrors();
 			if ($errors) {
 				?>
 				<div class="box" id="overview-news">
@@ -455,7 +455,7 @@ class tweet {
 	 * @param string $subtab
 	 */
 	static function errorsOnAdmin($tab, $subtab) {
-		$errors = tweet::tweetFetchErrors();
+		$errors = self::tweetFetchErrors();
 		if ($errors) {
 			echo '<p class="errorbox">'.$errors.'</p>';
 		}
@@ -482,7 +482,7 @@ class tweet {
 	 */
 	static function tweeterExecute($object, $prefix) {
 		if (isset($_POST['tweet_me'.$prefix])) {
-			$error = tweet::tweetObject($object);
+			$error = self::tweetObject($object);
 			if ($error) {
 				query('INSERT INTO '.prefix('plugin_storage').' (`type`,`aux`,`data`) VALUES ("tweet_news","error",'.db_quote($error).')');
 			}
@@ -497,7 +497,7 @@ class tweet {
 	 * @param unknown_type $object
 	 */
 	static function tweeterZenpageExecute($custom, $object) {
-		tweet::tweeterExecute($object, '');
+		self::tweeterExecute($object, '');
 		return $custom;
 	}
 

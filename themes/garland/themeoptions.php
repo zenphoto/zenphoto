@@ -28,10 +28,10 @@ class ThemeOptions {
 		} else {
 			setThemeOption('custom_index_page', '', NULL, NULL, false);
 		}
-		if (class_exists('cache_images')) {
-			cache_images::deleteThemeCacheSizes('garland');
-			cache_images::addThemeCacheSize('garland', 520, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
-			cache_images::addThemeCacheSize('garland', 85, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL);
+		if (class_exists('cacheManager')) {
+			cacheManager::deleteThemeCacheSizes('garland');
+			cacheManager::addThemeCacheSize('garland', 520, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
+			cacheManager::addThemeCacheSize('garland', 85, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(

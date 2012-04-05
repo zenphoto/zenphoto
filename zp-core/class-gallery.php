@@ -405,10 +405,6 @@ class Gallery {
 						$dead[] = $row['id'];
 					}
 					$tbl = $row['type'];
-					//TODO: remove the following on v1.5
-					if ($row['type']=='album') {
-						$tbl = 'albums';
-					}
 					$dbtag = query_single_row("SELECT `id` FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
 					if (!$dbtag) {
 						$dead[] = $row['id'];

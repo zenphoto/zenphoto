@@ -256,19 +256,6 @@ foreach ($filelist as $extension) {
 		<td>
 			<?php
 			echo $plugin_description;
-/* TODO: remove is we accept this change
-			if (!empty($plugin_author)) {
-				?>
-				<br />
-				<?php
-				if (!($parserr & 2)) {
-					?>
-					<strong><?php echo gettext("Author"); ?></strong>
-					<?php
-				}
-				echo $plugin_author;
-			}
-*/
 			if ($plugin_disable) {
 				?>
 				<div id="showdisable_<?php echo $extension; ?>" style="display:none" class="warningbox">

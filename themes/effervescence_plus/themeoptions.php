@@ -36,11 +36,11 @@ class ThemeOptions {
 		setOptionDefault('colorbox_effervescence_plus_album', 1);
 		setOptionDefault('colorbox_effervescence_plus_image', 1);
 		setOptionDefault('colorbox_effervescence_plus_search', 1);
-		if (class_exists('cache_images')) {
-			cache_images::deleteThemeCacheSizes('effervescence_plus');
-			cache_images::addThemeCacheSize('effervescence_plus', 595, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
-			cache_images::addThemeCacheSize('effervescence_plus', 89, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL);
-			cache_images::addThemeCacheSize('effervescence_plus', NULL, 180, 80, NUll, NULL, NULL, NULL, true, getOption('Image_watermark'), NULL);
+		if (class_exists('cacheManager')) {
+			cacheManager::deleteThemeCacheSizes('effervescence_plus');
+			cacheManager::addThemeCacheSize('effervescence_plus', 595, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
+			cacheManager::addThemeCacheSize('effervescence_plus', 89, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL);
+			cacheManager::addThemeCacheSize('effervescence_plus', NULL, 180, 80, NUll, NULL, NULL, NULL, true, getOption('Image_watermark'), NULL);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(

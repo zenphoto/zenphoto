@@ -2367,7 +2367,7 @@ class zpFunctions {
 	 * @return boolean
 	 */
 	static function removeDir($path) {
-		if (($dir=opendir($path))!==false) {
+		if (($dir=@opendir($path))!==false) {
 			while(($file=readdir($dir))!==false) {
 				if($file!='.' && $file!='..') {
 					if ((is_dir($path.'/'.$file))) {

@@ -677,7 +677,7 @@ class xmpMetadata {
 				$meta = trim(substr($xmpdata,0,$e));
 				$xmpdata = substr($xmpdata,$e+strlen($close));
 				if (strpos($meta, '<') === false) {
-					$xmp_parsed[$key] = xmpMetadata::decode($meta);
+					$xmp_parsed[$key] = self::decode($meta);
 				} else {
 					$elements = array();
 					while (!empty($meta)) {
@@ -687,7 +687,7 @@ class xmpMetadata {
 						$meta = substr($meta,$e+1);
 						if (strpos($tag,'rdf:li') !== false) {
 							$e = strpos($meta,'</rdf:li>');
-							$elements[] = xmpMetadata::decode(trim(substr($meta, 0, $e)));
+							$elements[] = self::decode(trim(substr($meta, 0, $e)));
 							$meta = substr($meta,$e+9);
 						}
 					}
@@ -701,7 +701,7 @@ class xmpMetadata {
 							$meta = trim(substr($meta, strlen($item)));
 							$i = strpos($item,'=');
 							$tag = '<'.substr($item,0,$i).'>';
-							$v = xmpMetadata::decode(trim(substr($item,$i+2,-1)));
+							$v = self::decode(trim(substr($item,$i+2,-1)));
 							$key = array_search($tag,$desiredtags);
 							if ($key !== false) {
 								$xmp_parsed[$key] = $v;
@@ -751,18 +751,18 @@ class xmpMetadata {
 			foreach ($files as $file) {
 				if (strtolower(getSuffix($file)) == XMP_EXTENSION) {
 					$source = file_get_contents($file);
-					$metadata = xmpMetadata::extract($source);
+					$metadata = self::extract($source);
 					if (array_key_exists('IPTCImageCaption' ,$metadata)) {
-						$album->setDesc(xmpMetadata::to_string($metadata['IPTCImageCaption' ]));
+						$album->setDesc(self::to_string($metadata['IPTCImageCaption' ]));
 					}
 					if (array_key_exists('IPTCImageHeadline',$metadata)) {
-						$album->setTitle(xmpMetadata::to_string($metadata['IPTCImageHeadline']));
+						$album->setTitle(self::to_string($metadata['IPTCImageHeadline']));
 					}
 					if (array_key_exists('IPTCLocationName',$metadata)) {
-						$album->setLocation(xmpMetadata::to_string($metadata['IPTCLocationName']));
+						$album->setLocation(self::to_string($metadata['IPTCLocationName']));
 					}
 					if (array_key_exists('IPTCKeywords',$metadata)) {
-						$album->setTags(xmpMetadata::to_string($metadata['IPTCKeywords']));
+						$album->setTags(self::to_string($metadata['IPTCKeywords']));
 					}
 					if (array_key_exists('EXIFDateTimeOriginal',$metadata)) {
 						$album->setDateTime($metadata['EXIFDateTimeOriginal']);
@@ -838,11 +838,11 @@ class xmpMetadata {
 	}
 
 	private static function encode($str) {
-		return strtr($str, array_flip(xmpMetadata::$XML_trans));
+		return strtr($str, array_flip(self::$XML_trans));
 	}
 
 	private static function decode($str) {
-		return strtr($str, xmpMetadata::$XML_trans);
+		return strtr($str, self::$XML_trans);
 	}
 
 
@@ -870,7 +870,7 @@ class xmpMetadata {
 			}
 		}
 		if (!empty($metadata_path)) {
-			$source = xmpMetadata::extractXMP(file_get_contents($metadata_path));
+			$source = self::extractXMP(file_get_contents($metadata_path));
 		} else if (getOption('xmpMetadata_examine_images_'.strtolower(substr(strrchr($image->localpath, "."), 1)))) {
 			$f = file_get_contents($image->localpath);
 			$l = filesize($image->localpath);
@@ -884,13 +884,13 @@ class xmpMetadata {
 					case 'ffe2': // EXIF extension
 					case 'fffe': // COM
 					case 'ffe0': // IPTC marker
-						$source = xmpMetadata::extractXMP($f);
+						$source = self::extractXMP($f);
 						$i = $i + $size+2;
 						$abort = 0;
 						break;
 					default:
 						if (substr($f,$i,1)=='<') {
-							$source = xmpMetadata::extractXMP($f);
+							$source = self::extractXMP($f);
 						}
 						$i=$i+1;
 						$abort++;
@@ -899,7 +899,7 @@ class xmpMetadata {
 			}
 		}
 		if (!empty($source)) {
-			$metadata = xmpMetadata::extract($source);
+			$metadata = self::extract($source);
 			$image->set('hasMetadata',count($metadata>0));
 			foreach ($metadata as $field=>$element) {
 				if (array_key_exists($field,$_zp_exifvars)) {
@@ -907,7 +907,7 @@ class xmpMetadata {
 						continue;	//	the field has been disabled
 					}
 				}
-				$v = xmpMetadata::to_string($element);
+				$v = self::to_string($element);
 
 				switch ($field) {
 					case 'EXIFDateTimeOriginal':
@@ -929,18 +929,18 @@ class xmpMetadata {
 						$image->setLocation($v);
 						break;
 					case 'EXIFExposureTime':
-						$v = formatExposure(xmpMetadata::rationalNum($element));
+						$v = formatExposure(self::rationalNum($element));
 						break;
 					case 'EXIFFocalLength':
-						$v = xmpMetadata::rationalNum($element).' mm';
+						$v = self::rationalNum($element).' mm';
 						break;
 					case 'EXIFAperatureValue':
 					case 'EXIFFNumber':
-						$v = 'f/'.xmpMetadata::rationalNum($element);
+						$v = 'f/'.self::rationalNum($element);
 						break;
 					case 'EXIFExposureBiasValue':
 					case 'EXIFGPSAltitude':
-						$v = xmpMetadata::rationalNum($element);
+						$v = self::rationalNum($element);
 						break;
 					case 'EXIFGPSLatitude':
 					case 'EXIFGPSLongitude':
@@ -986,7 +986,7 @@ class xmpMetadata {
 
 	static function putXMP($object, $prefix) {
 		if (isset($_POST['xmpMedadataPut_'.$prefix])) {
-			xmpMetadata::publish($object);
+			self::publish($object);
 		}
 		return $object;
 	}
@@ -1037,7 +1037,7 @@ class xmpMetadata {
 				$last_element = $elementXML;
 				$output = false;
 			}
-			$v = xmpMetadata::encode($object->get($field));
+			$v = self::encode($object->get($field));
 			$tag = $elementXML;
 			switch ($elementXML) {
 				case 'dc:creator':
@@ -1071,7 +1071,7 @@ class xmpMetadata {
 						fwrite($f, "   <$elementXML>\n");
 						fwrite($f, "    <rdf:Bag>\n");
 						foreach ($tags as $tag) {
-							fwrite($f, "     <rdf:li>".xmpMetadata::encode($tag)."</rdf:li>\n");
+							fwrite($f, "     <rdf:li>".self::encode($tag)."</rdf:li>\n");
 						}
 						fwrite($f, "    </rdf:Bag>\n");
 						fwrite($f, "   </$elementXML>\n");

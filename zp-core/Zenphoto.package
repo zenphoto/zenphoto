@@ -655,9 +655,9 @@ zp-core/zp-extensions/PHPMailer/class.smtp.php
 zp-core/zp-extensions/admin-approval.php
 zp-core/zp-extensions/ajaxFilemanager.php
 zp-core/zp-extensions/auto_backup.php
-zp-core/zp-extensions/cacheImages
-zp-core/zp-extensions/cacheImages.php
-zp-core/zp-extensions/cacheImages/cacheImages.php
+zp-core/zp-extensions/cacheManager
+zp-core/zp-extensions/cacheManager.php
+zp-core/zp-extensions/cacheManager/cacheImages.php
 zp-core/zp-extensions/captcha
 zp-core/zp-extensions/captcha/reCaptcha
 zp-core/zp-extensions/captcha/reCaptcha.php

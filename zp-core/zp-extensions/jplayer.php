@@ -534,7 +534,7 @@ class jPlayer {
 	 * NOTE: THese formats need to be uploaded via FTP as they are not valid file types for Zenphoto to avoid confusion
 	 *
 	 * @param string $moviepath full link to the multimedia file to get counterpart formats to.
-	  * @param string $ext the file format extention to search the counterpart for (as we already have fetched that)
+	 * @param string $ext the file format extention to search the counterpart for (as we already have fetched that)
 	 */
 
 	function getCounterpartFiles($moviepath,$ext) {

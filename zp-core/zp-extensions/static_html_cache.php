@@ -52,8 +52,7 @@ if (OFFSET_PATH) {
 	zp_register_filter('admin_utilities_buttons', 'static_html_cache::purgebutton');
 	if (isset($_GET['action']) && $_GET['action']=='clear_html_cache' && zp_loggedin(ADMIN_RIGHTS)) {
 		XSRFdefender('ClearHTMLCache');
-		$_zp_HTML_cache = new static_html_cache();
-		$_zp_HTML_cache->clearHTMLCache();
+		static_html_cache::clearHTMLCache();
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('HTML cache cleared.'));
 		exitZP();
 	}
@@ -303,30 +302,15 @@ class static_html_cache {
 	 *
 	 * @param string $cachefolder the sub-folder to clean
 	 */
-	function clearHTMLCache($folder='') {
-		$cachesubfolders = array("index", "albums","images","pages");
-		foreach($cachesubfolders as $cachesubfolder) {
-			$cachefolder = "../../".STATIC_CACHE_FOLDER."/".$cachesubfolder;
-			if (is_dir($cachefolder)) {
-				$handle = opendir($cachefolder);
-				while (false !== ($filename = readdir($handle))) {
-					$fullname = $cachefolder . '/' . $filename;
-					if (is_dir($fullname) && !(substr($filename, 0, 1) == '.')) {
-						if (($filename != '.') && ($filename != '..')) {
-							$this->clearHTMLCache($fullname);
-							rmdir($fullname);
-						}
-					} else {
-						if (file_exists($fullname) && !(substr($filename, 0, 1) == '.')) {
-							@chmod($fullname, 0666);
-							unlink($fullname);
-						}
-					}
-				}
-				closedir($handle);
+	static function clearHTMLCache($folder=NULL) {
+		if (is_null($folder)) {
+			$cachesubfolders = array("index", "albums","images","pages");
+			foreach($cachesubfolders as $cachesubfolder) {
+				zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER."/".$cachesubfolder);
 			}
+		} else {
+			zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER."/".$folder);
 		}
-		//clearstatcache();
 	}
 
 	/**
