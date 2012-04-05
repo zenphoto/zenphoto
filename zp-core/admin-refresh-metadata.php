@@ -155,7 +155,6 @@ if (isset($_GET['refresh']) && db_connect()) {
 	}
 
 } else if (db_connect()) {
-	echo "<h3>".gettext("database connected")."</h3>";
 	if ($type !== 'prune&amp;') {
 		if (!empty($id)) {
 			$sql = "UPDATE " . prefix('albums') . " SET `mtime`=0".($_zp_gallery->getAlbumUseImagedate()?", `date`=NULL":'')." WHERE `id`=$id";

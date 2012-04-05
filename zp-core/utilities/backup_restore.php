@@ -463,7 +463,6 @@ echo $messages;
 if (db_connect()) {
 	$compression_level = getOption('backup_compression');
 	?>
-	<h3><?php gettext("database connected"); ?></h3>
 	<p>
 		<?php printf(gettext("Database software <strong>%s</strong>"),DATABASE_SOFTWARE); ?><br />
 		<?php printf(gettext("Database name <strong>%s</strong>"),db_name()); ?><br />

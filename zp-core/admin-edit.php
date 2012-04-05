@@ -307,7 +307,7 @@ if (isset($_GET['action'])) {
 											$image->setCountry(process_language_string_save("$i-country", 3));
 											$image->setCredit(process_language_string_save("$i-credit", 1));
 											$image->setCopyright(process_language_string_save("$i-copyright", 1));
-											if (isset($_POST[$i.'-oldrotation'])) {
+											if (isset($_POST[$i.'-oldrotation']) && isset($_POST[$i.'-rotation'])) {
 												$oldrotation = sanitize_numeric($_POST[$i.'-oldrotation']);
 												$rotation = sanitize_numeric($_POST[$i.'-rotation']);
 												if ($rotation != $oldrotation) {
