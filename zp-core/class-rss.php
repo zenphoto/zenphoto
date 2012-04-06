@@ -581,7 +581,7 @@ class RSS {
 		if (is_null($cachefolder)) {
 			$cachefolder = 'rss';
 		}
-		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.$cachefolder);
+		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.$cachefolder,true);
 	}
 
 	/**

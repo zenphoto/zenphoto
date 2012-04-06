@@ -286,7 +286,7 @@ class static_html_cache {
 		if (is_null($folder)) {
 			$cachesubfolders = array("index", "albums","images","pages");
 			foreach($cachesubfolders as $cachesubfolder) {
-				zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER."/".$cachesubfolder);
+				zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER."/".$cachesubfolder,true);
 			}
 		} else {
 			zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER."/".$folder);

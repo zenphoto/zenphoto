@@ -649,7 +649,7 @@ class Gallery {
 		if (is_null($cachefolder)) {
 			$cachefolder = SERVERCACHE;
 		}
-		zpFunctions::removeDir($cachefolder);
+		zpFunctions::removeDir($cachefolder,true);
 	}
 
 

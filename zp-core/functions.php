@@ -2366,7 +2366,7 @@ class zpFunctions {
 	 * @param string $path
 	 * @return boolean
 	 */
-	static function removeDir($path) {
+	static function removeDir($path,$within=false) {
 		if (($dir=@opendir($path))!==false) {
 			while(($file=readdir($dir))!==false) {
 				if($file!='.' && $file!='..') {
@@ -2383,9 +2383,11 @@ class zpFunctions {
 				}
 			}
 			closedir($dir);
-			@chmod($path, 0777);
-			if (!@rmdir($path)) {
-				return false;
+			if (!$within) {
+				@chmod($path, 0777);
+				if (!@rmdir($path)) {
+					return false;
+				}
 			}
 			return true;
 		}
