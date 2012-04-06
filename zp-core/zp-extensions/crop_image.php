@@ -168,7 +168,7 @@ if (isset($_REQUEST['crop'])) {
 	@chmod($imgpath, FILE_MOD);
 	zp_imageKill($newim);
 	zp_imageKill($timg);
-	$_zp_gallery->clearCache(SERVERCACHE . '/' . $albumname);
+	Gallery::clearCache(SERVERCACHE . '/' . $albumname);
 	// update the image data
 	$imageobj->set('EXIFOrientation', 0);
 	$imageobj->updateDimensions();

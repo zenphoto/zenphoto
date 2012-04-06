@@ -645,30 +645,11 @@ class Gallery {
 	 *
 	 * @param string $cachefolder the sub-folder to clean
 	 */
-	function clearCache($cachefolder=NULL) {
+	static function clearCache($cachefolder=NULL) {
 		if (is_null($cachefolder)) {
 			$cachefolder = SERVERCACHE;
 		}
-		if (is_dir($cachefolder)) {
-			$handle = opendir($cachefolder);
-			while (false !== ($filename = readdir($handle))) {
-				$fullname = $cachefolder . '/' . $filename;
-				if (is_dir($fullname) && !(substr($filename, 0, 1) == '.')) {
-					if (($filename != '.') && ($filename != '..')) {
-						$this->clearCache($fullname);
-						clearstatcache();
-						rmdir($fullname);
-					}
-				} else {
-					if (file_exists($fullname) && !(substr($filename, 0, 1) == '.')) {
-						@chmod($fullname, 0666);
-						unlink($fullname);
-					}
-				}
-
-			}
-			closedir($handle);
-		}
+		zpFunctions::removeDir($cachefolder);
 	}
 
 

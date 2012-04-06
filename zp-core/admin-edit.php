@@ -132,7 +132,7 @@ if (isset($_GET['action'])) {
 			} else {
 				$album = sanitize_path($_POST['album']);
 			}
-			$_zp_gallery->clearCache(SERVERCACHE . '/' . $album);
+			Gallery::clearCache(SERVERCACHE . '/' . $album);
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&cleared&album='.$album);
 			exitZP();
 			break;
@@ -314,7 +314,7 @@ if (isset($_GET['action'])) {
 													$image->set('EXIFOrientation', $rotation);
 													$image->updateDimensions();
 													$album = $image->getAlbum();
-													$_zp_gallery->clearCache(SERVERCACHE . '/' . $album->name);
+													Gallery::clearCache(SERVERCACHE . '/' . $album->name);
 												}
 											}
 											$tagsprefix = 'tags_'.$i.'-';

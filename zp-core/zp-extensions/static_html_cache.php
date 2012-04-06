@@ -297,9 +297,6 @@ class static_html_cache {
 	 * call to disable caching a page
 	 */
 	static function disable() {
-
-debugLogBacktrace('static cache disable');
-
 		global $_zp_HTML_cache;
 		if(is_object($_zp_HTML_cache)) {
 			$_zp_HTML_cache->enabled = false;

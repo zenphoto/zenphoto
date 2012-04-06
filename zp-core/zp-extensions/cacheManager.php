@@ -1,16 +1,23 @@
 <?php
 /**
  *
- *  This plugin is the centralized Cache manager for Zenphoto. It provides options for automatic HTML and RSS cache
- * purging when
- * the publish state objects changes, for <i>pre-creating</i> the image cache images, and the utilities for
- * purging these caches.
+ * This plugin is the centralized Cache manager for Zenphoto. It provides
+ * <ul>
+	 * <li>options for automatic HTML and RSS cache purging when the publish state of objects changes</li>
+	 * <li><i>pre-creating</i> the Image cache images</li>
+	 * <li>utilities for purging Image, HTML, and RSS caches</li>
+ * </ul>
  *
- * The image cache <i>pre-creating</i> will examine the gallery and make image references to any images which have not
+ * Image cache <i>pre-creating</i> will examine the gallery and make image references to any images which have not
  * already been cached. Your browser will then request these images causing the caching process to be
  * executed.
  *
- * <b>Note:</b> The Caching process will cause your browser to display each and every image that has not
+ * The <i>default</i>, <i>effervescence+</i>,<i>garland</i>, <i>stopdesign</i>, and <i>zenpage</i> themes have created <i>Caching</i> size options
+ * for the images sizes they use. The <i>stopdesign</i> theme creates some two sets of thumbnail sizes, one for landscape and one for protrait
+ * "35mm slide" thumbnails. You may wish not to apply both (or either) of these sizes if you do not want the excess images. The caching
+ * process does not consider the image orientation, it simply creates a cache image at the sizes specified.
+ *
+ * <b>Note:</b> This Caching process will cause your browser to display each and every image that has not
  * been previously cached. If your server does not do a good job of thread management this may swamp
  * it! You should probably also clear your browser cache before using this utility. Otherwise
  * your browser may fetch the images locally rendering the above process useless.
@@ -20,21 +27,12 @@
  * errors. You can click on the image that does not render to get the <var>i.php</var> debug screen for the
  * image. This may help in figuring out what has gone wrong.
  *
- * The <i>default</i>, <i>effervescence+</i>,<i>garland</i>, <i>stopdesign</i>, and <i>zenpage</i> themes have created <i>Caching</i> size options
- * for the images sizes they use. The <i>stopdesign</i> theme creates some two sets of thumbnail sizes, one for landscape and one for protrait
- * "35mm slide" thumbnails. You may wish not to apply both (or either) of these sizes if you do not want the excess images. The caching
- * process does not consider the image orientation, it simply creates a cache image at the sizes specified.
- *
  * <b>NOTE:</b> setting theme options or installing a new version of Zenphoto will re-create these caching sizes.
  * Use a different <i>theme name</i> for custom versions that you create.
  *
  * @package plugins
  * @author Stephen Billard (sbillard)
  */
-if (!defined('OFFSET_PATH')) {
-	define('OFFSET_PATH', 3);
-	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
-}
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Provides cache management utilities for Image, HTML, and RSS caches.");
 $plugin_notice = gettext('<strong>NOTE</strong>: The image caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may excede the capacity of your server and not complete.');
@@ -227,7 +225,7 @@ class cacheManager {
 									'rights'=>ADMIN_RIGHTS,
 									'XSRFTag'=>'cacheImages',
 									'title'=>$title
-										);
+									);
 		$buttons[] = array(
 									'XSRFTag'=>'clear_cache',
 									'category'=>gettext('cache'),
@@ -259,7 +257,7 @@ class cacheManager {
 									'enable'=>true,
 									'button_text'=>gettext('Purge HTML cache'),
 									'formname'=>'clearcache_button',
-									'action'=>PLUGIN_FOLDER.'/cacheManager.php?action=clear_html_cache',
+									'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=clear_html_cache',
 									'icon'=>'images/edit-delete.png',
 									'title'=>gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
 									'alt'=>'',
@@ -314,11 +312,4 @@ class cacheManager {
 
 }
 
-if (isset($_GET['action']) && $_GET['action']=='clear_html_cache' && zp_loggedin(ADMIN_RIGHTS)) {
-	XSRFdefender('ClearHTMLCache');
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/static_html_cache.php');
-	static_html_cache::clearHTMLCache();
-	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('HTML cache cleared.'));
-	exitZP();
-}
 ?>

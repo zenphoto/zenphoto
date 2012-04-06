@@ -36,17 +36,17 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 		}
 		if (zp_loggedin($needs)) {
 			switch ($action) {
-				/** clear the cache ***********************************************************/
+				/** clear the image cache *****************************************************/
 				/******************************************************************************/
 				case "clear_cache":
 					XSRFdefender('clear_cache');
-					$_zp_gallery->clearCache();
+					Gallery::clearCache();
 					$class = 'messagebox';
 					$msg = gettext('Image cache cleared.');
 					break;
 
-					/** clear the RSScache ***********************************************************/
-					/******************************************************************************/
+				/** clear the RSScache ***********************************************************/
+				/******************************************************************************/
 				case "clear_rss_cache":
 					XSRFdefender('clear_cache');
 					require_once(SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
@@ -55,7 +55,18 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 					$msg = gettext('RSS cache cleared.');
 					break;
 
-					//** external script return
+				/** clear the HTMLcache *******************************************************/
+				/******************************************************************************/
+				case 'clear_html_cache':
+					XSRFdefender('ClearHTMLCache');
+					require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/static_html_cache.php');
+					static_html_cache::clearHTMLCache();
+					$class = 'messagebox';
+					$msg = gettext('HTML cache cleared.');
+					break;
+
+				/** external script return ****************************************************/
+				/******************************************************************************/
 				case 'external':
 					if (isset($_GET['error'])) {
 						$class = sanitize($_GET['error']);
@@ -71,7 +82,10 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 						$msg = '';
 					}
 					break;
-				default:
+
+				/** default *******************************************************************/
+				/******************************************************************************/
+					default:
 					call_user_func($action);
 					break;
 			}
