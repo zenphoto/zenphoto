@@ -17,19 +17,12 @@
  * @author Malte Müller (acrylian)
  * @package plugins
  */
-if (!defined('OFFSET_PATH')) {
-	define('OFFSET_PATH', 3);
-	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
-}
 
-$plugin_is_filter = 9999|ADMIN_PLUGIN|THEME_PLUGIN;
+$plugin_is_filter = 9999|THEME_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
-
-$option_interface = 'static_html_cache_options';
-
-require_once(dirname(dirname(__FILE__)).'/functions.php');
+$option_interface = 'static_html_cache';
 
 $cache_path = SERVERPATH.'/'.STATIC_CACHE_FOLDER."/";
 if (!file_exists($cache_path)) {
@@ -37,7 +30,7 @@ if (!file_exists($cache_path)) {
 		die(gettext("Static HTML Cache folder could not be created. Please try to create it manually via FTP with chmod 0777."));
 	}
 }
-$cachesubfolders = array("index", "albums", "images", "pages");
+$cachesubfolders = array("albums", "images", "pages");
 foreach($cachesubfolders as $cachesubfolder) {
 	$cache_folder = $cache_path.$cachesubfolder.'/';
 	if (!file_exists($cache_folder)) {
@@ -47,22 +40,9 @@ foreach($cachesubfolders as $cachesubfolder) {
 	}
 }
 
-if (OFFSET_PATH) {
+$_zp_HTML_cache = new static_html_cache();
+$_zp_HTML_cache->startHTMLCache();
 
-	zp_register_filter('admin_utilities_buttons', 'static_html_cache::purgebutton');
-	if (isset($_GET['action']) && $_GET['action']=='clear_html_cache' && zp_loggedin(ADMIN_RIGHTS)) {
-		XSRFdefender('ClearHTMLCache');
-		static_html_cache::clearHTMLCache();
-		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('HTML cache cleared.'));
-		exitZP();
-	}
-
-} else {	//	if the page is cached then handle it early
-	if (count(Zenphoto_Authority::getAuthCookies())<=0) {
-		$_zp_HTML_cache = new static_html_cache();
-		$_zp_HTML_cache->startHTMLCache();
-	}
-}
 
 class static_html_cache {
 
@@ -142,7 +122,7 @@ class static_html_cache {
 			$_zp_script_timer['static cache start'] = microtime();
 			$cachefilepath = $this->createCacheFilepath();
 			if (!empty($cachefilepath)) {
-				$cachefilepath = STATIC_CACHE_FOLDER."/".$cachefilepath;
+				$cachefilepath = SERVERPATH.'/'.STATIC_CACHE_FOLDER."/".$cachefilepath;
 				if(file_exists($cachefilepath)) {
 					$lastmodified = filemtime($cachefilepath);
 					// don't use cache if comment is posted or cache has expired
@@ -241,7 +221,7 @@ class static_html_cache {
 		}
 		switch ($_zp_gallery_page) {
 			case 'index.php':
-				$cachesubfolder = "index";
+				$cachesubfolder = "pages";
 				$cachefilepath = "index".$page;
 				break;
 			case 'album.php':
@@ -317,41 +297,15 @@ class static_html_cache {
 	 * call to disable caching a page
 	 */
 	static function disable() {
+
+debugLogBacktrace('static cache disable');
+
 		global $_zp_HTML_cache;
 		if(is_object($_zp_HTML_cache)) {
 			$_zp_HTML_cache->enabled = false;
 		}
 	}
 
-	/**
-	 * creates the Utilities button to purge the static html cache
-	 * @param array $buttons
-	 * @return array
-	 */
-	static function purgebutton($buttons) {
-		$buttons[] = array(
-							'category'=>gettext('cache'),
-							'enable'=>true,
-							'button_text'=>gettext('Purge HTML cache'),
-							'formname'=>'clearcache_button',
-							'action'=>PLUGIN_FOLDER.'/static_html_cache.php?action=clear_html_cache',
-							'icon'=>'images/edit-delete.png',
-							'title'=>gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
-							'alt'=>'',
-							'hidden'=> '<input type="hidden" name="action" value="clear_html_cache">',
-							'rights'=> ADMIN_RIGHTS,
-							'XSRFTag'=>'ClearHTMLCache'
-							);
-							return $buttons;
-	}
-
-}
-
-/**
- * Plugin option handling class
- *
- */
-class static_html_cache_options {
 
 	function static_html_cache_options() {
 		setOptionDefault('static_cache_expire', 86400);

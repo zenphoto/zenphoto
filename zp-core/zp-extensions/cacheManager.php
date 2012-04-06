@@ -1,10 +1,12 @@
 <?php
 /**
  *
- * This plugin is the centralized Cache manager for Zenphoto. It provides options for automatic cache purging
- * upon publishing of Zenpage objects and for refreshing the image cache.
+ *  This plugin is the centralized Cache manager for Zenphoto. It provides options for automatic HTML and RSS cache
+ * purging when
+ * the publish state objects changes, for <i>pre-creating</i> the image cache images, and the utilities for
+ * purging these caches.
  *
- * The image cache refresh will examine the gallery and make image references to any images which have not
+ * The image cache <i>pre-creating</i> will examine the gallery and make image references to any images which have not
  * already been cached. Your browser will then request these images causing the caching process to be
  * executed.
  *
@@ -29,11 +31,14 @@
  * @package plugins
  * @author Stephen Billard (sbillard)
  */
+if (!defined('OFFSET_PATH')) {
+	define('OFFSET_PATH', 3);
+	require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
+}
 $plugin_is_filter = 5|ADMIN_PLUGIN;
-$plugin_description = gettext("Caches uncached images sizes.");
-$plugin_notice = gettext('<strong>NOTE</strong>: The default caching is based on the gallery\'s default theme <em>thumbnail</em> and <em>image</em> options. Should your theme use custom images or thumbs you should change the plugin options accordingly. The caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may excede the capacity of your server and not complete.');
+$plugin_description = gettext("Provides cache management utilities for Image, HTML, and RSS caches.");
+$plugin_notice = gettext('<strong>NOTE</strong>: The image caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may excede the capacity of your server and not complete.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_version = '1.4.3';
 
 $option_interface = 'cacheManager';
 
@@ -222,7 +227,46 @@ class cacheManager {
 									'rights'=>ADMIN_RIGHTS,
 									'XSRFTag'=>'cacheImages',
 									'title'=>$title
-		);
+										);
+		$buttons[] = array(
+									'XSRFTag'=>'clear_cache',
+									'category'=>gettext('cache'),
+									'enable'=>true,
+									'button_text'=>gettext('Purge RSS cache'),
+									'formname'=>'purge_rss_cache.php',
+									'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=clear_rss_cache',
+									'icon'=>'images/edit-delete.png',
+									'alt'=>'',
+									'title'=>gettext('Delete all files from the RSS cache'),
+									'hidden'=>'<input type="hidden" name="action" value="clear_rss_cache" />',
+									'rights'=> ADMIN_RIGHTS
+									);
+		$buttons[] = array(
+									'XSRFTag'=>'clear_cache',
+									'category'=>gettext('cache'),
+									'enable'=>true,
+									'button_text'=>gettext('Purge Image cache'),
+									'formname'=>'purge_image_cache.php',
+									'action'=>WEBPATH.'/'.ZENFOLDER.'/admin.php?action=action=clear_cache',
+									'icon'=>'images/edit-delete.png',
+									'alt'=>'',
+									'title'=>gettext('Delete all files from the Image cache'),
+									'hidden'=>'<input type="hidden" name="action" value="clear_cache" />',
+									'rights'=> ADMIN_RIGHTS
+									);
+		$buttons[] = array(
+									'category'=>gettext('cache'),
+									'enable'=>true,
+									'button_text'=>gettext('Purge HTML cache'),
+									'formname'=>'clearcache_button',
+									'action'=>PLUGIN_FOLDER.'/cacheManager.php?action=clear_html_cache',
+									'icon'=>'images/edit-delete.png',
+									'title'=>gettext('Clear the static HTML cache. HTML pages will be re-cached as they are viewed.'),
+									'alt'=>'',
+									'hidden'=> '<input type="hidden" name="action" value="clear_html_cache">',
+									'rights'=> ADMIN_RIGHTS,
+									'XSRFTag'=>'ClearHTMLCache'
+									);
 		return $buttons;
 	}
 
@@ -268,5 +312,13 @@ class cacheManager {
 		query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`="cacheManager" AND `aux`='.db_quote($theme));
 	}
 
+}
+
+if (isset($_GET['action']) && $_GET['action']=='clear_html_cache' && zp_loggedin(ADMIN_RIGHTS)) {
+	XSRFdefender('ClearHTMLCache');
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/static_html_cache.php');
+	static_html_cache::clearHTMLCache();
+	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('HTML cache cleared.'));
+	exitZP();
 }
 ?>

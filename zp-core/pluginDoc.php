@@ -165,7 +165,7 @@ if ($i !== false && $j !== false) {
 						}
 					}
 				}
-				$doc .= strtr(html_encode($line),array_merge($tags,$markup));
+				$doc .= strtr(html_encode($line),array_merge($tags,$markup)).' ';
 				$empty = false;
 			}
 		}

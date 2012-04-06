@@ -578,10 +578,10 @@ class RSS {
 	 * @param string $cachefolder the sub-folder to clean
 	 */
 	static function clearRSSCache($cachefolder=NULL) {
-		if (!is_null($cachefolder)) {
-			$cachefolder = '/'.$cachefolder;
+		if (is_null($cachefolder)) {
+			$cachefolder = 'rss';
 		}
-		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.$cachefolder);
+		zpFunctions::removeDir(SERVERPATH.'/'.STATIC_CACHE_FOLDER.'/'.$cachefolder);
 	}
 
 	/**
