@@ -2849,7 +2849,7 @@ function getLatestZenpageComments($number,$type="all",$itemID="") {
 			foreach ($pagescheck as $pagecheck) {
 				$obj = new ZenpagePage($pagecheck['titlelink']);
 				if($obj->isProtected()) {
-					$excludepages = " AND id != ".$pagecheck['id'];
+					$excludepages = " AND pages.id != ".$pagecheck['id'];
 					$pagepasswordcheck = $pagepasswordcheck.$excludepages;
 				}
 			}
@@ -2863,7 +2863,6 @@ function getLatestZenpageComments($number,$type="all",$itemID="") {
 			$wherePages = " WHERE pages.show = 1 AND pages.id = ".$itemID." AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0".$pagepasswordcheck;
 			break;
 		case "all":
-
 			$whereNews = " WHERE news.show = 1 AND c.ownerid = news.id AND c.type = 'news' AND c.private = 0 AND c.inmoderation = 0".$newspasswordcheck;
 			$wherePages = " WHERE pages.show = 1 AND c.ownerid = pages.id AND c.type = 'pages' AND c.private = 0 AND c.inmoderation = 0".$pagepasswordcheck;
 			break;
