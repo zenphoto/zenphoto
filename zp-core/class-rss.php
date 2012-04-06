@@ -119,7 +119,6 @@ class RSS {
 	//gallery feed specific vars
 	protected $albumfolder = NULL;
 	protected $collection = NULL;
-	protected $albumname = NULL;
 	protected $albumpath = NULL;
 	protected $imagepath = NULL;
 	protected $imagesize = NULL;
@@ -201,8 +200,9 @@ class RSS {
 						$this->collection = FALSE;
 					}
 					$this->sortorder = $this->getRSSSortorder();
+					$albumname = ''; // to be sure
 					if($this->rssmode == 'albums' || isset($_GET['albumname'])) {
-						$albumextra = ' - '.html_encode($albumtitle).$this->getRSSChannelTitleExtra();
+						$albumname = ' - '.html_encode($albumtitle).$this->getRSSChannelTitleExtra();
 					} elseif ($this->rssmode == 'albums' && !isset($_GET['folder'])) {
 						$albumname = $this->getRSSChannelTitleExtra();
 					} elseif ($this->rssmode == 'albums' && isset($_GET['folder'])) {
