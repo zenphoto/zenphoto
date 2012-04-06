@@ -629,8 +629,6 @@ zp-core/utilities/backup_restore.php
 zp-core/utilities/database_reference.php
 zp-core/utilities/gallery_statistics.php
 zp-core/utilities/phpInfo.php
-zp-core/utilities/purge_image_cache.php
-zp-core/utilities/purge_rss_cache.php
 zp-core/utilities/refresh_database.php
 zp-core/utilities/refresh_metadata.php
 zp-core/utilities/reset_albumthumbs.php
@@ -1864,4 +1862,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1866
+1864
