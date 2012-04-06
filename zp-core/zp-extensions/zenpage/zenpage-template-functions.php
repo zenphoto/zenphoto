@@ -122,7 +122,7 @@ function stickyNews($newsobj=NULL) {
 	if (is_null($newsobj)) {
 		$newsobj = $_zp_current_zenpage_news;
 	}
-	if(is_NewsType('new',$newsobj)) {
+	if(is_NewsType('news',$newsobj)) {
 		return $newsobj->getSticky();
 	}
 	return false;
