@@ -89,6 +89,10 @@ $option_interface = '';
 
 @require_once($path);
 $buttonlist = zp_apply_filter('admin_utilities_buttons', array());
+$album = new Album(NULL, '', false, true);
+$image = newImage($album, '', true);
+$imagebuttons = zp_apply_filter('edit_image_utilities', '', $album, $image, 0, ''); //pass space as HTML because there is already a button shown for cropimage
+$albumbuttons = zp_apply_filter('edit_album_utilities', '', $album, '');
 
 $pluginStream = @file_get_contents($path);
 $regex_Url = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
@@ -308,6 +312,7 @@ if ($thirdparty) {
 						natcasesort($options);
 					}
 					?>
+					<hr>
 					<p>
 					<?php echo ngettext('Option:','Options:',count($options)); ?>
 					<ul class="options">
@@ -329,13 +334,16 @@ if ($thirdparty) {
 					</p>
 					<?php
 				}
+				if (!empty($buttonlist) || !empty($albumbuttons) || !empty($imagebuttons)) {
+					?>
+					<hr>
+					<?php
+				}
 				if (!empty($buttonlist)) {
 					$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
 					?>
-					<div id="overview-utility">
-					<p>
-					<?php echo ngettext('Overview utility button','Overview utility buttons',count($buttonlist)); ?>
-					</p>
+					<div class="box" id="overview-utility">
+						<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
 						<?php
 						$category = '';
 						foreach ($buttonlist as $button) {
@@ -373,10 +381,31 @@ if ($thirdparty) {
 							<?php
 						}
 						?>
-					</div><!-- overview-utility -->
+					</div>
 					<br clear="all">
 					<?php
 				}
+				if ($albumbuttons) {
+					$albumbuttons = preg_replace('|<hr(\s*)(/)>|', '', $albumbuttons);
+					?>
+					<h2 class="h2_bordered_edit"><?php echo gettext("Album Utilities"); ?></h2>
+					<div class="box-edit">
+						<?php echo $albumbuttons; ?>
+					</div>
+					<br clear="all">
+					<?php
+				}
+				if ($imagebuttons) {
+					$imagebuttons = preg_replace('|<hr(\s*)(/)>|', '', $imagebuttons);
+					?>
+					<h2 class="h2_bordered_edit"><?php echo gettext("Image Utilities"); ?></h2>
+					<div class="box-edit">
+						<?php echo $imagebuttons; ?>
+					</div>
+					<br clear="all">
+					<?php
+				}
+
 				?>
 			</div>
 		</div>
