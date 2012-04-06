@@ -1,11 +1,11 @@
 <?php
 /**
  *
- * This plugin is the centralized Cache manager for Zenphoto. It provides
+ * This plugin is the centralized Cache manager for Zenphoto. It provides:
  * <ul>
-	 * <li>options for automatic HTML and RSS cache purging when the publish state of objects changes</li>
-	 * <li><i>pre-creating</i> the Image cache images</li>
-	 * <li>utilities for purging Image, HTML, and RSS caches</li>
+ *		<li>options for automatic HTML and RSS cache purging when the publish state of objects changes</li>
+ *		<li><i>pre-creating</i> the Image cache images</li>
+ *		<li>utilities for purging Image, HTML, and RSS caches</li>
  * </ul>
  *
  * Image cache <i>pre-creating</i> will examine the gallery and make image references to any images which have not
@@ -17,18 +17,28 @@
  * "35mm slide" thumbnails. You may wish not to apply both (or either) of these sizes if you do not want the excess images. The caching
  * process does not consider the image orientation, it simply creates a cache image at the sizes specified.
  *
- * <b>Note:</b> This Caching process will cause your browser to display each and every image that has not
- * been previously cached. If your server does not do a good job of thread management this may swamp
- * it! You should probably also clear your browser cache before using this utility. Otherwise
- * your browser may fetch the images locally rendering the above process useless.
  *
- * You may have to refresh the page multiple times until the report of the number of images cached is zero.
- * If some images seem to never be rendered you may be experiencing memory limit or other graphics processor
- * errors. You can click on the image that does not render to get the <var>i.php</var> debug screen for the
- * image. This may help in figuring out what has gone wrong.
+ * <b>Notes:</b>
+ * <ul>
+ *		<li>
+ * 			Setting theme options or installing a new version of Zenphoto will re-create these caching sizes.
+ *			Use a different <i>theme name</i> for custom versions that you create.
+ *		</li>
  *
- * <b>NOTE:</b> setting theme options or installing a new version of Zenphoto will re-create these caching sizes.
- * Use a different <i>theme name</i> for custom versions that you create.
+ *		<li>
+ * 			The <i>pre-creating</i> process will cause your browser to display each and every image that has not
+ * 			been previously cached. If your server does not do a good job of thread management this may swamp
+ * 			it! You should probably also clear your browser cache before using this utility. Otherwise
+ * 			your browser may fetch the images locally rendering the above process useless.
+ *		</li>
+ *		<li>
+ * 			You may have to refresh the page multiple times until the report of the number of images cached is zero.
+ *			If some images seem to never be rendered you may be experiencing memory limit or other graphics processor
+ * 			errors. You can click on the image that does not render to get the <var>i.php</var> debug screen for the
+ *			image. This may help in figuring out what has gone wrong.
+ *		</li>
+ * </ul>
+ *
  *
  * @package plugins
  * @author Stephen Billard (sbillard)

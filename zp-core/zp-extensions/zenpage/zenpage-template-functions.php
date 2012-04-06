@@ -3007,7 +3007,7 @@ function getZenpageRSSLink($option='News', $categorylink='', $lang=NULL) {
 				return WEBPATH.'/index.php?rss=comments&id='.getPageID().'&type=page&lang='.$lang;
 			}
 			break;
-			case 'Comments-all':
+		case 'Comments-all':
 			if (getOption('RSS_article_comments')) {
 				return WEBPATH.'/index.php?rss=comments&type=allcomments&lang='.$lang;
 			}

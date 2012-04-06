@@ -3708,10 +3708,13 @@ function getAlbumId() {
  * 																		"Comments-album" for latest comments of only the album it is called from
  * 																		"AlbumsRSS" for latest albums
  * 																		"AlbumsRSScollection" only for latest subalbums with the album it is called from
+ * 															or
+ * 																		a getZenpageRSSLink option
  * @param string $lang optional to display a feed link for a specific language. Enter the locale like "de_DE" (the locale must be installed on your Zenphoto to work of course). If empty the locale set in the admin option or the language selector (getOption('locale') is used.
  * @since 1.4.2
+ * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for getZenpageRSSLink categories
  */
-function getRSSLink($option,$lang='') {
+function getRSSLink($option,$lang=NULL,$category=NULL) {
 	global $_zp_current_album;
 	if(empty($lang)) {
 		$lang = getOption('locale');
@@ -3724,12 +3727,22 @@ function getRSSLink($option,$lang='') {
 			break;
 		case 'Album':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&albumname='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang;
+				if (is_object($addl)) {
+					$album = $addl;
+				} else {
+					$album = $_zp_current_album;
+				}
+				return WEBPATH.'/index.php?rss&albumname='.urlencode($album->getFolder()).'&lang='.$lang;
 				break;
 			}
 		case 'Collection':
 			if (getOption('RSS_album_image')) {
-				return WEBPATH.'/index.php?rss&folder='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang;
+			if (is_object($addl)) {
+					$album = $addl;
+				} else {
+					$album = $_zp_current_album;
+				}
+				return WEBPATH.'/index.php?rss&folder='.urlencode($album->getFolder()).'&lang='.$lang;
 			}
 			break;
 		case 'Comments':
@@ -3757,7 +3770,13 @@ function getRSSLink($option,$lang='') {
 				return WEBPATH.'/index.php?rss&folder='.urlencode($_zp_current_album->getFolder()).'&lang='.$lang.'&albumsmode';
 			}
 			break;
+		default:
+			if (function_exists('getZenpageRSSLink')) {
+				return getZenpageRSSLink($option,$addl,$lang);
+			}
+			break;
 	}
+	return NULL;
 }
 
 /**
