@@ -533,21 +533,21 @@ class Zenpage {
 				$sortorder = "images.".$combinews_sortorder;
 				switch(		$combinews_sortorder) {
 					case "date":
-						$imagequery = "(SELECT DISTINCT DATE_FORMAT(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.date,'%Y-%m-%d'), @type2 FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
+						$imagequery = "(SELECT DISTINCT DATE_FORMAT(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.date,'%Y-%m-%d'), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
 														WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
 						break;
 					case "mtime":
-						$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.mtime,'%Y-%m-%d'), @type2 FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
+						$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.mtime,'%Y-%m-%d'), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
 														WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
 					case "publishdate":
-							$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.publishdate,'%Y-%m-%d'), @type2 FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
+							$imagequery = "(SELECT DISTINCT FROM_UNIXTIME(".$sortorder.",'%Y-%m-%d'), albums.folder, DATE_FORMAT(images.publishdate,'%Y-%m-%d'), @type2, @type3 as sticky FROM ".prefix('images')." AS images, ".prefix('albums')." AS albums
 																				WHERE albums.id = images.albumid ".$imagesshow.$albumWhere.")";
 						break;
 				}
-				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type FROM ".prefix('news')." ".$show.")
+				$result = $this->siftResults("(SELECT title as albumname, titlelink, date, @type1 as type, sticky FROM ".prefix('news')." ".$show.")
 																		UNION
 																		".$imagequery."
-																		ORDER By date DESC
+																		ORDER By $stickyorder date DESC
 																		", $offset, $articles_per_page);
 				break;
 			case "latestupdatedalbums-thumbnail":
