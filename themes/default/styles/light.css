@@ -201,7 +201,7 @@ ul.pagelist li.next {
 	list-style-type: none;
 }
 
-.taglist ul li {
+.taglist li {
 	background: url(../images/tag.png) no-repeat left center;
 	list-style-type: none;
 	padding-left: 18px;
