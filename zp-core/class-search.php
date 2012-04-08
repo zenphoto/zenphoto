@@ -31,8 +31,9 @@ class SearchEngine
 	protected $search_no_images;	// omit albums
 	protected $search_no_pages;		// omit pages
 	protected $search_no_news;		// omit news
-	protected $search_structure;		// relates translatable names to search fields
-	protected $iteration = 0;	//	used by apply_filter('search_statistics') to indicate sequential searches of different objects
+	protected $search_unpublished;// will override the loggedin checks with respect to unpublished items
+	protected $search_structure;	// relates translatable names to search fields
+	protected $iteration = 0;			// used by apply_filter('search_statistics') to indicate sequential searches of different objects
 	protected $processed_search = NULL;
 	protected $album_list = NULL;	// list of albums to search
 	protected $category_list;			// list of categories for a news search
@@ -74,6 +75,7 @@ class SearchEngine
 				$this->search_structure[strtolower($field)]	= $row[2];
 			}
 		}
+		$this->search_unpublished = false;
 		if (isset($_REQUEST['words'])) {
 			$this->words = sanitize($_REQUEST['words'],0);
 		} else {
@@ -352,6 +354,11 @@ class SearchEngine
 		if (!empty($this->words)) {
 			$this->dates = ''; // words and dates are mutually exclusive
 		}
+	}
+
+	// call to always return unpublished items
+	function setSearchUnpublished() {
+		$this->search_unpublished = true;
 	}
 
 	/**
@@ -1059,7 +1066,7 @@ class SearchEngine
 
 		switch ($tbl) {
 			case 'news':
-				if(zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+				if($this->search_unpublished || zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
 					$show = '';
 				} else {
 					$show = "`show` = 1 AND ";
@@ -1092,7 +1099,7 @@ class SearchEngine
 				$key = '`sort_order`';
 				break;
 			case 'albums':
-				if(zp_loggedin()) {
+				if($this->search_unpublished || zp_loggedin()) {
 					$show = '';
 				} else {
 					$show = "`show` = 1 AND ";
@@ -1117,7 +1124,7 @@ class SearchEngine
 				}
 				break;
 			default:
-				if(zp_loggedin()) {
+				if($this->search_unpublished || zp_loggedin()) {
 					$show = '';
 				} else {
 					$show = "`show` = 1 AND ";
@@ -1185,7 +1192,7 @@ class SearchEngine
 						if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
 							$album = new Album(NULL, $albumname);
 							$uralbum = getUrAlbum($album);
-							$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 							switch (checkPublishDates($row)) {
 								case 1:
 									$album->setShow(0);
@@ -1333,7 +1340,7 @@ class SearchEngine
 						$allow = false;
 						$album = new Album(NULL, $albumname);
 						$uralbum = getUrAlbum($album);
-						$viewUnpublished = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+						$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 						switch (checkPublishDates($row)) {
 							case 1:
 								$imageobj = newImage($this,$row['filename']);
@@ -1348,7 +1355,7 @@ class SearchEngine
 						}
 						$albums_seen[$albumid] = $albumrow = array('allow'=>$allow,'viewUnpublished'=>$viewUnpublished,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
 					}
-					if ($albumrow['allow'] && ($row['show']||$albumrow['viewUnpublished'])) {
+					if ($albumrow['allow'] && ($row['show'] || $albumrow['viewUnpublished'])) {
 						if (file_exists($albumrow['localpath'].internalToFilesystem($row['filename']))) {	//	still exists
 							$images[] = array('filename' => $row['filename'], 'folder' => $albumrow['folder']);
 						}

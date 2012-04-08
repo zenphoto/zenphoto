@@ -3714,7 +3714,7 @@ function getAlbumId() {
  * @since 1.4.2
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for getZenpageRSSLink categories
  */
-function getRSSLink($option,$lang=NULL,$category=NULL) {
+function getRSSLink($option,$lang=NULL,$addl=NULL) {
 	global $_zp_current_album;
 	if(empty($lang)) {
 		$lang = getOption('locale');
