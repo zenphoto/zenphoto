@@ -196,12 +196,12 @@ ul.pagelist li.next {
 
 /* Tags
 ------------------------------ */
-.taglist ul {
+ul.taglist {
 	display: inline;
 	list-style-type: none;
 }
 
-.taglist li {
+ul.taglist li {
 	background: url(../images/tag.png) no-repeat left center;
 	list-style-type: none;
 	padding-left: 18px;
@@ -212,10 +212,12 @@ ul.pagelist li.next {
 	list-style-type: none;
 }
 
-.taglist .tags_title {
+span.tags_title {
 	background: none;
 	padding-right: 5px;
 	padding-left: 0;
+	float: left;
+	display: block;
 }
 
 /* Image Thumbnails
