@@ -51,14 +51,13 @@ if (isset($_POST['savealbum'])) {
 			$searchfields[] = sanitize(str_replace('SEARCH_', '', postIndexDecode($key)));
 		}
 	}
-	$constraints = "\nCONSTRAINTS=".'inalbums='.((int) (isset($_POST['return_albums']))).'&inimages='.((int) (isset($_POST['return_images'])));
-	$unpublished = "\nUNPUBLISHED=".((int) (isset($_POST['return_unpublished'])));
+	$constraints = "\nCONSTRAINTS=".'inalbums='.((int) (isset($_POST['return_albums']))).'&inimages='.((int) (isset($_POST['return_images']))).'&unpublished='.((int) (isset($_POST['return_unpublished'])));
 	$redirect = $album.'/'.$albumname.'.alb';
 
 	if (!empty($albumname)) {
 		$f = fopen(internalToFilesystem(ALBUM_FOLDER_SERVERPATH.$redirect), 'w');
 		if ($f !== false) {
-			fwrite($f,"WORDS=$words\nTHUMB=$thumb\nFIELDS=".implode(',',$searchfields).$constraints.$unpublished."\n");
+			fwrite($f,"WORDS=$words\nTHUMB=$thumb\nFIELDS=".implode(',',$searchfields).$constraints."\n");
 			fclose($f);
 			clearstatcache();
 			// redirct to edit of this album

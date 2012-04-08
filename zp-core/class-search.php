@@ -349,6 +349,9 @@ class SearchEngine
 						}
 					}
 				break;
+			case 'unpublished':
+				$this->search_unpublished = (bool) $v;
+				break;
 			}
 		}
 		if (!empty($this->words)) {

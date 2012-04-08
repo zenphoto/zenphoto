@@ -30,7 +30,6 @@ class Album extends MediaObject {
 	protected $albumthumbnail = NULL; // remember the album thumb for the duration of the script
 	protected $subrights = NULL;	//	cache for album subrights
 	protected $dynamic = false;	// will be true for dynamic albums
-	protected $search_unpublished=false;// dynamic album override for search
 
 
 	/**
@@ -98,13 +97,8 @@ class Album extends MediaObject {
 						$fields = "&searchfields=".trim(substr($data1, 7));
 					}
 					if (strpos($data1, 'CONSTRAINTS=') !== false) {
-						$constraints = '&'.trim(substr($data1, 12));
-					}
-					if (strpos($data1, 'UNPUBLISHED=') !== false) {
-						$unpublished = (int) trim(substr($data1, 12));
-						if ($unpublished) {
-							$this->search_unpublished = true;
-						}
+						$constraint = trim(substr($data1, 12));
+						$constraints = '&'.$constraint;
 					}
 				}
 				if (!empty($words)) {
@@ -113,7 +107,6 @@ class Album extends MediaObject {
 					}
 					$this->set('search_params', $words.$fields.$constraints);
 				}
-
 				$this->set('mtime', filemtime($this->localpath));
 				if ($new) {
 					$title = $this->get('title');
@@ -1178,9 +1171,6 @@ class Album extends MediaObject {
 		$params = $this->get('search_params');
 		$params .= '&albumname='.$this->name;
 		$this->searchengine->setSearchParams($params);
-		if ($this->search_unpublished) {
-			$this->searchengine->setSearchUnpublished();
-		}
 		return $this->searchengine;
 	}
 
