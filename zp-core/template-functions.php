@@ -3380,7 +3380,7 @@ function printRandomImages($number=5, $class=null, $option='all', $rootAlbum='',
 }
 
 /**
- * Returns a list of tags for either an image or album, depends on the page called from
+ * Returns a list of tags for context of the page called where called
  *
  * @return string
  * @since 1.1

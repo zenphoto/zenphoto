@@ -674,7 +674,13 @@ class RSS {
 				}
 				break;
 		}
-		return $items;
+		if (isset($items)) {
+			return $items;
+		}
+		if (!defined('RELEASE')) {
+			trigger_error(gettext('Bad RSS feed:'.$this->feedtype),E_USER_WARNING);
+		}
+		return NULL;
 	}
 
 	/**

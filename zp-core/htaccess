@@ -11,7 +11,7 @@ IndexIgnore *
   
 #	Redirection for site updates--remove the comment crosshatches from the following rules
 #	"closed.html" in the plugins/site_update folder is the target for the rewrites. You can change 
-#	this to suit your needs.  
+#	this file to suit your needs.  
 # RewriteRule ^index\.php$      plugins/site_upgrade/closed.html [NC,R=302,L]  
 # RewriteRule ^$      plugins/site_upgrade/closed.html [NC,R=302,L] 
 #	End redirection for site updates 
