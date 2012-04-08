@@ -4051,6 +4051,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 				// ]]> -->
 			</script>
 			<?php echo $prevtext; ?>
+			<fieldset>
 			<input type="text" name="words" value="" id="search_input" size="10" />
 			<?php if(count($fields) > 1 || $searchwords) { ?>
 				<a href="javascript:toggle('searchextrashow');" ><img src="<?php echo $iconsource; ?>" title="<?php echo gettext('search options'); ?>" alt="<?php echo gettext('fields'); ?>" id="searchfields_icon" /></a>
@@ -4117,6 +4118,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 				<?php
 			}
 			?>
+			</fieldset>
 		</form>
 	</div><!-- end of search form -->
 	<?php
