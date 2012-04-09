@@ -6,11 +6,11 @@
  *
  * Thumbnails may be flagged with the following icons:
  * <ul>
- * 		<li><img src="%PLUGIN_FOLDER%/flag_thumbnail/lock.png" />: <i>New</i>—images whose <var>date</var> (or <var>mtime</var>) are within the selected "range" of the current day.</li>
- * 		<li><img src="%PLUGIN_FOLDER%/flag_thumbnail/action.png" />: <i>Protected</i>—images which are in a password protected album or because
+ * 		<li><img src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/flag_thumbnail/lock.png" />: <i>New</i>—images whose <var>date</var> (or <var>mtime</var>) are within the selected "range" of the current day.</li>
+ * 		<li><img src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/flag_thumbnail/action.png" />: <i>Protected</i>—images which are in a password protected album or because
  * 							 a parent album is password protected.</li>
- * 		<li><img src="%PLUGIN_FOLDER%/flag_thumbnail/new.png" />: <i>Un-published</i>—images that are marked as not visible.</li>
- * 		<li><img src="%PLUGIN_FOLDER%/flag_thumbnail/GPS.png" />: <i>Geotagged</i>—images which have latitude/longitude information in their metadata.</li>
+ * 		<li><img src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/flag_thumbnail/new.png" />: <i>Un-published</i>—images that are marked as not visible.</li>
+ * 		<li><img src="%WEBPATH%/%ZENFOLDER%/%PLUGIN_FOLDER%/flag_thumbnail/GPS.png" />: <i>Geotagged</i>—images which have latitude/longitude information in their metadata.</li>
  * </ul>
  *
  * The icon with which the thumbnail is flagged is selectable by option. The above standard icons are provided as defaults.
