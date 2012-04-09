@@ -105,7 +105,7 @@ class cacheManager {
 			$options[gettext('Purge cache files')] = array('key'=>'cacheManager_items', 'type'=>OPTION_TYPE_CHECKBOX_ARRAY,
 																										'order'=> 0,
 																										'checkboxes' => $list,
-																										'desc'=>gettext('If a <em>type</em> is checked, the HTML and RSS caches for the item  will be purged when an the published state of an item of <em>type</em> changes.').
+																										'desc'=>gettext('If a <em>type</em> is checked, the HTML and RSS caches for the item will be purged when an the published state of an item of <em>type</em> changes.').
 																										'<div class="notebox">'.gettext('<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if pages contain dependencies on the item.').'</div>');
 			return $options;
 		} else {
