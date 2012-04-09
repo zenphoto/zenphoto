@@ -1253,7 +1253,7 @@ $alb = removeParentAlbumNames($album);
 						?>
 						<br clear="all" />
 						<hr />
-						<div class="button buttons tooltip" title="<?php printf(gettext('Refresn %s metadata'), $image->filename); ?>">
+						<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
 							<a href="admin-edit.php?action=refresh&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
 								<img src="images/cache.png" alt="" /><?php echo gettext("Refresh Metadata"); ?>
 							</a>
