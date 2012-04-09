@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-09 08:32-0500\n"
-"PO-Revision-Date: 2012-04-09 11:40-0500\n"
+"POT-Creation-Date: 2012-04-09 11:50-0500\n"
+"PO-Revision-Date: 2012-04-09 11:53-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -2052,7 +2052,7 @@ msgstr "270 degrés"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-edit.php:1256
 #, php-format
-msgid "Refresn %s metadata"
+msgid "Refresh %s metadata"
 msgstr "Actualiser les métadonnées de %s"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-edit.php:1258
@@ -2392,6 +2392,13 @@ msgstr "Filigranes de l’album : "
 msgid "Thumbs"
 msgstr "Vignettes"
 
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:1582
+#, php-format
+msgid "Reset hit counter (%u hit)"
+msgid_plural "Reset hit counter (%u hits)"
+msgstr[0] "Remettre le compteur de vues à zéro (total : %u affichage)"
+msgstr[1] "Remettre le compteur de vues à zéro (total : %u affichages)"
+
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:1685
 msgid "Rename Folder"
 msgstr "Renommer le dossier"
@@ -2426,7 +2433,7 @@ msgid "Resets album's hit counters."
 msgstr "Remettre à zéro les compteurs de l’album"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:1839
-msgid "Reset album hitcounters"
+msgid "Reset album hit counters"
 msgstr "Remettre à zéro les compteurs de l’album"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:1846
@@ -2466,7 +2473,7 @@ msgid "Refresh metadata"
 msgstr "Actualiser les métadonnées"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:1878
-msgid "Reset hitcounters"
+msgid "Reset hit counters"
 msgstr "Remettre les compteurs à zéro"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:1910
@@ -2546,12 +2553,12 @@ msgstr "Actualiser les métadonnées dans l’album %s"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2066
 #, php-format
-msgid "Reset hitcounters for album %s"
+msgid "Reset hit counters for album %s"
 msgstr "Remettre à zéro les compteurs de l’album %s"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2067
 #, php-format
-msgid "Reset hitcounters for the album %s"
+msgid "Reset hit counters for the album %s"
 msgstr "Remettre à zéro les compteurs de l’album %s"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2086
@@ -2768,7 +2775,7 @@ msgid "The image edit form submission has been truncated. Try displaying fewer i
 msgstr "Le formulaire d’édition des images a été tronqué. Veuillez afficher moins d’images par page."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4204
-msgid "Hitcounters have been reset."
+msgid "Hit counters have been reset."
 msgstr "Les compteurs d’affichage ont été remis à zéro."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4207
@@ -11090,7 +11097,7 @@ msgid "Purge cache files"
 msgstr "Effacer les fichiers du cache"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/cacheManager.php:108
-msgid "If a <em>type</em> is checked, the HTML and RSS caches for the item  will be purged when an the published state of an item of <em>type</em> changes."
+msgid "If a <em>type</em> is checked, the HTML and RSS caches for the item will be purged when an the published state of an item of <em>type</em> changes."
 msgstr "Si un <em>type</em> est coché, les caches HTML et RSS de l’élément seront vidés lorsqu’est modifié l’état de publication d’un élément de ce <em>type</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/cacheManager.php:109
@@ -11870,7 +11877,7 @@ msgid "Crop image"
 msgstr "Rogner l’image"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/crop_image.php:49
-msgid "Permanantly corp the actual image."
+msgid "Permanently corp the actual image."
 msgstr "Rogner définitivement l’image originale."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/crop_image.php:84
@@ -14231,7 +14238,7 @@ msgid "Provides functionality to get the related items to an item based on a tag
 msgstr "Ajoute la fonction de recherche les éléments reliés à un élément affiché, selon une recherche de tags."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/related_items.php:96
-#, fuzzy, php-format
+#, php-format
 msgid "Related %s"
 msgstr "%s apparentés"
 
@@ -14682,7 +14689,7 @@ msgid "Close site"
 msgstr "Fermer le site"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:59
-msgid "Make site unavialable for viewing by redirecting to the \"closed.html\" page."
+msgid "Make site unavailable for viewing by redirecting to the \"closed.html\" page."
 msgstr "Rend le site inaccessible aux utilisateurs en les redirigeant vers la page « closed.html » (fermé)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:59
@@ -15219,7 +15226,7 @@ msgid "groups"
 msgstr "groupes"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/user_login-out.php:12
-msgid "Provides a means users to login/out from your theme pages."
+msgid "Provides a means for users to login/out from your theme pages."
 msgstr "Offre un outil pour vos pages de thème afin de permettre aux utilisateurs de se connecter ou de se déconnecter."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/user_login-out.php:35
@@ -15963,9 +15970,8 @@ msgid "Finished: Total of %u images cached."
 msgstr "Opération terminée ; %u images mises en cache"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/cacheManager/cacheImages.php:220
-#, fuzzy
 msgid "Refresh the caching of the selected image sizes if some images did not render."
-msgstr "Actualise la mise en cache des tailles sélectionnées des images si le rendu des images n’est pas complet."
+msgstr "Actualise la mise en cache des tailles sélectionnées des images si le rendu des images n’était pas complet."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/cacheManager/cacheImages.php:227
 msgid "No cache sizes enabled."
@@ -15976,7 +15982,6 @@ msgid "Cache the images"
 msgstr "Mettre en cache les images"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/cacheManager/cacheImages.php:231
-#, fuzzy
 msgid "Executes the caching of the selected image sizes."
 msgstr "Effectue la mise en cache des tailles sélectionnées des images."
 
@@ -17233,7 +17238,7 @@ msgid "Select <em>pages</em>, <em>articles</em> or <em>categories</em> to show a
 msgstr "Sélectionnez <em>pages</em>, <em>articles</em> ou <em>catégories</em> pour afficher une liste de ces éléments. Cliquez sur un titre pour inclure un lien. Survolez un lien pour voir un extrait de la page ou de l’article. Les pages et les articles non publiés sont marqués d’une « * » tandis que ceux qui sont protégés sont marqués d’un « + ». Aucune autre option configurable."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:183
-msgid "Select an album to include images from into your page or article. Click on the image to included it. Un-published albums or images are marked with an '*'. You can also click on the magnify glass icon to see a preview of the item. (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.) The first thumbnail is always the thumbnail of the selected album. It is titled <em>Albumthumb</em> and appears on every thumbnail page."
+msgid "Select an album to include images from into your page or article. Click on the image to include it. Un-published albums or images are marked with an '*'. You can also click on the magnify glass icon to see a preview of the item. (Multimedia files are previewed in Flowplayer, no matter if that plugin is activated or not.) The first thumbnail is always the thumbnail of the selected album. It is titled <em>Albumthumb</em> and appears on every thumbnail page."
 msgstr "Choisissez un album à partir duquel incorporer des images dans votre page ou article. Cliquez sur l’image pour l’incorporer. Les albums et les images non publiés sont identifiés d’une « * ». Vous pouvez cliquer sur la loupe pour prévisualiser l’élément (les fichiers multimédia sont prévisualisés avec Flowplayer, même si l’extension n’est pas activée). Notez que la première vignette affichée est toujours celle de l’album présentement sélectionné ; elle s’intitule toujours <em>Albumthumb</em> (VignetteDeLalbum) et apparaît sur toutes les pages de vignettes."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:189
