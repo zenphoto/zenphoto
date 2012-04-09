@@ -1555,7 +1555,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 						<td>
 						<br />
-						<?php printCodeblockEdit($album, $suffix); ?>
+						<?php printCodeblockEdit($album, (int) $suffix); ?>
 						</td>
 					</tr>
 				</table>
@@ -2187,7 +2187,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 		$album->setWatermark(sanitize($_POST[$prefix.'album_watermark'], 3));
 		$album->setWatermarkThumb(sanitize($_POST[$prefix.'album_watermark_thumb'], 3));
 	}
-	$album->setCodeblock(processCodeblockSave($prefix));
+	$album->setCodeblock(processCodeblockSave((int) $prefix));
 	if (isset($_POST[$prefix.'-owner'])) $album->setOwner(sanitize($_POST[$prefix.'-owner']));
 
 	$custom = process_language_string_save($prefix.'album_custom_data', 1);
@@ -3863,8 +3863,8 @@ function codeblocktabsJS() {
 			$('#cbu-'+id).append('<li><a class="cbt-'+id+'" id="cbt'+num+'-'+id+'" href="javascript:cbclick('+num+','+id+');" title="'+'<?php echo gettext('codeblock %u'); ?>'.replace(/%u/,num)+'">&nbsp;&nbsp;'+num+'&nbsp;&nbsp;</a></li>');
 			$('#cbu-'+id).append('<li><a id="cbp-'+id+'" href="javascript:cbadd('+id+');" title="<?php echo gettext('add codeblock'); ?>">&nbsp;&nbsp;+&nbsp;&nbsp;</a></li>');
 			$('#cbd-'+id).append('<div class="cbx-'+id+'" id="cb'+num+'-'+id+'" style="display:none">'+
-											'<textarea name="codeblock'+num+'-'+id+'" class="codeblock" id="codeblock'+num+'-'+id+'" rows="40" cols="60"></textarea>'+
-										'</div>');
+														'<textarea name="codeblock'+num+'-'+id+'" class="codeblock" id="codeblock'+num+'-'+id+'" rows="40" cols="60"></textarea>'+
+														'</div>');
 			cbclick(num,id);
 		}
 		// ]]> -->
