@@ -1579,7 +1579,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							?>
 							<label class="checkboxlabel">
 								<input type="checkbox" name="reset_hitcounter<?php echo $prefix; ?>"<?php if (!$hc) echo ' disabled="disabled"'; ?> />
-								<?php echo sprintf(ngettext("Reset hitcounter (%u hit)","Reset hitcounter (%u hits)",$hc), $hc); ?>
+								<?php echo sprintf(ngettext("Reset hit counter (%u hit)","Reset hit counter (%u hits)",$hc), $hc); ?>
 							</label>
 							<?php
 						}
@@ -1836,7 +1836,7 @@ function printAlbumButtons($album) {
 		</div>
 		<div class="button buttons tooltip" title="<?php echo gettext("Resets album's hit counters.");?>">
 			<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-edit.php?action=reset_hitcounters&amp;album='.html_encode($album->name).'&amp;albumid='.$album->getID(); ?>&amp;XSRFToken=<?php  echo getXSRFToken('hitcounter'); ?>">
-			<img src="images/reset.png" /><?php echo gettext('Reset album hitcounters'); ?></a>
+			<img src="images/reset.png" /><?php echo gettext('Reset album hit counters'); ?></a>
 			<br clear="all" />
 		</div>
 		<?php
@@ -1875,7 +1875,7 @@ function printAlbumLegend() {
 		<?php
 		if (getOption('zp_plugin_hitcounter')) {
 			?>
-			<li><img src="images/reset.png" alt="" /><?php echo gettext("Reset hitcounters"); ?></li>
+			<li><img src="images/reset.png" alt="" /><?php echo gettext("Reset hit counters"); ?></li>
 			<?php
 		}
 		?>
@@ -2063,8 +2063,8 @@ function printAlbumEditRow($album, $show_thumb) {
 						<?php
 					} else {
 						?>
-						<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hitcounters for album %s'), $album->name); ?>">
-						<img src="images/reset.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Reset hitcounters for the album %s'), $album->name); ?>" />
+						<a class="reset" href="?action=reset_hitcounters&amp;albumid=<?php echo $album->getID(); ?>&amp;album=<?php echo pathurlencode($album->name);?>&amp;subalbum=true&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo sprintf(gettext('Reset hit counters for album %s'), $album->name); ?>">
+						<img src="images/reset.png" style="border: 0px;" alt="" title="<?php echo sprintf(gettext('Reset hit counters for the album %s'), $album->name); ?>" />
 						</a>
 						<?php
 					}
@@ -4201,7 +4201,7 @@ function consolidatedEditMessages($subtab) {
 		$messagebox[] =  gettext('The image edit form submission has been truncated. Try displaying fewer images on a page.');
 	}
 	if (isset($_GET['counters_reset'])) {
-		$messagebox[] = gettext("Hitcounters have been reset.");
+		$messagebox[] = gettext("Hit counters have been reset.");
 	}
 	if (isset($_GET['cleared']) || isset($_GET['action']) && $_GET['action'] == 'clear_cache') {
 		$messagebox[] = gettext("Cache has been purged.");
