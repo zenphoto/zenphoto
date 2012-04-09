@@ -26,7 +26,7 @@ function printNews($side) {
 		<h2 class="h2_bordered"><?php echo gettext("News from Zenphoto.org"); ?></h2>
 		<?php
 		if ($connected) {
-			echo RSS_Display("http://www.zenphoto.org/index.php?rss=news&withimages", 5);
+			echo RSS_Display("http://www.zenphoto.org/index.php?rss-news&withimages", 5);
 		} else {
 			?>
 			<ul>

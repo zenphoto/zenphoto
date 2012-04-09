@@ -26,87 +26,342 @@
  *
  * @package admin
  */
-define('OFFSET_PATH', 2);
-require_once(dirname(__FILE__).'/admin-globals.php');
+if (!defined('OFFSET_PATH')) {
+	define('OFFSET_PATH', 2);
+	require_once(dirname(__FILE__).'/admin-globals.php');
 
-if (is_null($_zp_current_locale)) {
-	$_zp_current_locale = getUserLocale();
+	if (is_null($_zp_current_locale)) {
+		$_zp_current_locale = getUserLocale();
+	}
+	$real_locale = $_zp_current_locale;
+	setupCurrentLocale('en_US');
+
+	$extension = sanitize($_GET['extension']);
+	$thirdparty = isset($_GET['thirdparty']);
+	if ($thirdparty) {
+		$path = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/'.$extension.'.php';
+	} else {
+		$path = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$extension.'.php';
+	}
+
+	$plugin_description = '';
+	$plugin_notice = '';
+	$plugin_disable = '';
+	$plugin_author = '';
+	$plugin_version = '';
+	$plugin_is_filter = '';
+	$plugin_URL = '';
+	$option_interface = '';
+
+	@require_once($path);
+	$buttonlist = zp_apply_filter('admin_utilities_buttons', array());
+	$album = new Album(NULL, '', false, true);
+	$image = newImage($album, '', true);
+	$imagebuttons = zp_apply_filter('edit_image_utilities', '', $album, $image, 0, ''); //pass space as HTML because there is already a button shown for cropimage
+	$albumbuttons = zp_apply_filter('edit_album_utilities', '', $album, '');
+
+	$pluginStream = @file_get_contents($path);
+	$i = strpos($pluginStream, '/*');
+	$j = strpos($pluginStream, '*/');
+	$links = array();
+	if ($i !== false && $j !== false) {
+		$commentBlock = substr($pluginStream, $i+2, $j-$i-2);
+		$body = processCommentBlock($commentBlock, $thirdparty);
+
+		if ($thirdparty) {
+			$whose = gettext('third party plugin');
+			$path = stripSuffix($path).'/logo.png';
+			if (file_exists($path)) {
+				$ico = str_replace(SERVERPATH, WEBPATH, $path);
+			} else {
+				$ico = 'images/place_holder_icon.png';
+			}
+		} else {
+			$subpackage = false;
+			$whose = 'Zenphoto official plugin';
+			$ico = 'images/zp_gold.png';
+		}
+
+		?>
+		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+		<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
+			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
+			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($extension)); ?></title>
+			<style>
+			.doc_box_field {
+				padding-left: 0px;
+				padding-right: 5px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				margin: 15px;
+				border: 1px solid #cccccc;
+				width: 460px;
+				-moz-border-radius: 5px;
+				-khtml-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				border-radius: 5px;
+			}
+			.moc_button {
+				display: block;
+				float: left;
+				width: 200px;
+				margin: 0 7px 0 0;
+				background-color: #f5f5f5;
+				background-image: url(images/admin-buttonback.jpg);
+				background-repeat: repeat-x;
+				border: 1px solid #dedede;
+				border-top: 1px solid #eee;
+				border-left: 1px solid #eee;
+				font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+				font-size: 100%;
+				line-height: 130%;
+				text-decoration: none;
+				font-weight: bold;
+				color: #565656;
+				cursor: pointer;
+				padding: 5px 10px 6px 7px; /* Links */
+				-moz-border-radius: 5px;
+				-khtml-border-radius: 5px;
+				-webkit-border-radius: 5px;
+				border-radius: 5px;
+			}
+			.buttons .tip {
+				text-align: left;
+			}
+			ul.options  {
+				list-style: none;
+				margin-left: 0;
+				padding: 0;
+			}
+			ul.options li {
+				list-style: none;
+				margin-left: 1.5em;
+				padding-bottom: 2px;
+			}
+			</style>
+		</head>
+		<body>
+			<div id="main">
+				<?php echo gettext('Plugin usage information'); ?>
+				<div id="content">
+					<h1><img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" /><?php echo html_encode($extension); ?></h1>
+					<div class="border">
+						<?php echo $plugin_description; ?>
+					</div>
+						<?php
+						if ($thirdparty) {
+							?>
+							<h3><?php printf( gettext('Version: %s'), $plugin_version); ?></h3>
+							<?php
+							}
+						if ($plugin_author) {
+							?>
+							<h3><?php printf(gettext('Author: %s'), html_encode($plugin_author)); ?></h3>
+							<?php
+						}
+						foreach ($links as $key=>$link) {
+							if ($key) echo "<br />";
+							echo '<a href="'.html_encode($link['link']).'">'.html_encode($link['text']).'</a>';
+						}
+						?>
+					<div>
+						<?php
+						if ($plugin_disable) {
+							?>
+							<div class="warningbox">
+								<?php echo $plugin_disable; ?>
+							</div>
+							<?php
+						}
+						if ($plugin_notice) {
+							?>
+							<div class="notebox">
+								<?php echo $plugin_notice; ?>
+							</div>
+							<?php
+						}
+
+						echo $body;
+
+						if ($option_interface) {
+							if (is_string($option_interface)) {
+								$option_interface = new $option_interface;
+							}
+							$options = $supportedOptions = $option_interface->getOptionsSupported();
+							$option = array_shift($options);
+							if (array_key_exists('order', $option)) {
+								$options = sortMultiArray($supportedOptions, 'order');
+								$options = array_keys($options);
+							} else {
+								$options = array_keys($supportedOptions);
+								natcasesort($options);
+							}
+							?>
+							<hr>
+							<p>
+							<?php echo ngettext('Option:','Options:',count($options)); ?>
+							<ul class="options">
+								<?php
+								foreach ($options as $option) {
+									$row = $supportedOptions[$option];
+									if (false!==$i=stripos($option,chr(0))) {
+										$option = substr($option, 0, $i);
+									}
+									$option = trim($option,'*');
+									if ($option && $row['type'] != OPTION_TYPE_NOTE) {
+										?>
+										<li><code><?php echo $option; ?></code></li>
+										<?php
+									}
+								}
+								?>
+							</ul>
+							</p>
+							<?php
+						}
+						if (!empty($buttonlist) || !empty($albumbuttons) || !empty($imagebuttons)) {
+							?>
+							<hr>
+							<?php
+						}
+						if (!empty($buttonlist)) {
+							$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
+							?>
+							<div class="box" id="overview-utility">
+								<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
+								<?php
+								$category = '';
+								foreach ($buttonlist as $button) {
+									$button_category = $button['category'];
+									$button_icon = $button['icon'];
+									if ($category != $button_category) {
+										if ($category) {
+											?>
+											</fieldset>
+											<?php
+										}
+										$category = $button_category;
+										?>
+										<fieldset class="doc_box_field"><legend><?php echo $category; ?></legend>
+										<?php
+									}
+									?>
+									<form class="overview_utility_buttons">
+										<div class="moc_button tip" title="<?php echo $button['title']; ?>" >
+											<?php
+											if(!empty($button_icon)) {
+												?>
+												<img src="<?php echo $button_icon; ?>" alt="<?php echo $button['alt']; ?>" />
+												<?php
+											}
+											echo html_encode($button['button_text']);
+											?>
+										</div>
+									</form>
+									<?php
+								}
+								if ($category) {
+									?>
+									</fieldset>
+									<?php
+								}
+								?>
+							</div>
+							<br clear="all">
+							<?php
+						}
+						if ($albumbuttons) {
+							$albumbuttons = preg_replace('|<hr(\s*)(/)>|', '', $albumbuttons);
+							?>
+							<h2 class="h2_bordered_edit"><?php echo gettext("Album Utilities"); ?></h2>
+							<div class="box-edit">
+								<?php echo $albumbuttons; ?>
+							</div>
+							<br clear="all">
+							<?php
+						}
+						if ($imagebuttons) {
+							$imagebuttons = preg_replace('|<hr(\s*)(/)>|', '', $imagebuttons);
+							?>
+							<h2 class="h2_bordered_edit"><?php echo gettext("Image Utilities"); ?></h2>
+							<div class="box-edit">
+								<?php echo $imagebuttons; ?>
+							</div>
+							<br clear="all">
+							<?php
+						}
+
+						?>
+					</div>
+				</div>
+				<?php
+				if ($thirdparty) {
+					if ($plugin_URL) {
+						printf(gettext('See also the <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+					}
+				} else {
+					$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
+					printf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+				}
+				if ($real_locale != 'en_US') {
+					setupCurrentLocale($real_locale);
+					?>
+					<br />
+					<a href="http://www.google.com/translate_c?langpair=en|<?php echo strtolower(substr($real_locale,0,2)); ?>&u=<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension?>"
+									title="<?php echo gettext('This document is generated from the plugin comment block and other items that are in English and outside of the Zenphoto translation system. This link will send the URL to the Google translation WEB to present the page in your language.'); ?>">
+						<?php echo gettext('Translate this page.'); ?>
+					</a>
+					<?php
+				}
+				?>
+			</div>
+		</body>
+		<?php
+	}
 }
-$real_locale = $_zp_current_locale;
-setupCurrentLocale('en_US');
-
-$markup = array(
-						'&lt;i&gt;'=>'<em>',
-						'&lt;/i&gt;'=>'</em>',
-						'&lt;b&gt;'=>'<strong>',
-						'&lt;/b&gt;'=>'</strong>',
-						'&lt;code&gt;'=>'<span class="inlinecode">',
-						'&lt;/code&gt;'=>'</span>',
-						'&lt;hr&gt;'=>'<hr />',
-						'&lt;ul&gt;'=>'<ul>',
-						'&lt;/ul&gt;'=>'</ul>',
-						'&lt;ol&gt;'=>'<ol>',
-						'&lt;/ol&gt;'=>'</ol>',
-						'&lt;li&gt;'=>'<li>',
-						'&lt;/li&gt;'=>'</li>',
-						'&lt;pre&gt;'=>'<pre>',
-						'&lt;/pre&gt;'=>'</pre>',
-						'&lt;br&gt;'=>'<br />',
-						'&lt;var&gt;'=>'<span class="inlinecode">',
-						'&lt;/var&gt;'=>'</span>'
-);
-$const_tr = array('%ZENFOLDER%'=>ZENFOLDER,
-									'%PLUGIN_FOLDER%'=>PLUGIN_FOLDER,
-									'%USER_PLUGIN_FOLDER%'=>USER_PLUGIN_FOLDER,
-									'%ALBUMFOLDER%'=>ALBUMFOLDER,
-									'%THEMEFOLDER%'=>THEMEFOLDER,
-									'%BACKUPFOLDER%'=>BACKUPFOLDER,
-									'%UTILITIES_FOLDER%'=>UTILITIES_FOLDER,
-									'%DATA_FOLDER%'=>DATA_FOLDER,
-									'%CACHEFOLDER%'=>CACHEFOLDER,
-									'%UPLOAD_FOLDER%'=>UPLOAD_FOLDER,
-									'%STATIC_CACHE_FOLDER%'=>STATIC_CACHE_FOLDER,
-									'%FULLWEBPATH%'=>FULLWEBPATH,
-									'%WEBPATH%'=>WEBPATH
-);
-
-$extension = sanitize($_GET['extension']);
-$thirdparty = isset($_GET['thirdparty']);
-if ($thirdparty) {
-	$path = SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/'.$extension.'.php';
-} else {
-	$path = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$extension.'.php';
-}
-
-$plugin_description = '';
-$plugin_notice = '';
-$plugin_disable = '';
-$plugin_author = '';
-$plugin_version = '';
-$plugin_is_filter = '';
-$plugin_URL = '';
-$option_interface = '';
-
-@require_once($path);
-$buttonlist = zp_apply_filter('admin_utilities_buttons', array());
-$album = new Album(NULL, '', false, true);
-$image = newImage($album, '', true);
-$imagebuttons = zp_apply_filter('edit_image_utilities', '', $album, $image, 0, ''); //pass space as HTML because there is already a button shown for cropimage
-$albumbuttons = zp_apply_filter('edit_album_utilities', '', $album, '');
-
-$pluginStream = @file_get_contents($path);
-$regex_Url = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-$regex_img = '|&lt;img(\s*)src=(\s*)&quot;(.*)&quot;(\s*)/&gt;|';
-$i = strpos($pluginStream, '/*');
-$j = strpos($pluginStream, '*/');
-$body = '';
-$links = array();
-if ($i !== false && $j !== false) {
-	$commentBlock = strtr(substr($pluginStream, $i+2, $j-$i-2), $const_tr);
-	$lines = explode('*', $commentBlock);
-	$doc = '';
+function processCommentBlock($commentBlock)	{
+	$markup = array(
+							'&lt;i&gt;'=>'<em>',
+							'&lt;/i&gt;'=>'</em>',
+							'&lt;b&gt;'=>'<strong>',
+							'&lt;/b&gt;'=>'</strong>',
+							'&lt;code&gt;'=>'<span class="inlinecode">',
+							'&lt;/code&gt;'=>'</span>',
+							'&lt;hr&gt;'=>'<hr />',
+							'&lt;ul&gt;'=>'<ul>',
+							'&lt;/ul&gt;'=>'</ul>',
+							'&lt;ol&gt;'=>'<ol>',
+							'&lt;/ol&gt;'=>'</ol>',
+							'&lt;li&gt;'=>'<li>',
+							'&lt;/li&gt;'=>'</li>',
+							'&lt;pre&gt;'=>'<pre>',
+							'&lt;/pre&gt;'=>'</pre>',
+							'&lt;br&gt;'=>'<br />',
+							'&lt;var&gt;'=>'<span class="inlinecode">',
+							'&lt;/var&gt;'=>'</span>'
+							);
+	$const_tr = array('%ZENFOLDER%'=>ZENFOLDER,
+										'%PLUGIN_FOLDER%'=>PLUGIN_FOLDER,
+										'%USER_PLUGIN_FOLDER%'=>USER_PLUGIN_FOLDER,
+										'%ALBUMFOLDER%'=>ALBUMFOLDER,
+										'%THEMEFOLDER%'=>THEMEFOLDER,
+										'%BACKUPFOLDER%'=>BACKUPFOLDER,
+										'%UTILITIES_FOLDER%'=>UTILITIES_FOLDER,
+										'%DATA_FOLDER%'=>DATA_FOLDER,
+										'%CACHEFOLDER%'=>CACHEFOLDER,
+										'%UPLOAD_FOLDER%'=>UPLOAD_FOLDER,
+										'%STATIC_CACHE_FOLDER%'=>STATIC_CACHE_FOLDER,
+										'%FULLWEBPATH%'=>FULLWEBPATH,
+										'%WEBPATH%'=>WEBPATH
+										);
+	$regex_Url = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
+	$regex_img = '|&lt;img(\s*)src=(\s*)&quot;(.*)&quot;(\s*)/&gt;|';
+	$body = $doc = '';
 	$par = false;
 	$empty = false;
+	$lines = explode('*', strtr($commentBlock, $const_tr));
 
 	foreach ($lines as $line) {
 		$line = trim($line);
@@ -148,8 +403,8 @@ if ($i !== false && $j !== false) {
 				if (!empty($matches[0])) {
 					foreach ($matches[0] as $key=>$match) {
 						if (!empty($match)) {
-						$line = preg_replace('|'.$match.'|', '%'.$key.'$i', $line);
-						$tags['%'.$key.'$i'] = '<img src="'.html_encode($matches[1][$key]).'" alt="" />';
+							$line = str_replace($match, '%'.$key.'$i', $line);
+							$tags['%'.$key.'$i'] = '<img src="'.html_encode($matches[1][$key]).'" alt="" />';
 						}
 					}
 				}
@@ -157,7 +412,7 @@ if ($i !== false && $j !== false) {
 				if (!empty($matches[0])) {
 					foreach ($matches[0] as $key=>$match) {
 						if (!empty($match)) {
-							$line = preg_replace('|'.$match.'|', '%'.$key.'$l', $line);
+							$line = str_replace($match, '%'.$key.'$l', $line);
 							$l = strpos($matches[1][$key], ' ');
 							if ($l === false) {
 								$link = $text = $matches[1][$key];
@@ -179,255 +434,6 @@ if ($i !== false && $j !== false) {
 		$body .=  $doc;
 		$doc = '';
 	}
+	return $body;
 }
 
-if ($thirdparty) {
-	$whose = gettext('third party plugin');
-	$path = stripSuffix($path).'/logo.png';
-	if (file_exists($path)) {
-		$ico = str_replace(SERVERPATH, WEBPATH, $path);
-	} else {
-		$ico = 'images/place_holder_icon.png';
-	}
-} else {
-	$subpackage = false;
-	$whose = 'Zenphoto official plugin';
-	$ico = 'images/zp_gold.png';
-}
-
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
-	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-	<title><?php echo sprintf(gettext('%1$s %2$s: %3$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($extension)); ?></title>
-	<style>
-	.doc_box_field {
-		padding-left: 0px;
-		padding-right: 5px;
-		padding-top: 5px;
-		padding-bottom: 5px;
-		margin: 15px;
-		border: 1px solid #cccccc;
-		width: 460px;
-		-moz-border-radius: 5px;
-		-khtml-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
-	}
-	.moc_button {
-		display: block;
-		float: left;
-		width: 200px;
-		margin: 0 7px 0 0;
-		background-color: #f5f5f5;
-		background-image: url(images/admin-buttonback.jpg);
-		background-repeat: repeat-x;
-		border: 1px solid #dedede;
-		border-top: 1px solid #eee;
-		border-left: 1px solid #eee;
-		font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
-		font-size: 100%;
-		line-height: 130%;
-		text-decoration: none;
-		font-weight: bold;
-		color: #565656;
-		cursor: pointer;
-		padding: 5px 10px 6px 7px; /* Links */
-		-moz-border-radius: 5px;
-		-khtml-border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
-	}
-	.buttons .tip {
-		text-align: left;
-	}
-	ul.options  {
-		list-style: none;
-		margin-left: 0;
-		padding: 0;
-	}
-	ul.options li {
-		list-style: none;
-		margin-left: 1.5em;
-		padding-bottom: 2px;
-	}
-	</style>
-</head>
-<body>
-	<div id="main">
-		<?php echo gettext('Plugin usage information'); ?>
-		<div id="content">
-			<h1><img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" /><?php echo html_encode($extension); ?></h1>
-			<div class="border">
-				<?php echo $plugin_description; ?>
-			</div>
-				<?php
-				if ($thirdparty) {
-					?>
-					<h3><?php printf( gettext('Version: %s'), $plugin_version); ?></h3>
-					<?php
-					}
-				if ($plugin_author) {
-					?>
-					<h3><?php printf(gettext('Author: %s'), html_encode($plugin_author)); ?></h3>
-					<?php
-				}
-				foreach ($links as $key=>$link) {
-					if ($key) echo "<br />";
-					echo '<a href="'.html_encode($link['link']).'">'.html_encode($link['text']).'</a>';
-				}
-				?>
-			<div>
-				<?php
-				if ($plugin_disable) {
-					?>
-					<div class="warningbox">
-						<?php echo $plugin_disable; ?>
-					</div>
-					<?php
-				}
-				if ($plugin_notice) {
-					?>
-					<div class="notebox">
-						<?php echo $plugin_notice; ?>
-					</div>
-					<?php
-				}
-
-				echo $body;
-
-				if ($option_interface) {
-					if (is_string($option_interface)) {
-						$option_interface = new $option_interface;
-					}
-					$options = $supportedOptions = $option_interface->getOptionsSupported();
-					$option = array_shift($options);
-					if (array_key_exists('order', $option)) {
-						$options = sortMultiArray($supportedOptions, 'order');
-						$options = array_keys($options);
-					} else {
-						$options = array_keys($supportedOptions);
-						natcasesort($options);
-					}
-					?>
-					<hr>
-					<p>
-					<?php echo ngettext('Option:','Options:',count($options)); ?>
-					<ul class="options">
-						<?php
-						foreach ($options as $option) {
-							$row = $supportedOptions[$option];
-							if (false!==$i=stripos($option,chr(0))) {
-								$option = substr($option, 0, $i);
-							}
-							$option = trim($option,'*');
-							if ($option && $row['type'] != OPTION_TYPE_NOTE) {
-								?>
-								<li><code><?php echo $option; ?></code></li>
-								<?php
-							}
-						}
-						?>
-					</ul>
-					</p>
-					<?php
-				}
-				if (!empty($buttonlist) || !empty($albumbuttons) || !empty($imagebuttons)) {
-					?>
-					<hr>
-					<?php
-				}
-				if (!empty($buttonlist)) {
-					$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
-					?>
-					<div class="box" id="overview-utility">
-						<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
-						<?php
-						$category = '';
-						foreach ($buttonlist as $button) {
-							$button_category = $button['category'];
-							$button_icon = $button['icon'];
-							if ($category != $button_category) {
-								if ($category) {
-									?>
-									</fieldset>
-									<?php
-								}
-								$category = $button_category;
-								?>
-								<fieldset class="doc_box_field"><legend><?php echo $category; ?></legend>
-								<?php
-							}
-							?>
-							<form class="overview_utility_buttons">
-								<div class="moc_button tip" title="<?php echo $button['title']; ?>" >
-									<?php
-									if(!empty($button_icon)) {
-										?>
-										<img src="<?php echo $button_icon; ?>" alt="<?php echo $button['alt']; ?>" />
-										<?php
-									}
-									echo html_encode($button['button_text']);
-									?>
-								</div>
-							</form>
-							<?php
-						}
-						if ($category) {
-							?>
-							</fieldset>
-							<?php
-						}
-						?>
-					</div>
-					<br clear="all">
-					<?php
-				}
-				if ($albumbuttons) {
-					$albumbuttons = preg_replace('|<hr(\s*)(/)>|', '', $albumbuttons);
-					?>
-					<h2 class="h2_bordered_edit"><?php echo gettext("Album Utilities"); ?></h2>
-					<div class="box-edit">
-						<?php echo $albumbuttons; ?>
-					</div>
-					<br clear="all">
-					<?php
-				}
-				if ($imagebuttons) {
-					$imagebuttons = preg_replace('|<hr(\s*)(/)>|', '', $imagebuttons);
-					?>
-					<h2 class="h2_bordered_edit"><?php echo gettext("Image Utilities"); ?></h2>
-					<div class="box-edit">
-						<?php echo $imagebuttons; ?>
-					</div>
-					<br clear="all">
-					<?php
-				}
-
-				?>
-			</div>
-		</div>
-		<?php
-		if ($thirdparty) {
-			if ($plugin_URL) {
-				printf(gettext('See also the <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
-			}
-		} else {
-			$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
-			printf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
-		}
-		if ($real_locale != 'en_US') {
-			setupCurrentLocale($real_locale);
-			?>
-			<br />
-			<a href="http://www.google.com/translate_c?langpair=en|<?php echo strtolower(substr($real_locale,0,2)); ?>&u=<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension?>"
-							title="<?php echo gettext('This document is generated from the plugin comment block and other items that are in English and outside of the Zenphoto translation system. This link will send the URL to the Google translation WEB to present the page in your language.'); ?>">
-				<?php echo gettext('Translate this page.'); ?>
-			</a>
-			<?php
-		}
-		?>
-	</div>
-</body>
