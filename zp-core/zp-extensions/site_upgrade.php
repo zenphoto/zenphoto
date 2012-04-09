@@ -56,7 +56,7 @@ if (defined('OFFSET_PATH')) {
 												'formname'=>'site_upgrade.php',
 												'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade.php',
 												'icon'=>'images/lock.png',
-												'title'=>$enable?gettext('Make site unavialable for viewing by redirecting to the "closed.html" page.'):gettext('The site is closed.'),
+												'title'=>$enable?gettext('Make site unavailable for viewing by redirecting to the "closed.html" page.'):gettext('The site is closed.'),
 												'alt'=>'',
 												'hidden'=>'',
 												'rights'=> ADMIN_RIGHTS
