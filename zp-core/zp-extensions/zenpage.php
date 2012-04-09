@@ -1,8 +1,12 @@
 <?php
 /**
- * Zenphoto is already the easiest gallery management system available but it does not have any normal page management capability. Therefore many people use Zenphoto in combination with another CMS.
+ * Zenphoto is already the easiest gallery management system available but it does not have any normal page management
+ * capability. Therefore many people use Zenphoto in combination with another CMS.
  *
- * With Zenpage you can now extend the easy to use interface to manage an entire site with a news section (blog) for announcements. Considering Zenphoto's image, video and audio management capabilites this is the ideal solution for personal portfolio sites of artists, graphic/web designers, illustrators, musicians, multimedia/video artists, photographers and many more.
+ * With Zenpage you can now extend the easy to use interface to manage an entire site with a news section (blog) for
+ * announcements. Considering Zenphoto's image, video and audio management capabilites this is the ideal solution for
+ * personal portfolio sites of artists, graphic/web designers, illustrators, musicians, multimedia/video artists,
+ * photographers and many more.
  *
  * You could even run an audio or podcast blog with Zenphoto and Zenpage.
  *
