@@ -105,26 +105,23 @@ $type = 'albums';
 				switch($type) {
 					case 'albums':
 						$url = $obj->getAlbumLink();
+						$category = gettext('Album');
 						break;
 					case 'images':
 						$url = $obj->getImageLink();
+						$category = gettext('Image');
 						break;
 					case 'news':
 						$url = getNewsURL($obj->getTitlelink());
-						if($_zp_current_zenpage_news->inNewsCategory('extensions')) {
-							$category = '<small> (Extensions)</small>';
-						} else if($_zp_current_zenpage_news->inNewsCategory('user-guide')) {
-							$category = '<small> (User guide)</small>';
-						} else if($_zp_current_zenpage_news->inNewsCategory('news')) {
-							$category = '<small> (News)</small>';
-						}
+							$category = gettext('News');
 						break;
 					case 'pages':
 						$url = getPageLinkURL($obj->getTitlelink());
+						$category = gettext('Page');
 						break;
 				}
 			?>
-			<a href="<?php echo html_encode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()).$category; ?></a>
+			<a href="<?php echo html_encode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()).'<small> '.$category.'</small>'; ?></a>
 			</h4></li>
 			<?php
 		}
