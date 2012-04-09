@@ -9,7 +9,7 @@
  * @subpackage usermanagement
  */
 
-$plugin_description = gettext("Provides a means users to login/out from your theme pages.");
+$plugin_description = gettext("Provides a means for users to login/out from your theme pages.");
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'user_logout_options';
