@@ -322,6 +322,7 @@ if (!defined('OFFSET_PATH')) {
 	}
 }
 function processCommentBlock($commentBlock)	{
+	global $plugin_author;
 	$markup = array(
 							'&lt;i&gt;'=>'<em>',
 							'&lt;/i&gt;'=>'</em>',

@@ -74,7 +74,7 @@ if (file_exists(CONFIGFILE)) {
 		$newconfig = false;
 	} else {
 		$newconfig = true;
-		@copy('zenphoto.cfg', CONFIGFILE);
+		@copy('zenphoto_cfg.txt', CONFIGFILE);
 	}
 }
 @copy('dataaccess',$serverpath.'/'.DATA_FOLDER.'/.htaccess');
