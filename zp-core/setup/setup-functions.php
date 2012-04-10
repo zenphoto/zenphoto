@@ -159,7 +159,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
 	if ($anyway==2) {
 		$stopped = '('.gettext('Autorun aborted)').') ';
 	} else {
-		$stopped = ' ';
+		$stopped = '';
 	}
 	setupLog($classes[$cls].$stopped.$dsp, $anyway);
 	return $check;
