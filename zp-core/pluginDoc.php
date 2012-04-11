@@ -357,8 +357,6 @@ function processCommentBlock($commentBlock)	{
 										'%FULLWEBPATH%'=>FULLWEBPATH,
 										'%WEBPATH%'=>WEBPATH
 										);
-	$regex_Url = "/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/";
-	$regex_img = '|&lt;img(\s*)src=(\s*)&quot;(.*)&quot;(\s*)/&gt;|';
 	$body = $doc = '';
 	$par = false;
 	$empty = false;
@@ -421,7 +419,7 @@ function processCommentBlock($commentBlock)	{
 								$text = substr($matches[1][$key], $l+1);
 								$link = substr($matches[1][$key],0,$l);
 							}
-							$tags['%'.$key.'$l'] = '<a href="'.html_encode($link).'">'.html_encode($text).'</a>';
+							$tags['%'.$key.'$l'] = '<a href="'.html_encode($link).'">'.strtr(html_encode($text),$markup).'</a>';
 						}
 					}
 				}
