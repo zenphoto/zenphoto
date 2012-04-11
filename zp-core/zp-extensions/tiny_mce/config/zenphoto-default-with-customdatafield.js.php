@@ -15,7 +15,7 @@
 		  editor_selector: /(texteditor|texteditor_albumcustomdata|texteditor_imagecustomdata)/,
 		  plugins : "fullscreen,inlinepopups",
 		  theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist",
-		  theme_advanced_buttons2 : "undo,redo,|,link,unlink,anchor,image,cleanup,help,code",
+		  theme_advanced_buttons2 : "undo,redo,|,link,unlink,anchor,image,cleanup,help,code,fullscreen",
 			theme_advanced_buttons3 : "",
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",
