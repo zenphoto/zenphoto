@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-09 11:50-0500\n"
-"PO-Revision-Date: 2012-04-09 11:53-0500\n"
+"POT-Creation-Date: 2012-04-10 20:10-0500\n"
+"PO-Revision-Date: 2012-04-10 20:32-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -2581,278 +2581,278 @@ msgstr "page %u"
 msgid "Previous page"
 msgstr "Page précédente"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2661
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2666
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2671
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2676
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2660
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2665
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2670
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2675
 msgid "Cannot create new theme."
 msgstr "Impossible de créer le nouveau thème."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2661
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2660
 #, php-format
 msgid "Directory \"%s\" already exists!"
 msgstr "Le dossier « %s » existe déjà !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2666
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2665
 #, php-format
 msgid "Cannot find theme directory \"%s\" to copy!"
 msgstr "Impossible de trouver le dossier « %s » à copier !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2671
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2670
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Le dossier <tt>/themes</tt> n’est pas accessible en écriture !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2676
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2675
 msgid "Could not create directory for the new theme"
 msgstr "Impossible de créer le dossier du nouveau thème"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2709
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2708
 #, php-format
 msgid "An error occurred while copying files. Please delete manually the new theme directory '%s' and retry or copy files manually."
 msgstr "Une erreur est survenue lors de la copie des fichiers. Veuillez supprimer manuellement le nouveau dossier « %s » et essayer de nouveau, ou copiez les fichiers manuellement."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2717
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2716
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Votre thème, basé sur le thème %s"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2719
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2718
 msgid "Your theme"
 msgstr "Votre thème"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2743
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2742
 msgid "New custom theme created successfully!"
 msgstr "Le nouveau thème personnalisé a été créé avec succès !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2745
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2744
 msgid "New custom theme created, but its description could not be updated"
 msgstr "Le nouveau thème personnalisé a été créé, mais sa description ne peut être mise à jour"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2892
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2891
 msgid "Rights:"
 msgstr "Droits :"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2950
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2949
 msgid "edit albums"
 msgstr "Modifier l’album"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2951
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2950
 msgid "view unpublished items"
 msgstr "Afficher les éléments non publiés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2952
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2951
 msgid "upload to album"
 msgstr "Charger dans l’album"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2954
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2953
 msgid "Primary album"
 msgstr "Album principal"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2956
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2955
 msgid "edit album"
 msgstr "Modifier l’album"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2957
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2956
 #: F:\sites\zenphoto-dev/zp-core/admin-globals.php:70
 msgid "upload"
 msgstr "chargement"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2958
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2957
 msgid "view unpublished"
 msgstr "Afficher les éléments non publiés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2977
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2976
 msgid "Managed albums:"
 msgstr "Albums gérés : "
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2990
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2989
 msgid "Managed news categories:"
 msgstr "Catégories d’actualités gérées :"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2992
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2991
 msgid "News categories"
 msgstr "Catégories d’actualités"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3005
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3004
 msgid "Managed pages:"
 msgstr "Pages gérées : "
 
 # General update at line 2669 : Select one or more %1$s for the %2$s to manage.
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3012
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3011
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Sélectionnez un ou plusieurs %1$s de %2$s à gérer."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3013
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3012
 #: F:\sites\zenphoto-dev/zp-core/admin-users.php:814
 #: F:\sites\zenphoto-dev/zp-core/admin-users.php:823
 #: F:\sites\zenphoto-dev/zp-core/admin-users.php:829
 msgid "user"
 msgstr "utilisateur"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3014
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3013
 #, php-format
 msgid "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All others may manage only those that are selected."
 msgstr "Les administrateurs avec les droits <em>Super administrateur</em> ou <em>Gérer tous les %1$s</em> peuvent gérer tous les %2$s. Les autres ne peuvent gérer que ceux qui sont sélectionnés."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3017
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3016
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Vous avez la possibilité de gérer ces %s en fonction des droits ci-dessus."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3438
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3437
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Afficher %u niveau d’albums"
 msgstr[1] "Afficher %u niveaux d’albums"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3441
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3440
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u image par page"
 msgstr[1] "%u images par page"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3515
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3527
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3539
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3514
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3526
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3538
 msgid "ok"
 msgstr "Ok"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3597
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3596
 msgid "Destination"
 msgstr "Destination"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3863
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3895
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3862
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3894
 #, php-format
 msgid "codeblock %u"
 msgstr "Bloc de code %u"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3864
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3899
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3863
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3898
 msgid "add codeblock"
 msgstr "ajouter un bloc de code"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3978
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3977
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
 msgstr "« %s » tentative d’hameçonnage bloquée."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4080
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4079
 msgid "Setup log"
 msgstr "Journal d’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4080
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4079
 msgid "Security log"
 msgstr "Journal de sécurité"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4080
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4079
 msgid "Debug log"
 msgstr "Journal de déboggage"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4185
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4184
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s n’a pu être effacé(e)."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4187
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4186
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s a bien été supprimé(e)."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4192
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4191
 msgid "You must supply a  password."
 msgstr "Vous devez fournir un mot de passe."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4194
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4193
 msgid "Your passwords did not match."
 msgstr "Vos mots de passe ne correspondent pas"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4201
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4200
 msgid "The image edit form submission has been truncated. Try displaying fewer images on a page."
 msgstr "Le formulaire d’édition des images a été tronqué. Veuillez afficher moins d’images par page."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4204
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4203
 msgid "Hit counters have been reset."
 msgstr "Les compteurs d’affichage ont été remis à zéro."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4207
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4206
 msgid "Cache has been purged."
 msgstr "Le cache a été vidé."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4210
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4209
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:141
 msgid "Your files have been uploaded."
 msgstr "Vos fichiers ont été chargés."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4213
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4212
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> existe déjà."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4228
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4227
 msgid "Selected items published"
 msgstr "Les éléments sélectionnés sont publiés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4231
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4230
 msgid "Selected items unpublished"
 msgstr "Les éléments sélectionnés ne sont plus publiés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4234
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4233
 msgid "Comments enabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont activés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4237
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4236
 msgid "Comments disabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont désactivés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4240
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4239
 msgid "Hitcounter for selected items"
 msgstr "Compteur d’affichage pour les éléments sélectionnés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4243
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4242
 msgid "Tags added for selected items"
 msgstr "Les tags ont été ajoutés aux éléments sélectionnés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4246
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4245
 msgid "Tags cleared for selected items"
 msgstr "Les tags ont été effacés des éléments sélectionnés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4249
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4248
 msgid "Tags added for images of selected items"
 msgstr "Les tags ont été ajoutés aux images des éléments sélectionnés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4252
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4251
 msgid "Tags cleared for images of selected items"
 msgstr "Les tags ont été effacés des images des éléments sélectionnés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4262
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4261
 msgid "Image already exists."
 msgstr "L’image existe déjà."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4265
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4264
 msgid "Album already exists."
 msgstr "L’album existe déjà."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4268
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4267
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr "Impossible de déplacer, de copier ou de renommer vers un sous-album de cet album."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4271
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4270
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "Impossible de déplacer, de copier ou de renommer vers un album dynamique."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4274
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4273
 msgid "Cannot rename an image to a different suffix"
 msgstr "Impossible de changer le suffixe de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4277
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4276
 msgid "Album delete failed"
 msgstr "L’album n’a pu être effacé"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4280
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4279
 msgid "There was an error with a move, copy, or rename operation."
 msgstr "Une erreur s’est produite lors d’une opération de déplacement, de copie ou de renommage."
 
@@ -6791,23 +6791,13 @@ msgstr "Code du pays/de la localisation primaire"
 msgid "Country/Primary Location Name"
 msgstr "Nom du pays/de la localisation primaire"
 
-# Check if string should be: Lieu instead of Location.
-# Depending on how those strings are displayed in the admin panels, it might be better to have :
-# Localisation du contenu : code
-# Localisation du contenu : nom
 #: F:\sites\zenphoto-dev/zp-core/functions.php:2312
-#, fuzzy
 msgid "Content Location Code"
-msgstr "Code de la localisation du contenu"
+msgstr "Code du lieu du contenu"
 
-# Check if string should be: Lieu instead of Location.
-# Depending on how those strings are displayed in the admin panels, it might be better to have :
-# Localisation du contenu : code
-# Localisation du contenu : nom
 #: F:\sites\zenphoto-dev/zp-core/functions.php:2313
-#, fuzzy
 msgid "Content Location Name"
-msgstr "Nom de la localisation du contenu"
+msgstr "Lieu du contenu"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:2314
 msgid "Latitude"
@@ -7710,54 +7700,54 @@ msgstr "Vous devez accepter cette licence pour continuer d’utiliser Zenphoto."
 msgid "I agree to these terms and conditions"
 msgstr "J’accepte les conditions d’utilisation"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:204
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:91
 #, php-format
 msgid "%1$s %2$s: %3$s"
 msgstr "%1$s %2$s : %3$s"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:260
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:147
 msgid "Plugin usage information"
 msgstr "Information sur l’utilisation de l’extension"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:269
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:156
 #, php-format
 msgid "Version: %s"
 msgstr "Version : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:274
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:161
 #, php-format
 msgid "Author: %s"
 msgstr "Auteur : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:317
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:204
 msgid "Option:"
 msgid_plural "Options:"
 msgstr[0] "Option :"
 msgstr[1] "Options :"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:391
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:278
 msgid "Album Utilities"
 msgstr "Outils des albums"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:401
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:288
 msgid "Image Utilities"
 msgstr "Outils des images"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:415
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:302
 #, php-format
 msgid "See also the <a href=\"%1$s\">%2$s</a>"
 msgstr "Voir aussi l’extension <a href=\"%1$s\">%2$s</a>"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:419
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:306
 #, php-format
 msgid "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
 msgstr "Veuillez consulter la documentation en ligne de Zenphoto : <a href=\"%1$s\">%2$s</a>"
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:426
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:313
 msgid "This document is generated from the plugin comment block and other items that are in English and outside of the Zenphoto translation system. This link will send the URL to the Google translation WEB to present the page in your language."
 msgstr "Ce document a été généré par le bloc de commentaires de l’extension, et les éléments affichés en anglais ne sont pas intégrés à la traduction Zenphoto. Ce lien permet de traduire cette page avec la traduction automatique Google."
 
-#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:427
+#: F:\sites\zenphoto-dev/zp-core/pluginDoc.php:314
 msgid "Translate this page."
 msgstr "Traduire cette page"
 
@@ -15606,311 +15596,311 @@ msgstr "Exporter les informations de l’album dans un fichier associé XMP."
 msgid "Export Metadata"
 msgstr "Exporter les métadonnées"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:10
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:43
 msgid "A CMS plugin that adds the capability to run an entire gallery focused website with zenphoto."
 msgstr "Une extension CMS qui ajoute la possibilité de gérer un site complet à l’intérieur d’un site avec Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:11
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:44
 msgid "<strong>Note:</strong> This feature must be integrated into your theme. It is not supported by either the <em>default</em> or the <em>stopdesign</em> theme."
 msgstr "<strong>Note.</strong> Cette fonctionnalité doit être intégrée à votre thème. Elle n’est pas supportée par les thèmes <em>default</em> et <em>stopdesign</em>."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:34
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:72
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:67
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:105
 msgid "Read more"
 msgstr "Lire la suite"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:40
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:73
 msgid "Visit gallery page"
 msgstr "Visiter la galerie"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:53
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:86
 #, php-format
 msgid "%1$u new item in <em>%2$s</em>: %3$s"
 msgstr "%1$u nouvel élément dans <em>%2$s</em> : %3$s"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:55
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:88
 #, php-format
 msgid "%1$u new items in <em>%2$s</em>: %3$s"
 msgstr "%1$u nouveaux éléments dans <em>%2$s</em> : %3$s"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:65
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:98
 msgid "Articles per page (theme)"
 msgstr "Articles par page (thème)"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:67
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:100
 msgid "How many news articles you want to show per page on the news or news category pages."
 msgstr "Le nombre d’articles à afficher par page dans les pages d’actualités ou de catégories d’actualités."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:68
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:101
 msgid "News article text length"
 msgstr "Longueur du texte de l’article"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:69
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:102
 msgid "The length of news article excerpts in news or news category pages. Leave empty for full text."
 msgstr "La longueur de l’extrait d’un article d’actualité sur les pages d’actualités ou de catégories d’actualités. Laissez-le vide pour afficher le texte en entier."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:70
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:103
 msgid "News article text shorten indicator"
 msgstr "Indicateur de tronquage du texte d’un article"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:71
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:104
 msgid "Something that indicates that the article text is shortened, ' (...)' by default."
 msgstr "Symbole pour indiquer que le texte de l’article a été tronqué, « (...) » par défaut."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:73
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:106
 msgid "The text for the link to the full article."
 msgstr "Le texte pour le lien vers l’article intégral."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:74
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:107
 msgid "RSS feed item number"
 msgstr "Nombre d’éléments dans le flux RSS"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:75
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:108
 msgid "The number of news articles you want to appear in your site's News RSS feed."
 msgstr "Le nombre d’articles que vous souhaitez faire apparaître dans le flux RSS de votre site."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:76
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:109
 msgid "RSS feed text length"
 msgstr "Longueur du texte du flux RSS"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:77
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:110
 msgid "The text length of the Zenpage RSS feed items. No value for full length."
 msgstr "La longueur de texte des éléments dans le flux RSS de Zenpage. Laissez-le vide pour ne pas limiter la longueur."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:78
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:111
 msgid "CombiNews"
 msgstr "CombiNews"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:79
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:112
 msgid "Set to enable the CombiNews feature to show news articles and latest gallery items together on the news section's overview page(s)."
 msgstr "Sélectionner pour activer la fonctionnalité CombiNews pour monter les nouveaux articles et les derniers ajout à la gallerie"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:79
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:112
 msgid "<strong>Note:</strong> Images/albums and news articles are still separate, your Zenphoto gallery is not touched in any way!"
 msgstr "<strong>NOTE :</strong> Les images et les albums d’une part, et les articles d’autre part restent des entitées séparées. Votre galerie n’est pas afectée pour autant !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:80
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:113
 msgid "CombiNews: Gallery page link"
 msgstr "CombiNews : lien de la page de la galerie"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:81
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:114
 msgid "The text for the 'read more'/'view more' link to the gallery page for images/movies/audio."
 msgstr "Le texte pour le lien « lire la suite » / « en voir plus » vers la galerie pour les images, les films et les sons."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:82
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:115
 msgid "CombiNews: Mode"
 msgstr "CombiNews: Mode"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:84
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:117
 msgid "latest images: sized image"
 msgstr "dernières images : image redimensionnée"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:85
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:118
 msgid "latest images: sized image maxspace"
 msgstr "dernières images : image maximisée"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:86
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:119
 msgid "latest images: thumbnail"
 msgstr "dernières images : vignette"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:87
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:120
 msgid "latest images: thumbnail-customcrop"
 msgstr "dernières images : vignette avec rognage"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:88
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:121
 msgid "latest images: full image"
 msgstr "images récentes : image pleine grandeur"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:89
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:122
 msgid "latest albums: sized image"
 msgstr "derniers albums : image redimensionnée"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:90
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:123
 msgid "latest albums: sized image maxspace"
 msgstr "derniers albums : image maximisée"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:91
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:124
 msgid "latest albums: thumbnail"
 msgstr "derniers albums : vignette"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:92
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:125
 msgid "latest albums: thumbnail-customcrop"
 msgstr "derniers albums : vignette avec rognage"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:93
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:126
 msgid "latest albums: full image"
 msgstr "albums récents : image pleine grandeur"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:94
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:127
 msgid "latest images by album: thumbnail"
 msgstr "dernières images par album : vignette"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:95
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:128
 msgid "latest images by album: thumbnail-customcrop"
 msgstr "dernières images par album : vignette avec rognage"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:96
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:129
 msgid "latest images by album: sized image"
 msgstr "dernières images par album : image redimensionnée"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:97
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:130
 msgid "latest images by album: sized image maxspace"
 msgstr "dernières images par album : image maximisée"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:98
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:131
 msgid "latest images by album: full image"
 msgstr "images récentes par album : image pleine grandeur"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:99
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:132
 msgid "What you want to show within the CombiNews section.<br /><ul><li>Latest images: Entries for all images ever added</li><li>Latest albums: Entries for all albums ever created</li><li>Latest images by album: Entries for all images but grouped by images that have been added within a day to each album (Scheme: 'x new images in album y on date z')</li></ul> <em>maxspace</em> means that an uncropped image fitting max. width x max. height as set on the thumbnail width and height options is used (not for multimedia items!)."
 msgstr "Ce que vous voulez afficher dans la zone CombiNews.<br /><ul><li>Dernières images : parmi toutes les images déjà présentes</li><li>Derniers albums : parmi tous les albums déjà créés</li><li>Dernières images par album : parmi toutes les images mais groupés par jour pour chaque album (Schéma : « x nouvelles images dans l’album y en date du z »)</li></ul><em>maxspace</em> signifie qu’une image non rognée occupera tout l’espace disponible (selon les options de taille de vignette (pas pour les éléments multimédias !)."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:100
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:133
 msgid "CombiNews: Sized image size"
 msgstr "CombiNews: Taille de l’image redimensionnée"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:101
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:134
 msgid "The size of the sized image shown the CombiNews section <em>(only in latest images-sizedimage or latest albums-sizedimage mode)</em>."
 msgstr "La taille de l’image redimensionnée dans la section CombiNews <em> (seulement dans les modes dernières images ou albums)</em>."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:102
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:135
 msgid "CombiNews: Sort order"
 msgstr "CombiNews : ordre de tri"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:103
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:136
 msgid "id"
 msgstr "ID"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:103
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:136
 msgid "publishdate"
 msgstr "Date de publication"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:104
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:137
 msgid "The sort order for your gallery items within the CombiNews display except for <em>latest images by album</em> which is by date or mtime only. <ul><li>'date' (date order)</li><li>'id' (added to db order)</li><li>'mtime' (upload order)</li><li>'publishdate' (manual publish date order - you might get really funny results if this is not set!)</li></ul>"
 msgstr "L’ordre de tri des éléments de votre galerie qui s’affichent dans CombiNews, sauf pour <em>images récentes par album</em> qui sont triées par date ou date de modification seulement.<ul><li>« date » : par date</li><li>« id » : par ordre d’ajout à la base de données</li><li>« mtime » : par ordre de chargement sur le serveur</li><li>« date de publication » : par date de publication définie manuellement )(vous aurez des résultats surprenants si cette date n’est pas définie)</li></ul>"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:104
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:137
 msgid "<strong>Note: </strong> If you experience unexpected results, this refers only to the images that are fetched from the database. Even if they are fetched by id they will be sorted by date with the articles afterwards since articles only have a date."
 msgstr "NOTE : si vous obtenez des résultats inattendus, cela correspond seulement aux images récupérées depuis la base de données. Même si le tri se fait par id ou mtime, si vous recherchez également des articles, tous les éléments seront triés par date (les articles n’ont qu’une date)."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:105
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:138
 msgid "CombiNews: Gallery link"
 msgstr "CombiNews: Lien de la galerie"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:107
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:140
 msgid "Choose if you want to link from the image entry to its image page directly or to the album page (if CombiNews mode is set for albums the link is automatically only linking to albums). This affects all links of the entry (<em>title</em>, <em>image</em> and the <em>visit gallery link</em>"
 msgstr "Choisir cette option si vous voulez établir un lien depuis une image vers la page de l’image ou vers la page de l’album associé. (Si le mode CombiNews est activé pour les albums, le lien se fait automatiquement vers ceux-ci). Cela affecte tous les liens associés (<em>titre</em>, <em>image</em> et <em>visiter la galerie</em>.)"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:108
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:141
 msgid "CombiNews: Thumbnail crop width"
 msgstr "CombiNews : largeur de rognage des vignettes"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:109
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:111
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:117
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:119
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:142
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:144
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:150
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:152
 msgid "For <em>thumbnail custom crop</em> only. Leave empty if you don't want to use it."
 msgstr "Seulement pour le <em>rognage personnalisé des vignettes</em>. Laisser vide si vous ne comptez pas l’utiliser."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:110
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:143
 msgid "CombiNews: Thumbnail crop height"
 msgstr "CombiNews : hauteur de rognage des vignettes"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:112
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:145
 msgid "CombiNews: Thumbnail width"
 msgstr "CombiNews : largeur des vignettes"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:113
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:146
 msgid "For <em>thumbnail custom crop</em> and <em>sized image maxspace</em> variants only. Leave empty if you don't want to use it. For <em>maxspace</em> this is the max width of the uncropped sized image."
 msgstr "Pour <em>le rognage personnalisé des vignettes</em> et <em>la taille maximale de l’image redimensionnée</em> uniquement. Laisser vide si vous n’utilisez pas ces options. <em>La taille maximale</em> est la largeur maximale de l’image redimensionnée mais non rognée."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:114
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:147
 msgid "CombiNews: Thumbnail height"
 msgstr "CombiNews : hauteur des vignettes"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:115
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:148
 msgid "For <em>thumbnail custom crop</em> and <em>sized image maxspace</em> variants only. Leave empty if you don't want to use it. For <em>maxspace</em> this is the max height of the uncropped sized image."
 msgstr "Pour <em>le rognage personnalisé des vignettes</em> et <em>la taille maximale de l’image redimensionnée</em> uniquement. Laisser vide si vous n’utilisez pas ces options. <em>La taille maximale</em> est la hauteur maximale de l’image redimensionnée mais non rognée."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:116
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:149
 msgid "CombiNews: Thumbnail crop x axis"
 msgstr "CombiNews : axe X de rognage des vignettes"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:118
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:151
 msgid "CombiNews: Thumbnail crop y axis"
 msgstr "CombiNews : axe Y de rognage des vignettes"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:120
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:153
 msgid "CombiNews: Show image description"
 msgstr "CombiNews : afficher la description de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:121
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:154
 msgid "Set to show the image description with every item if using the CombiNews mode <em>latest images by album</em> only. Printed as a paragraph."
 msgstr "Activer pour afficher la description de l’image sur chaque élément en mode CombiNews avec l’option <em>dernières images par album</em>. Sera affichée comme un paragraphe."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:122
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:155
 msgid "CombiNews: Show image title"
 msgstr "CombiNews: Afficher le titre de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:123
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:156
 msgid "Set to show the image title with every item if using the CombiNews mode <em>latest images by album</em> only. Printed as h4-headline."
 msgstr "À activer pour afficher le titre d’image sur tous les éléments en mode CombiNews avec l’option <em>dernières images par album</em>. Sera affiché comme un titre h4."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:124
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:157
 msgid "CombiNews: Custom title (singular)"
 msgstr "CombiNews : titre personnalisé (singulier)"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:125
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:127
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:158
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:160
 #, php-format
 msgid "Custom title for the article in sprintf() syntax. %1$u = number of new items, %2$s = title of the album they are in, %3$s = titles of the new items. Never leave any of these three out! (<em>latest images by album</em> option only)."
 msgstr "Titre personnalisé pour l’article avec la syntaxe sprintf(). %1$u = nombre de nouveaux éléments, %2$s = titre de l’album où ils se situent, %3$s = titres des nouveaux éléments. N’oubliez jamais un de ces 3 éléments ! (valable pour l’option <em>dernières images par album</em>)."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:126
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:159
 msgid "CombiNews: Custom title (plural)"
 msgstr "CombiNews : titre personnalisé (pluriel)"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:128
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:161
 msgid "CombiNews: Custom title - Number of image titles"
 msgstr "CombiNews : titre personnalisé – nombre de titres d’image"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:129
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:162
 msgid "How many images titles you want to show with the custom title (<em>latest images by album</em> option only)."
 msgstr "Le nombre de titres d’images que vous souhaitez afficher avec un titre personnalisé (valable pour l’option <em>dernières images par album</em>)."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:144
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:177
 msgid "* These options may be set via the <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin options."
 msgstr "* Ces paramètres sont configurés avec ceux de l’extension <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a>."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:231
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:264
 msgid "Edit Page"
 msgstr "Modifier la page"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:236
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:269
 msgid "Delete page"
 msgstr "Supprimer la page"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:236
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:269
 msgid "Delete Page"
 msgstr "Supprimer la page"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:240
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:273
 msgid "Add Page"
 msgstr "Ajouter une page"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:249
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:282
 msgid "Edit Article"
 msgstr "Modifier l’article"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:255
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:288
 msgid "Delete article"
 msgstr "Supprimer l’article"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:255
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:288
 msgid "Delete Article"
 msgstr "Supprimer l’article"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:259
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:292
 msgid "Add Article"
 msgstr "Ajouter un article"
 
