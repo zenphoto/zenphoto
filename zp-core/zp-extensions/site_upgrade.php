@@ -21,7 +21,7 @@ if (defined('OFFSET_PATH')) {
 
 	zp_register_filter('admin_utilities_buttons', 'site_upgrade_button');
 
-	if (!file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/close.html')) {
+	if (!file_exists(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/closed.html')) {
 		mkdir_recursive(SERVERPATH.'/'.USER_PLUGIN_FOLDER.'/site_upgrade/', FOLDER_MOD);
 		$html = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/site_upgrade/closed.html');
 		$html = sprintf($html, sprintf(gettext('%s upgrade'),$_zp_gallery->getTitle()),sprintf(gettext('<strong><em>%s</em></strong> is undergoing an upgrade'),$_zp_gallery->getTitle()), gettext('Please return later'));

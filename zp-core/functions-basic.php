@@ -250,7 +250,7 @@ function html_encode($this_string) {
 function html_encodeTagged($str) {
 	preg_match_all("/(&[a-z#]+;)|<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
 	$tags = array();
-	foreach ($matches[0] as $key=>$tag) {
+	foreach (array_unique($matches[0]) as $key=>$tag) {
 		$tags['%'.$key.'$s'] = $tag;
 		$str = str_replace($tag, '%'.$key.'$s', $str);
 	}
@@ -1574,7 +1574,7 @@ function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
 	}
 
 	$errorType = array (E_ERROR           	=> gettext('ERROR'),
- 											E_WARNING      			=> gettext('WARNING'),
+											E_WARNING      			=> gettext('WARNING'),
 											E_NOTICE        		=> gettext('NOTICE'),
 											E_USER_ERROR  			=> gettext('USER ERROR'),
 											E_USER_WARNING			=> gettext('USER WARNING'),
