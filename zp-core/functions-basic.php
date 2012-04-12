@@ -248,15 +248,13 @@ function html_encode($this_string) {
  * @return string
  */
 function html_encodeTagged($str) {
-	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
-	$output = '';
-	foreach ($matches[0] as $tag) {
-		$i = strpos($str, $tag);
-		$output .= html_encode(substr($str, 0, $i)).$tag;
-		$str = substr($str, $i+strlen($tag));
+	preg_match_all("/(&[a-z#]+;)|<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
+	$tags = array();
+	foreach ($matches[0] as $key=>$tag) {
+		$tags['%'.$key.'$s'] = $tag;
+		$str = str_replace($tag, '%'.$key.'$s', $str);
 	}
-	$output .= html_encode($str);
-	return $output;
+	return strtr(html_encode($str),$tags);
 }
 
 /**
