@@ -12,102 +12,105 @@ require_once(SERVERPATH.'/'.ZENFOLDER.'/reconfigure.php');
 admin_securityChecks(NULL, currentRelativeURL());
 XSRFdefender('cloneZenphoto');
 
+$msg = array();
 $folder = sanitize($_GET['clonePath']);
 $path = str_replace(WEBPATH,'/',SERVERPATH);
 $newinstall = trim(str_replace($path, '', $folder),'/').'/';
 
-$msg = array();
-$success = true;
-
-$targets = array(ZENFOLDER=>'dir', USER_PLUGIN_FOLDER=>'dir', 'index.php'=>'file');
-$zplist = $_zp_gallery->getThemes();
-foreach ($zplist as $theme=>$data) {
-	$targets[THEMEFOLDER.'/'.$theme] = 'dir';
-}
-foreach (array(internalToFilesystem('charset_tést'),internalToFilesystem('charset.tést')) as $charset) {
-	if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.$charset)) {
-		$targets[DATA_FOLDER.'/'.$charset] = 'file';
+if (trim($folder,'/') == SERVERPATH) {
+	$msg[] = gettext('You attempted to clone to the master install.');
+	$success = false;
+} else {
+	$success = true;
+	$targets = array(ZENFOLDER=>'dir', USER_PLUGIN_FOLDER=>'dir', 'index.php'=>'file');
+	$zplist = $_zp_gallery->getThemes();
+	foreach ($zplist as $theme=>$data) {
+		$targets[THEMEFOLDER.'/'.$theme] = 'dir';
 	}
-}
+	foreach (array(internalToFilesystem('charset_tést'),internalToFilesystem('charset.tést')) as $charset) {
+		if (file_exists(SERVERPATH.'/'.DATA_FOLDER.'/'.$charset)) {
+			$targets[DATA_FOLDER.'/'.$charset] = 'file';
+		}
+	}
 
-if (!is_dir($folder.DATA_FOLDER)) {
-	@mkdir($folder.DATA_FOLDER);
-}
-if (!is_dir($folder.THEMEFOLDER)) {
-	@mkdir($folder.THEMEFOLDER);
-}
+	if (!is_dir($folder.DATA_FOLDER)) {
+		@mkdir($folder.DATA_FOLDER);
+	}
+	if (!is_dir($folder.THEMEFOLDER)) {
+		@mkdir($folder.THEMEFOLDER);
+	}
 
-foreach ($targets as $target=>$type) {
-	if (file_exists($folder.$target)) {
-		$link = str_replace('\\', '/', @readlink($folder.$target));
-		switch ($type) {
-			case 'dir':
-				if (empty($link) || $link == $folder.$target) {
-					// an actual folder
-					if (zpFunctions::removeDir($folder.$target)) {
-						if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
-							$msg[] = sprintf(gettext('The existing folder <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+	foreach ($targets as $target=>$type) {
+		if (file_exists($folder.$target)) {
+			$link = str_replace('\\', '/', @readlink($folder.$target));
+			switch ($type) {
+				case 'dir':
+					if (empty($link) || $link == $folder.$target) {
+						// an actual folder
+						if (zpFunctions::removeDir($folder.$target)) {
+							if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+								$msg[] = sprintf(gettext('The existing folder <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+							} else {
+								$msg[] = sprintf(gettext('The existing folder <code>%1$s</code> was removed but Link creation failed.'),$target)."<br />\n";
+								$success = false;
+							}
 						} else {
-							$msg[] = sprintf(gettext('The existing folder <code>%1$s</code> was removed but Link creation failed.'),$target)."<br />\n";
+							$msg[] = sprintf(gettext('The existing folder <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
 							$success = false;
 						}
 					} else {
-						$msg[] = sprintf(gettext('The existing folder <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
-						$success = false;
+						// is a symlink
+						@chmod($path.$file, 0777);
+						$success = @rmdir($folder.$target);
+						if (!$success) {	// some systems treat it as a dir, others as a file!
+							$success = @unlink($folder.$target);
+						}
+						if ($success) {
+							if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+								$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+							} else {
+								$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was removed but Link creation failed.'),$target)."<br />\n";
+								$success = false;
+							}
+						} else {
+							$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
+							$success = false;
+						}
 					}
-				} else {
-					// is a symlink
+					break;
+				case 'file':
 					@chmod($path.$file, 0777);
-					$success = @rmdir($folder.$target);
-					if (!$success) {	// some systems treat it as a dir, others as a file!
-						$success = @unlink($folder.$target);
-					}
-					if ($success) {
+					if (@unlink($folder.$target)) {
 						if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
-							$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+							if ($folder.$target == $link) {
+								$msg[] = sprintf(gettext('The existing file <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+							} else {
+								$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+							}
 						} else {
-							$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was removed but Link creation failed.'),$target)."<br />\n";
+							$msg[] = sprintf(gettext('The existing file <code>%s</code> was removed but Link creation failed.'),$target)."<br />\n";
 							$success = false;
 						}
 					} else {
-						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
-						$success = false;
-					}
-				}
-				break;
-			case 'file':
-				@chmod($path.$file, 0777);
-				if (@unlink($folder.$target)) {
-					if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
 						if ($folder.$target == $link) {
-							$msg[] = sprintf(gettext('The existing file <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+							$msg[] = sprintf(gettext('The existing file <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
 						} else {
-							$msg[] = sprintf(gettext('The existing symlink <code>%s</code> was replaced.'), $folder.filesystemToInternal($target))."<br />\n";
+							$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
 						}
-					} else {
-						$msg[] = sprintf(gettext('The existing file <code>%s</code> was removed but Link creation failed.'),$target)."<br />\n";
 						$success = false;
 					}
-				} else {
-					if ($folder.$target == $link) {
-						$msg[] = sprintf(gettext('The existing file <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
-					} else {
-						$msg[] = sprintf(gettext('The existing symlink <code>%s</code> could not be removed.'), $folder.filesystemToInternal($target))."<br />\n";
-					}
-					$success = false;
-				}
-				break;
-		}
-	} else {
-		if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
-			$msg[] = sprintf(gettext('<code>%s</code> Link created.'),$target)."<br />\n";
+					break;
+			}
 		} else {
-			$msg[] = sprintf(gettext('<code>%s</code> Link creation failed.'),$target)."<br />\n";
-			$success = false;
+			if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
+				$msg[] = sprintf(gettext('<code>%s</code> Link created.'),$target)."<br />\n";
+			} else {
+				$msg[] = sprintf(gettext('<code>%s</code> Link creation failed.'),$target)."<br />\n";
+				$success = false;
+			}
 		}
 	}
 }
-
 if ($success) {
 	array_unshift($msg, '<h2>'.sprintf(gettext('Successful clone to %s'),$folder).'</h2>'."\n");
 	list($diff, $needs) = checkSignature();
