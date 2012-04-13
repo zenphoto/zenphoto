@@ -101,6 +101,7 @@ printAdminHeader('overview','clone');
 	?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
+			var prime = '<?php echo SERVERPATH; ?>/';
 			function buttonAction(data) {
 				$('#newDir').val(data);
 				$('#changeDir').submit();
@@ -109,6 +110,12 @@ printAdminHeader('overview','clone');
 				$('#downbutton').attr('title','<?php echo $downtitle; ?>/'+$('#cloneFolder').val().replace(/\/$/,'').replace( /.*\//, '' ));
 				$('#cloneButton').attr('title',sprintf('Clone installation to %s',$('#downbutton').attr('title')));
 				$('#clonePath').val($('#cloneFolder').val());
+				if (prime == $('#clonePath').val()) {
+					$('#cloneButton').attr('disabled','disabled');
+				} else {
+					$('#cloneButton').removeAttr('disabled');
+				}
+
 			}
 			window.onload = function() {
 				folderChange();
@@ -152,7 +159,7 @@ printAdminHeader('overview','clone');
 			<input type="hidden" name="clonePath" id="clonePath" value="" />
 			<?php XSRFToken('cloneZenphoto'); ?>
 			<div class="buttons pad_button" id="cloneZP">
-			<button id="cloneButton" class="tooltip" type="submit" title="">
+			<button id="cloneButton" class="tooltip" type="submit" title=""<?php if (empty($folderlist)) echo ' disabled="disabled"'; ?> >
 				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/folder.png" alt="" /> <?php echo gettext("Clone Zenphoto"); ?>
 			</button>
 			</div>
