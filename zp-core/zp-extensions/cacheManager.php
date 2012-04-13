@@ -72,6 +72,8 @@ zp_register_filter('show_change', 'cacheManager::published');
 class cacheManager {
 
 	function __construct() {
+		self::deleteThemeCacheSizes('admin_thumbs');
+		self::addThemeCacheSize('admin_thumbs', 40, NULL, NULL, 40, 40, NULL, NULL, true, NULL, NULL);
 	}
 
 	/**
@@ -106,7 +108,7 @@ class cacheManager {
 																										'order'=> 0,
 																										'checkboxes' => $list,
 																										'desc'=>gettext('If a <em>type</em> is checked, the HTML and RSS caches for the item will be purged when an the published state of an item of <em>type</em> changes.').
-																										'<div class="notebox">'.gettext('<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if pages contain dependencies on the item.').'</div>');
+																										'<div class="notebox">'.gettext('<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if a gallery page contains dependencies on the item.').'</div>');
 			return $options;
 		} else {
 			return array(''=>array('key'=>'cropImage_note', 'type'=>OPTION_TYPE_NOTE, 'desc'=>'<span class="notebox">'.gettext('This plugin must be enabled to process options.').'</span>'));
@@ -127,7 +129,7 @@ class cacheManager {
 		while ($row = db_fetch_assoc($result)) {
 			$custom[] = unserialize($row['data']);
 		}
-		$custom = sortMultiArray($custom, array('theme','thumb','size'));
+		$custom = sortMultiArray($custom, array('theme','thumb','image_size','image_width','image_height'));
 		$custom[] = array();
 		$c = 0;
 		foreach($custom as $key=>$cache) {

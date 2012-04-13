@@ -120,7 +120,7 @@ while ($row = db_fetch_assoc($result)) {
 	$row = unserialize($row['data']);
 		$custom[] = $row;
 }
-$custom = sortMultiArray($custom, array('theme','thumb'));
+$custom = sortMultiArray($custom, array('theme','thumb','image_size','image_width','image_height'));
 if (isset($_GET['select'])) {
 	$enabled = $_POST['enable'];
 } else {

@@ -104,6 +104,11 @@ class flowplayer3_options {
 		setOptionDefault('flow_player3_playlistnumbered','1');
 		setOptionDefault('flow_player3_loadplaylist', '');
 		setOptionDefault('flow_player3_playlistplaytime', 0);
+
+		if (class_exists('cacheManager')) {
+			cacheManager::deleteThemeCacheSizes('flow_player3');
+			cacheManager::addThemeCacheSize('flow_player3', NULL, getOption('flow_player3_width'), getOption('flow_player3_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+		}
 	}
 
 
@@ -263,7 +268,7 @@ class Flowplayer3 {
 			$sharingenabled = '
 						sharing: {
 							url: "'.$sharing.'"
-						},						
+						},
 			';
 		}
 		chdir($curdir);
