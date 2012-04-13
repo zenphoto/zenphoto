@@ -438,22 +438,6 @@ function checkAlbumPassword($album, &$hint=NULL) {
 }
 
 /**
- * Processes a file for createAlbumZip
- *
- * @param string $dest the source [sic] to process
- */
-function printLargeFileContents($dest) {
-	$total = filesize($dest);
-	$blocksize = (2 << 20); //2M chunks
-	$sent = 0;
-	$handle	= fopen($dest, "r");
-	while ($sent < $total) {
-		echo fread($handle, $blocksize);
-		$sent += $blocksize;
-	}
-}
-
-/**
  * Returns a consolidated list of plugins
  * The array structure is key=plugin name, value=plugin path
  *

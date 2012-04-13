@@ -30,18 +30,18 @@
  */
 $plugin_is_filter = 20|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext("Plugin to generate file download lists.");
-$plugin_author = "Malte Müller (acrylian)";
+$plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
-$plugin_URL = "";
 $option_interface = "downloadList";
-zp_register_filter('admin_utilities_buttons', 'downloadstatistics_button');
-zp_register_filter('custom_option_save', 'downloadList::custom_options_save');
+
+zp_register_filter('admin_utilities_buttons', 'DownloadList::button');
+zp_register_filter('custom_option_save', 'DownloadList::custom_options_save');
 
 /**
  * Plugin option handling class
  *
  */
-class downloadList {
+class DownloadList {
 
 	function __construct() {
 		setOptionDefault('downloadList_directory', UPLOAD_FOLDER);
@@ -154,6 +154,196 @@ class downloadList {
 		}
 	}
 
+	/**
+	 * Updates the download count entry when processing a download. For internal use.
+	 * @param string $path Path of the download item
+	 * @param bool $nocountupdate false if the downloadcount should not be increased and only the entry be added to the db if it does not already exist
+	 */
+	static function updateListItemCount($path) {
+		$path = filesystemToInternal($path);
+		$checkitem = query_single_row("SELECT `data` FROM ".prefix('plugin_storage')." WHERE `aux` = ".db_quote($path)." AND `type` = 'downloadList'");
+		if($checkitem) {
+			$downloadcount = $checkitem['data']+1;
+			query("UPDATE ".prefix('plugin_storage')." SET `data` = ".$downloadcount.", `type` = 'downloadList' WHERE `aux` = ".db_quote($path)." AND `type` = 'downloadList'");
+		}
+	}
+
+	/**
+	 * Adds a new download item to the database. For internal use.
+	 * @param string $path Path of the download item
+	 */
+	static function addListItem($path) {
+		$path = filesystemToInternal($path);
+		$checkitem = query_single_row("SELECT `data` FROM ".prefix('plugin_storage')." WHERE `aux` = ".db_quote($path)." AND `type` = 'downloadList'");
+		if(!$checkitem) {
+			query("INSERT INTO ".prefix('plugin_storage')." (`type`,`aux`,`data`) VALUES ('downloadList',".db_quote($path).",'0')");
+		}
+	}
+
+	/**Gets the download items from all download items from the database. For internal use in the downloadList functions.
+	 * @return array
+	 */
+	static function getListItemsFromDB() {
+		$downloaditems = query_full_array("SELECT id, `aux`, `data` FROM ".prefix('plugin_storage')." WHERE `type` = 'downloadList'");
+		return $downloaditems;
+	}
+
+
+	/**Gets the download items from all download items from the database. For internal use in the downloadlink functions.
+	 * @return array
+	 */
+	static function getListItemFromDB($file) {
+		$downloaditem = query_single_row($sql = "SELECT id, `aux`, `data` FROM ".prefix('plugin_storage')." WHERE `type` = 'downloadList' AND `aux` = ".db_quote($file));
+
+		return $downloaditem;
+	}
+
+	/**
+	 * Gets the id of a download item from the database for the download link. For internal use.
+	 * @param string $path Path of the download item (without WEBPATH)
+	 * @return bool|string
+	 */
+	static function getItemID($path) {
+		$path = sanitize($path);
+		$downloaditem = query_single_row("SELECT id, `aux`, `data` FROM ".prefix('plugin_storage')." WHERE `type` = 'downloadList' AND `aux` = ".db_quote($path));
+		if($downloaditem) {
+			return $downloaditem['id'];
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	* @param array $array List of download items
+	* @param string $listtype "ol" or "ul" for the type of HTML list you want to use
+	* @return array
+	*/
+	static function printListArray($array,$listtype='ol') {
+		if($listtype != 'ol' || $listtype != 'ul') {
+			$listtype = 'ol';
+		}
+		$filesize = '';
+		foreach($array as $key=>$file) {
+			?>
+		<li>
+		<?php
+		if(is_array($file)) { // for sub directories
+			echo $key;
+		} else {
+			printDownloadLink($file);
+		}
+		if(is_array($file)) {
+			echo '<'.$listtype.'>';
+			self::printListArray($file,$listtype);
+			echo '</'.$listtype.'>';
+		}
+		?>
+		</li>
+		<?php
+		}
+	}
+
+	/**
+	 * Admin overview button for download statistics utility
+	 */
+	static function button($buttons) {
+		$buttons[] = array(
+									'category'=>gettext('info'),
+									'enable'=>true,
+									'button_text'=>gettext('Download statistics'),
+									'formname'=>'downloadstatistics_button',
+									'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/downloadList/download_statistics.php',
+									'icon'=> WEBPATH.'/'.ZENFOLDER.'/images/bar_graph.png',
+									'title'=>gettext('Counts of downloads'),
+									'alt'=>'',
+									'hidden'=> '',
+									'rights'=> OVERVIEW_RIGHTS,
+									);
+		return $buttons;
+	}
+}
+
+class AlbumZip {
+	/**
+	 * generates an array of filenames to zip
+	 * recurses into the albums subalbums
+	 *
+	 * @param object $album album object to add
+	 * @param int $base the length of the base album name
+	 */
+	static function AddAlbum($album, $base) {
+		global $_zp_zip_list, $zip_gallery;
+		$albumbase = substr($album->name,$base).'/';
+		foreach ($album->sidecars as $suffix) {
+			$f = $albumbase.$album->name.'.'.$suffix;
+			if (file_exists($f)) {
+				$_zp_zip_list[] = $f;
+			}
+		}
+		$images = $album->getImages();
+		foreach ($images as $imagename) {
+			$image = newImage($album, $imagename);
+			$_zp_zip_list[] = $albumbase.$image->filename;
+			$imagebase = stripSuffix($image->filename);
+			foreach ($image->sidecars as $suffix) {
+				$f = $albumbase.$imagebase.'.'.$suffix;
+				if (file_exists($f)) {
+					$_zp_zip_list[] = $f;
+				}
+			}
+		}
+		$albums = $album->getAlbums();
+		foreach ($albums as $albumname) {
+			$subalbum = new Album($zip_gallery,$albumname);
+			if ($subalbum->exists && !$album->isDynamic()) {
+				self::AddAlbum($subalbum, $base);
+			}
+		}
+	}
+
+	/**
+	 * Emits a page error. Used for attempts to bypass password protection
+	 *
+	 * @param string $err error code
+	 * @param string $text error message
+	 *
+	 */
+	static function pageError($err,$text) {
+		header("HTTP/1.0 ".$err.' '.$text);
+		header("Status: ".$err.' '.$text);
+		echo "<html xmlns=\"http://www.w3.org/1999/xhtml\"><head>	<title>".$err." - ".$text."</TITLE>	<META NAME=\"ROBOTS\" CONTENT=\"NOINDEX, FOLLOW\"></head>";
+		echo "<BODY bgcolor=\"#ffffff\" text=\"#000000\" link=\"#0000ff\" vlink=\"#0000ff\" alink=\"#0000ff\">";
+		echo "<FONT face=\"Helvitica,Arial,Sans-serif\" size=\"2\">";
+		echo "<b>".sprintf(gettext('Page error: %2$s (%1$s)'),$err, $text)."</b><br /><br />";
+		echo "</body></html>";
+		exitZP();
+	}
+
+	/**
+	 * Creates a zip file of the album
+	 *
+	 * @param string $albumname album folder
+	 */
+	static function create($albumname){
+		global $_zp_zip_list, $_zp_gallery;
+		$album = new Album(NULL, $albumname);
+		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
+			self::pageError(403, gettext("Forbidden"));
+		}
+		if (!$album->exists) {
+			self::pageError(404, gettext('Album not found'));
+		}
+		$_zp_zip_list = array();
+		self::AddAlbum($album, strlen($albumname));
+		$zip = new ZipStream($albumname.'.zip', array('large_file_size' => 5 * 1024 * 1024));
+		$pwd = SERVERPATH . '/' . ALBUMFOLDER . '/' . $albumname;
+		foreach ($_zp_zip_list as $file) {
+			@set_time_limit(6000);
+			$path = $pwd . $file;
+			$zip->add_file_from_path($file, $path);
+		}
+		$zip->finish();
+	}
 }
 
 $_downloadList_linkpath = substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1);
@@ -173,7 +363,7 @@ function printdownloadList($dir='',$listtype='ol',$filters = array(),$excludesuf
 	}
 	$files = getdownloadList($dir,$filters,$excludesuffixes,$sort);
 	echo '<'.$listtype.' class="downloadList">';
-	printdownloadListArray($files,$listtype);
+	self::printListArray($files,$listtype);
 	echo '</'.$listtype.'>';
 }
 
@@ -224,44 +414,14 @@ function getdownloadList($dir,$filters,$excludesuffixes,$sort) {
 }
 
 /**
- * @param array $array List of download items
- * @param string $listtype "ol" or "ul" for the type of HTML list you want to use
- * @return array
- */
-function printdownloadListArray($array,$listtype='ol') {
-	if($listtype != 'ol' || $listtype != 'ul') {
-		$listtype = 'ol';
-	}
-	$filesize = '';
-	foreach($array as $key=>$file) {
-	?>
-	<li>
-	<?php
-	if(is_array($file)) { // for sub directories
-		echo $key;
-	} else {
-		printDownloadLink($file);
-	}
-	if(is_array($file)) {
-		echo '<'.$listtype.'>';
-		printdownloadListArray($file,$listtype);
-		echo '</'.$listtype.'>';
-	}
-	?>
-	</li>
-	<?php
-	}
-}
-
-/**
  * Gets the download url for a file
  * @param string $file the path to a file to get a download link.
  */
 function getDownloadLink($file) {
 	global $_downloadList_linkpath;
-	adddownloadListItem($file); // add item to db if not already exists without updating the counter
+	DownloadList::addListItem($file); // add item to db if not already exists without updating the counter
 	$link = '';
-	if($id = getDownloadItemID($file)) {
+	if($id = DownloadList::getItemID($file)) {
 		if (strpos($_downloadList_linkpath,'?') === false) {
 			$link = FULLWEBPATH.'/'.$_downloadList_linkpath.'?download='.$id;
 		} else {
@@ -280,10 +440,10 @@ function printDownloadLink($file,$linktext=NULL) {
 	$filesize = '';
 	if(getOption('downloadList_showfilesize')) {
 		$filesize = filesize($file);
-		$filesize = ' ('.printdownloadList_formatBytes($filesize).')';
+		$filesize = ' ('.byteConvert($filesize).')';
 	}
 	if(getOption('downloadList_showdownloadcounter')) {
-		$downloaditem = getdownloadListItemFromDB($file);
+		$downloaditem = DownloadList::getListItemFromDB($file);
 		if($downloaditem) {
 			$downloadcount = ' - '.sprintf(ngettext('%u download','%u downloads',$downloaditem['data']),$downloaditem['data']);
 		} else {
@@ -300,34 +460,27 @@ function printDownloadLink($file,$linktext=NULL) {
 }
 
 /**
- * Prints a download link for an album zip of the current album (therefore to be used only on album.php/image.php). This function only creates a download count and then redirects to the original Zenphoto album zip download.
+ * Prints a download link for an album zip of the current album (therefore to be used only on album.php/image.php).
+ * This function only creates a download count and then redirects to the original Zenphoto album zip download.
  */
-function printDownloadLinkAlbumZip($linktext='',$albumobj='') {
+function printDownloadLinkAlbumZip($linktext=NULL,$albumobj=NULL) {
 	global $_zp_current_album, $_downloadList_linkpath;
+	if (is_null($albumobj)) {
+		$albumobj = $_zp_current_album;
+	}
 	if (!is_null($albumobj) && !$albumobj->isDynamic()) {
 		$file = $albumobj->name.'.zip';
-		adddownloadListItem($file);
-		$filesize = '';
-	 	/*	if(getOption('downloadList_showfilesize')) {
-			$filesize = filesize($file);
-			$filesize = ' ('.printdownloadList_formatBytes($filesize).')';
-		} */
+		DownloadList::addListItem($file);
 		if(getOption('downloadList_showdownloadcounter')) {
-			$downloaditem = getdownloadListItemFromDB($file);
+			$downloaditem = DownloadList::getListItemFromDB($file) ;
 			if($downloaditem) {
 				$downloadcount = ' - '.sprintf(ngettext('%u download','%u downloads',$downloaditem['data']),$downloaditem['data']);
 			} else {
 				$downloadcount = ' - 0 downloads';
 			}
-			/*
-			foreach ($downloaditems as $item) {
-				$file = filesystemToInternal($file);
-				if($file == $item['aux']) {
-					$downloadcount = ' - '.sprintf(ngettext('%u download','%u downloads',$item['data']),$item['data']);
-					break;
-				}
-			} */
-			$filesize .= $downloadcount;
+			$filesize = '<small>'.$downloadcount.'</small>';
+		} else {
+			$filesize = '';
 		}
 		if(!empty($linktext)) {
 			$file = $linktext;
@@ -337,9 +490,59 @@ function printDownloadLinkAlbumZip($linktext='',$albumobj='') {
 		} else {
 			$link = WEBPATH.'/'.$_downloadList_linkpath.'&amp;download='.pathurlencode($albumobj->name).'&amp;albumzip';
 		}
-		echo '<a href="'.$link.'" rel="nofollow">'.html_encode($file).'</a><small>'.$filesize.'</small>';
+		echo '<a href="'.$link.'" rel="nofollow">'.html_encode($file).'</a>'.$filesize;
 	}
 }
 
-require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/downloadList/downloadList-functions.php');
+/**
+ * Process any download requests
+ */
+if(isset($_GET['download'])) {
+	$item = sanitize($_GET['download']);
+	if(empty($item) OR !getOption('zp_plugin_downloadList')) {
+		zp_error(gettext('Forbidden'));
+	}
+	$hash = getOption('downloadList_password');
+	if (GALLERY_SECURITY != 'public' || $hash) {
+		//	credentials required to download
+		if (!zp_loggedin((getOption('downloadList_rights'))?FILE_RIGHTS:ALL_RIGHTS)) {
+			$user = getOption('downloadList_user');
+			zp_handle_password('download_auth', $hash, $user);
+			if (!empty($hash) && zp_getCookie('download_auth') == $hash) {
+				$show = ($user)?true:NULL;
+				$hint = get_language_string(getOption('downloadList_hint'));
+				printPasswordForm($hint, true, $show, '?download='.$item);
+				exitZP();
+			}
+		}
+	}
+	if(isset($_GET['albumzip'])) {
+		DownloadList::updateListItemCount($item.'.zip');
+		require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-zipStream.php');
+		AlbumZip::create($item);
+		exitZP();
+	} else {
+		require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
+		$item = sanitize_numeric($item);
+		$path = query_single_row("SELECT `aux` FROM ".prefix('plugin_storage')." WHERE id=".$item);
+		$file = internalToFilesystem($path['aux']);
+		if(file_exists($file)) {
+			DownloadList::updateListItemCount($file);
+			$ext = getSuffix($file);
+			$mimetype = getMimeString($ext);
+			header('Content-Description: File Transfer');
+			header('Content-Type: '.$mimetype);
+			header('Content-Disposition: attachment; filename='.basename(urldecode($file)));
+			header('Content-Transfer-Encoding: binary');
+			header('Expires: 0');
+			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+			header('Pragma: public');
+			//header('Content-Length: ' . filesize($file)); // This causes corrupted files on my server
+			flush();
+			readfile($file);
+			exitZP();
+		}
+	}
+}
+
 ?>

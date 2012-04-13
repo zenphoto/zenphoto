@@ -295,8 +295,6 @@ zp-core/admin-uploadify/uploadify.swf
 zp-core/admin-users.php
 zp-core/admin.css
 zp-core/admin.php
-zp-core/album-zip.php
-zp-core/archive.php
 zp-core/auth_zp.php
 zp-core/c.php
 zp-core/cacheprotect
@@ -524,6 +522,7 @@ zp-core/lib-htmLawed.php
 zp-core/lib-json.php
 zp-core/lib-pclzip.php
 zp-core/lib-utf8.php
+zp-core/lib-zipStream.php
 zp-core/license.php
 zp-core/locale
 zp-core/locale/auto.png
@@ -780,7 +779,6 @@ zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php
 zp-core/zp-extensions/deprecated_functions/functions.php
 zp-core/zp-extensions/downloadList
 zp-core/zp-extensions/downloadList.php
-zp-core/zp-extensions/downloadList/downloadList-functions.php
 zp-core/zp-extensions/downloadList/download_statistics.php
 zp-core/zp-extensions/dynamic-locale
 zp-core/zp-extensions/dynamic-locale.php
@@ -1864,4 +1862,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1866
+1864

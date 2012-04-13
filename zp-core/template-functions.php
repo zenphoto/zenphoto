@@ -3019,18 +3019,6 @@ function printEditCommentLink($text, $before='', $after='', $title=NULL, $class=
 }
 
 /**
- * Creates an URL for to download of a zipped copy of the current album
- *
- */
-function printAlbumZip(){
-	global $_zp_current_album;
-	if (!is_null($_zp_current_album) && !$_zp_current_album->isDynamic()) {
-		echo'<a href="' . WEBPATH . '/' . ZENFOLDER . "/album-zip.php?album=" . pathurlencode($_zp_current_album->name) .
-			'" title="'.gettext('Download Zip of the Album').'">'.gettext('Download a zip file of this album').'</a>';
-	}
-}
-
-/**
  * Gets latest comments for images and albums
  *
  * @param int $number how many comments you want.

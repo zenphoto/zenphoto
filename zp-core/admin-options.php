@@ -99,7 +99,6 @@ if (isset($_GET['action'])) {
 				setOption('cookie_persistence', sanitize_numeric($_POST['cookie_persistence']));
 			}
 			setOption('AlbumThumbSelect', sanitize_numeric($_POST['thumbselector']));
-			$_zp_gallery->setPersistentArchive((int) isset($_POST['persistent_archive']));
 			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
 			$_zp_gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
@@ -1143,13 +1142,6 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</p>
 						<p>
 							<label>
-								<input type="checkbox" name="persistent_archive" id="persistent_archive"
-										value="1" <?php echo checked('1', $_zp_gallery->getPersistentArchive()); ?> />
-								<?php echo gettext("enable persistent archives"); ?>
-							</label>
-						</p>
-						<p>
-							<label>
 								<input type="checkbox" name="album_session" id="album_session"
 										value="1" <?php echo checked('1', GALLERY_SESSION); ?> />
 								<?php echo gettext("enable gallery sessions"); ?>
@@ -1195,12 +1187,6 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<p><?php  echo gettext("<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum thumb selection</em>" ); ?></p>
 						<div id="multithumb" style="display: none">
 						<p><?php echo gettext("Setting this option allows selecting images from subalbums as well as from the album. Naturally populating these images adds overhead. If your album edit tabs load too slowly, do not select this option."); ?></p>
-						</div>
-
-						<p><?php  echo gettext("<a href=\"javascript:toggle('persistentarchive');\" >Details</a> for <em>enable persistent archive</em>" ); ?></p>
-						<div id="persistentarchive" style="display: none">
-						<p><?php echo gettext("Put a checkmark here to re-serve Zip Archive files if you are using the optional template function <em>printAlbumZip()</em> to enable visitors of your site to download images of an album as .zip files. If not checked that .zip file will be regenerated each time."); ?></p>
-						<p class="notebox"><?php echo gettext("<strong>Note: </strong>Setting this option may impact password protected albums!"); ?></p>
 						</div>
 
 						<p><?php  echo gettext("<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>enable gallery sessions</em>" ); ?></p>

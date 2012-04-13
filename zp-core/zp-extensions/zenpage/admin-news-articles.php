@@ -22,7 +22,7 @@ if (isset($_GET['deleted'])) {
 if(isset($_POST['checkallaction'])) {	// true if apply is pressed
 	XSRFdefender('checkeditems');
 	if ($action = processZenpageBulkActions('News')) {
-		$uri = $_server['REQUEST_URI'];
+		$uri = $_SERVER['REQUEST_URI'];
 		if (strpos($uri, '?')) {
 			$uri .= '&bulkaction='.$action;
 		} else {
@@ -259,7 +259,7 @@ printLogoAndLinks();
 							 $sticky = '';
 							 if($article->getSticky()) {
 							 	$sticky = ' <small>['.gettext('sticky').']</small>';
-							 } 
+							 }
 							 if(checkIfLockedNews($article)) {
 								 echo '<a href="admin-edit.php?newsarticle&amp;titlelink='.urlencode($article->getTitlelink()).'&amp;pagenr='.$_zp_zenpage_currentadminnewspage.getNewsAdminOptionPath(true,true,true,true,true).'">'; checkForEmptyTitle($article->getTitle(),"news"); echo '</a>'.checkHitcounterDisplay($article->getHitcounter()).$sticky;
 							 } else {

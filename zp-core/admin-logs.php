@@ -47,20 +47,10 @@ if (isset($_GET['action'])) {
 				}
 				break;
 			case 'download_log':
-				include_once(SERVERPATH.'/'.ZENFOLDER . '/archive.php');
-				$subtab = sanitize($_GET['tab'],3);
-				$dest = SERVERPATH.'/'.DATA_FOLDER . '/'.$subtab. ".zip";
-				$rp = dirname($file);
-				$z = new zip_file($dest);
-				$z->set_options(array('basedir' => $rp, 'inmemory' => 0, 'recurse' => 0, 'storepaths' => 1));
-				$z->add_files(array(basename($file)));
-				$z->create_archive();
-				header('Content-Type: application/zip');
-				header('Content-Disposition: attachment; filename="' . $subtab . '.zip"');
-				header("Content-Length: " . filesize($dest));
-				printLargeFileContents($dest);
-				@chmod($dest, 0666);
-				unlink($dest);
+				include_once(SERVERPATH.'/'.ZENFOLDER.'/lib-zipStream.php');
+				$zip = new ZipStream(sanitize($_GET['tab'],3).'.zip');
+				$zip->add_file_from_path(basename($file), $file);
+				$zip->finish();
 				break;
 		}
 	}

@@ -165,14 +165,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 			} else {
 				?>
 				<div id="main">
-					<?php
-					if (getOption('enable_album_zipfile')) {
-						echo "<p align=\"center\">";
-						printAlbumZip();
-						echo "</p>";
-					}
-					@call_user_func('printRating');
-					?>
+					<?php @call_user_func('printRating'); ?>
 				</div>
 				<?php
 			}

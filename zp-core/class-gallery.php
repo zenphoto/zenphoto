@@ -825,16 +825,6 @@ class Gallery {
 	}
 
 	/**
-	 * Option of caching Album ZIP files
-	 */
-	function getPersistentArchive() {
-		return $this->get('persistent_archive');
-	}
-	function setPersistentArchive($value) {
-		$this->set('persistent_archive', $value);
-	}
-
-	/**
 	 * Option of for gallery sessions
 	 */
 	function getGallerySession() {

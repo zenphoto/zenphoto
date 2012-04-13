@@ -121,14 +121,7 @@ class simpleviewer {
 			</div><!-- flash -->
 			<div id="main">
 				<div id="images">
-				<?php
-				if (getOption('enable_album_zipfile')) {
-					echo "<p align=\"center\">";
-					printAlbumZip();
-					echo "</p>";
-				}
-				@call_user_func('printRating');
-				?>
+				<?php @call_user_func('printRating'); ?>
 				</div>
 			</div>
 		<div class="clearage"></div>

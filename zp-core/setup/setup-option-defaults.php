@@ -455,7 +455,6 @@ setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
 	if (!isset($data['login_user_field'])) $data['login_user_field'] = getOption('login_user_field');
 	if (!isset($data['album_use_new_image_date'])) $data['album_use_new_image_date'] = getOption('album_use_new_image_date');
 	if (!isset($data['thumb_select_images'])) $data['thumb_select_images'] = getOption('thumb_select_images');
-	if (!isset($data['persistent_archive'])) $data['persistent_archive'] = getOption('persistent_archive');
 	if (!isset($data['unprotected_pages'])) $data['unprotected_pages'] = getOption('unprotected_pages');
 	if ($data['unprotected_pages']) {
 		$unprotected = unserialize($data['unprotected_pages']);
@@ -504,7 +503,6 @@ on the Zenphoto 1.5 release.
  login_user_field
  album_use_new_image_date
  thumb_select_images
- persistent_archive
  album_default
  image_default
 

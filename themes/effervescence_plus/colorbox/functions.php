@@ -99,14 +99,7 @@ class ef_colorbox {
 					@call_user_func('printSlideShowLink',NULL,'text-align:center;');
 					?>
 				</div><!-- images -->
-				<?php
-				if (getOption('enable_album_zipfile')) {
-					echo "<p align=\"center\">";
-					printAlbumZip();
-					echo "</p>";
-				}
-				@call_user_func('printRating');
-				?>
+				<?php @call_user_func('printRating'); ?>
 		 		</div><!-- main -->
 				<div class="clearage"></div>
 		 <?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
