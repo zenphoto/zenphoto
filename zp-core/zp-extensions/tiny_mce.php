@@ -69,7 +69,9 @@ function tinymceConfigJS($editorconfig,$mode) {
 		$editorconfig = getOption('tinymce_'.$mode);
 		if (!empty($editorconfig)) {
 			$editorconfig = getPlugin('/tiny_mce/config/'.$editorconfig);
-			require_once($editorconfig);
+			if (!empty($editorconfig)) {
+				require_once($editorconfig);
+			}
 		}
 	}
 	return $editorconfig;
