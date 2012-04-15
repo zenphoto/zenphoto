@@ -4,6 +4,13 @@ function toggle(x) {
 	jQuery('#'+x).toggle();
 }
 
+//used in conjunction with the "reveal" php function
+function reveal(id) {
+	jQuery('#'+id+'_reveal').toggle();
+	jQuery('#'+id+'_hide').toggle();
+	jQuery('#'+id).toggle();
+}
+
 function confirmDeleteAlbum(url) {
 	if (confirm(deleteAlbum1)) {
 		if (confirm(deleteAlbum2)) {

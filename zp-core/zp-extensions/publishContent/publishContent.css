@@ -3,6 +3,9 @@
 	width: 50em;
 	padding:1em 1em 1em 1em;
 }
+.smallbox ul {
+	padding: 0.2em;
+}
 .schedulealbumchecklist li {
 	background: none;
 	padding-left: 0;

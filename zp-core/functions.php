@@ -2202,6 +2202,25 @@ function getItemByID($table, $id) {
 	}
 }
 
+/**
+ * uses down and up arrow links to show and hide sections of HTML
+ *
+ * @param string $content the id of the html section to be revealed
+ */
+function reveal($content) {
+	?>
+	<span id="<?php echo $content; ?>_reveal" class="icons">
+		<a href="javascript:reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
+			<img src="../../images/arrow_down.png" alt="" class="icon-position-top4" />
+		</a>
+	</span>
+	<span id="<?php echo $content; ?>_hide" style="display:none;" class="icons">
+		<a href="javascript:reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
+			<img src="../../images/arrow_up.png" alt="" class="icon-position-top4" />
+		</a>
+	</span>
+	<?php
+}
 
 class zpFunctions {
 

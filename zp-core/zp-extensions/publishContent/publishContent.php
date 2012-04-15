@@ -39,17 +39,10 @@ if (isset($_POST['set_defaults'])) {
 	XSRFdefender('publishContent');
 	switch($action) {
 		case 'albums':
-
-var_dump($_POST);exit();
-
 			foreach ($_POST as $key=>$albumid) {
-				$key = sanitize_numeric(str_replace('sched_', '', $key));
-				if (is_numeric($key)) {
-					$rowa = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$key);
-					$album = new Album(NULL, $rowa['folder']);
-					$album->setShow(1);
-					$album->save();
-				}
+				$album = new Album(NULL, $key);
+				$album->setShow(1);
+				$album->save();
 			}
 			$report = 'albums';
 			break;
@@ -108,30 +101,7 @@ if ($report) {
 	}
 }
 echo '</head>';
-function reveal($content) {
-	?>
-	<span id="<?php echo $content; ?>_reveal" class="icons">
-		<a href="javascript:reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show'); ?>">
-			<img src="../../images/arrow_down.png" alt="" class="icon-position-top4" />
-		</a>
-	</span>
-	<span id="<?php echo $content; ?>_hide" style="display:none;" class="icons">
-		<a href="javascript:reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide'); ?>">
-			<img src="../../images/arrow_up.png" alt="" class="icon-position-top4" />
-		</a>
-	</span>
-	<?php
-}
 ?>
-<script type="text/javascript">
-	// <!-- <![CDATA[
-	function reveal(id) {
-		$('#'+id+'_reveal').toggle();
-		$('#'+id+'_hide').toggle();
-		$('#'+id).toggle();
-	}
-	// ]]> -->
-</script>
 <body>
 <?php printLogoAndLinks(); ?>
 <div id="main">
@@ -292,7 +262,6 @@ function reveal($content) {
 			<?php XSRFToken('publishContent');?>
 			<input type="hidden" name="publish" value="albums" />
 			<ul class="schedulealbumchecklist">
-			<br />
 			<?php
 			foreach ($publish_albums_list as $analbum=>$albumid) {
 				$album = new Album(NULL, $analbum);
