@@ -106,6 +106,7 @@ if (defined('OFFSET_PATH')) {
 		$report = gettext('Site is viewable.');
 	}
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?report='.$report);
+	exitZP();
 }
 
 ?>

@@ -2,8 +2,7 @@
 
 
 define('OFFSET_PATH', 3);
-$mypath = strtr(str_replace('\\','/',__FILE__),array('plugins/'=>'','zp-core/zp-extensions/'=>'','publishContent/publishContent.php'=>''));
-require_once($mypath.'/zp-core/admin-globals.php');
+require_once("../../admin-globals.php");
 require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL());
 
@@ -40,6 +39,9 @@ if (isset($_POST['set_defaults'])) {
 	XSRFdefender('publishContent');
 	switch($action) {
 		case 'albums':
+
+var_dump($_POST);exit();
+
 			foreach ($_POST as $key=>$albumid) {
 				$key = sanitize_numeric(str_replace('sched_', '', $key));
 				if (is_numeric($key)) {
@@ -97,10 +99,39 @@ if (isset($_POST['set_defaults'])) {
 			break;
 	}
 }
-
+if ($report) {
+	header('Location: '.FULLWEBPATH.'/'. ZENFOLDER.'/'.PLUGIN_FOLDER.'/publishContent/publishContent.php?report='.$report);
+	exitZP();
+} else {
+	if (isset($_GET['report'])) {
+		$report = sanitize($_GET['report']);
+	}
+}
 echo '</head>';
+function reveal($content) {
+	?>
+	<span id="<?php echo $content; ?>_reveal" class="icons">
+		<a href="javascript:reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show'); ?>">
+			<img src="../../images/arrow_down.png" alt="" class="icon-position-top4" />
+		</a>
+	</span>
+	<span id="<?php echo $content; ?>_hide" style="display:none;" class="icons">
+		<a href="javascript:reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide'); ?>">
+			<img src="../../images/arrow_up.png" alt="" class="icon-position-top4" />
+		</a>
+	</span>
+	<?php
+}
 ?>
-
+<script type="text/javascript">
+	// <!-- <![CDATA[
+	function reveal(id) {
+		$('#'+id+'_reveal').toggle();
+		$('#'+id+'_hide').toggle();
+		$('#'+id).toggle();
+	}
+	// ]]> -->
+</script>
 <body>
 <?php printLogoAndLinks(); ?>
 <div id="main">
@@ -176,7 +207,7 @@ echo '</head>';
 		}
 		ksort($publish_images_list,SORT_LOCALE_STRING);
 	}
-	$actionloc = str_replace($mypath, WEBPATH.'/', str_replace('\\', '/', __FILE__));
+
 
 ?>
 <fieldset class="smallbox">
@@ -191,12 +222,12 @@ echo '</head>';
 			<?php
 		}
 		?>
-		<form name="set_publication" action="<?php echo $actionloc; ?>" method="post">
+		<form name="set_publication" action="" method="post">
 			<?php XSRFToken('publishContent');?>
 			<input type="hidden" name="set_defaults" value="true" />
-			<input type="checkbox" name="album_default"	value="1"<?php if ($albpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish albums by default"); ?>
+			<label><input type="checkbox" name="album_default"	value="1"<?php if ($albpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish albums by default"); ?></label>
 			&nbsp;&nbsp;&nbsp;
-			<input type="checkbox" name="image_default"	value="1"<?php if ($imgpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish images by default"); ?>
+			<label><input type="checkbox" name="image_default"	value="1"<?php if ($imgpublish) echo ' checked="checked"'; ?> /> <?php echo gettext("Publish images by default"); ?></label>
 			<br clear="all" />
 			<br clear="all" />
 			<div class="buttons pad_button" id="setdefaults">
@@ -212,7 +243,7 @@ echo '</head>';
 <br clear="all" />
 
 <fieldset class="smallbox">
-	<legend><a href="javascript:toggle('albumbox')" title="<?php echo gettext('Click to show'); ?>"><?php echo gettext('Albums not published'); ?></a></legend>
+	<legend><?php reveal('albumbox'); echo gettext('Albums not published'); ?></legend>
 		<?php
 		if (($c = count($publish_albums_list)) > 0) {
 			echo sprintf(ngettext('%u unpublished album','%u unpublished albums',$c),$c);
@@ -238,7 +269,7 @@ echo '</head>';
 		}
 		if ($c > 0) {
 			?>
-			<form name="publish_albums" action="<?php echo $actionloc; ?>" method="post"><?php echo gettext('Albums:'); ?>
+			<form name="publish_albums" action="" method="post"><?php echo gettext('Albums:'); ?>
 			<label id="autocheck">
 				<input type="checkbox" name="checkAllAuto" id="checkAllAuto" />
 				<span id="autotext"><?php echo gettext('all');?></span>
@@ -261,8 +292,26 @@ echo '</head>';
 			<?php XSRFToken('publishContent');?>
 			<input type="hidden" name="publish" value="albums" />
 			<ul class="schedulealbumchecklist">
-			<?php	generateUnorderedListFromArray(array(), $publish_albums_list, 'sched_', false, true, true, 'albumcheck'); ?>
+			<br />
+			<?php
+			foreach ($publish_albums_list as $analbum=>$albumid) {
+				$album = new Album(NULL, $analbum);
+				$thumbimage = $album->getAlbumThumbImage();
+				$thumb = $thumbimage->getCustomImage(40,NULL,NULL,40,40,NULL,NULL,-1,NULL);
+				?>
+				<li>
+					<label>
+						<input type="checkbox" name="<?php echo $analbum; ?>" value="<?php echo $albumid; ?>" class="albumcheck" />
+						<img src="<?php echo html_encode($thumb); ?>" width="40" height="40" alt="" title="album thumb" />
+						<?php echo $album->name; ?>
+					</label>
+					<a href="<?php echo $album->getAlbumLink(); ?>" title="<?php echo gettext('view'); ?>"> (<?php echo gettext('view'); ?>)</a>
+				</li>
+				<?php
+			}
+			?>
 			</ul>
+			<br clear="all" />
 			<br clear="all" />
 
 			<div class="buttons pad_button" id="publishalbums">
@@ -290,7 +339,6 @@ echo '</head>';
 	?>
 </fieldset>
 <br clear="all" />
-<br clear="all" />
 
 <script type="text/javascript">
 	//<!-- <![CDATA[
@@ -305,8 +353,8 @@ echo '</head>';
 	// ]]> -->
 </script>
 <fieldset class="smallbox">
-	<legend><a href="javascript:toggle('imagebox')" title="<?php echo gettext('Click to show'); ?>"><?php echo gettext('Images not published'); ?></a></legend>
-	<form name="review" action="<?php echo $actionloc; ?>" method="post">
+	<legend><?php reveal('imagebox'); echo gettext('Images not published'); ?></legend>
+	<form name="review" action="" method="post">
 		<?php XSRFToken('publishContent');?>
 		<?php printf(gettext('Review images older than: %s'),'<input type="text" size="20" id="publish_date" name="publish_date" value="'.$requestdate.'" />'); ?>
 		<br clear="all" />
@@ -356,7 +404,7 @@ echo '</head>';
 			}
 			// ]]> -->
 		</script>
-		<form name="publish_images" action="<?php echo $actionloc; ?>" method="post"><?php echo gettext('Images:'); ?>
+		<form name="publish_images" action="" method="post"><?php echo gettext('Images:'); ?>
 
 		<?php XSRFToken('publishContent');?>
 		<input type="hidden" name="publish" value="images" />
@@ -413,7 +461,7 @@ echo '</head>';
 								<td>
 									<?php printf(gettext('%s'),$display); ?><a href="<?php echo html_encode($image->getImageLink());?>" title="<?php echo html_encode($image->getTitle());?>"> (<?php echo gettext('View'); ?>)</a>
 								</td>
-								
+
 							</tr>
 						</table>
 					</li>
@@ -454,14 +502,13 @@ echo '</head>';
 			$itemobj = new ZenpageCategory($item['titlelink']);
 			if (!$itemobj->getShow()) {
 				$c++;
-				$output .= '<li><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="catcheck" />'.$itemobj->getTitle().'<a href="'.html_encode($itemobj->getCategoryLink()).'" title="'.html_encode($itemobj->getTitle()).'"> ('.gettext('View').')</a></li>';
+				$output .= '<li><label><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="catcheck" />'.$itemobj->getTitle().'</label><a href="'.html_encode($itemobj->getCategoryLink()).'" title="'.html_encode($itemobj->getTitle()).'"> ('.gettext('View').')</a></li>';
 			}
 		}
 		?>
 		<br clear="all" />
-		<br clear="all" />
 		<fieldset class="smallbox">
-			<legend><a href="javascript:toggle('catbox')" title="<?php echo gettext('Click to show'); ?>"><?php echo gettext('Categories not published'); ?></a></legend>
+			<legend><?php reveal('catbox'); echo gettext('Categories not published'); ?></legend>
 			<?php
 			if ($output) {
 				echo sprintf(ngettext('%u unpublished category','%u unpublished categories',$c),$c);;
@@ -476,7 +523,7 @@ echo '</head>';
 					<?php
 				}
 				?>
-				<form name="publish_cat" action="<?php echo $actionloc; ?>" method="post"><?php echo gettext('Cateories:'); ?>
+				<form name="publish_cat" action="" method="post"><?php echo gettext('Cateories:'); ?>
 				<label id="autocheck_cat">
 					<input type="checkbox" name="checkAllcat" />
 					<span id="autotext_cat"><?php echo gettext('all');?></span>
@@ -523,14 +570,13 @@ echo '</head>';
 			$itemobj = new ZenpageNews($item['titlelink']);
 			if (!$itemobj->getShow()) {
 				$c++;
-				$output .= '<li><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="artcheck" />'.$itemobj->getTitle().'<a href="'.html_encode($itemobj->getNewsLink()).'" title="'.html_encode($itemobj->getTitle()).'"> ('.gettext('View').')</a></li>';
+				$output .= '<li><label><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="artcheck" />'.$itemobj->getTitle().'</label><a href="'.html_encode($itemobj->getNewsLink()).'" title="'.html_encode($itemobj->getTitle()).'"> ('.gettext('View').')</a></li>';
 			}
 		}
 		?>
 		<br clear="all" />
-		<br clear="all" />
 		<fieldset class="smallbox">
-			<legend><a href="javascript:toggle('newsbox')" title="<?php echo gettext('Click to show'); ?>"><?php echo gettext('News articles not published'); ?></a></legend>
+			<legend><?php reveal('newsbox'); echo gettext('News articles not published'); ?></legend>
 		<?php
 		if ($output) {
 			echo sprintf(ngettext('%u unpublished article','%u unpublished articles',$c),$c);;
@@ -545,7 +591,7 @@ echo '</head>';
 				<?php
 			}
 			?>
-			<form name="publish_articles" action="<?php echo $actionloc; ?>" method="post"><?php echo gettext('Articles:'); ?>
+			<form name="publish_articles" action="" method="post"><?php echo gettext('Articles:'); ?>
 			<label id="autocheck_art">
 				<input type="checkbox" name="checkAllcat" />
 				<span id="autotext_art"><?php echo gettext('all');?></span>
@@ -592,14 +638,13 @@ echo '</head>';
 			$itemobj = new ZenpagePage($item['titlelink']);
 			if (!$itemobj->getShow()) {
 				$c++;
-				$output .= '<li><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="pagecheck" />'.$itemobj->getTitle().'<a href="'.html_encode($itemobj->getPageLink()).'" title="'.html_encode($itemobj->getTitle()).'"> ('.gettext('View').')</a></li>';
+				$output .= '<li><label><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="pagecheck" />'.$itemobj->getTitle().'</label><a href="'.html_encode($itemobj->getPageLink()).'" title="'.html_encode($itemobj->getTitle()).'"> ('.gettext('View').')</a></li>';
 			}
 		}
 		?>
 		<br clear="all" />
-		<br clear="all" />
 		<fieldset class="smallbox">
-			<legend><a href="javascript:toggle('pagebox')" title="<?php echo gettext('Click to show'); ?>"><?php echo gettext('Pages not published'); ?></a></legend>
+			<legend><?php reveal('pagebox'); echo gettext('Pages not published'); ?></legend>
 			<?php
 			if ($report=='pages') {
 				?>
@@ -612,7 +657,7 @@ echo '</head>';
 				echo sprintf(ngettext('%u unpublished page','%u unpublished pages',$c),$c);;
 				?>
 		<div id="pagebox"<?php if ($report != 'pages') echo ' style="display:none"'?>>
-			<form name="publish_pages" action="<?php echo $actionloc; ?>" method="post"><?php echo gettext('Pages:'); ?>
+			<form name="publish_pages" action="" method="post"><?php echo gettext('Pages:'); ?>
 			<label id="autocheck_page">
 				<input type="checkbox" name="checkAllpage" />
 				<span id="autotext_page"><?php echo gettext('all');?></span>

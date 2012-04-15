@@ -13,7 +13,7 @@
  * If you have the <var>Zenpage</var> content management plugin enabled you will also have lists of
  * unpublished <i>categories</i>, <i>news articles</i>, and <i>pages</i>.
  *
- * <b>NOTE:</b>  The field sets for each of these displays is <i>collapsed</i> by default. Click on the legend to
+ * <b>NOTE:</b>  The field sets for each of these displays is <i>collapsed</i> by default. Click on the <i>arrow</i> icon to
  * <i>open</i> the view.
  *
  * You can also change the default setting of the albums <i>published</i> and
@@ -36,7 +36,7 @@ class publishContent {
 										'enable'=>true,
 										'button_text'=>gettext('Publish content'),
 										'formname'=>'publishContent_button',
-										'action'=>getPlugin('publishContent/publishContent.php', false, true),
+										'action'=>WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/publishContent/publishContent.php',
 										'icon'=>'images/calendar.png',
 										'title'=>gettext('Manage published state of content in your gallery.'),
 										'alt'=>'',

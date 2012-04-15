@@ -11,7 +11,7 @@
 .schedulealbumchecklist {
 	border: 1px solid #ccc;
 	list-style: none;
-	height: 8em;
+	height: 20em;
 	overflow: auto;
 	width: 50em;
 	background-color: white;
@@ -21,9 +21,7 @@
 	padding: 0;
 }
 .schedulealbumchecklist label {
-	display: block;
-	padding: 0 0.2em 0 25px;
-	text-indent: -25px;
+	padding: 0 0.2em 0 5px;
 }
 * html .schedulealbumchecklist label {
 	height: 1%;
