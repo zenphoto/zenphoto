@@ -411,8 +411,9 @@ echo '</head>';
 									<img src="<?php echo $image->getThumb();?>" alt="<?php echo $image->filename; ?>"/>
 								</td>
 								<td>
-									<?php printf(gettext('%s'),$display); ?>
+									<?php printf(gettext('%s'),$display); ?><a href="<?php echo html_encode($image->getImageLink());?>" title="<?php echo html_encode($image->getTitle());?>"> (<?php echo gettext('View'); ?>)</a>
 								</td>
+								
 							</tr>
 						</table>
 					</li>
@@ -453,7 +454,7 @@ echo '</head>';
 			$itemobj = new ZenpageCategory($item['titlelink']);
 			if (!$itemobj->getShow()) {
 				$c++;
-				$output .= '<li><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="catcheck" />'.$itemobj->getTitle().'</li>';
+				$output .= '<li><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="catcheck" />'.$itemobj->getTitle().'<a href="'.html_encode($itemobj->getCategoryLink()).'" title="'.html_encode($itemobj->getTitle()).'"> ('.gettext('View').')</a></li>';
 			}
 		}
 		?>
@@ -522,7 +523,7 @@ echo '</head>';
 			$itemobj = new ZenpageNews($item['titlelink']);
 			if (!$itemobj->getShow()) {
 				$c++;
-				$output .= '<li><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="artcheck" />'.$itemobj->getTitle().'</li>';
+				$output .= '<li><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="artcheck" />'.$itemobj->getTitle().'<a href="'.html_encode($itemobj->getNewsLink()).'" title="'.html_encode($itemobj->getTitle()).'"> ('.gettext('View').')</a></li>';
 			}
 		}
 		?>
@@ -591,7 +592,7 @@ echo '</head>';
 			$itemobj = new ZenpagePage($item['titlelink']);
 			if (!$itemobj->getShow()) {
 				$c++;
-				$output .= '<li><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="pagecheck" />'.$itemobj->getTitle().'</li>';
+				$output .= '<li><input type="checkbox" name="'.$item['titlelink'].'" value="'.$item['titlelink'].'" class="pagecheck" />'.$itemobj->getTitle().'<a href="'.html_encode($itemobj->getPageLink()).'" title="'.html_encode($itemobj->getTitle()).'"> ('.gettext('View').')</a></li>';
 			}
 		}
 		?>

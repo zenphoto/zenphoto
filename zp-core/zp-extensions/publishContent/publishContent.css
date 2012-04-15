@@ -47,6 +47,14 @@
 }
 .scheduleimagelist{
 	list-style: none;
+	margin: 0 6px 0 -30px;
+}
+
+.scheduleimagelist li{
+	border-bottom: 1px solid darkgray;
+}
+.scheduleimagelist table td{
+vertical-align: top;
 }
 .scheduleimagechecklist label {
 	display: block;
