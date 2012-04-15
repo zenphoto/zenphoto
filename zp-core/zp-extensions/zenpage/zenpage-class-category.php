@@ -398,7 +398,7 @@ class ZenpageCategory extends ZenpageRoot {
  */
 function getCategoryLink() {
 	global $_zp_zenpage;
-	return getNewsBaseURL().$_zp_zenpage->getNewsCategoryPath().urlencode($this->getTitlelink());
+	return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsCategoryPath().urlencode($this->getTitlelink());
 }
 
 
