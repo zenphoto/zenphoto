@@ -211,15 +211,15 @@ echo '</head>';
 </fieldset>
 <br clear="all" />
 <br clear="all" />
-
+<?php $visible = $report == 'albums' || $report == 'propagate'; ?>
 <fieldset class="smallbox">
-	<legend><?php reveal('albumbox'); echo gettext('Albums not published'); ?></legend>
+	<legend><?php reveal('albumbox',$visible); echo gettext('Albums not published'); ?></legend>
 		<?php
 		if (($c = count($publish_albums_list)) > 0) {
 			echo sprintf(ngettext('%u unpublished album','%u unpublished albums',$c),$c);
 		}
 		?>
-	<div id="albumbox"<?php if ($report != 'albums' && $report != 'propagate') echo ' style="display:none"' ?>>
+	<div id="albumbox"<?php if (!$visible) echo ' style="display:none"' ?>>
 		<?php
 		switch ($report) {
 			case 'albums':
@@ -321,8 +321,9 @@ echo '</head>';
 	});
 	// ]]> -->
 </script>
+<?php $visible = $report == 'images'; ?>
 <fieldset class="smallbox">
-	<legend><?php reveal('imagebox'); echo gettext('Images not published'); ?></legend>
+	<legend><?php reveal('imagebox', $visible); echo gettext('Images not published'); ?></legend>
 	<form name="review" action="" method="post">
 		<?php XSRFToken('publishContent');?>
 		<?php printf(gettext('Review images older than: %s'),'<input type="text" size="20" id="publish_date" name="publish_date" value="'.$requestdate.'" />'); ?>
@@ -343,7 +344,7 @@ echo '</head>';
 	}
 	?>
 
-	<div id="imagebox"<?php if ($report != 'images') echo ' style="display:none"'?>>
+	<div id="imagebox"<?php if (!$visible) echo ' style="display:none"'?>>
 	<?php
 	if ($report=='images') {
 		?>
@@ -464,6 +465,7 @@ echo '</head>';
 </fieldset>
 	<?php
 	if (class_exists('Zenpage')) {
+		$visible = $report == 'categories';
 		$items = $_zp_zenpage->getAllCategories(false);
 		$output = '';
 		$c = 0;
@@ -477,12 +479,12 @@ echo '</head>';
 		?>
 		<br clear="all" />
 		<fieldset class="smallbox">
-			<legend><?php reveal('catbox'); echo gettext('Categories not published'); ?></legend>
+			<legend><?php reveal('catbox',$visible); echo gettext('Categories not published'); ?></legend>
 			<?php
 			if ($output) {
 				echo sprintf(ngettext('%u unpublished category','%u unpublished categories',$c),$c);;
 				?>
-			<div id="catbox"<?php if ($report != 'categories') echo ' style="display:none"'?>>
+			<div id="catbox"<?php if (!$visible) echo ' style="display:none"'?>>
 				<?php
 				if ($report=='categories') {
 					?>
@@ -531,7 +533,9 @@ echo '</head>';
 		}
 		?>
 		</fieldset>
+		<br clear="all" />
 		<?php
+		$visible = $report == 'news';
 		$items = $_zp_zenpage->getArticles(0,false);
 		$output = '';
 		$c = 0;
@@ -543,14 +547,13 @@ echo '</head>';
 			}
 		}
 		?>
-		<br clear="all" />
 		<fieldset class="smallbox">
-			<legend><?php reveal('newsbox'); echo gettext('News articles not published'); ?></legend>
+			<legend><?php reveal('newsbox',$visible); echo gettext('News articles not published'); ?></legend>
 		<?php
 		if ($output) {
 			echo sprintf(ngettext('%u unpublished article','%u unpublished articles',$c),$c);;
 			?>
-		<div id="newsbox"<?php if ($report != 'news') echo ' style="display:none"'?>>
+		<div id="newsbox"<?php if (!$visible) echo ' style="display:none"'?>>
 			<?php
 			if ($report=='news') {
 				?>
@@ -600,6 +603,7 @@ echo '</head>';
 		?>
 		</fieldset>
 		<?php
+		$visible = $report == 'pages';
 		$items = $_zp_zenpage->getPages(false);
 		$output = '';
 		$c = 0;
@@ -613,7 +617,7 @@ echo '</head>';
 		?>
 		<br clear="all" />
 		<fieldset class="smallbox">
-			<legend><?php reveal('pagebox'); echo gettext('Pages not published'); ?></legend>
+			<legend><?php reveal('pagebox',$visible); echo gettext('Pages not published'); ?></legend>
 			<?php
 			if ($report=='pages') {
 				?>
@@ -625,7 +629,7 @@ echo '</head>';
 			if ($output) {
 				echo sprintf(ngettext('%u unpublished page','%u unpublished pages',$c),$c);;
 				?>
-		<div id="pagebox"<?php if ($report != 'pages') echo ' style="display:none"'?>>
+		<div id="pagebox"<?php if (!$visible) echo ' style="display:none"'?>>
 			<form name="publish_pages" action="" method="post"><?php echo gettext('Pages:'); ?>
 			<label id="autocheck_page">
 				<input type="checkbox" name="checkAllpage" />
