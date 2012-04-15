@@ -211,6 +211,7 @@ button.positive,.buttons a.positive {
 	border: 1px solid lightgray;
 	padding:10px;
 	text-align:left;
+	color:gray;
 }
 
 #loginform input.textfield {
@@ -230,15 +231,14 @@ button.positive,.buttons a.positive {
 .logon_link {
 	text-align:center;
 }
+.logon_link a {
+	color:#0a9eff; !important
+}
 
 .logon_link a:hover {
 	color: #FF8A00; !important
 	text-decoration: none;
 	border-bottom: 1px solid #FF8A00;
-}
-.logon_link{
-	color: #4D76CF;
-	text-align:center;
 }
 
 .button {

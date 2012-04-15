@@ -18,13 +18,6 @@
  *
  * @author Stephen Billard (sbillard) and Malte Müller (acrylian)
  * @package plugins
-sprintf(gettext('Apply<ul>'.
-																				'<li><img src="%1$s/lock.png" alt=""/> over thumbnails of <em>password protected</em> images and albums</li>'.
-																				'<li><img src="%1$s/action.png" alt=""/> over thumbnails of <em>un-published</em> albums  images</li>'.
-																				'<li><img src="%1$s/new.png" alt=""/> over thumbnails of <em>"new"</em> images and albums</li>'.
-																				'<li><img src="%1$s/GPS.png" alt=""/> over thumbnails of <em>geocoded</em> images</li>'.
-																			'</ul>'
-																	),WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/flag_thumbnail');
  */
 $plugin_description = gettext('Overlay icons over thumbnails to indicate image status.');
 $plugin_author = "Stephen Billard (sbillard)";

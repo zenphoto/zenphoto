@@ -44,7 +44,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 	<div id="content">
 		<small>&nbsp;</small>
 		<div id="main">
-		<?php printPasswordForm($hint, $show); ?>
+		<?php printPasswordForm($hint, $show, false); ?>
 		</div>
 	</div>
 

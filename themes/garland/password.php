@@ -38,7 +38,7 @@ if (!defined('WEBPATH')) die();
 								<?php echo "<em>".gettext('Password required')."</em>"; ?>
 							</h2>
 							<h3><?php echo gettext('A password is required to access this page.') ?></h3>
-							<?php printPasswordForm($hint, $show); ?>
+							<?php printPasswordForm($hint, $show, false); ?>
 							<?php footer(); ?>
 							<p style="clear: both;"></p>
 						</div>

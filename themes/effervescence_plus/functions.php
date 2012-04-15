@@ -179,7 +179,7 @@ function annotateImage() {
 }
 
 function printFooter($admin=true) {
-	global $_zp_themeroot, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
+	global $_zp_themeroot, $_zp_gallery, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page;
 	$h = NULL;
 	?>
 	<!-- Footer -->
@@ -193,7 +193,7 @@ function printFooter($admin=true) {
 			</p>
 			<?php
 		}
-		if ($_zp_gallery_page == 'gallery') {
+		if ($_zp_gallery_page == 'gallery.php') {
 			?>
 			<p>
 				<small>
@@ -219,10 +219,11 @@ function printFooter($admin=true) {
 
 		<?php printThemeInfo(); ?>
 		<?php printZenphotoLink(); ?>
-		<?php if ($_zp_gallery_page == 'gallery') { printRSSLink('Gallery','', 'Gallery RSS', ''); echo '<br />'; } ?>
-		<?php	if ($_zp_gallery_page != 'password') { @call_user_func('printUserLogin_out',''); echo '<br />'; } ?>
-		<?php	if (getOption('zp_plugin_contactform') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('contact'))) { printCustomPageURL(gettext('Contact us'), 'contact', '', '');	echo '<br />'; } ?>
-		<?php if (!zp_loggedin() && function_exists('printRegistrationForm') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('unprotected_register'))) { printCustomPageURL(gettext('Register for this site'), 'register', '', ''); echo '<br />'; }	?>
+		<br />
+		<?php if ($_zp_gallery_page == 'gallery.php') { printRSSLink('Gallery','', 'Gallery RSS', ''); echo '<br />'; } ?>
+		<?php	if ($_zp_gallery_page != 'password.php') { @call_user_func('printUserLogin_out',''); echo '<br />'; } ?>
+		<?php	if ($_zp_gallery_page!='contact.php' && getOption('zp_plugin_contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) { printCustomPageURL(gettext('Contact us'), 'contact', '', '');	echo '<br />'; } ?>
+		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) { printCustomPageURL(gettext('Register for this site'), 'register', '', ''); echo '<br />'; }	?>
 		<?php @call_user_func('printLanguageSelector'); ?>
 		<br clear="all" />
 	</div>

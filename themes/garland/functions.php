@@ -20,6 +20,7 @@ function footer() {
 	?>
 	<div id="footer">
 		<?php
+		$prev = ' | ';
 		switch ($_zp_gallery_page) {
 			default:
 				printRSSLink('Gallery', '','RSS', '');
@@ -34,12 +35,15 @@ function footer() {
 					printZenpageRSSLink('News', '', '','RSS', '');
 				}
 				break;
+			case 'password.php':
+				$prev = '';
+				break;
 		}
 		?>
-		<?php if ($_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'archive.php') printCustomPageURL(gettext('Archive View'), 'archive', '', ' | ', ''); ?>
-		<?php	if ($_zp_gallery_page!='contact.php' && getOption('zp_plugin_contact_form') && ($_zp_gallery_page != 'password' || $_zp_gallery->isUnprotectedPage('contact'))) printCustomPageURL(gettext('Contact us'), 'contact', '', ' | ', '');	?>
-		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) @call_user_func('printCustomPageURL',gettext('Register for this site'), 'register', '', ' | ', '');	?>
-		<?php	if (!in_array($_zp_gallery_page, $exclude_login)) @call_user_func('printUserLogin_out', ' | '); ?>
+		<?php if ($_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'archive.php') { printCustomPageURL(gettext('Archive View'), 'archive', '', $prev, ''); $prev = ' | '; }?>
+		<?php	if ($_zp_gallery_page!='contact.php' && getOption('zp_plugin_contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) { printCustomPageURL(gettext('Contact us'), 'contact', '', $prev, '');$prev = ' | '; }	?>
+		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) { @call_user_func('printCustomPageURL',gettext('Register for this site'), 'register', '', $prev, '');	$prev = ' | '; }?>
+		<?php	if (!in_array($_zp_gallery_page, $exclude_login)) @call_user_func('printUserLogin_out', $prev); ?>
 		<br />
 		<?php @call_user_func('printLanguageSelector'); ?>
 		<?php printZenphotoLink(); ?>

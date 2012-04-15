@@ -25,7 +25,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				</h2>
 			</div>
 			<div id="padbox">
-				<?php printPasswordForm($hint, $show); ?>
+				<?php printPasswordForm($hint, $show, false); ?>
 			</div>
 		</div>
 		<div id="credit">
