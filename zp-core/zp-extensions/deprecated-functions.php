@@ -102,7 +102,7 @@ class deprecated_functions {
  * @since 1.2.7
  */
 function getZenpageHitcounter($mode="",$obj=NULL) {
-	self::notify(gettext('Use getHitcounter().'));
+	deprecated_functions::notify(gettext('Use getHitcounter().'));
 	return getHitcounter();
 }
 
@@ -111,7 +111,7 @@ function getZenpageHitcounter($mode="",$obj=NULL) {
  * @since 1.2.7
  */
 function printImageRating($object=NULL) {
-	self::notify(gettext('Use printRating().'));
+	deprecated_functions::notify(gettext('Use printRating().'));
 	global $_zp_current_image;
 	if (is_null($object)) $object = $_zp_current_image;
 	printRating(3, $object);
@@ -122,7 +122,7 @@ function printImageRating($object=NULL) {
  * @since 1.2.7
  */
 function printAlbumRating($object=NULL) {
-	self::notify(gettext('Use printRating().'));
+	deprecated_functions::notify(gettext('Use printRating().'));
 	global $_zp_current_album;
 	if (is_null($object)) $object = $_zp_current_album;
 	printRating(3, $object);
@@ -133,7 +133,7 @@ function printAlbumRating($object=NULL) {
  * @since 1.2.7
  */
 function printImageEXIFData() {
-	self::notify(gettext('Use printImageMetadata().'));
+	deprecated_functions::notify(gettext('Use printImageMetadata().'));
 	if (isImageVideo()) {
 	} else {
 		printImageMetadata();
@@ -145,7 +145,7 @@ function printImageEXIFData() {
  * @since 1.2.7
  */
 function printCustomSizedImageMaxHeight($maxheight) {
-	self::notify(gettext('Use printCustomSizedImageMaxSpace().'));
+	deprecated_functions::notify(gettext('Use printCustomSizedImageMaxSpace().'));
 	if (getFullWidth() === getFullHeight() OR getDefaultHeight() > $maxheight) {
 		printCustomSizedImage(getImageTitle(), null, null, $maxheight, null, null, null, null, null, null);
 	} else {
@@ -158,7 +158,7 @@ function printCustomSizedImageMaxHeight($maxheight) {
  * @since 1.2.7
  */
 function getCommentDate($format = NULL) {
-	self::notify(gettext('Use getCommentDateTime().'));
+	deprecated_functions::notify(gettext('Use getCommentDateTime().'));
 	if (is_null($format)) {
 		$format = DATE_FORMAT;
 		$time_tags = array('%H', '%I', '%R', '%T', '%r', '%H', '%M', '%S');
@@ -178,7 +178,7 @@ function getCommentDate($format = NULL) {
  * @since 1.2.7
  */
 function getCommentTime($format = '%I:%M %p') {
-	self::notify(gettext('Use getCommentDateTime().'));
+	deprecated_functions::notify(gettext('Use getCommentDateTime().'));
 	global $_zp_current_comment;
 	return myts_date($format, $_zp_current_comment['date']);
 }
@@ -188,7 +188,7 @@ function getCommentTime($format = '%I:%M %p') {
  * @since 1.2.7
  */
 function hitcounter($option='image', $viewonly=false, $id=NULL) {
-	self::notify(gettext('Use getHitcounter().'));
+	deprecated_functions::notify(gettext('Use getHitcounter().'));
 	return getHitcounter();
 }
 
@@ -197,7 +197,7 @@ function hitcounter($option='image', $viewonly=false, $id=NULL) {
  * @since 1.2.7
  */
 function my_truncate_string($string, $length) {
-	self::notify(gettext('Use truncate_string().'));
+	deprecated_functions::notify(gettext('Use truncate_string().'));
 	return truncate_string($string, $length);
 }
 
@@ -206,7 +206,7 @@ function my_truncate_string($string, $length) {
  * @since 1.2.7
  */
 function getImageEXIFData() {
-	self::notify(gettext('Use getImageMetaData().'));
+	deprecated_functions::notify(gettext('Use getImageMetaData().'));
 	global $_zp_current_image;
 	if (is_null($_zp_current_image)) return false;
 	return $_zp_current_image->getMetaData();
@@ -217,7 +217,7 @@ function getImageEXIFData() {
  * @since 1.2.7
  */
 function zenpageHitcounter($option='pages', $viewonly=false, $id=NULL) {
-	self::notify(gettext('Use getHitcounter().'));
+	deprecated_functions::notify(gettext('Use getHitcounter().'));
 	return getHitcounter();
 }
 
@@ -226,7 +226,7 @@ function zenpageHitcounter($option='pages', $viewonly=false, $id=NULL) {
  * @since 1.2.8
  */
 function getAlbumPlace() {
-	self::notify(gettext('Use getAlbumLocation().'));
+	deprecated_functions::notify(gettext('Use getAlbumLocation().'));
 	global $_zp_current_album;
 	if (is_object($_zp_current_album)) {
 		return $_zp_current_album->getLocation();
@@ -240,7 +240,7 @@ function getAlbumPlace() {
  * @since 1.2.8
  */
 function printAlbumPlace() {
-	self::notify(gettext('Use printAlbumLocation().'));
+	deprecated_functions::notify(gettext('Use printAlbumLocation().'));
 	printField('album', 'location');
 }
 
@@ -249,7 +249,7 @@ function printAlbumPlace() {
  * @since 1.2.8
  */
 function printEditable($context, $field, $editable = NULL, $editclass = 'unspecified', $messageIfEmpty = true, $convertBR = false, $override = false, $label='') {
-	self::notify(gettext('Use printField().'));
+	deprecated_functions::notify(gettext('Use printField().'));
 	printField($context,$field,$convertBR,$override,$label);
 }
 
@@ -258,7 +258,7 @@ function printEditable($context, $field, $editable = NULL, $editclass = 'unspeci
  * @since 1.2.9
  */
 function rewrite_path_zenpage($rewrite='',$plain='') {
-	self::notify(gettext('Use rewrite_path().'));
+	deprecated_functions::notify(gettext('Use rewrite_path().'));
 	return rewrite_path($rewrite, $plain);
 }
 
@@ -267,7 +267,7 @@ function rewrite_path_zenpage($rewrite='',$plain='') {
  * @since 1.2.9
  */
 function getNewsImageTags() {
-	self::notify(gettext('Use object->getTags() method.'));
+	deprecated_functions::notify(gettext('Use object->getTags() method.'));
 	global $_zp_current_zenpage_news;
 	if(is_GalleryNewsType() && is_object($_zp_current_zenpage_news)) {
 		return $_zp_current_zenpage_news->getTags();
@@ -281,7 +281,7 @@ function getNewsImageTags() {
  * @since 1.2.9
  */
 function printNewsImageTags($option='links',$preText=NULL,$class='taglist',$separator=', ',$editable=TRUE) {
-	self::notify(gettext('Use printTags().'));
+	deprecated_functions::notify(gettext('Use printTags().'));
 	printTags($option, $preText, $class, $separator);
 }
 
@@ -290,7 +290,7 @@ function printNewsImageTags($option='links',$preText=NULL,$class='taglist',$sepa
  * @since 1.2.9
  */
 function getNumSubalbums() {
-	self::notify(gettext('Use getNumAlbums().'));
+	deprecated_functions::notify(gettext('Use getNumAlbums().'));
 	return getNumAlbums();
 }
 
@@ -299,7 +299,7 @@ function getNumSubalbums() {
  * @since 1.2.9
  */
 function getAllSubalbums($param=NULL) {
-	self::notify(gettext('Use getAllAlbums().'));
+	deprecated_functions::notify(gettext('Use getAllAlbums().'));
 	return getAllAlbums($param);
 }
 
@@ -308,7 +308,7 @@ function getAllSubalbums($param=NULL) {
  * @since 1.4.0
  */
 function addPluginScript($script) {
-	self::notify(gettext('Register a "theme_head" filter.'));
+	deprecated_functions::notify(gettext('Register a "theme_head" filter.'));
 	global $_zp_plugin_scripts;
 	$_zp_plugin_scripts[] = $script;
 
@@ -330,7 +330,7 @@ function addPluginScript($script) {
  * @since 1.4.0
  */
 function zenJavascript() {
-	self::notify(gettext('Use zp_apply_filter("theme_head").'));
+	deprecated_functions::notify(gettext('Use zp_apply_filter("theme_head").'));
 	zp_apply_filter('theme_head');
 }
 
@@ -339,7 +339,7 @@ function zenJavascript() {
  * @since 1.4.0
  */
 function normalizeColumns($albumColumns=NULL, $imageColumns=NULL) {
-	self::notify(gettext('Use instead the theme options for images and albums per row.'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the theme options for images and albums per row.'), E_USER_NOTICE);
 	global $_firstPageImages;
 	setOption('albums_per_row',$albumColumns);
 	setOption('images_per_row',$imageColumns);
@@ -352,7 +352,7 @@ function normalizeColumns($albumColumns=NULL, $imageColumns=NULL) {
  * @since 1.4.0
  */
 function printParentPagesBreadcrumb($before='', $after='') {
-	self::notify(gettext('Use printZenpageItemsBreadcrumb().'));
+	deprecated_functions::notify(gettext('Use printZenpageItemsBreadcrumb().'));
 	printZenpageItemsBreadcrumb($before, $after);
 }
 
@@ -361,7 +361,7 @@ function printParentPagesBreadcrumb($before='', $after='') {
  * @since 1.4.0
  */
 function isMyAlbum($albumname, $action) {
-	self::notify(gettext('Use instead the Album class method isMyItem().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Album class method isMyItem().'), E_USER_NOTICE);
 	$album = new Album(NULL, $albumname);
 	return $album->isMyItem($action);
 }
@@ -371,7 +371,7 @@ function isMyAlbum($albumname, $action) {
  * @since 1.4.0
  */
 function getSubCategories($catlink) {
-	self::notify(gettext('Use instead the Zenpage category class method getSubCategories().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category class method getSubCategories().'), E_USER_NOTICE);
 	$catlink = sanitize($catlink);
 	$catobj = new ZenpageCategory($catlink);
 	return $catobj->getSubCategories();
@@ -382,7 +382,7 @@ function getSubCategories($catlink) {
  * @since 1.4.0
  */
 function inProtectedNewsCategory($articleobj=NULL,$checkProtection=true) {
-	self::notify(gettext('Use instead the Zenpage news class method inProtectedCategory().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage news class method inProtectedCategory().'), E_USER_NOTICE);
 	global $_zp_current_zenpage_news;
 	if(empty($articleobj) && !is_null($_zp_current_zenpage_news) && get_class($_zp_current_zenpage_news) == 'zenpagenews') {
 		$articleobj = $_zp_current_zenpage_news;
@@ -397,7 +397,7 @@ function inProtectedNewsCategory($articleobj=NULL,$checkProtection=true) {
  * @since 1.4.0
  */
 function isProtectedNewsCategory($catlink='') {
-	self::notify(gettext('Use instead the Zenpage category class method isProtected().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category class method isProtected().'), E_USER_NOTICE);
 	global $_zp_current_category;
 	if(empty($catlink) && !is_null($_zp_current_category)) {
 		$cat = $_zp_current_category;
@@ -412,7 +412,7 @@ function isProtectedNewsCategory($catlink='') {
  * @since 1.4.0
  */
 function getParentNewsCategories($parentid,$initparents=true) {
-	self::notify(gettext('Use instead the Zenpage category class method getParents().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category class method getParents().'), E_USER_NOTICE);
 	return getParentItems('categories',$parentid,$initparents);
 }
 
@@ -421,7 +421,7 @@ function getParentNewsCategories($parentid,$initparents=true) {
  * @since 1.4.0
  */
 function getCategoryTitle($catlink) {
-	self::notify(gettext('Use instead the Zenpage category class method getTitle().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category class method getTitle().'), E_USER_NOTICE);
 	$catobj = new ZenpageCategory($catlink);
 	return $catobj->getTitle();
 }
@@ -431,7 +431,7 @@ function getCategoryTitle($catlink) {
  * @since 1.4.0
  */
 function getCategoryID($catlink) {
-	self::notify(gettext('Use instead the Zenpage category class method getID().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category class method getID().'), E_USER_NOTICE);
 	$catlink = sanitize($catlink);
 	$catobj = new ZenpageCategory($catlink);
 	return $catobj->getID();
@@ -442,7 +442,7 @@ function getCategoryID($catlink) {
  * @since 1.4.0
  */
 function getCategoryParentID($catlink) {
-	self::notify(gettext('Use instead the Zenpage category class method getParentID().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category class method getParentID().'), E_USER_NOTICE);
 	$catobj = new ZenpageCategory($catlink);
 	return $catobj->getParentID();
 }
@@ -452,7 +452,7 @@ function getCategoryParentID($catlink) {
  * @since 1.4.0
  */
 function getCategorySortOrder($catlink) {
-	self::notify(gettext('Use instead the Zenpage category class method getSortOrder().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category class method getSortOrder().'), E_USER_NOTICE);
 	$catobj = new ZenpageCategory($catlink);
 	return $catobj->getSortOrder();
 }
@@ -462,7 +462,7 @@ function getCategorySortOrder($catlink) {
  * @since 1.4.0
  */
 function getParentPages(&$parentid,$initparents=true) {
-	self::notify(gettext('Use instead the Zenpage page class method getParents().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage page class method getParents().'), E_USER_NOTICE);
 	return getParentItems('pages',$parentid,$initparents);
 }
 
@@ -471,7 +471,7 @@ function getParentPages(&$parentid,$initparents=true) {
  * @since 1.4.0
  */
 function isProtectedPage($pageobj=NULL) {
-	self::notify(gettext('Use instead the Zenpage page class method isProtected().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage page class method isProtected().'), E_USER_NOTICE);
 	global $_zp_current_zenpage_page;
 	if (is_null($pageobj)) $pageobj = $_zp_current_zenpage_page;
 	return $pageobj->checkforGuest() != 'zp_public_access';
@@ -482,7 +482,7 @@ function isProtectedPage($pageobj=NULL) {
  * @since 1.4.0
  */
 function isMyPage($pageobj=NULL, $action) {
-	self::notify(gettext('Use instead the Zenpage category class method isMyItem().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category class method isMyItem().'), E_USER_NOTICE);
 	global $_zp_current_zenpage_page;
 	if (is_null($pageobj)) $pageobj = $_zp_current_zenpage_page;
 	return $pageobj->isMyItem($action);
@@ -493,7 +493,7 @@ function isMyPage($pageobj=NULL, $action) {
  * @since 1.4.0
  */
 function checkPagePassword($pageobj, &$hint, &$show) {
-	self::notify(gettext('Use instead the Zenpage category class method checkforGuest().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category class method checkforGuest().'), E_USER_NOTICE);
 	return $pageobj->checkforGuest();
 }
 
@@ -504,7 +504,7 @@ function checkPagePassword($pageobj, &$hint, &$show) {
  * @since 1.4.0
  */
 function isMyNews($newsobj, $action) {
-	self::notify(gettext('Use instead the Zenpage news class method isMyItem().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage news class method isMyItem().'), E_USER_NOTICE);
 	global $_zp_current_zenpage_news;
 	return $_zp_current_zenpage_news->isMyItem();
 }
@@ -514,7 +514,7 @@ function isMyNews($newsobj, $action) {
  * @since 1.4.0
  */
 function checkNewsAccess($newsobj, &$hint, &$show) {
-	self::notify(gettext('Use instead the Zenpage news class method checkNewsAccess().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage news class method checkNewsAccess().'), E_USER_NOTICE);
 	return $newsobj->checkNewsAccess($hint, $show);
 }
 
@@ -523,7 +523,7 @@ function checkNewsAccess($newsobj, &$hint, &$show) {
  * @since 1.4.0
  */
 function checkNewsCategoryPassword($catlink, $hint, $show) {
-	self::notify(gettext('Use instead the Zenpage category class method checkforGuest().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category class method checkforGuest().'), E_USER_NOTICE);
 	$catobj = new ZenpageCategory($catlink);
 	return $catobj->checkforGuest();
 }
@@ -533,7 +533,7 @@ function checkNewsCategoryPassword($catlink, $hint, $show) {
  * @since 1.4.0
  */
 function getCurrentNewsCategory() {
-	self::notify(gettext('Use instead the Zenpage category global object variable: $_zp_current_category->getTitlelink().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category global object variable: $_zp_current_category->getTitlelink().'), E_USER_NOTICE);
 	global $_zp_current_category;
 	return $_zp_current_category->getTitlelink();
 }
@@ -543,7 +543,7 @@ function getCurrentNewsCategory() {
  * @since 1.4.0
  */
 function getCurrentNewsCategoryID() {
-	self::notify(gettext('Use instead the Zenpage category global object variable: $_zp_current_category->getID().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category global object variable: $_zp_current_category->getID().'), E_USER_NOTICE);
 	global $_zp_current_category;
 	return $_zp_current_category->getID();
 }
@@ -553,7 +553,7 @@ function getCurrentNewsCategoryID() {
  * @since 1.4.0
  */
 function getCurrentNewsCategoryParentID() {
-	self::notify(gettext('Use instead the Zenpage category global object variable: $_zp_current_category->getParentID().'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category global object variable: $_zp_current_category->getParentID().'), E_USER_NOTICE);
 	global $_zp_current_category;
 	return $_zp_current_category->getParentID();
 }
@@ -563,7 +563,7 @@ function getCurrentNewsCategoryParentID() {
  * @since 1.4.0
  */
 function inNewsCategory($catlink) {
-	self::notify(gettext('Use instead the Zenpage news global object variable: $_zp_current_zenpage_news->inNewsCategory($catlink).'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage news global object variable: $_zp_current_zenpage_news->inNewsCategory($catlink).'), E_USER_NOTICE);
 	global $_zp_current_zenpage_news;
 	return $_zp_current_zenpage_news->inNewsCategory($catlink);
 }
@@ -573,7 +573,7 @@ function inNewsCategory($catlink) {
  * @since 1.4.0
  */
 function inSubNewsCategoryOf($catlink) {
-	self::notify(gettext('Use instead the Zenpage news global object variable: $_zp_current_zenpage_news->inSubNewsCategoryOf($catlink).'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage news global object variable: $_zp_current_zenpage_news->inSubNewsCategoryOf($catlink).'), E_USER_NOTICE);
 	global $_zp_current_zenpage_news;
 	return $_zp_current_zenpage_news->inSubNewsCategoryOf($catlink);
 }
@@ -584,7 +584,7 @@ function inSubNewsCategoryOf($catlink) {
  */
 function isSubNewsCategoryOf($catlink) {
 	global $_zp_current_category;
-	self::notify(gettext('Use instead the Zenpage category global object variable: $_zp_current_category->isSubNewsCategoryOf($catlink).'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use instead the Zenpage category global object variable: $_zp_current_category->isSubNewsCategoryOf($catlink).'), E_USER_NOTICE);
 	return $_zp_current_category->isSubNewsCategoryOf($catlink);
 }
 
@@ -593,7 +593,7 @@ function isSubNewsCategoryOf($catlink) {
  * @since 1.4.0
  */
 function printNewsReadMoreLink($readmore='') {
-	self::notify(gettext('Functionality is now included in getNewsContent(), printNewsContent() and getContentShorten() to properly cover custom shortening via TinyMCE <pagebreak>.'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Functionality is now included in getNewsContent(), printNewsContent() and getContentShorten() to properly cover custom shortening via TinyMCE <pagebreak>.'), E_USER_NOTICE);
 	$readmore = getNewsReadMore($readmore);
 	if(!empty($readmore)) {
 		if(is_NewsType("news")) {
@@ -610,7 +610,7 @@ function printNewsReadMoreLink($readmore='') {
  * @since 1.4.0
  */
 function getNewsContentShorten($articlecontent,$shorten,$shortenindicator='',$readmore='') {
-	self::notify(gettext('Use getContentShorten() instead. Note the read more url must be passed directly.'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('Use getContentShorten() instead. Note the read more url must be passed directly.'), E_USER_NOTICE);
 	return getContentShorten($articlecontent,$shorten,$shortenindicator,'');
 }
 
@@ -619,7 +619,7 @@ function getNewsContentShorten($articlecontent,$shorten,$shortenindicator='',$re
  * @since 1.4.0
  */
 function checkForPassword($hint, $show) {
-	self::notify(gettext('There is no need for this function as password handling is done by the core.'), E_USER_NOTICE);
+	deprecated_functions::notify(gettext('There is no need for this function as password handling is done by the core.'), E_USER_NOTICE);
 	return false;
 }
 
@@ -628,7 +628,7 @@ function checkForPassword($hint, $show) {
  * @since 1.4.0
  */
 function printAlbumMap($zoomlevel=NULL, $defaultmaptype=NULL, $width=NULL, $height=NULL, $text=NULL, $toggle=true, $id='googlemap', $firstPageImages=NULL, $mapselections=NULL, $addwiki=NULL, $background=NULL, $mapcontrol=NULL, $maptypecontrol=NULL, $customJS=NULL){
-	self::notify(gettext('The google-maps plugin is deprecated. Convert to GoogleMap.'));
+	deprecated_functions::notify(gettext('The google-maps plugin is deprecated. Convert to GoogleMap.'));
 	if (function_exists('printGoogleMap')) printGoogleMap($text, $id, $toggle, NULL, NULL);
 }
 
@@ -637,7 +637,7 @@ function printAlbumMap($zoomlevel=NULL, $defaultmaptype=NULL, $width=NULL, $heig
  * @since 1.4.0
  */
 function printImageMap($zoomlevel=NULL, $defaultmaptype=NULL, $width=NULL, $height=NULL, $text=NULL, $toggle=true, $id='googlemap', $mapselections=NULL, $addwiki=NULL, $background=NULL, $mapcontrol=NULL, $maptypecontrol=NULL, $customJS=NULL) {
-	self::notify(gettext('The google-maps plugin is deprecated. Convert to GoogleMap.'));
+	deprecated_functions::notify(gettext('The google-maps plugin is deprecated. Convert to GoogleMap.'));
 	if (function_exists('printGoogleMap')) printGoogleMap($text, $id, $toggle, NULL, NULL);
 }
 
@@ -646,7 +646,7 @@ function printImageMap($zoomlevel=NULL, $defaultmaptype=NULL, $width=NULL, $heig
  * @since 1.4.0
  */
 function setupAllowedMaps($defaultmap, $allowedmaps) {
-	self::notify(gettext('The google-maps plugin is deprecated. Convert to GoogleMap.'));
+	deprecated_functions::notify(gettext('The google-maps plugin is deprecated. Convert to GoogleMap.'));
 }
 
 /**
@@ -654,7 +654,7 @@ function setupAllowedMaps($defaultmap, $allowedmaps) {
  * @since 1.4.0
  */
 function printPreloadScript() {
-	self::notify(gettext('printPreloadScript is deprecated. It is a helper for a specific theme and should be placed within that theme\'s "functions.php" script.'));
+	deprecated_functions::notify(gettext('printPreloadScript is deprecated. It is a helper for a specific theme and should be placed within that theme\'s "functions.php" script.'));
 	global $_zp_current_image;
 	$size = getOption('image_size');
 	if (hasNextImage() || hasPrevImage()) {
@@ -676,7 +676,7 @@ function printPreloadScript() {
  * @since 1.4.1
  */
 function processExpired($table) {
-	self::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	Zenpage::processExpired($table);
 }
@@ -686,7 +686,7 @@ function processExpired($table) {
  * @since 1.4.1
  */
 function getParentItems($mode='pages',&$parentid,$initparents=true) {
-	self::notify(gettext('Use the method from either the ZenpagePage or the ZenpageCategory class instead.'));
+	deprecated_functions::notify(gettext('Use the method from either the ZenpagePage or the ZenpageCategory class instead.'));
 	global $_zp_current_zenpage_page, $_zp_current_category;
 	switch($mode) {
 		case 'pages':
@@ -703,7 +703,7 @@ function getParentItems($mode='pages',&$parentid,$initparents=true) {
  * @since 1.4.1
  */
 function getPages($published=NULL) {
-	self::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->getPages($published);
 }
@@ -713,7 +713,7 @@ function getPages($published=NULL) {
  * @since 1.4.1
  */
 function getArticles($articles_per_page='', $category='', $published=NULL,$ignorepagination=false,$sortorder="date", $sortdirection="desc",$sticky=true) {
-	self::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage, $_zp_current_category;
 	if (!empty($category)) {
 		$catobj = new ZenpageCategory($category);
@@ -731,7 +731,7 @@ function getArticles($articles_per_page='', $category='', $published=NULL,$ignor
  * @since 1.4.1
  */
 function countArticles($category='', $published='published',$count_subcat_articles=true) {
-	self::notify(gettext('Count the articles instead.'));
+	deprecated_functions::notify(gettext('Count the articles instead.'));
 	global $_zp_post_date;
 	if(zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
 		$published = "all";
@@ -802,7 +802,7 @@ function countArticles($category='', $published='published',$count_subcat_articl
  * @since 1.4.1
  */
 function getTotalArticles() {
-	self::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->getTotalArticles();
 }
@@ -812,7 +812,7 @@ function getTotalArticles() {
  * @since 1.4.1
  */
 function getAllArticleDates($yearsonly=false) {
-	self::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->getAllArticleDates($yearsonly);
 }
@@ -823,7 +823,7 @@ function getAllArticleDates($yearsonly=false) {
  * @since 1.4.1
  */
 function getCurrentNewsPage() {
-	self::notify(gettext('Use the global $_zp_page instead.'));
+	deprecated_functions::notify(gettext('Use the global $_zp_page instead.'));
 	global $_zp_page;
 	return $_zp_page;
 }
@@ -833,7 +833,7 @@ function getCurrentNewsPage() {
  * @since 1.4.1
  */
 function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder='',$sticky=true) {
-	self::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->getCombiNews($articles_per_page, $mode,$published,$sortorder,$sticky);
 }
@@ -844,7 +844,7 @@ function getCombiNews($articles_per_page='', $mode='',$published=NULL,$sortorder
  * @since 1.4.1
  */
 function countCombiNews($published=NULL) {
-	self::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->countCombiNews($published);
 }
@@ -854,7 +854,7 @@ function countCombiNews($published=NULL) {
  * @since 1.4.1
  */
 function getCategoryLink($catname) {
-	self::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->getCategoryLink($catname);
 }
@@ -865,7 +865,7 @@ function getCategoryLink($catname) {
  * @since 1.4.1
  */
 function getCategory($id) {
-	self::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->getCategory($id);
 }
@@ -876,7 +876,7 @@ function getCategory($id) {
  * @since 1.4.1
  */
 function getAllCategories() {
-	self::notify(gettext('Use the Zenpage class method instead.'));
+	deprecated_functions::notify(gettext('Use the Zenpage class method instead.'));
 	global $_zp_zenpage;
 	return $_zp_zenpage->getAllCategories();
 }
@@ -887,7 +887,7 @@ function getAllCategories() {
  * @since 1.4.1
  */
 function isProtectedAlbum($album=NULL) {
-	self::notify(gettext('Use the album class method <code>isProtected()</code> instead.'));
+	deprecated_functions::notify(gettext('Use the album class method <code>isProtected()</code> instead.'));
 	global $_zp_current_album;
 	if (is_null($album)) $album = $_zp_current_album;
 	return $album->isProtected();
@@ -898,7 +898,7 @@ function isProtectedAlbum($album=NULL) {
  * @since 1.4.2
  */
 function getRSSHeaderLink($option, $linktext='', $lang='') {
-	self::notify(gettext('Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link <code>getRSSLink()</code> just returns the URL.'));
+	deprecated_functions::notify(gettext('Use the template function <code>getRSSLink()</code> instead. NOTE: While this function gets a full html link <code>getRSSLink()</code> just returns the URL.'));
 	global $_zp_current_album;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
 	$protocol = SERVER_PROTOCOL.'://';
@@ -946,7 +946,7 @@ function getRSSHeaderLink($option, $linktext='', $lang='') {
  * @since 1.4.2
  */
 function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $lang='') {
-	self::notify(gettext('Use the template function <code>getZenpageRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getZenpageRSSLink()</code> just returns the URL.'));
+	deprecated_functions::notify(gettext('Use the template function <code>getZenpageRSSLink()</code> instead. NOTE: While this function gets a full html link  <code>getZenpageRSSLink()</code> just returns the URL.'));
 	global $_zp_current_category;
 	$host = html_encode($_SERVER["HTTP_HOST"]);
 	$protocol = SERVER_PROTOCOL.'://';
@@ -985,7 +985,7 @@ function getZenpageRSSHeaderLink($option='', $categorylink='', $linktext='', $la
  * @since 1.4.2
  */
 function generateCaptcha(&$img) {
-	self::notify(gettext('Use $_zp_captcha->getCaptcha(). Note that you will require updating your code to the new function.'));
+	deprecated_functions::notify(gettext('Use $_zp_captcha->getCaptcha(). Note that you will require updating your code to the new function.'));
 	return $img = NULL;
 }
 
@@ -994,7 +994,7 @@ function generateCaptcha(&$img) {
  * @since 1.4.3
  */
 function printAlbumZip(){
-	self::notify(gettext('Use downloaList plugin <code>printDownloadLinkAlbumZip</code>.'));
+	deprecated_functions::notify(gettext('Use downloaList plugin <code>printDownloadLinkAlbumZip()</code>.'));
 	global $_zp_current_album;
 	setOption('zp_plugin_downloadList',20|ADMIN_PLUGIN|THEME_PLUGIN);
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/downloadList.php');

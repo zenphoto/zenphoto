@@ -345,8 +345,11 @@ class AlbumZip {
 		$zip->finish();
 	}
 }
-
-$_downloadList_linkpath = substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1);
+if (strpos($_SERVER['REQUEST_URI'], '?') === false) {
+	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1).'?download=');
+} else {
+	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1).'&amp;download=');
+}
 
 
 /**
@@ -418,15 +421,10 @@ function getdownloadList($dir,$filters,$excludesuffixes,$sort) {
  * @param string $file the path to a file to get a download link.
  */
 function getDownloadLink($file) {
-	global $_downloadList_linkpath;
 	DownloadList::addListItem($file); // add item to db if not already exists without updating the counter
 	$link = '';
 	if($id = DownloadList::getItemID($file)) {
-		if (strpos($_downloadList_linkpath,'?') === false) {
-			$link = FULLWEBPATH.'/'.$_downloadList_linkpath.'?download='.$id;
-		} else {
-			$link = FULLWEBPATH.'/'.$_downloadList_linkpath.'&download='.$id;
-		}
+		$link = DOWNLOADLIST_LINKPATH.$id;
 	}
 	return $link;
 }
@@ -464,7 +462,7 @@ function printDownloadLink($file,$linktext=NULL) {
  * This function only creates a download count and then redirects to the original Zenphoto album zip download.
  */
 function printDownloadLinkAlbumZip($linktext=NULL,$albumobj=NULL) {
-	global $_zp_current_album, $_downloadList_linkpath;
+	global $_zp_current_album;
 	if (is_null($albumobj)) {
 		$albumobj = $_zp_current_album;
 	}
@@ -485,11 +483,7 @@ function printDownloadLinkAlbumZip($linktext=NULL,$albumobj=NULL) {
 		if(!empty($linktext)) {
 			$file = $linktext;
 		}
-		if (strpos($_downloadList_linkpath, '?') === false) {
-			$link = WEBPATH.'/'.$_downloadList_linkpath.'?download='.pathurlencode($albumobj->name).'&amp;albumzip';
-		} else {
-			$link = WEBPATH.'/'.$_downloadList_linkpath.'&amp;download='.pathurlencode($albumobj->name).'&amp;albumzip';
-		}
+		$link = DOWNLOADLIST_LINKPATH.pathurlencode($albumobj->name).'&amp;albumzip';
 		echo '<a href="'.$link.'" rel="nofollow">'.html_encode($file).'</a>'.$filesize;
 	}
 }
