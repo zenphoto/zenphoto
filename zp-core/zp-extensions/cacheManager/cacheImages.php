@@ -169,7 +169,7 @@ $currenttheme = $_zp_gallery->getCurrentTheme();
 					<input type="hidden" name="enable[]" value="<?php echo $key; ?>" />
 					<?php
 				} else {
-					if ($currenttheme == $cacheimage['theme']) {
+					if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin_thumbs') {
 						$checked = ' checked="checked"';
 					} else {
 						$checked = '';
@@ -204,7 +204,6 @@ $currenttheme = $_zp_gallery->getCurrentTheme();
 			if ($alb) {
 				$album = new Album(NULL, $folder);
 				$count =loadAlbum($album);
-				echo "\n" . "<br />".sprintf(gettext("Finished: Total of %u images cached."), $count);
 			} else {
 				$albums = $_zp_gallery->getAlbums();
 				shuffle($albums);
@@ -214,8 +213,9 @@ $currenttheme = $_zp_gallery->getCurrentTheme();
 						$count = $count + loadAlbum($album);
 					}
 				}
-				echo "\n" . "<br />".sprintf(gettext("Finished: Total of %u images cached."), $count);
 			}
+			$partb = sprintf(ngettext('%u cache size requested','%u cache sizes requested',$count*$cachesizes),$count*$cachesizes);
+			echo "\n" . "<br />".sprintf(ngettext('Finished processing %1$u image (%2$s).','Finished processing %1$u images (%2$s).',$count), $count, $partb);
 			if ($count) {
 				$button = array('text'=>gettext("Refresh"), 'title'=>gettext('Refresh the caching of the selected image sizes if some images did not render.'));
 			} else {
