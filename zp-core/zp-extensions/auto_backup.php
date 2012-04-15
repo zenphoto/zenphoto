@@ -12,6 +12,7 @@
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
+ * @subpackage admin
  */
 
 $plugin_is_filter = 2|ADMIN_PLUGIN|THEME_PLUGIN;

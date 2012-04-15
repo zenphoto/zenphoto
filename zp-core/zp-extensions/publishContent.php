@@ -20,7 +20,8 @@
  * the images <i>visible</i> fields. (These are the same options provided in the <i>Gallery behavior</i> section of
  * the gallery options tab.)
  *
- * @package admin
+ * @package plugins
+ * @subpackage admin
  */
 
 $plugin_is_filter = 9|ADMIN_PLUGIN;
