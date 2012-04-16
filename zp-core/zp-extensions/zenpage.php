@@ -90,6 +90,20 @@ class zenpagecms {
 		setOptionDefault('combinews-customtitle-imagetitles', '6');
 		setOptionDefault('menu_truncate_string', 0);
 		setOptionDefault('menu_truncate_indicator', '');
+		if (class_exists('cacheManager') && getOption('zenpage_combinews')) {
+			switch(getOption('zenpage_combinews_mode')) {
+				case 'latestimages-sizedimage-maxspace':
+				case 'latestalbums-sizedimage-maxspace':
+				case 'latestimagesbyalbum-sizedimage-maxspace':
+					cacheManager::addThemeCacheSize('zenpage', NULL, getOption('combinews-thumbnail-width'),getOption('combinews-thumbnail-height'), getOption('combinews-thumbnail-width'),getOption('combinews-thumbnail-height'), NULL, NULL,true, NULL, NULL);
+					break;
+				case 'latestimages-thumbnail-customcrop':
+				case 'latestalbums-thumbnail-customcrop':
+				case 'latestimagesbyalbum-thumbnail-customcrop':
+					cacheManager::addThemeCacheSize('zenpage', NULL, getOption('combinews-thumbnail-width'), getOption('combinews-thumbnail-height'),  getOption('combinews-thumbnail-cropwidth'), getOption('combinews-thumbnail-cropheight'), getOption('combinews-thumbnail-cropx'), getOption('combinews-thumbnail-cropy'), true, NULL, NULL);
+					break;
+			}
+		}
 	}
 
 	function getOptionsSupported() {
