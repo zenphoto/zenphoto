@@ -73,8 +73,8 @@ zp_register_filter('show_change', 'cacheManager::published');
 class cacheManager {
 
 	function __construct() {
-		self::deleteThemeCacheSizes('admin_thumbs');
-		self::addThemeCacheSize('admin_thumbs', 40, NULL, NULL, 40, 40, NULL, NULL, true, NULL, NULL);
+		self::deleteThemeCacheSizes('admin');
+		self::addThemeCacheSize('admin', 40, NULL, NULL, 40, 40, NULL, NULL, true, NULL, NULL);
 	}
 
 	/**
