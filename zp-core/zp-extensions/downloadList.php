@@ -56,6 +56,7 @@ class DownloadList {
 		setOptionDefault('downloadList_password', getOption('downloadList_pass'));
 		setOptionDefault('downloadList_hint', NULL);
 		setOptionDefault('downloadList_rights', NULL);
+		setOptionDefault('downloadList_zipFromCache', 0);
 	}
 
 	function getOptionsSupported() {
@@ -72,6 +73,10 @@ class DownloadList {
 										  gettext('Files to exclude from the download list') => array('key' => 'downloadList_excludesuffixes', 'type' => OPTION_TYPE_TEXTBOX,
 													'order' => 5,
 										  		'desc' => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
+											gettext('Zip source') => array('key' => 'downloadList_zipFromCache', 'type' => OPTION_TYPE_RADIO,
+													'order' => 6,
+													'buttons' => array(gettext('From album')=>0, gettext('From Cache')=>1),
+													'desc' => gettext('Make the album zip form the album folder or from the sized images in the cache.')),
 										  gettext('User rights') => array('key' => 'downloadList_rights', 'type' => OPTION_TYPE_CHECKBOX,
 													'order' => 1,
 										  		'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
@@ -331,7 +336,7 @@ class AlbumZip {
 		foreach ($albums as $albumname) {
 			$subalbum = new Album($zip_gallery,$albumname);
 			if ($subalbum->exists && !$album->isDynamic()) {
-				self::AddAlbum($subalbum, $base, $filebase);
+				self::AddAlbumCache($subalbum, $base, $filebase);
 			}
 		}
 	}
@@ -362,8 +367,6 @@ class AlbumZip {
 	 */
 	static function create($albumname, $fromcache){
 		global $_zp_zip_list, $_zp_gallery, $defaultSize;
-		loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
-		$defaultSize = getOption('image_size');
 		$album = new Album(NULL, $albumname);
 		if (!$album->isMyItem(LIST_RIGHTS) && !checkAlbumPassword($albumname)) {
 			self::pageError(403, gettext("Forbidden"));
@@ -373,13 +376,15 @@ class AlbumZip {
 		}
 		$_zp_zip_list = array();
 		if ($fromcache) {
-			$pwd = SERVERPATH . '/' . CACHEFOLDER . '/' . $albumname;
-			self::AddAlbumCache($album, strlen($albumname), $pwd);
+			$opt = array('large_file_size' => 5 * 1024 * 1024,'comment'=>sprintf(gettext('Created from cached images of %1$s on %2$s.'),$album->name,zpFormattedDate(DATE_FORMAT, time())));
+			loadLocalOptions(false, $_zp_gallery->getCurrentTheme());
+			$defaultSize = getOption('image_size');
+			self::AddAlbumCache($album, strlen($albumname), SERVERPATH . '/' . CACHEFOLDER . '/' . $albumname);
 		} else {
-			$pwd = SERVERPATH . '/' . ALBUMFOLDER . '/' . $albumname;
-			self::AddAlbum($album, strlen($albumname), $pwd);
+			$opt = array('large_file_size' => 5 * 1024 * 1024,'comment'=>sprintf(gettext('Created from images in %1$s on %2$s.'),$album->name,zpFormattedDate(DATE_FORMAT, time())));
+			self::AddAlbum($album, strlen($albumname), SERVERPATH . '/' . ALBUMFOLDER . '/' . $albumname);
 		}
-		$zip = new ZipStream($albumname.'.zip', array('large_file_size' => 5 * 1024 * 1024));
+		$zip = new ZipStream($albumname.'.zip', $opt);
 		foreach ($_zp_zip_list as $path=>$file) {
 			@set_time_limit(6000);
 			$zip->add_file_from_path($file, $path);
@@ -563,7 +568,12 @@ if(isset($_GET['download'])) {
 	if(isset($_GET['albumzip'])) {
 		DownloadList::updateListItemCount($item.'.zip');
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-zipStream.php');
-		AlbumZip::create($item,isset($_GET['fromcache']));
+		if (is_null(isset($_GET['fromcache']))) {
+			$fromcache = sanitize($isset($_GET['fromcache']));
+		} else {
+			$fromcache = getOption('downloadList_zipFromCache');
+		}
+		AlbumZip::create($item,$fromcache);
 		exitZP();
 	} else {
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
