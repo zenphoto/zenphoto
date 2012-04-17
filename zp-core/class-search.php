@@ -48,7 +48,6 @@ class SearchEngine
 	function __construct($dynamic_album = false) {
 		global $_zp_exifvars, $_zp_gallery;
 		//image/album fields
-		$this->gallery = $_zp_gallery;
 		$this->search_structure['title']							= gettext('Title');
 		$this->search_structure['desc']								= gettext('Description');
 		$this->search_structure['tags']								= gettext('Tags');

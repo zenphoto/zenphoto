@@ -34,8 +34,8 @@ class tinymceOptions {
 		setOptionDefault('tinymce_tinyzenpage_flowplayer_height', '240');
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('tinyzenpage');
-			cacheManager::addThemeCacheSize('tinyzenpage', NULL, getOption('tinymce_tinyzenpage_customimagesize'), getOption('tinymce_tinyzenpage_customthumb_size'), NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize('tinyzenpage', NULL, getOption('tinymce_tinyzenpage_flowplayer_width'), getOption('tinymce_tinyzenpage_flowplayer_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			cacheManager::addThemeCacheSize('tinyzenpage', NULL, getOption('tinymce_tinyzenpage_customimagesize'), getOption('tinymce_tinyzenpage_customthumb_size'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			cacheManager::addThemeCacheSize('tinyzenpage', NULL, getOption('tinymce_tinyzenpage_flowplayer_width'), getOption('tinymce_tinyzenpage_flowplayer_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 		}
 	}
 

@@ -347,43 +347,45 @@ function getLayoutSelector($obj,$type,$text,$prefix='',$secondary=false) {
  */
 function getLayout($path) {
 	global $_zp_gallery, $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page, $_zp_current_zenpage_news, $_zp_current_category,$_zp_current_search;
-	$themepath = THEMEFOLDER.'/'.$_zp_gallery->getCurrentTheme().'/';
-	$getlayout = false;
-	switch($_zp_gallery_page) {
-		case 'album.php':
-			if(getOption('multiple_layouts_albums')) {
-				$getlayout = getSelectedLayout($_zp_current_album,'multiple_layouts_albums');
-			}
-			break;
-		case 'image.php':
-			if(getOption('multiple_layouts_images')) {
-				$currentalbumname = $_zp_current_album->name;
-				if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED) && $_zp_current_search->dynalbumname) {
-					$album = new Album(NULL, $_zp_current_search->dynalbumname);
-				} else {
-					$getlayout = getSelectedLayout($_zp_current_image,'multiple_layouts_images');
-					$album = $_zp_current_album;
+	if ($path) {
+		$themepath = THEMEFOLDER.'/'.$_zp_gallery->getCurrentTheme().'/';
+		$getlayout = false;
+		switch($_zp_gallery_page) {
+			case 'album.php':
+				if(getOption('multiple_layouts_albums')) {
+					$getlayout = getSelectedLayout($_zp_current_album,'multiple_layouts_albums');
 				}
-				if (!$getlayout) {
-					$getlayout = checkLayoutUseForImages($album);
+				break;
+			case 'image.php':
+				if(getOption('multiple_layouts_images')) {
+					$currentalbumname = $_zp_current_album->name;
+					if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED) && $_zp_current_search->dynalbumname) {
+						$album = new Album(NULL, $_zp_current_search->dynalbumname);
+					} else {
+						$getlayout = getSelectedLayout($_zp_current_image,'multiple_layouts_images');
+						$album = $_zp_current_album;
+					}
+					if (!$getlayout) {
+						$getlayout = checkLayoutUseForImages($album);
+					}
 				}
-			}
-			break;
-		case 'pages.php':
-			if(getOption('multiple_layouts_pages')) {
-				$getlayout = getSelectedLayout($_zp_current_zenpage_page,'multiple_layouts_pages');
-			}
-			break;
-		case 'news.php':
-			if(getOption('multiple_layouts_news_categories') && in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-				$getlayout = getSelectedLayout($_zp_current_category,'multiple_layouts_news_categories');
-			} elseif (getOption('multiple_layouts_news') && in_context(ZP_ZENPAGE_SINGLE)) {
-				$getlayout = getSelectedLayout($_zp_current_zenpage_news,'multiple_layouts_news');
-			}
-			break;
-	}
-	if($getlayout && $getlayout['data'] && file_exists(internalToFilesystem(SERVERPATH.'/'.$themepath.$getlayout['data']))) {
-		return $themepath.$getlayout['data'];
+				break;
+			case 'pages.php':
+				if(getOption('multiple_layouts_pages')) {
+					$getlayout = getSelectedLayout($_zp_current_zenpage_page,'multiple_layouts_pages');
+				}
+				break;
+			case 'news.php':
+				if(getOption('multiple_layouts_news_categories') && in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
+					$getlayout = getSelectedLayout($_zp_current_category,'multiple_layouts_news_categories');
+				} elseif (getOption('multiple_layouts_news') && in_context(ZP_ZENPAGE_SINGLE)) {
+					$getlayout = getSelectedLayout($_zp_current_zenpage_news,'multiple_layouts_news');
+				}
+				break;
+		}
+		if($getlayout && $getlayout['data'] && file_exists(internalToFilesystem(SERVERPATH.'/'.$themepath.$getlayout['data']))) {
+			return $themepath.$getlayout['data'];
+		}
 	}
 	return $path;
 }

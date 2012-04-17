@@ -107,7 +107,7 @@ class flowplayer3_options {
 
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('flow_player3');
-			cacheManager::addThemeCacheSize('flow_player3', NULL, getOption('flow_player3_width'), getOption('flow_player3_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			cacheManager::addThemeCacheSize('flow_player3', NULL, getOption('flow_player3_width'), getOption('flow_player3_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 		}
 	}
 

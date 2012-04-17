@@ -59,6 +59,9 @@ function loadAlbum($album) {
 						$thumbstandin = isset($cacheimage['thumb'])?$cacheimage['thumb']:NULL;
 						$effects = isset($cacheimage['gray'])?$cacheimage['gray']:NULL;
 						$passedWM = isset($cacheimage['wmk'])?$cacheimage['wmk']:NULL;
+						if (isset($cacheimage['maxspace'])) {
+							getMaxSpaceContainer($width,$height,$_zp_current_image,$thumbstandin);
+						}
 						$args = array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, $thumbstandin, NULL, $thumbstandin, $passedWM, NULL, $effects);
 						$args = getImageParameters($args, $album->name);
 						$uri = getImageURI($args, $album->name, $_zp_current_image->filename, $_zp_current_image->filemtime);
@@ -188,6 +191,16 @@ $currenttheme = $_zp_gallery->getCurrentTheme();
 				$passedWM = isset($cacheimage['wmk'])?$cacheimage['wmk']:NULL;
 				$args = array($size, $width, $height, $cw, $ch, $cx, $cy, NULL, $thumbstandin, NULL, $thumbstandin, $passedWM, NULL, $effects);
 				$postfix = getImageCachePostfix($args);
+				if (isset($cacheimage['maxspace']) && $cacheimage['maxspace']) {
+					if ($width && $height) {
+						$postfix = str_replace('_w', '_wMax', $postfix);
+						$postfix = str_replace('_h', '_hMax', $postfix);
+					} else {
+						$postfix = '_'.gettext('invalid_MaxSpace');
+						$checked = ' disabled="disabled"';
+					}
+				} else {
+				}
 				?>
 				<li><input type="checkbox" name="enable[]" value="<?php echo $key; ?>"<?php echo $checked; ?> /> <?php echo gettext('Apply'); ?> <i><?php echo $cacheimage['theme']; ?></i><?php echo $postfix; ?></li>
 				<?php

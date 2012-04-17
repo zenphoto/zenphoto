@@ -32,7 +32,7 @@ class pagedthumbsOptions {
 		setOptionDefault('pagedthumbs_pagelistlength', '6');
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('paged_thumbs_nav');
-			cacheManager::addThemeCacheSize('paged_thumbs_nav', NULL, getOption('pagedthumbs_width'), getOption('pagedthumbs_height'), NULL, NULL, NULL, NULL, true, NULL, NULL);
+			cacheManager::addThemeCacheSize('paged_thumbs_nav', NULL, getOption('pagedthumbs_width'), getOption('pagedthumbs_height'), NULL, NULL, NULL, NULL, true, NULL, NULL, NULL);
 		}
 	}
 

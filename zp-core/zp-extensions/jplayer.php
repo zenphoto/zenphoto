@@ -100,7 +100,7 @@ class jplayer_options {
 		if (class_exists('cacheManager')) {
 			$player = new jPlayer();
 			cacheManager::deleteThemeCacheSizes('jplayer');
-			cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			cacheManager::addThemeCacheSize('jplayer', NULL, $player->width, $player->height, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 		}
 	}
 

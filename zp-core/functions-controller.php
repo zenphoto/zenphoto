@@ -449,10 +449,10 @@ function zp_load_request() {
 * @return string
 */
 function prepareIndexPage() {
-	global  $_zp_gallery_page, $_zp_obj;
+	global  $_zp_gallery_page, $_zp_script;
 	handleSearchParms('index');
 	$theme = setupTheme();
-	$_zp_gallery_page = basename($_zp_obj = THEMEFOLDER."/$theme/index.php");
+	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER."/$theme/index.php");
 	return $theme;
 }
 
@@ -461,7 +461,7 @@ function prepareIndexPage() {
  * sets up for loading an album page
  */
 function prepareAlbumPage() {
-	global  $_zp_current_album, $_zp_gallery_page, $_zp_obj;
+	global  $_zp_current_album, $_zp_gallery_page, $_zp_script;
 	if ($_zp_current_album->isDynamic()) {
 		$search = $_zp_current_album->getSearchEngine();
 		zp_setCookie("zenphoto_search_params", $search->getSearchParams(), SEARCH_DURATION);
@@ -469,7 +469,7 @@ function prepareAlbumPage() {
 		handleSearchParms('album', $_zp_current_album);
 	}
 	$theme =  setupTheme();
-	$_zp_gallery_page = basename($_zp_obj = THEMEFOLDER."/$theme/album.php");
+	$_zp_gallery_page = basename($_zp_script = THEMEFOLDER."/$theme/album.php");
 	return $theme;
 }
 
@@ -479,10 +479,10 @@ function prepareAlbumPage() {
  * @return string
  */
 function prepareImagePage() {
-	global  $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_obj;
+	global  $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_script;
 	handleSearchParms('image', $_zp_current_album, $_zp_current_image);
 	$theme =  setupTheme();
-	$_zp_gallery_page =  basename($_zp_obj = THEMEFOLDER."/$theme/image.php");
+	$_zp_gallery_page =  basename($_zp_script = THEMEFOLDER."/$theme/image.php");
 	// re-initialize video dimensions if needed
 	if (isImageVideo() & isset($_zp_flash_player)) {
 		$_zp_current_image->updateDimensions();
@@ -496,7 +496,7 @@ function prepareImagePage() {
  * @return string
  */
 function prepareCustomPage() {
-	global  $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_obj;
+	global  $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_script;
 	handleSearchParms('page', $_zp_current_album, $_zp_current_image);
 	$theme = setupTheme();
 	$page = str_replace(array('/','\\','.'), '', sanitize($_GET['p']));
@@ -504,10 +504,10 @@ function prepareCustomPage() {
 		if ($subfolder = sanitize($_GET['z'])) {
 			$subfolder .= '/';
 		}
-		$_zp_gallery_page = basename($_zp_obj = ZENFOLDER.'/'.$subfolder.$page.'.php');
+		$_zp_gallery_page = basename($_zp_script = ZENFOLDER.'/'.$subfolder.$page.'.php');
 	} else {
-		$_zp_obj = THEMEFOLDER."/$theme/$page.php";
-		$_zp_gallery_page = basename($_zp_obj);
+		$_zp_script = THEMEFOLDER."/$theme/$page.php";
+		$_zp_gallery_page = basename($_zp_script);
 	}
 	return $theme;
 }

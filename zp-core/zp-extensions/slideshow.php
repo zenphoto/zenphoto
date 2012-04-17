@@ -52,7 +52,7 @@ class slideshow {
 		setOptionDefault('slideshow_colorbox_imagetitle', 1);
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('slideshow');
-			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			cacheManager::addThemeCacheSize('slideshow', NULL, getOption('slideshow_width'), getOption('slideshow_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 		}
 	}
 

@@ -36,8 +36,8 @@ class ThemeOptions {
 		}
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('zenpage');
-			cacheManager::addThemeCacheSize('zenpage', 580, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), NULL);
-			cacheManager::addThemeCacheSize('zenpage', 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL);
+			cacheManager::addThemeCacheSize('zenpage', NULL, 580, 580, NULL, NULL, NULL, NULL, NULL, false, getOption('fullimage_watermark'), true);
+			cacheManager::addThemeCacheSize('zenpage', 95, NULL, NULL, getThemeOption('thumb_crop_width'), getThemeOption('thumb_crop_height'), NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
 		}
 		if (function_exists('createMenuIfNotExists')) {
 			$menuitems = array(

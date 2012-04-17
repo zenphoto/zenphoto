@@ -61,7 +61,6 @@ $option_interface = 'cacheManager';
 zp_register_filter('admin_utilities_buttons', 'cacheManager::overviewbutton');
 zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton',9999);
 zp_register_filter('custom_option_save','cacheManager::handleOptionSave');
-
 zp_register_filter('show_change', 'cacheManager::published');
 
 /**
@@ -74,7 +73,7 @@ class cacheManager {
 
 	function __construct() {
 		self::deleteThemeCacheSizes('admin');
-		self::addThemeCacheSize('admin', 40, NULL, NULL, 40, 40, NULL, NULL, true, NULL, NULL);
+		self::addThemeCacheSize('admin', 40, NULL, NULL, 40, 40, NULL, NULL, true, NULL, NULL, NULL);
 	}
 
 	/**
@@ -86,16 +85,24 @@ class cacheManager {
 		if (getOption('zp_plugin_cacheManager')) {
 			$options = array(gettext('Image caching sizes')=>array('key' => 'cropImage_list', 'type' => OPTION_TYPE_CUSTOM,
 																														'order' => 1,
-																														'desc' => gettext('Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings.'.
-																																			'You can determine the values for these fields by examining your cached images. The file names will look something like these:').
-																																			'<ul>'.
-																																			'<li>'.gettext('<code>photo_595.jpg</code>: sized to 595 pixels').'</li>'.
-																																			'<li>'.gettext('<code>photo_w180_cw180_ch80_thumb.jpg</code>: a size of 180px wide and 80px high and it is a thumbnail (<code>thumb</code>)').'</li>'.
-																																			'<li>'.gettext('<code>photo_85_cw72_ch72_thumb_copyright_gray.jpg</code>: sized 85px cropped at about 7.6% (one half of 72/85) from the horizontal and vertical sides with a watermark (<code>copyright</code>) and rendered in grayscale (<code>gray</code>).').'</li>'.
-																																			'<li>'.gettext('<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: a custom cropped 85px thumbnail with watermark.').'</li>'.
-																																			'</ul>'.
+																														'desc' => '<p>'.
+																																				gettext('Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings.'.
+																																				'You can determine the values for these fields by examining your cached images. The file names will look something like these:').
+																																				'<ul>'.
+																																					'<li>'.gettext('<code>photo_595.jpg</code>: sized to 595 pixels').'</li>'.
+																																					'<li>'.gettext('<code>photo_w180_cw180_ch80_thumb.jpg</code>: a size of 180px wide and 80px high and it is a thumbnail (<code>thumb</code>)').'</li>'.
+																																					'<li>'.gettext('<code>photo_85_cw72_ch72_thumb_copyright_gray.jpg</code>: sized 85px cropped at about 7.6% (one half of 72/85) from the horizontal and vertical sides with a watermark (<code>copyright</code>) and rendered in grayscale (<code>gray</code>).').'</li>'.
+																																					'<li>'.gettext('<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: a custom cropped 85px thumbnail with watermark.').'</li>'.
+																																				'</ul>'.
+																																			'</p>'.
+																																			'<p>'.
 																																			gettext('If a field is not represented in the cached name, leave the field blank. Custom crops (those with cx and cy) really cannot be cached easily since each image has unique values. '.
-																																			'See the <em>template-functions</em>::<code>getCustomImageURL()</code> comment block for details on these fields.')
+																																							'See the <em>template-functions</em>::<code>getCustomImageURL()</code> comment block for details on these fields.'.
+																																			'</p>'.
+																																			'<p>'.
+																																			gettext('Some themes use <em>MaxSpace</em> image functions. To cache images referenced by these functions set the <em>width</em> and <em>height</em> parameters to the <em>MaxSpace</em> container size and check the <code>MaxSpace</code> checkbox.').
+																																			'</p>'
+																																			)
 			));
 			$list = array('<em>'.gettext('Albums').'</em>'=>'cacheManager_albums', '<em>'.gettext('Images').'</em>'=>'cacheManager_images');
 			if (getOption('zp_plugin_zenpage')) {
@@ -109,16 +116,18 @@ class cacheManager {
 																										'order'=> 0,
 																										'checkboxes' => $list,
 																										'desc'=>gettext('If a <em>type</em> is checked, the HTML and RSS caches for the item will be purged when an the published state of an item of <em>type</em> changes.').
-																										'<div class="notebox">'.gettext('<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if a gallery page contains dependencies on the item.').'</div>');
+																											'<div class="notebox">'.gettext('<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if a gallery page contains dependencies on the item.').'</div>'
+																										);
 			return $options;
 		} else {
-			return array(''=>array('key'=>'cropImage_note', 'type'=>OPTION_TYPE_NOTE, 'desc'=>'<span class="notebox">'.gettext('This plugin must be enabled to process options.').'</span>'));
+			return array(''=>array('key'=>'cropImage_note', 'type'=>OPTION_TYPE_NOTE, 'desc'=>'<span class="notebox">'.
+									gettext('This plugin must be enabled to process options.').'</span>'));
 		}
 	}
 
 	/**
 	 *
-	 * place holder
+	 * custom option handler
 	 * @param string $option
 	 * @param mixed $currentValue
 	 */
@@ -150,7 +159,13 @@ class cacheManager {
 			$theme = @$cache['theme'];
 			?>
 			<input type="textbox" size="25" name="cacheManager_theme_<?php echo $key; ?>" value="<?php echo $theme; ?>" />
-			<span class="nowrap"><?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheManager_delete_<?php echo $key; ?>" value="1" /></span>
+			<?php
+			if ($theme) {
+				?>
+				<span class="nowrap"><?php echo gettext('Delete'); ?> <input type="checkbox" name="cacheManager_delete_<?php echo $key; ?>" value="1" /></span>
+				<?php
+			}
+			?>
 			<div class="<?php echo $class; ?>">
 			<?php
 			foreach (array('image_size'=>gettext('Size'),'image_width'=>gettext('Width'),'image_height'=>gettext('Height'),
@@ -170,12 +185,15 @@ class cacheManager {
 			} else {
 				$wmk = '';
 			}
-						?>
+			?>
 			<span class="nowrap"><?php echo gettext('Watermark'); ?> <input type="textbox" size="20" name="cacheManager_wmk_<?php echo $key; ?>" value="<?php echo $wmk; ?>" /></span>
+			<br />
+			<span class="nowrap"><?php echo gettext('MaxSpace'); ?><input type="checkbox"  name="cacheManager_maxspace_<?php echo $key; ?>" value="1"<?php if (isset($cache['maxspace'])&&$cache['maxspace']) echo ' checked="checked"'; ?> /></span>
 			<span class="nowrap"><?php echo gettext('Thumbnail'); ?><input type="checkbox"  name="cacheManager_thumb_<?php echo $key; ?>" value="1"<?php if (isset($cache['thumb'])&&$cache['thumb']) echo ' checked="checked"'; ?> /></span>
 			<span class="nowrap"><?php echo gettext('Grayscale'); ?><input type="checkbox"  name="cacheManager_gray_<?php echo $key; ?>" value="gray"<?php if (isset($cache['gray'])&&$cache['gray']) echo ' checked="checked"'; ?> /></span>
 			</div>
-			</div><br />
+			</div>
+			<br />
 			<?php
 		}
 	}
@@ -300,6 +318,14 @@ class cacheManager {
 		return $html;
 	}
 
+	/**
+	 *
+	 * process custom option saves
+	 * @param string $notify
+	 * @param string $themename
+	 * @param string $themealbum
+	 * @return string
+	 */
 	static function handleOptionSave($notify,$themename,$themealbum) {
 		$cache = array();
 		foreach ($_POST as $key=>$value) {
@@ -318,9 +344,9 @@ class cacheManager {
 		return $notify;
 	}
 
-	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects) {
+	static function addThemeCacheSize($theme, $size, $width, $height, $cw, $ch, $cx, $cy, $thumb, $watermark, $effects, $maxspace) {
 		$cacheSize = serialize( array('theme'=>$theme,'apply'=>false,'image_size'=>$size, 'image_width'=>$width, 'image_height'=>$height,
-										'crop_width'=>$cw, 'crop_height'=>$ch, 'crop_x'=>$cx, 'crop_y'=>$cy, 'thumb'=>$thumb, 'wmk'=>$watermark, 'gray'=>$effects));
+										'crop_width'=>$cw, 'crop_height'=>$ch, 'crop_x'=>$cx, 'crop_y'=>$cy, 'thumb'=>$thumb, 'wmk'=>$watermark, 'gray'=>$effects,'maxspace'=>$maxspace));
 		$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("cacheManager",'.db_quote($theme).','.db_quote($cacheSize).')';
 		query($sql);
 	}

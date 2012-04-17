@@ -96,12 +96,12 @@ class zenpagecms {
 				case 'latestimages-sizedimage-maxspace':
 				case 'latestalbums-sizedimage-maxspace':
 				case 'latestimagesbyalbum-sizedimage-maxspace':
-					cacheManager::addThemeCacheSize('combinews', NULL, getOption('combinews-thumbnail-width'),getOption('combinews-thumbnail-height'), getOption('combinews-thumbnail-width'),getOption('combinews-thumbnail-height'), NULL, NULL,true, NULL, NULL);
+					cacheManager::addThemeCacheSize('combinews', NULL, getOption('combinews-thumbnail-width'),getOption('combinews-thumbnail-height'), getOption('combinews-thumbnail-width'),getOption('combinews-thumbnail-height'), NULL, NULL,true, NULL, NULL, NULL);
 					break;
 				case 'latestimages-thumbnail-customcrop':
 				case 'latestalbums-thumbnail-customcrop':
 				case 'latestimagesbyalbum-thumbnail-customcrop':
-					cacheManager::addThemeCacheSize('combinews', NULL, getOption('combinews-thumbnail-width'), getOption('combinews-thumbnail-height'),  getOption('combinews-thumbnail-cropwidth'), getOption('combinews-thumbnail-cropheight'), getOption('combinews-thumbnail-cropx'), getOption('combinews-thumbnail-cropy'), true, NULL, NULL);
+					cacheManager::addThemeCacheSize('combinews', NULL, getOption('combinews-thumbnail-width'), getOption('combinews-thumbnail-height'),  getOption('combinews-thumbnail-cropwidth'), getOption('combinews-thumbnail-cropheight'), getOption('combinews-thumbnail-cropx'), getOption('combinews-thumbnail-cropy'), true, NULL, NULL, NULL);
 					break;
 			}
 		}

@@ -331,38 +331,40 @@ class tweet {
 	 * filter which checks if there are any matured tweets to be sent
 	 */
 	static function scan($param) {
-		$result = query_full_array('SELECT * FROM '.prefix('news').' AS news,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending" AND store.data = news.titlelink AND news.date <= '.db_quote(date('Y-m-d H:i:s')));
-		if ($result) {
-			foreach ($result as $article) {
-				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$article['id']);
-				$news = new ZenpageNews($article['titlelink']);
-				self::tweetObject($news);
+		if ($param) {
+			$result = query_full_array('SELECT * FROM '.prefix('news').' AS news,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending" AND store.data = news.titlelink AND news.date <= '.db_quote(date('Y-m-d H:i:s')));
+			if ($result) {
+				foreach ($result as $article) {
+					query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$article['id']);
+					$news = new ZenpageNews($article['titlelink']);
+					self::tweetObject($news);
+				}
 			}
-		}
-		$result = query_full_array('SELECT * FROM '.prefix('pages').' AS page,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_pages" AND store.data = page.titlelink AND page.date <= '.db_quote(date('Y-m-d H:i:s')));
-		if ($result) {
-			foreach ($result as $page) {
-				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$page['id']);
-				$page = new ZenpageNews($page['titlelink']);
-				self::tweetObject($page);
+			$result = query_full_array('SELECT * FROM '.prefix('pages').' AS page,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_pages" AND store.data = page.titlelink AND page.date <= '.db_quote(date('Y-m-d H:i:s')));
+			if ($result) {
+				foreach ($result as $page) {
+					query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$page['id']);
+					$page = new ZenpageNews($page['titlelink']);
+					self::tweetObject($page);
+				}
 			}
-		}
-		$result = query_full_array('SELECT * FROM '.prefix('albums').' AS album,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_albums" AND store.data = album.folder AND album.date <= '.db_quote(date('Y-m-d H:i:s')));
-		if ($result) {
-			foreach ($result as $album) {
-				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$album['id']);
-				$album = new Album(NULL, $album['folder']);
-				self::tweetObject($album);
+			$result = query_full_array('SELECT * FROM '.prefix('albums').' AS album,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_albums" AND store.data = album.folder AND album.date <= '.db_quote(date('Y-m-d H:i:s')));
+			if ($result) {
+				foreach ($result as $album) {
+					query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$album['id']);
+					$album = new Album(NULL, $album['folder']);
+					self::tweetObject($album);
+				}
 			}
-		}
-		$result = query_full_array('SELECT * FROM '.prefix('images').' AS image,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_images" AND store.data LIKE image.filename AND image.date <= '.db_quote(date('Y-m-d H:i:s')));
-		if ($result) {
-			foreach ($result as $image) {
-				query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$image['id']);
-				$album = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$image['albumid']);
-				$album = new Album(NULL, $album['folder']);
-				$image = newImage($album, $image['filename']);
-				self::tweetObject($image);
+			$result = query_full_array('SELECT * FROM '.prefix('images').' AS image,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending_images" AND store.data LIKE image.filename AND image.date <= '.db_quote(date('Y-m-d H:i:s')));
+			if ($result) {
+				foreach ($result as $image) {
+					query('DELETE FROM '.prefix('plugin_storage').' WHERE `id`='.$image['id']);
+					$album = query_single_row('SELECT * FROM '.prefix('albums').' WHERE `id`='.$image['albumid']);
+					$album = new Album(NULL, $album['folder']);
+					$image = newImage($album, $image['filename']);
+					self::tweetObject($image);
+				}
 			}
 		}
 		return $param;

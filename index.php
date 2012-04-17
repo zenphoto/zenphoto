@@ -18,7 +18,7 @@ if (isset($_GET['rss'])) {
 	$rss->printRSSFeed();
 	exitZP();
 }
-$_zp_obj = '';
+$_zp_script = '';
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {
@@ -68,11 +68,9 @@ foreach (getEnabledPlugins() as $extension=>$loadtype) {
 	$_zp_loaded_plugins[] = $extension;
 }
 
-if ($zp_request) {
-	$_zp_obj = zp_apply_filter('load_theme_script',$_zp_obj);
-}
+$_zp_script = zp_apply_filter('load_theme_script', $_zp_script);
 //$_zp_script_timer['theme scripts'] = microtime();
-if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj))) {
+if ($zp_request && $_zp_script && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view
 		setThemeColumns();
 	} else {
@@ -80,9 +78,9 @@ if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj)
 			$_zp_HTML_cache->abortHTMLCache();
 		}
 		$_zp_gallery_page = 'password.php';
-		$_zp_obj = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/password.php';
-		if (!file_exists(internalToFilesystem($_zp_obj))) {
-			$_zp_obj = SERVERPATH.'/'.ZENFOLDER.'/password.php';
+		$_zp_script = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/password.php';
+		if (!file_exists(internalToFilesystem($_zp_script))) {
+			$_zp_script = SERVERPATH.'/'.ZENFOLDER.'/password.php';
 		}
 	}
 	// Include the appropriate page for the requested object, and a 200 OK header.
@@ -91,7 +89,7 @@ if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj)
 	header("Status: 200 OK");
 	header('Last-Modified: ' . ZP_LAST_MODIFIED);
 	zp_apply_filter('theme_headers');
-	include(internalToFilesystem($_zp_obj));
+	include(internalToFilesystem($_zp_script));
 } else {
 	// If the requested object does not exist, issue a 404 and redirect to the theme's
 	// 404.php page, or a 404.php in the zp-core folder.
@@ -101,20 +99,20 @@ if ($zp_request && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_obj)
 	list($album, $image) = rewrite_get_album_image('album','image');
 	debug404($album, $image, $theme);
 	$_zp_gallery_page = '404.php';
-	$errpage = THEMEFOLDER.'/'.internalToFilesystem($theme).'/404.php';
+	$_zp_script = THEMEFOLDER.'/'.internalToFilesystem($theme).'/404.php';
 	header ('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	header("HTTP/1.0 404 Not Found");
 	header("Status: 404 Not Found");
 	zp_apply_filter('theme_headers');
-	if (file_exists(SERVERPATH . "/" . $errpage)) {
+	if (file_exists(SERVERPATH . "/" . $_zp_script)) {
 		if ($custom) require_once($custom);
-		include($errpage);
+		include($_zp_script);
 	} else {
 		include(ZENFOLDER. '/404.php');
 	}
 }
 //$_zp_script_timer['theme script load'] = microtime();
-exposeZenPhotoInformations($_zp_obj, $_zp_loaded_plugins, $theme);
+exposeZenPhotoInformations($_zp_script, $_zp_loaded_plugins, $theme);
 //$_zp_script_timer['expose information'] = microtime();
 db_close();	// close the database as we are done
 echo "\n";
