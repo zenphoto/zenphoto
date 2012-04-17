@@ -151,13 +151,14 @@ function toggleRow(id) {
 <?php
 $i = 0;
 foreach($tables as $table) {
+	$table = substr($table,strlen($prefix));
 	$i++;
 	?>
-	<h3><a href="javascript:toggleRow('t_<?php echo $i; ?>')"><?php echo str_replace($prefix,'',$table); ?></a></h3>
+	<h3><a href="javascript:toggleRow('t_<?php echo $i; ?>')"><?php echo $table; ?></a></h3>
 	<table id = "t_<?php echo $i; ?>" class="bordered" <?php if ($i>1) { ?>style="display: none;" <?php } ?>>
 		<tr>
 			<?php
-			$cols = $tablecols = db_list_fields(str_replace($prefix, '', $table), true);
+			$cols = $tablecols = db_list_fields($table, true);
 			$cols = array_shift($cols);
 			foreach ($cols as $col=>$value) {
 				 ?>

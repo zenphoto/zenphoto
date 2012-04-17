@@ -9,7 +9,7 @@ define ('OFFSET_PATH', 3);
 require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 
 $buttonlist[] = array(
-									'category'=>gettext('admin'),
+									'category'=>gettext('info'),
 									'enable'=>true,
 									'button_text'=>gettext('Show PHP Information'),
 									'formname'=>'cloneZenphoto',

@@ -983,9 +983,11 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 
 			$result = db_show('tables');
 			$tableslist = '';
+			$tables = array();
 			if ($result) {
 				$check = 1;
 				while ($row = db_fetch_row($result)) {
+					$tables[] = $row[0];
 					$tableslist .= "<code>" . $row[0] . "</code>, ";
 				}
 			} else {
@@ -1001,34 +1003,22 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			$dbn = $_zp_conf_vars['mysql_database'];
 			checkMark($check, $msg, gettext("<em>SHOW TABLES</em> [Failed]"), sprintf(gettext("The database did not return a list of the database tables for <code>%s</code>."),$dbn) .
 											"<br />".gettext("<strong>Setup</strong> will attempt to create all tables. This will not over write any existing tables."));
-
 			if (isset($_zp_conf_vars['UTF-8']) && $_zp_conf_vars['UTF-8']) {
 				$fields = 0;
 				$fieldlist = array();
-				if (strpos($tableslist,$_zp_conf_vars['mysql_prefix'].'images') !== false) {
-					$columns = db_list_fields('images');
-					if ($columns) {
-						foreach ($columns as $col=>$utf8) {
-							if (!is_null($row['Collation']) && $row['Collation'] != 'utf8_unicode_ci') {
-								$fields = $fields | 1;
-								$fieldlist[] = '<code>images->'.$col.'</code>';
+				foreach (array('images'=>1,'albums'=>2) as $lookat=>$add) {
+					if (in_array($_zp_conf_vars['mysql_prefix'].$lookat, $tables)) {
+						$columns = db_list_fields('images');
+						if ($columns) {
+							foreach ($columns as $col=>$utf8) {
+								if (!is_null($row['Collation']) && $row['Collation'] != 'utf8_unicode_ci') {
+									$fields = $fields | $add;
+									$fieldlist[] = '<code>'.$lookat.'->'.$col.'</code>';
+								}
 							}
+						} else {
+							$fields = 4;
 						}
-					} else {
-						$fields = 4;
-					}
-				}
-				if (strpos($tableslist,$_zp_conf_vars['mysql_prefix'].'albums') !== false) {
-					$columns = db_list_fields('albums');
-					if ($columns) {
-						foreach ($columns as $col=>$utf8) {
-							if (!is_null($row['Collation']) && $row['Collation'] != 'utf8_unicode_ci') {
-								$fields = $fields | 2;
-								$fieldlist[] = '<code>albums->'.$col.'</code>';
-							}
-						}
-					} else {
-						$fields = 4;
 					}
 				}
 				$err = -1;
