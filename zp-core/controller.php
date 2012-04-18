@@ -7,26 +7,7 @@
 
 // force UTF-8 Ø
 
-
 require_once(dirname(__FILE__).'/functions-controller.php');
-
-
-// Initialize the global objects and object arrays:
-$_zp_current_album = NULL;
-$_zp_current_album_restore = NULL;
-$_zp_albums = NULL;
-$_zp_current_image = NULL;
-$_zp_current_image_restore = NULL;
-$_zp_images = NULL;
-$_zp_current_comment = NULL;
-$_zp_comments = NULL;
-$_zp_current_context = 0;
-$_zp_current_search = NULL;
-$_zp_current_zenpage_news = NULL;
-$_zp_current_zenpage_page = NULL;
-$_zp_current_category = NULL;
-$_zp_post_date = NULL;
-$_zp_pre_authorization = array();
 
 /*** Request Handler **********************
  ******************************************/

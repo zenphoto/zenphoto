@@ -211,7 +211,27 @@ function zp_load_page($pagenum=NULL) {
  * Loads the gallery if it hasn't already been loaded.
  */
 function zp_load_gallery() {
+	global 	$_zp_current_album, $_zp_current_album_restore, $_zp_albums,
+					$_zp_current_image, $_zp_current_image_restore, $_zp_images, $_zp_current_comment,
+					$_zp_comments, $_zp_current_context, $_zp_current_search, $_zp_current_zenpage_new,
+					$_zp_current_zenpage_page, $_zp_current_category, $_zp_post_date, $_zp_pre_authorization;
+
 	set_context(ZP_INDEX);
+	$_zp_current_album = NULL;
+	$_zp_current_album_restore = NULL;
+	$_zp_albums = NULL;
+	$_zp_current_image = NULL;
+	$_zp_current_image_restore = NULL;
+	$_zp_images = NULL;
+	$_zp_current_comment = NULL;
+	$_zp_comments = NULL;
+	$_zp_current_context = 0;
+	$_zp_current_search = NULL;
+	$_zp_current_zenpage_news = NULL;
+	$_zp_current_zenpage_page = NULL;
+	$_zp_current_category = NULL;
+	$_zp_post_date = NULL;
+	$_zp_pre_authorization = array();
 }
 
 /**
