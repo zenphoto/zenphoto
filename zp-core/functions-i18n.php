@@ -590,6 +590,7 @@ if (function_exists('date_default_timezone_set')) { // insure a correct time zon
 		@ini_set('date.timezone', $tz);
 		error_reporting($err);
 	}
+	unset($tz);
 }
 
 ?>

@@ -198,6 +198,7 @@ if (!defined('OFFSET_PATH')) {
 								$options = array_keys($supportedOptions);
 								natcasesort($options);
 							}
+							$notes = array();
 							?>
 							<hr>
 							<p>
@@ -206,15 +207,23 @@ if (!defined('OFFSET_PATH')) {
 								<?php
 								foreach ($options as $option) {
 									$row = $supportedOptions[$option];
-									if (false!==$i=stripos($option,chr(0))) {
-										$option = substr($option, 0, $i);
+										if ($row['type'] == OPTION_TYPE_NOTE) {
+											$notes[] = $row;
+										} else {
+										if (false!==$i=stripos($option,chr(0))) {
+											$option = substr($option, 0, $i);
+										}
+										if ($option) {
+											?>
+											<li><code><?php echo $option; ?></code></li>
+											<?php
+										}
 									}
-									$option = trim($option,'*');
-									if ($option && $row['type'] != OPTION_TYPE_NOTE) {
-										?>
-										<li><code><?php echo $option; ?></code></li>
-										<?php
-									}
+								}
+								foreach ($notes as $note) {
+									?>
+									<li><code><?php echo $note['desc']; ?></li>
+									<?php
 								}
 								?>
 							</ul>

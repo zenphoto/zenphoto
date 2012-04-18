@@ -70,7 +70,7 @@ if (isset($_GET['action'])) {
 			setOption('mod_rewrite', (int) isset($_POST['mod_rewrite']));
 			setOption('mod_rewrite_image_suffix', sanitize($_POST['mod_rewrite_image_suffix'],3));
 			if (isset($_POST['time_zone'])) {
-				setOption('time_zone', $tz = sanitize($_POST['time_zone'], 3));
+				setOption('time_zone', sanitize($_POST['time_zone'], 3));
 				$offset = 0;
 			} else {
 				$offset = sanitize($_POST['time_offset'],3);
@@ -395,7 +395,7 @@ if (isset($_GET['action'])) {
 		}
 
 		if (empty($notify)) $notify = '?saved';
-		header("Location: " . $notify . $returntab);
+		header("Location: " . $notify.$returntab);
 		exitZP();
 
 	}
@@ -509,7 +509,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<?php
 					if (function_exists('date_default_timezone_get')) {
-						$offset = timezoneDiff($_zp_server_timezone, $tz);
+						$offset = timezoneDiff($_zp_server_timezone, $tz = getOption('time_zone'));
 						?>
 						<td width="175"><?php echo gettext("Time zone:"); ?></td>
 						<td width="350">
@@ -518,7 +518,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 							?>
 							<select id="time_zone" name="time_zone">
 							<option value="" style="background-color:LightGray"><?php echo gettext('*not specified'); ?></option>
-							<?php generateListFromArray(array($tz = getOption('time_zone')), $zones, false, false); ?>
+							<?php generateListFromArray(array($tz), $zones, false, false); ?>
 							</select>
 						</td>
 						<td>
@@ -1380,14 +1380,14 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 							// <!-- <![CDATA[
 							var checked = false;
 							$('#autocheck').click(
-							   function() {
-							      if (checked) {
-								      checked = false;
-							      } else {
-								      checked = true;
-							      }
-							      $('.search_fields').attr('checked', checked);
-							   }
+								 function() {
+										if (checked) {
+											checked = false;
+										} else {
+											checked = true;
+										}
+										$('.search_fields').attr('checked', checked);
+								 }
 							)
 							// ]]> -->
 						</script>
@@ -2702,13 +2702,6 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 
 	$_zp_plugin_count = 0;
 	?>
-	<script type="text/javascript">
-		function gotoName(name) {
-			$('#show-'+name).val(1);
-			toggleExtraInfo(name,'plugin',true);
-			window.location = '#'+name;
-		}
-	</script>
 	<div id="tab_plugin" class="tabbox">
 		<?php zp_apply_filter('admin_note','options', $subtab); ?>
 		<form action="?action=saveoptions" method="post" autocomplete="off">
