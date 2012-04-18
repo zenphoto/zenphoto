@@ -494,7 +494,7 @@ echo '</head>';
 					<?php
 				}
 				?>
-				<form name="publish_cat" action="" method="post"><?php echo gettext('Cateories:'); ?>
+				<form name="publish_cat" action="" method="post"><?php echo gettext('Categories:'); ?>
 				<label id="autocheck_cat">
 					<input type="checkbox" name="checkAllcat" />
 					<span id="autotext_cat"><?php echo gettext('all');?></span>
