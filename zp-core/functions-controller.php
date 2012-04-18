@@ -123,30 +123,22 @@ function zp_handle_comment() {
 			$p_private = isset($_POST['private']);
 			$p_anon = isset($_POST['anon']);
 
-			if (isset($_POST['imageid'])) {  //used (only?) by the tricasa hack to know which image the client is working with.
-				$activeImage = zp_load_image_from_id(sanitize_numeric($_POST['imageid']));
-				if ($activeImage !== false) {
-					$commentadded = $activeImage->addComment($p_name, $p_email,	$p_website, $p_comment,
-																							$code1, $code2,	$p_server, $p_private, $p_anon);
-					$redirectTo = $activeImage->getImageLink();
-					}
-			} else {
-				if (in_context(ZP_IMAGE) AND in_context(ZP_ALBUM)) {
-					$commentobject = $_zp_current_image;
-					$redirectTo = $_zp_current_image->getImageLink();
-				} else if (!in_context(ZP_IMAGE) AND in_context(ZP_ALBUM)){
-					$commentobject = $_zp_current_album;
-					$redirectTo = $_zp_current_album->getAlbumLink();
-				} else 	if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-					$commentobject = $_zp_current_zenpage_news;
-					$redirectTo = FULLWEBPATH . '/index.php?p=news&title='.$_zp_current_zenpage_news->getTitlelink();
-				} else if (in_context(ZP_ZENPAGE_PAGE)) {
-					$commentobject = $_zp_current_zenpage_page;
-					$redirectTo = FULLWEBPATH . '/index.php?p=pages&title='.$_zp_current_zenpage_page->getTitlelink();
-				}
-				$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment,
-													$code1, $code2,	$p_server, $p_private, $p_anon);
+			if (in_context(ZP_IMAGE) AND in_context(ZP_ALBUM)) {
+				$commentobject = $_zp_current_image;
+				$redirectTo = $_zp_current_image->getImageLink();
+			} else if (!in_context(ZP_IMAGE) AND in_context(ZP_ALBUM)){
+				$commentobject = $_zp_current_album;
+				$redirectTo = $_zp_current_album->getAlbumLink();
+			} else 	if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+				$commentobject = $_zp_current_zenpage_news;
+				$redirectTo = FULLWEBPATH . '/index.php?p=news&title='.$_zp_current_zenpage_news->getTitlelink();
+			} else if (in_context(ZP_ZENPAGE_PAGE)) {
+				$commentobject = $_zp_current_zenpage_page;
+				$redirectTo = FULLWEBPATH . '/index.php?p=pages&title='.$_zp_current_zenpage_page->getTitlelink();
 			}
+			$commentadded = $commentobject->addComment($p_name, $p_email, $p_website, $p_comment,
+												$code1, $code2,	$p_server, $p_private, $p_anon);
+
 			$comment_error = $commentadded->getInModeration();
 			$_zp_comment_stored = array($commentadded->getName(), $commentadded->getEmail(), $commentadded->getWebsite(), $commentadded->getComment(), false,
 																	$commentadded->getPrivate(), $commentadded->getAnon(), $commentadded->getCustomData());
@@ -208,7 +200,7 @@ function zp_load_page($pagenum=NULL) {
 
 
 /**
- * Loads the gallery if it hasn't already been loaded.
+ * initializes the gallery.
  */
 function zp_load_gallery() {
 	global 	$_zp_current_album, $_zp_current_album_restore, $_zp_albums,
@@ -235,7 +227,7 @@ function zp_load_gallery() {
 }
 
 /**
- * Loads the search object if it hasn't already been loaded.
+ * Loads the search object.
  */
 function zp_load_search() {
 	global $_zp_current_search;
@@ -310,7 +302,7 @@ function zenpage_load_page() {
 }
 
 /**
- * Loads a zenpage news page
+ * Loads a zenpage news article
  * Sets up $_zp_current_zenpage_news and returns it as the function result.
  *
  * @return object
@@ -345,28 +337,6 @@ function zenpage_load_news() {
 		return $_zp_current_zenpage_news;
 	}
 	return true;
-}
-
-/**
- * zp_load_image_from_id - loads and returns the image "id" from the database, without
- * altering the global context or zp_current_image.
- * @param $id the database id-field of the image.
- * @return the loaded image object on success, or (===false) on failure.
- */
-function zp_load_image_from_id($id){
-	$sql = "SELECT `albumid`, `filename` FROM " .prefix('images') ." WHERE `id` = " . $id;
-	$result = query_single_row($sql);
-	$filename = $result['filename'];
-	$albumid = $result['albumid'];
-
-	$sql = "SELECT `folder` FROM ". prefix('albums') ." WHERE `id` = " . $albumid;
-	$result = query_single_row($sql);
-	$folder = $result['folder'];
-
-	$album = zp_load_album($folder);
-	$currentImage = newImage($album, $filename);
-	if (!$currentImage->exists) return false;
-	return $currentImage;
 }
 
 /**

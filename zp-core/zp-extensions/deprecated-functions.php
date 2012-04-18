@@ -1001,5 +1001,4 @@ function printAlbumZip(){
 	printDownloadLinkAlbumZip(gettext('Download a zip file of this album'),$_zp_current_album);
 }
 
-
 ?>
