@@ -59,9 +59,9 @@ class slideshow {
 
 	function getOptionsSupported() {
 		return array(	gettext('Slide width') => array('key' => 'slideshow_width', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Width of the images in the slideshow. <em>[jQuery Cycle/Colorbox sizedimage mode option]</em><br />If empty the theme options <em>image size</em> is used.")),
+										'desc' => gettext("Width of the images in the slideshow. <em>[jQuery Cycle/Colorbox sizedimage mode option - this must be set]</em>.")),
 									gettext('Slide height') => array('key' => 'slideshow_height', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Height of the images in the slideshow. <em>[jQuery Cycle mode option]</em><br />If empty the theme options <em>image size</em> is used.")),
+										'desc' => gettext("Height of the images in the slideshow. <em>[jQuery Cycle mode option]</em>.")),
 									gettext('Watermark') => array('key' => 'slideshow_watermark', 'type' => OPTION_TYPE_CHECKBOX,
 										'desc' => gettext("Check if you want to use your watermark on the images <em>[jQuery Cycle mode option]</em>.")),
 									gettext('Mode') => array('key' => 'slideshow_mode', 'type' => OPTION_TYPE_SELECTOR,
