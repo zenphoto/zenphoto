@@ -50,14 +50,12 @@ td.rightcolumnmiddle {
 
 td.middlecolumn {
 vertical-align: top;
-width: 100%;
+padding-right: 20px !important;
 }
 
-td.middlecolumn {
-	width: 100% !important;
-}
-td.middlecolumn textarea {
-width: 98%;
+td.middlecolumn > * {
+width: 100% !important;
+margin-right: 10px !important;
 }
 	
 #pageslist {
