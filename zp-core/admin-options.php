@@ -366,7 +366,11 @@ if (isset($_GET['action'])) {
 		/*** Plugin Options ***/
 		if (isset($_POST['savepluginoptions'])) {
 			// all plugin options are handled by the custom option code.
-			$returntab = "&tab=plugin";
+			if (isset($_GET['single'])) {
+				$returntab = "&tab=plugin&single=".sanitize($_GET['single']);
+			} else {
+				$returntab = "&tab=plugin";
+			}
 		}
 		/*** Security Options ***/
 		if (isset($_POST['savesecurityoptions'])) {
@@ -384,14 +388,6 @@ if (isset($_GET['action'])) {
 		/*** custom options ***/
 		if (!$themeswitch) { // was really a save.
 			$returntab = processCustomOptionSave($returntab,$themename,$themealbum);
-			$err = zp_apply_filter('custom_option_save','',$themename,$themealbum);
-			if ($err) {
-				if ($notify) {
-				 $notify .= '&custom='.$err;
-				} else {
-					$notify .= '?custom='.$err;
-				}
-			}
 		}
 
 		if (empty($notify)) $notify = '?saved';
@@ -2687,24 +2683,29 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 	<?php
 }
 if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
-	if (preg_match('/show-(.+)[&\n]*$/', $_SERVER['QUERY_STRING'], $matches)) {
-		$matches = explode('&',$matches[1]);
-		$showExtension = sanitize($matches[0]);
-		if ($showExtension) {
-			$path = getPlugin($showExtension.'.php');
-			if (!$path) {
-				$showExtension = NULL;
-			}
-		}
+	if (isset($_GET['single'])) {
+		$showExtension = sanitize($_GET['single']);
+		$_GET['show-'.$showExtension] = true;
 	} else {
-		$showExtension = NULL;
+		if (preg_match('/show-(.+)[&\n]*$/', $_SERVER['QUERY_STRING'], $matches)) {
+			$matches = explode('&',$matches[1]);
+			$showExtension = sanitize($matches[0]);
+			if ($showExtension) {
+				$path = getPlugin($showExtension.'.php');
+				if (!$path) {
+					$showExtension = NULL;
+				}
+			}
+		} else {
+			$showExtension = NULL;
+		}
 	}
 
 	$_zp_plugin_count = 0;
 	?>
 	<div id="tab_plugin" class="tabbox">
 		<?php zp_apply_filter('admin_note','options', $subtab); ?>
-		<form action="?action=saveoptions" method="post" autocomplete="off">
+		<form action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single='.$showExtension; ?>" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
 			<input type="hidden" name="savepluginoptions" value="yes" />
 			<table class="bordered">
@@ -2727,11 +2728,12 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 			</tr>
 				<?php
 				$showlist = array();
-				$plugins = array_keys(getEnabledPlugins());
-				if ($showExtension && !in_array($showExtension, $plugins)) {
-					$plugins[] = $showExtension;
+				if (isset($_GET['single'])) {
+					$plugins = array($showExtension);
+				} else {
+					$plugins = array_keys(getEnabledPlugins());
+					natcasesort($plugins);
 				}
-				natcasesort($plugins);
 				foreach ($plugins as $extension) {
 					$option_interface = NULL;
 					$path = getPlugin($extension.'.php');
@@ -2798,9 +2800,9 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						}
 						$supportedOptions = $option_interface->getOptionsSupported();
 						if (count($supportedOptions) > 0) {
-							customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, $show_hide);
+							customOptions($option_interface, '', NULL, 'plugin', $supportedOptions, NULL, $show_hide, $extension);
 						}
-					?>
+						?>
 						</td>
 					</table>
 				</tr>

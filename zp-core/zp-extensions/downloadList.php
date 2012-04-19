@@ -40,7 +40,6 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = "downloadList";
 
 zp_register_filter('admin_utilities_buttons', 'DownloadList::button');
-zp_register_filter('custom_option_save', 'DownloadList::custom_options_save');
 
 /**
  * Plugin option handling class
@@ -60,36 +59,32 @@ class DownloadList {
 	}
 
 	function getOptionsSupported() {
-		if (getOption('zp_plugin_downloadList')) {
-			$options = array(gettext('Download directory') => array('key' => 'downloadList_directory', 'type' => OPTION_TYPE_TEXTBOX,
-													'order' => 2,
-													'desc' => gettext("This download folder can be relative to your Zenphoto installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
-											gettext('Show filesize of download items') => array('key' => 'downloadList_showfilesize', 'type' => OPTION_TYPE_CHECKBOX,
-													'order' => 3,
-													'desc' => ''),
-										  gettext('Show download counter of download items') => array('key' => 'downloadList_showdownloadcounter', 'type' => OPTION_TYPE_CHECKBOX,
-													'order' => 4,
-										  		'desc' => ''),
-										  gettext('Files to exclude from the download list') => array('key' => 'downloadList_excludesuffixes', 'type' => OPTION_TYPE_TEXTBOX,
-													'order' => 5,
-										  		'desc' => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
-											gettext('Zip source') => array('key' => 'downloadList_zipFromCache', 'type' => OPTION_TYPE_RADIO,
-													'order' => 6,
-													'buttons' => array(gettext('From album')=>0, gettext('From Cache')=>1),
-													'desc' => gettext('Make the album zip form the album folder or from the sized images in the cache.')),
-										  gettext('User rights') => array('key' => 'downloadList_rights', 'type' => OPTION_TYPE_CHECKBOX,
-													'order' => 1,
-										  		'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
-			);
-			if (GALLERY_SECURITY == 'public') {
-				$options[gettext('credentials')] = array('key' => 'downloadlist_credentials', 'type' => OPTION_TYPE_CUSTOM,
-																		'order' => 0,
-																		'desc' => gettext('Provide credentials to password protect downloads'));
-			}
-			return $options;
-		} else {
-			return array(''=>array('key'=>'downloadList_note', 'type'=>OPTION_TYPE_NOTE, 'desc'=>'<span class="notebox">'.gettext('This plugin must be enabled to process options.').'</span>'));
+		$options = array(gettext('Download directory') => array('key' => 'downloadList_directory', 'type' => OPTION_TYPE_TEXTBOX,
+												'order' => 2,
+												'desc' => gettext("This download folder can be relative to your Zenphoto installation (<em>foldername</em>) or external to it (<em>../foldername</em>)! You can override this setting by using the parameter of the printdownloadList() directly on calling.")),
+										gettext('Show filesize of download items') => array('key' => 'downloadList_showfilesize', 'type' => OPTION_TYPE_CHECKBOX,
+												'order' => 3,
+												'desc' => ''),
+									  gettext('Show download counter of download items') => array('key' => 'downloadList_showdownloadcounter', 'type' => OPTION_TYPE_CHECKBOX,
+												'order' => 4,
+									  		'desc' => ''),
+									  gettext('Files to exclude from the download list') => array('key' => 'downloadList_excludesuffixes', 'type' => OPTION_TYPE_TEXTBOX,
+												'order' => 5,
+									  		'desc' => gettext('A list of file suffixes to exclude. Separate with comma and omit the dot (e.g "jpg").')),
+										gettext('Zip source') => array('key' => 'downloadList_zipFromCache', 'type' => OPTION_TYPE_RADIO,
+												'order' => 6,
+												'buttons' => array(gettext('From album')=>0, gettext('From Cache')=>1),
+												'desc' => gettext('Make the album zip form the album folder or from the sized images in the cache.')),
+									  gettext('User rights') => array('key' => 'downloadList_rights', 'type' => OPTION_TYPE_CHECKBOX,
+												'order' => 1,
+									  		'desc' => gettext('Check if users are required to have <em>file</em> rights to download.'))
+		);
+		if (GALLERY_SECURITY == 'public') {
+			$options[gettext('credentials')] = array('key' => 'downloadlist_credentials', 'type' => OPTION_TYPE_CUSTOM,
+																	'order' => 0,
+																	'desc' => gettext('Provide credentials to password protect downloads'));
 		}
+		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
@@ -153,7 +148,7 @@ class DownloadList {
 	}
 
 
-	static function custom_options_save($notify,$themename,$themealbum) {
+	static function handleOptionSave($themename,$themealbum) {
 		$notify = processCredentials('downloadList','_downloadList');
 		if ($notify == '?mismatch=user') {
 			return gettext('You must supply a password for the DownloadList user');

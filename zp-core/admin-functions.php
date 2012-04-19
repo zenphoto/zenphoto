@@ -519,8 +519,10 @@ define('OPTION_TYPE_COLOR_PICKER',8);
 define('OPTION_TYPE_CLEARTEXT',9);
 define('OPTION_TYPE_NOTE',10);
 
-function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false, $supportedOptions=NULL, $theme=false, $initial='none') {
-	if (is_null($supportedOptions)) $supportedOptions = $optionHandler->getOptionsSupported();
+function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false, $supportedOptions=NULL, $theme=false, $initial='none',$extension=NULL) {
+	if (is_null($supportedOptions)) {
+		$supportedOptions = $optionHandler->getOptionsSupported();
+	}
 	if (count($supportedOptions) > 0) {
 		$whom = get_class($optionHandler);
 		$options = $supportedOptions;
@@ -531,6 +533,11 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 		} else {
 			$options = array_keys($supportedOptions);
 			natcasesort($options);
+		}
+		if (method_exists($optionHandler, 'handleOptionSave')) {
+			?>
+			<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX; ?>save-<?php echo $whom;?>" value="<?php echo $extension; ?>" />
+			<?php
 		}
 		foreach($options as $option) {
 			$row = $supportedOptions[$option];
@@ -781,6 +788,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 }
 
 function processCustomOptionSave($returntab, $themename=NULL, $themealbum=NULL) {
+	$customHandlers = array();
 	foreach ($_POST as $postkey=>$value) {
 		if (preg_match('/^'.CUSTOM_OPTION_PREFIX.'/', $postkey)) { // custom option!
 			$key = substr($postkey, strpos($postkey, '-')+1);
@@ -798,6 +806,10 @@ function processCustomOptionSave($returntab, $themename=NULL, $themealbum=NULL) 
 					break;
 				case 'chkbox':
 					$value = (int) isset($_POST[$key]);
+					break;
+				case 'save':
+					$customHandlers[] = array('whom'=>$key,'extension'=>sanitize($_POST[$postkey]));
+					continue;
 					break;
 				default:
 					if (isset($_POST[$key])) {
@@ -817,6 +829,13 @@ function processCustomOptionSave($returntab, $themename=NULL, $themealbum=NULL) 
 				if ($value) $returntab .= '&'.$postkey;
 			}
 		}
+	}
+	foreach ($customHandlers as $custom) {
+		if ($extension = $custom['extension']) {
+			require_once(getPlugin($extension.'.php'));
+		}
+		$whom = new $custom['whom']();
+		$returntab = $whom->handleOptionSave($themename,$themealbum).$returntab;
 	}
 	return $returntab;
 }

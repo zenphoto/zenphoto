@@ -29,8 +29,6 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'register_user_options';
 
-zp_register_filter('custom_option_save','register_user_options::handleOptionSave');
-
 if (getOption('register_user_address_info')) {
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/comment_form.php');
 }
@@ -62,83 +60,79 @@ class register_user_options {
 	}
 
 	function getOptionsSupported() {
-		if (getOption('zp_plugin_register_user')) {
-			global $_zp_authority, $_common_notify_handler;
-			$options = array(	gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
-													'order' => 4,
-													'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
-												gettext('Address fields') => array('key' => 'register_user_address_info', 'type' => OPTION_TYPE_RADIO,
-													'order' => 4.5,
-													'buttons' => array(gettext('Omit')=>0, gettext('Show')=>1, gettext('Require')=>'required'),
-													'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.').'<p class="notebox">'.gettext('<strong>Note:</strong> Address fields are handled by the <em>comment_form</em> plugin.').'</p>'),
-												gettext('User album') => array('key' => 'register_user_create_album', 'type' => OPTION_TYPE_CHECKBOX,
-													'order' => 6,
-													'desc' => gettext('If checked, an album will be created and assigned to the user.')),
-												gettext('Email ID') => array('key' => 'register_user_email_is_id', 'type' => OPTION_TYPE_CHECKBOX,
-													'order' => 4,
-													'desc' => gettext('If checked, The user\'s e-mail address will be used as his User ID.')),
-												gettext('Email notification text') => array('key' => 'register_user_text', 'type' => OPTION_TYPE_TEXTAREA,
-													'order' => 3,
-													'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant\'s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
-												gettext('User registration page') => array('key' => 'register_user_page', 'type' => OPTION_TYPE_CUSTOM,
-													'order' => 0,
-													'desc' => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
-												gettext('CAPTCHA') => array('key' => 'register_user_captcha', 'type' => OPTION_TYPE_CHECKBOX,
-													'order' => 5,
-													'desc' => gettext('If checked, CAPTCHA validation will be required for user registration.'))
-												);
-			if ($_common_notify_handler) {
-				$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
-																	'order' => 8,
-																	'desc' => '<p class="notebox">'.$_common_notify_handler.'</p>');
-			} else {
-				$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'register_user\');"><em>register_user</em></a> plugin options.');
-				$options['note'] = array('key' => 'menu_truncate_note',
-																'type' => OPTION_TYPE_NOTE,
+		global $_zp_authority, $_common_notify_handler;
+		$options = array(	gettext('Notify*') => array('key' => 'register_user_notify', 'type' => OPTION_TYPE_CHECKBOX,
+												'order' => 4,
+												'desc' => gettext('If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration.')),
+											gettext('Address fields') => array('key' => 'register_user_address_info', 'type' => OPTION_TYPE_RADIO,
+												'order' => 4.5,
+												'buttons' => array(gettext('Omit')=>0, gettext('Show')=>1, gettext('Require')=>'required'),
+												'desc' => gettext('If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field.').'<p class="notebox">'.gettext('<strong>Note:</strong> Address fields are handled by the <em>comment_form</em> plugin.').'</p>'),
+											gettext('User album') => array('key' => 'register_user_create_album', 'type' => OPTION_TYPE_CHECKBOX,
+												'order' => 6,
+												'desc' => gettext('If checked, an album will be created and assigned to the user.')),
+											gettext('Email ID') => array('key' => 'register_user_email_is_id', 'type' => OPTION_TYPE_CHECKBOX,
+												'order' => 4,
+												'desc' => gettext('If checked, The user\'s e-mail address will be used as his User ID.')),
+											gettext('Email notification text') => array('key' => 'register_user_text', 'type' => OPTION_TYPE_TEXTAREA,
+												'order' => 3,
+												'desc' => gettext('Text for the body of the email sent to the registrant for registration verification. <p class="notebox"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant\'s <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>')),
+											gettext('User registration page') => array('key' => 'register_user_page', 'type' => OPTION_TYPE_CUSTOM,
+												'order' => 0,
+												'desc' => gettext('If this option is set, the visitor login form will include a link to this page. The link text will be labeled with the text provided.')),
+											gettext('CAPTCHA') => array('key' => 'register_user_captcha', 'type' => OPTION_TYPE_CHECKBOX,
+												'order' => 5,
+												'desc' => gettext('If checked, CAPTCHA validation will be required for user registration.'))
+											);
+		if ($_common_notify_handler) {
+			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
 																'order' => 8,
-																'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
-			}
-			$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
-			if (count($mailinglist) == 0) {	//	no one to send the notice to!
-				$options[gettext('Notify')]['disabled'] = true;
-				$options[gettext('Notify')]['desc'] .= ' '.gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
-			}
-			if (function_exists('user_groups_admin_tabs')) {
-				$admins = $_zp_authority->getAdministrators('groups');
-				$defaultrights = ALL_RIGHTS;
-				$ordered = array();
-				foreach ($admins as $key=>$admin) {
-					$ordered[$admin['user']] = $admin['user'];
-					if ($admin['rights'] < $defaultrights && $admin['rights'] >= NO_RIGHTS) {
-						$nullselection = $admin['user'];
-						$defaultrights = $admin['rights'];
-					}
-				}
-				if (!empty($nullselection)) {
-					if (is_numeric(getOption('register_user_user_rights'))) {
-						setOption('register_user_user_rights', $nullselection);
-					} else {
-						setOptionDefault('register_user_user_rights', $nullselection);
-					}
-				}
-				$options[gettext('Default user group')] =  array('key' => 'register_user_user_rights', 'type' => OPTION_TYPE_SELECTOR,
-											'order' => 1,
-											'selections' => $ordered,
-											'desc' => gettext("Initial group assignment for the new user."));
-			} else {
-				if (is_numeric(getOption('register_user_user_rights'))) {
-					setOptionDefault('register_user_user_rights', NO_RIGHTS);
-				} else {
-					setOption('register_user_user_rights', NO_RIGHTS);
-				}
-				$options[gettext('Default rights')] = array('key' => 'register_user_user_rights', 'type' => OPTION_TYPE_CUSTOM,
-																															'order' => 2,
-																															'desc' => gettext("Initial rights for the new user. (If no rights are set, approval of the user will be required.)"));
-			}
-			return $options;
+																'desc' => '<p class="notebox">'.$_common_notify_handler.'</p>');
 		} else {
-			return array(''=>array('key'=>'register_user_note', 'type'=>OPTION_TYPE_NOTE, 'desc'=>'<span class="notebox">'.gettext('This plugin must be enabled to process options.').'</span>'));
+			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'register_user\');"><em>register_user</em></a> plugin options.');
+			$options['note'] = array('key' => 'menu_truncate_note',
+															'type' => OPTION_TYPE_NOTE,
+															'order' => 8,
+															'desc' => gettext('<p class="notebox">*<strong>Note:</strong> The setting of this option is shared with other plugins.</p>'));
 		}
+		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
+		if (count($mailinglist) == 0) {	//	no one to send the notice to!
+			$options[gettext('Notify')]['disabled'] = true;
+			$options[gettext('Notify')]['desc'] .= ' '.gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
+		}
+		if (function_exists('user_groups_admin_tabs')) {
+			$admins = $_zp_authority->getAdministrators('groups');
+			$defaultrights = ALL_RIGHTS;
+			$ordered = array();
+			foreach ($admins as $key=>$admin) {
+				$ordered[$admin['user']] = $admin['user'];
+				if ($admin['rights'] < $defaultrights && $admin['rights'] >= NO_RIGHTS) {
+					$nullselection = $admin['user'];
+					$defaultrights = $admin['rights'];
+				}
+			}
+			if (!empty($nullselection)) {
+				if (is_numeric(getOption('register_user_user_rights'))) {
+					setOption('register_user_user_rights', $nullselection);
+				} else {
+					setOptionDefault('register_user_user_rights', $nullselection);
+				}
+			}
+			$options[gettext('Default user group')] =  array('key' => 'register_user_user_rights', 'type' => OPTION_TYPE_SELECTOR,
+										'order' => 1,
+										'selections' => $ordered,
+										'desc' => gettext("Initial group assignment for the new user."));
+		} else {
+			if (is_numeric(getOption('register_user_user_rights'))) {
+				setOptionDefault('register_user_user_rights', NO_RIGHTS);
+			} else {
+				setOption('register_user_user_rights', NO_RIGHTS);
+			}
+			$options[gettext('Default rights')] = array('key' => 'register_user_user_rights', 'type' => OPTION_TYPE_CUSTOM,
+																														'order' => 2,
+																														'desc' => gettext("Initial rights for the new user. (If no rights are set, approval of the user will be required.)"));
+		}
+		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
@@ -193,7 +187,7 @@ class register_user_options {
 	}
 
 
-	static function handleOptionSave($notify,$themename,$themealbum) {
+	static function handleOptionSave($themename,$themealbum) {
 		if (!function_exists('user_groups_admin_tabs')) {
 			$saved_rights = NO_RIGHTS;
 			$rightslist = sortMultiArray(Zenphoto_Authority::getRights(), array('set', 'value'));
@@ -204,7 +198,7 @@ class register_user_options {
 			}
 			setOption('register_user_user_rights', $saved_rights);
 		}
-		return $notify;
+		return false;
 	}
 
 }
