@@ -639,7 +639,12 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
  */
 function printNewsContent($shorten=false,$shortenindicator=NULL,$readmore=NULL) {
 	global $_zp_current_zenpage_news, $_zp_page;
-	echo html_encodeTagged(getNewsContent($shorten,$shortenindicator,$readmore));
+	$newstype = getNewsType();
+	$newscontent = getNewsContent($shorten,$shortenindicator,$readmore);
+	if($newstype != 'video') {
+		echo html_encodeTagged($newscontent);
+	} 
+	echo $newscontent;
 }
 
 /**
@@ -705,7 +710,7 @@ function getNewsVideoContent($imageobj) {
 		case '.fla':
 		case '.m4a':
 		case '.m4v':
-			if (is_null($_zp_flash_player)) {
+			if(is_null($_zp_flash_player)) {
 				$videocontent = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="'.gettext('No flash player installed.').'" />';
 			} else {
 				$_zp_current_image = $imageobj;
