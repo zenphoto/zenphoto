@@ -74,7 +74,7 @@ h2 {
 	<?php echo gettext("The internal Zenphoto table relations can be viewed on the PDF database reference that is included in the release package within the /docs_files folder of your Zenphoto installation. For more detailed info about the database use tools like phpMyAdmin."); ?>
 </p>
 <?php
-$database_name =db_name();
+$database_name = db_name();
 $prefix = prefix();
 $resource = db_show('tables');
 if ($resource) {

@@ -3280,7 +3280,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 
 		$query = "SELECT id FROM " . prefix('albums') . " WHERE ";
 		if ($albumInWhere) $query .= $albumInWhere.' AND ';
-		$query .= "folder LIKE " . db_quote($albumfolder.'%');
+		$query .= "folder LIKE " . db_quote(db_LIKE_escape($albumfolder).'%');
 		$result = query($query);
 		if ($result) {
 			$albumInWhere = prefix('albums') . ".id IN (";

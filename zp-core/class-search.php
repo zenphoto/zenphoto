@@ -896,7 +896,7 @@ class SearchEngine
 							if ($exact) {
 								$tagsql .= '`name` = '.db_quote($singlesearchstring).' OR ';
 							} else {
-								$tagsql .= '`name` LIKE '.db_quote('%'.$singlesearchstring.'%').' OR ';
+								$tagsql .= '`name` LIKE '.db_quote('%'.db_LIKE_escape($singlesearchstring).'%').' OR ';
 							}
 						}
 					}
@@ -939,7 +939,7 @@ class SearchEngine
 								$fieldname = strtolower($fieldname);
 							}
 							if ($fieldname && in_array($fieldname, $columns)) {
-								$fieldsql .= ' `'.$fieldname.'` LIKE '.db_quote('%'.$singlesearchstring.'%').' OR ';
+								$fieldsql .= ' `'.$fieldname.'` LIKE '.db_quote('%'.db_LIKE_escape($singlesearchstring).'%').' OR ';
 							}
 						}
 						if (!empty($fieldsql)) {

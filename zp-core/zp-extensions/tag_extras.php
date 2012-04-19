@@ -47,7 +47,7 @@ function getAllTagsFromAlbum($albumname,$subalbums=false,$mode='images') {
 		$albumWhere = "WHERE `dynamic`=0 AND `show`=1".$passwordcheck;
 	}
 	if($subalbums) {
-		$albumWhere .= " AND `folder` LIKE ".db_quote($albumname."%");
+		$albumWhere .= " AND `folder` LIKE ".db_quote(db_LIKE_escape($albumname)."%");
 	} else {
 		$albumWhere .= " AND `folder` = ".db_quote($albumname);
 	}

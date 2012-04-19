@@ -130,7 +130,7 @@ function db_show($what, $aux='') {
 	global $_zp_conf_vars;
 	switch ($what) {
 		case 'tables':
-			$sql = "SELECT name FROM `sqlite_master` WHERE type='table' AND name LIKE '".$_zp_conf_vars['mysql_prefix']."%'";
+			$sql = "SELECT name FROM `sqlite_master` WHERE type='table' AND name LIKE '".db_LIKE_escape($_zp_conf_vars['mysql_prefix'])."%'";
 			return query($sql, false);
 		case 'columns':
 			$sql = 'PRAGMA table_info("'.$_zp_conf_vars['mysql_prefix'].$aux.'")';
@@ -224,6 +224,10 @@ function db_truncate_table($table) {
 	global $_zp_conf_vars;
 	$sql = 'DELETE FROM '.$_zp_conf_vars['mysql_prefix'].$table;
 	return query($sql, false);
+}
+
+function db_LIKE_escape($subject) {
+	return str_replace('%', '\\%', $subject);
 }
 
 require_once('functions-PDO.php');

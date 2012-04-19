@@ -1271,10 +1271,10 @@ function stripSuffix($filename) {
 function getAlbumInherited($folder, $field, &$id) {
 	$folders = explode('/',filesystemToInternal($folder));
 	$album = array_shift($folders);
-	$like = ' LIKE '.db_quote($album);
+	$like = ' LIKE '.db_quote(db_LIKE_escape($album));
 	while (count($folders) > 0) {
 		$album .= '/'.array_shift($folders);
-		$like .= ' OR `folder` LIKE '.db_quote($album);
+		$like .= ' OR `folder` LIKE '.db_quote(db_LIKE_escape($album));
 	}
 	$sql = 'SELECT `id`, `'.$field.'` FROM '.prefix('albums').' WHERE `folder`'.$like;
 	$result = query_full_array($sql);

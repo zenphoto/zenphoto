@@ -257,7 +257,7 @@ function db_show($what,$aux='') {
 	global $_zp_conf_vars;
 	switch ($what) {
 		case 'tables':
-			$sql = "SHOW TABLES FROM `".$_zp_conf_vars['mysql_database']."` LIKE '".$_zp_conf_vars['mysql_prefix']."%'";
+			$sql = "SHOW TABLES FROM `".$_zp_conf_vars['mysql_database']."` LIKE '".db_LIKE_escape($_zp_conf_vars['mysql_prefix'])."%'";
 			return query($sql, false);
 		case 'columns':
 			$sql = 'SHOW FULL COLUMNS FROM `'.$_zp_conf_vars['mysql_prefix'].$aux.'`';
@@ -285,6 +285,10 @@ function db_truncate_table($table) {
 	global $_zp_conf_vars;
 	$sql = 'TRUNCATE '.$_zp_conf_vars['mysql_prefix'].$table;
 	return query($sql, false);
+}
+
+function db_LIKE_escape($str) {
+	return strtr($str, array('_'=>'\\_','%'=>'\\%'));
 }
 
 ?>

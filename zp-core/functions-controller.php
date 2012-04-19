@@ -208,7 +208,6 @@ function zp_load_gallery() {
 					$_zp_comments, $_zp_current_context, $_zp_current_search, $_zp_current_zenpage_new,
 					$_zp_current_zenpage_page, $_zp_current_category, $_zp_post_date, $_zp_pre_authorization;
 
-	set_context(ZP_INDEX);
 	$_zp_current_album = NULL;
 	$_zp_current_album_restore = NULL;
 	$_zp_albums = NULL;
@@ -224,6 +223,7 @@ function zp_load_gallery() {
 	$_zp_current_category = NULL;
 	$_zp_post_date = NULL;
 	$_zp_pre_authorization = array();
+	set_context(ZP_INDEX);
 }
 
 /**

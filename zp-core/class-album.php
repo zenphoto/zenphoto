@@ -868,7 +868,7 @@ class Album extends MediaObject {
 					$cacherename = @rename(SERVERCACHE . '/' . $oldfolder, SERVERCACHE . '/' . $newfolder);
 					// Then: go through the db and change the album (and subalbum) paths. No ID changes are necessary for a move.
 					// Get the subalbums.
-					$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE ".db_quote($oldfolder.'/%');
+					$sql = "SELECT id, folder FROM " . prefix('albums') . " WHERE folder LIKE ".db_quote(db_LIKE_escape($oldfolder).'/%');
 					$result = query($sql);
 					if ($result) {
 						while ($subrow = db_fetch_assoc($result)) {
@@ -1019,7 +1019,7 @@ class Album extends MediaObject {
 		}
 
 		// Get all sub-albums and make sure they exist.
-		$result = query("SELECT * FROM ".prefix('albums')." WHERE `folder` LIKE " . db_quote($this->name.'%'));
+		$result = query("SELECT * FROM ".prefix('albums')." WHERE `folder` LIKE " . db_quote(db_LIKE_escape($this->name).'%'));
 		$dead = array();
 		$live = array();
 		// Does the dirname from the db row exist on disk?

@@ -946,7 +946,7 @@ function getAllSubAlbumIDs($albumfolder='') {
 			return null;
 		}
 	}
-	$query = "SELECT `id`,`folder`, `show` FROM " . prefix('albums') . " WHERE `folder` LIKE " . db_quote($albumfolder.'%');
+	$query = "SELECT `id`,`folder`, `show` FROM " . prefix('albums') . " WHERE `folder` LIKE " . db_quote(db_LIKE_escape($albumfolder).'%');
 	$subIDs = query_full_array($query);
 	return $subIDs;
 }
