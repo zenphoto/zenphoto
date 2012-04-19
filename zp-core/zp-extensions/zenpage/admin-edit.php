@@ -400,10 +400,10 @@ if ($result->loaded || $result->transient) {
 		<p><?php echo gettext("Hint: If you need more space for your text use TinyMCE's full screen mode (Click the blue square on the top right of editor's control bar)."); ?></p>
 	</div>
 	<div <?php if (is_AdminEditPage("page")) echo 'class="box"'; ?> style="padding:15px; margin-top: 10px">
-		<table>
+		<table class="formlayout">
 			<tr>
 				<td class="topalign-padding"><?php echo gettext("Title:"); ?></td>
-				<td class="middlecolumn">
+				<td class="middlecolumn" style="width: 100%">
 					<?php print_language_string_list($result->get('title'), 'title', false, NULL, 'title', 91, 'zenpage_language_string_list', 10); ?>
 				</td>
 				<td class="rightcolumnmiddle" rowspan="6">
@@ -725,9 +725,9 @@ if ($result->loaded || $result->transient) {
 				<td>
 					<?php
 					if (is_AdminEditPage("newscategory")) {
-						print_language_string_list($result->get('desc'), 'desc', true, NULL, 'desc', 92, 'zenpage_language_string_list', 20);
+						print_language_string_list($result->get('desc'), 'desc', true, NULL, 'desc', '100%', 'zenpage_language_string_list', 20);
 					} else {
-						print_language_string_list($result->get('content'), 'content', true, NULL, 'content', 92, 'zenpage_language_string_list', 35);
+						print_language_string_list($result->get('content'), 'content', true, NULL, 'content', '100%', 'zenpage_language_string_list', 35);
 					}
 					?>
 				</td>
@@ -739,7 +739,7 @@ if ($result->loaded || $result->transient) {
 					<td class="topalign-padding"><?php echo gettext("ExtraContent:"); ?></td>
 					<td>
 						<?php
-							print_language_string_list($result->get('extracontent'), 'extracontent', true, NULL, 'extracontent', 92, 'zenpage_language_string_list', 10);
+							print_language_string_list($result->get('extracontent'), 'extracontent', true, '98%', 'extracontent', 92, 'zenpage_language_string_list', 10);
 						?>
 					</td>
 				</tr>
@@ -760,7 +760,7 @@ if ($result->loaded || $result->transient) {
 				$custom = zp_apply_filter('edit_page_custom_data', '', $result);
 			}
 			if(empty($custom)) {
-				print_language_string_list($result->get('custom_data'), 'custom_data', true, NULL, 'custom_data', 92, 'zenpage_language_string_list', 10);
+				print_language_string_list($result->get('custom_data'), 'custom_data', true, '98%', 'custom_data', 92, 'zenpage_language_string_list', 10);
 			} else {
 				echo $custom;
 			}
