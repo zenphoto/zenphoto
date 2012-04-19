@@ -172,7 +172,7 @@ $currenttheme = $_zp_gallery->getCurrentTheme();
 					<input type="hidden" name="enable[]" value="<?php echo $key; ?>" />
 					<?php
 				} else {
-					if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin_thumbs') {
+					if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin') {
 						$checked = ' checked="checked"';
 					} else {
 						$checked = '';
