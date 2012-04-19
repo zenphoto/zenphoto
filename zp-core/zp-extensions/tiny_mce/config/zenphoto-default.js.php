@@ -13,9 +13,9 @@
 			theme : "advanced",
 			language: "<?php echo $locale; ?>",
 			editor_selector: "texteditor", // to enable TinyMCE on album and image customdata set to /(texteditor|texteditor_albumcustomdata|texteditor_imagecustomdata)/
-			plugins : "fullscreen,inlinepopups",
+			plugins : "fullscreen,inlinepopups,tinyzenpage",
 			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist",
-			theme_advanced_buttons2 : "undo,redo,|,link,unlink,anchor,image,cleanup,help,code,fullscreen",
+			theme_advanced_buttons2 : "undo,redo,|,link,unlink,anchor,image,cleanup,help,code,fullscreen,tinyzenpage",
 			theme_advanced_buttons3 : "",
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",
