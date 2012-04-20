@@ -404,7 +404,7 @@ if ($result->loaded || $result->transient) {
 			<tr>
 				<td class="topalign-padding"><?php echo gettext("Title:"); ?></td>
 				<td class="middlecolumn">
-					<?php print_language_string_list($result->get('title'), 'title', false, '100%', 'title', 91, 'zenpage_language_string_list', 10); ?>
+					<?php print_language_string_list($result->get('title'), 'title', false, NULL, 'title', 91, 'zenpage_language_string_list', 10); ?>
 				</td>
 				<td class="rightcolumnmiddle" rowspan="6">
 				<h2 class="h2_bordered_edit"><?php echo gettext("Publish"); ?></h2>
@@ -714,7 +714,7 @@ if ($result->loaded || $result->transient) {
 					echo gettext("A search engine friendly <em>titlelink</em> (aka slug) without special characters to be used in URLs is generated from the title of the currently chosen language automatically. You can edit it manually later after saving if necessary.");
 				} else {
 					?>
-					<input name="titlelink" type="text" id="titlelink" value="<?php echo $result->getTitlelink(); ?>" disabled="disabled" />
+					<input name="titlelink" type="text" size="92" id="titlelink" value="<?php echo $result->getTitlelink(); ?>" disabled="disabled" />
 					<?php
 					}
 				 ?>
@@ -725,9 +725,9 @@ if ($result->loaded || $result->transient) {
 				<td class="middlecolumn">
 					<?php
 					if (is_AdminEditPage("newscategory")) {
-						print_language_string_list($result->get('desc'), 'desc', true, NULL, 'desc', '100%', 'zenpage_language_string_list', 20);
+						print_language_string_list($result->get('desc'), 'desc', true, NULL, 'desc', 92, 'zenpage_language_string_list', 20);
 					} else {
-						print_language_string_list($result->get('content'), 'content', true, NULL, 'content', '100%', 'zenpage_language_string_list', 35);
+						print_language_string_list($result->get('content'), 'content', true, NULL, 'content', 92, 'zenpage_language_string_list', 35);
 					}
 					?>
 				</td>
@@ -739,7 +739,7 @@ if ($result->loaded || $result->transient) {
 					<td class="topalign-padding"><?php echo gettext("ExtraContent:"); ?></td>
 					<td class="middlecolumn">
 						<?php
-							print_language_string_list($result->get('extracontent'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 10);
+							print_language_string_list($result->get('extracontent'), 'extracontent', true, NULL, 'extracontent', 92, 'zenpage_language_string_list', 10);
 						?>
 					</td>
 				</tr>
@@ -760,7 +760,7 @@ if ($result->loaded || $result->transient) {
 				$custom = zp_apply_filter('edit_page_custom_data', '', $result);
 			}
 			if(empty($custom)) {
-				print_language_string_list($result->get('custom_data'), 'custom_data', true, '100%', 'custom_data', 91, 'zenpage_language_string_list', 10);
+				print_language_string_list($result->get('custom_data'), 'custom_data', true, NULL, 'custom_data', 92, 'zenpage_language_string_list', 10);
 			} else {
 				echo $custom;
 			}

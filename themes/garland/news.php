@@ -51,9 +51,9 @@ if (!defined('WEBPATH')) die();
 							if(is_NewsArticle()) { // single news article
 								?>
 								<h3><?php printNewsTitle(); ?></h3>
-
 								<div class="newsarticlecredit">
-									<span class="newsarticlecredit-left"> <?php
+									<span class="newsarticlecredit-left">
+									<?php
 									$count = getCommentCount();
 									printNewsDate();
 									if ($count > 0) {

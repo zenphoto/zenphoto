@@ -4,9 +4,7 @@ define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(dirname(dirname(__FILE__)))))."/admin-globals.php");
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS, '');
 require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/zenpage/zenpage-template-functions.php");
-if(getOption('zp_plugin_flowplayer3')) {
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/flowplayer3.php");
-}
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/flowplayer3.php");
 ?>
 <!-- tinyZenpage - A TinyMCE plugin for Zenphoto with Zenpage
 		 Version: 1.0.6.1

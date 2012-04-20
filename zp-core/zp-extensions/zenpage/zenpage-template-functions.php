@@ -641,10 +641,7 @@ function printNewsContent($shorten=false,$shortenindicator=NULL,$readmore=NULL) 
 	global $_zp_current_zenpage_news, $_zp_page;
 	$newstype = getNewsType();
 	$newscontent = getNewsContent($shorten,$shortenindicator,$readmore);
-	if($newstype != 'video') {
-		echo html_encodeTagged($newscontent);
-	} 
-	echo $newscontent;
+	echo html_encodeTagged($newscontent);
 }
 
 /**
