@@ -52,12 +52,12 @@ td.middlecolumn {
 vertical-align: top;
 padding-right: 20px !important;
 }
-
+/* 
 td.middlecolumn > * {
 width: 100% !important;
 margin-right: 10px !important;
 }
-	
+	*/
 #pageslist {
 	list-style: none;
 	margin: 0;

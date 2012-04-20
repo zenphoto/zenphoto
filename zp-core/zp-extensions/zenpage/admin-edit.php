@@ -400,7 +400,7 @@ if ($result->loaded || $result->transient) {
 		<p><?php echo gettext("Hint: If you need more space for your text use TinyMCE's full screen mode (Click the blue square on the top right of editor's control bar)."); ?></p>
 	</div>
 	<div <?php if (is_AdminEditPage("page")) echo 'class="box"'; ?> style="padding:15px; margin-top: 10px">
-		<table class="formlayout">
+		<table>
 			<tr>
 				<td class="topalign-padding"><?php echo gettext("Title:"); ?></td>
 				<td class="middlecolumn">
