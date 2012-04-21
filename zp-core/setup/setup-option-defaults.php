@@ -44,7 +44,7 @@ if (isset($_GET['mod_rewrite'])) {
 		<script type="text/javascript">
 			// <!-- <![CDATA[
 			$.ajax({
-				type: 'SUBMIT',
+				type: 'GET',
 				url: '<?php echo WEBPATH; ?>/page/setup_set-mod_rewrite?z=setup'
 			});
 			// ]]> -->
@@ -61,21 +61,6 @@ setOptionDefault('server_protocol', "http");
 setOptionDefault('charset', "UTF-8");
 setOptionDefault('image_quality', 85);
 setOptionDefault('thumb_quality', 75);
-setOptionDefault('image_size', 595);
-if (!getOption('image_use_longest_side') === '0') {
-	setOptionDefault('image_use_side', 'width');
-} else {
-	setOptionDefault('image_use_side', 'longest');
-}
-setOptionDefault('image_allow_upscale', 0);
-setOptionDefault('thumb_size', 100);
-setOptionDefault('thumb_crop', 1);
-setOptionDefault('thumb_crop_width', 85);
-setOptionDefault('thumb_crop_height', 85);
-setOptionDefault('thumb_sharpen', 0);
-setOptionDefault('image_sharpen', 0);
-setOptionDefault('albums_per_page', 5);
-setOptionDefault('images_per_page', 15);
 
 setOptionDefault('search_password', '');
 setOptionDefault('search_hint', NULL);
