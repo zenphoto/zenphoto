@@ -47,8 +47,7 @@ function reconfigureAction() {
 				</body>
 			</html>
 			<?php
-			db_close();
-			exit();
+			exitZP();
 		}
 	} else {
 		if (function_exists('zp_register_filter')) {

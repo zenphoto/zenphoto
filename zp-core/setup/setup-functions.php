@@ -232,6 +232,7 @@ function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod, $upda
 							// <!-- <![CDATA[
 							$.ajax({
 								type: 'POST',
+								cache: false,
 								url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_permissions_changer.php',
 								data: 'folder=<?php echo $path; ?>&key=<?php echo sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE)); ?>'
 							});

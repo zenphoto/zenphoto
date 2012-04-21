@@ -12,7 +12,7 @@ if ($_zp_gallery_page=='search.php' || zp_getCookie("noFlash") || $perm = (isset
 	$personality = new simpleviewer($zenCSS);
 	if (isset($_GET['format']) && $_GET['format'] == 'xml') {
 		$personality->XML_part();
-		exit();
+		exitZP();
 	}
 }
 

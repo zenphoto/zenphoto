@@ -1437,7 +1437,7 @@ function isValidURL($url) {
 }
 
 /**
- * pattern match function Works with accented characters where the PHP one does not.
+ * pattern match function Works with characters with diacritical marks where the PHP one does not.
  *
  * @param string $pattern pattern
  * @param string $string haystack
@@ -2085,6 +2085,7 @@ function cron_starter($script, $params, $inline=false) {
 		// <!-- <![CDATA[
 		$.ajax({
 			type: 'POST',
+			cache: false,
 			data: '<?php echo $paramlist; ?>',
 			url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/cron_runner.php'
 		});

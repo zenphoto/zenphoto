@@ -5,7 +5,7 @@
  * album.php, image.php and for Zenpage pages.php and news.php (articles and categories).
  *
  * The additional files have to be clones of the standard theme pages which must be kept as default ones.
- * The file names of these additional files must match these patterns and should not include special or accented characters:
+ * The file names of these additional files must match these patterns and should not include special characters or characters with diacritical marks:
  *
  * Zenphoto gallery items:
  * <hr>

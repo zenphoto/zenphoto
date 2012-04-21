@@ -45,6 +45,7 @@ if (isset($_GET['mod_rewrite'])) {
 			// <!-- <![CDATA[
 			$.ajax({
 				type: 'GET',
+				cache: false,
 				url: '<?php echo WEBPATH; ?>/page/setup_set-mod_rewrite?z=setup'
 			});
 			// ]]> -->
@@ -328,6 +329,7 @@ if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
 			?>
 			$.ajax({
 				type: 'POST',
+				cache: false,
 				url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_themeOptions.php',
 				data: 'theme=<?php echo $theme; ?>'
 			});

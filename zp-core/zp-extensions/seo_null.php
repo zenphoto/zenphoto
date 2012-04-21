@@ -39,7 +39,7 @@ class null_seo {
 
 
 	/**
-	 * translates accented characters to unaccented ones
+	 * translates characters with diacritical marks to simple characters
 	 *
 	 * @param string $string
 	 * @return string

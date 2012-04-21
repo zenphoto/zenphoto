@@ -131,9 +131,9 @@ function printImageslist($number) {
 		$imgsizeurl = $albumthumb->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 		echo "<div class='thumb'>";
 		echo "<a href=\"javascript: ZenpageDialog.insert('".$imgurl."','".
-		                                                  $albumobj->getAlbumThumb()."','".
-		                                                  "','".
-		                                                  urlencode($albumthumb->filename)."','".
+																											$albumobj->getAlbumThumb()."','".
+																											"','".
+																											urlencode($albumthumb->filename)."','".
 																											js_encode($albumthumb->getTitle())."','".
 																											js_encode($albumobj->getTitle())."','".
 																											$fullimage."',
@@ -145,6 +145,7 @@ function printImageslist($number) {
 																											'".html_encode(addslashes($albumdesc))."');\"".
 																											" title='".html_encode($albumthumb->getTitle())." (".html_encode($albumthumb->filename).")'>
 																											<img src='".$imgsizeurl."' class='".$backgroundcss."' /></a>\n";
+
 		echo "<a href='zoom.php?image=".urlencode($albumthumb->filename)."&amp;album=".pathurlencode($albumthumbalbum->name).
 																											"' title='Zoom' rel='colorbox' style='outline: none;'><img src='img/magnify.png' alt='' style='border: 0' /></a> ".
 																											gettext('<em>Albumthumb</em>').unpublishedZenphotoItemCheck($albumthumb,false);
@@ -214,8 +215,8 @@ function printImageslist($number) {
 				$imgsizeurl = $imageobj->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, TRUE);
 				echo "<div class='thumb'>\n";
 				echo "<a href=\"javascript:ZenpageDialog.insert('".$imgurl."','".
-				                                                $thumburl."','".
-				                                                html_encode($sizedimage)."','".
+																												$thumburl."','".
+																												html_encode($sizedimage)."','".
 																												urlencode($imageobj->filename)."','".
 																												js_encode($imageobj->getTitle())."','".
 																												js_encode($linkalbumobj->getTitle())."','".

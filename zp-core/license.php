@@ -59,5 +59,5 @@ echo "\n</head>";
 </body>
 </html>
 <?php
-exit();
+exitZP();
 ?>

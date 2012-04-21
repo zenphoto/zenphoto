@@ -1,6 +1,6 @@
 <?php
 /**
- * Translates accented characters to unaccented equivilents
+ * Translates characters with diacritical marks to simple equivilents
  * @package plugins
  */
 
@@ -1083,7 +1083,7 @@ class zenphoto_seo {
 																			);
 
 	/**
-	 * translates accented characters to unaccented ones
+	 * translates characters with diacritical marks to simple ones
 	 *
 	 * @param string $string
 	 * @return string

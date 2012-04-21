@@ -419,7 +419,7 @@ function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
 		case E_USER_NOTICE:
 			return false;
 		default:
-			exitZP();
+			exit();
 	}
 }
 

@@ -3311,7 +3311,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
  * @param int $number how many images
  * @param string $class optional class
  * @param string $option what you want selected: all for all images, album for selected ones from an album
- * @param string $rootAlbum optional album from which to get the images
+ * @param mixed $rootAlbum optional album object/folder from which to get the image.
  * @param integer $width the width/cropwidth of the thumb if crop=true else $width is longest size.
  * @param integer $height the height/cropheight of the thumb if crop=true else not used
  * @param bool $crop 'true' (default) if the thumb should be cropped, 'false' if not
