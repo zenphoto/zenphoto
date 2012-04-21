@@ -248,8 +248,13 @@ function html_encode($this_string) {
  * @return string
  */
 function html_encodeTagged($str) {
-	preg_match_all("/(&[a-z#]+;)|<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
 	$tags = array();
+	preg_match_all('!<script.*>.*</script>!is', $str, $matches);
+	foreach (array_unique($matches[0]) as $key=>$tag) {
+		$tags['%'.$key.'$j'] = $tag;
+		$str = str_replace($tag, '%'.$key.'$j', $str);
+	}
+	preg_match_all("/(&[a-z#]+;)|<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
 	foreach (array_unique($matches[0]) as $key=>$tag) {
 		$tags['%'.$key.'$s'] = $tag;
 		$str = str_replace($tag, '%'.$key.'$s', $str);
