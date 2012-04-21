@@ -197,7 +197,7 @@ var ZenpageDialog = {
 					if(video == 'video') {
 						playerheight = "<?php echo getOption('tinymce_tinyzenpage_flowplayer_height'); ?>";
 					} else {
-						playerheight = "<?php echo FLOW_PLAYER_MP3_HEIGHT; ?>";
+						playerheight = "<?php echo getOption('tinymce_tinyzenpage_flowplayer_mp3_height'); ?>";
 					}
 					imglink = infowrap1;
 					imglink += '<object '+textwrap+' width="<?php echo getOption('tinymce_tinyzenpage_flowplayer_width'); ?>" height="'+playerheight+'" data="'+flowplayerpath+'" type="application/x-shockwave-flash">';

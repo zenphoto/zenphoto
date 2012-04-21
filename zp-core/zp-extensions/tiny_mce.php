@@ -32,34 +32,47 @@ class tinymceOptions {
 		setOptionDefault('tinymce_tinyzenpage_customthumb_cropheight', '120');
 		setOptionDefault('tinymce_tinyzenpage_flowplayer_width', '320');
 		setOptionDefault('tinymce_tinyzenpage_flowplayer_height', '240');
+		setOptionDefault('tinymce_tinyzenpage_flowplayer_mp3_height', '26');
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('tinyzenpage');
 			cacheManager::addThemeCacheSize('tinyzenpage', NULL, getOption('tinymce_tinyzenpage_customimagesize'), getOption('tinymce_tinyzenpage_customthumb_size'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 			cacheManager::addThemeCacheSize('tinyzenpage', NULL, getOption('tinymce_tinyzenpage_flowplayer_width'), getOption('tinymce_tinyzenpage_flowplayer_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+			cacheManager::addThemeCacheSize('garland', 85, NULL, NULL, 85, 85, NULL, NULL, true, NULL, NULL, NULL);
 		}
 	}
 
 	function getOptionsSupported() {
 		$configarray = getTinyMCEConfigFiles();
 		$options = array(gettext('Text editor configuration - Zenphoto') => array('key' => 'tinymce_zenphoto', 'type' => OPTION_TYPE_SELECTOR,
+										'order'=>0,
 										'selections' => $configarray,
 										'desc' => gettext('Applies to <em>admin</em> editable text other than for Zenpage pages and news articles.')),
 										gettext('Text editor configuration - Zenpage') => array('key' => 'tinymce_zenpage', 'type' => OPTION_TYPE_SELECTOR,
+										'order'=>0,
 										'selections' => $configarray,
 										'desc' => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
-										gettext('tinyZenpage - custom image size') => array('key' => 'tinymce_tinyzenpage_customimagesize', 'type' => OPTION_TYPE_TEXTBOX,
+										gettext('Custom image size') => array('key' => 'tinymce_tinyzenpage_customimagesize', 'type' => OPTION_TYPE_TEXTBOX,
+										'order'=>2,
 										'desc' => gettext("Predefined size (px) for custom size images included using tinyZenpage.")),
-										gettext('tinyZenpage - custom thumb crop - size') => array('key' => 'tinymce_tinyzenpage_customthumb_size', 'type' => OPTION_TYPE_TEXTBOX,
+										gettext('Custom thumb crop - size') => array('key' => 'tinymce_tinyzenpage_customthumb_size', 'type' => OPTION_TYPE_TEXTBOX,
+										'order'=>2,
 										'desc' => gettext("Predefined size (px) for custom cropped thumb images included using tinyZenpage.")),
-										gettext('tinyZenpage - custom thumb crop - width') => array('key' => 'tinymce_tinyzenpage_customthumb_cropwidth', 'type' => OPTION_TYPE_TEXTBOX,
+										gettext('Custom thumb crop - width') => array('key' => 'tinymce_tinyzenpage_customthumb_cropwidth', 'type' => OPTION_TYPE_TEXTBOX,
+										'order'=>2,
 										'desc' => gettext("Predefined crop width (%) for custom cropped thumb  images included using tinyZenpage.")),
-										gettext('tinyZenpage - custom thumb crop - height') => array('key' => 'tinymce_tinyzenpage_customthumb_cropheight', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Predefined crop height (%) for custom cropped thumb  images included using tinyZenpage.")),
-										gettext('tinyZenpage - Flowplayer width') => array('key' => 'tinymce_tinyzenpage_flowplayer_width', 'type' => OPTION_TYPE_TEXTBOX,
+										gettext('Custom thumb crop - height') => array('key' => 'tinymce_tinyzenpage_customthumb_cropheight', 'type' => OPTION_TYPE_TEXTBOX,
+										'order'=>2,
+										'desc' => gettext("Predefined crop height (%) for custom cropped thumb images included using tinyZenpage.")),
+										gettext('Flowplayer width') => array('key' => 'tinymce_tinyzenpage_flowplayer_width', 'type' => OPTION_TYPE_TEXTBOX,
+										'order'=>3,
 										'desc' => gettext("Video player width if included using tinyZenpage")),
-										gettext('tinyZenpage - Flowplayer height') => array('key' => 'tinymce_tinyzenpage_flowplayer_height', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Video player height if included using tinyZenpage (for mp3s only the control bar is used)"))
-									);
+										gettext('Flowplayer height') => array('key' => 'tinymce_tinyzenpage_flowplayer_height', 'type' => OPTION_TYPE_TEXTBOX,
+										'order'=>4,
+										'desc' => gettext("Video player height for videos included using tinyZenpage")),
+										gettext('Mp3 control bar height') => array('key' => 'tinymce_tinyzenpage_flowplayer_mp3_height', 'type' => OPTION_TYPE_TEXTBOX,
+										'order'=>5,
+										'desc' => gettext("Video player height for mp3s included using tinyZenpage"))
+		);
 		return $options;
 	}
 
