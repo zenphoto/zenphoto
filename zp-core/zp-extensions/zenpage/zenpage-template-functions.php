@@ -1167,18 +1167,19 @@ function printAllNewsCategories($newsindex='All news', $counter=TRUE, $css_id=''
  * 										 	 "with_latest_albums_publishdate" for news articles with the latest albums by publishdate (if not set date is used)
  * 											 "with_latestupdated_albums" for news articles with the latest updated albums
  * @param string $category Optional news articles by category (only "none" option)
+ * @param bool $sticky place sticky items at the front of the list.
  * @return array
  */
-function getLatestNews($number=2,$option='none', $category='') {
+function getLatestNews($number=2,$option='none', $category='', $sticky=true) {
 	global $_zp_zenpage,$_zp_current_zenpage_news;
 	$latest = '';
 	switch($option) {
 		case 'none':
 			if(!empty($category)) {
 				$catobj = new ZenpageCategory($category);
-				$latest = $catobj->getArticles($number,NULL,true);
+				$latest = $catobj->getArticles($number,NULL,true,'date','desc',$sticky);
 			} else {
-				$latest = $_zp_zenpage->getArticles($number,NULL,true);
+				$latest = $_zp_zenpage->getArticles($number,NULL,true,'date','desc',$sticky);
 			}
 			$counter = '';
 			$latestnews = array();
@@ -1197,34 +1198,34 @@ function getLatestNews($number=2,$option='none', $category='') {
 			}
 			break;
 		case 'with_latest_images':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'id');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'id',$sticky);
 			break;
 		case 'with_latest_images_date':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'date');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'date',$sticky);
 			break;
 		case 'with_latest_images_mtime':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'mtime');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'mtime',$sticky);
 			break;
 		case 'with_latest_images_publishdate':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'publishdate');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestimages-thumbnail',NULL,'publishdate',$sticky);
 			break;
 		case 'with_latest_albums':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id',$sticky);
 			break;
 		case 'with_latest_albums_date':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'date');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'date',$sticky);
 			break;
 		case 'with_latest_albums_mtime':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'mtime');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'mtime',$sticky);
 			break;
 		case 'with_latest_albums_publishdate':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'publishdate');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'publishdate',$sticky);
 			break;
 		case 'with_latestupdated_albums':
-			$latest = $_zp_zenpage->getCombiNews($number,'latestupdatedalbums-thumbnail',NULL,'');
+			$latest = $_zp_zenpage->getCombiNews($number,'latestupdatedalbums-thumbnail',NULL,'',$sticky);
 			break;
 			/*case "latestimagesbyalbum-thumbnail":
-			 $latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id');
+			 $latest = $_zp_zenpage->getCombiNews($number,'latestalbums-thumbnail',NULL,'id','',false);
 			break; */
 	}
 	return $latest;
@@ -1257,7 +1258,6 @@ function getLatestNews($number=2,$option='none', $category='') {
  */
 function printLatestNews($number=5,$option='with_latest_images', $category='', $showdate=true, $showcontent=true, $contentlength=70, $showcat=true,$readmore=NULL){
 	global $_zp_gallery, $_zp_current_zenpage_news;
-	//trigger_error(gettext('printLatestNews is deprecated. Use printLatestCombiNews().'), E_USER_NOTICE);
 	$latest = getLatestNews($number,$option,$category);
 	echo "\n<ul id=\"latestnews\">\n";
 	$count = "";

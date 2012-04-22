@@ -37,7 +37,7 @@ class tinymceOptions {
 			cacheManager::deleteThemeCacheSizes('tinyzenpage');
 			cacheManager::addThemeCacheSize('tinyzenpage', NULL, getOption('tinymce_tinyzenpage_customimagesize'), getOption('tinymce_tinyzenpage_customthumb_size'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 			cacheManager::addThemeCacheSize('tinyzenpage', NULL, getOption('tinymce_tinyzenpage_flowplayer_width'), getOption('tinymce_tinyzenpage_flowplayer_height'), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-			cacheManager::addThemeCacheSize('garland', 85, NULL, NULL, 85, 85, NULL, NULL, true, NULL, NULL, NULL);
+			cacheManager::addThemeCacheSize('tinyzenpage', 85, NULL, NULL, 85, 85, NULL, NULL, true, NULL, NULL, NULL);
 		}
 	}
 

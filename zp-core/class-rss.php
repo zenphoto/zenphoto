@@ -622,18 +622,18 @@ class RSS {
 						if($this->sortorder) {
 							$items = getZenpageStatistic($this->itemnumber,'categories',$this->sortorder);
 						} else {
-						 	$items = getLatestNews($this->itemnumber,"none",$this->catlink);
+						 	$items = getLatestNews($this->itemnumber,"none",$this->catlink,false);
 						}
 						break;
 					case "news":
 						if($this->sortorder) {
 							$items = getZenpageStatistic($this->itemnumber,'news',$this->sortorder);
 						} else {
-							$items = getLatestNews($this->itemnumber,"none");
+							$items = getLatestNews($this->itemnumber,"none",'',false);
 						}
 						break;
 					case "withimages":
-						$items = getLatestNews($this->itemnumber,"with_latest_images_date");
+						$items = getLatestNews($this->itemnumber,"with_latest_images_date",'',false);
 						break;
 				}
 				break;
