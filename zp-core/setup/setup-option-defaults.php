@@ -46,7 +46,8 @@ if (isset($_GET['mod_rewrite'])) {
 			$.ajax({
 				type: 'GET',
 				cache: false,
-				url: '<?php echo WEBPATH; ?>/page/setup_set-mod_rewrite?z=setup'
+				data: 'z=setup',
+				url: '<?php echo WEBPATH; ?>/page/setup_set-mod_rewrite'
 			});
 			// ]]> -->
 		</script>

@@ -29,9 +29,8 @@ echo "\n</head>";
 				<?php
 				$locale = substr(getOption("locale"),0,2);
 				if (empty($locale)) $locale = 'en';
-				$ajax = PLUGIN_FOLDER.'/tiny_mce/plugins/ajaxfilemanager/ajaxfilemanager.php';
 				?>
-				<iframe src="<?php echo $ajax; ?>?language=<?php echo $locale; ?>&tab=files&XSRFToken=<?php echo getXSRFToken('ajaxfilemanager')?>" width="100%" height="480" style="border: 0">
+				<iframe src="<?php echo PLUGIN_FOLDER.'/tiny_mce/plugins/ajaxfilemanager/ajaxfilemanager.php'; ?>?language=<?php echo $locale; ?>&tab=files&XSRFToken=<?php echo getXSRFToken('ajaxfilemanager')?>" width="100%" height="480" style="border: 0">
 				</iframe>
 			</div>
 		</div>
