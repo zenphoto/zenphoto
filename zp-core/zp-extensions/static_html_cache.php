@@ -202,9 +202,11 @@ class static_html_cache {
 	 * @return string
 	 */
 	function createCacheFilepath() {
-		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page, $_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category;
+		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page,
+						$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category,
+						$_zp_gallery;
 		// just make sure these are really empty
-		$cachefilepath = "";
+		$cachefilepath = $_zp_gallery->getCurrentTheme().'_';
 		$album = "";
 		$image = "";
 		$searchfields = "";
@@ -227,7 +229,7 @@ class static_html_cache {
 		switch ($_zp_gallery_page) {
 			case 'index.php':
 				$cachesubfolder = "pages";
-				$cachefilepath = "index".$page;
+				$cachefilepath .= "index".$page;
 				break;
 			case 'album.php':
 			case 'image.php':
@@ -238,11 +240,11 @@ class static_html_cache {
 					$image = "-".$_zp_current_image->filename;
 					$page = "";
 				}
-				$cachefilepath = $album.$image.$page;
+				$cachefilepath .= $album.$image.$page;
 				break;
 			case 'pages.php':
 				$cachesubfolder = "pages";
-				$cachefilepath = 'page-'.$_zp_current_zenpage_page->getTitlelink();
+				$cachefilepath .= 'page-'.$_zp_current_zenpage_page->getTitlelink();
 				break;
 			case 'news.php':
 				$cachesubfolder = "pages";
@@ -252,13 +254,13 @@ class static_html_cache {
 				if(isset($_zp_current_category)) {
 					$category = "-".$_zp_current_category->getTitlelink();
 				}
-				$cachefilepath = 'news'.$category.$title.$page;
+				$cachefilepath .= 'news'.$category.$title.$page;
 				break;
 			default:
 				// custom pages
 				$cachesubfolder = "pages";
 				$custompage = $_zp_gallery_page;
-				$cachefilepath = $custompage;
+				$cachefilepath .= $custompage;
 				break;
 		}
 		if (getOption('obfuscate_cache')) {
