@@ -61,8 +61,10 @@ class static_html_cache {
 	 */
 	function checkIfAllowedPage() {
 		global $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page,
-		$_zp_current_zenpage_news, $_zp_current_admin_obj, $_zp_current_category;
-		$hint = $show = '';
+					$_zp_current_zenpage_news, $_zp_current_admin_obj, $_zp_current_category;
+		if (zp_loggedin(ADMIN_RIGHTS)) {
+			return false;
+		}
 		switch ($_zp_gallery_page) {
 			case "image.php": // does it really makes sense to exclude images and albums?
 				$obj = $_zp_current_album;
@@ -98,6 +100,9 @@ class static_html_cache {
 					$title = "";
 				}
 				break;
+		}
+		if ($obj && $obj->isMyItem($obj->manage_some_rights)) {
+			return false;
 		}
 		$excludeList = array_merge(explode(",",getOption('static_cache_excludedpages')),array('404.php/','password.php/'));
 		foreach($excludeList as $item) {

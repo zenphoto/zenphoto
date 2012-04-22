@@ -928,6 +928,11 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 				$unique = '';
 				foreach ($extra[$item] as $box) {
 					if ($box['display']) {
+						if (isset($box['disable'])) {
+							$disable = ' disabled="disabled"';
+						} else {
+							$disable = $alterrights;
+						}
 						if (isset($box['type'])) {
 							$type = $box['type'];
 							if ($type == 'radio') $unique++;
@@ -938,7 +943,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 						<label class="displayinline">
 							<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem).'_'.$box['name'].$unique; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
 									 value="<?php echo html_encode($box['value']); ?>" <?php if ($box['checked']) {echo ' checked="checked"';	} ?>
-									 <?php echo $alterrights; ?> \> <?php echo $box['display'];?>
+									 <?php echo $disable; ?> \> <?php echo $box['display'];?>
 						</label>
 						<?php
 					} else {
@@ -2967,6 +2972,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/options.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
 				$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished items').'" />';
 				$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
+				$icon_upload_disabled = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('the album is dynamic').'"/>';
 				if (!empty($flag)) {
 					$legend .= '* '.gettext('Primary album').' ';
 				}
@@ -2982,8 +2988,12 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 					$cv[$item['name'].$note] = $item['data'];
 					$extra[$item['data']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
 					$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
-					if (($rights&UPLOAD_RIGHTS) && !hasDynamicAlbumSuffix($item['data'])) {
-						$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+					if (($rights&UPLOAD_RIGHTS)) {
+						if (hasDynamicAlbumSuffix($item['data'])) {
+							$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload_disabled,'checked'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'disable'=>true);
+						} else{
+							$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
+						}
 					}
 					if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
 						$extra[$item['data']][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW,'display'=>$icon_view_image,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_VIEW);
