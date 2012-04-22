@@ -39,8 +39,9 @@ if (isset($_POST['set_defaults'])) {
 	XSRFdefender('publishContent');
 	switch($action) {
 		case 'albums':
+			unset($_POST['checkAllAuto']);
 			foreach ($_POST as $key=>$albumid) {
-				$album = new Album(NULL, $key);
+				$album = new Album(NULL, postIndexDecode($key));
 				$album->setShow(1);
 				$album->save();
 			}
@@ -270,7 +271,7 @@ echo '</head>';
 				?>
 				<li>
 					<label>
-						<input type="checkbox" name="<?php echo $analbum; ?>" value="<?php echo $albumid; ?>" class="albumcheck" />
+						<input type="checkbox" name="<?php echo postIndexEncode($analbum); ?>" value="<?php echo $albumid; ?>" class="albumcheck" />
 						<img src="<?php echo html_encode($thumb); ?>" width="40" height="40" alt="" title="album thumb" />
 						<?php echo $album->name; ?>
 					</label>

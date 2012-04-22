@@ -148,7 +148,6 @@ function printAdminHeader($tab,$subtab=NULL) {
 		}
 		?>
 		jQuery(function( $ ){
-			$("#fade-message").fadeTo(5000, 1).fadeOut(1000);
 			$(".fade-message").fadeTo(5000, 1).fadeOut(1000);
 			$('.tooltip').tooltip({
 				left: -80
