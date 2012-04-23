@@ -91,7 +91,7 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 			</div>
 		<?php
 	}
-	if(function_exists("printUserLogin_out") || !zp_loggedin() && function_exists('printRegistrationForm')) {
+	if(function_exists("printUserLogin_out") || !zp_loggedin() && function_exists('printRegistrationForm') || class_exists('mobileTheme')) {
 		?>
 		<div class="menu">
 			<ul>
@@ -113,6 +113,13 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 				?>
 					<li>
 					<?php printUserLogin_out("","", 2); ?>
+					</li>
+					<?php
+				}
+				if (class_exists('mobileTheme')) {
+				?>
+					<li>
+					<?php mobileTheme::controlLink(); ?>
 					</li>
 					<?php
 				}

@@ -21,12 +21,12 @@ function jqm_printRSSlinks() {
 		<h3><?php echo gettext('RSS'); ?></h3>
 		<ul>
 	<?php // these links must change to ones with rel="external" so they are actually loaded via jquerymobile!
-		if(getOption('zp_plugin_zenpage')) { 
+		if(getOption('zp_plugin_zenpage')) {
 		  ?>
 		  <li class="rsslink"><a href="<?php echo html_encode(getZenpageRSSLink('News')); ?>" rel="external" data-ajax="false"><?php echo gettext('News'); ?></a></li>
 		  <li class="rsslink"><a href="<?php echo html_encode(getZenpageRSSLink('NewsWithImages')); ?>" rel="external" data-ajax="false"><?php echo gettext('News and Gallery'); ?></a></li>
 		  <?php
-		} 
+		}
 		 ?>
 		  <li class="rsslink"><a href="<?php echo html_encode(getRSSLink('Gallery')); ?>" rel="external" data-ajax="false"><?php echo gettext('Gallery'); ?></a></li>
 		 <?php
@@ -52,7 +52,7 @@ function jqm_printMainHeaderNav() {
 			<a href="<?php echo getCustomPageURL('search'); ?>" data-icon="search" data-iconpos="notext"><?php echo gettext('Search'); ?></a>
 		<?php } ?>
 		<div data-role="navbar">
-			<ul>	
+			<ul>
 				<li><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a></li>
 				<?php if(getOption('zp_plugin_zenpage')) { ?>
 					<li><a href="<?php echo getNewsIndexURL(); ?>"><?php echo gettext('News'); ?></a></li>
@@ -61,7 +61,7 @@ function jqm_printMainHeaderNav() {
 				<li><a href="<?php echo getCustomPageURL('archive'); ?>"><?php echo gettext('Archive'); ?></a></li>
 			</ul>
 		</div><!-- /navbar -->
-	</div><!-- /header -->	
+	</div><!-- /header -->
 	<?php
 }
 /**
@@ -71,19 +71,21 @@ function jqm_printFooterNav() {
 	global $_zp_gallery_page, $_zp_current_album;
 	?>
 	<div id="footer">
-			<ul>	
+			<ul>
 				<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 				<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
-				<?php 
-					if(zp_loggedin()) { 
-						$protocol = SERVER_PROTOCOL;
-						if ($protocol == 'https_admin') {
-							$protocol = 'https';
-						}
-						?>
-						<li><a rel="external" href="<?php echo html_encode($protocol.'://'.$_SERVER['HTTP_HOST'].WEBPATH.'/'.ZENFOLDER); ?>"><?php echo gettext('Admin'); ?></a></li>
-						<?php 
-					} ?>
+				<?php
+				if(zp_loggedin()) {
+					$protocol = SERVER_PROTOCOL;
+					if ($protocol == 'https_admin') {
+						$protocol = 'https';
+					}
+					?>
+					<li><a rel="external" href="<?php echo html_encode($protocol.'://'.$_SERVER['HTTP_HOST'].WEBPATH.'/'.ZENFOLDER); ?>"><?php echo gettext('Admin'); ?></a></li>
+					<?php
+				}
+				@call_user_func('mobileTheme::controlLink');
+				?>
 			</ul>
 		<!-- /navbar -->
 	</div><!-- footer -->
@@ -143,7 +145,7 @@ function jqm_printMenusLinks() {
 		<div data-role="collapsible" data-theme="b">
 			<?php jqm_printRSSlinks(); ?>
 		</div>
-	</div>			
+	</div>
 <?php
 
 }

@@ -60,6 +60,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 			?>
 			<?php printZenphotoLink(); ?>
 		</div>
+		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<?php @call_user_func('printLanguageSelector'); ?>
 		<?php
 		printAdminToolbox();

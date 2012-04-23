@@ -580,6 +580,8 @@ function printCommentErrors() {
  * @param bool $desc_order default false, set to true to change the comment order to descending ( = newest to oldest)
  */
 function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=true, $comment_commententry_mod='',$desc_order=false) {
+	if (!getOption('zp_plugin_comment_form')) return;	// we were loaded for auxillary support
+
 	global $_zp_gallery_page, $_zp_current_admin_obj, $_zp_current_comment, $_zp_captcha;
 	if (is_null($addcommenttext)) $addcommenttext = '<h3>'.gettext('Add a comment:').'</h3>';
 	switch ($_zp_gallery_page) {

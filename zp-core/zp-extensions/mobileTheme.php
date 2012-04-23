@@ -84,11 +84,11 @@ class mobileTheme {
 			}
 		}
 		?>
-		<div class="mobileThemeControlLink">
+		<span class="mobileThemeControlLink">
 			<a href="?mobileTheme=<?php echo $enable; ?>" rel="external">
 				<?php echo $text; ?>
 			</a>
-		</div>
+		</span>
 		<?php
 	}
 

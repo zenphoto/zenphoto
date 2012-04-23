@@ -193,6 +193,7 @@ require_once('normalizer.php');
 		@call_user_func('printUserLogin_out',"");
 		?>
 		</p>
+		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<p>
 		<?php
 		echo gettext('<a href="http://stopdesign.com/templates/photos/">Photo Templates</a> from Stopdesign.');
