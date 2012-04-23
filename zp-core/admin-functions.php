@@ -658,7 +658,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 							<?php
 							if (array_key_exists('null_selection', $row)) {
 								?>
-								<option value=""<?php if (empty($v)) echo ' selected="selected"'; ?>><?php echo $row['null_selection']; ?></option>
+								<option value=""<?php if (empty($v)) echo ' selected="selected"'; ?> style="background-color:LightGray;"><?php echo $row['null_selection']; ?></option>
 								<?php
 							}
 							?>

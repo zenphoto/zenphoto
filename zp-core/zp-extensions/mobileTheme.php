@@ -24,16 +24,16 @@ class mobileTheme {
 	function getOptionsSupported() {
 		global $_zp_gallery;
 		$themes = array();
-		foreach ($_zp_gallery->getThemes() as $theme) {
-			$themes[$theme['name']] = $theme['name'];
+		foreach ($_zp_gallery->getThemes() as $theme=>$details) {
+			$themes[$details['name']] = $theme;
 		}
 		return  array(gettext('Phone theme') => array('key' => 'mobileTheme_phone', 'type' => OPTION_TYPE_SELECTOR,
 														'selections'=>$themes,
-														'null_selection' => gettext('*gallery theme*'),
+														'null_selection' => gettext('gallery theme'),
 														'desc' => gettext('Select the theme to be used when a phone device connects.')),
 									gettext('Tablet theme') => array('key' => 'mobileTheme_tablet', 'type' => OPTION_TYPE_SELECTOR,
 														'selections'=>$themes,
-														'null_selection' => gettext('*gallery theme*'),
+														'null_selection' => gettext('gallery theme'),
 														'desc' => gettext('Select the theme to be used when a tablet device connects.'))
 		);
 	}
