@@ -111,8 +111,7 @@ if (count($types)>1) {
 	$maxuploadint = parse_size($maxupload);
 	$maxpostint = parse_size($maxpost);
 	if ($maxuploadint < $maxpostint) {
-		echo sprintf(gettext("The maximum size for any one file is <strong>%sB</strong>"), $maxupload);
-		echo ' '.sprintf(gettext("and the maximum size for one total upload is <strong>%sB</strong> which are set by your PHP configuration <code>upload_max_filesize</code> and <code>post_max_size</code>."), $maxpost);
+		echo sprintf(gettext("The maximum size for any one file is <strong>%sB</strong> and the maximum size for one total upload is <strong>%sB</strong> which are set by your PHP configuration <code>upload_max_filesize</code> and <code>post_max_size</code>."), $maxupload, $maxpost);
 	} else {
 		echo ' '.sprintf(gettext("The maximum size for your total upload is <strong>%sB</strong> which is set by your PHP configuration <code>post_max_size</code>."), $maxpost);
 	}
