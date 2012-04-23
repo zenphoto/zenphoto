@@ -512,7 +512,7 @@ class Zenphoto_Authority {
 														'ALL_NEWS_RIGHTS' => array('value'=>pow(2,7),'name'=>gettext('Access all'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right have access to all zenpage news articles.')),
 														'ALL_PAGES_RIGHTS' => array('value'=>pow(2,8),'name'=>gettext('Access all'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right have access to all zenpage pages.')),
 														'ALL_ALBUMS_RIGHTS' => array('value'=>pow(2,9),'name'=>gettext('Access all'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right have access to all albums.')),
-														'VIEW_UNPUBLISHED_RIGHTS' => array('value'=>pow(2,10),'name'=>gettext('View unpublished'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right will see all upublished items.')),
+														'VIEW_UNPUBLISHED_RIGHTS' => array('value'=>pow(2,10),'name'=>gettext('View unpublished'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right will see all unpublished items.')),
 
 														'POST_COMMENT_RIGHTS'=> array('value'=>pow(2,11),'name'=>gettext('Post comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
 														'COMMENT_RIGHTS' => array('value'=>pow(2,12),'name'=>gettext('Comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make comments tab changes.')),
@@ -545,7 +545,7 @@ class Zenphoto_Authority {
 														'ALL_NEWS_RIGHTS' => array('value'=>pow(2,8),'name'=>gettext('Access all'),'set'=>gettext('News'),'display'=>true,'hint'=>gettext('Users with this right have access to all zenpage news articles.')),
 														'ALL_PAGES_RIGHTS' => array('value'=>pow(2,9),'name'=>gettext('Access all'),'set'=>gettext('Pages'),'display'=>true,'hint'=>gettext('Users with this right have access to all zenpage pages.')),
 														'ALL_ALBUMS_RIGHTS' => array('value'=>pow(2,10),'name'=>gettext('Access all'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right have access to all albums.')),
-														'VIEW_UNPUBLISHED_RIGHTS' => array('value'=>pow(2,11),'name'=>gettext('View unpublished'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right will see all upublished items.')),
+														'VIEW_UNPUBLISHED_RIGHTS' => array('value'=>pow(2,11),'name'=>gettext('View unpublished'),'set'=>gettext('Albums'),'display'=>true,'hint'=>gettext('Users with this right will see all unpublished items.')),
 
 														'POST_COMMENT_RIGHTS'=> array('value'=>pow(2,13),'name'=>gettext('Post comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('When the comment_form plugin is used for comments and its "Only members can comment" option is set, only users with this right may post comments.')),
 														'COMMENT_RIGHTS' => array('value'=>pow(2,14),'name'=>gettext('Comments'),'set'=>gettext('Gallery'),'display'=>true,'hint'=>gettext('Users with this right may make comments tab changes.')),
