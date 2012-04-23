@@ -18,7 +18,7 @@
  * @package plugins
  */
 
-$plugin_is_filter = 9999|THEME_PLUGIN;
+$plugin_is_filter = 9998|THEME_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
@@ -61,8 +61,8 @@ class static_html_cache {
 	 */
 	function checkIfAllowedPage() {
 		global $_zp_gallery_page, $_zp_current_image, $_zp_current_album, $_zp_current_zenpage_page,
-					$_zp_current_zenpage_news, $_zp_current_admin_obj, $_zp_current_category;
-		if (zp_loggedin(ADMIN_RIGHTS)) {
+					$_zp_current_zenpage_news, $_zp_current_admin_obj, $_zp_current_category, $_zp_authority;
+		if (zp_loggedin(ADMIN_RIGHTS)) {	// don't cache for admin
 			return false;
 		}
 		switch ($_zp_gallery_page) {
@@ -101,9 +101,20 @@ class static_html_cache {
 				}
 				break;
 		}
-		if ($obj && $obj->isMyItem($obj->manage_some_rights)) {
+		if ($obj && $obj->isMyItem($obj->manage_some_rights)) {	// user is admin to this object--don't cache!
 			return false;
 		}
+		$accessType = checkAccess();
+		if ($accessType) {
+			if (is_numeric($accessType)) {
+				$accessType = 'zp_user_auth';
+			} else if ($accessType == 'zp_public_access' && count($_zp_authority->getAuthCookies())>0) {
+				$accessType .= '1';	// logged in some sense
+			}
+		} else {
+			return false; // visitor is going to get a password request--don't cache or that won't happen
+		}
+
 		$excludeList = array_merge(explode(",",getOption('static_cache_excludedpages')),array('404.php/','password.php/'));
 		foreach($excludeList as $item) {
 			$page_to_exclude = explode("/",$item);
@@ -114,7 +125,7 @@ class static_html_cache {
 				}
 			}
 		}
-		return true;
+		return $accessType;
 	}
 
 	/**
@@ -123,9 +134,9 @@ class static_html_cache {
 	 */
 	function startHTMLCache() {
 		global $_zp_gallery_page,$_zp_script_timer;
-		if($this->checkIfAllowedPage()) {
+		if($accessType = $this->checkIfAllowedPage()) {
 			$_zp_script_timer['static cache start'] = microtime();
-			$cachefilepath = $this->createCacheFilepath();
+			$cachefilepath = $this->createCacheFilepath($accessType);
 			if (!empty($cachefilepath)) {
 				$cachefilepath = SERVERPATH.'/'.STATIC_CACHE_FOLDER."/".$cachefilepath;
 				if(file_exists($cachefilepath)) {
@@ -201,12 +212,11 @@ class static_html_cache {
 	 *
 	 * @return string
 	 */
-	function createCacheFilepath() {
-		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page,
-						$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_current_category,
-						$_zp_gallery;
+	function createCacheFilepath($accessType) {
+		global $_zp_current_image, $_zp_current_album, $_zp_gallery_page,$_zp_authority,
+						$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery;
 		// just make sure these are really empty
-		$cachefilepath = $_zp_gallery->getCurrentTheme().'_';
+		$cachefilepath = $_zp_gallery->getCurrentTheme().'_'.str_replace('zp_', '', $accessType).'_';
 		$album = "";
 		$image = "";
 		$searchfields = "";

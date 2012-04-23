@@ -187,6 +187,7 @@ echo "\n" . '<div id="content">';
 		<th><b><?php echo gettext('Action'); ?></b></th>
 	</tr>
 	<?php
+	$zenphoto_date = zpFormattedDate(DATE_FORMAT,filemtime(SERVERPATH.'/'.ZENFOLDER.'/version.php'));
 $themes = $_zp_gallery->getThemes();
 $current_theme_style = 'class="currentselection"';
 foreach($themes as $theme => $themeinfo) {
@@ -208,7 +209,7 @@ foreach($themes as $theme => $themeinfo) {
 	?>
 	<tr>
 		<td style="margin: 0px; padding: 0px;">
-		<?php
+			<?php
 			if (file_exists("$themedir/theme.png")) {
 				$themeimage = "$themeweb/theme.png";
 			}	else if (file_exists("$themedir/theme.gif")) {
@@ -231,7 +232,16 @@ foreach($themes as $theme => $themeinfo) {
 			<br />
 			<?php echo $themeinfo['author']; ?>
 			<br />
-			Version <?php echo $themeinfo['version']; ?>, <?php echo $themeinfo['date']; ?>
+			<?php
+			if ($ico == 'images/zp_gold.png') {
+				$version = ZENPHOTO_VERSION;
+				$date = $zenphoto_date;
+			} else {
+				$version = $themeinfo['version'];
+				$version = $themeinfo['date'];
+			}
+			?>
+			Version <?php echo $version; ?>, <?php echo $date; 	?>
 			<br />
 			<?php echo $themeinfo['desc']; ?>
 			<br /><br />

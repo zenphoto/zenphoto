@@ -4294,7 +4294,7 @@ function checkForGuest(&$hint=NULL, &$show=NULL) {
  * @return bool
  * @since 1.1.3
  */
-function checkAccess(&$hint, &$show) {
+function checkAccess(&$hint=NULL, &$show=NULL) {
 	global $_zp_current_album, $_zp_current_search, $_zp_gallery, $_zp_gallery_page,
 				$_zp_current_zenpage_page, $_zp_current_zenpage_news;
 	if ($_zp_gallery->isUnprotectedPage(stripSuffix($_zp_gallery_page))) return true;
@@ -4321,8 +4321,8 @@ function checkAccess(&$hint, &$show) {
 	if (GALLERY_SECURITY != 'public') {	// only registered users allowed
 		return false;
 	}
-	if (checkForGuest($hint, $show)) {
-		return true;	// a guest is logged in
+	if ($access = checkForGuest($hint, $show)) {
+		return $access;	// public page or a guest is logged in
 	}
 	return false;
 }
