@@ -1,4 +1,7 @@
 <?php
+
+// force UTF-8 Ø
+
 // Zenphoto theme definition file
 $theme_description['name'] = 'zpMobile';
 $theme_description['author'] = gettext('Maltem Müller (acrylian)');
