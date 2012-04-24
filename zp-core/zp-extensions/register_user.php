@@ -30,7 +30,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'register_user_options';
 
 if (getOption('register_user_address_info')) {
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/comment_form.php');
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/comment_form/functions.php');
 }
 
 /**

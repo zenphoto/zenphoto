@@ -23,7 +23,7 @@ $action = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']))
 		<?php
 		if (!getOption('register_user_email_is_id')) {
 			?>
-			<fieldset style="text-align:center"><legend><?php echo gettext("Email"); ?><?php if (!$emailid) echo '*'; ?></legend>
+			<fieldset><legend><?php echo gettext("Email"); ?><?php if (!$emailid) echo '*'; ?></legend>
 				<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 			</fieldset>
 			<?php

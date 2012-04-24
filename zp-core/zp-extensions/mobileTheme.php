@@ -1,7 +1,8 @@
 <?php
 /**
  *
- * Mobile devices are detected with {@link http://jquerymobile.com/gbs/ jquery Mobile }
+ * Mobile devices are detected with
+ * {@link http://code.google.com/p/php-mobile-detect/ php-mobile-detect}
  * A particular theme may be designated for <i>phones</i> and for <i>tablets</i>. If the connecting
  * device is one of those, the theme will automatically switch to the designated mobile theme.
  *
@@ -12,6 +13,16 @@
  * to override the switch and view your standard gallery theme. If the same call is placed in your gallery
  * theme he will be able to switch back as well. <b>NOTE:</b> This link is present only when the browing client
  * is a mobile device!
+ *
+ * class <var>mobile</var> Theme support methods:
+ * <ul>
+ * 	<li>
+ * 		<var>getOS()</var>: returns the mobile device operating system
+ * 	</li>
+ * 	<li>
+ * 		<var>getAgent()</var>: returns the mobile device browser identification
+ * 	</li>
+ * </ul>
  *
  * @package plugins
  */
@@ -52,6 +63,11 @@ class mobileTheme {
 	function handleOption($option, $currentValue) {
 	}
 
+	/**
+	 *
+	 * Filter to "setupTheme" that will override the gallery theme with the appropriate mobile theme
+	 * @param string $theme
+	 */
 	static function theme($theme) {
 		global $_zp_gallery;
 		$detect = new mobile();
@@ -72,15 +88,24 @@ class mobileTheme {
 		return $theme;
 	}
 
-	static function controlLink() {
+	/**
+	 *
+	 * places a link on the theme page to switch to or from the mobile theme
+	 * @param string $text link text
+	 */
+	static function controlLink($text=NULL) {
 		$detect = new mobile();
 		if ($detect->isMobile()) {
 			if (zp_getCookie('mobileTheme_disable')) {
-				$text = gettext('View the mobile gallery');
+				if (is_null($text)) {
+					$text = gettext('View the mobile gallery');
+				}
 				$enable = 'on';
 			} else {
+				if (is_null($text)) {
+					$text = gettext('View the normal gallery');
+				}
 				$enable = 'off';
-				$text = gettext('View the normal gallery');
 			}
 		}
 		?>
@@ -108,6 +133,11 @@ class mobile extends Mobile_Detect {
     																);
 	}
 
+	/**
+	 *
+	 * Returns the mobile device's operating system
+	 * @return string
+	 */
 	public function getOS()  {
 		foreach($this->operatingSystems as $_key => $_regex) {
 			if(preg_match('/'.$_regex.'/is', $this->userAgent)) {
@@ -117,8 +147,13 @@ class mobile extends Mobile_Detect {
 		return false;
 	}
 
-	public function getDevice()  {
-		foreach($this->devicelist as $_key => $_regex) {
+	/**
+	 *
+	 * Returns the mobile device browser
+	 * @return string
+	 */
+	public function getAgent()  {
+		foreach($this->userAgents as $_key => $_regex) {
 			if(preg_match('/'.$_regex.'/is', $this->userAgent)) {
 				return $_key;
 			}
@@ -126,6 +161,10 @@ class mobile extends Mobile_Detect {
 		return false;
 	}
 
+	/**
+	 * (non-PHPdoc)
+	 * @see Mobile_Detect::isMobile()
+	 */
 	function isMobile() {
 		if (getOption('mobileTheme_test')) {
 			return true;
@@ -133,6 +172,10 @@ class mobile extends Mobile_Detect {
 		return parent::isMobile();
 	}
 
+	/**
+	 * (non-PHPdoc)
+	 * @see Mobile_Detect::isTablet()
+	 */
 	function isTablet() {
 		if (getOption('mobileTheme_test')=='tablet') {
 			return true;
@@ -141,6 +184,7 @@ class mobile extends Mobile_Detect {
 	}
 
 }
+
 if (isset($_GET['mobileTheme'])) {
 	switch (sanitize($_GET['mobileTheme'])) {
 		case 'on':
