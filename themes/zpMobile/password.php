@@ -42,8 +42,7 @@ if (!defined('WEBPATH')) die();
 <?php jqm_printFooterNav(); ?>
 </div><!-- /page -->
 
-<?php printAdminToolbox();
-zp_apply_filter('theme_body_close');
+<?php zp_apply_filter('theme_body_close');
 ?>
 </body>
 </html>

@@ -71,21 +71,22 @@ function jqm_printFooterNav() {
 	global $_zp_gallery_page, $_zp_current_album;
 	?>
 	<div id="footer">
+		<?php @call_user_func('printLanguageSelector',"langselector"); ?>
 			<ul>
 				<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 				<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>
 				<?php
-				if(zp_loggedin()) {
-					$protocol = SERVER_PROTOCOL;
-					if ($protocol == 'https_admin') {
-						$protocol = 'https';
+					if(zp_loggedin()) {
+						$protocol = SERVER_PROTOCOL;
+						if ($protocol == 'https_admin') {
+							$protocol = 'https';
+						}
+						?>
+						<li><a rel="external" href="<?php echo html_encode($protocol.'://'.$_SERVER['HTTP_HOST'].WEBPATH.'/'.ZENFOLDER); ?>"><?php echo gettext('Admin'); ?></a></li>
+						<?php
 					}
-					?>
-					<li><a rel="external" href="<?php echo html_encode($protocol.'://'.$_SERVER['HTTP_HOST'].WEBPATH.'/'.ZENFOLDER); ?>"><?php echo gettext('Admin'); ?></a></li>
-					<?php
-				}
-				@call_user_func('mobileTheme::controlLink');
 				?>
+				<li><?php @call_user_func('mobileTheme::controlLink'); ?></li>
 			</ul>
 		<!-- /navbar -->
 	</div><!-- footer -->

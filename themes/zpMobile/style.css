@@ -2,36 +2,6 @@ body {
 background-color: black !important;
 }
 
-@media screen and (min-width: 500px) {
-	.content-primary {
-   	 line-height: 20px;
-  }
-}
-
-@media screen and (min-width: 960px) {
-		#mainpage {
-			max-width: 960px;
-			border-left: 0px solid lightgray;
-			border-right: 0px solid lightgray;
-			margin: 0 auto;
-		}
-	  .content-primary {
-   	width: 63%;
-   	float: left;
-   	margin-right: 10px;
-   	padding-right: 10px;
-  	}
-  
-  .content-primary {
-  line-height: 20px;
-  }
-  .content-secondary {
-   	width: 35%;
-   	float: right;
-  }
-  
-	
-}
 .content-primary {
 margin-bottom: 15px;
 }
@@ -261,14 +231,18 @@ li.rsslink {
 }
 
 #footer {
+padding-top: 10px !important;
 border-top: 1px solid lightgray;
 }
 
 #footer  ul {
 list-style: none;
 margin: 0;
-padding: 0;
+padding: 0 !important;
 display: inline;
+}
+#footer  ul.flags {
+line-height: 25px;
 }
 
 #footer, #footer a {
@@ -355,4 +329,36 @@ width: 100%;
 
 #search_form .pushbutton {
 width: 200px;
+}
+
+
+
+@media screen and (min-width: 500px) {
+	.content-primary {
+   	 line-height: 20px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+		#mainpage {
+			max-width: 960px;
+			border-left: 0px solid lightgray;
+			border-right: 0px solid lightgray;
+			margin: 0 auto;
+		}
+	  .content-primary {
+   	width: 600px;
+   	float: left;
+   	margin-right: 10px;
+   	padding-right: 10px;
+  	}
+  
+  .content-primary {
+  line-height: 20px;
+  }
+  .content-secondary {
+   	width: 300px;
+   	float: right;
+  }
+
 }
