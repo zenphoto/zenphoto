@@ -14,13 +14,16 @@
  * theme he will be able to switch back as well. <b>NOTE:</b> This link is present only when the browing client
  * is a mobile device!
  *
- * class <var>mobile</var> Theme support methods:
+ * Class <var>mobile</var> methods you can use in your theme:
  * <ul>
  * 	<li>
- * 		<var>getOS()</var>: returns the mobile device operating system
+ * 		<var>getOS()</var>: returns the mobile device operating system.
  * 	</li>
  * 	<li>
- * 		<var>getAgent()</var>: returns the mobile device browser identification
+ * 		<var>getAgent()</var>: returns the mobile device browser identification.
+ * 	</li>
+ * 	<li>
+ * 		<i>magic</i> methods from the <var>Mobile_Detect</var> class. But note that specific device detection may lag the market.
  * 	</li>
  * </ul>
  *
@@ -127,10 +130,10 @@ class mobile extends Mobile_Detect {
 
 	function __construct() {
 		parent::__construct();
-    $this->devicelist = array_merge(
+		$this->devicelist = array_merge(
 																		$this->phoneDevices,
 																		$this->tabletDevices
-    																);
+																		);
 	}
 
 	/**
@@ -186,12 +189,12 @@ class mobile extends Mobile_Detect {
 }
 
 if (isset($_GET['mobileTheme'])) {
-	switch (sanitize($_GET['mobileTheme'])) {
+	switch ($_GET['mobileTheme']) {
 		case 'on':
-			zp_setCookie('mobileTheme_disable',0);
+			zp_setCookie('mobileTheme_disable', 0);
 			break;
 		case 'off':
-			zp_setCookie('mobileTheme_disable',1);
+			zp_setCookie('mobileTheme_disable', 1);
 			break;
 	}
 }

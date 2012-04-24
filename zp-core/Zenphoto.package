@@ -9,6 +9,7 @@ themes/default/contact.php
 themes/default/image.php
 themes/default/images
 themes/default/images/50percent.png
+themes/default/images/admin-buttonback.jpg
 themes/default/images/img-bg.gif
 themes/default/images/tag.png
 themes/default/index.php
@@ -54,6 +55,7 @@ themes/effervescence_plus/images
 themes/effervescence_plus/images/25percent.png
 themes/effervescence_plus/images/50percent.png
 themes/effervescence_plus/images/50percentwhite.png
+themes/effervescence_plus/images/admin-buttonback.jpg
 themes/effervescence_plus/images/arrow_right.png
 themes/effervescence_plus/images/dark-bullet.png
 themes/effervescence_plus/images/dark_arrow_right.png
@@ -115,6 +117,7 @@ themes/garland/image_gallery/opa75.png
 themes/garland/image_page
 themes/garland/image_page/functions.php
 themes/garland/images
+themes/garland/images/admin-buttonback.jpg
 themes/garland/images/bg-content-left.png
 themes/garland/images/bg-content-right.png
 themes/garland/images/bg-content.png
@@ -158,6 +161,7 @@ themes/stopdesign/gallery.php
 themes/stopdesign/image.php
 themes/stopdesign/images
 themes/stopdesign/images/50percent.png
+themes/stopdesign/images/admin-buttonback.jpg
 themes/stopdesign/images/bg_gal.gif
 themes/stopdesign/images/bg_gal.png
 themes/stopdesign/images/bg_page.jpg
@@ -220,6 +224,7 @@ themes/zenpage/gallery.php
 themes/zenpage/image.php
 themes/zenpage/images
 themes/zenpage/images/50percent.png
+themes/zenpage/images/admin-buttonback.jpg
 themes/zenpage/images/arrow_right.gif
 themes/zenpage/images/body.jpg
 themes/zenpage/images/breadcrumb-back.jpg
@@ -255,6 +260,7 @@ themes/zpMobile/functions.php
 themes/zpMobile/gallery.php
 themes/zpMobile/image.php
 themes/zpMobile/images
+themes/zpMobile/images/admin-buttonback.jpg
 themes/zpMobile/images/rss.png
 themes/zpMobile/index.php
 themes/zpMobile/jquerymobile
@@ -1904,4 +1910,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1906
+1912

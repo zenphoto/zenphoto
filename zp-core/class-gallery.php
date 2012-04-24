@@ -934,5 +934,14 @@ class Gallery {
 		}
 	}
 
+	/**
+	*
+	* "Magic" function to return a string identifying the object when it is treated as a string
+	* @return string
+	*/
+	public function __toString() {
+	return $this->table . " (" . $this->id . ")";
+	}
+
 }
 ?>

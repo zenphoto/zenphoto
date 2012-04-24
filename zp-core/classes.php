@@ -209,11 +209,11 @@ class PersistentObject {
 		return false;
 	}
 
-/**
- * Deletes object from the database
- *
- * @return bool
- */
+	/**
+	* Deletes object from the database
+	*
+	* @return bool
+	*/
 	function remove() {
 		if (!zp_apply_filter('remove_object', true, $this)) {
 			return false;
@@ -378,6 +378,15 @@ class PersistentObject {
 		zp_apply_filter('save_object', true, $this);
 		$this->addToCache($this->data);
 		return true;
+	}
+
+	/**
+	 *
+	 * "Magic" function to return a string identifying the object when it is treated as a string
+	 * @return string
+	 */
+	public function __toString() {
+		return $this->table . " (" . $this->id . ")";
 	}
 
 }
