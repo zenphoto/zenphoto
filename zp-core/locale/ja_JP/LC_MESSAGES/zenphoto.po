@@ -17,7 +17,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.3-DEV\n"
 "Report-Msgid-Bugs-To: webmaster at momo-i.org\n"
-"POT-Creation-Date: 2012-04-25 14:42+0900\n"
+"POT-Creation-Date: 2012-04-25 15:48+0900\n"
 "PO-Revision-Date: 2009-08-12 08:30+0900\n"
 "Last-Translator: momo-i <webmaster at momo-i dot org>\n"
 "Language-Team: Japanese\n"
@@ -905,6 +905,10 @@ msgid ""
 "frequently depending on the runtime configuration. Longer <em>lifetime</em> "
 "of sessions is generally more conducive to a pleasant user experience."
 msgstr ""
+"<strong>注:</strong> ブラウザはすべてのパスワードやその他のデータは破棄される"
+"ことを引き起こして閉じたときにセッションが正常に終了します。彼らは、ランタイ"
+"ム構成に応じてより頻繁に閉じることがあります。セッションの長寿命は、一般的に"
+"快適なユーザーエクスペリエンスをより助長している。"
 
 #: zp-core/admin-options.php:1196
 msgid ""
@@ -1065,7 +1069,7 @@ msgid ""
 "<code>Default search</code> sets how searches from search page results "
 "behave. The search will either be from <em>within</em> the results of the "
 "previous search or will be a fresh <em>new</em> search."
-msgstr ""
+msgstr "<code>デフォルトの検索</code>は、検索ページの結果から検索がどのように動作するかを設定します。検索のいずれかの以前の検索の結果から<em>でしょう</em>または、新鮮な<em>新しい</em>検索になります。"
 
 #: zp-core/admin-options.php:1434
 msgid ""
@@ -1579,6 +1583,8 @@ msgid ""
 "Custom watermarks should be placed in the <code>/%s/watermarks/</code> "
 "folder. The images must be in png-24 format."
 msgstr ""
+"カスタム透かしは<code>/%s/watermarks/</code>フォルダに置かなければなりませ"
+"ん。画像はpng-24形式でなければなりません。"
 
 #: zp-core/admin-options.php:1923
 msgid ""
@@ -1598,7 +1604,7 @@ msgid ""
 "cache will be disabled to browsers via an <em>.htaccess</em> file. Images "
 "are still cached but the image processor is used to serve the image rather "
 "than allowing the browser to fetch the file."
-msgstr ""
+msgstr "チェックした場合、すべての画像のURIは、画像処理プロセッサにリンクしますと画像キャッシュが<em>.htaccess</em>ファイルを経由してブラウザに無効になります。画像はまだキャッシュされているが、イメージ·プロセッサは、ブラウザがファイルを取得するのではなく画像を提供するために使用されます。"
 
 #: zp-core/admin-options.php:1937
 msgid ""
@@ -1606,7 +1612,7 @@ msgid ""
 "<strong>each and every</strong> image reference! Some <em>JavaScript</em> "
 "and <em>Flash</em> based image handlers will not work with an image "
 "processor URI and are incompatible with this option."
-msgstr ""
+msgstr "<strong>警告\t:</strong> このオプションは、<em>それぞれすべて</em>の画像参照に大きなオーバーヘッドが追加されます！いくつかの<em>JavaScript</e,>や<em>Flash</em>ベースのイメージハンドラは、画像処理プロセッサのURIで動作し、このオプションと互換性がありません。"
 
 #: zp-core/admin-options.php:1940
 msgid "Secure image processor"
@@ -1617,6 +1623,8 @@ msgid ""
 "When not checked, the image processor does not check for album access "
 "credentials."
 msgstr ""
+"チェックされていない場合、画像処理装置は、アルバムのアクセス資格情報をチェッ"
+"クしません。"
 
 #: zp-core/admin-options.php:1946
 msgid ""
@@ -1624,6 +1632,9 @@ msgid ""
 "caching! You may be unable to cache some images depending on your server "
 "memory availability."
 msgstr ""
+"<strong>警告\t:</strong> このオプションは、イメージキャッシュへのメモリのオー"
+"バーヘッドが追加されます！あなたのサーバーのメモリ状況に応じていくつかの画像"
+"をキャッシュすることができない場合があります。"
 
 #: zp-core/admin-options.php:1949
 msgid "Full image protection:"
@@ -3096,6 +3107,8 @@ msgid ""
 "Only one Email handler plugin may be enalbed. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
+"メールを取り扱うプラグインは1つのみ有効にできます。<a href=\"#%1$s\"><code>"
+"%1$s</code></a>がすでに有効化されています。"
 
 #: zp-core/zp-extensions/PHPMailer.php:51
 msgid "Mail protocol"
@@ -3425,6 +3438,8 @@ msgid ""
 "Sized image/multimedia item: The sized image as set in gallery default "
 "theme's options."
 msgstr ""
+"サイズ化された画像/マルチメディアアイテム: ギャラリーのデフォルトテーマのオプ"
+"ションに設定されたサイズ化された画像です。"
 
 #: zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:205
 msgid ""
@@ -3455,6 +3470,7 @@ msgid ""
 "Full image: The original image directly. NOTE: Full image protection options "
 "do not apply!."
 msgstr ""
+"フル画像: 元の画像を直接。注: フル画像保護のオプションは適用されません！"
 
 #: zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:211
 msgid ""
@@ -3567,7 +3583,7 @@ msgid ""
 "Full image link: <em>zenpage_fullimagelink</em>. Additionally "
 "<em>rel='colorbox'</em> is attached so you can move through all images on a "
 "page using Colorbox or similar *box scripts."
-msgstr ""
+msgstr "フル画像のリンク: <em>zenpage_fullimagelink</em>です。さらに<em>rel='colorbox'</em>はColorboxまたは同様の*boxスクリプトを使用してページ上に全ての画像を通して移動することが出来るように添付されます。"
 
 #: zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage.php:242
 msgid "Album link: <em>zenpage_albumlink</em>"
@@ -3582,6 +3598,8 @@ msgid ""
 "If you would like to do some direct styling you can also use TinyMCE's image "
 "button or source code editor."
 msgstr ""
+"あなたには、いくつかの直接スタイリングをしたい場合、あなたはまた、TinyMCEはの"
+"画像ボタンをクリックするか、ソースコードエディタを使用することができます。"
 
 #: zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:103
 #: themes/garland/functions.php:81 themes/zenpage/news.php:76
@@ -3690,6 +3708,8 @@ msgid ""
 "The ajaxFilemanager plugin is currently disabled. To use this feature, "
 "enable the plugin from the <em>plugins</em> tab."
 msgstr ""
+"ajaxFilemanagerプラグインは現在無効です。この機能を使用するには、<em>プラグイ"
+"ン</em>タブからプラグインを有効にします。"
 
 #: zp-core/zp-extensions/tiny_mce/plugins/ajaxfilemanager/inc/class.auth.php:69
 msgid "You do not have the <em>Rights</em> to access the filemanager."
@@ -5727,7 +5747,7 @@ msgid ""
 "If checked links to the alternative languages will be in the form "
 "<code><em>language</em>.domain</code> where <code><em>language</em></code> "
 "is the language code, e.g. <code><em>fr</em></code> for French."
-msgstr ""
+msgstr "チェックした場合、代替言語へのリンクは<code><em>language</em>.domain</code>の<code><em>language</em></code>は言語コードである形式になります、例としてフランス語の場合は<code><em>fr</em></code>。"
 
 #: zp-core/zp-extensions/sitemap-extended.php:69
 #: zp-core/zp-extensions/dynamic-locale.php:148
@@ -5737,8 +5757,13 @@ msgid ""
 "your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> "
 "must point to the same location as <code>mydomain.com/zenphoto/</code>. "
 "(Some providers will automatically redirect undefined subdomains to the main "
-"domain. If your provier does this, no subdomain creation is needed.)"
+"domain. If your provider does this, no subdomain creation is needed.)"
 msgstr ""
+"これは、あなたのZenphotoのインストールを指す適切なサブドメインを作成している"
+"必要があります。それは<code>fr.mydomain.com/zenphoto/</code>が<code>mydomain."
+"com/zenphoto/</code>と同じ場所を指している必要があります。(一部のプロバイダは"
+"自動的にメインドメインに未定義のサブドメインをリダイレクトします。あなたの"
+"プロバイダがこれを行う場合、サブドメインの作成は必要ありません。)"
 
 #: zp-core/zp-extensions/sitemap-extended.php:72
 msgid "Album date"
@@ -6111,6 +6136,8 @@ msgid ""
 "Before running setup for <code>%1$s</code> please reinstall the following "
 "setup files from the %2$s [%3$s] to this installation:"
 msgstr ""
+"<code>%1$s</code>のセットアップを実行する前にこのインストールに%2$s [%3$s]か"
+"ら次のセットアップファイルを再インストールしてください:"
 
 #: zp-core/zp-extensions/cloneZenphoto/clone.php:144
 #, php-format
@@ -6171,6 +6198,8 @@ msgstr ""
 msgid ""
 "Provides functions to print a tag cloud of all tags from a Zenphoto object."
 msgstr ""
+"Zenphotoのオブジェクトからすべてのタグのタグクラウドを印刷する機能を提供しま"
+"す。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:19
 msgid "Provides deprecated Zenphoto functions."
@@ -6181,6 +6210,7 @@ msgid ""
 "This plugin is <strong>NOT</strong> required for the Zenphoto distributed "
 "functions."
 msgstr ""
+"このプラグインはZenphotoに配布される関数で必要<strong>ありません</strong>。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:56
 msgid "Functions"
@@ -6530,6 +6560,7 @@ msgstr ""
 #: zp-core/zp-extensions/deprecated-functions.php:997
 msgid "Use downloadList plugin <code>printDownloadLinkAlbumZip()</code>."
 msgstr ""
+"downloadListプラグイン<code>printDownloadLinkAlbumZip()</code>を使用します。"
 
 #: zp-core/zp-extensions/deprecated-functions.php:1001
 msgid "Download a zip file of this album"
@@ -6765,13 +6796,17 @@ msgstr "TIFF画像を描画するためのWebサービスを選択します。"
 #: zp-core/zp-extensions/cacheManager.php:54
 msgid "Provides cache management utilities for Image, HTML, and RSS caches."
 msgstr ""
+"画像、HTML、およびRSSのキャッシュのキャッシュ管理ユーティリティを提供します。"
 
 #: zp-core/zp-extensions/cacheManager.php:55
 msgid ""
 "<strong>NOTE</strong>: The image caching process requires that your WEB "
 "browser <em>fetch</em> each image size. For a full gallery cache this may "
-"excede the capacity of your server and not complete."
+"exceed the capacity of your server and not complete."
 msgstr ""
+"<strong>注</strong>: イメージのキャッシュプロセスは、Webブラウザは、各画像サ"
+"イズを取得する必要があります。完全なギャラリーキャッシュの場合、これはサー"
+"バーの処理能力と完全ではありませんを超える可能性があります。"
 
 #: zp-core/zp-extensions/cacheManager.php:84
 msgid "Image caching sizes"
@@ -6784,16 +6819,20 @@ msgid ""
 "values for these fields by examining your cached images. The file names will "
 "look something like these:"
 msgstr ""
+"<em>画像を作成</em>ボックスがチェックされている場合、トリミング画像は、これら"
+"のパラメータで行われます。設定を削除するボックスを非チェックしてください。あ"
+"なたのキャッシュされた画像を調べることによって、これらのフィールドの値を決定"
+"することができます。ファイル名は、これらのようになります:"
 
 #: zp-core/zp-extensions/cacheManager.php:90
 msgid "<code>photo_595.jpg</code>: sized to 595 pixels"
-msgstr ""
+msgstr "<code>photo_595.jpg</code>: 595ピクセルにサイズ化されます"
 
 #: zp-core/zp-extensions/cacheManager.php:91
 msgid ""
 "<code>photo_w180_cw180_ch80_thumb.jpg</code>: a size of 180px wide and 80px "
 "high and it is a thumbnail (<code>thumb</code>)"
-msgstr ""
+msgstr "<code>photo_w180_cw180_ch80_thumb.jpg</code>: 180px幅と80px高の大きさと、それはサムネイル(<code>thumb</code>)です。"
 
 #: zp-core/zp-extensions/cacheManager.php:92
 msgid ""
@@ -6801,13 +6840,28 @@ msgid ""
 "at about 7.6% (one half of 72/85) from the horizontal and vertical sides "
 "with a watermark (<code>copyright</code>) and rendered in grayscale "
 "(<code>gray</code>)."
-msgstr ""
+msgstr "<code>photo_85_cw72_ch72_thumb_copyright_gray.jpg</code>: グレイスケール(<code>gray</code>)で描かれ、垂直方向の両側に透かし(<code>copyright</code>)がついて水平から7.6%(72/85の半分)約7.6%でトリミングされたサイズ化された85pxです。"
 
 #: zp-core/zp-extensions/cacheManager.php:93
 msgid ""
 "<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: a "
 "custom cropped 85px thumbnail with watermark."
 msgstr ""
+"<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: 透かし"
+"付きの85pxにカスタムトリミングされたサムネイルです。"
+
+#: zp-core/zp-extensions/cacheManager.php:97
+msgid ""
+"If a field is not represented in the cached name, leave the field blank. "
+"Custom crops (those with cx and cy) really cannot be cached easily since "
+"each image has unique values. See the <em>template-functions</em>::"
+"<code>getCustomImageURL()</code> comment block for details on these fields."
+msgstr ""
+"フィールドはキャッシュされた名前で表現されていない場合、このフィールドを空白"
+"のままにします。各イメージは一意の値を持っているのでカスタムトリミングは、(cx"
+"とcyを持つもの)は本当に簡単にキャッシュすることはできません。これらのフィール"
+"ド上の詳細なコメントブロックは<em>template-functions</em>::"
+"<code>getCustomImageURL()</code>を見て下さい。"
 
 #: zp-core/zp-extensions/cacheManager.php:101
 msgid ""
@@ -6815,16 +6869,7 @@ msgid ""
 "referenced by these functions set the <em>width</em> and <em>height</em> "
 "parameters to the <em>MaxSpace</em> container size and check the "
 "<code>MaxSpace</code> checkbox."
-msgstr ""
-
-#: zp-core/zp-extensions/cacheManager.php:97
-msgid ""
-"If a field is not represented in the cached name, leave the field blank. "
-"Custom crops (those with cx and cy) really cannot be cached easily since "
-"each image has unique values. See the <em>template-functions</em>::"
-"<code>getCustomImageURL()</code> comment block for details on these fields.</"
-"p><p>"
-msgstr ""
+msgstr "いくつかのテーマは <em>MaxSpace</em>イメージ関数を使用します。これらの関数によって参照されるキャッシュ画像に<em>MaxSpace</em>コンテナのサイズにem>幅</em>と<em>高さ</em>のパラメータを設定し、<code>MaxSpace</code>チェックボックスをオンにします。"
 
 #: zp-core/zp-extensions/cacheManager.php:105
 #: zp-core/zp-extensions/tweet_news.php:83
@@ -6884,6 +6929,8 @@ msgid ""
 "<strong>NOTE:</strong> The entire cache is cleared since there is no way to "
 "ascertain if a gallery page contains dependencies on the item."
 msgstr ""
+"<strong>注:</strong> ギャラリーページがアイテムの依存関係が含まれている場合を"
+"確認する方法はありませんので、全体のキャッシュがクリアされます。"
 
 #: zp-core/zp-extensions/cacheManager.php:165
 msgid "Size"
@@ -6911,11 +6958,11 @@ msgstr "トリミングの高さ"
 
 #: zp-core/zp-extensions/cacheManager.php:166
 msgid "Crop X axis"
-msgstr ""
+msgstr "X軸をトリミング"
 
 #: zp-core/zp-extensions/cacheManager.php:167
 msgid "Crop Y axis"
-msgstr ""
+msgstr "Y軸をトリミング"
 
 #: zp-core/zp-extensions/cacheManager.php:183
 #: zp-core/zp-extensions/slideshow.php:67
@@ -6934,10 +6981,14 @@ msgstr "グレイスケール"
 #: zp-core/zp-extensions/cacheManager.php:338
 msgid "Finds images that have not been cached and creates the cached versions."
 msgstr ""
+"キャッシュに保存され、キャッシュされたバージョンを作成していない画像を検索し"
+"ます。"
 
 #: zp-core/zp-extensions/cacheManager.php:276
 msgid "You must first set the plugin options for cached image parameters."
 msgstr ""
+"あなたは、最初にキャッシュされたイメージパラメータのプラグインオプションを設"
+"定する必要があります。"
 
 #: zp-core/zp-extensions/cacheManager.php:280
 #: zp-core/zp-extensions/cacheManager.php:294
@@ -6980,6 +7031,8 @@ msgstr ""
 #: zp-core/zp-extensions/cacheManager.php:341
 msgid "You must first set the plugin's options for cached image parameters."
 msgstr ""
+"あなたは、最初にキャッシュされたイメージのパラメータ用のプラグインのオプショ"
+"ンを設定する必要があります。"
 
 #: zp-core/zp-extensions/cacheManager.php:343
 msgid "Cache album images"
@@ -6987,7 +7040,7 @@ msgstr "アルバム画像をキャッシュ"
 
 #: zp-core/zp-extensions/flag_thumbnail.php:22
 msgid "Overlay icons over thumbnails to indicate image status."
-msgstr ""
+msgstr "画像の状態を示すためにサムネイル上にアイコンを重ねます。"
 
 #: zp-core/zp-extensions/flag_thumbnail.php:63
 msgid "Criteria"
@@ -7435,6 +7488,7 @@ msgid ""
 "The only translation performed is <em>white space</em> characters to "
 "<em>underscore</em>."
 msgstr ""
+"実行する唯一の翻訳は、ホワイトスペース文字はアンダースコアにすることです。"
 
 #: zp-core/zp-extensions/seo_null.php:11
 #: zp-core/zp-extensions/seo_zenphoto.php:10
@@ -7443,6 +7497,8 @@ msgid ""
 "Only one SEO filter plugin may be enalbed. <a href=\"#%1$s\"><code>%1$s</"
 "code></a> is already enabled."
 msgstr ""
+"1つのSEOフィルタプラグインのみ有効にできるかもしれません。<a href=\"#%1$s"
+"\"><code>%1$s</code></a>はすでに有効化されています。"
 
 #: zp-core/zp-extensions/user-expiry/user-expiry-tab.php:63
 #, php-format
@@ -8305,6 +8361,8 @@ msgid ""
 "Enter the full urls of the feeds to merge separated by semicolons(e.g. "
 "\"http://www.domain1.com/rss; http://www.domain2.com/rss\")"
 msgstr ""
+"まとめるフィードの完全なURLをセミコロン(例: \"http://www.domain1.com/rss; "
+"http://www.domain2.com/rss\")で区切って入力します。"
 
 #: zp-core/zp-extensions/captcha/reCaptcha.php:27
 msgid "Public key"
@@ -8399,6 +8457,8 @@ msgid ""
 "Automatically increments hitcounters on Zenphoto objects viewed by a "
 "<em>visitor</em>."
 msgstr ""
+"<em>訪問者</em>がZenphotoのオブジェクトを閲覧したら自動的に増えるヒットカウン"
+"ターです。"
 
 #: zp-core/zp-extensions/hitcounter.php:66
 msgid "IP Address list"
@@ -8586,7 +8646,9 @@ msgstr ""
 
 #: zp-core/zp-extensions/colorbox_js.php:26
 msgid "Loads Colorbox JS and CSS scripts for selected theme page scripts."
-msgstr "選択したテーマページのスクリプト用のColorbox JS及びCSSスクリプトを読み込みます。"
+msgstr ""
+"選択したテーマページのスクリプト用のColorbox JS及びCSSスクリプトを読み込みま"
+"す。"
 
 #: zp-core/zp-extensions/colorbox_js.php:27
 msgid ""
@@ -8669,6 +8731,8 @@ msgid ""
 "<strong>NOTE:</strong> This search will have false positives for instance "
 "when the function name appears in a comment or quoted string."
 msgstr ""
+"<strong>注:</strong> 関数名はコメントや引用符で囲まれた文字列に表示されたとき"
+"にこの検索では、例えば、falseになります。"
 
 #: zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:99
 msgid "No calls on deprecated functions were found."
@@ -8730,7 +8794,9 @@ msgstr "キャッシュから"
 msgid ""
 "Make the album zip form the album folder or from the sized images in the "
 "cache."
-msgstr "アルバムのzip形式のアルバムフォルダを確認またはキャッシュ内のサイズの画像から。"
+msgstr ""
+"アルバムのzip形式のアルバムフォルダを確認またはキャッシュ内のサイズの画像か"
+"ら。"
 
 #: zp-core/zp-extensions/downloadList.php:78
 msgid "User rights"
@@ -8812,7 +8878,9 @@ msgstr[0] "%u ダウンロード"
 msgid ""
 "Checks if there is a Zenphoto versions that is newer than the installed "
 "version."
-msgstr "インストールされたバージョンよりも新しいZenphotoのバージョンがある場合チェックします。"
+msgstr ""
+"インストールされたバージョンよりも新しいZenphotoのバージョンがある場合チェッ"
+"クします。"
 
 #: zp-core/zp-extensions/check_for_update.php:19
 msgid ""
@@ -9049,7 +9117,8 @@ msgstr "Flashプレーヤは<em>外部アルバム</em>をサポートしませ�
 #: zp-core/zp-extensions/flowplayer3.php:27
 #, php-format
 msgid "Flowplayer3 not enabled, %s is already instantiated."
-msgstr "Flowplayer3は有効ではありません。%sがすでにインスタンス化されています。"
+msgstr ""
+"Flowplayer3は有効ではありません。%sがすでにインスタンス化されています。"
 
 #: zp-core/zp-extensions/flowplayer3.php:117
 msgid "Player width (ignored for <em>mp3/m4a/fla</em> files.)"
@@ -9844,19 +9913,19 @@ msgstr "invalid_MaxSpace"
 #, php-format
 msgid "%u cache size to apply."
 msgid_plural "%u cache sizes to apply."
-msgstr[0] ""
+msgstr[0] "%uキャッシュサイズが適用されます。"
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:230
 #, php-format
 msgid "%u cache size requested"
 msgid_plural "%u cache sizes requested"
-msgstr[0] ""
+msgstr[0] "%uキャッシュサイズが要求されます。"
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:231
 #, php-format
 msgid "Finished processing %1$u image (%2$s)."
 msgid_plural "Finished processing %1$u images (%2$s)."
-msgstr[0] ""
+msgstr[0] "%1$u個の画像(%2$s)の処理が完了しました。"
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:233
 #: zp-core/admin-refresh-metadata.php:121 zp-core/setup.php:1449
@@ -9868,7 +9937,9 @@ msgstr "リフレッシュ"
 msgid ""
 "Refresh the caching of the selected image sizes if some images did not "
 "render."
-msgstr "いくつかのイメージがレンダリングされなかった場合、選択した画像サイズのキャッシュをリフレッシュします。"
+msgstr ""
+"いくつかのイメージがレンダリングされなかった場合、選択した画像サイズのキャッ"
+"シュをリフレッシュします。"
 
 #: zp-core/zp-extensions/cacheManager/cacheImages.php:240
 msgid "No cache sizes enabled."
@@ -10387,7 +10458,8 @@ msgstr ""
 msgid ""
 "Places a Google Site Verification metatag into the header of your site's "
 "pages."
-msgstr "あなたのサイトのページのヘッダにGoogleサイトの検証メタタグを配置します。"
+msgstr ""
+"あなたのサイトのページのヘッダにGoogleサイトの検証メタタグを配置します。"
 
 #: zp-core/zp-extensions/googleVerify.php:40
 msgid "Verification content"
@@ -10823,7 +10895,9 @@ msgstr ""
 msgid ""
 "Utility to divert access to the gallery to a screen saying the site is "
 "upgrading."
-msgstr "サイトがアップグレード中と表示するためにギャラリーへのアクセスを分けるためのユーティリティです。"
+msgstr ""
+"サイトがアップグレード中と表示するためにギャラリーへのアクセスを分けるための"
+"ユーティリティです。"
 
 #: zp-core/zp-extensions/site_upgrade.php:21
 msgid "The <em>mod_rewrite</em> must be enabled"
@@ -10858,7 +10932,9 @@ msgstr "サイトを閉じる"
 #: zp-core/zp-extensions/site_upgrade.php:59
 msgid ""
 "Make site unavailable for viewing by redirecting to the \"closed.html\" page."
-msgstr "「closed.html」ページにリダイレクトすることで閲覧するためのサイトが利用できないことを確認します。"
+msgstr ""
+"「closed.html」ページにリダイレクトすることで閲覧するためのサイトが利用できな"
+"いことを確認します。"
 
 #: zp-core/zp-extensions/site_upgrade.php:59
 msgid "The site is closed."
@@ -10917,7 +10993,9 @@ msgstr "全ての評価を<em>未評価</em>に設定しました。"
 msgid ""
 "Adds several theme functions to enable images, album, news, or pages to be "
 "rated by users. "
-msgstr "画像、アルバム、ニュース、またはページがユーザーによって評価されるように有効にするには、いくつかのテーマ機能を追加します。"
+msgstr ""
+"画像、アルバム、ニュース、またはページがユーザーによって評価されるように有効"
+"にするには、いくつかのテーマ機能を追加します。"
 
 #: zp-core/zp-extensions/rating.php:84
 msgid "open"
@@ -12052,7 +12130,9 @@ msgstr "TinyMCEの無効化"
 msgid ""
 "A plugin to print the most common HTML meta tags to the head of your site's "
 "pages."
-msgstr "あなたのサイトのページの頭に最も一般的なHTMLのメタタグを印刷するプラグインです。"
+msgstr ""
+"あなたのサイトのページの頭に最も一般的なHTMLのメタタグを印刷するプラグインで"
+"す。"
 
 #: zp-core/zp-extensions/html_meta_tags.php:65
 msgid "Cache control"
@@ -12116,7 +12196,7 @@ msgid ""
 "subdomains</code> is checked it also generates alternate links for other "
 "languages (<code>&lt;link&nbsp;rel=\"alternate\" hreflang=\"</code>...<code>"
 "\" href=\"</code>...<code>\" /&gt;</code>)."
-msgstr ""
+msgstr "これは<em>正規のURL</em>で各ページの頭にlink要素を追加します。<code>seo_locale</code>プラグインが有効になっているか、<code>サブドメインを使用する</code>がチェックされている場合、それはまた他の言語(<code>&lt;link&nbsp;rel=\"alternate\" hreflang=\"</code>...<code>\" href=\"</code>...<code>\" /&gt;</code>)の代替リンクを生成します。"
 
 #: zp-core/zp-extensions/html_meta_tags.php:82
 msgid "Site logo"
@@ -12129,6 +12209,10 @@ msgid ""
 "image or album pages the default size album or image thumb is used "
 "automatically."
 msgstr ""
+"完全なURLを特定のサイトのロゴ画像を入力します。Facebookは、Googleの+と他の記"
+"事内のリンクのプレビューに示すように、サムネイルのようにそれを使用します。イ"
+"メージまたはアルバムページのデフォルトのサイズのアルバムや画像のサムネイルが"
+"自動的に使用されます。"
 
 #: zp-core/zp-extensions/html_meta_tags.php:84
 msgid "HTML meta tags"
@@ -12623,7 +12707,9 @@ msgstr "ライブ"
 msgid ""
 "Put the plugin in <em>test mode</em> and it will simulate the selected "
 "device. If <em>live</em> is selected operations are normal."
-msgstr "<em>テストモード</em>でプラグインを置いて、選択したデバイスをエミュレートします。<em>ライブ</em>が選択された場合、操作は通常です。"
+msgstr ""
+"<em>テストモード</em>でプラグインを置いて、選択したデバイスをエミュレートしま"
+"す。<em>ライブ</em>が選択された場合、操作は通常です。"
 
 #: zp-core/zp-extensions/mobileTheme.php:104
 msgid "View the mobile gallery"
@@ -15567,7 +15653,9 @@ msgstr ""
 msgid ""
 "This is a clone of another installation. The setup files should be deleted "
 "from that installation"
-msgstr "これは別のインストールの複製です。セットアップファイルはインストールから削除されるべきです。"
+msgstr ""
+"これは別のインストールの複製です。セットアップファイルはインストールから削除"
+"されるべきです。"
 
 #: zp-core/setup.php:2351
 #, php-format
@@ -15693,7 +15781,8 @@ msgstr "<a href=\"%1$s\">%2$s</a>もご覧ください"
 #: zp-core/pluginDoc.php:315
 #, php-format
 msgid "See also the Zenphoto online documentation: <a href=\"%1$s\">%2$s</a>"
-msgstr "Zenphotoオンラインドキュメントもご覧ください: <a href=\"%1$s\">%2$s</a>"
+msgstr ""
+"Zenphotoオンラインドキュメントもご覧ください: <a href=\"%1$s\">%2$s</a>"
 
 #: zp-core/pluginDoc.php:322
 msgid ""
@@ -15702,6 +15791,9 @@ msgid ""
 "link will send the URL to the Google translation WEB to present the page in "
 "your language."
 msgstr ""
+"このドキュメントは、プラグインのコメントブロックと英語Zenphotoの翻訳システム"
+"の外にある他のアイテムから生成されます。このリンクはあなたの言語でページを表"
+"示するためにGoogleの翻訳WEBのURLを送信します。"
 
 #: zp-core/pluginDoc.php:323
 msgid "Translate this page."
@@ -17407,6 +17499,8 @@ msgid ""
 "Users must provide passwords a strength of at least %s. The repeat password "
 "field will be disabled until this floor is met."
 msgstr ""
+"ユーザーがパスワードの少なくとも%sの強さを提供する必要があります。このフロア"
+"が満たされるまで繰り返しパスワードフィールドは無効になります。"
 
 #: zp-core/lib-auth.php:94
 msgid "settings"
@@ -21313,6 +21407,8 @@ msgid ""
 "A theme primarily meant for mobile/smartphone browsing using <a href='http://"
 "jQuerymobile.com'>jQuerymobile framework</a>."
 msgstr ""
+"主に<a href='http://jQuerymobile.com'>jQuerymobileフレームワーク</a>を使用し"
+"たスマートフォン/携帯電話のブラウジングのためのテーマです。"
 
 #: themes/zpMobile/functions.php:76
 msgid "Powered by"
