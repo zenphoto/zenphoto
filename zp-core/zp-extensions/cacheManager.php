@@ -101,7 +101,7 @@ class cacheManager {
 																																		gettext('Some themes use <em>MaxSpace</em> image functions. To cache images referenced by these functions set the <em>width</em> and <em>height</em> parameters to the <em>MaxSpace</em> container size and check the <code>MaxSpace</code> checkbox.').
 																																		'</p>'
 																																		)
-		));
+		);
 		$list = array('<em>'.gettext('Albums').'</em>'=>'cacheManager_albums', '<em>'.gettext('Images').'</em>'=>'cacheManager_images');
 		if (getOption('zp_plugin_zenpage')) {
 			$list['<em>'.gettext('News').'</em>'] = 'cacheManager_news';
