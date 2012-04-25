@@ -994,7 +994,7 @@ function generateCaptcha(&$img) {
  * @since 1.4.3
  */
 function printAlbumZip(){
-	deprecated_functions::notify(gettext('Use downloaList plugin <code>printDownloadLinkAlbumZip()</code>.'));
+	deprecated_functions::notify(gettext('Use downloadList plugin <code>printDownloadLinkAlbumZip()</code>.'));
 	global $_zp_current_album;
 	setOption('zp_plugin_downloadList',20|ADMIN_PLUGIN|THEME_PLUGIN);
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/downloadList.php');
