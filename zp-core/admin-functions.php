@@ -33,8 +33,7 @@ function printAdminFooter($addl='') {
 		 | <a href="http://www.zenphoto.org/support/" title="<?php echo gettext('Forum'); ?>"><?php echo gettext('Forum'); ?></a>
 		 | <a href="http://www.zenphoto.org/trac/report/10" title="<?php echo gettext('Bugtracker'); ?>"><?php echo gettext('Bugtracker'); ?></a>
 		 | <a href="http://www.zenphoto.org/news/category/changelog" title="<?php echo gettext('View Change log'); ?>"><?php echo gettext('Change log'); ?></a>
-		 <br />
-		<?php	printf(gettext('Server date: %s'),date('Y-m-d H:i:s')); 	?>
+		 | <?php	printf(gettext('Server date: %s'),date('Y-m-d H:i:s')); 	?>
 	</div>
 	<?php
 	db_close();	//	close the database as we are done
