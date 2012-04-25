@@ -166,6 +166,27 @@ position: relative;
 border: 1px solid lightgray;
 }
 
+/* centering flowplayer 3 and jPlayer on image.php (and jplayer playlists elsewhere) */
+#image .flowplayer,
+.jp-audio,
+.jp-video {
+	margin: 0 auto;
+}
+
+a.jp-play,
+a.jp-pause, 
+a.jp-stop, 
+a.jp-previous, 
+a.jp-next {
+	position: relative;
+	top: -5px;
+}
+ul.jp-toggles { 
+ position: relative;
+ top: -5px;
+}
+
+
 .content-primary .imgnav {
 width: 100%;
 margin: 5px 0 0px 0;
