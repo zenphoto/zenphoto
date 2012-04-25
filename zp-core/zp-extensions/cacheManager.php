@@ -52,7 +52,7 @@
  */
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Provides cache management utilities for Image, HTML, and RSS caches.");
-$plugin_notice = gettext('<strong>NOTE</strong>: The image caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may excede the capacity of your server and not complete.');
+$plugin_notice = gettext('<strong>NOTE</strong>: The image caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may exceed the capacity of your server and not complete.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'cacheManager';
