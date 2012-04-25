@@ -157,7 +157,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
 		<?php
 	}
 	if ($anyway==2) {
-		$stopped = '('.gettext('Autorun aborted)').') ';
+		$stopped = '('.gettext('Autorun aborted').') ';
 	} else {
 		$stopped = '';
 	}
