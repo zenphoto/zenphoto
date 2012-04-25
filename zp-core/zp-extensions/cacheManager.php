@@ -95,7 +95,7 @@ class cacheManager {
 																																		'</p>'.
 																																		'<p>'.
 																																		gettext('If a field is not represented in the cached name, leave the field blank. Custom crops (those with cx and cy) really cannot be cached easily since each image has unique values. '.
-																																						'See the <em>template-functions</em>::<code>getCustomImageURL()</code> comment block for details on these fields.'.
+																																						'See the <em>template-functions</em>::<code>getCustomImageURL()</code> comment block for details on these fields.').
 																																		'</p>'.
 																																		'<p>'.
 																																		gettext('Some themes use <em>MaxSpace</em> image functions. To cache images referenced by these functions set the <em>width</em> and <em>height</em> parameters to the <em>MaxSpace</em> container size and check the <code>MaxSpace</code> checkbox.').
