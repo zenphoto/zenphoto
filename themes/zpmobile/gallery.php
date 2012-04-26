@@ -23,7 +23,6 @@ if (!defined('WEBPATH')) die(); ;
 	<div data-role="content">	
 		<div class="content-primary">
 		<h2>Gallery</h2>
-		<p>This is a rough demo of a mobile device theme for Zenphoto using the framework <a href="http://jquerymobile.com">jquerymobile</a>.</p>
 		<?php printGalleryDesc(); ?>
 		<br />
 		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
