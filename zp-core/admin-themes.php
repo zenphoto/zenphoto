@@ -238,7 +238,7 @@ foreach($themes as $theme => $themeinfo) {
 				$date = $zenphoto_date;
 			} else {
 				$version = $themeinfo['version'];
-				$version = $themeinfo['date'];
+				$date = $themeinfo['date'];
 			}
 			?>
 			Version <?php echo $version; ?>, <?php echo $date; 	?>

@@ -110,14 +110,14 @@ class mobileTheme {
 				}
 				$enable = 'off';
 			}
+			?>
+			<span class="mobileThemeControlLink">
+				<a href="?mobileTheme=<?php echo $enable; ?>" rel="external">
+					<?php echo $text; ?>
+				</a>
+			</span>
+			<?php
 		}
-		?>
-		<span class="mobileThemeControlLink">
-			<a href="?mobileTheme=<?php echo $enable; ?>" rel="external">
-				<?php echo $text; ?>
-			</a>
-		</span>
-		<?php
 	}
 
 }
