@@ -38,6 +38,7 @@ class SearchEngine
 	protected $album_list = NULL;	// list of albums to search
 	protected $category_list;			// list of categories for a news search
 	protected $searches = NULL;		// remember the criteria for past searches
+	protected $extraparams = array();// allow plugins to add to search parameters
 
 	/**
 	 * Constuctor
@@ -254,7 +255,28 @@ class SearchEngine
 				$r .= '&page=' . $_zp_page;
 			}
 		}
+		foreach($this->extraparams as $p=>$v) {
+			$r .= '&'.$p.'='.$v;
+		}
 		return $r;
+	}
+
+	/**
+	 *
+	 * Retrieves search extra parameters
+	 * @return array
+	 */
+	function getSearchExtra() {
+		return $this->extraparams;
+	}
+
+	/**
+	 *
+	 * Stores extra search params for plugin use
+	 * @param array $extra
+	 */
+	function setSearchExtra($extra) {
+		$this->extraparams = array_merge($this->extraparams, $extra);
 	}
 
 	/**
@@ -350,6 +372,9 @@ class SearchEngine
 				break;
 			case 'unpublished':
 				$this->search_unpublished = (bool) $v;
+				break;
+			default:
+				$this->extraparams[$p] = $v;
 				break;
 			}
 		}
