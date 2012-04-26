@@ -37,11 +37,19 @@ if (!defined('WEBPATH')) die();
 		<div id="image">
 
 			<?php
-				if(!isImagePhoto()) {
-					 printDefaultSizedImage(getImageTitle());
-				} else { ?>
+				if(isImagePhoto()) {
+				 ?>
 					<img src="<?php echo getDefaultSizedImage(); ?>" alt="<?php echo getBareImageTitle(); ?>" style="max-width:<?php echo getDefaultWidth(); ?>px"/>
-			<?php } ?>
+					<?php
+				} else { 
+					printDefaultSizedImage(getImageTitle());
+				}
+				if(isImageVideo() && getOption('zpmobile_mediadirectlink')) {
+					?>
+					<p><a href="<?php echo html_encode(getUnprotectedImageURL()); ?>" title="<?php echo gettext('Direct link'); ?>" rel="external"><?php echo gettext('Direct link'); ?></a></p>
+					<?php	
+				}
+				?>
 		</div>
 	<?php printImageDesc(); ?>
 	<?php if(getTags()) {

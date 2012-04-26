@@ -25,7 +25,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 	<div data-role="content">
 		<div class="content-primary">
 		<h2 class="breadcrumb"><a href="<?php echo getGalleryIndexURL(); ?>"><?php echo gettext('Gallery'); ?></a> <?php printParentBreadcrumb('','',''); ?> <?php printAlbumTitle();?></h2>
-		<p><?php printAlbumDesc(); ?></p>
+		<?php printAlbumDesc(); ?>
 		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
 		<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
 			<?php while (next_album()): ?>
