@@ -229,7 +229,9 @@ function html_decode($string) {
 	return html_entity_decode($string, ENT_QUOTES, 'UTF-8');
 }
 
-
+if (!defined('ENT_SUBSTITUTE')) {
+	define('ENT_SUBSTITUTE',ENT_IGNORE);	// for pre PHP 5.4
+}
 /**
  * encodes a pre-sanitized string to be used in an HTML text-only field (value, alt, title, etc.)
  *
@@ -237,7 +239,7 @@ function html_decode($string) {
  * @return string
  */
 function html_encode($this_string) {
-	return htmlspecialchars($this_string, ENT_QUOTES, LOCAL_CHARSET);
+	return htmlspecialchars($this_string, ENT_QUOTES|ENT_SUBSTITUTE, LOCAL_CHARSET);
 }
 
 /**
