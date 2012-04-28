@@ -71,7 +71,6 @@ class Zenphoto_Authority {
 		setOptionDefault('password_strength', 10);
 		setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);
 		setOptionDefault('min_password_lenght', 6);
-		setOptionDefault('password_pattern', 'A-Za-z0-9   |   ~!@#$%&*_+`-(),.\^\'"/[]{}=:;?\|');
 		setOptionDefault('user_album_edit_default', 1);
 		$sql = 'SELECT * FROM '.prefix('administrators').' WHERE `valid`=1 ORDER BY `rights` DESC, `id` LIMIT 1';
 		$master = query_single_row($sql,false);

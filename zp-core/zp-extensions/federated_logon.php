@@ -215,7 +215,7 @@ class federated_logon {
 				if ($name) $credentials[] = 'name';
 				$userobj->setCredentials($credentials);
 				$userobj->setName($name);
-				$userobj->setPass($user.gmdate('d M Y H:i:s').getOption('password_pattern'));
+				$userobj->setPass($user.HASH_SEED.gmdate('d M Y H:i:s'));
 				$userobj->setObjects(NULL);
 				$userobj->setCustomData('');
 				$userobj->setLanguage(getUserLocale());

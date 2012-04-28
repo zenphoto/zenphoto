@@ -50,6 +50,27 @@ define('ZP_ZENPAGE_NEWS_DATE', 1024);
 define('ZP_ZENPAGE_PAGE', 2048);
 define('ZP_ZENPAGE_SINGLE', 4096);
 
+switch (PHP_MAJOR_VERSION) {
+	case 5:
+		switch (PHP_MINOR_VERSION) {
+			case 0:
+			case 1:
+			case 2:
+				define ('ENT_FLAGS',ENT_QUOTES);
+				break;
+			case 3:
+				define ('ENT_FLAGS',ENT_QUOTES|ENT_IGNORE);
+				break;
+			default:	// 4 and beyond
+				define ('ENT_FLAGS',ENT_QUOTES|ENT_SUBSTITUTE);
+				break;
+		}
+		break;
+	default:	// PHP 6?
+		define ('ENT_FLAGS',ENT_QUOTES|ENT_SUBSTITUTE);
+		break;
+}
+
 // Set error reporting.
 if (defined("RELEASE")) {
 	error_reporting(E_ALL ^E_NOTICE);
@@ -236,7 +257,7 @@ function html_decode($string) {
  * @return string
  */
 function html_encode($this_string) {
-	return htmlspecialchars($this_string, ENT_QUOTES, LOCAL_CHARSET);
+	return htmlspecialchars($this_string, ENT_FLAGS, LOCAL_CHARSET);
 }
 
 /**
@@ -258,7 +279,7 @@ function html_encodeTagged($str) {
 		$tags['%'.$key.'$s'] = $tag;
 		$str = str_replace($tag, '%'.$key.'$s', $str);
 	}
-	return strtr(htmlspecialchars($str, ENT_QUOTES, LOCAL_CHARSET),$tags);
+	return strtr(htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET),$tags);
 }
 
 /**

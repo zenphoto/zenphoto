@@ -109,14 +109,12 @@ class quota_manager {
 		if ($quota == NULL) $quota = getOption('quota_default');
 		$result =
 			'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-				<td width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.gettext("Quota:").'</td>
-				<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" width="345">'.
+				<td colspan="3"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" width="345">'.gettext("Image storage quota:").'&nbsp;'.
 					sprintf(gettext('Allowed: %s kb'),'<input type="text" size="10" name="'.$i.'quota" value="'.$quota.'" '.$local_alterrights.' />').' '.
 					sprintf(gettext('(%s kb used)'),number_format($used)).
 					"\n".
-				'</td>
-				<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">'.gettext('Image quota information.').'</td>
-			</tr>'."\n";
+				'</td>'.
+			'</tr>'."\n";
 		return $html.$result;
 	}
 

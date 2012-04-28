@@ -595,7 +595,7 @@ function languageChange(id,lang) {
 			<input type="hidden" name="show-<?php echo $userid; ?>" id="show-<?php echo $userid; ?>" value="<?php echo ($current);?>" />
 			<table class="bordered" style="border: 0" id='user-<?php echo $id;?>'>
 			<tr>
-				<td colspan="2" width="80%" style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
+				<td colspan="2" style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
 				<?php
 				if (empty($userid)) {
 					$displaytitle = gettext("Show details");
@@ -605,13 +605,17 @@ function languageChange(id,lang) {
 					$hidetitle = sprintf(gettext('Hide details for user %s'),$userid);
 				}
 				?>
-					<span <?php if ($current) echo 'style="display:none;"'; ?> class="userextrashow">
+					<span<?php if ($current) echo ' style="display:none;"'; ?> class="userextrashow">
 						<a href="javascript:$('#show-<?php echo $userid; ?>').val(1);toggleExtraInfo('<?php echo $id;?>','user',true);" title="<?php echo $displaytitle; ?>" >
 							<?php
 							if (empty($userid)) {
 								?>
 								<input type="hidden" name="<?php echo $id ?>-newuser" value="1" />
-								<em><?php echo gettext("New User"); ?></em>
+								<fieldset>
+								<legend><em><?php echo gettext("New User"); ?></em></legend>
+									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="dummy" name="dummy" value=""
+										onclick="toggleExtraInfo('<?php echo $id;?>','user',true);$('#adminuser<?php echo $id; ?>').focus();" />
+								</fieldset>
 								<?php
 							} else {
 								?>
@@ -622,11 +626,16 @@ function languageChange(id,lang) {
 							?>
 						</a>
 					</span>
-					<span <?php if ($current) echo 'style="display:inline;"'; else echo 'style="display:none;"'; ?> class="userextrahide">
+					<span<?php if ($current) echo ' style="display:inline;"'; else echo ' style="display:none;"'; ?> class="userextrahide">
 						<a href="javascript:$('#show-<?php echo $userid; ?>').val(0);toggleExtraInfo('<?php echo $id;?>','user',false);" title="<?php echo $hidetitle; ?>">
 							<?php
 							if (empty($userid)) {
-								echo '<em>'.gettext("New User").'</em>';
+								?>
+								<fieldset>
+								<legend><em><?php echo gettext("New User"); ?></em></legend>
+									<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value="" />
+								</fieldset>
+								<?php
 							} else {
 								echo '<strong>'.$userid.'</strong>';
 							}
@@ -636,46 +645,42 @@ function languageChange(id,lang) {
 
 				<?php
 				if (!$alterrights || !$userobj->getID()) {
-					if (empty($userid)) {
-							?>
-							<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>" id="adminuser<?php echo $id; ?>" name="adminuser<?php echo $id; ?>" value=""
-								onclick="toggleExtraInfo('<?php echo $id;?>','user',true);" />
-							<?php
-						} else {
-							echo $master;
-						}
-						if ($pending) {
-							?>
-							<input type="checkbox" name="<?php echo $id ?>-confirmed" value="<?php echo NO_RIGHTS; echo $alterrights; ?>" />
-							<?php echo gettext("Authenticate user"); ?>
-							<?php
-						} else {
-							?>
-							<input type = "hidden" name="<?php echo $id ?>-confirmed"	value="<?php echo NO_RIGHTS; ?>" />
-							<?php
+					if (!empty($userid)) {
+						echo $master;
+					}
+					if ($pending) {
+						?>
+						<input type="checkbox" name="<?php echo $id ?>-confirmed" value="<?php echo NO_RIGHTS; echo $alterrights; ?>" />
+						<?php echo gettext("Authenticate user"); ?>
+						<?php
+					} else {
+						?>
+						<input type = "hidden" name="<?php echo $id ?>-confirmed"	value="<?php echo NO_RIGHTS; ?>" />
+						<?php
+					}
+					?>
+					</td>
+					<?php
+					if(!empty($userid) && count($admins) > 1) {
+						$msg = gettext('Are you sure you want to delete this user?');
+						if ($ismaster) {
+							$msg .= ' '.gettext('This is the master user account. If you delete it another user will be promoted to master user.');
 						}
 						?>
+						<td width="5%" style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
+						<a href="javascript:if(confirm(<?php echo "'".js_encode($msg)."'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin')?>'; }"
+							title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;"> <img
+							src="images/fail.png" style="border: 0px;" alt="Delete" /></a>
+						</td>
 						<?php
-						if(!empty($userid) && count($admins) > 1) {
-							$msg = gettext('Are you sure you want to delete this user?');
-							if ($ismaster) {
-								$msg .= ' '.gettext('This is the master user account. If you delete it another user will be promoted to master user.');
-							}
-							?>
-							<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
-							<a href="javascript:if(confirm(<?php echo "'".js_encode($msg)."'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin')?>'; }"
-								title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;"> <img
-								src="images/fail.png" style="border: 0px;" alt="Delete" /></a>
-							</td>
-							<?php
-						} else {
-							?>
-							<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top"></td>
-							<?php
-						}
+					} else {
 						?>
-						&nbsp;
+						<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top"></td>
 						<?php
+					}
+					?>
+					&nbsp;
+					<?php
 				} else  {
 					?>
 					<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
