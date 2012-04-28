@@ -36,8 +36,8 @@ if (!defined('WEBPATH')) die();
 		<br />
 		<?php
 		if(function_exists('next_news')) { ?>
-			<h2><?php echo gettext('Latest news'); ?></h2>
-				<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+			<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
+				<li data-role="list-divider"><h2><?php echo gettext('Latest news'); ?></h2></li>
 				 <?php
 				 while (next_news()): ?>
 					<li>

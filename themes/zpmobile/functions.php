@@ -126,24 +126,24 @@ function jqm_printMenusLinks() {
 	?>
 	<div id="collapsible-lists" data-collapsed="false">
 		<?php if(getOption('zp_plugin_zenpage')) { ?>
-			<div data-role="collapsible" data-theme="b"<?php if($_zp_gallery_page == 'news.php') echo ' data-collapsed="false"'; ?>>
+			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if($_zp_gallery_page == 'news.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('News'); ?></h3>
 				<?php printAllNewsCategories(gettext("All news"),TRUE,"","menu-active",true,"submenu","menu-active"); ?>
 			</div>
 		<?php } ?>
 		<?php if(function_exists('printAlbumMenu')) { ?>
-			<div data-role="collapsible" data-theme="b"<?php if($_zp_gallery_page == 'gallery.php' || $_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'image.php') echo ' data-collapsed="false"'; ?>>
+			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if($_zp_gallery_page == 'gallery.php' || $_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'image.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Gallery'); ?></h3>
 				<?php printAlbumMenu('list',true,'','','','',"Gallery Index",true,false,false); ?>
 			</div>
 		<?php } ?>
 		<?php if(getOption('zp_plugin_zenpage')) { ?>
-			<div data-role="collapsible" data-theme="b"<?php if($_zp_gallery_page == 'pages.php') echo ' data-collapsed="false"'; ?>>
+			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if($_zp_gallery_page == 'pages.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Pages'); ?></h3>
 				<?php	printPageMenu("list","","menu-active","submenu","menu-active",NULL,true,true,NULL); ?>
 			</div>
 		<?php } ?>
-		<div data-role="collapsible" data-theme="b">
+		<div data-role="collapsible" data-content-theme="c" data-theme="b">
 			<?php jqm_printRSSlinks(); ?>
 		</div>
 	</div>
