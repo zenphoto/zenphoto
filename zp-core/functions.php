@@ -1303,7 +1303,7 @@ function printLink($url, $text, $title=NULL, $class=NULL, $id=NULL) {
 				(($title) ? " title=\"" . html_encode(strip_tags($title)) . "\"" : "") .
 				(($class) ? " class=\"$class\"" : "") .
 				(($id) ? " id=\"$id\"" : "") . ">" .
-				$text . "</a>";
+				html_encode($text) . "</a>";
 }
 
 /**
