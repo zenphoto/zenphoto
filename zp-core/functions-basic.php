@@ -261,7 +261,7 @@ function html_encodeTagged($str) {
 		$tags['%'.$key.'$s'] = $tag;
 		$str = str_replace($tag, '%'.$key.'$s', $str);
 	}
-	return strtr(html_encode($str),$tags);
+	return strtr(htmlspecialchars($str, ENT_QUOTES|ENT_SUBSTITUTE, LOCAL_CHARSET),$tags);
 }
 
 /**
