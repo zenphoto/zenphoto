@@ -567,7 +567,12 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 					} else {
 						$date = 'date';
 					}
-					$images = query_full_array("SELECT title, filename FROM ".prefix('images')." AS images WHERE ".$date." LIKE '".$_zp_current_zenpage_news->getDateTime()."%' AND albumid = ".$_zp_current_zenpage_news->getID()." ORDER BY ".$date." DESC");
+					$numberimages = getOption('combinews-numberimages');
+					$limit = '';
+					if(!empty($numberimages)) {
+						$limit = ' LIMIT '.$numberimages;
+					}
+					$images = query_full_array("SELECT title, filename FROM ".prefix('images')." AS images WHERE ".$date." LIKE '".$_zp_current_zenpage_news->getDateTime()."%' AND albumid = ".$_zp_current_zenpage_news->getID()." ORDER BY ".$date." DESC".$limit);
 					foreach($images as $image) {
 						$imageobj = newImage($_zp_current_zenpage_news,$image['filename']);
 						if(getOption('combinews-latestimagesbyalbum-imgdesc')) {

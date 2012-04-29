@@ -83,6 +83,7 @@ class zenpagecms {
 		setOptionDefault('combinews-thumbnail-cropy', '');
 		setOptionDefault('combinews-latestimagesbyalbum-imgdesc', false);
 		setOptionDefault('combinews-latestimagesbyalbum-imgtitle', false);
+		setOptionDefault('combinews-numberimages', '');
 		gettext($str = '%1$u new item in <em>%2$s</em>: %3$s');
 		setOptionDefault('combinews-customtitle-singular', getAllTranslations($str));
 		gettext($str = '%1$u new items in <em>%2$s</em>: %3$s');
@@ -175,6 +176,8 @@ class zenpagecms {
 															'desc' => gettext("Custom title for the article in sprintf() syntax. %1\$u = number of new items, %2\$s = title of the album they are in, %3\$s = titles of the new items. Never leave any of these three out! (<em>latest images by album</em> option only).")),
 		gettext('CombiNews: Custom title - Number of image titles') => array('key' => 'combinews-customtitle-imagetitles', 'type' => OPTION_TYPE_TEXTBOX,
 															'desc' => gettext("How many images titles you want to show with the custom title (<em>latest images by album</em> option only).")),
+		gettext('CombiNews: Number of images') => array('key' => 'combinews-numberimages', 'type' => OPTION_TYPE_TEXTBOX,
+															'desc' => gettext("How many of the new images you want to show. Empty for all. (<em>latest images by album</em> option only).")),
 		gettext('Truncate titles*') => array('key' => 'menu_truncate_string', 'type' => OPTION_TYPE_TEXTBOX,
 															'disabled' => $_common_truncate_handler,
 															'order' => 6,
