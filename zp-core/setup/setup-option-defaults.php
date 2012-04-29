@@ -470,6 +470,7 @@ setOptionDefault('fullsizeimage_watermark', getOption('fullimage_watermark'));
 	}
 	$data['unprotected_pages'] = serialize($unprotected);
 	setOption('gallery_data', serialize($data));
+	$_zp_gallery = new Gallery();	// insure we have the proper options instantiated
 
 /*TODO:enable on the 1.5 release
  *

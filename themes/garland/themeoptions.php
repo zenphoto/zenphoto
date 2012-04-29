@@ -16,6 +16,9 @@ class ThemeOptions {
 		setThemeOption('image_use_side', 'longest');
 		setThemeOptionDefault('thumb_transition', 1);
 		setThemeOption('thumb_size',85);
+		setThemeOptionDefault('thumb_crop_width', 85);
+		setThemeOptionDefault('thumb_crop_height', 85);
+		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('garland_personality', 'image_page');
 		setThemeOptionDefault('garland_transition', 'slide-hori');
 		setThemeOptionDefault('garland_caption_location', 'image');

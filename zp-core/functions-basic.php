@@ -145,9 +145,9 @@ if (!$_charset) {
 define('LOCAL_CHARSET',$_charset);
 unset($_charset);
 
-define ('GALLERY_DATA', getOption('gallery_data'));
-if (GALLERY_DATA) {
-	$data = unserialize(GALLERY_DATA);
+$data = getOption('gallery_data');
+if ($data) {
+	$data = unserialize($data);
 } else {
 	$data = array();
 }

@@ -21,6 +21,9 @@ class ThemeOptions {
 		setThemeOptionDefault('image_size', 595);
 		setThemeOptionDefault('image_use_side', 'longest');
 		setThemeOptionDefault('thumb_size', 100);
+		setThemeOptionDefault('thumb_crop_width', 100);
+		setThemeOptionDefault('thumb_crop_height', 100);
+		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('thumb_transition', 1);
 		setOptionDefault('colorbox_default_album', 1);
 		setOptionDefault('colorbox_default_image', 1);

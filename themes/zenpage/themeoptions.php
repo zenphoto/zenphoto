@@ -25,6 +25,9 @@ class ThemeOptions {
 		setThemeOption('image_size', 580);
 		setThemeOption('image_use_side', 'longest');
 		setThemeOption('thumb_size',95);
+		setThemeOptionDefault('thumb_crop_width', 95);
+		setThemeOptionDefault('thumb_crop_height', 95);
+		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('thumb_transition', 1);
 		setOptionDefault('colorbox_zenpage_album', 1);
 		setOptionDefault('colorbox_zenpage_image', 1);

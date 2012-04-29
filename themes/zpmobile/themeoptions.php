@@ -18,14 +18,23 @@ class ThemeOptions {
 		setOptionDefault('colorbox_default_album', 1);
 		setOptionDefault('colorbox_default_image', 1);
 		setOptionDefault('colorbox_default_search', 1);
+		setThemeOption('thumb_size',79);
+		setThemeOptionDefault('thumb_crop_width', 79);
+		setThemeOptionDefault('thumb_crop_height', 79);
+		setThemeOptionDefault('thumb_crop', 1);
+		setThemeOption('custom_index_page', 'gallery', NULL, NULL, false);
+		setThemeOptionDefault('albums_per_page', 6);
+		setThemeOptionDefault('albums_per_row', 1);
+		setThemeOptionDefault('images_per_page', 24);
+		setThemeOptionDefault('images_per_row', 6);
 		if (class_exists('cacheManager')) {
-			cacheManager::deleteThemeCacheSizes('zpMobile');
-			cacheManager::addThemeCacheSize('zpMobile', NULL, 79, 79, 79, 79, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
+			cacheManager::deleteThemeCacheSizes('zpmobile');
+			cacheManager::addThemeCacheSize('zpmobile', NULL, 79, 79, 79, 79, NULL, NULL, true, getOption('Image_watermark'), NULL, NULL);
 		}
 	}
 
 	function getOptionsSupported() {
-		return array(	
+		return array(
 			gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable search form.')),
 			gettext('Allow direct link from multimedia') => array('key' => 'zpmobile_mediadirectlink', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Check to enable a direct link to multimedia items on the single image page in case the player is not supported by the device but the actual format is.'))
 		);
@@ -36,7 +45,7 @@ class ThemeOptions {
   }
 
 	function handleOption($option, $currentValue) {
-		
+
 	}
 }
 ?>

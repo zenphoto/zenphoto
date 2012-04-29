@@ -30,6 +30,9 @@ class ThemeOptions {
 		setThemeOption('image_use_side', 'longest');
 		setThemeOptionDefault('thumb_transition', 1);
 		setThemeOptionDefault('thumb_size', 100);
+		setThemeOptionDefault('thumb_crop_width', 100);
+		setThemeOptionDefault('thumb_crop_height', 100);
+		setThemeOptionDefault('thumb_crop', 1);
 		setThemeOptionDefault('effervescence_daily_album_image', 1);
 		setThemeOptionDefault('effervescence_daily_album_image_effect', '');
 		setOptionDefault('colorbox_effervescence_plus_album', 1);
