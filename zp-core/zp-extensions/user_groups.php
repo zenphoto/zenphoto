@@ -312,8 +312,6 @@ class user_groups {
 			'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
 				<td colspan="2" width="20%"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top">'.gettext('User group membership').
 							$grouppart.'<br />'.gettext('<strong>Note:</strong> When a group is assigned <em>rights</em> and <em>managed albums</em> are determined by the group!').'</td>
-				<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" width="345">'.
-					'</td>
 				</tr>'."\n";
 		return $html.$result;
 	}

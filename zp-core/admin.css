@@ -1491,8 +1491,6 @@ width: 90% !important;
 
 .albumchecklist label {
 	display: block;
-	padding: 0 0.2em 0 25px;
-	text-indent: -25px;
 }
 
 .albumchecklist label:hover,.albumchecklist label.hover {
@@ -2238,6 +2236,11 @@ div.tabs>div h2 {
 /* Extras */
 .displayinline {
 	display: inline !important;
+	white-space:nowrap;
+}
+.displayinlineright {
+	display: inline !important;
+	float:right;
 	white-space:nowrap;
 }
 

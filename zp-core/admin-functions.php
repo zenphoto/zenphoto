@@ -915,7 +915,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 		}
 		?>
 		<li>
-		<span style="display:inline;white-space:nowrap">
+		<span class="displayinline">
 			<label class="displayinline">
 				<input id="<?php echo strtolower($listitem); ?>"<?php echo $class;?> name="<?php echo $listitem; ?>" type="checkbox"
 							<?php if (isset($cv[$item])) {echo ' checked="checked"';	} ?> value="1" <?php echo $alterrights; ?> />
@@ -925,7 +925,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 
 			if (array_key_exists($item, $extra)) {
 				$unique = '';
-				foreach ($extra[$item] as $box) {
+				foreach (array_reverse($extra[$item]) as $box) {
 					if ($box['display']) {
 						if (isset($box['disable'])) {
 							$disable = ' disabled="disabled"';
@@ -939,7 +939,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 							$type = 'checkbox';
 						}
 						?>
-						<label class="displayinline">
+						<label class="displayinlineright">
 							<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem).'_'.$box['name'].$unique; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
 									 value="<?php echo html_encode($box['value']); ?>" <?php if ($box['checked']) {echo ' checked="checked"';	} ?>
 									 <?php echo $disable; ?> \> <?php echo $box['display'];?>
@@ -948,7 +948,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 					} else {
 						?>
 						<input type="hidden" id="<?php echo strtolower($listitem.'_'.$box['name']); ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
-									 value="<?php echo $box['value']; ?>" />
+									 value="<?php echo html_encode($box['value']); ?>" />
 						<?php
 					}
 				}
@@ -2968,14 +2968,14 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			} else {
 				$full = populateManagedObjectsList('album', $adminid, true);
 				$cv = $extra = array();
-				$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/options.png" class="icon-position-top3" alt="" title="'.gettext('edit albums').'" />';
+				$icon_edit_album = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/options.png" class="icon-position-top3" alt="" title="'.gettext('edit rights').'" />';
 				$icon_view_image = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/action.png" class="icon-position-top3" alt="" title="'.gettext('view unpublished items').'" />';
-				$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload to album').'"/>';
+				$icon_upload = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('upload rights').'"/>';
 				$icon_upload_disabled = '<img src="'.WEBPATH.'/'.ZENFOLDER.'/images/arrow_up.png" class="icon-position-top3"  alt="" title="'.gettext('the album is dynamic').'"/>';
 				if (!empty($flag)) {
 					$legend .= '* '.gettext('Primary album').' ';
 				}
-				$legend .= $icon_edit_album.' '.gettext('edit album').' ';
+				$legend .= $icon_edit_album.' '.gettext('edit').' ';
 				if ($rights & UPLOAD_RIGHTS) $legend .= $icon_upload.' '.gettext('upload').' ';
 				if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) $legend .= $icon_view_image.' '.gettext('view unpublished').' ';
 				foreach ($full as $item) {
@@ -2985,11 +2985,11 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 						$note = '';
 					}
 					$cv[$item['name'].$note] = $item['data'];
-					$extra[$item['data']][] = array('name'=>'default','value'=>0,'display'=>'','checked'=>1);
+					$extra[$item['data']][] = array('name'=>'name','value'=>$item['name'],'display'=>'','checked'=>0);
 					$extra[$item['data']][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_EDIT);
 					if (($rights&UPLOAD_RIGHTS)) {
 						if (hasDynamicAlbumSuffix($item['data'])) {
-							$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload_disabled,'checked'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'disable'=>true);
+							$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload_disabled,'checked'=>0,'disable'=>true);
 						} else{
 							$extra[$item['data']][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>$item['edit']&MANAGED_OBJECT_RIGHTS_UPLOAD);
 						}
@@ -3060,7 +3060,8 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true);
 				?>
 			</ul>
-			<?php echo $legend; ?>
+			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+			<br clear="all">
 		</div>
 	</div>
 	<?php
@@ -3107,33 +3108,24 @@ function processManagedObjects($i, &$rights) {
 		$key = postIndexDecode($key);
 		if (substr($key, 0, $l_a) == $prefix_a) {
 			$key = substr($key, $l_a);
-			if (strpos($key, '_default')) {
-				$key = substr($key, 0, -8);
-				if (isset($albums[$key])) {	// album still part of the list
-					$albums[$key]['edit'] = sanitize_numeric($value);
-				}
-			} else if (strpos($key, '_edit')) {
-				$key = substr($key, 0, -5);
-				if (isset($albums[$key])) {	// album still part of the list
-					$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
-				}
-			} else if (strpos($key, '_upload')) {
-				$key = substr($key, 0, -7);
-				if (isset($albums[$key])) {	// album still part of the list
-					$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
-				}
-			} else if (strpos($key, '_view')) {
-				$key = substr($key, 0, -5);
-				if (isset($albums[$key])) {	// album still part of the list
-					$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+			if (preg_match('/(.*)(_edit|_view|_upload|_name)$/', $key, $matches)) {
+				$key = $matches[1];
+				switch ($matches[2]) {
+					case '_edit':
+						$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
+						break;
+					case '_upload':
+						$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
+						break;
+					case '_view':
+						$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+						break;
+					case '_name':
+						$albums[$key]['name'] = $value;
+						break;
 				}
 			} else if ($value) {
-				if (hasDynamicAlbumSuffix($key)) {
-					$name = substr($key, 0, -4); // Strip the .'.alb' suffix
-				} else {
-					$name = $key;
-				}
-				$albums[$key] = array('data'=>$key, 'name'=>$name, 'type'=>'album');
+				$albums[$key] = array('data'=>$key, 'name'=>'', 'type'=>'album', 'edit'=>32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW));
 			}
 		}
 		if (substr($key, 0, $l_p) == $prefix_p) {
@@ -3147,7 +3139,6 @@ function processManagedObjects($i, &$rights) {
 			}
 		}
 	}
-
 	foreach ($albums as $key=>$analbum) {
 		unset($albums[$key]);
 		$albums[] = $analbum;

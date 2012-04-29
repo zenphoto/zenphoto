@@ -298,7 +298,7 @@ class federated_logon {
 					$msg = gettext('<strong>NOTE:</strong> Update your profile with a valid <em>e-mail</em> address and you will be sent a link to validate your access to the site.');
 					$myhtml =
 						'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-							<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" colspan="3">'."\n".
+							<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" colspan="2">'."\n".
 								'<p class="notebox">'.$msg.'</p>'."\n".
 							'</td>
 						</tr>'."\n";
@@ -309,7 +309,7 @@ class federated_logon {
 			$msg = gettext("<strong>NOTE:</strong> User's credentials came from a Federated logon.");
 			$myhtml =
 				'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-					<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" colspan="3">'."\n".
+					<td'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" colspan="2">'."\n".
 						'<p class="notebox">'.$msg.'</p>'."\n".
 					'</td>
 				</tr>'."\n";

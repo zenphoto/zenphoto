@@ -86,7 +86,9 @@ class quota_manager {
 		if (isset($_POST[$i.'quota']) && $alter) {
 			$oldquota = $userobj->getQuota();
 			$userobj->setQuota(sanitize_numeric($_POST[$i.'quota']));
-			$updated = $oldquota != $userobj->getQuota();
+			if ($oldquota != $userobj->getQuota()) {
+				$updated = true;
+			}
 		}
 		return $updated;
 	}
@@ -109,7 +111,7 @@ class quota_manager {
 		if ($quota == NULL) $quota = getOption('quota_default');
 		$result =
 			'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-				<td colspan="3"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" width="345">'.gettext("Image storage quota:").'&nbsp;'.
+				<td colspan="2"'.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top" width="345">'.gettext("Image storage quota:").'&nbsp;'.
 					sprintf(gettext('Allowed: %s kb'),'<input type="text" size="10" name="'.$i.'quota" value="'.$quota.'" '.$local_alterrights.' />').' '.
 					sprintf(gettext('(%s kb used)'),number_format($used)).
 					"\n".

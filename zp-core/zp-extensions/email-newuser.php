@@ -36,7 +36,7 @@ class email_new_user {
 		if (empty($user)) {
 			$result =
 				'<tr'.((!$current)? ' style="display:none;"':'').' class="userextrainfo">
-					<td colspan="3" '.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top"><p class="notebox">'.gettext('New users will be mailed a password set link').'</p></td>
+					<td colspan="2" '.((!empty($background)) ? ' style="'.$background.'"':'').' valign="top"><p class="notebox">'.gettext('New users will be mailed a password set link').'</p></td>
 				</tr>'."\n";
 			$html = $result.$html;
 		}

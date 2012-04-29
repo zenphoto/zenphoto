@@ -410,8 +410,7 @@ function comment_form_edit_admin($html, $userobj, $i, $background, $current) {
 					<legend>'.gettext("Postal code").'</legend>
 					<input type="text" name="'.$i.'-comment_form_postal" value="'.$address['postal'].'" size="'.TEXT_INPUT_SIZE.'" />
 				</fieldset>'.
-	'</td>'.
-			'<td'.((!empty($background)) ? ' style="'.$background.'"':'').'></td>'.
+			'</td>'.
 		'</tr>';
 }
 

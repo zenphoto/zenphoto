@@ -93,134 +93,125 @@ if (isset($_GET['action'])) {
 					}
 					if (!empty($user)) {
 						$nouser = false;
-							if (isset($_POST[$i.'-newuser'])) {
-								$newuser = $user;
-								$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
-								if (is_object($userobj)) {
-									$notify = '?exists';
-									break;
-								} else {
-									$what = 'new';
-									$userobj = Zenphoto_Authority::newAdministrator('');
-									$userobj->transient = false;
-									$userobj->setUser($user);
-									$updated = true;
-								}
+						if (isset($_POST[$i.'-newuser'])) {
+							$newuser = $user;
+							$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
+							if (is_object($userobj)) {
+								$notify = '?exists';
+								break;
 							} else {
-								$what = 'update';
-								$userobj = Zenphoto_Authority::newAdministrator($user);
+								$what = 'new';
+								$userobj = Zenphoto_Authority::newAdministrator('');
+								$userobj->transient = false;
+								$userobj->setUser($user);
+								$updated = true;
 							}
+						} else {
+							$what = 'update';
+							$userobj = Zenphoto_Authority::newAdministrator($user);
+						}
 
-							if (isset($_POST[$i.'-admin_name'])) {
-								$admin_n = trim(sanitize($_POST[$i.'-admin_name']));
-								if ($admin_n != $userobj->getName()) {
-									$updated = true;
-									$userobj->setName($admin_n);
-								}
+						if (isset($_POST[$i.'-admin_name'])) {
+							$admin_n = trim(sanitize($_POST[$i.'-admin_name']));
+							if ($admin_n != $userobj->getName()) {
+								$updated = true;
+								$userobj->setName($admin_n);
 							}
-							if (isset($_POST[$i.'-admin_email'])) {
-								$admin_e = trim(sanitize($_POST[$i.'-admin_email']));
-								if ($admin_e != $userobj->getEmail()) {
-									$updated = true;
-									$userobj->setEmail($admin_e);
-								}
+						}
+						if (isset($_POST[$i.'-admin_email'])) {
+							$admin_e = trim(sanitize($_POST[$i.'-admin_email']));
+							if ($admin_e != $userobj->getEmail()) {
+								$updated = true;
+								$userobj->setEmail($admin_e);
 							}
-							if (empty($pass)) {
-								if ($newuser || @$_POST['passrequired'.$i]) {
-									$msg = sprintf(gettext('%s password may not be empty!'),$admin_n);
-								} else {
-									$msg = '';
-								}
+						}
+						if (empty($pass)) {
+							if ($newuser || @$_POST['passrequired'.$i]) {
+								$msg = sprintf(gettext('%s password may not be empty!'),$admin_n);
 							} else {
-								if (!isset($_POST['disclose_password_'.$i])) {
-									$pass2 = trim(sanitize($_POST['pass_r_'.$i]));
-									if ($pass == $pass2) {
-										$pass2 = $userobj->getPass($pass);
-										$msg = $userobj->setPass($pass);
-										if ($pass2 !=  $userobj->getPass($pass)) {
-											$updated = true;
-										}
-									} else {
-										$notify = '?mismatch=password';
-										$error = true;
+								$msg = '';
+							}
+						} else {
+							if (!isset($_POST['disclose_password_'.$i])) {
+								$pass2 = trim(sanitize($_POST['pass_r_'.$i]));
+								if ($pass == $pass2) {
+									$pass2 = $userobj->getPass($pass);
+									$msg = $userobj->setPass($pass);
+									if ($pass2 !=  $userobj->getPass($pass)) {
+										$updated = true;
 									}
-								}
-							}
-							$challenge = sanitize($_POST[$i.'-challengephrase']);
-							$response = sanitize($_POST[$i.'-challengeresponse']);
-							$info = $userobj->getChallengePhraseInfo();
-							if ($challenge != $info['challenge'] || $response != $info['response']) {
-								$userobj ->setChallengePhraseInfo($challenge, $response);
-								$updated = true;
-							}
-							$lang = sanitize($_POST[$i.'-admin_language'],3);
-							if ($lang != $userobj->getLanguage()) {
-								$userobj->setLanguage($lang);
-								$updated = true;
-							}
-							$oldrights = $userobj->getRights();
-							$oldobjects = $userobj->getObjects();
-							$rights = 0;
-							if ($alter) {
-								$rights = processRights($i);
-								$objects = processManagedObjects($i, $rights);
-								if ($objects != $oldobjects) {
-									$userobj->setObjects($objects);
-								}
-								if ($rights != $oldrights) {
-									$userobj->setRights($rights | NO_RIGHTS);
-								}
-							} else {
-								$oldobjects = $userobj->setObjects(NULL);	// indicates no change
-							}
-							$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
-							if ($oldrights != $userobj->getRights()) {
-								$updated = true;
-							}
-							$objects = $userobj->getObjects();
-							if (!$updated && $oldobjects != $objects && $objects) {
-								$objects = sortMultiArray($objects, 'data');
-								$oldobjects = sortMultiArray($oldobjects, 'data');
-								if ($oldobjects != $objects) {
-									$updated = true;
-								}
-							}
-							if (isset($_POST['delinkAlbum_'.$i])) {
-								$userobj->setAlbum(NULL);
-								$updated = true;
-							}
-							if (isset($_POST['createAlbum_'.$i])) {
-								$userobj->createPrimealbum();
-								$updated = true;
-							}
-							if ($updated) {
-								$returntab .= '&show-'.$user;
-								$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
-								if (empty($msg)) {
-									$userobj->save();
 								} else {
-									$notify = '?mismatch=format&error='.urlencode($msg);
+									$notify = '?mismatch=password';
 									$error = true;
 								}
 							}
 						}
+						$challenge = sanitize($_POST[$i.'-challengephrase']);
+						$response = sanitize($_POST[$i.'-challengeresponse']);
+						$info = $userobj->getChallengePhraseInfo();
+						if ($challenge != $info['challenge'] || $response != $info['response']) {
+							$userobj ->setChallengePhraseInfo($challenge, $response);
+							$updated = true;
+						}
+						$lang = sanitize($_POST[$i.'-admin_language'],3);
+						if ($lang != $userobj->getLanguage()) {
+							$userobj->setLanguage($lang);
+							$updated = true;
+						}
+						$rights = 0;
+						if ($alter && !$userobj->getGroup()) {
+							$oldrights = $userobj->getRights();
+							$rights = processRights($i);
+							if ($rights != $oldrights) {
+								$userobj->setRights($rights | NO_RIGHTS);
+								$updated = true;
+							}
+							$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
+							$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
+							if ($objects != $oldobjects) {
+								$userobj->setObjects($objects);
+								$updated = true;
+							}
+						} else {
+							$oldobjects = $userobj->setObjects(NULL);	// indicates no change
+						}
+						$updated = $updated || zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
+						if (isset($_POST['delinkAlbum_'.$i])) {
+							$userobj->setAlbum(NULL);
+							$updated = true;
+						}
+						if (isset($_POST['createAlbum_'.$i])) {
+							$userobj->createPrimealbum();
+							$updated = true;
+						}
+						if ($updated) {
+
+							$returntab .= '&show-'.$user;
+							$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
+							if (empty($msg)) {
+								$userobj->save();
+							} else {
+								$notify = '?mismatch=format&error='.urlencode($msg);
+								$error = true;
+							}
+						}
 					}
 				}
-				if ($nouser) {
-					$notify = '?mismatch=nothing';
-				}
-				$returntab .= "&page=users";
-				if (!empty($newuser)) {
-					$returntab .= '&show-'.$newuser;
-					unset($_POST['show-']);
-				}
 			}
-
-			if (empty($notify)) {
-				$notify = '?saved';
+			if ($nouser) {
+				$notify = '?mismatch=nothing';
 			}
-			header("Location: " . $notify.$returntab.$ticket);
-			exitZP();
+			$returntab .= "&page=users";
+			if (!empty($newuser)) {
+				$returntab .= '&show-'.$newuser;
+				unset($_POST['show-']);
+			}
+	}
+	if (empty($notify)) {
+		$notify = '?saved';
+	}
+	header("Location: " . $notify.$returntab.$ticket);
+	exitZP();
 
 
 }
@@ -545,8 +536,8 @@ function languageChange(id,lang) {
 	if (!empty($newuser)) {
 		$userlist[-1] = $newuser;
 	}
-	$ismaster = false;
 	foreach($userlist as $key=>$user) {
+		$ismaster = false;
 		$local_alterrights = $alterrights;
 		$userid = $user['user'];
 		$current = in_array($userid,$showset);
@@ -595,7 +586,7 @@ function languageChange(id,lang) {
 			<input type="hidden" name="show-<?php echo $userid; ?>" id="show-<?php echo $userid; ?>" value="<?php echo ($current);?>" />
 			<table class="bordered" style="border: 0" id='user-<?php echo $id;?>'>
 			<tr>
-				<td colspan="2" style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
+				<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
 				<?php
 				if (empty($userid)) {
 					$displaytitle = gettext("Show details");
@@ -667,10 +658,12 @@ function languageChange(id,lang) {
 							$msg .= ' '.gettext('This is the master user account. If you delete it another user will be promoted to master user.');
 						}
 						?>
-						<td width="5%" style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
-						<a href="javascript:if(confirm(<?php echo "'".js_encode($msg)."'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin')?>'; }"
-							title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;"> <img
-							src="images/fail.png" style="border: 0px;" alt="Delete" /></a>
+						<td style="border-top:4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
+							<span class="floatright">
+								<a href="javascript:if(confirm(<?php echo "'".js_encode($msg)."'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin')?>'; }"
+									title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;">
+									<img src="images/fail.png" style="border: 0px;" alt="Delete" /></a>
+							</span>
 						</td>
 						<?php
 					} else {
@@ -683,8 +676,7 @@ function languageChange(id,lang) {
 					<?php
 				} else  {
 					?>
-					<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
-					</td>
+					<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top"></td>
 					<?php
 				}
 				?>
@@ -696,12 +688,11 @@ function languageChange(id,lang) {
 				$no_change = $userobj->getCredentials();
 				?>
 				<tr <?php if (!$current) echo 'style="display:none;"'; ?> class="userextrainfo">
-					<td colspan="2" <?php if (!empty($background)) echo " style=\"$background\""; ?>>
+					<td <?php if (!empty($background)) echo " style=\"$background\""; ?> colspan="2">
 						<p class="notebox">
 							<?php echo gettext('<strong>Note:</strong> You must have ADMIN rights to alter anything but your personal information.');?>
 						</p>
 					</td>
-					<td <?php if (!empty($background)) echo " style=\"$background\""; ?>></td>
 				</tr>
 				<?php
 				}
@@ -795,11 +786,9 @@ function languageChange(id,lang) {
 					}
 					?>
 				</ul>
-
-
 			</td>
 
-			<td width="45%" <?php if (!empty($background)) echo " style=\"$background\""; ?>>
+			<td <?php if (!empty($background)) echo " style=\"$background\""; ?>>
 				<?php printAdminRightsTable($id, $background, $local_alterrights, $userobj->getRights()); ?>
 
 				<?php
@@ -808,7 +797,7 @@ function languageChange(id,lang) {
 				} else {
 					$album_alter_rights = ' disabled="disabled"';
 				}
-				if ($current && $ismaster) {
+				if ($ismaster) {
 					echo '<p>'.gettext("The <em>master</em> account has full rights to all albums.").'</p>';
 				} else {
 					if (is_object($primeAlbum)) {
@@ -837,7 +826,6 @@ function languageChange(id,lang) {
 				?>
 
 			</td>
-			<td <?php if (!empty($background)) echo " style=\"$background\""; ?>></td>
 		</tr>
 		<?php echo $custom_row; ?>
 
@@ -847,11 +835,11 @@ function languageChange(id,lang) {
 	</td>
 	</tr>
 	<?php
-	$current = false;
 	$id++;
 }
 ?>
 </table> <!-- main admin table end -->
+
 <input type="hidden" name="totaladmins" value="<?php echo $id; ?>" />
 <br />
 <p class="buttons">
