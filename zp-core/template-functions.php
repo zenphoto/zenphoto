@@ -1693,7 +1693,6 @@ function getNumImages() {
 	} else {
 		return $_zp_current_album->getNumImages();
 	}
-	return false;
 }
 
 /**

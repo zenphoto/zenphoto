@@ -1817,7 +1817,7 @@ function processZenpageBulkActions($type) {
 								$allcatsarray[] = $allcat['titlelink']; //same here!
 							}
 							$mycats = array_unique(array_merge($catarray, $allcatsarray));
-							$obj->setCategories($catarray);
+							$obj->setCategories($mycats);
 							break;
 						case 'clearcats':
 							$obj->setCategories(array());

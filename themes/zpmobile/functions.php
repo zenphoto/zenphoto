@@ -1,4 +1,8 @@
 <?php
+//	Required plugins:
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/print_album_menu.php');
+
 /**
  * Prints the scripts needed for the header
  */

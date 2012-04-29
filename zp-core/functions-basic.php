@@ -307,14 +307,9 @@ function getOption($key) {
 	} else {
 		$v = NULL;
 		if (is_null($_zp_options)) {
-			// option table not yet loaded, load it
-			$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `ownerid`=0';
+			// option table not yet loaded, load it (but not the theme options!)
+			$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `theme` IS NULL AND `ownerid`=0';
 			$optionlist = query_full_array($sql, false);
-			if ($optionlist == false) {
-				// might be old, un-migrated option table during setup--retry without the `ownerid`.
-				$sql = "SELECT `name`, `value` FROM ".prefix('options');
-				$optionlist = query_full_array($sql, false);
-			}
 			if ($optionlist !== false) {
 				$_zp_options = array();
 				foreach($optionlist as $option) {

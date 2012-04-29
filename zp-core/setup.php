@@ -381,6 +381,19 @@ $taskDisplay = array('create' => gettext("create"), 'update' => gettext("update"
 <div id="content">
 <?php
 $blindInstall = $warn = false;
+
+if ($connection && !isset($_zp_options)) {
+	$sql = "SELECT `name`, `value` FROM ".prefix('options');
+	$optionlist = query_full_array($sql, false);
+	$_zp_options = array();
+	foreach($optionlist as $option) {
+		$_zp_options[$option['name']] = $option['value'];
+		if ($option['name']==$key) {
+			$v = $option['value'];
+		}
+	}
+}
+
 if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	if ($blindInstall = ($upgrade && $autorun) && !zp_loggedin(ADMIN_RIGHTS)) {
 		ob_start();	//	hide output for auto-upgrade
@@ -403,6 +416,7 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 	$good = true;
 
 if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
+
 	if (function_exists('checkForUpdate')) {
 		$v = checkForUpdate();
 		if (!empty($v)) {
