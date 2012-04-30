@@ -690,6 +690,39 @@ div.outerbox {
 	padding: 1px;
 }
 
+/* middle and right columns on admin edit pages */
+.width100percent { /* workaround to get the album edit table right */
+width: 100%;
+}
+
+td.leftcolumn {
+width: 15%;
+}
+
+td.rightcolumn {
+	padding-left: 15px;
+	vertical-align: top;
+	width: 258px;
+}
+
+td.rightcolumnmiddle {
+	padding-left: 15px;
+	vertical-align: top;
+	text-align: left;
+}
+
+td.middlecolumn {
+vertical-align: top;
+padding-right: 20px !important;
+width: 95%;
+}
+
+td.middlecolumn input{
+width: 100%;
+}
+
+
+
 /* Sortable Images
 ------------------------------ */
 div.ui-sortable img {
