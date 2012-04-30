@@ -16,15 +16,58 @@
  *
  * Class <var>mobile</var> methods you can use in your theme:
  * <ul>
- * 	<li>
- * 		<var>getOS()</var>: returns the mobile device operating system.
- * 	</li>
- * 	<li>
- * 		<var>getAgent()</var>: returns the mobile device browser identification.
- * 	</li>
- * 	<li>
- * 		<i>magic</i> methods from the <var>Mobile_Detect</var> class. But note that specific device detection may lag the market.
- * 	</li>
+ * 	<li>phone is connected.
+ * 	<ul>
+ * 		<li>isiPhone()</li>
+ * 		<li>isBlackBerry()</li>
+ * 		<li>isHTC()</li>
+ * 		<li>isNexus()</li>
+ * 		<li>isDellStreak()</li>
+ * 		<li>isMotorola()</li>
+ * 		<li>isSamsung()</li>
+ * 		<li>isSony()</li>
+ * 		<li>isAsus()</li>
+ * 		<li>isPalm()</li>
+ * 	</ul>
+ * </li>
+ *
+ * 	<li>tablet is connected
+ * 	<ul>
+ * 		<li>isBlackBerryTablet()</li>
+ * 		<li>isiPad()</li>
+ * 		<li>isKindle()</li>
+ * 		<li>isSamsungTablet()</li>
+ * 		<li>isMotorolaTablet()</li>
+ * 		<li>isAsusTablet()</li>
+ * 	</ul>
+ * </li>
+ *
+ * 	<li>OS on the device
+ * 	<ul>
+ * 		<li>isAndroidOS()</li>
+ * 		<li>isBlackBerryOS()</li>
+ * 		<li>isPalmOS()</li>
+ * 		<li>isSymbianOS()</li>
+ * 		<li>isWindowsMobileOS()</li>
+ * 		<li>isiOS()</li>
+ * 	</ul>
+ * </li>
+ *
+ * 	<li> user agent (browser) on the device
+ * 	<ul>
+ * 		<li>isChrome()</li>
+ * 		<li>isDolfin()</li>
+ * 		<li>isOpera()</li>
+ * 		<li>isSkyfire()</li>
+ * 		<li>isIE()</li>
+ * 		<li>isFirefox()</li>
+ * 		<li>isBolt()</li>
+ * 		<li>isTeaShark()</li>
+ * 		<li>isBlazer()</li>
+ * 		<li>isSafari()
+ * 		<li>isMidori()</li>
+ * 	</ul>
+ * </li>
  * </ul>
  *
  * @package plugins
@@ -126,42 +169,8 @@ require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/mobileTheme/Mobile_Det
 
 class mobile extends Mobile_Detect {
 
-	protected $devicelist;
-
 	function __construct() {
 		parent::__construct();
-		$this->devicelist = array_merge(
-																		$this->phoneDevices,
-																		$this->tabletDevices
-																		);
-	}
-
-	/**
-	 *
-	 * Returns the mobile device's operating system
-	 * @return string
-	 */
-	public function getOS()  {
-		foreach($this->operatingSystems as $_key => $_regex) {
-			if(preg_match('/'.$_regex.'/is', $this->userAgent)) {
-				return $_key;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 *
-	 * Returns the mobile device browser
-	 * @return string
-	 */
-	public function getAgent()  {
-		foreach($this->userAgents as $_key => $_regex) {
-			if(preg_match('/'.$_regex.'/is', $this->userAgent)) {
-				return $_key;
-			}
-		}
-		return false;
 	}
 
 	/**
