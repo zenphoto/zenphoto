@@ -175,7 +175,7 @@ if (isset($_GET['action'])) {
 						} else {
 							$oldobjects = $userobj->setObjects(NULL);	// indicates no change
 						}
-						$updated = $updated || zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
+						$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
 						if (isset($_POST['delinkAlbum_'.$i])) {
 							$userobj->setAlbum(NULL);
 							$updated = true;
