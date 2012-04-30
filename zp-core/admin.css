@@ -841,7 +841,7 @@ input.tags {
 
 #overview-leftcolumn {
 	border: 0px solid gray;
-	width: 45%;
+	width: 50%;
 	float: left;
 }
 
@@ -886,6 +886,10 @@ input.tags {
 	width: 90%;
 	margin: 0 0 10px 0px;
 	padding: 0px;
+}
+
+#overview-comments {
+width: 500px;
 }
 
 #overview-comments h3,#overview-gallerystats h3,#overview-utility h2,#overview-info h3
