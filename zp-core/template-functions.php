@@ -766,7 +766,6 @@ function getPageNavList($oneImagePage, $navlen, $firstlast, $current, $total) {
  * @param int $navlen Number of navigation links to show (0 for all pages). Works best if the number is odd.
  */
 function printPageListWithNav($prevtext, $nexttext, $oneImagePage=false, $nextprev=true, $class='pagelist', $id=NULL, $firstlast=true, $navlen=9) {
-
 	$current = getCurrentPage();
 	$total = getTotalPages($oneImagePage);
 	$nav = getPageNavList($oneImagePage, $navlen, $firstlast, $current, $total);
@@ -775,132 +774,132 @@ function printPageListWithNav($prevtext, $nexttext, $oneImagePage=false, $nextpr
 	}
 	?>
 	<div <?php if ($id) echo ' id="$id"'; ?> class="<?php echo $class; ?>">
-	<ul class="<?php echo $class; ?>">
-	<?php
-	$prev = $nav['prev'];
-	unset($nav['prev']);
-	$next = $nav['next'];
-	unset($nav['next']);
-	if ($nextprev) {
-		?>
-		<li class="prev">
+		<ul class="<?php echo $class; ?>">
 			<?php
-			if ($prev) {
-				printLink($prev, html_encode($prevtext), gettext('Previous Page'));
-			} else {
+			$prev = $nav['prev'];
+			unset($nav['prev']);
+			$next = $nav['next'];
+			unset($nav['next']);
+			if ($nextprev) {
 				?>
-				<span class="disabledlink"><?php echo html_encode($prevtext); ?></span>
-				<?php
-			}
-			?>
-		</li>
-		<?php
-	}
-	$last = NULL;
-	if ($firstlast) {
-		?>
-		<li class="<?php if($current==1) echo 'current'; else echo 'first'; ?>">
-		<?php
-		if($current == 1) {
-			echo '1';
-		} else {
-			printLink($nav[1], 1, gettext("Page 1"));
-		}
-		?>
-		</li>
-		<?php
-		$last = 1;
-		unset($nav[1]);
-	}
-	foreach ($nav as $i=>$link) {
-			$d = $i - $last;
-		if ($d > 2) {
-			?>
-			<li>
-				<?php
-				$k1 = $i - (int) ($i - $last)/2;
-				printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u','Page %u',$k1),$k1));
-				?>
-			</li>
-			<?php
-		} else if ($d == 2) {
-			?>
-			<li>
-				<?php
-				$k1 = $last+1;
-				printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u','Page %u',$k1),$k1));
-				?>
-			</li>
-			<?php
-		}
-		?>
-		<li<?php if ($current==$i) echo ' class="current"'; ?>>
-		<?php
-		if ($i == $current) {
-			echo $i;
-		} else {
-			$title = sprintf(ngettext('Page %1$u','Page %1$u', $i),$i);
-			printLink($link, $i, $title);
-		}
-		?>
-		</li>
-		<?php
-		$last = $i;
-		unset($nav[$i]);
-		if ($firstlast && count($nav) == 1) {
-			break;
-		}
-	}
-	if ($firstlast) {
-		foreach ($nav as $i=>$link) {
-			$d = $i - $last;
-			if ($d > 2) {
-				?>
-				<li>
+				<li class="prev">
 					<?php
-					$k1 = $i - (int) ($i - $last)/2;
-					printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u','Page %u',$k1),$k1));
-					?>
-				</li>
-				<?php
-			} else if ($d == 2) {
-				?>
-				<li>
-					<?php
-					$k1 = $last+1;
-					printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u','Page %u',$k1),$k1));
+					if ($prev) {
+						printLink($prev, html_encode($prevtext), gettext('Previous Page'));
+					} else {
+						?>
+						<span class="disabledlink"><?php echo html_encode($prevtext); ?></span>
+						<?php
+					}
 					?>
 				</li>
 				<?php
 			}
-			?>
-			<li class="last">
+			$last = NULL;
+			if ($firstlast) {
+				?>
+				<li class="<?php if($current==1) echo 'current'; else echo 'first'; ?>">
 				<?php
-				if($current == $i)  {
-					echo $i;
+				if($current == 1) {
+					echo '1';
 				} else {
-					printLink($link, $i, sprintf(ngettext('Page %u','Page %u',$i),$i));
+					printLink($nav[1], 1, gettext("Page 1"));
 				}
 				?>
-			</li>
-		<?php
-		}
-	}
-	if ($nextprev) {
-		?>
-		<li class="next">
-			<?php
-			if ($next) {
-				printLink($next, html_encode($nexttext), gettext('Previous Page'));
-			} else {
+				</li>
+				<?php
+				$last = 1;
+				unset($nav[1]);
+			}
+			foreach ($nav as $i=>$link) {
+					$d = $i - $last;
+				if ($d > 2) {
+					?>
+					<li>
+						<?php
+						$k1 = $i - (int) ($i - $last)/2;
+						printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u','Page %u',$k1),$k1));
+						?>
+					</li>
+					<?php
+				} else if ($d == 2) {
+					?>
+					<li>
+						<?php
+						$k1 = $last+1;
+						printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u','Page %u',$k1),$k1));
+						?>
+					</li>
+					<?php
+				}
 				?>
-				<span class="disabledlink"><?php echo html_encode($nexttext); ?></span>
+				<li<?php if ($current==$i) echo ' class="current"'; ?>>
+				<?php
+				if ($i == $current) {
+					echo $i;
+				} else {
+					$title = sprintf(ngettext('Page %1$u','Page %1$u', $i),$i);
+					printLink($link, $i, $title);
+				}
+				?>
+				</li>
+				<?php
+				$last = $i;
+				unset($nav[$i]);
+				if ($firstlast && count($nav) == 1) {
+					break;
+				}
+			}
+			if ($firstlast) {
+				foreach ($nav as $i=>$link) {
+					$d = $i - $last;
+					if ($d > 2) {
+						$k1 = $i - (int) ($i - $last)/2;
+						?>
+						<li>
+							<?php printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u','Page %u',$k1),$k1)); ?>
+						</li>
+						<?php
+					} else if ($d == 2) {
+						$k1 = $last+1;
+						?>
+						<li>
+							<?php printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u','Page %u',$k1),$k1)); ?>
+						</li>
+						<?php
+					}
+					?>
+					<li class="last">
+						<?php
+						if($current == $i)  {
+							echo $i;
+						} else {
+							printLink($link, $i, sprintf(ngettext('Page %u','Page %u',$i),$i));
+						}
+						?>
+					</li>
+				<?php
+				}
+			}
+			if ($nextprev) {
+				?>
+				<li class="next">
+					<?php
+					if ($next) {
+						printLink($next, html_encode($nexttext), gettext('Previous Page'));
+					} else {
+						?>
+						<span class="disabledlink"><?php echo html_encode($nexttext); ?></span>
+						<?php
+					}
+					?>
+				</li>
 				<?php
 			}
 			?>
-		</li>
-		<?php
-	}
+		</ul>
+	</div>
+	<?php
 }
 
 //*** Album Context ************************
@@ -1215,7 +1214,7 @@ function getAlbumDate($format=null) {
 }
 
 /**
- * Prints the date of the current album and makes it editable in place if applicable
+ * Prints the date of the current album
  *
  * @param string $before Insert here the text to be printed before the date.
  * @param string $nonemessage Insert here the text to be printed if there is no date.
@@ -1246,7 +1245,7 @@ function getAlbumLocation() {
 }
 
 /**
- * Prints the location of the album and make it editable
+ * Prints the location of the album
  *
  * @author Ozh
  */
@@ -1275,7 +1274,7 @@ function getBareAlbumDesc() {
 }
 
 /**
- * Prints description of the current album and makes it editable in place
+ * Prints description of the current album
  *
  * @author Ozh
  */
@@ -1286,7 +1285,7 @@ function printAlbumDesc() {
 
 
 /**
- * Print any album or image data and make it editable in place
+ * Print any album or image data
  *
  * @param string $context	either 'image' or 'album'
  * @param string $field		the data field to echo & edit if applicable: 'date', 'title', 'place', 'description', ...
@@ -1387,7 +1386,7 @@ function getAlbumData($field) {
 }
 
 /**
- * Prints arbitrary data from the album object and make it editable if applicable
+ * Prints arbitrary data from the album object
  *
  * @param string $field the field name of the data desired
  * @param string $label text to label the field
@@ -1929,7 +1928,7 @@ function getAnnotatedImageTitle() {
 	return $title;
 }
 /**
- * Prints title of the current image and make it editable in place
+ * Prints title of the current image
  *
  * @author Ozh
  */
@@ -1982,7 +1981,7 @@ function getImageDate($format=null) {
 }
 
 /**
- * Prints the date of the current album and makes it editable in place if applicable
+ * Prints the date of the current album
  *
  * @param string $before Insert here the text to be printed before the date.
  * @param string $nonemessage Insert here the text to be printed if there is no date.
@@ -2123,7 +2122,7 @@ function setImageCustomData($val) {
 }
 
 /**
- * Prints arbitrary data from the image object and make it editable if applicable
+ * Prints arbitrary data from the image object
  *
  * @param string $field the field name of the data desired
  * @param string $label text to label the field.
@@ -2306,7 +2305,7 @@ function getImageMetaData($image=NULL, $displayonly=true) {
 }
 
 /**
- * Prints the Metadata data of the current image, and make each value editable in place if applicable
+ * Prints the Metadata data of the current image
  *
  * @param string $title title tag for the class
  * @param bool $toggle set to true to get a javascript toggle on the display of the data
