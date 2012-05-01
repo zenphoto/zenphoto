@@ -1063,5 +1063,73 @@ function resetCurrentAlbum() {
 	setThemeColumns();
 }
 
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function setAlbumCustomData($val) {
+	deprecated_functions::notify(gettext('Use object methods.'));
+	global $_zp_current_album;
+	$_zp_current_album->setCustomData($val);
+	$_zp_current_album->save();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function setImageCustomData($val) {
+	deprecated_functions::notify(gettext('Use object methods.'));
+	Global $_zp_current_image;
+	$_zp_current_image->setCustomData($val);
+	$_zp_current_image->save();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function getImageSortOrder() {
+	deprecated_functions::notify(gettext('Use object methods.'));
+	if (!in_context(ZP_IMAGE)) return false;
+	global $_zp_current_image;
+	return $_zp_current_image->getSortOrder();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function printImageSortOrder() {
+	deprecated_functions::notify(gettext('Use echo $_zp_current_image->getSortOrder().'));
+	if (!in_context(ZP_IMAGE)) return false;
+	echo getImageSortOrder();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function getFirstImageURL() {
+	deprecated_functions::notify('');
+	global $_zp_current_album;
+	if (is_null($_zp_current_album)) return false;
+	$firstimg = $_zp_current_album->getImage(0);
+	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($firstimg->filename) . IM_SUFFIX,
+											"/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($firstimg->filename));
+}
+
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function getLastImageURL() {
+	deprecated_functions::notify('');
+	global $_zp_current_album;
+	if (is_null($_zp_current_album)) return false;
+	$lastimg = $_zp_current_album->getImage($_zp_current_album->getNumImages() - 1);
+	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($lastimg->filename) . IM_SUFFIX,
+											"/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($lastimg->filename));
+}
 
 ?>

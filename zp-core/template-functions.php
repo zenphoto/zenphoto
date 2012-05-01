@@ -1363,17 +1363,6 @@ function printAlbumCustomData() {
 }
 
 /**
- * Sets the album custom_data field
- *
- * @param string $val The value to be set
- */
-function setAlbumCustomData($val) {
-	global $_zp_current_album;
-	$_zp_current_album->setCustomData($val);
-	$_zp_current_album->save();
-}
-
-/**
  * A composit for getting album data
  *
  * @param string $field which field you want
@@ -2111,17 +2100,6 @@ function printImageCustomData() {
 }
 
 /**
- * Sets the image custom_data field
- *
- * @param string $val
- */
-function setImageCustomData($val) {
-	Global $_zp_current_image;
-	$_zp_current_image->setCustomData($val);
-	$_zp_current_image->save();
-}
-
-/**
  * Prints arbitrary data from the image object
  *
  * @param string $field the field name of the data desired
@@ -2130,25 +2108,6 @@ function setImageCustomData($val) {
  */
 function printImageData($field, $label='') {
 	printField('image', $field, false, false, $label);
-}
-
-/**
- * Get the sort order of this image.
- *
- * @return string
- */
-function getImageSortOrder() {
-	if (!in_context(ZP_IMAGE)) return false;
-	global $_zp_current_image;
-	return $_zp_current_image->getSortOrder();
-}
-
-/**
- * Print the sort order of this image.
- */
-function printImageSortOrder() {
-	if (!in_context(ZP_IMAGE)) return false;
-	echo getImageSortOrder();
 }
 
 /**
@@ -2198,33 +2157,6 @@ function getPrevImageURL() {
 	$previmg = $_zp_current_image->getPrevImage();
 	return rewrite_path("/" . pathurlencode($previmg->album->name) . "/" . urlencode($previmg->filename) . IM_SUFFIX,
 		"/index.php?album=" . pathurlencode($previmg->album->name) . "&image=" . urlencode($previmg->filename));
-}
-
-/**
-* Returns the url of the first image in current album.
-*
-* @return string
-* @author gerben
-*/
-function getFirstImageURL() {
-	global $_zp_current_album;
-	if (is_null($_zp_current_album)) return false;
-	$firstimg = $_zp_current_album->getImage(0);
-	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($firstimg->filename) . IM_SUFFIX,
-											"/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($firstimg->filename));
-}
-
-/**
-* Returns the url of the last image in current album.
-*
-* @return string
-*/
-function getLastImageURL() {
-	global $_zp_current_album;
-	if (is_null($_zp_current_album)) return false;
-	$lastimg = $_zp_current_album->getImage($_zp_current_album->getNumImages() - 1);
-	return rewrite_path("/" . pathurlencode($_zp_current_album->name) . "/" . urlencode($lastimg->filename) . IM_SUFFIX,
-											"/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($lastimg->filename));
 }
 
 /**
