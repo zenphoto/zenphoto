@@ -11,7 +11,7 @@
  *
  * You may place a call on <var>mobileTheme::controlLink();</var> in your theme(s) to allow the client viewer
  * to override the switch and view your standard gallery theme. If the same call is placed in your gallery
- * theme he will be able to switch back as well. <b>NOTE:</b> This link is present only when the browing client
+ * theme he will be able to switch back as well. <b>NOTE:</b> This link is present only when the browsing client
  * is a mobile device!
  *
  * Class <var>mobile</var> methods you can use in your theme:
