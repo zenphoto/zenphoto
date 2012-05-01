@@ -250,7 +250,7 @@ class pagedThumbsNav {
 		//$thcount = count($thumbs); echo "thcount:".$thcount;
 		$number = 0;
 		foreach ($thumbs as $image) {
-			if($image->getID() == getImageID()) {
+			if($image->getID() == $_zp_current_image->getID()) {
 				$css = " id='pagedthumbsnav-active' ";
 			} else {
 				$css = "";

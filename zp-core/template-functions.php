@@ -534,13 +534,6 @@ function getAllAlbums($album = NULL) {
 	return $list;
 }
 
-function resetCurrentAlbum() {
-	global $_zp_images, $_zp_current_album;
-	$_zp_images = NULL;
-	$_zp_current_album->images = NULL;
-	setThemeColumns();
-}
-
 /**
  * Returns the number of pages for the current object
  *
@@ -631,7 +624,9 @@ function getPageURL($page, $total=null) {
  *
  * @return bool
  */
-function hasNextPage() { return (getCurrentPage() < getTotalPages()); }
+function hasNextPage() {
+	return (getCurrentPage() < getTotalPages());
+}
 
 /**
  * Returns the URL of the next page. Use within If or while loops for pagination.
@@ -663,7 +658,9 @@ function printNextPageLink($text, $title=NULL, $class=NULL, $id=NULL) {
  *
  * @return bool
  */
-function hasPrevPage() { return (getCurrentPage() > 1); }
+function hasPrevPage() {
+	return (getCurrentPage() > 1);
+}
 
 /**
  * Returns the URL of the previous page.
@@ -719,6 +716,44 @@ function printPageList($class='pagelist', $id=NULL, $navlen=9) {
 }
 
 /**
+ * returns a page nav list.
+ *
+ * @param bool $oneImagePage set to true if there is only one image page as, for instance, in flash themes
+ * @param int $navlen Number of navigation links to show (0 for all pages). Works best if the number is odd.
+ * @param bool $firstlast Add links to the first and last pages of you gallery
+ * @param int $current the current page
+ * @param int $total total number of pages
+ *
+ */
+function getPageNavList($oneImagePage, $navlen, $firstlast, $current, $total) {
+	$result = array();
+	$result['prev'] = getPrevPageURL();
+	if ($firstlast) {
+		$result[1] = getPageURL(1, $total);
+	}
+
+	if ($navlen == 0) {
+		$navlen = $total;
+	}
+	$extralinks = 2;
+	if ($firstlast) $extralinks = $extralinks + 2;
+	$len = floor(($navlen-$extralinks) / 2);
+	$j = max(round($extralinks/2), min($current-$len-(2-round($extralinks/2)), $total-$navlen+$extralinks-1));
+	$ilim = min($total, max($navlen-round($extralinks/2), $current+floor($len)));
+	$k1 = round(($j-2)/2)+1;
+	$k2 = $total-round(($total-$ilim)/2);
+
+	for ($i=$j; $i <= $ilim; $i++) {
+		$result[$i] = getPageURL($i, $total);
+	}
+	if ($firstlast) {
+		$result[$total] = getPageURL($total, $total);
+	}
+	$result['next'] = getNextPageURL();
+	return $result;
+}
+
+/**
  * Prints a full page navigation including previous and next page links with a list of all pages in between.
  *
  * @param string $prevtext Insert here the linktext like 'previous page'
@@ -731,74 +766,141 @@ function printPageList($class='pagelist', $id=NULL, $navlen=9) {
  * @param int $navlen Number of navigation links to show (0 for all pages). Works best if the number is odd.
  */
 function printPageListWithNav($prevtext, $nexttext, $oneImagePage=false, $nextprev=true, $class='pagelist', $id=NULL, $firstlast=true, $navlen=9) {
-	$total = getTotalPages($oneImagePage);
+
 	$current = getCurrentPage();
-	if ($total < 2) {
+	$total = getTotalPages($oneImagePage);
+	$nav = getPageNavList($oneImagePage, $navlen, $firstlast, $current, $total);
+	if (count($nav) < 4) {
 		$class .= ' disabled_nav';
 	}
-	if ($navlen == 0)
-		$navlen = $total;
-	$extralinks = 2;
-	if ($firstlast) $extralinks = $extralinks + 2;
-	$len = floor(($navlen-$extralinks) / 2);
-	$j = max(round($extralinks/2), min($current-$len-(2-round($extralinks/2)), $total-$navlen+$extralinks-1));
-	$ilim = min($total, max($navlen-round($extralinks/2), $current+floor($len)));
-	$k1 = round(($j-2)/2)+1;
-	$k2 = $total-round(($total-$ilim)/2);
-
-	echo "<div" . (($id) ? " id=\"$id\"" : "") . " class=\"$class\">\n";
-	echo "<ul class=\"$class\">\n";
+	?>
+	<div <?php if ($id) echo ' id="$id"'; ?> class="<?php echo $class; ?>">
+	<ul class="<?php echo $class; ?>">
+	<?php
+	$prev = $nav['prev'];
+	unset($nav['prev']);
+	$next = $nav['next'];
+	unset($nav['next']);
 	if ($nextprev) {
-		echo "<li class=\"prev\">";
-		printPrevPageLink($prevtext, gettext("Previous Page"));
-		echo "</li>\n";
+		?>
+		<li class="prev">
+			<?php
+			if ($prev) {
+				printLink($prev, html_encode($prevtext), gettext('Previous Page'));
+			} else {
+				?>
+				<span class="disabledlink"><?php echo html_encode($prevtext); ?></span>
+				<?php
+			}
+			?>
+		</li>
+		<?php
 	}
+	$last = NULL;
 	if ($firstlast) {
-		echo '<li class="'.($current==1?'current':'first').'">';
+		?>
+		<li class="<?php if($current==1) echo 'current'; else echo 'first'; ?>">
+		<?php
 		if($current == 1) {
 			echo '1';
 		} else {
-			printLink(getPageURL(1, $total), 1, gettext("Page 1"));
+			printLink($nav[1], 1, gettext("Page 1"));
 		}
-		echo "</li>\n";
-		if ($j>2) {
-			echo "<li>";
-			printLink(getPageURL($k1, $total), ($j-1>2)?'...':$k1, sprintf(ngettext('Page %u','Page %u',$k1),$k1));
-			echo "</li>\n";
-		}
+		?>
+		</li>
+		<?php
+		$last = 1;
+		unset($nav[1]);
 	}
-	for ($i=$j; $i <= $ilim; $i++) {
-		echo "<li" . (($i == $current) ? " class=\"current\"" : "") . ">";
+	foreach ($nav as $i=>$link) {
+			$d = $i - $last;
+		if ($d > 2) {
+			?>
+			<li>
+				<?php
+				$k1 = $i - (int) ($i - $last)/2;
+				printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u','Page %u',$k1),$k1));
+				?>
+			</li>
+			<?php
+		} else if ($d == 2) {
+			?>
+			<li>
+				<?php
+				$k1 = $last+1;
+				printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u','Page %u',$k1),$k1));
+				?>
+			</li>
+			<?php
+		}
+		?>
+		<li<?php if ($current==$i) echo ' class="current"'; ?>>
+		<?php
 		if ($i == $current) {
-			$title = sprintf(ngettext('Page %1$u (Current Page)','Page %1$u (Current Page)', $i),$i);
 			echo $i;
 		} else {
 			$title = sprintf(ngettext('Page %1$u','Page %1$u', $i),$i);
-			printLink(getPageURL($i, $total), $i, $title);
+			printLink($link, $i, $title);
 		}
-		echo "</li>\n";
-	}
-	if ($i < $total) {
-		echo "<li>";
-		printLink(getPageURL($k2, $total), ($total-$i>1)?'...':$k2, sprintf(ngettext('Page %u','Page %u',$k2),$k2));
-		echo "</li>\n";
-	}
-	if ($firstlast && $i <= $total) {
-		echo "\n  <li class=\"last\">";
-		if($current == $total)  {
-			echo $total;
-		} else {
-			printLink(getPageURL($total, $total), $total, sprintf(ngettext('Page {%u}','Page {%u}',$total),$total));
+		?>
+		</li>
+		<?php
+		$last = $i;
+		unset($nav[$i]);
+		if ($firstlast && count($nav) == 1) {
+			break;
 		}
-		echo "</li>";
+	}
+	if ($firstlast) {
+		foreach ($nav as $i=>$link) {
+			$d = $i - $last;
+			if ($d > 2) {
+				?>
+				<li>
+					<?php
+					$k1 = $i - (int) ($i - $last)/2;
+					printLink(getPageURL($k1, $total), '...', sprintf(ngettext('Page %u','Page %u',$k1),$k1));
+					?>
+				</li>
+				<?php
+			} else if ($d == 2) {
+				?>
+				<li>
+					<?php
+					$k1 = $last+1;
+					printLink(getPageURL($k1, $total), $k1, sprintf(ngettext('Page %u','Page %u',$k1),$k1));
+					?>
+				</li>
+				<?php
+			}
+			?>
+			<li class="last">
+				<?php
+				if($current == $i)  {
+					echo $i;
+				} else {
+					printLink($link, $i, sprintf(ngettext('Page %u','Page %u',$i),$i));
+				}
+				?>
+			</li>
+		<?php
+		}
 	}
 	if ($nextprev) {
-		echo "<li class=\"next\">";
-		printNextPageLink($nexttext, gettext("Next Page"));
-		echo "</li>\n";
+		?>
+		<li class="next">
+			<?php
+			if ($next) {
+				printLink($next, html_encode($nexttext), gettext('Previous Page'));
+			} else {
+				?>
+				<span class="disabledlink"><?php echo html_encode($nexttext); ?></span>
+				<?php
+			}
+			?>
+		</li>
+		<?php
 	}
-	echo "</ul>\n";
-	echo "</div>\n";
 }
 
 //*** Album Context ************************
@@ -2032,26 +2134,6 @@ function printImageData($field, $label='') {
 }
 
 /**
- * Get the unique ID of the current image.
- *
- * @return int
- */
-function getImageID() {
-	if (!in_context(ZP_IMAGE)) return false;
-	global $_zp_current_image;
-	return $_zp_current_image->getID();
-}
-
-/**
- * Print the unique ID of the current image.
- */
-function printImageID() {
-	if (!in_context(ZP_IMAGE)) return false;
-	global $_zp_current_image;
-	echo "image_".getImageID();
-}
-
-/**
  * Get the sort order of this image.
  *
  * @return string
@@ -2194,24 +2276,6 @@ function getImageLinkURL() {
  */
 function printImageLink($text, $title, $class=NULL, $id=NULL) {
 	printLink(getImageLinkURL(), $text, $title, $class, $id);
-}
-
-/**
- * Print the entire <div> for a thumbnail. If we are in sorting mode, then only
- * the image is inserted, if not, then the hyperlink to the image is also added.
- *
- * @author Todd Papaioannou (lucky@luckyspin.org)
- * @since  1.0.0
- */
-function printImageDiv() {
-	if (!isset($_GET['sortable'])) {
-		echo '<a href="'.html_encode(getImageLinkURL()).'" title="'.html_encode(getImageTitle()).'">';
-	}
-	printImageThumb(getImageTitle());
-
-	if (!isset($_GET['sortable'])) {
-		echo '</a>';
-	}
 }
 
 /**
@@ -3674,15 +3738,6 @@ function getURL($image) {
 	return rewrite_path(pathurlencode($image->getAlbumName()) . "/" . urlencode($image->filename),
 											"/index.php?album=" . pathurlencode($image->getAlbumName()) . "&image=" . urlencode($image->filename));
 }
-/**
- * Returns the record number of the album in the database
- * @return int
- */
-function getAlbumId() {
-	global $_zp_current_album;
-	if (is_null($_zp_current_album)) { return null; }
-	return $_zp_current_album->getID();
-}
 
 /**
  * Prints a RSS link for printRSSLink() and printRSSHeaderLink()
@@ -3702,7 +3757,7 @@ function getAlbumId() {
  * @param string $addl provided additional data for feeds (e.g. album object for album feeds, $categorylink for getZenpageRSSLink categories
  */
 function getRSSLink($option,$lang=NULL,$addl=NULL) {
-	global $_zp_current_album;
+	global $_zp_current_album, $_zp_current_image;
 	if(empty($lang)) {
 		$lang = getOption('locale');
 	}
@@ -3739,12 +3794,12 @@ function getRSSLink($option,$lang=NULL,$addl=NULL) {
 			break;
 		case 'Comments-image':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss=comments&id='.getImageID().'&type=image&lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&id='.$_zp_current_image->getID().'&type=image&lang='.$lang;
 			}
 			break;
 		case 'Comments-album':
 			if (getOption('RSS_comments')) {
-				return WEBPATH.'/index.php?rss=comments&id='.getAlbumID().'&type=album&lang='.$lang;
+				return WEBPATH.'/index.php?rss=comments&id='.$_zp_current_album->getID().'&type=album&lang='.$lang;
 			}
 			break;
 		case 'AlbumsRSS':

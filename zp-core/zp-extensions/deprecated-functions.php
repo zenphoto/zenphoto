@@ -1001,4 +1001,67 @@ function printAlbumZip(){
 	printDownloadLinkAlbumZip(gettext('Download a zip file of this album'),$_zp_current_album);
 }
 
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function printImageDiv() {
+	deprecated_functions::notify(gettext('Use printImageThumb().'));
+	if (!isset($_GET['sortable'])) {
+		echo '<a href="'.html_encode(getImageLinkURL()).'" title="'.html_encode(getImageTitle()).'">';
+	}
+	printImageThumb(getImageTitle());
+	if (!isset($_GET['sortable'])) {
+		echo '</a>';
+	}
+}
+
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function getImageID() {
+	deprecated_functions::notify(gettext('Use $_zp_current_image->getID().'));
+	if (!in_context(ZP_IMAGE)) return false;
+	global $_zp_current_image;
+	return $_zp_current_image->getID();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function printImageID() {
+	deprecated_functions::notify(gettext('Use echo "image_".$_zp_current_image->getID().'));
+	if (!in_context(ZP_IMAGE)) return false;
+	global $_zp_current_image;
+	echo "image_".getImageID();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function getAlbumId() {
+	deprecated_functions::notify(gettext('Use echo "image_".$_zp_current_album->getID().'));
+	global $_zp_current_album;
+	if (is_null($_zp_current_album)) {
+		return null;
+	}
+	return $_zp_current_album->getID();
+}
+
+/**
+ * @deprecated
+ * @since 1.4.3
+ */
+function resetCurrentAlbum() {
+	deprecated_functions::notify(gettext('Just what do you expect this does?.'));
+	global $_zp_images, $_zp_current_album;
+	$_zp_images = NULL;
+	$_zp_current_album->images = NULL;
+	setThemeColumns();
+}
+
+
 ?>

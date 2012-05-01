@@ -138,10 +138,10 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 			$imagefile = '';
 		}
 		if (in_context(ZP_SEARCH_LINKED)) {
-			$albumnr = -getAlbumID();
+			$albumnr = -$_zp_current_album->getID();
 			$slideshowhidden = '<input type="hidden" name="preserve_search_params" value="'.html_encode($_zp_current_search->getSearchParams()).'" />';
 		} else {
-			$albumnr = getAlbumID();
+			$albumnr = $_zp_current_album->getID();
 		}
 		$slideshowlink = rewrite_path(pathurlencode($_zp_current_album->getFolder())."/page/slideshow","index.php?p=slideshow&amp;album=".urlencode($_zp_current_album->getFolder()));
 	}
