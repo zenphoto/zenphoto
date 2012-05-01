@@ -1062,6 +1062,7 @@ zp-core/zp-extensions/tag_extras.php
 zp-core/zp-extensions/tag_suggest
 zp-core/zp-extensions/tag_suggest.php
 zp-core/zp-extensions/tag_suggest/tag.css
+zp-core/zp-extensions/themeSwitcher.php
 zp-core/zp-extensions/tiny_mce
 zp-core/zp-extensions/tiny_mce.php
 zp-core/zp-extensions/tiny_mce/config
@@ -1910,4 +1911,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1912
+1913
