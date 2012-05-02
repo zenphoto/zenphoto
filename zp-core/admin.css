@@ -839,18 +839,6 @@ input.tags {
 	font-size: 100%;
 }
 
-#overview-leftcolumn {
-	border: 0px solid gray;
-	width: 50%;
-	float: left;
-}
-
-#overview-rightcolumn {
-	border: 0px solid gray;
-	width: 50%;
-	float: left;
-}
-
 .utility_buttons_field {
 	padding-left: 0px;
 	padding-right: 5px;
@@ -861,98 +849,83 @@ input.tags {
 	width: 460px;
 }
 
-#overview-stats {
-	float: left;
-	width: 400px;
-	margin: 0 0 10px 10px;
-	padding: 0px;
-}
-
-#overview-maint,#overview-utility {
-	float: left;
-	width: 500px;
-	margin: 0 0px 10px 0px;
-	padding: 0px;
-}
-
 .overview_utility_buttons {
 	padding-bottom: 5px;
 	width: 220px;
 }
 
-#overview-comments,#overview-gallerystats,#overview-info,#overview-news
-	{
-	float: left;
-	width: 90%;
+.overview-utility {
+	width: 500px;
 	margin: 0 0 10px 0px;
 	padding: 0px;
 }
 
-#overview-comments {
-width: 500px;
+.overview-utility {
+	width: 500px;
+	margin: 0 0 15px 15px;
+	padding: 0px;
+	float: left;
 }
 
-#overview-comments h3,#overview-gallerystats h3,#overview-utility h2,#overview-info h3
-	{
+.overview-utility h3,.overview-utility h2 {
 	font-weight: bold;
 	padding-left: 10px;
 	margin: 0;
 }
 
-#overview-comments ul,#overview-gallerystats ul,#overview-info ul,#overview-maint ul,#overview-stats ul,#overview-news ul
-	{
+.overview-utility ul {
 	width: 95%;
 	list-style-type: none;
 	padding: 10px;
 }
 
-#overview-comments ul li,#overview-gallerystats ul li,#overview-utility ul li,#overview-info ul li,#overview-maint ul li,#overview-news ul li
-	{
+.overview-utility ul li{
 	margin-bottom: .5em;
 	margin-left: 0px;
 }
 
-#overview-utility fieldset legend {
+
+.overview-utility fieldset legend {
 	margin: 0 5px 0px 5px;
 	padding: 0 5px 0 5px;
 	font-weight: bold;
 	text-transform: capitalize;
 }
 
-#overview-utility form {
+.overview-utility form {
 	max-height: 100px;
 	float: left;
 	padding-left: 8px;
 }
 
-#overview-info ul.plugins {
+.overview-utility ul.plugins {
 	width: 450px;
 	list-style-type: none;
 	padding: 0px 0px 10px 10px;
 }
 
-#overview-info ul.plugins li {
+.overview-utility ul.plugins li {
 	margin-left: 1em;
 	margin-bottom: 0em;
 }
 
-#overview-info ul.filters {
+.overview-utility ul.filters {
 	width: 450px;
 	list-style-type: none;
 	padding: 0;
 }
 
-#overview-info ul.filters li {
+.overview-utility ul.filters li {
 	margin-left: 1em;
 	margin-bottom: 0em;
 }
 
-#overview-comments .commentmeta {
+.overview-utility .commentmeta {
 	font-size: 90%;
 	color: #999;
 }
 
-#overview-comments .commentbody {
+.overview-utility .commentbody {
 	font-size: 100%;
 }
 

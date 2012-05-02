@@ -83,7 +83,7 @@ function comment_form_save_comment($discard) {
 function comment_form_print10Most($side) {
 	if ($side=='right') {
 			?>
-		<div class="box" id="overview-comments">
+		<div class="box overview-utility">
 		<h2 class="h2_bordered"><?php echo gettext("10 Most Recent Comments"); ?></h2>
 		<ul>
 		<?php

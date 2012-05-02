@@ -129,7 +129,20 @@ if (zp_loggedin()) {
 
 // Print our header
 printAdminHeader('overview');
-
+?>
+<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.masonry.min.js"></script>
+<script type="text/javascript">
+	// <!-- <![CDATA[
+	$(function(){
+		$('#overviewboxes').masonry({
+			// options
+			itemSelector : '.overview-utility',
+			columnWidth : 520
+		});
+	});
+	// ]]> -->
+</script>
+<?php
 echo "\n</head>";
 if (!zp_loggedin()) {
 	?>
@@ -168,12 +181,11 @@ if (!empty($msg)) {
 }
 zp_apply_filter('admin_note','Overview', NULL);
 ?>
-<div id="overview-leftcolumn">
 <?php
 if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	?>
-	<div class="boxouter">
-		<div class="box" id="overview-gallerystats">
+	<div id="overviewboxes">
+		<div class="box overview-utility">
 			<h2 class="h2_bordered"><?php echo gettext("Gallery Stats"); ?></h2>
 			<ul>
 				<li>
@@ -243,9 +255,90 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 			</ul>
 			<br clear="all" />
 		</div><!-- overview-gallerystats -->
-	</div><!-- boxouter -->
 
-	<div class="box" id="overview-info">
+<?php
+if (zp_loggedin(OVERVIEW_RIGHTS)) {
+	$buttonlist = array();
+	$curdir = getcwd();
+	chdir(SERVERPATH . "/" . ZENFOLDER . '/'.UTILITIES_FOLDER.'/');
+	$filelist = safe_glob('*'.'php');
+	natcasesort($filelist);
+	foreach ($filelist as $utility) {
+		$utilityStream = file_get_contents($utility);
+		$s = strpos($utilityStream, '$buttonlist');
+		if ($s !== false) {
+			$e = strpos($utilityStream, ';', $s);
+			if ($e) {
+				$str = substr($utilityStream, $s, $e-$s).';';
+				eval($str);
+
+			}
+		}
+	}
+	$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
+	foreach ($buttonlist as $key=>$button) {
+		if (zp_loggedin($button['rights'])) {
+			if (!array_key_exists('category', $button)) {
+				$buttonlist[$key]['category'] = gettext('misc');
+			}
+		} else {
+			unset($buttonlist[$key]);
+		}
+	}
+	$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
+	?>
+	<div class="box overview-utility">
+	<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
+		<?php
+		$category = '';
+		foreach ($buttonlist as $button) {
+			$button_category = $button['category'];
+			$button_icon = $button['icon'];
+			if ($category != $button_category) {
+				if ($category) {
+					?>
+					</fieldset>
+					<?php
+				}
+				$category = $button_category;
+				?>
+				<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
+				<?php
+			}
+			?>
+			<form name="<?php echo $button['formname']; ?>"	action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
+				<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
+				<?php echo $button['hidden']; ?>
+				<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
+					<button class="fixedwidth" type="submit"<?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
+					<?php
+					if(!empty($button_icon)) {
+						?>
+						<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
+						<?php
+					}
+					echo html_encode($button['button_text']);
+					?>
+					</button>
+				</div><!--buttons -->
+			</form>
+			<?php
+		}
+		if ($category) {
+			?>
+			</fieldset>
+			<?php
+		}
+		?>
+	</div><!-- overview-utility -->
+	<?php
+	zp_apply_filter('admin_overview', 'right');
+}
+?>
+
+
+
+	<div class="box overview-utility">
 		<h2 class="h2_bordered"><?php echo gettext("Installation information"); ?></h2>
 		<ul>
 	<?php
@@ -461,95 +554,10 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	<?php
 	zp_apply_filter('admin_overview', 'left');
 }
+
 ?>
 
-	<br clear="all" />
-</div><!-- overview leftcolumn end -->
-
-<div id="overview-rightcolumn">
-<?php
-if (zp_loggedin(OVERVIEW_RIGHTS)) {
-	$buttonlist = array();
-	$curdir = getcwd();
-	chdir(SERVERPATH . "/" . ZENFOLDER . '/'.UTILITIES_FOLDER.'/');
-	$filelist = safe_glob('*'.'php');
-	natcasesort($filelist);
-	foreach ($filelist as $utility) {
-		$utilityStream = file_get_contents($utility);
-		$s = strpos($utilityStream, '$buttonlist');
-		if ($s !== false) {
-			$e = strpos($utilityStream, ';', $s);
-			if ($e) {
-				$str = substr($utilityStream, $s, $e-$s).';';
-				eval($str);
-
-			}
-		}
-	}
-	$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
-	foreach ($buttonlist as $key=>$button) {
-		if (zp_loggedin($button['rights'])) {
-			if (!array_key_exists('category', $button)) {
-				$buttonlist[$key]['category'] = gettext('misc');
-			}
-		} else {
-			unset($buttonlist[$key]);
-		}
-	}
-	$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
-	?>
-	<div class="box" id="overview-utility">
-	<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
-		<?php
-		$category = '';
-		foreach ($buttonlist as $button) {
-			$button_category = $button['category'];
-			$button_icon = $button['icon'];
-			if ($category != $button_category) {
-				if ($category) {
-					?>
-					</fieldset>
-					<?php
-				}
-				$category = $button_category;
-				?>
-				<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
-				<?php
-			}
-			?>
-			<form name="<?php echo $button['formname']; ?>"	action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
-				<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
-				<?php echo $button['hidden']; ?>
-				<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
-					<button class="fixedwidth" type="submit"<?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
-					<?php
-					if(!empty($button_icon)) {
-						?>
-						<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
-						<?php
-					}
-					echo html_encode($button['button_text']);
-					?>
-					</button>
-				</div><!--buttons -->
-			</form>
-			<?php
-		}
-		if ($category) {
-			?>
-			</fieldset>
-			<?php
-		}
-		?>
-	</div><!-- overview-utility -->
-	<?php
-	zp_apply_filter('admin_overview', 'right');
-}
-?>
-
-<br clear="all" />
-</div><!-- overview rightcolumn end -->
-<br clear="all" />
+	</div><!-- boxouter -->
 </div><!-- content -->
 <br clear="all" />
 <?php

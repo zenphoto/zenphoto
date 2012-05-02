@@ -22,7 +22,7 @@ function printNews($side) {
 			require_once(dirname(__FILE__).'/zenphoto_news/rsslib.php');
 		}
 		?>
-		<div class="box" id="overview-news">
+		<div class="box overview-utility">
 		<h2 class="h2_bordered"><?php echo gettext("News from Zenphoto.org"); ?></h2>
 		<?php
 		if ($connected) {
