@@ -374,8 +374,19 @@ if (isset($_GET['action'])) {
 		}
 		/*** Security Options ***/
 		if (isset($_POST['savesecurityoptions'])) {
+			$protocol = sanitize($_POST['server_protocol'],3);
+			if ($protocol != SERVER_PROTOCOL) {
+				if ($protocol == 'https_admin' || $protocol == 'https_admin') {
+					// force https to be sure it works, otherwise the "save" will be the last thing we do
+					if (!isset($_SERVER["HTTPS"])) {
+						$redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+						header("Location:$redirect");
+						exitZP();
+					}
+				}
+			}
+			setOption('server_protocol', $protocol);
 			$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));
-			setOption('server_protocol', $protocol = sanitize($_POST['server_protocol'],3));
 			if ($protocol == 'http') {
 				zp_clearCookie("zenphoto_ssl");
 			}
@@ -2883,7 +2894,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 																									"<br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected.".
 																									"<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  ".
 																									"If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! ".
-																									"Your only possibility then is to change the option in the database."); ?>
+																									'Your only possibility then is to change the option named <span class="inlinecode">server_protocol</span> in the <em>options</em> table of your database.'); ?>
 						</p>
 					</td>
 				</tr>
