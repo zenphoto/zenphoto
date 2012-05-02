@@ -856,12 +856,6 @@ input.tags {
 
 .overview-utility {
 	width: 500px;
-	margin: 0 0 10px 0px;
-	padding: 0px;
-}
-
-.overview-utility {
-	width: 500px;
 	margin: 0 0 15px 15px;
 	padding: 0px;
 	float: left;
@@ -874,16 +868,30 @@ input.tags {
 }
 
 .overview-utility ul {
-	width: 95%;
+	width: 480px;
+	margin-left: 10px;
 	list-style-type: none;
-	padding: 10px;
+	padding: 0px;
+	border-top: 1px solid #dfdfdf;
+
 }
 
-.overview-utility ul li{
-	margin-bottom: .5em;
+.overview-utility ul li {
+	margin-bottom: 0em;
 	margin-left: 0px;
+	padding: 4px 4px 3px 4px;
+	border-bottom: 1px solid #dfdfdf;
 }
 
+.overiew-gallery-stats ul, 
+.overview-install-info ul {
+	border-top: 1px solid #dfdfdf;
+}
+.overiew-gallery-stats  ul li,
+.overview-install-info ul li{
+	padding: 4px 1px 3px 1px;
+	border-bottom: 1px solid #dfdfdf;
+}
 
 .overview-utility fieldset legend {
 	margin: 0 5px 0px 5px;
@@ -898,26 +906,9 @@ input.tags {
 	padding-left: 8px;
 }
 
-.overview-utility ul.plugins {
-	width: 450px;
-	list-style-type: none;
-	padding: 0px 0px 10px 10px;
-}
-
-.overview-utility ul.plugins li {
-	margin-left: 1em;
-	margin-bottom: 0em;
-}
-
-.overview-utility ul.filters {
-	width: 450px;
-	list-style-type: none;
-	padding: 0;
-}
-
+.overview-utility ul.filters,
 .overview-utility ul.filters li {
-	margin-left: 1em;
-	margin-bottom: 0em;
+	border: 0px !important;
 }
 
 .overview-utility .commentmeta {

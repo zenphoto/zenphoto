@@ -185,7 +185,7 @@ zp_apply_filter('admin_note','Overview', NULL);
 if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	?>
 	<div id="overviewboxes">
-		<div class="box overview-utility">
+		<div class="box overview-utility overiew-gallery-stats">
 			<h2 class="h2_bordered"><?php echo gettext("Gallery Stats"); ?></h2>
 			<ul>
 				<li>
@@ -253,7 +253,6 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				}
 				?>
 			</ul>
-			<br clear="all" />
 		</div><!-- overview-gallerystats -->
 
 <?php
@@ -338,7 +337,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 
 
 
-	<div class="box overview-utility">
+	<div class="box overview-utility overview-install-info">
 		<h2 class="h2_bordered"><?php echo gettext("Installation information"); ?></h2>
 		<ul>
 	<?php
@@ -548,7 +547,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		<div id="filters_show">
 			<br />
 		</div><!-- filters_show -->
-		<br clear="all" />
+
 	</div><!-- overview-info -->
 
 	<?php
