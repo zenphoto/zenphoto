@@ -557,7 +557,7 @@ function getTotalPages($oneImagePage=false) {
 		}
 		$images_per_page = max(1, getOption('images_per_page'));
 		$pageCount = ($pageCount + ceil(($imageCount - $_firstPageImages) / $images_per_page));
-		return $pageCount;
+		return max(1,$pageCount);
 	} else if (in_context(ZP_INDEX)) {
 		if(galleryAlbumsPerPage() != 0) {
 			return ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
@@ -578,6 +578,9 @@ function getTotalPages($oneImagePage=false) {
  */
 function getPageURL($page, $total=null) {
 	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page;
+	if ($page <= 0) {
+		return NULL;
+	}
 	if (is_null($total)) { $total = getTotalPages(); }
 	if (in_context(ZP_SEARCH)) {
 		$searchwords = $_zp_current_search->codifySearchString();
@@ -615,7 +618,7 @@ function getPageURL($page, $total=null) {
 		if ($specialpage) {
 			return rewrite_path($pagination1, '?'.substr($pagination2, 0, -1));
 		}
-		return null;
+		return NULL;
 	}
 }
 
@@ -727,7 +730,11 @@ function printPageList($class='pagelist', $id=NULL, $navlen=9) {
  */
 function getPageNavList($oneImagePage, $navlen, $firstlast, $current, $total) {
 	$result = array();
-	$result['prev'] = getPrevPageURL();
+	if (hasPrevPage()) {
+		$result['prev'] = getPrevPageURL();
+	} else {
+		$result['prev'] = NULL;
+	}
 	if ($firstlast) {
 		$result[1] = getPageURL(1, $total);
 	}
@@ -749,7 +756,11 @@ function getPageNavList($oneImagePage, $navlen, $firstlast, $current, $total) {
 	if ($firstlast) {
 		$result[$total] = getPageURL($total, $total);
 	}
-	$result['next'] = getNextPageURL();
+	if (hasNextPage()) {
+		$result['next'] = getNextPageURL();
+	} else {
+		$result['next'] = NULL;
+	}
 	return $result;
 }
 
@@ -886,7 +897,7 @@ function printPageListWithNav($prevtext, $nexttext, $oneImagePage=false, $nextpr
 				<li class="next">
 					<?php
 					if ($next) {
-						printLink($next, html_encode($nexttext), gettext('Previous Page'));
+						printLink($next, html_encode($nexttext), gettext('Next Page'));
 					} else {
 						?>
 						<span class="disabledlink"><?php echo html_encode($nexttext); ?></span>
