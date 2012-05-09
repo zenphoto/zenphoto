@@ -557,7 +557,7 @@ function getTotalPages($oneImagePage=false) {
 		}
 		$images_per_page = max(1, getOption('images_per_page'));
 		$pageCount = ($pageCount + ceil(($imageCount - $_firstPageImages) / $images_per_page));
-		return max(1,$pageCount);
+		return $pageCount;
 	} else if (in_context(ZP_INDEX)) {
 		if(galleryAlbumsPerPage() != 0) {
 			return ceil($_zp_gallery->getNumAlbums() / galleryAlbumsPerPage());
@@ -778,7 +778,7 @@ function getPageNavList($oneImagePage, $navlen, $firstlast, $current, $total) {
  */
 function printPageListWithNav($prevtext, $nexttext, $oneImagePage=false, $nextprev=true, $class='pagelist', $id=NULL, $firstlast=true, $navlen=9) {
 	$current = getCurrentPage();
-	$total = getTotalPages($oneImagePage);
+	$total = max(1,getTotalPages($oneImagePage));
 	$nav = getPageNavList($oneImagePage, $navlen, $firstlast, $current, $total);
 	if (count($nav) < 4) {
 		$class .= ' disabled_nav';
@@ -2289,7 +2289,7 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
 		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
 	</span>
 	<span id="<?php echo $dataid; ?>"<?php echo $style; ?>>
-	<div<?php echo $id.$class; ?>>
+	<span<?php echo $id.$class; ?>>
 		<table>
 		<?php
 			foreach ($exif as $field => $value) {
@@ -2300,7 +2300,7 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
 			}
 			?>
 		</table>
-	</div>
+	</span>
 	</span>
 	<?php
 }
