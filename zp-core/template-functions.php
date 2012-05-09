@@ -3439,7 +3439,7 @@ function printTags($option='links', $preText=NULL, $class=NULL, $separator=', ')
 		foreach ($singletag as $atag) {
 			if (++$x == $ct) { $separator = ""; }
 			if ($option === "links") {
-				$links1 = "<a href=\"".html_encode(getSearchURL($atag, '', 'tags', 0, array('albums'=>$albumlist)))."\" title=\"".html_encode($atag)."\" rel=\"nofollow\">";
+				$links1 = "<a href=\"".html_encode(getSearchURL(db_quote($atag), '', 'tags', 0, array('albums'=>$albumlist)))."\" title=\"".html_encode($atag)."\" rel=\"nofollow\">";
 				$links2 = "</a>";
 			} else {
 				$links1 = $links2 = '';
@@ -3509,7 +3509,7 @@ function printAllTagsAs($option,$class='',$sort='abc',$counter=FALSE,$links=TRUE
 					$albumlist = NULL;
 				}
 				$list .= "\t<li><a href=\"".
-									html_encode(getSearchURL($key, '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
+									html_encode(getSearchURL(db_quote($key), '', 'tags', 0, array('albums'=>$albumlist)))."\"$size rel=\"nofollow\">".
 									$key.$counter."</a></li>\n";
 			} else {
 				$list .= "\t<li$size>".$key.$counter."</li>\n";
