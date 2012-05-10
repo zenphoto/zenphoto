@@ -59,6 +59,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 			<?php jqm_printMenusLinks(); ?>
  </div>
 	</div><!-- /content -->
+<?php jqm_printBacktoTopLink(); ?>
 <?php jqm_printFooterNav(); ?>
 </div><!-- /page -->
 

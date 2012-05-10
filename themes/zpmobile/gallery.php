@@ -48,8 +48,7 @@ if (!defined('WEBPATH')) die(); ;
 	
 	</div><!-- /content -->
 
-	
-
+	<?php jqm_printBacktoTopLink(); ?>
 	<?php jqm_printFooterNav(); ?>
 </div><!-- /page -->
 

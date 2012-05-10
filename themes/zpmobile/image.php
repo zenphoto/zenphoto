@@ -89,6 +89,7 @@ if (!defined('WEBPATH')) die();
 			<?php jqm_printMenusLinks(); ?>
  		</div>
 	</div><!-- /content -->
+<?php jqm_printBacktoTopLink(); ?>
 <?php jqm_printFooterNav(); ?>
 </div><!-- /page -->
 

@@ -53,11 +53,13 @@ if (!defined('WEBPATH')) die();
   	<?php
 		}
 		?>
+
 	</div>
 	<div class="content-secondary">
 	<?php jqm_printMenusLinks(); ?>
 	</div>
 </div><!-- /content -->
+<?php jqm_printBacktoTopLink(); ?>
 <?php jqm_printFooterNav(); ?>
 
 </div><!-- /page -->

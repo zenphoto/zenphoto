@@ -152,7 +152,14 @@ function jqm_printMenusLinks() {
 		</div>
 	</div>
 <?php
+}
 
+
+function jqm_printBacktoTopLink() {
+	return ''; // disabled for now as the jquerymobile cache somehow always link this to the previous page...
+	?>
+	<a href="#mainpage" data-ajax="false" rel="external" data-role="button" data-icon="arrow-u" data-iconpos="left" data-mini="true" data-inline="true"><?php echo gettext('Back to top'); ?></a>
+	<?php
 }
 
 /**
