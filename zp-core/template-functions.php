@@ -2288,8 +2288,8 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
 	<span id="<?php echo $span; ?>" class="metadata_title">
 		<?php echo $refh; ?><?php echo $title; ?><?php echo $refa; ?>
 	</span>
-	<span id="<?php echo $dataid; ?>"<?php echo $style; ?>>
-	<span<?php echo $id.$class; ?>>
+	<div id="<?php echo $dataid; ?>"<?php echo $style; ?>>
+	<div<?php echo $id.$class; ?>>
 		<table>
 		<?php
 			foreach ($exif as $field => $value) {
@@ -2300,8 +2300,8 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
 			}
 			?>
 		</table>
-	</span>
-	</span>
+	</div>
+	</div>
 	<?php
 }
 
