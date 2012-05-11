@@ -1672,7 +1672,6 @@ ul.pagelist li.current {
 	border: 1px solid #ccc;
 	list-style: none;
 	height: 5.5em;
-	width: 26em;
 	overflow: auto;
 	background-color: white;
 }
@@ -1689,7 +1688,7 @@ ul.pagelist li.current {
 	border: 1px solid #ccc;
 	list-style: none;
 	height: 5.5em;
-	width: 18em;
+	width: 19em; 
 	overflow: auto;
 	background-color: white;
 }
@@ -1720,7 +1719,6 @@ ul.pagelist li.current {
 	border: 1px solid #ccc;
 	list-style: none;
 	height: 14em;
-	width: 26em;
 	overflow: auto;
 	background-color: white;
 }

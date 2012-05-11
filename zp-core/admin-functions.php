@@ -1234,7 +1234,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							</td>
 							<td class="middlecolumn">
 								<p>
-									<input type="password" 
+									<input type="password"
 															id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
 															onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
 															onkeyup="passwordStrength('<?php echo $suffix; ?>');"
@@ -2392,10 +2392,27 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 		$strings = array($locale=>$dbstring);
 	}
 	if (getOption('multi_lingual')) {
+		if ($textbox) {
+			if (strpos($wide, '%') === false) {
+				$width = ' cols="'.$wide.'"';
+			} else {
+				$width = ' style="width:'.((int)$wide)*0.96.'%;"';
+			}
+		} else {
+			if (strpos($wide, '%') === false) {
+				$width = ' size="'.$wide.'"';
+			} else {
+				$width = ' style="width:'.((int)$wide)*0.94.'%;"';
+			}
+		}
 		$emptylang = generateLanguageList();
 		$emptylang = array_flip($emptylang);
 		unset($emptylang['']);
-		if ($textbox) $class = 'box'; else $class = '';
+		if ($textbox) {
+			$class = 'box';
+		} else {
+			$class = '';
+		}
 		echo '<ul class="'.$ulclass.$class.'"'.">\n";
 		$empty = true;
 		foreach ($emptylang as $key=>$lang) {
@@ -2409,9 +2426,9 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 						<label for="<?php echo $name.'_'.$key; ?>"><?php echo $lang; ?></label>
 						<?php
 						if ($textbox) {
-							echo "\n".'<textarea name="'.$name.'_'.$key.'"'.$edit.' cols="'.$wide.'"	rows="'.$rows.'">'.html_encode($string).'</textarea>';
+							echo "\n".'<textarea name="'.$name.'_'.$key.'"'.$edit.$width.'	rows="'.$rows.'">'.html_encode($string).'</textarea>';
 						} else {
-							echo '<br /><input id="'.$name.'_'.$key.'" name="'.$name.'_'.$key.'"'.$edit.' type="text" value="'.html_encode($string).'" size="'.$wide.'" />';
+							echo '<br /><input id="'.$name.'_'.$key.'" name="'.$name.'_'.$key.'"'.$edit.' type="text" value="'.html_encode($string).'"'.$width.' />';
 						}
 						?>
 					</li>
@@ -2428,15 +2445,29 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 			echo '<li><label for="'.$name.'_'.$key.'"></label>';
 			echo $lang;
 			if ($textbox) {
-				echo "\n".'<textarea name="'.$name.'_'.$key.'"'.$edit.' cols="'.$wide.'"	rows="'.$rows.'"></textarea>';
+				echo "\n".'<textarea name="'.$name.'_'.$key.'"'.$edit.$width.'	rows="'.$rows.'"></textarea>';
 			} else {
-				echo '<br /><input id="'.$name.'_'.$key.'" name="'.$name.'_'.$key.'"'.$edit.' type="text" value="" size="'.$wide .'" />';
+				echo '<br /><input id="'.$name.'_'.$key.'" name="'.$name.'_'.$key.'"'.$edit.' type="text" value=""'.$width .' />';
 			}
 			echo "</li>\n";
 
 		}
 		echo "</ul>\n";
 	} else {
+		if ($textbox) {
+		if (strpos($wide, '%') === false) {
+			$width = ' cols="'.$wide.'"';
+		} else {
+			$width = ' style="width:'.$wide.';"';
+		}
+	} else {
+		if (strpos($wide, '%') === false) {
+			$width = ' size="'.$wide.'"';
+		} else {
+			$wide ='95%';
+			$width = ' style="width:'.$wide.';"';
+		}
+	}
 		if (empty($locale)) $locale = 'en_US';
 		if (isset($strings[$locale])) {
 			$dbstring = $strings[$locale];
@@ -2444,17 +2475,9 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 			$dbstring = array_shift($strings);
 		}
 		if ($textbox) {
-			if ($wide == '100%') {
-				echo '<textarea name="'.$name.'_'.$locale.'"'.$edit.' style="width:100%;"	rows="'.$rows.'">'.html_encode($dbstring).'</textarea>';
-			} else {
-				echo '<textarea name="'.$name.'_'.$locale.'"'.$edit.' cols="'.$wide.'"	rows="'.$rows.'">'.html_encode($dbstring).'</textarea>';
-			}
+			echo '<textarea name="'.$name.'_'.$locale.'"'.$edit.$width.'	rows="'.$rows.'">'.html_encode($dbstring).'</textarea>';
 		} else {
-			if ($wide == '100%') {
-				echo '<input name="'.$name.'_'.$locale.'"'.$edit.' type="text" value="'.html_encode($dbstring).'" style="width:100%;" />';
-			} else {
-				echo '<input name="'.$name.'_'.$locale.'"'.$edit.' type="text" value="'.html_encode($dbstring).'" size="'.$wide.'" />';
-			}
+			echo '<input name="'.$name.'_'.$locale.'"'.$edit.' type="text" value="'.html_encode($dbstring).'"'.$width.' />';
 		}
 	}
 }
