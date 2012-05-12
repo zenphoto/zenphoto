@@ -398,4 +398,19 @@ function printRating($vote=3, $object=NULL, $text=true) {
 	<?php
 }
 
+/**
+* Returns the current rating of an object
+*
+* @param object $object optional ratings target. If not supplied, the current script object is used
+* @return float
+*/
+function getRating($object=NULL) {
+	if (is_null($object)) {
+		$object = getCurrentPageObject();
+		if (!$object) return NULL;
+	}
+	return $object->get('rating');
+}
+
+
 ?>

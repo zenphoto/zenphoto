@@ -32,10 +32,6 @@ echo "\n</head>";
 	<div id="content">
 		<h1><?php echo gettext('Zenphoto License agreement'); ?></h1>
 		<div id="container">
-			<div class="tabbox">
-				<iframe src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/gpl-2.0-standalone.htm" width="100%" height="480" style="border: 0">
-				</iframe>
-			</div>
 			<p class="notebox">
 				<?php printf(gettext('This license is in English because the <em>Free Software Foundation</em> does not approve translations as officially valid. Unofficial translations are available <a href="%s">here</a>.'),'http://www.gnu.org/licenses/old-licenses/gpl-2.0-translations.html'); ?>
 			</p>
@@ -50,6 +46,11 @@ echo "\n</head>";
 				<?php
 			}
 			?>
+			<br clear="all">
+			<div class="tabbox">
+				<iframe src="<?php echo FULLWEBPATH.'/'.ZENFOLDER; ?>/gpl-2.0-standalone.htm" width="100%" height="480" style="border: 0">
+				</iframe>
+			</div>
 		</div>
 	</div>
 </div>

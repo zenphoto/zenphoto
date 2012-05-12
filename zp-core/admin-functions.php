@@ -1290,10 +1290,10 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					$custom = zp_apply_filter('edit_album_custom_data', '', $album, $prefix);
 					if (empty($custom)) {
 						?>
-					<tr>
-						<td align="left" valign="top"><?php echo gettext("Custom data:"); ?></td>
-						<td><?php print_language_string_list($album->get('custom_data'), $prefix."album_custom_data", true , NULL, 'texteditor_albumcustomdata','100%'); ?></td>
-					</tr>
+						<tr>
+							<td align="left" valign="top"><?php echo gettext("Custom data:"); ?></td>
+							<td><?php print_language_string_list($album->get('custom_data'), $prefix."album_custom_data", true , NULL, 'texteditor_albumcustomdata','100%'); ?></td>
+						</tr>
 						<?php
 					} else {
 						echo $custom;
