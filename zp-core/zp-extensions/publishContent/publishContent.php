@@ -6,12 +6,6 @@ require_once("../../admin-globals.php");
 require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL());
 
-$zenphoto_tabs['overview']['subtabs']=array(gettext('Content')=>'');
-printAdminHeader('overview',gettext('Content'));
-datepickerJS();
-?>
-<link rel="stylesheet" href="publishContent.css" type="text/css" media="screen" />
-<?php
 function unpublishSubalbums($album) {
 	global $_zp_gallery;
 	$albums = $album->getAlbums();
@@ -101,6 +95,12 @@ if ($report) {
 		$report = sanitize($_GET['report']);
 	}
 }
+$zenphoto_tabs['overview']['subtabs']=array(gettext('Content')=>'');
+printAdminHeader('overview',gettext('Content'));
+datepickerJS();
+?>
+<link rel="stylesheet" href="publishContent.css" type="text/css" media="screen" />
+<?php
 echo '</head>';
 ?>
 <body>

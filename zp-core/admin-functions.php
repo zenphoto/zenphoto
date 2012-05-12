@@ -2396,13 +2396,13 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 			if (strpos($wide, '%') === false) {
 				$width = ' cols="'.$wide.'"';
 			} else {
-				$width = ' style="width:'.((int)$wide)*0.96.'%;"';
+				$width = ' style="width:'.((int)$wide-1).'%;"';
 			}
 		} else {
 			if (strpos($wide, '%') === false) {
 				$width = ' size="'.$wide.'"';
 			} else {
-				$width = ' style="width:'.((int)$wide)*0.94.'%;"';
+				$width = ' style="width:'.((int)$wide-2).'%;"';
 			}
 		}
 		$emptylang = generateLanguageList();
@@ -2464,7 +2464,6 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 		if (strpos($wide, '%') === false) {
 			$width = ' size="'.$wide.'"';
 		} else {
-			$wide ='95%';
 			$width = ' style="width:'.$wide.';"';
 		}
 	}

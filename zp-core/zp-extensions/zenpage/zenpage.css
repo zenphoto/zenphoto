@@ -269,7 +269,7 @@ div.zenpagechecklist label.hover,
 	border: 1px solid #ccc;
 	list-style: none;
 	height: 5.5em;
-	width: 605px;
+	width: 100%;
 	overflow: auto;
 	background-color: white;
 }
@@ -301,7 +301,7 @@ div.zenpagechecklist label.hover,
 	border: 1px solid #ccc;
 	list-style: none;
 	height: 35em;
-	width: 605px;
+	width: 100%;
 	overflow: auto;
 	background-color: white;
 }

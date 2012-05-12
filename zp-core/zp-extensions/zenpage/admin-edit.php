@@ -404,7 +404,7 @@ if ($result->loaded || $result->transient) {
 			<tr>
 				<td class="topalign-padding"><?php echo gettext("Title:"); ?></td>
 				<td class="middlecolumn">
-					<?php print_language_string_list($result->get('title'), 'title', false, NULL, 'title', 91, 'zenpage_language_string_list', 10); ?>
+					<?php print_language_string_list($result->get('title'), 'title', false, NULL, 'title', '100%', 'zenpage_language_string_list', 10); ?>
 				</td>
 				<td class="rightcolumn" rowspan="6">
 				<h2 class="h2_bordered_edit"><?php echo gettext("Publish"); ?></h2>
