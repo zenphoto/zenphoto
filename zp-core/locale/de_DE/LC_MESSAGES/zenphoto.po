@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Zenphoto 1.4.3\n"
+"Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-02 11:55+0100\n"
-"PO-Revision-Date: 2012-05-02 12:06+0100\n"
+"POT-Creation-Date: 2012-05-13 19:16+0100\n"
+"PO-Revision-Date: 2012-05-13 19:16+0100\n"
 "Last-Translator: Malte Müller (acrylian) <wartgart@gmx.net>\n"
 "Language-Team: Malte Müller (acrylian)\n"
 "MIME-Version: 1.0\n"
@@ -255,175 +255,175 @@ msgstr "Neuigkeitenarchiv"
 msgid "Contact"
 msgstr "Kontakt"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:21
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:25
 #: •zp-translate-dev/themes/effervescence_plus/indexpage.php:85
 msgid "There were no images from which to select the random heading."
 msgstr "Es gibt keine Bilder, von denen ein Zufallskopfbild ausgewählt werden könnte."
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:40
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:44
 msgid "Random picture..."
 msgstr "Zufallsbild..."
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:71
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:75
 #, php-format
 msgid "%u album"
 msgid_plural "%u albums"
 msgstr[0] "%u Album"
 msgstr[1] "%u Alben"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:77
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:81
 #, php-format
 msgid "%u image"
 msgid_plural "%u images"
 msgstr[0] "%u Bild"
 msgstr[1] "%u Bilder"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:87
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:91
 #, php-format
 msgid "Album %1$u of %2$u"
 msgstr "Album %1$u von %2$u"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:89
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:93
 #, php-format
 msgid "Photo %1$u of %2$u"
 msgstr "Foto %1$u von %2$u"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:93
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:97
 #, php-format
 msgid "Albums %1$u-%2$u of %3$u"
 msgstr "Alben %1$u-%2$u von %3$u"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:95
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:99
 #, php-format
 msgid "Photos %1$u-%2$u of %3$u"
 msgstr "Fotos %1$u-%2$u von %3$u"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:119
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:124
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:123
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:128
 #, php-format
 msgid "Effervescence %s"
 msgstr "Effervescence %s"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:121
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:125
 #, php-format
 msgid "Effervescence %s (not found)"
 msgstr "Effervescence %s (nicht gefunden)"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:127
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:131
 #, php-format
 msgid "Effervescence %1$s %2$s"
 msgstr "Effervescence %1$s %2$s"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:129
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:133
 #, php-format
 msgid "Effervescence %1$s %2$s (not found)"
 msgstr "Effervescence %1$s %2$s (nicht gefunden)"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:163
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:167
 msgid "The album is password protected."
 msgstr "Dieses Album ist passwortgeschützt."
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:166
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:170
 msgid "The album is not published."
 msgstr "Das Album ist nicht veröffentlicht."
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:168
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:172
 #, php-format
 msgid "View the Album: %s"
 msgstr "Album %s ansehen"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:174
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:178
 msgid "The image is marked not visible."
 msgstr "Das Bild ist als nicht sichtbar markiert."
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:178
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:182
 #, php-format
 msgid "View the image: %s"
 msgstr "Bild %s ansehen"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:192
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:196
 #, php-format
 msgid "%1$u hit on this %2$s"
 msgid_plural "%1$u hits on this %2$s"
 msgstr[0] "%1$u Besucher bei  %2$s"
 msgstr[1] "%1$u Besucher bei  %2$s"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:192
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:196
 msgid "page"
 msgstr "Seite"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:200
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:204
 #, php-format
 msgid "%u Album"
 msgid_plural "%u Albums"
 msgstr[0] "%u Album"
 msgstr[1] "%u Alben"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:201
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:205
 #, php-format
 msgid "%u Subalbum"
 msgid_plural "%u Subalbums"
 msgstr[0] "%u Subalbum"
 msgstr[1] "%u Unteralben"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:204
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:208
 #, php-format
 msgid "%u Image"
 msgid_plural "%u Images"
 msgstr[0] "%u Bild"
 msgstr[1] "%u Bilder"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:211
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:215
 #, php-format
 msgid "%u Comment"
 msgid_plural "%u Comments"
 msgstr[0] "%u Kommentar"
 msgstr[1] "%u Kommentare"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:239
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:243
 msgid "album"
 msgstr "Album"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:239
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:243
 msgid "image"
 msgstr "Bild"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:239
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:243
 msgid "video"
 msgstr "Video"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:239
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:243
 msgid "news"
 msgstr "Neuigkeiten"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:244
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:248
 msgid "sticky"
 msgstr "Oben behalten"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:257
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:261
 #: •zp-translate-dev/themes/effervescence_plus/news.php:92
 #, php-format
 msgid "Comments: %d"
 msgstr "Kommentare: %d"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:263
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:267
 msgid "Album:"
 msgstr "Album:"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:267
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:271
 #: •zp-translate-dev/themes/effervescence_plus/news.php:101
 msgid "Categories: "
 msgstr "Kategorien:"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:280
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:284
 msgid "next »"
 msgstr "weiter »"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:280
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:284
 msgid "« prev"
 msgstr "« zurück"
 
-#: •zp-translate-dev/themes/effervescence_plus/functions.php:298
+#: •zp-translate-dev/themes/effervescence_plus/functions.php:302
 msgid "Add a comment"
 msgstr "Kommentar hinzufügen"
 
@@ -1415,14 +1415,18 @@ msgstr "zpMobile Theme von"
 msgid "Admin"
 msgstr "Verwalten"
 
-#: •zp-translate-dev/themes/zpmobile/functions.php:207
+#: •zp-translate-dev/themes/zpmobile/functions.php:161
+msgid "Back to top"
+msgstr "Zurück nach oben"
+
+#: •zp-translate-dev/themes/zpmobile/functions.php:214
 #, php-format
 msgid "%d album"
 msgid_plural "%d albums"
 msgstr[0] "%d Album"
 msgstr[1] "%d Alben"
 
-#: •zp-translate-dev/themes/zpmobile/functions.php:211
+#: •zp-translate-dev/themes/zpmobile/functions.php:218
 #, php-format
 msgid "%d image"
 msgid_plural "%d images"
@@ -2702,281 +2706,281 @@ msgstr "Seite %u"
 msgid "Previous page"
 msgstr "Vorherige Seite"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2682
-#: •zp-translate-dev/zp-core/admin-functions.php:2687
-#: •zp-translate-dev/zp-core/admin-functions.php:2692
-#: •zp-translate-dev/zp-core/admin-functions.php:2697
+#: •zp-translate-dev/zp-core/admin-functions.php:2704
+#: •zp-translate-dev/zp-core/admin-functions.php:2709
+#: •zp-translate-dev/zp-core/admin-functions.php:2714
+#: •zp-translate-dev/zp-core/admin-functions.php:2719
 msgid "Cannot create new theme."
 msgstr "Es konnte kein neues Theme erstellt werden."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2682
+#: •zp-translate-dev/zp-core/admin-functions.php:2704
 #, php-format
 msgid "Directory \"%s\" already exists!"
 msgstr "Das Verzeichnis \"%s\" existiert bereits!"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2687
+#: •zp-translate-dev/zp-core/admin-functions.php:2709
 #, php-format
 msgid "Cannot find theme directory \"%s\" to copy!"
 msgstr "Themeverzeichnis \"%s\" konnten nicht zum Kopieren gefunden werden!"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2692
+#: •zp-translate-dev/zp-core/admin-functions.php:2714
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Das <tt>/themes</tt>-Verzeichnis ist nicht beschreibbar!"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2697
+#: •zp-translate-dev/zp-core/admin-functions.php:2719
 msgid "Could not create directory for the new theme"
 msgstr "Die Verzeichnis für das neue Theme konnte nicht erstellt werden."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2730
+#: •zp-translate-dev/zp-core/admin-functions.php:2752
 #, php-format
 msgid "An error occurred while copying files. Please delete manually the new theme directory '%s' and retry or copy files manually."
 msgstr "Es ist ein Fehler beim Kopieren von Dateien aufgetreten. Bitte löschen Sie das Themeverzeichnis  '%s' manuell und versuchen die Dateien manuell zu kopieren."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2738
+#: •zp-translate-dev/zp-core/admin-functions.php:2760
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Ihr Theme, basierend auf Theme %s"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2740
+#: •zp-translate-dev/zp-core/admin-functions.php:2762
 msgid "Your theme"
 msgstr "Aktives Design"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2764
+#: •zp-translate-dev/zp-core/admin-functions.php:2786
 msgid "New custom theme created successfully!"
 msgstr "Neues benutzerdefiniertes Theme erfolgreich erstellt!"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2766
+#: •zp-translate-dev/zp-core/admin-functions.php:2788
 msgid "New custom theme created, but its description could not be updated"
 msgstr "Ein neues benutzerdefiniertes Theme wurde erstellt, aber seine Beschreibung konnte nicht aktualisiert werden"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2913
+#: •zp-translate-dev/zp-core/admin-functions.php:2935
 msgid "Rights:"
 msgstr "Rechte:"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2971
+#: •zp-translate-dev/zp-core/admin-functions.php:2993
 msgid "edit rights"
 msgstr "Rechte bearbeiten"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2972
+#: •zp-translate-dev/zp-core/admin-functions.php:2994
 msgid "view unpublished items"
 msgstr "Unveröffentlichte Einträge ansehen"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2973
+#: •zp-translate-dev/zp-core/admin-functions.php:2995
 msgid "upload rights"
 msgstr "Hochlade-Rechte"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2974
+#: •zp-translate-dev/zp-core/admin-functions.php:2996
 msgid "the album is dynamic"
 msgstr "Das Album ist dynamisch"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2976
+#: •zp-translate-dev/zp-core/admin-functions.php:2998
 msgid "Primary album"
 msgstr "Primäres Album"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2978
+#: •zp-translate-dev/zp-core/admin-functions.php:3000
 msgid "edit"
 msgstr "Bearbeiten"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2979
+#: •zp-translate-dev/zp-core/admin-functions.php:3001
 #: •zp-translate-dev/zp-core/admin-globals.php:70
 msgid "upload"
 msgstr "Hochladen"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:2980
+#: •zp-translate-dev/zp-core/admin-functions.php:3002
 msgid "view unpublished"
 msgstr "Unveröffentlichtes ansehen"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3003
+#: •zp-translate-dev/zp-core/admin-functions.php:3025
 msgid "Managed albums:"
 msgstr "Verwaltete Alben:"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3016
+#: •zp-translate-dev/zp-core/admin-functions.php:3038
 msgid "Managed news categories:"
 msgstr "Verwaltete Neuigkeitenkategorien:"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3018
+#: •zp-translate-dev/zp-core/admin-functions.php:3040
 msgid "News categories"
 msgstr "Kategorien"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3031
+#: •zp-translate-dev/zp-core/admin-functions.php:3053
 msgid "Managed pages:"
 msgstr "Verwaltete Seiten:"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3038
+#: •zp-translate-dev/zp-core/admin-functions.php:3060
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Ein oder mehrere %1$s für  %2$s zum Verwalten auswählen."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3039
+#: •zp-translate-dev/zp-core/admin-functions.php:3061
 #: •zp-translate-dev/zp-core/admin-users.php:808
 #: •zp-translate-dev/zp-core/admin-users.php:817
 #: •zp-translate-dev/zp-core/admin-users.php:823
 msgid "user"
 msgstr "Benutzer"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3040
+#: •zp-translate-dev/zp-core/admin-functions.php:3062
 #, php-format
 msgid "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All others may manage only those that are selected."
 msgstr "Benutzer mit <em>Benutzerverwaltungs-</em> oder or <em>Alle-%1$s-</em>Verwaltungsrechten haben Zugriff auf alle %2$s. Alle anderen Benutzer können nur die ihnen zugewiesenen Alben verwalten."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3043
+#: •zp-translate-dev/zp-core/admin-functions.php:3065
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Sie können diese %s nach Maßgabe der oben genannten Rechte verwalten."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3455
+#: •zp-translate-dev/zp-core/admin-functions.php:3477
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "%u Albumebene anzeigen"
 msgstr[1] "%u Albumebenen anzeigen"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3458
+#: •zp-translate-dev/zp-core/admin-functions.php:3480
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u Bild pro Seite"
 msgstr[1] "%u Bilder pro Seite"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3532
-#: •zp-translate-dev/zp-core/admin-functions.php:3544
-#: •zp-translate-dev/zp-core/admin-functions.php:3556
+#: •zp-translate-dev/zp-core/admin-functions.php:3554
+#: •zp-translate-dev/zp-core/admin-functions.php:3566
+#: •zp-translate-dev/zp-core/admin-functions.php:3578
 msgid "ok"
 msgstr "ok"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3614
+#: •zp-translate-dev/zp-core/admin-functions.php:3636
 msgid "Destination"
 msgstr "Ziel"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3880
-#: •zp-translate-dev/zp-core/admin-functions.php:3912
+#: •zp-translate-dev/zp-core/admin-functions.php:3902
+#: •zp-translate-dev/zp-core/admin-functions.php:3934
 #, php-format
 msgid "codeblock %u"
 msgstr "Codeblock %u"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3881
-#: •zp-translate-dev/zp-core/admin-functions.php:3916
+#: •zp-translate-dev/zp-core/admin-functions.php:3903
+#: •zp-translate-dev/zp-core/admin-functions.php:3938
 msgid "add codeblock"
 msgstr "Codeblock hinzufügen"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:3995
+#: •zp-translate-dev/zp-core/admin-functions.php:4017
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
 msgstr "\"%s\" Cross Site Request Forgery blockiert."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4097
+#: •zp-translate-dev/zp-core/admin-functions.php:4119
 msgid "Setup log"
 msgstr "Installationsprotokoll"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4097
+#: •zp-translate-dev/zp-core/admin-functions.php:4119
 msgid "Security log"
 msgstr "Sicherheitsprotokoll"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4097
+#: •zp-translate-dev/zp-core/admin-functions.php:4119
 msgid "Debug log"
 msgstr "Fehlerprotokoll"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4202
+#: •zp-translate-dev/zp-core/admin-functions.php:4224
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s konnte nicht gelöscht werden."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4204
+#: •zp-translate-dev/zp-core/admin-functions.php:4226
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s erfolgreich gelöscht."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4209
+#: •zp-translate-dev/zp-core/admin-functions.php:4231
 msgid "You must supply a  password."
 msgstr "Es muss ein Passwort eingegeben werden"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4211
+#: •zp-translate-dev/zp-core/admin-functions.php:4233
 msgid "Your passwords did not match."
 msgstr "Ihr Passwort stimmt nicht überein."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4218
+#: •zp-translate-dev/zp-core/admin-functions.php:4240
 msgid "The image edit form submission has been truncated. Try displaying fewer images on a page."
 msgstr "Die Bild-Formular-Übermittlung ist unvollständig. Probieren Sie weniger Bilder pro Seite anzeigen zu lassen."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4221
+#: •zp-translate-dev/zp-core/admin-functions.php:4243
 msgid "Hit counters have been reset."
 msgstr "Die Besucherzähler wurden zurückgesetzt."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4224
+#: •zp-translate-dev/zp-core/admin-functions.php:4246
 msgid "Cache has been purged."
 msgstr "Der Cache wurde gelöscht."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4227
+#: •zp-translate-dev/zp-core/admin-functions.php:4249
 #: •zp-translate-dev/zp-core/admin-upload.php:140
 msgid "Your files have been uploaded."
 msgstr "Ihren Dateien wurden hochgeladen."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4230
+#: •zp-translate-dev/zp-core/admin-functions.php:4252
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> existiert bereits."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4245
+#: •zp-translate-dev/zp-core/admin-functions.php:4267
 msgid "Selected items published"
 msgstr "Ausgewählte Einträge veröffentlicht"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4248
+#: •zp-translate-dev/zp-core/admin-functions.php:4270
 msgid "Selected items unpublished"
 msgstr "Ausgewählte Einträge nicht veröffentlicht"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4251
+#: •zp-translate-dev/zp-core/admin-functions.php:4273
 msgid "Comments enabled for selected items"
 msgstr "Kommentare für die ausgewählten Einträge aktiviert"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4254
+#: •zp-translate-dev/zp-core/admin-functions.php:4276
 msgid "Comments disabled for selected items"
 msgstr "Kommentare sind für die ausgewählten Einträge deaktiviert"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4257
+#: •zp-translate-dev/zp-core/admin-functions.php:4279
 msgid "Hitcounter for selected items"
 msgstr "Besucherzähler für ausgewählte Einträge"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4260
+#: •zp-translate-dev/zp-core/admin-functions.php:4282
 msgid "Tags added for selected items"
 msgstr "Schlagwörter zu den ausgewählten Einträgen hinzugefügt"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4263
+#: •zp-translate-dev/zp-core/admin-functions.php:4285
 msgid "Tags cleared for selected items"
 msgstr "Schlagwörter von den ausgewählten Einträgen gelöscht"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4266
+#: •zp-translate-dev/zp-core/admin-functions.php:4288
 msgid "Tags added for images of selected items"
 msgstr "Schlagwörter den ausgewählten Einträgen hinzugefügt"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4269
+#: •zp-translate-dev/zp-core/admin-functions.php:4291
 msgid "Tags cleared for images of selected items"
 msgstr "Schlagwörter der ausgewählten Einträge gelöscht"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4279
+#: •zp-translate-dev/zp-core/admin-functions.php:4301
 msgid "Image already exists."
 msgstr "Das Bild existiert bereits."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4282
+#: •zp-translate-dev/zp-core/admin-functions.php:4304
 msgid "Album already exists."
 msgstr "Das Album existiert bereits."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4285
+#: •zp-translate-dev/zp-core/admin-functions.php:4307
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr "Bewegen, Kopieren oder Umbenennen nicht möglich."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4288
+#: •zp-translate-dev/zp-core/admin-functions.php:4310
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "Bewegen, Kopieren oder Umbenennen in ein dynamisches Album nicht möglich."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4291
+#: •zp-translate-dev/zp-core/admin-functions.php:4313
 msgid "Cannot rename an image to a different suffix"
 msgstr "Das Suffix eines Bildes kann nicht umbenannt werden."
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4294
+#: •zp-translate-dev/zp-core/admin-functions.php:4316
 msgid "Album delete failed"
 msgstr "Albumlöschen fehlgeschlagen"
 
-#: •zp-translate-dev/zp-core/admin-functions.php:4297
+#: •zp-translate-dev/zp-core/admin-functions.php:4319
 msgid "There was an error with a move, copy, or rename operation."
 msgstr "Es ist ein Fehler beim Verschieben, Kopieren oder Umbenennen aufgetreten."
 
@@ -5391,202 +5395,202 @@ msgstr "Sie haben keine Rechte für %s."
 msgid "You do not have proper rights to access %s."
 msgstr "Sie haben keine Rechte, um auf %s zuzugreifen."
 
-#: •zp-translate-dev/zp-core/admin.php:177
+#: •zp-translate-dev/zp-core/admin.php:189
 msgid "Gallery Stats"
 msgstr "Galeriestatistik"
 
-#: •zp-translate-dev/zp-core/admin.php:184
+#: •zp-translate-dev/zp-core/admin.php:196
 #, php-format
 msgid "<strong>%1$u</strong> Image (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> Bild (%2$u nicht veröffentlicht)"
 msgstr[1] "<strong>%1$u</strong> Bilder (%2$u nicht veröffentlicht)"
 
-#: •zp-translate-dev/zp-core/admin.php:186
+#: •zp-translate-dev/zp-core/admin.php:198
 #, php-format
 msgid "<strong>%u</strong> Image"
 msgid_plural "<strong>%u</strong> Images"
 msgstr[0] "<strong>%u</strong> Bild"
 msgstr[1] "<strong>%u</strong> Bilder"
 
-#: •zp-translate-dev/zp-core/admin.php:195
+#: •zp-translate-dev/zp-core/admin.php:207
 #, php-format
 msgid "<strong>%1$u</strong> Album (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> Album (%2$u nicht veröffentlicht)"
 msgstr[1] "<strong>%1$u</strong> Alben (%2$u nicht veröffentlicht)"
 
-#: •zp-translate-dev/zp-core/admin.php:197
+#: •zp-translate-dev/zp-core/admin.php:209
 #, php-format
 msgid "<strong>%u</strong> Album"
 msgid_plural "<strong>%u</strong> Albums"
 msgstr[0] "<strong>%u</strong> Album"
 msgstr[1] "<strong>%u</strong> Alben"
 
-#: •zp-translate-dev/zp-core/admin.php:206
+#: •zp-translate-dev/zp-core/admin.php:218
 #, php-format
 msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
 msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
 msgstr[0] "<strong>%1$u</strong> Kommentar (%2$u zu moderieren)"
 msgstr[1] "<strong>%1$u</strong> Kommentare (%2$u zu moderieren)"
 
-#: •zp-translate-dev/zp-core/admin.php:208
+#: •zp-translate-dev/zp-core/admin.php:220
 #, php-format
 msgid "<strong>%u</strong> Comment"
 msgid_plural "<strong>%u</strong> Comments"
 msgstr[0] "<strong>%u</strong> Kommentar"
 msgstr[1] "<strong>%u</strong> Kommentare"
 
-#: •zp-translate-dev/zp-core/admin.php:218
+#: •zp-translate-dev/zp-core/admin.php:230
 #, php-format
 msgid "<strong>%1$u</strong> Page"
 msgid_plural "<strong>%1$u</strong> Pages"
 msgstr[0] "<strong>%1$u</strong> Seite"
 msgstr[1] "<strong>%1$u</strong> Seiten"
 
-#: •zp-translate-dev/zp-core/admin.php:220
+#: •zp-translate-dev/zp-core/admin.php:232
 #, php-format
 msgid "<strong>%1$u</strong> Page (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> Album (%2$u nicht veröffentlicht)"
 msgstr[1] "<strong>%1$u</strong> Alben (%2$u nicht veröffentlicht)"
 
-#: •zp-translate-dev/zp-core/admin.php:228
+#: •zp-translate-dev/zp-core/admin.php:240
 #, php-format
 msgid "<strong>%1$u</strong> News"
 msgid_plural "<strong>%1$u</strong> News"
 msgstr[0] "<strong>%1$u</strong> Artikel"
 msgstr[1] "<strong>%1$u</strong> Artikel"
 
-#: •zp-translate-dev/zp-core/admin.php:230
+#: •zp-translate-dev/zp-core/admin.php:242
 #, php-format
 msgid "<strong>%1$u</strong> News (%2$u un-published)"
 msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
 msgstr[0] "<strong>%1$u</strong> Artikel (%2$u nicht veröffentlicht)"
 msgstr[1] "<strong>%1$u</strong> Artikel (%2$u nicht veröffentlicht)"
 
-#: •zp-translate-dev/zp-core/admin.php:237
+#: •zp-translate-dev/zp-core/admin.php:249
 #, php-format
 msgid "<strong>%1$u</strong> Category"
 msgid_plural "<strong>%1$u</strong> Categories"
 msgstr[0] "<strong>%1$u</strong> Kategorie"
 msgstr[1] "<strong>%1$u</strong> Kategorien"
 
-#: •zp-translate-dev/zp-core/admin.php:249
+#: •zp-translate-dev/zp-core/admin.php:281
+msgid "misc"
+msgstr "verschiedenes"
+
+#: •zp-translate-dev/zp-core/admin.php:290
+msgid "Utility functions"
+msgstr "Hilfsfunktionen"
+
+#: •zp-translate-dev/zp-core/admin.php:341
 msgid "Installation information"
 msgstr "Installationsinformation"
 
-#: •zp-translate-dev/zp-core/admin.php:254
+#: •zp-translate-dev/zp-core/admin.php:346
 msgid "Official build"
 msgstr "Offizielle Version"
 
-#: •zp-translate-dev/zp-core/admin.php:256
+#: •zp-translate-dev/zp-core/admin.php:348
 msgid "<em>Debug build</em>"
 msgstr "<em>Debug build</em>"
 
-#: •zp-translate-dev/zp-core/admin.php:259
+#: •zp-translate-dev/zp-core/admin.php:351
 msgid "clone"
 msgstr "Klon"
 
-#: •zp-translate-dev/zp-core/admin.php:263
+#: •zp-translate-dev/zp-core/admin.php:355
 #, php-format
 msgid "Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>"
 msgstr "Zenphoto-Version <strong>%1$s [%2$s] (%3$s)</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:265
+#: •zp-translate-dev/zp-core/admin.php:357
 #, php-format
 msgid "Current locale setting: <strong>%1$s</strong>"
 msgstr "Derzeitige Locale-Einstellung: <strong>%1$s</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:267
+#: •zp-translate-dev/zp-core/admin.php:359
 msgid "<strong>Locale setting has failed</strong>"
 msgstr "<strong>Die Locale-Einstellung schlug fehl</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:278
+#: •zp-translate-dev/zp-core/admin.php:370
 #, php-format
 msgid "Current gallery theme: <strong>%1$s</strong>"
 msgstr "Derzeit aktives Galerie-Theme: <strong>%1$s</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:281
+#: •zp-translate-dev/zp-core/admin.php:373
 #, php-format
 msgid "PHP version: <strong>%1$s</strong>"
 msgstr "PHP-Version: <strong>%1$s</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:322
+#: •zp-translate-dev/zp-core/admin.php:414
 #, php-format
 msgid "PHP Error reporting: <strong>%s</strong>"
 msgstr "PHP-Fehlermeldungen: <strong>%s</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:329
+#: •zp-translate-dev/zp-core/admin.php:421
 #, php-format
 msgid "Graphics support: <strong>%s</strong>"
 msgstr "Grafikunterstützung: <strong>%s</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:339
+#: •zp-translate-dev/zp-core/admin.php:431
 #, php-format
 msgid "supporting: %s"
 msgstr "Unterstützung: %s"
 
-#: •zp-translate-dev/zp-core/admin.php:342
+#: •zp-translate-dev/zp-core/admin.php:434
 #, php-format
 msgid "PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate less!)"
 msgstr "PHP-Speicherbeschränkung: <strong>%1$s</strong> (Anmerkung: Ihr Server weist möglicherweise weniger Speicher zu!!)"
 
-#: •zp-translate-dev/zp-core/admin.php:346
+#: •zp-translate-dev/zp-core/admin.php:438
 #, php-format
 msgid "%1$s version: <strong>%2$s</strong>"
 msgstr "%1$s Version: <strong>%2$s</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:350
+#: •zp-translate-dev/zp-core/admin.php:442
 #, php-format
 msgid "Database name: <strong>%1$s</strong>"
 msgstr "Datenbankname: <strong>%1$s</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:355
+#: •zp-translate-dev/zp-core/admin.php:447
 #, php-format
 msgid "Table prefix: <strong>%1$s</strong>"
 msgstr "Tabellenvorsilbe: <strong>%1$s</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:359
+#: •zp-translate-dev/zp-core/admin.php:451
 #, php-format
 msgid "Spam filter: <strong>%s</strong>"
 msgstr "Spamfilter: <strong>%s</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:360
+#: •zp-translate-dev/zp-core/admin.php:452
 #, php-format
 msgid "CAPTCHA generator: <strong>%s</strong>"
 msgstr "CAPTCHA-Generator: <strong>%s</strong>"
 
-#: •zp-translate-dev/zp-core/admin.php:364
+#: •zp-translate-dev/zp-core/admin.php:456
 msgid "There is no mail handler configured!"
 msgstr "Es ist keine E-Mail-Funktionalität konfiguriert!"
 
-#: •zp-translate-dev/zp-core/admin.php:375
+#: •zp-translate-dev/zp-core/admin.php:467
 #, php-format
 msgid "%u active plugin:"
 msgid_plural "%u active plugins:"
 msgstr[0] "%u aktives Plugin:"
 msgstr[1] "%u aktive Plugins:"
 
-#: •zp-translate-dev/zp-core/admin.php:411
-#: •zp-translate-dev/zp-core/admin.php:449
+#: •zp-translate-dev/zp-core/admin.php:503
+#: •zp-translate-dev/zp-core/admin.php:541
 msgid "<em>none</em>"
 msgstr "<em>keine</em>"
 
-#: •zp-translate-dev/zp-core/admin.php:422
+#: •zp-translate-dev/zp-core/admin.php:514
 #, php-format
 msgid "%u active filter:"
 msgid_plural "%u active filters:"
 msgstr[0] "%u aktive Filter:"
 msgstr[1] "%u aktive Filter:"
-
-#: •zp-translate-dev/zp-core/admin.php:493
-msgid "misc"
-msgstr "verschiedenes"
-
-#: •zp-translate-dev/zp-core/admin.php:502
-msgid "Utility functions"
-msgstr "Hilfsfunktionen"
 
 #: •zp-translate-dev/zp-core/class-album.php:55
 #, php-format
@@ -7709,16 +7713,16 @@ msgstr "Thai (Windows)"
 msgid "Zenphoto License agreement"
 msgstr "Zenphoto-Lizenz-Zustimmung"
 
-#: •zp-translate-dev/zp-core/license.php:40
+#: •zp-translate-dev/zp-core/license.php:36
 #, php-format
 msgid "This license is in English because the <em>Free Software Foundation</em> does not approve translations as officially valid. Unofficial translations are available <a href=\"%s\">here</a>."
 msgstr "Diese Lizenz ist in Englisch, da die <em>Free Software Foundation</em> Übersetzungen nicht offiziell freigibt Nicht offizielle Übersetzungen gibt es hier <a href=\"%s\">here</a>."
 
-#: •zp-translate-dev/zp-core/license.php:47
+#: •zp-translate-dev/zp-core/license.php:43
 msgid "You must accept this license to continue to use Zenphoto."
 msgstr "Sie müssen diese Lizenz akzeptieren, um Zenphoto benutzen zu können."
 
-#: •zp-translate-dev/zp-core/license.php:47
+#: •zp-translate-dev/zp-core/license.php:43
 msgid "I agree to these terms and conditions"
 msgstr "Ich stimme den Bedingungen zu."
 
@@ -8993,118 +8997,118 @@ msgstr "Album erstellen"
 msgid "Logout"
 msgstr "Abmelden"
 
-#: •zp-translate-dev/zp-core/template-functions.php:701
-#: •zp-translate-dev/zp-core/template-functions.php:788
-#: •zp-translate-dev/zp-core/template-functions.php:889
+#: •zp-translate-dev/zp-core/template-functions.php:704
+#: •zp-translate-dev/zp-core/template-functions.php:799
 msgid "Previous Page"
 msgstr "Vorherige Seite"
 
-#: •zp-translate-dev/zp-core/template-functions.php:703
+#: •zp-translate-dev/zp-core/template-functions.php:706
+#: •zp-translate-dev/zp-core/template-functions.php:900
 msgid "Next Page"
 msgstr "Nächste Seite"
 
-#: •zp-translate-dev/zp-core/template-functions.php:806
+#: •zp-translate-dev/zp-core/template-functions.php:817
 msgid "Page 1"
 msgstr "Seite 1"
 
-#: •zp-translate-dev/zp-core/template-functions.php:821
-#: •zp-translate-dev/zp-core/template-functions.php:830
-#: •zp-translate-dev/zp-core/template-functions.php:860
-#: •zp-translate-dev/zp-core/template-functions.php:867
-#: •zp-translate-dev/zp-core/template-functions.php:877
+#: •zp-translate-dev/zp-core/template-functions.php:832
+#: •zp-translate-dev/zp-core/template-functions.php:841
+#: •zp-translate-dev/zp-core/template-functions.php:871
+#: •zp-translate-dev/zp-core/template-functions.php:878
+#: •zp-translate-dev/zp-core/template-functions.php:888
 #, php-format
 msgid "Page %u"
 msgid_plural "Page %u"
 msgstr[0] "Seite %u"
 msgstr[1] "Seite %u"
 
-#: •zp-translate-dev/zp-core/template-functions.php:841
+#: •zp-translate-dev/zp-core/template-functions.php:852
 #, php-format
 msgid "Page %1$u"
 msgid_plural "Page %1$u"
 msgstr[0] "Seite %1$u"
 msgstr[1] "Seite %1$u"
 
-#: •zp-translate-dev/zp-core/template-functions.php:952
+#: •zp-translate-dev/zp-core/template-functions.php:963
 msgid "The album is un-published."
 msgstr "Das Album ist unveröffentlicht."
 
-#: •zp-translate-dev/zp-core/template-functions.php:1052
+#: •zp-translate-dev/zp-core/template-functions.php:1063
 msgid "Album Thumbnails"
 msgstr "Albumthumbnails"
 
-#: •zp-translate-dev/zp-core/template-functions.php:1098
+#: •zp-translate-dev/zp-core/template-functions.php:1109
 msgid "Return to search"
 msgstr "Zurück zur Suche"
 
-#: •zp-translate-dev/zp-core/template-functions.php:1318
-#: •zp-translate-dev/zp-core/template-functions.php:1322
+#: •zp-translate-dev/zp-core/template-functions.php:1329
+#: •zp-translate-dev/zp-core/template-functions.php:1333
 msgid "printField() invalid function call."
 msgstr "printEditable() ungültiger Funktionsaufruf."
 
-#: •zp-translate-dev/zp-core/template-functions.php:1915
+#: •zp-translate-dev/zp-core/template-functions.php:1926
 msgid "The image is marked un-published."
 msgstr "Das Bild ist unveröffentlicht."
 
-#: •zp-translate-dev/zp-core/template-functions.php:2254
+#: •zp-translate-dev/zp-core/template-functions.php:2265
 msgid "Image Info"
 msgstr "Bildinfo"
 
-#: •zp-translate-dev/zp-core/template-functions.php:2898
+#: •zp-translate-dev/zp-core/template-functions.php:2909
 msgid "Anonymous"
 msgstr "Anonym"
 
-#: •zp-translate-dev/zp-core/template-functions.php:3344
+#: •zp-translate-dev/zp-core/template-functions.php:3355
 #, php-format
 msgid "View image: %s"
 msgstr "Bild %s ansehen"
 
-#: •zp-translate-dev/zp-core/template-functions.php:3512
+#: •zp-translate-dev/zp-core/template-functions.php:3523
 msgid "No popular tags"
 msgstr "Keine populären Schlagwörter"
 
-#: •zp-translate-dev/zp-core/template-functions.php:3786
+#: •zp-translate-dev/zp-core/template-functions.php:3797
 msgid "Latest images RSS"
 msgstr "Neuste Bilder RSS "
 
-#: •zp-translate-dev/zp-core/template-functions.php:3842
+#: •zp-translate-dev/zp-core/template-functions.php:3853
 msgid "getSearchURL $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "getSearchURL $album_list Parameter ist veraltet. Übergeben Sie stattdessen ein array(\"albums\"=>array(album, album,...))."
 
-#: •zp-translate-dev/zp-core/template-functions.php:3944
+#: •zp-translate-dev/zp-core/template-functions.php:3955
 msgid "printSearchForm $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "printSearchForm $album_list Parameter ist veraltet. Übergeben Sie stattdessen ein array(\"albums\"=>array(album, album,...))."
 
-#: •zp-translate-dev/zp-core/template-functions.php:3961
+#: •zp-translate-dev/zp-core/template-functions.php:3972
 #, php-format
 msgid "%s within previous results"
 msgstr "%s innerhalb bisheriger Treffer"
 
-#: •zp-translate-dev/zp-core/template-functions.php:4030
+#: •zp-translate-dev/zp-core/template-functions.php:4041
 msgid "search options"
 msgstr "Sucheinstellungen"
 
-#: •zp-translate-dev/zp-core/template-functions.php:4030
+#: •zp-translate-dev/zp-core/template-functions.php:4041
 msgid "fields"
 msgstr "Felder"
 
-#: •zp-translate-dev/zp-core/template-functions.php:4066
+#: •zp-translate-dev/zp-core/template-functions.php:4077
 msgid "Within"
 msgstr "Innerhalb"
 
-#: •zp-translate-dev/zp-core/template-functions.php:4070
+#: •zp-translate-dev/zp-core/template-functions.php:4081
 msgid "New"
 msgstr "Neu"
 
-#: •zp-translate-dev/zp-core/template-functions.php:4124
+#: •zp-translate-dev/zp-core/template-functions.php:4135
 msgid "no date"
 msgstr "kein Datum"
 
-#: •zp-translate-dev/zp-core/template-functions.php:4379
+#: •zp-translate-dev/zp-core/template-functions.php:4390
 msgid "The page you are trying to view is password protected."
 msgstr "Die Seite, die Sie sehen möchten, ist passwortgeschützt."
 
-#: •zp-translate-dev/zp-core/template-functions.php:4419
+#: •zp-translate-dev/zp-core/template-functions.php:4430
 msgid "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 msgstr "Betrieben mit <a href=\"http://www.zenphoto.org\" title=\"Eine einfachere Bildgalerie\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
@@ -10451,39 +10455,39 @@ msgstr "Copyright %1$u: %2$s"
 msgid "You can insert your Gallery description on the Admin Options Gallery tab."
 msgstr "Sie können Ihre Galeriebeschreibung bei den Einstellungen eingeben."
 
-#: •zp-translate-dev/zp-core/setup/setup-primitive.php:105
+#: •zp-translate-dev/zp-core/setup/setup-primitive.php:114
 msgid "A simpler web album"
 msgstr "Die einfachere Internetbildgalerie"
 
-#: •zp-translate-dev/zp-core/setup/setup-primitive.php:310
+#: •zp-translate-dev/zp-core/setup/setup-primitive.php:319
 msgid "<strong>Backtrace:</strong>"
 msgstr "<strong>Zurückverfolgung:</strong>"
 
-#: •zp-translate-dev/zp-core/setup/setup-primitive.php:391
+#: •zp-translate-dev/zp-core/setup/setup-primitive.php:400
 msgid "PARSING ERROR"
 msgstr "PARSING ERROR"
 
-#: •zp-translate-dev/zp-core/setup/setup-primitive.php:393
+#: •zp-translate-dev/zp-core/setup/setup-primitive.php:402
 msgid "CORE ERROR"
 msgstr "CORE ERROR"
 
-#: •zp-translate-dev/zp-core/setup/setup-primitive.php:394
+#: •zp-translate-dev/zp-core/setup/setup-primitive.php:403
 msgid "CORE WARNING"
 msgstr "CORE WARNING"
 
-#: •zp-translate-dev/zp-core/setup/setup-primitive.php:395
+#: •zp-translate-dev/zp-core/setup/setup-primitive.php:404
 msgid "COMPILE ERROR"
 msgstr "COMPILE ERROR"
 
-#: •zp-translate-dev/zp-core/setup/setup-primitive.php:396
+#: •zp-translate-dev/zp-core/setup/setup-primitive.php:405
 msgid "COMPILE WARNING"
 msgstr "COMPILE WARNING"
 
-#: •zp-translate-dev/zp-core/setup/setup-primitive.php:401
+#: •zp-translate-dev/zp-core/setup/setup-primitive.php:410
 msgid "RECOVERABLE ERROR"
 msgstr "RECOVERABLE ERROR"
 
-#: •zp-translate-dev/zp-core/setup/setup-primitive.php:408
+#: •zp-translate-dev/zp-core/setup/setup-primitive.php:417
 msgid "CAUGHT EXCEPTION"
 msgstr "CAUGHT EXCEPTION"
 
@@ -10932,10 +10936,6 @@ msgstr "Von"
 #: •zp-translate-dev/zp-core/utilities/gallery_statistics.php:732
 msgid "to "
 msgstr "bis"
-
-#: •zp-translate-dev/zp-core/utilities/gallery_statistics.php:840
-msgid "Back to top"
-msgstr "Zurück nach oben"
 
 #: •zp-translate-dev/zp-core/utilities/phpInfo.php:14
 msgid "Show PHP Information"
