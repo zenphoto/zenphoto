@@ -301,7 +301,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				}
 				$category = $button_category;
 				?>
-				<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
+				<fieldset class="utility_buttons_field"><legend><?php echo ucfirst($category); ?></legend>
 				<?php
 			}
 			?>

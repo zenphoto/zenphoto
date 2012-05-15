@@ -505,7 +505,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$required = '5.0.5';
 	$desired = '5.3';
 	$err = versionCheck($required, $desired, PHP_VERSION);
-	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired), false) && $good;
+	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired), false) && $good;
 	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
 	$register_globals = preg_match('#(1|ON)#i', ini_get('register_globals'));
 	$good = checkMark(!$register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>.'.(is_string($register_globals)?' '.gettext('<strong>Note</strong>: There should be no quotation marks in this setting!'):''))) && $good;
@@ -880,7 +880,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		$dbversion = $dbsoftware['version'];
 		$required = $dbsoftware['required'];
 		$desired = $dbsoftware['desired'];
-		$sqlv = versionCheck($required, $desired, $dbversion);;
+		$sqlv = versionCheck($required, $desired, $dbversion);
 	}
 	primeMark(gettext('Database connection'));
 	if ($cfg) {
@@ -905,7 +905,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		}
 	}
 	if ($connection) {
-		$good = checkMark($sqlv, sprintf(gettext('%1$s version %2$s'),$dbapp,$dbversion), "", sprintf(gettext('Version %1$s or greater is required. Version %2$s or greater is preferred. Use a lower version at your own risk.'),$required,$desired), false) && $good;
+		$good = checkMark($sqlv, sprintf(gettext('%1$s version %2$s'),$dbapp,$dbversion), "", sprintf(gettext('%1$s Version %2$s or greater is required. Version %3$s or greater is preferred. Use a lower version at your own risk.'),$dbapp,$required,$desired), false) && $good;
 		if ($DBcreated || !empty($connectDBErr)) {
 			if (empty($connectDBErr)) {
 				$severity = 1;

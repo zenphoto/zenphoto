@@ -179,7 +179,6 @@ if ($rootrights || !empty($albumlist)) {
 		}
 		// ]]> -->
 	</script>
-
 	<div id="albumselect">
 
 		<form name="file_upload_datum" id="file_upload_datum" method="post" action="<?php  echo $formAction; ?>" enctype="multipart/form-data" >

@@ -13,12 +13,18 @@
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext("Limits the number of images that can be uploaded to an album via the Zenphoto upload.");
 $plugin_author = "Malte Müller (acrylian)";
+$plugin_disable = (zp_has_filter('get_upload_header_text') && !getoption('zp_plugin_image_upload_limiter'))?sprintf(gettext('<a href="#%1$s"><code>%1$s</code></a> is already enabled.'),stripSuffix(get_filterScript('get_upload_header_text'))):'';
 
 $option_interface = 'uploadlimit';
-zp_register_filter('upload_helper_js', 'uploadLimiterJS');
-zp_register_filter('get_upload_header_text', 'uploadLimiterHeaderMessage');
-zp_register_filter('upload_filetypes','limitUploadFiletypes');
-zp_register_filter('upload_hadlers','limitUploadHandlers');
+
+if ($plugin_disable) {
+	setOption('zp_plugin_image_upload_limiter', 0);
+} else {
+	zp_register_filter('upload_helper_js', 'uploadLimiterJS');
+	zp_register_filter('get_upload_header_text', 'uploadLimiterHeaderMessage');
+	zp_register_filter('upload_filetypes','limitUploadFiletypes');
+	zp_register_filter('upload_hadlers','limitUploadHandlers');
+}
 
 /**
  * Option handler class
@@ -164,7 +170,7 @@ function uploadLimiterHeaderMessage($default) {
 	if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 		return $default;
 	}
-	return '<p style="color: green">'. sprintf(gettext("<strong>Note:</strong> You can upload a maximum of %s images to each album."),getOption('imageuploadlimit')).'</p>';
+	return sprintf(gettext("You can upload a maximum of %s images to each album."),getOption('imageuploadlimit'));
 }
 
 /*

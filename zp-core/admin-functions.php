@@ -451,8 +451,8 @@ function checked($checked, $current) {
 
 function genAlbumUploadList(&$list, $curAlbum=NULL) {
 	global $_zp_gallery;
-	$albums = array();
 	if (is_null($curAlbum)) {
+		$albums = array();
 		$albumsprime = $_zp_gallery->getAlbums(0);
 		foreach ($albumsprime as $album) { // check for rights
 			$albumobj = new Album(NULL, $album);
@@ -4116,23 +4116,25 @@ function admin_album_list($owner) {
 function getLogTabs() {
 	$subtabs = array();
 	$default = NULL;
-	$localizer = array('setup'=>gettext('Setup log'), 'security'=>gettext('Security log'), 'debug'=>gettext('Debug log'));
+	$localizer = array('setup'=>gettext('setup'), 'security'=>gettext('security'), 'debug'=>gettext('debug'));
 	$filelist = safe_glob(SERVERPATH . "/" . DATA_FOLDER . '/*.log');
 	if (count($filelist)>0) {
 		$tab = sanitize(@$_GET['tab'],3);
 		foreach ($filelist as $logfile) {
 			$log = substr(basename($logfile), 0,-4);
 			if ($log == $tab) {
-				$default = $tab;			}
+				$default = $tab;
+			}
 			if (array_key_exists($log, $localizer)) {
 				$logfiletext = $localizer[$log];
 			} else {
 				$logfiletext = str_replace('_', ' ',$log);
-				$logfiletext = strtoupper(substr($logfiletext, 0, 1)).substr($logfiletext, 1);			}
+			}
 			$subtabs = array_merge($subtabs, array($logfiletext => 'admin-logs.php?page=logs&amp;tab='.$log));
 			if (filesize($logfile) > 0 && empty($default)) {
-				$default = $log;			}
-}
+				$default = $log;
+			}
+		}
 	}
 	return array($subtabs,$default);
 }

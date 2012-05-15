@@ -41,7 +41,9 @@ if (!defined('SEO_WEBPATH')) {
 class seo_locale {
 
 	static function load_request($allow) {
-		$uri = str_replace('\\','/',urldecode(sanitize($_SERVER['REQUEST_URI'], 0)));
+		$uri = str_replace('\\','/',sanitize($_SERVER['REQUEST_URI'], 0));
+		$parts = explode('?', $uri);
+		$uri = urldecode($parts[0]);
 		$path = substr($uri, strlen(WEBPATH)+1);
 		if (substr($path,0,1) == '/') $path = substr($path,1);
 		if (empty($path)) {
@@ -62,7 +64,10 @@ class seo_locale {
 		if ($locale) {
 			// set the language cookie and redirect to the "base" url
 			zp_setCookie('dynamic_locale', $locale);
-			$uri = preg_replace('|/'.$l.'[/$]|', '/', $uri);
+			$uri = pathurlencode(preg_replace('|/'.$l.'[/$]|', '/', $uri));
+			if (isset($parts[1])) {
+				$uri .= '?'.$parts[1];
+			}
 			header("HTTP/1.0 302 Found");
 			header("Status: 302 Found");
 			header('Location: '.$uri);

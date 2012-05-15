@@ -880,7 +880,7 @@ function printPageListWithNav($prevtext, $nexttext, $oneImagePage=false, $nextpr
 						<?php
 					}
 					?>
-					<li class="last<?php if ($current == $i) echo ' current'; ?>>">
+					<li class="last<?php if ($current == $i) echo ' current'; ?>">
 						<?php
 						if($current == $i)  {
 							echo $i;

@@ -55,6 +55,7 @@ class tweet {
 		setOptionDefault('tweet_news_news', 1);
 		setOptionDefault('tweet_news_protected', NULL);
 		setOptionDefault('tweet_news_pages', 0);
+		setOptionDefault('tweet_language', NULL);
 	}
 
 	/**
@@ -100,7 +101,12 @@ class tweet {
 																			'order'=>6,
 																			'checkboxes' => $list,
 																			'desc'=>gettext('If a <em>type</em> is checked, a Tweet will be made when an object of that <em>type</em> is published.'));
-
+		If (getOption('multi_lingual')) {
+			$options[gettext('Tweet Language')] = array('key'=>'tweet_language', 'type'=>OPTION_TYPE_SELECTOR,
+																						'order'=>5.5,
+																						'selections' => generateLanguageList(),
+																						'desc'=>gettext('Seect the language for the Tweet message.'));
+		}
 		if (getOption('tweet_news_news') && is_object($_zp_zenpage)) {
 			$catlist = unserialize(getOption('tweet_news_categories'));
 			$news_categories = $_zp_zenpage->getAllCategories(false);
@@ -268,6 +274,10 @@ class tweet {
 	 * @param object $obj
 	 */
 	private static function tweetObject($obj) {
+		if (getOption('multi_lingual')) {
+			$cur_locale = getUserLocale();
+			setupCurrentLocale(getOption('tweet_language'));	//	the log will be in the language of the master user.
+		}
 		$error = '';
 		$link = getTinyURL($obj);
 		switch ($type = $obj->table) {
@@ -322,6 +332,9 @@ class tweet {
 					$error = sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$item,$error);
 				}
 				break;
+		}
+		if (isset($cur_locale)) {
+			setupCurrentLocale($cur_locale);	//	restore to whatever was in effect.
 		}
 		return $error;
 	}

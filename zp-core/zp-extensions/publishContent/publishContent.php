@@ -371,7 +371,11 @@ echo '</head>';
 				}
 			}
 			function publishAll(id,what) {
-				$('.album_'+id+'_'+what).attr('checked','checked');
+				if (id) {
+					$('.album_'+id+'_'+what).attr('checked','checked');
+				} else {
+					$('.global_'+what).attr('checked','checked');
+				}
 			}
 			// ]]> -->
 		</script>
@@ -411,12 +415,12 @@ echo '</head>';
 								<td>
 									<label style="white-space:nowrap">
 										<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="publish" />
-										<input id="pub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_p" name="r_<?php echo $item; ?>" type="radio" value="pub_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>',false)" />
+										<input id="pub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_p global_p" name="r_<?php echo $item; ?>" type="radio" value="pub_<?php echo $item; ?>" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>',false)" />
 										<?php echo gettext('Publish'); ?>
 									</label>
 									<label style="white-space:nowrap">
 										<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="unpublish" />
-										<input id="notpub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_u" name="r_<?php echo $item; ?>" type="radio"	value="notpub_<?php echo $item; ?>"	checked="checked" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>',false)" />
+										<input id="notpub_<?php echo $item; ?>" class="album_<?php echo $albumid; ?>_u global_u" name="r_<?php echo $item; ?>" type="radio"	value="notpub_<?php echo $item; ?>"	checked="checked" onclick="confirmdel(this, 'label_del_<?php echo $item; ?>',false)" />
 										<?php echo gettext('Do not publish'); ?>
 									</label>
 									<label id="label_del_<?php echo $item; ?>" style="white-space:nowrap">
@@ -445,7 +449,15 @@ echo '</head>';
 		}
 		?>
 		</ul>
-		<br clear="all" />
+		<p class="scheduleimagechecklisthead">
+			<a href="javascript:publishAll('','p');" title="<?php echo gettext('Set all to be published'); ?>">
+				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/pass.png" style="border: 0px;" alt="publish all" />
+			</a>
+			<a href="javascript:publishAll('','u');" title="<?php echo gettext('Set all to be un-published'); ?>">
+				<img src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/images/reset.png" style="border: 0px;" alt="unpublish all" />
+			</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;<strong><?php echo gettext('all images'); ?></strong>
+		</p>
 
 		<div class="buttons pad_button" id="process">
 			<button class="tooltip" type="submit" title="<?php echo gettext("Process the above changes."); ?>">

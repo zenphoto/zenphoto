@@ -59,7 +59,7 @@ function primeMark($text) {
 
 function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
 	global $warn, $moreid, $primeid, $autorun;
-	$classes = array('fail'=>gettext('fail'),'warn'=>gettext('warn'),'pass'=>gettext('pass'));
+	$classes = array('fail'=>gettext('Fail: '),'warn'=>gettext('Warn: '),'pass'=>gettext('Pass: '));
 	?>
 	<script type="text/javascript">
 		$("#prime<?php echo $primeid; ?>").remove();
@@ -94,10 +94,10 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
 		<li class="<?php echo $cls; ?>"><?php
 		if (!empty($text2)) {
 			echo  $text2;
-			$dsp .= ': '.trim($text2);
+			$dsp .= trim($text2);
 		} else {
 			echo  $text;
-			$dsp .= ': '.trim($text);
+			$dsp .= trim($text);
 		}
 		if (!empty($msg)) {
 			switch ($check) {

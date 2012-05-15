@@ -51,7 +51,6 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				</div>
 				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
 				<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ''); ?>
-
 				<?php @call_user_func('printGoogleMap'); ?>
 				<?php @call_user_func('printSlideShowLink'); ?>
 				<?php @call_user_func('printRating'); ?>
@@ -62,7 +61,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 			<?php printRSSLink('Album', '', gettext('Album RSS'), ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
 			<?php printZenphotoLink(); ?>
-			<?php @call_user_func('printUserLogin_out',(" | "));	?>
+			<?php @call_user_func('printUserLogin_out'," | ");	?>
 		</div>
 		<?php
 		printAdminToolbox();
