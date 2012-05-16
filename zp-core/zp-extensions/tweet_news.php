@@ -105,7 +105,7 @@ class tweet {
 			$options[gettext('Tweet Language')] = array('key'=>'tweet_language', 'type'=>OPTION_TYPE_SELECTOR,
 																						'order'=>5.5,
 																						'selections' => generateLanguageList(),
-																						'desc'=>gettext('Seect the language for the Tweet message.'));
+																						'desc'=>gettext('Select the language for the Tweet message.'));
 		}
 		if (getOption('tweet_news_news') && is_object($_zp_zenpage)) {
 			$catlist = unserialize(getOption('tweet_news_categories'));
