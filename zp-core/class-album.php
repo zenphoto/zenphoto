@@ -331,6 +331,16 @@ class Album extends MediaObject {
 	function getAlbums($page=0, $sorttype=null, $sortdirection=null, $care=true, $mine=NULL) {
 		global $_zp_gallery;
 		if (is_null($this->subalbums) || $care && $sorttype.$sortdirection !== $this->lastsubalbumsort ) {
+			if (is_null($sorttype)) {
+				$sorttype = $this->getAlbumSortType();
+			}
+			if (is_null($sortdirection)) {
+				if ($this->getSortDirection('album')) {
+					$sortdirection = '';
+				} else {
+					$sortdirection = 'DESC';
+				}
+			}
 			if ($this->isDynamic()) {
 				$search = $this->getSearchEngine();
 				$subalbums = $search->getAlbums($page,NULL,NULL,false);
@@ -380,6 +390,16 @@ class Album extends MediaObject {
 	 */
 	function getImages($page=0, $firstPageCount=0, $sorttype=null, $sortdirection=null, $care=true, $mine=NULL) {
 		if (is_null($this->images) || $care && $sorttype.$sortdirection !== $this->lastimagesort) {
+			if (is_null($sorttype)) {
+				$sorttype = $this->getSortType();
+			}
+			if (is_null($sortdirection)) {
+				if ($this->getSortDirection('image')) {
+					$sortdirection = '';
+				} else {
+					$sortdirection = 'DESC';
+				}
+			}
 			if ($this->isDynamic()) {
 				$searchengine = $this->getSearchEngine();
 				$images = $searchengine->getImages($page, $firstPageCount, $sorttype, $sortdirection, $care, $mine);

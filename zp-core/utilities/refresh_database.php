@@ -1,7 +1,7 @@
 <?php
 $buttonlist[] = array(
 								'XSRFTag'=>'refresh',
-								'category'=>gettext('database'),
+								'category'=>gettext('Database'),
 								'enable'=>true,
 								'button_text'=>gettext('Refresh the Database'),
 								'formname'=>'refresh_database.php',

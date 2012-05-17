@@ -203,7 +203,7 @@ class hitcounter {
 	static function button($buttons) {
 		$buttons[] = array(
 											'XSRFTag'=>'hitcounter',
-											'category'=>gettext('database'),
+											'category'=>gettext('Database'),
 											'enable'=>true,
 											'button_text'=>gettext('Reset all hitcounters'),
 											'formname'=>'reset_all_hitcounters.php',

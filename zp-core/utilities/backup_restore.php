@@ -19,7 +19,7 @@ require_once(dirname(dirname(__FILE__)).'/template-functions.php');
 $signaure = getOption('zenphoto_install');
 
 $buttonlist[] = array(
-								'category'=>gettext('admin'),
+								'category'=>gettext('Admin'),
 								'enable'=>true,
 								'button_text'=>gettext('Backup/Restore'),
 								'formname'=>'backup_restore.php',

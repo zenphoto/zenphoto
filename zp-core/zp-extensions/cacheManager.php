@@ -277,7 +277,7 @@ class cacheManager {
 		}
 
 		$buttons[] = array(
-									'category'=>gettext('cache'),
+									'category'=>gettext('Cache'),
 									'enable'=>$enable,
 									'button_text'=>gettext('Cache images'),
 									'formname'=>'cacheManager_button',
@@ -291,7 +291,7 @@ class cacheManager {
 									);
 		$buttons[] = array(
 									'XSRFTag'=>'clear_cache',
-									'category'=>gettext('cache'),
+									'category'=>gettext('Cache'),
 									'enable'=>true,
 									'button_text'=>gettext('Purge RSS cache'),
 									'formname'=>'purge_rss_cache.php',
@@ -304,7 +304,7 @@ class cacheManager {
 									);
 		$buttons[] = array(
 									'XSRFTag'=>'clear_cache',
-									'category'=>gettext('cache'),
+									'category'=>gettext('Cache'),
 									'enable'=>true,
 									'button_text'=>gettext('Purge Image cache'),
 									'formname'=>'purge_image_cache.php',
@@ -316,7 +316,7 @@ class cacheManager {
 									'rights'=> ADMIN_RIGHTS
 									);
 		$buttons[] = array(
-									'category'=>gettext('cache'),
+									'category'=>gettext('Cache'),
 									'enable'=>true,
 									'button_text'=>gettext('Purge HTML cache'),
 									'formname'=>'clearcache_button',

@@ -97,8 +97,8 @@ class register_user_options {
 		}
 		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
 		if (count($mailinglist) == 0) {	//	no one to send the notice to!
-			$options[gettext('Notify')]['disabled'] = true;
-			$options[gettext('Notify')]['desc'] .= ' '.gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
+			$options[gettext('Notify*')]['disabled'] = true;
+			$options[gettext('Notify*')]['desc'] .= ' '.gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
 		}
 		if (function_exists('user_groups_admin_tabs')) {
 			$admins = $_zp_authority->getAdministrators('groups');

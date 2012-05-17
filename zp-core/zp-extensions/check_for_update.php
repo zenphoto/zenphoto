@@ -22,7 +22,7 @@ function check_for_update_button($buttons) {
 		$title = gettext("There appears to be no internet connection.");
 	}
 	$buttons[] = array(
-										'category'=>gettext('admin'),
+										'category'=>gettext('Admin'),
 										'enable'=>$enable,
 										'button_text'=>gettext('Check for update'),
 										'formname'=>'check_for_update.php',

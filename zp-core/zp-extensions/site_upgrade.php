@@ -34,7 +34,7 @@ if (defined('OFFSET_PATH')) {
 		if (empty($ht)) {
 			$buttons[] = array(
 												'XSRFTag'=>'site_upgrade',
-												'category'=>gettext('admin'),
+												'category'=>gettext('Admin'),
 												'enable'=>false,
 												'button_text'=>gettext('Close the site.'),
 												'formname'=>'site_upgrade.php',
@@ -50,7 +50,7 @@ if (defined('OFFSET_PATH')) {
 			$enable = strpos($matches[0],'#')===0;
 			$buttons[] = array(
 												'XSRFTag'=>'site_upgrade',
-												'category'=>gettext('admin'),
+												'category'=>gettext('Admin'),
 												'enable'=>$enable,
 												'button_text'=>gettext('Close site'),
 												'formname'=>'site_upgrade.php',
@@ -63,7 +63,7 @@ if (defined('OFFSET_PATH')) {
 												);
 			$buttons[] = array(
 												'XSRFTag'=>'site_upgrade',
-												'category'=>gettext('admin'),
+												'category'=>gettext('Admin'),
 												'enable'=>!$enable,
 												'button_text'=>gettext('Open the site'),
 												'formname'=>'site_upgrade.php',

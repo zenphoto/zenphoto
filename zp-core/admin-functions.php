@@ -2442,15 +2442,18 @@ function print_language_string_list($dbstring, $name, $textbox=false, $locale=NU
 			$emptylang = array_merge(array($locale=>$element), $emptylang);
 		}
 		foreach ($emptylang as $key=>$lang) {
-			echo '<li><label for="'.$name.'_'.$key.'"></label>';
-			echo $lang;
-			if ($textbox) {
-				echo "\n".'<textarea name="'.$name.'_'.$key.'"'.$edit.$width.'	rows="'.$rows.'"></textarea>';
-			} else {
-				echo '<br /><input id="'.$name.'_'.$key.'" name="'.$name.'_'.$key.'"'.$edit.' type="text" value=""'.$width .' />';
-			}
-			echo "</li>\n";
-
+			?>
+			<li>
+				<label for="<?php echo $name.'_'.$key; ?>"><?php echo $lang; ?></label>
+				<?php
+				if ($textbox) {
+					echo "\n".'<textarea name="'.$name.'_'.$key.'"'.$edit.$width.'	rows="'.$rows.'"></textarea>';
+				} else {
+					echo '<br /><input id="'.$name.'_'.$key.'" name="'.$name.'_'.$key.'"'.$edit.' type="text" value=""'.$width .' />';
+				}
+				?>
+			</li>
+			<?php
 		}
 		echo "</ul>\n";
 	} else {

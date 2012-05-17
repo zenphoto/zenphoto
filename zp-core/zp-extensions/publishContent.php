@@ -33,7 +33,7 @@ zp_register_filter('admin_utilities_buttons', 'publishContent::button');
 class publishContent {
 	static function button($buttons) {
 		$buttons[] = array(
-										'category'=>gettext('admin'),
+										'category'=>gettext('Admin'),
 										'enable'=>true,
 										'button_text'=>gettext('Publish content'),
 										'formname'=>'publishContent_button',

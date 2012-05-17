@@ -188,7 +188,7 @@ class sitemap {
 	 */
 	static function button($buttons) {
 		$buttons[] = array(
-									'category'=>gettext('seo'),
+									'category'=>gettext('Seo'),
 									'enable'=>true,
 									'button_text'=>gettext('Sitemap tools'),
 									'formname'=>'sitemap_button',

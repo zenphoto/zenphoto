@@ -117,6 +117,11 @@ class federated_logon {
 		);
 		$files = getPluginFiles('*_logon.php','federated_logon');
 
+		$mailinglist = $_zp_authority->getAdminEmail(ADMIN_RIGHTS);
+		if (count($mailinglist) == 0) {	//	no one to send the notice to!
+			$options[gettext('Notify*')]['disabled'] = true;
+			$options[gettext('Notify*')]['desc'] .= ' '.gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
+		}
 		if ($_common_notify_handler) {
 			$options['note'] = array('key' => 'menu_truncate_note', 'type' => OPTION_TYPE_NOTE,
 																'order' => 8,

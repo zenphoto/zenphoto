@@ -20,7 +20,7 @@ if (defined('OFFSET_PATH')) {
 	function seo_cleanup_button($buttons) {
 		$buttons[] = array(
 											'XSRFTag'=>'seo_cleanup',
-											'category'=>gettext('seo'),
+											'category'=>gettext('Seo'),
 											'enable'=>true,
 											'button_text'=>gettext('SEO Cleaner'),
 											'formname'=>'seo_cleanup.php',

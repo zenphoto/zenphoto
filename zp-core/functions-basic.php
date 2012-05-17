@@ -1322,7 +1322,7 @@ function themeSetup($album) {
 	$id = NULL;
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
-		$galleryoptions = serialize(getOption('gallery_data'));
+		$galleryoptions = unserialize(getOption('gallery_data'));
 		$theme = $galleryoptions['current_theme'];
 	}
 	loadLocalOptions($id, $theme);

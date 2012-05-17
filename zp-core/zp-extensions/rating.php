@@ -169,7 +169,7 @@ class jquery_rating {
 
 	static function rating_purgebutton($buttons) {
 		$buttons[] = array(
-									'category'=>gettext('database'),
+									'category'=>gettext('Database'),
 									'enable'=>true,
 									'button_text'=>gettext('Reset all ratings'),
 									'formname'=>'clearrating_button',

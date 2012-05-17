@@ -33,7 +33,7 @@ class cloneZenphoto {
 
 	static function button($buttons) {
 		$buttons[] = array(
-											'category'=>gettext('admin'),
+											'category'=>gettext('Admin'),
 											'enable'=>true,
 											'button_text'=>gettext('Clone installation'),
 											'formname'=>'cloneZenphoto',
@@ -48,7 +48,7 @@ class cloneZenphoto {
 		if (empty($needs) && zpFunctions::hasPrimaryScripts()) {
 			$buttons[] = array(
 												'XSRFTag'=>'removeSetup',
-												'category'=>gettext('admin'),
+												'category'=>gettext('Admin'),
 												'enable'=>true,
 												'button_text'=>gettext('Delete setup files'),
 												'formname'=>'removeSetup',

@@ -222,7 +222,7 @@ function getImageGeodata($obj,$MAP_OBJECT) {
  */
 function getAlbumGeodata($obj,$MAP_OBJECT){
 	$result = false;
-	$images = $obj->getImages(0);
+	$images = $obj->getImages(0, 0, null, null, false);
 	foreach ($images as $an_image) {
 		$image = newImage($obj, $an_image);
 		$coord = getGeoCoord($image);

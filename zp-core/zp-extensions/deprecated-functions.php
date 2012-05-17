@@ -79,7 +79,7 @@ class deprecated_functions {
 
 	static function button($buttons) {
 		$buttons[] = array(
-												'category'=>gettext('development'),
+												'category'=>gettext('Development'),
 												'enable'=>true,
 												'button_text'=>gettext('Check deprecated use'),
 												'formname'=>'deprecated_functions.php',
@@ -1056,7 +1056,7 @@ function getAlbumId() {
  * @since 1.4.3
  */
 function resetCurrentAlbum() {
-	deprecated_functions::notify(gettext('Just what do you expect this does?.'));
+	deprecated_functions::notify(gettext('Just what do you expect this does?'));
 	global $_zp_images, $_zp_current_album;
 	$_zp_images = NULL;
 	$_zp_current_album->images = NULL;

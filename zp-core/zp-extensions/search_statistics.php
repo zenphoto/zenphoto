@@ -75,7 +75,7 @@ class search_statistics {
 
 	static function button($buttons) {
 		$buttons[] = array(
-									'category'=>gettext('info'),
+									'category'=>gettext('Info'),
 									'enable'=>true,
 									'button_text'=>gettext('Search statistics'),
 									'formname'=>'search_statistics_button',

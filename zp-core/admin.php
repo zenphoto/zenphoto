@@ -278,7 +278,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	foreach ($buttonlist as $key=>$button) {
 		if (zp_loggedin($button['rights'])) {
 			if (!array_key_exists('category', $button)) {
-				$buttonlist[$key]['category'] = gettext('misc');
+				$buttonlist[$key]['category'] = gettext('Misc');
 			}
 		} else {
 			unset($buttonlist[$key]);
@@ -301,7 +301,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				}
 				$category = $button_category;
 				?>
-				<fieldset class="utility_buttons_field"><legend><?php echo ucfirst($category); ?></legend>
+				<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
 				<?php
 			}
 			?>

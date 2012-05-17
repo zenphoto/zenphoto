@@ -179,14 +179,18 @@ class htmlmetatags {
 				$date = getAlbumDate();
 				$desc = getBareAlbumDesc();
 				$canonicalurl = $host.getAlbumLinkURL();
-				$thumb = $host.getAlbumThumb();
+				if(getOption('htmlmeta_og-image')) {
+					$thumb = $host.getAlbumThumb();
+				}
 				break;
 			case 'image.php':
 				$pagetitle = getBareImageTitle()." (". getBareAlbumTitle().") - ";
 				$date = getImageDate();
 				$desc = getBareImageDesc();
 				$canonicalurl = $host.getImageLinkURL();
-				$thumb = $host.getImageThumb();
+				if(getOption('htmlmeta_og-image')) {
+					$thumb = $host.getImageThumb();
+				}
 				break;
 			case 'news.php':
 				if(function_exists("is_NewsArticle")) {

@@ -253,7 +253,7 @@ class DownloadList {
 	 */
 	static function button($buttons) {
 		$buttons[] = array(
-									'category'=>gettext('info'),
+									'category'=>gettext('Info'),
 									'enable'=>true,
 									'button_text'=>gettext('Download statistics'),
 									'formname'=>'downloadstatistics_button',

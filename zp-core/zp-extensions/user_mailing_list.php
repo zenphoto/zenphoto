@@ -17,7 +17,7 @@ if (defined('OFFSET_PATH')) {
 	function user_mailing_list_button($buttons) {
 		global $_zp_authority,$_zp_current_admin_obj;
 		$button = array(
-										'category'=>gettext('admin'),
+										'category'=>gettext('Admin'),
 										'enable'=>false,
 										'button_text'=>gettext('User mailing list'),
 										'formname'=>'user_mailing_list.php',
