@@ -331,7 +331,6 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		?>
 	</div><!-- overview-utility -->
 	<?php
-	zp_apply_filter('admin_overview', 'right');
 }
 ?>
 
@@ -551,7 +550,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	</div><!-- overview-info -->
 
 	<?php
-	zp_apply_filter('admin_overview', 'left');
+	zp_apply_filter('admin_overview');
 }
 
 ?>

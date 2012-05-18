@@ -17,10 +17,7 @@ if (!empty($_FILES)) {
 		$error = $_FILES['Filedata']['error'];
 	} else {
 		$tempFile = sanitize($_FILES['Filedata']['tmp_name'],3);
-		$folder = trim(sanitize($_POST['folder'],3));
-		if (substr($folder,0,1) == '/') {
-			$folder = substr($folder,1);
-		}
+		$folder = trim(sanitize($_POST['folder'],3),'/');
 		$albumparmas = explode(':', $folder,3);
 		$folder = zp_apply_filter('admin_upload_process',sanitize_path($albumparmas[1]));
 		$targetPath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($folder);

@@ -21,16 +21,16 @@ $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'security_logger';
 
 if (getOption('logger_log_admin')) {
-	zp_register_filter('admin_login_attempt', 'security_logger::adminLoginLogger',1);
-	zp_register_filter('federated_login_attempt', 'security_logger::federatedLoginLogger',1);
+	zp_register_filter('admin_login_attempt', 'security_logger::adminLoginLogger');
+	zp_register_filter('federated_login_attempt', 'security_logger::federatedLoginLogger');
 }
-if (getOption('logger_log_guests')) zp_register_filter('guest_login_attempt', 'security_logger::guestLoginLogger',1);
-zp_register_filter('admin_allow_access', 'security_logger::adminGate',1);
-zp_register_filter('admin_managed_albums_access', 'security_logger::adminAlbumGate',1);
-zp_register_filter('save_user', 'security_logger::UserSave',1);
-zp_register_filter('admin_XSRF_access', 'security_logger::admin_XSRF_access',1);
-zp_register_filter('admin_log_actions', 'security_logger::log_action',1);
-zp_register_filter('log_setup','security_logger::log_setup',1);
+if (getOption('logger_log_guests')) zp_register_filter('guest_login_attempt', 'security_logger::guestLoginLogger');
+zp_register_filter('admin_allow_access', 'security_logger::adminGate');
+zp_register_filter('admin_managed_albums_access', 'security_logger::adminAlbumGate');
+zp_register_filter('save_user', 'security_logger::UserSave');
+zp_register_filter('admin_XSRF_access', 'security_logger::admin_XSRF_access');
+zp_register_filter('admin_log_actions', 'security_logger::log_action');
+zp_register_filter('log_setup','security_logger::log_setup');
 
 /**
  * Option handler class

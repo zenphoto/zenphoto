@@ -58,8 +58,8 @@ if ($plugin_disable) {
 	zp_register_filter('theme_head', 'federated_logon::css');
 	zp_register_filter('alt_login_handler','federated_logon::alt_login_handler');
 	zp_register_filter('save_admin_custom_data', 'federated_logon::save_custom');
-	zp_register_filter('edit_admin_custom_data', 'federated_logon::edit_admin',0);
-	zp_register_filter('load_theme_script', 'federated_logon::verify',0);
+	zp_register_filter('edit_admin_custom_data', 'federated_logon::edit_admin');
+	zp_register_filter('load_theme_script', 'federated_logon::verify');
 }
 
 /**
@@ -393,10 +393,7 @@ class federated_logon {
 				<span class="fed_buttons">
 					<a href="javascript:launchScript('<?php echo $script; ?>',[<?php echo $params; ?>]);" title="<?php echo $authority; ?>" >
 						<?php
-						$logo = str_replace(WEBPATH, '', dirname($script)).'/'.$authority.'.png';
-						if (substr($logo, 0, 1) == '/') {
-							$logo = substr($logo, 1);
-						}
+						$logo = ltrim(str_replace(WEBPATH, '', dirname($script)).'/'.$authority.'.png','/');
 						if (file_exists(SERVERPATH.'/'.$logo)) {
 							?>
 							<img src="<?php echo WEBPATH.'/'.$logo; ?>" alt="<?php echo $authority; ?>" title="<?php printf(gettext('Login using %s'),$authority); ?>" />

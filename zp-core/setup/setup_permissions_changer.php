@@ -11,8 +11,7 @@ require_once(dirname(__FILE__).'/setup-functions.php');
 if (!isset($_POST['folder'])) {
 	exit();
 }
-$folder = sanitize($_POST['folder'],3);
-if (substr($folder,-1,1) == '/') $folder = substr($folder,0,-1);
+$folder = rtrim(sanitize($_POST['folder'],3),'/');
 
 if ($_POST['key']==sha1(filemtime(CONFIGFILE).file_get_contents(CONFIGFILE))) {
 	if (folderPermissions($folder)) {

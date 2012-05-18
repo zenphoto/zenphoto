@@ -38,7 +38,7 @@ $_zp_filters = array();
  * @param string $hook the name of the zenphoto element to be filtered
  * @param callback $function_name the name of the function that is to be called.
  * @param integer $priority optional. Used to specify the order in which the functions associated with a particular
- * 																		action are executed (default=5, lower=earlier execution, and functions with
+ * 																		action are executed (default=5, higher=earlier execution, and functions with
  * 																		the same priority are executed in the order in which they were added to the filter)
  */
 function zp_register_filter($hook, $function_name, $priority = NULL) {
@@ -57,6 +57,7 @@ function zp_register_filter($hook, $function_name, $priority = NULL) {
 		} else {
 			$priority = $priority & PLUGIN_PRIORITY;
 		}
+
 	}
 	// At this point, we cannot check if the function exists, as it may well be defined later (which is OK)
 
@@ -137,7 +138,7 @@ function zp_apply_filter($hook, $value = '') {
 
 	$args = func_get_args();
 	// Sort filters by priority
-	ksort($_zp_filters[$hook]);
+	krsort($_zp_filters[$hook]);
 	// Loops through each filter
 	reset( $_zp_filters[$hook] );
 	if (DEBUG_FILTERS) $debug = 'Apply filters for '.$hook;
@@ -250,7 +251,7 @@ function zp_filter_slot($hook,$function) {
 	}
 	// Sort filters by priority
 	$filters = $_zp_filters[$hook];
-	ksort($filters);
+	krsort($filters);
 	$c = 0;
 	foreach ( (array) array_keys($filters) as $priority ) {
 		foreach ($filters[$priority] as $filter=>$data) {

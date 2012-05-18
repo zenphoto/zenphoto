@@ -84,10 +84,7 @@ class simpleviewer {
 				}
 				printLinkWithQuery($url, 'noflash', gettext('View Gallery Without Flash'));
 				echo "</p>";
-				$flash_url = html_encode(getAlbumLinkURL());
-				if (substr($flash_url, -1, 1) == '/') {
-					$flash_url= substr($flash_url, 0, -1);
-				}
+				$flash_url = html_encode(rtrim(getAlbumLinkURL(),'/'));
 				$flash_url = $flash_url . (MOD_REWRITE ? "?" : "&amp;") . "format=xml";
 
 				?>
@@ -103,20 +100,20 @@ class simpleviewer {
 					// ]]> -->
 				</script>
 			<?php
-		 				echo '<div class="clearage"></div>';
- 				if (!empty($points) && $map) {
- 					function map_callback($map) {
- 						global $points;
- 						foreach ($points as $coord) {
- 							addGeoCoord($map, $coord);
- 						}
- 					}
+						echo '<div class="clearage"></div>';
+				if (!empty($points) && $map) {
+					function map_callback($map) {
+						global $points;
+						foreach ($points as $coord) {
+							addGeoCoord($map, $coord);
+						}
+					}
 					?>
 					<div id="map_link">
 					<?php printGoogleMap(NULL, NULL, NULL, 'album_page', 'map_callback'); ?>
 					</div>
 					<?php
- 				}
+				}
 		?>
 			</div><!-- flash -->
 			<div id="main">

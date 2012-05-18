@@ -6,24 +6,21 @@
  * @author Malte Müller (acrylian), Stephen Billard (sbillard)
  * @package plugins
  */
-$plugin_is_filter = 5|ADMIN_PLUGIN;
+$plugin_is_filter = 7|ADMIN_PLUGIN;
 $plugin_description = gettext("Places the latest 3 news articles from Zenphoto.org on the admin overview page.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 
 $plugin_disable = (!class_exists('DOMDocument')) ? gettext('PHP <em>DOM Object Model</em> is required.') : false;
-if (OFFSET_PATH) {
-	zp_register_filter('admin_overview', 'printNews',0);
-}
+zp_register_filter('admin_overview', 'printNews');
 
-function printNews($side) {
-	$pos = zp_filter_slot('admin_overview', 'comment_form_print10Most') !== false;
-	if (($pos && ($side=='left')) || (!$pos && ($side=='right'))) {
-		if ($connected = is_connected()) {
-			require_once(dirname(__FILE__).'/zenphoto_news/rsslib.php');
-		}
-		?>
-		<div class="box overview-utility">
-		<h2 class="h2_bordered"><?php echo gettext("News from Zenphoto.org"); ?></h2>
+
+function printNews() {
+	if ($connected = is_connected()) {
+		require_once(dirname(__FILE__).'/zenphoto_news/rsslib.php');
+	}
+	?>
+	<div class="box overview-utility">
+	<h2 class="h2_bordered"><?php echo gettext("News from Zenphoto.org"); ?></h2>
 		<?php
 		if ($connected) {
 
@@ -32,16 +29,14 @@ function printNews($side) {
 			echo RSS_Display("http://www.zenphoto.org/index.php?rss-news&withimages", 5);
 		} else {
 			?>
-			<ul>
-				<li><?php echo gettext('A connection to <em>Zenphoto.org</em> could not be established.'); ?>
-				</li>
-			</ul>
-			<?php
-		}
-		?>
-		</div>
+		<ul>
+			<li><?php echo gettext('A connection to <em>Zenphoto.org</em> could not be established.'); ?>
+			</li>
+		</ul>
 		<?php
 	}
-	return $side;
+	?>
+	</div>
+	<?php
 }
 ?>

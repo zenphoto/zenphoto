@@ -10,8 +10,8 @@ $plugin_description = sprintf(gettext("Treats users as not logged in for gallery
 $plugin_author = "Stephen Billard (sbillard)";
 
 
-zp_register_filter('guest_login_attempt', 'show_not_loggedin::adminLoginAttempt',2);
-zp_register_filter('authorization_cookie', 'show_not_loggedin::adminCookie',2);
+zp_register_filter('guest_login_attempt', 'show_not_loggedin::adminLoginAttempt');
+zp_register_filter('authorization_cookie', 'show_not_loggedin::adminCookie');
 
 class show_not_loggedin {
 

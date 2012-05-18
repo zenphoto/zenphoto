@@ -44,8 +44,7 @@ class seo_locale {
 		$uri = str_replace('\\','/',sanitize($_SERVER['REQUEST_URI'], 0));
 		$parts = explode('?', $uri);
 		$uri = urldecode($parts[0]);
-		$path = substr($uri, strlen(WEBPATH)+1);
-		if (substr($path,0,1) == '/') $path = substr($path,1);
+		$path = ltrim(substr($uri, strlen(WEBPATH)+1),'/');
 		if (empty($path)) {
 			return $allow;
 		} else {

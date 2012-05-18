@@ -464,10 +464,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 				$im_suffix = false;
 			}
 			//	remove trailing slash
-			if (substr($path, -1, 1) == '/') {
-				$path = substr($path, 0, -1);
-			}
-			$ralbum = $path;
+			$ralbum = $path = rtrim($path, '/');
 			//strip off things discarded by the rewrite rules
 			$pagepos  = strpos($path, '/page/');
 			$slashpos = strrpos($path, '/');

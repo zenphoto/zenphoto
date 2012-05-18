@@ -12,7 +12,7 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 
 zp_register_filter('save_user', 'email_new_user::save');
-zp_register_filter('edit_admin_custom_data', 'email_new_user::edit_admin', 0);
+zp_register_filter('edit_admin_custom_data', 'email_new_user::edit_admin', 9999);
 
 class email_new_user {
 

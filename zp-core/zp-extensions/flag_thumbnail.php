@@ -25,9 +25,9 @@ $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'flag_thumbnail';
 
 zp_register_filter('standard_image_thumb_html', 'flag_thumbnail::std_image_thumbs');
-zp_register_filter('standard_album_thumb_html', 'flag_thumbnail::std_album_thumbs', 1);
-zp_register_filter('custom_album_thumb_html', 'flag_thumbnail::custom_album_thumbs', 1);
-zp_register_filter('custom_image_html', 'flag_thumbnail::custom_images', 1);
+zp_register_filter('standard_album_thumb_html', 'flag_thumbnail::std_album_thumbs', 99);
+zp_register_filter('custom_album_thumb_html', 'flag_thumbnail::custom_album_thumbs', 99);
+zp_register_filter('custom_image_html', 'flag_thumbnail::custom_images', 99);
 
 /**
  * Plugin option handling class

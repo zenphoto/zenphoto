@@ -1014,10 +1014,7 @@ class xmpMetadata {
 													);
 		$process = array('dc','Iptc4xmpCore','photoshop','xap');
 		if (get_class($object)=='Album') {
-			$file =$object->localpath;
-			if (substr($file, -1) == '/') {
-				$file = substr($file, 0, -1);
-			}
+			$file =rtrim($object->localpath,'/');
 			$file .= '.xmp';
 		} else {
 			$file = stripSuffix($object->localpath).'.xmp';

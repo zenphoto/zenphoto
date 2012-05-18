@@ -34,13 +34,13 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'user_expiry';
 
-zp_register_filter('admin_tabs', 'user_expiry::admin_tabs', 99);
+zp_register_filter('admin_tabs', 'user_expiry::admin_tabs', 0);
 zp_register_filter('authorization_cookie','user_expiry::checkcookie');
 zp_register_filter('admin_login_attempt','user_expiry::checklogon');
 zp_register_filter('federated_login_attempt','user_expiry::checklogon');
-zp_register_filter('edit_admin_custom_data', 'user_expiry::edit_admin',0);
-zp_register_filter('load_theme_script', 'user_expiry::reverify',0);
-zp_register_filter('admin_note', 'user_expiry::notify',0);
+zp_register_filter('edit_admin_custom_data', 'user_expiry::edit_admin',999);
+zp_register_filter('load_theme_script', 'user_expiry::reverify',999);
+zp_register_filter('admin_note', 'user_expiry::notify',999);
 
 /**
  * Option handler class

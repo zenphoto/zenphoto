@@ -136,8 +136,7 @@ function printThemeInfo() {
 }
 
 function printLinkWithQuery($url, $query, $text) {
-	if (substr($url, -1, 1) == '/') {$url = substr($url, 0, (strlen($url)-1));}
-	$url = $url . (MOD_REWRITE ? "?" : "&amp;");
+	$url = rtrim($url,'/') . (MOD_REWRITE ? "?" : "&amp;");
 	echo "<a href=\"$url$query\">$text</a>";
 }
 
@@ -313,12 +312,12 @@ function effervescence_theme_head() {
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function blurAnchors(){
-		  if(document.getElementsByTagName){
-		    var a = document.getElementsByTagName("a");
-		    for(var i = 0; i < a.length; i++){
-		      a[i].onfocus = function(){this.blur()};
-		    }
-		  }
+			if(document.getElementsByTagName){
+				var a = document.getElementsByTagName("a");
+				for(var i = 0; i < a.length; i++){
+					a[i].onfocus = function(){this.blur()};
+				}
+			}
 		}
 		// ]]> -->
 	</script>

@@ -23,7 +23,7 @@ function reconfigureAction() {
 			} else {
 				$where = 'gallery';
 			}
-			if (substr($dir, -1) == '/') $dir = substr($dir, 0, -1);
+			$dir = rtrim($dir,'/');
 			$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php?autorun=$where";
 			header("Location: $location" );
 			exitZP();

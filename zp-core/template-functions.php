@@ -1193,9 +1193,8 @@ function printParentBreadcrumb($before = NULL, $between=NULL, $after=NULL, $trun
  *  */
 function printHomeLink($before='', $after='', $title=NULL, $class=NULL, $id=NULL) {
 	global $_zp_gallery;
-	$site = $_zp_gallery->getWebsiteURL();
+	$site = rtrim($_zp_gallery->getWebsiteURL(),'/');
 	if (!empty($site)) {
-		if (substr($site,-1) == "/") { $site = substr($site, 0, -1); }
 		if (empty($name)) { $name = $_zp_gallery->getWebsiteTitle(); }
 		if (empty($name)) { $name = gettext('Home'); }
 		if ($site != SEO_FULLWEBPATH) {
@@ -4607,6 +4606,6 @@ function printCodeblock($number=0,$what=NULL) {
 }
 
 
-zp_register_filter('theme_head','printZenJavascripts',0);
+zp_register_filter('theme_head','printZenJavascripts',9999);
 
 ?>

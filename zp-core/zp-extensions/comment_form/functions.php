@@ -80,92 +80,89 @@ function comment_form_save_comment($discard) {
 /**
  * Admin overview summary
  */
-function comment_form_print10Most($side) {
-	if ($side=='right') {
-			?>
-		<div class="box overview-utility">
-		<h2 class="h2_bordered"><?php echo gettext("10 Most Recent Comments"); ?></h2>
-		<ul>
-		<?php
-		$comments = fetchComments(10);
-		foreach ($comments as $comment) {
-			$id = $comment['id'];
-			$author = $comment['name'];
-			$email = $comment['email'];
-			$link = gettext('<strong>database error</strong> '); // incase of such
+function comment_form_print10Most() {
+	?>
+	<div class="box overview-utility">
+	<h2 class="h2_bordered"><?php echo gettext("10 Most Recent Comments"); ?></h2>
+	<ul>
+	<?php
+	$comments = fetchComments(10);
+	foreach ($comments as $comment) {
+		$id = $comment['id'];
+		$author = $comment['name'];
+		$email = $comment['email'];
+		$link = gettext('<strong>database error</strong> '); // incase of such
 
-			// ZENPAGE: switch added for zenpage comment support
-			switch ($comment['type']) {
-				case "albums":
+		// ZENPAGE: switch added for zenpage comment support
+		switch ($comment['type']) {
+			case "albums":
+				$image = '';
+				$title = '';
+				$albmdata = query_full_array("SELECT `title`, `folder` FROM ". prefix('albums') .
+	 										" WHERE `id`=" . $comment['ownerid']);
+				if ($albmdata) {
+					$albumdata = $albmdata[0];
+					$album = $albumdata['folder'];
+					$albumtitle = get_language_string($albumdata['title']);
+					$link = "<a href=\"".rewrite_path("/$album","/index.php?album=".pathurlencode($album))."\">".$albumtitle.$title."</a>";
+					if (empty($albumtitle)) $albumtitle = $album;
+				}
+				break;
+			case "news": // ZENPAGE: if plugin is installed
+				if(getOption("zp_plugin_zenpage")) {
+					$titlelink = '';
+					$title = '';
+					$newsdata = query_full_array("SELECT `title`, `titlelink` FROM ". prefix('news') .
+	 										" WHERE `id`=" . $comment['ownerid']);
+					if ($newsdata) {
+						$newsdata = $newsdata[0];
+						$titlelink = $newsdata['titlelink'];
+						$title = get_language_string($newsdata['title']);
+						$link = "<a href=\"".rewrite_path("/news/".$titlelink,"/index.php?p=news&amp;title=".urlencode($titlelink))."\">".$title."</a> ".gettext("[news]");
+					}
+				}
+				break;
+			case "pages": // ZENPAGE: if plugin is installed
+				if(getOption("zp_plugin_zenpage")) {
 					$image = '';
 					$title = '';
-					$albmdata = query_full_array("SELECT `title`, `folder` FROM ". prefix('albums') .
-		 										" WHERE `id`=" . $comment['ownerid']);
+					$pagesdata = query_full_array("SELECT `title`, `titlelink` FROM ". prefix('pages') .
+	 										" WHERE `id`=" . $comment['ownerid']);
+					if ($pagesdata) {
+						$pagesdata = $pagesdata[0];
+						$titlelink = $pagesdata['titlelink'];
+						$title = get_language_string($pagesdata['title']);
+						$link = "<a href=\"".rewrite_path("/pages/".$titlelink,"/index.php?p=pages&amp;title=".urlencode($titlelink))."\">".$title."</a> ".gettext("[page]");
+					}
+				}
+				break;
+			default: // all of the image types
+				$imagedata = query_full_array("SELECT `title`, `filename`, `albumid` FROM ". prefix('images') .
+	 										" WHERE `id`=" . $comment['ownerid']);
+				if ($imagedata) {
+					$imgdata = $imagedata[0];
+					$image = $imgdata['filename'];
+					if ($imgdata['title'] == "") $title = $image; else $title = get_language_string($imgdata['title']);
+					$title = '/ ' . $title;
+					$albmdata = query_full_array("SELECT `folder`, `title` FROM ". prefix('albums') .
+	 											" WHERE `id`=" . $imgdata['albumid']);
 					if ($albmdata) {
 						$albumdata = $albmdata[0];
 						$album = $albumdata['folder'];
 						$albumtitle = get_language_string($albumdata['title']);
-						$link = "<a href=\"".rewrite_path("/$album","/index.php?album=".pathurlencode($album))."\">".$albumtitle.$title."</a>";
+						$link = "<a href=\"".rewrite_path("/$album/$image","/index.php?album=".pathurlencode($album).	"&amp;image=".urlencode($image))."\">".$albumtitle.$title."</a>";
 						if (empty($albumtitle)) $albumtitle = $album;
 					}
-					break;
-				case "news": // ZENPAGE: if plugin is installed
-					if(getOption("zp_plugin_zenpage")) {
-						$titlelink = '';
-						$title = '';
-						$newsdata = query_full_array("SELECT `title`, `titlelink` FROM ". prefix('news') .
-		 										" WHERE `id`=" . $comment['ownerid']);
-						if ($newsdata) {
-							$newsdata = $newsdata[0];
-							$titlelink = $newsdata['titlelink'];
-							$title = get_language_string($newsdata['title']);
-							$link = "<a href=\"".rewrite_path("/news/".$titlelink,"/index.php?p=news&amp;title=".urlencode($titlelink))."\">".$title."</a> ".gettext("[news]");
-						}
-					}
-					break;
-				case "pages": // ZENPAGE: if plugin is installed
-					if(getOption("zp_plugin_zenpage")) {
-						$image = '';
-						$title = '';
-						$pagesdata = query_full_array("SELECT `title`, `titlelink` FROM ". prefix('pages') .
-		 										" WHERE `id`=" . $comment['ownerid']);
-						if ($pagesdata) {
-							$pagesdata = $pagesdata[0];
-							$titlelink = $pagesdata['titlelink'];
-							$title = get_language_string($pagesdata['title']);
-							$link = "<a href=\"".rewrite_path("/pages/".$titlelink,"/index.php?p=pages&amp;title=".urlencode($titlelink))."\">".$title."</a> ".gettext("[page]");
-						}
-					}
-					break;
-				default: // all of the image types
-					$imagedata = query_full_array("SELECT `title`, `filename`, `albumid` FROM ". prefix('images') .
-		 										" WHERE `id`=" . $comment['ownerid']);
-					if ($imagedata) {
-						$imgdata = $imagedata[0];
-						$image = $imgdata['filename'];
-						if ($imgdata['title'] == "") $title = $image; else $title = get_language_string($imgdata['title']);
-						$title = '/ ' . $title;
-						$albmdata = query_full_array("SELECT `folder`, `title` FROM ". prefix('albums') .
-		 											" WHERE `id`=" . $imgdata['albumid']);
-						if ($albmdata) {
-							$albumdata = $albmdata[0];
-							$album = $albumdata['folder'];
-							$albumtitle = get_language_string($albumdata['title']);
-							$link = "<a href=\"".rewrite_path("/$album/$image","/index.php?album=".pathurlencode($album).	"&amp;image=".urlencode($image))."\">".$albumtitle.$title."</a>";
-							if (empty($albumtitle)) $albumtitle = $album;
-						}
-					}
-					break;
-			}
-			$comment = truncate_string($comment['comment'], 123);
-			echo "<li><div class=\"commentmeta\">".sprintf(gettext('<em>%1$s</em> commented on %2$s:'),$author,$link)."</div><div class=\"commentbody\">$comment</div></li>";
+				}
+				break;
 		}
-		?>
-		</ul>
-		</div>
-		<?php
+		$comment = truncate_string($comment['comment'], 123);
+		echo "<li><div class=\"commentmeta\">".sprintf(gettext('<em>%1$s</em> commented on %2$s:'),$author,$link)."</div><div class=\"commentbody\">$comment</div></li>";
 	}
-	return $side;
+	?>
+	</ul>
+	</div>
+	<?php
 }
 
 /**

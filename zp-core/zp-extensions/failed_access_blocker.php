@@ -15,10 +15,10 @@ $plugin_author = "Stephen Billard (sbillard)";
 
 
 $option_interface = 'failed_access_blocker';
-zp_register_filter('admin_allow_access', 'failed_access_blocker_adminGate',2);
-zp_register_filter('admin_login_attempt', 'failed_access_blocker_login',2);
-zp_register_filter('federated_login_attempt', 'failed_access_blocker_login',2);
-zp_register_filter('guest_login_attempt', 'failed_access_blocker_login',2);
+zp_register_filter('admin_allow_access', 'failed_access_blocker_adminGate');
+zp_register_filter('admin_login_attempt', 'failed_access_blocker_login');
+zp_register_filter('federated_login_attempt', 'failed_access_blocker_login');
+zp_register_filter('guest_login_attempt', 'failed_access_blocker_login');
 
 /**
  * Option handler class

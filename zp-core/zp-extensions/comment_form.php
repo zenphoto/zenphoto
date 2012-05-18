@@ -26,7 +26,7 @@ zp_register_filter('comment_post', 'comment_form_comment_post');
 zp_register_filter('options_comments', 'comment_form_options');
 zp_register_filter('save_comment_custom_data', 'comment_form_save_comment');
 zp_register_filter('edit_comment_custom_data', 'comment_form_edit_comment');
-zp_register_filter('admin_overview', 'comment_form_print10Most',0);
+zp_register_filter('admin_overview', 'comment_form_print10Most');
 
 // I choose to keep unneeded js loading low to add an option to specifially disable pagination
 if(getOption('comment_form_pagination')) {

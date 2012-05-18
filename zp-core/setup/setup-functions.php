@@ -182,9 +182,7 @@ function folderCheck($which, $path, $class, $subfolders, $recurse, $chmod, $upda
 	}
 	switch ($class) {
 		case 'std':
-			$append = str_replace($serverpath, '', $path);
-			if (substr($append,-1,1) == '/') $append = substr($append,0, -1);
-			if (substr($append,0,1) == '/') $append = substr($append,1);
+			$append = trim(str_replace($serverpath, '', $path),'/');
 			if (($append != $which)) {
 				$f = " (<em>$append</em>)";
 			} else {

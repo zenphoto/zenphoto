@@ -411,9 +411,6 @@ function inventMenuItem($menuset,$visibility) {
  */
 function getCurrentMenuItem($menuset) {
 	$currentpageURL = html_encode(urldecode($_SERVER["REQUEST_URI"]));
-	$currentpageURL = str_replace('\\','/',$currentpageURL);
-	if (substr($currentpageURL,-1) == '/') $currentpageURL = substr($currentpageURL, 0, -1);
-
 	if (isset($_GET['page'])) {	// must strip out page numbers, all "pages" are equal
 		if (MOD_REWRITE) {
 			if (isset($_GET['album'])) {
@@ -433,6 +430,7 @@ function getCurrentMenuItem($menuset) {
 			}
 		}
 	}
+	$currentpageURL = rtrim(str_replace('\\','/',$currentpageURL),'/');
 	$items = getMenuItems($menuset, $visibility = getMenuVisibility());
 	$currentkey = NULL;
 	foreach ($items as $key=>$item) {
@@ -443,9 +441,9 @@ function getCurrentMenuItem($menuset) {
 				break;
 			default:
 				$checkitem = getItemTitleAndURL($item);
-				if($currentpageURL == $checkitem['url']) {
+				if($currentpageURL == rtrim($checkitem['url'],'/')) {
 					$currentkey = $key;
-					break;
+					break 2;
 				}
 				break;
 		}
@@ -713,8 +711,7 @@ function printMenumanagerBreadcrumb($menuset='default', $before='', $between=' |
  * @return array
  */
 function getMenuFromLink($link, $menuset='default') {
-	$link = str_replace('\\','/',$link);
-	if (substr($link,-1) == '/') $link = substr($link, 0, -1);
+	$link = rtrim(str_replace('\\','/',$link),'/');
 	$items = getMenuItems($menuset, getMenuVisibility());
 	foreach ($items as $item) {
 		$itemarray = getItemTitleAndURL($item);

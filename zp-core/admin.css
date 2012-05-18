@@ -883,6 +883,10 @@ input.tags {
 	border-bottom: 1px solid #dfdfdf;
 }
 
+.overview-install-info {
+ z-index: 599;
+}
+
 .overiew-gallery-stats ul, 
 .overview-install-info ul {
 	border-top: 1px solid #dfdfdf;

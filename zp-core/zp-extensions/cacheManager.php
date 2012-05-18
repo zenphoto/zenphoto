@@ -59,7 +59,7 @@ $option_interface = 'cacheManager';
 
 
 zp_register_filter('admin_utilities_buttons', 'cacheManager::overviewbutton');
-zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton',9999);
+zp_register_filter('edit_album_utilities', 'cacheManager::albumbutton',-9999);
 zp_register_filter('show_change', 'cacheManager::published');
 
 /**

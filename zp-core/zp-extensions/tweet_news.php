@@ -22,7 +22,7 @@ if ($plugin_disable) {
 	if (getOption('tweet_news_pages'))		zp_register_filter('new_page', 'tweet::newZenpageObject');
 	zp_register_filter('admin_head', 'tweet::scan');
 	zp_register_filter('load_theme_script', 'tweet::scan');
-	zp_register_filter('admin_overview', 'tweet::errorsOnOverview',0);
+	zp_register_filter('admin_overview', 'tweet::errorsOnOverview');
 	zp_register_filter('admin_note', 'tweet::errorsOnAdmin');
 	zp_register_filter('edit_album_utilities', 'tweet::tweeter');
 	zp_register_filter('save_album_utilities_data', 'tweet::tweeterExecute');
