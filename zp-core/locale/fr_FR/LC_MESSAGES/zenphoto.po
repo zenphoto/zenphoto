@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-05-19 08:02-0500\n"
-"PO-Revision-Date: 2012-05-19 08:49-0500\n"
+"PO-Revision-Date: 2012-05-19 09:04-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -2344,7 +2344,7 @@ msgstr "%1$s %2$s : %3$s%4$s"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:127
 msgid "admin"
-msgstr "usagers"
+msgstr "gestion"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:231
 #, php-format
@@ -16043,7 +16043,7 @@ msgstr "Votre soutien aide à défrayer le développement et les coûts du serve
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenphoto_news.php:10
 msgid "Places the latest 3 news articles from Zenphoto.org on the admin overview page."
-msgstr "Affiche les 3 derniers articles d’actualités de Zenphoto.org sur la page d’accueil de l’administration."
+msgstr "Affiche les trois derniers articles d’actualités de Zenphoto.org sur la page d’accueil de l’administration."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenphoto_news.php:13
 msgid "PHP <em>DOM Object Model</em> is required."
