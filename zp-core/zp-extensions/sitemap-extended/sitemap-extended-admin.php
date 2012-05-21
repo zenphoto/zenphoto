@@ -23,6 +23,7 @@ $webpath = WEBPATH.'/'.ZENFOLDER.'/';
 $zenphoto_tabs['overview']['subtabs']=array(gettext('Sitemap')=>'');
 printAdminHeader('overview','sitemap');
 if(isset($_GET['generatesitemaps'])) {
+	$_zp_loggedin = NULL;
 	$sitemap_number = sanitize_numeric($_GET['number']);
 	$sitemap_index = getSitemapIndexLinks();
 	$sitemap_albums = getSitemapAlbums();
@@ -127,6 +128,7 @@ printLogoAndLinks();
 	<?php sitemap_printAvailableSitemaps();
 	} // isset generate sitemaps / clearsitemap cache
 	if(isset($_GET['generatesitemaps'])) {
+
 		// clear cache before creating new ones
 		if($sitemap_number == 1) {
 			clearSitemapCache();
@@ -149,6 +151,7 @@ printLogoAndLinks();
 		 ?>
 		<p><?php echo gettext('Finished!'); ?></p>
 		<p class="buttons"><a href="sitemap-extended-admin.php"><?php echo 'Back to Sitemap tools'; ?></a></p>
+		<br clear="left" />
 		<?php
 		}
 	}
@@ -157,6 +160,7 @@ printLogoAndLinks();
 		echo gettext('Sitemap cache cleared');
 		?>
 		<p class="buttons"><a href="sitemap-extended-admin.php"><?php echo 'Back to Sitemap tools'; ?></a></p>
+		<br clear="left" />
 		<?php
 	}
 

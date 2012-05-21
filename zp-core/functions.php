@@ -1324,19 +1324,16 @@ function sortByKey($results,$sortkey,$order) {
 	switch ($sortkey) {
 		case 'title':
 		case 'desc':
-			$results = sortByMultilingual($results, $sortkey, $order);
-			break;
+			return sortByMultilingual($results, $sortkey, $order);
 		case 'RAND()':
 			shuffle($results);
-			break;
-		default:
-			$indicies = explode(',', $sortkey);
-			foreach ($indicies as $key=>$index) {
-				$indicies[$key] = trim($index);
-			}
-			$results = sortMultiArray($results, $indicies, $order);
-			break;
+			return $results;
 	}
+	$indicies = explode(',', $sortkey);
+	foreach ($indicies as $key=>$index) {
+		$indicies[$key] = trim($index);
+	}
+	$results = sortMultiArray($results, $indicies, $order);
 	return $results;
 }
 
@@ -1391,7 +1388,6 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 				$sorted[$key]=$array[$key];
 			}
 		}
-
 		return $sorted;
 	}
 	return $array;

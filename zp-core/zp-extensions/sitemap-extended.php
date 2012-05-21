@@ -60,6 +60,7 @@ class sitemap {
 		setOptionDefault('sitemap_lastmod_albums', 'mtime');
 		setOptionDefault('sitemap_lastmod_images', 'mtime');
 		setOptionDefault('sitemap_processing_chunk', 25);
+		setOptionDefault('sitemap_galleryindex', '');
 	}
 
 	function getOptionsSupported() {
@@ -69,6 +70,10 @@ class sitemap {
 			$localdesc .= '<p>'.gettext('This requires that you have created the appropriate subdomains pointing to your Zenphoto installation. That is <code>fr.mydomain.com/zenphoto/</code> must point to the same location as <code>mydomain.com/zenphoto/</code>. (Some providers will automatically redirect undefined subdomains to the main domain. If your provider does this, no subdomain creation is needed.)').'</p>';
 		}
 		$options = array(
+											gettext('Gallery index page') => array('key' => 'sitemap_galleryindex', 'type' => OPTION_TYPE_TEXTBOX,
+																																'order' => 10,
+																																'multilingual'=>false,
+																																'desc' => gettext('If your theme does not use the theme index.php page as the gallery index, enter the name of the page here. In Zenpage theme this is for example could be gallery.php, then you enter "gallery". If this is not empty the index.php sitemap is not generated.')),
 											gettext('Album date') => array('key' => 'sitemap_lastmod_albums', 'type' => OPTION_TYPE_SELECTOR,
 																		'order' => 0,
 																		'selections' => array(gettext("date")=>"date",
@@ -350,6 +355,13 @@ function getSitemapIndexLinks() {
 		} else {
 			setOption('albums_per_page',$albums_per_page);
 		} */
+		if(getOption('sitemap_galleryindex')) {
+			$galleryindex_mod = 'page/'.getOption('sitemap_galleryindex');
+			$galleryindex_nomod = 'index.php?p='.getOption('sitemap_galleryindex').'&amp;page=';
+		} else {
+			$galleryindex_mod = '';
+			$galleryindex_nomod = 'index.php?page=';
+		}
 		$toplevelpages = getTotalPages();
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
@@ -359,6 +371,7 @@ function getSitemapIndexLinks() {
 		} else {
 			$changefreq = sitemap_getChangefreq($changefreq);
 		}
+		// normal index/homepage we need in any case always
 		switch (SITEMAP_LOCALE_TYPE) {
 			case 1:
 				foreach($sitemap_locales as $locale) {
@@ -374,24 +387,47 @@ function getSitemapIndexLinks() {
 				$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 				break;
 		}
-		// print further index pages if avaiable
+		// the extra ones if we have a custom gallery index
+		if(getOption('sitemap_galleryindex')) {
+			switch (SITEMAP_LOCALE_TYPE) {
+				case 1:
+					foreach($sitemap_locales as $locale) {
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH.'/'.rewrite_path($locale.'/'.$galleryindex_mod,$locale.'/'.$galleryindex_nomod,false)."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					}
+					break;
+				case 2:
+					foreach($sitemap_locales as $locale) {
+						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".rewrite_path(dynamic_locale::fullHostPath($locale).'/'.$galleryindex_mod,dynamic_locale::fullHostPath($locale,false).'/'.$galleryindex_nomod)."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					}
+					break;
+				default:
+					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".FULLWEBPATH.'/'.rewrite_path($galleryindex_mod,$galleryindex_nomod, false)."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
+					break;
+			}
+		}
+		// print further index pages if available
 		if($toplevelpages) {
+			if(getOption('sitemap_galleryindex')) {
+				$galleryindex_mod = $galleryindex_mod.'/';
+			} else {
+				$galleryindex_mod = $galleryindex_mod.'page/';
+			}
 			for($x = 2;$x <= $toplevelpages; $x++) {
 				switch (SITEMAP_LOCALE_TYPE) {
 					case 1:
 						foreach($sitemap_locales as $locale) {
-							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/page/'.$x,'index.php?page='.$x,false);
+							$url = FULLWEBPATH.'/'.rewrite_path($locale.$galleryindex_mod.$x,$galleryindex_nomod.$x,false);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						}
 						break;
 					case 2:
 						foreach($sitemap_locales as $locale) {
-							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('/page/'.$x,'index.php?page='.$x,false);
+							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path($galleryindex_mod.$x,$galleryindex_nomod.$x,false);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						}
 						break;
 					default:
-						$url = FULLWEBPATH.'/'.rewrite_path('page/'.$x,'index.php?page='.$x,false);
+						$url = FULLWEBPATH.'/'.rewrite_path($galleryindex_mod.$x,$galleryindex_nomod.$x,false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".sitemap_getISO8601Date()."</lastmod>\n\t\t<changefreq>".$changefreq."</changefreq>\n\t\t<priority>0.9</priority>\n\t</url>");
 						break;
 				}

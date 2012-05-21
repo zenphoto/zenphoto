@@ -395,9 +395,7 @@ class Album extends MediaObject {
 			}
 			if (is_null($sortdirection)) {
 				if ($this->getSortDirection('image')) {
-					$sortdirection = '';
-				} else {
-					$sortdirection = 'DESC';
+					$sortdirection = 'ASC';
 				}
 			}
 			if ($this->isDynamic()) {
@@ -406,7 +404,7 @@ class Album extends MediaObject {
 			} else {
 				// Load, sort, and store the images in this Album.
 				$images = $this->loadFileNames();
-				$images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
+				$images = $this->sortImageArray($images, $sorttype, strtoupper($sortdirection)=='ASC', $mine);
 			}
 			$this->images = $images;
 			$this->lastimagesort = $sorttype.$sortdirection;

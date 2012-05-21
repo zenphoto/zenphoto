@@ -1330,7 +1330,9 @@ class SearchEngine
 	 * @return array
 	 */
 	private function getSearchImages($sorttype, $sortdirection, $mine=NULL) {
-		if (getOption('search_no_images') || $this->search_no_images) { return array(); }
+		if (getOption('search_no_images') || $this->search_no_images) {
+			return array();
+		}
 		if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$mine = true;
 		}
