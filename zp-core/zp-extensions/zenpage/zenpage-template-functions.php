@@ -548,13 +548,13 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 					} else {
 						$imgurl = html_encode($albumthumbobj->getCustomImage($size, NULL,NULL, NULL, NULL, NULL, NULL,true));
 					}
-					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.$imgurl.'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
+					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink(1)).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.$imgurl.'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
 					break;
 				case 'latestalbums-thumbnail':
-					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($_zp_current_zenpage_news->getAlbumThumb()).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
+					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink(1)).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($_zp_current_zenpage_news->getAlbumThumb()).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
 					break;
 				case 'latestalbums-thumbnail-customcrop':
-					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($albumthumbobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
+					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink(1)).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($albumthumbobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
 					break;
 				case 'latestimagesbyalbum-thumbnail':
 				case 'latestimagesbyalbum-thumbnail-customcrop':

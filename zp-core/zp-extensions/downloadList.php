@@ -390,7 +390,7 @@ class AlbumZip {
 if (strpos($_SERVER['REQUEST_URI'], '?') === false) {
 	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1).'?download=');
 } else {
-	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1).'&amp;download=');
+	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1).'&download=');
 }
 
 
@@ -530,11 +530,11 @@ function printDownloadLinkAlbumZip($linktext=NULL,$albumobj=NULL,$fromcache=NULL
 		if(!empty($linktext)) {
 			$file = $linktext;
 		}
-		$link = DOWNLOADLIST_LINKPATH.pathurlencode($albumobj->name).'&amp;albumzip';
+		$link = DOWNLOADLIST_LINKPATH.pathurlencode($albumobj->name).'&albumzip';
 		if ($fromcache) {
-			$link .= '&amp;fromcache';
+			$link .= '&fromcache';
 		}
-		echo '<a href="'.$link.'" rel="nofollow">'.html_encode($file).'</a>'.$filesize;
+		echo '<a href="'.html_encode($link).'" rel="nofollow">'.html_encode($file).'</a>'.$filesize;
 	}
 }
 
