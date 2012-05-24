@@ -331,11 +331,8 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		?>
 	</div><!-- overview-utility -->
 	<?php
-}
-?>
-
-
-
+	}
+	?>
 	<div class="box overview-utility overview-install-info">
 		<h2 class="h2_bordered"><?php echo gettext("Installation information"); ?></h2>
 		<ul>
@@ -517,7 +514,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 			if ($c > 0) {
 				ksort($filters,SORT_LOCALE_STRING);
 				foreach ($filters as $filter=>$array_of_priority) {
-					ksort($array_of_priority);
+					krsort($array_of_priority);
 					?>
 					<li>
 						<em><?php echo $filter; ?></em>

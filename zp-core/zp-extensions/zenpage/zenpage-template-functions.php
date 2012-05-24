@@ -526,8 +526,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 			$articlecontent = getNewsVideoContent($_zp_current_zenpage_news,$shorten);
 			break;
 		case 'album':
-			$_zp_page = 1;
-			$albumdesc = getContentShorten($_zp_current_zenpage_news->getDesc(),$shorten,$shortenindicator,$readmore,$_zp_current_zenpage_news->getAlbumLink());
+			$albumdesc = getContentShorten($_zp_current_zenpage_news->getDesc(),$shorten,$shortenindicator,$readmore,$_zp_current_zenpage_news->getAlbumLink(1));
 			$albumthumbobj = $_zp_current_zenpage_news->getAlbumThumbImage();
 			switch($mode) {
 				case 'latestalbums-sizedimage':

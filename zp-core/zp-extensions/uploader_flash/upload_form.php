@@ -1,7 +1,7 @@
 <?php
 function upload_head() {
 	?>
-	<link rel="stylesheet" href="admin-uploadify/uploadify.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/uploader_flash/uploadify.css" type="text/css" />
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/flash_detect_min.js"></script>
 	<script type="text/javascript">
 		//<!-- <![CDATA[
@@ -9,8 +9,8 @@ function upload_head() {
 		var uploadifier_queue_full_message =  "<?php echo gettext('Upload queue is full. The upload limit is %u.'); ?>";
 		// ]]> -->
 	</script>
-	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/admin-uploadify/jquery.uploadify.js"></script>
-	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/admin-uploadify/swfobject.js"></script>
+	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/uploader_flash/jquery.uploadify.js"></script>
+	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/uploader_flash/swfobject.js"></script>
 	<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
 	<?php
 	return '';
@@ -33,9 +33,9 @@ function upload_extra($uploadlimit, $passedalbum) {
 		if (FlashDetect.installed) {
 			$(document).ready(function() {
 				$('#fileUpload').uploadify({
-					'uploader': 'admin-uploadify/uploadify.swf',
+					'uploader': '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/uploader_flash/uploadify.swf',
 					'cancelImg': 'images/fail.png',
-					'script': 'admin-uploadify/uploader.php',
+					'script': '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/uploader_flash/uploader.php',
 					'scriptData': {
 												'auth': '<?php echo $_zp_current_admin_obj->getPass(); ?>',
 												'id': '<?php echo $_zp_current_admin_obj->getID(); ?>',
@@ -62,7 +62,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 					'height': '<?php echo $info['height'] ?>',
 					'width': '<?php echo $info['width'] ?>',
 					<?php echo $rollover; ?>
-					'checkScript': 'admin-uploadify/check.php',
+					'checkScript': '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER;?>/uploader_flash/check.php',
 					'displayData': 'speed',
 					'simUploadLimit': 3,
 					'sizeLimit': <?php echo $uploadlimit; ?>,

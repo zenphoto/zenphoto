@@ -282,7 +282,7 @@ function printRegistrationForm($thanks=NULL) {
 		if (isset($_POST['admin_email'])) {
 			$admin_e = trim(sanitize($_POST['admin_email']));
 		} else {
-			$admin_e = trim(sanitize($_POST['adminuser']));
+			$admin_e = trim(sanitize($_POST['user']));
 		}
 		if (!is_valid_email_zp($admin_e)) {
 			$notify = 'invalidemail';

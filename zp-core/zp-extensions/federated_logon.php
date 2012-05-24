@@ -127,7 +127,7 @@ class federated_logon {
 																'order' => 8,
 																'desc' => '<p class="notebox">'.$_common_notify_handler.'</p>');
 		} else {
-			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'federated_logon\');"><em>register_user</em></a> plugin options..');
+			$_common_notify_handler = gettext('* The option may be set via the <a href="javascript:gotoName(\'federated_logon\');"><em>register_user</em></a> plugin options.');
 			$options['note'] = array('key' => 'menu_truncate_note',
 															'type' => OPTION_TYPE_NOTE,
 															'order' => 8,
@@ -325,8 +325,10 @@ class federated_logon {
 
 	/**
 	 * Processes the verification POST tickets
+	 * @param string $script (we do not use this)
+	 * @return string
 	 */
-	static function verify($obj) {
+	static function verify($script) {
 		//process any verifications posted
 		if (isset($_GET['verify_federated_user'])) {
 			$params = unserialize(pack("H*", trim(sanitize($_GET['verify_federated_user']),'.')));
@@ -355,7 +357,7 @@ class federated_logon {
 				}
 			}
 		}
-		return $obj;
+		return $script;
 	}
 
 	/**

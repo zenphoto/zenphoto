@@ -127,6 +127,7 @@ class RSS {
 
 	// news feed specific
 	protected $catlink = NULL;
+	protected $cattitle = NULL;
 	protected $newsoption = NULL;
 	protected $titleappendix = NULL;
 
@@ -258,7 +259,7 @@ class RSS {
 					require_once(ZENFOLDER . '/'.PLUGIN_FOLDER . '/zenpage/zenpage-template-functions.php');
 					break;
 
-				case'comments':	//Comments RSS
+				case 'comments':	//Comments RSS
 					if (!getOption('RSS_comments')) {
 						header("HTTP/1.0 404 Not Found");
 						header("Status: 404 Not Found");
@@ -473,7 +474,7 @@ class RSS {
 		if(!empty($arrayfield)) {
 			if(isset($_GET['category'])) {
 				$array['catlink'] = sanitize($_GET['category']);
-				$catobj = new ZenpageCategory($catlink);
+				$catobj = new ZenpageCategory($array['catlink']);
 				$array['cattitle'] = html_encode($catobj->getTitle());
 				$array['option'] = 'category';
 			} else {

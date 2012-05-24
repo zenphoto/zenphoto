@@ -408,7 +408,7 @@ function printdownloadList($dir='',$listtype='ol',$filters = array(),$excludesuf
 	}
 	$files = getdownloadList($dir,$filters,$excludesuffixes,$sort);
 	echo '<'.$listtype.' class="downloadList">';
-	self::printListArray($files,$listtype);
+	DownloadList::printListArray($files,$listtype);
 	echo '</'.$listtype.'>';
 }
 

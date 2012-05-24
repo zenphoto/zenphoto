@@ -336,9 +336,9 @@ class Album extends MediaObject {
 			}
 			if (is_null($sortdirection)) {
 				if ($this->getSortDirection('album')) {
-					$sortdirection = '';
-				} else {
 					$sortdirection = 'DESC';
+				} else {
+					$sortdirection = '';
 				}
 			}
 			if ($this->isDynamic()) {
@@ -395,7 +395,7 @@ class Album extends MediaObject {
 			}
 			if (is_null($sortdirection)) {
 				if ($this->getSortDirection('image')) {
-					$sortdirection = 'ASC';
+					$sortdirection = 'DESC';
 				}
 			}
 			if ($this->isDynamic()) {
@@ -404,7 +404,7 @@ class Album extends MediaObject {
 			} else {
 				// Load, sort, and store the images in this Album.
 				$images = $this->loadFileNames();
-				$images = $this->sortImageArray($images, $sorttype, strtoupper($sortdirection)=='ASC', $mine);
+				$images = $this->sortImageArray($images, $sorttype, $sortdirection, $mine);
 			}
 			$this->images = $images;
 			$this->lastimagesort = $sorttype.$sortdirection;
@@ -428,9 +428,7 @@ class Album extends MediaObject {
 				$pageStart = $firstPageCount + $images_per_page * $fetchPage;
 
 			}
-			$slice = array_slice($this->images, $pageStart , $images_per_page);
-
-			return $slice;
+			return array_slice($this->images, $pageStart , $images_per_page);
 		}
 	}
 
@@ -462,7 +460,6 @@ class Album extends MediaObject {
 				$order = $this->getSortDirection('image');
 			}
 		}
-
 		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID());
 		$results = array();
 		while ($row = db_fetch_assoc($result)) {
@@ -696,8 +693,8 @@ class Album extends MediaObject {
 		$rewrite = pathurlencode($path) . '/';
 		$plain = '/index.php?album=' . pathurlencode($this->name). '/';
 		if ($page > 1) {
-			$rewrite .= "page/$_zp_page";
-			$plain .= "&page=$_zp_page";
+			$rewrite .= "page/$page";
+			$plain .= "&page=$page";
 		}
 		return rewrite_path($rewrite, $plain);
 	}

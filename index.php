@@ -68,7 +68,7 @@ foreach (getEnabledPlugins() as $extension=>$loadtype) {
 	$_zp_loaded_plugins[] = $extension;
 }
 
-$_zp_script = zp_apply_filter('load_theme_script', $_zp_script);
+$_zp_script = zp_apply_filter('load_theme_script', $_zp_script, $zp_request);
 //$_zp_script_timer['theme scripts'] = microtime();
 if ($zp_request && $_zp_script && file_exists(SERVERPATH . "/" . internalToFilesystem($_zp_script))) {
 	if (checkAccess($hint, $show)) { // ok to view

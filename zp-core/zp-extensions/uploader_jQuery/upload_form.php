@@ -1,6 +1,6 @@
 <?php
 function upload_head() {
-	$myfolder = WEBPATH.'/'.ZENFOLDER.'/'.basename(dirname(__FILE__));
+	$myfolder = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/uploader_jQuery';
 	?>
 	<script type="text/javascript" src="<?php echo $myfolder; ?>/jquery.tmpl.min.js"></script>
 	<script type="text/javascript" src="<?php echo $myfolder; ?>/jquery.iframe-transport.js"></script>
@@ -22,7 +22,7 @@ function upload_extra($uploadlimit, $passedalbum) {
 
 			// Initialize the jQuery File Upload widget:
 			$('#fileupload').fileupload({
-																	url: '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.basename(dirname(__FILE__)).'/uploader.php'?>'<?php
+																	url: '<?php echo WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/uploader_jQuery/uploader.php'?>'<?php
 																	if ($uploadlimit) echo ",
 																	maxFileSize:".$uploadlimit; ?>
 																	});

@@ -66,9 +66,6 @@ function getRelatedItems($type='news',$album=NULL) {
 function printRelatedItems($number=5,$type='news',$specific=NULL) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 	$label = array('albums'=>gettext('Albums'), 'images'=>gettext('Images'),'news'=>gettext('News'),'pages'=>gettext('Pages'));
-
-$type = 'albums';
-
 	$result = getRelatedItems($type,$specific);
 	$count = 0;
 	foreach($result as $item) {

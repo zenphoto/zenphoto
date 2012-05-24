@@ -25,7 +25,6 @@ if (!defined('OFFSET_PATH')) {
 			query('UPDATE ' . prefix('news_categories') . ' SET `hitcounter`= 0');
 			query('UPDATE ' . prefix('options') . ' SET `value`= 0 WHERE `name` LIKE "Page-Hitcounter-%"');
 			query("DELETE FROM ".prefix('plugin_storage')." WHERE `type` = 'rsshitcounter'");
-			$msg = gettext('All hitcounters have been set to zero');
 			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin.php?action=external&msg='.gettext('All hitcounters have been set to zero.'));
 			exitZP();
 		}
@@ -138,8 +137,15 @@ class hitcounter {
 		}
 	}
 
-	static function load_script($obj) {
-		if ($obj) {
+	/**
+	 *
+	 * Counts the hitcounter for the page/object
+	 * @param string $script
+	 * @param bool $valid will be false if the object is not found (e.g. there will be a 404 error);
+	 * @return string
+	 */
+	static function load_script($script, $valid) {
+		if ($script && $valid) {
 			if (getOption('hitcounter_ignoreIPList_enable')) {
 				$ignoreIPAddressList = explode(',', str_replace(' ', '', getOption('hitcounter_ignoreIPList')));
 				$skip = in_array(getUserIP(), $ignoreIPAddressList);
@@ -197,7 +203,7 @@ class hitcounter {
 				}
 			}
 		}
-		return $obj;
+		return $script;
 	}
 
 	static function button($buttons) {

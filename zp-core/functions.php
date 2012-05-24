@@ -389,7 +389,7 @@ function checkAlbumPassword($album, &$hint=NULL) {
 	if (is_object($album)) {
 		$albumname = $album->name;
 	} else {
-		$album = new Album(NULL, $albumname=$album);
+		$album = new Album(NULL, $albumname=$album, true, true);
 	}
 	if (isset($_zp_pre_authorization[$albumname])) {
 		return $_zp_pre_authorization[$albumname];

@@ -1135,7 +1135,9 @@ class SearchEngine
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
 						$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'folder');
-						if ($_zp_gallery->getSortDirection()) { $key .= " DESC"; }
+						if ($_zp_gallery->getSortDirection()) {
+							$key .= " DESC";
+						}
 					} else {
 						$album = new Album(NULL, $this->dynalbumname);
 						$key = $album->getAlbumSortKey();

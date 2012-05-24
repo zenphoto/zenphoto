@@ -97,7 +97,6 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 
 $image_path = ALBUM_FOLDER_SERVERPATH.$album.'/'.$image;
 $suffix = getSuffix($image_path);
-$mimetype = getMimeString($suffix);
 $cache_file = $album . "/" . substr($image, 0, -strlen($suffix)-1) . '_FULL.' . $suffix;
 
 switch ($suffix) {
@@ -114,6 +113,7 @@ switch ($suffix) {
 	default:
 		if ($disposal == 'Download') {
 			require_once(dirname(__FILE__).'/lib-MimeTypes.php');
+			$mimetype = getMimeString($suffix);
 			header('Content-Disposition: attachment; filename="' . $image . '"');  // enable this to make the image a download
 			$fp = fopen($image_path, 'rb');
 			// send the right headers

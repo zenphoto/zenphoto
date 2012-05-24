@@ -1,6 +1,6 @@
 <?php
 function upload_head() {
-	$myfolder = WEBPATH.'/'.ZENFOLDER.'/'.basename(dirname(__FILE__));
+	$myfolder = WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/uploader_http';
 	?>
 	<link rel="stylesheet" type="text/css" href="<?php echo $myfolder; ?>/httpupload.css">
 	<script type="text/javascript" src="<?php echo $myfolder; ?>/httpupload.js"></script>

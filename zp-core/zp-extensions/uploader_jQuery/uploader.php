@@ -11,7 +11,7 @@
 */
 
 define('OFFSET_PATH', 3);
-require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
+require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 
 $_zp_loggedin = NULL;
 if (isset($_POST['auth'])) {

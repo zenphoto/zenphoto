@@ -1,4 +1,4 @@
-# htaccess file version 1.4.3;
+# htaccess file version 1.4.3.1;
 # When Zenphoto requires changes to the rewrite rules:
 #		First make a copy of this file as 'oldhtaccess' in the zp-core folder so setup can test for unmodified files
 #		Update the above and the define in setup.php
@@ -18,6 +18,12 @@ IndexIgnore *
   
   RewriteRule	^admin/?$                       zp-core/admin.php [R,L]
   
+  #Rewrite rules for replaced ?RSS-xxx query parameters
+	RewriteCond %{QUERY_STRING} ^rss-(.*)&
+	RewriteRule	^index\.php?$               		index.php?rss=%1 [NC,L,QSA,R=301]
+	RewriteCond %{QUERY_STRING} ^rss-(.*)$
+	RewriteRule	^index\.php?$               		index.php?rss=%1 [NC,L,QSA,R=301]
+
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^albums/?(.+/?)?$ $1 [R=301,L] 
 
@@ -26,22 +32,6 @@ IndexIgnore *
   RewriteRule ^.*$ - [L]
   
   ##### put no rules before this line #######
-  
-  #Rewrite rules for replaced RSS query parameters	
-  RewriteCond %{QUERY_STRING} withimages&lang=(.*)
-	RewriteRule	^index\.php?rss-news/?$                	index.php?rss=news&withimages&lang=%1 [L,R=301]
-	
-	RewriteCond %{QUERY_STRING} id=(.*)&title=(.*)&type=(.*)&lang=(.*)
-	RewriteRule	^index\.php?rss-comments/?$              index.php?rss=comments&id=%1&title=%2&type=%3&lang=%4 [L,R=301]
-	
-  RewriteCond %{QUERY_STRING} type=(.*)&lang=(.*)
-	RewriteRule	^index\.php?rss-comments/?$              index.php?rss=comments&type=%1&lang=%2 [L,R=301]
- 
-  RewriteCond %{QUERY_STRING} lang=(.*)&category=(.*)
-	RewriteRule	^index\.php?rss-news/?$                	index.php?rss=news&lang=%1&category=%2 [L,R=301]
-  
-  RewriteCond %{QUERY_STRING} lang=(.*)
-	RewriteRule	^index\.php?rss-news/?$                	index.php?rss=news&lang=%1 [L,R=301]
   
   #rewrite rule for tinyURLs
   RewriteRule ^tiny/([0-9]+)/?$               index.php?p=$1&t [L,QSA]

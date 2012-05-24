@@ -14,7 +14,6 @@ class ThemeOptions {
 	function ThemeOptions() {
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('thumb_transition', 1);
-		setOptionDefault('zp_plugin_colorbox', 1);
 		setOptionDefault('colorbox_default_album', 1);
 		setOptionDefault('colorbox_default_image', 1);
 		setOptionDefault('colorbox_default_search', 1);

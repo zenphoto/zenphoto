@@ -18,18 +18,17 @@ if (isset($_GET['uploadtype'])) {
 	$uploadtype = zp_getcookie('uploadtype');
 }
 
-$uploadHandlers = array('http'=>SERVERPATH.'/'.ZENFOLDER.'/admin-httpupload',
-												'jQuery'=>SERVERPATH.'/'.ZENFOLDER.'/admin-jQuery',
-												'flash'=>SERVERPATH.'/'.ZENFOLDER.'/admin-uploadify');
+$handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers',array()));
 
-$handlers = array_keys($uploadHandlers = zp_apply_filter('upload_handlers',$uploadHandlers));
-
-if (!isset($uploadHandlers[$uploadtype]) || !file_exists($uploadHandlers[$uploadtype].'/upload_form.php')) {
-	$uploadtype = array_shift($handlers);
+if (count($handlers) > 0) {
+	if (!isset($uploadHandlers[$uploadtype]) || !file_exists($uploadHandlers[$uploadtype].'/upload_form.php')) {
+		$uploadtype = array_shift($handlers);
+	}
+	require_once($uploadHandlers[$uploadtype].'/upload_form.php');
+	zp_setCookie('uploadtype', $uploadtype);
+} else {
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/no_uploader.php');
 }
-
-require_once($uploadHandlers[$uploadtype].'/upload_form.php');
-zp_setCookie('uploadtype', $uploadtype);
 
 $page = "upload";
 $_GET['page'] = 'upload';

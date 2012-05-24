@@ -342,9 +342,12 @@ class tweet {
 	/**
 	 *
 	 * filter which checks if there are any matured tweets to be sent
+	 * @param string $script
+	 * @param bool $valid will be false if the object is not found (e.g. there will be a 404 error);
+	 * @return string
 	 */
-	static function scan($param) {
-		if ($param) {
+	static function scan($script, $valid) {
+		if ($script && $valid) {
 			$result = query_full_array('SELECT * FROM '.prefix('news').' AS news,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending" AND store.data = news.titlelink AND news.date <= '.db_quote(date('Y-m-d H:i:s')));
 			if ($result) {
 				foreach ($result as $article) {
@@ -380,7 +383,7 @@ class tweet {
 				}
 			}
 		}
-		return $param;
+		return $script;
 	}
 
 	/**

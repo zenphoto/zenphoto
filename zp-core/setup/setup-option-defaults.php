@@ -541,6 +541,11 @@ appropriate gallery methods.
 	setOptionDefault('search_within', 1);
 	setOption('last_update_check', 30);
 	setOptionDefault('zp_plugin_zenphotoDonate', 9|ADMIN_PLUGIN);
+	setOptionDefault('zp_plugin_uploader_http', 5|ADMIN_PLUGIN);
+	setOptionDefault('zp_plugin_uploader_flash', 5|ADMIN_PLUGIN);
+	if (version_compare(PHP_VERSION, '5.3')>=0) {
+		setOptionDefault('zp_plugin_uploader_jQuery', 5|ADMIN_PLUGIN);
+	}
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface

@@ -167,8 +167,10 @@ class user_expiry {
 
 	/**
 	 * Re-validates user's e-mail via ticket.
+	 * @param string $path the script (which we ignore)
+	 * @return string
 	 */
-	static function reverify($obj) {
+	static function reverify($path) {
 		//process any verifications posted
 		if (isset($_GET['user_expiry_reverify'])) {
 			$params = unserialize(pack("H*", trim(sanitize($_GET['user_expiry_reverify']),'.')));
@@ -190,7 +192,7 @@ class user_expiry {
 				exitZP();
 			}
 		}
-		return $obj;
+		return $path;
 	}
 
 	static function edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {

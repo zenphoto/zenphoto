@@ -41,7 +41,9 @@ foreach($cachesubfolders as $cachesubfolder) {
 }
 
 $_zp_HTML_cache = new static_html_cache();
-$_zp_HTML_cache->startHTMLCache();
+if (isset($zp_request) && $zp_request) {
+	$_zp_HTML_cache->startHTMLCache();
+}
 
 
 class static_html_cache {
