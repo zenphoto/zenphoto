@@ -73,7 +73,7 @@ class sitemap {
 											gettext('Gallery index page') => array('key' => 'sitemap_galleryindex', 'type' => OPTION_TYPE_TEXTBOX,
 																																'order' => 10,
 																																'multilingual'=>false,
-																																'desc' => gettext('If your theme does not use the theme index.php page as the gallery index, enter the name of the page here. In Zenpage theme this is for example could be gallery.php, then you enter "gallery". If this is not empty the index.php sitemap is not generated.')),
+																																'desc' => gettext('If your theme does not use the theme index.php page as the gallery index, enter the name of the page here. In the Zenpage theme for example this could be gallery.php. In that case you enter "gallery". If this is not empty the index.php sitemap is not generated.')),
 											gettext('Album date') => array('key' => 'sitemap_lastmod_albums', 'type' => OPTION_TYPE_SELECTOR,
 																		'order' => 0,
 																		'selections' => array(gettext("date")=>"date",
