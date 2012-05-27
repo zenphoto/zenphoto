@@ -49,7 +49,7 @@ if (getOption('thumb_crop')) {
 		$thumbcropwidth = $imageobj->getWidth();
 		$thumbcropheight = $imageobj->getHeight();
 	} else {
-		$imgpath = getThumbImageFile();
+		$imgpath = $imageobj->getThumbImageFile();
 		if ($this->objectsThumb == NULL) {
 			$imagepart = makeSpecialImageName($imgpath);
 		} else {

@@ -1330,7 +1330,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			} else {
 				$desc = sprintf(gettext("The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of Zenphoto. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."),ZENFOLDER);
 				if (zp_loggedin(ADMIN_RIGHTS)) {
-					$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Make setup update the file with the current version</a></p><br style="clear:both" /><br />');
+					$desc .= ' '.gettext('<p class="buttons"><a href="?copyhtaccess" >Replace the existing <em>.htaccess</em> file with the current version</a></p><br style="clear:both" /><br />');
 				}
 			}
 			$err = gettext("<em>.htaccess</em> file [wrong version]");

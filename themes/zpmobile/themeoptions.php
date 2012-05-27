@@ -17,11 +17,11 @@ class ThemeOptions {
 		setOptionDefault('colorbox_default_album', 1);
 		setOptionDefault('colorbox_default_image', 1);
 		setOptionDefault('colorbox_default_search', 1);
-		setThemeOption('thumb_size',79);
+		setThemeOption('thumb_size',79, NULL, 'zpmobile');
 		setThemeOptionDefault('thumb_crop_width', 79);
 		setThemeOptionDefault('thumb_crop_height', 79);
 		setThemeOptionDefault('thumb_crop', 1);
-		setThemeOption('custom_index_page', 'gallery', NULL, NULL, false);
+		setThemeOption('custom_index_page', 'gallery', NULL, 'zpmobile', false);
 		setThemeOptionDefault('albums_per_page', 6);
 		setThemeOptionDefault('albums_per_row', 1);
 		setThemeOptionDefault('images_per_page', 24);

@@ -113,7 +113,7 @@ class AnyFile extends TextObject {
 				}
 			}
 		} else {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
+			$imgfile = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->album->name).'/'.$this->objectsThumb;
 		}
 	return $imgfile;
 	}

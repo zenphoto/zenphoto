@@ -696,30 +696,28 @@ class RSS {
 			$totalimages = $albumobj->getNumImages();
 			$itemlink = $this->host.pathurlencode($albumobj->getAlbumLink());
 			$thumb = $albumobj->getAlbumThumbImage();
-			$thumburl = '<img border="0" src="'.$thumb->getCustomImage($size, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.html_encode(get_language_string($albumobj->get("title"),$this->locale)) .'" />';
+			$thumburl = '<img border="0" src="'.$thumb->getCustomImage($this->imagesize, NULL, NULL, NULL, NULL, NULL, NULL, TRUE).'" alt="'.html_encode(get_language_string($albumobj->get("title"),$this->locale)) .'" />';
 			$title =  get_language_string($albumobj->get("title"),$this->locale);
 			if(true || $this->sortorder == "latestupdated") {
 				$filechangedate = filectime(ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumobj->name));
 				$latestimage = query_single_row("SELECT mtime FROM " . prefix('images'). " WHERE albumid = ".$albumobj->getID() . " AND `show` = 1 ORDER BY id DESC");
-				if($latestimage) {
+				if($latestimage && $this->sortorder == 'latestupdated') {
 					$count = db_count('images',"WHERE albumid = ".$albumobj->getID() . " AND mtime = ". $latestimage['mtime']);
-					if($count == 1) {
-						$imagenumber = sprintf(gettext('%s (1 new image)'),$title);
-					} else {
-						$imagenumber = sprintf(gettext('%1$s (%2$s new images)'),$title,$count);
-					}
+				} else {
+					$count = $totalimages;
+				}
+				if($count != 0) {
+					$imagenumber = sprintf(ngettext('%s (%u image)','%s (%u images)',$count),$title, $count);
 				} else {
 					$imagenumber = $title;
 				}
 				$feeditem['desc'] = '<a title="'.$title.'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.
 										'<p>'.html_encode($imagenumber).'</p>'.get_language_string($albumobj->get("desc"),$this->locale).'<br />'.sprintf(gettext("Last update: %s"),zpFormattedDate(DATE_FORMAT,$filechangedate));
 			} else {
-				if($totalimages == 1) {
-					$imagenumber = sprintf(gettext('%s (1 image)'),$title);
-				} else {
-					$imagenumber = sprintf(gettext('%1$s (%2$s images)'),$title,$totalimages);
+				if($totalimages != 0) {
+					$imagenumber = sprintf(ngettext('%s (%u image)','%s (%u images)',$totalimages),$title, $totalimages);
 				}
-				$feeditem['desc'] = '<a title="'.html_encode($title).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.get_language_string($albumitem->get("desc"),$this->locale).'<br />'.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$albumitem->get('mtime')));
+				$feeditem['desc'] = '<a title="'.html_encode($title).'" href="'.PROTOCOL.'://'.$itemlink.'">'.$thumburl.'</a>'.get_language_string($item->get("desc"),$this->locale).'<br />'.sprintf(gettext("Date: %s"),zpFormattedDate(DATE_FORMAT,$item->get('mtime')));
 			}
 			$ext = getSuffix($thumb->filename);
 		} else {
@@ -756,7 +754,7 @@ class RSS {
 		if($this->rssmode != "albums") {
 			$feeditem['category'] = html_encode(get_language_string($albumobj->get("title"),$this->locale));
 		} else {
-			$feeditem['category'] = html_encode(get_language_string($albumitem->get("title"),$this->locale));
+			$feeditem['category'] = html_encode(get_language_string($albumobj->get("title"),$this->locale));
 		}
 		//media content
 		$feeditem['media_content'] = '';
@@ -769,7 +767,7 @@ class RSS {
 		if($this->rssmode != "albums") {
 			$feeditem['pubdate'] = date("r",strtotime($item->get('date')));
 		} else {
-			$feeditem['pubdate'] = date("r",strtotime($albumitem->get('date')));
+			$feeditem['pubdate'] = date("r",strtotime($albumobj->get('date')));
 		}
 		return $feeditem;
 	}
@@ -788,25 +786,17 @@ class RSS {
 		switch($itemtype) {
 			case 'news':
 				$obj = new ZenpageNews($item['titlelink']);
-				$feeditem['title'] = get_language_string($obj->get('title'),$this->locale);
-				$title = get_language_string($obj->get('title'),$this->locale);
+				$title = $feeditem['title'] = get_language_string($obj->get('title'),$this->locale);
 				$link = getNewsURL($obj->getTitlelink());
 				$count2 = 0;
 				$plaincategories = $obj->getCategories();
+				$categories = '';
 				foreach($plaincategories as $cat){
 					$catobj = new ZenpageCategory($cat['titlelink']);
-					$count2++;
-					if($count2 != 1) {
-						$categories = get_language_string($catobj->get('title'),$this->locale).", ";
-					}
-					$categories = $categories.get_language_string($catobj->get('title'), $this->locale);
+					$categories .= get_language_string($catobj->get('title'), $this->locale).',';
 				}
-				if(getOption('zenpage_rss_length') == "") {
-					// empty value means full content!
-					$feeditem['desc'] = get_language_string($obj->get('content'),$this->locale);
-				} else {
-					$feeditem['desc'] = shortenContent(get_language_string($obj->get('content'),$this->locale),getOption('zenpage_rss_length'), '...');
-				}
+				$categories = rtrim($categories, ',');
+				$feeditem['desc'] = shortenContent(get_language_string($obj->get('content'),$this->locale),getOption('zenpage_rss_length'), '...');
 				break;
 			case 'images':
 				$albumobj = new Album(NULL,$item['albumname']);
@@ -820,12 +810,7 @@ class RSS {
 				$album = $albumobj->getFolder();
 				$fullimagelink = $this->host.WEBPATH.'/albums/'.$album.'/'.$filename;
 				$imagefile = "albums/".$album."/".$filename;
-				if(getOption('zenpage_rss_length') == "") {
-					// empty value means full content!
-					$content = get_language_string($obj->get('desc'),$this->locale);
-				} else {
-					$content = shortenContent(get_language_string($obj->get('desc'),$this->locale),getOption('zenpage_rss_length'), '...');
-				}
+				$content = shortenContent(get_language_string($obj->get('desc'),$this->locale),getOption('zenpage_rss_length'), '...');
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$filename.'&s='.$this->imagesize.'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
 				} else {

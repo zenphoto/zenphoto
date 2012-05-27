@@ -12,10 +12,10 @@ class ThemeOptions {
 		setThemeOptionDefault('albums_per_row', 2);
 		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
-		setThemeOption('image_size', 520);
-		setThemeOption('image_use_side', 'longest');
+		setThemeOption('image_size', 520, NULL, 'garland');
+		setThemeOption('image_use_side', 'longest', NULL, 'garland');
 		setThemeOptionDefault('thumb_transition', 1);
-		setThemeOption('thumb_size',85);
+		setThemeOption('thumb_size',85, NULL, 'garland');
 		setThemeOptionDefault('thumb_crop_width', 85);
 		setThemeOptionDefault('thumb_crop_height', 85);
 		setThemeOptionDefault('thumb_crop', 1);
@@ -27,9 +27,9 @@ class ThemeOptions {
 		setOptionDefault('colorbox_garland_search', 1);
 		setThemeOptionDefault('garland_menu', '');
 		if (getOption('zp_plugin_zenpage')) {
-			setThemeOption('custom_index_page', 'gallery', NULL, NULL, false);
+			setThemeOption('custom_index_page', 'gallery', NULL, 'garland', false);
 		} else {
-			setThemeOption('custom_index_page', '', NULL, NULL, false);
+			setThemeOption('custom_index_page', '', NULL, 'garland', false);
 		}
 		if (class_exists('cacheManager')) {
 			cacheManager::deleteThemeCacheSizes('garland');

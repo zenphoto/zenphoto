@@ -66,7 +66,6 @@ function RSS_Tags($item, $type) {
 	return $y;
 }
 
-
 function RSS_Channel($channel) {
 	$RSS_Content = array();
 	$items = $channel->getElementsByTagName("item");
@@ -89,58 +88,10 @@ function RSS_Retrieve($url) {
 		foreach($channels as $channel) {
 			$RSS_Content = array_merge($RSS_Content, RSS_Channel($channel));
 		}
+		return $RSS_Content;
 	} else {
-		?>
-		<ul>
-			<li>
-			<?php printf(gettext('Failed to retrieve link <em>%s</em>'),$url); ?>
-			</li>
-		</ul>
-		<?php
+		return NULL;
 	}
-	return $RSS_Content;
 }
-
-function RSS_Display($url, $size = 15, $site = 0) {
-	$opened = false;
-	$page = "";
-	$site = (intval($site) == 0) ? 1 : 0;
-	if($size <= 0)	{
-		return '';
-	}
-	$recents = array_slice(RSS_Retrieve($url), $site, $size + 1 - $site);
-	foreach($recents as $article) {
-		$type = $article["type"];
-		if($type == 0) {
-			if($opened) {
-				$page .="</ul>\n";
-				$opened = false;
-			}
-			$page .="<b />";
-		} else {
-			if(!$opened) {
-				$page .= "<ul>\n";
-				$opened = true;
-			}
-		}
-		$title = $article["title"];
-		$date = zpFormattedDate(DATE_FORMAT, strtotime($article["pubDate"]));
-		$link = $article["link"];
-		$description = $article["description"];
-		$page .= "<li><a href=\"$link\"><strong>$title</strong> ($date)</a>";
-		if($description != false) {
-			$page .= "<br />$description";
-		}
-		$page .= "</li>\n";
-		if($type==0) {
-			$page .="<br />";
-		}
-	}
-	if($opened) {
-		$page .="</ul>\n";
-	}
-	return $page."\n";
-}
-
 
 ?>

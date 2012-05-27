@@ -96,7 +96,7 @@ class TextObject extends _Image {
 			return;
 		}
 		$this->sidecars = $_zp_supported_images;
-		$this->objectsThumb = checkObjectsThumb($album->localpath, $filename);
+		$this->objectsThumb = checkObjectsThumb($this->localpath);
 		// Check if the file exists.
 		if (!file_exists($this->localpath) || is_dir($this->localpath)) {
 			$this->exists = false;
@@ -137,7 +137,7 @@ class TextObject extends _Image {
 				$imgfile = $path . "/" . ZENFOLDER . '/'.PLUGIN_FOLDER .'/class-textobject/'.$img;
 			}
 		} else {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
+			$imgfile = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->album->name).'/'.$this->objectsThumb;
 		}
 		return $imgfile;
 	}
@@ -161,7 +161,7 @@ class TextObject extends _Image {
 				$wmt = '!';
 			}
 		} else {
-			$filename = $this->objectsThumb;
+			$filename = filesystemToInternal($this->objectsThumb);
 		}
 		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
 		return getImageURI($args, $this->album->name, $filename, $this->filemtime);
@@ -223,7 +223,7 @@ class TextObject extends _Image {
 				}
 				return getImageProcessorURI($args, $this->album->name, $filename);
 			} else {
-				$filename = $this->objectsThumb;
+				$filename = filesystemToInternal($this->objectsThumb);
 				return getImageURI($args, $this->album->name, $filename, $this->filemtime);
 			}
 		} else {

@@ -80,18 +80,17 @@ function parseAllowedTags(&$source) {
 /**
  * Search for a thumbnail for the image
  *
- * @param string $album folder path of the album
- * @param string $image name of the target
+ * @param $localpath local path of the image
  * @return string
  */
-function checkObjectsThumb($album, $image){
+function checkObjectsThumb($localpath){
 	global $_zp_supported_images;
-	$image = substr($image, 0, strrpos($image,'.'));
-	$candidates = safe_glob($album.$image.'.*');
+	$image = stripSuffix($localpath);
+	$candidates = safe_glob($image.'.*');
 	foreach ($candidates as $file) {
 		$ext = substr($file,strrpos($file,'.')+1);
 		if (in_array(strtolower($ext),$_zp_supported_images)) {
-			return $image.'.'.$ext;
+			return basename($image.'.'.$ext);
 		}
 	}
 	return NULL;
@@ -1836,16 +1835,13 @@ function getOptionFromDB($key) {
  * @param string $theme default theme
  * @param bool $default set to true for setting default theme options (does not set the option if it already exists)
  */
-function setThemeOption($key, $value, $album=NULL, $theme=NULL, $default=false) {
+function setThemeOption($key, $value, $album, $theme, $default=false) {
 	global $_zp_gallery;
 	if (is_null($album)) {
 		$id = 0;
 	} else {
 		$id = $album->getID();
 		$theme = $album->getAlbumTheme();
-	}
-	if (empty($theme)) {
-		$theme = $_zp_gallery->getCurrentTheme();
 	}
 	$creator = THEMEFOLDER.'/'.$theme;
 

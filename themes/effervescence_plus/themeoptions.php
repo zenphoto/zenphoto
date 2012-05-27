@@ -26,8 +26,8 @@ class ThemeOptions {
 		setThemeOptionDefault('albums_per_row', 3);
 		setThemeOptionDefault('images_per_page', 20);
 		setThemeOptionDefault('images_per_row', 5);
-		setThemeOption('image_size', 595);
-		setThemeOption('image_use_side', 'longest');
+		setThemeOption('image_size', 595, NULL, 'effervescence_plus');
+		setThemeOption('image_use_side', 'longest', NULL, 'effervescence_plus');
 		setThemeOptionDefault('thumb_transition', 1);
 		setThemeOptionDefault('thumb_size', 100);
 		setThemeOptionDefault('thumb_crop_width', 100);

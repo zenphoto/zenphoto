@@ -37,7 +37,6 @@ if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version
 // old configuration opitons. preserve them
 $conf = $_zp_conf_vars;
 setOptionDefault('time_offset', 0);
-purgeOption('mod_rewrite');
 if (isset($_GET['mod_rewrite'])) {
 	if ($_GET['mod_rewrite'] == 'ON') {
 		?>

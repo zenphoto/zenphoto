@@ -88,7 +88,7 @@ class Video extends _Image {
 		}
 		$this->sidecars = $_zp_supported_images;
 		$this->video = true;
-		$this->objectsThumb = checkObjectsThumb($album->localpath, $filename);
+		$this->objectsThumb = checkObjectsThumb($this->localpath);
 		// Check if the file exists.
 		if (!file_exists($this->localpath) || is_dir($this->localpath)) {
 			$this->exists = false;
@@ -185,7 +185,7 @@ class Video extends _Image {
 				}
 			}
 		} else {
-			$imgfile = ALBUM_FOLDER_SERVERPATH.$this->album->name.'/'.$this->objectsThumb;
+			$imgfile = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->album->name).'/'.$this->objectsThumb;
 		}
 		return $imgfile;
 	}
@@ -208,7 +208,7 @@ class Video extends _Image {
 				$wmt = '!';
 			}
 		} else {
-			$filename = $this->objectsThumb;
+			$filename = filesystemToInternal($this->objectsThumb);
 		}
 		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
 		return getImageURI($args, $this->album->name, $filename, $this->filemtime);
@@ -249,7 +249,7 @@ class Video extends _Image {
 				}
 				return getImageProcessorURI($args, $this->album->name, $filename);
 			} else {
-				$filename = $this->objectsThumb;
+				$filename = filesystemToInternal($this->objectsThumb);
 				$args = array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, NULL, NULL, NULL);
 				return getImageURI($args, $this->album->name, $filename, $this->filemtime);
 			}

@@ -3228,7 +3228,7 @@ function getRandomImages($daily = false) {
 	if ($image) {
 		if ($daily) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
-			setThemeOption('picture_of_the_day', serialize($potd));
+			setThemeOption('picture_of_the_day', serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
 		}
 		return $image;
 	}
@@ -3303,7 +3303,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 	if ($image) {
 		if ($daily) {
 			$potd = array('day' => time(), 'folder' => $image->getAlbumName(), 'filename' => $image->getFileName());
-			setThemeOption('picture_of_the_day:'.$album->name, serialize($potd));
+			setThemeOption('picture_of_the_day:'.$album->name, serialize($potd), NULL, $_zp_gallery->getCurrentTheme());
 		}
 	}
 	return $image;
@@ -4440,6 +4440,9 @@ function printZenphotoLink() {
  */
 function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindicator=false) {
 	global $_user_tags;
+	if (!$shorten) {
+		return $articlecontent;
+	}
 	if ($forceindicator || (mb_strlen($articlecontent) > $shorten)) {
 		$allowed_tags = getAllowedTags('allowed_tags');
 		$short = mb_substr($articlecontent, 0, $shorten);

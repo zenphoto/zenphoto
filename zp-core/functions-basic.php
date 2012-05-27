@@ -269,6 +269,11 @@ function html_encode($this_string) {
  */
 function html_encodeTagged($str) {
 	$tags = array();
+	preg_match_all('|<!--.*-->|is', $str, $matches);
+	foreach (array_unique($matches[0]) as $key=>$tag) {
+		$tags['%'.$key.'$j'] = $tag;
+		$str = str_replace($tag, '%'.$key.'$j', $str);
+	}
 	preg_match_all('!<script.*>.*</script>!is', $str, $matches);
 	foreach (array_unique($matches[0]) as $key=>$tag) {
 		$tags['%'.$key.'$j'] = $tag;
@@ -999,7 +1004,6 @@ function getAlbumFolder($root=SERVERPATH) {
  * @param bool $reset set to true to reset the log to zero before writing the message
  */
 function debugLog($message, $reset=false) {
-	global $_zp_debug_written;
 	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
 	if ($reset || ($size = @filesize($path)) == 0 || $size > 5000000) {
 		$f = fopen($path, 'w');
@@ -1014,9 +1018,7 @@ function debugLog($message, $reset=false) {
 	} else {
 		$f = fopen($path, 'a');
 		if ($f) {
-			if ((time()-$_zp_debug_written)>5) {
-				fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT}\n");
-			}
+			fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT}\n");
 		}
 	}
 	if ($f) {
@@ -1025,63 +1027,14 @@ function debugLog($message, $reset=false) {
 		clearstatcache();
 		@chmod($path, 0600);
 	}
-	$_zp_debug_written = time();
 }
-
-/**
- * "print_r" equivalent for the debug log
- *
- * @param string $name the name (or message) to display for the array
- * @param array $source
- */
-function debugLogArray($name, $source, $indent=0, $trail='') {
-	if (is_array($source)) {
-		$msg = str_repeat(' ', $indent)."$name => ( ";
-		$c = 1;
-		if (count($source) > 0) {
-			foreach ($source as $key => $val) {
-				if (strlen($msg) > 72) {
-					debugLog($msg);
-					$msg = str_repeat(' ', $indent);
-				}
-				if (is_array($val)) {
-					if (!empty($msg)) {
-						debugLog($msg);
-					}
-					$c++;
-					if ($c<count($source)){
-						$t = '';
-					} else {
-						$t = ',';
-					}
-					debugLogArray($key, $val, $indent+5, $t);
-					$msg = '';
-				} else {
-					if (is_null($val)) {
-						$msg .= $key.' => NULL, ';
-					} else {
-						$msg .= $key . " => " . $val. ', ';
-					}
-				}
-			}
-
-			$msg = substr($msg, 0, strrpos($msg, ',')) . " )".$trail;
-		} else {
-			$msg .= ")";
-		}
-		debugLog($msg);
-	} else {
-		debugLog($name.' parameter is not an array.');
-	}
-}
-
 /**
  * Logs the calling stack
  *
  * @param string $message Message to prefix the backtrace
  */
 function debugLogBacktrace($message, $omit=0) {
-	debugLog("Backtrace: $message");
+	$output = "Backtrace: $message\n";
 	// Get a backtrace.
 	$bt = debug_backtrace();
 	while ($omit>=0) {
@@ -1095,10 +1048,10 @@ function debugLogBacktrace($message, $omit=0) {
 		$caller = (isset($b['class']) ? $b['class'] : '')	. (isset($b['type']) ? $b['type'] : '')	. $b['function'];
 		if (!empty($line)) { // skip first output to match up functions with line where they are used.
 			$msg = $prefix . ' from ';
-			debugLog($msg.$caller.' ('.$line.')');
+			$output .= $msg.$caller.' ('.$line.")\n";
 			$prefix .= '  ';
 		} else {
-			debugLog($caller.' called');
+			$output .= $caller." called\n";
 		}
 		$date = false;
 		if (isset($b['file']) && isset($b['line'])) {
@@ -1108,8 +1061,9 @@ function debugLogBacktrace($message, $omit=0) {
 		}
 	}
 	if (!empty($line)) {
-		debugLog($prefix.' from '.$line);
+		$output .= $prefix.' from '.$line;
 	}
+	debugLog($output);
 }
 
 /**
@@ -1123,8 +1077,7 @@ function debugLogVar($message, $var) {
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog($message);
-	debugLog(html_decode(strip_tags($str)));
+	debugLog($message.html_decode(strip_tags($str)));
 }
 
 /**
