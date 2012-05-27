@@ -23,7 +23,7 @@ class zenphoto_org_news {
 
 	function getOptionsSupported() {
 		return  array(	gettext('Truncation') => array('key' => 'zenphoto_news_length', 'type' => OPTION_TYPE_TEXTBOX,
-												'desc' => gettext('The amount of the article to display.'))
+												'desc' => gettext('The length of the article to display.'))
 		);
 	}
 }
