@@ -15,7 +15,7 @@
  * <ul>
  * 	<li>A cookie stored when the user chooses his language</li>
  * 	<li>The URI language selection provided by the <i>seo_locale</i> plugin</li>
- * 	<li>The <i>subdomain  locales</i> option</li>
+ * 	<li>The <i>subdomain locales</i> option</li>
  * </ul>
  *
  * This plugiin applies only to the theme pages--not Admin. The <em>language cookie</i>, if set, will
