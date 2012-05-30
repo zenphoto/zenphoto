@@ -314,7 +314,7 @@ if (!function_exists('zp_graphicsLibInfo')) {
 		}
 
 		/**
-		 * Rotates an image resource according to its EXIF info and auto_rotate option
+		 * Rotates an image resource according to its Orientation
 		 * NB: requires the imagarotate function to be configured
 		 *
 		 * @param resource $im

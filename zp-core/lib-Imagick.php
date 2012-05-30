@@ -435,7 +435,7 @@ if ($_zp_imagick_present && (getOption('use_imagick') || !extension_loaded('gd')
 	}
 
 	/**
-	 * Rotates an image resource according to its EXIF info and auto_rotate option
+	 * Rotates an image resource according to its Orientation setting
 	 *
 	 * @param Imagick $im
 	 * @param int $rotate

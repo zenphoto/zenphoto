@@ -147,7 +147,7 @@ if (isset($_REQUEST['crop'])) {
 	//create a new image with the set cropping
 	$quality = getOption('full_image_quality');
 	$rotate = false;
-	if (zp_imageCanRotate() && getOption('auto_rotate'))  {
+	if (zp_imageCanRotate())  {
 		$rotate = getImageRotation($imgpath);
 	}
 	if (DEBUG_IMAGE) debugLog("image_crop: crop ".basename($imgpath).":\$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy \$rotate=$rotate");

@@ -200,7 +200,6 @@ setOptionDefault('EXIFFlash', 1);
 foreach ($_zp_exifvars as $key=>$item) {
 	setOptionDefault($key, 0);
 }
-setOptionDefault('auto_rotate', 0);
 setOptionDefault('IPTC_encoding', 'ISO-8859-1');
 
 setOptionDefault('UTF8_image_URI', 0);
@@ -543,6 +542,16 @@ appropriate gallery methods.
 	setOptionDefault('zp_plugin_uploader_http', 5|ADMIN_PLUGIN);
 	setOptionDefault('zp_plugin_uploader_flash', 5|ADMIN_PLUGIN);
 	setOptionDefault('zp_plugin_uploader_jQuery', 5|ADMIN_PLUGIN);
+
+	$autoRotate = getOption('auto_rotate');
+	if (!is_null($autoRotate)) {
+		if (!$autoRotate) {
+			query('UPDATE '.prefix('images').' SET `EXIFOrientation`=NULL');
+			setOption('EXIFOrientation', 0);
+			setOption('EXIFOrientation-disabled', 1);
+		}
+		purgeOption('auto_rotate');
+	}
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface

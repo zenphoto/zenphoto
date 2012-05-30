@@ -523,7 +523,7 @@ class _Image extends MediaObject {
 		$size = zp_imageDims($this->localpath, $discard);
 		$width = $size['width'];
 		$height = $size['height'];
-		if (zp_imageCanRotate() && getOption('auto_rotate'))  {
+		if (zp_imageCanRotate())  {
 			// Swap the width and height values if the image should be rotated
 			$splits = preg_split('/!([(0-9)])/', $this->get('EXIFOrientation'));
 			$rotation = $splits[0];

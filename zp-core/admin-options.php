@@ -236,7 +236,6 @@ if (isset($_GET['action'])) {
 			}
 			setOption('image_sorttype', $st);
 			setOption('image_sortdirection', (int) isset($_POST['image_sortdirection']));
-			setOption('auto_rotate', (int) isset($_POST['auto_rotate']));
 			setOption('use_embedded_thumb', (int) isset($_POST['use_embedded_thumb']));
 			setOption('IPTC_encoding', sanitize($_POST['IPTC_encoding']));
 			foreach ($_zp_exifvars as $key=>$item) {
@@ -1758,18 +1757,6 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td><?php echo gettext("Interlace:"); ?></td>
 			<td><input type="checkbox" name="image_interlace" value="1" <?php echo checked('1', getOption('image_interlace')); ?> /></td>
 			<td><?php echo gettext("If checked, resized images will be created <em>interlaced</em> (if the format permits)."); ?></td>
-		</tr>
-		<tr>
-			<td width="175"><?php echo gettext("Allow image rotation:"); ?></td>
-			<td><input type="checkbox" name="auto_rotate"	value="1"
-				<?php echo checked('1', getOption('auto_rotate')); ?>
-				<?php if (!zp_imageCanRotate()) echo ' disabled="disabled"'; ?>	/></td>
-			<td>
-				<p><?php	echo gettext("Zenphoto will rotate images based on the metadata orientation setting."); ?></p>
-				<?php
-				if (!function_exists('imagerotate')) echo '<p class="notebox">'.gettext("Image rotation requires the <em>imagerotate</em> function found in the bundled GD library of PHP version 4.3 or greater.").'</p>';
-				?>
-			</td>
 		</tr>
 		<tr>
 			<td><?php  echo gettext('Use embedded thumbnail'); ?></td>

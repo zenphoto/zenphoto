@@ -988,7 +988,7 @@ $alb = removeParentAlbumNames($album);
 			$bglevels = array('#fff','#f8f8f8','#efefef','#e8e8e8','#dfdfdf','#d8d8d8','#cfcfcf','#c8c8c8');
 
 			$currentimage = 0;
-			if (getOption('auto_rotate')) {
+			if (zp_imageCanRotate()) {
 				$disablerotate = '';
 			} else {
 				$disablerotate = ' disabled="disabled"';

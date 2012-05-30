@@ -174,7 +174,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 			imageError('404 Not Found', gettext('Image not found or is unreadable.'), 'err-imagenotfound.png');
 		}
 		$rotate = false;
-		if (zp_imageCanRotate() && getOption('auto_rotate'))  {
+		if (zp_imageCanRotate())  {
 			$rotate = getImageRotation($imgfile);
 		}
 		$s = getSuffix($imgfile);
