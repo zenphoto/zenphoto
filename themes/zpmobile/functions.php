@@ -192,11 +192,11 @@ function jqm_printCombiNewsThumb() {
 	switch($newstype) {
 		case "image":
 		case "video":
-			$thumb = '<img src="'.$_zp_current_zenpage_news->getCustomImage(NULL, 80, 80, 80,80, NULL, NULL,true,NULL).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
+			$thumb = '<img src="'.pathurlencode($_zp_current_zenpage_news->getCustomImage(NULL, 80, 80, 80,80, NULL, NULL,true,NULL)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
 			break;
 		case "album":
 			$obj = $_zp_current_zenpage_news->getAlbumThumbImage();
-			$thumb = '<img src="'.$obj->getCustomImage(NULL, 80, 80, 80,80, NULL, NULL,true,NULL).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
+			$thumb = '<img src="'.pathurlencode($obj->getCustomImage(NULL, 80, 80, 80,80, NULL, NULL,true,NULL)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
 		default:
 			$thumb = '';
 			break;

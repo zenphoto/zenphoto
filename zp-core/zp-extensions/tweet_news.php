@@ -346,7 +346,7 @@ class tweet {
 	 * @param bool $valid will be false if the object is not found (e.g. there will be a 404 error);
 	 * @return string
 	 */
-	static function scan($script, $valid) {
+	static function scan($script, $valid=true) {
 		if ($script && $valid) {
 			$result = query_full_array('SELECT * FROM '.prefix('news').' AS news,'.prefix('plugin_storage').' AS store WHERE store.type="tweet_news" AND store.aux="pending" AND store.data = news.titlelink AND news.date <= '.db_quote(date('Y-m-d H:i:s')));
 			if ($result) {

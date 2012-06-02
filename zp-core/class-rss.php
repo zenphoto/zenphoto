@@ -1,13 +1,13 @@
 <?php
 /**
  * * Zenphoto RSS class
- * 
+ *
  * The feed is dependent on GET parameters available.
  *
  * The gallery and additionally Zenpage CMS plugin provide rss link functions to generate context dependent rss links.
  * You can however create your own links manually with even some more options than via the backend option.
  *
- * 
+ *
  * I. GALLERY RSS FEEDS:
  * These accept the following parameters:
  *
@@ -67,7 +67,7 @@
  *
  * II. RSS FEEDS WITH THE ZENPAGE CMS PLUGIN
  * Requires the plugin to be enabled naturally.
- * 
+ *
  * a. NEWS ARTICLE FEEDS
  * - "News" feed for latest news articles
  * index.php?rss=news&lang=<locale>
@@ -94,35 +94,35 @@
  * - "mostrated" for most voted articles
  * - "toprated" for top voted articles
  * - "random" for random articles
- * 
+ *
  *
  * b. COMBINEWS MODE RSS FEEDS (ARTICLES WITH IMAGES OR ALBUMS COMBINED)
  * NOTE: These override the sortorder parameter. You can also only set one of these parameters at the time. For other custom feed needs use the mergedRSS plugin.
- * 
+ *
  * - "withimages" for all latest news articles and latest images by date combined
  * index.php?rss=news&withimages&lang=<locale>
- * 
+ *
  * - "withimages_mtime" for all latest news articles and latest images by mtime combined
  * index.php?rss=news&withimages_mtime&lang=<locale>
- * 
+ *
  * - "withimages_publishdate" for all latest news articles and latest images by publishdate combined
  * index.php?rss=news&withimages_publishdate&lang=<locale>
- * 
+ *
  * - "withalbums" for all latest news articles and latest albums by date combined
  * index.php?rss=news&withimages_withalbums&lang=<locale>
- * 
+ *
  * - "withalbums_mtime" for all latest news articles and latest images by mtime combined
  * index.php?rss=news&withalbums_mtime&lang=<locale>
- * 
+ *
  * - "withalbums_publishdate" for all latest news articles and latest images by publishdate combined
  * index.php?rss=news&withalbums_publishdate&lang=<locale>
- * 
+ *
  * - "withalbums_latestupdated" for all latest news articles and latest updated albums combined
  * index.php?rss=news&withalbums_latestupdated&lang=<locale>
- * 
+ *
  * Optional CombiNews parameter:
  * "size" the pixel size for the image (uncropped and longest side)
- * 
+ *
  *
  *
  * III. OPTIONAL PARAMETERS TO I. AND II.:
@@ -145,7 +145,7 @@ class RSS {
 	protected $locale_xml = NULL; // xml locale within feed
 	protected $host = NULL;
 	protected $sortorder = NULL;
-	
+
 	// mode for gallery and comments rss
 	protected $rssmode = NULL; // mode for gallery and comments rss
 
@@ -164,7 +164,7 @@ class RSS {
 	protected $titleappendix = NULL;
 	protected $combinews_images = NULL;
 	protected $combinews_albums = NULL;
-	
+
 	//comment feed specific
 	protected $id = NULL;
 	protected $commentrsstype = NULL;
@@ -524,12 +524,12 @@ class RSS {
 			return $array[$arrayfield];
 		}
 	}
-	
+
 	/**
 	 * Helper function that returns if and what Zenpage Combinews mode with images is set
 	 *
 	 * @return string
-	 */	
+	 */
 protected function getRSSCombinewsImages() {
 	if(isset($_GET['withimages'])) {
 		return 'withimages';
@@ -537,14 +537,14 @@ protected function getRSSCombinewsImages() {
 		return 'withimages_mtime';
 	}	else	if(isset($_GET['withimages_publishdate'])) {
 		return 'withimages_publishdate';
-	}	
-}	
+	}
+}
 
 /**
 	 * Helper function that returns if and what Zenpage Combinews mode with albums is set
 	 *
 	 * @return string
-	 */	
+	 */
 protected function getRSSCombinewsAlbums() {
 	if(isset($_GET['withalbums'])) {
 		return 'withalbums';
@@ -554,8 +554,8 @@ protected function getRSSCombinewsAlbums() {
 		return 'withalbums_publishdate';
 	}	else if(isset($_GET['withalbums_latestupdated'])) {
 		return 'withalbums_latestupdated';
-	} 
-}	
+	}
+}
 
 	/**
 	 * Gets the RSS file name from the feed url and clears out query items and special chars
@@ -724,7 +724,7 @@ protected function getRSSCombinewsAlbums() {
 						break;
 					case 'withalbums_latestupdated':
 						$items = getLatestNews($this->itemnumber,"with_latestupdated_albums",'',false);
-						break;	
+						break;
 				}
 				break;
 
@@ -903,7 +903,7 @@ protected function getRSSCombinewsAlbums() {
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$filename.'&s='.$this->imagesize.'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
 				} else {
-					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img src="'.$obj->getThumb().'" alt="'.html_encode($feeditem['title']).'" /></a><br />'.$content;
+					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img src="'.pathurlencode($obj->getThumb()).'" alt="'.html_encode($feeditem['title']).'" /></a><br />'.$content;
 				}
 				if(getOption("feed_enclosure")) {
 					$feeditem['enclosure'] = '<enclosure url="'.PROTOCOL.'://'.$fullimagelink.'" type="'.getMimeString($ext).'" length="'.filesize($imagefile).'" />';
@@ -921,7 +921,7 @@ protected function getRSSCombinewsAlbums() {
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.html_encode($albumthumb->filename).'&s='.$this->imagesize.'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
 				} else {
-					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img src="'.$obj->getAlbumThumb().'" alt="'.html_encode($feeditem['title']).'" /></a><br />'.$content;
+					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img src="'.pathurlencode($obj->getAlbumThumb()).'" alt="'.html_encode($feeditem['title']).'" /></a><br />'.$content;
 				}
 				break;
 		}

@@ -254,7 +254,7 @@ if (!$debug) {
 	}
 	exitZP();
 } else {
-	echo "\n<p>Image: <img src=\"" . $path ."\" /></p>";
+	echo "\n<p>Image: <img src=\"" . pathurlencode($path) ."\" /></p>";
 }
 
 ?>

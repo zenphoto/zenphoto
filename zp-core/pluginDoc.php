@@ -412,7 +412,7 @@ function processCommentBlock($commentBlock)	{
 					foreach ($matches[0] as $key=>$match) {
 						if (!empty($match)) {
 							$line = str_replace($match, '%'.$key.'$i', $line);
-							$tags['%'.$key.'$i'] = '<img src="'.html_encode($matches[1][$key]).'" alt="" />';
+							$tags['%'.$key.'$i'] = '<img src="'.pathurlencode($matches[1][$key]).'" alt="" />';
 						}
 					}
 				}

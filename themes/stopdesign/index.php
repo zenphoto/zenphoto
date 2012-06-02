@@ -116,7 +116,7 @@ require_once('normalizer.php');
 											}
 											echo '<a href="'.$imageURL.'" title="'.gettext("View image:").' '.
 											html_encode($image->getTitle()) . '"><img src="' .
-											html_encode($image->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) .
+											pathurlencode($image->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) .
 																		'" alt="' . html_encode($image->getTitle()) . "\"/></a>\n";
 											echo "</td></tr></table></li>\n";
 										}
@@ -143,7 +143,7 @@ require_once('normalizer.php');
 										$cw = 33;
 									}
 									echo '<a href="' . $randomImageURL . '" title="'.gettext("View image:").' ' . html_encode($randomImage->getTitle()) . '">' .
-												'<img src="' . html_encode($randomImage->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) .
+												'<img src="' . pathurlencode($randomImage->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) .
 												'" alt="'.html_encode($randomImage->getTitle()).'"';
 									echo "/></a></td></tr></table></li>\n";
 								}

@@ -104,7 +104,7 @@ echo '</head>';
 <?php
 	if(isset($_GET['removeoutdateddownloads'])) {
 		XSRFdefender('removeoutdateddownloads');
-		$sql = "SELECT * FROM ".prefix('plugin_storage')." WHERE `type` = 'downloadList'";
+		$sql = "SELECT * FROM ".prefix('plugin_storage')." WHERE `type`='downloadList'";
 		$result = query_full_array($sql);
 		if ($result) {
 			foreach ($result as $row) {
@@ -117,7 +117,7 @@ echo '</head>';
 	}
 	if(isset($_GET['removealldownloads'])) {
 		XSRFdefender('removealldownloads');
-		$sql = "DELETE FROM ".prefix('plugin_storage')." WHERE `type` = type='downloadList'";
+		$sql = "DELETE FROM ".prefix('plugin_storage').' WHERE `type`="downloadList"';
 		query($sql);
 		echo '<p class="messagebox fade-message">'.gettext('All download file entries cleared from the database').'</p>';
 	}

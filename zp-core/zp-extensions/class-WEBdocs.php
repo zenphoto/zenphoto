@@ -147,7 +147,7 @@ class WEBdocs extends TextObject {
 		$this->updateDimensions();
 		if (is_null($w)) $w = $this->getWidth();
 		if (is_null($h)) $h = $this->getHeight();
-		$providers = array(	''=>'<img src="'.$this->getThumb().'">',
+		$providers = array(	''=>'<img src="'.pathurlencode($this->getThumb()).'">',
 												'google'=>'<iframe src="http://docs.google.com/viewer?url=%s&amp;embedded=true" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>',
 												'zoho'=>'<iframe src="http://viewer.zoho.com/api/urlview.do?url=%s&amp;embed=true" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>',
 												'local'=>'<iframe src="%s" width="'.$w.'px" height="'.$h.'px" frameborder="0" border="none" scrolling="auto"></iframe>'
@@ -163,7 +163,7 @@ class WEBdocs extends TextObject {
 				$provider = 'WEBdocs_'.$suffix.'_provider';
 				return sprintf($providers[getOption($provider)],html_encode($this->getFullImage(FULLWEBPATH)));
 			default: // just in case we extend and are lazy...
-				return '<img src="'.$this->getThumb().'">';
+				return '<img src="'.pathurlencode($this->getThumb()).'">';
 		}
 	}
 

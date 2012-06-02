@@ -228,7 +228,7 @@ function getAlbumGeodata($obj,$MAP_OBJECT){
 		$coord = getGeoCoord($image);
 		if ($coord) {
 			$result = true;	//	at least one image has geodata
-			$coord['desc'] = '<a href="javascript:image(\''.$obj->name.'\',\''.$image->filename.'\');"><img src="'.html_encode($image->getThumb()).'" alt="'.$image->getDesc().'" '.'class="map_image" /></a>';
+			$coord['desc'] = '<a href="javascript:image(\''.$obj->name.'\',\''.$image->filename.'\');"><img src="'.pathurlencode($image->getThumb()).'" alt="'.$image->getDesc().'" '.'class="map_image" /></a>';
 			if ($image->getDesc()) $coord['desc'] .= '<p align=center>' . $image->getDesc()."</p>";
 			addGeoCoord($MAP_OBJECT, $coord);
 		}

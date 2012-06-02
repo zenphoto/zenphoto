@@ -302,7 +302,7 @@ printAdminHeader('edit',gettext('crop image'));
 
 					<div style="width: <?php echo $sizedwidth; ?>px; height: <?php echo $sizedheight; ?>px; margin-bottom: 10px; border: 4px solid gray;">
 						<!-- This is the image we're attaching Jcrop to -->
-						<img src="<?php echo $imageurl; ?>" id="cropbox" />
+						<img src="<?php echo pathurlencode($imageurl); ?>" id="cropbox" />
 						<p class="floatright">
 							<?php echo sprintf(gettext('(<span id="new-width">%1$u</span> x <span id="new-height">%2$u</span> pixels)'),
 														round($iW * ($width / $sizedwidth)), round($iH * ($height / $sizedheight))); ?>

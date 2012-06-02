@@ -133,7 +133,7 @@ class AnyFile extends TextObject {
 			 * just return the thumbnail as we do not know how to
 			 * render the file.
 			 */
-			return '<img src="'.$this->getThumb().'">';
+			return '<img src="'.pathurlencode($this->getThumb()).'">';
 	}
 
 }

@@ -10,10 +10,13 @@ if (!defined('OFFSET_PATH')) {
 }
 
 require_once(dirname(__FILE__).'/admin-globals.php');
-if (isset($_SESSION['license_return']) && isset($_GET['XSRFToken'])) {
-	$return_to = $_SESSION['license_return'];
-	unset($_SESSION['license_return']);
-	XSRFdefender('ZenphotoLicense');
+if (isset($_GET['licenseAccept'])) {
+	if (isset($_SESSION['license_return'])) {
+		$return_to = $_SESSION['license_return'];
+		unset($_SESSION['license_return']);
+	} else {
+		$return_to = 'admin.php';
+	}
 	setOption('license_accepted', ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']');
 	header('Location: '.$return_to);
 	exitZP();
@@ -40,7 +43,7 @@ echo "\n</head>";
 				$_SESSION['license_return'] = $_SERVER['REQUEST_URI'];
 				?>
 				<p class="buttons">
-					<a href="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/license.php?XSRFToken='.getXSRFToken('ZenphotoLicense'); ?>" alt="<?php echo gettext('You must accept this license to continue to use Zenphoto.'); ?>"><?php echo gettext('I agree to these terms and conditions'); ?></a>
+					<a href="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/license.php?licenseAccept&amp;XSRFToken='.getXSRFToken('ZenphotoLicense'); ?>" alt="<?php echo gettext('You must accept this license to continue to use Zenphoto.'); ?>"><?php echo gettext('I agree to these terms and conditions'); ?></a>
 				</p>
 				<br clear="all" />
 				<?php

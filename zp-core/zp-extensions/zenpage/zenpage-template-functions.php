@@ -486,37 +486,37 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 				case 'latestimages-sizedimage-maxspace':
 				case 'latestimages-fullimage':
 					if(isImagePhoto($_zp_current_zenpage_news)) {
-						$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'">';
+						$articlecontent = '<a href="'.pathurlencode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'">';
 						switch($mode) {
 							case 'latestimages-sizedimage':
-								$imagesource = html_encode($_zp_current_zenpage_news->getSizedImage($size));
+								$imagesource = $_zp_current_zenpage_news->getSizedImage($size);
 								break;
 							case 'latestimages-sizedimage-maxspace':
 								getMaxSpaceContainer($width, $height, $_zp_current_zenpage_news,true);
-								$imagesource = html_encode($_zp_current_zenpage_news->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true));
+								$imagesource = $_zp_current_zenpage_news->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true);
 								break;
 							case 'latestimages-fullimage':
-								$imagesource = html_encode($_zp_current_zenpage_news->getFullImage());
+								$imagesource = $_zp_current_zenpage_news->getFullImage();
 								break;
 						}
-						$articlecontent .= '<img src="'.$imagesource.'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
+						$articlecontent .= '<img src="'.pathurlencode($imagesource).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
 						$articlecontent .= '</a>';
 					} else if(isImageVideo($_zp_current_zenpage_news)) {
 						$articlecontent .= $_zp_current_zenpage_news->getSizedImage($size);
 					} else {
 						$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'">';
-						$articlecontent .= '<img src="'.html_encode($_zp_current_zenpage_news->getCustomImage($size, NULL,NULL, NULL, NULL, NULL, NULL,true)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
+						$articlecontent .= '<img src="'.pathurlencode($_zp_current_zenpage_news->getCustomImage($size, NULL,NULL, NULL, NULL, NULL, NULL,true)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" />';
 						$articlecontent .= '</a>';
 					}
 					break;
 				case 'latestimages-thumbnail':
-					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($_zp_current_zenpage_news->getThumb()).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>';
+					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.pathurlencode($_zp_current_zenpage_news->getThumb()).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>';
 					break;
 				case 'latestimages-thumbnail-customcrop':
 					if(isImagePhoto($_zp_current_zenpage_news)) {
-						$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($_zp_current_zenpage_news->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>';
+						$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.pathurlencode($_zp_current_zenpage_news->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>';
 					} else {
-						$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($_zp_current_zenpage_news->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>';
+						$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getImageLink()).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.pathurlencode($_zp_current_zenpage_news->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>';
 					}
 					break;
 			}
@@ -535,26 +535,26 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 					if(isImagePhoto($albumthumbobj)) {
 						switch($mode) {
 							case 'latestalbums-sizedimage':
-								$imgurl = html_encode($albumthumbobj->getSizedImage($size));
+								$imgurl = $albumthumbobj->getSizedImage($size);
 								break;
 							case 'latestalbums-sizedimage-maxspace':
 								getMaxSpaceContainer($width, $height, $albumthumbobj,true);
-								$imgurl = html_encode($albumthumbobj->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true));
+								$imgurl = $albumthumbobj->getCustomImage(NULL, $width,$height, $width,$height, NULL, NULL,true);
 								break;
 							case 'latestalbums-fullimage':
-								$imgurl = html_encode($albumthumbobj->getFullImage());
+								$imgurl = $albumthumbobj->getFullImage();
 								break;
 						}
 					} else {
-						$imgurl = html_encode($albumthumbobj->getCustomImage($size, NULL,NULL, NULL, NULL, NULL, NULL,true));
+						$imgurl = $albumthumbobj->getCustomImage($size, NULL,NULL, NULL, NULL, NULL, NULL,true);
 					}
-					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink(1)).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.$imgurl.'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
+					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink(1)).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.pathurlencode($imgurl).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
 					break;
 				case 'latestalbums-thumbnail':
-					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink(1)).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($_zp_current_zenpage_news->getAlbumThumb()).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
+					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink(1)).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.pathurlencode($_zp_current_zenpage_news->getAlbumThumb()).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
 					break;
 				case 'latestalbums-thumbnail-customcrop':
-					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink(1)).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.html_encode($albumthumbobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
+					$articlecontent = '<a href="'.html_encode($_zp_current_zenpage_news->getAlbumLink(1)).'" title="'.html_encode($_zp_current_zenpage_news->getTitle()).'"><img src="'.pathurlencode($albumthumbobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($_zp_current_zenpage_news->getTitle()).'" /></a>'.$albumdesc;
 					break;
 				case 'latestimagesbyalbum-thumbnail':
 				case 'latestimagesbyalbum-thumbnail-customcrop':
@@ -584,16 +584,16 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 						switch($mode) {
 							case 'latestimagesbyalbum-thumbnail':
 								if(getOption('combinews-latestimagesbyalbum-imgtitle')) $headline = '<h4>'.html_encode($imageobj->getTitle()).'</h4>';
-								$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getThumb()).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
+								$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.pathurlencode($imageobj->getThumb()).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
 								break;
 							case 'latestimagesbyalbum-thumbnail-customcrop':
 								if(getOption('combinews-latestimagesbyalbum-imgtitle')) $headline = '<h4>'.html_encode($imageobj->getTitle()).'</h4>';
 								if(isImagePhoto($imageobj)){
-									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
+									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.pathurlencode($imageobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
 								} else if(isImageVideo($imageobj)) {
 									$articlecontent .= getNewsVideoContent($imageobj).$imagedesc;
 								} else  {
-									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
+									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.pathurlencode($imageobj->getCustomImage(NULL, $width, $height, $cropwidth, $cropheight, $cropx, $cropy,true)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
 								}
 								break;
 							case 'latestimagesbyalbum-sizedimage':
@@ -617,7 +617,7 @@ function getNewsContent($shorten=false, $shortenindicator=NULL,$readmore=NULL) {
 								} else if(isImageVideo($imageobj)) {
 									$articlecontent .= getNewsVideoContent($imageobj).$headline.$imagedesc;
 								} else {
-									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.html_encode($imageobj->getCustomImage($size, NULL,NULL, NULL, NULL, NULL, NULL,true)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
+									$articlecontent .= '<a href="'.html_encode($imageobj->getImageLink()).'" title="'.html_encode($imageobj->getTitle()).'"><img src="'.pathurlencode($imageobj->getCustomImage($size, NULL,NULL, NULL, NULL, NULL, NULL,true)).'" alt="'.html_encode($imageobj->getTitle()).'" /></a>'.$headline.$imagedesc;
 								}
 								break;
 						} // switch "latest images by album end"
@@ -1300,7 +1300,7 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
 				} else {
 					$date = zpFormattedDate(DATE_FORMAT,strtotime($item['date']));
 				}
-				$thumb = "<a href=\"".$link."\" title=\"".html_encode(strip_tags($title))."\"><img src=\"".html_encode($obj->getThumb())."\" alt=\"".html_encode(strip_tags($title))."\" /></a>\n";
+				$thumb = "<a href=\"".$link."\" title=\"".html_encode(strip_tags($title))."\"><img src=\"".pathurlencode($obj->getThumb())."\" alt=\"".html_encode(strip_tags($title))."\" /></a>\n";
 				$type = "image";
 				break;
 			case 'albums':
@@ -1308,7 +1308,7 @@ function printLatestNews($number=5,$option='with_latest_images', $category='', $
 				$title = $obj->getTitle();
 				$categories = "";
 				$link = html_encode($obj->getAlbumLink());
-				$thumb = "<a href=\"".$link."\" title=\"".$title."\"><img src=\"".html_encode($obj->getAlbumThumb())."\" alt=\"".strip_tags($title)."\" /></a>\n";
+				$thumb = "<a href=\"".$link."\" title=\"".$title."\"><img src=\"".pathurlencode($obj->getAlbumThumb())."\" alt=\"".strip_tags($title)."\" /></a>\n";
 				$content = $obj->getDesc();
 				$date = zpFormattedDate(DATE_FORMAT,strtotime($item['date']));
 				$type = "album";

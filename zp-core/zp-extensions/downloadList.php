@@ -165,7 +165,6 @@ class DownloadList {
 	 * @param bool $nocountupdate false if the downloadcount should not be increased and only the entry be added to the db if it does not already exist
 	 */
 	static function updateListItemCount($path) {
-		$path = filesystemToInternal($path);
 		$checkitem = query_single_row("SELECT `data` FROM ".prefix('plugin_storage')." WHERE `aux` = ".db_quote($path)." AND `type` = 'downloadList'");
 		if($checkitem) {
 			$downloadcount = $checkitem['data']+1;
@@ -178,7 +177,6 @@ class DownloadList {
 	 * @param string $path Path of the download item
 	 */
 	static function addListItem($path) {
-		$path = filesystemToInternal($path);
 		$checkitem = query_single_row("SELECT `data` FROM ".prefix('plugin_storage')." WHERE `aux` = ".db_quote($path)." AND `type` = 'downloadList'");
 		if(!$checkitem) {
 			query("INSERT INTO ".prefix('plugin_storage')." (`type`,`aux`,`data`) VALUES ('downloadList',".db_quote($path).",'0')");
@@ -199,7 +197,6 @@ class DownloadList {
 	 */
 	static function getListItemFromDB($file) {
 		$downloaditem = query_single_row($sql = "SELECT id, `aux`, `data` FROM ".prefix('plugin_storage')." WHERE `type` = 'downloadList' AND `aux` = ".db_quote($file));
-
 		return $downloaditem;
 	}
 
@@ -281,7 +278,7 @@ class AlbumZip {
 		$albumbase = substr($album->name,$base).'/';
 		foreach ($album->sidecars as $suffix) {
 			$f = $albumbase.$album->name.'.'.$suffix;
-			if (file_exists($f)) {
+			if (file_exists(internalToFilesystem($f))) {
 				$_zp_zip_list[$filebase.$f] = $f;
 			}
 		}
@@ -289,7 +286,7 @@ class AlbumZip {
 		foreach ($images as $imagename) {
 			$image = newImage($album, $imagename);
 			$f = $albumbase.$image->filename;
-			$_zp_zip_list[$filebase.$f] = $f;
+			$_zp_zip_list[$filebase.internalToFilesystem($f)] = $f;
 			$imagebase = stripSuffix($image->filename);
 			foreach ($image->sidecars as $suffix) {
 				$f = $albumbase.$imagebase.'.'.$suffix;
@@ -382,7 +379,7 @@ class AlbumZip {
 		$zip = new ZipStream($albumname.'.zip', $opt);
 		foreach ($_zp_zip_list as $path=>$file) {
 			@set_time_limit(6000);
-			$zip->add_file_from_path($file, $path);
+			$zip->add_file_from_path(internalToFilesystem($file), internalToFilesystem($path));
 		}
 		$zip->finish();
 	}
@@ -414,19 +411,25 @@ function printdownloadList($dir='',$listtype='ol',$filters = array(),$excludesuf
 
 /**
  * Gets the actual download list included all subfolders and files
- * @param string $dir An optional different folder to generate the list that overrides the folder set on the option.
+ * @param string $dir8 An optional different folder to generate the list that overrides the folder set on the option.
  * 										This could be a subfolder of the main download folder set on the plugin's options. You have to include the base directory as like this:
  * 										"folder" or "folder/subfolder" or "../folder"
  * 										You can also set any folder within or without the root of your Zenphoto installation as a download folder with this directly
  * @param string $listtype "ol" or "ul" for the type of HTML list you want to use
- * @param array $filters an array of files to exclude from the list. Standard items are '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn'
+ * @param array $filters8 an array of files to exclude from the list. Standard items are '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn'
  * @param array $excludesuffixes an array of file suffixes (without trailing dot to exclude from the list (e.g. "jpg")
  * @param string $sort 'asc" or "desc" (default) for alphabetical ascending or descending list
  * @return array
  */
-function getdownloadList($dir,$filters,$excludesuffixes,$sort) {
-	if(empty($dir)) {
-		$dir = getOption('downloadList_directory');
+function getdownloadList($dir8,$filters8,$excludesuffixes,$sort) {
+	$filters = Array( '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn');
+	foreach ($filters8 as $key=>$file) {
+		$filters[$key] = internalToFilesystem($file);
+	}
+	if(empty($dir8)) {
+		$dir = SERVERPATH.'/'.getOption('downloadList_directory');
+	} else {
+		$dir = SERVERPATH.'/'.ltrim(internalToFilesystem($dir8),'/');
 	}
 	if(empty($excludesuffixes)) {
 		$excludesuffixes = getOption('downloadList_excludesuffixes');
@@ -441,17 +444,18 @@ function getdownloadList($dir,$filters,$excludesuffixes,$sort) {
 	} else {
 		$direction = 1;
 	}
-	$dirs = array_diff(scandir($dir,$direction),array_merge(Array( '.', '..','.DS_Store','Thumbs.db','.htaccess','.svn'), $filters ));
+	$dirs = array_diff(scandir($dir,$direction),$filters);
 	$dir_array = Array();
 	if($sort == 'asc') {
 	  natsort($dirs);
 	}
 	foreach($dirs as $file) {
-		if(is_dir($dir.'/'.$file)) {
-			$dir_array[$file] = getdownloadList($dir."/".$file, $filters,$excludesuffixes,$sort);
+		if(is_dir(internalToFilesystem($dir).'/'.$file)) {
+			$dirN = filesystemToInternal(str_replace(SERVERPATH, '', $dir))."/".filesystemToInternal($file);
+			$dir_array[$file] = getdownloadList($dirN, $filters8,$excludesuffixes,$sort);
 		} else {
 			if(!in_array(getSuffix($file),$excludesuffixes)) {
-				$dir_array[$file] = $dir.'/'.$file;
+				$dir_array[$file] = $dir.'/'.filesystemToInternal($file);
 			}
 		}
 	}
@@ -477,9 +481,15 @@ function getDownloadLink($file) {
  * @param string $linktext Optionally how you wish to call the link. Set/leave  to NULL to use the filename.
  */
 function printDownloadLink($file,$linktext=NULL) {
+	if (strpos($file,SERVERPATH) === false) {
+		if (strpos($file,0,1) != '/') {
+			$file = getOption('downloadList_directory').'/'.$file;
+		}
+		$file = SERVERPATH.'/'.ltrim($file,'/');
+	}
 	$filesize = '';
 	if(getOption('downloadList_showfilesize')) {
-		$filesize = filesize($file);
+		$filesize = filesize(internalToFilesystem($file));
 		$filesize = ' ('.byteConvert($filesize).')';
 	}
 	if(getOption('downloadList_showdownloadcounter')) {
@@ -492,11 +502,11 @@ function printDownloadLink($file,$linktext=NULL) {
 		$filesize .= $downloadcount;
 	}
 	if(empty($linktext)) {
-		$filename = html_encode(basename($file));
+		$filename = basename($file);
 	} else {
 		$filename = $linktext;
 	}
-	echo '<a href="'.html_encode(getDownloadLink($file)).'" rel="nofollow">'.$filename.'</a><small>'.$filesize.'</small>';
+	echo '<a href="'.html_encode(getDownloadLink($file)).'" rel="nofollow">'.html_encode($filename).'</a><small>'.$filesize.'</small>';
 }
 
 /**
@@ -530,11 +540,11 @@ function printDownloadLinkAlbumZip($linktext=NULL,$albumobj=NULL,$fromcache=NULL
 		if(!empty($linktext)) {
 			$file = $linktext;
 		}
-		$link = DOWNLOADLIST_LINKPATH.pathurlencode($albumobj->name).'&albumzip';
+		$link = DOWNLOADLIST_LINKPATH.$albumobj->name.'&albumzip';
 		if ($fromcache) {
 			$link .= '&fromcache';
 		}
-		echo '<a href="'.html_encode($link).'" rel="nofollow">'.html_encode($file).'</a>'.$filesize;
+		echo '<a href="'.pathurlencode($link).'" rel="nofollow">'.html_encode($file).'</a>'.$filesize;
 	}
 }
 
@@ -563,7 +573,7 @@ if(isset($_GET['download'])) {
 	if(isset($_GET['albumzip'])) {
 		DownloadList::updateListItemCount($item.'.zip');
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-zipStream.php');
-		if (is_null(isset($_GET['fromcache']))) {
+		if (isset($_GET['fromcache'])) {
 			$fromcache = sanitize($isset($_GET['fromcache']));
 		} else {
 			$fromcache = getOption('downloadList_zipFromCache');
@@ -572,6 +582,7 @@ if(isset($_GET['download'])) {
 		exitZP();
 	} else {
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
+		$cd = getcwd();
 		$item = sanitize_numeric($item);
 		$path = query_single_row("SELECT `aux` FROM ".prefix('plugin_storage')." WHERE id=".$item);
 		$file = internalToFilesystem($path['aux']);

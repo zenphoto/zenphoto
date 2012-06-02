@@ -39,15 +39,15 @@ if (!defined('WEBPATH')) die();
 			<?php
 				if(isImagePhoto()) {
 				 ?>
-					<img src="<?php echo getDefaultSizedImage(); ?>" alt="<?php echo getBareImageTitle(); ?>" style="max-width:<?php echo getDefaultWidth(); ?>px"/>
+					<img src="<?php echo pathurlencodegetDefaultSizedImage()); ?>" alt="<?php echo getBareImageTitle(); ?>" style="max-width:<?php echo getDefaultWidth(); ?>px"/>
 					<?php
-				} else { 
+				} else {
 					printDefaultSizedImage(getImageTitle());
 				}
 				if(isImageVideo() && getOption('zpmobile_mediadirectlink')) {
 					?>
-					<p><a href="<?php echo html_encode(getUnprotectedImageURL()); ?>" title="<?php echo gettext('Direct link'); ?>" rel="external"><?php echo gettext('Direct link'); ?></a></p>
-					<?php	
+					<p><a href="<?php echo pathurlencode(getUnprotectedImageURL()); ?>" title="<?php echo gettext('Direct link'); ?>" rel="external"><?php echo gettext('Direct link'); ?></a></p>
+					<?php
 				}
 				?>
 		</div>

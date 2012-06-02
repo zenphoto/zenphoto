@@ -1933,7 +1933,7 @@ function printAlbumEditRow($album, $show_thumb) {
 			<?php
 		}
 		?>
-			<img src="<?php echo html_encode($thumb); ?>" width="40" height="40" alt="" title="album thumb" />
+			<img src="<?php echo pathurlencode($thumb); ?>" width="40" height="40" alt="" title="album thumb" />
 		<?php
 		if ($enableEdit) {
 			?>
