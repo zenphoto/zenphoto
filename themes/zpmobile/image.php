@@ -39,7 +39,7 @@ if (!defined('WEBPATH')) die();
 			<?php
 				if(isImagePhoto()) {
 				 ?>
-					<img src="<?php echo pathurlencodegetDefaultSizedImage()); ?>" alt="<?php echo getBareImageTitle(); ?>" style="max-width:<?php echo getDefaultWidth(); ?>px"/>
+					<img src="<?php echo pathurlencode(getDefaultSizedImage()); ?>" alt="<?php echo getBareImageTitle(); ?>" style="max-width:<?php echo getDefaultWidth(); ?>px"/>
 					<?php
 				} else {
 					printDefaultSizedImage(getImageTitle());

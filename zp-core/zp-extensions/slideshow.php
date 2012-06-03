@@ -569,13 +569,13 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						$dalbum = new Album(NULL, $folder);
 						$filename = $images[$idx]['filename'];
 						$image = newImage($dalbum, $filename);
-						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($folder)."/".urlencode($filename);
+						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.$folder."/".$filename;
 					} else {
 						$folder = $album->name;
 						$filename = $images[$idx];
 						//$filename = $animage;
 						$image = newImage($album, $filename);
-						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($folder)."/".urlencode($filename);
+						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.$folder."/".$filename;
 
 					}
 					$ext = is_valid($filename, $validtypes);
@@ -586,22 +586,22 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						if ($ext == "3gp") {
 							echo '</a>
 										<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="352" height="304" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-										<param name="src" value="' . $imagepath. '"/>
+										<param name="src" value="' . pathurlencode(internalToFilesystem($imagepath)). '"/>
 										<param name="autoplay" value="false" />
 										<param name="type" value="video/quicktime" />
 										<param name="controller" value="true" />
-										<embed src="' . $imagepath. '" width="352" height="304" autoplay="false" controller"true" type="video/quicktime"
+										<embed src="' . pathurlencode(internalToFilesystem($imagepath)). '" width="352" height="304" autoplay="false" controller"true" type="video/quicktime"
 										pluginspage="http://www.apple.com/quicktime/download/" cache="true"></embed>
 										</object>
 										<a>';
 						}	elseif ($ext == "mov") {
 							echo '</a>
 										<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="640" height="496" codebase="http://www.apple.com/qtactivex/qtplugin.cab">
-										<param name="src" value="' . $imagepath. '"/>
+										<param name="src" value="' . pathurlencode(internalToFilesystem($imagepath)). '"/>
 										<param name="autoplay" value="false" />
 										<param name="type" value="video/quicktime" />
 										<param name="controller" value="true" />
-										<embed src="'  . $imagepath. '" width="640" height="496" autoplay="false" controller"true" type="video/quicktime"
+										<embed src="'  . pathurlencode(internalToFilesystem($imagepath)). '" width="640" height="496" autoplay="false" controller"true" type="video/quicktime"
 										pluginspage="http://www.apple.com/quicktime/download/" cache="true"></embed>
 										</object>
 										<a>';
@@ -660,18 +660,18 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 			echo "\n";
 			$count = 0;
 			foreach($images as $animage) {
-					if ($dynamic) {
-						$folder = $animage['folder'];
-						$filename = $animage['filename'];
-						$salbum = new Album(NULL, $folder);
-						$image = newImage($salbum, $filename);
-						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($salbum->name)."/".urlencode($filename);
-					} else {
-						$folder = $album->name;
-						$filename = $animage;
-						$image = newImage($album, $filename);
-						$imagepath = FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($folder)."/".pathurlencode($filename);
-					}
+				if ($dynamic) {
+					$folder = $animage['folder'];
+					$filename = $animage['filename'];
+					$salbum = new Album(NULL, $folder);
+					$image = newImage($salbum, $filename);
+					$imagepath = ALBUM_FOLDER_EMPTY.$salbum->name."/".$filename;
+				} else {
+					$folder = $album->name;
+					$filename = $animage;
+					$image = newImage($album, $filename);
+					$imagepath = ALBUM_FOLDER_EMPTY.$folder."/".$filename;
+				}
 				$ext = is_valid($filename, array('jpg','jpeg','gif','png','flv','mp3','mp4','fla','m4v','m4a'));
 				if ($ext) {
 					if ($ext == "flv" || $ext == "mp3" || $ext == "mp4" || $ext == "fla" || $ext == "m4v" || $ext == "m4a") {
@@ -680,7 +680,7 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						$duration = ", duration: ".getOption("slideshow_timeout")/1000;
 					}
 					if($count > 0) { echo ",\n"; }
-					echo "{ url: '".FULLWEBPATH.ALBUM_FOLDER_EMPTY.pathurlencode($folder)."/".urlencode($filename)."'".$duration.", scaling: 'fit', autoBuffering: true }";
+					echo "{ url: '".FULLWEBPATH.pathurlencode(internalToFilesystem($imagepath))."'".$duration.", scaling: 'fit', autoBuffering: true }";
 					$count++;
 				}
 			}

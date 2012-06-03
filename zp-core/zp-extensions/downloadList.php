@@ -429,7 +429,11 @@ function getdownloadList($dir8,$filters8,$excludesuffixes,$sort) {
 	if(empty($dir8)) {
 		$dir = SERVERPATH.'/'.getOption('downloadList_directory');
 	} else {
-		$dir = SERVERPATH.'/'.ltrim(internalToFilesystem($dir8),'/');
+		if (substr($dir8,0,1) == '/' || strpos($dir8,':') !== false) {
+			$dir = internalToFilesystem($dir8);
+		} else {
+			$dir = SERVERPATH.'/'.internalToFilesystem($dir8);
+		}
 	}
 	if(empty($excludesuffixes)) {
 		$excludesuffixes = getOption('downloadList_excludesuffixes');
@@ -451,7 +455,7 @@ function getdownloadList($dir8,$filters8,$excludesuffixes,$sort) {
 	}
 	foreach($dirs as $file) {
 		if(is_dir(internalToFilesystem($dir).'/'.$file)) {
-			$dirN = filesystemToInternal(str_replace(SERVERPATH, '', $dir))."/".filesystemToInternal($file);
+			$dirN = filesystemToInternal( $dir)."/".filesystemToInternal($file);
 			$dir_array[$file] = getdownloadList($dirN, $filters8,$excludesuffixes,$sort);
 		} else {
 			if(!in_array(getSuffix($file),$excludesuffixes)) {
@@ -481,12 +485,10 @@ function getDownloadLink($file) {
  * @param string $linktext Optionally how you wish to call the link. Set/leave  to NULL to use the filename.
  */
 function printDownloadLink($file,$linktext=NULL) {
-	if (strpos($file,SERVERPATH) === false) {
-		if (strpos($file,0,1) != '/') {
-			$file = getOption('downloadList_directory').'/'.$file;
-		}
-		$file = SERVERPATH.'/'.ltrim($file,'/');
+	if (substr($file,0,1) != '/' && strpos($file,':') === false) {
+		$file = SERVERPATH.'/'.getOption('downloadList_directory').'/'.$file;
 	}
+
 	$filesize = '';
 	if(getOption('downloadList_showfilesize')) {
 		$filesize = filesize(internalToFilesystem($file));
