@@ -314,13 +314,13 @@ if (isset($_GET['action'])) {
 				}
 				if (isset($_POST['albums_per_page']) && isset($_POST['albums_per_row'])) {
 					$albums_per_page = sanitize_numeric($_POST['albums_per_page']);
-					$albums_per_row = sanitize_numeric($_POST['albums_per_row']);
+					$albums_per_row = max(1,sanitize_numeric($_POST['albums_per_row']));
 					$albums_per_page = ceil($albums_per_page/$albums_per_row)*$albums_per_row;
 					setThemeOption('albums_per_page', $albums_per_page, $table, $themename);
 					setThemeOption('albums_per_row', $albums_per_row, $table, $themename);
 				}
 				if (isset($_POST['images_per_page']) && isset($_POST['images_per_row'])) {
-					$images_per_page = sanitize_numeric($_POST['images_per_page']);
+					$images_per_page = max(1,sanitize_numeric($_POST['images_per_page']));
 					$images_per_row =  sanitize_numeric($_POST['images_per_row']);
 					$images_per_page = ceil($images_per_page/$images_per_row)*$images_per_row;
 					setThemeOption('images_per_page', $images_per_page, $table, $themename);
@@ -335,26 +335,6 @@ if (isset($_GET['action'])) {
 				$oig = getThemeOption('image_gray', $table, $themename);
 				setThemeOption('image_gray', (int) isset($_POST['image_gray']), $table, $themename);
 				if ($oig = getThemeOption('image_gray',$table, $themename)) $wmo = 99; // force cache clear
-				if (is_null($table) && ($themename == $_zp_gallery->getCurrentTheme())) {	// record as global options as well.
-					if (isset($_POST['image_size'])) setOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
-					if (isset($_POST['image_use_side'])) setOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
-					if (isset($_POST['thumb_size'])) setOption('thumb_size', $ts, $table, $themename);
-					if (isset($_POST['thumb_crop'])) setOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
-					if (isset($_POST['thumb_crop_width'])) setOption('thumb_crop_width', $ncw, $table, $themename);
-					if (isset($_POST['thumb_transition'])) setOption('thumb_crop_height', $nch, $table, $themename);
-					if (isset($_POST['thumb_crop_height']) && isset($_POST['albums_per_row'])) {
-						setOption('albums_per_page', $albums_per_page, $table, $themename);
-						setOption('albums_per_row', $albums_per_row, $table, $themename);
-					}
-					if (isset($_POST['images_per_page']) && isset($_POST['images_per_row'])) {
-						setOption('images_per_page', $images_per_page, $table, $themename);
-						setOption('images_per_row', $images_per_row, $table, $themename);
-					}
-					if (isset($_POST['thumb_transition'])) setOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition'])-1) && true), $table, $themename);
-					if (isset($_POST['custom_index_page'])) setOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
-					setOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
-					setOption('image_gray', (int) isset($_POST['image_gray']), $table, $themename);
-				}
 				if ($nch != $ch || $ncw != $cw) { // the crop height/width has been changed
 					$sql = 'UPDATE '.prefix('images').' SET `thumbX`=NULL,`thumbY`=NULL,`thumbW`=NULL,`thumbH`=NULL WHERE `thumbY` IS NOT NULL';
 					query($sql);
@@ -2520,7 +2500,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 				$disable = '';
 			}
 
-			$ts = getThemeOption('thumb_size',$album,$themename);
+			$ts = max(1,getThemeOption('thumb_size',$album,$themename));
 			$iw = getThemeOption('thumb_crop_width',$album,$themename);
 			$ih = getThemeOption('thumb_crop_height',$album,$themename);
 			$cl = ($ts-$iw)/$ts*50;

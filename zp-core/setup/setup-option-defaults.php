@@ -209,8 +209,6 @@ setOptionDefault('sharpen_amount', 40);
 setOptionDefault('sharpen_radius', 0.5);
 setOptionDefault('sharpen_threshold', 3);
 
-setOptionDefault('thumb_gray', 0);
-setOptionDefault('image_gray', 0);
 setOptionDefault('search_space_is_or', 0);
 setOptionDefault('search_no_albums', 0);
 
@@ -223,6 +221,7 @@ if (empty($admins)) {	//	empty administrators table
 } else {
 	$groupsdefined = @unserialize(getOption('defined_groups'));
 }
+
 if (!is_array($groupsdefined)) {
 	$groupsdefined = array();
 }

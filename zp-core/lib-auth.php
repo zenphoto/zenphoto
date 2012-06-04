@@ -67,7 +67,6 @@ class Zenphoto_Authority {
 		for ($i=0; $i < 30; $i++) {
 			$lib_auth_extratext = $lib_auth_extratext . substr($salt, $list[$i], 1);
 		}
-		setOptionDefault('strong_hash', 0);
 		setOptionDefault('password_strength', 10);
 		setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);
 		setOptionDefault('min_password_lenght', 6);

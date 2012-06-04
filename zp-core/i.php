@@ -49,11 +49,11 @@ $ralbum = internalToFilesystem($ralbum);
 $rimage = internalToFilesystem($rimage);
 $album = sanitize_path($ralbum);
 $image = sanitize_path($rimage);
-$theme = themeSetup($album); // loads the theme based image options.
+$theme = themeSetup(filesystemToInternal($album)); // loads the theme based image options.
 $adminrequest = isset($_GET['admin']);
 if (getOption('secure_image_processor')) {
 	require_once(dirname(__FILE__).'/functions.php');
-	$albumobj = new Album(NULL, $album);
+	$albumobj = new Album(NULL, filesystemToInternal($album));
 	if (!$albumobj->checkAccess()) {
 		imageError('403 Forbidden', gettext("Forbidden"));
 	}

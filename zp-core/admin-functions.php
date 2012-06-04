@@ -4175,41 +4175,50 @@ function processCredentials($object, $suffix='') {
 			if (isset($_POST['pass_r'.$suffix])) {
 				$pass2 = trim(sanitize($_POST['pass_r'.$suffix]));
 			} else {
-				$pass2 = '';			}
+				$pass2 = '';
+			}
 		}
 		$fail = '';
 		if ($olduser != $newuser) {
 			if (!empty($newuser) && strlen($_POST['pass'.$suffix])==0) {
-				$fail = '?mismatch=user';			}
+				$fail = '?mismatch=user';
+			}
 		}
 		if (!$fail && $pwd == $pass2) {
 			if (is_object($object)) {
 				$object->setUser($newuser);
 			} else {
-				setOption($object.'_user', $newuser);			}
+				setOption($object.'_user', $newuser);
+			}
 			if (empty($pwd)) {
-				if (strlen($_POST['pass'.$suffix])==0) {	// clear the  password
+				if (strlen($_POST['pass'.$suffix])==0) {
+					// clear the  password
 					if (is_object($object)) {
 						$object->setPassword(NULL);
 					} else {
-						setOption($object.'_password', NULL);			}			}
+						setOption($object.'_password', NULL);
+					}
+				}
 			} else {
 				if (is_object($object)) {
 					$object->setPassword(Zenphoto_Authority::passwordHash($newuser, $pwd));
 				} else {
-					setOption($object.'_password', Zenphoto_Authority::passwordHash($newuser, $pwd));			}			}
+					setOption($object.'_password', Zenphoto_Authority::passwordHash($newuser, $pwd));
+				}
+			}
 		} else {
 			if (empty($fail)) {
 				$notify = '?mismatch';
 			} else {
-				$notify = $fail;			}
+				$notify = $fail;
+			}
 		}
 		$hint = process_language_string_save('hint'.$suffix, 3);
 		if (is_object($object)) {
 			$object->setPasswordHint($hint);
 		} else {
 			setOption($object.'_hint', $hint);
-}
+		}
 	}
 	return $notify;
 }
@@ -4229,14 +4238,14 @@ function consolidatedEditMessages($subtab) {
 			$errorbox[] = sprintf(gettext("%s failed to delete."),$msg);
 		} else {
 			$messagebox[] = sprintf(gettext("%s deleted successfully."),$msg);
-}
+		}
 	}
 	if (isset($_GET['mismatch'])) {
 		if ($_GET['mismatch'] == 'user') {
 			$errorbox[] = gettext("You must supply a  password.");
 		} else {
 			$errorbox[] = gettext("Your passwords did not match.");
-}
+		}
 	}
 	if (isset($_GET['edit_error'])) {
 		$errorbox[] = html_encode(sanitize($_GET['edit_error']));
@@ -4298,7 +4307,7 @@ function consolidatedEditMessages($subtab) {
 			default:
 				$messagebox[] = $action;
 			break;
-}
+		}
 	}
 	if (isset($_GET['mcrerr'])) {
 		switch (sanitize_numeric($_GET['mcrerr'])) {
@@ -4323,25 +4332,29 @@ function consolidatedEditMessages($subtab) {
 			default:
 				$errorbox[] = gettext("There was an error with a move, copy, or rename operation.");
 			break;
-}
+		}
 	}
-	if (!empty($errorbox)) {		?>
+	if (!empty($errorbox)) {
+		?>
 		<div class="errorbox fade-message">
-			<?php echo implode('<br />',$errorbox); ?>
+		<?php echo implode('<br />',$errorbox); ?>
 		</div>
 		<?php
 	}
-	if (!empty($notebox)) {		?>
+	if (!empty($notebox)) {
+		?>
 		<div class="notebox fade-message">
-			<?php echo implode('<br />',$notebox); ?>
+		<?php echo implode('<br />',$notebox); ?>
 		</div>
 		<?php
 	}
-	if (!empty($messagebox)) {		?>
+	if (!empty($messagebox)) {
+		?>
 		<div class="messagebox fade-message">
-			<?php echo implode('<br />',$messagebox); ?>
+		<?php echo implode('<br />',$messagebox); ?>
 		</div>
-		<?php	}
+		<?php
+	}
 }
 
 ?>

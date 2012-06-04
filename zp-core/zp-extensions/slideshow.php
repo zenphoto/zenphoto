@@ -38,7 +38,6 @@ class slideshow {
 		//setOptionDefault('slideshow_size', '595');
 		setOptionDefault('slideshow_width', '595');
 		setOptionDefault('slideshow_height', '595');
-		setOptionDefault('slideshow_watermark', '');
 		setOptionDefault('slideshow_mode', 'jQuery');
 		setOptionDefault('slideshow_effect', 'fade');
 		setOptionDefault('slideshow_speed', '1000');
@@ -60,37 +59,68 @@ class slideshow {
 
 
 	function getOptionsSupported() {
-		return array(	gettext('Slide width') => array('key' => 'slideshow_width', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Width of the images in the slideshow. <em>[jQuery Cycle/Colorbox sizedimage mode option - this must be set]</em>.")),
-									gettext('Slide height') => array('key' => 'slideshow_height', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Height of the images in the slideshow. <em>[jQuery Cycle mode option]</em>.")),
-									gettext('Watermark') => array('key' => 'slideshow_watermark', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("Check if you want to use your watermark on the images <em>[jQuery Cycle mode option]</em>.")),
-									gettext('Mode') => array('key' => 'slideshow_mode', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext("jQuery Cycle")=>"jQuery", gettext("jQuery Colorbox")=>"colorbox", gettext("Flowplayer3 (flash)")=>"flash"),
-										'desc' => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br /><em>flash</em> for flash based slideshow using Flowplayer3.<br /><br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
-									gettext('Cycle Effect') => array('key' => 'slideshow_effect', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext('fade')=>"fade", gettext('shuffle')=>"shuffle", gettext('zoom')=>"zoom", gettext('slide X')=>"slideX", gettext('slide Y')=>"slideY", gettext('scroll up')=>"scrollUp", gettext('scroll down')=>"scrollDown", gettext('scroll left')=>"scrollLeft", gettext('scroll right')=>"scrollRight"),
-										'desc' => gettext("The cycle slide effect to be used. <em>[jQuery Cycle mode option]</em>")),
-									gettext('Colorbox transition') => array('key' => 'slideshow_colorbox_transition', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext('elastic')=>"elastic", gettext('fade')=>"fade", gettext('none')=>"none"),
-										'desc' => gettext("The Colorbox transition slide effect to be used. <em>[jQuery Colorbox mode option]</em>")),
-									gettext('Colorbox image type') => array('key' => 'slideshow_colorbox_imagetype', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext('full image')=>"fullimage", gettext('sized image')=>"sizedimage"),
-										'desc' => gettext("The image type you wish to use for the Colorbox. If you choose 'sized image' the slideshow width value will be used for the longest side of the image <em>[jQuery Colorbox mode option]</em>")),
-									gettext('Speed') => array('key' => 'slideshow_speed', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Speed of the transition in milliseconds.")),
-									gettext('Timeout') => array('key' => 'slideshow_timeout', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Milliseconds between slide transitions (0 to disable auto advance.) <em>[jQuery Cycle mode option]</em>")),
-									gettext('Description') => array('key' => 'slideshow_showdesc', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("Check if you want to show the image's description below the slideshow <em>[jQuery Cycle mode option]</em>.")),
-									gettext('flow player width') => array('key' => 'slideshow_flow_player_width', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Width of the Flowplayer display for the slideshow <em>(Flash mode)</em>.")),
-									gettext('flow player height') => array('key' => 'slideshow_flow_player_height', 'type' => OPTION_TYPE_TEXTBOX,
-										'desc' => gettext("Height of the Flowplayer display for the slideshow <em>(Flash mode)</em>.")),
-									gettext('Colorbox image title') => array('key' => 'slideshow_colorbox_imagetitle', 'type' => OPTION_TYPE_CHECKBOX,
-										'desc' => gettext("If the image title should be shown at the bottom of the Colorbox <em>[jQuery Colorbox mode option]</em>."))
+		$options = array(gettext('Mode') => array('key' => 'slideshow_mode', 'type' => OPTION_TYPE_SELECTOR,
+																							'order'=>0,
+																							'selections' => array(gettext("jQuery Cycle")=>"jQuery", gettext("jQuery Colorbox")=>"colorbox", gettext("Flowplayer3 (flash)")=>"flash"),
+																							'desc' => gettext('<em>jQuery Cycle</em> for slideshow using the jQuery Cycle plugin<br /><em>jQuery Colorbox</em> for slideshow using Colorbox (Colorbox plugin required).<br /><em>flash</em> for flash based slideshow using Flowplayer3.<br /><br />NOTE: The jQuery Colorbox mode is attached to the link the printSlideShowLink() function prints and can neither be called directly nor used on the slideshow.php theme page.')),
+											gettext('Speed') => array('key' => 'slideshow_speed', 'type' => OPTION_TYPE_TEXTBOX,
+																							'order'=>1,
+																							'desc' => gettext("Speed of the transition in milliseconds."))
 		);
+		switch (getOption('slideshow_mode')) {
+			case 'jQuery':
+				$options = array_merge($options,
+															array(	gettext('Slide width') => array('key' => 'slideshow_width', 'type' => OPTION_TYPE_TEXTBOX,
+																							'order'=>5,
+																							'desc' => gettext("Width of the images in the slideshow.")),
+																			gettext('Slide height') => array('key' => 'slideshow_height', 'type' => OPTION_TYPE_TEXTBOX,
+																							'order'=>6,
+																							'desc' => gettext("Height of the images in the slideshow.")),
+																			gettext('Cycle Effect') => array('key' => 'slideshow_effect', 'type' => OPTION_TYPE_SELECTOR,
+																							'order'=>2,
+																							'selections' => array(gettext('fade')=>"fade", gettext('shuffle')=>"shuffle", gettext('zoom')=>"zoom", gettext('slide X')=>"slideX", gettext('slide Y')=>"slideY", gettext('scroll up')=>"scrollUp", gettext('scroll down')=>"scrollDown", gettext('scroll left')=>"scrollLeft", gettext('scroll right')=>"scrollRight"),
+																							'desc' => gettext("The cycle slide effect to be used.")),
+																			gettext('Timeout') => array('key' => 'slideshow_timeout', 'type' => OPTION_TYPE_TEXTBOX,
+																							'order'=>3,
+																							'desc' => gettext("Milliseconds between slide transitions (0 to disable auto advance.)")),
+																			gettext('Description') => array('key' => 'slideshow_showdesc', 'type' => OPTION_TYPE_CHECKBOX,
+																							'order'=>4,
+																							'desc' => gettext("Check if you want to show the image's description below the slideshow."))
+																	));
+				break;
+			case 'colorbox':
+				$options = array_merge($options,
+															array(	gettext('Colorbox transition') => array('key' => 'slideshow_colorbox_transition', 'type' => OPTION_TYPE_SELECTOR,
+																							'order'=>2,
+																							'selections' => array(gettext('elastic')=>"elastic", gettext('fade')=>"fade", gettext('none')=>"none"),
+																							'desc' => gettext("The Colorbox transition slide effect to be used.")),
+																			gettext('Colorbox image type') => array('key' => 'slideshow_colorbox_imagetype', 'type' => OPTION_TYPE_SELECTOR,
+																							'order'=>3,
+																							'selections' => array(gettext('full image')=>"fullimage", gettext('sized image')=>"sizedimage"),
+																							'desc' => gettext("The image type you wish to use for the Colorbox. If you choose 'sized image' the slideshow width value will be used for the longest side of the image.")),
+																			gettext('Colorbox image title') => array('key' => 'slideshow_colorbox_imagetitle', 'type' => OPTION_TYPE_CHECKBOX,
+																							'order'=>4,
+																							'desc' => gettext("If the image title should be shown at the bottom of the Colorbox."))
+																	));
+					if (getOption('slideshow_colorbox_imagetype') == 'sizedimage') {
+						$options = array_merge($options,
+																			array(	gettext('Slide width') => array('key' => 'slideshow_width', 'type' => OPTION_TYPE_TEXTBOX,
+																								'order'=>3.5,
+																								'desc' => gettext("Width of the images in the slideshow."))
+																			));
+					}
+					break;
+			case 'flash':
+				$options = array_merge($options,
+															array(	gettext('flow player width') => array('key' => 'slideshow_flow_player_width', 'type' => OPTION_TYPE_TEXTBOX,
+																							'order'=>2,
+																							'desc' => gettext("Width of the Flowplayer display for the slideshow.")),
+																			gettext('flow player height') => array('key' => 'slideshow_flow_player_height', 'type' => OPTION_TYPE_TEXTBOX,
+																							'order'=>3,
+																							'desc' => gettext("Height of the Flowplayer display for the slideshow."))																	));
+				break;
+		}
+		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
@@ -241,17 +271,12 @@ function printSlideShowLink($linktext=NULL, $linkstyle=Null) {
 								$style = ' style="display:none"';
 							}
 						}
-						if(getOption('slideshow_watermark')) {
-							$thumbStandin = true;
-						} else {
-							$thumbStandin = false;
-						}
 						switch(getOption('slideshow_colorbox_imagetype')) {
 							case 'fullimage':
-								$imagelink = $imgobj->getFullImageURL();
+								$imagelink = getFullImageURL($imgobj);
 								break;
 							case 'sizedimage':
-								$imagelink = $imgobj->getCustomImage(getOption("slideshow_width"), NULL, NULL, NULL, NULL, NULL, NULL, $thumbStandin);
+								$imagelink = $imgobj->getCustomImage(getOption("slideshow_width"));
 								break;
 						}
 						$imagetitle = '';
@@ -403,11 +428,6 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 	}
 	if($shuffle) shuffle($images);
 	$showdesc = getOption("slideshow_showdesc");
-	if(getOption('slideshow_watermark')) {
-		$thumbStandin = true;
-	} else {
-		$thumbStandin = false;
-	}
 	// slideshow display section
 	switch($option) {
 		case "jQuery":
@@ -437,13 +457,9 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 							if ($ext) {
 								makeImageCurrent($image);
 								if($crop) {
-									$img = getCustomImageURL(NULL,$width,$height,$width,$height,NULL,NULL,$thumbStandin);
+									$img = getCustomImageURL(NULL,$width,$height,$width,$height);
 								} else {
-									if($thumbStandin) {
-										$img = getCustomSizedImageThumbMaxSpace($width,$height);
-									} else {
-										$img = getCustomSizedImageMaxSpace($width,$height);
-									}
+									$img = getCustomSizedImageMaxSpace($width,$height);
 								}
 								//$img = WEBPATH . '/' . ZENFOLDER . '/i.php?a=' . pathurlencode($image->album->name) . '&i=' . pathurlencode($filename) . '&s=' . $imagesize;
 								echo 'ImageList[' . $cntr . '] = "' . $img . '";'. "\n";
@@ -608,9 +624,9 @@ function printSlideShow($heading = true, $speedctl = false, $albumobj = "", $ima
 						} else {
 							makeImageCurrent($image);
 							if($crop) {
-								printCustomSizedImage('',NULL,$width, $height, $width, $height, NULL, NULL, NULL, NULL, $thumbStandin);
+								printCustomSizedImage('',NULL,$width, $height, $width, $height);
 							} else {
-								printCustomSizedImageMaxSpace('',$width,$height,NULL,NULL,$thumbStandin);
+								printCustomSizedImageMaxSpace('',$width,$height);
 							}
 							//echo "<img src='".WEBPATH."/".ZENFOLDER."/i.php?a=".pathurlencode($folder)."&i=".urlencode($filename)."&s=".$imagesize."' alt='".html_encode($image->getTitle())."' title='".html_encode($image->getTitle())."' />\n";
 						}

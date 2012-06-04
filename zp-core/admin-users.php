@@ -69,8 +69,7 @@ if (isset($_GET['action'])) {
 			break;
 		case 'saveoptions':
 			XSRFdefender('saveadmin');
-			$notify = '';
-			$returntab = '';
+			$notify = $returntab = $msg = '';
 			if (isset($_POST['saveadminoptions'])) {
 				if (isset($_POST['alter_enabled']) || sanitize_numeric($_POST['totaladmins']) > 1 ||
 											trim(sanitize($_POST['adminuser0'],0)) != $_zp_current_admin_obj->getUser() ||
@@ -128,8 +127,6 @@ if (isset($_GET['action'])) {
 						if (empty($pass)) {
 							if ($newuser || @$_POST['passrequired'.$i]) {
 								$msg = sprintf(gettext('%s password may not be empty!'),$admin_n);
-							} else {
-								$msg = '';
 							}
 						} else {
 							if (!isset($_POST['disclose_password_'.$i])) {
@@ -185,7 +182,6 @@ if (isset($_GET['action'])) {
 							$updated = true;
 						}
 						if ($updated) {
-
 							$returntab .= '&show-'.$user;
 							$msg = zp_apply_filter('save_user', $msg, $userobj, $what);
 							if (empty($msg)) {
@@ -212,8 +208,6 @@ if (isset($_GET['action'])) {
 	}
 	header("Location: " . $notify.$returntab.$ticket);
 	exitZP();
-
-
 }
 $refresh = false;
 

@@ -31,6 +31,7 @@ class zenphoto_org_news {
 function printNews() {
 	if ($connected = is_connected()) {
 		require_once(dirname(__FILE__).'/zenphoto_news/rsslib.php');
+		require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 	}
 	?>
 	<div class="box overview-utility">

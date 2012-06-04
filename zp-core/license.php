@@ -8,8 +8,10 @@
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 1);
 }
-
 require_once(dirname(__FILE__).'/admin-globals.php');
+
+checkInstall();	/* incase someone has dropped tables and not run setup */
+
 if (isset($_GET['licenseAccept'])) {
 	if (isset($_SESSION['license_return'])) {
 		$return_to = $_SESSION['license_return'];

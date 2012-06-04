@@ -2555,29 +2555,43 @@ function printImageThumb($alt, $class=NULL, $id=NULL) {
  * Returns the url to original image.
  * It will return a protected image is the option "protect_full_image" is set
  *
+ * @param $image optional image object
  * @return string
  */
-function getFullImageURL() {
+function getFullImageURL($image=NULL) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image)) return false;
+	if (is_null($image)) {
+		$image = $_zp_current_image;
+	}
+	if (is_null($image)) {
+		return false;
+	}
 	$outcome = getOption('protect_full_image');
-	if ($outcome == 'No access') return NULL;
+	if ($outcome == 'No access') {
+		return NULL;
+	}
 	if ($outcome == 'Unprotected') {
-		return getUnprotectedImageURL();
+		return $image->getFullImageURL();
 	} else {
-		return getProtectedImageURL($_zp_current_image, $outcome);
+		return getProtectedImageURL($image, $outcome);
 	}
 }
 
 /**
  * Returns the "raw" url to the image in the albums folder
  *
+ * @param $image optional image object
  * @return string
  *
  */
-function getUnprotectedImageURL() {
+function getUnprotectedImageURL($image=NULL) {
 	global $_zp_current_image;
-	if (is_null($_zp_current_image)) return false;
+	if (is_null($image)) {
+		$image = $_zp_current_image;
+	}
+	if (is_null($image)) {
+		return false;
+	}
 	return $_zp_current_image->getFullImageURL();
 }
 /**
