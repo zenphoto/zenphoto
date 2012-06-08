@@ -322,17 +322,14 @@ if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
 	// <!-- <![CDATA[
 	<?php
 	foreach (array_keys($_zp_gallery->getThemes()) as $theme) {
-		$requirePath = getPlugin('themeoptions.php', $theme);
-		if (!empty($requirePath)) {
-			?>
-			$.ajax({
-				type: 'POST',
-				cache: false,
-				url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_themeOptions.php',
-				data: 'theme=<?php echo $theme; ?>'
-			});
-			<?php
-		}
+		?>
+		$.ajax({
+			type: 'POST',
+			cache: false,
+			url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_themeOptions.php',
+			data: 'theme=<?php echo $theme; ?>'
+		});
+		<?php
 	}
 	?>
 	// ]]> -->

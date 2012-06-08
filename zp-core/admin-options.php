@@ -320,8 +320,8 @@ if (isset($_GET['action'])) {
 					setThemeOption('albums_per_row', $albums_per_row, $table, $themename);
 				}
 				if (isset($_POST['images_per_page']) && isset($_POST['images_per_row'])) {
-					$images_per_page = max(1,sanitize_numeric($_POST['images_per_page']));
-					$images_per_row =  sanitize_numeric($_POST['images_per_row']);
+					$images_per_page = sanitize_numeric($_POST['images_per_page']);
+					$images_per_row =  max(1,sanitize_numeric($_POST['images_per_row']));
 					$images_per_page = ceil($images_per_page/$images_per_row)*$images_per_row;
 					setThemeOption('images_per_page', $images_per_page, $table, $themename);
 					setThemeOption('images_per_row', $images_per_row, $table, $themename);
@@ -2302,7 +2302,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			}
 		}
 	}
-	$albumtitle = $optiontheme = $alb = $album = NULL;
+	$albumtitle = $alb = $album = NULL;
 	$themename = $_zp_gallery->getCurrentTheme();
 	if (!empty($_REQUEST['themealbum'])) {
 		$alb = urldecode(sanitize_path($_REQUEST['themealbum']));
@@ -2311,7 +2311,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 		$themename = $album->getAlbumTheme();
 	}
 	if (!empty($_REQUEST['optiontheme'])) {
-		$themename = $optiontheme = sanitize($_REQUEST['optiontheme']);
+		$themename = sanitize($_REQUEST['optiontheme']);
 	}
 	if (empty($alb)) {
 		foreach ($themelist as $albumtitle=>$alb) break;
@@ -2341,7 +2341,7 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 	<form action="?action=saveoptions" method="post" autocomplete="off">
 		<?php XSRFToken('saveoptions');?>
 		<input type="hidden" name="savethemeoptions" value="yes" />
-		<input type="hidden" name="optiontheme" value="<?php echo html_encode($optiontheme); ?>" />
+		<input type="hidden" name="optiontheme" value="<?php echo html_encode($themename); ?>" />
 		<input type="hidden" name="old_themealbum" value="<?php echo pathurlencode($alb); ?>" />
 		<table class='bordered options'>
 

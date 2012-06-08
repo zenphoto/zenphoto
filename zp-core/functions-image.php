@@ -171,7 +171,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		if (DEBUG_IMAGE) debugLog("cacheImage(\$imgfile=".basename($imgfile).", \$newfilename=$newfilename, \$allow_watermark=$allow_watermark, \$theme=$theme) \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=".(is_null($cx)?'NULL':$cx).", \$cy=".(is_null($cy)?'NULL':$cy).", \$quality=$quality, \$thumb=$thumb, \$crop=$crop \$image_use_side=$image_use_side; \$upscale=$upscale);");
 		// Check for the source image.
 		if (!file_exists($imgfile) || !is_readable($imgfile)) {
-			imageError('404 Not Found', gettext('Image not found or is unreadable.'), 'err-imagenotfound.png');
+			imageError('404 Not Found', sprintf(gettext('Image %s not found or is unreadable.'),filesystemToInternal($imgfile)), 'err-imagenotfound.png');
 		}
 		$rotate = false;
 		if (zp_imageCanRotate())  {
@@ -492,21 +492,20 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 	* fill a flipped value in the tag.
 	*/
 function getImageRotation($imgfile) {
-	$imgfile = substr($imgfile, strlen(ALBUM_FOLDER_SERVERPATH));
-	$result = query_single_row('SELECT EXIFOrientation FROM '.prefix('images').' AS i JOIN '.prefix('albums').' as a ON i.albumid = a.id WHERE "'.$imgfile.'" = CONCAT(a.folder,"/",i.filename)');
+	$imgfile = substr(filesystemToInternal($imgfile), strlen(ALBUM_FOLDER_SERVERPATH));
+	$result = query_single_row('SELECT EXIFOrientation FROM '.prefix('images').' AS i JOIN '.prefix('albums').' as a ON i.albumid = a.id WHERE '.db_quote($imgfile).' = CONCAT(a.folder,"/",i.filename)');
 	if (is_array($result) && array_key_exists('EXIFOrientation', $result)) {
 		$splits = preg_split('/!([(0-9)])/', $result['EXIFOrientation']);
 		$rotation = $splits[0];
 		switch ($rotation) {
-			case 1 : return false; break;
-			case 2 : return false; break; // mirrored
-			case 3 : return 180;   break; // upside-down (not 180 but close)
-			case 4 : return 180;   break; // upside-down mirrored
-			case 5 : return 270;   break; // 90 CW mirrored (not 270 but close)
-			case 6 : return 270;   break; // 90 CCW
-			case 7 : return 90;    break; // 90 CCW mirrored (not 90 but close)
-			case 8 : return 90;    break; // 90 CW
-			default: return false;
+			case 1 : return false;	// none
+			case 2 : return false;	// mirrored
+			case 3 : return 180;		// upside-down (not 180 but close)
+			case 4 : return 180;		// upside-down mirrored
+			case 5 : return 270;		// 90 CW mirrored (not 270 but close)
+			case 6 : return 270;		// 90 CCW
+			case 7 : return 90;			// 90 CCW mirrored (not 90 but close)
+			case 8 : return 90;			// 90 CW
 		}
 	}
 	return false;

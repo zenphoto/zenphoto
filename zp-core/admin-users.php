@@ -129,20 +129,23 @@ if (isset($_GET['action'])) {
 								$msg = sprintf(gettext('%s password may not be empty!'),$admin_n);
 							}
 						} else {
-							if (!isset($_POST['disclose_password_'.$i])) {
+							if (isset($_POST['disclose_password_'.$i])) {
+								$pass2 = $pass;
+							} else {
 								$pass2 = trim(sanitize($_POST['pass_r_'.$i]));
-								if ($pass == $pass2) {
-									$pass2 = $userobj->getPass($pass);
-									$msg = $userobj->setPass($pass);
-									if ($pass2 !=  $userobj->getPass($pass)) {
-										$updated = true;
-									}
-								} else {
-									$notify = '?mismatch=password';
-									$error = true;
+							}
+							if ($pass == $pass2) {
+								$pass2 = $userobj->getPass($pass);
+								$msg = $userobj->setPass($pass);
+								if ($pass2 !=  $userobj->getPass($pass)) {
+									$updated = true;
 								}
+							} else {
+								$notify = '?mismatch=password';
+								$error = true;
 							}
 						}
+
 						$challenge = sanitize($_POST[$i.'-challengephrase']);
 						$response = sanitize($_POST[$i.'-challengeresponse']);
 						$info = $userobj->getChallengePhraseInfo();
@@ -273,7 +276,7 @@ if ($_zp_current_admin_obj->reset && !$refresh) {
 		$clearPass = true;
 	}
 	$alladmins = array();
-	if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset) {
+	if (zp_loggedin(ADMIN_RIGHTS) && !$_zp_current_admin_obj->reset || !$_zp_current_admin_obj->getID()) {
 		$admins = $_zp_authority->getAdministrators('allusers');
 		foreach ($admins as $key => $user) {
 			$alladmins[] = $user['user'];

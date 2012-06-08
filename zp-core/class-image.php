@@ -341,7 +341,7 @@ class _Image extends MediaObject {
 					}
 					/* iptc keywords (tags) */
 					if ($_zp_exifvars['IPTCKeywords'][5]) {
-						$datum = $this->getIPTCTagArray($_zp_exifvars['IPTCKeywords'][1], $iptc);
+						$datum = $this->getIPTCTagArray($IPTCtags['Keywords'], $iptc);
 						if (is_array($datum)) {
 							$tags = array();
 							$result['tags'] = array();
