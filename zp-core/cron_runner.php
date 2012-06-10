@@ -6,8 +6,7 @@
 
 define('OFFSET_PATH', 1);
 
-require_once('admin-functions.php');
-require_once('admin-globals.php');
+require_once(dirname(__FILE__).'/functions-basic.php');
 
 $_zp_current_admin_obj = $_zp_loggedin = NULL;
 $link = sanitize($_POST['link']);
@@ -19,6 +18,8 @@ if (isset($_POST['auth'])) {
 		$_zp_loggedin = $admin->getRights();
 	}
 }
+require_once('admin-globals.php');
+require_once('admin-functions.php');
 
 
 admin_securityChecks(NULL, currentRelativeURL());

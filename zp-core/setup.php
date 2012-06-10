@@ -1605,7 +1605,7 @@ if (file_exists(CONFIGFILE)) {
 		`ownerid` int(11) UNSIGNED NOT NULL DEFAULT 0,
 		`name` varchar(191) DEFAULT NULL,
 		`value` text,
-		`theme` varchar (127) DEFAULT NULL,
+		`theme` varchar (127) NOT NULL,
 		`creator` varchar (255) DEFAULT NULL,
 		PRIMARY KEY (`id`),
 		UNIQUE (`name`, `ownerid`, `theme`)
@@ -2118,7 +2118,7 @@ if (file_exists(CONFIGFILE)) {
 	//v1.2.7
 	$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `album_theme` `album_theme` varchar(127) DEFAULT NULL";
 	$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`";
-	$sql_statements[] = "ALTER TABLE $tbl_options ADD COLUMN `theme` varchar(127) DEFAULT NULL";
+	$sql_statements[] = "ALTER TABLE $tbl_options ADD COLUMN `theme` varchar(127) DEFAULT NOT NULL";
 	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) DEFAULT NULL";
 	$sql_statements[] = "ALTER TABLE $tbl_options ADD UNIQUE `unique_option` (`name`, `ownerid`, `theme`)";
 	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' DROP COLUMN `EXIFValid`';
@@ -2192,6 +2192,9 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' ADD COLUMN `publishdate` datetime default NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' ADD COLUMN `expiredate` datetime default NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `lastloggedin` datetime';
+	//v1.4.3
+	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `theme` `theme` varchar(127) NOT NULL";
+
 
 	// do this last incase there are any field changes of like names!
 	foreach ($_zp_exifvars as $key=>$exifvar) {

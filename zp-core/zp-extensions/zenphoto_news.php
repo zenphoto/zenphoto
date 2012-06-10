@@ -66,7 +66,11 @@ function printNews() {
 				$title = $article["title"];
 				$date = zpFormattedDate(DATE_FORMAT, strtotime($article["pubDate"]));
 				$link = $article["link"];
-				$description = shortenContent($article["description"], $shorten, '...');
+				if ($shorten) {
+					$description = shortenContent($article["description"], $shorten, '...');
+				} else {
+					$description = false;
+				}
 				?>
 				<li><a href="<?php echo $link; ?>"><strong><?php echo $title; ?></strong> (<?php  echo $date; ?>)</a>
 				<?php

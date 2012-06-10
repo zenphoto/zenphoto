@@ -21,7 +21,7 @@ class SpamFilter  {
 	 * @return SpamFilter
 	 */
 	function SpamFilter() {
-		setOptionDefault('Action', 'pass');
+		setOptionDefault('spamFilter_none_action', 'pass');
 	}
 
 	/**
@@ -37,7 +37,7 @@ class SpamFilter  {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Action') => array('key' => 'Action', 'type' => OPTION_TYPE_SELECTOR,
+		return array(gettext('Action') => array('key' => 'spamFilter_none_action', 'type' => OPTION_TYPE_SELECTOR,
 										'selections' => array(gettext('pass') => 'pass', gettext('moderate') => 'moderate', gettext('reject') => 'reject'),
 										'desc' => gettext('This action will be taken for all messages.')));
 	}
@@ -71,7 +71,7 @@ class SpamFilter  {
 		if (zp_loggedin($receiver->manage_rights) || $receiver->isMyItem($receiver->manage_some_rights)) {	//	trust "managers"
 			return 2;
 		}
-		$strategy = getOption('Action');
+		$strategy = getOption('spamFilter_none_action');
 		switch ($strategy) {
 			case 'reject': return 0;
 			case 'moderate': return 1;

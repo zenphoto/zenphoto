@@ -1845,27 +1845,20 @@ function setThemeOption($key, $value, $album, $theme, $default=false) {
 	}
 	$creator = THEMEFOLDER.'/'.$theme;
 
-	$exists = query_single_row("SELECT * FROM ".prefix('options')." WHERE `name`=".db_quote($key)." AND `ownerid`=".$id.' AND `theme`='.db_quote($theme), true);
-	if ($exists) {
-		if ($default) {
-			if (empty($exists['creator'])) {
-				$sql = "UPDATE " . prefix('options') . " SET `creator`=".db_quote($creator)." WHERE `id`=" . $exists['id'];
-			}
-			return; // don't update if setting the default
-		}
-		if (is_null($value)) {
-			$sql = "UPDATE " . prefix('options') . " SET `value`=NULL WHERE `id`=" . $exists['id'];
-		} else {
-			$sql = "UPDATE " . prefix('options') . " SET `value`=" . db_quote($value) . " WHERE `id`=" . $exists['id'];
-		}
+	$sql = 'INSERT INTO '.prefix('options').' (`name`,`ownerid`,`theme`,`creator`,`value`) VALUES ('.db_quote($key).',0,'.db_quote($theme).','.db_quote($creator).',';
+	$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
+	if (is_null($value)) {
+		$sql .= 'NULL';
+		$sqlu .= 'NULL';
 	} else {
-		if (is_null($value)) {
-			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (" . db_quote($key) . ",NULL,$id,".db_quote($theme).",".db_quote($creator).")";
-		} else {
-			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (" . db_quote($key) . "," . db_quote($value) . ",$id,".db_quote($theme).",".db_quote($creator).")";
-		}
+		$sql .= db_quote($value);
+		$sqlu .= db_quote($value);
 	}
-	$result = query($sql);
+	$sql .= ') ';
+	if (!$default) {
+		$sql .= $sqlu;
+	}
+	$result = query($sql, false);
 }
 
 /**

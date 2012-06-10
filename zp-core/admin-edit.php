@@ -1015,12 +1015,11 @@ $alb = removeParentAlbumNames($album);
 						<td valign="top" rowspan="17" style="border-bottom:none;">
 						<div style="width: 135px;">
 							<a <?php echo $placemark; ?>href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>"
-								title="<?php printf(gettext('crop %s'), $image->filename); ?>">
+								title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>">
 								<img
 									id="thumb_img-<?php echo $currentimage; ?>"
-									src="<?php echo $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1); ?>"
-									alt="<?php printf(gettext('crop %s'), $image->filename); ?>"
-									title="<?php printf(gettext('crop %s'), $image->filename); ?>"
+									src="<?php echo pathurlencode($image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1)); ?>"
+									alt="<?php echo html_encode($image->filename); ?>"
 									/>
 							</a>
 						</div>

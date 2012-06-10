@@ -313,7 +313,7 @@ function getOption($key) {
 		$v = NULL;
 		if (is_null($_zp_options)) {
 			// option table not yet loaded, load it (but not the theme options!)
-			$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE `theme` IS NULL AND `ownerid`=0';
+			$sql = "SELECT `name`, `value` FROM ".prefix('options').' WHERE (`theme`="" OR `theme` IS NULL) AND `ownerid`=0';
 			$optionlist = query_full_array($sql, false);
 			if ($optionlist !== false) {
 				$_zp_options = array();
@@ -340,22 +340,17 @@ function getOption($key) {
 function setOption($key, $value, $persistent=true) {
 	global $_zp_conf_vars, $_zp_options;
 	if ($persistent) {
-		$result = query_single_row("SELECT `value` FROM ".prefix('options')." WHERE `name`='".$key."' AND `ownerid`=0", false);
-		if (is_array($result) && array_key_exists('value', $result)) { // option already exists.
-			if (is_null($value)) {
-				$sql = "UPDATE " . prefix('options') . " SET `value`=NULL WHERE `name`=" . db_quote($key) ." AND `ownerid`=0";
-			} else {
-				$sql = "UPDATE " . prefix('options') . " SET `value`=" . db_quote($value) . " WHERE `name`=" . db_quote($key) ." AND `ownerid`=0";
-			}
-			$result = query($sql, false);
+		$sql = 'INSERT INTO '.prefix('options').' (`name`,`ownerid`,`theme`,`value`) VALUES ('.db_quote($key).',0,"",';
+		$sqlu = ' ON DUPLICATE KEY UPDATE `value`=';
+		if (is_null($value)) {
+			$sql .= 'NULL';
+			$sqlu .= 'NULL';
 		} else {
-			if (is_null($value)) {
-				$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`) VALUES (" . db_quote($key) . ",NULL, 0)";
-			} else {
-				$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`) VALUES (" . db_quote($key) . "," . db_quote($value) . ", 0)";
-			}
-			$result = query($sql, false);
+			$sql .= db_quote($value);
+			$sqlu .= db_quote($value);
 		}
+		$sql .= ') '.$sqlu;
+		$result = query($sql);
 	} else {
 		$result = true;
 	}
@@ -380,23 +375,14 @@ function setOptionDefault($key, $default) {
 	$b = array_shift($bt);
 	$SERVERPATH = str_replace("\\", '/', dirname(dirname(__FILE__)));
 	$creator = str_replace($SERVERPATH.'/', '', str_replace('\\', '/', $b['file']));
-
-	$sql = 'SELECT * FROM '.prefix('options').' WHERE `name`='.db_quote($key).' AND `ownerid`=0';
-	$result = query_single_row($sql, false);
-	if ($result) {
-		if (empty($result['creator'])) {
-			$sql = 'UPDATE '.prefix('options').' SET `creator`='.db_quote($creator).' WHERE `name`='.db_quote($key).' AND `ownerid`=0';
-			query($sql, false);
-		}
+	$sql = 'INSERT INTO ' . prefix('options') . ' (`name`, `value`, `ownerid`, `theme`, `creator`) VALUES (' . db_quote($key) . ',';
+	if (is_null($default)) {
+		$sql .= 'NULL';
 	} else {
-		if (is_null($default)) {
-			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`, `creator`) VALUES (" . db_quote($key) . ", NULL,
-							0, ".db_quote($creator).");";
-		} else {
-			$sql = "INSERT INTO " . prefix('options') . " (`name`, `value`, `ownerid`, `creator`) VALUES (" . db_quote($key) . ", ".
-			db_quote($default) . ", 0, ".db_quote($creator).");";
-		}
-		query($sql, false);
+		$sql .= db_quote($default);
+	}
+	$sql .= ',0,"",'.db_quote($creator).');';
+	if (query($sql, false)) {
 		$_zp_options[$key] = $default;
 	}
 }

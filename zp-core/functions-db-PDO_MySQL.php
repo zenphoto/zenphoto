@@ -134,6 +134,9 @@ function db_show($what,$aux='') {
 		case 'variables':
 			$sql = "SHOW VARIABLES LIKE '$aux'";
 			return query_full_array($sql);
+		case 'index':
+			$sql = "SHOW INDEX FROM `".$_zp_conf_vars['mysql_database'].'`.'.$aux;
+			return query_full_array($sql);
 	}
 }
 

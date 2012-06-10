@@ -13,6 +13,25 @@ eval(file_get_contents(CONFIGFILE));;
 require_once(dirname(dirname(__FILE__)).'/'.PLUGIN_FOLDER.'/security-logger.php');
 zp_apply_filter('log_setup', true, 'install', '');
 
+/*fix for NULL theme name*/
+$active = getOptionList();
+$sql = "SELECT * FROM ".prefix('options').' WHERE `theme` IS NULL';
+$optionlist = query_full_array($sql);
+if ($optionlist) {
+	foreach ($optionlist as $option) {
+		query('DELETE FROM '.prefix('options').' WHERE `id`='.$option['id']);
+		setOption($option['name'], $active[$option['name']]);
+	}
+}
+$lib_auth_extratext = "";
+$salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+-={}[]|;,.<>?/';
+$list = range(0, strlen($salt));
+shuffle($list);
+for ($i=0; $i < 30; $i++) {
+	$lib_auth_extratext = $lib_auth_extratext . substr($salt, $list[$i], 1);
+}
+
+
 purgeOption('zenphoto_release');
 
 setOption('zenphoto_version', ZENPHOTO_VERSION.' ['.ZENPHOTO_RELEASE.']');
@@ -23,7 +42,7 @@ if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version
 		//	The password hash of these old versions did not have the extra text.
 		//	Note: if the administrators table is empty we will re-do this option with the good stuff.
 		purgeOption('extra_auth_hash_text');
-		setOptionDefault('extra_auth_hash_text', NULL);
+		setOptionDefault('extra_auth_hash_text', '');
 	}
 	$msg = sprintf(gettext('Migrating lib-auth data version %1$s => version %2$s'), $oldv, Zenphoto_Authority::$preferred_version);
 	if (!$_zp_authority->migrateAuth(Zenphoto_Authority::$preferred_version)) {
@@ -31,8 +50,19 @@ if (Zenphoto_Authority::$preferred_version > ($oldv = getOption('libauth_version
 	}
 	echo $msg;
 	setupLog($msg, true);
-
 }
+$admins = $_zp_authority->getAdministrators('all');
+if (empty($admins)) {	//	empty administrators table
+	$groupsdefined = NULL;
+	setOption('strong_hash', 1);
+	purgeOption('extra_auth_hash_text');
+} else {
+	$groupsdefined = @unserialize(getOption('defined_groups'));
+}
+setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);
+setOptionDefault('password_strength', 10);
+setOptionDefault('min_password_lenght', 6);
+setOptionDefault('user_album_edit_default', 1);
 
 // old configuration opitons. preserve them
 $conf = $_zp_conf_vars;
@@ -213,14 +243,6 @@ setOptionDefault('search_space_is_or', 0);
 setOptionDefault('search_no_albums', 0);
 
 // default groups
-$admins = $_zp_authority->getAdministrators('all');
-if (empty($admins)) {	//	empty administrators table
-	$groupsdefined = NULL;
-	setOption('strong_hash', 1);
-	purgeOption('extra_auth_hash_text');
-} else {
-	$groupsdefined = @unserialize(getOption('defined_groups'));
-}
 
 if (!is_array($groupsdefined)) {
 	$groupsdefined = array();
@@ -548,6 +570,10 @@ appropriate gallery methods.
 		}
 		purgeOption('auto_rotate');
 	}
+
+setOptionDefault('zp_plugin_ipBlocker', getOption('zp_plugin_failed_access_blocker'));
+setOption('spamFilter_none_action', getOption('Action'));
+//TODO: 1.4.4 purge the "Action" option
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface

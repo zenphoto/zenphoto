@@ -341,7 +341,6 @@ zp-core/functions-basic.php
 zp-core/functions-controller.php
 zp-core/functions-db-MySQL.php
 zp-core/functions-db-PDO_MySQL.php
-zp-core/functions-db-PDO_SQLite.php
 zp-core/functions-filter.php
 zp-core/functions-i18n.php
 zp-core/functions-image.php
@@ -928,6 +927,7 @@ zp-core/zp-extensions/image_effects/sepia.js
 zp-core/zp-extensions/image_effects/slided.txt
 zp-core/zp-extensions/image_effects/sphere.txt
 zp-core/zp-extensions/image_upload_limiter.php
+zp-core/zp-extensions/ipBlocker.php
 zp-core/zp-extensions/jcarousel_thumb_nav
 zp-core/zp-extensions/jcarousel_thumb_nav.php
 zp-core/zp-extensions/jcarousel_thumb_nav/jcarousel.css

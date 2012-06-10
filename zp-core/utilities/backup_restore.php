@@ -233,7 +233,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 	}
 } else if (isset($_REQUEST['restore']) && db_connect()) {
 	$oldlibauth = Zenphoto_Authority::getVersion();
-	$success = -1;
+	$errors = array(gettext('No backup set found.'));
 	if (isset($_REQUEST['backupfile'])) {
 		$file_version = 0;
 		$compression_handler = 'gzip';
@@ -253,7 +253,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 					$result = false;
 				}
 
-				$tables = array();
+				$unique = $tables = array();
 				$table_cleared = array();
 				if (is_array($result)) {
 					foreach($result as $row) {
@@ -266,9 +266,19 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 								$tables[$table][] = $row['Field'];
 							}
 						}
+						$result2 = db_show('index',$table);
+						if (is_array($result2)) {
+							foreach ($result2 as $row) {
+								if (is_array($row)) {
+									if (array_key_exists('Non_unique', $row) && !$row['Non_unique']) {
+										$unique[$table][] = $row['Column_name'];
+									}
+								}
+							}
+						}
 					}
 				}
-				$success = 0;
+				$errors = array();
 				$string = getrow($handle);
 				while (substr($string, 0, strlen(HEADER)) == HEADER) {
 					$string = substr($string, strlen(HEADER));
@@ -287,13 +297,13 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 				$counter = 0;
 				$missing_table = array();
 				$missing_element = array();
-				while (!empty($string) && $success<10) {
+				while (!empty($string) && count($errors)<10) {
 					$sep = strpos($string, TABLE_SEPARATOR);
 					$table = substr($string, 0, $sep);
 					if (array_key_exists($prefix.$table,$tables)) {
 						if (!$table_cleared[$prefix.$table]) {
 							if (!db_truncate_table($table)) {
-								$success++;
+								$errors[] = gettext('Truncate table<br />').db_error();
 							}
 							$table_cleared[$prefix.$table] = true;
 							set_time_limit(60);
@@ -301,8 +311,6 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 						$row = substr($string, $sep+strlen(TABLE_SEPARATOR));
 						$row = decompressRow($row);
 						$row = unserialize($row);
-						$items = '';
-						$values = '';
 						foreach($row as $key=>$element) {
 							if ($compression_handler=='bzip2' || $compression_handler=='gzip') {
 								if (!empty($element)) {
@@ -312,26 +320,43 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 							if (array_search($key,$tables[$prefix.$table]) === false) {
 								if ($element) {	//	Flag it if data will be lost
 									$missing_element[] = $table.'->'.$key;
+									unset($row[$key]);
 								}
 							} else {
-								$items .= '`'.$key.'`,';
 								if (is_null($element)) {
-									$values .= 'NULL,';
+									$row[$key] = 'NULL';
 								} else {
-									$values .= db_quote($element).',';
+									$row[$key] = db_quote($element);
 								}
 							}
 						}
-						if (!empty($items)) {
-							if ($table!='options' || strpos($values,'zenphoto_install')===false) {
-								$items = substr($items,0,-1);
-								$values = substr($values,0,-1);
-								$sql = 'INSERT INTO '.prefix($table).' ('.$items.') VALUES ('.$values.')';
-								if (!query($sql, false)) {
-									$success++;
+						if (!empty($row)) {
+							if ($table == 'options') {
+								if ($row['name'] == 'zenphoto_install') {
+									break;
+								}
+								if ($row['theme']=='NULL') {
+									$row['theme'] = db_quote('');
 								}
 							}
+							$sql = 'INSERT INTO '.prefix($table).' (`'.implode('`,`',array_keys($row)).'`) VALUES ('.implode(',',$row).')';
+							foreach ($unique[$prefix.$table] as $exclude) {
+								unset($row[$exclude]);
+							}
+							if (count($row) > 0) {
+								$sqlu = ' ON DUPLICATE KEY UPDATE ';
+								foreach ($row as $key=>$value) {
+									$sqlu .= '`'.$key.'`='.$value.',';
+								}
+								$sqlu = substr($sqlu, 0, -1);
+							} else {
+								$sqlu = '';
+							}
+							if (!query($sql.$sqlu, false)) {
+								$errors[] = $sql.$sqlu.'<br />'.db_error();
+							}
 						}
+
 					} else {
 						$missing_table[] = $table;
 					}
@@ -381,18 +406,16 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 			$messages .= '
 		</div>
 		';
-	} else if ($success) {
+	} else if (count($errors)>0) {
+
+var_dump($errors);
+
 		$messages = '
 		<div class="errorbox">
 			<h2>'.gettext("Restore failed").'</h2>
 			';
-			switch ($success) {
-				case -1:
-					$messages .= '<p>'.gettext('No backup set found.').'</p>';
-					break;
-				default:
-					$messages .= '<p'.sprintf(gettext('Query ( <em>%1$s</em> ) failed. Error: %2$s' ),$sql,db_error()).'</p>';
-					break;
+			foreach($errors as $msg) {
+				$messages .= '<p>'.html_encode($msg).'</p>';
 			}
 			$messages .= '
 		</div>

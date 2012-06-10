@@ -60,17 +60,6 @@ class Zenphoto_Authority {
 	 * @return lib_auth_options
 	 */
 	function __construct() {
-		$lib_auth_extratext = "";
-		$salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+-={}[]|;,.<>?/';
-		$list = range(0, strlen($salt));
-		shuffle($list);
-		for ($i=0; $i < 30; $i++) {
-			$lib_auth_extratext = $lib_auth_extratext . substr($salt, $list[$i], 1);
-		}
-		setOptionDefault('password_strength', 10);
-		setOptionDefault('extra_auth_hash_text', $lib_auth_extratext);
-		setOptionDefault('min_password_lenght', 6);
-		setOptionDefault('user_album_edit_default', 1);
 		$sql = 'SELECT * FROM '.prefix('administrators').' WHERE `valid`=1 ORDER BY `rights` DESC, `id` LIMIT 1';
 		$master = query_single_row($sql,false);
 		if ($master) {
