@@ -77,7 +77,7 @@ echo "\n" . '<div id="content">';
 
 
 // If we're attempting to edit a file from a bundled theme, this is an illegal attempt
-if (!themeIsEditable($theme, $themes))
+if (!themeIsEditable($theme))
 	zp_error(gettext('Cannot edit this file!'));
 
 // If we're attempting to edit a file that's not a text file or that does not belong to the theme directory, this is an illegal attempt

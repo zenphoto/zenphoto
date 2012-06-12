@@ -352,7 +352,7 @@ function printAlbumMenuJumpAlbum($albums,$option,$albumpath,$firstimagelink,$lev
 		} else {
 			$count = "";
 		}
-		$arrow = str_replace(':', '&raquo; ', str_pad("", $level-1, ":"));
+		$arrow = str_replace(':', '» ', str_pad("", $level-1, ":"));
 
 		$selected = checkSelectedAlbum($subalbum->name, "album");
 		if($firstimagelink && $subalbum->getNumImages() != 0) {

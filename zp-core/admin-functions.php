@@ -2672,11 +2672,10 @@ function isTextFile ( $file, $ok_extensions = array('css','php','js','txt','inc'
  * Check if a theme is editable (ie not a bundled theme)
  *
  * @param $theme theme to check
- * @param $themes array of installed themes (eg result of getThemes())
  * @return bool
  * @since 1.3
  */
-function themeIsEditable($theme, $themes) {
+function themeIsEditable($theme) {
 	$link = @readlink(SERVERPATH.'/'.THEMEFOLDER.'/'.$theme);
 	if (empty($link) || str_replace('\\', '/', $link) == SERVERPATH.'/'.THEMEFOLDER.'/'.$theme) {
 		$zplist = unserialize(getOption('Zenphoto_theme_list'));
@@ -2686,6 +2685,10 @@ function themeIsEditable($theme, $themes) {
 	}
 }
 
+function zenPhotoTheme($theme) {
+	$zplist = unserialize(getOption('Zenphoto_theme_list'));
+	return (in_array( $theme , $zplist));
+}
 
 /**
  * Copy a theme directory to create a new custom theme

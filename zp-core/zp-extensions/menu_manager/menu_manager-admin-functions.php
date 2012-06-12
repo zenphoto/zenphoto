@@ -765,7 +765,7 @@ function printAlbumsSelector($current) {
 		$level = substr_count($albumname,"/");
 		$arrow = "";
 		for($count = 1; $count <= $level; $count++) {
-			$arrow .= "&raquo; ";
+			$arrow .= "» ";
 		}
 		echo "<option value='".html_encode($albumobj->name)."'".$selected.'>';
 		echo $arrow.$albumobj->getTitle().unpublishedZenphotoItemCheck($albumobj)."</option>";
@@ -798,7 +798,7 @@ function printZenpagePagesSelector($current) {
 		$level = substr_count($pageobj->getSortOrder(),"-");
 		$arrow = "";
 		for($count = 1; $count <= $level; $count++) {
-			$arrow .= "&raquo; ";
+			$arrow .= "» ";
 		}
 		echo "<option value='".html_encode($pageobj->getTitlelink())."'".$selected.'>';
 		echo $arrow.$pageobj->getTitle().unpublishedZenphotoItemCheck($pageobj)."</option>";
@@ -833,7 +833,7 @@ function printZenpageNewsCategorySelector($current) {
 		$getparents = $catobj->getParents();
 		$levelmark ='';
 		foreach($getparents as $parent) {
-			$levelmark .= '&raquo; ';
+			$levelmark .= '» ';
 		}
 		echo "<option value='".html_encode($catobj->getTitlelink())."'".$selected.'>';
 		echo $levelmark.$catobj->getTitle()."</option>";

@@ -1603,7 +1603,7 @@ if (file_exists(CONFIGFILE)) {
 		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_options (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`ownerid` int(11) UNSIGNED NOT NULL DEFAULT 0,
-		`name` varchar(191) DEFAULT NULL,
+		`name` varchar(255) NOT NULL,
 		`value` text,
 		`theme` varchar (127) NOT NULL,
 		`creator` varchar (255) DEFAULT NULL,
@@ -1639,7 +1639,7 @@ if (file_exists(CONFIGFILE)) {
 		`email` text,
 		`rights` int,
 		`custom_data` text,
-		`valid` int(1) DEFAULT 1,
+		`valid` int(1) NOT NULL DEFAULT 1,
 		`group` varchar(64) DEFAULT NULL,
 		`date` datetime,
 		`loggedin` datetime,
@@ -2099,7 +2099,7 @@ if (file_exists(CONFIGFILE)) {
 	//v1.2.6
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `custom_data` TEXT';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' CHANGE `password` `pass` varchar(64)';
-	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `valid` int(1) default 1';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `valid` int(1) NOT NULL DEFAULT 1';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `group` varchar(64)';
 	$sql = 'SHOW INDEX FROM '.$tbl_administrators;
 	$result = query($sql, false);
@@ -2118,7 +2118,7 @@ if (file_exists(CONFIGFILE)) {
 	//v1.2.7
 	$sql_statements[] = "ALTER TABLE $tbl_albums CHANGE `album_theme` `album_theme` varchar(127) DEFAULT NULL";
 	$sql_statements[] = "ALTER TABLE $tbl_options DROP INDEX `unique_option`";
-	$sql_statements[] = "ALTER TABLE $tbl_options ADD COLUMN `theme` varchar(127) DEFAULT NOT NULL";
+	$sql_statements[] = "ALTER TABLE $tbl_options ADD COLUMN `theme` varchar(127) NOT NULL";
 	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) DEFAULT NULL";
 	$sql_statements[] = "ALTER TABLE $tbl_options ADD UNIQUE `unique_option` (`name`, `ownerid`, `theme`)";
 	$sql_statements[] = 'ALTER TABLE '.$tbl_images.' DROP COLUMN `EXIFValid`';
@@ -2194,6 +2194,9 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `lastloggedin` datetime';
 	//v1.4.3
 	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `theme` `theme` varchar(127) NOT NULL";
+	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(255) NOT NULL";
+	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `valid` int(1) NOT NULL DEFAULT 1';
+	$sql_statements[] = "ALTER TABLE $tbl_tags CHANGE `name` `name` varchar(255) NOT NULL";
 
 
 	// do this last incase there are any field changes of like names!

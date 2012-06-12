@@ -340,7 +340,7 @@ function printRating($vote=3, $object=NULL, $text=true) {
 			if (!$disable) {
 				?>
 				<span id="submit_button<?php echo $unique; ?>">
-					<input type="button" value="<?php echo gettext('Submit &raquo;'); ?>" onclick="cast<?php echo $unique; ?>();" />
+					<input type="button" value="<?php echo gettext('Submit »'); ?>" onclick="cast<?php echo $unique; ?>();" />
 				</span>
 				<?php
 			}

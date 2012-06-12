@@ -22,7 +22,7 @@ if (!defined('WEBPATH')) die();
 
 <div data-role="content">	
 	<div class="content-primary">
-		<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> &raquo; <strong><strong><?php echo gettext("A password is required for the page you requested"); ?></strong></strong></h2>
+		<h2><a href="<?php echo getGalleryIndexURL(); ?>">Index</a> » <strong><strong><?php echo gettext("A password is required for the page you requested"); ?></strong></strong></h2>
 
 		<div id="content-error">
 			<div class="errorbox">

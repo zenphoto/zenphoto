@@ -72,7 +72,7 @@ class ThemeOptions {
 						  		gettext('Allow cloud') => array('key' => 'Allow_cloud', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable tag cloud for album page.')),
 									gettext('Custom menu') => array('key' => 'garland_menu', 'type' => OPTION_TYPE_CUSTOM, 'desc' => gettext('Set this to the <em>menu_manager</em> menu you wish to use.').$note)
 						  	);
-  	if (getOption('garland_personality')=='Image_gallery') {
+  	if (getOption('garland_personality')=='image_gallery') {
 			$options[gettext('Image gallery transition')] = array('key' => 'garland_transition', 'type' => OPTION_TYPE_SELECTOR,
 															'selections' => array(gettext('None') => '', gettext('Fade') => 'fade', gettext('Shrink/grow') => 'resize', gettext('Horizontal') => 'slide-hori', gettext('Vertical') => 'slide-vert'),
 															'order'=>10,

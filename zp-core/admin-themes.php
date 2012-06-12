@@ -194,7 +194,10 @@ foreach($themes as $theme => $themeinfo) {
 	$style = ($theme == $current_theme) ? ' '.$current_theme_style : '';
 	$themedir = SERVERPATH . '/themes/'.internalToFilesystem($theme);
 	$themeweb = WEBPATH . "/themes/$theme";
-	if (themeIsEditable($theme, $themes)) {
+	if (zenPhotoTheme($theme)) {
+		$whose = 'Zenphoto official theme';
+		$ico = 'images/zp_gold.png';
+	} else {
 		$whose = gettext('third party theme');
 		$path = $themedir.'/logo.png';
 		if (file_exists($path)) {
@@ -202,9 +205,6 @@ foreach($themes as $theme => $themeinfo) {
 		} else {
 			$ico = 'images/place_holder_icon.png';
 		}
-	} else {
-		$whose = 'Zenphoto official theme';
-		$ico = 'images/zp_gold.png';
 	}
 	?>
 	<tr>
@@ -277,7 +277,7 @@ foreach($themes as $theme => $themeinfo) {
 				}
 			}
 
-			if (themeIsEditable($theme, $themes)) {
+			if (themeIsEditable($theme)) {
 				?>
 				<li>
 				<p class="buttons">

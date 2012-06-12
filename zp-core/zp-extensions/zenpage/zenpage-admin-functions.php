@@ -668,9 +668,9 @@ function printArticlesPageNav($total) {
 		echo "<ul class=\"pagelist\">";
 		echo "<li class=\"prev\">";
 		if ($current != 1) {
-			echo "<a href='admin-news-articles.php?pagenr=".($current - 1).getNewsAdminOptionPath(true,true,true,true,true)."' title='".gettext("Prev Page")." ".($current - 1)."' >&laquo; ".gettext("prev")."</a>\n";
+			echo "<a href='admin-news-articles.php?pagenr=".($current - 1).getNewsAdminOptionPath(true,true,true,true,true)."' title='".gettext("Prev Page")." ".($current - 1)."' >« ".gettext("prev")."</a>\n";
 		} else {
-			echo "<span class='disabledlink'>&laquo; ".gettext("prev")."</span>\n";
+			echo "<span class='disabledlink'>« ".gettext("prev")."</span>\n";
 		}
 		echo "</li>\n";
 
@@ -707,9 +707,9 @@ function printArticlesPageNav($total) {
 		}
 
 		if ($current != $total)	{
-			echo "<li class='next'><a href='admin-news-articles.php?pagenr=".($current+1).getNewsAdminOptionPath(true,true,true,true,true)."' title='".gettext("Next page")." ".($current+1)."'>".gettext("next")." &raquo;</a></li>\n";
+			echo "<li class='next'><a href='admin-news-articles.php?pagenr=".($current+1).getNewsAdminOptionPath(true,true,true,true,true)."' title='".gettext("Next page")." ".($current+1)."'>".gettext("next")." »</a></li>\n";
 		} else {
-			echo "<li class='next'><span class='disabledlink'>".gettext("next")." &raquo;</span></li>\n";
+			echo "<li class='next'><span class='disabledlink'>".gettext("next")." »</span></li>\n";
 		}
 		echo "</li>\n";
 	}
@@ -892,7 +892,7 @@ if(isset($_GET['category'])) {
 			$getparents = $catobj->getParents();
 			$levelmark ='';
 			foreach($getparents as $parent) {
-				$levelmark .= '&raquo; ';
+				$levelmark .= '» ';
 			}
 			$title = $catobj->getTitle();
 			if (empty($title)) {

@@ -47,7 +47,7 @@ if(is_NewsArticle()) {
 	
 <?php
  } else { 
-	 printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true,7); 
+	 printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true,7); 
 	 ?>
 	 	<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
 	 <?php
@@ -63,7 +63,7 @@ if(is_NewsArticle()) {
   endwhile;
   ?>
   </ul>
-	<?php printNewsPageListWithNav(gettext('next &raquo;'), gettext('&laquo; prev'),true,'pagelist',true,7);
+	<?php printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true,7);
  } ?>
  
  </div>
