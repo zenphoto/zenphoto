@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-11 20:37-0500\n"
-"PO-Revision-Date: 2012-06-11 20:52-0500\n"
+"POT-Creation-Date: 2012-06-13 16:57-0500\n"
+"PO-Revision-Date: 2012-06-13 16:58-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard)\n"
 "MIME-Version: 1.0\n"
@@ -1453,16 +1453,6 @@ msgstr "Images récentes"
 msgid "Latest news"
 msgstr " Les plus récentes actualités"
 
-#: F:\sites\zenphoto-dev/themes/zpmobile/news.php:50
-#: F:\sites\zenphoto-dev/themes/zpmobile/news.php:66
-msgid "next &raquo;"
-msgstr "suiv. &raquo;"
-
-#: F:\sites\zenphoto-dev/themes/zpmobile/news.php:50
-#: F:\sites\zenphoto-dev/themes/zpmobile/news.php:66
-msgid "&laquo; prev"
-msgstr "&laquo; préc."
-
 #: F:\sites\zenphoto-dev/themes/zpmobile/search.php:155
 msgid "View Slideshow"
 msgstr "Voir le diaporama"
@@ -2704,283 +2694,283 @@ msgstr "page %u"
 msgid "Previous page"
 msgstr "Page précédente"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2707
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2712
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2717
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2722
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2710
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2715
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2720
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2725
 msgid "Cannot create new theme."
 msgstr "Impossible de créer le nouveau thème."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2707
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2710
 #, php-format
 msgid "Directory \"%s\" already exists!"
 msgstr "Le dossier « %s » existe déjà !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2712
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2715
 #, php-format
 msgid "Cannot find theme directory \"%s\" to copy!"
 msgstr "Impossible de trouver le dossier « %s » à copier !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2717
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2720
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Le dossier <tt>/themes</tt> n’est pas accessible en écriture !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2722
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2725
 msgid "Could not create directory for the new theme"
 msgstr "Impossible de créer le dossier du nouveau thème"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2755
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2758
 #, php-format
 msgid "An error occurred while copying files. Please delete manually the new theme directory '%s' and retry or copy files manually."
 msgstr "Une erreur est survenue lors de la copie des fichiers. Veuillez supprimer manuellement le nouveau dossier « %s » et essayer de nouveau, ou copiez les fichiers manuellement."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2763
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2766
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Votre thème, basé sur le thème %s"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2765
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2768
 msgid "Your theme"
 msgstr "Votre thème"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2789
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2792
 msgid "New custom theme created successfully!"
 msgstr "Le nouveau thème personnalisé a été créé avec succès !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2791
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2794
 msgid "New custom theme created, but its description could not be updated"
 msgstr "Le nouveau thème personnalisé a été créé, mais sa description ne peut être mise à jour"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2938
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2941
 msgid "Rights:"
 msgstr "Droits :"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2996
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2999
 msgid "edit rights"
 msgstr "Droits d’édition"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2997
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3000
 msgid "view unpublished items"
 msgstr "Afficher les éléments non publiés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2998
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3001
 msgid "upload rights"
 msgstr "Droits de chargement"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:2999
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3002
 msgid "the album is dynamic"
 msgstr "l’album est dynamique"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3001
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3004
 msgid "Primary album"
 msgstr "Album principal"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3003
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3006
 msgid "edit"
 msgstr "modifier"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3004
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3007
 #: F:\sites\zenphoto-dev/zp-core/admin-globals.php:70
 msgid "upload"
 msgstr "chargement"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3005
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3008
 msgid "view unpublished"
 msgstr "Afficher les éléments non publiés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3028
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3031
 msgid "Managed albums:"
 msgstr "Albums gérés : "
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3041
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3044
 msgid "Managed news categories:"
 msgstr "Catégories d’actualités gérées :"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3043
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3046
 msgid "News categories"
 msgstr "Catégories d’actualités"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3056
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3059
 msgid "Managed pages:"
 msgstr "Pages gérées : "
 
 # General update at line 2669 : Select one or more %1$s for the %2$s to manage.
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3063
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3066
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Sélectionnez un ou plusieurs %1$s de %2$s à gérer."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3064
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3067
 #: F:\sites\zenphoto-dev/zp-core/admin-users.php:805
 #: F:\sites\zenphoto-dev/zp-core/admin-users.php:814
 #: F:\sites\zenphoto-dev/zp-core/admin-users.php:820
 msgid "user"
 msgstr "utilisateur"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3065
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3068
 #, php-format
 msgid "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All others may manage only those that are selected."
 msgstr "Les administrateurs avec les droits <em>Super administrateur</em> ou <em>Gérer tous les %1$s</em> peuvent gérer tous les %2$s. Les autres ne peuvent gérer que ceux qui sont sélectionnés."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3068
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3071
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Vous avez la possibilité de gérer ces %s en fonction des droits ci-dessus."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3480
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3483
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Afficher %u niveau d’albums"
 msgstr[1] "Afficher %u niveaux d’albums"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3483
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3486
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u image par page"
 msgstr[1] "%u images par page"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3557
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3569
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3581
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3560
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3572
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3584
 msgid "ok"
 msgstr "Ok"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3639
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3642
 msgid "Destination"
 msgstr "Destination"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3905
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3937
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3908
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3940
 #, php-format
 msgid "codeblock %u"
 msgstr "Bloc de code %u"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3906
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3941
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3909
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:3944
 msgid "add codeblock"
 msgstr "ajouter un bloc de code"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4020
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4023
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
 msgstr "« %s » tentative d’hameçonnage bloquée."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4122
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4125
 msgid "setup"
 msgstr "installation"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4122
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4125
 #: F:\sites\zenphoto-dev/zp-core/admin-globals.php:134
 msgid "security"
 msgstr "sécurité"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4122
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4125
 msgid "debug"
 msgstr "déboggage"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4238
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4241
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s n’a pu être effacé(e)."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4240
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4243
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s a bien été supprimé(e)."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4245
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4248
 msgid "You must supply a  password."
 msgstr "Vous devez fournir un mot de passe."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4247
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4250
 msgid "Your passwords did not match."
 msgstr "Vos mots de passe ne correspondent pas"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4254
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4257
 msgid "The image edit form submission has been truncated. Try displaying fewer images on a page."
 msgstr "Le formulaire d’édition des images a été tronqué. Veuillez afficher moins d’images par page."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4257
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4260
 msgid "Hit counters have been reset."
 msgstr "Les compteurs d’affichage ont été remis à zéro."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4260
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4263
 msgid "Cache has been purged."
 msgstr "Le cache a été vidé."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4263
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4266
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:139
 msgid "Your files have been uploaded."
 msgstr "Vos fichiers ont été chargés."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4266
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4269
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> existe déjà."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4281
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4284
 msgid "Selected items published"
 msgstr "Les éléments sélectionnés sont publiés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4284
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4287
 msgid "Selected items unpublished"
 msgstr "Les éléments sélectionnés ne sont plus publiés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4287
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4290
 msgid "Comments enabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont activés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4290
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4293
 msgid "Comments disabled for selected items"
 msgstr "Les commentaires pour les éléments sélectionnés sont désactivés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4293
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4296
 msgid "Hitcounter for selected items"
 msgstr "Compteur d’affichage pour les éléments sélectionnés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4296
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4299
 msgid "Tags added for selected items"
 msgstr "Les tags ont été ajoutés aux éléments sélectionnés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4299
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4302
 msgid "Tags cleared for selected items"
 msgstr "Les tags ont été effacés des éléments sélectionnés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4302
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4305
 msgid "Tags added for images of selected items"
 msgstr "Les tags ont été ajoutés aux images des éléments sélectionnés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4305
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4308
 msgid "Tags cleared for images of selected items"
 msgstr "Les tags ont été effacés des images des éléments sélectionnés"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4315
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4318
 msgid "Image already exists."
 msgstr "L’image existe déjà."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4318
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4321
 msgid "Album already exists."
 msgstr "L’album existe déjà."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4321
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4324
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr "Impossible de déplacer, de copier ou de renommer vers un sous-album de cet album."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4324
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4327
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "Impossible de déplacer, de copier ou de renommer vers un album dynamique."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4327
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4330
 msgid "Cannot rename an image to a different suffix"
 msgstr "Impossible de changer le suffixe de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4330
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4333
 msgid "Album delete failed"
 msgstr "L’album n’a pu être effacé"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4333
+#: F:\sites\zenphoto-dev/zp-core/admin-functions.php:4336
 msgid "There was an error with a move, copy, or rename operation."
 msgstr "Une erreur s’est produite lors d’une opération de déplacement, de copie ou de renommage."
 
@@ -4999,7 +4989,7 @@ msgstr "Thèmes installés"
 msgid "Action"
 msgstr "Action"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-themes.php:198
+#: F:\sites\zenphoto-dev/zp-core/admin-themes.php:201
 msgid "third party theme"
 msgstr "Thème de tierce partie"
 
@@ -8749,12 +8739,12 @@ msgid "Setup failed."
 msgstr "L’installation a échoué."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1473
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2519
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2522
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "Vous avez besoin de droits d’administration (<em>USER ADMIN</em>) pour réaliser l’installation."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:1475
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2521
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2524
 msgid "You must be logged in to run setup."
 msgstr "Vous devez être connecté pour lancer l’installation."
 
@@ -8762,136 +8752,136 @@ msgstr "Vous devez être connecté pour lancer l’installation."
 msgid "database connected"
 msgstr "base de données connectée"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2225
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2228
 msgid "About to create tables"
 msgstr "Prêt à créer les tables"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2227
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2230
 msgid "About to update tables"
 msgstr "Prêt à mettre à jour les tables"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2229
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2232
 msgid "Begin table creation"
 msgstr "Démarrage de la création de la table"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2235
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2250
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2238
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2253
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "La requête <em>%1$s</em> a échoué. Erreur : %2$s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2237
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2240
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Impossible de créer la table :<br />Requête : %1$s<br />Erreur : %2$s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2240
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2252
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2243
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2255
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "La requête ( %s ) a réussi."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2244
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2247
 msgid "Begin table updates"
 msgstr "Démarrage de la mise à jour de la table"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2257
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2260
 msgid "Done with database creation and update"
 msgstr "Création et mise à jour de la table effectuée !"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2259
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2262
 #, php-format
 msgid "Previous Release was %s"
 msgstr "La version précédente était la version %s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2286
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2289
 msgid "Done with table create!"
 msgstr "Création de la table effectuée !"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2288
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2291
 msgid "Done with table create with errors!"
 msgstr "Création de la table effectuée, mais avec des erreurs."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2292
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2295
 msgid "Done with table update"
 msgstr "Mise à jour de la table effectuée !"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2294
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2297
 msgid "Done with table update with errors"
 msgstr "Mise à jour de la table effectuée, mais avec des erreurs."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2333
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2336
 msgid "Setup files deleted."
 msgstr "Fichiers d’installation supprimés."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2340
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2343
 #, php-format
 msgid "Failed to delete: %s"
 msgstr "%s n’a pu être effacé(e)"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2348
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2351
 msgid "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future."
 msgstr "<strong>Note.</strong> Il est vivement conseillé de supprimer <em>les scripts d’installation</em> du dossier zp-core. Il est toujours possible de les charger de nouveau au besoin."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2353
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2356
 msgid "Delete setup files"
 msgstr "Supprimer les fichiers d’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2358
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2361
 msgid "This is a clone of another installation. The setup files should be deleted from that installation"
 msgstr "Il s’agit d’un clone d’une autre installation. Les fichiers d’installation devraient être effacés de cette autre installation"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2368
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2371
 #, php-format
 msgid "You may <a href=\"%1$s\">set your admin user and password</a> or <a href=\"%2$s\">run backup-restore</a>"
 msgstr "Vous devez <a href=\"%1$s\">spécifier les identifiant et mot de passe de l’administrateur</a> ou <a href=\"%2$s\">lancer la sauvegarde/restauration</a>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2370
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2373
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr "Vous devez <a href=\"%1$s\">spécifier les identifiant et mot de passe de l’administrateur</a>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2382
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2385
 #, php-format
 msgid "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s\">administer.</a>"
 msgstr "Vous pouvez maintenant <a href=\"%1$s\">voir votre galerie</a> ou <a href=\"%2$s\">la gérer</a>."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2439
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2442
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Tables de la base de données à créer : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2457
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2460
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Tables de la base de données à mettre à jour : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2488
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2491
 msgid "<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding."
 msgstr "<strong>Attention !</strong> Cette mise à jour effectue des modifications structurelles à la base de données. Ce sont des changements difficilement réversibles. Assurez-vous d’avoir une sauvegarde avant de continuer."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2491
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2494
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s Je comprends que cette opération va restructurer ma base de données."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2549
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2552
 msgid "run setup"
 msgstr "lancer l’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2549
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2552
 msgid "Go"
 msgstr "C’est parti !"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2566
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2569
 msgid "database did not connect"
 msgstr "Impossible de se connecter à la base de données"
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2568
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2571
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr "Si vous n’avez pas encore créé la base de données, il serait temps de le faire."
 
-#: F:\sites\zenphoto-dev/zp-core/setup.php:2577
+#: F:\sites\zenphoto-dev/zp-core/setup.php:2580
 msgid "The zenphoto.cfg file does not exist. You should run setup.php to check your configuration and create this file."
 msgstr "Le fichier zenphoto.cfg n’existe pas. Vous devriez lancer setup.php pour vérifier votre configuration et créer ce fichier."
 
@@ -8907,182 +8897,182 @@ msgstr "Êtes-vous certain(e) de vouloir supprimer cet article ? Cette opérati
 msgid "Are you sure you want to delete this page? THIS CANNOT BE UNDONE!"
 msgstr "Êtes-vous certain(e) de vouloir supprimer cette page ? Cette opération est IRRÉVERSIBLE !"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:93
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:98
 msgid "Admin Toolbox"
 msgstr "Outils d’administration"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:128
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:136
 msgid "Users"
 msgstr "Utilisateurs"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:152
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:160
 msgid "Logs"
 msgstr "Journaux"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:172
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:180
 msgid "Sort Gallery"
 msgstr "Trier la galerie"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:181
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:189
 msgid "New Album"
 msgstr "Nouvel album"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:205
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:213
 msgid "Edit album"
 msgstr "Modifier l’album"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:212
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:220
 msgid "Sort subalbums"
 msgstr "Trier les sous-albums"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:219
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:227
 msgid "Sort images"
 msgstr "Trier les images"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:229
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:237
 msgid "Delete the album"
 msgstr "Supprimer l’album"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:238
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:246
 msgid "Upload Here"
 msgstr "Charger ici"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:244
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:252
 msgid "New Album Here"
 msgstr "Nouvel album ici"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:260
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:268
 msgid "Delete the image"
 msgstr "Supprimer l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:267
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:275
 msgid "Edit image"
 msgstr "Modifier l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:289
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:297
 msgid "Create an album from the search"
 msgstr "Créer un album à partir de cette recherche"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:289
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:297
 msgid "Create Album"
 msgstr "Créer un album"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:311
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:319
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:704
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:799
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:716
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:811
 msgid "Previous Page"
 msgstr "Page précédente"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:706
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:900
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:718
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:912
 msgid "Next Page"
 msgstr "Page suivante"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:817
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:829
 msgid "Page 1"
 msgstr "Page 1"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:832
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:841
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:871
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:878
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:888
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:844
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:853
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:883
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:890
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:900
 #, php-format
 msgid "Page %u"
 msgid_plural "Page %u"
 msgstr[0] "Page %u"
 msgstr[1] "Page %u"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:852
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:864
 #, php-format
 msgid "Page %1$u"
 msgid_plural "Page %1$u"
 msgstr[0] "Page %1$u"
 msgstr[1] "Page %1$u"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:963
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:975
 msgid "The album is un-published."
 msgstr "Cet album n’est pas publié."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1063
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1075
 msgid "Album Thumbnails"
 msgstr "Vignettes de l’album"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1109
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1121
 msgid "Return to search"
 msgstr "Retour à la recherche"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1328
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1332
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1340
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1344
 msgid "printField() invalid function call."
 msgstr "appel invalide de la fonction printField()."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1925
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1937
 msgid "The image is marked un-published."
 msgstr "L’image est marquée comme non publiée."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:2264
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:2276
 msgid "Image Info"
 msgstr "Détails sur l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:2922
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:2934
 msgid "Anonymous"
 msgstr "Anonyme"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3368
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3380
 #, php-format
 msgid "View image: %s"
 msgstr "Voir l’image : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3536
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3548
 msgid "No popular tags"
 msgstr "Aucun tag populaire"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3810
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3822
 msgid "Latest images RSS"
 msgstr "Flux RSS des images récentes"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3866
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3878
 msgid "getSearchURL $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "Le paramètre $album_list de getSearchURL est obsolète. Utilisez plutôt un tableau array(\"albums\"=>array(album, album, ...))."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3968
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3980
 msgid "printSearchForm $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "Le paramètre $album_list de printSearchForm est obsolète. Utilisez plutôt un tableau array(\"albums\"=>array(album, album, ...))."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3985
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:3997
 #, php-format
 msgid "%s within previous results"
 msgstr "%s parmi les résultats précédents"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4054
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4066
 msgid "search options"
 msgstr "options de recherche"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4054
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4066
 msgid "fields"
 msgstr "champs"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4090
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4102
 msgid "Within"
 msgstr "Parmi"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4094
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4106
 msgid "New"
 msgstr "Nouveau"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4148
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4160
 msgid "no date"
 msgstr "sans date"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4403
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4415
 msgid "The page you are trying to view is password protected."
 msgstr "La page que vous essayez d’afficher est protégée par mot de passe."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4443
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4455
 msgid "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 msgstr "Galerie gérée par <a href=\"http://www.zenphoto.org\" title=\"Un album photo plus simple\"><span id=\"zen-part\">Zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
@@ -14002,8 +13992,8 @@ msgstr[0] "%u étoile"
 msgstr[1] "%u étoiles"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:343
-msgid "Submit &raquo;"
-msgstr "Soumettre &raquo;"
+msgid "Submit »"
+msgstr "Soumettre »"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/rating.php:391
 msgid "Vote Submitted"
@@ -18574,6 +18564,15 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
+
+#~ msgid "next &raquo;"
+#~ msgstr "suiv. &raquo;"
+
+#~ msgid "&laquo; prev"
+#~ msgstr "&laquo; préc."
+
+#~ msgid "Submit &raquo;"
+#~ msgstr "Soumettre &raquo;"
 
 #~ msgid ""
 #~ "SQLite Error: Zenphoto received the error <em>%s</em> when connecting to "
