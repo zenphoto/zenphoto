@@ -491,6 +491,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	checkmark($check,$release,$release.' '.sprintf(ngettext('[%u release skipped]','[%u releases skipped]',$c),$c),gettext('We do not test upgrades that skip releases. We recommend you upgrade in sequence.'));
 } else {
+	$prevRel = false;
 	checkmark(1,sprintf(gettext('Installing Zenphoto v%s'),ZENPHOTO_VERSION),'','');
 }
 
@@ -507,8 +508,19 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$err = versionCheck($required, $desired, PHP_VERSION);
 	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired), false) && $good;
 	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
-	$register_globals = preg_match('#(1|ON)#i', ini_get('register_globals'));
-	$good = checkMark(!$register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>.'.(is_string($register_globals)?' '.gettext('<strong>Note</strong>: There should be no quotation marks in this setting!'):''))) && $good;
+
+	if (preg_match('#(1|ON)#i', ini_get('register_globals'))) {
+		if ($prevRel) {
+			$register_globals = -1;
+		} else {
+			$register_globals = false;
+		}
+	} else {
+		$register_globals = true;
+	}
+	$good = checkMark($register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),
+										gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Change your PHP.ini settings to <code>register_globals = off</code>')) && $good;
+
 	if (preg_match('#(1|ON)#i', ini_get('safe_mode'))) {
 		$safe = -1;
 	} else {
@@ -1603,7 +1615,7 @@ if (file_exists(CONFIGFILE)) {
 		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_options (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`ownerid` int(11) UNSIGNED NOT NULL DEFAULT 0,
-		`name` varchar(255) NOT NULL,
+		`name` varchar(191) NOT NULL,
 		`value` text,
 		`theme` varchar (127) NOT NULL,
 		`creator` varchar (255) DEFAULT NULL,
@@ -2194,7 +2206,7 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `lastloggedin` datetime';
 	//v1.4.3
 	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `theme` `theme` varchar(127) NOT NULL";
-	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(255) NOT NULL";
+	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) NOT NULL";
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `valid` int(1) NOT NULL DEFAULT 1';
 	$sql_statements[] = "ALTER TABLE $tbl_tags CHANGE `name` `name` varchar(255) NOT NULL";
 

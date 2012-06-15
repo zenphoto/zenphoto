@@ -407,9 +407,6 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		</div>
 		';
 	} else if (count($errors)>0) {
-
-var_dump($errors);
-
 		$messages = '
 		<div class="errorbox">
 			<h2>'.gettext("Restore failed").'</h2>
