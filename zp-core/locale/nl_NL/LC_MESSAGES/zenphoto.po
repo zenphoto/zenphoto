@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-13 18:24+0100\n"
+"POT-Creation-Date: 2012-06-21 19:15+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Fred Sondaar (fretzl) <fretzl@zenphoto.org>\n"
 "Language-Team: \n"
@@ -3432,7 +3432,7 @@ msgstr "Februari 25, 2008"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:744
 msgid "Format for dates. Select from the list or set to <code>custom</code> and provide a <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span class=\"nowrap\"><code>strftime()</code></span></a> format string in the text box."
-msgstr "Weegave van de datum. Selecteer uit de lijst of kies voor <code>eigen</code> en voer een <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span class=\"nowrap\"><code>strftime()</code></span></a> formaat in,  in het tekstveld."
+msgstr "Weegave van de datum. Selecteer uit de lijst of kies voor <code>Custom</code> en voer een <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span class=\"nowrap\"><code>strftime()</code></span></a> formaat in,  in het tekstveld."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:747
 msgid "Charset:"
@@ -7915,970 +7915,966 @@ msgstr[1] "[%u versies overgeslagen]"
 msgid "We do not test upgrades that skip releases. We recommend you upgrade in sequence."
 msgstr "We testen geen upgrades die versies overslaan. We raden aan om in volgorde te upgraden."
 
-#: ZpTranslation-Development/zp-core/setup.php:494
+#: ZpTranslation-Development/zp-core/setup.php:495
 #, php-format
 msgid "Installing Zenphoto v%s"
 msgstr "Zenphoto v%s installeren"
 
-#: ZpTranslation-Development/zp-core/setup.php:503
+#: ZpTranslation-Development/zp-core/setup.php:504
 msgid "Log security"
 msgstr "Log beveiliging"
 
-#: ZpTranslation-Development/zp-core/setup.php:503
+#: ZpTranslation-Development/zp-core/setup.php:504
 msgid "Log security [is compromised]"
 msgstr "<code>Beveiliging van log is</code> [niet veilig]"
 
-#: ZpTranslation-Development/zp-core/setup.php:504
+#: ZpTranslation-Development/zp-core/setup.php:505
 #, php-format
 msgid "Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."
 msgstr "Zenphoto probeert de log-bestanden uitsluitend toegankelijk te maken voor de <em>eigenaar</em> (permissions = 0600). Deze poging is mislukt.<br />De rechten voor de log-bestanden zijn %04o. Dit kan zorgen voor ongewenste toegang."
 
-#: ZpTranslation-Development/zp-core/setup.php:508
+#: ZpTranslation-Development/zp-core/setup.php:509
 #, php-format
 msgid "PHP version %s"
 msgstr "PHP versie %s"
 
-#: ZpTranslation-Development/zp-core/setup.php:508
+#: ZpTranslation-Development/zp-core/setup.php:509
 #, php-format
 msgid "PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk."
 msgstr "PHP versie %1$s of hoger is vereist. Versie %2$s of later wordt sterk aangeraden. Gebruik van oudere versies is op eigen risico."
 
-#: ZpTranslation-Development/zp-core/setup.php:509
+#: ZpTranslation-Development/zp-core/setup.php:510
 msgid "PHP <code>Sessions</code>."
 msgstr "PHP <code>Sessies</code>."
 
-#: ZpTranslation-Development/zp-core/setup.php:509
+#: ZpTranslation-Development/zp-core/setup.php:510
 msgid "PHP <code>Sessions</code> [appear to not be working]."
 msgstr "PHP <code>Sessies</code> [lijken niet te werken]"
 
-#: ZpTranslation-Development/zp-core/setup.php:509
+#: ZpTranslation-Development/zp-core/setup.php:510
 msgid "PHP Sessions are required for Zenphoto administrative functions."
 msgstr "PHP <code>Sessions</code> zijn nodig voor administratieve functies."
 
-#: ZpTranslation-Development/zp-core/setup.php:511
+#: ZpTranslation-Development/zp-core/setup.php:521
 msgid "PHP <code>Register Globals</code>"
 msgstr "PHP <code>Register Globals</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:511
+#: ZpTranslation-Development/zp-core/setup.php:521
 msgid "PHP <code>Register Globals</code> [is set]"
 msgstr "PHP <code>Register Globals</code> is [ingesteld]"
 
-#: ZpTranslation-Development/zp-core/setup.php:511
-msgid "<strong>Note</strong>: There should be no quotation marks in this setting!"
-msgstr "<strong>LET OP!:</strong> Er mogen géén aanhalingstekens gebruikt worden!"
+#: ZpTranslation-Development/zp-core/setup.php:522
+msgid "PHP Register globals presents a security risk to any PHP application. See <a href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register Globals</em></a>. Change your PHP.ini settings to <code>register_globals = off</code>"
+msgstr "PHP Register globals veroorzaakt een beveiligingsrisico voor elke PHP applicatie. Zie <a href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register Globals</em></a>. Verander de php.ini instelling in <code>register_globals = off</code>."
 
-#: ZpTranslation-Development/zp-core/setup.php:511
-msgid "PHP Register globals presents a security risk to any PHP application. See <a href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register Globals</em></a>. Zenphoto refuses to operate under these conditions. Change your PHP.ini settings to <code>register_globals = off</code>."
-msgstr "PHP Register globals veroorzaakt een beveiligingsrisico voor elke PHP applicatie. Zie <a href=\"http://php.net/manual/en/security.globals.php\"><em>Using Register Globals</em></a>. Zenphoto werkt niet met deze instelling. Verander de php.ini instelling in <code>register_globals = off</code>."
-
-#: ZpTranslation-Development/zp-core/setup.php:517
+#: ZpTranslation-Development/zp-core/setup.php:529
 msgid "PHP <code>Safe Mode</code>"
 msgstr "PHP <code>Safe Mode</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:517
+#: ZpTranslation-Development/zp-core/setup.php:529
 msgid "PHP <code>Safe Mode</code> [is set]"
 msgstr "PHP <code>Safe Mode</code> [is ingesteld]"
 
-#: ZpTranslation-Development/zp-core/setup.php:517
+#: ZpTranslation-Development/zp-core/setup.php:529
 msgid "Zenphoto functionality is reduced when PHP <code>safe mode</code> restrictions are in effect."
 msgstr "Zenphoto functionaliteit is gereduceerd wanneer PHP <code>safe mode</code> restricties in werking zijn."
 
-#: ZpTranslation-Development/zp-core/setup.php:519
+#: ZpTranslation-Development/zp-core/setup.php:531
 msgid "Magic_quotes"
 msgstr "Magic_quotes"
 
-#: ZpTranslation-Development/zp-core/setup.php:525
+#: ZpTranslation-Development/zp-core/setup.php:537
 msgid "PHP <code>magic_quotes_gpc</code>"
 msgstr "PHP <code>magic_quotes_gpc</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:525
+#: ZpTranslation-Development/zp-core/setup.php:537
 msgid "PHP <code>magic_quotes_gpc</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_gpc</code> [is ingesteld]"
 
-#: ZpTranslation-Development/zp-core/setup.php:525
+#: ZpTranslation-Development/zp-core/setup.php:537
 msgid "We strongly recommend disabling <code>magic_quotes_gpc</code>. For more information See <em><a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-disabled-\">What is magic_quotes_gpc and why should it be disabled?</a></em> in the Zenphoto troubleshooting guide."
 msgstr "We raden je zeer sterk aan om <code>magic_quotes_gpc</code> uit te zetten. Voor meer informatie zie <em><a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#what-is-magic_quotes_gpc-and-why-should-it-be-disabled-\">Wat is  magic_quotes_gpc en waarom zou ik het niet moeten gebruiken?</a></em> in de Zenphoto troubleshooting guide."
 
-#: ZpTranslation-Development/zp-core/setup.php:531
+#: ZpTranslation-Development/zp-core/setup.php:543
 msgid "PHP <code>magic_quotes_runtime</code>"
 msgstr "PHP <code>magic_quotes_runtime</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:531
+#: ZpTranslation-Development/zp-core/setup.php:543
 msgid "PHP <code>magic_quotes_runtime</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_runtime</code> [is actief]"
 
-#: ZpTranslation-Development/zp-core/setup.php:531
+#: ZpTranslation-Development/zp-core/setup.php:543
 msgid "You must disable <code>magic_quotes_runtime</code>."
 msgstr "Je moet <code>magic_quotes_runtime</code> uitzetten."
 
-#: ZpTranslation-Development/zp-core/setup.php:532
+#: ZpTranslation-Development/zp-core/setup.php:544
 msgid "PHP <code>magic_quotes_sybase</code>"
 msgstr "PHP <code>magic_quotes_sybase</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:532
+#: ZpTranslation-Development/zp-core/setup.php:544
 msgid "PHP <code>magic_quotes_sybase</code> [is enabled]"
 msgstr "PHP <code>magic_quotes_sybase</code> [is actief]"
 
-#: ZpTranslation-Development/zp-core/setup.php:532
+#: ZpTranslation-Development/zp-core/setup.php:544
 msgid "You must disable <code>magic_quotes_sybase</code>."
 msgstr "Je moet<code>magic_quotes_sybase</code> uitzetten."
 
-#: ZpTranslation-Development/zp-core/setup.php:534
+#: ZpTranslation-Development/zp-core/setup.php:546
 msgid "PHP <code>gettext()</code> support"
 msgstr "PHP <code>gettext()</code> ondersteuning"
 
-#: ZpTranslation-Development/zp-core/setup.php:534
+#: ZpTranslation-Development/zp-core/setup.php:546
 msgid "PHP <code>gettext()</code> support [is not present]"
 msgstr "PHP <code>gettext()</code> ondersteuning [is niet aanwezig]"
 
-#: ZpTranslation-Development/zp-core/setup.php:534
+#: ZpTranslation-Development/zp-core/setup.php:546
 msgid "Localization of Zenphoto requires native PHP <code>gettext()</code> support"
 msgstr "Localisatie van Zenphoto vereist  PHP <code>gettext()</code> ondersteuning."
 
-#: ZpTranslation-Development/zp-core/setup.php:536
+#: ZpTranslation-Development/zp-core/setup.php:548
 msgid "PHP <code>setlocale()</code>"
 msgstr "PHP <code>setlocale()</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:536
+#: ZpTranslation-Development/zp-core/setup.php:548
 msgid "PHP <code>setlocale()</code> failed"
 msgstr "PHP <code>setlocale()</code> mislukt"
 
-#: ZpTranslation-Development/zp-core/setup.php:536
+#: ZpTranslation-Development/zp-core/setup.php:548
 msgid "Locale functionality is not implemented on your platform or the specified locale does not exist. Language translation may not work."
 msgstr "Localisatiefunctionaliteit is niet geïmplementeerd op je platform of de betreffende localisatie bestaat niet. Het is mogelijk dat vertalingen niet werken."
 
-#: ZpTranslation-Development/zp-core/setup.php:536
+#: ZpTranslation-Development/zp-core/setup.php:548
 msgid "See the <a  href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#24\">troubleshooting guide</a> on zenphoto.org for details."
 msgstr "Raadpleeg de <a  href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#24\">troubleshooting guide</a> op zenphoto.org voor details."
 
-#: ZpTranslation-Development/zp-core/setup.php:538
+#: ZpTranslation-Development/zp-core/setup.php:550
 msgid "mb_strings"
 msgstr "mb_strings"
 
-#: ZpTranslation-Development/zp-core/setup.php:546
+#: ZpTranslation-Development/zp-core/setup.php:558
 msgid "Setting <em>mbstring.internal_encoding</em> to <strong>UTF-8</strong> in your <em>php.ini</em> file is recommended to insure accented and multi-byte characters function properly."
 msgstr "Het wordt aanbevolen om in de <em>php.ini</em> de <em>mbstring.internal_encoding</em> op <strong>UTF-8</strong> te zetten zodat geaccentueerde en multi-byte karakters goed worden weergegeven."
 
-#: ZpTranslation-Development/zp-core/setup.php:547
+#: ZpTranslation-Development/zp-core/setup.php:559
 msgid "PHP <code>mbstring</code> package"
 msgstr "PHP <code>mbstring</code> pakket"
 
-#: ZpTranslation-Development/zp-core/setup.php:547
+#: ZpTranslation-Development/zp-core/setup.php:559
 #, php-format
 msgid "PHP <code>mbstring</code> package [Your internal character set is <strong>%s</strong>]"
 msgstr "PHP <code>mbstring</code> pakket [de interne karakter codering is <strong>%s</strong>]"
 
-#: ZpTranslation-Development/zp-core/setup.php:551
+#: ZpTranslation-Development/zp-core/setup.php:563
 msgid "You need to install the <code>mbstring</code> package or correct the issue with <code>iconv(()</code>"
 msgstr "Je dient het <code>mbstring</code> pakket te installeren of het probleem te corrigeren met <code>iconv(()</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:552
+#: ZpTranslation-Development/zp-core/setup.php:564
 msgid "PHP <code>mbstring</code> package [is not present and <code>iconv()</code> is not working]"
 msgstr "PHP <code>mbstring</code> pakket [is niet aanwezig en <code>iconv()</code> iwerkt niet]"
 
-#: ZpTranslation-Development/zp-core/setup.php:554
+#: ZpTranslation-Development/zp-core/setup.php:566
 msgid "Strings generated internally by PHP may not display correctly. (e.g. dates)"
 msgstr "Strings intern gegenereerd door PHP kunnen foutief getoond worden. (bijv. data)"
 
-#: ZpTranslation-Development/zp-core/setup.php:555
+#: ZpTranslation-Development/zp-core/setup.php:567
 msgid "PHP <code>mbstring</code> package [is not present]"
 msgstr "PHP <code>mbstring</code> pakket [is niet aanwezig]"
 
-#: ZpTranslation-Development/zp-core/setup.php:561
+#: ZpTranslation-Development/zp-core/setup.php:573
 msgid "Graphics library"
 msgstr "Grafische bibliotheek"
 
-#: ZpTranslation-Development/zp-core/setup.php:569
+#: ZpTranslation-Development/zp-core/setup.php:581
 #, php-format
 msgid "Graphics support: <code>%s</code>"
 msgstr "Grafische ondersteuning: <code>%s</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:569
+#: ZpTranslation-Development/zp-core/setup.php:581
 msgid "Graphics support [is not installed]"
 msgstr "Grafische ondersteuning [is niet geïnstalleerd]"
 
-#: ZpTranslation-Development/zp-core/setup.php:569
+#: ZpTranslation-Development/zp-core/setup.php:581
 msgid "You need to install a graphics support library such as the <em>GD library</em> in your PHP"
 msgstr "Je moet GD support in je PHP installeren"
 
-#: ZpTranslation-Development/zp-core/setup.php:578
+#: ZpTranslation-Development/zp-core/setup.php:590
 #, php-format
 msgid "Your PHP graphics library does not support %1$s or %2$s"
 msgstr "Je PHP 'graphics library'  ondersteunt geen %1$s, of %2$s"
 
-#: ZpTranslation-Development/zp-core/setup.php:580
+#: ZpTranslation-Development/zp-core/setup.php:592
 #, php-format
 msgid "Your PHP graphics library does not support %1$s"
 msgstr "Je PHP 'graphics library' ondersteunt geen %1$s"
 
-#: ZpTranslation-Development/zp-core/setup.php:583
+#: ZpTranslation-Development/zp-core/setup.php:595
 msgid "To correct this you should install a graphics library with appropriate image support in your PHP"
 msgstr "Om dit op te lossen moet je een  'graphics library' installeren in je PHP met de juiste ondersteuning voor afbeeldingen"
 
-#: ZpTranslation-Development/zp-core/setup.php:585
+#: ZpTranslation-Development/zp-core/setup.php:597
 #, php-format
 msgid "Your PHP graphics library does not support %1$s, %2$s, or %3$s"
 msgstr "Your PHP  'graphics library' ondersteunt geen %1$s, %2$s, or %3$s"
 
-#: ZpTranslation-Development/zp-core/setup.php:588
+#: ZpTranslation-Development/zp-core/setup.php:600
 msgid "To correct this you need to install GD with appropriate image support in your PHP"
 msgstr "Om dit op te lossen dien je GD installeren in je PHP met de juiste ondersteuning voor afbeeldingen"
 
-#: ZpTranslation-Development/zp-core/setup.php:590
+#: ZpTranslation-Development/zp-core/setup.php:602
 msgid "PHP graphics image support"
 msgstr "PHP 'graphics image' ondersteuning"
 
-#: ZpTranslation-Development/zp-core/setup.php:591
+#: ZpTranslation-Development/zp-core/setup.php:603
 msgid "The unsupported image types will not be viewable in your albums."
 msgstr "De niet ondersteunde afbeeldingstypes zullen niet weergegeven worden in de albums."
 
-#: ZpTranslation-Development/zp-core/setup.php:595
+#: ZpTranslation-Development/zp-core/setup.php:607
 msgid "Graphics Library rotation support [is not present]"
 msgstr "Grafische bibliotheek voor ondersteuning van rotatie [is niet aanwezig]"
 
-#: ZpTranslation-Development/zp-core/setup.php:595
+#: ZpTranslation-Development/zp-core/setup.php:607
 msgid "The graphics support library does not provide support for image rotation."
 msgstr "De grafische bibliotheek ondersteunt niet het roteren van afbeeldingen."
 
-#: ZpTranslation-Development/zp-core/setup.php:603
+#: ZpTranslation-Development/zp-core/setup.php:615
 msgid "Graphics support [configuration error]"
 msgstr "Grafische ondersteuning [configuratiefout]"
 
-#: ZpTranslation-Development/zp-core/setup.php:603
+#: ZpTranslation-Development/zp-core/setup.php:615
 msgid "No Zenphoto image handling library was loaded. Be sure that your PHP has a graphics support."
 msgstr "Er is geen Zenphoto afbeeldings-verwerking bibliotheek geladen. Controleer of je PHP grafische ondersteuning heeft."
 
-#: ZpTranslation-Development/zp-core/setup.php:615
+#: ZpTranslation-Development/zp-core/setup.php:627
 msgid "<em>zenphoto.cfg</em> file"
 msgstr "<em>zenphoto.cfg</em> bestand"
 
-#: ZpTranslation-Development/zp-core/setup.php:615
+#: ZpTranslation-Development/zp-core/setup.php:627
 msgid "<em>zenphoto.cfg</em> file [does not exist]"
 msgstr "<em>zenphoto.cfg</em> bestand [bestaat niet]"
 
-#: ZpTranslation-Development/zp-core/setup.php:616
+#: ZpTranslation-Development/zp-core/setup.php:628
 #, php-format
 msgid "Setup was not able to create this file. You will need to copy the <code>%1$s/zenphoto.cfg</code> file to the <code>%2$s</code> folder then edit it as indicated in the file's comments."
 msgstr "Setup kon dit bestand niet aanmaken. Je moet het <code>%1$s/zenphoto.cfg</code> bestand  kopiëren naar de <code>%2$s</code> map en aanpassen zoals aangegeven in de uitleg (staat in het bestand zelf). "
 
-#: ZpTranslation-Development/zp-core/setup.php:618
+#: ZpTranslation-Development/zp-core/setup.php:630
 msgid "File permissions"
 msgstr "Bestandsrechten"
 
-#: ZpTranslation-Development/zp-core/setup.php:620
+#: ZpTranslation-Development/zp-core/setup.php:632
 #, php-format
 msgid "Set File permissions to %s."
 msgstr "Zet de bestandsrechten op %s."
 
-#: ZpTranslation-Development/zp-core/setup.php:623
+#: ZpTranslation-Development/zp-core/setup.php:635
 #, php-format
 msgid "<em>%1$s</em> (<code>0%2$o</code>)"
 msgstr "<em>%1$s</em> (<code>0%2$o</code>)"
 
-#: ZpTranslation-Development/zp-core/setup.php:625
+#: ZpTranslation-Development/zp-core/setup.php:637
 #, php-format
 msgid "<em>unknown</em> (<code>%o</code>)"
 msgstr "<em>onbekend</em> (<code>%o</code>)"
 
-#: ZpTranslation-Development/zp-core/setup.php:636
+#: ZpTranslation-Development/zp-core/setup.php:648
 #, php-format
 msgid "File Permissions [are %s]"
 msgstr "Bestandsrechten zijn [%s]"
 
-#: ZpTranslation-Development/zp-core/setup.php:637
+#: ZpTranslation-Development/zp-core/setup.php:649
 msgid "If file permissions are not set to <em>strict</em> or tighter there could be a security risk. However, on some servers Zenphoto does not function correctly with tight file permissions. If Zenphoto has permission errors, run setup again and select a more relaxed permission."
 msgstr "Als bestandsrechten niet zijn ingesteld op <em>streng</em> kan dit een veiligheidsrisico vormen. Op sommige servers echter werkt Zenphoto niet goed met met strenge toegangsrechten. Als je foutmedingen krijgt over toegangsrechten start dan nogmaals de setup en selecteer minder strenge rechten."
 
-#: ZpTranslation-Development/zp-core/setup.php:643
+#: ZpTranslation-Development/zp-core/setup.php:655
 msgid "Your filesystem is Macintosh"
 msgstr "Je bestandssysteem is Macintosh"
 
-#: ZpTranslation-Development/zp-core/setup.php:643
+#: ZpTranslation-Development/zp-core/setup.php:655
 msgid "Zenphoto is unable to deal with Macintosh file names containing diacritical marks. You should avoid these."
 msgstr "Zenphoto is kan niet omgaan met Macintosh bestandssnamen met diakritische tekens. Probeer deze te voorkomen."
 
-#: ZpTranslation-Development/zp-core/setup.php:650
+#: ZpTranslation-Development/zp-core/setup.php:662
 msgid "Character set"
 msgstr "Karakterset"
 
-#: ZpTranslation-Development/zp-core/setup.php:691
+#: ZpTranslation-Development/zp-core/setup.php:703
 #, php-format
 msgid "If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems displaying the names."
 msgstr "Als de systeem-karakterset van de server anders is dan <code>%s</code>, kunnen karakters met diakritische tekens (in bestands- en mapnamen) problemen geven."
 
-#: ZpTranslation-Development/zp-core/setup.php:693
+#: ZpTranslation-Development/zp-core/setup.php:705
 #, php-format
 msgid "Change the filesystem character set define to %1$s.<br />If you do not know the character set try \"%2$s\""
 msgstr "Verander de systeem-karakterset naar %1$s.<br />Als je de karakterset niet weet probeer dan \"%2$s\""
 
-#: ZpTranslation-Development/zp-core/setup.php:707
+#: ZpTranslation-Development/zp-core/setup.php:719
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [confirmed]"
 msgstr "De Zenphoto systeem karakterdefinitie is %1$s [bevestigd]"
 
-#: ZpTranslation-Development/zp-core/setup.php:712
+#: ZpTranslation-Development/zp-core/setup.php:724
 msgid "The Zenphoto filesystem character define is ISO-8859-1 [assumed]"
 msgstr "De Zenphoto systeem karakterdefinitie is ISO-8859-1 [verondersteld]"
 
-#: ZpTranslation-Development/zp-core/setup.php:717
+#: ZpTranslation-Development/zp-core/setup.php:729
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [which seems wrong]"
 msgstr "De Zenphoto systeem-karakterset is %1$s [hetgeen niet correct kan zijn]."
 
-#: ZpTranslation-Development/zp-core/setup.php:722
+#: ZpTranslation-Development/zp-core/setup.php:734
 #, php-format
 msgid "The Zenphoto filesystem character define is %1$s [no test performed]"
 msgstr "De Zenphoto systeem karakterdefinitie is %1$s [er is geen test uitgevoerd]"
 
-#: ZpTranslation-Development/zp-core/setup.php:723
+#: ZpTranslation-Development/zp-core/setup.php:735
 #, php-format
 msgid "Setup did not perform a test of the filesystem character set. You can cause setup to test for a proper definition by creating a file in your <code>%1$s</code> folder named <strong><code>%2$s</code></strong> and re-running setup."
 msgstr "De setup kon geen test uitvoeren om de systeem-karakterset te controleren. Om deze test uit te voeren moet je een bestand met de naam <code>%2$s</code> in de <code>%1$s</code> map plaatsen en de setup opnieuw uitvoeren."
 
-#: ZpTranslation-Development/zp-core/setup.php:736
+#: ZpTranslation-Development/zp-core/setup.php:748
 msgid "Image URIs appear require the <em>filesystem</em> character set."
 msgstr "Afbeeldings URI's lijken de systeem karakterset nodig te hebben."
 
-#: ZpTranslation-Development/zp-core/setup.php:737
+#: ZpTranslation-Development/zp-core/setup.php:749
 msgid "Image URIs appear to require the UTF-8 character set."
 msgstr "Afbeeldings URI's lijken de UTF-8 karakterset nodig te hebben."
 
-#: ZpTranslation-Development/zp-core/setup.php:758
+#: ZpTranslation-Development/zp-core/setup.php:770
 msgid "You should enable the URL option <em>UTF8 image URIs</em>."
 msgstr "Je zou de URL optie <em>UTF8 afbeelding URI's</em> moeten aanzetten."
 
-#: ZpTranslation-Development/zp-core/setup.php:758
+#: ZpTranslation-Development/zp-core/setup.php:770
 msgid "<a href=\"javascript:uri(true)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(true)\">Ja graag</a>"
 
-#: ZpTranslation-Development/zp-core/setup.php:775
+#: ZpTranslation-Development/zp-core/setup.php:787
 msgid "You should disable the URL option <em>UTF8 image URIs</em>."
 msgstr "Je zou de URL optie <em>UTF8 afbeelding URI's</em> moeten uitzetten."
 
-#: ZpTranslation-Development/zp-core/setup.php:775
+#: ZpTranslation-Development/zp-core/setup.php:787
 msgid "<a href=\"javascript:uri(false)\">Please do</a>"
 msgstr "<a href=\"javascript:uri(false)\">Ja graag</a>"
 
-#: ZpTranslation-Development/zp-core/setup.php:797
+#: ZpTranslation-Development/zp-core/setup.php:809
 msgid "Warning!"
 msgstr "Waarschuwing !"
 
-#: ZpTranslation-Development/zp-core/setup.php:828
+#: ZpTranslation-Development/zp-core/setup.php:840
 msgid "SQLite is a limited database and does not support all Zenphoto functionality. Use of this database is for <em>Testing</em> only."
 msgstr "SQLite is een beperkte database en ondersteunt niet alle Zenphoto functies. Gebruik van deze database is alleen om te testen."
 
-#: ZpTranslation-Development/zp-core/setup.php:837
+#: ZpTranslation-Development/zp-core/setup.php:849
 msgid "Database"
 msgstr "Database"
 
-#: ZpTranslation-Development/zp-core/setup.php:841
+#: ZpTranslation-Development/zp-core/setup.php:853
 #, php-format
 msgid "PHP <code>%s support</code> for configured Database [is experimental]"
 msgstr "PHP <code>%s ondersteuning</code> voor geconfigureerde database [is experimenteel]"
 
-#: ZpTranslation-Development/zp-core/setup.php:843
+#: ZpTranslation-Development/zp-core/setup.php:855
 #, php-format
 msgid "PHP <code>%s</code> support for configured Database"
 msgstr "PHP <code>%s ondersteuning</code> voor geconfigureerde database"
 
-#: ZpTranslation-Development/zp-core/setup.php:843
+#: ZpTranslation-Development/zp-core/setup.php:855
 #, php-format
 msgid "PHP <code>%s support</code> for configured Database [is not installed]"
 msgstr "PHP <code>%s support</code> voor geconfigureerde database [is niet geïnstalleerd]"
 
-#: ZpTranslation-Development/zp-core/setup.php:843
+#: ZpTranslation-Development/zp-core/setup.php:855
 #, php-format
 msgid "Choose a different database engine or install %s support in your PHP to clear this condition."
 msgstr "Kies een ander database programma of installeer %s ondersteuning in je PHP."
 
-#: ZpTranslation-Development/zp-core/setup.php:849
+#: ZpTranslation-Development/zp-core/setup.php:861
 #, php-format
 msgid " <code>%1$s</code> support (<a onclick=\"$('#%1$s').toggle('show')\" >experimental</a>)"
 msgstr " <code>%1$s</code> ondersteuning (<a onclick=\"$('#%1$s').toggle('show')\" >experimenteel</a>)"
 
-#: ZpTranslation-Development/zp-core/setup.php:859
+#: ZpTranslation-Development/zp-core/setup.php:871
 #, php-format
 msgid "PHP <code>%s</code> support"
 msgstr "PHP <code>%s</code> ondersteuning"
 
-#: ZpTranslation-Development/zp-core/setup.php:866
+#: ZpTranslation-Development/zp-core/setup.php:878
 #, php-format
 msgid "PHP <code>%s</code> support [is not installed]"
 msgstr "PHP <code>%s</code> ondersteuning [is niet geïnstalleerd]"
 
-#: ZpTranslation-Development/zp-core/setup.php:885
+#: ZpTranslation-Development/zp-core/setup.php:897
 msgid "Database connection"
 msgstr "Database verbinding"
 
-#: ZpTranslation-Development/zp-core/setup.php:888
-#: ZpTranslation-Development/zp-core/setup.php:897
+#: ZpTranslation-Development/zp-core/setup.php:900
+#: ZpTranslation-Development/zp-core/setup.php:909
 msgid "Database setup in configuration file"
 msgstr "Database setup in configuratiebestand"
 
-#: ZpTranslation-Development/zp-core/setup.php:895
+#: ZpTranslation-Development/zp-core/setup.php:907
 msgid "You have not correctly set your <strong>Database</strong> <code>user</code>, <code>password</code>, etc. in your configuration file and <strong>setup</strong> is not able to write to the file."
 msgstr "Je hebt je <strong>database</strong> <code>gebruiker</code>, <code>wachtwoord</code>, etc. niet correct in je configuratiebestand bestand gezet en <strong>setup</strong> is niet in staat om naar het bestand te schrijven."
 
-#: ZpTranslation-Development/zp-core/setup.php:900
+#: ZpTranslation-Development/zp-core/setup.php:912
 #, php-format
 msgid "Connect to %s"
 msgstr "Verbinden met %s"
 
-#: ZpTranslation-Development/zp-core/setup.php:900
+#: ZpTranslation-Development/zp-core/setup.php:912
 msgid "Connect to Database [<code>CONNECT</code> query failed]"
 msgstr "Verbinden met database [<code>CONNECT</code> query mislukt]]"
 
-#: ZpTranslation-Development/zp-core/setup.php:904
+#: ZpTranslation-Development/zp-core/setup.php:916
 msgid "Check the <code>user</code>, <code>password</code>, and <code>database host</code> and try again."
 msgstr "Controleer de <code>gebruikersnaam</code>, <code>wachtwoord</code> en <code>database host</code> en probeer het opnieuw."
 
-#: ZpTranslation-Development/zp-core/setup.php:908
+#: ZpTranslation-Development/zp-core/setup.php:920
 #, php-format
 msgid "%1$s version %2$s"
 msgstr "%1$s versie %2$s"
 
-#: ZpTranslation-Development/zp-core/setup.php:908
+#: ZpTranslation-Development/zp-core/setup.php:920
 #, php-format
 msgid "%1$s Version %2$s or greater is required. Version %3$s or greater is preferred. Use a lower version at your own risk."
 msgstr "%1$s Versie %2$s of hoger is vereist. Versie %3$s of nieuwer wordt aangeraden. Gebruik van oudere versies is op eigen risico."
 
-#: ZpTranslation-Development/zp-core/setup.php:915
+#: ZpTranslation-Development/zp-core/setup.php:927
 #, php-format
 msgid "Database <code>%s</code> created"
 msgstr "Database <code>%s</code> aangemaakt"
 
-#: ZpTranslation-Development/zp-core/setup.php:915
+#: ZpTranslation-Development/zp-core/setup.php:927
 #, php-format
 msgid "Database <code>%s</code> not created [<code>CREATE DATABASE</code> query failed]"
 msgstr "Database <code>%s</code> niet aangemaakt [<code>CREATE DATABASE</code> query mislukt]"
 
-#: ZpTranslation-Development/zp-core/setup.php:918
+#: ZpTranslation-Development/zp-core/setup.php:930
 msgid "Connect to the database [You have not provided a database name]"
 msgstr "Verbind met de database [Je hebt geen databasenaam opgegeven]"
 
-#: ZpTranslation-Development/zp-core/setup.php:918
+#: ZpTranslation-Development/zp-core/setup.php:930
 msgid "Provide the name of your database in the form above."
 msgstr "Vul in het bovenstaande formulier de naam van de database in."
 
-#: ZpTranslation-Development/zp-core/setup.php:921
+#: ZpTranslation-Development/zp-core/setup.php:933
 msgid "Connect to the database [Database does not exist]"
 msgstr "Verbinden met de database [database bestaat niet]"
 
-#: ZpTranslation-Development/zp-core/setup.php:921
+#: ZpTranslation-Development/zp-core/setup.php:933
 #, php-format
 msgid "Click here to attempt to create <a href=\"?Create_Database\" >%s</a>."
 msgstr "Klik hier om te proberen <a href=\"?Create_Database\" >%s</a> aan te maken."
 
-#: ZpTranslation-Development/zp-core/setup.php:927
+#: ZpTranslation-Development/zp-core/setup.php:939
 msgid "You may need to set <code>SQL mode</code> <em>empty</em> in your Database configuration."
 msgstr "Zet eventueel <code>SQL mode</code> op <em>leeg</em> in de database configuratie."
 
-#: ZpTranslation-Development/zp-core/setup.php:931
+#: ZpTranslation-Development/zp-core/setup.php:943
 #, php-format
 msgid "<code>SQL mode</code> [query failed]"
 msgstr "<code>SQL mode</code> [query mislukt]"
 
-#: ZpTranslation-Development/zp-core/setup.php:934
+#: ZpTranslation-Development/zp-core/setup.php:946
 #, php-format
 msgid "<code>SQL mode</code> [<em>%s</em> overridden]"
 msgstr "<code>SQL mode</code> [<em>%s</em> buiten werking gesteld]"
 
-#: ZpTranslation-Development/zp-core/setup.php:934
+#: ZpTranslation-Development/zp-core/setup.php:946
 msgid "Consider setting it <em>empty</em> in your Database configuration."
 msgstr "Zet eventueel op <em>leeg</em> in de database configuratie."
 
-#: ZpTranslation-Development/zp-core/setup.php:941
+#: ZpTranslation-Development/zp-core/setup.php:953
 msgid "<code>SQL mode</code>"
 msgstr "<code>SQL mode</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:941
+#: ZpTranslation-Development/zp-core/setup.php:953
 #, php-format
 msgid "<code>SQL mode</code> [is set to <em>%s</em>]"
 msgstr "<code>SQL mode</code> [is ingesteld op <em>%s</em>]"
 
-#: ZpTranslation-Development/zp-core/setup.php:941
+#: ZpTranslation-Development/zp-core/setup.php:953
 msgid "Consider setting it <em>empty</em> if you get Database errors."
 msgstr "Zet eventueel op <em>leeg</em> als je database foutmeldingen krijgt."
 
-#: ZpTranslation-Development/zp-core/setup.php:945
+#: ZpTranslation-Development/zp-core/setup.php:957
 msgid "<code>SQL mode</code> [SET SESSION failed]"
 msgstr "<code>SQL mode</code> [SET SESSION mislukt]"
 
-#: ZpTranslation-Development/zp-core/setup.php:953
+#: ZpTranslation-Development/zp-core/setup.php:965
 msgid "Select"
 msgstr "Selecteren"
 
-#: ZpTranslation-Development/zp-core/setup.php:953
+#: ZpTranslation-Development/zp-core/setup.php:965
 msgid "Create"
 msgstr "Aanmaken"
 
-#: ZpTranslation-Development/zp-core/setup.php:953
+#: ZpTranslation-Development/zp-core/setup.php:965
 msgid "Drop"
 msgstr "Drop"
 
-#: ZpTranslation-Development/zp-core/setup.php:953
+#: ZpTranslation-Development/zp-core/setup.php:965
 msgid "Insert"
 msgstr "Invoegen"
 
-#: ZpTranslation-Development/zp-core/setup.php:954
+#: ZpTranslation-Development/zp-core/setup.php:966
 msgid "Update"
 msgstr "Updaten"
 
-#: ZpTranslation-Development/zp-core/setup.php:954
+#: ZpTranslation-Development/zp-core/setup.php:966
 msgid "Alter"
 msgstr "Wijzigen"
 
-#: ZpTranslation-Development/zp-core/setup.php:964
+#: ZpTranslation-Development/zp-core/setup.php:976
 msgid "Grants found:"
 msgstr "Gevonden rechten:"
 
-#: ZpTranslation-Development/zp-core/setup.php:992
+#: ZpTranslation-Development/zp-core/setup.php:1004
 msgid "The <em>SHOW GRANTS</em> query failed."
 msgstr "De <em>TOON RECHTEN</em> query is mislukt."
 
-#: ZpTranslation-Development/zp-core/setup.php:994
+#: ZpTranslation-Development/zp-core/setup.php:1006
 msgid "Database <code>access rights</code>"
 msgstr "Database <code>toegangsrechten</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:994
+#: ZpTranslation-Development/zp-core/setup.php:1006
 #, php-format
 msgid "Database <code>access rights</code> [%s]"
 msgstr "Database <code>toegangsrechten</code> [%s]"
 
-#: ZpTranslation-Development/zp-core/setup.php:995
+#: ZpTranslation-Development/zp-core/setup.php:1007
 #, php-format
 msgid "Your Database user must have %s rights."
 msgstr "Je database gebruiker heeft de volgende rechten nodig %s ."
 
-#: ZpTranslation-Development/zp-core/setup.php:1011
+#: ZpTranslation-Development/zp-core/setup.php:1023
 msgid "<em>SHOW TABLES</em> [found no tables]"
 msgstr "<strong>Er zijn geen tabellen gevonden in de database !</strong>"
 
-#: ZpTranslation-Development/zp-core/setup.php:1014
+#: ZpTranslation-Development/zp-core/setup.php:1026
 #, php-format
 msgid "<em>SHOW TABLES</em> found: %s"
 msgstr "De volgende tabellen zijn in de database gevonden: %s"
 
-#: ZpTranslation-Development/zp-core/setup.php:1018
+#: ZpTranslation-Development/zp-core/setup.php:1030
 msgid "<em>SHOW TABLES</em> [Failed]"
 msgstr "<strong>Het tonen van tabellen in de database is mislukt !</strong>"
 
-#: ZpTranslation-Development/zp-core/setup.php:1018
+#: ZpTranslation-Development/zp-core/setup.php:1030
 #, php-format
 msgid "The database did not return a list of the database tables for <code>%s</code>."
 msgstr "De  database  heeft geen lijst van database tabellen voor <code>%s</code> geretourneerd."
 
-#: ZpTranslation-Development/zp-core/setup.php:1019
+#: ZpTranslation-Development/zp-core/setup.php:1031
 msgid "<strong>Setup</strong> will attempt to create all tables. This will not over write any existing tables."
 msgstr "<strong>Setup</strong> zal alle tabellen proberen aan te maken. Dit zal bestaande tabellen niet overschrijven."
 
-#: ZpTranslation-Development/zp-core/setup.php:1045
+#: ZpTranslation-Development/zp-core/setup.php:1057
 msgid "Database <code>field collations</code> [Image table]"
 msgstr "Database <code>field collations</code> [Afbeelding tabel]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1048
+#: ZpTranslation-Development/zp-core/setup.php:1060
 msgid "Database <code>field collations</code> [Album table]"
 msgstr "Database <code>field collations</code> [Album tabel]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1051
+#: ZpTranslation-Development/zp-core/setup.php:1063
 msgid "Database <code>field collations</code> [Image and Album tables]"
 msgstr "Database <code>field collations</code> [Afbeelding en Album tabellen]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1054
+#: ZpTranslation-Development/zp-core/setup.php:1066
 msgid "Database <code>field collations</code> [SHOW COLUMNS query failed]"
 msgstr "Database <code>field collations</code> [SHOW COLUMNS query mislukt]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1057
+#: ZpTranslation-Development/zp-core/setup.php:1069
 msgid "Database <code>field collations</code>"
 msgstr "Database <code>field collations</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:1057
+#: ZpTranslation-Development/zp-core/setup.php:1069
 #, php-format
 msgid "%s is not UTF-8. You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code>"
 msgid_plural "%s are not UTF-8. You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code>"
 msgstr[0] "%s is géén UTF-8. Je zou moeten overwegen alle gegevens in UTF-8 codering te zetten en de collatie van de database-velden te varanderen in <code>utf8_unicode_ci</code>"
 msgstr[1] "%s zijn géén UTF-8. Je zou moeten overwegen alle gegevens in UTF-8 codering te zetten en de collatie van de database-velden te varanderen in <code>utf8_unicode_ci</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:1059
+#: ZpTranslation-Development/zp-core/setup.php:1071
 msgid "Database <code>$conf[\"UTF-8\"]</code> [is not set <em>true</em>]"
 msgstr "Database <code>$conf[\"UTF-8\"]</code> [staat niet op <em>true</em>]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1059
+#: ZpTranslation-Development/zp-core/setup.php:1071
 msgid "You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> and setting this <em>true</em>. Zenphoto works best with pure UTF-8 encodings."
 msgstr "Je zou moeten overwegen alle gegevens in UTF-8 codering te zetten en de collatie van de database-velden te varanderen in <code>utf8_unicode_ci</code>. Zenphoto werkt het beste met UTF-8 codering."
 
-#: ZpTranslation-Development/zp-core/setup.php:1080
+#: ZpTranslation-Development/zp-core/setup.php:1092
 msgid "Zenphoto files"
 msgstr "Zenphoto bestanden"
 
-#: ZpTranslation-Development/zp-core/setup.php:1094
+#: ZpTranslation-Development/zp-core/setup.php:1106
 msgid "Zenphoto package [missing]"
 msgstr "Zenphoto package [ontbreekt]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1094
+#: ZpTranslation-Development/zp-core/setup.php:1106
 msgid "The file <code>Zenphoto.package</code> is either missing, not readable, or defective. Your installation may be corrupt!"
 msgstr "Het bestand <code>Zenphoto.package</code> ontbreekt,  is niet leesbaar of is beschadigd. Je installatie kan corrupt zijn."
 
-#: ZpTranslation-Development/zp-core/setup.php:1100
+#: ZpTranslation-Development/zp-core/setup.php:1112
 #, php-format
 msgid "Setting permissions (0%o) for Zenphoto package."
 msgstr "Rechten instellen (0%o) voor Zenphoto package."
 
-#: ZpTranslation-Development/zp-core/setup.php:1203
+#: ZpTranslation-Development/zp-core/setup.php:1215
 msgid "Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]"
 msgstr "Zenphoto <em>zp-core</em> bestanden [Dit is een <em>debug</em> versie. Sommige bestanden ontbreken of lijken niet in orde]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1205
+#: ZpTranslation-Development/zp-core/setup.php:1217
 msgid "Zenphoto core files [Some files are missing or seem wrong]"
 msgstr "Zenphoto <em>zp-core</em> bestanden [sommige bestanden ontbreken of lijken niet in orde]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1207
+#: ZpTranslation-Development/zp-core/setup.php:1219
 msgid "Perhaps there was a problem with the upload. You should check the following files: "
 msgstr "Misschien was er een probleem met de upload. Je moet de volgende bestanden controleren:&nbsp;"
 
-#: ZpTranslation-Development/zp-core/setup.php:1212
+#: ZpTranslation-Development/zp-core/setup.php:1224
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
 msgstr "Zenphoto <em>zp-core</em> bestanden [Dit is een <em>debug</em> versie]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1219
+#: ZpTranslation-Development/zp-core/setup.php:1231
 msgid "Zenphoto core files"
 msgstr "Zenphoto <em>zp-core</em> bestanden"
 
-#: ZpTranslation-Development/zp-core/setup.php:1221
+#: ZpTranslation-Development/zp-core/setup.php:1233
 msgid "Installation files"
 msgstr "Installatie-bestanden"
 
-#: ZpTranslation-Development/zp-core/setup.php:1235
+#: ZpTranslation-Development/zp-core/setup.php:1247
 #, php-format
 msgid ".svn [%s instance]"
 msgid_plural ".svn [%s instances]"
 msgstr[0] ".svn [%s instance]"
 msgstr[1] ".svn [%s instances]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1238
+#: ZpTranslation-Development/zp-core/setup.php:1250
 #, php-format
 msgid "php.ini [%s instance]"
 msgid_plural "php.ini [%s instances]"
 msgstr[0] "php.ini [%s actief]"
 msgstr[1] "php.ini [%s actief]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1261
-#: ZpTranslation-Development/zp-core/setup.php:1264
+#: ZpTranslation-Development/zp-core/setup.php:1273
+#: ZpTranslation-Development/zp-core/setup.php:1276
 msgid "Zenphoto core folders [Some unknown files were found]"
 msgstr "Zenphoto <em>zp-core</em> bestanden [er werden onbekende bestanden gevonden]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1261
+#: ZpTranslation-Development/zp-core/setup.php:1273
 msgid "The following files could not be deleted."
 msgstr "De volgende bestanden konden niet worden verwijderd."
 
-#: ZpTranslation-Development/zp-core/setup.php:1265
+#: ZpTranslation-Development/zp-core/setup.php:1277
 msgid "You should remove the following files: "
 msgstr "Je zou de volgende bestanden moeten verwijderen:"
 
-#: ZpTranslation-Development/zp-core/setup.php:1266
+#: ZpTranslation-Development/zp-core/setup.php:1278
 msgid "Delete extra files"
 msgstr "Verwijder extra bestanden"
 
-#: ZpTranslation-Development/zp-core/setup.php:1269
+#: ZpTranslation-Development/zp-core/setup.php:1281
 msgid "Zenphoto core file permissions"
 msgstr "Zenphoto rechten voor <em>zp-core</em> bestanden"
 
-#: ZpTranslation-Development/zp-core/setup.php:1269
+#: ZpTranslation-Development/zp-core/setup.php:1281
 msgid "Zenphoto core file permissions [not correct]"
 msgstr "Zenphotorechten voor <em>zp-core</em> bestanden [niet correct]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1269
+#: ZpTranslation-Development/zp-core/setup.php:1281
 msgid "Setup could not set the one or more components to the selected permissions level. You will have to set the permissions manually. See the <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Troubleshooting guide</a> for details on Zenphoto permissions requirements."
 msgstr "Setup kan de geselecteerde rechten niet toekennen aan  één of meer componenten. Je zult de rechten handmatig moeten instellen. Zie de <a href=\"http://www.zenphoto.org/news/troubleshooting-zenphoto#29\">Troubleshooting guide</a> voor uitleg over Zenphoto-rechten."
 
-#: ZpTranslation-Development/zp-core/setup.php:1272
+#: ZpTranslation-Development/zp-core/setup.php:1284
 msgid "<em>.htaccess</em> file"
 msgstr "<em>.htaccess</em> bestand"
 
-#: ZpTranslation-Development/zp-core/setup.php:1283
+#: ZpTranslation-Development/zp-core/setup.php:1295
 msgid "<em>.htaccess</em> file [is empty or does not exist]"
 msgstr "<em>.htaccess</em> bestand [is leeg of bestaat niet]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1286
+#: ZpTranslation-Development/zp-core/setup.php:1298
 msgid "If you have the mod_rewrite module enabled an <em>.htaccess</em> file is required the root zenphoto folder to create cruft-free URLs."
 msgstr "Als mod_rewrite is geactiveerd is er een <em>.htaccess</em> bestand in de basismap nodig om nette URL's te maken."
 
-#: ZpTranslation-Development/zp-core/setup.php:1287
+#: ZpTranslation-Development/zp-core/setup.php:1299
 msgid "You can ignore this warning if you do not intend to set the <code>mod_rewrite</code> option."
 msgstr "Je kunt deze waarschuwing negeren als je niet van plan ben de <code>mod_rewrite</code> optie aan te zetten."
 
-#: ZpTranslation-Development/zp-core/setup.php:1289
+#: ZpTranslation-Development/zp-core/setup.php:1301
 msgid "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Make setup create the file</a></p><br style=\"clear:both\" /><br />"
 msgstr "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Laat setup het bestand maken</a></p><br style=\"clear:both\" /><br />"
 
-#: ZpTranslation-Development/zp-core/setup.php:1292
-#: ZpTranslation-Development/zp-core/setup.php:1328
+#: ZpTranslation-Development/zp-core/setup.php:1304
+#: ZpTranslation-Development/zp-core/setup.php:1340
 msgid "Server seems not to be Apache or Apache-compatible, <code>.htaccess</code> not required."
 msgstr "De server lijkt niet Apache of Apache-compatible te zijn, <code>.htaccess</code> test wordt overgeslagen"
 
-#: ZpTranslation-Development/zp-core/setup.php:1331
+#: ZpTranslation-Development/zp-core/setup.php:1343
 #, php-format
 msgid "The <em>.htaccess</em> file in your root folder is not the same version as the one distributed with this version of Zenphoto. If you have made changes to <em>.htaccess</em>, merge those changes with the <em>%s/htaccess</em> file to produce a new <em>.htaccess</em> file."
 msgstr "Het <em>.htaccess</em> bestand in de basismap is niet dezelfde versie als het bestand dat bij deze versie van Zenphoto hoort. Als je het oude <em>.htaccess</em> hebt veranderd, voeg dan de veranderingen ook in het <em>%s/htaccess</em> bestand in en creëer zo een nieuw <em>.htaccess</em> bestand. "
 
-#: ZpTranslation-Development/zp-core/setup.php:1333
+#: ZpTranslation-Development/zp-core/setup.php:1345
 msgid "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Replace the existing <em>.htaccess</em> file with the current version</a></p><br style=\"clear:both\" /><br />"
 msgstr "<p class=\"buttons\"><a href=\"?copyhtaccess\" >Vervang het bestaande <em>.htaccess</em> bestand door de nieuwe versie </a></p><br style=\"clear:both\" /><br />"
 
-#: ZpTranslation-Development/zp-core/setup.php:1336
+#: ZpTranslation-Development/zp-core/setup.php:1348
 msgid "<em>.htaccess</em> file [wrong version]"
 msgstr "<em>.htaccess</em> bestand [verkeerde versie]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1351
+#: ZpTranslation-Development/zp-core/setup.php:1363
 #, php-format
 msgid "<em>.htaccess</em> file (<em>RewriteEngine</em> is <strong>%s</strong>)"
 msgstr "<em>.htaccess</em> bestand (<em>RewriteEngine</em> is <strong>%s</strong>)"
 
-#: ZpTranslation-Development/zp-core/setup.php:1364
+#: ZpTranslation-Development/zp-core/setup.php:1376
 msgid "<em>.htaccess</em> RewriteBase [is <em>missing</em>]"
 msgstr "<em>.htaccess</em> RewriteBase [<em>ontbreekt</em>]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1370
+#: ZpTranslation-Development/zp-core/setup.php:1382
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 msgstr "<em>.htaccess</em> RewriteBase is <code>%s</code>"
 
-#: ZpTranslation-Development/zp-core/setup.php:1371
+#: ZpTranslation-Development/zp-core/setup.php:1383
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> [Does not match install folder]"
 msgstr "<em>.htaccess</em> RewriteBase is <code>%s</code> [komt niet overeen met de installatiemap]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1381
+#: ZpTranslation-Development/zp-core/setup.php:1393
 #, php-format
 msgid "<em>.htaccess</em> RewriteBase is <code>%s</code> (fixed)"
 msgstr "<em>.htaccess</em> RewriteBase is <code>%s</code> (opgelost)"
 
-#: ZpTranslation-Development/zp-core/setup.php:1389
+#: ZpTranslation-Development/zp-core/setup.php:1401
 msgid "Setup was not able to write to the file change RewriteBase match the install folder."
 msgstr "Setup was niet instaat naar het bestand te schrijven, verander RewriteBase zodat deze gelijk is aan de installatiemap."
 
-#: ZpTranslation-Development/zp-core/setup.php:1390
+#: ZpTranslation-Development/zp-core/setup.php:1402
 #, php-format
 msgid "Either make the file writeable or set <code>RewriteBase</code> in your <code>.htaccess</code> file to <code>%s</code>."
 msgstr "Maak het bestand schrijfbaar of zet <code>RewriteBase</code> in het <code>.htaccess</code> bestand op <code>%s</code>."
 
-#: ZpTranslation-Development/zp-core/setup.php:1395
-#: ZpTranslation-Development/zp-core/setup.php:1398
+#: ZpTranslation-Development/zp-core/setup.php:1407
 #: ZpTranslation-Development/zp-core/setup.php:1410
+#: ZpTranslation-Development/zp-core/setup.php:1422
 msgid "<em>robots.txt</em> file"
 msgstr "<em>robots.txt</em> bestand"
 
-#: ZpTranslation-Development/zp-core/setup.php:1395
-#: ZpTranslation-Development/zp-core/setup.php:1398
+#: ZpTranslation-Development/zp-core/setup.php:1407
 #: ZpTranslation-Development/zp-core/setup.php:1410
+#: ZpTranslation-Development/zp-core/setup.php:1422
 msgid "<em>robots.txt</em> file [Not created]"
 msgstr "<em>robots.txt</em> bestand [niet aangemaakt]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1395
+#: ZpTranslation-Development/zp-core/setup.php:1407
 msgid "Setup could not find the  <em>example_robots.txt</em> file."
 msgstr "Setup kon het <em>example_robots.txt</em> bestand niet vinden."
 
-#: ZpTranslation-Development/zp-core/setup.php:1398
+#: ZpTranslation-Development/zp-core/setup.php:1410
 msgid "Setup did not create a <em>robots.txt</em> file because one already exists."
 msgstr "Setup kon geen <em>robots.txt</em> bestand aanmaken omdat er al een bestaat."
 
-#: ZpTranslation-Development/zp-core/setup.php:1410
+#: ZpTranslation-Development/zp-core/setup.php:1422
 msgid "Setup could not create a <em>robots.txt</em> file."
 msgstr "Setup kon geen <em>robots.txt</em> bestand aanmaken."
 
-#: ZpTranslation-Development/zp-core/setup.php:1415
+#: ZpTranslation-Development/zp-core/setup.php:1427
 msgid "albums [<code>$conf['external_album_folder']</code> is deprecated]"
 msgstr "albums [<code>$conf['external_album_folder'</code> is verouderd]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1415
-#: ZpTranslation-Development/zp-core/setup.php:1439
+#: ZpTranslation-Development/zp-core/setup.php:1427
+#: ZpTranslation-Development/zp-core/setup.php:1451
 msgid "You should update your configuration file to conform to the current zenphoto.cfg example file."
 msgstr "Je moet configuratiebestand aanpassen zodat deze in de vorm is van het huidige zenphoto.cfg bestand."
 
-#: ZpTranslation-Development/zp-core/setup.php:1439
+#: ZpTranslation-Development/zp-core/setup.php:1451
 msgid "<em>albums</em> folder"
 msgstr "<em>albums</em> mapr"
 
-#: ZpTranslation-Development/zp-core/setup.php:1439
+#: ZpTranslation-Development/zp-core/setup.php:1451
 msgid "<em>albums</em> folder [The line <code>$conf['album_folder']</code> is missing from your configuration file]"
 msgstr "<em>albums</em> map [de regel <code>$conf['album_folder']</code> ontbreekt in het configuratiebestand]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1443
+#: ZpTranslation-Development/zp-core/setup.php:1455
 msgid "<em>locale</em> folders"
 msgstr "<em>locale</em> mappen"
 
-#: ZpTranslation-Development/zp-core/setup.php:1443
+#: ZpTranslation-Development/zp-core/setup.php:1455
 msgid "<em>locale</em> folders [Are not complete]"
 msgstr "<em>locale</em> mappen [zijn niet compleet]"
 
-#: ZpTranslation-Development/zp-core/setup.php:1443
+#: ZpTranslation-Development/zp-core/setup.php:1455
 msgid "Be sure you have uploaded the complete Zenphoto package. You must have at least the <em>en_US</em> folder."
 msgstr "Controleer dat je het complete Zenphoto-pakket geupload hebt. Je moet op zijn de mist over de <em>en_US</em> map beschikken."
 
-#: ZpTranslation-Development/zp-core/setup.php:1444
+#: ZpTranslation-Development/zp-core/setup.php:1456
 msgid "uploaded"
 msgstr "upload"
 
-#: ZpTranslation-Development/zp-core/setup.php:1446
+#: ZpTranslation-Development/zp-core/setup.php:1458
 msgid "HTML cache"
 msgstr "HTML cache"
 
-#: ZpTranslation-Development/zp-core/setup.php:1447
+#: ZpTranslation-Development/zp-core/setup.php:1459
 msgid "Third party plugins"
 msgstr "Third party plugins"
 
-#: ZpTranslation-Development/zp-core/setup.php:1459
+#: ZpTranslation-Development/zp-core/setup.php:1471
 msgid "You need to address the problems indicated above then run <code>setup.php</code> again."
 msgstr "Los de aangegeven problemen op en voer daarna <code>setup.php</code> opnieuw uit."
 
-#: ZpTranslation-Development/zp-core/setup.php:1462
+#: ZpTranslation-Development/zp-core/setup.php:1474
 msgid "Setup failed."
 msgstr "Setup mislukt."
 
-#: ZpTranslation-Development/zp-core/setup.php:1473
-#: ZpTranslation-Development/zp-core/setup.php:2522
+#: ZpTranslation-Development/zp-core/setup.php:1485
+#: ZpTranslation-Development/zp-core/setup.php:2534
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "Je hebt <em>GEBRUIKERSADMIN</em> rechten nodig om setup uit te voeren."
 
-#: ZpTranslation-Development/zp-core/setup.php:1475
-#: ZpTranslation-Development/zp-core/setup.php:2524
+#: ZpTranslation-Development/zp-core/setup.php:1487
+#: ZpTranslation-Development/zp-core/setup.php:2536
 msgid "You must be logged in to run setup."
 msgstr "Je moet ingelogd zijn om setup te starten."
 
-#: ZpTranslation-Development/zp-core/setup.php:1496
+#: ZpTranslation-Development/zp-core/setup.php:1508
 msgid "database connected"
 msgstr "Verbonden met de database."
 
-#: ZpTranslation-Development/zp-core/setup.php:2228
+#: ZpTranslation-Development/zp-core/setup.php:2240
 msgid "About to create tables"
 msgstr "Op het punt om tabellen aan te maken"
 
-#: ZpTranslation-Development/zp-core/setup.php:2230
+#: ZpTranslation-Development/zp-core/setup.php:2242
 msgid "About to update tables"
 msgstr "Bezig met het updaten van database tabellen"
 
-#: ZpTranslation-Development/zp-core/setup.php:2232
+#: ZpTranslation-Development/zp-core/setup.php:2244
 msgid "Begin table creation"
 msgstr "Beginnen met het aanmaken van tabellen"
 
-#: ZpTranslation-Development/zp-core/setup.php:2238
-#: ZpTranslation-Development/zp-core/setup.php:2253
+#: ZpTranslation-Development/zp-core/setup.php:2250
+#: ZpTranslation-Development/zp-core/setup.php:2265
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "Query %1$s mislukt. Fout: %2$s"
 
-#: ZpTranslation-Development/zp-core/setup.php:2240
+#: ZpTranslation-Development/zp-core/setup.php:2252
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Fout tijdens het aanmaken van de tabellen: <br />Query: %1$s<br />Fout: %2$s"
 
-#: ZpTranslation-Development/zp-core/setup.php:2243
 #: ZpTranslation-Development/zp-core/setup.php:2255
+#: ZpTranslation-Development/zp-core/setup.php:2267
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "Query ( %s ) Succesvol."
 
-#: ZpTranslation-Development/zp-core/setup.php:2247
+#: ZpTranslation-Development/zp-core/setup.php:2259
 msgid "Begin table updates"
 msgstr "Beginnen met het updaten van tabellen"
 
-#: ZpTranslation-Development/zp-core/setup.php:2260
+#: ZpTranslation-Development/zp-core/setup.php:2272
 msgid "Done with database creation and update"
 msgstr "klaar met het creëren en updaten van de database"
 
-#: ZpTranslation-Development/zp-core/setup.php:2262
+#: ZpTranslation-Development/zp-core/setup.php:2274
 #, php-format
 msgid "Previous Release was %s"
 msgstr "Vorige versie was %s"
 
-#: ZpTranslation-Development/zp-core/setup.php:2289
+#: ZpTranslation-Development/zp-core/setup.php:2301
 msgid "Done with table create!"
 msgstr "Klaar met het aanmaken van de tabellen!"
 
-#: ZpTranslation-Development/zp-core/setup.php:2291
+#: ZpTranslation-Development/zp-core/setup.php:2303
 msgid "Done with table create with errors!"
 msgstr "Klaar met het aanmaken van de tabellen met errors!"
 
-#: ZpTranslation-Development/zp-core/setup.php:2295
+#: ZpTranslation-Development/zp-core/setup.php:2307
 msgid "Done with table update"
 msgstr "Klaar met het updaten van de tabellen!"
 
-#: ZpTranslation-Development/zp-core/setup.php:2297
+#: ZpTranslation-Development/zp-core/setup.php:2309
 msgid "Done with table update with errors"
 msgstr "Klaar met het updaten van de tabellen met errors!"
 
-#: ZpTranslation-Development/zp-core/setup.php:2336
+#: ZpTranslation-Development/zp-core/setup.php:2348
 msgid "Setup files deleted."
 msgstr "Setup bestanden verwijderd."
 
-#: ZpTranslation-Development/zp-core/setup.php:2343
+#: ZpTranslation-Development/zp-core/setup.php:2355
 #, php-format
 msgid "Failed to delete: %s"
 msgstr "Verwijderen van: %s mislukt."
 
-#: ZpTranslation-Development/zp-core/setup.php:2351
+#: ZpTranslation-Development/zp-core/setup.php:2363
 msgid "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future."
 msgstr "<strong>BELANGRIJK:</strong> Het wordt sterk aangeraden de <em>setup</em> scripts te verwijderen uit de <em>zp-core</em> map.<br />Je kunt ze later altijd weer uploaden als je ze nodig mocht hebben."
 
-#: ZpTranslation-Development/zp-core/setup.php:2356
+#: ZpTranslation-Development/zp-core/setup.php:2368
 msgid "Delete setup files"
 msgstr "Verwijder setup bestanden"
 
-#: ZpTranslation-Development/zp-core/setup.php:2361
+#: ZpTranslation-Development/zp-core/setup.php:2373
 msgid "This is a clone of another installation. The setup files should be deleted from that installation"
 msgstr "Dit is een kloon van een andere installatie. De <code>setup</code> bestanden zouden verwijderd moeten worden uit die installatie."
 
-#: ZpTranslation-Development/zp-core/setup.php:2371
+#: ZpTranslation-Development/zp-core/setup.php:2383
 #, php-format
 msgid "You may <a href=\"%1$s\">set your admin user and password</a> or <a href=\"%2$s\">run backup-restore</a>"
 msgstr "Je kunt hier <a href=\"%1$s\">je gebruikersnaam en wachtwoord instellen</a> of een<a href=\"%2$s\"> backup-restore uitvoeren</a>"
 
-#: ZpTranslation-Development/zp-core/setup.php:2373
+#: ZpTranslation-Development/zp-core/setup.php:2385
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr "Je moet je <a href=\"%1$s\">admin gebruikersnaam en wachtwoord invoeren</a>"
 
-#: ZpTranslation-Development/zp-core/setup.php:2385
+#: ZpTranslation-Development/zp-core/setup.php:2397
 #, php-format
 msgid "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s\">administer.</a>"
 msgstr "Je kunt nu <a href=\"%1$s\">de gallerij bekijken</a> of <a href=\"%2$s\">beheren.</a>"
 
-#: ZpTranslation-Development/zp-core/setup.php:2442
+#: ZpTranslation-Development/zp-core/setup.php:2454
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Databasetabellen die worden aangemaakt: %s"
 
-#: ZpTranslation-Development/zp-core/setup.php:2460
+#: ZpTranslation-Development/zp-core/setup.php:2472
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Database tabellen die worden ge-update: %s"
 
-#: ZpTranslation-Development/zp-core/setup.php:2491
+#: ZpTranslation-Development/zp-core/setup.php:2503
 msgid "<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding."
 msgstr "<strong>Waarschuwing !</strong> Deze upgrade maakt structurele veranderingen in de database. Dit kan niet eenvoudig ongedaan gemaakt worden.<br />Zorg ervoor dat je een backup van de database hebt voordat je verder gaat."
 
-#: ZpTranslation-Development/zp-core/setup.php:2494
+#: ZpTranslation-Development/zp-core/setup.php:2506
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s Ik begrijp dat m'n database ingrijpend veranderd wordt als ik doorga."
 
-#: ZpTranslation-Development/zp-core/setup.php:2552
+#: ZpTranslation-Development/zp-core/setup.php:2564
 msgid "run setup"
 msgstr "Voer setup uit"
 
-#: ZpTranslation-Development/zp-core/setup.php:2552
+#: ZpTranslation-Development/zp-core/setup.php:2564
 msgid "Go"
 msgstr "Gaan!"
 
-#: ZpTranslation-Development/zp-core/setup.php:2569
+#: ZpTranslation-Development/zp-core/setup.php:2581
 msgid "database did not connect"
 msgstr "database is niet verbonden"
 
-#: ZpTranslation-Development/zp-core/setup.php:2571
+#: ZpTranslation-Development/zp-core/setup.php:2583
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr "Als je de database nog niet aangemaakt hebt is het daar nu een goed moment voor."
 
-#: ZpTranslation-Development/zp-core/setup.php:2580
+#: ZpTranslation-Development/zp-core/setup.php:2592
 msgid "The zenphoto.cfg file does not exist. You should run setup.php to check your configuration and create this file."
 msgstr "Het  configuratiebestand bestaat niet. Je moet setup.php uitvoeren om de configuratie te controleren en dit bestand aan te maken."
 
@@ -10446,83 +10442,83 @@ msgstr "De volgende tabellen zijn niet hersteld omdat de tabel niet meer bestaat
 msgid "The following fields were not restored because the field no longer exists:"
 msgstr "De volgende velden zijn niet hersteld omdat het veld niet meer bestaat:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:415
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:412
 msgid "Restore failed"
 msgstr "Herstel mislukt"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:438
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:435
 msgid "Zenphoto Rights migration failed!"
 msgstr "het overzetten van de gebruikersrechten is mislukt !"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:452
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:449
 msgid "Restore completed"
 msgstr "Herstel gereed"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:454
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:451
 #, php-format
 msgid "Restore completed using %s compression"
 msgstr "Herstel voltooid met %s compressie"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:478
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:475
 msgid "Restore your Database"
 msgstr "Herstel de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:480
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:477
 msgid "Backup and Restore your Database"
 msgstr "Backup of herstel de database."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:490
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:487
 #, php-format
 msgid "Database software <strong>%s</strong>"
 msgstr "Database software <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:491
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:488
 #, php-format
 msgid "Database name <strong>%s</strong>"
 msgstr "Database naam <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:492
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:489
 #, php-format
 msgid "Tables prefix <strong>%s</strong>"
 msgstr "Tabel-prefix <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:503
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:500
 msgid "Backup the tables in your database."
 msgstr "Backup de tabellen in de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:504
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:501
 msgid "Backup the Database"
 msgstr "Backup de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:525
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:522
 msgid "You have not yet created a backup set."
 msgstr "Je hebt nog geen backup gemaakt."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:530
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:527
 msgid "Select the database restore file:"
 msgstr "Selecteer het bestand om de database te herstellen:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:537
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:534
 msgid "Restore the tables in your database from a previous backup."
 msgstr "Herstel de tabellen in de database vanuit een eerdere backup."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:538
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:535
 msgid "Restore the Database"
 msgstr "Herstel de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:555
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:552
 msgid "The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings."
 msgstr "De backup mogelijkheid creëert kopieën van de database in de <code>backup</code> map. Deze backups krijgen als naam de datum en tijd van het moment dat ze gemaakt worden. De sterkte van de compressie loopt van 0 (geen compressie) tot 9 (maximale compressie). Een hogere compressie vereist meer tijd en is geen garantie voor meer ruimtewinst."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:559
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:556
 msgid "You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button."
 msgstr "De database wordt hersteld door een backup te selecteren en vervolgens op <em>Herstel de database</em> te klikken."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:560
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:557
 msgid "<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created."
 msgstr "<strong>Let op:</strong> Elke tabel in de database wordt eerst geleegd voordat herstel wordt uitgevoerd. Na een succesvol herstel is de database hetzelfde als op het moment dat de backup gemaakt werd."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:562
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:559
 msgid "Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored."
 msgstr "Het is het beste dat een restore wordt uitgevoerd op dezelfde versie van Zenphoto als de backup gemaakt is. Als je van plan bent te upgraden doe dan eerst een restore op de versie van Zenphoto die je gebruikte en installeer dan pas de nieuwe versie. Als dit niet mogelijk is, is een restore nog steeds mogelijk maar het kan zijn dat database-velden intussen zijn veranderd. In dat geval kunnen die velden niet hersteld worden."
 
@@ -18561,6 +18557,11 @@ msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid ""
+#~ "<strong>Note</strong>: There should be no quotation marks in this setting!"
+#~ msgstr ""
+#~ "<strong>LET OP!:</strong> Er mogen géén aanhalingstekens gebruikt worden!"
 
 #~ msgid "next &raquo;"
 #~ msgstr "volgende &raquo;"
