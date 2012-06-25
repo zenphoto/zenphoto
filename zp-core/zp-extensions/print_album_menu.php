@@ -409,7 +409,7 @@ function checkSelectedAlbum($checkalbum, $option) {
  */
 function getFirstImageOfAlbum($albumobj) {
 	$image = $albumobj->getImage(0);
-	$firstimage = newImage($albumobj,$image);
+	$firstimage = newImage($albumobj,$image->filename);
 	$link = $firstimage->getImageLink();
 	return html_encode($link);
 }

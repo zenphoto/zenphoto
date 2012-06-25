@@ -71,7 +71,7 @@ class jcarouselOptions {
 			chdir($curdir);
 			$options[$theme] = array('key' => 'jcarousel_'.$theme.'_scripts', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
 																	'checkboxes' => $list,
-																	'desc' => gettext('The scripts for which jCarousel is enabled. {Should have been set by the themes!}')
+																	'desc' => gettext('The scripts for which jCarousel is enabled. {If themes require it they might set this, otherwise you need to do it manually!}')
 											);
 		}
 		return $options;

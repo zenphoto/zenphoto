@@ -400,7 +400,7 @@ class Album extends MediaObject {
 			}
 			if ($this->isDynamic()) {
 				$searchengine = $this->getSearchEngine();
-				$images = $searchengine->getImages($page, $firstPageCount, $sorttype, $sortdirection, $care, $mine);
+				$images = $searchengine->getImages(0, 0, $sorttype, $sortdirection, $care, $mine);
 			} else {
 				// Load, sort, and store the images in this Album.
 				$images = $this->loadFileNames();

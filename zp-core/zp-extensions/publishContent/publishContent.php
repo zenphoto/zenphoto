@@ -325,6 +325,7 @@ echo '</head>';
 <?php $visible = $report == 'images'; ?>
 <fieldset class="smallbox">
 	<legend><?php reveal('imagebox', $visible); echo gettext('Images not published'); ?></legend>
+	<div id="imagebox"<?php if (!$visible) echo ' style="display:none"'?>>
 	<form name="review" action="" method="post">
 		<?php XSRFToken('publishContent');?>
 		<?php printf(gettext('Review images older than: %s'),'<input type="text" size="20" id="publish_date" name="publish_date" value="'.$requestdate.'" />'); ?>
@@ -340,12 +341,9 @@ echo '</head>';
 	<br clear="all" />
 	<br clear="all" />
 	<?php
-	if (($c = count($publish_images_list)) > 0) {
-		echo sprintf(ngettext('%u album with unpublished images','%u albums with unpublished images',$c),$c);
-	}
+	$c = count($publish_images_list);
 	?>
 
-	<div id="imagebox"<?php if (!$visible) echo ' style="display:none"'?>>
 	<?php
 	if ($report=='images') {
 		?>
@@ -355,7 +353,6 @@ echo '</head>';
 		<?php
 	}
 	if ($c > 0) {
-		echo sprintf(ngettext('%u unpublished image','%u unpublished images',$c),$c);
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
@@ -471,7 +468,9 @@ echo '</head>';
 		?>
 	</div>
 	<?php
-	if (count($publish_images_list) == 0) {
+	if (count($publish_images_list) > 0) {
+		echo sprintf(ngettext('%u album with unpublished images','%u albums with unpublished images',$c),$c);
+	} else {
 		echo gettext('No images meet the criteria.');
 	}
 	?>

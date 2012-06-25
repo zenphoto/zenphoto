@@ -34,6 +34,7 @@ if (!defined('WEBPATH')) die();
 	<div id="content-left">
 	<?php if(isset($_zp_zenpage) && !($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news")) OR !function_exists("printNewsPageListWithNav")) { ?>
 	<?php printGalleryDesc(); ?>
+	<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 			<div id="albums">
 				<?php while (next_album()): ?>
 					<div class="album">

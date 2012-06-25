@@ -119,7 +119,7 @@ if (defined('OFFSET_PATH')) {
 		if(!isset($_GET['refresh'])) {
 			$cats = wp_query_full_array("SELECT * FROM ".wp_prefix('terms',$wp_prefix)." as terms, ".wp_prefix('term_taxonomy',$wp_prefix)." as tax WHERE tax.taxonomy = 'category' AND terms.term_id = tax.term_id",$wpdbconnection);
 			//echo "<li><strong>Categories</strong>: <pre>"; print_r($cats); echo "</pre></li>"; // for debugging
-			debugLogArray('Wordpress import - All Categories', $cats);
+			debugLogVar('Wordpress import - All Categories', $cats);
 
 			//Add categories to Zenphoto database
 			if($cats) {
@@ -146,7 +146,7 @@ if (defined('OFFSET_PATH')) {
 			$taginfo = '';
 			$tags = wp_query_full_array("SELECT * FROM ".wp_prefix('terms',$wp_prefix)." as terms, ".wp_prefix('term_taxonomy',$wp_prefix)." as tax WHERE tax.taxonomy = 'post_tag' AND terms.term_id = tax.term_id",$wpdbconnection);
 			//echo "<li><strong>Tags</strong>: <pre>"; print_r($tags); echo "</pre></li>"; // for debugging
-			debugLogArray('Wordpress import - Tags import', $tags);
+			debugLogVar('Wordpress import - Tags import', $tags);
 
 			//Add tags to Zenphoto database
 			if($tags) {
@@ -198,7 +198,7 @@ if (defined('OFFSET_PATH')) {
 			//echo "Posts<br /><pre>"; print_r($posts); echo "</pre>"; // for debugging
 			foreach ($posts as $post) {
 				//echo "<li><strong>".$post['title']."</strong> (id: ".$post['id']." / type: ".$post['type']." / date: ".$post['date'].")<br />";
-				debugLogArray('Wordpress import - Import post: "'.$post['title'].'" ('.$post['type'].')', $posts);
+				debugLogVar('Wordpress import - Import post: "'.$post['title'].'" ('.$post['type'].')', $posts);
 				if($post['show'] == "publish") {
 					$show = 1;
 				} else {
@@ -274,7 +274,7 @@ if (defined('OFFSET_PATH')) {
 								//echo "<li>".sprintf(gettext('%1$s <em>%2$s</em>'),$term['taxonomy'],$term['slug'])."</li>";
 							}
 							$postinfo .= "</ul>";
-							debugLogArray('Wordpress import - Term relations for "'.$post['title'].'" ('.$post['type'].')', $termrelations);
+							debugLogVar('Wordpress import - Term relations for "'.$post['title'].'" ('.$post['type'].')', $termrelations);
 						}
 						break;
 					case 'page':
@@ -342,7 +342,7 @@ if (defined('OFFSET_PATH')) {
 				} else {
 					$postinfo .= '<ul><li class="import-nothing">'.gettext('No comments to import').'</li>';
 				}
-				debugLogArray('Wordpress import - Comments for "'.$post['title'].'" ('.$post['type'].')', $comments);
+				debugLogVar('Wordpress import - Comments for "'.$post['title'].'" ('.$post['type'].')', $comments);
 				$postinfo .= '</ul></li>';
 				$postcount++;
 			} // posts foreach

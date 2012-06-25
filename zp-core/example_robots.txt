@@ -20,5 +20,3 @@ Disallow: /zenphoto/zp-data/
 Disallow: /zenphoto/page/search/
 Disallow: /zenphoto/uploaded/
 Disallow: /zenphoto/backup/
-
-	

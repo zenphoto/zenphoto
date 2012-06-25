@@ -1073,6 +1073,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		}
 	}
 
+	primeMark(gettext('Zenphoto files'));
 	set_time_limit(120);
 	$lcFilesystem = file_exists(strtoupper(__FILE__));
 	$base = $serverpath.'/';
@@ -1089,7 +1090,6 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$lowset = $cum_mean - $hours;
 	$highset = $cum_mean + $hours;
 
-	primeMark(gettext('Zenphoto files'));
 	$package_file_count = false;
 	if (file_exists(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package')) {
 		$package = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/Zenphoto.package');
@@ -2209,6 +2209,8 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) NOT NULL";
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `valid` int(1) NOT NULL DEFAULT 1';
 	$sql_statements[] = "ALTER TABLE $tbl_tags CHANGE `name` `name` varchar(255) NOT NULL";
+	$sql_statements[] = "ALTER TABLE $tbl_images DROP FOREIGN KEY `".$tbl_images."_ibfk1`";
+	$sql_statements[] = " ALTER TABLE $tbl_comments DROP FOREIGN KEY `".$tbl_comments."_ibfk1`";
 
 
 	// do this last incase there are any field changes of like names!

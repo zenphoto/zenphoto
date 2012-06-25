@@ -60,7 +60,7 @@ if (trim($folder,'/') == SERVERPATH) {
 						}
 					} else {
 						// is a symlink
-						@chmod($path.$file, 0777);
+						@chmod($folder.$target, 0777);
 						$success = @rmdir($folder.$target);
 						if (!$success) {	// some systems treat it as a dir, others as a file!
 							$success = @unlink($folder.$target);
@@ -79,7 +79,7 @@ if (trim($folder,'/') == SERVERPATH) {
 					}
 					break;
 				case 'file':
-					@chmod($path.$file, 0777);
+					@chmod($folder.$target, 0777);
 					if (@unlink($folder.$target)) {
 						if (@symlink(SERVERPATH.'/'.$target, $folder.$target)) {
 							if ($folder.$target == $link) {

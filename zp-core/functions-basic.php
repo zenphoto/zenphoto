@@ -861,13 +861,12 @@ function sanitize_string($input_string, $sanitize_level) {
 				$allowed_tags = getAllowedTags('allowed_tags');
 				$input_string = html_decode(kses($input_string.' >', $allowed_tags));
 				break;
-
-				// Text formatting sanititation.
+			// Text formatting sanititation.
 			case 2:
 				$allowed_tags = getAllowedTags('style_tags');
 				$input_string = html_decode(kses($input_string.' >', $allowed_tags));
 				break;
-				// Full sanitation.  Strips all code.
+			// Full sanitation.  Strips all code.
 			case 3:
 				$allowed_tags = array();
 				$input_string = html_decode(kses($input_string.' >', $allowed_tags));
@@ -1449,7 +1448,7 @@ function db_count($table, $clause=NULL, $field="*") {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if (getOption('zenphoto_install') != serialize(installSignature())) {
+	if (OFFSET_PATH != 2 && getOption('zenphoto_install') != serialize(installSignature())) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
 		reconfigureAction();
 	}
@@ -1461,7 +1460,7 @@ function checkInstall() {
  * Closes the database to be sure that we do not build up outstanding connections
  */
 function exitZP() {
-	db_close();
+	IF (function_exists('db_close')) db_close();
 	exit();
 }
 

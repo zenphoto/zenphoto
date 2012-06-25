@@ -308,8 +308,8 @@ if (isset($_GET['action'])) {
 											$image->setCredit(process_language_string_save("$i-credit", 1));
 											$image->setCopyright(process_language_string_save("$i-copyright", 1));
 											if (isset($_POST[$i.'-oldrotation']) && isset($_POST[$i.'-rotation'])) {
-												$oldrotation = sanitize_numeric($_POST[$i.'-oldrotation']);
-												$rotation = sanitize_numeric($_POST[$i.'-rotation']);
+												$oldrotation = (int) $_POST[$i.'-oldrotation'];
+												$rotation = (int) $_POST[$i.'-rotation'];
 												if ($rotation != $oldrotation) {
 													$image->set('EXIFOrientation', $rotation);
 													$image->updateDimensions();

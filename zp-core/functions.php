@@ -17,7 +17,7 @@ if(!function_exists("json_encode")) {
 
 require_once(dirname(__FILE__).'/functions-basic.php');
 require_once(dirname(__FILE__).'/functions-filter.php');
-require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-htmLawed.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-kses.php');
 
 
 $_zp_captcha = getOption('captcha');
@@ -2012,8 +2012,8 @@ function debug404($album, $image, $theme) {
 		}
 		trigger_error(sprintf(gettext('Zenphoto processed a 404 error on %s. See the debug log for details.'),$target), E_USER_NOTICE);
 		debugLog("404 error: album=$album; image=$image; theme=$theme");
-		debugLogArray('$_SERVER', $_SERVER, 0, '');
-		debugLogArray('$_REQUEST', $_REQUEST, 0, '');
+		debugLogVar('$_SERVER', $_SERVER);
+		debugLogVar('$_REQUEST', $_REQUEST);
 		debugLog('');
 	}
 }

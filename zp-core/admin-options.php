@@ -350,6 +350,9 @@ if (isset($_GET['action'])) {
 			} else {
 				$returntab = "&tab=plugin";
 			}
+			if (!isset($_POST['last_plugin_option'])) {
+				$notify = '?saved&missing';
+			}
 		}
 		/*** Security Options ***/
 		if (isset($_POST['savesecurityoptions'])) {
@@ -448,6 +451,11 @@ if (isset($_GET['saved'])) {
 if (isset($_GET['custom'])) {
 	echo '<div class="errorbox">';
 	echo  '<h2>'.html_encode(sanitize($_GET['custom'])).'</h2>';
+	echo '</div>';
+}
+if (isset($_GET['missing'])) {
+	echo '<div class="errorbox">';
+	echo  '<h2>'.gettext('Your browser did not post all the fields. Some options may not have been set.').'</h2>';
 	echo '</div>';
 }
 
@@ -2807,7 +2815,8 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 					</p>
 					</td>
 				</tr>
-			</table> <!-- plugin page table -->
+			</table> <!-- single plugin page table -->
+			<input type="hidden" name="last_plugin_option"	value="1" />
 			<?php
 			}
 			?>
@@ -2966,6 +2975,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 					</td>
 				</tr>
 			</table> <!-- plugin page table -->
+			<input type="hidden" name="last_plugin_option"	value="1" />
 		</form>
 	</div>
 	<!-- end of tab_security div -->

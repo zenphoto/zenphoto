@@ -605,7 +605,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 					}
 					?>
 					<td width="350">
-						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.$clear.'text-'.$key; ?>" value="0" />
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.$clear.'text-'.$key; ?>" value="1" />
 						<?php
 						if ($multilingual) {
 							print_language_string_list($v, $key, $type, NULL, $editor);
@@ -627,7 +627,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 				case OPTION_TYPE_CHECKBOX:
 					?>
 					<td width="350">
-						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$key; ?>" value="0" />
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$key; ?>" value="1" />
 						<input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $key; ?>" value="1" <?php echo checked('1', $v); ?><?php echo $disabled; ?> />
 					</td>
 					<?php
@@ -644,7 +644,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 					$behind = (isset($row['behind']) && $row['behind']);
 					?>
 					<td width="350">
-						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'radio-'.$key; ?>" value="0"<?php echo $disabled; ?> />
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'radio-'.$key; ?>" value="1"<?php echo $disabled; ?> />
 						<?php generateRadiobuttonsFromArray($v,$row['buttons'],$key, $behind); ?>
 					</td>
 					<?php
@@ -652,7 +652,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 				case OPTION_TYPE_SELECTOR:
 					?>
 					<td width="350">
-						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'selector-'.$key?>" value="0" />
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'selector-'.$key?>" value="1" />
 						<select id="<?php echo $key; ?>" name="<?php echo $key; ?>"<?php echo $disabled; ?> >
 							<?php
 							if (array_key_exists('null_selection', $row)) {
@@ -685,7 +685,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 							}
 							$display = str_replace(' ', '&nbsp;', $display);
 							?>
-							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$checkbox; ?>" value="0" />
+							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$checkbox; ?>" value="1" />
 
 							<label class="checkboxlabel">
 								<?php if ($behind) echo($display); ?>
@@ -706,7 +706,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 						$cvarray = array();
 						foreach ($row['checkboxes'] as $display=>$checkbox) {
 							?>
-							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$checkbox; ?>" value="0" />
+							<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'chkbox-'.$checkbox; ?>" value="1" />
 							<?php
 							if ($theme) {
 								$v = getThemeOption($checkbox, $album, $theme);
@@ -755,7 +755,7 @@ function customOptions($optionHandler, $indent="", $album=NULL, $showhide=false,
 					if (empty($v)) $v = '#000000';
 					?>
 					<td width="350" style="margin:0; padding:0">
-						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'text-'.$key; ?>" value="0" />
+						<input type="hidden" name="<?php echo CUSTOM_OPTION_PREFIX.'text-'.$key; ?>" value="1" />
 						<script type="text/javascript">
 							// <!-- <![CDATA[
 							$(document).ready(function() {
@@ -821,6 +821,9 @@ function processCustomOptionSave($returntab, $themename=NULL, $themealbum=NULL) 
 				setThemeOption($key, $value, $themealbum, $themename);
 			} else {
 				setOption($key, $value);
+
+debugLogVar($key, $value);
+
 			}
 		} else {
 			if (strpos($postkey, 'show-') === 0) {

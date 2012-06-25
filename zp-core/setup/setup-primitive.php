@@ -9,7 +9,7 @@
 
 
 require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
-require_once(dirname(dirname(__FILE__)).'/lib-htmLawed.php');
+require_once(dirname(dirname(__FILE__)).'/lib-kses.php');
 
 $const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
 $serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
@@ -127,32 +127,18 @@ function debugLog($message, $reset=false) {
 
 }
 
-function debugLogArray($name, $source, $indent=0, $trail='') {
-	if (is_array($source)) {
-		$msg = str_repeat(' ', $indent)."$name => ( ";
-		if (count($source) > 0) {
-			foreach ($source as $key => $val) {
-				if (strlen($msg) > 72) {
-					debugLog($msg);
-					$msg = str_repeat(' ', $indent);
-				}
-				if (is_array($val)) {
-					if (!empty($msg)) debugLog($msg);
-					debugLogArray($key, $val, $indent+5, ',');
-					$msg = '';
-				} else {
-					$msg .= $key . " => " . $val. ', ';
-				}
-			}
-
-			$msg = substr($msg, 0, strrpos($msg, ',')) . " )".$trail;
-		} else {
-			$msg .= ")";
-		}
-		debugLog($msg);
-	} else {
-		debugLog($name.' parameter is not an array.');
-	}
+/**
+ * Records a Var to the debug log
+ *
+ * @param string $message message to insert in log
+ * @param mixed $var the variable to record
+ */
+function debugLogVar($message, $var) {
+	ob_start();
+	var_dump($var);
+	$str = ob_get_contents();
+	ob_end_clean();
+	debugLog($message.html_decode(strip_tags($str)));
 }
 
 function debugLogBacktrace($message, $omit=0) {

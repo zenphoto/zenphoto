@@ -18,7 +18,7 @@ zp_register_filter('admin_overview', 'printNews');
 class zenphoto_org_news {
 
 	function __construct() {
-		setOptionDefault('zenphoto_news_length', 400);
+		setOptionDefault('zenphoto_news_length', 0);
 	}
 
 	function getOptionsSupported() {
@@ -29,15 +29,13 @@ class zenphoto_org_news {
 }
 
 function printNews() {
-	if ($connected = is_connected()) {
-		require_once(dirname(__FILE__).'/zenphoto_news/rsslib.php');
-		require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
-	}
 	?>
 	<div class="box overview-utility">
 	<h2 class="h2_bordered"><?php echo gettext("News from Zenphoto.org"); ?></h2>
 	<?php
-	if ($connected) {
+	if (is_connected()) {
+		require_once(dirname(__FILE__).'/zenphoto_news/rsslib.php');
+		require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 		$recents = RSS_Retrieve("http://www.zenphoto.org/index.php?rss=news&withimages");
 		if ($recents) {
 			$opened = false;
@@ -98,7 +96,7 @@ function printNews() {
 		} else {
 			?>
 			<ul>
-				<li><?php printf(gettext('Failed to retrieve link <em>%s</em>'),$url);?></li>
+				<li><?php printf(gettext('Failed to retrieve link <em>%s</em>'),'http://www.zenphoto.org/index.php?rss=news&withimages');?></li>
 			</ul>
 			<?php
 		}

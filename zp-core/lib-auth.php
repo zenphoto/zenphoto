@@ -258,7 +258,7 @@ class Zenphoto_Authority {
 		}
 		$_zp_current_admin_obj = NULL;
 		if (empty($authCode)) return 0; //  so we don't "match" with an empty password
-		if (DEBUG_LOGIN) { debugLogArray("checkAuthorization: admins",$admins);	}
+		if (DEBUG_LOGIN) { debugLogVar("checkAuthorization: admins",$admins);	}
 		$rights = 0;
 		$criteria = array('`pass`=' => $authCode, '`valid`=' => 1);
 		if (!is_null($id)) {
