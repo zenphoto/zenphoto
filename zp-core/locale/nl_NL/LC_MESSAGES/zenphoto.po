@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-21 19:15+0100\n"
+"POT-Creation-Date: 2012-06-30 23:54+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Fred Sondaar (fretzl) <fretzl@zenphoto.org>\n"
 "Language-Team: \n"
@@ -1321,10 +1321,10 @@ msgid "Gallery archive"
 msgstr "Galerijarchief"
 
 #: ZpTranslation-Development/themes/zenpage/footer.php:5
-msgid "Zenpage theme by <a href=\"http://www.maltem.de\">Malte Müller</a>"
-msgstr "Zenpage thema door <a href=\"http://www.maltem.de\">Malte Müller</a>"
+msgid "Zenpage theme designed by <a href=\"http://www.maltem.de\">Malte Müller</a>"
+msgstr "Zenpage thema ontworpen door <a href=\"http://www.maltem.de\">Malte Müller</a>"
 
-#: ZpTranslation-Development/themes/zenpage/gallery.php:60
+#: ZpTranslation-Development/themes/zenpage/gallery.php:61
 msgid "Comments:"
 msgstr "Reacties:"
 
@@ -2366,10 +2366,10 @@ msgid "View gallery index"
 msgstr "Bekijk galerij index"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:414
-#: ZpTranslation-Development/zp-core/admin-functions.php:1460
-#: ZpTranslation-Development/zp-core/admin-functions.php:1881
-#: ZpTranslation-Development/zp-core/admin-options.php:1774
-#: ZpTranslation-Development/zp-core/admin-options.php:1827
+#: ZpTranslation-Development/zp-core/admin-functions.php:1463
+#: ZpTranslation-Development/zp-core/admin-functions.php:1884
+#: ZpTranslation-Development/zp-core/admin-options.php:1782
+#: ZpTranslation-Development/zp-core/admin-options.php:1835
 msgid "Images"
 msgstr "Afbeeldingen"
 
@@ -2382,593 +2382,593 @@ msgid "Subalbums"
 msgstr "Subalbums"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:749
-#: ZpTranslation-Development/zp-core/admin-options.php:1362
+#: ZpTranslation-Development/zp-core/admin-options.php:1370
 #: ZpTranslation-Development/zp-core/admin-tags.php:157
 #: ZpTranslation-Development/zp-core/admin-users.php:466
 msgid "all"
 msgstr "alles"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1032
+#: ZpTranslation-Development/zp-core/admin-functions.php:1035
 msgid "tag set!"
 msgstr "tags"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1032
-#: ZpTranslation-Development/zp-core/admin-functions.php:1033
+#: ZpTranslation-Development/zp-core/admin-functions.php:1035
+#: ZpTranslation-Development/zp-core/admin-functions.php:1036
 msgid "add tag"
 msgstr "Tag toevoegen"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1148
+#: ZpTranslation-Development/zp-core/admin-functions.php:1151
 #: ZpTranslation-Development/zp-core/admin-globals.php:37
 msgid "Owner"
 msgstr "Eigenaar"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1165
+#: ZpTranslation-Development/zp-core/admin-functions.php:1168
 msgid "Album Title"
 msgstr "Albumtitel"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1174
+#: ZpTranslation-Development/zp-core/admin-functions.php:1177
 msgid "Album Description:"
 msgstr "Albumbeschrijving:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1187
-#: ZpTranslation-Development/zp-core/admin-functions.php:1225
+#: ZpTranslation-Development/zp-core/admin-functions.php:1190
+#: ZpTranslation-Development/zp-core/admin-functions.php:1228
 msgid "Album password:"
 msgstr "Albumwachtwoord:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1201
-#: ZpTranslation-Development/zp-core/admin-options.php:899
-#: ZpTranslation-Development/zp-core/admin-options.php:1257
-#: ZpTranslation-Development/zp-core/admin-options.php:1963
+#: ZpTranslation-Development/zp-core/admin-functions.php:1204
+#: ZpTranslation-Development/zp-core/admin-options.php:907
+#: ZpTranslation-Development/zp-core/admin-options.php:1265
+#: ZpTranslation-Development/zp-core/admin-options.php:1971
 msgid "clear password"
 msgstr "maak wachtwoord leeg"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1210
+#: ZpTranslation-Development/zp-core/admin-functions.php:1213
 msgid "Album guest user:"
 msgstr "Album gastgebruiker:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1213
-#: ZpTranslation-Development/zp-core/admin-options.php:922
-#: ZpTranslation-Development/zp-core/admin-options.php:1278
-#: ZpTranslation-Development/zp-core/admin-options.php:1981
+#: ZpTranslation-Development/zp-core/admin-functions.php:1216
+#: ZpTranslation-Development/zp-core/admin-options.php:930
+#: ZpTranslation-Development/zp-core/admin-options.php:1286
+#: ZpTranslation-Development/zp-core/admin-options.php:1989
 msgid "Show password"
 msgstr "Toon wachtwoord"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1228
+#: ZpTranslation-Development/zp-core/admin-functions.php:1231
 msgid "repeat password:"
 msgstr "Herhaal wachtwoord:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1232
+#: ZpTranslation-Development/zp-core/admin-functions.php:1235
 msgid "Password hint:"
 msgstr "Wachtwoord hint:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1305
-#: ZpTranslation-Development/zp-core/admin-options.php:687
-#: ZpTranslation-Development/zp-core/admin-options.php:1038
-#: ZpTranslation-Development/zp-core/admin-options.php:1621
+#: ZpTranslation-Development/zp-core/admin-functions.php:1308
+#: ZpTranslation-Development/zp-core/admin-options.php:695
+#: ZpTranslation-Development/zp-core/admin-options.php:1046
+#: ZpTranslation-Development/zp-core/admin-options.php:1629
 msgid "Custom"
 msgstr "Eigen"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1312
+#: ZpTranslation-Development/zp-core/admin-functions.php:1315
 msgid "Sort subalbums by:"
 msgstr "Sorteer subalbums op:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1318
+#: ZpTranslation-Development/zp-core/admin-functions.php:1321
 msgid "*gallery album sort order"
 msgstr "* album sorteervolgorde"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1320
+#: ZpTranslation-Development/zp-core/admin-functions.php:1323
 msgid "*parent album subalbum sort order"
 msgstr "*parent album subalbum sorteervolgorde"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1340
-#: ZpTranslation-Development/zp-core/admin-functions.php:1391
-#: ZpTranslation-Development/zp-core/admin-options.php:1072
-#: ZpTranslation-Development/zp-core/admin-options.php:1648
+#: ZpTranslation-Development/zp-core/admin-functions.php:1343
+#: ZpTranslation-Development/zp-core/admin-functions.php:1394
+#: ZpTranslation-Development/zp-core/admin-options.php:1080
+#: ZpTranslation-Development/zp-core/admin-options.php:1656
 msgid "Descending"
 msgstr "Aflopend"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1354
-#: ZpTranslation-Development/zp-core/admin-functions.php:1406
-#: ZpTranslation-Development/zp-core/admin-options.php:1080
-#: ZpTranslation-Development/zp-core/admin-options.php:1654
+#: ZpTranslation-Development/zp-core/admin-functions.php:1357
+#: ZpTranslation-Development/zp-core/admin-functions.php:1409
+#: ZpTranslation-Development/zp-core/admin-options.php:1088
+#: ZpTranslation-Development/zp-core/admin-options.php:1662
 msgid "custom fields:"
 msgstr "database veld(en)"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1361
-#: ZpTranslation-Development/zp-core/admin-options.php:1616
+#: ZpTranslation-Development/zp-core/admin-functions.php:1364
+#: ZpTranslation-Development/zp-core/admin-options.php:1624
 msgid "Sort images by:"
 msgstr "Sorteer afbeeldingen op:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1367
+#: ZpTranslation-Development/zp-core/admin-functions.php:1370
 msgid "*gallery image sort order"
 msgstr "* afbeeldings sorteervolgorde"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1369
+#: ZpTranslation-Development/zp-core/admin-functions.php:1372
 msgid "*parent album image sort order"
 msgstr "*parent album afbeelding sorteervolgorde"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1416
+#: ZpTranslation-Development/zp-core/admin-functions.php:1419
 msgid "Album theme:"
 msgstr "Albumthema:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1428
+#: ZpTranslation-Development/zp-core/admin-functions.php:1431
 msgid "*gallery theme"
 msgstr "*galerij thema"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1449
+#: ZpTranslation-Development/zp-core/admin-functions.php:1452
 msgid "Album watermarks:"
 msgstr "Album watermerken:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1475
-#: ZpTranslation-Development/zp-core/admin-options.php:1778
+#: ZpTranslation-Development/zp-core/admin-functions.php:1478
+#: ZpTranslation-Development/zp-core/admin-options.php:1786
 msgid "Thumbs"
 msgstr "Thumbnails"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1604
+#: ZpTranslation-Development/zp-core/admin-functions.php:1607
 #, php-format
 msgid "Reset hit counter (%u hit)"
 msgid_plural "Reset hit counter (%u hits)"
 msgstr[0] "Reset hitteller (%u hit)"
 msgstr[1] "Reset hitteller (%u hits)"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1707
+#: ZpTranslation-Development/zp-core/admin-functions.php:1710
 msgid "Rename Folder"
 msgstr "Hernoem map"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1713
+#: ZpTranslation-Development/zp-core/admin-functions.php:1716
 msgid "Delete album"
 msgstr "Verwijder album"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1718
+#: ZpTranslation-Development/zp-core/admin-functions.php:1721
 msgid "Album will be deleted when changes are applied."
 msgstr "Album zal verwijderd worden wanneer de wijzigingen worden opgeslagen"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1725
-#: ZpTranslation-Development/zp-core/admin-functions.php:1762
+#: ZpTranslation-Development/zp-core/admin-functions.php:1728
+#: ZpTranslation-Development/zp-core/admin-functions.php:1765
 msgid "to:"
 msgstr "naar:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1791
+#: ZpTranslation-Development/zp-core/admin-functions.php:1794
 msgid "Dynamic album search:"
 msgstr "Dynamische album vanuit zoekfunctie:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1854
+#: ZpTranslation-Development/zp-core/admin-functions.php:1857
 msgid "Clears the album's cached images."
 msgstr "Leegt de cache van het album."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1856
+#: ZpTranslation-Development/zp-core/admin-functions.php:1859
 msgid "Clear album image cache"
 msgstr "Leeg de album afbeeldingen-cache"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1859
+#: ZpTranslation-Development/zp-core/admin-functions.php:1862
 msgid "Resets album's hit counters."
 msgstr "Reset albums hittellers"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1861
+#: ZpTranslation-Development/zp-core/admin-functions.php:1864
 msgid "Reset album hit counters"
 msgstr "Reset album hittellers"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1868
+#: ZpTranslation-Development/zp-core/admin-functions.php:1871
 msgid "Refreshes the metadata for the album."
 msgstr "Ververs de metadata voor het album."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1870
+#: ZpTranslation-Development/zp-core/admin-functions.php:1873
 msgid "Refresh album metadata"
 msgstr "Ververs de album metadata"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1882
+#: ZpTranslation-Development/zp-core/admin-functions.php:1885
 msgid "Albums (dynamic)"
 msgstr "Albums (dynamisch)"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1883
+#: ZpTranslation-Development/zp-core/admin-functions.php:1886
 msgid "Images (dynamic)"
 msgstr "Afbeeldingen (dynamisch)"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1889
+#: ZpTranslation-Development/zp-core/admin-functions.php:1892
 msgid "Has Password"
 msgstr "Heeft wachtwoord"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1893
+#: ZpTranslation-Development/zp-core/admin-functions.php:1896
 msgid "Published/Un-published"
 msgstr "Gepubliceerd / Niet gepubliceerd"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1894
+#: ZpTranslation-Development/zp-core/admin-functions.php:1897
 msgid "Comments on/off"
 msgstr "Reacties aan/uit"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1895
+#: ZpTranslation-Development/zp-core/admin-functions.php:1898
 msgid "View the album"
 msgstr "Bekijk het album"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1896
+#: ZpTranslation-Development/zp-core/admin-functions.php:1899
 msgid "Refresh metadata"
 msgstr "Ververs metadata"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1900
+#: ZpTranslation-Development/zp-core/admin-functions.php:1903
 msgid "Reset hit counters"
 msgstr "Reset hittellers"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1932
-#: ZpTranslation-Development/zp-core/admin-functions.php:1949
+#: ZpTranslation-Development/zp-core/admin-functions.php:1935
+#: ZpTranslation-Development/zp-core/admin-functions.php:1952
 #, php-format
 msgid "Edit this album: %s"
 msgstr "Bewerk dit album: %s"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1962
 #: ZpTranslation-Development/zp-core/admin-functions.php:1965
+#: ZpTranslation-Development/zp-core/admin-functions.php:1968
 #: ZpTranslation-Development/zp-core/admin-globals.php:76
 msgid "images"
 msgstr "afbeeldingen"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1963
 #: ZpTranslation-Development/zp-core/admin-functions.php:1966
+#: ZpTranslation-Development/zp-core/admin-functions.php:1969
 #: ZpTranslation-Development/zp-core/admin-globals.php:87
 msgid "albums"
 msgstr "albums"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1971
-#: ZpTranslation-Development/zp-core/admin-functions.php:1976
+#: ZpTranslation-Development/zp-core/admin-functions.php:1974
+#: ZpTranslation-Development/zp-core/admin-functions.php:1979
 msgid "Subalbum List"
 msgstr "subalbum lijst"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1987
+#: ZpTranslation-Development/zp-core/admin-functions.php:1990
 msgid "Password protected"
 msgstr "Beschermd met wachtwoord"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:1996
+#: ZpTranslation-Development/zp-core/admin-functions.php:1999
 #, php-format
 msgid "Un-publish the album %s"
 msgstr "Maak publicatie van het album %s ongedaan"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2010
+#: ZpTranslation-Development/zp-core/admin-functions.php:2013
 #, php-format
 msgid "Publish the album %s"
 msgstr "Publiceerd het album %s"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2014
+#: ZpTranslation-Development/zp-core/admin-functions.php:2017
 #, php-format
 msgid "Unpublished"
 msgstr "Niet gepubliceerd"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2033
+#: ZpTranslation-Development/zp-core/admin-functions.php:2036
 msgid "Comments on"
 msgstr "Reacties aan"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2047
+#: ZpTranslation-Development/zp-core/admin-functions.php:2050
 msgid "Comments off"
 msgstr "Reacties uit"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2058
+#: ZpTranslation-Development/zp-core/admin-functions.php:2061
 msgid "View album"
 msgstr "Bekijk album"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2059
+#: ZpTranslation-Development/zp-core/admin-functions.php:2062
 #, php-format
 msgid "View album %s"
 msgstr "Bekijk album %s"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2066
-#: ZpTranslation-Development/zp-core/admin-functions.php:2084
-#: ZpTranslation-Development/zp-core/admin-functions.php:2104
+#: ZpTranslation-Development/zp-core/admin-functions.php:2069
+#: ZpTranslation-Development/zp-core/admin-functions.php:2087
+#: ZpTranslation-Development/zp-core/admin-functions.php:2107
 msgid "unavailable"
 msgstr "niet beschikbaar"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2070
+#: ZpTranslation-Development/zp-core/admin-functions.php:2073
 #, php-format
 msgid "Refresh metadata for the album %s"
 msgstr "Ververs metadata voor het album %s"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2071
+#: ZpTranslation-Development/zp-core/admin-functions.php:2074
 #, php-format
 msgid "Refresh metadata in the album %s"
 msgstr "Ververs metadata voor het album %s"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2088
+#: ZpTranslation-Development/zp-core/admin-functions.php:2091
 #, php-format
 msgid "Reset hit counters for album %s"
 msgstr "Reset hittellers voor album %s"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2089
+#: ZpTranslation-Development/zp-core/admin-functions.php:2092
 #, php-format
 msgid "Reset hit counters for the album %s"
 msgstr "Reset hittellers voor het album %s"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2108
-#: ZpTranslation-Development/zp-core/admin-functions.php:2109
+#: ZpTranslation-Development/zp-core/admin-functions.php:2111
+#: ZpTranslation-Development/zp-core/admin-functions.php:2112
 #, php-format
 msgid "Delete the album %s"
 msgstr "Verwijder het album %s"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2342
-#: ZpTranslation-Development/zp-core/admin-functions.php:2349
-#: ZpTranslation-Development/zp-core/admin-functions.php:2354
+#: ZpTranslation-Development/zp-core/admin-functions.php:2345
+#: ZpTranslation-Development/zp-core/admin-functions.php:2352
 #: ZpTranslation-Development/zp-core/admin-functions.php:2357
 #: ZpTranslation-Development/zp-core/admin-functions.php:2360
+#: ZpTranslation-Development/zp-core/admin-functions.php:2363
 #, php-format
 msgid "page %u"
 msgstr "pagina %u"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2342
-#: ZpTranslation-Development/zp-core/admin-functions.php:2344
+#: ZpTranslation-Development/zp-core/admin-functions.php:2345
+#: ZpTranslation-Development/zp-core/admin-functions.php:2347
 msgid "Previous page"
 msgstr "Vorige pagina"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2710
-#: ZpTranslation-Development/zp-core/admin-functions.php:2715
-#: ZpTranslation-Development/zp-core/admin-functions.php:2720
-#: ZpTranslation-Development/zp-core/admin-functions.php:2725
+#: ZpTranslation-Development/zp-core/admin-functions.php:2713
+#: ZpTranslation-Development/zp-core/admin-functions.php:2718
+#: ZpTranslation-Development/zp-core/admin-functions.php:2723
+#: ZpTranslation-Development/zp-core/admin-functions.php:2728
 msgid "Cannot create new theme."
 msgstr "Kan geen nieuw thema creëren"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2710
+#: ZpTranslation-Development/zp-core/admin-functions.php:2713
 #, php-format
 msgid "Directory \"%s\" already exists!"
 msgstr "De map \"%s\" bestaat al!"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2715
+#: ZpTranslation-Development/zp-core/admin-functions.php:2718
 #, php-format
 msgid "Cannot find theme directory \"%s\" to copy!"
 msgstr "Kan de te kopiëren map \"%s\" niet vinden!"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2720
+#: ZpTranslation-Development/zp-core/admin-functions.php:2723
 msgid "The <tt>/themes</tt> directory is not writable!"
 msgstr "Er kan niet naar de <tt>/thema</tt> map geschreven worden!"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2725
+#: ZpTranslation-Development/zp-core/admin-functions.php:2728
 msgid "Could not create directory for the new theme"
 msgstr "Kon geen map aanmaken voor het nieuwe thema"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2758
+#: ZpTranslation-Development/zp-core/admin-functions.php:2761
 #, php-format
 msgid "An error occurred while copying files. Please delete manually the new theme directory '%s' and retry or copy files manually."
 msgstr "Er is iets fout gegaan tijdens het kopiëren. Verwijder a.u.b. handmatig de nieuwe thema-map '%s' en probeer het nogmaals of kopiëer de bestanden handmatig."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2766
+#: ZpTranslation-Development/zp-core/admin-functions.php:2769
 #, php-format
 msgid "Your theme, based on theme %s"
 msgstr "Je thema, gebaseerd op het %s thema."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2768
+#: ZpTranslation-Development/zp-core/admin-functions.php:2771
 msgid "Your theme"
 msgstr "Je thema"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2792
+#: ZpTranslation-Development/zp-core/admin-functions.php:2795
 msgid "New custom theme created successfully!"
 msgstr "Nieuw zelfgemaakt thema met succes gereëerd!"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2794
+#: ZpTranslation-Development/zp-core/admin-functions.php:2797
 msgid "New custom theme created, but its description could not be updated"
 msgstr "Nieuw aangepast thema gecreëerd maar de beschrijving kon niet ge-update worden."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2941
+#: ZpTranslation-Development/zp-core/admin-functions.php:2944
 msgid "Rights:"
 msgstr "Rechten:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:2999
+#: ZpTranslation-Development/zp-core/admin-functions.php:3002
 msgid "edit rights"
 msgstr "gebruikersrechten"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3000
+#: ZpTranslation-Development/zp-core/admin-functions.php:3003
 msgid "view unpublished items"
 msgstr "Bekijk niet-gepubliceerde afbeeldingen."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3001
+#: ZpTranslation-Development/zp-core/admin-functions.php:3004
 msgid "upload rights"
 msgstr "upload rechten"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3002
+#: ZpTranslation-Development/zp-core/admin-functions.php:3005
 msgid "the album is dynamic"
 msgstr "het album is dynamisch"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3004
+#: ZpTranslation-Development/zp-core/admin-functions.php:3007
 msgid "Primary album"
 msgstr "Startalbum"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3006
+#: ZpTranslation-Development/zp-core/admin-functions.php:3009
 msgid "edit"
 msgstr "Bewerken"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3007
+#: ZpTranslation-Development/zp-core/admin-functions.php:3010
 #: ZpTranslation-Development/zp-core/admin-globals.php:70
 msgid "upload"
 msgstr "upload"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3008
+#: ZpTranslation-Development/zp-core/admin-functions.php:3011
 msgid "view unpublished"
 msgstr "bekijk niet-gepubliceerde"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3031
+#: ZpTranslation-Development/zp-core/admin-functions.php:3034
 msgid "Managed albums:"
 msgstr "Beheerde albums:"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3044
+#: ZpTranslation-Development/zp-core/admin-functions.php:3047
 msgid "Managed news categories:"
 msgstr "Beheerde nieuwscategorieën."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3046
+#: ZpTranslation-Development/zp-core/admin-functions.php:3049
 msgid "News categories"
 msgstr "Nieuwscategorieën"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3059
+#: ZpTranslation-Development/zp-core/admin-functions.php:3062
 msgid "Managed pages:"
 msgstr "Beheerde pagina's"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3066
+#: ZpTranslation-Development/zp-core/admin-functions.php:3069
 #, php-format
 msgid "Select one or more %1$s for the %2$s to manage."
 msgstr "Selecteer één of meer %1$s voor de %2$s om te beheren."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3067
+#: ZpTranslation-Development/zp-core/admin-functions.php:3070
 #: ZpTranslation-Development/zp-core/admin-users.php:805
 #: ZpTranslation-Development/zp-core/admin-users.php:814
 #: ZpTranslation-Development/zp-core/admin-users.php:820
 msgid "user"
 msgstr "gebruiker"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3068
+#: ZpTranslation-Development/zp-core/admin-functions.php:3071
 #, php-format
 msgid "Users with \"Admin\" or \"Manage all %1$s\" rights can manage all %2$s. All others may manage only those that are selected."
 msgstr "Gebruikers met \"Admin\" of  \"Beheer alle %1$s\" rechten  kunnen alle %2$s beheren. Anderen kunnen alleen de geselecteerde onderdelen beheren."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3071
+#: ZpTranslation-Development/zp-core/admin-functions.php:3074
 #, php-format
 msgid "You may manage these %s subject to the above rights."
 msgstr "Je kunt de %s beheren op basis van bovenstaande rechten."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3483
+#: ZpTranslation-Development/zp-core/admin-functions.php:3486
 #, php-format
 msgid "Show %u album level"
 msgid_plural "Show %u album levels"
 msgstr[0] "Toon %u album level"
 msgstr[1] "Toon %u album levels"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3486
+#: ZpTranslation-Development/zp-core/admin-functions.php:3489
 #, php-format
 msgid "%u image per page"
 msgid_plural "%u images per page"
 msgstr[0] "%u afbeelding per pagina"
 msgstr[1] "%u afbeeldingen per pagina"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3560
-#: ZpTranslation-Development/zp-core/admin-functions.php:3572
-#: ZpTranslation-Development/zp-core/admin-functions.php:3584
+#: ZpTranslation-Development/zp-core/admin-functions.php:3563
+#: ZpTranslation-Development/zp-core/admin-functions.php:3575
+#: ZpTranslation-Development/zp-core/admin-functions.php:3587
 msgid "ok"
 msgstr "ok"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3642
+#: ZpTranslation-Development/zp-core/admin-functions.php:3645
 msgid "Destination"
 msgstr "Bestemming"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3908
-#: ZpTranslation-Development/zp-core/admin-functions.php:3940
+#: ZpTranslation-Development/zp-core/admin-functions.php:3911
+#: ZpTranslation-Development/zp-core/admin-functions.php:3943
 #, php-format
 msgid "codeblock %u"
 msgstr "codeblock %u"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:3909
-#: ZpTranslation-Development/zp-core/admin-functions.php:3944
+#: ZpTranslation-Development/zp-core/admin-functions.php:3912
+#: ZpTranslation-Development/zp-core/admin-functions.php:3947
 msgid "add codeblock"
 msgstr "codeblock toevoegen"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4023
+#: ZpTranslation-Development/zp-core/admin-functions.php:4026
 #, php-format
 msgid "\"%s\" Cross Site Request Forgery blocked."
 msgstr "\"%s\" Cross Site Request Forgery geblokkeerd."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4125
+#: ZpTranslation-Development/zp-core/admin-functions.php:4128
 msgid "setup"
 msgstr "setup"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4125
+#: ZpTranslation-Development/zp-core/admin-functions.php:4128
 #: ZpTranslation-Development/zp-core/admin-globals.php:134
 msgid "security"
 msgstr "beveiliging"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4125
+#: ZpTranslation-Development/zp-core/admin-functions.php:4128
 msgid "debug"
 msgstr "debug"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4241
+#: ZpTranslation-Development/zp-core/admin-functions.php:4244
 #, php-format
 msgid "%s failed to delete."
 msgstr "%s te verwijderen mislukt."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4243
+#: ZpTranslation-Development/zp-core/admin-functions.php:4246
 #, php-format
 msgid "%s deleted successfully."
 msgstr "%s succesvol verwijderd."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4248
+#: ZpTranslation-Development/zp-core/admin-functions.php:4251
 msgid "You must supply a  password."
 msgstr "Je moet een wachtwoord invoeren."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4250
+#: ZpTranslation-Development/zp-core/admin-functions.php:4253
 msgid "Your passwords did not match."
 msgstr "Je wachtwoorden komen niet overeen."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4257
+#: ZpTranslation-Development/zp-core/admin-functions.php:4260
 msgid "The image edit form submission has been truncated. Try displaying fewer images on a page."
 msgstr "De veranderingen zijn niet volledig bewaard. Probeer het nogmaals maar met minder afbeeldingen per pagina."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4260
+#: ZpTranslation-Development/zp-core/admin-functions.php:4263
 msgid "Hit counters have been reset."
 msgstr "Hittellers zijn gereset."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4263
+#: ZpTranslation-Development/zp-core/admin-functions.php:4266
 msgid "Cache has been purged."
 msgstr "Cache is gewist."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4266
+#: ZpTranslation-Development/zp-core/admin-functions.php:4269
 #: ZpTranslation-Development/zp-core/admin-upload.php:139
 msgid "Your files have been uploaded."
 msgstr "Je bestanden zijn geupload."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4269
+#: ZpTranslation-Development/zp-core/admin-functions.php:4272
 #, php-format
 msgid "<em>%s</em> already exists."
 msgstr "<em>%s</em> bestaat al."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4284
+#: ZpTranslation-Development/zp-core/admin-functions.php:4287
 msgid "Selected items published"
 msgstr "Geselecteerde onderdelen gepubliceerd"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4287
+#: ZpTranslation-Development/zp-core/admin-functions.php:4290
 msgid "Selected items unpublished"
 msgstr "Geselecteerde onderdelen niet gepubliceerd"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4290
+#: ZpTranslation-Development/zp-core/admin-functions.php:4293
 msgid "Comments enabled for selected items"
 msgstr "Reacties geactiveerd voor de geselecteerde onderdelen"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4293
+#: ZpTranslation-Development/zp-core/admin-functions.php:4296
 msgid "Comments disabled for selected items"
 msgstr "Reacties niet geactiveerd voor de geselecteerde onderdelen"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4296
+#: ZpTranslation-Development/zp-core/admin-functions.php:4299
 msgid "Hitcounter for selected items"
 msgstr "Hitteller voor geselecteerd onderdeel"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4299
+#: ZpTranslation-Development/zp-core/admin-functions.php:4302
 msgid "Tags added for selected items"
 msgstr "Tags toegevoegd aan geselecteerde onderdelen."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4302
+#: ZpTranslation-Development/zp-core/admin-functions.php:4305
 msgid "Tags cleared for selected items"
 msgstr "Tags verwijderd uit de geselecteerde onderdelen."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4305
+#: ZpTranslation-Development/zp-core/admin-functions.php:4308
 msgid "Tags added for images of selected items"
 msgstr "Tags toegevoegd aan afbeeldingen van de geselecteerde onderdelen."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4308
+#: ZpTranslation-Development/zp-core/admin-functions.php:4311
 msgid "Tags cleared for images of selected items"
 msgstr "Tags verwijderd uit afbeeldingen van de geselecteerde onderdelen."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4318
+#: ZpTranslation-Development/zp-core/admin-functions.php:4321
 msgid "Image already exists."
 msgstr "Afbeelding bestaat al."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4321
+#: ZpTranslation-Development/zp-core/admin-functions.php:4324
 msgid "Album already exists."
 msgstr "Album bestaat al."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4324
+#: ZpTranslation-Development/zp-core/admin-functions.php:4327
 msgid "Cannot move, copy, or rename to a subalbum of this album."
 msgstr "Verplaatsen, kopiëren of hernoemen naar een subalbum is niet mogelijk met dit album."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4327
+#: ZpTranslation-Development/zp-core/admin-functions.php:4330
 msgid "Cannot move, copy, or rename to a dynamic album."
 msgstr "Verplaatsen, kopiëren of hernoemen naar een dynamisch album is niet mogelijk."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4330
+#: ZpTranslation-Development/zp-core/admin-functions.php:4333
 msgid "Cannot rename an image to a different suffix"
 msgstr "Het is niet mogelijk om een bestand een andere extensie te geven."
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4333
+#: ZpTranslation-Development/zp-core/admin-functions.php:4336
 msgid "Album delete failed"
 msgstr "Verwijderen van album mislukt!"
 
-#: ZpTranslation-Development/zp-core/admin-functions.php:4336
+#: ZpTranslation-Development/zp-core/admin-functions.php:4339
 msgid "There was an error with a move, copy, or rename operation."
 msgstr "Er was een fout tijdens een verplaats-, kopieer- of hernoembewerking."
 
@@ -3117,7 +3117,7 @@ msgid "Download %s ZIP file"
 msgstr "Download %s ZIP-bestand"
 
 #: ZpTranslation-Development/zp-core/admin-logs.php:116
-#: ZpTranslation-Development/zp-core/admin-options.php:2026
+#: ZpTranslation-Development/zp-core/admin-options.php:2034
 msgid "Download"
 msgstr "Download"
 
@@ -3125,1480 +3125,1484 @@ msgstr "Download"
 msgid "There are no logs to view."
 msgstr "Er zijn geen logs om te bekijken."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:445
+#: ZpTranslation-Development/zp-core/admin-options.php:448
 #: ZpTranslation-Development/zp-core/admin-plugins.php:78
 msgid "Applied"
 msgstr "Toegepast"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:458
+msgid "Your browser did not post all the fields. Some options may not have been set."
+msgstr "Niet alle velden zijn door je browser verzonden. Sommige opties zijn misschien niet ingesteld."
+
+#: ZpTranslation-Development/zp-core/admin-options.php:466
 #, php-format
 msgid "You must supply a password for the <em>%s</em> guest user"
 msgstr "Je moet een wachtwoord invoeren voor de <em>%s</em> gastgebruiker"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:461
+#: ZpTranslation-Development/zp-core/admin-options.php:469
 #: ZpTranslation-Development/zp-core/admin-users.php:409
 msgid "Your passwords did not match"
 msgstr "Je wachtwoorden komen niet overeen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:474
+#: ZpTranslation-Development/zp-core/admin-options.php:482
 #, php-format
 msgid "<em>%s</em> is not available."
 msgstr "<em>%s</em> is niet beschikbaar."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:475
+#: ZpTranslation-Development/zp-core/admin-options.php:483
 #, php-format
 msgid "The locale %s is not supported on your server."
 msgstr "De localisatie %s wordt niet ondersteund door de server."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:476
+#: ZpTranslation-Development/zp-core/admin-options.php:484
 msgid "See the troubleshooting guide on zenphoto.org for details."
 msgstr "Raadpleeg de troubleshooting uitleg op zenphoto.org voor details."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:491
-#: ZpTranslation-Development/zp-core/admin-options.php:824
-#: ZpTranslation-Development/zp-core/admin-options.php:847
-#: ZpTranslation-Development/zp-core/admin-options.php:1209
-#: ZpTranslation-Development/zp-core/admin-options.php:1232
-#: ZpTranslation-Development/zp-core/admin-options.php:1440
-#: ZpTranslation-Development/zp-core/admin-options.php:1462
-#: ZpTranslation-Development/zp-core/admin-options.php:1580
-#: ZpTranslation-Development/zp-core/admin-options.php:1606
-#: ZpTranslation-Development/zp-core/admin-options.php:2146
-#: ZpTranslation-Development/zp-core/admin-options.php:2167
-#: ZpTranslation-Development/zp-core/admin-options.php:2268
-#: ZpTranslation-Development/zp-core/admin-options.php:2395
-#: ZpTranslation-Development/zp-core/admin-options.php:2650
-#: ZpTranslation-Development/zp-core/admin-options.php:2694
-#: ZpTranslation-Development/zp-core/admin-options.php:2806
-#: ZpTranslation-Development/zp-core/admin-options.php:2844
-#: ZpTranslation-Development/zp-core/admin-options.php:2964
+#: ZpTranslation-Development/zp-core/admin-options.php:499
+#: ZpTranslation-Development/zp-core/admin-options.php:832
+#: ZpTranslation-Development/zp-core/admin-options.php:855
+#: ZpTranslation-Development/zp-core/admin-options.php:1217
+#: ZpTranslation-Development/zp-core/admin-options.php:1240
+#: ZpTranslation-Development/zp-core/admin-options.php:1448
+#: ZpTranslation-Development/zp-core/admin-options.php:1470
+#: ZpTranslation-Development/zp-core/admin-options.php:1588
+#: ZpTranslation-Development/zp-core/admin-options.php:1614
+#: ZpTranslation-Development/zp-core/admin-options.php:2154
+#: ZpTranslation-Development/zp-core/admin-options.php:2175
+#: ZpTranslation-Development/zp-core/admin-options.php:2276
+#: ZpTranslation-Development/zp-core/admin-options.php:2403
+#: ZpTranslation-Development/zp-core/admin-options.php:2658
+#: ZpTranslation-Development/zp-core/admin-options.php:2702
+#: ZpTranslation-Development/zp-core/admin-options.php:2814
+#: ZpTranslation-Development/zp-core/admin-options.php:2853
+#: ZpTranslation-Development/zp-core/admin-options.php:2973
 #: ZpTranslation-Development/zp-core/admin-users.php:447
 msgid "reset"
 msgstr "reset"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:500
+#: ZpTranslation-Development/zp-core/admin-options.php:508
 msgid "Time zone:"
 msgstr "Tijdzone:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:506
+#: ZpTranslation-Development/zp-core/admin-options.php:514
 msgid "*not specified"
 msgstr "*niet gespecificeerd"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:511
+#: ZpTranslation-Development/zp-core/admin-options.php:519
 #, php-format
 msgid "Your server reports its time zone as: <code>%s</code>."
 msgstr "Je server geeft de tijdzone als volgt weer: <code>%s</code>."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:512
+#: ZpTranslation-Development/zp-core/admin-options.php:520
 #, php-format
 msgid "Your time zone offset is %d hour. If your time zone is different from the servers, select the correct time zone here."
 msgid_plural "Your time zone offset is: %d hours. If your time zone is different from the servers, select the correct time zone here."
 msgstr[0] "Het tijdverschil met de server is %d uur.  Als je je in een andere tijdzone bevindt dan de server, selecteer hier dan de juiste tijdzone."
 msgstr[1] "Het tijdverschil met de server is %d uur.  Als je je in een andere tijdzone bevindt dan de server, selecteer hier dan de juiste tijdzone."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:518
+#: ZpTranslation-Development/zp-core/admin-options.php:526
 msgid "Time offset (hours):"
 msgstr "Tijd offset (uren):"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:523
+#: ZpTranslation-Development/zp-core/admin-options.php:531
 msgid "If you're in a different time zone from your server, set the offset in hours of your time zone from that of the server. For instance if your server is on the US East Coast (<em>GMT</em> - 5) and you are on the Pacific Coast (<em>GMT</em> - 8), set the offset to 3 (-5 - (-8))."
 msgstr "Als je je in een andere tijdzone bevindt dan de server, vul dan het verschil in uren in tussen jouw tijdzone en die van de server. Bijvoorbeeld als de server zich bevindt aan de oostkust van Amerika (<em>GMT</em> - 5) en je woont zelf aan de westkust (<em>GMT</em> - 8), vul dan bij tijd-offset 3 in (-5-(-8))."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:530
+#: ZpTranslation-Development/zp-core/admin-options.php:538
 msgid "URL options:"
 msgstr "URL opties:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:545
+#: ZpTranslation-Development/zp-core/admin-options.php:553
 msgid "mod rewrite"
 msgstr "mod_rewrite"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:551
+#: ZpTranslation-Development/zp-core/admin-options.php:559
 msgid "UTF8 image URIs"
 msgstr "UTF8 afbeelding URI's"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:554
+#: ZpTranslation-Development/zp-core/admin-options.php:562
 msgid "mod_rewrite suffix:"
 msgstr "mod_rewrite toevoeging:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:559
+#: ZpTranslation-Development/zp-core/admin-options.php:567
 msgid "If you have Apache <em>mod rewrite</em>, put a checkmark on the <em>mod rewrite</em> option and you'll get nice cruft-free URLs."
 msgstr "Als de Apache <em>mod_rewrite</em> module aanwezig is, vink de optie <em>mod_rewrite</em> dan aan voor nette URL's.<br />"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:560
+#: ZpTranslation-Development/zp-core/admin-options.php:568
 msgid "If the checkbox is disabled, setup did not detect a working Apache <em>mod_rewrite</em> facility and proper <em>.htaccess</em> file."
 msgstr "Indien het <em>mod_rewrite</em> vakje net actief is heeft setup geen Apache <em>mod_rewrite</em> en een correct <em>.htaccess</em> bestand kunnen vinden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:563
+#: ZpTranslation-Development/zp-core/admin-options.php:571
 msgid "If you are having problems with images whose names contain characters with diacritical marks try changing the <em>UTF8 image URIs</em> setting."
 msgstr "Als je problemen hebt met betandsnamen met speciale karakters probeer dan de <em>UTF8 afbeelding URI</em> optie."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:564
+#: ZpTranslation-Development/zp-core/admin-options.php:572
 msgid "If <em>mod_rewrite</em> is checked above, zenphoto will append the <em>mod_rewrite suffix</em> to the end of image URLs. (This helps search engines.) Examples: <em>.html, .php</em>, etc."
 msgstr "Als <em>mod_rewrite</em> hierboven ingeschakeld is zal Zenphoto de <em>mod_rewrite toevoeging</em> toevoegen aan het eind van de afbeeldings URL  (hulpvol voor zoekmachines). Voorbeelden: <em>.html, .php</em>, etc."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:568
+#: ZpTranslation-Development/zp-core/admin-options.php:576
 #: ZpTranslation-Development/zp-core/admin-users.php:767
 msgid "Language:"
 msgstr "Taal:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:577
+#: ZpTranslation-Development/zp-core/admin-options.php:585
 msgid "HTTP_Accept_Language"
 msgstr "HTTP Accept Language"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:670
+#: ZpTranslation-Development/zp-core/admin-options.php:678
 #, php-format
 msgid "Highlighted languages are not current with Zenphoto Version %1$s. (The version Zenphoto of the out-of-date language is shown in braces.) Please check the <a href=\"%2$s\">translation repository</a> for new and updated language translations."
 msgstr "De geaccentueerde vertalingen (gele achtergrond) zijn niet volledig voor deze versie van Zenphoto (%1$s). De Zenphotoversie waarvoor ze wél volledig zijn staat tussen accolades.<br />Controleer de <a href=\"%2$s\"><em>translation tickets</em></a> voor de laatste vertalingen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:672
+#: ZpTranslation-Development/zp-core/admin-options.php:680
 msgid "Multi-lingual"
 msgstr "Meertalig"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:676
+#: ZpTranslation-Development/zp-core/admin-options.php:684
 msgid "You can disable languages by unchecking their checkboxes. Only checked languages will be available to the installation."
 msgstr "Je kunt talen deactiveren door de checkbox uit te vinken. Alleen aangevinkte talen worden beschikbaar in de installatie."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:677
+#: ZpTranslation-Development/zp-core/admin-options.php:685
 msgid "Select the preferred language to display text in. (Set to <em>HTTP_Accept_Language</em> to use the language preference specified by the viewer's browser.)"
 msgstr "Selecteer de voorkeurtaal om tekst weer te geven. (Zet op <em>HTTP Accept Language</em> om de taalvoorkeur van de bezoeker's browser te gebruiken.)"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:678
+#: ZpTranslation-Development/zp-core/admin-options.php:686
 msgid "Set <em>Multi-lingual</em> to enable multiple languages for database fields."
 msgstr "Zet <em>Meertalig</em> aan om meerdere talen in databasevelden mogelijk te maken."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:679
+#: ZpTranslation-Development/zp-core/admin-options.php:687
 msgid "<strong>Note:</strong> if you have created multi-language strings, uncheck this option, then save anything, you will lose your strings."
 msgstr "<strong>Let op:</strong> als je meertalige strings hebt aangemaakt en daarna deze optie weer uitzet zul je bij het opslaan deze strings verliezen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:683
+#: ZpTranslation-Development/zp-core/admin-options.php:691
 msgid "Date format:"
 msgstr "Datumweergave:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:688
+#: ZpTranslation-Development/zp-core/admin-options.php:696
 msgid "Preferred date representation"
 msgstr "Voorkeur datumweergave"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:689
+#: ZpTranslation-Development/zp-core/admin-options.php:697
 msgid "02/25/08 15:30"
 msgstr "02/25/08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:690
+#: ZpTranslation-Development/zp-core/admin-options.php:698
 msgid "02/25/08"
 msgstr "02/25/08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:691
+#: ZpTranslation-Development/zp-core/admin-options.php:699
 msgid "02/25/2008 15:30"
 msgstr "02/25/2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:692
+#: ZpTranslation-Development/zp-core/admin-options.php:700
 msgid "02/25/2008"
 msgstr "02/25/2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:693
+#: ZpTranslation-Development/zp-core/admin-options.php:701
 msgid "02-25-08 15:30"
 msgstr "02-25-08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:694
+#: ZpTranslation-Development/zp-core/admin-options.php:702
 msgid "02-25-08"
 msgstr "02-25-08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:695
+#: ZpTranslation-Development/zp-core/admin-options.php:703
 msgid "02-25-2008 15:30"
 msgstr "02-25-2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:696
+#: ZpTranslation-Development/zp-core/admin-options.php:704
 msgid "02-25-2008"
 msgstr "02-25-2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:697
+#: ZpTranslation-Development/zp-core/admin-options.php:705
 msgid "2008. February 25. 15:30"
 msgstr "2008. Februari 25. 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:698
+#: ZpTranslation-Development/zp-core/admin-options.php:706
 msgid "2008. February 25."
 msgstr "2008. Februari 25."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:699
+#: ZpTranslation-Development/zp-core/admin-options.php:707
 msgid "2008-02-25 15:30"
 msgstr "2008-02-25 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:700
+#: ZpTranslation-Development/zp-core/admin-options.php:708
 msgid "2008-02-25"
 msgstr "2008-02-25"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:701
+#: ZpTranslation-Development/zp-core/admin-options.php:709
 msgid "25 Feb 2008 15:30"
 msgstr "25 Feb 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:702
+#: ZpTranslation-Development/zp-core/admin-options.php:710
 msgid "25 Feb 2008"
 msgstr "25 Feb 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:703
+#: ZpTranslation-Development/zp-core/admin-options.php:711
 msgid "25 February 2008 15:30"
 msgstr "25 Februari 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:704
+#: ZpTranslation-Development/zp-core/admin-options.php:712
 msgid "25 February 2008"
 msgstr "25 Februari 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:705
+#: ZpTranslation-Development/zp-core/admin-options.php:713
 msgid "25. Feb 2008 15:30"
 msgstr "25. Feb 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:706
+#: ZpTranslation-Development/zp-core/admin-options.php:714
 msgid "25. Feb 2008"
 msgstr "25. Feb 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:707
+#: ZpTranslation-Development/zp-core/admin-options.php:715
 msgid "25. Feb. 08 15:30"
 msgstr "25. Feb. 08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:708
+#: ZpTranslation-Development/zp-core/admin-options.php:716
 msgid "25. Feb. 08"
 msgstr "25. Feb. 08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:709
+#: ZpTranslation-Development/zp-core/admin-options.php:717
 msgid "25. February 2008 15:30"
 msgstr "25. Februari 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:710
+#: ZpTranslation-Development/zp-core/admin-options.php:718
 msgid "25. February 2008"
 msgstr "25. Februari 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:711
+#: ZpTranslation-Development/zp-core/admin-options.php:719
 msgid "25.02.08 15:30"
 msgstr "25.02.08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:712
+#: ZpTranslation-Development/zp-core/admin-options.php:720
 msgid "25.02.08"
 msgstr "25.02.08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:713
+#: ZpTranslation-Development/zp-core/admin-options.php:721
 msgid "25.02.2008 15:30"
 msgstr "25.02.2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:714
+#: ZpTranslation-Development/zp-core/admin-options.php:722
 msgid "25.02.2008"
 msgstr "25.02.2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:715
+#: ZpTranslation-Development/zp-core/admin-options.php:723
 msgid "25-02-08 15:30"
 msgstr "25-02-08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:716
+#: ZpTranslation-Development/zp-core/admin-options.php:724
 msgid "25-02-08"
 msgstr "25-02-08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:717
+#: ZpTranslation-Development/zp-core/admin-options.php:725
 msgid "25-02-2008 15:30"
 msgstr "25-02-2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:718
+#: ZpTranslation-Development/zp-core/admin-options.php:726
 msgid "25-02-2008"
 msgstr "25-02-2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:719
+#: ZpTranslation-Development/zp-core/admin-options.php:727
 msgid "25-Feb-08 15:30"
 msgstr "25-Feb-08 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:720
+#: ZpTranslation-Development/zp-core/admin-options.php:728
 msgid "25-Feb-08"
 msgstr "25-Feb-08"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:721
+#: ZpTranslation-Development/zp-core/admin-options.php:729
 msgid "25-Feb-2008 15:30"
 msgstr "25-Feb-2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:722
+#: ZpTranslation-Development/zp-core/admin-options.php:730
 msgid "25-Feb-2008"
 msgstr "25-Feb-2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:723
+#: ZpTranslation-Development/zp-core/admin-options.php:731
 msgid "Feb 25, 2008 15:30"
 msgstr "Feb 25, 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:724
+#: ZpTranslation-Development/zp-core/admin-options.php:732
 msgid "Feb 25, 2008"
 msgstr "Feb 25, 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:725
+#: ZpTranslation-Development/zp-core/admin-options.php:733
 msgid "February 25, 2008 15:30"
 msgstr "Februari 25, 2008 15:30"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:726
+#: ZpTranslation-Development/zp-core/admin-options.php:734
 msgid "February 25, 2008"
 msgstr "Februari 25, 2008"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:744
+#: ZpTranslation-Development/zp-core/admin-options.php:752
 msgid "Format for dates. Select from the list or set to <code>custom</code> and provide a <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span class=\"nowrap\"><code>strftime()</code></span></a> format string in the text box."
 msgstr "Weegave van de datum. Selecteer uit de lijst of kies voor <code>Custom</code> en voer een <a href=\"http://us2.php.net/manual/en/function.strftime.php\"><span class=\"nowrap\"><code>strftime()</code></span></a> formaat in,  in het tekstveld."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:747
+#: ZpTranslation-Development/zp-core/admin-options.php:755
 msgid "Charset:"
 msgstr "Karakterset:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:764
+#: ZpTranslation-Development/zp-core/admin-options.php:772
 msgid "The character encoding to use internally. Leave at <em>Unicode (UTF-8)</em> if you are unsure."
 msgstr "De karaktercodering die intern gebruikt wordt. Laat deze op <em>Unicode (UTF-8)</em> staan als je niet zeker bent."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:766
+#: ZpTranslation-Development/zp-core/admin-options.php:774
 msgid "Character sets <span style=\"color:gray\">shown in gray</span> have no character translation support."
 msgstr "Karaktersets <span style=\"color:gray\">aangegeven in grijs</span> kunnen niet vertaald worden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:772
+#: ZpTranslation-Development/zp-core/admin-options.php:780
 msgid "Allowed tags:"
 msgstr "Toegestane HTML tags:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:800
+#: ZpTranslation-Development/zp-core/admin-options.php:808
 msgid "Tags and attributes allowed in comments, descriptions, and other fields."
 msgstr "HTML tags en attributen toegestaan in reacties, beschrijvingen en andere velden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:801
+#: ZpTranslation-Development/zp-core/admin-options.php:809
 msgid "Follow the form <em>tag</em> =&gt; (<em>attribute</em> =&gt; (<em>attribute</em>=&gt; (), <em>attribute</em> =&gt; ()...)))"
 msgstr "Gebruik de volgende syntax: <em>tag</em> =&gt; (<em>attribuut</em> =&gt; () <em>attribuut</em>=&gt; () <em>attribuut</em> =&gt; ()...))"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:803
+#: ZpTranslation-Development/zp-core/admin-options.php:811
 msgid "reset to default"
 msgstr "Herstel de standaard waarden"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:809
+#: ZpTranslation-Development/zp-core/admin-options.php:817
 msgid "Name:"
 msgstr "Naam:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:811
+#: ZpTranslation-Development/zp-core/admin-options.php:819
 msgid "Email:"
 msgstr "E-mail:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:817
+#: ZpTranslation-Development/zp-core/admin-options.php:825
 msgid "This email name and address will be used as the <em>From</em> address for all mails sent by Zenphoto."
 msgstr "Dit emailadres wordt gebruikt als het <em>afzender</em>-adres voor alle emails die door Zenphoto worden verzonden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:823
-#: ZpTranslation-Development/zp-core/admin-options.php:2693
-#: ZpTranslation-Development/zp-core/admin-options.php:2805
-#: ZpTranslation-Development/zp-core/admin-options.php:2843
-#: ZpTranslation-Development/zp-core/admin-options.php:2963
+#: ZpTranslation-Development/zp-core/admin-options.php:831
+#: ZpTranslation-Development/zp-core/admin-options.php:2701
+#: ZpTranslation-Development/zp-core/admin-options.php:2813
+#: ZpTranslation-Development/zp-core/admin-options.php:2852
+#: ZpTranslation-Development/zp-core/admin-options.php:2972
 msgid "save"
 msgstr "opslaan"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:852
+#: ZpTranslation-Development/zp-core/admin-options.php:860
 msgid "Gallery title:"
 msgstr "Galerijtitel:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:856
+#: ZpTranslation-Development/zp-core/admin-options.php:864
 msgid "What you want to call your Zenphoto site."
 msgstr "Hoe wil je je Zenphoto site noemen noemen?"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:859
+#: ZpTranslation-Development/zp-core/admin-options.php:867
 msgid "Gallery description:"
 msgstr "Galerijbeschrijving:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:863
+#: ZpTranslation-Development/zp-core/admin-options.php:871
 msgid "A brief description of your gallery. Some themes may display this text."
 msgstr "Een korte beschrijving van de galerij. Sommige thema's tonen deze tekst."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:866
+#: ZpTranslation-Development/zp-core/admin-options.php:874
 msgid "Gallery type"
 msgstr "Soort galerij"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:868
+#: ZpTranslation-Development/zp-core/admin-options.php:876
 msgid "public"
 msgstr "publiek"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:869
+#: ZpTranslation-Development/zp-core/admin-options.php:877
 msgid "private"
 msgstr "privé"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:870
+#: ZpTranslation-Development/zp-core/admin-options.php:878
 msgid "restricted"
 msgstr "beperkt"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:873
+#: ZpTranslation-Development/zp-core/admin-options.php:881
 msgid "Private galleries are viewable only by registered users."
 msgstr "Privé galerieën zijn alleen zichtbaar voor geregistreerde gebruikers."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:875
+#: ZpTranslation-Development/zp-core/admin-options.php:883
 msgid "Restricted galleries are private galleries but users may see only their managed albums."
 msgstr "Beperkte galerieën zijn privé galerieën maar gebruikers kunnen alleen hun eigen toegewezen album zien."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:885
-#: ZpTranslation-Development/zp-core/admin-options.php:931
+#: ZpTranslation-Development/zp-core/admin-options.php:893
+#: ZpTranslation-Development/zp-core/admin-options.php:939
 msgid "Gallery password:"
 msgstr "Galerijwachtwoord:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:906
+#: ZpTranslation-Development/zp-core/admin-options.php:914
 msgid "Master password for the gallery. Click on <em>Gallery password</em> to change."
 msgstr "Hoofdwachtwoord voor de galerij. Klik op <em>Galerijwachtwoord</em> om te wijzigen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:913
+#: ZpTranslation-Development/zp-core/admin-options.php:921
 msgid "Gallery guest user:"
 msgstr "Galerij gastgebruiker:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:925
+#: ZpTranslation-Development/zp-core/admin-options.php:933
 msgid "User ID for the gallery guest user"
 msgstr "Gebruikers ID voor de gastgebruiker."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:935
-#: ZpTranslation-Development/zp-core/admin-options.php:1291
-#: ZpTranslation-Development/zp-core/admin-options.php:1991
+#: ZpTranslation-Development/zp-core/admin-options.php:943
+#: ZpTranslation-Development/zp-core/admin-options.php:1299
+#: ZpTranslation-Development/zp-core/admin-options.php:1999
 msgid "(repeat)"
 msgstr "(herhaal)"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:954
+#: ZpTranslation-Development/zp-core/admin-options.php:962
 msgid "Master password for the gallery. If this is set, visitors must know this password to view the gallery."
 msgstr "Hoofdwachtwoord voor de galerij. Als deze ingevuld is moeten bezoekers dit wachtwoord weten om de galerij te bekijken."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:959
+#: ZpTranslation-Development/zp-core/admin-options.php:967
 msgid "Gallery password hint:"
 msgstr "Galerijwachtwoord hint:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:965
-#: ZpTranslation-Development/zp-core/admin-options.php:1321
+#: ZpTranslation-Development/zp-core/admin-options.php:973
+#: ZpTranslation-Development/zp-core/admin-options.php:1329
 msgid "A reminder hint for the password."
 msgstr "Een herinnering voor het wachtwoord."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:972
+#: ZpTranslation-Development/zp-core/admin-options.php:980
 msgid "Unprotected pages:"
 msgstr "Onbeschermde pagina's:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1000
+#: ZpTranslation-Development/zp-core/admin-options.php:1008
 msgid "Place a checkmark on any pages which should not be protected by the gallery password."
 msgstr "Vink aan welke pagina's NIET beschermd moeten worden met het galerijwachtwoord."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1003
+#: ZpTranslation-Development/zp-core/admin-options.php:1011
 msgid "Website title:"
 msgstr "Website titel:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1007
+#: ZpTranslation-Development/zp-core/admin-options.php:1015
 msgid "Your web site title."
 msgstr "De titel van de website."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1010
+#: ZpTranslation-Development/zp-core/admin-options.php:1018
 msgid "Website url:"
 msgstr "Website URL:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1013
+#: ZpTranslation-Development/zp-core/admin-options.php:1021
 msgid "This is used to link back to your main site, but your theme must support it."
 msgstr "Deze URL wordt gebruikt om naar je hoofdsite te linken maar het thema moet dit ondersteunen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1017
+#: ZpTranslation-Development/zp-core/admin-options.php:1025
 msgid "Album thumbnails:"
 msgstr "Album thumbnails:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1031
+#: ZpTranslation-Development/zp-core/admin-options.php:1039
 msgid "Default thumbnail selection for albums."
 msgstr "Standaard thumbnail selectie voor albums."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1033
+#: ZpTranslation-Development/zp-core/admin-options.php:1041
 msgid "Sort gallery by:"
 msgstr "Sorteer galerij op:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1089
+#: ZpTranslation-Development/zp-core/admin-options.php:1097
 msgid "Sort order for the albums on the index of the gallery. Custom sort values must be database field names. You can have multiple fields separated by commas. This option is also the default sort for albums and subalbums."
 msgstr "Sorteervolgorde voor de albums op de index pagina. Eigen sorteerwaarden moeten database veldnamen zijn. Je mag meerdere veldnamen gebruiken, gescheiden door komma's. Deze optie bepaalt ook de standaard volgorde voor albums en subalbums."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1094
+#: ZpTranslation-Development/zp-core/admin-options.php:1102
 msgid "Gallery behavior:"
 msgstr "Algemene galerij-instellingen:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1099
+#: ZpTranslation-Development/zp-core/admin-options.php:1107
 msgid "Publish albums by default"
 msgstr "Albums meteen publiceren"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1105
+#: ZpTranslation-Development/zp-core/admin-options.php:1113
 msgid "Publish images by default"
 msgstr "Afbeeldingen meteen publiceren"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1112
+#: ZpTranslation-Development/zp-core/admin-options.php:1120
 msgid "use latest image date as album date"
 msgstr "Gebruik datum laatste afbeelding als datum voor album"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1119
+#: ZpTranslation-Development/zp-core/admin-options.php:1127
 msgid "visual thumb selection"
 msgstr "Visuele selectie van thumbnails"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1126
+#: ZpTranslation-Development/zp-core/admin-options.php:1134
 msgid "show subalbum thumbs"
 msgstr "Toon subalbum thumbnails"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1133
+#: ZpTranslation-Development/zp-core/admin-options.php:1141
 msgid "enable gallery sessions"
 msgstr "Galerij sessies"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1140
+#: ZpTranslation-Development/zp-core/admin-options.php:1148
 msgid "Cookie duration"
 msgstr "Cookie levensduur"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1150
+#: ZpTranslation-Development/zp-core/admin-options.php:1158
 msgid "<a href=\"javascript:toggle('albumpub');\" >Details</a> for <em>publish albums by default</em>"
 msgstr "<a href=\"javascript:toggle('albumpub');\" >Info</a> voor <em>Albums meteen publiceren</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1152
+#: ZpTranslation-Development/zp-core/admin-options.php:1160
 msgid "This sets the default behavior for when Zenphoto discovers an album. If checked, the album will be published, if unchecked it will be unpublished."
 msgstr "Bepaalt wat Zenphoto moet doen wanneer er een nieuw album wordt ontdekt. Als dit is aangevinkt wordt het album meteen gepubliceerd, anders niet."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1154
+#: ZpTranslation-Development/zp-core/admin-options.php:1162
 msgid "<a href=\"javascript:toggle('imagepub');\" >Details</a> for <em>publish images by default</em>"
 msgstr "<a href=\"javascript:toggle('imagepub');\" >Info</a> voor <em>Afbeeldingen meteen publiceren</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1156
+#: ZpTranslation-Development/zp-core/admin-options.php:1164
 msgid "This sets the default behavior for when Zenphoto discovers an image. If checked, the image will be published, if unchecked it will be unpublished."
 msgstr "Bepaalt wat Zenphoto moet doen wanneer er een nieuwe afbeelding wordt ontdekt. Als dit is aangevinkt wordt de afbeelding meteen gepubliceerd, anders niet."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1158
+#: ZpTranslation-Development/zp-core/admin-options.php:1166
 msgid "<a href=\"javascript:toggle('albumdate');\" >Details</a> for <em>use latest image date as album date</em>"
 msgstr "<a href=\"javascript: toggle('albumdate');\" >Info</a> voor <em>Gebruik datum laatste afbeelding als datum voor album</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1161
+#: ZpTranslation-Development/zp-core/admin-options.php:1169
 msgid "If you wish your album date to reflect the date of the latest image uploaded set this option. Otherwise the date will be set initially to the date the album was created."
 msgstr "Zet deze optie aan als je de albumdatum gelijk wilt laten zijn met de datum van de laatst geuploade afbeelding. Anders zal de datum gebruikt worden waarop het album aangemaakt is."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1164
+#: ZpTranslation-Development/zp-core/admin-options.php:1172
 msgid "<strong>NOTE</strong>: Zenphoto will update the album date only if an image is discovered which is newer than the current date of the album."
 msgstr "<strong>Opmerking</strong>: Zenphoto zal de datum van het album alleen veranderen als er een afbeelding gevonden wordt met een recentere datum dan die van het album."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1168
+#: ZpTranslation-Development/zp-core/admin-options.php:1176
 msgid "<a href=\"javascript:toggle('visualthumb');\" >Details</a> for <em>visual thumb selection</em>"
 msgstr "<a href=\"javascript: toggle('visualthumb');\" >Info</a> voor <em>Visuele selectie van thumbnails</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1170
+#: ZpTranslation-Development/zp-core/admin-options.php:1178
 msgid "Setting this option places thumbnails in the album thumbnail selection list (the dropdown list on each album's edit page). In Firefox the dropdown shows the thumbs, but in IE and Safari only the names are displayed (even if the thumbs are loaded!). In albums with many images loading these thumbs takes much time and is unnecessary when the browser won't display them. Uncheck this option and the images will not be loaded. "
 msgstr "Deze optie zorgt ervoor dat thumbnails getoond worden in de album thumbnail selectielijst (de dropdownlijst op de bewerkingspagina van elk album). In Firefox toont de lijst thumbnails, maar in IE en Safari worden alleen de namen getoond (ook als de thumbnails geladen zijn!). In albums met veel afbeeldingen neemt het laden van deze thumbnails veel tijd in beslag wat onnodig is als ze toch niet getoond worden door de browser. Zet deze optie uit en de afbeeldingen zullen niet geladen worden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1173
+#: ZpTranslation-Development/zp-core/admin-options.php:1181
 msgid "<a href=\"javascript:toggle('multithumb');\" >Details</a> for <em>subalbum thumb selection</em>"
 msgstr "<a href=\"javascript: toggle('multithumb');\" >Info</a> voor <em>Toon subalbum thumbnails</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1175
+#: ZpTranslation-Development/zp-core/admin-options.php:1183
 msgid "Setting this option allows selecting images from subalbums as well as from the album. Naturally populating these images adds overhead. If your album edit tabs load too slowly, do not select this option."
 msgstr "Deze optie maakt het mogelijk om óók thumbnails te selecteren uit subalbums. Dit kan veel tijd kosten.  Als je merkt dat albumopties traag laden kan het verstandig zijn om deze optie niet te gebruiken."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1178
+#: ZpTranslation-Development/zp-core/admin-options.php:1186
 msgid "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>enable gallery sessions</em>"
 msgstr "<a href=\"javascript: toggle('gallerysessions');\" >Info</a> voor <em>Galerij sessies</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1180
+#: ZpTranslation-Development/zp-core/admin-options.php:1188
 msgid "Check this option if you are having issues with password and other cookie data not being retained. Setting the option causes zenphoto to use sessions rather than cookies."
 msgstr "Vink deze optie aan als je problemen ondervindt met wachtwoorden en andere cookie-informatie die niet bewaard blijven. Deze optie zorgt ervoor dat Zenphoto sessies in plaats van cookies gebruikt."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1181
+#: ZpTranslation-Development/zp-core/admin-options.php:1189
 msgid "<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience."
 msgstr "<strong>Opmerking</strong>: Sessies worden afgesloten als de browser gesloten wordt. Hierbij worden wachtwoorden en andere informatie weggegooid. Een langere <em>levensduur</em> van de cookie zorgt doorgaans voor een prettigere browserervaring."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1186
+#: ZpTranslation-Development/zp-core/admin-options.php:1194
 msgid "<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for <em>Cookie duration</em>"
 msgstr "<a href=\"javascript: toggle('cookie_persistence');\" >Info</a> voor <em>Cookie levensduur</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1188
+#: ZpTranslation-Development/zp-core/admin-options.php:1196
 msgid "Set to the time in seconds that cookies should be kept by browsers."
 msgstr "Stel de tijd in (in seconden) voor het bewaren van cookies door de browser."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1243
-#: ZpTranslation-Development/zp-core/admin-options.php:1287
+#: ZpTranslation-Development/zp-core/admin-options.php:1251
+#: ZpTranslation-Development/zp-core/admin-options.php:1295
 msgid "Search password:"
 msgstr "Zoekwachtwoord:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1263
+#: ZpTranslation-Development/zp-core/admin-options.php:1271
 msgid "Password for the search guest user. click on <em>Search password</em> to change."
 msgstr "Wachtwoord voor de gastgebruiker om de zoekfunctie te gebruiken. Klik op <em>Zoekwachtwoord</em> om te wijzigen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1269
+#: ZpTranslation-Development/zp-core/admin-options.php:1277
 msgid "Search guest user:"
 msgstr "Zoek gastgebruiker:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1281
+#: ZpTranslation-Development/zp-core/admin-options.php:1289
 msgid "User ID for the search guest user"
 msgstr "Gastgebruikers ID voor de zoekfunctie"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1310
+#: ZpTranslation-Development/zp-core/admin-options.php:1318
 msgid "Password for the search guest user. If this is set, visitors must know this password to view search results."
 msgstr "Wachtwoord voor de gastgebruiker om de zoekfunctie te gebruiken.<br />Als dit ingevuld is moeten bezoekers dit wachtwoord weten om zoekresultaten te bekijken."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1315
+#: ZpTranslation-Development/zp-core/admin-options.php:1323
 msgid "Search password hint:"
 msgstr "Zoekwachtwoord hint:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1328
+#: ZpTranslation-Development/zp-core/admin-options.php:1336
 msgid "Search behavior settings:"
 msgstr "Zoekfunctie instellingen:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1332
+#: ZpTranslation-Development/zp-core/admin-options.php:1340
 msgid "partial"
 msgstr "gedeeltelijk"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1333
+#: ZpTranslation-Development/zp-core/admin-options.php:1341
 msgid "exact"
 msgstr "exact"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1351
+#: ZpTranslation-Development/zp-core/admin-options.php:1359
 msgid "Fields list:"
 msgstr "Lijst zoekvelden:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1382
+#: ZpTranslation-Development/zp-core/admin-options.php:1390
 msgid "Treat spaces as"
 msgstr "Behandel spaties als"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1383
+#: ZpTranslation-Development/zp-core/admin-options.php:1391
 msgid "<em>space</em>"
 msgstr "<em>spatie</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1383
+#: ZpTranslation-Development/zp-core/admin-options.php:1391
 msgid "<em>OR</em>"
 msgstr "<em>OF</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1383
+#: ZpTranslation-Development/zp-core/admin-options.php:1391
 msgid "<em>AND</em>"
 msgstr "<em>EN</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1385
+#: ZpTranslation-Development/zp-core/admin-options.php:1393
 msgid "Default search"
 msgstr "Standaard zoeken"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1386
+#: ZpTranslation-Development/zp-core/admin-options.php:1394
 msgid "<em>New</em>"
 msgstr "<em>nieuwe</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1386
+#: ZpTranslation-Development/zp-core/admin-options.php:1394
 msgid "<em>Within</em>"
 msgstr "<em>binnen</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1391
+#: ZpTranslation-Development/zp-core/admin-options.php:1399
 msgid "Do not return <em>album</em> matches"
 msgstr "Geef geen albumnamen weer"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1397
+#: ZpTranslation-Development/zp-core/admin-options.php:1405
 msgid "Do not return <em>image</em> matches"
 msgstr "Laat geen <em>afbeeldingen</em> zien"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1406
+#: ZpTranslation-Development/zp-core/admin-options.php:1414
 msgid "Do not return <em>news</em> matches"
 msgstr "Laat geen <em>nieuws</em> zien"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1412
+#: ZpTranslation-Development/zp-core/admin-options.php:1420
 msgid "Do not return <em>page</em> matches"
 msgstr "Laat geen <em>pagina's</em> zien"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1420
+#: ZpTranslation-Development/zp-core/admin-options.php:1428
 msgid "<em>Field list</em> is the set of fields on which searches may be performed."
 msgstr "<em>Lijst zoekvelden</em> is de set van velden waarop zoekopdrachten gedaan worden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1421
+#: ZpTranslation-Development/zp-core/admin-options.php:1429
 msgid "Search does partial matches on all fields selected with the possible exception of <em>Tags</em>. This means that if the field contains the search criteria anywhere within it a result will be returned. If <em>exact</em> is selected for <em>Tags</em> then the search criteria must exactly match the tag for a result to be returned."
 msgstr "De zoekfunctie geeft gedeeltelijke overeenkomsten weer uit alle zoekvelden met de mogelijke uitzondering van <em>Tags</em>. Dit betekent dat wanneer het ergens in een zoekveld de opgegeven tekst vindt, er een resultaat wordt weergegeven. Als <em>exact</em> is geselecteerd voor <em>Tags</em>,  worden alleen resultaten weergegeven als het zoekgegeven exact hetzelfde is als de tag."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1422
+#: ZpTranslation-Development/zp-core/admin-options.php:1430
 msgid "Setting <code>Treat spaces as</code> to <em>OR</em> will cause search to trigger on any of the words in a string separated by spaces. Setting it to <em>AND</em> will cause the search to trigger only when all strings are present. Leaving the option unchecked will treat the whole string as a search target."
 msgstr "Het gebruik van <code>Behandel spaties als</code> <em>OF </em> zorgt ervoor dat de zoekfunctie reageert op elk woord appart indien gescheiden door een spatie. Als je kiest voor <em>EN</em> krijg je alleen resultaten te zie die alle zoektermen bevatten. Indien NIET aangevinkt zullen alle woorden in het zoekvenster samen gezien worden als één zoekterm."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1423
+#: ZpTranslation-Development/zp-core/admin-options.php:1431
 msgid "<code>Default search</code> sets how searches from search page results behave. The search will either be from <em>within</em> the results of the previous search or will be a fresh <em>new</em> search."
 msgstr "<code>Standaard zoeken</code> bepaalt hoe de zoekfunctie werkt. Het zoeken gebeurt óf <em>binnen</em> de zoekresultaten van de vorige zoekopdracht óf er wordt een totaal <em>nieuwe</em> zoekopdracht uitgevoerd."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1424
+#: ZpTranslation-Development/zp-core/admin-options.php:1432
 msgid "Setting <code>Do not return <em>{item}</em> matches</code> will cause search to ignore <em>{items}</em> when looking for matches."
 msgstr "De optie <code>Laat geen <em>{onderdeel}</em> zien</code> zorgt ervoor dat <em>{onderdelen}</em> worden genegeerd bij het zoeken. "
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1427
+#: ZpTranslation-Development/zp-core/admin-options.php:1435
 msgid "Cache expiry"
 msgstr "Cache verlooptijd"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1429
+#: ZpTranslation-Development/zp-core/admin-options.php:1437
 #, php-format
 msgid "Redo search after %s minutes."
 msgstr "Zoek opnieuw na %s minuten."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1432
+#: ZpTranslation-Development/zp-core/admin-options.php:1440
 msgid "Search will remember the results of particular searches so that it can quickly serve multiple pages, etc. Over time this remembered result can become obsolete, so it should be refreshed. This option lets you decide how long before a search will be considered obsolete and thus re-executed. Setting the option to <em>zero</em> disables caching of searches."
 msgstr "\"Zoeken\" onthoudt de resultaten van zoekopdrachten voor een sneller resultaat. De resultaten zijn na verloop van tijd natuurlijk niet meer actueel en moeten ververst worden. Deze optie geeft de mogelijkheid om te bepalen wanneer een zoekopdracht verouderd is. Als de optie op <em>nul (0)</em> is ingesteld worden zoekopdrachten niet bewaard."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1467
+#: ZpTranslation-Development/zp-core/admin-options.php:1475
 msgid "RSS feeds enabled:"
 msgstr "RSS feeds ingeschakeld:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1479
+#: ZpTranslation-Development/zp-core/admin-options.php:1487
 msgid "News/Page comments"
 msgstr "Nieuws/Pagina commentaren"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1486
+#: ZpTranslation-Development/zp-core/admin-options.php:1494
 msgid "Check each RSS feed you wish to activate."
 msgstr "Vink de RSS feed aan die je wilt activeren. "
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1491
+#: ZpTranslation-Development/zp-core/admin-options.php:1499
 msgid "<strong>Note:</strong> Theme support is required to display RSS links."
 msgstr "<strong>Opmerking:</strong> Het thema moet het weergeven van RSS links ondersteunen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1497
+#: ZpTranslation-Development/zp-core/admin-options.php:1505
 msgid "Number of RSS feed items:"
 msgstr "Aantal RSS Feed onderdelen:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1499
-#: ZpTranslation-Development/zp-core/admin-options.php:1508
-#: ZpTranslation-Development/zp-core/admin-options.php:1534
+#: ZpTranslation-Development/zp-core/admin-options.php:1507
+#: ZpTranslation-Development/zp-core/admin-options.php:1516
+#: ZpTranslation-Development/zp-core/admin-options.php:1542
 msgid "Images RSS"
 msgstr "Afbeeldingen RSS"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1500
-#: ZpTranslation-Development/zp-core/admin-options.php:1510
-#: ZpTranslation-Development/zp-core/admin-options.php:1537
+#: ZpTranslation-Development/zp-core/admin-options.php:1508
+#: ZpTranslation-Development/zp-core/admin-options.php:1518
+#: ZpTranslation-Development/zp-core/admin-options.php:1545
 msgid "Albums RSS"
 msgstr "Albums RSS"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1502
+#: ZpTranslation-Development/zp-core/admin-options.php:1510
 msgid "The number of new items you want to appear in your site's RSS feed. The images and comments RSS share the value."
 msgstr "Het aantal nieuwe artikelen dat je wilt laten zien in Nieuws RSS feed. Voor reacties geldt hetzelfde aantal als voor afbeeldingen"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1505
+#: ZpTranslation-Development/zp-core/admin-options.php:1513
 msgid "Size of RSS feed images:"
 msgstr "Grootte van RSS feed afbeeldingen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1512
+#: ZpTranslation-Development/zp-core/admin-options.php:1520
 msgid "The size you want your images to have in your site's RSS feed."
 msgstr "De afmetingen van de afbeeldingen in de RSS feed van de site."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1515
+#: ZpTranslation-Development/zp-core/admin-options.php:1523
 msgid "RSS feed sort order:"
 msgstr "RSS feed sorteervolgorde:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1519
-#: ZpTranslation-Development/zp-core/admin-options.php:1525
+#: ZpTranslation-Development/zp-core/admin-options.php:1527
+#: ZpTranslation-Development/zp-core/admin-options.php:1533
 msgid "latest by id"
 msgstr "laatste volgens id"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1520
-#: ZpTranslation-Development/zp-core/admin-options.php:1526
+#: ZpTranslation-Development/zp-core/admin-options.php:1528
+#: ZpTranslation-Development/zp-core/admin-options.php:1534
 msgid "latest by date"
 msgstr "laatste volgens datum"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1521
-#: ZpTranslation-Development/zp-core/admin-options.php:1527
+#: ZpTranslation-Development/zp-core/admin-options.php:1529
+#: ZpTranslation-Development/zp-core/admin-options.php:1535
 msgid "latest by mtime"
 msgstr "laatste voglens mtime"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1522
-#: ZpTranslation-Development/zp-core/admin-options.php:1528
+#: ZpTranslation-Development/zp-core/admin-options.php:1530
+#: ZpTranslation-Development/zp-core/admin-options.php:1536
 msgid "latest by publishdate"
 msgstr "laatste volgens publicatiedatum"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1529
+#: ZpTranslation-Development/zp-core/admin-options.php:1537
 msgid "latest updated"
 msgstr "laatste veranderingen"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1539
+#: ZpTranslation-Development/zp-core/admin-options.php:1547
 msgid "a) Images RSS: Choose between <em>latest by id</em> for the latest uploaded, <em>latest by date</em> for the latest uploaded fetched by date, or <em>latest by mtime</em> for the latest uploaded fetched by the file's last change timestamp.<br />b) Albums RSS: Choose between <em>latest by id</em> for the latest uploaded and <em>latest updated</em>"
 msgstr "a) Afbeeldingen RSS: Kies 'latest by id' voor de laatst ge-uploade opgehaald op ID, 'latest by date' voor de laatst ge-uploade opgehaald op datum of  'latest by mtime' voor de laatst ge-uploade opgehaald op op de tijd van de laatste verandering.<br />b) Albums RSS: Kies tussen <em>latest by id</em> voor de laatst ge-uploade en <em>laatste ge-update</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1542
+#: ZpTranslation-Development/zp-core/admin-options.php:1550
 msgid "RSS enclosure:"
 msgstr "RSS toevoeging:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1545
+#: ZpTranslation-Development/zp-core/admin-options.php:1553
 msgid "Check if you want to enable the <em>RSS enclosure</em> feature which provides a direct download for full images, movies etc. from within certain RSS reader clients <em>(only Images RSS)</em>."
 msgstr "Vink aan als je gebruik wilt maken van de mogelijkheid om met sommige RSS readers direct volledige afbeeldingen, films, e.d. te downloaden <em>(alleen Afbeeldingen RSS)</em>."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1548
+#: ZpTranslation-Development/zp-core/admin-options.php:1556
 msgid "Media RSS:"
 msgstr "Media RSS:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1550
+#: ZpTranslation-Development/zp-core/admin-options.php:1558
 msgid "Check if <em>media RSS</em> support is to be enabled. This support is used by some services and programs <em>(only Images RSS)</em>."
 msgstr "Vink aan je wilt dat <em>media RSS</em> support actief wordt. Dit wordt gebruikt door sommige services en programma's <em>(alleen Afbeeldingen RSS)</em>."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1553
+#: ZpTranslation-Development/zp-core/admin-options.php:1561
 msgid "RSS cache"
 msgstr "RSS cache"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1555
-#: ZpTranslation-Development/zp-core/admin-options.php:1912
-#: ZpTranslation-Development/zp-core/admin-options.php:1921
-#: ZpTranslation-Development/zp-core/admin-options.php:2042
+#: ZpTranslation-Development/zp-core/admin-options.php:1563
+#: ZpTranslation-Development/zp-core/admin-options.php:1920
+#: ZpTranslation-Development/zp-core/admin-options.php:1929
+#: ZpTranslation-Development/zp-core/admin-options.php:2050
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1557
+#: ZpTranslation-Development/zp-core/admin-options.php:1565
 msgid "RSS cache expire"
 msgstr "RSS cache verlooptijd"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1559
+#: ZpTranslation-Development/zp-core/admin-options.php:1567
 msgid "Check if you want to enable static RSS feed caching. The cached file will be placed within the <em>cache_html</em> folder.<br /> Cache expire default is 86400 seconds (1 day  = 24 hrs * 60 min * 60 sec)."
 msgstr "Vink aan als je statische RSS feed wilt cachen. Het bestand wordt bewaard in de <em>cache_html</em> map. <br /> De cache wordt geleegd na 86400 seconden (1 dag  = 24 uur * 60 min * 60 sec)."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1562
+#: ZpTranslation-Development/zp-core/admin-options.php:1570
 msgid "RSS hitcounter"
 msgstr "RSS hitteller"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1565
+#: ZpTranslation-Development/zp-core/admin-options.php:1573
 msgid "Check if you want to store the hitcount on RSS feeds."
 msgstr "Vink aan als je het aantal hits op RSS-feeds wilt bewaren."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1568
+#: ZpTranslation-Development/zp-core/admin-options.php:1576
 msgid "RSS title"
 msgstr "RSS titel"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1570
+#: ZpTranslation-Development/zp-core/admin-options.php:1578
 msgid "Gallery title"
 msgstr "Galerij-titel"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1571
+#: ZpTranslation-Development/zp-core/admin-options.php:1579
 msgid "Website title"
 msgstr "Website-titel"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1572
+#: ZpTranslation-Development/zp-core/admin-options.php:1580
 msgid "Both"
 msgstr "Beide"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1574
+#: ZpTranslation-Development/zp-core/admin-options.php:1582
 msgid "Select what you want to use as the main RSS feed (channel) title. 'Both' means Website title followed by Gallery title"
 msgstr "Selecteer wat je wilt gebruiken als de titel voor de RSS feed. 'Beide' betekend Website-titel gevolgd door Galerij-titel"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1598
+#: ZpTranslation-Development/zp-core/admin-options.php:1606
 msgid "See also the <a href=\"?tab=theme\">Theme Options</a> tab for theme specific image options."
 msgstr "Zie ook de <a href=\"?tab=theme\">thema opties</a> tab voor de thema-specifieke afbeeldings opties."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1660
+#: ZpTranslation-Development/zp-core/admin-options.php:1668
 msgid "Default sort order for images."
 msgstr "Sorteervolgorde voor afbeeldingen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1661
+#: ZpTranslation-Development/zp-core/admin-options.php:1669
 msgid "Custom sort values must be database field names. You can have multiple fields separated by commas."
 msgstr "Eigen sorteerwaarden moeten database veldnamen zijn. Je mag meerdere veldnamen gebruiken, gescheiden door komma's."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1665
+#: ZpTranslation-Development/zp-core/admin-options.php:1673
 msgid "Image quality:"
 msgstr "Afbeeldingskwaliteit:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1668
+#: ZpTranslation-Development/zp-core/admin-options.php:1676
 msgid "Normal Image"
 msgstr "normale afbeelding"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1689
+#: ZpTranslation-Development/zp-core/admin-options.php:1697
 msgid "<em>full</em> Image"
 msgstr "volledige afbeelding"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1710
+#: ZpTranslation-Development/zp-core/admin-options.php:1718
 msgid "Thumbnail"
 msgstr "thumbnail"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1732
+#: ZpTranslation-Development/zp-core/admin-options.php:1740
 msgid "Compression quality for images and thumbnails generated by Zenphoto."
 msgstr "JPEG compressiekwaliteit voor afbeeldingen en thumbnails."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1733
+#: ZpTranslation-Development/zp-core/admin-options.php:1741
 msgid "Quality ranges from 0 (worst quality, smallest file) to 100 (best quality, biggest file). "
 msgstr "De kwaliteit loopt van 0 (slechtste, kleinste bestandsformaat) tot 100 (beste, grootste bestandsformaat)"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1737
+#: ZpTranslation-Development/zp-core/admin-options.php:1745
 msgid "Interlace:"
 msgstr "Interlace:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1739
+#: ZpTranslation-Development/zp-core/admin-options.php:1747
 msgid "If checked, resized images will be created <em>interlaced</em> (if the format permits)."
 msgstr "Indien aangevinkt worden geschaalde afbeeldingen <em>interlaced</em> gecreëerd (indien het formaat het toestaat)."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1742
+#: ZpTranslation-Development/zp-core/admin-options.php:1750
 msgid "Use embedded thumbnail"
 msgstr "Gebruik ingesloten thumbnail"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1753
+#: ZpTranslation-Development/zp-core/admin-options.php:1761
 msgid "If set, Zenphoto will use the thumbnail imbedded in the image when creating a cached image that is equal or smaller in size. Note: the quality of this image varies by camera and its orientation may not match the master image."
 msgstr "Indien aangevinkt, zal Zenphoto de ingesloten thumbnail van de afbeelding gebruiken om een gecachte afbeelding te maken, indien deze kleiner of gelijk is aan de ingesloten thumbnail.<br />Opmerking: de kwaliteit van deze afbeelding is afhankelijk van de gebruikte camera en de oriëntatie (liggend/staand) kan verschillen van de échte afbeelding."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1757
+#: ZpTranslation-Development/zp-core/admin-options.php:1765
 msgid "The PHP EXIF extension is required for this option."
 msgstr "De PHP EXIF extensie is vereist voor deze optie."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1764
+#: ZpTranslation-Development/zp-core/admin-options.php:1772
 msgid "Allow upscale:"
 msgstr "Vergroten toestaan:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1766
+#: ZpTranslation-Development/zp-core/admin-options.php:1774
 msgid "Allow images to be scaled up to the requested size. This could result in loss of quality, so it's off by default."
 msgstr "Sta toe dat afbeeldingen vergroot worden naar het gevraagde formaat. Dit kan resulteren in een verlies van kwaliteit dus standaard staat deze optie uit."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1769
+#: ZpTranslation-Development/zp-core/admin-options.php:1777
 msgid "Sharpen:"
 msgstr "Verscherp:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1782
+#: ZpTranslation-Development/zp-core/admin-options.php:1790
 msgid "Amount"
 msgstr "Hoeveelheid"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1806
+#: ZpTranslation-Development/zp-core/admin-options.php:1814
 msgid "Radius"
 msgstr "Straal"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1810
+#: ZpTranslation-Development/zp-core/admin-options.php:1818
 msgid "Threshold"
 msgstr "Drempel"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1816
+#: ZpTranslation-Development/zp-core/admin-options.php:1824
 msgid "Add an unsharp mask to images and/or thumbnails."
 msgstr "Voeg verscherping toe aan afbeeldingen en/of thumbnails."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1816
+#: ZpTranslation-Development/zp-core/admin-options.php:1824
 msgid "<strong>WARNING</strong>: can overload slow servers."
 msgstr "<strong>Waarschuwing</strong>: kan langzame servers overbelasten."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1817
+#: ZpTranslation-Development/zp-core/admin-options.php:1825
 msgid "<em>Amount</em>: the strength of the sharpening effect. Values are between 0 (least sharpening) and 100 (most sharpening)."
 msgstr "<em>Hoeveelheid</em>: de sterkte van het verscherpen. De waarde kan tussen 0 en 100 liggen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1818
+#: ZpTranslation-Development/zp-core/admin-options.php:1826
 msgid "<em>Radius</em>: the pixel radius of the sharpening mask. A smaller radius sharpens smaller details, and a larger radius sharpens larger details."
 msgstr "<em>Straal</em>: de pixelstraal van de scherpte. Een kleine straal verscherpt kleine details. Een grotere straal verscherpt grotere details."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1819
+#: ZpTranslation-Development/zp-core/admin-options.php:1827
 msgid "<em>Threshold</em>: the color difference threshold required for sharpening. A low threshold sharpens all edges including faint ones, while a higher threshold only sharpens more distinct edges."
 msgstr "<em>Drempel</em>: De kleurverschil-drempel. Een lage drempel verscherpt alle randen, inclusief de vage. Een hogere drempel verscherpt alleen duidelijker randen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1823
+#: ZpTranslation-Development/zp-core/admin-options.php:1831
 msgid "Watermarks:"
 msgstr "Watermerken:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1840
+#: ZpTranslation-Development/zp-core/admin-options.php:1848
 msgid "Full sized images"
 msgstr "Afbeeldingen op het volledige formaat"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1861
+#: ZpTranslation-Development/zp-core/admin-options.php:1869
 #, php-format
 msgid "%s thumbnails"
 msgstr "%s thumbnails"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1864
+#: ZpTranslation-Development/zp-core/admin-options.php:1872
 msgid "image thumb"
 msgstr "afbeelding thumbnail"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1877
+#: ZpTranslation-Development/zp-core/admin-options.php:1885
 msgid "cover"
 msgstr "bedek"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1879
+#: ZpTranslation-Development/zp-core/admin-options.php:1887
 #, no-php-format
 msgid "% of image"
 msgstr "% van de afbeelding"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1882
+#: ZpTranslation-Development/zp-core/admin-options.php:1890
 msgid "allow upscale"
 msgstr "vergroten toestaan"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1886
+#: ZpTranslation-Development/zp-core/admin-options.php:1894
 msgid "offset h"
 msgstr "offset h"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1888
+#: ZpTranslation-Development/zp-core/admin-options.php:1896
 #, no-php-format
 msgid "% w, "
 msgstr "% w,"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1890
+#: ZpTranslation-Development/zp-core/admin-options.php:1898
 #, no-php-format
 msgid "%"
 msgstr "%"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1894
+#: ZpTranslation-Development/zp-core/admin-options.php:1902
 msgid "The watermark image is scaled by to cover <em>cover percentage</em> of the image and placed relative to the upper left corner of the image."
 msgstr "De watermerkafbeelding wordt geschaald  om een <em> percentage</em> van de afbeelding te bedekken en wordt relatief aan de linker bovenhoek van de afbeelding geplaatst."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1895
+#: ZpTranslation-Development/zp-core/admin-options.php:1903
 msgid "It is offset from there (moved toward the lower right corner) by the <em>offset</em> percentages of the height and width difference between the image and the watermark."
 msgstr "Het wordt vanuit daar ge-offset (richting de rechter onderhoek) met de <em>offset</em> percentages van het hoogte en breedte-verschil tussen de afbeelding en het watermerk."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1896
+#: ZpTranslation-Development/zp-core/admin-options.php:1904
 msgid "If <em>allow upscale</em> is not checked the watermark will not be made larger than the original watermark image."
 msgstr "Als <em>Vergroten toestaan</em> niet aangevinkt is zal het watermerk niet groter dan de orginele watermerkafbeelding gemaakt worden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1897
+#: ZpTranslation-Development/zp-core/admin-options.php:1905
 #, php-format
 msgid "Custom watermarks should be placed in the <code>/%s/watermarks/</code> folder. The images must be in png-24 format."
 msgstr "Eigen watermerken moeten in de <code>/%s/watermarks/</code> map geplaatst worden. De afbeeldingen moeten PNG-24 zijn."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1901
+#: ZpTranslation-Development/zp-core/admin-options.php:1909
 msgid "If a watermark image is selected for these <em>images classes</em> it will be used in place of the image thumbnail watermark."
 msgstr "Als een watermerk voor deze <em>images classes</em> is geselecteerd, wordt dit gebruikt in plaats van het <em>Afbeelding thumbnails</em> watermerk."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1909
+#: ZpTranslation-Development/zp-core/admin-options.php:1917
 msgid "Protect image cache"
 msgstr "Beveilig afbeeldingen-cache"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1914
+#: ZpTranslation-Development/zp-core/admin-options.php:1922
 msgid "If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file."
 msgstr "Als dit is aangevinkt zullen alle afbeeldings URI's verwijzen naar de afbeeldings-processor. Bovendien wordt de afbeeldingen-cache onbereikbaar gemaakt voor browsers door middel van een <em>.htaccess</em> bestand. <br />(De afbeeldingen blijven in de cache maar kunnen niet meer opgevraagd worden door een browser. In plaats daarvan worden de afbeeldingen via de processor aangeboden)"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1915
+#: ZpTranslation-Development/zp-core/admin-options.php:1923
 msgid "<strong>WARNING\t:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option."
 msgstr "<strong>WAARSCHUWING\t:</strong> Deze optie vraagt extra rekenkracht van de server! Sommige <em>JavaScript</em> and <em>Flash</em> afbeeldings-scripts werken niet met een URI via een afbeeldings-processor."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1918
+#: ZpTranslation-Development/zp-core/admin-options.php:1926
 msgid "Secure image processor"
 msgstr "Beveiligde afbeeldings-processor"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1923
+#: ZpTranslation-Development/zp-core/admin-options.php:1931
 msgid "When not checked, the image processor does not check for album access credentials."
 msgstr "Wanneer dit is aangevinkt zal de afbeeldings-processor controleren of toegang tot albums toegestaan is."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1924
+#: ZpTranslation-Development/zp-core/admin-options.php:1932
 msgid "<strong>WARNING\t:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability."
 msgstr "<strong>WAARSCHUWING\t:</strong> Deze optie vergt veel van het geheugen!. Afhankelijk van de geheugeninstelling van je server kan het zijn dat sommige afbeeldingen niet gecached kunnen worden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1927
+#: ZpTranslation-Development/zp-core/admin-options.php:1935
 msgid "Full image protection:"
 msgstr "Volledige afbeelding bescherming"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1932
+#: ZpTranslation-Development/zp-core/admin-options.php:1940
 msgid "Disable hotlinking"
 msgstr "<em>Hotlinken uitzetten</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1937
+#: ZpTranslation-Development/zp-core/admin-options.php:1945
 msgid "cache the full image"
 msgstr "Cache de volledige afbeelding"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1950
-#: ZpTranslation-Development/zp-core/admin-options.php:1987
+#: ZpTranslation-Development/zp-core/admin-options.php:1958
+#: ZpTranslation-Development/zp-core/admin-options.php:1995
 msgid "password:"
 msgstr "wachtwoord:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:1972
+#: ZpTranslation-Development/zp-core/admin-options.php:1980
 msgid "user:"
 msgstr "gebruiker:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2012
+#: ZpTranslation-Development/zp-core/admin-options.php:2020
 msgid "hint:"
 msgstr "hint:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2026
+#: ZpTranslation-Development/zp-core/admin-options.php:2034
 msgid "Unprotected"
 msgstr "Onbeschermd"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2026
+#: ZpTranslation-Development/zp-core/admin-options.php:2034
 msgid "Protected view"
 msgstr "Beschermde weergave"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2026
+#: ZpTranslation-Development/zp-core/admin-options.php:2034
 msgid "No access"
 msgstr "Geen toegang"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2032
+#: ZpTranslation-Development/zp-core/admin-options.php:2040
 msgid "Disabling hotlinking prevents linking to the full image from other domains. If enabled, external links are redirect to the image page. If you are having problems with full images being displayed, try disabling this setting. Hotlinking is not prevented if <em>Full&nbsp;image&nbsp;protection</em> is <em>Unprotected</em> or if the image is cached."
 msgstr "Hotlinken uitzetten voorkomt linken naar de volledige afbeelding vanaf andere domeinen. Als deze optie aanstaat worden externe links naar de afbeeldingspagina gestuurd. Als je problemen heeft met het tonen van volledige afbeeldingen, probeer dan deze optie uit te zetten. Hotlinken wordt niet voorkomen als <em>Volledige afbeelding bescherming</em> op <em>Onbeschermd</em> staat of als de afbeelding gecached is."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2033
+#: ZpTranslation-Development/zp-core/admin-options.php:2041
 msgid "If <em>Cache the full image</em> is checked the full image will be loaded to the cache and served from there after the first reference. <em>Full&nbsp;image&nbsp;protection</em> must be set to <em>Protected&nbsp;view</em> for the image to be cached. However, once cached, no protections are applied to the image."
 msgstr "Als <em>Cache de volledige afbeelding</em> ingeschakeld is zal de volledig afbeelding in de cache geladen worden en vanuit daar getoond worden na de eerste referentie. <em>Volledige afbeelding bescherming</em> moet op <em>Beschermde weergave</em> gezet worden zodat een afbeelding gechached kan worden. Echter, eens gechached wordt er geen bescherming toegepast op de afbeelding."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2034
+#: ZpTranslation-Development/zp-core/admin-options.php:2042
 msgid "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the <em>Download</em> and <em>Protected view</em> level of protection. If there is a password set, the viewer must supply this password to access the image."
 msgstr "<em>Gebruiker</em>, <em>wachtwoord</em> en <em>hint</em> hebben betrekking op <em>Download</em> en <em>Beschermde weergave</em> op de mate van beveiliging. Indien een wachtwoord is ingesteld dient de bezoeker dit in te vullen alvorens toegang te krijgen tot de afbeelding."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2035
+#: ZpTranslation-Development/zp-core/admin-options.php:2043
 msgid "Select the level of protection for full sized images. <em>Download</em> forces a download dialog rather than displaying the image. <em>No&nbsp;access</em> prevents a link to the image from being shown. <em>Protected&nbsp;view</em> forces image processing before the image is displayed, for instance to apply a watermark or to check passwords. <em>Unprotected</em> allows direct display of the image."
 msgstr "Selecteer de mate van beveiliging op volledige afbeeldingen. <em>Download</em> forceert een downloadvenster in plaats van het tonen van de afbeelding. <em>Geen toegang</em> voorkomt dat er een koppeling naar de afbeelding getoond wordt. <em>Beschermde weergave</em> forceert een afbeeldingsbewerking voordat de afbeelding getoond wordt, bijvoorbeeld om een watermerk toe te voegen of om wachtwoorden te controleren. <em>Onbeschermd</em> maakt het direct tonen van de afbeelding mogelijk."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2039
+#: ZpTranslation-Development/zp-core/admin-options.php:2047
 msgid "Use lock image"
 msgstr "Gebruik slot-afbeelding"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2044
+#: ZpTranslation-Development/zp-core/admin-options.php:2052
 msgid "Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."
 msgstr "Vervangt een <em>slot</em>-afbeelding voor thumbnails van met wachtwoord beveiligde albums. Als je thema een <code>images/err-passwordprotected.gif</code> afbeelding bevat, zal deze getoond worden. Anders wordt de standaard Zenphoto slotafbeelding getoond."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2058
+#: ZpTranslation-Development/zp-core/admin-options.php:2066
 msgid "Metadata"
 msgstr "Metadata"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2080
-#: ZpTranslation-Development/zp-core/admin-options.php:2095
-#: ZpTranslation-Development/zp-core/admin-options.php:2096
-#: ZpTranslation-Development/zp-core/admin-options.php:2097
+#: ZpTranslation-Development/zp-core/admin-options.php:2088
+#: ZpTranslation-Development/zp-core/admin-options.php:2103
+#: ZpTranslation-Development/zp-core/admin-options.php:2104
+#: ZpTranslation-Development/zp-core/admin-options.php:2105
 #: ZpTranslation-Development/zp-core/admin-users.php:464
 msgid "show"
 msgstr "toon"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2081
+#: ZpTranslation-Development/zp-core/admin-options.php:2089
 msgid "hide"
 msgstr "verberg"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2082
+#: ZpTranslation-Development/zp-core/admin-options.php:2090
 msgid "disabled"
 msgstr "uitgeschakeld"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2093
+#: ZpTranslation-Development/zp-core/admin-options.php:2101
 msgid "Select how image metadata fields are handled."
 msgstr "Selecteer hoe de metadata velden behandeld moeten worden."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2095
+#: ZpTranslation-Development/zp-core/admin-options.php:2103
 msgid "Show the field"
 msgstr "Tonen"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2096
+#: ZpTranslation-Development/zp-core/admin-options.php:2104
 msgid "Hide the field"
 msgstr "Verbergen"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2097
+#: ZpTranslation-Development/zp-core/admin-options.php:2105
 msgid "Do not process the field"
 msgstr "Negeren"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2101
+#: ZpTranslation-Development/zp-core/admin-options.php:2109
 msgid "Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections."
 msgstr "Tip: Je kunt dit venster groter maken door de hoek rechtsonder te slepen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2111
+#: ZpTranslation-Development/zp-core/admin-options.php:2119
 msgid "IPTC encoding:"
 msgstr "IPTC codering"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2117
+#: ZpTranslation-Development/zp-core/admin-options.php:2125
 msgid "The default character encoding of image IPTC metadata."
 msgstr "De standaard karakter-codering van IPCT metadata."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2122
+#: ZpTranslation-Development/zp-core/admin-options.php:2130
 msgid "Imbed IPTC copyright"
 msgstr "Voeg IPTC copyright toe"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2123
+#: ZpTranslation-Development/zp-core/admin-options.php:2131
 msgid "If checked and an image has no IPTC data a copyright notice will be imbedded cached copies."
 msgstr "Als dit is aangevinkt en een afbeelding heeft géén IPTC info, wordt er copyright informatie in de afbeeldings-info van gecachte kopieën geplaatst."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2125
+#: ZpTranslation-Development/zp-core/admin-options.php:2133
 msgid "Replicate IPTC metadata"
 msgstr "Kopiëer IPTC metadata"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2126
+#: ZpTranslation-Development/zp-core/admin-options.php:2134
 msgid "If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded."
 msgstr "Als dit is aangevinkt wordt IPTC info van originele afbeeldingen geplaatst in gecachte kopieën. Als de afbeelding géén IPTC info heeft, wordt er copyright informatie in de afbeeldings-info van gecachte kopieën geplaatst."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2130
+#: ZpTranslation-Development/zp-core/admin-options.php:2138
 msgid "IPTC Imbedding:"
 msgstr "IPTC invoeging:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2138
+#: ZpTranslation-Development/zp-core/admin-options.php:2146
 msgid "<strong>NOTE:</strong> This option is applies only to JPEG format images."
 msgstr "<strong>Opmerking:</strong> Deze optie geldt alleen voor JPEG afbeeldingen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2172
+#: ZpTranslation-Development/zp-core/admin-options.php:2180
 msgid "Enable comment notification:"
 msgstr "Notificatie bij reactie:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2175
+#: ZpTranslation-Development/zp-core/admin-options.php:2183
 msgid "Email the Admin when new comments are posted"
 msgstr "E-mail de admin bij een nieuwe reactie."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2179
+#: ZpTranslation-Development/zp-core/admin-options.php:2187
 msgid "Spam filter:"
 msgstr "Spamfilter:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2187
+#: ZpTranslation-Development/zp-core/admin-options.php:2195
 msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
 msgstr "Het spamfilter dat je wenst te gebruiken om reacties op SPAM te checken"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2199
+#: ZpTranslation-Development/zp-core/admin-options.php:2207
 msgid "Name field"
 msgstr "Naam"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2207
-#: ZpTranslation-Development/zp-core/admin-options.php:2224
-#: ZpTranslation-Development/zp-core/admin-options.php:2241
+#: ZpTranslation-Development/zp-core/admin-options.php:2215
+#: ZpTranslation-Development/zp-core/admin-options.php:2232
+#: ZpTranslation-Development/zp-core/admin-options.php:2249
 msgid "Show"
 msgstr "zichtbaar"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2211
-#: ZpTranslation-Development/zp-core/admin-options.php:2228
-#: ZpTranslation-Development/zp-core/admin-options.php:2245
-#: ZpTranslation-Development/zp-core/admin-options.php:2258
+#: ZpTranslation-Development/zp-core/admin-options.php:2219
+#: ZpTranslation-Development/zp-core/admin-options.php:2236
+#: ZpTranslation-Development/zp-core/admin-options.php:2253
+#: ZpTranslation-Development/zp-core/admin-options.php:2266
 msgid "Require"
 msgstr "verplicht"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2214
+#: ZpTranslation-Development/zp-core/admin-options.php:2222
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
 msgstr "Als de <em>Naam</em> verplicht is, moet de degene die reageert een naam invullen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2216
+#: ZpTranslation-Development/zp-core/admin-options.php:2224
 msgid "Email field"
 msgstr "E-mailadres"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2231
+#: ZpTranslation-Development/zp-core/admin-options.php:2239
 msgid "If the <em>Email</em> field is required, the poster must provide an email address."
 msgstr "Als het <em>Emailadres</em> verplicht is, moet de degene die reageert een emailadres invullen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2233
+#: ZpTranslation-Development/zp-core/admin-options.php:2241
 msgid "Website field"
 msgstr "Website"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2248
+#: ZpTranslation-Development/zp-core/admin-options.php:2256
 msgid "If the <em>Website</em> field is required, the poster must provide a website."
 msgstr "Als de <em>Website</em> verplicht is, moet de degene die reageert een website invullen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2250
+#: ZpTranslation-Development/zp-core/admin-options.php:2258
 msgid "Captcha"
 msgstr "Captcha"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2261
+#: ZpTranslation-Development/zp-core/admin-options.php:2269
 msgid "If <em>Captcha</em> is required, the form will include a Captcha verification."
 msgstr "Als de <em>Captcha</em> verplicht is, zal het formulier een Captcha verificatie tonen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2354
+#: ZpTranslation-Development/zp-core/admin-options.php:2362
 #: ZpTranslation-Development/zp-core/admin-themes.php:152
 msgid "There are no themes for which you have rights to administer."
 msgstr "Er zijn geen thema's waarvan je de instellingen aan kunt passen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2369
+#: ZpTranslation-Development/zp-core/admin-options.php:2377
 #, php-format
 msgid "Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 msgstr "Opties voor <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2371
+#: ZpTranslation-Development/zp-core/admin-options.php:2379
 #, php-format
 msgid "Options for <em>%s</em>"
 msgstr "Opties voor <em>%s</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2379
+#: ZpTranslation-Development/zp-core/admin-options.php:2387
 msgid "Show theme for:"
 msgstr "Laat thema zien voor:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2401
+#: ZpTranslation-Development/zp-core/admin-options.php:2409
 msgid "<strong>Standard options</strong>"
 msgstr "<strong>Standaard opties</strong>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2403
+#: ZpTranslation-Development/zp-core/admin-options.php:2411
 msgid "<em>These image and album presentation options provided by the Zenphoto core for all themes.</em>"
 msgstr "<em>Deze afbeeldings- en album-presentatieopties zijn standaard voor alle thema's.</em>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2403
+#: ZpTranslation-Development/zp-core/admin-options.php:2411
 msgid "<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons"
 msgstr "<strong>Opmerking:</strong> Dit zijn <em>aanbevelingen</em>. Sommige thema's gebruiken echter hun eigen instellingen i.v.m. de vormgeving."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2413
+#: ZpTranslation-Development/zp-core/admin-options.php:2421
 msgid "Albums:"
 msgstr "Albums:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2415
-#: ZpTranslation-Development/zp-core/admin-options.php:2445
+#: ZpTranslation-Development/zp-core/admin-options.php:2423
+#: ZpTranslation-Development/zp-core/admin-options.php:2453
 msgid "thumbnails per row"
 msgstr "thumbnails per rij"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2417
-#: ZpTranslation-Development/zp-core/admin-options.php:2447
+#: ZpTranslation-Development/zp-core/admin-options.php:2425
+#: ZpTranslation-Development/zp-core/admin-options.php:2455
 msgid "thumbnails per page"
 msgstr "thumbnails per pagina"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2421
+#: ZpTranslation-Development/zp-core/admin-options.php:2429
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of album thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of album thumbnails that will fit in a \"row\" and the number of albums thumbnails you wish per page."
 msgstr "Dit specificeert het, <a title=\"Kijk op je album-pagina en tel het het aantal album thumbnails op een rij. Dat is de waarde die je moet instellen voor deze optie.\">door CSS bepaalde aantal</a> album thumbnails per rij en het aantal album thumbnails dat je wilt zien per pagina."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2426
-#: ZpTranslation-Development/zp-core/admin-options.php:2456
+#: ZpTranslation-Development/zp-core/admin-options.php:2434
+#: ZpTranslation-Development/zp-core/admin-options.php:2464
 msgid "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it."
 msgstr "<strong>Opmerking:</strong> Als het <em>aantal thumbnails per rij</em> groter is dan 1, wordt het aantal thumbnails naar boven afgerond tot een meervoud hiervan."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2427
+#: ZpTranslation-Development/zp-core/admin-options.php:2435
 #, php-format
 msgid "For album pages there will be %1$u rows of thumbnails."
 msgstr "Op albumpagina's komen er %1$u rijen thumbnails."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2443
+#: ZpTranslation-Development/zp-core/admin-options.php:2451
 msgid "Images:"
 msgstr "Afbeeldingen:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2451
+#: ZpTranslation-Development/zp-core/admin-options.php:2459
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of image thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of image thumbnails that will fit in a \"row\" and the number of image thumbnails you wish per page."
 msgstr "Dit specificeert het, <a title=\"Kijk op je album-pagina en tel het het aantal afbeeldings thumbnails op een rij. Dat is de waarde die je moet instellen voor deze optie.\">door CSS bepaalde aantal</a> afbeeldings thumbnails per rij en het aantal afbeeldings thumbnails dat je wilt zien per pagina."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2457
+#: ZpTranslation-Development/zp-core/admin-options.php:2465
 #, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
 msgstr "Op afbeeldingspagina's komen er  %1$u rijen thumbnails."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2473
+#: ZpTranslation-Development/zp-core/admin-options.php:2481
 msgid "Transition:"
 msgstr "Overgang:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2489
+#: ZpTranslation-Development/zp-core/admin-options.php:2497
 msgid "separate"
 msgstr "apart"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2490
+#: ZpTranslation-Development/zp-core/admin-options.php:2498
 msgid "combined"
 msgstr "gecombineerd"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2493
+#: ZpTranslation-Development/zp-core/admin-options.php:2501
 msgid "if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails."
 msgstr "Als zowel het aantal <em>album-thumbnails</em> als het aantal <em>afbeeldings-thumbnails</em> groter is dan 1, kun je hier kiezen of album-thumbnails en afbeeldings-thumbnails samen getoond worden op de pagina die zowel album-thumbnails als afbeeldings-thumbnails weergeeft. (Dit gaat dus op voor albums met daarin afbeeldingen én sub-albums)"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2510
+#: ZpTranslation-Development/zp-core/admin-options.php:2518
 msgid "Thumb size:"
 msgstr "Thumbgrootte:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2514
+#: ZpTranslation-Development/zp-core/admin-options.php:2522
 #, php-format
 msgid "Standard thumbnails will be scaled to %u pixels."
 msgstr "De standaard thumbnail wordt geschaald naar %u pixels."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2524
+#: ZpTranslation-Development/zp-core/admin-options.php:2532
 msgid "Crop thumbnails:"
 msgstr "Crop thumbnails:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2529
+#: ZpTranslation-Development/zp-core/admin-options.php:2537
 #, php-format
 msgid "%s%% left &amp; right"
 msgstr "%s%% links en rechts"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2533
+#: ZpTranslation-Development/zp-core/admin-options.php:2541
 #, php-format
 msgid "%s%% top &amp; bottom"
 msgstr "%s%% boven en onder"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2538
+#: ZpTranslation-Development/zp-core/admin-options.php:2546
 #, php-format
 msgid "If checked the thumbnail will be cropped %1$.1f%% in from the top and the bottom margins and %2$.1f%% in from the left and the right margins."
 msgstr "Indien aangevinkt wordt de thumbnail uitgesneden %1$.1f%% vanaf de boven- en onderkant en %2$.1f%% vanaf de linker- en rechterkant."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2540
+#: ZpTranslation-Development/zp-core/admin-options.php:2548
 msgid "<strong>Note:</strong> changing crop will invalidate existing custom crops."
 msgstr "<strong>Opmerking</strong>: Het veranderen van de uitsnede maakt dat reeds bestaande uitsnedes vervallen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2544
+#: ZpTranslation-Development/zp-core/admin-options.php:2552
 msgid "Gray scale conversion:"
 msgstr "Zwart-wit conversie:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2551
+#: ZpTranslation-Development/zp-core/admin-options.php:2559
 msgid "thumbnail"
 msgstr "thumbnail"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2555
+#: ZpTranslation-Development/zp-core/admin-options.php:2563
 msgid "If checked, images/thumbnails will be created in gray scale."
 msgstr "Indien aangevinkt, worden afbeeldingen/thumbnails omgezet in zwart-wit."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2565
+#: ZpTranslation-Development/zp-core/admin-options.php:2573
 msgid "Image size:"
 msgstr "Afbeeldingsgrootte:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2576
+#: ZpTranslation-Development/zp-core/admin-options.php:2584
 msgid "height"
 msgstr "Hoogte"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2580
+#: ZpTranslation-Development/zp-core/admin-options.php:2588
 msgid "width"
 msgstr "Breedte"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2587
+#: ZpTranslation-Development/zp-core/admin-options.php:2595
 msgid "shortest side"
 msgstr "kortste zijde"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2591
+#: ZpTranslation-Development/zp-core/admin-options.php:2599
 msgid "longest side"
 msgstr "langste zijde"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2596
+#: ZpTranslation-Development/zp-core/admin-options.php:2604
 msgid "Default image display size."
 msgstr "Standaard afbeeldingsgrootte:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2597
+#: ZpTranslation-Development/zp-core/admin-options.php:2605
 msgid "The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."
 msgstr "De afbeelding zal zo geschaald worden dat de<em> hoogte</em>, <em>breedte</em>, of de <em>langste zijde</em> gelijk is aan <em>afbeeldingsgrootte</em>."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2609
+#: ZpTranslation-Development/zp-core/admin-options.php:2617
 msgid "Gallery index page link:"
 msgstr "Galerij index link:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2628
+#: ZpTranslation-Development/zp-core/admin-options.php:2636
 msgid "If this option is not empty, the Gallery Index URL that would normally link to the theme <code>index.php</code> script will instead link to this script. This frees up the <code>index.php</code> script so that you can create a customized <em>Home page</em> script. This option applies only to the main theme for the <em>Gallery</em>."
 msgstr "Als hier een pagina/script gekozen is zal de Galerij-index URL, die normaal gesproken naar het <code>index.php</code> script van het thema verwijst, nu naar dit script verwijzen. Dit maakt het mogelijk een eigen <em>Homepage</em> script te maken. Deze optie is alleen van toepassing op het hoofdthema van de <em>galerij</em>."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2636
+#: ZpTranslation-Development/zp-core/admin-options.php:2644
 msgid "<strong>Custom theme options</strong>"
 msgstr "<strong>Unieke themaopties</strong>"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2638
+#: ZpTranslation-Development/zp-core/admin-options.php:2646
 #, php-format
 msgid "The following are options specifically implemented by %s."
 msgstr "De volgende opties zijn specifiek geïmplementeerd door %s."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2701
+#: ZpTranslation-Development/zp-core/admin-options.php:2709
 msgid "Expand plugin options"
 msgstr "Toon alle pluginopties"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2703
+#: ZpTranslation-Development/zp-core/admin-options.php:2711
 msgid "Collapse all plugin options"
 msgstr "Verberg alle pluginopties"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2724
+#: ZpTranslation-Development/zp-core/admin-options.php:2732
 #: ZpTranslation-Development/zp-core/admin-plugins.php:183
 msgid "<strong>Note:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string."
 msgstr "<strong>Opmerking:</strong> Het instantiëren van de optie-interface van de plugin kan problemen geven met de prestaties. Je zou in plaats hiervan de <code>$option_interface</code> de naam van de class als een string moeten geven."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2759
+#: ZpTranslation-Development/zp-core/admin-options.php:2767
 msgid "warning"
 msgstr "waarschuwing"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2795
+#: ZpTranslation-Development/zp-core/admin-options.php:2803
 msgid "There are no plugin options to administer."
 msgstr "Er zijn geen pluginoptie's om te beheren."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2849
+#: ZpTranslation-Development/zp-core/admin-options.php:2858
 msgid "Server protocol:"
 msgstr "Server protocol:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2855
+#: ZpTranslation-Development/zp-core/admin-options.php:2864
 msgid "secure admin"
 msgstr "beveiligde toegang tot admin gedeelte"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2859
+#: ZpTranslation-Development/zp-core/admin-options.php:2868
 msgid "Normally this option should be set to <em>http</em>. If you're running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."
 msgstr "Normaal staat deze optie op <em>http</em>. Als je een beveiligde server gebruikt stel dan <em>https</em> in. Selecteer <em>beveiligde toegang tot admin</em> voor beveiligde toegang tot de <code>admin</code> pagina's."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2860
+#: ZpTranslation-Development/zp-core/admin-options.php:2869
 msgid "<strong>Note:</strong><br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected.<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! Your only possibility then is to change the option named <span class=\"inlinecode\">server_protocol</span> in the <em>options</em> table of your database."
 msgstr "<strong>Opmerking:</strong><br /><br />Inloggen via het front-end login-formulier is alleen veilig als <em>https</em> is geselecteerd.<br /><br />Als je <em>https</em> of <em>beveiligde toegang tot admin</em> selecteerd <strong>MOET</strong> je server <em>https</em> ondersteunen.  Als je één van deze twee selecteerd voor een server die géén <em>https</em> ondersteund kun je de <code>admin</code> pagina's niet bereiken om de optie te veranderen! De enige mogelijkheid om die dan te veranderen is de optie <span class=\"inlinecode\">server_protocol</span> te veranderen in de <em>options</em> tabel van je database."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2869
+#: ZpTranslation-Development/zp-core/admin-options.php:2878
 msgid "CAPTCHA generator:"
 msgstr "CAPTCHA generator:"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2878
+#: ZpTranslation-Development/zp-core/admin-options.php:2887
 msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
 msgstr "Selecteer de <em>CAPTCHA</em> generator om te gebruiken."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2882
+#: ZpTranslation-Development/zp-core/admin-options.php:2891
 msgid "Obscure cache filenames"
 msgstr "Maak gecachte bestandsnamen onduidelijk."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2884
-#: ZpTranslation-Development/zp-core/admin-options.php:2891
-#: ZpTranslation-Development/zp-core/admin-options.php:2930
+#: ZpTranslation-Development/zp-core/admin-options.php:2893
+#: ZpTranslation-Development/zp-core/admin-options.php:2900
+#: ZpTranslation-Development/zp-core/admin-options.php:2939
 msgid "enable"
 msgstr "activeer"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2886
+#: ZpTranslation-Development/zp-core/admin-options.php:2895
 msgid "Cause the filename of cached items to be obscured. This makes it difficult for someone to \"guess\" the name in a URL."
 msgstr "Vink aan om namen van gecachte afbeeldingen onduidelijk te maken. Dit maakt het lastig om de naam te \"raden\" in de URL."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2889
+#: ZpTranslation-Development/zp-core/admin-options.php:2898
 msgid "Cookie security"
 msgstr "Cookie beveiliging"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2894
+#: ZpTranslation-Development/zp-core/admin-options.php:2903
 msgid "Tie cookies to the IP address of the browser."
 msgstr "Koppel cookies aan het IP-adres van de browser."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2898
+#: ZpTranslation-Development/zp-core/admin-options.php:2907
 msgid "<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled."
 msgstr "<strong>Opmerking</strong>: Als je browser tijdens een sessie geen statisch IP-adres heeft kun je mogelijk niet inloggen als deze optie geactiveerd is!"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2900
+#: ZpTranslation-Development/zp-core/admin-options.php:2909
 msgid " You <strong>WILL</strong> have to login after changing this option."
 msgstr "Je <strong>MOET</strong> inloggen als je deze optie hebt veranderd."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2902
+#: ZpTranslation-Development/zp-core/admin-options.php:2911
 msgid "If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first."
 msgstr "Als je de optie hebt geactiveerd en je kunt niet inloggen zul je de database moeten herstellen met een backup waarbij de optie niet was geactiveerd. Het is dus verstandig om eerst een backup van je database te maken!"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2914
+#: ZpTranslation-Development/zp-core/admin-options.php:2923
 msgid "User name"
 msgstr "Gebruikersnaam"
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2936
+#: ZpTranslation-Development/zp-core/admin-options.php:2945
 msgid "If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form."
 msgstr "Indien aangevinkt zal een login-formulier een veld voor een <em>Gebruikersnaam</em> tonen."
 
-#: ZpTranslation-Development/zp-core/admin-options.php:2938
+#: ZpTranslation-Development/zp-core/admin-options.php:2947
 msgid "<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated."
 msgstr "<strong>Opmerking:</strong> Dit veld is verplicht als een gast een gebruikersnaam moet invullen."
 
@@ -5759,35 +5763,35 @@ msgstr "Verboden"
 msgid "Too few arguments! Image not found."
 msgstr "Te weinig argumenten! Afbeelding niet gevonden."
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1532
+#: ZpTranslation-Development/zp-core/functions-basic.php:1539
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1533
+#: ZpTranslation-Development/zp-core/functions-basic.php:1540
 msgid "WARNING"
 msgstr "WARNING"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1534
+#: ZpTranslation-Development/zp-core/functions-basic.php:1541
 msgid "NOTICE"
 msgstr "NOTICE"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1535
+#: ZpTranslation-Development/zp-core/functions-basic.php:1542
 msgid "USER ERROR"
 msgstr "USER ERROR"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1536
+#: ZpTranslation-Development/zp-core/functions-basic.php:1543
 msgid "USER WARNING"
 msgstr "USER WARNING"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1537
+#: ZpTranslation-Development/zp-core/functions-basic.php:1544
 msgid "USER NOTICE"
 msgstr "USER NOTICE"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1538
+#: ZpTranslation-Development/zp-core/functions-basic.php:1545
 msgid "STRICT NOTICE"
 msgstr "STRICT NOTICE"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1548
+#: ZpTranslation-Development/zp-core/functions-basic.php:1555
 #, php-format
 msgid "%1$s: %2$s in %3$s on line %4$s"
 msgstr "%1$s: %2$s in %3$s op regel %4$s"
@@ -8503,7 +8507,7 @@ msgstr "Database <code>$conf[\"UTF-8\"]</code> [staat niet op <em>true</em>]"
 msgid "You should consider porting your data to UTF-8 and changing the collation of the database fields to <code>utf8_unicode_ci</code> and setting this <em>true</em>. Zenphoto works best with pure UTF-8 encodings."
 msgstr "Je zou moeten overwegen alle gegevens in UTF-8 codering te zetten en de collatie van de database-velden te varanderen in <code>utf8_unicode_ci</code>. Zenphoto werkt het beste met UTF-8 codering."
 
-#: ZpTranslation-Development/zp-core/setup.php:1092
+#: ZpTranslation-Development/zp-core/setup.php:1076
 msgid "Zenphoto files"
 msgstr "Zenphoto bestanden"
 
@@ -8732,12 +8736,12 @@ msgid "Setup failed."
 msgstr "Setup mislukt."
 
 #: ZpTranslation-Development/zp-core/setup.php:1485
-#: ZpTranslation-Development/zp-core/setup.php:2534
+#: ZpTranslation-Development/zp-core/setup.php:2536
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "Je hebt <em>GEBRUIKERSADMIN</em> rechten nodig om setup uit te voeren."
 
 #: ZpTranslation-Development/zp-core/setup.php:1487
-#: ZpTranslation-Development/zp-core/setup.php:2536
+#: ZpTranslation-Development/zp-core/setup.php:2538
 msgid "You must be logged in to run setup."
 msgstr "Je moet ingelogd zijn om setup te starten."
 
@@ -8745,136 +8749,136 @@ msgstr "Je moet ingelogd zijn om setup te starten."
 msgid "database connected"
 msgstr "Verbonden met de database."
 
-#: ZpTranslation-Development/zp-core/setup.php:2240
+#: ZpTranslation-Development/zp-core/setup.php:2242
 msgid "About to create tables"
 msgstr "Op het punt om tabellen aan te maken"
 
-#: ZpTranslation-Development/zp-core/setup.php:2242
+#: ZpTranslation-Development/zp-core/setup.php:2244
 msgid "About to update tables"
 msgstr "Bezig met het updaten van database tabellen"
 
-#: ZpTranslation-Development/zp-core/setup.php:2244
+#: ZpTranslation-Development/zp-core/setup.php:2246
 msgid "Begin table creation"
 msgstr "Beginnen met het aanmaken van tabellen"
 
-#: ZpTranslation-Development/zp-core/setup.php:2250
-#: ZpTranslation-Development/zp-core/setup.php:2265
+#: ZpTranslation-Development/zp-core/setup.php:2252
+#: ZpTranslation-Development/zp-core/setup.php:2267
 #, php-format
 msgid "Query %1$s Failed. Error: %2$s"
 msgstr "Query %1$s mislukt. Fout: %2$s"
 
-#: ZpTranslation-Development/zp-core/setup.php:2252
+#: ZpTranslation-Development/zp-core/setup.php:2254
 #, php-format
 msgid "Table creation failure:<br />Query: %1$s<br />Error: %2$s"
 msgstr "Fout tijdens het aanmaken van de tabellen: <br />Query: %1$s<br />Fout: %2$s"
 
-#: ZpTranslation-Development/zp-core/setup.php:2255
-#: ZpTranslation-Development/zp-core/setup.php:2267
+#: ZpTranslation-Development/zp-core/setup.php:2257
+#: ZpTranslation-Development/zp-core/setup.php:2269
 #, php-format
 msgid "Query ( %s ) Success."
 msgstr "Query ( %s ) Succesvol."
 
-#: ZpTranslation-Development/zp-core/setup.php:2259
+#: ZpTranslation-Development/zp-core/setup.php:2261
 msgid "Begin table updates"
 msgstr "Beginnen met het updaten van tabellen"
 
-#: ZpTranslation-Development/zp-core/setup.php:2272
+#: ZpTranslation-Development/zp-core/setup.php:2274
 msgid "Done with database creation and update"
 msgstr "klaar met het creëren en updaten van de database"
 
-#: ZpTranslation-Development/zp-core/setup.php:2274
+#: ZpTranslation-Development/zp-core/setup.php:2276
 #, php-format
 msgid "Previous Release was %s"
 msgstr "Vorige versie was %s"
 
-#: ZpTranslation-Development/zp-core/setup.php:2301
+#: ZpTranslation-Development/zp-core/setup.php:2303
 msgid "Done with table create!"
 msgstr "Klaar met het aanmaken van de tabellen!"
 
-#: ZpTranslation-Development/zp-core/setup.php:2303
+#: ZpTranslation-Development/zp-core/setup.php:2305
 msgid "Done with table create with errors!"
 msgstr "Klaar met het aanmaken van de tabellen met errors!"
 
-#: ZpTranslation-Development/zp-core/setup.php:2307
+#: ZpTranslation-Development/zp-core/setup.php:2309
 msgid "Done with table update"
 msgstr "Klaar met het updaten van de tabellen!"
 
-#: ZpTranslation-Development/zp-core/setup.php:2309
+#: ZpTranslation-Development/zp-core/setup.php:2311
 msgid "Done with table update with errors"
 msgstr "Klaar met het updaten van de tabellen met errors!"
 
-#: ZpTranslation-Development/zp-core/setup.php:2348
+#: ZpTranslation-Development/zp-core/setup.php:2350
 msgid "Setup files deleted."
 msgstr "Setup bestanden verwijderd."
 
-#: ZpTranslation-Development/zp-core/setup.php:2355
+#: ZpTranslation-Development/zp-core/setup.php:2357
 #, php-format
 msgid "Failed to delete: %s"
 msgstr "Verwijderen van: %s mislukt."
 
-#: ZpTranslation-Development/zp-core/setup.php:2363
+#: ZpTranslation-Development/zp-core/setup.php:2365
 msgid "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future."
 msgstr "<strong>BELANGRIJK:</strong> Het wordt sterk aangeraden de <em>setup</em> scripts te verwijderen uit de <em>zp-core</em> map.<br />Je kunt ze later altijd weer uploaden als je ze nodig mocht hebben."
 
-#: ZpTranslation-Development/zp-core/setup.php:2368
+#: ZpTranslation-Development/zp-core/setup.php:2370
 msgid "Delete setup files"
 msgstr "Verwijder setup bestanden"
 
-#: ZpTranslation-Development/zp-core/setup.php:2373
+#: ZpTranslation-Development/zp-core/setup.php:2375
 msgid "This is a clone of another installation. The setup files should be deleted from that installation"
 msgstr "Dit is een kloon van een andere installatie. De <code>setup</code> bestanden zouden verwijderd moeten worden uit die installatie."
 
-#: ZpTranslation-Development/zp-core/setup.php:2383
+#: ZpTranslation-Development/zp-core/setup.php:2385
 #, php-format
 msgid "You may <a href=\"%1$s\">set your admin user and password</a> or <a href=\"%2$s\">run backup-restore</a>"
 msgstr "Je kunt hier <a href=\"%1$s\">je gebruikersnaam en wachtwoord instellen</a> of een<a href=\"%2$s\"> backup-restore uitvoeren</a>"
 
-#: ZpTranslation-Development/zp-core/setup.php:2385
+#: ZpTranslation-Development/zp-core/setup.php:2387
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr "Je moet je <a href=\"%1$s\">admin gebruikersnaam en wachtwoord invoeren</a>"
 
-#: ZpTranslation-Development/zp-core/setup.php:2397
+#: ZpTranslation-Development/zp-core/setup.php:2399
 #, php-format
 msgid "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s\">administer.</a>"
 msgstr "Je kunt nu <a href=\"%1$s\">de gallerij bekijken</a> of <a href=\"%2$s\">beheren.</a>"
 
-#: ZpTranslation-Development/zp-core/setup.php:2454
+#: ZpTranslation-Development/zp-core/setup.php:2456
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Databasetabellen die worden aangemaakt: %s"
 
-#: ZpTranslation-Development/zp-core/setup.php:2472
+#: ZpTranslation-Development/zp-core/setup.php:2474
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Database tabellen die worden ge-update: %s"
 
-#: ZpTranslation-Development/zp-core/setup.php:2503
+#: ZpTranslation-Development/zp-core/setup.php:2505
 msgid "<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding."
 msgstr "<strong>Waarschuwing !</strong> Deze upgrade maakt structurele veranderingen in de database. Dit kan niet eenvoudig ongedaan gemaakt worden.<br />Zorg ervoor dat je een backup van de database hebt voordat je verder gaat."
 
-#: ZpTranslation-Development/zp-core/setup.php:2506
+#: ZpTranslation-Development/zp-core/setup.php:2508
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s Ik begrijp dat m'n database ingrijpend veranderd wordt als ik doorga."
 
-#: ZpTranslation-Development/zp-core/setup.php:2564
+#: ZpTranslation-Development/zp-core/setup.php:2566
 msgid "run setup"
 msgstr "Voer setup uit"
 
-#: ZpTranslation-Development/zp-core/setup.php:2564
+#: ZpTranslation-Development/zp-core/setup.php:2566
 msgid "Go"
 msgstr "Gaan!"
 
-#: ZpTranslation-Development/zp-core/setup.php:2581
+#: ZpTranslation-Development/zp-core/setup.php:2583
 msgid "database did not connect"
 msgstr "database is niet verbonden"
 
-#: ZpTranslation-Development/zp-core/setup.php:2583
+#: ZpTranslation-Development/zp-core/setup.php:2585
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr "Als je de database nog niet aangemaakt hebt is het daar nu een goed moment voor."
 
-#: ZpTranslation-Development/zp-core/setup.php:2592
+#: ZpTranslation-Development/zp-core/setup.php:2594
 msgid "The zenphoto.cfg file does not exist. You should run setup.php to check your configuration and create this file."
 msgstr "Het  configuratiebestand bestaat niet. Je moet setup.php uitvoeren om de configuratie te controleren en dit bestand aan te maken."
 
@@ -9032,40 +9036,40 @@ msgstr "Laatste afbeeldingen RSS"
 msgid "getSearchURL $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "getSearchURL $album_list parameter is verouderd. Gebruik in plaats daarvan array(\"albums\"=>array(album, album,...))."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3980
+#: ZpTranslation-Development/zp-core/template-functions.php:3983
 msgid "printSearchForm $album_list parameter is deprecated. Pass array(\"albums\"=>array(album, album, ...)) instead."
 msgstr "printSearchForm $album_list parameter is verouderd. Gebruik in plaats daarvan array(\"albums\"=>aray(album, album,...))."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:3997
+#: ZpTranslation-Development/zp-core/template-functions.php:4001
 #, php-format
 msgid "%s within previous results"
 msgstr "%s binnen vorige resultaten"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4066
+#: ZpTranslation-Development/zp-core/template-functions.php:4071
 msgid "search options"
 msgstr "zoekopties"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4066
+#: ZpTranslation-Development/zp-core/template-functions.php:4071
 msgid "fields"
 msgstr "velden"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4102
+#: ZpTranslation-Development/zp-core/template-functions.php:4107
 msgid "Within"
 msgstr "binnen"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4106
+#: ZpTranslation-Development/zp-core/template-functions.php:4111
 msgid "New"
 msgstr "Nieuw"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4160
+#: ZpTranslation-Development/zp-core/template-functions.php:4165
 msgid "no date"
 msgstr "geen datum"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4415
+#: ZpTranslation-Development/zp-core/template-functions.php:4420
 msgid "The page you are trying to view is password protected."
 msgstr "Deze pagina is beveiligd met een wachtwoord."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:4455
+#: ZpTranslation-Development/zp-core/template-functions.php:4460
 msgid "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 msgstr "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
@@ -10268,35 +10272,35 @@ msgstr "Hier kun je een beschrijving van de galerij invoeren."
 msgid "A simpler web album"
 msgstr "Een eenvoudiger web fotoalbum"
 
-#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:319
+#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:305
 msgid "<strong>Backtrace:</strong>"
 msgstr "<strong>Backtrace:</strong>"
 
-#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:400
+#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:386
 msgid "PARSING ERROR"
 msgstr "PARSING ERROR"
 
-#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:402
+#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:388
 msgid "CORE ERROR"
 msgstr "CORE ERROR"
 
-#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:403
+#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:389
 msgid "CORE WARNING"
 msgstr "CORE WARNING"
 
-#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:404
+#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:390
 msgid "COMPILE ERROR"
 msgstr "COMPILE ERROR"
 
-#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:405
+#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:391
 msgid "COMPILE WARNING"
 msgstr "COMPILE WARNING"
 
-#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:410
+#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:396
 msgid "RECOVERABLE ERROR"
 msgstr "RECOVERABLE ERROR"
 
-#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:417
+#: ZpTranslation-Development/zp-core/setup/setup-primitive.php:403
 msgid "CAUGHT EXCEPTION"
 msgstr "CAUGHT EXCEPTION"
 
@@ -10426,99 +10430,99 @@ msgstr "backup mislukt"
 msgid "No backup set found."
 msgstr "Geen backup gevonden."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:306
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:307
 msgid "Truncate table<br />"
 msgstr "Inkorten tabel< br />"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:378
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:380
 msgid "Restore encountered exceptions"
 msgstr "Er waren problemen met de restore."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:381
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:383
 msgid "The following tables were not restored because the table no longer exists:"
 msgstr "De volgende tabellen zijn niet hersteld omdat de tabel niet meer bestaat:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:394
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:396
 msgid "The following fields were not restored because the field no longer exists:"
 msgstr "De volgende velden zijn niet hersteld omdat het veld niet meer bestaat:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:412
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:414
 msgid "Restore failed"
 msgstr "Herstel mislukt"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:435
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:437
 msgid "Zenphoto Rights migration failed!"
 msgstr "het overzetten van de gebruikersrechten is mislukt !"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:449
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:451
 msgid "Restore completed"
 msgstr "Herstel gereed"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:451
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:453
 #, php-format
 msgid "Restore completed using %s compression"
 msgstr "Herstel voltooid met %s compressie"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:475
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:477
 msgid "Restore your Database"
 msgstr "Herstel de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:477
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:479
 msgid "Backup and Restore your Database"
 msgstr "Backup of herstel de database."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:487
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:489
 #, php-format
 msgid "Database software <strong>%s</strong>"
 msgstr "Database software <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:488
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:490
 #, php-format
 msgid "Database name <strong>%s</strong>"
 msgstr "Database naam <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:489
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:491
 #, php-format
 msgid "Tables prefix <strong>%s</strong>"
 msgstr "Tabel-prefix <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:500
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:502
 msgid "Backup the tables in your database."
 msgstr "Backup de tabellen in de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:501
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:503
 msgid "Backup the Database"
 msgstr "Backup de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:522
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:524
 msgid "You have not yet created a backup set."
 msgstr "Je hebt nog geen backup gemaakt."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:527
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:529
 msgid "Select the database restore file:"
 msgstr "Selecteer het bestand om de database te herstellen:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:534
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:536
 msgid "Restore the tables in your database from a previous backup."
 msgstr "Herstel de tabellen in de database vanuit een eerdere backup."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:535
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:537
 msgid "Restore the Database"
 msgstr "Herstel de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:552
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:554
 msgid "The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings."
 msgstr "De backup mogelijkheid creëert kopieën van de database in de <code>backup</code> map. Deze backups krijgen als naam de datum en tijd van het moment dat ze gemaakt worden. De sterkte van de compressie loopt van 0 (geen compressie) tot 9 (maximale compressie). Een hogere compressie vereist meer tijd en is geen garantie voor meer ruimtewinst."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:556
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:558
 msgid "You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button."
 msgstr "De database wordt hersteld door een backup te selecteren en vervolgens op <em>Herstel de database</em> te klikken."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:557
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:559
 msgid "<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created."
 msgstr "<strong>Let op:</strong> Elke tabel in de database wordt eerst geleegd voordat herstel wordt uitgevoerd. Na een succesvol herstel is de database hetzelfde als op het moment dat de backup gemaakt werd."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:559
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:561
 msgid "Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored."
 msgstr "Het is het beste dat een restore wordt uitgevoerd op dezelfde versie van Zenphoto als de backup gemaakt is. Als je van plan bent te upgraden doe dan eerst een restore op de versie van Zenphoto die je gebruikte en installeer dan pas de nieuwe versie. Als dit niet mogelijk is, is een restore nog steeds mogelijk maar het kan zijn dat database-velden intussen zijn veranderd. In dat geval kunnen die velden niet hersteld worden."
 
@@ -13195,8 +13199,8 @@ msgid "If checked the carousel will flow vertically instead of the default horiz
 msgstr "Als dit is aangevinkt zullen de thumbnails verticaal lopen i.p.v. horizontaal. Het kan zijn dat hierdoor het thema aangepast moet worden!"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/jcarousel_thumb_nav.php:74
-msgid "The scripts for which jCarousel is enabled. {Should have been set by the themes!}"
-msgstr "De scripts waarvoor jCarousel is geactiveerd. {Zou ingesteld moeten zijn door de thema's!}"
+msgid "The scripts for which jCarousel is enabled. {If themes require it they might set this, otherwise you need to do it manually!}"
+msgstr "De scripts waarvoor jCarousel is geactiveerd. {Als thema's dit nodig hebben is het al ingesteld. Zo niet, dan moet je het zelf instellen.}"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/jplayer.php:47
 msgid "Enable <strong>jPlayer</strong> to handle multimedia files."
@@ -15925,16 +15929,16 @@ msgstr "Inkorting"
 msgid "The length of the article to display."
 msgstr "De lengte van de te tonen berichten."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenphoto_news.php:38
+#: ZpTranslation-Development/zp-core/zp-extensions/zenphoto_news.php:34
 msgid "News from Zenphoto.org"
 msgstr "Nieuws van zenphoto.org"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenphoto_news.php:101
+#: ZpTranslation-Development/zp-core/zp-extensions/zenphoto_news.php:99
 #, php-format
 msgid "Failed to retrieve link <em>%s</em>"
 msgstr "Ophalen van de link <em>%s</em> mislukt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenphoto_news.php:108
+#: ZpTranslation-Development/zp-core/zp-extensions/zenphoto_news.php:106
 msgid "A connection to <em>Zenphoto.org</em> could not be established."
 msgstr "Verbinding met <em>zenphoto.org</em> mislukt."
 
@@ -16998,170 +17002,163 @@ msgstr "Er zijn geen ongepubliceerde albums."
 msgid "Images not published"
 msgstr "Niet gepubliceerde afbeeldingen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:330
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:331
 #, php-format
 msgid "Review images older than: %s"
 msgstr "Bekijk beelden ouder dan: %s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:335
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:336
 msgid "Review un-published images."
 msgstr "Bekijk niet-gepubliceerde afbeeldingen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:336
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:337
 msgid "Review images"
 msgstr "Bekijk beelden"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:344
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:351
+msgid "Image changes applied"
+msgstr "Afbeeldings-veranderingen toegepast"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:394
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:450
+msgid "Set all to be published"
+msgstr "Publiceer alles"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:397
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:453
+msgid "Set all to be un-published"
+msgstr "On-publiceer alles"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:400
+msgid "Set all to be deleted"
+msgstr "Alles verwijderen"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:416
+msgid "Publish"
+msgstr "Publiceer"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:421
+msgid "Do not publish"
+msgstr "Niet publiceren"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:434
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:456
+msgid "all images"
+msgstr "alle afbeeldingen"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:460
+msgid "Process the above changes."
+msgstr "Verwerk de veranderingen van boven."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:461
+msgid "Process changes"
+msgstr "Veranderingen toepassen"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:472
 #, php-format
 msgid "%u album with unpublished images"
 msgid_plural "%u albums with unpublished images"
 msgstr[0] "%u album met niet-gepubliceerde afbeeldingen"
 msgstr[1] "%u albums met niet-gepubliceerde afbeeldingen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:353
-msgid "Image changes applied"
-msgstr "Afbeeldings-veranderingen toegepast"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:358
-#, php-format
-msgid "%u unpublished image"
-msgid_plural "%u unpublished images"
-msgstr[0] "%u afbeelding niet gepubliceerd"
-msgstr[1] "%u afbeeldingen niet gepubliceerd"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:397
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:453
-msgid "Set all to be published"
-msgstr "Publiceer alles"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:400
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:456
-msgid "Set all to be un-published"
-msgstr "On-publiceer alles"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:403
-msgid "Set all to be deleted"
-msgstr "Alles verwijderen"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:419
-msgid "Publish"
-msgstr "Publiceer"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:424
-msgid "Do not publish"
-msgstr "Niet publiceren"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:437
-#, php-format
-msgid "%s"
-msgstr "%s"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:459
-msgid "all images"
-msgstr "alle afbeeldingen"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:463
-msgid "Process the above changes."
-msgstr "Verwerk de veranderingen van boven."
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:464
-msgid "Process changes"
-msgstr "Veranderingen toepassen"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:475
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:474
 msgid "No images meet the criteria."
 msgstr "Er zijn geen beelden die voldoen aan de criteria."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:495
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:494
 msgid "Categories not published"
 msgstr "Niet gepubliceerde categorieën"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:498
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:497
 #, php-format
 msgid "%u unpublished category"
 msgid_plural "%u unpublished categories"
 msgstr[0] "%u categorie niet gepubliceerd"
 msgstr[1] "%u categorieën niet gepubliceerd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:505
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:504
 msgid "Category changes applied"
 msgstr "Categorie-veranderingen toegepast"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:510
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:509
 msgid "Categories:"
 msgstr "Categoriën:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:537
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:536
 msgid "Publish waiting categories."
 msgstr "Publiceer wachtende categorieën."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:538
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:537
 msgid "Publish categories"
 msgstr "Publiceer categorieën"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:545
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:544
 msgid "No unpublished categories"
 msgstr "Geen ongepubliceerde categorieën"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:564
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:563
 msgid "News articles not published"
 msgstr "Niet gepubliceerd artikelen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:567
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:566
 #, php-format
 msgid "%u unpublished article"
 msgid_plural "%u unpublished articles"
 msgstr[0] "%u artikel niet gepubliceerd"
 msgstr[1] "%u artikelenl niet gepubliceerd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:574
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:573
 msgid "News article changes applied"
 msgstr "Artikel-veranderingen toegepast"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:579
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:578
 msgid "Articles:"
 msgstr "Artikelen:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:606
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:605
 msgid "Publish waiting articles."
 msgstr "Publiceer wachtende artikelen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:607
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:606
 msgid "Publish articles"
 msgstr "Publiceer artikelen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:614
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:613
 msgid "No unpublished articles"
 msgstr "Geen ongepubliceerde artikelen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:633
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:632
 msgid "Pages not published"
 msgstr "Niet gepubliceerde pagina's."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:638
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:637
 msgid "Pages changes applied"
 msgstr "Pagina-veranderingen toegepast"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:643
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:642
 #, php-format
 msgid "%u unpublished page"
 msgid_plural "%u unpublished pages"
 msgstr[0] "%u niet gepubliceerde pagina"
 msgstr[1] "%u niet gepubliceerde pagina's"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:646
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:645
 msgid "Pages:"
 msgstr "Pagina's:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:673
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:672
 msgid "Publish waiting pages."
 msgstr "Publiceer wachtende pagina's."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:674
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:673
 msgid "Publish pages"
 msgstr "Publiceer pagina's"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:680
+#: ZpTranslation-Development/zp-core/zp-extensions/publishContent/publishContent.php:679
 msgid "No unpublished pages"
 msgstr "Geen ongepubliceerde pagina's"
 
@@ -18512,51 +18509,57 @@ msgstr "Gebruik in plaats hiervoor de Zenpage page <em>class->getPages()</em> me
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Deze invoer valt onder een beveiligd album.</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1552
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:1553
 msgid "Prev page"
 msgstr "Vorige pagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2154
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2194
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2155
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2195
 #, php-format
 msgid "%u article"
 msgid_plural "%u articles"
 msgstr[0] "%u artikel"
 msgstr[1] "%u artikelen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2750
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:2751
 msgid "This page is password protected"
 msgstr "Deze pagina is beveiligd met een wachtwoord!"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3051
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3052
 msgid "News RSS"
 msgstr "Nieuws RSS"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3108
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3109
 #, php-format
 msgid "View the %s album"
 msgstr "Bekijk het %s album"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3110
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3111
 #, php-format
 msgid "View the album %s"
 msgstr "Bekijk het album %s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3114
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3115
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3116
 #, php-format
 msgid "View %s"
 msgstr "Album %s bekijken"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3123
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3124
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the image %1$s:%2$s"
 msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3132
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:3133
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid "%u unpublished image"
+
+#~ msgid_plural "%u unpublished images"
+#~ msgstr[0] "%u afbeelding niet gepubliceerd"
+#~ msgstr[1] "%u afbeeldingen niet gepubliceerd"
 
 #~ msgid ""
 #~ "<strong>Note</strong>: There should be no quotation marks in this setting!"
