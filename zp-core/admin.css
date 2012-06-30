@@ -633,7 +633,7 @@ table.checkboxes td {
 }
 
 .box {
-	padding: 0;
+	padding: 4px;
 	background-color: #FAFAFA;
 	border: 1px solid #E5E5E5;
 	border-bottom-width: 5px;
@@ -643,7 +643,7 @@ table.checkboxes td {
 	border-radius: 5px;
 }
 .boxb {
-	padding: 0;
+	padding: 4px;
 	background-color: LightGray;
 	border: 1px solid #E5E5E5;
 	border-bottom-width: 5px;

@@ -208,7 +208,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 					<div class="commentinfo">
 						<h4><?php	printCommentAuthorLink(); ?>: on <?php echo getCommentDateTime(); printEditCommentLink(gettext('Edit'), ', ', ''); ?></h4>
 					</div><!-- class "commentinfo" -->
-					<div class="commenttext"><?php echo getCommentBody();?></div><!-- class "commenttext" -->
+					<div class="commenttext"><?php echo html_encodeTagged(getCommentBody(),false); ?></div><!-- class "commenttext" -->
 				</div><!-- class "comment" -->
 				<?php
 			}

@@ -144,12 +144,12 @@ if (isset($_GET['action'])) {
 			setOption('search_fields', implode(',',$searchfields));
 			setOption('search_cache_duration', sanitize_numeric($_POST['search_cache_duration']));
 			$notify = processCredentials('search');
-			setOption('search_within',sanitize_numeric($_POST['search_within']));
 			setOption('search_space_is',sanitize($_POST['search_space_is']));
 			setOption('search_no_albums', (int) isset($_POST['search_no_albums']));
 			setOption('search_no_images', (int) isset($_POST['search_no_images']));
 			setOption('search_no_pages', (int) isset($_POST['search_no_pages']));
 			setOption('search_no_news', (int) isset($_POST['search_no_news']));
+			setOption('search_within', (int) ($_POST['search_within'] && true));
 			$returntab = "&tab=search";
 		}
 
@@ -1391,7 +1391,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<?php generateRadiobuttonsFromArray(getOption('search_space_is'),array(gettext('<em>space</em>')=>'',gettext('<em>OR</em>')=>'OR',gettext('<em>AND</em>')=>'AND'),'search_space_is',false,false); ?>
 						<p>
 							<?php echo gettext('Default search'); ?>
-							<?php generateRadiobuttonsFromArray(getOption('search_within'),array(gettext('<em>New</em>')=>'1',gettext('<em>Within</em>')=>'0'),'search_within',false,false); ?>
+							<?php generateRadiobuttonsFromArray(getOption('search_within'),array(gettext('<em>New</em>')=>'0',gettext('<em>Within</em>')=>'1'),'search_within',false,false); ?>
 						</p>
 						<p>
 							<label>

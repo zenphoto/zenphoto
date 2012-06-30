@@ -265,19 +265,27 @@ function html_encode($this_string) {
  * HTML encodes the non-metatag part of the string.
  *
  * @param string $str string to be encoded
+ * @param biik $allowScript set to false to prevent pass-through of script tags.
  * @return string
  */
-function html_encodeTagged($str) {
+function html_encodeTagged($str, $allowScript=true) {
 	$tags = array();
-	preg_match_all('|<!--.*-->|is', $str, $matches);
+	preg_match_all('|<!--.*-->|ixs', $str, $matches);
 	foreach (array_unique($matches[0]) as $key=>$tag) {
 		$tags['%'.$key.'$j'] = $tag;
 		$str = str_replace($tag, '%'.$key.'$j', $str);
 	}
-	preg_match_all('!<script.*>.*</script>!is', $str, $matches);
-	foreach (array_unique($matches[0]) as $key=>$tag) {
-		$tags['%'.$key.'$j'] = $tag;
-		$str = str_replace($tag, '%'.$key.'$j', $str);
+	if ($allowScript) {
+		preg_match_all('!<script.*>.*</script>!ixs', $str, $matches);
+		foreach (array_unique($matches[0]) as $key=>$tag) {
+			$tags['%'.$key.'$j'] = $tag;
+			$str = str_replace($tag, '%'.$key.'$j', $str);
+		}
+	} else {
+		$str = preg_replace('|<a(.*)href(.*)=(.*)javascript|ixs', '%$x', $str);
+		$tags['%$x'] = '&lt;a href=<strike>javascript</strike>';
+		$str = preg_replace('|<(.*)onclick|ixs', '%$c', $str);
+		$tags['%$c'] = '&lt;<strike>onclick</strike>';
 	}
 	preg_match_all("/(&[a-z#]+;)|<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
 	foreach (array_unique($matches[0]) as $key=>$tag) {
@@ -854,31 +862,31 @@ function sanitize_string($input_string, $sanitize_level) {
 	// User specified sanititation.
 	if (function_exists('kses')) {
 		switch($sanitize_level) {
-			//Note: kses does not deal with incomplete tags that the browser may still interpret. However it seems
-			//to properly handle them as long as there is a ">" present, so we add it here and then remove it if
-			//it was unnecessary
 			case 1:
 				$allowed_tags = getAllowedTags('allowed_tags');
-				$input_string = html_decode(kses($input_string.' >', $allowed_tags));
 				break;
 			// Text formatting sanititation.
 			case 2:
 				$allowed_tags = getAllowedTags('style_tags');
-				$input_string = html_decode(kses($input_string.' >', $allowed_tags));
 				break;
 			// Full sanitation.  Strips all code.
 			case 3:
 				$allowed_tags = array();
-				$input_string = html_decode(kses($input_string.' >', $allowed_tags));
 				break;
 		}
-		if (substr($input_string, -2) == ' >') {
-			$input_string = substr($input_string, 0, -2);
+		/*
+		kses does not deal with incomplete tags that the browser may still interpret. However it seems
+		to properly handle them as long as there is a ">" present, so we add it here and then remove it if
+		it was unnecessary.
+		*/
+		$output_string = html_decode(kses($input_string.' >', $allowed_tags));
+		if (substr($output_string, -2) == ' >') {
+			$output_string = substr($output_string, 0, -2);
 		}
 	} else {	//	in a basic environment--allow NO HTML tags.
-		$input_string = strip_tags($input_string);
+		$output_string = strip_tags($input_string);
 	}
-	return $input_string;
+	return $output_string;
 }
 
 /**

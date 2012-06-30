@@ -99,11 +99,17 @@ function zp_handle_comment() {
 			}
 			if (isset($_POST['email'])) {
 				$p_email = sanitize($_POST['email'], 3);
+				if (!is_valid_email_zp($p_email)) {
+					$p_email = NULL;
+				}
 			} else {
 				$p_email = NULL;
 			}
 			if (isset($_POST['website'])) {
 				$p_website = sanitize($_POST['website'], 3);
+				if (!isValidURL($p_website)) {
+					$p_website = NULL;
+				}
 			} else {
 				$p_website = NULL;
 			}

@@ -278,6 +278,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 						}
 					}
 				}
+
 				$errors = array();
 				$string = getrow($handle);
 				while (substr($string, 0, strlen(HEADER)) == HEADER) {
@@ -311,6 +312,8 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 						$row = substr($string, $sep+strlen(TABLE_SEPARATOR));
 						$row = decompressRow($row);
 						$row = unserialize($row);
+
+
 						foreach($row as $key=>$element) {
 							if ($compression_handler=='bzip2' || $compression_handler=='gzip') {
 								if (!empty($element)) {
@@ -318,10 +321,9 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 								}
 							}
 							if (array_search($key,$tables[$prefix.$table]) === false) {
-								if ($element) {	//	Flag it if data will be lost
-									$missing_element[] = $table.'->'.$key;
-									unset($row[$key]);
-								}
+								//	Flag it if data will be lost
+								$missing_element[] = $table.'->'.$key;
+								unset($row[$key]);
 							} else {
 								if (is_null($element)) {
 									$row[$key] = 'NULL';

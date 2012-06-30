@@ -953,10 +953,13 @@ protected function getRSSCombinewsAlbums() {
 		switch($item['type']) {
 			case 'images':
 				$title = get_language_string($item['title']);
-				$link = $this->itemobj->getImagelink();
+				$alb = new Album('',$item['folder']);
+				$obj = newImage($alb,$item['filename']);
+				$link = $obj->getImagelink();
 			case 'albums':
 				$album = pathurlencode($item['folder']);
-				$link = $this->itemobj->getAlbumlink();
+				$obj = new Album('',$album);
+				$link = $obj->getAlbumlink();
 				$feeditem['pubdate'] = date("r",strtotime($item['date']));
 				$category = $item['albumtitle'];
 				$website =$item['website'];
@@ -1016,6 +1019,7 @@ protected function getRSSCombinewsAlbums() {
 				<?php
 				$feeditems = $this->getRSSitems();
 				foreach($feeditems as $feeditem) {
+					print_r($feeditem);
 					switch($this->feedtype) {
 						case 'gallery':
 							$item = $this->getRSSitemGallery($feeditem);

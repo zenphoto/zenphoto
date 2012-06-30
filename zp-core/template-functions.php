@@ -3973,8 +3973,11 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
  * @since 1.1.3
  */
 function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $buttontext='', $iconsource=NULL, $query_fields=NULL, $object_list=NULL, $within=NULL) {
-	global $_zp_adminJS_loaded;
+	global $_zp_adminJS_loaded, $_zp_current_search;
 	$engine = new SearchEngine();
+	if (!is_null($_zp_current_search) && !$_zp_current_search->getSearchWords()) {
+		$engine->clearSearchWords();
+	}
 	if (!is_null($object_list)) {
 		if (array_key_exists(0, $object_list)) {	// handle old form albums list
 			trigger_error(gettext('printSearchForm $album_list parameter is deprecated. Pass array("albums"=>array(album, album, ...)) instead.'), E_USER_NOTICE);
@@ -3992,6 +3995,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		$searchwords = substr($searchwords,0,-1);
 	}
 	if (empty($searchwords)) {
+		$within = false;
 		$hint = '%s';
 	} else {
 		$hint = gettext('%s within previous results');
@@ -4018,6 +4022,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 	if (!$within) {
 		$engine->clearSearchWords();
 	}
+
 	$fields = $engine->allowedSearchFields();
 	if (!$_zp_adminJS_loaded) {
 		$_zp_adminJS_loaded = true;
@@ -4031,7 +4036,7 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 		<form method="post" action="<?php echo $searchurl; ?>" id="search_form">
 			<script type="text/javascript">
 				// <!-- <![CDATA[
-				var within = <?php echo (int) !empty($searchwords); ?>;
+				var within = <?php echo (int) $within; ?>;
 				function search_(way) {
 					within=way;
 					if (way) {

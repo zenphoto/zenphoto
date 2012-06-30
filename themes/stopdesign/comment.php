@@ -36,7 +36,7 @@
 			<a href="#comment<?php echo $autonumber; ?>" class="postno" title="<?php printf(gettext('Link to Comment %u'),$autonumber); ?>"><?php echo $autonumber; ?>.</a>
 			<em>On <?php echo getCommentDateTime();?>, <?php printf(gettext('%s wrote:'),printCommentAuthorLink()); ?></em>
 		</dt>
-		<dd><p><?php echo getCommentBody();?><?php printEditCommentLink(gettext('Edit'), ' | ', ''); ?></p></dd>
+		<dd><p><?php echo html_encodeTagged(getCommentBody(),false); ?><?php printEditCommentLink(gettext('Edit'), ' | ', ''); ?></p></dd>
 		<?php
 		}
 		if ($autonumber) {
