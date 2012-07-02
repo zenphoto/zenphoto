@@ -874,15 +874,7 @@ function sanitize_string($input_string, $sanitize_level) {
 				$allowed_tags = array();
 				break;
 		}
-		/*
-		kses does not deal with incomplete tags that the browser may still interpret. However it seems
-		to properly handle them as long as there is a ">" present, so we add it here and then remove it if
-		it was unnecessary.
-		*/
-		$output_string = html_decode(kses($input_string.' >', $allowed_tags));
-		if (substr($output_string, -2) == ' >') {
-			$output_string = substr($output_string, 0, -2);
-		}
+		$output_string = kses($input_string, $allowed_tags);
 	} else {	//	in a basic environment--allow NO HTML tags.
 		$output_string = strip_tags($input_string);
 	}

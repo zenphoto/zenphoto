@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * Note: Zenphoto does not want html entities encoded. This script has been modified
+ * to prevent the encodings. Search for Zenphoto for changes.
+ */
+
 # kses 0.2.2 - HTML/XHTML filter that only allows some elements and attributes
 # Copyright (C) 2002, 2003, 2005  Ulf Harnhammar
 #
@@ -42,7 +47,7 @@ function kses($string, $allowed_html, $allowed_protocols =
 {
   $string = kses_no_null($string);
   $string = kses_js_entities($string);
-  $string = kses_normalize_entities($string);
+//  $string = kses_normalize_entities($string); Zenphoto does not want & encoded
   $string = kses_hook($string);
   $allowed_html_fixed = kses_array_lc($allowed_html);
   return kses_split($string, $allowed_html_fixed, $allowed_protocols);
@@ -94,11 +99,13 @@ function kses_split2($string, $allowed_html, $allowed_protocols)
   $string = kses_stripslashes($string);
 
   if (substr($string, 0, 1) != '<')
-    return '&gt;';
+//    return '&gt;';	zenphoto needs these in un-encoded form!
+  	return '>';
     # It matched a ">" character
 
   if (!preg_match('%^<\s*(/\s*)?([a-zA-Z0-9]+)([^>]*)>?$%', $string, $matches))
-    return '';
+//    return ''; Zenphoto does not want the < swollowed
+    return '<';
     # It's seriously malformed
 
   $slash = trim($matches[1]);

@@ -99,6 +99,9 @@ class user_expiry {
 	}
 
 	private static function checkexpires($loggedin, $userobj) {
+		if ($userobj->no_zp_login) {
+			return $loggedin;
+		}
 		$subscription = 86400*getOption('user_expiry_interval');
 		$expires = strtotime($userobj->getDateTime())+$subscription;
 		if ($expires < time()) {

@@ -2178,8 +2178,18 @@ if ($subtab == 'comments' && zp_loggedin(OPTIONS_RIGHTS)) {
 		</tr>
 		<tr>
 			<td><?php echo gettext("Enable comment notification:"); ?></td>
-			<td><input type="checkbox" name="email_new_comments" value="1"
-			<?php echo checked('1', getOption('email_new_comments')); ?> /></td>
+			<td>
+			<?php
+			$email_list = $_zp_authority->getAdminEmail();
+			if (empty($email_list)) {
+				setOption('email_new_comments', 0);
+				$disable = ' disabled="disabled"';
+			} else {
+				$disable = '';
+			}
+			?>
+			<input type="checkbox" name="email_new_comments" value="1" <?php echo checked('1', getOption('email_new_comments')); echo $disable; ?> />
+			</td>
 			<td><?php echo gettext("Email the Admin when new comments are posted"); ?></td>
 		</tr>
 		<!-- SPAM filter options -->
@@ -2410,18 +2420,25 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 				</td>
 				<td colspan="2" ><?php echo gettext('<em>These image and album presentation options provided by the Zenphoto core for all themes.</em>').'<p class="notebox">'.gettext('<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons'); ?></p></td>
 			</tr>
-			<?php
-			if (in_array('albums_per_row', $unsupportedOptions))  {
-				$disable = ' disabled="disabled"';
-			} else {
-				$disable = '';
-			}
-			?>
 			<tr>
 				<td style='width: 175px'><?php echo gettext("Albums:"); ?></td>
 				<td>
+					<?php
+					if (in_array('albums_per_row', $unsupportedOptions))  {
+						$disable = ' disabled="disabled"';
+					} else {
+						$disable = '';
+					}
+					?>
 					<input type="text" size="3" name="albums_per_row" value="<?php echo getThemeOption('albums_per_row',$album,$themename);?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per row'); ?>
 					<br />
+					<?php
+					if (in_array('albums_per_page', $unsupportedOptions))  {
+						$disable = ' disabled="disabled"';
+					} else {
+						$disable = '';
+					}
+					?>
 					<input type="text" size="3" name="albums_per_page" value="<?php echo getThemeOption('albums_per_page',$album,$themename);?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?>
 				</td>
 				<td>
@@ -2440,18 +2457,25 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 					?>
 				</td>
 			</tr>
-			<?php
-			if (in_array('images_per_row', $unsupportedOptions))  {
-				$disable = ' disabled="disabled"';
-			} else {
-				$disable = '';
-			}
-			?>
 			<tr>
 				<td><?php echo gettext("Images:"); ?></td>
 				<td>
+					<?php
+					if (in_array('images_per_row', $unsupportedOptions))  {
+						$disable = ' disabled="disabled"';
+					} else {
+						$disable = '';
+					}
+					?>
 					<input type="text" size="3" name="images_per_row" value="<?php echo getThemeOption('images_per_row',$album,$themename);?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per row'); ?>
 					<br />
+					<?php
+					if (in_array('images_per_page', $unsupportedOptions))  {
+						$disable = ' disabled="disabled"';
+					} else {
+						$disable = '';
+					}
+					?>
 					<input type="text" size="3" name="images_per_page" value="<?php echo getThemeOption('images_per_page',$album,$themename);?>"<?php echo $disable; ?> /> <?php echo gettext('thumbnails per page'); ?>
 				</td>
 				<td>

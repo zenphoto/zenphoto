@@ -249,6 +249,7 @@ class Zenphoto_Authority {
 		if ((count($admins) == 0)) {
 			if (DEBUG_LOGIN) { debugLog("checkAuthorization: no admins"); }
 			$_zp_current_admin_obj = new Zenphoto_Administrator('', 1);
+			$_zp_current_admin_obj->set('id', 0);
 			$_zp_current_admin_obj->reset = true;
 			return ADMIN_RIGHTS; //no admins or reset request
 		}
@@ -1246,6 +1247,9 @@ class Zenphoto_Administrator extends PersistentObject {
 	function Zenphoto_Administrator($user, $valid) {
 		global $_zp_authority;
 		parent::PersistentObject('administrators', array('user' => $user, 'valid'=>$valid), NULL, false, empty($user));
+		if (empty($user)) {
+			$this->set('id', -1);
+		}
 		if ($valid && $user == $_zp_authority->master_user) {
 			$this->setRights($this->getRights() | ADMIN_RIGHTS);
 			$this->master = true;

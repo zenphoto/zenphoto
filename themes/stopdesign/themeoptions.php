@@ -41,7 +41,7 @@ class ThemeOptions {
 	}
 
 	function getOptionsDisabled() {
-		return array('thumb_size','thumb_crop','albums_per_row','images_per_row','image_size','custom_index_page');
+		return array('thumb_size','thumb_crop','albums_per_row','albums_per_page','images_per_row','images_per_page','image_size','custom_index_page');
 	}
 
 	function handleOption($option, $currentValue) {
