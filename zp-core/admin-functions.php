@@ -204,11 +204,14 @@ function printSortableHead() {
  * @since  1.0.0
  */
 
-function adminPrintImageThumb($image, $class=NULL, $id=NULL) {
-	echo "\n  <img class=\"imagethumb\" id=\"id_". $image->getID() ."\" src=\"" . $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1) . "\" alt=\"". html_encode($image->getTitle()) . "\" title=\"". html_encode($image->getTitle()) . " (". html_encode($image->getFileName()) . ")\"" .
-	((getOption('thumb_crop')) ? " width=\"".getOption('thumb_crop_width')."\" height=\"".getOption('thumb_crop_height')."\"" : "") .
-	(($class) ? " class=\"$class\"" : "") .
-	(($id) ? " id=\"$id\"" : "") . " />";
+function adminPrintImageThumb($image) {
+	?>
+	<img class="imagethumb" id="id_<?php echo $image->getID(); ?>"
+	src="<?php echo $image->getCustomImage(85, NULL, NULL, 85, 85, NULL, NULL, -1); ?>"
+	alt="<?php echo html_encode($image->getTitle()); ?>"
+	title="<?php echo html_encode($image->getTitle()) . ' ('. html_encode($image->getFileName()) . ')'; ?>"
+	width="85" height="85"  />
+	<?php
 }
 
 
@@ -4167,7 +4170,7 @@ function admin_showupdate($tab, $subtab) {
  */
 function processCredentials($object, $suffix='') {
 	$notify = '';
-	if (isset($_POST['password_enabled'.$suffix])) {
+	if (isset($_POST['password_enabled'.$suffix]) && $_POST['password_enabled'.$suffix]) {
 		if (is_object($object)) {
 			$olduser = $object->getUser();
 		} else {

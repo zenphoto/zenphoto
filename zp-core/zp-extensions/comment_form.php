@@ -306,7 +306,7 @@ function printCommentForm($showcomments=true, $addcommenttext=NULL, $addheader=t
 		?>
 		</div><!-- id="commentcontent" -->
 	<?php
-if (getOption('comment_form_rss')) {
+if (getOption('comment_form_rss') && getOption('RSS_comments')) {
 	?>
 	<br clear="all" />
 	<?php

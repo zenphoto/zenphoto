@@ -155,16 +155,17 @@ class TextObject extends _Image {
 			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
 		}
 		if (is_null($this->objectsThumb)) {
-			$cx = $cy = NULL;
+			$mtime = $cx = $cy = NULL;
 			$filename = makeSpecialImageName($this->getThumbImageFile());
 			if (!$this->watermarkDefault) {
 				$wmt = '!';
 			}
 		} else {
 			$filename = filesystemToInternal($this->objectsThumb);
+			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->album->name).'/'.$this->objectsThumb);
 		}
 		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);		$cachefilename = getImageCacheFilename($alb = $this->album->name, $this->filename, $args);
-		return getImageURI($args, $this->album->name, $filename, $this->filemtime);
+		return getImageURI($args, $this->album->name, $filename, $mtime);
 	}
 
 	/**

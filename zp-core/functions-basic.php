@@ -13,6 +13,18 @@ if(!function_exists("gettext")) {
 	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
 }
 
+/**
+* OFFSET_PATH definisions:
+* 		0		Theme scripts (root index.php)
+* 		1		zp-core scripts
+* 		2		setup scripts
+* 		3		plugin scripts
+*/
+if (!defined('OFFSET_PATH')) {
+	if (!defined('RELEASE')) debugLogBacktrace('no offset path')	;
+	define('OFFSET_PATH', 0);
+}
+
 global $_zp_conf_vars;
 $const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
 $const_serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
@@ -34,6 +46,11 @@ if (OFFSET_PATH) {
 		$const_webpath = '';
 	}
 }
+
+if (defined('SERVERPATH')) {
+	$const_serverpath = SERVERPATH;
+}
+
 
 // Contexts (Bitwise and combinable)
 define("ZP_INDEX",   1);
@@ -88,18 +105,6 @@ if (!file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphoto.cfg")) {
 }
 // Including the config file more than once is OK, and avoids $conf missing.
 eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg'));
-
-/**
- * OFFSET_PATH definisions:
- * 		0		Theme scripts (root index.php)
- * 		1		zp-core scripts
- * 		2		setup scripts
- * 		3		plugin scripts
- */
-if (!defined('OFFSET_PATH')) {
-	if (!defined('RELEASE')) debugLogBacktrace('no offset path')	;
-	define('OFFSET_PATH', 0);
-}
 
 if (!defined('WEBPATH')) {
 	define('WEBPATH', $const_webpath);
@@ -358,7 +363,7 @@ function setOption($key, $value, $persistent=true) {
 			$sqlu .= db_quote($value);
 		}
 		$sql .= ') '.$sqlu;
-		$result = query($sql);
+		$result = query($sql,false);
 	} else {
 		$result = true;
 	}
@@ -748,7 +753,7 @@ function getImageProcessorURI($args, $album, $image) {
  */
 function getImageURI($args, $album, $image, $mtime) {
 	$cachefilename = getImageCacheFilename($album, $image, $args);
-	if (OPEN_IMAGE_CACHE && file_exists(SERVERCACHE . $cachefilename) && filemtime(SERVERCACHE . $cachefilename) >= $mtime) {
+	if (OPEN_IMAGE_CACHE && file_exists(SERVERCACHE . $cachefilename) && (!$mtime || filemtime(SERVERCACHE . $cachefilename) >= $mtime)) {
 		return WEBPATH . '/'.CACHEFOLDER . imgSrcURI($cachefilename);
 	} else {
 		return getImageProcessorURI($args,$album,$image);
@@ -1258,7 +1263,7 @@ function themeSetup($album) {
 	$theme = getAlbumInherited(filesystemToInternal($album), 'album_theme', $id);
 	if (empty($theme)) {
 		$galleryoptions = unserialize(getOption('gallery_data'));
-		$theme = $galleryoptions['current_theme'];
+		$theme = @$galleryoptions['current_theme'];
 	}
 	loadLocalOptions($id, $theme);
 	return $theme;

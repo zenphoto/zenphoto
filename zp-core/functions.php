@@ -1211,11 +1211,11 @@ function storeTags($tags, $id, $tbl) {
 }
 
 /**
- * Retrieves the tags for an album/image
+ * Retrieves the tags for an object
  * Returns them in an array
  *
  * @param int $id the record id of the album/image
- * @param string $tbl 'albums' or 'images'
+ * @param string $tbl 'albums' or 'images', etc.
  * @return unknown
  */
 function readTags($id, $tbl) {

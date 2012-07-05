@@ -2209,8 +2209,8 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = "ALTER TABLE $tbl_options CHANGE `name` `name` varchar(191) NOT NULL";
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `valid` int(1) NOT NULL DEFAULT 1';
 	$sql_statements[] = "ALTER TABLE $tbl_tags CHANGE `name` `name` varchar(255) NOT NULL";
-	$sql_statements[] = "ALTER TABLE $tbl_images DROP FOREIGN KEY `".$tbl_images."_ibfk1`";
-	$sql_statements[] = " ALTER TABLE $tbl_comments DROP FOREIGN KEY `".$tbl_comments."_ibfk1`";
+	$sql_statements[] = "ALTER TABLE $tbl_images DROP FOREIGN KEY `".trim($tbl_images,'`')."_ibfk1`";
+	$sql_statements[] = "ALTER TABLE $tbl_comments DROP FOREIGN KEY `".trim($tbl_comments,'`')."_ibfk1`";
 
 
 	// do this last incase there are any field changes of like names!

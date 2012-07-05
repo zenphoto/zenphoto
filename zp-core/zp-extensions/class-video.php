@@ -202,16 +202,17 @@ class Video extends _Image {
 			$wmt = getWatermarkParam($this, WATERMARK_THUMB);
 		}
 		if ($this->objectsThumb == NULL) {
-			$cx = $cy = NULL;
+			$mtime = $cx = $cy = NULL;
 			$filename = makeSpecialImageName($this->getThumbImageFile());
 			if (!getOption('video_watermark_default_images')) {
 				$wmt = '!';
 			}
 		} else {
 			$filename = filesystemToInternal($this->objectsThumb);
+			$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->album->name).'/'.$this->objectsThumb);
 		}
 		$args = getImageParameters(array(getOption('thumb_size'), $sw, $sh, $cw, $ch, $cx, $cy, NULL, true, true, true, $wmt, NULL, NULL), $this->album->name);
-		return getImageURI($args, $this->album->name, $filename, $this->filemtime);
+		return getImageURI($args, $this->album->name, $filename, $mtime);
 	}
 
 	/**

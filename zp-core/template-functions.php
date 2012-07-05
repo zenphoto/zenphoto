@@ -4461,6 +4461,38 @@ function printZenphotoLink() {
 }
 
 /**
+ *
+ * fixes unbalanced HTML tags. Used by shortenContent when PHP tidy is not present
+ * @param string $html
+ * @return string
+ */
+function cleanHTML($html) {
+
+	preg_match_all('#<(?!meta|img|br|hr|input\b)\b([a-z]+)(?: .*)?(?<![/|/ ])>#iU', $html, $result);
+	$openedtags = $result[1];
+
+	preg_match_all('#</([a-z]+)>#iU', $html, $result);
+	$closedtags = $result[1];
+
+	$len_opened = count($openedtags);
+
+	if (count($closedtags) == $len_opened) 	{
+		return $html;
+	}
+
+	$openedtags = array_reverse($openedtags);
+	for ($i=0; $i < $len_opened; $i++) 	{
+		if (!in_array($openedtags[$i], $closedtags)) 		{
+			$html .= '</'.$openedtags[$i].'>';
+		} else {
+			unset($closedtags[array_search($openedtags[$i], $closedtags)]);
+		}
+	}
+
+	return $html;
+}
+
+/**
  * Returns truncated html formatted content
  *
  * @param string $articlecontent the source string
@@ -4504,18 +4536,14 @@ function shortenContent($articlecontent, $shorten, $shortenindicator, $forceindi
 		if ($open > mb_strrpos($short, '>')) {
 			$short = mb_substr($short, 0, $open);
 		}
-		preg_match_all('/(<p>)/', $short, $open);
-		preg_match_all('/(<\/p>)/', $short, $close);
-		if (count($open) > count($close)) {
-			$short .= ' '.$shortenindicator.'</p>';
+		if (class_exists('tidy')) {
+			$tidy = new tidy();
+			$tidy->parseString($short.$shortenindicator,array('show-body-only'=>true),'utf8');
+			$tidy->cleanRepair();
+			$short = trim($tidy);
 		} else {
-			if (mb_substr($short, -4) == '</p>') {
-				$short = mb_substr($short, 0, -4).' '.$shortenindicator.'</p>';
-			} else {
-				$short .= ' '.$shortenindicator;
-			}
+			$short = trim(cleanHTML($short.$shortenindicator));
 		}
-		$short = trim(kses($short, $allowed_tags));
 		return $short;
 	}
 	return $articlecontent;

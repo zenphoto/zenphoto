@@ -418,4 +418,8 @@ function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
 	}
 }
 
+function zp_clearCookie($name) {
+
+}
+
 ?>
