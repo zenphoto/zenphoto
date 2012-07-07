@@ -1151,7 +1151,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 			<td valign="top">
 				<table class="width100percent">
 					<tr>
-						<td class="leftcolumn" valign="top"><?php  echo gettext("Owner"); ?></td>
+						<td class="leftcolumn"><?php  echo gettext("Owner"); ?></td>
 						<td class="middlecolumn">
 							<?php
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
@@ -1167,7 +1167,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						</td>
 					</tr>
 					<tr>
-						<td align="left" valign="top">
+						<td class="leftcolumn">
 						<?php echo gettext("Album Title"); ?>:
 						</td>
 						<td class="middlecolumn">
@@ -1176,7 +1176,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					</tr>
 
 					<tr>
-						<td align="left" valign="top" >
+						<td class="leftcolumn">
 						<?php echo gettext("Album Description:"); ?>
 						</td>
 						<td>
@@ -1187,7 +1187,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					if (GALLERY_SECURITY == 'public') {
 						?>
 						<tr class="password<?php echo $suffix; ?>extrashow" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?> >
-							<td valign="top">
+							<td class="leftcolumn">
 								<p>
 									<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',true);">
 									<?php echo gettext("Album password:"); ?>
@@ -1211,14 +1211,14 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							</td>
 						</tr>
 						<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
-							<td valign="top">
+							<td class="leftcolumn">
 								<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',false);">
 									<?php echo gettext("Album guest user:"); ?>
 								</a>
 								<br />
 								<label><input type="checkbox" name="disclose_password_<?php echo $prefix; ?>" id="disclose_password_<?php echo $prefix; ?>" onclick="passwordKeydown('<?php echo $prefix; ?>');togglePassword('<?php echo $prefix; ?>');"><?php echo gettext('Show password'); ?></label>
 							</td>
-							<td class="middlecolumn">
+							<td>
 								<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
 														id="user_name" name="user<?php echo $prefix; ?>"
@@ -1226,7 +1226,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							</td>
 						</tr>
 						<tr class="password<?php echo $suffix; ?>extrahide" style="display:none" >
-							<td align="left" valign="top">
+							<td class="leftcolumn">
 								<p>
 									<span id="strength<?php echo $suffix; ?>"><?php echo gettext("Album password:");?></span>
 									<br />
@@ -1238,7 +1238,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 								<?php echo gettext("Password hint:"); ?>
 								</p>
 							</td>
-							<td class="middlecolumn">
+							<td>
 								<p>
 									<input type="password"
 															id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
@@ -1269,7 +1269,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 
 
 					<tr>
-						<td valign="top"><?php echo gettext("Date:");?> </td>
+						<td class="leftcolumn"><?php echo gettext("Date:");?> </td>
 						<td>
 							<script type="text/javascript">
 								// <!-- <![CDATA[
@@ -1287,7 +1287,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						</td>
 					</tr>
 					<tr>
-						<td valign="top"><?php echo gettext("Location:"); ?> </td>
+						<td class="leftcolumn"><?php echo gettext("Location:"); ?> </td>
 						<td class="middlecolumn">
 						<?php print_language_string_list($album->getLocation(), $prefix."albumlocation", false, NULL, 'hint','100%'); ?>
 						</td>
@@ -1297,7 +1297,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					if (empty($custom)) {
 						?>
 						<tr>
-							<td align="left" valign="top"><?php echo gettext("Custom data:"); ?></td>
+							<td class="leftcolumn"><?php echo gettext("Custom data:"); ?></td>
 							<td><?php print_language_string_list($album->get('custom_data'), $prefix."album_custom_data", true , NULL, 'texteditor_albumcustomdata','100%'); ?></td>
 						</tr>
 						<?php
@@ -1315,7 +1315,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					*/
 					?>
 					<tr>
-						<td align="left" valign="top"><?php echo gettext("Sort subalbums by:");?> </td>
+						<td class="leftcolumn"><?php echo gettext("Sort subalbums by:");?> </td>
 						<td>
 							<span class="nowrap">
 								<select id="albumsortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>subalbumsortby" onchange="update_direction(this,'album_direction_div<?php echo $suffix; ?>','album_custom_div<?php echo $suffix; ?>')">
@@ -1364,8 +1364,8 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 				</tr>
 
 				<tr>
-					<td align="left" valign="top"><?php echo gettext("Sort images by:"); ?> </td>
-						<td>
+					<td class="leftcolumn"><?php echo gettext("Sort images by:"); ?> </td>
+					<td>
 							<span class="nowrap">
 								<select id="imagesortselect<?php echo $prefix; ?>" name="<?php echo $prefix; ?>sortby" onchange="update_direction(this,'image_direction_div<?php echo $suffix; ?>','image_custom_div<?php echo $suffix; ?>')">
 								<?php
@@ -1419,7 +1419,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 				if (is_null($album->getParent())) {
 				?>
 					<tr>
-						<td align="left" valign="top"><?php echo gettext("Album theme:"); ?> </td>
+						<td class="leftcolumn"><?php echo gettext("Album theme:"); ?> </td>
 						<td>
 							<select id="album_theme" class="album_theme" name="<?php echo $prefix; ?>album_theme"	<?php if (!zp_loggedin(THEMES_RIGHTS)) echo 'disabled="disabled" '; ?>	>
 							<?php
@@ -1452,7 +1452,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 				if (!$album->isDynamic()) {
 					?>
 					<tr>
-						<td align="left" valign="top" width="150"><?php echo gettext("Album watermarks:"); ?> </td>
+						<td class="leftcolumn"><?php echo gettext("Album watermarks:"); ?> </td>
 						<td>
 							<?php $current = $album->getWatermark(); ?>
 							<select id="album_watermark<?php echo $suffix; ?>" name="<?php echo $prefix; ?>album_watermark">
@@ -1467,7 +1467,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							</td>
 					</tr>
 					<tr>
-						<td align="left" valign="top" width="150"></td>
+						<td class="leftcolumn"></td>
 						<td>
 							<?php $current = $album->getWatermarkThumb(); ?>
 							<select id="album_watermark_thumb<?php echo $suffix; ?>" name="<?php echo $prefix; ?>album_watermark_thumb">
@@ -1497,7 +1497,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					}
 					?>
 					<tr>
-						<td align="left" valign="top" width="150"><?php echo gettext("Thumbnail:"); ?> </td>
+						<td class="leftcolumn"><?php echo gettext("Thumbnail:"); ?> </td>
 						<td>
 						<?php
 						if ($showThumb)  {
@@ -1580,7 +1580,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					}
 					?>
 					<tr valign="top">
-						<td class="topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
+						<td class="leftcolumn topalign-nopadding"><br /><?php echo gettext("Codeblocks:"); ?></td>
 						<td>
 						<br />
 						<?php printCodeblockEdit($album, (int) $suffix); ?>

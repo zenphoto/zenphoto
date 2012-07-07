@@ -215,18 +215,19 @@ class TextObject extends _Image {
 		} else {
 			$wmt = NULL;
 		}
-		$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
-		if ($thumbStandin) {
+		if ($thumbStandin & 1) {
+			$args = getImageParameters(array($size, $width, $height, $cropw, $croph, $cropx, $cropy, NULL, $thumbStandin, NULL, $thumbStandin, $wmt, NULL, $effects), $this->album->name);
 			if ($this->objectsThumb == NULL) {
 				$filename = makeSpecialImageName($this->getThumbImageFile());
 				if (!$this->watermarkDefault) {
 					$args[11] = '!';
 				}
-				return getImageProcessorURI($args, $this->album->name, $filename);
+				$mtime = NULL;
 			} else {
 				$filename = filesystemToInternal($this->objectsThumb);
-				return getImageURI($args, $this->album->name, $filename, $this->filemtime);
+				$mtime = filemtime(ALBUM_FOLDER_SERVERPATH.'/'.internalToFilesystem($this->album->name).'/'.$this->objectsThumb);
 			}
+			return getImageURI($args, $this->album->name, $filename, $mtime);
 		} else {
 			return $this->getBody($width, $height);
 		}

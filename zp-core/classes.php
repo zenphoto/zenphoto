@@ -773,11 +773,7 @@ class MediaObject extends ThemeObject {
 	 * @param string $pwd the cleartext password
 	 */
 	function setPassword($pwd) {
-		if (empty($pwd)) {
-			$this->set('password', "");
-		} else {
-			$this->set('password', Zenphoto_Authority::passwordHash($this->get('user'), $pwd));
-		}
+		$this->set('password', $pwd);
 	}
 
 	/**

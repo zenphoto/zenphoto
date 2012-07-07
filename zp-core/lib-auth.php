@@ -631,6 +631,7 @@ class Zenphoto_Authority {
 					$_zp_loggedin = zp_apply_filter('admin_login_attempt', $_zp_loggedin, $post_user, $post_pass);
 					if ($_zp_loggedin) {
 						self::logUser($user);
+						$_zp_current_admin_obj = $user;
 					} else {
 						zp_clearCookie("zp_user_auth");	// Clear the cookie, just in case
 						$_zp_login_error = 1;

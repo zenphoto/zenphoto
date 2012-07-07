@@ -29,7 +29,7 @@ if(isset($_POST['update'])) {
 		}
 	} else {
 		$action = processZenpageBulkActions('Page');
-		$uri = $_server['REQUEST_URI'];
+		$uri = $_SERVER['REQUEST_URI'];
 		if (strpos($uri, '?')) {
 			$uri .= '&bulkaction='.$action;
 		} else {

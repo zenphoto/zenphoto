@@ -57,18 +57,11 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 	$_zp_loggedin = $_zp_authority->handleLogon();
 	if ($_zp_loggedin) {
 		if (isset($_POST['redirect'])) {
-			$redir = explode('?',$_POST['redirect']);
-			$redirect = sanitize_path($redir[0]);
-			if (isset($redir[1])) {
-				$redirect .= '?'.sanitize($redir[1]);
+			$redirect = sanitizeRedirect($_POST['redirect']);
+			if (!empty($redirect)) {
+				header("Location: " . $redirect);
+				exitZP();
 			}
-		} else {
-			$redirect = NULL;
-		}
-		if (!empty($redirect)) {
-			if (substr($redirect,0,1) != '/') $redirect = '/'.$redirect;
-			header("Location: " . $redirect);
-			exitZP();
 		}
 	}
 } else {	//	no login form, check the cookie

@@ -696,7 +696,11 @@ width: 100%;
 }
 
 td.leftcolumn {
-width: 15%;
+	width: 200px;
+	min-width:150px;
+	white-space: nowrap;
+	vertical-align: top;
+	text-align:left;
 }
 
 td.rightcolumn {

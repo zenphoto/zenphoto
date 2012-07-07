@@ -1707,6 +1707,38 @@ function restore_context() {
 }
 
 /**
+ *
+ * Sanitizes a "redirect" post
+ * @param string $redirectTo
+ * @return string
+ */
+function sanitizeRedirect($redirectTo, $forceHost=false) {
+	$redirect = NULL;
+	if ($redirectTo && $redir = parse_url($redirectTo)) {
+		if (isset($redir['scheme']) && isset($redir['host'])) {
+			$redirect .= $redir['scheme'].'://'.sanitize($redir['host']);
+		} else {
+			if ($forceHost) {
+				$redirect .= SERVER_PROTOCOL.'://'.$_SERVER['HTTP_HOST'];
+				if(strpos($redirectTo, WEBPATH) === false) {
+					$redirect .= WEBPATH;
+				}
+			}
+		}
+		if (isset($redir['path'])) {
+			$redirect .= sanitize($redir['path']);
+		}
+		if (isset($redir['query'])) {
+			$redirect .= '?'.sanitize($redir['query']);
+		}
+		if (isset($redir['fragment'])) {
+			$redirect .= '?'.sanitize($redir['fragment']);
+		}
+	}
+	return $redirect;
+}
+
+/**
  * checks password posting
  *
  * @param string $authType override of athorization type
@@ -1772,25 +1804,18 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 		$post_pass = sanitize($_POST['pass']);
 		$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass);
 		if (DEBUG_LOGIN) debugLog("zp_handle_password: \$post_user=$post_user; \$post_pass=$post_pass; \$auth=$auth; ");
-		$redirect_to = sanitize($_POST['redirect'],0);
-		if (substr($redirect_to,0,1)=='/') {
-			$initial = '/';
-		} else {
-			$initial = '';
-		}
-		$redirect_to = $initial.sanitize_path($_POST['redirect']);
-		if (strpos($redirect_to, WEBPATH.'/')===0) {
-			$redirect_to = substr($redirect_to,strlen(WEBPATH)+1);
-		}
 		$success = ($auth == $check_auth) && $post_user == $check_user;
 		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);;
 		if ($success) {
 			// Correct auth info. Set the cookie.
 			if (DEBUG_LOGIN) debugLog("zp_handle_password: valid credentials");
 			zp_setCookie($authType, $auth);
-			if (isset($_POST['redirect']) && !empty($_POST['redirect'])) {
-				header("Location: " . FULLWEBPATH . "/" . $redirect_to);
-				exitZP();
+			if (isset($_POST['redirect'])) {
+				$redirect_to = sanitizeRedirect($_POST['redirect'], true);
+				if (!empty($redirect_to)) {
+					header("Location: " . $redirect_to);
+					exitZP();
+				}
 			}
 		} else {
 			// Clear the cookie, just in case

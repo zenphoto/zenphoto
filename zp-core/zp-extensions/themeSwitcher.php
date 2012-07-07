@@ -24,6 +24,12 @@ $option_interface = 'themeSwitcher';
 class themeSwitcher {
 
 	function __construct() {
+		global $_zp_gallery;
+		$themes = $_zp_gallery->getThemes();
+		$list = array();
+		foreach ($themes as $key=>$theme) {
+			setOptionDefault('themeSwitcher_theme_'.$key, 1);
+		}
 		setOptionDefault('themeSwitcher_timeout', 60*2);
 		setOptionDefault('themeSwitcher_css',
 						".themeSwitcherControlLink {\n".
@@ -41,10 +47,19 @@ class themeSwitcher {
 	}
 
 	function getOptionsSupported() {
+		global $_zp_gallery;
+		$themes = $_zp_gallery->getThemes();
+		$list = array();
+		foreach ($themes as $key=>$theme) {
+			$list[$theme['name']] = 'themeSwitcher_theme_'.$key;
+		}
 		$options = array(	gettext('Cookie duration') => array('key' => 'themeSwitcher_timeout', 'type' => OPTION_TYPE_TEXTBOX,
 																				'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
 											gettext('Selector CSS') => array('key' => 'themeSwitcher_css', 'type' => OPTION_TYPE_TEXTAREA,
-																				'desc' => gettext('Check this box if you wish to style the theme switcher selector in your themes.'))
+																				'desc' => gettext('Change this box if you wish to style the theme switcher selector for your themes.')),
+											gettext('Theme list') => array('key' => 'themeSwitcher_list', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+																				'checkboxes' => $list,
+																				'desc' => gettext('These are the themes that may be selected among.'))
 		);
 		return $options;
 	}
@@ -85,7 +100,9 @@ class themeSwitcher {
 		global $_zp_gallery;
 		$themes = array();
 		foreach ($_zp_gallery->getThemes() as $theme=>$details) {
-			$themes[$details['name']] = $theme;
+			if (getOption('themeSwitcher_theme_'.$theme)) {
+				$themes[$details['name']] = $theme;
+			}
 		}
 		if (empty($text)) {
 			$text = gettext('Theme');

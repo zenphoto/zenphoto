@@ -26,7 +26,7 @@ if(isset($_POST['action'])) {
 		}
 	} else {
 		$action = processZenpageBulkActions('Category');
-		$uri = $_server['REQUEST_URI'];
+		$uri = $_SERVER['REQUEST_URI'];
 		if (strpos($uri, '?')) {
 			$uri .= '&bulkaction='.$action;
 		} else {
