@@ -14,12 +14,11 @@
  * @package plugins
  */
 
-$plugin_is_filter = 5|CLASS_PLUGIN;
+$plugin_is_filter = 999|CLASS_PLUGIN;
 $plugin_description = gettext('Allow a visitor to select the theme of the gallery.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'themeSwitcher';
-
 
 class themeSwitcher {
 
@@ -44,6 +43,7 @@ class themeSwitcher {
 						" background-color: #f5f5f5;\n".
 						"}\n"
 		);
+		setOptionDefault('themeSwitcher_adminOnly', 1);
 	}
 
 	function getOptionsSupported() {
@@ -57,7 +57,9 @@ class themeSwitcher {
 																				'desc' => gettext('The time in minutes that the theme switcher cookie lasts.')),
 											gettext('Selector CSS') => array('key' => 'themeSwitcher_css', 'type' => OPTION_TYPE_TEXTAREA,
 																				'desc' => gettext('Change this box if you wish to style the theme switcher selector for your themes.')),
-											gettext('Theme list') => array('key' => 'themeSwitcher_list', 'type' => OPTION_TYPE_CHECKBOX_ARRAY,
+											gettext('Private') => array('key' => 'themeSwitcher_adminOnly', 'type' => OPTION_TYPE_CHECKBOX,
+																				'desc' => gettext('Only users with <em>Themes</em> rights will see the selector if this is checked.')),
+											gettext('Theme list') => array('key' => 'themeSwitcher_list', 'type' => OPTION_TYPE_CHECKBOX_UL,
 																				'checkboxes' => $list,
 																				'desc' => gettext('These are the themes that may be selected among.'))
 		);
@@ -96,34 +98,43 @@ class themeSwitcher {
 	 * places a selector so a user may change thems
 	 * @param string $text link text
 	 */
-	static function controlLink($text=NULL) {
-		global $_zp_gallery;
-		$themes = array();
-		foreach ($_zp_gallery->getThemes() as $theme=>$details) {
-			if (getOption('themeSwitcher_theme_'.$theme)) {
-				$themes[$details['name']] = $theme;
+	static function controlLink($textIn=NULL) {
+		global $_zp_gallery, $_showNotLoggedin_real_auth;
+		if (isset($_showNotLoggedin_real_auth)) {
+			$loggedin = $_showNotLoggedin_real_auth;
+		} else {
+			$loggedin = zp_loggedin();
+		}
+		if ($loggedin & (ADMIN_RIGHTS | THEMES_RIGHTS)) {
+			$themes = array();
+			foreach ($_zp_gallery->getThemes() as $theme=>$details) {
+				if (getOption('themeSwitcher_theme_'.$theme)) {
+					$themes[$details['name']] = $theme;
+				}
 			}
-		}
-		if (empty($text)) {
-			$text = gettext('Theme');
-		}
-		?>
-		<script type="text/javascript">
+			$text = $textIn;
+			if (empty($text)) {
+				$text = gettext('Theme');
+			}
+			?>
+			<script type="text/javascript">
 			// <!-- <![CDATA[
 			function switchTheme() {
 				theme = $('#themeSwitcher').val();
 				window.location = '?themeSwitcher='+theme;
 			}
 			// ]]> -->
-		</script>
-		<span class="themeSwitcherControlLink">
-			<?php echo $text; ?>
-			<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme()">
-				<?php generateListFromArray(array($_zp_gallery->getCurrentTheme()), $themes, false, true); ?>
-			</select>
-		</span>
-		<?php
+			</script>
+			<span class="themeSwitcherControlLink">
+				<?php echo $text; ?>
+				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme()">
+					<?php generateListFromArray(array($_zp_gallery->getCurrentTheme()), $themes, false, true); ?>
+				</select>
+			</span>
 
+		<?php
+		}
+		return $textIn;
 	}
 
 }

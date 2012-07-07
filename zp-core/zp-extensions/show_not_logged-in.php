@@ -16,8 +16,9 @@ zp_register_filter('authorization_cookie', 'show_not_loggedin::adminCookie');
 class show_not_loggedin {
 
 	static function adminCookie($success) {
-		global $_zp_current_admin_obj;
+		global $_zp_current_admin_obj, $_showNotLoggedin_real_auth;
 		if (!OFFSET_PATH) {
+			$_showNotLoggedin_real_auth = $success;
 			if (isset($_SESSION)) {
 				unset($_SESSION['zp_user_auth']);
 			}
