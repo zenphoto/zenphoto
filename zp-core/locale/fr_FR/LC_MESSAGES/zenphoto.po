@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-07 17:57-0500\n"
-"PO-Revision-Date: 2012-07-07 18:05-0500\n"
+"PO-Revision-Date: 2012-07-07 20:49-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1239,7 +1239,7 @@ msgstr "Migré vers Zenphoto par Mark Galeassi et Stephen Billard"
 
 #: F:\sites\zenphoto-dev/themes/stopdesign/theme_description.php:10
 msgid "A theme based on the design from <a href=\"http://stopdesign.com/templates/photos/\">Douglas Bowman</a>. This theme is licensed under the <a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative Commons Attribution-NonCommercial-ShareAlike 2.5</a> License."
-msgstr "Un thème basé sur un design de <a href=\"http://stopdesign.com/templates/photos/\">Douglas Bowman</a>. Ce thème est sous une licence <a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative Commons – Paternité – Pas d’utilisation commerciale – Partage à l’identique 2.5 générique</a>."
+msgstr "Un thème basé sur un design de <a href=\"http://stopdesign.com/templates/photos/\">Douglas Bowman</a>. Ce thème est sous licence <a href=\"http://creativecommons.org/licenses/by-nc-sa/2.5/\">Creative Commons – attribution – pas d’utilisation commerciale – partage à l’identique – 2.5 générique</a>."
 
 #: F:\sites\zenphoto-dev/themes/stopdesign/comment_form/comment_form.php:32
 #, php-format
@@ -5096,12 +5096,12 @@ msgstr "Les fichiers zip ne peuvent contenir que des images <em>aux formats supp
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:113
 #, php-format
 msgid "The maximum size for any one file is <strong>%sB</strong> and the maximum size for one total upload is <strong>%sB</strong> which are set by your PHP configuration <code>upload_max_filesize</code> and <code>post_max_size</code>."
-msgstr "La taille maximale d’un fichier est de <strong>%s o</strong> et la taille maximale d’un chargement complet est de <strong>%s o</strong>. Ces limites sont spécifiées par les variables <code>upload_max_filesize</code> et <code>post_max_size</code> de votre configuration PHP."
+msgstr "La taille maximale d’un fichier est de <strong>%so</strong> et la taille maximale d’un chargement complet est de <strong>%so</strong>. Ces limites sont spécifiées par les variables <code>upload_max_filesize</code> et <code>post_max_size</code> de votre configuration PHP."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:115
 #, php-format
 msgid "The maximum size for your total upload is <strong>%sB</strong> which is set by your PHP configuration <code>post_max_size</code>."
-msgstr "La taille maximale de chaque fichier est de <strong>%s o</strong> ; elle est spécifiée par la variable <code>upload_max_filesize</code> de votre configuration PHP."
+msgstr "La taille maximale de chaque fichier est de <strong>%so</strong> ; elle est spécifiée par la variable <code>upload_max_filesize</code> de votre configuration PHP."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:122
 msgid "Don't forget, you can also use <acronym title=\"File Transfer Protocol\">FTP</acronym> to upload folders of images into the albums directory!"
@@ -7945,7 +7945,7 @@ msgstr "Version %s de PHP"
 #: F:\sites\zenphoto-dev/zp-core/setup.php:509
 #, php-format
 msgid "PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk."
-msgstr "La version %1$s ou plus récente de PHP est requise. Il est même fortement recommandé d’utiliser au moins la version%2$s. Utiliser les versions antérieures est à vos risques."
+msgstr "La version %1$s ou plus récente de PHP est requise. Il est même fortement recommandé d’utiliser au moins la version %2$s. Utiliser les versions antérieures est à vos risques."
 
 #: F:\sites\zenphoto-dev/zp-core/setup.php:510
 msgid "PHP <code>Sessions</code>."
@@ -11653,7 +11653,7 @@ msgstr "effacer les champs largeur et hauteur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:19
 msgid "Provides deprecated Zenphoto functions."
-msgstr "PErmet d’utiliser les fonctions obsolètes."
+msgstr "Permet d’utiliser les fonctions obsolètes."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/deprecated-functions.php:20
 msgid "This plugin is <strong>NOT</strong> required for the Zenphoto distributed functions."
@@ -13823,7 +13823,7 @@ msgstr "Fournit un système de gestion des quotas pour limiter la taille totale 
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/quota_manager.php:28
 msgid "<strong>Note:</strong> if FTP is used to upload images, manual user assignment is necessary. ZIP file upload is disabled by default as quotas are not applied to the files contained therein."
-msgstr "<strong>Note : </strong> Si FTP est utilisé pour charger des images, il faut assigner manuellement l’utilisateur. Le chargement de fichiers ZIP est désactivé par défaut puisqu’il est impossible d’intégrer le poids des envois dans le calcul du quota."
+msgstr "<strong>Note : </strong> Si cette extension est activée, le chargement de fichiers ZIP est désactivé par défaut puisqu’il est impossible d’intégrer le poids des envois dans le calcul du quota. Il faut alors attribuer spécifiquement aux utilisateurs auxquels on veut le permettre le droit de charger des images avec le protocole FTP."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/quota_manager.php:70
 msgid "Default quota"
