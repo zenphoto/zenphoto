@@ -40,9 +40,9 @@ class favoritesOptions {
 		setOptionDefault('favorites_linktext', getAllTranslations($str));
 		gettext($str = 'The albums and images selected as favorites.');
 		setOptionDefault('favorites_desc', getAllTranslations($str));
-		gettext($str = 'Add to favorites');
+		gettext($str = 'Add favorite');
 		setOptionDefault('favorites_add_button', getAllTranslations($str));
-		gettext($str = 'Remove from favorites');
+		gettext($str = 'Remove favorite');
 		setOptionDefault('favorites_remove_button', getAllTranslations($str));
 	}
 
@@ -269,13 +269,21 @@ class favorites extends AlbumBase {
 		return $list;
 	}
 
+	static function notFound($script, $request) {
+		return false;
+	}
+
 }
 
-if (!OFFSET_PATH && zp_loggedin()) {
-	$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
+if (!OFFSET_PATH) {
 	if ($_zp_gallery_page == getOption('favorites_link').'.php') {
-		zp_register_filter('theme_head', 'favorites::theme_head');
-		zp_register_filter('pageNavList', 'favorites::pageListNav');
+		if (zp_loggedin()) {
+			$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
+			zp_register_filter('theme_head', 'favorites::theme_head');
+			zp_register_filter('pageNavList', 'favorites::pageListNav');
+		} else {
+			zp_register_filter('load_theme_script', 'favorites::notFound');
+		}
 	}
 
 	if (isset($_POST['addToFavorites'])) {

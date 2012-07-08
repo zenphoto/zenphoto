@@ -1022,7 +1022,7 @@ class Zenphoto_Authority {
 				if ($hint) {
 					echo '<p>'.$hint.'</p>';
 				}
-				if (OFFSET_PATH != 2) {
+				if ($showUserField && OFFSET_PATH != 2) {
 					?>
 					<p class="logon_link">
 						<a href="javascript:launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.php',['logon_step=challenge', 'ref='+$('#user').val()]);" >
