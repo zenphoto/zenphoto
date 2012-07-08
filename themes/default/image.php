@@ -80,6 +80,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				<?php printImageDesc(true); ?>
 				<hr /><br />
 				<?php
+				@call_user_func('printAddToFavorites');
 				if (getImageMetaData()) {
 					echo printImageMetadata(NULL, 'colorbox');
 					?>
@@ -98,6 +99,12 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 		<div id="credit">
 			<?php printRSSLink('Gallery', '', 'RSS', ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
+			<?php
+			if (function_exists('printFavoritesLink')) {
+				printFavoritesLink();
+				?> | <?php
+			}
+			?>
 			<?php printZenphotoLink(); ?>
 			<?php @call_user_func('printUserLogin_out'," | "); ?>
 		</div>

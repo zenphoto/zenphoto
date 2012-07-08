@@ -137,7 +137,10 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 		<!-- Image Description -->
 
 		<div id="description">
+			<p><?php	printImageDesc(true); ?></p>
 			<?php
+			@call_user_func('printRating');
+			@call_user_func('printAddToFavorites');
 			if (function_exists('printGoogleMap')) {
 				?>
 				<div id="map_link">
@@ -150,8 +153,6 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 				echo printImageMetadata(NULL, 'colorbox');
 			}
 			?>
-			<p><?php	printImageDesc(true); ?></p>
-			<?php @call_user_func('printRating'); ?>
 		</div>
 
 	</div>

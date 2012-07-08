@@ -6,6 +6,7 @@ themes/default/album.php
 themes/default/archive.php
 themes/default/common.css
 themes/default/contact.php
+themes/default/favorites.php
 themes/default/image.php
 themes/default/images
 themes/default/images/50percent.png
@@ -801,6 +802,7 @@ zp-core/zp-extensions/dynamic-locale.php
 zp-core/zp-extensions/dynamic-locale/locale.css
 zp-core/zp-extensions/email-newuser.php
 zp-core/zp-extensions/failed_access_blocker.php
+zp-core/zp-extensions/favoritesHandler.php
 zp-core/zp-extensions/federated_logon
 zp-core/zp-extensions/federated_logon.php
 zp-core/zp-extensions/federated_logon/Auth
@@ -1906,4 +1908,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1908
+1910

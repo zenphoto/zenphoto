@@ -713,7 +713,7 @@ class _Image extends MediaObject {
 	 * @param string $newfilename the new file name of the image in the specified album.
 	 * @return int
 	 */
-	function moveImage($newalbum, $newfilename=null) {
+	function move($newalbum, $newfilename=null) {
 		if (is_string($newalbum)) $newalbum =  new Album(NULL, $newalbum, false);
 		if ($newfilename == null) {
 			$newfilename = $this->filename;
@@ -744,7 +744,7 @@ class _Image extends MediaObject {
 			}
 		}
 		if ($result) {
-			if ($this->move(array('filename'=>$newfilename, 'albumid'=>$newalbum->getID()))) {
+			if (parent::move(array('filename'=>$newfilename, 'albumid'=>$newalbum->getID()))) {
 				$this->set('mtime',filemtime($newpath));
 				$this->save();
 				return 0;
@@ -754,13 +754,13 @@ class _Image extends MediaObject {
 	}
 
 	/**
-	 * Renames an image to a new filename, keeping it in the same album. Convenience for moveImage($image->album, $newfilename).
+	 * Renames an image to a new filename, keeping it in the same album. Convenience for move($image->album, $newfilename).
 	 * Returns  true on success and false on failure.
 	 * @param string $newfilename the new file name of the image file.
 	 * @return bool
 	 */
 	function rename($newfilename) {
-		return $this->moveImage($this->album, $newfilename);
+		return $this->move($this->album, $newfilename);
 	}
 
 	/**

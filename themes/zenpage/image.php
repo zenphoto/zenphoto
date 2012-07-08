@@ -108,6 +108,7 @@ if (!defined('WEBPATH')) die();
 		?>
 
 		<br style="clear:both" />
+		<?php @call_user_func('printAddToFavorites'); ?>
 		<?php @call_user_func('printRating'); ?>
 		<?php @call_user_func('printGoogleMap'); ?>
 

@@ -2248,7 +2248,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 					$dest .= '.alb';
 				}
 			}
-			if ($e = $album->moveAlbum($dest)) {
+			if ($e = $album->move($dest)) {
 				$notify = "&mcrerr=".$e;
 			} else {
 				$redirectto = $dest;
@@ -3333,7 +3333,7 @@ function postAlbumSort($parentid) {
 						$dest = $parent['folder'].'/' . $albumname;
 					}
 				}
-				if ($e = $album->moveAlbum($dest)) {
+				if ($e = $album->move($dest)) {
 					return "&mcrerr=".$e;
 				} else {
 					$album->setSortOrder($sortorder);
@@ -3821,7 +3821,7 @@ function processImageBulkActions($album) {
 						}
 						break;
 					case 'moveimages':
-						if ($e = $imageobj->moveImage($dest)) {
+						if ($e = $imageobj->move($dest)) {
 							return "&mcrerr=".$e;
 						}
 						break;

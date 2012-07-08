@@ -38,6 +38,12 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 		</div>
 		<div id="credit">
 			<?php printRSSLink('Gallery', '', 'RSS', ' | '); ?>
+			<?php
+			if (function_exists('printFavoritesLink')) {
+				printFavoritesLink();
+				?> | <?php
+			}
+			?>
 			<?php printZenphotoLink(); ?>
 			<?php @call_user_func('printUserLogin_out'," | "); ?>
 		</div>

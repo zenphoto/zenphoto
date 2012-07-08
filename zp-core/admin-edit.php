@@ -357,7 +357,7 @@ if (isset($_GET['action'])) {
 											if ($movecopyrename_action == 'move') {
 												$dest = sanitize_path($_POST[$i.'-albumselect']);
 												if ($dest && $dest != $folder) {
-													if ($e = $image->moveImage($dest)) {
+													if ($e = $image->move($dest)) {
 														$notify = "&mcrerr=".$e;
 													}
 												} else {

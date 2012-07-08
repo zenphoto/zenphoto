@@ -100,6 +100,7 @@ require_once('normalizer.php');
 			</div>
 
 			<div class="main">
+				<?php @call_user_func('printAddToFavorites'); ?>
 				<div class="rating"><?php if (function_exists('printRating')) printRating(); ?></div>
 				<?php
 				if (function_exists('printCommentForm')) {

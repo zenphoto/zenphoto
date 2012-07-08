@@ -60,6 +60,12 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 		<div id="credit">
 			<?php printRSSLink('Album', '', gettext('Album RSS'), ' | '); ?>
 			<?php printCustomPageURL(gettext("Archive View"), "archive"); ?> |
+			<?php
+			if (function_exists('printFavoritesLink')) {
+				printFavoritesLink();
+				?> | <?php
+			}
+			?>
 			<?php printZenphotoLink(); ?>
 			<?php @call_user_func('printUserLogin_out'," | ");	?>
 		</div>
