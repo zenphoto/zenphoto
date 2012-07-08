@@ -140,7 +140,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 			<p><?php	printImageDesc(true); ?></p>
 			<?php
 			@call_user_func('printRating');
-			@call_user_func('printAddToFavorites');
+			If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
 			if (function_exists('printGoogleMap')) {
 				?>
 				<div id="map_link">

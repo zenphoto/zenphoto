@@ -109,19 +109,22 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 					</li>
 					<?php
 				}
+				if (function_exists('printFavoritesLink')) {
+					?>
+					<li>
+					<?php printFavoritesLink(); ?>
+					</li>
+					<?php
+				}
 				if (function_exists("printUserLogin_out")) {
-				?>
+					?>
 					<li>
 					<?php printUserLogin_out("","", 2); ?>
 					</li>
 					<?php
 				}
 				if (class_exists('mobileTheme')) {
-				?>
-					<li>
-					<?php mobileTheme::controlLink(); ?>
-					</li>
-					<?php
+					mobileTheme::controlLink(NULL, '<li>','</li>');
 				}
 				?>
 			</ul>

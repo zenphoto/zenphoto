@@ -50,7 +50,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 								<a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo getBareImageTitle(); ?>">
 									<?php printImageThumb(getAnnotatedImageTitle()); ?>
 								</a>
-								<?php printAddToFavorites('',gettext('Remove')); ?>
+								<?php printAddToFavorites($_zp_current_image, '',gettext('Remove')); ?>
 							</div>
 						</div>
 						<?php

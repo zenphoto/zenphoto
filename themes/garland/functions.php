@@ -43,6 +43,12 @@ function footer() {
 		<?php if ($_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'archive.php') { printCustomPageURL(gettext('Archive View'), 'archive', '', $prev, ''); $prev = ' | '; }?>
 		<?php	if ($_zp_gallery_page!='contact.php' && getOption('zp_plugin_contact_form') && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('contact'))) { printCustomPageURL(gettext('Contact us'), 'contact', '', $prev, '');$prev = ' | '; }	?>
 		<?php if ($_zp_gallery_page!='register.php' && !zp_loggedin() && ($_zp_gallery_page != 'password.php' || $_zp_gallery->isUnprotectedPage('register'))) { @call_user_func('printCustomPageURL',gettext('Register for this site'), 'register', '', $prev, '');	$prev = ' | '; }?>
+		<?php
+		if (function_exists('printFavoritesLink') && $_zp_gallery_page != 'password.php' && $_zp_gallery_page != 'favorites.php') {
+			?> | <?php
+			printFavoritesLink();
+		}
+		?>
 		<?php	if (!in_array($_zp_gallery_page, $exclude_login)) @call_user_func('printUserLogin_out', $prev); ?>
 		<br />
 		<?php @call_user_func('mobileTheme::controlLink'); ?>

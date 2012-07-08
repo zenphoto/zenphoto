@@ -154,7 +154,12 @@ $thisalbum = $_zp_current_album;
 						<a href="<?php echo html_encode(getNextPageURL()); ?>" accesskey="x"><?php echo gettext('next page'); ?> »</a>
 				<?php } ?>
 				</p>
-				<?php if (function_exists('printUserLogin_out')) { printUserLogin_out(""); } ?>
+				<?php
+				if (function_exists('printFavoritesLink')) {
+					printFavoritesLink();
+				}
+				if (function_exists('printUserLogin_out')) { printUserLogin_out(""); }
+				?>
 			</div>
 		</div>
 

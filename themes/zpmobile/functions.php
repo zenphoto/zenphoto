@@ -75,7 +75,13 @@ function jqm_printFooterNav() {
 	global $_zp_gallery_page, $_zp_current_album;
 	?>
 	<div id="footer">
-		<?php @call_user_func('printLanguageSelector',"langselector"); ?>
+		<?php
+		if (function_exists('printFavoritesLink') && $_zp_gallery_page != 'favorites.php') {
+			printFavoritesLink();
+			?><br /><?php
+		}
+		@call_user_func('printLanguageSelector',"langselector");
+		?>
 			<ul>
 				<li><?php echo gettext('Powered by'); ?> <a href="http://www.zenphoto.org">Zenphoto</a> and <a href="http://jquerymobile.com">jQueryMobile</a></li>
 				<li><?php echo gettext('zpMobile theme by'); ?> <a href="http://www.maltem.de">Malte Müller</a></li>

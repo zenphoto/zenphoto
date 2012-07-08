@@ -139,7 +139,7 @@ class mobileTheme {
 	 * places a link on the theme page to switch to or from the mobile theme
 	 * @param string $text link text
 	 */
-	static function controlLink($text=NULL) {
+	static function controlLink($text=NULL, $before=NULL, $after=Null) {
 		$detect = new mobile();
 		if ($detect->isMobile()) {
 			if (zp_getCookie('mobileTheme_disable')) {
@@ -153,6 +153,7 @@ class mobileTheme {
 				}
 				$enable = 'off';
 			}
+			echo $before;
 			?>
 			<span class="mobileThemeControlLink">
 				<a href="?mobileTheme=<?php echo $enable; ?>" rel="external">
@@ -160,6 +161,7 @@ class mobileTheme {
 				</a>
 			</span>
 			<?php
+			echo $after;
 		}
 	}
 

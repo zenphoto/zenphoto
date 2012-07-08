@@ -100,7 +100,7 @@ require_once('normalizer.php');
 			</div>
 
 			<div class="main">
-				<?php @call_user_func('printAddToFavorites'); ?>
+				<?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image); ?>
 				<div class="rating"><?php if (function_exists('printRating')) printRating(); ?></div>
 				<?php
 				if (function_exists('printCommentForm')) {
@@ -164,7 +164,12 @@ require_once('normalizer.php');
 
 		<div id="footer">
 			<hr />
-			<?php if (function_exists('printUserLogin_out')) { printUserLogin_out(""); } ?>
+			<?php
+			if (function_exists('printFavoritesLink')) {
+				printFavoritesLink();
+			}
+			if (function_exists('printUserLogin_out')) { printUserLogin_out(""); }
+			?>
 			<p>
 				<?php echo gettext('<a href="http://stopdesign.com/templates/photos/">Photo Templates</a> from Stopdesign.'); ?>
 				<?php printZenphotoLink(); ?>

@@ -80,7 +80,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				<?php printImageDesc(true); ?>
 				<hr /><br />
 				<?php
-				@call_user_func('printAddToFavorites');
+				If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image);
 				if (getImageMetaData()) {
 					echo printImageMetadata(NULL, 'colorbox');
 					?>

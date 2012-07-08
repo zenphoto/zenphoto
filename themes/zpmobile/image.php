@@ -71,7 +71,7 @@ if (!defined('WEBPATH')) die();
 		}
 		?>
 		<br style="clear:both" />
-		<?php @call_user_func('printAddToFavorites'); ?>
+		<?php If (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_image); ?>
 		<?php if (function_exists('printRating')) {
 				echo '<div id="rating">';
 				printRating();
