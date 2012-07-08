@@ -34,9 +34,12 @@ $option_interface = 'favoritesOptions';
 class favoritesOptions {
 
 	function __construct() {
-		setOptionDefault('favorites_linkpage', 'favorites');
+		setOptionDefault('favorites_link', 'favorites');
 		gettext($str = 'My favorites');
+		setOptionDefault('favorites_title', getAllTranslations($str));
 		setOptionDefault('favorites_linktext', getAllTranslations($str));
+		gettext($str = 'The albums and images selected as favorites.');
+		setOptionDefault('favorites_desc', getAllTranslations($str));
 		gettext($str = 'Add to favorites');
 		setOptionDefault('favorites_add_button', getAllTranslations($str));
 		gettext($str = 'Remove from favorites');
@@ -59,20 +62,28 @@ class favoritesOptions {
 
 		$options = array(	gettext('Link text') => array('key' => 'favorites_linktext', 'type' => OPTION_TYPE_TEXTBOX,
 																					'multilingual'=>true,
-																					'order'=>3,
+																					'order'=>2,
 																					'desc' => gettext('The text for the link to the favorites page.')),
-											gettext('Favorites page') => array('key' => 'favorites_linkpage', 'type' => OPTION_TYPE_SELECTOR,
-																					'order'=>4,
+											gettext('Favorites page') => array('key' => 'favorites_link', 'type' => OPTION_TYPE_SELECTOR,
+																					'order'=>1,
 																					'selections' => $list,
 																					'desc' => gettext('Theme page for the favorites link')),
 											gettext('Add button') => array('key' => 'favorites_add_button', 'type' => OPTION_TYPE_TEXTBOX,
 																					'multilingual'=>true,
-																					'order'=>1,
+																					'order'=>6,
 																					'desc' => gettext('Default text for the <em>add to favorites</em> button.')),
 											gettext('Remove button') => array('key' => 'favorites_remove_button', 'type' => OPTION_TYPE_TEXTBOX,
 																					'multilingual'=>true,
-																					'order'=>2,
-																					'desc' => gettext('Default text for the <em>remove from favorites</em> button.'))
+																					'order'=>7,
+																					'desc' => gettext('Default text for the <em>remove from favorites</em> button.')),
+											gettext('Title') => array('key' => 'favorites_title', 'type' => OPTION_TYPE_TEXTBOX,
+																					'multilingual'=>true,
+																					'order'=>3,
+																					'desc' => gettext('The favorites page title text.')),
+											gettext('Description') => array('key' => 'favorites_desc', 'type' => OPTION_TYPE_TEXTBOX,
+																					'multilingual'=>true,
+																					'order'=>5,
+																					'desc' => gettext('The favorites page description text.')),
 		);
 		return $options;
 	}
@@ -88,7 +99,8 @@ class favorites extends AlbumBase {
 	function __construct($user) {
 
 		$this->name = $user;
-		$this->setTitle(gettext('My favorites'));
+		$this->setTitle(get_language_string(getOption('favorites_title')));
+		$this->setDesc(get_language_string(getOption('favorites_desc')));
 	}
 
 	function addImage($img) {
@@ -261,7 +273,7 @@ class favorites extends AlbumBase {
 
 if (!OFFSET_PATH && zp_loggedin()) {
 	$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
-	if ($_zp_gallery_page == getOption('favorites_linkpage').'.php') {
+	if ($_zp_gallery_page == getOption('favorites_link').'.php') {
 		zp_register_filter('theme_head', 'favorites::theme_head');
 		zp_register_filter('pageNavList', 'favorites::pageListNav');
 	}
@@ -296,10 +308,10 @@ if (!OFFSET_PATH && zp_loggedin()) {
 		global $_myFavorites;
 		$v = 1;
 		if (is_null($add)) {
-			$add = getOption('favorites_add_button');
+			$add = get_language_string(getOption('favorites_add_button'));
 		}
 		if (is_null($remove)) {
-			$remove = getOption('favorites_remove_button');
+			$remove = get_language_string(getOption('favorites_remove_button'));
 		} else {
 			$add = $remove;
 		}
@@ -344,10 +356,10 @@ if (!OFFSET_PATH && zp_loggedin()) {
 
 	function printFavoritesLink($text=NULL) {
 		if (is_null($text)) {
-			$text = getOption('favorites_linktext');
+			$text = get_language_string(getOption('favorites_linktext'));
 		}
 		?>
-		<a href="<?php echo FULLWEBPATH; ?>/page/<?php echo getOption('favorites_linkpage'); ?>"><?php echo $text; ?></a>
+		<a href="<?php echo FULLWEBPATH; ?>/page/<?php echo getOption('favorites_link'); ?>"><?php echo $text; ?></a>
 		<?php
 	}
 

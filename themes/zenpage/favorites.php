@@ -12,7 +12,6 @@ if (!defined('WEBPATH')) die();
 	<title><?php echo getBareAlbumTitle(); ?> | <?php echo getBareGalleryTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
-	<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
 </head>
 <body>
 <?php zp_apply_filter('theme_body_open'); ?>
@@ -30,7 +29,7 @@ if (!defined('WEBPATH')) die();
 <div id="content">
 
 	<div id="breadcrumb">
-<h2><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a><?php printParentBreadcrumb(" » "," » ",""); ?> » <strong><?php printAlbumTitle(true);?></strong></h2>
+<h2><a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Index'); ?>"><?php echo gettext("Index"); ?></a><?php printAlbumTitle(true);?></strong></h2>
 </div>
 
 	<div id="content-left">

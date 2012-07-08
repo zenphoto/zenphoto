@@ -145,8 +145,6 @@ $thisalbum = $_zp_current_album;
 
 			<div class="galleryinfo">
 				<br />
-				<?php printRSSLink('Album', '<p>', gettext('Album RSS feed').' ', '</p>', true, 'i'); ?>
-				<br />
 				<p>
 				<?php
 					if (!is_null($firstImage)) {
