@@ -48,12 +48,8 @@ if (!defined('WEBPATH')) die();
 					<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo getBareAlbumTitle();?>"><?php printAlbumTitle(); ?></a></h3>
 						<?php printAlbumDate(""); ?>
 					<div><?php echo shortenContent(getAlbumDesc(), 45,'...'); ?></div>
-					<?php
-					if (function_exists('printAddToFavorites')) {
-						echo "<br />";
-						printAddToFavorites($_zp_current_album);
-					}
-					?>
+					<br />
+					<?php printAddToFavorites($_zp_current_album, '',gettext('Remove')); ?>
 				</div>
 				<p style="clear: both; "></p>
 			</div>
@@ -64,6 +60,7 @@ if (!defined('WEBPATH')) die();
 			<?php while (next_image()): ?>
 			<div class="image">
 				<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
+				<?php printAddToFavorites($_zp_current_image, '',gettext('Remove')); ?>
 			</div>
 			<?php endwhile; ?>
 

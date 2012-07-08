@@ -55,7 +55,7 @@ $thisalbum = $_zp_current_album;
 				?>
 				<li class="gal">
 					<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:').' '; echo getAnnotatedAlbumTitle();?>" class="img"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT,ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT); ?></a>
-					<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
+					<?php printAddToFavorites($_zp_current_album, '',gettext('Remove')); ?>
 					<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:').' '; echo getAnnotatedAlbumTitle();?>"><?php printAlbumTitle(); ?></a></h3>
 					<p>
 					<?php
@@ -102,7 +102,9 @@ $thisalbum = $_zp_current_album;
 			$lastImage = null;
 			if ($myimagepage > 1) {
 			?>
-			<li class="thumb"><span class="backward"><em style="background-image:url('<?php echo $_zp_themeroot ?>/images/moreslide_prev.gif');"><a href="<?php echo html_encode(getPrevPageURL()); ?>" style="background:#fff;"><?php echo gettext('Next page'); ?></a></em></span></li>
+			<li class="thumb">
+			<span class="backward"><em style="background-image:url('<?php echo $_zp_themeroot ?>/images/moreslide_prev.gif');"><a href="<?php echo html_encode(getPrevPageURL()); ?>" style="background:#fff;"><?php echo gettext('Next page'); ?></a></em></span>
+			</li>
 			<?php
 			}
 			while (next_image()) {
@@ -123,7 +125,13 @@ $thisalbum = $_zp_current_album;
 				$ch = 89;
 				$cw = 67;
 			}
-			echo '<li class="thumb"><span><em style="background-image:url(' . html_encode($_zp_current_image->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) . '); "><a href="' . html_encode(getImageLinkURL()) . '" title="' . getAnnotatedImageTitle() . '" style="background:#fff;">"'.getImageTitle().'"</a></em></span></li>';
+			echo
+			'<li class="thumb">
+			<span><em style="background-image:url(' . html_encode($_zp_current_image->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) . '); ">
+			<a href="' . html_encode(getImageLinkURL()) . '" title="' . getAnnotatedImageTitle() . '" style="background:#fff;">"'.getImageTitle().'"</a></em>
+			</span>';
+			printAddToFavorites($_zp_current_image, '',gettext('Remove'));
+			echo '</li>';
 			}
 			if (!is_null($lastImage)  && $lastImage < getNumImages()) {
 				$np = getCurrentPage()+1;
@@ -155,12 +163,7 @@ $thisalbum = $_zp_current_album;
 						<a href="<?php echo html_encode(getNextPageURL()); ?>" accesskey="x"><?php echo gettext('next page'); ?> »</a>
 				<?php } ?>
 				</p>
-				<?php
-				if (function_exists('printFavoritesLink')) {
-					printFavoritesLink();
-				}
-				if (function_exists('printUserLogin_out')) { printUserLogin_out(""); }
-				?>
+				<?php if (function_exists('printUserLogin_out')) { printUserLogin_out(""); } ?>
 			</div>
 		</div>
 

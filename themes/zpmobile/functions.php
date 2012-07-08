@@ -76,10 +76,6 @@ function jqm_printFooterNav() {
 	?>
 	<div id="footer">
 		<?php
-		if (function_exists('printFavoritesLink') && $_zp_gallery_page != 'favorites.php') {
-			printFavoritesLink();
-			?><br /><?php
-		}
 		@call_user_func('printLanguageSelector',"langselector");
 		?>
 			<ul>

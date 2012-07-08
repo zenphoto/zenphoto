@@ -1,21 +1,16 @@
 <?php
 if (!defined('WEBPATH')) die();
-$map = function_exists('printGoogleMap');
-$personality = getOption('garland_personality');
-require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle()); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
-	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />
 	<?php printRSSHeaderLink('Album',getAlbumTitle()); ?>
 </head>
 <body class="sidebars">
 <?php zp_apply_filter('theme_body_open'); ?>
-<?php $personality->theme_bodyopen($_zp_themeroot); ?>
 <div id="navigation"></div>
 <div id="wrapper">
 	<div id="container">
@@ -60,8 +55,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 										</h3>
 										<br />
 										<small><?php printAlbumDate(); ?></small>
-										<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
-									</li>
+										<?php printAddToFavorites($_zp_current_album, '',gettext('Remove')); ?>					</li>
 									</div>
 								<p style="clear: both;"></p>
 								</div>
@@ -70,15 +64,29 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 							?>
 							</div>
 							<p style="clear: both; "></p>
-							<?php $personality->theme_content($map); ?>
+
+							<!-- Image page section -->
+							<div id="images">
+								<?php
+								while (next_image()){
+									?>
+									<div class="image">
+										<div class="imagethumb">
+											<a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo sanitize(getImageTitle()); ?>"><?php printImageThumb(getImageTitle()); ?></a>
+											<?php printAddToFavorites($_zp_current_image, '',gettext('Remove')); ?>
+										</div>
+									</div>
+									<?php
+								}
+								?>
+							</div>
+							<br clear="all">
 							<?php
 							if ((getNumAlbums() != 0) || !$oneImagePage){
 								printPageListWithNav(gettext("« prev"), gettext("next »"), $oneImagePage);
 							}
 							?>
 							<?php
-							@call_user_func('printRating');
-							@call_user_func('printCommentForm');
 							printCodeblock(2);
 							footer();
 							?>
@@ -113,28 +121,6 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 						</div>
 						<?php
 					}
-				}
-				?>
-				<?php printTags('links', gettext('Tags: '), NULL, ''); ?>
-				<?php
-				if (!empty($points) && $map) {
-					setOption('gmap_display', 'colorbox', false);
-					?>
-					<div id="map_link">
-						<?php
-						printGoogleMap(NULL, NULL, NULL, 'album_page', 'gMapOptionsAlbum');
-						?>
-					</div>
-					<br clear="all" />
-					<?php
-				}
-				?>
-				<?php
-				if (function_exists('printLatestImages')) {
-					?>
-					<h2><?php printf(gettext('Latest Images for %s'),$_zp_current_album->getTitle()); ?></h2>
-					<?php
-					printLatestImages(5, $_zp_current_album->name);
 				}
 				?>
 			</div><!-- right sidebar -->

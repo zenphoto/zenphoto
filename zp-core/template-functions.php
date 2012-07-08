@@ -773,7 +773,7 @@ function getPageNavList($oneImagePage, $navlen, $firstlast, $current, $total) {
 	} else {
 		$result['next'] = NULL;
 	}
-	return $result;
+	return zp_apply_filter('pageNavList',$result);
 }
 
 /**

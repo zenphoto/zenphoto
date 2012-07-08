@@ -36,6 +36,7 @@ themes/effervescence_plus/colorbox
 themes/effervescence_plus/colorbox/functions.php
 themes/effervescence_plus/common.css
 themes/effervescence_plus/contact.php
+themes/effervescence_plus/favorites.php
 themes/effervescence_plus/functions.php
 themes/effervescence_plus/gallery.php
 themes/effervescence_plus/image.php
@@ -101,6 +102,7 @@ themes/garland/colorbox/functions.php
 themes/garland/contact.php
 themes/garland/contact_form
 themes/garland/contact_form/form.php
+themes/garland/favorites.php
 themes/garland/functions.php
 themes/garland/gallery.php
 themes/garland/image.php
@@ -158,6 +160,7 @@ themes/stopdesign/css/comments-show.css
 themes/stopdesign/css/custom.css
 themes/stopdesign/css/master.css
 themes/stopdesign/css/photos.css
+themes/stopdesign/favorites.php
 themes/stopdesign/gallery.php
 themes/stopdesign/image.php
 themes/stopdesign/images
@@ -219,6 +222,7 @@ themes/zenpage/404.php
 themes/zenpage/album.php
 themes/zenpage/archive.php
 themes/zenpage/contact.php
+themes/zenpage/favorites.php
 themes/zenpage/footer.php
 themes/zenpage/functions.php
 themes/zenpage/gallery.php
@@ -1908,4 +1912,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1910
+1914

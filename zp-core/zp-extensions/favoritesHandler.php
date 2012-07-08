@@ -1,7 +1,26 @@
 <?php
 /**
  * Allows registered users to select and manage "favorite" Zenphoto objects.
- * Currently just images are supported.
+ * Currently just images & albums are supported.
+ *
+ * Themes must be modified to use this plugin
+ * <ul>
+ * 	<li>
+ * 	The theme should have a custom page based on its standard <i>album</i> page. The default name for this
+ *  page is fagorites.php, but it may be changed by option.
+ *  This page and the standard <i>album</i> page "next" loops should contain calls on
+ *  <i>printAddToFavorites($object)</i> for each object. This provides the "remove" button.
+ * 	</li>
+ *
+ * 	<li>
+ * 	The standard <i>image</i> page should also contain a call on <i>printAddToFavorites</i>
+ * 	</li>
+ *
+ * 	<li>
+ * 	Calls to <i>printFavoritesLink()</i> should be placed anywhere that the visitor should be able to link
+ * 	to his favorites page.
+ * 	</li>
+ * </ul>
  *
  * @author Stephen Billard (sbillard)
  * @package plugins
@@ -11,8 +30,6 @@ $plugin_description = gettext('Support for <em>favorites</em> handling.');
 $plugin_author = "Stephen Billard (sbillard)";
 
 $option_interface = 'favoritesOptions';
-
-zp_register_filter('theme_head', 'favorites::theme_head');
 
 class favoritesOptions {
 
@@ -85,6 +102,18 @@ class favorites extends AlbumBase {
 		$folder = $img->album->name;
 		$filename = $img->filename;
 		$sql = 'DELETE FROM '.prefix('plugin_storage').' WHERE `type`="favorites" AND `aux`='.db_quote($this->name).' AND `data`='.db_quote(serialize(array('type'=>'images', 'id'=>$folder.'/'.$filename)));
+		query($sql);
+	}
+
+	function addAlbum($alb) {
+		$folder = $alb->name;
+		$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("favorites",'.db_quote($this->name).','.db_quote(serialize(array('type'=>'albums', 'id'=>$folder))).')';
+		query($sql);
+	}
+
+	function removeAlbume($alb) {
+		$folder = $alb->name;
+		$sql = 'DELETE FROM '.prefix('plugin_storage').' WHERE `type`="favorites" AND `aux`='.db_quote($this->name).' AND `data`='.db_quote(serialize(array('type'=>'albums', 'id'=>$folder)));
 		query($sql);
 	}
 
@@ -214,17 +243,28 @@ class favorites extends AlbumBase {
 	}
 
 	static function theme_head() {
-		global $_zp_current_album, $_zp_gallery_page, $_myFavorites;
-		if ($_zp_gallery_page == 'favorites.php') {
-			$_zp_current_album = $_myFavorites;
-			add_context(ZP_ALBUM);
+		global $_zp_current_album, $_myFavorites;
+		$_zp_current_album = $_myFavorites;
+		add_context(ZP_ALBUM);
+	}
+
+	static function pageListNav($list) {
+		global  $_zp_gallery_page, $_zp_current_admin_obj;
+		foreach ($list as $key=>$link) {
+			$link = str_replace($_zp_current_admin_obj->getUser().'/page/', 'page/'.stripSuffix($_zp_gallery_page).'/', $link);
+			$list[$key] = str_replace($_zp_current_admin_obj->getUser(), 'page/'.stripSuffix($_zp_gallery_page), $link);
 		}
+		return $list;
 	}
 
 }
 
 if (!OFFSET_PATH && zp_loggedin()) {
 	$_myFavorites = new favorites($_zp_current_admin_obj->getUser());
+	if ($_zp_gallery_page == getOption('favorites_linkpage').'.php') {
+		zp_register_filter('theme_head', 'favorites::theme_head');
+		zp_register_filter('pageNavList', 'favorites::pageListNav');
+	}
 
 	if (isset($_POST['addToFavorites'])) {
 		$id = sanitize($_POST['id']);
@@ -242,7 +282,7 @@ if (!OFFSET_PATH && zp_loggedin()) {
 			case 'albums':
 				$alb = new Album(NULL, $id);
 				if ($_POST['addToFavorites']) {
-					if ($img->loaded) {
+					if ($alb->loaded) {
 						$_myFavorites->addAlbum($alb);
 					}
 				} else {
@@ -278,7 +318,7 @@ if (!OFFSET_PATH && zp_loggedin()) {
 				}
 				break;
 			case 'albums':
-				$id = $obj->album->name;
+				$id = $obj->name;
 				$albums = $_myFavorites->getAlbums(0);
 				foreach ($albums as $album) {
 					if ($album==$id) {
@@ -299,7 +339,6 @@ if (!OFFSET_PATH && zp_loggedin()) {
 				<input type="submit" value="<?php echo $add; ?>" />
 			</span>
 		</form>
-		<br clear="all" />
 		<?php
 	}
 
@@ -308,7 +347,7 @@ if (!OFFSET_PATH && zp_loggedin()) {
 			$text = getOption('favorites_linktext');
 		}
 		?>
-		<a href="<?php echo FULLWEBPATH; ?>/page/<?php echo getOption('favorites_linkpage')?>"><?php echo $text; ?></a>
+		<a href="<?php echo FULLWEBPATH; ?>/page/<?php echo getOption('favorites_linkpage'); ?>"><?php echo $text; ?></a>
 		<?php
 	}
 

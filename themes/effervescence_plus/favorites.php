@@ -6,8 +6,6 @@ if (!defined('WEBPATH')) die();
 
 $map = function_exists('printGoogleMap');
 $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
-$personality = strtolower(getOption('Theme_personality'));
-require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -15,7 +13,6 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<?php effervescence_theme_head(); ?>
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
@@ -23,7 +20,6 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 
 <body onload="blurAnchors()">
 <?php zp_apply_filter('theme_body_open'); ?>
-<?php $personality->theme_bodyopen($_zp_themeroot); ?>
 
 	<!-- Wrap Header -->
 	<div id="header">
@@ -86,12 +82,6 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 			</div>
 		</div> <!-- wrapnav -->
 
-		<!-- Random Image -->
-		<?php
-		if (isAlbumPage()) {
-			printHeadingImage(getRandomImagesAlbum(NULL, getThemeOption('effervescence_daily_album_image')));
-		}
-		?>
 	</div> <!-- header -->
 
 	<!-- Wrap Subalbums -->
@@ -126,14 +116,13 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 						<div class="imagethumb">
 							<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo html_encode($annotate) ?>">
 							<?php printCustomAlbumThumbImage($annotate, null, 180, null, 180, 80); ?></a>
-							<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
+							<?php printAddToFavorites($_zp_current_album, '',gettext('Remove')); ?>					</li>
 						</div>
 						<h4>
 							<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo html_encode($annotate) ?>">
 								<?php printAlbumTitle(); ?>
 							</a>
 						</h4>
-						</li>
 					<?php
 				}
 				if (!is_null($firstAlbum)) {
@@ -152,7 +141,53 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 		<!-- Wrap Main Body -->
 		<?php
 		if (getNumImages() > 0){  /* Only print if we have images. */
-			$personality->theme_content($map);
+			?>
+					<!-- Image page section -->
+					<div id="content">
+					 	<div id="main">
+					 		<div id="images">
+					 		<?php
+					 		$points = array();
+					 		$firstImage = null;
+					 		$lastImage = null;
+					 		while (next_image()) {
+				 				if (is_null($firstImage)) {
+				 					$lastImage = imageNumber();
+				 					$firstImage = $lastImage;
+				 				} else {
+				 					$lastImage++;
+				 				}
+				 				?>
+				 				<div class="image">
+					 				<div class="imagethumb">
+					 				<?php
+					 				if ($map) {
+					 					$coord = getGeoCoord($_zp_current_image);
+					 					if ($coord) {
+					 						$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+					 						$points[] = $coord;
+					 					}
+					 				}
+					 				$annotate = annotateImage();
+				 					echo '<a href="' . html_encode(getImageLinkURL()) . '"';
+					 				echo " title=\"".$annotate."\">\n";
+					 				printImageThumb($annotate);
+					 				echo "</a>";
+									printAddToFavorites($_zp_current_image, '',gettext('Remove'));
+									?>
+									</div>
+				 				</div>
+				 				<?php
+							}
+			 				echo '<div class="clearage"></div>';
+						?>
+			 				</div><!-- images -->
+						</div> <!-- main -->
+					 <div class="clearage"></div>
+					 <?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
+					</div> <!-- content -->
+					<?php
+
 		} else { /* no images to display */
 			if (getNumAlbums() == 0){
 			?>
@@ -162,12 +197,6 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 					<p align="center"><?php echo gettext('Album is empty'); ?></p>
 					</div>
 				</div> <!-- main3 -->
-				<?php
-			} else {
-				?>
-				<div id="main">
-					<?php @call_user_func('printRating'); ?>
-				</div>
 				<?php
 			}
 		}
