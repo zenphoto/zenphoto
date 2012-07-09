@@ -254,15 +254,6 @@ class favorites extends AlbumBase {
 		return $images;
 	}
 
-	static function pageListNav($list) {
-		global  $_zp_gallery_page, $_zp_current_admin_obj;
-		foreach ($list as $key=>$link) {
-			$link = str_replace($_zp_current_admin_obj->getUser().'/page/', 'page/'.stripSuffix($_zp_gallery_page).'/', $link);
-			$list[$key] = str_replace($_zp_current_admin_obj->getUser(), 'page/'.stripSuffix($_zp_gallery_page), $link);
-		}
-		return $list;
-	}
-
 	static function notFound($script, $request) {
 		return false;
 	}
@@ -275,7 +266,6 @@ if (!OFFSET_PATH) {
 		if ($_zp_gallery_page == getOption('favorites_link').'.php') {
 			$_zp_current_album = $_myFavorites;
 			add_context(ZP_ALBUM);
-			zp_register_filter('pageNavList', 'favorites::pageListNav');
 		}
 
 		if (isset($_POST['addToFavorites'])) {
@@ -306,6 +296,9 @@ if (!OFFSET_PATH) {
 
 		function printAddToFavorites($obj, $add=NULL, $remove=NULL) {
 			global $_myFavorites;
+			if (!is_object($obj)) {
+				return;
+			}
 			$v = 1;
 			if (is_null($add)) {
 				$add = get_language_string(getOption('favorites_add_button'));
@@ -340,6 +333,9 @@ if (!OFFSET_PATH) {
 						}
 					}
 					break;
+				default:
+					//We do not handle these.
+					return;
 			}
 
 			?>

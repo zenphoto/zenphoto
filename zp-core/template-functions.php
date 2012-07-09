@@ -593,7 +593,9 @@ function getPageURL($page, $total=null) {
 	if ($page <= 0) {
 		return NULL;
 	}
-	if (is_null($total)) { $total = getTotalPages(); }
+	if (is_null($total)) {
+		$total = getTotalPages();
+	}
 	if (in_context(ZP_SEARCH)) {
 		$searchwords = $_zp_current_search->codifySearchString();
 		$searchdate = $_zp_current_search->getSearchDate();
@@ -601,36 +603,31 @@ function getPageURL($page, $total=null) {
 		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$_zp_current_search->getAlbumList()));
 		return $searchpagepath;
 	} else {
-		if ($specialpage = !in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php', 'search.php'))) {
-			// handle custom page
-			$pg = substr($_zp_gallery_page, 0, -4);
-			$pagination1 = '/page/'.$pg.'/';
-			$pagination2 = 'p='.$pg.'&';
+		if ($page <= $total && $page > 1) {
+			$page1 = '/page/'.$page;
+			$page2 = '&page='.$page;
 		} else {
-			$pagination1 = '/page/';
-			$pagination2 = '';
+			$page1 = $page2 = '';
 		}
-		if ($page <= $total && $page > 0) {
+		if ($specialpage = !in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
+			// handle custom page
+			$pg = stripSuffix($_zp_gallery_page);
+			$pagination1 = '/page/'.$pg.$page1;
+			$pagination2 = 'index.php?p='.$pg.$page2;
+		} else {
 			if (in_context(ZP_ALBUM)) {
-				return rewrite_path( pathurlencode($_zp_current_album->name) . (($page > 1) ? "/page/" . $page . "/" : ""),
-					"/index.php?album=" . pathurlencode($_zp_current_album->name) . (($page > 1) ? "&page=" . $page : "") );
-			} else if (in_context(ZP_INDEX)) {
-				if ($page == 1) {
-					// Just return the gallery base path for ZP_INDEX (no /page/x)
-					if (empty($pagination2)) {
-						return rewrite_path('/', '/');
-					} else {
-						return rewrite_path($pagination1, "/index.php?" . substr($pagination2, 0, -1));
-					}
-				} else if ($page > 1) {
-					return rewrite_path($pagination1 . $page . "/", "/index.php?" . $pagination2 . 'page=' . $page);
+				$pagination1 = pathurlencode($_zp_current_album->name).$page1;
+				$pagination2 = 'index.php?album='.pathurlencode($_zp_current_album->name).$page2;
+			} else {
+				if (in_context(ZP_INDEX)) {
+					$pagination1 = $page1;
+					$pagination2 = 'index.php?'.trim($page2, '&');
+				} else {
+					return NULL;
 				}
 			}
 		}
-		if ($specialpage) {
-			return rewrite_path($pagination1, '?'.substr($pagination2, 0, -1));
-		}
-		return NULL;
+		return rewrite_path($pagination1, $pagination2);
 	}
 }
 
@@ -773,7 +770,7 @@ function getPageNavList($oneImagePage, $navlen, $firstlast, $current, $total) {
 	} else {
 		$result['next'] = NULL;
 	}
-	return zp_apply_filter('pageNavList',$result);
+	return $result;
 }
 
 /**

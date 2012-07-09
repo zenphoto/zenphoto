@@ -141,19 +141,19 @@ $thisalbum = $_zp_current_album;
 					$current = getCurrentPage();
 					$total = max(1,getTotalPages($oneImagePage));
 					$nav = getPageNavList($oneImagePage, 2, true, $current, $total);
-					if ($nav['prev']) {
-						?>
-						<a href="<?php echo html_encode($nav['prev']); ?>" accesskey="x">« <?php echo gettext('prev page'); ?></a>
-						<?php
+				if (hasPrevPage()) {
+					?>
+					<a href="<?php echo html_encode(getPrevPageURL()); ?>" accesskey="x">« <?php echo gettext('prev page'); ?></a>
+					<?php
+				}
+				if (hasNextPage()) {
+					if (hasPrevPage()) {
+						echo '&nbsp;';
 					}
-					if ($nav['next']) {
-						if ($nav['prev']) {
-							echo '&nbsp;';
-						}
-						?>
-						<a href="<?php echo html_encode($nav['next']); ?>" accesskey="x"><?php echo gettext('next page'); ?> »</a>
-						<?php
-					}
+					?>
+					<a href="<?php echo html_encode(getNextPageURL()); ?>" accesskey="x"><?php echo gettext('next page'); ?> »</a>
+					<?php
+				}
 				?>
 				</p>
 				<?php if (function_exists('printUserLogin_out')) { printUserLogin_out(""); } ?>

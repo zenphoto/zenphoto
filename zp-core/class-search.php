@@ -732,7 +732,8 @@ class SearchEngine
 	 *
 	 * @param array $idlist list of IDs for a where clause
 	 */
-	protected function compressedIDList($idlist) {
+	protected static function compressedIDList($idlist) {
+		$idlist = array_unique($idlist);
 		asort($idlist);
 		return '`id` IN ('.implode(',',$idlist).')';
 	}
@@ -978,6 +979,7 @@ class SearchEngine
 				}
 			}
 		}
+
 		$objects = array_merge($tag_objects, $field_objects);
 		if (count($objects) != 0) {
 			$tagid = '';
@@ -990,6 +992,7 @@ class SearchEngine
 				}
 				$taglist[$tagid][] = $object['objectid'];
 			}
+
 			$op = '';
 			$idstack = array();
 			$opstack = array();
@@ -1085,11 +1088,10 @@ class SearchEngine
 								$op = '';
 								break;
 				}
-				$idlist = array_unique($idlist);
 			}
 		}
 		if (count($idlist)==0) {return NULL; }
-		$sql = 'SELECT DISTINCT `id`,`show`,';
+		$sql = 'SELECT `id`,`show`,';
 
 		switch ($tbl) {
 			case 'news':
@@ -1180,9 +1182,13 @@ class SearchEngine
 		}
 
 		$sql .= "FROM ".prefix($tbl)." WHERE ".$show;
-		$sql .= '('.$this->compressedIDList($idlist).')';
+		$sql .= '('.self::compressedIDList($idlist).')';
 		$sql .= " ORDER BY ".$key;
-		return $sql;
+		$weights = array_flip(array_unique($idlist));
+		foreach ($idlist as $id) {
+			$weights[$id]++;
+		}
+		return array($sql, $weights);
 	}
 
 	/**
@@ -1207,8 +1213,8 @@ class SearchEngine
 			if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 				$mine = true;
 			}
-			$albums = array();
-			$search_query = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
+			$result = $albums = array();
+			list ($search_query,$weights) = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
 			if (empty($search_query)) {
 				$search_result = false;
 			} else {
@@ -1231,10 +1237,14 @@ class SearchEngine
 							}
 							if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
 								if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
-									$albums[] = $albumname;
+									$result[] = array('name'=>$albumname, 'weight'=>$weights[$row['id']]);
 								}
 							}
 						}
+					}
+					$result = sortByMultilingual($result, 'weight', true);
+					foreach ($result as $album) {
+						$albums[] = $album['name'];
 					}
 				}
 			}
@@ -1349,7 +1359,7 @@ class SearchEngine
 		$images = $this->getCachedSearch($criteria);
 		if (is_null($images)) {
 			if (empty($searchdate)) {
-				$search_query = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
+				list ($search_query,$weights) = $this->searchFieldsAndTags($searchstring, 'images', $sorttype, $sortdirection);
 			} else {
 				$search_query = $this->searchDate($searchstring, $searchdate, 'images', $sorttype, $sortdirection);
 			}
@@ -1388,9 +1398,10 @@ class SearchEngine
 					}
 					if ($albumrow['allow'] && ($row['show'] || $albumrow['viewUnpublished'])) {
 						if (file_exists($albumrow['localpath'].internalToFilesystem($row['filename']))) {	//	still exists
-							$images[] = array('filename' => $row['filename'], 'folder' => $albumrow['folder']);
+							$images[] = array('filename' => $row['filename'], 'folder' => $albumrow['folder'], 'weight'=>$weights[$row['id']]);
 						}
 					}
+					$images = sortByMultilingual($images, 'weight', true);
 				}
 			}
 			if (empty($searchdate)) {
@@ -1518,9 +1529,9 @@ class SearchEngine
 			return $this->pages;
 		}
 		if (is_null($this->pages)) {
-			$result = array();
+			$pages = $result = array();
 			if (empty($searchdate)) {
-				$search_query = $this->searchFieldsAndTags($searchstring, 'pages', $sorttype, $sortdirection);
+				list ($search_query,$weights) = $this->searchFieldsAndTags($searchstring, 'pages', $sorttype, $sortdirection);
 				if (empty($search_query)) {
 					$search_result = false;
 				} else {
@@ -1533,10 +1544,17 @@ class SearchEngine
 			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$result[] = $row['titlelink'];
+					$result[] = array('titlelink'=>$row['titlelink'], 'weight'=>$weights[$row['id']]);
 				}
 			}
-			$this->pages = $result;
+			$result = sortByMultilingual($result, 'weight', true);
+
+
+
+			foreach ($result as $page) {
+				$pages[] = $page['titlelink'];
+			}
+			$this->pages = $pages;
 		}
 		$this->searches['pages'] = $criteria;
 		return $this->pages;
@@ -1586,7 +1604,7 @@ class SearchEngine
 		if (is_null($result)) {
 			$result = array();
 			if (empty($searchdate)) {
-				$search_query = $this->searchFieldsAndTags($searchstring, 'news', $sorttype, $sortdirection);
+				list ($search_query,$weights) = $this->searchFieldsAndTags($searchstring, 'news', $sorttype, $sortdirection);
 				zp_apply_filter('search_statistics',$searchstring, 'news', !empty($search_results), false, $this->iteration++);
 			} else {
 				$search_query = $this->searchDate($searchstring, $searchdate, 'news', $sorttype, $sortdirection,$this->whichdates);
@@ -1598,9 +1616,10 @@ class SearchEngine
 			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$result[] = array('id'=>$row['id'],'titlelink'=>$row['titlelink']);
+					$result[] = array('id'=>$row['id'],'titlelink'=>$row['titlelink'], 'weight'=>$weights[$row['id']]);
 				}
 			}
+			$result = sortByMultilingual($result, 'weight', true);
 			$this->cacheSearch($criteria,$result);
 		}
 		$this->articles = $result;

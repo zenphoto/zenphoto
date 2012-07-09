@@ -28,7 +28,6 @@ $backgroundImagePath="";
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
 	<?php effervescence_theme_head(); ?>
-	<script type="text/javascript" src="<?php echo  $_zp_themeroot ?>/scripts/swfobject.js"></script>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
 		function toggleExtraElements(category, show) {
