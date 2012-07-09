@@ -270,6 +270,11 @@ margin: 0;
 padding: 0 !important;
 display: inline;
 }
+
+footer ul li {
+float: left;
+}
+
 #footer  ul.flags {
 line-height: 25px;
 }

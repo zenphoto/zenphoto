@@ -92,6 +92,12 @@ function jqm_printFooterNav() {
 						<?php
 					}
 				?>
+				<?php
+				if (function_exists('printFavoritesLink')) { 
+					?>
+					<li><?php printFavoritesLink();?></li><?php
+				}
+				?>
 				<li><?php @call_user_func('mobileTheme::controlLink'); ?></li>
 			</ul>
 		<!-- /navbar -->
