@@ -2,8 +2,7 @@
 
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'light');
-?>
+if (!defined('WEBPATH')) die(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,6 +49,14 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 
 		<br clear="all" />
 		<?php if(hasPrevPage() || hasNextPage()) printPageListWithNav(gettext("prev"), gettext("next"),false,true,'pagelist',NULL,true,7); ?>
+		<?php
+					if (function_exists('printAddToFavorites')) {
+						echo "<br />";
+						printAddToFavorites($_zp_current_album);
+					}
+	
+	  ?>	
+			
 			<?php
 		if (function_exists('printCommentForm')) {
 		  printCommentForm();

@@ -151,6 +151,10 @@ div.albumdesc {
 position: relative;
 }
 
+.image-favorite {
+min-height: 140px;
+}
+
 #image {
 clear: both;
 margin: 10px 0px 15px 0px;
