@@ -39,6 +39,10 @@ class SearchEngine
 	protected $category_list;			// list of categories for a news search
 	protected $searches = NULL;		// remember the criteria for past searches
 	protected $extraparams = array();// allow plugins to add to search parameters
+	protected $albumsorttype = NULL;
+	protected $albumsortdirection = NULL;
+	protected $imagesorttype = NULL;
+	protected $imagesortdirection = NULL;
 
 	/**
 	 * Constuctor
@@ -1201,6 +1205,16 @@ class SearchEngine
 	 */
 	private function getSearchAlbums($sorttype, $sortdirection, $mine=NULL) {
 		if (getOption('search_no_albums') || $this->search_no_albums) { return array(); }
+		if (!is_null($sorttype)) {
+			$sorttype = $this->albumsorttype;
+		} else {
+			$this->albumsorttype = $sorttype;
+		}
+		if (!is_null($sortdirection)) {
+			$sorttype = $this->albumsortdirection;
+		} else {
+			$this->albumsortdirection = $sortdirection;
+		}
 		$albums = array();
 		$searchstring = $this->getSearchString();
 		if (empty($searchstring)) { return $albums; } // nothing to find
@@ -1242,7 +1256,9 @@ class SearchEngine
 							}
 						}
 					}
-					$result = sortByMultilingual($result, 'weight', true);
+					if (is_null($sorttype)) {
+						$result = sortMultiArray($result, 'weight', true);
+					}
 					foreach ($result as $album) {
 						$albums[] = $album['name'];
 					}
@@ -1345,6 +1361,16 @@ class SearchEngine
 		if (getOption('search_no_images') || $this->search_no_images) {
 			return array();
 		}
+			if (!is_null($sorttype)) {
+			$sorttype = $this->imagesorttype;
+		} else {
+			$this->imagesorttype = $sorttype;
+		}
+		if (!is_null($sortdirection)) {
+			$sorttype = $this->imagesortdirection;
+		} else {
+			$this->imagesortdirection = $sortdirection;
+		}
 		if (is_null($mine) && zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 			$mine = true;
 		}
@@ -1401,7 +1427,9 @@ class SearchEngine
 							$images[] = array('filename' => $row['filename'], 'folder' => $albumrow['folder'], 'weight'=>$weights[$row['id']]);
 						}
 					}
-					$images = sortByMultilingual($images, 'weight', true);
+					if (is_null($sorttype)) {
+						$images = sortMultiArray($images, 'weight', true);
+					}
 				}
 			}
 			if (empty($searchdate)) {
@@ -1547,7 +1575,7 @@ class SearchEngine
 					$result[] = array('titlelink'=>$row['titlelink'], 'weight'=>$weights[$row['id']]);
 				}
 			}
-			$result = sortByMultilingual($result, 'weight', true);
+			$result = sortMultiArray($result, 'weight', true);
 
 
 
@@ -1619,7 +1647,7 @@ class SearchEngine
 					$result[] = array('id'=>$row['id'],'titlelink'=>$row['titlelink'], 'weight'=>$weights[$row['id']]);
 				}
 			}
-			$result = sortByMultilingual($result, 'weight', true);
+			$result = sortMultiArray($result, 'weight', true);
 			$this->cacheSearch($criteria,$result);
 		}
 		$this->articles = $result;
