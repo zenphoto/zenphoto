@@ -17,8 +17,11 @@ $option_interface = 'htmlmetatags';
 
 if (in_context(ZP_INDEX)) {
 	zp_register_filter('theme_head','htmlmetatags::getHTMLMetaData'); // insert the meta tags into the <head></head> if on a theme page.
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/dynamic-locale.php');
-	define('METATAG_LOCALE_TYPE', LOCALE_TYPE);
+	if (defined('LOCALE_TYPE')) {
+		define('METATAG_LOCALE_TYPE', LOCALE_TYPE);
+	} else {
+		define('METATAG_LOCALE_TYPE', 0);
+	}
 }
 
 class htmlmetatags {

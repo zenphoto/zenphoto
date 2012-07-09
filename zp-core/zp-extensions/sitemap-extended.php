@@ -34,8 +34,7 @@ if (!file_exists($sitemapfolder)) {
 }
 
 define ('SITEMAP_CHUNK', getOption('sitemap_processing_chunk'));
-if (getOption('multi_lingual')) {
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/dynamic-locale.php');
+if (getOption('multi_lingual') && defined('LOCALE_TYPE')) {
 	define('SITEMAP_LOCALE_TYPE', LOCALE_TYPE);
 } else {
 	define('SITEMAP_LOCALE_TYPE', 0);

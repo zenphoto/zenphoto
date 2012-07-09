@@ -37,7 +37,6 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 								<h3><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getAnnotatedAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 								<small><?php printAlbumDate(""); ?></small>
 								<div><?php printAlbumDesc(); ?></div>
-								<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
 							</div>
 							<p style="clear: both; "></p>
 						</div>
@@ -51,6 +50,7 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 					<?php endwhile; ?>
 				</div>
 				<?php printPageListWithNav("« " . gettext("prev"), gettext("next") . " »"); ?>
+				<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
 				<?php printTags('links', gettext('<strong>Tags:</strong>') . ' ', 'taglist', ''); ?>
 				<?php @call_user_func('printGoogleMap'); ?>
 				<?php @call_user_func('printSlideShowLink'); ?>

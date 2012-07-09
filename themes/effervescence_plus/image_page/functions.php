@@ -19,7 +19,7 @@ class image_page {
 	}
 
 	function theme_content($map) {
-		global $_zp_current_image, $points;
+		global $_zp_current_image, $_zp_current_album, $points;
 		?>
 		<!-- Image page section -->
 		<div id="content">
@@ -74,7 +74,8 @@ class image_page {
  				@call_user_func('printSlideShowLink',NULL,'text-align:center;');
 				?>
  				</div><!-- images -->
-				<?php @call_user_func('printRating'); ?>
+				<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
+ 				<?php @call_user_func('printRating'); ?>
 			</div> <!-- main -->
 		 <div class="clearage"></div>
 		 <?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>

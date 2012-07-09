@@ -126,7 +126,6 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 						<div class="imagethumb">
 							<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo html_encode($annotate) ?>">
 							<?php printCustomAlbumThumbImage($annotate, null, 180, null, 180, 80); ?></a>
-							<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
 						</div>
 						<h4>
 							<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo html_encode($annotate) ?>">
@@ -144,9 +143,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 				?>
 
 			<div class="clearage"></div>
-			<?php
-			printNofM('Album', $firstAlbum, $lastAlbum, getNumAlbums());
-			?>
+			<?php printNofM('Album', $firstAlbum, $lastAlbum, getNumAlbums()); ?>
 		</div> <!-- submain -->
 
 		<!-- Wrap Main Body -->
@@ -166,7 +163,8 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 			} else {
 				?>
 				<div id="main">
-					<?php @call_user_func('printRating'); ?>
+				<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
+				<?php @call_user_func('printRating'); ?>
 				</div>
 				<?php
 			}
@@ -181,7 +179,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/fu
 		}
 		?>
 		</div> <!-- pagenumbers -->
-	<?php commonComment(); ?>
+		<?php commonComment(); ?>
 </div> <!-- subcontent -->
 
 <!-- Footer -->

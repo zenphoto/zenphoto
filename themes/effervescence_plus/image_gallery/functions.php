@@ -88,7 +88,7 @@ class imagegallery {
 	}
 
 	function theme_content($map) {
-		global $_zp_current_image, $points;
+		global $_zp_current_image, $_zp_current_album, $points;
 		if (isImagePage()) {
 			?>
 			<!-- Gallery section -->
@@ -163,6 +163,7 @@ class imagegallery {
 						}
 						?>
 					</div><!-- images -->
+					<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
 					<?php @call_user_func('printRating'); ?>
 			 		</div><!-- main -->
 					<div class="clearage"></div>

@@ -116,13 +116,14 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 						<div class="imagethumb">
 							<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo html_encode($annotate) ?>">
 							<?php printCustomAlbumThumbImage($annotate, null, 180, null, 180, 80); ?></a>
-							<?php printAddToFavorites($_zp_current_album, '',gettext('Remove')); ?>					</li>
 						</div>
 						<h4>
 							<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo html_encode($annotate) ?>">
 								<?php printAlbumTitle(); ?>
 							</a>
+							<?php printAddToFavorites($_zp_current_album, '',gettext('Remove')); ?>
 						</h4>
+					</li>
 					<?php
 				}
 				if (!is_null($firstAlbum)) {

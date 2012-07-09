@@ -100,13 +100,6 @@ $thisalbum = $_zp_current_album;
 
 			$firstImage = null;
 			$lastImage = null;
-			if ($myimagepage > 1) {
-			?>
-			<li class="thumb">
-			<span class="backward"><em style="background-image:url('<?php echo $_zp_themeroot ?>/images/moreslide_prev.gif');"><a href="<?php echo html_encode(getPrevPageURL()); ?>" style="background:#fff;"><?php echo gettext('Next page'); ?></a></em></span>
-			</li>
-			<?php
-			}
 			while (next_image()) {
 				if (is_null($firstImage)) {
 					$lastImage = imageNumber();
@@ -133,13 +126,6 @@ $thisalbum = $_zp_current_album;
 			printAddToFavorites($_zp_current_image, '',gettext('Remove'));
 			echo '</li>';
 			}
-			if (!is_null($lastImage)  && $lastImage < getNumImages()) {
-				$np = getCurrentPage()+1;
-			?>
-			<li class="thumb"><span class="forward"><em style="background-image:url('<?php echo $_zp_themeroot ?>/images/moreslide_next.gif');">
-			<a href="<?php echo html_encode(getPageURL($np, $np)); ?>" style="background:#fff;"><?php echo gettext('Next page'); ?></a></em></span></li>
-		<?php
-			}
 		?>
 		</ul>
 
@@ -152,14 +138,23 @@ $thisalbum = $_zp_current_album;
 						printf(gettext('images %1$u-%2$u of %3$u'), $firstImage, $lastImage, getNumImages());
 						echo "</em>";
 						}
+					$current = getCurrentPage();
+					$total = max(1,getTotalPages($oneImagePage));
+					$nav = getPageNavList($oneImagePage, 2, true, $current, $total);
+					if ($nav['prev']) {
+						?>
+						<a href="<?php echo html_encode($nav['prev']); ?>" accesskey="x">« <?php echo gettext('prev page'); ?></a>
+						<?php
+					}
+					if ($nav['next']) {
+						if ($nav['prev']) {
+							echo '&nbsp;';
+						}
+						?>
+						<a href="<?php echo html_encode($nav['next']); ?>" accesskey="x"><?php echo gettext('next page'); ?> »</a>
+						<?php
+					}
 				?>
-				<?php if (isImagePage()) @call_user_func('printSlideShowLink'); ?>
-				<?php if (hasPrevPage()) { ?>
-						<a href="<?php echo html_encode(getPrevPageURL()); ?>" accesskey="x">« <?php echo gettext('prev page'); ?></a>
-				<?php } ?>
-				<?php if (hasNextPage()) { if (hasPrevPage()) { echo '&nbsp;'; } ?>
-						<a href="<?php echo html_encode(getNextPageURL()); ?>" accesskey="x"><?php echo gettext('next page'); ?> »</a>
-				<?php } ?>
 				</p>
 				<?php if (function_exists('printUserLogin_out')) { printUserLogin_out(""); } ?>
 			</div>

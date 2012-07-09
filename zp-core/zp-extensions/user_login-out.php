@@ -94,9 +94,8 @@ if (in_context(ZP_INDEX)) {
  * @param bool $showLoginForm to display a login form if no one is logged in set to 1 (for in colorbox, set to, but
  * 							but you must have colorbox enabled for the theme pages where this link appears.)
  * @param string $logouttext optional replacement text for "Logout"
- * @param bool $show_user set to true to force the USER field on the form.
  */
-function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logouttext=NULL, $show_user=NULL) {
+function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logouttext=NULL) {
 	global $__redirect, $_zp_current_admin_obj,	$_zp_login_error;
 	if (is_object($_zp_current_admin_obj)) {
 		if ($_zp_current_admin_obj->no_zp_login)  {
@@ -137,7 +136,7 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 			}
 			?>
 			<div class="passwordform">
-				<?php printPasswordForm('', $show_user, false); ?>
+				<?php printPasswordForm('', true, false); ?>
 			</div>
 			<?php
 			if ($showLoginForm>1) {

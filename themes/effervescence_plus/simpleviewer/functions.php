@@ -55,7 +55,7 @@ class simpleviewer {
 	}
 
 	function theme_content($map) {
-		global $_zp_current_image, $_zp_themeroot, $points;
+		global $_zp_current_image, $_zp_current_album, $_zp_themeroot, $points;
 		if ($imagePage = isImagePage()) {
 			?>
 			<!-- Simpleviewer section -->
@@ -118,6 +118,7 @@ class simpleviewer {
 			</div><!-- flash -->
 			<div id="main">
 				<div id="images">
+				<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
 				<?php @call_user_func('printRating'); ?>
 				</div>
 			</div>

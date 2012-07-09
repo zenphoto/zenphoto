@@ -86,6 +86,7 @@ if (!defined('WEBPATH')) die();
 		}
 		?>
 	<br style="clear:both;" />
+	<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
 	<?php @call_user_func('printRating'); ?>
 	<?php @call_user_func('printCommentForm'); ?>
 

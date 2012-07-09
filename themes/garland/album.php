@@ -60,7 +60,6 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 										</h3>
 										<br />
 										<small><?php printAlbumDate(); ?></small>
-										<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album); ?>
 									</li>
 									</div>
 								<p style="clear: both;"></p>
@@ -75,8 +74,7 @@ require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php
 							if ((getNumAlbums() != 0) || !$oneImagePage){
 								printPageListWithNav(gettext("« prev"), gettext("next »"), $oneImagePage);
 							}
-							?>
-							<?php
+							if (function_exists('printAddToFavorites')) printAddToFavorites($_zp_current_album);
 							@call_user_func('printRating');
 							@call_user_func('printCommentForm');
 							printCodeblock(2);

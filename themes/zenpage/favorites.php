@@ -58,8 +58,9 @@ if (!defined('WEBPATH')) die();
 			<div id="images">
 			<?php while (next_image()): ?>
 			<div class="image">
-				<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a></div>
+				<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>"><?php printImageThumb(getBareImageTitle()); ?></a>
 				<?php printAddToFavorites($_zp_current_image, '',gettext('Remove')); ?>
+				</div>
 			</div>
 			<?php endwhile; ?>
 
@@ -68,20 +69,6 @@ if (!defined('WEBPATH')) die();
 		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
 		<br style="clear:both;" /><br />
-		<?php
-		if (function_exists('printGoogleMap')) {
-			echo '<p id="maplink">';
-			printGoogleMap();
-			echo '</p>';
-		}
-		?>
-	<?php if (function_exists('printSlideShowLink')) {
-			echo '<span id="slideshowlink">';
-			printSlideShowLink();
-			echo '</span>';
-		}
-		?>
-	<br style="clear:both;" />
 	<?php @call_user_func('printRating'); ?>
 	<?php @call_user_func('printCommentForm'); ?>
 
