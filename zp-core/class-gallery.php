@@ -382,11 +382,11 @@ class Gallery {
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
 					$tbl = $row['type'];
-					$dbtag = query_single_row("SELECT `id` FROM ".prefix('tags')." WHERE `id`='".$row['tagid']."'");
+					$dbtag = query_single_row("SELECT `id` FROM ".prefix('tags')." WHERE `id`='".$row['tagid']."'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
-					$dbtag = query_single_row("SELECT `id` FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
+					$dbtag = query_single_row("SELECT `id` FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
@@ -401,12 +401,12 @@ class Gallery {
 			$result = query("SELECT * FROM ".prefix('admin_to_object'));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					$dbtag = query_single_row("SELECT * FROM ".prefix('administrators')." WHERE `id`='".$row['adminid']."'");
+					$dbtag = query_single_row("SELECT * FROM ".prefix('administrators')." WHERE `id`='".$row['adminid']."'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
 					$tbl = $row['type'];
-					$dbtag = query_single_row("SELECT `id` FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'");
+					$dbtag = query_single_row("SELECT `id` FROM ".prefix($tbl)." WHERE `id`='".$row['objectid']."'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
@@ -421,11 +421,11 @@ class Gallery {
 			$result = query("SELECT * FROM ".prefix('news2cat'));
 			if ($result) {
 				while ($row = db_fetch_assoc($result)) {
-					$dbtag = query_single_row("SELECT `id` FROM ".prefix('news')." WHERE `id`='".$row['news_id']."'");
+					$dbtag = query_single_row("SELECT `id` FROM ".prefix('news')." WHERE `id`='".$row['news_id']."'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}
-					$dbtag = query_single_row("SELECT `id` FROM ".prefix('news_categories')." WHERE `id`='".$row['cat_id']."'");
+					$dbtag = query_single_row("SELECT `id` FROM ".prefix('news_categories')." WHERE `id`='".$row['cat_id']."'", false);
 					if (!$dbtag) {
 						$dead[] = $row['id'];
 					}

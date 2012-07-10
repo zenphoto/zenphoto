@@ -1256,12 +1256,12 @@ class SearchEngine
 							}
 						}
 					}
-					if (is_null($sorttype)) {
-						$result = sortMultiArray($result, 'weight', true);
-					}
-					foreach ($result as $album) {
-						$albums[] = $album['name'];
-					}
+				}
+				if (is_null($sorttype)) {
+					$result = sortMultiArray($result, 'weight', true);
+				}
+				foreach ($result as $album) {
+					$albums[] = $album['name'];
 				}
 			}
 			zp_apply_filter('search_statistics',$searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);
@@ -1361,12 +1361,12 @@ class SearchEngine
 		if (getOption('search_no_images') || $this->search_no_images) {
 			return array();
 		}
-			if (!is_null($sorttype)) {
+			if (is_null($sorttype)) {
 			$sorttype = $this->imagesorttype;
 		} else {
 			$this->imagesorttype = $sorttype;
 		}
-		if (!is_null($sortdirection)) {
+		if (is_null($sortdirection)) {
 			$sorttype = $this->imagesortdirection;
 		} else {
 			$this->imagesortdirection = $sortdirection;
@@ -1423,15 +1423,17 @@ class SearchEngine
 						$albums_seen[$albumid] = $albumrow = array('allow'=>$allow,'viewUnpublished'=>$viewUnpublished,'folder'=>$albumname,'localpath'=>ALBUM_FOLDER_SERVERPATH.internalToFilesystem($albumname).'/');
 					}
 					if ($albumrow['allow'] && ($row['show'] || $albumrow['viewUnpublished'])) {
-						if (file_exists($albumrow['localpath'].internalToFilesystem($row['filename']))) {	//	still exists
+						if (file_exists($albumrow['localpath'].internalToFilesystem($row['filename']))) {
+							//	still exists
 							$images[] = array('filename' => $row['filename'], 'folder' => $albumrow['folder'], 'weight'=>$weights[$row['id']]);
 						}
 					}
-					if (is_null($sorttype)) {
-						$images = sortMultiArray($images, 'weight', true);
-					}
+				}
+				if (is_null($sorttype)) {
+					$images = sortMultiArray($images, 'weight', true);
 				}
 			}
+
 			if (empty($searchdate)) {
 				zp_apply_filter('search_statistics',$searchstring, 'images', !empty($images), $this->dynalbumname, $this->iteration++);
 			}

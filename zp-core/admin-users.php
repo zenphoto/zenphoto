@@ -863,7 +863,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {
 		?>
 		<br clear="all" />
 		<p class="notebox">
-		<?php printf(gettext('You may wish to revert the user rights <em>Zenphoto_Authority</em> to version %s for backwards compatibility with prior Zenphoto releases.'),Zenphoto_Authority::getVersion()-1); ?>
+		<?php printf(gettext('You may wish to revert the <em>Zenphoto_Authority</em> user rights to version %s for backwards compatibility with prior Zenphoto releases.'),Zenphoto_Authority::getVersion()-1); ?>
 			<br clear="all" />
 			<span class="buttons">
 				<a onclick="launchScript('',['action=migrate_rights','revert=true','XSRFToken=<?php echo getXSRFToken('migrate_rights')?>']);"><?php echo gettext('Revert rights');?></a>
