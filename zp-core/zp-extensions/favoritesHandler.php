@@ -7,7 +7,7 @@
  * <ul>
  * 	<li>
  * 	The theme should have a custom page based on its standard <i>album</i> page. The default name for this
- *  page is fagorites.php, but it may be changed by option.
+ *  page is favorites.php, but it may be changed by option.
  *  This page and the standard <i>album</i> page "next" loops should contain calls on
  *  <i>printAddToFavorites($object)</i> for each object. This provides the "remove" button.
  * 	</li>
