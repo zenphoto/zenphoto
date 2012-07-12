@@ -261,6 +261,7 @@ themes/zpmobile/album.php
 themes/zpmobile/archive.php
 themes/zpmobile/comment_form
 themes/zpmobile/comment_form/comment_form.php
+themes/zpmobile/favorites.php
 themes/zpmobile/functions.php
 themes/zpmobile/gallery.php
 themes/zpmobile/image.php
@@ -277,10 +278,8 @@ themes/zpmobile/jquerymobile/images/icons-18-black.png
 themes/zpmobile/jquerymobile/images/icons-18-white.png
 themes/zpmobile/jquerymobile/images/icons-36-black.png
 themes/zpmobile/jquerymobile/images/icons-36-white.png
-themes/zpmobile/jquerymobile/jquery.mobile-1.1.0.min.css
-themes/zpmobile/jquerymobile/jquery.mobile-1.1.0.min.js
-themes/zpmobile/jquerymobile/jquery.mobile.structure-1.1.0.min.css
-themes/zpmobile/jquerymobile/jquery.mobile.theme-1.1.0.min.css
+themes/zpmobile/jquerymobile/jquery.mobile-1.1.1.min.css
+themes/zpmobile/jquerymobile/jquery.mobile-1.1.1.min.js
 themes/zpmobile/news.php
 themes/zpmobile/pages.php
 themes/zpmobile/password.php
@@ -292,7 +291,6 @@ themes/zpmobile/theme_description.php
 themes/zpmobile/themeoptions.php
 zp-core
 zp-core/404.php
-zp-core/Zenphoto.package
 zp-core/admin-albumsort.php
 zp-core/admin-comments.php
 zp-core/admin-dynamic-album.php
@@ -1912,4 +1910,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1914
+1912
