@@ -9,9 +9,9 @@ require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/print_album_menu.php')
 function jqm_loadScripts() {
 global $_zp_themeroot;
 	?>
-	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.1.0.min.css" />
-	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.1.0.min.js"></script>
-	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile.theme-1.1.0.min.css" />
+	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.1.1.min.css" />
+	<script type="text/javascript" src="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile-1.1.1.min.js"></script>
+	<!-- <link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/jquerymobile/jquery.mobile.theme-1.1.0.min.css" /> -->
 	<?php
 	printZDSearchToggleJS();
 }
