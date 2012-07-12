@@ -79,11 +79,11 @@ function printRelatedItems($number=5,$type='news',$specific=NULL) {
 				$current = @$_zp_current_image;
 				break;
 			case 'news':
-				$obj = new ZenpageNews($item);
+				$obj = new ZenpageNews($item['titlelink']);
 				$current = @$_zp_current_zenpage_news;
 				break;
 			case 'pages':
-				$obj = new ZenpagePage($item);
+				$obj = new ZenpagePage($item['titlelink']);
 				$current = @$_zp_current_zenpage_page;
 				break;
 		}
@@ -118,13 +118,13 @@ function printRelatedItems($number=5,$type='news',$specific=NULL) {
 						break;
 				}
 			?>
-			<a href="<?php echo html_encode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()).'<small> '.$category.'</small>'; ?></a>
+			<a href="<?php echo html_encode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a> (<small><?php echo $category; ?></small>)
 			</h4></li>
 			<?php
 		}
 		if($count == $number) {
 			break;
-		}
+		} 
 	} // foreach
 	if ($count) {
 		?>

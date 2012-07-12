@@ -152,10 +152,10 @@ class hitcounter {
 			} else {
 				$skip = false;
 			}
-			if (getOption('hitcounter_ignoreSearchCrawlers_enable') && !$skip) {
+			if (getOption('hitcounter_ignoreSearchCrawlers_enable') && !$skip && array_key_exists('HTTP_USER_AGENT', $_SERVER) && ($agent = $_SERVER['HTTP_USER_AGENT'])) {
 				$botList = explode(',', getOption('hitcounter_searchCrawlerList'));
 				foreach($botList as $bot) {
-					if(stripos($_SERVER['HTTP_USER_AGENT'], trim($bot))) {
+					if(stripos($agent, trim($bot))) {
 						$skip = true;
 						break;
 					}

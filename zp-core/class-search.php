@@ -873,9 +873,9 @@ class SearchEngine
 	 */
 	protected function searchFieldsAndTags($searchstring, $tbl, $sorttype, $sortdirection) {
 		global $_zp_gallery;
-		$allIDs = null;
-		$idlist = array();
+		$weights = $idlist = array();
 		$exact = EXACT_TAG_MATCH;
+		$sql = $allIDs = NULL;
 
 		// create an array of [tag, objectid] pairs for tags
 		$tag_objects = array();
@@ -890,7 +890,8 @@ class SearchEngine
 						break;
 					}
 					unset($fields[$key]);
-					$tagsql = 'SELECT t.`title` AS name, o.`news_id` AS `objectid` FROM '.prefix('news_categories').' AS t, '.prefix('news2cat').' AS o WHERE t.`id`=o.`cat_id` AND (';
+					query('SET @serachfield="news_categories"');
+					$tagsql = 'SELECT @serachfield AS field, t.`title` AS name, o.`news_id` AS `objectid` FROM '.prefix('news_categories').' AS t, '.prefix('news2cat').' AS o WHERE t.`id`=o.`cat_id` AND (';
 					foreach($searchstring as $singlesearchstring){
 						switch ($singlesearchstring) {
 							case '&':
@@ -912,7 +913,8 @@ class SearchEngine
 					break;
 				case 'tags':
 					unset($fields[$key]);
-					$tagsql = 'SELECT t.`name`, o.`objectid` FROM '.prefix('tags').' AS t, '.prefix('obj_to_tag').' AS o WHERE t.`id`=o.`tagid` AND o.`type`="'.$tbl.'" AND (';
+					query('SET @serachfield="tags"');
+					$tagsql = 'SELECT @serachfield AS field, t.`name`, o.`objectid` FROM '.prefix('tags').' AS t, '.prefix('obj_to_tag').' AS o WHERE t.`id`=o.`tagid` AND o.`type`="'.$tbl.'" AND (';
 					foreach($searchstring as $singlesearchstring){
 						switch ($singlesearchstring) {
 							case '&':
@@ -961,7 +963,9 @@ class SearchEngine
 					default:
 						$targetfound = true;
 						query('SET @serachtarget='.db_quote($singlesearchstring));
-						$fieldsql = '';
+
+
+
 						foreach ($fields as $fieldname) {
 							if ($tbl=='albums' && $fieldname=='filename') {
 								$fieldname = 'folder';
@@ -969,21 +973,23 @@ class SearchEngine
 								$fieldname = strtolower($fieldname);
 							}
 							if ($fieldname && in_array($fieldname, $columns)) {
-								$fieldsql .= ' `'.$fieldname.'` LIKE '.db_quote('%'.db_LIKE_escape($singlesearchstring).'%').' OR ';
+
+								query('SET @serachfield='.db_quote($fieldname));
+
+								$fieldsql = ' `'.$fieldname.'` LIKE '.db_quote('%'.db_LIKE_escape($singlesearchstring).'%');
+								$sql = 'SELECT @serachtarget AS name, @serachfield AS field, `id` AS `objectid` FROM '.prefix($tbl).' WHERE ('.$fieldsql.') ORDER BY `id`';
+								$objects = query_full_array($sql, false);
+								if (is_array($objects)) {
+									$field_objects = array_merge($field_objects, $objects);
+								}
 							}
-						}
-						if (!empty($fieldsql)) {
-							$fieldsql = substr($fieldsql, 0, strlen($fieldsql)-4).') ORDER BY `id`';
-							$sql = 'SELECT @serachtarget AS name, `id` AS `objectid` FROM '.prefix($tbl).' WHERE ('.$fieldsql;
-							$objects = query_full_array($sql, false);
-							if (is_array($objects)) {
-								$field_objects = array_merge($field_objects, $objects);
-							}
+
 						}
 				}
 			}
 		}
 
+		// now do the boolean logic of the search string
 		$objects = array_merge($tag_objects, $field_objects);
 		if (count($objects) != 0) {
 			$tagid = '';
@@ -1088,78 +1094,83 @@ class SearchEngine
 										}
 										break;
 								}
-								$idlist = array_unique($idlist);
 								$op = '';
 								break;
 				}
 			}
 		}
-		if (count($idlist)==0) {return NULL; }
-		$sql = 'SELECT `id`,`show`,';
 
-		switch ($tbl) {
-			case 'news':
-				if($this->search_unpublished || zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
-					$show = '';
-				} else {
-					$show = "`show` = 1 AND ";
-				}
-				$sql .= '`titlelink` ';
-				if (is_array($this->category_list)) {
-					$news_list = $this->subsetNewsCategories();
-					$idlist = array_intersect($news_list,$idlist);
-					if (count($idlist)==0) {return NULL; }
-				}
-				if (empty($sorttype)) {
-					$key = '`date` DESC';
-				} else {
-					$key = trim('`'.$sorttype.'` '.$sortdirection);
-				}
-				if ($show) {
-					$show .= '`date`<='.db_quote(date('Y-m-d H:i:s')).' AND ';
-				}
-				break;
-			case 'pages':
-				if(zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
-					$show = '';
-				} else {
-					$show = "`show` = 1 AND ";
-				}
-				$sql .= '`titlelink` ';
-				if ($show) {
-					$show .= '`date`<='.db_quote(date('Y-m-d H:i:s')).' AND ';
-				}
-				$key = '`sort_order`';
-				break;
-			case 'albums':
-				if($this->search_unpublished || zp_loggedin()) {
-					$show = '';
-				} else {
-					$show = "`show` = 1 AND ";
-				}
-				$sql .= "`folder` ";
-				if (is_null($sorttype)) {
-					if (empty($this->dynalbumname)) {
-						$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'folder');
-						if ($_zp_gallery->getSortDirection()) {
-							$key .= " DESC";
-						}
+		// we now have an id list of the items that were found and will create the SQL Search to retrieve their records
+		if (count($idlist)>0) {
+			$weights = array_count_values($idlist);
+			arsort($weights,SORT_NUMERIC);
+			$sql = 'SELECT DISTINCT`id`,`show`,';
+
+			switch ($tbl) {
+				case 'news':
+					if($this->search_unpublished || zp_loggedin(MANAGE_ALL_NEWS_RIGHTS)) {
+						$show = '';
 					} else {
-						$album = new Album(NULL, $this->dynalbumname);
-						$key = $album->getAlbumSortKey();
-						if ($key != '`sort_order`' && $key != 'RAND()') {
-							if ($album->getSortDirection('album')) {
-								$key .= " DESC";
-							}
+						$show = "`show` = 1 AND ";
+					}
+					$sql .= '`titlelink` ';
+					if (is_array($this->category_list)) {
+						$news_list = $this->subsetNewsCategories();
+						$idlist = array_intersect($news_list,$idlist);
+						if (count($idlist)==0) {
+							return NULL;
 						}
 					}
-				} else {
-					$sorttype = lookupSortKey($sorttype, 'sort_order', 'folder');
-					$key = trim($sorttype.' '.$sortdirection);
-				}
-				break;
-			default:
-				if($this->search_unpublished || zp_loggedin()) {
+					if (empty($sorttype)) {
+						$key = '`date` DESC';
+					} else {
+						$key = trim('`'.$sorttype.'` '.$sortdirection);
+					}
+					if ($show) {
+						$show .= '`date`<='.db_quote(date('Y-m-d H:i:s')).' AND ';
+					}
+					break;
+				case 'pages':
+					if(zp_loggedin(MANAGE_ALL_PAGES_RIGHTS)) {
+						$show = '';
+					} else {
+						$show = "`show` = 1 AND ";
+					}
+					$sql .= '`titlelink` ';
+					if ($show) {
+						$show .= '`date`<='.db_quote(date('Y-m-d H:i:s')).' AND ';
+					}
+					$key = '`sort_order`';
+					break;
+				case 'albums':
+					if($this->search_unpublished || zp_loggedin()) {
+						$show = '';
+					} else {
+						$show = "`show` = 1 AND ";
+					}
+					$sql .= "`folder` ";
+					if (is_null($sorttype)) {
+						if (empty($this->dynalbumname)) {
+							$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'folder');
+							if ($_zp_gallery->getSortDirection()) {
+								$key .= " DESC";
+							}
+						} else {
+							$album = new Album(NULL, $this->dynalbumname);
+							$key = $album->getAlbumSortKey();
+							if ($key != '`sort_order`' && $key != 'RAND()') {
+								if ($album->getSortDirection('album')) {
+									$key .= " DESC";
+								}
+							}
+						}
+					} else {
+						$sorttype = lookupSortKey($sorttype, 'sort_order', 'folder');
+						$key = trim($sorttype.' '.$sortdirection);
+					}
+					break;
+				default:	// images
+					if($this->search_unpublished || zp_loggedin()) {
 					$show = '';
 				} else {
 					$show = "`show` = 1 AND ";
@@ -1168,7 +1179,9 @@ class SearchEngine
 				if (is_null($sorttype)) {
 					if (empty($this->dynalbumname)) {
 						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'filename');
-						if (IMAGE_SORT_DIRECTION) { $key .= " DESC"; }
+						if (IMAGE_SORT_DIRECTION) {
+							$key .= " DESC";
+						}
 					} else {
 						$album = new Album(NULL, $this->dynalbumname);
 						$key = $album->getImageSortKey();
@@ -1183,14 +1196,11 @@ class SearchEngine
 					$key = trim($sorttype.' '.$sortdirection);
 				}
 				break;
-		}
+			}
 
-		$sql .= "FROM ".prefix($tbl)." WHERE ".$show;
-		$sql .= '('.self::compressedIDList($idlist).')';
-		$sql .= " ORDER BY ".$key;
-		$weights = array_flip(array_unique($idlist));
-		foreach ($idlist as $id) {
-			$weights[$id]++;
+			$sql .= "FROM ".prefix($tbl)." WHERE ".$show;
+			$sql .= '('.self::compressedIDList($idlist).')';
+			$sql .= " ORDER BY ".$key;
 		}
 		return array($sql, $weights);
 	}
@@ -1229,39 +1239,37 @@ class SearchEngine
 			}
 			$result = $albums = array();
 			list ($search_query,$weights) = $this->searchFieldsAndTags($searchstring, 'albums', $sorttype, $sortdirection);
-			if (empty($search_query)) {
-				$search_result = false;
-			} else {
+			if (!empty($search_query)) {
 				$search_result = query($search_query);
-			}
-			if ($search_result) {
-				while ($row = db_fetch_assoc($search_result)) {
-					$albumname = $row['folder'];
-					if ($albumname != $this->dynalbumname) {
-						if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
-							$album = new Album(NULL, $albumname);
-							$uralbum = getUrAlbum($album);
-							$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
-							switch (checkPublishDates($row)) {
-								case 1:
-									$album->setShow(0);
-									$album->save();
-								case 2:
-									$row['show'] = 0;
-							}
-							if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
-								if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
-									$result[] = array('name'=>$albumname, 'weight'=>$weights[$row['id']]);
+				if ($search_result) {
+					while ($row = db_fetch_assoc($search_result)) {
+						$albumname = $row['folder'];
+						if ($albumname != $this->dynalbumname) {
+							if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
+								$album = new Album(NULL, $albumname);
+								$uralbum = getUrAlbum($album);
+								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+								switch (checkPublishDates($row)) {
+									case 1:
+										$album->setShow(0);
+										$album->save();
+									case 2:
+										$row['show'] = 0;
+								}
+								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
+									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
+										$result[] = array('name'=>$albumname, 'weight'=>$weights[$row['id']]);
+									}
 								}
 							}
 						}
 					}
-				}
-				if (is_null($sorttype)) {
-					$result = sortMultiArray($result, 'weight', true);
-				}
-				foreach ($result as $album) {
-					$albums[] = $album['name'];
+					if (is_null($sorttype)) {
+						$result = sortMultiArray($result, 'weight', true);
+					}
+					foreach ($result as $album) {
+						$albums[] = $album['name'];
+					}
 				}
 			}
 			zp_apply_filter('search_statistics',$searchstring, 'albums', !empty($albums), $this->dynalbumname, $this->iteration++);

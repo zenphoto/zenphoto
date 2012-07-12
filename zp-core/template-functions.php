@@ -590,11 +590,11 @@ function getTotalPages($oneImagePage=false) {
  */
 function getPageURL($page, $total=null) {
 	global $_zp_current_album, $_zp_gallery, $_zp_current_search, $_zp_gallery_page;
-	if ($page <= 0) {
-		return NULL;
-	}
 	if (is_null($total)) {
 		$total = getTotalPages();
+	}
+	if ($page <= 0 || $page > $total) {
+		return NULL;
 	}
 	if (in_context(ZP_SEARCH)) {
 		$searchwords = $_zp_current_search->codifySearchString();
@@ -603,7 +603,7 @@ function getPageURL($page, $total=null) {
 		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$_zp_current_search->getAlbumList()));
 		return $searchpagepath;
 	} else {
-		if ($page <= $total && $page > 1) {
+		if ($page > 1) {
 			$page1 = '/page/'.$page;
 			$page2 = '&page='.$page;
 		} else {
