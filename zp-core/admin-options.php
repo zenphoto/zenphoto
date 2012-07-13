@@ -300,56 +300,66 @@ if (isset($_GET['action'])) {
 			if ($themeswitch) {
 				$notify = '?switched';
 			} else {
-				$ncw = $cw = getThemeOption('thumb_crop_width', $table, $themename);
-				$nch = $ch = getThemeOption('thumb_crop_height', $table, $themename);
-				if (isset($_POST['image_size'])) setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
-				if (isset($_POST['image_use_side'])) setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
-				setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
-				if (isset($_POST['thumb_size'])) {
-					$ts = sanitize_numeric($_POST['thumb_size']);
-					setThemeOption('thumb_size', $ts, $table, $themename);
-				} else {
-					$ts = getThemeOption('thumb_size',$table, $themename);
-				}
-				if (isset($_POST['thumb_crop_width'])) {
-					if (is_numeric($_POST['thumb_crop_width'])) {
-						$ncw = round($ts - $ts*2*$_POST['thumb_crop_width']/100);
+				if ($_POST['savethemeoptions']=='reset') {
+					$sql = 'DELETE FROM '.prefix('options').' WHERE `theme`='.db_quote($themename);
+					if ($themealbum) {
+						$sql .= ' AND `ownerid`='.$themealbum->getID();
+					} else {
+						$sql .= ' AND `ownerid`=0';
 					}
-					setThemeOption('thumb_crop_width', $ncw, $table, $themename);
-				}
-				if (isset($_POST['thumb_crop_height'])) {
-					if (is_numeric($_POST['thumb_crop_height'])) {
-						$nch = round($ts - $ts*2*$_POST['thumb_crop_height']/100);
-					}
-					setThemeOption('thumb_crop_height', $nch, $table, $themename);
-				}
-				if (isset($_POST['albums_per_page']) && isset($_POST['albums_per_row'])) {
-					$albums_per_page = sanitize_numeric($_POST['albums_per_page']);
-					$albums_per_row = max(1,sanitize_numeric($_POST['albums_per_row']));
-					$albums_per_page = ceil($albums_per_page/$albums_per_row)*$albums_per_row;
-					setThemeOption('albums_per_page', $albums_per_page, $table, $themename);
-					setThemeOption('albums_per_row', $albums_per_row, $table, $themename);
-				}
-				if (isset($_POST['images_per_page']) && isset($_POST['images_per_row'])) {
-					$images_per_page = sanitize_numeric($_POST['images_per_page']);
-					$images_per_row =  max(1,sanitize_numeric($_POST['images_per_row']));
-					$images_per_page = ceil($images_per_page/$images_per_row)*$images_per_row;
-					setThemeOption('images_per_page', $images_per_page, $table, $themename);
-					setThemeOption('images_per_row', $images_per_row, $table, $themename);
-				}
-
-				if (isset($_POST['thumb_transition'])) setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition'])-1) && true), $table, $themename);
-				if (isset($_POST['custom_index_page'])) setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
-				$otg = getThemeOption('thumb_gray', $table, $themename);
-				setThemeOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
-				if ($otg = getThemeOption('thumb_gray', $table, $themename)) $wmo = 99; // force cache clear
-				$oig = getThemeOption('image_gray', $table, $themename);
-				setThemeOption('image_gray', (int) isset($_POST['image_gray']), $table, $themename);
-				if ($oig = getThemeOption('image_gray',$table, $themename)) $wmo = 99; // force cache clear
-				if ($nch != $ch || $ncw != $cw) { // the crop height/width has been changed
-					$sql = 'UPDATE '.prefix('images').' SET `thumbX`=NULL,`thumbY`=NULL,`thumbW`=NULL,`thumbH`=NULL WHERE `thumbY` IS NOT NULL';
 					query($sql);
-					$wmo = 99; // force cache clear as well.
+				} else {
+					$ncw = $cw = getThemeOption('thumb_crop_width', $table, $themename);
+					$nch = $ch = getThemeOption('thumb_crop_height', $table, $themename);
+					if (isset($_POST['image_size'])) setThemeOption('image_size', sanitize_numeric($_POST['image_size']), $table, $themename);
+					if (isset($_POST['image_use_side'])) setThemeOption('image_use_side', sanitize($_POST['image_use_side']), $table, $themename);
+					setThemeOption('thumb_crop', (int) isset($_POST['thumb_crop']), $table, $themename);
+					if (isset($_POST['thumb_size'])) {
+						$ts = sanitize_numeric($_POST['thumb_size']);
+						setThemeOption('thumb_size', $ts, $table, $themename);
+					} else {
+						$ts = getThemeOption('thumb_size',$table, $themename);
+					}
+					if (isset($_POST['thumb_crop_width'])) {
+						if (is_numeric($_POST['thumb_crop_width'])) {
+							$ncw = round($ts - $ts*2*$_POST['thumb_crop_width']/100);
+						}
+						setThemeOption('thumb_crop_width', $ncw, $table, $themename);
+					}
+					if (isset($_POST['thumb_crop_height'])) {
+						if (is_numeric($_POST['thumb_crop_height'])) {
+							$nch = round($ts - $ts*2*$_POST['thumb_crop_height']/100);
+						}
+						setThemeOption('thumb_crop_height', $nch, $table, $themename);
+					}
+					if (isset($_POST['albums_per_page']) && isset($_POST['albums_per_row'])) {
+						$albums_per_page = sanitize_numeric($_POST['albums_per_page']);
+						$albums_per_row = max(1,sanitize_numeric($_POST['albums_per_row']));
+						$albums_per_page = ceil($albums_per_page/$albums_per_row)*$albums_per_row;
+						setThemeOption('albums_per_page', $albums_per_page, $table, $themename);
+						setThemeOption('albums_per_row', $albums_per_row, $table, $themename);
+					}
+					if (isset($_POST['images_per_page']) && isset($_POST['images_per_row'])) {
+						$images_per_page = sanitize_numeric($_POST['images_per_page']);
+						$images_per_row =  max(1,sanitize_numeric($_POST['images_per_row']));
+						$images_per_page = ceil($images_per_page/$images_per_row)*$images_per_row;
+						setThemeOption('images_per_page', $images_per_page, $table, $themename);
+						setThemeOption('images_per_row', $images_per_row, $table, $themename);
+					}
+
+					if (isset($_POST['thumb_transition'])) setThemeOption('thumb_transition', (int) ((sanitize_numeric($_POST['thumb_transition'])-1) && true), $table, $themename);
+					if (isset($_POST['custom_index_page'])) setThemeOption('custom_index_page', sanitize($_POST['custom_index_page'], 3), $table, $themename);
+					$otg = getThemeOption('thumb_gray', $table, $themename);
+					setThemeOption('thumb_gray', (int) isset($_POST['thumb_gray']), $table, $themename);
+					if ($otg = getThemeOption('thumb_gray', $table, $themename)) $wmo = 99; // force cache clear
+					$oig = getThemeOption('image_gray', $table, $themename);
+					setThemeOption('image_gray', (int) isset($_POST['image_gray']), $table, $themename);
+					if ($oig = getThemeOption('image_gray',$table, $themename)) $wmo = 99; // force cache clear
+					if ($nch != $ch || $ncw != $cw) { // the crop height/width has been changed
+						$sql = 'UPDATE '.prefix('images').' SET `thumbX`=NULL,`thumbY`=NULL,`thumbW`=NULL,`thumbH`=NULL WHERE `thumbY` IS NOT NULL';
+						query($sql);
+						$wmo = 99; // force cache clear as well.
+					}
 				}
 			}
 		}
@@ -2366,10 +2376,11 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 		$unsupportedOptions = array();
 		$supportedOptions = array();
 	}
+	standardThemeOptions($themename, $album);
 	?>
-	<form action="?action=saveoptions" method="post" autocomplete="off">
+	<form action="?action=saveoptions" method="post" id="themeoptionsform" autocomplete="off">
 		<?php XSRFToken('saveoptions');?>
-		<input type="hidden" name="savethemeoptions" value="yes" />
+		<input type="hidden" id="savethemeoptions" name="savethemeoptions" value="yes" />
 		<input type="hidden" name="optiontheme" value="<?php echo html_encode($themename); ?>" />
 		<input type="hidden" name="old_themealbum" value="<?php echo pathurlencode($alb); ?>" />
 		<table class='bordered options'>
@@ -2419,10 +2430,11 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			?>
 			<tr>
 					<td colspan="3">
-					<p class="buttons">
-					<button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-					<button type="reset" value="<?php echo gettext('reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-					</p>
+						<p class="buttons">
+							<button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+							<button type="button" value="<?php echo gettext('Revert to default') ?>" title="<?php echo gettext("Revert"); ?>" onclick="$('#savethemeoptions').val('reset');$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+							<button type="reset" value="<?php echo gettext('reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+						</p>
 					</td>
 				</tr>
 			<tr class="alt1">
@@ -2688,10 +2700,11 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			?>
 			<tr>
 			<td colspan="3">
-			<p class="buttons">
-			<button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
-			<button type="reset" value="<?php echo gettext('reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
-			</p>
+				<p class="buttons">
+					<button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
+					<button type="button" value="<?php echo gettext('Revert to default') ?>" title="<?php echo gettext("Revert"); ?>" onclick="$('#savethemeoptions').val('reset');$('#themeoptionsform').submit();"><img src="images/refresh.png" alt="" /><strong><?php echo gettext("Revert to default"); ?></strong></button>
+					<button type="reset" value="<?php echo gettext('reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
+				</p>
 			</td>
 			</tr>
 			<?php

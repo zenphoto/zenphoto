@@ -25,6 +25,7 @@ if (isset($_GET['action'])) {
 				if (empty($alb)) {
 					$_zp_gallery->setCurrentTheme($newtheme);
 					$_zp_gallery->save();
+					$_set_theme_album = NULL;
 				} else {
 					$_set_theme_album = new Album(NULL, $alb);
 					$oldtheme = $_set_theme_album->getAlbumTheme();
@@ -37,17 +38,7 @@ if (isset($_GET['action'])) {
 					$opt = new ThemeOptions();	//	prime the default options!
 				}
 				/* set any "standard" options that may not have been covered by the theme */
-				setThemeOption('albums_per_page', 6, NULL, $newtheme, true);
-				setThemeOption('albums_per_row', 3, NULL, $newtheme, true);
-				setThemeOption('images_per_page', 20, NULL, $newtheme, true);
-				setThemeOption('images_per_row', 5, NULL, $newtheme, true);
-				setThemeOption('image_size', 595, NULL, $newtheme, true);
-				setThemeOption('image_use_side', 'longest', NULL, $newtheme, true);
-				setThemeOption('thumb_size', 100, NULL, $newtheme, true);
-				setThemeOption('thumb_crop_width', 100, NULL, $newtheme, true);
-				setThemeOption('thumb_crop_height', 100, NULL, $newtheme, true);
-				setThemeOption('thumb_crop', 1, NULL, $newtheme, true);
-				setThemeOption('thumb_transition', 1, NULL, $newtheme, true);
+				standardThemeOptions($newtheme, $_set_theme_album);
 				header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-themes.php?themealbum=".$_GET['themealbum']);
 				exitZP();
 			}

@@ -842,6 +842,26 @@ function processCustomOptionSave($returntab, $themename=NULL, $themealbum=NULL) 
 }
 
 /**
+ *
+ * Set defaults for standard theme options incase the theme has not done so
+ * @param string $theme
+ * @param int $albumid zero or the album "owning" the theme
+ */
+function standardThemeOptions($theme, $album) {
+	setThemeOption('albums_per_page', 6, $album, $theme, true);
+	setThemeOption('albums_per_row', 3, $album, $theme, true);
+	setThemeOption('images_per_page', 20, $album, $theme, true);
+	setThemeOption('images_per_row', 5, $album, $theme, true);
+	setThemeOption('image_size', 595, $album, $theme, true);
+	setThemeOption('image_use_side', 'longest', $album, $theme, true);
+	setThemeOption('thumb_size', 100, $album, $theme, true);
+	setThemeOption('thumb_crop_width', 100, $album, $theme, true);
+	setThemeOption('thumb_crop_height', 100, $album, $theme, true);
+	setThemeOption('thumb_crop', 1, $album, $theme, true);
+	setThemeOption('thumb_transition', 1, $album, $theme, true);
+}
+
+/**
  * Encodes for use as a $_POST index
  *
  * @param string $str
