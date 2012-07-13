@@ -80,7 +80,7 @@ class favoritesOptions {
 																					'multilingual'=>true,
 																					'order'=>3,
 																					'desc' => gettext('The favorites page title text.')),
-											gettext('Description') => array('key' => 'favorites_desc', 'type' => OPTION_TYPE_TEXTBOX,
+											gettext('Description') => array('key' => 'favorites_desc', 'type' => OPTION_TYPE_TEXTAREA,
 																					'multilingual'=>true,
 																					'order'=>5,
 																					'desc' => gettext('The favorites page description text.')),

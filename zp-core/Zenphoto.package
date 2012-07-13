@@ -261,7 +261,6 @@ themes/zpmobile/album.php
 themes/zpmobile/archive.php
 themes/zpmobile/comment_form
 themes/zpmobile/comment_form/comment_form.php
-themes/zpmobile/favorites.php
 themes/zpmobile/functions.php
 themes/zpmobile/gallery.php
 themes/zpmobile/image.php
@@ -291,6 +290,7 @@ themes/zpmobile/theme_description.php
 themes/zpmobile/themeoptions.php
 zp-core
 zp-core/404.php
+zp-core/Zenphoto.package
 zp-core/admin-albumsort.php
 zp-core/admin-comments.php
 zp-core/admin-dynamic-album.php
