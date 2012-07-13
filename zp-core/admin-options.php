@@ -11,6 +11,17 @@ require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 
+define ('PLUGINS_PER_PAGE', 20);
+if (isset($_GET['subpage'])) {
+	$subpage = sanitize_numeric($_GET['subpage']);
+} else {
+	if (isset($_POST['subpage'])) {
+		$subpage = sanitize_numeric($_POST['subpage']);
+	} else {
+		$subpage = 0;
+	}
+}
+
 if (!isset($_GET['page'])) {
 	if (array_key_exists('options', $zenphoto_tabs)) {
 		$_GET['page'] = 'options';
@@ -348,7 +359,7 @@ if (isset($_GET['action'])) {
 			if (isset($_GET['single'])) {
 				$returntab = "&tab=plugin&single=".sanitize($_GET['single']);
 			} else {
-				$returntab = "&tab=plugin";
+				$returntab = "&tab=plugin&subpage=$subpage";
 			}
 			if (!isset($_POST['last_plugin_option'])) {
 				$notify = '?saved&missing';
@@ -2712,12 +2723,26 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 	}
 
 	$_zp_plugin_count = 0;
+
+	$showlist = array();
+	if (isset($_GET['single'])) {
+		$plugins = array($showExtension);
+	} else {
+		$plugins = array_keys(getEnabledPlugins());
+		natcasesort($plugins);
+	}
+	$pages = round(ceil(count($plugins) / PLUGINS_PER_PAGE));
+	$plugins = array_slice($plugins,$subpage*PLUGINS_PER_PAGE,PLUGINS_PER_PAGE);
 	?>
 	<div id="tab_plugin" class="tabbox">
 		<?php zp_apply_filter('admin_note','options', $subtab); ?>
+		<script type="text/javascript">
+			var optionholder = new array();
+		</script>
 		<form action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single='.$showExtension; ?>" method="post" autocomplete="off">
 			<?php XSRFToken('saveoptions');?>
 			<input type="hidden" name="savepluginoptions" value="yes" />
+			<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 			<table class="bordered">
 				<tr>
 						<td colspan="3">
@@ -2728,22 +2753,72 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						</td>
 				</tr>
 			<tr>
-				<th colspan="3" style="text-align:center">
+				<th colspan="2" style="text-align:center">
 					<span style="font-weight: normal">
 						<a href="javascript:setShow(1);toggleExtraInfo('','plugin',true);"><?php echo gettext('Expand plugin options');?></a>
 						|
 						<a href="javascript:setShow(0);toggleExtraInfo('','plugin',false);"><?php echo gettext('Collapse all plugin options');?></a>
 					</span>
+					</th>
+					<th>
+					<?php
+					if ($pages > 1) {
+						?>
+						<ul class="pagelist">
+								<?php
+							if ($subpage > 0) {
+								?>
+								<li>
+								<a href="?page=options&tab=plugin&subpage=<?php echo ($subpage-1); ?>" ><?php echo gettext('prev'); ?></a>
+								</li>
+								<?php
+							} else {
+							?>
+							</li class="disabledlink">
+							<?php
+								echo gettext('prev');
+							?>
+							</li>
+							<?php
+							}
+							for ($i=1;$i<=$pages;$i++) {
+								if ($i == $subpage+1) {
+									?>
+									<li class="disabledlink">
+										<?php echo " $i "; ?>
+									</li>
+									<?php
+								} else {
+									?>
+									<li>
+										<a href="?page=options&tab=plugin&subpage=<?php echo $i-1; ?>" ><?php echo " $i "; ?></a>
+									</li>
+									<?php
+								}
+							}
+							if ($subpage < $pages-1) {
+								?>
+								<li>
+									<a href="?page=options&tab=plugin&subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?></a>
+								</li>
+								<?php
+							} else {
+								?>
+								</li class="disabledlink">
+								<?php
+									echo gettext('next');
+								?>
+								</li>
+								<?php
+							}
+							?>
+						</ul>
+						<?php
+					}
+					?>
 				</th>
 			</tr>
 				<?php
-				$showlist = array();
-				if (isset($_GET['single'])) {
-					$plugins = array($showExtension);
-				} else {
-					$plugins = array_keys(getEnabledPlugins());
-					natcasesort($plugins);
-				}
 				foreach ($plugins as $extension) {
 					$option_interface = NULL;
 					$path = getPlugin($extension.'.php');
@@ -2998,8 +3073,7 @@ if ($subtab == 'security' && zp_loggedin(ADMIN_RIGHTS)) {
 						</p>
 					</td>
 				</tr>
-			</table> <!-- plugin page table -->
-			<input type="hidden" name="last_plugin_option"	value="1" />
+			</table> <!-- security page table -->
 		</form>
 	</div>
 	<!-- end of tab_security div -->

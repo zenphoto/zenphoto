@@ -824,9 +824,6 @@ function processCustomOptionSave($returntab, $themename=NULL, $themealbum=NULL) 
 				setThemeOption($key, $value, $themealbum, $themename);
 			} else {
 				setOption($key, $value);
-
-debugLogVar($key, $value);
-
 			}
 		} else {
 			if (strpos($postkey, 'show-') === 0) {
