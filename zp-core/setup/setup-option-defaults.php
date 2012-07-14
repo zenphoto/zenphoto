@@ -572,8 +572,11 @@ appropriate gallery methods.
 	}
 
 setOptionDefault('zp_plugin_ipBlocker', getOption('zp_plugin_failed_access_blocker'));
-setOption('spamFilter_none_action', getOption('Action'));
-//TODO: 1.4.4 purge the "Action" option
+purgeOption('zp_plugin_failed_access_blocker');
+setOptionDefault('spamFilter_none_action', getOption('Action'));
+purgeOption('Action');
+setOptionDefault('plugins_per_page', 20);
+setOptionDefault('users_per_page', 10);
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface

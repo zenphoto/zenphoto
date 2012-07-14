@@ -779,7 +779,7 @@ $alb = removeParentAlbumNames($album);
 			?>
 		<div id="tab_subalbuminfo" class="tabbox">
 		<?php
-		printEditDropdown('subalbuminfo');
+		printEditDropdown('subalbuminfo', array('1','2','3','4','5'), $subalbum_nesting);
 		?>
 		<form action="?page=edit&amp;album=<?php echo pathurlencode($album->name); ?>&amp;action=savesubalbumorder&amp;tab=subalbuminfo" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();">
 			<?php XSRFToken('savealbumorder'); ?>
@@ -913,7 +913,7 @@ $alb = removeParentAlbumNames($album);
 			}
 			?>
 			<div style="padding-bottom:10px;">
-				<?php printEditDropdown('imageinfo',$steps); ?>
+				<?php printEditDropdown('imageinfo',$steps, $imagesTab_imageCount); ?>
 			</div>
 			<br style='clear:both'/>
 			<?php
@@ -1623,7 +1623,7 @@ if($subtab != "albuminfo") {	?>
 
 	<?php
 	consolidatedEditMessages('');
-	printEditDropdown('');
+	printEditDropdown('', array('1','2','3','4','5'), $album_nesting);
 	?>
 <form action="?page=edit&amp;action=savealbumorder" method="post" name="sortableListForm" id="sortableListForm" onsubmit="return confirmAction();">
 	<?php XSRFToken('savealbumorder');?>

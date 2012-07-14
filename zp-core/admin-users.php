@@ -7,8 +7,8 @@
 // force UTF-8 Ø
 
 define('OFFSET_PATH', 1);
-define('USERS_PER_PAGE',10);
 require_once(dirname(__FILE__).'/admin-globals.php');
+define('USERS_PER_PAGE',getOption('users_per_page'));
 
 if (isset($_GET['ticket'])) {
 	$ticket = '&ticket='.sanitize($_GET['ticket']).'&user='.sanitize(@$_GET['user']);

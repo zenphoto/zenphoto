@@ -3468,16 +3468,13 @@ function printNestedAlbumsList($albums, $show_thumb) {
  * Prints the dropdown menu for the nesting level depth for the album sorting
  *
  */
-function printEditDropdown($subtab,$nestinglevels = array('1','2','3','4','5')) {
-	global $subalbum_nesting, $album_nesting, $imagesTab_imageCount;
+function printEditDropdown($subtab, $nestinglevels, $nesting) {
 	switch ($subtab) {
 		case '':
 			$link = '?selection=';
-			$nesting = $album_nesting;
 			break;
 		case 'subalbuminfo':
 			$link = '?page=edit&amp;album='.html_encode($_GET['album'],3).'&amp;tab=subalbuminfo&amp;selection=';
-			$nesting = $subalbum_nesting;
 			break;
 		case 'imageinfo':
 			if (isset($_GET['tagsort'])) {
@@ -3486,7 +3483,6 @@ function printEditDropdown($subtab,$nestinglevels = array('1','2','3','4','5')) 
 				$tagsort = '';
 			}
 			$link = '?page=edit&amp;album='.html_encode($_GET['album'],3).'&amp;tab=imageinfo'.$tagsort.'&amp;selection=';
-			$nesting = $imagesTab_imageCount;
 			break;
 	}
 	?>

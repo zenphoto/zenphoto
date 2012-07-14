@@ -356,6 +356,12 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		 ?>
 		</li>
 		<li>
+		<?php echo gettext ('Server path:').' <strong>'.SERVERPATH.'</strong>'?>
+		</li>
+		<li>
+		<?php echo gettext ('WEB path:').' <strong>'.WEBPATH.'</strong>'?>
+		</li>
+		<li>
 			<?php
 			$themes = $_zp_gallery->getThemes();
 			$currenttheme = $_zp_gallery->getCurrentTheme();

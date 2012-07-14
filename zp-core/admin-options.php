@@ -11,7 +11,7 @@ require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 
-define ('PLUGINS_PER_PAGE', 20);
+define ('PLUGINS_PER_PAGE', getOption('plugins_per_page'));
 if (isset($_GET['subpage'])) {
 	$subpage = sanitize_numeric($_GET['subpage']);
 } else {
@@ -90,6 +90,8 @@ if (isset($_GET['action'])) {
 			setOption('charset', sanitize($_POST['charset']),3);
 			setOption('site_email', sanitize($_POST['site_email']),3);
 			setOption('site_email_name', process_language_string_save('site_email_name',3));
+			setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
+			setOption('plugins_per_page', sanitize_numeric($_POST['plugins_per_page']));
 			setOption('multi_lingual', (int) isset($_POST['multi_lingual']));
 			$f = sanitize($_POST['date_format_list'],3);
 			if ($f == 'custom') $f = sanitize($_POST['date_format'],3);
@@ -844,6 +846,19 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<input type="text" size="48" id="site_email" name="site_email"  value="<?php echo getOption('site_email'); ?>" />
 					</td>
 					<td><?php echo gettext("This email name and address will be used as the <em>From</em> address for all mails sent by Zenphoto."); ?></td>
+				</tr>
+				<tr>
+					<td width="175">
+						<?php echo gettext("Users per page:"); ?>
+						<br />
+						<?php echo gettext("Plugins per page:"); ?>
+					</td>
+					<td width="350">
+						<input type="text" size="5" id="users_per_page" name="users_per_page"  value="<?php echo getOption('users_per_page'); ?>" />
+						<br />
+						<input type="text" size="5" id="plugins_per_page" name="plugins_per_page"  value="<?php echo getOption('plugins_per_page'); ?>" />
+					</td>
+					<td><?php echo gettext('These options control the number of items shown on their tabs. If you have problems saving these tabs reduce the number shown on the page.'); ?></td>
 				</tr>
 				<?php zp_apply_filter('admin_general_data'); ?>
 				<tr>
@@ -2737,11 +2752,20 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 
 	$_zp_plugin_count = 0;
 
-	$showlist = array();
+	$plugins = $showlist = array();
 	if (isset($_GET['single'])) {
 		$plugins = array($showExtension);
 	} else {
-		$plugins = array_keys(getEnabledPlugins());
+		$list = array_keys(getEnabledPlugins());
+		foreach ($list as $extension) {
+			$option_interface = NULL;
+			$path = getPlugin($extension.'.php');
+			$pluginStream = file_get_contents($path);
+			$str = isolate('$option_interface', $pluginStream);
+			if (false !== $str) {
+				$plugins[] = $extension;
+			}
+		}
 		natcasesort($plugins);
 	}
 	$pages = round(ceil(count($plugins) / PLUGINS_PER_PAGE));
@@ -2765,7 +2789,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						</p>
 						</td>
 				</tr>
-			<tr>
+				<tr>
 				<th colspan="2" style="text-align:center">
 					<span style="font-weight: normal">
 						<a href="javascript:setShow(1);toggleExtraInfo('','plugin',true);"><?php echo gettext('Expand plugin options');?></a>
