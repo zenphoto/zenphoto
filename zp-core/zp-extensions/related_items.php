@@ -35,6 +35,20 @@ function getRelatedItems($type='news',$album=NULL) {
 			$paramstr = '&albumname='.urlencode($album);
 		}
 		$search = new SearchEngine();
+		switch($type) {
+			case 'albums':
+				$paramstr .= '&inalbums=1';
+				break;
+			case 'images':
+				$paramstr .= '&inimages=1';
+				break;
+			case 'news':
+				$paramstr .= '&innews=1';
+				break;
+			case 'pages':
+				$paramstr .= '&inpages=1';
+				break;
+		}
 		$search->setSearchParams($paramstr);
 		switch($type) {
 			case 'albums':
