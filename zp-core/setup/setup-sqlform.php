@@ -103,7 +103,7 @@
 			<td><?php echo gettext("Database table prefix"); ?></td>
 			<?php
 			if($_zp_conf_vars['mysql_prefix']=='.') {
-				$path = str_replace(' ', '_', trim($const_webpath,'/')).'_';
+				$path = str_replace(array(' ','/'), '_', trim($const_webpath,'/')).'_';
 			} else {
 				$path = $_zp_conf_vars['mysql_prefix'];
 			}

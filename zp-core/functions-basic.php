@@ -937,11 +937,15 @@ function rewrite_path($rewrite, $plain, $webpath=true) {
  * @return string
  */
 function pathurlencode($path) {
-	$link = explode('?', $path);
-	if (count($link)==2) {	//	some kind of query link
-		return implode("/", array_map("rawurlencode", explode("/", $link[0]))).'?'.html_encode($link[1]);
+	preg_match('|^(http[s]*\://[a-zA-Z0-9\-\.]+/?)*(.*)$|xis', $path, $matches);
+	$parts = explode('?', $matches[2]);
+	$link = implode("/", array_map("rawurlencode", explode("/", $parts[0])));
+	if (count($parts)==2) {
+		//	some kind of query link
+		$link .= '?'.html_encode($parts[1]);
 	}
-	return implode("/", array_map("rawurlencode", explode("/", $path)));
+	$link = $matches[1].$link;
+	return $link;
 }
 
 /**

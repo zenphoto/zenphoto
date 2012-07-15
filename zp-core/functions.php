@@ -2369,7 +2369,7 @@ class zpFunctions {
 	 * Returns true if the install is not a "clone"
 	 */
 	static function hasPrimaryScripts() {
-		if ($zen = @readlink(SERVERPATH.'/'.ZENFOLDER)) {	// no error reading the link info
+		if (function_exists('readlink') && $zen = @readlink(SERVERPATH.'/'.ZENFOLDER)) {	// no error reading the link info
 			return dirname(@readlink(SERVERPATH.'/'.DATA_FOLDER)) == dirname($zen);
 		}
 		return true;

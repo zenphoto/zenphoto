@@ -22,7 +22,7 @@
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext('Allows multiple Zenphoto installations to share a single set of Zenphoto script files.');
 $plugin_author = "Stephen Billard (sbillard)";
-$plugin_disable = (zpFunctions::hasPrimaryScripts())?false:gettext('Only the primary installation may clone offspring installations.');
+$plugin_disable = (function_exists('readlink'))?(zpFunctions::hasPrimaryScripts())?false:gettext('Only the primary installation may clone offspring installations.'):gettext('Your server does not support symbolic linking.');
 
 require_once(SERVERPATH.'/'.ZENFOLDER.'/reconfigure.php');
 if (!$plugin_disable) {

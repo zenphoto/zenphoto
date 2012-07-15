@@ -24,7 +24,9 @@ if (getOption('logger_log_admin')) {
 	zp_register_filter('admin_login_attempt', 'security_logger::adminLoginLogger');
 	zp_register_filter('federated_login_attempt', 'security_logger::federatedLoginLogger');
 }
-if (getOption('logger_log_guests')) zp_register_filter('guest_login_attempt', 'security_logger::guestLoginLogger');
+if (getOption('logger_log_guests')) {
+	zp_register_filter('guest_login_attempt', 'security_logger::guestLoginLogger');
+}
 zp_register_filter('admin_allow_access', 'security_logger::adminGate');
 zp_register_filter('admin_managed_albums_access', 'security_logger::adminAlbumGate');
 zp_register_filter('save_user', 'security_logger::UserSave');

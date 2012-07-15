@@ -119,10 +119,10 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 		updateConfigItem('mysql_host', setup_sanitize($_POST['db_host']));
 	}
 	if (isset($_POST['db_database'])) {
-		updateConfigItem('mysql_database', setup_sanitize($_POST['db_database']));
+		updateConfigItem('mysql_database', trim(setup_sanitize($_POST['db_database'])));
 	}
 	if (isset($_POST['db_prefix'])) {
-		updateConfigItem('mysql_prefix', setup_sanitize($_POST['db_prefix']));
+		updateConfigItem('mysql_prefix', str_replace(array('.','/','\\','`','"', "'"), '_', trim(setup_sanitize($_POST['db_prefix']))));
 	}
 }
 
