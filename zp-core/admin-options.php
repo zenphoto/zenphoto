@@ -11,7 +11,7 @@ require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(OPTIONS_RIGHTS, currentRelativeURL());
 
-define ('PLUGINS_PER_PAGE', getOption('plugins_per_page'));
+define ('PLUGINS_PER_PAGE', max(1,getOption('plugins_per_page')));
 if (isset($_GET['subpage'])) {
 	$subpage = sanitize_numeric($_GET['subpage']);
 } else {

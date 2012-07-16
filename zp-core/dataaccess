@@ -1,5 +1,7 @@
 # block WEB access to Zenphoto data files
-IndexIgnore *
+<IfModule mod_autoindex.c>
+	IndexIgnore *
+</IfModule>
 <FilesMatch "\.(htaccess|cfg|log)$">
   Order Allow,Deny
   Deny from all
