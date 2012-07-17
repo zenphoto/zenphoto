@@ -15,7 +15,7 @@ zp_session_start();
 if (SERVER_PROTOCOL == 'https_admin') {
 	// force https login
 	if (!isset($_SERVER["HTTPS"])) {
-		$redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		$redirect= "https://".$_SERVER['HTTP_HOST'].@$_SERVER['REQUEST_URI'];
 		header("Location:$redirect");
 		exitZP();
 	}

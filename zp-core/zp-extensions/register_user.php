@@ -219,7 +219,7 @@ function printRegistrationForm($thanks=NULL) {
 		$params = unserialize(pack("H*", trim(sanitize($_GET['verify']),'.')));
 		// expung the verify query string as it will cause us to come back here if login fails.
 		unset($_GET['verify']); // so it will not be in the way if the logon fails
-		$_SERVER['REQUEST_URI'] = preg_replace('/\?verify=(.*)/', '', sanitize($_SERVER['REQUEST_URI']));
+		$_SERVER['REQUEST_URI'] = preg_replace('/\?verify=(.*)/', '', sanitize(@$_SERVER['REQUEST_URI']));
 
 		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $params['user'], '`valid`=' => 1));
 		if ($userobj->getEmail() == $params['email']) {
@@ -360,7 +360,7 @@ function printRegistrationForm($thanks=NULL) {
 				<?php
 			case 'already_verified':
 			case 'loginfailed':
-				$_SERVER['REQUEST_URI'] .= '?login';
+				$_SERVER['REQUEST_URI'] = @$_SERVER['REQUEST_URI'].'?login';
 				require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_login-out.php');
 				printPasswordForm('', false, true, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
 				$notify = 'success';

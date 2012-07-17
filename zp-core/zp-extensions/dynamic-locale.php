@@ -79,12 +79,12 @@ function printLanguageSelector($flags=NULL) {
 						switch (LOCALE_TYPE) {
 							case 2:
 								?>
-								<a href="<?php echo dynamic_locale::fullHostPath($lang).html_encode($_SERVER['REQUEST_URI']); ?>" >
+								<a href="<?php echo dynamic_locale::fullHostPath($lang).html_encode(@$_SERVER['REQUEST_URI']); ?>" >
 								<?php
 								break;
 							case 1:
 								?>
-								<a href="<?php echo html_encode(str_replace(WEBPATH, WEBPATH.'/'.substr($lang,0,2), $_SERVER['REQUEST_URI'])); ?>" >
+								<a href="<?php echo html_encode(str_replace(WEBPATH, WEBPATH.'/'.substr($lang,0,2), @$_SERVER['REQUEST_URI'])); ?>" >
 								<?php
 								break;
 							default:

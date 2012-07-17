@@ -94,7 +94,12 @@ if (zp_loggedin()) { /* Display the admin pages. Do action handling first. */
 			$actions = array(	'clear_cache'=>gettext('purge Image cache'),
 												'clear_rss_cache'=>gettext('purge RSS cache'),
 												'reset_hitcounters'=>gettext('reset all hitcounters'));
-			$msg = sprintf(gettext('You do not have proper rights to %s.'),$actions[$action]);
+			if (array_key_exists($action, $actions)) {
+				$msg = $actions[$action];
+			} else {
+				$msg = '<em>'.$action.'</em>';
+			}
+			$msg = sprintf(gettext('You do not have proper rights to %s.'),$msg);
 		}
 	} else {
 		if (isset($_GET['from'])) {

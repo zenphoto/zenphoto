@@ -44,7 +44,7 @@ $_zp_loggedin = false;
 // we have the ssl marker cookie, normally we are already logged in
 // but we need to redirect to ssl to retrive the auth cookie (set as secure).
 if (zp_getCookie('zenphoto_ssl') && !secureServer()) {
-	$redirect = "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	$redirect = "https://".$_SERVER['HTTP_HOST'].@$_SERVER['REQUEST_URI'];
 	header("Location:$redirect");
 	exitZP();
 }

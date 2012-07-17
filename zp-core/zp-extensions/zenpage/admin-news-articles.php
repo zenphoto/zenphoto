@@ -22,14 +22,7 @@ if (isset($_GET['deleted'])) {
 if(isset($_POST['checkallaction'])) {	// true if apply is pressed
 	XSRFdefender('checkeditems');
 	if ($action = processZenpageBulkActions('News')) {
-		$uri = $_SERVER['REQUEST_URI'];
-		if (strpos($uri, '?')) {
-			$uri .= '&bulkaction='.$action;
-		} else {
-			$uri .= '?bulkaction='.$action;
-		}
-		header('Location: ' .$uri);
-		exitZP();
+		bulkActionRedirect($action);
 	}
 }
 if(isset($_GET['delete'])) {

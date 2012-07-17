@@ -29,14 +29,7 @@ if(isset($_POST['update'])) {
 		}
 	} else {
 		$action = processZenpageBulkActions('Page');
-		$uri = $_SERVER['REQUEST_URI'];
-		if (strpos($uri, '?')) {
-			$uri .= '&bulkaction='.$action;
-		} else {
-			$uri .= '?bulkaction='.$action;
-		}
-		header('Location: ' .$uri);
-		exitZP();
+		bulkActionRedirect($action);
 	}
 }
 // remove the page from the database

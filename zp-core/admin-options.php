@@ -384,7 +384,7 @@ if (isset($_GET['action'])) {
 				if ($protocol == 'https_admin' || $protocol == 'https_admin') {
 					// force https to be sure it works, otherwise the "save" will be the last thing we do
 					if (!isset($_SERVER["HTTPS"])) {
-						$redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+						$redirect= "https://".$_SERVER['HTTP_HOST'].@$_SERVER['REQUEST_URI'];
 						header("Location:$redirect");
 						exitZP();
 					}

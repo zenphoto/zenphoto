@@ -13,7 +13,7 @@ require_once(dirname(__FILE__).'/admin-globals.php');
 checkInstall();	/* incase someone has dropped tables and not run setup */
 
 if (isset($_GET['licenseAccept'])) {
-	if (isset($_SESSION['license_return'])) {
+	if (isset($_SESSION['license_return']) && $_SESSION['license_return']) {
 		$return_to = $_SESSION['license_return'];
 		unset($_SESSION['license_return']);
 	} else {
@@ -42,7 +42,7 @@ echo "\n</head>";
 			</p>
 			<?php
 			if (!getOption('license_accepted')) {
-				$_SESSION['license_return'] = $_SERVER['REQUEST_URI'];
+				$_SESSION['license_return'] = @$_SERVER['REQUEST_URI'];
 				?>
 				<p class="buttons">
 					<a href="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/license.php?licenseAccept&amp;XSRFToken='.getXSRFToken('ZenphotoLicense'); ?>" alt="<?php echo gettext('You must accept this license to continue to use Zenphoto.'); ?>"><?php echo gettext('I agree to these terms and conditions'); ?></a>

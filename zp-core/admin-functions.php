@@ -3688,6 +3688,22 @@ function printBulkActions($checkarray, $checkAll=false) {
 }
 
 /**
+ *
+ * common redirector for bulk action handling return
+ * @param string $action
+ */
+function bulkActionRedirect($action)  {
+	$uri = @$_SERVER['REQUEST_URI'];
+	if (strpos($uri, '?')) {
+		$uri .= '&bulkaction='.$action;
+	} else {
+		$uri .= '?bulkaction='.$action;
+	}
+	header('Location: ' .$uri);
+	exitZP();
+}
+
+/**
  * Processes the check box bulk actions for albums
  *
  */
@@ -4007,7 +4023,7 @@ function admin_securityChecks($rights, $return) {
 	if (SERVER_PROTOCOL == 'https_admin') {
 		// force https login
 		if (!isset($_SERVER["HTTPS"])) {
-			$redirect= "https://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+			$redirect= "https://".$_SERVER['HTTP_HOST'].@$_SERVER['REQUEST_URI'];
 			header("Location:$redirect");
 			exitZP();
 		}

@@ -26,14 +26,7 @@ if(isset($_POST['action'])) {
 		}
 	} else {
 		$action = processZenpageBulkActions('Category');
-		$uri = $_SERVER['REQUEST_URI'];
-		if (strpos($uri, '?')) {
-			$uri .= '&bulkaction='.$action;
-		} else {
-			$uri .= '?bulkaction='.$action;
-		}
-		header('Location: ' .$uri);
-		exitZP();
+		bulkActionRedirect($action);
 	}
 }
 if(isset($_GET['delete'])) {

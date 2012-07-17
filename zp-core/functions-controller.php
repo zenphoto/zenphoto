@@ -62,7 +62,7 @@ function zpurl($special='') {
 function fix_path_redirect() {
 	if (MOD_REWRITE) {
 		$sfx = IM_SUFFIX;
-		$request_uri = urldecode($_SERVER['REQUEST_URI']);
+		$request_uri = urldecode(@$_SERVER['REQUEST_URI']);
 		$i = strpos($request_uri, '?');
 		if ($i !== false) {
 			$params = substr($request_uri, $i+1);

@@ -2031,7 +2031,7 @@ function debug404($album, $image, $theme) {
 			return;
 		}
 		$ignore = array('/favicon.ico','/zp-data/tést.jpg');
-		$target = $_SERVER['REQUEST_URI'];
+		$target = @$_SERVER['REQUEST_URI'];
 		foreach ($ignore as $uri) {
 			if ($target == $uri) return;
 		}
@@ -2369,10 +2369,15 @@ class zpFunctions {
 	 * Returns true if the install is not a "clone"
 	 */
 	static function hasPrimaryScripts() {
-		if (function_exists('readlink') && $zen = @readlink(SERVERPATH.'/'.ZENFOLDER)) {	// no error reading the link info
-			return dirname(@readlink(SERVERPATH.'/'.DATA_FOLDER)) == dirname($zen);
+		if (!defined('PRIMARY_INSTALLATION')) {
+			if (function_exists('readlink') && ($zen = str_replace('\\','/',@readlink(SERVERPATH.'/'.ZENFOLDER)))) {
+				// no error reading the link info
+				define('PRIMARY_INSTALLATION', SERVERPATH == dirname($zen));
+			} else {
+				define('PRIMARY_INSTALLATION', true);
+			}
 		}
-		return true;
+		return PRIMARY_INSTALLATION;
 	}
 
 	/**

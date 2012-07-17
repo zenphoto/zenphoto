@@ -283,7 +283,7 @@ class Zenpage {
 	 */
 	static function getOffset($articles_per_page,$ignorepagination=false) {
 		global $_zp_zenpage_currentadminnewspage, $_zp_page;
-		if(strstr(dirname($_SERVER['REQUEST_URI']), '/'.PLUGIN_FOLDER.'/zenpage')) {
+		if(OFFSET_PATH) {
 			$page = $_zp_zenpage_currentadminnewspage;
 		} else {
 			$page = $_zp_page;

@@ -384,7 +384,7 @@ class AlbumZip {
 		$zip->finish();
 	}
 }
-if (strpos($_SERVER['REQUEST_URI'], '?') === false) {
+if (strpos(@$_SERVER['REQUEST_URI'], '?') === false) {
 	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1).'?download=');
 } else {
 	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1).'&download=');
