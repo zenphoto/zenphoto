@@ -384,11 +384,13 @@ class AlbumZip {
 		$zip->finish();
 	}
 }
-if (strpos(@$_SERVER['REQUEST_URI'], '?') === false) {
-	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1).'?download=');
+$request = getRequestURI();
+if (strpos($request, '?') === false) {
+	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr($request, strlen(WEBPATH)+1).'?download=');
 } else {
-	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr(urldecode(sanitize($_SERVER['REQUEST_URI'], 0)), strlen(WEBPATH)+1).'&download=');
+	define('DOWNLOADLIST_LINKPATH',  FULLWEBPATH.'/'.substr($request, strlen(WEBPATH)+1).'&download=');
 }
+unset($request);
 
 
 /**

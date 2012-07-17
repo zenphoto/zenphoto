@@ -2880,7 +2880,7 @@ function deleteThemeDirectory($source) {
  * @author Ozh
  * @since 1.3
  *
- * @param string $source the script file incase REQUEST_URI is not available
+ * @param string $source the script file
  */
 function currentRelativeURL() {
 	$source = str_replace('\\','/',$_SERVER['SCRIPT_FILENAME']);
@@ -3693,7 +3693,7 @@ function printBulkActions($checkarray, $checkAll=false) {
  * @param string $action
  */
 function bulkActionRedirect($action)  {
-	$uri = @$_SERVER['REQUEST_URI'];
+	$uri = getRequestURI();
 	if (strpos($uri, '?')) {
 		$uri .= '&bulkaction='.$action;
 	} else {
@@ -4020,14 +4020,7 @@ function processCodeblockSave($id) {
 function admin_securityChecks($rights, $return) {
 	global $_zp_current_admin_obj, $_zp_loggedin;
 	checkInstall();
-	if (SERVER_PROTOCOL == 'https_admin') {
-		// force https login
-		if (!isset($_SERVER["HTTPS"])) {
-			$redirect= "https://".$_SERVER['HTTP_HOST'].@$_SERVER['REQUEST_URI'];
-			header("Location:$redirect");
-			exitZP();
-		}
-	}
+	httpsRedirect();
 	if ($_zp_current_admin_obj && $_zp_current_admin_obj->reset) {
 		$_zp_loggedin = USER_RIGHTS;
 	}
@@ -4043,6 +4036,21 @@ function admin_securityChecks($rights, $return) {
 		}
 	}
 
+}
+
+/**
+ *
+ * Checks if protocol not https and redirects if https required
+ */
+function httpsRedirect() {
+	if (SERVER_PROTOCOL == 'https_admin') {
+		// force https login
+		if (!isset($_SERVER["HTTPS"])) {
+			$redirect= "https://".$_SERVER['HTTP_HOST'].getRequestURI();
+			header("Location:$redirect");
+			exitZP();
+		}
+	}
 }
 
 /**

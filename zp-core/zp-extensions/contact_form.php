@@ -274,7 +274,7 @@ function printContactForm($subject_override='') {
 					$_processing_post = true;
 					include(getPlugin('contact_form/form.php', true));
 					?>
-					<form id="confirm" action="<?php echo sanitize(@$_SERVER['REQUEST_URI']); ?>" method="post" accept-charset="UTF-8" style="float: left">
+					<form id="confirm" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8" style="float: left">
 						<input type="hidden" id="confirm" name="confirm" value="confirm" />
 						<input type="hidden" id="name" name="name"	value="<?php echo html_encode($name); ?>" />
 						<input type="hidden" id="subject" name="subject"	value="<?php echo html_encode($subject); ?>" />
@@ -282,7 +282,7 @@ function printContactForm($subject_override='') {
 						<input type="hidden" id="mailaddress" name="mailaddress" value="<?php echo html_encode($mailaddress); ?>" />
 						<input type="submit" value="<?php echo gettext("Confirm"); ?>" />
 					</form>
-					<form id="discard" action="<?php echo sanitize(@$_SERVER['REQUEST_URI']); ?>" method="post" accept-charset="UTF-8">
+					<form id="discard" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8">
 						<input type="hidden" id="discard" name="discard" value="discard" />
 						<input type="submit" value="<?php echo gettext("Discard"); ?>" />
 					</form>

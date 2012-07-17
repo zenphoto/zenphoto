@@ -563,7 +563,7 @@ protected function getRSSCombinewsAlbums() {
 	 * @return string
 	 */
 	protected function getRSSCacheFilename() {
-		$uri = explode('?',@$_SERVER["REQUEST_URI"]);
+		$uri = explode('?',getRequestURI());
 		$filename = array();
 		foreach (explode('&',$uri[1]) as $param) {
 			$p = explode('=', $param);
@@ -595,7 +595,7 @@ protected function getRSSCombinewsAlbums() {
 											"/"=>"-",
 											"?"=> ""
 		);
-		$filename = strtr(@$_SERVER["REQUEST_URI"],$replace);
+		$filename = strtr(getRequestURI(),$replace);
 		$filename = preg_replace("/__/","_",$filename);
 		$filename = seoFriendly($filename);
 		return $filename.".xml";
@@ -1009,7 +1009,7 @@ protected function getRSSCombinewsAlbums() {
 			<channel>
 				<title><?php echo $this->channel_title; ?></title>
 				<link><?php echo PROTOCOL.'://'.$this->host.WEBPATH; ?></link>
-				<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(@$_SERVER["REQUEST_URI"]);; ?>" rel="self"	type="application/rss+xml" />
+				<atom:link href="<?php echo PROTOCOL; ?>://<?php echo $this->host; ?><?php echo html_encode(getRequestURI());; ?>" rel="self"	type="application/rss+xml" />
 				<description><?php echo strip_tags(get_language_string($_zp_gallery->get('Gallery_description'), $this->locale)); ?></description>
 				<language><?php echo $this->locale_xml; ?></language>
 				<pubDate><?php echo date("r", time()); ?></pubDate>

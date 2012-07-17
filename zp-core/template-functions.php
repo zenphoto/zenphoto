@@ -4378,7 +4378,7 @@ function getPageRedirect() {
 			if (!empty($title)) $action .= '&title='.urlencode(getNewsTitlelink());
 			break;
 		case 'password.php':
-			$action = str_replace(SEO_WEBPATH, '', urldecode(sanitize(@$_SERVER['REQUEST_URI'], 0)));
+			$action = str_replace(SEO_WEBPATH, '', getRequestURI());
 			if ($action == '/') {
 				$action = '/index.php';
 			}

@@ -42,7 +42,7 @@ echo "\n</head>";
 			</p>
 			<?php
 			if (!getOption('license_accepted')) {
-				$_SESSION['license_return'] = @$_SERVER['REQUEST_URI'];
+				$_SESSION['license_return'] = getRequestURI();
 				?>
 				<p class="buttons">
 					<a href="<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/license.php?licenseAccept&amp;XSRFToken='.getXSRFToken('ZenphotoLicense'); ?>" alt="<?php echo gettext('You must accept this license to continue to use Zenphoto.'); ?>"><?php echo gettext('I agree to these terms and conditions'); ?></a>

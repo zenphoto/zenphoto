@@ -992,7 +992,7 @@ class Zenphoto_Authority {
 					?>
 					// ]]> -->
 				</script>
-				<form name="login" action="<?php echo html_encode(@$_SERVER['REQUEST_URI']); ?>" method="post">
+				<form name="login" action="<?php echo html_encode(getRequestURI()); ?>" method="post">
 					<input type="hidden" name="login" value="1" />
 					<input type="hidden" name="password" value="1" />
 					<input type="hidden" name="redirect" value="<?php echo html_encode($redirect); ?>" />

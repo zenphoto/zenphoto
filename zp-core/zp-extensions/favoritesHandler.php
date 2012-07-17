@@ -339,7 +339,7 @@ if (!OFFSET_PATH) {
 			}
 
 			?>
-			<form name="imageFavorites" class="imageFavorites" id="imageFavorites<?php echo $obj->getID(); ?>" vaction="<?php echo sanitize(@$_SERVER['REQUEST_URI']); ?>" method="post" accept-charset="UTF-8">
+			<form name="imageFavorites" class="imageFavorites" id="imageFavorites<?php echo $obj->getID(); ?>" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8">
 				<input type="hidden" name="addToFavorites" value="<?php echo $v; ?>" />
 				<input type="hidden" name="type" value="<?php echo html_encode($table); ?>" />
 				<input type="hidden" name="id" value="<?php echo html_encode($id); ?>" />

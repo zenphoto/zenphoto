@@ -12,7 +12,7 @@
 // Determines if this request used a query string (as opposed to mod_rewrite).
 // A valid encoded URL is only allowed to have one question mark: for a query string.
 function is_query_request() {
-	return (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], '?') !== false);
+	return (strpos(getRequestURI(), '?') !== false);
 }
 
 
@@ -62,7 +62,7 @@ function zpurl($special='') {
 function fix_path_redirect() {
 	if (MOD_REWRITE) {
 		$sfx = IM_SUFFIX;
-		$request_uri = urldecode(@$_SERVER['REQUEST_URI']);
+		$request_uri = getRequestURI();
 		$i = strpos($request_uri, '?');
 		if ($i !== false) {
 			$params = substr($request_uri, $i+1);

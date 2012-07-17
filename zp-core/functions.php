@@ -2031,7 +2031,7 @@ function debug404($album, $image, $theme) {
 			return;
 		}
 		$ignore = array('/favicon.ico','/zp-data/tést.jpg');
-		$target = @$_SERVER['REQUEST_URI'];
+		$target = getRequestURI();
 		foreach ($ignore as $uri) {
 			if ($target == $uri) return;
 		}

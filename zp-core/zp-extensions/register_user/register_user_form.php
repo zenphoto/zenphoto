@@ -7,7 +7,7 @@
  */
 
 Zenphoto_Authority::printPasswordFormJS();
-$action = preg_replace('/\?verify=(.*)/', '', sanitize(@$_SERVER['REQUEST_URI']));
+$action = preg_replace('/\?verify=(.*)/', '', getRequestURI(););
 ?>
 <div id="registration_form">
 	<form action="<?php echo $action; ?>" method="post" autocomplete="off">

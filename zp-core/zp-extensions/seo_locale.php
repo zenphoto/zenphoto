@@ -41,7 +41,7 @@ if (!defined('SEO_WEBPATH')) {
 class seo_locale {
 
 	static function load_request($allow) {
-		$uri = str_replace('\\','/',sanitize(@$_SERVER['REQUEST_URI'], 0));
+		$uri = getRequestURI();
 		$parts = explode('?', $uri);
 		$uri = urldecode($parts[0]);
 		$path = ltrim(substr($uri, strlen(WEBPATH)+1),'/');

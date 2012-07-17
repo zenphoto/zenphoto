@@ -381,14 +381,8 @@ if (isset($_GET['action'])) {
 		if (isset($_POST['savesecurityoptions'])) {
 			$protocol = sanitize($_POST['server_protocol'],3);
 			if ($protocol != SERVER_PROTOCOL) {
-				if ($protocol == 'https_admin' || $protocol == 'https_admin') {
-					// force https to be sure it works, otherwise the "save" will be the last thing we do
-					if (!isset($_SERVER["HTTPS"])) {
-						$redirect= "https://".$_SERVER['HTTP_HOST'].@$_SERVER['REQUEST_URI'];
-						header("Location:$redirect");
-						exitZP();
-					}
-				}
+				// force https if required to be sure it works, otherwise the "save" will be the last thing we do
+				httpsRedirect();
 			}
 			setOption('server_protocol', $protocol);
 			$_zp_gallery->setUserLogonField(isset($_POST['login_user_field']));

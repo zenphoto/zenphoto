@@ -448,7 +448,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	$ralbum = isset($_GET[$albumvar]) ? sanitize_path($_GET[$albumvar]) : null;
 	$rimage = isset($_GET[$imagevar]) ? sanitize_path($_GET[$imagevar]) : null;
 	if (MOD_REWRITE) {
-		$uri = urldecode(sanitize(@$_SERVER['REQUEST_URI'], 0));
+		$uri = urldecode(getRequestURI());
 		$path = substr($uri, strlen(WEBPATH)+1);
 		$scripturi = sanitize($_SERVER['PHP_SELF'],0);
 		$script = substr($scripturi,strpos($scripturi, WEBPATH.'/')+strlen(WEBPATH)+1);
@@ -1338,6 +1338,26 @@ function getWatermarkPath($wm) {
  */
 function secureServer() {
 	return isset($_SERVER['HTTPS']) && strpos(strtolower($_SERVER['HTTPS']),'on')===0;
+}
+
+/**
+ *
+ * Returns the script requesting URI.
+ * 	Uses $_SERVER[REQUEST_URI] if it exists, otherwise it concocts the URI from
+ * 	$_SERVER[SCRIPT_NAME] and $_SERVER[QUERY_STRING]
+ *
+ * @return string
+ */
+function getRequestURI() {
+	if (array_key_exists('REQUEST_URI', $_SERVER)) {
+		$uri = $_SERVER['REQUEST_URI'];
+	} else {
+		$uri = @$_SERVER[QUERY_STRING];
+		if (@$_SERVER['QUERY_STRING']) {
+			$uri .= '?'.$_SERVER[QUERY_STRING];
+		}
+	}
+	return urldecode(sanitize(str_replace('\\','/',$uri),0));
 }
 
 /**

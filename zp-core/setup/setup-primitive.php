@@ -422,4 +422,9 @@ function zp_clearCookie($name) {
 
 }
 
+function getRequestURI() {
+	return NULL;
+}
+
+
 ?>

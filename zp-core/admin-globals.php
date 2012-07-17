@@ -12,15 +12,8 @@ define('UPLOAD_ERR_BLOCKED', -2);
 require_once(dirname(__FILE__).'/functions-basic.php');
 
 zp_session_start();
-if (SERVER_PROTOCOL == 'https_admin') {
-	// force https login
-	if (!isset($_SERVER["HTTPS"])) {
-		$redirect= "https://".$_SERVER['HTTP_HOST'].@$_SERVER['REQUEST_URI'];
-		header("Location:$redirect");
-		exitZP();
-	}
-}
 require_once(dirname(__FILE__).'/admin-functions.php');
+httpsRedirect();
 
 $zenphoto_tabs = array();
 

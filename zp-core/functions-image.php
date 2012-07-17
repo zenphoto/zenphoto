@@ -25,7 +25,7 @@ function imageError($status_text, $errormessage, $errorimg='err-imagegeneral.png
 	$debug = isset($_GET['debug']);
 	if ($debug) {
 		echo('<strong>'.sprintf(gettext('Zenphoto Image Processing Error: %s'), $errormessage).'</strong>'
-		. '<br /><br />'.sprintf(gettext('Request URI: [ <code>%s</code> ]'), sanitize(@$_SERVER['REQUEST_URI'], 3))
+		. '<br /><br />'.sprintf(gettext('Request URI: [ <code>%s</code> ]'), html_encode(getRequestURI()))
 		. '<br />PHP_SELF: [ <code>' . sanitize($_SERVER['PHP_SELF'], 3) . '</code> ]'
 		. (empty($newfilename) ? '' : '<br />'.sprintf(gettext('Cache: [<code>%s</code>]'), '/'.CACHEFOLDER.'/' . sanitize($newfilename, 3)).' ')
 		. (empty($image) || empty($album) ? '' : ' <br />'.sprintf(gettext('Image: [<code>%s</code>]'),sanitize($album.'/'.$image, 3)).' <br />'));

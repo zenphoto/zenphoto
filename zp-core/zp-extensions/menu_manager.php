@@ -410,7 +410,7 @@ function inventMenuItem($menuset,$visibility) {
  * @return int
  */
 function getCurrentMenuItem($menuset) {
-	$currentpageURL = html_encode(urldecode(@$_SERVER["REQUEST_URI"]));
+	$currentpageURL = html_encode(getRequestURI());
 	if (isset($_GET['page'])) {	// must strip out page numbers, all "pages" are equal
 		if (MOD_REWRITE) {
 			if (isset($_GET['album'])) {
@@ -557,7 +557,7 @@ function printMenumanagerNextLink($text, $menuset='default', $title=NULL, $class
  * @param int $navlen Number of navigation links to show (0 for all pages). Works best if the number is odd.
 */
 function printMenuemanagerPageListWithNav($prevtext, $nexttext, $menuset='default', $class='pagelist', $nextprev=true, $id=NULL, $firstlast=true, $navlen=9) {
-	$currentitem = getMenuFromLink(html_encode(urldecode(@$_SERVER["REQUEST_URI"])),$menuset);
+	$currentitem = getMenuFromLink(html_encode(urldecode($request)),$menuset);
 	if (is_null($currentitem)) return; // we are not in menuset
 	$orders = explode('-',$currentitem['sort_order']);
 	array_pop($orders);
