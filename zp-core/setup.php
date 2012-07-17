@@ -317,8 +317,8 @@ if ($setup_checked) {
 	if (isset($_POST['db'])) {
 		setupLog(gettext("Post of Database credentials"), true);
 	} else {
-		$me = str_replace('\\', '/', __FILE__);
-		if (SERVERPATH == substr($me, 0, strrpos($me, '/'.ZENFOLDER))) {
+		$me = dirname(dirname(str_replace('\\', '/', __FILE__)));
+		if (SERVERPATH == $me) {
 			$clone = '';
 		} else {
 			$clone = ' '.gettext('clone');
