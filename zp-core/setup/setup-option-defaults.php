@@ -577,6 +577,7 @@ setOptionDefault('spamFilter_none_action', getOption('Action'));
 purgeOption('Action');
 setOptionDefault('plugins_per_page', 20);
 setOptionDefault('users_per_page', 10);
+setOptionDefault('articles_per_page', 15);
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface

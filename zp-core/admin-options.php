@@ -92,6 +92,9 @@ if (isset($_GET['action'])) {
 			setOption('site_email_name', process_language_string_save('site_email_name',3));
 			setOption('users_per_page', sanitize_numeric($_POST['users_per_page']));
 			setOption('plugins_per_page', sanitize_numeric($_POST['plugins_per_page']));
+			if (isset($_POST['articles_per_page'])) {
+				setOption('articles_per_page', sanitize_numeric($_POST['articles_per_page']));
+			}
 			setOption('multi_lingual', (int) isset($_POST['multi_lingual']));
 			$f = sanitize($_POST['date_format_list'],3);
 			if ($f == 'custom') $f = sanitize($_POST['date_format'],3);
@@ -845,12 +848,26 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 					<td width="175">
 						<?php echo gettext("Users per page:"); ?>
 						<br />
-						<?php echo gettext("Plugins per page:"); ?>
+						<?php echo gettext("Plugins per page:");
+						if (getOption('zp_plugin_zenpage')) {
+							?>
+							<br />
+							<?php echo gettext("Articles per page:");
+						}
+						?>
 					</td>
 					<td width="350">
 						<input type="text" size="5" id="users_per_page" name="users_per_page"  value="<?php echo getOption('users_per_page'); ?>" />
 						<br />
 						<input type="text" size="5" id="plugins_per_page" name="plugins_per_page"  value="<?php echo getOption('plugins_per_page'); ?>" />
+						<?php
+						if (getOption('zp_plugin_zenpage')) {
+							?>
+							<br />
+							<input type="text" size="5" id="articles_per_page" name="articles_per_page"  value="<?php echo getOption('articles_per_page'); ?>" />
+							<?php
+						}
+						?>
 					</td>
 					<td><?php echo gettext('These options control the number of items shown on their tabs. If you have problems saving these tabs reduce the number shown on the page.'); ?></td>
 				</tr>

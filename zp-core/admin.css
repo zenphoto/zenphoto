@@ -2490,3 +2490,9 @@ top: 3px;
 tr.currentselection td {
 	background-color: #ECF1F2 !important;
 }
+
+/* background-color for "shown" plugins */
+.highlightselection,
+tr.highlightselection td {
+	background-color: #D4DBDB !important;
+}

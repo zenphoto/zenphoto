@@ -169,7 +169,7 @@ printLogoAndLinks();
 			}
 			$total = 1;
 			$articles = count($result);
-			$articles_page = 15;
+			$articles_page = max(1,getOption('articles_per_page'));
 			if(isset($_GET['articles_page'])) {
 				if($_GET['articles_page'] == 'all') {
 					$articles_page = 0;

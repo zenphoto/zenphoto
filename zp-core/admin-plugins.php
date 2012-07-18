@@ -11,6 +11,17 @@ require_once(dirname(__FILE__).'/admin-globals.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
 
+define('PLUGINS_PER_PAGE', max(1,getOption('plugins_per_page')));
+if (isset($_GET['subpage'])) {
+	$subpage = sanitize_numeric($_GET['subpage']);
+} else {
+	if (isset($_POST['subpage'])) {
+		$subpage = sanitize_numeric($_POST['subpage']);
+	} else {
+		$subpage = 0;
+	}
+}
+
 $_GET['page'] = 'plugins';
 
 /* handle posts */
@@ -42,6 +53,11 @@ if (isset($_GET['action'])) {
 $saved = isset($_GET['saved']);
 printAdminHeader('plugins');
 zp_apply_filter('texteditor_config', '','zenphoto');
+$paths = getPluginFiles('*.php');
+$pluginlist = array_keys($paths);
+natcasesort($pluginlist);
+$pages = round(ceil(count($pluginlist) / PLUGINS_PER_PAGE));
+$filelist = array_slice($pluginlist,$subpage*PLUGINS_PER_PAGE,PLUGINS_PER_PAGE);
 ?>
 <script type="text/javascript">
 	<!--
@@ -57,7 +73,11 @@ zp_apply_filter('texteditor_config', '','zenphoto');
 			innerWidth:'560px'
 		});
 	});
-
+	var pluginsToPage = ['<?php echo implode("','",$pluginlist); ?>'];
+	function gotoPlugin(plugin) {
+		i = Math.floor(jQuery.inArray(plugin, pluginsToPage) / <?php echo PLUGINS_PER_PAGE; ?>);
+		window.location = '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-plugins.php?page=plugins&subpage='+i+'&show='+plugin+'#'+plugin;
+	}
 	//-->
 </script>
 <?php
@@ -65,9 +85,7 @@ echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();
 echo "\n" . '<div id="main">';
-$paths = getPluginFiles('*.php');
-$filelist = array_keys($paths);
-natcasesort($filelist);
+
 printTabs();
 echo "\n" . '<div id="content">';
 
@@ -101,10 +119,69 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 </p><br clear="all" /><br /><br />
 <table class="bordered options">
 <tr>
-<th><?php echo gettext("Available Plugins"); ?></th>
-<th colspan="2">
-	<?php echo gettext("Description"); ?>
-</th>
+	<th><?php echo gettext("Available Plugins"); ?></th>
+	<th></th>
+	<th>
+		<?php echo gettext("Description"); ?>
+	</th>
+	<th>
+	<?php
+	if ($pages > 1) {
+		?>
+		<ul class="pagelist">
+				<?php
+			if ($subpage > 0) {
+				?>
+				<li>
+				<a href="?page=plugins&subpage=<?php echo ($subpage-1); ?>" ><?php echo gettext('prev'); ?></a>
+				</li>
+				<?php
+			} else {
+			?>
+			</li class="disabledlink">
+			<?php
+				echo gettext('prev');
+			?>
+			</li>
+			<?php
+			}
+			for ($i=1;$i<=$pages;$i++) {
+				if ($i == $subpage+1) {
+					?>
+					<li class="disabledlink">
+						<?php echo " $i "; ?>
+					</li>
+					<?php
+				} else {
+					?>
+					<li>
+						<a href="?page=plugins&subpage=<?php echo $i-1; ?>" ><?php echo " $i "; ?></a>
+					</li>
+					<?php
+				}
+			}
+			if ($subpage < $pages-1) {
+				?>
+				<li>
+					<a href="?page=plugins&subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?></a>
+				</li>
+				<?php
+			} else {
+				?>
+				</li class="disabledlink">
+				<?php
+					echo gettext('next');
+				?>
+				</li>
+				<?php
+			}
+			?>
+		</ul>
+		<?php
+	}
+	?>
+	</th>
+</tr>
 <?php
 foreach ($filelist as $extension) {
 	$opt = 'zp_plugin_'.$extension;
@@ -190,6 +267,9 @@ foreach ($filelist as $extension) {
 	if ($currentsetting > THEME_PLUGIN) {
 		$selected_style = ' class="currentselection"';
 	}
+	if (isset($_GET['show']) && $_GET['show']==$extension) {
+		$selected_style = ' class="highlightselection"';
+	}
 	?>
 	<tr<?php echo $selected_style;?>>
 		<td width="30%">
@@ -255,18 +335,23 @@ foreach ($filelist as $extension) {
 			}
 			?>
 		</td>
-		<td>
+		<td colspan="2">
 			<?php
 			echo $plugin_description;
 			if ($plugin_disable) {
 				?>
-				<div id="showdisable_<?php echo $extension; ?>" style="display:none" class="warningbox">
+				<div id="showdisable_<?php echo $extension; ?>" style="display: none" class="warningbox">
 					<?php
 					if ($plugin_disable) {
+						preg_match('/\<a href="#(.*)">/', $plugin_disable, $matches);
+						if ($matches) {
+							$plugin_disable = str_replace($matches[0], '<a href="javascript:gotoPlugin(\''.$matches[1].'\');">', $plugin_disable);
+						}
 						echo $plugin_disable;
 					}
 					?>
 				</div>
+
 				<?php
 			}
 			if ($plugin_notice) {
