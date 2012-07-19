@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-18 23:13-0500\n"
-"PO-Revision-Date: 2012-07-18 23:20-0500\n"
+"PO-Revision-Date: 2012-07-19 17:55-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -5086,7 +5086,7 @@ msgstr "Les thèmes vous permettent de changer complètement l’apparence et le
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes.php:179
 msgid "You can download more themes from the <a href=\"http://www.zenphoto.org/zp/theme/\">zenphoto themes page</a>."
-msgstr "Vous pouvez télécharger d’autres thèmes depuis <a href=\"www.zenphoto.org/theme/\">la page de thèmes de Zenphoto</a>."
+msgstr "Vous pouvez télécharger d’autres thèmes depuis <a href=\"http://www.zenphoto.org/zp/theme/\">la page de thèmes de Zenphoto</a>."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes.php:180
 msgid "Place the downloaded themes in the <code>/themes</code> folder and they will be available for your use."
