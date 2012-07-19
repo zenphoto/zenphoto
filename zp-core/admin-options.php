@@ -869,7 +869,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 						}
 						?>
 					</td>
-					<td><?php echo gettext('These options control the number of items shown on their tabs. If you have problems saving these tabs reduce the number shown on the page.'); ?></td>
+					<td><?php echo gettext('These options control the number of items displayed on their tabs. If you have problems using these tabs, reduce the number shown here.'); ?></td>
 				</tr>
 				<?php zp_apply_filter('admin_general_data'); ?>
 				<tr>
