@@ -1352,9 +1352,9 @@ function getRequestURI() {
 	if (array_key_exists('REQUEST_URI', $_SERVER)) {
 		$uri = $_SERVER['REQUEST_URI'];
 	} else {
-		$uri = @$_SERVER[QUERY_STRING];
+		$uri = @$_SERVER['SCRIPT_NAME'];
 		if (@$_SERVER['QUERY_STRING']) {
-			$uri .= '?'.$_SERVER[QUERY_STRING];
+			$uri .= '?'.$_SERVER['QUERY_STRING'];
 		}
 	}
 	return urldecode(sanitize(str_replace('\\','/',$uri),0));

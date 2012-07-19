@@ -324,6 +324,12 @@ if ($setup_checked) {
 			$clone = ' '.gettext('clone');
 		}
 		setupLog(sprintf(gettext('Zenphoto Setup v%1$s[%2$s]%3$s: %4$s'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE,$clone,date('r')), true, true);  // initialize the log file
+
+
+//TODO: remove DEBUG
+setuplog(sprintf(gettext('Script path:%1$s; SERVER_PATH:%2$s'),$me, SERVERPATH),$clone);
+//END DEBUG
+
 	}
 	if ($environ) {
 		setupLog(gettext("Full environment"));
