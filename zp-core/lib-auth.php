@@ -1251,15 +1251,35 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * @param int $valid used to signal kind of admin object
 	 * @return Administrator
 	 */
-	function Zenphoto_Administrator($user, $valid) {
+	function __construct($user, $valid) {
 		global $_zp_authority;
 		parent::PersistentObject('administrators', array('user' => $user, 'valid'=>$valid), NULL, false, empty($user));
 		if (empty($user)) {
 			$this->set('id', -1);
 		}
-		if ($valid && $user == $_zp_authority->master_user) {
-			$this->setRights($this->getRights() | ADMIN_RIGHTS);
-			$this->master = true;
+		if ($valid) {
+			if ($user == $_zp_authority->master_user) {
+				$this->setRights($this->getRights() | ADMIN_RIGHTS);
+				$this->master = true;
+			} else {
+				// make sure that the "hidden" gateway rights are set for managing objects
+				$this->getObjects();
+				foreach ($this->objects as $object) {
+					switch ($object['type']) {
+						case 'album':
+							if ($object['edit'] && MANAGED_OBJECT_RIGHTS_EDIT) {
+								$this->setRights($this->getRights() | ALBUM_RIGHTS);
+							}
+							break;
+						case 'pages':
+							$this->setRights($this->getRights() | ZENPAGE_PAGES_RIGHTS);
+							break;
+						case 'news':
+							$this->setRights($this->getRights() | ZENPAGE_NEWS_RIGHTS);
+							break;
+					}
+				}
+			}
 		}
 	}
 

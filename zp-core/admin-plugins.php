@@ -28,15 +28,21 @@ $_GET['page'] = 'plugins';
 if (isset($_GET['action'])) {
 	if ($_GET['action'] == 'saveplugins') {
 		XSRFdefender('saveplugins');
-		$filelist = getPluginFiles('*.php');
-		foreach ($filelist as $extension=>$path) {
+		$filelist = array();
+		foreach ($_POST as $plugin=>$value) {
+			preg_match('/^present_zp_plugin_(.*)$/xis', $plugin, $matches);
+			if ($matches) {
+				$filelist[] = $matches[1];
+			}
+		}
+		foreach ($filelist as $extension) {
 			$extension = filesystemToInternal($extension);
 			$opt = 'zp_plugin_'.$extension;
 			if (isset($_POST[$opt])) {
 				$value = sanitize_numeric($_POST[$opt]);
 				if (!getOption($opt)) {
 					$option_interface = NULL;
-					require_once($path);
+					require_once(getPlugin($extension.'.php'));
 					if (is_string($option_interface)) {
 						$if = new $option_interface;	//	prime the default options
 					}
@@ -46,7 +52,7 @@ if (isset($_GET['action'])) {
 				setOption($opt, 0);
 			}
 		}
-		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved");
+		header("Location: " . FULLWEBPATH . "/" . ZENFOLDER . "/admin-plugins.php?saved&subpage=".$subpage);
 		exitZP();
 	}
 }
@@ -113,6 +119,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 <form action="?action=saveplugins" method="post">
 	<?php XSRFToken('saveplugins');?>
 	<input type="hidden" name="saveplugins" value="yes" />
+	<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 <p class="buttons">
 <button type="submit" value="<?php echo gettext('Apply') ?>" title="<?php echo gettext("Apply"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 <button type="reset" value="<?php echo gettext('Reset') ?>" title="<?php echo gettext("Reset"); ?>"><img src="images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
@@ -273,6 +280,7 @@ foreach ($filelist as $extension) {
 	?>
 	<tr<?php echo $selected_style;?>>
 		<td width="30%">
+			<input type="hidden" name="present_<?php echo $opt; ?>" id="present_<?php echo $opt; ?>" value="1" />
 			<label id="<?php echo $extension; ?>">
 				<?php
 				if ($third_party_plugin) {

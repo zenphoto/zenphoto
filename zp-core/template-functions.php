@@ -4335,10 +4335,14 @@ function checkAccess(&$hint=NULL, &$show=NULL) {
 				}
 				break;
 			case 'search.php':
-				return (zp_loggedin(VIEW_SEARCH_RIGHTS));
+				if (zp_loggedin(VIEW_SEARCH_RIGHTS)) {
+					return true;
+				}
 				break;
 			default:
-				return (zp_loggedin(VIEW_GALLERY_RIGHTS));
+				if (zp_loggedin(VIEW_GALLERY_RIGHTS)) {
+					return true;
+				}
 				break;
 		}
 	}
