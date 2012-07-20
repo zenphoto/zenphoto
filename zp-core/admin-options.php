@@ -1976,7 +1976,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				}
 				?>
 			</td>
-			<td><?php echo gettext("Select an type for the images stored in the image cache. Select <em>Original</em> to preserve the original image's type."); ?></td>
+			<td><?php echo gettext("Select a type for the images stored in the image cache. Select <em>Original</em> to preserve the original image's type."); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("Protect image cache"); ?></td>
