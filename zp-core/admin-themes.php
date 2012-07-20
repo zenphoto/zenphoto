@@ -191,7 +191,6 @@ echo "\n" . '<div id="content">';
 	</tr>
 	<?php
 	$zenphoto_date = zpFormattedDate(DATE_FORMAT,filemtime(SERVERPATH.'/'.ZENFOLDER.'/version.php'));
-$themes = $_zp_gallery->getThemes();
 $current_theme_style = 'class="currentselection"';
 foreach($themes as $theme => $themeinfo) {
 	$style = ($theme == $current_theme) ? ' '.$current_theme_style : '';
@@ -243,8 +242,8 @@ foreach($themes as $theme => $themeinfo) {
 				$version = $themeinfo['version'];
 				$date = $themeinfo['date'];
 			}
+			echo gettext('Version').' '. $version.', '.$date;
 			?>
-			Version <?php echo $version; ?>, <?php echo $date; 	?>
 			<br />
 			<?php echo $themeinfo['desc']; ?>
 			<br /><br />

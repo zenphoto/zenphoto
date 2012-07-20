@@ -218,6 +218,7 @@ if (isset($_GET['action'])) {
 			setOption('watermark_allow_upscale', (int) isset($_POST['watermark_allow_upscale']));
 			setOption('watermark_h_offset', sanitize($_POST['watermark_h_offset'],3));
 			setOption('watermark_w_offset', sanitize($_POST['watermark_w_offset'],3));
+			setOption('image_cache_suffix',sanitize($_POST['image_cache_suffix']));
 
 			$imageplugins = array_unique($_zp_extra_filetypes);
 			$imageplugins[] = 'Image';
@@ -1961,6 +1962,23 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 
 		</tr>
 		<tr>
+			<td><?php echo gettext("Cache as:"); ?></td>
+			<td>
+				<?php $type = getOption('image_cache_suffix'); ?>
+				<input type="radio" name="image_cache_suffix" value=""<?php if (empty($type)) echo ' checked="checked"'; ?> />&nbsp;<?php echo gettext("Original"); ?>
+				<?php
+				foreach ($_zp_supported_images as $suffix) {
+					if ($suffix != 'jpeg') {
+						?>
+						<input type="radio" name="image_cache_suffix" value="<?php echo $suffix; ?>"<?php if ($type==$suffix) echo ' checked="checked"'; ?> />&nbsp;<?php echo strtoupper($suffix); ?>
+						<?php
+					}
+				}
+				?>
+			</td>
+			<td><?php echo gettext("Select an type for the images stored in the image cache. Select <em>Original</em> to preserve the original image's type."); ?></td>
+		</tr>
+		<tr>
 			<td><?php echo gettext("Protect image cache"); ?></td>
 			<td>
 				<input type="checkbox" name="protected_image_cache" value="1"
@@ -2178,7 +2196,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			$desc = gettext('If checked and an image has no IPTC data a copyright notice will be imbedded cached copies.');
 		} else {
 			$optionText = gettext('Replicate IPTC metadata');
-			$desc = gettext('If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded.');
+			$desc = gettext('If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the orginal image has no copyright.)');
 		}
 		?>
 		<tr>
@@ -2190,7 +2208,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 			<td>
 				<?php echo $desc; ?>
 				<p class="notebox">
-					<?php  echo gettext('<strong>NOTE:</strong> This option is applies only to JPEG format images.'); ?>
+					<?php  echo gettext('<strong>NOTE:</strong> This option  applies only to JPEG format cached images.'); ?>
 				</p>
 			</td>
 		</tr>
