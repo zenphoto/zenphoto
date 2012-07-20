@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-18 23:13-0500\n"
-"PO-Revision-Date: 2012-07-19 17:55-0500\n"
+"POT-Creation-Date: 2012-07-20 00:01-0500\n"
+"PO-Revision-Date: 2012-07-20 00:02-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1637,8 +1637,8 @@ msgstr "Retour"
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2960
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2999
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:3119
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:117
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:383
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:124
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:391
 #: F:\sites\zenphoto-dev/zp-core/admin-thumbcrop.php:271
 #: F:\sites\zenphoto-dev/zp-core/admin-thumbcrop.php:273
 msgid "Apply"
@@ -3221,7 +3221,7 @@ msgid "There are no logs to view."
 msgstr "Aucun journal à visualiser."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:468
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:96
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:102
 msgid "Applied"
 msgstr "Sauvegardé"
 
@@ -4641,7 +4641,7 @@ msgid "Collapse all plugin options"
 msgstr " Masquer les options des extensions"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2879
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:260
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:267
 msgid "<strong>Note:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string."
 msgstr "<strong>NOTE:</strong> Instancier l’interface des paramètres au sein de l’extension peut causer des problèmes de performance. Vous devriez plutôt définir <code>$option_interface</code> à la valeur de la classe (sous forme de chaîne)."
 
@@ -4723,103 +4723,103 @@ msgstr "Si l’option est activée, le formulaire de connection d’invité comp
 msgid "<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated."
 msgstr "<strong>Note.</strong> Ce champ est requis parce qu’un ou plusieurs des mots de passe <em>Invité</em> sont associés à un nom d’utilisateur."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:101
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:107
 msgid "Plugins"
 msgstr "Extensions"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:104
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:110
 msgid "Plugins provide optional functionality for Zenphoto."
 msgstr "Les extensions ajoutent des fonctionnalités à Zenphoto."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:105
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:111
 msgid "They may be provided as part of the Zenphoto distribution or as offerings from third parties."
 msgstr "Elles peuvent être fournies par Zenphoto ou proposées par des tierces parties."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:106
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:112
 #, php-format
 msgid "Third party plugins are placed in the <code>%s</code> folder and are automatically discovered."
 msgstr "Les extensions de tierces parties sont placées dans le dossier <code>%s</code> et sont automatiquement détectées."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:107
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:113
 msgid "If the plugin checkbox is checked, the plugin will be loaded and its functions made available to theme pages. If the checkbox is not checked the plugin is disabled and occupies no resources."
 msgstr "Si la case à cocher de l’extension est activée, elle est chargée et ses fonctions sont accessibles depuis les pages du thème. Dans le cas contraire, l’extension est désactivée et n’utilise aucune ressource."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:109
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:115
 msgid "Find more plugins"
 msgstr "Rechercher d’autres extensions"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:111
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:117
 msgid "<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."
 msgstr "<strong>Note :</strong> Tous les thèmes ne supportent pas toutes les extensions. Vous serez peut être obligé(e) d’en retoucher certains."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:122
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:129
 msgid "Available Plugins"
 msgstr "Extensions disponibles"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:125
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:132
 msgid "Description"
 msgstr "Description"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:194
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:201
 msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>."
 msgstr "<strong>Erreur lors de l’analyse de la chaîne <em>plugin_description</em> !</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:202
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:209
 msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>."
 msgstr "<strong>Erreur lors de l’analyse de la chaîne <em>plugin_notice</em> !</strong>."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:210
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:217
 msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
 msgstr "<strong>Erreur lors de l’analyse de la chaîne <em>plugin_author</em> !</strong>."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:218
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:225
 msgid "<strong>Error parsing <em>plugin_version</em> string!</strong>."
 msgstr "<strong>Erreur lors de l’analyse de la chaîne <em>plugin_version</em> !</strong>."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:226
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:233
 msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>."
 msgstr "<strong>Erreur lors de l’analyse de la chaîne <em>plugin_disable</em> !</strong>."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:279
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:287
 msgid "third party plugin"
 msgstr "Extensions tierces"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:291
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:299
 #: F:\sites\zenphoto-dev/zp-core/admin-themes.php:233
 msgid "logo"
 msgstr "sigle"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:305
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:313
 msgid "This plugin is disabled. Click for details."
 msgstr "Cette extension est désactivée. Veuillez cliquer pour plus d’information."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:324
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:332
 #, php-format
 msgid "More information on %s"
 msgstr "Plus de renseignements sur %s"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:328
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:336
 #, php-format
 msgid "Change %s options"
 msgstr "Modifier les options de %s"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:333
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:341
 msgid "Plugin warnings"
 msgstr "Avertissements sur les extensions"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:377
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:385
 msgid "Official plugin"
 msgstr "Extension officielle"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:378
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:386
 msgid "Usage info"
 msgstr "Information sur l’utilisation"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:379
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:387
 msgid "Options"
 msgstr "Options"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:380
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:388
 msgid "Warning note"
 msgstr "Avertissement"
 
@@ -9198,11 +9198,11 @@ msgstr "Nouveau"
 msgid "no date"
 msgstr "sans date"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4418
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4422
 msgid "The page you are trying to view is password protected."
 msgstr "La page que vous essayez d’afficher est protégée par mot de passe."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4458
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:4462
 msgid "Powered by <a href=\"http://www.zenphoto.org\" title=\"A simpler web album\"><span id=\"zen-part\">zen</span><span id=\"photo-part\">PHOTO</span></a>"
 msgstr "Galerie gérée par <a href=\"http://www.zenphoto.org\" title=\"Un album photo plus simple\"><span id=\"zen-part\">Zen</span><span id=\"photo-part\">PHOTO</span></a>"
 
