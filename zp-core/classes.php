@@ -634,7 +634,7 @@ class ThemeObject extends PersistentObject {
 	 * @return object
 	 */
 	function addComment($name, $email, $website, $comment, $code, $code_ok, $ip, $private, $anon) {
-		$goodMessage = postComment($name, $email, $website, $comment, $code, $code_ok, $this, $ip, $private, $anon);
+		$goodMessage = zp_apply_filter('object_addComment', $name, $email, $website, $comment, $code, $code_ok, $this, $ip, $private, $anon);
 		return $goodMessage;
 	}
 

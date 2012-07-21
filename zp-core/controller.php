@@ -24,14 +24,7 @@ if (!zp_loggedin()) {
 }
 
 // Handle any comments that might be posted.
-if (getOption('zp_plugin_comment_form') &&
-		( (commentsAllowed('comment_form_albums') && in_context(ZP_ALBUM) && !in_context(ZP_IMAGE) && $_zp_current_album->getCommentsAllowed()) ||
-			(commentsAllowed('comment_form_images') && in_context(ZP_IMAGE) && $_zp_current_image->getCommentsAllowed()) ||
-			(commentsAllowed('comment_form_articles') && in_context(ZP_ZENPAGE_NEWS_ARTICLE) && $_zp_current_zenpage_news->getCommentsAllowed()) ||
-			(commentsAllowed('comment_form_pages') && in_context(ZP_ZENPAGE_PAGE) && $_zp_current_zenpage_page->getCommentsAllowed()) )
-		){
-	$_zp_comment_error = zp_handle_comment();
-}
+$_zp_comment_error = zp_apply_filter('handle_comment', false);
 
 /*** Consistent URL redirection ***********
  ******************************************/

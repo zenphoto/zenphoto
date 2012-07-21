@@ -19,5 +19,5 @@ if (is_null($mod_rewrite)) {
 } else {
 	$msg = gettext('The Zenphoto option "mod_rewrite" is "disabled".');
 }
-setupLog(gettext('Notice: "Module mod_rewrite" is working.').' '.$msg,true);
+setupLog(gettext('Notice: "Module mod_rewrite" is working.').' '.$msg, true);
 ?>

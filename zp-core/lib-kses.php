@@ -97,16 +97,15 @@ function kses_split2($string, $allowed_html, $allowed_protocols)
 ###############################################################################
 {
   $string = kses_stripslashes($string);
-
-  if (substr($string, 0, 1) != '<')
-//    return '&gt;';	zenphoto needs these in un-encoded form!
-  	return '>';
+  if (substr($string, 0, 1) != '<') {
+    return '>';
     # It matched a ">" character
+  }
 
-  if (!preg_match('%^<\s*(/\s*)?([a-zA-Z0-9]+)([^>]*)>?$%', $string, $matches))
-//    return ''; Zenphoto does not want the < swollowed
-    return '<';
+  if (!preg_match('%^<\s*(/\s*)?([a-zA-Z0-9]+)([^>]*)>$%', $string, $matches)) {
+    return $string;
     # It's seriously malformed
+  }
 
   $slash = trim($matches[1]);
   $elem = $matches[2];

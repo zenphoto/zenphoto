@@ -39,13 +39,13 @@ class null_seo {
 
 
 	/**
-	 * translates characters with diacritical marks to simple characters
+	 * translates whitespace to underscore
 	 *
 	 * @param string $string
 	 * @return string
 	 */
 	static function filter($string) {
-		$string = zp_apply_filter('seoFriendly', $string);
+		$string = preg_replace("/\s+/","_",$string);
 		return $string;
 	}
 

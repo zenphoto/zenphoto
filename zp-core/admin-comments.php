@@ -100,6 +100,7 @@ printAdminHeader('comments');
 	// ]]> -->
 </script>
 <?php
+zp_apply_filter('texteditor_config', '','comments');
 echo "\n</head>";
 echo "\n<body>";
 printLogoAndLinks();
@@ -170,7 +171,7 @@ zp_apply_filter('admin_note','comments', $subtab);
 			?>
 			<tr>
 				<td valign="top"><?php echo gettext("Comment:"); ?></td>
-				<td><textarea rows="8" cols="60" name="comment" /><?php echo html_encode($comment); ?></textarea></td>
+				<td><textarea rows="8" cols="60" name="comment" class="texteditor" /><?php echo html_encode($comment); ?></textarea></td>
 			</tr>
 			<tr>
 				<td></td>

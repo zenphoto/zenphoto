@@ -3908,20 +3908,6 @@ function processCommentBulkActions() {
 }
 
 /**
- * Extracs the first two characters from the Zenphoto locale names like 'de_DE' so that
- * TinyMCE and the Ajax File Manager who use two character locales like 'de' can set their language packs
- *
- * @return string
- */
-function getLocaleForTinyMCEandAFM() {
-	$locale = substr(getOption("locale"),0,2);
-	if (empty($locale) || !file_exists(SERVERPATH.'/'.PLUGIN_FOLDER.'/tiny_mce/langs/'.$locale.'.js')) {
-		$locale = 'en';
-	}
-	return $locale;
-}
-
-/**
  * Codeblock tabs JavaScript code
  *
  */

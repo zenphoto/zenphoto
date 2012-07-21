@@ -46,10 +46,12 @@ class tinymceOptions {
 		$options = array(gettext('Text editor configuration - Zenphoto') => array('key' => 'tinymce_zenphoto', 'type' => OPTION_TYPE_SELECTOR,
 										'order'=>0,
 										'selections' => $configarray,
+										'null_selection' => gettext('Disabled'),
 										'desc' => gettext('Applies to <em>admin</em> editable text other than for Zenpage pages and news articles.')),
 										gettext('Text editor configuration - Zenpage') => array('key' => 'tinymce_zenpage', 'type' => OPTION_TYPE_SELECTOR,
 										'order'=>0,
 										'selections' => $configarray,
+										'null_selection' => gettext('Disabled'),
 										'desc' => gettext('Applies to editing on the Zenpage <em>pages</em> and <em>news</em> tabs.')),
 										gettext('Custom image size') => array('key' => 'tinymce_tinyzenpage_customimagesize', 'type' => OPTION_TYPE_TEXTBOX,
 										'order'=>2,
@@ -83,7 +85,10 @@ class tinymceOptions {
 
 function tinymceConfigJS($editorconfig,$mode) {
 	if (empty($editorconfig)) {	// only if we get here first!
-		$locale = getLocaleForTinyMCEandAFM();
+		$locale = substr(getOption("locale"),0,2);
+		if (empty($locale) || !file_exists(SERVERPATH.'/'.PLUGIN_FOLDER.'/tiny_mce/langs/'.$locale.'.js')) {
+			$locale = 'en';
+		}
 		$editorconfig = getOption('tinymce_'.$mode);
 		if (!empty($editorconfig)) {
 			$editorconfig = getPlugin('/tiny_mce/config/'.$editorconfig);
@@ -96,20 +101,14 @@ function tinymceConfigJS($editorconfig,$mode) {
 }
 
 function getTinyMCEConfigFiles() {
-		$array = array();
 		$files = getPluginFiles('*.js.php','tiny_mce/config/');
-		$default = array(gettext('TinyMCE disabled') => '');
-		$array = array_merge($array,$default);
+		$array = array();
 		foreach($files as $file) {
 			$filename = strrchr($file,'/');
 			$filename = substr($filename, 1);
-			$filearray = array($filename => $filename);
-			//print_r($filearray);
-			$array = array_merge($array,$filearray);
+			$array[ucfirst(substr($filename,0,strpos($filename, '.js.php')))] = $filename;
 		}
 		return $array;
 	}
 
-	//$array = getTinyMCEConfigFiles();
-	//echo "<pre>"; print_r($array); echo "</pre>";
 ?>
