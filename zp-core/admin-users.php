@@ -313,38 +313,12 @@ if ($_zp_current_admin_obj->reset && !$refresh) {
 			$admins = sortMultiArray($admins, 'user');
 			$rights = DEFAULT_RIGHTS;
 			$groupname = 'default';
-			$pages = round(ceil(count($admins) / USERS_PER_PAGE));
-			$rangeset = array();
-			if ($pages > 1) {
-				$page = -1;
-				$ranges = array();
-				$tadmins = $admins;
-				$base = ' ';
-				while (!empty($tadmins)) {
-					$page++;
-					$ranges[$page] = array(0=>0, 1=>0);
-					$c = 0;
-					while (($c < USERS_PER_PAGE) && !empty($tadmins)) {
-						$t = array_shift($tadmins);
-						$ranges[$page][$c!=0] = strtolower($t['user']);
-						if (in_array($t['user'], $showset)) {
-							$subpage = $page;
-						}
-						$c++;
-					}
-				}
-				$base = ' ';
-				foreach ($ranges as $page=>$range) {
-					$start = $range[0];
-					$end = $range[1];
-					if (empty($end)) {
-						$rangeset[$page] = minDiff($base, $start);
-					} else {
-						$rangeset[$page] = minDiff($base, $start).' » '.minDiff($start, $end);
-					}
-					$base = $end;
-				}
+			$list = array();
+			foreach ($admins as $admin) {
+				$list[] = $admin['user'];
 			}
+			natcasesort($list);
+			$rangeset = getPageSelector($list, USERS_PER_PAGE);
 		}
 		$newuser = array('id' => -1, 'user' => '', 'pass' => '', 'name' => '', 'email' => '', 'rights' => $rights, 'custom_data' => NULL, 'valid' => 1, 'group' => $groupname);
 		$alterrights = '';
@@ -476,46 +450,15 @@ function languageChange(id,lang) {
 						}
 					}
 					?>
-				</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<?php
-				if ($subpage > 0) {
-					?>
-					<a href="?subpage=<?php echo ($subpage-1); ?>&amp;showgroup=<?php echo $showgroup; ?>" ><?php echo gettext('prev'); ?></a>
-					<?php
-				}
-				if ($pages > 2) {
-					if ($subpage > 0) {
-						?>
-						|
-						<?php
-					}
-					?>
-					<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-users.php',['subpage='+$('#subpage').val(),'showgroup='+$('#showgroup').val()]);" >
-						<?php
-						foreach ($rangeset as $page=>$range) {
-							?>
-							<option value="<?php echo $page; ?>" <?php if ($page==$subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
-							<?php
-						}
-						?>
-					</select>
-					<?php
-				}
-				if ($pages > $subpage+1) {
-					if ($pages > 2) {
-						?>
-						|
-						<?php
-					}?>
-					<a href="?subpage=<?php echo ($subpage+1); ?>&amp;showgroup=<?php echo $showgroup; ?>" ><?php echo gettext('next'); ?></a>
-					<?php
-				}
-				?>
+				</select>
+			</th>
+			<th>
+				<?php printPageSelector($subpage, $rangeset, 'admin-users.php'); ?>
 			</th>
 			<?php
 		} else {
 			?>
-			<th colspan=2>&nbsp;</th>
+			<th colspan=3>&nbsp;</th>
 			<?php
 		}
 		?>
@@ -578,7 +521,7 @@ function languageChange(id,lang) {
 		?>
 		<!-- finished with filters -->
 		<tr>
-			<td colspan="2" style="margin: 0pt; padding: 0pt;">
+			<td colspan="3" style="margin: 0pt; padding: 0pt;">
 			<!-- individual admin table -->
 			<input type="hidden" name="show-<?php echo $userid; ?>" id="show-<?php echo $userid; ?>" value="<?php echo ($current);?>" />
 			<table class="bordered" style="border: 0" id='user-<?php echo $id;?>'>

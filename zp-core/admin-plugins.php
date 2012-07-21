@@ -62,37 +62,8 @@ zp_apply_filter('texteditor_config', '','zenphoto');
 $paths = getPluginFiles('*.php');
 $pluginlist = array_keys($paths);
 natcasesort($pluginlist);
-$pages = round(ceil(count($pluginlist) / PLUGINS_PER_PAGE));
+$rangeset = getPageSelector($pluginlist,PLUGINS_PER_PAGE);
 $filelist = array_slice($pluginlist,$subpage*PLUGINS_PER_PAGE,PLUGINS_PER_PAGE);
-
-$rangeset = array();
-if ($pages > 1) {
-	$page = -1;
-	$ranges = array();
-	$tlist = $pluginlist;
-	$base = ' ';
-	while (!empty($tlist)) {
-		$page++;
-		$ranges[$page] = array(0=>0, 1=>0);
-		$c = 0;
-		while (($c < PLUGINS_PER_PAGE) && !empty($tlist)) {
-			$t = array_shift($tlist);
-			$ranges[$page][$c!=0] = strtolower($t);
-			$c++;
-		}
-	}
-	$base = ' ';
-	foreach ($ranges as $page=>$range) {
-		$start = $range[0];
-		$end = $range[1];
-		if (empty($end)) {
-			$rangeset[$page] = minDiff($base, $start);
-		} else {
-			$rangeset[$page] = minDiff($base, $start).' » '.minDiff($start, $end);
-		}
-		$base = $end;
-	}
-}
 
 ?>
 <script type="text/javascript">
@@ -162,41 +133,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 		<?php echo gettext("Description"); ?>
 	</th>
 	<th>
-	<?php
-	if ($subpage > 0) {
-		?>
-			<a href="?subpage=<?php echo ($subpage-1); ?>" ><?php echo gettext('prev'); ?></a>
-			<?php
-		}
-		if ($pages > 2) {
-			if ($subpage > 0) {
-				?>
-				|
-				<?php
-			}
-			?>
-			<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-plugins.php',['subpage='+$('#subpage').val()]);" >
-				<?php
-				foreach ($rangeset as $page=>$range) {
-					?>
-					<option value="<?php echo $page; ?>" <?php if ($page==$subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
-					<?php
-				}
-				?>
-			</select>
-			<?php
-		}
-		if ($pages > $subpage+1) {
-			if ($pages > 2) {
-				?>
-				|
-				<?php
-			}?>
-			<a href="?subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?></a>
-			<?php
-		}
-
-	?>
+	<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php'); ?>
 	</th>
 </tr>
 <?php

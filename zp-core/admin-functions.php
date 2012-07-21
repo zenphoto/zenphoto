@@ -4086,6 +4086,76 @@ function minDiff($string1, $string2) {
 	}
 	return rtrim($base,'_');
 }
+
+function getPageSelector($list, $itmes_per_page) {
+	$pages = round(ceil(count($list) / (int) $itmes_per_page));
+	$rangeset = array();
+	if ($pages > 1) {
+		$page = -1;
+		$ranges = array();
+		$base = ' ';
+		while (!empty($list)) {
+			$page++;
+			$ranges[$page] = array(0=>0, 1=>0);
+			$c = 0;
+			while (($c < $itmes_per_page) && !empty($list)) {
+				$t = array_shift($list);
+				$ranges[$page][$c!=0] = strtolower($t);
+				$c++;
+			}
+		}
+		$base = ' ';
+		foreach ($ranges as $page=>$range) {
+			$start = $range[0];
+			$end = $range[1];
+			if (empty($end)) {
+				$rangeset[$page] = minDiff($base, $start);
+			} else {
+				$rangeset[$page] = minDiff($base, $start).' » '.minDiff($start, $end);
+			}
+			$base = $end;
+		}
+	}
+	return $rangeset;
+}
+
+function printPageSelector($subpage, $rangeset, $script) {
+	$pages = count($rangeset);
+	if ($subpage > 0) {
+		?>
+				<a href="?subpage=<?php echo ($subpage-1); ?>" ><?php echo gettext('prev'); ?></a>
+				<?php
+			}
+			if ($pages > 2) {
+				if ($subpage > 0) {
+					?>
+					|
+					<?php
+				}
+				?>
+				<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER.'/'.$script; ?>',['subpage='+$('#subpage').val()]);" >
+					<?php
+					foreach ($rangeset as $page=>$range) {
+						?>
+						<option value="<?php echo $page; ?>" <?php if ($page==$subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
+						<?php
+					}
+					?>
+				</select>
+				<?php
+			}
+			if ($pages > $subpage+1) {
+				if ($pages > 2) {
+					?>
+					|
+					<?php
+				}?>
+				<a href="?subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?></a>
+				<?php
+			}
+
+}
+
 /**
  * Returns Magick (Gmagick/Imagick) constants that begin with $filter and
  * removes the constant of the form $filter . 'UNDEFINED' if it exists.
@@ -4118,6 +4188,7 @@ function getMagickConstants($class, $filter) {
 
 	return $constantsArray;
 }
+
 /**
  * Strips off quotes from the strng
  * @param $string
