@@ -340,7 +340,7 @@ if ($_zp_current_admin_obj->reset && !$refresh) {
 					if (empty($end)) {
 						$rangeset[$page] = minDiff($base, $start);
 					} else {
-						$rangeset[$page] = minDiff($base, $start).'-'.minDiff($start, $end);
+						$rangeset[$page] = minDiff($base, $start).' » '.minDiff($start, $end);
 					}
 					$base = $end;
 				}

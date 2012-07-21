@@ -64,6 +64,36 @@ $pluginlist = array_keys($paths);
 natcasesort($pluginlist);
 $pages = round(ceil(count($pluginlist) / PLUGINS_PER_PAGE));
 $filelist = array_slice($pluginlist,$subpage*PLUGINS_PER_PAGE,PLUGINS_PER_PAGE);
+
+$rangeset = array();
+if ($pages > 1) {
+	$page = -1;
+	$ranges = array();
+	$tlist = $pluginlist;
+	$base = ' ';
+	while (!empty($tlist)) {
+		$page++;
+		$ranges[$page] = array(0=>0, 1=>0);
+		$c = 0;
+		while (($c < PLUGINS_PER_PAGE) && !empty($tlist)) {
+			$t = array_shift($tlist);
+			$ranges[$page][$c!=0] = strtolower($t);
+			$c++;
+		}
+	}
+	$base = ' ';
+	foreach ($ranges as $page=>$range) {
+		$start = $range[0];
+		$end = $range[1];
+		if (empty($end)) {
+			$rangeset[$page] = minDiff($base, $start);
+		} else {
+			$rangeset[$page] = minDiff($base, $start).' » '.minDiff($start, $end);
+		}
+		$base = $end;
+	}
+}
+
 ?>
 <script type="text/javascript">
 	<!--
@@ -133,59 +163,39 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 	</th>
 	<th>
 	<?php
-	if ($pages > 1) {
+	if ($subpage > 0) {
 		?>
-		<ul class="pagelist">
-				<?php
+			<a href="?subpage=<?php echo ($subpage-1); ?>" ><?php echo gettext('prev'); ?></a>
+			<?php
+		}
+		if ($pages > 2) {
 			if ($subpage > 0) {
 				?>
-				<li>
-				<a href="?page=plugins&subpage=<?php echo ($subpage-1); ?>" ><?php echo gettext('prev'); ?></a>
-				</li>
+				|
 				<?php
-			} else {
-			?>
-			</li class="disabledlink">
-			<?php
-				echo gettext('prev');
-			?>
-			</li>
-			<?php
 			}
-			for ($i=1;$i<=$pages;$i++) {
-				if ($i == $subpage+1) {
+			?>
+			<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin-plugins.php',['subpage='+$('#subpage').val()]);" >
+				<?php
+				foreach ($rangeset as $page=>$range) {
 					?>
-					<li class="disabledlink">
-						<?php echo " $i "; ?>
-					</li>
-					<?php
-				} else {
-					?>
-					<li>
-						<a href="?page=plugins&subpage=<?php echo $i-1; ?>" ><?php echo " $i "; ?></a>
-					</li>
+					<option value="<?php echo $page; ?>" <?php if ($page==$subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
 					<?php
 				}
-			}
-			if ($subpage < $pages-1) {
 				?>
-				<li>
-					<a href="?page=plugins&subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?></a>
-				</li>
-				<?php
-			} else {
+			</select>
+			<?php
+		}
+		if ($pages > $subpage+1) {
+			if ($pages > 2) {
 				?>
-				</li class="disabledlink">
+				|
 				<?php
-					echo gettext('next');
-				?>
-				</li>
-				<?php
-			}
-			?>
-		</ul>
-		<?php
-	}
+			}?>
+			<a href="?subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?></a>
+			<?php
+		}
+
 	?>
 	</th>
 </tr>

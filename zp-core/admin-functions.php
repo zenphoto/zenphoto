@@ -4080,11 +4080,11 @@ function minDiff($string1, $string2) {
 	}
 	for ($i=0;$i<min(strlen($string1),strlen($string2));$i++) {
 		if ($string1[$i] != $string2[$i]) {
-			$base = substr($string2,0,$i+1);
+			$base = substr($string2,0,max($i+1,5));
 			break;
-}
+		}
 	}
-	return $base;
+	return rtrim($base,'_');
 }
 /**
  * Returns Magick (Gmagick/Imagick) constants that begin with $filter and
