@@ -1763,7 +1763,7 @@ function seoFriendly($string) {
 	if (zp_has_filter('seoFriendly')) {
 		$string = zp_apply_filter('seoFriendly', $string);
 	} else { // no filter, do basic cleanup
-		$string = preg_replace("/\s+/","_",$string);
+		$string = preg_replace("/\s+/","-",$string);
 		$string = preg_replace("/[^a-zA-Z0-9_.-]/","-",$string);
 		$string = str_replace(array('---','--'),'-', $string);
 	}
@@ -1780,7 +1780,7 @@ function seoFriendlyJS() {
 	} else {
 		?>
 		function seoFriendlyJS(fname) {
-			fname = fname.replace(/\s+/g, '_');
+			fname = fname.replace(/\s+/g, '-');
 			fname = fname.replace(/[^a-zA-Z0-9_.-]/g, '-');
 			fname = fname.replace(/--*/g, '-');
 			return fname;

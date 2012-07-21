@@ -1,12 +1,12 @@
 <?php
 /**
- * Changes <i>white space</i> characters to underscores.
+ * Changes <i>white space</i> characters to hyphens.
  * @package plugins
  */
 
 $plugin_is_filter = 5|ADMIN_PLUGIN;
 $plugin_description = gettext('SEO <em>Null</em> filter.');
-$plugin_notice = gettext('The only translation performed is <em>white space</em> characters to <em>underscore</em>.');
+$plugin_notice = gettext('The only translation performed is one or more <em>white space</em> characters are converted to a <em>hyphen</em>.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (zp_has_filter('seoFriendly') && !getoption('zp_plugin_seo_null'))?sprintf(gettext('Only one SEO filter plugin may be enalbed. <a href="#%1$s"><code>%1$s</code></a> is already enabled.'),stripSuffix(get_filterScript('seoFriendly'))):'';
 
@@ -45,14 +45,14 @@ class null_seo {
 	 * @return string
 	 */
 	static function filter($string) {
-		$string = preg_replace("/\s+/","_",$string);
+		$string = preg_replace("/\s+/","-",$string);
 		return $string;
 	}
 
 	static function js($string) {
 		$js = "
 			function seoFriendlyJS(fname) {
-				fname = fname.replace(/\s+/g, '_');
+				fname = fname.replace(/\s+/g, '-');
 				return fname;
 			}\n";
 		return $js;

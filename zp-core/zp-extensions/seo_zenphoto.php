@@ -1092,7 +1092,7 @@ class zenphoto_seo {
 		// strip/convert a few specific characters
 		$string = strtr($string,zenphoto_seo::$specialchars);
 		if (getOption('zenphoto_seo_lowercase')) $string = strtolower($string);
-		$string = preg_replace("/\s+/","_",$string);
+		$string = preg_replace("/\s+/","-",$string);
 		$string = preg_replace("/[^a-zA-Z0-9_.-]/","-",$string);
 		$string = str_replace(array('---','--'),'-', $string);
 		return $string;
@@ -1118,7 +1118,7 @@ class zenphoto_seo {
 			$js .= "				fname = fname.toLowerCase();\n";
 		}
 		$js .= "
-				fname = fname.replace(/\s+/g, '_');
+				fname = fname.replace(/\s+/g, '-');
 				fname = fname.replace(/[^a-zA-Z0-9_.-]/g, '-');
 				fname = fname.replace(/--*/g, '-');
 				return fname;
