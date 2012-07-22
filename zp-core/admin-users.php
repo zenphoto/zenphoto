@@ -708,7 +708,7 @@ function languageChange(id,lang) {
 				?>
 				<p>
 				<label for="admin_language_<?php echo $id ?>"><?php echo gettext('Language:'); ?></label></p>
-				<input type=hidden name="<?php echo $id ?>-admin_language" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
+				<input type="hidden" name="<?php echo $id ?>-admin_language" id="admin_language_<?php echo $id ?>" value="<?php echo $currentValue; ?>" />
 				<ul class="flags" style="margin-left: 0px;">
 					<?php
 					$_languages = generateLanguageList();
