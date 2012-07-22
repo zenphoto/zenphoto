@@ -315,6 +315,9 @@ function printTabs() {
 		</li>
 		<?php
 		} // if array
+		?>
+	</li>
+	<?php
 	}
 	?>
 	</ul>
@@ -396,7 +399,11 @@ function printSubtabs() {
 			}
 			echo '<li'.(($current == $tab) ? ' class="current"' : '').'><a id="'.$tab.'" '.$link.'">'.$key.'</a></li>'."\n";
 		}
-	}
+	} else {
+		?> 
+		<li></li> 
+		<?php 
+		}
 	?>
 	</ul>
 	<?php
@@ -965,7 +972,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 						<label class="displayinlineright">
 							<input type="<?php echo $type; ?>" id="<?php echo strtolower($listitem).'_'.$box['name'].$unique; ?>" name="<?php echo $listitem.'_'.$box['name']; ?>"
 									 value="<?php echo html_encode($box['value']); ?>" <?php if ($box['checked']) {echo ' checked="checked"';	} ?>
-									 <?php echo $disable; ?> \> <?php echo $box['display'];?>
+									 <?php echo $disable; ?> /> <?php echo $box['display'];?>
 						</label>
 						<?php
 					} else {
@@ -1233,7 +1240,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 									<?php echo gettext("Album guest user:"); ?>
 								</a>
 								<br />
-								<label><input type="checkbox" name="disclose_password_<?php echo $prefix; ?>" id="disclose_password_<?php echo $prefix; ?>" onclick="passwordKeydown('<?php echo $prefix; ?>');togglePassword('<?php echo $prefix; ?>');"><?php echo gettext('Show password'); ?></label>
+								<label><input type="checkbox" name="disclose_password_<?php echo $prefix; ?>" id="disclose_password_<?php echo $prefix; ?>" onclick="passwordKeydown('<?php echo $prefix; ?>');togglePassword('<?php echo $prefix; ?>');" /><?php echo gettext('Show password'); ?></label>
 							</td>
 							<td>
 								<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
@@ -3116,7 +3123,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 				?>
 			</ul>
 			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-			<br clear="all">
+			<br clear="all" />
 		</div>
 	</div>
 	<?php

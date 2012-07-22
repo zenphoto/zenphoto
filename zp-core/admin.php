@@ -134,7 +134,7 @@ if (zp_loggedin()) {
 // Print our header
 printAdminHeader('overview');
 ?>
-<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.masonry.min.js"></script>
+<script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.masonry.min.js"></script>
 <script type="text/javascript">
 	// <!-- <![CDATA[
 	$(function(){
