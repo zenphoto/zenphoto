@@ -317,7 +317,6 @@ if ($_zp_current_admin_obj->reset && !$refresh) {
 			foreach ($admins as $admin) {
 				$list[] = $admin['user'];
 			}
-			natcasesort($list);
 			$rangeset = getPageSelector($list, USERS_PER_PAGE);
 		}
 		$newuser = array('id' => -1, 'user' => '', 'pass' => '', 'name' => '', 'email' => '', 'rights' => $rights, 'custom_data' => NULL, 'valid' => 1, 'group' => $groupname);
@@ -453,7 +452,7 @@ function languageChange(id,lang) {
 				</select>
 			</th>
 			<th>
-				<?php printPageSelector($subpage, $rangeset, 'admin-users.php'); ?>
+				<?php printPageSelector($subpage, $rangeset, 'admin-users.php', 'users', ''); ?>
 			</th>
 			<?php
 		} else {

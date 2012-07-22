@@ -2798,6 +2798,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 		natcasesort($plugins);
 	}
 	$pages = round(ceil(count($plugins) / PLUGINS_PER_PAGE));
+	$rangeset = getPageSelector($plugins,PLUGINS_PER_PAGE);
 	$plugins = array_slice($plugins,$subpage*PLUGINS_PER_PAGE,PLUGINS_PER_PAGE);
 	?>
 	<div id="tab_plugin" class="tabbox">
@@ -2827,61 +2828,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 					</span>
 					</th>
 					<th>
-					<?php
-					if ($pages > 1) {
-						?>
-						<ul class="pagelist">
-								<?php
-							if ($subpage > 0) {
-								?>
-								<li>
-								<a href="?page=options&tab=plugin&subpage=<?php echo ($subpage-1); ?>" ><?php echo gettext('prev'); ?></a>
-								</li>
-								<?php
-							} else {
-							?>
-							</li class="disabledlink">
-							<?php
-								echo gettext('prev');
-							?>
-							</li>
-							<?php
-							}
-							for ($i=1;$i<=$pages;$i++) {
-								if ($i == $subpage+1) {
-									?>
-									<li class="disabledlink">
-										<?php echo " $i "; ?>
-									</li>
-									<?php
-								} else {
-									?>
-									<li>
-										<a href="?page=options&tab=plugin&subpage=<?php echo $i-1; ?>" ><?php echo " $i "; ?></a>
-									</li>
-									<?php
-								}
-							}
-							if ($subpage < $pages-1) {
-								?>
-								<li>
-									<a href="?page=options&tab=plugin&subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?></a>
-								</li>
-								<?php
-							} else {
-								?>
-								</li class="disabledlink">
-								<?php
-									echo gettext('next');
-								?>
-								</li>
-								<?php
-							}
-							?>
-						</ul>
-						<?php
-					}
-					?>
+					<?php printPageSelector($subpage, $rangeset, 'admin-options', 'options', 'plugin'); ?>
 				</th>
 			</tr>
 				<?php

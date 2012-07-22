@@ -400,9 +400,9 @@ function printSubtabs() {
 			echo '<li'.(($current == $tab) ? ' class="current"' : '').'><a id="'.$tab.'" '.$link.'">'.$key.'</a></li>'."\n";
 		}
 	} else {
-		?> 
-		<li></li> 
-		<?php 
+		?>
+		<li></li>
+		<?php
 		}
 	?>
 	</ul>
@@ -4126,11 +4126,11 @@ function getPageSelector($list, $itmes_per_page) {
 	return $rangeset;
 }
 
-function printPageSelector($subpage, $rangeset, $script) {
+function printPageSelector($subpage, $rangeset, $script, $maintab, $subtab) {
 	$pages = count($rangeset);
 	if ($subpage > 0) {
 		?>
-				<a href="?subpage=<?php echo ($subpage-1); ?>" ><?php echo gettext('prev'); ?></a>
+				<a href="<?php echo $script; ?>?page=<?php echo $maintab; if($subtab) echo '&tab='.$subtab; ?>&subpage=<?php echo ($subpage-1); ?>" ><?php echo gettext('prev'); ?></a>
 				<?php
 			}
 			if ($pages > 2) {
@@ -4140,7 +4140,7 @@ function printPageSelector($subpage, $rangeset, $script) {
 					<?php
 				}
 				?>
-				<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER.'/'.$script; ?>',['subpage='+$('#subpage').val()]);" >
+				<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER.'/'.$script; ?>',['page=<?php echo $maintab; ?>','tab=<?php echo $subtab; ?>','subpage='+$('#subpage').val()]);" >
 					<?php
 					foreach ($rangeset as $page=>$range) {
 						?>
@@ -4157,7 +4157,7 @@ function printPageSelector($subpage, $rangeset, $script) {
 					|
 					<?php
 				}?>
-				<a href="?subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?></a>
+				<a href="<?php echo $script; ?>?page=<?php echo $maintab; if($subtab) echo '&tab='.$subtab; ?>&subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?></a>
 				<?php
 			}
 

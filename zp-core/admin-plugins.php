@@ -133,7 +133,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 		<?php echo gettext("Description"); ?>
 	</th>
 	<th>
-	<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php'); ?>
+	<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', 'plugins', ''); ?>
 	</th>
 </tr>
 <?php
