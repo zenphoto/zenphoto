@@ -288,6 +288,7 @@ if ($_zp_current_admin_obj->reset && !$refresh) {
 			$rights = ALL_RIGHTS;
 			$groupname = 'administrators';
 			$showset = array('');
+			$rangeset = array();
 		} else {
 			if (!empty($showgroup)) {
 				foreach ($admins as $key=>$user) {
