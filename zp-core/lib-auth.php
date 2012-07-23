@@ -51,7 +51,7 @@ class Zenphoto_Authority {
 	var $admin_all = NULL;
 	var $rightsset = NULL;
 	var $master_user = NULL;
-	static $preferred_version = 3;
+	static $preferred_version = 4;
 	static $supports_version = 4;
 
 	/**

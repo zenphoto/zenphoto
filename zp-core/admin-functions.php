@@ -4130,7 +4130,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 	$pages = count($rangeset);
 	$jump = $query = '';
 	foreach ($queryParams as $param=>$value) {
-		$query .= $param.'='.$value.'&';
+		$query .= $param.'='.$value.'&amp;';
 		$jump .= "'".$param."=".$value."',";
 	}
 	$query = '?'.$query;

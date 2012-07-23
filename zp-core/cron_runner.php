@@ -6,7 +6,7 @@
 
 define('OFFSET_PATH', 1);
 
-require_once(dirname(__FILE__).'/functions-basic.php');
+require_once(dirname(__FILE__).'/functions.php');
 
 $_zp_current_admin_obj = $_zp_loggedin = NULL;
 $link = sanitize($_POST['link']);
