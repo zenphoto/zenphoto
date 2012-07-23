@@ -608,7 +608,7 @@ function printArticleDatesDropdown() {
 		 } else {
 				$selected = "";
 			}
-		 echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,false,true)."'>".gettext("View all months")."</option>";
+		 echo "<option $selected value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,false,true)."'>".gettext("View all months")."</option>";
 		while (list($key, $val) = each($datecount)) {
 		$nr++;
 		if ($key == '0000-00-01') {
@@ -631,9 +631,9 @@ function printArticleDatesDropdown() {
 				$selected = "";
 			}
 			if(isset($_GET['date'])) {
-				echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,false,true,true,true)."'>$month $year ($val)</option>\n";
+				echo "<option $selected value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,false,true,true,true)."'>$month $year ($val)</option>\n";
 			} else {
-				echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage."&amp;date=".substr($key,0,7).getNewsAdminOptionPath(true,false,true,true,true)."'>$month $year ($val)</option>\n";
+				echo "<option $selected value='admin-news-articles.php?subpage=".$currentpage."&amp;date=".substr($key,0,7).getNewsAdminOptionPath(true,false,true,true,true)."'>$month $year ($val)</option>\n";
 			}
 	}
 ?>
@@ -668,19 +668,19 @@ function printArticlesPageNav($total) {
 		echo "<ul class=\"pagelist\">";
 		echo "<li class=\"prev\">";
 		if ($current != 1) {
-			echo "<a href='admin-news-articles.php?pagenr=".($current - 1).getNewsAdminOptionPath(true,true,true,true,true)."' title='".gettext("Prev Page")." ".($current - 1)."' >« ".gettext("prev")."</a>\n";
+			echo "<a href='admin-news-articles.php?subpage=".($current - 1).getNewsAdminOptionPath(true,true,true,true,true)."' title='".gettext("Prev Page")." ".($current - 1)."' >« ".gettext("prev")."</a>\n";
 		} else {
 			echo "<span class='disabledlink'>« ".gettext("prev")."</span>\n";
 		}
 		echo "</li>\n";
 
 		echo '<li class="'.($current==1?'current':'first').'">';
-		echo "<a href='admin-news-articles.php?pagenr=1".getNewsAdminOptionPath(true,true,true,true,true)."' title='".gettext("First Page")."' >1</a>\n";
+		echo "<a href='admin-news-articles.php?subpage=1".getNewsAdminOptionPath(true,true,true,true,true)."' title='".gettext("First Page")."' >1</a>\n";
 		echo "</li>\n";
 		if ($j>2) {
 			echo "<li>";
 			$linktext = ($j-1>2)?'...':$k1;
-			echo "<a href='admin-news-articles.php?pagenr=".$k1.getNewsAdminOptionPath(true,true,true,true,true)."' title='page ".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."'>".$linktext."</a>";
+			echo "<a href='admin-news-articles.php?subpage=".$k1.getNewsAdminOptionPath(true,true,true,true,true)."' title='page ".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."'>".$linktext."</a>";
 			//echo "<a href=\"".getNewsBaseURL().getNewsCategoryPathNav().getNewsArchivePathNav().getNewsPagePath().$k1."\" title=\"".sprintf(ngettext('Page %u','Page %u',$k1),$k1)."\">".($j-1>2)?'...':$k1."</a>";
 			echo "</li>\n";
 		}
@@ -690,29 +690,49 @@ function printArticlesPageNav($total) {
 			if($i == $current) {
 				echo $i;
 			} else {
-				echo "<a href='admin-news-articles.php?pagenr=".$i.getNewsAdminOptionPath(true,true,true,true,true)."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>\n";
+				echo "<a href='admin-news-articles.php?subpage=".$i.getNewsAdminOptionPath(true,true,true,true,true)."' title='".sprintf(ngettext('Page %1$u','Page %1$u', $i),$i)."'>".$i."</a>\n";
 			}
 			echo "</li>\n";
 		}
 		if ($i < $total) {
 			echo "<li>";
 			$linktext = ($total-$i>1)?'...':$k2;
-			echo "<a href='admin-news-articles.php?pagenr=".$k2.getNewsAdminOptionPath(true,true,true,true,true)."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
+			echo "<a href='admin-news-articles.php?subpage=".$k2.getNewsAdminOptionPath(true,true,true,true,true)."' title='".sprintf(ngettext('Page %u','Page %u',$k2),$k2)."'>".$linktext."</a>";
 			echo "</li>\n";
 		}
 		if ($i <= $total) {
 			echo "\n  <li class=\"last\">";
-			echo "<a href='admin-news-articles.php?pagenr=".$total.getNewsAdminOptionPath(true,true,true,true,true)."' title='".sprintf(ngettext('Page %u','Page %u',$total),$total)."'>".$total."</a>";
+			echo "<a href='admin-news-articles.php?subpage=".$total.getNewsAdminOptionPath(true,true,true,true,true)."' title='".sprintf(ngettext('Page %u','Page %u',$total),$total)."'>".$total."</a>";
 			echo "</li>";
 		}
 
 		if ($current != $total)	{
-			echo "<li class='next'><a href='admin-news-articles.php?pagenr=".($current+1).getNewsAdminOptionPath(true,true,true,true,true)."' title='".gettext("Next page")." ".($current+1)."'>".gettext("next")." »</a></li>\n";
+			echo "<li class='next'><a href='admin-news-articles.php?subpage=".($current+1).getNewsAdminOptionPath(true,true,true,true,true)."' title='".gettext("Next page")." ".($current+1)."'>".gettext("next")." »</a></li>\n";
 		} else {
 			echo "<li class='next'><span class='disabledlink'>".gettext("next")." »</span></li>\n";
 		}
 		echo "</li>\n";
 	}
+}
+
+function getNewsAdminOption($categorycheck, $postedcheck,$publishedcheck,$sortordercheck,$articles_page) {
+	$list = array();
+	if(isset($_GET['category']) AND $categorycheck === true) {
+		$list['category'] = sanitize($_GET['category']);
+	}
+	if(isset($_GET['date']) AND $postedcheck === true) {
+		$list['date'] = sanitize($_GET['date']);
+	}
+	if(isset($_GET['published']) AND $publishedcheck === true) {
+		$list['published'] = sanitize($_GET['published']);
+	}
+	if(isset($_GET['sortorder']) AND $sortordercheck === true) {
+		$list['sortorder'] = sanitize($_GET['sortorder']);
+	}
+	if(isset($_GET['articles_page']) AND $articles_page === true) {
+		$list['articles_page'] = sanitize_numeric($_GET['articles_page']);
+	}
+	return $list;
 }
 
 /**
@@ -724,28 +744,12 @@ function printArticlesPageNav($total) {
  * @param bool $sortordercheck true or false if 'sortorder' should be included in the url
  * @return string
  */
-function getNewsAdminOptionPath($categorycheck='', $postedcheck='',$publishedcheck='',$sortordercheck='',$articles_page='') {
-	$category = '';
-	$posted = '';
-	$published = '';
-	$sortorder = '';
-	$articlespage = '';
-	if(isset($_GET['category']) AND $categorycheck === true) {
-		$category = "&amp;category=".sanitize($_GET['category']);
+function getNewsAdminOptionPath($categorycheck=false, $postedcheck=false,$publishedcheck=false,$sortordercheck=false,$articles_page=false) {
+	$optionpath = '';
+	$list = getNewsAdminOption($categorycheck, $postedcheck,$publishedcheck,$sortordercheck,$articles_page);
+	foreach($list as $p=>$q) {
+		$optionpath .= '&amp;'.$p.'='.$q;
 	}
-	if(isset($_GET['date']) AND $postedcheck === true) {
-		$posted = "&amp;date=".sanitize($_GET['date']);
-	}
-	if(isset($_GET['published']) AND $publishedcheck === true) {
-		$published = "&amp;published=".sanitize($_GET['published']);
-	}
-	if(isset($_GET['sortorder']) AND $sortordercheck === true) {
-		$sortorder = "&amp;sortorder=".sanitize($_GET['sortorder']);
-	}
-	if(isset($_GET['articles_page']) AND $articles_page === true) {
-		$articlespage = "&amp;articles_page=".sanitize_numeric($_GET['articles_page']);
-	}
-	$optionpath = $category.$posted.$published.$sortorder.$articlespage;
 	return $optionpath;
 }
 
@@ -780,10 +784,10 @@ function printUnpublishedDropdown() {
 	} else {
 		$all="selected='selected'";
 	}
-	echo "<option $all value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,false,true,true)."'>".gettext("All articles")."</option>\n";
-	echo "<option $published value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,false,true,true)."&amp;published=yes'>".gettext("Published")."</option>\n";
-	echo "<option $unpublished value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,false,true,true)."&amp;published=no'>".gettext("Un-published")."</option>\n";
-	echo "<option $sticky value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,false,true,true)."&amp;published=sticky'>".gettext("Sticky")."</option>\n";
+	echo "<option $all value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,false,true,true)."'>".gettext("All articles")."</option>\n";
+	echo "<option $published value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,false,true,true)."&amp;published=yes'>".gettext("Published")."</option>\n";
+	echo "<option $unpublished value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,false,true,true)."&amp;published=no'>".gettext("Un-published")."</option>\n";
+	echo "<option $sticky value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,false,true,true)."&amp;published=sticky'>".gettext("Sticky")."</option>\n";
 	?>
 </select>
 	<script type="text/javascript">
@@ -831,10 +835,10 @@ function printSortOrderDropdown() {
 	} else {
 		$orderdate_desc = "selected='selected'";
 	}
-	echo "<option $orderdate_desc value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=date-desc'>".gettext("Order by date descending")."</option>\n";
-	echo "<option $orderdate_asc value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=date-asc'>".gettext("Order by date ascending")."</option>\n";
-	echo "<option $ordertitle_desc value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=title-desc'>".gettext("Order by title descending")."</option>\n";
-	echo "<option $ordertitle_asc value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=title-asc'>".gettext("Order by title ascending")."</option>\n";
+	echo "<option $orderdate_desc value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=date-desc'>".gettext("Order by date descending")."</option>\n";
+	echo "<option $orderdate_asc value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=date-asc'>".gettext("Order by date ascending")."</option>\n";
+	echo "<option $ordertitle_desc value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=title-desc'>".gettext("Order by title descending")."</option>\n";
+	echo "<option $ordertitle_asc value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,true,false,true)."&amp;sortorder=title-asc'>".gettext("Order by title ascending")."</option>\n";
 	?>
 </select>
 	<script type="text/javascript">
@@ -876,7 +880,7 @@ if(isset($_GET['category'])) {
 	<form name ="AutoListBox2" id="categorydropdown" style="float:left" action="#" >
 	<select name="ListBoxURL" size="1" onchange="gotoLink(this.form)">
 		<?php
-		echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(false,true,true,true,true)."'>".gettext("All categories")."</option>\n";
+		echo "<option $selected value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(false,true,true,true,true)."'>".gettext("All categories")."</option>\n";
 
 		foreach ($result as $cat) {
 			$catobj = new ZenpageCategory($cat['titlelink']);
@@ -899,7 +903,7 @@ if(isset($_GET['category'])) {
 				$title = '*'.$catobj->getTitlelink().'*';
 			}
 			if ($count != " (0)") {
-				echo "<option $selected value='admin-news-articles.php?pagenr=".$currentpage."&amp;category=".$catobj->getTitlelink().getNewsAdminOptionPath(false,true,true,true,true)."'>".$levelmark.$title.$count."</option>\n";
+				echo "<option $selected value='admin-news-articles.php?subpage=".$currentpage."&amp;category=".$catobj->getTitlelink().getNewsAdminOptionPath(false,true,true,true,true)."'>".$levelmark.$title.$count."</option>\n";
 			}
 		}
 		?>
@@ -946,10 +950,10 @@ function printArticlesPerPageDropdown() {
 	} else {
 		$articles_page[1] = "selected='selected'";
 	}
-	echo "<option $articles_page[1] value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=15'>".gettext("15 per page")."</option>\n";
-	echo "<option $articles_page[2] value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=30'>".gettext("30 per page")."</option>\n";
-	echo "<option $articles_page[3] value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=60'>".gettext("60 per page")."</option>\n";
-	echo "<option $articles_page[0] value='admin-news-articles.php?pagenr=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=all'>".gettext("All")."</option>\n";
+	echo "<option $articles_page[1] value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=15'>".gettext("15 per page")."</option>\n";
+	echo "<option $articles_page[2] value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=30'>".gettext("30 per page")."</option>\n";
+	echo "<option $articles_page[3] value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=60'>".gettext("60 per page")."</option>\n";
+	echo "<option $articles_page[0] value='admin-news-articles.php?subpage=".$currentpage.getNewsAdminOptionPath(true,true,true,true,false)."&amp;articles_page=all'>".gettext("All")."</option>\n";
 	?>
 </select>
 	<script type="text/javascript">
@@ -1634,7 +1638,7 @@ function checkIfScheduled($object) {
 function printPublishIconLink($object,$type,$linkback='') {
 	$urladd = '';
 	if($type == "news") {
-		if(isset($_GET['pagenr'])) { $urladd .= "&amp;pagenr=".$_GET['pagenr']; }
+		if(isset($_GET['subpage'])) { $urladd .= "&amp;subpage=".$_GET['subpage']; }
 		if(isset($_GET['date'])) { $urladd .= "&amp;date=".$_GET['date']; }
 		if(isset($_GET['category'])) { $urladd .= "&amp;category=".sanitize($_GET['category']); }
 		if(isset($_GET['sortorder'])) { $urladd .= "&amp;sortorder=".$_GET['sortorder']; }

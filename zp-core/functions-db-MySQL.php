@@ -198,7 +198,8 @@ function db_software() {
  * create the database
  */
 function db_create() {
-	$sql = 'CREATE DATABASE IF NOT EXISTS '.'`'.$_zp_conf_vars['mysql_database'].'`'.$collation;
+	global $_zp_conf_vars;
+	$sql = 'CREATE DATABASE IF NOT EXISTS '.'`'.$_zp_conf_vars['mysql_database'].'`'.db_collation();
 	return query($sql, false);
 }
 

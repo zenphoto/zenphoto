@@ -452,7 +452,7 @@ function languageChange(id,lang) {
 				</select>
 			</th>
 			<th>
-				<?php printPageSelector($subpage, $rangeset, 'admin-users.php', 'users', ''); ?>
+				<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page'=>'users')); ?>
 			</th>
 			<?php
 		} else {

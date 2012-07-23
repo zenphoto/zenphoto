@@ -4126,41 +4126,46 @@ function getPageSelector($list, $itmes_per_page) {
 	return $rangeset;
 }
 
-function printPageSelector($subpage, $rangeset, $script, $maintab, $subtab) {
+function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 	$pages = count($rangeset);
+	$jump = $query = '';
+	foreach ($queryParams as $param=>$value) {
+		$query .= $param.'='.$value.'&';
+		$jump .= "'".$param."=".$value."',";
+	}
+	$query = '?'.$query;
 	if ($subpage > 0) {
 		?>
-				<a href="<?php echo $script; ?>?page=<?php echo $maintab; if($subtab) echo '&tab='.$subtab; ?>&subpage=<?php echo ($subpage-1); ?>" ><?php echo gettext('prev'); ?></a>
-				<?php
-			}
-			if ($pages > 2) {
-				if ($subpage > 0) {
-					?>
-					|
-					<?php
-				}
+		<a href="<?php echo $script.$query; ?>subpage=<?php echo ($subpage-1); ?>" >« <?php echo gettext('prev'); ?></a>
+		<?php
+	}
+	if ($pages > 2) {
+		if ($subpage > 0) {
+			?>
+			|
+			<?php
+		}
+		?>
+		<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER.'/'.$script; ?>',[<?php echo $jump; ?>'subpage='+$('#subpage').val()]);" >
+			<?php
+			foreach ($rangeset as $page=>$range) {
 				?>
-				<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER.'/'.$script; ?>',['page=<?php echo $maintab; ?>','tab=<?php echo $subtab; ?>','subpage='+$('#subpage').val()]);" >
-					<?php
-					foreach ($rangeset as $page=>$range) {
-						?>
-						<option value="<?php echo $page; ?>" <?php if ($page==$subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
-						<?php
-					}
-					?>
-				</select>
+				<option value="<?php echo $page; ?>" <?php if ($page==$subpage) echo ' selected="selected"'; ?>><?php echo $range; ?></option>
 				<?php
 			}
-			if ($pages > $subpage+1) {
-				if ($pages > 2) {
-					?>
-					|
-					<?php
-				}?>
-				<a href="<?php echo $script; ?>?page=<?php echo $maintab; if($subtab) echo '&tab='.$subtab; ?>&subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?></a>
-				<?php
-			}
-
+			?>
+		</select>
+		<?php
+	}
+	if ($pages > $subpage+1) {
+		if ($pages > 2) {
+			?>
+			|
+			<?php
+		}?>
+		<a href="<?php echo $script.$query; ?>subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?> »</a>
+		<?php
+	}
 }
 
 /**

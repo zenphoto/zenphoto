@@ -891,13 +891,14 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	if (!$db) {
 		$connectDBErr = db_error();
 	}
-	if ($connection) {
+	if ($_zp_DB_connection) {
 		$dbsoftware = db_software();
 		$dbapp = $dbsoftware['application'];
 		$dbversion = $dbsoftware['version'];
 		$required = $dbsoftware['required'];
 		$desired = $dbsoftware['desired'];
 		$sqlv = versionCheck($required, $desired, $dbversion);
+		$good = checkMark($sqlv, sprintf(gettext('%1$s version %2$s'),$dbapp,$dbversion), "", sprintf(gettext('%1$s Version %2$s or greater is required. Version %3$s or greater is preferred. Use a lower version at your own risk.'),$dbapp,$required,$desired), false) && $good;
 	}
 	primeMark(gettext('Database connection'));
 	if ($cfg) {
@@ -921,15 +922,14 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			$connectDBErr = gettext('Check the <code>user</code>, <code>password</code>, and <code>database host</code> and try again.'); // of course we can't connect!
 		}
 	}
-	if ($connection) {
-		$good = checkMark($sqlv, sprintf(gettext('%1$s version %2$s'),$dbapp,$dbversion), "", sprintf(gettext('%1$s Version %2$s or greater is required. Version %3$s or greater is preferred. Use a lower version at your own risk.'),$dbapp,$required,$desired), false) && $good;
-		if ($DBcreated || !empty($connectDBErr)) {
-			if (empty($connectDBErr)) {
-				$severity = 1;
-			} else {
-				$severity = 0;
+
+	if ($_zp_DB_connection) {
+		if ($DBcreated) {
+			checkMark(1, sprintf(gettext('Database <code>%s</code> created'), $_zp_conf_vars['mysql_database']),'');
+		} else {
+			if (!$oktocreate) {
+				checkMark(0, '',sprintf(gettext('Database <code>%s</code> not created [<code>CREATE DATABASE</code> query failed]'), $_zp_conf_vars['mysql_database']),$connectDBErr);
 			}
-			checkMark($severity, sprintf(gettext('Database <code>%s</code> created'), $_zp_conf_vars['mysql_database']),sprintf(gettext('Database <code>%s</code> not created [<code>CREATE DATABASE</code> query failed]'), $_zp_conf_vars['mysql_database']),$connectDBErr);
 		}
 		if (empty($_zp_conf_vars['mysql_database'])) {
 			$good = checkmark(0, '', gettext('Connect to the database [You have not provided a database name]'),gettext('Provide the name of your database in the form above.'));

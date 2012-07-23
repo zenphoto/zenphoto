@@ -174,10 +174,10 @@ codeblocktabsJS();
 	<div id="content">
 	<?php
 
-	if(empty($_GET['pagenr'])) {
+	if(empty($_GET['subpage'])) {
 		$page = "";
 	} else {
-		$page = '&amp;pagenr='.$_GET['pagenr'];
+		$page = '&amp;subpage='.$_GET['subpage'];
 	}
 	$saveitem = $updateitem = gettext('Apply');
 	if(is_AdminEditPage('newsarticle')) {

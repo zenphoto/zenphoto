@@ -249,7 +249,7 @@ class Zenpage {
 			$datesearch = "";
 			$order = " ORDER BY ".$sticky.$sort1." ".$dir;
 		}
-		$sql = "SELECT titlelink FROM ".prefix('news').$show.$datesearch." ".$order;
+		$sql = "SELECT title, titlelink FROM ".prefix('news').$show.$datesearch." ".$order;
 		$resource = query($sql);
 		$result = array();
 		if ($resource) {

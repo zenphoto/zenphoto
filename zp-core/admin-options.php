@@ -2828,7 +2828,7 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 					</span>
 					</th>
 					<th>
-					<?php printPageSelector($subpage, $rangeset, 'admin-options', 'options', 'plugin'); ?>
+					<?php printPageSelector($subpage, $rangeset, 'admin-options', array('page'=>'options', 'tab'=>'plugin')); ?>
 				</th>
 			</tr>
 				<?php
