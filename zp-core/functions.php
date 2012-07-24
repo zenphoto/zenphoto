@@ -1255,7 +1255,7 @@ function zp_getCookie($name) {
 	if (isset($_SESSION[$name])) {
 		return $_SESSION[$name];
 	}
-	return false;
+	return NULL;
 }
 
 /**

@@ -2,7 +2,7 @@
 /**
  * The configuration functions for TinyMCE with Ajax File Manager.
  *
- * Zenphoto plugin default light configuration
+ * Zenphoto comment form plugin default configuration
  */
 ?>
 	<script type="text/javascript" src="<?php echo WEBPATH ."/" . ZENFOLDER .'/'. PLUGIN_FOLDER; ?>/tiny_mce/tiny_mce.js"></script>

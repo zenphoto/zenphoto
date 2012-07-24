@@ -28,6 +28,7 @@ if (getOption('logger_log_guests')) {
 	zp_register_filter('guest_login_attempt', 'security_logger::guestLoginLogger');
 }
 zp_register_filter('admin_allow_access', 'security_logger::adminGate');
+zp_register_filter('authorization_cookie', 'security_logger::adminCookie', 0);
 zp_register_filter('admin_managed_albums_access', 'security_logger::adminAlbumGate');
 zp_register_filter('save_user', 'security_logger::UserSave');
 zp_register_filter('admin_XSRF_access', 'security_logger::admin_XSRF_access');
@@ -120,13 +121,13 @@ class security_logger {
 			case 'user_delete':
 				$type = gettext('Request delete user');
 				break;
-			case 'XSRF access blocked':
+			case 'XSRF_blocked':
 			$type = gettext('XSRF access blocked');
 				break;
-			case 'Blocked album':
+			case 'blocked_album':
 				$type = gettext('Blocked album');
 				break;
-			case 'Blocked access':
+			case 'blocked_access':
 				$type = gettext('Blocked access');
 				break;
 			case 'Front-end':
@@ -136,6 +137,9 @@ class security_logger {
 				$type = gettext('Admin login');
 				break;
 			default:
+			case 'auth_cookie':
+				$type = gettext('Authorization cookie check');
+			break;
 				$type = $action;
 		}
 
@@ -280,7 +284,14 @@ class security_logger {
 	 */
 	static function adminGate($allow, $page) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(false, $user, $name, getUserIP(), 'Blocked access', '', $page);
+		security_logger::Logger(false, $user, $name, getUserIP(), 'blocked_access', '', $page);
+		return $allow;
+	}
+
+	static function adminCookie($allow) {
+		if (is_null($allow)) {
+			security_logger::Logger(false, NULL, NULL, getUserIP(), 'auth_cookie', '', NULL);
+		}
 		return $allow;
 	}
 
@@ -291,7 +302,7 @@ class security_logger {
 	 */
 	static function adminAlbumGate($allow, $page) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(false, $user, $name, getUserIP(), 'Blocked album', '', $page);
+		security_logger::Logger(false, $user, $name, getUserIP(), 'blocked_album', '', $page);
 		return $allow;
 	}
 
@@ -316,7 +327,7 @@ class security_logger {
 	 */
 	static function admin_XSRF_access($discard, $token) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(false, $user, $name, getUserIP(), 'XSRF access blocked', '', $token);
+		security_logger::Logger(false, $user, $name, getUserIP(), 'XSRF_blocked', '', $token);
 		return false;
 	}
 

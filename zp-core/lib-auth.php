@@ -762,19 +762,22 @@ class Zenphoto_Authority {
 			$hashlen = 32;
 		}
 		$auth = zp_getCookie('zp_user_auth');
-		if (strlen($auth) > $hashlen) {
-			$id = substr($auth, $hashlen);
-			$auth = substr($auth, 0, $hashlen);
-		} else {
-			$id = NULL;
+		if (!is_null($auth)) {
+			if (strlen($auth) > $hashlen) {
+				$id = substr($auth, $hashlen);
+				$auth = substr($auth, 0, $hashlen);
+			} else {
+				$id = NULL;
+			}
+			$_zp_loggedin = $this->checkAuthorization($auth, $id);
+			if ($_zp_loggedin) {
+				return $_zp_loggedin;
+			} else {
+				zp_clearCookie("zp_user_auth");
+				return NULL;
+			}
 		}
-		$_zp_loggedin = $this->checkAuthorization($auth, $id);
-		if ($_zp_loggedin) {
-			return $_zp_loggedin;
-		} else {
-			zp_clearCookie("zp_user_auth");
-			return false;
-		}
+		return false;
 	}
 
 	/**
