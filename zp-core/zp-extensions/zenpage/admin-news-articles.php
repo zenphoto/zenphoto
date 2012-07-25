@@ -181,7 +181,7 @@ printLogoAndLinks();
 			if(!isset($_GET['subpage'])) {
 				$_zp_zenpage_currentadminnewspage = 1;
 			} else {
-				$_zp_zenpage_currentadminnewspage = sanitize_numeric($_GET['subpage']);
+				$_zp_zenpage_currentadminnewspage = sanitize_numeric($_GET['subpage'])+1;
 			}
 			if($articles_page) {
 				$total = ceil($articles / $articles_page);
@@ -190,7 +190,19 @@ printLogoAndLinks();
 					$_zp_zenpage_currentadminnewspage = 1;
 				}
 				$offset = Zenpage::getOffset($articles_page);
+				$list = array();
+				foreach ($result as $article) {
+					$list[] = $article[$sortorder];
+				}
+				if ($sortorder=='date') {
+					$rangeset = getPageSelector($list, $articles_page, 'dateDiff');
+				} else {
+					$rangeset = getPageSelector($list, $articles_page);
+				}
+				$options = array_merge(array('page'=>'news', 'tab'=>'articles'),getNewsAdminOption(true, true, true, true, true));
 				$result = array_slice($result, $offset, $articles_page);
+			} else {
+				$options = $list = array();
 			}
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU));?></span></h1>
@@ -234,7 +246,7 @@ printLogoAndLinks();
 						</th>
 						</tr>
 						<tr>
-						 <td id="imagenav" colspan="11"><?php printArticlesPageNav($total); ?></td>
+						 <td id="imagenav" colspan="11"><?php printPageSelector($_zp_zenpage_currentadminnewspage-1, $rangeset, PLUGIN_FOLDER.'/zenpage/admin-news-articles.php', $options); ?></td>
 						</tr>
 						<tr class="newstr">
 							<td class="subhead" colspan="11">
@@ -359,7 +371,7 @@ printLogoAndLinks();
 					}
 					?>
 					<tr>
-					<td id="imagenavb" colspan="11"><?php printArticlesPageNav($total); ?>	</td>
+					<td id="imagenavb" colspan="11"><?php printPageSelector($_zp_zenpage_currentadminnewspage-1, $rangeset, PLUGIN_FOLDER.'/zenpage/admin-news-articles.php', $options); ?>	</td>
 					</tr>
 				</table>
 

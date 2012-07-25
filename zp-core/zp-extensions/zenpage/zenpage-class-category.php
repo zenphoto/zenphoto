@@ -354,7 +354,7 @@ class ZenpageCategory extends ZenpageRoot {
 				break;
 		}
 		$order = " ORDER BY ".$sticky."news.$sort1 $dir";
-		$sql = "SELECT DISTINCT news.title, news.titlelink FROM ".prefix('news')." as news, ".prefix('news2cat')." as cat WHERE".$cat.$show.$order;
+		$sql = "SELECT DISTINCT news.date, news.title, news.titlelink FROM ".prefix('news')." as news, ".prefix('news2cat')." as cat WHERE".$cat.$show.$order;
 		$resource = $result = query($sql);
 		if ($resource) {
 			if ($ignorepagination) {

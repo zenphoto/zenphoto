@@ -4072,13 +4072,19 @@ function XSRFdefender($action) {
 }
 /**
  *
- * returns the shortest version of string2 that is different from string1
+ * returns the shortest string difference
  * @param string $string1
  * @param string2 $string2
  */
 function minDiff($string1, $string2) {
 	if ($string1==$string2) {
 		return $string2;
+	}
+	if (empty($string1)) {
+		return substr($string2,0,10);
+	}
+	if (empty($string2)) {
+		return substr($string1,0,10);
 	}
 	if (strlen($string2) > strlen($string1)) {
 		$base = $string2;
@@ -4087,40 +4093,65 @@ function minDiff($string1, $string2) {
 	}
 	for ($i=0;$i<min(strlen($string1),strlen($string2));$i++) {
 		if ($string1[$i] != $string2[$i]) {
-			$base = substr($string2,0,max($i+1,5));
+			$base = substr($string2,0,max($i+1,10));
 			break;
 		}
 	}
-	return rtrim($base,'_');
+	return rtrim($base,'-_');
 }
 
-function getPageSelector($list, $itmes_per_page) {
-	$pages = round(ceil(count($list) / (int) $itmes_per_page));
-	$rangeset = array();
-	if ($pages > 1) {
-		$page = -1;
-		$ranges = array();
-		$base = ' ';
-		while (!empty($list)) {
-			$page++;
-			$ranges[$page] = array(0=>0, 1=>0);
-			$c = 0;
-			while (($c < $itmes_per_page) && !empty($list)) {
-				$t = array_shift($list);
-				$ranges[$page][$c!=0] = strtolower($t);
-				$c++;
+/**
+ *
+ * returns the shortest "date" difference
+ * @param string $date1
+ * @param string $date2
+ * @return string
+ */
+function dateDiff($date1, $date2) {
+	$separators = array('', '-', '-',' ',':', ':');
+	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date1, $matches1);
+	preg_match('/(.*)-(.*)-(.*) (.*):(.*):(.*)/', $date2, $matches2);
+	if (empty($matches1)) {
+		$matches1 = array(0,0,0,0,0,0);
+	}
+	if (empty($matches2)) {
+		$matches2 = array(0,0,0,0,0,0);
+	}
+
+	$date = '';
+	$match = true;
+	for ($i=1;$i<=6;$i++) {
+		$date = $date.$matches2[$i].$separators[$i];
+		if (@$matches1[$i] != @$matches2[$i] || !$match) {
+			$match = false;
+			if ($i > 2) {
+				break;
 			}
 		}
-		$base = ' ';
-		foreach ($ranges as $page=>$range) {
-			$start = $range[0];
-			$end = $range[1];
-			if (empty($end)) {
-				$rangeset[$page] = minDiff($base, $start);
+	}
+	return rtrim($date, ':-');
+}
+
+function getPageSelector($list, $itmes_per_page, $diff='minDiff') {
+	$rangeset = array();
+	$pages = round(ceil(count($list) / (int) $itmes_per_page));
+	$list = array_values($list);
+	if ($pages > 1) {
+		$ranges = array();
+		for ($page=0;$page<$pages;$page++) {
+			$ranges[$page]['start'] = strtolower($list[$page*$itmes_per_page]);
+			$last = $page*$itmes_per_page+$itmes_per_page-1;
+			if (array_key_exists($last, $list)) {
+				$ranges[$page]['end'] = strtolower($list[$last]);
 			} else {
-				$rangeset[$page] = minDiff($base, $start).' » '.minDiff($start, $end);
+				$ranges[$page]['end'] = strtolower(@array_pop($list));
 			}
-			$base = $end;
+		}
+		$last = '';
+		foreach ($ranges as $page=>$range) {
+			$next = @$ranges[$page+1]['start'];
+			$rangeset[$page] = $diff($last, $range['start']).' » '.$diff($next,$range['end']);
+			$last = $range['end'];
 		}
 	}
 	return $rangeset;
@@ -4136,7 +4167,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 	$query = '?'.$query;
 	if ($subpage > 0) {
 		?>
-		<a href="<?php echo $script.$query; ?>subpage=<?php echo ($subpage-1); ?>" >« <?php echo gettext('prev'); ?></a>
+		<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.$script.$query; ?>subpage=<?php echo ($subpage-1); ?>" >« <?php echo gettext('prev'); ?></a>
 		<?php
 	}
 	if ($pages > 2) {
@@ -4163,7 +4194,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 			|
 			<?php
 		}?>
-		<a href="<?php echo $script.$query; ?>subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?> »</a>
+		<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.$script.$query; ?>subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?> »</a>
 		<?php
 	}
 }
