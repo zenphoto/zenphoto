@@ -2826,9 +2826,9 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 						|
 						<a href="javascript:setShow(0);toggleExtraInfo('','plugin',false);"><?php echo gettext('Collapse all plugin options');?></a>
 					</span>
-					</th>
-					<th>
-					<?php printPageSelector($subpage, $rangeset, 'admin-options', array('page'=>'options', 'tab'=>'plugin')); ?>
+				</th>
+				<th>
+					<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page'=>'options', 'tab'=>'plugin')); ?>
 				</th>
 			</tr>
 				<?php
@@ -2919,6 +2919,13 @@ if ($subtab == 'plugin' && zp_loggedin(ADMIN_RIGHTS)) {
 				<?php
 				} else {
 				?>
+				<tr>
+					<th></th>
+					<th></th>
+					<th>
+						<?php printPageSelector($subpage, $rangeset, 'admin-options.php', array('page'=>'options', 'tab'=>'plugin')); ?>
+					</th>
+				</tr>
 				<tr>
 					<td colspan="3">
 					<p class="buttons">

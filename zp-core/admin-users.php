@@ -778,6 +778,13 @@ function languageChange(id,lang) {
 	$id++;
 }
 ?>
+	<tr>
+		<th></th>
+		<th></th>
+		<th>
+			<?php printPageSelector($subpage, $rangeset, 'admin-users.php', array('page'=>'users')); ?>
+		</th>
+	</tr>
 </table> <!-- main admin table end -->
 
 <input type="hidden" name="totaladmins" value="<?php echo $id; ?>" />

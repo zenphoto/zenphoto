@@ -326,6 +326,14 @@ foreach ($filelist as $extension) {
 	<?php
 }
 ?>
+<tr>
+	<th></th>
+	<th></th>
+	<th></th>
+	<th>
+	<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array()); ?>
+	</th>
+</tr>
 </table>
 <br />
 <ul class="iconlegend">

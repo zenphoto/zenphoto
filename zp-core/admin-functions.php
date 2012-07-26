@@ -4119,16 +4119,21 @@ function dateDiff($date1, $date2) {
 	}
 
 	$date = '';
-	$match = true;
 	for ($i=1;$i<=6;$i++) {
-		$date = $date.$matches2[$i].$separators[$i];
-		if (@$matches1[$i] != @$matches2[$i] || !$match) {
-			$match = false;
-			if ($i > 2) {
-				break;
-			}
+		if (@$matches1[$i] != @$matches2[$i]) {
+			break;
 		}
 	}
+		switch ($i) {
+			case 7:
+			case 6:
+				$date = ':'.$matches2[6];
+			case 5:
+			case 4:
+				$date = ' '.$matches2[4].':'.$matches2[5].$date;
+			default:
+				$date = $matches2[1].'-'.$matches2[2].'-'.$matches2[3].$date;
+		}
 	return rtrim($date, ':-');
 }
 
@@ -4140,7 +4145,7 @@ function getPageSelector($list, $itmes_per_page, $diff='minDiff') {
 		$ranges = array();
 		for ($page=0;$page<$pages;$page++) {
 			$ranges[$page]['start'] = strtolower($list[$page*$itmes_per_page]);
-			$last = $page*$itmes_per_page+$itmes_per_page-1;
+			$last = (int) ($page*$itmes_per_page+$itmes_per_page-1);
 			if (array_key_exists($last, $list)) {
 				$ranges[$page]['end'] = strtolower($list[$last]);
 			} else {

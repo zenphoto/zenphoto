@@ -202,7 +202,7 @@ printLogoAndLinks();
 				$options = array_merge(array('page'=>'news', 'tab'=>'articles'),getNewsAdminOption(true, true, true, true, true));
 				$result = array_slice($result, $offset, $articles_page);
 			} else {
-				$options = $list = array();
+				$rangeset = $options = array();
 			}
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU));?></span></h1>
