@@ -1,6 +1,6 @@
 <?php
 /*
-	Exifer 1.6
+	Exifer 1.7
 	Extracts EXIF information from digital photos.
 
 	Originally created by:
