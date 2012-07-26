@@ -274,7 +274,7 @@
 							}
 							?>
 						</table>
-						<textarea name="comment" rows="6" cols="42" class="textarea_inputbox texteditor"><?php echo $stored['comment']; echo $disabled['comment']; ?></textarea>
+						<textarea name="comment" rows="6" cols="42" class="textarea_inputbox"><?php echo $stored['comment']; echo $disabled['comment']; ?></textarea>
 						<br />
 						<input type="submit" class="pushbutton"  value="<?php echo gettext('Add Comment'); ?>" />
 					</form>

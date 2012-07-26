@@ -224,7 +224,7 @@ global $_zp_themeroot;
 					<td></td>
 				</tr>
 				<tr>
-					<td colspan="2"><textarea tabindex="4" id="comment" name="comment" class="texteditor" rows="10" cols="40"><?php echo $stored['comment']; ?></textarea></td>
+					<td colspan="2"><textarea tabindex="4" id="comment" name="comment" class="textarea_inputbox" rows="10" cols="40"><?php echo $stored['comment']; ?></textarea></td>
 				</tr>
 				<tr valign="top" align="left">
 					<td class="buttons" colspan="2">
