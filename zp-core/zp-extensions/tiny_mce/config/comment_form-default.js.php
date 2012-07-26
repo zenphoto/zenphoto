@@ -13,8 +13,8 @@
 			theme : "advanced",
 			language: "<?php echo $locale; ?>",
 			editor_selector: "textarea_inputbox", // to enable TinyMCE on album and image customdata set to /(texteditor|texteditor_albumcustomdata|texteditor_imagecustomdata)/
-			plugins : "fullscreen,inlinepopups",
-			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,link,unlink,undo,redo",
+			plugins : "fullscreen,inlinepopups,emotions",
+			theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,emotions,link,unlink,undo,redo",
 			theme_advanced_buttons2 : "",
 			theme_advanced_buttons3 : "",
 			theme_advanced_toolbar_location : "top",
