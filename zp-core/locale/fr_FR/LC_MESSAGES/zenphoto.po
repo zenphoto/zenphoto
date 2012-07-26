@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-07-25 19:29-0500\n"
-"PO-Revision-Date: 2012-07-25 19:44-0500\n"
+"POT-Creation-Date: 2012-07-25 22:31-0500\n"
+"PO-Revision-Date: 2012-07-25 22:31-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -11273,7 +11273,6 @@ msgid "Comment editor configuration"
 msgstr "Configuration de l’éditeur de commentaires"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/comment_form.php:116
-#, fuzzy
 msgid "Configuration file for TinyMCE when used for comments. Set to <code>TinyMCE disabled</code> do disable visual editing."
 msgstr "Fichier de configuration de TinyMCE lorsqu’il est utilisé pour les commentaires. Choisir <code>TinyMCE désactivé</code> pour désactiver l’édition visuelle."
 
@@ -14422,9 +14421,8 @@ msgid "SEO <em>Null</em> filter."
 msgstr "Filtre <em>nul</em> d’optimisation pour les moteurs de recherche."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/seo_null.php:9
-#, fuzzy
 msgid "The only translation performed is one or more <em>white space</em> characters are converted to a <em>hyphen</em>."
-msgstr "Le seul effet de ce filtre est de convertir les <em>espaces</em> en <em>caractères de soulignement</em>.Le seul effet de ce filtre est de convertir un ou plusieurs <em>espaces</em> en <em>traits-d’union</em>."
+msgstr "Le seul effet de ce filtre est de convertir chaque <em>espace</em> ou groupe d’espaces par un <em>trait-d’union</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/seo_null.php:11
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/seo_zenphoto.php:10
