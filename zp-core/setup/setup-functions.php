@@ -376,7 +376,7 @@ function permissionsSelector($permission_names, $select) {
 }
 
 function setupLog($message, $anyway=false, $reset=false) {
-	global $debug, $chmod;
+	global $debug;
 	if ($debug || $anyway) {
 		if (!file_exists(dirname(SETUPLOG))) {
 			mkdir_recursive(SETUPLOG, $chmod & 0311);
@@ -387,7 +387,6 @@ function setupLog($message, $anyway=false, $reset=false) {
 			fwrite($f, strip_tags($message) . "\n");
 			fclose($f);
 			clearstatcache();
-			@chmod(SETUPLOG, $chmod & 0600);
 		}
 	}
 }

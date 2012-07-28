@@ -924,18 +924,26 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 
 	if ($_zp_DB_connection) {
-		if ($DBcreated) {
-			checkMark(1, sprintf(gettext('Database <code>%s</code> created'), $_zp_conf_vars['mysql_database']),'');
-		} else {
-			if (!$oktocreate) {
-				checkMark(0, '',sprintf(gettext('Database <code>%s</code> not created [<code>CREATE DATABASE</code> query failed]'), $_zp_conf_vars['mysql_database']),$connectDBErr);
+		if ($connection) {
+			if ($DBcreated) {
+				checkMark(1, sprintf(gettext('Database <code>%s</code> created'), $_zp_conf_vars['mysql_database']),'');
 			}
-		}
-		if (empty($_zp_conf_vars['mysql_database'])) {
-			$good = checkmark(0, '', gettext('Connect to the database [You have not provided a database name]'),gettext('Provide the name of your database in the form above.'));
 		} else {
-			if ($oktocreate) {
-				$good = checkmark(0, '', gettext('Connect to the database [Database does not exist]'),sprintf(gettext('Click here to attempt to create <a href="?Create_Database" >%s</a>.'),$_zp_conf_vars['mysql_database']));
+			$good = 0;
+			if (empty($_zp_conf_vars['mysql_database'])) {
+				checkmark(0, '', gettext('Connect to the database [You have not provided a database name]'),gettext('Provide the name of your database in the form above.'));
+			} else {
+				if ($oktocreate) {
+					?>
+					<li class="note">
+						<div class="notebox">
+							<p><?php  echo sprintf(gettext('Click here to attempt to create <a href="?Create_Database" >%s</a>.'),$_zp_conf_vars['mysql_database']); ?></p>
+						</div>
+					</li>
+					<?php
+				} else{
+					checkMark(0, '',sprintf(gettext('Database <code>%s</code> not created [<code>CREATE DATABASE</code> query failed]'), $_zp_conf_vars['mysql_database']),$connectDBErr);
+				}
 			}
 		}
 		if ($environ && $sqlv) {

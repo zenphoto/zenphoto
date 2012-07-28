@@ -1021,7 +1021,9 @@ function debugLog($message, $reset=false) {
 		fwrite($f, "  ".$message . "\n");
 		fclose($f);
 		clearstatcache();
-		@chmod($path, CHMOD_VALUE & 0600);
+		if (defined('FILE_MOD')) {
+			@chmod($path, FILE_MOD);
+		}
 	}
 }
 /**

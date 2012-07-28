@@ -92,6 +92,12 @@ cite {
 	line-height: 18px;
 }
 
+.note {
+	padding-left: 20px;
+	line-height: 18px;
+}
+
+
 .note_ok {
 	background: url(../images/comments-on.png) top left no-repeat;
 	padding-left: 20px;
