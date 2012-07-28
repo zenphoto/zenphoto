@@ -634,7 +634,7 @@ function setTinyZenpageLocale() {
  *
  */
 function printTinyZenpageCategorySelector($currentpage='') {
-	global $_zp_zenpage, $_zp_zenpage_currentadminnewspage;
+	global $_zp_zenpage;
 	$result = $_zp_zenpage->getAllCategories(false);
 	if(isset($_GET['category'])) {
 		$selected = '';

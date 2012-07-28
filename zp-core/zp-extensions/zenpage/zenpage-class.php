@@ -282,9 +282,9 @@ class Zenpage {
 	 * @return string
 	 */
 	static function getOffset($articles_per_page,$ignorepagination=false) {
-		global $_zp_zenpage_currentadminnewspage, $_zp_page;
+		global $_zp_page, $subpage;
 		if(OFFSET_PATH) {
-			$page = $_zp_zenpage_currentadminnewspage;
+			$page = $subpage+1;
 		} else {
 			$page = $_zp_page;
 		}
