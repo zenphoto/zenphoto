@@ -246,7 +246,7 @@ class Zenphoto_Authority {
 		global $_zp_current_admin_obj;
 		if (DEBUG_LOGIN) { debugLogBacktrace("checkAuthorization($authCode, $id)");	}
 		$admins = $this->getAdministrators();
-		if ((count($admins) == 0)) {
+		if (count($admins) == 0) {
 			if (DEBUG_LOGIN) { debugLog("checkAuthorization: no admins"); }
 			$_zp_current_admin_obj = new Zenphoto_Administrator('', 1);
 			$_zp_current_admin_obj->set('id', 0);
@@ -756,13 +756,13 @@ class Zenphoto_Authority {
 	 * Checks saved cookies to see if a user is logged in
 	 */
 	function checkCookieCredentials() {
-		if (getOption('strong_hash')) {
-			$hashlen = 40;
-		} else {
-			$hashlen = 32;
-		}
 		$auth = zp_getCookie('zp_user_auth');
 		if (!is_null($auth)) {
+			if (getOption('strong_hash')) {
+				$hashlen = 40;
+			} else {
+				$hashlen = 32;
+			}
 			if (strlen($auth) > $hashlen) {
 				$id = substr($auth, $hashlen);
 				$auth = substr($auth, 0, $hashlen);
@@ -775,6 +775,10 @@ class Zenphoto_Authority {
 			} else {
 				zp_clearCookie("zp_user_auth");
 				return NULL;
+			}
+		} else {
+			if (count($this->getAdministrators()) == 0) {
+				return $this->checkAuthorization('', NULL);
 			}
 		}
 		return false;
