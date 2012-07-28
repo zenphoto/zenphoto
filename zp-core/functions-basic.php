@@ -818,7 +818,6 @@ function sanitize($input_string, $sanitize_level=3) {
 	} else {
 		$output_string = sanitize_string($input_string, $sanitize_level);
 	}
-
 	return $output_string;
 }
 
@@ -1022,7 +1021,7 @@ function debugLog($message, $reset=false) {
 		fwrite($f, "  ".$message . "\n");
 		fclose($f);
 		clearstatcache();
-		@chmod($path, 0600);
+		@chmod($path, CHMOD_VALUE & 0600);
 	}
 }
 /**
