@@ -373,8 +373,22 @@ function printSubtabs() {
 	global $zenphoto_tabs, $_zp_admin_tab, $_zp_admin_subtab;
 	$tabs = @$zenphoto_tabs[$_zp_admin_tab]['subtabs'];
 	$current = getSubtabs();
+	$chars = 0;
+	foreach ($tabs as $atab=>$val) {
+		$chars = $chars + mb_strlen($atab);
+	}
+	switch (getOption('locale')) {
+		case 'zh_CN':
+		case 'zh_TW':
+		case 'ja_JP':
+			$sub_tab_space = count($tabs)*3+$chars;
+			break;
+		default:
+			$sub_tab_space = round((count($tabs)*32+round($chars*7.5))/11.5);
+			break;
+	}
 	?>
-	<ul class="subnav" >
+	<ul class="subnav" style="width: <?php echo $sub_tab_space; ?>em">
 	<?php
 	if (!empty($tabs)) {
 		foreach ($tabs as $key=>$link) {

@@ -85,11 +85,23 @@ class themeSwitcher {
 		return $theme;
 	}
 
-	static function css() {
+	static function head() {
+		if (getOption('themeSwitcher_css')) {
+			?>
+			<style type="text/css">
+				<?php echo getOption('themeSwitcher_css'); ?>
+			</style>
+			<?php
+		}
 		?>
-		<style type="text/css">
-			<?php echo getOption('themeSwitcher_css'); ?>
-		</style>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			function switchTheme() {
+				theme = $('#themeSwitcher').val();
+				window.location = '?themeSwitcher='+theme;
+			}
+			// ]]> -->
+		</script>
 		<?php
 	}
 
@@ -117,14 +129,6 @@ class themeSwitcher {
 				$text = gettext('Theme');
 			}
 			?>
-			<script type="text/javascript">
-			// <!-- <![CDATA[
-			function switchTheme() {
-				theme = $('#themeSwitcher').val();
-				window.location = '?themeSwitcher='+theme;
-			}
-			// ]]> -->
-			</script>
 			<span class="themeSwitcherControlLink">
 				<?php echo $text; ?>
 				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme()">
@@ -145,9 +149,7 @@ if (isset($_GET['themeSwitcher'])) {
 if (zp_getCookie('themeSwitcher_theme')) {
 	zp_register_filter('setupTheme', 'themeSwitcher::theme');
 }
-if (getOption('themeSwitcher_css')) {
-	zp_register_filter('theme_head', 'themeSwitcher::css');
-}
+zp_register_filter('theme_head', 'themeSwitcher::head');
 zp_register_filter('theme_body_open', 'themeSwitcher::controlLink');
 
 ?>

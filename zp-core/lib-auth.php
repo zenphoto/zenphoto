@@ -251,7 +251,7 @@ class Zenphoto_Authority {
 			$_zp_current_admin_obj = new Zenphoto_Administrator('', 1);
 			$_zp_current_admin_obj->set('id', 0);
 			$_zp_current_admin_obj->reset = true;
-			return ADMIN_RIGHTS; //no admins or reset request
+			return ADMIN_RIGHTS;
 		}
 		if (is_object($_zp_current_admin_obj) && $_zp_current_admin_obj->reset) {
 			if (DEBUG_LOGIN) { debugLog("checkAuthorization: reset request"); }
@@ -757,31 +757,24 @@ class Zenphoto_Authority {
 	 */
 	function checkCookieCredentials() {
 		$auth = zp_getCookie('zp_user_auth');
-		if (!is_null($auth)) {
-			if (getOption('strong_hash')) {
-				$hashlen = 40;
-			} else {
-				$hashlen = 32;
-			}
-			if (strlen($auth) > $hashlen) {
-				$id = substr($auth, $hashlen);
-				$auth = substr($auth, 0, $hashlen);
-			} else {
-				$id = NULL;
-			}
-			$_zp_loggedin = $this->checkAuthorization($auth, $id);
-			if ($_zp_loggedin) {
-				return $_zp_loggedin;
-			} else {
-				zp_clearCookie("zp_user_auth");
-				return NULL;
-			}
+		if (getOption('strong_hash')) {
+			$hashlen = 40;
 		} else {
-			if (count($this->getAdministrators()) == 0) {
-				return $this->checkAuthorization('', NULL);
-			}
+			$hashlen = 32;
 		}
-		return false;
+		if (strlen($auth) > $hashlen) {
+			$id = substr($auth, $hashlen);
+			$auth = substr($auth, 0, $hashlen);
+		} else {
+			$id = NULL;
+		}
+		$loggedin = $this->checkAuthorization($auth, $id);
+		if ($loggedin) {
+			return $loggedin;
+		} else {
+			zp_clearCookie("zp_user_auth");
+			return NULL;
+		}
 	}
 
 	/**
