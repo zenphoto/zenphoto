@@ -107,12 +107,12 @@ switch ($use_side) {
 $imageurl = "i.php?a=".pathurlencode($albumname)."&i=".urlencode($imagepart)."&s=".$size.'&admin';
 
 $iY = round($imageobj->get('thumbY')*$sr);
-	$cr = max($cropwidth,$cropheight)/getOption('thumb_size');
-	$si = min($sizedwidth,$sizedheight);
-	$oW = round($si*$cr);
-	$oH = round($si*$cr);
-	$oX = round(($sizedwidth - $oW)/2);
-	$oY = round(($sizedheight - $oH)/2);
+$cr = max($cropwidth,$cropheight)/getOption('thumb_size');
+$si = min($sizedwidth,$sizedheight);
+$oW = round($si*$cr);
+$oH = round($si*$cr);
+$oX = round(($sizedwidth - $oW)/2);
+$oY = round(($sizedheight - $oH)/2);
 if ($iY) {
 	$iX = round($imageobj->get('thumbX')*$sr);
 	$iW = round($imageobj->get('thumbW')*$sr);

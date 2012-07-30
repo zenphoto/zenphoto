@@ -199,7 +199,7 @@ printLogoAndLinks();
 				} else {
 					$rangeset = getPageSelector($list, $articles_page);
 				}
-				$options = array_merge(array('page'=>'news', 'tab'=>'articles'),getNewsAdminOption(true, true, true, true, true));
+				$options = array_merge(array('page'=>'news', 'tab'=>'articles'),getNewsAdminOption(array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1)));
 				$result = array_slice($result, $offset, $articles_page);
 			} else {
 				$rangeset = $options = array();
@@ -207,14 +207,21 @@ printLogoAndLinks();
 			?>
 			<span class="zenpagestats"><?php printNewsStatistic($articles, count($resultU));?></span></h1>
 				<div class="floatright">
-					<?php printCategoryDropdown($subpage); printArticleDatesDropdown($subpage); printUnpublishedDropdown($subpage); printSortOrderDropdown($subpage); printArticlesPerPageDropdown($subpage); ?>
-						<?php //echo "optionpath: ".getNewsAdminOptionPath(true,true,true); // debugging only; ?>
-						<span class="buttons">
-						<a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"><img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
-						</span>
-						<br style="clear: both" /><br />
+					<?php
+					printCategoryDropdown($subpage);
+					printArticleDatesDropdown($subpage);
+					printUnpublishedDropdown($subpage);
+					printSortOrderDropdown($subpage);
+					printArticlesPerPageDropdown($subpage);
+					?>
+					<span class="buttons">
+					 <a href="admin-edit.php?newsarticle&amp;add&amp;XSRFToken=<?php echo getXSRFToken('add')?>" title="<?php echo gettext('New Article'); ?>"> <img src="images/add.png" alt="" /> <strong><?php echo gettext("New Article"); ?></strong></a>
+					</span>
+					<br style="clear: both" />
 				</div>
-				<form action="admin-news-articles.php?subpage=<?php echo $subpage.getNewsAdminOptionPath(true,true,true,true,true);?>" method="post" name="checkeditems" onsubmit="return confirmAction();">
+				<?php  $option = getNewsAdminOption(array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1, 'subpage'=>1),'?'); ?>
+
+				<form action="admin-news-articles.php<?php echo $option;?>" method="post" name="checkeditems" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
 				<div class="buttons">
 					<button type="submit" title="<?php echo gettext('Apply'); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext('Apply'); ?></strong>
@@ -266,7 +273,7 @@ printLogoAndLinks();
 							 	$sticky = ' <small>['.gettext('sticky').']</small>';
 							 }
 							 if(checkIfLockedNews($article)) {
-								 echo '<a href="admin-edit.php?newsarticle&amp;titlelink='.urlencode($article->getTitlelink()).'&amp;subpage='.$subpage.getNewsAdminOptionPath(true,true,true,true,true).'">'; checkForEmptyTitle($article->getTitle(),"news"); echo '</a>'.checkHitcounterDisplay($article->getHitcounter()).$sticky;
+								 echo '<a href="admin-edit.php?newsarticle&amp;titlelink='.urlencode($article->getTitlelink()).getNewsAdminOptionPath(array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1,'subpage'=>1),'amp;').'">'; checkForEmptyTitle($article->getTitle(),"news"); echo '</a>'.checkHitcounterDisplay($article->getHitcounter()).$sticky;
 							 } else {
 								 echo checkForEmptyTitle($article->getTitle(),"news").'</a>'.checkHitcounterDisplay($article->getHitcounter());
 							 }
@@ -294,6 +301,7 @@ printLogoAndLinks();
 							</td>
 
 						<?php
+						$option = getNewsAdminOptionPath(array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1,'subpage'=>1),'&amp;');
 						if(checkIfLockedNews($article)) {
 							?>
 							<td class="icons">
@@ -304,13 +312,13 @@ printLogoAndLinks();
 								<?php
 								if ($article->getCommentsAllowed()) {
 									?>
-									<a href="?commentson=0&amp;titlelink=<?php echo html_encode($article->getTitlelink()); ?>&amp;subpage=<?php echo $subpage.getNewsAdminOptionPath(true,true,true,true,true); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Disable comments'); ?>">
+									<a href="?commentson=0&amp;titlelink=<?php echo html_encode($article->getTitlelink()); echo $option; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Disable comments'); ?>">
 										<img src="../../images/comments-on.png" alt="" title="<?php echo gettext("Comments on"); ?>" style="border: 0px;"/>
 									</a>
 									<?php
 								} else {
 									?>
-									<a href="?commentson=1&amp;titlelink=<?php echo html_encode($article->getTitlelink()); ?>&amp;subpage=<?php echo $subpage.getNewsAdminOptionPath(true,true,true,true,true); ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Enable comments'); ?>">
+									<a href="?commentson=1&amp;titlelink=<?php echo html_encode($article->getTitlelink()); echo $option; ?>&amp;XSRFToken=<?php echo getXSRFToken('update')?>" title="<?php echo gettext('Enable comments'); ?>">
 										<img src="../../images/comments-off.png" alt="" title="<?php echo gettext("Comments off"); ?>" style="border: 0px;"/>
 									</a>
 									<?php
@@ -329,7 +337,7 @@ printLogoAndLinks();
 							<?php } ?>
 
 							<td class="icons">
-								<a href="../../../index.php?p=news&amp;title=<?php echo $article->getTitlelink();?>&amp;subpage=<?php echo $subpage.getNewsAdminOptionPath(true,true,true,true,true); ?>" title="<?php echo gettext('View article'); ?>">
+								<a href="../../../index.php?p=news&amp;title=<?php echo $article->getTitlelink();echo $option; ?>" title="<?php echo gettext('View article'); ?>">
 								<img src="images/view.png" alt="" title="<?php echo gettext('View article'); ?>" />
 								</a>
 							</td>
@@ -339,14 +347,14 @@ printLogoAndLinks();
 							if (getOption('zp_plugin_hitcounter')) {
 								?>
 								<td class="icons">
-									<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($article->getTitlelink());?>&amp;subpage=<?php echo $subpage.getNewsAdminOptionPath(true,true,true,true,true); ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext('Reset hitcounter'); ?>">
+									<a href="?hitcounter=1&amp;titlelink=<?php echo html_encode($article->getTitlelink()); echo $option; ?>&amp;XSRFToken=<?php echo getXSRFToken('hitcounter')?>" title="<?php echo gettext('Reset hitcounter'); ?>">
 									<img src="../../images/reset.png" alt="" title="<?php echo gettext('Reset hitcounter'); ?>" /></a>
 								</td>
 								<?php
 							}
 							?>
 							<td class="icons">
-								<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php echo $article->getTitlelink(); ?>&amp;subpage=<?php echo $subpage.getNewsAdminOptionPath(true,true,true,true,true); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete')?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
+								<a href="javascript:confirmDelete('admin-news-articles.php?delete=<?php echo $article->getTitlelink(); echo $option; ?>&amp;XSRFToken=<?php echo getXSRFToken('delete')?>','<?php echo js_encode(gettext('Are you sure you want to delete this article? THIS CANNOT BE UNDONE!')); ?>')" title="<?php echo gettext('Delete article'); ?>">
 								<img src="../../images/fail.png" alt="" title="<?php echo gettext('Delete article'); ?>" /></a>
 							</td>
 							<td class="icons">
