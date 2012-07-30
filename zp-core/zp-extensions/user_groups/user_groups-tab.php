@@ -9,7 +9,16 @@ define ('OFFSET_PATH', 4);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 
 admin_securityChecks(NULL, currentRelativeURL());
-
+define('USERS_PER_PAGE',max(1,getOption('users_per_page')));
+if (isset($_GET['subpage'])) {
+	$subpage = sanitize_numeric($_GET['subpage']);
+} else {
+	if (isset($_POST['subpage'])) {
+		$subpage = sanitize_numeric($_POST['subpage']);
+	} else {
+		$subpage = 0;
+	}
+}
 
 $admins = $_zp_authority->getAdministrators('all');
 
@@ -31,7 +40,7 @@ if (isset($_GET['action'])) {
 		$groupobj->remove();
 		// clear out existing user assignments
 		Zenphoto_Authority::updateAdminField('group', NULL, array('`valid`>='=>'1', '`group`='=>$groupname));
-		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&deleted');
+		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&deleted&subpage='.$subpage);
 		exitZP();
 	} else if ($action == 'savegroups') {
 		for ($i = 0; $i < $_POST['totalgroups']; $i++) {
@@ -83,7 +92,7 @@ if (isset($_GET['action'])) {
 				}
 			}
 		}
-		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&saved');
+		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=groups&saved&subpage='.$subpage);
 		exitZP();
 	} else if ($action == 'saveauserassignments') {
 		for ($i = 0; $i < $_POST['totalusers']; $i++) {
@@ -100,7 +109,7 @@ if (isset($_GET['action'])) {
 			}
 			$user->save();
 		}
-		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=assignments&saved');
+		header("Location: ".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER.'/user_groups/user_groups-tab.php?page=users&tab=assignments&saved&subpage='.$subpage);
 		exitZP();
 	}
 }
@@ -143,8 +152,16 @@ echo '</head>'."\n";
 								$users[] = $user['user'];
 							} else {
 								$groups[] = $user;
+								$list[] = $user['user'];
+
 							}
 						}
+						$max = floor((count($list)-1) / USERS_PER_PAGE);
+						if ($subpage > $max) {
+							$subpage = $max;
+						}
+						$rangeset = getPageSelector($list, USERS_PER_PAGE);
+						$groups = array_slice($groups,$subpage*USERS_PER_PAGE,USERS_PER_PAGE);
 						$albumlist = array();
 						foreach ($_zp_gallery->getAlbums() as $folder) {
 							$alb = new Album(NULL, $folder);
@@ -163,8 +180,12 @@ echo '</head>'."\n";
 							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
+							<div class="floatright">
+								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER.'/user_groups/user_groups-tab.php', array('page'=>'users','tab'=>'groups')); ?>
+							</div>
 							<br clear="all" /><br /><br />
 							<input type="hidden" name="savegroups" value="yes" />
+							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 							<table class="bordered">
 								<?php
 								$id = 0;
@@ -301,6 +322,9 @@ echo '</head>'."\n";
 							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
+							<div class="floatright">
+								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER.'/user_groups/user_groups-tab.php', array('page'=>'users','tab'=>'groups')); ?>
+							</div>
 							<input type="hidden" name="totalgroups" value="<?php echo $id; ?>" />
 						</form>
 						<script type="text/javascript">
