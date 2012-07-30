@@ -115,6 +115,8 @@ if (isset($_GET['action'])) {
 }
 
 printAdminHeader('users');
+$background = '';
+
 ?>
 <script type="text/javascript" src="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/sprintf.js"></script>
 <?php
@@ -180,14 +182,25 @@ echo '</head>'."\n";
 							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
-							<div class="floatright">
-								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER.'/user_groups/user_groups-tab.php', array('page'=>'users','tab'=>'groups')); ?>
-							</div>
-							<br clear="all" /><br /><br />
+							<br clear="all" /><br />
 							<input type="hidden" name="savegroups" value="yes" />
 							<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
 							<table class="bordered">
-								<?php
+								<tr>
+									<th>
+										<span style="font-weight: normal">
+											<a href="javascript:toggleExtraInfo('','user',true);"><?php echo gettext('Expand all');?></a>
+														|
+											<a href="javascript:toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all');?></a>
+										</span>
+									</th>
+									<th>
+										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER.'/user_groups/user_groups-tab.php', array('page'=>'users','tab'=>'groups')); ?>
+									</th>
+									<th></th>
+								</tr>
+
+							<?php
 								$id = 0;
 								$groupselector = $groups;
 								$groupselector[''] = array('id' => -1,  'user' => '', 'name'=>'group', 'rights' => ALL_RIGHTS ^ MANAGE_ALL_ALBUM_RIGHTS, 'valid' => 0, 'custom_data'=>'');
@@ -202,34 +215,54 @@ echo '</head>'."\n";
 									} else {
 										$kind = gettext('template');
 									}
+									if ($background) {
+										$background = "";
+									} else {
+										$background = "background-color:#ECF1F2;";
+									}
 									?>
-									<tr>
-										<td style="border-top: 4px solid #D1DBDF;?>" valign="top">
+									<tr id="user-<?php echo $id; ?>">
+										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
 										<?php
 											if (empty($groupname)) {
 												?>
 												<em>
-													<label><input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');" /><?php echo gettext('group'); ?></label>
-													<label><input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:toggle('users<?php echo $id; ?>');" /><?php echo gettext('template'); ?></label>
+													<label><input type="radio" name="<?php echo $id; ?>-type" value="group" checked="checked" onclick="javascrpt:toggle('users<?php echo $id; ?>');toggleExtraInfo('<?php echo $id;?>','user',true);" /><?php echo gettext('group'); ?></label>
+													<label><input type="radio" name="<?php echo $id; ?>-type" value="template" onclick="javascrpt:toggle('users<?php echo $id; ?>');toggleExtraInfo('<?php echo $id;?>','user',true);" /><?php echo gettext('template'); ?></label>
 												</em>
 												<br />
-												<input type="text" size="35" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value="" />
+												<input type="text" size="35" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value=""
+													onclick="toggleExtraInfo('<?php echo $id;?>','user',true);" />
 												<?php
 											} else {
 												?>
-												<em><?php echo $kind; ?></em>: <strong><?php echo $groupname; ?></strong>
+												<span class="userextrashow">
+													<em><?php echo $kind; ?></em>:
+													<a href="javascript:toggleExtraInfo('<?php echo $id;?>','user',true);" title="<?php echo $groupname; ?>" >
+														<strong><?php echo $groupname; ?></strong>
+													</a>
+												</span>
+												<span style="display:none;" class="userextrahide">
+													<em><?php echo $kind; ?></em>:
+													<a href="javascript:toggleExtraInfo('<?php echo $id;?>','user',false);" title="<?php echo $groupname; ?>" >
+														<strong><?php echo $groupname; ?></strong>
+													</a>
+												</span>
 												<input type="hidden" id="group-<?php echo $id ?>" name="<?php echo $id ?>-group" value="<?php echo html_encode($groupname); ?>" />
 												<input type="hidden" name="<?php echo $id ?>-type" value="<?php echo html_encode($grouptype); ?>" />
 												<?php
 											}
 											?>
-											<br /><br />
 											<input type="hidden" name="<?php echo $id ?>-confirmed" value="1" />
+												<span class="userextrainfo" style="display:none" >
+											<br /><br />
 											<?php
 											printAdminRightsTable($id, '', '', $rights);
 											?>
+											</span>
 										</td>
-										<td style="border-top:4px solid #D1DBDF;width:20em;" valign="top" >
+										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
+											<span class="userextrainfo" style="display:none;" >
 										<?php
 											if (empty($groupname) && !empty($groups)) {
 												?>
@@ -297,8 +330,9 @@ echo '</head>'."\n";
 												printManagedObjects('news',$newslist, '', $groupid, $id, $rights, $kind, NULL);
 											}
 											?>
+											</span>
 										</td>
-										<td style="border-top: 4px solid #D1DBDF;" valign="top">
+										<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
 										<?php
 										if (!empty($groupname)) {
 											$msg = gettext('Are you sure you want to delete this group?');
@@ -316,15 +350,24 @@ echo '</head>'."\n";
 									$id++;
 								}
 								?>
+								<tr>
+									<th>
+										<span style="font-weight: normal">
+											<a href="javascript:toggleExtraInfo('','user',true);"><?php echo gettext('Expand all');?></a>
+														|
+											<a href="javascript:toggleExtraInfo('','user',false);"><?php echo gettext('Collapse all');?></a>
+										</span>
+									</th>
+									<th>
+										<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER.'/user_groups/user_groups-tab.php', array('page'=>'users','tab'=>'groups')); ?>
+									</th>
+									<th></th>
+								</tr>
 							</table>
-							<br />
 							<p class="buttons">
 							<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 							<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
 							</p>
-							<div class="floatright">
-								<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER.'/user_groups/user_groups-tab.php', array('page'=>'users','tab'=>'groups')); ?>
-							</div>
 							<input type="hidden" name="totalgroups" value="<?php echo $id; ?>" />
 						</form>
 						<script type="text/javascript">
@@ -362,7 +405,7 @@ echo '</head>'."\n";
 							}
 							// ]]> -->
 						</script>
-						<br clear="all" /><br />
+						<br clear="all" />
 						<?php
 						break;
 					case 'assignments':

@@ -521,12 +521,11 @@ function languageChange(id,lang) {
 		?>
 		<!-- finished with filters -->
 		<tr>
-			<td colspan="3" style="margin: 0pt; padding: 0pt;">
-			<!-- individual admin table -->
-			<input type="hidden" name="show-<?php echo $userid; ?>" id="show-<?php echo $userid; ?>" value="<?php echo ($current);?>" />
+			<td colspan="3" style="margin: 0pt; padding: 0pt;border-top: 4px solid #D1DBDF;<?php echo $background; ?>">
 			<table class="bordered" style="border: 0" id='user-<?php echo $id;?>'>
 			<tr>
-				<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
+				<td style="margin-top: 0px;<?php echo $background; ?>" valign="top">
+				<input type="hidden" name="show-<?php echo $userid; ?>" id="show-<?php echo $userid; ?>" value="<?php echo ($current);?>" />
 				<?php
 				if (empty($userid)) {
 					$displaytitle = gettext("Show details");
@@ -598,7 +597,7 @@ function languageChange(id,lang) {
 							$msg .= ' '.gettext('This is the master user account. If you delete it another user will be promoted to master user.');
 						}
 						?>
-						<td style="border-top:4px solid #D1DBDF;<?php echo $background; ?>" valign="top">
+						<td style="margin-top: 0px;<?php echo $background; ?>" valign="top">
 							<span class="floatright">
 								<a href="javascript:if(confirm(<?php echo "'".js_encode($msg)."'"; ?>)) { window.location='?action=deleteadmin&adminuser=<?php echo addslashes($user['user']); ?>&amp;subpage=<?php echo $subpage; ?>&amp;XSRFToken=<?php echo getXSRFToken('deleteadmin')?>'; }"
 									title="<?php echo gettext('Delete this user.'); ?>" style="color: #c33;">
@@ -608,7 +607,7 @@ function languageChange(id,lang) {
 						<?php
 					} else {
 						?>
-						<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top"></td>
+						<td style="margin-top: 0px;<?php echo $background; ?>" valign="top"></td>
 						<?php
 					}
 					?>
@@ -616,7 +615,7 @@ function languageChange(id,lang) {
 					<?php
 				} else  {
 					?>
-					<td style="border-top: 4px solid #D1DBDF;<?php echo $background; ?>" valign="top"></td>
+					<td style="margin-top: 0px;<?php echo $background; ?>" valign="top"></td>
 					<?php
 				}
 				?>
