@@ -273,7 +273,7 @@ printLogoAndLinks();
 							 	$sticky = ' <small>['.gettext('sticky').']</small>';
 							 }
 							 if(checkIfLockedNews($article)) {
-								 echo '<a href="admin-edit.php?newsarticle&amp;titlelink='.urlencode($article->getTitlelink()).getNewsAdminOptionPath(array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1,'subpage'=>1),'amp;').'">'; checkForEmptyTitle($article->getTitle(),"news"); echo '</a>'.checkHitcounterDisplay($article->getHitcounter()).$sticky;
+								 echo '<a href="admin-edit.php'.getNewsAdminOptionPath(getNewsAdminOption(array_merge(array('newsarticle'=>NULL,'titlelink'=>urlencode($article->getTitlelink())),array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1,'subpage'=>1)))).'">'; checkForEmptyTitle($article->getTitle(),"news"); echo '</a>'.checkHitcounterDisplay($article->getHitcounter()).$sticky;
 							 } else {
 								 echo checkForEmptyTitle($article->getTitle(),"news").'</a>'.checkHitcounterDisplay($article->getHitcounter());
 							 }
@@ -301,7 +301,7 @@ printLogoAndLinks();
 							</td>
 
 						<?php
-						$option = getNewsAdminOptionPath(array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1,'subpage'=>1),'&amp;');
+						$option = getNewsAdminOptionPath(getNewsAdminOption(array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1,'subpage'=>1)));
 						if(checkIfLockedNews($article)) {
 							?>
 							<td class="icons">
