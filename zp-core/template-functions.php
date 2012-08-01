@@ -1112,7 +1112,7 @@ function getParentBreadcrumb() {
 		if (!is_array($search_album_list)) {
 			$search_album_list = array();
 		}
-		$searchpagepath = html_encode(getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$search_album_list)));
+		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$search_album_list));
 		$dynamic_album = $_zp_current_search->dynalbumname;
 		if (empty($dynamic_album)) {
 			$output[] = array('link' => $searchpagepath, 'title' => gettext("Return to search"), 'text' => gettext("Search"));
