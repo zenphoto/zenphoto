@@ -135,6 +135,7 @@ class _Image extends MediaObject {
 		}
 		if ($new) {
 			$this->updateMetaData();			// extract info from image
+			$this->updateDimensions();		// deal with rotation issues
 			$this->save();
 			zp_apply_filter('new_image', $this);
 		}
