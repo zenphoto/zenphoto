@@ -506,8 +506,8 @@ function formatData($type,$tag,$intel,$data) {
 					break;
 				case '9208':	// LightSource
 					switch ($data) {
-						case 1:		$data = gettext('Daylight');	break;
-						case 2:				$data = gettext('Fluorescent');	break;
+						case 1:			$data = gettext('Daylight');	break;
+						case 2:			$data = gettext('Fluorescent');	break;
 						case 3:			$data = gettext('Tungsten');	break;	// 3 Tungsten (Incandescent light)
 													// 4 Flash
 													// 9 Fine Weather
@@ -532,19 +532,23 @@ function formatData($type,$tag,$intel,$data) {
 					break;
 				case '9209':	// Flash
 					switch ($data) {
-						case 0:			$data = gettext('No Flash');	break;
+
+
+						case 0:
+						case 16:
+						case 24:
+						case 32:
+						case 64:
+						case 80:		$data = gettext('No Flash');	break;
 						case 1:			$data = gettext('Flash');	break;
 						case 5:			$data = gettext('Flash, strobe return light not detected');	break;
 						case 7:			$data = gettext('Flash, strobe return light detected');	break;
 						case 9:			$data = gettext('Compulsory Flash');	break;
 						case 13:		$data = gettext('Compulsory Flash, Return light not detected');	break;
 						case 15:		$data = gettext('Compulsory Flash, Return light detected');	break;
-						case 16:		$data = gettext('No Flash');	break;
-						case 24:		$data = gettext('No Flash');	break;
 						case 25:		$data = gettext('Flash, Auto-Mode');	break;
 						case 29:		$data = gettext('Flash, Auto-Mode, Return light not detected');	break;
 						case 31:		$data = gettext('Flash, Auto-Mode, Return light detected');	break;
-						case 32:		$data = gettext('No Flash');	break;
 						case 65:		$data = gettext('Red Eye');	break;
 						case 69:		$data = gettext('Red Eye, Return light not detected');	break;
 						case 71:		$data = gettext('Red Eye, Return light detected');	break;
