@@ -2395,50 +2395,39 @@ if (file_exists(CONFIGFILE)) {
 			if ($_zp_loggedin == ADMIN_RIGHTS) {
 				$filelist = safe_glob(SERVERPATH . "/" . BACKUPFOLDER . '/*.zdb');
 				if (count($filelist) > 0) {
-					echo '<p>'.sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'),'admin-users.php?page=users',UTILITIES_FOLDER.'/backup_restore.php')."</p>";
+					$link = sprintf(gettext('You may <a href="%1$s">set your admin user and password</a> or <a href="%2$s">run backup-restore</a>'),'admin-users.php?page=users',UTILITIES_FOLDER.'/backup_restore.php');
+					$autorun = false;
 				} else {
-					echo '<p id="golink">'.sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'),'admin-users.php?page=users')."</p>";
-					if ($autorun) {
-						?>
-						<script type="text/javascript">
-							$('#golink').hide();
-							window.location = 'admin-users.php?page=users';
-						</script>
-						<?php
+					$link = sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'),'admin-users.php?page=users');
+					if ($autorun == 'admin' || $autorun == 'gallery') {
+						$autorun = 'admin-users.php?page=users';
 					}
 				}
 			} else {
+				$link = sprintf(gettext('You can now <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'),'..','admin.php');
+		}
+			?>
+			<p id="golink"><?php echo $link; ?></p>
+			<?php
+			switch ($autorun) {
+				case false:
+					break;
+				case 'admin':
+					$autorun = 'admin.php';
+					break;
+				case 'gallery':
+					$autorun = '..';
+					break;
+				default:
+					break;
+			}
+			if ($autorun) {
 				?>
-				<p id="golink"><?php echo sprintf(gettext('You can now <a href="%1$s">View your gallery</a> or <a href="%2$s">administer.</a>'),'..','admin.php'); ?></p>
+				<script type="text/javascript">
+					$('#golink').hide();
+					window.location = '<?php echo $autorun; ?>';
+				</script>
 				<?php
-				switch ($autorun) {
-					case false:
-						break;
-					case 'admin':
-						?>
-						<script type="text/javascript">
-							$('#golink').hide();
-							window.location = 'admin.php';
-						</script>
-						<?php
-						break;
-					case 'gallery':
-						?>
-						<script type="text/javascript">
-							$('#golink').hide();
-							window.location = '..';
-						</script>
-						<?php
-						break;
-					default:
-						?>
-						<script type="text/javascript">
-							$('#golink').hide();
-							window.location = '<?php echo $autorun; ?>';
-						</script>
-						<?php
-						break;
-				}
 			}
 		}
 	} else if (db_connect()) {
@@ -2589,7 +2578,6 @@ if (file_exists(CONFIGFILE)) {
 			</script>
 			<?php
 		}
-
 	} else {
 		?>
 		<div class="error">

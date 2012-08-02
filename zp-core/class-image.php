@@ -127,17 +127,16 @@ class _Image extends MediaObject {
 		// This is where the magic happens...
 		$album_name = $album->name;
 		$new = parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename', false, empty($album_name));
-		if ($this->filemtime != $this->get('mtime')) {
-			$this->set('mtime', $this->filemtime);
+		if ($new || $this->filemtime != $this->get('mtime')) {
+			if ($this->filemtime != $this->get('mtime')) {
+				$this->set('mtime', $this->filemtime);
+			}
 			$this->updateMetaData();			// extract info from image
 			$this->updateDimensions();		// deal with rotation issues
 			$this->save();
-		}
-		if ($new) {
-			$this->updateMetaData();			// extract info from image
-			$this->updateDimensions();		// deal with rotation issues
-			$this->save();
-			zp_apply_filter('new_image', $this);
+			if ($new) {
+				zp_apply_filter('new_image', $this);
+			}
 		}
 	}
 
