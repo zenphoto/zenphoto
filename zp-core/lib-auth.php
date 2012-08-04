@@ -769,6 +769,9 @@ class Zenphoto_Authority {
 			$id = NULL;
 		}
 		$loggedin = $this->checkAuthorization($auth, $id);
+		if ($auth) {	// call filter if there was an auth cookie
+			$loggedin = zp_apply_filter('authorization_cookie',$loggedin);
+		}
 		if ($loggedin) {
 			return $loggedin;
 		} else {

@@ -68,7 +68,7 @@ if (isset($_POST['login'])) {	//	Handle the login form.
 	if (isset($_GET['ticket'])) { // password reset query
 		$_zp_authority->validateTicket(sanitize($_GET['ticket']), sanitize(@$_GET['user']));
 	}
-	$_zp_loggedin = zp_apply_filter('authorization_cookie',$_zp_authority->checkCookieCredentials());
+	$_zp_loggedin = $_zp_authority->checkCookieCredentials();
 	if ($_zp_loggedin) {
 		$locale = $_zp_current_admin_obj->getLanguage();
 		if (!empty($locale)) {	//	set his prefered language

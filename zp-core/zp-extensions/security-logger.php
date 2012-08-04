@@ -123,13 +123,13 @@ class security_logger {
 				$type = gettext('Request delete user');
 				break;
 			case 'XSRF_blocked':
-			$type = gettext('XSRF access blocked');
+				$type = gettext('Cross Site Reference');
 				break;
 			case 'blocked_album':
-				$type = gettext('Blocked album');
+				$type = gettext('Album access');
 				break;
 			case 'blocked_access':
-				$type = gettext('Blocked access');
+				$type = gettext('Admin access');
 				break;
 			case 'Front-end':
 				$type = gettext('Guest login');
@@ -157,11 +157,19 @@ class security_logger {
 			$message .= $type."\t";
 			$message .= $user."\t";
 			$message .= $name."\t";
-			if ($success) {
-				$message .= gettext("Success")."\t";
-				$message .= substr($authority, 0, strrpos($authority,'_auth'));
-			} else {
-				$message .= gettext("Failed")."\t";
+			switch ($success) {
+				case 0:
+					$message .= gettext("Failed")."\t";
+					break;
+				case 1:
+					$message .= gettext("Success")."\t";
+					$message .= substr($authority, 0, strrpos($authority,'_auth'));
+					break;
+				case 2:
+					$message .= gettext("Blocked")."\t";
+					break;
+				default:
+					$message .= $success."\t";
 			}
 			if ($addl) {
 				$message .= "\t".$addl;
@@ -229,7 +237,7 @@ class security_logger {
 				$name = $admin->getName();
 			}
 		}
-		security_logger::Logger($success, $user, $name, getUserIP(), 'Back-end', $auth, $pass);
+		security_logger::Logger((int) ($success && true), $user, $name, getUserIP(), 'Back-end', $auth, $pass);
 		return $success;
 	}
 
@@ -275,7 +283,7 @@ class security_logger {
 				$name = $admin->getName();
 			}
 		}
-		security_logger::Logger($success, $user, $name, getUserIP(), 'Front-end', $athority, $pass);
+		security_logger::Logger((int) ($success && true), $user, $name, getUserIP(), 'Front-end', $athority, $pass);
 		return $success;
 	}
 
@@ -286,13 +294,13 @@ class security_logger {
 	 */
 	static function adminGate($allow, $page) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(false, $user, $name, getUserIP(), 'blocked_access', '', $page);
+		security_logger::Logger(0, $user, $name, getUserIP(), 'blocked_access', '', $page);
 		return $allow;
 	}
 
 	static function adminCookie($allow) {
-		if (is_null($allow)) {
-			security_logger::Logger(false, NULL, NULL, getUserIP(), 'auth_cookie', '', NULL);
+		if (!$allow) {
+			security_logger::Logger(0, NULL, NULL, getUserIP(), 'auth_cookie', '', NULL);
 		}
 		return $allow;
 	}
@@ -304,7 +312,7 @@ class security_logger {
 	 */
 	static function adminAlbumGate($allow, $page) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(false, $user, $name, getUserIP(), 'blocked_album', '', $page);
+		security_logger::Logger(2, $user, $name, getUserIP(), 'blocked_album', '', $page);
 		return $allow;
 	}
 
@@ -316,7 +324,7 @@ class security_logger {
 	 */
 	static function UserSave($discard, $userobj, $class) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(true, $user, $name, getUserIP(), 'user_'.$class, 'zp_admin_auth', $userobj->getUser());
+		security_logger::Logger(1, $user, $name, getUserIP(), 'user_'.$class, 'zp_admin_auth', $userobj->getUser());
 		return $discard;
 	}
 
@@ -329,7 +337,7 @@ class security_logger {
 	 */
 	static function admin_XSRF_access($discard, $token) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(false, $user, $name, getUserIP(), 'XSRF_blocked', '', $token);
+		security_logger::Logger(2, $user, $name, getUserIP(), 'XSRF_blocked', '', $token);
 		return false;
 	}
 
@@ -341,7 +349,7 @@ class security_logger {
 	 */
 	static function log_action($allow, $log, $action) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger($allow, $user, $name, getUserIP(), $action, 'zp_admin_auth', basename($log));
+		security_logger::Logger((int) ($allow && true), $user, $name, getUserIP(), $action, 'zp_admin_auth', basename($log));
 		return $allow;
 	}
 
@@ -353,12 +361,12 @@ class security_logger {
 	 */
 	static function log_setup($success, $action, $txt) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger($success, $user, $name, getUserIP(), 'setup_'.$action, 'zp_admin_auth', $txt);
+		security_logger::Logger((int) ($success && true), $user, $name, getUserIP(), 'setup_'.$action, 'zp_admin_auth', $txt);
 		return $success;
 	}
 
 	static function security_misc($success, $requestor, $auth, $txt) {
-		security_logger::Logger($success, NULL, NULL, NULL, $requestor, 'zp_admin_auth', $txt);
+		security_logger::Logger((int) ($success && true), NULL, NULL, NULL, $requestor, 'zp_admin_auth', $txt);
 		return $success;
 	}
 

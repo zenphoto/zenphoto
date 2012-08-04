@@ -160,7 +160,7 @@ if (isset($_GET['action'])) {
 						}
 						$rights = 0;
 						if ($alter && !$userobj->getGroup()) {
-							$oldrights = $userobj->getRights();
+							$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
 							$rights = processRights($i);
 							if ($rights != $oldrights) {
 								$userobj->setRights($rights | NO_RIGHTS);
