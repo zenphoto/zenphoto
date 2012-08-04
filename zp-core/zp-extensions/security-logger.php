@@ -34,6 +34,7 @@ zp_register_filter('save_user', 'security_logger::UserSave');
 zp_register_filter('admin_XSRF_access', 'security_logger::admin_XSRF_access');
 zp_register_filter('admin_log_actions', 'security_logger::log_action');
 zp_register_filter('log_setup','security_logger::log_setup');
+zp_register_filter('security_misc','security_logger::security_misc');
 
 /**
  * Option handler class
@@ -136,11 +137,12 @@ class security_logger {
 			case 'Back-end':
 				$type = gettext('Admin login');
 				break;
-			default:
 			case 'auth_cookie':
 				$type = gettext('Authorization cookie check');
-			break;
+				break;
+			default:
 				$type = $action;
+				break;
 		}
 
 		$file = SERVERPATH.'/'.DATA_FOLDER . '/security.log';
@@ -352,6 +354,11 @@ class security_logger {
 	static function log_setup($success, $action, $txt) {
 		list($user,$name) = security_logger::populate_user();
 		security_logger::Logger($success, $user, $name, getUserIP(), 'setup_'.$action, 'zp_admin_auth', $txt);
+		return $success;
+	}
+
+	static function security_misc($success, $requestor, $auth, $txt) {
+		security_logger::Logger($success, NULL, NULL, NULL, $requestor, 'zp_admin_auth', $txt);
 		return $success;
 	}
 

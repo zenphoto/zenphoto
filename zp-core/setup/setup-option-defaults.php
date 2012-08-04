@@ -615,5 +615,6 @@ foreach ($plugins as $extension) {
 			}
 		}
 	}
+	purgeOption('last_backup_run');	// should probably backup the site after an installation!
 }
 ?>

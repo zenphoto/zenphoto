@@ -68,7 +68,6 @@ class auto_backup {
 	 * @param string $discard
 	 */
 	static function timer_handler($discard) {
-		setOption('last_backup_run',time());
 		$curdir = getcwd();
 		$folder = SERVERPATH . "/" . BACKUPFOLDER;
 		if (!is_dir($folder)) {
@@ -91,7 +90,7 @@ class auto_backup {
 		}
 
 		cron_starter(	SERVERPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/backup_restore.php',
-									array('backup'=>1, 'compress'=>sprintf('%u',getOption('backup_compression')),'XSRFTag'=>'backup')
+									array('backup'=>1,'autobackup'=>1,'compress'=>sprintf('%u',getOption('backup_compression')),'XSRFTag'=>'backup')
 								);
 		return $discard;
 	}

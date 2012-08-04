@@ -1019,20 +1019,21 @@ function albumNumber() {
  * @return array
  */
 function getParentAlbums($album=null) {
-	if(!in_context(ZP_ALBUM)) return false;
-	global $_zp_current_album, $_zp_current_search, $_zp_gallery;
 	$parents = array();
-	if (is_null($album)) {
-		if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) {
-			$name = $_zp_current_search->dynalbumname;
-			if (empty($name)) return $parents;
-			$album = new Album(NULL, $name);
-		} else {
-			$album = $_zp_current_album;
+	if(in_context(ZP_ALBUM)) {
+		global $_zp_current_album, $_zp_current_search, $_zp_gallery;
+		if (is_null($album)) {
+			if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) {
+				$name = $_zp_current_search->dynalbumname;
+				if (empty($name)) return $parents;
+				$album = new Album(NULL, $name);
+			} else {
+				$album = $_zp_current_album;
+			}
 		}
-	}
-	while (!is_null($album = $album->getParent())) {
-		array_unshift($parents, $album);
+		while (!is_null($album = $album->getParent())) {
+			array_unshift($parents, $album);
+		}
 	}
 	return $parents;
 }
@@ -1137,7 +1138,6 @@ function getParentBreadcrumb() {
 		}
 	} else {
 		$parents = getParentAlbums();
-
 	}
 	$n = count($parents);
 	if ($n > 0) {

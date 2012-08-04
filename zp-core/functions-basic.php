@@ -186,8 +186,11 @@ if (function_exists('mb_internal_encoding')) {
 $_zp_graphics_optionhandlers = array();
 require_once(dirname(__FILE__).'/lib-Imagick.php');
 require_once(dirname(__FILE__).'/lib-GD.php');
-
-$_zp_supported_images = zp_graphicsLibInfo();
+if (function_exists('zp_graphicsLibInfo')) {
+	$_zp_supported_images = zp_graphicsLibInfo();
+} else {
+	$_zp_supported_images = array('Library'=>gettext('none'), 'Library_desc'=>NULL);
+}
 define('GRAPHICS_LIBRARY',$_zp_supported_images['Library']);
 unset($_zp_supported_images['Library']);
 unset($_zp_supported_images['Library_desc']);

@@ -209,6 +209,9 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		$writeresult = false;
 	}
 	if ($writeresult) {
+		if (isset($_REQUEST['autobackup'])) {
+			setOption('last_backup_run',time());
+		}
 		$messages = '
 		<div class="messagebox fade-message">
 		<h2>
@@ -224,6 +227,9 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		<?php
 		';
 	} else {
+		if (isset($_REQUEST['autobackup'])) {
+			debugLog(sprintf('Autobackup failed: %s',$msg));
+		}
 		$messages = '
 		<div class="errorbox fade-message">
 		<h2>'.gettext("backup failed").'</h2>
