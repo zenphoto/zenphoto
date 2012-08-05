@@ -48,7 +48,7 @@ if (isset($_GET['delete'])) {
 		$_GET['menuset'] = $menuset = $result['menuset'];
 		$sql = 'DELETE FROM '.prefix('menu').' WHERE `id`='.$result['id'];
 		query($sql);
-		$sql = 'DELETE FROM '.prefix('menu').' WHERE `menuset`="'.$menuset.'" AND `sort_order` LIKE "'.$result['sort_order'].'/%"';
+		$sql = 'DELETE FROM '.prefix('menu').' WHERE `menuset`="'.$menuset.'" AND `sort_order` LIKE "'.$result['sort_order'].'-%"';
 		query($sql);
 		$reports[] =  "<p class='messagebox fade-message'>".gettext('Menu item deleted')."</p>";
 	}
