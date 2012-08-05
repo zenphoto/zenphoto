@@ -243,17 +243,21 @@ function printItemStatusDropdown() {
 
 /**
  * returns the menu set selector
- * @param string $active the active menu set
+ * @param string $active true if changing the selection shuld reload to the new selection
  *
  */
 function getMenuSetSelector($active) {
 	$menuset = checkChosenMenuset();
-	$menusets = array($menuset => $menuset,'default'=>'default');
+	$menusets = array();
 	$result = query_full_array("SELECT DISTINCT menuset FROM ".prefix('menu')." ORDER BY menuset");
-	foreach ($result as $set) {
-		$menusets[$set['menuset']] = $set['menuset'];
+	if ($result) {
+		foreach ($result as $set) {
+			$menusets[$set['menuset']] = $set['menuset'];
+		}
+		natcasesort($menusets);
+	} else {
+		return NULL;
 	}
-	natcasesort($menusets);
 
 	if($active) {
 		$selector = '<select name="menuset" id="menuset" size="1" onchange="window.location=\'?menuset=\'+encodeURIComponent($(\'#menuset\').val())">'."\n";

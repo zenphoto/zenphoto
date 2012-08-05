@@ -164,54 +164,68 @@ foreach ($reports as $report) {
 <br clear="all" /><br />
 
 <div class="bordered">
-	<div class="headline">
-		<strong><?php echo gettext("Edit the menu"); ?></strong>
-		<?php echo getMenuSetSelector(true); ?>
-		<?php printItemStatusDropdown(); ?>
-		<?php
-		$checkarray = array(
-				gettext('*Bulk actions*') => 'noaction',
-				gettext('Delete') => 'deleteall',
-				gettext('Show') => 'showall',
-				gettext('Hide') => 'hideall'
-		);
+	<?php
+	$selector = getMenuSetSelector(true);
+	if ($selector) {
 		?>
-		<span style="float:right">
+		<div class="headline">
+			<strong><?php echo gettext("Edit the menu"); ?></strong>
 			<?php
-				if ($count > 0) {
-					?>
-					<span class="buttons">
-						<strong><a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'),$menuset); ?>"><img src="../../images/page_white_copy.png" alt="" /><?php echo gettext("Duplicate menu"); ?></a></strong>
-					</span>
-					<span class="buttons">
-						<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'),$menuset);; ?>"><img src="../../images/fail.png" alt="" /><?php echo gettext("Delete menu"); ?></a></strong>
-					</span>
-					<?php
+			echo $selector;
+			printItemStatusDropdown();
+			$checkarray = array(
+					gettext('*Bulk actions*') => 'noaction',
+					gettext('Delete') => 'deleteall',
+					gettext('Show') => 'showall',
+					gettext('Hide') => 'hideall'
+			);
+			?>
+			<span style="float:right">
+				<?php
+					if ($count > 0) {
+						?>
+						<span class="buttons">
+							<strong><a href="javascript:dupMenuSet();" title="<?php printf(gettext('Duplicate %s menu'),$menuset); ?>"><img src="../../images/page_white_copy.png" alt="" /><?php echo gettext("Duplicate menu"); ?></a></strong>
+						</span>
+						<span class="buttons">
+							<strong><a href="javascript:deleteMenuSet();" title="<?php printf(gettext('Delete %s menu'),$menuset);; ?>"><img src="../../images/fail.png" alt="" /><?php echo gettext("Delete menu"); ?></a></strong>
+						</span>
+						<?php
+					}
+				?>
+				<select name="checkallaction" id="checkallaction" size="1">
+					<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
+				</select>
+			</span>
+		</div>
+		<br clear="all" />
+		<div class="subhead">
+			<label style="float: right">
+				<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
+			</label>
+		</div>
+				<ul class="page-list">
+				<?php
+				if(isset($_GET['visible'])) {
+					$visible = sanitize($_GET['visible']);
+				} else {
+					$visible = 'all';
 				}
-			?>
-			<select name="checkallaction" id="checkallaction" size="1">
-				<?php generateListFromArray(array('noaction'), $checkarray,false,true); ?>
-			</select>
-		</span>
+				$items = getMenuItems($menuset, $visible);
+				printItemsList($items);
+				?>
+				</ul>
+		<?php
+	} else {
+		?>
+		<div class="headline">
+			<strong><?php echo gettext("No menus exist"); ?></strong>
+		</div>
+		<br clear="all" />
+		<?php
+	}
+	?>
 	</div>
-	<br clear="all" />
-	<div class="subhead">
-		<label style="float: right">
-			<?php echo gettext("Check All"); ?> <input type="checkbox" name="allbox" id="allbox" onclick="checkAll(this.form, 'ids[]', this.checked);" />
-		</label>
-	</div>
-			<ul class="page-list">
-			<?php
-			if(isset($_GET['visible'])) {
-				$visible = sanitize($_GET['visible']);
-			} else {
-				$visible = 'all';
-			}
-			$items = getMenuItems($menuset, $visible);
-			printItemsList($items);
-			?>
-			</ul>
-</div>
 <br />
 <span id="serializeOutput" /></span>
 <input name="update" type="hidden" value="Save Order" />
