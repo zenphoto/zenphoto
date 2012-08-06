@@ -431,7 +431,8 @@ function getCurrentMenuItem($menuset) {
 		}
 	}
 	$currentpageURL = rtrim(str_replace('\\','/',$currentpageURL),'/');
-	$items = getMenuItems($menuset, $visibility = getMenuVisibility());
+	$visibility = 'all';
+	$items = getMenuItems($menuset, $visibility);
 	$currentkey = NULL;
 	foreach ($items as $key=>$item) {
 		switch ($item['type']) {
@@ -934,19 +935,11 @@ function printCustomMenu($menuset='default', $option='list',$css_id='',$css_clas
 	$items = getMenuItems($menuset, getMenuVisibility());
 
 	if (count($items)==0) return; // nothing to do
-	if (empty($sortorder)) {
-		$currentitem_parentid = NULL;
-	} else {
-		$currentitem_parentid = $items[$sortorder]['parentid'];
-	}
+	$currentitem_parentid = @$items[$sortorder]['parentid'];
 	if($startlist = !($option == 'omit-top'	|| $option == 'list-sub')) {
 		echo "<ul$css_id>";
 	}
-	if (strlen($sortorder)==0) {
-		$pageid = NULL;
-	} else {
-		$pageid = $items[$sortorder]['id'];
-	}
+	$pageid = @$items[$sortorder]['id'];
 	$baseindent = max(1,count(explode("-", $sortorder)));
 	$indent = 1;
 	$open = array($indent=>0);
