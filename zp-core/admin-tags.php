@@ -24,7 +24,7 @@ if (count($_POST) > 0) {
 		foreach ($_POST as $value) {
 			if (!empty($value)) {
 				$value = html_decode(sanitize($value, 3));
-				$result = query_single_row('SELECT `id` FROM '.prefix('tags').' WHERE `name`="'.db_quote($value).'"');
+				$result = query_single_row('SELECT `id` FROM '.prefix('tags').' WHERE `name`='.db_quote($value));
 				if (!is_array($result)) { // it really is a new tag
 					query('INSERT INTO '.prefix('tags').' (`name`) VALUES (' . db_quote($value) . ')');
 				}
@@ -160,14 +160,14 @@ printLogoAndLinks();
 						// <!-- <![CDATA[
 						var checked = false;
 						$('#autocheck').click(
-						   function() {
-						      if (checked) {
-							      checked = false;
-						      } else {
-							      checked = true;
-						      }
-						      $("INPUT[type='checkbox']").attr('checked', checked);
-						   }
+							 function() {
+									if (checked) {
+										checked = false;
+									} else {
+										checked = true;
+									}
+									$("INPUT[type='checkbox']").attr('checked', checked);
+							 }
 						)
 						// ]]> -->
 					</script>

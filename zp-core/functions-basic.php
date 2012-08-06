@@ -14,37 +14,46 @@ if(!function_exists("gettext")) {
 }
 
 /**
-* OFFSET_PATH definisions:
-* 		0		Theme scripts (root index.php)
+* OFFSET_PATH definitions:
+* 		0		root scripts (e.g. the root index.php)
 * 		1		zp-core scripts
 * 		2		setup scripts
 * 		3		plugin scripts
+* 		4		scripts in the theme folders
 */
-if (!defined('OFFSET_PATH')) {
-	if (!defined('RELEASE')) debugLogBacktrace('no offset path')	;
-	define('OFFSET_PATH', 0);
-}
 
 global $_zp_conf_vars;
 $const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
 $const_serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
-$lookfor = '/'.ZENFOLDER;
-if (OFFSET_PATH) {
-	preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches);
-	if (empty($matches)) {
-		preg_match('~(.*)/('.USER_PLUGIN_FOLDER.')~',$const_webpath, $matches);
-		$lookfor = '/'.USER_PLUGIN_FOLDER;
-	}
-	if (empty($matches)) {
-		$const_webpath = '';
-	} else {
-		$const_webpath = $matches[1];
-		$const_serverpath = substr($const_serverpath,0,strrpos($const_serverpath,$lookfor));
+/**
+ * see if we are executing out of any of the known script folders. If so we know how to adjust the paths
+ * if not we presume the script is in the root of the installation. If it is not the script better have set
+ * the SERVERPATH and WEBPATH defines to the correct values
+ */
+preg_match('~(.*)/('.ZENFOLDER.'|'.USER_PLUGIN_FOLDER.'|'.THEMEFOLDER.')~',$const_webpath, $matches);
+if ($matches) {
+	$const_webpath = $matches[1];
+	$const_serverpath = substr($const_serverpath,0,strrpos($const_serverpath,'/'.$matches[2]));
+	if (!defined('OFFSET_PATH')) {
+		switch ($matches[2]) {
+			case ZENFOLDER:
+				define('OFFSET_PATH', 1);
+				break;
+			case USER_PLUGIN_FOLDER:
+				define('OFFSET_PATH', 3);
+				break;
+			case THEMEFOLDER:
+				define('OFFSET_PATH', 4);
+				break;
+		}
 	}
 } else {
-	if ($const_webpath == '/' || $const_webpath == '.') {
-		$const_webpath = '';
+	if (!defined('OFFSET_PATH')) {
+		define('OFFSET_PATH', 0);
 	}
+}
+if ($const_webpath == '/' || $const_webpath == '.') {
+	$const_webpath = '';
 }
 
 if (defined('SERVERPATH')) {
