@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 09:47-0500\n"
-"PO-Revision-Date: 2012-08-04 09:47-0500\n"
+"POT-Creation-Date: 2012-08-08 14:13-0500\n"
+"PO-Revision-Date: 2012-08-08 14:24-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -5904,35 +5904,35 @@ msgstr "Interdit"
 msgid "Too few arguments! Image not found."
 msgstr "Pas assez d’arguments ! Image non trouvée."
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1569
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1581
 msgid "ERROR"
 msgstr "ERREUR"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1570
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1582
 msgid "WARNING"
 msgstr "AVERTISSEMENT"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1571
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1583
 msgid "NOTICE"
 msgstr "REMARQUE"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1572
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1584
 msgid "USER ERROR"
 msgstr "ERREUR GÉNÉRÉE PAR L’UTILISATEUR"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1573
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1585
 msgid "USER WARNING"
 msgstr "AVERTISSEMENT GÉNÉRÉ PAR L’UTILISATEUR"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1574
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1586
 msgid "USER NOTICE"
 msgstr "REMARQUE GÉNÉRÉE PAR L’UTILISATEUR"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1575
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1587
 msgid "STRICT NOTICE"
 msgstr "AVIS STRICT (CODE OBSOLÈTE)"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1585
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1597
 #, php-format
 msgid "%1$s: %2$s in %3$s on line %4$s"
 msgstr "%1$s : %2$s dans %3$s à la ligne %4$s"
@@ -6768,178 +6768,183 @@ msgid "Orientation"
 msgstr "Orientation"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:2101
+#, fuzzy
+msgid "Software"
+msgstr "Logiciel"
+
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2102
 msgid "Contrast Setting"
 msgstr "Réglage du contraste"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2102
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2103
 msgid "Sharpness Setting"
 msgstr "Réglage du renforcement"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2103
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2104
 msgid "Saturation Setting"
 msgstr "Réglage de la saturation"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2104
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2105
 msgid "White Balance"
 msgstr "Balance des blancs"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2105
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2106
 msgid "Subject Distance"
 msgstr "Distance du sujet"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2106
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2107
 msgid "Focal Length"
 msgstr "Longueur de focale"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2107
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2108
 msgid "Lens Type"
 msgstr "Type d’objectif"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2108
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2109
 msgid "Lens Info"
 msgstr "Détails sur l’objectif"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2109
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2110
 msgid "35mm Focal Length Equivalent"
 msgstr "Longueur focale équivalente pour pellicule 35 mm"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2111
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2112
 msgid "Sub-location"
 msgstr "Lieu (très précis)"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2112
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2113
 msgid "Province/State"
 msgstr "État, province"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2113
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2114
 msgid "Country/Primary Location Code"
 msgstr "Code du pays/de la localisation primaire"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2114
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2115
 msgid "Country/Primary Location Name"
 msgstr "Nom du pays/de la localisation primaire"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2115
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2116
 msgid "Content Location Code"
 msgstr "Code du lieu du contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2116
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2117
 msgid "Content Location Name"
 msgstr "Lieu du contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2117
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2118
 msgid "Latitude"
 msgstr "Latitude"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2118
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2119
 msgid "Latitude Reference"
 msgstr "Latitude de référence"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2119
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2120
 msgid "Longitude"
 msgstr "Longitude"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2120
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2121
 msgid "Longitude Reference"
 msgstr "Longitude de référence"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2121
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2122
 msgid "Altitude"
 msgstr "Altitude"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2122
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2123
 msgid "Altitude Reference"
 msgstr "Altitude de référence"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2123
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2124
 msgid "Originating Program "
 msgstr "Programme d’origine"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2124
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2125
 msgid "Program Version"
 msgstr "Version du programme"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2125
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2126
 msgid "Video File Format"
 msgstr "Format de fichier vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2126
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2127
 msgid "Video File Size"
 msgstr "Taille du fichier vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2127
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2128
 msgid "Video Artist"
 msgstr "Artiste de la vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2128
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2129
 msgid "Video Title"
 msgstr "Titre de la vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2129
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2130
 msgid "Bitrate"
 msgstr "Débit"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2130
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2131
 msgid "Bitrate_Mode"
 msgstr "Bitrate_Mode"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2131
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2132
 msgid "Bits per sample"
 msgstr "Bits par échantillon"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2132
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2133
 msgid "Codec"
 msgstr "Codec"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2133
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2134
 msgid "Compression Ratio"
 msgstr "Taux de compression"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2134
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2135
 msgid "Video Dataformat"
 msgstr "Format des données vidéos"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2135
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2136
 msgid "File Encoder"
 msgstr "Encodeur de fichiers"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2136
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2137
 msgid "Sample rate"
 msgstr "Taux d’échantillonage"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2137
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2138
 msgid "Channel mode"
 msgstr "Mode de canaux"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2138
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2139
 msgid "Format"
 msgstr "Format"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2139
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2140
 msgid "Channels"
 msgstr "Canaux"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2140
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2141
 msgid "Frame rate"
 msgstr "Nombre de cadres / seconde"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2141
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2142
 msgid "X Resolution"
 msgstr "Résolution en X"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2142
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2143
 msgid "Y Resolution"
 msgstr "Résolution en Y"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2143
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2144
 msgid "Aspect ratio"
 msgstr "Ratio d’aspect"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2144
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2145
 msgid "Play Time"
 msgstr "Robustesse minimale du mot de passe"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2145
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2146
 msgid "XMP Rating"
 msgstr "Vote XMP"
 
@@ -7240,9 +7245,9 @@ msgid "Manage all"
 msgstr "Tout gérer"
 
 #: F:\sites\zenphoto-dev/zp-core/lib-auth.php:528
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:894
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1003
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1046
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:897
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1006
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1049
 msgid "User"
 msgstr "Utilisateur"
 
@@ -7292,128 +7297,128 @@ msgstr "Les informations que vous avez demandé sur Zenphoto"
 msgid "Your input did not match the captcha"
 msgstr "Ce que vous avez saisi ne correspond pas au Captcha"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:822
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:825
 msgid "What is your father's middle name?"
 msgstr "Quel est le 2e prénom de votre père ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:823
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:826
 msgid "What street did your Grandmother live on?"
 msgstr "Sur quelle rue vit votre grand-mère ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:824
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:827
 msgid "Who was your favorite singer?"
 msgstr "Quel est votre chanteur favori ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:825
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:828
 msgid "When did you first get a computer?"
 msgstr "Quand avez-vous eu votre premier ordinateur ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:826
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:829
 msgid "How much wood could a woodchuck chuck if a woodchuck could chuck wood?"
 msgstr "Les saucisses de l’archiduchesse sont-elles sèches ou archisèches ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:827
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:830
 msgid "What is the date of the Ides of March?"
 msgstr "À quelle date tombent les ides de mars ?"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:857
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:860
 msgid "There was an error logging in."
 msgstr "Impossible de se connecter."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:860
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:863
 msgid "Check your username and password and try again."
 msgstr "Vérifiez vos identifiant et mot de passe et réessayez."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:862
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:865
 msgid "Check password and try again."
 msgstr "Vérifiez votre mot de passe et essayez de nouveau."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:871
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:874
 msgid "A reset request has been sent."
 msgstr "Une demande de réinitialisation a été envoyée."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:900
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:903
 msgid "Supply the correct response to the question below and you will be directed to a page where you can change your password."
 msgstr "Répondez correctement à la question qui suit et vous serez redirigé vers une page où vous pourrez modifier votre mot de passe."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:901
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:904
 msgid "Challenge question:"
 msgstr "Question défi : "
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:906
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:909
 msgid "Your response"
 msgstr "Votre réponse"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:915
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:918
 msgid "Enter your User ID and press <code>Refresh</code> to get your challenge question."
 msgstr "Saisissez votre nom d’utilisateur et cliquez sur <code>Rafraîchir</code> afin d’obtenir votre question secrète."
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:922
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:925
 msgid "Submit"
 msgstr "Soumettre"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:924
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1062
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:927
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1065
 msgid "Return"
 msgstr "Retour"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:934
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:937
 msgid "Request reset by e-mail"
 msgstr "Demande de réinitialisation par email"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:964
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:967
 msgid "Login"
 msgstr "Connexion"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:983
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:986
 #, php-format
 msgid "Logon using:%s"
 msgstr "Se connecter en utilisant :%s"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1009
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1123
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1207
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1012
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1126
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1210
 msgid "Password"
 msgstr "Mot de passe"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1015
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1018
 msgid "Log in"
 msgstr "Se connecter"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1029
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1032
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr "J’ai oublié mon <strong>identifiant d’utilisateur</strong> et/ou mon <strong>mot de passe</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1061
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1064
 msgid "Request"
 msgstr "Demande"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1061
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1064
 msgid "Request password reset"
 msgstr "Demande de réinitialisation du mot de passe"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1128
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1139
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1131
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1142
 msgid "password strength weak"
 msgstr "mot de passe faible"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1131
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1134
 msgid "password strength good"
 msgstr "mot de passe valide"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1134
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1137
 msgid "password strength strong"
 msgstr "Mot de passe fort"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1157
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1160
 msgid "passwords match"
 msgstr "Vos mots de passe correspondent"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1161
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1164
 msgid "passwords do not match"
 msgstr "Vos mots de passe ne correspondent pas"
 
-#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1219
+#: F:\sites\zenphoto-dev/zp-core/lib-auth.php:1222
 msgid "Repeat password"
 msgstr "Inscrivez de nouveau le mot de passe"
 
@@ -9023,11 +9028,11 @@ msgstr[1] "Page %1$u"
 msgid "The album is un-published."
 msgstr "Cet album n’est pas publié."
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1072
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1073
 msgid "Album Thumbnails"
 msgstr "Vignettes de l’album"
 
-#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1118
+#: F:\sites\zenphoto-dev/zp-core/template-functions.php:1119
 msgid "Return to search"
 msgstr "Retour à la recherche"
 
@@ -10366,116 +10371,116 @@ msgstr "impossible d’enregistrer la sauvegarde !"
 msgid "SHOW TABLES failed!"
 msgstr "La requête SHOW TABLES a échoué !"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:217
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:220
 #, php-format
 msgid "backup completed using <em>%1$s(%2$s)</em> compression"
 msgstr "sauvegarde complète (compression <em>%1$s(%2$s)</em>)"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:219
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:222
 msgid "backup completed"
 msgstr "sauvegarde terminée"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:229
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:235
 msgid "backup failed"
 msgstr "sauvegarde échouée"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:236
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:242
 msgid "No backup set found."
 msgstr "Aucun jeu de sauvegarde n’a été trouvé."
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:307
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:313
 msgid "Truncate table<br />"
 msgstr "Couper la table<br />"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:380
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:386
 msgid "Restore encountered exceptions"
 msgstr "La restauration a rencontré des problèmes"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:383
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:389
 msgid "The following tables were not restored because the table no longer exists:"
 msgstr "Les tables suivantes n’ont pas été restaurées car elles n’existent plus :"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:396
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:402
 msgid "The following fields were not restored because the field no longer exists:"
 msgstr "Les champs suivants n’ont pas été restaurés car ils n’existent plus :"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:414
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:420
 msgid "Restore failed"
 msgstr "Restauration échouée"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:437
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:443
 msgid "Zenphoto Rights migration failed!"
 msgstr "La migration des droits Zenphoto a échoué !"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:451
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:457
 msgid "Restore completed"
 msgstr "Restauration terminée"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:453
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:459
 #, php-format
 msgid "Restore completed using %s compression"
 msgstr "Restauration terminée (compression %s)"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:477
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:483
 msgid "Restore your Database"
 msgstr "Restaurer la base de données"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:479
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:485
 msgid "Backup and Restore your Database"
 msgstr "Sauvegarder et restaurer votre base de données."
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:489
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:495
 #, php-format
 msgid "Database software <strong>%s</strong>"
 msgstr "Logiciel de base de données <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:490
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:496
 #, php-format
 msgid "Database name <strong>%s</strong>"
 msgstr "Nom de la base de données <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:491
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:497
 #, php-format
 msgid "Tables prefix <strong>%s</strong>"
 msgstr "Préfixe des tables <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:502
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:508
 msgid "Backup the tables in your database."
 msgstr "Sauvegarder les tables dans votre base de données."
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:503
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:509
 msgid "Backup the Database"
 msgstr "Sauvegarder la base de données"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:524
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:530
 msgid "You have not yet created a backup set."
 msgstr "Vous n’avez pas encore créé de jeu de sauvegarde."
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:529
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:535
 msgid "Select the database restore file:"
 msgstr "Choisir le fichier de restauration de la base de données :"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:536
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:542
 msgid "Restore the tables in your database from a previous backup."
 msgstr "Restaure les tables de votre base de données depuis une précédente sauvegarde."
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:537
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:543
 msgid "Restore the Database"
 msgstr "Restaurer la base de données"
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:554
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:560
 msgid "The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings."
 msgstr "L’utilitaire de sauvegarde crée des instantanés de la base de données dans votre dossier <code>backup</code>. Ces sauvegardes sont nommées selon la date et l’heure où elles ont été effectuées. Le niveau de compression va de 0 (aucune compression) à 9 (compression maximale). Un niveau plus élevé consomme plus de puissance et le gain d’espace n’est pas nécessairement significatif."
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:558
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:564
 msgid "You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button."
 msgstr "Pour restaurer votre base de données, sélectionnez une sauvegarde et cliquez sur le bouton <em>Restaurer la base de données</em>."
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:559
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:565
 msgid "<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created."
 msgstr "<strong>Note</strong> : chaque table de la base de données est vidée juste avant que la restauration soit effectuée. Après une restauration réussie, la base de données sera dans le même état que lorsque la sauvegarde a été effectuée."
 
-#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:561
+#: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:567
 msgid "Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored."
 msgstr "Idéalement, une restauration doit être effectuée sous la même version de Zenphoto que celle utilisée pour la sauvegarde. Si vous pensez faire une mise à jour, effectuez d’abord la restauration sur la version de Zenphoto que vous utilisiez, puis installez par dessus la nouvelle version de Zenphoto. Si cela n’est pas possible, la restauration peut être effectuée, mais si les champs de la base de données ont changé entre temps, les anciens champs ne seront pas restaurés."
 
@@ -11266,7 +11271,6 @@ msgid "Comment editor configuration"
 msgstr "Configuration de l’éditeur de commentaires"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/comment_form.php:116
-#, fuzzy
 msgid "Configuration file for TinyMCE when used for comments. Set to <code>TinyMCE disabled</code> to disable visual editing."
 msgstr "Fichier de configuration de TinyMCE lorsqu’il est utilisé pour les commentaires. Choisir <code>TinyMCE désactivé</code> pour désactiver l’édition visuelle."
 
@@ -13414,57 +13418,57 @@ msgstr "Menu"
 msgid "menu"
 msgstr "menu"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:611
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:612
 #, php-format
 msgid "Page %1$u (Current Page)"
 msgid_plural "Page %1$u (Current Page)"
 msgstr[0] "Page %1$u (page courante)"
 msgstr[1] "Page %1$u (page courante)"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:627
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:628
 #, php-format
 msgid "Page {%u}"
 msgid_plural "Page {%u}"
 msgstr[0] "page {%u}"
 msgstr[1] "page {%u}"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:787
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:788
 msgid "News index"
 msgstr "Index des actualités"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:812
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:826
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:840
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:813
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:827
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:841
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty link."
 msgstr "l’élément %s de la fonction createMenuIfNotExists a un lien vide."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:819
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:833
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:852
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:860
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:820
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:834
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:853
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:861
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty title."
 msgstr "l’élément %s de la fonction createMenuIfNotExists a un titre vide."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:846
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:867
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:873
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:847
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:868
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:874
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty title or link."
 msgstr "l’élément %s de la fonction createMenuIfNotExists a un titre ou un lien vide."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:878
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:879
 #, php-format
 msgid "createMenuIfNotExists item %s has an invalid type."
 msgstr "l’élément %s de la fonction createMenuIfNotExists est de type invalide."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:895
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:896
 #, php-format
 msgid "createMenuIfNotExists item %1$s query (%2$s) failed: %3$s."
 msgstr "la requête (%2$s) pour l’élément %1$s de la fonction createMenuIfNotExists a échoué : %3$s."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:903
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager.php:904
 msgid "createMenuIfNotExists has posted processing errors to your debug log."
 msgstr "La fonction createMenuIfNotExists a inscrit des erreurs de traitement dans le journal de déboggage."
 
@@ -14219,91 +14223,94 @@ msgstr "Analyse des recherches"
 msgid "Logs selected security events."
 msgstr "Journalise des événements de sécurité choisis."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:61
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:62
 msgid "Record logon attempts of"
 msgstr "Enregistrer les essais de connexion de"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:62
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:63
 msgid "Administrators"
 msgstr "Administrateurs"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:62
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:63
 msgid "Guests"
 msgstr "Invités"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:63
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:64
 msgid "If checked login attempts will be logged."
 msgstr "Si l’option est activée, les essais de connexion seront enregistrés."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:64
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:65
 msgid "Record"
 msgstr "Enregistrer"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:65
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:66
 msgid "All attempts"
 msgstr "Toutes les tentatives"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:65
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:66
 msgid "Successful attempts"
 msgstr "Tentatives réussies"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:65
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:66
 msgid "unsuccessful attempts"
 msgstr "tentatives infructueuses"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:66
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:67
 msgid "Record login failures, successes, or all attempts."
 msgstr "Enregistre les tentatives de connexion infructueuses, les réussies ou toutes."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:97
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:98
 msgid "Log reset"
 msgstr "Log réinitialisé"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:100
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:101
 msgid "Log deleted"
 msgstr "Log supprimé"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:103
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:104
 msgid "Log downloaded"
 msgstr "Log téléchargé"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:106
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:107
 msgid "Install"
 msgstr "Installation"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:113
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:114
 msgid "Remove setup files"
 msgstr "Supprimer les fichiers d’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:116
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:117
 msgid "Request add user"
 msgstr "Demande d’ajout de l’utilisateur"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:119
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:120
 msgid "Request update user"
 msgstr "Demande de modification de l’utilisateur"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:122
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:123
 msgid "Request delete user"
 msgstr "Demande de suppression de l’utilisateur"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:125
-msgid "XSRF access blocked"
-msgstr "L’accés XSRF est bloqué"
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:126
+#, fuzzy
+msgid "Cross Site Reference"
+msgstr "Tentative de hameçonnage (Référence croisée  ?)"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:128
-msgid "Blocked album"
-msgstr "Album bloqué"
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:129
+#, fuzzy
+msgid "Album access"
+msgstr "Accès aux albums"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:131
-msgid "Blocked access"
-msgstr "Accès bloqué"
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:132
+#, fuzzy
+msgid "Admin access"
+msgstr "Accès aux pages d’administration"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:134
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:135
 msgid "Guest login"
 msgstr "Connexion comme invité"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:137
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:138
 msgid "Admin login"
 msgstr "Connexion comme administrateur"
 
@@ -14311,24 +14318,28 @@ msgstr "Connexion comme administrateur"
 msgid "Authorization cookie check"
 msgstr "Vérification du cookie d’autorisation"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:151
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:153
 msgid "date\trequestor's IP\ttype\tuser ID\tuser name\toutcome\tauthority\tadditional information\n"
 msgstr "date\tIP du requérant\ttype\tidentifiant\tnom de l’utilisateur\trésultat\tautorité\trenseignements supplémentaires\n"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:159
-msgid "Success"
-msgstr "Réussite"
-
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:162
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:179
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:189
 msgid "Failed"
 msgstr "Échec"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:179
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:165
+msgid "Success"
+msgstr "Réussite"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:169
+msgid "Blocked"
+msgstr "Bloqué(e)"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:189
 msgid "Set Security log permissions"
 msgstr "Configurer les droits du journal de sécurité"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:179
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/security-logger.php:189
 #, php-format
 msgid "File permissions of Security log are %04o"
 msgstr "Les droits du journal de sécurité sont réglés à %04o."
@@ -16631,121 +16642,121 @@ msgstr "Éléments visibles"
 msgid "hidden items"
 msgstr "Éléments masqués"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:453
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:457
 msgid "Menu items for all Zenphoto objects added."
 msgstr "Les éléments de menu pour tous les objets Zenphoto ont été ajoutés."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:457
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:461
 msgid "Menu items for all albums added."
 msgstr "Les éléments de menu pour tous les albums ont été ajoutés."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:461
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
 msgid "Menu items for all Zenpage pages added."
 msgstr "Les éléments de menu pour tous les pages Zenpage ont été ajoutés."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:469
 msgid "Menu items for all Zenpage categories added."
 msgstr "Les éléments de menu pour tous les catégories Zenpage ont été ajoutés."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:470
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:619
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:474
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:623
 msgid "You forgot to select an album."
 msgstr "Vous avez oublié de selectionner un album."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:473
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:477
 #, php-format
 msgid "Album menu item <em>%s</em> added"
 msgstr "L’élement de menu d’album <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:479
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:497
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:515
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:523
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:537
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:545
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:558
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:627
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:643
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:659
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:666
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:679
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:686
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:698
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:720
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:483
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:501
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:519
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:527
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:541
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:549
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:562
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:631
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:647
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:663
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:670
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:683
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:690
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:702
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:724
 msgid "You forgot to give your menu item a <strong>title</strong>!"
 msgstr "Vous avez oublié de donner un <strong>titre</strong> à votre élément de menu !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:482
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:486
 #, php-format
 msgid "Gallery index menu item <em>%s</em> added"
 msgstr "L’élément de menu de l’index de la galerie <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:488
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:506
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:635
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:651
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:722
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:492
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:510
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:639
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:655
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:726
 msgid "You forgot to give your menu item a <strong>link</strong>!"
 msgstr "Vous avez oublié de donner un <strong>lien</strong> à votre élément de menu !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:491
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:495
 #, php-format
 msgid "Zenpage page menu item <em>%s</em> added"
 msgstr "L’élément de menu de la page Zenpage <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:500
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:504
 #, php-format
 msgid "Zenpage news index menu item <em>%s</em> added"
 msgstr "L’élément de menu de la page d’accueil des actualités Zenpage <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:509
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:513
 #, php-format
 msgid "Zenpage news category menu item <em>%s</em> added"
 msgstr "L’élément de menu de la catégorie d’actualités Zenpage <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:518
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:531
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:522
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:535
 #, php-format
 msgid "Custom page menu item <em>%s</em> added"
 msgstr "L’élément de menu de la page personnalisée <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:528
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:550
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:563
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:671
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:691
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:703
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:532
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:554
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:567
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:675
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:695
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:707
 msgid "You forgot to provide a <strong>function</strong>!"
 msgstr "Vous avez oublié de donner une <strong>fonction</strong> à votre page !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:540
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:544
 msgid "Custom label added"
 msgstr "Le libellé personnalisé a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:553
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:557
 #, php-format
 msgid "Function  menu item <em>%s</em> added"
 msgstr "L’élément de menu de la fonction <em>%s</em> a été ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:566
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:570
 msgid "<em>HTML</em> added"
 msgstr "<em>HTML</em> ajouté"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:588
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:592
 #, php-format
 msgid "A <em>%1$s</em> item already exists in <em>%2$s</em>!"
 msgstr "Un élément <em>%1$s</em> existe déjà dans <em>%2$s</em> !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:590
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:594
 #, php-format
 msgid "A <em>%1$s</em> item with the link <em>%2$s</em> already exists in <em>%3$s</em>!"
 msgstr "Un élément <em>%1$s</em> avec le lien <em>%2$s</em> existe déjà dans <em>%3$s</em> !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:724
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:728
 msgid "Menu item updated!"
 msgstr "L’élément de menu a été mis à jour !"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:738
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:742
 msgid "Custom menu item successfully deleted!"
 msgstr "L’élément de menu personnalisé a été supprimé !"
 
@@ -16819,37 +16830,41 @@ msgstr "Nouveau menu"
 msgid "Menu Manager options"
 msgstr "Options du gestionnaire de menus"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:168
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:172
 msgid "Edit the menu"
 msgstr "Modifier le menu"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:176
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:180
 msgid "Hide"
 msgstr "Masquer"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:184
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:188
 #, php-format
 msgid "Duplicate %s menu"
 msgstr "Dupliquer le menu %s"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:184
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:188
 msgid "Duplicate menu"
 msgstr "Dupliquer le menu"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:187
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:191
 #, php-format
 msgid "Delete %s menu"
 msgstr "Supprimer le menu %s"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:187
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:191
 msgid "Delete menu"
 msgstr "Supprimer le menu"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:223
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:222
+msgid "No menus exist"
+msgstr "Aucun menu n’existe"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:237
 msgid "Menu target is password protected"
 msgstr "La cible du menu est protégée par mot de passe."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:224
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/menu_manager/menu_tab.php:238
 msgid "Show/hide"
 msgstr "Afficher/cacher"
 
@@ -18677,6 +18692,15 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
+
+#~ msgid "XSRF access blocked"
+#~ msgstr "L’accés XSRF est bloqué"
+
+#~ msgid "Blocked album"
+#~ msgstr "Album bloqué"
+
+#~ msgid "Blocked access"
+#~ msgstr "Accès bloqué"
 
 #~ msgid "Connect to the database [Database does not exist]"
 #~ msgstr "Connexion à la base de données [La base de données n’existe pas]"
