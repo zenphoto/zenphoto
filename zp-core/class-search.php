@@ -64,6 +64,7 @@ class SearchEngine
 		$this->search_structure['state']							= gettext('State');
 		$this->search_structure['country']						= gettext('Country');
 		$this->search_structure['copyright']					= gettext('Copyright');
+		$this->search_structure['owner']							= gettext('Owner');
 		if (getOption('zp_plugin_zenpage') && !$dynamic_album) {
 			//zenpage fields
 			$this->search_structure['content']					= gettext('Content');

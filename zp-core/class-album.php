@@ -622,14 +622,18 @@ class Album extends AlbumBase {
 	 */
 	function __construct($deprecated, $folder8, $cache=true, $quiet=false) {
 		global $_zp_gallery;
-		$folder8 = sanitize_path($folder8);
+		$folder8 = trim(sanitize_path($folder8));
 		$folderFS = internalToFilesystem($folder8);
 		$this->gallery = $_zp_gallery;
 		if (empty($folder8)) {
-			$localpath = ALBUM_FOLDER_SERVERPATH;
-		} else {
-			$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
+			$this->exists = false;
+			if (!$quiet) {
+				$msg = gettext('class-album detected an empty folder name.');
+				trigger_error($msg, E_USER_NOTICE);
+			}
+			return;
 		}
+		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
 		if (filesystemToInternal($folderFS) != $folder8) {
 			// an attempt to spoof the album name.
 			$this->exists = false;

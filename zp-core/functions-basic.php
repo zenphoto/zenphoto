@@ -47,6 +47,7 @@ if ($matches) {
 				break;
 		}
 	}
+	unset($matches);
 } else {
 	if (!defined('OFFSET_PATH')) {
 		define('OFFSET_PATH', 0);
@@ -479,8 +480,8 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 			} else {
 				$im_suffix = false;
 			}
-			//	remove trailing slash
-			$ralbum = $path = rtrim($path, '/');
+			//	sanitize the path
+			$ralbum = $path = sanitize_path($path);
 			//strip off things discarded by the rewrite rules
 			$pagepos  = strpos($path, '/page/');
 			$slashpos = strrpos($path, '/');
