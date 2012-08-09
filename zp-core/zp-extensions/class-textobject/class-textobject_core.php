@@ -89,19 +89,18 @@ class TextObject extends _Image {
 	 */
 	function common_instantiate($album,$filename) {
 		global $_zp_supported_images;
-		// $album is an Album object; it should already be created.
-		if (!is_object($album)) return NULL;
-		if (!$this->classSetup($album, $filename)) { // spoof attempt
-			$this->exists = false;
-			return;
+		$msg = false;
+		if (!is_object($album) || !$album->exists){
+			$msg = gettext('Invalid Textobject instantiation: Album does not exist');
+		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
+			$msg = gettext('Invalid Textobject instantiation: file does not exist.');
+		}
+		if ($msg) {
+			trigger_error($msg, E_USER_ERROR);
+			exitZP();
 		}
 		$this->sidecars = $_zp_supported_images;
 		$this->objectsThumb = checkObjectsThumb($this->localpath);
-		// Check if the file exists.
-		if (!file_exists($this->localpath) || is_dir($this->localpath)) {
-			$this->exists = false;
-			return;
-		}
 		$this->updateDimensions();
 		if (parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename')) {
 			$title = $this->getDefaultTitle();

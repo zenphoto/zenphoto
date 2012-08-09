@@ -625,34 +625,27 @@ class Album extends AlbumBase {
 		$folder8 = trim(sanitize_path($folder8));
 		$folderFS = internalToFilesystem($folder8);
 		$this->gallery = $_zp_gallery;
-		if (empty($folder8)) {
-			$this->exists = false;
-			if (!$quiet) {
-				$msg = gettext('class-album detected an empty folder name.');
-				trigger_error($msg, E_USER_NOTICE);
-			}
-			return;
-		}
 		$localpath = ALBUM_FOLDER_SERVERPATH . $folderFS . "/";
-		if (filesystemToInternal($folderFS) != $folder8) {
-			// an attempt to spoof the album name.
-			$this->exists = false;
-			$msg = sprintf(gettext('Zenphoto encountered an album name spoof attempt: %1$s=>%2$s.'),html_encode(filesystemToInternal($folderFS)),html_encode($folder8));
-			trigger_error($msg, E_USER_NOTICE);
-			return;
-		}
+		$msg = false;
 		if ($dynamic = hasDynamicAlbumSuffix($folder8)) {
 			$localpath = substr($localpath, 0, -1);
 			$this->dynamic = true;
 		}
-		// Must be a valid (local) folder:
-		if(!file_exists($localpath) || !($dynamic || is_dir($localpath))) {
-			$this->exists = false;
-			if (!$quiet) {
-				$msg = sprintf(gettext('class-album detected an invalid folder name: %s.'),html_encode($folder8));
-				trigger_error($msg, E_USER_NOTICE);
+		if (empty($folder8)) {
+			$msg = gettext('Invalid album instantiation: No album name.');
+		} else if (filesystemToInternal($folderFS) != $folder8) {
+			// an attempt to spoof the album name.
+			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s.'),html_encode(filesystemToInternal($folderFS)),html_encode($folder8));
+		} else if(!file_exists($localpath) || !($dynamic || is_dir($localpath))) {
+			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'),html_encode($folder8));
+		}
+		if ($msg) {
+			if ($quiet) {
+				$this->exists = false;
+				return;
 			}
-			return;
+			trigger_error($msg, E_USER_ERROR);
+			exitZP();
 		}
 		$this->localpath = $localpath;
 		$this->name = $folder8;

@@ -80,21 +80,19 @@ class Video extends _Image {
 	 */
 	function __construct(&$album, $filename) {
 		global $_zp_supported_images;
-		// $album is an Album object; it should already be created.
-		if (!is_object($album)) return NULL;
-		if (!$this->classSetup($album, $filename)) { // spoof attempt
-			$this->exists = false;
-			return;
+		$msg = false;
+		if (!is_object($album) || !$album->exists){
+			$msg = gettext('Invalid Video instantiation: Album does not exist');
+		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
+			$msg = gettext('Invalid Vides instantiation: file does not exist.');
+		}
+		if ($msg) {
+			trigger_error($msg, E_USER_ERROR);
+			exitZP();
 		}
 		$this->sidecars = $_zp_supported_images;
 		$this->video = true;
 		$this->objectsThumb = checkObjectsThumb($this->localpath);
-		// Check if the file exists.
-		if (!file_exists($this->localpath) || is_dir($this->localpath)) {
-			$this->exists = false;
-			return;
-		}
-
 
 		// This is where the magic happens...
 		$album_name = $album->name;

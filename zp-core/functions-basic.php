@@ -1045,24 +1045,23 @@ function debugLog($message, $reset=false) {
  * @param string $message Message to prefix the backtrace
  */
 function debugLogBacktrace($message, $omit=0) {
-	$output = "Backtrace: $message\n";
+	$output = trim($message)."\n";
 	// Get a backtrace.
 	$bt = debug_backtrace();
 	while ($omit>=0) {
 		array_shift($bt); // Get rid of debug_backtrace, callers in the backtrace.
 		$omit--;
 	}
-	$prefix = '';
+	$prefix = '  ';
 	$line = '';
 	$caller = '';
 	foreach($bt as $b) {
 		$caller = (isset($b['class']) ? $b['class'] : '')	. (isset($b['type']) ? $b['type'] : '')	. $b['function'];
 		if (!empty($line)) { // skip first output to match up functions with line where they are used.
-			$msg = $prefix . ' from ';
-			$output .= $msg.$caller.' ('.$line.")\n";
 			$prefix .= '  ';
+			$output .= 'from '.$caller.' ('.$line.")\n".$prefix;
 		} else {
-			$output .= $caller." called\n";
+			$output .= '  '.$caller." called ";
 		}
 		$date = false;
 		if (isset($b['file']) && isset($b['line'])) {
@@ -1072,7 +1071,7 @@ function debugLogBacktrace($message, $omit=0) {
 		}
 	}
 	if (!empty($line)) {
-		$output .= $prefix.' from '.$line;
+		$output .= 'from '.$line;
 	}
 	debugLog($output);
 }
@@ -1589,22 +1588,23 @@ function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
 											);
 
 	// create error message
+
 	if (array_key_exists($errno, $errorType)) {
 		$err = $errorType[$errno];
 	} else {
 		$err = gettext("EXCEPTION ($errno)");
 		$errno = E_ERROR;
 	}
-	debugLogBacktrace(sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'),$err,$errstr,$errfile,$errline), 1);
-	if(!defined('RELEASE')) {	// let PHP handle if debug build
-		return false;
-	}
+	$msg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'),$err,$errstr,$errfile,$errline);
+	debugLogBacktrace($msg, 1);
 	// what to do
 	switch ($errno) {
-		case E_USER_ERROR:
-		case E_ERROR:
-			exitZP();
 		default:
+			@ini_set('display_errors', 1);
+		case E_NOTICE:
+		case E_USER_NOTICE:
+		case E_WARNING:
+		case E_USER_WARNING:
 			return false;
 	}
 }
