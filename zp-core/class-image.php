@@ -447,6 +447,9 @@ class _Image extends MediaObject {
 		}
 		$alb = $this->album;
 		if (!is_null($alb)) {
+			if (!$this->get('owner')) {
+				$this->setOwner($alb->getOwner());
+			}
 			$save = false;
 			if (strtotime($alb->getUpdatedDate()) < strtotime($this->getDateTime())) {
 				$alb->setUpdatedDate($this->getDateTime());

@@ -2594,14 +2594,16 @@ function getFullImageURL($image=NULL) {
  *
  */
 function getUnprotectedImageURL($image=NULL) {
-	global $_zp_current_image;
-	if (is_null($image)) {
-		$image = $_zp_current_image;
+	global $_zp_current_image, $_zp_conf_vars;
+	if ($_zp_conf_vars['album_folder_class'] != 'external') {
+		if (is_null($image)) {
+			$image = $_zp_current_image;
+		}
+		if (!is_null($image)) {
+			return $image->getFullImageURL();
+		}
 	}
-	if (is_null($image)) {
-		return false;
-	}
-	return $_zp_current_image->getFullImageURL();
+	return false;
 }
 /**
  * Returns an url to the password protected/watermarked current image

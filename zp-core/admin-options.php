@@ -2096,7 +2096,11 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<?php
 				echo "<select id=\"protect_full_image\" name=\"protect_full_image\">\n";
 				$protection = getOption('protect_full_image');
-				generateListFromArray(array($protection), array(gettext('Unprotected') => 'Unprotected', gettext('Protected view') => 'Protected view', gettext('Download') => 'Download', gettext('No access') => 'No access'), false, true);
+				$list = array(gettext('Protected view') => 'Protected view', gettext('Download') => 'Download', gettext('No access') => 'No access');
+				if ($_zp_conf_vars['album_folder_class'] != 'external') {
+					$list[gettext('Unprotected')] = 'Unprotected';
+				}
+				generateListFromArray(array($protection), $list, false, true);
 				echo "</select>\n";
 				?>
 				</p>
