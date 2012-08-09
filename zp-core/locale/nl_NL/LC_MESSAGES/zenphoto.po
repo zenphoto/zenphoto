@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-04 08:31+0100\n"
+"POT-Creation-Date: 2012-08-09 17:28+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -1627,7 +1627,7 @@ msgstr "Terug"
 #: ZpTranslation-Development/zp-core/admin-options.php:2971
 #: ZpTranslation-Development/zp-core/admin-options.php:3091
 #: ZpTranslation-Development/zp-core/admin-plugins.php:125
-#: ZpTranslation-Development/zp-core/admin-plugins.php:346
+#: ZpTranslation-Development/zp-core/admin-plugins.php:345
 #: ZpTranslation-Development/zp-core/admin-thumbcrop.php:271
 #: ZpTranslation-Development/zp-core/admin-thumbcrop.php:273
 msgid "Apply"
@@ -4641,7 +4641,7 @@ msgid "Collapse all plugin options"
 msgstr "Verberg alle pluginopties"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2844
-#: ZpTranslation-Development/zp-core/admin-plugins.php:214
+#: ZpTranslation-Development/zp-core/admin-plugins.php:216
 msgid "<strong>Note:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string."
 msgstr "<strong>Opmerking:</strong> Het instantiëren van de optie-interface van de plugin kan problemen geven met de prestaties. Je zou in plaats hiervan de <code>$option_interface</code> de naam van de class als een string moeten geven."
 
@@ -4752,74 +4752,74 @@ msgstr "Zoek meer plugins"
 msgid "<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."
 msgstr "<strong>Opmerking</strong>: Niet alle thema's ondersteunen alle plugins! Je moet misschien zelf de plugin-functie aan het thema toevoegen."
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:130
+#: ZpTranslation-Development/zp-core/admin-plugins.php:135
 msgid "Available Plugins"
 msgstr "Beschikbare plugins"
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:133
+#: ZpTranslation-Development/zp-core/admin-plugins.php:137
 msgid "Description"
 msgstr "Beschrijving"
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:148
+#: ZpTranslation-Development/zp-core/admin-plugins.php:150
 msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>."
 msgstr "<strong>Fout bij het verwerken van de <em>plugin_description</em> string!</strong>."
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:156
+#: ZpTranslation-Development/zp-core/admin-plugins.php:158
 msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>."
 msgstr "<strong>Fout bij het verwerken van de <em>plugin_notice</em> string!</strong>."
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:164
+#: ZpTranslation-Development/zp-core/admin-plugins.php:166
 msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
 msgstr "<strong>Fout bij het verwerken van de <em>plugin_author</em> string!</strong>."
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:172
+#: ZpTranslation-Development/zp-core/admin-plugins.php:174
 msgid "<strong>Error parsing <em>plugin_version</em> string!</strong>."
 msgstr "<strong>Fout bij het verwerken van de <em>plugin_version</em> string!</strong>."
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:180
+#: ZpTranslation-Development/zp-core/admin-plugins.php:182
 msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>."
 msgstr "<strong>Fout bij het verwerken van de <em>plugin_disable</em> string!</strong>."
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:234
+#: ZpTranslation-Development/zp-core/admin-plugins.php:236
 msgid "third party plugin"
 msgstr "third party plugin"
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:246
+#: ZpTranslation-Development/zp-core/admin-plugins.php:248
 #: ZpTranslation-Development/zp-core/admin-themes.php:232
 msgid "logo"
 msgstr "logo"
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:260
+#: ZpTranslation-Development/zp-core/admin-plugins.php:262
 msgid "This plugin is disabled. Click for details."
 msgstr "Deze plugin is uitgeschakeld. Klik voor details."
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:279
+#: ZpTranslation-Development/zp-core/admin-plugins.php:281
 #, php-format
 msgid "More information on %s"
 msgstr "Meer informatie over %s"
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:283
+#: ZpTranslation-Development/zp-core/admin-plugins.php:285
 #, php-format
 msgid "Change %s options"
 msgstr "Wijzig %s opties"
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:288
+#: ZpTranslation-Development/zp-core/admin-plugins.php:290
 msgid "Plugin warnings"
 msgstr "Plugin waarschuwingen"
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:340
+#: ZpTranslation-Development/zp-core/admin-plugins.php:339
 msgid "Official plugin"
 msgstr "Officiële plugin"
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:341
+#: ZpTranslation-Development/zp-core/admin-plugins.php:340
 msgid "Usage info"
 msgstr "Gebruiksinformatie"
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:342
+#: ZpTranslation-Development/zp-core/admin-plugins.php:341
 msgid "Options"
 msgstr "Opties"
 
-#: ZpTranslation-Development/zp-core/admin-plugins.php:343
+#: ZpTranslation-Development/zp-core/admin-plugins.php:342
 msgid "Warning note"
 msgstr "Waarschuwing"
 
@@ -5698,22 +5698,26 @@ msgid_plural "%u active filters:"
 msgstr[0] "%u actief filter:"
 msgstr[1] "%u actieve filters:"
 
-#: ZpTranslation-Development/zp-core/class-album.php:636
-#, php-format
-msgid "Zenphoto encountered an album name spoof attempt: %1$s=>%2$s."
-msgstr "Zenphoto ontdekte een spoof poging op een albumnaam: %1$s=>%2$s."
+#: ZpTranslation-Development/zp-core/class-album.php:635
+msgid "Invalid album instantiation: No album name"
+msgstr "Album niet gevonden: Geen albumnaam."
 
-#: ZpTranslation-Development/zp-core/class-album.php:648
+#: ZpTranslation-Development/zp-core/class-album.php:638
 #, php-format
-msgid "class-album detected an invalid folder name: %s."
-msgstr "class-album ontdekte een ongeldige mapnaam: %s."
+msgid "Invalid album instantiation: %1$s!=%2$s"
+msgstr "Album niet gevonden: %1$s!=%2$s"
 
-#: ZpTranslation-Development/zp-core/class-album.php:1565
+#: ZpTranslation-Development/zp-core/class-album.php:640
+#, php-format
+msgid "Invalid album instantiation: %s does not exist."
+msgstr "Album niet gevonden: %s bestaat niet."
+
+#: ZpTranslation-Development/zp-core/class-album.php:1562
 #, php-format
 msgid "Error: The album named %s cannot be found."
 msgstr "Fout: Het album genaamd %s kan niet gevonden worden."
 
-#: ZpTranslation-Development/zp-core/class-album.php:1567
+#: ZpTranslation-Development/zp-core/class-album.php:1564
 #, php-format
 msgid "Error: The album %s is not readable."
 msgstr "Error: Het album %s is niet leesbaar."
@@ -5745,6 +5749,14 @@ msgstr "Foute album object parameter naar newImage(%s)"
 #, php-format
 msgid "Bad filename suffix in newImage(%s)"
 msgstr "Verkeerde bestandsextensie in newImage(%s)"
+
+#: ZpTranslation-Development/zp-core/class-image.php:118
+msgid "Invalid image instantiation: Album does not exist"
+msgstr "Afbeelding niet gevonden: Album bestaat niet."
+
+#: ZpTranslation-Development/zp-core/class-image.php:120
+msgid "Invalid image instantiation: file does not exist"
+msgstr "Afbeelding niet gevonden: bestand bestaat niet."
 
 #: ZpTranslation-Development/zp-core/class-rss.php:270
 msgid " (Latest news)"
@@ -5860,27 +5872,27 @@ msgstr "Land"
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ZpTranslation-Development/zp-core/class-search.php:69
+#: ZpTranslation-Development/zp-core/class-search.php:70
 msgid "Content"
 msgstr "Inhoud"
 
-#: ZpTranslation-Development/zp-core/class-search.php:70
+#: ZpTranslation-Development/zp-core/class-search.php:71
 msgid "ExtraContent"
 msgstr "Extra content"
 
-#: ZpTranslation-Development/zp-core/class-search.php:71
+#: ZpTranslation-Development/zp-core/class-search.php:72
 msgid "Author"
 msgstr "Auteur"
 
-#: ZpTranslation-Development/zp-core/class-search.php:72
+#: ZpTranslation-Development/zp-core/class-search.php:73
 msgid "Last Editor"
 msgstr "Laatste bewerker"
 
-#: ZpTranslation-Development/zp-core/class-search.php:73
+#: ZpTranslation-Development/zp-core/class-search.php:74
 msgid "TitleLink"
 msgstr "Title-link"
 
-#: ZpTranslation-Development/zp-core/class-search.php:74
+#: ZpTranslation-Development/zp-core/class-search.php:75
 msgid "Categories"
 msgstr "Categoriën"
 
@@ -5892,35 +5904,35 @@ msgstr "Verboden"
 msgid "Too few arguments! Image not found."
 msgstr "Te weinig argumenten! Afbeelding niet gevonden."
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1569
+#: ZpTranslation-Development/zp-core/functions-basic.php:1581
 msgid "ERROR"
 msgstr "ERROR"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1570
+#: ZpTranslation-Development/zp-core/functions-basic.php:1582
 msgid "WARNING"
 msgstr "WARNING"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1571
+#: ZpTranslation-Development/zp-core/functions-basic.php:1583
 msgid "NOTICE"
 msgstr "NOTICE"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1572
+#: ZpTranslation-Development/zp-core/functions-basic.php:1584
 msgid "USER ERROR"
 msgstr "USER ERROR"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1573
+#: ZpTranslation-Development/zp-core/functions-basic.php:1585
 msgid "USER WARNING"
 msgstr "USER WARNING"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1574
+#: ZpTranslation-Development/zp-core/functions-basic.php:1586
 msgid "USER NOTICE"
 msgstr "USER NOTICE"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1575
+#: ZpTranslation-Development/zp-core/functions-basic.php:1587
 msgid "STRICT NOTICE"
 msgstr "STRICT NOTICE"
 
-#: ZpTranslation-Development/zp-core/functions-basic.php:1585
+#: ZpTranslation-Development/zp-core/functions-basic.php:1598
 #, php-format
 msgid "%1$s: %2$s in %3$s on line %4$s"
 msgstr "%1$s: %2$s in %3$s op regel %4$s"
@@ -6756,178 +6768,182 @@ msgid "Orientation"
 msgstr "Oriëntatie"
 
 #: ZpTranslation-Development/zp-core/functions.php:2101
+msgid "Software"
+msgstr "Software"
+
+#: ZpTranslation-Development/zp-core/functions.php:2102
 msgid "Contrast Setting"
 msgstr "Contrast"
 
-#: ZpTranslation-Development/zp-core/functions.php:2102
+#: ZpTranslation-Development/zp-core/functions.php:2103
 msgid "Sharpness Setting"
 msgstr "Scherpte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2103
+#: ZpTranslation-Development/zp-core/functions.php:2104
 msgid "Saturation Setting"
 msgstr "Verzadiging"
 
-#: ZpTranslation-Development/zp-core/functions.php:2104
+#: ZpTranslation-Development/zp-core/functions.php:2105
 msgid "White Balance"
 msgstr "Witbalans"
 
-#: ZpTranslation-Development/zp-core/functions.php:2105
+#: ZpTranslation-Development/zp-core/functions.php:2106
 msgid "Subject Distance"
 msgstr "Onderwerpsafstand"
 
-#: ZpTranslation-Development/zp-core/functions.php:2106
+#: ZpTranslation-Development/zp-core/functions.php:2107
 msgid "Focal Length"
 msgstr "Brandpuntsafstand"
 
-#: ZpTranslation-Development/zp-core/functions.php:2107
+#: ZpTranslation-Development/zp-core/functions.php:2108
 msgid "Lens Type"
 msgstr "Lenstype"
 
-#: ZpTranslation-Development/zp-core/functions.php:2108
+#: ZpTranslation-Development/zp-core/functions.php:2109
 msgid "Lens Info"
 msgstr "Lensinformatie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2109
+#: ZpTranslation-Development/zp-core/functions.php:2110
 msgid "35mm Focal Length Equivalent"
 msgstr "Brandpuntsafstand equivalent voor 35mm film"
 
-#: ZpTranslation-Development/zp-core/functions.php:2111
+#: ZpTranslation-Development/zp-core/functions.php:2112
 msgid "Sub-location"
 msgstr "Sublocatie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2112
+#: ZpTranslation-Development/zp-core/functions.php:2113
 msgid "Province/State"
 msgstr "Provincie/Staat"
 
-#: ZpTranslation-Development/zp-core/functions.php:2113
+#: ZpTranslation-Development/zp-core/functions.php:2114
 msgid "Country/Primary Location Code"
 msgstr "Land/locatiecode"
 
-#: ZpTranslation-Development/zp-core/functions.php:2114
+#: ZpTranslation-Development/zp-core/functions.php:2115
 msgid "Country/Primary Location Name"
 msgstr "Land/ locatienaam"
 
-#: ZpTranslation-Development/zp-core/functions.php:2115
+#: ZpTranslation-Development/zp-core/functions.php:2116
 msgid "Content Location Code"
 msgstr "Content locatiecode"
 
-#: ZpTranslation-Development/zp-core/functions.php:2116
+#: ZpTranslation-Development/zp-core/functions.php:2117
 msgid "Content Location Name"
 msgstr "Content locatienaam"
 
-#: ZpTranslation-Development/zp-core/functions.php:2117
+#: ZpTranslation-Development/zp-core/functions.php:2118
 msgid "Latitude"
 msgstr "Breedtegraad"
 
-#: ZpTranslation-Development/zp-core/functions.php:2118
+#: ZpTranslation-Development/zp-core/functions.php:2119
 msgid "Latitude Reference"
 msgstr "Breedtegraad verwijzing"
 
-#: ZpTranslation-Development/zp-core/functions.php:2119
+#: ZpTranslation-Development/zp-core/functions.php:2120
 msgid "Longitude"
 msgstr "Lengtegraad"
 
-#: ZpTranslation-Development/zp-core/functions.php:2120
+#: ZpTranslation-Development/zp-core/functions.php:2121
 msgid "Longitude Reference"
 msgstr "Lengtegraad verwijzing"
 
-#: ZpTranslation-Development/zp-core/functions.php:2121
+#: ZpTranslation-Development/zp-core/functions.php:2122
 msgid "Altitude"
 msgstr "Hoogtegraad"
 
-#: ZpTranslation-Development/zp-core/functions.php:2122
+#: ZpTranslation-Development/zp-core/functions.php:2123
 msgid "Altitude Reference"
 msgstr "Hoogtegraad verwijzing"
 
-#: ZpTranslation-Development/zp-core/functions.php:2123
+#: ZpTranslation-Development/zp-core/functions.php:2124
 msgid "Originating Program "
 msgstr "Gebruikt programma"
 
-#: ZpTranslation-Development/zp-core/functions.php:2124
+#: ZpTranslation-Development/zp-core/functions.php:2125
 msgid "Program Version"
 msgstr "Programmaversie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2125
+#: ZpTranslation-Development/zp-core/functions.php:2126
 msgid "Video File Format"
 msgstr "Video format"
 
-#: ZpTranslation-Development/zp-core/functions.php:2126
+#: ZpTranslation-Development/zp-core/functions.php:2127
 msgid "Video File Size"
 msgstr "Video bestandsgrootte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2127
+#: ZpTranslation-Development/zp-core/functions.php:2128
 msgid "Video Artist"
 msgstr "Video artiest"
 
-#: ZpTranslation-Development/zp-core/functions.php:2128
+#: ZpTranslation-Development/zp-core/functions.php:2129
 msgid "Video Title"
 msgstr "Video titel"
 
-#: ZpTranslation-Development/zp-core/functions.php:2129
+#: ZpTranslation-Development/zp-core/functions.php:2130
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: ZpTranslation-Development/zp-core/functions.php:2130
+#: ZpTranslation-Development/zp-core/functions.php:2131
 msgid "Bitrate_Mode"
 msgstr "Bitrate type"
 
-#: ZpTranslation-Development/zp-core/functions.php:2131
+#: ZpTranslation-Development/zp-core/functions.php:2132
 msgid "Bits per sample"
 msgstr "Bits per sample"
 
-#: ZpTranslation-Development/zp-core/functions.php:2132
+#: ZpTranslation-Development/zp-core/functions.php:2133
 msgid "Codec"
 msgstr "Codec"
 
-#: ZpTranslation-Development/zp-core/functions.php:2133
+#: ZpTranslation-Development/zp-core/functions.php:2134
 msgid "Compression Ratio"
 msgstr "Compressieverhouding"
 
-#: ZpTranslation-Development/zp-core/functions.php:2134
+#: ZpTranslation-Development/zp-core/functions.php:2135
 msgid "Video Dataformat"
 msgstr "Video type"
 
-#: ZpTranslation-Development/zp-core/functions.php:2135
+#: ZpTranslation-Development/zp-core/functions.php:2136
 msgid "File Encoder"
 msgstr "Encoder"
 
-#: ZpTranslation-Development/zp-core/functions.php:2136
+#: ZpTranslation-Development/zp-core/functions.php:2137
 msgid "Sample rate"
 msgstr "Sample rate"
 
-#: ZpTranslation-Development/zp-core/functions.php:2137
+#: ZpTranslation-Development/zp-core/functions.php:2138
 msgid "Channel mode"
 msgstr "Channel mode"
 
-#: ZpTranslation-Development/zp-core/functions.php:2138
+#: ZpTranslation-Development/zp-core/functions.php:2139
 msgid "Format"
 msgstr "Type"
 
-#: ZpTranslation-Development/zp-core/functions.php:2139
+#: ZpTranslation-Development/zp-core/functions.php:2140
 msgid "Channels"
 msgstr "Channels"
 
-#: ZpTranslation-Development/zp-core/functions.php:2140
+#: ZpTranslation-Development/zp-core/functions.php:2141
 msgid "Frame rate"
 msgstr "Frame rate"
 
-#: ZpTranslation-Development/zp-core/functions.php:2141
+#: ZpTranslation-Development/zp-core/functions.php:2142
 msgid "X Resolution"
 msgstr "X resolutie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2142
+#: ZpTranslation-Development/zp-core/functions.php:2143
 msgid "Y Resolution"
 msgstr "Y resolutie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2143
+#: ZpTranslation-Development/zp-core/functions.php:2144
 msgid "Aspect ratio"
 msgstr "Verhouding lengte/breedte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2144
+#: ZpTranslation-Development/zp-core/functions.php:2145
 msgid "Play Time"
 msgstr "Speeltijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2145
+#: ZpTranslation-Development/zp-core/functions.php:2146
 msgid "XMP Rating"
 msgstr "XMP waardering"
 
@@ -7228,9 +7244,9 @@ msgid "Manage all"
 msgstr "Beheer alles"
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:528
-#: ZpTranslation-Development/zp-core/lib-auth.php:894
-#: ZpTranslation-Development/zp-core/lib-auth.php:1003
-#: ZpTranslation-Development/zp-core/lib-auth.php:1046
+#: ZpTranslation-Development/zp-core/lib-auth.php:897
+#: ZpTranslation-Development/zp-core/lib-auth.php:1006
+#: ZpTranslation-Development/zp-core/lib-auth.php:1049
 msgid "User"
 msgstr "Gebruiker"
 
@@ -7280,128 +7296,128 @@ msgstr "De Zenphoto informatie die je aangevraagd hebt"
 msgid "Your input did not match the captcha"
 msgstr "Je input komt niet overeen met de captcha"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:822
+#: ZpTranslation-Development/zp-core/lib-auth.php:825
 msgid "What is your father's middle name?"
 msgstr "Wat is de tweede naam van je vader?"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:823
+#: ZpTranslation-Development/zp-core/lib-auth.php:826
 msgid "What street did your Grandmother live on?"
 msgstr "In welke straat woont/woonde je grootmoeder?"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:824
+#: ZpTranslation-Development/zp-core/lib-auth.php:827
 msgid "Who was your favorite singer?"
 msgstr "Wie is je favoriete zanger?"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:825
+#: ZpTranslation-Development/zp-core/lib-auth.php:828
 msgid "When did you first get a computer?"
 msgstr "Wanneer kreeg je je eerste computer?"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:826
+#: ZpTranslation-Development/zp-core/lib-auth.php:829
 msgid "How much wood could a woodchuck chuck if a woodchuck could chuck wood?"
 msgstr "Wat is je favotiete boterhambeleg?"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:827
+#: ZpTranslation-Development/zp-core/lib-auth.php:830
 msgid "What is the date of the Ides of March?"
 msgstr "Welke datum is de \"Ides of March\"?"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:857
+#: ZpTranslation-Development/zp-core/lib-auth.php:860
 msgid "There was an error logging in."
 msgstr "Er was een probleem bij het inloggen."
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:860
+#: ZpTranslation-Development/zp-core/lib-auth.php:863
 msgid "Check your username and password and try again."
 msgstr "Controleer je gebruikersnaam en wachtwoord en probeer het opnieuw."
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:862
+#: ZpTranslation-Development/zp-core/lib-auth.php:865
 msgid "Check password and try again."
 msgstr "Controleer je wachtwoord en probeer het opnieuw."
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:871
+#: ZpTranslation-Development/zp-core/lib-auth.php:874
 msgid "A reset request has been sent."
 msgstr "Een resetverzoek is verstuurd."
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:900
+#: ZpTranslation-Development/zp-core/lib-auth.php:903
 msgid "Supply the correct response to the question below and you will be directed to a page where you can change your password."
 msgstr "Vul het juiste antwoord in op de vraag hieronder en je wordt doorgetuurd naar een pagina waar je je wachtwoord kunt veranderen."
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:901
+#: ZpTranslation-Development/zp-core/lib-auth.php:904
 msgid "Challenge question:"
 msgstr "Controlevraag:"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:906
+#: ZpTranslation-Development/zp-core/lib-auth.php:909
 msgid "Your response"
 msgstr "Je antwoord"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:915
+#: ZpTranslation-Development/zp-core/lib-auth.php:918
 msgid "Enter your User ID and press <code>Refresh</code> to get your challenge question."
 msgstr "Vul je gebruikersnaam in en klik op <code>Refresh</code> voor de controlevraag."
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:922
+#: ZpTranslation-Development/zp-core/lib-auth.php:925
 msgid "Submit"
 msgstr "Verzenden"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:924
-#: ZpTranslation-Development/zp-core/lib-auth.php:1062
+#: ZpTranslation-Development/zp-core/lib-auth.php:927
+#: ZpTranslation-Development/zp-core/lib-auth.php:1065
 msgid "Return"
 msgstr "Keer terug "
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:934
+#: ZpTranslation-Development/zp-core/lib-auth.php:937
 msgid "Request reset by e-mail"
 msgstr "Verzoek voor reset via e-mail"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:964
+#: ZpTranslation-Development/zp-core/lib-auth.php:967
 msgid "Login"
 msgstr "Login"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:983
+#: ZpTranslation-Development/zp-core/lib-auth.php:986
 #, php-format
 msgid "Logon using:%s"
 msgstr "Logon met: %s"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1009
-#: ZpTranslation-Development/zp-core/lib-auth.php:1123
-#: ZpTranslation-Development/zp-core/lib-auth.php:1207
+#: ZpTranslation-Development/zp-core/lib-auth.php:1012
+#: ZpTranslation-Development/zp-core/lib-auth.php:1126
+#: ZpTranslation-Development/zp-core/lib-auth.php:1210
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1015
+#: ZpTranslation-Development/zp-core/lib-auth.php:1018
 msgid "Log in"
 msgstr "Log in."
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1029
+#: ZpTranslation-Development/zp-core/lib-auth.php:1032
 msgid "I forgot my <strong>User ID</strong>/<strong>Password</strong>"
 msgstr "Ik ben mijn <strong>gebruikersnaam</strong>/<strong>wachtwoord</strong> vergeten"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1061
+#: ZpTranslation-Development/zp-core/lib-auth.php:1064
 msgid "Request"
 msgstr "Verzoek"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1061
+#: ZpTranslation-Development/zp-core/lib-auth.php:1064
 msgid "Request password reset"
 msgstr "Verzoek voor wachtwoord reset"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1128
-#: ZpTranslation-Development/zp-core/lib-auth.php:1139
+#: ZpTranslation-Development/zp-core/lib-auth.php:1131
+#: ZpTranslation-Development/zp-core/lib-auth.php:1142
 msgid "password strength weak"
 msgstr "wachtwoord is zwak"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1131
+#: ZpTranslation-Development/zp-core/lib-auth.php:1134
 msgid "password strength good"
 msgstr "wachtwoord is goed"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1134
+#: ZpTranslation-Development/zp-core/lib-auth.php:1137
 msgid "password strength strong"
 msgstr "wachtwoord is uitstekend"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1157
+#: ZpTranslation-Development/zp-core/lib-auth.php:1160
 msgid "passwords match"
 msgstr "wachtwoorden komen overeen"
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1161
+#: ZpTranslation-Development/zp-core/lib-auth.php:1164
 msgid "passwords do not match"
 msgstr "wachtwoorden komen niet overeen."
 
-#: ZpTranslation-Development/zp-core/lib-auth.php:1219
+#: ZpTranslation-Development/zp-core/lib-auth.php:1222
 msgid "Repeat password"
 msgstr "Herhaal wachtwoord"
 
@@ -7697,7 +7713,7 @@ msgstr "Zenphoto licentieovereenkomst"
 #: ZpTranslation-Development/zp-core/license.php:41
 #, php-format
 msgid "This license is in English because the <em>Free Software Foundation</em> does not approve translations as officially valid. Unofficial translations are available <a href=\"%s\">here</a>."
-msgstr "Deze licentie is in het Engels omdat de <em>Free Software Foundation</em> vertalingen niet als officiëel geldig beschouwt.Niet-officële vertalingen zijn <a href=\"%s\">hier</a> te vinden."
+msgstr "Deze licentie is in het Engels omdat de <em>Free Software Foundation</em> vertalingen niet als officiëel geldig beschouwt. Niet-officële vertalingen zijn <a href=\"%s\">hier</a> te vinden."
 
 #: ZpTranslation-Development/zp-core/license.php:48
 msgid "You must accept this license to continue to use Zenphoto."
@@ -9010,11 +9026,11 @@ msgstr[1] "pagina %1$u"
 msgid "The album is un-published."
 msgstr "Dit album is niet gepubliceerd."
 
-#: ZpTranslation-Development/zp-core/template-functions.php:1072
+#: ZpTranslation-Development/zp-core/template-functions.php:1073
 msgid "Album Thumbnails"
 msgstr "Albumthumbnails"
 
-#: ZpTranslation-Development/zp-core/template-functions.php:1118
+#: ZpTranslation-Development/zp-core/template-functions.php:1119
 msgid "Return to search"
 msgstr "Keer terug naar <em>zoeken</em>"
 
@@ -10353,116 +10369,116 @@ msgstr "schrijven naar backup mislukt !"
 msgid "SHOW TABLES failed!"
 msgstr "<strong>Het tonen van tabellen in de database is mislukt !</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:217
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:220
 #, php-format
 msgid "backup completed using <em>%1$s(%2$s)</em> compression"
 msgstr "backup voltooid  met<em>%1$s(%2$s)</em> compressie"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:219
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:222
 msgid "backup completed"
 msgstr "backup gereed"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:229
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:235
 msgid "backup failed"
 msgstr "backup mislukt"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:236
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:242
 msgid "No backup set found."
 msgstr "Geen backup gevonden."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:307
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:313
 msgid "Truncate table<br />"
 msgstr "Inkorten tabel< br />"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:380
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:386
 msgid "Restore encountered exceptions"
 msgstr "Er waren problemen met de restore."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:383
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:389
 msgid "The following tables were not restored because the table no longer exists:"
 msgstr "De volgende tabellen zijn niet hersteld omdat de tabel niet meer bestaat:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:396
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:402
 msgid "The following fields were not restored because the field no longer exists:"
 msgstr "De volgende velden zijn niet hersteld omdat het veld niet meer bestaat:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:414
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:420
 msgid "Restore failed"
 msgstr "Herstel mislukt"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:437
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:443
 msgid "Zenphoto Rights migration failed!"
 msgstr "het overzetten van de gebruikersrechten is mislukt !"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:451
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:457
 msgid "Restore completed"
 msgstr "Herstel gereed"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:453
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:459
 #, php-format
 msgid "Restore completed using %s compression"
 msgstr "Herstel voltooid met %s compressie"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:477
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:483
 msgid "Restore your Database"
 msgstr "Herstel de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:479
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:485
 msgid "Backup and Restore your Database"
 msgstr "Backup of herstel de database."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:489
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:495
 #, php-format
 msgid "Database software <strong>%s</strong>"
 msgstr "Database software <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:490
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:496
 #, php-format
 msgid "Database name <strong>%s</strong>"
 msgstr "Database naam <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:491
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:497
 #, php-format
 msgid "Tables prefix <strong>%s</strong>"
 msgstr "Tabel-prefix <strong>%s</strong>"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:502
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:508
 msgid "Backup the tables in your database."
 msgstr "Backup de tabellen in de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:503
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:509
 msgid "Backup the Database"
 msgstr "Backup de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:524
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:530
 msgid "You have not yet created a backup set."
 msgstr "Je hebt nog geen backup gemaakt."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:529
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:535
 msgid "Select the database restore file:"
 msgstr "Selecteer het bestand om de database te herstellen:"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:536
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:542
 msgid "Restore the tables in your database from a previous backup."
 msgstr "Herstel de tabellen in de database vanuit een eerdere backup."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:537
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:543
 msgid "Restore the Database"
 msgstr "Herstel de database"
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:554
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:560
 msgid "The backup facility creates database snapshots in the <code>backup</code> folder of your installation. These backups are named in according to the date and time the backup was taken. The compression level goes from 0 (no compression) to 9 (maximum compression). Higher compression requires more processing and may not result in much space savings."
 msgstr "De backup mogelijkheid creëert kopieën van de database in de <code>backup</code> map. Deze backups krijgen als naam de datum en tijd van het moment dat ze gemaakt worden. De sterkte van de compressie loopt van 0 (geen compressie) tot 9 (maximale compressie). Een hogere compressie vereist meer tijd en is geen garantie voor meer ruimtewinst."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:558
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:564
 msgid "You restore your database by selecting a backup and pressing the <em>Restore the Database</em> button."
 msgstr "De database wordt hersteld door een backup te selecteren en vervolgens op <em>Herstel de database</em> te klikken."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:559
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:565
 msgid "<strong>Note:</strong> Each database table is emptied before the restore is attempted. After a successful restore the database will be in the same state as when the backup was created."
 msgstr "<strong>Let op:</strong> Elke tabel in de database wordt eerst geleegd voordat herstel wordt uitgevoerd. Na een succesvol herstel is de database hetzelfde als op het moment dat de backup gemaakt werd."
 
-#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:561
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:567
 msgid "Ideally a restore should be done only on the same version of Zenphoto on which the backup was created. If you are intending to upgrade, first do the restore on the version of Zenphoto you were running, then install the new Zenphoto. If this is not possible the restore can still be done, but if the database fields have changed between versions, data from changed fields will not be restored."
 msgstr "Het is het beste dat een restore wordt uitgevoerd op dezelfde versie van Zenphoto als de backup gemaakt is. Als je van plan bent te upgraden doe dan eerst een restore op de versie van Zenphoto die je gebruikte en installeer dan pas de nieuwe versie. Als dit niet mogelijk is, is een restore nog steeds mogelijk maar het kan zijn dat database-velden intussen zijn veranderd. In dat geval kunnen die velden niet hersteld worden."
 
@@ -11030,7 +11046,15 @@ msgstr "3gp video breedte"
 msgid "3gp video height"
 msgstr "3gp video hoogte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:318
+#: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:85
+msgid "Invalid video instantiation: Album does not exist"
+msgstr "Album niet gevonden: Album bestaat niet."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:87
+msgid "Invalid video instantiation: file does not exist."
+msgstr "Video niet gevonden: bestand bestaat niet."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/class-video.php:316
 msgid "No flash player installed."
 msgstr "Geen Flashplayer geïnstalleerd."
 
@@ -13400,57 +13424,57 @@ msgstr "Menu"
 msgid "menu"
 msgstr "menu's"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:611
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:612
 #, php-format
 msgid "Page %1$u (Current Page)"
 msgid_plural "Page %1$u (Current Page)"
 msgstr[0] "pagina %1$u"
 msgstr[1] "pagina %1$u"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:627
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:628
 #, php-format
 msgid "Page {%u}"
 msgid_plural "Page {%u}"
 msgstr[0] "pagina {%u}"
 msgstr[1] "pagina {%u}"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:787
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:788
 msgid "News index"
 msgstr "Nieuws index"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:812
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:826
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:840
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:813
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:827
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:841
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty link."
 msgstr "createMenuIfNotExists onderdeel %s heeft een lege link."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:819
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:833
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:852
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:860
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:820
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:834
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:853
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:861
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty title."
 msgstr "createMenuIfNotExists onderdeel %s heeft een lege titel."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:846
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:867
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:873
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:847
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:868
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:874
 #, php-format
 msgid "createMenuIfNotExists item %s has an empty title or link."
 msgstr "createMenuIfNotExists onderdeel %s heeft een lege titel of link."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:878
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:879
 #, php-format
 msgid "createMenuIfNotExists item %s has an invalid type."
 msgstr "createMenuIfNotExists onderdeel %s is een ongeldig type."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:895
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:896
 #, php-format
 msgid "createMenuIfNotExists item %1$s query (%2$s) failed: %3$s."
 msgstr "createMenuIfNotExists onderdeel %1$s query (%2$s) mislukt: %3$s."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:903
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:904
 msgid "createMenuIfNotExists has posted processing errors to your debug log."
 msgstr "createMenuIfNotExists heeft verwerkingsfouten in het debug log gezet."
 
@@ -14205,91 +14229,91 @@ msgstr "Analyseer zoekopdrachten"
 msgid "Logs selected security events."
 msgstr "Registreerd geselecteerde veiligheids gebeurtenissen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:61
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:62
 msgid "Record logon attempts of"
 msgstr "Registreer pogingen van:"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:62
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:63
 msgid "Administrators"
 msgstr "Administrators"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:62
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:63
 msgid "Guests"
 msgstr "Gasten"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:63
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:64
 msgid "If checked login attempts will be logged."
 msgstr "Indien aangevinkt, zullen login pogingen vastgelegd worden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:64
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:65
 msgid "Record"
 msgstr "Registreer"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:65
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:66
 msgid "All attempts"
 msgstr "Alle pogingen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:65
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:66
 msgid "Successful attempts"
 msgstr "Succesvolle pogingen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:65
-msgid "unsuccessful attempts"
-msgstr "Niet succesvolle pogingen"
-
 #: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:66
+msgid "unsuccessful attempts"
+msgstr "Mislukte pogingen"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:67
 msgid "Record login failures, successes, or all attempts."
 msgstr "Registreert niet-succesvolle, succesvolle of alle login pogingen."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:97
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:98
 msgid "Log reset"
 msgstr "Log reset"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:100
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:101
 msgid "Log deleted"
 msgstr "Log verwijderd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:103
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:104
 msgid "Log downloaded"
 msgstr "Log gedownload"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:106
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:107
 msgid "Install"
 msgstr "Geïnstalleerd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:113
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:114
 msgid "Remove setup files"
 msgstr "Verwijder setup bestanden"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:116
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:117
 msgid "Request add user"
 msgstr "Verzoek om nieuwe gebruiker toe te voegen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:119
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:120
 msgid "Request update user"
 msgstr "Verzoek om gebruikersinformatie aan te passen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:122
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:123
 msgid "Request delete user"
 msgstr "Verzoek om gebruiker te verwijderen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:125
-msgid "XSRF access blocked"
-msgstr "XSRF toegang geblokkeerd"
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:126
+msgid "Cross Site Reference"
+msgstr "Cross Site Reference"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:128
-msgid "Blocked album"
-msgstr "Geblokkeerd album"
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:129
+msgid "Album access"
+msgstr "Album toegang"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:131
-msgid "Blocked access"
-msgstr "Toegang geblokkeerd"
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:132
+msgid "Admin access"
+msgstr "Admin toegang"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:134
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:135
 msgid "Guest login"
 msgstr "Gast login"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:137
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:138
 msgid "Admin login"
 msgstr "Admin login"
 
@@ -14297,24 +14321,28 @@ msgstr "Admin login"
 msgid "Authorization cookie check"
 msgstr "Controle cookie autorisatie"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:151
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:153
 msgid "date\trequestor's IP\ttype\tuser ID\tuser name\toutcome\tauthority\tadditional information\n"
 msgstr "datum\tIP-adres aanvrager\ttype\tgebruikers ID\tgebruikersnaam\tresultaat\ttoegangsniveau\textra informatie\n"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:159
-msgid "Success"
-msgstr "Succesvol"
-
 #: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:162
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:179
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:189
 msgid "Failed"
 msgstr "Mislukt"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:179
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:165
+msgid "Success"
+msgstr "Succesvol"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:169
+msgid "Blocked"
+msgstr "Geblokkeerd"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:189
 msgid "Set Security log permissions"
 msgstr "Stel de rechten in voor de log-bestanden beveiliging. "
 
-#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:179
+#: ZpTranslation-Development/zp-core/zp-extensions/security-logger.php:189
 #, php-format
 msgid "File permissions of Security log are %04o"
 msgstr "Rechten van de log beveiliging zijn %04o."
@@ -16082,6 +16110,14 @@ msgstr "Het te gebruiken font voor CAPTCHA karakters."
 msgid "Sample CAPTCHA image"
 msgstr "Voorbeeld van CAPTCHA"
 
+#: ZpTranslation-Development/zp-core/zp-extensions/class-textobject/class-textobject_core.php:94
+msgid "Invalid Textobject instantiation: Album does not exist"
+msgstr "Textobject niet gevonden: Album bestaat niet."
+
+#: ZpTranslation-Development/zp-core/zp-extensions/class-textobject/class-textobject_core.php:96
+msgid "Invalid Textobject instantiation: file does not exist"
+msgstr "Textobject niet gevonden: bestand bestaat niet."
+
 #: ZpTranslation-Development/zp-core/zp-extensions/cloneZenphoto/clone.php:21
 msgid "You attempted to clone to the master install."
 msgstr "Je hebt geprobeerd te klonen naar de hoofd-installatie."
@@ -16617,121 +16653,121 @@ msgstr "Zichtbare onderdelen"
 msgid "hidden items"
 msgstr "Verborgen onderdelen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:453
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:457
 msgid "Menu items for all Zenphoto objects added."
 msgstr "Menu voor alle Zenphoto objecten."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:457
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:461
 msgid "Menu items for all albums added."
 msgstr "Menu voor alle albums."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:461
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
 msgid "Menu items for all Zenpage pages added."
 msgstr "Menu voor alle Zenpage pagina's."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:465
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:469
 msgid "Menu items for all Zenpage categories added."
 msgstr "Menu voor alle Zenpage categorieën."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:470
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:619
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:474
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:623
 msgid "You forgot to select an album."
 msgstr "Je bent vergeten een album te selecteren."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:473
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:477
 #, php-format
 msgid "Album menu item <em>%s</em> added"
 msgstr "Album menu-onderdeel <em>%s</em> toegevoegd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:479
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:497
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:515
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:523
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:537
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:545
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:558
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:627
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:643
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:659
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:666
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:679
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:686
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:698
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:720
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:483
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:501
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:519
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:527
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:541
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:549
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:562
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:631
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:647
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:663
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:670
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:683
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:690
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:702
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:724
 msgid "You forgot to give your menu item a <strong>title</strong>!"
 msgstr "Je bent vergeten het menu-onderdeel een <strong>titel</strong> te geven !"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:482
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:486
 #, php-format
 msgid "Gallery index menu item <em>%s</em> added"
 msgstr "Galerij index menu-onderdeel <em>%s</em> toegevoegd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:488
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:506
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:635
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:651
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:722
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:492
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:510
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:639
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:655
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:726
 msgid "You forgot to give your menu item a <strong>link</strong>!"
 msgstr "Je bent vergeten het menu-onderdeel een <strong>link</strong> te geven !"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:491
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:495
 #, php-format
 msgid "Zenpage page menu item <em>%s</em> added"
 msgstr "Zenpage pagina menu-onderdeel <em>%s</em> toegevoegd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:500
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:504
 #, php-format
 msgid "Zenpage news index menu item <em>%s</em> added"
 msgstr "Zenpage nieuws index menu-onderdeel <em>%s</em> toegevoegd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:509
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:513
 #, php-format
 msgid "Zenpage news category menu item <em>%s</em> added"
 msgstr "Zenpage nieuws categorie menu-onderdeel <em>%s</em> toegevoegd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:518
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:531
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:522
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:535
 #, php-format
 msgid "Custom page menu item <em>%s</em> added"
 msgstr "Eigen pagina menu-onderdeel <em>%s</em> toegevoegd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:528
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:550
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:563
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:671
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:691
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:703
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:532
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:554
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:567
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:675
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:695
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:707
 msgid "You forgot to provide a <strong>function</strong>!"
 msgstr "Je bent vergeten een <strong>functie</strong> op te geven !"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:540
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:544
 msgid "Custom label added"
 msgstr "Eigen label toegevoegd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:553
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:557
 #, php-format
 msgid "Function  menu item <em>%s</em> added"
 msgstr "Functie menu-onderdeel <em>%s</em> toegevoegd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:566
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:570
 msgid "<em>HTML</em> added"
 msgstr "<em>HTML</em> toegevoegd"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:588
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:592
 #, php-format
 msgid "A <em>%1$s</em> item already exists in <em>%2$s</em>!"
 msgstr "Er bestaat al een <em>%1$s</em> onderdeel in <em>%2$s</em> !"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:590
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:594
 #, php-format
 msgid "A <em>%1$s</em> item with the link <em>%2$s</em> already exists in <em>%3$s</em>!"
 msgstr "Er bestaat al een <em>%1$s</em> onderdeel met de link <em>%2$s</em>  in <em>%3$s</em> !"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:724
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:728
 msgid "Menu item updated!"
 msgstr "Menu-onderdeel ge-update!"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:738
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_manager-admin-functions.php:742
 msgid "Custom menu item successfully deleted!"
 msgstr "Eigen menu-onderdeel met succes verwijderd!"
 
@@ -16805,37 +16841,41 @@ msgstr "Nieuw menu"
 msgid "Menu Manager options"
 msgstr "Menu manager opties"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:168
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:172
 msgid "Edit the menu"
 msgstr "Bewerk het menu"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:176
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:180
 msgid "Hide"
 msgstr "Verberg"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:184
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:188
 #, php-format
 msgid "Duplicate %s menu"
 msgstr "Dupliceer %s menu"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:184
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:188
 msgid "Duplicate menu"
 msgstr "Dupliceer menu"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:187
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:191
 #, php-format
 msgid "Delete %s menu"
 msgstr "Verwijder %s menu"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:187
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:191
 msgid "Delete menu"
 msgstr "Verwijder menu"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:223
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:222
+msgid "No menus exist"
+msgstr "Er is nog geen menu"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:237
 msgid "Menu target is password protected"
 msgstr "Doel van menu-onderdeel is beveiligd met een wachtwoord."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:224
+#: ZpTranslation-Development/zp-core/zp-extensions/menu_manager/menu_tab.php:238
 msgid "Show/hide"
 msgstr "Toon/Verberg"
 
@@ -18055,8 +18095,8 @@ msgid "The sort position of the indicated items cannot be recorded because the n
 msgstr "De volgorde van de aangegeven onderdelen kan niet worden bewaard omdat er te diep is genest. Verplaats ze a.u.b. naar een hoger niveau."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-categories.php:194
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:350
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:351
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:357
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:358
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:307
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:308
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1097
@@ -18294,23 +18334,23 @@ msgstr "Artikel met succes verwijderd"
 msgid "Hitcounter reset"
 msgstr "Hittellers zijn gereset."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:234
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:239
 msgid "Edit this article"
 msgstr "Bewerk dit artikel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:245
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:255
 msgid "Add categories"
 msgstr "Voeg categorieën toe"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:246
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:256
 msgid "Clear categories"
 msgstr "Verwijder categorieën"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:332
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:335
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:366
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:369
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:372
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:339
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:342
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:373
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:376
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:379
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:290
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:293
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:322
@@ -18320,8 +18360,8 @@ msgstr "Verwijder categorieën"
 msgid "locked"
 msgstr "vergrendeld"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:340
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:341
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:347
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/admin-news-articles.php:348
 msgid "View article"
 msgstr "Artikel bekijken"
 
@@ -18663,6 +18703,21 @@ msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid "Zenphoto encountered an album name spoof attempt: %1$s=>%2$s."
+#~ msgstr "Zenphoto ontdekte een spoof poging op een albumnaam: %1$s=>%2$s."
+
+#~ msgid "class-album detected an invalid folder name: %s."
+#~ msgstr "class-album ontdekte een ongeldige mapnaam: %s."
+
+#~ msgid "XSRF access blocked"
+#~ msgstr "XSRF toegang geblokkeerd"
+
+#~ msgid "Blocked album"
+#~ msgstr "Geblokkeerd album"
+
+#~ msgid "Blocked access"
+#~ msgstr "Toegang geblokkeerd"
 
 #~ msgid "Script path:%1$s; SERVER_PATH:%2$s"
 #~ msgstr "Script pad: %1$s; SERVER_PATH:%2$s"
