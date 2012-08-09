@@ -632,10 +632,10 @@ class Album extends AlbumBase {
 			$this->dynamic = true;
 		}
 		if (empty($folder8)) {
-			$msg = gettext('Invalid album instantiation: No album name.');
+			$msg = gettext('Invalid album instantiation: No album name');
 		} else if (filesystemToInternal($folderFS) != $folder8) {
 			// an attempt to spoof the album name.
-			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s.'),html_encode(filesystemToInternal($folderFS)),html_encode($folder8));
+			$msg = sprintf(gettext('Invalid album instantiation: %1$s!=%2$s'),html_encode(filesystemToInternal($folderFS)),html_encode($folder8));
 		} else if(!file_exists($localpath) || !($dynamic || is_dir($localpath))) {
 			$msg = sprintf(gettext('Invalid album instantiation: %s does not exist.'),html_encode($folder8));
 		}

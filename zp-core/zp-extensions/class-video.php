@@ -82,9 +82,9 @@ class Video extends _Image {
 		global $_zp_supported_images;
 		$msg = false;
 		if (!is_object($album) || !$album->exists){
-			$msg = gettext('Invalid Video instantiation: Album does not exist');
+			$msg = gettext('Invalid video instantiation: Album does not exist');
 		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
-			$msg = gettext('Invalid Vides instantiation: file does not exist.');
+			$msg = gettext('Invalid video instantiation: file does not exist.');
 		}
 		if ($msg) {
 			trigger_error($msg, E_USER_ERROR);
