@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-08 14:13-0500\n"
-"PO-Revision-Date: 2012-08-08 14:24-0500\n"
+"POT-Creation-Date: 2012-08-09 09:20-0500\n"
+"PO-Revision-Date: 2012-08-09 09:20-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1638,7 +1638,7 @@ msgstr "Retour"
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2971
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:3091
 #: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:125
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:346
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:345
 #: F:\sites\zenphoto-dev/zp-core/admin-thumbcrop.php:271
 #: F:\sites\zenphoto-dev/zp-core/admin-thumbcrop.php:273
 msgid "Apply"
@@ -4653,7 +4653,7 @@ msgid "Collapse all plugin options"
 msgstr " Masquer les options des extensions"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2844
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:214
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:216
 msgid "<strong>Note:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string."
 msgstr "<strong>NOTE:</strong> Instancier l’interface des paramètres au sein de l’extension peut causer des problèmes de performance. Vous devriez plutôt définir <code>$option_interface</code> à la valeur de la classe (sous forme de chaîne)."
 
@@ -4764,74 +4764,74 @@ msgstr "Rechercher d’autres extensions"
 msgid "<strong>Note:</strong> Support for a particular plugin may be theme dependent! You may need to add the plugin theme functions if the theme does not currently provide support."
 msgstr "<strong>Note :</strong> Tous les thèmes ne supportent pas toutes les extensions. Vous serez peut être obligé(e) d’en retoucher certains."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:130
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:135
 msgid "Available Plugins"
 msgstr "Extensions disponibles"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:133
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:137
 msgid "Description"
 msgstr "Description"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:148
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:150
 msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>."
 msgstr "<strong>Erreur lors de l’analyse de la chaîne <em>plugin_description</em> !</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:156
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:158
 msgid "<strong>Error parsing <em>plugin_notice</em> string!</strong>."
 msgstr "<strong>Erreur lors de l’analyse de la chaîne <em>plugin_notice</em> !</strong>."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:164
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:166
 msgid "<strong>Error parsing <em>plugin_author</em> string!</strong>."
 msgstr "<strong>Erreur lors de l’analyse de la chaîne <em>plugin_author</em> !</strong>."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:172
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:174
 msgid "<strong>Error parsing <em>plugin_version</em> string!</strong>."
 msgstr "<strong>Erreur lors de l’analyse de la chaîne <em>plugin_version</em> !</strong>."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:180
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:182
 msgid "<strong>Error parsing <em>plugin_disable</em> string!</strong>."
 msgstr "<strong>Erreur lors de l’analyse de la chaîne <em>plugin_disable</em> !</strong>."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:234
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:236
 msgid "third party plugin"
 msgstr "Extensions tierces"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:246
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:248
 #: F:\sites\zenphoto-dev/zp-core/admin-themes.php:232
 msgid "logo"
 msgstr "sigle"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:260
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:262
 msgid "This plugin is disabled. Click for details."
 msgstr "Cette extension est désactivée. Veuillez cliquer pour plus d’information."
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:279
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:281
 #, php-format
 msgid "More information on %s"
 msgstr "Plus de renseignements sur %s"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:283
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:285
 #, php-format
 msgid "Change %s options"
 msgstr "Modifier les options de %s"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:288
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:290
 msgid "Plugin warnings"
 msgstr "Avertissements sur les extensions"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:340
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:339
 msgid "Official plugin"
 msgstr "Extension officielle"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:341
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:340
 msgid "Usage info"
 msgstr "Information sur l’utilisation"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:342
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:341
 msgid "Options"
 msgstr "Options"
 
-#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:343
+#: F:\sites\zenphoto-dev/zp-core/admin-plugins.php:342
 msgid "Warning note"
 msgstr "Avertissement"
 
@@ -5710,22 +5710,26 @@ msgid_plural "%u active filters:"
 msgstr[0] "%u filtre activé :"
 msgstr[1] "%u filtres activés :"
 
-#: F:\sites\zenphoto-dev/zp-core/class-album.php:636
-#, php-format
-msgid "Zenphoto encountered an album name spoof attempt: %1$s=>%2$s."
-msgstr "Zenphoto a détecté que vous essayez d’utiliser le même nom qu’un autre album : %1$s=>%2$s."
+#: F:\sites\zenphoto-dev/zp-core/class-album.php:635
+msgid "Invalid album instantiation: No album name"
+msgstr "Instanciation invalide de l’album : l’album n’a pas de nom"
 
-#: F:\sites\zenphoto-dev/zp-core/class-album.php:648
+#: F:\sites\zenphoto-dev/zp-core/class-album.php:638
 #, php-format
-msgid "class-album detected an invalid folder name: %s."
-msgstr "La fonction class-album a détecté un nom de dossier invalide : %s."
+msgid "Invalid album instantiation: %1$s!=%2$s"
+msgstr "Instanciation invalide de l’album : %1$s!=%2$s"
 
-#: F:\sites\zenphoto-dev/zp-core/class-album.php:1565
+#: F:\sites\zenphoto-dev/zp-core/class-album.php:640
+#, php-format
+msgid "Invalid album instantiation: %s does not exist."
+msgstr "Instanciation invalide de l’album : %s n’existe pas"
+
+#: F:\sites\zenphoto-dev/zp-core/class-album.php:1562
 #, php-format
 msgid "Error: The album named %s cannot be found."
 msgstr "Erreur : l’album %s est introuvable."
 
-#: F:\sites\zenphoto-dev/zp-core/class-album.php:1567
+#: F:\sites\zenphoto-dev/zp-core/class-album.php:1564
 #, php-format
 msgid "Error: The album %s is not readable."
 msgstr "Erreur : l’album %s n’est pas lisible."
@@ -5757,6 +5761,14 @@ msgstr "Mauvais paramètre de l’objet album pour newImage(%s)"
 #, php-format
 msgid "Bad filename suffix in newImage(%s)"
 msgstr "Mauvais suffixe de nom de fichier dans newImage(%s)"
+
+#: F:\sites\zenphoto-dev/zp-core/class-image.php:118
+msgid "Invalid image instantiation: Album does not exist"
+msgstr "Instanciation invalide de l’image : l’album n’existe pas"
+
+#: F:\sites\zenphoto-dev/zp-core/class-image.php:120
+msgid "Invalid image instantiation: file does not exist"
+msgstr "Instanciation invalide de l’image : le fichier n’existe pas"
 
 #: F:\sites\zenphoto-dev/zp-core/class-rss.php:270
 msgid " (Latest news)"
@@ -5872,27 +5884,27 @@ msgstr "Pays"
 msgid "Copyright"
 msgstr "Copyright"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:69
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:70
 msgid "Content"
 msgstr "Contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:70
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:71
 msgid "ExtraContent"
 msgstr "Contenu boni"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:71
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:72
 msgid "Author"
 msgstr "Auteur"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:72
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:73
 msgid "Last Editor"
 msgstr "Dernier éditeur"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:73
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:74
 msgid "TitleLink"
 msgstr "Titre-lien"
 
-#: F:\sites\zenphoto-dev/zp-core/class-search.php:74
+#: F:\sites\zenphoto-dev/zp-core/class-search.php:75
 msgid "Categories"
 msgstr "Catégories"
 
@@ -5932,7 +5944,7 @@ msgstr "REMARQUE GÉNÉRÉE PAR L’UTILISATEUR"
 msgid "STRICT NOTICE"
 msgstr "AVIS STRICT (CODE OBSOLÈTE)"
 
-#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1597
+#: F:\sites\zenphoto-dev/zp-core/functions-basic.php:1598
 #, php-format
 msgid "%1$s: %2$s in %3$s on line %4$s"
 msgstr "%1$s : %2$s dans %3$s à la ligne %4$s"
@@ -6768,7 +6780,6 @@ msgid "Orientation"
 msgstr "Orientation"
 
 #: F:\sites\zenphoto-dev/zp-core/functions.php:2101
-#, fuzzy
 msgid "Software"
 msgstr "Logiciel"
 
@@ -11048,7 +11059,15 @@ msgstr "Vidéo 3gp : largeur"
 msgid "3gp video height"
 msgstr "Vidéo 3gp : hauteur"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:318
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:85
+msgid "Invalid video instantiation: Album does not exist"
+msgstr "Instanciation invalide de la vidéo : l’album n’existe pas"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:87
+msgid "Invalid video instantiation: file does not exist."
+msgstr "Instanciation invalide de la vidéo : le fichier n’existe pas"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:316
 msgid "No flash player installed."
 msgstr "Aucun lecteur flash installé."
 
@@ -16107,6 +16126,14 @@ msgstr "La police à utiliser pour les caractères du Captcha."
 msgid "Sample CAPTCHA image"
 msgstr "Exemple d’image Captcha"
 
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-textobject/class-textobject_core.php:94
+msgid "Invalid Textobject instantiation: Album does not exist"
+msgstr "Instanciation invalide de l’élément Textobject : l’album n’existe pas"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-textobject/class-textobject_core.php:96
+msgid "Invalid Textobject instantiation: file does not exist"
+msgstr "Instanciation invalide de l'élément Textobject : le fichier n’existe pas"
+
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/cloneZenphoto/clone.php:21
 msgid "You attempted to clone to the master install."
 msgstr "Vous avez tenté de cloner l’installation maîtresse."
@@ -18084,8 +18111,8 @@ msgid "The sort position of the indicated items cannot be recorded because the n
 msgstr "L’ordre de tri des éléments indiqués ne peut être enregistré parce que l’imbrication est trop importante. Déplacez-les à un niveau plus elevé et enregistrez leur disposition."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-categories.php:194
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:350
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:351
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:357
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:358
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:307
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:308
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1097
@@ -18323,23 +18350,23 @@ msgstr "Article supprimé !"
 msgid "Hitcounter reset"
 msgstr "Les compteurs d’affichage ont été remis à zéro"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:234
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:239
 msgid "Edit this article"
 msgstr "Modifier cet article"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:245
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:255
 msgid "Add categories"
 msgstr "Ajouter des catégories"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:246
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:256
 msgid "Clear categories"
 msgstr "Effacer les catégories"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:332
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:335
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:366
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:369
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:372
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:339
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:342
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:373
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:376
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:379
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:290
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:293
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:322
@@ -18349,8 +18376,8 @@ msgstr "Effacer les catégories"
 msgid "locked"
 msgstr "verrouillé(e)"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:340
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:341
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:347
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:348
 msgid "View article"
 msgstr "Voir l’article"
 
@@ -18692,6 +18719,14 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
+
+#~ msgid "Zenphoto encountered an album name spoof attempt: %1$s=>%2$s."
+#~ msgstr ""
+#~ "Zenphoto a détecté que vous essayez d’utiliser le même nom qu’un autre "
+#~ "album : %1$s=>%2$s."
+
+#~ msgid "class-album detected an invalid folder name: %s."
+#~ msgstr "La fonction class-album a détecté un nom de dossier invalide : %s."
 
 #~ msgid "XSRF access blocked"
 #~ msgstr "L’accés XSRF est bloqué"
@@ -19518,9 +19553,6 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
 
 #~ msgid "SVN"
 #~ msgstr "SVN"
-
-#~ msgid "Bad gallery in instantiation of album %s."
-#~ msgstr "Mauvaise galerie choisie lors de l’instanciation de l’album %s."
 
 #~ msgid "Oops.. Cannot edit from this page"
 #~ msgstr "Oups... Impossible d’éditer depuis cette page"
