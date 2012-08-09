@@ -127,14 +127,16 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 </p><br clear="all" /><br /><br />
 <table class="bordered options">
 <tr>
-	<th><?php echo gettext("Available Plugins"); ?></th>
-	<th></th>
-	<th>
+	<th id="imagenav" colspan="3">
+		<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array()); ?>
+	</th>
+</tr>
+<tr>
+	<th colspan="2"><?php echo gettext("Available Plugins"); ?></th>
+	<th colspan="1">
 		<?php echo gettext("Description"); ?>
 	</th>
-	<th>
-	<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array()); ?>
-	</th>
+	
 </tr>
 <?php
 foreach ($filelist as $extension) {
@@ -327,12 +329,9 @@ foreach ($filelist as $extension) {
 }
 ?>
 <tr>
-	<th></th>
-	<th></th>
-	<th></th>
-	<th>
+	<td colspan="4" id="imagenavb">
 	<?php printPageSelector($subpage, $rangeset, 'admin-plugins.php', array()); ?>
-	</th>
+	</td>
 </tr>
 </table>
 <br />

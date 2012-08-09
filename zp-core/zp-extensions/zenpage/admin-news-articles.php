@@ -230,9 +230,19 @@ printLogoAndLinks();
 				<br style="clear: both" /><br />
 
 				<table class="bordered">
+						<tr>
+							<th colspan="11" id="imagenav">
+						 	<?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER.'/zenpage/admin-news-articles.php', $options); ?>
+							</th>
+						</tr>
 					<tr>
-						<th colspan="11"><?php echo gettext('Edit this article'); ?>
-						<?php
+						<th colspan="7"><?php echo gettext('Edit this article'); ?>
+						
+						</th>
+						
+						
+						<th colspan="4">
+							<?php
 						$checkarray = array(
 														gettext('*Bulk actions*') => 'noaction',
 														gettext('Delete') => 'deleteall',
@@ -251,9 +261,6 @@ printLogoAndLinks();
 						printBulkActions($checkarray);
 						?>
 						</th>
-						</tr>
-						<tr>
-						 <td id="imagenav" colspan="11"><?php printPageSelector($subpage, $rangeset, PLUGIN_FOLDER.'/zenpage/admin-news-articles.php', $options); ?></td>
 						</tr>
 						<tr class="newstr">
 							<td class="subhead" colspan="11">
