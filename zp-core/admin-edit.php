@@ -655,7 +655,8 @@ $checkarray_images = array(
 											gettext('Add tags') => 'addtags',
 											gettext('Clear tags') => 'cleartags',
 											gettext('Disable comments') => 'commentsoff',
-											gettext('Enable comments') => 'commentson'
+											gettext('Enable comments') => 'commentson',
+											gettext('Change owner') => 'changeowner'
 											);
 if (getOption('zp_plugin_hitcounter')) {
 	$checkarray['Reset hitcounter'] = 'resethitcounter';

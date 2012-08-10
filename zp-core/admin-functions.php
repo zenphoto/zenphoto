@@ -3583,7 +3583,8 @@ function printBulkActions($checkarray, $checkAll=false) {
 	$tags = in_array('addtags', $checkarray) || in_array('alltags', $checkarray);
 	$movecopy = in_array('moveimages', $checkarray) || in_array('copyimages', $checkarray);
 	$categories = in_array('addcats', $checkarray) || in_array('clearcats', $checkarray);
-	if ($tags || $movecopy) {
+	$changeowner = in_array('changeowner', $checkarray);
+	if ($tags || $movecopy || $categories || $changeowner) {
 		?>
 		<script type="text/javascript">
 			//<!-- <![CDATA[
@@ -3619,6 +3620,18 @@ function printBulkActions($checkarray, $checkAll=false) {
 					if (sel == 'addcats') {
 						$.colorbox({
 							href:"#mass_cats_data",
+							inline:true,
+							open:true,
+							close: '<?php echo gettext("ok"); ?>'
+						});
+					}
+					<?php
+				}
+				if ($changeowner) {
+					?>
+					if (sel == 'changeowner') {
+						$.colorbox({
+							href:"#mass_owner_data",
 							inline:true,
 							open:true,
 							close: '<?php echo gettext("ok"); ?>'
@@ -3668,6 +3681,19 @@ function printBulkActions($checkarray, $checkAll=false) {
 				<?php
 				 printNestedItemsList('cats-checkboxlist','','','all');
 				?>
+			</ul>
+		</div>
+		<?php
+	}
+	if ($changeowner) {
+		?>
+		<div id="mass_owner" style="display:none;">
+			<ul id="mass_owner_data">
+				<select id="massownermenu" name="massownerselect" onchange="">
+				<?php
+				echo admin_album_list(NULL);
+				?>
+				</select>
 			</ul>
 		</div>
 		<?php
@@ -3746,6 +3772,9 @@ function processAlbumBulkActions() {
 				}
 				$tags = sanitize($tags, 3);
 			}
+			if ($action == 'changeowner') {
+				$newowner = sanitize($_POST['massownerselect']);
+			}
 			$n = 0;
 			foreach ($ids as $albumname) {
 				$n++;
@@ -3793,6 +3822,9 @@ function processAlbumBulkActions() {
 							$imageobj->save();
 						}
 						break;
+					case 'changeowner':
+						$albumobj->setOwner($newowner);
+						break;
 					default:
 						$action = call_user_func($action,$albumobj);
 						break;
@@ -3835,6 +3867,9 @@ function processImageBulkActions($album) {
 					return "&mcrerr=2";
 				}
 			}
+			if ($action == 'changeowner') {
+				$newowner = sanitize($_POST['massownerselect']);
+			}
 			$n = 0;
 			foreach ($ids as $filename) {
 				$n++;
@@ -3874,6 +3909,9 @@ function processImageBulkActions($album) {
 						if ($e = $imageobj->move($dest)) {
 							return "&mcrerr=".$e;
 						}
+						break;
+					case 'changeowner':
+						$imageobj->setOwner($newowner);
 						break;
 					default:
 						$action = call_user_func($action,$imageobj);
