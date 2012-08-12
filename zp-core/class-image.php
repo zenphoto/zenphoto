@@ -832,6 +832,10 @@ class _Image extends MediaObject {
 	 * @param unknown_type $path
 	 */
 	function getFullImageURL() {
+		global $_zp_conf_vars;
+		if ($_zp_conf_vars['album_folder_class'] == 'external') {
+			return false;
+		}
 		return getAlbumFolder(WEBPATH) . ($this->album->name) . "/" . ($this->filename);
 	}
 

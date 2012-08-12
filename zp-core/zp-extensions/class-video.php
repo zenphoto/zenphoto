@@ -47,6 +47,7 @@ class VideoObject_Options {
 		setOptionDefault('zp_plugin_class-video_mov_h',390);
 		setOptionDefault('zp_plugin_class-video_3gp_w',520);
 		setOptionDefault('zp_plugin_class-video_3gp_h',390);
+		setOptionDefault('zp_plugin_class-video_videoalt','ogg, avi, wmv');
 	}
 	/**
 	 * Standard option interface
@@ -54,22 +55,32 @@ class VideoObject_Options {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return array(gettext('Watermark default images') => array ('key' => 'video_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
+		return array(	gettext('Watermark default images') => array ('key' => 'video_watermark_default_images', 'type' => OPTION_TYPE_CHECKBOX,
+																	'order'=>0,
 																	'desc' => gettext('Check to place watermark image on default thumbnail images.')),
-		gettext('Quicktime video width') => array ('key' => 'zp_plugin_class-video_mov_w', 'type' => OPTION_TYPE_TEXTBOX,
+									gettext('Quicktime video width') => array ('key' => 'zp_plugin_class-video_mov_w', 'type' => OPTION_TYPE_TEXTBOX,
+																	'order'=>2,
 																	'desc' => ''),
-		gettext('Quicktime video height') => array ('key' => 'zp_plugin_class-video_mov_h', 'type' => OPTION_TYPE_TEXTBOX,
+									gettext('Quicktime video height') => array ('key' => 'zp_plugin_class-video_mov_h', 'type' => OPTION_TYPE_TEXTBOX,
+																	'order'=>2,
 																	'desc' => ''),
 		gettext('3gp video width') => array ('key' => 'zp_plugin_class-video_3gp_w', 'type' => OPTION_TYPE_TEXTBOX,
+																	'order'=>2,
 																	'desc' => ''),
-		gettext('3gp video height') => array ('key' => 'zp_plugin_class-video_3gp_h', 'type' => OPTION_TYPE_TEXTBOX,
-																	'desc' => '')
+									gettext('3gp video height') => array ('key' => 'zp_plugin_class-video_3gp_h', 'type' => OPTION_TYPE_TEXTBOX,
+																	'order'=>2,
+																	'desc' => ''),
+									gettext('High quality alternate') => array ('key' => 'zp_plugin_class-video_videoalt', 'type' => OPTION_TYPE_TEXTBOX,
+																	'order'=>1,
+																	'desc' => '<code>getFullImageURL()</code> returns a URL to a file with one of these high quality video alternate suffixes if present.')
 		);
 	}
 
 }
 
 class Video extends _Image {
+
+	var $videoalt = array();
 
 	/**
 	 * Constructor for class-video
@@ -80,6 +91,10 @@ class Video extends _Image {
 	 */
 	function __construct(&$album, $filename) {
 		global $_zp_supported_images;
+		$alts = explode(',',getOption('zp_plugin_class-video_videoalt'));
+		foreach ($alts as $alt) {
+			$this->videoalt[] = trim(strtolower($alt));
+		}
 		$msg = false;
 		if (!is_object($album) || !$album->exists){
 			$msg = gettext('Invalid video instantiation: Album does not exist');
@@ -282,16 +297,22 @@ class Video extends _Image {
 	 */
 	function getFullImageURL() {
 		// Search for a high quality version of the video
-		$folder = $this->album->getFolder();
-		$video = stripSuffix($this->filename);
-		foreach(array(".ogg",".OGG",".avi",".AVI",".wmv",".WMV") as $ext) {
-			if(file_exists(internalToFilesystem(ALBUM_FOLDER_SERVERPATH.$folder."/".$video.$ext))) {
-				return ALBUM_FOLDER_WEBPATH. $folder."/".$video.$ext;
+		if ($vid = parent::getFullImageURL()) {
+			$folder = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($this->album->getFolder());
+			$video = stripSuffix($this->filename);
+			$curdir = getcwd();
+			chdir($folder);
+			$candidates = safe_glob($video.'.*');
+			chdir($curdir);
+			foreach ($candidates as $target) {
+				$ext = getSuffix($target);
+				if (in_array($ext, $this->videoalt)) {
+					$vid = stripSuffix($vid).'.'.substr(strrchr($target, "."), 1);
+				}
 			}
 		}
-		return parent::getFullImageURL();
+		return $vid;
 	}
-
 
 	/**
 	 * returns the content of the vido
