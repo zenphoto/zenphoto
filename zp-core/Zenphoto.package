@@ -161,6 +161,7 @@ themes/stopdesign/css/custom.css
 themes/stopdesign/css/master.css
 themes/stopdesign/css/photos.css
 themes/stopdesign/favorites.php
+themes/stopdesign/functions.php
 themes/stopdesign/gallery.php
 themes/stopdesign/image.php
 themes/stopdesign/images
@@ -1911,4 +1912,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1913
+1914

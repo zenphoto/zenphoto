@@ -128,32 +128,35 @@ require_once('normalizer.php');
 
 	<div class="galleryinfo">
 		<?php
-			$params = $_zp_current_search->getSearchParams();
-			if (!empty($params)) {
-				if ($results != "0") {
-					if ($firstImage + $lastImage != 0) {
-						echo '<em class="count">';
-						printf( gettext('Photos %1$u-%2$u of %3$u'), $firstImage, $lastImage, getNumImages());
-						echo "</em>";
-						@call_user_func('printSlideShowLink');
-						}
-					}
-					?>
-				<?php if (hasPrevPage()) { ?>
-				<a href="<?php echo html_encode(getPrevPageURL()); ?>" accesskey="x">« <?php echo gettext('prev page'); ?></a>
-				<?php }
-					if (hasNextPage()) { if (hasPrevPage()) { echo '&nbsp;'; }
-			?>
-				<a href="<?php echo html_encode(getNextPageURL()); ?>" accesskey="x"><?php echo gettext('next page'); ?> »</a>
-			<?php
-					}
-					echo '</p>';
-					echo "<em class=\"count\">"  .sprintf(gettext('Total matches for <em>%1$s</em>: %2$u'),html_encode(getSearchWords()), $results);
-				} else {
-					echo "<p>".gettext('Sorry, no matches found. Try refining your search.')."</p>";
+		$params = $_zp_current_search->getSearchParams();
+		if (!empty($params)) {
+			if ($results != "0") {
+				if ($firstImage + $lastImage != 0) {
+					echo '<em class="count">';
+					printf( gettext('Photos %1$u-%2$u of %3$u'), $firstImage, $lastImage, getNumImages());
+					echo "</em>";
+					@call_user_func('printSlideShowLink');
 				}
 			}
-			?>
+			if (hasPrevPage()) {
+				?>
+				<a href="<?php echo html_encode(getPrevPageURL()); ?>" accesskey="x">« <?php echo gettext('prev page'); ?></a>
+				<?php
+			}
+			if (hasNextPage()) {
+				if (hasPrevPage()) {
+					echo '&nbsp;';
+				}
+				?>
+				<a href="<?php echo html_encode(getNextPageURL()); ?>" accesskey="x"><?php echo gettext('next page'); ?> »</a>
+				<?php
+			}
+			echo '</p>';
+			echo "<em class=\"count\">"  .sprintf(gettext('Total matches for <em>%1$s</em>: %2$u'),html_encode(getSearchWords()), $results);
+		} else {
+			echo "<p>".gettext('Sorry, no matches found. Try refining your search.')."</p>";
+		}
+		?>
 	</div>
 	</div>
 

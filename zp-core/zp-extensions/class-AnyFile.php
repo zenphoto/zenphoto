@@ -51,7 +51,7 @@ class AnyFile_Options {
 																	'desc' => gettext('File suffixes to be handled.')),
 									gettext('Add file suffix') => array('key'=> 'AnyFile_file_new', 'type'=>OPTION_TYPE_TEXTBOX,
 																	'desc' => gettext('Add a file suffix to be handled by the plugin'))
-								);
+		);
 	}
 	function handleOption($option, $currentValue) {
 	}

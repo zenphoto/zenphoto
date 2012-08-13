@@ -64,7 +64,7 @@ class VideoObject_Options {
 									gettext('Quicktime video height') => array ('key' => 'zp_plugin_class-video_mov_h', 'type' => OPTION_TYPE_TEXTBOX,
 																	'order'=>2,
 																	'desc' => ''),
-		gettext('3gp video width') => array ('key' => 'zp_plugin_class-video_3gp_w', 'type' => OPTION_TYPE_TEXTBOX,
+									gettext('3gp video width') => array ('key' => 'zp_plugin_class-video_3gp_w', 'type' => OPTION_TYPE_TEXTBOX,
 																	'order'=>2,
 																	'desc' => ''),
 									gettext('3gp video height') => array ('key' => 'zp_plugin_class-video_3gp_h', 'type' => OPTION_TYPE_TEXTBOX,
