@@ -279,11 +279,10 @@ function html_encode($this_string) {
 }
 
 /**
- *
  * HTML encodes the non-metatag part of the string.
  *
  * @param string $str string to be encoded
- * @param biik $allowScript set to false to prevent pass-through of script tags.
+ * @param bool $allowScript set to false to prevent pass-through of script tags.
  * @return string
  */
 function html_encodeTagged($str, $allowScript=true) {

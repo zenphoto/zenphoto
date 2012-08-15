@@ -153,15 +153,19 @@ class mobileTheme {
 				}
 				$enable = 'off';
 			}
-			echo $before;
+			if ($before) {
+				echo '<span class="beforetext">'.html_encode($before).'</span>';
+			}
 			?>
 			<span class="mobileThemeControlLink">
 				<a href="?mobileTheme=<?php echo $enable; ?>" rel="external">
-					<?php echo $text; ?>
+					<?php echo html_encode($text); ?>
 				</a>
 			</span>
 			<?php
-			echo $after;
+			if ($after) {
+				echo '<span class="aftertext">'.html_encode($after).'</span>';
+			}
 		}
 	}
 

@@ -128,7 +128,9 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 					</script>
 					<?php
 				}
-				echo html_encode($before);
+				if ($before) {
+					echo '<span class="beforetext">'.html_encode($before).'</span>';
+				}
 				?>
 				<a href="#" class="logonlink" title="<?php echo $logintext; ?>"><?php echo $logintext; ?></a>
 				<span id="passwordform_enclosure" style="display:none">
@@ -143,7 +145,9 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 				?>
 				</span>
 				<?php
-				echo html_encode($after);
+				if ($after) {
+					echo '<span class="aftertext">'.html_encode($after).'</span>';
+				}
 			}
 		}
 	} else {
@@ -153,11 +157,16 @@ function printUserLogin_out($before='', $after='', $showLoginForm=NULL, $logoutt
 				$params[] .= "'".$param.'='.urlencode($value)."'";
 			}
 		}
-		echo "\n".html_encode($before);
+		if ($before) {
+			echo '<span class="beforetext">'.html_encode($before).'</span>';
+		}
 		?>
-		<a href="javascript:launchScript('<?php echo FULLWEBPATH.'/'; ?>',[<?php echo implode(',',$params); ?>]);" title="<?php echo $logouttext; ?>" ><?php echo $logouttext; ?></a>
+		<a href="javascript:launchScript('<?php echo FULLWEBPATH.'/'; ?>',[<?php echo implode(',',$params); ?>]);"
+			title="<?php echo $logouttext; ?>"><?php echo $logouttext; ?> </a>
 		<?php
-		echo html_encode($after)."\n";
+		if ($after) {
+			echo '<span class="aftertext">'.html_encode($after).'</span>';
+		}
 	}
 }
 

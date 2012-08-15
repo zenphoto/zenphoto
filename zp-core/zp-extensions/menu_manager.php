@@ -671,7 +671,12 @@ function printMenuemanagerPageList($menuset='default', $class='pagelist', $id=NU
  * @param string $after after text
  */
 function printMenumanagerBreadcrumb($menuset='default', $before='', $between=' | ', $after=' | ') {
-	echo html_encode($before);
+	if ($before) {
+		echo '<span class="beforetext">'.html_encode($before).'</span>';
+	}
+	if ($between) {
+		$between = '<span class="betweentext">'.html_encode($between).'</span>';
+	}
 	$sortorder = getCurrentMenuItem($menuset);
 	$items = getMenuItems($menuset, getMenuVisibility());
 	if (count($items)>0){
@@ -691,7 +696,7 @@ function printMenumanagerBreadcrumb($menuset='default', $before='', $between=' |
 			if (!empty($parents)) sortMultiArray($parents, 'sort_order', $descending=false, $natsort=false, $case_sensitive=false);
 			$i = 0;
 			foreach ($parents as $item) {
-				if ($i > 0) echo html_encode($between);
+				if ($i > 0) echo $between;
 				$itemarray = getItemTitleAndURL($item);
 				if ($item['type']=='menulabel') {
 					echo html_encode($itemarray['title']);
@@ -702,7 +707,9 @@ function printMenumanagerBreadcrumb($menuset='default', $before='', $between=' |
 			}
 		}
 	}
-	echo html_encode($after);
+	if ($after) {
+		echo '<span class="aftertext">'.html_encode($after).'</after>';
+	}
 }
 
 /**

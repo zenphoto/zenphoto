@@ -150,7 +150,7 @@ class jquery_rating {
 			}
 			$output .= "<label class='checkboxlabel'>\n<input type='radio' name='rating_status".$prefix."' id='rating_status".$value."-".$prefix."' value='".($value+1)."' ".$checked."/> ".$text."\n</label>"."\n";
 		}
-		$output = $before.'<hr />'."\n".$output.'<br /clear="all">';
+		$output = '<span class="beforetext">'.html_encode($before).'</span><hr />'."\n".$output.'<br /clear="all">';
 		return $output;
 	}
 

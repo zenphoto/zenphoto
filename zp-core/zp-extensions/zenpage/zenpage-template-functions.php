@@ -383,7 +383,10 @@ function getNewsTitle() {
  */
 function printNewsTitle($before='') {
 	if ($title = getNewsTitle()) {
-		echo html_encodeTagged($before).html_encode($title);
+		if ($before) {
+			echo '<span class="beforetext">'.html_encode($before).'</span>';
+		}
+		echo html_encode($title);
 	}
 }
 
@@ -433,10 +436,13 @@ function getNewsTitleLink() {
  */
 function printNewsTitleLink($before='') {
 	if (getNewsTitle()) {
+		if ($before) {
+			$before = '<span class="beforetext">'.html_encode($before).'</span>';
+		}
 		if(is_NewsType("news")) {
-			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".getBareNewsTitle()."\">".html_encodeTagged($before).html_encode(getNewsTitle())."</a>";
+			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".getBareNewsTitle()."\">".$before.html_encode(getNewsTitle())."</a>";
 		} else if (is_GalleryNewsType()) {
-			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".getBareNewsTitle()."\">".html_encodeTagged($before).html_encode(getNewsTitle())."</a>";
+			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".getBareNewsTitle()."\">".$before.html_encode(getNewsTitle())."</a>";
 		}
 	}
 }
@@ -934,7 +940,10 @@ function getNewsCategories() {
 function printCurrentNewsCategory($before='') {
 	global $_zp_current_category;
 	if(in_context(ZP_ZENPAGE_NEWS_CATEGORY)) {
-		echo html_encode($before.$_zp_current_category->getTitle());
+		if ($before) {
+			echo '<span class="beforetext">'.html_encode($before).'</span>';
+		}
+		echo html_encode($_zp_current_category->getTitle());
 	}
 }
 
@@ -989,15 +998,21 @@ function printNewsCategories($separator='',$before='',$class='') {
 	$catcount = count($categories);
 	if($catcount != 0) {
 		if(is_NewsType("news")) {
-			echo  html_encodeTagged($before)."<ul class=\"$class\">\n";
+			if ($before) {
+				echo '<span class="beforetext">'.html_encode($before).'</span>';
+			}
+			echo "<ul class=\"$class\">\n";
 			$count = 0;
+			if ($separator) {
+				$separator = 	'<span class="betweentext">'.html_encode($separator).'</span>';
+			}
 			foreach($categories as $cat) {
 				$count++;
 				$catobj = new ZenpageCategory($cat['titlelink']);
 				if($count >= $catcount) {
 					$separator = "";
 				}
-				echo "<li><a href=\"".getNewsCategoryURL($catobj->getTitlelink())."\" title=\"".html_encode($catobj->getTitle())."\">".$catobj->getTitle().'</a>'.html_encodeTagged($separator)."</li>\n";
+				echo "<li><a href=\"".getNewsCategoryURL($catobj->getTitlelink())."\" title=\"".html_encode($catobj->getTitle())."\">".$catobj->getTitle().'</a>'.$separator."</li>\n";
 			}
 			echo "</ul>\n";
 		}
@@ -1126,7 +1141,10 @@ function getCurrentNewsArchive($mode='formatted',$format='%B %Y') {
  */
 function printCurrentNewsArchive($before='',$mode='formatted',$format='%B %Y') {
 	if($date = getCurrentNewsArchive($mode,$format)) {
-		echo html_encodeTagged($before).html_encode($date);
+		if ($before) {
+			echo '<span class="beforetext">'.html_encode($before).'</span>';
+		}
+		echo html_encode($date);
 	}
 }
 
@@ -1369,7 +1387,11 @@ function getNewsCategoryURL($catlink='') {
  */
 function printNewsCategoryURL($before='',$catlink='') {
 	$catobj = new ZenpageCategory($catlink);
-	echo "<a href=\"".html_encode(getNewsCategoryURL($catlink))."\" title=\"".html_encode($catobj->getTitle())."\">".html_encodeTagged($before).html_encode($catobj->getTitle())."</a>";
+	echo "<a href=\"".html_encode(getNewsCategoryURL($catlink))."\" title=\"".html_encode($catobj->getTitle())."\">";
+	if ($before) {
+		echo '<span class="beforetext">'.html_encode($before).'</span>';
+	}
+	echo html_encode($catobj->getTitle())."</a>";
 }
 
 
@@ -1396,7 +1418,10 @@ function getNewsIndexURL() {
  * @return string
  */
 function printNewsIndexURL($name='', $before='') {
-	echo html_encodeTagged($before)."<a href=\"".html_encode(getNewsIndexURL())."\" title=\"".strip_tags(html_encode($name))."\">".html_encode($name)."</a>";
+	if ($before) {
+		echo '<span class="beforetext">'.html_encode($before).'</span>';
+	}
+	echo "<a href=\"".html_encode(getNewsIndexURL())."\" title=\"".strip_tags(html_encode($name))."\">".html_encode($name)."</a>";
 }
 
 
@@ -2330,7 +2355,13 @@ function printZenpageItemsBreadcrumb($before=NULL, $after=NULL) {
 			$parentitemurl = getNewsCategoryURL($item);
 			$parentitemtitle = $catobj->getTitle();
 		}
-		echo html_encode($before)."<a href='".$parentitemurl."'>".html_encode($parentitemtitle) ."</a>".html_encode($after);
+		if ($before) {
+			echo '<span class="beforetext">'.html_encode($before).'</span>';
+		}
+		echo"<a href='".$parentitemurl."'>".html_encode($parentitemtitle) ."</a>";
+		if ($after) {
+			echo '<span class="aftertext">'.html_encode($after).'</span>';
+		}
 	}
 }
 

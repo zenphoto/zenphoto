@@ -483,9 +483,9 @@ class tweet {
 	/**
 	 *
 	 * filter to place tweet action on object edit pages
-	 * @param unknown_type $before
-	 * @param unknown_type $object
-	 * @param unknown_type $prefix
+	 * @param string $before
+	 * @param object $object
+	 * @param int $prefix
 	 */
 	static function tweeter($before, $object, $prefix=NULL) {
 			$output = '<p class="checkbox">'."\n".'<label>'."\n".'<input type="checkbox" name="tweet_me'.$prefix.'" id="tweet_me'.$prefix.'" value="1" /> <img src="'.WEBPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/tweet_news/twitter_newbird_blue.png" /> '.gettext('Tweet me')."\n</label>\n</p>\n";

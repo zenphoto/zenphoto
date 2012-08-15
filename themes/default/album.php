@@ -45,7 +45,11 @@ if (!defined('WEBPATH')) die(); $themeResult = getTheme($zenCSS, $themeColor, 'l
 				<div id="images">
 					<?php while (next_image()): ?>
 						<div class="image">
-							<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
+							<div class="imagethumb">
+								<a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo getBareImageTitle(); ?>">
+									<?php printImageThumb(getAnnotatedImageTitle()); ?>
+								</a>
+							</div>
 						</div>
 					<?php endwhile; ?>
 				</div>

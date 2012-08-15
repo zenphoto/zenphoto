@@ -1370,7 +1370,7 @@ class SearchEngine
 		if (getOption('search_no_images') || $this->search_no_images) {
 			return array();
 		}
-			if (is_null($sorttype)) {
+		if (is_null($sorttype)) {
 			$sorttype = $this->imagesorttype;
 		} else {
 			$this->imagesorttype = $sorttype;
