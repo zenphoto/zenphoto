@@ -22,6 +22,8 @@ if (isset($_GET['subpage'])) {
 	}
 }
 
+
+
 $_GET['page'] = 'plugins';
 
 /* handle posts */
@@ -136,7 +138,7 @@ echo gettext("If the plugin checkbox is checked, the plugin will be loaded and i
 	<th colspan="1">
 		<?php echo gettext("Description"); ?>
 	</th>
-	
+
 </tr>
 <?php
 foreach ($filelist as $extension) {

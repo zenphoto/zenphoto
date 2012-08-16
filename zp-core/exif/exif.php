@@ -411,7 +411,7 @@ function formatData($type,$tag,$intel,$data) {
 					$data = formatExposure(unRational($data,$type,$intel));
 					break;
 				case '829d': // FNumber
-					$data = 'f/'.unRational($data,$type,$intel);
+					$data = 'f/'.round(unRational($data,$type,$intel),2);
 					break;
 				case '9204': // ExposureBiasValue
 					$data = round(unRational($data,$type,$intel), 2) . ' EV';

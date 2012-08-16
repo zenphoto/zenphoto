@@ -4211,6 +4211,7 @@ function getPageSelector($list, $itmes_per_page, $diff='minDiff') {
 }
 
 function printPageSelector($subpage, $rangeset, $script, $queryParams) {
+	global $instances;
 	$pages = count($rangeset);
 	$jump = $query = '';
 	foreach ($queryParams as $param=>$value) {
@@ -4230,7 +4231,8 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 			<?php
 		}
 		?>
-		<select name="subpage" id="subpage" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER.'/'.$script; ?>',[<?php echo $jump; ?>'subpage='+$('#subpage').val()]);" >
+		<select name="subpage" id="subpage<?php echo $instances; ?>" onchange="launchScript('<?php echo WEBPATH.'/'.ZENFOLDER.'/'.$script; ?>',
+																									[<?php echo $jump; ?>'subpage='+$('#subpage<?php echo $instances; ?>').val()]);" >
 			<?php
 			foreach ($rangeset as $page=>$range) {
 				?>
@@ -4250,6 +4252,7 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/'.$script.$query; ?>subpage=<?php echo ($subpage+1); ?>" ><?php echo gettext('next'); ?> »</a>
 		<?php
 	}
+	$instances++;
 }
 
 /**
