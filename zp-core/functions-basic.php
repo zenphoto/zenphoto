@@ -99,10 +99,7 @@ switch (PHP_MAJOR_VERSION) {
 }
 
 // Set error reporting.
-if (defined("RELEASE")) {
-	error_reporting(E_ALL ^E_NOTICE);
-	@ini_set('display_errors', 0);
-} else {
+if (!defined("RELEASE")) {
 	error_reporting(E_ALL | E_STRICT);
 	@ini_set('display_errors', 1);
 }

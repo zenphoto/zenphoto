@@ -797,6 +797,7 @@ zp-core/zp-extensions/deprecated-functions.php
 zp-core/zp-extensions/deprecated_functions
 zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php
 zp-core/zp-extensions/deprecated_functions/functions.php
+zp-core/zp-extensions/displayErrors.php
 zp-core/zp-extensions/downloadList
 zp-core/zp-extensions/downloadList.php
 zp-core/zp-extensions/downloadList/download_statistics.php
@@ -1912,4 +1913,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1914
+1915

@@ -379,7 +379,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		<li><?php printf(gettext('PHP version: <strong>%1$s</strong>'),phpversion()); ?></li>
 		<?php
 		if (!defined('RELEASE')) {
-		?>
+			?>
 			<li>
 				<?php
 				$erToTxt = array(	E_ERROR=>'E_ERROR',
@@ -420,7 +420,16 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 				printf(gettext('PHP Error reporting: <strong>%s</strong>'), implode(' | ',$text));
 				?>
 			</li>
-		<?php
+			<?php
+			if (@ini_get('display_errors')) {
+				?>
+				<li><?php echo gettext('<em>display_errors</em> is <strong>On</strong>')?></li>
+				<?php
+			} else {
+				?>
+				<li><?php echo gettext('<em>display_errors</em> is <strong>Off</strong>')?></li>
+				<?php
+			}
 		}
 		?>
 		<li>
