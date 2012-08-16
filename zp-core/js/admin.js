@@ -49,6 +49,7 @@ function albumSwitch(sel, unchecknewalbum, msg1, msg2) {
 
 
 function contains(arr, key) {
+	var i;
 	for (i=0; i<arr.length; i++) {
 		if (arr[i].toLowerCase() == key.toLowerCase()) {
 			return true;
@@ -95,6 +96,7 @@ function toggleAutogen(fieldID, nameID, checkbox) {
 
 // Checks all the checkboxes in a group (with the specified name);
 function checkAll(form, arr, mark) {
+	var i;
 	for (i = 0; i <= form.elements.length; i++) {
 		try {
 			if(form.elements[i].name == arr) {
@@ -105,6 +107,7 @@ function checkAll(form, arr, mark) {
 }
 
 function triggerAllBox(form, arr, allbox) {
+	var i;
 	for (i = 0; i <= form.elements.length; i++) {
 		try {
 			if(form.elements[i].name == arr) {
@@ -273,7 +276,7 @@ function toggleWMUse(id) {
 String.prototype.replaceAll = function(stringToFind,stringToReplace){
 	var temp = this;
 	var index = temp.indexOf(stringToFind);
-	while(index != -1){
+	while(index != -1) {
 		temp = temp.replace(stringToFind,stringToReplace);
 		index = temp.indexOf(stringToFind);
 	}

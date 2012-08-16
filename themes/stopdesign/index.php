@@ -182,21 +182,21 @@ require_once('normalizer.php');
 		<?php echo getGalleryTitle(); ?>
 		</p>
 	<div id="footer">
-		<p>
 		<?php
 		if (getOption('zp_plugin_contact_form')) {
-			printCustomPageURL(gettext('Contact us'), 'contact', '', '');
+			printCustomPageURL(gettext('Contact us'), 'contact', '', ' ');
 		}
 		if (!zp_loggedin() && function_exists('printRegistrationForm')) {
-			printCustomPageURL(gettext('Register for this site'), 'register', '', '');
+			printCustomPageURL(gettext('Register for this site'), 'register', '', ' ');
 		}
 		if (function_exists('printFavoritesLink')) {
 			printFavoritesLink();
 		}
-		@call_user_func('printUserLogin_out',"");
-
 		?>
-		</p>
+		<?php
+		@call_user_func('printUserLogin_out',"");
+		?>
+		<br /><br />
 		<?php @call_user_func('mobileTheme::controlLink'); ?>
 		<p>
 		<?php

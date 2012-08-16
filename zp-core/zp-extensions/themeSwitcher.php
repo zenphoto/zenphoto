@@ -117,7 +117,7 @@ class themeSwitcher {
 		} else {
 			$loggedin = zp_loggedin();
 		}
-		if ($loggedin & (ADMIN_RIGHTS | THEMES_RIGHTS)) {
+		if (!getOption('themeSwitcher_adminOnly') || $loggedin & (ADMIN_RIGHTS | THEMES_RIGHTS)) {
 			$themes = array();
 			foreach ($_zp_gallery->getThemes() as $theme=>$details) {
 				if (getOption('themeSwitcher_theme_'.$theme)) {
