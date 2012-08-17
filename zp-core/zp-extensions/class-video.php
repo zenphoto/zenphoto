@@ -72,7 +72,7 @@ class VideoObject_Options {
 																	'desc' => ''),
 									gettext('High quality alternate') => array ('key' => 'zp_plugin_class-video_videoalt', 'type' => OPTION_TYPE_TEXTBOX,
 																	'order'=>1,
-																	'desc' => '<code>getFullImageURL()</code> returns a URL to a file with one of these high quality video alternate suffixes if present.')
+																	'desc' => gettext('<code>getFullImageURL()</code> returns a URL to a file with one of these high quality video alternate suffixes if present.'))
 		);
 	}
 
