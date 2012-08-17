@@ -457,7 +457,7 @@ function rewrite_get_album_image($albumvar, $imagevar) {
 	$ralbum = isset($_GET[$albumvar]) ? sanitize_path($_GET[$albumvar]) : null;
 	$rimage = isset($_GET[$imagevar]) ? sanitize_path($_GET[$imagevar]) : null;
 	if (MOD_REWRITE) {
-		$uri = urldecode(getRequestURI());
+		$uri = getRequestURI();
 		$path = substr($uri, strlen(WEBPATH)+1);
 		$scripturi = sanitize($_SERVER['PHP_SELF'],0);
 		$script = substr($scripturi,strpos($scripturi, WEBPATH.'/')+strlen(WEBPATH)+1);

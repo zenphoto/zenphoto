@@ -1514,13 +1514,13 @@ function sanitizeRedirect($redirectTo, $forceHost=false) {
 			}
 		}
 		if (isset($redir['path'])) {
-			$redirect .= sanitize($redir['path']);
+			$redirect .= pathurlencode(sanitize($redir['path']));
 		}
 		if (isset($redir['query'])) {
 			$redirect .= '?'.sanitize($redir['query']);
 		}
 		if (isset($redir['fragment'])) {
-			$redirect .= '?'.sanitize($redir['fragment']);
+			$redirect .= '#'.sanitize($redir['fragment']);
 		}
 	}
 	return $redirect;
@@ -2099,7 +2099,7 @@ class zpFunctions {
 			'EXIFImageHeight'       		=> array('SubIFD', 'ExifImageHeight',   		gettext('Original Height'),      											false,			52, 	true),
 			'EXIFOrientation'       		=> array('IFD0',   'Orientation',       		gettext('Orientation'),            										false,			52, 	true),
 			'EXIFSoftware' 							=> array('IFD0', 	 'Software', 							gettext('Software'), 																	false, 			999, 	true),
- 			'EXIFContrast'          		=> array('SubIFD', 'Contrast',          		gettext('Contrast Setting'),      										false,			52, 	true),
+			'EXIFContrast'          		=> array('SubIFD', 'Contrast',          		gettext('Contrast Setting'),      										false,			52, 	true),
 			'EXIFSharpness'         		=> array('SubIFD', 'Sharpness',         		gettext('Sharpness Setting'),     										false,			52, 	true),
 			'EXIFSaturation'        		=> array('SubIFD', 'Saturation',        		gettext('Saturation Setting'),    										false,			52, 	true),
 			'EXIFWhiteBalance'					=> array('SubIFD', 'WhiteBalance',					gettext('White Balance'),															false,			52, 	true),

@@ -43,7 +43,7 @@ class seo_locale {
 	static function load_request($allow) {
 		$uri = getRequestURI();
 		$parts = explode('?', $uri);
-		$uri = urldecode($parts[0]);
+		$uri = $parts[0];
 		$path = ltrim(substr($uri, strlen(WEBPATH)+1),'/');
 		if (empty($path)) {
 			return $allow;
