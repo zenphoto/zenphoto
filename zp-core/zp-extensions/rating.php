@@ -133,12 +133,12 @@ class jquery_rating {
 	/**
 	 * Option filter handler for images and albums
 	 *
-	 * @param string $before HTML from prior filters
+	 * @param string $prior HTML from prior filters
 	 * @param object $object object being rated
 	 * @param string $prefix indicator if admin is processing multiple objects
 	 * @return string Combined HTML
 	 */
-	static function optionVoteStatus($before, $object, $prefix) {
+	static function optionVoteStatus($prior, $object, $prefix) {
 		$me = new jquery_rating();
 		$currentvalue = $object->get('rating_status');
 		$output = gettext('Vote Status:').'<br />'."\n";
@@ -150,7 +150,7 @@ class jquery_rating {
 			}
 			$output .= "<label class='checkboxlabel'>\n<input type='radio' name='rating_status".$prefix."' id='rating_status".$value."-".$prefix."' value='".($value+1)."' ".$checked."/> ".$text."\n</label>"."\n";
 		}
-		$output = '<span class="beforetext">'.html_encode($before).'</span><hr />'."\n".$output.'<br /clear="all">';
+		$output = $prior."\n".$output.'<br /clear="all">';
 		return $output;
 	}
 
