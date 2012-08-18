@@ -1434,11 +1434,15 @@ class SearchEngine
 					if ($albumrow['allow'] && ($row['show'] || $albumrow['viewUnpublished'])) {
 						if (file_exists($albumrow['localpath'].internalToFilesystem($row['filename']))) {
 							//	still exists
-							$images[] = array('filename' => $row['filename'], 'folder' => $albumrow['folder'], 'weight'=>$weights[$row['id']]);
+							$data = array('filename' => $row['filename'], 'folder' => $albumrow['folder']);
+							if (isset($weights)) {
+								$data['weight'] = $weights[$row['id']];
+							}
+							$images[] = $data;
 						}
 					}
 				}
-				if (is_null($sorttype)) {
+				if (is_null($sorttype) && isset($weights)) {
 					$images = sortMultiArray($images, 'weight', true);
 				}
 			}
@@ -1583,11 +1587,16 @@ class SearchEngine
 			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$result[] = array('titlelink'=>$row['titlelink'], 'weight'=>$weights[$row['id']]);
+					$data = array('titlelink'=>$row['titlelink']);
+					if (isset($weights)) {
+						$data['weight'] = $weights[$row['id']];
+					}
+					$result[] = $data;
 				}
 			}
-			$result = sortMultiArray($result, 'weight', true);
-
+			if (isset($weights)) {
+				$result = sortMultiArray($result, 'weight', true);
+			}
 
 
 			foreach ($result as $page) {
@@ -1655,10 +1664,16 @@ class SearchEngine
 			}
 			if ($search_result) {
 				while ($row = db_fetch_assoc($search_result)) {
-					$result[] = array('id'=>$row['id'],'titlelink'=>$row['titlelink'], 'weight'=>$weights[$row['id']]);
+					$data = array('id'=>$row['id'],'titlelink'=>$row['titlelink']);
+					if (isset($weights)) {
+						$data['weight'] = $weights[$row['id']];
+					}
+					$result[] = $data;
 				}
 			}
-			$result = sortMultiArray($result, 'weight', true);
+			if (isset($weights)) {
+				$result = sortMultiArray($result, 'weight', true);
+			}
 			$this->cacheSearch($criteria,$result);
 		}
 		$this->articles = $result;
