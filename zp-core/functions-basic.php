@@ -106,7 +106,7 @@ if (!defined("RELEASE")) {
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 
-if (!file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphoto.cfg")) {
+if (OFFSET_PATH != 2 && !file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphoto.cfg")) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
 	reconfigureAction();
 }
@@ -123,7 +123,7 @@ if (!defined('SERVERPATH')) {
 }
 unset($const_serverpath);
 
-if (empty($_zp_conf_vars['mysql_database'])) {
+if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
 	reconfigureAction();
 }

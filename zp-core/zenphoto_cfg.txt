@@ -6,29 +6,29 @@ $conf = array();
 
 /*//////////   zenPHOTO Configuration Variables   ///////////////////////////////
 
-For most installations Setup will copy this source and make the necessary changes to it. 
+For most installations Setup will copy this source and make the necessary changes to it.
 Unless this fails you most likely have no need even to read this file.
 
 If for some reason setup.php is not able to edit the configuration file and you cannot
-fix the file/folder permissions so that it can then you may have copy the 
+fix the file/folder permissions so that it can then you may have copy the
 source file to the zp-data folder and make changes here manually.
 
-Advanced installations may wish to modify the album folder definitions below. 
+Advanced installations may wish to modify the album folder definitions below.
 
 Also on some servers zenphoto has problems correctly determining the WEB path and
 SERVER path. For these cases you will need to implement the path overrides below.
 ///////////////////////////////////////////////////////////////////////////////*/
 
 ////////////////////////////////////////////////////////////////////////////////
-// Database Information 
+// Database Information
 ////////////////////////////////////////////////////////////////////////////////
-$conf['db_software'] = 'MySQL';			// someday we may support other databases
+$conf['db_software'] = 'PDO_MySQL';	// preferred database
 /** for historical reasons these fields reference mysql even though the database **
  ** might be a different software                                                **/
 $conf['mysql_user'] = '';           // Supply your Database user id.
 $conf['mysql_pass'] = '';           // Supply your Database password.
 $conf['mysql_host'] = 'localhost';  // Supply the name of your Database server.
-$conf['mysql_database'] = '';       // Supply the name of Zenphoto's database 
+$conf['mysql_database'] = '';       // Supply the name of Zenphoto's database
 // If you're sharing the database with other tables, use a prefix to be safe.
 $conf['mysql_prefix'] = ".";
 
@@ -40,12 +40,12 @@ $conf['UTF-8'] = true;
 // Required options
 ////////////////////////////////////////////////////////////////////////////////
 
-// location of album folder. 
+// location of album folder.
 // 'album_folder' is the name of the folder for the zenphoto albums.
 // 'album_folder_class' determines how to interpret 'album_folder':
-//    'std'         --	the folder must be a simple name. It resides in the root 
+//    'std'         --	the folder must be a simple name. It resides in the root
 //                      of the zenphoto installation.
-//    'in_webpath'  --	the folder must be the full path of the album folder from 
+//    'in_webpath'  --	the folder must be the full path of the album folder from
 //                      the WEB root of the zenphoto installation. The WEB root of
 //											your installation is the folder where your browser looks
 //											if the link is just your domain (no folders).

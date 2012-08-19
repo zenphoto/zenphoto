@@ -21,9 +21,9 @@ define('DATABASE_SOFTWARE','PDO::MySql');
 	*/
 function db_connect($errorstop=true) {
 	global $_zp_DB_connection, $_zp_DB_last_result, $_zp_conf_vars;
-	$_zp_DB_last_result = NULL;
-	$db = $_zp_conf_vars['mysql_database'];
+	$_zp_DB_connection = $_zp_DB_last_result = NULL;
 	try {
+		$db = $_zp_conf_vars['mysql_database'];
 		$hostname = $_zp_conf_vars['mysql_host'];
 		$username = $_zp_conf_vars['mysql_user'];
 		$password = $_zp_conf_vars['mysql_pass'];
@@ -33,6 +33,7 @@ function db_connect($errorstop=true) {
 		if ( $errorstop) {
 			zp_error(sprintf(gettext('MySql Error: Zenphoto received the error <em>%s</em> when connecting to the database server.'),$e->getMessage()));
 		}
+		$_zp_DB_connection = NULL;
 		return false;
 	}
 	if (array_key_exists('UTF-8', $_zp_conf_vars) && $_zp_conf_vars['UTF-8']) {

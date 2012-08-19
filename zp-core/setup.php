@@ -834,16 +834,11 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		if (extension_loaded($engine)) {
 			switch ($engine) {
 				case 'pdo_mysql':
-					$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'path'=>false,'name'=>true,'prefix'=>true);
+					$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'database'=>true,'prefix'=>true);
 					break;
 				case 'mysql':
 				default:
-					$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'path'=>false,'name'=>true,'prefix'=>true);
-					break;
-				case 'pdo_sqlite':
-					if (!defined('RELEASE')) {
-						$engines[$engineMC] = array('user'=>false,'pass'=>false,'host'=>false,'path'=>true,'name'=>true,'prefix'=>true,'experimental'=>gettext('SQLite is a limited database and does not support all Zenphoto functionality. Use of this database is for <em>Testing</em> only.'));
-					}
+					$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'database'=>true,'prefix'=>true);
 					break;
 			}
 		} else {
@@ -887,11 +882,16 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			}
 		}
 	}
-	$db = $connection = db_connect(false);
-	if (!$db) {
+	$connection = db_connect(false);
+	if ($connection) {
+		if (empty($_zp_conf_vars['mysql_database'])) {
+			$connection = false;
+			$connectDBErr = gettext('No database selected');
+		}
+	} else {
 		$connectDBErr = db_error();
 	}
-	if ($_zp_DB_connection) {
+	if ($_zp_DB_connection) {	// connected to DB software
 		$dbsoftware = db_software();
 		$dbapp = $dbsoftware['application'];
 		$dbversion = $dbsoftware['version'];
@@ -901,25 +901,24 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		$good = checkMark($sqlv, sprintf(gettext('%1$s version %2$s'),$dbapp,$dbversion), "", sprintf(gettext('%1$s Version %2$s or greater is required. Version %3$s or greater is preferred. Use a lower version at your own risk.'),$dbapp,$required,$desired), false) && $good;
 	}
 	primeMark(gettext('Database connection'));
+
 	if ($cfg) {
-		if (($adminstuff = !$engines[$selected_database] || !$connection  || !$db) && is_writable(CONFIGFILE)) {
-			$good = checkMark(false, '', gettext("Database setup in configuration file"), $connectDBErr) && $good;
-			// input form for the information
-			include(dirname(__FILE__).'/setup/setup-sqlform.php');
-		} else {
-			if ($connectDBErr) {
-				$msg = $connectDBErr;
+		if ($adminstuff = !$engines[$selected_database] || !$connection) {
+			if (is_writable(CONFIGFILE)) {
+				$good = false;
+				checkMark(false, '', gettext("Database credentials in configuration file"), sprintf(gettext('%1$s reported: %2$s'),$engines[$selected_database],$connectDBErr));
+				// input form for the information
+				include(dirname(__FILE__).'/setup/setup-sqlform.php');
 			} else {
-				$msg = gettext("You have not correctly set your <strong>Database</strong> <code>user</code>, <code>password</code>, etc. in your configuration file and <strong>setup</strong> is not able to write to the file.");
+				if ($connectDBErr) {
+					$msg = $connectDBErr;
+				} else {
+					$msg = gettext("You have not correctly set your <strong>Database</strong> <code>user</code>, <code>password</code>, etc. in your configuration file and <strong>setup</strong> is not able to write to the file.");
+				}
+				$good = checkMark(!$adminstuff, gettext("Database setup in configuration file"), '',$msg) && $good;
 			}
-			$good = checkMark(!$adminstuff, gettext("Database setup in configuration file"), '',$msg) && $good;
-		}
-	} else {
-		$good = checkMark($connection, sprintf(gettext('Connect to %s'),$selected_database), gettext("Connect to Database [<code>CONNECT</code> query failed]"), $connectDBErr) && $good;
-	}
-	if (!$newconfig && !$connection) {
-		if (empty($_zp_conf_vars['mysql_host']) || empty($_zp_conf_vars['mysql_user']) || empty($_zp_conf_vars['mysql_pass'])) {
-			$connectDBErr = gettext('Check the <code>user</code>, <code>password</code>, and <code>database host</code> and try again.'); // of course we can't connect!
+		} else {
+			$good = checkMark((bool) $connection, sprintf(gettext('Connect to %s'),$selected_database), gettext("Connect to Database [<code>CONNECT</code> query failed]"), $connectDBErr) && $good;
 		}
 	}
 
@@ -930,23 +929,19 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			}
 		} else {
 			$good = 0;
-			if (empty($_zp_conf_vars['mysql_database'])) {
-				checkmark(0, '', gettext('Connect to the database [You have not provided a database name]'),gettext('Provide the name of your database in the form above.'));
-			} else {
-				if ($oktocreate) {
-					?>
-					<li class="note">
-						<div class="notebox">
-							<p><?php  echo sprintf(gettext('Click here to attempt to create <a href="?Create_Database" >%s</a>.'),$_zp_conf_vars['mysql_database']); ?></p>
-						</div>
-					</li>
-					<?php
-				} else{
-					checkMark(0, '',sprintf(gettext('Database <code>%s</code> not created [<code>CREATE DATABASE</code> query failed]'), $_zp_conf_vars['mysql_database']),$connectDBErr);
-				}
+			if ($oktocreate) {
+				?>
+				<li class="note">
+					<div class="notebox">
+						<p><?php  echo sprintf(gettext('Click here to attempt to create <a href="?Create_Database" >%s</a>.'),$_zp_conf_vars['mysql_database']); ?></p>
+					</div>
+				</li>
+				<?php
+			} else if (!empty($_zp_conf_vars['mysql_database'])) {
+				checkMark(0, '',sprintf(gettext('Database <code>%s</code> not created [<code>CREATE DATABASE</code> query failed]'), $_zp_conf_vars['mysql_database']),$connectDBErr);
 			}
 		}
-		if ($environ && $sqlv) {
+		if ($environ && $connection) {
 			$oldmode = db_getSQLmode();
 			$result = db_setSQLmode();
 			$msg = gettext('You may need to set <code>SQL mode</code> <em>empty</em> in your Database configuration.');

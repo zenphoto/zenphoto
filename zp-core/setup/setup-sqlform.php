@@ -73,37 +73,22 @@
 		</tr>
 		<tr id="pass" >
 			<td><?php echo gettext("Database admin password") ?></td>
-			<td><input type="password" size="40" name="db_pass"
-				value="<?php echo $_zp_conf_vars['mysql_pass']; ?>" />&nbsp;</td>
-		</tr>
-		<tr id="path" >
-			<td><?php echo gettext("Database folder"); ?>
-			</td>
-			<td><input type="text" size="40" name="db_host" value="<?php
-				$folder = $_zp_conf_vars['mysql_host'];
-				if ($folder == 'localhost') {
-					echo $serverpath.'/zp-data/';
-				} else {
-					echo $_zp_conf_vars['mysql_host'];
-				}
-				?>" /></td>
+			<td><input type="password" size="40" name="db_pass" value="<?php echo $_zp_conf_vars['mysql_pass']; ?>" />&nbsp;</td>
 		</tr>
 		<tr id="host" >
 			<td><?php echo gettext("Database host"); ?>
 			</td>
-			<td><input type="text" size="40" name="db_host"
-				value="<?php echo $_zp_conf_vars['mysql_host']; ?>" /></td>
+			<td><input type="text" size="40" name="db_host" value="<?php echo $_zp_conf_vars['mysql_host']; ?>" /></td>
 		</tr>
-		<tr id="name" >
+		<tr id="database" >
 			<td><?php echo gettext("Database name"); ?></td>
-			<td><input type="text" size="40" name="db_database"
-				value="<?php echo $_zp_conf_vars['mysql_database']?>" />&nbsp;</td>
+			<td><input type="text" size="40" name="db_database" value="<?php echo $_zp_conf_vars['mysql_database']?>" />&nbsp;</td>
 		</tr>
 		<tr id="prefix" >
 			<td><?php echo gettext("Database table prefix"); ?></td>
 			<?php
 			if($_zp_conf_vars['mysql_prefix']=='.') {
-				$path = str_replace(array(' ','/'), '_', trim($const_webpath,'/')).'_';
+				$path = str_replace(array(' ','/'), '_', trim(WEBPATH,'/')).'_';
 			} else {
 				$path = $_zp_conf_vars['mysql_prefix'];
 			}

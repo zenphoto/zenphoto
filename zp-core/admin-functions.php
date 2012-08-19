@@ -1518,7 +1518,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					<?php
 				}
 				if ($index==0) {	// suppress for mass-edit
-					$showThumb =$_zp_gallery->getThumbSelectImages();
+					$showThumb = $_zp_gallery->getThumbSelectImages();
 					$album->getAlbumThumbImage();	//	prime the thumbnail since we will get the field below
 					$thumb = $album->get('thumb');
 					$selections = array();
