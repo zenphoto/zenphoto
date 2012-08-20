@@ -1550,10 +1550,10 @@ function zp_session_start() {
 /**
  *
  * Traps errors and insures thy are logged.
- * @param unknown_type $errno
- * @param unknown_type $errstr
- * @param unknown_type $errfile
- * @param unknown_type $errline
+ * @param int $errno
+ * @param string $errstr
+ * @param string $errfile
+ * @param string $errline
  * @return void|boolean
  */
 function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {

@@ -43,7 +43,7 @@ class captcha {
 	 * @return bool
 	 */
 	function checkCaptcha() {
-		$resp = recaptcha_check_answer (getOption('reCaptcha_private_key'), $_SERVER["REMOTE_ADDR"], $_POST["recaptcha_challenge_field"], $_POST["recaptcha_response_field"]);
+		$resp = recaptcha_check_answer (getOption('reCaptcha_private_key'), @$_SERVER["REMOTE_ADDR"], @$_POST["recaptcha_challenge_field"], @$_POST["recaptcha_response_field"]);
 		return $resp->is_valid;
 	}
 

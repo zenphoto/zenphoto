@@ -97,15 +97,6 @@ function db_insert_id() {
 }
 
 /*
- * get result data
- */
-function db_result($result, $row, $field=0) {
-	global $_zp_DB_connection;
-	$rows = $result->fetch(PDO::FETCH_NUM);
-	return $rows[$row][$field];
-}
-
-/*
  * Fetch a result row as an associative array
  */
 function db_fetch_assoc($resource) {

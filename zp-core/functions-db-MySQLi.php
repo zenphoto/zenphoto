@@ -1,6 +1,6 @@
 <?php
 /**
- * Database core functions forthe  MySQL legacy library
+ * Database core functions for the MySQLi library
  *
  * Note: PHP version 5 states that the MySQL library is "Maintenance only, Long term deprecation announced."
  * It recommends using the PDO::MySQL or the MySQLi library instead.
@@ -21,24 +21,27 @@ define('DATABASE_SOFTWARE','MySQL');
 function db_connect($errorstop=true) {
 	global $_zp_DB_connection, $_zp_conf_vars;
 	$db = $_zp_conf_vars['mysql_database'];
-	$_zp_DB_connection = @mysql_connect($_zp_conf_vars['mysql_host'], $_zp_conf_vars['mysql_user'], $_zp_conf_vars['mysql_pass']);
+	$hostname = $_zp_conf_vars['mysql_host'];
+	$username = $_zp_conf_vars['mysql_user'];
+	$password = $_zp_conf_vars['mysql_pass'];
+	$_zp_DB_connection = mysqli_connect($hostname, $username, $password);
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQL Error: Zenphoto received the error <em>%s</em> when connecting to the database server.'),mysql_error()));
+			zp_error(sprintf(gettext('MySQLi Error: Zenphoto received the error <em>%s</em> when connecting to the database server.'),$_zp_DB_connection->error()));
 		}
 		return false;
 	}
-	if (!@mysql_select_db($db)) {
+	if (!$_zp_DB_connection->select_db($db)) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQL Error: The database is connected, but MySQL returned the error <em>%1$s</em> when Zenphoto tried to select the database %2$s.'),mysql_error(),$db));
+			zp_error(sprintf(gettext('MySQLi Error: The database is connected, but MySQL returned the error <em>%1$s</em> when Zenphoto tried to select the database %2$s.'),$_zp_DB_connection->error(),$db));
 		}
 		return false;
 	}
 	if (array_key_exists('UTF-8', $_zp_conf_vars) && $_zp_conf_vars['UTF-8']) {
-		mysql_query("SET NAMES 'utf8'");
+		@$_zp_DB_connection->query("SET NAMES 'utf8'");
 	}
 	// set the sql_mode to relaxed (if possible)
-	@mysql_query('SET SESSION sql_mode="";');
+	@$_zp_DB_connection->query('SET SESSION sql_mode="";');
 	return $_zp_DB_connection;
 }
 
@@ -52,7 +55,7 @@ function db_connect($errorstop=true) {
  */
 function query($sql, $errorstop=true) {
 	global $_zp_DB_connection, $_zp_conf_vars;
-	if ($result = mysql_query($sql, $_zp_DB_connection)) {
+	if ($result = $_zp_DB_connection->query($sql)) {
 		return $result;
 	}
 	if($errorstop) {
@@ -72,9 +75,10 @@ function query($sql, $errorstop=true) {
  * @since 0.6
  */
 function query_single_row($sql, $errorstop=true) {
+	global $_zp_DB_connection;
 	$result = query($sql, $errorstop);
 	if ($result) {
-		return mysql_fetch_assoc($result);
+		return $result->fetch_assoc();
 	} else {
 		return false;
 	}
@@ -89,15 +93,16 @@ function query_single_row($sql, $errorstop=true) {
  * @since 0.6
  */
 function query_full_array($sql, $errorstop=true, $key=NULL) {
+	global $_zp_DB_connection;
 	$result = query($sql, $errorstop);
 	if ($result) {
 		$allrows = array();
 		if (is_null($key)) {
-			while ($row = mysql_fetch_assoc($result)) {
+			while ($row = $result->fetch_assoc()) {
 				$allrows[] = $row;
 			}
 		} else {
-			while ($row = mysql_fetch_assoc($result)) {
+			while ($row = $result->fetch_assoc()) {
 				$allrows[$row[$key]] = $row;
 			}
 		}
@@ -108,21 +113,21 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
 }
 
 /**
- * mysql_real_escape_string standin that insures the DB connection is passed.
+ * mysqli_real_escape_string standin that insures the DB connection is passed.
  *
  * @param string $string
  * @return string
  */
 function db_quote($string) {
 	global $_zp_DB_connection;
-	return "'".mysql_real_escape_string($string,$_zp_DB_connection)."'";
+	return "'".$_zp_DB_connection->real_escape_string($string)."'";
 }
 
 /*
  * returns the insert id of the last database insert
  */
 function db_insert_id() {
-	return mysql_insert_id();
+	return $_zp_DB_connection->insert_id();
 }
 
 /*
@@ -130,7 +135,7 @@ function db_insert_id() {
  */
 function db_fetch_assoc($resource) {
 	if ($resource) {
-		return mysql_fetch_assoc($resource);
+		return $resource->fetch_assoc();
 	}
 	return false;
 }
@@ -139,14 +144,16 @@ function db_fetch_assoc($resource) {
  * Returns the text of the error message from previous operation
  */
 function db_error() {
-	return mysql_error();
+	global $_zp_DB_connection;
+	return mysqli_error($_zp_DB_connection);
 }
 
 /*
  * Get number of affected rows in previous operation
  */
 function db_affected_rows() {
-	return mysql_affected_rows();
+	global $_zp_DB_connection;
+	return $_zp_DB_connection->affected_rows();
 }
 
 /*
@@ -154,7 +161,7 @@ function db_affected_rows() {
  */
 function db_fetch_row($result) {
 	if ($result) {
-		return mysql_fetch_row($result);
+		return $result->fetch_row();
 	}
 	return false;
 }
@@ -163,7 +170,7 @@ function db_fetch_row($result) {
  * Get number of rows in result
  */
 function db_num_rows($result) {
-	return mysql_num_rows($result);
+	return $result->num_rows;
 }
 
 /**
@@ -172,7 +179,7 @@ function db_num_rows($result) {
 function db_close() {
 	global $_zp_DB_connection;
 	if ($_zp_DB_connection) {
-		$rslt = mysql_close($_zp_DB_connection);
+		$rslt = $_zp_DB_connection->close();
 	} else {
 		$rslt = true;
 	}
@@ -184,7 +191,8 @@ function db_close() {
  * report the software of the database
  */
 function db_software() {
-	$dbversion = trim(@mysql_get_server_info());
+	global $_zp_DB_connection;
+	$dbversion = trim(@$_zp_DB_connection->get_server_info());
 	preg_match('/[0-9,\.]*/', $dbversion, $matches);
 	return array('application'=>DATABASE_SOFTWARE,'required'=>'5.0.0','desired'=>'5.5.0','version'=>$matches[0]);
 }

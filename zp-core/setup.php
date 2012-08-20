@@ -49,7 +49,7 @@ if (!file_exists($en_US)) {
 	@mkdir($en_US, $chmod | 0311);
 }
 
-$selected_database = 'MySQL';
+$selected_database = 'MySQLi';
 if (file_exists(CONFIGFILE)) {
 	$newconfig = false;
 	$zptime = filemtime(CONFIGFILE);
@@ -828,26 +828,18 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 
 	// Important. when adding new database support this switch may need to be extended,
 	$engines = array();
+	$preferences = array('mysqli','pdo_mysql','mysql');
 	foreach (setup_glob('functions-db-*.php') as $key=>$engineMC) {
 		$engineMC = substr($engineMC,13,-4);
 		$engine = strtolower($engineMC);
-		if (extension_loaded($engine)) {
-			switch ($engine) {
-				case 'pdo_mysql':
-					$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'database'=>true,'prefix'=>true);
-					break;
-				case 'mysql':
-				default:
-					$engines[$engineMC] = array('user'=>true,'pass'=>true,'host'=>true,'database'=>true,'prefix'=>true);
-					break;
-			}
-		} else {
-			$engines[$engineMC] = false;
-		}
+		$order = array_search($engine, $preferences, true);
+		$engines[$order] = array('user'=>true,'pass'=>true,'host'=>true,'database'=>true,'prefix'=>true,'engine'=>$engineMC,'enabled'=>extension_loaded($engine));
 	}
+	ksort($engines);
 	chdir($curdir);
 	primeMark(gettext('Database'));
-	foreach ($engines as $engine=>$enabled) {
+	foreach ($engines as $enabled) {
+		$engine = $enabled['engine'];
 		if ($engine == $selected_database) {
 			if ($enabled && isset($enabled['experimental'])) {
 				$good = checkMark(-1, $engine, sprintf(gettext('PHP <code>%s support</code> for configured Database [is experimental]'),$engine), $enabled['experimental'],false) && $good;
@@ -858,26 +850,23 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			if ($enabled) {
 				if (isset($enabled['experimental'])){
 					?>
-				<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle(\'show\')" >experimental</a>)'),$engine); ?>
-				</li>
-				<p class="warning" id="<?php echo $engine; ?>"
+					<li class="note_warn"><?php echo sprintf(gettext(' <code>%1$s</code> support (<a onclick="$(\'#%1$s\').toggle(\'show\')" >experimental</a>)'),$engine); ?>
+					</li>
+					<p class="warning" id="<?php echo $engine; ?>"
 					style="display: none;">
-
-					<?php echo $enabled['experimental']?></p>
-
+					<?php echo $enabled['experimental']?>
+					</p>
 					<?php
 				} else {
 					?>
-				<li class="note_ok"><?php echo sprintf(gettext('PHP <code>%s</code> support'),$engine); ?>
-				</li>
-
+					<li class="note_ok"><?php echo sprintf(gettext('PHP <code>%s</code> support'),$engine); ?>
+					</li>
 					<?php
 				}
 			} else {
 				?>
 				<li class="note_exception"><?php echo sprintf(gettext('PHP <code>%s</code> support [is not installed]'),$engine); ?>
 				</li>
-
 				<?php
 			}
 		}
@@ -903,10 +892,10 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	primeMark(gettext('Database connection'));
 
 	if ($cfg) {
-		if ($adminstuff = !$engines[$selected_database] || !$connection) {
+		if ($adminstuff = !extension_loaded(strtolower($selected_database))|| !$connection) {
 			if (is_writable(CONFIGFILE)) {
 				$good = false;
-				checkMark(false, '', gettext("Database credentials in configuration file"), sprintf(gettext('%1$s reported: %2$s'),$engines[$selected_database],$connectDBErr));
+				checkMark(false, '', gettext("Database credentials in configuration file"), sprintf(gettext('<em>%1$s</em> reported: %2$s'),$selected_database,$connectDBErr));
 				// input form for the information
 				include(dirname(__FILE__).'/setup/setup-sqlform.php');
 			} else {

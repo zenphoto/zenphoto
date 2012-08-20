@@ -15,8 +15,9 @@
 		function showFields() {
 			switch ($('#dbselect').val()) {
 			<?php
-			foreach ($engines as $engine=>$enabled) {
+			foreach ($engines as $enabled) {
 				if ($enabled) {
+					$engine = $enabled['engine'];
 					?>
 					case '<?php echo $engine; ?>':
 						<?php
@@ -48,7 +49,8 @@
 			<td><?php echo gettext("Database engine") ?></td>
 			<td><select id="dbselect" name="db_software" onchange="showFields();">
 				<?php
-				foreach ($engines as $engine=>$enabled) {
+				foreach ($engines as $enabled) {
+					$engine = $enabled['engine'];
 					$modifiers = '';
 					if ($enabled) {
 						if ($engine == $selected_database) {

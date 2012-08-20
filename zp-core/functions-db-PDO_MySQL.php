@@ -1,18 +1,17 @@
 <?php
 
 /**
- * database core functions for PDO::MySQL
+ * Database core functions for the PDO::MySQL library
  *
- * Note: This Database support script is redundant to functions-db-MySQL.php.
- * It is a prototype for the Zenphoto database abstraction. It is left in the
- * package just in case someone finds it useful.
+ * Note: PHP version 5 states that the MySQL library is "Maintenance only, Long term deprecation announced."
+ * It recommends using the PDO::MySQL or the MySQLi library instead.
  *
  * @package core
  */
 
 // force UTF-8 Ø
 
-define('DATABASE_SOFTWARE','PDO::MySql');
+define('DATABASE_SOFTWARE','PDO::MySQL');
 
 /**
  * Connect to the database server and select the database.
