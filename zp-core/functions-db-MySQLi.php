@@ -156,7 +156,7 @@ function db_error() {
  */
 function db_affected_rows() {
 	global $_zp_DB_connection;
-	return $_zp_DB_connection->affected_rows();
+	return $_zp_DB_connection->affected_rows;
 }
 
 /*
