@@ -124,7 +124,11 @@ if (getOption('RSS_album_image') || getOption('RSS_articles')) {
 					<?php
 				}
 				if (class_exists('mobileTheme')) {
-					mobileTheme::controlLink(NULL, '<li>','</li>');
+				?>
+				<li>
+				<?php mobileTheme::controlLink(NULL, '',''); ?>
+				</li>
+				<?php
 				}
 				?>
 			</ul>
