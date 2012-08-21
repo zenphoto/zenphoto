@@ -24,7 +24,7 @@ function db_connect($errorstop=true) {
 	$hostname = $_zp_conf_vars['mysql_host'];
 	$username = $_zp_conf_vars['mysql_user'];
 	$password = $_zp_conf_vars['mysql_pass'];
-	$_zp_DB_connection = mysqli_connect($hostname, $username, $password);
+	$_zp_DB_connection = @mysqli_connect($hostname, $username, $password);
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
 			zp_error(sprintf(gettext('MySQLi Error: Zenphoto received the error <em>%s</em> when connecting to the database server.'),$_zp_DB_connection->error()));
@@ -145,7 +145,10 @@ function db_fetch_assoc($resource) {
  */
 function db_error() {
 	global $_zp_DB_connection;
-	return mysqli_error($_zp_DB_connection);
+	if (is_object($_zp_DB_connection)) {
+		return mysqli_error($_zp_DB_connection);
+	}
+	return sprintf(gettext('%s not connected'),DATABASE_SOFTWARE);
 }
 
 /*

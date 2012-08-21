@@ -1105,7 +1105,7 @@ class SearchEngine {
 		if (count($idlist)>0) {
 			$weights = array_count_values($idlist);
 			arsort($weights,SORT_NUMERIC);
-			$sql = 'SELECT DISTINCT`id`,`show`,';
+			$sql = 'SELECT DISTINCT `id`,`show`,';
 
 			switch ($tbl) {
 				case 'news':

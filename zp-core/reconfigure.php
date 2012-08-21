@@ -12,7 +12,7 @@ function reconfigureAction() {
 	list($diff, $needs) = checkSignature();
 	$diff = array_keys($diff);
 	if (in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
-		if (file_exists(dirname(__FILE__).'/setup.php') && empty($needs)) {
+		if (empty($needs)) {
 			$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 			$p = strpos($dir, ZENFOLDER);
 			if ($p !== false) {
@@ -86,7 +86,11 @@ function checkSignature() {
 	} else {
 		$found = array();
 	}
-	$needs = array_diff($matches[1], $found);
+	if (empty($found)) {
+		$needs = $matches[1];
+	} else {
+		$needs = array_diff($matches[1], $found);
+	}
 	return array($diff, $needs);
 }
 
