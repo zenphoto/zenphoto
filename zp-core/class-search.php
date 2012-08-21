@@ -15,8 +15,8 @@ define('EXACT_TAG_MATCH',getOption('exact_tag_match'));
 define('SEARCH_DURATION', 3000);
 define('SEARCH_CACHE_DURATION', getOption('search_cache_duration'));
 
-class SearchEngine
-{
+class SearchEngine {
+
 	var $fieldList;
 	var $page;
 	var $images = NULL;
@@ -1222,7 +1222,7 @@ class SearchEngine
 			$this->albumsorttype = $sorttype;
 		}
 		if (!is_null($sortdirection)) {
-			$sorttype = $this->albumsortdirection;
+			$sortdirection = $this->albumsortdirection;
 		} else {
 			$this->albumsortdirection = $sortdirection;
 		}
@@ -1376,7 +1376,7 @@ class SearchEngine
 			$this->imagesorttype = $sorttype;
 		}
 		if (is_null($sortdirection)) {
-			$sorttype = $this->imagesortdirection;
+			$sortdirection = $this->imagesortdirection;
 		} else {
 			$this->imagesortdirection = $sortdirection;
 		}
