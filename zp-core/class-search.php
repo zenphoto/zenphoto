@@ -1202,8 +1202,9 @@ class SearchEngine {
 			$sql .= "FROM ".prefix($tbl)." WHERE ".$show;
 			$sql .= '('.self::compressedIDList($idlist).')';
 			$sql .= " ORDER BY ".$key;
+			return array($sql, $weights);
 		}
-		return array($sql, $weights);
+		return array(false, array());
 	}
 
 	/**
