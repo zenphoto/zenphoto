@@ -231,7 +231,7 @@ function reconfigurePage() {
 				} else {
 					$where = 'gallery';
 				}
-				$l1 = '<a href="'.WEBPATH.'/'.ZENFOLDER.'/setup.php?autorun='.$where.'">';
+				$l1 = '<a href="'.WEBPATH.'/'.ZENFOLDER.'/setup/index.php?autorun='.$where.'">';
 				$l2 = '</a>';
 			}
 			if (array_key_exists('ZENPHOTO', $diff) || array_key_exists('FOLDER', $diff)) {

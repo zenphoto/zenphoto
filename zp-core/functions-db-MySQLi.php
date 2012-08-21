@@ -127,7 +127,8 @@ function db_quote($string) {
  * returns the insert id of the last database insert
  */
 function db_insert_id() {
-	return $_zp_DB_connection->insert_id();
+	global $_zp_DB_connection;
+	return $_zp_DB_connection->insert_id;
 }
 
 /*

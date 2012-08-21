@@ -1307,7 +1307,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		}
 
 		$ch = !empty($vr) && ($vr == HTACCESS_VERSION);
-		$d = str_replace('\\','/',dirname(dirname($_SERVER['SCRIPT_NAME'])));
+		$d = str_replace('\\','/',dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))));
 		if (!$ch) {	// wrong version
 			$oht = trim(@file_get_contents('oldhtaccess'));
 			//fix the rewritebase
