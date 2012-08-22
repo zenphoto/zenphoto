@@ -283,7 +283,7 @@ if (function_exists('setOption')) {
 	require_once(dirname(dirname(__FILE__)).'/functions-filter.php');
 	require_once(dirname(dirname(__FILE__)).'/functions-i18n.php');
 }
-$updatechmod = ($updatechmod || !checkPermissions(fileperms(dirname(dirname(__FILE__)).'/setup.php'), $chmod)) && zp_loggedin(ADMIN_RIGHTS);
+$updatechmod = ($updatechmod || !checkPermissions(fileperms(__FILE__), $chmod)) && zp_loggedin(ADMIN_RIGHTS);
 
 if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists($serverpath.'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
@@ -1464,7 +1464,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		if (zp_loggedin(ADMIN_RIGHTS)) {
 			?>
 			<div class="error">
-				<?php echo gettext("You need to address the problems indicated above then run <code>setup.php</code> again."); ?>
+				<?php echo gettext("You need to address the problems indicated above then run <code>setup</code> again."); ?>
 			</div>
 			<p class='buttons'>
 				<a href="?refresh" title="<?php echo gettext("Setup failed."); ?>" style="font-size: 15pt; font-weight: bold;">
@@ -2331,12 +2331,6 @@ if (file_exists(CONFIGFILE)) {
 						}
 					}
 				}
-/*
-				@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup.php', 0666);
-				if (!setupDeleteComponent(@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup.php'),'setup.php')) {
-					$rslt[] = '../setup.php';
-				}
-*/
 				@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/', 0766);
 				if (!setupDeleteComponent(@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/'),'setup/')) {
 					$rslt[] = '../setup/';
@@ -2581,7 +2575,7 @@ if (file_exists(CONFIGFILE)) {
 	// The config file hasn't been created yet. Show the steps.
 	?>
 	<div class="error">
-		<?php echo gettext("The zenphoto.cfg file does not exist. You should run setup.php to check your configuration and create this file."); ?>
+		<?php echo gettext("The zenphoto.cfg file does not exist."); ?>
 	</div>
 <?php
 }

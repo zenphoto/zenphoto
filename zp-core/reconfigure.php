@@ -24,7 +24,7 @@ function reconfigureAction() {
 				$where = 'gallery';
 			}
 			$dir = rtrim($dir,'/');
-			$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup.php?autorun=$where";
+			$location = "http://". $_SERVER['HTTP_HOST']. $dir . "/" . ZENFOLDER . "/setup/index.php?autorun=$where";
 			header("Location: $location" );
 			exitZP();
 		} else {
@@ -194,24 +194,17 @@ function reconfigurePage() {
 			</ul>
 		</div>
 		<?php
-			if (!file_exists(dirname(__FILE__).'/setup.php') || !empty($needs)) {
+			if (!empty($needs)) {
 				?>
 				<p>
 				<?php printf(gettext('Please reinstall the following setup files from the %1$s [%2$s] release:'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE); ?>
 					<div id="files">
 						<ul>
 							<?php
-							if (!file_exists(dirname(__FILE__).'/setup.php')) {
-							?>
-								<li><?php echo ZENFOLDER; ?>/setup.php</li>
-							<?php
-							}
-							if (!empty($needs)) {
-									foreach ($needs as $script) {
-									?>
-									<li><?php echo ZENFOLDER; ?>/setup/<?php echo $script; ?></li>
-									<?php
-								}
+							foreach ($needs as $script) {
+								?>
+								<li><?php echo ZENFOLDER; ?>/setup/<?php echo $script; ?></li>
+								<?php
 							}
 							?>
 						</ul>

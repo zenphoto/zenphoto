@@ -2058,7 +2058,7 @@ class zpFunctions {
 	static function setexifvars() {
 		global $_zp_exifvars;
 		/*
-		 * Note: If fields are added or deleted, setup.php should be run or the new data won't be stored
+		 * Note: If fields are added or deleted, setup should be run or the new data won't be stored
 		 * (but existing fields will still work; nothing breaks).
 		 *
 		 * This array should be ordered by logical associations as it will be the order that EXIF information

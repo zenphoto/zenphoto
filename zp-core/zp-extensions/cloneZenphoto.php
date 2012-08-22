@@ -85,10 +85,6 @@ function removeSetup() {
 			}
 		}
 	}
-	@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup.php', 0666);
-	if (!@unlink(SERVERPATH.'/'.ZENFOLDER.'/setup.php')) {
-		$rslt[] = '../setup.php';
-	}
 	@chmod(SERVERPATH.'/'.ZENFOLDER.'/setup/', 0766);
 	if (!@rmdir(SERVERPATH.'/'.ZENFOLDER.'/setup/')) {
 		$rslt[] = '../setup/';

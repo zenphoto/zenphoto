@@ -399,7 +399,7 @@ function updateConfigItem($item, $value) {
 	$i = strpos($zp_cfg, $item);
 	if ($i == false) {
 		$i = strpos($zp_cfg, '$conf[');
-		$zp_cfg = substr($zp_cfg, 0, $i)."\$conf['".$item."'] = '".$value."'; // added by setup.php\n".substr($zp_cfg,$i);
+		$zp_cfg = substr($zp_cfg, 0, $i)."\$conf['".$item."'] = '".$value."'; // added by setup\n".substr($zp_cfg,$i);
 	} else {
 		$i = strpos($zp_cfg, '=', $i);
 		$j = strpos($zp_cfg, "\n", $i);

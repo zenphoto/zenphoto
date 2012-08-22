@@ -191,7 +191,7 @@ h1 {text-align:right;}
 }
 
 
-/* Setup: overrides setup.php in-page style rules
+/* Setup: overrides setup in-page style rules
 ------------------------------ */
 .warn, .pass {background-position: top right !important; padding-right:20px !important;}
 

@@ -1,11 +1,12 @@
 <?php
-if (file_exists(dirname(__FILE__).'/setup/index.php')) {
-	header('Location: setup/index.php', true, 301);
+define('OFFSET_PATH', 2);
+require_once(dirname(__FILE__).'/global-definitions.php');
+require_once(dirname(__FILE__).'/functions-basic.php');
+require_once(dirname(__FILE__).'/reconfigure.php');
+list($diff, $needs) = checkSignature();
+if (empty($needs)) {
+	header('Location: '.WEBPATH.'/'.ZENFOLDER.'/setup/index.php');
 } else {
-	require_once(dirname(__FILE__).'/global-definitions.php');
-	require_once(dirname(__FILE__).'/functions-basic.php');
-	require_once(dirname(__FILE__).'/reconfigure.php');
-	list($diff, $needs) = checkSignature();
 	?>
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,17 +24,10 @@ if (file_exists(dirname(__FILE__).'/setup/index.php')) {
 							<div id="files">
 								<ul>
 									<?php
-									if (!file_exists(dirname(__FILE__).'/setup.php')) {
-									?>
-										<li><?php echo ZENFOLDER; ?>/setup.php</li>
-									<?php
-									}
-									if (!empty($needs)) {
-											foreach ($needs as $script) {
-											?>
-											<li><?php echo ZENFOLDER; ?>/setup/<?php echo $script; ?></li>
-											<?php
-										}
+									foreach ($needs as $script) {
+										?>
+										<li><?php echo ZENFOLDER; ?>/setup/<?php echo $script; ?></li>
+										<?php
 									}
 									?>
 								</ul>
@@ -45,6 +39,5 @@ if (file_exists(dirname(__FILE__).'/setup/index.php')) {
 		</body>
 	</html>
 	<?php
-	exit();
 }
 ?>
