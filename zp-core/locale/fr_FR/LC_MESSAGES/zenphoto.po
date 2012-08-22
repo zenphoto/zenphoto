@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-08-21 19:59-0500\n"
-"PO-Revision-Date: 2012-08-21 20:14-0500\n"
+"PO-Revision-Date: 2012-08-21 23:09-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1370,7 +1370,7 @@ msgstr "Actualités sur la page d’accueil"
 
 #: F:\sites\zenphoto-dev/themes/zenpage/themeoptions.php:61
 msgid "Enable this if you want to show the news section's first page on the <code>index.php</code> page."
-msgstr "Activer si vous voulez afficher la première page des actualités à la page <code>index.php</code>."
+msgstr "Activer pour afficher la première page des actualités à la page <code>index.php</code>."
 
 #: F:\sites\zenphoto-dev/themes/zenpage/themeoptions.php:62
 msgid "Homepage"
@@ -1461,7 +1461,7 @@ msgstr "Images récentes"
 
 #: F:\sites\zenphoto-dev/themes/zpmobile/index.php:40
 msgid "Latest news"
-msgstr " Les plus récentes actualités"
+msgstr "Actualités récentes"
 
 #: F:\sites\zenphoto-dev/themes/zpmobile/search.php:155
 msgid "View Slideshow"
@@ -2045,7 +2045,7 @@ msgstr "Déplacez les albums dans l’ordre où vous souhaitez les afficher."
 #: F:\sites\zenphoto-dev/zp-core/admin-edit.php:808
 #: F:\sites\zenphoto-dev/zp-core/admin-edit.php:1614
 msgid "<strong>Note:</strong> Dragging an album under a different parent will move the album. You cannot move albums under a <em>dynamic</em> album."
-msgstr "<strong>NOTE. </strong> Glisser l’album sous un autre album parent le déplacera. Vous ne pouvez pas déplacer des albums vers un album <em>dynamique</em>."
+msgstr "<strong>NOTE. </strong> Glisser l’album sous un autre album parent le déplacera. Vous ne pouvez pas déplacer des albums vers <em>un album dynamique</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-edit.php:814
 #, php-format
@@ -2167,8 +2167,8 @@ msgstr "Autoriser les commentaires"
 #, php-format
 msgid "Reset hitcounter (%u hit)"
 msgid_plural "Reset hitcounter (%u hits)"
-msgstr[0] "Remettre le compteur de vues à zéro (total : %u)"
-msgstr[1] "Remettre le compteur de vues à zéro (total : %u)"
+msgstr[0] "Remettre le compteur à zéro (total : %u vue)"
+msgstr[1] "Remettre le compteur à zéro (total : %u vues)"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-edit.php:1093
 #: F:\sites\zenphoto-dev/zp-core/admin-functions.php:1657
@@ -3364,7 +3364,7 @@ msgstr "La langue à afficher de préférence. (Sélectionner <em>HTTP_Accept_La
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:707
 msgid "Set <em>Multi-lingual</em> to enable multiple languages for database fields."
-msgstr "Activer l’<em>interface multilingue</em> pour activer plusieurs langues dans les champs de base de données."
+msgstr "Activez l’<em>interface multilingue</em> pour permettre la saisie de plusieurs langues dans les champs de base de données."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:708
 msgid "<strong>Note:</strong> if you have created multi-language strings, uncheck this option, then save anything, you will lose your strings."
@@ -3588,7 +3588,7 @@ msgstr "Articles par page :"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:873
 msgid "These options control the number of items displayed on their tabs. If you have problems using these tabs, reduce the number shown here."
-msgstr "Ces paramètres déterminent le nombre d’éléments affichés dans les onglets correspondants. Si vous avez des problèmes à utiliser ces onglets, veuillez diminuer les valeurs inscrites ici."
+msgstr "Ces valeurs déterminent le nombre d’éléments affichés dans les onglets correspondants. Si vous avez des problèmes à utiliser ces onglets, veuillez diminuer les valeurs inscrites ici."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:879
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2821
@@ -3700,11 +3700,11 @@ msgstr "Cette adresse est utilisée pour établir un lien qui permet de retourne
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1073
 msgid "Album thumbnails:"
-msgstr "Vignettes de l’album :"
+msgstr "Vignettes d’albums :"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1087
 msgid "Default thumbnail selection for albums."
-msgstr "Vignette par défaut pour les albums."
+msgstr "Choix par défaut de la vignette utilisée pour les albums."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1089
 msgid "Sort gallery by:"
@@ -3768,7 +3768,7 @@ msgstr "<a href=\"javascript: toggle('albumdate');\" >Détails</a> – <em>Utili
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1217
 msgid "If you wish your album date to reflect the date of the latest image uploaded set this option. Otherwise the date will be set initially to the date the album was created."
-msgstr "Activez cette option si vous voulez que la date de l’album soit calée sur celle de la plus récente image chargée sur le serveur. Sinon, c’est la date de création de l’album qui sera utilisée."
+msgstr "Activer cette option pour que la date de l’album soit calée sur celle de la plus récente image chargée sur le serveur. Sinon, c’est la date de création de l’album qui sera utilisée."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1220
 msgid "<strong>NOTE</strong>: Zenphoto will update the album date only if an image is discovered which is newer than the current date of the album."
@@ -3979,7 +3979,7 @@ msgstr "Ordre de tri du flux RSS :"
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1575
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1581
 msgid "latest by id"
-msgstr "les dernières par id"
+msgstr "les plus récentes par id"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1576
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1582
@@ -3994,7 +3994,7 @@ msgstr "les plus récentes selon la date de modification"
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1578
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1584
 msgid "latest by publishdate"
-msgstr "les plus récentes (par date de publication)"
+msgstr "les plus récentes selon la date de publication"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1585
 msgid "latest updated"
@@ -4002,7 +4002,7 @@ msgstr "les plus récentes mises à jour"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1595
 msgid "a) Images RSS: Choose between <em>latest by id</em> for the latest uploaded, <em>latest by date</em> for the latest uploaded fetched by date, or <em>latest by mtime</em> for the latest uploaded fetched by the file's last change timestamp.<br />b) Albums RSS: Choose between <em>latest by id</em> for the latest uploaded and <em>latest updated</em>"
-msgstr "a) Flux RSS des images : choisissez soit <em>les dernières par id</em> pour les plus récemment mises en ligne, <em>les plus récentes (par date)</em> pour les images dont la date est la plus récente, ou <em>les plus récentes selon la date de modification</em> pour les dernières mises en ligne selon la date de dernière modification la plus récente.<br />b) Flux RSS des albums : choisissez entre <em>les derniers par id</em> pour les plus récemment mis en ligne et les <em>plus récents mis à jour</em>"
+msgstr "a) Flux RSS des images : choisissez soit <em>les plus récentes par id</em> pour les plus récemment mises en ligne, <em>les plus récentes (par date)</em> pour les images dont la date est la plus récente, ou <em>les plus récentes selon la date de modification</em> pour les dernières mises en ligne selon la date de dernière modification la plus récente.<br />b) Flux RSS des albums : choisissez entre <em>les derniers par id</em> pour les plus récemment mis en ligne et les <em>plus récents mis à jour</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1598
 msgid "RSS enclosure:"
@@ -4029,7 +4029,7 @@ msgstr "Cache RSS"
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1994
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2119
 msgid "Enabled"
-msgstr "Activée"
+msgstr "Activé"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1613
 msgid "RSS cache expire"
@@ -4085,15 +4085,15 @@ msgstr "Qualité de l’image : "
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1724
 msgid "Normal Image"
-msgstr "Image normale"
+msgstr "Images normales"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1745
 msgid "<em>full</em> Image"
-msgstr "Image <em>pleine grandeur</em> (originale)"
+msgstr "Images <em>pleine grandeur</em> (originales)"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1766
 msgid "Thumbnail"
-msgstr "Vignette"
+msgstr "Vignettes"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1788
 msgid "Compression quality for images and thumbnails generated by Zenphoto."
@@ -4250,7 +4250,7 @@ msgstr "Protéger le cache d’images"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1987
 msgid "If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file."
-msgstr "Si cochée, tous les liens des images reféreront au processeur d’images et un fichier <em>.htaccess</em> emêchera les fureteurs d’utiliser le cache d’images. Les images sont quand même mises en cache, mais le processeur d’images sera quand même utilisé pour préparer l’image qui sera envoyée au fureteur client."
+msgstr "Si coché, tous les liens des images référeront au processeur d’images et un fichier <em>.htaccess</em> empêchera les fureteurs d’utiliser le cache d’images. Les images sont quand même mises en cache, mais le processeur d’images sera quand même utilisé pour préparer l’image qui sera envoyée au fureteur client."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1988
 msgid "<strong>WARNING\t:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option."
@@ -4278,7 +4278,7 @@ msgstr "Désactiver les liens directs de sites externes"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2010
 msgid "cache the full image"
-msgstr "mettre en cache l’image pleine grandeur"
+msgstr "Mettre en cache les images pleine grandeur"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2023
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2060
@@ -4307,7 +4307,7 @@ msgstr "Aucune protection"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2109
 msgid "Disabling hotlinking prevents linking to the full image from other domains. If enabled, external links are redirect to the image page. If you are having problems with full images being displayed, try disabling this setting. Hotlinking is not prevented if <em>Full&nbsp;image&nbsp;protection</em> is <em>Unprotected</em> or if the image is cached."
-msgstr "Désactiver les liens directs de sites externes empêche ces sites de pointer vers les images pleine grandeur. Si cette option est activée, les liens externes sont redirigées vers la page d’affichage de l’image. Si vous rencontrez des problèmes pour afficher les images pleine grandeur, essayez en désactivant cette option. Les liens directs ne sont pas détournés si la <em>protection des images pleine grandeur</em> est sur <em>aucune protection</em> ou si l’image est déjà mise en cache."
+msgstr "Désactiver les liens directs de sites externes empêche ceux-ci de pointer vers les images pleine grandeur. Si ce paramètre est activé, les liens externes sont dirigées vers la page d’affichage de l’image. Si vous rencontrez des problèmes pour afficher les images pleine grandeur, essayez en désactivant cette option. Les liens directs ne sont pas détournés si la <em>protection des images pleine grandeur</em> est sur <em>aucune protection</em> ou si l’image est déjà mise en cache."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:2110
 msgid "If <em>Cache the full image</em> is checked the full image will be loaded to the cache and served from there after the first reference. <em>Full&nbsp;image&nbsp;protection</em> must be set to <em>Protected&nbsp;view</em> for the image to be cached. However, once cached, no protections are applied to the image."
@@ -4968,7 +4968,7 @@ msgstr "Effacer tous les tags cochés ci-dessus."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:180
 msgid "Place a checkmark in the box for each tag you wish to delete then press the <em>Delete checked tags</em> button. The brackets contain the number of times the tag appears."
-msgstr "Cocher la case correspondant aux tags que vous désirez supprimer et cliquez sur le bouton <em>Supprimer les tags cochés</em>. Le nombre d’occurences du tag apparaît entre parenthèses."
+msgstr "Cochez la case correspondant aux tags à supprimer et cliquez sur le bouton <em>Supprimer les tags cochés</em>. Le nombre d’occurences du tag apparaît entre parenthèses."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:185
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:207
@@ -4982,7 +4982,7 @@ msgstr "Appliquer tous les changements réalisés ci-dessus."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:216
 msgid "To change the value of a tag enter a new value in the text box below the tag. Then press the <em>Rename tags</em> button"
-msgstr "Pour changer le contenu d’un tag, saisir une nouvelle valeur dans le champ texte sous le tag concerné. Cliquer ensuite sur le bouton <em>Renommer les tags</em>."
+msgstr "Pour changer la valeur d’un tag, saisissez une nouvelle valeur dans le champ texte sous celui-ci. Cliquez ensuite sur le bouton <em>Renommer les tags</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:221
 msgid "New tags"
@@ -4994,7 +4994,7 @@ msgstr "Ajouter tous les tags saisis ci-dessus."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-tags.php:248
 msgid "Add tags to the list by entering their names in the input fields of the <em>New tags</em> list. Then press the <em>Add tags</em> button"
-msgstr "Ajouter des tags à la liste en saisissant ceux-ci dans les champs de formulaire de la liste <em>Nouveaux tags</em>. Cliquer ensuite sur <em>Ajouter des tags</em>."
+msgstr "Ajoutez des tags en saisissant ceux-ci dans les champs de la liste <em>Nouveaux tags</em>. Cliquez ensuite sur <em>Ajouter des tags</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-themes-editor.php:52
 msgid "File updated successfully"
@@ -5280,7 +5280,7 @@ msgstr "Ce nom est déjà utilisé."
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:265
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:304
 msgid "This upload has to have a folder. Type a title or folder name to continue..."
-msgstr "Ce chargement de fichiers doit avoir une cible. Choisir un dossier existant ou saisir le nom d’un nouvel album pour continuer..."
+msgstr "Le chargement de fichiers doit avoir une cible. Choisir un dossier existant ou saisir le nom d’un nouvel album pour continuer..."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-upload.php:249
 msgid "Make a new Album"
@@ -5649,7 +5649,7 @@ msgstr "Version de PHP : <strong>%1$s</strong>"
 #: F:\sites\zenphoto-dev/zp-core/admin.php:420
 #, php-format
 msgid "PHP Error reporting: <strong>%s</strong>"
-msgstr "Erreur PHP rapportée : <strong>%s</strong>"
+msgstr "Type de rapport d’erreurs PHP : <strong>%s</strong>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin.php:426
 msgid "<em>display_errors</em> is <strong>On</strong>"
@@ -5677,7 +5677,7 @@ msgstr "Limite de mémoire de PHP : <strong>%1$s</strong> (Note : votre serveur
 #: F:\sites\zenphoto-dev/zp-core/admin.php:453
 #, php-format
 msgid "%1$s version: <strong>%2$s</strong>"
-msgstr "%1$s version : <strong>%2$s</strong>"
+msgstr "Version de %1$s : <strong>%2$s</strong>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin.php:457
 #, php-format
@@ -5784,11 +5784,11 @@ msgstr "Instanciation invalide de l’image : le fichier n’existe pas"
 
 #: F:\sites\zenphoto-dev/zp-core/class-rss.php:270
 msgid " (Latest news)"
-msgstr " (Dernières actualités)"
+msgstr " (Actualités récentes)"
 
 #: F:\sites\zenphoto-dev/zp-core/class-rss.php:274
 msgid " (Latest news and images)"
-msgstr " (Dernières nouvelles et images)"
+msgstr " (Nouvelles et images récentes)"
 
 #: F:\sites\zenphoto-dev/zp-core/class-rss.php:277
 msgid " (Latest news and albums)"
@@ -5812,7 +5812,7 @@ msgstr "(Actualités choisies aléatoirement)"
 
 #: F:\sites\zenphoto-dev/zp-core/class-rss.php:338
 msgid " (latest comments)"
-msgstr " (derniers commentaires)"
+msgstr " (commentaires récents)"
 
 #: F:\sites\zenphoto-dev/zp-core/class-rss.php:365
 msgid "Latest albums"
@@ -9178,7 +9178,7 @@ msgstr "Vérifications système : "
 
 #: F:\sites\zenphoto-dev/zp-core/setup/index.php:432
 msgid "You are not installing the latest version of Zenphoto."
-msgstr "Vous n’installez pas la plus récente version de Zenphoto."
+msgstr "Vous n’êtes pas en train d’installer la plus récente version de Zenphoto."
 
 #: F:\sites\zenphoto-dev/zp-core/setup/index.php:433
 #, php-format
@@ -11137,7 +11137,7 @@ msgstr "Vidéo 3gp : hauteur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:73
 msgid "High quality alternate"
-msgstr "Version de grande qualité"
+msgstr "Version de haute qualité"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:75
 msgid "<code>getFullImageURL()</code> returns a URL to a file with one of these high quality video alternate suffixes if present."
@@ -11167,7 +11167,7 @@ msgstr "PDF"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:66
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:73
 msgid "Disabled"
-msgstr "Désactivée"
+msgstr "Désactivé"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:56
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:67
@@ -12003,14 +12003,12 @@ msgid "Allows dynamic setting of PHP error displays."
 msgstr "Permet de régler dynamiquement l’affichage des erreurs PHP."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/displayErrors.php:39
-#, fuzzy
 msgid "Error reporting"
-msgstr "Rapports d’erreurs"
+msgstr "Rapport d’erreurs"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/displayErrors.php:40
-#, fuzzy
 msgid "Error Reporting selections."
-msgstr "Extraits du rapport d’erreurs."
+msgstr "Choix de rapport d’erreurs PHP."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/downloadList.php:37
 msgid "Plugin to generate file download lists."
@@ -12225,11 +12223,11 @@ msgstr "Enlever un favori"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/favoritesHandler.php:63
 msgid "Link text"
-msgstr "Texte du lien"
+msgstr "Texte descriptif du lien"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/favoritesHandler.php:66
 msgid "The text for the link to the favorites page."
-msgstr "Le texte du lien vers la page des favoris."
+msgstr "Le texte descriptif du lien vers la page des favoris."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/favoritesHandler.php:67
 msgid "Favorites page"
@@ -12241,7 +12239,7 @@ msgstr "Page thème du lien des favoris"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/favoritesHandler.php:71
 msgid "Add button"
-msgstr "Ajouter un bouton"
+msgstr "Bouton Ajouter"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/favoritesHandler.php:74
 msgid "Default text for the <em>add to favorites</em> button."
@@ -12249,7 +12247,7 @@ msgstr "Texte par défaut du bouton <em>ajouter aux favoris</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/favoritesHandler.php:75
 msgid "Remove button"
-msgstr "Enlever un bouton"
+msgstr "Bouton Enlever"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/favoritesHandler.php:78
 msgid "Default text for the <em>remove from favorites</em> button."
@@ -12680,7 +12678,7 @@ msgstr "Image de démarrage"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:161
 msgid "Enable if you want to show the videothumb as an splash image before the actual video starts (don't set the player to autoPlay then). If you want to use this for mp3s as well set also the mp3 cover image option."
-msgstr "Activer si vous voulez afficher la vignette vidéo comme image avant que la vidéo démarre (n’utilisez pas autoPlay dans ce cas-là). Si vous voulez faire de même pour les MP3, utilisez l’option correspondante."
+msgstr "Activer pour afficher la vignette vidéo comme image avant que la vidéo démarre (n’utilisez pas autoPlay dans ce cas-là). Si vous voulez faire de même pour les MP3, utilisez l’option correspondante."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:161
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/flowplayer3.php:166
@@ -13250,7 +13248,7 @@ msgstr "Liste des IP"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:69
 #, php-format
 msgid "List of IP ranges to %s."
-msgstr "¨Listes de plages IP à %s."
+msgstr "Liste de plages IP à <span style=\"text-transform: lowercase\">%s</span>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:73
 msgid "How the plugin will interpret the IP list."
@@ -13654,7 +13652,7 @@ msgstr "Mises en page multiples du <em>thème</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/multiple_layouts.php:94
 msgid "Enable multiple layouts for"
-msgstr "Activer plusieurs mises en page pour"
+msgstr "Activer plusieurs mises en page pour ces pages"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/multiple_layouts.php:209
 msgid "Select layout:"
@@ -13719,7 +13717,7 @@ msgstr "Compteur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:44
 msgid "If you want to show the counter 'x - y of z images'."
-msgstr "Si vous voulez afficher le compteur « x – y sur z images »."
+msgstr "Cocher pour afficher le compteur « x – y sur z images »."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:45
 msgid "Prevtext"
@@ -13759,7 +13757,7 @@ msgstr "Substituants"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:56
 msgid "if you want to use placeholder for layout reasons to fill up the thumbs if the number of thumbs does not match images per page. Recommended only for cropped thumbs."
-msgstr "si vous souhaitez utiliser un substituant pour ne pas affecter la mise en page ; le substituant est mis à la place de vignettes si le nombre de vignettes ne correspond pas au nombre d’images par page. Recommandé seulement pour les vignettes rognées."
+msgstr "Cocher pour utiliser un substituant afin de ne pas affecter la mise en page ; le substituant est mis à la place de vignettes si le nombre de vignettes ne correspond pas au nombre d’images par page. Recommandé seulement pour les vignettes rognées."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:57
 msgid "Page list"
@@ -13767,7 +13765,7 @@ msgstr "Liste des pages"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:58
 msgid "If you want the list of the pages to be shown."
-msgstr "Si vous voulez afficher la liste des pages."
+msgstr "Cocher pour afficher la liste des pages."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:59
 msgid "Pages list prev and next links"
@@ -13775,7 +13773,7 @@ msgstr "Liens de navigation « précédent » et « suivant » dans la liste
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:60
 msgid "If you want to show previous and next thumb page links with the page list."
-msgstr "Si vous voulez afficher les liens avec des vignettes de navigation de pages sur la liste des pages."
+msgstr "Cocher pour afficher les liens des pages de vignettes précédente et suivante sur la liste des pages."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/paged_thumbs_nav.php:61
 msgid "Pages list length"
@@ -15798,7 +15796,7 @@ msgstr "CombiNews"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:128
 msgid "Set to enable the CombiNews feature to show news articles and latest gallery items together on the news section's overview page(s)."
-msgstr "Sélectionner pour activer la fonctionnalité CombiNews pour monter les nouveaux articles et les derniers ajout à la gallerie"
+msgstr "Sélectionner pour activer la fonctionnalité CombiNews pour monter les nouveaux articles et les plus récents ajouts à la gallerie."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:128
 msgid "<strong>Note:</strong> Images/albums and news articles are still separate, your Zenphoto gallery is not touched in any way!"
@@ -15818,67 +15816,67 @@ msgstr "CombiNews: Mode"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:133
 msgid "latest images: sized image"
-msgstr "dernières images : image redimensionnée"
+msgstr "images récentes : images redimensionnées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:134
 msgid "latest images: sized image maxspace"
-msgstr "dernières images : image maximisée"
+msgstr "images récentes : images maximisées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:135
 msgid "latest images: thumbnail"
-msgstr "dernières images : vignette"
+msgstr "images récentes : vignettes"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:136
 msgid "latest images: thumbnail-customcrop"
-msgstr "dernières images : vignette avec rognage"
+msgstr "images récentes : vignettes rognées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:137
 msgid "latest images: full image"
-msgstr "images récentes : image pleine grandeur"
+msgstr "images récentes : images pleine grandeur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:138
 msgid "latest albums: sized image"
-msgstr "derniers albums : image redimensionnée"
+msgstr "albums récents : images redimensionnées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:139
 msgid "latest albums: sized image maxspace"
-msgstr "derniers albums : image maximisée"
+msgstr "albums récents : images maximisées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:140
 msgid "latest albums: thumbnail"
-msgstr "derniers albums : vignette"
+msgstr "albums récents : vignettes"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:141
 msgid "latest albums: thumbnail-customcrop"
-msgstr "derniers albums : vignette avec rognage"
+msgstr "albums récents : vignettes rognées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:142
 msgid "latest albums: full image"
-msgstr "albums récents : image pleine grandeur"
+msgstr "albums récents : images pleine grandeur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:143
 msgid "latest images by album: thumbnail"
-msgstr "dernières images par album : vignette"
+msgstr "images récentes par album : vignettes"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:144
 msgid "latest images by album: thumbnail-customcrop"
-msgstr "dernières images par album : vignette avec rognage"
+msgstr "images récentes par album : vignettes rognées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:145
 msgid "latest images by album: sized image"
-msgstr "dernières images par album : image redimensionnée"
+msgstr "images récentes par album : images redimensionnées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:146
 msgid "latest images by album: sized image maxspace"
-msgstr "dernières images par album : image maximisée"
+msgstr "images récentes par album : images maximisées"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:147
 msgid "latest images by album: full image"
-msgstr "images récentes par album : image pleine grandeur"
+msgstr "images récentes par album : images pleine grandeur"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:148
 msgid "What you want to show within the CombiNews section.<br /><ul><li>Latest images: Entries for all images ever added</li><li>Latest albums: Entries for all albums ever created</li><li>Latest images by album: Entries for all images but grouped by images that have been added within a day to each album (Scheme: 'x new images in album y on date z')</li></ul> <em>maxspace</em> means that an uncropped image fitting max. width x max. height as set on the thumbnail width and height options is used (not for multimedia items!)."
-msgstr "Ce que vous voulez afficher dans la zone CombiNews.<br /><ul><li>Dernières images : parmi toutes les images déjà présentes</li><li>Derniers albums : parmi tous les albums déjà créés</li><li>Dernières images par album : parmi toutes les images mais groupés par jour pour chaque album (Schéma : « x nouvelles images dans l’album y en date du z »)</li></ul><em>maxspace</em> signifie qu’une image non rognée occupera tout l’espace disponible (selon les options de taille de vignette (pas pour les éléments multimédias !)."
+msgstr "Ce que vous voulez afficher dans la zone CombiNews.<br /><ul><li>Images récentes : parmi toutes les images déjà présentes</li><li>Albums récents : parmi tous les albums déjà créés</li><li>Images récentes par album : parmi toutes les images mais groupés par jour pour chaque album (Schéma : « x nouvelles images dans l’album y en date du z »)</li></ul><em>maxspace</em> signifie qu’une image non rognée occupera tout l’espace disponible (selon les options de taille de vignette (pas pour les éléments multimédias !)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:149
 msgid "CombiNews: Sized image size"
@@ -15886,7 +15884,7 @@ msgstr "CombiNews: Taille de l’image redimensionnée"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:150
 msgid "The size of the sized image shown the CombiNews section <em>(only in latest images-sizedimage or latest albums-sizedimage mode)</em>."
-msgstr "La taille de l’image redimensionnée dans la section CombiNews <em> (seulement dans les modes dernières images ou albums)</em>."
+msgstr "La taille de l’image redimensionnée dans la section CombiNews <em> (seulement dans les modes images récentes ou albums récents)</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:151
 msgid "CombiNews: Sort order"
@@ -15902,7 +15900,7 @@ msgstr "Date de publication"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:153
 msgid "The sort order for your gallery items within the CombiNews display except for <em>latest images by album</em> which is by date or mtime only. <ul><li>'date' (date order)</li><li>'id' (added to db order)</li><li>'mtime' (upload order)</li><li>'publishdate' (manual publish date order - you might get really funny results if this is not set!)</li></ul>"
-msgstr "L’ordre de tri des éléments de votre galerie qui s’affichent dans CombiNews, sauf pour <em>images récentes par album</em> qui sont triées par date ou date de modification seulement.<ul><li>« date » : par date</li><li>« id » : par ordre d’ajout à la base de données</li><li>« mtime » : par ordre de chargement sur le serveur</li><li>« date de publication » : par date de publication définie manuellement )(vous aurez des résultats surprenants si cette date n’est pas définie)</li></ul>"
+msgstr "L’ordre de tri des éléments de la galerie qui s’affichent dans CombiNews, sauf pour <em>images récentes par album</em> qui sont triées par date ou date de modification seulement.<ul><li>« date » : par date</li><li>« id » : par ordre d’ajout à la base de données</li><li>« mtime » : par ordre de chargement sur le serveur</li><li>« date de publication » : par date de publication (définie manuellement) (vous aurez des résultats surprenants si cette date n’est pas définie)</li></ul>"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:153
 msgid "<strong>Note: </strong> If you experience unexpected results, this refers only to the images that are fetched from the database. Even if they are fetched by id they will be sorted by date with the articles afterwards since articles only have a date."
@@ -15961,7 +15959,7 @@ msgstr "CombiNews : afficher la description de l’image"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:170
 msgid "Set to show the image description with every item if using the CombiNews mode <em>latest images by album</em> only. Printed as a paragraph."
-msgstr "Activer pour afficher la description de l’image sur chaque élément en mode CombiNews avec l’option <em>dernières images par album</em>. Sera affichée comme un paragraphe."
+msgstr "Activer pour afficher la description de l’image sur chaque élément en mode CombiNews avec l’option <em>images récentes par album</em>. Sera affichée comme un paragraphe."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:171
 msgid "CombiNews: Show image title"
@@ -15969,7 +15967,7 @@ msgstr "CombiNews: Afficher le titre de l’image"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:172
 msgid "Set to show the image title with every item if using the CombiNews mode <em>latest images by album</em> only. Printed as h4-headline."
-msgstr "À activer pour afficher le titre d’image sur tous les éléments en mode CombiNews avec l’option <em>dernières images par album</em>. Sera affiché comme un titre h4."
+msgstr "Activer pour afficher le titre d’image sur tous les éléments en mode CombiNews avec l’option <em>images récentes par album</em>. Sera affiché comme un titre h4."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:173
 msgid "CombiNews: Custom title (singular)"
@@ -15979,7 +15977,7 @@ msgstr "CombiNews : titre personnalisé (singulier)"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:176
 #, php-format
 msgid "Custom title for the article in sprintf() syntax. %1$u = number of new items, %2$s = title of the album they are in, %3$s = titles of the new items. Never leave any of these three out! (<em>latest images by album</em> option only)."
-msgstr "Titre personnalisé pour l’article avec la syntaxe sprintf(). %1$u = nombre de nouveaux éléments, %2$s = titre de l’album où ils se situent, %3$s = titres des nouveaux éléments. N’oubliez jamais un de ces 3 éléments ! (valable pour l’option <em>dernières images par album</em>)."
+msgstr "Titre personnalisé pour l’article avec la syntaxe sprintf(). %1$u = nombre de nouveaux éléments, %2$s = titre de l’album où ils se situent, %3$s = titres des nouveaux éléments. N’oubliez jamais un de ces 3 éléments ! (valable pour l’option <em>images récentes par album</em>)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:175
 msgid "CombiNews: Custom title (plural)"
@@ -15991,7 +15989,7 @@ msgstr "CombiNews : titre personnalisé – nombre de titres d’image"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:178
 msgid "How many images titles you want to show with the custom title (<em>latest images by album</em> option only)."
-msgstr "Le nombre de titres d’images que vous souhaitez afficher avec un titre personnalisé (valable pour l’option <em>dernières images par album</em>)."
+msgstr "Le nombre de titres d’images que vous souhaitez afficher avec un titre personnalisé (valable pour l’option <em>images récentes par album</em>)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:179
 msgid "CombiNews: Number of images"
@@ -15999,7 +15997,7 @@ msgstr "CombiNews : nombre d’images"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:180
 msgid "How many of the new images you want to show. Empty for all. (<em>latest images by album</em> option only)."
-msgstr "Le nombre de nouvelles images que vous souhaitez afficher. Vide pour tout (valable seulement pour l’option <em>dernières images par album</em>)."
+msgstr "Le nombre de nouvelles images que vous souhaitez afficher. Vide pour tout (valable seulement pour l’option <em>images récentes par album</em>)."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage.php:195
 msgid "* These options may be set via the <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin options."
@@ -16051,7 +16049,7 @@ msgstr "Votre soutien aide à défrayer le développement et les coûts du serve
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenphoto_news.php:10
 msgid "Places the latest 3 news articles from Zenphoto.org on the admin overview page."
-msgstr "Affiche les trois derniers articles d’actualités de Zenphoto.org sur la page d’accueil de l’administration."
+msgstr "Affiche les trois plus récents articles d’actualités de Zenphoto.org sur la page d’accueil de l’administration."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenphoto_news.php:12
 msgid "PHP <em>DOM Object Model</em> is required."
@@ -17955,7 +17953,7 @@ msgstr "Vous avez dépassé votre quota de chargement"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/uploader_http/uploader.php:146
 #, php-format
 msgid "The error %s was reported when submitting the form. Please try again. If this keeps happening, check your server and PHP configuration (make sure file uploads are enabled, and upload_max_filesize is set high enough.) If you think this is a bug, file a bug report. Thanks!"
-msgstr "L’erreur %s a été rapportée lorsque vous avez soumis ce formulaire. Veuillez essayer de nouveau. Si l’erreur se reproduit, veuillez vérifier votre serveur et sa configuration php. (Assurez-vous que le chargement de fichiers y est permis et que la limite upload_max_filesize est assez élevée.) Si vous croyez qu’il y a un bug, veuillez le rapporter. Merci !"
+msgstr "L’erreur %s a été rapportée lorsque vous avez soumis ce formulaire. Veuillez essayer de nouveau. Si l’erreur se reproduit, veuillez vérifier votre serveur et sa configuration PHP. (Assurez-vous que le chargement de fichiers y est permis et que la limite upload_max_filesize est assez élevée.) Si vous croyez qu’il y a un bug, veuillez le rapporter. Merci !"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/uploader_http/upload_form.php:61
 msgid "Doesn't reload!"
