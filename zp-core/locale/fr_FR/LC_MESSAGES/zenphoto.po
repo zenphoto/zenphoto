@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-21 19:59-0500\n"
-"PO-Revision-Date: 2012-08-21 23:09-0500\n"
+"POT-Creation-Date: 2012-08-21 23:10-0500\n"
+"PO-Revision-Date: 2012-08-21 23:11-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -7852,17 +7852,17 @@ msgid "The script <code>%1$s</code> has changed."
 msgstr "Le script <code>%1$s</code> a changé."
 
 #: F:\sites\zenphoto-dev/zp-core/reconfigure.php:200
-#: F:\sites\zenphoto-dev/zp-core/setup.php:22
+#: F:\sites\zenphoto-dev/zp-core/setup.php:23
 #, php-format
 msgid "Please reinstall the following setup files from the %1$s [%2$s] release:"
 msgstr "Veuillez installer de nouveau les fichiers d’installation suivants (dossier « setup ») de la version %1$s [%2$s] :"
 
-#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:238
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:231
 #, php-format
 msgid "The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function."
 msgstr "Les changements détectés sont critiques. Vous <strong>devez</strong> exécuter la routine d’insallation (%1$ssetup%2$s) pour que votre gallerie fonctionne."
 
-#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:240
+#: F:\sites\zenphoto-dev/zp-core/reconfigure.php:233
 #, php-format
 msgid "The change detected may not be critical but you should run %1$ssetup%2$s at your earliest convenience."
 msgstr "Les changements détectés ne sont sans doute pas critiques. Vous devriez néanmoins exécuter la routine d’insallation (%1$ssetup%2$s) le plus rapidement possible."
@@ -10015,20 +10015,20 @@ msgid "Third party plugins"
 msgstr "Extensions tierces"
 
 #: F:\sites\zenphoto-dev/zp-core/setup/index.php:1467
-msgid "You need to address the problems indicated above then run <code>setup.php</code> again."
-msgstr "Vous devez corriger les problèmes susmentionnés et relancer l’installation via <code>setup.php</code>."
+msgid "You need to address the problems indicated above then run <code>setup</code> again."
+msgstr "Vous devez corriger les problèmes susmentionnés et relancer l’installation via <code>setup</code>."
 
 #: F:\sites\zenphoto-dev/zp-core/setup/index.php:1470
 msgid "Setup failed."
 msgstr "L’installation a échoué."
 
 #: F:\sites\zenphoto-dev/zp-core/setup/index.php:1481
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2527
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2521
 msgid "You need <em>USER ADMIN</em> rights to run setup."
 msgstr "Vous avez besoin de droits d’administration (<em>USER ADMIN</em>) pour réaliser l’installation."
 
 #: F:\sites\zenphoto-dev/zp-core/setup/index.php:1483
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2529
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2523
 msgid "You must be logged in to run setup."
 msgstr "Vous devez être connecté pour lancer l’installation."
 
@@ -10094,80 +10094,80 @@ msgstr "Mise à jour de la table effectuée !"
 msgid "Done with table update with errors"
 msgstr "Mise à jour de la table effectuée, mais avec des erreurs."
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2348
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2342
 msgid "Setup files deleted."
 msgstr "Fichiers d’installation supprimés."
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2355
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2349
 #, php-format
 msgid "Failed to delete: %s"
 msgstr "%s n’a pu être effacé(e)"
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2363
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2357
 msgid "<strong>NOTE:</strong> We strongly recommend you remove the <em>setup</em> scripts from your zp-core folder at this time. You can always re-upload them should you find you need them again in the future."
 msgstr "<strong>Note.</strong> Il est vivement conseillé de supprimer <em>les scripts d’installation</em> du dossier zp-core. Il est toujours possible de les charger de nouveau au besoin."
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2368
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2362
 msgid "Delete setup files"
 msgstr "Supprimer les fichiers d’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2373
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2367
 msgid "This is a clone of another installation. The setup files should be deleted from that installation"
 msgstr "Il s’agit d’un clone d’une autre installation. Les fichiers d’installation devraient être effacés de cette autre installation"
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2383
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2377
 #, php-format
 msgid "You may <a href=\"%1$s\">set your admin user and password</a> or <a href=\"%2$s\">run backup-restore</a>"
 msgstr "Vous devez <a href=\"%1$s\">spécifier les identifiant et mot de passe de l’administrateur</a> ou <a href=\"%2$s\">lancer la sauvegarde/restauration</a>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2388
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2382
 #, php-format
 msgid "You need to <a href=\"%1$s\">set your admin user and password</a>"
 msgstr "Vous devez <a href=\"%1$s\">spécifier les identifiant et mot de passe de l’administrateur</a>"
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2394
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2388
 #, php-format
 msgid "You can now <a href=\"%1$s\">View your gallery</a> or <a href=\"%2$s\">administer.</a>"
 msgstr "Vous pouvez maintenant <a href=\"%1$s\">voir votre galerie</a> ou <a href=\"%2$s\">la gérer</a>."
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2447
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2441
 #, php-format
 msgid "Database tables to create: %s"
 msgstr "Tables de la base de données à créer : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2465
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2459
 #, php-format
 msgid "Database tables to update: %s"
 msgstr "Tables de la base de données à mettre à jour : %s"
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2496
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2490
 msgid "<strong>Warning!</strong> This upgrade makes structural changes to the database which are not easily reversed. Be sure you have a database backup before proceeding."
 msgstr "<strong>Attention !</strong> Cette mise à jour effectue des modifications structurelles à la base de données. Ce sont des changements difficilement réversibles. Assurez-vous d’avoir une sauvegarde avant de continuer."
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2499
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2493
 #, php-format
 msgid "%s I acknowledge that proceeding will restructure my database."
 msgstr "%s Je comprends que cette opération va restructurer ma base de données."
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2557
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2551
 msgid "run setup"
 msgstr "lancer l’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2557
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2551
 msgid "Go"
 msgstr "C’est parti !"
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2573
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2567
 msgid "database did not connect"
 msgstr "Impossible de se connecter à la base de données"
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2575
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2569
 msgid "If you haven't created the database yet, now would be a good time."
 msgstr "Si vous n’avez pas encore créé la base de données, il serait temps de le faire."
 
-#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2584
-msgid "The zenphoto.cfg file does not exist. You should run setup.php to check your configuration and create this file."
-msgstr "Le fichier zenphoto.cfg n’existe pas. Vous devriez lancer setup.php pour vérifier votre configuration et créer ce fichier."
+#: F:\sites\zenphoto-dev/zp-core/setup/index.php:2578
+msgid "The zenphoto.cfg file does not exist."
+msgstr "Le fichier <em>zenphoto.cfg</em> n’existe pas"
 
 #: F:\sites\zenphoto-dev/zp-core/setup/setup-functions.php:56
 #, php-format
@@ -16293,7 +16293,7 @@ msgstr "démarrer la nouvelle installation"
 msgid "Before running setup for <code>%1$s</code> please reinstall the following setup files from the %2$s [%3$s] to this installation:"
 msgstr "Avant d’exécuter le script d’installation de <code>%1$s</code>, veuillez installer de nouveau les fichiers d’installation suivants (dossier « setup ») de %2$s [%3$s] de cette installation :"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/cloneZenphoto/clone.php:144
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/cloneZenphoto/clone.php:141
 #, php-format
 msgid "Clone to <code>%s</code> failed"
 msgstr "Le clonage de <code>%s</code> a échoué"
@@ -18788,6 +18788,13 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
+
+#~ msgid ""
+#~ "The zenphoto.cfg file does not exist. You should run setup.php to check "
+#~ "your configuration and create this file."
+#~ msgstr ""
+#~ "Le fichier zenphoto.cfg n’existe pas. Vous devriez lancer setup.php pour "
+#~ "vérifier votre configuration et créer ce fichier."
 
 #~ msgid ""
 #~ "SQLite is a limited database and does not support all Zenphoto "
