@@ -704,15 +704,15 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 							}
 							break;
 					}
-					$msg2 = '<p>'.sprintf(gettext('If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems displaying the names.'),$charset_defined).'</p>'.
+					$msg2 = '<p>'.sprintf(gettext('If your server filesystem character set is different from <code>%s</code> and you create album or image filenames names containing characters with diacritical marks you may have problems with these objects.'),$charset_defined).'</p>'.
 									'<form action="#"><input type="hidden" name="xsrfToken" value="'.$xsrftoken.'" /><input type="hidden" name="charset_attempts" value="'.$tries.'" /><p>'.
-									gettext('Change the filesystem character set define to %1$s.<br />If you do not know the character set try "%2$s"').
+									gettext('Change the filesystem character set define to %1$s').
 									'</p></form><br clear="all" />';
 
 					if (isset($_zp_conf_vars['FILESYSTEM_CHARSET'])) {
 						$selectedset = $_zp_conf_vars['FILESYSTEM_CHARSET'];
 					} else {
-						$selectedset = FILESYSTEM_CHARSET;
+						$selectedset = 'unknown';
 					}
 					$msg = '';
 					if ($test) {
@@ -745,7 +745,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 							$notice = -1;
 						}
 					}
-					checkMark($notice, $msg, $msg1, sprintf($msg2,charsetSelector($trialset),$trialset));
+					checkMark($notice, $msg, $msg1, sprintf($msg2,charsetSelector(FILESYSTEM_CHARSET)));
 					// UTF-8 URI
 					if (($notice != -1) && @copy(SERVERPATH.'/'.ZENFOLDER.'/images/pass.png', $serverpath.'/'.DATA_FOLDER.'/'.internalToFilesystem('tést.jpg'))) {
 						$test_image = WEBPATH.'/'.DATA_FOLDER.'/'.urlencode('tést.jpg');

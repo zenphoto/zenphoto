@@ -484,8 +484,6 @@ zp-core/js/jquery.js
 zp-core/js/jquery.masonry.min.js
 zp-core/js/jquery.pagination.js
 zp-core/js/jquery.scrollTo.js
-zp-core/js/jquery.tabs.js
-zp-core/js/jquery.toggleElements.js
 zp-core/js/jquery.tooltip.js
 zp-core/js/jquery.ui.nestedSortable.js
 zp-core/js/jqueryui
@@ -1915,4 +1913,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1917
+1915
