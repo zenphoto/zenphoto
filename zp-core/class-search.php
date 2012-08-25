@@ -23,7 +23,8 @@ class SearchEngine {
 	var $albums = NULL;
 	var $articles = NULL;
 	var $pages = NULL;
-	var $dynalbumname;
+	protected $dynalbumname;
+	protected $album = NULL;
 	protected $words;
 	protected $dates;
 	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
@@ -343,6 +344,15 @@ class SearchEngine {
 					break;
 				case 'albumname':
 					$this->dynalbumname = $v;
+					$this->album = new Album(NULL, $v);
+					$this->albumsorttype = $this->album->getAlbumSortType();
+					if ($this->album->getSortDirection('album')) {
+						$this->albumsortdirection = 'DESC';
+					}
+					$this->imagesorttype = $this->album->getSortType();
+					if ($this->album->getSortDirection('image')) {
+						$this->imagesortdirection = 'DESC';
+					}
 					break;
 				case 'inimages':
 					if (strlen($v) > 0) {
@@ -807,7 +817,7 @@ class SearchEngine {
 				break;
 			case 'albums':
 				if (is_null($sorttype)) {
-					if (empty($this->dynalbumname)) {
+					if (empty($this->album)) {
 						$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'folder');
 						if ($key != '`sort_order`') {
 							if ($_zp_gallery->getSortDirection()) {
@@ -815,10 +825,9 @@ class SearchEngine {
 							}
 						}
 					} else {
-						$album = new Album(NULL, $this->dynalbumname);
-						$key = $album->getAlbumSortKey();
+						$key = $this->album->getAlbumSortKey();
 						if ($key != '`sort_order`' && $key != 'RAND()') {
-							if ($album->getSortDirection('album')) {
+							if ($thie->album->getSortDirection('album')) {
 								$key .= " DESC";
 							}
 						}
@@ -836,7 +845,7 @@ class SearchEngine {
 					}
 				}
 				if (is_null($sorttype)) {
-					if (empty($this->dynalbumname)) {
+					if (empty($this->album)) {
 						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'filename');
 						if ($key != '`sort_order`') {
 							if (IMAGE_SORT_DIRECTION) {
@@ -844,10 +853,9 @@ class SearchEngine {
 							}
 						}
 					} else {
-						$album = new Album(NULL, $this->dynalbumname);
-						$key = $album->getImageSortKey();
+						$key = $thie->album->getImageSortKey();
 						if ($key != '`sort_order`' && $key != 'RAND()') {
-							if ($album->getSortDirection('image')) {
+							if ($this->album->getSortDirection('image')) {
 								$key .= " DESC";
 							}
 						}
@@ -1151,16 +1159,15 @@ class SearchEngine {
 					}
 					$sql .= "`folder` ";
 					if (is_null($sorttype)) {
-						if (empty($this->dynalbumname)) {
+						if (empty($this->album)) {
 							$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'folder');
 							if ($_zp_gallery->getSortDirection()) {
 								$key .= " DESC";
 							}
 						} else {
-							$album = new Album(NULL, $this->dynalbumname);
-							$key = $album->getAlbumSortKey();
+							$key = $this->album->getAlbumSortKey();
 							if ($key != '`sort_order`' && $key != 'RAND()') {
-								if ($album->getSortDirection('album')) {
+								if ($this->album->getSortDirection('album')) {
 									$key .= " DESC";
 								}
 							}
@@ -1178,16 +1185,15 @@ class SearchEngine {
 				}
 				$sql .= "`albumid`,`filename` ";
 				if (is_null($sorttype)) {
-					if (empty($this->dynalbumname)) {
+					if (empty($this->album)) {
 						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'filename');
 						if (IMAGE_SORT_DIRECTION) {
 							$key .= " DESC";
 						}
 					} else {
-						$album = new Album(NULL, $this->dynalbumname);
-						$key = $album->getImageSortKey();
+						$key = $this->album->getImageSortKey();
 						if ($key != '`sort_order`') {
-							if ($album->getSortDirection('image')) {
+							if ($this->album->getSortDirection('image')) {
 								$key .= " DESC";
 							}
 						}
@@ -1248,17 +1254,16 @@ class SearchEngine {
 						$albumname = $row['folder'];
 						if ($albumname != $this->dynalbumname) {
 							if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
-								$album = new Album(NULL, $albumname);
-								$uralbum = getUrAlbum($album);
+								$uralbum = getUrAlbum($this->album);
 								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 								switch (checkPublishDates($row)) {
 									case 1:
-										$album->setShow(0);
-										$album->save();
+										$this->album->setShow(0);
+										$this->album->save();
 									case 2:
 										$row['show'] = 0;
 								}
-								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
+								if ($mine || (is_null($mine) && $this->album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
 									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 										$result[] = array('name'=>$albumname, 'weight'=>$weights[$row['id']]);
 									}
@@ -1526,6 +1531,10 @@ class SearchEngine {
 			return newImage(new Album($_zp_gallery, $img['folder']), $img['filename']);
 		}
 		return false;
+	}
+
+	function getDynamicAlbum() {
+		return $this->album;
 	}
 
 	/**

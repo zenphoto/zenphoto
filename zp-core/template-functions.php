@@ -1024,9 +1024,8 @@ function getParentAlbums($album=null) {
 		global $_zp_current_album, $_zp_current_search, $_zp_gallery;
 		if (is_null($album)) {
 			if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) {
-				$name = $_zp_current_search->dynalbumname;
+				$album = $_zp_current_search->getDynamicAlbum();
 				if (empty($name)) return $parents;
-				$album = new Album(NULL, $name);
 			} else {
 				$album = $_zp_current_album;
 			}
@@ -1049,7 +1048,7 @@ function getAlbumBreadcrumb($title=NULL) {
 	$output = array();
 	if (in_context(ZP_SEARCH_LINKED)) {
 		$album = NULL;
-		$dynamic_album = $_zp_current_search->dynalbumname;
+		$dynamic_album = $_zp_current_search->getDynamicAlbum();
 		if (empty($dynamic_album)) {
 			if (!is_null($_zp_current_album)) {
 				if (in_context(ZP_ALBUM_LINKED) && $_zp_last_album == $_zp_current_album->name) {
@@ -1060,7 +1059,7 @@ function getAlbumBreadcrumb($title=NULL) {
 			if (in_context(ZP_IMAGE) && in_context(ZP_ALBUM_LINKED)) {
 				$album = $_zp_current_album;
 			} else {
-				$album = new Album(NULL, $dynamic_album);
+				$album = $dynamic_album;
 			}
 		}
 	} else {
@@ -1120,7 +1119,7 @@ function getParentBreadcrumb() {
 			$search_album_list = array();
 		}
 		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$search_album_list));
-		$dynamic_album = $_zp_current_search->dynalbumname;
+		$dynamic_album = $_zp_current_search->getDynamicAlbum();
 		if (empty($dynamic_album)) {
 			$output[] = array('link' => $searchpagepath, 'title' => gettext("Return to search"), 'text' => gettext("Search"));
 			if (is_null($_zp_current_album)) {
@@ -1129,7 +1128,7 @@ function getParentBreadcrumb() {
 				$parents = getParentAlbums();
 			}
 		} else {
-			$album = new Album(NULL, $dynamic_album);
+			$album = $dynamic_album;
 			$parents = getParentAlbums($album);
 			if (in_context(ZP_ALBUM_LINKED)) {
 				array_push($parents, $album);

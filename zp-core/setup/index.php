@@ -2381,7 +2381,7 @@ if (file_exists(CONFIGFILE)) {
 				} else {
 					$link = sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'),'admin-users.php?page=users');
 					if ($autorun == 'admin' || $autorun == 'gallery') {
-						$autorun = 'admin-users.php?page=users';
+						$autorun = WEBPATH.'/'.ZENFOLDER.'admin-users.php?page=users';
 					}
 				}
 			} else {
@@ -2396,10 +2396,10 @@ if (file_exists(CONFIGFILE)) {
 				case false:
 					break;
 				case 'admin':
-					$autorun = 'admin.php';
+					$autorun = WEBPATH.'/'.ZENFOLDER.'/admin.php';
 					break;
 				case 'gallery':
-					$autorun = '..';
+					$autorun = WEBPATH.'/';
 					break;
 				default:
 					break;

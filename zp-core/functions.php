@@ -760,9 +760,9 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 		// check to see if we are still "in the search context"
 		if (!is_null($image)) {
 			if ($_zp_current_search->getImageIndex($album->name, $image->filename) !== false) {
-				$dynamic_album = $_zp_current_search->dynalbumname;
+				$dynamic_album = $_zp_current_search->getDynamicAlbum();
 				if (!empty($dynamic_album)) {
-					$_zp_current_album = new Album(NULL, $dynamic_album);
+					$_zp_current_album = $dynamic_album;
 				}
 				$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
 			}
@@ -863,12 +863,7 @@ function setupTheme() {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_zp_themeroot;
 	$albumtheme = '';
 	if (in_context(ZP_SEARCH_LINKED)) {
-		$name = $_zp_current_search->dynalbumname;
-		if (!empty($name)) {
-			$album = new Album(NULL, $name);
-		} else {
-			$album = NULL;
-		}
+		$album = $_zp_current_search->getDynamicAlbum();
 	} else {
 		$album = $_zp_current_album;
 	}

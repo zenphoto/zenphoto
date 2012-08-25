@@ -321,13 +321,13 @@ function inventMenuItem($menuset,$visibility) {
 		case 'image.php':
 			$name = '';
 			if (in_context(ZP_SEARCH_LINKED) && !in_context(ZP_ALBUM_LINKED)) {
-				$name = $_zp_current_search->dynalbumname;
-				if (empty($name)) {	//	smple search
+				$dynamic = $_zp_current_search->getDynamicAlbum();
+				if (empty($dynamic)) {	//	smple search
 					foreach ($_menu_manager_items[$menuset][$visibility] as $key=>$item) {
 						if ($item['type']=='custompage' && $item['link'] == 'search') {
-						$insertpoint = $item['sort_order'];
-						$currentkey = $insertpoint.'-9999';
-						break;
+							$insertpoint = $item['sort_order'];
+							$currentkey = $insertpoint.'-9999';
+							break;
 						}
 					}
 				}
