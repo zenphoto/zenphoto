@@ -64,9 +64,23 @@ class ipBlocker {
 	function getOptionsSupported() {
 		$buttons = array(	gettext('Allow')=>'allow',gettext('Block')=>'block');
 		$text = array_flip($buttons);
+		$cwd = getcwd();
+		chdir(SERVERPATH.'/'.UPLOAD_FOLDER);
+		$list = safe_glob('*.txt');
+		chdir($cwd);
+		$files = array(''=>'');
+		foreach ($list as $file) {
+			$files[$file] = $file;
+		}
 		$options = array(	gettext('IP list') => array('key' => 'ipBlocker_IP', 'type' => OPTION_TYPE_CUSTOM,
 																									'order'=>4,
 																									'desc' => sprintf(gettext('List of IP ranges to %s.'), $text[getOption('ipBlocker_type')])),
+											gettext('Import list') => array('key' => 'ipBlocker_import', 'type' => OPTION_TYPE_SELECTOR,
+																									'order' => 5,
+																									'selections' => $files,
+																									'nullselection' => '',
+																									'disabled' => !getOption('zp_plugin_ipBlocker'),
+																									'desc' => sprintf(gettext('Import an external IP list. <p class="notebox"><strong>NOTE:</strong> If this list is large it may excede the capacity of Zenphoto and %s to process and store the results.'),DATABASE_SOFTWARE)),
 											gettext('Action') =>array('key' => 'ipBlocker_type', 'type' => OPTION_TYPE_RADIO,
 																								'order'=>3,
 																								'buttons'=>$buttons,
@@ -78,10 +92,10 @@ class ipBlocker {
 																												'order'=>2,
 																												'desc' => gettext('The block will be removed after this many minutes.'))
 		);
-			if (!getOption('zp_plugin_ipBlocker')) {
+		if (!getOption('zp_plugin_ipBlocker')) {
 			$options['note'] = array('key'=>'ipBlocker_note', 'type'=>OPTION_TYPE_NOTE,
 																'order'=>0,
-																'desc'=>'<p class="notebox">'.gettext('IP list ranges cannot be saved with the plugin disabled').'</p>');
+																'desc'=>'<p class="notebox">'.gettext('IP list ranges cannot be managed with the plugin disabled').'</p>');
 		}
 		return $options;
 	}
@@ -93,24 +107,52 @@ class ipBlocker {
 		} else {
 			$disabled = ' disabled="disabled"';
 		}
-		$key = 0;
-		foreach ($list as $key=>$range) {
-			?>
-			<input type="textbox" size="20" name="ipBlocker_ip_start_<?php echo $key; ?>" value="<?php echo html_encode($range['start']); ?>"<?php echo $disabled; ?> />
-			-
-			<input type="textbox" size="20" name="ipBlocker_ip_end_<?php echo $key; ?>" value="<?php echo html_encode($range['end']); ?>"<?php echo $disabled; ?> />
-			<br />
-			<?php
-		}
-		$i = $key;
-		while ($i < $key+4) {
-			$i++;
-			?>
-			<input type="textbox" size="20" name="ipBlocker_ip_start_<?php echo $i; ?>" value=""<?php echo $disabled; ?> />
-			-
-			<input type="textbox" size="20" name="ipBlocker_ip_end_<?php echo $i; ?>" value=""<?php echo $disabled; ?> />
-			<br />
-			<?php
+
+		switch($option) {
+			case 'ipBlocker_IP':
+				$key = 0;
+				foreach ($list as $key=>$range) {
+					?>
+					<input id="ipholder_<?php echo $key; ?>a" type="textbox" size="20" name="ipBlocker_ip_start_<?php echo $key; ?>"
+						value="<?php echo html_encode($range['start']); ?>" <?php echo $disabled; ?> />
+					-
+					<input id="ipholder_<?php echo $key; ?>b" type="textbox" size="20" name="ipBlocker_ip_end_<?php echo $key; ?>"
+						value="<?php echo html_encode($range['end']); ?>" <?php echo $disabled; ?> />
+					<br />
+					<?php
+				}
+				$i = $key;
+				while ($i < $key+4) {
+					$i++;
+					?>
+					<input id="ipholder_<?php echo $i; ?>a" type="textbox" size="20" name="ipBlocker_ip_start_<?php echo $i; ?>"
+						value="" <?php echo $disabled; ?> />
+					-
+					<input id="ipholder_<?php echo $i; ?>b" type="textbox" size="20" name="ipBlocker_ip_end_<?php echo $i; ?>"
+						value="" <?php echo $disabled; ?> />
+					<br />
+					<?php
+				}
+				?>
+				<script type="text/javascript">
+				<!--
+				function clearips() {
+					<?php
+					for ($i=0;$i<=$key+4;$i++) {
+						?>
+						$('#ipholder_<?php echo $i; ?>a').val('');
+						$('#ipholder_<?php echo $i; ?>b').val('');
+						<?php
+					}
+					?>
+				}
+				//-->
+				</script>
+				<p class="buttons">
+					<a href="javascript:clearips();"><?php echo gettext('clear list'); ?></a>
+				</p>
+				<?php
+				break;
 		}
 	}
 
@@ -134,6 +176,95 @@ class ipBlocker {
 			}
 		}
 		setOption('ipBlocker_list', serialize($list));
+		purgeOption('ipBlocker_import');
+		if (!empty($_POST['ipBlocker_import'])) {
+			$file = SERVERPATH.'/'.UPLOAD_FOLDER.'/'.sanitize_path($_POST['ipBlocker_import']);
+			if (file_exists($file)) {
+				$import_list = array();
+				// insert current list into import list for posterity
+				foreach ($list as $range) {
+					$ipa = explode('.',$range['end']);
+					$ipend = sprintf('%03u.%03u.%03u.%03u',@$ipa[0],@$ipa[1],@$ipa[2],@$ipa[3]);
+					$ipa = explode('.',$range['start']);
+					do {
+						$current = sprintf('%03u.%03u.%03u.%03u',@$ipa[0],@$ipa[1],@$ipa[2],@$ipa[3]);
+						$ipa[3]++;
+						if ($ipa[3]>255) {
+							$ipa[3] = 0;
+							$ipa[2]++;
+							if ($ipa[2]>255) {
+								$ipa[2] = 0;
+								$ipa[2]++;
+								if ($ipa[1]>255) {
+									$ipa[1] = 0;
+									$ipa[0]++;
+									if ($ipa[0]>255) {
+										break;
+									}
+								}
+							}
+						}
+						$import_list[] = $current;
+					} while ($current < $ipend);
+				}
+
+
+				$import = explode("\n",  file_get_contents($file));
+				foreach ($import as $ip) {
+					$ip = trim($ip);
+					if ($ip) {
+						$ipa = explode('.', $ip);
+						$import_list[] = sprintf('%03u.%03u.%03u.%03u',@$ipa[0],@$ipa[1],@$ipa[2],@$ipa[3]);
+					}
+				}
+
+
+				$list = array();
+				if (!empty($import_list)) {
+					$import_list = array_unique($import_list);	//	remove duplicates
+					sort($import_list);
+					//now make a range pair list for the storage.
+					$current = $start = array_shift($import_list);
+					$end = $start;
+					$clean = false;
+					while (!empty($import_list)) {
+						$try = trim(array_shift($import_list));
+						if ($try) {	//	ignore empty lines
+							$ipa = explode('.',$current);
+							$ipa[3]++;
+							if ($ipa[3]>255) {
+								$ipa[3] = 0;
+								$ipa[2]++;
+								if ($ipa[2]>255) {
+									$ipa[2] = 0;
+									$ipa[2]++;
+									if ($ipa[1]>255) {
+										$ipa[1] = 0;
+										$ipa[0]++;
+										if ($ipa[0]>255) {
+											break;
+										}
+									}
+								}
+							}
+							$next = sprintf('%03u.%03u.%03u.%03u',@$ipa[0],@$ipa[1],@$ipa[2],@$ipa[3]);
+							$current = $try;
+							if ($clean = $current != $next) {
+								$list[] = array('start'=> $start,'end'=>$end);
+								$start = $end = $current;
+							} else {
+								$end = $next;
+							}
+						}
+					}
+					if (!$clean) {
+						$list[] = array('start'=> $start,'end'=>$end);
+					}
+					setOption('ipBlocker_list', serialize($list));
+				}
+
+			}
+		}
 		return $notify;
 	}
 
@@ -208,9 +339,10 @@ class ipBlocker {
 		$allow = getOption('ipBlocker_type') == 'allow';
 		$gate = $allow;
 		if (!empty($list)) {
-			$ip = getUserIP();
+			$ipa = explode('.',getUserIP());
+			$ip = sprintf('%03u.%03u.%03u.%03u',@$ipa[0],@$ipa[1],@$ipa[2],@$ipa[3]);
 			foreach ($list as $range) {
-				if (version_compare($ip, $range['start'], '=>') && version_compare($ip, $range['end'], '<=')) {
+				if ($ip>=$range['start'] && $ip<=$range['end']) {
 					$gate = !$allow;
 					break;
 				}

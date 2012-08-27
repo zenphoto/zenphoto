@@ -757,14 +757,16 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 		$context = get_context();
 		$_zp_current_search = new SearchEngine();
 		$_zp_current_search->setSearchParams($params);
+		$dynamic_album = $_zp_current_search->getDynamicAlbum();
 		// check to see if we are still "in the search context"
-		if (!is_null($image)) {
-			if ($_zp_current_search->getImageIndex($album->name, $image->filename) !== false) {
-				$dynamic_album = $_zp_current_search->getDynamicAlbum();
-				if (!empty($dynamic_album)) {
+		if (!is_null($image) && $dynamic_album) {
+			$images = $_zp_current_search->getImages(0, 0, NULL, NULL, false);
+			foreach($images as $try) {
+				if (($album->name == $try['folder']) && ($image->filename == $try['filename'])) {
 					$_zp_current_album = $dynamic_album;
+					$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
+					break;
 				}
-				$context = $context | ZP_SEARCH_LINKED | ZP_IMAGE_LINKED;
 			}
 		}
 		if (!is_null($album)) {

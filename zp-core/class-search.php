@@ -27,19 +27,19 @@ class SearchEngine {
 	protected $album = NULL;
 	protected $words;
 	protected $dates;
-	protected $whichdates = 'date'; // for zenpage date searches, which date field to search
-	protected $search_no_albums;	// omit albums
-	protected $search_no_images;	// omit albums
-	protected $search_no_pages;		// omit pages
-	protected $search_no_news;		// omit news
-	protected $search_unpublished;// will override the loggedin checks with respect to unpublished items
-	protected $search_structure;	// relates translatable names to search fields
-	protected $iteration = 0;			// used by apply_filter('search_statistics') to indicate sequential searches of different objects
+	protected $whichdates = 'date'; 	// for zenpage date searches, which date field to search
+	protected $search_no_albums;			// omit albums
+	protected $search_no_images;			// omit images
+	protected $search_no_pages;				// omit pages
+	protected $search_no_news;				// omit news
+	protected $search_unpublished;		// will override the loggedin checks with respect to unpublished items
+	protected $search_structure;			// relates translatable names to search fields
+	protected $iteration = 0;					// used by apply_filter('search_statistics') to indicate sequential searches of different objects
 	protected $processed_search = NULL;
-	protected $album_list = NULL;	// list of albums to search
-	protected $category_list;			// list of categories for a news search
-	protected $searches = NULL;		// remember the criteria for past searches
-	protected $extraparams = array();// allow plugins to add to search parameters
+	protected $album_list = NULL;			// list of albums to search
+	protected $category_list;					// list of categories for a news search
+	protected $searches = NULL;				// remember the criteria for past searches
+	protected $extraparams = array();	// allow plugins to add to search parameters
 	protected $albumsorttype = NULL;
 	protected $albumsortdirection = NULL;
 	protected $imagesorttype = NULL;
