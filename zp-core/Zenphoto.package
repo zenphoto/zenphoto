@@ -639,6 +639,7 @@ zp-core/setup/setup-primitive.php
 zp-core/setup/setup-sqlform.php
 zp-core/setup/setup.css
 zp-core/setup/setup_permissions_changer.php
+zp-core/setup/setup_pluginOptions.php
 zp-core/setup/setup_set-mod_rewrite.php
 zp-core/setup/setup_themeOptions.php
 zp-core/template-functions.php
@@ -1027,6 +1028,7 @@ zp-core/zp-extensions/site_upgrade
 zp-core/zp-extensions/site_upgrade.php
 zp-core/zp-extensions/site_upgrade/closed.html
 zp-core/zp-extensions/site_upgrade/closed.png
+zp-core/zp-extensions/site_upgrade/site_upgrade.php
 zp-core/zp-extensions/sitemap-extended
 zp-core/zp-extensions/sitemap-extended.php
 zp-core/zp-extensions/sitemap-extended/sitemap-extended-admin.php
@@ -1913,4 +1915,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1915
+1917

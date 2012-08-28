@@ -581,40 +581,27 @@ setOptionDefault('articles_per_page', 15);
 
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
-$plugins = array_keys(getEnabledPlugins());
-foreach ($plugins as $extension) {
-	$option_interface = NULL;
-	$path = getPlugin($extension.'.php');
-	$pluginStream = file_get_contents($path);
-	if (getOption('zp_plugin_').$extension) {
-		$plugin_is_filter = NULL;
-		$str = isolate('$plugin_is_filter', $pluginStream);
-		if ($str) {
-			eval($str);
-			if ($plugin_is_filter < THEME_PLUGIN) {
-				if ($plugin_is_filter < 0) {
-					$plugin_is_filter = abs($plugin_is_filter)|THEME_PLUGIN|ADMIN_PLUGIN;
-				} else {
-					if ($plugin_is_filter == 1) {
-						$plugin_is_filter = 1|THEME_PLUGIN;
-					} else {
-						$plugin_is_filter = $plugin_is_filter|CLASS_PLUGIN;
-					}
-				}
-			}
-		} else {
-			$plugin_is_filter = 1|THEME_PLUGIN;
-		}
-		setOption('zp_plugin_'.$extension, $plugin_is_filter);
-		$str = isolate('$option_interface', $pluginStream);
-		if (false !== $str) {
-			require_once($path);
-			eval($str);
-			if (is_string($option_interface)) {
-				$option_interface = new $option_interface;
-			}
-		}
+$plugins = getPluginFiles('*.php');
+
+?>
+<script type="text/javascript">
+	// <!-- <![CDATA[
+	<?php
+	foreach ($plugins as $extension=>$path) {
+		?>
+		$.ajax({
+			type: 'POST',
+			cache: false,
+			url: '<?php echo WEBPATH.'/'.ZENFOLDER; ?>/setup/setup_pluginOptions.php',
+			data: 'plugin=<?php echo $extension; ?>'
+		});
+		<?php
 	}
-	purgeOption('last_backup_run');	// should probably backup the site after an installation!
-}
+	?>
+	// ]]> -->
+</script>
+<?php
+
+purgeOption('last_backup_run');	// should probably backup the site after an installation!
+
 ?>
