@@ -14,7 +14,7 @@ if(!function_exists("gettext")) {
 } else {
 	$noxlate = 1;
 }
-define('HTACCESS_VERSION', '1.4.3.2');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
+define('HTACCESS_VERSION', '1.4.4');  // be sure to change this the one in .htaccess when the .htaccess file is updated.
 
 define('OFFSET_PATH', 2);
 
@@ -289,7 +289,7 @@ if ($newconfig || isset($_GET['copyhtaccess'])) {
 	if ($newconfig && !file_exists($serverpath.'/.htaccess') || zp_loggedin(ADMIN_RIGHTS)) {
 		@chmod($serverpath.'/.htaccess',0777);
 		$ht = @file_get_contents(SERVERPATH.'/.htaccess');
-		$newht = file_get_contents(dirname(dirname(__FILE__)).'/htaccess');
+		$newht = file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/htaccess');
 		if (site_closed($ht)) {
 			$newht = close_site($newht);
 		}
@@ -1309,7 +1309,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		$ch = !empty($vr) && ($vr == HTACCESS_VERSION);
 		$d = str_replace('\\','/',dirname(dirname(dirname($_SERVER['SCRIPT_NAME']))));
 		if (!$ch) {	// wrong version
-			$oht = trim(@file_get_contents('oldhtaccess'));
+			$oht = trim(@file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/oldhtaccess'));
 			//fix the rewritebase
 			$i = strpos($oht, 'RewriteBase /zenphoto');
 			$oht = substr($oht, 0, $i) . "RewriteBase $d" . substr($oht, $i+21);
@@ -1318,7 +1318,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			}
 			$oht = trim($oht);
 			if ($oht == $ht) {	// an unmodified .htaccess file, we can just replace it
-				$ht = trim(file_get_contents('htaccess'));
+				$ht = trim(file_get_contents(SERVERPATH.'/'.ZENFOLDER.'/htaccess'));
 				$i = strpos($ht, 'RewriteBase /zenphoto');
 				$ht = substr($ht, 0, $i) . "RewriteBase $d" . substr($ht, $i+21);
 				if ($closed) {

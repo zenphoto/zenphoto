@@ -580,15 +580,10 @@ function site_closed($ht) {
  * if site was closed, keep it that way....
  */
 function close_site($nht) {
-	$htpath = SERVERPATH.'/.htaccess';
-	$nht = file_get_contents($htpath);
 	preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|',$nht,$matches);
 	foreach ($matches[0] as $match) {
 		$nht = str_replace($match, ' '.substr($match,1), $nht);
 	}
-	@chmod($htpath, 0777);
-	file_put_contents($htpath, $nht);
-	@chmod($htpath, 0444);
 	return $nht;
 }
 

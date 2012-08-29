@@ -189,154 +189,6 @@ zp_apply_filter('admin_note','Overview', NULL);
 if (zp_loggedin(OVERVIEW_RIGHTS)) {
 	?>
 	<div id="overviewboxes">
-		<div class="box overview-utility overiew-gallery-stats">
-			<h2 class="h2_bordered"><?php echo gettext("Gallery Stats"); ?></h2>
-			<ul>
-				<li>
-				<?php
-				$t = $_zp_gallery->getNumImages();
-				$c = $t-$_zp_gallery->getNumImages(true);
-				if ($c > 0) {
-					printf(ngettext('<strong>%1$u</strong> Image (%2$u un-published)','<strong>%1$u</strong> Images (%2$u un-published)',$t),$t, $c);
-				} else {
-					printf(ngettext('<strong>%u</strong> Image','<strong>%u</strong> Images',$t),$t);
-				}
-				?>
-				</li>
-				<li>
-				<?php
-				$t = $_zp_gallery->getNumAlbums(true);
-				$c = $t-$_zp_gallery->getNumAlbums(true,true);
-				if ($c > 0) {
-					printf(ngettext('<strong>%1$u</strong> Album (%2$u un-published)','<strong>%1$u</strong> Albums (%2$u un-published)',$t),$t, $c);
-				} else {
-					printf(ngettext('<strong>%u</strong> Album', '<strong>%u</strong> Albums',$t),$t);
-				}
-				?>
-				</li>
-				<li>
-				<?php
-				$t = $_zp_gallery->getNumComments(true);
-				$c = $t - $_zp_gallery->getNumComments(false);
-				if ($c > 0) {
-					printf(ngettext('<strong>%1$u</strong> Comment (%2$u in moderation)','<strong>%1$u</strong> Comments (%2$u in moderation)', $t), $t, $c);
-				} else {
-					printf(ngettext('<strong>%u</strong> Comment','<strong>%u</strong> Comments', $t), $t);
-				}
-				?>
-				</li>
-				<?php
-				if(getOption('zp_plugin_zenpage')) { ?>
-					<li>
-						<?php
-						list($total,$type,$unpub) = getNewsPagesStatistic("pages");
-						if (empty($unpub)) {
-							printf(ngettext('<strong>%1$u</strong> Page','<strong>%1$u</strong> Pages',$total),$total,$type);
-						} else {
-							printf(ngettext('<strong>%1$u</strong> Page (%2$u un-published)','<strong>%1$u</strong> Pages (%2$u un-published)',$total),$total,$unpub);
-						}
-						?>
-					</li>
-					<li>
-						<?php
-						list($total,$type,$unpub) = getNewsPagesStatistic("news");
-						if (empty($unpub)) {
-							printf(ngettext('<strong>%1$u</strong> News','<strong>%1$u</strong> News',$total),$total);
-						} else {
-							printf(ngettext('<strong>%1$u</strong> News (%2$u un-published)','<strong>%1$u</strong> News (%2$u un-published)',$total),$total,$unpub);
-						}
-						?>
-					</li>
-					<li>
-						<?php
-						list($total,$type,$unpub) = getNewsPagesStatistic("categories");
-						printf(ngettext('<strong>%1$u</strong> Category','<strong>%1$u</strong> Categories',$total),$total);
-						?>
-					</li>
-				<?php
-				}
-				?>
-			</ul>
-		</div><!-- overview-gallerystats -->
-
-<?php
-if (zp_loggedin(OVERVIEW_RIGHTS)) {
-	$buttonlist = array();
-	$curdir = getcwd();
-	chdir(SERVERPATH . "/" . ZENFOLDER . '/'.UTILITIES_FOLDER.'/');
-	$filelist = safe_glob('*'.'php');
-	natcasesort($filelist);
-	foreach ($filelist as $utility) {
-		$utilityStream = file_get_contents($utility);
-		$s = strpos($utilityStream, '$buttonlist');
-		if ($s !== false) {
-			$e = strpos($utilityStream, ';', $s);
-			if ($e) {
-				$str = substr($utilityStream, $s, $e-$s).';';
-				eval($str);
-
-			}
-		}
-	}
-	$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
-	foreach ($buttonlist as $key=>$button) {
-		if (zp_loggedin($button['rights'])) {
-			if (!array_key_exists('category', $button)) {
-				$buttonlist[$key]['category'] = gettext('Misc');
-			}
-		} else {
-			unset($buttonlist[$key]);
-		}
-	}
-	$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
-	?>
-	<div class="box overview-utility">
-	<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
-		<?php
-		$category = '';
-		foreach ($buttonlist as $button) {
-			$button_category = $button['category'];
-			$button_icon = $button['icon'];
-			if ($category != $button_category) {
-				if ($category) {
-					?>
-					</fieldset>
-					<?php
-				}
-				$category = $button_category;
-				?>
-				<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
-				<?php
-			}
-			?>
-			<form name="<?php echo $button['formname']; ?>"	action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
-				<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
-				<?php echo $button['hidden']; ?>
-				<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
-					<button class="fixedwidth" type="submit"<?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
-					<?php
-					if(!empty($button_icon)) {
-						?>
-						<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
-						<?php
-					}
-					echo html_encode($button['button_text']);
-					?>
-					</button>
-				</div><!--buttons -->
-			</form>
-			<?php
-		}
-		if ($category) {
-			?>
-			</fieldset>
-			<?php
-		}
-		?>
-	</div><!-- overview-utility -->
-	<?php
-	}
-	?>
 	<div class="box overview-utility overview-install-info">
 		<h2 class="h2_bordered"><?php echo gettext("Installation information"); ?></h2>
 		<ul>
@@ -466,6 +318,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		<li><?php printf(gettext('Spam filter: <strong>%s</strong>'), getOption('spam_filter')) ?></li>
 		<li><?php printf(gettext('CAPTCHA generator: <strong>%s</strong>'), getOption('captcha')) ?></li>
 		<?php
+		zp_apply_filter('installation_information');
 		if (!zp_has_filter('sendmail')) {
 			?>
 			<li style="color:RED"><?php echo gettext('There is no mail handler configured!'); ?></li>
@@ -564,6 +417,153 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		</div><!-- filters_show -->
 
 	</div><!-- overview-info -->
+	<?php
+if (zp_loggedin(OVERVIEW_RIGHTS)) {
+	$buttonlist = array();
+	$curdir = getcwd();
+	chdir(SERVERPATH . "/" . ZENFOLDER . '/'.UTILITIES_FOLDER.'/');
+	$filelist = safe_glob('*'.'php');
+	natcasesort($filelist);
+	foreach ($filelist as $utility) {
+		$utilityStream = file_get_contents($utility);
+		$s = strpos($utilityStream, '$buttonlist');
+		if ($s !== false) {
+			$e = strpos($utilityStream, ';', $s);
+			if ($e) {
+				$str = substr($utilityStream, $s, $e-$s).';';
+				eval($str);
+
+			}
+		}
+	}
+	$buttonlist = zp_apply_filter('admin_utilities_buttons', $buttonlist);
+	foreach ($buttonlist as $key=>$button) {
+		if (zp_loggedin($button['rights'])) {
+			if (!array_key_exists('category', $button)) {
+				$buttonlist[$key]['category'] = gettext('Misc');
+			}
+		} else {
+			unset($buttonlist[$key]);
+		}
+	}
+	$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
+	?>
+	<div class="box overview-utility">
+	<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
+		<?php
+		$category = '';
+		foreach ($buttonlist as $button) {
+			$button_category = $button['category'];
+			$button_icon = $button['icon'];
+			if ($category != $button_category) {
+				if ($category) {
+					?>
+					</fieldset>
+					<?php
+				}
+				$category = $button_category;
+				?>
+				<fieldset class="utility_buttons_field"><legend><?php echo $category; ?></legend>
+				<?php
+			}
+			?>
+			<form name="<?php echo $button['formname']; ?>"	action="<?php echo $button['action']; ?>" class="overview_utility_buttons">
+				<?php if (isset($button['XSRFTag']) && $button['XSRFTag']) XSRFToken($button['XSRFTag']); ?>
+				<?php echo $button['hidden']; ?>
+				<div class="buttons tooltip" title="<?php echo html_encode($button['title']); ?>">
+					<button class="fixedwidth" type="submit"<?php if (!$button['enable']) echo 'disabled="disabled"'; ?>>
+					<?php
+					if(!empty($button_icon)) {
+						?>
+						<img src="<?php echo $button_icon; ?>" alt="<?php echo html_encode($button['alt']); ?>" />
+						<?php
+					}
+					echo html_encode($button['button_text']);
+					?>
+					</button>
+				</div><!--buttons -->
+			</form>
+			<?php
+		}
+		if ($category) {
+			?>
+			</fieldset>
+			<?php
+		}
+		?>
+	</div><!-- overview-utility -->
+	<?php
+	}
+	?>
+	<div class="box overview-utility overiew-gallery-stats">
+		<h2 class="h2_bordered"><?php echo gettext("Gallery Stats"); ?></h2>
+		<ul>
+			<li>
+			<?php
+			$t = $_zp_gallery->getNumImages();
+			$c = $t-$_zp_gallery->getNumImages(true);
+			if ($c > 0) {
+				printf(ngettext('<strong>%1$u</strong> Image (%2$u un-published)','<strong>%1$u</strong> Images (%2$u un-published)',$t),$t, $c);
+			} else {
+				printf(ngettext('<strong>%u</strong> Image','<strong>%u</strong> Images',$t),$t);
+			}
+			?>
+			</li>
+			<li>
+			<?php
+			$t = $_zp_gallery->getNumAlbums(true);
+			$c = $t-$_zp_gallery->getNumAlbums(true,true);
+			if ($c > 0) {
+				printf(ngettext('<strong>%1$u</strong> Album (%2$u un-published)','<strong>%1$u</strong> Albums (%2$u un-published)',$t),$t, $c);
+			} else {
+				printf(ngettext('<strong>%u</strong> Album', '<strong>%u</strong> Albums',$t),$t);
+			}
+			?>
+			</li>
+			<li>
+			<?php
+			$t = $_zp_gallery->getNumComments(true);
+			$c = $t - $_zp_gallery->getNumComments(false);
+			if ($c > 0) {
+				printf(ngettext('<strong>%1$u</strong> Comment (%2$u in moderation)','<strong>%1$u</strong> Comments (%2$u in moderation)', $t), $t, $c);
+			} else {
+				printf(ngettext('<strong>%u</strong> Comment','<strong>%u</strong> Comments', $t), $t);
+			}
+			?>
+			</li>
+			<?php
+			if(getOption('zp_plugin_zenpage')) { ?>
+				<li>
+					<?php
+					list($total,$type,$unpub) = getNewsPagesStatistic("pages");
+					if (empty($unpub)) {
+						printf(ngettext('<strong>%1$u</strong> Page','<strong>%1$u</strong> Pages',$total),$total,$type);
+					} else {
+						printf(ngettext('<strong>%1$u</strong> Page (%2$u un-published)','<strong>%1$u</strong> Pages (%2$u un-published)',$total),$total,$unpub);
+					}
+					?>
+				</li>
+				<li>
+					<?php
+					list($total,$type,$unpub) = getNewsPagesStatistic("news");
+					if (empty($unpub)) {
+						printf(ngettext('<strong>%1$u</strong> News','<strong>%1$u</strong> News',$total),$total);
+					} else {
+						printf(ngettext('<strong>%1$u</strong> News (%2$u un-published)','<strong>%1$u</strong> News (%2$u un-published)',$total),$total,$unpub);
+					}
+					?>
+				</li>
+				<li>
+					<?php
+					list($total,$type,$unpub) = getNewsPagesStatistic("categories");
+					printf(ngettext('<strong>%1$u</strong> Category','<strong>%1$u</strong> Categories',$total),$total);
+					?>
+				</li>
+			<?php
+			}
+			?>
+		</ul>
+	</div><!-- overview-gallerystats -->
 
 	<?php
 	zp_apply_filter('admin_overview');

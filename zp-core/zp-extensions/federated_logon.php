@@ -35,7 +35,7 @@
  * selector on the logon form.
  *
  * You need to preserve the <var>$_GET['redirect']</var> parameter for use after the authentication
- * is successful at which time you call the <var>federated_login::credentials()</var> function passing a
+ * is successful at which time you call the <var>federated_logon::credentials()</var> function passing a
  * <i>user ID</i>, <i>e-mail</i> and <i>name</i> (if you have them) and the redirection link you saved above.
  * For an example, the former is done at the beginning of the <var>OpenID_logon.php</var> script. The
  * latter is done in the "run()" function of OpenID_finish_auth.php

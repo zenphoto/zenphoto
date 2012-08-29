@@ -1026,7 +1026,7 @@ zp-core/zp-extensions/seo_zenphoto.php
 zp-core/zp-extensions/show_not_logged-in.php
 zp-core/zp-extensions/site_upgrade
 zp-core/zp-extensions/site_upgrade.php
-zp-core/zp-extensions/site_upgrade/closed.html
+zp-core/zp-extensions/site_upgrade/closed.php
 zp-core/zp-extensions/site_upgrade/closed.png
 zp-core/zp-extensions/site_upgrade/site_upgrade.php
 zp-core/zp-extensions/sitemap-extended

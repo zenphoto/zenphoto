@@ -1,9 +1,10 @@
-# htaccess file version 1.4.3.1;
+# htaccess file version 1.4.3.2;
 # When Zenphoto requires changes to the rewrite rules:
 #		First make a copy of this file as 'oldhtaccess' in the zp-core folder so setup can test for unmodified files
 #		Update the above and the define in setup.php
-
-IndexIgnore *
+<IfModule mod_autoindex.c>
+	IndexIgnore *
+</IfModule>
 <IfModule mod_rewrite.c>
   RewriteEngine On
   
