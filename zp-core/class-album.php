@@ -172,7 +172,7 @@ class AlbumBase extends MediaObject {
 	 */
 	function getImageSortKey($sorttype=null) {
 		if (is_null($sorttype)) { $sorttype = $this->getSortType(); }
-		return lookupSortKey($sorttype, 'filename', 'filename');
+		return lookupSortKey($sorttype, 'filename', 'images');
 	}
 
 	/**
@@ -183,7 +183,7 @@ class AlbumBase extends MediaObject {
 	 */
 	function getAlbumSortKey($sorttype=null) {
 		if (empty($sorttype)) { $sorttype = $this->getAlbumSortType(); }
-		return lookupSortKey($sorttype, 'sort_order', 'folder');
+		return lookupSortKey($sorttype, 'sort_order', 'albums');
 	}
 
 

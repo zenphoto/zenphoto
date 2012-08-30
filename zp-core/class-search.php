@@ -818,7 +818,7 @@ class SearchEngine {
 			case 'albums':
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
-						$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'folder');
+						$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'albums');
 						if ($key != '`sort_order`') {
 							if ($_zp_gallery->getSortDirection()) {
 								$key .= " DESC";
@@ -833,7 +833,7 @@ class SearchEngine {
 						}
 					}
 				} else {
-					$sorttype = lookupSortKey($sorttype, 'sort_order', 'folder');
+					$sorttype = lookupSortKey($sorttype, 'sort_order', 'albums');
 					$key = trim($sorttype.' '.$sortdirection);
 				}
 				break;
@@ -846,7 +846,7 @@ class SearchEngine {
 				}
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
-						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'filename');
+						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'images');
 						if ($key != '`sort_order`') {
 							if (IMAGE_SORT_DIRECTION) {
 								$key .= " DESC";
@@ -861,7 +861,7 @@ class SearchEngine {
 						}
 					}
 				} else {
-					$sorttype = lookupSortKey($sorttype, 'filename', 'filename');
+					$sorttype = lookupSortKey($sorttype, 'filename', 'images');
 					$key = trim($sorttype.' '.$sortdirection);
 				}
 				break;
@@ -1160,7 +1160,7 @@ class SearchEngine {
 					$sql .= "`folder` ";
 					if (is_null($sorttype)) {
 						if (empty($this->album)) {
-							$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'folder');
+							$key = lookupSortKey($_zp_gallery->getSortType(), 'sort_order', 'albums');
 							if ($_zp_gallery->getSortDirection()) {
 								$key .= " DESC";
 							}
@@ -1173,7 +1173,7 @@ class SearchEngine {
 							}
 						}
 					} else {
-						$sorttype = lookupSortKey($sorttype, 'sort_order', 'folder');
+						$sorttype = lookupSortKey($sorttype, 'sort_order', 'albums');
 						$key = trim($sorttype.' '.$sortdirection);
 					}
 					break;
@@ -1186,7 +1186,7 @@ class SearchEngine {
 				$sql .= "`albumid`,`filename` ";
 				if (is_null($sorttype)) {
 					if (empty($this->album)) {
-						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'filename');
+						$key = lookupSortKey(IMAGE_SORT_TYPE, 'filename', 'images');
 						if (IMAGE_SORT_DIRECTION) {
 							$key .= " DESC";
 						}
@@ -1199,7 +1199,7 @@ class SearchEngine {
 						}
 					}
 				} else {
-					$sorttype = lookupSortKey($sorttype, 'filename', 'filename');
+					$sorttype = lookupSortKey($sorttype, 'filename', 'images');
 					$key = trim($sorttype.' '.$sortdirection);
 				}
 				break;

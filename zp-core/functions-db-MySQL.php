@@ -269,7 +269,7 @@ function db_show($what,$aux='') {
 	}
 }
 
-function db_list_fields($table,$raw=false) {
+function db_list_fields($table) {
 	$result = db_show('columns',$table);
 	if ($result) {
 		$fields = array();

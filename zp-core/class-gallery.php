@@ -103,7 +103,7 @@ class Gallery {
 	 */
 	function getAlbumSortKey($sorttype=null) {
 		if (empty($sorttype)) { $sorttype = $this->getSortType(); }
-		return lookupSortKey($sorttype, 'sort_order', 'folder');
+		return lookupSortKey($sorttype, 'sort_order', 'albums');
 	}
 
 	function getSortDirection() {

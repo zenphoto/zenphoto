@@ -143,23 +143,43 @@ function getUrAlbum($album) {
  * 												 the field is different between the album table and the image table.
  * @return string
  */
-function lookupSortKey($sorttype, $default, $filename) {
-	$sorttype = strtolower($sorttype);
-	switch ($sorttype) {
+function lookupSortKey($sorttype, $default, $table) {
+	global $_zp_fieldLists;
+	switch (strtolower($sorttype)) {
 		case 'random':
 			return 'RAND()';
 		case "manual":
 			return '`sort_order`';
 		case "filename":
-			return '`'.$filename.'`';
+			switch ($table) {
+				case 'images':
+					return '`filename`';
+				case 'albums':
+					return '`folder`';
+			}
 		default:
 			if (empty($sorttype)) return $default;
 			if (substr($sorttype, 0) == '(') {
 				return $sorttype;
 			}
+			if (is_array($_zp_fieldLists) && isset($_zp_fieldLists[$table])) {
+				$dbfields = $_zp_fieldLists[$table];
+			} else {
+				$result = db_list_fields($table);
+				$dbfields = array();
+				if ($result) {
+					foreach ($result as $row) {
+						$dbfields[strtolower($row['Field'])] = $row['Field'];
+					}
+				}
+				$_zp_fieldLists[$table] = $dbfields;
+			}
+			$sorttype = strtolower($sorttype);
 			$list = explode(',', $sorttype);
 			foreach ($list as $key=>$field) {
-				$list[$key] = '`'.trim($field).'`';
+				if (array_key_exists($field, $dbfields)) {
+					$list[$key] = '`'.trim($dbfields[$field]).'`';
+				}
 			}
 			return implode(',', $list);
 	}

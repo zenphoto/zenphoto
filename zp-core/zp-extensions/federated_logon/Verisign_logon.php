@@ -13,7 +13,7 @@ require_once('OpenID_common.php');
 session_start();
 
 if (isset($_GET['redirect'])) {
-	$redirect = sanitize($_GET['redirect']);
+	$redirect = sanitizeRedirect($_GET['redirect']);
 } else {
 	$redirect = '';
 }

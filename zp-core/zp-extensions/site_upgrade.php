@@ -6,8 +6,8 @@
  *
  * Requires mod_rewrite to be active and that the <var>.htaccess</var> file exists
  *
- * Change the files in <var>plugins/site_upgrade</var> to meet your needs. (Note these files will
- * be copied to that folder the first time the plugin runs.)
+ * This plugin will place a file in <var>plugins/site_upgrade</var> to handle the redirection when the
+ * site is closed. Change this file to meet your needs.
  *
  * @author Stephen Billard (sbillard)
  * @package plugins

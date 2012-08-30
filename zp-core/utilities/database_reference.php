@@ -158,7 +158,7 @@ foreach($tables as $table) {
 	<table id = "t_<?php echo $i; ?>" class="bordered" <?php if ($i>1) { ?>style="display: none;" <?php } ?>>
 		<tr>
 			<?php
-			$cols = $tablecols = db_list_fields($table, true);
+			$cols = $tablecols = db_list_fields($table);
 			$cols = array_shift($cols);
 			foreach ($cols as $col=>$value) {
 				 ?>
