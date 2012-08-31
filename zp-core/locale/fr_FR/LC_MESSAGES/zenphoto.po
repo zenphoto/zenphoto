@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-26 00:51-0500\n"
-"PO-Revision-Date: 2012-08-26 00:58-0500\n"
+"POT-Creation-Date: 2012-08-31 11:14-0500\n"
+"PO-Revision-Date: 2012-08-31 11:33-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -5510,217 +5510,217 @@ msgid "You do not have proper rights to access %s."
 msgstr "Vous n’avez pas les droits suffisants pour accéder à %s."
 
 #: F:\sites\zenphoto-dev/zp-core/admin.php:193
-msgid "Gallery Stats"
-msgstr "Statistiques de la galerie"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:200
-#, php-format
-msgid "<strong>%1$u</strong> Image (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
-msgstr[0] "<strong>%1$u</strong> image (%2$u non publiée)"
-msgstr[1] "<strong>%1$u</strong> images (%2$u non publiée(s))"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:202
-#, php-format
-msgid "<strong>%u</strong> Image"
-msgid_plural "<strong>%u</strong> Images"
-msgstr[0] "<strong>%u</strong> image"
-msgstr[1] "<strong>%u</strong> images"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:211
-#, php-format
-msgid "<strong>%1$u</strong> Album (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
-msgstr[0] "<strong>%1$u</strong> album (%2$u non publié)"
-msgstr[1] "(<strong>%1$u</strong> albums (%2$u non publié(s))"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:213
-#, php-format
-msgid "<strong>%u</strong> Album"
-msgid_plural "<strong>%u</strong> Albums"
-msgstr[0] "<strong>%u</strong> album"
-msgstr[1] "<strong>%u</strong> albums"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:222
-#, php-format
-msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
-msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
-msgstr[0] "<strong>%1$u</strong> commentaires (%2$u en modération)"
-msgstr[1] "<strong>%1$u</strong> commentaires (%2$u en modération)"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:224
-#, php-format
-msgid "<strong>%u</strong> Comment"
-msgid_plural "<strong>%u</strong> Comments"
-msgstr[0] "<strong>%u</strong> commentaire"
-msgstr[1] "<strong>%u</strong> commentaires"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:234
-#, php-format
-msgid "<strong>%1$u</strong> Page"
-msgid_plural "<strong>%1$u</strong> Pages"
-msgstr[0] "<strong>%1$u</strong> page"
-msgstr[1] "<strong>%1$u</strong> pages"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:236
-#, php-format
-msgid "<strong>%1$u</strong> Page (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
-msgstr[0] "<strong>%1$u</strong> page (%2$u non publiée)"
-msgstr[1] "<strong>%1$u</strong> pages (%2$u non publiée(s))"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:244
-#, php-format
-msgid "<strong>%1$u</strong> News"
-msgid_plural "<strong>%1$u</strong> News"
-msgstr[0] "<strong>%1$u</strong> actualité"
-msgstr[1] "<strong>%1$u</strong> actualités"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:246
-#, php-format
-msgid "<strong>%1$u</strong> News (%2$u un-published)"
-msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
-msgstr[0] "<strong>%1$u</strong> actualité (%2$u non publiée)"
-msgstr[1] "<strong>%1$u</strong> actualités (%2$u non publiée(s))"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:253
-#, php-format
-msgid "<strong>%1$u</strong> Category"
-msgid_plural "<strong>%1$u</strong> Categories"
-msgstr[0] "<strong>%1$u</strong> catégorie"
-msgstr[1] "<strong>%1$u</strong> catégories"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:285
-msgid "Misc"
-msgstr "Varia"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:294
-msgid "Utility functions"
-msgstr "Utilitaires"
-
-#: F:\sites\zenphoto-dev/zp-core/admin.php:341
 msgid "Installation information"
 msgstr "Information sur l’installation"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:346
+#: F:\sites\zenphoto-dev/zp-core/admin.php:198
 msgid "Official build"
 msgstr "Version officielle"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:348
+#: F:\sites\zenphoto-dev/zp-core/admin.php:200
 msgid "<em>Debug build</em>"
 msgstr "Version <em>Debug</em>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:351
+#: F:\sites\zenphoto-dev/zp-core/admin.php:203
 msgid "clone"
 msgstr "clone"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:355
+#: F:\sites\zenphoto-dev/zp-core/admin.php:207
 #, php-format
 msgid "Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>"
 msgstr "Version de Zenphoto <strong>%1$s [%2$s] (%3$s)</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:357
+#: F:\sites\zenphoto-dev/zp-core/admin.php:209
 #, php-format
 msgid "Current locale setting: <strong>%1$s</strong>"
 msgstr "Paramètre régional présentement utilisé : <strong>%1$s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:359
+#: F:\sites\zenphoto-dev/zp-core/admin.php:211
 msgid "<strong>Locale setting has failed</strong>"
 msgstr "<strong>Le paramètre régional a échoué !</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:364
+#: F:\sites\zenphoto-dev/zp-core/admin.php:216
 msgid "Server path:"
 msgstr "Chemin du serveur :"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:367
+#: F:\sites\zenphoto-dev/zp-core/admin.php:219
 msgid "WEB path:"
 msgstr "Chemin internet :"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:376
+#: F:\sites\zenphoto-dev/zp-core/admin.php:228
 #, php-format
 msgid "Current gallery theme: <strong>%1$s</strong>"
 msgstr "Thème actuellement utilisé : <strong>%1$s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:379
+#: F:\sites\zenphoto-dev/zp-core/admin.php:231
 #, php-format
 msgid "PHP version: <strong>%1$s</strong>"
 msgstr "Version de PHP : <strong>%1$s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:420
+#: F:\sites\zenphoto-dev/zp-core/admin.php:272
 #, php-format
 msgid "PHP Error reporting: <strong>%s</strong>"
 msgstr "Type de rapport d’erreurs PHP : <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:426
+#: F:\sites\zenphoto-dev/zp-core/admin.php:278
 msgid "<em>display_errors</em> is <strong>On</strong>"
 msgstr "L’affichage des erreurs ( paramètre <em>display_errors</em>) est <strong>activé</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:430
+#: F:\sites\zenphoto-dev/zp-core/admin.php:282
 msgid "<em>display_errors</em> is <strong>Off</strong>"
 msgstr "L’affichage des erreurs ( paramètre <em>display_errors</em>) est <strong>déactivé</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:436
+#: F:\sites\zenphoto-dev/zp-core/admin.php:288
 #, php-format
 msgid "Graphics support: <strong>%s</strong>"
 msgstr "Bibliothèque graphique : <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:446
+#: F:\sites\zenphoto-dev/zp-core/admin.php:298
 #, php-format
 msgid "supporting: %s"
 msgstr "%s supporté"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:449
+#: F:\sites\zenphoto-dev/zp-core/admin.php:301
 #, php-format
 msgid "PHP memory limit: <strong>%1$s</strong> (Note: Your server might allocate less!)"
 msgstr "Limite de mémoire de PHP : <strong>%1$s</strong> (Note : votre serveur peut en fournir moins !)"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:453
+#: F:\sites\zenphoto-dev/zp-core/admin.php:305
 #, php-format
 msgid "%1$s version: <strong>%2$s</strong>"
 msgstr "Version de %1$s : <strong>%2$s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:457
+#: F:\sites\zenphoto-dev/zp-core/admin.php:309
 #, php-format
 msgid "Database name: <strong>%1$s</strong>"
 msgstr "Nom de la base de données : <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:462
+#: F:\sites\zenphoto-dev/zp-core/admin.php:314
 #, php-format
 msgid "Table prefix: <strong>%1$s</strong>"
 msgstr "Préfixe des tables : <strong>%1$s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:466
+#: F:\sites\zenphoto-dev/zp-core/admin.php:318
 #, php-format
 msgid "Spam filter: <strong>%s</strong>"
 msgstr "Filtre anti-spam : <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:467
+#: F:\sites\zenphoto-dev/zp-core/admin.php:319
 #, php-format
 msgid "CAPTCHA generator: <strong>%s</strong>"
 msgstr "Générateur de Captcha : <strong>%s</strong>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:471
+#: F:\sites\zenphoto-dev/zp-core/admin.php:324
 msgid "There is no mail handler configured!"
 msgstr "Aucun gestionnaire de mail configuré !"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:482
+#: F:\sites\zenphoto-dev/zp-core/admin.php:335
 #, php-format
 msgid "%u active plugin:"
 msgid_plural "%u active plugins:"
 msgstr[0] "%u extension activée :"
 msgstr[1] "%u extensions activées :"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:518
-#: F:\sites\zenphoto-dev/zp-core/admin.php:556
+#: F:\sites\zenphoto-dev/zp-core/admin.php:371
+#: F:\sites\zenphoto-dev/zp-core/admin.php:409
 msgid "<em>none</em>"
 msgstr "<em>aucune</em>"
 
-#: F:\sites\zenphoto-dev/zp-core/admin.php:529
+#: F:\sites\zenphoto-dev/zp-core/admin.php:382
 #, php-format
 msgid "%u active filter:"
 msgid_plural "%u active filters:"
 msgstr[0] "%u filtre activé :"
 msgstr[1] "%u filtres activés :"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:443
+msgid "Misc"
+msgstr "Varia"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:452
+msgid "Utility functions"
+msgstr "Utilitaires"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:499
+msgid "Gallery Stats"
+msgstr "Statistiques de la galerie"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:506
+#, php-format
+msgid "<strong>%1$u</strong> Image (%2$u un-published)"
+msgid_plural "<strong>%1$u</strong> Images (%2$u un-published)"
+msgstr[0] "<strong>%1$u</strong> image (%2$u non publiée)"
+msgstr[1] "<strong>%1$u</strong> images (%2$u non publiée(s))"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:508
+#, php-format
+msgid "<strong>%u</strong> Image"
+msgid_plural "<strong>%u</strong> Images"
+msgstr[0] "<strong>%u</strong> image"
+msgstr[1] "<strong>%u</strong> images"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:517
+#, php-format
+msgid "<strong>%1$u</strong> Album (%2$u un-published)"
+msgid_plural "<strong>%1$u</strong> Albums (%2$u un-published)"
+msgstr[0] "<strong>%1$u</strong> album (%2$u non publié)"
+msgstr[1] "(<strong>%1$u</strong> albums (%2$u non publié(s))"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:519
+#, php-format
+msgid "<strong>%u</strong> Album"
+msgid_plural "<strong>%u</strong> Albums"
+msgstr[0] "<strong>%u</strong> album"
+msgstr[1] "<strong>%u</strong> albums"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:528
+#, php-format
+msgid "<strong>%1$u</strong> Comment (%2$u in moderation)"
+msgid_plural "<strong>%1$u</strong> Comments (%2$u in moderation)"
+msgstr[0] "<strong>%1$u</strong> commentaires (%2$u en modération)"
+msgstr[1] "<strong>%1$u</strong> commentaires (%2$u en modération)"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:530
+#, php-format
+msgid "<strong>%u</strong> Comment"
+msgid_plural "<strong>%u</strong> Comments"
+msgstr[0] "<strong>%u</strong> commentaire"
+msgstr[1] "<strong>%u</strong> commentaires"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:540
+#, php-format
+msgid "<strong>%1$u</strong> Page"
+msgid_plural "<strong>%1$u</strong> Pages"
+msgstr[0] "<strong>%1$u</strong> page"
+msgstr[1] "<strong>%1$u</strong> pages"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:542
+#, php-format
+msgid "<strong>%1$u</strong> Page (%2$u un-published)"
+msgid_plural "<strong>%1$u</strong> Pages (%2$u un-published)"
+msgstr[0] "<strong>%1$u</strong> page (%2$u non publiée)"
+msgstr[1] "<strong>%1$u</strong> pages (%2$u non publiée(s))"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:550
+#, php-format
+msgid "<strong>%1$u</strong> News"
+msgid_plural "<strong>%1$u</strong> News"
+msgstr[0] "<strong>%1$u</strong> actualité"
+msgstr[1] "<strong>%1$u</strong> actualités"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:552
+#, php-format
+msgid "<strong>%1$u</strong> News (%2$u un-published)"
+msgid_plural "<strong>%1$u</strong> News (%2$u un-published)"
+msgstr[0] "<strong>%1$u</strong> actualité (%2$u non publiée)"
+msgstr[1] "<strong>%1$u</strong> actualités (%2$u non publiée(s))"
+
+#: F:\sites\zenphoto-dev/zp-core/admin.php:559
+#, php-format
+msgid "<strong>%1$u</strong> Category"
+msgid_plural "<strong>%1$u</strong> Categories"
+msgstr[0] "<strong>%1$u</strong> catégorie"
+msgstr[1] "<strong>%1$u</strong> catégories"
 
 #: F:\sites\zenphoto-dev/zp-core/class-album.php:635
 msgid "Invalid album instantiation: No album name"
@@ -6623,367 +6623,367 @@ msgstr "alphabétique"
 msgid "most viewed"
 msgstr "les plus vu(e)s"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:255
-#: F:\sites\zenphoto-dev/zp-core/functions.php:266
 #: F:\sites\zenphoto-dev/zp-core/functions.php:275
-#: F:\sites\zenphoto-dev/zp-core/functions.php:345
+#: F:\sites\zenphoto-dev/zp-core/functions.php:286
+#: F:\sites\zenphoto-dev/zp-core/functions.php:295
+#: F:\sites\zenphoto-dev/zp-core/functions.php:365
 msgid "Mail send failed."
 msgstr "L’envoi du mail a échoué."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:257
+#: F:\sites\zenphoto-dev/zp-core/functions.php:277
 #, php-format
 msgid "Invalid \"to\" mail address %s."
 msgstr "L’adresse du destinataire (%s) est invalide."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:268
+#: F:\sites\zenphoto-dev/zp-core/functions.php:288
 msgid "\"cc\" list provided without \"to\" address list."
 msgstr "Une liste de destinataires en copie conforme est fournie, mais aucun destinataire principal n’a été spécifié."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:277
+#: F:\sites\zenphoto-dev/zp-core/functions.php:297
 #, php-format
 msgid "Invalid \"cc\" mail address %s."
 msgstr "L’adresse de copie conforme (%s) est invalide."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:288
+#: F:\sites\zenphoto-dev/zp-core/functions.php:308
 msgid "Mail send failed. "
 msgstr "L’envoi du mail a échoué."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:290
+#: F:\sites\zenphoto-dev/zp-core/functions.php:310
 #, php-format
 msgid "Invalid \"bcc\" mail address %s."
 msgstr "L’adresse de copie cachée (%s) est invalide."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:341
+#: F:\sites\zenphoto-dev/zp-core/functions.php:361
 msgid "Mail send failed. There is no mail handler configured."
 msgstr "L’envoi du mail a échoué. Aucun gestionnaire de mail n’est configuré."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:347
+#: F:\sites\zenphoto-dev/zp-core/functions.php:367
 msgid "No \"to\" address list provided."
 msgstr "Aucune liste de destinataires n’est fournie."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:892
+#: F:\sites\zenphoto-dev/zp-core/functions.php:914
 #, php-format
 msgid "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your installation."
 msgstr "Zenphoto n’a pas trouvé de scripts de thèmes. Veuillez vérifier le dossier <em>%s</em> de votre installation."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:1408
+#: F:\sites\zenphoto-dev/zp-core/functions.php:1430
 msgid "0 Bytes"
 msgstr "0 octet"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:1821
+#: F:\sites\zenphoto-dev/zp-core/functions.php:1843
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr "Zenphoto a produit une erreur 404 sur %s. Voir le journal de déboggage pour plus de détails."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2008
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2030
 msgid "Click to show content"
 msgstr "Cliquer pour afficher le contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2013
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2035
 msgid "Click to hide content"
 msgstr "Cliquer pour masquer le contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2064
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2086
 msgid "Camera Maker"
 msgstr "Fabricant de l’appareil"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2065
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2087
 msgid "Camera Model"
 msgstr "Modèle d’appareil"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2066
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2088
 msgid "Image Title"
 msgstr "Titre de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2067
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2089
 msgid "Object Name"
 msgstr "Nom de l’objet"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2068
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2090
 msgid "Image Headline"
 msgstr "Fait saillant de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2069
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2091
 msgid "Image Caption"
 msgstr "Légende de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2070
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2092
 msgid "Image Caption Writer"
 msgstr "Auteur de la légende de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2071
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2093
 msgid "Time Taken"
 msgstr "Heure de prise de vue"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2072
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2094
 msgid "Original Time Taken"
 msgstr "Heure de prise de vue originale"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2073
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2095
 msgid "Time Digitized"
 msgstr "Heure de la numérisation"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2074
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2096
 msgid "Date Created"
 msgstr "Date de création"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2075
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2097
 msgid "Time Created"
 msgstr "Heure de création"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2076
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2098
 msgid "Digital Creation Date"
 msgstr "Date de création numérique"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2077
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2099
 msgid "Digital Creation Time"
 msgstr "Heure de création numérique"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2078
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2100
 msgid "Artist"
 msgstr "Artiste"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2079
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2101
 msgid "Image Credit"
 msgstr "Crédits de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2080
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2102
 msgid "Byline"
 msgstr "Accroche"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2081
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2103
 msgid "Byline Title"
 msgstr "Titre de l’accroche"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2082
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2104
 msgid "Image Source"
 msgstr "Source de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2084
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2106
 msgid "Copyright Holder"
 msgstr "Titulaire du copyright"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2085
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2107
 msgid "Copyright Notice"
 msgstr "Informations de copyright"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2086
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2108
 msgid "Keywords"
 msgstr "Mots-clés"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2087
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2109
 msgid "Shutter Speed"
 msgstr "Vitesse d’obturation"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2088
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2110
 msgid "Aperture"
 msgstr "Ouverture"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2089
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2111
 msgid "ISO Sensitivity"
 msgstr "Sensibilité en ISO"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2090
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2112
 msgid "Exposure Compensation"
 msgstr "Correction de l’exposition"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2091
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2113
 msgid "Metering Mode"
 msgstr "Mode de mesure"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2092
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2114
 msgid "Flash Fired"
 msgstr "Flash déclenché"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2093
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2115
 msgid "Original Width"
 msgstr "Largeur de l’image pleine grandeur"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2094
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2116
 msgid "Original Height"
 msgstr "Hauteur de l’image pleine grandeur"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2095
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2117
 msgid "Orientation"
 msgstr "Orientation"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2096
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2118
 msgid "Software"
 msgstr "Logiciel"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2097
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2119
 msgid "Contrast Setting"
 msgstr "Réglage du contraste"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2098
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2120
 msgid "Sharpness Setting"
 msgstr "Réglage du renforcement"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2099
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2121
 msgid "Saturation Setting"
 msgstr "Réglage de la saturation"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2100
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2122
 msgid "White Balance"
 msgstr "Balance des blancs"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2101
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2123
 msgid "Subject Distance"
 msgstr "Distance du sujet"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2102
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2124
 msgid "Focal Length"
 msgstr "Longueur de focale"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2103
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2125
 msgid "Lens Type"
 msgstr "Type d’objectif"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2104
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2126
 msgid "Lens Info"
 msgstr "Détails sur l’objectif"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2105
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2127
 msgid "35mm Focal Length Equivalent"
 msgstr "Longueur focale équivalente pour pellicule 35 mm"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2107
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2129
 msgid "Sub-location"
 msgstr "Lieu (très précis)"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2108
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2130
 msgid "Province/State"
 msgstr "État, province"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2109
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2131
 msgid "Country/Primary Location Code"
 msgstr "Code du pays/de la localisation primaire"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2110
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2132
 msgid "Country/Primary Location Name"
 msgstr "Nom du pays/de la localisation primaire"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2111
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2133
 msgid "Content Location Code"
 msgstr "Code du lieu du contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2112
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2134
 msgid "Content Location Name"
 msgstr "Lieu du contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2113
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2135
 msgid "Latitude"
 msgstr "Latitude"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2114
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2136
 msgid "Latitude Reference"
 msgstr "Latitude de référence"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2115
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2137
 msgid "Longitude"
 msgstr "Longitude"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2116
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2138
 msgid "Longitude Reference"
 msgstr "Longitude de référence"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2117
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2139
 msgid "Altitude"
 msgstr "Altitude"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2118
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2140
 msgid "Altitude Reference"
 msgstr "Altitude de référence"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2119
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2141
 msgid "Originating Program "
 msgstr "Programme d’origine"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2120
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2142
 msgid "Program Version"
 msgstr "Version du programme"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2121
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2143
 msgid "Video File Format"
 msgstr "Format de fichier vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2122
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2144
 msgid "Video File Size"
 msgstr "Taille du fichier vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2123
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2145
 msgid "Video Artist"
 msgstr "Artiste de la vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2124
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2146
 msgid "Video Title"
 msgstr "Titre de la vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2125
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2147
 msgid "Bitrate"
 msgstr "Débit"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2126
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2148
 msgid "Bitrate_Mode"
 msgstr "Bitrate_Mode"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2127
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2149
 msgid "Bits per sample"
 msgstr "Bits par échantillon"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2128
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2150
 msgid "Codec"
 msgstr "Codec"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2129
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2151
 msgid "Compression Ratio"
 msgstr "Taux de compression"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2130
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2152
 msgid "Video Dataformat"
 msgstr "Format des données vidéos"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2131
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2153
 msgid "File Encoder"
 msgstr "Encodeur de fichiers"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2132
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2154
 msgid "Sample rate"
 msgstr "Taux d’échantillonage"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2133
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2155
 msgid "Channel mode"
 msgstr "Mode de canaux"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2134
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2156
 msgid "Format"
 msgstr "Format"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2135
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2157
 msgid "Channels"
 msgstr "Canaux"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2136
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2158
 msgid "Frame rate"
 msgstr "Nombre de cadres / seconde"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2137
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2159
 msgid "X Resolution"
 msgstr "Résolution en X"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2138
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2160
 msgid "Y Resolution"
 msgstr "Résolution en Y"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2139
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2161
 msgid "Aspect ratio"
 msgstr "Ratio d’aspect"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2140
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2162
 msgid "Play Time"
 msgstr "Robustesse minimale du mot de passe"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2141
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2163
 msgid "XMP Rating"
 msgstr "Vote XMP"
 
@@ -10400,6 +10400,21 @@ msgstr "Avertissement : impossible d’appliquer les droits [0%o] à %s."
 msgid "Notice: illegal call for permissions setting for %s."
 msgstr "Avertissement : appel illégal pour le réglage des droits de %s."
 
+#: F:\sites\zenphoto-dev/zp-core/setup/setup_pluginOptions.php:12
+#, php-format
+msgid "Plugin:%s setup started"
+msgstr "Extension : installation de %s commencée"
+
+#: F:\sites\zenphoto-dev/zp-core/setup/setup_pluginOptions.php:17
+#, php-format
+msgid "Plugin:%s option interface instantiated"
+msgstr "Extension : gestionnaire de paramètres de %s instancié"
+
+#: F:\sites\zenphoto-dev/zp-core/setup/setup_pluginOptions.php:20
+#, php-format
+msgid "Plugin:%s setup completed"
+msgstr "Extension : installation de %s terminée"
+
 #: F:\sites\zenphoto-dev/zp-core/setup/setup_set-mod_rewrite.php:14
 msgid "The Zenphoto option \"mod_rewrite\" will be set to \"enabled\"."
 msgstr "L’option « mod_rewrite » de Zenphoto va être activée."
@@ -10418,18 +10433,18 @@ msgstr "Note : le module « mod_rewrite » fonctionne."
 
 #: F:\sites\zenphoto-dev/zp-core/setup/setup_themeOptions.php:12
 #, php-format
-msgid "Set theme default options for %s started"
-msgstr "Le paramétrage des défauts du thème %s a commencé"
+msgid "Theme:%s setup started"
+msgstr "Thème : installation de %s commencée"
 
 #: F:\sites\zenphoto-dev/zp-core/setup/setup_themeOptions.php:19
 #, php-format
-msgid "Option handler for %s instantiated"
-msgstr "Gestionnaire de paramètres de %s instancié"
+msgid "Theme:%s option interface instantiated"
+msgstr "Thème : gestionnaire de paramètres de %s instancié"
 
 #: F:\sites\zenphoto-dev/zp-core/setup/setup_themeOptions.php:24
 #, php-format
-msgid "Set theme default options for %s completed"
-msgstr "Le paramétrage des défauts du thème %s est terminé"
+msgid "Theme:%s setup completed"
+msgstr "Thème : installation de %s terminée"
 
 #: F:\sites\zenphoto-dev/zp-core/utilities/backup_restore.php:24
 msgid "Backup/Restore"
@@ -11080,14 +11095,12 @@ msgstr "Permet de traiter tous les types de fichiers (sans en faire de rendu)."
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-AnyFile.php:47
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-textobject.php:77
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:58
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:52
 msgid "Watermark default images"
 msgstr "Images de filigrane par défaut"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-AnyFile.php:48
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-textobject.php:78
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:60
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:53
 msgid "Check to place watermark image on default thumbnail images."
 msgstr "Cocher pour afficher une image de filigrane sur les vignettes par défaut."
 
@@ -11166,6 +11179,7 @@ msgstr "PDF"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:55
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:66
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-WEBdocs.php:73
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/comment_form.php:115
 msgid "Disabled"
 msgstr "Désactivé"
 
@@ -13241,36 +13255,49 @@ msgstr "Autoriser"
 msgid "Block"
 msgstr "Bloquer"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:67
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:75
 msgid "IP list"
 msgstr "Liste des IP"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:69
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:77
 #, php-format
 msgid "List of IP ranges to %s."
 msgstr "Liste de plages IP à <span style=\"text-transform: lowercase\">%s</span>."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:73
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:78
+msgid "Import list"
+msgstr "Liste à importer"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:83
+#, php-format
+msgid "Import an external IP list. <p class=\"notebox\"><strong>NOTE:</strong> If this list is large it may excede the capacity of Zenphoto and %s to process and store the results."
+msgstr "Importer une liste d’adresses IP. <p class=\"notebox\"><strong>Remarque.</strong> Si la liste est longue, son traitement et la mémorisation des résultats peuvent excéder la capacité de Zenphoto et de %s."
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:87
 msgid "How the plugin will interpret the IP list."
 msgstr "De quelle façon l’extension interprétera la liste des IP."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:74
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:88
 msgid "Logon threshold"
 msgstr "Seuil de connexion"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:77
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:91
 msgid "Logon cool off"
 msgstr "Délai avant d’autoriser la connexion"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:79
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:93
 msgid "The block will be removed after this many minutes."
 msgstr "Le blocage sera supprimé après cette période d’attente (en minutes)."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:84
-msgid "IP list ranges cannot be saved with the plugin disabled"
-msgstr "Les listes de plages IP ne peuvent être enregistrées lorsque l’extension est désactivée"
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:98
+msgid "IP list ranges cannot be managed with the plugin disabled"
+msgstr "Les listes de plages IP ne peuvent être gérées lorsque l’extension est désactivée"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:133
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:152
+msgid "clear list"
+msgstr "Effacer la liste"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/ipBlocker.php:175
 msgid "IP address format error"
 msgstr "Erreur de formatage des adresses IP"
 
@@ -14709,67 +14736,64 @@ msgstr "Outils sitemap"
 msgid "Generate or purge sitemap cache files."
 msgstr "Génère ou efface les fichiers sitemap mis en cache."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:19
-msgid "Utility to divert access to the gallery to a screen saying the site is upgrading."
-msgstr "Outil pour rediriger l’accès vers une page temporaire pendant la mise à jour du site."
-
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:21
-msgid "The <em>mod_rewrite</em> must be enabled"
-msgstr "Le module <em>mod_rewrite</em> doit être activé."
-
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:28
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:24
 #, php-format
 msgid "%s upgrade"
 msgstr "Mise à jour de %s"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:28
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:24
 #, php-format
 msgid "<strong><em>%s</em></strong> is undergoing an upgrade"
 msgstr "<strong><em>%s</em></strong> est en train d’être mis à jour"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:28
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:24
 msgid "Please return later"
 msgstr "Veuillez revenir plus tard"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:39
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:34
+msgid "Utility to divert access to the gallery to a screen saying the site is upgrading."
+msgstr "Outil pour rediriger l’accès vers une page temporaire pendant la mise à jour du site."
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:36
+msgid "The <em>mod_rewrite</em> must be enabled"
+msgstr "Le module <em>mod_rewrite</em> doit être activé."
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:47
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:51
+msgid "Site status:"
+msgstr "État du site :"
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:47
+msgid "The site is closed!"
+msgstr "Le site est fermé."
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:51
+msgid "The site is opened"
+msgstr "Le site est ouvert."
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:64
 msgid "Close the site."
 msgstr "Fermer le site."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:43
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:68
 msgid "There is no .htaccess file"
 msgstr "Le fichier <em>.htaccess</em> n’existe pas"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:55
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:80
 msgid "Close site"
 msgstr "Fermer le site"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:59
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:84
 msgid "Make site unavailable for viewing by redirecting to the \"closed.html\" page."
 msgstr "Rend le site inaccessible aux utilisateurs en les redirigeant vers la page « closed.html » (fermé)."
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:59
-msgid "The site is closed."
-msgstr "Le site est fermé."
-
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:68
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:94
 msgid "Open the site"
 msgstr "Ouvrir le site"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:72
-msgid "The site is open."
-msgstr "Le site est ouvert."
-
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:72
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:98
 msgid "Make the site available for viewing by removing the redirection."
 msgstr "Rend le site accessible aux utilisateurs en enlevant la redirection."
-
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:99
-msgid "Site is now marked in upgrade."
-msgstr "Le site est annoncé comme étant en cours de mise à jour."
-
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade.php:107
-msgid "Site is viewable."
-msgstr "Le site peut être visité."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/slideshow.php:26
 msgid "Adds a theme function to call a slideshow either based on jQuery (default) or Flash using Flowplayer3."
@@ -17569,6 +17593,14 @@ msgstr "Terminé !"
 msgid "Sitemap cache cleared"
 msgstr "Cache du sitemap purgé"
 
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade/site_upgrade.php:18
+msgid "Site is now marked in upgrade."
+msgstr "Le site est annoncé comme étant en cours de mise à jour."
+
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/site_upgrade/site_upgrade.php:26
+msgid "Site is viewable."
+msgstr "Le site peut être visité."
+
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/spamfilters/none.php:41
 msgid "pass"
 msgstr "réussi"
@@ -18163,6 +18195,7 @@ msgid "Assign users to groups."
 msgstr "Assigner des utilisateurs aux groupes."
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-categories.php:25
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-pages.php:28
 msgid "Nothing changed."
 msgstr "Aucun changement."
 
@@ -18198,6 +18231,11 @@ msgstr "L’ordre de tri des éléments indiqués ne peut être enregistré parc
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-categories.php:194
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:357
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:358
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:307
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:308
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1097
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1099
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1477
 msgid "Reset hitcounter"
 msgstr "Remettre le compteur d’affichages à zéro"
 
@@ -18238,6 +18276,8 @@ msgstr "Nouvelle catégorie"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:215
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-edit.php:233
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-pages.php:128
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-pages.php:129
 msgid "New Page"
 msgstr "Nouvelle page"
 
@@ -18418,10 +18458,13 @@ msgid "Custom:"
 msgstr "Personnalisé :"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:20
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-pages.php:20
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:520
 msgid "Article successfully deleted!"
 msgstr "Article supprimé !"
 
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:57
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-pages.php:65
 msgid "Hitcounter reset"
 msgstr "Les compteurs d’affichage ont été remis à zéro"
 
@@ -18442,6 +18485,12 @@ msgstr "Effacer les catégories"
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:373
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:376
 #: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/admin-news-articles.php:379
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:290
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:293
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:322
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:325
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:328
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/zenpage/zenpage-admin-functions.php:1083
 msgid "locked"
 msgstr "verrouillé(e)"
 
@@ -18788,6 +18837,12 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
+
+#~ msgid "Set theme default options for %s started"
+#~ msgstr "Le paramétrage des défauts du thème %s a commencé"
+
+#~ msgid "Set theme default options for %s completed"
+#~ msgstr "Le paramétrage des défauts du thème %s est terminé"
 
 #~ msgid ""
 #~ "Change the filesystem character set define to %1$s.<br />If you do not "
