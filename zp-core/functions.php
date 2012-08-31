@@ -139,8 +139,7 @@ function getUrAlbum($album) {
  *
  * @param string $sorttype the 'Display" name of the sort
  * @param string $default the default if $sorttype is empty
- * @param string $filename the value to be used if $sorttype is 'Filename' since
- * 												 the field is different between the album table and the image table.
+ * @param string $table the database table being used.
  * @return string
  */
 function lookupSortKey($sorttype, $default, $table) {
