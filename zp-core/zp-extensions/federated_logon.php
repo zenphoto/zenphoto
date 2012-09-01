@@ -189,7 +189,7 @@ class federated_logon {
 	 * @param $name
 	 * @param $redirect
 	 */
-	static function Credentials($user, $email, $name, $redirect) {
+	static function credentials($user, $email, $name, $redirect) {
 		$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
 		$more = false;
 		if ($userobj) {	//	update if changed

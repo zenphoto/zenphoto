@@ -113,8 +113,9 @@ class Video extends _Image {
 		$album_name = $album->name;
 		$this->updateDimensions();
 		if (parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename', true, empty($album_name))) {
-			$this->set('mtime', $ts = filemtime($this->localpath));
 			$this->updateMetaData();
+			$this->filemtime = @filemtime($this->localpath);
+			$this->set('mtime', $this->filemtime);
 			$this->save();
 			zp_apply_filter('new_image', $this);
 		}

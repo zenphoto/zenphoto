@@ -105,9 +105,9 @@ class TextObject extends _Image {
 		if (parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename')) {
 			$title = $this->getDefaultTitle();
 			$this->set('title', $title);
-			$this->set('mtime', $ts = filectime($this->localpath));
-			$newdate = strftime('%Y-%m-%d %H:%M:%S', $ts);
 			$this->updateMetaData();
+			$this->filemtime = @filemtime($this->localpath);
+			$this->set('mtime', $this->filemtime);
 			$this->save();
 			zp_apply_filter('new_image', $this);
 		}

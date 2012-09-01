@@ -116,8 +116,10 @@ class _Image extends MediaObject {
 		$msg = false;
 		if (!is_object($album) || !$album->exists){
 			$msg = gettext('Invalid image instantiation: Album does not exist');
-		} else if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
-			$msg = gettext('Invalid image instantiation: file does not exist');
+		} else {
+			if (!$this->classSetup($album, $filename) || !file_exists($this->localpath) || is_dir($this->localpath)) {
+				$msg = gettext('Invalid image instantiation: file does not exist');
+			}
 		}
 		if ($msg) {
 			trigger_error($msg, E_USER_ERROR);
@@ -128,11 +130,10 @@ class _Image extends MediaObject {
 		$album_name = $album->name;
 		$new = parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename', false, empty($album_name));
 		if ($new || $this->filemtime != $this->get('mtime')) {
-			if ($this->filemtime != $this->get('mtime')) {
-				$this->set('mtime', $this->filemtime);
-			}
 			$this->updateMetaData();			// extract info from image
 			$this->updateDimensions();		// deal with rotation issues
+			$this->filemtime = @filemtime($this->localpath);
+			$this->set('mtime', $this->filemtime);
 			$this->save();
 			if ($new) {
 				zp_apply_filter('new_image', $this);

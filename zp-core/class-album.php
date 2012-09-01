@@ -880,7 +880,7 @@ class Album extends AlbumBase {
 	 * also be sorted according to the sort type of this album, or by filename if none
 	 * has been set.
 	 *
-	 * @param string $page  Which page of images should be returned. If zero, all images are returned.
+	 * @param int $page  Which page of images should be returned. If zero, all images are returned.
 	 * @param int $firstPageCount count of images that go on the album/image transition page
 	 * @param string $sorttype optional sort type
 	 * @param string $sortdirection optional sort direction
@@ -1051,11 +1051,12 @@ class Album extends AlbumBase {
 				$this->set('thumb', $thumb = getOption('AlbumThumbSelect'));
 			}
 		}
-		$shuffle = empty($thumb);
-		$field = $_zp_albumthumb_selector[(int) $thumb]['field'];
-		$direction = $_zp_albumthumb_selector[(int) $thumb]['direction'];
-		$this->getImages(0, 0, $field, $direction);
-		$thumbs = $this->images;
+		if ($shuffle = empty($thumb)) {
+			$thumbs = $this->getImages(0, 0, NULL, NULL, false);
+		} else {
+			$thumbs = $this->getImages(0, 0, $_zp_albumthumb_selector[(int) $thumb]['field'],
+																				$_zp_albumthumb_selector[(int) $thumb]['direction']);
+		}
 		if (!is_null($thumbs)) {
 			if ($shuffle) {
 				shuffle($thumbs);

@@ -43,8 +43,8 @@ require_once(dirname(__FILE__).'/auth_zp.php');
 
 $_zp_current_context_stack = array();
 
-$_zp_albumthumb_selector = array(array('field'=>'', 'direction'=>'', 'desc'=>'random'),
-																	array('field'=>'ID', 'direction'=>'DESC', 'desc'=>gettext('most recent')),
+$_zp_albumthumb_selector = array(	array('field'=>'', 'direction'=>'', 'desc'=>'random'),
+																	array('field'=>'id', 'direction'=>'DESC', 'desc'=>gettext('most recent')),
 																	array('field'=>'mtime', 'direction'=>'', 'desc'=>gettext('oldest')),
 																	array('field'=>'title', 'direction'=>'', 'desc'=>gettext('first alphabetically')),
 																	array('field'=>'hitcounter', 'direction'=>'DESC', 'desc'=>gettext('most viewed'))
@@ -611,17 +611,16 @@ function fetchComments($number) {
 					}
 				}
 				$sql = "SELECT *, ".prefix('comments').".id as id, ".
-				prefix('comments').".name as name, (".prefix('comments').".date + 0) AS date, ".
-				prefix('images').".`albumid` as albumid,".
-				prefix('images').".`id` as imageid".
+							prefix('comments').".name as name, (".prefix('comments').".date + 0) AS date, ".
+							prefix('images').".`albumid` as albumid,".
+							prefix('images').".`id` as imageid".
 							" FROM ".prefix('comments').",".prefix('images')." WHERE ";
 
 				$sql .= "(`type` IN (".zp_image_types("'").") AND (";
 				$i = 0;
 				foreach ($albumIDs as $ID) {
 					if ($i>0) { $sql .= " OR "; }
-					$sql .= "(".prefix('comments').".ownerid=".prefix('images').".id AND ".prefix('images')
-					.".albumid=$ID)";
+					$sql .= "(".prefix('comments').".ownerid=".prefix('images').".id AND ".prefix('images').".albumid=$ID)";
 					$i++;
 				}
 				$sql .= "))";
