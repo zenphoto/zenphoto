@@ -392,8 +392,15 @@ function prepareCustomPage() {
 		$_zp_gallery_page = $page.'.php';
 		switch ($_zp_gallery_page) {
 			case 'search.php':
-				if (!empty($searchalbums) && count($searchalbums) == 1) {	//	we are within a search of a specific album
-					$album = new Album(NULL, array_shift($searchalbums));
+				if (!empty($searchalbums)) {	//	we are within a search of a specific album(s)
+					$albums = array();
+					foreach ($searchalbums as $analbum) {
+						$parent = getUrAlbum(new Album(NULL, $analbum));
+						$albums[$parent->getID()] = $parent;
+					}
+					if (count($albums) == 1) {	// there is only one parent album for the search
+						$album = array_shift($albums);
+					}
 				}
 				break;
 		}
