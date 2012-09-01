@@ -1254,7 +1254,7 @@ class SearchEngine {
 						$albumname = $row['folder'];
 						if ($albumname != $this->dynalbumname) {
 							if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
-								$uralbum = getUrAlbum($this->album);
+								$uralbum = getUrAlbum(new Album(NULL, $albumname));
 								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 								switch (checkPublishDates($row)) {
 									case 1:

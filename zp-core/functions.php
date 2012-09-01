@@ -768,7 +768,7 @@ function handleSearchParms($what, $album=NULL, $image=NULL) {
 					$_zp_current_zenpage_news, $_zp_current_zenpage_page, $_zp_gallery, $_zp_loggedin;
 	$_zp_last_album = zp_getCookie('zenphoto_last_album');
 	if (is_object($zp_request) && get_class($zp_request) == 'SearchEngine') {	//	we are are on a search
-		return;
+		return $zp_request->getAlbumList();
 	}
 	$params = zp_getCookie('zenphoto_search_params');
 	if (!empty($params)) {
@@ -877,15 +877,19 @@ function galleryAlbumsPerPage() {
  * Returns the theme folder
  * If there is an album theme, loads the theme options.
  *
+ * @param object $album album object if override desired
+ *
  * @return string
  */
-function setupTheme() {
+function setupTheme($album=NULL) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_search, $_zp_themeroot;
 	$albumtheme = '';
-	if (in_context(ZP_SEARCH_LINKED)) {
-		$album = $_zp_current_search->getDynamicAlbum();
-	} else {
-		$album = $_zp_current_album;
+	if (is_null($album)) {
+		if (in_context(ZP_SEARCH_LINKED)) {
+			$album = $_zp_current_search->getDynamicAlbum();
+		} else {
+			$album = $_zp_current_album;
+		}
 	}
 	$theme = $_zp_gallery->getCurrentTheme();
 	$id = 0;

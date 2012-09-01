@@ -378,18 +378,29 @@ function prepareImagePage() {
  * @return string
  */
 function prepareCustomPage() {
-	global  $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_script;
-	handleSearchParms('page', $_zp_current_album, $_zp_current_image);
-	$theme = setupTheme();
+	global  $_zp_current_album, $_zp_current_image, $_zp_gallery_page, $_zp_script, $_zp_current_search;
+	$searchalbums = handleSearchParms('page', $_zp_current_album, $_zp_current_image);
+	$album = NULL;
 	$page = str_replace(array('/','\\','.'), '', sanitize($_GET['p']));
 	if (isset($_GET['z'])) { // system page
 		if ($subfolder = sanitize($_GET['z'])) {
 			$subfolder .= '/';
 		}
-		$_zp_gallery_page = basename($_zp_script = ZENFOLDER.'/'.$subfolder.$page.'.php');
+		$_zp_gallery_page = $page.'.php';
+		$_zp_script = ZENFOLDER.'/'.$subfolder.$page.'.php';
 	} else {
+		$_zp_gallery_page = $page.'.php';
+		switch ($_zp_gallery_page) {
+			case 'search.php':
+				if (!empty($searchalbums) && count($searchalbums) == 1) {	//	we are within a search of a specific album
+					$album = new Album(NULL, array_shift($searchalbums));
+				}
+				break;
+		}
+	}
+	$theme = setupTheme($album);
+	if (empty($_zp_script)) {
 		$_zp_script = THEMEFOLDER."/$theme/$page.php";
-		$_zp_gallery_page = basename($_zp_script);
 	}
 	return $theme;
 }
