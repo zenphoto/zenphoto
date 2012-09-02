@@ -116,7 +116,7 @@ function printAdminHeader($tab,$subtab=NULL) {
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/toggleElements.css" type="text/css" />
-	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/jqueryui/jquery_ui_zenphoto.css" type="text/css" />
+	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER;?>/js/jqueryui/jquery-ui-zenphoto.css" type="text/css" />
 	<?php
 	if ($_zp_RTL_css) {
 		?>
@@ -126,7 +126,7 @@ function printAdminHeader($tab,$subtab=NULL) {
 	?>
 	<title><?php echo sprintf(gettext('%1$s %2$s: %3$s%4$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($tabtext),html_encode($subtabtext)); ?></title>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.js" type="text/javascript"></script>
-	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jqueryui/jquery_ui_zenphoto.js" type="text/javascript"></script>
+	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jqueryui/jquery-ui-zenphoto.js" type="text/javascript"></script>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/zenphoto.js" type="text/javascript" ></script>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/admin.js" type="text/javascript" ></script>
 	<script src="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/js/jquery.tooltip.js" type="text/javascript"></script>
