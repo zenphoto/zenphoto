@@ -520,8 +520,8 @@ zp-core/js/jqueryui/images/ui-icons_222222_256x240.png
 zp-core/js/jqueryui/images/ui-icons_454545_256x240.png
 zp-core/js/jqueryui/images/ui-icons_888888_256x240.png
 zp-core/js/jqueryui/images/ui-icons_cd0a0a_256x240.png
-zp-core/js/jqueryui/jquery_ui_zenphoto.css
-zp-core/js/jqueryui/jquery_ui_zenphoto.js
+zp-core/js/jqueryui/jquery-ui-zenphoto.css
+zp-core/js/jqueryui/jquery-ui-zenphoto.js
 zp-core/js/jqueryui/readme.txt
 zp-core/js/sprintf.js
 zp-core/js/tag.js
