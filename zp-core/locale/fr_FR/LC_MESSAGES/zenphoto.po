@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-31 11:14-0500\n"
-"PO-Revision-Date: 2012-08-31 11:33-0500\n"
+"POT-Creation-Date: 2012-09-02 17:58-0500\n"
+"PO-Revision-Date: 2012-09-02 19:19-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -3795,12 +3795,12 @@ msgid "<a href=\"javascript:toggle('gallerysessions');\" >Details</a> for <em>en
 msgstr "<a href=\"javascript: toggle('gallerysessions');\" >Détails</a> – <em>Activer les sessions sur la galerie</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1236
-msgid "Check this option if you are having issues with password and other cookie data not being retained. Setting the option causes zenphoto to use sessions rather than cookies."
-msgstr "Cochez cette case si vous avez des problèmes avec les cookies de sécurité des albums qui ne sont pas enregistrés. Activer cette option fera que Zenphoto utilisera des sessions à la place des cookies."
+msgid "If this option is selected Zenphoto will use <a href=\"http://www.w3schools.com/php/php_sessions.asp\">PHP sessions</a> instead of cookies to make visitor settings persistent."
+msgstr "Si vous sélectionnez cette option, Zenphoto utilise des <a href=\"http://www.w3schools.com/php/php_sessions.asp\">sessions PHP</a> au lieu des cookies, afin de mémoriser les paramètres des visiteurs."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1237
-msgid "<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience."
-msgstr "<strong>Note</strong> : Normalement, la session se termine lors de la fermeture du fureteur ; les mots de passe et les données sont alors effacés de la mémoire. La session peut aussi se terminer plus fréquemment selon la configuration du module d’exécution. Une session plus longue est généralement le gage d’une expérience plus agréable."
+msgid "<strong>NOTE</strong>: Sessions will normally close when the browser closes causing all password and other data to be discarded. They may close more frequently depending on the runtime configuration. Longer <em>lifetime</em> of sessions is generally more conducive to a pleasant user experience. Cookies are the prefered storage option since their duration is determined by the <em>Cookie duration</em> option. "
+msgstr "<strong>Note</strong>. Normalement, une session se termine lors de la fermeture du fureteur ; les mots de passe et les données sont alors effacés de la mémoire. Une session peut aussi se terminer plus rapidement selon la configuration du module d’exécution. Une session plus longue est généralement le gage d’une expérience plus agréable. L’usage de cookies est préférable, car leur persistance est déterminée par la valeur du paramètre : <em>durée de vie des cookies</em>."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1242
 msgid "<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for <em>Cookie duration</em>"
@@ -3808,7 +3808,7 @@ msgstr "<a href=\"javascript: toggle(''cookie_persistence'');\" >Détails</a> �
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1244
 msgid "Set to the time in seconds that cookies should be kept by browsers."
-msgstr "Détermine la durée (en secondes) pendant laquelle le fureteur conservera les cookies."
+msgstr "Détermine la durée (en secondes) pendant laquelle le fureteur conserve les cookies."
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1299
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1343
@@ -5736,12 +5736,12 @@ msgstr "Instanciation invalide de l’album : %1$s!=%2$s"
 msgid "Invalid album instantiation: %s does not exist."
 msgstr "Instanciation invalide de l’album : %s n’existe pas"
 
-#: F:\sites\zenphoto-dev/zp-core/class-album.php:1562
+#: F:\sites\zenphoto-dev/zp-core/class-album.php:1563
 #, php-format
 msgid "Error: The album named %s cannot be found."
 msgstr "Erreur : l’album %s est introuvable."
 
-#: F:\sites\zenphoto-dev/zp-core/class-album.php:1564
+#: F:\sites\zenphoto-dev/zp-core/class-album.php:1565
 #, php-format
 msgid "Error: The album %s is not readable."
 msgstr "Erreur : l’album %s n’est pas lisible."
@@ -5778,7 +5778,7 @@ msgstr "Mauvais suffixe de nom de fichier dans newImage(%s)"
 msgid "Invalid image instantiation: Album does not exist"
 msgstr "Instanciation invalide de l’image : l’album n’existe pas"
 
-#: F:\sites\zenphoto-dev/zp-core/class-image.php:120
+#: F:\sites\zenphoto-dev/zp-core/class-image.php:121
 msgid "Invalid image instantiation: file does not exist"
 msgstr "Instanciation invalide de l’image : le fichier n’existe pas"
 
@@ -6623,367 +6623,367 @@ msgstr "alphabétique"
 msgid "most viewed"
 msgstr "les plus vu(e)s"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:275
-#: F:\sites\zenphoto-dev/zp-core/functions.php:286
-#: F:\sites\zenphoto-dev/zp-core/functions.php:295
-#: F:\sites\zenphoto-dev/zp-core/functions.php:365
+#: F:\sites\zenphoto-dev/zp-core/functions.php:274
+#: F:\sites\zenphoto-dev/zp-core/functions.php:285
+#: F:\sites\zenphoto-dev/zp-core/functions.php:294
+#: F:\sites\zenphoto-dev/zp-core/functions.php:364
 msgid "Mail send failed."
 msgstr "L’envoi du mail a échoué."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:277
+#: F:\sites\zenphoto-dev/zp-core/functions.php:276
 #, php-format
 msgid "Invalid \"to\" mail address %s."
 msgstr "L’adresse du destinataire (%s) est invalide."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:288
+#: F:\sites\zenphoto-dev/zp-core/functions.php:287
 msgid "\"cc\" list provided without \"to\" address list."
 msgstr "Une liste de destinataires en copie conforme est fournie, mais aucun destinataire principal n’a été spécifié."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:297
+#: F:\sites\zenphoto-dev/zp-core/functions.php:296
 #, php-format
 msgid "Invalid \"cc\" mail address %s."
 msgstr "L’adresse de copie conforme (%s) est invalide."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:308
+#: F:\sites\zenphoto-dev/zp-core/functions.php:307
 msgid "Mail send failed. "
 msgstr "L’envoi du mail a échoué."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:310
+#: F:\sites\zenphoto-dev/zp-core/functions.php:309
 #, php-format
 msgid "Invalid \"bcc\" mail address %s."
 msgstr "L’adresse de copie cachée (%s) est invalide."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:361
+#: F:\sites\zenphoto-dev/zp-core/functions.php:360
 msgid "Mail send failed. There is no mail handler configured."
 msgstr "L’envoi du mail a échoué. Aucun gestionnaire de mail n’est configuré."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:367
+#: F:\sites\zenphoto-dev/zp-core/functions.php:366
 msgid "No \"to\" address list provided."
 msgstr "Aucune liste de destinataires n’est fournie."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:914
+#: F:\sites\zenphoto-dev/zp-core/functions.php:916
 #, php-format
 msgid "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your installation."
 msgstr "Zenphoto n’a pas trouvé de scripts de thèmes. Veuillez vérifier le dossier <em>%s</em> de votre installation."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:1430
+#: F:\sites\zenphoto-dev/zp-core/functions.php:1432
 msgid "0 Bytes"
 msgstr "0 octet"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:1843
+#: F:\sites\zenphoto-dev/zp-core/functions.php:1845
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr "Zenphoto a produit une erreur 404 sur %s. Voir le journal de déboggage pour plus de détails."
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2030
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2032
 msgid "Click to show content"
 msgstr "Cliquer pour afficher le contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2035
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2037
 msgid "Click to hide content"
 msgstr "Cliquer pour masquer le contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2086
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2088
 msgid "Camera Maker"
 msgstr "Fabricant de l’appareil"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2087
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2089
 msgid "Camera Model"
 msgstr "Modèle d’appareil"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2088
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2090
 msgid "Image Title"
 msgstr "Titre de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2089
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2091
 msgid "Object Name"
 msgstr "Nom de l’objet"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2090
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2092
 msgid "Image Headline"
 msgstr "Fait saillant de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2091
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2093
 msgid "Image Caption"
 msgstr "Légende de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2092
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2094
 msgid "Image Caption Writer"
 msgstr "Auteur de la légende de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2093
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2095
 msgid "Time Taken"
 msgstr "Heure de prise de vue"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2094
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2096
 msgid "Original Time Taken"
 msgstr "Heure de prise de vue originale"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2095
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2097
 msgid "Time Digitized"
 msgstr "Heure de la numérisation"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2096
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2098
 msgid "Date Created"
 msgstr "Date de création"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2097
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2099
 msgid "Time Created"
 msgstr "Heure de création"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2098
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2100
 msgid "Digital Creation Date"
 msgstr "Date de création numérique"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2099
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2101
 msgid "Digital Creation Time"
 msgstr "Heure de création numérique"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2100
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2102
 msgid "Artist"
 msgstr "Artiste"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2101
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2103
 msgid "Image Credit"
 msgstr "Crédits de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2102
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2104
 msgid "Byline"
 msgstr "Accroche"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2103
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2105
 msgid "Byline Title"
 msgstr "Titre de l’accroche"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2104
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2106
 msgid "Image Source"
 msgstr "Source de l’image"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2106
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2108
 msgid "Copyright Holder"
 msgstr "Titulaire du copyright"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2107
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2109
 msgid "Copyright Notice"
 msgstr "Informations de copyright"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2108
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2110
 msgid "Keywords"
 msgstr "Mots-clés"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2109
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2111
 msgid "Shutter Speed"
 msgstr "Vitesse d’obturation"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2110
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2112
 msgid "Aperture"
 msgstr "Ouverture"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2111
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2113
 msgid "ISO Sensitivity"
 msgstr "Sensibilité en ISO"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2112
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2114
 msgid "Exposure Compensation"
 msgstr "Correction de l’exposition"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2113
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2115
 msgid "Metering Mode"
 msgstr "Mode de mesure"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2114
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2116
 msgid "Flash Fired"
 msgstr "Flash déclenché"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2115
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2117
 msgid "Original Width"
 msgstr "Largeur de l’image pleine grandeur"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2116
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2118
 msgid "Original Height"
 msgstr "Hauteur de l’image pleine grandeur"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2117
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2119
 msgid "Orientation"
 msgstr "Orientation"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2118
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2120
 msgid "Software"
 msgstr "Logiciel"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2119
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2121
 msgid "Contrast Setting"
 msgstr "Réglage du contraste"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2120
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2122
 msgid "Sharpness Setting"
 msgstr "Réglage du renforcement"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2121
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2123
 msgid "Saturation Setting"
 msgstr "Réglage de la saturation"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2122
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2124
 msgid "White Balance"
 msgstr "Balance des blancs"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2123
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2125
 msgid "Subject Distance"
 msgstr "Distance du sujet"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2124
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2126
 msgid "Focal Length"
 msgstr "Longueur de focale"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2125
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2127
 msgid "Lens Type"
 msgstr "Type d’objectif"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2126
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2128
 msgid "Lens Info"
 msgstr "Détails sur l’objectif"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2127
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2129
 msgid "35mm Focal Length Equivalent"
 msgstr "Longueur focale équivalente pour pellicule 35 mm"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2129
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2131
 msgid "Sub-location"
 msgstr "Lieu (très précis)"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2130
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2132
 msgid "Province/State"
 msgstr "État, province"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2131
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2133
 msgid "Country/Primary Location Code"
 msgstr "Code du pays/de la localisation primaire"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2132
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2134
 msgid "Country/Primary Location Name"
 msgstr "Nom du pays/de la localisation primaire"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2133
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2135
 msgid "Content Location Code"
 msgstr "Code du lieu du contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2134
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2136
 msgid "Content Location Name"
 msgstr "Lieu du contenu"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2135
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2137
 msgid "Latitude"
 msgstr "Latitude"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2136
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2138
 msgid "Latitude Reference"
 msgstr "Latitude de référence"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2137
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2139
 msgid "Longitude"
 msgstr "Longitude"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2138
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2140
 msgid "Longitude Reference"
 msgstr "Longitude de référence"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2139
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2141
 msgid "Altitude"
 msgstr "Altitude"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2140
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2142
 msgid "Altitude Reference"
 msgstr "Altitude de référence"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2141
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2143
 msgid "Originating Program "
 msgstr "Programme d’origine"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2142
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2144
 msgid "Program Version"
 msgstr "Version du programme"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2143
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2145
 msgid "Video File Format"
 msgstr "Format de fichier vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2144
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2146
 msgid "Video File Size"
 msgstr "Taille du fichier vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2145
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2147
 msgid "Video Artist"
 msgstr "Artiste de la vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2146
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2148
 msgid "Video Title"
 msgstr "Titre de la vidéo"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2147
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2149
 msgid "Bitrate"
 msgstr "Débit"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2148
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2150
 msgid "Bitrate_Mode"
 msgstr "Bitrate_Mode"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2149
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2151
 msgid "Bits per sample"
 msgstr "Bits par échantillon"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2150
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2152
 msgid "Codec"
 msgstr "Codec"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2151
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2153
 msgid "Compression Ratio"
 msgstr "Taux de compression"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2152
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2154
 msgid "Video Dataformat"
 msgstr "Format des données vidéos"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2153
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2155
 msgid "File Encoder"
 msgstr "Encodeur de fichiers"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2154
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2156
 msgid "Sample rate"
 msgstr "Taux d’échantillonage"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2155
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2157
 msgid "Channel mode"
 msgstr "Mode de canaux"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2156
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2158
 msgid "Format"
 msgstr "Format"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2157
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2159
 msgid "Channels"
 msgstr "Canaux"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2158
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2160
 msgid "Frame rate"
 msgstr "Nombre de cadres / seconde"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2159
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2161
 msgid "X Resolution"
 msgstr "Résolution en X"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2160
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2162
 msgid "Y Resolution"
 msgstr "Résolution en Y"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2161
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2163
 msgid "Aspect ratio"
 msgstr "Ratio d’aspect"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2162
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2164
 msgid "Play Time"
 msgstr "Robustesse minimale du mot de passe"
 
-#: F:\sites\zenphoto-dev/zp-core/functions.php:2163
+#: F:\sites\zenphoto-dev/zp-core/functions.php:2165
 msgid "XMP Rating"
 msgstr "Vote XMP"
 
@@ -11164,7 +11164,7 @@ msgstr "Instanciation invalide de la vidéo : l’album n’existe pas"
 msgid "Invalid video instantiation: file does not exist."
 msgstr "Instanciation invalide de la vidéo : le fichier n’existe pas"
 
-#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:337
+#: F:\sites\zenphoto-dev/zp-core/zp-extensions/class-video.php:338
 msgid "No flash player installed."
 msgstr "Aucun lecteur flash installé."
 
@@ -18837,6 +18837,15 @@ msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’image %1$s:%2$s"
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> n’a pas trouvé l’album %1$s"
+
+#~ msgid ""
+#~ "Check this option if you are having issues with password and other cookie "
+#~ "data not being retained. Setting the option causes zenphoto to use "
+#~ "sessions rather than cookies."
+#~ msgstr ""
+#~ "Cochez cette case si vous avez des problèmes avec les cookies de sécurité "
+#~ "des albums qui ne sont pas enregistrés. Activer cette option fera que "
+#~ "Zenphoto utilisera des sessions à la place des cookies."
 
 #~ msgid "Set theme default options for %s started"
 #~ msgstr "Le paramétrage des défauts du thème %s a commencé"
