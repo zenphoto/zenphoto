@@ -40,6 +40,10 @@ foreach($cachesubfolders as $cachesubfolder) {
 	}
 }
 
+if (OFFSET_PATH == 2) {	//	clear the cache upon upgrade
+	static_html_cache::clearHTMLCache();
+}
+
 $_zp_HTML_cache = new static_html_cache();
 if (isset($zp_request) && $zp_request) {
 	$_zp_HTML_cache->startHTMLCache();

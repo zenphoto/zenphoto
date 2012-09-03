@@ -1254,16 +1254,17 @@ class SearchEngine {
 						$albumname = $row['folder'];
 						if ($albumname != $this->dynalbumname) {
 							if (file_exists(ALBUM_FOLDER_SERVERPATH . internalToFilesystem($albumname))) {
-								$uralbum = getUrAlbum(new Album(NULL, $albumname));
+								$album = new Album(NULL, $albumname);
+								$uralbum = getUrAlbum($album);
 								$viewUnpublished = ($this->search_unpublished || zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
 								switch (checkPublishDates($row)) {
 									case 1:
-										$this->album->setShow(0);
-										$this->album->save();
+										$album->setShow(0);
+										$album->save();
 									case 2:
 										$row['show'] = 0;
 								}
-								if ($mine || (is_null($mine) && $this->album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
+								if ($mine || (is_null($mine) && $album->isMyItem(LIST_RIGHTS) && $viewUnpublished) || (checkAlbumPassword($albumname) && $row['show'])) {
 									if (empty($this->album_list) || in_array($albumname, $this->album_list)) {
 										$result[] = array('name'=>$albumname, 'weight'=>$weights[$row['id']]);
 									}
