@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-02 17:58-0500\n"
-"PO-Revision-Date: 2012-09-02 19:19-0500\n"
+"POT-Creation-Date: 2012-09-02 19:36-0500\n"
+"PO-Revision-Date: 2012-09-02 20:13-0500\n"
 "Last-Translator: Michel Gagnon <michgagnon@gmail.com>\n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -3804,7 +3804,7 @@ msgstr "<strong>Note</strong>. Normalement, une session se termine lors de la fe
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1242
 msgid "<a href=\"javascript:toggle('cookie_persistence');\" >Details</a> for <em>Cookie duration</em>"
-msgstr "<a href=\"javascript: toggle(''cookie_persistence'');\" >Détails</a> – <em>Durée de vie des cookies</em>"
+msgstr "<a href=\"javascript: toggle('cookie_persistence');\" >Détails</a> – <em>Durée de vie des cookies</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin-options.php:1244
 msgid "Set to the time in seconds that cookies should be kept by browsers."
@@ -5519,7 +5519,7 @@ msgstr "Version officielle"
 
 #: F:\sites\zenphoto-dev/zp-core/admin.php:200
 msgid "<em>Debug build</em>"
-msgstr "Version <em>Debug</em>"
+msgstr "<em>Version de développement</em>"
 
 #: F:\sites\zenphoto-dev/zp-core/admin.php:203
 msgid "clone"
@@ -9813,7 +9813,7 @@ msgstr "Paramétrage des droits d’accès (0%o) pour Zenphoto."
 
 #: F:\sites\zenphoto-dev/zp-core/setup/index.php:1211
 msgid "Zenphoto core files [This is a <em>debug</em> build. Some files are missing or seem wrong]"
-msgstr "Fichiers de base de Zenphoto [Il s’agit d’une version de <em>debug</em> ; certains fichiers sont absents ou défectueux.]"
+msgstr "Fichiers de base de Zenphoto [Il s’agit d’une version de <em>développement</em>. Certains fichiers sont absents ou défectueux.]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup/index.php:1213
 msgid "Zenphoto core files [Some files are missing or seem wrong]"
@@ -9825,7 +9825,7 @@ msgstr "Il y a peut être eu un problème lors du chargement vers le serveur. Vo
 
 #: F:\sites\zenphoto-dev/zp-core/setup/index.php:1220
 msgid "Zenphoto core files [This is a <em>debug</em> build]"
-msgstr "Fichiers de base de Zenphoto [Il s’agit d’une version de <em>debug</em>]"
+msgstr "Fichiers de base de Zenphoto [Il s’agit d’une version de <em>développement</em>]"
 
 #: F:\sites\zenphoto-dev/zp-core/setup/index.php:1227
 msgid "Zenphoto core files"
