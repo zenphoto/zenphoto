@@ -906,8 +906,9 @@ $alb = removeParentAlbumNames($album);
 		$albumHeritage = array();
 		$t = explode('/',$album->name);
 		While (!empty($t)) {
-			$albumHeritage[] = implode('/',$t);
+			$name = implode('/',$t);
 			array_pop($t);
+			$albumHeritage[' '.str_repeat('» ', count($t)).basename($name)] = $name;
 		}
 		consolidatedEditMessages('imageinfo');
 		$numsteps = ceil(max($allimagecount,$imagesTab_imageCount)/ADMIN_IMAGES_STEP);
@@ -1293,7 +1294,7 @@ $alb = removeParentAlbumNames($album);
 						<td>
 							<select name="album_thumb-<?php echo $currentimage; ?>" >
 								<option value=""></option>
-								<?php generateListFromArray(array(), $albumHeritage, false, false);?>
+								<?php generateListFromArray(array(), $albumHeritage, false, true);?>
 							</select>
 						</td>
 						</tr>
