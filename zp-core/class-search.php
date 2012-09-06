@@ -1057,54 +1057,55 @@ class SearchEngine {
 						}
 						$op = '';
 						break;
-							default:
-								$lookfor = strtolower($singlesearchstring);
-								$objectid = NULL;
-								foreach ($taglist as $key => $objlist) {
-									if (($exact && $lookfor == $key) || (!$exact && preg_match('%'.$lookfor.'%', $key))) {
-										if (is_array($objectid)) {
-											$objectid = array_merge($objectid, $objlist);
-										} else {
-											$objectid = $objlist;
+					default:
+						$objectid = NULL;
+						if ($lookfor = strtolower($singlesearchstring)) {
+							foreach ($taglist as $key => $objlist) {
+								if (($exact && $lookfor == $key) || (!$exact && preg_match('%'.$lookfor.'%', $key))) {
+									if (is_array($objectid)) {
+										$objectid = array_merge($objectid, $objlist);
+									} else {
+										$objectid = $objlist;
+									}
+								}
+							}
+						}
+						switch ($op) {
+							case '&':
+								if (is_array($objectid)) {
+									$idlist = array_intersect($idlist, $objectid);
+								} else {
+									$idlist = array();
+								}
+								break;
+							case '!':
+								if (is_null($allIDs)) {
+									$allIDs = array();
+									$result = query("SELECT `id` FROM ".prefix($tbl));
+									if ($result) {
+										while ($row = db_fetch_assoc($result)) {
+											$allIDs[] = $row['id'];
 										}
 									}
 								}
-								switch ($op) {
-									case '&':
-										if (is_array($objectid)) {
-											$idlist = array_intersect($idlist, $objectid);
-										} else {
-											$idlist = array();
-										}
-										break;
-									case '!':
-										if (is_null($allIDs)) {
-											$allIDs = array();
-											$result = query("SELECT `id` FROM ".prefix($tbl));
-											if ($result) {
-												while ($row = db_fetch_assoc($result)) {
-													$allIDs[] = $row['id'];
-												}
-											}
-										}
-										if (is_array($objectid)) {
-											$idlist = array_merge($idlist, array_diff($allIDs, $objectid));
-										}
-										break;
-									case '&!':
-										if (is_array($objectid)) {
-											$idlist = array_diff($idlist, $objectid);
-										}
-										break;
-									case '';
-									case '|':
-										if (is_array($objectid)) {
-											$idlist = array_merge($idlist, $objectid);
-										}
-										break;
+								if (is_array($objectid)) {
+									$idlist = array_merge($idlist, array_diff($allIDs, $objectid));
 								}
-								$op = '';
 								break;
+							case '&!':
+								if (is_array($objectid)) {
+									$idlist = array_diff($idlist, $objectid);
+								}
+								break;
+							case '';
+							case '|':
+								if (is_array($objectid)) {
+									$idlist = array_merge($idlist, $objectid);
+								}
+								break;
+						}
+						$op = '';
+						break;
 				}
 			}
 		}

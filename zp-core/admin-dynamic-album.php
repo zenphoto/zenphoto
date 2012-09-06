@@ -32,13 +32,18 @@ $search = new SearchEngine(true);
 if (isset($_POST['savealbum'])) {
 	XSRFdefender('savealbum');
 	$albumname = sanitize($_POST['album']);
-	$album = sanitize($_POST['albumselect']);
-	$albumobj = new Album(NULL, $album);
-	if (!$albumobj->isMyItem(ALBUM_RIGHTS)) {
-		if (!zp_apply_filter('admin_managed_albums_access',false, $return)) {
+	if ($album = sanitize($_POST['albumselect'])) {
+		$albumobj = new Album(NULL, $album);
+		$allow = $albumobj->isMyItem(ALBUM_RIGHTS);
+	} else {
+		$allow = zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS);
+	}
+	if (!$allow) {
+		if (!zp_apply_filter('admin_managed_albums_access', false, $return)) {
 			zp_error(gettext("You do not have edit rights on this album."));
 		}
 	}
+
 	$words = sanitize($_POST['words']);
 	if (isset($_POST['thumb'])) {
 		$thumb = sanitize($_POST['thumb']);

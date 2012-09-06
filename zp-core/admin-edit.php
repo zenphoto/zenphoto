@@ -260,16 +260,10 @@ if (isset($_GET['action'])) {
 				if (isset($_POST['totalimages'])) {
 					if (isset($_POST['checkForPostTruncation'])) {
 						$returntab = '&tagsort='.$tagsort.'&tab=imageinfo';
-
 						if (isset($_POST['ids'])) {	//	process bulk actions, not individual image actions.
 							$action = processImageBulkActions($album);
 							if(!empty($action)) $notify = '&bulkmessage='.$action;
 						} else {
-							if (isset($_POST['thumb'])) {
-								$thumbnail = sanitize_numeric($_POST['thumb'])-1;
-							} else {
-								$thumbnail = -1;
-							}
 							$oldsort = sanitize($_POST['oldalbumimagesort'], 3);
 							if (getOption('albumimagedirection')) $oldsort = $oldsort.'_desc';
 							$newsort = sanitize($_POST['albumimagesort'],3);
@@ -287,10 +281,14 @@ if (isset($_GET['action'])) {
 										if ($movecopyrename_action == 'delete') {
 											$image->remove();
 										} else {
-											if ($thumbnail == $i) { //selected as album thumb
-												$album = $image->getAlbum();
-												$album->setAlbumThumb($image->filename);
-												$album->save();
+											if ($thumbnail = sanitize($_POST['album_thumb-'.$i])) {	//selected as an album thumb
+												$talbum = new Album(NULL, $thumbnail);
+												if ($image->album->name == $thumbnail) {
+													$talbum->setAlbumThumb($image->filename);
+												} else {
+													$talbum->setAlbumThumb('/'.$image->album->name.'/'.$image->filename);
+												}
+												$talbum->save();
 											}
 											if (isset($_POST[$i.'-reset_rating'])) {
 												$image->set('total_value', 0);
@@ -905,6 +903,12 @@ $alb = removeParentAlbumNames($album);
 		<!-- Images List -->
 		<div id="tab_imageinfo" class="tabbox">
 		<?php
+		$albumHeritage = array();
+		$t = explode('/',$album->name);
+		While (!empty($t)) {
+			$albumHeritage[] = implode('/',$t);
+			array_pop($t);
+		}
 		consolidatedEditMessages('imageinfo');
 		$numsteps = ceil(max($allimagecount,$imagesTab_imageCount)/ADMIN_IMAGES_STEP);
 		if ($numsteps) {
@@ -1032,20 +1036,8 @@ $alb = removeParentAlbumNames($album);
 						<p><?php echo gettext('<strong>Image id:</strong>'); ?> <?php echo $image->get('id'); ?></p>
 						<p><?php echo gettext("<strong>Dimensions:</strong>"); ?><br /><?php echo $image->getWidth(); ?> x  <?php echo $image->getHeight().' '.gettext('px'); ?></p>
 						<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
-						<?php
-						if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
-							?>
-							<p>
-								<label>
-									<input type="radio" id="thumb-<?php echo $currentimage; ?>" name="thumb" value="<?php echo $currentimage+1; ?>"<?php if ($thumbnail == $image->filename) echo ' checked="checked"'?> />
-									<?php echo ' '.gettext("Album thumbnail."); ?>
-								</label>
-							</p>
-							<?php
-						}
-						?>
 						</td>
-						<td align="left" valign="top"><div style="width:105px;"><?php echo gettext("Owner:"); ?></div></td>
+						<td align="left" valign="top"><?php echo gettext("Owner:"); ?></td>
 						<td style="width:100%;">
 							<?php
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
@@ -1284,7 +1276,7 @@ $alb = removeParentAlbumNames($album);
 						</td>
 					</tr>
 					<tr>
-						<td align="left" valign="top" width="100"><?php echo gettext("Title:"); ?></td>
+						<td align="left" valign="top"><?php echo gettext("Title:"); ?></td>
 						<td><?php print_language_string_list($image->get('title'), $currentimage.'-title', false, NULL, '', '100%'); ?>
 					</tr>
 
@@ -1293,6 +1285,21 @@ $alb = removeParentAlbumNames($album);
 						<td><?php print_language_string_list($image->get('desc'), $currentimage.'-desc', true, NULL, 'texteditor', '100%'); ?></td>
 					</tr>
 
+					<?php
+					if ($album->albumSubRights() & MANAGED_OBJECT_RIGHTS_EDIT) {
+						?>
+						<tr>
+						<td align="left" valign="top"><span class="nowrap"><?php echo gettext("Set as thumbnail for:"); ?></span></td>
+						<td>
+							<select name="album_thumb-<?php echo $currentimage; ?>" >
+								<option value=""></option>
+								<?php generateListFromArray(array(), $albumHeritage, false, false);?>
+							</select>
+						</td>
+						</tr>
+						<?php
+					}
+					?>
 
 					<tr align="left" valign="top">
 						<td valign="top"><?php echo gettext("Date:"); ?></td>
