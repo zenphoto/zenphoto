@@ -677,7 +677,7 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 	/** SINGLE ALBUM ********************************************************************/
 	// one time generation of this list.
 	$mcr_albumlist = array();
-	genAlbumUploadList($mcr_albumlist);
+	genAlbumList($mcr_albumlist);
 
 	$oldalbumimagesort = getOption('albumimagesort');
 	$direction = getOption('albumimagedirection');
@@ -1516,7 +1516,7 @@ if($subtab != "albuminfo") {	?>
 } else if (isset($_GET['massedit'])) {
 	// one time generation of this list.
 	$mcr_albumlist = array();
-	genAlbumUploadList($mcr_albumlist);
+	genAlbumList($mcr_albumlist);
 	$albumdir = "";
 	if (isset($_GET['album'])) {
 		$folder = sanitize_path($_GET['album']);

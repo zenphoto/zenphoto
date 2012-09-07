@@ -248,7 +248,7 @@ function printItemStatusDropdown() {
  */
 function getMenuSetSelector($active) {
 	$menuset = checkChosenMenuset();
-	$menusets = array();
+	$menusets = array($menuset=>$menuset);
 	$result = query_full_array("SELECT DISTINCT menuset FROM ".prefix('menu')." ORDER BY menuset");
 	if ($result) {
 		foreach ($result as $set) {
@@ -753,9 +753,9 @@ function deleteItem(&$reports) {
 
 function printAlbumsSelector($current) {
 	global $_zp_gallery;
-	$albumlist;
-	genAlbumUploadList($albumlist);
-		?>
+	$albumlist = array();
+	genAlbumList($albumlist, NULL, ALL_ALBUMS_RIGHTS);
+	?>
 	<select id="albumselector" name="albumselect">
 	<?php
 	foreach($albumlist as $key => $value) {

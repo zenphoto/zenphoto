@@ -89,7 +89,7 @@ if (isset($_POST['savealbum'])) { // we fell through, some kind of error
 }
 
 $albumlist = array();
-genAlbumUploadList($albumlist);
+genAlbumList($albumlist);
 $params = trim(zp_getCookie('zenphoto_search_params'));
 $search->setSearchParams($params);
 $fields = $search->fieldList;

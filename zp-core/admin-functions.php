@@ -469,14 +469,14 @@ function checked($checked, $current) {
 	echo ' checked="checked"';
 }
 
-function genAlbumUploadList(&$list, $curAlbum=NULL) {
+function genAlbumList(&$list, $curAlbum=NULL, $rights=UPLOAD_RIGHTS) {
 	global $_zp_gallery;
 	if (is_null($curAlbum)) {
 		$albums = array();
 		$albumsprime = $_zp_gallery->getAlbums(0);
 		foreach ($albumsprime as $album) { // check for rights
 			$albumobj = new Album(NULL, $album);
-			if ($albumobj->isMyItem(UPLOAD_RIGHTS)) {
+			if ($albumobj->isMyItem($rights)) {
 				$albums[] = $album;
 			}
 		}
@@ -486,9 +486,13 @@ function genAlbumUploadList(&$list, $curAlbum=NULL) {
 	if (is_array($albums)) {
 		foreach ($albums as $folder) {
 			$album = new Album(NULL, $folder);
-			if (!$album->isDynamic()) {
+			if ($album->isDynamic()) {
+				if ($rights=ALL_ALBUMS_RIGHTS) {
+					$list[$album->getFolder()] = $album->getTitle();
+				}
+			} else {
 				$list[$album->getFolder()] = $album->getTitle();
-				genAlbumUploadList($list, $album);  /* generate for subalbums */
+				genAlbumList($list, $album, $rights);  /* generate for subalbums */
 			}
 		}
 	}

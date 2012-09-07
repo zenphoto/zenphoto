@@ -54,7 +54,7 @@ printLogoAndLinks();
 				printSubtabs();
 			}
 			$albumlist = array();
-			genAlbumUploadList($albumlist);
+			genAlbumList($albumlist);
 			?>
 			<script type="text/javascript">
 				// <!-- <![CDATA[
