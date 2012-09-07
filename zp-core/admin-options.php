@@ -2606,8 +2606,8 @@ if ($subtab=='theme' && zp_loggedin(THEMES_RIGHTS)) {
 			$ts = max(1,getThemeOption('thumb_size',$album,$themename));
 			$iw = getThemeOption('thumb_crop_width',$album,$themename);
 			$ih = getThemeOption('thumb_crop_height',$album,$themename);
-			$cl = ($ts-$iw)/$ts*50;
-			$ct = ($ts-$ih)/$ts*50;
+			$cl = round(($ts-$iw)/$ts*50, 1);
+			$ct = round(($ts-$ih)/$ts*50, 1);
 			?>
 			<tr>
 				<td><?php echo gettext("Thumb size:"); ?></td>
