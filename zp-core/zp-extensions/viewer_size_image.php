@@ -16,6 +16,9 @@
  * both <var>$w</var> and <var>$h</var> must be present. Then printCustomSizedImageMaxSpace() is used for
  * displaying the image.
  *
+ * You must place calls on <var>printUserSizeSelector()</var> and <var>printUserSizeImage()</var> at appropriate
+ * places in your theme's image.php script to activate these features.
+ *
  * @author Stephen Billard (sbillard)
  * @package plugins
  */

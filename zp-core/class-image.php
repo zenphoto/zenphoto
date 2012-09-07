@@ -916,6 +916,7 @@ class _Image extends MediaObject {
 			if ($sw == $sh) { // square crop, set the size/width to thumbsize
 				$sw = $sh = getOption('thumb_size');
 			} else {
+				$ts = getOption('thumb_size');
 				if ($sw > $sh) {
 					$r = $ts/$sw;
 					$sw = $ts;
