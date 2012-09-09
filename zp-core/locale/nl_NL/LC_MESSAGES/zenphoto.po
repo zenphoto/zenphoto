@@ -14605,7 +14605,7 @@ msgstr "Website is in testmodus!"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/site_upgrade.php:76
 msgid "The site is opened"
-msgstr "Website isgeopend."
+msgstr "Website is geopend."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/site_upgrade.php:90
 #: ZpTranslation-Development/zp-core/zp-extensions/site_upgrade.php:121
@@ -17530,11 +17530,11 @@ msgstr "Verander <em>Aantal</em> instellingen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/site_upgrade/site_upgrade.php:22
 msgid "Site is now marked in upgrade."
-msgstr "De site geeft nu aan dat een upgrade plaatsvindt."
+msgstr "De website geeft nu aan dat er een upgrade plaatsvindt."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/site_upgrade/site_upgrade.php:26
 msgid "Site is viewable."
-msgstr "Site is online"
+msgstr "De website is online"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/site_upgrade/site_upgrade.php:38
 msgid "Site is avaiable for testing only."
