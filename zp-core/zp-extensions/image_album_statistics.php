@@ -88,8 +88,9 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 			break;
 		case "latestupdated":
 			$sortorder = 'updateddate';
+			break;
 		case "random":
-			$sortorder = "RAND()"; break;
+			$sortorder = "RAND()"; 
 			break;
 	}
 	$albums = query_full_array("SELECT id, title, folder, thumb FROM " . prefix('albums') . $albumWhere . " ORDER BY ".$sortorder." DESC LIMIT ".$number);
