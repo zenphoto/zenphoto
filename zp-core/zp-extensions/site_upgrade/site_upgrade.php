@@ -3,9 +3,6 @@ define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(__FILE__))).'/admin-globals.php');
 
 admin_securityChecks(ALBUM_RIGHTS, currentRelativeURL());
-
-var_dump($_POST);var_dump($_GET);
-
 $htpath = SERVERPATH.'/.htaccess';
 $ht = file_get_contents($htpath);
 preg_match_all('|[# ][ ]*RewriteRule(.*)plugins/site_upgrade/closed|',$ht,$matches);
