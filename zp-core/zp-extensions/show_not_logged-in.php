@@ -5,7 +5,7 @@
  * @author Stephen Billard (sbillard)
  * @package plugins
 */
-$plugin_is_filter = 9|CLASS_PLUGIN;
+$plugin_is_filter = 9995|THEME_PLUGIN;
 $plugin_description = sprintf(gettext("Treats users as not logged in for gallery pages."),DATA_FOLDER);
 $plugin_author = "Stephen Billard (sbillard)";
 
