@@ -27,7 +27,7 @@
  * @package plugins
  * @subpackage admin
  */
-$plugin_is_filter = 9999|ADMIN_PLUGIN|THEME_PLUGIN;
+$plugin_is_filter = 97|ADMIN_PLUGIN|THEME_PLUGIN;
 $plugin_description = gettext('Utility to divert access to the gallery to a screen saying the site is upgrading.');
 $plugin_author = "Stephen Billard (sbillard)";
 $plugin_disable = (MOD_REWRITE) ? false : gettext('The <em>mod_rewrite</em> must be enabled');
@@ -55,7 +55,6 @@ switch (OFFSET_PATH) {
 		}
 		break;
 	default:
-
 		zp_register_filter('admin_utilities_buttons', 'site_upgrade_button');
 		zp_register_filter('installation_information', 'site_upgrade_status');
 

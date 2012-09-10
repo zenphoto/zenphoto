@@ -9,7 +9,7 @@
  * @subpackage usermanagement
  */
 
-$plugin_is_filter = 9999|THEME_PLUGIN;
+$plugin_is_filter = 99|THEME_PLUGIN;
 $plugin_description = gettext("Provides a means for users to login/out from your theme pages.");
 $plugin_author = "Stephen Billard (sbillard)";
 

@@ -34,7 +34,13 @@ if (OFFSET_PATH != 2) {	// setup does not need (and might have problems with) pl
 			if (DEBUG_PLUGINS) {
 				list($usec, $sec) = explode(" ", microtime());
 				$end = (float)$usec + (float)$sec;
-				debugLog(sprintf('    '.$extension.'('.($priority & PLUGIN_PRIORITY).')=>%.4fs',$end-$start));
+				$class = array();
+				if ($priority & CLASS_PLUGIN) {
+					$class[] = 'CLASS';
+				} else if ($priority & ADMIN_PLUGIN) {
+					$class[] = 'ADMIN';
+				}
+				debugLog(sprintf('    '.$extension.'(%s:%u)=>%.4fs',implode('|',$class),$priority & PLUGIN_PRIORITY,$end-$start));
 			}
 		}
 	}

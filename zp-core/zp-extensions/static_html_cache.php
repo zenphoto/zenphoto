@@ -18,7 +18,7 @@
  * @package plugins
  */
 
-$plugin_is_filter = 9990|THEME_PLUGIN;
+$plugin_is_filter = 90|THEME_PLUGIN;
 $plugin_description = gettext("Adds static HTML cache functionality to Zenphoto.");
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 

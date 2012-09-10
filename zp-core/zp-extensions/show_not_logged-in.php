@@ -5,30 +5,29 @@
  * @author Stephen Billard (sbillard)
  * @package plugins
 */
-$plugin_is_filter = 9995|THEME_PLUGIN;
+$plugin_is_filter = 95|THEME_PLUGIN;
 $plugin_description = sprintf(gettext("Treats users as not logged in for gallery pages."),DATA_FOLDER);
 $plugin_author = "Stephen Billard (sbillard)";
 
 
 zp_register_filter('guest_login_attempt', 'show_not_loggedin::adminLoginAttempt');
-zp_register_filter('authorization_cookie', 'show_not_loggedin::adminCookie');
+zp_register_filter('load_theme_script', 'show_not_loggedin::hideAdmin');
 
 class show_not_loggedin {
 
-	static function adminCookie($success) {
-		global $_zp_current_admin_obj, $_showNotLoggedin_real_auth;
-		if (!OFFSET_PATH) {
-			$_showNotLoggedin_real_auth = $success;
+	static function hideAdmin($param) {
+		global $_zp_loggedin, $_zp_current_admin_obj, $_showNotLoggedin_real_auth;
+		if (!OFFSET_PATH && is_object($_zp_current_admin_obj)) {
+			$_showNotLoggedin_real_auth = $_zp_current_admin_obj;
 			if (isset($_SESSION)) {
 				unset($_SESSION['zp_user_auth']);
 			}
 			if (isset($_COOKIE)) {
 				unset($_COOKIE['zp_user_auth']);
 			}
-			$_zp_current_admin_obj = NULL;
-			return 0;
+			$_zp_current_admin_obj = $_zp_loggedin = NULL;
 		}
-		return $success;
+		return $param;
 	}
 
 	static function adminLoginAttempt($success, $user, $pass, $athority) {

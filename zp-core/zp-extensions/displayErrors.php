@@ -14,7 +14,7 @@
  *
  */
 
-$plugin_is_filter = 99999|CLASS_PLUGIN;
+$plugin_is_filter = 99|CLASS_PLUGIN;
 $plugin_description = gettext('Allows dynamic setting of PHP error displays.');
 $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'displayErrors';

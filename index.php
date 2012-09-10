@@ -10,7 +10,10 @@ checkInstall();
 /**
  * Invoke the controller to handle requests
  */
+require_once(dirname(__FILE__). "/".ZENFOLDER.'/functions-controller.php');
+zp_load_gallery();
 require_once(dirname(__FILE__). "/".ZENFOLDER.'/controller.php');
+
 // RSS feed calls before anything else
 if (isset($_GET['rss'])) {
 	require_once(dirname(__FILE__). "/".ZENFOLDER.'/class-rss.php');
@@ -61,7 +64,7 @@ foreach (getEnabledPlugins() as $extension=>$loadtype) {
 		if (DEBUG_PLUGINS) {
 				list($usec, $sec) = explode(" ", microtime());
 				$end = (float)$usec + (float)$sec;
-				debugLog(sprintf('    '.$extension.'('.($priority & PLUGIN_PRIORITY).')=>%.4fs',$end-$start));
+				debugLog(sprintf('    '.$extension.'(THEME:%u)=>%.4fs',$priority & PLUGIN_PRIORITY,$end-$start));
 			}
 //		$_zp_script_timer['load '.$extension] = microtime();
 	}

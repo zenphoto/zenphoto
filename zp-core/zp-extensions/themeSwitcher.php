@@ -14,7 +14,7 @@
  * @package plugins
  */
 
-$plugin_is_filter = 999|CLASS_PLUGIN;
+$plugin_is_filter = 98|CLASS_PLUGIN;
 $plugin_description = gettext('Allow a visitor to select the theme of the gallery.');
 $plugin_author = "Stephen Billard (sbillard)";
 
@@ -113,7 +113,7 @@ class themeSwitcher {
 	static function controlLink($textIn=NULL) {
 		global $_zp_gallery, $_showNotLoggedin_real_auth;
 		if (isset($_showNotLoggedin_real_auth)) {
-			$loggedin = $_showNotLoggedin_real_auth;
+			$loggedin = $_showNotLoggedin_real_auth->getRights();
 		} else {
 			$loggedin = zp_loggedin();
 		}

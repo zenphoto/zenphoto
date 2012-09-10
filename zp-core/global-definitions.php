@@ -16,8 +16,8 @@ define("STATIC_CACHE_FOLDER","cache_html");
 //bit masks for plugin priorities
 define('CLASS_PLUGIN',4096);
 define('ADMIN_PLUGIN',2048);
-define('THEME_PLUGIN',128);
-define('PLUGIN_PRIORITY',127);
+define('THEME_PLUGIN',1024);
+define('PLUGIN_PRIORITY',1023);
 
 define('DEBUG_LOGIN', false); // set to true to log admin saves and login attempts
 define('DEBUG_ERROR', !defined('RELEASE')); // set to true to supplies the calling sequence with zp_error messages

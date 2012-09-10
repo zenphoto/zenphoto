@@ -7,8 +7,6 @@
 
 // force UTF-8 Ø
 
-require_once(dirname(__FILE__).'/functions-controller.php');
-
 /*** Request Handler **********************
  ******************************************/
 // This is the main top-level action handler for user requests. It parses a
