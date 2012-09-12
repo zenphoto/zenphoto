@@ -2349,7 +2349,7 @@ function printImageMetadata($title=NULL, $toggle=true, $id='imagemetadata', $cla
  */
 function getSizeCustomImage($size, $width=NULL, $height=NULL, $cw=NULL, $ch=NULL, $cx=NULL, $cy=NULL) {
 	if(!in_context(ZP_IMAGE)) return false;
-	global $_zp_current_album, $_zp_current_image, $_zp_flash_player;
+	global $_zp_current_album, $_zp_current_image;
 	if (is_null($_zp_current_image)) return false;
 	$h = $_zp_current_image->getHeight();
 	$w = $_zp_current_image->getWidth();

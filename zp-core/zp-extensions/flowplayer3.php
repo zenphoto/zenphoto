@@ -195,8 +195,7 @@ class Flowplayer3 {
 	/**
 	 * Print the JS configuration of flowplayer
 	 *
-	 * @param string $moviepath the direct path of a movie (within the slideshow), if empty (within albums)
-	 * the zenphoto function getUnprotectedImageURL() is used
+	 * @param string $moviepath the direct path of a movie (within the slideshow), if empty (within albums) the current image is used
 	 *
 	 * @param string $imagetitle the title of the movie
 	 * 	 */
@@ -205,12 +204,11 @@ class Flowplayer3 {
 		$playerwidth = getOption('flow_player3_width');
 		$playerheight = getOption('flow_player3_height');
 		if(empty($moviepath)) {
-			$moviepath = getUnprotectedImageURL();
-			$ext = getSuffix(getUnprotectedImageURL());
+			$moviepath = $_zp_current_image->getFullImage();
 		} else {
 			$moviepath = $moviepath;
-			$ext = getSuffix($moviepath);
 		}
+		$ext = getSuffix($moviepath);
 		if(!empty($count)) {
 			$count = "-".$count;
 		}
@@ -332,7 +330,7 @@ class Flowplayer3 {
 	/**
 	 * outputs the player configuration HTML
 	 *
-	 * @param string $moviepath the direct path of a movie (within the slideshow), if empty (within albums) the zenphoto function getUnprotectedImageURL() is used
+	 * @param string $moviepath the direct path of a movie (within the slideshow), if empty (within albums) the current image is used
 	 * @param string $imagetitle the title of the movie to be passed to the player for display (within slideshow), if empty (within albums) the function getImageTitle() is used
 	 * @param string $count unique text for when there are multiple player items on a page
 	 */
