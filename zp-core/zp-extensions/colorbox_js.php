@@ -46,8 +46,14 @@ class colorbox {
 
 	function getOptionsSupported() {
 		global $_zp_gallery;
+		$themes = getPluginFiles('colorbox_js/themes/*.*');
+		$list = array('Custom (theme based)'=>'custom');
+		foreach ($themes as $theme) {
+			$theme = stripSuffix(basename($theme));
+			$list[ucfirst($theme)] = $theme;
+		}
 		$opts  = array(gettext('Colorbox theme') => array('key' => 'colorbox_theme', 'type' => OPTION_TYPE_SELECTOR,
-										'selections' => array(gettext('Example1') => "example1", gettext('Example2') => "example2", gettext('Example3') => "example3", gettext('Example4') => "example4",gettext('Example5') => "example5",gettext('Custom (theme based)') => "custom"),
+										'selections' => $list,
 										'desc' => gettext("The Colorbox script comes with 5 example themes you can select here. If you select <em>custom (within theme)</em> you need to place a folder <em>colorbox_js</em> containing a <em>colorbox.css</em> file and a folder <em>images</em> within the current theme to override to use a custom Colorbox theme."))
 									);
 		$exclude = array('404.php','themeoptions.php','theme_description.php');
@@ -86,7 +92,7 @@ class colorbox {
 				$themepath = 'colorbox_js/themes/example4/colorbox.css';
 			} else {
 				if($theme == 'custom') {
-					$themepath = 'colorbox_js/colorbox.css';
+					$themepath = zp_apply_filter('colorbox_themepath', 'colorbox_js/colorbox.css');
 				} else {
 					$themepath = 'colorbox_js/themes/'.$theme.'/colorbox.css';
 				}
