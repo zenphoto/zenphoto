@@ -420,7 +420,10 @@ if (isset($_GET['action'])) {
 						$notify = $rslt;
 					}
 				}
-				$qs_albumsuffix = "&massedit";
+				$qs_albumsuffix = '&massedit';
+				if (isset($_GET['album'])) {
+					$qs_albumsuffix = '&album='.sanitize($_GET['album']).$qs_albumsuffix;
+				}
 
 			}
 			// Redirect to the same album we saved.

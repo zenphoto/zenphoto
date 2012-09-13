@@ -221,20 +221,15 @@ class jPlayer {
 	/**
 	 * Get the JS configuration of jplayer
 	 *
-	 * @param string $moviepath the direct path of a movie (within the slideshow), if empty (within albums) the current image is used
+	 * @param string $moviepath the direct path of a movie
 	 * @param string $imagefilename the filename of the movie
 	 * @param string $count number (preferredly the id) of the item to append to the css for multiple players on one page
 	 * @param string $width Not supported as jPlayer is dependend on its CSS based skin to change sizes. Can only be set via plugin options.
 	 * @param string $height Not supported as jPlayer is dependend on its CSS based skin to change sizes. Can only be set via plugin options.
 	 *
 	 */
-	function getPlayerConfig($moviepath='', $imagefilename, $count='', $width='', $height='') {
+	function getPlayerConfig($moviepath, $imagefilename, $count='', $width='', $height='') {
 		global $_zp_current_album, $_zp_current_image;
-		if(empty($moviepath)) {
-			$moviepath = $_zp_current_image->getFullImage();
-		} else {
-			$moviepath = $moviepath;
-		}
 		$ext = getSuffix($moviepath);
 		if(!in_array($ext,array('m4a','m4v','mp3','mp4','flv','fla'))) {
 			echo '<p>'.gettext('This multimedia format is not supported by jPlayer').'</p>';

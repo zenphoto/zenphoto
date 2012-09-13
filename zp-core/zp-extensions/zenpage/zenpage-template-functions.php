@@ -721,7 +721,7 @@ function getNewsVideoContent($imageobj) {
 				$videocontent = '<img src="' . WEBPATH . '/' . ZENFOLDER . '/images/err-noflashplayer.png" alt="'.gettext('No flash player installed.').'" />';
 			} else {
 				$_zp_current_image = $imageobj;
-				$videocontent = $_zp_flash_player->getPlayerConfig(getFullNewsImageURL(),getNewsTitle(),$_zp_current_image->get("id"));
+				$videocontent = $_zp_flash_player->getPlayerConfig(getFullNewsImage(),getNewsTitle(),$_zp_current_image->get("id"));
 			}
 			break;
 		case '.3gp':
@@ -909,7 +909,7 @@ function getNewsAlbumURL() {
  *
  * @return mixed
  */
-function getFullNewsImageURL() {
+function getFullNewsImage() {
 	global $_zp_current_zenpage_news;
 	if(is_NewsType('image') || is_NewsType('video')) {
 		return $_zp_current_zenpage_news->getFullImage();

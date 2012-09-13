@@ -1138,7 +1138,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
  ?>
 	<input type="hidden" name="<?php echo $prefix; ?>folder" value="<?php echo $album->name; ?>" />
 	<input type="hidden" name="tagsort" value="<?php echo html_encode($tagsort); ?>" />
-	<input	type="hidden" name="<?php echo $prefix; ?>password_enabled" id="password_enabled<?php echo $suffix; ?>" value="0" />
+	<input	type="hidden" name="password_enabled<?php echo $suffix; ?>" id="password_enabled<?php echo $suffix; ?>" value="0" />
 	<?php
 	if ($buttons) {
 		?>
@@ -1194,7 +1194,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							<?php
 							if (zp_loggedin(MANAGE_ALL_ALBUM_RIGHTS)) {
 								?>
-								<select name="<?php  echo $prefix; ?>-owner">
+								<select name="<?php  echo $prefix; ?>owner">
 									<?php echo admin_album_list($album->getOwner()); ?>
 								</select>
 								<?php
@@ -1242,7 +1242,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 							} else {
 								$x = '          ';
 								?>
-							<a onclick="resetPass('');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
+								<a onclick="resetPass('<?php echo $suffix; ?>');" title="<?php echo gettext('clear password'); ?>"><img src="images/lock.png" /></a>
 								<?php
 							}
 							?>
@@ -1254,12 +1254,14 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 									<?php echo gettext("Album guest user:"); ?>
 								</a>
 								<br />
-								<label><input type="checkbox" name="disclose_password_<?php echo $prefix; ?>" id="disclose_password_<?php echo $prefix; ?>" onclick="passwordKeydown('<?php echo $prefix; ?>');togglePassword('<?php echo $prefix; ?>');" /><?php echo gettext('Show password'); ?></label>
+								<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
+																id="disclose_password<?php echo $suffix; ?>"
+																onclick="passwordKeydown('<?php echo $suffix; ?>');togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 							</td>
 							<td>
 								<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
-														id="user_name" name="user<?php echo $prefix; ?>"
+														id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 														value="<?php echo $album->getUser(); ?>" />
 							</td>
 						</tr>
@@ -1284,7 +1286,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 															onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 															value="<?php echo $x; ?>" />
 									<br />
-									<span class="password_field_<?php echo $prefix; ?>">
+									<span class="password_field_<?php echo $suffix; ?>">
 										<input type="password"
 																id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
 																onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
@@ -1293,7 +1295,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 									</span>
 								</p>
 								<p>
-								<?php print_language_string_list($album->get('password_hint'), "hint".$prefix, false, NULL, 'hint','100%'); ?>
+								<?php print_language_string_list($album->get('password_hint'), "hint".$suffix, false, NULL, 'hint','100%'); ?>
 								</p>
 							</td>
 						</tr>
@@ -2182,9 +2184,10 @@ function processAlbumEdit($index, $album, &$redirectto) {
 	global $_zp_gallery;
 	$redirectto = NULL; // no redirection required
 	if ($index == 0) {
-		$prefix = '';
+		$prefix = $suffix = '';
 	} else {
 		$prefix = "$index-";
+		$suffix = "_$index";
 	}
 	$tagsprefix = 'tags_'.$prefix;
 	$notify = '';
@@ -2241,7 +2244,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 	$album->setPublishDate(sanitize($_POST['publishdate-'.$prefix]));
 	$album->setExpireDate(sanitize($_POST['expirationdate-'.$prefix]));
 	$fail = '';
-	processCredentials($album);
+	processCredentials($album,$suffix);
 	$oldtheme = $album->getAlbumTheme();
 	if (isset($_POST[$prefix.'album_theme'])) {
 		$newtheme = sanitize($_POST[$prefix.'album_theme']);
@@ -2254,7 +2257,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 		$album->setWatermarkThumb(sanitize($_POST[$prefix.'album_watermark_thumb'], 3));
 	}
 	$album->setCodeblock(processCodeblockSave((int) $prefix));
-	if (isset($_POST[$prefix.'-owner'])) $album->setOwner(sanitize($_POST[$prefix.'-owner']));
+	if (isset($_POST[$prefix.'owner'])) $album->setOwner(sanitize($_POST[$prefix.'owner']));
 
 	$custom = process_language_string_save($prefix.'album_custom_data', 1);
 	$album->setCustomData(zp_apply_filter('save_album_custom_data', $custom, $prefix));
@@ -4379,6 +4382,7 @@ function processCredentials($object, $suffix='') {
 		}
 		$newuser = trim(sanitize($_POST['user'.$suffix],3));
 		$pwd = trim(sanitize($_POST['pass'.$suffix]));
+
 		if (isset($_POST['disclose_password_'.$suffix])) {
 			$pass2 = $pwd;
 		} else {

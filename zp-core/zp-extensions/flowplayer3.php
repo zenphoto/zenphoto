@@ -195,19 +195,13 @@ class Flowplayer3 {
 	/**
 	 * Print the JS configuration of flowplayer
 	 *
-	 * @param string $moviepath the direct path of a movie (within the slideshow), if empty (within albums) the current image is used
+	 * @param string $moviepath the direct path of a movie
 	 *
 	 * @param string $imagetitle the title of the movie
 	 * 	 */
-	function getPlayerConfig($moviepath='', $imagetitle='', $count='', $width=NULL, $height=NULL) {
-		global $_zp_current_image;
+	function getPlayerConfig($moviepath, $imagetitle='', $count='', $width=NULL, $height=NULL) {
 		$playerwidth = getOption('flow_player3_width');
 		$playerheight = getOption('flow_player3_height');
-		if(empty($moviepath)) {
-			$moviepath = $_zp_current_image->getFullImage();
-		} else {
-			$moviepath = $moviepath;
-		}
 		$ext = getSuffix($moviepath);
 		if(!empty($count)) {
 			$count = "-".$count;
