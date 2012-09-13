@@ -21,7 +21,7 @@ $reports = array();
 if(is_AdminEditPage('page')) {
 	$tab = 'pages';
 	if(isset($_GET['titlelink'])) {
-		$result = new ZenpagePage(urldecode($_GET['titlelink']));
+		$result = new ZenpagePage(urldecode(sanitize($_GET['titlelink'])));
 	} else if(isset($_GET['update'])) {
 		XSRFdefender('update');
 		$result = updatePage($reports);
@@ -62,7 +62,7 @@ if(is_AdminEditPage('page')) {
 if(is_AdminEditPage('newsarticle')) {
 	$tab = 'news';
 	if(isset($_GET['titlelink'])) {
-		$result = new ZenpageNews(urldecode($_GET['titlelink']));
+		$result = new ZenpageNews(urldecode(sanitize($_GET['titlelink'])));
 	} else if(isset($_GET['update'])) {
 		XSRFdefender('update');
 		$result = updateArticle($reports);
@@ -107,7 +107,7 @@ if(is_AdminEditPage('newscategory')) {
 		addCategory($reports);
 	}
 	if(isset($_GET['titlelink'])) {
-		$result = new ZenpageCategory(urldecode($_GET['titlelink']));
+		$result = new ZenpageCategory(urldecode(sanitize($_GET['titlelink'])));
 	} else if(isset($_GET['update'])) {
 		XSRFdefender('update');
 		$result = updateCategory($reports);
@@ -177,7 +177,7 @@ codeblocktabsJS();
 	if(empty($_GET['subpage'])) {
 		$page = "";
 	} else {
-		$page = '&amp;subpage='.$_GET['subpage'];
+		$page = '&amp;subpage='.sanitize_numeric($_GET['subpage']);
 	}
 	$saveitem = $updateitem = gettext('Apply');
 	if(is_AdminEditPage('newsarticle')) {
@@ -239,17 +239,17 @@ codeblocktabsJS();
 			<?php
 			if(is_AdminEditPage('newsarticle')) {
 				?>
-				<h1><?php printf(gettext('Article <em>%s</em> not found'),html_encode($_GET['titlelink'])); ?></h1>
+				<h1><?php printf(gettext('Article <em>%s</em> not found'),html_encode(sanitize($_GET['titlelink']))); ?></h1>
 				<?php
 			}
 			if(is_AdminEditPage('newscategory')) {
 				?>
-				<h1><?php printf(gettext('Category <em>%s</em> not found'),html_encode($_GET['titlelink'])); ?></h1>
+				<h1><?php printf(gettext('Category <em>%s</em> not found'),html_encode(sanitize($_GET['titlelink']))); ?></h1>
 			<?php
 			}
 			if(is_AdminEditPage('page')) {
 				?>
-				<h1><?php printf(gettext('Page <em>%s</em> not found'),html_encode($_GET['titlelink'])); ?></h1>
+				<h1><?php printf(gettext('Page <em>%s</em> not found'),html_encode(sanitize($_GET['titlelink']))); ?></h1>
 			<?php
 			}
 			?>
@@ -318,11 +318,11 @@ if ($result->loaded || $result->transient) {
 	<?php
 	if(is_AdminEditPage("newsarticle")) {
 		$backurl = 'admin-news-articles.php?'.$page;
-		if (isset($_GET['category'])) $backurl .= '&amp;category='.html_encode($_GET['category']);
-		if (isset($_GET['date'])) $backurl .= '&amp;date='.html_encode($_GET['date']);
-		if (isset($_GET['published'])) $backurl .= '&amp;published='.html_encode($_GET['published']);
-		if (isset($_GET['sortorder'])) $backurl .= '&amp;sortorder='.html_encode($_GET['sortorder']);
-		if (isset($_GET['articles_page'])) $backurl .= '&amp;articles_page='.html_encode($_GET['articles_page']);
+		if (isset($_GET['category'])) $backurl .= '&amp;category='.html_encode(sanitize($_GET['category']));
+		if (isset($_GET['date'])) $backurl .= '&amp;date='.html_encode(sanitize($_GET['date']));
+		if (isset($_GET['published'])) $backurl .= '&amp;published='.html_encode(sanitize($_GET['published']));
+		if (isset($_GET['sortorder'])) $backurl .= '&amp;sortorder='.html_encode(sanitize($_GET['sortorder']));
+		if (isset($_GET['articles_page'])) $backurl .= '&amp;articles_page='.html_encode(sanitize($_GET['articles_page']));
 	}
 	if(is_AdminEditPage("newscategory")) {
 		$backurl = 'admin-categories.php?';

@@ -794,8 +794,8 @@ function printCategoryDropdown() {
 	global $_zp_zenpage;
 	$result = $_zp_zenpage->getAllCategories(false);
 	if(isset($_GET['date'])) {
-		$datelink = "&amp;date=".$_GET['date'];
-		$datelinkall = "?date=".$_GET['date'];
+		$datelink = "&amp;date=".sanitize($_GET['date']);
+		$datelinkall = "?date=".sanitize($_GET['date']);
 	} else {
 		$datelink = "";
 		$datelinkall ="";
@@ -1559,11 +1559,11 @@ function checkIfScheduled($object) {
 function printPublishIconLink($object,$type,$linkback='') {
 	$urladd = '';
 	if($type == "news") {
-		if(isset($_GET['subpage'])) { $urladd .= "&amp;subpage=".$_GET['subpage']; }
-		if(isset($_GET['date'])) { $urladd .= "&amp;date=".$_GET['date']; }
+		if(isset($_GET['subpage'])) { $urladd .= "&amp;subpage=".sanitize($_GET['subpage']); }
+		if(isset($_GET['date'])) { $urladd .= "&amp;date=".sanitize($_GET['date']); }
 		if(isset($_GET['category'])) { $urladd .= "&amp;category=".sanitize($_GET['category']); }
-		if(isset($_GET['sortorder'])) { $urladd .= "&amp;sortorder=".$_GET['sortorder']; }
-		if(isset($_GET['articles_page'])) { $urladd .= "&amp;articles_page=".$_GET['articles_page']; }
+		if(isset($_GET['sortorder'])) { $urladd .= "&amp;sortorder=".sanitize($_GET['sortorder']); }
+		if(isset($_GET['articles_page'])) { $urladd .= "&amp;articles_page=".sanitize_numeric($_GET['articles_page']); }
 	}
 	if ($object->getDateTime() > date('Y-m-d H:i:s')) {
 		if ($object->getShow()) {
