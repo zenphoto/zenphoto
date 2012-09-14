@@ -964,7 +964,7 @@ msgstr "Postcode<strong>%s</strong>:"
 #: ZpTranslation-Development/themes/garland/contact_form/form.php:68
 #, php-format
 msgid "E-Mail<strong>%s</strong>:"
-msgstr "Email<strong>%s</strong>:"
+msgstr "E-mail<strong>%s</strong>:"
 
 #: ZpTranslation-Development/themes/garland/contact_form/form.php:75
 #, php-format
@@ -992,7 +992,7 @@ msgstr "Bericht<strong>%s</strong>:"
 
 #: ZpTranslation-Development/themes/garland/contact_form/form.php:121
 msgid "Send e-mail"
-msgstr "Stuur email"
+msgstr "Stuur e-mail"
 
 #: ZpTranslation-Development/themes/garland/contact_form/form.php:122
 msgid "Reset"
@@ -1245,7 +1245,7 @@ msgstr "<em>anoniem</em>"
 #: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:62
 #, php-format
 msgid "Email%s:"
-msgstr "Email%s:"
+msgstr "E-mail %s:"
 
 #: ZpTranslation-Development/themes/stopdesign/comment_form/comment_form.php:76
 msgid "(not displayed)"
@@ -1474,7 +1474,7 @@ msgstr "Naam%s:"
 #: ZpTranslation-Development/themes/zpmobile/comment_form/comment_form.php:67
 #, php-format
 msgid "%sE-Mail:"
-msgstr "%sEmail:"
+msgstr "%s E-mail:"
 
 #: ZpTranslation-Development/themes/zpmobile/comment_form/comment_form.php:100
 #, php-format
@@ -1685,7 +1685,7 @@ msgstr "Website:"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:158
 msgid "E-Mail:"
-msgstr "Email:"
+msgstr "E-mail:"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:162
 msgid "Date/Time:"
@@ -1859,7 +1859,7 @@ msgstr "Bewerk reactie"
 
 #: ZpTranslation-Development/zp-core/admin-comments.php:492
 msgid "E-mail comment author"
-msgstr "Email de auteur van de reactie"
+msgstr "E-mail de auteur van de reactie"
 
 #: ZpTranslation-Development/zp-core/admin-dynamic-album.php:43
 msgid "You do not have edit rights on this album."
@@ -3546,11 +3546,11 @@ msgstr "Naam:"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:840
 msgid "Email:"
-msgstr "Email:"
+msgstr "E-mail:"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:846
 msgid "This email name and address will be used as the <em>From</em> address for all mails sent by Zenphoto."
-msgstr "Dit emailadres wordt gebruikt als het <em>afzender</em>-adres voor alle emails die door Zenphoto worden verzonden."
+msgstr "Dit e-mailadres wordt gebruikt als het <em>afzender</em>-adres voor alle e-mails die door Zenphoto worden verzonden."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:850
 msgid "Users per page:"
@@ -4384,7 +4384,7 @@ msgstr "Notificatie bij reactie:"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2262
 msgid "Email the Admin when new comments are posted"
-msgstr "Email de admin bij een nieuwe reactie."
+msgstr "E-mail de admin bij een nieuwe reactie."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2266
 msgid "Spam filter:"
@@ -4417,11 +4417,11 @@ msgstr "Als de <em>Naam</em> verplicht is, moet de degene die reageert een naam 
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2303
 msgid "Email field"
-msgstr "Emailadres"
+msgstr "E-mailadres"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2318
 msgid "If the <em>Email</em> field is required, the poster must provide an email address."
-msgstr "Als het <em>Emailadres</em> verplicht is, moet de degene die reageert een emailadres invullen."
+msgstr "Als het <em>E-mailadres</em> verplicht is, moet de degene die reageert een e-mailadres invullen."
 
 #: ZpTranslation-Development/zp-core/admin-options.php:2320
 msgid "Website field"
@@ -5407,7 +5407,7 @@ msgstr "Volledige naam"
 
 #: ZpTranslation-Development/zp-core/admin-users.php:673
 msgid "Email"
-msgstr "email"
+msgstr "e-mail"
 
 #: ZpTranslation-Development/zp-core/admin-users.php:687
 msgid "create primary album"
@@ -5590,7 +5590,7 @@ msgstr "CAPTCHA generator: <strong>%s</strong>"
 
 #: ZpTranslation-Development/zp-core/admin.php:324
 msgid "There is no mail handler configured!"
-msgstr "Er is geen email-script geconfigureerd!"
+msgstr "Er is geen mail-script geconfigureerd!"
 
 #: ZpTranslation-Development/zp-core/admin.php:335
 #, php-format
@@ -6606,12 +6606,12 @@ msgstr "meest bekeken"
 #: ZpTranslation-Development/zp-core/functions.php:294
 #: ZpTranslation-Development/zp-core/functions.php:364
 msgid "Mail send failed."
-msgstr "Email verzenden mislukt."
+msgstr "E-mail verzenden mislukt."
 
 #: ZpTranslation-Development/zp-core/functions.php:276
 #, php-format
 msgid "Invalid \"to\" mail address %s."
-msgstr "Ongeldig \"aan\" emailadres %s."
+msgstr "Ongeldig \"aan\" e-mailadres %s."
 
 #: ZpTranslation-Development/zp-core/functions.php:287
 msgid "\"cc\" list provided without \"to\" address list."
@@ -6620,16 +6620,16 @@ msgstr "\"cc\" lijst opgegeven zonder \"to\" adreslijst."
 #: ZpTranslation-Development/zp-core/functions.php:296
 #, php-format
 msgid "Invalid \"cc\" mail address %s."
-msgstr "Ongeldig \"cc\" emailadres %s."
+msgstr "Ongeldig \"cc\" e-mailadres %s."
 
 #: ZpTranslation-Development/zp-core/functions.php:307
 msgid "Mail send failed. "
-msgstr "Email verzenden mislukt."
+msgstr "E-mail verzenden mislukt."
 
 #: ZpTranslation-Development/zp-core/functions.php:309
 #, php-format
 msgid "Invalid \"bcc\" mail address %s."
-msgstr "Ongeldig \"bcc\" emailadres %s."
+msgstr "Ongeldig \"bcc\" e-mailadres %s."
 
 #: ZpTranslation-Development/zp-core/functions.php:360
 msgid "Mail send failed. There is no mail handler configured."
@@ -7286,12 +7286,12 @@ msgstr "Sorry, dat is niet het juiste antwoord."
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:657
 msgid "You are receiving this e-mail because of a password reset request on your Zenphoto gallery."
-msgstr "Je ontvangt deze email vanwege een aanvraag om het wachtwoord te resetten voor je Zenphoto galerij. "
+msgstr "Je ontvangt deze e-mail vanwege een aanvraag om het wachtwoord te resetten voor je Zenphoto galerij. "
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:659
 #, php-format
 msgid "You are receiving this e-mail because of a password reset request on your Zenphoto gallery from a user who tried to log in as %s."
-msgstr "Je ontvangt deze email vanwege een wachtwoord reset aanvraag op je Zenphoto galerij van een gebruiker die heeft geprobeert in te loggen als %s."
+msgstr "Je ontvangt deze e-mail vanwege een wachtwoord reset aanvraag op je Zenphoto galerij van een gebruiker die heeft geprobeert in te loggen als %s."
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:698
 msgid "There was no one to which to send the reset request."
@@ -7381,7 +7381,7 @@ msgstr "Keer terug "
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:937
 msgid "Request reset by e-mail"
-msgstr "Verzoek voor reset via email"
+msgstr "Verzoek voor reset via e-mail"
 
 #: ZpTranslation-Development/zp-core/lib-auth.php:967
 msgid "Login"
@@ -11351,7 +11351,7 @@ msgstr "Vink uit om de jQuery paginering uit te zetten. Dit staat standaard aan.
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:17
 msgid "Prints an e-mail contact so that visitors may e-mail the site administrator."
-msgstr "Print een email contactformulier zodat bezoekers een bericht naar de beheerder kunnen sturen."
+msgstr "Print een e-mail contactformulier zodat bezoekers een bericht naar de beheerder kunnen sturen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:30
 msgid "<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>"
@@ -11371,7 +11371,7 @@ msgstr "Stuur nog een bericht."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:54
 msgid "<p>A copy of your e-mail will automatically be sent to the address you provided for your own records.</p>"
-msgstr "<p>Een kopie van je bericht wordt verzonden naar het opgegeven emailadres.</p>"
+msgstr "<p>Een kopie van je bericht wordt verzonden naar het opgegeven e-mailadres.</p>"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:69
 msgid "required"
@@ -11432,7 +11432,7 @@ msgstr "Stuur kopie"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:88
 msgid "If checked, a copy of the message will be sent to the address provided. <p class='notebox'><strong>Caution: </strong> If you check this option it is strongly recommend to use Captcha and the confirmation option. Be aware that someone could misuse the e-mail address entered for spamming with this form and that in some countries' jurisdictions (e.g. most European countries) you may be made responsible for this then!</p>"
-msgstr "Als dit is aangevinkt wort er een kopie van het bericht verzonden naar het opgegeven emailadres.<p class='notebox'><strong>Let op: </strong> Als je deze optie gebruikt wordt het aanbevolen om ook de CAPTCHA en bevesigingsoptie te gebruiken. Bedenk dat iemand anders het emailadres in dit formulier kan misbruiken voor spam! In sommige landen kun je daarvoor zelf verantwoordelijk worden gehouden.</p>"
+msgstr "Als dit is aangevinkt wort er een kopie van het bericht verzonden naar het opgegeven e-mailadres.<p class='notebox'><strong>Let op: </strong> Als je deze optie gebruikt wordt het aanbevolen om ook de CAPTCHA en bevesigingsoptie te gebruiken. Bedenk dat iemand anders het e-mailadres in dit formulier kan misbruiken voor spam! In sommige landen kun je daarvoor zelf verantwoordelijk worden gehouden.</p>"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:89
 msgid "Send copy note text"
@@ -11440,15 +11440,15 @@ msgstr "Begeleidende tekst voor kopie"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:91
 msgid "The text for the note about sending a copy to the address provided in case that option is set."
-msgstr "De tekst die uitlegt dat er een kopie naar het opgegeven emailadres wordt verzonden."
+msgstr "De tekst die uitlegt dat er een kopie naar het opgegeven e-mailadres wordt verzonden."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:92
 msgid "Mail address"
-msgstr "Emailadres"
+msgstr "E-mailadres(sen)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:94
 msgid "The e-mail address the messages should be sent to. Enter one or more address separated by semicolons."
-msgstr "Het emailadres waarnaar het bericht wordt verzonden. Meerdere adressen moeten, zonder spaties, worden gescheiden door een puntkomma."
+msgstr "Het e-mailadres waarnaar het bericht wordt verzonden. Meerdere adressen moeten, zonder spaties, worden gescheiden door een puntkomma."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:95
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:97
@@ -11491,7 +11491,7 @@ msgstr "Land"
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:119
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:121
 msgid "E-mail field"
-msgstr "Emailadres"
+msgstr "E-mailadres"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:125
 msgid "CAPTCHA"
@@ -11553,7 +11553,7 @@ msgstr "een land"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:200
 msgid "a valid email address"
-msgstr "een geldig emailadres"
+msgstr "een geldig e-mailadres"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:202
 msgid "a website"
@@ -11601,8 +11601,8 @@ msgstr "Annuleer"
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:320
 msgid "Error sending mail:"
 msgid_plural "Errors sending mail:"
-msgstr[0] "Fout bij het verzenden van de email"
-msgstr[1] "Fouten bij het verzenden van de emails"
+msgstr[0] "Fout bij het verzenden van de e-mail"
+msgstr[1] "Fouten bij het verzenden van de e-mails"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/crop_image.php:21
 msgid "An image cropping tool."
@@ -12122,12 +12122,12 @@ msgstr "<p class=\"notebox\">*<strong>Opmerking:</strong> Deze optie wordt gedee
 
 #: ZpTranslation-Development/zp-core/zp-extensions/email-newuser.php:10
 msgid "Emails a password reset request to a newly created user."
-msgstr "Stuurt een email naar een nieuwe gebruiker voor het instellen van een wachtwoord."
+msgstr "Stuurt een e-mail naar een nieuwe gebruiker voor het instellen van een wachtwoord."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/email-newuser.php:23
 #, php-format
 msgid "You are receiving this e-mail because a user code (%1$s) has been created for you on the Zenphoto gallery %2$s."
-msgstr "Je ontvangt deze email omdat een gebruiker met de naam  %1$s is aangemaakt voor Zenphoto galerij %2$s."
+msgstr "Je ontvangt deze e-mail omdat een gebruiker met de naam  %1$s is aangemaakt voor Zenphoto galerij %2$s."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/email-newuser.php:24
 #, php-format
@@ -12144,7 +12144,7 @@ msgstr "Nieuwe Zenphoto gebruiker"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/email-newuser.php:39
 msgid "New users will be mailed a password set link"
-msgstr "Nieuwe gebruikers ontvangen een email om een wachtwoord in te stellen."
+msgstr "Nieuwe gebruikers ontvangen een e-mail om een wachtwoord in te stellen."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/failed_access_blocker.php:13
 msgid "Blocks access from an IP address which has had multiple failed logon attempts."
@@ -12260,11 +12260,11 @@ msgstr "Informeren*"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:116
 msgid "If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration. (Verification is required only if the Federated Logon provider does not supply an e-mail address.)"
-msgstr "Indien aangevinkt, zal een email verzonden worden naar de administrator zodra een nieuwe gebruiker zijn registratie heeft bevestigd. (Bevestiging is alleen nodig als de Federated logon service geen emailadres opgeeft)"
+msgstr "Indien aangevinkt, zal een e-mail verzonden worden naar de administrator zodra een nieuwe gebruiker zijn registratie heeft bevestigd. (Bevestiging is alleen nodig als de Federated logon service geen e-mailadres opgeeft)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:123
 msgid "Of course there must be some Administrator with an e-mail address for this option to make sense!"
-msgstr "Deze optie heeft natuurlijk alleen effect als er een administrator met een emailadres is !"
+msgstr "Deze optie heeft natuurlijk alleen effect als er een administrator met een e-mailadres is !"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:130
 msgid "* The option may be set via the <a href=\"javascript:gotoName('federated_logon');\"><em>register_user</em></a> plugin options."
@@ -12286,7 +12286,7 @@ msgstr "Federated gebruiker bevestiging"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:303
 msgid "<strong>NOTE:</strong> Update your profile with a valid <em>e-mail</em> address and you will be sent a link to validate your access to the site."
-msgstr "<strong>Opmerking:</strong> Update je profiel met een geldig <em>email</em> addres en je ontvangt een link om de toegang tot de site te controleren."
+msgstr "<strong>Opmerking:</strong> Update je profiel met een geldig <em>e-mail</em> addres en je ontvangt een link om de toegang tot de site te controleren."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:314
 msgid "<strong>NOTE:</strong> User's credentials came from a Federated logon."
@@ -12299,7 +12299,7 @@ msgstr "Zenphoto galerij registratie"
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:352
 #, php-format
 msgid "%1$s (%2$s) has registered for the zenphoto gallery providing an e-mail address of %3$s."
-msgstr "%1$s (%2$s) is geregistreerd voor de Zenphoto galerij door een email adres op te geven van %3$s."
+msgstr "%1$s (%2$s) is geregistreerd voor de Zenphoto galerij door een e-mail adres op te geven van %3$s."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/federated_logon.php:401
 #, php-format
@@ -13787,7 +13787,7 @@ msgstr "Het script dat de uitgaande mail afhandelt, gebaseerd op <em>PHPMailer</
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer.php:12
 #, php-format
 msgid "Only one Email handler plugin may be enalbed. <a href=\"#%1$s\"><code>%1$s</code></a> is already enabled."
-msgstr "Er mag maar één email plugin geactiveerd zijn. <a href=\"#%1$s\"><code>%1$s</code></a> is al geactiveerd."
+msgstr "Er mag maar één mail plugin geactiveerd zijn. <a href=\"#%1$s\"><code>%1$s</code></a> is al geactiveerd."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer.php:51
 msgid "Mail protocol"
@@ -13795,7 +13795,7 @@ msgstr "Mail protocol:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer.php:53
 msgid "Select the mail protocol you wish to be used."
-msgstr "Selecteer het email protocol dat je wilt gebruiken."
+msgstr "Selecteer het mail protocol dat je wilt gebruiken."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer.php:54
 msgid "Outgoing mail server"
@@ -13835,7 +13835,7 @@ msgstr "<em>Gebruikers ID</em> voor de mailserver."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer.php:61
 msgid "Mail password"
-msgstr "Email wachtwoord"
+msgstr "E-mail wachtwoord"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer.php:62
 msgid "<em>Password</em> for mail server."
@@ -14096,7 +14096,7 @@ msgid ""
 "You have received this email because you registered with the user id %3$s on this site.\n"
 "To complete your registration visit %1$s."
 msgstr ""
-"Je ontvangt deze email omdat je je bij de site hebt geregistreerd met gebruikersnaam %3$s \n"
+"Je ontvangt deze e-mail omdat je je bij de site hebt geregistreerd met gebruikersnaam %3$s \n"
 "Ga naar %1$s om de registratie te voltooien."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:46
@@ -14105,7 +14105,7 @@ msgstr "Klik hier om je te registreren voor deze site."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:66
 msgid "If checked, an e-mail will be sent to the gallery admin when a new user has verified his registration."
-msgstr "Indien aangevinkt, zal een email verzonden worden naar de administrator zodra een nieuwe gebruiker is geregistreerd."
+msgstr "Indien aangevinkt, zal een e-mail verzonden worden naar de administrator zodra een nieuwe gebruiker is geregistreerd."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:70
 msgid "If <em>Address fields</em> are shown or required, the form will include positions for address information. If required, the user must supply data in each address field."
@@ -14125,20 +14125,20 @@ msgstr "Indien aangevinkt, wordt er een album aangemaakt en toegewezen aan de ge
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:74
 msgid "Email ID"
-msgstr "Email ID"
+msgstr "E-mail ID"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:76
 msgid "If checked, The user's e-mail address will be used as his User ID."
-msgstr "Indien aangevinkt zal het emailadres van de gebruiker gebruikt worden als zijn/haar ID."
+msgstr "Indien aangevinkt zal het e-mailadres van de gebruiker gebruikt worden als zijn/haar ID."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:77
 msgid "Email notification text"
-msgstr "Email bericht na reactie:"
+msgstr "E-mail bericht na reactie:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:79
 #, php-format
 msgid "Text for the body of the email sent to the registrant for registration verification. <p class=\"notebox\"><strong>Note:</strong> You must include <code>%1$s</code> in your message where you wish the <em>registration verification</em> link to appear. You may also insert the registrant's <em>name</em> (<code>%2$s</code>), <em>user id</em> (<code>%3$s</code>), and <em>password</em>* (<code>%4$s</code>).<br /><br />*For security reasons we recommend <strong>not</strong> inserting the <em>password</em>.</p>"
-msgstr "De tekst voor de email die naar de aanvrager verzonden wordt voor verifcatie van de aanvraag. <p class=\"notebox\"><strong>Opmerking:</strong> Je moet <code>%1$s</code> in het bericht plaatsen, daar waar wilt dat de registratie-link <em>registratie verificatie</em> komt. Je kunt ook de <em>naam</em> (<code>%2$s</code>),  <em>gebruiker id</em> (<code>%3$s</code>) en het <em>wachtwoord</em>* (<code>%4$s</code>) van de aanvrager invoegen.<br /><br />*Uit veiligheidsoverwegingen wordt het invoegen van het <em>wachtwoord</em> <strong>afgeraden</strong>.</p>"
+msgstr "De tekst voor de e-mail die naar de aanvrager verzonden wordt voor verifcatie van de aanvraag. <p class=\"notebox\"><strong>Opmerking:</strong> Je moet <code>%1$s</code> in het bericht plaatsen, daar waar wilt dat de registratie-link <em>registratie verificatie</em> komt. Je kunt ook de <em>naam</em> (<code>%2$s</code>),  <em>gebruiker id</em> (<code>%3$s</code>) en het <em>wachtwoord</em>* (<code>%4$s</code>) van de aanvrager invoegen.<br /><br />*Uit veiligheidsoverwegingen wordt het invoegen van het <em>wachtwoord</em> <strong>afgeraden</strong>.</p>"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:80
 msgid "User registration page"
@@ -14198,7 +14198,7 @@ msgstr "Je kunt nu inloggen op de site en je persoonlijke gegevens controleren."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:371
 msgid "Your registration information has been accepted. An email has been sent to you to verify your email address."
-msgstr "Je registratie is geaccepteerd. Er is een email verzonden om je emailadres te verifiëren."
+msgstr "Je registratie is geaccepteerd. Er is een e-mail verzonden om je e-mailadres te verifiëren."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:379
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:387
@@ -14215,7 +14215,7 @@ msgstr "Registratie mislukt."
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:380
 #, php-format
 msgid "The user ID <em>%s</em> is already in use."
-msgstr "Er is al een gebruiker met emailadres <em>%s</em>."
+msgstr "Er is al een gebruiker met e-mailadres <em>%s</em>."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:388
 msgid "Passwords may not be empty."
@@ -14231,7 +14231,7 @@ msgstr "Ongeldige verificatie-link."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:420
 msgid "Enter a valid email address."
-msgstr "Vul een geldig emailadres in."
+msgstr "Vul een geldig e-mailadres in."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user.php:428
 msgid "The CAPTCHA you entered was not correct."
@@ -15252,7 +15252,7 @@ msgstr "Periode tussen waarschuwingen"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry.php:72
 msgid "The period in days before the expiry during which a warning message will be sent to the user. (If set to zero, no warning occurs.)"
-msgstr "Om de hoeveel dagen de gebruiker een email met een waarschuwing krijgt.(als je dit op 0 zet wordt er geen waarschuwing verzonden) "
+msgstr "Om de hoeveel dagen de gebruiker een e-mail met een waarschuwing krijgt.(als je dit op 0 zet wordt er geen waarschuwing verzonden) "
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry.php:73
 msgid "Auto renew"
@@ -15343,7 +15343,7 @@ msgstr "Toon een <em>inline</em> login- of een <em>Colorbox</em>-formulier als d
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:12
 msgid "Provides a utility function to send e-mails to all users who have provided an e-mail address."
-msgstr "Een mogelijkheid om emails te versturen naar alle geregistreede gebruikers die een emailadres hebben opgegeven."
+msgstr "Een mogelijkheid om e-mails te versturen naar alle geregistreede gebruikers die een e-mailadres hebben opgegeven."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:22
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:72
@@ -15352,11 +15352,11 @@ msgstr "Mailinglist"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:26
 msgid "There are no other registered users who have provided an e-mail address."
-msgstr "Er zijn geen andere geregistreerde gebruikers die een emailadres hebben opgegeven."
+msgstr "Er zijn geen andere geregistreerde gebruikers die een e-mailadres hebben opgegeven."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:36
 msgid "A tool to send e-mails to all registered users who have provided an e-mail address."
-msgstr "Een mogelijkheid om emails te versturen naar alle geregistreede gebruikers die een emailadres hebben opgegeven."
+msgstr "Een mogelijkheid om e-mails te versturen naar alle geregistreede gebruikers die een e-mailadres hebben opgegeven."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:59
 msgid "Mailing"
@@ -15364,7 +15364,7 @@ msgstr "mailing"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:73
 msgid "A tool to send e-mails to all registered users who have provided an e-mail address. There is always a copy sent to the current admin and all e-mails are sent as <em>blind copies</em>."
-msgstr "Een mogelijkheid om emails te verzenden naar alle geregistreede gebruikers die een emailadres hebben opgegeven.<br /> Er wordt altijd een kopie naar de administrator gestuurd en alle emails worden als <em>BCC</em> verzonden."
+msgstr "Een mogelijkheid om e-mails te verzenden naar alle geregistreede gebruikers die een e-mailadres hebben opgegeven.<br /> Er wordt altijd een kopie naar de administrator gestuurd en alle e-mails worden als <em>BCC</em> verzonden."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:80
 msgid "<strong>Note: </strong>No <em>sendmail</em> filter is registered. You must activate and configure a mailer plugin."
@@ -15372,7 +15372,7 @@ msgstr "<strong>Opmerking:</strong> Er is geen <em>sendmail</em> filter gevonden
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:113
 msgid "Mail sent."
-msgstr "Email verzonden"
+msgstr "E-mail verzonden"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:115
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:129
@@ -15390,7 +15390,7 @@ msgstr "Bericht:"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:118
 msgid "Send another mail"
-msgstr "Stuur nog een email"
+msgstr "Stuur nog een e-mail"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:123
 msgid "Please enter the message you want to send."
@@ -15403,7 +15403,7 @@ msgstr "Selecteer gebruikers:"
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:165
 #: ZpTranslation-Development/zp-core/zp-extensions/user_mailing_list.php:166
 msgid "Send mail"
-msgstr "Stuur email"
+msgstr "Stuur e-mail"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/viewer_size_image.php:26
 msgid "Provides a means allowing users to select the image size to view."
@@ -16371,7 +16371,7 @@ msgstr "Postcode"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:444
 msgid "Mail send failed"
-msgstr "Email verzenden mislukt."
+msgstr "E-mail verzenden mislukt."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:450
 msgid "Error posting comment:"
@@ -16381,7 +16381,7 @@ msgstr[1] "Fouten  bij plaatsen van reactie"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:532
 msgid "You must supply an e-mail address."
-msgstr "Je moet een emailadres invoeren."
+msgstr "Je moet een e-mailadres invoeren."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/comment_form/functions.php:537
 msgid "You must enter your name."
@@ -16460,7 +16460,7 @@ msgid ""
 "%4$s"
 msgstr ""
 "Auteur: %1$s\n"
-"Email: %2$s\n"
+"E-mail: %2$s\n"
 "Website: %3$s\n"
 "Reactie:\n"
 "\n"
@@ -17139,7 +17139,7 @@ msgstr "Class"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer/class.phpmailer.php:853
 msgid "You must provide at least one recipient email address."
-msgstr "Je moet minimaal één emailadres opgeven."
+msgstr "Je moet minimaal één e-mailadres opgeven."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/PHPMailer/class.phpmailer.php:854
 msgid " mailer is not supported."
@@ -17426,7 +17426,7 @@ msgstr "Geen ongepubliceerde pagina's"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user/register_user_form.php:16
 msgid "Email* (this will be your user id)"
-msgstr "Email* (dit is meteen je gebruikers ID)"
+msgstr "E-mail* (dit is meteen je gebruikers ID)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/register_user/register_user_form.php:16
 msgid "User ID"
@@ -18082,7 +18082,7 @@ msgstr "Vernieuw"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:174
 msgid "Email renewal"
-msgstr "Email verlenging"
+msgstr "E-mail verlenging"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:177
 #, php-format
@@ -18103,7 +18103,7 @@ msgstr "Vernieuw"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:188
 msgid "Email renewal link"
-msgstr "Email link voor verlenging registratie"
+msgstr "E-mail link voor verlenging registratie"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/user_groups/user_groups-tab.php:134
 msgid "Deleted"
