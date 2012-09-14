@@ -516,7 +516,7 @@ if (db_connect()) {
 		<?php
 		}
 		?>
-		</select> Compression level
+		</select> <?php echo gettext('Compression level'); ?>
 		</div>
 		<br clear="all" />
 		<br clear="all" />

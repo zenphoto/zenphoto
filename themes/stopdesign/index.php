@@ -85,7 +85,7 @@ require_once('normalizer.php');
 
 		<div id="secondary">
 			<div class="module">
-				<h2>Description</h2>
+				<h2><?php echo gettext('Description'); ?></h2>
 				<?php printGalleryDesc(); ?>
 			</div>
 			<div class="module">

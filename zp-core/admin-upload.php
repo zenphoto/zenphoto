@@ -102,7 +102,7 @@ if (count($types)>1) {
 	if ($last == 'ZIP') {
 		echo gettext('ZIP files must contain only Zenphoto supported <em>image</em> types.');
 		?>
-		<br /><br />
+		<br />
 		<?php
 	}
 	$maxupload = ini_get('upload_max_filesize');
@@ -117,7 +117,7 @@ if (count($types)>1) {
 	$uploadlimit = zp_apply_filter('get_upload_limit', $maxuploadint);
 	$maxuploadint = min($maxuploadint, $uploadlimit);
 	?>
-	<br /><br />
+	<br />
 	<?php
 	echo zp_apply_filter('get_upload_header_text', gettext('Don\'t forget, you can also use <acronym title="File Transfer Protocol">FTP</acronym> to upload folders of images into the albums directory!'));
 	?>

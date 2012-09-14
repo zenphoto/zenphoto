@@ -414,16 +414,16 @@ function getCurrentMenuItem($menuset) {
 	if (isset($_GET['page'])) {	// must strip out page numbers, all "pages" are equal
 		if (MOD_REWRITE) {
 			if (isset($_GET['album'])) {
-				$target = '/page/'.$_GET['page'];
+				$target = '/page/'.sanitize($_GET['page']);
 			} else {
-				$target = '/'.$_GET['page'];
+				$target = '/'.sanitize($_GET['page']);
 			}
 			$i = strrpos($currentpageURL,$target);
 			if ($i == (strlen($currentpageURL) - strlen($target))) {
 				$currentpageURL = substr($currentpageURL,0,$i);
 			}
 		} else {
-			$target = '&amp;page='.$_GET['page'];
+			$target = '&amp;page='.sanitize($_GET['page']);
 			$i = strpos($currentpageURL,$target);
 			if ($i !== false) {
 				$currentpageURL = substr($currentpageURL,0,$i).substr($currentpageURL,$i+strlen($target));

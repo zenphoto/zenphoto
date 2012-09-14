@@ -1086,7 +1086,7 @@ $alb = removeParentAlbumNames($album);
 										?>
 										<label class="checkboxlabel">
 											<input type="checkbox" id="reset_rating-<?php echo $currentimage; ?>" name="<?php echo $currentimage; ?>-reset_rating" value="1" />
-											<?php printf(gettext('Reset rating (%u stars)'), $hc); ?>
+											<?php printf(ngettext('Reset rating (%u star)','Reset rating (%u stars)', $hc), $hc); ?>
 										</label>
 										<?php
 									} else {
