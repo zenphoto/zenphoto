@@ -68,7 +68,7 @@ class contactformOptions {
 		setOption('contactform_mailaddress',implode(';',$mailinglist));
 		$list = array(gettext("required") => "required",gettext("show") => "show",gettext("omitted") => "omitted");
 		$mailfieldinstruction = gettext("Set if the <code>%s</code> field should be required, just shown or omitted");
-		return array(	gettext('Intro text') => array('key' => 'contactform_introtext', 'type' => OPTION_TYPE_TEXTAREA,
+		$options = array(	gettext('Intro text') => array('key' => 'contactform_introtext', 'type' => OPTION_TYPE_TEXTAREA,
 										'order' => 13,
 										'desc' => gettext("The intro text for your contact form")),
 									gettext('Confirm text') => array('key' => 'contactform_confirmtext', 'type' => OPTION_TYPE_TEXTAREA,
@@ -89,7 +89,7 @@ class contactformOptions {
 									gettext('Send copy note text') => array('key' => 'contactform_sendcopy_text', 'type' => OPTION_TYPE_TEXTAREA,
 										'order' => 0,
 										'desc' => gettext("The text for the note about sending a copy to the address provided in case that option is set.")),
-									gettext('Mail address') => array('key' => 'contactform_mailaddress', 'type' => OPTION_TYPE_TEXTBOX,
+									gettext('Contact recipients') => array('key' => 'contactform_mailaddress', 'type' => OPTION_TYPE_TEXTBOX,
 										'order' => 17,
 										'desc' => gettext("The e-mail address the messages should be sent to. Enter one or more address separated by semicolons.")),
 									gettext('Title field') => array('key' => 'contactform_title', 'type' => OPTION_TYPE_RADIO, 'buttons' => $list,
@@ -135,6 +135,7 @@ class contactformOptions {
 										'order' => 12,
 										'desc' => sprintf($mailfieldinstruction,gettext("Message field")))
 		);
+		return $options;
 	}
 	/**
 	 *
