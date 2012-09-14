@@ -1017,7 +1017,7 @@ function updateCategory(&$reports) {
  *
  */
 function deleteCategory($titlelink) {
-	$obj = new ZenpageCategory(sanitize($titlelink));
+	$obj = new ZenpageCategory($titlelink);
 	$result = $obj->remove();
 	if($result) {
 		return  "<p class='messagebox fade-message'>".gettext("Category successfully deleted!")."</p>";

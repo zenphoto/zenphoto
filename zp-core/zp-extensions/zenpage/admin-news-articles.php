@@ -27,7 +27,7 @@ if(isset($_POST['checkallaction'])) {	// true if apply is pressed
 }
 if(isset($_GET['delete'])) {
 	XSRFdefender('delete');
-	$msg = deleteArticle($_GET['delete']);
+	$msg = deleteArticle(sanitize($_GET['delete']));
 	if (!empty($msg)) {
 		$reports[] = $msg;
 	}
@@ -219,8 +219,9 @@ printLogoAndLinks();
 					</span>
 					<br style="clear: both" />
 				</div>
-				<?php  $option = getNewsAdminOption(array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1, 'subpage'=>1),'?'); ?>
-
+				<?php
+				$option = getNewsAdminOptionPath(getNewsAdminOption(array('category'=>0,'date'=>0,'published'=>0,'sortorder'=>0,'articles_page'=>1, 'subpage'=>1),'?'));
+				?>
 				<form action="admin-news-articles.php<?php echo $option;?>" method="post" name="checkeditems" onsubmit="return confirmAction();">
 					<?php XSRFToken('checkeditems'); ?>
 				<div class="buttons">
@@ -237,10 +238,10 @@ printLogoAndLinks();
 						</tr>
 					<tr>
 						<th colspan="7"><?php echo gettext('Edit this article'); ?>
-						
+
 						</th>
-						
-						
+
+
 						<th colspan="4">
 							<?php
 						$checkarray = array(

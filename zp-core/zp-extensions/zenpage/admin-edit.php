@@ -52,7 +52,7 @@ if(is_AdminEditPage('page')) {
 	}
 	if(isset($_GET['delete'])) {
 		XSRFdefender('delete');
-		$msg = deletePage($_GET['delete']);
+		$msg = deletePage(sanitize($_GET['delete']));
 		if (!empty($msg)) {
 			$reports[] = $msg;
 		}
@@ -93,7 +93,7 @@ if(is_AdminEditPage('newsarticle')) {
 	}
 	if(isset($_GET['delete'])) {
 		XSRFdefender('delete');
-		$msg = deleteArticle($_GET['delete']);
+		$msg = deleteArticle(sanitize($_GET['delete']));
 		if (!empty($msg)) {
 			$reports[] = $msg;
 		}

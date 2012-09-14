@@ -58,7 +58,7 @@ if (isset($_GET['deletemenuset'])) {
 	$sql = 'DELETE FROM '.prefix('menu').' WHERE `menuset`='.db_quote(sanitize($_GET['deletemenuset']));
 	query($sql);
 	$_menu_manager_items = array();
-	$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Menu '%s' deleted"),html_encode($_GET['deletemenuset']))."</p>";
+	$reports[] =  "<p class='messagebox fade-message'>".sprintf(gettext("Menu '%s' deleted"),html_encode(sanitize($_GET['deletemenuset'])))."</p>";
 }
 if (isset($_GET['dupmenuset'])) {
 	XSRFdefender('dup_menu');

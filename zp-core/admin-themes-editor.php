@@ -32,7 +32,7 @@ foreach ($themefiles as $file) {
 	}
 }
 if (isset($_GET['file']))
-	$file_to_edit = str_replace ('\\', '/', realpath (SERVERPATH . '/themes/'.internalToFilesystem($theme) . '/'. $_GET['file'])) ;
+	$file_to_edit = str_replace ('\\', '/', realpath (SERVERPATH . '/themes/'.internalToFilesystem($theme) . '/'. sanitize($_GET['file']))) ;
 	// realpath() to take care of ../../file.php schemes, str_replace() to sanitize Win32 filenames
 
 

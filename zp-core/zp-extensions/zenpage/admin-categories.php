@@ -31,7 +31,7 @@ if(isset($_POST['action'])) {
 }
 if(isset($_GET['delete'])) {
 	XSRFdefender('delete_category');
-	$reports[] = deleteCategory($_GET['delete']);
+	$reports[] = deleteCategory(sanitize($_GET['delete']));
 }
 if(isset($_GET['hitcounter'])) {
 	XSRFdefender('hitcounter');

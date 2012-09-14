@@ -81,7 +81,7 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 		require_once(dirname(__FILE__) . "/template-functions.php");
 		$parms = '';
 		if (isset($_GET['wmk'])) {
-			$parms = '&wmk='.$_GET['wmk'];
+			$parms = '&wmk='.sanitize($_GET['wmk']);
 		}
 		if (isset($_GET['q'])) {
 			$parms .= '&q='.sanitize_numeric($_GET['q']);

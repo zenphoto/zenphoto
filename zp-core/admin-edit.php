@@ -710,7 +710,7 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 	}
 	$allimagecount = count($allimages);
 	if (isset($_GET['tab']) && $_GET['tab']=='imageinfo' && isset($_GET['image'])) { // directed to an image
-		$target_image = urldecode($_GET['image']);
+		$target_image = urldecode(sanitize($_GET['image']));
 		$imageno = array_search($target_image, $allimages);
 		if ($imageno !== false) {
 			$pagenum = ceil(($imageno+1) / $imagesTab_imageCount);
