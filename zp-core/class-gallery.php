@@ -693,7 +693,7 @@ class Gallery {
 			}
 		}
 		if (count($albums) == 0) return array();
-		$sql = 'SELECT * FROM ' .	prefix("albums") . ' WHERE `parentid`'.$albumid;
+		$sql = 'SELECT * FROM ' .	prefix("albums") . ' WHERE `parentid`'.$albumid. ' ORDER BY '.$sortkey.' '.$sortdirection;
 		$result = query($sql);
 		$results = array();
 		//	check database aganist file system

@@ -84,13 +84,13 @@ function getAlbumStatistic($number=5, $option, $albumfolder='') {
 			$sortorder = "total_votes";
 			break;
 		case "toprated":
-			$sortorder = "(total_value/total_votes)";
+			$sortorder = "(total_value/total_votes) DESC, total_value";;
 			break;
 		case "latestupdated":
 			$sortorder = 'updateddate';
 			break;
 		case "random":
-			$sortorder = "RAND()"; 
+			$sortorder = "RAND()";
 			break;
 	}
 	$albums = query_full_array("SELECT id, title, folder, thumb FROM " . prefix('albums') . $albumWhere . " ORDER BY ".$sortorder." DESC LIMIT ".$number);
@@ -397,7 +397,7 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 			$sortorder = "images.total_votes";
 			break;
 		case "toprated":
-			$sortorder = "(images.total_value/images.total_votes)";
+			$sortorder = "(images.total_value/images.total_votes) DESC, images.total_value";
 			break;
 		case "random":
 			$sortorder = "RAND()";

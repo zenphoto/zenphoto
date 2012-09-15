@@ -1134,6 +1134,10 @@ function sortByKey($results,$sortkey,$order) {
 		case 'RAND()':
 			shuffle($results);
 			return $results;
+		default:
+			if (preg_match('`[\/\(\)\*\+\-!\^\%\<\>\=\&\|]`', $sortkey)) {
+				return $results;	//	We cannot deal with expressions
+			}
 	}
 	$indicies = explode(',', $sortkey);
 	foreach ($indicies as $key=>$index) {

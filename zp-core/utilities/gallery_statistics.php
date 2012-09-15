@@ -148,7 +148,7 @@ function printBarGraph($sortorder="mostimages",$type="albums",$from_number=0, $t
 			$headline = $typename." - ".gettext("most rated");
 			break;
 		case "toprated":
-			$itemssorted = query_full_array($dbquery." ORDER BY (total_value/total_votes) DESC LIMIT $limit");
+			$itemssorted = query_full_array($dbquery." ORDER BY (total_value/total_votes) DESC, total_value DESC LIMIT $limit");
 			if(empty($itemssorted)) {
 				$maxvalue = 0;
 			} else {

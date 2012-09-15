@@ -963,7 +963,7 @@ class Album extends AlbumBase {
 				$order = $this->getSortDirection('image');
 			}
 		}
-		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID());
+		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID() .' ORDER BY '.$sorttype.' '.$sortdirection);
 		$results = array();
 		while ($row = db_fetch_assoc($result)) {
 			$filename = $row['filename'];
