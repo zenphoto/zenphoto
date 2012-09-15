@@ -12,8 +12,7 @@
  */
 
 define('ZP_SHORTENINDICATOR',$shortenindicator = getOption('zenpage_textshorten_indicator'));
-define('ZP_SINGULAR',get_language_string(getOption('combinews-customtitle-singular')));
-define('ZP_PLURAL',get_language_string(getOption('combinews-customtitle-plural')));
+define('ZP_COMBINEWS_CUSTOMTITLE',get_language_string(getOption('combinews-customtitle')));
 define('ZP_COMBINEWS_IMAGETITLES',getOption('combinews-customtitle-imagetitles'));
 define('ZP_SHORTEN_LENGTH',getOption('zenpage_text_length'));
 define('ZP_COMBINEWS_SORTORDER',getOption("zenpage_combinews_sortorder"));
@@ -656,10 +655,10 @@ class Zenpage {
 	}
 
 	/**
- 	* Returns the full path of the news index page (news page 1) or if the "news on zp index" option is set a link to the gallery index.
+	* Returns the full path of the news index page (news page 1) or if the "news on zp index" option is set a link to the gallery index.
 	*
- 	* @return string
- 	*/
+	* @return string
+	*/
 	function getNewsIndexURL() {
 		if($this->news_on_index) {
 			return getGalleryIndexURL(false);
@@ -670,49 +669,49 @@ class Zenpage {
 
 
 	/**
- 	* Returns the base /news or index.php?p=news url
- 	*
- 	* @return string
- 	*/
+	* Returns the base /news or index.php?p=news url
+	*
+	* @return string
+	*/
 	function getNewsBaseURL() {
 		return rewrite_path('news', "/index.php?p=news");
 	}
 
 
 	/**
- 	* Returns partial path of news category
- 	*
- 	* @return string
- 	*/
+	* Returns partial path of news category
+	*
+	* @return string
+	*/
 	function getNewsCategoryPath() {
 		return rewrite_path("/category/","&category=",false);
 	}
 
 	/**
- 	* Returns partial path of news date archive
- 	*
- 	* @return string
- 	*/
+	* Returns partial path of news date archive
+	*
+	* @return string
+	*/
 	function getNewsArchivePath() {
 		return rewrite_path("/archive/","&date=",false);
 	}
 
 
 	/**
- 	* Returns partial path of news article title
- 	*
- 	* @return string
- 	*/
+	* Returns partial path of news article title
+	*
+	* @return string
+	*/
 	function getNewsTitlePath() {
 		return rewrite_path("/","&title=",false);
 	}
 
 
 	/**
- 	* Returns partial path of a news page number path
- 	*
- 	* @return string
- 	*/
+	* Returns partial path of a news page number path
+	*
+	* @return string
+	*/
 	function getNewsPagePath() {
 		return rewrite_path("/","&page=",false);
 	}

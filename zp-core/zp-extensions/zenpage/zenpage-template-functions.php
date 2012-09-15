@@ -337,11 +337,11 @@ function getNewsTitle() {
 	global $_zp_current_zenpage_news;
 	if (!is_null($_zp_current_zenpage_news)) {
 		if(is_NewsType("album") && (
-		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail" ||
-		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail-customcrop" ||
-		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage" ||
-		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage-maxspace" ||
-		getOption("zenpage_combinews_mode") == "latestimagesbyalbum-fullimage")) {
+					getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail" ||
+					getOption("zenpage_combinews_mode") == "latestimagesbyalbum-thumbnail-customcrop" ||
+					getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage" ||
+					getOption("zenpage_combinews_mode") == "latestimagesbyalbum-sizedimage-maxspace" ||
+					getOption("zenpage_combinews_mode") == "latestimagesbyalbum-fullimage")) {
 			if(getOption("zenpage_combinews_sortorder") == 'publishdate') {
 				$date = 'IFNULL(publishdate,date)';
 				$order = 'publishdate';
@@ -350,25 +350,25 @@ function getNewsTitle() {
 				$order = $date;
 			}
 			$result = query_full_array("SELECT filename FROM ".prefix('images')." AS images WHERE ".$date." LIKE '".$_zp_current_zenpage_news->getDateTime()."%' AND albumid = ".$_zp_current_zenpage_news->getID()." ORDER BY ".$order." DESC");
-			$imagetitles = "";
+			$countindicator = $imagetitles = "";
 			$countresult = count($result);
-			$count = "";
+			$result = array_slice($result, 0, ZP_COMBINEWS_IMAGETITLES-1);
 			if(ZP_COMBINEWS_IMAGETITLES != 0) {
 				foreach($result as $image) {
 					$imageobj = newImage($_zp_current_zenpage_news,$image['filename']);
-					$imagetitles .= $imageobj->getTitle();
-					$count++;
-					$append = ', ';
-					if($count < $countresult) {
-						$imagetitles .= $append;
-					}
-					if($count >= ZP_COMBINEWS_IMAGETITLES && $count != $countresult) {
+					$imagetitles .= $imageobj->getTitle().', ';
+				}
+				$imagetitles = substr($imagetitles, 0, -2);
+			}
+			if ($countresult) {
+				if ($countresult > ZP_COMBINEWS_IMAGETITLES) {
+					if (ZP_COMBINEWS_IMAGETITLES) {
 						$imagetitles .= ZP_SHORTENINDICATOR;
-						break;
 					}
+					$countindicator = sprintf(ngettext(' [%u item]',' [%u items]', $countresult), $countresult);
 				}
 			}
-			return sprintf(ngettext(ZP_SINGULAR,ZP_PLURAL,$countresult),$countresult,$_zp_current_zenpage_news->getTitle(),$imagetitles);
+			return sprintf(ZP_COMBINEWS_CUSTOMTITLE, $countindicator, $_zp_current_zenpage_news->getTitle(), $imagetitles);
 		} else {
 			return $_zp_current_zenpage_news->getTitle();
 		}
@@ -440,9 +440,9 @@ function printNewsTitleLink($before='') {
 			$before = '<span class="beforetext">'.html_encode($before).'</span>';
 		}
 		if(is_NewsType("news")) {
-			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".getBareNewsTitle()."\">".$before.html_encode(getNewsTitle())."</a>";
+			echo "<a href=\"".html_encode(getNewsURL(getNewsTitleLink()))."\" title=\"".getBareNewsTitle()."\">".$before.html_encodeTagged(getNewsTitle())."</a>";
 		} else if (is_GalleryNewsType()) {
-			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".getBareNewsTitle()."\">".$before.html_encode(getNewsTitle())."</a>";
+			echo "<a href=\"".html_encode(getNewsTitleLink())."\" title=\"".getBareNewsTitle()."\">".$before.html_encodeTagged(getNewsTitle())."</a>";
 		}
 	}
 }
