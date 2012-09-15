@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-14 09:47+0100\n"
+"POT-Creation-Date: 2012-09-15 09:01+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -1171,6 +1171,10 @@ msgstr "Recent ge-update Galerijen"
 msgid "View album: %s"
 msgstr "Bekijk album: %s"
 
+#: ZpTranslation-Development/themes/stopdesign/index.php:88
+msgid "Description"
+msgstr "Beschrijving"
+
 #: ZpTranslation-Development/themes/stopdesign/index.php:98
 #: ZpTranslation-Development/themes/stopdesign/themeoptions.php:38
 msgid "Recent images"
@@ -2146,10 +2150,11 @@ msgstr[0] "Reset hittellers (%u hit)"
 msgstr[1] "Reset hittellers (%u hits)"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1089
-#: ZpTranslation-Development/zp-core/admin-functions.php:1663
 #, php-format
-msgid "Reset rating (%u stars)"
-msgstr "Reset alle waarderingen (%u sterren)"
+msgid "Reset rating (%u star)"
+msgid_plural "Reset rating (%u stars)"
+msgstr[0] "Reset alle waarderingen (%u ster)"
+msgstr[1] "Reset alle waarderingen (%u sterren)"
 
 #: ZpTranslation-Development/zp-core/admin-edit.php:1096
 #: ZpTranslation-Development/zp-core/admin-functions.php:1670
@@ -2590,6 +2595,11 @@ msgid "Reset hit counter (%u hit)"
 msgid_plural "Reset hit counter (%u hits)"
 msgstr[0] "Reset hitteller (%u hit)"
 msgstr[1] "Reset hitteller (%u hits)"
+
+#: ZpTranslation-Development/zp-core/admin-functions.php:1663
+#, php-format
+msgid "Reset rating (%u stars)"
+msgstr "Reset alle waarderingen (%u sterren)"
 
 #: ZpTranslation-Development/zp-core/admin-functions.php:1753
 msgid "Rename Folder"
@@ -4749,10 +4759,6 @@ msgstr "<strong>Opmerking</strong>: Niet alle thema's ondersteunen alle plugins!
 #: ZpTranslation-Development/zp-core/admin-plugins.php:137
 msgid "Available Plugins"
 msgstr "Beschikbare plugins"
-
-#: ZpTranslation-Development/zp-core/admin-plugins.php:139
-msgid "Description"
-msgstr "Beschrijving"
 
 #: ZpTranslation-Development/zp-core/admin-plugins.php:152
 msgid "<strong>Error parsing <em>plugin_description</em> string!</strong>."
@@ -10530,6 +10536,10 @@ msgstr "Backup de tabellen in de database"
 msgid "Backup the Database"
 msgstr "Backup de database"
 
+#: ZpTranslation-Development/zp-core/utilities/backup_restore.php:519
+msgid "Compression level"
+msgstr "Compressie"
+
 #: ZpTranslation-Development/zp-core/utilities/backup_restore.php:530
 msgid "You have not yet created a backup set."
 msgstr "Je hebt nog geen backup gemaakt."
@@ -11443,8 +11453,8 @@ msgid "The text for the note about sending a copy to the address provided in cas
 msgstr "De tekst die uitlegt dat er een kopie naar het opgegeven e-mailadres wordt verzonden."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:92
-msgid "Mail address"
-msgstr "E-mailadres(sen)"
+msgid "Contact recipients"
+msgstr "Ontvanger(s) van het bericht"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:94
 msgid "The e-mail address the messages should be sent to. Enter one or more address separated by semicolons."
@@ -11519,86 +11529,86 @@ msgstr "Onderwerp"
 msgid "Message field"
 msgstr "Bericht"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:192
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:193
 msgid "a title"
 msgstr "een title"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:193
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:194
 msgid "a name"
 msgstr "een name"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:194
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:195
 msgid "a company"
 msgstr "een bedrijf"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:195
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:196
 msgid "a street"
 msgstr "een straat"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:196
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:197
 msgid "a city"
 msgstr "een plaats"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:197
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:198
 msgid "a state"
 msgstr "een staat"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:198
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:199
 msgid "a postal code"
 msgstr "een postcode"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:199
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:200
 msgid "a country"
 msgstr "een land"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:200
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:201
 msgid "a valid email address"
 msgstr "een geldig e-mailadres"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:202
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:203
 msgid "a website"
 msgstr "een website"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:210
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:211
 msgid "a phone number"
 msgstr "een telefoonnummer"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:211
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:212
 msgid "a subject"
 msgstr "een onderwerp"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:212
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:213
 msgid "a message"
 msgstr "een bericht"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:218
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:219
 msgid "the correct CAPTCHA verification code"
 msgstr "de juiste CAPTCHA code"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:231
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:232
 #, php-format
 msgid "Please enter %s. Thanks."
 msgstr "Vul a.u.b. %s in."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:234
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:235
 #, php-format
 msgid "Please enter %1$s and %2$s. Thanks."
 msgstr "Vul a.u.b. %1$s en %2$s in."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:242
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:243
 #, php-format
 msgid "Please enter: %sThanks."
 msgstr "Vul a.u.b. %s in."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:283
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:284
 msgid "Confirm"
 msgstr "Bevestig"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:287
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:288
 msgid "Discard"
 msgstr "Annuleer"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:320
+#: ZpTranslation-Development/zp-core/zp-extensions/contact_form.php:321
 msgid "Error sending mail:"
 msgid_plural "Errors sending mail:"
 msgstr[0] "Fout bij het verzenden van de e-mail"
@@ -18804,6 +18814,9 @@ msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid "Mail address"
+#~ msgstr "E-mailadres(sen)"
 
 #~ msgid "Example1"
 #~ msgstr "thema 1"
