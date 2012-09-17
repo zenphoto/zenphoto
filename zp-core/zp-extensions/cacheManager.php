@@ -233,7 +233,7 @@ class cacheManager {
 	 */
 	static function published($obj) {
 		if (getOption('cacheManager_'.$obj->table)) {
-			require_once (SERVERPATH.'/'.ZENFOLDER.'/class-RSS.php');
+			require_once (SERVERPATH.'/'.ZENFOLDER.'/class-rss.php');
 			//TODO: there should be a finer purging for RSS
 			if (class_exists('static_html_cache')) {
 				static_html_cache::clearHTMLCache('index');
