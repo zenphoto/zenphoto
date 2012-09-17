@@ -416,14 +416,14 @@ ul.pagelist li.next {
 ------------------------------ */
 #images {
 	float: left;
-	width: 590px;
+	width: 650px;
 	border: 0px solid gray;
 }
 
 .imagethumb a,.imagethumb a:hover {
 	display: block;
 	padding: 7px;
-	margin: 0px 12px 12px 0px;
+	margin: 0px 6px 12px 0px;
 	line-height: 0px;
 	border: 1px solid #e6e6e6;
 	background-color: #FBFBF8;
@@ -447,7 +447,7 @@ ul.pagelist li.next {
 ------------------------------ */
 #albums {
 	float: left;
-	width: 590px;
+	width: 650px;
 	border: 0px solid gray;
 	font-size: 10px;
 }
