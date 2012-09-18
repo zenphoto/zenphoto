@@ -46,7 +46,7 @@ if (isset($_GET['action'])) {
 		/*** General options ***/
 		if (isset($_POST['savegeneraloptions'])) {
 
-			$tags = $_POST['allowed_tags'];
+			$tags = sanitize($_POST['allowed_tags'],0);
 			$test = "(".$tags.")";
 			$a = parseAllowedTags($test);
 			if ($a !== false) {
@@ -328,13 +328,13 @@ if (isset($_GET['action'])) {
 					}
 					if (isset($_POST['thumb_crop_width'])) {
 						if (is_numeric($_POST['thumb_crop_width'])) {
-							$ncw = round($ts - $ts*2*$_POST['thumb_crop_width']/100);
+							$ncw = round($ts - $ts*2*sanitize_numeric($_POST['thumb_crop_width'])/100);
 						}
 						setThemeOption('thumb_crop_width', $ncw, $table, $themename);
 					}
 					if (isset($_POST['thumb_crop_height'])) {
 						if (is_numeric($_POST['thumb_crop_height'])) {
-							$nch = round($ts - $ts*2*$_POST['thumb_crop_height']/100);
+							$nch = round($ts - $ts*2*sanitize_numeric($_POST['thumb_crop_height'])/100);
 						}
 						setThemeOption('thumb_crop_height', $nch, $table, $themename);
 					}

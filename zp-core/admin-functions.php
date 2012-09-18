@@ -3344,7 +3344,7 @@ function processOrder($orderstr) {
 function postAlbumSort($parentid) {
 	global $_zp_gallery;
 	if (isset($_POST['order']) && !empty($_POST['order'])) {
-		$order = processOrder($_POST['order']);
+		$order = processOrder(sanitize($_POST['order']));
 		$sortToID = array();
 		foreach ($order as $id=>$orderlist) {
 			$id = str_replace('id_','',$id);
@@ -3764,7 +3764,7 @@ function bulkActionRedirect($action)  {
 function processAlbumBulkActions() {
 	global $_zp_gallery;
 	if (isset($_POST['ids'])) {
-		$ids = $_POST['ids'];
+		$ids = sanitize($_POST['ids']);
 		$action = sanitize($_POST['checkallaction']);
 		$total = count($ids);
 		if($action != 'noaction' && $total > 0) {
@@ -3851,7 +3851,7 @@ function processAlbumBulkActions() {
  */
 function processImageBulkActions($album) {
 	$action = sanitize($_POST['checkallaction']);
-	$ids = $_POST['ids'];
+	$ids = sanitize($_POST['ids']);
 	$total = count($ids);
 	$message = NULL;
 	if($action != 'noaction') {
@@ -3940,7 +3940,7 @@ function processCommentBulkActions() {
 	if (isset($_POST['ids'])) { // these is actually the folder name here!
 		$action = sanitize($_POST['checkallaction']);
 		if($action != 'noaction') {
-			$ids = $_POST['ids'];
+			$ids = sanitize($_POST['ids']);
 			if (count($ids) > 0) {
 				foreach ($ids as $id) {
 					$comment = new Comment(sanitize_numeric($id));

@@ -1669,7 +1669,7 @@ function processZenpageBulkActions($type) {
 	if (isset($_POST['ids'])) {
 		//echo "action for checked items:". $_POST['checkallaction'];
 		$action = sanitize($_POST['checkallaction']);
-		$links = $_POST['ids'];
+		$links = sanitize($_POST['ids']);
 		$total = count($links);
 		$message = NULL;
 		$sql = '';

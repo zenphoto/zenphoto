@@ -431,7 +431,7 @@ if (isset($_GET['action'])) {
 				$qs_albumsuffix .= '&album='.pathurlencode($folder);
 			}
 			if (isset($_POST['subpage'])) {
-				$pg = '&subpage='.$_POST['subpage'];
+				$pg = '&subpage='.sanitize($_POST['subpage']);
 			} else {
 				$pg = '';
 			}
