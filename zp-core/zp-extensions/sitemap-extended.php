@@ -34,6 +34,7 @@ if (!file_exists($sitemapfolder)) {
 }
 
 define ('SITEMAP_CHUNK', getOption('sitemap_processing_chunk'));
+define ('GOOGLE_SITEMAP', getOption('sitemap_google'));
 if (getOption('multi_lingual') && defined('LOCALE_TYPE')) {
 	define('SITEMAP_LOCALE_TYPE', LOCALE_TYPE);
 } else {
@@ -618,8 +619,6 @@ function getSitemapImages() {
 	getSitemapAlbumList($_zp_gallery, $albums, 'passImages');
 	$offset = ($sitemap_number - 1);
 	$albums = array_slice($albums, $offset, SITEMAP_CHUNK);
-
-
 	if($albums) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
 		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
@@ -627,22 +626,14 @@ function getSitemapImages() {
 			set_time_limit(120);	//	Extend script timeout to allow for gathering the images.
 			$albumobj = new Album(NULL,$album['folder']);
 			$images = $albumobj->getImages();
-
 			// print plain images links if available
+
 			if($images) {
 				foreach($images as $image) {
 					$imageobj = newImage($albumobj,$image);
-					$ext = strtolower(strrchr($imageobj->filename, "."));
-					if(getOption('sitemap_google')) {
-						if($ext == '.mp3' || $ext == '.txt' || $ext == '.html' || $ext == '.htm') { // since the Google extensions do not cover audio we list mp3s extra to not exclude them!
-							$printimage = true;
-						} else {
-							$printimage = false;
-						}
-					} else {
-						$printimage = true;
-					}
-					if($printimage) {
+					$ext = getSuffix($imageobj->filename);
+
+					if(GOOGLE_SITEMAP || !in_array($ext, array('mp3','txt','html','htm'))) {
 						$date = sitemap_getDateformat($imageobj,$imagelastmod);
 						switch (SITEMAP_LOCALE_TYPE) {
 							case 1:
