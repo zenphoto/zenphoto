@@ -632,7 +632,6 @@ function getSitemapImages() {
 				foreach($images as $image) {
 					$imageobj = newImage($albumobj,$image);
 					$ext = getSuffix($imageobj->filename);
-
 					if(GOOGLE_SITEMAP || !in_array($ext, array('mp3','txt','html','htm'))) {
 						$date = sitemap_getDateformat($imageobj,$imagelastmod);
 						switch (SITEMAP_LOCALE_TYPE) {
