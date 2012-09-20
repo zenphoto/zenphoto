@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-15 09:01+0100\n"
+"POT-Creation-Date: 2012-09-20 08:51+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -6650,324 +6650,324 @@ msgstr "Geen \"to\" adreslijst opgegeven."
 msgid "Zenphoto found no theme scripts. Please check the <em>%s</em> folder of your installation."
 msgstr "Zenphoto heeft geen themascripts gevonden. Controleer a.u.b. de <em>%s</em> map van de installatie."
 
-#: ZpTranslation-Development/zp-core/functions.php:1432
+#: ZpTranslation-Development/zp-core/functions.php:1436
 msgid "0 Bytes"
 msgstr "0 Bytes"
 
-#: ZpTranslation-Development/zp-core/functions.php:1845
+#: ZpTranslation-Development/zp-core/functions.php:1849
 #, php-format
 msgid "Zenphoto processed a 404 error on %s. See the debug log for details."
 msgstr "Zenphoto heeft een 404 fout verwerkt in %s. Zie het debug log voor details."
 
-#: ZpTranslation-Development/zp-core/functions.php:2032
+#: ZpTranslation-Development/zp-core/functions.php:2036
 msgid "Click to show content"
 msgstr "Klik om inhoud te tonen"
 
-#: ZpTranslation-Development/zp-core/functions.php:2037
+#: ZpTranslation-Development/zp-core/functions.php:2041
 msgid "Click to hide content"
 msgstr "Klik om inhoud te verbergen"
 
-#: ZpTranslation-Development/zp-core/functions.php:2088
+#: ZpTranslation-Development/zp-core/functions.php:2092
 msgid "Camera Maker"
 msgstr "Cameraproducent"
 
-#: ZpTranslation-Development/zp-core/functions.php:2089
+#: ZpTranslation-Development/zp-core/functions.php:2093
 msgid "Camera Model"
 msgstr "Cameramodel"
 
-#: ZpTranslation-Development/zp-core/functions.php:2090
+#: ZpTranslation-Development/zp-core/functions.php:2094
 msgid "Image Title"
 msgstr "Titel van de foto"
 
-#: ZpTranslation-Development/zp-core/functions.php:2091
+#: ZpTranslation-Development/zp-core/functions.php:2095
 msgid "Object Name"
 msgstr "Objectnaam"
 
-#: ZpTranslation-Development/zp-core/functions.php:2092
+#: ZpTranslation-Development/zp-core/functions.php:2096
 msgid "Image Headline"
 msgstr "Kopregel"
 
-#: ZpTranslation-Development/zp-core/functions.php:2093
+#: ZpTranslation-Development/zp-core/functions.php:2097
 msgid "Image Caption"
 msgstr "Beschrijving"
 
-#: ZpTranslation-Development/zp-core/functions.php:2094
+#: ZpTranslation-Development/zp-core/functions.php:2098
 msgid "Image Caption Writer"
 msgstr "Auteur van beschrijving"
 
-#: ZpTranslation-Development/zp-core/functions.php:2095
+#: ZpTranslation-Development/zp-core/functions.php:2099
 msgid "Time Taken"
 msgstr "Datum/tijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2096
+#: ZpTranslation-Development/zp-core/functions.php:2100
 msgid "Original Time Taken"
 msgstr "Oorspronkelijke datum/tijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2097
+#: ZpTranslation-Development/zp-core/functions.php:2101
 msgid "Time Digitized"
 msgstr "Gedigitaliseerde datum/tijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2098
+#: ZpTranslation-Development/zp-core/functions.php:2102
 msgid "Date Created"
 msgstr "Datum van de foto"
 
-#: ZpTranslation-Development/zp-core/functions.php:2099
+#: ZpTranslation-Development/zp-core/functions.php:2103
 msgid "Time Created"
 msgstr "Tijd van de foto"
 
-#: ZpTranslation-Development/zp-core/functions.php:2100
+#: ZpTranslation-Development/zp-core/functions.php:2104
 msgid "Digital Creation Date"
 msgstr "Digitale datum van de foto"
 
-#: ZpTranslation-Development/zp-core/functions.php:2101
+#: ZpTranslation-Development/zp-core/functions.php:2105
 msgid "Digital Creation Time"
 msgstr "Digitale tijd van de foto"
 
-#: ZpTranslation-Development/zp-core/functions.php:2102
+#: ZpTranslation-Development/zp-core/functions.php:2106
 msgid "Artist"
 msgstr "Auteur"
 
-#: ZpTranslation-Development/zp-core/functions.php:2103
+#: ZpTranslation-Development/zp-core/functions.php:2107
 msgid "Image Credit"
 msgstr "Auteur afbeelding"
 
-#: ZpTranslation-Development/zp-core/functions.php:2104
+#: ZpTranslation-Development/zp-core/functions.php:2108
 msgid "Byline"
 msgstr "Bijschrift"
 
-#: ZpTranslation-Development/zp-core/functions.php:2105
+#: ZpTranslation-Development/zp-core/functions.php:2109
 msgid "Byline Title"
 msgstr "Titel bijschrift"
 
-#: ZpTranslation-Development/zp-core/functions.php:2106
+#: ZpTranslation-Development/zp-core/functions.php:2110
 msgid "Image Source"
 msgstr "Bron"
 
-#: ZpTranslation-Development/zp-core/functions.php:2108
+#: ZpTranslation-Development/zp-core/functions.php:2112
 msgid "Copyright Holder"
 msgstr "Copyright houder"
 
-#: ZpTranslation-Development/zp-core/functions.php:2109
+#: ZpTranslation-Development/zp-core/functions.php:2113
 msgid "Copyright Notice"
 msgstr "Copyright vermelding"
 
-#: ZpTranslation-Development/zp-core/functions.php:2110
+#: ZpTranslation-Development/zp-core/functions.php:2114
 msgid "Keywords"
 msgstr "Trefwoorden"
 
-#: ZpTranslation-Development/zp-core/functions.php:2111
+#: ZpTranslation-Development/zp-core/functions.php:2115
 msgid "Shutter Speed"
 msgstr "Sluitertijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2112
+#: ZpTranslation-Development/zp-core/functions.php:2116
 msgid "Aperture"
 msgstr "Diafragma"
 
-#: ZpTranslation-Development/zp-core/functions.php:2113
+#: ZpTranslation-Development/zp-core/functions.php:2117
 msgid "ISO Sensitivity"
 msgstr "ISO gevoeligheid"
 
-#: ZpTranslation-Development/zp-core/functions.php:2114
+#: ZpTranslation-Development/zp-core/functions.php:2118
 msgid "Exposure Compensation"
 msgstr "Belichtingscompensatie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2115
+#: ZpTranslation-Development/zp-core/functions.php:2119
 msgid "Metering Mode"
 msgstr "Methode lichtmeting"
 
-#: ZpTranslation-Development/zp-core/functions.php:2116
+#: ZpTranslation-Development/zp-core/functions.php:2120
 msgid "Flash Fired"
 msgstr "Flits"
 
-#: ZpTranslation-Development/zp-core/functions.php:2117
+#: ZpTranslation-Development/zp-core/functions.php:2121
 msgid "Original Width"
 msgstr "Originele breedte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2118
+#: ZpTranslation-Development/zp-core/functions.php:2122
 msgid "Original Height"
 msgstr "Originele hoogte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2119
+#: ZpTranslation-Development/zp-core/functions.php:2123
 msgid "Orientation"
 msgstr "Oriëntatie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2120
+#: ZpTranslation-Development/zp-core/functions.php:2124
 msgid "Software"
 msgstr "Software"
 
-#: ZpTranslation-Development/zp-core/functions.php:2121
+#: ZpTranslation-Development/zp-core/functions.php:2125
 msgid "Contrast Setting"
 msgstr "Contrast"
 
-#: ZpTranslation-Development/zp-core/functions.php:2122
+#: ZpTranslation-Development/zp-core/functions.php:2126
 msgid "Sharpness Setting"
 msgstr "Scherpte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2123
+#: ZpTranslation-Development/zp-core/functions.php:2127
 msgid "Saturation Setting"
 msgstr "Verzadiging"
 
-#: ZpTranslation-Development/zp-core/functions.php:2124
+#: ZpTranslation-Development/zp-core/functions.php:2128
 msgid "White Balance"
 msgstr "Witbalans"
 
-#: ZpTranslation-Development/zp-core/functions.php:2125
+#: ZpTranslation-Development/zp-core/functions.php:2129
 msgid "Subject Distance"
 msgstr "Onderwerpsafstand"
 
-#: ZpTranslation-Development/zp-core/functions.php:2126
+#: ZpTranslation-Development/zp-core/functions.php:2130
 msgid "Focal Length"
 msgstr "Brandpuntsafstand"
 
-#: ZpTranslation-Development/zp-core/functions.php:2127
+#: ZpTranslation-Development/zp-core/functions.php:2131
 msgid "Lens Type"
 msgstr "Lenstype"
 
-#: ZpTranslation-Development/zp-core/functions.php:2128
+#: ZpTranslation-Development/zp-core/functions.php:2132
 msgid "Lens Info"
 msgstr "Lensinformatie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2129
+#: ZpTranslation-Development/zp-core/functions.php:2133
 msgid "35mm Focal Length Equivalent"
 msgstr "Brandpuntsafstand equivalent voor 35mm film"
 
-#: ZpTranslation-Development/zp-core/functions.php:2131
+#: ZpTranslation-Development/zp-core/functions.php:2135
 msgid "Sub-location"
 msgstr "Sublocatie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2132
+#: ZpTranslation-Development/zp-core/functions.php:2136
 msgid "Province/State"
 msgstr "Provincie/Staat"
 
-#: ZpTranslation-Development/zp-core/functions.php:2133
+#: ZpTranslation-Development/zp-core/functions.php:2137
 msgid "Country/Primary Location Code"
 msgstr "Land/locatiecode"
 
-#: ZpTranslation-Development/zp-core/functions.php:2134
+#: ZpTranslation-Development/zp-core/functions.php:2138
 msgid "Country/Primary Location Name"
 msgstr "Land/ locatienaam"
 
-#: ZpTranslation-Development/zp-core/functions.php:2135
+#: ZpTranslation-Development/zp-core/functions.php:2139
 msgid "Content Location Code"
 msgstr "Content locatiecode"
 
-#: ZpTranslation-Development/zp-core/functions.php:2136
+#: ZpTranslation-Development/zp-core/functions.php:2140
 msgid "Content Location Name"
 msgstr "Content locatienaam"
 
-#: ZpTranslation-Development/zp-core/functions.php:2137
+#: ZpTranslation-Development/zp-core/functions.php:2141
 msgid "Latitude"
 msgstr "Breedtegraad"
 
-#: ZpTranslation-Development/zp-core/functions.php:2138
+#: ZpTranslation-Development/zp-core/functions.php:2142
 msgid "Latitude Reference"
 msgstr "Breedtegraad verwijzing"
 
-#: ZpTranslation-Development/zp-core/functions.php:2139
+#: ZpTranslation-Development/zp-core/functions.php:2143
 msgid "Longitude"
 msgstr "Lengtegraad"
 
-#: ZpTranslation-Development/zp-core/functions.php:2140
+#: ZpTranslation-Development/zp-core/functions.php:2144
 msgid "Longitude Reference"
 msgstr "Lengtegraad verwijzing"
 
-#: ZpTranslation-Development/zp-core/functions.php:2141
+#: ZpTranslation-Development/zp-core/functions.php:2145
 msgid "Altitude"
 msgstr "Hoogtegraad"
 
-#: ZpTranslation-Development/zp-core/functions.php:2142
+#: ZpTranslation-Development/zp-core/functions.php:2146
 msgid "Altitude Reference"
 msgstr "Hoogtegraad verwijzing"
 
-#: ZpTranslation-Development/zp-core/functions.php:2143
+#: ZpTranslation-Development/zp-core/functions.php:2147
 msgid "Originating Program "
 msgstr "Gebruikt programma"
 
-#: ZpTranslation-Development/zp-core/functions.php:2144
+#: ZpTranslation-Development/zp-core/functions.php:2148
 msgid "Program Version"
 msgstr "Programmaversie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2145
+#: ZpTranslation-Development/zp-core/functions.php:2149
 msgid "Video File Format"
 msgstr "Video format"
 
-#: ZpTranslation-Development/zp-core/functions.php:2146
+#: ZpTranslation-Development/zp-core/functions.php:2150
 msgid "Video File Size"
 msgstr "Video bestandsgrootte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2147
+#: ZpTranslation-Development/zp-core/functions.php:2151
 msgid "Video Artist"
 msgstr "Video artiest"
 
-#: ZpTranslation-Development/zp-core/functions.php:2148
+#: ZpTranslation-Development/zp-core/functions.php:2152
 msgid "Video Title"
 msgstr "Video titel"
 
-#: ZpTranslation-Development/zp-core/functions.php:2149
+#: ZpTranslation-Development/zp-core/functions.php:2153
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: ZpTranslation-Development/zp-core/functions.php:2150
+#: ZpTranslation-Development/zp-core/functions.php:2154
 msgid "Bitrate_Mode"
 msgstr "Bitrate type"
 
-#: ZpTranslation-Development/zp-core/functions.php:2151
+#: ZpTranslation-Development/zp-core/functions.php:2155
 msgid "Bits per sample"
 msgstr "Bits per sample"
 
-#: ZpTranslation-Development/zp-core/functions.php:2152
+#: ZpTranslation-Development/zp-core/functions.php:2156
 msgid "Codec"
 msgstr "Codec"
 
-#: ZpTranslation-Development/zp-core/functions.php:2153
+#: ZpTranslation-Development/zp-core/functions.php:2157
 msgid "Compression Ratio"
 msgstr "Compressieverhouding"
 
-#: ZpTranslation-Development/zp-core/functions.php:2154
+#: ZpTranslation-Development/zp-core/functions.php:2158
 msgid "Video Dataformat"
 msgstr "Video type"
 
-#: ZpTranslation-Development/zp-core/functions.php:2155
+#: ZpTranslation-Development/zp-core/functions.php:2159
 msgid "File Encoder"
 msgstr "Encoder"
 
-#: ZpTranslation-Development/zp-core/functions.php:2156
+#: ZpTranslation-Development/zp-core/functions.php:2160
 msgid "Sample rate"
 msgstr "Sample rate"
 
-#: ZpTranslation-Development/zp-core/functions.php:2157
+#: ZpTranslation-Development/zp-core/functions.php:2161
 msgid "Channel mode"
 msgstr "Channel mode"
 
-#: ZpTranslation-Development/zp-core/functions.php:2158
+#: ZpTranslation-Development/zp-core/functions.php:2162
 msgid "Format"
 msgstr "Type"
 
-#: ZpTranslation-Development/zp-core/functions.php:2159
+#: ZpTranslation-Development/zp-core/functions.php:2163
 msgid "Channels"
 msgstr "Channels"
 
-#: ZpTranslation-Development/zp-core/functions.php:2160
+#: ZpTranslation-Development/zp-core/functions.php:2164
 msgid "Frame rate"
 msgstr "Frame rate"
 
-#: ZpTranslation-Development/zp-core/functions.php:2161
+#: ZpTranslation-Development/zp-core/functions.php:2165
 msgid "X Resolution"
 msgstr "X resolutie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2162
+#: ZpTranslation-Development/zp-core/functions.php:2166
 msgid "Y Resolution"
 msgstr "Y resolutie"
 
-#: ZpTranslation-Development/zp-core/functions.php:2163
+#: ZpTranslation-Development/zp-core/functions.php:2167
 msgid "Aspect ratio"
 msgstr "Verhouding lengte/breedte"
 
-#: ZpTranslation-Development/zp-core/functions.php:2164
+#: ZpTranslation-Development/zp-core/functions.php:2168
 msgid "Play Time"
 msgstr "Speeltijd"
 
-#: ZpTranslation-Development/zp-core/functions.php:2165
+#: ZpTranslation-Development/zp-core/functions.php:2169
 msgid "XMP Rating"
 msgstr "XMP waardering"
 
@@ -12420,7 +12420,7 @@ msgstr "Gebruik tekst"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flag_thumbnail.php:109
 msgid "If checked, the defined <em>text</em> will be used in place of the icon. (Use the class<code>textasnewflag</code> for styling \"text\" overlays.)"
-msgstr "Indien aangevinkt, wordt de opgegeven <em>tekst</em> gebruikt in plaats van een icoon.<br />(Gebruik de class<code>textasnewflag</code> voor styling.)"
+msgstr "Indien aangevinkt, wordt de opgegeven <em>tekst</em> gebruikt in plaats van een icoon.<br />(Gebruik de class <code>textasnewflag</code> voor styling.)"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/flag_thumbnail.php:112
 msgid "Text flag for <em>geodata tagged</em> images."
@@ -13489,7 +13489,7 @@ msgstr "Inkortings-indicator*"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:55
 msgid "Append this string to truncated titles."
-msgstr "Voeg deze string toe aan ingekorte titels"
+msgstr "Voeg deze string toe aan ingekorte titels."
 
 #: ZpTranslation-Development/zp-core/zp-extensions/menu_manager.php:56
 msgid "Truncate titles*"
@@ -14626,43 +14626,33 @@ msgstr "<strong>Opmerking:</strong> Het kan zijn dat de links niet correct zijn 
 msgid "sitemap cache folder could not be created. Please try to create it manually via FTP with chmod 0777."
 msgstr "Sitemap cachemap kon niet aangemaakt worden. Probeer aub om deze handmatig via FTP aan te maken met chmod 0777."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:72
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:73
 msgid "Gallery index page"
 msgstr "Galerij indexpagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:75
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:76
 msgid "If your theme does not use the theme index.php page as the gallery index, enter the name of the page here. In the Zenpage theme for example this could be gallery.php. In that case you enter \"gallery\". If this is not empty the index.php sitemap is not generated."
 msgstr "Als je thema niet <em>index.php</em> gebruikt als galerij index maar een ander bestand, vul dan hier de naam van dat andere bestand in. In het Zenpage thema kan dat bijvoorbeeld <em>gallery.php</em> zijn. In dat geval vul je hier <em>gallery</em> in. Als dit veld niet leeg is wordt er geen <em>index.php</em> sitemap gemaakt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:76
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:77
 msgid "Album date"
 msgstr "Albumdatum"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:80
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:81
 msgid "Field to use for the last modification date of albums."
 msgstr "Keuze om de datum van de laatste verandering van albums weer te geven."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:81
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:82
 msgid "Image date"
 msgstr "Afbeeldingsdatum"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:85
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:86
 msgid "Field to use for the last modification date of images."
 msgstr "Keuze om de datum van de laatste verandering van afbeeldingen weer te geven."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:86
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:87
 msgid "Change frequency - Zenphoto index"
 msgstr "Frequentie - Zenphoto index"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:89
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:99
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:109
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:119
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:129
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:139
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:149
-msgid "hourly"
-msgstr "elk uur"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:90
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:100
@@ -14671,8 +14661,8 @@ msgstr "elk uur"
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:130
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:140
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:150
-msgid "daily"
-msgstr "dagelijks"
+msgid "hourly"
+msgstr "elk uur"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:91
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:101
@@ -14681,8 +14671,8 @@ msgstr "dagelijks"
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:131
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:141
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:151
-msgid "weekly"
-msgstr "wekelijks"
+msgid "daily"
+msgstr "dagelijks"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:92
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:102
@@ -14691,8 +14681,8 @@ msgstr "wekelijks"
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:132
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:142
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:152
-msgid "monthly"
-msgstr "maandelijks"
+msgid "weekly"
+msgstr "wekelijks"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:93
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:103
@@ -14701,70 +14691,80 @@ msgstr "maandelijks"
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:133
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:143
 #: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:153
+msgid "monthly"
+msgstr "maandelijks"
+
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:94
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:104
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:124
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:134
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:144
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:154
 msgid "yearly"
 msgstr "jaarlijks"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:96
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:97
 msgid "Change frequency - albums"
 msgstr "Frequentie - albums"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:106
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:107
 msgid "Change frequency - images"
 msgstr "Frequentie -afbeeldingen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:116
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:117
 msgid "Change frequency - Zenpage pages"
 msgstr "Frequentie - Zenpage pagina's"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:126
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:127
 msgid "Change frequency - Zenpage news index"
 msgstr "Frequentie - Zenpage nieuws index"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:136
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:137
 msgid "Change frequency: Zenpage news articles"
 msgstr "Frequentie - Zenpage nieuwsaritkelen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:146
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:147
 msgid "Change frequency - Zenpage news categories"
 msgstr "Frequentie - Zenpage nieuws categorieën"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:156
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:157
 msgid "Enable Google image and video extension"
 msgstr "Activeer Google afbeeldings- en video-extensies"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:158
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:159
 msgid "If checked, the XML output file will be formatted using the Google XML image and video extensions where applicable."
 msgstr "Indien aangevinkt zal het gegenereerde XML bestand, waar nodig, Google XML afbeeldings- en video-extensies weergeven."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:158
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:159
 msgid "<strong>Note:</strong> Other search engines (Yahoo, Bing) might not be able to read your sitemap. Also the Google extensions cover only image and video formats. If you use custom file types that are not covered by Zenphoto standard plugins or types like .mp3, .txt and .html you should probably not use this or modify the plugin. Also, if your site is really huge think about if you really need this setting as the creation may cause extra workload of your server and result in timeouts"
 msgstr "<strong>Opmerking:</strong> Andere zoekmachines (Yahoo, Bing) kunnen mogelijk de sitemap niet lezen. Ook kan Google alléén afbeeldings- en video-extensies weergeven. Als je andere bestands-types gebruikt (die niet ondersteund worden door Zenphoto) of types als .mp3, .txt en .html kun je deze optie beter niet gebruiken tenzij je de plugin verandert. Als je site érg groot is is het wellicht verstandig deze optie niet te gebruiken omdat de server het maken van de bestanden niet aankan."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:159
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:160
 msgid "Google - URL to image license"
 msgstr "Google - URL naar de afbeeldings-licentie"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:162
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:163
 msgid "Optional. Used only if the Google extension is checked. Must be an absolute URL address of the form: http://mydomain.com/license.html"
 msgstr "Optioneel. Wordt alleen gebruikt als de <em>Activeer Google afbeeldings- en video-extensies</em> is aangevinkt. Dit moet een absolute URL zijn in deze vorm: <em> http://mydomain.com/license.html</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:163
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:164
 msgid "Sitemap processing chunk"
 msgstr "Sitemap verwerking"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:165
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:166
 msgid "The number of albums that will be processed for each sitemap file. Lower this value if you get script timeouts when creating the files."
 msgstr "Het aantal albums dat verwerkt wordt voor ieder sitemap bestand. Verlaag dit aantal als je een script-timeout krijgt bij het maken van de bestanden."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:176
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:177
 msgid "* This option may be set via the <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin options."
 msgstr "* Deze optie kan worden ingesteld via de <a href=\"javascript:gotoName('sitemap-extended');\"><em>sitemap-extended</em></a> plugin opties."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:197
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:198
 msgid "Sitemap tools"
 msgstr "Sitemap"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:201
+#: ZpTranslation-Development/zp-core/zp-extensions/sitemap-extended.php:202
 msgid "Generate or purge sitemap cache files."
 msgstr "Maak of verwijder sitemap-cache bestanden."
 
@@ -15735,31 +15735,26 @@ msgstr "Bekijk galerij index"
 
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:87
 #, php-format
-msgid "%1$u new item in <em>%2$s</em>: %3$s"
-msgstr "%1$u nieuw item in <em>%2$s</em>: %3$s"
+msgid "New in <em>%2$s</em>%1$s: %3$s"
+msgstr "Nieuw in <em>%2$s</em>%1$s: %3$s"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:89
-#, php-format
-msgid "%1$u new items in <em>%2$s</em>: %3$s"
-msgstr "%1$u nieuwe items in <em>%2$s</em>: %3$s"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:114
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:112
 msgid "Articles per page (theme)"
 msgstr "Artikelen per pagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:116
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:114
 msgid "How many news articles you want to show per page on the news or news category pages."
 msgstr "Hoeveel nieuwsartikelen je wilt laten zien per pagina op de nieuws of nieuwscategorie pagina's."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:117
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:115
 msgid "News article text length"
 msgstr "Lengte van een nieuwsartikel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:118
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:117
 msgid "The length of news article excerpts in news or news category pages. Leave empty for full text."
 msgstr "Tekstengte van de verkorte weergave van een nieuwsartikel in nieuws of nieuwscategorie pagina.<br />Laat leeg voor de volledige tekst."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:119
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:118
 msgid "News article text shorten indicator"
 msgstr "Ingekorte tekst indicator"
 
@@ -15767,268 +15762,263 @@ msgstr "Ingekorte tekst indicator"
 msgid "Something that indicates that the article text is shortened, ' (...)' by default."
 msgstr "Iets dat aangeeft dat de tekst is ingekort.<br />Standaard wordt \"(...)\" gebruikt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:122
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:123
 msgid "The text for the link to the full article."
 msgstr "De tekst voor de link naar het volledige artikel."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:123
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:124
 msgid "RSS feed item number"
 msgstr "Aantal RSS feed artikelen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:124
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:126
 msgid "The number of news articles you want to appear in your site's News RSS feed."
 msgstr "Het aantal artikelen dat je wilt laten zien in Nieuws RSS feed."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:125
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:127
 msgid "RSS feed text length"
 msgstr "RSS feed tekstlengte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:126
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:129
 msgid "The text length of the Zenpage RSS feed items. No value for full length."
 msgstr "De lengte van de tekst in de Zenpage RSS feed.<br />Laat leeg voor de volledige tekst"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:127
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:130
 msgid "CombiNews"
 msgstr "CombiNews"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:128
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:132
 msgid "Set to enable the CombiNews feature to show news articles and latest gallery items together on the news section's overview page(s)."
 msgstr "Vink aan om de CombiNews optie te activeren. Dit laat nieuwsartikelen en laatste toevoegingen samen zien op de nieuws overzicht pagina(s)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:128
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:132
 msgid "<strong>Note:</strong> Images/albums and news articles are still separate, your Zenphoto gallery is not touched in any way!"
 msgstr "<strong>Opmerking:</strong> Afbeeldingen/albums en nieuwsartikelen zijn nog steeds gescheiden. Er verandert niets aan uw Zenphoto galerij."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:129
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:133
 msgid "CombiNews: Gallery page link"
 msgstr "CombiNews: Gallerij-pagina link"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:130
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:135
 msgid "The text for the 'read more'/'view more' link to the gallery page for images/movies/audio."
 msgstr "De tekst voor de link naar de galerij-pagina met afbeeldingen/films/audio."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:131
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:136
 msgid "CombiNews: Mode"
 msgstr "CombiNews: afbeelding mogelijkheden"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:133
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:139
 msgid "latest images: sized image"
 msgstr "laatste afbeeldingen: afbeelding op ingesteld formaat"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:134
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:140
 msgid "latest images: sized image maxspace"
 msgstr "laatste afbeeldingen: sized image maxspace"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:135
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:141
 msgid "latest images: thumbnail"
 msgstr "laatste afbeeldingen: thumbnail"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:136
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:142
 msgid "latest images: thumbnail-customcrop"
 msgstr "laatste afbeeldingen: thumbnail-customcrop"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:137
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:143
 msgid "latest images: full image"
 msgstr "laatste afbeeldingen: volledige afbeelding"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:138
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:144
 msgid "latest albums: sized image"
 msgstr "laatste albums: afbeelding op ingesteld formaat"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:139
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:145
 msgid "latest albums: sized image maxspace"
 msgstr "laatste albums: sized image maxspace"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:140
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:146
 msgid "latest albums: thumbnail"
 msgstr "laatste albums: thumbnail"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:141
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:147
 msgid "latest albums: thumbnail-customcrop"
 msgstr "laatste albums: thumbnail-customcrop"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:142
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:148
 msgid "latest albums: full image"
 msgstr "laatste albums: volledige afbeelding"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:143
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:149
 msgid "latest images by album: thumbnail"
 msgstr "laatste afbeeldingen in album: thumbnail"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:144
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:150
 msgid "latest images by album: thumbnail-customcrop"
 msgstr "laatste afbeeldingen in album: thumbnail-customcrop"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:145
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:151
 msgid "latest images by album: sized image"
 msgstr "laatste afbeeldingen in album: afbeelding op ingesteld formaat"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:146
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:152
 msgid "latest images by album: sized image maxspace"
 msgstr "laatste afbeeldingen in album: sized image maxspace"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:147
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:153
 msgid "latest images by album: full image"
 msgstr "laatste afbeeldingen per album: volledige afbeelding"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:148
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:154
 msgid "What you want to show within the CombiNews section.<br /><ul><li>Latest images: Entries for all images ever added</li><li>Latest albums: Entries for all albums ever created</li><li>Latest images by album: Entries for all images but grouped by images that have been added within a day to each album (Scheme: 'x new images in album y on date z')</li></ul> <em>maxspace</em> means that an uncropped image fitting max. width x max. height as set on the thumbnail width and height options is used (not for multimedia items!)."
-msgstr "Wat je wilt laten zien in het CombiNews gedeelte.<br /><ul><li>Laatste afbeeldingen: Alle afbeeldingen ooit toegevoegd</li><li>Laatste albums: Alle albums ooit aangemaakt</li><li>Laatste afbeeldingen in album: Alle afbeeldingen maar gegroepeerd in afbeeldingen die zijn toegevoegd binnen één dag aan elk album(schema: 'x nieuwe afbeeldingen in album y op datum z')</li></ul> <em>maxspace</em> betekend een niet-gecropte afbeelding die past binnen max breedte x max hoogte. Dit wordt ingesteld bij de thumbnail breedte en hoogte (niet voor multimedia bestanden!)"
+msgstr "Wat je wilt laten zien in het CombiNews gedeelte.<br /><ul><li>Laatste afbeeldingen: Alle afbeeldingen ooit toegevoegd</li><li>Laatste albums: Alle albums ooit aangemaakt</li><li>Laatste afbeeldingen in album: Alle afbeeldingen maar gegroepeerd in afbeeldingen die zijn toegevoegd binnen één dag aan elk album (schema: 'x nieuwe afbeeldingen in album y op datum z')</li></ul> <em>maxspace</em> betekend een niet-gecropte afbeelding die past binnen max breedte x max hoogte. Dit wordt ingesteld bij de thumbnail breedte en hoogte (niet voor multimedia bestanden!)"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:149
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:155
 msgid "CombiNews: Sized image size"
 msgstr "CombiNews: afbeelding op ingesteld formaat"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:150
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:157
 msgid "The size of the sized image shown the CombiNews section <em>(only in latest images-sizedimage or latest albums-sizedimage mode)</em>."
 msgstr "Het formaat van de afbeelding zoals je dat wilt laten zien in het CombiNews gedeelte.<br /><em>Dit kan alleen als voor ' laatste afbeeldingen -   afbeelding op ingesteld formaat' is gekozen</em>."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:151
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:158
 msgid "CombiNews: Sort order"
 msgstr "CombiNews: Sorteervolgorde"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:152
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:160
 msgid "id"
 msgstr "id"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:152
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:160
 msgid "publishdate"
 msgstr "Publicatiedatum"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:153
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:161
 msgid "The sort order for your gallery items within the CombiNews display except for <em>latest images by album</em> which is by date or mtime only. <ul><li>'date' (date order)</li><li>'id' (added to db order)</li><li>'mtime' (upload order)</li><li>'publishdate' (manual publish date order - you might get really funny results if this is not set!)</li></ul>"
 msgstr "De volgorde van de afbeeldingen in de CombiNews weergave. Behalve voor <em>laatste afbeeldingen per album</em>  welke altijd op datum of mtime is.) <ul><li>'datum' (datum-volgorde)</li><li> 'id' (volgorde van toevoeging aan database)</li><li> 'mtime' (upload volgorde)</li><li>publicatiedatum (handmatig ingesteld)</li></ul>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:153
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:161
 msgid "<strong>Note: </strong> If you experience unexpected results, this refers only to the images that are fetched from the database. Even if they are fetched by id they will be sorted by date with the articles afterwards since articles only have a date."
 msgstr "<strong>Opmerking:</strong> Wanneer je onverwachte resultaten krijgt, komt dat door het ophalen van afbeeldingen uit de database.<br />Zelfs als ze worden opgehaald op id volgorde zullen ze toch achteraf samen met de artikelen worden gesorteerd op datum omdat artikelen alleen maar een datum hebben."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:154
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:162
 msgid "CombiNews: Gallery link"
 msgstr "CombiNews: Gallerij-link"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:156
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:165
 msgid "Choose if you want to link from the image entry to its image page directly or to the album page (if CombiNews mode is set for albums the link is automatically only linking to albums). This affects all links of the entry (<em>title</em>, <em>image</em> and the <em>visit gallery link</em>"
 msgstr "Kies of je vanaf de afbeelding naar de afbeeldingspagina of de albumpagina gelinkt wilt worden.<br />(als CombiNews aanstaat voor albums linkt het automatisch alleen naar albums). Dit heeft effect op alle links die gekoppeld zijn aan de betreffende afbeelding; de <em>titel-link</em>, <em>afbeeldings-link</em> en de <em>bezoek-galerij-link</em>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:157
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:166
 msgid "CombiNews: Thumbnail crop width"
 msgstr "CombiNews: Thumbnail uitsnede breedte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:158
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:160
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:166
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:168
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:171
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:180
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:183
 msgid "For <em>thumbnail custom crop</em> only. Leave empty if you don't want to use it."
 msgstr "Alleen voor <em>handmatige thumbnail uitsnede</em>. Laat leeg als je dit niet gebruikt."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:159
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:169
 msgid "CombiNews: Thumbnail crop height"
 msgstr "CombiNews: Thumbnail uitsnede hoogte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:161
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:172
 msgid "CombiNews: Thumbnail width"
 msgstr "CombiNews: Thumbnail breedte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:162
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:174
 msgid "For <em>thumbnail custom crop</em> and <em>sized image maxspace</em> variants only. Leave empty if you don't want to use it. For <em>maxspace</em> this is the max width of the uncropped sized image."
 msgstr "Alleen voor <em>thumbnail custom crop</em> en <em>sized image maxspace</em> varianten. Laat leeg als je dit niet wilt gebruiken. Voor <em>maxspace</em> is dit de maximale breedte van de niet-gecropte afbeelding."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:163
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:175
 msgid "CombiNews: Thumbnail height"
 msgstr "CombiNews: Thumbnail hoogte"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:164
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:177
 msgid "For <em>thumbnail custom crop</em> and <em>sized image maxspace</em> variants only. Leave empty if you don't want to use it. For <em>maxspace</em> this is the max height of the uncropped sized image."
 msgstr "Alleen voor <em>thumbnail custom crop</em> en <em>sized image maxspace</em> varianten. Laat leeg als je dit niet wilt gebruiken. Voor <em>maxspace</em> is dit de maximale hoogte van de niet-gecropte afbeelding."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:165
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:178
 msgid "CombiNews: Thumbnail crop x axis"
 msgstr "CombiNews: Thumbnail uitsnede x-as"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:167
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:181
 msgid "CombiNews: Thumbnail crop y axis"
 msgstr "CombiNews: Thumbnail uitsnede y-as"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:169
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:184
 msgid "CombiNews: Show image description"
 msgstr "CombiNews: Toon afbeeldingsbeschrijving"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:170
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:186
 msgid "Set to show the image description with every item if using the CombiNews mode <em>latest images by album</em> only. Printed as a paragraph."
 msgstr "Vink aan om de afbeeldingsbeschrijving te tonen bij elk onderdeel bij gebruik van CombiNews. Alleen bij gebruik van de instelling <em>laatste afbeeldingen in album</em>. Wordt geprint als paragraaf (p)."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:171
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:187
 msgid "CombiNews: Show image title"
 msgstr "CombiNews: Toon afbeeldingstitel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:172
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:189
 msgid "Set to show the image title with every item if using the CombiNews mode <em>latest images by album</em> only. Printed as h4-headline."
 msgstr "Vink aan om de afbeeldingstitel te tonen bij elk onderdeel bij gebruik van CombiNews. Alleen bij gebruik van de instelling <em>laatste afbeeldingen in album</em>. Wordt geprint als h4 kop."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:173
-msgid "CombiNews: Custom title (singular)"
-msgstr "CombiNews: Eigen titel (enkelvoud)"
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:190
+msgid "CombiNews: Custom title"
+msgstr "CombiNews: Eigen titel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:174
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:176
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:192
 #, php-format
-msgid "Custom title for the article in sprintf() syntax. %1$u = number of new items, %2$s = title of the album they are in, %3$s = titles of the new items. Never leave any of these three out! (<em>latest images by album</em> option only)."
-msgstr "Eigen titel voor het artilkel volgens de sprintf() syntax. %1$u = aantal nieuwe onderdelen, %2$s = titel van het album waarin ze zich bevinden, %3$s = titels van de nieuwe onderdelen. Ze moeten alle drie een ingevuld worden! (alléén voor de <em>laatste afbeeldingen in album</em> optie)."
+msgid "Custom title for the <em>latest images by album</em> article. The string is in <code>sprintf()</code> syntax.<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%1$u</code> = new items count indicator (may be absent if redundant)<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%2$s</code> = title of the album they are in<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%3$s</code> = titles of the new items (up to the limit defined by the option below.)<p class=\"notebox\">Never leave any of these three out!</p>"
+msgstr "Eigen titel voor het <em>laatste afbeeldingen in album</em> artikel, volgens de <code>sprintf()</code> syntax.<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%1$u</code> = nieuwe items teller<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%2$s</code> = titel van het album waar ze zich in bevinden.<br />&nbsp;&nbsp;&nbsp;&nbsp;<code>%3$s</code> = titels van de nieuwe items (met als maximum het aantal dat ingesteld is bij<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>CombiNews: Eigen titel - aantal afbeeldingen</em><p class=\"notebox\">Altijd alle drie variabelen bebruiken!</p>"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:175
-msgid "CombiNews: Custom title (plural)"
-msgstr "CombiNews: Eigen titel (meervoud)"
-
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:177
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:193
 msgid "CombiNews: Custom title - Number of image titles"
 msgstr "CombiNews: Eigen titel - aantal afbeeldingen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:178
-msgid "How many images titles you want to show with the custom title (<em>latest images by album</em> option only)."
-msgstr "Hoeveel afbeeldingen je wilt laten zien met de eigen titel (alléén voor de <em>laatste afbeeldingen in album</em> optie)."
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:195
+msgid "How many images titles you want to show with the <em>latest images by album</em> title."
+msgstr "Hoeveel afbeeldingstitels je wilt laten zien met de <em>laatste afbeeldingen in album</em> titel."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:179
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:196
 msgid "CombiNews: Number of images"
 msgstr "CombiNews: Aantal afbeeldingen"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:180
-msgid "How many of the new images you want to show. Empty for all. (<em>latest images by album</em> option only)."
-msgstr "Hoeveel afbeeldingen je wilt laten zien. Laat leeg om alle te laten zien. (alléén voor de <em>laatste afbeeldingen in album</em> optie)."
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:198
+msgid "How many of the new images you want to show in the <em>latest images by album</em> article. Empty for all."
+msgstr "Hoeveel nieuwe afbeeldingen je wilt laten zien in het <em>laatste afbeeldingen in album</em> artikel. Laat leeg om alle te laten zien."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:195
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:213
 msgid "* These options may be set via the <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin options."
 msgstr "* Deze optie(s) worden gedeeld met de <a href=\"javascript:gotoName('zenpage');\"><em>Zenpage</em></a> plugin opties."
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:282
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:300
 msgid "Edit Page"
 msgstr "Bewerk pagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:287
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:305
 msgid "Delete page"
 msgstr "Verwijder pagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:287
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:305
 msgid "Delete Page"
 msgstr "Verwijder pagina"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:291
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:309
 msgid "Add Page"
 msgstr "Voeg pagina toe"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:300
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:318
 msgid "Edit Article"
 msgstr "Bewerk Artikel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:306
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:324
 msgid "Delete article"
 msgstr "Verwijder artikel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:306
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:324
 msgid "Delete Article"
 msgstr "Verwijder artikel"
 
-#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:310
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage.php:328
 msgid "Add Article"
 msgstr "Voeg artikel toe"
 
@@ -18765,6 +18755,13 @@ msgstr "Categorieën verwijderd uit geselecteerde onderdelen."
 msgid "Use the Zenpage Page class->getPages() method."
 msgstr "Gebruik in plaats hiervoor de Zenpage page <em>class->getPages()</em> methode."
 
+#: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:368
+#, php-format
+msgid " [%u item]"
+msgid_plural " [%u items]"
+msgstr[0] "[%u item]"
+msgstr[1] "[%u items]"
+
 #: ZpTranslation-Development/zp-core/zp-extensions/zenpage/zenpage-template-functions.php:465
 msgid "<em>This entry belongs to a protected album.</em>"
 msgstr "<em>Deze invoer valt onder een beveiligd album.</em>"
@@ -18814,6 +18811,23 @@ msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid "%1$u new items in <em>%2$s</em>: %3$s"
+#~ msgstr "%1$u nieuwe items in <em>%2$s</em>: %3$s"
+
+#~ msgid "CombiNews: Custom title (singular)"
+#~ msgstr "CombiNews: Eigen titel (enkelvoud)"
+
+#~ msgid ""
+#~ "Custom title for the article in sprintf() syntax. %1$u = number of new "
+#~ "items, %2$s = title of the album they are in, %3$s = titles of the new "
+#~ "items. Never leave any of these three out! (<em>latest images by album</"
+#~ "em> option only)."
+#~ msgstr ""
+#~ "Eigen titel voor het artilkel volgens de sprintf() syntax. %1$u = aantal "
+#~ "nieuwe onderdelen, %2$s = titel van het album waarin ze zich bevinden, %3"
+#~ "$s = titels van de nieuwe onderdelen. Ze moeten alle drie een ingevuld "
+#~ "worden! (alléén voor de <em>laatste afbeeldingen in album</em> optie)."
 
 #~ msgid "Mail address"
 #~ msgstr "E-mailadres(sen)"
