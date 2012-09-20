@@ -34,8 +34,6 @@ if (!defined('OFFSET_PATH')) {
 		$_zp_current_locale = getUserLocale();
 	}
 	$real_locale = $_zp_current_locale;
-	setupCurrentLocale('en_US');
-
 	$extension = sanitize($_GET['extension']);
 	$thirdparty = isset($_GET['thirdparty']);
 	if ($thirdparty) {
@@ -43,6 +41,18 @@ if (!defined('OFFSET_PATH')) {
 	} else {
 		$path = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$extension.'.php';
 	}
+	if ($real_locale == 'en_US') {
+		$translatetext = '';
+	} else {
+		$translatetext = '<br />'.
+									'<a href="http://www.google.com/translate_c?langpair=en|'.strtolower(substr($real_locale,0,2)).'&u='.FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension.'"'.
+													'title="'. gettext('This document is generated from the plugin comment block and other items that are in English and outside of the Zenphoto translation system. This link will send the URL to the Google translation WEB to present the page in your language.').'">'.
+										gettext('Translate this page.').
+									'</a>';
+	}
+	$pagetitle = sprintf(gettext('%1$s %2$s: %3$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($extension));
+	setupCurrentLocale('en_US');
+
 
 	$plugin_description = '';
 	$plugin_notice = '';
@@ -69,7 +79,7 @@ if (!defined('OFFSET_PATH')) {
 		$body = processCommentBlock($commentBlock, $thirdparty);
 
 		if ($thirdparty) {
-			$whose = gettext('third party plugin');
+			$whose = 'third party plugin';
 			$path = stripSuffix($path).'/logo.png';
 			if (file_exists($path)) {
 				$ico = str_replace(SERVERPATH, WEBPATH, $path);
@@ -88,7 +98,7 @@ if (!defined('OFFSET_PATH')) {
 		<head>
 			<link rel="stylesheet" href="<?php echo WEBPATH.'/'.ZENFOLDER; ?>/admin.css" type="text/css" />
 			<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-			<title><?php echo sprintf(gettext('%1$s %2$s: %3$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($extension)); ?></title>
+			<title><?php echo $pagetitle; ?></title>
 			<style>
 			.doc_box_field {
 				padding-left: 0px;
@@ -144,21 +154,21 @@ if (!defined('OFFSET_PATH')) {
 		</head>
 		<body>
 			<div id="main">
-				<?php echo gettext('Plugin usage information'); ?>
+				Plugin usage information
 				<div id="content">
-					<h1><img class="zp_logoicon" src="<?php echo $ico; ?>" alt="<?php echo gettext('logo'); ?>" title="<?php echo $whose; ?>" /><?php echo html_encode($extension); ?></h1>
+					<h1><img class="zp_logoicon" src="<?php echo $ico; ?>" alt="logo" title="<?php echo $whose; ?>" /><?php echo html_encode($extension); ?></h1>
 					<div class="border">
 						<?php echo $plugin_description; ?>
 					</div>
 						<?php
 						if ($thirdparty) {
 							?>
-							<h3><?php printf( gettext('Version: %s'), $plugin_version); ?></h3>
+							<h3><?php printf('Version: %s', $plugin_version); ?></h3>
 							<?php
 							}
 						if ($plugin_author) {
 							?>
-							<h3><?php printf(gettext('Author: %s'), html_encode($plugin_author)); ?></h3>
+							<h3><?php printf('Author: %s', html_encode($plugin_author)); ?></h3>
 							<?php
 						}
 						foreach ($links as $key=>$link) {
@@ -239,7 +249,7 @@ if (!defined('OFFSET_PATH')) {
 							$buttonlist = sortMultiArray($buttonlist, array('category','button_text'), false);
 							?>
 							<div class="box" id="overview-utility">
-								<h2 class="h2_bordered"><?php echo gettext("Utility functions"); ?></h2>
+								<h2 class="h2_bordered">Utility functions</h2>
 								<?php
 								$category = '';
 								foreach ($buttonlist as $button) {
@@ -284,7 +294,7 @@ if (!defined('OFFSET_PATH')) {
 						if ($albumbuttons) {
 							$albumbuttons = preg_replace('|<hr(\s*)(/)>|', '', $albumbuttons);
 							?>
-							<h2 class="h2_bordered_edit"><?php echo gettext("Album Utilities"); ?></h2>
+							<h2 class="h2_bordered_edit">Album Utilities</h2>
 							<div class="box-edit">
 								<?php echo $albumbuttons; ?>
 							</div>
@@ -294,7 +304,7 @@ if (!defined('OFFSET_PATH')) {
 						if ($imagebuttons) {
 							$imagebuttons = preg_replace('|<hr(\s*)(/)>|', '', $imagebuttons);
 							?>
-							<h2 class="h2_bordered_edit"><?php echo gettext("Image Utilities"); ?></h2>
+							<h2 class="h2_bordered_edit">Image Utilities</h2>
 							<div class="box-edit">
 								<?php echo $imagebuttons; ?>
 							</div>
@@ -308,21 +318,14 @@ if (!defined('OFFSET_PATH')) {
 				<?php
 				if ($thirdparty) {
 					if ($plugin_URL) {
-						printf(gettext('See also the <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+						printf('See also the <a href="%1$s">%2$s</a>',$plugin_URL, $extension);
 					}
 				} else {
 					$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
-					printf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+					printf('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>',$plugin_URL, $extension);
 				}
 				if ($real_locale != 'en_US') {
-					setupCurrentLocale($real_locale);
-					?>
-					<br />
-					<a href="http://www.google.com/translate_c?langpair=en|<?php echo strtolower(substr($real_locale,0,2)); ?>&u=<?php echo FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension?>"
-									title="<?php echo gettext('This document is generated from the plugin comment block and other items that are in English and outside of the Zenphoto translation system. This link will send the URL to the Google translation WEB to present the page in your language.'); ?>">
-						<?php echo gettext('Translate this page.'); ?>
-					</a>
-					<?php
+					echo $translatetext;
 				}
 				?>
 			</div>
