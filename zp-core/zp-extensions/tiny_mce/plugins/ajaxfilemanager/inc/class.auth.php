@@ -6,7 +6,7 @@
 ?>
 <?php	// Zenphoto security stuff
 
-define('OFFSET_PATH', 99);
+define('OFFSET_PATH', 3);
 $basepath = dirname(dirname(dirname(dirname(dirname(dirname(__FILE__))))));
 require_once($basepath."/admin-globals.php");
 

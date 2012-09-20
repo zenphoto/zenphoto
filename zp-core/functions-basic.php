@@ -30,7 +30,9 @@ $const_serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
  * if not we presume the script is in the root of the installation. If it is not the script better have set
  * the SERVERPATH and WEBPATH defines to the correct values
  */
-preg_match('~(.*)/('.ZENFOLDER.'|'.USER_PLUGIN_FOLDER.'|'.THEMEFOLDER.')~',$const_webpath, $matches);
+if (!preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches)) {
+	preg_match('~(.*)/('.USER_PLUGIN_FOLDER.'|'.THEMEFOLDER.')~',$const_webpath, $matches);
+}
 if ($matches) {
 	$const_webpath = $matches[1];
 	$const_serverpath = substr($const_serverpath,0,strrpos($const_serverpath,'/'.$matches[2]));
@@ -105,7 +107,6 @@ if (!defined("RELEASE")) {
 }
 set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
-
 if (OFFSET_PATH != 2 && !file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphoto.cfg")) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
 	reconfigureAction();
