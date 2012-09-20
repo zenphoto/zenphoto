@@ -129,7 +129,7 @@ if (isset($_GET['action'])) {
 								$msg = sprintf(gettext('%s password may not be empty!'),$admin_n);
 							}
 						} else {
-							if (isset($_POST['disclose_password_'.$i])) {
+							if (isset($_POST['disclose_password'.$i])) {
 								$pass2 = $pass;
 							} else {
 								$pass2 = trim(sanitize($_POST['pass_r_'.$i]));

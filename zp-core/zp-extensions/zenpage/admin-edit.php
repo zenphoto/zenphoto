@@ -489,7 +489,6 @@ if ($result->loaded || $result->transient) {
 							<a href="javascript:toggle_passwords('',false);">
 							<?php echo gettext("Guest user:"); ?>
 							</a>
-							<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
 							<input type="text" size="27" id="user_name" name="user"
 															onkeydown="passwordKeydown('');"
 															value="<?php echo html_encode($user); ?>" />
@@ -501,7 +500,7 @@ if ($result->loaded || $result->transient) {
 															onkeyup="passwordStrength('');"
 															value="<?php echo $x; ?>" />
 							<br />
-							<label><input type="checkbox" name="disclose_password_" id="disclose_password_" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
 							<br />
 							<span class="password_field_">
 								<span id="match"><?php echo gettext("(repeat)"); ?></span>

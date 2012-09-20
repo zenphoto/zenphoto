@@ -1153,7 +1153,7 @@ class Zenphoto_Authority {
 			var inputa = '#pass'+id;
 			var inputb = '#pass_r'+id;
 			var display = '#match'+id;
-			if ($('#disclose_password_'+id).attr('checked') != 'checked') {
+			if ($('#disclose_password'+id).attr('checked') != 'checked') {
 				if ($(inputa).val() === $(inputb).val()) {
 					if ($(inputa).val().trim() !== '') {
 						$(display).css('color','#008000');
@@ -1204,6 +1204,7 @@ class Zenphoto_Authority {
 		} else {
 			$x = '';
 		}
+
 		?>
 		<input type="hidden" name="passrequired<?php echo $id; ?>" id="passrequired-<?php echo $id; ?>" value="<?php echo (int) $required; ?>" />
 		<fieldset>
@@ -1216,7 +1217,7 @@ class Zenphoto_Authority {
 							onkeyup="passwordStrength('<?php echo $id; ?>');"
 							<?php echo $disable; ?> />
 			<br clear="all" />
-			<label><input type="checkbox" name="disclose_password_<?php echo $id; ?>" id="disclose_password_<?php echo $id; ?>" onclick="passwordKeydown('<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password'); ?></label>
+			<label><input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordKeydown('<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password'); ?></label>
 		</fieldset>
 		<fieldset class="password_field_<?php echo $id; ?>">
 			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></legend>

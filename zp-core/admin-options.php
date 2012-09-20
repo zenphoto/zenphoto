@@ -975,7 +975,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 															id="user_name"  name="user"
 															value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
 							<br />
-							<label><input type="checkbox" name="disclose_password_" id="disclose_password_" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
 						</td>
 						<td>
 							<?php echo gettext("User ID for the gallery guest user") ?>
@@ -1293,14 +1293,14 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 				if (GALLERY_SECURITY == 'public') {
 					?>
 					<tr class="passwordextrashow">
-						<td width="175" style="background-color: #ECF1F2;">
+						<td width="175">
 							<p>
 								<a href="javascript:toggle_passwords('',true);">
 									<?php echo gettext("Search password:"); ?>
 								</a>
 							</p>
 						</td>
-						<td style="background-color: #ECF1F2;">
+						<td>
 							<?php
 							$x = getOption('search_password');
 							if (empty($x)) {
@@ -1315,7 +1315,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 							}
 							?>
 						</td>
-						<td style="background-color: #ECF1F2;">
+						<td>
 							<p><?php echo gettext("Password for the search guest user. click on <em>Search password</em> to change."); ?></p>
 						</td>
 					</tr>
@@ -1331,7 +1331,7 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 															id="user_name"  name="user"
 															value="<?php echo html_encode(getOption('search_user')); ?>" />
 							<br />
-							<label><input type="checkbox" name="disclose_password_" id="disclose_password_" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
 						</td>
 						<td>
 							<?php echo gettext("User ID for the search guest user") ?>
@@ -2051,7 +2051,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 															id="user_name"  name="user"
 															value="<?php echo html_encode(getOption('protected_image_user')); ?>" />
 							<br />
-							<label><input type="checkbox" name="disclose_password_" id="disclose_password_" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
 						</td>
 					</tr>
 					<tr class="passwordextrahide" style="display:none" >

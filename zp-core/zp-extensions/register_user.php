@@ -293,7 +293,7 @@ function printRegistrationForm($thanks=NULL) {
 		if (empty($pass)) {
 			$notify = 'empty';
 		} else if (!empty($user) && !(empty($admin_n)) && !empty($admin_e)) {
-			if (isset($_POST['disclose_password_']) || $pass == trim(sanitize($_POST['pass_r_']))) {
+			if (isset($_POST['disclose_password']) || $pass == trim(sanitize($_POST['pass_r']))) {
 				$currentadmin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`>' => 0));
 				if (is_object($currentadmin)) {
 					$notify = 'exists';

@@ -4380,8 +4380,7 @@ function processCredentials($object, $suffix='') {
 		}
 		$newuser = trim(sanitize($_POST['user'.$suffix],3));
 		$pwd = trim(sanitize($_POST['pass'.$suffix]));
-
-		if (isset($_POST['disclose_password_'.$suffix])) {
+		if (isset($_POST['disclose_password'.$suffix])) {
 			$pass2 = $pwd;
 		} else {
 			if (isset($_POST['pass_r'.$suffix])) {

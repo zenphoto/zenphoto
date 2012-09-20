@@ -115,7 +115,6 @@ class DownloadList {
 		<?php echo gettext("Guest user:"); ?>
 		</a>
 		<br />
-		<input type="hidden" id="olduser" name="olduser" value="<?php echo html_encode($user); ?>" />
 		<input type="text" size="27" id="user_name_downloadList" name="user_downloadList"
 										onkeydown="passwordKeydown('_downloadList');"
 										value="<?php echo html_encode($user); ?>" />
@@ -127,7 +126,7 @@ class DownloadList {
 										onkeydown="passwordKeydown('_downloadList');"
 										onkeyup="passwordStrength('_downloadList');"
 										value="<?php echo $x; ?>" />
-		<label><input type="checkbox" name="disclose_password__downloadList" id="disclose_password__downloadList" onclick="passwordKeydown('_downloadList');togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
+		<label><input type="checkbox" name="disclose_password_downloadList" id="disclose_password_downloadList" onclick="passwordKeydown('_downloadList');togglePassword('_downloadList');"><?php echo gettext('Show password'); ?></label>
 		<br />
 		<span class="password_field__downloadList">
 			<span id="match_downloadList"><?php echo gettext("(repeat)"); ?></span>
