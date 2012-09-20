@@ -77,7 +77,7 @@ function query($sql, $errorstop=true) {
 function query_single_row($sql, $errorstop=true) {
 	global $_zp_DB_connection;
 	$result = query($sql, $errorstop);
-	if ($result) {
+	if (is_object($result)) {
 		return $result->fetch_assoc();
 	} else {
 		return false;
@@ -95,7 +95,7 @@ function query_single_row($sql, $errorstop=true) {
 function query_full_array($sql, $errorstop=true, $key=NULL) {
 	global $_zp_DB_connection;
 	$result = query($sql, $errorstop);
-	if ($result) {
+	if (is_object($result)) {
 		$allrows = array();
 		if (is_null($key)) {
 			while ($row = $result->fetch_assoc()) {
@@ -164,7 +164,7 @@ function db_affected_rows() {
  * Get a result row as an enumerated array
  */
 function db_fetch_row($result) {
-	if ($result) {
+	if (is_object($result)) {
 		return $result->fetch_row();
 	}
 	return false;
@@ -220,7 +220,7 @@ function db_permissions() {
 	if (!$result) {
 		$result = query("SHOW GRANTS;", false);
 	}
-	if ($result) {
+	if (is_object($result)) {
 		$db_results = array();
 		while ($onerow = db_fetch_row($result)) {
 			$db_results[] = $onerow[0];
@@ -243,7 +243,7 @@ function db_setSQLmode() {
  */
 function db_getSQLmode() {
 	$result = query('SELECT @@SESSION.sql_mode;', false);
-	if ($result) {
+	if (is_object($result)) {
 		$row = db_fetch_row($result);
 		return $row[0];
 	}
@@ -283,7 +283,7 @@ function db_show($what,$aux='') {
 
 function db_list_fields($table) {
 	$result = db_show('columns',$table);
-	if ($result) {
+	if (is_object($result)) {
 		$fields = array();
 		while ($row = db_fetch_assoc($result)) {
 			$fields[] = $row;

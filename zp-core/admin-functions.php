@@ -959,7 +959,6 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 		}
 		?>
 		<li>
-		<span class="displayinline">
 			<label class="displayinline">
 				<input id="<?php echo strtolower($listitem); ?>"<?php echo $class;?> name="<?php echo $listitem; ?>" type="checkbox"
 							<?php if (isset($cv[$item])) {echo ' checked="checked"';	} ?> value="1" <?php echo $alterrights; ?> />
@@ -998,7 +997,6 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 				}
 			}
 			?>
-			</span>
 		</li>
 		<?php
 	}

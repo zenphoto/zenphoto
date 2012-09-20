@@ -504,7 +504,7 @@ function getSitemapAlbums() {
 	$albums = array_slice($albums, $offset, SITEMAP_CHUNK);
 	if(!empty($albums)) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-		if(getOption('sitemap_google')) {
+		if(GOOGLE_SITEMAP) {
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
 		} else {
 			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
@@ -627,7 +627,6 @@ function getSitemapImages() {
 			$albumobj = new Album(NULL,$album['folder']);
 			$images = $albumobj->getImages();
 			// print plain images links if available
-
 			if($images) {
 				foreach($images as $image) {
 					$imageobj = newImage($albumobj,$image);
@@ -665,7 +664,7 @@ function getSitemapImages() {
  * Helper function to get the loop index if the Google video extension is enabled
  */
 function getSitemapGoogleLoopIndex($imageCount,$pageCount) {
-	if(getOption('sitemap_google')) {
+	if(GOOGLE_SITEMAP) {
 		$loop_index = array();
 		for ($x = 1; $x <= $pageCount; $x++) {
 			if ($imageCount < ($x*getOption('images_per_page')) ) {
@@ -684,7 +683,7 @@ function getSitemapGoogleLoopIndex($imageCount,$pageCount) {
  * @return string
  */
 function getSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images,$locale) {
-	if(getOption('sitemap_google') && !empty($loop_index)) {
+	if(GOOGLE_SITEMAP && !empty($loop_index)) {
 		$data = '';
 		$host = SERVER_PROTOCOL.'://'.html_encode($_SERVER["HTTP_HOST"]);
 		$start = ($page - 1) * getOption('images_per_page');
