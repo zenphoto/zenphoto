@@ -41,18 +41,6 @@ if (!defined('OFFSET_PATH')) {
 	} else {
 		$path = SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/'.$extension.'.php';
 	}
-	if ($real_locale == 'en_US') {
-		$translatetext = '';
-	} else {
-		$translatetext = '<br />'.
-									'<a href="http://www.google.com/translate_c?langpair=en|'.strtolower(substr($real_locale,0,2)).'&u='.FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension.'"'.
-													'title="'. gettext('This document is generated from the plugin comment block and other items that are in English and outside of the Zenphoto translation system. This link will send the URL to the Google translation WEB to present the page in your language.').'">'.
-										gettext('Translate this page.').
-									'</a>';
-	}
-	$pagetitle = sprintf(gettext('%1$s %2$s: %3$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($extension));
-	setupCurrentLocale('en_US');
-
 
 	$plugin_description = '';
 	$plugin_notice = '';
@@ -62,6 +50,7 @@ if (!defined('OFFSET_PATH')) {
 	$plugin_is_filter = '';
 	$plugin_URL = '';
 	$option_interface = '';
+	$doclink = '';
 
 	@require_once($path);
 	$buttonlist = zp_apply_filter('admin_utilities_buttons', array());
@@ -92,7 +81,27 @@ if (!defined('OFFSET_PATH')) {
 			$ico = 'images/zp_gold.png';
 		}
 
-		?>
+		if ($real_locale == 'en_US') {
+			$translatetext = '';
+		} else {
+			$translatetext = '<br />'.
+					'<a href="http://www.google.com/translate_c?langpair=en|'.strtolower(substr($real_locale,0,2)).'&u='.FULLWEBPATH.'/'.ZENFOLDER.'/pluginDoc.php?extension='.$extension.'"'.
+					'title="'. gettext('This document is generated from the plugin comment block and other items that are in English and outside of the Zenphoto translation system. This link will send the URL to the Google translation WEB to present the page in your language.').'">'.
+					gettext('Translate this page.').
+					'</a>';
+		}
+		if ($thirdparty) {
+			if ($plugin_URL) {
+				$doclink = sprintf('See also the <a href="%1$s">%2$s</a>',$plugin_URL, $extension);
+			}
+		} else {
+			$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
+			$doclink = sprintf(gettext('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>'),$plugin_URL, $extension);
+		}
+		$pluginusage = gettext('Plugin usage information');
+		$pagetitle = sprintf(gettext('%1$s %2$s: %3$s'),html_encode($_zp_gallery->getTitle()),gettext('admin'),html_encode($extension));
+		setupCurrentLocale('en_US');
+	?>
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		<html xmlns="http://www.w3.org/1999/xhtml">
 		<head>
@@ -154,7 +163,12 @@ if (!defined('OFFSET_PATH')) {
 		</head>
 		<body>
 			<div id="main">
-				Plugin usage information
+				<?php
+				echo $pluginusage;
+				if ($real_locale != 'en_US') {
+					echo $translatetext;
+				}
+				?>
 				<div id="content">
 					<h1><img class="zp_logoicon" src="<?php echo $ico; ?>" alt="logo" title="<?php echo $whose; ?>" /><?php echo html_encode($extension); ?></h1>
 					<div class="border">
@@ -315,19 +329,7 @@ if (!defined('OFFSET_PATH')) {
 						?>
 					</div>
 				</div>
-				<?php
-				if ($thirdparty) {
-					if ($plugin_URL) {
-						printf('See also the <a href="%1$s">%2$s</a>',$plugin_URL, $extension);
-					}
-				} else {
-					$plugin_URL = 'http://www.zenphoto.org/documentation/plugins/'.$subpackage.'_'.PLUGIN_FOLDER.'---'.$extension.'.php.html';
-					printf('See also the Zenphoto online documentation: <a href="%1$s">%2$s</a>',$plugin_URL, $extension);
-				}
-				if ($real_locale != 'en_US') {
-					echo $translatetext;
-				}
-				?>
+				<?php echo $doclink; ?>
 			</div>
 		</body>
 		<?php
