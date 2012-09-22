@@ -34,7 +34,6 @@ class AlbumBase extends MediaObject {
 	function __construct($folder8, $cache=true) {
 		$this->name = $folder8;
 		parent::PersistentObject('albums', array('folder' => $this->name), 'folder', false, true);
-
 	}
 
 	/**

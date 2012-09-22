@@ -54,7 +54,7 @@ if (!defined('OFFSET_PATH')) {
 
 	@require_once($path);
 	$buttonlist = zp_apply_filter('admin_utilities_buttons', array());
-	$album = new ALbumbase(NULL, '', false);
+	$album = new ALbumbase(NULL, false);
 	$image = new Transientimage($album, '');
 	$imagebuttons = zp_apply_filter('edit_image_utilities', '', $image, 0, '', ''); //pass space as HTML because there is already a button shown for cropimage
 	$albumbuttons = zp_apply_filter('edit_album_utilities', '', $album, '');
