@@ -12,7 +12,9 @@ $action = preg_replace('/\?verify=(.*)/', '', getRequestURI());
 <div id="registration_form">
 	<form action="<?php echo $action; ?>" method="post" autocomplete="off">
 		<input type="hidden" name="register_user" value="yes" />
-
+		<fieldset style="display: none"><legend><?php echo gettext("Username* (this will be your user username)"); ?></legend>
+			<input type="text" id="username" name="username" value="" size="<?php echo TEXT_INPUT_SIZE; ?>" />
+		</fieldset>
 		<fieldset><legend><?php if ($emailid = getOption('register_user_email_is_id')) echo gettext("Email* (this will be your user id)"); else echo gettext("User ID").'*'; ?></legend>
 			<input type="text" id="adminuser" name="user" value="<?php echo html_encode($user); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" />
 		</fieldset>

@@ -263,6 +263,10 @@ function printRegistrationForm($thanks=NULL) {
 	}
 
 	if (isset($_POST['register_user'])) {
+		
+		if(isset($_POST['username']) && !empty($_POST['username'])) {
+			$notify = 'honeypot'; // honey pot check
+		}
 		if (getOption('register_user_captcha')) {
 			if (isset($_POST['code'])) {
 				$code = sanitize($_POST['code'], 3);
@@ -365,13 +369,14 @@ function printRegistrationForm($thanks=NULL) {
 				printPasswordForm('', false, true, WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
 				$notify = 'success';
 				break;
+			case 'honeypot': //pretend it was accepted
 			case 'accepted':
 				?>
 				<div class="Messagebox fade-message">
 					<p><?php echo gettext('Your registration information has been accepted. An email has been sent to you to verify your email address.'); ?></p>
 				</div>
 				<?php
-				$notify = 'success';
+				if($notify != 'honeypot') $notify = 'success'; // of course honeypot catches are no success!
 				break;
 			case 'exists':
 				?>
