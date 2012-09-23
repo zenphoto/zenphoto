@@ -177,6 +177,7 @@ function printContactForm($subject_override='') {
 		$mailcontent = array();
 		$mailcontent['title'] = getField('title');
 		$mailcontent['name'] = getField('name');
+		$mailcontent['honeypot'] = getField('username');
 		$mailcontent['company'] = getField('company');
 		$mailcontent['street'] = getField('street');
 		$mailcontent['city'] = getField('city');
@@ -311,7 +312,11 @@ function printContactForm($subject_override='') {
 		} else {
 			$sendcopy = NULL;
 		}
-		$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy);
+
+		// If honeypot was triggered, silently don't send the message
+		if (empty($mailcontent['honeypot'])) {
+			$err_msg = zp_mail($subject, $message, $mailinglist, $sendcopy);
+		}
 		if ($err_msg) {
 			$msgs = explode('.',$err_msg);
 			unset($msgs[0]);						//	the "mail send failed" text
@@ -337,7 +342,7 @@ function printContactForm($subject_override='') {
 			if (zp_loggedin()) {
 				$mailcontent = array(	'title'=>'','name'=>$_zp_current_admin_obj->getName(),'company'=>'','street'=>'','city'=>'','state'=>'',
 															'country'=>'','postal'=>'','email'=>$_zp_current_admin_obj->getEmail(),'website'=>'','phone'=>'',
-															'subject'=>$subject_override,'message'=>'');
+															'subject'=>$subject_override,'message'=>'','honeypot'=>'');
 				if (getOption('zp_plugin_comment_form')) {
 					$raw = $_zp_current_admin_obj->getCustomData();
 					if (preg_match('/^a:[0-9]+:{/', $raw)) {
@@ -349,7 +354,7 @@ function printContactForm($subject_override='') {
 				}
 			} else {
 				$mailcontent = array(	'title'=>'','name'=>'','company'=>'','street'=>'','city'=>'','state'=>'','country'=>'','email'=>'',
-															'postal'=>'','website'=>'','phone'=>'','subject'=>$subject_override,'message'=>'');
+															'postal'=>'','website'=>'','phone'=>'','subject'=>$subject_override,'message'=>'','honeypot'=>'');
 			}
 		}
 		echo get_language_string(getOption("contactform_introtext"));

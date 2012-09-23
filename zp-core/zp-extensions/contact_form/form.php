@@ -5,6 +5,7 @@
  * @package plugins
  */
 ?>
+
 <form id="mailform" action="<?php echo html_encode(getRequestURI()); ?>" method="post" accept-charset="UTF-8">
 	<input type="hidden" id="sendmail" name="sendmail" value="sendmail" />
 	<table style="border:none">
@@ -22,6 +23,11 @@
 			</td>
 		</tr>
 		<?php } ?>
+		<tr id="username" style="display:none;">
+			<td>Username:</td>
+			<td><input type="text" id="username" name="username" size="50" value="<?php echo html_encode($mailcontent['honeypot']); ?>"<?php if ($_processing_post) echo ' disabled="disabled"'; ?> />
+			</td>
+		</tr>
 		<?php if(showOrNotShowField(getOption('contactform_company'))) { ?>
 		<tr>
 			<td><?php printf(gettext("Company<strong>%s</strong>:"),(checkRequiredField(getOption('contactform_company')))); ?></td>
