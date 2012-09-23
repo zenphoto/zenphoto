@@ -30,7 +30,9 @@ function imageError($status_text, $errormessage, $errorimg='err-imagegeneral.png
 		. (empty($newfilename) ? '' : '<br />'.sprintf(gettext('Cache: [<code>%s</code>]'), '/'.CACHEFOLDER.'/' . sanitize($newfilename, 3)).' ')
 		. (empty($image) || empty($album) ? '' : ' <br />'.sprintf(gettext('Image: [<code>%s</code>]'),sanitize($album.'/'.$image, 3)).' <br />'));
 	} else {
-		trigger_error($errormessage, E_USER_NOTICE);
+		if (DEBUG_IMAGE_ERR) {
+			trigger_error($errormessage, E_USER_NOTICE);
+		}
 		header("HTTP/1.0 $status_text");
 		header("Status: $status_text");
 		header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/images/' . $errorimg);

@@ -972,9 +972,6 @@ class SearchEngine {
 					default:
 						$targetfound = true;
 						query('SET @serachtarget='.db_quote($singlesearchstring));
-
-
-
 						foreach ($fields as $fieldname) {
 							if ($tbl=='albums' && $fieldname=='filename') {
 								$fieldname = 'folder';
@@ -1058,15 +1055,15 @@ class SearchEngine {
 						$op = '';
 						break;
 					default:
+						$lookfor = strtolower($singlesearchstring);
+						$matchtarget = '%'.str_replace('%', '\%', $lookfor).'%';
 						$objectid = NULL;
-						if ($lookfor = strtolower($singlesearchstring)) {
-							foreach ($taglist as $key => $objlist) {
-								if (($exact && $lookfor == $key) || (!$exact && preg_match('%'.$lookfor.'%', $key))) {
-									if (is_array($objectid)) {
-										$objectid = array_merge($objectid, $objlist);
-									} else {
-										$objectid = $objlist;
-									}
+						foreach ($taglist as $key => $objlist) {
+							if (($exact && $lookfor == $key) || (!$exact && preg_match($matchtarget, $key))) {
+								if (is_array($objectid)) {
+									$objectid = array_merge($objectid, $objlist);
+								} else {
+									$objectid = $objlist;
 								}
 							}
 						}
