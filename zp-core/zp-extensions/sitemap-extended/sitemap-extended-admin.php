@@ -59,10 +59,14 @@ if(isset($_GET['generatesitemaps'])) {
 <script type="text/javascript">
 		// <!-- <![CDATA[
 		$(document).ready(function(){
-			$(".colorbox").colorbox({
+		/*	$(".colorbox").colorbox({
 				iframe: false,
+				inline:true,
+				href: '#sitemap',
+				width: 90%,
+				photo: false,
 				close: '<?php echo gettext("close"); ?>'
-			});
+			}); */
 		});
 		// ]]> -->
 	</script>
@@ -80,7 +84,10 @@ echo '</head>';
 			foreach($dirs as $dir) {
 				$filemtime = filemtime($cachefolder.$dir);
 				$lastchange = zpFormattedDate(DATE_FORMAT,$filemtime);
-				echo '<li>'.$dir.' (<small>'.$lastchange.')</small>'; //<a class="colorbox" href="'.FULLWEBPATH.'/cache_html/sitemap/'.$dir.'">Preview</a></li>';
+				?>
+				<li><a target="_blank" href="<?php echo FULLWEBPATH; ?>/cache_html/sitemap/<?php echo $dir; ?>"><?php echo $dir; ?></a> (<small><?php echo $lastchange; ?>)</small>
+				</li>
+				<?php
 			}
 			echo '</ol>';
 		}
@@ -163,9 +170,7 @@ printLogoAndLinks();
 		<br clear="left" />
 		<?php
 	}
-
 	?>
-
 </div><!-- content -->
 <?php printAdminFooter(); ?>
 </div><!-- main -->

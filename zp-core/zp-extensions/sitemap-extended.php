@@ -497,55 +497,26 @@ function getSitemapAlbums() {
 	$albumlastmod = sanitize($albumlastmod);
 	$imagelastmod = getOption('sitemap_lastmod_images');
 
-
 	$albums = array();
 	getSitemapAlbumList($_zp_gallery, $albums, 'passAlbums');
 	$offset = ($sitemap_number - 1);
 	$albums = array_slice($albums, $offset, SITEMAP_CHUNK);
 	if(!empty($albums)) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-		if(GOOGLE_SITEMAP) {
-			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
-		} else {
-			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
-		}
+		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
 		foreach($albums as $album) {
 			$albumobj = new Album(NULL,$album['folder']);
 			set_context(ZP_ALBUM);
 			makeAlbumCurrent($albumobj);
-			//getting the album pages
-			/* Custom images/albums per page taken out as it is not possible to set these now anymore. Maybe later becomes an options
-			$images_per_page = getOption('images_per_page');
-			$albums_per_page = getOption('albums_per_page');
-			if(is_array($imagesperpage)) {
-				foreach($imagesperpage as $alb=>$number) {
-					if($alb == $albumobj->name) {
-						setOption('images_per_page',$number,false);
-					} else {
-						setOption('images_per_page',$images_per_page);
-					}
-				}
-			}
-			if(is_array($albumsperpage)) {
-				foreach($albumsperpage as $alb=>$number) {
-					if($alb == $albumobj->name) {
-						setOption('albums_per_page',$number,false);
-					} else {
-						setOption('albums_per_page',$albums_per_page);
-					}
-				}
-			} */
 			$pageCount = getTotalPages();
-			$imageCount = getNumImages();
-			$images = $albumobj->getImages();
-			$loop_index = getSitemapGoogleLoopIndex($imageCount,$pageCount);
+			//$imageCount = getNumImages();
+			//$images = $albumobj->getImages();
 			$date = sitemap_getDateformat($albumobj,$albumlastmod);
 			switch (SITEMAP_LOCALE_TYPE) {
 				case 1:
 					foreach($sitemap_locales as $locale) {
 						$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-						$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images,$locale);
 						$data .= sitemap_echonl("\t</url>");
 					}
 					break;
@@ -553,14 +524,12 @@ function getSitemapAlbums() {
 					foreach($sitemap_locales as $locale) {
 						$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('/'.pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-						$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images,$locale);
 						$data .= sitemap_echonl("\t</url>");
 					}
 					break;
 				default:
 					$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name),'?album='.pathurlencode($albumobj->name),false);
 					$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-					$data .= getSitemapGoogleImageVideoExtras(1,$loop_index,$albumobj,$images,NULL);
 					$data .= sitemap_echonl("\t</url>");
 					break;
 			}
@@ -572,7 +541,6 @@ function getSitemapAlbums() {
 						foreach($sitemap_locales as $locale) {
 							$url = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-							$data .= getSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images,$locale);
 							$data .= sitemap_echonl("\t</url>");
 						}
 						break;
@@ -580,14 +548,12 @@ function getSitemapAlbums() {
 						foreach($sitemap_locales as $locale) {
 							$url = dynamic_locale::fullHostPath($locale).'/'.rewrite_path('/'.pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
 							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-							$data .= getSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images,$locale);
 							$data .= sitemap_echonl("\t</url>");
 						}
 						break;
 					default:
 						$url = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/page/'.$x,'?album='.pathurlencode($albumobj->name).'&amp;page='.$x,false);
 						$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$url."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$albumchangefreq."</changefreq>\n\t\t<priority>0.8</priority>\n");
-						$data .= getSitemapGoogleImageVideoExtras($x,$loop_index,$albumobj,$images,NULL);
 						$data .= sitemap_echonl("\t</url>");
 						break;
 					}
@@ -614,14 +580,17 @@ function getSitemapImages() {
 	$imagechangefreq = getOption('sitemap_changefreq_images');
 	$imagelastmod = getOption('sitemap_lastmod_images');
 	$limit = sitemap_getDBLimit(1);
-
 	$albums = array();
 	getSitemapAlbumList($_zp_gallery, $albums, 'passImages');
 	$offset = ($sitemap_number - 1);
 	$albums = array_slice($albums, $offset, SITEMAP_CHUNK);
 	if($albums) {
 		$data .= sitemap_echonl('<?xml version="1.0" encoding="UTF-8"?>');
-		$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+		if(GOOGLE_SITEMAP) {
+			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">');
+		} else {
+			$data .= sitemap_echonl('<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
+		}
 		foreach($albums as $album) {
 			set_time_limit(120);	//	Extend script timeout to allow for gathering the images.
 			$albumobj = new Album(NULL,$album['folder']);
@@ -631,26 +600,36 @@ function getSitemapImages() {
 				foreach($images as $image) {
 					$imageobj = newImage($albumobj,$image);
 					$ext = getSuffix($imageobj->filename);
-					if(GOOGLE_SITEMAP || !in_array($ext, array('mp3','txt','html','htm'))) {
-						$date = sitemap_getDateformat($imageobj,$imagelastmod);
-						switch (SITEMAP_LOCALE_TYPE) {
-							case 1:
-								foreach($sitemap_locales as $locale) {
-									$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
-									$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
+					$date = sitemap_getDateformat($imageobj,$imagelastmod);
+					switch (SITEMAP_LOCALE_TYPE) {
+						case 1:
+							foreach($sitemap_locales as $locale) {
+								$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n");
+								if(GOOGLE_SITEMAP) {
+									$data .= getSitemapGoogleImageVideoExtras($albumobj,$imageobj,$locale);
 								}
-								break;
-							case 2:
-								foreach($sitemap_locales as $locale) {
-									$path = dynamic_locale::fullHostPath($locale).'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
-									$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
+								$data .= sitemap_echonl("</url>");
+							}
+							break;
+						case 2:
+							foreach($sitemap_locales as $locale) {
+								$path = dynamic_locale::fullHostPath($locale).'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n");
+								if(GOOGLE_SITEMAP) {
+									$data .= getSitemapGoogleImageVideoExtras($albumobj,$imageobj,$locale);
 								}
-								break;
-							default:
-								$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
-								$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n\t</url>");
-								break;
-						}
+								$data .= sitemap_echonl("</url>");
+							}
+							break;
+						default:
+							$path = FULLWEBPATH.'/'.rewrite_path(pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+							$data .= sitemap_echonl("\t<url>\n\t\t<loc>".$path."</loc>\n\t\t<lastmod>".$date."</lastmod>\n\t\t<changefreq>".$imagechangefreq."</changefreq>\n\t\t<priority>0.6</priority>\n");
+							if(GOOGLE_SITEMAP) {
+								$data .= getSitemapGoogleImageVideoExtras($albumobj,$imageobj,NULL);
+							}
+							$data .= sitemap_echonl("</url>");
+							break;
 					}
 				}
 			}
@@ -682,47 +661,42 @@ function getSitemapGoogleLoopIndex($imageCount,$pageCount) {
  * Helper function to get the image/video extra entries for albums if the Google video extension is enabled
  * @return string
  */
-function getSitemapGoogleImageVideoExtras($page,$loop_index,$albumobj,$images,$locale) {
-	if(GOOGLE_SITEMAP && !empty($loop_index)) {
-		$data = '';
-		$host = SERVER_PROTOCOL.'://'.html_encode($_SERVER["HTTP_HOST"]);
-		$start = ($page - 1) * getOption('images_per_page');
-		$end = ($page - 1) * getOption('images_per_page') + $loop_index[($page-1)];
-		for ($x = $start; $x < $end; $x++) {
-			$imageobj = newImage($albumobj,$images[$x]);
-			$ext = strtolower(strrchr($imageobj->filename, "."));
-			$location = '';
-			if ($imageobj->getLocation()) { $location .= $imageobj->getLocation($locale) . ', ' ; }
-			if ($imageobj->getCity()) { $location .= $imageobj->getCity($locale) . ', ' ; }
-			if ($imageobj->getState()) { $location .= $imageobj->getState($locale) .', ' ; }
-			if ($imageobj->getCountry()) { $location .= $imageobj->getCountry($locale); }
-			$license = get_language_string(getOption('sitemap_license'),$locale);
-			$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
-			if($ext != '.mp3' && $ext != '.txt' && $ext != '.html') { // audio is not coverered specifically by Google currently
-				if(isImageVideo($imageobj) && $ext != '.mp3') {
-					$data .= sitemap_echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>".$host.html_encode($imageobj->getThumb())."</video:thumbnail_loc>\n\t\t\t<video:title>".html_encode(get_language_string($imageobj->get('title'),$locale))."</video:title>");
-					if ($imageobj->getDesc()) {
-						$data .= sitemap_echonl("\t\t\t<video:description>".html_encode(strip_tags(get_language_string($imageobj->get('desc'),$locale)))."</video:description>");
-					}
-					$data .= sitemap_echonl("\t\t\t<video:content_loc>".$host.pathurlencode($imageobj->getFullImageURL())."</video:content_loc>");
-					$data .= sitemap_echonl("\t\t</video:video>");
-				} else { // this might need to be extended!
-					$data .= sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>".$host.html_encode($imageobj->getSizedImage(getOption('image_size')))."</image:loc>\n\t\t\t<image:title>".html_encode(get_language_string($imageobj->get('title'),$locale))."</image:title>");
-					if ($imageobj->getDesc()) {
-						$data .= sitemap_echonl("\t\t\t<image:caption>".html_encode(strip_tags(get_language_string($imageobj->get('desc'),$locale)))."</image:caption>");
-					}
-					if (!empty($license)) {
-						$data .= sitemap_echonl("\t\t\t<image:license>".$license."</image:license>");
-					}
-					if (!empty($location)) {
-						$data .= sitemap_echonl("\t\t\t<image:geo_location>".$location."</image:geo_location>");
-					}
-					$data .= sitemap_echonl("\t\t</image:image>");
-				}
-			}
+function getSitemapGoogleImageVideoExtras($albumobj,$imageobj,$locale) {
+	$data = '';
+	$host = SERVER_PROTOCOL.'://'.html_encode($_SERVER["HTTP_HOST"]);
+	$ext = strtolower(strrchr($imageobj->filename, "."));
+	$location = '';
+	if ($imageobj->getLocation()) { $location .= $imageobj->getLocation($locale) . ', ' ; }
+	if ($imageobj->getCity()) { $location .= $imageobj->getCity($locale) . ', ' ; }
+	if ($imageobj->getState()) { $location .= $imageobj->getState($locale) .', ' ; }
+	if ($imageobj->getCountry()) { $location .= $imageobj->getCountry($locale); }
+	$license = get_language_string(getOption('sitemap_license'),$locale);
+	//$path = FULLWEBPATH.'/'.rewrite_path($locale.'/'.pathurlencode($albumobj->name).'/'.urlencode($imageobj->filename).IM_SUFFIX,'?album='.pathurlencode($albumobj->name).'&amp;image='.urlencode($imageobj->filename),false);
+	if(isImageVideo($imageobj) && in_array($ext,array('.mpg','.mpeg','.mp4','.m4v','.mov','.wmv','.asf','.avi','.ra','.ram','.flv','.swf'))) { // google says it can index these so we list them even if unsupported by Zenphoto
+		$data .= sitemap_echonl("\t\t<video:video>\n\t\t\t<video:thumbnail_loc>".$host.html_encode($imageobj->getThumb())."</video:thumbnail_loc>\n");
+		$data .= sitemap_echonl("\t\t\t<video:title>".html_encode(get_language_string($imageobj->get('title'),$locale))."</video:title>");
+		if ($imageobj->getDesc()) {
+			$data .= sitemap_echonl("\t\t\t<video:description>".html_encode(strip_tags(get_language_string($imageobj->get('desc'),$locale)))."</video:description>");
 		}
-		return $data;
+		$data .= sitemap_echonl("\t\t\t<video:content_loc>".$host.pathurlencode($imageobj->getFullImageURL())."</video:content_loc>");
+		$data .= sitemap_echonl("\t\t</video:video>");
+	} else if (in_array($ext,array('.jpg','.jpeg','.gif','.png'))) { // this might need to be extended!
+		$data .= sitemap_echonl("\t\t<image:image>\n\t\t\t<image:loc>".$host.html_encode($imageobj->getSizedImage(getOption('image_size')))."</image:loc>\n");
+		// disabled for the multilingual reasons above
+		$data .= sitemap_echonl("\t\t\t<image:title>".html_encode(get_language_string($imageobj->get('title'),$locale))."</image:title>");
+		if ($imageobj->getDesc()) {
+			$data .= sitemap_echonl("\t\t\t<image:caption>".html_encode(strip_tags(get_language_string($imageobj->get('desc'),$locale)))."</image:caption>");
+		}
+		if(!empty($license)) {
+			$data .= sitemap_echonl("\t\t\t<image:license>".$license."</image:license>");
+		}
+		// location is kept although the same multilingual issue applies
+		if(!empty($location)) {
+			$data .= sitemap_echonl("\t\t\t<image:geo_location>".$location."</image:geo_location>");
+		}
+		$data .= sitemap_echonl("\t\t</image:image>");
 	}
+	return $data;
 }
 
 /**
