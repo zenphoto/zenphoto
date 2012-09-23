@@ -924,6 +924,9 @@ function comment_form_handle_comment() {
 	$comment_error = 0;
 	$cookie = zp_getCookie('zenphoto_comment');
 	if (isset($_POST['comment'])) {
+		if(isset($_POST['username']) && !empty($_POST['username'])) {
+			return false;
+		}
 		if ((in_context(ZP_ALBUM) || in_context(ZP_ZENPAGE_NEWS_ARTICLE) || in_context(ZP_ZENPAGE_PAGE))) {
 			if (isset($_POST['name'])) {
 				$p_name = sanitize($_POST['name'],3);

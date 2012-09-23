@@ -6,6 +6,10 @@
 						$required = false;
 						?>
 						<table style="border:none">
+							<tr style="display:none;">
+								<td>Username:</td>
+								<td><input type="text" id="username" name="username" size="22" value="" /></td>
+							</tr>
 							<?php
 							if ($req = getOption('comment_name_required')) {
 								if ($req == 'required') {
