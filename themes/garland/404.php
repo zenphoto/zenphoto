@@ -22,11 +22,11 @@ if (!defined('WEBPATH')) die();
 			</div>
 		</div>
 		<!-- header -->
-    <div class="sidebar">
-     	<div id="leftsidebar">
-      	<?php include("sidebar.php"); ?>
-      </div>
-     </div>
+		<div class="sidebar">
+			<div id="leftsidebar">
+				<?php include("sidebar.php"); ?>
+			</div>
+		 </div>
 		<div id="center">
 			<div id="squeeze">
 				<div class="right-corner">
@@ -40,7 +40,7 @@ if (!defined('WEBPATH')) die();
 							</h2>
 							<h3><?php echo gettext('Page not found') ?></h3>
 							<div class="errorbox">
-					 		<?php
+							<?php
 							echo gettext("The Zenphoto object you are requesting cannot be found.");
 							if (isset($album)) {
 								echo '<br />'.gettext("Album").': '.html_encode($album);
@@ -51,7 +51,7 @@ if (!defined('WEBPATH')) die();
 							if (isset($obj)) {
 								echo '<br />'.gettext("Theme page").': '.html_encode(substr(basename($obj),0,-4));
 							}
-					 		?>
+							?>
 							</div>
 							<?php footer(); ?>
 							<p style="clear: both;"></p>

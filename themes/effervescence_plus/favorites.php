@@ -5,7 +5,6 @@
 if (!defined('WEBPATH')) die();
 
 $map = function_exists('printGoogleMap');
-$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -145,44 +144,44 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 			?>
 					<!-- Image page section -->
 					<div id="content">
-					 	<div id="main">
-					 		<div id="images">
-					 		<?php
-					 		$points = array();
-					 		$firstImage = null;
-					 		$lastImage = null;
-					 		while (next_image()) {
-				 				if (is_null($firstImage)) {
-				 					$lastImage = imageNumber();
-				 					$firstImage = $lastImage;
-				 				} else {
-				 					$lastImage++;
-				 				}
-				 				?>
-				 				<div class="image">
-					 				<div class="imagethumb">
-					 				<?php
-					 				if ($map) {
-					 					$coord = getGeoCoord($_zp_current_image);
-					 					if ($coord) {
-					 						$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
-					 						$points[] = $coord;
-					 					}
-					 				}
-					 				$annotate = annotateImage();
-				 					echo '<a href="' . html_encode(getImageLinkURL()) . '"';
-					 				echo " title=\"".$annotate."\">\n";
-					 				printImageThumb($annotate);
-					 				echo "</a>";
+						<div id="main">
+							<div id="images">
+							<?php
+							$points = array();
+							$firstImage = null;
+							$lastImage = null;
+							while (next_image()) {
+								if (is_null($firstImage)) {
+									$lastImage = imageNumber();
+									$firstImage = $lastImage;
+								} else {
+									$lastImage++;
+								}
+								?>
+								<div class="image">
+									<div class="imagethumb">
+									<?php
+									if ($map) {
+										$coord = getGeoCoord($_zp_current_image);
+										if ($coord) {
+											$coord['desc'] = '<p align=center>'.$coord['desc'].'</p>';
+											$points[] = $coord;
+										}
+									}
+									$annotate = annotateImage();
+									echo '<a href="' . html_encode(getImageLinkURL()) . '"';
+									echo " title=\"".$annotate."\">\n";
+									printImageThumb($annotate);
+									echo "</a>";
 									printAddToFavorites($_zp_current_image, '',gettext('Remove'));
 									?>
 									</div>
-				 				</div>
-				 				<?php
+								</div>
+								<?php
 							}
-			 				echo '<div class="clearage"></div>';
+							echo '<div class="clearage"></div>';
 						?>
-			 				</div><!-- images -->
+							</div><!-- images -->
 						</div> <!-- main -->
 					 <div class="clearage"></div>
 					 <?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>

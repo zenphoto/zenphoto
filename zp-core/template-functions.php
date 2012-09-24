@@ -4211,31 +4211,6 @@ function openedForComments($what=3) {
 }
 
 /**
- * Finds the name of the themeColor option selected on the admin options tab
-
- * Returns a path and name of the theme css file. Returns the value passed for defaultcolor if the
- * theme css option file does not exist.
- *
- * @param string &$zenCSS path to the css file
- * @param string &$themeColor name of the css file
- * @param string $defaultColor name of the default css file
- * @return string
- * @since 1.1
- */
-function getTheme(&$zenCSS, &$themeColor, $defaultColor) {
-	global $_zp_themeroot;
-	$themeColor = getThemeOption('Theme_colors');
-	$zenCSS = $_zp_themeroot . '/styles/' . $themeColor . '.css';
-	$unzenCSS = str_replace(WEBPATH, '', $zenCSS);
-	if (!file_exists(SERVERPATH . internalToFilesystem($unzenCSS))) {
-		$zenCSS = $_zp_themeroot. "/styles/" . $defaultColor . ".css";
-		return ($themeColor == '');
-	} else {
-		return true;
-	}
-}
-
-/**
  * controls the thumbnail layout of themes.
  *
  * Uses the theme options:

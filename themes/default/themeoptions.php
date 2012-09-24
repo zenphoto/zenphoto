@@ -9,6 +9,8 @@
  *
 */
 
+require_once(dirname(__FILE__).'/functions.php');
+
 class ThemeOptions {
 
 	function ThemeOptions() {
@@ -46,11 +48,10 @@ class ThemeOptions {
   }
 
 	function handleOption($option, $currentValue) {
+		global $themecolors;
 		if ($option == 'Theme_colors') {
-			$theme = basename(dirname(__FILE__));
-			$themeroot = SERVERPATH . "/themes/$theme/styles";
-			echo '<select id="Default_themeselect_colors" name="' . $option . '"' . ">\n";
-			generateListFromFiles($currentValue, $themeroot , '.css');
+			echo '<select id="EF_themeselect_colors" name="' . $option . '"' . ">\n";
+			generateListFromArray(array($currentValue), $themecolors, false, false);
 			echo "</select>\n";
 		}
 	}

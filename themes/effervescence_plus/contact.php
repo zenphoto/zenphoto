@@ -3,7 +3,6 @@
 // force UTF-8 Ø
 
 if (!defined('WEBPATH')) die();
-$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 
 $enableRightClickOpen="true";
 
@@ -53,7 +52,7 @@ $backgroundImagePath="";
 		<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
 		<?php echo getGalleryTitle();	?></a></span> |
 		<?php
-		  echo "<em>".gettext('Contact')."</em>";
+			echo "<em>".gettext('Contact')."</em>";
 		?>
 	</div>
 </div> <!-- wrapnav -->

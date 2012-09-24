@@ -4,8 +4,6 @@
 
 if (!defined('WEBPATH')) die();
 
-$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
-
 $enableRightClickOpen="true";
 
 $backgroundImagePath="";
@@ -52,7 +50,7 @@ $backgroundImagePath="";
 		<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
 		<?php echo getGalleryTitle();	?></a></span> |
 		<?php
-		  echo "<em>".gettext('Register')."</em>";
+			echo "<em>".gettext('Register')."</em>";
 		?>
 	</div>
 </div> <!-- wrapnav -->

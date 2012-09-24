@@ -2,14 +2,13 @@
 
 // force UTF-8 Ø
 if (!defined('WEBPATH')) die();
-$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<?php zp_apply_filter('theme_head'); ?>
 	<?php
+	zp_apply_filter('theme_head');
 	if (getOption('effervescence_daily_album_image_effect') && getOption('custom_index_page') != 'gallery') {
 		setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
 	}
@@ -51,8 +50,8 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 					<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> |
 					<?php
 				}
- 				printGalleryTitle();
- 				?>
+				printGalleryTitle();
+				?>
 				</span>
 			</div>
 		</div> <!-- wrapnav -->
@@ -84,7 +83,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 				<div class="imagethumb">
 				<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo $annotate; ?>">
 						<?php printCustomAlbumThumbImage($annotate, null, 180, null, 180, 80); ?>
- 				</a>
+				</a>
 				</div>
 				<h4><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo $annotate; ?>"><?php printAlbumTitle(); ?></a></h4>
 			</li>

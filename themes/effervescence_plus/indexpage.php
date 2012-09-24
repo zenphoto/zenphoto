@@ -2,14 +2,13 @@
 
 // force UTF-8 Ø
 if (!defined('WEBPATH')) die();
-$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<?php zp_apply_filter('theme_head'); ?>
 	<?php
+	zp_apply_filter('theme_head');
 	if (getOption('effervescence_daily_album_image_effect')) {
 		setOption('image_custom_images', getOption('effervescence_daily_album_image_effect'), false);
 	}
@@ -55,7 +54,7 @@ $themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
 		$randomImage = getRandomImages($imageofday = getThemeOption('effervescence_daily_album_image'));
 		if ($randomImage) {
 			makeImageCurrent($randomImage);
-	 		$size = floor(getOption('image_size') * $imagereduction);
+			$size = floor(getOption('image_size') * $imagereduction);
 			$s = getDefaultWidth($size) + 22;
 			$wide = " style=\"width:".$s."px;";
 			$s = getDefaultHeight($size) + 72;

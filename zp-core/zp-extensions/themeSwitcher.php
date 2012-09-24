@@ -103,6 +103,7 @@ class themeSwitcher {
 			// ]]> -->
 		</script>
 		<?php
+		zp_apply_filter('themeSwitcher_head','');
 	}
 
 	/**
@@ -134,8 +135,8 @@ class themeSwitcher {
 				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme()">
 					<?php generateListFromArray(array($_zp_gallery->getCurrentTheme()), $themes, false, true); ?>
 				</select>
+				<?php zp_apply_filter('themeSwitcher_Controllink',''); ?>
 			</span>
-
 		<?php
 		}
 		return $textIn;

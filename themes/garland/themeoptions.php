@@ -1,9 +1,9 @@
 <?php
 
 require_once(SERVERPATH . "/" . ZENFOLDER . "/admin-functions.php");
+require_once(dirname(__FILE__).'/functions.php');
 
 class ThemeOptions {
-
 
   function ThemeOptions() {
  	  setThemeOptionDefault('Allow_search', true);
@@ -59,14 +59,15 @@ class ThemeOptions {
   }
 
   function getOptionsSupported() {
-		if (!getOption('zp_plugin_print_album_menu') && (($m = getOption('garland_menu'))=='garland' || $m=='zenpage' || $m == 'garland')) {
+		global $personalities;
+  	if (!getOption('zp_plugin_print_album_menu') && (($m = getOption('garland_menu'))=='garland' || $m=='zenpage' || $m == 'garland')) {
 			$note = '<p class="notebox">'.sprintf(gettext('<strong>Note:</strong> The <em>%s</em> custom menu makes use of the <em>print_album_menu</em> plugin.'),$m).'</p>';
 		} else {
 			$note = '';
 		}
   	$options = array(
   								gettext('Theme personality') => array('key' => 'garland_personality', 'type' => OPTION_TYPE_SELECTOR,
-															'selections' => array(gettext('Image page') => 'image_page', gettext('Colorbox') => 'colorbox', gettext('Image gallery') => 'image_gallery'),
+															'selections' => $personalities,
 															'desc' => gettext('Select the theme personality')),
   								gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable search form.')),
 						  		gettext('Allow cloud') => array('key' => 'Allow_cloud', 'type' => OPTION_TYPE_CHECKBOX, 'desc' => gettext('Set to enable tag cloud for album page.')),

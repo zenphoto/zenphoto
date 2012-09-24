@@ -7,6 +7,7 @@ themes/default/archive.php
 themes/default/common.css
 themes/default/contact.php
 themes/default/favorites.php
+themes/default/functions.php
 themes/default/image.php
 themes/default/images
 themes/default/images/50percent.png
@@ -1915,4 +1916,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1917
+1918

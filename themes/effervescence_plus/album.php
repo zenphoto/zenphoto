@@ -5,14 +5,15 @@
 if (!defined('WEBPATH')) die();
 
 $map = function_exists('printGoogleMap');
-$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
-$personality = strtolower(getOption('Theme_personality'));
-require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<?php zp_apply_filter('theme_head'); ?>
+	<?php
+	zp_apply_filter('theme_head');
+	$personality = strtolower(getOption('effervescence_personality'));
+	require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
+	?>
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>

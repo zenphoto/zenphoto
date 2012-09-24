@@ -9,15 +9,26 @@
  *
  */
 
+require_once(dirname(__FILE__).'/functions.php');
+
 class ThemeOptions {
 
 	function ThemeOptions() {
+		if (OFFSET_PATH==2) {
+			if ($personality = getOption('Theme_personality')) {
+				setThemeOptionDefault('effervescence_personality',$personality);
+			}
+			if (getOption('effervescence_personality')=='Slimbox') setOption('effervescence_personality','Colorbox');
+			if (getOption('effervescence_personality')=='Smoothgallery') setOption('effervescence_personality','Imagegallery');
+			purgeOption('Theme_personality');
+		}
+
 		setThemeOptionDefault('Theme_logo', '');
 		setThemeOptionDefault('Allow_search', true);
 		setThemeOptionDefault('Slideshow', true);
 		setThemeOptionDefault('Graphic_logo', '*');
 		setThemeOptionDefault('Watermark_head_image', true);
-		setThemeOptionDefault('Theme_personality', 'image_page');
+		setThemeOptionDefault('effervescence_personality', 'image_page');
 		setThemeOptionDefault('effervescence_transition', 'slide-hori');
 		setThemeOptionDefault('effervescence_caption_location', 'image');
 		setThemeOptionDefault('Theme_colors', 'kish-my father');
@@ -66,13 +77,12 @@ class ThemeOptions {
 										array('type'=>'customlink','title'=>gettext('News and Gallery'),'link'=>getRSSLink('news').'&amp;withimages','show'=>1,'nesting'=>1),
 										);
 			createMenuIfNotExists($menuitems, 'effervescence');
-			if (getOption('Theme_personality')=='Slimbox') setOption('Theme_personality','Colorbox');
-			if (getOption('Theme_personality')=='Smoothgallery') setOption('Theme_personality','Imagegallery');
 		}
 
 	}
 
 	function getOptionsSupported() {
+		global $personalities;
 		require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_effects.php');
 		if (getThemeOption('custom_index_page') == 'gallery') {
 			$note = '';
@@ -88,8 +98,8 @@ class ThemeOptions {
 											gettext('Allow search') => array('key' => 'Allow_search', 'type' => OPTION_TYPE_CHECKBOX, 'order'=>1, 'desc' => gettext('Check to enable search form.')),
 											gettext('Slideshow') => array('key' => 'Slideshow', 'type' => OPTION_TYPE_CHECKBOX, 'order'=>6, 'desc' => gettext('Check to enable slideshow for the <em>Smoothgallery</em> personality.')),
 											gettext('Graphic logo') => array('key' => 'Graphic_logo', 'type' => OPTION_TYPE_CUSTOM, 'order'=>4, 'desc' => sprintf(gettext('Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty for text logo.'),UPLOAD_FOLDER)),
-											gettext('Theme personality') => array('key' => 'Theme_personality', 'type' => OPTION_TYPE_SELECTOR,
-															'selections' => array(gettext('Image page') => 'image_page', gettext('Simpleviewer') => 'simpleviewer', gettext('Colorbox') => 'colorbox', gettext('Image gallery') => 'image_gallery'),
+											gettext('Theme personality') => array('key' => 'effervescence_personality', 'type' => OPTION_TYPE_SELECTOR,
+															'selections' =>$personalities,
 															'order'=>9,
 															'desc' => gettext('Select the theme personality')),
 											gettext('Theme colors') => array('key' => 'Theme_colors', 'type' => OPTION_TYPE_CUSTOM, 'order'=>7, 'desc' => gettext('Select the colors of the theme')),
@@ -100,7 +110,7 @@ class ThemeOptions {
 			$options[gettext('Custom menu')]['desc'] .= '<p class="notebox">'.gettext('This option requires the <em>menu_manager</em> plugin to be enabled and the <em>Gallery index page link</em> to be set to "gallery".').'</p>';
 		}
 
-		if (getOption('Theme_personality')=='Image_gallery') {
+		if (getOption('effervescence_personality')=='Image_gallery') {
 			$options[gettext('Image gallery transition')] = array('key' => 'effervescence_transition', 'type' => OPTION_TYPE_SELECTOR,
 															'selections' => array(gettext('None') => '', gettext('Fade') => 'fade', gettext('Shrink/grow') => 'resize', gettext('Horizontal') => 'slide-hori', gettext('Vertical') => 'slide-vert'),
 															'order'=>10,
@@ -135,12 +145,11 @@ class ThemeOptions {
   }
 
 	function handleOption($option, $currentValue) {
+		global $themecolors;
 		switch ($option) {
 			case 'Theme_colors':
-				$theme = basename(dirname(__FILE__));
-				$themeroot = SERVERPATH . "/themes/$theme/styles";
 				echo '<select id="EF_themeselect_colors" name="' . $option . '"' . ">\n";
-				generateListFromFiles($currentValue, $themeroot , '.css');
+				generateListFromArray(array($currentValue), $themecolors, false, false);
 				echo "</select>\n";
 				break;
 			case 'effervescence_menu':
@@ -164,7 +173,7 @@ class ThemeOptions {
 				<select id="EF_themeselect_logo" name="Graphic_logo">
 					<option value="" style="background-color:LightGray"><?php echo gettext('*no logo selected'); ?></option>';
 					<option value="*"<?php if ($currentValue == '*') echo ' selected="selected"'; ?>><?php echo gettext('Effervescence'); ?></option>';
-					<?php
+					<?php zp_apply_filter('theme_head'); ?>
 					generateListFromFiles($currentValue, SERVERPATH.'/'.UPLOAD_FOLDER.'/images' , '.png');
 					?>
 				</select>

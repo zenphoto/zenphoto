@@ -1,13 +1,15 @@
 <?php
 if (!defined('WEBPATH')) die();
 $map = function_exists('printGoogleMap');
-$personality = getOption('garland_personality');
-require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<?php zp_apply_filter('theme_head'); ?>
+	<?php
+	zp_apply_filter('theme_head');
+	$personality = getOption('garland_personality');
+	require_once(SERVERPATH.'/'.THEMEFOLDER.'/garland/'.$personality.'/functions.php');
+	?>
 	<title><?php printGalleryTitle(); ?> | <?php echo html_encode(getAlbumTitle()); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot ?>/zen.css" type="text/css" />

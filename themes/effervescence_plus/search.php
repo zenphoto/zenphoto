@@ -4,10 +4,6 @@
 
 if (!defined('WEBPATH')) die();
 
-$themeResult = getTheme($zenCSS, $themeColor, 'kish-my father');
-$personality = strtolower(getOption('Theme_personality'));
-require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
-
 $thumbnailColumns="3";
 $thumbnailRows="6";
 $navPosition="left";
@@ -21,7 +17,11 @@ $backgroundImagePath="";
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<?php zp_apply_filter('theme_head'); ?>
+	<?php
+	zp_apply_filter('theme_head');
+	$personality = strtolower(getOption('effervescence_personality'));
+	require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
+	?>
 	<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Search"); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
@@ -117,12 +117,12 @@ $backgroundImagePath="";
 		<?php echo getGalleryTitle();	?></a></span> |
 		<?php
 		if (is_array($albumlist)) {
-		  	echo "<em>".sprintf(ngettext('Search album: %s','Search albums: %s',count($albumlist)),implode(',',$albumlist))."</em>";
+				echo "<em>".sprintf(ngettext('Search album: %s','Search albums: %s',count($albumlist)),implode(',',$albumlist))."</em>";
 		} else {
 			if (is_array($categorylist)) {
-		  	echo "<em>".sprintf(ngettext('Search category: %s','Search categories: %s',count($categorylist)),implode(',',$categorylist))."</em>";
+				echo "<em>".sprintf(ngettext('Search category: %s','Search categories: %s',count($categorylist)),implode(',',$categorylist))."</em>";
 			} else {
-		  	echo "<em>".gettext('Search')."</em>";
+				echo "<em>".gettext('Search')."</em>";
 			}
 		}
 		?>
@@ -276,12 +276,12 @@ $backgroundImagePath="";
 	</div>
 
 <!-- Wrap Main Body -->
- 	<?php
- 	if ($numimages > 0){  /* Only print if we have images. */
- 		$personality->theme_content(NULL);
+	<?php
+	if ($numimages > 0){  /* Only print if we have images. */
+		$personality->theme_content(NULL);
 	 }
 
-	 	if ($total == 0){
+		if ($total == 0){
 		?>
 			<div id="main3">
 			<div id="main2">
@@ -298,8 +298,8 @@ $backgroundImagePath="";
 		</div>
 		</div> <!-- main3 -->
 		<?php
- 		}
-	 	?>
+		}
+		?>
 
 <!-- Page Numbers -->
 

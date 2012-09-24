@@ -1132,4 +1132,22 @@ function getLastImageURL() {
 											"/index.php?album=" . pathurlencode($_zp_current_album->name) . "&image=" . urlencode($lastimg->filename));
 }
 
+/**
+ * @deprecated
+ * @since 1.4.4
+ */
+function getTheme(&$zenCSS, &$themeColor, $defaultColor) {
+	deprecated_functions::notify(gettext("If you need this function copy it to your theme's functions.php script."));
+	global $_zp_themeroot;
+	$themeColor = getThemeOption('Theme_colors');
+	$zenCSS = $_zp_themeroot . '/styles/' . $themeColor . '.css';
+	$unzenCSS = str_replace(WEBPATH, '', $zenCSS);
+	if (!file_exists(SERVERPATH . internalToFilesystem($unzenCSS))) {
+		$zenCSS = $_zp_themeroot. "/styles/" . $defaultColor . ".css";
+		return ($themeColor == '');
+	} else {
+		return true;
+	}
+}
+
 ?>

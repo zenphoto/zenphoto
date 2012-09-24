@@ -2,6 +2,51 @@
 
 // force UTF-8 Ø
 require_once (SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/image_album_statistics.php');
+zp_register_filter('themeSwitcher_head', 'switcher_head');
+zp_register_filter('themeSwitcher_Controllink', 'switcher_controllink');
+
+$personalities = array(gettext('Image page') => 'image_page', gettext('Colorbox') => 'colorbox', gettext('Image gallery') => 'image_gallery');
+
+function switcher_head($ignore) {
+	global $personalities;
+	$personality = getOption('themeSwitcher_garland_personality');
+	if (isset($_GET['themePersonality'])) {
+		$new = $_GET['themePersonality'];
+		if (in_array($new, $personalities)) {
+			setOption('themeSwitcher_garland_personality', $new);
+			$personality = $new;
+		}
+	}
+	if ($personality) {
+		setOption('garland_personality', $personality, false);
+	}
+	?>
+	<script type="text/javascript">
+		// <!-- <![CDATA[
+		function switchPersonality() {
+			personality = $('#themePersonality').val();
+			window.location = '?themePersonality='+personality;
+		}
+		// ]]> -->
+	</script>
+	<?php
+	return $ignore;
+}
+
+function switcher_controllink($ignore) {
+	global $personalities;
+	$personality =getOption('themeSwitcher_garland_personality');
+	if (!$personality) {
+		$personality = getOption('garland_personality');
+	}
+	echo gettext('Personality');
+	?>
+	<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
+		<?php generateListFromArray(array($personality), $personalities, false, true); ?>
+	</select>
+	<?php
+	return $ignore;
+}
 
 function gMapOptionsImage($map) {
 	$map->setWidth(535);
