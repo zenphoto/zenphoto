@@ -2,7 +2,7 @@
 
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) die();
+if (!defined('WEBPATH') || !function_exists('printRegistrationForm')) die();
 
 $enableRightClickOpen="true";
 

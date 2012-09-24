@@ -1,6 +1,6 @@
 <?php
 // force UTF-8 Ø
-if (!defined('WEBPATH')) die();
+if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,7 +8,7 @@ if (!defined('WEBPATH')) die();
 	<?php zp_apply_filter('theme_head'); ?>
 	<title><?php echo gettext("News"); ?> <?php echo getBareNewsTitle(""); ?><?php printCurrentNewsCategory(" | "); printCurrentNewsArchive(); ?> | <?php echo getBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
 	<?php jqm_loadScripts(); ?>
 </head>
@@ -21,15 +21,15 @@ if (!defined('WEBPATH')) die();
 
 	<?php jqm_printMainHeaderNav(); ?>
 
-<div data-role="content">	
+<div data-role="content">
 	<div class="content-primary">
 		<h2 class="breadcrumb"><?php printNewsIndexURL(gettext('News'),''); ?><strong><?php printZenpageItemsBreadcrumb(' ',''); printCurrentNewsCategory(" "); ?><?php printNewsTitle(" "); printCurrentNewsArchive(" | "); ?></strong></h2>
 		<?php
 // single news article
 if(is_NewsArticle()) {
 	?>
-  <?php 
-  printNewsContent(); 
+  <?php
+  printNewsContent();
   printCodeblock(1);
   ?>
   <br clear="all" /><br />
@@ -43,11 +43,11 @@ if(is_NewsArticle()) {
 	<?php if(getPrevNewsURL()) { $prevnews = getPrevNewsURL(); ?><a class="imgprevious" href="<?php echo html_encode($prevnews['link']); ?>" data-role="button" data-icon="arrow-l" data-iconpos="left" data-inline="true"><?php echo gettext("prev"); ?></a><?php } ?>
   <?php if(getNextNewsURL()) { $nextnews = getNextNewsURL();?><a class="imgnext" href="<?php echo html_encode($nextnews['link']); ?>" data-role="button" data-icon="arrow-r" data-iconpos="right" data-inline="true"><?php echo gettext("next"); ?></a><?php } ?>
 	<?php if(getPrevNewsURL() || getNextNewsURL()) { ?><?php } ?>
-	
-	
+
+
 <?php
- } else { 
-	 printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true,7); 
+ } else {
+	 printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true,7);
 	 ?>
 	 	<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
 	 <?php
@@ -65,7 +65,7 @@ if(is_NewsArticle()) {
   </ul>
 	<?php printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true,7);
  } ?>
- 
+
  </div>
  <div class="content-secondary">
 	<?php jqm_printMenusLinks(); ?>
