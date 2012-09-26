@@ -26,9 +26,14 @@
  *
  * @package admin
  */
+
+// force UTF-8 Ø
+
 if (!defined('OFFSET_PATH')) {
 	define('OFFSET_PATH', 2);
 	require_once(dirname(__FILE__).'/admin-globals.php');
+	header('Last-Modified: ' . ZP_LAST_MODIFIED);
+	header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 
 	if (is_null($_zp_current_locale)) {
 		$_zp_current_locale = getUserLocale();

@@ -1,9 +1,13 @@
 <?php
 
+// force UTF-8 Ø
+
 define('OFFSET_PATH', 3);
 require_once(dirname(dirname(dirname(dirname(dirname(__FILE__)))))."/admin-globals.php");
 admin_securityChecks(ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS, '');
 require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER."/zenpage/zenpage-template-functions.php");
+header('Last-Modified: ' . ZP_LAST_MODIFIED);
+header('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 ?>
 <!-- tinyZenpage - A TinyMCE plugin for Zenphoto with Zenpage
 		 Version: 1.0.6.1

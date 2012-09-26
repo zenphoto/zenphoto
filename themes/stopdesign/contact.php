@@ -2,7 +2,7 @@
 
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) die();
+if (!defined('WEBPATH') || !function_exists('printContactForm')) die();
 require_once('normalizer.php');
 
 ?>
