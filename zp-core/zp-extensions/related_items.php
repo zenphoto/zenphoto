@@ -158,7 +158,7 @@ function createRelatedItemsResultArray($result,$type) {
  * @param bool $excerpt If a text excerpt (gallery items: description; Zenpage items: content) should be shown. NULL for none or number of length
  * @param bool $thumb For $type = 'albums' or 'images' if a thumb should be shown (default size as set on the options)
  */
-function printRelatedItemsNew($number=5,$type='news',$specific=NULL,$excerpt=NULL,$thumb=false) {
+function printRelatedItems($number=5,$type='news',$specific=NULL,$excerpt=NULL,$thumb=false,$date=false) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 	$label = array('albums'=>gettext('Albums'), 'images'=>gettext('Images'),'news'=>gettext('News'),'pages'=>gettext('Pages'));
 	$result = getRelatedItems($type,$specific);
@@ -234,7 +234,26 @@ function printRelatedItemsNew($number=5,$type='news',$specific=NULL,$excerpt=NUL
 				}
 			} ?>
 			<h4><a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
+			<?php if($date) {  
+				switch($item['type']) {
+					case 'albums':
+					case 'images':
+						$d = $obj->getDateTime();
+						break;
+					case 'news':
+					case 'pages':
+						$d = $obj->getDateTime();
+						break;
+				}
+				?>
+				<span class="relateditems_date">
+				<?php echo zpFormattedDate(DATE_FORMAT, strtotime($d)); ?>
+				</span>
+				<?php
+			}
+			 ?>			
 			<?php if($type == 'all') { ?> (<small><?php echo $category; ?></small>)<?php } ?>
+			
 			</h4>
 			<?php if($excerpt) {
 				echo truncate_string($text,$excerpt,'...');
