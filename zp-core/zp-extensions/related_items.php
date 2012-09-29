@@ -9,14 +9,8 @@
 $plugin_description = gettext('Provides functionality to get the related items to an item based on a tag search.');
 $plugin_author = "Malte Müller (acrylian)";
 
-/**
- * Gets the related items based on a tag search sorted by date descending (newest to oldest)
- *
- * @param string $type 'albums', 'images','news','pages'
- * @param string $album If $type = 'albums' or 'images' name of album
- */
 function getRelatedItems($type='news',$album=NULL) {
-	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news,$_zp_gallery_page;
 	$tags = getTags();
 	if(!empty($tags)) { // if there are tags at all
 		$searchstring = '';
@@ -48,25 +42,110 @@ function getRelatedItems($type='news',$album=NULL) {
 			case 'pages':
 				$paramstr .= '&inpages=1';
 				break;
+			case 'all':
+				$paramstr .= '&inalbums=1&inimages=1&innews=1&inpages=1';
+				break;
 		}
 		$search->setSearchParams($paramstr);
+		// get the results
 		switch($type) {
 			case 'albums':
-				$result = $search->getAlbums(0,"date","desc");
+				$albumresult = $search->getAlbums(0,"date","desc");
 				break;
 			case 'images':
-				$result = $search->getImages(0,0,'date','desc');
+				$imageresult = $search->getImages(0,0,'date','desc');
 				break;
 			case 'news':
-				$result = $search->getArticles(0,NULL,true,"date","desc");
+				$newsresult = $search->getArticles(0,NULL,true,"date","desc");
 				break;
 			case 'pages':
-				$result = $search->getPages();
+				$pageresult = $search->getPages();
+				break;
+			case 'all':
+				$albumresult = $search->getAlbums(0,"date","desc");
+				$imageresult = $search->getImages(0,0,'date','desc');
+				$newsresult = $search->getArticles(0,NULL,true,"date","desc");
+				$pageresult = $search->getPages();
+				break;
+		}
+		// create result array with name, type and result weight so we can sort combined results for "all" mode
+		switch($type) {
+			case 'albums':
+				$result = createRelatedItemsResultArray($albumresult,$type);
+				break;
+			case 'images':
+				$result = createRelatedItemsResultArray($imageresult,$type);
+				break;
+			case 'news':
+				$result = createRelatedItemsResultArray($newsresult,$type);
+				break;
+			case 'pages':
+				$result = createRelatedItemsResultArray($pageresult,$type);
+				break;
+			case 'all':
+				$result1 = createRelatedItemsResultArray($albumresult,'albums');
+				$result2 = createRelatedItemsResultArray($imageresult,'images');
+				$result3 = createRelatedItemsResultArray($newsresult,'news');
+				$result4 = createRelatedItemsResultArray($pageresult,'pages');
+				$result = array_merge($result1,$result2,$result3,$result4);
+				$result = sortMultiArray($result,'weight', true, true,false,false); // sort by search result weight
 				break;
 		}
 		return $result;
 	}
 	return array();
+}
+/**
+ * Helper function for getRelatedItems() only. 
+ * Returns an array with array for each item with name, album (images only), type and weight (search weight value) 
+ * Excludes the current item itself.
+ *
+ * @param array $result array with search results
+ * @param string $type "albums", "images", "news", "pages"
+ */
+function createRelatedItemsResultArray($result,$type) {
+	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news,$_zp_gallery_page;
+	switch($_zp_gallery_page) {
+		case 'album.php':
+			$current = @$_zp_current_album;
+			break;
+		case 'image.php':
+			$current = @$_zp_current_image;
+			break;
+		case 'news.php':
+			$current = @$_zp_current_zenpage_news;
+			break;
+		case 'pages.php':
+			$current = @$_zp_current_zenpage_page;
+			break;
+	}
+	$results = array();
+	foreach($result as $item) {
+		switch($type) {
+			case 'albums':
+				if(get_class($current) != 'Album' || $current->name != $item) {
+					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
+				}
+				break;
+			case 'images':
+				if(get_class($current) != '_Image' || ($current->filename != $item['filename'] && $current->getAlbum()->name != $item['folder'])) {
+					array_push($results, array('name' => $item['filename'], 'album' => $item['folder'], 'type' => $type, 'weight' => $item['weight'])); 
+				}
+				break;
+			case 'news':
+				if(get_class($current) != 'ZenpageNews' || $current->getTitlelink() != $item['titlelink']) {
+					array_push($results, array('name' => $item['titlelink'], 'album' => '', 'type' => $type, 'weight' => $item['weight'])); 
+				}
+				break;
+			case 'pages':
+				if(get_class($current) != 'ZenpagePage' || $current->getTitlelink() != $item) {
+					array_push($results, array('name' => $item, 'album' => '', 'type' => $type, 'weight' => '13')); // doesn't have weight so we just add one for sorting later
+				}
+				break;
+		}
+		
+	}
+	return $results;
 }
 
 
@@ -74,68 +153,94 @@ function getRelatedItems($type='news',$album=NULL) {
  * Prints the x related articles based on a tag search
  *
  * @param int $number Number of items to get
- * @param string $type 'albums', 'images','news','pages'
- * @param string $specific If $type = 'albums' or 'images' name of album, if $type = 'news' name of category
+ * @param string $type 'albums', 'images','news','pages', "all" for all combined.
+ * @param string $specific If $type = 'albums' or 'images' name of album
+ * @param bool $excerpt If a text excerpt (gallery items: description; Zenpage items: content) should be shown. NULL for none or number of length
+ * @param bool $thumb For $type = 'albums' or 'images' if a thumb should be shown (default size as set on the options)
  */
-function printRelatedItems($number=5,$type='news',$specific=NULL) {
+function printRelatedItemsNew($number=5,$type='news',$specific=NULL,$excerpt=NULL,$thumb=false) {
 	global $_zp_gallery, $_zp_current_album, $_zp_current_image, $_zp_current_zenpage_page, $_zp_current_zenpage_news;
 	$label = array('albums'=>gettext('Albums'), 'images'=>gettext('Images'),'news'=>gettext('News'),'pages'=>gettext('Pages'));
 	$result = getRelatedItems($type,$specific);
-	$count = 0;
-	foreach($result as $item) {
-		switch($type) {
-			case 'albums':
-				$obj = new Album($_zp_gallery,$item);
-				$current = @$_zp_current_album;
-				break;
-			case 'images':
-				$obj = newImage(NULL,$item);
-				$current = @$_zp_current_image;
-				break;
-			case 'news':
-				$obj = new ZenpageNews($item['titlelink']);
-				$current = @$_zp_current_zenpage_news;
-				break;
-			case 'pages':
-				$obj = new ZenpagePage($item['titlelink']);
-				$current = @$_zp_current_zenpage_page;
-				break;
-		}
-		if(!$current || $current->getID() != $obj->getID()) { // avoid listing the item itself
-			if (!$count) {
-				?>
-				<h3 class="relateditems"><?php printf(gettext('Related %s'),$label[$type]); ?></h3>
-				<ul id="relateditems">
-				<?php
+	$resultcount = count($result);
+	if($resultcount != 0) {
+		?>
+		<h3 class="relateditems">
+		<?php printf(gettext('Related %s'),$type); ?>
+		</h3>
+		<ul id="relateditems">
+		<?php
+		$count = 0;
+		foreach($result as $item) {
+			switch($item['type']) {
+				case 'albums':
+					$obj = new Album(NULL,$item['name']);
+					break;
+				case 'images':
+					$alb = new Album(NULL,$item['album']);
+					$obj = newImage($alb,$item['name']);
+					break;
+				case 'news':
+					$obj = new ZenpageNews($item['name']);
+					break;
+				case 'pages':
+					$obj = new ZenpagePage($item['name']);
+					break;
 			}
 			$count++;
 			?>
-			<li>
+			<li class="<?php echo $item['type']; ?>">
 			<?php
 				$category = '';
-				switch($type) {
+				switch($item['type']) {
 					case 'albums':
 						$url = $obj->getAlbumLink();
+						$text = $obj->getDesc();
 						$category = gettext('Album');
 						break;
 					case 'images':
 						$url = $obj->getImageLink();
+						$text = $obj->getDesc();
 						$category = gettext('Image');
 						break;
 					case 'news':
 						$url = getNewsURL($obj->getTitlelink());
-							$category = gettext('News');
+						$text = $obj->getContent();
+						$category = gettext('News');
 						break;
 					case 'pages':
 						$url = getPageLinkURL($obj->getTitlelink());
+						$text = $obj->getContent();
 						$category = gettext('Page');
 						break;
 				}
 			?>
-			<a href="<?php echo html_encode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a> (<small><?php echo $category; ?></small>)
-			</h4></li>
+			<?php if($thumb) {
+				$thumburl = false;
+				switch($item['type']) {
+					case 'albums':
+						$thumburl = $obj->getAlbumThumb();
+						break;
+					case 'images':
+						$thumburl = $obj->getThumb();
+						break;
+				}
+				if($thumburl) {
+					?>
+					<a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>" class="relateditems_thumb">
+					<img src="<?php echo pathurlencode($thumburl); ?>" alt="<?php echo html_encode($obj->getTitle()); ?>" />
+					</a>
+					<?php
+				}
+			} ?>
+			<h4><a href="<?php echo pathurlencode($url); ?>" title="<?php echo html_encode($obj->getTitle()); ?>"><?php echo html_encode($obj->getTitle()); ?></a>
+			<?php if($type == 'all') { ?> (<small><?php echo $category; ?></small>)<?php } ?>
+			</h4>
+			<?php if($excerpt) {
+				echo truncate_string($text,$excerpt,'...');
+			} ?>
+			</li>
 			<?php
-		}
 		if($count == $number) {
 			break;
 		} 
@@ -144,6 +249,7 @@ function printRelatedItems($number=5,$type='news',$specific=NULL) {
 		?>
 		</ul>
 		<?php
+	}
 	}
 }
 ?>
