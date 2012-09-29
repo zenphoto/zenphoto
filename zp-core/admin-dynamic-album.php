@@ -90,8 +90,6 @@ if (isset($_POST['savealbum'])) { // we fell through, some kind of error
 
 $albumlist = array();
 genAlbumList($albumlist);
-$params = trim(zp_getCookie('zenphoto_search_params'));
-$search->setSearchParams($params);
 $fields = $search->fieldList;
 $albumname = $words = $search->codifySearchString();
 $images = $search->getImages(0);

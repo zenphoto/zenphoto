@@ -103,7 +103,7 @@ class TextObject extends _Image {
 		$this->objectsThumb = checkObjectsThumb($this->localpath);
 		$this->updateDimensions();
 		if (parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename')) {
-			$title = $this->getDefaultTitle();
+			$title = $this->displayname;
 			$this->set('title', $title);
 			$this->updateMetaData();
 			$this->filemtime = @filemtime($this->localpath);

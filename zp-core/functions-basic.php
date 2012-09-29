@@ -1031,8 +1031,10 @@ function switchLog($log) {
  * @param bool $reset set to true to reset the log to zero before writing the message
  */
 function debugLog($message, $reset=false) {
+	global $_zp_mutex;
 	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
 	$max = getOption('debug_log_size');
+	$_zp_mutex->lock();
 	if ($reset || ($size = @filesize($path)) == 0 || ($max && $size > $max)) {
 		if ($size > 0 && !$reset) {
 			switchLog('debug');
@@ -1060,6 +1062,7 @@ function debugLog($message, $reset=false) {
 			@chmod($path, FILE_MOD);
 		}
 	}
+	$_zp_mutex->unlock();
 }
 /**
  * Logs the calling stack
@@ -1630,5 +1633,57 @@ function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
 			return false;
 	}
 }
+
+class Mutex {
+	private $locked = NULL;
+	private $ignoreUseAbort = NULL;
+	private $mutex = NULL;
+
+	function __construct() {
+	}
+
+	function __destruct() {
+		if ($this->locked) {
+			flock($this->mutex, LOCK_UN);
+			fclose($this->mutex);
+		}
+	}
+
+	public function lock() {
+		//if "flock" is not supported run un-serialized
+		//Only lock an unlocked mutex, we don't support recursive mutex'es
+		if(!$this->locked && function_exists('flock')) {
+			$this->mutex = fopen(SERVERPATH.'/'.ZENFOLDER.'/dataaccess', 'rb');
+			if (function_exists('flock') && flock($this->mutex, LOCK_EX)) {
+				$this->locked = true;
+				//We are entering a critical section so we need to change the ignore_user_abort setting so that the
+				//script doesn't stop in the critical section.
+				$this->ignoreUserAbort = ignore_user_abort(true);
+			} else {
+				zp_error(gettext('Error locking mutex'));
+			}
+		}
+	}
+
+	/**
+	 *	Unlock the mutex.
+	 */
+	public function unlock() {
+		if($this->locked)	{ //Only unlock a locked mutex.
+			$this->locked = false;
+			ignore_user_abort($this->ignoreUserAbort);	//Restore the ignore_user_abort setting.
+			if (flock($this->mutex, LOCK_UN)) {
+				fclose($this->mutex);
+			} else {
+				fclose($this->mutex);
+				zp_error(gettext(''));
+			}
+		}
+	}
+
+}
+
+$_zp_mutex = new Mutex()
+
 
 ?>

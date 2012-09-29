@@ -290,8 +290,13 @@ function printAdminToolbox($id='admin', $customDIV=false) {
 				if (!empty($words)) {
 					// script is search.php with a search string
 					if (zp_loggedin(UPLOAD_RIGHTS)) {
+						$link = $zf.'/admin-dynamic-album.php?'.substr($_zp_current_search->getSearchParams(),1);
 						// if admin has edit rights allow him to create a dynamic album from the search
-						echo "<li><a href=\"".$zf."/admin-dynamic-album.php\" title=\"".gettext("Create an album from the search")."\">".gettext("Create Album")."</a></li>";
+						?>
+						<li>
+							<a href="<?php echo $link; ?>" title="<?php echo gettext('Create an album from the search'); ?>" ><?php echo gettext('Create Album'); ?></a>
+						</li>
+						<?php
 					}
 					zp_apply_filter('admin_toolbox_search',$zf);
 				}

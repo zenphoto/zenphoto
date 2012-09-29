@@ -398,5 +398,46 @@ function getRequestURI() {
 	return NULL;
 }
 
+class Mutex {
+	private $locked = NULL;
+	private $ignoreUseAbort = NULL;
+	private $mutex = NULL;
+
+	function __construct() {
+	}
+
+	public function lock() {
+		if(!$this->locked) { //Only lock an unlocked mutex, we don't support recursive mutex'es
+			$this->mutex = fopen(dirname(__FILE__).'/setup.css', 'rb');
+			if (flock($this->mutex, LOCK_EX)) {
+				$this->locked = true;
+				//We are entering a critical section so we need to change the ignore_user_abort setting so that the
+				//script doesn't stop in the critical section.
+				$this->ignoreUserAbort = ignore_user_abort(true);
+			} else {
+				zp_error(gettext('Error locking mutex'));
+			}
+		}
+	}
+
+	/**
+	 *	Unlock the mutex.
+	 */
+	public function unlock() {
+		if($this->locked)	{ //Only unlock a locked mutex.
+			$this->locked = false;
+			ignore_user_abort($this->ignoreUserAbort);	//Restore the ignore_user_abort setting.
+			if (flock($this->mutex, LOCK_UN)) {
+				fclose($this->mutex);
+			} else {
+				fclose($this->mutex);
+				zp_error(gettext(''));
+			}
+		}
+	}
+
+}
+
+$_zp_mutex = new Mutex()
 
 ?>

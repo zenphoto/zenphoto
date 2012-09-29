@@ -190,10 +190,6 @@ class _Image extends MediaObject {
 		return true;
 	}
 
-	function getDefaultTitle() {
-		return $this->displayname;
-	}
-
 	/**
 	 * Returns the image filename
 	 *
@@ -441,7 +437,7 @@ class _Image extends MediaObject {
 
 		$x = $this->getTitle();
 		if (empty($x)) {
-			$this->set('title',$this->getDefaultTitle());
+			$this->set('title',$this->displayname);
 		}
 		if (empty($xdate)) {
 			$this->setDateTime(strftime('%Y-%m-%d %H:%M:%S', $this->filemtime));

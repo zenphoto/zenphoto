@@ -84,7 +84,7 @@ class security_logger {
 	 * @param string $addl more info
 	 */
 	private static function Logger($success, $user, $name, $ip, $action, $authority, $addl=NULL) {
-		global $_zp_authority;
+		global $_zp_authority, $_zp_mutex;
 		$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
 		if ($admin) {
 			$locale = $admin->getLanguage();
@@ -148,6 +148,7 @@ class security_logger {
 
 		$file = SERVERPATH.'/'.DATA_FOLDER . '/security.log';
 		$max = getOption('security_log_size');
+		$_zp_mutex->lock();
 		if ($max && @filesize($file) > $max) {
 			switchLog('security');
 		}
@@ -197,6 +198,7 @@ class security_logger {
 				}
 			}
 		}
+		$_zp_mutex->unlock();
 		setupCurrentLocale($cur_locale);	//	restore to whatever was in effect.
 	}
 

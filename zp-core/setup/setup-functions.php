@@ -376,8 +376,9 @@ function permissionsSelector($permission_names, $select) {
 }
 
 function setupLog($message, $anyway=false, $reset=false) {
-	global $debug;
+	global $debug, $_zp_mutex;
 	if ($debug || $anyway) {
+		$_zp_mutex->lock();
 		if (!file_exists(dirname(SETUPLOG))) {
 			mkdir_recursive(SETUPLOG, $chmod & 0311);
 		}
@@ -388,6 +389,7 @@ function setupLog($message, $anyway=false, $reset=false) {
 			fclose($f);
 			clearstatcache();
 		}
+		$_zp_mutex->unlock();
 	}
 }
 

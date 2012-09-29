@@ -17,6 +17,7 @@ if (isset($_GET['action'])) {
 	if (zp_apply_filter('admin_log_actions', true, $file, $action)) {
 		switch ($action) {
 			case 'clear_log':
+				$_zp_mutex->lock();
 				$f = fopen($file, 'w');
 				if (@ftruncate($f,0)) {
 					$class = 'messagebox';
@@ -27,11 +28,13 @@ if (isset($_GET['action'])) {
 				}
 				fclose($f);
 				clearstatcache();
+				$_zp_mutex->unlock();
 				if (basename($file) == 'security.log') {
 					zp_apply_filter('admin_log_actions', true, $file, $action);	// have to record the fact
 				}
 				break;
 			case 'delete_log':
+				$_zp_mutex->lock();
 				@chmod($file, 0666);
 				if (@unlink($file)) {
 					$class = 'messagebox';
@@ -41,6 +44,7 @@ if (isset($_GET['action'])) {
 					$result = sprintf(gettext('%s log could not be removed.'),$what);
 				}
 				clearstatcache();
+				$_zp_mutex->unlock();
 				unset($_GET['tab']); // it is gone, after all
 				if (basename($file) == 'security.log') {
 					zp_apply_filter('admin_log_actions', true, $file, $action);	// have to record the fact
