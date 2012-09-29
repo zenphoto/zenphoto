@@ -52,7 +52,7 @@ function printLanguageSelector($flags=NULL) {
 			?>
 			<div class="errorbox">
 				<h2>
-					<?php printf(gettext('<em>%s</em> is not available.'),$languages[$locale]); ?>
+					<?php printf(gettext('<em>%s</em> is not available.'),$locale); ?>
 					<?php printf(gettext('The locale %s is not supported on your server.'), $locale); ?>
 					<br />
 					<?php echo gettext('See the troubleshooting guide on zenphoto.org for details.'); ?>

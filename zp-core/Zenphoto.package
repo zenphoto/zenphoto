@@ -466,7 +466,6 @@ zp-core/images/toggleroh.png
 zp-core/images/view.png
 zp-core/images/warn.png
 zp-core/images/wheel.png
-zp-core/images/wpmini-blue.png
 zp-core/images/zen-logo.png
 zp-core/images/zp_gold.png
 zp-core/index.php
@@ -1886,7 +1885,9 @@ zp-core/zp-extensions/user_groups/user_groups-tab.php
 zp-core/zp-extensions/user_login-out.php
 zp-core/zp-extensions/user_mailing_list.php
 zp-core/zp-extensions/viewer_size_image.php
+zp-core/zp-extensions/wordpress_import
 zp-core/zp-extensions/wordpress_import.php
+zp-core/zp-extensions/wordpress_import/wpmini-blue.png
 zp-core/zp-extensions/xmpMetadata.php
 zp-core/zp-extensions/zenpage
 zp-core/zp-extensions/zenpage.php
@@ -1916,4 +1917,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1918
+1919

@@ -1001,6 +1001,27 @@ function getAlbumFolder($root=SERVERPATH) {
 }
 
 /**
+ * Rolls a log over if it has grown too large.
+ *
+ * @param string $log
+ */
+function switchLog($log) {
+	$dir = getcwd();
+	chdir(SERVERPATH . '/' . DATA_FOLDER);
+	$list = safe_glob($log.'-*.log');
+	if (empty($list)) {
+		$counter = 1;
+	} else {
+		sort($list);
+		$last = array_pop($list);
+		preg_match('|'.$log.'-(.*).log|', $last, $matches);
+		$counter = $matches[1]+1;
+	}
+	chdir($dir);
+	@copy(SERVERPATH.'/'. DATA_FOLDER.'/'.$log.'.log',SERVERPATH.'/'. DATA_FOLDER.'/'.$log.'-'.$counter.'.log');
+}
+
+/**
  * Write output to the debug log
  * Use this for debugging when echo statements would come before headers are sent
  * or would create havoc in the HTML.
@@ -1011,7 +1032,11 @@ function getAlbumFolder($root=SERVERPATH) {
  */
 function debugLog($message, $reset=false) {
 	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
-	if ($reset || ($size = @filesize($path)) == 0 || $size > 5000000) {
+	$max = getOption('debug_log_size');
+	if ($reset || ($size = @filesize($path)) == 0 || ($max && $size > $max)) {
+		if ($size > 0 && !$reset) {
+			switchLog('debug');
+		}
 		$f = fopen($path, 'w');
 		if ($f) {
 			if (!class_exists('zpFunctions') || zpFunctions::hasPrimaryScripts()) {

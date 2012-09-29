@@ -50,6 +50,7 @@ class security_logger {
 		setOptionDefault('logger_log_guests', 1);
 		setOptionDefault('logger_log_admin', 1);
 		setOptionDefault('logger_log_type', 'all');
+		setOptionDefault('security_log_size', 5000000);
 	}
 
 
@@ -146,6 +147,10 @@ class security_logger {
 		}
 
 		$file = SERVERPATH.'/'.DATA_FOLDER . '/security.log';
+		$max = getOption('security_log_size');
+		if ($max && @filesize($file) > $max) {
+			switchLog('security');
+		}
 		$preexists = file_exists($file) && filesize($file) > 0;
 		$f = fopen($file, 'a');
 		if($f) {

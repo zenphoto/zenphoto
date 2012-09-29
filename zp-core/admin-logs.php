@@ -52,6 +52,13 @@ if (isset($_GET['action'])) {
 				$zip->add_file_from_path(basename($file), $file);
 				$zip->finish();
 				break;
+			case 'change_size':
+				$newsize = sanitize_numeric($_POST['log_size']);
+				$log = sanitize(@$_GET['tab']);
+				setOption($log.'_log_size', $newsize);
+				$class = 'messagebox';
+				$result = sprintf(gettext('%s log maximum size changed.'),$what);
+				break;
 		}
 	}
 }
@@ -100,6 +107,7 @@ echo "\n</head>";
 					<?php
 				}
 				?>
+				<form method="post" action="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-logs.php'; ?>?action=change_size&amp;page=logs&amp;tab=<?php echo $subtab.'&amp;filename='.html_encode($subtab); ?>" >
 				<span class="button buttons tooltip" title="<?php printf(gettext("Delete %s"),$logfiletext);?>">
 					<a href="<?php echo WEBPATH.'/'.ZENFOLDER.'/admin-logs.php?action=delete_log&amp;page=logs&amp;tab='.$subtab.'&amp;filename='.html_encode($subtab); ?>&amp;XSRFToken=<?php  echo getXSRFToken('delete_log'); ?>">
 					<img src="images/edit-delete.png" /><?php echo gettext('Delete'); ?></a>
@@ -117,7 +125,20 @@ echo "\n</head>";
 					</span>
 					<?php
 				}
+				if (!is_null($size = getOption(strtolower($logfiletext).'_log_size'))) {
+					XSRFToken('change_size');
+					?>
+					<span class="floatright">
+						<?php echo gettext('Log file size limit')?>
+						<input type="text" name="log_size" value="<?php echo $size; ?>"  />
+						<label>
+							<input type="submit" value="<?php echo gettext('change'); ?>" />
+						</label>
+					</span>
+				<?php
+				}
 				?>
+				</form>
 				<br clear="all" />
 				<br />
 				<blockquote class="logtext">
