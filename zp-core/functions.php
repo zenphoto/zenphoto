@@ -38,7 +38,7 @@ if (GALLERY_SESSION) {
 define('ZENPHOTO_LOCALE',setMainDomain());
 define('SITE_LOCALE',getOptionFromDB('locale'));
 
-require_once(dirname(__FILE__).'/class-load.php');
+require_once(dirname(__FILE__).'/load_objectClasses.php');
 require_once(dirname(__FILE__).'/auth_zp.php');
 
 $_zp_current_context_stack = array();
@@ -157,7 +157,9 @@ function lookupSortKey($sorttype, $default, $table) {
 					return '`folder`';
 			}
 		default:
-			if (empty($sorttype)) return $default;
+			if (empty($sorttype)) {
+				return '`'.$default.'`';
+			}
 			if (substr($sorttype, 0) == '(') {
 				return $sorttype;
 			}

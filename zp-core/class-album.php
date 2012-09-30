@@ -170,7 +170,9 @@ class AlbumBase extends MediaObject {
 	 * @return string
 	 */
 	function getImageSortKey($sorttype=null) {
-		if (is_null($sorttype)) { $sorttype = $this->getSortType(); }
+		if (is_null($sorttype)) {
+			$sorttype = $this->getSortType();
+		}
 		return lookupSortKey($sorttype, 'filename', 'images');
 	}
 

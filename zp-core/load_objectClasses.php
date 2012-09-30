@@ -8,7 +8,6 @@ require_once(dirname(__FILE__).'/class-image.php');
 require_once(dirname(__FILE__).'/class-album.php');
 require_once(dirname(__FILE__).'/class-gallery.php');
 require_once(dirname(__FILE__).'/class-search.php');
-require_once(dirname(__FILE__).'/class-transientimage.php');
 require_once(dirname(__FILE__).'/class-comment.php');
 
 // load the class & filter plugins

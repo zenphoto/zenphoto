@@ -204,7 +204,7 @@ class _Image extends MediaObject {
 	 *
 	 * @return bool
 	 */
-	private function fileChanged() {
+	protected function fileChanged() {
 		$storedmtime = $this->get('mtime');
 		return (empty($storedmtime) || $this->filemtime > $storedmtime);
 	}
@@ -214,7 +214,7 @@ class _Image extends MediaObject {
 	 *
 	 * @return array
 	 */
-	function getMetaData() {
+	protected function getMetaData() {
 		require_once(dirname(__FILE__).'/exif/exif.php');
 		global $_zp_exifvars;
 		$exif = array();
@@ -463,12 +463,12 @@ class _Image extends MediaObject {
 	}
 
 	/**
-	 * For internal use--fetches a single tag from IPTC data
+	 * Fetches a single tag from IPTC data
 	 *
 	 * @param string $tag the metadata tag sought
 	 * @return string
 	 */
-	function getIPTCTag($tag, $iptc) {
+	private function getIPTCTag($tag, $iptc) {
 		if (isset($iptc[$tag])) {
 			$iptcTag = $iptc[$tag];
 			$r = "";
@@ -484,12 +484,12 @@ class _Image extends MediaObject {
 	}
 
 	/**
-	 * For internal use--fetches the IPTC array for a single tag.
+	 * Fetches the IPTC array for a single tag.
 	 *
 	 * @param string $tag the metadata tag sought
 	 * @return array
 	 */
-	function getIPTCTagArray($tag, $iptc) {
+	private function getIPTCTagArray($tag, $iptc) {
 		if (array_key_exists($tag, $iptc)) {
 			return $iptc[$tag];
 		}
@@ -1113,4 +1113,31 @@ class _Image extends MediaObject {
 	}
 
 }
+
+class Transientimage extends _Image {
+	/**
+	 * creates a transient image (that is, one that is not stored in the database)
+	 *
+	 * @param string $image the full path to the image
+	 * @return transientimage
+	 */
+	function __construct(&$album, $image) {
+		if (!is_object($album)) {
+			$album = new AlbumBase('Transient');
+		}
+		$this->album = $album;
+		$this->localpath = $image;
+
+		$filename = makeSpecialImageName($image);
+		$this->filename = $filename;
+		$this->displayname = stripSuffix(basename($image));
+		if (empty($this->displayname)) {
+			$this->displayname = $this->filename;
+		}
+		$this->filemtime = @filemtime($this->localpath);
+		$this->comments = null;
+		parent::PersistentObject('images', array('filename'=>$filename, 'albumid'=>$this->album->getID()), 'filename', false, true);
+	}
+}
+
 ?>

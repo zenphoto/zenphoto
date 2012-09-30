@@ -321,10 +321,8 @@ zp-core/class-album.php
 zp-core/class-comment.php
 zp-core/class-gallery.php
 zp-core/class-image.php
-zp-core/class-load.php
 zp-core/class-rss.php
 zp-core/class-search.php
-zp-core/class-transientimage.php
 zp-core/classes.php
 zp-core/controller.php
 zp-core/cron_runner.php
@@ -541,6 +539,7 @@ zp-core/lib-pclzip.php
 zp-core/lib-utf8.php
 zp-core/lib-zipStream.php
 zp-core/license.php
+zp-core/load_objectClasses.php
 zp-core/locale
 zp-core/locale/auto.png
 zp-core/locale/de_DE
@@ -1917,4 +1916,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1919
+1918
