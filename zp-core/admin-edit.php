@@ -826,7 +826,7 @@ $alb = removeParentAlbumNames($album);
 				<?php
 				if ($enableEdit) {
 					?>
-					<button class="serialize" type="submit" title="<?php echo gettext("Apply"); ?>" class="buttons">
+					<button class="serialize buttons" type="submit" title="<?php echo gettext("Apply"); ?>" >
 						<img src="images/pass.png" alt="" />
 						<strong><?php echo gettext("Apply"); ?></strong>
 					</button>
@@ -883,7 +883,7 @@ $alb = removeParentAlbumNames($album);
 					<img	src="images/arrow_left_blue_round.png" alt="" />
 					<strong><?php echo gettext("Back"); ?></strong>
 					</a>
-					<button class="serialize" type="submit" title="<?php echo gettext("Apply"); ?>" class="buttons">
+					<button class="serialize buttons" type="submit" title="<?php echo gettext("Apply"); ?>" >
 					<img src="images/pass.png" alt="" />
 					<strong><?php echo gettext("Apply"); ?></strong>
 					</button>

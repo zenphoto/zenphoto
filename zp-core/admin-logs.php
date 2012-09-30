@@ -132,12 +132,10 @@ echo "\n</head>";
 				if (!is_null($size = getOption(strtolower($logfiletext).'_log_size'))) {
 					XSRFToken('change_size');
 					?>
-					<span class="floatright">
+					<span class="floatright buttons">
 						<?php echo gettext('Log file size limit')?>
-						<input type="text" name="log_size" value="<?php echo $size; ?>"  />
-						<label>
-							<input type="submit" value="<?php echo gettext('change'); ?>" />
-						</label>
+						<input type="text" name="log_size" value="<?php echo $size; ?>" size="8" />&nbsp;
+						<button class="floatright" type="submit" title="<?php echo gettext("Update"); ?>"><img src="images/pass.png" alt="" /><strong><?php echo gettext("Update"); ?></strong></button>
 					</span>
 				<?php
 				}
