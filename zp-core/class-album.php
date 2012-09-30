@@ -955,8 +955,8 @@ class Album extends AlbumBase {
 			//	check for managed album view unpublished image rights
 			$mine = $this->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW);
 		}
-		$sortkey = str_replace('`','',$this->getImageSortKey($sorttype));
-		if (($sortkey == 'sort_order') || ($sortkey == 'RAND()')) {
+		$sortkey = $this->getImageSortKey($sorttype);
+		if (($sortkey == '`sort_order`') || ($sortkey == 'RAND()')) {
 			// manual sort is always ascending
 			$order = false;
 		} else {
@@ -966,7 +966,7 @@ class Album extends AlbumBase {
 				$order = $this->getSortDirection('image');
 			}
 		}
-		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID() .' ORDER BY '.$sorttype.' '.$sortdirection);
+		$result = query($sql = "SELECT * FROM " . prefix("images") . " WHERE `albumid`= " . $this->getID() .' ORDER BY '.$sortkey.' '.$sortdirection);
 		$results = array();
 		while ($row = db_fetch_assoc($result)) {
 			$filename = $row['filename'];
@@ -986,7 +986,7 @@ class Album extends AlbumBase {
 			$results[] = $imageobj->getData();
 		}
 		// now put the results into the right order
-		$results = sortByKey($results,$sortkey,$order);
+		$results = sortByKey($results,str_replace('`','',$sortkey),$order);
 		// the results are now in the correct order
 		$images_ordered = array();
 		foreach ($results as $key=>$row) {

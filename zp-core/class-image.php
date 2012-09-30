@@ -214,7 +214,7 @@ class _Image extends MediaObject {
 	 *
 	 * @return array
 	 */
-	protected function getMetaData() {
+	function getMetaData() {
 		require_once(dirname(__FILE__).'/exif/exif.php');
 		global $_zp_exifvars;
 		$exif = array();
