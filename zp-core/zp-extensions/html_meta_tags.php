@@ -200,12 +200,12 @@ class htmlmetatags {
 					if(is_NewsArticle()) {
 						$pagetitle = getBareNewsTitle()." - ";
 						$date = getNewsDate();
-						$desc = strip_tags(getNewsContent());
+						$desc = trim(strip_tags(getNewsContent()));
 						$canonicalurl = $host.getNewsURL($_zp_current_zenpage_news->getTitlelink());
 					} else 	if(is_NewsCategory()) {
 						$pagetitle = $_zp_current_category->getTitlelink()." - ";
 						$date = strftime(DATE_FORMAT);
-						$desc = html_encode(strip_tags($_zp_current_category->getDesc()));
+						$desc = trim(strip_tags($_zp_current_category->getDesc()));
 						$canonicalurl = $host.getNewsCategoryURL($_zp_current_category->getTitlelink());
 					} else {
 						$pagetitle = gettext('News')." - ";
@@ -217,7 +217,7 @@ class htmlmetatags {
 			case 'pages.php':
 				$pagetitle = getBarePageTitle()." - ";
 				$date = getPageDate();
-				$desc = html_encode(strip_tags(getPageContent()));
+				$desc = trim(strip_tags(getPageContent()));
 				$canonicalurl = $host.getPageLinkURL($_zp_current_zenpage_page->getTitlelink());
 				break;
 			case 'archive.php':
@@ -243,8 +243,9 @@ class htmlmetatags {
 		}
 		// shorten desc to the allowed 200 characters if necesssary.
 		if(strlen($desc) > 200) {
-			$desc = substr($desc,0,200);
+			$desc = trim(substr($desc,0,200));
 		}
+		$desc = html_encodeTagged($desc);
 		$pagetitle = $pagetitle.getBareGalleryTitle();
 		// get master admin
 		$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
@@ -335,13 +336,13 @@ class htmlmetatags {
 									$altlink .= '/pages/'.html_encode($_zp_current_zenpage_page->getTitlelink());
 									break;
 								case 'archive.php':
-									$altlink .= '/page/'.html_encode('archive');
+									$altlink .= '/page/archive';
 									break;
 								case 'search.php':
-									$altlink .= '/page/'.html_encode('search');
+									$altlink .= '/page/search';
 									break;
 								case 'contact.php':
-									$altlink .= '/page/'.html_encode('contact');
+									$altlink .= '/page/contact';
 									break;
 								default: // for all other possible none standard custom pages
 									$altlink .= '/page/'.html_encode($pagetitle);
