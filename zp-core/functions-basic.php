@@ -285,11 +285,13 @@ function html_encode($this_string) {
  */
 function html_encodeTagged($str, $allowScript=true) {
 	$tags = array();
+	//html comments
 	preg_match_all('|<!--.*-->|ixs', $str, $matches);
 	foreach (array_unique($matches[0]) as $key=>$tag) {
 		$tags['%'.$key.'$j'] = $tag;
 		$str = str_replace($tag, '%'.$key.'$j', $str);
 	}
+	//javascript
 	if ($allowScript) {
 		preg_match_all('!<script.*>.*</script>!ixs', $str, $matches);
 		foreach (array_unique($matches[0]) as $key=>$tag) {
@@ -302,12 +304,20 @@ function html_encodeTagged($str, $allowScript=true) {
 		$str = preg_replace('|<(.*)onclick|ixs', '%$c', $str);
 		$tags['%$c'] = '&lt;<strike>onclick</strike>';
 	}
-	preg_match_all("/(&[a-z#]+;)|<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
+	// markup
+	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
 	foreach (array_unique($matches[0]) as $key=>$tag) {
 		$tags['%'.$key.'$s'] = $tag;
 		$str = str_replace($tag, '%'.$key.'$s', $str);
 	}
-	return strtr(htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET),$tags);
+	//entities
+	preg_match_all('/(&[a-z#]+;)/', $str, $matches);
+	foreach (array_unique($matches[0]) as $key=>$entity) {
+		$tags['%'.$key.'$e'] = $entity;
+		$str = str_replace($entity, '%'.$key.'$e', $str);
+	}
+	$str = strtr(htmlspecialchars($str, ENT_FLAGS&~ENT_QUOTES, LOCAL_CHARSET),$tags);
+	return $str;
 }
 
 /**
