@@ -316,7 +316,7 @@ function html_encodeTagged($str, $allowScript=true) {
 		$tags['%'.$key.'$e'] = $entity;
 		$str = str_replace($entity, '%'.$key.'$e', $str);
 	}
-	$str = strtr(htmlspecialchars($str, ENT_FLAGS&~ENT_QUOTES, LOCAL_CHARSET),$tags);
+	$str = strtr(htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET),$tags);
 	return $str;
 }
 
