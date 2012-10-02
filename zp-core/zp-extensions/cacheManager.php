@@ -287,7 +287,6 @@ class cacheManager {
 									'alt'=>'',
 									'hidden'=>'',
 									'rights'=>ADMIN_RIGHTS,
-									'XSRFTag'=>'cacheImages',
 									'title'=>$title
 									);
 		$buttons[] = array(

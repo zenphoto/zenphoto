@@ -404,14 +404,20 @@ function printSubtabs() {
 				}
 				$tab = substr($source, $i+4);
 			}
-			if ($link) {
-				if (strpos($link,'/') !== 0) {	// zp_core relative
-					$link = 'href = "'.WEBPATH.'/'.ZENFOLDER.'/'.$link.'"';
-				} else {
-					$link = 'href = "'.WEBPATH.$link.'"';
+			if (!$link) {
+				$bt = debug_backtrace();
+				$bt = array_shift($bt);
+				if (isset($bt['file'])) {
+					$link = str_replace(SERVERPATH,'',str_replace('\\','/', $bt['file']));
 				}
 			}
-			echo '<li'.(($current == $tab) ? ' class="current"' : '').'><a id="'.$tab.'" '.$link.'">'.$key.'</a></li>'."\n";
+			if (strpos($link,'/') !== 0) {	// zp_core relative
+				$link = 'href = "'.WEBPATH.'/'.ZENFOLDER.'/'.$link.'"';
+			} else {
+				$link = 'href = "'.WEBPATH.$link.'"';
+			}
+
+			echo '<li'.(($current == $tab) ? ' class="current"' : '').'><a id="'.$tab.'" '.$link.'>'.$key.'</a></li>'."\n";
 		}
 		?>
 		</ul>
