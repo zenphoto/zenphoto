@@ -169,7 +169,7 @@ code {
  * @copyright	2006-2008 Live Web Institute
  *
  */
-ul.no_bullets {
+ul.no_bullets, ol.no_bullets {
 	list-style: none;
 }
 ul.nav,

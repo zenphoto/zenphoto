@@ -124,6 +124,7 @@ while ($row = db_fetch_assoc($result)) {
 		$custom[] = $row;
 }
 $custom = sortMultiArray($custom, array('theme','thumb','image_size','image_width','image_height'));
+
 if (isset($_GET['select'])) {
 	$enabled = $_POST['enable'];
 } else {
@@ -163,19 +164,28 @@ $themes = array();
 foreach ($_zp_gallery->getThemes() as $theme=>$data) {
 	$themes[$theme] = $data['name'];
 }
+$last = '';
 ?>
+<script type="text/javascript">
+	function checkTheme(theme) {
+		if ($('#'+theme).attr('checked')) {
+			$('.'+theme).attr('checked','checked');
+		} else {
+			$('.'+theme).removeAttr('checked');
+		}
+	}
+</script>
 <form name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
 	<?php XSRFToken('cacheImages')?>
-	<ul class="no_bullets">
+	<ol class="no_bullets">
 		<?php
 		foreach ($custom as $key=>$cacheimage) {
 			if (!is_array($enabled) || in_array($key, $enabled)) {
 				if (is_array($enabled)) {
 					$checked = ' checked="checked" disabled="disabled"';
 					?>
-			<input
-				type="hidden" name="enable[]" value="<?php echo $key; ?>" />
-			<?php
+					<input type="hidden" name="enable[]" value="<?php echo $key; ?>" />
+					<?php
 				} else {
 					if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin') {
 						$checked = ' checked="checked"';
@@ -205,20 +215,40 @@ foreach ($_zp_gallery->getThemes() as $theme=>$data) {
 						$checked = ' disabled="disabled"';
 					}
 				}
-				$theme = $cacheimage['theme'];
+				$themeid = $theme = $cacheimage['theme'];
 				if (isset($themes[$theme])) {
-					$theme = sprintf('%s theme',$themes[$theme]);
+					$themeid = $themes[$theme];
+				}
+				if ($theme != $last && !is_array($enabled)) {
+					if ($last) {
+						?>
+						</ol>
+						</li>
+						<?php
+					}
+					$last = $theme;
+					?>
+					<li>
+						<label>
+							<input type="checkbox" name="<?php echo $theme; ?>" id="<?php echo $theme; ?>" value="" onclick="checkTheme('<?php echo $theme; ?>');" /><?php printf(gettext('all sizes for <i>%1$s</i>'), $themeid); ?>
+						</label>
+						<ol class="no_bullets">
+					<?php
 				}
 				?>
-			<li>
-				<input type="checkbox" name="enable[]" value="<?php echo $key; ?>" <?php echo $checked; ?> />
-				<?php echo gettext('Apply'); ?> <code><?php echo ltrim($postfix, '_'); ?></code> <i>(<?php echo $theme; ?>)</i>
-			</li>
-			<?php
+				<li>
+					<label>
+						<input type="checkbox" name="enable[]" class="<?php echo $theme; ?>" value="<?php echo $key; ?>" <?php echo $checked; ?> />
+						<?php echo gettext('Apply'); ?> <code><?php echo ltrim($postfix, '_'); ?></code>
+					</label>
+				</li>
+				<?php
 			}
 		}
 		?>
-	</ul>
+				</ol>
+			</li>
+		</ol>
 	<?php
 	if (is_array($enabled)) {
 		if ($cachesizes) {

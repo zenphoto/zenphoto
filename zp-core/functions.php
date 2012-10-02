@@ -1165,7 +1165,6 @@ function sortMultiArray($array, $index, $descending=false, $natsort=true, $case_
 	if(is_array($array) && count($array)>0) {
 		if (is_array($index)) {
 			$indicies = $index;
-			$index = array_shift($index);
 		} else {
 			$indicies = array($index);
 		}
