@@ -159,6 +159,10 @@ if ($alb) {
 
 $cachesizes = 0;
 $currenttheme = $_zp_gallery->getCurrentTheme();
+$themes = array();
+foreach ($_zp_gallery->getThemes() as $theme=>$data) {
+	$themes[$theme] = $data['name'];
+}
 ?>
 <form name="size_selections" action="?select&album=<?php echo $alb; ?>" method="post">
 	<?php XSRFToken('cacheImages')?>
@@ -169,8 +173,9 @@ $currenttheme = $_zp_gallery->getCurrentTheme();
 				if (is_array($enabled)) {
 					$checked = ' checked="checked" disabled="disabled"';
 					?>
-					<input type="hidden" name="enable[]" value="<?php echo $key; ?>" />
-					<?php
+			<input
+				type="hidden" name="enable[]" value="<?php echo $key; ?>" />
+			<?php
 				} else {
 					if ($currenttheme == $cacheimage['theme'] || $cacheimage['theme'] == 'admin') {
 						$checked = ' checked="checked"';
@@ -199,11 +204,17 @@ $currenttheme = $_zp_gallery->getCurrentTheme();
 						$postfix = '_'.gettext('invalid_MaxSpace');
 						$checked = ' disabled="disabled"';
 					}
-				} else {
+				}
+				$theme = $cacheimage['theme'];
+				if (isset($themes[$theme])) {
+					$theme = sprintf('%s theme',$themes[$theme]);
 				}
 				?>
-				<li><input type="checkbox" name="enable[]" value="<?php echo $key; ?>"<?php echo $checked; ?> /> <?php echo gettext('Apply'); ?> <i><?php echo $cacheimage['theme']; ?></i><?php echo $postfix; ?></li>
-				<?php
+			<li>
+				<input type="checkbox" name="enable[]" value="<?php echo $key; ?>" <?php echo $checked; ?> />
+				<?php echo gettext('Apply'); ?> <code><?php echo ltrim($postfix, '_'); ?></code> <i>(<?php echo $theme; ?>)</i>
+			</li>
+			<?php
 			}
 		}
 		?>

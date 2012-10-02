@@ -3,7 +3,7 @@
 // force UTF-8 Ø
 
 // Zenphoto theme definition file
-$theme_description['name'] = 'Stopdesign Theme';
+$theme_description['name'] = 'Stopdesign';
 $theme_description['author'] = 'Douglas Bowman ('.gettext("Ported to Zenphoto by Mark Galeassi and Stephen Billard").')';
 $theme_description['version'] = true;
 $theme_description['date'] = true;
