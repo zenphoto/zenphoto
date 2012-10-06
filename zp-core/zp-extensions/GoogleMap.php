@@ -151,12 +151,12 @@ function getGeoCoord($obj) {
 		if(!empty($exif['EXIFGPSLatitude']) && !empty($exif['EXIFGPSLongitude'])){
 			$lat_c = explode('.',str_replace(',', '.', $exif['EXIFGPSLatitude']));
 			$lat_f = round((float) abs($lat_c[0])+$lat_c[1]/pow(10,strlen($lat_c[1])),5);
-			if ($exif['EXIFGPSLatitudeRef'] == 'S') {
+			if (strtoupper(substr($exif['EXIFGPSLatitudeRef'],1)) == 'S') {
 				$lat_f = (float) -$lat_f;
 			}
 			$long_c = explode('.',str_replace(',', '.', $exif['EXIFGPSLongitude']));
 			$long_f = round((float) abs($long_c[0])+$long_c[1]/pow(10,strlen($long_c[1])),5);
-			if ($exif['EXIFGPSLongitudeRef'] == 'W') {
+			if (strtoupper(substr($exif['EXIFGPSLongitudeRef'])) == 'W') {
 				$long_f = (float) -$long_f;
 			}
 			$result = array('lat'=>$lat_f,'long'=>$long_f, 'title'=>$obj->getTitle(), 'desc'=>$obj->getDesc());

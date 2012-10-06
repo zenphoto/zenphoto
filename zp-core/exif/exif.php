@@ -712,7 +712,7 @@ function read_entry(&$result,$in,$seek,$intel,$ifd_name,$globalOffset) {
 	$value = fread( $in, 4 );
 
 	if ($bytesofdata <= 4) {   // if datatype is 4 bytes or less, its the value
-		$data = $value;
+		$data = substr($value,0,$bytesofdata);
 	} else if ($bytesofdata < 100000) {        // otherwise its a pointer to the value, so lets go get it
 		$value = bin2hex($value);
 		if ($intel == 1) $value = intel2Moto($value);
