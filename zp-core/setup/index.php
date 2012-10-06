@@ -5,6 +5,9 @@
  */
 
 // force UTF-8 Ø
+Define('PHP_MIN_VERSION','5.2');
+Define('PHP_DESIRED_VERSION','5.4');
+
 $session = session_start();
 
 // leave this as the first executable statement to avoid problems with PHP not having gettext support.
@@ -508,10 +511,8 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	checkMark($p, gettext("Log security"), gettext("Log security [is compromised]"),
 							sprintf(gettext("Zenphoto attempts to make log files accessable by <em>owner</em> only (permissions = 0600). This attempt has failed. The log file permissions are %04o which may allow unauthorized access."),$permission));
-	$required = '5.0.5';
-	$desired = '5.3';
-	$err = versionCheck($required, $desired, PHP_VERSION);
-	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),$required, $desired), false) && $good;
+	$err = versionCheck(PHP_MIN_VERSION, PHP_DESIRED_VERSION, PHP_VERSION);
+	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
 
 	if (preg_match('#(1|ON)#i', ini_get('register_globals'))) {
@@ -982,7 +983,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					}
 					$rights = array_flip(explode(' ', $r));
 					$rightsfound = 'insufficient';
-					if (($found == $dbn) || ($found == "*.*") || $partial && preg_match('/^'.$found.'/', $dbn)) {
+					if (($found == $dbn) || ($found == "*.*") || $partial && preg_match('/^'.$found.'/xis', $dbn)) {
 						$allow = true;
 						foreach ($rightsneeded as $key=>$right) {
 							if (!isset($rights[$right])) {

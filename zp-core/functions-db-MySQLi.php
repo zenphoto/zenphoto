@@ -11,6 +11,8 @@
 // force UTF-8 Ø
 
 define('DATABASE_SOFTWARE','MySQLi');
+Define('DATABASE_MIN_VERSION','5.0.0');
+Define('DATABASE_DESIRED_VERSION','5.5.0');
 
 /**
  * Connect to the database server and select the database.
@@ -198,7 +200,7 @@ function db_software() {
 	global $_zp_DB_connection;
 	$dbversion = trim(@$_zp_DB_connection->get_server_info());
 	preg_match('/[0-9,\.]*/', $dbversion, $matches);
-	return array('application'=>DATABASE_SOFTWARE,'required'=>'5.5.0','desired'=>'5.5.20','version'=>$matches[0]);
+	return array('application'=>DATABASE_SOFTWARE,'required'=>DATABASE_MIN_VERSION,'desired'=>DATABASE_DESIRED_VERSION,'version'=>$matches[0]);
 }
 
 /**
