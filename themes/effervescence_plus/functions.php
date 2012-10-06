@@ -73,7 +73,7 @@ function switcher_head($ignore) {
 }
 
 function switcher_controllink($ignore) {
-	global $personalities, $themecolors;
+	global $personalities, $themecolors, $_zp_gallery_page;
 	$color = getOption('themeSwitcher_effervescence_color');
 	if (!$color) {
 		$color = getOption('Theme_colors');
@@ -84,16 +84,18 @@ function switcher_controllink($ignore) {
 		<?php  generateListFromArray(array($color), $themecolors, false, false); ?>
 	</select>
 	<?php
-	$personality =getOption('themeSwitcher_effervescence_personality');
-	if (!$personality) {
-		$personality = getOption('effervescence_personality');
+	if ($_zp_gallery_page == 'album.php') {
+		$personality =getOption('themeSwitcher_effervescence_personality');
+		if (!$personality) {
+			$personality = getOption('effervescence_personality');
+		}
+		echo gettext('Personality');
+		?>
+		<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
+			<?php generateListFromArray(array($personality), $personalities, false, true); ?>
+		</select>
+		<?php
 	}
-	echo gettext('Personality');
-	?>
-	<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
-		<?php generateListFromArray(array($personality), $personalities, false, true); ?>
-	</select>
-	<?php
 	return $ignore;
 }
 

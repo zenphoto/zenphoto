@@ -34,17 +34,19 @@ function switcher_head($ignore) {
 }
 
 function switcher_controllink($ignore) {
-	global $personalities;
-	$personality =getOption('themeSwitcher_garland_personality');
-	if (!$personality) {
-		$personality = getOption('garland_personality');
+	global $personalities, $_zp_gallery_page;
+	if ($_zp_gallery_page == 'album.php') {
+		$personality =getOption('themeSwitcher_garland_personality');
+		if (!$personality) {
+			$personality = getOption('garland_personality');
+		}
+		echo gettext('Personality');
+		?>
+		<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
+			<?php generateListFromArray(array($personality), $personalities, false, true); ?>
+		</select>
+		<?php
 	}
-	echo gettext('Personality');
-	?>
-	<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
-		<?php generateListFromArray(array($personality), $personalities, false, true); ?>
-	</select>
-	<?php
 	return $ignore;
 }
 
