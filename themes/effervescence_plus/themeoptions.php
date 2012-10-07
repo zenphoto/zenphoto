@@ -15,11 +15,13 @@ class ThemeOptions {
 
 	function ThemeOptions() {
 		if (OFFSET_PATH==2) {
-			if ($personality = getOption('Theme_personality')) {
-				setThemeOptionDefault('effervescence_personality',$personality);
+			if ($personality = getThemeOption('Theme_personality',NULL,'effervescence_plus')) {
+				if (strpos($personality, ' ') == false) {
+					if ($personality=='Slimbox') setThemeOptionDefault('effervescence_personality','colorbox');
+					if ($personality=='Smoothgallery') setThemeOptionDefault('effervescence_personality','image_gallery');
+					setThemeOptionDefault('effervescence_personality',$personality);
+				}
 			}
-			if (getOption('effervescence_personality')=='Slimbox') setOption('effervescence_personality','Colorbox');
-			if (getOption('effervescence_personality')=='Smoothgallery') setOption('effervescence_personality','Imagegallery');
 			purgeOption('Theme_personality');
 		}
 
