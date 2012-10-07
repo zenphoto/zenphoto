@@ -3908,10 +3908,12 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 		}
 	}
 	$urls = '';
-	if (MOD_REWRITE) {
+	if (MOD_REWRITE && !is_array($object_list)) {
 		$url = SEO_WEBPATH . "/page/search/";
+		$rewrite = true;
 	} else {
 		$url = WEBPATH."/index.php?p=search";
+		$rewrite = false;
 	}
 	if (!empty($fields) && empty($dates)) {
 		if (!is_array($fields)) {
@@ -3933,7 +3935,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 			}
 			$words = implode(',', $words);
 		}
-		if(MOD_REWRITE) {
+		if($rewrite) {
 			$url .= urlencode($words);
 		} else {
 			$url .= "&words=".urlencode($words);
@@ -3943,14 +3945,14 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 		if (is_array($dates)) {
 			$dates = implode(',', $dates);
 		}
-		if(MOD_REWRITE) {
+		if($rewrite) {
 			$url .= "archive/$dates";
 		} else {
 			$url .= "&date=$dates";
 		}
 	}
 	if ($page > 1) {
-		if (MOD_REWRITE) {
+		if ($rewrite) {
 			$url .= "/$page";
 		} else {
 			if ($urls) {
@@ -3960,7 +3962,7 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 		}
 	}
 	if (!empty($urls)) {
-		if (MOD_REWRITE) {
+		if ($rewrite) {
 			$url .= '?'.$urls;
 		} else {
 			$url .= '&'.$urls;
@@ -3991,7 +3993,8 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
  *
  * @param string $prevtext text to go before the search form
  * @param string $id css id for the search form, default is 'search'
- * @param string $buttonSource optional path to the image for the button
+ * @param string $buttonSource optional path to the image for the button or if not a path to an image,
+ * 											this will be the button hint
  * @param string $buttontext optional text for the button ("Search" will be the default text)
  * @param string $iconsource optional theme based icon for the search fields toggle
  * @param array $query_fields override selection for enabled fields with this list
@@ -4014,8 +4017,6 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 	}
 	if(empty($buttontext)) {
 		$buttontext = gettext("Search");
-	} else {
-		$buttontext = sanitize($buttontext);
 	}
 	$zf = WEBPATH."/".ZENFOLDER;
 	$searchwords = $engine->codifySearchString();
@@ -4028,13 +4029,17 @@ function printSearchForm($prevtext=NULL, $id='search', $buttonSource=NULL, $butt
 	} else {
 		$hint = gettext('%s within previous results');
 	}
-	if (empty($buttonSource)) {
-		$type = 'submit';
-		$button = 'value="'.$buttontext.'" title="'.sprintf($hint,$buttontext).'"';
-	} else {
+	if (preg_match('!\/(.*)[\.png|\.jpg|\.jpeg|\.gif]$!',$buttonSource)) {
 		$buttonSource = 'src="' . $buttonSource . '" alt="'.$buttontext.'"';
 		$button = 'title="'.sprintf($hint,$buttontext).'"';
 		$type = 'image';
+	} else {
+		$type = 'submit';
+		if ($buttonSource) {
+			$button = 'value="'.$buttontext.'" title="'.sprintf($hint,$buttonSource).'"';
+		} else {
+			$button = 'value="'.$buttontext.'" title="'.sprintf($hint,$buttontext).'"';
+		}
 	}
 	if (empty($iconsource)) {
 		$iconsource = WEBPATH.'/'.ZENFOLDER.'/images/searchfields_icon.png';

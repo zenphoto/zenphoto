@@ -270,12 +270,14 @@ function annotateAlbum() {
 
 function annotateImage() {
 	global $_zp_current_image;
-	if (!$_zp_current_image->getShow()) {
-		$tagit = "\n".gettext('The image is marked not visible.');
-	} else {
-		$tagit = '';
+	if (is_object($_zp_current_image)) {
+		if (!$_zp_current_image->getShow()) {
+			$tagit = "\n".gettext('The image is marked not visible.');
+		} else {
+			$tagit = '';
+		}
+		return  sprintf(gettext('View the image: %s'),GetBareImageTitle()).$tagit;
 	}
-	return  sprintf(gettext('View the image: %s'),GetBareImageTitle()).$tagit;
 }
 
 function printFooter($admin=true) {

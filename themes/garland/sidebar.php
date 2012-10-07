@@ -7,7 +7,7 @@ if (getOption('Allow_search')) {
 		case 'album.php':
 		case 'image.php':
 			$list = array('albums'=>array($_zp_current_album->name),'pages'=>'0', 'news'=>'0');
-			$text = gettext('Search album');
+			$text = gettext('Search within album');
 			break;
 		case 'gallery.php':
 			$list = array('albums'=>'1','pages'=>'0', 'news'=>'0');

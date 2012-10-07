@@ -21,10 +21,12 @@ if (!defined('WEBPATH')) die();
 
 		<div id="header">
 		<h1><?php echo getGalleryTitle();?></h1>
-			<?php if (getOption('Allow_search')) {
+			<?php
+			if (getOption('Allow_search')) {
 				$album_list = array('albums'=>array($_zp_current_album->name),'pages'=>'0', 'news'=>'0');
-				printSearchForm(NULL, 'search', NULL, gettext('Search album'), NULL, NULL, $album_list);
-			} ?>
+				printSearchForm(NULL, 'search', gettext('Search within album'), gettext('Search'), NULL, NULL, $album_list);
+			}
+			?>
 		</div>
 
 <div id="content">

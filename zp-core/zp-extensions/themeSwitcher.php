@@ -21,13 +21,12 @@ $plugin_author = "Stephen Billard (sbillard)";
 $option_interface = 'themeSwitcher';
 
 class themeSwitcher {
-
 	function __construct() {
 		global $_zp_gallery;
 		$themes = $_zp_gallery->getThemes();
-		$list = array();
 		foreach ($themes as $key=>$theme) {
 			setOptionDefault('themeSwitcher_theme_'.$key, 1);
+			$themelist[$key] = getOption('themeSwitcher_theme_'.$key);
 		}
 		setOptionDefault('themeSwitcher_timeout', 60*2);
 		setOptionDefault('themeSwitcher_css',
@@ -86,6 +85,7 @@ class themeSwitcher {
 	}
 
 	static function head() {
+		global $_themeSwitcherThemelist;
 		if (getOption('themeSwitcher_css')) {
 			?>
 			<style type="text/css">
@@ -103,7 +103,7 @@ class themeSwitcher {
 			// ]]> -->
 		</script>
 		<?php
-		zp_apply_filter('themeSwitcher_head','');
+		$_themeSwitcherThemelist = zp_apply_filter('themeSwitcher_head',$_themeSwitcherThemelist);
 	}
 
 	/**
@@ -112,7 +112,7 @@ class themeSwitcher {
 	 * @param string $text link text
 	 */
 	static function controlLink($textIn=NULL) {
-		global $_zp_gallery, $_showNotLoggedin_real_auth;
+		global $_zp_gallery, $_showNotLoggedin_real_auth, $_themeSwitcherThemelist;
 		if (isset($_showNotLoggedin_real_auth)) {
 			$loggedin = $_showNotLoggedin_real_auth->getRights();
 		} else {
@@ -121,7 +121,7 @@ class themeSwitcher {
 		if (!getOption('themeSwitcher_adminOnly') || $loggedin & (ADMIN_RIGHTS | THEMES_RIGHTS)) {
 			$themes = array();
 			foreach ($_zp_gallery->getThemes() as $theme=>$details) {
-				if (getOption('themeSwitcher_theme_'.$theme)) {
+				if ($_themeSwitcherThemelist[$theme]) {
 					$themes[$details['name']] = $theme;
 				}
 			}
@@ -143,6 +143,15 @@ class themeSwitcher {
 	}
 
 }
+
+$_themeSwitcherThemelist = array();
+foreach ($_zp_gallery->getThemes() as $key=>$theme) {
+	$_themeSwitcherThemelist[$key] = getOption('themeSwitcher_theme_'.$key);
+}
+unset($key);
+unset($theme);
+
+
 if (isset($_GET['themeSwitcher'])) {
 	zp_setCookie('themeSwitcher_theme', sanitize($_GET['themeSwitcher']),getOption('themeSwitcher_timeout')*60);
 }

@@ -34,7 +34,10 @@ $thisalbum = $_zp_current_album;
 	<?php zp_apply_filter('theme_body_open'); ?>
 		<?php
 		echo getGalleryTitle();
-			if (getOption('Allow_search')) {  printSearchForm(); }
+		if (getOption('Allow_search')) {
+			$album_list = array('albums'=>array($_zp_current_album->name),'pages'=>'0', 'news'=>'0');
+			printSearchForm('', 'search', gettext('Search within album'), gettext('search'), NULL, NULL, $album_list);
+		}
 		?>
 
 		<div id="content">
