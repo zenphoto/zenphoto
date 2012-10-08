@@ -45,18 +45,24 @@ $plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
 
-require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class.php');
-require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-news.php');
-require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-page.php');
-require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-category.php');
+if (!isset($_GET['cmsSwitch']) || $_GET['cmsSwitch']=='true') {
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class.php');
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-news.php');
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-page.php');
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-category.php');
 
-$_zp_zenpage = new Zenpage();
+	$_zp_zenpage = new Zenpage();
 
-zp_register_filter('checkForGuest', 'zenpageCheckForGuest');
-zp_register_filter('isMyItemToView', 'zenpageIsMyItemToView');
-zp_register_filter('admin_toolbox_global', 'zenpage_admin_toolbox_global');
-zp_register_filter('admin_toolbox_news', 'zenpage_admin_toolbox_news');
-zp_register_filter('admin_toolbox_pages', 'zenpage_admin_toolbox_pages');
+	zp_register_filter('checkForGuest', 'zenpageCheckForGuest');
+	zp_register_filter('isMyItemToView', 'zenpageIsMyItemToView');
+	zp_register_filter('admin_toolbox_global', 'zenpage_admin_toolbox_global');
+	zp_register_filter('admin_toolbox_news', 'zenpage_admin_toolbox_news');
+	zp_register_filter('admin_toolbox_pages', 'zenpage_admin_toolbox_pages');
+} else {
+	setOption('zp_plugin_zenpage', 0, false);
+}
+zp_register_filter('themeSwitcher_head', 'zenpagecms::switcher_head');
+zp_register_filter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink');
 
 class zenpagecms {
 
@@ -220,6 +226,29 @@ class zenpagecms {
 	}
 
 	function handleOption($option, $currentValue) {
+	}
+
+	static function switcher_head($list) {
+		?>
+		<script type="text/javascript">
+			// <!-- <![CDATA[
+			function switchCMS(checked) {
+				window.location = '?cmsSwitch='+checked;
+			}
+			// ]]> -->
+		</script>
+		<?php
+		return $list;
+	}
+
+	static function switcher_controllink($ignore) {
+		?>
+		<label>
+			Zenpage
+			<input type="checkbox" name="cmsSwitch" id="cmsSwitch" value="1"<?php if (!isset($_GET['cmsSwitch']) || $_GET['cmsSwitch']=='true') echo ' checked="checked"'; ?> onclick="switchCMS(this.checked);" />
+		</label>
+		<?php
+		return $ignore;
 	}
 }
 

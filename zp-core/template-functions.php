@@ -605,25 +605,31 @@ function getPageURL($page, $total=null) {
 		$searchpagepath = getSearchURL($searchwords, $searchdate, $searchfields, $page, array('albums'=>$_zp_current_search->getAlbumList()));
 		return $searchpagepath;
 	} else {
-		if ($page > 1) {
-			$page1 = '/page/'.$page;
-			$page2 = '&page='.$page;
-		} else {
-			$page1 = $page2 = '';
-		}
-		if ($specialpage = !in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
+		if (!in_array($_zp_gallery_page, array('index.php', 'album.php', 'image.php'))) {
 			// handle custom page
 			$pg = stripSuffix($_zp_gallery_page);
-			$pagination1 = '/page/'.$pg.$page1;
-			$pagination2 = 'index.php?p='.$pg.$page2;
+			$pagination1 = '/page/'.$pg;
+			$pagination2 = 'index.php?p='.$pg;
+			if ($page > 1) {
+				$pagination1 .= '/'.$page;
+				$pagination2 .= '&page='.$page;
+			}
 		} else {
 			if (in_context(ZP_ALBUM)) {
-				$pagination1 = pathurlencode($_zp_current_album->name).$page1;
-				$pagination2 = 'index.php?album='.pathurlencode($_zp_current_album->name).$page2;
+				$pagination1 = pathurlencode($_zp_current_album->name);
+				$pagination2 = 'index.php?album='.pathurlencode($_zp_current_album->name);
+				if ($page > 1) {
+					$pagination1 .= '/page/'.$page;
+					$pagination2 .= '&page='.$page;
+				}
 			} else {
 				if (in_context(ZP_INDEX)) {
-					$pagination1 = $page1;
-					$pagination2 = 'index.php?'.trim($page2, '&');
+					$pagination1 = '';
+					$pagination2 = 'index.php';
+					if ($page > 1) {
+						$pagination1 .= '/page/'.$page;
+						$pagination2 .= '?page='.$page;
+					}
 				} else {
 					return NULL;
 				}
@@ -3908,11 +3914,11 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 		}
 	}
 	$urls = '';
-	if (MOD_REWRITE && !is_array($object_list)) {
+	if (MOD_REWRITE && !(is_array($object_list) && array_key_exists('albums', $object_list))) {
 		$url = SEO_WEBPATH . "/page/search/";
 		$rewrite = true;
 	} else {
-		$url = WEBPATH."/index.php?p=search";
+		$url = SEO_WEBPATH."/index.php?p=search";
 		$rewrite = false;
 	}
 	if (!empty($fields) && empty($dates)) {

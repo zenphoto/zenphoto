@@ -84,7 +84,7 @@ function switcher_controllink($ignore) {
 		<?php  generateListFromArray(array($color), $themecolors, false, false); ?>
 	</select>
 	<?php
-	if ($_zp_gallery_page == 'album.php') {
+	if ($_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'search.php') {
 		$personality =getOption('themeSwitcher_effervescence_personality');
 		if (!$personality) {
 			$personality = getOption('effervescence_personality');

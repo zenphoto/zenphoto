@@ -156,7 +156,7 @@ function getGeoCoord($obj) {
 			}
 			$long_c = explode('.',str_replace(',', '.', $exif['EXIFGPSLongitude']));
 			$long_f = round((float) abs($long_c[0])+$long_c[1]/pow(10,strlen($long_c[1])),5);
-			if (strtoupper(substr($exif['EXIFGPSLongitudeRef'])) == 'W') {
+			if (strtoupper(substr($exif['EXIFGPSLongitudeRef'],1)) == 'W') {
 				$long_f = (float) -$long_f;
 			}
 			$result = array('lat'=>$lat_f,'long'=>$long_f, 'title'=>$obj->getTitle(), 'desc'=>$obj->getDesc());
