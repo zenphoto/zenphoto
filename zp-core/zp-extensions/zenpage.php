@@ -65,11 +65,16 @@ if ($_cmsSwitch) {
 
 	$_zp_zenpage = new Zenpage();
 
-	zp_register_filter('checkForGuest', 'zenpageCheckForGuest');
-	zp_register_filter('isMyItemToView', 'zenpageIsMyItemToView');
-	zp_register_filter('admin_toolbox_global', 'zenpage_admin_toolbox_global');
-	zp_register_filter('admin_toolbox_news', 'zenpage_admin_toolbox_news');
-	zp_register_filter('admin_toolbox_pages', 'zenpage_admin_toolbox_pages');
+	zp_register_filter('checkForGuest', 'zenpagecms::checkForGuest');
+	zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
+	zp_register_filter('admin_toolbox_global', 'zenpagecms::admin_toolbox_global');
+	zp_register_filter('admin_toolbox_news', 'zenpagecms::admin_toolbox_news');
+	zp_register_filter('admin_toolbox_pages', 'zenpagecms::admin_toolbox_pages');
+
+	require_once(dirname(__FILE__).'/zenpage/zenpage-class.php');
+	require_once(dirname(__FILE__).'/zenpage/zenpage-class-news.php');
+	require_once(dirname(__FILE__).'/zenpage/zenpage-class-page.php');
+	require_once(dirname(__FILE__).'/zenpage/zenpage-class-category.php');
 }
 
 zp_register_filter('themeSwitcher_head', 'zenpagecms::switcher_head');
@@ -267,119 +272,119 @@ class zenpagecms {
 		<?php
 		return $ignore;
 	}
-}
 
-require_once(dirname(__FILE__).'/zenpage/zenpage-class.php');
-require_once(dirname(__FILE__).'/zenpage/zenpage-class-news.php');
-require_once(dirname(__FILE__).'/zenpage/zenpage-class-page.php');
-require_once(dirname(__FILE__).'/zenpage/zenpage-class-category.php');
 
-// zenpage filters
 
-/**
- * Handles password checks
- * @param string $auth
- */
-function zenpageCheckForGuest($auth) {
-	global $_zp_current_zenpage_page, $_zp_current_category;
-	if (!is_null($_zp_current_zenpage_page)) { // zenpage page
-		$authType = $_zp_current_zenpage_page->checkforGuest();
-		return $authType;
-	} else if (!is_null($_zp_current_category)) {
-		$authType = $_zp_current_category->checkforGuest();
-		return $authType;
+	// zenpage filters
+
+	/**
+	 * Handles password checks
+	 * @param string $auth
+	 */
+	static function checkForGuest($auth) {
+		global $_zp_current_zenpage_page, $_zp_current_category;
+		if (!is_null($_zp_current_zenpage_page)) { // zenpage page
+			$authType = $_zp_current_zenpage_page->checkforGuest();
+			return $authType;
+		} else if (!is_null($_zp_current_category)) {
+			$authType = $_zp_current_category->checkforGuest();
+			return $authType;
+		}
+		return $auth;
 	}
-	return $auth;
-}
 
-/**
- * Handles item ownership
- * returns true for allowed access, false for denyed, returns original parameter if not my gallery page
- * @param bool $fail
- */
-function zenpageIsMyItemToView($fail) {
-	global $_zp_gallery_page,$_zp_current_zenpage_page,$_zp_current_zenpage_news,$_zp_current_category;
-	switch($_zp_gallery_page) {
-		case 'pages.php':
-			if ($_zp_current_zenpage_page->isMyItem(LIST_RIGHTS)) {
-				return true;
-			}
-			break;
-		case 'news.php':
-			if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
-				if ($_zp_current_zenpage_news->isMyItem(LIST_RIGHTS)) {
+	/**
+	 * Handles item ownership
+	 * returns true for allowed access, false for denyed, returns original parameter if not my gallery page
+	 * @param bool $fail
+	 */
+	static function isMyItemToView($fail) {
+		global $_zp_gallery_page,$_zp_current_zenpage_page,$_zp_current_zenpage_news,$_zp_current_category;
+		switch($_zp_gallery_page) {
+			case 'pages.php':
+				if ($_zp_current_zenpage_page->isMyItem(LIST_RIGHTS)) {
 					return true;
 				}
-			} else {	//	must be category or main news page?
-				if (zp_loggedin(ALL_NEWS_RIGHTS) || !is_object($_zp_current_category) || !$_zp_current_category->isProtected()) {
-					return true;
-				}
-				if (is_object($_zp_current_category)) {
-					if ($_zp_current_category->isMyItem(LIST_RIGHTS)) {
+				break;
+			case 'news.php':
+				if (in_context(ZP_ZENPAGE_NEWS_ARTICLE)) {
+					if ($_zp_current_zenpage_news->isMyItem(LIST_RIGHTS)) {
 						return true;
 					}
+				} else {	//	must be category or main news page?
+					if (zp_loggedin(ALL_NEWS_RIGHTS) || !is_object($_zp_current_category) || !$_zp_current_category->isProtected()) {
+						return true;
+					}
+					if (is_object($_zp_current_category)) {
+						if ($_zp_current_category->isMyItem(LIST_RIGHTS)) {
+							return true;
+						}
+					}
 				}
-			}
-			return false;
-			break;
+				return false;
+				break;
+		}
+		return $fail;
 	}
-	return $fail;
-}
 
-/**
- *
- * Zenpage admin toolbox links
- */
-function zenpage_admin_toolbox_global($zf) {
-	if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
-		// admin has zenpage rights, provide link to the Zenpage admin tab
-		echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-news-articles.php\">".gettext("News")."</a></li>";
-	}
-	if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
-		echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-pages.php\">".gettext("Pages")."</a></li>";
-	}
-	return $zf;
-}
-function zenpage_admin_toolbox_pages($redirect, $zf) {
-	if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
-			// page is zenpage page--provide edit, delete, and add links
-			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=".urlencode(getPageTitlelink())."\">".gettext("Edit Page")."</a></li>";
-			if (GALLERY_SESSION) {
-				// XSRF defense requires sessions
-				?>
-				<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/page-admin.php?del=<?php echo getPageID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deletePage)"
-					title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?>
-				</a></li>
-				<?php
-			}
-			echo "<li><a href=\"".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;add\">".gettext("Add Page")."</a></li>";
-	}
-	return $redirect.'&amp;title='.urlencode(getPageTitlelink());
-}
-function zenpage_admin_toolbox_news($redirect, $zf) {
-	global $_zp_current_category;
-	if (is_NewsArticle()) {
+	/**
+	 *
+	 * Zenpage admin toolbox links
+	 */
+	static function admin_toolbox_global($zf) {
 		if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
-			// page is a NewsArticle--provide zenpage edit, delete, and Add links
-			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=".urlencode(getNewsTitlelink())."\">".gettext("Edit Article")."</a></li>";
-			if (GALLERY_SESSION) {
-				// XSRF defense requires sessions
-				?>
-				<li>
-					<a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
-						title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?>	</a>
-				</li>
-				<?php
-			}
-			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;add\">".gettext("Add Article")."</a></li>";
+			// admin has zenpage rights, provide link to the Zenpage admin tab
+			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-news-articles.php\">".gettext("News")."</a></li>";
 		}
-		$redirect .= '&amp;title='.urlencode(getNewsTitlelink());
-	} else {
-
-		if (!empty($_zp_current_category)) {
-			$redirect .= '&amp;category='.$_zp_current_category->getTitlelink();
+		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
+			echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-pages.php\">".gettext("Pages")."</a></li>";
 		}
+		return $zf;
 	}
-	return $redirect;
+
+	static function admin_toolbox_pages($redirect, $zf) {
+		if (zp_loggedin(ZENPAGE_PAGES_RIGHTS)) {
+				// page is zenpage page--provide edit, delete, and add links
+				echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;edit&amp;titlelink=".urlencode(getPageTitlelink())."\">".gettext("Edit Page")."</a></li>";
+				if (GALLERY_SESSION) {
+					// XSRF defense requires sessions
+					?>
+					<li><a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/page-admin.php?del=<?php echo getPageID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deletePage)"
+						title="<?php echo gettext("Delete page"); ?>"><?php echo gettext("Delete Page"); ?>
+					</a></li>
+					<?php
+				}
+				echo "<li><a href=\"".FULLWEBPATH."/".ZENFOLDER.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?page&amp;add\">".gettext("Add Page")."</a></li>";
+		}
+		return $redirect.'&amp;title='.urlencode(getPageTitlelink());
+	}
+
+	static function admin_toolbox_news($redirect, $zf) {
+		global $_zp_current_category;
+		if (is_NewsArticle()) {
+			if (zp_loggedin(ZENPAGE_NEWS_RIGHTS)) {
+				// page is a NewsArticle--provide zenpage edit, delete, and Add links
+				echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;edit&amp;titlelink=".urlencode(getNewsTitlelink())."\">".gettext("Edit Article")."</a></li>";
+				if (GALLERY_SESSION) {
+					// XSRF defense requires sessions
+					?>
+					<li>
+						<a href="javascript:confirmDelete('<?php echo $zf.'/'.PLUGIN_FOLDER; ?>/zenpage/admin-news-articles.php?del=<?php echo getNewsID(); ?>&amp;XSRFToken=<?php echo getXSRFToken('delete'); ?>',deleteArticle)"
+							title="<?php echo gettext("Delete article"); ?>"><?php echo gettext("Delete Article"); ?>	</a>
+					</li>
+					<?php
+				}
+				echo "<li><a href=\"".$zf.'/'.PLUGIN_FOLDER."/zenpage/admin-edit.php?newsarticle&amp;add\">".gettext("Add Article")."</a></li>";
+			}
+			$redirect .= '&amp;title='.urlencode(getNewsTitlelink());
+		} else {
+
+			if (!empty($_zp_current_category)) {
+				$redirect .= '&amp;category='.$_zp_current_category->getTitlelink();
+			}
+		}
+		return $redirect;
+	}
+
 }
 ?>
