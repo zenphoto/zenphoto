@@ -53,7 +53,7 @@ if (getOption('Allow_search')) {
 	<?php
 }
 
-if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
+if (function_exists('printCustomMenu') && getThemeOption('custom_index_page', NULL, 'garland') === 'gallery' && ($menu = getThemeOption('garland_menu'))) {
 	?>
 	<!-- custom menu -->
 	<div class="menu">
@@ -65,7 +65,7 @@ if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
 } else {	//	"standard zenpage sidebar menus
 	?>
 	<!-- standard menu -->	<?php
-	if(function_exists("printAllNewsCategories")) {
+	if(getOption('zp_plugin_zenpage')) {
 		if (getNumNews(true)) {
 			?>
 			<div class="menu">
@@ -112,7 +112,7 @@ if(function_exists('printCustomMenu') && ($menu = getOption('garland_menu'))) {
 	?>
 
 	<?php
-	if(function_exists("printPageMenu")) {
+	if (getOption('zp_plugin_zenpage')) {
 		if (getNumPages(true)) {
 			?>
 			<div class="menu">

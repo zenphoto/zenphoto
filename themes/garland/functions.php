@@ -33,21 +33,21 @@ function switcher_head($ignore) {
 	return $ignore;
 }
 
-function switcher_controllink($ignore) {
+function switcher_controllink($html) {
 	global $personalities, $_zp_gallery_page;
-	if ($_zp_gallery_page == 'album.php') {
-		$personality =getOption('themeSwitcher_garland_personality');
-		if (!$personality) {
-			$personality = getOption('garland_personality');
-		}
-		echo gettext('Personality');
-		?>
+	$personality =getOption('themeSwitcher_garland_personality');
+	if (!$personality) {
+		$personality = getOption('garland_personality');
+	}
+	echo gettext('Personality');
+	?>
+	<span id="themeSwitcher_garland">
 		<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
 			<?php generateListFromArray(array($personality), $personalities, false, true); ?>
 		</select>
-		<?php
-	}
-	return $ignore;
+	</span>
+	<?php
+	return $html;
 }
 
 function gMapOptionsImage($map) {

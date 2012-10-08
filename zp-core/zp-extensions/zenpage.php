@@ -45,7 +45,19 @@ $plugin_notice = gettext("<strong>Note:</strong> This feature must be integrated
 $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
 
-if (!isset($_GET['cmsSwitch']) || $_GET['cmsSwitch']=='true') {
+$_cmsSwitch = true;
+if (isset($_GET['cmsSwitch'])) {
+	setOption('themeSwitcher_zenpage_switch',$_cmsSwitch = (int) ($_GET['cmsSwitch']=='true'));
+	if (!$_cmsSwitch) {
+		setOption('zp_plugin_zenpage', 0, false);
+	}
+} else {
+	if (!is_null($_cmsSwitch = getOption('themeSwitcher_zenpage_switch')) &&  !$_cmsSwitch) {
+		setOption('zp_plugin_zenpage', 0, false);
+	}
+}
+
+if ($_cmsSwitch) {
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class.php');
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-news.php');
 	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-page.php');
@@ -58,11 +70,10 @@ if (!isset($_GET['cmsSwitch']) || $_GET['cmsSwitch']=='true') {
 	zp_register_filter('admin_toolbox_global', 'zenpage_admin_toolbox_global');
 	zp_register_filter('admin_toolbox_news', 'zenpage_admin_toolbox_news');
 	zp_register_filter('admin_toolbox_pages', 'zenpage_admin_toolbox_pages');
-} else {
-	setOption('zp_plugin_zenpage', 0, false);
 }
+
 zp_register_filter('themeSwitcher_head', 'zenpagecms::switcher_head');
-zp_register_filter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink');
+zp_register_filter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink', 0);
 
 class zenpagecms {
 
@@ -242,11 +253,17 @@ class zenpagecms {
 	}
 
 	static function switcher_controllink($ignore) {
+		global $_cmsSwitch;
+		if (is_null($_cmsSwitch)) {
+			$_cmsSwitch = true;
+		}
 		?>
-		<label>
-			Zenpage
-			<input type="checkbox" name="cmsSwitch" id="cmsSwitch" value="1"<?php if (!isset($_GET['cmsSwitch']) || $_GET['cmsSwitch']=='true') echo ' checked="checked"'; ?> onclick="switchCMS(this.checked);" />
-		</label>
+		<span id="themeSwitcher_zenpage">
+			<label>
+				Zenpage
+				<input type="checkbox" name="cmsSwitch" id="cmsSwitch" value="1"<?php if($_cmsSwitch) echo ' checked="checked"'; ?> onclick="switchCMS(this.checked);" />
+			</label>
+		</span>
 		<?php
 		return $ignore;
 	}

@@ -13,7 +13,7 @@ if(function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'
 	</div>
 	<?php
 } else {	//	"standard zenpage sidebar menus
-	if(function_exists("printAllNewsCategories")) {
+	if (getOption('zp_plugin_zenpage')) {
 		if (getNumNews(true)) {
 			?>
 			<div class="menu">
@@ -45,7 +45,7 @@ if(function_exists('printCustomMenu') && ($menu = getOption('effervescence_menu'
 		<div class="menu_rule"></div>
 	</div>
 	<?php
-	if(function_exists("printPageMenu")) {
+	if (getOption('zp_plugin_zenpage')) {
 		if (getNumPages(true)) {
 			?>
 			<div class="menu">

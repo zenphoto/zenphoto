@@ -12,7 +12,7 @@ if (!defined('SEO_FULLWEBPATH')) {
 	define('SEO_FULLWEBPATH',FULLWEBPATH);
 	define('SEO_WEBPATH',WEBPATH);
 }
-if(class_exists('Zenpage')) {
+if(getOption('zp_plugin_zenpage')) {
 	require_once(dirname(__FILE__).'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
 }
 

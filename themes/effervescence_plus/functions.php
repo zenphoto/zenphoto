@@ -80,11 +80,11 @@ function switcher_controllink($ignore) {
 	}
 	echo gettext('Theme Color');
 	?>
-	<select name="themeColor" id="themeColor" onchange="switchColors();">
-		<?php  generateListFromArray(array($color), $themecolors, false, false); ?>
-	</select>
-	<?php
-	if ($_zp_gallery_page == 'album.php' || $_zp_gallery_page == 'search.php') {
+	<span id="themeSwitcher_effervescence">
+		<select name="themeColor" id="themeColor" onchange="switchColors();">
+			<?php  generateListFromArray(array($color), $themecolors, false, false); ?>
+		</select>
+		<?php
 		$personality =getOption('themeSwitcher_effervescence_personality');
 		if (!$personality) {
 			$personality = getOption('effervescence_personality');
@@ -94,8 +94,8 @@ function switcher_controllink($ignore) {
 		<select name="themePersonality" id="themePersonality" onchange="switchPersonality();">
 			<?php generateListFromArray(array($personality), $personalities, false, true); ?>
 		</select>
-		<?php
-	}
+	</span>
+	<?php
 	return $ignore;
 }
 
