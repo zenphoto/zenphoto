@@ -305,12 +305,12 @@ if ($rootrights || !empty($albumlist)) {
 			<?php
 				if (isset($_GET['folderdisplay'])) {
 					?>
-					$('#folderdisplay').val('<?php echo sanitize($_GET['folderdisplay']); ?>');
+					$('#folderdisplay').val('<?php echo html_encode(sanitize($_GET['folderdisplay'])); ?>');
 					<?php
 				}
 				if (isset($_GET['albumtitle'])) {
 					?>
-					$('#albumtitle').val('<?php echo sanitize($_GET['albumtitle']); ?>');
+					$('#albumtitle').val('<?php echo html_encode(sanitize($_GET['albumtitle'])); ?>');
 					<?php
 				}
 				if (isset($_GET['autogen']) && !$_GET['autogen']) {

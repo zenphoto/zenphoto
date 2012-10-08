@@ -283,7 +283,10 @@ if ((isset($_GET['ndeleted']) && $_GET['ndeleted'] > 0) || isset($_GET['sedit'])
 <?php
 	if (isset($_GET['ndeleted'])) {
 		?>
-		<h2><?php echo $_GET['ndeleted']; ?> <?php echo gettext("Comments deleted successfully."); ?></h2>
+		<h2><?php
+		$n = sanitize_numeric($_GET['ndeleted']);
+		printf(ngettext("%u Comment deleted successfully.","%u Comment deleted successfully.",$n),$n);
+		?></h2>
 		<?php
 	}
 	if (isset($_GET['sedit'])) {

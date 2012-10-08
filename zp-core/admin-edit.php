@@ -1543,7 +1543,7 @@ if($subtab != "albuminfo") {	?>
 	}
 	?>
 <h1>
-	<?php echo gettext("Edit All Albums in"); ?> <?php if (!isset($_GET['album'])) { echo gettext("Gallery");} else {echo "<em>" . $album->name . "</em>";}?>
+	<?php echo gettext("Edit All Albums in"); ?> <?php if (!isset($_GET['album'])) { echo gettext("Gallery");} else {echo "<em>" . html_encode($album->name) . "</em>";}?>
 </h1>
 <?php consolidatedEditMessages('massedit'); ?>
 <form name="albumedit" autocomplete="off"	action="?page=edit&amp;action=save<?php echo $albumdir ?>" method="POST">

@@ -102,13 +102,13 @@ printLogoAndLinks();
 			<h1><?php echo gettext('Articles'); ?>
 			<?php
 			if (isset($_GET['category'])) {
-				echo "<em>".sanitize($_GET['category']).'</em>';
+				echo "<em>".html_encode(sanitize($_GET['category'])).'</em>';
 			}
 			if (isset($_GET['date'])) {
-				echo '<em><small> ('.$_GET['date'].')</small></em>';
+				$_zp_post_date = sanitize($_GET['date']);
+				echo '<em><small> ('.html_encode($_zp_post_date).')</small></em>';
 				// require so the date dropdown is working
 				set_context(ZP_ZENPAGE_NEWS_DATE);
-				$_zp_post_date = sanitize($_GET['date']);
 			}
 			if(isset($_GET['published'])) {
 				switch ($_GET['published']) {
