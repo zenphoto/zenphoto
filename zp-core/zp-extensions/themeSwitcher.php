@@ -9,7 +9,11 @@
  *
  * No theme participation is needed for this plugin. But to accomplish this independence the
  * plugin will load a small css block in the theme head. The actual styling is an option to the plugin.
+ * A theme may replace this css via the <var>themeSwitcher_css</var> filter.
  *
+ * Themes and plugins may use the <var>themeSwitcher_head</var> and <var>themeSwitcher_controllink</var> filters to add (or remove)
+ * switcher controls. The <i><var>active()</var></i> method may be called to see if <i>themeSwitcher</i> will display
+ * the control links.
  *
  * @package plugins
  */
@@ -84,12 +88,12 @@ class themeSwitcher {
 		return $theme;
 	}
 
-	static function head() {
+	static function head($css) {
 		global $_themeSwitcherThemelist;
 		if (getOption('themeSwitcher_css')) {
 			?>
 			<style type="text/css">
-				<?php echo getOption('themeSwitcher_css'); ?>
+				<?php echo zp_apply_filter('themeSwitcher_css',getOption('themeSwitcher_css')); ?>
 			</style>
 			<?php
 		}
@@ -104,6 +108,7 @@ class themeSwitcher {
 		</script>
 		<?php
 		$_themeSwitcherThemelist = zp_apply_filter('themeSwitcher_head',$_themeSwitcherThemelist);
+		return $css;
 	}
 
 	/**
@@ -112,13 +117,8 @@ class themeSwitcher {
 	 * @param string $text link text
 	 */
 	static function controlLink($textIn=NULL) {
-		global $_zp_gallery, $_showNotLoggedin_real_auth, $_themeSwitcherThemelist;
-		if (isset($_showNotLoggedin_real_auth)) {
-			$loggedin = $_showNotLoggedin_real_auth->getRights();
-		} else {
-			$loggedin = zp_loggedin();
-		}
-		if (!getOption('themeSwitcher_adminOnly') || $loggedin & (ADMIN_RIGHTS | THEMES_RIGHTS)) {
+		global $_zp_gallery, $_themeSwitcherThemelist;
+		if (self::active()) {
 			$themes = array();
 			foreach ($_zp_gallery->getThemes() as $theme=>$details) {
 				if ($_themeSwitcherThemelist[$theme]) {
@@ -140,6 +140,16 @@ class themeSwitcher {
 		<?php
 		}
 		return $textIn;
+	}
+
+	static function active() {
+		global $_showNotLoggedin_real_auth;
+		if (isset($_showNotLoggedin_real_auth)) {
+			$loggedin = $_showNotLoggedin_real_auth->getRights();
+		} else {
+			$loggedin = zp_loggedin();
+		}
+		return !getOption('themeSwitcher_adminOnly') || $loggedin & (ADMIN_RIGHTS | THEMES_RIGHTS);
 	}
 
 }

@@ -1066,7 +1066,12 @@ function printCustomMenu($menuset='default', $option='list',$css_id='',$css_clas
 						echo $item['link'];
 						break;
 					case 'menufunction':
-						eval($itemURL);
+						$i = strpos($itemURL, '(');
+						if ($i) {
+							if (function_exists(trim(substr($itemURL,0,$i)))) {
+								eval($itemURL);
+							}
+						}
 						break;
 					case 'menulabel':
 						echo $itemtitle;

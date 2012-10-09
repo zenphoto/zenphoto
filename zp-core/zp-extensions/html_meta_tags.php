@@ -372,7 +372,7 @@ class htmlmetatags {
 			$tags = array_keys(getAllTagsCount()); // get all if no specific item is set
 			$words .= htmlmetatags::getMetaAlbumAndImageTags($tags,"gallery");
 		}
-		if(function_exists("getNewsCategories")) {
+		if(getOption('zp_plugin_zenpage')) {
 			if(is_NewsArticle()) {
 				$tags = getNewsCategories(getNewsID());
 				$words .= htmlmetatags::getMetaAlbumAndImageTags($tags,"zenpage");

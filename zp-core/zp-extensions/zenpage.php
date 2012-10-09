@@ -46,39 +46,27 @@ $plugin_author = "Malte Müller (acrylian), Stephen Billard (sbillard)";
 $option_interface = 'zenpagecms';
 
 $_cmsSwitch = true;
-if (isset($_GET['cmsSwitch'])) {
-	setOption('themeSwitcher_zenpage_switch',$_cmsSwitch = (int) ($_GET['cmsSwitch']=='true'));
-	if (!$_cmsSwitch) {
-		setOption('zp_plugin_zenpage', 0, false);
-	}
-} else {
-	if (!is_null($_cmsSwitch = getOption('themeSwitcher_zenpage_switch')) &&  !$_cmsSwitch) {
-		setOption('zp_plugin_zenpage', 0, false);
-	}
-}
 
-if ($_cmsSwitch) {
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class.php');
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-news.php');
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-page.php');
-	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-category.php');
-
-	$_zp_zenpage = new Zenpage();
-
-	zp_register_filter('checkForGuest', 'zenpagecms::checkForGuest');
-	zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
-	zp_register_filter('admin_toolbox_global', 'zenpagecms::admin_toolbox_global');
-	zp_register_filter('admin_toolbox_news', 'zenpagecms::admin_toolbox_news');
-	zp_register_filter('admin_toolbox_pages', 'zenpagecms::admin_toolbox_pages');
-
-	require_once(dirname(__FILE__).'/zenpage/zenpage-class.php');
-	require_once(dirname(__FILE__).'/zenpage/zenpage-class-news.php');
-	require_once(dirname(__FILE__).'/zenpage/zenpage-class-page.php');
-	require_once(dirname(__FILE__).'/zenpage/zenpage-class-category.php');
-}
-
+zp_register_filter('checkForGuest', 'zenpagecms::checkForGuest');
+zp_register_filter('isMyItemToView', 'zenpagecms::isMyItemToView');
+zp_register_filter('admin_toolbox_global', 'zenpagecms::admin_toolbox_global');
+zp_register_filter('admin_toolbox_news', 'zenpagecms::admin_toolbox_news');
+zp_register_filter('admin_toolbox_pages', 'zenpagecms::admin_toolbox_pages');
 zp_register_filter('themeSwitcher_head', 'zenpagecms::switcher_head');
 zp_register_filter('themeSwitcher_Controllink', 'zenpagecms::switcher_controllink', 0);
+zp_register_filter('load_theme_script', 'zenpagecms::switcher_setup', 0);
+
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-news.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-page.php');
+require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-class-category.php');
+
+$_zp_zenpage = new Zenpage();
+
+require_once(dirname(__FILE__).'/zenpage/zenpage-class.php');
+require_once(dirname(__FILE__).'/zenpage/zenpage-class-news.php');
+require_once(dirname(__FILE__).'/zenpage/zenpage-class-page.php');
+require_once(dirname(__FILE__).'/zenpage/zenpage-class-category.php');
 
 class zenpagecms {
 
@@ -273,7 +261,27 @@ class zenpagecms {
 		return $ignore;
 	}
 
-
+	static function switcher_setup($ignore) {
+		global $_cmsSwitch, $_zp_zenpage;
+		if (class_exists('themeSwitcher') && themeSwitcher::active()) {
+			if (isset($_GET['cmsSwitch'])) {
+				setOption('themeSwitcher_zenpage_switch',$_cmsSwitch = (int) ($_GET['cmsSwitch']=='true'));
+				if (!$_cmsSwitch) {
+					setOption('zp_plugin_zenpage', 0, false);
+				}
+			} else {
+				if (!is_null($_cmsSwitch = getOption('themeSwitcher_zenpage_switch')) &&  !$_cmsSwitch) {
+					setOption('zp_plugin_zenpage', 0, false);
+				}
+			}
+		}
+		if ($_cmsSwitch) {
+			require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
+		} else {
+			$_zp_zenpage = NULL;
+		}
+		return $ignore;
+	}
 
 	// zenpage filters
 

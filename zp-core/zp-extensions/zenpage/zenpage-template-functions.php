@@ -3167,8 +3167,4 @@ function zenpageAlbumImage($albumname, $imagename=NULL, $size=NULL, $linkalbum=f
 		<?php
 	}
 }
-
-// page password functions
-
-
 ?>

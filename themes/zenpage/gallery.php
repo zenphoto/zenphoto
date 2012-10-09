@@ -32,7 +32,9 @@ if (!defined('WEBPATH')) die();
 	</h2>
 	</div>
 	<div id="content-left">
-	<?php if(isset($_zp_zenpage) && !($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news")) OR !function_exists("printNewsPageListWithNav")) { ?>
+	<?php
+	if(!getOption('zp_plugin_zenpage') || !($_zp_zenpage->news_on_index = getOption("zenpage_zp_index_news"))) {
+	?>
 	<?php printGalleryDesc(); ?>
 	<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 			<div id="albums">
@@ -52,33 +54,34 @@ if (!defined('WEBPATH')) die();
 		<br style="clear: both" />
 		<?php printPageListWithNav("« ".gettext("prev"), gettext("next")." »"); ?>
 
-	<?php } else { // news article loop
-printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
-echo "<hr />";
-while (next_news()): ;?>
- <div class="newsarticle">
-		<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".getNewsType()."]</span>"; ?></h3>
-				<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate();?> | <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?></span>
-<?php
-if(is_GalleryNewsType()) {
-	if(!is_NewsType("album")) {
-		echo " | ".gettext("Album:")."<a href='".getNewsAlbumURL()."' title='".getBareNewsAlbumTitle()."'> ".getNewsAlbumTitle()."</a>";
-	} else {
-		echo "<br />";
-	}
-} else {
-	printNewsCategories(", ",gettext("Categories: "),"newscategories");
-
-}
-?>
-</div>
-		<?php printNewsContent(); ?>
-		<?php printCodeblock(1); ?>
-		<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
-		</div>
-<?php
-	endwhile;
+	<?php
+} else { // news article loop
 	printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
+	echo "<hr />";
+	while (next_news()): ;?>
+	 <div class="newsarticle">
+			<h3><?php printNewsTitleLink(); ?><?php echo " <span class='newstype'>[".getNewsType()."]</span>"; ?></h3>
+					<div class="newsarticlecredit"><span class="newsarticlecredit-left"><?php printNewsDate();?> | <?php echo gettext("Comments:"); ?> <?php echo getCommentCount(); ?></span>
+	<?php
+	if(is_GalleryNewsType()) {
+		if(!is_NewsType("album")) {
+			echo " | ".gettext("Album:")."<a href='".getNewsAlbumURL()."' title='".getBareNewsAlbumTitle()."'> ".getNewsAlbumTitle()."</a>";
+		} else {
+			echo "<br />";
+		}
+	} else {
+		printNewsCategories(", ",gettext("Categories: "),"newscategories");
+
+	}
+	?>
+	</div>
+			<?php printNewsContent(); ?>
+			<?php printCodeblock(1); ?>
+			<?php printTags('links', gettext('<strong>Tags:</strong>').' ', 'taglist', ', '); ?>
+			</div>
+	<?php
+		endwhile;
+		printNewsPageListWithNav(gettext('next »'), gettext('« prev'),true,'pagelist',true);
 } ?>
 
 </div><!-- content left-->
