@@ -27,6 +27,10 @@ class contactformOptions {
 
 	function contactformOptions() {
 		global $_zp_authority;
+
+		if (OFFSET_PATH==2 && !getOption('contactform_mailaddress')) {
+			purgeOption('contactform_mailaddress');
+		}
 		gettext($str = '<p>Fields with <strong>*</strong> are required. HTML or any other code is not allowed.</p>');
 		setOptionDefault('contactform_introtext', getAllTranslations($str));
 		gettext($str = '<p>Please confirm that you really want to send this email. Thanks.</p>');
@@ -58,7 +62,9 @@ class contactformOptions {
 		foreach ($mailings as $email) {
 			$email_list .= ';'.$email;
 		}
-		setOptionDefault('contactform_mailaddress', substr($email_list,1));
+		if ($email_list) {
+			setOptionDefault('contactform_mailaddress', substr($email_list,1));
+		}
 	}
 
 
