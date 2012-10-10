@@ -94,9 +94,10 @@ class Zenpage {
 	 * NOTE: Since this function only returns titlelinks for use with the object model it does not exclude pages that are password protected
 	 *
 	 * @param bool $published TRUE for published or FALSE for all pages including un-published
+	 * @param bool $toplevel TRUE for only the toplevel pages
 	 * @return array
 	 */
-	function getPages($published=NULL) {
+	function getPages($published=NULL,$toplevel=false) {
 		global $_zp_loggedin;
 		$this->processExpired('pages');
 		if (is_null($published)) {
@@ -105,10 +106,13 @@ class Zenpage {
 		} else {
 			$all = !$published;;
 		}
+		$gettop = '';
 		if($published) {
-			$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'";
+			if($toplevel) $gettop = " AND parentid IS NULL";
+			$show = " WHERE `show` = 1 AND date <= '".date('Y-m-d H:i:s')."'".$gettop;
 		} else {
-			$show = '';
+			if($toplevel) $gettop = " WHERE parentid IS NULL";
+			$show = $gettop;
 		}
 		$all_pages = array(); // Disabled cache var for now because it does not return un-publishded and published if logged on index.php somehow if logged in.
 		$result  = query("SELECT * FROM ".prefix('pages').$show." ORDER by `sort_order`");
