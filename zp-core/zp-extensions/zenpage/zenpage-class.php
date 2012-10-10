@@ -272,6 +272,23 @@ class Zenpage {
 		}
 		return $result;
 	}
+/**
+	 * Returns an article from the album based on the index passed.
+	 *
+	 * @param int $index
+	 * @return int
+	 */
+function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='desc',$sticky=true) {
+	$articles = $this->getArticles(0,NULL,true,$sortorder,$sortdirection,$sticky);
+	if ($index >= 0 && $index < count($articles)) {
+		$article = $articles[$index];
+		$obj = new ZenpageNews($articles[$index]['titlelink']);
+		return $obj;
+	}
+	return false;
+}
+
+
 
 	/**
 	 * Gets the LIMIT and OFFSET for the query that gets the news articles

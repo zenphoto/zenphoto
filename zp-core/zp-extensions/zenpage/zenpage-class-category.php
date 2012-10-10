@@ -384,6 +384,65 @@ class ZenpageCategory extends ZenpageRoot {
 		return $result;
 	}
 
+/**
+	 * Returns an article from the album based on the index passed.
+	 *
+	 * @param int $index
+	 * @return int
+	 */
+function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='desc',$sticky=true) {
+	$articles = $this->getArticles(0,$published,true,$sortorder,$sortdirection,sticky); // pagination not needed
+	if ($index >= 0 && $index < count($articles)) {
+		return $articles[$index];
+	}
+	return false;
+}
+
+
+/**
+	 * Get the index of this article
+	 *
+	 * @return int
+	 */
+	function getIndex($sortorder,$sortdirection,$sticky) {
+		global $_zp_zenpage, $_zp_current_zenpage_news;
+		if($this->index == NULL) {
+			$articles = $_zp_zenpage->getArticles(0,NULL,true,$sortorder,$sortdirection,sticky);
+			for ($i=0; $i < count($articles); $i++) {
+				$article = $articles[$i];
+				if($this->getTitlelink() == $article['titlelink']) {
+					$this->index = $i;
+					break;
+				}
+			}
+		}
+		return $this->index;
+	}
+
+/**
+	 * Return the previous article
+	 *
+	 * @return object
+	 */
+	function getPrevArticle($sortorder='date',$sortdirection='desc',$sticky=true) {
+		global $_zp_zenpage, $_zp_current_zenpage_news;
+		$index = $this->getIndex($sortorder,$sortdirection,$sticky);
+		$article = $this->getArticle($index-1);
+		return $article;
+	}
+	
+	/**
+	 * Returns the next article.
+	 *
+	 * @return object
+	 */
+	function getNextArticle($sortorder='date',$sortdirection='desc',$sticky=true) {
+		global $_zp_zenpage, $_zp_current_zenpage_news;
+		$index = $this->getIndex($sortorder,$sortdirection,$sticky);
+		$article = $this->getArticle($index+1);
+		return $article;
+	}
+
 
 	/**
  * Returns the full path to a news category

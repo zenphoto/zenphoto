@@ -1737,46 +1737,25 @@ function getTotalNewsPages() {
  */
 function getNextPrevNews($option='',$sortorder='date',$sortdirection='desc') {
 	global $_zp_zenpage,$_zp_current_zenpage_news;
-	$article_url = array();
-	if(!ZP_COMBINEWS) {
-		$current = 0;
+	if(ZP_COMBINEWS) {
+		return false;
+	} else {
 		if(!empty($option)) {
-			$all_articles = $_zp_zenpage->getArticles(0,NULL,false,$sortorder,$sortdirection);
-			$count = 0;
-			foreach($all_articles as $article) {
-				$newsobj = new ZenpageNews($article['titlelink']);
-				$count++;
-				$title[$count] = $newsobj->getTitle();
-				$titlelink[$count] = $newsobj->getTitlelink();
-				if($titlelink[$count] == $_zp_current_zenpage_news->getTitlelink()){
-					$current = $count;
-				}
-			}
 			switch($option) {
 				case "prev":
-					$prev = $current - 1;
-					if($prev > 0) {
-						$articlelink = getNewsURL($title[$prev]);
-						$articletitle = $title[$prev];
-						$article_url = array("link" => getNewsURL($titlelink[$prev]), "title" => $title[$prev]);
-					}
+					$article = $_zp_current_zenpage_news->getPrevArticle($sortorder,$sortdirection);
+					if(!$article) return false;
+					return array("link" => getNewsURL($article->getTitlelink()), "title" => $article->getTitle());
 					break;
 				case "next":
-					$next = $current + 1;
-					if($next <= $count){
-						$articlelink = getNewsURL($title[$next]);
-						$articletitle = $title[$next];
-						$article_url = array("link" => getNewsURL($titlelink[$next]), "title" => $title[$next]);
-					}
+					$article = $_zp_current_zenpage_news->getNextArticle($sortorder,$sortdirection);
+					if(!$article) return false;
+					return array("link" => getNewsURL($article->getTitlelink()), "title" => $article->getTitle());
 					break;
 			}
-			return $article_url;
-		} else {
 			return false;
 		}
-	} else {
-		return false;
-	}
+	} 
 }
 
 /**

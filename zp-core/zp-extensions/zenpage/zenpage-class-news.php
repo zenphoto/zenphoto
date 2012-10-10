@@ -13,6 +13,7 @@ class ZenpageNews extends ZenpageItems {
 	var $manage_some_rights = ZENPAGE_NEWS_RIGHTS;
 	var $view_rights = ALL_NEWS_RIGHTS;
 	var $categories = NULL;
+	var $index = NULL;
 
 	function __construct($titlelink, $allowCreate=NULL) {
 		$new = parent::PersistentObject('news', array('titlelink'=>$titlelink), 'titlelink', true, empty($titlelink), $allowCreate);
@@ -268,6 +269,51 @@ class ZenpageNews extends ZenpageItems {
 	function getNewsLink() {
 		global $_zp_zenpage;
 		return $_zp_zenpage->getNewsBaseURL().$_zp_zenpage->getNewsTitlePath().urlencode($this->getTitlelink());
+	}
+
+
+	/**
+	 * Get the index of this article
+	 *
+	 * @return int
+	 */
+	function getIndex($sortorder,$sortdirection,$sticky) {
+		global $_zp_zenpage, $_zp_current_zenpage_news;
+		if($this->index == NULL) {
+			$articles = $_zp_zenpage->getArticles(0,NULL,true,$sortorder,$sortdirection,$sticky);
+			for ($i=0; $i < count($articles); $i++) {
+				$article = $articles[$i];
+				if($this->getTitlelink() == $article['titlelink']) {
+					$this->index = $i;
+					break;
+				}
+			}
+		}
+		return $this->index;
+	}
+
+	/**
+	 * Return the previous article
+	 *
+	 * @return object
+	 */
+	function getPrevArticle($sortorder='date',$sortdirection='desc',$sticky=true) {
+		global $_zp_zenpage, $_zp_current_zenpage_news;
+		$index = $this->getIndex($sortorder,$sortdirection,$sticky);
+		$article = $_zp_zenpage->getArticle($index-1);
+		return $article;
+	}
+	
+	/**
+	 * Returns the next article.
+	 *
+	 * @return object
+	 */
+	function getNextArticle($sortorder='date',$sortdirection='desc',$sticky=true) {
+		global $_zp_zenpage, $_zp_current_zenpage_news;
+		$index = $this->getIndex($sortorder,$sortdirection,$sticky);
+		$article = $_zp_zenpage->getArticle($index+1);
+		return $article;
 	}
 
 } // zenpage news class end
