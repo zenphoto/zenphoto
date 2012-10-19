@@ -38,6 +38,9 @@ class auto_backup {
 	function auto_backup() {
 		setOptionDefault('backup_interval', 7);
 		setOptionDefault('backups_to_keep', 5);
+		if (OFFSET_PATH==2) {
+			self::timer_handler('');
+		}
 	}
 
 
@@ -47,20 +50,22 @@ class auto_backup {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return  array(	gettext('Run interval') => array('key' => 'backup_interval', 'type' => OPTION_TYPE_TEXTBOX,
+		$options = array(	gettext('Run interval') => array('key' => 'backup_interval', 'type' => OPTION_TYPE_TEXTBOX,
 												'order'=>1,
 												'desc' => gettext('The run interval (in days) for auto backup.')),
-										gettext('Last backup') => array('key' => 'last_backup_run', 'type' => OPTION_TYPE_CUSTOM,
-												'order'=>2,
-												'desc' => gettext('Last time Auto Backup ran.')),
 										gettext('Backups to keep') => array('key' => 'backups_to_keep', 'type' => OPTION_TYPE_TEXTBOX,
 												'order'=>0,
 												'desc' => gettext('Auto backup will keep only this many backup sets. Older sets will be removed.'))
 		);
+		if ($d = getOption('last_backup_run')) {
+			$options[gettext('Last backup')] = array('key' => 'last_backup_run', 'type' => OPTION_TYPE_NOTE,
+												'order'=>2,
+												'desc' => '<p class="notebox">'.sprintf(gettext('Auto Backup last ran %s.'),date('Y-m-d H:i:s',$d)).'</p>');
+		}
+		return $options;
 	}
 
 	function handleOption($option, $currentValue) {
-		echo date('Y-m-d H:i:s', getOption('last_backup_run'));
 	}
 
 	/**
@@ -88,9 +93,9 @@ class auto_backup {
 			@chmod(SERVERPATH . "/" . BACKUPFOLDER.'/'.$file, 0666);
 			unlink(SERVERPATH . "/" . BACKUPFOLDER.'/'.$file);
 		}
-
 		cron_starter(	SERVERPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/backup_restore.php',
-									array('backup'=>1,'autobackup'=>1,'compress'=>sprintf('%u',getOption('backup_compression')),'XSRFTag'=>'backup')
+									array('backup'=>1,'autobackup'=>1,'compress'=>sprintf('%u',getOption('backup_compression')),'XSRFTag'=>'backup'),
+									OFFSET_PATH==2
 								);
 		return $discard;
 	}
