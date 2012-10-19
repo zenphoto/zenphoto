@@ -297,7 +297,7 @@ if ($rootrights || !empty($albumlist)) {
 			if ($passedalbum) {
 				?>
 				buttonstate(true);
-				$('#folderdisplay').val('<?php echo $passedalbum; ?>');
+				$('#folderdisplay').val('<?php echo html_encode($passedalbum); ?>');
 				<?php
 			}
 			?>

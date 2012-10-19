@@ -219,7 +219,7 @@ printLogoAndLinks();
 
 			<td valign='top'>
 				<h2 class="h2_bordered_edit"><?php echo gettext("New tags"); ?></h2>
-				<form name="new_tags" action="?newtags=true&amp;tagsort=<?php echo $tagsort; ?>" method="post">
+				<form name="new_tags" action="?newtags=true&amp;tagsort=<?php echo html_encode($tagsort); ?>" method="post">
 					<?php XSRFToken('new_tags');?>
 					<div class="box-tags-unpadded">
 						<ul class="tagnewlist">

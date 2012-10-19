@@ -47,7 +47,7 @@ var ZenpageDialog = {
 		var titlewrap = '';
 		var descwrap = '';
 		var cssclass = '';
-		var albumname = '<?php if(isset($_GET["album"]))  { echo sanitize($_GET["album"]); } else { $_GET["album"] = ""; } ?>';
+		var albumname = '<?php if(isset($_GET["album"]))  { echo html_encode(sanitize($_GET["album"])); } else { $_GET["album"] = ""; } ?>';
 		var webpath = '<?php echo WEBPATH; ?>'
 		var modrewrite = '<?php echo MOD_REWRITE; ?>';
 		var modrewritesuffix = '<?php echo getOption("mod_rewrite_image_suffix"); ?>';

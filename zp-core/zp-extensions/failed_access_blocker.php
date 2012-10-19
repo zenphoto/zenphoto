@@ -77,7 +77,7 @@ function failed_access_blocker_adminGate($allow, $page) {
 	$sql = 'DELETE FROM '.prefix('plugin_storage').' WHERE `type`="failed_access" AND `aux` < "'.(time()-getOption('failed_access_blocker_timeout')*60).'"';
 	query($sql);
 	//	add this attempt
-	$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("failed_access", "'.time().'","'.getUserIP().'")';
+	$sql = 'INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`,`data`) VALUES ("failed_access", "'.time().'",'.db_quote(getUserIP()).')';
 	query($sql);
 	//	check how many times this has happened recently
 	$count = db_count('plugin_storage','WHERE `type`="failed_access" AND `data`="'.getUserIP().'"');

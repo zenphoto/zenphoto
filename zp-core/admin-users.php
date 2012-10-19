@@ -7,6 +7,13 @@
 // force UTF-8 Ø
 
 define('OFFSET_PATH', 1);
+
+function markUpdated() {
+	global $updated;
+	$updated = true;
+//for finding out who did it!	debugLogBacktrace('updated');
+}
+
 require_once(dirname(__FILE__).'/admin-globals.php');
 define('USERS_PER_PAGE',max(1,getOption('users_per_page')));
 
@@ -103,7 +110,7 @@ if (isset($_GET['action'])) {
 								$userobj = Zenphoto_Authority::newAdministrator('');
 								$userobj->transient = false;
 								$userobj->setUser($user);
-								$updated = true;
+								markUpdated();
 							}
 						} else {
 							$what = 'update';
@@ -113,14 +120,14 @@ if (isset($_GET['action'])) {
 						if (isset($_POST[$i.'-admin_name'])) {
 							$admin_n = trim(sanitize(sanitize($_POST[$i.'-admin_name'])));
 							if ($admin_n != $userobj->getName()) {
-								$updated = true;
+								markUpdated();
 								$userobj->setName($admin_n);
 							}
 						}
 						if (isset($_POST[$i.'-admin_email'])) {
 							$admin_e = trim(sanitize($_POST[$i.'-admin_email']));
 							if ($admin_e != $userobj->getEmail()) {
-								$updated = true;
+								markUpdated();
 								$userobj->setEmail($admin_e);
 							}
 						}
@@ -138,7 +145,7 @@ if (isset($_GET['action'])) {
 								$pass2 = $userobj->getPass($pass);
 								$msg = $userobj->setPass($pass);
 								if ($pass2 !=  $userobj->getPass($pass)) {
-									$updated = true;
+									markUpdated();
 								}
 							} else {
 								$notify = '?mismatch=password';
@@ -151,26 +158,26 @@ if (isset($_GET['action'])) {
 						$info = $userobj->getChallengePhraseInfo();
 						if ($challenge != $info['challenge'] || $response != $info['response']) {
 							$userobj ->setChallengePhraseInfo($challenge, $response);
-							$updated = true;
+							markUpdated();
 						}
 						$lang = sanitize($_POST[$i.'-admin_language'],3);
 						if ($lang != $userobj->getLanguage()) {
 							$userobj->setLanguage($lang);
-							$updated = true;
+							markUpdated();
 						}
 						$rights = 0;
 						if ($alter && !$userobj->getGroup()) {
 							$oldrights = $userobj->getRights() & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS);
 							$rights = processRights($i);
-							if ($rights != $oldrights) {
+							if (($rights & ~(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_NEWS_RIGHTS)) != $oldrights) {
 								$userobj->setRights($rights | NO_RIGHTS);
-								$updated = true;
+								markUpdated();
 							}
 							$oldobjects = sortMultiArray($userobj->getObjects(), 'data');
 							$objects = sortMultiArray(processManagedObjects($i, $rights), 'data');
 							if ($objects != $oldobjects) {
 								$userobj->setObjects($objects);
-								$updated = true;
+								markUpdated();
 							}
 						} else {
 							$oldobjects = $userobj->setObjects(NULL);	// indicates no change
@@ -178,11 +185,11 @@ if (isset($_GET['action'])) {
 						$updated = zp_apply_filter('save_admin_custom_data', $updated, $userobj, $i, $alter);
 						if (isset($_POST['delinkAlbum_'.$i])) {
 							$userobj->setAlbum(NULL);
-							$updated = true;
+							markUpdated();
 						}
 						if (isset($_POST['createAlbum_'.$i])) {
 							$userobj->createPrimealbum();
-							$updated = true;
+							markUpdated();
 						}
 						if ($updated) {
 							$returntab .= '&show-'.$user;

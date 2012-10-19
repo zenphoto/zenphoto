@@ -3911,19 +3911,30 @@ function getSearchURL($words, $dates, $fields, $page, $object_list=NULL) {
 		}
 	}
 	$urls = '';
-	if (MOD_REWRITE && !(is_array($object_list) && array_key_exists('albums', $object_list))) {
-		$url = SEO_WEBPATH . "/page/search/";
+	$rewrite = false;
+	if (MOD_REWRITE) {
 		$rewrite = true;
+		if (is_array($object_list)) {
+			foreach ($object_list as $obj) {
+				if ($obj) {
+					$rewrite = false;
+					break;
+				}
+			}
+		}
+	}
+
+	if ($rewrite) {
+		$url = SEO_WEBPATH . "/page/search/";
 	} else {
 		$url = SEO_WEBPATH."/index.php?p=search";
-		$rewrite = false;
 	}
 	if (!empty($fields) && empty($dates)) {
 		if (!is_array($fields)) {
 			$fields = explode(',',$fields);
 		}
 		$temp = $fields;
-		if (MOD_REWRITE && count($fields)==1 && array_shift($temp)=='tags') {
+		if ($rewrite && count($fields)==1 && array_shift($temp)=='tags') {
 			$url .= "tags/";
 		} else {
 			$search = new SearchEngine();

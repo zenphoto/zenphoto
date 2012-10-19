@@ -153,7 +153,7 @@ if (isset($_REQUEST['crop'])) {
 	$imageobj->set('thumbH', $ch);
 	$imageobj->save();
 
-	$return = '/admin-edit.php?page=edit&album=' . pathurlencode($albumname).'&saved&subpage='.sanitize($_REQUEST['subpage']).'&tagsort='.sanitize($_REQUEST['tagsort']).'&tab=imageinfo';
+	$return = '/admin-edit.php?page=edit&album=' . pathurlencode($albumname).'&saved&subpage='.html_encode(sanitize($_REQUEST['subpage'])).'&tagsort='.html_encode(sanitize($_REQUEST['tagsort'])).'&tab=imageinfo';
 	header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . $return);
 	exitZP();
 	}
@@ -272,7 +272,7 @@ printAdminHeader('edit','thumbcrop');
 										<img src="images/pass.png" alt="" />
 										<strong><?php echo gettext("Apply"); ?></strong>
 									</button>
-									<button type="reset" value="<?php echo gettext('Back') ?>" title="<?php echo gettext("Back"); ?>" onclick="window.location='admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage; ?>&tagsort=<?php echo $tagsort; ?>&tab=imageinfo'">
+									<button type="reset" value="<?php echo gettext('Back') ?>" title="<?php echo gettext("Back"); ?>" onclick="window.location='admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo html_encode($subpage); ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
 										<img src="images/arrow_left_blue_round.png" alt="" />
 										<strong><?php echo gettext("Back"); ?></strong>
 									</button>

@@ -86,7 +86,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 			$MAP_OBJECT->setTypeControlTypes($mapsallowed);
 		}
 		foreach ($mapdata as $key=>$datum) {
-			$MAP_OBJECT->$key = $datum;
+			$MAP_OBJECT->$key = sanitize($datum);
 		}
 		echo $MAP_OBJECT->getMapJS();
 		echo $MAP_OBJECT->printMap();

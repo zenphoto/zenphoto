@@ -48,7 +48,7 @@ class crop_image {
 			$output .=
 				'<div class="button buttons tooltip" title="'.gettext('Permanently crop the actual image.').'">'."\n".
 						'<a href="'.WEBPATH."/".ZENFOLDER . '/'.PLUGIN_FOLDER.'/crop_image.php?a='.pathurlencode($albumname)."\n".
-								'&amp;i='.urlencode($imagename).'&amp;performcrop=backend&amp;subpage='.$subpage.'&amp;tagsort='.$tagsort.'">'."\n".
+								'&amp;i='.urlencode($imagename).'&amp;performcrop=backend&amp;subpage='.$subpage.'&amp;tagsort='.html_encode($tagsort).'">'."\n".
 								'<img src="images/shape_handles.png" alt="" />'.gettext("Crop image").'</a>'."\n".
 					'<br clear="all" />'.
 				'</div>'."\n";
@@ -341,7 +341,7 @@ printAdminHeader('edit',gettext('crop image'));
 							<?php
 							if ($_REQUEST['performcrop'] == 'backend') {
 								?>
-								<button type="reset" value="<?php echo gettext('Back') ?>" title="<?php echo gettext("Back"); ?>" onclick="window.location='../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage; ?>&tagsort=<?php echo $tagsort; ?>&tab=imageinfo'">
+								<button type="reset" value="<?php echo gettext('Back') ?>" title="<?php echo gettext("Back"); ?>" onclick="window.location='../admin-edit.php?page=edit&album=<?php echo pathurlencode($albumname); ?>&subpage=<?php echo $subpage; ?>&tagsort=<?php echo html_encode($tagsort); ?>&tab=imageinfo'">
 									<img src="../images/arrow_left_blue_round.png" alt="" /><strong><?php echo gettext("Back"); ?></strong>
 								</button>
 								<?php

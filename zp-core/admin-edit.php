@@ -119,7 +119,7 @@ if (isset($_GET['action'])) {
 				$pg = '';
 				$tab = '';
 			}
-			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album='.$folder.$pg.'&tagsort='.$tagsort.$tab);
+			header('Location: ' . FULLWEBPATH . '/' . ZENFOLDER . '/admin-edit.php?page=edit&album='.$folder.$pg.'&tagsort='.html_encode($tagsort).$tab);
 			exitZP();
 			break;
 
@@ -254,12 +254,12 @@ if (isset($_GET['action'])) {
 				$returnalbum = NULL;
 				if (isset($_POST['savealbuminfo'])) {
 					$notify = processAlbumEdit(0, $album, $returnalbum);
-					$returntab = '&tagsort='.$tagsort.'&tab=albuminfo';
+					$returntab = '&tagsort='.html_encode($tagsort).'&tab=albuminfo';
 				}
 
 				if (isset($_POST['totalimages'])) {
 					if (isset($_POST['checkForPostTruncation'])) {
-						$returntab = '&tagsort='.$tagsort.'&tab=imageinfo';
+						$returntab = '&tagsort='.html_encode($tagsort).'&tab=imageinfo';
 						if (isset($_POST['ids'])) {	//	process bulk actions, not individual image actions.
 							$action = processImageBulkActions($album);
 							if(!empty($action)) $notify = '&bulkmessage='.$action;
@@ -965,7 +965,7 @@ $alb = removeParentAlbumNames($album);
 			if ($allimagecount != $totalimages) { // need pagination links
 			?>
 			<tr>
-				<td colspan="4" class="bordered" id="imagenav"><?php adminPageNav($pagenum,$totalpages,'admin-edit.php','?page=edit&amp;tagsort='.$tagsort.'&amp;album='.pathurlencode($album->name),'&amp;tab=imageinfo'); ?>
+				<td colspan="4" class="bordered" id="imagenav"><?php adminPageNav($pagenum,$totalpages,'admin-edit.php','?page=edit&amp;tagsort='.html_encode($tagsort).'&amp;album='.pathurlencode($album->name),'&amp;tab=imageinfo'); ?>
 				</td>
 			</tr>
 			<?php
@@ -1023,7 +1023,7 @@ $alb = removeParentAlbumNames($album);
 					<tr>
 						<td valign="top" rowspan="17" style="border-bottom:none;">
 						<div style="width: 135px;">
-							<a <?php echo $placemark; ?>href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>"
+							<a <?php echo $placemark; ?>href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>"
 								title="<?php html_encode(printf(gettext('crop %s'), $image->filename)); ?>">
 								<img
 									id="thumb_img-<?php echo $currentimage; ?>"
@@ -1250,13 +1250,13 @@ $alb = removeParentAlbumNames($album);
 						<br clear="all" />
 						<hr />
 						<div class="button buttons tooltip" title="<?php printf(gettext('Refresh %s metadata'), $image->filename); ?>">
-							<a href="admin-edit.php?action=refresh&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
+							<a href="admin-edit.php?action=refresh&amp;album=<?php echo pathurlencode($album->name); ?>&amp;image=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>&amp;XSRFToken=<?php echo getXSRFToken('imagemetadata'); ?>" >
 								<img src="images/cache.png" alt="" /><?php echo gettext("Refresh Metadata"); ?>
 							</a>
 							<br clear="all" />
 						</div>
 						<div class="button buttons tooltip" title="<?php printf(gettext('crop %s'), $image->filename); ?>">
-							<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo $tagsort; ?>" >
+							<a href="admin-thumbcrop.php?a=<?php echo pathurlencode($album->name); ?>&amp;i=<?php echo urlencode($image->filename); ?>&amp;subpage=<?php echo $pagenum; ?>&amp;tagsort=<?php echo html_encode($tagsort); ?>" >
 								<img src="images/shape_handles.png" alt="" /><?php echo gettext("Crop thumbnail"); ?>
 							</a>
 							<br clear="all" />

@@ -100,7 +100,7 @@ class register_user_options {
 			$options[gettext('Notify*')]['disabled'] = true;
 			$options[gettext('Notify*')]['desc'] .= ' '.gettext('Of course there must be some Administrator with an e-mail address for this option to make sense!');
 		}
-		if (function_exists('user_groups_admin_tabs')) {
+		if (class_exists('user_groups')) {
 			$admins = $_zp_authority->getAdministrators('groups');
 			$defaultrights = ALL_RIGHTS;
 			$ordered = array();
@@ -188,7 +188,7 @@ class register_user_options {
 
 
 	static function handleOptionSave($themename,$themealbum) {
-		if (!function_exists('user_groups_admin_tabs')) {
+		if (!class_exists('user_groups')) {
 			$saved_rights = NO_RIGHTS;
 			$rightslist = sortMultiArray(Zenphoto_Authority::getRights(), array('set', 'value'));
 			foreach ($rightslist as $rightselement=>$right) {
@@ -263,7 +263,7 @@ function printRegistrationForm($thanks=NULL) {
 	}
 
 	if (isset($_POST['register_user'])) {
-		
+
 		if(isset($_POST['username']) && !empty($_POST['username'])) {
 			$notify = 'honeypot'; // honey pot check
 		}

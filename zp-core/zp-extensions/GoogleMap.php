@@ -42,11 +42,12 @@ class googleMap {
 		setOptionDefault('gmap_control', 'horizontal');
 		setOptionDefault('gmap_starting_map', 'hybrid');
 		setOptionDefault('gmap_zoom', 16);
-		if (getOption('gmap_hide')) {
+		setOptionDefault('gmap_sessions', 1);
+		if (OFFSET_PATH==2) {
 			setOptionDefault('gmap_display', 'hide');
-		} else {
-			setOptionDefault('gmap_display', 'show');
+			purgeOption('gmap_hide');
 		}
+		setOptionDefault('gmap_display', 'show');
 	}
 
 	function getOptionsSupported() {
@@ -91,7 +92,7 @@ class googleMap {
 																	'desc' => gettext('Select <em>hide</em> to initially hide the map. Select <em>colorbox</em> for the map to display in a colorbox. Select <em>show</em> and the map will display when the page loads.')),
 									gettext('Map sessions') => array('key' => 'gmap_sessions', 'type' => OPTION_TYPE_CHECKBOX,
 																	'order'=>8,
-																	'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. If the option is not checked the data is passed as part of the link and may exceed the size allowed by some browsers.'))
+																	'desc' => gettext('If checked GoogleMaps will use sessions to pass map data for the <em>colorbox</em> display option. We recommend this option be selected. It protects against reference forgery security attacks and mitigates problems with data exceedign the allowed by some browsers.'))
 		);
 	}
 
