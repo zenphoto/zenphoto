@@ -275,7 +275,7 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 			<?php
 			if (@ini_get('display_errors')) {
 				?>
-				<li><?php echo gettext('<em>display_errors</em> is <strong>On</strong>')?></li>
+				<li><a title="<?php echo gettext('PHP error messages may be displayed on WEB pages. This may disclose site sensitive information.'); ?>"><?php echo gettext('<em>display_errors</em> is <strong>On</strong>')?></a></li>
 				<?php
 			} else {
 				?>

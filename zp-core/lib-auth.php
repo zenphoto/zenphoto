@@ -132,10 +132,16 @@ class Zenphoto_Authority {
 					echo '<p class="notebox">'.sprintf(gettext('Administrator class <em>%s</em> is active.'),$class).'</p>';
 				}
 				echo '<p>'.sprintf(gettext('Password hash seed: <span><small style="color:gray">%s</small></span>'),html_encode(getOption('extra_auth_hash_text'))).'</p>';
-				if (getOption('strong_hash')) {
-					$hash = 'sha1';
-				} else {
-					$hash = 'md5';
+				switch (getOption('strong_hash')) {
+					case 1:
+						$hash = 'sha1';
+						break;
+					case 2:
+						$hash = 'pbkdf2';
+						break;
+					case false:
+						$hash = 'md5';
+						break;
 				}
 				echo '<p>'.sprintf(gettext('<em>%s</em> hashing is activated'),$hash).'</p>';
 				break;
@@ -159,12 +165,20 @@ class Zenphoto_Authority {
 	 * @return string
 	 */
 	static function passwordHash($user, $pass) {
-		if (getOption('strong_hash')) {
-			$hash = sha1($user . $pass . HASH_SEED);
-		} else {
-			$hash = md5($user . $pass . HASH_SEED);
+		switch (getOption('strong_hash')) {
+			case 1:
+				$hash = sha1($user.$pass.HASH_SEED);
+				break;
+			case 2:
+				$hash = base64_encode(self::pbkdf2($pass,$user.HASH_SEED));
+				break;
+			default:
+				$hash = md5($user.$pass.HASH_SEED);
+				break;
 		}
-		if (DEBUG_LOGIN) { debugLog("passwordHash($user, $pass)[{HASH_SEED}]:$hash"); }
+		if (DEBUG_LOGIN) {
+			debugLog("passwordHash($user, $pass)[{HASH_SEED}]:$hash");
+		}
 		return $hash;
 	}
 
@@ -757,10 +771,19 @@ class Zenphoto_Authority {
 	 */
 	function checkCookieCredentials() {
 		$auth = zp_getCookie('zp_user_auth');
-		if (getOption('strong_hash')) {
-			$hashlen = 40;
-		} else {
-			$hashlen = 32;
+		switch (getOption('strong_hash')) {
+			case 1:
+				//sha1
+				$hashlen = 40;
+				break;
+			case false:
+				//md5
+				$hashlen = 32;
+				break;
+			case '2':
+				//pbkdf2
+				$hashlen = 64;
+				break;
 		}
 		if (strlen($auth) > $hashlen) {
 			$id = substr($auth, $hashlen);
@@ -1231,6 +1254,34 @@ class Zenphoto_Authority {
 		<?php
 	}
 
+	/** PBKDF2 Implementation (described in RFC 2898)
+	 *
+	 *  @param string p password
+	 *  @param string s salt
+	 *  @param int c iteration count (use 1000 or higher)
+	 *  @param int kl derived key length
+	 *  @param string a hash algorithm
+	 *
+	 *  @return string derived key
+	*/
+	static function pbkdf2($p, $s, $c=1000, $kl=32, $a = 'sha256') {
+	    $hl = strlen(hash($a, null, true)); # Hash length
+	    $kb = ceil($kl / $hl);              # Key blocks to compute
+	    $dk = '';                           # Derived key
+	    # Create key
+	    for ( $block = 1; $block <= $kb; $block ++ ) {
+	        # Initial hash for this block
+	        $ib = $b = hash_hmac($a, $s . pack('N', $block), $p, true);
+	        # Perform block iterations
+	        for ( $i = 1; $i < $c; $i ++ )
+	            # XOR each iterate
+	            $ib ^= ($b = hash_hmac($a, $b, $p, true));
+	        $dk .= $ib; # Append iterated block
+	   }
+	    # Return derived key of correct length
+	    return substr($dk, 0, $kl);
+	}
+
 }
 
 class Zenphoto_Administrator extends PersistentObject {
@@ -1643,5 +1694,4 @@ class Zenphoto_Administrator extends PersistentObject {
 	}
 
 }
-
 ?>

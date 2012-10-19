@@ -66,6 +66,11 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 	}
 	if (is_array($mapdata)) {
 		$MAP_OBJECT = new GoogleMapAPI(sanitize($_GET['type']));
+		foreach ($mapdata as $key=>$datum) {
+			$MAP_OBJECT->$key = sanitize($datum);
+		}
+		$MAP_OBJECT->setJSAlert('<b>Javascript must be enabled in order to use Google Maps.</b>');
+		$MAP_OBJECT->setBrowserAlert('Sorry, the Google Maps API is not compatible with this browser.');
 		$MAP_OBJECT->_minify_js = defined('RELEASE');
 		$MAP_OBJECT->setZoomLevel(getOption('gmap_zoom'));
 		$MAP_OBJECT->setWidth(getOption('gmap_width'));
@@ -84,9 +89,6 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 			if (getOption('gmap_satellite')) $mapsallowed[] = 'SATELLITE';
 			if (getOption('gmap_terrain')) $mapsallowed[] = 'TERRAIN';
 			$MAP_OBJECT->setTypeControlTypes($mapsallowed);
-		}
-		foreach ($mapdata as $key=>$datum) {
-			$MAP_OBJECT->$key = sanitize($datum);
 		}
 		echo $MAP_OBJECT->getMapJS();
 		echo $MAP_OBJECT->printMap();

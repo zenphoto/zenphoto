@@ -515,7 +515,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	$good = checkMark($err, sprintf(gettext("PHP version %s"), PHP_VERSION), "", sprintf(gettext('PHP Version %1$s or greater is required. Version %2$s or greater is strongly recommended. Use earlier versions at your own risk.'),PHP_MIN_VERSION, PHP_DESIRED_VERSION), false) && $good;
 	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
 
-	if (preg_match('#(1|ON)#i', ini_get('register_globals'))) {
+	if (preg_match('#(1|ON)#i', @ini_get('register_globals'))) {
 		if ($prevRel) {
 			$register_globals = -1;
 		} else {
@@ -548,6 +548,25 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	checkMark($magic_quotes_disabled, gettext("PHP <code>magic_quotes_runtime</code>"), gettext("PHP <code>magic_quotes_runtime</code> [is enabled]"), gettext('You must disable <code>magic_quotes_runtime</code>.'));
 	checkMark(!ini_get('magic_quotes_sybase'), gettext("PHP <code>magic_quotes_sybase</code>"), gettext("PHP <code>magic_quotes_sybase</code> [is enabled]"), gettext('You must disable <code>magic_quotes_sybase</code>.'));
+
+	switch (strtolower(@ini_get('display_errors'))) {
+		case 0:
+		case 'off':
+		case 'stderr':
+			$display = true;
+			break;
+		case 1:
+		case 'on':
+		case 'stdout':
+			$display = -1;
+			break;
+		default:
+			$display = 1;
+			break;
+	}
+	checkmark($display, gettext('PHP <code>display_errors</code>'),
+			sprintf(gettext('PHP <code>display_errors</code> [is enabled]'),$display),
+			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sentsitive information about your site.'));
 
 	checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));
 	checkmark(function_exists('flock')?1:-1, gettext('PHP <code>flock</code> support'), gettext('PHP <code>flock</code> support [is not present]'), gettext('Zenpoto uses <code>flock</code> for serializing critical regions of code. Without <code>flock</code> active sites may experience <em>race conditions</em> which may be causing inconsistent data.'));
@@ -1644,7 +1663,7 @@ if (file_exists(CONFIGFILE)) {
 		$db_schema[] = "CREATE TABLE IF NOT EXISTS $tbl_administrators (
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`user` varchar(64) NOT NULL,
-		`pass` text,
+		`pass` varchar(64) NOT NULL,
 		`name` text,
 		`email` text,
 		`rights` int,
@@ -2209,6 +2228,7 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = "ALTER TABLE $tbl_tags CHANGE `name` `name` varchar(255) NOT NULL";
 	$sql_statements[] = "ALTER TABLE $tbl_images DROP FOREIGN KEY `".trim($tbl_images,'`')."_ibfk1`";
 	$sql_statements[] = "ALTER TABLE $tbl_comments DROP FOREIGN KEY `".trim($tbl_comments,'`')."_ibfk1`";
+	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' CHANGE `pass` `pass` varchar(64)';
 
 
 	// do this last incase there are any field changes of like names!

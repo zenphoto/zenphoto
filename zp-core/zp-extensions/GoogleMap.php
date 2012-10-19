@@ -107,6 +107,8 @@ class googleMap {
 		require_once(dirname(__FILE__).'/GoogleMap/JSMin.php');
 		global $MAP_OBJECT, $_zp_current_image, $_zp_current_album;
 		$MAP_OBJECT = new GoogleMapAPI();
+		$MAP_OBJECT->setJSAlert('<b>Javascript must be enabled in order to use Google Maps.</b>');
+		$MAP_OBJECT->setBrowserAlert('Sorry, the Google Maps API is not compatible with this browser.');
 		$MAP_OBJECT->setLocale(substr(getOption('locale'),0,2));
 		$MAP_OBJECT->bounds_fudge = 0.001;
 		echo $MAP_OBJECT->getHeaderJS()."\n";

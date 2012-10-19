@@ -4370,6 +4370,7 @@ function admin_showupdate($tab, $subtab) {
 		<h2><?php echo getOption('last_update_check'); ?></h2>
 	</div>
 	<?php
+	return $tab;
 }
 /**
  *
