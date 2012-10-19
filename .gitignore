@@ -1,0 +1,30 @@
+
+# /
+/.cache
+/.project
+/.settings
+/cache_html
+/patches
+/phpdoc
+/release
+/sandbox
+/source
+/sql
+/temp
+/tests
+/zenpage
+
+# /albums/
+/albums/*
+
+# /cache/
+/cache/*
+
+# /themes/
+/themes/*
+
+# /zp-core/
+/zp-core/zp-config.php
+
+# /zp-core/locale/fr_FR/
+/zp-core/locale/fr_FR/Thumbs.db
