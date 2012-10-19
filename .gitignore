@@ -20,11 +20,14 @@
 # /cache/
 /cache/*
 
-# /themes/
-/themes/*
+# /cache_html/
+/cache_html/*
 
-# /zp-core/
-/zp-core/zp-config.php
+# /plugins/
+/plugins/*
 
-# /zp-core/locale/fr_FR/
-/zp-core/locale/fr_FR/Thumbs.db
+# /uploaded/
+/uploaded/*
+
+# /zp-data/
+/zp-data/*
