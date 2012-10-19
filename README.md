@@ -23,4 +23,4 @@ Our old Subversion repository is here: http://www.zenphoto.org/svn - development
 
 Older builds may be found here: http://www.zenphoto.org/files/
 
-As of Oct 19th 2012, all release builds will be available on the Downloads page of this github repository [or via this direct link](https://github.com/zenphoto/zenphoto/zipball/master). Nightly builds will be discontinued in favor of zip packages of the repository available from the "Code" view, or a simple `git clone` to check out the latest code.
+As of Oct 19th 2012, all release builds will be available on the Downloads page of this github repository [or via this direct link](https://github.com/zenphoto/zenphoto/zipball/master). Nightly builds will be discontinued in favor of zip packages of the repository available from the "Code" view, or a simple `git clone` to check out the latest code. All problem reports for this release should be filed as GitHub issues!
