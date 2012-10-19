@@ -2381,9 +2381,10 @@ if (file_exists(CONFIGFILE)) {
 							WEBPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/backup_restore.php');
 					$autorun = false;
 				} else {
-					$link = sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'),'admin-users.php?page=users');
+					$link = sprintf(gettext('You need to <a href="%1$s">set your admin user and password</a>'),
+							WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users');
 					if ($autorun == 'admin' || $autorun == 'gallery') {
-						$autorun = WEBPATH.'/'.ZENFOLDER.'admin-users.php?page=users';
+						$autorun = WEBPATH.'/'.ZENFOLDER.'/admin-users.php?page=users';
 					}
 				}
 			} else {
