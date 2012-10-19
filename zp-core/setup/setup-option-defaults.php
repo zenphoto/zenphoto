@@ -606,6 +606,4 @@ $plugins = getPluginFiles('*.php');
 </script>
 <?php
 
-purgeOption('last_backup_run');	// should probably backup the site after an installation!
-
 ?>

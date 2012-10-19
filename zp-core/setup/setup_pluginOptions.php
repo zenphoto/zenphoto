@@ -7,7 +7,7 @@
  */
 define('OFFSET_PATH',2);
 require_once('setup-functions.php');
-require_once(dirname(dirname(__FILE__)).'/admin-functions.php');
+require_once(dirname(dirname(__FILE__)).'/admin-globals.php');
 $extension = sanitize(sanitize($_POST['plugin']));
 setupLog(sprintf(gettext('Plugin:%s setup started'),$extension),true);
 $option_interface = NULL;
