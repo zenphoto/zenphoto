@@ -286,7 +286,7 @@ function printGoogleMap($text=NULL, $id=NULL, $hide=NULL, $obj=NULL, $callback=N
 	}
 
 	$MAP_OBJECT = new GoogleMapAPI($maptype = $type.$typeid);
-	$MAP_OBJECT->_minify_js = defined('RELEASE');
+	$MAP_OBJECT->_minify_js = !TEST_RELEASE;
 	$MAP_OBJECT->setZoomLevel(getOption('gmap_zoom'));
 	$MAP_OBJECT->setWidth(getOption('gmap_width'));
 	$MAP_OBJECT->setHeight(getOption('gmap_height'));

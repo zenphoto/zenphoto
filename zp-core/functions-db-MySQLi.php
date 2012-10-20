@@ -29,13 +29,13 @@ function db_connect($errorstop=true) {
 	$_zp_DB_connection = @mysqli_connect($hostname, $username, $password);
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQLi Error: Zenphoto received the error <em>%s</em> when connecting to the database server.'),$_zp_DB_connection->error()));
+			zp_error(gettext('MySQLi Error: Zenphoto could not instantiate a connection.'));
 		}
 		return false;
 	}
 	if (!$_zp_DB_connection->select_db($db)) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQLi Error: The database is connected, but MySQL returned the error <em>%1$s</em> when Zenphoto tried to select the database %2$s.'),$_zp_DB_connection->error(),$db));
+			zp_error(sprintf(gettext('MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select the database %2$s.'),$_zp_DB_connection->error,$db));
 		}
 		return false;
 	}
