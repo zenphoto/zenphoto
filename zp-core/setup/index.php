@@ -409,8 +409,17 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 
 	?>
 	<p>
-		<?php	echo gettext("Welcome to Zenphoto! This page will set up Zenphoto on your web server."); ?>
+		<?php printf( gettext("Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."),ZENPHOTO_VERSION); ?>
 	</p>
+	<?php
+	if (TEST_RELEASE) {
+		?>
+		<p class="notebox">
+			<?php echo gettext('<strong>Note:</strong> The release you are installing has debugging settings enabled!'); ?>
+		</p>
+		<?php
+	}
+	?>
 	<h2><?php echo gettext("Systems Check:"); ?></h2>
 	<?php
 
@@ -566,7 +575,8 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	}
 	checkmark($display, gettext('PHP <code>display_errors</code>'),
 			sprintf(gettext('PHP <code>display_errors</code> [is enabled]'),$display),
-			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sentsitive information about your site.'));
+			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sentsitive information about your site.'),
+			!TEST_RELEASE);
 
 	checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));
 	checkmark(function_exists('flock')?1:-1, gettext('PHP <code>flock</code> support'), gettext('PHP <code>flock</code> support [is not present]'), gettext('Zenpoto uses <code>flock</code> for serializing critical regions of code. Without <code>flock</code> active sites may experience <em>race conditions</em> which may be causing inconsistent data.'));

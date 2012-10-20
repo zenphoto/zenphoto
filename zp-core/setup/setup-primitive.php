@@ -27,6 +27,7 @@ define('LOCAL_CHARSET','UTF-8');
 define('FILESYSTEM_CHARSET', 'ISO-8859-1');
 define('ADMIN_RIGHTS',1);
 define('PROTOCOL', 'http');
+
 error_reporting(E_ALL | E_STRICT);
 @ini_set('display_errors', 1);
 set_error_handler("zpErrorHandler");
