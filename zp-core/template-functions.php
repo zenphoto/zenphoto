@@ -4587,12 +4587,7 @@ function exposeZenPhotoInformations( $obj = '', $plugins = '', $theme = '' ) {
 
 	$a = basename($obj);
 	if ($a != 'full-image.php') {
-		if (defined('RELEASE')) {
-			$official = 'Official Build';
-		} else {
-			$official = 'SVN';
-		}
-		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_RELEASE . "] ($official)";
+		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_RELEASE . "]";
 		echo " THEME: " . $theme . " (" . $a . ")";
 		$graphics = zp_graphicsLibInfo();
 		$graphics = sanitize(str_replace('<br />', ', ', $graphics['Library_desc']), 3);

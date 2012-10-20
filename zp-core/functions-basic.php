@@ -13,6 +13,8 @@ if(!function_exists("gettext")) {
 	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
 }
 
+$_zp_mutex = new Mutex();
+
 /**
 * OFFSET_PATH definitions:
 * 		0		root scripts (e.g. the root index.php)
@@ -101,7 +103,7 @@ switch (PHP_MAJOR_VERSION) {
 }
 
 // Set error reporting.
-if (!defined("RELEASE")) {
+if (TEST_RELEASE) {
 	error_reporting(E_ALL | E_STRICT);
 	@ini_set('display_errors', 1);
 }
@@ -149,7 +151,7 @@ if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol']
 
 $_zp_imagick_present = false;
 require_once(dirname(__FILE__).'/functions-db-'.(isset($_zp_conf_vars['db_software'])?$_zp_conf_vars['db_software']:'MySQL').'.php');
-db_connect();
+db_connect(false);
 
 $_charset = getOption('charset');
 if (!$_charset) {
@@ -1533,7 +1535,7 @@ function db_count($table, $clause=NULL, $field="*") {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if (OFFSET_PATH != 2 && getOption('zenphoto_install') != serialize(installSignature())) {
+	if ((!($i = getOption('zenphoto_install')) || ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature()))) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
 		reconfigureAction();
 	}
@@ -1555,20 +1557,28 @@ function exitZP() {
  * @return string
  */
 function installSignature() {
-	$testFiles = array('template-functions.php', 'functions-filter.php', 'lib-auth.php', 'lib-utf8.php', 'functions.php', 'functions-basic.php', 'functions-controller.php', 'functions-image.php');
-	$m = (ZENPHOTO_RELEASE+strlen(SERVERPATH)) % count($testFiles);
+	$testFiles = array(	'template-functions.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php'),
+											'functions-filter.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/functions-filter.php'),
+											'lib-auth.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/lib-auth.php'),
+											'lib-utf8.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/lib-utf8.php'),
+											'functions.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/functions.php'),
+											'functions-basic.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/functions-basic.php'),
+											'functions-controller.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/functions-controller.php'),
+											'functions-image.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/functions-image.php'));
+
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
 		$s = $_SERVER['SERVER_SOFTWARE'];
 	} else {
 		$s = 'software unknown';
 	}
 	$dbs = db_software();
-	return array($testFiles[$m]=>filesize(SERVERPATH.'/'.ZENFOLDER.'/'.$testFiles[$m]),
-							'SERVER_SOFTWARE'=>$s,
-							'ZENPHOTO'=>ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']',
-							'FOLDER'=>dirname(SERVERPATH.'/'.ZENFOLDER),
-							'DATABASE'=>$dbs['application'].' '.$dbs['version']
-							);
+	return array_merge($testFiles,
+											array('SERVER_SOFTWARE'=>$s,
+														'ZENPHOTO'=>ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']',
+														'FOLDER'=>dirname(SERVERPATH.'/'.ZENFOLDER),
+														'DATABASE'=>$dbs['application'].' '.$dbs['version']
+														)
+				);
 }
 
 /**
@@ -1692,8 +1702,5 @@ class Mutex {
 	}
 
 }
-
-$_zp_mutex = new Mutex()
-
 
 ?>

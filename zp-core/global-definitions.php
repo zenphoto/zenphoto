@@ -19,7 +19,7 @@ define('ADMIN_PLUGIN',2048);
 define('THEME_PLUGIN',1024);
 define('PLUGIN_PRIORITY',1023);
 
-define('TEST_RELEASE',!defined('RELEASE')||strpos(ZENPHOTO_VERSION, '-')!==false);
+define('TEST_RELEASE',strpos(ZENPHOTO_VERSION, '-')!==false);
 
 define('DEBUG_LOGIN', false); // set to true to log admin saves and login attempts
 define('DEBUG_ERROR', TEST_RELEASE); // set to true to supplies the calling sequence with zp_error messages

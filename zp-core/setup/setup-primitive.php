@@ -11,6 +11,8 @@
 require_once(dirname(dirname(__FILE__)).'/global-definitions.php');
 require_once(dirname(dirname(__FILE__)).'/lib-kses.php');
 
+$_zp_mutex = new Mutex();
+
 $const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
 $serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
 preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches);
@@ -27,6 +29,7 @@ define('LOCAL_CHARSET','UTF-8');
 define('FILESYSTEM_CHARSET', 'ISO-8859-1');
 define('ADMIN_RIGHTS',1);
 define('PROTOCOL', 'http');
+
 error_reporting(E_ALL | E_STRICT);
 @ini_set('display_errors', 1);
 set_error_handler("zpErrorHandler");
@@ -376,7 +379,7 @@ function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
 	$err = gettext('CAUGHT EXCEPTION');
 	$errMsg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'),$err,$errstr,$errfile,$errline);
 	debugLogBacktrace($errMsg, 1);
-	if(!defined('RELEASE')) {
+	if(TEST_RELEASE) {
 		// let PHP handle if debug build
 		return false;
 	}
@@ -437,7 +440,5 @@ class Mutex {
 	}
 
 }
-
-$_zp_mutex = new Mutex()
 
 ?>
