@@ -13,6 +13,8 @@ if(!function_exists("gettext")) {
 	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
 }
 
+$_zp_mutex = new Mutex();
+
 /**
 * OFFSET_PATH definitions:
 * 		0		root scripts (e.g. the root index.php)
@@ -149,7 +151,7 @@ if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol']
 
 $_zp_imagick_present = false;
 require_once(dirname(__FILE__).'/functions-db-'.(isset($_zp_conf_vars['db_software'])?$_zp_conf_vars['db_software']:'MySQL').'.php');
-db_connect();
+db_connect(false);
 
 $_charset = getOption('charset');
 if (!$_charset) {
@@ -1533,7 +1535,7 @@ function db_count($table, $clause=NULL, $field="*") {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if ((time() & 7)==0 && OFFSET_PATH!=2 && getOption('zenphoto_install') != serialize(installSignature())) {
+	if ((!($i = getOption('zenphoto_install')) || ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature()))) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
 		reconfigureAction();
 	}
@@ -1700,8 +1702,5 @@ class Mutex {
 	}
 
 }
-
-$_zp_mutex = new Mutex()
-
 
 ?>

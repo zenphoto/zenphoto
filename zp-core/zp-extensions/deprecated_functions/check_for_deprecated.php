@@ -46,7 +46,7 @@ echo '</head>'."\n";
 							<?php echo gettext('In User plugins'); ?>
 						</option>
 						<?php
-						if (!defined('RELEASE')) {
+						if (TEST_RELEASE) {
 							?>
 							<option value=3<?php if ($selected == 3) echo ' selected="selected"'; ?>>
 								<?php echo gettext('In Zenphoto code'); ?>

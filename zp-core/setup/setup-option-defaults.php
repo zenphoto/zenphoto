@@ -514,7 +514,7 @@ on the Zenphoto 1.5 release.
 * these may have been used in third party themes. Themes should cease using these options and instead use the
 appropriate gallery methods.
 */
-	if (!defined('RELEASE')) {
+	if (TEST_RELEASE) {
 		foreach ($data as $key=>$option) {
 			purgeOption($key);
 		}

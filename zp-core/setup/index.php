@@ -1187,7 +1187,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				}
 
 				$t = filemtime($component);
-				if ((defined('RELEASE') && ($t < $lowset || $t > $highset))) {
+				if ((!TEST_RELEASE && ($t < $lowset || $t > $highset))) {
 					$installed_files[$key] = $value;
 				} else {
 					unset($installed_files[$key]);
@@ -1273,7 +1273,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		if ($svncount) {
 			$filelist[] = '<br />'.sprintf(ngettext('.svn [%s instance]','.svn [%s instances]',$svncount),$svncount);
 		}
-		if ($phi_ini_count && !defined('RELEASE')) {
+		if ($phi_ini_count && TEST_RELEASE) {
 			$filelist[] = '<br />'.sprintf(ngettext('php.ini [%s instance]','php.ini [%s instances]',$phi_ini_count),$phi_ini_count);
 		}
 		if ($package_file_count) {	//	no point in this if the package list was damaged!
