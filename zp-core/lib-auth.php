@@ -1242,10 +1242,10 @@ class Zenphoto_Authority {
 			<br clear="all" />
 			<label><input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordKeydown('<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password'); ?></label>
 		</fieldset>
-		<fieldset class="password_field_<?php echo $id; ?>">
+		<fieldset class="password_field">
 			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
-							name="pass_r_<?php echo $id ?>" value="<?php echo $x; ?>"
+							name="pass_r<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass_r<?php echo $id; ?>" disabled="disabled"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
 							onkeydown="passwordKeydown('<?php echo $id; ?>');"
