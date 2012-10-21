@@ -24,7 +24,7 @@ function query($sql, $errorstop=true) {
 	if (!$_zp_DB_last_result && $errorstop) {
 		$sql = str_replace($_zp_conf_vars['mysql_prefix'], '['.gettext('prefix').']',$sql);
 		$sql = str_replace($_zp_conf_vars['mysql_database'], '['.gettext('DB').']',$sql);
-		trigger_error(sprintf(gettext('%1$s Error: ( <em>%2$s</em> ) failed. %1$s returned the error <em>%3$s</em>'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
+		trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
 	}
 	return $_zp_DB_last_result;
 }
