@@ -139,7 +139,7 @@ if (isset($_GET['action'])) {
 							if (isset($_POST['disclose_password'.$i])) {
 								$pass2 = $pass;
 							} else {
-								$pass2 = trim(sanitize($_POST['pass_r_'.$i]));
+								$pass2 = trim(sanitize($_POST['pass_r'.$i]));
 							}
 							if ($pass == $pass2) {
 								$pass2 = $userobj->getPass($pass);
