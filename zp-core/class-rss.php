@@ -734,10 +734,10 @@ protected function getRSSCombinewsAlbums() {
 						$items = getLatestComments($this->itemnumber,'all');
 						break;
 					case 'album':
-						$items = getLatestComments($this->itemnumber,'albums',getItemByID('albums', $this->id));
+						$items = getLatestComments($this->itemnumber,'album',$this->id);
 						break;
 					case 'image':
-						$items = getLatestComments($this->itemnumber,'image',getItemByID('images', $this->id));
+						$items = getLatestComments($this->itemnumber,'image',$this->id);
 						break;
 					case 'zenpage':
 						$type = 'all';

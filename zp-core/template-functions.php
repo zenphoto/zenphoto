@@ -3085,9 +3085,9 @@ function printEditCommentLink($text, $before='', $after='', $title=NULL, $class=
  * @param string $type	"all" for all latest comments of all images and albums
  * 											"image" for the lastest comments of one specific image
  * 											"album" for the latest comments of one specific album
- * @param object $item the element to get the comments for if $type != "all"
+ * @param int $id the record id of element to get the comments for if $type != "all"
  */
-function getLatestComments($number,$type="all",$item=NULL) {
+function getLatestComments($number,$type="all",$id=NULL) {
 	global $_zp_gallery;
 	$albumcomment = $imagecomment = NULL;
 	$comments = array();
@@ -3112,13 +3112,13 @@ function getLatestComments($number,$type="all",$item=NULL) {
 			$albumids = '('.implode(',',$albumlist).')';
 			$sql = 'SELECT c.id, a.folder, a.title AS albumtitle, c.name, c.type, c.website,'
 										.' c.date, c.anon, c.comment FROM '.prefix('comments').' AS c, '.prefix('albums').' AS a '
-										.' WHERE a.id IN '.$albumids.' AND c.ownerid=a.id AND c.private=0 AND c.inmoderation=0'
+										.' WHERE `type`="albums" AND a.id IN '.$albumids.' AND c.ownerid=a.id AND c.private=0 AND c.inmoderation=0'
 										.' ORDER BY c.date DESC';
 			if ($comments_albums = query($sql)) {
 				$albumcomment = db_fetch_assoc($comments_albums);
 				$sql = 'SELECT c.id, i.title, i.filename, a.folder, i.show, a.title AS albumtitle, c.name, c.type, c.website,'
 											.' c.date, c.anon, c.comment FROM '.prefix('comments').' AS c, '.prefix('images').' AS i, '.prefix('albums').' AS a '
-											.' WHERE a.id IN '.$albumids.' AND c.ownerid=i.id AND i.albumid=a.id AND c.private=0 AND c.inmoderation=0'
+											.' WHERE `type`="images" AND a.id IN '.$albumids.' AND c.ownerid=i.id AND i.albumid=a.id AND c.private=0 AND c.inmoderation=0'
 											.' ORDER BY c.date DESC';
 				if ($comments_images = query($sql)) {
 					$imagecomment = db_fetch_assoc($comments_images);
@@ -3154,9 +3154,28 @@ function getLatestComments($number,$type="all",$item=NULL) {
 				}
 			}
 			break;
-		default:
-			$comments = $item->getComments();
-			$comments = array_slice($comments,0,$number);
+		case 'album':
+			$item = getItemByID('albums', $id);
+			$comments = array_slice($item->getComments(),0,$number);
+			// add the other stuff people want
+			foreach ($comments as $key=>$comment) {
+				$comment['pubdate'] = $comment['date'];
+				$alb = getItemByID('albums', $cpomment['ownerid']);
+				$comment['folder'] = $alb->name;
+				$comments[$key] = $comment;
+			}
+			break;
+		case 'image':
+			$item = getItemByID('albums', $id);
+			$comments = array_slice($item->getComments(),0,$number);
+			// add the other stuff people want
+			foreach ($comments as $key=>$comment) {
+				$comment['pubdate'] = $comment['date'];
+				$img = getItemByID('images', $cpomment['ownerid']);
+				$comment['folder'] = $img->$album->name;
+				$comment['filename'] = $img->filename;
+				$comments[$key] = $comment;
+			}
 			break;
 	}
 	return $comments;
