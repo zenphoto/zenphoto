@@ -1124,7 +1124,7 @@ function debugLogVar($message, $var) {
 	var_dump($var);
 	$str = ob_get_contents();
 	ob_end_clean();
-	debugLog($message.html_decode(strip_tags($str)));
+	debugLog(trim($message).' '.html_decode(strip_tags($str)));
 }
 
 /**
