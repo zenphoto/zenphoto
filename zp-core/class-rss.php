@@ -181,7 +181,7 @@ class RSS {
 	function __construct() {
 		global $_zp_gallery;
 		if(isset($_GET['rss'])) {
-			require_once(ZENFOLDER .  '/lib-MimeTypes.php');
+			require_once(SERVERPATH.'/'.ZENFOLDER.'/lib-MimeTypes.php');
 			// general feed setup
 			$channeltitlemode = getOption('feed_title');
 			$this->host = html_encode($_SERVER["HTTP_HOST"]);
@@ -337,7 +337,7 @@ class RSS {
 					}
 					$this->channel_title = html_encode($this->channel_title.$title.gettext(' (latest comments)'));
 					if(getOption('zp_plugin_zenpage')) {
-						require_once(ZENFOLDER . '/'.PLUGIN_FOLDER. '/zenpage/zenpage-template-functions.php');
+						require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/zenpage/zenpage-template-functions.php');
 					}
 					break;
 			}
@@ -729,35 +729,31 @@ protected function getRSSCombinewsAlbums() {
 				break;
 
 			case 'comments':
-				switch($this->commentrsstype) {
+				switch($type = $this->commentrsstype) {
 					case 'gallery':
+						$items = getLatestComments($this->itemnumber,'all');
+						break;
 					case 'album':
+						$items = getLatestComments($this->itemnumber,'album',$this->id);
+						break;
 					case 'image':
-						$type = $this->commentrsstype;
-						if($this->commentrsstype == 'gallery') {
-							$type = 'all';
-						}
-						$items = getLatestComments($this->itemnumber,$type,$this->id);
+						$items = getLatestComments($this->itemnumber,'image',$this->id);
 						break;
 					case 'zenpage':
+						$type = 'all';
 					case 'news':
 					case 'page':
-						$type = $this->commentrsstype;
-						if($this->commentrsstype == 'zenpage') {
-							$type = 'all';
-						}
 						if(function_exists('getLatestZenpageComments')) {
 							$items = getLatestZenpageComments($this->itemnumber,$type,$this->id);
 						}
 						break;
 					case 'allcomments':
-						$type = 'all';
-						$items = getLatestComments($this->itemnumber,$type,$this->id);
+						$items = getLatestComments($this->itemnumber,'all');
 						$items_zenpage = array();
 						if(function_exists('getLatestZenpageComments')) {
 							$items_zenpage = getLatestZenpageComments($this->itemnumber,$type,$this->id);
 							$items = array_merge($items,$items_zenpage);
-							$items = sortMultiArray($items,'id',true);
+							$items = sortMultiArray($items,'date',true);
 							$items = array_slice($items,0,$this->itemnumber);
 						}
 						break;
@@ -948,18 +944,25 @@ protected function getRSSCombinewsAlbums() {
 		} else {
 			$author = " ".gettext("by")." ".$item['name'];
 		}
-		$imagetag = "";
-		$title = '';
+		$commentpath = $imagetag = $title = '';
 		switch($item['type']) {
 			case 'images':
 				$title = get_language_string($item['title']);
-				$alb = new Album('',$item['folder']);
-				$obj = newImage($alb,$item['filename']);
+				$obj = newImage(NULL, array('folder'=>$item['folder'],'filename'=>$item['filename']));
 				$link = $obj->getImagelink();
+				$feeditem['pubdate'] = date("r",strtotime($item['date']));
+				$category = $item['albumtitle'];
+				$website =$item['website'];
+				if($item['type'] == 'albums') {
+					$title = $category;
+				} else {
+					$title = $category.": ".$title;
+				}
+				$commentpath = PROTOCOL.'://'.$this->host.html_encode($link)."#".$item['id'];
+				break;
 			case 'albums':
-				$album = pathurlencode($item['folder']);
-				$obj = new Album('',$album);
-				$link = $obj->getAlbumlink();
+				$obj = new Album(NULL,$item['folder']);
+				$link = rtrim($obj->getAlbumlink(),'/');
 				$feeditem['pubdate'] = date("r",strtotime($item['date']));
 				$category = $item['albumtitle'];
 				$website =$item['website'];
@@ -1019,7 +1022,6 @@ protected function getRSSCombinewsAlbums() {
 				<?php
 				$feeditems = $this->getRSSitems();
 				foreach($feeditems as $feeditem) {
-					print_r($feeditem);
 					switch($this->feedtype) {
 						case 'gallery':
 							$item = $this->getRSSitemGallery($feeditem);
@@ -1050,7 +1052,8 @@ protected function getRSSCombinewsAlbums() {
 						}
 						if(!empty($item['media_thumbnail'])) {
 							echo $item['media_thumbnail']; //prints xml as well
-						} ?>
+						}
+						?>
 						<guid><?php echo $item['link']; ?></guid>
 						<pubDate><?php echo $item['pubdate'];  ?></pubDate>
 					</item>
