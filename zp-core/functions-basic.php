@@ -1658,8 +1658,10 @@ class Mutex {
 	private $locked = NULL;
 	private $ignoreUseAbort = NULL;
 	private $mutex = NULL;
+	private $lock;
 
-	function __construct() {
+	function __construct($lock='dataaccess') {
+		$this->lock = $lock;
 	}
 
 	function __destruct() {
@@ -1673,7 +1675,7 @@ class Mutex {
 		//if "flock" is not supported run un-serialized
 		//Only lock an unlocked mutex, we don't support recursive mutex'es
 		if(!$this->locked && function_exists('flock')) {
-			$this->mutex = fopen(SERVERPATH.'/'.ZENFOLDER.'/dataaccess', 'rb');
+			$this->mutex = fopen(SERVERPATH.'/'.ZENFOLDER.'/'.$this->lock, 'rb');
 			if (function_exists('flock') && flock($this->mutex, LOCK_EX)) {
 				$this->locked = true;
 				//We are entering a critical section so we need to change the ignore_user_abort setting so that the
