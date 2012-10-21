@@ -53,7 +53,11 @@ class captcha {
 			// <!-- <![CDATA[
 			$(document).ready(function() {
 				$('#zenphoto_captcha_font').change(function(){
-					$('#zenphoto_captcha_image_loc').html($('#zenphoto_captcha_image_loc').html().replace(/">/, '&amp;f='+$('#zenphoto_captcha_font').val()+'"'));
+					base = $('#zenphoto_captcha_image_loc').html().replaceAll('">','');
+					if ((i = base.indexOf('&'))>0) {
+						base = base.substring(0,i);
+					}
+					$('#zenphoto_captcha_image_loc').html(base+'&amp;f='+$('#zenphoto_captcha_font').val()+'">');
 				});
 			});
 			// ]]> -->
@@ -129,7 +133,7 @@ class captcha {
 		$code=sha1($cypher);
 		query('DELETE FROM '.prefix('captcha').' WHERE `ptime`<'.(time()-3600), false);  // expired tickets
 		query("INSERT INTO " . prefix('captcha') . " (ptime, hash) VALUES (" . db_quote(time()) . "," . db_quote($code) . ")", false);
-		$html = '<img src="'.WEBPATH .'/'.ZENFOLDER.'/c.php?i='.$cypher.'" alt="Code" align="middle" />';
+		$html = '<img src="'.WEBPATH .'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/captcha/zenphoto/c.php?i='.$cypher.'" alt="Code" align="middle" />';
 		$input = '<input type="text" id="code" name="code" class="captchainputbox" />';
 		$hidden = '<input type="hidden" name="code_h" value="'.$code.'" />';
 		return array('input'=>$input, 'html'=>$html, 'hidden'=>$hidden);
