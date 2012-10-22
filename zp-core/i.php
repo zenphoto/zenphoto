@@ -61,7 +61,7 @@ if (getOption('secure_image_processor')) {
 
 // Extract the image parameters from the input variables
 // This validates the input as well.
-$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+$args = array(0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL);
 if (isset($_GET['s'])) { //0
 	if (is_numeric($_GET['s'])) {
 		$args[0] = min(abs($_GET['s']), MAX_SIZE);
@@ -70,34 +70,34 @@ if (isset($_GET['s'])) { //0
 	}
 }
 if (isset($_GET['w'])) {  //1
-	$args[1] = min(abs($_GET['w']), MAX_SIZE);
+	$args[1] = (int) min(abs(sanitize_numeric($_GET['w'])), MAX_SIZE);
 }
 if (isset($_GET['h'])) { //2
-	$args[2] = min(abs($_GET['h']), MAX_SIZE);
+	$args[2] = (int) min(abs(sanitize_numeric($_GET['h'])), MAX_SIZE);
 }
 if (isset($_GET['cw'])) { //3
-	$args[3] = sanitize($_GET['cw']);
+	$args[3] = (int) sanitize_numeric(($_GET['cw']));
 }
 if (isset($_GET['ch'])) { //4
-	$args[4] = sanitize($_GET['ch']);
+	$args[4] = (int) sanitize_numeric($_GET['ch']);
 }
 if (isset($_GET['cx'])) { //5
-	$args[5] = sanitize($_GET['cx']);
+	$args[5] = (int) sanitize_numeric($_GET['cx']);
 }
 if (isset($_GET['cy'])) { //6
-	$args[6] = sanitize($_GET['cy']);
+	$args[6] = (int) sanitize_numeric($_GET['cy']);
 }
 if (isset($_GET['q'])) { //7
-	$args[7] = sanitize($_GET['q']);
+	$args[7] = (int) sanitize_numeric($_GET['q']);
 }
 if (isset($_GET['thumb'])) { // 8
-	$args[10] = 1;
+	$args[10] = true;
 }
 if (isset($_GET['c'])) {// 9
-	$args[9] = sanitize($_GET['c']);
+	$args[9] = (bool) sanitize($_GET['c']);
 }
 if (isset($_GET['t'])) { //10
-	$args[10] = sanitize($_GET['t']);
+	$args[10] = (bool) sanitize($_GET['t']);
 }
 if (isset($_GET['wmk']) && !$adminrequest) { //11
 	$args[11] = sanitize($_GET['wmk']);
@@ -106,6 +106,13 @@ $args [12] = $adminrequest; //12
 
 if (isset($_GET['effects'])) {	//13
 	$args[13] = sanitize($_GET['effects']);
+}
+unset($args[8]);
+$check = @$_GET['check']==md5(HASH_SEED.implode($args));	//validate parameters
+
+
+if (!$check) {
+	imageError('403 Forbidden', gettext("Forbidden"));
 }
 
 
