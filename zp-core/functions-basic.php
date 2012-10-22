@@ -1423,6 +1423,8 @@ function getRequestURI() {
 /**
 * Provide an alternative to glob which does not return filenames with accented charactes in them
 *
+* NOTE: this function ignores "hidden" files whose name starts with a period!
+*
 * @param string $pattern the 'pattern' for matching files
 * @param bit $flags glob 'flags'
 */
@@ -1439,7 +1441,7 @@ function safe_glob($pattern, $flags=0) {
 	if (($dir=opendir($path))!==false) {
 		$glob=array();
 		while(($file=readdir($dir))!==false) {
-			if(@preg_match($match, $file) && $file!='.' && $file!='..') {
+			if(@preg_match($match, $file) && $file{0}!='.') {
 				if ((is_dir("$path/$file"))||(!($flags&GLOB_ONLYDIR))) {
 					if ($flags&GLOB_MARK) $file.='/';
 					$glob[]=$path_return.$file;
