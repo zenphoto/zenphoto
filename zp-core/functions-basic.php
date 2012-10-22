@@ -193,8 +193,12 @@ if (function_exists('mb_internal_encoding')) {
 // once a library has concented to load, all others will
 // abdicate.
 $_zp_graphics_optionhandlers = array();
-require_once(dirname(__FILE__).'/lib-Imagick.php');
-require_once(dirname(__FILE__).'/lib-GD.php');
+if (getOption('use_imagick')) {
+	require_once(dirname(__FILE__).'/lib-Imagick.php');
+}
+if (!function_exists('zp_graphicsLibInfo')) {
+	require_once(dirname(__FILE__).'/lib-GD.php');
+}
 if (function_exists('zp_graphicsLibInfo')) {
 	$_zp_supported_images = zp_graphicsLibInfo();
 } else {

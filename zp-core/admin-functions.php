@@ -4267,39 +4267,6 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 }
 
 /**
- * Returns Magick (Gmagick/Imagick) constants that begin with $filter and
- * removes the constant of the form $filter . 'UNDEFINED' if it exists.
- *
- * The returned array will be an associative array in which the
- * keys and values are identical strings sorted in alphabetical order.
- *
- * @param string $class The class to reflect
- * @param string $filter The string to delimit constants
- * @return array
- */
-function getMagickConstants($class, $filter) {
-	global $magickConstantPrefix;
-
-	$magickReflection = new ReflectionClass($class);
-	$magickConstants = $magickReflection->getConstants();
-
-	// lambda functions have no scope; must use $GLOBALS superglobal
-	$lambdaFilter = create_function('$value', 'return !strncasecmp($value, $GLOBALS["magickConstantPrefix"], strlen($GLOBALS["magickConstantPrefix"]));');
-
-	$magickConstantPrefix = $filter;
-	$filteredConstants = array_filter(array_keys($magickConstants), $lambdaFilter);
-
-	if (($key = array_search($filter . 'UNDEFINED', $filteredConstants)) !== false) {
-		unset($filteredConstants[$key]);
-	}
-
-	$constantsArray = array_combine(array_values($filteredConstants), $filteredConstants);
-	asort($constantsArray);
-
-	return $constantsArray;
-}
-
-/**
  * Strips off quotes from the strng
  * @param $string
  */

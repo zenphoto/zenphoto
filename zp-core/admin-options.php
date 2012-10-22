@@ -1644,6 +1644,8 @@ if ($subtab == 'rss' && zp_loggedin(OPTIONS_RIGHTS)) {
 <?php
 }
 if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
+	require_once(dirname(__FILE__).'/lib-Imagick.php');
+	require_once(dirname(__FILE__).'/lib-GD.php');
 	?>
 	<div id="tab_image" class="tabbox">
 	<?php zp_apply_filter('admin_note','options', $subtab); ?>

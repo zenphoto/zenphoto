@@ -14,14 +14,14 @@
 /**
  * Requires Imagick 2.1.0+ (Imagick 2.0.0+ requires PHP5)
  * Imagick 2.3.0b1+ and ImageMagick 6.3.8+ suggested to avoid deprecated functions
+ *
  */
-define('IMAGICK_LOADED', extension_loaded('imagick'));
 
 $_imagick_version = phpversion('imagick'); // Imagick::IMAGICK_EXTVER
 $_imagick_required_version = '2.1.0';
 $_imagick_version_pass = version_compare($_imagick_version, $_imagick_required_version, '>=');
 
-$_zp_imagick_present = IMAGICK_LOADED && $_imagick_version_pass;
+$_zp_imagick_present = extension_loaded('imagick') && $_imagick_version_pass;
 
 $_zp_graphics_optionhandlers += array('lib_Imagick_Options' => new lib_Imagick_Options());
 
@@ -30,25 +30,23 @@ $_zp_graphics_optionhandlers += array('lib_Imagick_Options' => new lib_Imagick_O
  */
 class lib_Imagick_Options {
 
+	static $defaultFilter = 'FILTER_LANCZOS';
+	static $defaultFontSize = 18;
+
+
 	function __construct() {
-		global $_zp_imagick_present;
 
-		if ($_zp_imagick_present) {
-			$this->defaultFilter = 'FILTER_LANCZOS';
-			$this->defaultFontSize = 18;
+		// setOptionDefault('use_imagick', $_zp_imagick_present);
+		setOptionDefault('imagick_filter', self::$defaultFilter);
+		setOptionDefault('magick_font_size', self::$defaultFontSize);
 
-			// setOptionDefault('use_imagick', $_zp_imagick_present);
-			setOptionDefault('imagick_filter', $this->defaultFilter);
-			setOptionDefault('magick_font_size', $this->defaultFontSize);
+		if (!sanitize_numeric(getOption('magick_font_size'))) {
+			setOption('magick_font_size', self::$defaultFontSize);
+		}
 
-			if (!sanitize_numeric(getOption('magick_font_size'))) {
-				setOption('magick_font_size', $this->defaultFontSize);
-			}
-
-			$mem_lim = getOption('magick_mem_lim');
-			if (!is_numeric($mem_lim) || $mem_lim < 0 ) {
-				setOption('magick_mem_lim', 0);
-			}
+		$mem_lim = getOption('magick_mem_lim');
+		if (!is_numeric($mem_lim) || $mem_lim < 0 ) {
+			setOption('magick_mem_lim', 0);
 		}
 	}
 
@@ -62,39 +60,46 @@ class lib_Imagick_Options {
 
 		$imagickOptions = array();
 
-		if ($_zp_imagick_present) {
-			$imagickOptions += array(
+		$imagickOptions += array(
 				gettext('Enable Imagick') => array(
-					'key' => 'use_imagick',
-					'type' => OPTION_TYPE_CHECKBOX,
-					'order' => 0,
-					'desc' => gettext('Your PHP has support for Imagick. Check this option if you wish to use the Imagick graphics library.')
+						'key' => 'use_imagick',
+						'type' => OPTION_TYPE_CHECKBOX,
+						'order' => 0,
+						'disabled'=>!$_zp_imagick_present,
+						'desc' => gettext('Check this option if you wish to use the Imagick graphics library.')
 				),
 				gettext('Imagick filter') => array(
-					'key' => 'imagick_filter',
-					'type' => OPTION_TYPE_SELECTOR,
-					'selections' => getMagickConstants('Imagick', 'FILTER_'),
-					'order' => 2,
-					'desc' => '<p>' . sprintf(gettext('The type of filter used when resampling an image. The default is <strong>%s</strong>.'), $this->defaultFilter) . '</p>'
+						'key' => 'imagick_filter',
+						'type' => OPTION_TYPE_SELECTOR,
+						'selections' => self::getMagickConstants('Imagick', 'FILTER_'),
+						'order' => 2,
+						'desc' => '<p>' . sprintf(gettext('The type of filter used when resampling an image. The default is <strong>%s</strong>.'), self::$defaultFilter) . '</p>'
 				)
-			);
+		);
 
-			if (!isset($_zp_graphics_optionhandlers['lib_Gmagick_Options'])) {
-				$imagickOptions += array(
+		if (!isset($_zp_graphics_optionhandlers['lib_Gmagick_Options'])) {
+			$imagickOptions += array(
 					gettext('Magick memory limit') => array(
-						'key' => 'magick_mem_lim',
-						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 1,
-						'desc' => '<p>' . gettext('Amount of memory allocated to Gmagick/Imagick in megabytes. Set to <strong>0</strong> for unlimited memory.') . '</p><p class="notebox">' . gettext('<strong>Note:</strong> Image processing will be faster with a higher memory limit. However, if your server experiences problems with image processing, try setting this lower.') . '</p>'
+							'key' => 'magick_mem_lim',
+							'type' => OPTION_TYPE_TEXTBOX,
+							'order' => 1,
+							'desc' => '<p>' . gettext('Amount of memory allocated to Gmagick/Imagick in megabytes. Set to <strong>0</strong> for unlimited memory.') . '</p><p class="notebox">' . gettext('<strong>Note:</strong> Image processing will be faster with a higher memory limit. However, if your server experiences problems with image processing, try setting this lower.') . '</p>'
 					),
 					gettext('CAPTCHA font size') => array(
-						'key' => 'magick_font_size',
-						'type' => OPTION_TYPE_TEXTBOX,
-						'order' => 3,
-						'desc' => sprintf(gettext('The font size (in pixels) for CAPTCHAs. Default is <strong>%s</strong>.'), $this->defaultFontSize)
+							'key' => 'magick_font_size',
+							'type' => OPTION_TYPE_TEXTBOX,
+							'order' => 3,
+							'desc' => sprintf(gettext('The font size (in pixels) for CAPTCHAs. Default is <strong>%s</strong>.'), self::$defaultFontSize)
 					)
-				);
+			);
+			if (!extension_loaded('imagick')) {
+				$imagickOptions += array('Not present'=>array('key'=>'notpresent',
+						'type'=>OPTION_TYPE_NOTE,
+						'order'=>0.5,
+						'desc' => '<p class="notebox">'.gettext('The Imagick extension is not loaded.'))
+						);
 			}
+
 		}
 
 		return $imagickOptions;
@@ -103,7 +108,7 @@ class lib_Imagick_Options {
 	function canLoadMsg() {
 		global $_imagick_version_pass, $_imagick_required_version;
 
-		if (IMAGICK_LOADED) {
+		if (extension_loaded('imagick')) {
 			if (!$_imagick_version_pass) {
 				return sprintf(gettext('The <strong><em>Imagick</em></strong> library version must be <strong>%s</strong> or later.'), $_imagick_required_version);
 			}
@@ -113,6 +118,45 @@ class lib_Imagick_Options {
 
 		return '';
 	}
+
+	/**
+	 * Returns Magick (Gmagick/Imagick) constants that begin with $filter and
+	 * removes the constant of the form $filter . 'UNDEFINED' if it exists.
+	 *
+	 * The returned array will be an associative array in which the
+	 * keys and values are identical strings sorted in alphabetical order.
+	 *
+	 * @param string $class The class to reflect
+	 * @param string $filter The string to delimit constants
+	 * @return array
+	 */
+	static function getMagickConstants($class, $filter) {
+		global $magickConstantPrefix;
+
+		if (extension_loaded('imagick')) {
+			$magickReflection = new ReflectionClass($class);
+			$magickConstants = $magickReflection->getConstants();
+
+			// lambda functions have no scope; must use $GLOBALS superglobal
+			$lambdaFilter = create_function('$value', 'return !strncasecmp($value, $GLOBALS["magickConstantPrefix"], strlen($GLOBALS["magickConstantPrefix"]));');
+
+			$magickConstantPrefix = $filter;
+			$filteredConstants = array_filter(array_keys($magickConstants), $lambdaFilter);
+
+			if (($key = array_search($filter . 'UNDEFINED', $filteredConstants)) !== false) {
+				unset($filteredConstants[$key]);
+			}
+
+			$constantsArray = array_combine(array_values($filteredConstants), $filteredConstants);
+			asort($constantsArray);
+		} else {
+			$constantsArray = array(self::$defaultFilter=>self::$defaultFilter);
+		}
+
+		return $constantsArray;
+	}
+
+
 }
 
 /**
