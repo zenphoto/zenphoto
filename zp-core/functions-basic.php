@@ -724,7 +724,7 @@ function getImageParameters($args, $album=NULL) {
 		}
 	}
 	// Return an array of parameters used in image conversion.
-	$args =  array($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects);
+	$args =  array((int) $size, (int) $width, (int) $height, $cw, $ch, $cx, $cy, (int) $quality, (bool) $thumb, (bool) $crop, (bool) $thumbstandin, $WM, (bool) $adminrequest, $effects);
 	return $args;
 }
 
@@ -737,7 +737,9 @@ function getImageParameters($args, $album=NULL) {
  * @return string
  */
 function getImageProcessorURI($args, $album, $image) {
-	list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
+		list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
+	unset($args[8]);	// not used by image processo
+	$check = md5(HASH_SEED.implode($args));
 	$uri = WEBPATH.'/'.ZENFOLDER.'/i.php?a='.pathurlencode($album).'&i='.urlencode($image);
 	if (!empty($size)) $uri .= '&s='.$size;
 	if (!empty($width)) $uri .= '&w='.$width;
@@ -752,6 +754,7 @@ function getImageProcessorURI($args, $album, $image) {
 	if (!empty($passedWM)) $uri .= '&wmk='.$passedWM;
 	if (!empty($adminrequest)) $uri .= '&admin';
 	if (!is_null($effects)) $uri .= '&effects='.$effects;
+	$uri .= '&check='.$check;
 	if (class_exists('static_html_cache')) {
 		// don't cache pages that have image processor URIs
 		static_html_cache::disable();
