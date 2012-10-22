@@ -44,8 +44,6 @@ if (function_exists('date_default_timezone_set')) {
 	error_reporting($level);
 }
 
-$_zp_imagick_present = false;
-
 function zp_getCookie($name) {
 	if (isset($_SESSION[$name])) { return $_SESSION[$name]; }
 	if (isset($_COOKIE[$name])) { return $_COOKIE[$name]; }

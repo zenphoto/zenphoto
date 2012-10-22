@@ -25,10 +25,10 @@ if ($optionlist) {
 }
 $lib_auth_extratext = "";
 $salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+-={}[]|;,.<>?/';
-$list = range(0, strlen($salt));
+$list = range(0, strlen($salt)-1);
 shuffle($list);
 for ($i=0; $i < 30; $i++) {
-	$lib_auth_extratext = $lib_auth_extratext . substr($salt, $list[$i], 1);
+	$lib_auth_extratext = $lib_auth_extratext . $salt{$list[$i]};
 }
 
 
