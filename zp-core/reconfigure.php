@@ -8,10 +8,10 @@
  *
  * Executes the configuration change code
  */
-function reconfigureAction() {
+function reconfigureAction($mandatory) {
 	list($diff, $needs) = checkSignature();
 	$diff = array_keys($diff);
-	if (in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
+	if ($mandatory || in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
 		if (empty($needs)) {
 			$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 			$p = strpos($dir, ZENFOLDER);

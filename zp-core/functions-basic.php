@@ -111,7 +111,7 @@ set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 if (OFFSET_PATH != 2 && !file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphoto.cfg")) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
-	reconfigureAction();
+	reconfigureAction(true);
 }
 // Including the config file more than once is OK, and avoids $conf missing.
 eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg'));
@@ -128,7 +128,7 @@ unset($const_serverpath);
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
-	reconfigureAction();
+	reconfigureAction(true);
 }
 
 require_once(dirname(__FILE__).'/lib-utf8.php');
@@ -149,7 +149,6 @@ define('FILE_MOD', CHMOD_VALUE & 0666);
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
 
-$_zp_imagick_present = false;
 require_once(dirname(__FILE__).'/functions-db-'.(isset($_zp_conf_vars['db_software'])?$_zp_conf_vars['db_software']:'MySQL').'.php');
 db_connect(false);
 
@@ -1540,7 +1539,7 @@ function db_count($table, $clause=NULL, $field="*") {
 function checkInstall() {
 	if ((!($i = getOption('zenphoto_install')) || ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature()))) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
-		reconfigureAction();
+		reconfigureAction(false);
 	}
 }
 
