@@ -30,7 +30,7 @@ $types = zp_apply_filter('upload_filetypes',$types);
 $options = array(
 								'upload_dir' => $targetPath = ALBUM_FOLDER_SERVERPATH.internalToFilesystem($folder).'/',
 								'upload_url' =>	imgSrcURI(ALBUM_FOLDER_WEBPATH.$folder).'/',
-								'accept_file_types' => '/('.implode('|',$types).')$/i'
+								'accept_file_types' => '/('.implode('|\.',$types).')$/i'
 );
 
 $new = !is_dir($targetPath);
