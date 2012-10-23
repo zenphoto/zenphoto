@@ -193,8 +193,12 @@ if (function_exists('mb_internal_encoding')) {
 // once a library has concented to load, all others will
 // abdicate.
 $_zp_graphics_optionhandlers = array();
-require_once(dirname(__FILE__).'/lib-Imagick.php');
-require_once(dirname(__FILE__).'/lib-GD.php');
+if (getOption('use_imagick')) {
+	require_once(dirname(__FILE__).'/lib-Imagick.php');
+}
+if (!function_exists('zp_graphicsLibInfo')) {
+	require_once(dirname(__FILE__).'/lib-GD.php');
+}
 if (function_exists('zp_graphicsLibInfo')) {
 	$_zp_supported_images = zp_graphicsLibInfo();
 } else {
@@ -1664,14 +1668,13 @@ class Mutex {
 	private $mutex = NULL;
 	private $lock;
 
-	function __construct($lock='dataaccess') {
+	function __construct($lock='zp_mutex') {
 		$this->lock = $lock;
 	}
 
 	function __destruct() {
 		if ($this->locked) {
-			flock($this->mutex, LOCK_UN);
-			fclose($this->mutex);
+			$this->unlock();
 		}
 	}
 
@@ -1679,7 +1682,7 @@ class Mutex {
 		//if "flock" is not supported run un-serialized
 		//Only lock an unlocked mutex, we don't support recursive mutex'es
 		if(!$this->locked && function_exists('flock')) {
-			$this->mutex = fopen(SERVERPATH.'/'.ZENFOLDER.'/'.$this->lock, 'rb');
+			$this->mutex = fopen(SERVERPATH.'/'.DATA_FOLDER.'/'.$this->lock, 'wb');
 			if (function_exists('flock') && flock($this->mutex, LOCK_EX)) {
 				$this->locked = true;
 				//We are entering a critical section so we need to change the ignore_user_abort setting so that the
@@ -1702,7 +1705,7 @@ class Mutex {
 				fclose($this->mutex);
 			} else {
 				fclose($this->mutex);
-				zp_error(gettext(''));
+				zp_error(gettext('Error un-locking mutex'));
 			}
 		}
 	}
