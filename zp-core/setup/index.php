@@ -129,6 +129,15 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	}
 }
 
+define ('ACK_REGISTER_GLOBALS', 1);
+define ('ACK_DISPLAY_ERRORS', 2);
+
+if (isset($_GET['security_ack'])) {
+	setupXSRFDefender();
+	updateConfigItem('security_ack', @$conf['security_ack'] | (int) $_GET['security_ack'], false);
+	$updatezp_config = true;
+}
+
 $permission_names = array(
 													0444=>gettext('readonly'),
 													0644=>gettext('strict'),
@@ -151,29 +160,12 @@ if ($updatechmod || $newconfig) {
 	} else {
 		$chmodval = sprintf('0%o',$chmod);
 	}
-	$i = strpos($zp_cfg, "define('CHMOD_VALUE',");
-	if ($i === false) {
-		$i = strpos($zp_cfg, "define('SERVERPATH',");
-		$i = strpos($zp_cfg, ';', $i);
-		$i = strpos($zp_cfg, '/**', $i);
-		$zp_cfg = substr($zp_cfg, 0, $i)."if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', ".$chmodval."); }\n".substr($zp_cfg, $i);
-	} else {
-		$i = $i + 21;
-		$j = strpos($zp_cfg, ")", $i);
-		$zp_cfg = substr($zp_cfg, 0, $i).$chmodval.substr($zp_cfg, $j);
-	}
 	if ($updatechmod) {
-		$i = strpos($zp_cfg, "\$conf['CHMOD'] = ");
+		$i = strpos($zp_cfg, "define('CHMOD_VALUE',");
+		updateConfigItem('CHMOD',sprintf('0%o',$chmod),false);
 		if ($i === false) {
-			$i = strpos($zp_cfg, "\$conf['server_protocol'] =");
-			$i = strpos($zp_cfg, ';', $i);
-			$i = strpos($zp_cfg, '//', $i);
-			$i = strpos($zp_cfg, '//', $i+1);
-			$zp_cfg = substr($zp_cfg, 0, $i)."\$conf['CHMOD'] = ".sprintf('0%o',$chmod).";\n".substr($zp_cfg, $i);
-		} else {
-			$i = $i + 17;
-			$j = strpos($zp_cfg, ";", $i);
-			$zp_cfg = substr($zp_cfg, 0, $i) . sprintf('0%o',$chmod) . substr($zp_cfg, $j);
+			$i = strpos($zp_cfg, "/** Do not edit below this line. **/");
+			$zp_cfg = substr($zp_cfg, 0, $i)."if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', ".$chmodval."); }\n".substr($zp_cfg, $i);
 		}
 	}
 	$updatezp_config = true;
@@ -182,23 +174,14 @@ if ($updatechmod || $newconfig) {
 if ($updatefileset = isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	setupXSRFDefender();
 	$fileset = $_REQUEST['FILESYSTEM_CHARSET'];
-	$i = strpos($zp_cfg, 	"\$conf['FILESYSTEM_CHARSET'] = ");
+	updateConfigItem('FILESYSTEM_CHARSET', $fileset);
 	if ($fileset && $i === false) {
-		$i = strpos($zp_cfg, "\$conf['server_protocol'] =");
-		$i = strpos($zp_cfg, ';', $i);
-		$i = strpos($zp_cfg, '//', $i);
-		$i = strpos($zp_cfg, '//', $i+1);
-		$zp_cfg = substr($zp_cfg, 0, $i)."//\n\$conf['FILESYSTEM_CHARSET'] = '$fileset';\n".substr($zp_cfg, $i);
 		$i = strpos($zp_cfg, "if (!defined('FILESYSTEM_CHARSET')");
 		if ($i !== false) {
 			$j = strpos($zp_cfg, ';', $i);
 			$j = strpos($zp_cfg, '$', $j);
 			$zp_cfg = substr($zp_cfg, 0, $i).substr($zp_cfg, $j);
 		}
-	} else {
-		$i = strpos($zp_cfg, "'", $i+30);
-		$j = strpos($zp_cfg, "'", $i+1);
-		$zp_cfg = substr($zp_cfg, 0, $i+1).$fileset.substr($zp_cfg, $j);
 	}
 	$updatezp_config = true;
 }
@@ -525,16 +508,19 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
 
 	if (preg_match('#(1|ON)#i', @ini_get('register_globals'))) {
-		if ($prevRel) {
+		if (@$_zp_conf_vars['security_ack'] & ACK_REGISTER_GLOBALS) {
 			$register_globals = -1;
+			$aux = '';
 		} else {
 			$register_globals = false;
+			$aux = ' '.acknowledge(@$_zp_conf_vars['security_ack'] | ACK_REGISTER_GLOBALS);
 		}
 	} else {
 		$register_globals = true;
+		$aux = '';
 	}
 	$good = checkMark($register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),
-										gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Change your PHP.ini settings to <code>register_globals = off</code>')) && $good;
+										gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Change your PHP.ini settings to <code>register_globals = off</code>.').$aux) && $good;
 
 	if (preg_match('#(1|ON)#i', ini_get('safe_mode'))) {
 		$safe = -1;
@@ -563,20 +549,25 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		case 'off':
 		case 'stderr':
 			$display = true;
+			$aux = '';
 			break;
 		case 1:
 		case 'on':
 		case 'stdout':
-			$display = -1;
-			break;
 		default:
-			$display = 1;
+			if (@$_zp_conf_vars['security_ack'] & ACK_DISPLAY_ERRORS) {
+				$display = -1;
+				$aux = '';
+			} else {
+				$display = 0;
+				$aux = ' '.acknowledge(@$_zp_conf_vars['security_ack'] | ACK_DISPLAY_ERRORS);
+			}
 			break;
 	}
 	checkmark($display, gettext('PHP <code>display_errors</code>'),
 			sprintf(gettext('PHP <code>display_errors</code> [is enabled]'),$display),
-			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sentsitive information about your site.'),
-			!TEST_RELEASE);
+			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sentsitive information about your site.').$aux,
+			$display && !TEST_RELEASE);
 
 	checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));
 	checkmark(function_exists('flock')?1:-1, gettext('PHP <code>flock</code> support'), gettext('PHP <code>flock</code> support [is not present]'), gettext('Zenpoto uses <code>flock</code> for serializing critical regions of code. Without <code>flock</code> active sites may experience <em>race conditions</em> which may be causing inconsistent data.'));
