@@ -98,8 +98,7 @@ header('Last-Modified: ' . gmdate('D, d M Y H:i:s').' GMT');
 		<div class="errorbox">
 			<h2><?php echo gettext('Map display error')?></h2>
 			<p>
-				<?php echo gettext('The GoogleMap plugin <em>map display</em> script has received a corrupt <em>Map</em> parameter.
-				This is most likely caused by URL character limitations from your browser.'); ?>
+				<?php echo gettext('The GoogleMap plugin <em>map display</em> script has received a corrupt <em>Map</em> parameter.	This is most likely caused by URL character limitations from your browser.'); ?>
 				<?php echo gettext('For information on URL limits visit <a href="javascript:parent.window.location=\'http://www.boutell.com/newfaq/misc/urllength.html\';">What is the maximum length of a URL</a>.'); ?>
 			</p>
 			<p>

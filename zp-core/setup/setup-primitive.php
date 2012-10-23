@@ -432,7 +432,7 @@ class Mutex {
 				fclose($this->mutex);
 			} else {
 				fclose($this->mutex);
-				zp_error(gettext(''));
+				zp_error(gettext('Error un-locking mutex'));
 			}
 		}
 	}

@@ -83,8 +83,20 @@ class security_logger {
 	 * @param string $authority kind of login
 	 * @param string $addl more info
 	 */
-	private static function Logger($success, $user, $name, $ip, $action, $authority, $addl=NULL) {
+	private static function Logger($success, $user, $name, $action, $authority, $addl=NULL) {
 		global $_zp_authority, $_zp_mutex;
+		$pattern = '~^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.([01]?\\d\\d?|2[0-4]\\d|25[0-5])$~';
+		$forwardedIP = NULL;
+		$ip = sanitize($_SERVER['REMOTE_ADDR']);
+		if (!preg_match($pattern, $ip)) {
+			$ip = NULL;
+		}
+		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			$forwardedIP = sanitize($_SERVER['HTTP_X_FORWARDED_FOR']);
+			if (preg_match($pattern, $forwardedIP)) {
+				$ip .= ' {'.$forwardedIP.'}';
+			}
+		}
 		$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
 		if ($admin) {
 			$locale = $admin->getLanguage();
@@ -244,7 +256,7 @@ class security_logger {
 				$name = $admin->getName();
 			}
 		}
-		security_logger::Logger((int) ($success && true), $user, $name, getUserIP(), 'Back-end', $auth, $pass);
+		security_logger::Logger((int) ($success && true), $user, $name, 'Back-end', $auth, $pass);
 		return $success;
 	}
 
@@ -290,7 +302,7 @@ class security_logger {
 				$name = $admin->getName();
 			}
 		}
-		security_logger::Logger((int) ($success && true), $user, $name, getUserIP(), 'Front-end', $athority, $pass);
+		security_logger::Logger((int) ($success && true), $user, $name, 'Front-end', $athority, $pass);
 		return $success;
 	}
 
@@ -301,13 +313,13 @@ class security_logger {
 	 */
 	static function adminGate($allow, $page) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(0, $user, $name, getUserIP(), 'blocked_access', '', $page);
+		security_logger::Logger(0, $user, $name, 'blocked_access', '', $page);
 		return $allow;
 	}
 
 	static function adminCookie($allow) {
 		if (!$allow) {
-			security_logger::Logger(0, NULL, NULL, getUserIP(), 'auth_cookie', '', NULL);
+			security_logger::Logger(0, NULL, NULL, 'auth_cookie', '', NULL);
 		}
 		return $allow;
 	}
@@ -319,7 +331,7 @@ class security_logger {
 	 */
 	static function adminAlbumGate($allow, $page) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(2, $user, $name, getUserIP(), 'blocked_album', '', $page);
+		security_logger::Logger(2, $user, $name, 'blocked_album', '', $page);
 		return $allow;
 	}
 
@@ -331,7 +343,7 @@ class security_logger {
 	 */
 	static function UserSave($discard, $userobj, $class) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(1, $user, $name, getUserIP(), 'user_'.$class, 'zp_admin_auth', $userobj->getUser());
+		security_logger::Logger(1, $user, $name, 'user_'.$class, 'zp_admin_auth', $userobj->getUser());
 		return $discard;
 	}
 
@@ -344,7 +356,7 @@ class security_logger {
 	 */
 	static function admin_XSRF_access($discard, $token) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger(2, $user, $name, getUserIP(), 'XSRF_blocked', '', $token);
+		security_logger::Logger(2, $user, $name, 'XSRF_blocked', '', $token);
 		return false;
 	}
 
@@ -356,7 +368,7 @@ class security_logger {
 	 */
 	static function log_action($allow, $log, $action) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger((int) ($allow && true), $user, $name, getUserIP(), $action, 'zp_admin_auth', basename($log));
+		security_logger::Logger((int) ($allow && true), $user, $name, $action, 'zp_admin_auth', basename($log));
 		return $allow;
 	}
 
@@ -368,7 +380,7 @@ class security_logger {
 	 */
 	static function log_setup($success, $action, $txt) {
 		list($user,$name) = security_logger::populate_user();
-		security_logger::Logger((int) ($success && true), $user, $name, getUserIP(), 'setup_'.$action, 'zp_admin_auth', $txt);
+		security_logger::Logger((int) ($success && true), $user, $name, 'setup_'.$action, 'zp_admin_auth', $txt);
 		return $success;
 	}
 
