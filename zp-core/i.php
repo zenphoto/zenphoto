@@ -63,8 +63,10 @@ if (getOption('secure_image_processor')) {
 // This validates the input as well.
 $args = array(0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL);
 if (isset($_GET['s'])) { //0
-	if (is_numeric($_GET['s'])) {
-		$args[0] = min(abs($_GET['s']), MAX_SIZE);
+	if (is_numeric($s = $_GET['s'])) {
+		if ($s) {
+			$args[0] = min(abs($s), MAX_SIZE);
+		}
 	} else {
 		$args[0] = sanitize($_GET['s']);
 	}
@@ -107,14 +109,11 @@ $args [12] = $adminrequest; //12
 if (isset($_GET['effects'])) {	//13
 	$args[13] = sanitize($_GET['effects']);
 }
-unset($args[8]);
 $check = @$_GET['check']==md5(HASH_SEED.implode($args));	//validate parameters
-
 
 if (!$check) {
 	imageError('403 Forbidden', gettext("Forbidden"));
 }
-
 
 if ( !isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 	// No image parameters specified
@@ -125,6 +124,7 @@ if ( !isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 	// external album, Web server cannot serve original image. Force resize to as big as we can do
 	$args[0] = MAX_SIZE;
 }
+
 $args = getImageParameters($args,filesystemToInternal($album));
 list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 if (DEBUG_IMAGE) debugLog("i.php($ralbum, $rimage): \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$thumbstandin=$thumbstandin, \$passedWM=$passedWM, \$adminrequest=$adminrequest, \$effects=$effects");

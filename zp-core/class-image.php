@@ -29,16 +29,18 @@ function newImage($album, $filename, $quiet=false) {
 		$xalbum = $album;
 	}
 	if (!is_object($xalbum) || strtoLower(get_class($xalbum)) != 'album' || !$xalbum->exists) {
-		$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'),$filename);
-		trigger_error($msg, E_USER_NOTICE);
+		if (!$quiet) {
+			$msg = sprintf(gettext('Bad album object parameter to newImage(%s)'),$filename);
+			trigger_error($msg, E_USER_NOTICE);
+		}
 		return NULL;
 	}
 	if ($ext = is_valid_other_type($filename)) {
 		$object = $_zp_extra_filetypes[$ext];
-		$image = New $object($xalbum, $filename);
+		$image = New $object($xalbum, $filename, $quiet);
 	} else {
 		if (is_valid_image($filename)) {
-			$image = New _Image($xalbum, $filename);
+			$image = New _Image($xalbum, $filename, $quiet);
 		} else {
 			$image = NULL;
 		}
@@ -110,7 +112,7 @@ class _Image extends MediaObject {
 	 * @param sting $filename the filename of the image
 	 * @return Image
 	 */
-	function _Image(&$album, $filename) {
+	function _Image(&$album, $filename, $quiet=false) {
 		global $_zp_current_admin_obj;
 		// $album is an Album object; it should already be created.
 		$msg = false;
@@ -122,6 +124,10 @@ class _Image extends MediaObject {
 			}
 		}
 		if ($msg) {
+			if ($quiet) {
+				$this->exists = false;
+				return;
+			}
 			trigger_error($msg, E_USER_ERROR);
 			exitZP();
 		}

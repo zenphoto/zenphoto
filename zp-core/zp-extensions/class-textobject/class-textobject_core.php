@@ -73,12 +73,12 @@ class TextObject extends _Image {
 	 * @param string $filename the filename of the text file
 	 * @return TextObject
 	 */
-	function __construct($album, $filename) {
+	function __construct($album, $filename, $quiet=false) {
 
 		$this->watermark = getOption('TextObject_watermark');
 		$this->watermarkDefault = getOption('textobject_watermark_default_images');
 
-		$this->common_instantiate($album,$filename);
+		$this->common_instantiate($album,$filename, $quiet);
 
 	}
 
@@ -87,7 +87,7 @@ class TextObject extends _Image {
 	 * @param $album
 	 * @param $filename
 	 */
-	function common_instantiate($album,$filename) {
+	function common_instantiate($album,$filename, $quiet=false) {
 		global $_zp_supported_images;
 		$msg = false;
 		if (!is_object($album) || !$album->exists){
@@ -96,6 +96,10 @@ class TextObject extends _Image {
 			$msg = gettext('Invalid Textobject instantiation: file does not exist');
 		}
 		if ($msg) {
+			if ($quiet) {
+				$this->exists = false;
+				return;
+			}
 			trigger_error($msg, E_USER_ERROR);
 			exitZP();
 		}
