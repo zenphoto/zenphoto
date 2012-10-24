@@ -555,7 +555,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		case 'on':
 		case 'stdout':
 		default:
-			if (@$_zp_conf_vars['security_ack'] & ACK_DISPLAY_ERRORS) {
+			if (TEST_RELEASE || (@$_zp_conf_vars['security_ack'] & ACK_DISPLAY_ERRORS)) {
 				$display = -1;
 				$aux = '';
 			} else {
