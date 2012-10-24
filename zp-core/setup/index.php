@@ -513,7 +513,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 			$aux = '';
 		} else {
 			$register_globals = false;
-			$aux = ' '.acknowledge(@$_zp_conf_vars['security_ack'] | ACK_REGISTER_GLOBALS);
+			$aux = ' '.acknowledge(ACK_REGISTER_GLOBALS);
 		}
 	} else {
 		$register_globals = true;
@@ -560,7 +560,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				$aux = '';
 			} else {
 				$display = 0;
-				$aux = ' '.acknowledge(@$_zp_conf_vars['security_ack'] | ACK_DISPLAY_ERRORS);
+				$aux = ' '.acknowledge(ACK_DISPLAY_ERRORS);
 			}
 			break;
 	}
