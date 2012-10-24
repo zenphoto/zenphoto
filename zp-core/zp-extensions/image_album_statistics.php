@@ -427,8 +427,8 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 															"WHERE (images.albumid = albums.id) " . $albumWhere .
 															" ORDER BY ".$sortorder." DESC");
 		while ($row = db_fetch_assoc($result)) {
-			$image = newImage(NULL, $row);
-			if ($image && $image->checkAccess($hint, $show)) {
+			$image = newImage(NULL, $row, true);
+			if ($image->exists && $image->checkAccess($hint, $show)) {
 				$imageArray[] = $image;
 				if (count($imageArray) >= $number) {	// got enough
 					break;
