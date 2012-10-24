@@ -670,21 +670,27 @@ function getImageParameters($args, $album=NULL) {
 	$thumb = $crop = false;
 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects) = $args;
 	$thumb = $thumbstandin;
-	if ($size == 'thumb') {
-		$thumb = true;
-		if ($thumb_crop) {
-			$cw = $thumb_crop_width;
-			$ch = $thumb_crop_height;
-		}
-		$size = round($thumb_size);
-	} else {
-		if ($size == 'default') {
+
+	switch ($size) {
+		case 0:
+		default:
+			if (empty($size) || !is_numeric($size)) {
+				$size = false; // 0 isn't a valid size anyway, so this is OK.
+			} else {
+				$size = round($size);
+			}
+			break;
+		case 'thumb':
+			$thumb = true;
+			if ($thumb_crop) {
+				$cw = $thumb_crop_width;
+				$ch = $thumb_crop_height;
+			}
+			$size = round($thumb_size);
+			break;
+		case 'default':
 			$size = $image_default_size;
-		} else if (empty($size) || !is_numeric($size)) {
-			$size = false; // 0 isn't a valid size anyway, so this is OK.
-		} else {
-			$size = round($size);
-		}
+			break;
 	}
 
 	// Round each numeric variable, or set it to false if not a number.
@@ -741,7 +747,7 @@ function getImageParameters($args, $album=NULL) {
  */
 function getImageProcessorURI($args, $album, $image) {
 		list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
-	unset($args[8]);	// not used by image processo
+	$args[8] = NULL;	// not used by image processo
 	$check = md5(HASH_SEED.implode($args));
 	$uri = WEBPATH.'/'.ZENFOLDER.'/i.php?a='.pathurlencode($album).'&i='.urlencode($image);
 	if (!empty($size)) $uri .= '&s='.$size;
