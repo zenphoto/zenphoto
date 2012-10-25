@@ -16,7 +16,6 @@ if (!defined('WEBPATH')) die();
 <?php zp_apply_filter('theme_body_open'); ?>
 	<div id="slideshowpage">
 			<?php
-			zp_apply_filter('theme_head');
 			printSlideShow(true,true);
 			?>
 	</div>
