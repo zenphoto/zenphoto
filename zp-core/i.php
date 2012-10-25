@@ -259,7 +259,6 @@ if (!$debug) {
 		fpassthru($fp);
 		fclose($fp);
 	}
-	exitZP();
 } else {
 	echo "\n<p>Image: <img src=\"" . $path ."\" /></p>";
 }
