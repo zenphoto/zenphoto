@@ -85,11 +85,11 @@ class lib_Imagick_Options {
 							'order' => 1,
 							'desc' => '<p>' . gettext('Amount of memory allocated to Gmagick/Imagick in megabytes. Set to <strong>0</strong> for unlimited memory.') . '</p><p class="notebox">' . gettext('<strong>Note:</strong> Image processing will be faster with a higher memory limit. However, if your server experiences problems with image processing, try setting this lower.') . '</p>'
 					),
-					gettext('CAPTCHA font size') => array(
+					gettext('Imagick font size') => array(
 							'key' => 'magick_font_size',
 							'type' => OPTION_TYPE_TEXTBOX,
 							'order' => 3,
-							'desc' => sprintf(gettext('The font size (in pixels) for CAPTCHAs. Default is <strong>%s</strong>.'), self::$defaultFontSize)
+							'desc' => sprintf(gettext('The font size (in pixels). Default is <strong>%s</strong>.'), self::$defaultFontSize)
 					)
 			);
 			if (!extension_loaded('imagick')) {
