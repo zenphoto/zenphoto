@@ -1674,7 +1674,7 @@ class Mutex {
 	private $mutex = NULL;
 	private $lock;
 
-	function __construct($lock='zp_mutex') {
+	function __construct($lock='zP') {
 		$this->lock = $lock;
 	}
 
@@ -1688,7 +1688,10 @@ class Mutex {
 		//if "flock" is not supported run un-serialized
 		//Only lock an unlocked mutex, we don't support recursive mutex'es
 		if(!$this->locked && function_exists('flock')) {
-			$this->mutex = fopen(SERVERPATH.'/'.DATA_FOLDER.'/'.$this->lock, 'wb');
+			if (!file_exists(SERVERPATH.'/'.DATA_FOLDER.'/mutex')) {
+				mkdir(SERVERPATH.'/'.DATA_FOLDER.'/mutex');
+			}
+			$this->mutex = fopen(SERVERPATH.'/'.DATA_FOLDER.'/mutex/'.$this->lock, 'wb');
 			if (function_exists('flock') && flock($this->mutex, LOCK_EX)) {
 				$this->locked = true;
 				//We are entering a critical section so we need to change the ignore_user_abort setting so that the

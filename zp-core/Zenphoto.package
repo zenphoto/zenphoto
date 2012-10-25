@@ -673,6 +673,7 @@ zp-core/zp-extensions/auto_backup.php
 zp-core/zp-extensions/cacheManager
 zp-core/zp-extensions/cacheManager.php
 zp-core/zp-extensions/cacheManager/cacheImages.php
+zp-core/zp-extensions/cacheManager/i.php
 zp-core/zp-extensions/captcha
 zp-core/zp-extensions/captcha/reCaptcha
 zp-core/zp-extensions/captcha/reCaptcha.php
@@ -1917,4 +1918,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1919
+1920
