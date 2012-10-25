@@ -4749,7 +4749,7 @@ msgstr "Als je de optie hebt geactiveerd en je kunt niet inloggen zul je de data
 
 #: ZpTranslation-Development/zp-core/admin-options.php:3046
 msgid "User name"
-msgstr "Gebruikersnaam login-formulier"
+msgstr "Gebruikersnaam veld <br />login-formulier"
 
 #: ZpTranslation-Development/zp-core/admin-options.php:3068
 msgid "If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form."
