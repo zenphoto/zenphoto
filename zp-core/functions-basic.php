@@ -1681,6 +1681,7 @@ class Mutex {
 	function __destruct() {
 		if ($this->locked) {
 			$this->unlock();
+			debugLog(sprintf(gettext('Mutex %s was left locked.'),$this->lock));
 		}
 	}
 
