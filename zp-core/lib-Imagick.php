@@ -66,7 +66,9 @@ class lib_Imagick_Options {
 						'type' => OPTION_TYPE_CHECKBOX,
 						'order' => 0,
 						'disabled'=>!$_zp_imagick_present,
-						'desc' => gettext('Check this option if you wish to use the Imagick graphics library.')
+						'desc' => (extension_loaded('imagick')) ?
+								gettext('Check this option if you wish to use the Imagick graphics library.') :
+								'<p class="notebox">'.gettext('The Imagick extension is not loaded.')
 				),
 				gettext('Imagick filter') => array(
 						'key' => 'imagick_filter',
@@ -92,13 +94,6 @@ class lib_Imagick_Options {
 							'desc' => sprintf(gettext('The font size (in pixels). Default is <strong>%s</strong>.'), self::$defaultFontSize)
 					)
 			);
-			if (!extension_loaded('imagick')) {
-				$imagickOptions += array('Not present'=>array('key'=>'notpresent',
-						'type'=>OPTION_TYPE_NOTE,
-						'order'=>0.5,
-						'desc' => '<p class="notebox">'.gettext('The Imagick extension is not loaded.'))
-						);
-			}
 
 		}
 
