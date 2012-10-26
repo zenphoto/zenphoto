@@ -80,7 +80,9 @@ function query_single_row($sql, $errorstop=true) {
 	global $_zp_DB_connection;
 	$result = query($sql, $errorstop);
 	if (is_object($result)) {
-		return $result->fetch_assoc();
+		$row = $result->fetch_assoc();
+		mysqli_free_result($result);
+		return $row;
 	} else {
 		return false;
 	}
@@ -108,6 +110,7 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
 				$allrows[$row[$key]] = $row;
 			}
 		}
+		mysqli_free_result($result);
 		return $allrows;
 	} else {
 		return false;
@@ -304,6 +307,10 @@ function db_truncate_table($table) {
 
 function db_LIKE_escape($str) {
 	return strtr($str, array('_'=>'\\_','%'=>'\\%'));
+}
+
+function db_free_result($result) {
+	return mysqli_free_result($result);
 }
 
 ?>

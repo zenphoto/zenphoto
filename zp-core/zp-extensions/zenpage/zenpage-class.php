@@ -127,6 +127,7 @@ class Zenpage {
 					}
 				}
 			}
+			db_free_result($result);
 		}
 		return $all_pages;
 	}
@@ -273,6 +274,7 @@ class Zenpage {
 					}
 				}
 			}
+			db_free_result($resource);
 		}
 		return $result;
 	}
@@ -402,6 +404,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 					}
 				}
 			}
+			db_free_result($resource);
 		}
 		return $result;
 	}

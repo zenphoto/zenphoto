@@ -210,6 +210,7 @@ class Zenphoto_Authority {
 							break;
 					}
 				}
+				db_free_result($admins);
 			}
 		}
 		switch ($what) {
@@ -414,6 +415,7 @@ class Zenphoto_Authority {
 				$sql = 'UPDATE '.prefix('administrators').' SET `rights`='.$newrights.' WHERE `id`='.$user['id'];
 				$success = $success && query($sql);
 			} // end loop
+			db_free_result($admins);
 		}
 		return $success;
 	}

@@ -3103,6 +3103,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 						$albumlist[] = $albumcheck['id'];
 					}
 				}
+				db_free_result($rslt);
 			}
 
 			if (empty($albumlist)) {
@@ -3153,6 +3154,8 @@ function getLatestComments($number,$type="all",$id=NULL) {
 					$imagecomment = db_fetch_assoc($comments_images);
 				}
 			}
+			db_free_result($comments_albums);
+			db_free_result($comments_images);
 			break;
 		case 'album':
 			$item = getItemByID('albums', $id);
@@ -3279,6 +3282,7 @@ function filterImageQuery($result, $source) {
 				}
 			}
 		}
+		db_free_result($result);
 	}
 	return NULL;
 }
@@ -3378,6 +3382,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 			while ($row = db_fetch_assoc($result)) {
 				$albumInWhere = $albumInWhere . $row['id'] . ", ";
 			}
+			db_free_result($result);
 			$albumInWhere =  ' AND '.substr($albumInWhere, 0, -2) . ')';
 			$sql = 'SELECT `folder`, `filename` ' .
 							' FROM '.prefix('images'). ', '.prefix('albums').
@@ -3641,6 +3646,7 @@ function getAllDates($order='asc') {
 		while ($row = db_fetch_assoc($result)){
 			$alldates[] = $row['date'];
 		}
+		db_free_result($result);
 	}
 	foreach ($alldates as $adate) {
 		if (!empty($adate)) {

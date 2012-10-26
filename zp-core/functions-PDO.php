@@ -69,6 +69,7 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
 				$allrows[$row[$key]] = $row;
 			}
 		}
+		$result->closeCursor();
 		return $allrows;
 	} else {
 		return false;
@@ -159,6 +160,10 @@ function db_close() {
 	global $_zp_DB_connection;
 	$_zp_DB_connection = NULL;
 	return true;
+}
+
+function db_free_result($result) {
+	return $result->closeCursor();
 }
 
 ?>

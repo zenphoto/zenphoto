@@ -80,6 +80,7 @@ if ($data) {
 			}
 		}
 	}
+	db_free_result($data);
 }
 foreach ($results_f as $key=>$failed) {
 	if (array_key_exists($key, $results)) {	// really a successful search

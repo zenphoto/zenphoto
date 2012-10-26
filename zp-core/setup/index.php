@@ -1034,6 +1034,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					$tables[] = $row[0];
 					$tableslist .= "<code>" . $row[0] . "</code>, ";
 				}
+				db_free_result($result);
 			} else {
 				$check = -1;
 			}
@@ -1550,6 +1551,7 @@ if (file_exists(CONFIGFILE)) {
 				$key = str_replace(array($prefixLC,$prefixUC), $_zp_conf_vars['mysql_prefix'], $key);
 				$tables[$key] = 'update';
 			}
+			db_free_result($result);
 		}
 		$expected_tables = array($_zp_conf_vars['mysql_prefix'].'options', $_zp_conf_vars['mysql_prefix'].'albums',
 			$_zp_conf_vars['mysql_prefix'].'images', $_zp_conf_vars['mysql_prefix'].'comments',
@@ -2028,6 +2030,7 @@ if (file_exists(CONFIGFILE)) {
 				}
 			}
 		}
+		db_free_result($result);
 	}
 	if (!$hasownerid) {
 		$sql_statements[] = "ALTER TABLE $tbl_comments ADD INDEX (`ownerid`);";
@@ -2064,6 +2067,7 @@ if (file_exists(CONFIGFILE)) {
 				$hastagidindex = true;
 			}
 		}
+		db_free_result($result);
 	}
 	if (!$hastagidindex) {
 		$sql_statements[] = "ALTER TABLE $tbl_obj_to_tag ADD INDEX (`tagid`)";
@@ -2141,6 +2145,7 @@ if (file_exists(CONFIGFILE)) {
 				break;
 			}
 		}
+		db_free_result($result);
 	}
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `watermark` varchar(255) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_pages.' CHANGE `commentson` `commentson` int(1) UNSIGNED default 0';
