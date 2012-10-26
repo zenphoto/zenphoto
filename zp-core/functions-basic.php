@@ -771,43 +771,6 @@ function getAllowedTags($which) {
 	}
 }
 
-/** returns a sanitized string for the sanitize function
- * @param string $input_string
- * @param string $sanitize_level
- * @return string the sanitized string.
- */
-function sanitize_string($input_string, $sanitize_level) {
-	global $_user_tags, $_style_tags;
-	// Strip slashes if get_magic_quotes_gpc is enabled.
-	if (get_magic_quotes_gpc()) {
-		$input_string = stripslashes($input_string);
-	}
-	// Basic sanitation.
-	if ($sanitize_level === 0) {
-		return str_replace(chr(0), " ", $input_string);
-	}
-	// User specified sanititation.
-	if (function_exists('kses')) {
-		switch($sanitize_level) {
-			case 1:
-				$allowed_tags = getAllowedTags('allowed_tags');
-				break;
-			// Text formatting sanititation.
-			case 2:
-				$allowed_tags = getAllowedTags('style_tags');
-				break;
-			// Full sanitation.  Strips all code.
-			case 3:
-				$allowed_tags = array();
-				break;
-		}
-		$output_string = kses($input_string, $allowed_tags);
-	} else {	//	in a basic environment--allow NO HTML tags.
-		$output_string = strip_tags($input_string);
-	}
-	return $output_string;
-}
-
 /**
  * Returns either the rewrite path or the plain, non-mod_rewrite path
  * based on the mod_rewrite option.
