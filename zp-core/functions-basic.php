@@ -1221,7 +1221,7 @@ function safe_glob($pattern, $flags=0) {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if ((!($i = getOption('zenphoto_install')) || ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature()))) {
+	if ((!($i = getOption('zenphoto_install')) || (getOption('zenphoto_release') != ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']') || ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature()))) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
 		reconfigureAction(false);
 	}
