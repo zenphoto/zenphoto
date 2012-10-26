@@ -41,7 +41,7 @@ if (!defined('WEBPATH')) die(); ?>
 		</ul>
 
 			<?php while (next_image()): ?>
-			<div class="image"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>">
+			<div class="image"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php printBareImageTitle();?>">
 			<?php printCustomSizedImage(getAnnotatedImageTitle(), NULL,79, 79, 79, 79, NULL, NULL, NULL, NULL, true, NULL); ?>
 			</a>
 			</div>

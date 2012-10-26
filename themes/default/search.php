@@ -7,7 +7,7 @@ if (!defined('WEBPATH')) die();
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Search"); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
+		<title><?php printBareGalleryTitle(); ?> | <?php echo gettext("Search"); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/default/common.css" type="text/css" />
@@ -52,10 +52,10 @@ if (!defined('WEBPATH')) die();
 					<?php while (next_album()): $c++; ?>
 						<div class="album">
 							<div class="thumb">
-								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getAnnotatedAlbumTitle(); ?>"><?php printAlbumThumbImage(getAnnotatedAlbumTitle()); ?></a>
+								<a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumThumbImage(getAnnotatedAlbumTitle()); ?></a>
 							</div>
 							<div class="albumdesc">
-								<h3><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php echo getAnnotatedAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
+								<h3><a href="<?php echo html_encode(getAlbumLinkURL()); ?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle(); ?>"><?php printAlbumTitle(); ?></a></h3>
 								<p><?php printAlbumDesc(); ?></p>
 								<small><?php printAlbumDate(gettext("Date:") . ' '); ?> </small>
 							</div>
@@ -66,7 +66,7 @@ if (!defined('WEBPATH')) die();
 				<div id="images">
 					<?php while (next_image()): $c++; ?>
 						<div class="image">
-							<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php echo getBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
+							<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL()); ?>" title="<?php printBareImageTitle(); ?>"><?php printImageThumb(getAnnotatedImageTitle()); ?></a></div>
 						</div>
 					<?php endwhile; ?>
 				</div>

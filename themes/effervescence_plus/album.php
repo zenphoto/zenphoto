@@ -14,7 +14,7 @@ $map = function_exists('printGoogleMap');
 	$personality = strtolower(getOption('effervescence_personality'));
 	require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
 	?>
-	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
+	<title><?php printBareGalleryTitle(); ?> | <?php printBareAlbumTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />

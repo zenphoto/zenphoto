@@ -738,6 +738,7 @@ class SearchEngine {
 			while ($row = db_fetch_assoc($result)) {
 				$list[] = $row['news_id'];
 			}
+			db_free_result($result);
 		}
 		return $list;
 	}
@@ -1083,6 +1084,7 @@ class SearchEngine {
 										while ($row = db_fetch_assoc($result)) {
 											$allIDs[] = $row['id'];
 										}
+										db_free_result($result);
 									}
 								}
 								if (is_array($objectid)) {
@@ -1270,6 +1272,7 @@ class SearchEngine {
 							}
 						}
 					}
+					db_free_result($search_result);
 					if (is_null($sorttype)) {
 						$result = sortMultiArray($result, 'weight', true);
 					}
@@ -1447,6 +1450,7 @@ class SearchEngine {
 						}
 					}
 				}
+				db_free_result($search_result);
 				if (is_null($sorttype) && isset($weights)) {
 					$images = sortMultiArray($images, 'weight', true);
 				}
@@ -1602,6 +1606,7 @@ class SearchEngine {
 					}
 					$result[] = $data;
 				}
+				db_free_result($search_result);
 			}
 			if (isset($weights)) {
 				$result = sortMultiArray($result, 'weight', true);
@@ -1679,6 +1684,7 @@ class SearchEngine {
 					}
 					$result[] = $data;
 				}
+				db_free_result($search_result);
 			}
 			if (isset($weights)) {
 				$result = sortMultiArray($result, 'weight', true);

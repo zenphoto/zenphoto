@@ -980,6 +980,7 @@ class Album extends AlbumBase {
 				query("DELETE FROM ".prefix('comments')." WHERE `type` ='images' AND `ownerid`= '$id'"); // remove image comments
 			}
 		}
+		db_free_result($result);
 		foreach ($images as $filename) {
 			// these images are not in the database
 			$imageobj = newImage($this,$filename);
@@ -1361,6 +1362,7 @@ class Album extends AlbumBase {
 							}
 						}
 					}
+					db_free_result($result);
 				}
 				if ($success) {
 					return 0;
@@ -1485,6 +1487,7 @@ class Album extends AlbumBase {
 				$live[] = $row['filename'];
 			}
 		}
+		db_free_result($result);
 
 		if (count($dead) > 0) {
 			$sql = "DELETE FROM ".prefix('images')." WHERE `id` = '" . array_pop($dead) . "'";
@@ -1510,6 +1513,7 @@ class Album extends AlbumBase {
 				$live[] = $row['folder'];
 			}
 		}
+		db_free_result($result);
 		if (count($dead) > 0) {
 			$sql = "DELETE FROM ".prefix('albums')." WHERE `id` = '" . array_pop($dead) . "'";
 			$sql2 = "DELETE FROM ".prefix('comments')." WHERE `type`='albums' AND `ownerid` = '" . array_pop($dead) . "'";

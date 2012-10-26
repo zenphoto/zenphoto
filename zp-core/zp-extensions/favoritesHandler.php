@@ -176,6 +176,7 @@ class favorites extends AlbumBase {
 				$this->subalbums = sortByKey($subalbums,$sortkey,$order);
 				$this->lastsubalbumsort = $sorttype.$sortdirection;
 			}
+			db_free_result($result);
 		}
 		if ($page == 0) {
 			return $this->subalbums;
@@ -211,6 +212,7 @@ class favorites extends AlbumBase {
 						$images[] = array('folder'=>dirname($row['id']),'filename'=>basename($row['id']));
 					}
 				}
+				db_free_result($result);
 				if (is_null($sorttype)) {
 					$sorttype = $this->getSortType();
 				}

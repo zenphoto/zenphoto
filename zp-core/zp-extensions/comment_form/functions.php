@@ -662,6 +662,7 @@ function comment_form_addCcomment($name, $email, $website, $comment, $code, $cod
 							}
 						}
 					}
+					db_free_result($result);
 				}
 			}
 			$on = gettext('Comment posted');

@@ -145,7 +145,7 @@
 			<div id="images">
 				<?php while (next_image()) { ?>
 				<div class="image">
-					<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php echo getBareImageTitle();?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), NULL,80, 80, 80,80, NULL, NULL, NULL, NULL, true, NULL); ?></a></div>
+					<div class="imagethumb"><a href="<?php echo html_encode(getImageLinkURL());?>" title="<?php printBareImageTitle();?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), NULL,80, 80, 80,80, NULL, NULL, NULL, NULL, true, NULL); ?></a></div>
 				</div>
 				<?php } ?>
 			</div>
