@@ -380,6 +380,7 @@ class ZenpageCategory extends ZenpageRoot {
 					}
 				}
 			}
+			db_free_result($resource);
 		}
 		return $result;
 	}
@@ -430,7 +431,7 @@ function getArticle($index,$published=NULL,$sortorder='date', $sortdirection='de
 		$article = $this->getArticle($index-1);
 		return $article;
 	}
-	
+
 	/**
 	 * Returns the next article.
 	 *

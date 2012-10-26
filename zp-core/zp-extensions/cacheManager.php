@@ -141,6 +141,7 @@ class cacheManager {
 			while ($row = db_fetch_assoc($result)) {
 				$custom[] = unserialize($row['data']);
 			}
+			db_free_result($result);
 			$custom = sortMultiArray($custom, array('theme','thumb','image_size','image_width','image_height'));
 			$custom[] = array();
 			$c = 0;

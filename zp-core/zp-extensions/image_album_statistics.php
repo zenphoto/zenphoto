@@ -435,6 +435,7 @@ function getImageStatistic($number, $option, $albumfolder='',$collection=false) 
 				}
 			}
 		}
+		db_free_result($result);
 	}
 	return $imageArray;
 }

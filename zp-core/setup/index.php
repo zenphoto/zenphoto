@@ -161,9 +161,11 @@ if ($updatechmod || $newconfig) {
 		$chmodval = sprintf('0%o',$chmod);
 	}
 	if ($updatechmod) {
-		$i = strpos($zp_cfg, "define('CHMOD_VALUE',");
 		updateConfigItem('CHMOD',sprintf('0%o',$chmod),false);
-		if ($i === false) {
+		if (strpos($zp_cfg,"if (!defined('CHMOD_VALUE')) {") !== false) {
+			$zp_cfg = preg_replace("|if\s\(!defined\('CHMOD_VALUE'\)\)\s{\sdefine\(\'CHMOD_VALUE\'\,(.*)\);\s}|",
+					"if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', ".$chmodval."); }\n", $zp_cfg);
+		} else {
 			$i = strpos($zp_cfg, "/** Do not edit below this line. **/");
 			$zp_cfg = substr($zp_cfg, 0, $i)."if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', ".$chmodval."); }\n".substr($zp_cfg, $i);
 		}
@@ -171,18 +173,10 @@ if ($updatechmod || $newconfig) {
 	$updatezp_config = true;
 }
 
-if ($updatefileset = isset($_REQUEST['FILESYSTEM_CHARSET'])) {
+if (isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	setupXSRFDefender();
 	$fileset = $_REQUEST['FILESYSTEM_CHARSET'];
 	updateConfigItem('FILESYSTEM_CHARSET', $fileset);
-	if ($fileset && $i === false) {
-		$i = strpos($zp_cfg, "if (!defined('FILESYSTEM_CHARSET')");
-		if ($i !== false) {
-			$j = strpos($zp_cfg, ';', $i);
-			$j = strpos($zp_cfg, '$', $j);
-			$zp_cfg = substr($zp_cfg, 0, $i).substr($zp_cfg, $j);
-		}
-	}
 	$updatezp_config = true;
 }
 
@@ -1034,6 +1028,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					$tables[] = $row[0];
 					$tableslist .= "<code>" . $row[0] . "</code>, ";
 				}
+				db_free_result($result);
 			} else {
 				$check = -1;
 			}
@@ -1550,6 +1545,7 @@ if (file_exists(CONFIGFILE)) {
 				$key = str_replace(array($prefixLC,$prefixUC), $_zp_conf_vars['mysql_prefix'], $key);
 				$tables[$key] = 'update';
 			}
+			db_free_result($result);
 		}
 		$expected_tables = array($_zp_conf_vars['mysql_prefix'].'options', $_zp_conf_vars['mysql_prefix'].'albums',
 			$_zp_conf_vars['mysql_prefix'].'images', $_zp_conf_vars['mysql_prefix'].'comments',
@@ -2028,6 +2024,7 @@ if (file_exists(CONFIGFILE)) {
 				}
 			}
 		}
+		db_free_result($result);
 	}
 	if (!$hasownerid) {
 		$sql_statements[] = "ALTER TABLE $tbl_comments ADD INDEX (`ownerid`);";
@@ -2064,6 +2061,7 @@ if (file_exists(CONFIGFILE)) {
 				$hastagidindex = true;
 			}
 		}
+		db_free_result($result);
 	}
 	if (!$hastagidindex) {
 		$sql_statements[] = "ALTER TABLE $tbl_obj_to_tag ADD INDEX (`tagid`)";
@@ -2141,6 +2139,7 @@ if (file_exists(CONFIGFILE)) {
 				break;
 			}
 		}
+		db_free_result($result);
 	}
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `watermark` varchar(255) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_pages.' CHANGE `commentson` `commentson` int(1) UNSIGNED default 0';

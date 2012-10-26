@@ -359,6 +359,10 @@ function printGalleryTitle() {
 	echo getGalleryTitle();
 }
 
+function printBareGalleryTitle() {
+	echo html_encode(getBareGalleryTitle());
+}
+
 /**
  * Returns the raw description of the gallery.
  *
@@ -383,6 +387,10 @@ function getBareGalleryDesc() {
  */
 function printGalleryDesc() {
 	echo getGalleryDesc();
+}
+
+function printBareGalleryDesc() {
+	echo html_encode(getBareGalleryDesc());
 }
 
 /**
@@ -978,6 +986,9 @@ function getAnnotatedAlbumTitle() {
 	}
 	return $title;
 }
+function printAnnotatedAlbumTitle() {
+	echo html_encode(getAnnotatedAlbumTitle());
+}
 
 /**
  * Prints an encapsulated title of the current album.
@@ -987,6 +998,10 @@ function getAnnotatedAlbumTitle() {
  */
 function printAlbumTitle() {
 	printField('album', 'title');
+}
+
+function printBareAlbumTitle() {
+	echo html_encode(getBareAlbumTitle());
 }
 
 /**
@@ -1330,6 +1345,9 @@ function printAlbumDesc() {
 	printField('album', 'desc');
 }
 
+function printBareAlbumDesc() {
+	echo html_encode(getBareAlbumDesc());
+}
 
 
 /**
@@ -1964,6 +1982,9 @@ function getAnnotatedImageTitle() {
 	}
 	return $title;
 }
+function printAnnotatedImageTitle() {
+	echo html_encode(getAnnotatedImageTitle());
+}
 /**
  * Prints title of the current image
  *
@@ -1971,6 +1992,9 @@ function getAnnotatedImageTitle() {
  */
 function printImageTitle() {
 	printField('image', 'title');
+}
+function printBareImageTitle() {
+	echo html_encode(getBareImageTitle());
 }
 
 /**
@@ -2111,6 +2135,9 @@ function getBareImageDesc() {
  */
 function printImageDesc() {
 	printField('image', 'desc');
+}
+function printBareImageDesc() {
+	echo html_encode(getBareImageDesc());
 }
 
 /**
@@ -3103,6 +3130,7 @@ function getLatestComments($number,$type="all",$id=NULL) {
 						$albumlist[] = $albumcheck['id'];
 					}
 				}
+				db_free_result($rslt);
 			}
 
 			if (empty($albumlist)) {
@@ -3153,6 +3181,8 @@ function getLatestComments($number,$type="all",$id=NULL) {
 					$imagecomment = db_fetch_assoc($comments_images);
 				}
 			}
+			db_free_result($comments_albums);
+			db_free_result($comments_images);
 			break;
 		case 'album':
 			$item = getItemByID('albums', $id);
@@ -3279,6 +3309,7 @@ function filterImageQuery($result, $source) {
 				}
 			}
 		}
+		db_free_result($result);
 	}
 	return NULL;
 }
@@ -3378,6 +3409,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 			while ($row = db_fetch_assoc($result)) {
 				$albumInWhere = $albumInWhere . $row['id'] . ", ";
 			}
+			db_free_result($result);
 			$albumInWhere =  ' AND '.substr($albumInWhere, 0, -2) . ')';
 			$sql = 'SELECT `folder`, `filename` ' .
 							' FROM '.prefix('images'). ', '.prefix('albums').
@@ -3641,6 +3673,7 @@ function getAllDates($order='asc') {
 		while ($row = db_fetch_assoc($result)){
 			$alldates[] = $row['date'];
 		}
+		db_free_result($result);
 	}
 	foreach ($alldates as $adate) {
 		if (!empty($adate)) {

@@ -9,7 +9,7 @@ if (!defined('WEBPATH')) die();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareImageTitle();?> | <?php echo getBareAlbumTitle();?> | <?php echo getBareGalleryTitle(); ?></title>
+	<title><?php printBareImageTitle();?> | <?php printBareAlbumTitle();?> | <?php printBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" type="text/css" />
 	<?php if(zp_has_filter('theme_head','colorbox::css')) { ?>
@@ -78,7 +78,7 @@ if (!defined('WEBPATH')) die();
 		$tburl = getFullImageURL();
 		if (!empty($tburl)) {
 			?>
-			<a href="<?php echo html_encode($tburl); ?>"<?php echo $boxclass; ?> title="<?php echo getBareImageTitle();?>">
+			<a href="<?php echo html_encode($tburl); ?>"<?php echo $boxclass; ?> title="<?php printBareImageTitle();?>">
 			<?php
 		}
 		printCustomSizedImageMaxSpace(getBareImageTitle(),580,580); ?>

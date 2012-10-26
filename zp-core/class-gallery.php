@@ -309,6 +309,7 @@ class Gallery {
 					if (!empty($idlist)) {
 						$exclude .= ' AND `id` NOT IN ('.implode(',',$idlist).')';
 					}
+					db_free_result($rows);
 				}
 				return db_count('images',$exclude);
 				break;
@@ -391,6 +392,7 @@ class Gallery {
 						$dead[] = $row['id'];
 					}
 				}
+				db_free_result($result);
 			}
 			if (!empty($dead)) {
 				$dead = array_unique($dead);
@@ -411,6 +413,7 @@ class Gallery {
 						$dead[] = $row['id'];
 					}
 				}
+				db_free_result($result);
 			}
 			if (!empty($dead)) {
 				$dead = array_unique($dead);
@@ -430,6 +433,7 @@ class Gallery {
 						$dead[] = $row['id'];
 					}
 				}
+				db_free_result($result);
 			}
 			if (!empty($dead)) {
 				$dead = array_unique($dead);
@@ -453,6 +457,7 @@ class Gallery {
 					$live[] = $row['folder'];
 				}
 			}
+			db_free_result($result);
 
 			if (count($dead) > 0) { /* delete the dead albums from the DB */
 				asort($dead);
@@ -525,6 +530,7 @@ class Gallery {
 							zp_apply_filter('album_refresh',$album);
 						}
 					}
+					db_free_result($albumids);
 				}
 
 				/* Delete all image entries that don't belong to an album at all. */
@@ -535,6 +541,7 @@ class Gallery {
 					while ($row = db_fetch_assoc($albumids)) {
 						$idsofalbums[] = $row['id'];
 					}
+					db_free_result($albumids);
 				}
 				$imageAlbums = query("SELECT DISTINCT `albumid` FROM " . prefix('images')); /* albumids of all the images */
 				$albumidsofimages = array();
@@ -542,6 +549,7 @@ class Gallery {
 					while ($row = db_fetch_assoc($imageAlbums)) {
 						$albumidsofimages[] = $row['albumid'];
 					}
+					db_free_result($imageAlbums);
 				}
 				$orphans = array_diff($albumidsofimages, $idsofalbums);                                /* albumids of images with no album */
 
@@ -610,6 +618,7 @@ class Gallery {
 						return $image['id']; // avoide excessive processing
 					}
 				}
+				db_free_result($images);
 			}
 
 		}
@@ -623,6 +632,7 @@ class Gallery {
 			while ($row = db_fetch_assoc($ids)) {
 				$idsofitems[] = $row['id'];
 			}
+			db_free_result($ids);
 		}
 		$sql = "SELECT DISTINCT `ownerid` FROM " .	prefix('comments') . ' WHERE `type` ='.db_quote($table);
 		$commentOwners = query($sql); /* all the comments */
@@ -631,6 +641,7 @@ class Gallery {
 			while ($row = db_fetch_assoc($commentOwners)) {
 				$idsofcomments [] = $row['ownerid'];
 			}
+			db_free_result($commentOwners);
 		}
 		$orphans = array_diff($idsofcomments , $idsofitems );                 /* owner ids of comments with no owner */
 
@@ -710,6 +721,7 @@ class Gallery {
 				query("DELETE FROM " . prefix('albums') . " WHERE `id` = " . $id);
 			}
 		}
+		db_free_result($result);
 		foreach ($albums as $folder) {	// these albums are not in the database
 			$albumobj =  new Album(NULL,$folder);
 			if ($albumobj->exists) {	// fail to instantiate?

@@ -705,6 +705,7 @@ if (isset($_GET['album']) && !isset($_GET['massedit'])) {
 				while ($row = db_fetch_assoc($result)) {
 					$allimages[] = $row['filename'];
 				}
+				db_free_result($result);
 			}
 		}
 	}

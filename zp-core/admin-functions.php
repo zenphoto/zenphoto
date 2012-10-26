@@ -2203,7 +2203,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 		$key = postIndexDecode($key);
 		if (substr($key, 0, $l) == $tagsprefix) {
 			if ($value) {
-				$tags[] = substr($key, $l);
+				$tags[] = sanitize(substr($key, $l));
 			}
 		}
 	}

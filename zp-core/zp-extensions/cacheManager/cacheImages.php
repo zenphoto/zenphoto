@@ -124,6 +124,7 @@ while ($row = db_fetch_assoc($result)) {
 	$row = unserialize($row['data']);
 		$custom[] = $row;
 }
+db_free_result($result);
 $custom = sortMultiArray($custom, array('theme','thumb','image_size','image_width','image_height'));
 
 if (isset($_GET['select'])) {
