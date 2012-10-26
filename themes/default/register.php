@@ -7,7 +7,7 @@ if (!defined('WEBPATH') || !function_exists('printRegistrationForm')) die();
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<?php zp_apply_filter('theme_head'); ?>
-		<title><?php echo getBareGalleryTitle(); ?></title>
+		<title><?php printBareGalleryTitle(); ?></title>
 		<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 		<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 		<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/default/common.css" type="text/css" />

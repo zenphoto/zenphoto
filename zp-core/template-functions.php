@@ -359,6 +359,10 @@ function printGalleryTitle() {
 	echo getGalleryTitle();
 }
 
+function printBareGalleryTitle() {
+	echo html_encode(getBareGalleryTitle());
+}
+
 /**
  * Returns the raw description of the gallery.
  *
@@ -383,6 +387,10 @@ function getBareGalleryDesc() {
  */
 function printGalleryDesc() {
 	echo getGalleryDesc();
+}
+
+function printBareGalleryDesc() {
+	echo html_encode(getBareGalleryDesc());
 }
 
 /**
@@ -978,6 +986,9 @@ function getAnnotatedAlbumTitle() {
 	}
 	return $title;
 }
+function printAnnotatedAlbumTitle() {
+	echo html_encode(getAnnotatedAlbumTitle());
+}
 
 /**
  * Prints an encapsulated title of the current album.
@@ -987,6 +998,10 @@ function getAnnotatedAlbumTitle() {
  */
 function printAlbumTitle() {
 	printField('album', 'title');
+}
+
+function printBareAlbumTitle() {
+	echo html_encode(getBareAlbumTitle());
 }
 
 /**
@@ -1330,6 +1345,9 @@ function printAlbumDesc() {
 	printField('album', 'desc');
 }
 
+function printBareAlbumDesc() {
+	echo html_encode(getBareAlbumDesc());
+}
 
 
 /**
@@ -1964,6 +1982,9 @@ function getAnnotatedImageTitle() {
 	}
 	return $title;
 }
+function printAnnotatedImageTitle() {
+	echo html_encode(getAnnotatedImageTitle());
+}
 /**
  * Prints title of the current image
  *
@@ -1971,6 +1992,9 @@ function getAnnotatedImageTitle() {
  */
 function printImageTitle() {
 	printField('image', 'title');
+}
+function printBareImageTitle() {
+	echo html_encode(getBareImageTitle());
 }
 
 /**
@@ -2111,6 +2135,9 @@ function getBareImageDesc() {
  */
 function printImageDesc() {
 	printField('image', 'desc');
+}
+function printBareImageDesc() {
+	echo html_encode(getBareImageDesc());
 }
 
 /**
