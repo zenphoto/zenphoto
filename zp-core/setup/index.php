@@ -161,9 +161,11 @@ if ($updatechmod || $newconfig) {
 		$chmodval = sprintf('0%o',$chmod);
 	}
 	if ($updatechmod) {
-		$i = strpos($zp_cfg, "define('CHMOD_VALUE',");
 		updateConfigItem('CHMOD',sprintf('0%o',$chmod),false);
-		if ($i === false) {
+		if (strpos($zp_cfg,"if (!defined('CHMOD_VALUE')) {") !== false) {
+			$zp_cfg = preg_replace("|if\s\(!defined\('CHMOD_VALUE'\)\)\s{\sdefine\(\'CHMOD_VALUE\'\,(.*)\);\s}|",
+					"if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', ".$chmodval."); }\n", $zp_cfg);
+		} else {
 			$i = strpos($zp_cfg, "/** Do not edit below this line. **/");
 			$zp_cfg = substr($zp_cfg, 0, $i)."if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', ".$chmodval."); }\n".substr($zp_cfg, $i);
 		}
@@ -171,18 +173,10 @@ if ($updatechmod || $newconfig) {
 	$updatezp_config = true;
 }
 
-if ($updatefileset = isset($_REQUEST['FILESYSTEM_CHARSET'])) {
+if (isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	setupXSRFDefender();
 	$fileset = $_REQUEST['FILESYSTEM_CHARSET'];
 	updateConfigItem('FILESYSTEM_CHARSET', $fileset);
-	if ($fileset && $i === false) {
-		$i = strpos($zp_cfg, "if (!defined('FILESYSTEM_CHARSET')");
-		if ($i !== false) {
-			$j = strpos($zp_cfg, ';', $i);
-			$j = strpos($zp_cfg, '$', $j);
-			$zp_cfg = substr($zp_cfg, 0, $i).substr($zp_cfg, $j);
-		}
-	}
 	$updatezp_config = true;
 }
 
