@@ -30,7 +30,7 @@
 // force UTF-8 Ø
 
 
-define('OFFSET_PATH', 2);
+if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 2);
 require_once(dirname(__FILE__).'/functions-basic.php');
 require_once(dirname(__FILE__).'/functions-image.php');
 
@@ -259,7 +259,6 @@ if (!$debug) {
 		fpassthru($fp);
 		fclose($fp);
 	}
-	exitZP();
 } else {
 	echo "\n<p>Image: <img src=\"" . $path ."\" /></p>";
 }
