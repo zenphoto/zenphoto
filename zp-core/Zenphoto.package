@@ -340,6 +340,7 @@ zp-core/exif/makers/sanyo.php
 zp-core/full-image.php
 zp-core/functions-PDO.php
 zp-core/functions-basic.php
+zp-core/functions-common.php
 zp-core/functions-controller.php
 zp-core/functions-db-MySQL.php
 zp-core/functions-db-MySQLi.php
@@ -1918,4 +1919,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1920
+1921
