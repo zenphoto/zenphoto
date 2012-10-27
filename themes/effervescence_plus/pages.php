@@ -40,7 +40,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 				<?php
 				}
 				?>
-				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a></span>
+				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a></span>
 								<?php printZenpageItemsBreadcrumb(" | ", ""); ?><?php printPageTitle(" | "); ?>
 			</div>
 		</div> <!-- wrapnav -->

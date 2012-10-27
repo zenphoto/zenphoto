@@ -17,7 +17,7 @@ if (!defined('WEBPATH')) die();
 		<div id="header">
 			<div id="logo-floater">
 				<div>
-					<h1 class="title"><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a></h1>
+					<h1 class="title"><a href="<?php echo getGalleryIndexURL(false);?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle();?></a></h1>
 				</div>
 			</div>
 		</div>
@@ -34,7 +34,7 @@ if (!defined('WEBPATH')) die();
 						<div class="main section" id="main">
 							<h2 id="gallerytitle">
 								<?php printHomeLink('',' » '); ?>
-								<a href="<?php echo getGalleryIndexURL(false);?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> »
+								<a href="<?php echo getGalleryIndexURL(false);?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle();?></a> »
 								<?php echo "<em>".gettext('Password required')."</em>"; ?>
 							</h2>
 							<h3><?php echo gettext('A password is required to access this page.') ?></h3>

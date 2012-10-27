@@ -96,7 +96,7 @@ if (!defined('WEBPATH')) die();
 							<?php
 							}
 							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a> |
+							<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a> |
 							<?php printParentBreadcrumb(); printAlbumBreadcrumb("", " | "); ?>
 						</span>
 						<?php printImageTitle(true); ?>

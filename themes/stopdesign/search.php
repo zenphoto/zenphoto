@@ -24,7 +24,7 @@ require_once('normalizer.php');
 		$_zp_current_search->clearSearchWords();
 	}
 	?>
-	<?php echo getGalleryTitle(); ?>
+	<?php printGalleryTitle(); ?>
 	<?php if (getOption('Allow_search')) {  printSearchForm(); } ?>
 
 	<div id="content">
@@ -163,7 +163,7 @@ require_once('normalizer.php');
 	<p id="path">
 		<?php printHomeLink('', ' > '); ?>
 		<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-		<?php echo getGalleryTitle();?></a> &gt;
+		<?php printGalleryTitle();?></a> &gt;
 		<?php
 		echo "<em>".gettext('Search')."</em>";
 		?>

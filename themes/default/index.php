@@ -21,7 +21,7 @@ if (!defined('WEBPATH')) die();
 					printSearchForm('');
 				} ?>
 				<h2><?php printHomeLink('', ' | ');
-				echo getGalleryTitle(); ?></h2>
+				printGalleryTitle(); ?></h2>
 			</div>
 			<div id="padbox">
 			<?php printGalleryDesc(); ?>

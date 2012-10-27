@@ -38,7 +38,7 @@ if (!defined('WEBPATH')) die();
 
 <div id="main">
 <div id="header">
-		<h1><?php echo getGalleryTitle();?></h1>
+		<h1><?php printGalleryTitle();?></h1>
 	<div class="imgnav">
 			<?php if (hasPrevImage()) { ?>
 			<div class="imgprevious"><a href="<?php echo html_encode(getPrevImageURL());?>" title="<?php echo gettext("Previous Image"); ?>">« <?php echo gettext("prev"); ?></a></div>

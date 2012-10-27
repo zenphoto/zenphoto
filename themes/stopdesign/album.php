@@ -33,7 +33,7 @@ $thisalbum = $_zp_current_album;
 <body class="gallery">
 	<?php zp_apply_filter('theme_body_open'); ?>
 		<?php
-		echo getGalleryTitle();
+		printGalleryTitle();
 		if (getOption('Allow_search')) {
 			$album_list = array('albums'=>array($_zp_current_album->name),'pages'=>'0', 'news'=>'0');
 			printSearchForm('', 'search', gettext('Search within album'), gettext('search'), NULL, NULL, $album_list);
@@ -181,7 +181,7 @@ $thisalbum = $_zp_current_album;
 		<p id="path">
 			<?php printHomeLink('', ' > '); ?>
 			<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> &gt;
-			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a> &gt; <?php printParentBreadcrumb("", " > ", " > "); ?> <?php printAlbumTitle(false);?>
+			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a> &gt; <?php printParentBreadcrumb("", " > ", " > "); ?> <?php printAlbumTitle(false);?>
 		</p>
 
 		<div class="main">

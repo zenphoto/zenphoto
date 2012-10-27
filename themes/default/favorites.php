@@ -18,7 +18,7 @@ if (!defined('WEBPATH')) die();
 				<h2>
 					<span>
 						<?php zp_apply_filter('theme_head'); ?> printHomeLink('', ' | '); ?>
-						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle(); ?></a> |
+						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle(); ?></a> |
 						<?php zp_apply_filter('theme_head'); ?> printParentBreadcrumb(); ?>
 					</span>
 					<?php zp_apply_filter('theme_head'); ?> printAlbumTitle(true); ?>

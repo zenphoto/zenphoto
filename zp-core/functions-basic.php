@@ -677,7 +677,7 @@ function getImageParameters($args, $album=NULL) {
 		}
 	}
 	// Return an array of parameters used in image conversion.
-	$args =  array((int) $size, (int) $width, (int) $height, $cw, $ch, $cx, $cy, (int) $quality, (bool) $thumb, (bool) $crop, (bool) $thumbstandin, $WM, (bool) $adminrequest, $effects);
+	$args =  array($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects);
 	return $args;
 }
 
@@ -690,24 +690,79 @@ function getImageParameters($args, $album=NULL) {
  * @return string
  */
 function getImageProcessorURI($args, $album, $image) {
-		list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
+	list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 	$args[8] = NULL;	// not used by image processo
-	$check = md5(HASH_SEED.implode($args));
 	$uri = WEBPATH.'/'.ZENFOLDER.'/i.php?a='.pathurlencode($album).'&i='.urlencode($image);
-	if (!empty($size)) $uri .= '&s='.$size;
-	if (!empty($width)) $uri .= '&w='.$width;
-	if (!empty($height)) $uri .= '&h='.$height;
-	if (!is_null($crop) && $crop) $uri .= '&c=1';
-	if ($cw) $uri .= '&cw='.$cw;
-	if ($ch) $uri .= '&ch='.$ch;
-	if (!is_null($cx)) $uri .= '&cx='.$cx;
-	if (!is_null($cy)) $uri .= '&cy='.$cy;
-	if (!empty($quality)) $uri .= '&q='.$quality;
-	if ($thumb || $thumbstandin) $uri .= '&t=1';
-	if (!empty($passedWM)) $uri .= '&wmk='.$passedWM;
-	if (!empty($adminrequest)) $uri .= '&admin';
-	if (!is_null($effects)) $uri .= '&effects='.$effects;
-	$uri .= '&check='.$check;
+	if (empty($size)) {
+		$args[0] = NULL;
+	} else {
+		$uri .= '&s='.($args[0] = (int) $size);
+	}
+	if (empty($width)) {
+		$args[1] = NULL;
+	} else {
+		$uri .= '&w='.($args[1] = (int) $width);
+	}
+	if (empty($height)) {
+		$args[2] = NULL;
+	} else {
+		$uri .= '&h='.($args[2] = (int) $height);
+	}
+	if ($cw) {
+		$args[3] = NULL;
+	} else {
+		$uri .= '&cw='.($args[3] = (int) $cw);
+	}
+	if ($ch) {
+		$uri .= '&ch='.($args[4] = (int) $ch);
+	} else {
+		$args[4] = NULL;
+	}
+	if (is_null($cx)) {
+		$args[5] = NULL;
+	} else {
+		$uri .= '&cx='.($args[5] = (int) $cx);
+	}
+	if (is_null($cy)) {
+		$args[6] = NULL;
+	} else {
+		$uri .= '&cy='.($args[6] = (int) $cy);
+	}
+	if (empty($quality)) {
+		$args[7] = NULL;
+	} else {
+		$uri .= '&q='.($args[7] = (int) $quality);
+	}
+	$args[8] = NULL;
+	if (!is_null($crop) && $crop) {
+		$args[9] = NULL;
+	} else {
+		$uri .= '&c='.($args[9] = 1);
+	}
+	if ($thumb || $thumbstandin) {
+		$uri .= '&t='.($args[10] = 1);
+	} else {
+		$args[10] = NULL;
+	}
+	if (empty($passedWM)) {
+		$args[11] = NULL;
+	} else {
+		$uri .= '&wmk='.$passedWM;
+	}
+	if (empty($adminrequest)) {
+		$args[12] = false;
+	} else {
+		$args[12] = true;
+		$uri .= '&admin';
+	}
+	if (is_null($effects)) {
+		$args[13] = NULL;
+	} else {
+		$uri .= '&effects='.$effects;
+	}
+	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
+//	$uri .= '&actual='.serialize($args);
+
 	if (class_exists('static_html_cache')) {
 		// don't cache pages that have image processor URIs
 		static_html_cache::disable();
@@ -895,6 +950,7 @@ function switchLog($log) {
 function debugLog($message, $reset=false) {
 	global $_zp_mutex;
 	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
+	$me = getmypid();
 	$max = getOption('debug_log_size');
 	$_zp_mutex->lock();
 	if ($reset || ($size = @filesize($path)) == 0 || ($max && $size > $max)) {
@@ -908,12 +964,12 @@ function debugLog($message, $reset=false) {
 			} else {
 				$clone = ' '.gettext('clone');
 			}
-			fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']'.$clone."\n");
+			fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']'.$clone."\n");
 		}
 	} else {
 		$f = fopen($path, 'a');
 		if ($f) {
-			fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT}\n");
+			fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT}\n");
 		}
 	}
 	if ($f) {
@@ -1221,7 +1277,8 @@ function safe_glob($pattern, $flags=0) {
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if ((!($i = getOption('zenphoto_install')) || (getOption('zenphoto_release') != ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']') || ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature()))) {
+	if (!($i = getOption('zenphoto_install')) || getOption('zenphoto_version') != ZENPHOTO_VERSION.' ['.ZENPHOTO_RELEASE.']'
+									|| ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature())) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
 		reconfigureAction(false);
 	}

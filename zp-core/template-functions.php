@@ -356,7 +356,7 @@ function getBareGalleryTitle() {
  * Prints the title of the gallery.
  */
 function printGalleryTitle() {
-	echo getGalleryTitle();
+	echo html_encodeTagged(getGalleryTitle());
 }
 
 function printBareGalleryTitle() {
@@ -386,7 +386,7 @@ function getBareGalleryDesc() {
  * Prints the description of the gallery.
  */
 function printGalleryDesc() {
-	echo getGalleryDesc();
+	echo html_encodeTagged(getGalleryDesc());
 }
 
 function printBareGalleryDesc() {

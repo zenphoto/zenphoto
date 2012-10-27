@@ -50,7 +50,7 @@ $backgroundImagePath="";
 			}
 			?>
 		<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-		<?php echo getGalleryTitle();	?></a></span> |
+		<?php printGalleryTitle();	?></a></span> |
 		<?php
 			echo "<em>".gettext('Contact')."</em>";
 		?>
