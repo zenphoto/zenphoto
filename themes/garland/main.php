@@ -32,7 +32,7 @@ if (!defined('WEBPATH')) die();
 			<div class="right-corner">
 				<div class="left-corner"><!-- begin content -->
 					<div class="main section" id="main">
-						<h2 id="gallerytitle"><?php printHomeLink('',' » '); ?><?php echo getGalleryTitle(); ?></h2>
+						<h2 id="gallerytitle"><?php printHomeLink('',' » '); ?><?php printGalleryTitle(); ?></h2>
 						<?php printCodeblock(1); ?>
 						<?php commonNewsLoop(false); ?>
 						<p style="clear: both;"></p>

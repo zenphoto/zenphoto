@@ -29,7 +29,7 @@ if (!defined('WEBPATH')) die();
 				<h2>
 					<span>
 						<?php printHomeLink('', ' | '); ?>
-						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo ('Gallery Index'); ?>"><?php echo getGalleryTitle(); ?></a>
+						<a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo ('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
 					</span> |
 					<?php
 					echo "<em>" . gettext("Search") . "</em>";

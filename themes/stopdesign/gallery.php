@@ -22,7 +22,7 @@ require_once('normalizer.php');
 
 <body class="archive">
 	<?php zp_apply_filter('theme_body_open'); ?>
-	<?php echo getGalleryTitle(); ?><?php if (getOption('Allow_search')) {  printSearchForm(); } ?>
+	<?php printGalleryTitle(); ?><?php if (getOption('Allow_search')) {  printSearchForm(); } ?>
 
 <div id="content">
 
@@ -107,7 +107,7 @@ require_once('normalizer.php');
 <p id="path">
 	<?php printHomeLink('', ' > '); ?>
 	<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> &gt;
-	<?php echo getGalleryTitle();?>
+	<?php printGalleryTitle();?>
 	<?php echo gettext('Gallery Archive'); ?>
 </p>
 

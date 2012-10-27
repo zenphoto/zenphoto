@@ -18,7 +18,7 @@ if (!defined('WEBPATH')) die();
 			<div id="gallerytitle">
 				<h2>
 					<span>
-						<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle(); ?></a>
+						<?php printHomeLink('', ' | '); ?><a href="<?php echo html_encode(getGalleryIndexURL()); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle(); ?></a>
 					</span> | <?php echo gettext("Object not found"); ?>
 				</h2>
 			</div>

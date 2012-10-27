@@ -23,11 +23,11 @@ require_once('normalizer.php');
 
 <body class="index">
 	<?php zp_apply_filter('theme_body_open'); ?>
-	<?php echo getGalleryTitle(); ?><?php if (getOption('Allow_search')) {  printSearchForm(''); } ?>
+	<?php printGalleryTitle(); ?><?php if (getOption('Allow_search')) {  printSearchForm(''); } ?>
 
 	<div id="content">
 
-		<h1><?php echo getGalleryTitle(); ?></h1>
+		<h1><?php printGalleryTitle(); ?></h1>
 		<div class="galleries">
 				<h2><?php echo gettext('Recently Updated Galleries'); ?></h2>
 				<ul>
@@ -38,7 +38,7 @@ require_once('normalizer.php');
 					while (next_album() and $counter < 6):
 					?>
 						<li class="gal">
-							<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php printf(gettext("View album: %s"),html_encode(getAnnotatedAlbumTitle()); ?>"><?php printAlbumTitle(); ?></a></h3>
+							<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php printf(gettext("View album: %s"),html_encode(getAnnotatedAlbumTitle())); ?>"><?php printAlbumTitle(); ?></a></h3>
 							<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php printf(gettext("View album: %s"), html_encode(getAnnotatedAlbumTitle()));?>" class="img"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT,ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT); ?></a>
 							<p>
 					<?php
@@ -179,7 +179,7 @@ require_once('normalizer.php');
 	</div>
 	<p id="path">
 		<?php printHomeLink('', ' > '); ?>
-		<?php echo getGalleryTitle(); ?>
+		<?php printGalleryTitle(); ?>
 		</p>
 	<div id="footer">
 		<?php

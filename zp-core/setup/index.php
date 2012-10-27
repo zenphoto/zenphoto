@@ -2556,7 +2556,7 @@ if (file_exists(CONFIGFILE)) {
 			}
 			$task = html_encode($task);
 		?>
-		<form id="setup" action="?checked<?php echo $task.$mod; ?>" method="post"<?php echo $hideGoButton; ?> >
+		<form id="setup" action="<?php echo WEBPATH.'/'.ZENFOLDER,'/setup/index.php?checked'; echo $task.$mod; ?>" method="post"<?php echo $hideGoButton; ?> >
 		<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="dont" />
 		<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken?>" />
 		<?php

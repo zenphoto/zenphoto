@@ -13,7 +13,7 @@ if (!defined('WEBPATH')) die();
 
 <body class="gallery">
 	<?php zp_apply_filter('theme_body_open'); ?>
-	<?php echo getGalleryTitle(); ?>
+	<?php printGalleryTitle(); ?>
 
 	<div id="content">
 
@@ -44,7 +44,7 @@ if (!defined('WEBPATH')) die();
 		<?php printHomeLink('', ' > '); ?>
 		<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> &gt;
 		<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-		<?php echo getGalleryTitle();?></a> &gt;
+		<?php printGalleryTitle();?></a> &gt;
 		<?php
 		echo "<em>".gettext('Object not found')."</em>";
 		?>

@@ -605,5 +605,9 @@ $plugins = getPluginFiles('*.php');
 	// ]]> -->
 </script>
 <?php
-
+if (getOption('zp_plugin_auto_backup')) {
+	//Run the backup since for sure things have changed.
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/auto_backup.php');
+	auto_backup::timer_handler('');
+}
 ?>

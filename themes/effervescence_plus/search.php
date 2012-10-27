@@ -114,7 +114,7 @@ $backgroundImagePath="";
 			}
 			?>
 		<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-		<?php echo getGalleryTitle();	?></a></span> |
+		<?php printGalleryTitle();	?></a></span> |
 		<?php
 		if (is_array($albumlist)) {
 				echo "<em>".sprintf(ngettext('Search album: %s','Search albums: %s',count($albumlist)),implode(',',$albumlist))."</em>";

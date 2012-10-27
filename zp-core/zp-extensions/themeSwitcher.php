@@ -155,13 +155,11 @@ class themeSwitcher {
 }
 
 $_themeSwitcherThemelist = array();
-foreach ($_zp_gallery->getThemes() as $key=>$theme) {
-	$_themeSwitcherThemelist[$key] = getOption('themeSwitcher_theme_'.$key);
+foreach ($_zp_gallery->getThemes() as $__key=>$__theme) {
+	$_themeSwitcherThemelist[$__key] = getOption('themeSwitcher_theme_'.$__key);
 }
-unset($key);
-unset($theme);
-
-
+unset($__key);
+unset($__theme);
 if (isset($_GET['themeSwitcher'])) {
 	zp_setCookie('themeSwitcher_theme', sanitize($_GET['themeSwitcher']),getOption('themeSwitcher_timeout')*60);
 }
