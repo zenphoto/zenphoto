@@ -583,6 +583,8 @@ purgeOption('combinews-customtitle-singular');
 purgeOption('combinews-customtitle-plural');
 setOptionDefault('debug_log_size', 5000000);
 
+query('UPDATE '.prefix('administrators').' SET `passhash`='.((int) getOption('strong_hash')).' WHERE `passhash` IS NULL');
+
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
 $plugins = getPluginFiles('*.php');

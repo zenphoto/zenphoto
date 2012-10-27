@@ -1626,9 +1626,15 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 			$post_user = '';
 		}
 		$post_pass = sanitize($_POST['pass']);
-		$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass);
-		if (DEBUG_LOGIN) debugLog("zp_handle_password: \$post_user=$post_user; \$post_pass=$post_pass; \$auth=$auth; ");
-		$success = ($auth == $check_auth) && $post_user == $check_user;
+		foreach(Zenphoto_Authority::$hashList as $hash=>$hi) {
+			$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);
+			$success = ($auth == $check_auth) && $post_user == $check_user;
+			if (DEBUG_LOGIN) debugLog("zp_handle_password($success): \$post_user=$post_user; \$post_pass=$post_pass; \$check_auth=$check_auth; \$auth=$auth; \$hash=$hash;");
+			if ($success) {
+				break;
+			}
+		}
+
 		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);;
 		if ($success) {
 			// Correct auth info. Set the cookie.

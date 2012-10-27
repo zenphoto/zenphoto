@@ -490,24 +490,24 @@ if ($result->loaded || $result->transient) {
 							<?php echo gettext("Guest user:"); ?>
 							</a>
 							<input type="text" size="27" id="user_name" name="user"
-															onkeydown="passwordKeydown('');"
+															onkeydown="passwordClear('');"
 															value="<?php echo html_encode($user); ?>" />
 							<span id="strength"><?php echo gettext("Password:"); ?></span>
 							<br />
 							<input type="password" size="27"
 															id="pass" name="pass"
-															onkeydown="passwordKeydown('');"
+															onkeydown="passwordClear('');"
 															onkeyup="passwordStrength('');"
 															value="<?php echo $x; ?>" />
 							<br />
-							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
 							<br />
 							<span class="password_field_">
 								<span id="match"><?php echo gettext("(repeat)"); ?></span>
 								<br />
 								<input type="password" size="27"
 																id="pass_r" name="pass_r" disabled="disabled"
-																onkeydown="passwordKeydown('');"
+																onkeydown="passwordClear('');"
 																onkeyup="passwordMatch('');"
 																value="<?php echo $x; ?>" />
 								<br />

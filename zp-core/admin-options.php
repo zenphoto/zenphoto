@@ -971,11 +971,11 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</td>
 						<td>
 							<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															onkeydown="passwordKeydown('');"
+															onkeydown="passwordClear('');"
 															id="user_name"  name="user"
 															value="<?php echo html_encode($_zp_gallery->getUser()); ?>" />
 							<br />
-							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
 						</td>
 						<td>
 							<?php echo gettext("User ID for the gallery guest user") ?>
@@ -994,14 +994,14 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<td>
 							<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 													id="pass" name="pass"
-													onkeydown="passwordKeydown('');"
+													onkeydown="passwordClear('');"
 													onkeyup="passwordStrength('');"
 													value="<?php echo $x; ?>" />
 							<br />
 							<span class="password_field_">
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														id="pass_r" name="pass_r" disabled="disabled"
-														onkeydown="passwordKeydown('');"
+														onkeydown="passwordClear('');"
 														onkeyup="passwordMatch('');"
 														value="<?php echo $x; ?>" />
 							</span>
@@ -1327,11 +1327,11 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</td>
 						<td>
 							<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-															onkeydown="passwordKeydown('');"
+															onkeydown="passwordClear('');"
 															id="user_name"  name="user"
 															value="<?php echo html_encode(getOption('search_user')); ?>" />
 							<br />
-							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
 						</td>
 						<td>
 							<?php echo gettext("User ID for the search guest user") ?>
@@ -1350,14 +1350,14 @@ if ($subtab == 'search' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<td>
 							<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 													id="pass" name="pass"
-													onkeydown="passwordKeydown('');"
+													onkeydown="passwordClear('');"
 													onkeyup="passwordStrength('');"
 													value="<?php echo $x; ?>" />
 							<br />
 							<span class="password_field_">
 								<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 														id="pass_r" name="pass_r" disabled="disabled"
-														onkeydown="passwordKeydown('');"
+														onkeydown="passwordClear('');"
 														onkeyup="passwordMatch('');"
 														value="<?php echo $x; ?>" />
 							</span>
@@ -2054,11 +2054,11 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 						</td>
 						<td style="margin:0; padding:0">
 							<input type="text" size="30"
-															onkeydown="passwordKeydown('');"
+															onkeydown="passwordClear('');"
 															id="user_name"  name="user"
 															value="<?php echo html_encode(getOption('protected_image_user')); ?>" />
 							<br />
-							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordKeydown('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
+							<label><input type="checkbox" name="disclose_password" id="disclose_password" onclick="passwordClear('');togglePassword('');"><?php echo gettext('Show password'); ?></label>
 						</td>
 					</tr>
 					<tr class="passwordextrahide" style="display:none" >
@@ -2074,14 +2074,14 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 						<td style="margin:0; padding:0">
 							<input type="password" size="30"
 													id="pass" name="pass"
-													onkeydown="passwordKeydown('');"
+													onkeydown="passwordClear('');"
 													onkeyup="passwordStrength('');"
 													value="<?php echo $x; ?>" />
 							<br />
 							<span class="password_field_">
 								<input type="password" size="30"
 														id="pass_r" name="pass_r" disabled="disabled"
-														onkeydown="passwordKeydown('');"
+														onkeydown="passwordClear('');"
 														onkeyup="passwordMatch('');"
 														value="<?php echo $x; ?>" />
 							</span>
