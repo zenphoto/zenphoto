@@ -25,25 +25,22 @@ $_zp_script = '';
 //$_zp_script_timer['controller'] = microtime();
 // Display an arbitrary theme-included PHP page
 if (isset($_GET['p'])) {
-	$theme = prepareCustomPage();
+	$_index_theme = prepareCustomPage();
 // Display an Image page.
 } else if (in_context(ZP_IMAGE)) {
-	$theme = prepareImagePage();
+	$_index_theme = prepareImagePage();
 
 // Display an Album page.
 } else if (in_context(ZP_ALBUM)) {
-	$theme = prepareAlbumPage();
+	$_index_theme = prepareAlbumPage();
 	// Display the Index page.
 } else if (in_context(ZP_INDEX)) {
-	$theme = prepareIndexPage();
-}
-
-//$_zp_script_timer['page'] = microtime();
-if (!isset($theme)) {
-	$theme = setupTheme();
+	$_index_theme = prepareIndexPage();
+} else {
+	$_index_theme = setupTheme();
 }
 //$_zp_script_timer['theme setup'] = microtime();
-$custom = SERVERPATH.'/'.THEMEFOLDER.'/'.internalToFilesystem($theme).'/functions.php';
+$custom = SERVERPATH.'/'.THEMEFOLDER.'/'.internalToFilesystem($_index_theme).'/functions.php';
 if (file_exists($custom)) {
 	require_once($custom);
 } else {
@@ -81,7 +78,7 @@ if ($zp_request && $_zp_script && file_exists(SERVERPATH . "/" . internalToFiles
 			$_zp_HTML_cache->abortHTMLCache();
 		}
 		$_zp_gallery_page = 'password.php';
-		$_zp_script = SERVERPATH.'/'.THEMEFOLDER.'/'.$theme.'/password.php';
+		$_zp_script = SERVERPATH.'/'.THEMEFOLDER.'/'.$_index_theme.'/password.php';
 		if (!file_exists(internalToFilesystem($_zp_script))) {
 			$_zp_script = SERVERPATH.'/'.ZENFOLDER.'/password.php';
 		}
@@ -100,9 +97,9 @@ if ($zp_request && $_zp_script && file_exists(SERVERPATH . "/" . internalToFiles
 		$_zp_HTML_cache->abortHTMLCache();
 	}
 	list($album, $image) = rewrite_get_album_image('album','image');
-	debug404($album, $image, $theme);
+	debug404($album, $image, $_index_theme);
 	$_zp_gallery_page = '404.php';
-	$_zp_script = THEMEFOLDER.'/'.internalToFilesystem($theme).'/404.php';
+	$_zp_script = THEMEFOLDER.'/'.internalToFilesystem($_index_theme).'/404.php';
 	header ('Content-Type: text/html; charset=' . LOCAL_CHARSET);
 	header("HTTP/1.0 404 Not Found");
 	header("Status: 404 Not Found");
@@ -115,7 +112,7 @@ if ($zp_request && $_zp_script && file_exists(SERVERPATH . "/" . internalToFiles
 	}
 }
 //$_zp_script_timer['theme script load'] = microtime();
-exposeZenPhotoInformations($_zp_script, $_zp_loaded_plugins, $theme);
+exposeZenPhotoInformations($_zp_script, $_zp_loaded_plugins, $_index_theme);
 //$_zp_script_timer['expose information'] = microtime();
 db_close();	// close the database as we are done
 echo "\n";

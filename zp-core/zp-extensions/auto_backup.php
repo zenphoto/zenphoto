@@ -38,9 +38,6 @@ class auto_backup {
 	function auto_backup() {
 		setOptionDefault('backup_interval', 7);
 		setOptionDefault('backups_to_keep', 5);
-		if (OFFSET_PATH==2) {
-			self::timer_handler('');
-		}
 	}
 
 
@@ -94,8 +91,7 @@ class auto_backup {
 			unlink(SERVERPATH . "/" . BACKUPFOLDER.'/'.$file);
 		}
 		cron_starter(	SERVERPATH.'/'.ZENFOLDER.'/'.UTILITIES_FOLDER.'/backup_restore.php',
-									array('backup'=>1,'autobackup'=>1,'compress'=>sprintf('%u',getOption('backup_compression')),'XSRFTag'=>'backup'),
-									OFFSET_PATH==2
+									array('backup'=>1,'autobackup'=>1,'compress'=>sprintf('%u',getOption('backup_compression')),'XSRFTag'=>'backup')
 								);
 		return $discard;
 	}

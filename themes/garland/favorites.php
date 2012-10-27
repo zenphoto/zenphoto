@@ -35,7 +35,7 @@ if (!defined('WEBPATH')) die();
 					<div class="main section" id="main">
 						<h2 id="gallerytitle">
 							<?php printHomeLink('',' » '); ?>
-							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php echo getGalleryTitle();?></a> » <?php printParentBreadcrumb("", " » ", " » "); ?><?php echo html_encode(getAlbumTitle()); ?>
+							<a href="<?php echo html_encode(getGalleryIndexURL(false)); ?>" title="<?php echo gettext('Gallery Index'); ?>"><?php printGalleryTitle();?></a> » <?php printParentBreadcrumb("", " » ", " » "); ?><?php echo html_encode(getAlbumTitle()); ?>
 						</h2>
 						<?php printAlbumDesc(); ?>
 						<?php printCodeblock(1); ?>

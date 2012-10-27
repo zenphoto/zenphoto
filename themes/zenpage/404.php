@@ -20,7 +20,7 @@ if (!defined('WEBPATH')) die();
 <div id="main">
 
 	<div id="header">
-		<h1><?php echo getGalleryTitle();?></h1>
+		<h1><?php printGalleryTitle();?></h1>
 		</div>
 
 		<div id="content">

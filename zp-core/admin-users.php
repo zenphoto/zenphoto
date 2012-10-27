@@ -332,6 +332,7 @@ if ($_zp_current_admin_obj->reset && !$refresh) {
 
 	} else {
 		$alterrights = ' disabled="disabled"';
+		$rangeset = array();
 		if ($_zp_current_admin_obj) {
 			$admins = array($_zp_current_admin_obj->getUser() =>
 														array('id' => $_zp_current_admin_obj->getID(),

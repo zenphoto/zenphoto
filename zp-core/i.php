@@ -55,17 +55,17 @@ if (getOption('secure_image_processor')) {
 	require_once(dirname(__FILE__).'/functions.php');
 	$albumobj = new Album(NULL, filesystemToInternal($album));
 	if (!$albumobj->checkAccess()) {
-		imageError('403 Forbidden', gettext("Forbidden"));
+		imageError('403 Forbidden', gettext("Forbidden(1)"));
 	}
 }
 
 // Extract the image parameters from the input variables
 // This validates the input as well.
-$args = array(0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, false, NULL);
+$args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 if (isset($_GET['s'])) { //0
 	if (is_numeric($s = $_GET['s'])) {
 		if ($s) {
-			$args[0] = min(abs($s), MAX_SIZE);
+			$args[0] = (int) min(abs($s), MAX_SIZE);
 		}
 	} else {
 		$args[0] = sanitize($_GET['s']);
@@ -92,27 +92,26 @@ if (isset($_GET['cy'])) { //6
 if (isset($_GET['q'])) { //7
 	$args[7] = (int) sanitize_numeric($_GET['q']);
 }
-if (isset($_GET['thumb'])) { // 8
-	$args[10] = true;
-}
 if (isset($_GET['c'])) {// 9
-	$args[9] = (bool) sanitize($_GET['c']);
+	$args[9] = (int) sanitize($_GET['c']);
 }
 if (isset($_GET['t'])) { //10
-	$args[10] = (bool) sanitize($_GET['t']);
+	$args[10] = (int) sanitize($_GET['t']);
 }
 if (isset($_GET['wmk']) && !$adminrequest) { //11
 	$args[11] = sanitize($_GET['wmk']);
 }
-$args [12] = $adminrequest; //12
+$args [12] = (bool) $adminrequest; //12
 
 if (isset($_GET['effects'])) {	//13
 	$args[13] = sanitize($_GET['effects']);
 }
-$check = @$_GET['check']==md5(HASH_SEED.implode($args));	//validate parameters
 
-if (!$check) {
-	imageError('403 Forbidden', gettext("Forbidden"));
+if (@$_GET['check']!=sha1(HASH_SEED.serialize($args))) {
+//	debugLogVar('Forbidden: $_GET', $_GET);
+//	debugLogVar('Forbidden: actual', unserialize($_GET['actual']));
+//	debugLogVar('Forbidden: args', $args);
+	imageError('403 Forbidden', gettext("Forbidden(2)"));
 }
 
 if ( !isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {

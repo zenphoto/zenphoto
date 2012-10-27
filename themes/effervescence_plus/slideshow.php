@@ -41,7 +41,7 @@ if (!defined('WEBPATH')) die();
 						}
 						?>
 						<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-						<?php echo getGalleryTitle();?></a> |
+						<?php printGalleryTitle();?></a> |
 						<?php
 						if (is_null($_zp_current_album)) {
 							$search = new SearchEngine();

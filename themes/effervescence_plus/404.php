@@ -36,7 +36,7 @@ if (!defined('WEBPATH')) die();
 				<?php
 				}
 				?>
-				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a></span>  |
+				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a></span>  |
 				<?php echo gettext('Object not found'); ?>
 			</div>
 		</div>

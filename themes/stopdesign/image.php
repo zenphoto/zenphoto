@@ -48,7 +48,7 @@ require_once('normalizer.php');
 
 <body class="photosolo">
 	<?php zp_apply_filter('theme_body_open'); ?>
-	<?php echo getGalleryTitle(); ?><?php if (getOption('Allow_search')) {  printSearchForm(); } ?>
+	<?php printGalleryTitle(); ?><?php if (getOption('Allow_search')) {  printSearchForm(); } ?>
 
 		<div id="content" class="v">
 
@@ -159,7 +159,7 @@ require_once('normalizer.php');
 		<p id="path">
 			<?php printHomeLink('', ' > '); ?>
 			<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> &gt;
-			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a> &gt; <?php printParentBreadcrumb("", " > ", " > "); printAlbumBreadcrumb("", " > "); echo getImageTitle(); ?>
+			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a> &gt; <?php printParentBreadcrumb("", " > ", " > "); printAlbumBreadcrumb("", " > "); echo getImageTitle(); ?>
 		</p>
 
 		<div id="footer">
