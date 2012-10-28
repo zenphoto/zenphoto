@@ -125,7 +125,7 @@ $thisalbum = $_zp_current_album;
 				$ch = 89;
 				$cw = 67;
 			}
-			echo '<li class="thumb"><span><em style="background-image:url(' . html_encode($_zp_current_image->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) . '); "><a href="' . html_encode(getImageLinkURL()) . '" title="' . getAnnotatedImageTitle() . '" style="background:#fff;">"'.getImageTitle().'"</a></em></span></li>';
+			echo '<li class="thumb"><span><em style="background-image:url(' . pathurlencode($_zp_current_image->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) . '); "><a href="' . html_encode(getImageLinkURL()) . '" title="' . getAnnotatedImageTitle() . '" style="background:#fff;">"'.getImageTitle().'"</a></em></span></li>';
 			}
 			if (!is_null($lastImage)  && $lastImage < getNumImages()) {
 				$np = getCurrentPage()+1;

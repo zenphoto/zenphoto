@@ -42,6 +42,8 @@ zp_register_filter('edit_admin_custom_data', 'user_expiry::edit_admin',999);
 zp_register_filter('load_theme_script', 'user_expiry::reverify',999);
 zp_register_filter('admin_note', 'user_expiry::notify',999);
 zp_register_filter('can_set_user_password', 'user_expiry::passwordAllowed');
+zp_register_filter('remove_user', 'user_expiry::cleanup');
+
 
 /**
  * Option handler class
@@ -175,8 +177,13 @@ class user_expiry {
 		return false;
 	}
 
+	static function cleanup($user) {
+		query('DELETE FROM '.prefix('plugin_storage').' WHERE `type`='.db_quote('user_expiry_usedPasswords').' AND `aux`='.$user->getID());
+	}
+
 	static function passwordAllowed($msg,$pwd, $user) {
-		$store = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`='.db_quote('user_expiry_usedPasswords').' AND `aux`='.$user->getID());
+		if ($id = $user->getID()>0) {
+		$store = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`='.db_quote('user_expiry_usedPasswords').' AND `aux`='.$id);
 		if ($store) {
 			$used = unserialize($store['data']);
 			if (in_array($pwd, $used)) {
@@ -190,9 +197,10 @@ class user_expiry {
 		}
 		array_push($used, $pwd);
 		if ($store) {
-			query('UPDATE '.prefix('plugin_storage').'SET `data`='.db_quote(serialize($used)).' WHERE `type`='.db_quote('user_expiry_usedPasswords').' AND `aux`='.$user->getID());
+			query('UPDATE '.prefix('plugin_storage').'SET `data`='.db_quote(serialize($used)).' WHERE `type`='.db_quote('user_expiry_usedPasswords').' AND `aux`='.$id);
 		} else {
-			query('INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`, `data`) VALUES ('.db_quote('user_expiry_usedPasswords').','.$user->getID().','.db_quote(serialize($used)).')');
+			query('INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`, `data`) VALUES ('.db_quote('user_expiry_usedPasswords').','.$id.','.db_quote(serialize($used)).')');
+		}
 		}
 		return $msg;
 	}

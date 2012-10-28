@@ -3,11 +3,6 @@ zp_register_filter('themeSwitcher_head', 'modifyThemeSelector');
 zp_register_filter('themeSwitcher_css', 'stopdesign_switch');
 
 function modifyThemeSelector($themelist) {
-	//disable selecting the zenpage theme
-	if (isset($themelist['zenpage'])) {
-		$themelist['zenpage'] = false;
-	}
-
 	//remove the zenpage plugin controllink from the DOM
 	?>
 	<script type="text/javascript">

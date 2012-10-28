@@ -1554,6 +1554,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	 * Removes a user from the system
 	 */
 	function remove() {
+		zp_apply_filter('remove_user', $this);
 		$album = $this->getAlbum();
 		$id = $this->getID();
 		if (parent::remove()) {
