@@ -698,20 +698,20 @@ function getImageProcessorURI($args, $album, $image) {
 	} else {
 		$uri .= '&s='.($args[0] = (int) $size);
 	}
-	if (empty($width)) {
-		$args[1] = NULL;
-	} else {
+	if ($width) {
 		$uri .= '&w='.($args[1] = (int) $width);
-	}
-	if (empty($height)) {
-		$args[2] = NULL;
 	} else {
+		$args[1] = NULL;
+	}
+	if ($height) {
 		$uri .= '&h='.($args[2] = (int) $height);
+	} else {
+		$args[2] = NULL;
 	}
 	if ($cw) {
-		$args[3] = NULL;
-	} else {
 		$uri .= '&cw='.($args[3] = (int) $cw);
+	} else {
+		$args[3] = NULL;
 	}
 	if ($ch) {
 		$uri .= '&ch='.($args[4] = (int) $ch);
@@ -728,42 +728,42 @@ function getImageProcessorURI($args, $album, $image) {
 	} else {
 		$uri .= '&cy='.($args[6] = (int) $cy);
 	}
-	if (empty($quality)) {
-		$args[7] = NULL;
-	} else {
+	if ($quality) {
 		$uri .= '&q='.($args[7] = (int) $quality);
+	} else {
+		$args[7] = NULL;
 	}
 	$args[8] = NULL;
-	if (!is_null($crop) && $crop) {
-		$args[9] = NULL;
-	} else {
+	if ($crop) {
 		$uri .= '&c='.($args[9] = 1);
+	} else {
+		$args[9] = NULL;
 	}
 	if ($thumb || $thumbstandin) {
 		$uri .= '&t='.($args[10] = 1);
 	} else {
 		$args[10] = NULL;
 	}
-	if (empty($passedWM)) {
-		$args[11] = NULL;
-	} else {
+	if ($passedWM) {
 		$uri .= '&wmk='.$passedWM;
-	}
-	if (empty($adminrequest)) {
-		$args[12] = false;
 	} else {
+		$args[11] = NULL;
+	}
+	if ($adminrequest) {
 		$args[12] = true;
 		$uri .= '&admin';
-	}
-	if (is_null($effects)) {
-		$args[13] = NULL;
 	} else {
+		$args[12] = false;
+	}
+	if ($effects) {
 		$uri .= '&effects='.$effects;
+	} else {
+		$args[13] = NULL;
 	}
 	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
-	if (TEST_RELEASE) {
-		$uri .= '&actual='.serialize($args);
-	}
+	/*
+	$uri .= '&actual='.serialize($args);
+	*/
 
 	if (class_exists('static_html_cache')) {
 		// don't cache pages that have image processor URIs

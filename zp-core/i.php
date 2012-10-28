@@ -108,11 +108,11 @@ if (isset($_GET['effects'])) {	//13
 }
 
 if (@$_GET['check']!=sha1(HASH_SEED.serialize($args))) {
-	if (TEST_RELEASE) {
-		debugLogVar('Forbidden: $_GET', $_GET);
-		debugLogVar('Forbidden: actual', unserialize($_GET['actual']));
-		debugLogVar('Forbidden: args', $args);
-	}
+	/*
+	debugLogVar('Forbidden: $_GET', $_GET);
+	debugLogVar('Forbidden: actual', unserialize($_GET['actual']));
+	debugLogVar('Forbidden: args', $args);
+	*/
 	imageError('403 Forbidden', gettext("Forbidden(2)"));
 }
 
@@ -190,7 +190,7 @@ if (!file_exists($imgfile)) {
 	if (!file_exists($imgfile)) {
 		header("HTTP/1.0 404 Not Found");
 		header("Status: 404 Not Found");
-		imageError('404 Not Found', gettext("Image not found; file does not exist."), 'err-imagenotfound.png');
+		imageError('404 Not Found', sprintf(gettext("Image not found; file %s does not exist."),filesystemToInternal($image)), 'err-imagenotfound.png');
 	}
 }
 
@@ -222,7 +222,7 @@ if (file_exists($newfile) & !$adminrequest) {
 if ($process) { // If the file hasn't been cached yet, create it.
 	// setup standard image options from the album theme if it exists
 	if (!cacheImage($newfilename, $imgfile, $args, $allowWatermark, $theme, $album)) {
-		imageError('404 Not Found', gettext('Image processing resulted in a fatal error.'));
+		imageError('404 Not Found', sprintf(gettext('Image processing of %s resulted in a fatal error.'),filesystemToInternal($image)));
 	}
 	$fmt = filemtime($newfile);
 }
@@ -244,7 +244,7 @@ if (!$debug) {
 		case 'jpeg':
 			break;
 		default:
-			imageError(405, 'Method Not Allowed', gettext("Method Not Allowed"));
+			imageError(405, 'Method Not Allowed', sprintf(gettext("Suffix Not Allowed: %s"),filesystemToInternal(basename($newfilename))));
 	}
 	if (OPEN_IMAGE_CACHE) {
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt).' GMT');
