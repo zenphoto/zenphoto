@@ -200,6 +200,7 @@ class Flowplayer3 {
 	 * @param string $imagetitle the title of the movie
 	 * 	 */
 	function getPlayerConfig($moviepath, $imagetitle='', $count='', $width=NULL, $height=NULL) {
+		global $_zp_current_image;
 		$playerwidth = getOption('flow_player3_width');
 		$playerheight = getOption('flow_player3_height');
 		$ext = getSuffix($moviepath);
