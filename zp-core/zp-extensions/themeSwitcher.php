@@ -100,9 +100,8 @@ class themeSwitcher {
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
-			function switchTheme() {
-				theme = $('#themeSwitcher').val();
-				window.location = '?themeSwitcher='+theme;
+			function switchTheme(reloc) {
+				window.location = reloc.replace(/%t/,$('#themeSwitcher').val());
 			}
 			// ]]> -->
 		</script>
@@ -129,10 +128,16 @@ class themeSwitcher {
 			if (empty($text)) {
 				$text = gettext('Theme');
 			}
+			$reloc = getRequestURI();
+			if (strpos($reloc, '?')) {
+				$reloc .= '&themeSwitcher=%t';
+			} else {
+				$reloc .= '?themeSwitcher=%t';
+			}
 			?>
 			<span class="themeSwitcherControlLink">
 				<?php echo $text; ?>
-				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme()">
+				<select name="themeSwitcher" id="themeSwitcher" onchange="switchTheme('<?php echo html_encode($reloc); ?>')">
 					<?php generateListFromArray(array($_zp_gallery->getCurrentTheme()), $themes, false, true); ?>
 				</select>
 				<?php zp_apply_filter('themeSwitcher_Controllink',''); ?>
