@@ -10,7 +10,7 @@ require_once('normalizer.php');
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> <?php echo gettext("Contact form"); ?></title>
+	<title><?php printBareGalleryTitle(); ?> <?php echo gettext("Contact form"); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<?php
@@ -22,7 +22,7 @@ require_once('normalizer.php');
 
 <body class="archive">
 	<?php zp_apply_filter('theme_body_open'); ?>
-	<?php echo getGalleryTitle(); ?>
+	<?php printGalleryTitle(); ?>
 	<div id="content">
 		<h1><?php printGalleryTitle(); ?> <em><?php echo gettext('Contact'); ?></em></h1>
 		<div class="galleries">
@@ -34,7 +34,7 @@ require_once('normalizer.php');
 <p id="path">
 	<?php printHomeLink('', ' &gt; '); ?>
 	<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> &gt;
-	<?php echo getGalleryTitle();?>
+	<?php printGalleryTitle();?>
 	&gt; <em><?php echo gettext('Contact'); ?></em>
 </p>
 

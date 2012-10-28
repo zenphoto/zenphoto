@@ -284,7 +284,7 @@ String.prototype.replaceAll = function(stringToFind,stringToReplace){
 }
 
 
-function addNewTag(id,dupmsg) {
+function addNewTag(id) {
 	var tag;
 	tag = $('#newtag_'+id).val();
 	if (tag) {
@@ -298,23 +298,13 @@ function addNewTag(id,dupmsg) {
 		name = name.replaceAll('+', '_-_');
 		name = name.replaceAll('%', '_--_');
 		var lcname = name.toLowerCase();
-
 		var exists = $('#'+lcname).length;
 		if (exists) {
-			$('#'+lcname).attr('checked',true);
-			clearTagID = '#newtag_'+id;
-			$(clearTagID).val(dupmsg);
-			$(clearTagID).css('color','gray');
-			setTimeout(
-						function() {
-							$(clearTagID).val('');
-							$(clearTagID).css('color','black');
-						}, 3000);
-		} else {
-			html = '<li><label class="displayinline"><input id="'+lcname+'" name="'+name+
-					'" type="checkbox" checked="checked" value="1" />'+tag+'</label></li>';
-			$('#list_'+id).prepend(html);
+			$('#'+lcname+'_element').remove();
 		}
+		html = '<li id="'+lcname+'_element"><label class="displayinline"><input id="'+lcname+'" name="'+name+
+				'" type="checkbox" checked="checked" value="1" />'+tag+'</label></li>';
+		$('#list_'+id).prepend(html);
 	}
 }
 

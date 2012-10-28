@@ -396,16 +396,19 @@ function setupLog($message, $anyway=false, $reset=false) {
 /*
  * updates database config parameters
  */
-function updateConfigItem($item, $value) {
+function updateConfigItem($item, $value, $quote=true) {
 	global $zp_cfg;
+	if ($quote) {
+		$value = '"'.$value.'"';
+	}
 	$i = strpos($zp_cfg, $item);
-	if ($i == false) {
-		$i = strpos($zp_cfg, '$conf[');
-		$zp_cfg = substr($zp_cfg, 0, $i)."\$conf['".$item."'] = '".$value."'; // added by setup\n".substr($zp_cfg,$i);
+	if ($i === false) {
+		$i = strpos($zp_cfg, '/** Do not edit below this line. **/');
+		$zp_cfg = substr($zp_cfg, 0, $i)."\$conf['".$item."'] = ".$value.";\n".substr($zp_cfg,$i);
 	} else {
 		$i = strpos($zp_cfg, '=', $i);
 		$j = strpos($zp_cfg, "\n", $i);
-		$zp_cfg = substr($zp_cfg, 0, $i) . '= \'' . str_replace('\'', '\\\'',$value) . '\';' . substr($zp_cfg, $j);
+		$zp_cfg = substr($zp_cfg, 0, $i) . '= ' . $value . ';' . substr($zp_cfg, $j);
 	}
 }
 
@@ -587,6 +590,12 @@ function close_site($nht) {
 		$nht = str_replace($match, ' '.substr($match,1), $nht);
 	}
 	return $nht;
+}
+
+function acknowledge($value) {
+	global $xsrftoken, $_zp_conf_vars;
+	$link = WEBPATH.'/'.ZENFOLDER.'/setup/index.php?security_ack='.$value.'&amp;xsrfToken='.$xsrftoken;
+	return sprintf(gettext('Click <a href="%s">here</a> to acknowledge that you wish to ignore this issue. It will then become a warning.'),@$_zp_conf_vars['security_ack'] | $link);
 }
 
 ?>

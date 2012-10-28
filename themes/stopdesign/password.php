@@ -9,14 +9,14 @@ if (!defined('WEBPATH')) die();
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> &gt; <?php echo gettext("Password required"); ?></title>
+	<title><?php printBareGalleryTitle(); ?> &gt; <?php echo gettext("Password required"); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 </head>
 
 <body class="gallery">
 	<?php zp_apply_filter('theme_body_open'); ?>
-	<?php echo getGalleryTitle(); ?>
+	<?php printGalleryTitle(); ?>
 
 	<div id="content">
 
@@ -41,7 +41,7 @@ if (!defined('WEBPATH')) die();
 		<?php printHomeLink('', ' > '); ?>
 		<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> &gt;
 		<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-		<?php echo getGalleryTitle();?></a> &gt;
+		<?php printGalleryTitle();?></a> &gt;
 		<?php
 		echo "<em>".gettext('Password required')."</em>";
 		?>

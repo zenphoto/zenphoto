@@ -8,10 +8,10 @@
  *
  * Executes the configuration change code
  */
-function reconfigureAction() {
+function reconfigureAction($mandatory) {
 	list($diff, $needs) = checkSignature();
 	$diff = array_keys($diff);
-	if (in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
+	if ($mandatory || in_array('ZENPHOTO', $diff) || in_array('FOLDER', $diff)) {
 		if (empty($needs)) {
 			$dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 			$p = strpos($dir, ZENFOLDER);
@@ -78,20 +78,17 @@ function checkSignature() {
 	if (!is_array($old)) {
 		$old = array('ZENPHOTO'=>gettext('an unknown release'));
 	}
-	$reconfigure = true;
-	$diff = array_diff_assoc($old, $new);
+	$diff = array_diff_assoc($new,$old);
 	$package = file_get_contents(dirname(__FILE__).'/Zenphoto.package');
 	preg_match_all('|'.ZENFOLDER.'/setup/(.*)|', $package, $matches);
+	$needs = array();
+	foreach ($matches[1] as $need) {
+		$needs[] = trim($need);
+	}
 	if (file_exists(dirname(__FILE__).'/setup/')) {
 		chdir(dirname(__FILE__).'/setup/');
 		$found = safe_glob('*.*');
-	} else {
-		$found = array();
-	}
-	if (empty($found)) {
-		$needs = $matches[1];
-	} else {
-		$needs = array_diff($matches[1], $found);
+		$needs = array_diff($needs, $found);
 	}
 	return array($diff, $needs);
 }

@@ -14,7 +14,7 @@ $backgroundImagePath="";
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Contact"); ?></title>
+	<title><?php printBareGalleryTitle(); ?> | <?php echo gettext("Contact"); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
@@ -50,7 +50,7 @@ $backgroundImagePath="";
 			}
 			?>
 		<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-		<?php echo getGalleryTitle();	?></a></span> |
+		<?php printGalleryTitle();	?></a></span> |
 		<?php
 			echo "<em>".gettext('Contact')."</em>";
 		?>

@@ -25,10 +25,10 @@ if ($optionlist) {
 }
 $lib_auth_extratext = "";
 $salt = 'abcdefghijklmnopqursuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@#$%^&*()_+-={}[]|;,.<>?/';
-$list = range(0, strlen($salt));
+$list = range(0, strlen($salt)-1);
 shuffle($list);
 for ($i=0; $i < 30; $i++) {
-	$lib_auth_extratext = $lib_auth_extratext . substr($salt, $list[$i], 1);
+	$lib_auth_extratext = $lib_auth_extratext . $salt{$list[$i]};
 }
 
 
@@ -514,7 +514,7 @@ on the Zenphoto 1.5 release.
 * these may have been used in third party themes. Themes should cease using these options and instead use the
 appropriate gallery methods.
 */
-	if (!defined('RELEASE')) {
+	if (TEST_RELEASE) {
 		foreach ($data as $key=>$option) {
 			purgeOption($key);
 		}
@@ -583,6 +583,9 @@ purgeOption('combinews-customtitle-singular');
 purgeOption('combinews-customtitle-plural');
 setOptionDefault('debug_log_size', 5000000);
 
+query('UPDATE '.prefix('administrators').' SET `passhash`='.((int) getOption('strong_hash')).' WHERE `valid`>=1 AND `passhash` IS NULL');
+query('UPDATE '.prefix('administrators').' SET `passupdate`='.db_quote(date('Y-m-d H:i:s')).' WHERE `valid`>=1 AND `passupdate` IS NULL');
+
 //The following should be done LAST so it catches anything done above
 //set plugin default options by instantiating the options interface
 $plugins = getPluginFiles('*.php');
@@ -605,5 +608,9 @@ $plugins = getPluginFiles('*.php');
 	// ]]> -->
 </script>
 <?php
-
+if (getOption('zp_plugin_auto_backup')) {
+	//Run the backup since for sure things have changed.
+	require_once(SERVERPATH.'/'.ZENFOLDER.'/'.PLUGIN_FOLDER.'/auto_backup.php');
+	auto_backup::timer_handler('');
+}
 ?>

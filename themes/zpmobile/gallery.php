@@ -6,7 +6,7 @@ if (!defined('WEBPATH')) die(); ;
 <html>
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?></title>
+	<title><?php printBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />
@@ -30,7 +30,7 @@ if (!defined('WEBPATH')) die(); ;
 		
 			<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="b">
 			<?php while (next_album()): ?>
-					<li><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php echo getAnnotatedAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 80, 80, 80, 80, NULL, null, NULL,NULL); ?>
+					<li><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:'); ?> <?php printAnnotatedAlbumTitle();?>"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, 80, 80, 80, 80, NULL, null, NULL,NULL); ?>
 					<?php printAlbumTitle(); ?><small> (<?php printAlbumDate(""); ?>)</small>
 					<div class="albumdesc"><?php echo shortenContent(getAlbumDesc(), 57,'(...)',false); ?></div>
 					<small class="ui-li-count"><?php jqm_printImageAlbumCount()?></small>	

@@ -129,6 +129,15 @@ if (isset($_POST['db'])) { //try to update the zp-config file
 	}
 }
 
+define ('ACK_REGISTER_GLOBALS', 1);
+define ('ACK_DISPLAY_ERRORS', 2);
+
+if (isset($_GET['security_ack'])) {
+	setupXSRFDefender();
+	updateConfigItem('security_ack', @$conf['security_ack'] | (int) $_GET['security_ack'], false);
+	$updatezp_config = true;
+}
+
 $permission_names = array(
 													0444=>gettext('readonly'),
 													0644=>gettext('strict'),
@@ -151,55 +160,23 @@ if ($updatechmod || $newconfig) {
 	} else {
 		$chmodval = sprintf('0%o',$chmod);
 	}
-	$i = strpos($zp_cfg, "define('CHMOD_VALUE',");
-	if ($i === false) {
-		$i = strpos($zp_cfg, "define('SERVERPATH',");
-		$i = strpos($zp_cfg, ';', $i);
-		$i = strpos($zp_cfg, '/**', $i);
-		$zp_cfg = substr($zp_cfg, 0, $i)."if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', ".$chmodval."); }\n".substr($zp_cfg, $i);
-	} else {
-		$i = $i + 21;
-		$j = strpos($zp_cfg, ")", $i);
-		$zp_cfg = substr($zp_cfg, 0, $i).$chmodval.substr($zp_cfg, $j);
-	}
 	if ($updatechmod) {
-		$i = strpos($zp_cfg, "\$conf['CHMOD'] = ");
-		if ($i === false) {
-			$i = strpos($zp_cfg, "\$conf['server_protocol'] =");
-			$i = strpos($zp_cfg, ';', $i);
-			$i = strpos($zp_cfg, '//', $i);
-			$i = strpos($zp_cfg, '//', $i+1);
-			$zp_cfg = substr($zp_cfg, 0, $i)."\$conf['CHMOD'] = ".sprintf('0%o',$chmod).";\n".substr($zp_cfg, $i);
+		updateConfigItem('CHMOD',sprintf('0%o',$chmod),false);
+		if (strpos($zp_cfg,"if (!defined('CHMOD_VALUE')) {") !== false) {
+			$zp_cfg = preg_replace("|if\s\(!defined\('CHMOD_VALUE'\)\)\s{\sdefine\(\'CHMOD_VALUE\'\,(.*)\);\s}|",
+					"if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', ".$chmodval."); }\n", $zp_cfg);
 		} else {
-			$i = $i + 17;
-			$j = strpos($zp_cfg, ";", $i);
-			$zp_cfg = substr($zp_cfg, 0, $i) . sprintf('0%o',$chmod) . substr($zp_cfg, $j);
+			$i = strpos($zp_cfg, "/** Do not edit below this line. **/");
+			$zp_cfg = substr($zp_cfg, 0, $i)."if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE', ".$chmodval."); }\n".substr($zp_cfg, $i);
 		}
 	}
 	$updatezp_config = true;
 }
 
-if ($updatefileset = isset($_REQUEST['FILESYSTEM_CHARSET'])) {
+if (isset($_REQUEST['FILESYSTEM_CHARSET'])) {
 	setupXSRFDefender();
 	$fileset = $_REQUEST['FILESYSTEM_CHARSET'];
-	$i = strpos($zp_cfg, 	"\$conf['FILESYSTEM_CHARSET'] = ");
-	if ($fileset && $i === false) {
-		$i = strpos($zp_cfg, "\$conf['server_protocol'] =");
-		$i = strpos($zp_cfg, ';', $i);
-		$i = strpos($zp_cfg, '//', $i);
-		$i = strpos($zp_cfg, '//', $i+1);
-		$zp_cfg = substr($zp_cfg, 0, $i)."//\n\$conf['FILESYSTEM_CHARSET'] = '$fileset';\n".substr($zp_cfg, $i);
-		$i = strpos($zp_cfg, "if (!defined('FILESYSTEM_CHARSET')");
-		if ($i !== false) {
-			$j = strpos($zp_cfg, ';', $i);
-			$j = strpos($zp_cfg, '$', $j);
-			$zp_cfg = substr($zp_cfg, 0, $i).substr($zp_cfg, $j);
-		}
-	} else {
-		$i = strpos($zp_cfg, "'", $i+30);
-		$j = strpos($zp_cfg, "'", $i+1);
-		$zp_cfg = substr($zp_cfg, 0, $i+1).$fileset.substr($zp_cfg, $j);
-	}
+	updateConfigItem('FILESYSTEM_CHARSET', $fileset);
 	$updatezp_config = true;
 }
 
@@ -409,8 +386,17 @@ if (!$setup_checked && (($upgrade && $autorun) || zp_loggedin(ADMIN_RIGHTS))) {
 
 	?>
 	<p>
-		<?php	echo gettext("Welcome to Zenphoto! This page will set up Zenphoto on your web server."); ?>
+		<?php printf( gettext("Welcome to Zenphoto! This page will set up Zenphoto %s on your web server."),ZENPHOTO_VERSION); ?>
 	</p>
+	<?php
+	if (TEST_RELEASE) {
+		?>
+		<p class="notebox">
+			<?php echo gettext('<strong>Note:</strong> The release you are installing has debugging settings enabled!'); ?>
+		</p>
+		<?php
+	}
+	?>
 	<h2><?php echo gettext("Systems Check:"); ?></h2>
 	<?php
 
@@ -516,16 +502,19 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 	checkmark($session&& session_id(),gettext('PHP <code>Sessions</code>.'),gettext('PHP <code>Sessions</code> [appear to not be working].'),gettext('PHP Sessions are required for Zenphoto administrative functions.'),true);
 
 	if (preg_match('#(1|ON)#i', @ini_get('register_globals'))) {
-		if ($prevRel) {
+		if (@$_zp_conf_vars['security_ack'] & ACK_REGISTER_GLOBALS) {
 			$register_globals = -1;
+			$aux = '';
 		} else {
 			$register_globals = false;
+			$aux = ' '.acknowledge(ACK_REGISTER_GLOBALS);
 		}
 	} else {
 		$register_globals = true;
+		$aux = '';
 	}
 	$good = checkMark($register_globals, gettext('PHP <code>Register Globals</code>'), gettext('PHP <code>Register Globals</code> [is set]'),
-										gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Change your PHP.ini settings to <code>register_globals = off</code>')) && $good;
+										gettext('PHP Register globals presents a security risk to any PHP application. See <a href="http://php.net/manual/en/security.globals.php"><em>Using Register Globals</em></a>. Change your PHP.ini settings to <code>register_globals = off</code>.').$aux) && $good;
 
 	if (preg_match('#(1|ON)#i', ini_get('safe_mode'))) {
 		$safe = -1;
@@ -554,19 +543,25 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		case 'off':
 		case 'stderr':
 			$display = true;
+			$aux = '';
 			break;
 		case 1:
 		case 'on':
 		case 'stdout':
-			$display = -1;
-			break;
 		default:
-			$display = 1;
+			if (TEST_RELEASE || (@$_zp_conf_vars['security_ack'] & ACK_DISPLAY_ERRORS)) {
+				$display = -1;
+				$aux = '';
+			} else {
+				$display = 0;
+				$aux = ' '.acknowledge(ACK_DISPLAY_ERRORS);
+			}
 			break;
 	}
 	checkmark($display, gettext('PHP <code>display_errors</code>'),
 			sprintf(gettext('PHP <code>display_errors</code> [is enabled]'),$display),
-			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sentsitive information about your site.'));
+			gettext('This setting may result in PHP error messages being displayed on WEB pages. These displays may contain sentsitive information about your site.').$aux,
+			$display && !TEST_RELEASE);
 
 	checkMark($noxlate, gettext('PHP <code>gettext()</code> support'), gettext('PHP <code>gettext()</code> support [is not present]'), gettext("Localization of Zenphoto requires native PHP <code>gettext()</code> support"));
 	checkmark(function_exists('flock')?1:-1, gettext('PHP <code>flock</code> support'), gettext('PHP <code>flock</code> support [is not present]'), gettext('Zenpoto uses <code>flock</code> for serializing critical regions of code. Without <code>flock</code> active sites may experience <em>race conditions</em> which may be causing inconsistent data.'));
@@ -1033,6 +1028,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 					$tables[] = $row[0];
 					$tableslist .= "<code>" . $row[0] . "</code>, ";
 				}
+				db_free_result($result);
 			} else {
 				$check = -1;
 			}
@@ -1177,7 +1173,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 				}
 
 				$t = filemtime($component);
-				if ((defined('RELEASE') && ($t < $lowset || $t > $highset))) {
+				if ((!TEST_RELEASE && ($t < $lowset || $t > $highset))) {
 					$installed_files[$key] = $value;
 				} else {
 					unset($installed_files[$key]);
@@ -1263,7 +1259,7 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		if ($svncount) {
 			$filelist[] = '<br />'.sprintf(ngettext('.svn [%s instance]','.svn [%s instances]',$svncount),$svncount);
 		}
-		if ($phi_ini_count && !defined('RELEASE')) {
+		if ($phi_ini_count && TEST_RELEASE) {
 			$filelist[] = '<br />'.sprintf(ngettext('php.ini [%s instance]','php.ini [%s instances]',$phi_ini_count),$phi_ini_count);
 		}
 		if ($package_file_count) {	//	no point in this if the package list was damaged!
@@ -1549,6 +1545,7 @@ if (file_exists(CONFIGFILE)) {
 				$key = str_replace(array($prefixLC,$prefixUC), $_zp_conf_vars['mysql_prefix'], $key);
 				$tables[$key] = 'update';
 			}
+			db_free_result($result);
 		}
 		$expected_tables = array($_zp_conf_vars['mysql_prefix'].'options', $_zp_conf_vars['mysql_prefix'].'albums',
 			$_zp_conf_vars['mysql_prefix'].'images', $_zp_conf_vars['mysql_prefix'].'comments',
@@ -1664,6 +1661,8 @@ if (file_exists(CONFIGFILE)) {
 		`id` int(11) UNSIGNED NOT NULL auto_increment,
 		`user` varchar(64) NOT NULL,
 		`pass` varchar(64) NOT NULL,
+		`passhash` int (1),
+		`passupdate` datetime,
 		`name` text,
 		`email` text,
 		`rights` int,
@@ -2027,6 +2026,7 @@ if (file_exists(CONFIGFILE)) {
 				}
 			}
 		}
+		db_free_result($result);
 	}
 	if (!$hasownerid) {
 		$sql_statements[] = "ALTER TABLE $tbl_comments ADD INDEX (`ownerid`);";
@@ -2063,6 +2063,7 @@ if (file_exists(CONFIGFILE)) {
 				$hastagidindex = true;
 			}
 		}
+		db_free_result($result);
 	}
 	if (!$hastagidindex) {
 		$sql_statements[] = "ALTER TABLE $tbl_obj_to_tag ADD INDEX (`tagid`)";
@@ -2140,6 +2141,7 @@ if (file_exists(CONFIGFILE)) {
 				break;
 			}
 		}
+		db_free_result($result);
 	}
 	$sql_statements[] = 'ALTER TABLE '.$tbl_albums.' ADD COLUMN `watermark` varchar(255) DEFAULT NULL';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_pages.' CHANGE `commentson` `commentson` int(1) UNSIGNED default 0';
@@ -2229,7 +2231,8 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = "ALTER TABLE $tbl_images DROP FOREIGN KEY `".trim($tbl_images,'`')."_ibfk1`";
 	$sql_statements[] = "ALTER TABLE $tbl_comments DROP FOREIGN KEY `".trim($tbl_comments,'`')."_ibfk1`";
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' CHANGE `pass` `pass` varchar(64)';
-
+	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passhash` int (1)';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passupdate` datetime';
 
 	// do this last incase there are any field changes of like names!
 	foreach ($_zp_exifvars as $key=>$exifvar) {
@@ -2556,7 +2559,7 @@ if (file_exists(CONFIGFILE)) {
 			}
 			$task = html_encode($task);
 		?>
-		<form id="setup" action="?checked<?php echo $task.$mod; ?>" method="post"<?php echo $hideGoButton; ?> >
+		<form id="setup" action="<?php echo WEBPATH.'/'.ZENFOLDER,'/setup/index.php?checked'; echo $task.$mod; ?>" method="post"<?php echo $hideGoButton; ?> >
 		<input type="hidden" name="setUTF8URI" id="setUTF8URI" value="dont" />
 		<input type="hidden" name="xsrfToken" value="<?php echo $xsrftoken?>" />
 		<?php

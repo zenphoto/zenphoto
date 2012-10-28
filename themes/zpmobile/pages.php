@@ -6,7 +6,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 <html>
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php //if(!isset($ishomepage)) { echo getBarePageTitle(); } ?> | <?php echo getBareGalleryTitle(); ?></title>
+	<title><?php //if(!isset($ishomepage)) { printBarePageTitle(); } ?> | <?php printBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/style.css" />

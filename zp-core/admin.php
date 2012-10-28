@@ -194,96 +194,96 @@ if (zp_loggedin(OVERVIEW_RIGHTS)) {
 		<ul>
 	<?php
 
-	if (defined('RELEASE')) {
-			$official = gettext('Official build');
-		} else {
-			$official = gettext('<em>Debug build</em>');
-		}
-		if (!zpFunctions::hasPrimaryScripts()) {
-			$official .= ' <em>'.gettext('clone').'</em>';
-		}
-		$graphics_lib = zp_graphicsLibInfo();
-		?>
-		<li><?php printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE,$official); ?></li>
-		<li><?php if (ZENPHOTO_LOCALE) {
-								printf(gettext('Current locale setting: <strong>%1$s</strong>'),ZENPHOTO_LOCALE);
-							} else {
-								echo gettext('<strong>Locale setting has failed</strong>');
-							}
-		 ?>
-		</li>
-		<li>
-		<?php echo gettext ('Server path:').' <strong>'.SERVERPATH.'</strong>'?>
-		</li>
-		<li>
-		<?php echo gettext ('WEB path:').' <strong>'.WEBPATH.'</strong>'?>
-		</li>
-		<li>
-			<?php
-			$themes = $_zp_gallery->getThemes();
-			$currenttheme = $_zp_gallery->getCurrentTheme();
-			if (array_key_exists($currenttheme, $themes) && isset($themes[$currenttheme]['name'])) {
-				$currenttheme = $themes[$currenttheme]['name'];
-			}
-			printf(gettext('Current gallery theme: <strong>%1$s</strong>'),$currenttheme);
-			?>
-		</li>
-		<li><?php printf(gettext('PHP version: <strong>%1$s</strong>'),phpversion()); ?></li>
+	if (TEST_RELEASE) {
+		$official = gettext('<em>Debug build</em>');
+	} else {
+		$official = gettext('Official build');
+	}
+	if (!zpFunctions::hasPrimaryScripts()) {
+		$official .= ' <em>'.gettext('clone').'</em>';
+	}
+	$graphics_lib = zp_graphicsLibInfo();
+	?>
+	<li><?php printf(gettext('Zenphoto version <strong>%1$s [%2$s] (%3$s)</strong>'),ZENPHOTO_VERSION,ZENPHOTO_RELEASE,$official); ?></li>
+	<li><?php if (ZENPHOTO_LOCALE) {
+							printf(gettext('Current locale setting: <strong>%1$s</strong>'),ZENPHOTO_LOCALE);
+						} else {
+							echo gettext('<strong>Locale setting has failed</strong>');
+						}
+	 ?>
+	</li>
+	<li>
+	<?php echo gettext ('Server path:').' <strong>'.SERVERPATH.'</strong>'?>
+	</li>
+	<li>
+	<?php echo gettext ('WEB path:').' <strong>'.WEBPATH.'</strong>'?>
+	</li>
+	<li>
 		<?php
-		if (!defined('RELEASE')) {
-			?>
-			<li>
-				<?php
-				$erToTxt = array(	E_ERROR=>'E_ERROR',
-													E_WARNING=>'E_WARNING',
-													E_PARSE=>'E_PARSE',
-													E_NOTICE=>'E_NOTICE',
-													E_CORE_ERROR=>'E_CORE_ERROR',
-													E_CORE_WARNING=>'E_CORE_WARNING',
-													E_COMPILE_ERROR=>'E_COMPILE_ERROR',
-													E_COMPILE_WARNING=>'E_COMPILE_WARNING',
-													E_USER_ERROR=>'E_USER_ERROR',
-													E_USER_NOTICE=>'E_USER_NOTICE',
-													E_USER_WARNING=>'E_USER_WARNING',
-													E_STRICT=>'E_STRICT'
-												);
-				if (version_compare(PHP_VERSION,'5.2.0') == 1) {
-					$erToTxt[E_RECOVERABLE_ERROR] = 'E_RECOVERABLE_ERROR';
-				}
-				if (version_compare(PHP_VERSION,'5.3.0') == 1) {
-					$erToTxt[E_DEPRECATED] = 'E_DEPRECATED';
-					$erToTxt[E_USER_DEPRECATED] = 'E_USER_DEPRECATED';
-				}
-				$reporting = error_reporting();
-				$text = array();
-				if (($reporting & E_ALL) == E_ALL) {
-					$text[] = 'E_ALL';
-					$reporting = $reporting ^ E_ALL;
-				}
-				if ((($reporting | E_NOTICE) & E_ALL) == E_ALL) {
-					$text[] = 'E_ALL ^ E_NOTICE';
-					$reporting = $reporting ^ (E_ALL ^ E_NOTICE);
-				}
-				foreach ($erToTxt as $er=>$name) {
-					if ($reporting & $er) {
-						$text[] = $name;
-					}
-				}
-				printf(gettext('PHP Error reporting: <strong>%s</strong>'), implode(' | ',$text));
-				?>
-			</li>
-			<?php
-			if (@ini_get('display_errors')) {
-				?>
-				<li><a title="<?php echo gettext('PHP error messages may be displayed on WEB pages. This may disclose site sensitive information.'); ?>"><?php echo gettext('<em>display_errors</em> is <strong>On</strong>')?></a></li>
-				<?php
-			} else {
-				?>
-				<li><?php echo gettext('<em>display_errors</em> is <strong>Off</strong>')?></li>
-				<?php
-			}
+		$themes = $_zp_gallery->getThemes();
+		$currenttheme = $_zp_gallery->getCurrentTheme();
+		if (array_key_exists($currenttheme, $themes) && isset($themes[$currenttheme]['name'])) {
+			$currenttheme = $themes[$currenttheme]['name'];
 		}
+		printf(gettext('Current gallery theme: <strong>%1$s</strong>'),$currenttheme);
 		?>
+	</li>
+	<li><?php printf(gettext('PHP version: <strong>%1$s</strong>'),phpversion()); ?></li>
+	<?php
+	if (TEST_RELEASE) {
+		?>
+		<li>
+			<?php
+			$erToTxt = array(	E_ERROR=>'E_ERROR',
+												E_WARNING=>'E_WARNING',
+												E_PARSE=>'E_PARSE',
+												E_NOTICE=>'E_NOTICE',
+												E_CORE_ERROR=>'E_CORE_ERROR',
+												E_CORE_WARNING=>'E_CORE_WARNING',
+												E_COMPILE_ERROR=>'E_COMPILE_ERROR',
+												E_COMPILE_WARNING=>'E_COMPILE_WARNING',
+												E_USER_ERROR=>'E_USER_ERROR',
+												E_USER_NOTICE=>'E_USER_NOTICE',
+												E_USER_WARNING=>'E_USER_WARNING',
+												E_STRICT=>'E_STRICT'
+											);
+			if (version_compare(PHP_VERSION,'5.2.0') == 1) {
+				$erToTxt[E_RECOVERABLE_ERROR] = 'E_RECOVERABLE_ERROR';
+			}
+			if (version_compare(PHP_VERSION,'5.3.0') == 1) {
+				$erToTxt[E_DEPRECATED] = 'E_DEPRECATED';
+				$erToTxt[E_USER_DEPRECATED] = 'E_USER_DEPRECATED';
+			}
+			$reporting = error_reporting();
+			$text = array();
+			if (($reporting & E_ALL) == E_ALL) {
+				$text[] = 'E_ALL';
+				$reporting = $reporting ^ E_ALL;
+			}
+			if ((($reporting | E_NOTICE) & E_ALL) == E_ALL) {
+				$text[] = 'E_ALL ^ E_NOTICE';
+				$reporting = $reporting ^ (E_ALL ^ E_NOTICE);
+			}
+			foreach ($erToTxt as $er=>$name) {
+				if ($reporting & $er) {
+					$text[] = $name;
+				}
+			}
+			printf(gettext('PHP Error reporting: <strong>%s</strong>'), implode(' | ',$text));
+			?>
+		</li>
+		<?php
+		if (@ini_get('display_errors')) {
+			?>
+			<li><a title="<?php echo gettext('PHP error messages may be displayed on WEB pages. This may disclose site sensitive information.'); ?>"><?php echo gettext('<em>display_errors</em> is <strong>On</strong>')?></a></li>
+			<?php
+		} else {
+			?>
+			<li><?php echo gettext('<em>display_errors</em> is <strong>Off</strong>')?></li>
+			<?php
+		}
+	}
+	?>
 		<li>
 		<?php	printf(gettext("Graphics support: <strong>%s</strong>"),$graphics_lib['Library_desc']); ?>
 			<br />&nbsp;&nbsp;&nbsp;

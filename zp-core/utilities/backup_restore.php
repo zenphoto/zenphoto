@@ -155,6 +155,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 		while ($row = db_fetch_assoc($result)) {
 			$tables[] = $row;
 		}
+		db_free_result($result);
 	}
 	if (!empty($tables)) {
 		$folder = SERVERPATH . "/" . BACKUPFOLDER;
@@ -198,6 +199,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 							$counter = 0;
 						}
 					}
+					db_free_result($result);
 				}
 				if ($writeresult === false) break;
 			}
@@ -255,6 +257,7 @@ if (isset($_REQUEST['backup']) && db_connect()) {
 					while ($row = db_fetch_assoc($resource)) {
 						$result[] = $row;
 					}
+					db_free_result($resource);
 				} else {
 					$result = false;
 				}

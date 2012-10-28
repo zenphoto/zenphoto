@@ -10,7 +10,7 @@ require_once('normalizer.php');
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?></title>
+	<title><?php printBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<?php
@@ -23,11 +23,11 @@ require_once('normalizer.php');
 
 <body class="index">
 	<?php zp_apply_filter('theme_body_open'); ?>
-	<?php echo getGalleryTitle(); ?><?php if (getOption('Allow_search')) {  printSearchForm(''); } ?>
+	<?php printGalleryTitle(); ?><?php if (getOption('Allow_search')) {  printSearchForm(''); } ?>
 
 	<div id="content">
 
-		<h1><?php echo getGalleryTitle(); ?></h1>
+		<h1><?php printGalleryTitle(); ?></h1>
 		<div class="galleries">
 				<h2><?php echo gettext('Recently Updated Galleries'); ?></h2>
 				<ul>
@@ -38,8 +38,8 @@ require_once('normalizer.php');
 					while (next_album() and $counter < 6):
 					?>
 						<li class="gal">
-							<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php printf(gettext("View album: %s"),getAnnotatedAlbumTitle()); ?>"><?php printAlbumTitle(); ?></a></h3>
-							<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php printf(gettext("View album: %s"), getAnnotatedAlbumTitle());?>" class="img"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT,ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT); ?></a>
+							<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php printf(gettext("View album: %s"),html_encode(getAnnotatedAlbumTitle())); ?>"><?php printAlbumTitle(); ?></a></h3>
+							<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php printf(gettext("View album: %s"), html_encode(getAnnotatedAlbumTitle()));?>" class="img"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT,ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT); ?></a>
 							<p>
 					<?php
 						$anumber = getNumAlbums();
@@ -179,7 +179,7 @@ require_once('normalizer.php');
 	</div>
 	<p id="path">
 		<?php printHomeLink('', ' > '); ?>
-		<?php echo getGalleryTitle(); ?>
+		<?php printGalleryTitle(); ?>
 		</p>
 	<div id="footer">
 		<?php

@@ -82,6 +82,7 @@ if ($resource) {
 	while ($row = db_fetch_assoc($resource)) {
 		$result[] = $row;
 	}
+	db_free_result($resource);
 } else {
 	$result = false;
 }

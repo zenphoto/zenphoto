@@ -399,6 +399,9 @@ function printNewsTitle($before='') {
 function getBareNewsTitle() {
 	return strip_tags(getNewsTitle());
 }
+function printBareNewsTitle() {
+	echo html_encode(getBareNewsTitle());
+}
 
 
 /**
@@ -1755,7 +1758,7 @@ function getNextPrevNews($option='',$sortorder='date',$sortdirection='desc') {
 			}
 			return false;
 		}
-	} 
+	}
 }
 
 /**

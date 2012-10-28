@@ -9,9 +9,13 @@
 
 // force UTF-8 Ø
 require_once(dirname(__FILE__).'/global-definitions.php');
+require_once(dirname(__FILE__).'/functions-common.php');
+
 if(!function_exists("gettext")) {
 	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
 }
+
+$_zp_mutex = new Mutex();
 
 /**
 * OFFSET_PATH definitions:
@@ -101,7 +105,7 @@ switch (PHP_MAJOR_VERSION) {
 }
 
 // Set error reporting.
-if (!defined("RELEASE")) {
+if (TEST_RELEASE) {
 	error_reporting(E_ALL | E_STRICT);
 	@ini_set('display_errors', 1);
 }
@@ -109,7 +113,7 @@ set_error_handler("zpErrorHandler");
 set_exception_handler("zpErrorHandler");
 if (OFFSET_PATH != 2 && !file_exists($const_serverpath.'/'.DATA_FOLDER."/zenphoto.cfg")) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
-	reconfigureAction();
+	reconfigureAction(true);
 }
 // Including the config file more than once is OK, and avoids $conf missing.
 eval(file_get_contents($const_serverpath.'/'.DATA_FOLDER.'/zenphoto.cfg'));
@@ -126,7 +130,7 @@ unset($const_serverpath);
 
 if (OFFSET_PATH != 2 && empty($_zp_conf_vars['mysql_database'])) {
 	require_once(dirname(__FILE__).'/reconfigure.php');
-	reconfigureAction();
+	reconfigureAction(true);
 }
 
 require_once(dirname(__FILE__).'/lib-utf8.php');
@@ -147,9 +151,8 @@ define('FILE_MOD', CHMOD_VALUE & 0666);
 // If the server protocol is not set, set it to the default.
 if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
 
-$_zp_imagick_present = false;
 require_once(dirname(__FILE__).'/functions-db-'.(isset($_zp_conf_vars['db_software'])?$_zp_conf_vars['db_software']:'MySQL').'.php');
-db_connect();
+db_connect(false);
 
 $_charset = getOption('charset');
 if (!$_charset) {
@@ -192,8 +195,12 @@ if (function_exists('mb_internal_encoding')) {
 // once a library has concented to load, all others will
 // abdicate.
 $_zp_graphics_optionhandlers = array();
-require_once(dirname(__FILE__).'/lib-Imagick.php');
-require_once(dirname(__FILE__).'/lib-GD.php');
+if (getOption('use_imagick')) {
+	require_once(dirname(__FILE__).'/lib-Imagick.php');
+}
+if (!function_exists('zp_graphicsLibInfo')) {
+	require_once(dirname(__FILE__).'/lib-GD.php');
+}
 if (function_exists('zp_graphicsLibInfo')) {
 	$_zp_supported_images = zp_graphicsLibInfo();
 } else {
@@ -261,64 +268,6 @@ define('IP_TIED_COOKIES', getOption('IP_tied_cookies'));
  * @param string $text
  * @return string
  */
-
-function html_decode($string) {
-	return html_entity_decode($string, ENT_QUOTES, 'UTF-8');
-}
-
-/**
- * encodes a pre-sanitized string to be used in an HTML text-only field (value, alt, title, etc.)
- *
- * @param string $this_string
- * @return string
- */
-function html_encode($this_string) {
-	return htmlspecialchars($this_string, ENT_FLAGS, LOCAL_CHARSET);
-}
-
-/**
- * HTML encodes the non-metatag part of the string.
- *
- * @param string $str string to be encoded
- * @param bool $allowScript set to false to prevent pass-through of script tags.
- * @return string
- */
-function html_encodeTagged($str, $allowScript=true) {
-	$tags = array();
-	//html comments
-	preg_match_all('|<!--.*-->|ixs', $str, $matches);
-	foreach (array_unique($matches[0]) as $key=>$tag) {
-		$tags['%'.$key.'$j'] = $tag;
-		$str = str_replace($tag, '%'.$key.'$j', $str);
-	}
-	//javascript
-	if ($allowScript) {
-		preg_match_all('!<script.*>.*</script>!ixs', $str, $matches);
-		foreach (array_unique($matches[0]) as $key=>$tag) {
-			$tags['%'.$key.'$j'] = $tag;
-			$str = str_replace($tag, '%'.$key.'$j', $str);
-		}
-	} else {
-		$str = preg_replace('|<a(.*)href(.*)=(.*)javascript|ixs', '%$x', $str);
-		$tags['%$x'] = '&lt;a href=<strike>javascript</strike>';
-		$str = preg_replace('|<(.*)onclick|ixs', '%$c', $str);
-		$tags['%$c'] = '&lt;<strike>onclick</strike>';
-	}
-	// markup
-	preg_match_all("/<\/?\w+((\s+(\w|\w[\w-]*\w)(\s*=\s*(?:\".*?\"|'.*?'|[^'\">\s]+))?)+\s*|\s*)\/?>/i", $str, $matches);
-	foreach (array_unique($matches[0]) as $key=>$tag) {
-		$tags['%'.$key.'$s'] = $tag;
-		$str = str_replace($tag, '%'.$key.'$s', $str);
-	}
-	//entities
-	preg_match_all('/(&[a-z#]+;)/', $str, $matches);
-	foreach (array_unique($matches[0]) as $key=>$entity) {
-		$tags['%'.$key.'$e'] = $entity;
-		$str = str_replace($entity, '%'.$key.'$e', $str);
-	}
-	$str = strtr(htmlspecialchars($str, ENT_FLAGS, LOCAL_CHARSET),$tags);
-	return $str;
-}
 
 /**
  * encodes a pre-sanitized string to be used as a Javascript parameter
@@ -665,21 +614,27 @@ function getImageParameters($args, $album=NULL) {
 	$thumb = $crop = false;
 	@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $WM, $adminrequest, $effects) = $args;
 	$thumb = $thumbstandin;
-	if ($size == 'thumb') {
-		$thumb = true;
-		if ($thumb_crop) {
-			$cw = $thumb_crop_width;
-			$ch = $thumb_crop_height;
-		}
-		$size = round($thumb_size);
-	} else {
-		if ($size == 'default') {
+
+	switch ($size) {
+		case 0:
+		default:
+			if (empty($size) || !is_numeric($size)) {
+				$size = false; // 0 isn't a valid size anyway, so this is OK.
+			} else {
+				$size = round($size);
+			}
+			break;
+		case 'thumb':
+			$thumb = true;
+			if ($thumb_crop) {
+				$cw = $thumb_crop_width;
+				$ch = $thumb_crop_height;
+			}
+			$size = round($thumb_size);
+			break;
+		case 'default':
 			$size = $image_default_size;
-		} else if (empty($size) || !is_numeric($size)) {
-			$size = false; // 0 isn't a valid size anyway, so this is OK.
-		} else {
-			$size = round($size);
-		}
+			break;
 	}
 
 	// Round each numeric variable, or set it to false if not a number.
@@ -736,20 +691,80 @@ function getImageParameters($args, $album=NULL) {
  */
 function getImageProcessorURI($args, $album, $image) {
 	list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
+	$args[8] = NULL;	// not used by image processo
 	$uri = WEBPATH.'/'.ZENFOLDER.'/i.php?a='.pathurlencode($album).'&i='.urlencode($image);
-	if (!empty($size)) $uri .= '&s='.$size;
-	if (!empty($width)) $uri .= '&w='.$width;
-	if (!empty($height)) $uri .= '&h='.$height;
-	if (!is_null($crop) && $crop) $uri .= '&c=1';
-	if ($cw) $uri .= '&cw='.$cw;
-	if ($ch) $uri .= '&ch='.$ch;
-	if (!is_null($cx)) $uri .= '&cx='.$cx;
-	if (!is_null($cy)) $uri .= '&cy='.$cy;
-	if (!empty($quality)) $uri .= '&q='.$quality;
-	if ($thumb || $thumbstandin) $uri .= '&t=1';
-	if (!empty($passedWM)) $uri .= '&wmk='.$passedWM;
-	if (!empty($adminrequest)) $uri .= '&admin';
-	if (!is_null($effects)) $uri .= '&effects='.$effects;
+	if (empty($size)) {
+		$args[0] = NULL;
+	} else {
+		$uri .= '&s='.($args[0] = (int) $size);
+	}
+	if ($width) {
+		$uri .= '&w='.($args[1] = (int) $width);
+	} else {
+		$args[1] = NULL;
+	}
+	if ($height) {
+		$uri .= '&h='.($args[2] = (int) $height);
+	} else {
+		$args[2] = NULL;
+	}
+	if ($cw) {
+		$uri .= '&cw='.($args[3] = (int) $cw);
+	} else {
+		$args[3] = NULL;
+	}
+	if ($ch) {
+		$uri .= '&ch='.($args[4] = (int) $ch);
+	} else {
+		$args[4] = NULL;
+	}
+	if (is_null($cx)) {
+		$args[5] = NULL;
+	} else {
+		$uri .= '&cx='.($args[5] = (int) $cx);
+	}
+	if (is_null($cy)) {
+		$args[6] = NULL;
+	} else {
+		$uri .= '&cy='.($args[6] = (int) $cy);
+	}
+	if ($quality) {
+		$uri .= '&q='.($args[7] = (int) $quality);
+	} else {
+		$args[7] = NULL;
+	}
+	$args[8] = NULL;
+	if ($crop) {
+		$uri .= '&c='.($args[9] = 1);
+	} else {
+		$args[9] = NULL;
+	}
+	if ($thumb || $thumbstandin) {
+		$uri .= '&t='.($args[10] = 1);
+	} else {
+		$args[10] = NULL;
+	}
+	if ($passedWM) {
+		$uri .= '&wmk='.$passedWM;
+	} else {
+		$args[11] = NULL;
+	}
+	if ($adminrequest) {
+		$args[12] = true;
+		$uri .= '&admin';
+	} else {
+		$args[12] = false;
+	}
+	if ($effects) {
+		$uri .= '&effects='.$effects;
+	} else {
+		$args[13] = NULL;
+	}
+	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
+	/*
+	$uri .= '&actual='.serialize($args);
+	*/
+
 	if (class_exists('static_html_cache')) {
 		// don't cache pages that have image processor URIs
 		static_html_cache::disable();
@@ -784,64 +799,6 @@ function getImageURI($args, $album, $image, $mtime) {
 }
 
 /**
- * Takes user input meant to be used within a path to a file or folder and
- * removes anything that could be insecure or malicious, or result in duplicate
- * representations for the same physical file.
- *
- * This function is used primarily for album names.
- * NOTE: The initial and trailing slashes are removed!!!
- *
- * Returns the sanitized path
- *
- * @param string $filename is the path text to filter.
- * @return string
- */
-function sanitize_path($filename) {
-	if (get_magic_quotes_gpc()) $filename = stripslashes(trim($filename));
-	$filename = strip_tags(str_replace('\\', '/', $filename));
-	$filename = preg_replace(array('/x00/','/\/\/+/','/\/\.\./','/\/\./','/:/','/</','/>/','/\?/','/\*/','/\"/','/\|/','/\/+$/','/^\/+/'), '', $filename);
-	return $filename;
-}
-
-/**
- * Checks if the input is numeric, rounds if so, otherwise returns false.
- *
- * @param mixed $num the number to be sanitized
- * @return int
- */
-function sanitize_numeric($num) {
-	if (is_numeric($num)) {
-		return round($num);
-	} else {
-		return false;
-	}
-}
-
-/** Make strings generally clean.  Takes an input string and cleans out
- * null-bytes, slashes (if magic_quotes_gpc is on), and optionally use KSES
- * library to prevent XSS attacks and other malicious user input.
- * @param string $input_string is a string that needs cleaning.
- * @param string $sanitize_level is a number between 0 and 3 that describes the
- * type of sanitizing to perform on $input_string.
- *   0 - Basic sanitation. Only strips null bytes. Not recommended for submitted form data.
- *   1 - User specified. (User defined code is allowed. Used for descriptions and comments.)
- *   2 - Text style/formatting. (Text style codes allowed. Used for titles.)
- *   3 - Full sanitation. (Default. No code allowed. Used for text only fields)
- * @return string the sanitized string.
- */
-function sanitize($input_string, $sanitize_level=3) {
-	if (is_array($input_string)) {
-		$output_string = array();
-		foreach ($input_string as $output_key => $output_value) {
-			$output_string[$output_key] = sanitize_string($output_value, $sanitize_level);
-		}
-	} else {
-		$output_string = sanitize_string($input_string, $sanitize_level);
-	}
-	return $output_string;
-}
-
-/**
  *
  * Returns an array of html tags allowed
  * @param string $which either 'allowed_tags' or 'style_tags' depending on which is wanted.
@@ -869,54 +826,6 @@ function getAllowedTags($which) {
 		}
 		return $_style_tags;
 	}
-}
-
-/** returns a sanitized string for the sanitize function
- * @param string $input_string
- * @param string $sanitize_level
- * @return string the sanitized string.
- */
-function sanitize_string($input_string, $sanitize_level) {
-	global $_user_tags, $_style_tags;
-	// Strip slashes if get_magic_quotes_gpc is enabled.
-	if (get_magic_quotes_gpc()) {
-		$input_string = stripslashes($input_string);
-	}
-	// Basic sanitation.
-	if ($sanitize_level === 0) {
-		return str_replace(chr(0), " ", $input_string);
-	}
-	// User specified sanititation.
-	if (function_exists('kses')) {
-		switch($sanitize_level) {
-			case 1:
-				$allowed_tags = getAllowedTags('allowed_tags');
-				break;
-			// Text formatting sanititation.
-			case 2:
-				$allowed_tags = getAllowedTags('style_tags');
-				break;
-			// Full sanitation.  Strips all code.
-			case 3:
-				$allowed_tags = array();
-				break;
-		}
-		$output_string = kses($input_string, $allowed_tags);
-	} else {	//	in a basic environment--allow NO HTML tags.
-		$output_string = strip_tags($input_string);
-	}
-	return $output_string;
-}
-
-/**
- * Formats an error message
- * If DEBUG_ERROR is set, supplies the calling sequence
- *
- * @param string $message
- * @param bool $fatal set true to fail the script
- */
-function zp_error($message, $fatal=E_USER_ERROR) {
-	trigger_error($message, $fatal);
 }
 
 /**
@@ -1043,6 +952,7 @@ function switchLog($log) {
 function debugLog($message, $reset=false) {
 	global $_zp_mutex;
 	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
+	$me = getmypid();
 	$max = getOption('debug_log_size');
 	$_zp_mutex->lock();
 	if ($reset || ($size = @filesize($path)) == 0 || ($max && $size > $max)) {
@@ -1056,12 +966,12 @@ function debugLog($message, $reset=false) {
 			} else {
 				$clone = ' '.gettext('clone');
 			}
-			fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']'.$clone."\n");
+			fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT} Zenphoto v".ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']'.$clone."\n");
 		}
 	} else {
 		$f = fopen($path, 'a');
 		if ($f) {
-			fwrite($f, '{'.gmdate('D, d M Y H:i:s')." GMT}\n");
+			fwrite($f, '{'.$me.':'.gmdate('D, d M Y H:i:s')." GMT}\n");
 		}
 	}
 	if ($f) {
@@ -1074,57 +984,6 @@ function debugLog($message, $reset=false) {
 	}
 	$_zp_mutex->unlock();
 }
-/**
- * Logs the calling stack
- *
- * @param string $message Message to prefix the backtrace
- */
-function debugLogBacktrace($message, $omit=0) {
-	$output = trim($message)."\n";
-	// Get a backtrace.
-	$bt = debug_backtrace();
-	while ($omit>=0) {
-		array_shift($bt); // Get rid of debug_backtrace, callers in the backtrace.
-		$omit--;
-	}
-	$prefix = '  ';
-	$line = '';
-	$caller = '';
-	foreach($bt as $b) {
-		$caller = (isset($b['class']) ? $b['class'] : '')	. (isset($b['type']) ? $b['type'] : '')	. $b['function'];
-		if (!empty($line)) { // skip first output to match up functions with line where they are used.
-			$prefix .= '  ';
-			$output .= 'from '.$caller.' ('.$line.")\n".$prefix;
-		} else {
-			$output .= '  '.$caller." called ";
-		}
-		$date = false;
-		if (isset($b['file']) && isset($b['line'])) {
-			$line = basename($b['file'])	. ' [' . $b['line'] . "]";
-		} else {
-			$line = 'unknown';
-		}
-	}
-	if (!empty($line)) {
-		$output .= 'from '.$line;
-	}
-	debugLog($output);
-}
-
-/**
- * Records a Var to the debug log
- *
- * @param string $message message to insert in log
- * @param mixed $var the variable to record
- */
-function debugLogVar($message, $var) {
-	ob_start();
-	var_dump($var);
-	$str = ob_get_contents();
-	ob_end_clean();
-	debugLog($message.html_decode(strip_tags($str)));
-}
-
 /**
  * Tool to log execution times of script bits
  *
@@ -1143,21 +1002,6 @@ function instrument($point) {
 }
 
 /**
- * Makes directory recursively, returns TRUE if exists or was created sucessfuly.
- * Note: PHP5 includes a recursive parameter to mkdir, but PHP4 does not, so this
- *   is required to target PHP4.
- * @param string $pathname The directory path to be created.
- * @return boolean TRUE if exists or made or FALSE on failure.
- */
-
-function mkdir_recursive($pathname, $mode) {
-	if (!is_dir(dirname($pathname))) {
-		mkdir_recursive(dirname($pathname), $mode);
-	}
-	return is_dir($pathname) || @mkdir($pathname, $mode);
-}
-
-/**
  * Parses a byte size from a size value (eg: 100M) for comparison.
  */
 function parse_size($size) {
@@ -1170,28 +1014,6 @@ function parse_size($size) {
 	if (preg_match('/([0-9]+)\s*(k|m|g)?(b?(ytes?)?)/i', $size, $match)) {
 		return $match[1] * $suffixes[strtolower($match[2])];
 	}
-}
-
-/**
- * Converts a file system filename to UTF-8 for zenphoto internal storage
- *
- * @param string $filename the file name to convert
- * @return string
- */
-function filesystemToInternal($filename) {
-	global $_zp_UTF8;
-	return str_replace('\\', '/', $_zp_UTF8->convert($filename, FILESYSTEM_CHARSET, LOCAL_CHARSET));
-}
-
-/**
- * Converts a Zenphoto Internal filename string to one compatible with the file system
- *
- * @param string $filename the file name to convert
- * @return string
- */
-function internalToFilesystem($filename) {
-	global $_zp_UTF8;
-	return $_zp_UTF8->convert($filename, LOCAL_CHARSET, FILESYSTEM_CHARSET);
 }
 
 /** getAlbumArray - returns an array of folder names corresponding to the
@@ -1419,6 +1241,8 @@ function getRequestURI() {
 /**
 * Provide an alternative to glob which does not return filenames with accented charactes in them
 *
+* NOTE: this function ignores "hidden" files whose name starts with a period!
+*
 * @param string $pattern the 'pattern' for matching files
 * @param bit $flags glob 'flags'
 */
@@ -1435,7 +1259,7 @@ function safe_glob($pattern, $flags=0) {
 	if (($dir=opendir($path))!==false) {
 		$glob=array();
 		while(($file=readdir($dir))!==false) {
-			if(@preg_match($match, $file) && $file!='.' && $file!='..') {
+			if(@preg_match($match, $file) && $file{0}!='.') {
 				if ((is_dir("$path/$file"))||(!($flags&GLOB_ONLYDIR))) {
 					if ($flags&GLOB_MARK) $file.='/';
 					$glob[]=$path_return.$file;
@@ -1450,92 +1274,15 @@ function safe_glob($pattern, $flags=0) {
 	}
 }
 
-///// database helper functions
-
-/**
- * Prefix a table name with a user-defined string to avoid conflicts.
- * This MUST be used in all database queries.
- *@param string $tablename name of the table
- *@return prefixed table name
- *@since 0.6
-	*/
-function prefix($tablename=NULL) {
-	global $_zp_conf_vars;
-	if (empty($tablename)) {
-		return $_zp_conf_vars['mysql_prefix'];
-	} else {
-		return '`' . $_zp_conf_vars['mysql_prefix'] . $tablename . '`';
-	}
-}
-
-/**
- * Constructs a WHERE clause ("WHERE uniqueid1='uniquevalue1' AND uniqueid2='uniquevalue2' ...")
- *  from an array (map) of variables and their values which identifies a unique record
- *  in the database table.
- *@param string $unique_set what to add to the WHERE clause
- *@return contructed WHERE cleause
- *@since 0.6
-	*/
-function getWhereClause($unique_set) {
-	if (empty($unique_set)) return ' ';
-	$i = 0;
-	$where = ' WHERE';
-	foreach($unique_set as $var => $value) {
-		if ($i > 0) $where .= ' AND';
-		$where .= ' `' . $var . '` = ' . db_quote($value);
-		$i++;
-	}
-	return $where;
-}
-
-/**
- * Constructs a SET clause ("SET uniqueid1='uniquevalue1', uniqueid2='uniquevalue2' ...")
- *  from an array (map) of variables and their values which identifies a unique record
- *  in the database table. Used to 'move' records. Note: does not check anything.
- *@param string $new_unique_set what to add to the SET clause
- *@return contructed SET cleause
- *@since 0.6
-	*/
-function getSetClause($new_unique_set) {
-	$i = 0;
-	$set = ' SET';
-	foreach($new_unique_set as $var => $value) {
-		$set .= ' `' . $var . '`=';
-		if (is_null($value)) {
-			$set .= 'NULL';
-		} else {
-			$set .= db_quote($value).',';
-		}
-	}
-	return substr($set,0,-1);
-}
-
-/*
- * returns the connected database name
- */
-function db_name() {
-	global $_zp_conf_vars;
-	return $_zp_conf_vars['mysql_database'];
-}
-
-function db_count($table, $clause=NULL, $field="*") {
-	$sql = 'SELECT COUNT('.$field.') FROM '.prefix($table).' '.$clause;
-	$result = query_single_row($sql);
-	if ($result) {
-		return array_shift($result);
-	} else {
-		return 0;
-	}
-}
-
 /**
  *
  * Check to see if the setup script needs to be run
  */
 function checkInstall() {
-	if (OFFSET_PATH != 2 && getOption('zenphoto_install') != serialize(installSignature())) {
+	if (!($i = getOption('zenphoto_install')) || getOption('zenphoto_version') != ZENPHOTO_VERSION.' ['.ZENPHOTO_RELEASE.']'
+									|| ((time() & 7)==0) && OFFSET_PATH!=2 && $i != serialize(installSignature())) {
 		require_once(dirname(__FILE__).'/reconfigure.php');
-		reconfigureAction();
+		reconfigureAction(false);
 	}
 }
 
@@ -1555,20 +1302,28 @@ function exitZP() {
  * @return string
  */
 function installSignature() {
-	$testFiles = array('template-functions.php', 'functions-filter.php', 'lib-auth.php', 'lib-utf8.php', 'functions.php', 'functions-basic.php', 'functions-controller.php', 'functions-image.php');
-	$m = (ZENPHOTO_RELEASE+strlen(SERVERPATH)) % count($testFiles);
+	$testFiles = array(	'template-functions.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php'),
+											'functions-filter.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/functions-filter.php'),
+											'lib-auth.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/lib-auth.php'),
+											'lib-utf8.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/lib-utf8.php'),
+											'functions.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/functions.php'),
+											'functions-basic.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/functions-basic.php'),
+											'functions-controller.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/functions-controller.php'),
+											'functions-image.php'=>filesize(SERVERPATH.'/'.ZENFOLDER.'/functions-image.php'));
+
 	if (isset($_SERVER['SERVER_SOFTWARE'])) {
 		$s = $_SERVER['SERVER_SOFTWARE'];
 	} else {
 		$s = 'software unknown';
 	}
 	$dbs = db_software();
-	return array($testFiles[$m]=>filesize(SERVERPATH.'/'.ZENFOLDER.'/'.$testFiles[$m]),
-							'SERVER_SOFTWARE'=>$s,
-							'ZENPHOTO'=>ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']',
-							'FOLDER'=>dirname(SERVERPATH.'/'.ZENFOLDER),
-							'DATABASE'=>$dbs['application'].' '.$dbs['version']
-							);
+	return array_merge($testFiles,
+											array('SERVER_SOFTWARE'=>$s,
+														'ZENPHOTO'=>ZENPHOTO_VERSION.'['.ZENPHOTO_RELEASE.']',
+														'FOLDER'=>dirname(SERVERPATH.'/'.ZENFOLDER),
+														'DATABASE'=>$dbs['application'].' '.$dbs['version']
+														)
+				);
 }
 
 /**
@@ -1585,115 +1340,5 @@ function zp_session_start() {
 		session_start();
 	}
 }
-
-/**
- *
- * Traps errors and insures thy are logged.
- * @param int $errno
- * @param string $errstr
- * @param string $errfile
- * @param string $errline
- * @return void|boolean
- */
-function zpErrorHandler($errno, $errstr='', $errfile='', $errline='') {
-	// if error has been supressed with an @
-	if (error_reporting() == 0) {
-		return;
-	}
-	// check if function has been called by an exception
-	if(func_num_args() == 5) {
-		// called by trigger_error()
-		list($errno, $errstr, $errfile, $errline) = func_get_args();
-	} else {
-		// caught exception
-		$exc = func_get_arg(0);
-		$errno = $exc->getCode();
-		$errstr = $exc->getMessage();
-		$errfile = $exc->getFile();
-		$errline = $exc->getLine();
-	}
-
-	$errorType = array (E_ERROR           	=> gettext('ERROR'),
-											E_WARNING      			=> gettext('WARNING'),
-											E_NOTICE        		=> gettext('NOTICE'),
-											E_USER_ERROR  			=> gettext('USER ERROR'),
-											E_USER_WARNING			=> gettext('USER WARNING'),
-											E_USER_NOTICE 			=> gettext('USER NOTICE'),
-											E_STRICT     				=> gettext('STRICT NOTICE')
-											);
-
-	// create error message
-
-	if (array_key_exists($errno, $errorType)) {
-		$err = $errorType[$errno];
-	} else {
-		$err = gettext("EXCEPTION ($errno)");
-		$errno = E_ERROR;
-	}
-	$msg = sprintf(gettext('%1$s: %2$s in %3$s on line %4$s'),$err,$errstr,$errfile,$errline);
-	debugLogBacktrace($msg, 1);
-	// what to do
-	switch ($errno) {
-		default:
-			@ini_set('display_errors', 1);
-		case E_NOTICE:
-		case E_USER_NOTICE:
-		case E_WARNING:
-		case E_USER_WARNING:
-			return false;
-	}
-}
-
-class Mutex {
-	private $locked = NULL;
-	private $ignoreUseAbort = NULL;
-	private $mutex = NULL;
-
-	function __construct() {
-	}
-
-	function __destruct() {
-		if ($this->locked) {
-			flock($this->mutex, LOCK_UN);
-			fclose($this->mutex);
-		}
-	}
-
-	public function lock() {
-		//if "flock" is not supported run un-serialized
-		//Only lock an unlocked mutex, we don't support recursive mutex'es
-		if(!$this->locked && function_exists('flock')) {
-			$this->mutex = fopen(SERVERPATH.'/'.ZENFOLDER.'/dataaccess', 'rb');
-			if (function_exists('flock') && flock($this->mutex, LOCK_EX)) {
-				$this->locked = true;
-				//We are entering a critical section so we need to change the ignore_user_abort setting so that the
-				//script doesn't stop in the critical section.
-				$this->ignoreUserAbort = ignore_user_abort(true);
-			} else {
-				zp_error(gettext('Error locking mutex'));
-			}
-		}
-	}
-
-	/**
-	 *	Unlock the mutex.
-	 */
-	public function unlock() {
-		if($this->locked)	{ //Only unlock a locked mutex.
-			$this->locked = false;
-			ignore_user_abort($this->ignoreUserAbort);	//Restore the ignore_user_abort setting.
-			if (flock($this->mutex, LOCK_UN)) {
-				fclose($this->mutex);
-			} else {
-				fclose($this->mutex);
-				zp_error(gettext(''));
-			}
-		}
-	}
-
-}
-
-$_zp_mutex = new Mutex()
-
 
 ?>

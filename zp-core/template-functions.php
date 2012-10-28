@@ -356,7 +356,11 @@ function getBareGalleryTitle() {
  * Prints the title of the gallery.
  */
 function printGalleryTitle() {
-	echo getGalleryTitle();
+	echo html_encodeTagged(getGalleryTitle());
+}
+
+function printBareGalleryTitle() {
+	echo html_encode(getBareGalleryTitle());
 }
 
 /**
@@ -382,7 +386,11 @@ function getBareGalleryDesc() {
  * Prints the description of the gallery.
  */
 function printGalleryDesc() {
-	echo getGalleryDesc();
+	echo html_encodeTagged(getGalleryDesc());
+}
+
+function printBareGalleryDesc() {
+	echo html_encode(getBareGalleryDesc());
 }
 
 /**
@@ -978,6 +986,9 @@ function getAnnotatedAlbumTitle() {
 	}
 	return $title;
 }
+function printAnnotatedAlbumTitle() {
+	echo html_encode(getAnnotatedAlbumTitle());
+}
 
 /**
  * Prints an encapsulated title of the current album.
@@ -987,6 +998,10 @@ function getAnnotatedAlbumTitle() {
  */
 function printAlbumTitle() {
 	printField('album', 'title');
+}
+
+function printBareAlbumTitle() {
+	echo html_encode(getBareAlbumTitle());
 }
 
 /**
@@ -1330,6 +1345,9 @@ function printAlbumDesc() {
 	printField('album', 'desc');
 }
 
+function printBareAlbumDesc() {
+	echo html_encode(getBareAlbumDesc());
+}
 
 
 /**
@@ -1964,6 +1982,9 @@ function getAnnotatedImageTitle() {
 	}
 	return $title;
 }
+function printAnnotatedImageTitle() {
+	echo html_encode(getAnnotatedImageTitle());
+}
 /**
  * Prints title of the current image
  *
@@ -1971,6 +1992,9 @@ function getAnnotatedImageTitle() {
  */
 function printImageTitle() {
 	printField('image', 'title');
+}
+function printBareImageTitle() {
+	echo html_encode(getBareImageTitle());
 }
 
 /**
@@ -2111,6 +2135,9 @@ function getBareImageDesc() {
  */
 function printImageDesc() {
 	printField('image', 'desc');
+}
+function printBareImageDesc() {
+	echo html_encode(getBareImageDesc());
 }
 
 /**
@@ -3085,81 +3112,114 @@ function printEditCommentLink($text, $before='', $after='', $title=NULL, $class=
  * @param string $type	"all" for all latest comments of all images and albums
  * 											"image" for the lastest comments of one specific image
  * 											"album" for the latest comments of one specific album
- * @param int $itemID the ID of the element to get the comments for if $type != "all"
+ * @param int $id the record id of element to get the comments for if $type != "all"
  */
-function getLatestComments($number,$type="all",$itemID=0) {
+function getLatestComments($number,$type="all",$id=NULL) {
 	global $_zp_gallery;
-	$passwordcheck1 = "";
-	$passwordcheck2 = "";
-	if (!zp_loggedin(ADMIN_RIGHTS)) {
-		$rslt = query("SELECT * FROM " . prefix('albums'). " ORDER BY title");
-		if ($rslt) {
-			while ($albumcheck = db_fetch_assoc($rslt)) {
-				$album = new Album(NULL, $albumcheck['folder']);
-				if($album->isMyItem(LIST_RIGHTS) || !checkAlbumPassword($albumcheck['folder'])) {
-					$albumpasswordcheck1= " AND i.albumid != ".$albumcheck['id'];
-					$albumpasswordcheck2= " AND a.id != ".$albumcheck['id'];
-					$passwordcheck1 = $passwordcheck1.$albumpasswordcheck1;
-					$passwordcheck2 = $passwordcheck2.$albumpasswordcheck2;
+	$albumcomment = $imagecomment = NULL;
+	$comments = array();
+
+	switch($type) {
+		case 'all':
+			$albumlist = array();
+			$rslt = query("SELECT * FROM " . prefix('albums'));
+			if ($rslt) {
+				while ($albumcheck = db_fetch_assoc($rslt)) {
+					$album = new Album(NULL, $albumcheck['folder']);
+					if($album->isMyItem(LIST_RIGHTS) || !checkAlbumPassword($albumcheck['folder'])) {
+						$albumlist[] = $albumcheck['id'];
+					}
+				}
+				db_free_result($rslt);
+			}
+
+			if (empty($albumlist)) {
+				return array();
+			}
+
+			$albumids = '('.implode(',',$albumlist).')';
+			$sql = 'SELECT c.id, a.folder, a.title AS albumtitle, c.name, c.type, c.website,'
+										.' c.date, c.anon, c.comment FROM '.prefix('comments').' AS c, '.prefix('albums').' AS a '
+										.' WHERE `type`="albums" AND a.id IN '.$albumids.' AND c.ownerid=a.id AND c.private=0 AND c.inmoderation=0'
+										.' ORDER BY c.date DESC';
+			if ($comments_albums = query($sql)) {
+				$albumcomment = db_fetch_assoc($comments_albums);
+				$sql = 'SELECT c.id, i.title, i.filename, a.folder, i.show, a.title AS albumtitle, c.name, c.type, c.website,'
+											.' c.date, c.anon, c.comment FROM '.prefix('comments').' AS c, '.prefix('images').' AS i, '.prefix('albums').' AS a '
+											.' WHERE `type`="images" AND a.id IN '.$albumids.' AND c.ownerid=i.id AND i.albumid=a.id AND c.private=0 AND c.inmoderation=0'
+											.' ORDER BY c.date DESC';
+				if ($comments_images = query($sql)) {
+					$imagecomment = db_fetch_assoc($comments_images);
 				}
 			}
-		}
-	}
 
-	switch ($type) {
-		case "image":
-			$whereImages = " WHERE i.show = 1 AND i.id = ".$itemID." AND c.ownerid = ".$itemID." AND i.albumid = a.id AND c.private = 0 AND c.inmoderation = 0 AND (c.type IN (".zp_image_types("'") ."))".$passwordcheck1;
+			while (count($comments) < $number && ($albumcomment || $imagecomment)) {
+				if ($albumcomment && $imagecomment) {
+					if ($albumcomment['date'] > $imagecomment['date']) {
+						$albumcomment['pubdate'] = $albumcomment['date'];	//because the RSS code is stupid
+						$comments[] = $albumcomment;
+						$albumcomment = db_fetch_assoc($comments_albums);
+					} else {
+						if (!($view = $imagecomment['show'])) {
+							$album = new Album(NULL, $imagecomment['folder']);
+							$uralbum = getUrAlbum($album);
+							$view = (zp_loggedin() && $uralbum->albumSubRights() & (MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_VIEW));
+						}
+						if ($view) {
+							$imagecomment['pubdate'] = $imagecomment['date'];	//because the RSS code is stupid
+							$comments[] = $imagecomment;
+							$imagecomment = db_fetch_assoc($comments_images);
+						}
+					}
+				} else if ($albumcomment) {
+					$albumcomment['pubdate'] = $albumcomment['date'];	//because the RSS code is stupid
+					$comments[] = $albumcomment;
+					$albumcomment = db_fetch_assoc($comments_albums);
+				} else {
+					$imagecomment['pubdate'] = $imagecomment['date'];	//because the RSS code is stupid
+					$comments[] = $imagecomment;
+					$imagecomment = db_fetch_assoc($comments_images);
+				}
+			}
+			db_free_result($comments_albums);
+			db_free_result($comments_images);
 			break;
-		case "album":
-			$whereAlbums = " WHERE a.show = 1 AND a.id = ".$itemID." AND c.ownerid = ".$itemID." AND c.private = 0 AND c.inmoderation = 0 AND c.type = 'albums'".$passwordcheck2;
+		case 'album':
+			$item = getItemByID('albums', $id);
+			$comments = array_slice($item->getComments(),0,$number);
+			// add the other stuff people want
+			foreach ($comments as $key=>$comment) {
+				$comment['pubdate'] = $comment['date'];
+				$alb = getItemByID('albums', $cpomment['ownerid']);
+				$comment['folder'] = $alb->name;
+				$comments[$key] = $comment;
+			}
 			break;
-		case "all":
-			$whereImages = " WHERE i.show = 1 AND c.ownerid = i.id AND i.albumid = a.id AND c.private = 0 AND c.inmoderation = 0 AND (c.type IN (".zp_image_types("'") ."))".$passwordcheck1;
-			$whereAlbums = " WHERE a.show = 1 AND c.ownerid = a.id AND c.private = 0 AND c.inmoderation = 0 AND c.type = 'albums'".$passwordcheck2;
+		case 'image':
+			$item = getItemByID('albums', $id);
+			$comments = array_slice($item->getComments(),0,$number);
+			// add the other stuff people want
+			foreach ($comments as $key=>$comment) {
+				$comment['pubdate'] = $comment['date'];
+				$img = getItemByID('images', $cpomment['ownerid']);
+				$comment['folder'] = $img->$album->name;
+				$comment['filename'] = $img->filename;
+				$comments[$key] = $comment;
+			}
 			break;
 	}
-	$comments_images = array();
-	$comments_albums = array();
-	if ($type === "all" OR $type === "image") {
-		$comments_images = query("SELECT c.id, i.title, i.filename, a.folder, a.title AS albumtitle, c.name, c.type, c.website,"
-		. " c.date, c.anon, c.comment FROM ".prefix('comments')." AS c, ".prefix('images')." AS i, ".prefix('albums')." AS a "
-		. $whereImages
-		. " ORDER BY c.id DESC LIMIT $number");
-	}
-	if ($type === "all" OR $type === "album") {
-		$comments_albums = query("SELECT c.id, a.folder, a.title AS albumtitle, c.name, c.type, c.website,"
-		. " c.date, c.anon, c.comment FROM ".prefix('comments')." AS c, ".prefix('albums')." AS a "
-		. $whereAlbums
-		. " ORDER BY c.id DESC LIMIT $number");
-	}
-	$comments = array();
-	if ($comments_albums) {
-		while ($comment = db_fetch_assoc($comments_albums)) {
-			$comments[$comment['id']] = $comment;
-		}
-	}
-	if ($comments_images) {
-		while ($comment = db_fetch_assoc($comments_images)) {
-			$comments[$comment['id']] = $comment;
-		}
-	}
-	krsort($comments);
-	return array_slice($comments, 0, $number);
+	return $comments;
 }
 
 
 /**
  * Prints out latest comments for images and albums
  *
- * @param int $number how many comments you want.
- * @param string $shorten the number of characters to shorten the comment display
- * @param string $type	"all" for all latest comments of all images and albums
- * 											"image" for the lastest comments of one specific image
- * 											"album" for the latest comments of one specific album
- * @param int $itemID the ID of the element to get the comments for if $type != "all"
+ * @param see getLatestComments
+ *
  */
-function printLatestComments($number, $shorten='123',$type="all",$itemID="") {
-	$comments = getLatestComments($number,$type,$itemID);
+function printLatestComments($number, $shorten='123',$type="all",$item=NULL) {
+	$comments = getLatestComments($number,$type,$item);
 	echo "<ul id=\"showlatestcomments\">\n";
 	foreach ($comments as $comment) {
 		if($comment['anon'] === "0") {
@@ -3249,6 +3309,7 @@ function filterImageQuery($result, $source) {
 				}
 			}
 		}
+		db_free_result($result);
 	}
 	return NULL;
 }
@@ -3348,6 +3409,7 @@ function getRandomImagesAlbum($rootAlbum=NULL,$daily=false) {
 			while ($row = db_fetch_assoc($result)) {
 				$albumInWhere = $albumInWhere . $row['id'] . ", ";
 			}
+			db_free_result($result);
 			$albumInWhere =  ' AND '.substr($albumInWhere, 0, -2) . ')';
 			$sql = 'SELECT `folder`, `filename` ' .
 							' FROM '.prefix('images'). ', '.prefix('albums').
@@ -3611,6 +3673,7 @@ function getAllDates($order='asc') {
 		while ($row = db_fetch_assoc($result)){
 			$alldates[] = $row['date'];
 		}
+		db_free_result($result);
 	}
 	foreach ($alldates as $adate) {
 		if (!empty($adate)) {
@@ -4587,12 +4650,7 @@ function exposeZenPhotoInformations( $obj = '', $plugins = '', $theme = '' ) {
 
 	$a = basename($obj);
 	if ($a != 'full-image.php') {
-		if (defined('RELEASE')) {
-			$official = 'Official Build';
-		} else {
-			$official = 'SVN';
-		}
-		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_RELEASE . "] ($official)";
+		echo "\n<!-- zenphoto version " . ZENPHOTO_VERSION . " [" . ZENPHOTO_RELEASE . "]";
 		echo " THEME: " . $theme . " (" . $a . ")";
 		$graphics = zp_graphicsLibInfo();
 		$graphics = sanitize(str_replace('<br />', ', ', $graphics['Library_desc']), 3);

@@ -22,7 +22,7 @@ $backgroundImagePath="";
 	$personality = strtolower(getOption('effervescence_personality'));
 	require_once(SERVERPATH.'/'.THEMEFOLDER.'/effervescence_plus/'.$personality.'/functions.php');
 	?>
-	<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext("Search"); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
+	<title><?php printBareGalleryTitle(); ?> | <?php echo gettext("Search"); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php $oneImagePage = $personality->theme_head($_zp_themeroot); ?>
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
@@ -114,7 +114,7 @@ $backgroundImagePath="";
 			}
 			?>
 		<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-		<?php echo getGalleryTitle();	?></a></span> |
+		<?php printGalleryTitle();	?></a></span> |
 		<?php
 		if (is_array($albumlist)) {
 				echo "<em>".sprintf(ngettext('Search album: %s','Search albums: %s',count($albumlist)),implode(',',$albumlist))."</em>";

@@ -964,7 +964,7 @@ function generateUnorderedListFromArray($currentValue, $list, $prefix, $alterrig
 			$display = $item;
 		}
 		?>
-		<li>
+		<li id="<?php echo strtolower($listitem); ?>_element">
 			<label class="displayinline">
 				<input id="<?php echo strtolower($listitem); ?>"<?php echo $class;?> name="<?php echo $listitem; ?>" type="checkbox"
 							<?php if (isset($cv[$item])) {echo ' checked="checked"';	} ?> value="1" <?php echo $alterrights; ?> />
@@ -1077,7 +1077,7 @@ function tagSelector($that, $postit, $showCounts=false, $mostused=false, $addnew
 		?>
 			<div id="resizable_<?php echo $postit;?>">
 				<span class="new_tag displayinline" >
-					<a href="javascript:addNewTag('<?php echo $postit; ?>','<?php echo gettext('tag set!'); ?>');" title="<?php echo gettext('add tag'); ?>">
+					<a href="javascript:addNewTag('<?php echo $postit; ?>');" title="<?php echo gettext('add tag'); ?>">
 						<img src="images/add.png" title="<?php echo gettext('add tag'); ?>"/>
 					</a>
 					<input type="text" value="" name="newtag_<?php echo $postit; ?>" id="newtag_<?php echo $postit; ?>" />
@@ -1260,11 +1260,11 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 								<br />
 								<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
-																onclick="passwordKeydown('<?php echo $suffix; ?>');togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																onclick="passwordClear'<?php echo $suffix; ?>');togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 							</td>
 							<td>
 								<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
+														onkeydown="passwordClear'<?php echo $suffix; ?>');"
 														id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 														value="<?php echo $album->getUser(); ?>" />
 							</td>
@@ -1286,14 +1286,14 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 								<p>
 									<input type="password"
 															id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
-															onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
+															onkeydown="passwordClear'<?php echo $suffix; ?>');"
 															onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 															value="<?php echo $x; ?>" />
 									<br />
 									<span class="password_field_<?php echo $suffix; ?>">
 										<input type="password"
 																id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
-																onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
+																onkeydown="passwordClear'<?php echo $suffix; ?>');"
 																onkeyup="passwordMatch('<?php echo $suffix; ?>');"
 																value="<?php echo $x; ?>" />
 									</span>
@@ -2203,7 +2203,7 @@ function processAlbumEdit($index, $album, &$redirectto) {
 		$key = postIndexDecode($key);
 		if (substr($key, 0, $l) == $tagsprefix) {
 			if ($value) {
-				$tags[] = substr($key, $l);
+				$tags[] = sanitize(substr($key, $l));
 			}
 		}
 	}
@@ -4264,39 +4264,6 @@ function printPageSelector($subpage, $rangeset, $script, $queryParams) {
 		<?php
 	}
 	$instances++;
-}
-
-/**
- * Returns Magick (Gmagick/Imagick) constants that begin with $filter and
- * removes the constant of the form $filter . 'UNDEFINED' if it exists.
- *
- * The returned array will be an associative array in which the
- * keys and values are identical strings sorted in alphabetical order.
- *
- * @param string $class The class to reflect
- * @param string $filter The string to delimit constants
- * @return array
- */
-function getMagickConstants($class, $filter) {
-	global $magickConstantPrefix;
-
-	$magickReflection = new ReflectionClass($class);
-	$magickConstants = $magickReflection->getConstants();
-
-	// lambda functions have no scope; must use $GLOBALS superglobal
-	$lambdaFilter = create_function('$value', 'return !strncasecmp($value, $GLOBALS["magickConstantPrefix"], strlen($GLOBALS["magickConstantPrefix"]));');
-
-	$magickConstantPrefix = $filter;
-	$filteredConstants = array_filter(array_keys($magickConstants), $lambdaFilter);
-
-	if (($key = array_search($filter . 'UNDEFINED', $filteredConstants)) !== false) {
-		unset($filteredConstants[$key]);
-	}
-
-	$constantsArray = array_combine(array_values($filteredConstants), $filteredConstants);
-	asort($constantsArray);
-
-	return $constantsArray;
 }
 
 /**

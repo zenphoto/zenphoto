@@ -8,7 +8,7 @@ if (!defined('WEBPATH')) die();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> | <?php echo getBareAlbumTitle();?> | <?php echo getBareImageTitle();?></title>
+	<title><?php printBareGalleryTitle(); ?> | <?php printBareAlbumTitle();?> | <?php printBareImageTitle();?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
@@ -96,7 +96,7 @@ if (!defined('WEBPATH')) die();
 							<?php
 							}
 							?>
-							<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a> |
+							<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a> |
 							<?php printParentBreadcrumb(); printAlbumBreadcrumb("", " | "); ?>
 						</span>
 						<?php printImageTitle(true); ?>
@@ -118,7 +118,7 @@ if (!defined('WEBPATH')) die();
 					$fullimage = getFullImageURL();
 					if (!empty($fullimage)) {
 						?>
-						<a href="<?php echo html_encode($fullimage);?>" title="<?php echo getBareImageTitle();?>" class="thickbox">
+						<a href="<?php echo html_encode($fullimage);?>" title="<?php printBareImageTitle();?>" class="thickbox">
 						<?php
 					}
 					printDefaultSizedImage(getImageTitle());

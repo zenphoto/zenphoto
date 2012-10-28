@@ -89,7 +89,7 @@ class Video extends _Image {
 	 * @param sting $filename the filename of the image
 	 * @return Image
 	 */
-	function __construct(&$album, $filename) {
+	function __construct(&$album, $filename, $quiet=false) {
 		global $_zp_supported_images;
 		$alts = explode(',',getOption('zp_plugin_class-video_videoalt'));
 		foreach ($alts as $alt) {
@@ -102,6 +102,10 @@ class Video extends _Image {
 			$msg = gettext('Invalid video instantiation: file does not exist.');
 		}
 		if ($msg) {
+			if ($quiet) {
+				$this->exists = false;
+				return;
+			}
 			trigger_error($msg, E_USER_ERROR);
 			exitZP();
 		}

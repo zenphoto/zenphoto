@@ -32,7 +32,7 @@ if (!defined('WEBPATH')) die();
 		<div id="wrapnav">
 			<div id="navbar">
 				<?php printHomeLink('', ' | '); ?>
-			<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Index'); ?>"><?php echo getGalleryTitle();?></a></span>  |
+			<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Index'); ?>"><?php printGalleryTitle();?></a></span>  |
 				<?php echo gettext('A password is required for the page you requested'); ?>
 			</div>
 		</div>

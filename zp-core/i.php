@@ -30,7 +30,7 @@
 // force UTF-8 Ø
 
 
-define('OFFSET_PATH', 2);
+if (!defined('OFFSET_PATH')) define('OFFSET_PATH', 2);
 require_once(dirname(__FILE__).'/functions-basic.php');
 require_once(dirname(__FILE__).'/functions-image.php');
 
@@ -55,7 +55,7 @@ if (getOption('secure_image_processor')) {
 	require_once(dirname(__FILE__).'/functions.php');
 	$albumobj = new Album(NULL, filesystemToInternal($album));
 	if (!$albumobj->checkAccess()) {
-		imageError('403 Forbidden', gettext("Forbidden"));
+		imageError('403 Forbidden', gettext("Forbidden(1)"));
 	}
 }
 
@@ -63,51 +63,58 @@ if (getOption('secure_image_processor')) {
 // This validates the input as well.
 $args = array(NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 if (isset($_GET['s'])) { //0
-	if (is_numeric($_GET['s'])) {
-		$args[0] = min(abs($_GET['s']), MAX_SIZE);
+	if (is_numeric($s = $_GET['s'])) {
+		if ($s) {
+			$args[0] = (int) min(abs($s), MAX_SIZE);
+		}
 	} else {
 		$args[0] = sanitize($_GET['s']);
 	}
 }
 if (isset($_GET['w'])) {  //1
-	$args[1] = min(abs($_GET['w']), MAX_SIZE);
+	$args[1] = (int) min(abs(sanitize_numeric($_GET['w'])), MAX_SIZE);
 }
 if (isset($_GET['h'])) { //2
-	$args[2] = min(abs($_GET['h']), MAX_SIZE);
+	$args[2] = (int) min(abs(sanitize_numeric($_GET['h'])), MAX_SIZE);
 }
 if (isset($_GET['cw'])) { //3
-	$args[3] = sanitize($_GET['cw']);
+	$args[3] = (int) sanitize_numeric(($_GET['cw']));
 }
 if (isset($_GET['ch'])) { //4
-	$args[4] = sanitize($_GET['ch']);
+	$args[4] = (int) sanitize_numeric($_GET['ch']);
 }
 if (isset($_GET['cx'])) { //5
-	$args[5] = sanitize($_GET['cx']);
+	$args[5] = (int) sanitize_numeric($_GET['cx']);
 }
 if (isset($_GET['cy'])) { //6
-	$args[6] = sanitize($_GET['cy']);
+	$args[6] = (int) sanitize_numeric($_GET['cy']);
 }
 if (isset($_GET['q'])) { //7
-	$args[7] = sanitize($_GET['q']);
-}
-if (isset($_GET['thumb'])) { // 8
-	$args[10] = 1;
+	$args[7] = (int) sanitize_numeric($_GET['q']);
 }
 if (isset($_GET['c'])) {// 9
-	$args[9] = sanitize($_GET['c']);
+	$args[9] = (int) sanitize($_GET['c']);
 }
 if (isset($_GET['t'])) { //10
-	$args[10] = sanitize($_GET['t']);
+	$args[10] = (int) sanitize($_GET['t']);
 }
 if (isset($_GET['wmk']) && !$adminrequest) { //11
 	$args[11] = sanitize($_GET['wmk']);
 }
-$args [12] = $adminrequest; //12
+$args [12] = (bool) $adminrequest; //12
 
 if (isset($_GET['effects'])) {	//13
 	$args[13] = sanitize($_GET['effects']);
 }
 
+if (@$_GET['check']!=sha1(HASH_SEED.serialize($args))) {
+	/*
+	debugLogVar('Forbidden: $_GET', $_GET);
+	debugLogVar('Forbidden: actual', unserialize($_GET['actual']));
+	debugLogVar('Forbidden: args', $args);
+	*/
+	imageError('403 Forbidden', gettext("Forbidden(2)"));
+}
 
 if ( !isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 	// No image parameters specified
@@ -118,6 +125,7 @@ if ( !isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 	// external album, Web server cannot serve original image. Force resize to as big as we can do
 	$args[0] = MAX_SIZE;
 }
+
 $args = getImageParameters($args,filesystemToInternal($album));
 list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 if (DEBUG_IMAGE) debugLog("i.php($ralbum, $rimage): \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$thumbstandin=$thumbstandin, \$passedWM=$passedWM, \$adminrequest=$adminrequest, \$effects=$effects");
@@ -182,7 +190,7 @@ if (!file_exists($imgfile)) {
 	if (!file_exists($imgfile)) {
 		header("HTTP/1.0 404 Not Found");
 		header("Status: 404 Not Found");
-		imageError('404 Not Found', gettext("Image not found; file does not exist."), 'err-imagenotfound.png');
+		imageError('404 Not Found', sprintf(gettext("Image not found; file %s does not exist."),filesystemToInternal($image)), 'err-imagenotfound.png');
 	}
 }
 
@@ -214,7 +222,7 @@ if (file_exists($newfile) & !$adminrequest) {
 if ($process) { // If the file hasn't been cached yet, create it.
 	// setup standard image options from the album theme if it exists
 	if (!cacheImage($newfilename, $imgfile, $args, $allowWatermark, $theme, $album)) {
-		imageError('404 Not Found', gettext('Image processing resulted in a fatal error.'));
+		imageError('404 Not Found', sprintf(gettext('Image processing of %s resulted in a fatal error.'),filesystemToInternal($image)));
 	}
 	$fmt = filemtime($newfile);
 }
@@ -236,7 +244,7 @@ if (!$debug) {
 		case 'jpeg':
 			break;
 		default:
-			imageError(405, 'Method Not Allowed', gettext("Method Not Allowed"));
+			imageError(405, 'Method Not Allowed', sprintf(gettext("Suffix Not Allowed: %s"),filesystemToInternal(basename($newfilename))));
 	}
 	if (OPEN_IMAGE_CACHE) {
 		header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $fmt).' GMT');
@@ -252,7 +260,6 @@ if (!$debug) {
 		fpassthru($fp);
 		fclose($fp);
 	}
-	exitZP();
 } else {
 	echo "\n<p>Image: <img src=\"" . $path ."\" /></p>";
 }

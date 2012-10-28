@@ -31,3 +31,12 @@
 
 # /zp-data/
 /zp-data/*
+
+# /backup/
+/backup/*
+
+#extra files
+.htaccess
+robots.txt
+favicon.ico
+

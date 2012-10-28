@@ -8,7 +8,7 @@ if (!defined('WEBPATH')) die();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?></title>
+	<title><?php printBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<?php zp_apply_filter('theme_head'); ?>
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
@@ -41,7 +41,7 @@ if (!defined('WEBPATH')) die();
 						}
 						?>
 						<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>">
-						<?php echo getGalleryTitle();?></a> |
+						<?php printGalleryTitle();?></a> |
 						<?php
 						if (is_null($_zp_current_album)) {
 							$search = new SearchEngine();

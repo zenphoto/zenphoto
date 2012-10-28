@@ -26,13 +26,13 @@ function db_connect($errorstop=true) {
 	$_zp_DB_connection = @mysql_connect($_zp_conf_vars['mysql_host'], $_zp_conf_vars['mysql_user'], $_zp_conf_vars['mysql_pass']);
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQL Error: Zenphoto received the error <em>%s</em> when connecting to the database server.'),mysql_error()));
+			zp_error(sprintf(gettext('MySQL Error: Zenphoto received the error %s when connecting to the database server.'),mysql_error()));
 		}
 		return false;
 	}
 	if (!@mysql_select_db($db)) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQL Error: The database is connected, but MySQL returned the error <em>%1$s</em> when Zenphoto tried to select the database %2$s.'),mysql_error(),$db));
+			zp_error(sprintf(gettext('MySQL Error: MySQL returned the error %1$s when Zenphoto tried to select the database %2$s.'),mysql_error(),$db));
 		}
 		return false;
 	}
@@ -60,7 +60,7 @@ function query($sql, $errorstop=true) {
 	if($errorstop) {
 		$sql = str_replace($_zp_conf_vars['mysql_prefix'], '['.gettext('prefix').']',$sql);
 		$sql = str_replace($_zp_conf_vars['mysql_database'], '['.gettext('DB').']',$sql);
-		trigger_error(sprintf(gettext('%1$s Error: ( <em>%2$s</em> ) failed. %1$s returned the error <em>%3$s</em>'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
+		trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
 	}
 	return false;
 }
@@ -76,7 +76,9 @@ function query($sql, $errorstop=true) {
 function query_single_row($sql, $errorstop=true) {
 	$result = query($sql, $errorstop);
 	if (is_resource($result)) {
-		return mysql_fetch_assoc($result);
+		$row = mysql_fetch_assoc($result);
+		mysql_free_result($result);
+		return $row;
 	} else {
 		return false;
 	}
@@ -103,6 +105,7 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
 				$allrows[$row[$key]] = $row;
 			}
 		}
+		mysql_free_result($result);
 		return $allrows;
 	} else {
 		return false;
@@ -292,6 +295,11 @@ function db_truncate_table($table) {
 
 function db_LIKE_escape($str) {
 	return strtr($str, array('_'=>'\\_','%'=>'\\%'));
+}
+
+
+function db_free_result($result) {
+	return mysql_free_result($result);
 }
 
 ?>

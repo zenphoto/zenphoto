@@ -8,7 +8,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> | <?php echo gettext('News'); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
+	<title><?php printBareGalleryTitle(); ?> | <?php echo gettext('News'); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo pathurlencode($zenCSS); ?>" type="text/css" />
 	<link rel="stylesheet" href="<?php echo WEBPATH.'/'.THEMEFOLDER; ?>/effervescence_plus/common.css" type="text/css" />
@@ -50,7 +50,7 @@ if (!defined('WEBPATH') || !class_exists('Zenpage')) die();
 				<?php
 				}
 				?>
-				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a></span>
+				<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a></span>
 				<?php
 				if (in_context(ZP_ZENPAGE_NEWS_CATEGORY) || getNewsTitle()) {
 					printNewsIndexURL(gettext("News")," | ");

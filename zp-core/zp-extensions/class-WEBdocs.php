@@ -91,12 +91,12 @@ class WEBdocs extends TextObject {
 	 * @param string $filename the filename of the text file
 	 * @return TextObject
 	 */
-	function __construct($album, $filename) {
+	function __construct($album, $filename, $quiet=false) {
 
 		$this->watermark = getOption('WEBdocs_watermark');
 		$this->watermarkDefault = getOption('WEBdocs_watermark_default_images');
 
-		$this->common_instantiate($album,$filename);
+		$this->common_instantiate($album,$filename,$quiet);
 
 	}
 

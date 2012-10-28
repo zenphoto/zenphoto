@@ -3,14 +3,15 @@
  * This template is used to generate cache images. Running it will process the entire gallery,
  * supplying an album name (ex: loadAlbums.php?album=newalbum) will only process the album named.
  * Passing clear=on will purge the designated cache before generating cache images
- * @package core
+ * @package plugins
  */
 // force UTF-8 Ø
 define('OFFSET_PATH', 3);
 require_once("../../admin-globals.php");
 require_once(SERVERPATH.'/'.ZENFOLDER.'/template-functions.php');
 
-
+define ('WORKER_LIMIT', getOption('cacheManager_workers'));
+$worker = 0;
 if (isset($_REQUEST['album'])) {
 	$localrights = ALBUM_RIGHTS;
 } else {
@@ -19,7 +20,7 @@ if (isset($_REQUEST['album'])) {
 admin_securityChecks($localrights, $return = currentRelativeURL());
 
 function loadAlbum($album) {
-	global $_zp_current_album, $_zp_current_image, $_zp_gallery, $custom, $enabled;
+	global $_zp_current_album, $_zp_current_image, $_zp_gallery, $custom, $enabled, $worker;
 	$subalbums = $album->getAlbums();
 	$started = false;
 	$tcount = $count = 0;
@@ -73,6 +74,7 @@ function loadAlbum($album) {
 							?>
 							<a href="<?php echo html_encode($uri); ?>&amp;debug">
 								<?php
+								$uri = str_replace('i.php', PLUGIN_FOLDER.'/cacheManager/i.php', $uri).'&worker='.$worker;
 								if ($thumbstandin) {
 									echo '<img src="' . pathurlencode($uri) . '" height="8" width="8" alt="x" />'."\n";
 								} else {
@@ -81,6 +83,7 @@ function loadAlbum($album) {
 								?>
 							</a>
 							<?php
+							$worker = ($worker + 1) % WORKER_LIMIT;
 						}
 					}
 				}
@@ -121,6 +124,7 @@ while ($row = db_fetch_assoc($result)) {
 	$row = unserialize($row['data']);
 		$custom[] = $row;
 }
+db_free_result($result);
 $custom = sortMultiArray($custom, array('theme','thumb','image_size','image_width','image_height'));
 
 if (isset($_GET['select'])) {

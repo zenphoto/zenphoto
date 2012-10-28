@@ -611,6 +611,7 @@ function fetchComments($number) {
 					while ($comment = db_fetch_assoc($albumcomments)) {
 						$comments[$comment['id']] = $comment;
 					}
+					db_free_result($albumcomments);
 				}
 				$sql = "SELECT *, ".prefix('comments').".id as id, ".
 							prefix('comments').".name as name, (".prefix('comments').".date + 0) AS date, ".
@@ -632,6 +633,7 @@ function fetchComments($number) {
 					while ($comment = db_fetch_assoc($imagecomments)) {
 						$comments[$comment['id']] = $comment;
 					}
+					db_free_result($imagecomments);
 				}
 				krsort($comments);
 				if ($number) {
@@ -659,6 +661,7 @@ function getManagedAlbumList() {
 			while ($album = db_fetch_assoc($albums)) {
 				$_zp_admin_album_list[$album['folder']] = 32767;
 			}
+			db_free_result($albums);
 		}
 	} else {
 		if ($_zp_current_admin_obj) {
@@ -670,6 +673,7 @@ function getManagedAlbumList() {
 				while ($album = db_fetch_assoc($albums)) {
 					$_zp_admin_album_list[$album['folder']] = $album['edit'];
 				}
+				db_free_result($albums);
 			}
 		}
 	}
@@ -704,6 +708,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 					$cv[] = array('data'=>$folder,'name'=>$name,'type'=>'album','edit'=>$albumitem['edit']+0);
 				}
 			}
+			db_free_result($currentvalues);
 		}
 	}
 	if (empty($type) || $type=='pages')  {
@@ -719,6 +724,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 					$cv[] = array('data'=>$item['titlelink'],'type'=>'pages');
 				}
 			}
+			db_free_result($currentvalues);
 		}
 	}
 	if (empty($type) || $type=='news')  {
@@ -734,6 +740,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 					$cv[] = array('data'=>$item['titlelink'],'type'=>'news');
 				}
 			}
+			db_free_result($currentvalues);
 		}
 	}
 	return $cv;
@@ -953,6 +960,7 @@ function getAllTagsUnique() {
 		while ($tagrow = db_fetch_assoc($unique_tags)) {
 			$_zp_unique_tags[] = $tagrow['name'];
 		}
+		db_free_result($unique_tags);
 	}
 	return $_zp_unique_tags;
 }
@@ -972,6 +980,7 @@ function getAllTagsCount() {
 		while ($tag = db_fetch_assoc($tagresult)) {
 			$_zp_count_tags[$tag['name']] = $tag['count'];
 		}
+		db_free_result($tagresult);
 	}
 	return $_zp_count_tags;
 }
@@ -1007,6 +1016,7 @@ function storeTags($tags, $id, $tbl) {
 				query("DELETE FROM ".prefix('obj_to_tag')." WHERE `id`='".$row['id']."'");
 			}
 		}
+		db_free_result($result);
 	}
 	$tags = array_diff($tagsLC, $existing); // new tags for the object
 	foreach ($tags as $key=>$tag) {
@@ -1037,6 +1047,7 @@ function readTags($id, $tbl) {
 				$tags[] = $dbtag['name'];
 			}
 		}
+		db_free_result($result);
 	}
 	natcasesort($tags);
 	return $tags;
@@ -1228,6 +1239,7 @@ function getNotViewableAlbums() {
 					$_zp_not_viewable_album_list[] = $row['id'];
 				}
 			}
+			db_free_result($result);
 		}
 	}
 	return $_zp_not_viewable_album_list;
@@ -1614,9 +1626,15 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 			$post_user = '';
 		}
 		$post_pass = sanitize($_POST['pass']);
-		$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass);
-		if (DEBUG_LOGIN) debugLog("zp_handle_password: \$post_user=$post_user; \$post_pass=$post_pass; \$auth=$auth; ");
-		$success = ($auth == $check_auth) && $post_user == $check_user;
+		foreach(Zenphoto_Authority::$hashList as $hash=>$hi) {
+			$auth = Zenphoto_Authority::passwordHash($post_user, $post_pass, $hi);
+			$success = ($auth == $check_auth) && $post_user == $check_user;
+			if (DEBUG_LOGIN) debugLog("zp_handle_password($success): \$post_user=$post_user; \$post_pass=$post_pass; \$check_auth=$check_auth; \$auth=$auth; \$hash=$hash;");
+			if ($success) {
+				break;
+			}
+		}
+
 		$success = zp_apply_filter('guest_login_attempt', $success, $post_user, $post_pass, $authType);;
 		if ($success) {
 			// Correct auth info. Set the cookie.

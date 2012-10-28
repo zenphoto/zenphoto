@@ -24,7 +24,7 @@ function query($sql, $errorstop=true) {
 	if (!$_zp_DB_last_result && $errorstop) {
 		$sql = str_replace($_zp_conf_vars['mysql_prefix'], '['.gettext('prefix').']',$sql);
 		$sql = str_replace($_zp_conf_vars['mysql_database'], '['.gettext('DB').']',$sql);
-		trigger_error(sprintf(gettext('%1$s Error: ( <em>%2$s</em> ) failed. %1$s returned the error <em>%3$s</em>'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
+		trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
 	}
 	return $_zp_DB_last_result;
 }
@@ -69,6 +69,7 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
 				$allrows[$row[$key]] = $row;
 			}
 		}
+		$result->closeCursor();
 		return $allrows;
 	} else {
 		return false;
@@ -159,6 +160,10 @@ function db_close() {
 	global $_zp_DB_connection;
 	$_zp_DB_connection = NULL;
 	return true;
+}
+
+function db_free_result($result) {
+	return $result->closeCursor();
 }
 
 ?>

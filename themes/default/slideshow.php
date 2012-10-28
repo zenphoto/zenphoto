@@ -6,7 +6,7 @@ if (!defined('WEBPATH')) die();
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?></title>
+	<title><?php printBareGalleryTitle(); ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" href="<?php echo $_zp_themeroot; ?>/slideshow.css" type="text/css" />
 	<?php printSlideShowJS(); ?>
@@ -15,7 +15,9 @@ if (!defined('WEBPATH')) die();
 <body>
 <?php zp_apply_filter('theme_body_open'); ?>
 	<div id="slideshowpage">
-			<?php zp_apply_filter('theme_head'); ?> printSlideShow(true,true); ?>
+			<?php
+			printSlideShow(true,true);
+			?>
 	</div>
 <?php zp_apply_filter('theme_body_close'); ?>
 </body>

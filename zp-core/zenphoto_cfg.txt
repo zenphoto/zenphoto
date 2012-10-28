@@ -61,7 +61,6 @@ $conf['album_folder_class'] = 'std';
 // Otherwise you should leave it at "http"
 // NOTE: If you change this on an already installed configuration you will also have
 // to change the gallery configuration server protocal option.
-$conf['server_protocol'] = "http";
 //
 ////////////////////////////////////////////////////////////////////////////////
 // Path Overrides
@@ -76,7 +75,9 @@ $conf['server_protocol'] = "http";
 // define('SERVERPATH', '/full/server/path/to/zenphoto');
 
 ////////////////////////////////////////////////////////////////////////////////
-if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE',0755); }
+$conf['CHMOD'] = 0755;
+if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE',$conf['CHMOD_VALUE']); }
+$conf['server_protocol'] = "http";
 /** Do not edit below this line. **/
 /**********************************/
 $_zp_conf_vars = $conf;

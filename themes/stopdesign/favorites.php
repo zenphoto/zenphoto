@@ -11,7 +11,7 @@ $thisalbum = $_zp_current_album;
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<?php zp_apply_filter('theme_head'); ?>
-	<title><?php echo getBareGalleryTitle(); ?> &gt; <?php echo getBareAlbumTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
+	<title><?php printBareGalleryTitle(); ?> &gt; <?php printBareAlbumTitle(); if ($_zp_page>1) echo "[$_zp_page]"; ?></title>
 	<meta http-equiv="content-type" content="text/html; charset=<?php echo LOCAL_CHARSET; ?>" />
 	<link rel="stylesheet" type="text/css" media="screen, projection" href="<?php echo $_zp_themeroot ?>/css/master.css" />
 	<?php
@@ -33,7 +33,7 @@ $thisalbum = $_zp_current_album;
 <body class="gallery">
 	<?php zp_apply_filter('theme_body_open'); ?>
 		<?php
-		echo getGalleryTitle();
+		printGalleryTitle();
 			if (getOption('Allow_search')) {  printSearchForm(); }
 		?>
 
@@ -54,9 +54,9 @@ $thisalbum = $_zp_current_album;
 					}
 				?>
 				<li class="gal">
-					<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:').' '; echo getAnnotatedAlbumTitle();?>" class="img"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT,ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT); ?></a>
+					<a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:').' '; printAnnotatedAlbumTitle();?>" class="img"><?php printCustomAlbumThumbImage(getAnnotatedAlbumTitle(), null, ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT,ALBUM_THUMB_WIDTH,ALBUM_THUMB_HEIGHT); ?></a>
 					<?php printAddToFavorites($_zp_current_album, '',gettext('Remove')); ?>
-					<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:').' '; echo getAnnotatedAlbumTitle();?>"><?php printAlbumTitle(); ?></a></h3>
+					<h3><a href="<?php echo html_encode(getAlbumLinkURL());?>" title="<?php echo gettext('View album:').' '; printAnnotatedAlbumTitle();?>"><?php printAlbumTitle(); ?></a></h3>
 					<p>
 					<?php
 						$anumber = getNumAlbums();
@@ -121,7 +121,7 @@ $thisalbum = $_zp_current_album;
 			echo
 			'<li class="thumb">
 			<span><em style="background-image:url(' . html_encode($_zp_current_image->getCustomImage(NULL, $iw, $ih, $cw, $ch, NULL, NULL, true)) . '); ">
-			<a href="' . html_encode(getImageLinkURL()) . '" title="' . getAnnotatedImageTitle() . '" style="background:#fff;">"'.getImageTitle().'"</a></em>
+			<a href="' . html_encode(getImageLinkURL()) . '" title="' . html_encode(getAnnotatedImageTitle()) . '" style="background:#fff;">"'.getImageTitle().'"</a></em>
 			</span>';
 			printAddToFavorites($_zp_current_image, '',gettext('Remove'));
 			echo '</li>';
@@ -163,7 +163,7 @@ $thisalbum = $_zp_current_album;
 		<p id="path">
 			<?php printHomeLink('', ' > '); ?>
 			<a href="<?php echo html_encode(getGalleryIndexURL(false));?>" title="<?php echo gettext('Main Index'); ?>"><?php echo gettext('Home');?></a> &gt;
-			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php echo getGalleryTitle();?></a> &gt; <?php printParentBreadcrumb("", " > ", " > "); ?> <?php printAlbumTitle(false);?>
+			<a href="<?php echo html_encode(getGalleryIndexURL());?>" title="<?php echo gettext('Albums Index'); ?>"><?php printGalleryTitle();?></a> &gt; <?php printParentBreadcrumb("", " > ", " > "); ?> <?php printAlbumTitle(false);?>
 		</p>
 
 		<div class="main">

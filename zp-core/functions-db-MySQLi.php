@@ -29,13 +29,13 @@ function db_connect($errorstop=true) {
 	$_zp_DB_connection = @mysqli_connect($hostname, $username, $password);
 	if (!$_zp_DB_connection) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQLi Error: Zenphoto received the error <em>%s</em> when connecting to the database server.'),$_zp_DB_connection->error()));
+			zp_error(gettext('MySQLi Error: Zenphoto could not instantiate a connection.'));
 		}
 		return false;
 	}
 	if (!$_zp_DB_connection->select_db($db)) {
 		if ($errorstop) {
-			zp_error(sprintf(gettext('MySQLi Error: The database is connected, but MySQL returned the error <em>%1$s</em> when Zenphoto tried to select the database %2$s.'),$_zp_DB_connection->error(),$db));
+			zp_error(sprintf(gettext('MySQLi Error: MySQLi returned the error %1$s when Zenphoto tried to select the database %2$s.'),$_zp_DB_connection->error,$db));
 		}
 		return false;
 	}
@@ -63,7 +63,7 @@ function query($sql, $errorstop=true) {
 	if($errorstop) {
 		$sql = str_replace($_zp_conf_vars['mysql_prefix'], '['.gettext('prefix').']',$sql);
 		$sql = str_replace($_zp_conf_vars['mysql_database'], '['.gettext('DB').']',$sql);
-		trigger_error(sprintf(gettext('%1$s Error: ( <em>%2$s</em> ) failed. %1$s returned the error <em>%3$s</em>'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
+		trigger_error(sprintf(gettext('%1$s Error: ( %2$s ) failed. %1$s returned the error %3$s'),DATABASE_SOFTWARE,$sql,db_error()), E_USER_ERROR);
 	}
 	return false;
 }
@@ -80,7 +80,9 @@ function query_single_row($sql, $errorstop=true) {
 	global $_zp_DB_connection;
 	$result = query($sql, $errorstop);
 	if (is_object($result)) {
-		return $result->fetch_assoc();
+		$row = $result->fetch_assoc();
+		mysqli_free_result($result);
+		return $row;
 	} else {
 		return false;
 	}
@@ -108,6 +110,7 @@ function query_full_array($sql, $errorstop=true, $key=NULL) {
 				$allrows[$row[$key]] = $row;
 			}
 		}
+		mysqli_free_result($result);
 		return $allrows;
 	} else {
 		return false;
@@ -304,6 +307,10 @@ function db_truncate_table($table) {
 
 function db_LIKE_escape($str) {
 	return strtr($str, array('_'=>'\\_','%'=>'\\%'));
+}
+
+function db_free_result($result) {
+	return mysqli_free_result($result);
 }
 
 ?>
