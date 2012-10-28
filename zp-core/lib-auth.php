@@ -1340,9 +1340,9 @@ class Zenphoto_Administrator extends PersistentObject {
 	function setPass($pwd) {
 		$pwd = Zenphoto_Authority::passwordHash($this->getUser(),$pwd);
 		$this->set('pass', $pwd);
-		$this->set('pasupdate', date('Y-m-d H:i:s'));
+		$this->set('passupdate', date('Y-m-d H:i:s'));
 		$this->set('passhash', $this->passhash);
-		return $pwd;
+		return $this->get('pass');
 	}
 	/**
 	 * Returns stored password hash

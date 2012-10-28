@@ -1662,7 +1662,7 @@ if (file_exists(CONFIGFILE)) {
 		`user` varchar(64) NOT NULL,
 		`pass` varchar(64) NOT NULL,
 		`passhash` int (1),
-		`pasupdate` datetime,
+		`passupdate` datetime,
 		`name` text,
 		`email` text,
 		`rights` int,
@@ -2232,7 +2232,7 @@ if (file_exists(CONFIGFILE)) {
 	$sql_statements[] = "ALTER TABLE $tbl_comments DROP FOREIGN KEY `".trim($tbl_comments,'`')."_ibfk1`";
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' CHANGE `pass` `pass` varchar(64)';
 	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passhash` int (1)';
-	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `pasupdate` datetime';
+	$sql_statements[] = 'ALTER TABLE '.$tbl_administrators.' ADD COLUMN `passupdate` datetime';
 
 	// do this last incase there are any field changes of like names!
 	foreach ($_zp_exifvars as $key=>$exifvar) {

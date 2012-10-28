@@ -143,9 +143,13 @@ if (isset($_GET['action'])) {
 							}
 							if ($pass == $pass2) {
 								$pass2 = $userobj->getPass($pass);
-								$userobj->setPass($pass);
-								if ($pass2 !=  $userobj->getPass($pass)) {
-									markUpdated();
+								if ($msg = zp_apply_filter('can_set_user_password', false, $pass, $userobj)) {
+									$notify = '?mismatch=format&error='.urlencode($msg);
+								} else {
+									$userobj->setPass($pass);
+									if ($pass2 !=  $userobj->getPass($pass)) {
+										markUpdated();
+									}
 								}
 							} else {
 								$notify = '?mismatch=password';
