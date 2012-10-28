@@ -54,6 +54,10 @@ if (isset($_GET['action'])) {
 							$userobj->setValid(1);
 							$userobj->save();
 							break;
+						case 'force':
+							$userobj->set('passupdate', NULL);
+							$userobj->save();
+							break;
 						case 'revalidate':
 							$site = $_zp_gallery->getTitle();
 							$user_e = $userobj->getEmail();
@@ -178,9 +182,14 @@ echo '</head>'."\n";
 									}
 									$r4 = '<img src="../../images/envelope.png" title="'.gettext('Email renewal').'" /><input type="radio" name="r_'.$id.'" value="revalidate"'.$checked_disable.' />&nbsp;';
 								}
+								if (getOption('user_expiry_password_cycle')) {
+									$r5 =  '<img src="../../images/reset.png" title="'.gettext('Force password renewal').'" /><input type="radio" name="r_'.$id.'" value="force"'.$checked_delete.' />&nbsp;';
+								} else {
+									$r5 = '';
+								}
 								?>
 								<li>
-									<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'),$r1.$r2.$r3.$r4,html_encode($user['user']),$expires_display,$loggedin); ?>
+									<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'),$r1.$r2.$r3.$r4.$r5,html_encode($user['user']),$expires_display,$loggedin); ?>
 								</li>
 								<?php
 							}
@@ -190,8 +199,19 @@ echo '</head>'."\n";
 					<img src="../../images/fail.png" /> <?php echo gettext('Remove'); ?>
 					<img src="../../images/lock_2.png" /> <?php echo gettext('Disable'); ?>
 					<img src="../../images/lock_open.png" /> <?php echo gettext('Enable'); ?>
-					<img src="../../images/pass.png" /> <?php echo gettext('Renew'); ?>
-					<img src="../../images/envelope.png" /> <?php echo gettext('Email renewal link'); ?>
+					<?php
+					if (getOption('user_expiry_password_cycle')) {
+						?>
+						<img src="../../images/reset.png" /> <?php echo gettext('Force password renewal'); ?>
+						<?php
+					}
+					if ($subscription) {
+						?>
+						<img src="../../images/pass.png" /> <?php echo gettext('Renew'); ?>
+						<img src="../../images/envelope.png" /> <?php echo gettext('Email renewal link'); ?>
+						<?php
+					}
+					?>
 					<p class="buttons">
 					<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 					<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>
