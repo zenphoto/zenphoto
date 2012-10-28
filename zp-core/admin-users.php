@@ -136,23 +136,26 @@ if (isset($_GET['action'])) {
 								$msg = sprintf(gettext('%s password may not be empty!'),$admin_n);
 							}
 						} else {
-							if (isset($_POST['disclose_password'.$i])) {
+							if (isset($_POST['disclose_password'.$i])&&$_POST['disclose_password'.$i]=='on') {
 								$pass2 = $pass;
 							} else {
 								$pass2 = trim(sanitize($_POST['pass_r'.$i]));
 							}
 							if ($pass == $pass2) {
 								$pass2 = $userobj->getPass($pass);
-								$msg = $userobj->setPass($pass);
-								if ($pass2 !=  $userobj->getPass($pass)) {
-									markUpdated();
+								if ($msg = zp_apply_filter('can_set_user_password', false, $pass, $userobj)) {
+									$notify = '?mismatch=format&error='.urlencode($msg);
+								} else {
+									$userobj->setPass($pass);
+									if ($pass2 !=  $userobj->getPass($pass)) {
+										markUpdated();
+									}
 								}
 							} else {
 								$notify = '?mismatch=password';
 								$error = true;
 							}
 						}
-
 						$challenge = sanitize($_POST[$i.'-challengephrase']);
 						$response = sanitize($_POST[$i.'-challengeresponse']);
 						$info = $userobj->getChallengePhraseInfo();
