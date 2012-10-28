@@ -54,6 +54,10 @@ if (isset($_GET['action'])) {
 							$userobj->setValid(1);
 							$userobj->save();
 							break;
+						case 'force':
+							$userobj->set('passupdate', NULL);
+							$userobj->save();
+							break;
 						case 'revalidate':
 							$site = $_zp_gallery->getTitle();
 							$user_e = $userobj->getEmail();
@@ -135,17 +139,21 @@ echo '</head>'."\n";
 								} else {
 									$loggedin = date('Y-m-d',strtotime($loggedin));
 								}
-								if ($expires < $now) {
-									if ($user['valid'] == 1) {
-										$checked_delete = ' checked="chedked"';
-									}
-									$expires_display = sprintf(gettext('Expired:%s'),'<span style="color:red" >'.$expires_display.'</span>');
-								} else {
-									if ($expires < $warnInterval) {
-										$expires_display = sprintf(gettext('Expires:%s'),'<span style="color:orange" class="tooltip" title="'.gettext('Expires soon').'">'.$expires_display.'</span>');
+								if ($subscription) {
+									if ($expires < $now) {
+										if ($user['valid'] == 1) {
+											$checked_delete = ' checked="chedked"';
+										}
+										$expires_display = sprintf(gettext('Expired:%s; '),'<span style="color:red" >'.$expires_display.'</span>');
 									} else {
-										$expires_display = sprintf(gettext('Expires:%s'),$expires_display);
+										if ($expires < $warnInterval) {
+											$expires_display = sprintf(gettext('Expires:%s; '),'<span style="color:orange" class="tooltip" title="'.gettext('Expires soon').'">'.$expires_display.'</span>');
+										} else {
+											$expires_display = sprintf(gettext('Expires:%s; '),$expires_display);
+										}
 									}
+								} else {
+									$expires_display = $r3 = $r4 = '';
 								}
 								if ($user['valid'] == 2) {
 									$hits = 0;
@@ -167,14 +175,21 @@ echo '</head>'."\n";
 								} else {
 									$r2 = '<img src="../../images/lock_2.png" title="'.gettext('disable').'" /><input type="radio" name="r_'.$id.'" value="disable"'.$checked_disable.' />&nbsp;';
 								}
-								$r3 = '<img src="../../images/pass.png" title="'.gettext('renew').'" /><input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.$checked_disable.' />&nbsp;';
-								if (!$user['email']) {
-									$checked_disable = ' disabled="disabled"';
+								if ($subscription) {
+									$r3 = '<img src="../../images/pass.png" title="'.gettext('renew').'" /><input type="radio" name="r_'.$id.'" value="renew"'.$checked_renew.$checked_disable.' />&nbsp;';
+									if (!$user['email']) {
+										$checked_disable = ' disabled="disabled"';
+									}
+									$r4 = '<img src="../../images/envelope.png" title="'.gettext('Email renewal').'" /><input type="radio" name="r_'.$id.'" value="revalidate"'.$checked_disable.' />&nbsp;';
 								}
-								$r4 = '<img src="../../images/envelope.png" title="'.gettext('Email renewal').'" /><input type="radio" name="r_'.$id.'" value="revalidate"'.$checked_disable.' />&nbsp;';
+								if (getOption('user_expiry_password_cycle')) {
+									$r5 =  '<img src="../../images/reset.png" title="'.gettext('Force password renewal').'" /><input type="radio" name="r_'.$id.'" value="force"'.$checked_delete.' />&nbsp;';
+								} else {
+									$r5 = '';
+								}
 								?>
 								<li>
-									<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$s; last logon:%4$s)'),$r1.$r2.$r3.$r4,html_encode($user['user']),$expires_display,$loggedin); ?>
+									<?php printf(gettext('%1$s <strong>%2$s</strong> (%3$slast logon:%4$s)'),$r1.$r2.$r3.$r4.$r5,html_encode($user['user']),$expires_display,$loggedin); ?>
 								</li>
 								<?php
 							}
@@ -184,8 +199,19 @@ echo '</head>'."\n";
 					<img src="../../images/fail.png" /> <?php echo gettext('Remove'); ?>
 					<img src="../../images/lock_2.png" /> <?php echo gettext('Disable'); ?>
 					<img src="../../images/lock_open.png" /> <?php echo gettext('Enable'); ?>
-					<img src="../../images/pass.png" /> <?php echo gettext('Renew'); ?>
-					<img src="../../images/envelope.png" /> <?php echo gettext('Email renewal link'); ?>
+					<?php
+					if (getOption('user_expiry_password_cycle')) {
+						?>
+						<img src="../../images/reset.png" /> <?php echo gettext('Force password renewal'); ?>
+						<?php
+					}
+					if ($subscription) {
+						?>
+						<img src="../../images/pass.png" /> <?php echo gettext('Renew'); ?>
+						<img src="../../images/envelope.png" /> <?php echo gettext('Email renewal link'); ?>
+						<?php
+					}
+					?>
 					<p class="buttons">
 					<button type="submit" title="<?php echo gettext("Apply"); ?>"><img src="../../images/pass.png" alt="" /><strong><?php echo gettext("Apply"); ?></strong></button>
 					<button type="reset" title="<?php echo gettext("Reset"); ?>"><img src="../../images/reset.png" alt="" /><strong><?php echo gettext("Reset"); ?></strong></button>

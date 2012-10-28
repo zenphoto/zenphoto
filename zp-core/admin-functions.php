@@ -1260,11 +1260,11 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 								<br />
 								<label><input type="checkbox" name="disclose_password<?php echo $suffix; ?>"
 																id="disclose_password<?php echo $suffix; ?>"
-																onclick="passwordKeydown('<?php echo $suffix; ?>');togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
+																onclick="passwordClear'<?php echo $suffix; ?>');togglePassword('<?php echo $suffix; ?>');" /><?php echo gettext('Show password'); ?></label>
 							</td>
 							<td>
 								<input type="text" size="<?php echo TEXT_INPUT_SIZE; ?>"
-														onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
+														onkeydown="passwordClear'<?php echo $suffix; ?>');"
 														id="user_name<?php echo $suffix; ?>" name="user<?php echo $suffix; ?>"
 														value="<?php echo $album->getUser(); ?>" />
 							</td>
@@ -1286,14 +1286,14 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 								<p>
 									<input type="password"
 															id="pass<?php echo $suffix; ?>" name="pass<?php echo $suffix; ?>"
-															onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
+															onkeydown="passwordClear'<?php echo $suffix; ?>');"
 															onkeyup="passwordStrength('<?php echo $suffix; ?>');"
 															value="<?php echo $x; ?>" />
 									<br />
 									<span class="password_field_<?php echo $suffix; ?>">
 										<input type="password"
 																id="pass_r<?php echo $suffix; ?>" name="pass_r<?php echo $suffix; ?>" disabled="disabled"
-																onkeydown="passwordKeydown('<?php echo $suffix; ?>');"
+																onkeydown="passwordClear'<?php echo $suffix; ?>');"
 																onkeyup="passwordMatch('<?php echo $suffix; ?>');"
 																value="<?php echo $x; ?>" />
 									</span>

@@ -41,6 +41,7 @@ zp_register_filter('federated_login_attempt','user_expiry::checklogon');
 zp_register_filter('edit_admin_custom_data', 'user_expiry::edit_admin',999);
 zp_register_filter('load_theme_script', 'user_expiry::reverify',999);
 zp_register_filter('admin_note', 'user_expiry::notify',999);
+zp_register_filter('can_set_user_password', 'user_expiry::passwordAllowed');
 
 /**
  * Option handler class
@@ -55,6 +56,7 @@ class user_expiry {
 		setOptionDefault('user_expiry_interval', 365);
 		setOptionDefault('user_expiry_warn_interval', 7);
 		setOptionDefault('user_expiry_auto_renew', 0);
+		setOptionDefault('user_expiry_password_cycle', 0);
 	}
 
 
@@ -64,15 +66,19 @@ class user_expiry {
 	 * @return array
 	 */
 	function getOptionsSupported() {
-		return  array(	gettext('Days until expiration') => array('key' => 'user_expiry_interval', 'type' => OPTION_TYPE_TEXTBOX,
+		return
+				array(	gettext('Days until expiration') => array('key' => 'user_expiry_interval', 'type' => OPTION_TYPE_CLEARTEXT,
 																		'order'=>1,
-																		'desc' => gettext('The number of days until a user is flagged as expired.')),
-		gettext('Warning interval') => array('key' => 'user_expiry_warn_interval', 'type' => OPTION_TYPE_TEXTBOX,
+																		'desc' => gettext('The number of days until a user is flagged as expired. Set to zero for no expiry.')),
+								gettext('Warning interval') => array('key' => 'user_expiry_warn_interval', 'type' => OPTION_TYPE_CLEARTEXT,
 																		'order'=>2,
 																		'desc' => gettext('The period in days before the expiry during which a warning message will be sent to the user. (If set to zero, no warning occurs.)')),
-		gettext('Auto renew') => array('key' => 'user_expiry_auto_renew', 'type' => OPTION_TYPE_CHECKBOX,
+								gettext('Auto renew') => array('key' => 'user_expiry_auto_renew', 'type' => OPTION_TYPE_CHECKBOX,
 																	'order'=>3,
-																	'desc' => gettext('Automatically renew the subscription if the user visits during the warning period.'))
+																	'desc' => gettext('Automatically renew the subscription if the user visits during the warning period.')),
+								gettext('Password cycle') => array('key' => 'user_expiry_password_cycle', 'type' => OPTION_TYPE_CLEARTEXT,
+																	'order' => 4,
+																	'desc' => gettext('Number of days between required password changes. Set to zero for no required changes.'))
 		);
 	}
 
@@ -81,7 +87,13 @@ class user_expiry {
 
 
 	static function admin_tabs($tabs) {
-		global $_zp_current_admin_obj;
+		global $_zp_current_admin_obj, $_zp_loggedin;
+		if (user_expiry::checkPasswordRenew()) {
+			$_zp_current_admin_obj->setRights($_zp_loggedin = USER_RIGHTS | NO_RIGHTS);
+			$tabs = array('users' => array('text'=>gettext("users"),
+					'link'=>WEBPATH."/".ZENFOLDER.'/admin-users.php?page=users',
+					'subtabs'=>NULL));
+		}
 		if (zp_loggedin(ADMIN_RIGHTS) && $_zp_current_admin_obj->getID()) {
 			if (isset($tabs['users']['subtabs'])) {
 				$subtabs = $tabs['users']['subtabs'];
@@ -102,7 +114,10 @@ class user_expiry {
 		if ($userobj->no_zp_login) {
 			return $loggedin;
 		}
-		$subscription = 86400*getOption('user_expiry_interval');
+		if (!$subscription = 86400*getOption('user_expiry_interval')) {
+			// expiry is disabled
+			return $loggedin;
+		}
 		$expires = strtotime($userobj->getDateTime())+$subscription;
 		if ($expires < time()) {
 			$userobj->setValid(2);
@@ -147,6 +162,39 @@ class user_expiry {
 			}
 		}
 		return $loggedin;
+	}
+
+	static function checkPasswordRenew() {
+		global $_zp_current_admin_obj;
+		$threshold = getOption('user_expiry_password_cycle')*86400;
+		if ($threshold && is_object($_zp_current_admin_obj) && !($_zp_current_admin_obj->getRights() & ADMIN_RIGHTS)) {
+			if (strtotime($_zp_current_admin_obj->get('passupdate'))+$threshold < time()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	static function passwordAllowed($msg,$pwd, $user) {
+		$store = query_single_row('SELECT * FROM '.prefix('plugin_storage').' WHERE `type`='.db_quote('user_expiry_usedPasswords').' AND `aux`='.$user->getID());
+		if ($store) {
+			$used = unserialize($store['data']);
+			if (in_array($pwd, $used)) {
+				return gettext('You have used that password recently. Please choose a different password.');
+			}
+			if (count($used)>9) {
+				$used = array_slice($used, 1);
+			}
+		} else {
+			$used = array();
+		}
+		array_push($used, $pwd);
+		if ($store) {
+			query('UPDATE '.prefix('plugin_storage').'SET `data`='.db_quote(serialize($used)).' WHERE `type`='.db_quote('user_expiry_usedPasswords').' AND `aux`='.$user->getID());
+		} else {
+			query('INSERT INTO '.prefix('plugin_storage').' (`type`, `aux`, `data`) VALUES ('.db_quote('user_expiry_usedPasswords').','.$user->getID().','.db_quote(serialize($used)).')');
+		}
+		return $msg;
 	}
 
 	static function checkcookie($loggedin) {
@@ -195,13 +243,17 @@ class user_expiry {
 				exitZP();
 			}
 		}
+		if (user_expiry::checkPasswordRenew()) {
+			header("Location: ".FULLWEBPATH.'/' . ZENFOLDER . '/admin-users.php?page=users&amp;tab=users');
+			exitZP();
+		}
 		return $path;
 	}
 
 	static function edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {
 		global $_zp_current_admin_obj;
-		if (!zp_loggedin(ADMIN_RIGHTS) && $userobj->getID() == $_zp_current_admin_obj->getID()) {
-			$subscription = 86400*getOption('user_expiry_interval');
+		$subscription = 86400*getOption('user_expiry_interval');
+		if ($subscription && !zp_loggedin(ADMIN_RIGHTS) && $userobj->getID() == $_zp_current_admin_obj->getID()) {
 			$now = time();
 			$warnInterval = $now + getOption('user_expiry_warn_interval')*86400;
 			$expires = strtotime($userobj->getDateTime())+$subscription;
@@ -224,8 +276,12 @@ class user_expiry {
 
 	static function notify($tab, $subtab) {
 		if ($tab=='users' && $subtab='users') {
-			if (Zenphoto_Authority::getAnAdmin(array('`valid`>' => 1))) {
-				echo '<p class="notebox">'.gettext('You have users whose credentials have expired'),'</p>';
+					if (user_expiry::checkPasswordRenew()) {
+				echo '<p class="errorbox">'.gettext('You must change your password.'),'</p>';
+			} else {
+				if (Zenphoto_Authority::getAnAdmin(array('`valid`>' => 1))) {
+					echo '<p class="notebox">'.gettext('You have users whose credentials have expired.'),'</p>';
+				}
 			}
 		}
 	}

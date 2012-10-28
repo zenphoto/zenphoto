@@ -53,6 +53,7 @@ class Zenphoto_Authority {
 	var $master_user = NULL;
 	static $preferred_version = 4;
 	static $supports_version = 4;
+	static $hashList =  array('pbkdf2'=>2, 'sha1'=>1, 'md5'=>0);
 
 	/**
 	 * class instantiation function
@@ -78,9 +79,9 @@ class Zenphoto_Authority {
 									gettext('Minimum password strength') => array('key' => 'password_strength', 'type' => OPTION_TYPE_CUSTOM,
 										'desc' => sprintf(gettext('Users must provide passwords a strength of at least %s. The repeat password field will be disabled until this floor is met.'),
 										'<span id="password_strength_display">'.getOption('password_strength').'</span>')),
-									gettext('settings')=> array('key'=>'lib_auth_info', 'type'=>OPTION_TYPE_CUSTOM,
-										'order'=>9,
-										'desc'=>'')
+									gettext('Password hash algorithm')=> array('key'=>'strong_hash', 'type'=>OPTION_TYPE_SELECTOR,
+										'selections' => self::$hashList,
+										'desc'=> sprintf(gettext('The hashing algorithm used by Zenphoto. In order of robustness the choices are %s'), '<code>'.implode('</code> > <code>',array_flip(self::$hashList)).'</code>'))
 									);
 	}
 
@@ -122,29 +123,6 @@ class Zenphoto_Authority {
 				<div id="slider-password_strength"></div>
 				<?php
 				break;
-			case 'lib_auth_info':
-				$class = get_class($this);
-				if ($class != 'Zenphoto_Authority') {
-					echo '<p class="notebox">'.sprintf(gettext('Authorization class <em>%s</em> is active.'),$class).'</p>';
-				}
-				$class = get_class($_zp_current_admin_obj);
-				if ($class != 'Zenphoto_Administrator') {
-					echo '<p class="notebox">'.sprintf(gettext('Administrator class <em>%s</em> is active.'),$class).'</p>';
-				}
-				echo '<p>'.sprintf(gettext('Password hash seed: <span><small style="color:gray">%s</small></span>'),html_encode(getOption('extra_auth_hash_text'))).'</p>';
-				switch (getOption('strong_hash')) {
-					case 1:
-						$hash = 'sha1';
-						break;
-					case 2:
-						$hash = 'pbkdf2';
-						break;
-					case false:
-						$hash = 'md5';
-						break;
-				}
-				echo '<p>'.sprintf(gettext('<em>%s</em> hashing is activated'),$hash).'</p>';
-				break;
 		}
 	}
 
@@ -164,8 +142,11 @@ class Zenphoto_Authority {
 	 * @param string $pass
 	 * @return string
 	 */
-	static function passwordHash($user, $pass) {
-		switch (getOption('strong_hash')) {
+	static function passwordHash($user, $pass, $hash_type=NULL) {
+		if (is_null($hash_type)) {
+			$hash_type = getOption('strong_hash');
+		}
+		switch ($hash_type) {
 			case 1:
 				$hash = sha1($user.$pass.HASH_SEED);
 				break;
@@ -177,7 +158,7 @@ class Zenphoto_Authority {
 				break;
 		}
 		if (DEBUG_LOGIN) {
-			debugLog("passwordHash($user, $pass)[{HASH_SEED}]:$hash");
+			debugLog("passwordHash($user, $pass, $hash_type)[{HASH_SEED}]:$hash");
 		}
 		return $hash;
 	}
@@ -302,8 +283,14 @@ class Zenphoto_Authority {
 	 * @return bool
 	 */
 	protected static function checkLogon($user, $pass) {
-		$hash = self::passwordHash($user, $pass);
-		$userobj = self::getAnAdmin(array('`user`=' => $user, '`pass`=' => $hash, '`valid`=' => 1));
+		$userobj = self::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
+		if ($user) {
+			$hash = self::passwordHash($user, $pass, $userobj->get('passhash'));
+			if ($hash != $userobj->getPass()) {
+				$userobj = NULL;
+			}
+		}
+
 		if (DEBUG_LOGIN) {
 			if ($userobj) {
 				$rights = sprintf('%X',$userobj->getRights());
@@ -626,6 +613,7 @@ class Zenphoto_Authority {
 		$user->set('loggedin',date('Y-m-d H:i:s'));
 		$user->save();
 		zp_setCookie("zp_user_auth", $user->getPass(), NULL, NULL, secureServer());
+		zp_setCookie('zp_user_id', $user->getID(), NULL, NULL, secureServer());
 	}
 
 	/**
@@ -773,26 +761,7 @@ class Zenphoto_Authority {
 	 */
 	function checkCookieCredentials() {
 		$auth = zp_getCookie('zp_user_auth');
-		switch (getOption('strong_hash')) {
-			case 1:
-				//sha1
-				$hashlen = 40;
-				break;
-			case false:
-				//md5
-				$hashlen = 32;
-				break;
-			case '2':
-				//pbkdf2
-				$hashlen = 64;
-				break;
-		}
-		if (strlen($auth) > $hashlen) {
-			$id = substr($auth, $hashlen);
-			$auth = substr($auth, 0, $hashlen);
-		} else {
-			$id = NULL;
-		}
+		$id = zp_getCookie('zp_user_id');
 		$loggedin = $this->checkAuthorization($auth, $id);
 		if ($auth) {	// call filter if there was an auth cookie
 			$loggedin = zp_apply_filter('authorization_cookie',$loggedin);
@@ -1191,7 +1160,7 @@ class Zenphoto_Authority {
 			}
 		}
 
-		function passwordKeydown(id) {
+		function passwordClear(id) {
 			var inputa = '#pass'+id;
 			var inputb = '#pass_r'+id;
 			if ($(inputa).val().trim() === '') {
@@ -1238,19 +1207,19 @@ class Zenphoto_Authority {
 							name="pass<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass<?php echo $id; ?>"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
-							onkeydown="passwordKeydown('<?php echo $id; ?>');"
+							onclick="passwordClear('<?php echo $id; ?>');"
 							onkeyup="passwordStrength('<?php echo $id; ?>');"
 							<?php echo $disable; ?> />
 			<br clear="all" />
-			<label><input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordKeydown('<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password'); ?></label>
+			<label><input type="checkbox" name="disclose_password<?php echo $id; ?>" id="disclose_password<?php echo $id; ?>" onclick="passwordClear('<?php echo $id; ?>');togglePassword('<?php echo $id; ?>');"><?php echo gettext('Show password'); ?></label>
 		</fieldset>
-		<fieldset class="password_field">
+		<fieldset class="password_field_<?php echo $id; ?>">
 			<legend id="match<?php echo $id; ?>"><?php echo gettext("Repeat password").$flag; ?></legend>
 			<input type="password" size="<?php echo TEXT_INPUT_SIZE; ?>"
 							name="pass_r<?php echo $id ?>" value="<?php echo $x; ?>"
 							id="pass_r<?php echo $id; ?>" disabled="disabled"
 							onchange="$('#passrequired-<?php echo $id; ?>').val(1);"
-							onkeydown="passwordKeydown('<?php echo $id; ?>');"
+							onkeydown="passwordClear('<?php echo $id; ?>');"
 							onkeyup="passwordMatch('<?php echo $id; ?>');" />
 		</fieldset>
 		<?php
@@ -1300,6 +1269,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	var $msg = NULL;	//	a means of storing error messages from filter processing
 	var $no_zp_login = false;
 	var $reset = false;	// if true the user was setup by a "reset password" event
+	var $passhash;	// the hash algorithm used in creating the password
 
 	/**
 	 * Constructor for an Administrator
@@ -1310,6 +1280,7 @@ class Zenphoto_Administrator extends PersistentObject {
 	 */
 	function __construct($user, $valid) {
 		global $_zp_authority;
+		$this->passhash = (int) getOption('strong_hash');
 		parent::PersistentObject('administrators', array('user' => $user, 'valid'=>$valid), NULL, false, empty($user));
 		if (empty($user)) {
 			$this->set('id', -1);
@@ -1369,7 +1340,9 @@ class Zenphoto_Administrator extends PersistentObject {
 	function setPass($pwd) {
 		$pwd = Zenphoto_Authority::passwordHash($this->getUser(),$pwd);
 		$this->set('pass', $pwd);
-		return false;
+		$this->set('passupdate', date('Y-m-d H:i:s'));
+		$this->set('passhash', $this->passhash);
+		return $this->get('pass');
 	}
 	/**
 	 * Returns stored password hash
