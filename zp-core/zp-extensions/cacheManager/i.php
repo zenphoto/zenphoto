@@ -6,11 +6,10 @@
  */
 define('OFFSET_PATH', 2);
 require (dirname(dirname(dirname(__FILE__))).'/functions-basic.php');
-
-var_dump($_GET);
-
 if (isset($_GET['worker'])) {
 	$worker = min(49, abs((int) $_GET['worker']));
+} else {
+	exitZP();
 }
 
 $cacheMutex = new Mutex('CacheManager-'.$worker);
