@@ -150,10 +150,7 @@ define('FILE_MOD', CHMOD_VALUE & 0666);
 if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
 
 require_once(dirname(__FILE__).'/functions-db-'.(isset($_zp_conf_vars['db_software'])?$_zp_conf_vars['db_software']:'MySQL').'.php');
-if (OFFSET_PATH != 2 && !db_connect(false)) {
-	require_once(dirname(__FILE__).'/reconfigure.php');
-	reconfigureAction(true);
-}
+db_connect(false);
 
 $_charset = getOption('charset');
 if (!$_charset) {
