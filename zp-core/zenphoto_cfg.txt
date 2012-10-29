@@ -76,7 +76,7 @@ $conf['album_folder_class'] = 'std';
 
 ////////////////////////////////////////////////////////////////////////////////
 $conf['CHMOD'] = 0755;
-if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE',$conf['CHMOD_VALUE']); }
+if (!defined('CHMOD_VALUE')) { define('CHMOD_VALUE',$conf['CHMOD']); }
 $conf['server_protocol'] = "http";
 /** Do not edit below this line. **/
 /**********************************/

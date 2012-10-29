@@ -15,8 +15,6 @@ if(!function_exists("gettext")) {
 	require_once(dirname(__FILE__).'/lib-gettext/gettext.inc');
 }
 
-$_zp_mutex = new Mutex();
-
 /**
 * OFFSET_PATH definitions:
 * 		0		root scripts (e.g. the root index.php)
@@ -954,7 +952,7 @@ function debugLog($message, $reset=false) {
 	$path = SERVERPATH . '/' . DATA_FOLDER . '/debug.log';
 	$me = getmypid();
 	$max = getOption('debug_log_size');
-	$_zp_mutex->lock();
+	if (is_object($_zp_mutex)) $_zp_mutex->lock();
 	if ($reset || ($size = @filesize($path)) == 0 || ($max && $size > $max)) {
 		if ($size > 0 && !$reset) {
 			switchLog('debug');
@@ -982,7 +980,7 @@ function debugLog($message, $reset=false) {
 			@chmod($path, FILE_MOD);
 		}
 	}
-	$_zp_mutex->unlock();
+	if (is_object($_zp_mutex)) $_zp_mutex->unlock();
 }
 /**
  * Tool to log execution times of script bits
@@ -1340,5 +1338,69 @@ function zp_session_start() {
 		session_start();
 	}
 }
+
+/**
+ * Zenphoto Mutex class
+ * @author Stephen
+ *
+ */
+class Mutex {
+	private $locked = NULL;
+	private $ignoreUseAbort = NULL;
+	private $mutex = NULL;
+	private $lock;
+
+	function __construct($lock='zP') {
+		$this->lock = $lock;
+	}
+
+	function __destruct() {
+		if ($this->locked) {
+			$this->unlock();
+			debugLog(sprintf(gettext('Mutex %s was left locked.'),$this->lock));
+		}
+	}
+
+	public function lock() {
+		//if "flock" is not supported run un-serialized
+		//Only lock an unlocked mutex, we don't support recursive mutex'es
+		if(!$this->locked && function_exists('flock')) {
+			if (!file_exists(SERVERPATH.'/'.DATA_FOLDER.'/mutex')) {
+				mkdir(SERVERPATH.'/'.DATA_FOLDER.'/mutex');
+			}
+			$this->mutex = fopen(SERVERPATH.'/'.DATA_FOLDER.'/mutex/'.$this->lock, 'wb');
+			if (function_exists('flock') && flock($this->mutex, LOCK_EX)) {
+				$this->locked = true;
+				//We are entering a critical section so we need to change the ignore_user_abort setting so that the
+				//script doesn't stop in the critical section.
+				$this->ignoreUserAbort = ignore_user_abort(true);
+			} else {
+				zp_error(gettext('Error locking mutex'));
+			}
+		}
+		return $this->locked;
+	}
+
+	/**
+	 *	Unlock the mutex.
+	 */
+	public function unlock() {
+		if($this->locked)	{ //Only unlock a locked mutex.
+			$this->locked = false;
+			ignore_user_abort($this->ignoreUserAbort);	//Restore the ignore_user_abort setting.
+			if (flock($this->mutex, LOCK_UN)) {
+				fclose($this->mutex);
+				return true;
+			} else {
+				fclose($this->mutex);
+				zp_error(gettext('Error un-locking mutex'));
+				return false;
+			}
+		}
+	}
+
+}
+
+$_zp_mutex = new Mutex();
 
 ?>

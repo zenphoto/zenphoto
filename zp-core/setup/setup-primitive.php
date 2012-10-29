@@ -13,8 +13,6 @@ require_once(dirname(dirname(__FILE__)).'/functions-common.php');
 
 require_once(dirname(dirname(__FILE__)).'/lib-kses.php');
 
-$_zp_mutex = new Mutex();
-
 $const_webpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME']));
 $serverpath = str_replace('\\','/',dirname($_SERVER['SCRIPT_FILENAME']));
 preg_match('~(.*)/('.ZENFOLDER.')~',$const_webpath, $matches);
