@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-28 20:03+0100\n"
-"PO-Revision-Date: 2012-10-28 22:50+0100\n"
+"PO-Revision-Date: 2012-10-29 00:34+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -148,35 +148,35 @@ msgstr "Billede"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/404.php:38
 msgid "Theme page"
-msgstr ""
+msgstr "Tema side"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/theme_description.php:7
 msgid "Malte Müller (acrylian)"
-msgstr ""
+msgstr "Malte Müller (acrylian)"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/theme_description.php:10
 msgid "A theme primarily meant for mobile/smartphone browsing using <a href='http://jQuerymobile.com'>jQuerymobile framework</a>."
-msgstr ""
+msgstr "Et tema der primært er for mobil/smartphone browsing idet det bruger  <a href='http://jQuerymobile.com'>jQuerymobile framework</a>."
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/image.php:31
 msgid "Previous Image"
-msgstr ""
+msgstr "Forrige billede"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/image.php:34
 msgid "Next Image"
-msgstr ""
+msgstr "Næste billede"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/image.php:49
 msgid "Direct link"
-msgstr ""
+msgstr "Direkte link"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/image.php:58
 msgid "Tags:"
-msgstr ""
+msgstr "Tags:"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/image.php:67
 msgid "View meta data"
-msgstr ""
+msgstr "Se metadata"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/news.php:9
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/news.php:26
@@ -184,42 +184,42 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/functions.php:62
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/functions.php:142
 msgid "News"
-msgstr ""
+msgstr "Nyheder"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/news.php:36
 msgid "Categories: "
-msgstr ""
+msgstr "Kategorier"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/news.php:37
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/pages.php:52
 msgid "<strong>Tags:</strong>"
-msgstr ""
+msgstr "<strong>Tags:</strong>"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/news.php:50
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/news.php:66
 msgid "next »"
-msgstr ""
+msgstr "næste »"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/news.php:50
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/news.php:66
 msgid "« prev"
-msgstr ""
+msgstr "« forrige"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/password.php:25
 msgid "A password is required for the page you requested"
-msgstr ""
+msgstr "Der kræves kodeord for den side du har bedt om"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/password.php:33
 msgid "Register for this site"
-msgstr ""
+msgstr "Register for denne side"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/themeoptions.php:37
 msgid "Allow search"
-msgstr ""
+msgstr "Tillad søgning"
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/themeoptions.php:37
 msgid "Check to enable search form."
-msgstr ""
+msgstr "Afkryds for at aktivere søgefeltet."
 
 #: /home/jes/work/translations/zenphoto/themes/zpmobile/themeoptions.php:38
 msgid "Allow direct link from multimedia"
