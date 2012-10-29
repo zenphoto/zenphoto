@@ -542,6 +542,12 @@ zp-core/license.php
 zp-core/load_objectClasses.php
 zp-core/locale
 zp-core/locale/auto.png
+zp-core/locale/da_DK
+zp-core/locale/da_DK/LC_MESSAGES
+zp-core/locale/da_DK/LC_MESSAGES/da_DK.mo
+zp-core/locale/da_DK/LC_MESSAGES/da_DK.po
+zp-core/locale/da_DK/flag.png
+zp-core/locale/da_DK/select_files_button.png
 zp-core/locale/de_DE
 zp-core/locale/de_DE/LC_MESSAGES
 zp-core/locale/de_DE/LC_MESSAGES/zenphoto.mo
@@ -1919,4 +1925,4 @@ zp-core/zp-extensions/zenphoto_news
 zp-core/zp-extensions/zenphoto_news.php
 zp-core/zp-extensions/zenphoto_news/rsslib.php
 zp-core/zp-extensions/zenphoto_sendmail.php
-1921
+1927
