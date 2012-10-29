@@ -1905,7 +1905,7 @@ function XSRFToken($action) {
  * @param array $params "POST" parameters
  * @param bool $inline set to true to run the task "in-line". Set false run asynchronously
  */
-function cron_starter($script, $params, $inline=false) {
+function cron_starter($script, $params, $offsetPath, $inline=false) {
 	global $_zp_authority, $_zp_loggedin, $_zp_current_admin_obj;
 	$admin = Zenphoto_Authority::getAnAdmin(array('`user`=' => $_zp_authority->master_user, '`valid`=' => 1));
 
@@ -1926,7 +1926,7 @@ function cron_starter($script, $params, $inline=false) {
 		foreach ($params as $key=>$value) {
 			$paramlist .= '&'.$key.'='.$value;
 		}
-		$paramlist .= '&auth='.$auth;
+		$paramlist .= '&auth='.$auth.'&offsetPath='.$offsetPath;
 		?>
 		<script type="text/javascript">
 		// <!-- <![CDATA[
