@@ -269,6 +269,35 @@ class tweet {
 	}
 
 	/**
+	 * Composes the tweet at 140 characters or less
+	 * @param string $link
+	 * @param string $title
+	 * @param string $text
+	 *
+	 * @return string
+	 */
+	private static function truncateMessage($link, $title, $text) {
+		$text = trim(html_decode(strip_tags($text)));
+		$title = trim(html_decode(strip_tags($title)));
+		if (strlen($text.' '.$link) > 140) {
+			$c = 140 - strlen($link);
+			if (mb_strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
+				$text = truncate_string($title, $c - 4, '... ').$link;	//	allow for ellipsis
+			} else {
+				$c = $c - mb_strlen($title) - 5;
+				$text = $title.': '.truncate_string($text, $c, '... ').$link;
+			}
+		} else {
+			$text .= ' '.$link;
+		}
+		$error = self::sendTweet($text);
+		if ($error) {
+			$error = sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$text,$error);
+		}
+	return $error;
+	}
+
+	/**
 	 *
 	 * Formats the message and calls sendTweet() on an object
 	 * @param object $obj
@@ -283,54 +312,20 @@ class tweet {
 		switch ($type = $obj->table) {
 			case 'pages':
 			case 'news':
-				$text = trim(html_decode(strip_tags($obj->getContent())));
-				if (strlen($text) > 140) {
-					$title = trim(html_decode(strip_tags($obj->getTitle())));
-					$c = 140 - strlen($link);
-					if (mb_strlen($title) >= ($c - 25)) {	//	not much point in the body if shorter than 25
-						$text = truncate_string($title, $c - 4, '... ').$link;	//	allow for ellipsis
-					} else {
-						$c = $c - mb_strlen($title) - 5;
-						$text = $title.': '.truncate_string($text, $c, '... ').$link;
-					}
-				}
-				$error = self::sendTweet($text);
-				if ($error) {
-					$error =  sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$obj->getTitlelink(),$error);
-				}
-
+				$error = self::truncateMessage($link,$obj->getTitle(),$obj->getContent());
 				break;
 			case 'albums':
 			case 'images':
 				if ($type=='images') {
-					$text = sprintf(gettext('New image: [%2$s]%1$s '),$item = trim(html_decode(strip_tags($obj->getTitle()))),
-																															trim(html_decode(strip_tags($obj->album->name))));
+					$text = sprintf(gettext('New image: [%2$s]%1$s '),$item = $obj->getTitle(),
+																															$obj->album->name);
 				} else {
-					$text = sprintf(gettext('New album: %s '),$item = trim(html_decode(strip_tags($obj->getTitle()))));
+					$text = sprintf(gettext('New album: %s '),$item = $obj->getTitle());
 				}
-				if (mb_strlen($text.$link) > 140) {
-					$c = 140 - strlen($link);
-					$text = truncate_string($text, $c-4, '... ').$link;	//	allow for ellipsis
-				} else {
-					$text = $text.$link;
-				}
-				$error = self::sendTweet($text);
-				if ($error) {
-					$error = sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$item,$error);
-				}
+				$error = self::truncateMessage($link, '', $item);
 				break;
 			case 'comments':
-				$text = trim(html_decode(strip_tags($obj->getComment())));
-				if (mb_strlen($text.$link) > 140) {
-					$c = 140 - strlen($link);
-					$text = truncate_string($text, $c-4, '... ').$link;	//	allow for ellipsis
-				} else {
-					$text = $text.$link;
-				}
-				$error = self::sendTweet($text);
-				if ($error) {
-					$error = sprintf(gettext('Error tweeting <code>%1$s</code>: %2$s'),$item,$error);
-				}
+				$error = self::truncateMessage($link, '', $obj->getComment());
 				break;
 		}
 		if (isset($cur_locale)) {
