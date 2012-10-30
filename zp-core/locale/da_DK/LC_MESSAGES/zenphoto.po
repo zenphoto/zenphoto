@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-29 22:28+0100\n"
-"PO-Revision-Date: 2012-10-30 18:55+0100\n"
+"PO-Revision-Date: 2012-10-30 22:23+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -1080,21 +1080,23 @@ msgstr ""
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:97
 msgid "Theme logo"
-msgstr ""
+msgstr "Tema Logo"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:97
 msgid "The text for the theme logo"
-msgstr ""
+msgstr "Tekst til tema logo"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:98
 msgid "Watermark head image"
-msgstr ""
+msgstr "Vandmærke hovedbillede"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:98
 msgid ""
 "Check to place a watermark on the heading image. (Image watermarking must be "
 "set.)"
 msgstr ""
+"Kryds af for at placere et vandmærke på det ledende billede. (Billed-"
+"vandmærkning skal være aktiveret.)"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:99
 msgid "Daily image"
