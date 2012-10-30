@@ -39,7 +39,8 @@ $debug = isset($_GET['debug']);
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {
 	if (TEST_RELEASE) {
-		debugLogVar('i.php too few arguments',$_GET);
+		debugLogVar('i.php too few arguments _GET',$_GET);
+		debugLogVar('i.php too few arguments _SERVER',$_SERVER);
 	}
 	imageError('404 Not Found', gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
 }
@@ -110,7 +111,7 @@ if (isset($_GET['effects'])) {	//13
 	$args[13] = sanitize($_GET['effects']);
 }
 
-if (@$_GET['check']!=sha1(HASH_SEED.serialize($args))) {
+if (!isset($_GET['check']) || $_GET['check']!=sha1(HASH_SEED.serialize($args))) {
 	/*
 	debugLogVar('Forbidden: $_GET', $_GET);
 	debugLogVar('Forbidden: actual', unserialize($_GET['actual']));
@@ -224,7 +225,12 @@ if (file_exists($newfile) & !$adminrequest) {
 
 if ($process) { // If the file hasn't been cached yet, create it.
 	// setup standard image options from the album theme if it exists
-	if (!cacheImage($newfilename, $imgfile, $args, $allowWatermark, $theme, $album)) {
+	$mu = rand(1,getOption('imageProcessorConcurrency'));
+	$iMutex = new Mutex('i_'.$mu);
+	$iMutex-> lock();
+	$result = cacheImage($newfilename, $imgfile, $args, $allowWatermark, $theme, $album);
+	$iMutex -> unlock();
+	if (!$result) {
 		imageError('404 Not Found', sprintf(gettext('Image processing of %s resulted in a fatal error.'),filesystemToInternal($image)));
 	}
 	$fmt = filemtime($newfile);
