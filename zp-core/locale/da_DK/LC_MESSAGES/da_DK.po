@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-29 22:28+0100\n"
-"PO-Revision-Date: 2012-10-29 22:38+0100\n"
+"PO-Revision-Date: 2012-10-30 11:09+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -1021,7 +1021,7 @@ msgstr "Nyhedsartikeler"
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:66
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:45
 msgid "News Articles Rule"
-msgstr ""
+msgstr "Nyhedsartikel Regel"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:68
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:51
@@ -1029,34 +1029,34 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:76
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:245
 msgid "All Albums"
-msgstr ""
+msgstr "Alle Albums"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:69
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:48
 msgid "Gallery Rule"
-msgstr ""
+msgstr "Galleri Regel"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:71
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:53
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:50
 msgid "All pages"
-msgstr ""
+msgstr "Alle sider"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:72
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:51
 msgid "Pages Rule"
-msgstr ""
+msgstr "Sider Regel"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:74
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/sidebar.php:68
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/sidebar.php:74
 #: /home/jes/work/translations/zenphoto/themes/zenpage/sidebar.php:51
 msgid "Gallery and News"
-msgstr ""
+msgstr "Galleri og Nyheder"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:75
 msgid "Archive Rule"
-msgstr ""
+msgstr "Arkiv Regel"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:92
 msgid ""
