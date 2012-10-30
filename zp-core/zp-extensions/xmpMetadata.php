@@ -831,9 +831,9 @@ class xmpMetadata {
 		$n = explode('/',$element);
 		$v = sprintf('%f', $n[0]/$n[1]);
 		for ($i=strlen($v)-1;$i>1;$i--) {
-			if (substr($v,$i,1) != '0') break;
+			if ($v{$i} != '0') break;
 		}
-		if (substr($v,$i,1)=='.') $i--;
+		if ($v{$i}=='.') $i--;
 		return substr($v,0,$i+1);
 	}
 
@@ -889,7 +889,7 @@ class xmpMetadata {
 						$abort = 0;
 						break;
 					default:
-						if (substr($f,$i,1)=='<') {
+						if ($f{$i}=='<') {
 							$source = self::extractXMP($f);
 						}
 						$i=$i+1;

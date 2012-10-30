@@ -38,6 +38,9 @@ $debug = isset($_GET['debug']);
 
 // Check for minimum parameters.
 if (!isset($_GET['a']) || !isset($_GET['i'])) {
+	if (TEST_RELEASE) {
+		debugLogVar('i.php too few arguments',$_GET);
+	}
 	imageError('404 Not Found', gettext("Too few arguments! Image not found."), 'err-imagenotfound.png');
 }
 
