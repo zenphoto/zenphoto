@@ -68,7 +68,8 @@ function reconfigureAction($mandatory) {
  * Checks details of configuration change
  */
 function checkSignature() {
-	if (function_exists('query_full_array')) {
+	global $_zp_DB_connection;
+	if (function_exists('query_full_array') && $_zp_DB_connection) {
 		$old = @unserialize(getOption('zenphoto_install'));
 		$new = installSignature();
 	} else {

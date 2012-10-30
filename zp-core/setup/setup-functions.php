@@ -92,12 +92,12 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
 	if ($check <= 0) {
 		?>
 		<li class="<?php echo $cls; ?>"><?php
-		if (!empty($text2)) {
-			echo  $text2;
-			$dsp .= trim($text2);
-		} else {
+		if (empty($text2)) {
 			echo  $text;
 			$dsp .= trim($text);
+		} else {
+			echo  $text2;
+			$dsp .= trim($text2);
 		}
 		if (!empty($msg)) {
 			switch ($check) {
@@ -145,7 +145,7 @@ function checkMark($check, $text, $text2, $msg, $stopAutorun=true) {
 					<?php
 					break;
 			}
-			$dsp = $msg;
+			$dsp .= ' '.$msg;
 		}
 		?>
 		</li>
@@ -378,7 +378,7 @@ function permissionsSelector($permission_names, $select) {
 function setupLog($message, $anyway=false, $reset=false) {
 	global $debug, $_zp_mutex;
 	if ($debug || $anyway) {
-		$_zp_mutex->lock();
+		if (is_object($_zp_mutex)) $_zp_mutex->lock();
 		if (!file_exists(dirname(SETUPLOG))) {
 			mkdir_recursive(SETUPLOG, $chmod & 0311);
 		}
@@ -389,7 +389,7 @@ function setupLog($message, $anyway=false, $reset=false) {
 			fclose($f);
 			clearstatcache();
 		}
-		$_zp_mutex->unlock();
+		if (is_object($_zp_mutex)) $_zp_mutex->unlock();
 	}
 }
 

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-29 22:28+0100\n"
-"PO-Revision-Date: 2012-10-30 11:09+0100\n"
+"PO-Revision-Date: 2012-10-30 18:21+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -1064,6 +1064,9 @@ msgid ""
 "index page link</em> option set to \"gallery\". Of course the "
 "<em>menu_manager</em> plugin must also be enabled."
 msgstr ""
+"<strong>Obs:</strong> Denne valgmulighed er kun mulig hvis du har "
+"<em>Galleri indexside link</em>  sat til /\"galleri/\". <em>Menu_manager</"
+"em> skal selvfølgeligt også være aktiveret."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:95
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:64
@@ -1072,6 +1075,8 @@ msgid ""
 "<strong>Note:</strong> The <em>%s</em> custom menu makes use of the "
 "<em>print_album_menu</em> plugin."
 msgstr ""
+"<strong>Obs:</strong> <em>%s</em> Brugermenuen gør brug af  "
+"<em>print_album_menu</em> plugin."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:97
 msgid "Theme logo"

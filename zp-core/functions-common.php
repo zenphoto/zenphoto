@@ -6,68 +6,6 @@
  */
 
 /**
- * Zenphoto Mutex class
- * @author Stephen
- *
- */
-class Mutex {
-	private $locked = NULL;
-	private $ignoreUseAbort = NULL;
-	private $mutex = NULL;
-	private $lock;
-
-	function __construct($lock='zP') {
-		$this->lock = $lock;
-	}
-
-	function __destruct() {
-		if ($this->locked) {
-			$this->unlock();
-			debugLog(sprintf(gettext('Mutex %s was left locked.'),$this->lock));
-		}
-	}
-
-	public function lock() {
-		//if "flock" is not supported run un-serialized
-		//Only lock an unlocked mutex, we don't support recursive mutex'es
-		if(!$this->locked && function_exists('flock')) {
-			if (!file_exists(SERVERPATH.'/'.DATA_FOLDER.'/mutex')) {
-				mkdir(SERVERPATH.'/'.DATA_FOLDER.'/mutex');
-			}
-			$this->mutex = fopen(SERVERPATH.'/'.DATA_FOLDER.'/mutex/'.$this->lock, 'wb');
-			if (function_exists('flock') && flock($this->mutex, LOCK_EX)) {
-				$this->locked = true;
-				//We are entering a critical section so we need to change the ignore_user_abort setting so that the
-				//script doesn't stop in the critical section.
-				$this->ignoreUserAbort = ignore_user_abort(true);
-			} else {
-				zp_error(gettext('Error locking mutex'));
-			}
-		}
-		return $this->locked;
-	}
-
-	/**
-	 *	Unlock the mutex.
-	 */
-	public function unlock() {
-		if($this->locked)	{ //Only unlock a locked mutex.
-			$this->locked = false;
-			ignore_user_abort($this->ignoreUserAbort);	//Restore the ignore_user_abort setting.
-			if (flock($this->mutex, LOCK_UN)) {
-				fclose($this->mutex);
-				return true;
-			} else {
-				fclose($this->mutex);
-				zp_error(gettext('Error un-locking mutex'));
-				return false;
-			}
-		}
-	}
-
-}
-
-/**
  *
  * Traps errors and insures thy are logged.
  * @param int $errno
