@@ -475,14 +475,14 @@ class SearchEngine {
 					break;
 				case ' ':
 					$j = $i+1;
-					while ($j < strlen($searchstring) && substr($searchstring,$j,1)==' ') {
+					while ($j < strlen($searchstring) && $searchstring{$j}==' ') {
 						$j++;
 					}
 					switch ($space_is) {
 						case 'OR':
 						case 'AND':
 							if ($j < strlen($searchstring)) {
-								$c3 = substr($searchstring,$j,1);
+								$c3 = $searchstring{$j};
 								if (array_key_exists($c3,$opChars) && $opChars[$c3] == 1) {
 									$nextop = $c3 != '!';
 								} else if (substr($searchstring.' ', $j, 4)=='AND ') {
