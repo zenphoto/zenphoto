@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-29 22:28+0100\n"
-"PO-Revision-Date: 2012-10-30 22:23+0100\n"
+"PO-Revision-Date: 2012-10-31 08:48+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -1095,31 +1095,34 @@ msgid ""
 "Check to place a watermark on the heading image. (Image watermarking must be "
 "set.)"
 msgstr ""
-"Kryds af for at placere et vandmærke på det ledende billede. (Billed-"
+"Kryds af for at placere et vandmærke på forsidebilledet. (Billed-"
 "vandmærkning skal være aktiveret.)"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:99
 msgid "Daily image"
-msgstr ""
+msgstr "Daglige billede"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:99
 msgid ""
 "If checked on the heading image will change daily rather than on each page "
 "load."
 msgstr ""
+"Hvis afkrydset på forsidebilledet vil det skifte dagligt i stedet for ved "
+"hver sideindlæsning."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:101
 #: /home/jes/work/translations/zenphoto/themes/zenpage/slideshow.php:11
 msgid "Slideshow"
-msgstr ""
+msgstr "Slideshow"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:101
 msgid "Check to enable slideshow for the <em>Smoothgallery</em> personality."
 msgstr ""
+"Kryds af for at aktivere slideshow for <em>Smoothgallery</em> personligheden."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:102
 msgid "Graphic logo"
-msgstr ""
+msgstr "Grafisk logo"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:102
 #, php-format
@@ -1127,32 +1130,34 @@ msgid ""
 "Select a logo (PNG files in the <em>%s/images</em> folder) or leave empty "
 "for text logo."
 msgstr ""
+"Vælg et logo (PNG fil i <em>%s/images</em> mappen) eller lad stå tom til et "
+"tekst logo."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:103
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:69
 msgid "Theme personality"
-msgstr ""
+msgstr "Tema personlighed"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:106
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:71
 msgid "Select the theme personality"
-msgstr ""
+msgstr "Vælg tema personligheden"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:107
 #: /home/jes/work/translations/zenphoto/themes/default/themeoptions.php:42
 msgid "Theme colors"
-msgstr ""
+msgstr "Tema farver"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:107
 #: /home/jes/work/translations/zenphoto/themes/default/themeoptions.php:42
 msgid "Select the colors of the theme"
-msgstr ""
+msgstr "Vælg temaets farver"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:108
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:112
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:74
 msgid "Custom menu"
-msgstr ""
+msgstr "Brugerdefineret menu"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:108
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:74
