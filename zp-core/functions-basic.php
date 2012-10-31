@@ -1353,7 +1353,10 @@ class Mutex {
 	private $mutex = NULL;
 	private $lock;
 
-	function __construct($lock='zP') {
+	function __construct($lock='zP',$concurrent=NULL) {
+		if ($concurrent) {
+			$lock .='_'.rand(1, $concurrent);
+		}
 		$this->lock = $lock;
 	}
 
