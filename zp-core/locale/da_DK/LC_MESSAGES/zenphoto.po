@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-29 22:28+0100\n"
-"PO-Revision-Date: 2012-10-31 08:48+0100\n"
+"PO-Revision-Date: 2012-10-31 14:04+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -1198,33 +1198,33 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:78
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/GoogleMap.php:83
 msgid "Horizontal"
-msgstr ""
+msgstr "Horisontal"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:117
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:78
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/jcarousel_thumb_nav.php:55
 msgid "Vertical"
-msgstr ""
+msgstr "Vertikal"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:119
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:80
 msgid "Transition effect for Image gallery"
-msgstr ""
+msgstr "Overgangseffekt for billedgalleri"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:120
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:81
 msgid "Image gallery caption"
-msgstr ""
+msgstr "Billedgalleri billedtekst"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:121
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:82
 msgid "On image"
-msgstr ""
+msgstr "På billedet"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:121
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:82
 msgid "Separate"
-msgstr ""
+msgstr "Separat"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:121
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:82
