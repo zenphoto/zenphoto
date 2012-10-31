@@ -225,8 +225,7 @@ if (file_exists($newfile) & !$adminrequest) {
 
 if ($process) { // If the file hasn't been cached yet, create it.
 	// setup standard image options from the album theme if it exists
-	$mu = rand(1,getOption('imageProcessorConcurrency'));
-	$iMutex = new Mutex('i_'.$mu);
+	$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
 	$iMutex-> lock();
 	$result = cacheImage($newfilename, $imgfile, $args, $allowWatermark, $theme, $album);
 	$iMutex -> unlock();

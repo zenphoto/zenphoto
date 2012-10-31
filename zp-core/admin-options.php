@@ -1971,7 +1971,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<?php $v = getOption('imageProcessorConcurrency'); ?>
 							startValue: <?php echo $v; ?>,
 							value: <?php echo $v; ?>,
-							min: 2,
+							min: 1,
 							max:60,
 							slide: function(event, ui) {
 								$("#cache-workers").val(ui.value);
@@ -1987,7 +1987,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<input type="hidden" id="cache-workers" name="cacheManager_workers" value="<?php echo getOption('cacheManager_workers');?>" />
 			</td>
 			<td>
-			<?php printf(gettext('Allow cache processing of %s concurrent images.'),'<span id="cache_processes">'.getOption('imageProcessorConcurrency').'</span>').
+			<?php printf(gettext('Cache processing worker limit: %s.'),'<span id="cache_processes">'.getOption('imageProcessorConcurrency').'</span>').
 																																'<p class="notebox">'.gettext('More workers will get the job done faster so long as your server does not get swamped or run out of memory.').'</p>'; ?>
 			</td>
 		</tr>
