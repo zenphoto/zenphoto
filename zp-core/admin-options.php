@@ -811,6 +811,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 								$tags = explode("\n",$t);
 								$c = 0;
 								foreach($tags as $t) {
+									$t = trim($t);
 									if (!empty($t)) {
 										if ($c>0) {
 											echo '+';
@@ -1986,7 +1987,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 					// ]]> -->
 				</script>
 				<div id="slider-workers"></div>
-				<input type="hidden" id="cache-workers" name="cacheManager_workers" value="<?php echo getOption('cacheManager_workers');?>" />
+				<input type="hidden" id="cache-workers" name="iproc_proc_limit" value="<?php echo getOption('iproc_proc_limit');?>" />
 			</td>
 			<td>
 			<?php printf(gettext('Cache processing worker limit: %s.'),'<span id="cache_processes">'.getOption('imageProcessorConcurrency').'</span>').
