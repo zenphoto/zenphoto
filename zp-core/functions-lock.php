@@ -55,7 +55,7 @@ require_once(dirname(__FILE__).'/functions-basic.php');
 function lock_debug($msg){
 	// This prints a bunch.. so use a separate debug option.
 	$debug = isset($_GET['debug_locks']);
-	if($debug){
+	if(true){
 		$output=fopen(SERVERPATH."/".DATA_FOLDER.'/lock_debug.log',"a");
 //		echo $msg."<br />";
 		fwrite($output,$msg."\n");
@@ -256,7 +256,7 @@ function get_lock($lock_id,$timeout=-1) {
 function release_lock($lock_id) {
 	// To release the lock, we need to use the same db connection it was created with:
 	global $_lock_resource_array;
-	if (get_resource_type($_lock_resource_array[$lock_id])=="stream"){// then this is a flock file lock
+	if (is_resource($_lock_resource_array[$lock_id])){// then this is a flock file lock
 		//		$retval=flock($_lock_resource_array[$lock_id],LOCK_UN);
 //		$retval=unlink($_lock_resource_array[$lock_id]);
 		$retval=flock($_lock_resource_array[$lock_id],LOCK_UN);
