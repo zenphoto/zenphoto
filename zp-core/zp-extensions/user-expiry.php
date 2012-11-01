@@ -216,8 +216,9 @@ class user_expiry {
 	static function checklogon($loggedin, $user) {
 		if ($loggedin) {
 			if (!($loggedin & ADMIN_RIGHTS)) {
-				$userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1));
-				$loggedin = user_expiry::checkexpires($loggedin, $userobj);
+				if ($userobj = Zenphoto_Authority::getAnAdmin(array('`user`=' => $user, '`valid`=' => 1))) {
+					$loggedin = user_expiry::checkexpires($loggedin, $userobj);
+				}
 			}
 		}
 		return $loggedin;
