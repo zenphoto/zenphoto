@@ -87,9 +87,6 @@ if (isset($_GET['mod_rewrite'])) {
 if (isset($_POST['setUTF8URI']) && $_POST['setUTF8URI'] != 'dont') {
 	setOption('UTF8_image_URI', (int) ($_POST['setUTF8URI'] == 'true'));
 }
-setOptionDefault('iproc_proc_limit', 0);
-setOptionDefault('iproc_wait_limit', 0);
-setOptionDefault('iproc_cache_time_limit', 0);
 setOptionDefault('mod_rewrite_image_suffix', ".php");
 setOptionDefault('server_protocol', "http");
 setOptionDefault('charset', "UTF-8");

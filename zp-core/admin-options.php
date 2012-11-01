@@ -192,10 +192,6 @@ if (isset($_GET['action'])) {
 
 		/*** Image options ***/
 		if (isset($_POST['saveimageoptions'])) {
-			setOption('iproc_proc_limit', sanitize_numeric($_POST['iproc_proc_limit']));
-			setOption('iproc_wait_limit', sanitize_numeric($_POST['iproc_wait_limit']));
-			setOption('use_flock_locks', (int) isset($_POST['use_flock_locks']));
-			setOption('iproc_cache_time_limit', sanitize_numeric($_POST['iproc_cache_time_limit']));
 			setOption('image_quality', sanitize($_POST['image_quality'],3));
 			setOption('thumb_quality', sanitize($_POST['thumb_quality'],3));
 			setOption('image_allow_upscale', (int) isset($_POST['image_allow_upscale']));
@@ -1676,36 +1672,6 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 		}
 		?>
 		<tr>
-			<td style='width: 175px'><?php echo gettext("Image Processor Processes Limit:"); ?></td>
-			<td>
-				<input type="text" size="3" name="iproc_proc_limit" value="<?php echo getOption('iproc_proc_limit'); ?>" /> <?php echo gettext('max simultaneous processes,<br /><br />&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  0&nbsp=&nbsplimited by server process settings only.'); ?>
-				<br /> <br /><br />
-				<input type="checkbox" name="use_flock_locks" value="1"<?php echo checked('1', getOption('use_flock_locks')); ?> />  <?php echo gettext('use flock locks')?>
-			</td>
-			<td>
-				<?php
-					echo gettext('max simultaneous processes: Max httpd processes that can simultaneously cache images. This does not decrease the number of httpd processes allocated, but makes them wait in queue before doing actual image processing. Setting this to a low number can significantly reduce memory usage.  Optimizing this can also speed up image caching or reduce CPU usage. On the other hand, setting it too low might increase processing and could cause timeouts. This option does not affect images that are already cached, even if  the "Protect Image Cache" option is set to force all requests through the image processor. <br /> The default value is 0. <br /><br /> use flock locks: Use flock locks instead of MySQL locks. They might be faster and put a little less load on your MySQL server, especially for MySQL<5.5. However they will not work on some older filesystems. Default is off');
-				?>
-			</td>
-		</tr>
-		<tr>
-			<td style='width: 175px'><?php echo gettext("Image Processor Time Limits:"); ?></td>
-			<td>
-				<input type="text" size="5" name="iproc_wait_limit" value="<?php echo getOption('iproc_wait_limit'); ?>" />  <?php echo gettext('Wait timeout in seconds.'); ?>
-				<br />
-				<input type="text" size="5" name="iproc_cache_time_limit" value="<?php echo getOption('iproc_cache_time_limit'); ?>" />  <?php echo gettext('Processing timeout in seconds.'); ?>
-				<br />
-				<br />
-				<?php echo gettext('&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp  0&nbsp = &nbsp limited by server settings. <br />' ); ?>
-				<?php echo gettext('&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp -1&nbsp =&nbsp unlimited (unless by other server settings). <br />' ); ?>
-			</td>
-			<td>
-				<?php
-					echo gettext('Time limits for image processor php script. These have no effect if your server is running php in "safe mode" or if other limits, such as apache limits, are overriding. If "max simultaneous processes" is set above, the wait timeout limits the time allowed while one image waits in queue to be processed. To completely avoid script timeouts, this should be set longer than the time needed to process all images in the gallery. <br /><br /> The processing timeout limits the time spent actively processing any single image (not including waiting). <br /> <br />  If either limit is reached the process is terminated and the image will not be cached.  There is very little danger in setting these to very high values or unlimited.  Low values would only be helpful when/if resize processes freeze. In that case something else is broken anyway.<br /> The defaults are 0.');
-				?>
-			</td>
-		</tr>
-		<tr>
 			<td><?php echo gettext("Sort images by:"); ?></td>
 			<td>
 				<?php
@@ -1997,6 +1963,36 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 				?>
 			</td>
 
+		</tr>
+		<tr>
+			<td><?php echo gettext("Caching concurrency:"); ?></td>
+			<td>
+				<script type="text/javascript">
+					// <!-- <![CDATA[
+					$(function() {
+						$("#slider-workers").slider({
+							<?php $v = getOption('imageProcessorConcurrency'); ?>
+							startValue: <?php echo $v; ?>,
+							value: <?php echo $v; ?>,
+							min: 1,
+							max:60,
+							slide: function(event, ui) {
+								$("#cache-workers").val(ui.value);
+								$("#cache_processes").html($("#cache-workers").val());
+							}
+						});
+						$("#cache-workers").val($("#slider-workers").slider("value"));
+						$("#cache_processes").html($("#cache-workers").val());
+					});
+					// ]]> -->
+				</script>
+				<div id="slider-workers"></div>
+				<input type="hidden" id="cache-workers" name="iproc_proc_limit" value="<?php echo getOption('iproc_proc_limit');?>" />
+			</td>
+			<td>
+			<?php printf(gettext('Cache processing worker limit: %s.'),'<span id="cache_processes">'.getOption('imageProcessorConcurrency').'</span>').
+																																'<p class="notebox">'.gettext('More workers will get the job done faster so long as your server does not get swamped or run out of memory.').'</p>'; ?>
+			</td>
 		</tr>
 		<tr>
 			<td><?php echo gettext("Cache as:"); ?></td>
