@@ -225,10 +225,11 @@ if (file_exists($newfile) & !$adminrequest) {
 
 if ($process) { // If the file hasn't been cached yet, create it.
 	// setup standard image options from the album theme if it exists
-	$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
-	$iMutex-> lock();
+// better to do it in the actual resource we're protecting so nobody bypasses it later
+//	$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
+//	$iMutex-> lock();
 	$result = cacheImage($newfilename, $imgfile, $args, $allowWatermark, $theme, $album);
-	$iMutex -> unlock();
+//	$iMutex -> unlock();
 	if (!$result) {
 		imageError('404 Not Found', sprintf(gettext('Image processing of %s resulted in a fatal error.'),filesystemToInternal($image)));
 	}

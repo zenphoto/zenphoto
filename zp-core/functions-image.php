@@ -12,6 +12,7 @@
 // Don't let anything get above this, to save the server from burning up...
 
 define('MAX_SIZE', 3000);
+require_once(dirname(__FILE__).'/functions-lock.php');
 
 /**
  * If in debug mode, prints the given error message and continues; otherwise redirects
@@ -148,6 +149,26 @@ function iptc_make_tag($rec, $data, $value) {
  */
 function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $theme, $album) {
 	global $_zp_gallery;
+	$time_limit=getOption('iproc_wait_limit');
+	if ($time_limit){// if 0 we don't do anything
+		if ($time_limit==-1){// if -1 we set to 0:unlimited
+			$time_limit=0;
+		}
+		set_time_limit( $time_limit );
+	}	
+	$proc_limit=getOption('iproc_proc_limit');
+// Get one of $proc_limit mutexes available for image processing:
+	if ($proc_limit){
+		$lock_id=get_multi_queue_lock('iproc_lock',$proc_limit);
+	}
+// got the lock, reset the clock:
+	$time_limit=getOption('iproc_cache_time_limit');
+	if ($time_limit){// if 0 we don't do anything
+		if ($time_limit==-1){// if -1 we set to 0:unlimited
+			$time_limit=0;
+		}
+		set_time_limit( $time_limit );
+	}	
 	try {
 		@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 		// Set the config variables for convenience.
@@ -478,6 +499,9 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		return false;
 	}
 	clearstatcache();
+	if ($proc_limit){
+		release_lock($lock_id);
+	}
 	return true;
 }
 
