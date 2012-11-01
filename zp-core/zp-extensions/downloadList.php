@@ -258,7 +258,7 @@ class DownloadList {
 									'title'=>gettext('Counts of downloads'),
 									'alt'=>'',
 									'hidden'=> '',
-									'rights'=> OVERVIEW_RIGHTS,
+									'rights'=> ADMIN_RIGHTS,
 									);
 		return $buttons;
 	}

@@ -26,7 +26,7 @@ $buttonlist[] = array(
 								'title'=>gettext('Shows statistical graphs and info about your gallery\'s images and albums.'),
 								'alt'=>'',
 								'hidden'=>'',
-								'rights'=> OVERVIEW_RIGHTS | ADMIN_RIGHTS
+								'rights'=> ADMIN_RIGHTS
 								);
 
 admin_securityChecks(OVERVIEW_RIGHTS, currentRelativeURL());
