@@ -150,7 +150,10 @@ define('FILE_MOD', CHMOD_VALUE & 0666);
 if (!isset($_zp_conf_vars['server_protocol'])) $_zp_conf_vars['server_protocol'] = 'http';
 
 require_once(dirname(__FILE__).'/functions-db-'.(isset($_zp_conf_vars['db_software'])?$_zp_conf_vars['db_software']:'MySQL').'.php');
-db_connect(false);
+if (!db_connect(false) && OFFSET_PATH != 2) {
+	require_once(dirname(__FILE__).'/reconfigure.php');
+	reconfigureAction(true);
+}
 
 $_charset = getOption('charset');
 if (!$_charset) {
@@ -1350,7 +1353,10 @@ class Mutex {
 	private $mutex = NULL;
 	private $lock;
 
-	function __construct($lock='zP') {
+	function __construct($lock='zP',$concurrent=NULL) {
+		if ($concurrent) {
+			$lock .='_'.rand(1, $concurrent);
+		}
 		$this->lock = $lock;
 	}
 

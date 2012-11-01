@@ -258,7 +258,7 @@ class htmlmetatags {
 		if(getOption('htmlmeta_http-equiv-cache-control')) { $meta .= '<meta http-equiv="cache-control" content="'.getOption("htmlmeta_cache_control").'" />'."\n"; }
 		if(getOption('htmlmeta_http-equiv-pragma')) { $meta .= '<meta http-equiv="pragma" content="'.getOption("htmlmeta_pragma").'" />'."\n"; }
 		if(getOption('htmlmeta_http-equiv-content-style-type')) { $meta .= '<meta http-equiv="Content-Style-Type" content="text/css" />'."\n"; }
-		if(getOption('htmlmeta_name-title')) { $meta .= '<meta name="title" content="'.$pagetitle.'" />'."\n"; }
+		if(getOption('htmlmeta_name-title')) { $meta .= '<meta name="title" content="'.html_encode($pagetitle).'" />'."\n"; }
 		if(getOption('htmlmeta_name-keywords')) { $meta .= '<meta name="keywords" content="'.htmlmetatags::getMetaKeywords().'" />'."\n"; }
 		if(getOption('htmlmeta_name-description')) { $meta .= '<meta name="description" content="'.$desc.'" />'."\n"; }
 		if(getOption('htmlmeta_name-page-topic')) { $meta .= '<meta name="page-topic" content="'.$desc.'" />'."\n"; }

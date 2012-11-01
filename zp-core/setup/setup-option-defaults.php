@@ -582,6 +582,7 @@ setOptionDefault('combinews-customtitle', getOption('combinews-customtitle-plura
 purgeOption('combinews-customtitle-singular');
 purgeOption('combinews-customtitle-plural');
 setOptionDefault('debug_log_size', 5000000);
+setOptionDefault('imageProcessorConcurrency',30);
 
 query('UPDATE '.prefix('administrators').' SET `passhash`='.((int) getOption('strong_hash')).' WHERE `valid`>=1 AND `passhash` IS NULL');
 query('UPDATE '.prefix('administrators').' SET `passupdate`='.db_quote(date('Y-m-d H:i:s')).' WHERE `valid`>=1 AND `passupdate` IS NULL');
