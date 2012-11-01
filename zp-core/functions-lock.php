@@ -55,7 +55,7 @@ require_once(dirname(__FILE__).'/functions-basic.php');
 function lock_debug($msg){
 	// This prints a bunch.. so use a separate debug option.
 	$debug = isset($_GET['debug_locks']);
-	if(true){
+	if($debug){
 		$output=fopen(SERVERPATH."/".DATA_FOLDER.'/lock_debug.log',"a");
 //		echo $msg."<br />";
 		fwrite($output,$msg."\n");
