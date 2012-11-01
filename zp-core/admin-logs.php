@@ -171,7 +171,7 @@ echo "\n</head>";
 									?>
 									<tr>
 									<?php
-									$fields = explode("\t", $line);
+									$fields = explode("\t", trim($line));
 									foreach ($fields as $key=>$field) {
 										?>
 										<td>
@@ -200,7 +200,7 @@ echo "\n</head>";
 									<p>
 										<span class="nowrap">
 										<?php
-										echo str_replace(' ','&nbsp;',html_encode(strip_tags($line)));
+										echo str_replace(' ','&nbsp;',html_encode(strip_tags(trim($line))));
 										?>
 										</span>
 									</p>

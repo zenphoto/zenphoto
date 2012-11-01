@@ -811,6 +811,7 @@ if ($subtab == 'general' && zp_loggedin(OPTIONS_RIGHTS)) {
 								$tags = explode("\n",$t);
 								$c = 0;
 								foreach($tags as $t) {
+									$t = trim($t);
 									if (!empty($t)) {
 										if ($c>0) {
 											echo '+';
