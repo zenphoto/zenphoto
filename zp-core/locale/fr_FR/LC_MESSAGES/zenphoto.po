@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-31 23:07-0500\n"
-"PO-Revision-Date: 2012-10-31 23:08-0500\n"
+"PO-Revision-Date: 2012-10-31 23:28-0500\n"
 "Last-Translator: \n"
 "Language-Team: Samy Rabih (Fetard) & Michel Gagnon <michgagnon@gmail.com>\n"
 "Language: fr_FR\n"
@@ -5950,19 +5950,24 @@ msgstr ""
 "utilisé au lieu du filigrane des vignettes."
 
 #: F:\sites\zenphoto/zp-core/admin-options.php:1965
+#, fuzzy
 msgid "Caching concurrency:"
-msgstr ""
+msgstr "Processus en cache concuremment :"
 
 #: F:\sites\zenphoto/zp-core/admin-options.php:1990
-#, php-format
+#, fuzzy, php-format
 msgid "Cache processing worker limit: %s."
-msgstr ""
+msgstr "Nombre maximal de processus en cache concuremment : %s."
 
 #: F:\sites\zenphoto/zp-core/admin-options.php:1991
+#, fuzzy
 msgid ""
 "More workers will get the job done faster so long as your server does not "
 "get swamped or run out of memory."
 msgstr ""
+"Un plus grand nombre de processus concuremment en cache permettra de "
+"réaliser la tâche plus rapidement… à condition que le serveur ne soit pas "
+"trop sollicité ou soit à court de mémoire."
 
 #: F:\sites\zenphoto/zp-core/admin-options.php:1995
 msgid "Cache as:"
@@ -7748,7 +7753,6 @@ msgid "PHP Error reporting: <strong>%s</strong>"
 msgstr "Type de rapport d’erreurs PHP : <strong>%s</strong>"
 
 #: F:\sites\zenphoto/zp-core/admin.php:279
-#, fuzzy
 msgid ""
 "PHP error messages may be displayed on WEB pages. This may disclose site "
 "sensitive information."
