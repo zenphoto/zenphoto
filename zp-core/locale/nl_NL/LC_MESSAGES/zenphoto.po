@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Zenphoto 1.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-29 17:27+0100\n"
+"POT-Creation-Date: 2012-10-31 05:55+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: fretzl\n"
 "Language-Team: \n"
@@ -13,7 +13,7 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: /Applications/MAMP/htdocs\n"
 "Language: nl_NL\n"
-"X-Poedit-SearchPath-0: Zp-Dutch-Translation-Dev\n"
+"X-Poedit-SearchPath-0: ZpFork-Dutch-Translation-Dev\n"
 
 #: Zp-Dutch-Translation-Dev/index.php:125
 #, php-format
@@ -294,7 +294,7 @@ msgstr "Persoonlijkheid"
 #: Zp-Dutch-Translation-Dev/themes/effervescence_plus/functions.php:122
 #: Zp-Dutch-Translation-Dev/themes/effervescence_plus/indexpage.php:84
 msgid "There were no images from which to select the random heading."
-msgstr "Er zijn geen afbeeldingen waarvan de willekeurige heading geselecteerd kan worden."
+msgstr "Er zijn geen afbeeldingen waarvan een willekeurige header geselecteerd kan worden."
 
 #: Zp-Dutch-Translation-Dev/themes/effervescence_plus/functions.php:141
 msgid "Random picture..."
@@ -710,7 +710,7 @@ msgstr "Eigen menu"
 
 #: Zp-Dutch-Translation-Dev/themes/effervescence_plus/themeoptions.php:108
 msgid "Set this to the <em>menu_manager</em> menu you wish to use."
-msgstr "Stel dit in op de menu (van de <em>menu_manager</em>) dat je wilt gebruiken."
+msgstr "Stel dit in op het menu (van de <em>menu_manager</em>) dat je wilt gebruiken."
 
 #: Zp-Dutch-Translation-Dev/themes/effervescence_plus/themeoptions.php:112
 msgid "This option requires the <em>menu_manager</em> plugin to be enabled and the <em>Gallery index page link</em> to be set to \"gallery\"."
@@ -718,7 +718,7 @@ msgstr "Voor deze optie moet de <em>menu_manager</em> plugin geactiveerd zijn en
 
 #: Zp-Dutch-Translation-Dev/themes/effervescence_plus/themeoptions.php:116
 msgid "Image gallery transition"
-msgstr "Gallery overgang"
+msgstr "Galerij overgang"
 
 #: Zp-Dutch-Translation-Dev/themes/effervescence_plus/themeoptions.php:117
 msgid "None"
@@ -1367,7 +1367,7 @@ msgstr "Galerij en Nieuws"
 
 #: Zp-Dutch-Translation-Dev/themes/zenpage/theme_description.php:10
 msgid "The Zenpage CMS plugin default theme. It does also work without Zenpage installed as a normal theme. It contains extra support for print_album_menu plugin or the menu_manager plugin (one of these should be enabled for album links in the sidebar), the dynamic_locale plugin, the new paged_thumbs_nav plugin and the jCarousel_thumb_nav plugin."
-msgstr "Het Zenpage CMS  basisthema. Dit werkt ook zonder dat Zenpage geïnstalleerd is. Het biedt ondersteuning voor de print_album_menu plugin, de menu_manager plugin (één van deze twee moet actief zijn voor het tonen van albumnamen in de sidebar), de dynamic_locale plugin; plugin, de nieuwe paged_thumbs_nav plugin en de  jCarousel_thumb_nav plugin."
+msgstr "Het Zenpage CMS basisthema. Dit werkt ook zonder dat Zenpage geïnstalleerd is. Het biedt ondersteuning voor de print_album_menu plugin, de menu_manager plugin (één van deze twee moet actief zijn voor het tonen van albumnamen in de sidebar), de dynamic_locale plugin; plugin, de nieuwe paged_thumbs_nav plugin en de jCarousel_thumb_nav plugin."
 
 #: Zp-Dutch-Translation-Dev/themes/zenpage/themeoptions.php:60
 msgid "Use Colorbox"
@@ -1635,15 +1635,15 @@ msgstr "Terug"
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1517
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1635
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1661
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2229
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2250
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2361
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2489
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2759
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2828
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2943
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2982
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3095
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2259
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2280
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2391
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2519
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2789
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2858
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2973
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3012
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3125
 #: Zp-Dutch-Translation-Dev/zp-core/admin-plugins.php:127
 #: Zp-Dutch-Translation-Dev/zp-core/admin-plugins.php:347
 msgid "Apply"
@@ -2523,7 +2523,7 @@ msgstr "Albumwachtwoord:"
 #: Zp-Dutch-Translation-Dev/zp-core/admin-functions.php:1249
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:955
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1313
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2043
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2073
 msgid "clear password"
 msgstr "maak wachtwoord leeg"
 
@@ -2534,7 +2534,7 @@ msgstr "Album gastgebruiker:"
 #: Zp-Dutch-Translation-Dev/zp-core/admin-functions.php:1263
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:978
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1334
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2061
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2091
 msgid "Show password"
 msgstr "Toon wachtwoord"
 
@@ -3225,7 +3225,7 @@ msgid "Download %s ZIP file"
 msgstr "Download %s ZIP-bestand"
 
 #: Zp-Dutch-Translation-Dev/zp-core/admin-logs.php:128
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2106
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2136
 msgid "Download"
 msgstr "Download"
 
@@ -3282,15 +3282,15 @@ msgstr "Raadpleeg de troubleshooting uitleg op zenphoto.org voor details."
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1518
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1636
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1662
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2230
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2251
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2362
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2491
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2761
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2829
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2944
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2983
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3096
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2260
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2281
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2392
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2521
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2791
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2859
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2974
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3013
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3126
 msgid "reset"
 msgstr "reset"
 
@@ -3608,10 +3608,10 @@ msgid "These options control the number of items displayed on their tabs. If you
 msgstr "Deze opties bepalen het aantal onderdelen die worden getoond. Als je problemen hebt met de weergave verlaag dan het aantal."
 
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:879
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2828
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2943
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2982
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3095
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2858
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2973
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3012
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3125
 msgid "save"
 msgstr "opslaan"
 
@@ -3674,7 +3674,7 @@ msgstr "Gebruikers ID voor de gastgebruiker."
 
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:991
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1347
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2071
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2101
 msgid "(repeat)"
 msgstr "(herhaal)"
 
@@ -4042,9 +4042,9 @@ msgid "RSS cache"
 msgstr "RSS cache"
 
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1611
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1992
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2001
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2126
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2022
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2031
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2156
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
@@ -4250,508 +4250,521 @@ msgid "If a watermark image is selected for these <em>images classes</em> it wil
 msgstr "Als een watermerk voor deze <em>images classes</em> is geselecteerd, wordt dit gebruikt in plaats van het <em>Afbeelding thumbnails</em> watermerk."
 
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1965
+msgid "Caching concurrency:"
+msgstr "Gelijktijdig cashen:"
+
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1990
+#, php-format
+msgid "Allow cache processing of %s concurrent images."
+msgstr "Sta toe dat %s afbeeldingen gelijktijdig gecashed worden."
+
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1991
+msgid "More workers will get the job done faster so long as your server does not get swamped or run out of memory."
+msgstr "Meer processen maken dat het cashen sneller gaat zolang de server genoeg geheugen heeft."
+
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1995
 msgid "Cache as:"
 msgstr "Cache als:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1968
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1998
 msgid "Original"
 msgstr "Origineel"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1979
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2009
 msgid "Select a type for the images stored in the image cache. Select <em>Original</em> to preserve the original image's type."
 msgstr "Selecteer het type afbeelding dat wordt gecached. Selecteer <em>Origineel</em> om het type onveranderd te laten."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1982
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2012
 msgid "Obscure cache filenames"
 msgstr "Maak gecachte bestandsnamen onduidelijk."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1984
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3023
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3062
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2014
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3053
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3092
 msgid "enable"
 msgstr "activeer"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1986
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2016
 msgid "Cause the filename of cached items to be obscured. This makes it difficult for someone to \"guess\" the name in a URL."
 msgstr "Vink aan om namen van gecachte afbeeldingen onduidelijk te maken. Dit maakt het lastig om de naam te \"raden\" in de URL."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1989
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2019
 msgid "Protect image cache"
 msgstr "Beveilig afbeeldingen-cache"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1994
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2024
 msgid "If checked all image URIs will link to the image processor and the image cache will be disabled to browsers via an <em>.htaccess</em> file. Images are still cached but the image processor is used to serve the image rather than allowing the browser to fetch the file."
 msgstr "Als dit is aangevinkt zullen alle afbeeldings URI's verwijzen naar de afbeeldings-processor. Bovendien wordt de afbeeldingen-cache onbereikbaar gemaakt voor browsers door middel van een <em>.htaccess</em> bestand. <br />(De afbeeldingen blijven in de cache maar kunnen niet meer opgevraagd worden door een browser. In plaats daarvan worden de afbeeldingen via de processor aangeboden)"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1995
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2025
 msgid "<strong>WARNING\t:</strong> This option adds significant overhead to <strong>each and every</strong> image reference! Some <em>JavaScript</em> and <em>Flash</em> based image handlers will not work with an image processor URI and are incompatible with this option."
 msgstr "<strong>WAARSCHUWING\t:</strong> Deze optie vraagt extra rekenkracht van de server! Sommige <em>JavaScript</em> and <em>Flash</em> afbeeldings-scripts werken niet met een URI via een afbeeldings-processor."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:1998
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2028
 msgid "Secure image processor"
 msgstr "Beveiligde afbeeldings-processor"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2003
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2033
 msgid "When not checked, the image processor does not check for album access credentials."
 msgstr "Wanneer dit is aangevinkt zal de afbeeldings-processor controleren of toegang tot albums toegestaan is."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2004
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2034
 msgid "<strong>WARNING\t:</strong> This option adds memory overhead to image caching! You may be unable to cache some images depending on your server memory availability."
 msgstr "<strong>WAARSCHUWING\t:</strong> Deze optie vergt veel van het geheugen!. Afhankelijk van de geheugeninstelling van je server kan het zijn dat sommige afbeeldingen niet gecached kunnen worden."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2007
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2037
 msgid "Full image protection:"
 msgstr "Volledige afbeelding bescherming"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2012
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2042
 msgid "Disable hotlinking"
 msgstr "<em>Hotlinken uitzetten</em>"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2017
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2047
 msgid "cache the full image"
 msgstr "Cache de volledige afbeelding"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2030
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2067
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2060
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2097
 msgid "password:"
 msgstr "wachtwoord:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2052
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2082
 msgid "user:"
 msgstr "gebruiker:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2092
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2122
 msgid "hint:"
 msgstr "hint:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2106
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2136
 msgid "Protected view"
 msgstr "Beschermde weergave"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2106
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2136
 msgid "No access"
 msgstr "Geen toegang"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2108
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2138
 msgid "Unprotected"
 msgstr "Onbeschermd"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2116
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2146
 msgid "Disabling hotlinking prevents linking to the full image from other domains. If enabled, external links are redirect to the image page. If you are having problems with full images being displayed, try disabling this setting. Hotlinking is not prevented if <em>Full&nbsp;image&nbsp;protection</em> is <em>Unprotected</em> or if the image is cached."
 msgstr "Hotlinken uitzetten voorkomt linken naar de volledige afbeelding vanaf andere domeinen. Als deze optie aanstaat worden externe links naar de afbeeldingspagina gestuurd. Als je problemen heeft met het tonen van volledige afbeeldingen, probeer dan deze optie uit te zetten. Hotlinken wordt niet voorkomen als <em>Volledige afbeelding bescherming</em> op <em>Onbeschermd</em> staat of als de afbeelding gecached is."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2117
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2147
 msgid "If <em>Cache the full image</em> is checked the full image will be loaded to the cache and served from there after the first reference. <em>Full&nbsp;image&nbsp;protection</em> must be set to <em>Protected&nbsp;view</em> for the image to be cached. However, once cached, no protections are applied to the image."
 msgstr "Als <em>Cache de volledige afbeelding</em> ingeschakeld is zal de volledig afbeelding in de cache geladen worden en vanuit daar getoond worden na de eerste referentie. <em>Volledige afbeelding bescherming</em> moet op <em>Beschermde weergave</em> gezet worden zodat een afbeelding gechached kan worden. Echter, eens gechached wordt er geen bescherming toegepast op de afbeelding."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2118
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2148
 msgid "The <em>user</em>, <em>password</em>, and <em>hint</em> apply to the <em>Download</em> and <em>Protected view</em> level of protection. If there is a password set, the viewer must supply this password to access the image."
 msgstr "<em>Gebruiker</em>, <em>wachtwoord</em> en <em>hint</em> hebben betrekking op <em>Download</em> en <em>Beschermde weergave</em> op de mate van beveiliging. Indien een wachtwoord is ingesteld dient de bezoeker dit in te vullen alvorens toegang te krijgen tot de afbeelding."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2119
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2149
 msgid "Select the level of protection for full sized images. <em>Download</em> forces a download dialog rather than displaying the image. <em>No&nbsp;access</em> prevents a link to the image from being shown. <em>Protected&nbsp;view</em> forces image processing before the image is displayed, for instance to apply a watermark or to check passwords. <em>Unprotected</em> allows direct display of the image."
 msgstr "Selecteer de mate van beveiliging op volledige afbeeldingen. <em>Download</em> forceert een downloadvenster in plaats van het tonen van de afbeelding. <em>Geen toegang</em> voorkomt dat er een koppeling naar de afbeelding getoond wordt. <em>Beschermde weergave</em> forceert een afbeeldingsbewerking voordat de afbeelding getoond wordt, bijvoorbeeld om een watermerk toe te voegen of om wachtwoorden te controleren. <em>Onbeschermd</em> maakt het direct tonen van de afbeelding mogelijk."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2123
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2153
 msgid "Use lock image"
 msgstr "Gebruik slot-afbeelding"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2128
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2158
 msgid "Substitute a <em>lock</em> image for thumbnails of password protected albums when the viewer has not supplied the password. If your theme supplies an <code>images/err-passwordprotected.png</code> image, it will be shown. Otherwise the zenphoto default lock image is displayed."
 msgstr "Vervangt een <em>slot</em>-afbeelding voor thumbnails van met wachtwoord beveiligde albums. Als je thema een <code>images/err-passwordprotected.gif</code> afbeelding bevat, zal deze getoond worden. Anders wordt de standaard Zenphoto slotafbeelding getoond."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2142
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2172
 msgid "Metadata"
 msgstr "Metadata"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2164
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2179
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2180
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2181
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2194
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2209
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2210
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2211
 msgid "show"
 msgstr "toon"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2165
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2195
 msgid "hide"
 msgstr "verberg"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2166
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2196
 msgid "disabled"
 msgstr "uitgeschakeld"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2177
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2207
 msgid "Select how image metadata fields are handled."
 msgstr "Selecteer hoe de metadata velden behandeld moeten worden."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2179
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2209
 msgid "Show the field"
 msgstr "Tonen"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2180
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2210
 msgid "Hide the field"
 msgstr "Verbergen"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2181
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2211
 msgid "Do not process the field"
 msgstr "Negeren"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2185
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2215
 msgid "Hint: you can drag down the <em>drag handle</em> in the lower right corner to show more selections."
 msgstr "Tip: Je kunt dit venster groter maken door de hoek rechtsonder te slepen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2195
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2225
 msgid "IPTC encoding:"
 msgstr "IPTC codering"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2201
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2231
 msgid "The default character encoding of image IPTC metadata."
 msgstr "De standaard karakter-codering van IPTC metadata."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2206
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2236
 msgid "Imbed IPTC copyright"
 msgstr "Voeg IPTC copyright toe"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2207
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2237
 msgid "If checked and an image has no IPTC data a copyright notice will be imbedded cached copies."
 msgstr "Als dit is aangevinkt en een afbeelding heeft géén IPTC info, wordt er copyright informatie in de afbeeldings-info van gecachte kopieën geplaatst."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2209
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2239
 msgid "Replicate IPTC metadata"
 msgstr "Kopiëer IPTC metadata"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2210
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2240
 msgid "If checked IPTC data from the original image will be imbedded in cached copies. If the image has no IPTC data a copyright notice will be imbedded. (The text supplied will be used if the orginal image has no copyright.)"
 msgstr "Als dit is aangevinkt wordt IPTC info van originele afbeeldingen geplaatst in gecachte kopieën. Als de afbeelding géén IPTC info heeft, wordt er copyright informatie in de afbeeldings-info van gecachte kopieën geplaatst. (De opgegeven tekst wordt gebruikt als de originele afbeelding geen copyright heeft)"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2214
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2244
 msgid "IPTC Imbedding:"
 msgstr "IPTC invoeging:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2222
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2252
 msgid "<strong>NOTE:</strong> This option  applies only to JPEG format cached images."
 msgstr "<strong>Opmerking:</strong> Deze optie geldt alleen voor als JPEG gecachte afbeeldingen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2256
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2286
 msgid "Enable comment notification:"
 msgstr "Notificatie bij reactie:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2269
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2299
 msgid "Email the Admin when new comments are posted"
 msgstr "E-mail de admin bij een nieuwe reactie."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2273
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2303
 msgid "Spam filter:"
 msgstr "Spamfilter:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2281
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2311
 msgid "The SPAM filter plug-in you wish to use to check comments for SPAM"
 msgstr "Het spamfilter dat je wenst te gebruiken om reacties op SPAM te checken"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2293
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2323
 msgid "Name field"
 msgstr "Naam"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2301
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2318
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2335
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2331
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2348
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2365
 msgid "Show"
 msgstr "Zichtbaar"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2305
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2322
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2339
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2335
 #: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2352
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2369
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2382
 msgid "Require"
 msgstr "verplicht"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2308
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2338
 msgid "If the <em>Name</em> field is required, the poster must provide a name."
 msgstr "Als de <em>Naam</em> verplicht is, moet de degene die reageert een naam invullen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2310
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2340
 msgid "Email field"
 msgstr "E-mailadres"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2325
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2355
 msgid "If the <em>Email</em> field is required, the poster must provide an email address."
 msgstr "Als het <em>E-mailadres</em> verplicht is, moet de degene die reageert een e-mailadres invullen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2327
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2357
 msgid "Website field"
 msgstr "Website"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2342
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2372
 msgid "If the <em>Website</em> field is required, the poster must provide a website."
 msgstr "Als de <em>Website</em> verplicht is, moet de degene die reageert een website invullen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2344
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2374
 msgid "Captcha"
 msgstr "Captcha"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2355
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2385
 msgid "If <em>Captcha</em> is required, the form will include a Captcha verification."
 msgstr "Als de <em>Captcha</em> verplicht is, zal het formulier een Captcha verificatie tonen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2449
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2479
 msgid "There are no themes for which you have rights to administer."
 msgstr "Er zijn geen thema's waarvan je de instellingen aan kunt passen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2464
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2494
 #, php-format
 msgid "Options for <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 msgstr "Opties voor <code><strong>%1$s</strong></code>: <em>%2$s</em>"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2466
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2496
 #, php-format
 msgid "Options for <em>%s</em>"
 msgstr "Opties voor <em>%s</em>"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2474
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2504
 msgid "Show theme for:"
 msgstr "Laat thema zien voor:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2490
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2760
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2520
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2790
 msgid "Revert to default"
 msgstr "Herstel standaard opties"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2490
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2760
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2520
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2790
 msgid "Revert"
 msgstr "Herstel standaard opties"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2497
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2527
 msgid "<strong>Standard options</strong>"
 msgstr "<strong>Standaard opties</strong>"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2499
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2529
 msgid "<em>These image and album presentation options provided by the Zenphoto core for all themes.</em>"
 msgstr "<em>Deze afbeeldings- en album-presentatieopties zijn standaard voor alle thema's.</em>"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2499
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2529
 msgid "<strong>Note:</strong> These are <em>recommendations</em> as themes may choose to override them for design reasons"
 msgstr "<strong>Opmerking:</strong> Dit zijn <em>aanbevelingen</em>. Sommige thema's gebruiken echter hun eigen instellingen i.v.m. de vormgeving."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2502
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2532
 msgid "Albums:"
 msgstr "Albums:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2511
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2548
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2541
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2578
 msgid "thumbnails per row"
 msgstr "thumbnails per rij"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2520
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2557
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2550
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2587
 msgid "thumbnails per page"
 msgstr "thumbnails per pagina"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2524
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2554
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of album thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of album thumbnails that will fit in a \"row\" and the number of albums thumbnails you wish per page."
 msgstr "Dit specificeert het, <a title=\"Kijk op je album-pagina en tel het het aantal album thumbnails op een rij. Dat is de waarde die je moet instellen voor deze optie.\">door CSS bepaalde aantal</a> album thumbnails per rij en het aantal album thumbnails dat je wilt zien per pagina."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2529
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2566
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2559
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2596
 msgid "<strong>Note:</strong> If <em>thumbnails per row</em> is greater than 1, The actual number of thumbnails that are displayed on a page will be rounded up to  the next multiple of it."
 msgstr "<strong>Opmerking:</strong> Als het <em>aantal thumbnails per rij</em> groter is dan 1, wordt het aantal thumbnails naar boven afgerond tot een meervoud hiervan."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2530
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2560
 #, php-format
 msgid "For album pages there will be %1$u rows of thumbnails."
 msgstr "Op albumpagina's komen er %1$u rijen thumbnails."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2539
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2569
 msgid "Images:"
 msgstr "Afbeeldingen:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2561
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2591
 msgid "These specify the Theme <a title=\"Look at your album page and count the number of image thumbnails that show up in one row. This is the value you should set for the option.\">CSS determined number</a> of image thumbnails that will fit in a \"row\" and the number of image thumbnails you wish per page."
 msgstr "Dit specificeert het, <a title=\"Kijk op je album-pagina en tel het het aantal afbeeldings thumbnails op een rij. Dat is de waarde die je moet instellen voor deze optie.\">door CSS bepaalde aantal</a> afbeeldings thumbnails per rij en het aantal afbeeldings thumbnails dat je wilt zien per pagina."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2567
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2597
 #, php-format
 msgid "For pages containing images there will be %1$u rows of thumbnails."
 msgstr "Op afbeeldingspagina's komen er  %1$u rijen thumbnails."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2583
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2613
 msgid "Transition:"
 msgstr "Overgang:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2599
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2629
 msgid "separate"
 msgstr "apart"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2600
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2630
 msgid "combined"
 msgstr "gecombineerd"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2603
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2633
 msgid "if both album and image <em>thumbnails per row</em> are greater than 1 you can choose if album thumbnails and image thumbnails are placed together on the page that transitions from only album thumbnails to only image thumbnails."
 msgstr "Als zowel het aantal <em>album-thumbnails</em> als het aantal <em>afbeeldings-thumbnails</em> groter is dan 1, kun je hier kiezen of album-thumbnails en afbeeldings-thumbnails samen getoond worden op de pagina die zowel album-thumbnails als afbeeldings-thumbnails weergeeft. (Dit gaat dus op voor albums met daarin afbeeldingen én sub-albums)"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2620
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2650
 msgid "Thumb size:"
 msgstr "Thumbgrootte:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2624
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2654
 #, php-format
 msgid "Standard thumbnails will be scaled to %u pixels."
 msgstr "De standaard thumbnail wordt geschaald naar %u pixels."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2634
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2664
 msgid "Crop thumbnails:"
 msgstr "Crop thumbnails:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2639
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2669
 #, php-format
 msgid "%s%% left &amp; right"
 msgstr "%s%% links en rechts"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2643
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2673
 #, php-format
 msgid "%s%% top &amp; bottom"
 msgstr "%s%% boven en onder"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2648
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2678
 #, php-format
 msgid "If checked the thumbnail will be cropped %1$.1f%% in from the top and the bottom margins and %2$.1f%% in from the left and the right margins."
 msgstr "Indien aangevinkt wordt de thumbnail uitgesneden %1$.1f%% vanaf de boven- en onderkant en %2$.1f%% vanaf de linker- en rechterkant."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2650
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2680
 msgid "<strong>Note:</strong> changing crop will invalidate existing custom crops."
 msgstr "<strong>Opmerking</strong>: Het veranderen van de uitsnede maakt dat reeds bestaande uitsnedes vervallen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2654
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2684
 msgid "Gray scale conversion:"
 msgstr "Zwart-wit conversie:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2661
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2691
 msgid "thumbnail"
 msgstr "thumbnail"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2665
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2695
 msgid "If checked, images/thumbnails will be created in gray scale."
 msgstr "Indien aangevinkt, worden afbeeldingen/thumbnails omgezet in zwart-wit."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2675
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2705
 msgid "Image size:"
 msgstr "Afbeeldingsgrootte:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2686
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2716
 msgid "height"
 msgstr "Hoogte"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2690
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2720
 msgid "width"
 msgstr "Breedte"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2697
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2727
 msgid "shortest side"
 msgstr "kortste zijde"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2701
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2731
 msgid "longest side"
 msgstr "langste zijde"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2706
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2736
 msgid "Default image display size."
 msgstr "Standaard afbeeldingsgrootte:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2707
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2737
 msgid "The image will be sized so that the <em>height</em>, <em>width</em>, <em>shortest side</em>, or the <em>longest side</em> will be equal to <em>image size</em>."
 msgstr "De afbeelding zal zo geschaald worden dat de<em> hoogte</em>, <em>breedte</em>, of de <em>langste zijde</em> gelijk is aan <em>afbeeldingsgrootte</em>."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2719
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2749
 msgid "Gallery index page link:"
 msgstr "Galerij index link:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2738
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2768
 msgid "If this option is not empty, the Gallery Index URL that would normally link to the theme <code>index.php</code> script will instead link to this script. This frees up the <code>index.php</code> script so that you can create a customized <em>Home page</em> script. This option applies only to the main theme for the <em>Gallery</em>."
 msgstr "Als hier een pagina/script gekozen is zal de Galerij-index URL, die normaal gesproken naar het <code>index.php</code> script van het thema verwijst, nu naar dit script verwijzen. Dit maakt het mogelijk een eigen <em>Homepage</em> script te maken. Deze optie is alleen van toepassing op het hoofdthema van de <em>galerij</em>."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2746
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2776
 msgid "<strong>Custom theme options</strong>"
 msgstr "<strong>Unieke themaopties</strong>"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2748
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2778
 #, php-format
 msgid "The following are options specifically implemented by %s."
 msgstr "De volgende opties zijn specifiek geïmplementeerd door %s."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2836
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2866
 msgid "Expand plugin options"
 msgstr "Toon alle pluginopties"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2838
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2868
 msgid "Collapse all plugin options"
 msgstr "Verberg alle pluginopties"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2855
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2885
 #: Zp-Dutch-Translation-Dev/zp-core/admin-plugins.php:218
 msgid "<strong>Note:</strong> Instantiating the option interface within the plugin may cause performance issues. You should instead set <code>$option_interface</code> to the name of the class as a string."
 msgstr "<strong>Opmerking:</strong> Het instantiëren van de optie-interface van de plugin kan problemen geven met de prestaties. Je zou in plaats hiervan de <code>$option_interface</code> de naam van de class als een string moeten geven."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2890
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2920
 msgid "warning"
 msgstr "waarschuwing"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2926
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2956
 msgid "There are no plugin options to administer."
 msgstr "Er zijn geen pluginoptie's om te beheren."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2988
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3018
 msgid "Server protocol:"
 msgstr "Server protocol:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2994
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3024
 msgid "secure admin"
 msgstr "beveiligde toegang tot admin gedeelte"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2998
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3028
 msgid "Normally this option should be set to <em>http</em>. If you're running a secure server, change this to <em>https</em>. Select <em>secure admin</em> if you need only to insure secure access to <code>admin</code> pages."
 msgstr "Normaal staat deze optie op <em>http</em>. Als je een beveiligde server gebruikt stel dan <em>https</em> in. Selecteer <em>beveiligde toegang tot admin</em> voor beveiligde toegang tot de <code>admin</code> pagina's."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:2999
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3029
 msgid "<strong>Note:</strong><br /><br />Login from the front-end user login form is secure only if <em>https</em> is selected.<br /><br />If you select <em>https</em> or <em>secure admin</em> your server <strong>MUST</strong> support <em>https</em>.  If you set either of these on a server which does not support <em>https</em> you will not be able to access the <code>admin</code> pages to reset the option! Your only possibility then is to change the option named <span class=\"inlinecode\">server_protocol</span> in the <em>options</em> table of your database."
 msgstr "<strong>Opmerking:</strong><br /><br />Inloggen via het front-end login-formulier is alleen veilig als <em>https</em> is geselecteerd.<br /><br />Als je <em>https</em> of <em>beveiligde toegang tot admin</em> selecteerd <strong>MOET</strong> je server <em>https</em> ondersteunen.  Als je één van deze twee selecteerd voor een server die géén <em>https</em> ondersteund kun je de <code>admin</code> pagina's niet bereiken om de optie te veranderen! De enige mogelijkheid om die dan te veranderen is de optie <span class=\"inlinecode\">server_protocol</span> te veranderen in de <em>options</em> tabel van je database."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3008
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3038
 msgid "CAPTCHA generator:"
 msgstr "CAPTCHA generator:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3017
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3047
 msgid "Select the <em>CAPTCHA</em> generator to be used by Zenphoto."
 msgstr "Selecteer de <em>CAPTCHA</em> generator om te gebruiken."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3021
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3051
 msgid "Cookie security"
 msgstr "Cookie beveiliging"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3026
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3056
 msgid "Tie cookies to the IP address of the browser."
 msgstr "Koppel cookies aan het IP-adres van de browser."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3030
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3060
 msgid "<strong>Note</strong>: If your browser does not present a consistant IP address during a session you may not be able to log into your site when this option is enabled."
 msgstr "<strong>Opmerking</strong>: Als je browser tijdens een sessie geen statisch IP-adres heeft kun je mogelijk niet inloggen als deze optie geactiveerd is!"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3032
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3062
 msgid " You <strong>WILL</strong> have to login after changing this option."
 msgstr "Je <strong>MOET</strong> inloggen als je deze optie hebt veranderd."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3034
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3064
 msgid "If you set the option and cannot login, you will have to restore your database to a point when the option was not set, so you might want to backup your database first."
 msgstr "Als je de optie hebt geactiveerd en je kunt niet inloggen zul je de database moeten herstellen met een backup waarbij de optie niet was geactiveerd. Het is dus verstandig om eerst een backup van je database te maken!"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3046
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3076
 msgid "User name"
 msgstr "Gebruikersnaam veld <br />login-formulier"
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3068
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3098
 msgid "If enabled guest logon forms will include the <em>User Name</em> field. This allows <em>Zenphoto</em> users to logon from the form."
 msgstr "Indien aangevinkt zal een login-formulier een veld voor een <em>gebruikersnaam</em> tonen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3070
+#: Zp-Dutch-Translation-Dev/zp-core/admin-options.php:3100
 msgid "<strong>Note</strong>: This field is required because one or more of the <em>Guest</em> passwords has a user name associated."
 msgstr "<strong>Opmerking:</strong> Dit veld is verplicht als een gast een gebruikersnaam moet invullen."
 
@@ -5943,16 +5956,16 @@ msgstr "Verboden"
 msgid "Too few arguments! Image not found."
 msgstr "Te weinig argumenten! Afbeelding niet gevonden."
 
-#: Zp-Dutch-Translation-Dev/zp-core/functions-basic.php:1360
+#: Zp-Dutch-Translation-Dev/zp-core/functions-basic.php:1363
 #, php-format
 msgid "Mutex %s was left locked."
 msgstr "Mutex %s was left locked."
 
-#: Zp-Dutch-Translation-Dev/zp-core/functions-basic.php:1378
+#: Zp-Dutch-Translation-Dev/zp-core/functions-basic.php:1381
 msgid "Error locking mutex"
 msgstr "Error locking mutex"
 
-#: Zp-Dutch-Translation-Dev/zp-core/functions-basic.php:1396
+#: Zp-Dutch-Translation-Dev/zp-core/functions-basic.php:1399
 msgid "Error un-locking mutex"
 msgstr "Error un-locking mutex"
 
@@ -7032,33 +7045,33 @@ msgstr "Speeltijd"
 msgid "XMP Rating"
 msgstr "XMP waardering"
 
-#: Zp-Dutch-Translation-Dev/zp-core/i.php:58
+#: Zp-Dutch-Translation-Dev/zp-core/i.php:62
 msgid "Forbidden(1)"
 msgstr "Verboden (1)"
 
-#: Zp-Dutch-Translation-Dev/zp-core/i.php:116
+#: Zp-Dutch-Translation-Dev/zp-core/i.php:120
 msgid "Forbidden(2)"
 msgstr "Verboden (2)"
 
-#: Zp-Dutch-Translation-Dev/zp-core/i.php:153
+#: Zp-Dutch-Translation-Dev/zp-core/i.php:157
 msgid "The cache directory does not exist. Please create it and set the permissions to 0777."
 msgstr "De cache map bestaat niet. Maak deze a.u.b aan en zet de permissies op 0777."
 
-#: Zp-Dutch-Translation-Dev/zp-core/i.php:158
+#: Zp-Dutch-Translation-Dev/zp-core/i.php:162
 msgid "The cache directory is not writable! Attempts to chmod didn't work."
 msgstr "De cache directory is niet schrijfbaar! Pogingen om te chmodden zijn mislukt."
 
-#: Zp-Dutch-Translation-Dev/zp-core/i.php:193
+#: Zp-Dutch-Translation-Dev/zp-core/i.php:197
 #, php-format
 msgid "Image not found; file %s does not exist."
 msgstr "Afbeelding niet gevonden; bestand %s bestaat niet."
 
-#: Zp-Dutch-Translation-Dev/zp-core/i.php:225
+#: Zp-Dutch-Translation-Dev/zp-core/i.php:234
 #, php-format
 msgid "Image processing of %s resulted in a fatal error."
 msgstr "Her verwerken van %s  resulteerde in een ernstige fout."
 
-#: Zp-Dutch-Translation-Dev/zp-core/i.php:247
+#: Zp-Dutch-Translation-Dev/zp-core/i.php:256
 #, php-format
 msgid "Suffix Not Allowed: %s"
 msgstr "Suffix niet toegestaan: %s"
@@ -7322,7 +7335,7 @@ msgstr "Gebruikers met deze rechten kunnen alle niet-gepubliceerde onderdelen be
 #: Zp-Dutch-Translation-Dev/zp-core/lib-auth.php:551
 #: Zp-Dutch-Translation-Dev/zp-core/lib-auth.php:552
 msgid "Manage all"
-msgstr "Beheer alles"
+msgstr "Beheer alle"
 
 #: Zp-Dutch-Translation-Dev/zp-core/lib-auth.php:531
 #: Zp-Dutch-Translation-Dev/zp-core/lib-auth.php:891
@@ -7836,51 +7849,51 @@ msgid_plural "Options:"
 msgstr[0] "Optie:"
 msgstr[1] "Opties:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:79
+#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:80
 msgid "an unknown release"
 msgstr "onbekende versie"
 
-#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:164
+#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:165
 msgid "Zenphoto has detected a change in your installation."
 msgstr "Zenphoto heeft een verandering in je installatie gedetecteerd."
 
-#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:174
+#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:175
 #, php-format
 msgid "Your server software has changed from %1$s to %2$s."
 msgstr "Je serversoftware is veranderd van %1$s naar %2$s."
 
-#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:178
+#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:179
 #, php-format
 msgid "Your database software has changed from %1$s to %2$s."
 msgstr "Je database software is veranderd van %1$s naar %2$s."
 
-#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:181
+#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:182
 #, php-format
 msgid "Zenphoto %1$s has been copied over %2$s."
 msgstr "Zenphoto %1$s is gecopiëerd naar %2$s."
 
-#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:184
+#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:185
 #, php-format
 msgid "Your installation has moved from %1$s to %2$s."
 msgstr "Je installatie is verplaatst van %1$s naar %2$s."
 
-#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:188
+#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:189
 #, php-format
 msgid "The script <code>%1$s</code> has changed."
 msgstr "Het script <code>%1$s</code> is veranderd."
 
-#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:199
+#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:200
 #: Zp-Dutch-Translation-Dev/zp-core/setup.php:25
 #, php-format
 msgid "Please reinstall the following setup files from the %1$s [%2$s] release:"
 msgstr "Installeer opnieuw de volgende setup bestanden van versie %1$s [%2$s]:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:230
+#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:231
 #, php-format
 msgid "The change detected is critical. You <strong>must</strong> run %1$ssetup%2$s for your site to function."
 msgstr "De gedetecteerde verandering is kritisch. Je <strong>moet</strong> %1$ssetup%2$s uitvoeren om je site te laten werken."
 
-#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:232
+#: Zp-Dutch-Translation-Dev/zp-core/reconfigure.php:233
 #, php-format
 msgid "The change detected may not be critical but you should run %1$ssetup%2$s at your earliest convenience."
 msgstr "Deze gedetecteerde veranderingen hoeven niet kritisch te zijn maar je zou zo snel mogelijk %1$ssetup%2$s moeten uitvoeren."
@@ -10964,155 +10977,142 @@ msgid "Provides cache management utilities for Image, HTML, and RSS caches."
 msgstr "Cache management voor afbeeldingen, HTML en RSS."
 
 #: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:56
-msgid "<strong>NOTE</strong>: The image caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may exceed the capacity of your server. See the plugin option <em>Cache workers</em>."
-msgstr "<strong>Opmerking</strong>: Voor het cachen van afbeeldingen moet je browser elk afbeeldingsformaat ophalen om weer te geven. Voor een grote galerij kan dit problemen geven met de capaciteit van de server. Hierdoor kan de verwerking afgebroken worden. Zie de plugin optie <em>Cache processen</em>."
+msgid "<strong>NOTE</strong>: The image caching process requires that your WEB browser <em>fetch</em> each image size. For a full gallery cache this may exceed the capacity of your server and not complete."
+msgstr "<strong>Opmerking</strong>: Voor het cachen van afbeeldingen moet je browser elk afbeeldingsformaat ophalen om weer te geven. Voor een grote galerij kan dit problemen geven met de capaciteit van de server. Hierdoor kan de verwerking afgebroken worden."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:86
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:85
 msgid "Image caching sizes"
 msgstr "Afbeeldings cache-groottes"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:89
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:88
 msgid "Cropped images will be made in these parameters if the <em>Create image</em> box is checked. Un-check to box to remove the settings.You can determine the values for these fields by examining your cached images. The file names will look something like these:"
 msgstr "Uitgesneden afbeeldingen worden gemaakt met deze instellingen als <em>Toepassen</em> is aangevinkt (onder <em>admin -> overzicht -> Cache afbeeldingen</em>). Vink uit om de instellingen te verwijderen. Je kunt de waarden voor deze velden bepalen door te kijken naar de bestandsnamen van je gecachte afbeeldingen. Die zien er ongeveer als volgt uit:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:92
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:91
 msgid "<code>photo_595.jpg</code>: sized to 595 pixels"
 msgstr "<code>foto_595.jpg</code>: formaat 595 pixels"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:93
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:92
 msgid "<code>photo_w180_cw180_ch80_thumb.jpg</code>: a size of 180px wide and 80px high and it is a thumbnail (<code>thumb</code>)"
 msgstr "<code>foto_w180_cw180_ch80_thumb.jpg</code>: een breedte van 180px en een hoogte van 80px en het is een thumbnail (<code>thumb</code>)"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:94
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:93
 msgid "<code>photo_85_cw72_ch72_thumb_copyright_gray.jpg</code>: sized 85px cropped at about 7.6% (one half of 72/85) from the horizontal and vertical sides with a watermark (<code>copyright</code>) and rendered in grayscale (<code>gray</code>)."
 msgstr "<code>foto_85_cw72_ch72_thumb_copyright_gray.jpg</code>: formaat 85px, uitgesneden op ongeveer 7.6% (de helft van 72/85) vanaf de horizontale en verticale zijden, met een watermerk (<code>copyright</code>) en in zwart/wit (<code>gray</code>)."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:95
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:94
 msgid "<code>photo_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: a custom cropped 85px thumbnail with watermark."
 msgstr "<code>foto_w85_h85_cw350_ch350_cx43_cy169_thumb_copyright.jpg</code>: een custom uitgesneden thumbnail met watermerk"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:99
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:98
 msgid "If a field is not represented in the cached name, leave the field blank. Custom crops (those with cx and cy) really cannot be cached easily since each image has unique values. See the <em>template-functions</em>::<code>getCustomImageURL()</code> comment block for details on these fields."
 msgstr "Als een veld niet voorkomt in de gecachte abeeldingsnaam, laat dit dan leeg. Custom uitsnedes (met cx en cy) kunnen moeilijk gecacht worden omdat elke afbeelding unieke waarden heeft. Zie het commentaar bij <em>template-functions</em>::<code>getCustomImageURL()</code> voor meer info.</p><p>"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:103
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:102
 msgid "Some themes use <em>MaxSpace</em> image functions. To cache images referenced by these functions set the <em>width</em> and <em>height</em> parameters to the <em>MaxSpace</em> container size and check the <code>MaxSpace</code> checkbox."
 msgstr "Sommige thema's gebruiken <em>MaxSpace</em> functies. Om de betreffende afbeeldingen te cachen stel je de <em>breedte</em> en<em>hoogte</em> in op het formaat van de <em>MaxSpace</em> container en vink <code>MaxSpace</code> aan. "
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:106
-msgid "Cache workers"
-msgstr "Cache processen"
-
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:108
-#, php-format
-msgid "Use %s workers in caching the images."
-msgstr "Gebruik %s gelijktijdige processen om de afbeeldingen te cashen."
-
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:109
-msgid "More workers will get the job done faster so long as your server does not get swamped or run out of memory."
-msgstr "Meer processen maken dat het cashen sneller gaat zolang de server genoeg geheugen heeft."
-
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:119
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:114
 msgid "Purge cache files"
 msgstr "Verwijder cache-bestanden"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:122
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:117
 msgid "If a <em>type</em> is checked, the HTML and RSS caches for the item will be purged when the published state of an item of <em>type</em> changes."
 msgstr "Als een <em>type</em> is aangevinkt worden de HTML en RSS caches geleegd wanneer de publicatie-status van een item van <em>type</em> verandert."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:123
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:118
 msgid "<strong>NOTE:</strong> The entire cache is cleared since there is no way to ascertain if a gallery page contains dependencies on the item."
 msgstr "<strong>Opmerking</strong>: De gehele cache wordt geleegd omdat niet kan worden bepaald of er sprake is van afhankelijkheden van het item."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:174
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:166
 msgid "Size"
 msgstr "Grootte"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:174
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:166
 msgid "Width"
 msgstr "Breedte"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:174
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:166
 msgid "Height"
 msgstr "Hoogte"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:175
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:167
 msgid "Crop width"
 msgstr "Uitsnede-breedte"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:175
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:167
 msgid "Crop height"
 msgstr "Uitsnede-hoogte"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:175
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:167
 msgid "Crop X axis"
 msgstr "X-as uitsnede"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:176
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:168
 msgid "Crop Y axis"
 msgstr "Y-as uitsnede"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:192
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:184
 msgid "Watermark"
 msgstr "Watermerk"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:194
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:186
 msgid "MaxSpace"
 msgstr "MaxSpace"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:196
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:188
 msgid "Grayscale"
 msgstr "Grayscale"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:311
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:375
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:274
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:338
 msgid "Finds images that have not been cached and creates the cached versions."
 msgstr "Zoekt afbeeldingen die nog niet gecached zijn en cacht ze."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:314
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:277
 msgid "You must first set the plugin options for cached image parameters."
 msgstr "Je moet eerst de plugin opties voor gecachte afbeeldingen instellen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:318
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:331
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:344
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:356
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:281
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:294
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:307
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:319
 msgid "Cache"
 msgstr "Cache"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:320
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:283
 msgid "Cache images"
 msgstr "Cache afbeeldingen"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:333
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:296
 msgid "Purge RSS cache"
 msgstr "Leeg RSS-cache"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:338
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:301
 msgid "Delete all files from the RSS cache"
 msgstr "Verwijder alle bestanden uit de RSS-cache"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:346
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:309
 msgid "Purge Image cache"
 msgstr "Leeg afbeeldingen-cache"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:351
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:314
 msgid "Delete all files from the Image cache"
 msgstr "Verwijder alle bestanden uit de afbeeldingen-cache"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:358
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:321
 msgid "Purge HTML cache"
 msgstr "Leeg HTML cache"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:362
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:325
 msgid "Clear the static HTML cache. HTML pages will be re-cached as they are viewed."
 msgstr "Leeg de statische HTML cache. HTML pagina's worden her-cached als ze worden bekeken."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:378
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:341
 msgid "You must first set the plugin's options for cached image parameters."
 msgstr "Je moet eerst de plugin opties voor gecachte afbeeldingen instellen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:380
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager.php:343
 msgid "Cache album images"
 msgstr "Cache album afbeeldingen"
 
@@ -15270,36 +15270,34 @@ msgstr "*geen categorie*"
 msgid "Only those <em>news categories</em> checked will be Tweeted. <strong>Note:</strong> <em>*not categorized*</em> means those news articles which have no category assigned."
 msgstr "Alleen de aangevinkte nieuws-categorieën worden geTweet. <strong>Opmerking:</strong> <em>*geen categorie*</em> betekend artikelen die niet aan een categorie zijn toegewezen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:299
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:319
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:332
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:297
 #, php-format
 msgid "Error tweeting <code>%1$s</code>: %2$s"
 msgstr "Fout Tweeting <code>%1$s</code>: %2$s"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:306
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:322
 #, php-format
 msgid "New image: [%2$s]%1$s "
 msgstr "Nieuwe afbeelding: [%2$s]%1$s "
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:309
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:325
 #, php-format
 msgid "New album: %s "
 msgstr "Nieuw album: %s "
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:429
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:426
 msgid "No scheduled news articles found."
 msgstr "Er zijn geen ingeplande artikelen gevonden."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:431
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:428
 msgid "Scheduled items have been noted for tweeting."
 msgstr "Er zijn ingeplande artikelen gevonden om te Tweeten."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:460
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:457
 msgid "Tweet News Errors:"
 msgstr "Tweet News fouten:"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:491
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/tweet_news.php:488
 msgid "Tweet me"
 msgstr "Tweet me"
 
@@ -15337,7 +15335,7 @@ msgstr "Periode tussen waarschuwingen"
 
 #: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/user-expiry.php:77
 msgid "The period in days before the expiry during which a warning message will be sent to the user. (If set to zero, no warning occurs.)"
-msgstr "Om de hoeveel dagen de gebruiker een e-mail met een waarschuwing krijgt.(als je dit op 0 (nul) zet wordt er geen waarschuwing verzonden) "
+msgstr "Om de hoeveel dagen de gebruiker een e-mail met een waarschuwing krijgt. Zet dit op 0 (nul) om geen waarschuwing te verzenden."
 
 #: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/user-expiry.php:78
 msgid "Auto renew"
@@ -16163,61 +16161,61 @@ msgstr "Vind je Zenphoto goed? Doe een bijdrage!"
 msgid "Your support helps pay for the Zenphoto site server and helps development of Zenphoto. Thank you!"
 msgstr "Jouw bijdrage helpt de ontwikkeling van Zenphoto en het onderhoud van de server. Dankjewel !"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:94
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:91
 #, php-format
 msgid "[%u image]"
 msgid_plural "[%u images]"
 msgstr[0] "[%u afbeelding]"
 msgstr[1] "[%u afbeeldingen]"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:153
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:149
 #, php-format
 msgid "Refreshing cache for %s"
 msgstr "Verversing van de cache voor %s"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:217
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:213
 msgid "invalid_MaxSpace"
 msgstr "invalid_MaxSpace"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:236
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:232
 #, php-format
 msgid "all sizes for <i>%1$s</i>"
 msgstr "alle formaten voor <i>%1$s</i>"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:280
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:276
 #, php-format
 msgid "%u cache size to apply."
 msgid_plural "%u cache sizes to apply."
 msgstr[0] "%u grootte van de cache instellen."
 msgstr[1] "%u groottes van de cache instellen."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:295
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:291
 #, php-format
 msgid "%u cache size requested"
 msgid_plural "%u cache sizes requested"
 msgstr[0] "%u gewenste grootte van de cache"
 msgstr[1] "%u gewenste groottes van de cache"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:296
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:292
 #, php-format
 msgid "Finished processing %1$u image (%2$s)."
 msgid_plural "Finished processing %1$u images (%2$s)."
 msgstr[0] "Klaar met het verwerken van %1$u afbeelding (%2$s)."
 msgstr[1] "Klaar met het verwerken van %1$u afbeeldingen (%2$s)."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:298
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:294
 msgid "Refresh the caching of the selected image sizes if some images did not render."
 msgstr "Ververs het cachen van de geselecteerde afbeeldinsformaten indien sommige afbeeldingen niet verwerkt zijn."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:305
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:301
 msgid "No cache sizes enabled."
 msgstr "Geen cache-formaten actief."
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:309
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:305
 msgid "Cache the images"
 msgstr "Cache afbeeldingen"
 
-#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:309
+#: Zp-Dutch-Translation-Dev/zp-core/zp-extensions/cacheManager/cacheImages.php:305
 msgid "Executes the caching of the selected image sizes."
 msgstr "Voert het cachen van de geselecteerde afbeeldingsformaten uit."
 
@@ -18912,6 +18910,12 @@ msgstr "<code>zenpageAlbumImage()</code> kan afbeelding %1$s:%2$s niet vinden."
 #, php-format
 msgid "<code>zenpageAlbumImage()</code> did not find the album %1$s"
 msgstr "<code>zenpageAlbumImage()</code> kan album %1$s niet vinden."
+
+#~ msgid "Cache workers"
+#~ msgstr "Cache processen"
+
+#~ msgid "Use %s workers in caching the images."
+#~ msgstr "Gebruik %s gelijktijdige processen om de afbeeldingen te cashen."
 
 #~ msgid "tag set!"
 #~ msgstr "tags"
