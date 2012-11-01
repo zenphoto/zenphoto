@@ -180,6 +180,7 @@ echo '</head>';
 	}
 
 
+if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 ?>
 <fieldset class="smallbox">
 	<legend><?php echo gettext('Image and album <em>Discovery</em> options'); ?></legend>
@@ -212,6 +213,10 @@ echo '</head>';
 </fieldset>
 <br clear="all" />
 <br clear="all" />
+<?php
+}
+?>
+
 <?php $visible = $report == 'albums' || $report == 'propagate'; ?>
 <fieldset class="smallbox">
 	<legend><?php reveal('albumbox',$visible); echo gettext('Albums not published'); ?></legend>
