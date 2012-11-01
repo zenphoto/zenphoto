@@ -1962,6 +1962,36 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 
 		</tr>
 		<tr>
+			<td><?php echo gettext("Caching concurrency:"); ?></td>
+			<td>
+				<script type="text/javascript">
+					// <!-- <![CDATA[
+					$(function() {
+						$("#slider-workers").slider({
+							<?php $v = getOption('imageProcessorConcurrency'); ?>
+							startValue: <?php echo $v; ?>,
+							value: <?php echo $v; ?>,
+							min: 2,
+							max:60,
+							slide: function(event, ui) {
+								$("#cache-workers").val(ui.value);
+								$("#cache_processes").html($("#cache-workers").val());
+							}
+						});
+						$("#cache-workers").val($("#slider-workers").slider("value"));
+						$("#cache_processes").html($("#cache-workers").val());
+					});
+					// ]]> -->
+				</script>
+				<div id="slider-workers"></div>
+				<input type="hidden" id="cache-workers" name="cacheManager_workers" value="<?php echo getOption('cacheManager_workers');?>" />
+			</td>
+			<td>
+			<?php printf(gettext('Allow cache processing of %s concurrent images.'),'<span id="cache_processes">'.getOption('imageProcessorConcurrency').'</span>').
+																																'<p class="notebox">'.gettext('More workers will get the job done faster so long as your server does not get swamped or run out of memory.').'</p>'; ?>
+			</td>
+		</tr>
+		<tr>
 			<td><?php echo gettext("Cache as:"); ?></td>
 			<td>
 				<?php $type = getOption('image_cache_suffix'); ?>
