@@ -135,15 +135,11 @@ if ($_zp_loggedin) {
 	}
 	if ($_zp_loggedin & OPTIONS_RIGHTS) {
 		$subtabs[gettext("search")] = 'admin-options.php?page=options&amp;tab=search';
-	}
-	if ($_zp_loggedin & THEMES_RIGHTS) {
-		if (empty($optiondefault)) $optiondefault='&amp;tab=theme';
-		$subtabs[gettext("theme")] = 'admin-options.php?page=options&amp;tab=theme';
-	}
-	if ($_zp_loggedin & OPTIONS_RIGHTS) {
+		if ($_zp_loggedin & THEMES_RIGHTS) {
+			if (empty($optiondefault)) $optiondefault='&amp;tab=theme';
+			$subtabs[gettext("theme")] = 'admin-options.php?page=options&amp;tab=theme';
+		}
 		$subtabs[gettext("RSS")] = 'admin-options.php?page=options&amp;tab=rss';
-	}
-	if (!empty($subtabs)) {
 		$zenphoto_tabs['options'] = array('text'=>gettext("options"),
 																			'link'=>WEBPATH."/".ZENFOLDER.'/admin-options.php?page=options'.$optiondefault,
 																			'subtabs'=>$subtabs,
