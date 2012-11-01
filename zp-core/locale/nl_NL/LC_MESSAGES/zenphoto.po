@@ -3983,7 +3983,7 @@ msgstr "Het aantal nieuwe artikelen dat je wilt laten zien in Nieuws RSS feed. V
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1561
 msgid "Size of RSS feed images:"
-msgstr "Grootte van RSS feed afbeeldingen."
+msgstr "Grootte van de RSS feed afbeeldingen."
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/admin-options.php:1568
 msgid "The size you want your images to have in your site's RSS feed."
@@ -16611,7 +16611,7 @@ msgstr "Gesloten voor reacties."
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/comment_form/functions.php:888
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/comment_form/functions.php:891
 msgid "Subscribe to comments"
-msgstr "Ontvang reacties."
+msgstr "RSS reacties."
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/deprecated_functions/check_for_deprecated.php:25
 msgid "Deprecated"
@@ -17520,7 +17520,7 @@ msgstr "Gebruikersnaam* (dit wordt je gebruikersnaam)"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/register_user/register_user_form.php:18
 msgid "Email* (this will be your user id)"
-msgstr "E-mail* (dit is meteen je gebruikers ID)"
+msgstr "E-mail* (dit is meteen ook je gebruikers ID)"
 
 #: ZpFork-Dutch-Translation-Dev/zp-core/zp-extensions/register_user/register_user_form.php:18
 msgid "User ID"
