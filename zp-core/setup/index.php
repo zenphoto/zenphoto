@@ -1422,10 +1422,10 @@ if ($connection && $_zp_loggedin != ADMIN_RIGHTS) {
 		if (file_exists($serverpath.'/robots.txt')) {
 			checkmark(-2, gettext('<em>robots.txt</em> file'), gettext('<em>robots.txt</em> file [Not created]'), gettext('Setup did not create a <em>robots.txt</em> file because one already exists.'));
 		} else {
-			$text = explode('****delete all lines above and including this one *******'."\n", $robots);
+			$text = explode('****delete all lines above and including this one *******', $robots);
 			$d = dirname(dirname($_SERVER['SCRIPT_NAME']));
 			if ($d == '/') $d = '';
-			$robots = str_replace('/zenphoto', $d, $text[1]);
+			$robots = str_replace('/zenphoto', $d, trim($text[1]));
 			$rslt = file_put_contents($serverpath.'/robots.txt', $robots);
 			if ($rslt === false) {
 				$rslt = -1;
