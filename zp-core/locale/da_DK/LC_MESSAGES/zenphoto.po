@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: zenphoto\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-10-29 22:28+0100\n"
-"PO-Revision-Date: 2012-10-31 14:04+0100\n"
+"PO-Revision-Date: 2012-11-02 19:02+0100\n"
 "Last-Translator: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language-Team: Jes Drost Nissen <jesdnissen@gmail.com>\n"
 "Language: danish\n"
@@ -1065,7 +1065,7 @@ msgid ""
 "<em>menu_manager</em> plugin must also be enabled."
 msgstr ""
 "<strong>Obs:</strong> Denne valgmulighed er kun mulig hvis du har "
-"<em>Galleri indexside link</em>  sat til /\"galleri/\". <em>Menu_manager</"
+"<em>Galleri indexside linket</em>  sat til /\"galleri/\". <em>Menu_manager</"
 "em> skal selvfølgeligt også være aktiveret."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:95
@@ -1162,18 +1162,18 @@ msgstr "Brugerdefineret menu"
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:108
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:74
 msgid "Set this to the <em>menu_manager</em> menu you wish to use."
-msgstr ""
+msgstr "Sæt dette til den <em>menu_manager</em> menu som du ønsker at bruge."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:112
 msgid ""
 "This option requires the <em>menu_manager</em> plugin to be enabled and the "
 "<em>Gallery index page link</em> to be set to \"gallery\"."
-msgstr ""
+msgstr "Denne indstilling kræver at <em>menu_"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:116
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:77
 msgid "Image gallery transition"
-msgstr ""
+msgstr "Billedgalleri overgang"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:117
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:78
@@ -1182,17 +1182,17 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/user_login-out.php:37
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/GoogleMap.php:83
 msgid "None"
-msgstr ""
+msgstr "Ingen"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:117
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:78
 msgid "Fade"
-msgstr ""
+msgstr "Udtone"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:117
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:78
 msgid "Shrink/grow"
-msgstr ""
+msgstr "Formindske/vokse"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:117
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:78
@@ -1235,18 +1235,18 @@ msgstr "Separat"
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/register_user.php:69
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form.php:85
 msgid "Omit"
-msgstr ""
+msgstr "Udelade"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:123
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:84
 msgid "Location for Image gallery picture caption"
-msgstr ""
+msgstr "Placering for Billedgalleri billede billedtekst"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:133
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:138
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:139
 msgid "Index Image"
-msgstr ""
+msgstr "Indexbillede"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:134
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:88
@@ -1269,69 +1269,70 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/flowplayer3.php:154
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/flowplayer3.php:177
 msgid "none"
-msgstr ""
+msgstr "ingen"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:136
 msgid "Apply this effect to the index page image."
-msgstr ""
+msgstr "Anvend denne effekt til indexside billedet."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:139
 msgid "This option requires the <em>image_effects</em> plugin to be enabled."
 msgstr ""
+"Denne indstilling kræver at <em>image_effects</em> plugin er aktiveret."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:169
 #: /home/jes/work/translations/zenphoto/themes/garland/themeoptions.php:103
 msgid "*standard menu"
-msgstr ""
+msgstr "Standard menu"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:176
 msgid "*no logo selected"
-msgstr ""
+msgstr "*intet logo valgt"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/themeoptions.php:177
 msgid "Effervescence"
-msgstr ""
+msgstr "Effervescence"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/sidebar.php:20
 #: /home/jes/work/translations/zenphoto/themes/zenpage/sidebar.php:14
 #: /home/jes/work/translations/zenphoto/themes/garland/sidebar.php:72
 #: /home/jes/work/translations/zenphoto/zp-core/utilities/gallery_statistics.php:588
 msgid "News articles"
-msgstr ""
+msgstr "Nyhedsartikler"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:9
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:8
 msgid "Image page"
-msgstr ""
+msgstr "Billedside"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:9
 msgid "Simpleviewer"
-msgstr ""
+msgstr "Simpleviewer"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:9
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:8
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/user_login-out.php:37
 msgid "Colorbox"
-msgstr ""
+msgstr "Colorbox"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:9
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:8
 msgid "Image gallery"
-msgstr ""
+msgstr "Billedgalleri"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:81
 #: /home/jes/work/translations/zenphoto/themes/default/functions.php:61
 msgid "Theme Color"
-msgstr ""
+msgstr "Tema farve"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:92
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:42
 msgid "Personality"
-msgstr ""
+msgstr "Personlighed"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:141
 msgid "Random picture..."
-msgstr ""
+msgstr "Tilfældigt billede..."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:172
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:65
@@ -1343,8 +1344,8 @@ msgstr ""
 #, php-format
 msgid "%u album"
 msgid_plural "%u albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u album"
+msgstr[1] "%u albums"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:178
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/index.php:51
@@ -1356,113 +1357,113 @@ msgstr[1] ""
 #, php-format
 msgid "%u image"
 msgid_plural "%u images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u billede"
+msgstr[1] "%u billeder"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:188
 #, php-format
 msgid "Album %1$u of %2$u"
-msgstr ""
+msgstr "Album %1$u af %2$u"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:190
 #, php-format
 msgid "Photo %1$u of %2$u"
-msgstr ""
+msgstr "Foto %1$u af %2$u"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:194
 #, php-format
 msgid "Albums %1$u-%2$u of %3$u"
-msgstr ""
+msgstr "Albums %1$u-%2$u af %3$u"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:196
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/search.php:136
 #, php-format
 msgid "Photos %1$u-%2$u of %3$u"
-msgstr ""
+msgstr "Fotos %1$u-%2$u af %3$u"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:220
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:225
 #, php-format
 msgid "Effervescence %s"
-msgstr ""
+msgstr "Effervescence %s"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:222
 #, php-format
 msgid "Effervescence %s (not found)"
-msgstr ""
+msgstr "Effervescence %s (ikke fundet)"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:228
 #, php-format
 msgid "Effervescence %1$s %2$s"
-msgstr ""
+msgstr "Effervescence %1$s %2$s"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:230
 #, php-format
 msgid "Effervescence %1$s %2$s (not found)"
-msgstr ""
+msgstr "Effervescence %1$s %2$s (ikke fundet)"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:263
 #: /home/jes/work/translations/zenphoto/zp-core/template-functions.php:982
 msgid "The album is password protected."
-msgstr ""
+msgstr "Albummet er beskyttet af kodeord."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:266
 msgid "The album is not published."
-msgstr ""
+msgstr "Albummet er ikke offentliggjort."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:268
 #, php-format
 msgid "View the Album: %s"
-msgstr ""
+msgstr "Se Albummet: %s"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:275
 msgid "The image is marked not visible."
-msgstr ""
+msgstr "Billedet er mærket ikke synligt."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:279
 #, php-format
 msgid "View the image: %s"
-msgstr ""
+msgstr "Se billedet: %s"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:294
 #, php-format
 msgid "%1$u hit on this %2$s"
 msgid_plural "%1$u hits on this %2$s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$u hit på dette %2$s"
+msgstr[1] "%1$u hits på disse %2$s"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:294
 msgid "page"
-msgstr ""
+msgstr "side"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:302
 #, php-format
 msgid "%u Album"
 msgid_plural "%u Albums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Album"
+msgstr[1] "%u Albums"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:303
 #, php-format
 msgid "%u Subalbum"
 msgid_plural "%u Subalbums"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Underalbum"
+msgstr[1] "%u Underalbums"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:306
 #, php-format
 msgid "%u Image"
 msgid_plural "%u Images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Billede"
+msgstr[1] "%u Billeder"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:313
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/comment_form/functions.php:734
 #, php-format
 msgid "%u Comment"
 msgid_plural "%u Comments"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%u Kommentar"
+msgstr[1] "%u Kommentarer"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:333
 #: /home/jes/work/translations/zenphoto/themes/zenpage/sidebar.php:85
@@ -1474,13 +1475,13 @@ msgstr[1] ""
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:91
 #: /home/jes/work/translations/zenphoto/themes/garland/contact.php:39
 msgid "Contact us"
-msgstr ""
+msgstr "Kontakt os"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:347
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:110
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage.php:174
 msgid "album"
-msgstr ""
+msgstr "album"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:347
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:110
@@ -1490,26 +1491,26 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/image_album_statistics.php:215
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage.php:174
 msgid "image"
-msgstr ""
+msgstr "billede"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:347
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:110
 msgid "video"
-msgstr ""
+msgstr "video"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:347
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:110
 #: /home/jes/work/translations/zenphoto/zp-core/admin-globals.php:91
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tweet_news.php:401
 msgid "news"
-msgstr ""
+msgstr "nyheder"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:352
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:115
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-edit.php:442
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/zenpage/admin-news-articles.php:281
 msgid "sticky"
-msgstr ""
+msgstr "klæbrig"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:371
 #: /home/jes/work/translations/zenphoto/themes/zenpage/news.php:76
@@ -1517,12 +1518,12 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/themes/garland/functions.php:134
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/tiny_mce/plugins/tinyzenpage/tinyzenpage-functions.php:103
 msgid "Album:"
-msgstr ""
+msgstr "Album:"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/functions.php:406
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/comment_form/comment_form.php:17
 msgid "Add a comment"
-msgstr ""
+msgstr "Tilføj en kommentar"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/archive.php:40
 #: /home/jes/work/translations/zenphoto/themes/zenpage/archive.php:12
@@ -1537,12 +1538,12 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/themes/garland/archive.php:8
 #: /home/jes/work/translations/zenphoto/themes/garland/archive.php:39
 msgid "Archive View"
-msgstr ""
+msgstr "Arkiv visning"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/archive.php:62
 #: /home/jes/work/translations/zenphoto/themes/garland/archive.php:43
 msgid "Images By Date"
-msgstr ""
+msgstr "Billeder efter dato"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/contact.php:17
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/contact.php:55
@@ -1552,13 +1553,13 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/zp-core/functions.php:2137
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/html_meta_tags.php:234
 msgid "Contact"
-msgstr ""
+msgstr "Kontakt"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/contact.php:65
 #: /home/jes/work/translations/zenphoto/themes/default/contact.php:25
 #: /home/jes/work/translations/zenphoto/themes/stopdesign/contact.php:29
 msgid "Contact us."
-msgstr ""
+msgstr "Kontakt os."
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/register.php:17
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/register.php:53
@@ -1570,12 +1571,12 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/themes/garland/register.php:39
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/register_user.php:48
 msgid "Register"
-msgstr ""
+msgstr "Register"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/gallery.php:36
 #: /home/jes/work/translations/zenphoto/themes/garland/sidebar.php:14
 msgid "Search albums"
-msgstr ""
+msgstr "Søg albums"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/favorites.php:123
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/favorites.php:176
@@ -1587,32 +1588,33 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/themes/garland/favorites.php:76
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/user-expiry/user-expiry-tab.php:199
 msgid "Remove"
-msgstr ""
+msgstr "Fjern"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/image_gallery/functions.php:42
 #: /home/jes/work/translations/zenphoto/themes/garland/image_gallery/functions.php:42
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/uploader_jQuery/upload_form.php:122
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/image_gallery/functions.php:43
 #: /home/jes/work/translations/zenphoto/themes/garland/image_gallery/functions.php:43
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/simpleviewer/functions.php:65
 #, php-format
 msgid ""
 "For the best viewing experience <a href=\"http://%s\"> Get Adobe Flash.</a>"
 msgstr ""
+"For den bedste oplevelse <a href=\"http://%s\"> Installer Adobe Flash.</a>"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/simpleviewer/functions.php:85
 msgid "View Gallery Without Flash"
-msgstr ""
+msgstr "Se Galleri uden Flash"
 
 #: /home/jes/work/translations/zenphoto/themes/effervescence_plus/simpleviewer/functions.php:153
 msgid "Open In New Window"
-msgstr ""
+msgstr "Åbne i nyt vindue"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/search.php:15
 #: /home/jes/work/translations/zenphoto/themes/zenpage/archive.php:15
@@ -1638,7 +1640,7 @@ msgstr ""
 #: /home/jes/work/translations/zenphoto/themes/garland/pages.php:10
 #: /home/jes/work/translations/zenphoto/themes/garland/gallery.php:10
 msgid "Gallery RSS"
-msgstr ""
+msgstr "Galleri RSS"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/theme_description.php:10
 msgid ""
@@ -1648,22 +1650,27 @@ msgid ""
 "links in the sidebar), the dynamic_locale plugin, the new paged_thumbs_nav "
 "plugin and the jCarousel_thumb_nav plugin."
 msgstr ""
+"Zenpage CMS plugin standard tema. Det virker også uden Zenpage installeret, "
+"som et normalt tema. Det indeholder ekstra understøttelselse for "
+"print_album_menu plugin eller menu_manager plugin (en af disse bør være "
+"aktiveret for at få albumlinks i sidepanelet), dynamic_locale plugin, det "
+"nye paged_thumbs_nav plugin og jCarousel_thumb_nav plugin."
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/image.php:66
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:22
 msgid "« prev thumbs"
-msgstr ""
+msgstr "« forrige miniaturer"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/image.php:66
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/paged_thumbs_nav.php:24
 msgid "next thumbs »"
-msgstr ""
+msgstr "næste miniaturer »"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/news.php:56
 #: /home/jes/work/translations/zenphoto/themes/zenpage/news.php:72
 #: /home/jes/work/translations/zenphoto/themes/zenpage/gallery.php:64
 msgid "Comments:"
-msgstr ""
+msgstr "Kommentarer:"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/password.php:12
 #: /home/jes/work/translations/zenphoto/themes/default/password.php:10
@@ -1680,35 +1687,40 @@ msgstr "Kodeord krævet."
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:68
 #: /home/jes/work/translations/zenphoto/zp-core/zp-extensions/menu_manager/menu_tab_edit.php:244
 msgid "Gallery index"
-msgstr ""
+msgstr "Galleri index"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:60
 msgid "Use Colorbox"
-msgstr ""
+msgstr "Brug Colorbox"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:60
 msgid "Check to display of the full size image with Colorbox."
-msgstr ""
+msgstr "Afkryds for at vise billedet i fuld størrelse med Colorbox."
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:61
 msgid "News on index page"
-msgstr ""
+msgstr "Nyheder på indexsiden"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:61
 msgid ""
 "Enable this if you want to show the news section's first page on the "
 "<code>index.php</code> page."
 msgstr ""
+"Aktiver dette hvis du ønsker at vise nyhedssektionens første side på "
+"<code>index.php</code> siden."
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:62
 msgid "Homepage"
-msgstr ""
+msgstr "Hjemmeside"
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:62
 msgid ""
 "Choose here any <em>un-published Zenpage page</em> (listed by <em>titlelink</"
 "em>) to act as your site's homepage instead the normal gallery index."
 msgstr ""
+"Vælg her enhver <em>ikke offentliggjort Zenpage side</em> (opført efter "
+"<em>titellink</em>)  til at fungere som dit websteds hjemmeside i stedet for "
+"det normale galleri indeks."
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:62
 msgid ""
@@ -1716,6 +1728,9 @@ msgid ""
 "em> option and your theme must be setup for this feature! Visit the theming "
 "tutorial for details."
 msgstr ""
+"<strong>Obs:</strong> Dette tilsidesætter selvfølgelig <em>Nyheder på "
+"indexsiden</em> indstillingen og dit tema skal være sat op til denne "
+"mulighed. Besøg tema manualen  for flere oplysninger."
 
 #: /home/jes/work/translations/zenphoto/themes/zenpage/themeoptions.php:63
 msgid "Use standard contact page"
