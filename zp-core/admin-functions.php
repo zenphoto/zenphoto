@@ -1228,7 +1228,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					<?php
 					if (GALLERY_SECURITY == 'public') {
 						?>
-						<tr class="password<?php echo $suffix; ?>extrashow" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?> >
+						<tr class="password<?php echo $suffix; ?>extrashow">
 							<td class="leftcolumn">
 								<p>
 									<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',true);">
