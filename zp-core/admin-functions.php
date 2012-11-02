@@ -1228,7 +1228,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 					<?php
 					if (GALLERY_SECURITY == 'public') {
 						?>
-						<tr class="password<?php echo $suffix; ?>extrashow" <?php if (GALLERY_SECURITY != 'public') echo 'style="display:none"'; ?> >
+						<tr class="password<?php echo $suffix; ?>extrashow">
 							<td class="leftcolumn">
 								<p>
 									<a href="javascript:toggle_passwords('<?php echo $suffix; ?>',true);">
@@ -3041,12 +3041,12 @@ function printAdminRightsTable($id, $background, $alterrights, $rights) {
  * @param bit $rights the privileges  of the user
  */
 function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $rights, $kind, $flag) {
+	$rest = $extra = $extra2 = array();
 	$legend = '';
 	switch ($type) {
 		case 'albums':
 			if ($rights & (MANAGE_ALL_ALBUM_RIGHTS | ADMIN_RIGHTS)) {
 				$cv = $objlist;
-				$rest = $extra = array();
 				$alterrights = ' disabled="disabled"';
 			} else {
 				$full = populateManagedObjectsList('album', $adminid, true);
@@ -3082,6 +3082,20 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 					}
 				}
 				$rest = array_diff($objlist, $cv);
+				foreach($rest as $unmanaged) {
+					$extra2[$unmanaged][] = array('name'=>'name','value'=>$unmanaged,'display'=>'','checked'=>0);
+					$extra2[$unmanaged][] = array('name'=>'edit','value'=>MANAGED_OBJECT_RIGHTS_EDIT,'display'=>$icon_edit_album,'checked'=>1);
+					if (($rights&UPLOAD_RIGHTS)) {
+						if (hasDynamicAlbumSuffix($unmanaged)) {
+							$extra2[$unmanaged][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload_disabled,'checked'=>0,'disable'=>true);
+						} else{
+							$extra2[$unmanaged][] = array('name'=>'upload','value'=>MANAGED_OBJECT_RIGHTS_UPLOAD,'display'=>$icon_upload,'checked'=>1);
+						}
+					}
+					if (!($rights & VIEW_UNPUBLISHED_RIGHTS)) {
+						$extra2[$unmanaged][] = array('name'=>'view','value'=>MANAGED_OBJECT_RIGHTS_VIEW,'display'=>$icon_view_image,'checked'=>1);
+					}
+				}
 			}
 			$text = gettext("Managed albums:");
 			$simplename = $objectname = gettext('Albums');
@@ -3100,7 +3114,6 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			$simplename = gettext ('News');
 			$objectname = gettext ('News categories');
 			$prefix = 'managed_news_list_'.$prefix.'_';
-			$extra = array();
 			break;
 		case 'pages':
 			if ($rights & (MANAGE_ALL_PAGES_RIGHTS | ADMIN_RIGHTS)) {
@@ -3114,7 +3127,6 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			$text = gettext("Managed pages:");
 			$simplename = $objectname = gettext('Pages');
 			$prefix = 'managed_pages_list_'.$prefix.'_';
-			$extra = array();
 			break;
 	}
 	if (empty($alterrights)) {
@@ -3140,7 +3152,7 @@ function printManagedObjects($type, $objlist, $alterrights, $adminid, $prefix, $
 			<ul class="albumchecklist">
 				<?php
 				generateUnorderedListFromArray($cv, $cv, $prefix, $alterrights, true, true, NULL, $extra);
-				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true);
+				generateUnorderedListFromArray(array(), $rest, $prefix, $alterrights, true, true, NULL, $extra2);
 				?>
 			</ul>
 			<span class="floatright"><?php echo $legend; ?>&nbsp;&nbsp;&nbsp;&nbsp;</span>
@@ -3193,19 +3205,21 @@ function processManagedObjects($i, &$rights) {
 			$key = substr($key, $l_a);
 			if (preg_match('/(.*)(_edit|_view|_upload|_name)$/', $key, $matches)) {
 				$key = $matches[1];
-				switch ($matches[2]) {
-					case '_edit':
-						$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
-						break;
-					case '_upload':
-						$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
-						break;
-					case '_view':
-						$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
-						break;
-					case '_name':
-						$albums[$key]['name'] = $value;
-						break;
+				if (array_key_exists($key, $albums)) {
+					switch ($matches[2]) {
+						case '_edit':
+							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_EDIT;
+							break;
+						case '_upload':
+							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_UPLOAD;
+							break;
+						case '_view':
+							$albums[$key]['edit'] = $albums[$key]['edit'] | MANAGED_OBJECT_RIGHTS_VIEW;
+							break;
+						case '_name':
+							$albums[$key]['name'] = $value;
+							break;
+					}
 				}
 			} else if ($value) {
 				$albums[$key] = array('data'=>$key, 'name'=>'', 'type'=>'album', 'edit'=>32767 & ~(MANAGED_OBJECT_RIGHTS_EDIT | MANAGED_OBJECT_RIGHTS_UPLOAD | MANAGED_OBJECT_RIGHTS_VIEW));
