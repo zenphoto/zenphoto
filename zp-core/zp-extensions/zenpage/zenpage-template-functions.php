@@ -2442,6 +2442,13 @@ function getBarePageTitle() {
 }
 
 /**
+ * prints the raw title of a page.
+ *
+ * @return string
+ */
+function printBarePageTitle() {
+	echo html_encode(getBarePageTitle());
+}
  * Returns titlelink of a page
  *
  * @return string
