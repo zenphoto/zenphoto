@@ -112,11 +112,12 @@ if (isset($_GET['effects'])) {	//13
 }
 
 if (!isset($_GET['check']) || $_GET['check']!=sha1(HASH_SEED.serialize($args))) {
-	/*
-	debugLogVar('Forbidden: $_GET', $_GET);
-	debugLogVar('Forbidden: actual', unserialize($_GET['actual']));
-	debugLogVar('Forbidden: args', $args);
-	*/
+
+	if (TEST_RELEASE) {
+		debugLogVar('Forbidden: $_GET', $_GET);
+		if (isset($_GET['actual'])) debugLogVar('Forbidden: actual', unserialize($_GET['actual']));
+		debugLogVar('Forbidden: args', $args);
+	}
 	imageError('403 Forbidden', gettext("Forbidden(2)"));
 }
 
