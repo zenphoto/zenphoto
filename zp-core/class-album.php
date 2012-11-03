@@ -544,7 +544,7 @@ class AlbumBase extends MediaObject {
 			$subRights = $this->albumSubRights();
 			if (is_null($subRights)) {
 				// no direct rights, but if this is a private gallery and the album is published he should be allowed to see it
-				if (GALLERY_SECURITY == 'private' && $this->getShow() && $action == LIST_RIGHTS) {
+				if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
 					return LIST_RIGHTS;
 				}
 			} else {
@@ -1767,7 +1767,7 @@ class Album extends AlbumBase {
 			$subRights = $this->albumSubRights();
 			if (is_null($subRights)) {
 				// no direct rights, but if this is a private gallery and the album is published he should be allowed to see it
-				if (GALLERY_SECURITY == 'private' && $this->getShow() && $action == LIST_RIGHTS) {
+				if (GALLERY_SECURITY != 'public' && $this->getShow() && $action == LIST_RIGHTS) {
 					return LIST_RIGHTS;
 				}
 			} else {

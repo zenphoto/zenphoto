@@ -789,7 +789,7 @@ class Zenphoto_Authority {
 		if (is_null($redirect)) {
 			$redirect = WEBPATH.'/'.ZENFOLDER.'/admin.php';
 		}
-		if (GALLERY_SECURITY=='private' || $_zp_gallery->getUserLogonField()) {
+		if (GALLERY_SECURITY!='public' || $_zp_gallery->getUserLogonField()) {
 			$showUserField = true;
 		}
 
