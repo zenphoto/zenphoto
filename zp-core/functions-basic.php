@@ -761,7 +761,7 @@ function getImageProcessorURI($args, $album, $image) {
 	} else {
 		$args[13] = NULL;
 	}
-	$uri .= '&check='.sha1(HASH_SEED.serialize($args));
+	if (TEST_RELEASE) $uri .= '&check='.sha1(HASH_SEED.serialize($args));
 	/*
 	$uri .= '&actual='.serialize($args);
 	*/
