@@ -162,15 +162,20 @@ function sanitize_string($input_string, $sanitize_level) {
 	if (function_exists('kses')) {
 		switch($sanitize_level) {
 			case 1:
+				// Text formatting sanititation.
 				$allowed_tags = getAllowedTags('allowed_tags');
 				break;
-				// Text formatting sanititation.
 			case 2:
+				// Strips non-style tags.
 				$allowed_tags = getAllowedTags('style_tags');
 				break;
-				// Full sanitation.  Strips all code.
 			case 3:
+				// Full sanitation.  Strips all code.
 				$allowed_tags = array();
+				break;
+			case 4:
+				// for internal use to eliminate security injections
+				$allowed_tags = getAllowedTags('allowed_tags_default');
 				break;
 		}
 		$output_string = kses($input_string, $allowed_tags);
