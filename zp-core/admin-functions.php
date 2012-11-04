@@ -1213,7 +1213,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						<?php echo gettext("Album Title"); ?>:
 						</td>
 						<td class="middlecolumn">
-						<?php print_language_string_list($album->get('title'), $prefix."albumtitle",false,null,'','100%'); ?>
+						<?php print_language_string_list($album->getTitle('all'), $prefix."albumtitle",false,null,'','100%'); ?>
 						</td>
 					</tr>
 
@@ -1222,7 +1222,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						<?php echo gettext("Album Description:"); ?>
 						</td>
 						<td>
-						<?php	print_language_string_list($album->get('desc'), $prefix."albumdesc", true, NULL, 'texteditor','100%'); ?>
+						<?php	print_language_string_list($album->getDesc('all'), $prefix."albumdesc", true, NULL, 'texteditor','100%'); ?>
 						</td>
 					</tr>
 					<?php
@@ -1299,7 +1299,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 									</span>
 								</p>
 								<p>
-								<?php print_language_string_list($album->get('password_hint'), "hint".$suffix, false, NULL, 'hint','100%'); ?>
+								<?php print_language_string_list($album->getPasswordHint('all'), "hint".$suffix, false, NULL, 'hint','100%'); ?>
 								</p>
 							</td>
 						</tr>
@@ -1342,7 +1342,7 @@ function printAlbumEditForm($index, $album, $collapse_tags, $buttons=true) {
 						?>
 						<tr>
 							<td class="leftcolumn"><?php echo gettext("Custom data:"); ?></td>
-							<td><?php print_language_string_list($album->get('custom_data'), $prefix."album_custom_data", true , NULL, 'texteditor_albumcustomdata','100%'); ?></td>
+							<td><?php print_language_string_list($album->getCustomData('all'), $prefix."album_custom_data", true , NULL, 'texteditor_albumcustomdata','100%'); ?></td>
 						</tr>
 						<?php
 					} else {
@@ -2430,6 +2430,7 @@ $_zp_current_locale = NULL;
  */
 function print_language_string_list($dbstring, $name, $textbox=false, $locale=NULL, $edit='', $wide=TEXT_INPUT_SIZE, $ulclass='language_string_list', $rows=6) {
 	global $_zp_active_languages, $_zp_current_locale;
+	$dbstring = zpFunctions::unTagURLs($dbstring);
 	if (!empty($edit)) $edit = ' class="'.$edit.'"';
 	if (is_null($locale)) {
 		if (is_null($_zp_current_locale)) {
@@ -3492,7 +3493,7 @@ function printNestedAlbumsList($albums, $show_thumb) {
 		} else {
 			$nonest = '';
 		}
-		echo str_pad("\t",$indent-1,"\t")."<li id=\"id_".$albumobj->get('id')."\"$nonest >";
+		echo str_pad("\t",$indent-1,"\t")."<li id=\"id_".$albumobj->getID()."\"$nonest >";
 		printAlbumEditRow($albumobj, $show_thumb);
 		$open[$indent]++;
 	}

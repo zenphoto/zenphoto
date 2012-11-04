@@ -42,7 +42,16 @@ class Gallery {
 	 * @return string
 	 */
 	function getTitle($locale=NULL) {
-		return get_language_string($this->get('gallery_title'),$locale);
+		$text = $this->get('gallery_title');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
+	}
+
+	function setTitle($title) {
+		$this->set('gallery_title',zpFunctions::tagURLs($title));
 	}
 
 	/**
@@ -51,7 +60,20 @@ class Gallery {
 	 * @return string
 	 */
 	function getDesc($locale=NULL) {
-		return get_language_string($this->get('Gallery_description'),$locale);
+		$text = $this->get('Gallery_description');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
+	}
+	/**
+	 * Sets the gallery description
+	 * @param string $desc
+	 */
+	function setDesc($desc) {
+		$desc = zpFunctions::tagURLs($desc);
+		$this->set('Gallery_description', $desc);
 	}
 
 	/**
@@ -75,10 +97,15 @@ class Gallery {
 	 * @return string
 	 */
 	function getPasswordHint($locale=NULL) {
-		return get_language_string($this->get('gallery_hint'),$locale);
+		$text = $this->get('gallery_hint');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 	function setPasswordHint($value) {
-		$this->set('gallery_hint', $value);
+		$this->set('gallery_hint', zpFunctions::tagURLs($value));
 	}
 
 	function getUser() {
@@ -771,10 +798,15 @@ class Gallery {
 	 * Title to be used for the home (not Zenphoto gallery) WEBsite
 	 */
 	function getWebsiteTitle($locale=NULL) {
-		return get_language_string($this->get('website_title'),$locale);
+		$text = $this->get('website_title');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 	function setWebsiteTitle($value) {
-		$this->set('website_title', $value);
+		$this->set('website_title', zpFunctions::tagURLs($value));
 	}
 
 	/**

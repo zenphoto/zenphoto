@@ -297,7 +297,7 @@ function publishItem($id,$show,$menuset) {
  */
 function addSubalbumMenus($menuset, $id, $link, $sort) {
 	$album = new Album(NULL, $link);
-	$show = $album->get('show');
+	$show = $album->getShow();
 	$title = $album->getTitle();
 	$sql = "INSERT INTO ".prefix('menu')." (`link`,`type`,`title`,`show`,`menuset`,`sort_order`, `parentid`) ".
 																				'VALUES ('.db_quote($link).', "album",'.db_quote($album->name).', '.$show.','.db_quote($menuset).','.db_quote($sort).','.$id.')';

@@ -404,7 +404,7 @@ if ($result->loaded || $result->transient) {
 			<tr>
 				<td class="topalign-padding"><?php echo gettext("Title:"); ?></td>
 				<td class="middlecolumn">
-					<?php print_language_string_list($result->get('title'), 'title', false, NULL, 'title', '100%', 'zenpage_language_string_list', 10); ?>
+					<?php print_language_string_list($result->getTitle('all'), 'title', false, NULL, 'title', '100%', 'zenpage_language_string_list', 10); ?>
 				</td>
 				<td class="rightcolumn" rowspan="6">
 				<h2 class="h2_bordered_edit"><?php echo gettext("Publish"); ?></h2>
@@ -456,7 +456,7 @@ if ($result->loaded || $result->transient) {
 					<?php
 					}
 					if(get_class($result)=='ZenpagePage' || get_class($result)=='ZenpageCategory' ) {
-						$hint = $result->get('password_hint');
+						$hint = $result->getPasswordHint('all');
 						$user = $result->getUser();
 						$x = $result->getPassword();
 					} else {
@@ -724,9 +724,9 @@ if ($result->loaded || $result->transient) {
 				<td class="middlecolumn">
 					<?php
 					if (is_AdminEditPage("newscategory")) {
-						print_language_string_list($result->get('desc'), 'desc', true, NULL, 'desc', '100%','zenpage_language_string_list',20);
+						print_language_string_list($result->getDesc('all'), 'desc', true, NULL, 'desc', '100%','zenpage_language_string_list',20);
 					} else {
-						print_language_string_list($result->get('content'), 'content', true, NULL, 'content', '100%', 'zenpage_language_string_list', 35);
+						print_language_string_list($result->getContent('all'), 'content', true, NULL, 'content', '100%', 'zenpage_language_string_list', 35);
 					}
 					?>
 				</td>
@@ -738,7 +738,7 @@ if ($result->loaded || $result->transient) {
 					<td class="topalign-padding"><?php echo gettext("ExtraContent:"); ?></td>
 					<td class="middlecolumn">
 						<?php
-							print_language_string_list($result->get('extracontent'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 10);
+							print_language_string_list($result->getExtraContent('all'), 'extracontent', true, NULL, 'extracontent', '100%', 'zenpage_language_string_list', 10);
 						?>
 					</td>
 				</tr>
@@ -759,7 +759,7 @@ if ($result->loaded || $result->transient) {
 				$custom = zp_apply_filter('edit_page_custom_data', '', $result);
 			}
 			if(empty($custom)) {
-				print_language_string_list($result->get('custom_data'), 'custom_data', true, NULL, 'custom_data', '100%', 'zenpage_language_string_list', 10);
+				print_language_string_list($result->getCustomData('all'), 'custom_data', true, NULL, 'custom_data', '100%', 'zenpage_language_string_list', 10);
 			} else {
 				echo $custom;
 			}

@@ -230,7 +230,7 @@ function printAlbumStatisticItem($album, $option, $showtitle=false, $showdate=fa
 		echo "<p>".sprintf(gettext('Rating: %1$u (Votes: %2$u)'),$rating,$tempalbum->get("total_votes"))."</p>";
 	}
 	if($showstatistic === "hitcounter" OR $showstatistic === "rating+hitcounter") {
-		$hitcounter = $tempalbum->get("hitcounter");
+		$hitcounter = $tempalbum->getHitcounter();
 		if(empty($hitcounter)) { $hitcounter = "0"; }
 		echo "<p>".sprintf(gettext("Views: %u"),$hitcounter)."</p>";
 	}
@@ -519,7 +519,7 @@ function printImageStatistic($number, $option, $albumfolder='', $showtitle=false
 			echo "<p>".sprintf(gettext('Rating: %1$u (Votes: %2$u)'),$rating,$votes)."</p>";
 		}
 		if($showstatistic === "hitcounter" OR $showstatistic === "rating+hitcounter") {
-			$hitcounter = $image->get("hitcounter");
+			$hitcounter = $image->getHitcounter();
 			if(empty($hitcounter)) { $hitcounter = "0"; }
 			echo "<p>".sprintf(gettext("Views: %u"),$hitcounter)."</p>";
 		}

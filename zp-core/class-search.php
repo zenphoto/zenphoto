@@ -717,12 +717,12 @@ class SearchEngine {
 			foreach ($list as $category) {
 				if (in_array($category['title'], $this->category_list)) {
 					$catobj = new ZenpageCategory($category['titlelink']);
-					$cat .= ' `cat_id`='.$catobj->get('id').' OR';
+					$cat .= ' `cat_id`='.$catobj->getID().' OR';
 					$subcats = $catobj->getSubCategories();
 					if($subcats) {
 						foreach($subcats as $subcat) {
 							$catobj = new ZenpageCategory($subcat);
-							$cat .= ' `cat_id`='.$catobj->get('id').' OR';
+							$cat .= ' `cat_id`='.$catobj->getID().' OR';
 						}
 					}
 				}

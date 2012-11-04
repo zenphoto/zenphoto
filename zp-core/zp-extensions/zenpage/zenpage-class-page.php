@@ -73,7 +73,12 @@ class ZenpagePage extends ZenpageItems {
 	 * @return string
 	 */
 	function getPasswordHint($locale=NULL) {
-		return get_language_string($this->get('password_hint'),$locale);
+		$text = ($this->get('password_hint'));
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -81,7 +86,9 @@ class ZenpagePage extends ZenpageItems {
 	 *
 	 * @param string $hint the hint text
 	 */
-	function setPasswordHint($hint) { $this->set('password_hint', $hint); }
+	function setPasswordHint($hint) {
+		$this->set('password_hint', zpFunctions::tagURLs($hint));
+	}
 
 	/**
 	 * duplicates an article
@@ -220,7 +227,7 @@ class ZenpagePage extends ZenpageItems {
 		if (empty($hash)) { // no password required
 			return 'zp_public_access';
 		} else {
-			$authType = "zp_page_auth_" . $pageobj->get('id');
+			$authType = "zp_page_auth_" . $pageobj->getID();
 			$saved_auth = zp_getCookie($authType);
 			if ($saved_auth == $hash) {
 				return $authType;
