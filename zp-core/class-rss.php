@@ -871,14 +871,14 @@ protected function getRSSCombinewsAlbums() {
 		switch($itemtype) {
 			case 'news':
 				$obj = new ZenpageNews($item['titlelink']);
-				$title = $feeditem['title'] = get_language_string($obj->get('title'),$this->locale);
+				$title = $feeditem['title'] = get_language_string($obj->getTitle('all'),$this->locale);
 				$link = getNewsURL($obj->getTitlelink());
 				$count2 = 0;
 				$plaincategories = $obj->getCategories();
 				$categories = '';
 				foreach($plaincategories as $cat){
 					$catobj = new ZenpageCategory($cat['titlelink']);
-					$categories .= get_language_string($catobj->get('title'), $this->locale).',';
+					$categories .= get_language_string($catobj->getTitle('all'), $this->locale).',';
 				}
 				$categories = rtrim($categories, ',');
 				$feeditem['desc'] = shortenContent(get_language_string($obj->get('content'),$this->locale),getOption('zenpage_rss_length'), '...');
@@ -886,16 +886,16 @@ protected function getRSSCombinewsAlbums() {
 			case 'images':
 				$albumobj = new Album(NULL,$item['albumname']);
 				$obj = newImage($albumobj,$item['titlelink']);
-				$categories = get_language_string($albumobj->get('title'),$this->locale);
-				$feeditem['title'] = strip_tags(get_language_string($obj->get('title'),$this->locale));
-				$title = get_language_string($obj->get('title'),$this->locale);
+				$categories = get_language_string($albumobj->getTitle('all'),$this->locale);
+				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'),$this->locale));
+				$title = get_language_string($obj->getTitle('all'),$this->locale);
 				$link = $obj->getImageLink();
 				$filename = $obj->getFilename();
 				$ext = getSuffix($filename);
 				$album = $albumobj->getFolder();
 				$fullimagelink = $this->host.WEBPATH.'/albums/'.$album.'/'.$filename;
 				$imagefile = "albums/".$album."/".$filename;
-				$content = shortenContent(get_language_string($obj->get('desc'),$this->locale),getOption('zenpage_rss_length'), '...');
+				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).' in '.html_encode($categories).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.$filename.'&s='.$this->imagesize.'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
 				} else {
@@ -907,13 +907,13 @@ protected function getRSSCombinewsAlbums() {
 				break;
 			case 'albums':
 				$obj = new Album(NULL,$item['albumname']);
-				$categories = get_language_string($obj->get('title'),$this->locale);
-				$feeditem['title'] = strip_tags(get_language_string($obj->get('title'),$this->locale));
-				$title = get_language_string($obj->get('title'),$this->locale);
+				$categories = get_language_string($obj->getTitle('all'),$this->locale);
+				$feeditem['title'] = strip_tags(get_language_string($obj->getTitle('all'),$this->locale));
+				$title = get_language_string($obj->getTitle('all'),$this->locale);
 				$link = $obj->getAlbumLink();
 				$album = $obj->getFolder();
 				$albumthumb = $obj->getAlbumThumbImage();
-				$content = shortenContent(get_language_string($obj->get('desc'),$this->locale),getOption('zenpage_rss_length'), '...');
+				$content = shortenContent($obj->getDesc($this->locale),getOption('zenpage_rss_length'), '...');
 				if(isImagePhoto($obj)) {
 					$feeditem['desc'] = '<a title="'.html_encode($feeditem['title']).'" href="'.PROTOCOL.'://'.$this->host.$link.'"><img border="0" src="'.PROTOCOL.'://'.$this->host.WEBPATH.'/'.ZENFOLDER.'/i.php?a='.$album.'&i='.html_encode($albumthumb->filename).'&s='.$this->imagesize.'" alt="'. html_encode($feeditem['title']).'"></a><br />'.$content;
 				} else {

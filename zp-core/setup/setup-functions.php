@@ -421,7 +421,7 @@ function updateConfigItem($item, $value, $quote=true) {
 function checkAlbumParentid($albumname, $id) {
 	Global $_zp_gallery;
 	$album = new Album(NULL, $albumname);
-	$oldid = $album->get('parentid');
+	$oldid = $album->getParentID();
 	if ($oldid != $id) {
 		$album->set('parentid', $id);
 		$album->save();

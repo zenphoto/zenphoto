@@ -118,9 +118,9 @@ if (isset($_GET['action'])) {
 			$_zp_gallery->setGallerySession((int) isset($_POST['album_session']));
 			$_zp_gallery->setThumbSelectImages((int) isset($_POST['thumb_select_images']));
 			$_zp_gallery->setSecondLevelThumbs((int) isset($_POST['multilevel_thumb_select_images']));
-			$_zp_gallery->set('gallery_title', process_language_string_save('gallery_title', 2));
-			$_zp_gallery->set('Gallery_description', process_language_string_save('Gallery_description', 1));
-			$_zp_gallery->set('website_title', process_language_string_save('website_title', 2));
+			$_zp_gallery->setTitle( process_language_string_save('gallery_title', 2));
+			$_zp_gallery->setDesc(process_language_string_save('Gallery_description', 1));
+			$_zp_gallery->setWebsiteTitle(process_language_string_save('website_title', 2));
 			$web = sanitize($_POST['website_url'],3);
 			$_zp_gallery->setWebsiteURL($web);
 			$_zp_gallery->setAlbumUseImagedate((int) isset($_POST['album_use_new_image_date']));
@@ -908,14 +908,14 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td width="175"><?php echo gettext("Gallery title:"); ?></td>
 					<td width="350">
-					<?php print_language_string_list($_zp_gallery->get('gallery_title'), 'gallery_title') ?>
+					<?php print_language_string_list($_zp_gallery->getTitle('all'), 'gallery_title') ?>
 					</td>
 					<td><?php echo gettext("What you want to call your Zenphoto site."); ?></td>
 				</tr>
 				<tr>
 					<td width="175"><?php echo gettext("Gallery description:"); ?></td>
 					<td width="350">
-					<?php print_language_string_list($_zp_gallery->get('Gallery_description'), 'Gallery_description', true, NULL, 'texteditor') ?>
+					<?php print_language_string_list($_zp_gallery->getDesc('all'), 'Gallery_description', true, NULL, 'texteditor') ?>
 					</td>
 					<td><?php echo gettext("A brief description of your gallery. Some themes may display this text."); ?></td>
 				</tr>
@@ -1016,7 +1016,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 							<?php echo gettext("Gallery password hint:"); ?>
 						</td>
 						<td>
-							<?php print_language_string_list($_zp_gallery->get('gallery_hint'), 'hint', false, NULL, 'hint') ?>
+							<?php print_language_string_list($_zp_gallery->getPasswordHint('all'), 'hint', false, NULL, 'hint') ?>
 						</td>
 						<td>
 							<?php echo gettext("A reminder hint for the password."); ?>
@@ -1059,7 +1059,7 @@ if ($subtab == 'gallery' && zp_loggedin(OPTIONS_RIGHTS)) {
 				<tr>
 					<td><?php echo gettext("Website title:"); ?></td>
 					<td>
-					<?php print_language_string_list($_zp_gallery->get('website_title'), 'website_title') ?>
+					<?php print_language_string_list($_zp_gallery->getWebsiteTitle('all'), 'website_title') ?>
 					</td>
 					<td><?php echo gettext("Your web site title."); ?></td>
 				</tr>

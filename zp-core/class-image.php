@@ -597,7 +597,12 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getLocation($locale=NULL) {
-		return get_language_string($this->get('location'),$locale);
+		$text = $this->getLocation('all');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -613,7 +618,12 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getCity($locale=NULL) {
-		return get_language_string($this->get('city'),$locale);
+		$text = $this->getCity('all');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -621,7 +631,9 @@ class _Image extends MediaObject {
 	 *
 	 * @param string $city text for the city
 	 */
-	function setCity($city) { $this->set('city', $city); }
+	function setCity($city) {
+		$this->set('city', zpFunctions::tagURLs($city));
+	}
 
 	/**
 	 * Returns the state field of the image
@@ -629,7 +641,12 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getState($locale=NULL) {
-		return get_language_string($this->get('state'),$locale);
+		$text = $this->getState('all');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -637,7 +654,9 @@ class _Image extends MediaObject {
 	 *
 	 * @param string $state text for the state
 	 */
-	function setState($state) { $this->set('state', $state); }
+	function setState($state) {
+		$this->set('state', zpFunctions::tagURLs($state));
+	}
 
 	/**
 	 * Returns the country field of the image
@@ -645,7 +664,12 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getCountry($locale=NULL) {
-		return get_language_string($this->get('country'),$locale);
+		$text = $this->getCountry('all');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -653,7 +677,9 @@ class _Image extends MediaObject {
 	 *
 	 * @param string $country text for the country filed
 	 */
-	function setCountry($country) { $this->set('country', $country); }
+	function setCountry($country) {
+		$this->set('country', zpFunctions::tagURLs($country));
+	}
 
 	/**
 	 * Returns the credit field of the image
@@ -661,7 +687,12 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getCredit($locale=NULL) {
-		return get_language_string($this->get('credit'),$locale=NULL);
+		$text = $this->getCredit('all');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -669,7 +700,9 @@ class _Image extends MediaObject {
 	 *
 	 * @param string $credit text for the credit field
 	 */
-	function setCredit($credit) { $this->set('credit', $credit); }
+	function setCredit($credit) {
+		$this->set('credit', zpFunctions::tagURLs($credit));
+	}
 
 	/**
 	 * Returns the copyright field of the image
@@ -677,7 +710,12 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getCopyright($locale=NULL) {
-		return get_language_string($this->get('copyright'),$locale);
+		$text = $this->getCopyright('all');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -685,7 +723,9 @@ class _Image extends MediaObject {
 	 *
 	 * @param string $copyright text for the copyright field
 	 */
-	function setCopyright($copyright) { $this->set('copyright', $copyright); }
+	function setCopyright($copyright) {
+		$this->set('copyright', zpFunctions::tagURLs($copyright));
+	}
 
 	/**
 	 * Permanently delete this image (permanent: be careful!)

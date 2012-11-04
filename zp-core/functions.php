@@ -419,7 +419,7 @@ function checkAlbumPassword($album, &$hint=NULL) {
 		$album = $album->getParent();
 		while (!is_null($album)) {
 			$hash = $album->getPassword();
-			$authType = "zp_album_auth_" . $album->get('id');
+			$authType = "zp_album_auth_" . $album->getID();
 			$saved_auth = zp_getCookie($authType);
 
 			if (!empty($hash)) {
@@ -446,7 +446,7 @@ function checkAlbumPassword($album, &$hint=NULL) {
 			}
 		}
 	} else {
-		$authType = "zp_album_auth_" . $album->get('id');
+		$authType = "zp_album_auth_" . $album->getID();
 		$saved_auth = zp_getCookie($authType);
 		if ($saved_auth != $hash) {
 			$hint = $album->getPasswordHint();
@@ -693,7 +693,7 @@ function populateManagedObjectsList($type,$id,$rights=false) {
 		return array();
 	}
 	$cv = array();
-	if (empty($type) || $type=='albums' || $type=='album') {
+	if (empty($type) || substr($type,0,5)=='album') {
 		$sql = "SELECT ".prefix('albums').".`folder`,".prefix('albums').".`title`,".prefix('admin_to_object').".`edit` FROM ".prefix('albums').", ".
 						prefix('admin_to_object')." WHERE ".prefix('admin_to_object').".adminid=".$id.
 						" AND ".prefix('albums').".id=".prefix('admin_to_object').".objectid AND ".prefix('admin_to_object').".type LIKE 'album%'";
@@ -1580,7 +1580,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 			$check_auth = getOption('search_password');
 			$check_user = getOption('search_user');
 		} else if (in_context(ZP_ALBUM)) { // album page
-			$authType = "zp_album_auth_" . $_zp_current_album->get('id');
+			$authType = "zp_album_auth_" . $_zp_current_album->getID();
 			$check_auth = $_zp_current_album->getPassword();
 			$check_user = $_zp_current_album->getUser();
 			if (empty($check_auth)) {
@@ -1588,13 +1588,13 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 				while (!is_null($parent)) {
 					$check_auth = $parent->getPassword();
 					$check_user = $parent->getUser();
-					$authType = "zp_album_auth_" . $parent->get('id');
+					$authType = "zp_album_auth_" . $parent->getID();
 					if (!empty($check_auth)) { break; }
 					$parent = $parent->getParent();
 				}
 			}
 		} else if (in_context(ZP_ZENPAGE_PAGE)) {
-			$authType = "zp_page_auth_" . $_zp_current_zenpage_page->get('id');
+			$authType = "zp_page_auth_" . $_zp_current_zenpage_page->getID();
 			$check_auth = $_zp_current_zenpage_page->getPassword();
 			$check_user = $_zp_current_zenpage_page->getUser();
 			if (empty($check_auth)) {
@@ -1605,7 +1605,7 @@ function zp_handle_password($authType=NULL, $check_auth=NULL, $check_user=NULL) 
 					$sql = 'SELECT `titlelink` FROM '.prefix('pages').' WHERE `id`='.$parentID;
 					$result = query_single_row($sql);
 					$pageobj = new ZenpagePage($result['titlelink']);
-					$authType = "zp_page_auth_" . $pageobj->get('id');
+					$authType = "zp_page_auth_" . $pageobj->getID();
 					$check_auth = $pageobj->getPassword();
 					$check_user = $pageobj->getUser();
 				}
@@ -2256,6 +2256,17 @@ class zpFunctions {
 			return true;
 		}
 		return false;
+	}
+
+	static function tagURLs($text) {
+		$text = preg_replace('|'.FULLWEBPATH.'|is', '{*FULLWEBPATH*}', $text);
+		$text = preg_replace('|'.WEBPATH.'|is', '{*WEBPATH*}', $text);
+		return $text;
+	}
+	static function unTagURLs($text) {
+		$text = preg_replace('|\{\*FULLWEBPATH\*\}|', FULLWEBPATH, $text);
+		$text = preg_replace('|\{\*WEBPATH\*\}|', WEBPATH, $text);
+		return $text;
 	}
 
 }

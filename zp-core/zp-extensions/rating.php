@@ -302,7 +302,7 @@ function printRating($vote=3, $object=NULL, $text=true) {
 	$split_stars = max(1,getOption('rating_split_stars'));
 	$rating = $object->get('rating');
 	$votes = $object->get('total_votes');
-	$id = $object->get('id');
+	$id = $object->getID();
 	$unique = '_'.$table.'_'.$id;
 
 	$ip = jquery_rating::id();

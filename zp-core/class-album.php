@@ -75,7 +75,12 @@ class AlbumBase extends MediaObject {
 	 * @return string
 	 */
 	function getLocation($locale=NULL) {
-		return get_language_string($this->get('location'), $locale);
+		$text = $this->get('location');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -84,7 +89,7 @@ class AlbumBase extends MediaObject {
 	 * @param string $place text for the place field
 	 */
 	function setLocation($place) {
-		$this->set('location', $place);
+		$this->set('location', zpFunctions::tagURLs($place));
 	}
 
 
@@ -754,6 +759,10 @@ class Album extends AlbumBase {
 			return $this->parentalbum;
 		}
 		return NULL;
+	}
+
+	function getParentID() {
+		return $this->get('parentid');
 	}
 
 	/**

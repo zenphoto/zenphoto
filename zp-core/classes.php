@@ -418,7 +418,12 @@ class ThemeObject extends PersistentObject {
 	 * @return string
 	 */
 	function getTitle($locale=NULL) {
-		return get_language_string($this->get('title'),$locale);
+		$text = $this->get('title');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -426,7 +431,9 @@ class ThemeObject extends PersistentObject {
 	 *
 	 * @param string $title the title
 	 */
-	function setTitle($title) { $this->set('title', $title); }
+	function setTitle($title) {
+		$this->set('title', zpFunctions::tagURLs($title));
+	}
 
 	/**
 	 * Returns the partent id
@@ -564,7 +571,12 @@ class ThemeObject extends PersistentObject {
 	 * @return string
 	 */
 	function getCustomData($locale=NULL) {
-		return get_language_string($this->get('custom_data'),$locale);
+		$text = $this->get('custom_data');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -572,7 +584,9 @@ class ThemeObject extends PersistentObject {
 	 *
 	 * @param string $val the value to be put in custom_data
 	 */
-	function setCustomData($val) { $this->set('custom_data', $val); }
+	function setCustomData($val) {
+		$this->set('custom_data', zpFunctions::tagURLs($val));
+	}
 
 	/**
 	 * Retuns true if comments are allowed
@@ -716,7 +730,12 @@ class MediaObject extends ThemeObject {
 	 * @return string
 	 */
 	function getDesc($locale=NULL) {
-		return get_language_string($this->get('desc'),$locale);
+		$text =  $this->get('desc');
+		if ($locale!=='all') {
+			$text =  get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -724,7 +743,10 @@ class MediaObject extends ThemeObject {
 	 *
 	 * @param string $desc description text
 	 */
-	function setDesc($desc) { $this->set('desc', $desc); }
+	function setDesc($desc) {
+		$desc = zpFunctions::tagURLs($desc);
+		$this->set('desc', $desc);
+	}
 
 	/**
 	 * Returns the sort order
@@ -782,7 +804,12 @@ class MediaObject extends ThemeObject {
 	 * @return string
 	 */
 	function getPasswordHint($locale=NULL) {
-		return get_language_string($this->get('password_hint'),$locale);
+		$text = $this->get('password_hint');
+		if ($locale!=='all') {
+			$text = get_language_string($text,$locale);
+		}
+		$text = zpFunctions::unTagURLs($text);
+		return $text;
 	}
 
 	/**
@@ -790,7 +817,9 @@ class MediaObject extends ThemeObject {
 	 *
 	 * @param string $hint the hint text
 	 */
-	function setPasswordHint($hint) { $this->set('password_hint', $hint); }
+	function setPasswordHint($hint) {
+		$this->set('password_hint', zpFunctions::tagURLs($hint));
+	}
 
 	/**
 	* Returns the expire date

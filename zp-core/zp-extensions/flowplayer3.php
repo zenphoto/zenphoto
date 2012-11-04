@@ -465,7 +465,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 					$liststyle = 'div';
 				}
 			echo '<div class="flowplayer3_playlistwrapper">
-			<a id="player'.$album->get('id').'" class="flowplayer3_playlist" style="display:block; width: '.$playlistwidth.'px; height: '.$playlistheight.'px;">
+			<a id="player'.$album->getID().'" class="flowplayer3_playlist" style="display:block; width: '.$playlistwidth.'px; height: '.$playlistheight.'px;">
 			'.$videoThumbImg.'
 			</a>
 			<script type="text/javascript">
@@ -473,13 +473,13 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 			$(function() {
 
 			$("div.playlist").scrollable({
-				items:"'.$liststyle.'.clips'.$album->get('id').'",
+				items:"'.$liststyle.'.clips'.$album->getID().'",
 				vertical:true,
 				next:"a.down",
 				prev:"a.up",
 				mousewheel: true
 			});
-			flowplayer("player'.$album->get('id').'","'.WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf.'", {
+			flowplayer("player'.$album->getID().'","'.WEBPATH . '/' . ZENFOLDER . '/'.PLUGIN_FOLDER . '/flowplayer3/'.$swf.'", {
 			plugins: {
 				audio: {
 					url: "'.$audio.'"
@@ -536,7 +536,7 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 			} // foreach end
 			echo 'playlist: ['.substr($list,0,-1).']
 			});
-			flowplayer("player'.$album->get('id').'").playlist("'.$liststyle.'.clips'.$album->get('id').':first", {loop:true});
+			flowplayer("player'.$album->getID().'").playlist("'.$liststyle.'.clips'.$album->getID().':first", {loop:true});
 			});
 			// ]]> -->
 			</script>';
@@ -544,8 +544,8 @@ function flowplayerPlaylist($option="playlist",$albumfolder="") {
 		<div class="wrapper">
 					<a class="up" title="Up"></a>
 
-			<div class="playlist playlist<?php echo $album->get('id'); ?>">
-				<<?php echo $liststyle; ?> class="clips clips<?php echo $album->get('id'); ?>">
+			<div class="playlist playlist<?php echo $album->getID(); ?>">
+				<<?php echo $liststyle; ?> class="clips clips<?php echo $album->getID(); ?>">
 					<!-- single playlist entry as an "template" -->
 					<?php if($liststyle == 'ol') { ?> <li> <?php } ?>
 					<a href="${url}">${title}</a>
