@@ -1344,7 +1344,7 @@ function zp_session_start() {
 
 /**
  * Zenphoto Mutex class
- * @author Stephen
+ * @author Stephen and d4gurasu
  *
  */
 class Mutex {
@@ -1355,7 +1355,7 @@ class Mutex {
 
 	function __construct($lock='zP',$concurrent=NULL) {
 		if ($concurrent) {
-			$lock .='_'.rand(1, $concurrent);
+			$lock .='_'.$this->which_lock($concurrent);
 		}
 		$this->lock = $lock;
 	}
@@ -1365,6 +1365,37 @@ class Mutex {
 			$this->unlock();
 			debugLog(sprintf(gettext('Mutex %s was left locked.'),$this->lock));
 		}
+	}
+
+// returns the integer id of the lock to be obtained
+// rotates locks sequentially mod $concurrent
+	private function which_lock($concurrent) {
+		$path=SERVERPATH.'/'.DATA_FOLDER.'/mutex';
+		if (!file_exists($path)) {
+				mkdir($path);
+		}
+		$counter_file=$path."/lock_counter";
+		$error=false;
+		if (!file_exists($counter_file)){
+			$handle=fopen($counter_file,"w") or $error=true;		
+			fclose($handle);
+		}
+// go atomic:		
+		$this->lock = 'lock_lock'; 
+		$this->lock();
+// get and increment the lock id:
+		$count=(int)file_get_contents($counter_file);		
+		$handle=fopen($counter_file,"w") or $error=true;
+		$newcount=($count+1) % $concurrent;
+		fwrite($handle,$newcount) or $error=true;
+		fclose($handle) or $error=true;
+// done with atomic actions.
+		$this->unlock();
+		if($error){ // fall back on a random number.
+			debugLog(sprintf(gettext("Error accessing $counter_file.  Mutex selection failed.  Using random number.")));
+			return rand(0, $concurrent-1);
+		}
+		return $newcount;
 	}
 
 	public function lock() {
