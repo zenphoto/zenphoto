@@ -597,7 +597,7 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getLocation($locale=NULL) {
-		$text = $this->getLocation('all');
+		$text = $this->get('location');
 		if ($locale!=='all') {
 			$text = get_language_string($text,$locale);
 		}
@@ -618,7 +618,7 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getCity($locale=NULL) {
-		$text = $this->getCity('all');
+		$text = $this->get('city');
 		if ($locale!=='all') {
 			$text = get_language_string($text,$locale);
 		}
@@ -641,7 +641,7 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getState($locale=NULL) {
-		$text = $this->getState('all');
+		$text = $this->get('state');
 		if ($locale!=='all') {
 			$text = get_language_string($text,$locale);
 		}
@@ -664,7 +664,7 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getCountry($locale=NULL) {
-		$text = $this->getCountry('all');
+		$text = $this->get('country');
 		if ($locale!=='all') {
 			$text = get_language_string($text,$locale);
 		}
@@ -687,7 +687,7 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getCredit($locale=NULL) {
-		$text = $this->getCredit('all');
+		$text = $this->get('credit');
 		if ($locale!=='all') {
 			$text = get_language_string($text,$locale);
 		}
@@ -710,7 +710,7 @@ class _Image extends MediaObject {
 	 * @return string
 	 */
 	function getCopyright($locale=NULL) {
-		$text = $this->getCopyright('all');
+		$text = $this->get('copyright');
 		if ($locale!=='all') {
 			$text = get_language_string($text,$locale);
 		}
