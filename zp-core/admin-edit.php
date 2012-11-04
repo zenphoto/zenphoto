@@ -86,7 +86,7 @@ if (isset($_GET['action'])) {
 		case 'savesubalbumorder':
 			XSRFdefender('savealbumorder');
 			if ($_POST['checkallaction']=='noaction') {
-				$notify = postAlbumSort($album->get('id'));
+				$notify = postAlbumSort($album->getID());
 				if ($notify) {
 					if ($notify === true) {
 						$notify = '&saved';
@@ -1038,7 +1038,7 @@ $alb = removeParentAlbumNames($album);
 						<?php } ?>
 						<p class="buttons"><a href="<?php echo $image->getImageLink();?>" title="<?php echo gettext('View image on website'); ?>"><img src="images/view.png" alt="" /><strong><?php echo gettext('View'); ?></strong></a></p><br style="clear: both" />
 						<p><?php echo gettext('<strong>Filename:</strong>'); ?><br /><?php echo $image->filename; ?></p>
-						<p><?php echo gettext('<strong>Image id:</strong>'); ?> <?php echo $image->get('id'); ?></p>
+						<p><?php echo gettext('<strong>Image id:</strong>'); ?> <?php echo $image->getID(); ?></p>
 						<p><?php echo gettext("<strong>Dimensions:</strong>"); ?><br /><?php echo $image->getWidth(); ?> x  <?php echo $image->getHeight().' '.gettext('px'); ?></p>
 						<p><?php echo gettext("<strong>Size:</strong>"); ?><br /><?php echo byteConvert($image->getImageFootprint()); ?></p>
 						</td>
@@ -1282,12 +1282,12 @@ $alb = removeParentAlbumNames($album);
 					</tr>
 					<tr>
 						<td align="left" valign="top"><?php echo gettext("Title:"); ?></td>
-						<td><?php print_language_string_list($image->get('title'), $currentimage.'-title', false, NULL, '', '100%'); ?>
+						<td><?php print_language_string_list($image->getTitle('all'), $currentimage.'-title', false, NULL, '', '100%'); ?>
 					</tr>
 
 					<tr>
 						<td align="left" valign="top"><?php echo gettext("Description:"); ?></td>
-						<td><?php print_language_string_list($image->get('desc'), $currentimage.'-desc', true, NULL, 'texteditor', '100%'); ?></td>
+						<td><?php print_language_string_list($image->getDesc('all'), $currentimage.'-desc', true, NULL, 'texteditor', '100%'); ?></td>
 					</tr>
 
 					<?php
@@ -1354,7 +1354,7 @@ $alb = removeParentAlbumNames($album);
 						?>
 						<tr>
 							<td valign="top"><?php echo gettext("Custom data:"); ?></td>
-							<td><?php print_language_string_list($image->get('custom_data'), $currentimage.'-custom_data', true,NULL,'texteditor_imagecustomdata', '100%'); ?></td>
+							<td><?php print_language_string_list($image->getCustomData('all'), $currentimage.'-custom_data', true,NULL,'texteditor_imagecustomdata', '100%'); ?></td>
 						</tr>
 						<?php
 						} else {
@@ -1364,37 +1364,37 @@ $alb = removeParentAlbumNames($album);
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("Location:"); ?></td>
-						<td><?php print_language_string_list($image->get('location'), $currentimage.'-location', false, NULL,'', '100%'); ?>
+						<td><?php print_language_string_list($image->getLocation('all'), $currentimage.'-location', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("City:"); ?></td>
-						<td><?php print_language_string_list($image->get('city'), $currentimage.'-city', false, NULL,'', '100%'); ?>
+						<td><?php print_language_string_list($image->getCity('all'), $currentimage.'-city', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("State:"); ?></td>
-						<td><?php print_language_string_list($image->get('state'), $currentimage.'-state', false, NULL,'', '100%'); ?>
+						<td><?php print_language_string_list($image->getState('all'), $currentimage.'-state', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("Country:"); ?></td>
-						<td><?php print_language_string_list($image->get('country'), $currentimage.'-country', false, NULL,'', '100%'); ?>
+						<td><?php print_language_string_list($image->getCountry('all'), $currentimage.'-country', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("Credit:"); ?></td>
-						<td><?php print_language_string_list($image->get('credit'), $currentimage.'-credit', false, NULL,'', '100%'); ?>
+						<td><?php print_language_string_list($image->getCredit('all'), $currentimage.'-credit', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 
 					<tr class="imageextrainfo" style="display: none">
 						<td valign="top"><?php echo gettext("Copyright:"); ?></td>
-						<td><?php print_language_string_list($image->get('copyright'), $currentimage.'-copyright', false, NULL,'', '100%'); ?>
+						<td><?php print_language_string_list($image->getCopyright('all'), $currentimage.'-copyright', false, NULL,'', '100%'); ?>
 						</td>
 					</tr>
 					<?php

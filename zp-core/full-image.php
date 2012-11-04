@@ -54,14 +54,14 @@ if (($hash || !$albumobj->checkAccess()) && !zp_loggedin(VIEW_FULLIMAGE_RIGHTS))
 	$show = getOption('protected_image_user');
 	if (empty($hash)) {	// check for album password
 		$hash = $albumobj->getPassword();
-		$authType = "zp_album_auth_" . $albumobj->get('id');
+		$authType = "zp_album_auth_" . $albumobj->getID();
 		$hint = $albumobj->getPasswordHint();
 		$show = $albumobj->getUser();
 		if (empty($hash)) {
 			$albumobj = $albumobj->getParent();
 			while (!is_null($albumobj)) {
 				$hash = $albumobj->getPassword();
-				$authType = "zp_album_auth_" . $albumobj->get('id');
+				$authType = "zp_album_auth_" . $albumobj->getID();
 				$hint = $albumobj->getPasswordHint();
 				$show = $albumobj->getUser();
 				if (!empty($hash)) {

@@ -389,7 +389,7 @@ if (zp_loggedin(ADMIN_RIGHTS)) {	//only admin should be allowed to do this
 		<?php
 		foreach ($publish_images_list as $key=>$imagelist) {
 			$album = new Album(NULL,$key);
-			$albumid = $album->get('id');
+			$albumid = $album->getID();
 			$imagelist = array_flip($imagelist);
 			natcasesort($imagelist);
 			$imagelist = array_flip($imagelist);

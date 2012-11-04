@@ -1393,6 +1393,7 @@ function printField($context, $field, $convertBR = NULL, $override = false, $lab
 	} else {
 		$text = trim(get_language_string($object->get($field)));
 	}
+	$text = zpFunctions::unTagURLs($text);
 
 	$text = html_encodeTagged($text);
 	if ($convertBR) {
