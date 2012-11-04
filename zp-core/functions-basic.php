@@ -1355,15 +1355,45 @@ class Mutex {
 
 	function __construct($lock='zP',$concurrent=NULL) {
 		if ($concurrent) {
-			$lock .='_'.rand(1, $concurrent);
+			$lock .='_'.self::which_lock($lock, $concurrent);
 		}
 		$this->lock = $lock;
 	}
 
+	// returns the integer id of the lock to be obtained
+	// rotates locks sequentially mod $concurrent
+	private static function which_lock($lock,$concurrent) {
+		global $_zp_mutex;
+		if (defined('SERVERPATH')) {
+			$path=SERVERPATH.'/'.DATA_FOLDER.'/mutex';
+			if (!file_exists($path)) {
+				mkdir($path);
+			}
+			$counter_file=$path.'/'.$lock.'_counter';
+			$_zp_mutex->lock();
+			// get and increment the lock id:
+			$count=(int) @file_get_contents($counter_file);
+			$newcount=($count+1) % $concurrent;
+			$error = !file_put_contents($counter_file, $newcount);
+			$_zp_mutex->unlock();
+		} else {
+			$error = true;
+		}
+		if($error){ // fall back on a random number.
+			if (TEST_RELEASE) {
+				debugLog(sprintf(gettext("Error accessing $counter_file.  Mutex selection failed.  Using random number.")));
+			}
+			return rand(1, $concurrent);
+		}
+		return $newcount;
+	}
+
+
+
 	function __destruct() {
 		if ($this->locked) {
 			$this->unlock();
-			debugLog(sprintf(gettext('Mutex %s was left locked.'),$this->lock));
+			debugLogBacktrace(sprintf(gettext('Mutex %s was left locked.'),$this->lock));
 		}
 	}
 

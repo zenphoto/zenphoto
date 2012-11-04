@@ -149,9 +149,6 @@ function iptc_make_tag($rec, $data, $value) {
 function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $theme, $album) {
 	global $_zp_gallery;
 	try {
-		$iMutex = new Mutex('i',getOption('imageProcessorConcurrency'));
-		$iMutex-> lock();
-
 		@list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
 		// Set the config variables for convenience.
 		$image_use_side = getOption('image_use_side');
@@ -475,9 +472,7 @@ function cacheImage($newfilename, $imgfile, $args, $allow_watermark=false, $them
 		@chmod($newfile, FILE_MOD);
 		zp_imageKill($newim);
 		zp_imageKill($im);
-		$iMutex -> unlock();
 	} catch (Exception $e) {
-		$iMutex -> unlock();
 		debugLog('cacheImage('.$newfilename.') exception: '.$e->getMessage());
 		imageError('404 Not Found', sprintf(gettext('cacheImage(%1$s) exception: %2$s'),$newfilename,$e->getMessage()), 'err-failimage.png');
 		return false;
