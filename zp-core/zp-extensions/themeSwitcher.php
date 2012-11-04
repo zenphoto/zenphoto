@@ -116,12 +116,14 @@ class themeSwitcher {
 	 * @param string $text link text
 	 */
 	static function controlLink($textIn=NULL) {
-		global $_zp_gallery, $_themeSwitcherThemelist;
+		global $_zp_gallery, $_themeSwitcherThemelist, $_zp_gallery_page;
 		if (self::active()) {
 			$themes = array();
 			foreach ($_zp_gallery->getThemes() as $theme=>$details) {
 				if ($_themeSwitcherThemelist[$theme]) {
-					$themes[$details['name']] = $theme;
+					if (getPlugin($_zp_gallery_page, $theme)) {
+						$themes[$details['name']] = $theme;
+					}
 				}
 			}
 			$text = $textIn;
