@@ -234,6 +234,7 @@ if (isset($_GET['action'])) {
 			setOption('full_image_quality', sanitize($_POST['full_image_quality'],3));
 			setOption('cache_full_image', (int) isset($_POST['cache_full_image']));
 			setOption('protect_full_image', sanitize($_POST['protect_full_image'],3));
+			setOption('imageProcessorConcurrency', $_POST['imageProcessorConcurrency']);
 			$notify = processCredentials('protected_image');
 
 			setOption('secure_image_processor', (int) isset($_POST['secure_image_processor']));
@@ -1987,7 +1988,7 @@ if ($subtab == 'image' && zp_loggedin(OPTIONS_RIGHTS)) {
 					// ]]> -->
 				</script>
 				<div id="slider-workers"></div>
-				<input type="hidden" id="cache-workers" name="iproc_proc_limit" value="<?php echo getOption('iproc_proc_limit');?>" />
+				<input type="hidden" id="cache-workers" name="imageProcessorConcurrency" value="<?php echo getOption('imageProcessorConcurrency');?>" />
 			</td>
 			<td>
 			<?php printf(gettext('Cache processing worker limit: %s.'),'<span id="cache_processes">'.getOption('imageProcessorConcurrency').'</span>').
