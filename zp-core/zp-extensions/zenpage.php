@@ -246,15 +246,21 @@ class zenpagecms {
 	}
 
 	static function switcher_controllink($ignore) {
-		global $_cmsSwitch;
+		global $_cmsSwitch, $_zp_gallery_page;
 		if (is_null($_cmsSwitch)) {
 			$_cmsSwitch = true;
 		}
+		if ($_zp_gallery_page=='pages.php' || $_zp_gallery_page=='news.php') {
+			$disabled = ' disabled="disalbed"';
+		} else {
+			$disabled = '';
+		}
+
 		?>
 		<span id="themeSwitcher_zenpage">
 			<label>
 				Zenpage
-				<input type="checkbox" name="cmsSwitch" id="cmsSwitch" value="1"<?php if($_cmsSwitch) echo ' checked="checked"'; ?> onclick="switchCMS(this.checked);" />
+				<input type="checkbox" name="cmsSwitch" id="cmsSwitch" value="1"<?php if($_cmsSwitch) echo $disabled.' checked="checked"'; ?> onclick="switchCMS(this.checked);" />
 			</label>
 		</span>
 		<?php
